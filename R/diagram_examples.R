@@ -44,8 +44,8 @@ diagram_examples <- function(example_number){
     graph LR;
     A(Rounded)-->B[Squared];
     B-->C{A Decision};
-    C-->D[Square one];
-    C-->E[Square two];
+    C-->D[Square One];
+    C-->E[Square Two];
     
     style A fill:#E5E25F;
     style B fill:#87AB51;
