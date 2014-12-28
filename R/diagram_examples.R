@@ -5,7 +5,7 @@
 diagram_examples <- function(example_number){
   
   # Validate the value provided for 'example_number'
-  stopifnot(example_number %in% seq(1:4))
+  stopifnot(example_number %in% seq(1:5))
   
   # Example 1: Simple relationships running from left to right
   if (example_number == 1){
