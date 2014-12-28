@@ -37,6 +37,24 @@ diagram_examples <- function(example_number){
     "
   }
   
+  # Example 3: Add some CSS styles
+  if (example_number == 3){
+  
+    diagram_example <- "
+    graph LR;
+    A(Rounded)-->B[Squared];
+    B-->C{A Decision};
+    C-->D[Square one];
+    C-->E[Square two];
+    
+    style A fill:#E5E25F;
+    style B fill:#87AB51;
+    style C fill:#3C8937;
+    style D fill:#23772C;
+    style E fill:#B6E6E6;
+    "
+  }
+  
   render_diagram(diagram_example)
   
 }
