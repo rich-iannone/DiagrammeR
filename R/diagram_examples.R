@@ -78,30 +78,30 @@ diagram_examples <- function(example_number){
     # Obtain column names
     column_names <- colnames(mtcars)
     
+    # Use for in loop to generate summary strings for each mtcars column
     for (i in 1:length(column_names)){
       if (i == 1) stat_strings <- vector(mode = "character", length = 0L)
       
-      stat_strings <- c(stat_strings,
-                        paste0(i, "(", column_names[i], ")---", i, "-stats(",
-                               "min: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 1]))), "<br/>",
-                               "1Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 2]))), "<br/>",
-                               "med: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 3]))), "<br/>",
-                               "mean: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 4]))), "<br/>",
-                               "3Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 5]))), "<br/>",
-                               "max: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 6]))),
-                               ")"))
+      stat_strings <-
+      c(stat_strings,
+        paste0(i, "(", column_names[i], ")---", i, "-stats(",
+               "min: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 1]))), "<br/>",
+               "1Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 2]))), "<br/>",
+               "med: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 3]))), "<br/>",
+               "mean: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 4]))), "<br/>",
+               "3Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 5]))), "<br/>",
+               "max: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 6]))),
+               ")"))
     }
     
-    diagram_example <- paste0("
-    graph TD;
-    ",
-    paste(stat_strings, collapse = "\n"),"\n
-    classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;
-    class ", paste0(1:length(column_names), collapse = ","), " column;
+    diagram_example <-
+    paste0(
+      "graph TD;", "\n",
+      paste(stat_strings, collapse = "\n"),"\n",
+      "classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;" ,"\n",
+      "class ", paste0(1:length(column_names), collapse = ","), " column;
     ")
-    
-    writeLines(diagram_example, "example.txt")
-    
+        
   }  
   
   render_diagram(diagram_example)
