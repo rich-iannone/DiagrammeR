@@ -9,3 +9,10 @@
 
 # RStudio files
 .Rproj.user/
+.Rproj.user
+DiagrammeR.Rproj
+
+# Output files
+*.txt
+*.tif
+*.png
