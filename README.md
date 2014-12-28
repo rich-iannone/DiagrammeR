@@ -12,7 +12,7 @@ require(devtools)
 install_github('DiagrammeR', 'rich-iannone')
 ```
 
-### A Usage example
+### A Usage Example
 
 The following code is provided to the object `diagram`. All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `render_diagram` function currently takes a single argument, which is character object that contains the diagram code:
 
