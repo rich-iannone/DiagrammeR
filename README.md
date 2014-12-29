@@ -5,7 +5,7 @@ Create diagrams using R, with a light interface to the [`mermaid.js` library](ht
 
 ### Installation
 
-Install DiagrammeR from GitHub using the `devtools` package.
+Install `DiagrammeR` from GitHub using the `devtools` package.
 
 ```R
 require(devtools)
@@ -24,6 +24,8 @@ height      | `NULL` (default) or a specified height as a number (in pixels)
 
 
 ### A Few Usage Examples
+
+Below are a few examples of how we might use `DiagrammeR`.  For more examples and additional documentation, see the [`mermaid.js` Wiki](https://github.com/knsv/mermaid/wiki).
 
 ```R
 # like html, whitespace does not matter in the diagram spec
