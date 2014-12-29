@@ -5,7 +5,10 @@
 \usage{
 diagram_examples(example_number)
 }
+\arguments{
+\item{example_number}{an integer from 1 to 5 that specifies which example to display.}
+}
 \description{
-This function provides several examples for diagramming code and output
+This function provides several examples for diagramming code and output.
 }
 
