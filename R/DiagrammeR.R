@@ -69,6 +69,22 @@
 #'    )
 #'  )
 #'
+#' # also with DiagrammeR() you can use tags from htmltools
+#' # just make sure to use class = "mermaid"
+#' library(htmltools)
+#' diagramSpec = "
+#' graph LR;
+#'   id1(Start)-->id2(Stop);
+#'   style id1 fill:#f9f,stroke:#333,stroke-width:4px;
+#'   style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5;
+#' "
+#' html_print(tagList(
+#'   tags$h1("R + mermaid.js = Something Special")
+#'   ,tags$pre(diagramSpec)
+#'   ,tags$div(class="mermaid",diagramSpec)
+#'   ,DiagrammeR()
+#' ))
+#'  
 #' @import htmlwidgets
 #'
 #' @export
