@@ -160,3 +160,4 @@ This is part of the resulting graphic (it's very wide so I included here 8 of th
 
 <img src="inst/Example_5.png">
 
+These examples are also available within the package itself. Use the `diagram_examples` function with an integer from 1 to 5 as an argument. The example graphic will then appear in RStudio's Viewer pane.
