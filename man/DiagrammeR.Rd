@@ -70,7 +70,7 @@ for (i in 1:length(column_names)){
           "max: ", gsub(" ", "", (gsub(".*:(.*)", "\\\\1",summary(mtcars)[((i - 1) * 6) + 6]))),
    ")"))
 }
-DiagrammeR("
+DiagrammeR(
    paste0(
      "graph TD;", "\\n",
      paste(connections, collapse = "\\n"),"\\n",
