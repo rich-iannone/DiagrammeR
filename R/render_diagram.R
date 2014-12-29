@@ -1,5 +1,6 @@
 #' Render diagram in viewer pane
 #' @description This function renders the diagram code in RStudio's viewer pane.
+#' @param diagram_code either a character object or a path to a text file that contains the code for a diagram.
 #' @export render_diagram
 
 render_diagram <- function(diagram_code){
