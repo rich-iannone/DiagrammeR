@@ -1,0 +1,131 @@
+---
+title: "An Introduction to the DiagrammeR Package"
+author: "Richard Iannone and Kent Russell"
+date: "`r Sys.Date()`"
+output:
+  knitr:::html_vignette:
+    toc: yes
+    number_sections: yes
+  html_document:
+    toc: yes
+    number_sections: yes
+    theme: cosmo
+    self_contained: no
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{An Introduction to the DiagrammeR Package}
+  \usepackage[utf8]{inputenc}  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy = FALSE)
+```
+
+If you have not installed `DiagrammeR`, then you will first need use `devtools` function `install_github`.
+
+```{r install_step, eval = FALSE}
+devtools::install_github(
+  "rich-iannone/DiagrammeR"
+  #uncomment next line to build vignettes
+  #,build_vignettes=T
+)
+```
+
+Now let's use `library` to give us access to our newfound diagramming abilities.
+
+```{r library_step}
+library(DiagrammeR)
+```
+
+### Example 1: Simple relationships running from left to right
+```{r example1}
+DiagrammeR("
+    graph LR;
+      A-->B;
+      A-->C;
+      C-->E;
+      B-->D;
+      C-->D;
+      D-->F;
+      E-->F;
+")
+```
+
+### Example 2: Simple relationships running from top to bottom
+```{r example2}
+DiagrammeR("
+    graph TB;
+    A-->B;
+    A-->C;
+    C-->E;
+    B-->D;
+    C-->D;
+    D-->F;
+    E-->F;
+")
+```
+  
+### Example 3: Add some CSS styles
+```{r}
+DiagrammeR("
+  graph LR;
+    A(Rounded)-->B[Squared];
+    B-->C{A Decision};
+    C-->D[Square One];
+    C-->E[Square Two];
+    
+    style A fill:#E5E25F;
+    style B fill:#87AB51;
+    style C fill:#3C8937;
+    style D fill:#23772C;
+    style E fill:#B6E6E6;
+")
+```
+ 
+### Example 4: Include link text
+```{r}
+DiagrammeR("
+  graph LR;
+    A(Start)-->|Line Text|B(Keep Going)
+    B-->|More Line Text|C(Stop);
+    
+    style A fill:#A2EB86, stroke:#04C4AB, stroke-width:2px;
+    style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4;
+    style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px;
+")
+```
+  
+### Example 5: Display summary information on the 'mtcars' dataset
+```{r}
+# Load in the 'mtcars' dataset
+data(mtcars)
+
+# Obtain column names
+column_names <- colnames(mtcars)
+
+# Use for in loop to generate summary strings for each mtcars column
+for (i in 1:length(column_names)){
+  if (i == 1) connections <- vector(mode = "character", length = 0L)
+  
+  connections <-
+  c(connections,
+    paste0(i, "(", column_names[i], ")---", i, "-stats(",
+           "min: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 1]))), "<br/>",
+           "1Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 2]))), "<br/>",
+           "med: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 3]))), "<br/>",
+           "mean: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 4]))), "<br/>",
+           "3Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 5]))), "<br/>",
+           "max: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 6]))),
+           ")"))
+}
+
+DiagrammeR(
+  paste0(
+    "graph TD;", "\n",
+    paste(connections, collapse = "\n"),"\n",
+    "classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;" ,"\n",
+    "class ", paste0(1:length(column_names), collapse = ","), " column;
+  ")
+)
+```    
+
