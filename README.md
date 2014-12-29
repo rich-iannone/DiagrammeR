@@ -92,7 +92,7 @@ data(mtcars)
 
 I'd like to do something that's perhaps a bit ham-fisted: create a simple diagram of the summary results for the mtcars dataset. When you call the R `summary` function on this data frame, you obtain this:
 
-```R
+```
       mpg             cyl             disp             hp             drat             wt             qsec      
  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760   Min.   :1.513   Min.   :14.50  
  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89  
