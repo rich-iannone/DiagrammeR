@@ -1,5 +1,6 @@
 #' Several examples of diagrams that can be created
 #' @description This function provides several examples for diagramming code and output
+#' @param example_number an integer from 1 to 5 that specifies which example to display.
 #' @export diagram_examples
 
 diagram_examples <- function(example_number){
