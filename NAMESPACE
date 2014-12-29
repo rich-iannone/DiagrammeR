@@ -2,7 +2,5 @@
 
 export(DiagrammeR)
 export(DiagrammeROutput)
-export(diagram_examples)
 export(renderDiagrammeR)
-import(htmltools)
 import(htmlwidgets)
