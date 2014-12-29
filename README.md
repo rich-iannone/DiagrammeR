@@ -116,7 +116,7 @@ I'd like to do something that's perhaps a bit ham-fisted: create a simple diagra
  Max.   :8.000 
 ```
 
-That information can placed into a diagramm. First, I'll get the column names into a vector object.
+That information can placed into a diagram. First, I'll get the column names into a vector object.
 
 ```R
 column_names <- colnames(mtcars)
