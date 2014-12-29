@@ -1,27 +1,29 @@
-DiagrammeR
+`DiagrammeR`
 ==========
 
-Create diagrams using R, with a light interface to the [mermaid.js library](https://github.com/knsv/mermaid). This library works by using text that is similar to markdown. By doing this in R, we can also add some R code into the mix.
+Create diagrams using R, with a light interface to the [`mermaid.js` library](https://github.com/knsv/mermaid). This library works by using markdown-like text to describe a diagram. By doing this in R, we can also add some R code into the mix and integrate these diagrams in `R Console`, `R Markdown`, and `shiny` apps.
 
 ### Installation
 
-Install DiagrammeR from GitHub using the `devtools` package:
+Install DiagrammeR from GitHub using the `devtools` package.
 
 ```R
 require(devtools)
 install_github('DiagrammeR', 'rich-iannone')
 ```
 
-### A Few Usage Examples
+### Introduction
 
-The following code is provided to the function `DiagrammeR` which leverages the infrastructure provided by `[htmlwidgets](http://htmlwidgets.org)`. All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `DiagrammeR` function currently takes three arguments:
+The package really only has one function `DiagrammeR` which leverages the infrastructure provided by [`htmlwidgets`](http://htmlwidgets.org) to bridge `R` and `mermaid.js`. All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `DiagrammeR` function currently takes three arguments.
 
 Argument    |     Description
 ----------  | -------------------------------
 diagram     | the spec of the diagram or can also be blank if using `htmltools::tags`
-width       | NULL (default) or a specified width as a number (in pixels)
-height      | NULL (default) or a specified height as a number (in pixels)
+width       | `NULL` (default) or a specified width as a number (in pixels)
+height      | `NULL` (default) or a specified height as a number (in pixels)
 
+
+### A Few Usage Examples
 
 ```R
 # like html, whitespace does not matter in the diagram spec
