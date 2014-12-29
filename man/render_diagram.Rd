@@ -5,6 +5,9 @@
 \usage{
 render_diagram(diagram_code)
 }
+\arguments{
+\item{diagram_code}{either a character object or a path to a text file that contains the code for a diagram.}
+}
 \description{
 This function renders the diagram code in RStudio's viewer pane.
 }
