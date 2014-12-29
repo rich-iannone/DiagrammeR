@@ -53,29 +53,30 @@ DiagrammeR("graph LR;A(Rounded)-->B[Squared];B-->C{A Decision};
 
 # Load in the 'mtcars' dataset
 data(mtcars)
-# Obtain column names
-column_names <- colnames(mtcars)
-# Use for in loop to generate summary strings for each mtcars column
-for (i in 1:length(column_names)){
- if (i == 1) connections <- vector(mode = "character", length = 0L)
+connections <- sapply(
+ 1:ncol(mtcars)
+  ,function(i){
+     paste0(
+        i
+      ,"(",colnames(mtcars)[i],")---"
+      ,i,"-stats("
+      ,paste0(
+        names(summary(mtcars[,i]))
+        ,": "
+        ,unname(summary(mtcars[,i]))
+        ,collapse="<br/>"
+      )
+      ,")"
+   )
+ }
+)
 
- connections <-
- c(connections,
-   paste0(i, "(", column_names[i], ")---", i, "-stats(",
-          "min: ", gsub(" ", "", (gsub(".*:(.*)", "\\\\1",summary(mtcars)[((i - 1) * 6) + 1]))), "<br/>",
-          "1Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\\\1",summary(mtcars)[((i - 1) * 6) + 2]))), "<br/>",
-          "med: ", gsub(" ", "", (gsub(".*:(.*)", "\\\\1",summary(mtcars)[((i - 1) * 6) + 3]))), "<br/>",
-          "mean: ", gsub(" ", "", (gsub(".*:(.*)", "\\\\1",summary(mtcars)[((i - 1) * 6) + 4]))), "<br/>",
-          "3Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\\\1",summary(mtcars)[((i - 1) * 6) + 5]))), "<br/>",
-          "max: ", gsub(" ", "", (gsub(".*:(.*)", "\\\\1",summary(mtcars)[((i - 1) * 6) + 6]))),
-   ")"))
-}
 DiagrammeR(
    paste0(
      "graph TD;", "\\n",
      paste(connections, collapse = "\\n"),"\\n",
      "classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;" ,"\\n",
-     "class ", paste0(1:length(column_names), collapse = ","), " column;"
+     "class ", paste0(1:length(connections), collapse = ","), " column;"
    )
  )
 
