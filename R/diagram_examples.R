@@ -1,16 +1,13 @@
 #' Several examples of diagrams that can be created
 #' @description This function provides several examples for diagramming code and output
+#' @import htmltools
 #' @export diagram_examples
 
-diagram_examples <- function(example_number){
-  
-  # Validate the value provided for 'example_number'
-  stopifnot(example_number %in% seq(1:5))
+diagram_examples <- function(){
+  diagram_example = character()
   
   # Example 1: Simple relationships running from left to right
-  if (example_number == 1){
-    
-    diagram_example <- "
+  diagram_example[1] <- "
     graph LR;
     A-->B;
     A-->C;
@@ -20,12 +17,9 @@ diagram_examples <- function(example_number){
     D-->F;
     E-->F;
     "
-  }
   
   # Example 2: Simple relationships running from top to bottom
-  if (example_number == 2){
-    
-    diagram_example <- "
+  diagram_example[2] <- "
     graph TB;
     A-->B;
     A-->C;
@@ -35,12 +29,9 @@ diagram_examples <- function(example_number){
     D-->F;
     E-->F;
     "
-  }
   
   # Example 3: Add some CSS styles
-  if (example_number == 3){
-  
-    diagram_example <- "
+  diagram_example[3] <- "
     graph LR;
     A(Rounded)-->B[Squared];
     B-->C{A Decision};
@@ -53,12 +44,9 @@ diagram_examples <- function(example_number){
     style D fill:#23772C;
     style E fill:#B6E6E6;
     "
-  }
  
   # Example 4: Include link text
-  if (example_number == 4){
-    
-    diagram_example <- "
+  diagram_example[4] <- "
     graph LR;
     A(Start)-->|Line Text|B(Keep Going)
     B-->|More Line Text|C(Stop);
@@ -67,11 +55,8 @@ diagram_examples <- function(example_number){
     style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4;
     style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px;
     "
-  }
   
   # Example 5: Display summary information on the 'mtcars' dataset
-  if (example_number == 5){
-    
     # Load in the 'mtcars' dataset
     data(mtcars)
     
@@ -94,16 +79,23 @@ diagram_examples <- function(example_number){
                ")"))
     }
     
-    diagram_example <-
+  diagram_example[5] <-
     paste0(
       "graph TD;", "\n",
       paste(connections, collapse = "\n"),"\n",
       "classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;" ,"\n",
       "class ", paste0(1:length(column_names), collapse = ","), " column;
     ")
-        
-  }  
-  
-  render_diagram(diagram_example)
-  
+    
+  html_print(tagList(
+    lapply(
+      1:5,
+      function(num){
+        tags$div(
+          tags$pre(diagram_example[num])
+          ,DiagrammeR(diagram_example[num], height = 400, width = 400)
+        )
+      }
+    )
+  ))
 }

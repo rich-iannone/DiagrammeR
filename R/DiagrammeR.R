@@ -1,15 +1,21 @@
-#' <Add Title>
+#' R + mermaid.js
 #'
-#' <Add Description>
+#' Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
+#' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+#' 
+#' @param diagram string diagram in mermaid markdown-like language.
+#' If no diagram is provided \code{diagram = ""} then the function will assume that
+#' a diagram will be provided by \code{\link[htmltools]{tags}} and
+#' \code{DiagrammeR} is just being used for dependency injection.
 #'
 #' @import htmlwidgets
 #'
 #' @export
-DiagrammeR <- function(message, width = NULL, height = NULL) {
+DiagrammeR <- function(diagram = "", width = NULL, height = NULL) {
 
   # forward options using x
   x = list(
-    message = message
+    diagram = diagram
   )
 
   # create widget
