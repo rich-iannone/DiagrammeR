@@ -85,12 +85,12 @@ diagram_examples <- function(example_number){
       stat_strings <-
       c(stat_strings,
         paste0(i, "(", column_names[i], ")---", i, "-stats(",
-               "min: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 1]))), "<br/>",
-               "1Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 2]))), "<br/>",
-               "med: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 3]))), "<br/>",
-               "mean: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 4]))), "<br/>",
-               "3Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 5]))), "<br/>",
-               "max: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[(i - 1) + 6]))),
+               "min: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 1]))), "<br/>",
+               "1Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 2]))), "<br/>",
+               "med: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 3]))), "<br/>",
+               "mean: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 4]))), "<br/>",
+               "3Q: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 5]))), "<br/>",
+               "max: ", gsub(" ", "", (gsub(".*:(.*)", "\\1",summary(mtcars)[((i - 1) * 6) + 6]))),
                ")"))
     }
     
