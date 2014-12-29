@@ -26,6 +26,9 @@ HTMLWidgets.widget({
     if ( x.diagram != "" ) {
       el.innerHTML = x.diagram;
       el.classList.add('mermaid');
+    } else {
+      // set display to none
+      el.style.display = "none"
     }
     
   },
