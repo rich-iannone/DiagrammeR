@@ -14,21 +14,29 @@ install_github('DiagrammeR', 'rich-iannone')
 
 ### A Few Usage Examples
 
-The following code is provided to the object `diagram`. All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `render_diagram` function currently takes a single argument, which is character object that contains the diagram code:
+The following code is provided to the function `DiagrammeR` which leverages the infrastructure provided by `[htmlwidgets](http://htmlwidgets.org)`. All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `DiagrammeR` function currently takes three arguments:
+
+Argument    |     Description
+----------  | -------------------------------
+diagram     | the spec of the diagram or can also be blank if using `htmltools::tags`
+width       | NULL (default) or a specified width as a number (in pixels)
+height      | NULL (default) or a specified height as a number (in pixels)
+
 
 ```R
-diagram <- "
+# like html, whitespace does not matter in the diagram spec
+diagram = "
 graph LR;
-A-->B;
-A-->C;
-C-->E;
-B-->D;
-C-->D;
-D-->F;
-E-->F;
+  A-->B;
+  A-->C;
+  C-->E;
+  B-->D;
+  C-->D;
+  D-->F;
+  E-->F;
 "
 
-render_diagram(diagram)
+DiagrammeR(diagram, height = 400)
 ```
 
 This renders the following image:
@@ -57,7 +65,7 @@ style D fill:#23772C;
 style E fill:#B6E6E6;
 "
     
-render_diagram(diagram)
+DiagrammeR(diagram, height = 200)
 ```
 
 What you get is this:
@@ -77,7 +85,7 @@ style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4;
 style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px;
 "
 
-render_diagram(diagram)
+DiagrammeR(diagram, height = 200)
 ```
 
 The resultant graphic:
@@ -153,7 +161,7 @@ paste(connections, collapse = "\n"), "\n",
 "class ", paste0(1:length(column_names), collapse = ","), " column;
 ")
 
-render_diagram(diagram)
+DiagrammeR(diagram)
 ```
 
 This is part of the resulting graphic (it's very wide so I included here 8 of the 11 columns):
