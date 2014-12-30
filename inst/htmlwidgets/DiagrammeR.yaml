@@ -10,4 +10,4 @@ dependencies:
 - name: mermaid
   version: 0.3.0
   src: htmlwidgets/lib/mermaid
-  script: dist/mermaid.slim.js
+  script: dist/mermaid.slim.min.js

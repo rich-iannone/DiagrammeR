@@ -25,10 +25,18 @@ HTMLWidgets.widget({
     // and DiagrammeR was just used for dependencies 
     if ( x.diagram != "" ) {
       el.innerHTML = x.diagram;
+      //if dynamic such as shiny remove data-processed
+      // so mermaid will reprocess and redraw
+      el.removeAttribute("data-processed");
       el.classList.add('mermaid');
+      //make sure if shiny that we turn display back on
+      el.style.display = "";
+      //again if dynamic such as shiny
+      //  explicitly run mermaid.init()
+      mermaid.init();
     } else {
       // set display to none
-      el.style.display = "none"
+      el.style.display = "none";
     }
     
   },
