@@ -170,3 +170,23 @@ This is part of the resulting graphic (it's very wide so I included here 8 of th
 
 <img src="inst/Example_5.png">
 
+### DiagrammeR + shiny
+
+As with other `htmlwidgets`, we can easily dynamically bind `DiagrammeR` in `R` with `shiny`.  Here is a quick example where we can provide a diagram spec in a `textInput`.
+
+```R
+library(shiny)
+
+ui = shinyUI(fluidPage(
+  textInput('spec', 'Diagram Spec', value = ""),
+  DiagrammeROutput('diagram')
+))
+
+server = function(input, output){
+  output$diagram <- renderDiagrammeR(DiagrammeR(
+    input$spec
+  ))
+}
+
+shinyApp( ui = ui, server = server )
+```
