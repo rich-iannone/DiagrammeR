@@ -29,7 +29,7 @@ Below are a few examples of how we might use `DiagrammeR`.  For more examples an
 
 ```R
 # like html, whitespace does not matter in the diagram spec
-diagram = "
+diagram <- "
 graph LR;
   A-->B;
   A-->C;
