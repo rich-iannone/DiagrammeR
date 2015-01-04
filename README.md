@@ -9,7 +9,7 @@ Install `DiagrammeR` from GitHub using the `devtools` package.
 
 ```R
 require(devtools)
-install_github('DiagrammeR', 'rich-iannone')
+install_github('rich-iannone/DiagrammeR')
 ```
 
 ### Introduction
