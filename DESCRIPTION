@@ -7,6 +7,9 @@ Author: Richard Iannone <riannone@me.com>
 Maintainer: Richard Iannone <riannone@me.com>
 Description: Create some nice diagrams using R.
 License: MIT
+Imports:
+    htmlwidgets (>= 0.3.2)
 Suggests:
     knitr
 VignetteBuilder: knitr
+
