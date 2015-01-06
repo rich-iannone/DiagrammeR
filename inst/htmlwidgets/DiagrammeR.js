@@ -21,7 +21,7 @@ HTMLWidgets.widget({
         after complete
     */
    window.mermaid.startOnLoad = false;
-    
+
     return {
       // TODO: add instance fields as required
     }
