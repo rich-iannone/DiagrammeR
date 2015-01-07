@@ -49,27 +49,45 @@ HTMLWidgets.widget({
       el.style.display = "none";
     }
     
-    this.manualRender( function(){
+    
+    // use this to sort of make our diagram responsive
+    //  or at a minimum fit within the bounds set by htmlwidgets
+    //  for the parent container
+    function makeResponsive(){
        var svg = el.getElementsByTagName("svg")[0]
        if(svg.width) {svg.removeAttribute("width")};
        if(svg.height) {svg.removeAttribute("height")};
        svg.style.width = "100%";
        svg.style.height = "100%";
-    } );
+    };
+    
+  
+    var tasks = [
+      mermaid.init,
+      makeResponsive
+    ];
+    
+    if (!(typeof x.callbacks === "undefined")){
+      tasks = tasks.concat(x.callbacks);
+    }
+    
+
+    // will this ensure synchronous order of execution
+    //  the first set of tests seem to indicate they will
+    //  but it should be more robustly tested
+    tasks.forEach(function(t) { 
+      //add some error checking here
+      if ( typeof t === "function" ){
+        t();
+      } else {
+        console.log("task not a function so skipped");
+      }
+    });
+    
   },
 
   resize: function(el, width, height, instance) {
 
-  },
-  
-  manualRender: function( callback ){
-    /* not optimal way to manually run and wait for
-        mermaid.init() before other steps
-    */
-    mermaid.init();
-    // currently just using to make "responsive" svg
-    // but could apply to a list of callbacks / behaviors
-    callback();
   }
   
 
