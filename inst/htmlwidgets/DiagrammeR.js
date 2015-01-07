@@ -20,8 +20,8 @@ HTMLWidgets.widget({
         allowing us to callback after manually init and then callback
         after complete
     */
-    window.mermaid_config = {startOnLoad : false};
-    
+   window.mermaid.startOnLoad = false;
+
     return {
       // TODO: add instance fields as required
     }
