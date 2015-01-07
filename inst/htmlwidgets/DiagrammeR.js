@@ -71,9 +71,12 @@ HTMLWidgets.widget({
     if (!(typeof x.tasks === "undefined") ){
       if ( (typeof x.tasks.length === "undefined") ||
        (typeof x.tasks === "function" ) ) {
+         // handle a function not enclosed in array
+         // should be able to remove once using jsonlite
          x.tasks = [x.tasks];
       }
       x.tasks.map(function(t){
+        // for each tasks add it to the mermaid.tasks with el
         mermaid.tasks.push(
           {"task": t, "el": el}
         );
@@ -84,7 +87,12 @@ HTMLWidgets.widget({
     // wait for the last to render to avoid duplicated svg ids from mermaid
     dg = document.getElementsByClassName("DiagrammeR");
     if( dg[dg.length-1].id === el.id ){
+      // run mermaid.init
       mermaid.init();
+      
+      // make each DiagrammeR responsive
+      //  ? should we make this responsive an option
+      //     and add to tasks if true
       for( i = 0; i < dg.length; i++ ){
         makeResponsive(dg[i]);
       }
