@@ -91,6 +91,23 @@
 #' @export
 DiagrammeR <- function(diagram = "", width = NULL, height = NULL) {
 
+  # check for vector with length > 1 and concat
+  if( length(diagram) > 1 ){
+    # should we also check for ; or \n and if not append
+    #   would look something like this I think
+    nosep  = (grep( x=diagram, pattern="[;\n]" ))
+    if( length(nosep) < length(diagram) ){
+      diagram[-nosep] = sapply(
+        diagram[-nosep]
+        ,function(c){
+          paste0(c,";")
+        }
+      )
+    }
+
+    diagram = paste0( diagram, collapse = "" )
+  }
+  
   # forward options using x
   x = list(
     diagram = diagram
