@@ -89,7 +89,21 @@
 #' @import htmlwidgets
 #'
 #' @export
-DiagrammeR <- function(diagram = "", width = NULL, height = NULL){
+
+DiagrammeR <- function(diagram = "", width = NULL, height = NULL) {
+  
+  # check for vector with length > 1 and concatenate
+  if (length(diagram) > 1 ){
+    
+    nosep <- grep(x = diagram, pattern = "[;\n]")
+    
+    if (length(nosep) < length(diagram)){
+      diagram[-nosep] <- sapply(diagram[-nosep],
+                                function(c){paste0(c, ";")})
+    }
+    
+    diagram = paste0( diagram, collapse = "" )
+  }
   
   # forward options using x
   x <- list(diagram = diagram)
@@ -113,6 +127,6 @@ DiagrammeROutput <- function(outputId, width = '100%', height = '400px'){
 #'
 #' @export
 renderDiagrammeR <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) { expr <- substitute(expr) } # force quoted
+  if (!quoted) expr <- substitute(expr)
   shinyRenderWidget(expr, DiagrammeROutput, env, quoted = TRUE)
 }
