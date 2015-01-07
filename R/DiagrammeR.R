@@ -89,21 +89,17 @@
 #' @import htmlwidgets
 #'
 #' @export
-DiagrammeR <- function(diagram = "", width = NULL, height = NULL) {
-
+DiagrammeR <- function(diagram = "", width = NULL, height = NULL){
+  
   # forward options using x
-  x = list(
-    diagram = diagram
-  )
-
+  x <- list(diagram = diagram)
+  
   # create widget
-  htmlwidgets::createWidget(
-    name = 'DiagrammeR',
-    x,
-    width = width,
-    height = height,
-    package = 'DiagrammeR'
-  )
+  htmlwidgets::createWidget(name = 'DiagrammeR',
+                            x,
+                            width = width,
+                            height = height,
+                            package = 'DiagrammeR')
 }
 
 #' Widget output function for use in Shiny
