@@ -128,7 +128,7 @@ DiagrammeROutput <- function(outputId, width = '100%', height = '400px'){
 }
 
 #' Widget render function for use in Shiny
-#' @param expr an expression that generates a networkD3 graph
+#' @param expr an expression that generates a DiagrammeR graph
 #' @param env the environment in which to evaluate expr.
 #' @param quoted is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
 #' @export
