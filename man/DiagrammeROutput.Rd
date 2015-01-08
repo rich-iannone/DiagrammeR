@@ -5,6 +5,13 @@
 \usage{
 DiagrammeROutput(outputId, width = "100\%", height = "400px")
 }
+\arguments{
+\item{outputId}{output variable to read from}
+
+\item{width}{a valid CSS unit for the width (like "100%", "400px", "auto") or a number, which will be coerced to a string and have "px" appended.}
+
+\item{height}{a valid CSS unit for the height (like "100%", "400px", "auto") or a number, which will be coerced to a string and have "px" appended.}
+}
 \description{
 Widget output function for use in Shiny
 }
