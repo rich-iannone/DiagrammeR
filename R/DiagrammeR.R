@@ -119,14 +119,18 @@ DiagrammeR <- function(diagram = "", width = NULL, height = NULL) {
 }
 
 #' Widget output function for use in Shiny
-#'
+#' @param outputId output variable to read from
+#' @param width a valid CSS unit for the width (like "100%", "400px", "auto") or a number, which will be coerced to a string and have "px" appended.
+#' @param height a valid CSS unit for the height (like "100%", "400px", "auto") or a number, which will be coerced to a string and have "px" appended.
 #' @export
 DiagrammeROutput <- function(outputId, width = '100%', height = '400px'){
   shinyWidgetOutput(outputId, 'DiagrammeR', width, height, package = 'DiagrammeR')
 }
 
 #' Widget render function for use in Shiny
-#'
+#' @param expr an expression that generates a networkD3 graph
+#' @param env the environment in which to evaluate expr.
+#' @param quoted is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
 #' @export
 renderDiagrammeR <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) expr <- substitute(expr)
