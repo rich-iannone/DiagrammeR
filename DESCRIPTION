@@ -1,12 +1,12 @@
 Package: DiagrammeR
 Type: Package
-Title: Create diagrams using R.
+Title: Create diagrams and flowcharts using R.
 Version: 0.1
 Date: 2015-01-06
 Author: Richard Iannone <riannone@me.com>
 Maintainer: Richard Iannone <riannone@me.com>
 Description: Create diagrams and flowcharts using R.
-License: MIT
+License: MIT + file LICENSE
 Imports:
     htmlwidgets (>= 0.3.2)
 Suggests:
