@@ -1,7 +1,7 @@
 Package: DiagrammeR
 Type: Package
 Title: Create diagrams using R.
-Version: 0.02
+Version: 0.1
 Date: 2015-01-06
 Author: Richard Iannone <riannone@me.com>
 Maintainer: Richard Iannone <riannone@me.com>
@@ -12,4 +12,3 @@ Imports:
 Suggests:
     knitr
 VignetteBuilder: knitr
-
