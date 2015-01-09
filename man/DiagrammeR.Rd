@@ -26,6 +26,7 @@ Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
 with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
+\dontrun{
 # note the whitespace is not important
 DiagrammeR("
   graph LR;
@@ -99,5 +100,6 @@ html_print(tagList(
   ,tags$div(class="mermaid",diagramSpec)
   ,DiagrammeR()
 ))
+}
 }
 
