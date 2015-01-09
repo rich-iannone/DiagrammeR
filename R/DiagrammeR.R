@@ -14,6 +14,7 @@
 #' including the R console, within R Markdown documents,
 #' and within Shiny output bindings.
 #' @examples 
+#' \dontrun{
 #' # note the whitespace is not important
 #' DiagrammeR("
 #'   graph LR;
@@ -87,7 +88,7 @@
 #'   ,tags$div(class="mermaid",diagramSpec)
 #'   ,DiagrammeR()
 #' ))
-#'  
+#' }
 #' @import htmlwidgets
 #'
 #' @export
