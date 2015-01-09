@@ -6,7 +6,7 @@
 renderDiagrammeR(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
-\item{expr}{an expression that generates a networkD3 graph}
+\item{expr}{an expression that generates a DiagrammeR graph}
 
 \item{env}{the environment in which to evaluate expr.}
 
