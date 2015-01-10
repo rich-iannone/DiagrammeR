@@ -170,6 +170,34 @@ This is part of the resulting graphic (it's quite wide so I'm displaying just 8 
 
 <img src="inst/Example_5.png">
 
+### Sequence Diagrams
+`mermaid.js` also supports [sequence diagrams](http://knsv.github.io/mermaid/sequenceDiagram.html).  ["How to Draw Sequence Diagrams"](http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf) by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams.  Let's replicate the ticket buying example from Figure 1 and also add some conditionals.
+
+```R
+# Using this "How to Draw a Sequence Diagram" 
+#  http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
+# draw some sequence diagrams with DiagrammeR
+
+library(DiagrammeR)
+DiagrammeR("
+sequenceDiagram;
+  customer->>ticket seller: ask ticket;
+  ticket seller->>database: seats;
+  alt tickets available
+    database->>ticket seller: ok;
+    ticket seller->>customer: confirm;
+    customer->>ticket seller: ok;
+    ticket seller->>database: book a seat;
+    ticket seller->>printer: print ticket;
+  else sold out
+    database->>ticket seller: none left;
+    ticket seller->>customer:  sorry;
+  end
+")
+```
+
+<img src="inst/Example_6.png">
+
 ### DiagrammeR + shiny
 
 As with other `htmlwidgets`, we can easily dynamically bind `DiagrammeR` in `R` with `shiny`. Here is a quick example where we can provide a diagram spec in a `textInput`.

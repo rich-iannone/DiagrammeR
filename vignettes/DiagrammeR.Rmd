@@ -21,11 +21,13 @@ vignette: >
 knitr::opts_chunk$set(tidy = FALSE)
 ```
 
-If you have not installed `DiagrammeR`, then you will first need use `devtools` function `install_github`.
+If you have not installed `DiagrammeR`, then you can install from CRAN or for the development version use the `devtools` function `install_github`.
 
 ```{r install_step, eval = FALSE}
-devtools::install_github(
-  "rich-iannone/DiagrammeR"
+install.packages("DiagrammeR")
+# development version; uncomment
+#devtools::install_github(
+  #"rich-iannone/DiagrammeR"
   #uncomment next line to build vignettes
   #,build_vignettes=T
 )
@@ -124,8 +126,33 @@ DiagrammeR(
     "graph TD;", "\n",
     paste(connections, collapse = "\n"),"\n",
     "classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;" ,"\n",
-    "class ", paste0(1:length(column_names), collapse = ","), " column;
-  ")
+    "class ", paste0(1:length(column_names), collapse = ","), " column;"
+  )
 )
-```    
+```
+
+### Example 6: Sequence Diagram
+
+```{r}
+# Using this "How to Draw a Sequence Diagram" 
+#  http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
+# draw some sequence diagrams with DiagrammeR
+
+library(DiagrammeR)
+DiagrammeR("
+sequenceDiagram;
+  customer->>ticket seller: ask ticket;
+  ticket seller->>database: seats;
+  alt tickets available
+    database->>ticket seller: ok;
+    ticket seller->>customer: confirm;
+    customer->>ticket seller: ok;
+    ticket seller->>database: book a seat;
+    ticket seller->>printer: print ticket;
+  else sold out
+    database->>ticket seller: none left;
+    ticket seller->>customer:  sorry;
+  end
+")
+```
 
