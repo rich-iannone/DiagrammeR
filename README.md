@@ -1,27 +1,27 @@
-`DiagrammeR`
-==========
+<img src="inst/DiagrammeR.png">
 
-Create diagrams using R, with a light interface to the [`mermaid.js` library](https://github.com/knsv/mermaid). This library works by using markdown-like text to describe a diagram. By doing this in R, we can also add some R code into the mix and integrate these diagrams in `R Console`, `R Markdown`, and `shiny` apps.
+With the DiagrammeR package, you can create diagrams and flowcharts using R. Markdown-like text is used to describe a diagram and, by doing this in R, we can also add some R code into the mix and integrate these diagrams in `R Console`, `R Markdown`, and `shiny` apps.
 
 ### Installation
 
-Install `DiagrammeR` from GitHub using the `devtools` package.
+Install the development version of `DiagrammeR` from GitHub using the `devtools` package.
 
 ```R
 require(devtools)
 install_github('rich-iannone/DiagrammeR')
 ```
 
+Or, get it from CRAN.
+
 ### Introduction
 
-The package really only has one function `DiagrammeR` which leverages the infrastructure provided by [`htmlwidgets`](http://htmlwidgets.org) to bridge `R` and `mermaid.js`. All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `DiagrammeR` function currently takes three arguments.
+The package really only has one function `DiagrammeR` which leverages the infrastructure provided by [`htmlwidgets`](http://htmlwidgets.org) to bridge `R` and the [`mermaid.js` library](https://github.com/knsv/mermaid). All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `DiagrammeR` function currently takes three arguments.
 
 Argument    |     Description
 ----------  | -------------------------------
 diagram     | the spec of the diagram or can also be blank if using `htmltools::tags`
 width       | `NULL` (default) or a specified width as a number (in pixels)
 height      | `NULL` (default) or a specified height as a number (in pixels)
-
 
 ### A Few Usage Examples
 
