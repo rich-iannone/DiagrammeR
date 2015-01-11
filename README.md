@@ -15,7 +15,7 @@ Or, get it from CRAN.
 
 ### Introduction
 
-The package really only has one function `DiagrammeR` which leverages the infrastructure provided by [`htmlwidgets`](http://htmlwidgets.org) to bridge `R` and the [`mermaid.js` library](https://github.com/knsv/mermaid). All lines are terminated with a semicolon. The line `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `DiagrammeR` function currently takes three arguments.
+The package really only has one function `DiagrammeR` which leverages the infrastructure provided by [`htmlwidgets`](http://htmlwidgets.org) to bridge `R` and the [`mermaid.js` library](https://github.com/knsv/mermaid). All lines are terminated with a semicolon. The statement `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The `DiagrammeR` function currently takes three arguments.
 
 Argument    |     Description
 ----------  | -------------------------------
@@ -40,7 +40,7 @@ graph LR;
   E-->F;
 "
 
-DiagrammeR(diagram, height = 400)
+DiagrammeR(diagram)
 ```
 
 This renders the following image:
@@ -69,7 +69,7 @@ style D fill:#23772C;
 style E fill:#B6E6E6;
 "
     
-DiagrammeR(diagram, height = 200)
+DiagrammeR(diagram)
 ```
 
 What you get is this:
@@ -89,7 +89,7 @@ style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4;
 style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px;
 "
 
-DiagrammeR(diagram, height = 200)
+DiagrammeR(diagram)
 ```
 
 The resultant graphic:
@@ -175,10 +175,11 @@ This is part of the resulting graphic (it's quite wide so I'm displaying just 8 
 
 ```R
 # Using this "How to Draw a Sequence Diagram" 
-#  http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
+# http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
 # draw some sequence diagrams with DiagrammeR
 
 library(DiagrammeR)
+
 DiagrammeR("
 sequenceDiagram;
   customer->>ticket seller: ask ticket;
