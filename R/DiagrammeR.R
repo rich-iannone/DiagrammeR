@@ -88,13 +88,14 @@
 #'   ,tags$div(class="mermaid",diagramSpec)
 #'   ,DiagrammeR()
 #' ))
-#' }
 #' 
 #' # sequence diagrams
 #' # Using this "How to Draw a Sequence Diagram" 
 #'  http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
 #' draw some sequence diagrams with DiagrammeR
+#' 
 #' library(DiagrammeR)
+#' 
 #' DiagrammeR("
 #' sequenceDiagram;
 #'    customer->>ticket seller: ask ticket;
@@ -110,6 +111,7 @@
 #'      ticket seller->>customer:  sorry;
 #'    end
 #' ")
+#' }
 #' 
 #' @import htmlwidgets
 #'
