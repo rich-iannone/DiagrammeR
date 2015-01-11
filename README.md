@@ -11,7 +11,7 @@ require(devtools)
 install_github('rich-iannone/DiagrammeR')
 ```
 
-Or, get it from CRAN.
+Or, get it from [CRAN](http://cran.r-project.org/web/packages/DiagrammeR/).
 
 ### Introduction
 
