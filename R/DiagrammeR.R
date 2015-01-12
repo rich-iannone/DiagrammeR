@@ -3,7 +3,8 @@
 #' Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
 #' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #' 
-#' @param diagram string diagram in mermaid markdown-like language.
+#' @param diagram diagram in mermaid markdown-like language or
+#'  file (as a connection or file name) containing a diagram specification.
 #' If no diagram is provided \code{diagram = ""} then the function will assume that
 #' a diagram will be provided by \code{\link[htmltools]{tags}} and
 #' \code{DiagrammeR} is just being used for dependency injection.
@@ -118,6 +119,10 @@
 #' @export
 
 DiagrammeR <- function(diagram = "", width = NULL, height = NULL) {
+  
+  # check for a connection or file
+  if (inherits(diagram, "connection") || file.exists(diagram))
+    diagram <- readLines(diagram, warn = FALSE)
   
   # check for vector with length > 1 and concatenate
   if (length(diagram) > 1 ){

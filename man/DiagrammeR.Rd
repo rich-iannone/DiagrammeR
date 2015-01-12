@@ -6,7 +6,8 @@
 DiagrammeR(diagram = "", width = NULL, height = NULL)
 }
 \arguments{
-\item{diagram}{string diagram in mermaid markdown-like language.
+\item{diagram}{diagram in mermaid markdown-like language or
+ file (as a connection or file name) containing a diagram specification.
 If no diagram is provided \code{diagram = ""} then the function will assume that
 a diagram will be provided by \code{\link[htmltools]{tags}} and
 \code{DiagrammeR} is just being used for dependency injection.}
