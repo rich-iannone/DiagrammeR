@@ -3,7 +3,16 @@ Type: Package
 Title: Create diagrams and flowcharts using R.
 Version: 0.1
 Date: 2015-01-06
-Author: Richard Iannone <riannone@me.com>
+Authors@R: c(
+    person("knsv", "", role = c("aut", "cph"), comment = "mermaid.js
+    library in htmlwidgets/lib, http://github.com/knsv/mermaid/"),
+    person("Mike", "Bostock", role = c("aut", "cph"), comment = "d3.js
+    library in htmlwidgets/lib, http://d3js.org"),
+    person("Chris", "Pettitt", role = c("aut", "cph"), comment = "dagre-d3.js
+    library in htmlwidgets/lib, http://github.com/cpettitt/dagre-d3"),
+    person("Richard", "Iannone", role = c("aut", "cre"), comment = "R
+    interface", email = "riannone@me.com")
+    )
 Maintainer: Richard Iannone <riannone@me.com>
 Description: Create diagrams and flowcharts using R.
 License: MIT + file LICENSE
