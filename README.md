@@ -23,7 +23,7 @@ The package really only has one function `DiagrammeR` which leverages the infras
 
 Argument    |     Description
 ----------  | -------------------------------
-diagram     | the spec of the diagram or can also be blank if using `htmltools::tags`
+diagram     | The spec of the diagram as a string or as a file (connection or file name). Can also be blank if using `htmltools::tags`
 width       | `NULL` (default) or a specified width as a number (in pixels)
 height      | `NULL` (default) or a specified height as a number (in pixels)
 
