@@ -121,20 +121,22 @@
 DiagrammeR <- function(diagram = "", width = NULL, height = NULL) {
   
   # check for a connection or file
-  if (inherits(diagram, "connection") || file.exists(diagram))
+  if (inherits(diagram, "connection") || file.exists(diagram)) {
     diagram <- readLines(diagram, warn = FALSE)
-  
-  # check for vector with length > 1 and concatenate
-  if (length(diagram) > 1 ){
-    
-    nosep <- grep(x = diagram, pattern = "[;\n]")
-    
-    if (length(nosep) < length(diagram)){
-      diagram[-nosep] <- sapply(diagram[-nosep],
-                                function(c){paste0(c, ";")})
+    diagram <- paste0(diagram, collapse = "\n")
+  } else {
+    # check for vector with length > 1 and concatenate
+    if (length(diagram) > 1 ){
+      
+      nosep <- grep(x = diagram, pattern = "[;\n]")
+      
+      if (length(nosep) < length(diagram)){
+        diagram[-nosep] <- sapply(diagram[-nosep],
+                                  function(c){paste0(c, ";")})
+      }
+      
+      diagram = paste0( diagram, collapse = "" )
     }
-    
-    diagram = paste0( diagram, collapse = "" )
   }
   
   # forward options using x
