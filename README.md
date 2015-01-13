@@ -18,7 +18,11 @@ install.packages("DiagrammeR")
 
 ### Introduction
 
-The package really only has one function, `DiagrammeR`, which leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  [**mermaid.js**](https://github.com/knsv/mermaid). The statement `graph LR` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The **DiagrammeR** function currently takes three arguments.
+The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
+
+### Mermaid Graphs
+
+The statement `graph LR` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The **DiagrammeR** function currently takes three arguments.
 
 Argument    |     Description
 ----------  | -------------------------------
@@ -219,6 +223,17 @@ sequenceDiagram
 ```
 
 <img src="inst/Example_6.png">
+
+
+```R
+library(rvest)
+library(XML)
+library(pipeR)
+
+readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") %>>%
+  grViz
+```
+
 
 ### DiagrammeR + shiny
 
