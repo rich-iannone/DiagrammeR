@@ -34,3 +34,15 @@ unlink(tf)
 
 
 # this is fun
+
+
+# some examples from the graphviz gallery
+#  these really don't work in RStudio viewer
+readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") %>>%
+  grViz
+
+readLines("http://www.graphviz.org/Gallery/directed/Genetic_Programming.gv.txt") %>>%
+  grViz
+
+readLines("http://www.graphviz.org/Gallery/directed/unix.gv.txt") %>>%
+  grViz
