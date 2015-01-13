@@ -15,7 +15,13 @@ HTMLWidgets.widget({
   renderValue: function(el, x, instance) {
 
     if ( x.diagram != "" ) {
-      el.innerHTML = Viz( x.diagram, format="svg", engine="dot", options=null );
+      try {
+        el.innerHTML = Viz( x.diagram, format="svg", engine="dot", options=null );
+      } catch(e){
+        var p = document.createElement("pre")
+        p.innerText = e;
+        el.appendChild(p);
+      }
     }
     
   },

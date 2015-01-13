@@ -3,3 +3,7 @@ dependencies:
   version: 0.3
   src: htmlwidgets/lib/viz
   script: viz.js
+- name: styles
+  version: 0.1
+  src: htmlwidgets/lib/styles
+  stylesheet: styles.css
