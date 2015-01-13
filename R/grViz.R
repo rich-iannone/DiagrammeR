@@ -29,6 +29,9 @@ grViz <- function(diagram = "", width = NULL, height = NULL) {
   # forward options using x
   x <- list(diagram = diagram)
   
+  if(!is.null("viewer")){
+    warning("grViz() might not work with RStudio Viewer but should work in another browser")
+  }
   
   # create widget
   htmlwidgets::createWidget(
