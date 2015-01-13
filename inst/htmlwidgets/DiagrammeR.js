@@ -90,7 +90,21 @@ HTMLWidgets.widget({
     dg = document.getElementsByClassName("DiagrammeR");
     if( dg[dg.length-1].id === el.id ){
       // run mermaid.init
-      mermaid.init();
+      //  but use try catch block
+      //  to send error to the htmlwidget for display
+      try{
+        mermaid.init();
+      } catch(e) {
+        // if error look for last processed DiagrammeR
+        //  and send error to the container div
+        //  with pre containing the errors
+        var processedDg = d3.selectAll(".DiagrammeR[data-processed=true]");
+        // select the last
+        processedDg = d3.select(processedDg[0][processedDg[0].length - 1])
+        // remove the svg
+        processedDg.select("svg").remove();
+        processedDg.append("pre").html(e.message)
+      }      
       
       // make each DiagrammeR responsive
       //  ? should we make this responsive an option
