@@ -30,8 +30,6 @@ Argument    |     Description
 `width`       | `NULL` (default) or a specified width as a number (in pixels)
 `height`      | `NULL` (default) or a specified height as a number (in pixels)
 
-### A Few Usage Examples
-
 Below are a few examples of how we might use **DiagrammeR**. For more examples and additional documentation, see the [`mermaid.js` Wiki](https://github.com/knsv/mermaid/wiki).
 
 ```R
