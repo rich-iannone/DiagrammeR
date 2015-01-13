@@ -223,15 +223,6 @@ sequenceDiagram
 <img src="inst/Example_6.png">
 
 
-```R
-library(rvest)
-library(XML)
-library(pipeR)
-
-readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") %>>%
-  grViz
-```
-
 
 ### DiagrammeR + shiny
 
