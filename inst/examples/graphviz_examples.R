@@ -4,7 +4,7 @@
 
 # nevertheless, here are some examples of the crude binding for viz.js
 
-devtools::install("timelyportfolio/DiagrammeR@feature-graphviz")
+#devtools::install("timelyportfolio/DiagrammeR@feature-graphviz")
 library(DiagrammeR)
 library(rvest)
 library(XML)
@@ -18,17 +18,18 @@ html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %
   html_nodes("script[type='text/vnd.graphviz']") %>>%
   lapply(
     function(x){
-      xmlValue(x) %>>% grViz
+      xmlValue(x) %>>% (~ htmltools::html_print(grViz(.)) ) %>>% DiagrammeR(type="grViz")
     }
   )
 
 
 # now using Rgraphviz as another experiment
+library(Rgraphviz)
 example(randomGraph)
 tf <- tempfile()
 
 g1 %>>% toDotR(tf)
-readLines(tmp) %>>%
+readLines(tf) %>>%
   grViz
 unlink(tf)
 
