@@ -11,3 +11,7 @@ dependencies:
   version: 0.3.0
   src: htmlwidgets/lib/mermaid
   script: dist/mermaid.slim.min.js
+- name: styles
+  version: 0.1
+  src: htmlwidgets/lib/styles
+  stylesheet: styles.css
