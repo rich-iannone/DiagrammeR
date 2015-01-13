@@ -1,0 +1,36 @@
+# unfortunately they will not render properly in RStudio on Windows
+#  we have run into this problem with some rCharts libraries
+#  and I cannot figure out why they just do not show up
+
+# nevertheless, here are some examples of the crude binding for viz.js
+
+devtools::install("timelyportfolio/DiagrammeR@feature-graphviz")
+library(DiagrammeR)
+library(rvest)
+library(XML)
+library(pipeR)
+
+# think you are on Mac but if on Windows do this first
+# options(viewer=NULL)
+
+# do all the examples from viz.js
+html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %>>%
+  html_nodes("script[type='text/vnd.graphviz']") %>>%
+  lapply(
+    function(x){
+      xmlValue(x) %>>% grViz
+    }
+  )
+
+
+# now using Rgraphviz as another experiment
+example(randomGraph)
+tf <- tempfile()
+
+g1 %>>% toDotR(tf)
+readLines(tmp) %>>%
+  grViz
+unlink(tf)
+
+
+# this is fun
