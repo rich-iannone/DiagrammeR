@@ -3,13 +3,11 @@
 #' Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
 #' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #' 
-#' @param diagram diagram in \code{mermaid} format or \code{graphviz} format or a
+#' @param diagram diagram in mermaid markdown-like language or
 #'  file (as a connection or file name) containing a diagram specification.
 #' If no diagram is provided \code{diagram = ""} then the function will assume that
 #' a diagram will be provided by \code{\link[htmltools]{tags}} and
 #' \code{DiagrammeR} is just being used for dependency injection.
-#' @param type string - either "mermaid" (default) or "grViz" indicating
-#' the type of diagram spec and the desired parser/renderer
 #' @param width the width of the resulting graphic in pixels.
 #' @param height the height of the resulting graphic in pixels.
 #' @return An object of class \code{htmlwidget} that will
@@ -94,8 +92,8 @@
 #' 
 #' # sequence diagrams
 #' # Using this "How to Draw a Sequence Diagram" 
-#' #   http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
-#' # draw some sequence diagrams with DiagrammeR
+#'  http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
+#' draw some sequence diagrams with DiagrammeR
 #' 
 #' library(DiagrammeR)
 #' 
@@ -120,32 +118,34 @@
 #'
 #' @export
 
-DiagrammeR <- function(diagram = "", ..., type = "mermaid", width = NULL, height = NULL) {
-  # DiagrammeR will serve as a wrapper function for mermaid and grVis
-  if ( grepl(x = type, pattern = "[m,M](erm).*") ) {
-    mermaid( diagram, width, height )
-  } else if( grepl( x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )  ) {
-    grViz( diagram, ..., width, height )
+mermaid <- function(diagram = "", ..., type = "mermaid", width = NULL, height = NULL) {
+  
+  # check for a connection or file
+  if (inherits(diagram, "connection") || file.exists(diagram)) {
+    diagram <- readLines(diagram, warn = FALSE)
+    diagram <- paste0(diagram, collapse = "\n")
   } else {
-    stop ( "type should equal 'mermaid' or 'grViz' ")
+    # check for vector with length > 1 and concatenate
+    if (length(diagram) > 1 ){
+      
+      nosep <- grep(x = diagram, pattern = "[;\n]")
+      
+      if (length(nosep) < length(diagram)){
+        diagram[-nosep] <- sapply(diagram[-nosep],
+                                  function(c){paste0(c, ";")})
+      }
+      
+      diagram = paste0( diagram, collapse = "" )
+    }
   }
-}
-
-#' Widget output function for use in Shiny
-#' @param outputId output variable to read from
-#' @param width a valid CSS unit for the width or a number, which will be coerced to a string and have "px" appended.
-#' @param height a valid CSS unit for the height or a number, which will be coerced to a string and have "px" appended.
-#' @export
-DiagrammeROutput <- function(outputId, width = '100%', height = '400px'){
-  shinyWidgetOutput(outputId, 'DiagrammeR', width, height, package = 'DiagrammeR')
-}
-
-#' Widget render function for use in Shiny
-#' @param expr an expression that generates a DiagrammeR graph
-#' @param env the environment in which to evaluate expr.
-#' @param quoted is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
-#' @export
-renderDiagrammeR <- function(expr, env = parent.frame(), quoted = FALSE) {
-  if (!quoted) expr <- substitute(expr)
-  shinyRenderWidget(expr, DiagrammeROutput, env, quoted = TRUE)
+  
+  # forward options using x
+  x <- list(diagram = diagram)
+  
+  # create widget
+  htmlwidgets::createWidget(name = 'DiagrammeR',
+                            x,
+                            width = width,
+                            height = height,
+                            package = 'DiagrammeR')
 }
