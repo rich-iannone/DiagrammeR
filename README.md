@@ -18,7 +18,7 @@ install.packages("DiagrammeR")
 
 ### Introduction
 
-The package really only has one function, `DiagrammeR`, which leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  [**mermaid.js**](https://github.com/knsv/mermaid). All lines are terminated with a semicolon. The statement `graph LR;` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The **DiagrammeR** function currently takes three arguments.
+The package really only has one function, `DiagrammeR`, which leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  [**mermaid.js**](https://github.com/knsv/mermaid). The statement `graph LR` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The **DiagrammeR** function currently takes three arguments.
 
 Argument    |     Description
 ----------  | -------------------------------
