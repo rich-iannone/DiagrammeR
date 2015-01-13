@@ -18,25 +18,25 @@
 #' \dontrun{
 #' # note the whitespace is not important
 #' DiagrammeR("
-#'   graph LR;
-#'     A-->B;
-#'     A-->C;
-#'     C-->E;
-#'     B-->D;
-#'     C-->D;
-#'     D-->F;
-#'     E-->F;
+#'   graph LR
+#'     A-->B
+#'     A-->C
+#'     C-->E
+#'     B-->D
+#'     C-->D
+#'     D-->F
+#'     E-->F
 #' ")
 #' 
 #' DiagrammeR("
-#'    graph TB;
-#'    A-->B;
-#'    A-->C;
-#'    C-->E;
-#'    B-->D;
-#'    C-->D;
-#'    D-->F;
-#'    E-->F;
+#'    graph TB
+#'    A-->B
+#'    A-->C
+#'    C-->E
+#'    B-->D
+#'    C-->D
+#'    D-->F
+#'    E-->F
 #' ")
 #' 
 #' DiagrammeR("graph LR;A(Rounded)-->B[Squared];B-->C{A Decision};
