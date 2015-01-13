@@ -52,8 +52,26 @@ This renders the following image:
 
 Alternatively, you could have the diagram flowing from top to bottom by using the statement `graph TB` in place of `graph LR`. Here is the result of that:
 
-
 <img src="inst/Example_2.png">
+
+Keep in mind that external files can also be called by the `DiagrammeR` function. The file `graph.mmd` can contain the following text
+
+```
+graph LR
+  A-->B
+  A-->C
+  C-->E
+  B-->D
+  C-->D
+  D-->F
+  E-->F
+```
+
+and be rendered through:
+
+```R
+DiagrammeR("graph.mmd")
+```
 
 Alright, here's another example. This one places some text inside the diagram objects. Also, there are some CSS styles to add a color fill to each of the diagram objects:
 
