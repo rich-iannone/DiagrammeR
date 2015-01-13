@@ -3,5 +3,6 @@
 export(DiagrammeR)
 export(DiagrammeROutput)
 export(grViz)
+export(mermaid)
 export(renderDiagrammeR)
 import(htmlwidgets)
