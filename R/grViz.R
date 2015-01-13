@@ -22,7 +22,7 @@ grViz <- function(diagram = "", width = NULL, height = NULL) {
   } else {
     # check for vector with length > 1 and concatenate
     if (length(diagram) > 1 ){
-      diagram = paste0( diagram, collapse = "" )
+      diagram = paste0( diagram, collapse = "\n" )
     }
   }
   
