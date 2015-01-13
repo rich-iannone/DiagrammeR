@@ -3,7 +3,7 @@
 #' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js}
 #' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
-#' @param diagram /href{http://graphviz.org}{graphviz} spec
+#' @param diagram \href{http://graphviz.org}{graphviz} spec
 #' for a diagram as either text, filename string, or file connection
 #' 
 #' @return An object of class \code{htmlwidget} that will
