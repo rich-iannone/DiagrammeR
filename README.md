@@ -33,14 +33,14 @@ Below are a few examples of how we might use **DiagrammeR**. For more examples a
 ```R
 # like html, whitespace does not matter in the diagram spec
 diagram <- "
-graph LR;
-  A-->B;
-  A-->C;
-  C-->E;
-  B-->D;
-  C-->D;
-  D-->F;
-  E-->F;
+graph LR
+  A-->B
+  A-->C
+  C-->E
+  B-->D
+  C-->D
+  D-->F
+  E-->F
 "
 
 DiagrammeR(diagram)
@@ -59,17 +59,17 @@ Alright, here's another example. This one places some text inside the diagram ob
 
 ```R
 diagram <- "
-graph LR;
-A(Rounded)-->B[Squared];
-B-->C{A Decision};
-C-->D[Square One];
-C-->E[Square Two];
+graph LR
+A(Rounded)-->B[Squared]
+B-->C{A Decision}
+C-->D[Square One]
+C-->E[Square Two]
     
-style A fill:#E5E25F;
-style B fill:#87AB51;
-style C fill:#3C8937;
-style D fill:#23772C;
-style E fill:#B6E6E6;
+style A fill:#E5E25F
+style B fill:#87AB51
+style C fill:#3C8937
+style D fill:#23772C
+style E fill:#B6E6E6
 "
     
 DiagrammeR(diagram)
@@ -83,13 +83,13 @@ Here's an example with line text (that is, text appearing on connecting lines). 
 
 ```R
 diagram <- "
-graph LR;
+graph LR
 A(Start)-->|Line Text|B(Keep Going)
-B-->|More Line Text|C(Stop);
+B-->|More Line Text|C(Stop)
     
-style A fill:#A2EB86, stroke:#04C4AB, stroke-width:2px;
-style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4;
-style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px;
+style A fill:#A2EB86, stroke:#04C4AB, stroke-width:2px
+style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4
+style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px
 "
 
 DiagrammeR(diagram)
@@ -184,18 +184,18 @@ The **mermaid.js** library also supports [sequence diagrams](http://knsv.github.
 library(DiagrammeR)
 
 DiagrammeR("
-sequenceDiagram;
-  customer->>ticket seller: ask ticket;
-  ticket seller->>database: seats;
+sequenceDiagram
+  customer->>ticket seller: ask ticket
+  ticket seller->>database: seats
   alt tickets available
-    database->>ticket seller: ok;
-    ticket seller->>customer: confirm;
-    customer->>ticket seller: ok;
-    ticket seller->>database: book a seat;
-    ticket seller->>printer: print ticket;
+    database->>ticket seller: ok
+    ticket seller->>customer: confirm
+    customer->>ticket seller: ok
+    ticket seller->>database: book a seat
+    ticket seller->>printer: print ticket
   else sold out
-    database->>ticket seller: none left;
-    ticket seller->>customer:  sorry;
+    database->>ticket seller: none left
+    ticket seller->>customer: sorry
   end
 ")
 ```
