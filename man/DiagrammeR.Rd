@@ -4,14 +4,18 @@
 \alias{DiagrammeR}
 \title{R + mermaid.js}
 \usage{
-DiagrammeR(diagram = "", width = NULL, height = NULL)
+DiagrammeR(diagram = "", ..., type = "mermaid", width = NULL,
+  height = NULL)
 }
 \arguments{
-\item{diagram}{diagram in mermaid markdown-like language or
+\item{diagram}{diagram in \code{mermaid} format or \code{graphviz} format or a
  file (as a connection or file name) containing a diagram specification.
 If no diagram is provided \code{diagram = ""} then the function will assume that
 a diagram will be provided by \code{\link[htmltools]{tags}} and
 \code{DiagrammeR} is just being used for dependency injection.}
+
+\item{type}{string - either "mermaid" (default) or "grViz" indicating
+the type of diagram spec and the desired parser/renderer}
 
 \item{width}{the width of the resulting graphic in pixels.}
 
@@ -105,8 +109,8 @@ html_print(tagList(
 
 # sequence diagrams
 # Using this "How to Draw a Sequence Diagram"
- http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
-draw some sequence diagrams with DiagrammeR
+#   http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
+# draw some sequence diagrams with DiagrammeR
 
 library(DiagrammeR)
 
