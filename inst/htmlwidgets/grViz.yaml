@@ -1,0 +1,5 @@
+dependencies:
+- name: viz
+  version: 0.3
+  src: htmlwidgets/lib/viz
+  script: viz.js
