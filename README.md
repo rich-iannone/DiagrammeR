@@ -272,6 +272,47 @@ grViz(boxes_and_rectangles)
 
 <img src="inst/Example_7.png">
 
+A word of warning: unfortunately these types of graphs will always render properly (at all?) in RStudio on Windows. Similar problems occur with some **rCharts** libraries. I don't really know what' going on but I intend to get to botom of this.
+
+Nevertheless, more examples! Let's **rvest** and pipe w/ **pipeR** (because it's fun):
+
+```R
+library(rvest)
+library(XML)
+library(pipeR)
+
+# if you're on Windows, try this option:
+# options(viewer = NULL)
+
+# Generate all the examples from viz.js GitHub repo
+html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %>>%
+  html_nodes("script[type='text/vnd.graphviz']") %>>%
+  lapply(
+    function(x){
+      xmlValue(x) %>>% (~ htmltools::html_print(grViz(.)) ) %>>% DiagrammeR(type="grViz")
+    }
+  )
+```
+
+Here's a sampling from that:
+
+<img src="inst/Example_8.png">
+
+Isn't this great? Let's take in some examples straight from the Graphviz gallery:
+
+```R
+readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") %>>%
+  grViz
+
+readLines("http://www.graphviz.org/Gallery/directed/Genetic_Programming.gv.txt") %>>%
+  grViz
+
+readLines("http://www.graphviz.org/Gallery/directed/unix.gv.txt") %>>%
+  grViz
+```
+
+You get some nice figures as a result. Try 'em, you'll see.
+
 ### DiagrammeR + shiny
 
 As with other **htmlwidgets**, we can easily dynamically bind **DiagrammeR** in **R** with **shiny**. Here is a quick example where we can provide a diagram spec in a `textInput`.
