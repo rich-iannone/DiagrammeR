@@ -272,7 +272,7 @@ grViz(boxes_and_rectangles)
 
 <img src="inst/Example_7.png">
 
-A word of warning: unfortunately these types of graphs will always render properly (at all?) in RStudio on Windows. Similar problems occur with some **rCharts** libraries. I don't really know what's going on but I intend to get to botom of this.
+A word of warning: unfortunately these types of graphs will not always render properly (at all?) in RStudio on Windows. Similar problems occur with some **rCharts** libraries. I don't really know what's going on but I intend to get to botom of this.
 
 Nevertheless, more examples! Let's **rvest** and pipe w/ **pipeR** (because it's fun):
 
