@@ -120,12 +120,12 @@
 #'
 #' @export
 
-DiagrammeR <- function(diagram = "", ..., type = "mermaid", width = NULL, height = NULL) {
+DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
   # DiagrammeR will serve as a wrapper function for mermaid and grVis
   if ( grepl(x = type, pattern = "[m,M](erm).*") ) {
-    mermaid( diagram, width, height )
+    mermaid( diagram, ... )
   } else if( grepl( x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )  ) {
-    grViz( diagram, ..., width, height )
+    grViz( diagram, ... )
   } else {
     stop ( "type should equal 'mermaid' or 'grViz' ")
   }
