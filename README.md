@@ -222,7 +222,55 @@ sequenceDiagram
 
 <img src="inst/Example_6.png">
 
+### Graphviz Graphs
 
+It's possible to make diagrams using Graphviz. The analogous rendering function here is `grViz`. Here is an example where nodes (in this case styled as boxes and rectangles) can be easily defined along with their connections: 
+
+```R
+boxes_and_rectangles <- "
+digraph boxes_and_rectangles {
+node [shape = box]
+A
+B
+C
+D
+E
+F
+node [shape = circle, fixedsize = true, width = 0.9]
+1
+2
+3
+4
+5
+6
+7
+8
+
+A->1
+B->2
+B->3
+B->4
+C->A
+1->D
+E->A
+2->4
+1->5
+1->F
+E->6
+4->6
+5->7
+6->7
+3->8
+
+overlap = true
+fontsize = 10;
+}
+"
+
+grViz(boxes_and_rectangles)
+```
+
+<img src="inst/Example_7.png">
 
 ### DiagrammeR + shiny
 
