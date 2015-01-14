@@ -14,6 +14,7 @@ DiagrammeR.Rproj
 
 # Input files
 *.mmd
+*.gv
 
 # Output files
 *.txt
