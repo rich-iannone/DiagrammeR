@@ -47,3 +47,24 @@ readLines("http://www.graphviz.org/Gallery/directed/Genetic_Programming.gv.txt")
 
 readLines("http://www.graphviz.org/Gallery/directed/unix.gv.txt") %>>%
   grViz
+
+
+
+
+# test single quote  in spec
+grViz("
+  digraph G {
+    node [shape='plaintext']
+    a [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+         <TR><TD PORT='1'>one<TD PORT='2' ROWSPAN='2'>two
+       <TR><TD PORT='3'>three
+       >];
+    b [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+         <TR><TD PORT='1'>one<TD PORT='2'>two
+       <TR><TD PORT='3' COLSPAN='2'>three
+       >];
+    a:1 -> b:2;
+    b:1 -> a:2;
+    b:3 -> a:3;
+  }
+")
