@@ -26,11 +26,18 @@ grViz <- function(diagram = "", width = NULL, height = NULL) {
     }
   }
   
+  # single quotes within a diagram spec are problematic
+  #  try to replace with \"
+  diagram = gsub(x=diagram,"'","\"")
+  
   # forward options using x
   x <- list(diagram = diagram)
   
-  if(!is.null("viewer")){
-    warning("grViz() might not work with RStudio Viewer but should work in another browser")
+  if(!is.null(options("viewer"))){
+    warning(
+      "grViz() might not work with RStudio Viewer but should work in another browser"
+      , call. = F
+    )
   }
   
   # create widget
