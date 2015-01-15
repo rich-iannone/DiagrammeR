@@ -46,7 +46,9 @@ grViz <- function(diagram = "", width = NULL, height = NULL) {
     x = x,
     width = width,
     height = height,
-    package = "DiagrammeR"
+    package = "DiagrammeR",
+    # since grViz does not work in RStudio viewer
+    htmlwidgets::sizingPolicy(viewer.suppress = TRUE)
   )
 
 }
