@@ -6,6 +6,10 @@
 #' @param diagram \href{http://graphviz.org}{graphviz} spec
 #' for a diagram as either text, filename string, or file connection
 #' 
+#' @param engine string  for the Graphviz layout engine; can be
+#' "dot" (default), "neato", "circo", "twopi".  For more information 
+#' see \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.
+#' 
 #' @return An object of class \code{htmlwidget} that will
 #' intelligently print itself into HTML in a variety of contexts
 #' including the R console, within R Markdown documents,
@@ -13,7 +17,7 @@
 #' 
 #' @export
 #' 
-grViz <- function(diagram = "", width = NULL, height = NULL) {
+grViz <- function(diagram = "", engine="dot", options=NULL, width = NULL, height = NULL) {
 
   # check for a connection or file
   if (inherits(diagram, "connection") || file.exists(diagram)) {
@@ -31,7 +35,13 @@ grViz <- function(diagram = "", width = NULL, height = NULL) {
   diagram = gsub(x=diagram,"'","\"")
   
   # forward options using x
-  x <- list(diagram = diagram)
+  x <- list(
+    diagram = diagram
+    , config = list(
+      engine = engine
+      , options = options
+    )
+  )
   
   if(!is.null(options("viewer"))){
     warning(
