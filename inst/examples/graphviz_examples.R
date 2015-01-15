@@ -39,11 +39,18 @@ unlink(tf)
 
 # some examples from the graphviz gallery
 #  these really don't work in RStudio viewer
-readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") %>>%
-  grViz
+d = readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") 
+d %>>% grViz
+d %>>% grViz(engine="neato")
+d %>>% grViz(engine="twopi")
+d %>>% grViz(engine="circo")
 
-readLines("http://www.graphviz.org/Gallery/directed/Genetic_Programming.gv.txt") %>>%
-  grViz
+d = readLines("http://www.graphviz.org/Gallery/directed/Genetic_Programming.gv.txt")
+d %>>% grViz
+d %>>% grViz(engine="neato")
+d %>>% grViz(engine="twopi")
+d %>>% grViz(engine="circo")
+
 
 readLines("http://www.graphviz.org/Gallery/directed/unix.gv.txt") %>>%
   grViz
