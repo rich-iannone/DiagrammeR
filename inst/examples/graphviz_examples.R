@@ -75,3 +75,22 @@ grViz("
     b:3 -> a:3;
   }
 ")
+
+
+# one more from neato user manual
+#   http://www.graphviz.org/pdf/neatoguide.pdf
+grViz('
+graph G {
+node [shape=box,style=filled];
+{node [width=.3,height=.3,shape=octagon,style=filled,color=skyblue] A1 A2 A3}
+A -- A1 [label="l #6"];
+      A -- A2 [label="l #7"];
+      A -- A3 [label="l #8"];
+{edge [style=invis]; A1 -- A2 -- A3}
+edge [len=3]; /* applies to all following edges */
+  A -- B [label="l #1"]; A -- C [label="l #2"]; A -- D [label="l #3"];
+A -- E [label="l #4"]; A -- F [label="l #5"]; B -- C [label="l #1"];
+B -- E [label="l #2"]; B -- F [label="l #3"]; C -- D [label="l #1"];
+D -- E [label="l #1"];
+}
+', engine = "neato")
