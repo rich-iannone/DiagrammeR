@@ -33,6 +33,13 @@ readLines(tf) %>>%
   grViz
 unlink(tf)
 
+V = letters
+randomEGraph(V, edges=30) %>>%
+  toDotR(tf)
+readLines(tf) %>>%
+  grViz(engine="circo")
+unlink(tf)
+
 
 # this is fun
 
@@ -94,3 +101,10 @@ B -- E [label="l #2"]; B -- F [label="l #3"]; C -- D [label="l #1"];
 D -- E [label="l #1"];
 }
 ', engine = "neato")
+
+
+# and a twopi example from the gallery
+#   http://www.graphviz.org/Gallery/twopi/twopi2.gv.txt
+
+readLines("http://www.graphviz.org/Gallery/twopi/twopi2.gv.txt") %>>%
+  grViz(engine="twopi",height=2000,width=2000)
