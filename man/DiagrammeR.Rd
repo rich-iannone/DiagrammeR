@@ -4,8 +4,7 @@
 \alias{DiagrammeR}
 \title{R + mermaid.js}
 \usage{
-DiagrammeR(diagram = "", ..., type = "mermaid", width = NULL,
-  height = NULL)
+DiagrammeR(diagram = "", type = "mermaid", ...)
 }
 \arguments{
 \item{diagram}{diagram in \code{mermaid} format or \code{graphviz} format or a

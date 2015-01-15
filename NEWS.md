@@ -1,5 +1,11 @@
+# DiagrammeR 0.2
+
+* Add the **viz.js** library to enable Graphviz support
+
 # DiagrammeR 0.1
 
-* Incorporate into the **htmlwidgets** framework.
+* First release
 
-* Add basic **shiny** app.
+* Incorporate into the **htmlwidgets** framework
+
+* Add basic **shiny** app
