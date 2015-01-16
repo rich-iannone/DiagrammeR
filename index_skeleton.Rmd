@@ -1,0 +1,16 @@
+---
+output:
+    html_document:
+        theme: null
+        highlight: kate
+        self_contained: false
+        includes:
+            in_header: header_skeleton.html
+            after_body: footer.html
+---
+
+<div>
+<h1>DiagrammeR</h1>
+<h1>mermaid.js</h1>
+<h1>graphviz</h1>
+</div>
