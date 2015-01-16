@@ -1,0 +1,28 @@
+---
+output:
+    html_document:
+        theme: null
+        highlight: kate
+        self_contained: false
+        includes:
+            in_header: header.html
+            after_body: footer.html
+---
+
+<div id="fullpage">
+<div class="section">
+  <h1>DiagrammeR</h1>
+</div>
+<div class="section">
+  <h1>mermaid.js</h1>
+</div>
+<div class="section">
+  <h1>graphviz</h1>
+</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#fullpage').fullpage();
+});
+</script>

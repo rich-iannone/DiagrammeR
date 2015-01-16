@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title></title>
+
+<script src="index_skeleton_files/htmlwidgets-0.3.2/htmlwidgets.js"></script>
+<script src="index_skeleton_files/d3-3.3.8/d3.min.js"></script>
+<script src="index_skeleton_files/dagre-0.4.0/dagre-d3.min.js"></script>
+<script src="index_skeleton_files/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<link href="index_skeleton_files/styles-0.1/styles.css" rel="stylesheet" />
+<script src="index_skeleton_files/DiagrammeR-binding-0.2/DiagrammeR.js"></script>
+<script src="index_skeleton_files/viz-0.3/viz.js"></script>
+<script src="index_skeleton_files/grViz-binding-0.2/grViz.js"></script>
+<title>DiagrammeR</title>
+
+<link rel="stylesheet" type="text/css" href="./lib/Skeleton/css/normalize.css" />
+<link rel="stylesheet" type="text/css" href="./lib/Skeleton/css/skeleton.css" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #dddddd; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { font-weight: bold; }
+code > span.dt { color: #800000; }
+code > span.dv { color: #0000ff; }
+code > span.bn { color: #0000ff; }
+code > span.fl { color: #800080; }
+code > span.ch { color: #ff00ff; }
+code > span.st { color: #dd0000; }
+code > span.co { color: #808080; font-style: italic; }
+code > span.al { color: #00ff00; font-weight: bold; }
+code > span.fu { color: #000080; }
+code > span.er { color: #ff0000; font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+<div>
+<h1>
+DiagrammeR
+</h1>
+<h2>
+mermaid.js
+</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DiagrammeR)
+
+<span class="kw">mermaid</span>(<span class="st">&quot;graph LR; R--&gt;|htmlwidgets|Interactive;&quot;</span>)</code></pre>
+<p><div id="htmlwidget-8077" style="width:672px;height:480px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-8077">{ "x": {
+ "diagram": "graph LR; R-->|htmlwidgets|Interactive;" 
+},"evals": [  ] }</script></p>
+<h2>
+graphviz
+</h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grViz</span>(<span class="st">&quot; digraph { R -&gt; Interactive }&quot;</span>)</code></pre>
+<p><div id="htmlwidget-7639" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-7639">{ "x": {
+ "diagram": " digraph { R -> Interactive }",
+"config": {
+ "engine": "dot",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
+</div>
+
+<!-- empty for now but leave as placeholder for footer-->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

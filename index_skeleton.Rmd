@@ -1,0 +1,27 @@
+---
+output:
+    html_document:
+        theme: null
+        highlight: kate
+        self_contained: false
+        includes:
+            in_header: header_skeleton.html
+            after_body: footer.html
+---
+
+<div>
+<h1>DiagrammeR</h1>
+<h2>mermaid.js</h2>
+
+```{r}
+library(DiagrammeR)
+
+mermaid("graph LR; R-->|htmlwidgets|Interactive;")
+```
+
+<h2>graphviz</h2>
+```{r warning=F}
+grViz(" digraph { R -> Interactive }")
+```
+
+</div>
