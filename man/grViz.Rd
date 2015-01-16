@@ -4,11 +4,16 @@
 \alias{grViz}
 \title{R + viz.js}
 \usage{
-grViz(diagram = "", width = NULL, height = NULL)
+grViz(diagram = "", engine = "dot", options = NULL, width = NULL,
+  height = NULL)
 }
 \arguments{
 \item{diagram}{\href{http://graphviz.org}{graphviz} spec
 for a diagram as either text, filename string, or file connection}
+
+\item{engine}{string  for the Graphviz layout engine; can be
+"dot" (default), "neato", "circo", "twopi".  For more information
+see \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.}
 }
 \value{
 An object of class \code{htmlwidget} that will
