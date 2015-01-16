@@ -97,11 +97,11 @@ B-->C{A Decision}
 C-->D[Square One]
 C-->E[Square Two]
     
-style A fill:#E5E25F
-style B fill:#87AB51
-style C fill:#3C8937
-style D fill:#23772C
-style E fill:#B6E6E6
+style A fill:#DCEBE3
+style B fill:#77DFC9
+style C fill:#DEDBBA
+style D fill:#F8F0CC
+style E fill:#FCFCF2
 "
     
 mermaid(diagram)
