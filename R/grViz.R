@@ -20,7 +20,7 @@
 #' 
 #' @export
 #' 
-grViz <- function(diagram = "", engine="dot", options=NULL, width = NULL, height = NULL) {
+grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, height = NULL) {
 
   # check for a connection or file
   if (inherits(diagram, "connection") || file.exists(diagram)) {
@@ -63,5 +63,4 @@ grViz <- function(diagram = "", engine="dot", options=NULL, width = NULL, height
     # since grViz does not work in RStudio viewer
     htmlwidgets::sizingPolicy(viewer.suppress = TRUE)
   )
-
 }
