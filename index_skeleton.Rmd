@@ -11,7 +11,7 @@ output:
 
 <div>
 <h1>DiagrammeR</h1>
-<h1>mermaid.js</h1>
+<h2>mermaid.js</h2>
 
 ```{r}
 library(DiagrammeR)
@@ -19,7 +19,7 @@ library(DiagrammeR)
 mermaid("graph LR; R-->|htmlwidgets|Interactive;")
 ```
 
-<h1>graphviz</h1>
+<h2>graphviz</h2>
 ```{r warning=F}
 grViz(" digraph { R -> Interactive }")
 ```
