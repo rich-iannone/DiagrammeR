@@ -22,9 +22,9 @@ The package leverages the infrastructure provided by [**htmlwidgets**](http://ht
 
 ### Mermaid Graphs
 
-The `mermaid` function processes the specification of a diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (.mmd file extension), or as a connection.
+The `mermaid` function processes the specification of a diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (with a .mmd file extension), or as a connection.
 
-Below are a few examples of how we might use **DiagrammeR**. For more examples and additional documentation, see the [`mermaid.js` Wiki](https://github.com/knsv/mermaid/wiki).
+Below are a few examples of how we might use **DiagrammeR** to simply make flowcharts.
 
 ```R
 # like HTML, whitespace does not matter in the diagram spec
@@ -39,7 +39,7 @@ graph LR
   E-->F
 "
 
-DiagrammeR(diagram)
+mermaid(diagram)
 ```
 
 This renders the following image:
@@ -66,7 +66,7 @@ graph LR
 and be rendered through:
 
 ```R
-DiagrammeR("graph.mmd")
+mermaid("graph.mmd")
 ```
 
 Alright, here's another example. This one places some text inside the diagram objects. Also, there are some CSS styles to add a color fill to each of the diagram objects:
@@ -86,7 +86,7 @@ style D fill:#23772C
 style E fill:#B6E6E6
 "
     
-DiagrammeR(diagram)
+mermaid(diagram)
 ```
 
 What you get is this:
@@ -106,7 +106,7 @@ style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4
 style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px
 "
 
-DiagrammeR(diagram)
+mermaid(diagram)
 ```
 
 The resultant graphic:
@@ -180,24 +180,21 @@ paste(connections, collapse = "\n"), "\n",
 "class ", paste0(1:length(connections), collapse = ","), " column;
 ")
 
-DiagrammeR(diagram)
+mermaid(diagram)
 ```
 
 This is part of the resulting graphic (it's quite wide so I'm displaying just 8 of the 11 columns):
 
 <img src="inst/Example_5.png">
 
-### Sequence Diagrams
-The **mermaid.js** library also supports [sequence diagrams](http://knsv.github.io/mermaid/sequenceDiagram.html). The ["How to Draw Sequence Diagrams"](http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf) report by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams.  Let's replicate the ticket-buying example from Figure 1 of this report and also add some conditionals.
+The **mermaid.js** library also supports [sequence diagrams](http://knsv.github.io/mermaid/sequenceDiagram.html). The ["How to Draw Sequence Diagrams"](http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf) report by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams. Let's replicate the ticket-buying example from Figure 1 of this report and add in some conditionals.
 
 ```R
 # Using this "How to Draw a Sequence Diagram" 
 # http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
 # draw some sequence diagrams with DiagrammeR
 
-library(DiagrammeR)
-
-DiagrammeR("
+mermaid("
 sequenceDiagram
   customer->>ticket seller: ask ticket
   ticket seller->>database: seats
@@ -216,9 +213,13 @@ sequenceDiagram
 
 <img src="inst/Example_6.png">
 
+For more examples and additional documentation, see the [`mermaid.js` Wiki](https://github.com/knsv/mermaid/wiki).
+
 ### Graphviz Graphs
 
-It's possible to make diagrams using Graphviz. The analogous rendering function here is `grViz`. Here is an example where nodes (in this case styled as boxes and rectangles) can be easily defined along with their connections: 
+It's possible to make diagrams using Graphviz support within DiagrammeR. The analogous processing function here is `grViz`. Again, the diagram spec can either exist in the form of a string, a reference to a Graphviz file (with a .gz file extension), or as a connection.
+
+Here is an example where nodes (in this case styled as boxes and rectangles) can be easily defined along with their connections: 
 
 ```R
 boxes_and_rectangles <- "
@@ -266,9 +267,7 @@ grViz(boxes_and_rectangles)
 
 <img src="inst/Example_7.png">
 
-A word of warning: unfortunately these types of graphs will not always render properly (at all?) in RStudio on Windows. Similar problems occur with some **rCharts** libraries. I don't really know what's going on but I intend to get to the bottom of this.
-
-Nevertheless, more examples! Let's **rvest** and pipe w/ **pipeR** (because it's fun):
+Here's another example! Let's **rvest** and pipe w/ **pipeR** (because it's fun):
 
 ```R
 library(rvest)
@@ -325,5 +324,5 @@ server = function(input, output){
   ))
 }
 
-shinyApp( ui = ui, server = server )
+shinyApp(ui = ui, server = server)
 ```
