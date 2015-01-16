@@ -20,6 +20,8 @@ install.packages("DiagrammeR")
 
 The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
 
+<img src="inst/DiagrammeR_flow_diagram.png">
+
 ### Mermaid Graphs
 
 The `mermaid` function processes the specification of a diagram and then renders the diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (with a **.mmd** file extension), or as a connection. 
