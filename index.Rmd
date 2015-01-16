@@ -1,0 +1,11 @@
+---
+output:
+    html_document:
+        theme: null
+        highlight: kate
+        self_contained: false
+        includes:
+            in_header: header.html
+            after_body: footer.html
+---
+
