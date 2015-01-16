@@ -22,12 +22,24 @@ The package leverages the infrastructure provided by [**htmlwidgets**](http://ht
 
 ### Mermaid Graphs
 
-The `mermaid` function processes the specification of a diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (with a .mmd file extension), or as a connection.
+The `mermaid` function processes the specification of a diagram and then renders the diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (with a **.mmd** file extension), or as a connection. 
 
-Below are a few examples of how we might use **DiagrammeR** to simply make flowcharts.
+The **mermaid**-style graph specification begins with a declaration of `graph` followed by the graph direction. The directions can be:
+
+- `LR` left to right
+- `RL` right to left
+- `TB` top to bottom
+- `BT` bottom to top
+- `TD` top down (same as `TB`)
+
+Nodes can be given arbitrary ID values and those IDs are displayed as text within their respective boxes. Connections between nodes are denoted by:
+
+- `-->` arrow connection
+- `---` line connection
+
+Simply joining up a series of nodes in a left-to-right graph can be done in a few lines:
 
 ```R
-# like HTML, whitespace does not matter in the diagram spec
 diagram <- "
 graph LR
   A-->B
@@ -46,11 +58,17 @@ This renders the following image:
 
 <img src="inst/Example_1.png">
 
-Alternatively, you could have the diagram flowing from top to bottom by using the statement `graph TB` in place of `graph LR`. Here is the result of that:
+The same result can be achieved in a more succinct manner with this R statement (using semicolons between statements in the **mermaid** diagram spec):
+
+```R
+mermaid("graph LR; A-->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F")
+```
+
+Alternatively, here is the result of using the statement `graph TB` in place of `graph LR`:
 
 <img src="inst/Example_2.png">
 
-Keep in mind that external files can also be called by the `DiagrammeR` function. The file `graph.mmd` can contain the following text
+Keep in mind that external files can also be called by the `DiagrammeR` function. The file `graph.mmd` can contain the text of the diagram spec as follows
 
 ```
 graph LR
