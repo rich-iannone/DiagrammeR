@@ -22,18 +22,12 @@ The package leverages the infrastructure provided by [**htmlwidgets**](http://ht
 
 ### Mermaid Graphs
 
-The statement `graph LR` indicates that a graph running left to right is desired. Nodes are arbitrarily named and arrows such as `-->` indicate the type of arrow connection. The **DiagrammeR** function currently takes three arguments.
-
-Argument    |     Description
-----------  | -------------------------------
-`diagram`     | The spec of the diagram as a string or as a file (connection or file name). Can also be blank if using `htmltools::tags`
-`width`       | `NULL` (default) or a specified width as a number (in pixels)
-`height`      | `NULL` (default) or a specified height as a number (in pixels)
+The `mermaid` function processes the specification of a diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (.mmd file extension), or as a connection.
 
 Below are a few examples of how we might use **DiagrammeR**. For more examples and additional documentation, see the [`mermaid.js` Wiki](https://github.com/knsv/mermaid/wiki).
 
 ```R
-# like html, whitespace does not matter in the diagram spec
+# like HTML, whitespace does not matter in the diagram spec
 diagram <- "
 graph LR
   A-->B
