@@ -9,3 +9,14 @@ output:
             after_body: footer.html
 ---
 
+<div id="fullpage">
+<div class="section">DiagrammeR</div>
+<div class="section">mermaid.js</div>
+<div class="section">graphviz</div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#fullpage').fullpage();
+});
+</script>
