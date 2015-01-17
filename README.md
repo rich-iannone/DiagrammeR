@@ -237,7 +237,7 @@ For more examples and additional documentation, see the [`mermaid.js` Wiki](http
 
 ### Graphviz Graphs
 
-It's possible to make diagrams using Graphviz support within DiagrammeR. The analogous processing function here is `grViz`. Again, the diagram spec can either exist in the form of a string, a reference to a Graphviz file (with a .gz file extension), or as a connection.
+It's possible to make diagrams using Graphviz support within DiagrammeR. The analogous processing function here is `grViz`. Again, the diagram spec can either exist in the form of a string, a reference to a Graphviz file (with a .gv file extension), or as a connection.
 
 Here is an example where nodes (in this case styled as boxes and rectangles) can be easily defined along with their connections: 
 
