@@ -239,14 +239,24 @@ For more examples and additional documentation, see the [`mermaid.js` Wiki](http
 
 It's possible to make diagrams using Graphviz support within DiagrammeR. The analogous processing function here is `grViz`. Again, the diagram spec can either exist in the form of a string, a reference to a Graphviz file (with a .gv file extension), or as a connection.
 
-The **Graphviz** graph specification must begin with a directive stating whether a directed graph (`digraph`) or an undirected graph (`graph`) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. A digraph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
+The **Graphviz** graph specification must begin with a directive stating whether a directed graph (**`digraph`**) or an undirected graph (**`graph`**) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph *`ID`* follows this and paired curly braces denotes the body of the statement list (*`stmt_list`*). 
+
+Optionally, A graph may also be described as **`strict`**. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.
+
+Here is the basic structure:
+
+[**`strict`**] (**`graph`** | **`digraph`**) [*`ID`*] '{' *`stmt_list`* '}'
+
+A digraph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
+
+Comments may be placed within the statement list. These can be marked using `//` or a `/* */` structure. Comment lines are denoted by a `#` character.
 
 Here is an example where nodes (in this case styled as boxes and rectangles) can be easily defined along with their connections: 
 
 ```R
 boxes_and_rectangles <- "
 digraph boxes_and_rectangles {
-node [shape = box]
+node [shape = box] // for the letter nodes, use box shapes
 A
 B
 C
@@ -263,6 +273,7 @@ node [shape = circle, fixedsize = true, width = 0.9]
 7
 8
 
+# the graph connections
 A->1
 B->2
 B->3
