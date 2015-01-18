@@ -245,7 +245,7 @@ Optionally, A graph may also be described as **`strict`**. This forbids the crea
 
 Here is the basic structure:
 
-[**`strict`**] (**`graph`** | **`digraph`**) [*`ID`*] '{' *`stmt_list`* '}'
+`[strict] (graph | digraph) [ID] '{' stmt_list '}'`
 
 A digraph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
 
