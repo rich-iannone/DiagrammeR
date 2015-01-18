@@ -280,7 +280,7 @@ E->6
 3->8
 
 overlap = true
-fontsize = 10;
+fontsize = 10
 }
 "
 
