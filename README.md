@@ -237,9 +237,13 @@ For more examples and additional documentation, see the [`mermaid.js` Wiki](http
 
 ### Graphviz Graphs
 
-It's possible to make diagrams using Graphviz support within DiagrammeR. The analogous processing function here is `grViz`. Again, the diagram spec can either exist in the form of a string, a reference to a Graphviz file (with a .gv file extension), or as a connection.
+It's possible to make diagrams using Graphviz support within DiagrammeR. The analogous processing function here is `grViz`. What you pass into `grViz` is a valid graph in the DOT language. The text can either exist in the form of a string, a reference to a Graphviz file (with a .gv file extension), or as a text connection.
 
-The **Graphviz** graph specification must begin with a directive stating whether a directed graph (**`digraph`**) or an undirected graph (**`graph`**) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph *`ID`* follows this and paired curly braces denotes the body of the statement list (*`stmt_list`*). Within the statement list, a directed graph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
+#### Defining a Graphviz Graph
+
+The **Graphviz** graph specification must begin with a directive stating whether a directed graph (**`digraph`**) or an undirected graph (**`graph`**) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph *`ID`* follows this and paired curly braces denotes the body of the statement list (*`stmt_list`*). 
+
+
 
 Optionally, A graph may also be described as **`strict`**. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.
 
@@ -247,56 +251,73 @@ Here is the basic structure:
 
 `[strict] (graph | digraph) [ID] '{' stmt_list '}'`
 
-Comments may be placed within the statement list. These can be marked using `//` or a `/* */` structure. Comment lines are denoted by a `#` character. Multiple statements within a statement list can be separated by linebreaks or `;` line terminators between multiple statements.
+#### Statements
 
-Here is an example where nodes (in this case styled as boxes and rectangles) can be easily defined along with their connections: 
+The graph statement (`graph_stmt`), the node statement (`node_stmt`), and the edge statement (`edge_stmt`) are the three most commonly used statements in the Graphviz DOT language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
+
+Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list item can optionally have an attribute list (`attr_list`) which modify the attributes of either the node or edge.
+
+Comments may be placed within the statement list. These can be marked using `//` or a `/* */` structure. Comment lines are denoted by a `#` character. Multiple statements within a statement list can be separated by linebreaks or `;` characters between multiple statements.
+
+Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:
 
 ```R
-boxes_and_rectangles <- "
-digraph boxes_and_rectangles {
-node [shape = box] // for the letter nodes, use box shapes
-A
-B
-C
-D
-E
-F
-node [shape = circle, fixedsize = true, width = 0.9]
-1
-2
-3
-4
-5
-6
-7
-8
+boxes_and_circles <- "
+digraph boxes_and_circles {
+  
+  # several 'node' statements
+  node [shape = box]
+    A; B; C; D; E; F
+  node [shape = circle, fixedsize = true, width = 0.9] // sets as circles
+    1; 2; 3; 4; 5; 6; 7; 8
 
-# the graph connections
-A->1
-B->2
-B->3
-B->4
-C->A
-1->D
-E->A
-2->4
-1->5
-1->F
-E->6
-4->6
-5->7
-6->7
-3->8
+  # several 'edge' statements
+    A->1; B->2; B->3; B->4; C->A
+    1->D; E->A; 2->4; 1->5; 1->F
+    E->6; 4->6; 5->7; 6->7; 3->8
 
-overlap = true
-fontsize = 10
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
 }
 "
 
-grViz(boxes_and_rectangles)
+grViz(boxes_and_circles)
 ```
 
 <img src="inst/Example_7.png">
+
+The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.
+
+```R
+boxes_and_circles <- "
+digraph boxes_and_circles {
+  
+  # several 'node' statements
+  node [shape = box, color = blue] // for the letter nodes, use box shapes
+    A; B; C; D; E
+    F [color = black]
+  node [shape = circle, fixedsize = true, width = 0.9] // sets as circles
+    1; 2; 3; 4; 5; 6; 7; 8
+
+  # several 'edge' statements
+  edge [color = gray] // this sets all edges to be gray (unless overridden)
+    A->1; B->2
+    B->3 [color = red]
+    B->4
+    C->A [color = green]
+    1->D; E->A; 2->4; 1->5; 1->F
+    E->6; 4->6; 5->7; 6->7
+    3->8 [color = blue]
+
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+}
+"
+
+grViz(boxes_and_circles)
+```
+
+<img src="inst/Example_8.png">
 
 Here's another example! Let's **rvest** and pipe w/ **pipeR** (because it's fun):
 
@@ -304,9 +325,6 @@ Here's another example! Let's **rvest** and pipe w/ **pipeR** (because it's fun)
 library(rvest)
 library(XML)
 library(pipeR)
-
-# if you're on Windows, try this option:
-# options(viewer = NULL)
 
 # Generate all the examples from viz.js GitHub repo
 html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %>>%
@@ -320,7 +338,7 @@ html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %
 
 Here's a sampling from that:
 
-<img src="inst/Example_8.png">
+<img src="inst/Example_9.png">
 
 Isn't this great? Let's take in some examples straight from the Graphviz gallery:
 
