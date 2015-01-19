@@ -284,7 +284,7 @@ digraph boxes_and_circles {
 grViz(boxes_and_circles)
 ```
 
-<img src="inst/Example_7.png">
+<img src="inst/Example_7a.png">
 
 The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.
 
@@ -317,9 +317,33 @@ digraph boxes_and_circles {
 grViz(boxes_and_circles)
 ```
 
-<img src="inst/Example_8.png">
+<img src="inst/Example_7b.png">
 
-Here's another example! Let's **rvest** and pipe w/ **pipeR** (because it's fun):
+#### Graphviz Engines
+
+Several Graphviz engines are available with DiagrammeR for rendering graphs. By default, the `grViz` function renders graphs using the standard `dot` engine. However, the `neato`, `twopi`, and `circo` engines are selectable by supplying those names to the `engine` argument. Here is how the 'boxes_and_circles' graph is rendered with the `neato` engine:
+
+```R
+grViz(boxes_and_circles, engine = "neato")
+```
+
+<img src="inst/Example_7c_neato.png">
+
+```R
+grViz(boxes_and_circles, engine = "twopi")
+```
+
+<img src="inst/Example_7d_twopi.png">
+
+```R
+grViz(boxes_and_circles, engine = "circo")
+```
+
+<img src="inst/Example_7e_circo.png">
+
+#### Mixing R and Graphviz DOT
+
+Possibilities are interesting when combining R functions with DiagrammeR and the grViz function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
 
 ```R
 library(rvest)
@@ -331,14 +355,22 @@ html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %
   html_nodes("script[type='text/vnd.graphviz']") %>>%
   lapply(
     function(x){
-      xmlValue(x) %>>% (~ htmltools::html_print(grViz(.)) ) %>>% DiagrammeR(type="grViz")
+      xmlValue(x) %>>% (~ htmltools::html_print(grViz(.)) ) %>>% grViz
     }
   )
 ```
 
-Here's a sampling from that:
+<img src="inst/Example_8a.png">
 
-<img src="inst/Example_9.png">
+<img src="inst/Example_8b.png">
+
+<img src="inst/Example_8c.png">
+
+<img src="inst/Example_8d.png">
+
+<img src="inst/Example_8e.png">
+
+<img src="inst/Example_8f.png">
 
 Isn't this great? Let's take in some examples straight from the Graphviz gallery:
 
