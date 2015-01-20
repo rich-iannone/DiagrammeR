@@ -1,10 +1,10 @@
 <img src="inst/DiagrammeR.png">
 
-With the DiagrammeR package, you can create diagrams and flowcharts using R. Markdown-like text is used to describe a diagram and, by doing this in R, we can also add some R code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps.
+With the **DiagrammeR** package, you can create diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps.
 
 ### Installation
 
-Install the development version of **DiagrammeR** from GitHub using the `devtools` package.
+Install the development version of **DiagrammeR** from GitHub using the **devtools** package.
 
 ```R
 devtools::install_github('rich-iannone/DiagrammeR')
@@ -60,7 +60,7 @@ This renders the following image:
 
 <img src="inst/Example_1.png">
 
-The same result can be achieved in a more succinct manner with this R statement (using semicolons between statements in the **mermaid** diagram spec):
+The same result can be achieved in a more succinct manner with this **R** statement (using semicolons between statements in the **mermaid** diagram spec):
 
 ```R
 mermaid("graph LR; A-->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F")
@@ -70,7 +70,7 @@ Alternatively, here is the result of using the statement `graph TB` in place of 
 
 <img src="inst/Example_2.png">
 
-Keep in mind that external files can also be called by the `DiagrammeR` function. The file `graph.mmd` can contain the text of the diagram spec as follows
+Keep in mind that external files can also be called by the `mermaid` function. The file `graph.mmd` can contain the text of the diagram spec as follows
 
 ```
 graph LR
@@ -133,13 +133,13 @@ The resultant graphic:
 
 <img src="inst/Example_4.png">
 
-Let's include the values of some R objects into a fresh diagram. The `mtcars` dataset is something I go to again and again so I'm going to load it up.
+Let's include the values of some **R** objects into a fresh diagram. The `mtcars` dataset is something I go to again and again, so, I'm going to load it up.
 
 ```R
 data(mtcars)
 ```
 
-When you call the R `summary` function on this data frame, you obtain this:
+When you call the **R** `summary` function on this data frame, you obtain this:
 
 ```
      mpg             cyl             disp             hp             drat      
@@ -237,7 +237,7 @@ For more examples and additional documentation, see the [`mermaid.js` Wiki](http
 
 ### Graphviz Graphs
 
-It's possible to make diagrams using Graphviz support within DiagrammeR. The analogous processing function here is `grViz`. What you pass into `grViz` is a valid graph in the DOT language. The text can either exist in the form of a string, a reference to a Graphviz file (with a .gv file extension), or as a text connection.
+It's possible to make diagrams using **Graphviz** support within **DiagrammeR**. The analogous processing function here is `grViz`. What you pass into `grViz` is a valid graph in the **DOT** language. The text can either exist in the form of a string, a reference to a **Graphviz** file (with a **.gv** file extension), or as a text connection.
 
 #### Defining a Graphviz Graph
 
@@ -253,7 +253,7 @@ Here is the basic structure:
 
 #### Statements
 
-The graph statement (`graph_stmt`), the node statement (`node_stmt`), and the edge statement (`edge_stmt`) are the three most commonly used statements in the Graphviz DOT language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
+The graph statement (`graph_stmt`), the node statement (`node_stmt`), and the edge statement (`edge_stmt`) are the three most commonly used statements in the **Graphviz** **DOT** language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
 
 Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list item can optionally have an attribute list (`attr_list`) which modify the attributes of either the node or edge.
 
@@ -321,9 +321,9 @@ grViz(boxes_and_circles)
 
 #### Graphviz Engines
 
-Several Graphviz engines are available with DiagrammeR for rendering graphs. By default, the `grViz` function renders graphs using the standard `dot` engine. However, the **neato**, **twopi**, and **circo** engines are selectable by supplying those names to the `engine` argument. The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
+Several **Graphviz** engines are available with **DiagrammeR** for rendering graphs. By default, the `grViz` function renders graphs using the standard **dot** engine. However, the **neato**, **twopi**, and **circo** engines are selectable by supplying those names to the `engine` argument. The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
 
-Here is how the 'boxes_and_circles' graph is rendered with the `neato` engine:
+Here is how the 'boxes_and_circles' graph is rendered with the **neato** engine:
 
 ```R
 grViz(boxes_and_circles, engine = "neato")
@@ -345,7 +345,7 @@ grViz(boxes_and_circles, engine = "circo")
 
 #### Mixing R and Graphviz DOT
 
-Possibilities are interesting when combining R functions with DiagrammeR and the grViz function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
+Possibilities are interesting when combining **R** functions with DiagrammeR and the grViz function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
 
 ```R
 library(rvest)
