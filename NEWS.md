@@ -1,11 +1,15 @@
+# DiagrammeR 0.3
+
+* Added support for the Graphviz **neato**, **twopi**, and **circo** engines
+
 # DiagrammeR 0.2
 
-* Add the **viz.js** library to enable Graphviz support
+* Added the **viz.js** library to enable Graphviz support
 
 # DiagrammeR 0.1
 
-* First release
+* Initial release
 
-* Incorporate into the **htmlwidgets** framework
+* Incorporated into the **htmlwidgets** framework
 
-* Add basic **shiny** app
+* Added basic **shiny** app
