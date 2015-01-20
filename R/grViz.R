@@ -17,7 +17,7 @@
 #' intelligently print itself into HTML in a variety of contexts
 #' including the R console, within R Markdown documents,
 #' and within Shiny output bindings.
-#' 
+#' @importFrom rstudioapi isAvailable
 #' @export
 #' 
 grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, height = NULL) {
@@ -45,13 +45,9 @@ grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, he
       , options = options
     )
   )
-  
-  if(!is.null(options("viewer"))){
-    warning(
-      "grViz() might not work with RStudio Viewer but should work in another browser"
-      , call. = F
-    )
-  }
+   
+  # only use the viewer for newer versions of rstudio
+  viewer.suppress = !rstudioapi::isAvailable("0.99.120")
   
   # create widget
   htmlwidgets::createWidget(
@@ -61,6 +57,6 @@ grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, he
     height = height,
     package = "DiagrammeR",
     # since grViz does not work in RStudio viewer
-    htmlwidgets::sizingPolicy(viewer.suppress = TRUE)
+    htmlwidgets::sizingPolicy(viewer.suppress = viewer.suppress)
   )
 }
