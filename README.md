@@ -389,6 +389,8 @@ readLines("http://www.graphviz.org/Gallery/directed/unix.gv.txt") %>>%
 
 You get some nice figures as a result. Try 'em, you'll see.
 
+For much more information on the **DOT** language, see the excellent [drawing graphs with *dot* manual](http://www.graphviz.org/pdf/dotguide.pdf).
+
 ### DiagrammeR + shiny
 
 As with other **htmlwidgets**, we can easily dynamically bind **DiagrammeR** in **R** with **shiny**. Here is a quick example where we can provide a diagram spec in a `textInput`.
