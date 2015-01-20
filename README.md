@@ -319,6 +319,31 @@ grViz(boxes_and_circles)
 
 <img src="inst/Example_7b.png">
 
+Different shapes, colors, and text properties can be used for nodes, edges, and the other graph elements. Here are the principal node attributes:
+
+- `color`: the node shape color (*default:* `black`)
+- `colorscheme`: the scheme for interpreting color names
+- `distortion`: node distortion for any `shape = polygon` (*default:* `0.0`)
+- `fillcolor`: node fill color (*default:* `lightgrey/black`)
+- `fixedsize`: label text has no affect on node size (*default:* `false`)
+- `fontcolor`: the font color (*default:* `black`)
+- `fontname`: the font family (*default:* `Times-Roman`)
+- `fontsize`: the point size of the label (*default:* `14`)
+- `group`: the name of the node's horizontal alignment group
+- `height`: the minimum height in inches (*default:* `0.5`)
+- `image`: the image file name
+- `labelloc`: the node label vertical alignment (*default:* `c`)
+- `margin`: the space around a label (*default:* `0.11, 0.55`)
+- `orientation`: the node rotation angle (*default:* `0.0`)
+- `penwidth`: the width of the pen (in point size) for drawing boundaries (*default:* `1.0`)
+- `peripheries`: the number of node boundaries
+- `shape`: the shape of the node (*default:* `ellipse`)
+- `sides`: the number of sides for `shape = polygon` (*default:* `4`)
+- `skew`: the skewing of the node for `shape = polygon` (*default:* `0.0`)
+- `style`: graphics options for the node
+- `tooltip`: the tooltip annotation for the node (*default:* [*node label*])
+- `width`: the minimum width in inches (*default:* `0.75`)
+
 #### Graphviz Engines
 
 Several **Graphviz** engines are available with **DiagrammeR** for rendering graphs. By default, the `grViz` function renders graphs using the standard **dot** engine. However, the **neato**, **twopi**, and **circo** engines are selectable by supplying those names to the `engine` argument. The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
