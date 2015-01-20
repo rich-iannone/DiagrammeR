@@ -22,7 +22,7 @@ Description: With the DiagrammeR package, you can create diagrams and flowcharts
     Markdown, and in shiny apps.
 License: MIT + file LICENSE
 Imports:
-    htmlwidgets (>= 0.3.2)
+    htmlwidgets (>= 0.3.2), rstudioapi (>= 0.2)
 Suggests:
     knitr
 VignetteBuilder: knitr
