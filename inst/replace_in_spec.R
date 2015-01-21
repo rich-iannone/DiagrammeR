@@ -1,12 +1,14 @@
 digraph <-"
-digraph G {
+digraph agraph {
+node [fontname = Helvetica]
+a [shape = polygon, sides = 5, peripheries = @@2, color = lightblue, style = filled, fontcolor = white]
 a -> '@@1'
 '@@1' -> b
-b -> c
-b -> 'number: @@2'
+b -> c [headport=e, tailport = w]
+b -> 'number: @@2' [color = blue, headport = s, tailport = n]
 c -> '@@1'
 d -> '@@2'
-d -> c
+d -> c [tooltip = hello]
 f -> d
 d -> e
 '@@1' -> c
@@ -17,7 +19,6 @@ a -> f
 4, 7, 9, 1, 3, 9))
 @@2: 2:5
 "
-
 
 replace_in_spec <- function(spec) {
   
@@ -66,5 +67,4 @@ replace_in_spec <- function(spec) {
 spec <- replace_in_spec(digraph)
 
 grViz(spec)
-
 
