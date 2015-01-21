@@ -266,7 +266,10 @@ digraph boxes_and_circles {
   # several 'node' statements
   node [shape = box]
     A; B; C; D; E; F
-  node [shape = circle, fixedsize = true, width = 0.9] // sets as circles
+  
+  node [shape = circle,
+        fixedsize = true,
+        width = 0.9] // sets as circles
     1; 2; 3; 4; 5; 6; 7; 8
 
   # several 'edge' statements
@@ -291,10 +294,14 @@ boxes_and_circles <- "
 digraph boxes_and_circles {
   
   # several 'node' statements
-  node [shape = box, color = blue] // for the letter nodes, use box shapes
+  node [shape = box,
+        color = blue] // for the letter nodes, use box shapes
     A; B; C; D; E
     F [color = black]
-  node [shape = circle, fixedsize = true, width = 0.9] // sets as circles
+  
+  node [shape = circle,
+        fixedsize = true,
+        width = 0.9] // sets as circles
     1; 2; 3; 4; 5; 6; 7; 8
 
   # several 'edge' statements
