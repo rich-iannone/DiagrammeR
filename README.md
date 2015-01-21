@@ -241,11 +241,9 @@ It's possible to make diagrams using **Graphviz** support within **DiagrammeR**.
 
 #### Defining a Graphviz Graph
 
-The **Graphviz** graph specification must begin with a directive stating whether a directed graph (**`digraph`**) or an undirected graph (**`graph`**) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph *`ID`* follows this and paired curly braces denotes the body of the statement list (*`stmt_list`*). 
+The **Graphviz** graph specification must begin with a directive stating whether a directed graph (`digraph`) or an undirected graph (`graph`) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph `ID` follows this and paired curly braces denotes the body of the statement list (`stmt_list`). 
 
-
-
-Optionally, A graph may also be described as **`strict`**. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.
+Optionally, A graph may also be described as `strict`. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.
 
 Here is the basic structure:
 
@@ -319,30 +317,145 @@ grViz(boxes_and_circles)
 
 <img src="inst/Example_7b.png">
 
-Different shapes, colors, and text properties can be used for nodes, edges, and the other graph elements. Here are the principal node attributes:
+There are many more attributes. Here are the principal node attributes:
 
-- `color`: the node shape color (*default:* `black`)
-- `colorscheme`: the scheme for interpreting color names
-- `distortion`: node distortion for any `shape = polygon` (*default:* `0.0`)
-- `fillcolor`: node fill color (*default:* `lightgrey/black`)
-- `fixedsize`: label text has no affect on node size (*default:* `false`)
-- `fontcolor`: the font color (*default:* `black`)
-- `fontname`: the font family (*default:* `Times-Roman`)
-- `fontsize`: the point size of the label (*default:* `14`)
-- `group`: the name of the node's horizontal alignment group
-- `height`: the minimum height in inches (*default:* `0.5`)
-- `image`: the image file name
-- `labelloc`: the node label vertical alignment (*default:* `c`)
-- `margin`: the space around a label (*default:* `0.11, 0.55`)
-- `orientation`: the node rotation angle (*default:* `0.0`)
-- `penwidth`: the width of the pen (in point size) for drawing boundaries (*default:* `1.0`)
-- `peripheries`: the number of node boundaries
-- `shape`: the shape of the node (*default:* `ellipse`)
-- `sides`: the number of sides for `shape = polygon` (*default:* `4`)
-- `skew`: the skewing of the node for `shape = polygon` (*default:* `0.0`)
-- `style`: graphics options for the node
-- `tooltip`: the tooltip annotation for the node (*default:* [*node label*])
-- `width`: the minimum width in inches (*default:* `0.75`)
+|Node Attribute| Description                                                 | Default          |
+|:-------------|:------------------------------------------------------------|:-----------------|
+|`color`       | the node shape color                                        | `black`          |
+|`colorscheme` | the scheme for interpreting color names                     |                  |
+|`distortion`  | node distortion for any `shape = polygon`                   |`0.0`             |
+|`fillcolor`   | node fill color                                             |`lightgrey/black` |
+|`fixedsize`   | label text has no affect on node size                       |`false`           |
+|`fontcolor`   | the font color                                              |`black`           |
+|`fontname`    | the font family                                             |`Times-Roman`     |
+|`fontsize`    | the point size of the label                                 |`14`              |
+|`group`       | the name of the node's horizontal alignment group           |                  |
+|`height`      | the minimum height in inches                                |`0.5`             |
+|`image`       | the image file name                                         |                  |
+|`labelloc`    | the node label vertical alignment                           |`c`               |
+|`margin`      | the space around a label                                    |`0.11, 0.55`      |
+|`orientation` | the node rotation angle                                     |`0.0`             |
+|`penwidth`    | the width of the pen (in point size) for drawing boundaries |`1.0`             |
+|`peripheries` | the number of node boundaries                               |                  |
+|`shape`       | the shape of the node                                       |`ellipse`         |
+|`sides`       | the number of sides for `shape = polygon`                   |`4`               |
+|`skew`        | the skewing of the node for `shape = polygon`               |`0.0`             |
+|`style`       | graphics options for the node                               |                  |
+|`tooltip`     | the tooltip annotation for the node                         |[*node label*]    |
+|`width`       | the minimum width in inches                                 |`0.75`            |
+
+The edge attributes:
+
+|Edge Attribute    | Description                                                  | Default         |
+|:-----------------|:-------------------------------------------------------------|:----------------|
+|`arrowhead`       | style of arrowhead at head end                               | normal          |
+|`arrowsize`       | scaling factor for arrowheads                                | `1.0`           |
+|`arrowtail`       | sytle of arrowhead at tail end                               | normal          |
+|`color`           | edge stroke color                                            | `black`         |
+|`colorscheme`     | the scheme for interpreting color names                      |                 |
+|`constraint`      | whether edge should affect node ranking                      | true            |
+|`decorate`        | setting this draws line between labels with their edges      |                 | 
+|`dir`             | direction; either `forward`, `back`, `both`, or `none`       | `forward`       |
+|`edgeURL`         | URL attached to non-label part of edge                       |                 |
+|`edgehref`        | same as `edgeURL` attribute                                  |                 |
+|`edgetarget`      | if an URL is set, this determines the browser window for URL |                 |
+|`edgetooltip`     | a tooltip annotation for the non-label part of edge          | label           |
+|`fontcolor`       | the font color                                               | `black`         |
+|`fontname`        | the font family                                              | `Times-Roman`   |
+|`fontsize`        | the point size of the label                                  | `14`            |
+|`headclip`        | if false, edge is not clipped to head node boundary          | true            |
+|`headhref`        | same as `headURL`                                            |                 |
+|`headlabel`       | label placed near head of edge                               |                 |
+|`headport`        | can be either: `n`, `ne`, `e`, `se`, `s`, `sw`, `w`, `nw`    |                 |
+|`headtarget`      | if `headURL` is set, determines the browser window for URL   |                 |
+|`headtooltip`     | a tooltip annotation near head of edge                       | label           |
+|`headURL`         | URL attached to head label                                   |                 |
+|`href`            | alias for URL                                                |                 |
+|`id`              | any string (user-defined output object tags)                 |                 |
+|`label`           | edge label                                                   |                 |
+|`labelangle`      | angle in degrees which head or tail label is rotated off edge| `-25.0`         |
+|`labeldistance`   | scaling factor for distance of head or tail label from node  | `1.0`           |
+|`labelfloat`      | lessen constraints on edge label placement                   | false           |
+|`labelfontcolor`  | typeface color for head and tail labels                      | `black`         |
+|`labelfontname`   | font family for head and tail labels                         | `Times-Roman`   |
+|`labelfontsize`   | point size for head and tail labels                          | `14`            |
+|`labelhref`       | same as `labelURL`                                           |                 |
+|`labelURL`        | URL for label, overrides `edgeURL`                           |                 |
+|`labeltarget`     | if `URL` or `labelURL` set, determines browser window for URL|                 |
+|`labeltooltip`    | tooltip annotation near label                                | label           |
+|`layer`           | `all`, *id* or *id*:*id*, or a comma-separated list          | overlay range   |
+|`lhead`           | name of cluster to use as head of edge                       |                 |
+|`ltail`           | name of cluster to use as tail of edge                       |                 |
+|`minlen`          | minimum rank distance between head and tail                  | `1`             |
+|`penwidth`        | width of pen for drawing edge stroke, in points              | `1.0`           |
+|`samehead`        | tag for head node; edge heads with the same tag are merged onto the same port ||
+|`sametail`        | tag for tail node; edge tails with the same tag are merged onto the same port ||
+|`style`           | graphics options                                             |                 |
+|`tailclip`        | if false, edge is not clipped to tail node boundary          | true            |
+|`tailhref`        | same as `tailURL`                                            |                 |
+|`taillabel`       | label placed near tail of edge                               |                 |
+|`tailport`        | can be either: `n`, `ne`, `e`, `se`, `s`, `sw`, `w`, `nw`    |                 |
+|`tailtarget`      | if `tailURL` is set, determines browser window for URL       |                 |
+|`tailtooltip`     | tooltip annotation near tail of edge                         | label           |
+|`tailURL`         | URL attached to tail label                                   |                 |
+|`target`          | if `URL` is set, determines browser window for URL           |                 |
+|`tooltip`         | tooltip annotation                                           | label           |
+|`weight`          | integer cost of stretching an edge                           | `1`             |
+
+The graph attributes:
+
+|Graph Attribute| Description                                                  | Default          |
+|:--------------|:-------------------------------------------------------------|:-----------------|
+|`aspect`       | controls aspect ratio adjustment                             |                  |
+|`bgcolor`      | background color for drawing and initial fill color          |                  |
+|`center`       | center drawing                                               | false            |
+|`clusterrank`  | `local` but optionally `global` or `none`                    | `local`          |
+|`color`        | the color for clusters, outline color, and fill color        | `black`          |
+|`colorscheme`  | the scheme for interpreting color names                      |                  |
+|`compound`     | allow edges between clusters                                 | false            |
+|`concentrate`  | enables edge concentrators                                   | false            |
+|`dpi`          | dpi for image output                                         | 96               |
+|`fillcolor`    | cluster fill color                                           | `black`          |
+|`fontcolor`    | typeface color                                               | `black`          |
+|`fontname`     | font family                                                  | `Times-Roman`    |
+|`fontpath`     | list of directories to search for paths                      |                  |
+|`fontsize`     | point size of label                                          | `14`             |
+|`id`           | any string (user-defined output object tags)                 |                  |
+|`label`        | any string                                                   |                  |
+|`labeljust`    | label justification; `l` or `r` for left or right            | centered         |
+|`labelloc`     | label location; `t` or `b` for top or bottom                 | top              |
+|`landscape`    | graph orientation; `true` for landscape                      |                  |
+|`layers`       | *id*:*id*:*id*...                                            |                  |
+|`layersep`     | specifies separator character to split `layers`              | `:`              |
+|`margin`       | margin (in inches) included in `page`                        | `0.5`            |
+|`mindist`      | minimum separation (in inches) between all nodes             | `1.0`            |
+|`nodesep`      | separation (in inches) between nodes                         | `0.25`           |
+|`nojustify`    | justify to label if set as true                              | false            |
+|`ordering`     | if `out` edge order is preserved                             |                  |
+|`orientation`  | if `rotate` is not used and the value is `landscape`, then landscape | `portrait` |
+|`outputorder`  | or `nodesfirst`, `edgesfirst`                                | breadthfirst     |
+|`page`         | unit of pagination (e.g., "`8.5,11`")                        |                  |
+|`pagedir`      | traversal order of pages                                     | `BL`             |
+|`pencolor`     | color for drawing cluster boundaries                         | `black`          |
+|`penwidth`     | width of pen, in points, for drawing boundaries              | `1.0`            |
+|`peripheries`  | number of cluster boundaries                                 | `1`              |
+|`rank`         | choices are: `same`, `min`, `max`, `source` or `sink`        |                  |
+|`rankdir`      | choices are: `LR` (left to right) or `TB` (top to bottom)    | `TB`             |
+|`ranksep`      | separation between ranks, in inches                          | `0.75`           |
+|`ratio`        | approximate aspect ratio desired: `fill` or `auto`           |                  |
+|`rotate`       | if set to `90`, set orientation to landscape                 |                  |
+|`samplepoints` | number of points used to represent ellipses and circles on output | `8`         | 
+|`searchsize`   | maximum edges with negative cut values to check when looking for a minimum one during network simplex| `30` |
+|`size`         | maximum drawing size, in inches                              |                  |
+|`splines`      | draw edges as splines, polylines, lines                      |                  |
+|`style`        | graphics options for clusters (e.g., `filled`)               |                  |
+|`stylesheet`   | pathname or URL to XML style sheet for SVG                   |                  |
+|`target`       | if `URL` is set, determines browser window for URL           |                  |
+|`tooltip`      | tooltip annotation for cluster                               | label            |
+|`truecolor`    | if set, force 24-bit or indexed color in image output        |                  |
+|`URL`          | URL associated with graph (format-dependent)                 |                  |
+|`viewport`     | clipping window on output                                    |                  |
+
 
 #### Graphviz Engines
 
