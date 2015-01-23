@@ -490,7 +490,7 @@ grViz(boxes_and_circles, engine = "circo")
 
 #### Mixing R and Graphviz DOT
 
-Possibilities are interesting when combining **R** functions with DiagrammeR and the grViz function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
+Possibilities are interesting when combining **R** functions with **DiagrammeR** and the `grViz` function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
 
 ```R
 library(rvest)
