@@ -1,6 +1,6 @@
 <img src="inst/DiagrammeR.png">
 
-With the **DiagrammeR** package, you can create diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. Want a more visual intro? Check out this really sweet video by following the link below to Dailymotion.
+With the **DiagrammeR** package, you can create diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. Want a more visual intro? View a really sweet video by following the link below to Dailymotion (click/tap the image to undergo transport).
 
 [![ScreenShot](https://raw.githubusercontent.com/rich-iannone/DiagrammeR/master/inst/DiagrammeR_video_link.png)](http://www.dailymotion.com/video/x2fga6w_the-diagrammer-r-package_tech)
 
