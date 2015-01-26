@@ -106,10 +106,31 @@ HTMLWidgets.widget({
         .attr("id", "mermaidChart-" + el.id);
       // now we have to change the styling assigned by mermaid
       //   to point to our new id that we have assigned
-      d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
+      /*d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
         .select("style")[0][0].innerHTML
-        .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
-        
+        */
+        //.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
+
+      // difficult way to change the stylesheet to work on most browsers
+      for( i = 0; i <  document.styleSheets.length; i++ ) {
+        var s = document.styleSheets[i];
+        // find the stylesheet for this widget
+        if(s.ownerNode.parentNode.parentNode.id === el.id){
+          // use http://davidwalsh.name/add-rules-stylesheets
+          //  to change the rules to use our new svg id in css
+          var howManyRules = s.rules.length;
+          for ( rule = 0; rule < howManyRules; rule++){
+            s.insertRule(
+              s.rules.item(rule).cssText.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id),
+              howManyRules
+            );
+          }
+          // now delete the original rules          
+          for ( rule = 0; rule < howManyRules ; rule++){
+            s.deleteRule(rule);
+          }
+        }
+      }
     } catch(e) {
       // if error look for last processed DiagrammeR
       //  and send error to the container div
@@ -126,7 +147,7 @@ HTMLWidgets.widget({
         el.removeAttribute("data-processed")
       }
       
-      processedDg.append("pre").html( "parse error with " + x.diagram )
+      processedDg.append("pre").html( ["parse error with " + x.diagram, e.message].join("\n") )
     }
     
     // makeResponsive needs to be run again with shiny
