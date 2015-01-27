@@ -1,46 +1,1120 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Your page title here :)</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
+<title></title>
 
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+<script src="index_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="index_files/bootstrap-3.3.1/css/bootstrap.min.css" rel="stylesheet" />
+<script src="index_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="index_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+<script src="index_files/htmlwidgets-0.3.2/htmlwidgets.js"></script>
+<script src="index_files/viz-0.3/viz.js"></script>
+<link href="index_files/styles-0.1/styles.css" rel="stylesheet" />
+<script src="index_files/grViz-binding-0.3/grViz.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="index_files/highlight/textmate.css"
+      type="text/css" />
+<script src="index_files/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
 
 </head>
+
 <body>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
-    <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Basic Page</h4>
-        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
-      </div>
-    </div>
-  </div>
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
 
-<!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#graphviz-graphs">Graphviz Graphs</a><ul>
+<li><a href="#defining-a-graph">Defining a Graph</a></li>
+<li><a href="#statements">Statements</a></li>
+<li><a href="#graphviz-engines">Graphviz Engines</a></li>
+<li><a href="#mixing-r-and-graphviz">Mixing R and Graphviz</a></li>
+</ul></li>
+<li><a href="#mermaid-graphs">Mermaid Graphs</a></li>
+<li><a href="#diagrammer-shiny">DiagrammeR + shiny</a></li>
+</ul>
+</div>
+
+<p><img src="images/DiagrammeR.png" alt="Logo" /></p>
+<p>With the <strong>DiagrammeR</strong> package, you can create diagrams and flowcharts using <strong>R</strong>. Markdown-like text is used to describe a diagram and, by doing this in <strong>R</strong>, we can also add some <strong>R</strong> code into the mix and integrate these diagrams in the <strong>R</strong> console, through <strong>R Markdown</strong>, and in <strong>shiny</strong> apps. Want a more visual intro? View a really sweet video by following the link below to Dailymotion (click/tap the image to undergo transport).</p>
+<p><a href="http://www.dailymotion.com/video/x2fga6w_the-diagrammer-r-package_tech"><img src="images/DiagrammeR_video_link.png" alt="ScreenShot" /></a></p>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>The package leverages the infrastructure provided by <a href="http://htmlwidgets.org"><strong>htmlwidgets</strong></a> to bridge <strong>R</strong> and both <a href="https://github.com/knsv/mermaid"><strong>mermaid.js</strong></a> and <a href="https://github.com/mdaines/viz.js/"><strong>viz.js</strong></a>.</p>
+<p><img src="images/DiagrammeR_flow_diagram.png" alt="Flow Diagram" /></p>
+</div>
+<div id="installation" class="section level3">
+<h3>Installation</h3>
+<p>Install the development version of <strong>DiagrammeR</strong> from GitHub using the <strong>devtools</strong> package.</p>
+<pre class="r"><code>devtools::install_github(&#39;rich-iannone/DiagrammeR&#39;)</code></pre>
+<p>Or, get the latest <a href="http://cran.r-project.org/web/packages/DiagrammeR/">CRAN release</a>.</p>
+<pre class="r"><code>install.packages(&quot;DiagrammeR&quot;)</code></pre>
+</div>
+<div id="graphviz-graphs" class="section level3">
+<h3>Graphviz Graphs</h3>
+<p>It’s possible to make diagrams using the <strong>Graphviz</strong> support included in the <strong>DiagrammeR</strong> package. The processing function is called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph in the <strong>DOT</strong> language. The text can either exist in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <strong>.gv</strong> file extension), or as a text connection.</p>
+<div id="defining-a-graph" class="section level4">
+<h4>Defining a Graph</h4>
+<p>The <strong>Graphviz</strong> graph specification must begin with a directive stating whether a directed graph (<code>digraph</code>) or an undirected graph (<code>graph</code>) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge’s nodes to the other. An optional graph <code>ID</code> follows this and paired curly braces denotes the body of the statement list (<code>stmt_list</code>).</p>
+<p>Optionally, A graph may also be described as <code>strict</code>. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.</p>
+<p>Here is the basic structure:</p>
+<p><code>[strict] (graph | digraph) [ID] '{' stmt_list '}'</code></p>
+</div>
+<div id="statements" class="section level4">
+<h4>Statements</h4>
+<p>The graph statement (<code>graph_stmt</code>), the node statement (<code>node_stmt</code>), and the edge statement (<code>edge_stmt</code>) are the three most commonly used statements in the <strong>Graphviz</strong> <strong>DOT</strong> language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator <code>-&gt;</code> while a undirected graph must use the <code>--</code> operator.</p>
+<p>Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list item can optionally have an attribute list (<code>attr_list</code>) which modify the attributes of either the node or edge.</p>
+<p>Comments may be placed within the statement list. These can be marked using <code>//</code> or a <code>/* */</code> structure. Comment lines are denoted by a <code>#</code> character. Multiple statements within a statement list can be separated by linebreaks or <code>;</code> characters between multiple statements.</p>
+<p>Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:</p>
+<pre class="r"><code>boxes_and_circles &lt;- &quot;
+digraph boxes_and_circles {
+
+  # several &#39;node&#39; statements
+  node [shape = box]
+    A; B; C; D; E; F
+
+  node [shape = circle,
+        fixedsize = true,
+        width = 0.9] // sets as circles
+    1; 2; 3; 4; 5; 6; 7; 8
+
+  # several &#39;edge&#39; statements
+    A-&gt;1; B-&gt;2; B-&gt;3; B-&gt;4; C-&gt;A
+    1-&gt;D; E-&gt;A; 2-&gt;4; 1-&gt;5; 1-&gt;F
+    E-&gt;6; 4-&gt;6; 5-&gt;7; 6-&gt;7; 3-&gt;8
+
+  # a &#39;graph&#39; statement
+  graph [overlap = true, fontsize = 10]
+}
+&quot;
+
+grViz(boxes_and_circles)</code></pre>
+<p><div id="htmlwidget-3508" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-3508">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box]\n    A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n    A->1; B->2; B->3; B->4; C->A\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7; 3->8\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "dot",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
+<p>The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.</p>
+<pre class="r"><code>boxes_and_circles &lt;- &quot;
+digraph boxes_and_circles {
+
+  # several &#39;node&#39; statements
+  node [shape = box,
+        color = blue] // for the letter nodes, use box shapes
+    A; B; C; D; E
+    F [color = black]
+
+  node [shape = circle,
+        fixedsize = true,
+        width = 0.9] // sets as circles
+    1; 2; 3; 4; 5; 6; 7; 8
+
+  # several &#39;edge&#39; statements
+  edge [color = gray] // this sets all edges to be gray (unless overridden)
+    A-&gt;1; B-&gt;2
+    B-&gt;3 [color = red]
+    B-&gt;4
+    C-&gt;A [color = green]
+    1-&gt;D; E-&gt;A; 2-&gt;4; 1-&gt;5; 1-&gt;F
+    E-&gt;6; 4-&gt;6; 5-&gt;7; 6-&gt;7
+    3-&gt;8 [color = blue]
+
+  # a &#39;graph&#39; statement
+  graph [overlap = true, fontsize = 10]
+}
+&quot;
+
+grViz(boxes_and_circles)</code></pre>
+<p><div id="htmlwidget-6180" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-6180">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "dot",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
+<p>There are many more attributes. Here are the principal node attributes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Node Attribute</th>
+<th align="left">Description</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>color</code></td>
+<td align="left">the node shape color</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>colorscheme</code></td>
+<td align="left">the scheme for interpreting color names</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>distortion</code></td>
+<td align="left">node distortion for any <code>shape = polygon</code></td>
+<td align="left"><code>0.0</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>fillcolor</code></td>
+<td align="left">node fill color</td>
+<td align="left"><code>lightgrey/black</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fixedsize</code></td>
+<td align="left">label text has no affect on node size</td>
+<td align="left"><code>false</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>fontcolor</code></td>
+<td align="left">the font color</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fontname</code></td>
+<td align="left">the font family</td>
+<td align="left"><code>Times-Roman</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>fontsize</code></td>
+<td align="left">the point size of the label</td>
+<td align="left"><code>14</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>group</code></td>
+<td align="left">the name of the node’s horizontal alignment group</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>height</code></td>
+<td align="left">the minimum height in inches</td>
+<td align="left"><code>0.5</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>image</code></td>
+<td align="left">the image file name</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>labelloc</code></td>
+<td align="left">the node label vertical alignment</td>
+<td align="left"><code>c</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>margin</code></td>
+<td align="left">the space around a label</td>
+<td align="left"><code>0.11, 0.55</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>orientation</code></td>
+<td align="left">the node rotation angle</td>
+<td align="left"><code>0.0</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>penwidth</code></td>
+<td align="left">the width of the pen (in point size) for drawing boundaries</td>
+<td align="left"><code>1.0</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>peripheries</code></td>
+<td align="left">the number of node boundaries</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>shape</code></td>
+<td align="left">the shape of the node</td>
+<td align="left"><code>ellipse</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>sides</code></td>
+<td align="left">the number of sides for <code>shape = polygon</code></td>
+<td align="left"><code>4</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>skew</code></td>
+<td align="left">the skewing of the node for <code>shape = polygon</code></td>
+<td align="left"><code>0.0</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>style</code></td>
+<td align="left">graphics options for the node</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tooltip</code></td>
+<td align="left">the tooltip annotation for the node</td>
+<td align="left">[<em>node label</em>]</td>
+</tr>
+<tr class="even">
+<td align="left"><code>width</code></td>
+<td align="left">the minimum width in inches</td>
+<td align="left"><code>0.75</code></td>
+</tr>
+</tbody>
+</table>
+<p>The edge attributes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Edge Attribute</th>
+<th align="left">Description</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>arrowhead</code></td>
+<td align="left">style of arrowhead at head end</td>
+<td align="left">normal</td>
+</tr>
+<tr class="even">
+<td align="left"><code>arrowsize</code></td>
+<td align="left">scaling factor for arrowheads</td>
+<td align="left"><code>1.0</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>arrowtail</code></td>
+<td align="left">sytle of arrowhead at tail end</td>
+<td align="left">normal</td>
+</tr>
+<tr class="even">
+<td align="left"><code>color</code></td>
+<td align="left">edge stroke color</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>colorscheme</code></td>
+<td align="left">the scheme for interpreting color names</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>constraint</code></td>
+<td align="left">whether edge should affect node ranking</td>
+<td align="left">true</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>decorate</code></td>
+<td align="left">setting this draws line between labels with their edges</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>dir</code></td>
+<td align="left">direction; either <code>forward</code>, <code>back</code>, <code>both</code>, or <code>none</code></td>
+<td align="left"><code>forward</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>edgeURL</code></td>
+<td align="left">URL attached to non-label part of edge</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>edgehref</code></td>
+<td align="left">same as <code>edgeURL</code> attribute</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>edgetarget</code></td>
+<td align="left">if an URL is set, this determines the browser window for URL</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>edgetooltip</code></td>
+<td align="left">a tooltip annotation for the non-label part of edge</td>
+<td align="left">label</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fontcolor</code></td>
+<td align="left">the font color</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>fontname</code></td>
+<td align="left">the font family</td>
+<td align="left"><code>Times-Roman</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fontsize</code></td>
+<td align="left">the point size of the label</td>
+<td align="left"><code>14</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>headclip</code></td>
+<td align="left">if false, edge is not clipped to head node boundary</td>
+<td align="left">true</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>headhref</code></td>
+<td align="left">same as <code>headURL</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>headlabel</code></td>
+<td align="left">label placed near head of edge</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>headport</code></td>
+<td align="left">can be either: <code>n</code>, <code>ne</code>, <code>e</code>, <code>se</code>, <code>s</code>, <code>sw</code>, <code>w</code>, <code>nw</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>headtarget</code></td>
+<td align="left">if <code>headURL</code> is set, determines the browser window for URL</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>headtooltip</code></td>
+<td align="left">a tooltip annotation near head of edge</td>
+<td align="left">label</td>
+</tr>
+<tr class="even">
+<td align="left"><code>headURL</code></td>
+<td align="left">URL attached to head label</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>href</code></td>
+<td align="left">alias for URL</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>id</code></td>
+<td align="left">any string (user-defined output object tags)</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>label</code></td>
+<td align="left">edge label</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>labelangle</code></td>
+<td align="left">angle in degrees which head or tail label is rotated off edge</td>
+<td align="left"><code>-25.0</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>labeldistance</code></td>
+<td align="left">scaling factor for distance of head or tail label from node</td>
+<td align="left"><code>1.0</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>labelfloat</code></td>
+<td align="left">lessen constraints on edge label placement</td>
+<td align="left">false</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>labelfontcolor</code></td>
+<td align="left">typeface color for head and tail labels</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>labelfontname</code></td>
+<td align="left">font family for head and tail labels</td>
+<td align="left"><code>Times-Roman</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>labelfontsize</code></td>
+<td align="left">point size for head and tail labels</td>
+<td align="left"><code>14</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>labelhref</code></td>
+<td align="left">same as <code>labelURL</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>labelURL</code></td>
+<td align="left">URL for label, overrides <code>edgeURL</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>labeltarget</code></td>
+<td align="left">if <code>URL</code> or <code>labelURL</code> set, determines browser window for URL</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>labeltooltip</code></td>
+<td align="left">tooltip annotation near label</td>
+<td align="left">label</td>
+</tr>
+<tr class="even">
+<td align="left"><code>layer</code></td>
+<td align="left"><code>all</code>, <em>id</em> or <em>id</em>:<em>id</em>, or a comma-separated list</td>
+<td align="left">overlay range</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>lhead</code></td>
+<td align="left">name of cluster to use as head of edge</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>ltail</code></td>
+<td align="left">name of cluster to use as tail of edge</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>minlen</code></td>
+<td align="left">minimum rank distance between head and tail</td>
+<td align="left"><code>1</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>penwidth</code></td>
+<td align="left">width of pen for drawing edge stroke, in points</td>
+<td align="left"><code>1.0</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>samehead</code></td>
+<td align="left">tag for head node; edge heads with the same tag are merged onto the same port</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>sametail</code></td>
+<td align="left">tag for tail node; edge tails with the same tag are merged onto the same port</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>style</code></td>
+<td align="left">graphics options</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>tailclip</code></td>
+<td align="left">if false, edge is not clipped to tail node boundary</td>
+<td align="left">true</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tailhref</code></td>
+<td align="left">same as <code>tailURL</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>taillabel</code></td>
+<td align="left">label placed near tail of edge</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tailport</code></td>
+<td align="left">can be either: <code>n</code>, <code>ne</code>, <code>e</code>, <code>se</code>, <code>s</code>, <code>sw</code>, <code>w</code>, <code>nw</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>tailtarget</code></td>
+<td align="left">if <code>tailURL</code> is set, determines browser window for URL</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tailtooltip</code></td>
+<td align="left">tooltip annotation near tail of edge</td>
+<td align="left">label</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tailURL</code></td>
+<td align="left">URL attached to tail label</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>target</code></td>
+<td align="left">if <code>URL</code> is set, determines browser window for URL</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>tooltip</code></td>
+<td align="left">tooltip annotation</td>
+<td align="left">label</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>weight</code></td>
+<td align="left">integer cost of stretching an edge</td>
+<td align="left"><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p>The graph attributes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Graph Attribute</th>
+<th align="left">Description</th>
+<th align="left">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>aspect</code></td>
+<td align="left">controls aspect ratio adjustment</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>bgcolor</code></td>
+<td align="left">background color for drawing and initial fill color</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>center</code></td>
+<td align="left">center drawing</td>
+<td align="left">false</td>
+</tr>
+<tr class="even">
+<td align="left"><code>clusterrank</code></td>
+<td align="left"><code>local</code> but optionally <code>global</code> or <code>none</code></td>
+<td align="left"><code>local</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>color</code></td>
+<td align="left">the color for clusters, outline color, and fill color</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>colorscheme</code></td>
+<td align="left">the scheme for interpreting color names</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>compound</code></td>
+<td align="left">allow edges between clusters</td>
+<td align="left">false</td>
+</tr>
+<tr class="even">
+<td align="left"><code>concentrate</code></td>
+<td align="left">enables edge concentrators</td>
+<td align="left">false</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>dpi</code></td>
+<td align="left">dpi for image output</td>
+<td align="left">96</td>
+</tr>
+<tr class="even">
+<td align="left"><code>fillcolor</code></td>
+<td align="left">cluster fill color</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fontcolor</code></td>
+<td align="left">typeface color</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>fontname</code></td>
+<td align="left">font family</td>
+<td align="left"><code>Times-Roman</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fontpath</code></td>
+<td align="left">list of directories to search for paths</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>fontsize</code></td>
+<td align="left">point size of label</td>
+<td align="left"><code>14</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>id</code></td>
+<td align="left">any string (user-defined output object tags)</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>label</code></td>
+<td align="left">any string</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>labeljust</code></td>
+<td align="left">label justification; <code>l</code> or <code>r</code> for left or right</td>
+<td align="left">centered</td>
+</tr>
+<tr class="even">
+<td align="left"><code>labelloc</code></td>
+<td align="left">label location; <code>t</code> or <code>b</code> for top or bottom</td>
+<td align="left">top</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>landscape</code></td>
+<td align="left">graph orientation; <code>true</code> for landscape</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>layers</code></td>
+<td align="left"><em>id</em>:<em>id</em>:<em>id</em>…</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>layersep</code></td>
+<td align="left">specifies separator character to split <code>layers</code></td>
+<td align="left"><code>:</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>margin</code></td>
+<td align="left">margin (in inches) included in <code>page</code></td>
+<td align="left"><code>0.5</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>mindist</code></td>
+<td align="left">minimum separation (in inches) between all nodes</td>
+<td align="left"><code>1.0</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>nodesep</code></td>
+<td align="left">separation (in inches) between nodes</td>
+<td align="left"><code>0.25</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>nojustify</code></td>
+<td align="left">justify to label if set as true</td>
+<td align="left">false</td>
+</tr>
+<tr class="even">
+<td align="left"><code>ordering</code></td>
+<td align="left">if <code>out</code> edge order is preserved</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>orientation</code></td>
+<td align="left">if <code>rotate</code> is not used and the value is <code>landscape</code>, then landscape</td>
+<td align="left"><code>portrait</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>outputorder</code></td>
+<td align="left">or <code>nodesfirst</code>, <code>edgesfirst</code></td>
+<td align="left">breadthfirst</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>page</code></td>
+<td align="left">unit of pagination (e.g., “<code>8.5,11</code>”)</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>pagedir</code></td>
+<td align="left">traversal order of pages</td>
+<td align="left"><code>BL</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>pencolor</code></td>
+<td align="left">color for drawing cluster boundaries</td>
+<td align="left"><code>black</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>penwidth</code></td>
+<td align="left">width of pen, in points, for drawing boundaries</td>
+<td align="left"><code>1.0</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>peripheries</code></td>
+<td align="left">number of cluster boundaries</td>
+<td align="left"><code>1</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>rank</code></td>
+<td align="left">choices are: <code>same</code>, <code>min</code>, <code>max</code>, <code>source</code> or <code>sink</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>rankdir</code></td>
+<td align="left">choices are: <code>LR</code> (left to right) or <code>TB</code> (top to bottom)</td>
+<td align="left"><code>TB</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>ranksep</code></td>
+<td align="left">separation between ranks, in inches</td>
+<td align="left"><code>0.75</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ratio</code></td>
+<td align="left">approximate aspect ratio desired: <code>fill</code> or <code>auto</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>rotate</code></td>
+<td align="left">if set to <code>90</code>, set orientation to landscape</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>samplepoints</code></td>
+<td align="left">number of points used to represent ellipses and circles on output</td>
+<td align="left"><code>8</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>searchsize</code></td>
+<td align="left">maximum edges with negative cut values to check when looking for a minimum one during network simplex</td>
+<td align="left"><code>30</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>size</code></td>
+<td align="left">maximum drawing size, in inches</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>splines</code></td>
+<td align="left">draw edges as splines, polylines, lines</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>style</code></td>
+<td align="left">graphics options for clusters (e.g., <code>filled</code>)</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>stylesheet</code></td>
+<td align="left">pathname or URL to XML style sheet for SVG</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>target</code></td>
+<td align="left">if <code>URL</code> is set, determines browser window for URL</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>tooltip</code></td>
+<td align="left">tooltip annotation for cluster</td>
+<td align="left">label</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>truecolor</code></td>
+<td align="left">if set, force 24-bit or indexed color in image output</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>URL</code></td>
+<td align="left">URL associated with graph (format-dependent)</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>viewport</code></td>
+<td align="left">clipping window on output</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="graphviz-engines" class="section level4">
+<h4>Graphviz Engines</h4>
+<p>Several <strong>Graphviz</strong> engines are available with <strong>DiagrammeR</strong> for rendering graphs. By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument. The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (&lt;100 nodes) and you don’t know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
+<p>Here is how the ‘boxes_and_circles’ graph is rendered with the <strong>neato</strong> engine:</p>
+<pre class="r"><code>grViz(boxes_and_circles, engine = &quot;neato&quot;)</code></pre>
+<p><div id="htmlwidget-8410" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-8410">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "neato",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
+<pre class="r"><code>grViz(boxes_and_circles, engine = &quot;twopi&quot;)</code></pre>
+<p><div id="htmlwidget-714" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-714">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "twopi",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
+<pre class="r"><code>grViz(boxes_and_circles, engine = &quot;circo&quot;)</code></pre>
+<p><div id="htmlwidget-6977" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-6977">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "circo",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
+</div>
+<div id="mixing-r-and-graphviz" class="section level4">
+<h4>Mixing R and Graphviz</h4>
+<p>Possibilities are interesting when combining <strong>R</strong> functions with <strong>DiagrammeR</strong> and the <code>grViz</code> function. Here’s an example of how the <strong>rvest</strong> package and piping with <strong>pipeR</strong> can yield multiple graphs:</p>
+<pre class="r"><code>library(rvest)
+library(XML)
+library(pipeR)
+
+# Generate all the examples from viz.js GitHub repo
+html(&quot;https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html&quot;) %&gt;&gt;%
+  html_nodes(&quot;script[type=&#39;text/vnd.graphviz&#39;]&quot;) %&gt;&gt;%
+  lapply(
+    function(x){
+      xmlValue(x) %&gt;&gt;% (~ htmltools::html_print(grViz(.)) ) %&gt;&gt;% grViz
+    }
+  )</code></pre>
+<p><img src="images/Example_8a.png" alt="Example_8a" /></p>
+<p><img src="images/Example_8b.png" alt="Example_8b" /></p>
+<p><img src="images/Example_8c.png" alt="Example_8c" /></p>
+<p><img src="images/Example_8d.png" alt="Example_8d" /></p>
+<p><img src="images/Example_8e.png" alt="Example_8e" /></p>
+<p><img src="images/Example_8f.png" alt="Example_8f" /></p>
+<p>Isn’t this great? Let’s take in some examples straight from the Graphviz gallery:</p>
+<pre class="r"><code>readLines(&quot;http://www.graphviz.org/Gallery/directed/fsm.gv.txt&quot;) %&gt;&gt;%
+  grViz
+
+readLines(&quot;http://www.graphviz.org/Gallery/directed/Genetic_Programming.gv.txt&quot;) %&gt;&gt;%
+  grViz
+
+readLines(&quot;http://www.graphviz.org/Gallery/directed/unix.gv.txt&quot;) %&gt;&gt;%
+  grViz</code></pre>
+<p>You get some nice figures as a result. Try ’em, you’ll see.</p>
+<p>For much more information on the <strong>DOT</strong> language, see the excellent <a href="http://www.graphviz.org/pdf/dotguide.pdf">drawing graphs with <em>dot</em> manual</a>.</p>
+</div>
+</div>
+<div id="mermaid-graphs" class="section level3">
+<h3>Mermaid Graphs</h3>
+<p>The <code>mermaid</code> function processes the specification of a diagram and then renders the diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (with a <strong>.mmd</strong> file extension), or as a connection.</p>
+<p>The <strong>mermaid</strong>-style graph specification begins with a declaration of <code>graph</code> followed by the graph direction. The directions can be:</p>
+<ul>
+<li><code>LR</code> left to right</li>
+<li><code>RL</code> right to left</li>
+<li><code>TB</code> top to bottom</li>
+<li><code>BT</code> bottom to top</li>
+<li><code>TD</code> top down (same as <code>TB</code>)</li>
+</ul>
+<p>Nodes can be given arbitrary ID values and those IDs are displayed as text within their respective boxes. Connections between nodes are denoted by:</p>
+<ul>
+<li><code>--&gt;</code> arrow connection</li>
+<li><code>---</code> line connection</li>
+</ul>
+<p>Simply joining up a series of nodes in a left-to-right graph can be done in a few lines:</p>
+<pre class="r"><code>diagram &lt;- &quot;
+graph LR
+  A--&gt;B
+  A--&gt;C
+  C--&gt;E
+  B--&gt;D
+  C--&gt;D
+  D--&gt;F
+  E--&gt;F
+&quot;
+
+mermaid(diagram)</code></pre>
+<p><img src="images/Example_1.png" alt="Example_1" /></p>
+<p>The same result can be achieved in a more succinct manner with this <strong>R</strong> statement (using semicolons between statements in the <strong>mermaid</strong> diagram spec):</p>
+<pre class="r"><code>mermaid(&quot;graph LR; A--&gt;B; A--&gt;C; C--&gt;E; B--&gt;D; C--&gt;D; D--&gt;F; E--&gt;F&quot;)</code></pre>
+<p>Alternatively, here is the result of using the statement <code>graph TB</code> in place of <code>graph LR</code>:</p>
+<p><img src="images/Example_2.png" alt="Example_2" /></p>
+<p>Keep in mind that external files can also be called by the <code>mermaid</code> function. The file <code>graph.mmd</code> can contain the text of the diagram spec as follows</p>
+<pre><code>graph LR
+  A--&gt;B
+  A--&gt;C
+  C--&gt;E
+  B--&gt;D
+  C--&gt;D
+  D--&gt;F
+  E--&gt;F</code></pre>
+<p>and be rendered through:</p>
+<pre class="r"><code>mermaid(&quot;graph.mmd&quot;)</code></pre>
+<p>Alright, here’s another example. This one places some text inside the diagram objects. Also, there are some CSS styles to add a color fill to each of the diagram objects:</p>
+<pre class="r"><code>diagram &lt;- &quot;
+graph LR
+A(Rounded)--&gt;B[Squared]
+B--&gt;C{A Decision}
+C--&gt;D[Square One]
+C--&gt;E[Square Two]
+
+style A fill:#DCEBE3
+style B fill:#77DFC9
+style C fill:#DEDBBA
+style D fill:#F8F0CC
+style E fill:#FCFCF2
+&quot;
+
+mermaid(diagram)</code></pre>
+<p>What you get is this:</p>
+<p><img src="images/Example_3.png" alt="Example_3" /></p>
+<p>Here’s an example with line text (that is, text appearing on connecting lines). Simply place text between pipe characters, just after the arrow, right before the node identifier. There are few more CSS properties for the boxes included in this example (<code>stroke</code>, <code>stroke-width</code>, and <code>stroke-dasharray</code>).</p>
+<pre class="r"><code>diagram &lt;- &quot;
+graph LR
+A(Start)--&gt;|Line Text|B(Keep Going)
+B--&gt;|More Line Text|C(Stop)
+
+style A fill:#A2EB86, stroke:#04C4AB, stroke-width:2px
+style B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4
+style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px
+&quot;
+
+mermaid(diagram)</code></pre>
+<p>The resultant graphic:</p>
+<p><img src="images/Example_4.png" alt="Example_4" /></p>
+<p>Let’s include the values of some <strong>R</strong> objects into a fresh diagram. The <code>mtcars</code> dataset is something I go to again and again, so, I’m going to load it up.</p>
+<pre class="r"><code>data(mtcars)</code></pre>
+<p>When you call the <strong>R</strong> <code>summary</code> function on this data frame, you obtain this:</p>
+<pre><code>     mpg             cyl             disp             hp             drat
+ Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0   Min.   :2.760
+ 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5   1st Qu.:3.080
+ Median :19.20   Median :6.000   Median :196.3   Median :123.0   Median :3.695
+ Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7   Mean   :3.597
+ 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0   3rd Qu.:3.920
+ Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0   Max.   :4.930
+       wt             qsec             vs               am              gear
+ Min.   :1.513   Min.   :14.50   Min.   :0.0000   Min.   :0.0000   Min.   :3.000
+ 1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:3.000
+ Median :3.325   Median :17.71   Median :0.0000   Median :0.0000   Median :4.000
+ Mean   :3.217   Mean   :17.85   Mean   :0.4375   Mean   :0.4062   Mean   :3.688
+ 3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:4.000
+ Max.   :5.424   Max.   :22.90   Max.   :1.0000   Max.   :1.0000   Max.   :5.000
+      carb
+ Min.   :1.000
+ 1st Qu.:2.000
+ Median :2.000
+ Mean   :2.812
+ 3rd Qu.:4.000
+ Max.   :8.000</code></pre>
+<p>That information can placed into a diagram. First, we’ll get a vector object for strings that specify each of the connections and the text inside the boxes (one for each <code>mtcars</code> dataset column). These strings will contain each of the statistics provided by the <code>summary</code> function (minimum, 1st quartile, median, mean, 3rd quartile, and maximum). We’ll use a <code>sapply</code> to loop through each column.</p>
+<pre class="r"><code>connections &lt;- sapply(
+  1:ncol(mtcars)
+  , function(i){
+    paste0(
+      i
+      , &quot;(&quot;, colnames(mtcars)[i], &quot;)---&quot;
+      , i, &quot;-stats(&quot;
+      , paste0(
+        names(summary(mtcars[,i]))
+        , &quot;: &quot;
+        , unname(summary(mtcars[,i]))
+        , collapse=&quot;&lt;br/&gt;&quot;
+      )
+      , &quot;)&quot;
+    )
+  }
+)</code></pre>
+<p>This generates all of the syntax required for connections between column names to the statistical summary text in each of the adjoining boxes. Notice the use of the <code>&lt;br/&gt;</code> tag that terminates each of the stats inside the <code>paste0</code> statement. They provide the necessary linebreaks for text within each diagram object.</p>
+<p>Now, to generate the code for the summary diagram, one can use a <code>paste0</code> statement and then a separate <code>paste</code> statement for the connection text (with the <code>collapse</code> argument set to <code>\n</code> to specify a linebreak for the output text). Note that within the <code>paste0</code> statement, there is a <code>\n</code> linebreak wherever you would need one. Finally, to style multiple objects, a <code>classDef</code> statement was used. Here, a class of type <code>column</code> was provided with values for certain CSS properties. On the final line, the <code>class</code> statement applied the class definition to nodes 1 through 11 (a comma-separated list generated by the <code>paste0</code> statement).</p>
+<pre class="r"><code>diagram &lt;-
+paste0(
+&quot;graph TD;&quot;, &quot;\n&quot;,
+paste(connections, collapse = &quot;\n&quot;), &quot;\n&quot;,
+&quot;classDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;&quot; ,&quot;\n&quot;,
+&quot;class &quot;, paste0(1:length(connections), collapse = &quot;,&quot;), &quot; column;
+&quot;)
+
+mermaid(diagram)</code></pre>
+<p>This is part of the resulting graphic (it’s quite wide so I’m displaying just 8 of the 11 columns):</p>
+<p><img src="images/Example_5.png" alt="Example_5" /></p>
+<p>The <strong>mermaid.js</strong> library also supports <a href="http://knsv.github.io/mermaid/sequenceDiagram.html">sequence diagrams</a>. The <a href="http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf">“How to Draw Sequence Diagrams”</a> report by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams. Let’s replicate the ticket-buying example from Figure 1 of this report and add in some conditionals.</p>
+<pre class="r"><code># Using this &quot;How to Draw a Sequence Diagram&quot;
+# http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
+# draw some sequence diagrams with DiagrammeR
+
+mermaid(&quot;
+sequenceDiagram
+  customer-&gt;&gt;ticket seller: ask ticket
+  ticket seller-&gt;&gt;database: seats
+  alt tickets available
+    database-&gt;&gt;ticket seller: ok
+    ticket seller-&gt;&gt;customer: confirm
+    customer-&gt;&gt;ticket seller: ok
+    ticket seller-&gt;&gt;database: book a seat
+    ticket seller-&gt;&gt;printer: print ticket
+  else sold out
+    database-&gt;&gt;ticket seller: none left
+    ticket seller-&gt;&gt;customer: sorry
+  end
+&quot;)</code></pre>
+<p><img src="images/Example_6.png" alt="Example_6" /></p>
+<p>For more examples and additional documentation, see the <a href="https://github.com/knsv/mermaid/wiki"><code>mermaid.js</code> Wiki</a>.</p>
+</div>
+<div id="diagrammer-shiny" class="section level3">
+<h3>DiagrammeR + shiny</h3>
+<p>As with other <strong>htmlwidgets</strong>, we can easily dynamically bind <strong>DiagrammeR</strong> in <strong>R</strong> with <strong>shiny</strong>. Here is a quick example where we can provide a diagram spec in a <code>textInput</code>.</p>
+<pre class="r"><code>library(shiny)
+
+ui = shinyUI(fluidPage(
+  textInput(&#39;spec&#39;, &#39;Diagram Spec&#39;, value = &quot;&quot;),
+  DiagrammeROutput(&#39;diagram&#39;)
+))
+
+server = function(input, output){
+  output$diagram &lt;- renderDiagrammeR(DiagrammeR(
+    input$spec
+  ))
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  // move the table of contents below the logo
+  $('#TOC').each(function() {  
+    var toc = $(this);
+    toc.next().after(toc);
+  });  
+});
+</script>
+<style type="text/css">
+#TOC {
+  padding-bottom: 15px;
+}
+</style>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
 </body>
 </html>
