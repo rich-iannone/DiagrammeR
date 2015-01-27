@@ -18,10 +18,14 @@
 <script src="index_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
 <script src="index_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
 <script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+<script src="index_files/htmlwidgets-0.3.2/htmlwidgets.js"></script>
+<script src="index_files/viz-0.3/viz.js"></script>
+<link href="index_files/styles-0.1/styles.css" rel="stylesheet" />
+<script src="index_files/grViz-binding-0.3/grViz.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
-      href="index_files/highlight/default.css"
+      href="index_files/highlight/textmate.css"
       type="text/css" />
 <script src="index_files/highlight/highlight.js"></script>
 <style type="text/css">
@@ -62,6 +66,20 @@ img {
 
 
 
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#graphviz-graphs">Graphviz Graphs</a><ul>
+<li><a href="#defining-a-graph">Defining a Graph</a></li>
+<li><a href="#statements">Statements</a></li>
+<li><a href="#graphviz-engines">Graphviz Engines</a></li>
+<li><a href="#mixing-r-and-graphviz">Mixing R and Graphviz</a></li>
+</ul></li>
+<li><a href="#mermaid-graphs">Mermaid Graphs</a></li>
+<li><a href="#diagrammer-shiny">DiagrammeR + shiny</a></li>
+</ul>
+</div>
 
 <p><img src="images/DiagrammeR.png" alt="Logo" /></p>
 <p>With the <strong>DiagrammeR</strong> package, you can create diagrams and flowcharts using <strong>R</strong>. Markdown-like text is used to describe a diagram and, by doing this in <strong>R</strong>, we can also add some <strong>R</strong> code into the mix and integrate these diagrams in the <strong>R</strong> console, through <strong>R Markdown</strong>, and in <strong>shiny</strong> apps. Want a more visual intro? View a really sweet video by following the link below to Dailymotion (click/tap the image to undergo transport).</p>
@@ -81,8 +99,8 @@ img {
 <div id="graphviz-graphs" class="section level3">
 <h3>Graphviz Graphs</h3>
 <p>It’s possible to make diagrams using the <strong>Graphviz</strong> support included in the <strong>DiagrammeR</strong> package. The processing function is called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph in the <strong>DOT</strong> language. The text can either exist in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <strong>.gv</strong> file extension), or as a text connection.</p>
-<div id="defining-a-graphviz-graph" class="section level4">
-<h4>Defining a Graphviz Graph</h4>
+<div id="defining-a-graph" class="section level4">
+<h4>Defining a Graph</h4>
 <p>The <strong>Graphviz</strong> graph specification must begin with a directive stating whether a directed graph (<code>digraph</code>) or an undirected graph (<code>graph</code>) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge’s nodes to the other. An optional graph <code>ID</code> follows this and paired curly braces denotes the body of the statement list (<code>stmt_list</code>).</p>
 <p>Optionally, A graph may also be described as <code>strict</code>. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.</p>
 <p>Here is the basic structure:</p>
@@ -117,7 +135,14 @@ digraph boxes_and_circles {
 &quot;
 
 grViz(boxes_and_circles)</code></pre>
-<p><img src="images/Example_7a.png" alt="Example7a" /></p>
+<p><div id="htmlwidget-3508" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-3508">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box]\n    A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n    A->1; B->2; B->3; B->4; C->A\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7; 3->8\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "dot",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
 <p>The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.</p>
 <pre class="r"><code>boxes_and_circles &lt;- &quot;
 digraph boxes_and_circles {
@@ -149,7 +174,14 @@ digraph boxes_and_circles {
 &quot;
 
 grViz(boxes_and_circles)</code></pre>
-<p><img src="images/Example_7b.png" alt="Example7b" /></p>
+<p><div id="htmlwidget-6180" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-6180">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "dot",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
 <p>There are many more attributes. Here are the principal node attributes:</p>
 <table>
 <thead>
@@ -812,14 +844,35 @@ grViz(boxes_and_circles)</code></pre>
 <p>Several <strong>Graphviz</strong> engines are available with <strong>DiagrammeR</strong> for rendering graphs. By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument. The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (&lt;100 nodes) and you don’t know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
 <p>Here is how the ‘boxes_and_circles’ graph is rendered with the <strong>neato</strong> engine:</p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;neato&quot;)</code></pre>
-<p><img src="images/Example_7c_neato.png" alt="Example_7c_neato" /></p>
+<p><div id="htmlwidget-8410" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-8410">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "neato",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;twopi&quot;)</code></pre>
-<p><img src="images/Example_7d_twopi.png" alt="Example_7d_twopi" /></p>
+<p><div id="htmlwidget-714" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-714">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "twopi",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;circo&quot;)</code></pre>
-<p><img src="images/Example_7e_circo.png" alt="Example_7e_circo" /></p>
+<p><div id="htmlwidget-6977" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-6977">{ "x": {
+ "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
+"config": {
+ "engine": "circo",
+"options": null 
+} 
+},"evals": [  ] }</script></p>
 </div>
-<div id="mixing-r-and-graphviz-dot" class="section level4">
-<h4>Mixing R and Graphviz DOT</h4>
+<div id="mixing-r-and-graphviz" class="section level4">
+<h4>Mixing R and Graphviz</h4>
 <p>Possibilities are interesting when combining <strong>R</strong> functions with <strong>DiagrammeR</strong> and the <code>grViz</code> function. Here’s an example of how the <strong>rvest</strong> package and piping with <strong>pipeR</strong> can yield multiple graphs:</p>
 <pre class="r"><code>library(rvest)
 library(XML)
@@ -881,7 +934,6 @@ graph LR
 &quot;
 
 mermaid(diagram)</code></pre>
-<p>This renders the following image:</p>
 <p><img src="images/Example_1.png" alt="Example_1" /></p>
 <p>The same result can be achieved in a more succinct manner with this <strong>R</strong> statement (using semicolons between statements in the <strong>mermaid</strong> diagram spec):</p>
 <pre class="r"><code>mermaid(&quot;graph LR; A--&gt;B; A--&gt;C; C--&gt;E; B--&gt;D; C--&gt;D; D--&gt;F; E--&gt;F&quot;)</code></pre>
@@ -1025,6 +1077,21 @@ server = function(input, output){
 }
 
 shinyApp(ui = ui, server = server)</code></pre>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  // move the table of contents below the logo
+  $('#TOC').each(function() {  
+    var toc = $(this);
+    toc.next().after(toc);
+  });  
+});
+</script>
+<style type="text/css">
+#TOC {
+  padding-bottom: 15px;
+}
+</style>
 </div>
 
 

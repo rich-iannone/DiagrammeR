@@ -1,12 +1,17 @@
 ---
-output: 
+output:
   html_document:
-    self_contained: false
+    highlight: textmate
+    self_contained: no
+    toc: true
+    toc_depth: 4
 ---
 
+```{r setup, include=FALSE}
+library("DiagrammeR")
+```
 
 ![Logo](images/DiagrammeR.png)
-
 
 With the **DiagrammeR** package, you can create diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. Want a more visual intro? View a really sweet video by following the link below to Dailymotion (click/tap the image to undergo transport).
 
@@ -36,7 +41,7 @@ install.packages("DiagrammeR")
 
 It's possible to make diagrams using the **Graphviz** support included in the **DiagrammeR** package. The processing function is called `grViz`. What you pass into `grViz` is a valid graph in the **DOT** language. The text can either exist in the form of a string, a reference to a **Graphviz** file (with a **.gv** file extension), or as a text connection.
 
-#### Defining a Graphviz Graph
+#### Defining a Graph
 
 The **Graphviz** graph specification must begin with a directive stating whether a directed graph (`digraph`) or an undirected graph (`graph`) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph `ID` follows this and paired curly braces denotes the body of the statement list (`stmt_list`).
 
@@ -56,7 +61,7 @@ Comments may be placed within the statement list. These can be marked using `//`
 
 Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:
 
-```R
+```{r}
 boxes_and_circles <- "
 digraph boxes_and_circles {
 
@@ -82,11 +87,9 @@ digraph boxes_and_circles {
 grViz(boxes_and_circles)
 ```
 
-![Example7a](images/Example_7a.png)
-
 The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.
 
-```R
+```{r}
 boxes_and_circles <- "
 digraph boxes_and_circles {
 
@@ -118,8 +121,6 @@ digraph boxes_and_circles {
 
 grViz(boxes_and_circles)
 ```
-
-![Example7b](images/Example_7b.png)
 
 There are many more attributes. Here are the principal node attributes:
 
@@ -267,29 +268,26 @@ Several **Graphviz** engines are available with **DiagrammeR** for rendering gra
 
 Here is how the 'boxes_and_circles' graph is rendered with the **neato** engine:
 
-```R
+```{r}
 grViz(boxes_and_circles, engine = "neato")
 ```
 
-![Example_7c_neato](images/Example_7c_neato.png)
 
-```R
+```{r}
 grViz(boxes_and_circles, engine = "twopi")
 ```
 
-![Example_7d_twopi](images/Example_7d_twopi.png)
 
-```R
+```{r}
 grViz(boxes_and_circles, engine = "circo")
 ```
 
-![Example_7e_circo](images/Example_7e_circo.png)
 
-#### Mixing R and Graphviz DOT
+#### Mixing R and Graphviz
 
 Possibilities are interesting when combining **R** functions with **DiagrammeR** and the `grViz` function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
 
-```R
+```r
 library(rvest)
 library(XML)
 library(pipeR)
@@ -319,7 +317,7 @@ html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %
 
 Isn't this great? Let's take in some examples straight from the Graphviz gallery:
 
-```R
+```r
 readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") %>>%
   grViz
 
@@ -367,8 +365,6 @@ graph LR
 
 mermaid(diagram)
 ```
-
-This renders the following image:
 
 ![Example_1](images/Example_1.png)
 
@@ -567,3 +563,23 @@ server = function(input, output){
 
 shinyApp(ui = ui, server = server)
 ```
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+  // move the table of contents below the logo
+  $('#TOC').each(function() {  
+    var toc = $(this);
+    toc.next().after(toc);
+  });  
+});
+</script>
+
+<style type="text/css">
+#TOC {
+  padding-bottom: 15px;
+}
+</style>
+
+
+
