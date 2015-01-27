@@ -11,7 +11,7 @@ dependencies:
   version: 0.3.0
   src: htmlwidgets/lib/mermaid
   script: dist/mermaid.slim.min.js
-- name: styles
-  version: 0.1
+- name: DiagrammeR-styles
+  version: 0.2
   src: htmlwidgets/lib/styles
   stylesheet: styles.css
