@@ -13,6 +13,36 @@
 #' in pixels.
 #' @param height an optional parameter for specifying the height of the resulting graphic
 #' in pixels.
+#' 
+#' @examples 
+#' \dontrun{
+#' # a very simple example
+#' grViz( "digraph {A;}")
+#' 
+#' # slightly more involved
+#' #  using example from http://www.graphviz.org/pdf/dotguide.pdf
+#' #    "Drawing graphs with dot"
+#' #    Emden R. Gansner and Eleftherios Koutsofios and Stephen North
+#' #    January 5, 2015
+#' grViz('
+#' digraph G {
+#'       size = "4,4";
+#'       main [shape=box]; /* this is a comment */
+#'       main -> parse [weight=8];
+#'       parse -> execute;
+#'       main -> init [style=dotted];
+#'       main -> cleanup;
+#'       execute -> { make_string; printf}
+#'       init -> make_string;
+#'       edge [color=red]; // so is this
+#'       main -> printf;
+#'       node [shape=box,style=filled,color=".7 .3 1.0"];
+#'       execute -> compare;
+#' }
+#' ')
+#' 
+#' }
+#' 
 #' @return An object of class \code{htmlwidget} that will
 #' intelligently print itself into HTML in a variety of contexts
 #' including the R console, within R Markdown documents,
@@ -59,4 +89,58 @@ grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, he
     # since grViz does not work in RStudio viewer
     htmlwidgets::sizingPolicy(viewer.suppress = viewer.suppress)
   )
+}
+
+
+#' Widget output function for use in Shiny
+#' @param outputId output variable to read from
+#' @param width a valid CSS unit for the width or a number, which will be coerced to a string and have "px" appended.
+#' @param height a valid CSS unit for the height or a number, which will be coerced to a string and have "px" appended.
+#' 
+#' @examples
+#' \dontrun{
+#' 
+#' library(shiny)
+#' library(shinyAce)
+#' 
+#' ui = shinyUI(fluidPage(fluidRow(
+#'   column(
+#'     width=4
+#'     , aceEditor("ace", selectionId = "selection",value="digraph {A;}")
+#'   ),
+#'   column(
+#'     width = 6
+#'     , grVizOutput('diagram' )
+#'   )
+#' )))
+#' 
+#' server = function(input, output){
+#'   output$diagram <- renderGrViz({
+#'     grViz(
+#'       input$ace
+#'     )
+#'   })
+#' 
+#' }
+#'
+#' shinyApp(ui = ui, server = server)
+#' 
+#' }
+#' 
+#' @export
+grVizOutput <- function(outputId, width = '100%', height = '400px'){
+  shinyWidgetOutput(outputId, 'grViz', width, height, package = 'DiagrammeR')
+}
+
+#' Widget render function for use in Shiny
+#' @param expr an expression that generates a DiagrammeR graph
+#' @param env the environment in which to evaluate expr.
+#' @param quoted is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
+#' 
+#' @seealso \code{\link{grVizOutput}} for an example in Shiny
+#' 
+#' @export
+renderGrViz <- function(expr, env = parent.frame(), quoted = FALSE) {
+  if (!quoted) expr <- substitute(expr)
+  shinyRenderWidget(expr, grVizOutput, env, quoted = TRUE)
 }
