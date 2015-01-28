@@ -552,3 +552,20 @@ server = function(input, output){
 
 shinyApp(ui = ui, server = server)
 ```
+
+Not all browsers are currently compatible with the DiagrammeR Shiny app. The following table provides the status for a selection of current browsers.
+
+|Browser/Version             | Platform                       | Status           |
+|:---------------------------|:-------------------------------|:-----------------|
+|IE 8                        | Windows                        | not working      |
+|IE 9                        | Windows                        | not working      |
+|IE 10                       | Windows                        | not working      |
+|IE 11                       | Windows                        | not working      |
+|Firefox                     | Windows                        | working          |
+|Firefox                     | Mac                            | working          |
+|Safari                      | Mac                            | not working      |
+|Chrome                      | Windows                        | working          |
+|Chrome                      | Mac                            | working          |
+
+
+
