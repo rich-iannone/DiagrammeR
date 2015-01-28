@@ -13,6 +13,32 @@
 #' in pixels.
 #' @param height an optional parameter for specifying the height of the resulting graphic
 #' in pixels.
+#' 
+#' @examples 
+#' \dontrun{
+#' # a very simple example
+#' grViz( "digraph {A;}")
+#' 
+#' # slightly more involved
+#' #  using example from http://www.graphviz.org/pdf/dotguide.pdf
+#' #    "Drawing graphs with dot"
+#' #    Emden R. Gansner and Eleftherios Koutsofios and Stephen North
+#' #    January 5, 2015
+#' grViz("
+#' digraph G {
+#'       main -> parse -> execute;
+#'       main -> init;
+#'       main -> cleanup;
+#'       execute -> make_string;
+#'       execute -> printf
+#'       init -> make_string;
+#'       main -> printf;
+#'       execute -> compare;
+#' }
+#' ")
+#' 
+#' }
+#' 
 #' @return An object of class \code{htmlwidget} that will
 #' intelligently print itself into HTML in a variety of contexts
 #' including the R console, within R Markdown documents,
