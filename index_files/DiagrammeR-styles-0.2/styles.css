@@ -6,3 +6,7 @@
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+.DiagrammeR g .label {
+  color: black;
+}
+

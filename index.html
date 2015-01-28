@@ -14,8 +14,23 @@
 <script src="index_files/bootstrap-3.3.1/shim/respond.min.js"></script>
 <script src="index_files/htmlwidgets-0.3.2/htmlwidgets.js"></script>
 <script src="index_files/viz-0.3/viz.js"></script>
-<link href="index_files/styles-0.1/styles.css" rel="stylesheet" />
+<link href="index_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="index_files/grViz-binding-0.3/grViz.js"></script>
+
+<link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet">
+
+<script src="libs/tocify-1.9.1/jquery-ui-1.9.2.custom.min.js"></script>
+<script src="libs/tocify-1.9.1/jquery.tocify.min.js"></script>
+
+<style type="text/css">
+@media (max-width: 992px) {
+#toc {
+  position: relative;
+  width: 100%;
+  margin: 0px 0px 20px 0px;
+}
+}
+</style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
@@ -59,27 +74,47 @@ img {
 <div class="container-fluid main-container">
 
 
+<div class="row-fluid">
 
-<div id="TOC">
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#graphviz-graphs">Graphviz Graphs</a><ul>
-<li><a href="#defining-a-graph">Defining a Graph</a></li>
-<li><a href="#statements">Statements</a></li>
-<li><a href="#graphviz-engines">Graphviz Engines</a></li>
-<li><a href="#mixing-r-and-graphviz">Mixing R and Graphviz</a></li>
-</ul></li>
-<li><a href="#mermaid-graphs">Mermaid Graphs</a></li>
-<li><a href="#diagrammer-shiny">DiagrammeR + shiny</a></li>
-</ul>
+<div class="span3 col-md-3">
+  <div id="toc"></div>
 </div>
 
+<div class="main-content span9 col-md-9">
+
+<style type="text/css">
+body {
+  padding-top: 20px;
+}
+/* offset scroll position for anchor links */
+h3 {
+  padding-top: 25px;
+  margin-top: -25px;
+}
+h4 {
+  padding-top: 25px;
+  margin-top: -25px;
+}
+.section {
+  margin-bottom: 25px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+#overview h3 {
+  visibility: hidden;
+  height: 0px;
+}
+</style>
+
+
+
+<div id="overview" class="section level3">
+<h3>Overview</h3>
 <p><img src="images/DiagrammeR.png" alt="Logo" /></p>
 <p>With the <strong>DiagrammeR</strong> package, you can create diagrams and flowcharts using <strong>R</strong>. Markdown-like text is used to describe a diagram and, by doing this in <strong>R</strong>, we can also add some <strong>R</strong> code into the mix and integrate these diagrams in the <strong>R</strong> console, through <strong>R Markdown</strong>, and in <strong>shiny</strong> apps. Want a more visual intro? View a really sweet video by following the link below to Dailymotion (click/tap the image to undergo transport).</p>
 <p><a href="http://www.dailymotion.com/video/x2fga6w_the-diagrammer-r-package_tech"><img src="images/DiagrammeR_video_link.png" alt="ScreenShot" /></a></p>
-<div id="introduction" class="section level3">
-<h3>Introduction</h3>
 <p>The package leverages the infrastructure provided by <a href="http://htmlwidgets.org"><strong>htmlwidgets</strong></a> to bridge <strong>R</strong> and both <a href="https://github.com/knsv/mermaid"><strong>mermaid.js</strong></a> and <a href="https://github.com/mdaines/viz.js/"><strong>viz.js</strong></a>.</p>
 <p><img src="images/DiagrammeR_flow_diagram.png" alt="Flow Diagram" /></p>
 </div>
@@ -127,8 +162,8 @@ digraph boxes_and_circles {
 &quot;
 
 grViz(boxes_and_circles)</code></pre>
-<p><div id="htmlwidget-3508" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-3508">{ "x": {
+<p><div id="htmlwidget-3189" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-3189">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box]\n    A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n    A->1; B->2; B->3; B->4; C->A\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7; 3->8\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "dot",
@@ -166,8 +201,8 @@ digraph boxes_and_circles {
 &quot;
 
 grViz(boxes_and_circles)</code></pre>
-<p><div id="htmlwidget-6180" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-6180">{ "x": {
+<p><div id="htmlwidget-8964" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-8964">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "dot",
@@ -836,8 +871,8 @@ grViz(boxes_and_circles)</code></pre>
 <p>Several <strong>Graphviz</strong> engines are available with <strong>DiagrammeR</strong> for rendering graphs. By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument. The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (&lt;100 nodes) and you don’t know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
 <p>Here is how the ‘boxes_and_circles’ graph is rendered with the <strong>neato</strong> engine:</p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;neato&quot;)</code></pre>
-<p><div id="htmlwidget-8410" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-8410">{ "x": {
+<p><div id="htmlwidget-8467" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-8467">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "neato",
@@ -845,8 +880,8 @@ grViz(boxes_and_circles)</code></pre>
 }
 },"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;twopi&quot;)</code></pre>
-<p><div id="htmlwidget-714" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-714">{ "x": {
+<p><div id="htmlwidget-8938" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-8938">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "twopi",
@@ -854,8 +889,8 @@ grViz(boxes_and_circles)</code></pre>
 }
 },"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;circo&quot;)</code></pre>
-<p><div id="htmlwidget-6977" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-6977">{ "x": {
+<p><div id="htmlwidget-260" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-260">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "circo",
@@ -1086,6 +1121,28 @@ $(document).ready(function() {
 </style>
 </div>
 
+
+</div> <!--span-9-->
+</div> <!--row-fluid-->
+
+<style type="text/css">
+.main-container {
+  max-width: none;
+}
+</style>
+
+<script>
+$(function() {
+    var toc = $("#toc").tocify({
+      selectors: "h3,h4",
+      theme: "bootstrap3",
+      context: '.main-content',
+      hashGenerator: 'pretty',
+      showAndHide: false
+    }).data("toc-tocify");
+    $(".optionName").popover({ trigger: "hover" });
+});
+</script>
 
 </div>
 

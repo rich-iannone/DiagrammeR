@@ -3,21 +3,23 @@ output:
   html_document:
     highlight: textmate
     self_contained: no
-    toc: true
-    toc_depth: 4
+    includes: 
+      in_header: includes/header.html
+      before_body: includes/before.html
+      after_body: includes/after.html
 ---
 
 ```{r setup, include=FALSE}
 library("DiagrammeR")
 ```
 
+### Overview
+
 ![Logo](images/DiagrammeR.png)
 
 With the **DiagrammeR** package, you can create diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. Want a more visual intro? View a really sweet video by following the link below to Dailymotion (click/tap the image to undergo transport).
 
 [![ScreenShot](images/DiagrammeR_video_link.png)](http://www.dailymotion.com/video/x2fga6w_the-diagrammer-r-package_tech)
-
-### Introduction
 
 The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
 

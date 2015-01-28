@@ -1,0 +1,22 @@
+
+</div> <!--span-9-->
+</div> <!--row-fluid-->
+
+<style type="text/css">
+.main-container {
+  max-width: none;
+}
+</style>
+
+<script>
+$(function() {
+    var toc = $("#toc").tocify({
+      selectors: "h3,h4",
+      theme: "bootstrap3",
+      context: '.main-content',
+      hashGenerator: 'pretty',
+      showAndHide: false
+    }).data("toc-tocify");
+    $(".optionName").popover({ trigger: "hover" });
+});
+</script>
