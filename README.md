@@ -1,10 +1,10 @@
 <img src="inst/DiagrammeR.png">
 
-With the **DiagrammeR** package, you can create diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. Want a more visual intro? View a really sweet video by following the link below to Dailymotion (click/tap the image to undergo transport).
+With the **DiagrammeR** package, you can create diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. 
+
+Want a more visual intro? Click or tap the image below to view a video walkthrough for a Graphviz diagram that's created with just a few lines of code.
 
 [![ScreenShot](https://raw.githubusercontent.com/rich-iannone/DiagrammeR/master/inst/DiagrammeR_video_link.png)](http://www.dailymotion.com/video/x2fga6w_the-diagrammer-r-package_tech)
-
-### Introduction
 
 The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
 
@@ -34,7 +34,7 @@ Here is the basic structure:
 
 #### Statements
 
-The graph statement (`graph_stmt`), the node statement (`node_stmt`), and the edge statement (`edge_stmt`) are the three most commonly used statements in the **Graphviz** **DOT** language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while a undirected graph must use the `--` operator.
+The graph statement (`graph_stmt`), the node statement (`node_stmt`), and the edge statement (`edge_stmt`) are the three most commonly used statements in the **Graphviz** **DOT** language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while an undirected graph must use the `--` operator.
 
 Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list item can optionally have an attribute list (`attr_list`) which modify the attributes of either the node or edge.
 
