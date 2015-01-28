@@ -106,12 +106,14 @@ HTMLWidgets.widget({
         .attr("id", "mermaidChart-" + el.id);
       // now we have to change the styling assigned by mermaid
       //   to point to our new id that we have assigned
-      /*d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
+      d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
         .select("style")[0][0].innerHTML
-        */
-        //.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
+        .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
 
-      // difficult way to change the stylesheet to work on most browsers
+      /*
+      //difficult way to change the stylesheet
+      //     thought it would be more robust but the above
+      //     works better
       for( i = 0; i <  document.styleSheets.length; i++ ) {
         var s = document.styleSheets[i];
         // find the stylesheet for this widget
@@ -121,8 +123,9 @@ HTMLWidgets.widget({
           var howManyRules = s.rules.length;
           for ( rule = 0; rule < howManyRules; rule++){
             s.insertRule(
-              s.rules.item(rule).cssText.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id),
-              howManyRules
+      */
+      //        s.rules.item(rule).cssText.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id),
+      /*        howManyRules
             );
           }
           // now delete the original rules          
@@ -131,6 +134,7 @@ HTMLWidgets.widget({
           }
         }
       }
+      */
     } catch(e) {
       // if error look for last processed DiagrammeR
       //  and send error to the container div
