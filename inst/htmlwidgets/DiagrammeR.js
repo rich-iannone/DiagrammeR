@@ -86,47 +86,94 @@ HTMLWidgets.widget({
     }
 
   
-    // wait for the last to render to avoid duplicated svg ids from mermaid
+    // get all DiagrammeR mermaids widgets
     dg = document.getElementsByClassName("DiagrammeR");
-    if( dg[dg.length-1].id === el.id ){
-      // run mermaid.init
-      //  but use try catch block
-      //  to send error to the htmlwidget for display
-      try{
-        mermaid.init();
-      } catch(e) {
-        // if error look for last processed DiagrammeR
-        //  and send error to the container div
-        //  with pre containing the errors
-        var processedDg = d3.selectAll(".DiagrammeR[data-processed=true]");
-        // select the last
-        processedDg = d3.select(processedDg[0][processedDg[0].length - 1])
-        // remove the svg
-        processedDg.select("svg").remove();
-        processedDg.append("pre").html(e.message)
-      }      
+    // run mermaid.init
+    //  but use try catch block
+    //  to send error to the htmlwidget for display
+    try{
+      mermaid.init();
       
-      // make each DiagrammeR responsive
-      //  ? should we make this responsive an option
-      //     and add to tasks if true
-      for( i = 0; i < dg.length; i++ ){
-        makeResponsive(dg[i]);
-      }
+      // sort of make our diagram responsive
+      //   should we make this an option?
+      //   if so, then could easily add to list of post process tasks
+      makeResponsive( el );
       
+      // change the id of our SVG assigned by mermaid to prevent conflict
+      //   mermaid.init has a counter that will reset to 0
+      //   and cause duplication of SVG id if multiple
+      d3.select(el).select("svg")
+        .attr("id", "mermaidChart-" + el.id);
+      // now we have to change the styling assigned by mermaid
+      //   to point to our new id that we have assigned
+      d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
+        .select("style")[0][0].innerHTML
+        .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
 
-      // will this ensure synchronous order of execution
-      //  the first set of tests seem to indicate they will
-      //  but it should be more robustly tested
-      if(!(typeof mermaid.tasks.length === "undefined" ) ) {
-        mermaid.tasks.forEach(function(t) { 
-          //add some error checking here
-          if ( typeof t.task === "function" ){
-            t.task.call(null, t.el);
-          } else {
-            console.log("task not a function so skipped");
+      /*
+      //difficult way to change the stylesheet
+      //     thought it would be more robust but the above
+      //     works better
+      for( i = 0; i <  document.styleSheets.length; i++ ) {
+        var s = document.styleSheets[i];
+        // find the stylesheet for this widget
+        if(s.ownerNode.parentNode.parentNode.id === el.id){
+          // use http://davidwalsh.name/add-rules-stylesheets
+          //  to change the rules to use our new svg id in css
+          var howManyRules = s.rules.length;
+          for ( rule = 0; rule < howManyRules; rule++){
+            s.insertRule(
+      */
+      //        s.rules.item(rule).cssText.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id),
+      /*        howManyRules
+            );
           }
-        });
+          // now delete the original rules          
+          for ( rule = 0; rule < howManyRules ; rule++){
+            s.deleteRule(rule);
+          }
+        }
       }
+      */
+    } catch(e) {
+      // if error look for last processed DiagrammeR
+      //  and send error to the container div
+      //  with pre containing the errors
+      var processedDg = d3.selectAll(".DiagrammeR[data-processed=true]");
+      // select the last
+      processedDg = d3.select(processedDg[0][processedDg[0].length - 1])
+      // remove the svg
+      processedDg.select("svg").remove();
+      
+      //if dynamic such as shiny remove data-processed
+      // so mermaid will reprocess and redraw
+      if (HTMLWidgets.shinyMode) {
+        el.removeAttribute("data-processed")
+      }
+      
+      processedDg.append("pre").html( ["parse error with " + x.diagram, e.message].join("\n") )
+    }
+    
+    // makeResponsive needs to be run again with shiny
+    //  since asynchrony sometimes results in not run
+    if( HTMLWidgets.shinyMode ){
+      for ( i = 0 ; i < dg.length; i++ ){
+        makeResponsive( dg[i] )
+      }
+    }
+
+    // will this ensure synchronous order of execution
+    //  the first set of tests seem to indicate they will
+    //  but it should be more robustly tested
+    if(!(typeof mermaid.tasks.length === "undefined" ) ) {
+      mermaid.tasks.forEach(function(t) { 
+        //add some error checking here
+        if ( typeof t.task === "function" ){
+          t.task.call(null, t.el);
+        } else {
+          console.log("task not a function so skipped");
+        }
+      });
     }
   },
 
