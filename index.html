@@ -4,6 +4,12 @@
 
 <head>
 
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
 <title></title>
 
 <script src="index_files/jquery-1.11.0/jquery.min.js"></script>
@@ -16,6 +22,10 @@
 <script src="index_files/viz-0.3/viz.js"></script>
 <link href="index_files/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
 <script src="index_files/grViz-binding-0.3/grViz.js"></script>
+<script src="index_files/d3-3.3.8/d3.min.js"></script>
+<script src="index_files/dagre-0.4.0/dagre-d3.min.js"></script>
+<script src="index_files/mermaid-0.3.0/dist/mermaid.slim.min.js"></script>
+<script src="index_files/DiagrammeR-binding-0.3/DiagrammeR.js"></script>
 
 <link href="libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet">
 
@@ -66,9 +76,9 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img {
-  max-width:100%;
-  height: auto;
+img { 
+  max-width:100%; 
+  height: auto; 
 }
 </style>
 <div class="container-fluid main-container">
@@ -162,13 +172,13 @@ digraph boxes_and_circles {
 &quot;
 
 grViz(boxes_and_circles)</code></pre>
-<p><div id="htmlwidget-3189" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-3189">{ "x": {
+<p><div id="htmlwidget-618" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-618">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box]\n    A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n    A->1; B->2; B->3; B->4; C->A\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7; 3->8\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "dot",
-"options": null
-}
+"options": null 
+} 
 },"evals": [  ] }</script></p>
 <p>The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.</p>
 <pre class="r"><code>boxes_and_circles &lt;- &quot;
@@ -201,13 +211,13 @@ digraph boxes_and_circles {
 &quot;
 
 grViz(boxes_and_circles)</code></pre>
-<p><div id="htmlwidget-8964" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-8964">{ "x": {
+<p><div id="htmlwidget-7283" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-7283">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "dot",
-"options": null
-}
+"options": null 
+} 
 },"evals": [  ] }</script></p>
 <p>There are many more attributes. Here are the principal node attributes:</p>
 <table>
@@ -871,31 +881,31 @@ grViz(boxes_and_circles)</code></pre>
 <p>Several <strong>Graphviz</strong> engines are available with <strong>DiagrammeR</strong> for rendering graphs. By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument. The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (&lt;100 nodes) and you don’t know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
 <p>Here is how the ‘boxes_and_circles’ graph is rendered with the <strong>neato</strong> engine:</p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;neato&quot;)</code></pre>
-<p><div id="htmlwidget-8467" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-8467">{ "x": {
+<p><div id="htmlwidget-1456" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-1456">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "neato",
-"options": null
-}
+"options": null 
+} 
 },"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;twopi&quot;)</code></pre>
-<p><div id="htmlwidget-8938" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-8938">{ "x": {
+<p><div id="htmlwidget-5267" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-5267">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "twopi",
-"options": null
-}
+"options": null 
+} 
 },"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;circo&quot;)</code></pre>
-<p><div id="htmlwidget-260" style="width:672px;height:480px;" class="grViz"></div>
-<script type="application/json" data-for="htmlwidget-260">{ "x": {
+<p><div id="htmlwidget-2694" style="width:672px;height:480px;" class="grViz"></div>
+<script type="application/json" data-for="htmlwidget-2694">{ "x": {
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "circo",
-"options": null
-}
+"options": null 
+} 
 },"evals": [  ] }</script></p>
 </div>
 <div id="mixing-r-and-graphviz" class="section level4">
@@ -961,11 +971,22 @@ graph LR
 &quot;
 
 mermaid(diagram)</code></pre>
-<p><img src="images/Example_1.png" alt="Example_1" /></p>
+<p><div id="htmlwidget-744" style="width:672px;height:480px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-744">{ "x": {
+ "diagram": "\ngraph LR\n  A-->B\n  A-->C\n  C-->E\n  B-->D\n  C-->D\n  D-->F\n  E-->F\n" 
+},"evals": [  ] }</script></p>
 <p>The same result can be achieved in a more succinct manner with this <strong>R</strong> statement (using semicolons between statements in the <strong>mermaid</strong> diagram spec):</p>
 <pre class="r"><code>mermaid(&quot;graph LR; A--&gt;B; A--&gt;C; C--&gt;E; B--&gt;D; C--&gt;D; D--&gt;F; E--&gt;F&quot;)</code></pre>
+<p><div id="htmlwidget-7585" style="width:672px;height:480px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-7585">{ "x": {
+ "diagram": "graph LR; A-->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F" 
+},"evals": [  ] }</script></p>
 <p>Alternatively, here is the result of using the statement <code>graph TB</code> in place of <code>graph LR</code>:</p>
-<p><img src="images/Example_2.png" alt="Example_2" /></p>
+<pre class="r"><code>mermaid(&quot;graph TB; A--&gt;B; A--&gt;C; C--&gt;E; B--&gt;D; C--&gt;D; D--&gt;F; E--&gt;F&quot;)</code></pre>
+<p><div id="htmlwidget-4106" style="width:672px;height:480px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-4106">{ "x": {
+ "diagram": "graph TB; A-->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F" 
+},"evals": [  ] }</script></p>
 <p>Keep in mind that external files can also be called by the <code>mermaid</code> function. The file <code>graph.mmd</code> can contain the text of the diagram spec as follows</p>
 <pre><code>graph LR
   A--&gt;B
@@ -993,8 +1014,10 @@ style E fill:#FCFCF2
 &quot;
 
 mermaid(diagram)</code></pre>
-<p>What you get is this:</p>
-<p><img src="images/Example_3.png" alt="Example_3" /></p>
+<p><div id="htmlwidget-1461" style="width:672px;height:288px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-1461">{ "x": {
+ "diagram": "\ngraph LR\nA(Rounded)-->B[Squared]\nB-->C{A Decision}\nC-->D[Square One]\nC-->E[Square Two]\n\nstyle A fill:#DCEBE3\nstyle B fill:#77DFC9\nstyle C fill:#DEDBBA\nstyle D fill:#F8F0CC\nstyle E fill:#FCFCF2\n" 
+},"evals": [  ] }</script></p>
 <p>Here’s an example with line text (that is, text appearing on connecting lines). Simply place text between pipe characters, just after the arrow, right before the node identifier. There are few more CSS properties for the boxes included in this example (<code>stroke</code>, <code>stroke-width</code>, and <code>stroke-dasharray</code>).</p>
 <pre class="r"><code>diagram &lt;- &quot;
 graph LR
@@ -1007,8 +1030,10 @@ style C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px
 &quot;
 
 mermaid(diagram)</code></pre>
-<p>The resultant graphic:</p>
-<p><img src="images/Example_4.png" alt="Example_4" /></p>
+<p><div id="htmlwidget-8529" style="width:672px;height:192px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-8529">{ "x": {
+ "diagram": "\ngraph LR\nA(Start)-->|Line Text|B(Keep Going)\nB-->|More Line Text|C(Stop)\n\nstyle A fill:#A2EB86, stroke:#04C4AB, stroke-width:2px\nstyle B fill:#FFF289, stroke:#FCFCFF, stroke-width:2px, stroke-dasharray: 4, 4\nstyle C fill:#FFA070, stroke:#FF5E5E, stroke-width:2px\n" 
+},"evals": [  ] }</script></p>
 <p>Let’s include the values of some <strong>R</strong> objects into a fresh diagram. The <code>mtcars</code> dataset is something I go to again and again, so, I’m going to load it up.</p>
 <pre class="r"><code>data(mtcars)</code></pre>
 <p>When you call the <strong>R</strong> <code>summary</code> function on this data frame, you obtain this:</p>
@@ -1062,8 +1087,10 @@ paste(connections, collapse = &quot;\n&quot;), &quot;\n&quot;,
 &quot;)
 
 mermaid(diagram)</code></pre>
-<p>This is part of the resulting graphic (it’s quite wide so I’m displaying just 8 of the 11 columns):</p>
-<p><img src="images/Example_5.png" alt="Example_5" /></p>
+<p><div id="htmlwidget-5767" style="width:672px;height:192px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-5767">{ "x": {
+ "diagram": "graph TD;\n1(mpg)---1-stats(Min.: 10.4<br/>1st Qu.: 15.42<br/>Median: 19.2<br/>Mean: 20.09<br/>3rd Qu.: 22.8<br/>Max.: 33.9)\n2(cyl)---2-stats(Min.: 4<br/>1st Qu.: 4<br/>Median: 6<br/>Mean: 6.188<br/>3rd Qu.: 8<br/>Max.: 8)\n3(disp)---3-stats(Min.: 71.1<br/>1st Qu.: 120.8<br/>Median: 196.3<br/>Mean: 230.7<br/>3rd Qu.: 326<br/>Max.: 472)\n4(hp)---4-stats(Min.: 52<br/>1st Qu.: 96.5<br/>Median: 123<br/>Mean: 146.7<br/>3rd Qu.: 180<br/>Max.: 335)\n5(drat)---5-stats(Min.: 2.76<br/>1st Qu.: 3.08<br/>Median: 3.695<br/>Mean: 3.597<br/>3rd Qu.: 3.92<br/>Max.: 4.93)\n6(wt)---6-stats(Min.: 1.513<br/>1st Qu.: 2.581<br/>Median: 3.325<br/>Mean: 3.217<br/>3rd Qu.: 3.61<br/>Max.: 5.424)\n7(qsec)---7-stats(Min.: 14.5<br/>1st Qu.: 16.89<br/>Median: 17.71<br/>Mean: 17.85<br/>3rd Qu.: 18.9<br/>Max.: 22.9)\n8(vs)---8-stats(Min.: 0<br/>1st Qu.: 0<br/>Median: 0<br/>Mean: 0.4375<br/>3rd Qu.: 1<br/>Max.: 1)\n9(am)---9-stats(Min.: 0<br/>1st Qu.: 0<br/>Median: 0<br/>Mean: 0.4062<br/>3rd Qu.: 1<br/>Max.: 1)\n10(gear)---10-stats(Min.: 3<br/>1st Qu.: 3<br/>Median: 4<br/>Mean: 3.688<br/>3rd Qu.: 4<br/>Max.: 5)\n11(carb)---11-stats(Min.: 1<br/>1st Qu.: 2<br/>Median: 2<br/>Mean: 2.812<br/>3rd Qu.: 4<br/>Max.: 8)\nclassDef column fill:#0001CC, stroke:#0D3FF3, stroke-width:1px;\nclass 1,2,3,4,5,6,7,8,9,10,11 column;\n" 
+},"evals": [  ] }</script></p>
 <p>The <strong>mermaid.js</strong> library also supports <a href="http://knsv.github.io/mermaid/sequenceDiagram.html">sequence diagrams</a>. The <a href="http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf">“How to Draw Sequence Diagrams”</a> report by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams. Let’s replicate the ticket-buying example from Figure 1 of this report and add in some conditionals.</p>
 <pre class="r"><code># Using this &quot;How to Draw a Sequence Diagram&quot;
 # http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
@@ -1084,7 +1111,10 @@ sequenceDiagram
     ticket seller-&gt;&gt;customer: sorry
   end
 &quot;)</code></pre>
-<p><img src="images/Example_6.png" alt="Example_6" /></p>
+<p><div id="htmlwidget-1869" style="width:672px;height:480px;" class="DiagrammeR"></div>
+<script type="application/json" data-for="htmlwidget-1869">{ "x": {
+ "diagram": "\nsequenceDiagram\n  customer->>ticket seller: ask ticket\n  ticket seller->>database: seats\n  alt tickets available\n    database->>ticket seller: ok\n    ticket seller->>customer: confirm\n    customer->>ticket seller: ok\n    ticket seller->>database: book a seat\n    ticket seller->>printer: print ticket\n  else sold out\n    database->>ticket seller: none left\n    ticket seller->>customer: sorry\n  end\n" 
+},"evals": [  ] }</script></p>
 <p>For more examples and additional documentation, see the <a href="https://github.com/knsv/mermaid/wiki"><code>mermaid.js</code> Wiki</a>.</p>
 </div>
 <div id="diagrammer-shiny" class="section level3">
@@ -1104,21 +1134,6 @@ server = function(input, output){
 }
 
 shinyApp(ui = ui, server = server)</code></pre>
-<script type="text/javascript">
-$(document).ready(function() {
-
-  // move the table of contents below the logo
-  $('#TOC').each(function() {
-    var toc = $(this);
-    toc.next().after(toc);
-  });
-});
-</script>
-<style type="text/css">
-#TOC {
-  padding-bottom: 15px;
-}
-</style>
 </div>
 
 
