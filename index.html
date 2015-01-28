@@ -4,12 +4,6 @@
 
 <head>
 
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-
-
 <title></title>
 
 <script src="index_files/jquery-1.11.0/jquery.min.js"></script>
@@ -72,9 +66,9 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
 }
 </style>
 <div class="container-fluid main-container">
@@ -128,8 +122,6 @@ h4 {
 <h3>Installation</h3>
 <p>Install the development version of <strong>DiagrammeR</strong> from GitHub using the <strong>devtools</strong> package.</p>
 <pre class="r"><code>devtools::install_github(&#39;rich-iannone/DiagrammeR&#39;)</code></pre>
-<p>Or, get the latest <a href="http://cran.r-project.org/web/packages/DiagrammeR/">CRAN release</a>.</p>
-<pre class="r"><code>install.packages(&quot;DiagrammeR&quot;)</code></pre>
 </div>
 <div id="graphviz-graphs" class="section level3">
 <h3>Graphviz Graphs</h3>
@@ -175,8 +167,8 @@ grViz(boxes_and_circles)</code></pre>
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box]\n    A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n    A->1; B->2; B->3; B->4; C->A\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7; 3->8\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "dot",
-"options": null 
-} 
+"options": null
+}
 },"evals": [  ] }</script></p>
 <p>The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.</p>
 <pre class="r"><code>boxes_and_circles &lt;- &quot;
@@ -214,8 +206,8 @@ grViz(boxes_and_circles)</code></pre>
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "dot",
-"options": null 
-} 
+"options": null
+}
 },"evals": [  ] }</script></p>
 <p>There are many more attributes. Here are the principal node attributes:</p>
 <table>
@@ -884,8 +876,8 @@ grViz(boxes_and_circles)</code></pre>
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "neato",
-"options": null 
-} 
+"options": null
+}
 },"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;twopi&quot;)</code></pre>
 <p><div id="htmlwidget-8938" style="width:672px;height:480px;" class="grViz"></div>
@@ -893,8 +885,8 @@ grViz(boxes_and_circles)</code></pre>
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "twopi",
-"options": null 
-} 
+"options": null
+}
 },"evals": [  ] }</script></p>
 <pre class="r"><code>grViz(boxes_and_circles, engine = &quot;circo&quot;)</code></pre>
 <p><div id="htmlwidget-260" style="width:672px;height:480px;" class="grViz"></div>
@@ -902,8 +894,8 @@ grViz(boxes_and_circles)</code></pre>
  "diagram": "\ndigraph boxes_and_circles {\n\n  # several \"node\" statements\n  node [shape = box,\n        color = blue] // for the letter nodes, use box shapes\n    A; B; C; D; E\n    F [color = black]\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n    1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  edge [color = gray] // this sets all edges to be gray (unless overridden)\n    A->1; B->2\n    B->3 [color = red]\n    B->4\n    C->A [color = green]\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7\n    3->8 [color = blue]\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n}\n",
 "config": {
  "engine": "circo",
-"options": null 
-} 
+"options": null
+}
 },"evals": [  ] }</script></p>
 </div>
 <div id="mixing-r-and-graphviz" class="section level4">
@@ -1116,10 +1108,10 @@ shinyApp(ui = ui, server = server)</code></pre>
 $(document).ready(function() {
 
   // move the table of contents below the logo
-  $('#TOC').each(function() {  
+  $('#TOC').each(function() {
     var toc = $(this);
     toc.next().after(toc);
-  });  
+  });
 });
 </script>
 <style type="text/css">
