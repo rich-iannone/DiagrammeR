@@ -1,11 +1,14 @@
 #' R + mermaid.js
 #'
-#' Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
-#' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+#' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
+#' \href{https://github.com/knsv/mermaid}{mermaid.js} with infrastructure
+#' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #' 
-#' @param diagram diagram in \code{mermaid} format or \code{graphviz} format or a
-#'  file (as a connection or file name) containing a diagram specification.
-#' If no diagram is provided \code{diagram = ""} then the function will assume that
+#' @param diagram diagram in \code{graphviz} or \code{mermaid} format or a 
+#' file (as a connection or file name) containing a diagram specification. The
+#' recommended filename extensions are '.gv' and '.mmd' for the Graphviz and the
+#' mermaid diagram specifications, respectively. If no diagram is provided,
+#' \code{diagram = ""} then the function will assume that
 #' a diagram will be provided by \code{\link[htmltools]{tags}} and
 #' \code{DiagrammeR} is just being used for dependency injection.
 #' @param type string - either "mermaid" (default) or "grViz" indicating
