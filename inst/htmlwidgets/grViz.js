@@ -27,6 +27,13 @@ HTMLWidgets.widget({
     };
     
     if ( x.diagram != "" ) {
+      
+      if ( typeof x.config === "undefined" ){
+        x.config = {};
+        x.config.engine = "dot";
+        x.config.options = {};
+      }
+      
       try {
         el.innerHTML = Viz( x.diagram, format="svg", engine=x.config.engine, options=x.config.options );
         
