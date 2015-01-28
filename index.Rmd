@@ -560,22 +560,5 @@ server = function(input, output){
 shinyApp(ui = ui, server = server)
 ```
 
-<script type="text/javascript">
-$(document).ready(function() {
-
-  // move the table of contents below the logo
-  $('#TOC').each(function() {  
-    var toc = $(this);
-    toc.next().after(toc);
-  });  
-});
-</script>
-
-<style type="text/css">
-#TOC {
-  padding-bottom: 15px;
-}
-</style>
-
 
 
