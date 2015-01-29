@@ -619,7 +619,41 @@ For more examples and additional documentation, see the [`mermaid.js` Wiki](http
 
 ### DiagrammeR + shiny
 
-As with other **htmlwidgets**, we can easily dynamically bind **DiagrammeR** in **R** with **shiny**. Here is a quick example where we can provide a diagram spec in a `textInput`.
+As with other **htmlwidgets**, we can easily dynamically bind **DiagrammeR** in **R** with **shiny**. Both `grViz` and `mermaid` (see table below) work with Shiny.
+
+Using `grViz` with [`shinyAce`](https://github.com/trestletech/shinyAce), we can easily get an interactive playground for our graphviz diagram.
+
+
+```R
+library(shiny)
+library(shinyAce)
+
+ui = shinyUI(fluidPage(fluidRow(
+  column(
+    width=4
+    , aceEditor("ace", selectionId = "selection",value="digraph {A;}")
+  ),
+  column(
+    width = 6
+    , grVizOutput('diagram' )
+  )
+)))
+
+server = function(input, output){
+  output$diagram <- renderGrViz({
+    grViz(
+      input$ace
+    )
+  })
+
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+<img src="inst/Example_9.gif">
+
+Here is a quick example where we can provide a `mermaid` diagram spec in a `textInput`.
 
 ```R
 library(shiny)
@@ -638,7 +672,7 @@ server = function(input, output){
 shinyApp(ui = ui, server = server)
 ```
 
-Not all browsers are currently compatible with the DiagrammeR Shiny app. The following table provides the status for a selection of current browsers.
+Not all browsers are currently compatible with the DiagrammeR `mermaid` Shiny app. The following table provides the status for a selection of current browsers.
 
 |Browser/Version             | Platform                       | Status           |
 |:---------------------------|:-------------------------------|:-----------------|
