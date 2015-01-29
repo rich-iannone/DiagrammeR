@@ -246,6 +246,85 @@ The graph attributes:
 |`URL`          | URL associated with graph (format-dependent)                 |                  |
 |`viewport`     | clipping window on output                                    |                  |
 
+#### Graphviz Substitution
+
+Inspired by Razor and Markdown footnotes, substitution allows for mixing in R expressions into a Graphviz graph specification without sacrificing readability. In the simple example of specifying a single node, the following substitution syntax would be used:
+
+```
+digraph {
+@@1
+}
+
+[1]: 'a'
+```
+
+So, the footnote expression evaluates as `'a'` and is substituted at the `@@1` location, where it is taken as the node ID. The construction is:
+
+`@@` + *`[footnote number]`*
+
+Substitutions also also for values from indices of vectors to placed into the graph specification. Simply use this format:
+
+`@@` + *`[footnote number]`* + `-` + *`[index number]`*
+
+Here is an example of substituting alphabet letters from **R**'s `LETTERS` constant simply into a Graphviz graph.
+
+```
+digraph {
+alpha
+@@1-1; @@1-2; @@1-3; @@1-4; @@1-5
+@@1-6; @@1-7; @@1-8; @@1-9; @@1-10
+}
+
+[1]: LETTERS
+```
+
+This evaluates as:
+
+```
+digraph {
+alpha
+A; B; C; D; E
+F; G; H; I; J
+}
+```
+
+To take advantage of substitution, use the following nested functions with the graph spec:
+
+```R
+grViz(replace_in_spec("...graph spec with substitutions..."))
+```
+
+A mixture of both types of subtitution types can be used. As an example:
+
+```R
+grViz(replace_in_spec("
+digraph a_nice_graph {
+
+# node definitions with substituted label text
+node [fontname = Helvetica]
+a [label = '@@1']
+b [label = '@@2-1']
+c [label = '@@2-2']
+d [label = '@@2-3']
+e [label = '@@2-4']
+f [label = '@@2-5']
+g [label = '@@2-6']
+h [label = '@@2-7']
+i [label = '@@2-8']
+j [label = '@@2-9']
+
+# edge definitions with the node IDs
+a -> { b c d e f g h i j}
+}
+
+[1]: 'top'
+[2]: 10:20
+"))
+```
+
+Here is the output from that:
+
+<img src="inst/Graphviz_substitution.png">
 
 #### Graphviz Engines
 
@@ -271,7 +350,7 @@ grViz(boxes_and_circles, engine = "circo")
 
 <img src="inst/Example_7e_circo.png">
 
-#### Mixing R and Graphviz DOT
+#### Manually Mixing in R with Graphviz DOT
 
 Possibilities are interesting when combining **R** functions with **DiagrammeR** and the `grViz` function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
 
