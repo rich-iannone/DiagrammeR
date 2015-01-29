@@ -120,11 +120,11 @@ HTMLWidgets.widget({
         if(s.ownerNode.parentNode.parentNode.id === el.id){
           // use http://davidwalsh.name/add-rules-stylesheets
           //  to change the rules to use our new svg id in css
-          var howManyRules = s.rules.length;
+          var howManyRules = s.cssRules.length;
           for ( rule = 0; rule < howManyRules; rule++){
             s.insertRule(
       */
-      //        s.rules.item(rule).cssText.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id),
+      //        s.cssRules.item(rule).cssText.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id),
       /*        howManyRules
             );
           }
