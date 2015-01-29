@@ -86,9 +86,9 @@ replace_in_spec <- function(spec) {
     for (i in 1:length(split_references)){
       while (grepl(paste0("@@", i, "-", "[0-9]+"), spec_body)){
         the_index <-
-          as.numeric(gsub("^([0-9]+)(.*)", "\\1",
-                          strsplit(spec_body,
-                                   paste0("@@", i, "-"))[[1]][2]))
+        as.numeric(gsub("^([0-9]+)(.*)", "\\1",
+                        strsplit(spec_body,
+                                 paste0("@@", i, "-"))[[1]][2]))
         
         if (the_index > length(eval_expressions[[i]])){
           spec_body <- gsub(paste0("@@", i, "-", the_index),
