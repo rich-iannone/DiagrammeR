@@ -646,11 +646,12 @@ Not all browsers are currently compatible with the DiagrammeR Shiny app. The fol
 |IE 9                        | Windows                        | not working      |
 |IE 10                       | Windows                        | not working      |
 |IE 11                       | Windows                        | not working      |
+|Safari                      | Windows                        | not working      |
+|Safari                      | Mac                            | not working      |
+|RStudio Viewer              | Windows                        | not working      |
+|RStudio Viewer              | Mac                            | not working      |
 |Firefox                     | Windows                        | working          |
 |Firefox                     | Mac                            | working          |
-|Safari                      | Mac                            | not working      |
 |Chrome                      | Windows                        | working          |
 |Chrome                      | Mac                            | working          |
-
-
 
