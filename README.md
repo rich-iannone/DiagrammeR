@@ -262,7 +262,7 @@ So, the footnote expression evaluates as `'a'` and is substituted at the `@@1` l
 
 `@@` + *`[footnote number]`*
 
-Substitutions also also for values from indices of vectors to placed into the graph specification. Simply use this format:
+Substitutions can also be used to insert values from vector indices into the graph specification. Simply use this format:
 
 `@@` + *`[footnote number]`* + `-` + *`[index number]`*
 
