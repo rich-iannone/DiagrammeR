@@ -108,4 +108,9 @@ replace_in_spec <- function(spec){
     # Return the updated spec with replacements evaluated
     return(spec_body)
   }
+  
+  if (grepl("@@", spec) == FALSE){
+    return(spec)
+  }
+  
 }
