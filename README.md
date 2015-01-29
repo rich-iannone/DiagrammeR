@@ -314,7 +314,7 @@ i [label = '@@2-8']
 j [label = '@@2-9']
 
 # edge definitions with the node IDs
-a -> { b c d e f g h i j}
+a -> {b c d e f g h i j}
 }
 
 [1]: 'top'
@@ -322,7 +322,7 @@ a -> { b c d e f g h i j}
 "))
 ```
 
-Here is the output from that:
+As can be seen in the following output: (1) the node with ID `a` is given the label `top` (after substituting `@@1` with expression after the `[1]` footnote), (2) the nodes with ID values from `b`-`j` are respectively provided values from indices 1 to 9 (using the hypenated form of `@@`) of the evaluated expression `10:20` (in the `[2]` footnote).
 
 <img src="inst/Graphviz_substitution.png">
 
