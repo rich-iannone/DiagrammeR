@@ -1,3 +1,7 @@
+# DiagrammeR 0.4
+
+* Added support for substitution in Graphviz graph specifications
+
 # DiagrammeR 0.3
 
 * Added support for the Graphviz **neato**, **twopi**, and **circo** engines
