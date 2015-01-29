@@ -2,6 +2,8 @@
 
 * Added support for substitution in Graphviz graph specifications
 
+* Added support for Graphviz diagrams in the Shiny app
+
 # DiagrammeR 0.3
 
 * Added support for the Graphviz **neato**, **twopi**, and **circo** engines
