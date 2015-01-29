@@ -9,7 +9,7 @@
 #' \dontrun{
 #' 
 #' # a simple example to use a LETTER as a node label
-#' spec = "
+#' spec <- "
 #'   digraph { '@@1' }
 #'   
 #'  [1]: LETTERS[1]
@@ -17,8 +17,7 @@
 #' grViz( replace_in_spec( spec ) )
 #' 
 #' 
-#' spec =
-#'   "
+#' spec <- "
 #' digraph a_nice_graph {
 #' node [fontname = Helvetica]
 #' a [label = '@@1']
@@ -57,14 +56,16 @@ replace_in_spec <- function(spec) {
     
     # Split the references into a vector of R statements
     split_references <-
-      gsub("\\[[0-9*]\\]:[ ]?", "",
-           unlist(strsplit(x = spec_references, "\\n")))
+    gsub("\\[[0-9*]\\]:[ ]?", "",
+         unlist(strsplit(x = spec_references, "\\n")))
     
     # Evaluate the expressions and save into a list object
     for (i in 1:length(split_references)){
+      
       if (i == 1){
         eval_expressions <- list()
       }
+      
       eval_expressions <- c(eval_expressions,
                             list(eval(parse(text = split_references[i]))))
     }
@@ -77,7 +78,6 @@ replace_in_spec <- function(spec) {
         
         spec_body <- gsub(paste0("@@", i),
                           eval_expressions[[i]][1], spec_body)
-        
       }
     }
     
@@ -100,7 +100,6 @@ replace_in_spec <- function(spec) {
         }
         
       }
-      
     }
     
     # Return the updated spec with replacements evaluated
