@@ -288,7 +288,7 @@ F; G; H; I; J
 }
 ```
 
-To take advantage of substitution, use the following nested functions with the graph spec:
+To take advantage of substitution, nest the `grViz` and `replace_in_spec` functions with the graph spec:
 
 ```R
 grViz(replace_in_spec("...graph spec with substitutions..."))
