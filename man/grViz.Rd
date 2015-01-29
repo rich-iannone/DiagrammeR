@@ -33,4 +33,33 @@ and within Shiny output bindings.
 Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js}
 with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
+\examples{
+\dontrun{
+# a very simple example
+grViz( "digraph {A;}")
+
+# slightly more involved
+#  using example from http://www.graphviz.org/pdf/dotguide.pdf
+#    "Drawing graphs with dot"
+#    Emden R. Gansner and Eleftherios Koutsofios and Stephen North
+#    January 5, 2015
+grViz('
+digraph G {
+      size = "4,4";
+      main [shape=box]; /* this is a comment */
+      main -> parse [weight=8];
+      parse -> execute;
+      main -> init [style=dotted];
+      main -> cleanup;
+      execute -> { make_string; printf}
+      init -> make_string;
+      edge [color=red]; // so is this
+      main -> printf;
+      node [shape=box,style=filled,color=".7 .3 1.0"];
+      execute -> compare;
+}
+')
+
+}
+}
 
