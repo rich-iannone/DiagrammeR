@@ -42,7 +42,18 @@
 #' @export
 
 
-replace_in_spec <- function(spec) {
+replace_in_spec <- function(spec = ""){
+  
+  # Check for a connection or file
+  if (inherits(spec, "connection") || file.exists(spec)){
+    spec <- readLines(spec, warn = FALSE)
+    spec <- paste0(spec, collapse = "\n")
+  } else {
+    # Check for vector with length > 1 and concatenate
+    if (length(spec) > 1){
+    spec <- paste0(spec, collapse = "\n")
+    }
+  }
   
   if (grepl("@@", spec)){
     
