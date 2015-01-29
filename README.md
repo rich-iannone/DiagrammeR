@@ -294,7 +294,7 @@ To take advantage of substitution, use the following nested functions with the g
 grViz(replace_in_spec("...graph spec with substitutions..."))
 ```
 
-A mixture of both types of subtitution types can be used. As an example:
+A mixture of both types of subtitutions can be used. As an example:
 
 ```R
 grViz(replace_in_spec("
