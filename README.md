@@ -258,7 +258,7 @@ digraph {
 [1]: 'a'
 ```
 
-Importantly, the footnote expressions should reside below the closing curly brace of the graph or diagraph expression. It should always take the form of:
+Importantly, the footnote expressions should reside below the closing curly brace of the `graph` or `digraph` expression. It should always take the form of:
 
 `[` + *`[footnote number]`* + `]`
 
@@ -270,7 +270,7 @@ Substitutions can also be used to insert values from vector indices into the gra
 
 `@@` + *`[footnote number]`* + `-` + *`[index number]`*
 
-Here is an example of substituting alphabet letters from **R**'s `LETTERS` constant simply into a Graphviz graph.
+Here is an example of substituting alphabet letters from **R**'s `LETTERS` constant into a Graphviz graph specification.
 
 ```
 digraph {
