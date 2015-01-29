@@ -17,7 +17,7 @@ diagram.
 \dontrun{
 
 # a simple example to use a LETTER as a node label
-spec = "
+spec <- "
   digraph { '@1' }
 
  [1]: LETTERS[1]
@@ -25,8 +25,7 @@ spec = "
 grViz( replace_in_spec( spec ) )
 
 
-spec =
-  "
+spec <- "
 digraph a_nice_graph {
 node [fontname = Helvetica]
 a [label = '@1']
