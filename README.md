@@ -282,7 +282,7 @@ alpha
 [1]: LETTERS
 ```
 
-This evaluates as:
+After evaluation of the footnote expressions and substitution, the graph specification becomes this:
 
 ```
 digraph {
@@ -292,7 +292,7 @@ F; G; H; I; J
 }
 ```
 
-To take advantage of substitution, nest the `grViz` and `replace_in_spec` functions with the graph spec:
+To take advantage of substitution and render the graph, nest the `grViz` and `replace_in_spec` functions with the graph specification:
 
 ```R
 grViz(replace_in_spec("...graph spec with substitutions..."))
