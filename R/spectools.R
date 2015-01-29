@@ -91,14 +91,17 @@ replace_in_spec <- function(spec) {
                                  paste0("@@", i, "-"))[[1]][2]))
         
         if (the_index > length(eval_expressions[[i]])){
-          spec_body <- gsub(paste0("@@", i, "-", the_index),
-                            eval_expressions[[i]][length(eval_expressions[[i]])],
-                            spec_body)
+          spec_body <-
+          gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
+               paste0(eval_expressions[[i]][length(eval_expressions[[i]])],
+                      "\\1"),
+               spec_body)
         } else {
-          spec_body <- gsub(paste0("@@", i, "-", the_index),
-                            eval_expressions[[i]][the_index], spec_body)
-        }
-        
+          spec_body <-
+          gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
+               paste0(eval_expressions[[i]][the_index], "\\1"),
+               spec_body)
+        } 
       }
     }
     
