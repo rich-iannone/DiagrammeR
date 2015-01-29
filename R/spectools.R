@@ -74,7 +74,7 @@ replace_in_spec <- function(spec) {
     # no hyphen
     for (i in 1:length(split_references)){
       
-      while (grepl(paste0("@@", i, "'"), spec_body)){
+      while (grepl(paste0("@@", i, "([^-])"), spec_body)){
         
         spec_body <- gsub(paste0("@@", i),
                           eval_expressions[[i]][1], spec_body)
