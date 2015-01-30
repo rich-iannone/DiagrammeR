@@ -4,8 +4,7 @@
 \alias{mermaid}
 \title{R + mermaid.js}
 \usage{
-mermaid(diagram = "", ..., type = "mermaid", width = NULL,
-  height = NULL)
+mermaid(diagram = "", ..., width = NULL, height = NULL)
 }
 \arguments{
 \item{diagram}{diagram in mermaid markdown-like language or
@@ -13,6 +12,8 @@ mermaid(diagram = "", ..., type = "mermaid", width = NULL,
 If no diagram is provided \code{diagram = ""} then the function will assume that
 a diagram will be provided by \code{\link[htmltools]{tags}} and
 \code{DiagrammeR} is just being used for dependency injection.}
+
+\item{...}{other arguments and parameters you would like to send to Javascript}
 
 \item{width}{the width of the resulting graphic in pixels.}
 
