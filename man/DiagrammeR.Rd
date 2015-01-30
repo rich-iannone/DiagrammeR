@@ -18,9 +18,7 @@ a diagram will be provided by \code{\link[htmltools]{tags}} and
 \item{type}{string - either "mermaid" (default) or "grViz" indicating
 the type of diagram spec and the desired parser/renderer}
 
-\item{width}{the width of the resulting graphic in pixels.}
-
-\item{height}{the height of the resulting graphic in pixels.}
+\item{...}{any other parameters to pass to \code{grViz} or \code{mermaid}}
 }
 \value{
 An object of class \code{htmlwidget} that will
