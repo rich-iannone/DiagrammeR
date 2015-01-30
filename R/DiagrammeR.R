@@ -13,8 +13,7 @@
 #' \code{DiagrammeR} is just being used for dependency injection.
 #' @param type string - either "mermaid" (default) or "grViz" indicating
 #' the type of diagram spec and the desired parser/renderer
-#' @param width the width of the resulting graphic in pixels.
-#' @param height the height of the resulting graphic in pixels.
+#' @param ... any other parameters to pass to \code{grViz} or \code{mermaid}
 #' @return An object of class \code{htmlwidget} that will
 #' intelligently print itself into HTML in a variety of contexts
 #' including the R console, within R Markdown documents,
