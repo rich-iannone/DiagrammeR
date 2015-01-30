@@ -18,6 +18,8 @@ Install the development version of **DiagrammeR** from GitHub using the **devtoo
 devtools::install_github('rich-iannone/DiagrammeR')
 ```
 
+Or, get it from CRAN.
+
 ### Graphviz Graphs
 
 It's possible to make diagrams using the **Graphviz** support included in the **DiagrammeR** package. The processing function is called `grViz`. What you pass into `grViz` is a valid graph in the **DOT** language. The text can either exist in the form of a string, a reference to a **Graphviz** file (with a **.gv** file extension), or as a text connection.
