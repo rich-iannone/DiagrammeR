@@ -22,7 +22,7 @@ spec <- "
 
  [1]: LETTERS[1]
 "
-grViz( replace_in_spec( spec ) )
+grViz(replace_in_spec(spec))
 
 
 spec <- "
@@ -44,7 +44,7 @@ a -> { b c d e f g h i j}
 [1]: 'top'
 [2]: 10:20
 "
-grViz( replace_in_spec( spec ) )
+grViz(replace_in_spec(spec))
 }
 }
 
