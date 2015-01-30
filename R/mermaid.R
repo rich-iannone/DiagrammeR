@@ -8,6 +8,7 @@
 #' If no diagram is provided \code{diagram = ""} then the function will assume that
 #' a diagram will be provided by \code{\link[htmltools]{tags}} and
 #' \code{DiagrammeR} is just being used for dependency injection.
+#' @param ... other arguments and parameters you would like to send to Javascript
 #' @param width the width of the resulting graphic in pixels.
 #' @param height the height of the resulting graphic in pixels.
 #' @return An object of class \code{htmlwidget} that will
@@ -118,7 +119,7 @@
 #'
 #' @export
 
-mermaid <- function(diagram = "", ..., type = "mermaid", width = NULL, height = NULL) {
+mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
   
   # check for a connection or file
   if (inherits(diagram, "connection") || file.exists(diagram)) {
