@@ -334,7 +334,51 @@ As can be seen in the following output: (1) the node with ID `a` is given the la
 
 Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So long as a vector object results from evaluation, substitution can be performed.
 
-Here is a final example of a diagram created from R and RStudio information (from the `R.Version` and `rstudio::versionInfo` functions):
+Here is a final example of a diagram created using R and RStudio information (obtained from the `R.Version` and `rstudio::versionInfo` functions):
+
+```R
+grViz(replace_in_spec("
+digraph nicegraph {
+
+  # graph, node, and edge definitions
+  graph [compound = true, nodesep = .5, ranksep = .25,
+         color = crimson]
+
+  node [fontname = Helvetica, fontcolor = darkslategray,
+        shape = rectangle, fixedsize = true, width = 1,
+        color = darkslategray]
+
+  edge [color = grey, arrowhead = none, arrowtail = none]
+
+  # subgraph for R information
+  subgraph cluster0 {
+    node [fixedsize = true, width = 3]
+    '@@1-1' -> '@@1-2' -> '@@1-3' -> '@@1-4' -> '@@1-5'
+    '@@1-5' -> '@@1-6' -> '@@1-7'
+  }
+
+  # subgraph for RStudio information
+  subgraph cluster1 {
+    node [fixedsize = true, width = 3]
+    '@@2' -> '@@3'
+  }
+
+  Information             [width = 1.5]
+  Information -> R
+  Information -> RStudio
+  R -> '@@1-1'            [lhead = cluster0]
+  RStudio -> '@@2'        [lhead = cluster1]
+
+}
+
+[1]: paste0(names(R.Version())[1:7], ':\\n ', R.Version()[1:7])
+[2]: paste0('RStudio version:\\n ', rstudio::versionInfo()[[1]])
+[3]: paste0('Current program mode:\\n ', rstudio::versionInfo()[[2]])
+
+"))
+```
+
+The output will of course vary by the system on which it was generated. Here is my output:
 
 <img src="inst/R_Information_Example.png">
 
