@@ -142,7 +142,7 @@ The edge attributes:
 |:-----------------|:-------------------------------------------------------------|:----------------|
 |`arrowhead`       | style of arrowhead at head end                               | normal          |
 |`arrowsize`       | scaling factor for arrowheads                                | `1.0`           |
-|`arrowtail`       | sytle of arrowhead at tail end                               | normal          |
+|`arrowtail`       | style of arrowhead at tail end                               | normal          |
 |`color`           | edge stroke color                                            | `black`         |
 |`colorscheme`     | the scheme for interpreting color names                      |                 |
 |`constraint`      | whether edge should affect node ranking                      | true            |
