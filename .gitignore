@@ -12,10 +12,6 @@
 .Rproj.user
 DiagrammeR.Rproj
 
-# Input files
-*.mmd
-*.gv
-
 # Output files
 *.txt
 *.tif
