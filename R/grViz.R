@@ -1,25 +1,25 @@
 #' R + viz.js
-#' 
+#'
 #' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js}
 #' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
 #' @param diagram \href{http://graphviz.org}{graphviz} spec
 #' for a diagram as either text, filename string, or file connection
 #' @param engine string for the Graphviz layout engine; can be
-#' "dot" (default), "neato", "circo", or "twopi". For more information 
+#' "dot" (default), "neato", "circo", or "twopi". For more information
 #' see \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.
 #' @param options parameters supplied to the htmlwidgets framework.
 #' @param width an optional parameter for specifying the width of the resulting graphic
 #' in pixels.
 #' @param height an optional parameter for specifying the height of the resulting graphic
 #' in pixels.
-#' 
-#' @examples 
+#'
+#' @examples
 #' \dontrun{
-#' # a very simple example
-#' grViz( "digraph {A;}")
-#' 
-#' # slightly more involved
+#' # A very simple example
+#' grViz("digraph {A;}")
+#'
+#' # A slightly more involved example
 #' #  using example from http://www.graphviz.org/pdf/dotguide.pdf
 #' #    "Drawing graphs with dot"
 #' #    Emden R. Gansner and Eleftherios Koutsofios and Stephen North
@@ -27,22 +27,22 @@
 #' grViz('
 #' digraph G {
 #'       size = "4,4";
-#'       main [shape=box]; /* this is a comment */
-#'       main -> parse [weight=8];
+#'       main [shape = box]; /* this is a comment */
+#'       main -> parse [weight = 8];
 #'       parse -> execute;
-#'       main -> init [style=dotted];
+#'       main -> init [style = dotted];
 #'       main -> cleanup;
 #'       execute -> { make_string; printf}
 #'       init -> make_string;
-#'       edge [color=red]; // so is this
+#'       edge [color = red]; // so is this
 #'       main -> printf;
-#'       node [shape=box,style=filled,color=".7 .3 1.0"];
+#'       node [shape = box, style = filled, color = ".7 .3 1.0"];
 #'       execute -> compare;
 #' }
 #' ')
-#' 
+#'
 #' }
-#' 
+#'
 #' @return An object of class \code{htmlwidget} that will
 #' intelligently print itself into HTML in a variety of contexts
 #' including the R console, within R Markdown documents,
@@ -52,22 +52,26 @@
 #' 
 grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, height = NULL) {
 
-  # check for a connection or file
-  if (inherits(diagram, "connection") || file.exists(diagram)) {
+  # Check for a connection or file
+  if (inherits(diagram, "connection") || file.exists(diagram)){
     diagram <- readLines(diagram, warn = FALSE)
     diagram <- paste0(diagram, collapse = "\n")
   } else {
-    # check for vector with length > 1 and concatenate
-    if (length(diagram) > 1 ){
-      diagram = paste0( diagram, collapse = "\n" )
+    # Check for vector with length > 1 and concatenate
+    if (length(diagram) > 1){
+      diagram <- paste0(diagram, collapse = "\n")
     }
   }
-  
-  # single quotes within a diagram spec are problematic
-  #  try to replace with \"
-  diagram = gsub(x=diagram,"'","\"")
-  
-  # forward options using x
+
+  if (allow_subst == TRUE){
+    diagram <- replace_in_spec(diagram)
+  }
+
+  # Single quotes within a diagram spec are problematic
+  # so try to replace with \"
+  diagram <- gsub(x = diagram, "'", "\"")
+
+  # Forward options using x
   x <- list(
     diagram = diagram
     , config = list(
@@ -75,18 +79,17 @@ grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, he
       , options = options
     )
   )
-   
-  # only use the viewer for newer versions of rstudio
-  viewer.suppress = !rstudioapi::isAvailable("0.99.120")
-  
-  # create widget
+
+  # Only use the viewer for newer versions of rstudio
+  viewer.suppress <- !rstudioapi::isAvailable("0.99.120")
+
+  # Create widget
   htmlwidgets::createWidget(
     name = "grViz",
     x = x,
     width = width,
     height = height,
     package = "DiagrammeR",
-    # since grViz does not work in RStudio viewer
     htmlwidgets::sizingPolicy(viewer.suppress = viewer.suppress)
   )
 }
@@ -96,13 +99,13 @@ grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, he
 #' @param outputId output variable to read from
 #' @param width a valid CSS unit for the width or a number, which will be coerced to a string and have "px" appended.
 #' @param height a valid CSS unit for the height or a number, which will be coerced to a string and have "px" appended.
-#' 
+#'
 #' @examples
 #' \dontrun{
-#' 
+#'
 #' library(shiny)
 #' library(shinyAce)
-#' 
+#'
 #' ui = shinyUI(fluidPage(fluidRow(
 #'   column(
 #'     width=4
@@ -113,20 +116,20 @@ grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, he
 #'     , grVizOutput('diagram' )
 #'   )
 #' )))
-#' 
+#'
 #' server = function(input, output){
 #'   output$diagram <- renderGrViz({
 #'     grViz(
 #'       input$ace
 #'     )
 #'   })
-#' 
+#'
 #' }
 #'
 #' shinyApp(ui = ui, server = server)
-#' 
+#'
 #' }
-#' 
+#'
 #' @export
 grVizOutput <- function(outputId, width = '100%', height = '400px'){
   shinyWidgetOutput(outputId, 'grViz', width, height, package = 'DiagrammeR')
@@ -136,9 +139,9 @@ grVizOutput <- function(outputId, width = '100%', height = '400px'){
 #' @param expr an expression that generates a DiagrammeR graph
 #' @param env the environment in which to evaluate expr.
 #' @param quoted is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.
-#' 
+#'
 #' @seealso \code{\link{grVizOutput}} for an example in Shiny
-#' 
+#'
 #' @export
 renderGrViz <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) expr <- substitute(expr)
