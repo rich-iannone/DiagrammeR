@@ -49,8 +49,9 @@
 #' and within Shiny output bindings.
 #' @importFrom rstudioapi isAvailable
 #' @export
-#' 
-grViz <- function(diagram = "", engine = "dot", options = NULL, width = NULL, height = NULL) {
+#'
+grViz <- function(diagram = "", engine = "dot", allow_subst = TRUE,
+                  options = NULL, width = NULL, height = NULL){
 
   # Check for a connection or file
   if (inherits(diagram, "connection") || file.exists(diagram)){
