@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="DiagrammeR, an R package that allows you to create flowcharts, diagrams, and graphs with Markdown-like text.">
+        <meta name="keywords" content="R, JavaScript, graphviz, mermaid">
+        <meta name="author" content="Richard Iannone and DiagrammeR contributors">
+        
+        <title>
+        DiagrammeR - Documentation  
+        </title>
+        
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/docs.min.css" rel="stylesheet">
+        
+        <script src="js/ie-emulation-modes-warning.js"></script>
+        
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="icon" href="/favicon.ico">
+    </head>
+
+<body>
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">DiagrammeR</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                      <a href="docs.html">Getting started</a>
+                    </li>
+                    <li class="active">
+                      <a href="graphviz.html">Graphviz</a>
+                    </li>
+<!--                <li>
+                      <a href="mermaid.html">Mermaid</a>
+                    </li> -->
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>DiagrammeR Docs</h1>
+        <p>Get an overview of DiagrammeR, learn the syntax, check out some examples.</p>
+      </div>
+    </div>
+
+    <div class="container bs-docs-container">
+        <div class="row">
+            <div class="col-md-9" role="main">
+                <div class="bs-docs-section">
+                    <h1 id="graphviz" class="page-header">Graphviz</h1>
+                    <p class="lead">It's possible to make diagrams using the <strong>Graphviz</strong> support included in the <strong>DiagrammeR</strong> package. The processing function is called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph in the <strong>DOT</strong> language. The text can either exist in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
+                    <h2 id="defining-a-graphviz-graph">Defining a Graphviz Graph</h2>
+                    <p>The Graphviz graph specification must begin with a directive stating whether a directed graph (digraph) or an undirected graph (graph) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph ID follows this and paired curly braces denotes the body of the statement list (stmt_list).</p>
+                    <p>Optionally, A graph may also be described as strict. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.</p>
+                    <p>Here is the basic structure:</p>
+                    <div><pre><code class="prettyprint">[strict] (graph | digraph) [ID] '{' stmt_list '}'</code></pre></div>
+                </div>
+                    <h2 id="statements">Statements</h2>
+                    <p>The graph statement (graph_stmt), the node statement (node_stmt), and the edge statement (edge_stmt) are the three most commonly used statements in the Graphviz DOT language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator -&gt while an undirected graph must use the -- operator.</p>
+                    <p>Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list items can optionally have an attribute list (attr_list) which modify the attributes of either the node or edge.</p>
+                    <p>Comments may be placed within the statement list. These can be marked using a <code>//</code> or a <code>/* */</code> structure. Comment lines are denoted by a <code>#</code> character. Multiple statements within a statement list can be separated by linebreaks or ; characters between multiple statements</p>
+                    <p>Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:</p>
+                    <div>
+                        <pre><code class="prettyprint">boxes_and_circles &lt- "
+digraph boxes_and_circles {
+
+  # several 'node' statements
+  node [shape = box]
+  A; B; C; D; E; F
+
+  node [shape = circle,
+        fixedsize = true,
+        width = 0.9] // sets as circles
+    1; 2; 3; 4; 5; 6; 7; 8
+
+  # several 'edge' statements
+    A-&gt1; B-&gt2; B-&gt3; B-&gt4; C-&gtA
+    1-&gtD; E-&gtA; 2-&gt4; 1-&gt5; 1-&gtF
+    E-&gt6; 4-&gt6; 5-&gt7; 6-&gt7; 3-&gt8
+
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+}
+"
+
+grViz(boxes_and_circles)</code></pre>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <img src="img/Example_7a.png" class="img-responsive center-block">
+                      </div>
+                    </div>
+                <div class="bs-docs-section">
+                    <h1 id="attributes" class="page-header">Attributes</h1>
+                    <p class="lead">Graphviz attributes allow you to style your Graphviz graph. Combinations of attributes for nodes, edges, clusters, and for the entire graph provide for precise layouts.</p>
+                    <h2 id="node-attributes">Node Attributes</h2>
+                    <p>Here are the principal node attributes:</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Node Attribute</th>
+                                    <th>Description</th>
+                                    <th>Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>color</code></td>
+                                    <td>the node shape color</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>colorscheme</code></td>
+                                    <td>the scheme for interpreting color names</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>distortion</code></td>
+                                    <td>node distortion for any <code>shape = polygon</code>
+                                </td>
+                                    <td><code>0.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fillcolor</code></td>
+                                    <td>node fill color</td>
+                                    <td><code>lightgrey/black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fixedsize</code></td>
+                                    <td>label text has no affect on node size</td>
+                                    <td><code>false</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontcolor</code></td>
+                                    <td>the font color</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontname</code></td>
+                                    <td>the font family</td>
+                                    <td><code>Times-Roman</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontsize</code></td>
+                                    <td>the point size of the label</td>
+                                    <td><code>14</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>group</code></td>
+                                    <td>the name of the node's horizontal alignment group</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>height</code></td>
+                                    <td>the minimum height in inches</td>
+                                    <td><code>0.5</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>image</code></td>
+                                    <td>the image file name</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelloc</code></td>
+                                    <td>the node label vertical alignment</td>
+                                    <td><code>c</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>margin</code></td>
+                                    <td>the space around a label</td>
+                                    <td><code>0.11, 0.55</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>orientation</code></td>
+                                    <td>the node rotation angle</td>
+                                    <td><code>0.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>penwidth</code></td>
+                                    <td>the width of the pen (in point size) for drawing boundaries</td>
+                                    <td><code>1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>peripheries</code></td>
+                                    <td>the number of node boundaries</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>shape</code></td>
+                                    <td>the shape of the node</td>
+                                    <td><code>ellipse</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>sides</code></td>
+                                    <td>the number of sides for <code>shape = polygon</code>
+                                </td>
+                                    <td><code>4</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>skew</code></td>
+                                    <td>the skewing of the node for <code>shape = polygon</code>
+                                </td>
+                                    <td><code>0.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>style</code></td>
+                                    <td>graphics options for the node</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>tooltip</code></td>
+                                    <td>the tooltip annotation for the node</td>
+                                    <td>[<em>node label</em>]</td>
+                                </tr>
+                                <tr>
+                                    <td><code>width</code></td>
+                                    <td>the minimum width in inches</td>
+                                    <td><code>0.75</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h2 id="edge-attributes">Edge Attributes</h2>
+                    <p>Here are the principal edge attributes:</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Edge Attribute</th>
+                                    <th>Description</th>
+                                    <th>Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>arrowhead</code></td>
+                                    <td>style of arrowhead at head end</td>
+                                    <td>normal</td>
+                                </tr>
+                                <tr>
+                                    <td><code>arrowsize</code></td>
+                                    <td>scaling factor for arrowheads</td>
+                                    <td><code>1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>arrowtail</code></td>
+                                    <td>style of arrowhead at tail end</td>
+                                    <td>normal</td>
+                                </tr>
+                                <tr>
+                                    <td><code>color</code></td>
+                                    <td>edge stroke color</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>colorscheme</code></td>
+                                    <td>the scheme for interpreting color names</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>constraint</code></td>
+                                    <td>whether edge should affect node ranking</td>
+                                    <td>true</td>
+                                </tr>
+                                <tr>
+                                    <td><code>decorate</code></td>
+                                    <td>setting this draws line between labels with their edges</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>dir</code></td>
+                                    <td>direction; either <code>forward</code>, <code>back</code>, <code>both</code>, or <code>none</code></td>
+                                    <td><code>forward</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>edgeURL</code></td>
+                                    <td>URL attached to non-label part of edge</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>edgehref</code></td>
+                                    <td>same as <code>edgeURL</code> attribute</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>edgetarget</code></td>
+                                    <td>if an URL is set, this determines the browser window for URL</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>edgetooltip</code></td>
+                                    <td>a tooltip annotation for the non-label part of edge</td>
+                                    <td>label</td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontcolor</code></td>
+                                    <td>the font color</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontname</code></td>
+                                    <td>the font family</td>
+                                    <td><code>Times-Roman</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontsize</code></td>
+                                    <td>the point size of the label</td>
+                                    <td><code>14</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>headclip</code></td>
+                                    <td>if false, edge is not clipped to head node boundary</td>
+                                    <td>true</td>
+                                </tr>
+                                <tr>
+                                    <td><code>headhref</code></td>
+                                    <td>same as <code>headURL</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>headlabel</code></td>
+                                    <td>label placed near head of edge</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>headport</code></td>
+                                    <td>can be either: <code>n</code>, <code>ne</code>, <code>e</code>, <code>se</code>, <code>s</code>, <code>sw</code>, <code>w</code>, <code>nw</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>headtarget</code></td>
+                                    <td>if <code>headURL</code> is set, determines the browser window for URL</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>headtooltip</code></td>
+                                    <td>a tooltip annotation near head of edge</td>
+                                    <td>label</td>
+                                </tr>
+                                <tr>
+                                    <td><code>headURL</code></td>
+                                    <td>URL attached to head label</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>href</code></td>
+                                    <td>alias for URL</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>id</code></td>
+                                    <td>any string (user-defined output object tags)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>label</code></td>
+                                    <td>edge label</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelangle</code></td>
+                                    <td>angle in degrees which head or tail label is rotated off edge</td>
+                                    <td><code>-25.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labeldistance</code></td>
+                                    <td>scaling factor for distance of head or tail label from node</td>
+                                    <td><code>1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelfloat</code></td>
+                                    <td>lessen constraints on edge label placement</td>
+                                    <td>false</td>
+                                </tr>
+                                    <tr>
+                                    <td><code>labelfontcolor</code></td>
+                                    <td>typeface color for head and tail labels</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelfontname</code></td>
+                                    <td>font family for head and tail labels</td>
+                                    <td><code>Times-Roman</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelfontsize</code></td>
+                                    <td>point size for head and tail labels</td>
+                                    <td><code>14</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelhref</code></td>
+                                    <td>same as <code>labelURL</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelURL</code></td>
+                                    <td>URL for label, overrides <code>edgeURL</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labeltarget</code></td>
+                                    <td>if <code>URL</code> or <code>labelURL</code> set, determines browser window for URL</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labeltooltip</code></td>
+                                    <td>tooltip annotation near label</td>
+                                    <td>label</td>
+                                </tr>
+                                <tr>
+                                    <td><code>layer</code></td>
+                                    <td>
+                                    <code>all</code>, <em>id</em> or <em>id</em>:<em>id</em>, or a comma-separated list</td>
+                                    <td>overlay range</td>
+                                </tr>
+                                <tr>
+                                    <td><code>lhead</code></td>
+                                    <td>name of cluster to use as head of edge</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ltail</code></td>
+                                    <td>name of cluster to use as tail of edge</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>minlen</code></td>
+                                    <td>minimum rank distance between head and tail</td>
+                                    <td><code>1</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>penwidth</code></td>
+                                    <td>width of pen for drawing edge stroke, in points</td>
+                                    <td><code>1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>samehead</code></td>
+                                    <td>tag for head node; edge heads with the same tag are merged onto the same port</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>sametail</code></td>
+                                    <td>tag for tail node; edge tails with the same tag are merged onto the same port</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>style</code></td>
+                                    <td>graphics options</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>tailclip</code></td>
+                                    <td>if false, edge is not clipped to tail node boundary</td>
+                                    <td>true</td>
+                                </tr>
+                                <tr>
+                                    <td><code>tailhref</code></td>
+                                    <td>same as <code>tailURL</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>taillabel</code></td>
+                                    <td>label placed near tail of edge</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>tailport</code></td>
+                                    <td>can be either: <code>n</code>, <code>ne</code>, <code>e</code>, <code>se</code>, <code>s</code>, <code>sw</code>, <code>w</code>, <code>nw</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>tailtarget</code></td>
+                                    <td>if <code>tailURL</code> is set, determines browser window for URL</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>tailtooltip</code></td>
+                                    <td>tooltip annotation near tail of edge</td>
+                                    <td>label</td>
+                                </tr>
+                                <tr>
+                                    <td><code>tailURL</code></td>
+                                    <td>URL attached to tail label</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>target</code></td>
+                                    <td>if <code>URL</code> is set, determines browser window for URL</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>tooltip</code></td>
+                                    <td>tooltip annotation</td>
+                                    <td>label</td>
+                                </tr>
+                                <tr>
+                                    <td><code>weight</code></td>
+                                    <td>integer cost of stretching an edge</td>
+                                    <td><code>1</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <h2 id="graph-attributes">Graph Attributes</h2>
+                <p>Here are the principal graph attributes:</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Graph Attribute</th>
+                                    <th>Description</th>
+                                    <th>Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>aspect</code></td>
+                                    <td>controls aspect ratio adjustment</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>bgcolor</code></td>
+                                    <td>background color for drawing and initial fill color</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>center</code></td>
+                                    <td>center drawing</td>
+                                    <td>false</td>
+                                </tr>
+                                <tr>
+                                    <td><code>clusterrank</code></td>
+                                    <td><code>local</code> but optionally <code>global</code> or <code>none</code></td>
+                                    <td><code>local</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>color</code></td>
+                                    <td>the color for clusters, outline color, and fill color</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>colorscheme</code></td>
+                                    <td>the scheme for interpreting color names</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>compound</code></td>
+                                    <td>allow edges between clusters</td>
+                                    <td>false</td>
+                                </tr>
+                                <tr>
+                                    <td><code>concentrate</code></td>
+                                    <td>enables edge concentrators</td>
+                                    <td>false</td>
+                                </tr>
+                                <tr>
+                                    <td><code>dpi</code></td>
+                                    <td>dpi for image output</td>
+                                    <td>96</td>
+                                </tr>
+                                <tr>
+                                    <td><code>fillcolor</code></td>
+                                    <td>cluster fill color</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontcolor</code></td>
+                                    <td>typeface color</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontname</code></td>
+                                    <td>font family</td>
+                                    <td><code>Times-Roman</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontpath</code></td>
+                                    <td>list of directories to search for paths</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>fontsize</code></td>
+                                    <td>point size of label</td>
+                                    <td><code>14</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>id</code></td>
+                                    <td>any string (user-defined output object tags)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>label</code></td>
+                                    <td>any string</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>labeljust</code></td>
+                                    <td>label justification; <code>l</code> or <code>r</code> for left or right</td>
+                                    <td>centered</td>
+                                </tr>
+                                <tr>
+                                    <td><code>labelloc</code></td>
+                                    <td>label location; <code>t</code> or <code>b</code> for top or bottom</td>
+                                    <td>top</td>
+                                </tr>
+                                <tr>
+                                    <td><code>landscape</code></td>
+                                    <td>graph orientation; <code>true</code> for landscape</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>layers</code></td>
+                                    <td><em>id</em>:<em>id</em>:<em>id</em>...</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>layersep</code></td>
+                                    <td>specifies separator character to split <code>layers</code></td>
+                                    <td><code>:</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>margin</code></td>
+                                    <td>margin (in inches) included in <code>page</code></td>
+                                    <td><code>0.5</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>mindist</code></td>
+                                    <td>minimum separation (in inches) between all nodes</td>
+                                    <td><code>1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>nodesep</code></td>
+                                    <td>separation (in inches) between nodes</td>
+                                    <td><code>0.25</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>nojustify</code></td>
+                                    <td>justify to label if set as true</td>
+                                    <td>false</td>
+                                </tr>
+                                <tr>
+                                    <td><code>ordering</code></td>
+                                    <td>if <code>out</code> edge order is preserved</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>orientation</code></td>
+                                    <td>if <code>rotate</code> is not used and the value is <code>landscape</code>, then landscape</td>
+                                    <td><code>portrait</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>outputorder</code></td>
+                                    <td>or <code>nodesfirst</code>, <code>edgesfirst</code></td>
+                                    <td>breadthfirst</td>
+                                </tr>
+                                <tr>
+                                    <td><code>page</code></td>
+                                    <td>unit of pagination (e.g., "<code>8.5,11</code>")</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>pagedir</code></td>
+                                    <td>traversal order of pages</td>
+                                    <td><code>BL</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>pencolor</code></td>
+                                    <td>color for drawing cluster boundaries</td>
+                                    <td><code>black</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>penwidth</code></td>
+                                    <td>width of pen, in points, for drawing boundaries</td>
+                                    <td><code>1.0</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>peripheries</code></td>
+                                    <td>number of cluster boundaries</td>
+                                    <td><code>1</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>rank</code></td>
+                                    <td>choices are: <code>same</code>, <code>min</code>, <code>max</code>, <code>source</code> or <code>sink</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>rankdir</code></td>
+                                    <td>choices are: <code>LR</code> (left to right) or <code>TB</code> (top to bottom)</td>
+                                    <td><code>TB</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ranksep</code></td>
+                                    <td>separation between ranks, in inches</td>
+                                    <td><code>0.75</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>ratio</code></td>
+                                    <td>approximate aspect ratio desired: <code>fill</code> or <code>auto</code></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>rotate</code></td>
+                                    <td>if set to <code>90</code>, set orientation to landscape</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>samplepoints</code></td>
+                                    <td>number of points used to represent ellipses and circles on output</td>
+                                    <td><code>8</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>searchsize</code></td>
+                                    <td>maximum edges with negative cut values to check when looking for a minimum one during network simplex</td>
+                                    <td><code>30</code></td>
+                                </tr>
+                                <tr>
+                                    <td><code>size</code></td>
+                                    <td>maximum drawing size, in inches</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>splines</code></td>
+                                    <td>draw edges as splines, polylines, lines</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>style</code></td>
+                                    <td>graphics options for clusters (e.g., <code>filled</code>)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>stylesheet</code></td>
+                                    <td>pathname or URL to XML style sheet for SVG</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>target</code></td>
+                                    <td>if <code>URL</code> is set, determines browser window for URL</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>tooltip</code></td>
+                                    <td>tooltip annotation for cluster</td>
+                                    <td>label</td>
+                                </tr>
+                                <tr>
+                                    <td><code>truecolor</code></td>
+                                    <td>if set, force 24-bit or indexed color in image output</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>URL</code></td>
+                                    <td>URL associated with graph (format-dependent)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><code>viewport</code></td>
+                                    <td>clipping window on output</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="bs-docs-section">
+                    <h1 id="substitution" class="page-header">Substitution</h1>
+                    <p class="lead">Inspired by Razor and the footnote style in Markdown, Graphviz substitution allows for mixing in R expressions into a Graphviz graph specification without sacrificing readability.</p>
+                    <h2 id="syntax">Syntax</h2>
+                    <p>In the simple example of specifying a single node, the following substitution syntax would be used:</p>
+                        <div>
+                            <pre><code>digraph {
+@@1
+}
+
+[1]: 'a'</code></pre>
+                        </div>
+                    <p>Importantly, the footnote expressions should reside below the closing curly brace of the graph or digraph expression. It should always take the form of:</p>
+                        <div>
+                            <pre><code>"[" + [footnote number] + "]:"</code></pre>
+                        </div>
+                    <p>In the above example, the [1]: footnote expression evaluates as 'a', and, that is what's substituted at the @@1 location (where, in turn, it will be taken as the node ID). The substitution construction is:</p>
+                        <div>
+                            <pre><code>"@@" + [footnote number]</code></pre>
+                        </div>
+                    <p>Substitutions can also be used to insert values from vector indices into the graph specification. Simply use this format:</p>
+                        <div>
+                            <pre><code>"@@" + [footnote number] + "-" + [index number]</code></pre>
+                        </div>
+                    <p>To take advantage of substitution when rendering a graph, simply use the <code>grViz</code> function:</p>
+                        <div>
+                            <pre><code class="prettyprint">grViz("[...graph spec with substitutions...]")</code></pre>
+                        </div>
+                    <p>The function will autodetect Graphviz graph specifications that contain <code>@@</code>s within the graph specification:</p>
+                    <h2 id="examples">Examples</h2>
+                    <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from <strong>R</strong>'s <code>LETTERS</code> constant into a Graphviz graph specification.</p>
+                    <div>
+                        <pre><code>digraph {
+alpha
+@@1-1; @@1-2; @@1-3; @@1-4; @@1-5
+@@1-6; @@1-7; @@1-8; @@1-9; @@1-10
+}
+
+[1]: LETTERS</code></pre>
+                    </div>
+                    <p>After evaluation of the footnote expressions and substitution, the graph specification becomes this:</p>
+                    <div>
+                        <pre><code>digraph {
+alpha
+A; B; C; D; E
+F; G; H; I; J
+}</code></pre>
+                    </div>
+                    <p>You can mix subtitutions of single-values objects and those specifying indices of <strong>R</strong> vector objects. As an example:</p>
+                    <div>
+                        <pre><code class="prettyprint">grViz("
+digraph a_nice_graph {
+
+# node definitions with substituted label text
+node [fontname = Helvetica]
+a [label = '@@1']
+b [label = '@@2-1']
+c [label = '@@2-2']
+d [label = '@@2-3']
+e [label = '@@2-4']
+f [label = '@@2-5']
+g [label = '@@2-6']
+h [label = '@@2-7']
+i [label = '@@2-8']
+j [label = '@@2-9']
+
+# edge definitions with the node IDs
+a -> {b c d e f g h i j}
+}
+
+[1]: 'top'
+[2]: 10:20
+")</code></pre>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <img src="img/Graphviz_substitution.png" class="img-responsive center-block">
+                      </div>
+                    </div>
+                    <p>As can be seen in the following output: (1) the node with ID <code>a</code> is given the label top (after substituting <code>@@1</code> with expression after the <code>[1]:</code> footnote expression), (2) the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices 1 to 9 (using the hypenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression).</p>
+                    <p>Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So long as a vector object results from evaluation, substitution can be performed.</p>
+                    <p>Here is a final example of a diagram created using <strong>R</strong> and <strong>RStudio</strong> information (obtained from the <code>R.Version</code> and <code>rstudio::versionInfo</code> functions):</p>
+                    <p>The output will of course vary by the system on which it was generated. Here is the output from the dev machine:</p>
+                </div>
+                <div class="bs-docs-section">
+                    <h1 id="rendering-engines" class="page-header">Rendering Engines</h1>
+                    <p class="lead">Graphviz layouts can be modified radically by rendering the graph with different Graphviz engines. Let's learn all about those engines and what they can do.</p>
+                    <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument.</p>
+                    <p>The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (less than 100 nodes) and you don't know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. </p>
+                    <p>The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node.</p>
+                    <p>The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
+                </div>
+            </div>
+        
+            <div class="col-md-3" role="complementary">
+                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+                    <ul class="nav bs-docs-sidenav">              
+                        <li>
+                            <a href="#graphviz">Graphviz</a>
+                            <ul class="nav">
+                                <li><a href="#defining-a-graphviz-graph">Defining a Graphviz Graph</a></li>
+                                <li><a href="#statements">Statements</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#attributes">Attributes</a>
+                            <ul class="nav">
+                                <li><a href="#node-attributes">Node Attributes</a></li>
+                                <li><a href="#edge-attributes">Edge Attributes</a></li>
+                                <li><a href="#graph-attributes">Graph Attributes</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#substitution">Substitution</a>
+                            <ul class="nav">
+                                <li><a href="#syntax">Syntax</a></li>
+                                <li><a href="#examples">Examples</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#rendering-engines">Rendering Engines</a>
+                        </li>              
+                    </ul>
+                    <a class="back-to-top" href="#top">Back to top</a>
+                </nav>
+            </div>
+        </div>
+
+<footer class="bs-docs-footer" role="contentinfo">
+    <div class="container">
+        <div class="bs-docs-social">
+            <ul class="bs-docs-social-buttons">
+                <li>
+                    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=watch&amp;count=true" width="90" height="20" title="Star on GitHub"></iframe>
+                </li>
+                <li>
+                    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=fork&amp;count=true" width="90" height="20" title="Fork on GitHub"></iframe>
+                </li>
+            </ul>
+            <ul class="bs-docs-social-buttons">
+                <li class="follow-btn">
+                    <a href="https://twitter.com/riannone" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @riannone</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <p>Designed and built by <a href="https://twitter.com/riannone" target="_blank">@riannone.</a></p>
+        <p>Code licensed under MIT.</p>
+        <ul class="bs-docs-footer-links text-muted">
+            <li>Currently v0.4</li>
+            <li>&middot;</li>
+            <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
+            <li>&middot;</li>
+            <li><a href="https://github.com/rich-iannone/DiagrammeR/issues">Issues</a></li>
+            <li>&middot;</li>
+            <li><a href="https://github.com/rich-iannone/DiagrammeR/releases">Releases</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/docs.min.js"></script>
+<script src="./js/ie10-viewport-bug-workaround.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+
+</body>
+</html>
+
