@@ -341,7 +341,7 @@ Footnote expressions are meant to be flexible. They can span multiple lines, and
 Here is a final example of a diagram created using R and RStudio information (obtained from the `R.Version` and `rstudio::versionInfo` functions):
 
 ```R
-grViz(replace_in_spec("
+grViz("
 digraph nicegraph {
 
   # graph, node, and edge definitions
@@ -379,7 +379,7 @@ digraph nicegraph {
 [2]: paste0('RStudio version:\\n ', rstudio::versionInfo()[[1]])
 [3]: paste0('Current program mode:\\n ', rstudio::versionInfo()[[2]])
 
-"))
+")
 ```
 
 The output will of course vary by the system on which it was generated. Here is my output:
