@@ -254,7 +254,7 @@ The graph attributes:
 
 #### Graphviz Substitution
 
-Inspired by Razor and Markdown footnotes, substitution allows for mixing in R expressions into a Graphviz graph specification without sacrificing readability. In the simple example of specifying a single node, the following substitution syntax would be used:
+Inspired by Razor and the footnote URLs from Markdown, substitution allows for mixing in R expressions into a Graphviz graph specification without sacrificing readability. In the simple example of specifying a single node, the following substitution syntax would be used:
 
 ```
 digraph {
