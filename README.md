@@ -298,16 +298,16 @@ F; G; H; I; J
 }
 ```
 
-To take advantage of substitution and render the graph, nest the `grViz` and `replace_in_spec` functions with the graph specification:
+To take advantage of substitution and render the graph, simply use the `grViz` function with the graph specification:
 
 ```R
-grViz(replace_in_spec("...graph spec with substitutions..."))
+grViz("...graph spec with substitutions...")
 ```
 
 A mixture of both types of subtitutions can be used. As an example:
 
 ```R
-grViz(replace_in_spec("
+grViz("
 digraph a_nice_graph {
 
 # node definitions with substituted label text
@@ -329,7 +329,7 @@ a -> {b c d e f g h i j}
 
 [1]: 'top'
 [2]: 10:20
-"))
+")
 ```
 
 As can be seen in the following output: (1) the node with ID `a` is given the label `top` (after substituting `@@1` with expression after the `[1]:` footnote expression), (2) the nodes with ID values from `b`-`j` are respectively provided values from indices 1 to 9 (using the hypenated form of `@@`) of the evaluated expression `10:20` (in the `[2]:` footnote expression).
