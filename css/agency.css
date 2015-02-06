@@ -237,7 +237,7 @@ fieldset[disabled] .btn-xl.active {
 @media(min-width:768px) {
     .navbar-default {
         padding: 25px 0;
-        border: 0;
+        border: 1;
         background-color: transparent;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
@@ -325,11 +325,15 @@ header .intro-text .intro-heading {
 }
 
 section {
-    padding: 100px 0;
+    padding: 120px 0;
+}
+
+section#video {
+    padding: 40px 0;
 }
 
 section h2.section-heading {
-    margin-top: 0;
+    margin-top: 120px;
     margin-bottom: 15px;
     font-size: 40px;
 }
@@ -345,7 +349,7 @@ section h3.section-subheading {
 
 @media(min-width:768px) {
     section {
-        padding: 150px 0;
+        padding: 10px 0;
     }
 }
 
