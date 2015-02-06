@@ -71,7 +71,7 @@
                     <p class="lead">It's possible to make diagrams using the <strong>Graphviz</strong> support included in the <strong>DiagrammeR</strong> package. The processing function is called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph in the <strong>DOT</strong> language. The text can either exist in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
                     <h2 id="defining-a-graphviz-graph">Defining a Graphviz Graph</h2>
                     <p>The Graphviz graph specification must begin with a directive stating whether a directed graph (digraph) or an undirected graph (graph) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph ID follows this and paired curly braces denotes the body of the statement list (stmt_list).</p>
-                    <p>Optionally, A graph may also be described as strict. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.</p>
+                    <p>Optionally, a graph may also be described as strict. This forbids the creation of multi-edges (i.e., there can be at most one edge with a given tail node and head node in the directed case). For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.</p>
                     <p>Here is the basic structure:</p>
                     <div><pre><code class="prettyprint">[strict] (graph | digraph) [ID] '{' stmt_list '}'</code></pre></div>
                 </div>
@@ -80,6 +80,10 @@
                     <p>Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list items can optionally have an attribute list (attr_list) which modify the attributes of either the node or edge.</p>
                     <p>Comments may be placed within the statement list. These can be marked using a <code>//</code> or a <code>/* */</code> structure. Comment lines are denoted by a <code>#</code> character. Multiple statements within a statement list can be separated by linebreaks or ; characters between multiple statements</p>
                     <p>Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:</p>
+                <div class="bs-example">
+                    <img src="img/Example_7a.png" class="img-responsive center-block">
+                </div>
+                <div class="highlight">
                     <div>
                         <pre><code class="prettyprint">boxes_and_circles &lt- "
 digraph boxes_and_circles {
@@ -105,11 +109,7 @@ digraph boxes_and_circles {
 
 grViz(boxes_and_circles)</code></pre>
                     </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <img src="img/Example_7a.png" class="img-responsive center-block">
-                      </div>
-                    </div>
+                </div>
                 <div class="bs-docs-section">
                     <h1 id="attributes" class="page-header">Attributes</h1>
                     <p class="lead">Graphviz attributes allow you to style your Graphviz graph. Combinations of attributes for nodes, edges, clusters, and for the entire graph provide for precise layouts.</p>
@@ -786,8 +786,26 @@ grViz(boxes_and_circles)</code></pre>
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="substitution" class="page-header">Substitution</h1>
-                    <p class="lead">Inspired by Razor and the footnote style in Markdown, Graphviz substitution allows for mixing in R expressions into a Graphviz graph specification without sacrificing readability.</p>
-                    <h2 id="syntax">Syntax</h2>
+                    <p class="lead">Inspired by <strong>Razor</strong> and the footnote style in <strong>Markdown</strong>, <strong>Graphviz</strong> substitution allows for mixing in R expressions into a <strong>Graphviz</strong> graph specification without sacrificing readability.</p>
+                    <h2 id="how-it-works">How It Works</h2>
+                    <p>To take advantage of substitution when rendering a graph, simply use the <code>grViz</code> function with <strong>Graphviz</strong> <strong>DOT</strong> code:</p>
+                        <div>
+                            <pre><code class="prettyprint">grViz("[...graph spec with substitutions using @@ notation and footnote R expressions...]")</code></pre>
+                        </div>
+                    <p>The notation <code>@@</code> within <strong>GraphViz</strong> <strong>DOT</strong> will indicate where the substitution is to take place and corresponding <strong>R</strong> expressions will provide values to be substituted. The <code>grViz</code> function will autodetect whether the working <strong>Graphviz</strong> graph specification contains <code>@@</code>s between the curly braces of the <code>[graph|digraph] {...}</code> DOT construction.</p>
+                        <div>
+                            <pre><code class="prettyprint">grViz("
+[...graph spec with substitutions using @@ notation and footnote R expressions...]
+")</code></pre>
+                        </div>
+                    <p> If you specify a subsitution with <code>@@</code>, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an <strong>R</strong> vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the <code>@@</code> notation is immediately followed by a number and that number should correspond to the number of the footnoted <strong>R</strong> expression.
+
+                    <p>Importantly, the footnote expressions should reside below the closing curly brace of the graph or digraph expression. It should always take the form of:</p>
+                        <div>
+                            <pre><code>"[" + [footnote number] + "]:"</code></pre>
+                        </div>
+
+
                     <p>In the simple example of specifying a single node, the following substitution syntax would be used:</p>
                         <div>
                             <pre><code>digraph {
@@ -795,10 +813,6 @@ grViz(boxes_and_circles)</code></pre>
 }
 
 [1]: 'a'</code></pre>
-                        </div>
-                    <p>Importantly, the footnote expressions should reside below the closing curly brace of the graph or digraph expression. It should always take the form of:</p>
-                        <div>
-                            <pre><code>"[" + [footnote number] + "]:"</code></pre>
                         </div>
                     <p>In the above example, the [1]: footnote expression evaluates as 'a', and, that is what's substituted at the @@1 location (where, in turn, it will be taken as the node ID). The substitution construction is:</p>
                         <div>
@@ -808,11 +822,7 @@ grViz(boxes_and_circles)</code></pre>
                         <div>
                             <pre><code>"@@" + [footnote number] + "-" + [index number]</code></pre>
                         </div>
-                    <p>To take advantage of substitution when rendering a graph, simply use the <code>grViz</code> function:</p>
-                        <div>
-                            <pre><code class="prettyprint">grViz("[...graph spec with substitutions...]")</code></pre>
-                        </div>
-                    <p>The function will autodetect Graphviz graph specifications that contain <code>@@</code>s within the graph specification:</p>
+
                     <h2 id="examples">Examples</h2>
                     <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from <strong>R</strong>'s <code>LETTERS</code> constant into a Graphviz graph specification.</p>
                     <div>
@@ -833,8 +843,14 @@ F; G; H; I; J
 }</code></pre>
                     </div>
                     <p>You can mix subtitutions of single-values objects and those specifying indices of <strong>R</strong> vector objects. As an example:</p>
-                    <div>
-                        <pre><code class="prettyprint">grViz("
+
+
+                    <div class="bs-example">
+                        <img src="img/Graphviz_substitution.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">grViz("
 digraph a_nice_graph {
 
 # node definitions with substituted label text
@@ -857,16 +873,61 @@ a -> {b c d e f g h i j}
 [1]: 'top'
 [2]: 10:20
 ")</code></pre>
+                        </div>
                     </div>
-                    <div class="panel panel-default">
-                      <div class="panel-body">
-                        <img src="img/Graphviz_substitution.png" class="img-responsive center-block">
-                      </div>
+                    <p>As can be seen from the output:<p>
+                    <ol>
+                        <li>the node with ID <code>a</code> is given the label "top" (after substituting <code>@@1</code> with expression after the <code>[1]:</code> footnote expression)</li>
+                        <li>the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices 1 to 9 (using the hypenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression)</li>
+                    </ol>
+                    <p>Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So, as long as a vector object results from evaluation, substitution can be performed.</p>
+                    <p>Here is a final example of a diagram created using <strong>R</strong> and <strong>RStudio</strong> information (obtained from the <code>R.Version</code> and <code>rstudio::versionInfo</code> functions). The output will of course vary by the system on which it was generated. Here is the output from the dev machine:</p>
+                    <div class="bs-example">
+                        <img src="img/r_Information.png" class="img-responsive center-block">
                     </div>
-                    <p>As can be seen in the following output: (1) the node with ID <code>a</code> is given the label top (after substituting <code>@@1</code> with expression after the <code>[1]:</code> footnote expression), (2) the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices 1 to 9 (using the hypenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression).</p>
-                    <p>Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So long as a vector object results from evaluation, substitution can be performed.</p>
-                    <p>Here is a final example of a diagram created using <strong>R</strong> and <strong>RStudio</strong> information (obtained from the <code>R.Version</code> and <code>rstudio::versionInfo</code> functions):</p>
-                    <p>The output will of course vary by the system on which it was generated. Here is the output from the dev machine:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">grViz("
+digraph nicegraph {
+
+  # graph, node, and edge definitions
+  graph [compound = true, nodesep = .5, ranksep = .25,
+         color = crimson]
+
+  node [fontname = Helvetica, fontcolor = darkslategray,
+        shape = rectangle, fixedsize = true, width = 1,
+        color = darkslategray]
+
+  edge [color = grey, arrowhead = none, arrowtail = none]
+
+  # subgraph for R information
+  subgraph cluster0 {
+    node [fixedsize = true, width = 3]
+    '@@1-1' -&gt; '@@1-2' -&gt; '@@1-3' -&gt; '@@1-4'
+    '@@1-4' -&gt; '@@1-5' -&gt; '@@1-6' -&gt; '@@1-7'
+  }
+
+  # subgraph for RStudio information
+  subgraph cluster1 {
+    node [fixedsize = true, width = 3]
+    '@@2' -&gt; '@@3'
+  }
+
+  Information             [width = 1.5]
+  Information -&gt; R
+  Information -&gt; RStudio
+  R -&gt; '@@1-1'            [lhead = cluster0]
+  RStudio -&gt; '@@2'        [lhead = cluster1]
+
+}
+
+[1]: paste0(names(R.Version())[1:7], ':\\n ', R.Version()[1:7])
+[2]: paste0('RStudio version:\\n ', rstudio::versionInfo()[[1]])
+[3]: paste0('Current program mode:\\n ', rstudio::versionInfo()[[2]])
+
+")</code></pre>
+                        </div>
+                    </div>
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="rendering-engines" class="page-header">Rendering Engines</h1>
@@ -899,7 +960,7 @@ a -> {b c d e f g h i j}
                         <li>
                             <a href="#substitution">Substitution</a>
                             <ul class="nav">
-                                <li><a href="#syntax">Syntax</a></li>
+                                <li><a href="#how-it-works">How It Works</a></li>
                                 <li><a href="#examples">Examples</a></li>
                             </ul>
                         </li>
