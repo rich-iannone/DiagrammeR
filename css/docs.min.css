@@ -815,7 +815,7 @@ h1[id] {
     content: "Example"
 }
 
-.bs-example+.highlight, .bs-example+.zero-clipboard+.highlight {
+.bs-example+.highlight, .bs-example+.zero-clipboard+.highlight{
     margin: -15px -15px 15px;
     border-width: 0 0 1px;
     border-radius: 0
