@@ -70,14 +70,14 @@
                     <h1 id="graphviz" class="page-header">Graphviz</h1>
                     <p class="lead">It's possible to make diagrams using the <strong>Graphviz</strong> support included in the <strong>DiagrammeR</strong> package. The processing function is called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph in the <strong>DOT</strong> language. The text can either exist in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
                     <h2 id="defining-a-graphviz-graph">Defining a Graphviz Graph</h2>
-                    <p>The Graphviz graph specification must begin with a directive stating whether a directed graph (digraph) or an undirected graph (graph) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph ID follows this and paired curly braces denotes the body of the statement list (stmt_list).</p>
-                    <p>Optionally, a graph may also be described as strict. This forbids the creation of multi-edges (i.e., there can be at most one edge with a given tail node and head node in the directed case). For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.</p>
+                    <p>The <strong>Graphviz</strong> graph specification must begin with a directive stating whether a directed graph (<code>digraph</code>) or an undirected graph (<code>graph</code>) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph ID follows this and paired curly braces denotes the body of the statement list (<code>stmt_list</code>).</p>
+                    <p>Optionally, a graph may also be described as <code>strict</code>. This forbids the creation of multi-edges (i.e., there can be at most one edge with a given tail node and head node in the directed case). For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent <code>edge</code> statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the <code>edge</code> statement.</p>
                     <p>Here is the basic structure:</p>
                     <div><pre><code class="prettyprint">[strict] (graph | digraph) [ID] '{' stmt_list '}'</code></pre></div>
                 </div>
                     <h2 id="statements">Statements</h2>
-                    <p>The graph statement (graph_stmt), the node statement (node_stmt), and the edge statement (edge_stmt) are the three most commonly used statements in the Graphviz DOT language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator -&gt while an undirected graph must use the -- operator.</p>
-                    <p>Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list items can optionally have an attribute list (attr_list) which modify the attributes of either the node or edge.</p>
+                    <p>The graph statement (<code>graph_stmt</code>), the node statement (<code>node_stmt</code>), and the edge statement (<code>edge_stmt</code>) are the three most commonly used statements in the <strong>Graphviz</strong> <strong>DOT</strong> language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator <code>-&gt;</code> while an undirected graph must use the <code>--</code> operator.</p>
+                    <p>Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list items can optionally have an attribute list (<code>attr_list</code>) which modify the attributes of either the node or edge.</p>
                     <p>Comments may be placed within the statement list. These can be marked using a <code>//</code> or a <code>/* */</code> structure. Comment lines are denoted by a <code>#</code> character. Multiple statements within a statement list can be separated by linebreaks or ; characters between multiple statements</p>
                     <p>Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:</p>
                 <div class="bs-example">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="highlight">
                     <div>
-                        <pre><code class="prettyprint">boxes_and_circles &lt- "
+                        <pre><code class="prettyprint">boxes_and_circles &lt;- "
 digraph boxes_and_circles {
 
   # several 'node' statements
@@ -98,9 +98,9 @@ digraph boxes_and_circles {
     1; 2; 3; 4; 5; 6; 7; 8
 
   # several 'edge' statements
-    A-&gt1; B-&gt2; B-&gt3; B-&gt4; C-&gtA
-    1-&gtD; E-&gtA; 2-&gt4; 1-&gt5; 1-&gtF
-    E-&gt6; 4-&gt6; 5-&gt7; 6-&gt7; 3-&gt8
+    A-&gt1; B-&gt2; B-&gt3; B-&gt4; C-&gt;A
+    1-&gtD; E-&gtA; 2-&gt4; 1-&gt5; 1-&gt;F
+    E-&gt6; 4-&gt6; 5-&gt7; 6-&gt7; 3-&gt;8
 
   # a 'graph' statement
   graph [overlap = true, fontsize = 10]
@@ -112,7 +112,7 @@ grViz(boxes_and_circles)</code></pre>
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="attributes" class="page-header">Attributes</h1>
-                    <p class="lead">Graphviz attributes allow you to style your Graphviz graph. Combinations of attributes for nodes, edges, clusters, and for the entire graph provide for precise layouts.</p>
+                    <p class="lead"><strong>Graphviz</strong> attributes allow you to style your <strong>Graphviz</strong> graph. Combinations of attributes for nodes, edges, clusters, and for the entire graph provide for highly-customized layouts.</p>
                     <h2 id="node-attributes">Node Attributes</h2>
                     <p>Here are the principal node attributes:</p>
                     <div class="table-responsive">
@@ -799,13 +799,14 @@ grViz(boxes_and_circles)</code></pre>
 ")</code></pre>
                         </div>
                     <p> If you specify a subsitution with <code>@@</code>, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an <strong>R</strong> vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the <code>@@</code> notation is immediately followed by a number and that number should correspond to the number of the footnoted <strong>R</strong> expression.
-
+                    <p>The substitution construction is:</p>
+                        <div>
+                            <pre><code>"@@" + [footnote number]</code></pre>
+                        </div>
                     <p>Importantly, the footnote expressions should reside below the closing curly brace of the graph or digraph expression. It should always take the form of:</p>
                         <div>
                             <pre><code>"[" + [footnote number] + "]:"</code></pre>
                         </div>
-
-
                     <p>In the simple example of specifying a single node, the following substitution syntax would be used:</p>
                         <div>
                             <pre><code>digraph {
@@ -814,18 +815,14 @@ grViz(boxes_and_circles)</code></pre>
 
 [1]: 'a'</code></pre>
                         </div>
-                    <p>In the above example, the [1]: footnote expression evaluates as 'a', and, that is what's substituted at the @@1 location (where, in turn, it will be taken as the node ID). The substitution construction is:</p>
-                        <div>
-                            <pre><code>"@@" + [footnote number]</code></pre>
-                        </div>
+                    <p>In the above example, the <code>[1]:</code> footnote expression evaluates as <code>'a'</code>, and, that is what's substituted in place of the <code>@@1</code> (where, in turn, it will be taken as the node ID). 
+
                     <p>Substitutions can also be used to insert values from vector indices into the graph specification. Simply use this format:</p>
                         <div>
                             <pre><code>"@@" + [footnote number] + "-" + [index number]</code></pre>
                         </div>
 
-                    <h2 id="examples">Examples</h2>
-                    <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from <strong>R</strong>'s <code>LETTERS</code> constant into a Graphviz graph specification.</p>
-                    <div>
+                    <p>Here's an example of how specific values from vectors can be inserted into the graph:<p>
                         <pre><code>digraph {
 alpha
 @@1-1; @@1-2; @@1-3; @@1-4; @@1-5
@@ -842,6 +839,10 @@ A; B; C; D; E
 F; G; H; I; J
 }</code></pre>
                     </div>
+
+                    <h2 id="examples">Examples</h2>
+                    <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from <strong>R</strong>'s <code>LETTERS</code> constant into a Graphviz graph specification.</p>
+                    <div>
                     <p>You can mix subtitutions of single-values objects and those specifying indices of <strong>R</strong> vector objects. As an example:</p>
 
 
@@ -933,7 +934,102 @@ digraph nicegraph {
                     <h1 id="rendering-engines" class="page-header">Rendering Engines</h1>
                     <p class="lead">Graphviz layouts can be modified radically by rendering the graph with different Graphviz engines. Let's learn all about those engines and what they can do.</p>
                     <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument.</p>
+                    <div><pre><code class="prettyprint">grViz("[...graph spec...]", engine = "[dot|neato|twopi|circo]")</code></pre></div>
+                    The <strong>dot</strong> engine flows the directed graph in the direction of rank (i.e., downstream nodes of the same rank are aligned). By default, the direction is from top to bottom (where the graph attribute <code>rankdir</code> is set to <code>TB</code>). The following examples will use the same <strong>Graphviz</strong> <strong>DOT</strong> code, differing only in the choice of engine. Here is the default <strong>dot</strong> output.
+                    <div class="bs-example">
+                        <img src="img/engine-dot-TB.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">grViz("
+digraph neato {
+
+node [shape = circle,
+      style = filled,
+      color = grey,
+      label = '']
+
+node [fillcolor = red]
+a
+
+node [fillcolor = green]
+b c d
+
+node [fillcolor = orange]
+
+edge [color = grey]
+a -> {b c d}
+b -> {e f g h i j}
+c -> {k l m n o p}
+d -> {q r s t u v}
+}",
+engine = "dot")</code></pre>
+                        </div>
+                    </div>
+                    <p>Note that in the previous example, rank 1 is the red node whereas ranks 2 and 3 are colored green and yellow, respectively. Alternatively, the rank direction can be set to left to right in a <code>graph</code> statement (<code>rankdir = LR</code>).</p>
+                    <div class="bs-example">
+                        <img src="img/engine-dot-LR.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">grViz("
+digraph neato {
+
+graph [rankdir = LR]
+
+node [shape = circle,
+      style = filled,
+      color = grey,
+      label = '']
+
+node [fillcolor = red]
+a
+
+node [fillcolor = green]
+b c d
+
+node [fillcolor = orange]
+
+edge [color = grey]
+a -> {b c d}
+b -> {e f g h i j}
+c -> {k l m n o p}
+d -> {q r s t u v}
+}",
+engine = "dot")</code></pre>
+                        </div>
+                    </div>
                     <p>The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (less than 100 nodes) and you don't know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. </p>
+                    <div class="bs-example">
+                        <img src="img/engine-neato.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">grViz("
+digraph neato {
+
+node [shape = circle,
+      style = filled,
+      color = grey,
+      label = '']
+
+node [fillcolor = red]
+a
+
+node [fillcolor = green]
+b c d
+
+node [fillcolor = orange]
+
+edge [color = grey]
+a -> {b c d}
+b -> {e f g h i j}
+c -> {k l m n o p}
+d -> {q r s t u v}
+}",
+engine = "neato")</code></pre>
+                        </div>
+                    </div>
                     <p>The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node.</p>
                     <p>The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
                 </div>
