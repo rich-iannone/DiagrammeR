@@ -62,30 +62,33 @@
         <p>Get an overview of DiagrammeR, learn the syntax, check out some examples.</p>
       </div>
     </div>
-
     <div class="container bs-docs-container">
         <div class="row">
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="graphviz" class="page-header">Graphviz</h1>
-                    <p class="lead">It's possible to make diagrams using the <strong>Graphviz</strong> support included in the <strong>DiagrammeR</strong> package. The processing function is called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph in the <strong>DOT</strong> language. The text can either exist in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
+                    <p class="lead"><strong>Graphviz</strong> support is an integral part of the <strong>DiagrammeR</strong> package. <strong>Graphviz</strong> consists of a graph description language called the <strong>DOT</strong> language and it also comprises various tools that can process the <strong>DOT</strong> language. <strong>DOT</strong> is highly customizable and it allows you to control line colors, arrow shapes, node shapes, and many other layout features.</p>
+                    <h2 id="diagrammer-implementation">DiagrammeR Implementation</h2>
+                    <p><strong>DiagrammeR</strong> uses the processing function called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph specification in the <strong>DOT</strong> language. The <strong>DOT</strong> graph description can either be delivered to <code>grViz</code> in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
+                    <p>All of the code examples provided in later sections call the <code>grViz</code> function in an <strong>R</strong> script and pass in a graph description as a string. It is important to consider that strings in <strong>R</strong> cannot contain any unescaped double-quote characters. However, the grViz function allows for single-quote characters in their place. As a further convenience, when the <strong>DOT</strong> graph description is supplied as a file (e.g., 'dot-graph.gv') or as a text connection, either format for quotes will be accepted.</p>
+                    <p>In very recent builds of <strong>RStudio</strong>, the use of an external text file with the <code>.gv</code> file extension can provide the advantage of syntax coloring and previewing in the <strong>RStudio</strong> Viewer pane after saving (if 'Preview on Save' is selected), or, by pressing the 'Preview' button on the Source pane.</p>
+                    <img src="img/rstudio-syntax-coloring.png" class="img-responsive center-block">
                     <h2 id="defining-a-graphviz-graph">Defining a Graphviz Graph</h2>
                     <p>The <strong>Graphviz</strong> graph specification must begin with a directive stating whether a directed graph (<code>digraph</code>) or an undirected graph (<code>graph</code>) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph ID follows this and paired curly braces denotes the body of the statement list (<code>stmt_list</code>).</p>
                     <p>Optionally, a graph may also be described as <code>strict</code>. This forbids the creation of multi-edges (i.e., there can be at most one edge with a given tail node and head node in the directed case). For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent <code>edge</code> statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the <code>edge</code> statement.</p>
                     <p>Here is the basic structure:</p>
                     <div><pre><code class="prettyprint">[strict] (graph | digraph) [ID] '{' stmt_list '}'</code></pre></div>
-                </div>
                     <h2 id="statements">Statements</h2>
                     <p>The graph statement (<code>graph_stmt</code>), the node statement (<code>node_stmt</code>), and the edge statement (<code>edge_stmt</code>) are the three most commonly used statements in the <strong>Graphviz</strong> <strong>DOT</strong> language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator <code>-&gt;</code> while an undirected graph must use the <code>--</code> operator.</p>
                     <p>Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list items can optionally have an attribute list (<code>attr_list</code>) which modify the attributes of either the node or edge.</p>
                     <p>Comments may be placed within the statement list. These can be marked using a <code>//</code> or a <code>/* */</code> structure. Comment lines are denoted by a <code>#</code> character. Multiple statements within a statement list can be separated by linebreaks or ; characters between multiple statements</p>
                     <p>Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:</p>
-                <div class="bs-example">
-                    <img src="img/Example_7a.png" class="img-responsive center-block">
-                </div>
-                <div class="highlight">
-                    <div>
-                        <pre><code class="prettyprint">boxes_and_circles &lt;- "
+                    <div class="bs-example">
+                        <img src="img/Example_7a.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">boxes_and_circles &lt;- "
 digraph boxes_and_circles {
 
   # several 'node' statements
@@ -98,9 +101,9 @@ digraph boxes_and_circles {
     1; 2; 3; 4; 5; 6; 7; 8
 
   # several 'edge' statements
-    A-&gt1; B-&gt2; B-&gt3; B-&gt4; C-&gt;A
-    1-&gtD; E-&gtA; 2-&gt4; 1-&gt5; 1-&gt;F
-    E-&gt6; 4-&gt6; 5-&gt7; 6-&gt7; 3-&gt;8
+    A-&gt;1 B-&gt;2 B-&gt;3 B-&gt;4 C-&gt;A
+    1-&gt;D E-&gt;A 2-&gt;4 1-&gt;5 1-&gt;F
+    E-&gt;6 4-&gt;6 5-&gt;7 6-&gt;7 3-&gt;8
 
   # a 'graph' statement
   graph [overlap = true, fontsize = 10]
@@ -108,11 +111,29 @@ digraph boxes_and_circles {
 "
 
 grViz(boxes_and_circles)</code></pre>
+                        </div>
                     </div>
+                    <h2 id="subgraphs-and-clusters">Subgraphs and Clusters</h2>
+                    <p>Subgraphs play three roles in <strong>Graphviz</strong>. First, a subgraph can be used to represent graph structure, indicating that certain nodes and edges should be grouped together. This is the usual role for subgraphs and typically specifies semantic information about the graph components. It can also provide a convenient shorthand for edges. An edge statement allows a subgraph on both the left and right sides of the edge operator. When this occurs, an edge is created from every node on the left to every node on the right. For example, the specification</p>
+                    <div><pre><code>A -&gt; {B C}</code></pre></div>
+                    <p>is equivalent to</p>
+                    <div><pre><code>A -> B
+A -> C</code></pre></div>
+                    <p>In the second role, a subgraph can provide a context for setting attributes. For example, a subgraph could specify that blue is the default color for all nodes defined in it. In the context of graph drawing, a more interesting example is</p>
+                    <div><pre><code>subgraph { 
+rank = same; A; B; C;
+}</code></pre></div>
+                    <p>This anonymous subgraph specifies that the nodes <code>A</code>, <code>B</code> and <code>C</code> should all be placed on the same rank.</p>
+                    <p>The third role for subgraphs directly involves how the graph will be laid out by certain layout engines. If the name of the subgraph begins with <code>cluster</code>, <strong>Graphviz</strong> notes the subgraph as a special cluster subgraph. If supported, the layout engine will make it such that the nodes belonging to the cluster are drawn together, with the entire drawing of the cluster contained within a bounding rectangle.</p>
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="attributes" class="page-header">Attributes</h1>
                     <p class="lead"><strong>Graphviz</strong> attributes allow you to style your <strong>Graphviz</strong> graph. Combinations of attributes for nodes, edges, clusters, and for the entire graph provide for highly-customized layouts.</p>
+                    <p>All <strong>Graphviz</strong> attributes are specified by name-value pairs. Thus, to set the fillcolor of a node <code>abc</code>, one would use</p>
+                    <div><pre><code>abc [fillcolor = red]</code></pre></div>
+                    <p>Similarly, to set the arrowhead style of an edge <code>abc -> def</code>, one would use</p>
+                    <div><pre><code>abc -> def [arrowhead = diamond]</code></pre></div>
+                    <p>Quotation marks are important only for multiword attributes, such might be used in the <code>label</code> attribute.</p>
                     <h2 id="node-attributes">Node Attributes</h2>
                     <p>Here are the principal node attributes:</p>
                     <div class="table-responsive">
@@ -243,7 +264,6 @@ grViz(boxes_and_circles)</code></pre>
                     </div>
                     <h2 id="edge-attributes">Edge Attributes</h2>
                     <p>Here are the principal edge attributes:</p>
-
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -523,8 +543,8 @@ grViz(boxes_and_circles)</code></pre>
                             </tbody>
                         </table>
                     </div>
-                <h2 id="graph-attributes">Graph Attributes</h2>
-                <p>Here are the principal graph attributes:</p>
+                    <h2 id="graph-attributes">Graph Attributes</h2>
+                    <p>Here are the principal graph attributes:</p>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -933,6 +953,7 @@ digraph nicegraph {
                 <div class="bs-docs-section">
                     <h1 id="rendering-engines" class="page-header">Rendering Engines</h1>
                     <p class="lead">Graphviz layouts can be modified radically by rendering the graph with different Graphviz engines. Let's learn all about those engines and what they can do.</p>
+                    <h2 id="dot">dot</h2>
                     <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument.</p>
                     <div><pre><code class="prettyprint">grViz("[...graph spec...]", engine = "[dot|neato|twopi|circo]")</code></pre></div>
                     The <strong>dot</strong> engine flows the directed graph in the direction of rank (i.e., downstream nodes of the same rank are aligned). By default, the direction is from top to bottom (where the graph attribute <code>rankdir</code> is set to <code>TB</code>). The following examples will use the same <strong>Graphviz</strong> <strong>DOT</strong> code, differing only in the choice of engine. Here is the default <strong>dot</strong> output.
@@ -942,7 +963,7 @@ digraph nicegraph {
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">grViz("
-digraph neato {
+digraph dot {
 
 node [shape = circle,
       style = filled,
@@ -973,7 +994,7 @@ engine = "dot")</code></pre>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">grViz("
-digraph neato {
+digraph dot {
 
 graph [rankdir = LR]
 
@@ -999,7 +1020,8 @@ d -> {q r s t u v}
 engine = "dot")</code></pre>
                         </div>
                     </div>
-                    <p>The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (less than 100 nodes) and you don't know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. </p>
+                    <h2 id="neato">neato</h2>
+                    <p>The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (less than 100 nodes) and you don't know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. Have a look at the previous graph, rendered with the <strong>neato</strong> engine:</p>
                     <div class="bs-example">
                         <img src="img/engine-neato.png" class="img-responsive center-block">
                     </div>
@@ -1030,19 +1052,90 @@ d -> {q r s t u v}
 engine = "neato")</code></pre>
                         </div>
                     </div>
-                    <p>The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node.</p>
+                    <p>Things do actually get interesting if there are lots of nodes. Here is an example of an undirected graph with 407 nodes amongst several ranks. Graph edges have varying lengths. (The code is not presented here as it is rather lenghty but it is available as a <a href="https://gist.github.com/rich-iannone/de0bb88d155a2c1c7e38">GitHub gist</a>.)</p>
+                    <div class="bs-example">
+                        <img src="img/several-ranks-neato-overlap-true.png" class="img-responsive center-block">
+                    </div>
+                    <p>The graph specification can have an entirely different layout with <strong>neato</strong> engine if the graph attribute <code>overlap</code> is set to <code>false</code> instead of the default <code>true</code> value (<a href="https://gist.github.com/rich-iannone/c58b07f992a1f9ab5d3e">GitHub gist</a>). What occurs in this case is that node overlaps are removed by a Voronoi-based technique.
+                    <div class="bs-example">
+                        <img src="img/several-ranks-neato-overlap-false.png" class="img-responsive center-block">
+                    </div>
+                    <h2 id="twopi">twopi</h2>
+                    <p>The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. In the following example, that root node is the red one.</p>
+                    <div class="bs-example">
+                        <img src="img/engine-twopi.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">grViz("
+digraph twopi {
+
+node [shape = circle,
+      style = filled,
+      color = grey,
+      label = '']
+
+node [fillcolor = red]
+a
+
+node [fillcolor = green]
+b c d
+
+node [fillcolor = orange]
+
+edge [color = grey]
+a -> {b c d}
+b -> {e f g h i j}
+c -> {k l m n o p}
+d -> {q r s t u v}
+}",
+engine = "twopi")</code></pre>
+                        </div>
+                    </div>
+                    <h2 id="circo">circo</h2>
                     <p>The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
+                    <div class="bs-example">
+                        <img src="img/engine-circo.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">grViz("
+digraph circo {
+
+node [shape = circle,
+      style = filled,
+      color = grey,
+      label = '']
+
+node [fillcolor = red]
+a
+
+node [fillcolor = green]
+b c d
+
+node [fillcolor = orange]
+
+edge [color = grey]
+a -> {b c d}
+b -> {e f g h i j}
+c -> {k l m n o p}
+d -> {q r s t u v}
+}",
+engine = "circo")</code></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
-        
             <div class="col-md-3" role="complementary">
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
                     <ul class="nav bs-docs-sidenav">              
                         <li>
                             <a href="#graphviz">Graphviz</a>
                             <ul class="nav">
+                                <li><a href="#diagrammer-implementation">DiagrammeR Implementation</a></li>
                                 <li><a href="#defining-a-graphviz-graph">Defining a Graphviz Graph</a></li>
                                 <li><a href="#statements">Statements</a></li>
+                                <li><a href="#subgraphs-and-clusters">Subgraphs and Clusters</a></li>
                             </ul>
                         </li>
                         <li>
@@ -1062,6 +1155,12 @@ engine = "neato")</code></pre>
                         </li>
                         <li>
                             <a href="#rendering-engines">Rendering Engines</a>
+                            <ul class="nav">
+                                <li><a href="#dot">dot</a></li>
+                                <li><a href="#neato">neato</a></li>
+                                <li><a href="#twopi">twopi</a></li>
+                                <li><a href="#circo">circo</a></li>
+                            </ul>
                         </li>              
                     </ul>
                     <a class="back-to-top" href="#top">Back to top</a>
