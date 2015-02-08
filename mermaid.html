@@ -41,12 +41,12 @@
                     <li>
                       <a href="docs.html">Getting started</a>
                     </li>
-                    <li class="active">
+                    <li>
                       <a href="graphviz.html">Graphviz</a>
                     </li>
-<!--                <li>
+                    <li class="active">
                       <a href="mermaid.html">Mermaid</a>
-                    </li> -->
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="http://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
@@ -66,18 +66,76 @@
         <div class="row">
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
-                    <h1 id="graphviz" class="page-header">Graphviz</h1>
-                    <p class="lead"><strong>Graphviz</strong> support is an integral part of the <strong>DiagrammeR</strong> package. <strong>Graphviz</strong> consists of a graph description language called the <strong>DOT</strong> language and it also comprises various tools that can process the <strong>DOT</strong> language. <strong>DOT</strong> is highly customizable and it allows you to control line colors, arrow shapes, node shapes, and many other layout features.</p>
+                    <h1 id="mermaid" class="page-header">mermaid</h1>
+                    <p class="lead">The <strong>mermaid</strong> library is part of <strong>DiagrammeR</strong>. With it, you can describe graphs and sequence diagrams.</p>
                     <h2 id="diagrammer-implementation">DiagrammeR Implementation</h2>
-                    <p>For <strong>Graphviz</strong> graphs, <strong>DiagrammeR</strong> uses the processing function called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph specification in the <strong>DOT</strong> language. The <strong>DOT</strong> graph description can either be delivered to <code>grViz</code> in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
-                    <p>All of the code examples provided in later sections call the <code>grViz</code> function in an <strong>R</strong> script and pass in a graph description as a string. It is important to consider that strings in <strong>R</strong> cannot contain any unescaped double-quote characters. However, the grViz function allows for single-quote characters in their place. As a further convenience, when the <strong>DOT</strong> graph description is supplied as a file (e.g., 'dot-graph.gv') or as a text connection, either format for quotes will be accepted.</p>
-                    <p>In very recent builds of <strong>RStudio</strong>, the use of an external text file with the <code>.gv</code> file extension can provide the advantage of syntax coloring and previewing in the <strong>RStudio</strong> Viewer pane after saving (if 'Preview on Save' is selected), or, by pressing the 'Preview' button on the Source pane.</p>
-                    <img src="img/rstudio-syntax-coloring.png" class="img-responsive center-block">
-                    <h2 id="defining-a-graphviz-graph">Defining a Graphviz Graph</h2>
-                    <p>The <strong>Graphviz</strong> graph specification must begin with a directive stating whether a directed graph (<code>digraph</code>) or an undirected graph (<code>graph</code>) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph ID follows this and paired curly braces denotes the body of the statement list (<code>stmt_list</code>).</p>
-                    <p>Optionally, a graph may also be described as <code>strict</code>. This forbids the creation of multi-edges (i.e., there can be at most one edge with a given tail node and head node in the directed case). For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent <code>edge</code> statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the <code>edge</code> statement.</p>
-                    <p>Here is the basic structure:</p>
-                    <div><pre><code class="prettyprint">[strict] (graph | digraph) [ID] '{' stmt_list '}'</code></pre></div>
+                    <p>For <strong>mermaid</strong> diagrams, <strong>DiagrammeR</strong> uses the processing function called <code>mermaid</code>. What you pass into <code>mermaid</code> is a valid graph or sequence diagram specification. The specification can either be delivered to <code>mermaid</code> in the form of a string, a reference to a <strong>mermaid</strong> file (with a <code>.mmd</code> file extension), or as a text connection.</p>
+                    <p>All of the code examples provided in later sections call the <code>mermaid</code> function in an <strong>R</strong> script and pass in a specification as a string. It is important to consider that strings in <strong>R</strong> cannot contain any unescaped double-quote characters. However, the <code>mermaid</code> function allows for single-quote characters in their place. As a further convenience, when a <strong>mermaid</strong> graph description is supplied as a file (e.g., 'mermaid-graph.mmd') or as a text connection, either format for quotes will be accepted.</p>
+                    <p>In very recent builds of <strong>RStudio</strong>, the use of an external text file with the <code>.mmd</code> file extension can provide the advantage of syntax coloring and previewing in the <strong>RStudio</strong> Viewer pane after saving (if 'Preview on Save' is selected), or, by pressing the 'Preview' button on the Source pane.</p>
+                    <!-- <img src="img/rstudio-syntax-coloring.png" class="img-responsive center-block"> -->
+                    <h2 id="defining-a-mermaid-graph">Defining a mermaid Graph</h2>
+                    <p>The <strong>mermaid</strong> graph specification begins with a declaration of <code>graph</code> followed by the graph direction. The directions can be</p>
+                    <ul>
+                        <li><code>LR</code> left to right</li>
+                        <li><code>RL</code> right to left</li>
+                        <li><code>TB</code> top to bottom</li>
+                        <li><code>BT</code> bottom to top</li>
+                        <li><code>TD</code> top down (same as TB)</li>
+                    </ul>
+                    <p>Nodes can be given arbitrary ID values and those IDs are displayed as text within their respective boxes. Connections between nodes are denoted by:
+                    <ul>
+                        <li><code>--></code> arrow connection</li>
+                        <li><code>---</code> line connection</li>
+                    </ul>
+                    <p>Simply joining up a series of nodes in a left-to-right graph can be done in a few lines:</p>
+                    <div class="bs-example">
+                        <img src="img/mermaid_1.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">mermaid("
+graph LR
+  A-->B
+  A-->C
+  C-->E
+  B-->D
+  C-->D
+  D-->F
+  E-->F
+")</code></pre>
+                        </div>
+                    </div>
+                    <p>The same result can be achieved in a more succinct manner with this R statement (using semicolons between statements in the mermaid diagram spec):</p>
+                    <div><pre><code>mermaid("graph LR; A-->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F")</code></pre></div>
+                    <p>Alternatively, here is the result of using the statement graph TB in place of graph LR:</p>
+                    <div class="bs-example">
+                        <img src="img/mermaid_2.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">mermaid("
+graph TB
+  A-->B
+  A-->C
+  C-->E
+  B-->D
+  C-->D
+  D-->F
+  E-->F
+")</code></pre>
+                        </div>
+                    </div>
+                    <p>Keep in mind that external .mmd files can also be called by the <strong>mermaid</strong> function. The file <code>graph.mmd</code> can contain the text of the diagram specification as follows:
+<div><pre><code>graph LR
+  A-->B
+  A-->C
+  C-->E
+  B-->D
+  C-->D
+  D-->F
+  E-->F</code></pre></div>
+                    <p>and be rendered through:</p>
+                    <div><pre><code>mermaid("graph.mmd")</code></pre></div>
                     <h2 id="statements">Statements</h2>
                     <p>The graph statement (<code>graph_stmt</code>), the node statement (<code>node_stmt</code>), and the edge statement (<code>edge_stmt</code>) are the three most commonly used statements in the <strong>Graphviz</strong> <strong>DOT</strong> language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator <code>-&gt;</code> while an undirected graph must use the <code>--</code> operator.</p>
                     <p>Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list items can optionally have an attribute list (<code>attr_list</code>) which modify the attributes of either the node or edge.</p>
@@ -1130,7 +1188,7 @@ engine = "circo")</code></pre>
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
                     <ul class="nav bs-docs-sidenav">              
                         <li>
-                            <a href="#graphviz">Graphviz</a>
+                            <a href="#mermaid">mermaid</a>
                             <ul class="nav">
                                 <li><a href="#diagrammer-implementation">DiagrammeR Implementation</a></li>
                                 <li><a href="#defining-a-graphviz-graph">Defining a Graphviz Graph</a></li>
