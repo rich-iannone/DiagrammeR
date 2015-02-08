@@ -680,24 +680,23 @@ Using `grViz` with [`shinyAce`](https://github.com/trestletech/shinyAce), we can
 library(shiny)
 library(shinyAce)
 
-ui = shinyUI(fluidPage(fluidRow(
+ui <- shinyUI(fluidPage(fluidRow(
   column(
-    width=4
-    , aceEditor("ace", selectionId = "selection",value="digraph {A;}")
+    width = 4
+    , aceEditor("ace", value = "graph {}")
   ),
   column(
     width = 6
-    , grVizOutput('diagram' )
+    , grVizOutput('diagram')
   )
 )))
 
-server = function(input, output){
+server <- function(input, output){
   output$diagram <- renderGrViz({
     grViz(
       input$ace
     )
   })
-
 }
 
 shinyApp(ui = ui, server = server)
