@@ -44,9 +44,9 @@
                     <li class="active">
                       <a href="graphviz.html">Graphviz</a>
                     </li>
-<!--                <li>
+                    <li>
                       <a href="mermaid.html">Mermaid</a>
-                    </li> -->
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="http://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
@@ -72,7 +72,7 @@
                     <p>For <strong>Graphviz</strong> graphs, <strong>DiagrammeR</strong> uses the processing function called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph specification in the <strong>DOT</strong> language. The <strong>DOT</strong> graph description can either be delivered to <code>grViz</code> in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
                     <p>All of the code examples provided in later sections call the <code>grViz</code> function in an <strong>R</strong> script and pass in a graph description as a string. It is important to consider that strings in <strong>R</strong> cannot contain any unescaped double-quote characters. However, the <code>grViz</code> function allows for single-quote characters in their place. As a further convenience, when the <strong>DOT</strong> graph description is supplied as a file (e.g., 'dot-graph.gv') or as a text connection, either format for quotes will be accepted.</p>
                     <p>In very recent builds of <strong>RStudio</strong>, the use of an external text file with the <code>.gv</code> file extension can provide the advantage of syntax coloring and previewing in the <strong>RStudio</strong> Viewer pane after saving (if 'Preview on Save' is selected), or, by pressing the 'Preview' button on the Source pane.</p>
-                    <img src="img/rstudio-syntax-coloring.png" class="img-responsive center-block">
+                    <img src="img/rstudio-graphviz-syntax-coloring.png" class="img-responsive center-block">
                     <h2 id="defining-a-graphviz-graph">Defining a Graphviz Graph</h2>
                     <p>The <strong>Graphviz</strong> graph specification must begin with a directive stating whether a directed graph (<code>digraph</code>) or an undirected graph (<code>graph</code>) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph ID follows this and paired curly braces denotes the body of the statement list (<code>stmt_list</code>).</p>
                     <p>Optionally, a graph may also be described as <code>strict</code>. This forbids the creation of multi-edges (i.e., there can be at most one edge with a given tail node and head node in the directed case). For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent <code>edge</code> statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the <code>edge</code> statement.</p>
