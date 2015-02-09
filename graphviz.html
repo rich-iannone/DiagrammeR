@@ -902,7 +902,7 @@ a -> {b c d e f g h i j}
                         <li>the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices 1 to 9 (using the hypenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression)</li>
                     </ol>
                     <p>Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So, as long as a vector object results from evaluation, substitution can be performed.</p>
-                    <p>Here is a final example of a diagram created using <strong>R</strong> and <strong>RStudio</strong> information (obtained from the <code>R.Version</code> and <code>rstudio::versionInfo</code> functions). The output will of course vary by the system on which it was generated. Here is the output from the dev machine:</p>
+                    <p>Here is a final example of a diagram created using <strong>R</strong> and <strong>RStudio</strong> information (obtained from the <code>R.Version</code> and <code>rstudioapi::versionInfo</code> functions). The output will of course vary by the system on which it was generated. Here is the output from the dev machine:</p>
                     <div class="bs-example">
                         <img src="img/r_Information.png" class="img-responsive center-block">
                     </div>
@@ -943,8 +943,8 @@ digraph nicegraph {
 }
 
 [1]: paste0(names(R.Version())[1:7], ':\\n ', R.Version()[1:7])
-[2]: paste0('RStudio version:\\n ', rstudio::versionInfo()[[1]])
-[3]: paste0('Current program mode:\\n ', rstudio::versionInfo()[[2]])
+[2]: paste0('RStudio version:\\n ', rstudioapi::versionInfo()[[1]])
+[3]: paste0('Current program mode:\\n ', rstudioapi::versionInfo()[[2]])
 
 ")</code></pre>
                         </div>
