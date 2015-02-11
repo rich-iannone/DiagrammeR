@@ -38,6 +38,22 @@ HTMLWidgets.widget({
         el.innerHTML = Viz( x.diagram, format="svg", engine=x.config.engine, options=x.config.options );
         
         makeResponsive(el);
+        
+        // set up a container for tasks to perform after completion
+        //  one example would be add callbacks for event handling
+        //  styling
+        if (!(typeof x.tasks === "undefined") ){
+          if ( (typeof x.tasks.length === "undefined") ||
+           (typeof x.tasks === "function" ) ) {
+             // handle a function not enclosed in array
+             // should be able to remove once using jsonlite
+             x.tasks = [x.tasks];
+          }
+          x.tasks.map(function(t){
+            // for each tasks add it to the mermaid.tasks with el
+            t.call(el);
+          })
+        }        
       } catch(e){
         var p = document.createElement("pre")
         p.innerText = e;

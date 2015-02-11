@@ -63,29 +63,7 @@ HTMLWidgets.widget({
        }
     };
 
-    // set up a container for tasks to perform after completion
-    //  one example would be add callbacks for event handling
-    //  styling
-    if (typeof mermaid.tasks === "undefined"){
-      mermaid.tasks = [];
-    }
-      
-    if (!(typeof x.tasks === "undefined") ){
-      if ( (typeof x.tasks.length === "undefined") ||
-       (typeof x.tasks === "function" ) ) {
-         // handle a function not enclosed in array
-         // should be able to remove once using jsonlite
-         x.tasks = [x.tasks];
-      }
-      x.tasks.map(function(t){
-        // for each tasks add it to the mermaid.tasks with el
-        mermaid.tasks.push(
-          {"task": t, "el": el}
-        );
-      })
-    }
 
-  
     // get all DiagrammeR mermaids widgets
     dg = document.getElementsByClassName("DiagrammeR");
     // run mermaid.init
@@ -109,32 +87,23 @@ HTMLWidgets.widget({
       d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
         .select("style")[0][0].innerHTML
         .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
-
-      /*
-      //difficult way to change the stylesheet
-      //     thought it would be more robust but the above
-      //     works better
-      for( i = 0; i <  document.styleSheets.length; i++ ) {
-        var s = document.styleSheets[i];
-        // find the stylesheet for this widget
-        if(s.ownerNode.parentNode.parentNode.id === el.id){
-          // use http://davidwalsh.name/add-rules-stylesheets
-          //  to change the rules to use our new svg id in css
-          var howManyRules = s.cssRules.length;
-          for ( rule = 0; rule < howManyRules; rule++){
-            s.insertRule(
-      */
-      //        s.cssRules.item(rule).cssText.replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id),
-      /*        howManyRules
-            );
+        
+        // set up a container for tasks to perform after completion
+        //  one example would be add callbacks for event handling
+        //  styling
+        if (!(typeof x.tasks === "undefined") ){
+          if ( (typeof x.tasks.length === "undefined") ||
+           (typeof x.tasks === "function" ) ) {
+             // handle a function not enclosed in array
+             // should be able to remove once using jsonlite
+             x.tasks = [x.tasks];
           }
-          // now delete the original rules          
-          for ( rule = 0; rule < howManyRules ; rule++){
-            s.deleteRule(rule);
-          }
+          x.tasks.map(function(t){
+            // for each tasks add it to the mermaid.tasks with el
+            t.call(el);
+          })
         }
-      }
-      */
+
     } catch(e) {
       // if error look for last processed DiagrammeR
       //  and send error to the container div
@@ -153,28 +122,7 @@ HTMLWidgets.widget({
       
       processedDg.append("pre").html( ["parse error with " + x.diagram, e.message].join("\n") )
     }
-    
-    // makeResponsive needs to be run again with shiny
-    //  since asynchrony sometimes results in not run
-    if( HTMLWidgets.shinyMode ){
-      for ( i = 0 ; i < dg.length; i++ ){
-        makeResponsive( dg[i] )
-      }
-    }
 
-    // will this ensure synchronous order of execution
-    //  the first set of tests seem to indicate they will
-    //  but it should be more robustly tested
-    if(!(typeof mermaid.tasks.length === "undefined" ) ) {
-      mermaid.tasks.forEach(function(t) { 
-        //add some error checking here
-        if ( typeof t.task === "function" ){
-          t.task.call(null, t.el);
-        } else {
-          console.log("task not a function so skipped");
-        }
-      });
-    }
   },
 
   resize: function(el, width, height, instance) {
