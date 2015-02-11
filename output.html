@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="DiagrammeR, an R package that allows you to create flowcharts, diagrams, and graphs with Markdown-like text.">
+        <meta name="keywords" content="R, JavaScript, graphviz, mermaid">
+        <meta name="author" content="Richard Iannone and DiagrammeR contributors">
+        
+        <title>
+        DiagrammeR - Documentation  
+        </title>
+        
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/docs.min.css" rel="stylesheet">
+        
+        <script src="./js/ie-emulation-modes-warning.js"></script>
+        
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="icon" href="/favicon.ico">
+    </head>
+
+<body>
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">DiagrammeR</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                      <a href="docs.html">Getting started</a>
+                    </li>
+                    <li class="active">
+                      <a href="output.html">Output</a>
+                    </li>
+                    <li>
+                      <a href="graphviz.html">Graphviz</a>
+                    </li>
+                    <li>
+                      <a href="mermaid.html">Mermaid</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+        <div class="container">
+            <h1>DiagrammeR Docs</h1>
+            <p>Get an overview of DiagrammeR, learn the syntax, check out some examples.</p>
+        </div>
+    </div>
+
+    <div class="container bs-docs-container">
+        <div class="row">
+            <div class="col-md-12" role="main">
+                <div class="bs-docs-section">
+                    <h1 id="output" class="page-header">Output</h1>
+                    <p class="lead">There are plenty of ways that you can obtain the output you want from <strong>DiagrammeR</strong>.</p>
+<!--                     <h2 id="r-markdown-report">R Markdown Report</h2>
+                    <p></p> -->
+                    <h2 id="install-of-digrammer">Graphic or Webpage</h2>
+                    <p>The <em>Viewer</em> pane is where all <strong>DiagrammeR</strong> graph objects are displayed. By default, the <em>Viewer</em> appears on the final tab of the lower right palette. The <strong>RStudio</strong> <em>Viewer</em> provides several ways to both view and export DiagrammeR output.</p>
+                    <h3>Viewing Options</h3>
+                    <img src="img/rstudio-viewer.png" class="img-responsive center-block">
+                    <p>As <strong>DiagrammeR</strong> graph objects are rendered as SVG, the content is scalable and responsive to resizing of the plot window. To enlarge the <strong>DiagrammeR</strong> output in the <em>Viewer</em>, there are several options:
+                    <ol>
+                        <li>Maximize the palette containing the <em>Viewer</em> with the <em>Maximize</em> button (on the upper right section of the palette) and then drag the vertical separator between the left and right palette groups as far left as necessary</li>
+                        <li>Press the <em>Zoom</em> button on the <em>Viewer</em> toolbar.</li>
+                        <li>Press the icon representing viewing in the computer's default browser</li>
+                    </ol>
+                    <p>All methods here have their unique advantages for inspecting output. Image content is not saved at this point.</p>
+                    <h3>Export Options</h3>
+                    <p>The <em>Export</em> button provides a dropdown menu containing options for export of <strong>DiagrammeR</strong> output as an image, as clipboard content, as a web page, and as content for a publication to the <strong>RPubs</strong> service.</p>
+                    <img src="img/rstudio-viewer-export-dropdown.png" class="img-responsive center-block">
+                    <br />
+                    <p>The <em>Save as Image</em> option provides options for interactively resizing the graphic and then saving the image in either the PNG, JPEG, or TIFF format. A live preview is presented, allowing you to precisely resize the content.</p>
+                    <img src="img/rstudio-save-plot-as-image.png" class="img-responsive center-block">
+                    <br />
+                    <p>There are two options for sizing the output before saving to a graphics file</p>
+                    <ol>
+                        <li>Use the resizing control at the lower-right of the plot window</li>
+                        <li>Provide the intended width and height of the graphic in pixels</li>
+                    </ol>
+                    <p>You may notice that when resizing that the rendered graphic does not stretch in either direction (as raster graphics tend to do when the aspect ratio is not maintained). Rather, padding is added and the graphic is always centered both vertically and horizontally. To avoid additional whitespace when saving, immediately press the <em>Maintain aspect ratio</em> button before sizing the output with the aforementioned approaches.</p>
+                    <p>Copying to clipboard is useful you'd like to paste <strong>DiagrammeR</strong> output to a word processing document or to an email message without saving an image file to disk.</p>
+                    <img src="img/rstudio-viewer-copy-plot-to-clipboard.png" class="img-responsive center-block">
+                    <br />
+                    <p>The window here provides similar controls for sizing output as the export option. As with <em>Export</em>, the initial size of the output in pixels matches that of the plot presented in the <em>Viewer</em>.</p>
+                    <p>The <em>Save as Web page</em> option saves the <strong>DiagrammeR</strong> graph as a standalone web page. Selecting this option provides a dialog for saving the HTML file. After saving, the file is opened locally in the user's default browser.</p>
+
+
+<!--                     <h2 id="install-of-digrammer">Shiny Application</h2> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="bs-docs-footer" role="contentinfo">
+    <div class="container">
+        <div class="bs-docs-social">
+            <ul class="bs-docs-social-buttons">
+                <li>
+                    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=watch&amp;count=true" width="90" height="20" title="Star on GitHub"></iframe>
+                </li>
+                <li>
+                    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=fork&amp;count=true" width="90" height="20" title="Fork on GitHub"></iframe>
+                </li>
+            </ul>
+            <ul class="bs-docs-social-buttons">
+                <li class="follow-btn">
+                    <a href="https://twitter.com/riannone" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @riannone</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <p>Designed and built by Richard Iannone <a href="https://twitter.com/riannone" target="_blank">@riannone</a>.</p>
+        <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
+        <p>Code licensed under MIT.</p>
+        <ul class="bs-docs-footer-links text-muted">
+            <li>Currently v0.4</li>
+            <li>&middot;</li>
+            <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
+            <li>&middot;</li>
+            <li><a href="https://github.com/rich-iannone/DiagrammeR/issues">Issues</a></li>
+            <li>&middot;</li>
+            <li><a href="https://github.com/rich-iannone/DiagrammeR/releases">Releases</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/docs.min.js"></script>
+<script src="./js/ie10-viewport-bug-workaround.js"></script>
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<script>
+  window.twttr = (function (d,s,id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+  }(document, "script", "twitter-wjs"));
+</script>
+
+
+</body>
+</html>
+
