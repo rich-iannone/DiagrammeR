@@ -146,45 +146,44 @@
                             </ul>
                         </div>
                     </div>
-                        <h3 id="writing-in-r-markdown">Writing in R Markdown</h3>
-                        <p>Writing an <strong>R Markdown</strong> document is not altogether that different from writing a standard <strong>R</strong> script, you just write the <strong>R</strong> statements in sections called <em>chunks</em>. Here is a simple <strong>R Markdown</strong> document in <strong>RStudio</strong> that contains calls to <strong>DiagrammeR</strong>'s <code>grViz</code> and <code>mermaid</code> functions.</p>
-                        <p><br /></p>
-                        <img src="img/rstudio-rmarkdown-code.png" class="img-responsive center-block">
-                        <p><br /></p>
-                        <p>In this <strong>R Markdown</strong> document, <em>Code Region 1</em> is the front matter, which specifies the document title, the author, the date, and the type of output (in this case, <strong>HTML</strong>). <em>Code Regions 1 and 2</em> are <strong>R</strong> chunks (delineated from <strong>Markdown</strong> content by use of <code>```</code>). The identification of these chunks as <strong>R</strong> code resides in curly braces (alongside further comma-separated options). These <strong>R</strong> chunks will yield simple <strong>Graphviz</strong> and <strong>mermaid</strong> graphs. Pressing the <em>Knit HTML</em> button will process the document and render an <strong>HTML</strong> report document in the <strong>RStudio</strong> <em>Viewer</em>.</p>
-                        <p><br /></p>
-                        <img src="img/rstudio-render-rmarkdown-html-document.png" class="img-responsive center-block">
-                        <p><br /></p>
-                        <h2 id="rstudio-viewer">RStudio Viewer</h2>
-                        <p>The <em>Viewer</em> pane is where all <strong>DiagrammeR</strong> graph objects are displayed. By default, the <em>Viewer</em> appears on the final tab of the lower right palette. The <strong>RStudio</strong> <em>Viewer</em> provides several ways to both view and export DiagrammeR output.</p>
-                        <h3 id="viewing-options">Viewing Options</h3>
-                        <img src="img/rstudio-viewer.png" class="img-responsive center-block">
-                        <p>As <strong>DiagrammeR</strong> graph objects are rendered as SVG, the content is scalable and responsive to resizing of the plot window. To enlarge the <strong>DiagrammeR</strong> output in the <em>Viewer</em>, there are several options:
-                        <ol>
-                            <li>Maximize the palette containing the <em>Viewer</em> with the <em>Maximize</em> button (on the upper right section of the palette) and then drag the vertical separator between the left and right palette groups as far left as necessary</li>
-                            <li>Press the <em>Zoom</em> button on the <em>Viewer</em> toolbar.</li>
-                            <li>Press the icon representing viewing in the computer's default browser</li>
-                        </ol>
-                        <p>All methods here have their unique advantages for inspecting output. Image content is not saved at this point.</p>
-                        <h3 id="export-options">Export Options</h3>
-                        <p>The <em>Export</em> button provides a dropdown menu containing options for export of <strong>DiagrammeR</strong> output as an image, as clipboard content, as a web page, and as content for a publication to the <strong>RPubs</strong> service.</p>
-                        <img src="img/rstudio-viewer-export-dropdown.png" class="img-responsive center-block">
-                        <br />
-                        <p>The <em>Save as Image</em> option provides options for interactively resizing the graphic and then saving the image in either the PNG, JPEG, or TIFF format. A live preview is presented, allowing you to precisely resize the content.</p>
-                        <img src="img/rstudio-save-plot-as-image.png" class="img-responsive center-block">
-                        <br />
-                        <p>There are two options for sizing the output before saving to a graphics file</p>
-                        <ol>
-                            <li>Use the resizing control at the lower-right of the plot window</li>
-                            <li>Provide the intended width and height of the graphic in pixels</li>
-                        </ol>
-                        <p>You may notice that when resizing that the rendered graphic does not stretch in either direction (as raster graphics tend to do when the aspect ratio is not maintained). Rather, padding is added and the graphic is always centered both vertically and horizontally. To avoid additional whitespace when saving, immediately press the <em>Maintain aspect ratio</em> button before sizing the output with the aforementioned approaches.</p>
-                        <p>Copying to clipboard is useful you'd like to paste <strong>DiagrammeR</strong> output to a word processing document or to an email message without saving an image file to disk.</p>
-                        <img src="img/rstudio-viewer-copy-plot-to-clipboard.png" class="img-responsive center-block">
-                        <br />
-                        <p>The window here provides similar controls for sizing output as the export option. As with <em>Export</em>, the initial size of the output in pixels matches that of the plot presented in the <em>Viewer</em>.</p>
-                        <p>The <em>Save as Web page</em> option saves the <strong>DiagrammeR</strong> graph as a standalone web page. Selecting this option provides a dialog for saving the HTML file. After saving, the file is opened locally in the user's default browser.</p>
-                    
+                    <h3 id="writing-in-r-markdown">Writing in R Markdown</h3>
+                    <p>Writing an <strong>R Markdown</strong> document is not altogether that different from writing a standard <strong>R</strong> script, you just write the <strong>R</strong> statements in sections called <em>chunks</em>. Here is a simple <strong>R Markdown</strong> document in <strong>RStudio</strong> that contains calls to <strong>DiagrammeR</strong>'s <code>grViz</code> and <code>mermaid</code> functions.</p>
+                    <p><br /></p>
+                    <img src="img/rstudio-rmarkdown-code.png" class="img-responsive center-block">
+                    <p><br /></p>
+                    <p>In this <strong>R Markdown</strong> document, <em>Code Region 1</em> is the front matter, which specifies the document title, the author, the date, and the type of output (in this case, <strong>HTML</strong>). <em>Code Regions 1 and 2</em> are <strong>R</strong> chunks (delineated from <strong>Markdown</strong> content by use of <code>```</code>). The identification of these chunks as <strong>R</strong> code resides in curly braces (alongside further comma-separated options). These <strong>R</strong> chunks will yield simple <strong>Graphviz</strong> and <strong>mermaid</strong> graphs. Pressing the <em>Knit HTML</em> button will process the document and render an <strong>HTML</strong> report document in the <strong>RStudio</strong> <em>Viewer</em>.</p>
+                    <p><br /></p>
+                    <img src="img/rstudio-render-rmarkdown-html-document.png" class="img-responsive center-block">
+                    <p><br /></p>
+                    <h2 id="rstudio-viewer">RStudio Viewer</h2>
+                    <p>The <em>Viewer</em> pane is where all <strong>DiagrammeR</strong> graph objects are displayed. By default, the <em>Viewer</em> appears on the final tab of the lower right palette. The <strong>RStudio</strong> <em>Viewer</em> provides several ways to both view and export DiagrammeR output.</p>
+                    <h3 id="viewing-options">Viewing Options</h3>
+                    <img src="img/rstudio-viewer.png" class="img-responsive center-block">
+                    <p>As <strong>DiagrammeR</strong> graph objects are rendered as SVG, the content is scalable and responsive to resizing of the plot window. To enlarge the <strong>DiagrammeR</strong> output in the <em>Viewer</em>, there are several options:</p>
+                    <ol>
+                        <li>Maximize the palette containing the <em>Viewer</em> with the <em>Maximize</em> button (on the upper right section of the palette) and then drag the vertical separator between the left and right palette groups as far left as necessary</li>
+                        <li>Press the <em>Zoom</em> button on the <em>Viewer</em> toolbar.</li>
+                        <li>Press the icon representing viewing in the computer's default browser</li>
+                    </ol>
+                    <p>All methods here have their unique advantages for inspecting output. Image content is not saved at this point.</p>
+                    <h3 id="export-options">Export Options</h3>
+                    <p>The <em>Export</em> button provides a dropdown menu containing options for export of <strong>DiagrammeR</strong> output as an image, as clipboard content, as a web page, and as content for a publication to the <strong>RPubs</strong> service.</p>
+                    <img src="img/rstudio-viewer-export-dropdown.png" class="img-responsive center-block">
+                    <br />
+                    <p>The <em>Save as Image</em> option provides options for interactively resizing the graphic and then saving the image in either the PNG, JPEG, or TIFF format. A live preview is presented, allowing you to precisely resize the content.</p>
+                    <img src="img/rstudio-save-plot-as-image.png" class="img-responsive center-block">
+                    <br />
+                    <p>There are two options for sizing the output before saving to a graphics file</p>
+                    <ol>
+                        <li>Use the resizing control at the lower-right of the plot window</li>
+                        <li>Provide the intended width and height of the graphic in pixels</li>
+                    </ol>
+                    <p>You may notice that when resizing that the rendered graphic does not stretch in either direction (as raster graphics tend to do when the aspect ratio is not maintained). Rather, padding is added and the graphic is always centered both vertically and horizontally. To avoid additional whitespace when saving, immediately press the <em>Maintain aspect ratio</em> button before sizing the output with the aforementioned approaches.</p>
+                    <p>Copying to clipboard is useful you'd like to paste <strong>DiagrammeR</strong> output to a word processing document or to an email message without saving an image file to disk.</p>
+                    <img src="img/rstudio-viewer-copy-plot-to-clipboard.png" class="img-responsive center-block">
+                    <br />
+                    <p>The window here provides similar controls for sizing output as the export option. As with <em>Export</em>, the initial size of the output in pixels matches that of the plot presented in the <em>Viewer</em>.</p>
+                    <p>The <em>Save as Web page</em> option saves the <strong>DiagrammeR</strong> graph as a standalone web page. Selecting this option provides a dialog for saving the HTML file. After saving, the file is opened locally in the user's default browser.</p>
                 </div>
             </div>
             <div class="col-md-3" role="complementary">
@@ -193,8 +192,8 @@
                         <li>
                             <a href="#r-markdown">R Markdown</a>
                             <ul class="nav">
-                                <li><a href="types-of-r-markdown-documents">Types of R Markdown Documents</a></li>
-                                <li><a href="writing-in-r-markdown">Writing in R Markdown</a></li>
+                                <li><a href="#types-of-r-markdown-documents">Types of R Markdown Documents</a></li>
+                                <li><a href="#writing-in-r-markdown">Writing in R Markdown</a></li>
                             </ul>
                         </li>
                         <li>
