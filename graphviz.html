@@ -905,7 +905,7 @@ rank = same; A; B; C;
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="substitution" class="page-header">Substitution</h1>
-                    <p class="lead">Inspired by <strong>Razor</strong> and the footnote style in <strong>Markdown</strong>, <strong>Graphviz</strong> substitution allows for mixing in R expressions into a <strong>Graphviz</strong> graph specification without sacrificing readability.</p>
+                    <p class="lead">Inspired by <strong>Razor</strong> and the footnote style in <strong>Markdown</strong>, <strong>Graphviz</strong> substitution allows for mixing in <strong>R</strong> expressions into a <strong>Graphviz</strong> graph specification without sacrificing readability.</p>
                     <h2 id="how-it-works">How It Works</h2>
                     <p>To take advantage of substitution when rendering a graph, simply use the <code>grViz</code> function with <strong>Graphviz</strong> <strong>DOT</strong> code:</p>
                         <div>
@@ -960,7 +960,7 @@ F; G; H; I; J
                     </div>
 
                     <h2 id="examples">Examples</h2>
-                    <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from <strong>R</strong>'s <code>LETTERS</code> constant into a Graphviz graph specification.</p>
+                    <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from <strong>R</strong>'s <code>LETTERS</code> constant into a <strong>Graphviz</strong> graph specification.</p>
                     <div>
                     <p>You can mix subtitutions of single-values objects and those specifying indices of <strong>R</strong> vector objects. As an example:</p>
 
@@ -1051,7 +1051,7 @@ digraph nicegraph {
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="rendering-engines" class="page-header">Rendering Engines</h1>
-                    <p class="lead">Graphviz layouts can be modified radically by rendering the graph with different Graphviz engines. Let's learn all about those engines and what they can do.</p>
+                    <p class="lead"><strong>Graphviz</strong> layouts can be modified radically by rendering the graph with different <strong>Graphviz</strong> engines. Let's learn all about those engines and what they can do.</p>
                     <h2 id="dot">dot</h2>
                     <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument.</p>
                     <div><pre><code class="prettyprint">grViz("[...graph spec...]", engine = "[dot|neato|twopi|circo]")</code></pre></div>
