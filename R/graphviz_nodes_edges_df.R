@@ -5,9 +5,9 @@
 #'
 #' @param nodes_df
 #' @param edges_df
-#' @export graphviz_node_edge_blocks_df
+#' @export graphviz_nodes_edges_df
 
-graphviz_node_edge_blocks_df <- function(nodes_df, edges_df){
+graphviz_nodes_edges_df <- function(nodes_df, edges_df){
 
   # Perform basic checks of the inputs
   stopifnot(class(nodes_df) == "data.frame")
