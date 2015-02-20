@@ -146,7 +146,7 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
                "'", gsub(" ", "",
                          unlist(strsplit(edges_df[i, column_with_edge_op],
                                          "-[-|>]")))[1], "'",
-               ifelse(directed == TRUE, "-->", "--"),
+               ifelse(directed == TRUE, "->", "--"),
                "'", gsub(" ", "",
                          unlist(strsplit(edges_df[i, column_with_edge_op],
                                          "-[-|>]")))[2], "'"
@@ -160,7 +160,7 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
         paste0("  '", gsub(" ", "",
                            unlist(strsplit(edges_df[i, column_with_edge_op],
                                            "-[-|>]")))[1], "'",
-               ifelse(directed == TRUE, "-->", "--"),
+               ifelse(directed == TRUE, "->", "--"),
                "'", gsub(" ", "",
                          unlist(strsplit(edges_df[i, column_with_edge_op],
                                          "-[-|>]")))[2], "'"
