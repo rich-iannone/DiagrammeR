@@ -18,6 +18,16 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
 
   stopifnot(any(c("edge_op", "edge_ops", "edges", "edge") %in% colnames(edges_df)))
 
+  # Force all columns to be of the character class
+  for (i in 1:ncol(nodes_df)){
+    nodes_df[,i] <- as.character(nodes_df[,i])
+  }
+
+  # Force all columns to be of the character class
+  for (i in 1:ncol(edges_df)){
+    edges_df[,i] <- as.character(edges_df[,i])
+  }
+
   node_attributes <- c("color", "colorscheme", "distortion", "fillcolor",
                        "fixedsize", "fontcolor", "fontname", "fontsize",
                        "group", "height", "image", "labelloc", "margin",
@@ -56,8 +66,8 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
           attr_string <- vector(mode = "character", length = 0)
         }
 
-        attr <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
-        attr_string <- c(attr_string, attr)
+        attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
+        attr_string <- c(attr_string, attribute)
 
       }
 
@@ -66,10 +76,19 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
       }
     }
 
-    line <- paste0("  node",
-                   ifelse(exists("attr_string"), paste0(" [", attr_string, "] "), paste0("")),
-                   "'", nodes_df[i, column_with_node_id], "'")
+    # Generate a line of node objects when an attribute string exists
+    if (exists("attr_string")){
+      line <- paste0("  node",
+                     " [", attr_string, "] ",
+                     "'", nodes_df[i, column_with_node_id], "'")
+    }
 
+    # Generate a line of node objects when an attribute string doesn't exist
+    if (!exists("attr_string")){
+      line <- paste0("  '", nodes_df[i, column_with_node_id], "'")
+    }
+
+    # Construct the 'node_block' character object
     node_block <- c(node_block, line)
   }
 
@@ -80,8 +99,18 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
     rm(attr_string)
   }
 
+  # Remove the 'attribute' object if it exists
+  if (exists("attribute") == TRUE){
+    rm(attribute)
+  }
+
   # Develop the edges block
   column_with_edge_op <- which(colnames(edges_df) == "edge_op")
+
+  directed_proportion <-
+    sum(grepl("->", edges_df[,column_with_edge_op])) / nrow(edges_df)
+
+  directed <- ifelse(directed_proportion > 0.8, TRUE, FALSE)
 
   other_columns_with_edge_attributes <-
     which(colnames(edges_df) %in% edge_attributes)
@@ -98,8 +127,8 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
           attr_string <- vector(mode = "character", length = 0)
         }
 
-        attr <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
-        attr_string <- c(attr_string, attr)
+        attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
+        attr_string <- c(attr_string, attribute)
 
       }
 
@@ -108,18 +137,44 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
       }
     }
 
-    line <- paste0("  edge",
-                   ifelse(exists("attr_string"), paste0(" [", attr_string, "] "), paste0("")),
-                   " ", edges_df[i, column_with_edge_op], " ")
+    # Generate a line of node objects when an attribute string exists
+    if (exists("attr_string")){
+
+      line <-
+        paste0("  edge",
+               " [", attr_string, "] ",
+               "'", gsub(" ", "",
+                         unlist(strsplit(edges_df[i, column_with_edge_op],
+                                         "-[-|>]")))[1], "'",
+               ifelse(directed == TRUE, "-->", "--"),
+               "'", gsub(" ", "",
+                         unlist(strsplit(edges_df[i, column_with_edge_op],
+                                         "-[-|>]")))[2], "'"
+        )
+    }
+
+    # Generate a line of node objects when an attribute string doesn't exist
+    if (!exists("attr_string")){
+
+      line <-
+        paste0("  '", gsub(" ", "",
+                           unlist(strsplit(edges_df[i, column_with_edge_op],
+                                           "-[-|>]")))[1], "'",
+               ifelse(directed == TRUE, "-->", "--"),
+               "'", gsub(" ", "",
+                         unlist(strsplit(edges_df[i, column_with_edge_op],
+                                         "-[-|>]")))[2], "'"
+        )
+    }
 
     edge_block <- c(edge_block, line)
   }
 
+  # Construct the 'edge_block' character object
   edge_block <- paste(edge_block, collapse = "\n")
 
+  # Combine the 'node_block' and 'edge_block' objects into a 'combined_block'
   combined_block <- paste(node_block, edge_block, sep = "\n")
 
-  # Combine the node and edge blocks
   return(combined_block)
-
 }
