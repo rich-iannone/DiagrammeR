@@ -16,7 +16,7 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
 
   stopifnot(any(c("node", "nodes", "node_id") %in% colnames(nodes_df)))
 
-  stopifnot(any(c("edge_op", "edge_ops", "edges", "edge") %in% colnames(edges_df)))
+  stopifnot(any(c("edge_op", "edge_ops", "edge", "edges") %in% colnames(edges_df)))
 
   # Force all columns to be of the character class
   for (i in 1:ncol(nodes_df)){
@@ -49,7 +49,8 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
                        "tailURL", "target", "tooltip", "weight")
 
   # Develop the node block
-  column_with_node_id <- which(colnames(nodes_df) == "node_id")
+  column_with_node_id <-
+    which(colnames(nodes_df) %in% c("node_id", "node", "nodes"))[1]
 
   other_columns_with_node_attributes <-
     which(colnames(nodes_df) %in% node_attributes)
@@ -104,8 +105,10 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df){
     rm(attribute)
   }
 
-  # Develop the edges block
-  column_with_edge_op <- which(colnames(edges_df) == "edge_op")
+  # Develop the edges block for a data frame containing a column with
+  # explicitly defined edge operations
+  column_with_edge_op <-
+    which(colnames(edges_df) %in% c("edge_op", "edge_ops", "edge", "edges"))[1]
 
   directed_proportion <-
     sum(grepl("->", edges_df[,column_with_edge_op])) / nrow(edges_df)
