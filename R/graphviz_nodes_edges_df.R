@@ -110,73 +110,159 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
     rm(attribute)
   }
 
-  # Develop the edges block for a data frame containing a column with
-  # explicitly defined edge operations
-  column_with_edge_op <-
-    which(colnames(edges_df) %in% c("edge_op", "edge_ops", "edge", "edges"))[1]
+  # Determine whether 'from' or 'to' columns are in 'edges_df'
+  from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
+                                  colnames(edges_df)), "TRUE", "FALSE")
 
-  directed_proportion <-
-    sum(grepl("->", edges_df[,column_with_edge_op])) / nrow(edges_df)
-
-  directed <- ifelse(directed_proportion > 0.8, TRUE, FALSE)
-
+  # Determine which of those columns are edge attributes
   other_columns_with_edge_attributes <-
     which(colnames(edges_df) %in% edge_attributes)
 
-  for (i in 1:nrow(edges_df)){
-    if (i == 1) edge_block <- vector(mode = "character", length = 0)
+  # Determine whether the complementary set of columns is present
+  if (from_to_columns == TRUE){
+    both_from_to_columns <- all(c(any(c("edge_from", "from") %in%
+                                        colnames(edges_df))),
+                                any(c("edge_to", "to") %in%
+                                      colnames(edges_df)))
+  }
 
-    if (length(other_columns_with_edge_attributes) > 0){
+  # If the complementary set of columns is present, determine the positions
+  if (exists("both_from_to_columns")){
+    if (both_from_to_columns == TRUE){
+
+      from_column <- which(colnames(edges_df) %in% c("edge_from", "from"))[1]
+
+      to_column <- which(colnames(edges_df) %in% c("edge_to", "to"))[1]
+    }
+  }
+
+  if (exists("from_column") & exists("to_column")){
+
+    if (length(from_column) == 1 & length(from_column) == 1){
+
+      for (i in 1:nrow(edges_df)){
+        if (i == 1) edge_block <- vector(mode = "character", length = 0)
+
+        if (length(other_columns_with_edge_attributes) > 0){
 
 
-      for (j in other_columns_with_edge_attributes){
+          for (j in other_columns_with_edge_attributes){
 
-        if (j == other_columns_with_edge_attributes[1]){
-          attr_string <- vector(mode = "character", length = 0)
+            if (j == other_columns_with_edge_attributes[1]){
+              attr_string <- vector(mode = "character", length = 0)
+            }
+
+            attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
+            attr_string <- c(attr_string, attribute)
+
+          }
+
+          if (j == other_columns_with_edge_attributes[length(other_columns_with_edge_attributes)]){
+            attr_string <- paste(attr_string, collapse = ", ")
+          }
         }
 
-        attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
-        attr_string <- c(attr_string, attribute)
+        # Generate a line of edge objects when an attribute string exists
+        if (exists("attr_string")){
 
-      }
 
-      if (j == other_columns_with_edge_attributes[length(other_columns_with_edge_attributes)]){
-        attr_string <- paste(attr_string, collapse = ", ")
+          line <- paste0("  edge",
+                         paste0(" [", attr_string, "] "),
+                         "'", edges_df[i, from_column], "'",
+                         ifelse(directed == TRUE, "->", "--"),
+                         "'", edges_df[i, to_column], "'",
+                         " ")
+
+        }
+
+        # Generate a line of edge objects when an attribute string doesn't exist
+        if (!exists("attr_string")){
+
+          line <-
+            paste0("  ",
+                   "'", edges_df[i, from_column], "'",
+                   ifelse(directed == TRUE, "->", "--"),
+                   "'", edges_df[i, to_column], "'",
+                   " ")
+
+        }
+
+        edge_block <- c(edge_block, line)
+
       }
     }
   }
 
-    # Generate a line of node objects when an attribute string exists
-    if (exists("attr_string")){
+  # Develop the edges block for a data frame containing a column with
+  # explicitly defined edge operations
 
-      line <-
-        paste0("  edge",
-               " [", attr_string, "] ",
-               "'", gsub(" ", "",
-                         unlist(strsplit(edges_df[i, column_with_edge_op],
-                                         "-[-|>]")))[1], "'",
-               ifelse(directed == TRUE, "->", "--"),
-               "'", gsub(" ", "",
-                         unlist(strsplit(edges_df[i, column_with_edge_op],
-                                         "-[-|>]")))[2], "'"
-        )
-    }
+  any_columns_with_edge_ops <-
+    ifelse(any(c("edge_op", "edge_ops", "edge", "edges") %in%
+                 colnames(edges_df)), "TRUE", "FALSE")
 
-    # Generate a line of node objects when an attribute string doesn't exist
-    if (!exists("attr_string")){
+  if (any_columns_with_edge_ops == TRUE){
 
-      line <-
-        paste0("  '", gsub(" ", "",
+    column_with_edge_op <-
+      which(colnames(edges_df) %in% c("edge_op", "edge_ops", "edge", "edges"))[1]
+
+    directed_proportion <-
+      sum(grepl("->", edges_df[,column_with_edge_op])) / nrow(edges_df)
+
+    directed <- ifelse(directed_proportion > 0.8, TRUE, FALSE)
+
+    for (i in 1:nrow(edges_df)){
+      if (i == 1) edge_block <- vector(mode = "character", length = 0)
+
+      if (length(other_columns_with_edge_attributes) > 0){
+
+
+        for (j in other_columns_with_edge_attributes){
+
+          if (j == other_columns_with_edge_attributes[1]){
+            attr_string <- vector(mode = "character", length = 0)
+          }
+
+          attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
+          attr_string <- c(attr_string, attribute)
+
+        }
+
+        if (j == other_columns_with_edge_attributes[length(other_columns_with_edge_attributes)]){
+          attr_string <- paste(attr_string, collapse = ", ")
+        }
+      }
+
+      # Generate a line of edge objects when an attribute string exists
+      if (exists("attr_string")){
+
+        line <-
+          paste0("  edge",
+                 " [", attr_string, "] ",
+                 "'", gsub(" ", "",
                            unlist(strsplit(edges_df[i, column_with_edge_op],
                                            "-[-|>]")))[1], "'",
-               ifelse(directed == TRUE, "->", "--"),
-               "'", gsub(" ", "",
-                         unlist(strsplit(edges_df[i, column_with_edge_op],
-                                         "-[-|>]")))[2], "'"
-        )
+                 ifelse(directed == TRUE, "->", "--"),
+                 "'", gsub(" ", "",
+                           unlist(strsplit(edges_df[i, column_with_edge_op],
+                                           "-[-|>]")))[2], "'")
+      }
+
+      # Generate a line of edge objects when an attribute string doesn't exist
+      if (!exists("attr_string")){
+
+        line <-
+          paste0("  '", gsub(" ", "",
+                             unlist(strsplit(edges_df[i, column_with_edge_op],
+                                             "-[-|>]")))[1], "'",
+                 ifelse(directed == TRUE, "->", "--"),
+                 "'", gsub(" ", "",
+                           unlist(strsplit(edges_df[i, column_with_edge_op],
+                                           "-[-|>]")))[2], "'")
+      }
+
+      edge_block <- c(edge_block, line)
     }
 
-    edge_block <- c(edge_block, line)
   }
 
   # Construct the 'edge_block' character object
