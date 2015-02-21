@@ -51,7 +51,10 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
                        "taillabel", "tailport", "tailtarget", "tailtooltip",
                        "tailURL", "target", "tooltip", "weight")
 
-  # Develop the node block
+  #
+  # Create the node block
+  #
+
   column_with_node_id <-
     which(colnames(nodes_df) %in% c("node_id", "node", "nodes"))[1]
 
@@ -59,10 +62,10 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
     which(colnames(nodes_df) %in% node_attributes)
 
   for (i in 1:nrow(nodes_df)){
+
     if (i == 1) node_block <- vector(mode = "character", length = 0)
 
     if (length(other_columns_with_node_attributes) > 0){
-
 
       for (j in other_columns_with_node_attributes){
 
@@ -72,7 +75,6 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
 
         attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
         attr_string <- c(attr_string, attribute)
-
       }
 
       if (j == other_columns_with_node_attributes[length(other_columns_with_node_attributes)]){
@@ -142,6 +144,7 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
         attr_string <- paste(attr_string, collapse = ", ")
       }
     }
+  }
 
     # Generate a line of node objects when an attribute string exists
     if (exists("attr_string")){
