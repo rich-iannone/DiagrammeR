@@ -7,7 +7,7 @@
 #' @param edges_df
 #' @export graphviz_nodes_edges_df
 
-graphviz_nodes_edges_df <- function(nodes_df, edges_df){
+graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
 
   # Perform basic checks of the inputs
   stopifnot(class(nodes_df) == "data.frame")
