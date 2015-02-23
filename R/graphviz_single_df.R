@@ -13,20 +13,84 @@ graphviz_single_df <- function(df,
   edge_between_elements <- gsub(" ", "",
                                 unlist(strsplit(edge_between, "-[-|>]")))
 
-  # Determine column indices for the node columns
-  node_cols <- which(colnames(df) %in% edge_between_elements)
+  # Determine whether column contents should be concatenated to generate
+  # possibly more unique strings
+  if (any(grepl("\\+", edge_between_elements, perl = TRUE)) == TRUE){
 
-  # Get unique values for each of the columns and use as labels
-  node_id <- gsub("'", "_", unique(as.character(unlist(df[,node_cols],
-                                                       use.names = FALSE))))
+    # Determine which columns are to be concatenated to make one or
+    # more synthetic IDs
+    left_side_columns <-
+      gsub(" ", "", unlist(strsplit(edge_between_elements[1], "\\+")))
 
-  # Create the 'nodes_df' data frame, optionally adding a 'label' column
-  if (add_labels == TRUE){
-    label <- gsub("'", "&#39;", unique(as.character(unlist(df[,node_cols],
-                                                           use.names = FALSE))))
-    nodes_df <- data.frame(node_id = node_id, label = label)
+    right_side_columns <-
+      gsub(" ", "", unlist(strsplit(edge_between_elements[2], "\\+")))
+
+    stopifnot(any(left_side_columns %in% colnames(df)))
+    stopifnot(any(right_side_columns %in% colnames(df)))
+
+    ls_cols <- which(colnames(df) %in% left_side_columns)
+    rs_cols <- which(colnames(df) %in% right_side_columns)
+
+    for (i in 1:nrow(df)){
+      if (i == 1) {
+        ls_synthetic <- vector(mode = "character", length = 0)
+        rs_synthetic <- vector(mode = "character", length = 0)
+      }
+
+      if (length(ls_cols) > 1){
+        ls_synthetic <-
+          c(ls_synthetic,
+            paste(df[i,ls_cols], collapse = "__"))
+      } else {
+        if (exists("ls_synthetic")){
+          rm(ls_synthetic)
+        }
+      }
+
+      if (length(rs_cols) > 1){
+        rs_synthetic <-
+          c(rs_synthetic,
+            paste(df[i,rs_cols], collapse = "__"))
+      } else {
+        if (exists("rs_synthetic")){
+          rm(rs_synthetic)
+        }
+      }
+
+      if (i == nrow(df)){
+        if (exists("ls_synthetic") & !exists("rs_synthetic")){
+          node_id <- gsub("'", "_",
+                          c(unique(ls_synthetic), unique(df[,rs_cols])))
+        }
+
+        if (exists("rs_synthetic") & !exists("ls_synthetic")){
+          node_id <- gsub("'", "_",
+                          c(unique(rs_synthetic), unique(df[,ls_cols])))
+        }
+
+        if (exists("ls_synthetic") & exists("rs_synthetic")){
+          node_id <- gsub("'", "_",
+                          c(unique(ls_synthetic), unique(rs_synthetic)))
+        }
+      }
+    }
   } else {
-    nodes_df <- data.frame(node_id = node_id)
+
+    # Determine column indices for the node columns
+    node_cols <- which(colnames(df) %in% edge_between_elements)
+
+    # Get unique values for each of the columns and use as labels
+    node_id <- gsub("'", "_", unique(as.character(unlist(df[,node_cols],
+                                                         use.names = FALSE))))
+
+    # Create the 'nodes_df' data frame, optionally adding a 'label' column
+    if (add_labels == TRUE){
+      label <- gsub("'", "&#39;", unique(as.character(unlist(df[,node_cols],
+                                                             use.names = FALSE))))
+      nodes_df <- data.frame(node_id = node_id, label = label)
+    } else {
+      nodes_df <- data.frame(node_id = node_id)
+    }
   }
 
   # Extract information on the relationship between nodes
