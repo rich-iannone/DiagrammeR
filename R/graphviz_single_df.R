@@ -20,7 +20,7 @@ graphviz_single_df <- function(df,
   node_id <- gsub("'", "_", unique(as.character(unlist(df[,node_cols],
                                                        use.names = FALSE))))
 
-  # Create the 'nodes_df' data frame
+  # Create the 'nodes_df' data frame, optionally adding a 'label' column
   if (add_labels == TRUE){
     label <- gsub("'", "&#39;", unique(as.character(unlist(df[,node_cols],
                                                            use.names = FALSE))))
@@ -29,6 +29,7 @@ graphviz_single_df <- function(df,
     nodes_df <- data.frame(node_id = node_id)
   }
 
+  # Extract information on the relationship between nodes
   if (grepl("->", edge_between)){
     directed <- TRUE
   } else if (grepl("--", edge_between)){
