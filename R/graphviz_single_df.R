@@ -45,10 +45,10 @@ graphviz_single_df <- function(df,
       edge_to <- vector(mode = "character", length = 0)
     }
 
-    edge_from_row <- gsub("'", "_", df[i,edge_cols[1]])
+    edge_from_row <- gsub("'", "_", df[i,edge_between_elements[1]])
     edge_from <- c(edge_from, edge_from_row)
 
-    edge_to_row <- gsub("'", "_", df[i,edge_cols[2]])
+    edge_to_row <- gsub("'", "_", df[i,edge_between_elements[2]])
     edge_to <- c(edge_to, edge_to_row)
 
     if (i == nrow(df)){
