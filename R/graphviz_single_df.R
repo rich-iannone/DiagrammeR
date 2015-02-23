@@ -9,8 +9,12 @@ graphviz_single_df <- function(df,
                                edge_between,
                                add_labels = FALSE){
 
-  # Determine column indices for columns selected as nodes
-  node_cols <- which(colnames(df) %in% node_col_names)
+  # Extract the column names that serve as nodes
+  edge_between_elements <- gsub(" ", "",
+                                unlist(strsplit(edge_between, "-[-|>]")))
+
+  # Determine column indices for the node columns
+  node_cols <- which(colnames(df) %in% edge_between_elements)
 
   # Get unique values for each of the columns and use as labels
   node_id <- gsub("'", "_", unique(as.character(unlist(df[,node_cols],
@@ -25,12 +29,6 @@ graphviz_single_df <- function(df,
     nodes_df <- data.frame(node_id = node_id)
   }
 
-  # Obtain the elements for the edge operation
-  edge_between_elements <- gsub(" ", "",
-                                unlist(strsplit(edge_between, "-[-|>]")))
-
-  # Determine whether the relationship between nodes is directed or
-  # undirected
   if (grepl("->", edge_between)){
     directed <- TRUE
   } else if (grepl("--", edge_between)){
@@ -38,9 +36,6 @@ graphviz_single_df <- function(df,
   } else {
     directed <- FALSE
   }
-
-  # Determine which columns contain nodes for the edge operations
-  edge_cols <- which(colnames(df) %in% edge_between_elements)
 
   # Create the 'edges_df' data frame
   for (i in 1:nrow(df)){
