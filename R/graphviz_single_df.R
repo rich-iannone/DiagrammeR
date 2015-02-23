@@ -1,13 +1,11 @@
 #' Create DOT code from a data frame
 #' A function to generate DOT code from a single data frame
 #' @param df the data frame object from which node and edge statements in DOT notation are to be generated.
-#' @param node_col_names a vector object containing the data frame column names for nodes to be graphed.
 #' @param edge_between a vector object containing statements that provide information on the relationships between nodes in different columns. The basic syntax takes the form of: "df_column_name_1 [->|--] df_column_name_2".
 #' @param add_labels whether to automatically generate a set of node and edge labels based on the node ID and the edge operation, respectively.
 #' @export graphviz_single_df
 
 graphviz_single_df <- function(df,
-                               node_col_names,
                                edge_between,
                                add_labels = FALSE){
 
