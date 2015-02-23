@@ -5,12 +5,10 @@
 \title{Create DOT code from a data frame
 A function to generate DOT code from a single data frame}
 \usage{
-graphviz_single_df(df, node_col_names, edge_between, add_labels = FALSE)
+graphviz_single_df(df, edge_between, add_labels = FALSE)
 }
 \arguments{
 \item{df}{the data frame object from which node and edge statements in DOT notation are to be generated.}
-
-\item{node_col_names}{a vector object containing the data frame column names for nodes to be graphed.}
 
 \item{edge_between}{a vector object containing statements that provide information on the relationships between nodes in different columns. The basic syntax takes the form of: "df_column_name_1 [->|--] df_column_name_2".}
 
