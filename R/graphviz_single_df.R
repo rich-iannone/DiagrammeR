@@ -144,6 +144,24 @@ graphviz_single_df <- function(df,
     } else {
       nodes_df <- data.frame(node_id = node_id)
     }
+
+    # Create the 'edges_df' data frame
+    for (i in 1:nrow(df)){
+      if (i == 1){
+        edge_from <- vector(mode = "character", length = 0)
+        edge_to <- vector(mode = "character", length = 0)
+      }
+
+      edge_from_row <- gsub("'", "_", df[i,edge_between_elements[1]])
+      edge_from <- c(edge_from, edge_from_row)
+
+      edge_to_row <- gsub("'", "_", df[i,edge_between_elements[2]])
+      edge_to <- c(edge_to, edge_to_row)
+
+      if (i == nrow(df)){
+        edges_df <- data.frame(edge_from, edge_to)
+      }
+    }
   }
 
   # Extract information on the relationship between nodes
@@ -153,24 +171,6 @@ graphviz_single_df <- function(df,
     directed <- FALSE
   } else {
     directed <- FALSE
-  }
-
-  # Create the 'edges_df' data frame
-  for (i in 1:nrow(df)){
-    if (i == 1){
-      edge_from <- vector(mode = "character", length = 0)
-      edge_to <- vector(mode = "character", length = 0)
-    }
-
-    edge_from_row <- gsub("'", "_", df[i,edge_between_elements[1]])
-    edge_from <- c(edge_from, edge_from_row)
-
-    edge_to_row <- gsub("'", "_", df[i,edge_between_elements[2]])
-    edge_to <- c(edge_to, edge_to_row)
-
-    if (i == nrow(df)){
-      edges_df <- data.frame(edge_from, edge_to)
-    }
   }
 
   # Generate the combined node and edge block for insertion into the
