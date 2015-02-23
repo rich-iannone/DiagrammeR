@@ -4,7 +4,7 @@
 \alias{graphviz_nodes_edges_df}
 \title{Create DOT code from two data frames}
 \usage{
-graphviz_nodes_edges_df(nodes_df, edges_df)
+graphviz_nodes_edges_df(nodes_df, edges_df, directed = TRUE)
 }
 \arguments{
 \item{nodes_df}{}
