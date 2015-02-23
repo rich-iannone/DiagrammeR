@@ -33,7 +33,7 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
 
   node_attributes <- c("color", "colorscheme", "distortion", "fillcolor",
                        "fixedsize", "fontcolor", "fontname", "fontsize",
-                       "group", "height", "image", "labelloc", "margin",
+                       "group", "height", "image", "label", "labelloc", "margin",
                        "orientation", "penwidth", "peripheries", "shape",
                        "sides", "skew", "style", "tooltip", "width")
 
@@ -109,6 +109,10 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
   if (exists("attribute") == TRUE){
     rm(attribute)
   }
+
+  #
+  # Create the edge block
+  #
 
   # Determine whether 'from' or 'to' columns are in 'edges_df'
   from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
