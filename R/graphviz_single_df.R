@@ -74,6 +74,59 @@ graphviz_single_df <- function(df,
         }
       }
     }
+
+    # Create the 'nodes_df' data frame, optionally adding a 'label' column
+    if (add_labels == TRUE){
+      label <- gsub("'", "&#39;", node_id)
+
+      nodes_df <- data.frame(node_id = node_id, label = label)
+    } else {
+      nodes_df <- data.frame(node_id = node_id)
+    }
+
+    # Create the 'edges_df' data frame
+    for (i in 1:nrow(df)){
+      if (i == 1){
+        edge_from <- vector(mode = "character", length = 0)
+        edge_to <- vector(mode = "character", length = 0)
+      }
+
+      if (exists("ls_synthetic") & !exists("rs_synthetic")){
+
+        edge_from_row <- ls_synthetic[i]
+        edge_from <- c(edge_from, edge_from_row)
+
+        edge_to_row <- gsub("'", "_", df[i,edge_between_elements[2]])
+        edge_to <- c(edge_to, edge_to_row)
+
+      }
+
+      if (exists("rs_synthetic") & !exists("ls_synthetic")){
+
+        edge_from_row <- gsub("'", "_", df[i,edge_between_elements[1]])
+        edge_from <- c(edge_from, edge_from_row)
+
+        edge_to_row <- rs_synthetic[i]
+        edge_to <- c(edge_to, edge_to_row)
+
+      }
+
+      if (exists("ls_synthetic") & exists("rs_synthetic")){
+
+        edge_from_row <- ls_synthetic[i]
+        edge_from <- c(edge_from, edge_from_row)
+
+        edge_to_row <- rs_synthetic[i]
+        edge_to <- c(edge_to, edge_to_row)
+
+      }
+
+      if (i == nrow(df)){
+        edges_df <- data.frame(edge_from, edge_to)
+      }
+    }
+
+
   } else {
 
     # Determine column indices for the node columns
