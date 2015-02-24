@@ -13,6 +13,13 @@ graphviz_single_df <- function(df,
   edge_between_elements <- gsub(" ", "",
                                 unlist(strsplit(edge_between, "-[-|>]")))
 
+  # Add function 'strcount' to perform a count of pattern occurances in a string
+  strcount <- function(x, pattern, split){
+    unlist(lapply(
+      strsplit(x, split),
+      function(z) na.omit(length(grep(pattern, z)))))
+  }
+
   # Create list of node attributes, parsed from 'node_attr' input
   for (i in 1:length(node_attr)){
     if (i == 1) node_attr_values <- vector("list", length(node_attr))
