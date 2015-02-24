@@ -23,22 +23,23 @@ graphviz_single_df <- function(df,
   }
 
   # Create list of node attributes, parsed from 'node_attr' input
-  for (i in 1:length(node_attr)){
-    if (i == 1) node_attr_values <- vector("list", length(node_attr))
+  if (!is.null(node_attr)){
+    for (i in 1:length(node_attr)){
+      if (i == 1) node_attr_values <- vector("list", length(node_attr))
 
-    node_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1", node_attr[i], perl = TRUE)
+      node_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1", node_attr[i], perl = TRUE)
 
-    for (j in 1:(strcount(node_attr[i], ",", "") + 1)){
+      for (j in 1:(strcount(node_attr[i], ",", "") + 1)){
 
-      node_attr_values[[i]][j + 1] <-
-        gsub("=", " = ", gsub(" ", "",
-                              unlist(strsplit(gsub(paste0("^",
-                                                          gsub("\\+", "\\\\+",
-                                                               node_attr_values[[i]][1]),
-                                                          ":"),
-                                                   "", node_attr[i]), ","))))[j]
+        node_attr_values[[i]][j + 1] <-
+          gsub("=", " = ", gsub(" ", "",
+                                unlist(strsplit(gsub(paste0("^",
+                                                            gsub("\\+", "\\\\+",
+                                                                 node_attr_values[[i]][1]),
+                                                            ":"),
+                                                     "", node_attr[i]), ","))))[j]
+      }
     }
-
   }
 
   # Determine whether column contents should be concatenated to generate
