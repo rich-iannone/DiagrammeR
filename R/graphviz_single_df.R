@@ -93,7 +93,7 @@ graphviz_single_df <- function(df,
 
       if (exists("ls_synthetic") & !exists("rs_synthetic")){
 
-        edge_from_row <- ls_synthetic[i]
+        edge_from_row <- gsub("'", "_", ls_synthetic[i])
         edge_from <- c(edge_from, edge_from_row)
 
         edge_to_row <- gsub("'", "_", df[i,edge_between_elements[2]])
@@ -106,17 +106,17 @@ graphviz_single_df <- function(df,
         edge_from_row <- gsub("'", "_", df[i,edge_between_elements[1]])
         edge_from <- c(edge_from, edge_from_row)
 
-        edge_to_row <- rs_synthetic[i]
+        edge_to_row <- gsub("'", "_", rs_synthetic[i])
         edge_to <- c(edge_to, edge_to_row)
 
       }
 
       if (exists("ls_synthetic") & exists("rs_synthetic")){
 
-        edge_from_row <- ls_synthetic[i]
+        edge_from_row <- gsub("'", "_", ls_synthetic[i])
         edge_from <- c(edge_from, edge_from_row)
 
-        edge_to_row <- rs_synthetic[i]
+        edge_to_row <- gsub("'", "_", rs_synthetic[i])
         edge_to <- c(edge_to, edge_to_row)
 
       }
