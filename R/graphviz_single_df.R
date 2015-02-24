@@ -13,6 +13,25 @@ graphviz_single_df <- function(df,
   edge_between_elements <- gsub(" ", "",
                                 unlist(strsplit(edge_between, "-[-|>]")))
 
+  # Create list of node attributes, parsed from 'node_attr' input
+  for (i in 1:length(node_attr)){
+    if (i == 1) node_attr_values <- vector("list", length(node_attr))
+
+    node_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1", node_attr[i], perl = TRUE)
+
+    for (j in 1:(strcount(node_attr[i], ",", "") + 1)){
+
+      node_attr_values[[i]][j + 1] <-
+        gsub("=", " = ", gsub(" ", "",
+                              unlist(strsplit(gsub(paste0("^",
+                                                          gsub("\\+", "\\\\+",
+                                                               node_attr_values[[i]][1]),
+                                                          ":"),
+                                                   "", node_attr[i]), ","))))[j]
+    }
+
+  }
+
   # Determine whether column contents should be concatenated to generate
   # possibly more unique strings
   if (any(grepl("\\+", edge_between_elements, perl = TRUE)) == TRUE){
