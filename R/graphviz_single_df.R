@@ -7,6 +7,8 @@
 
 graphviz_single_df <- function(df,
                                edge_between,
+                               node_attr = NULL,
+                               edge_attr = NULL,
                                add_labels = FALSE){
 
   # Extract the column names that serve as nodes
