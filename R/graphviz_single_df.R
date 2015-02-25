@@ -22,6 +22,19 @@ graphviz_single_df <- function(df,
       function(z) na.omit(length(grep(pattern, z)))))
   }
 
+  # Add function 'combine_vector_contents' to combine vector contents
+  combine_vector_contents <- function(vector_1, vector_2){
+    if (length(vector_1) == length(vector_2)){
+      for (i in 1:length(vector_1)){
+        if (i == 1) new_vector <- vector(mode = "character",
+                                         length = length(vector_1))
+        if (vector_1[i] != "") new_vector[i] <- vector_1[i]
+        if (vector_2[i] != "") new_vector[i] <- vector_2[i]
+      }
+      return(new_vector)
+    }
+  }
+
   # Create list of node attributes, parsed from 'node_attr' input
   if (!is.null(node_attr)){
     for (i in 1:length(node_attr)){
