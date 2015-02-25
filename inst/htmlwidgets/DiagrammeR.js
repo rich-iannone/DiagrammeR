@@ -84,25 +84,28 @@ HTMLWidgets.widget({
         .attr("id", "mermaidChart-" + el.id);
       // now we have to change the styling assigned by mermaid
       //   to point to our new id that we have assigned
-      d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
-        .select("style")[0][0].innerHTML
-        .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
+      //   will add if since sequence diagrams do not have stylesheet
+      if(d3.select(el).select("svg").select("style")[0][0]){
+        d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
+          .select("style")[0][0].innerHTML
+          .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
+      }
         
-        // set up a container for tasks to perform after completion
-        //  one example would be add callbacks for event handling
-        //  styling
-        if (!(typeof x.tasks === "undefined") ){
-          if ( (typeof x.tasks.length === "undefined") ||
-           (typeof x.tasks === "function" ) ) {
-             // handle a function not enclosed in array
-             // should be able to remove once using jsonlite
-             x.tasks = [x.tasks];
-          }
-          x.tasks.map(function(t){
-            // for each tasks add it to the mermaid.tasks with el
-            t.call(el);
-          })
+      // set up a container for tasks to perform after completion
+      //  one example would be add callbacks for event handling
+      //  styling
+      if (!(typeof x.tasks === "undefined") ){
+        if ( (typeof x.tasks.length === "undefined") ||
+         (typeof x.tasks === "function" ) ) {
+           // handle a function not enclosed in array
+           // should be able to remove once using jsonlite
+           x.tasks = [x.tasks];
         }
+        x.tasks.map(function(t){
+          // for each tasks add it to the mermaid.tasks with el
+          t.call(el);
+        })
+      }
 
     } catch(e) {
       // if error look for last processed DiagrammeR
