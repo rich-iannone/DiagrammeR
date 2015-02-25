@@ -70,6 +70,8 @@ graphviz_single_df <- function(df,
         ls_synthetic <-
           c(ls_synthetic,
             paste(df[i,ls_cols], collapse = "__"))
+        ls_origin <- paste(colnames(df[i,ls_cols]), collapse = "+")
+        rs_origin <- right_side_columns
       } else {
         if (exists("ls_synthetic")){
           rm(ls_synthetic)
@@ -80,6 +82,8 @@ graphviz_single_df <- function(df,
         rs_synthetic <-
           c(rs_synthetic,
             paste(df[i,rs_cols], collapse = "__"))
+        rs_origin <- paste(colnames(df[i,rs_cols]), collapse = "+")
+        ls_origin <- left_side_columns
       } else {
         if (exists("rs_synthetic")){
           rm(rs_synthetic)
@@ -90,16 +94,23 @@ graphviz_single_df <- function(df,
         if (exists("ls_synthetic") & !exists("rs_synthetic")){
           node_id <- gsub("'", "_",
                           c(unique(ls_synthetic), unique(df[,rs_cols])))
+          origin_id <- c(rep(ls_origin, length(unique(ls_synthetic))),
+                         rep(rs_origin, length(unique(df[,rs_cols]))))
+
         }
 
         if (exists("rs_synthetic") & !exists("ls_synthetic")){
           node_id <- gsub("'", "_",
                           c(unique(rs_synthetic), unique(df[,ls_cols])))
+          origin_id <- c(rep(ls_origin, length(unique(df[,ls_cols]))),
+                         rep(rs_origin, length(unique(rs_synthetic))))
         }
 
         if (exists("ls_synthetic") & exists("rs_synthetic")){
           node_id <- gsub("'", "_",
                           c(unique(ls_synthetic), unique(rs_synthetic)))
+          origin_id <- c(rep(ls_origin, length(unique(ls_synthetic))),
+                         rep(rs_origin, length(unique(rs_synthetic))))
         }
       }
     }
@@ -107,10 +118,16 @@ graphviz_single_df <- function(df,
     # Create the 'nodes_df' data frame, optionally adding a 'label' column
     if (add_labels == TRUE){
       label <- gsub("'", "&#39;", node_id)
-
-      nodes_df <- data.frame(node_id = node_id, label = label)
+      nodes_df <- data.frame(node_id = node_id,
+                             origin_id = origin_id,
+                             label = label,
+                             stringsAsFactors = FALSE)
     } else {
-      nodes_df <- data.frame(node_id = node_id)
+      nodes_df <- data.frame(node_id = node_id,
+                             origin_id = origin_id,
+                             stringsAsFactors = FALSE)
+    }
+
     }
 
     # Create the 'edges_df' data frame
