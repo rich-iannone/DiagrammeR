@@ -238,6 +238,32 @@ graphviz_single_df <- function(df,
       }
     }
 
+    # Create the necessary attributes columns in 'edges_df'
+    if (class(edge_attr_values) == "list" & length(edge_attr_values) > 0){
+
+      for (i in 1:length(edge_attr_values)){
+        for (j in 2:length(edge_attr_values[[i]])){
+
+          column_name <- gsub("^([a-z]*) =.*", "\\1", edge_attr_values[[i]][j])
+          attr_value <- gsub("^[a-z]* = (.*)", "\\1", edge_attr_values[[i]][j])
+
+          col_vector <- rep(attr_value, nrow(edges_df))
+
+          if (!(column_name %in% colnames(edges_df))){
+            edges_df <- as.data.frame(cbind(edges_df, as.character(col_vector)),
+                                      stringsAsFactors = FALSE)
+            colnames(edges_df)[length(edges_df)] <- column_name
+
+          }
+
+          if (column_name %in% colnames(edges_df)){
+            edges_df[, which(colnames(edges_df) == column_name)] <-
+              combine_vector_contents(edges_df[, which(colnames(edges_df) == column_name)],
+                                      col_vector)
+          }
+        }
+      }
+    }
 
   } else {
 
