@@ -141,6 +141,38 @@ graphviz_single_df <- function(df,
                              stringsAsFactors = FALSE)
     }
 
+    # Create the necessary attributes columns in 'nodes_df'
+    if (class(node_attr_values) == "list" & length(node_attr_values) > 0){
+
+      for (i in 1:length(node_attr_values)){
+        for (j in 2:length(node_attr_values[[i]])){
+
+          column_name <- gsub("^([a-z]*) =.*", "\\1", node_attr_values[[i]][j])
+          attr_value <- gsub("^[a-z]* = (.*)", "\\1", node_attr_values[[i]][j])
+
+          for (k in 1:nrow(nodes_df)){
+            if (k == 1) col_vector <- vector(mode = "character", length = nrow(nodes_df))
+
+            col_vector[k] <-
+              ifelse(nodes_df[k, colnames(nodes_df) == "origin_id"] == node_attr_values[[i]][1],
+                     attr_value, "")
+          }
+
+          if (!(column_name %in% colnames(nodes_df))){
+            nodes_df <- as.data.frame(cbind(nodes_df, as.character(col_vector)),
+                                      stringsAsFactors = FALSE)
+            colnames(nodes_df)[length(nodes_df)] <- column_name
+
+          }
+
+          if (column_name %in% colnames(nodes_df)){
+            nodes_df[, which(colnames(nodes_df) == column_name)] <-
+              combine_vector_contents(nodes_df[, which(colnames(nodes_df) == column_name)],
+                                      col_vector)
+
+          }
+        }
+      }
     }
 
     # Create the 'edges_df' data frame
