@@ -55,6 +55,28 @@ graphviz_single_df <- function(df,
     }
   }
 
+  # Create list of edge attributes, parsed from 'edge_attr' input
+  if (!is.null(edge_attr)){
+    for (i in 1:length(edge_attr)){
+      if (i == 1) edge_attr_values <- vector("list", length(edge_attr))
+
+      edge_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1",
+                                    edge_attr[i], perl = TRUE)
+
+      for (j in 1:(strcount(edge_attr[i], ",", "") + 1)){
+
+        edge_attr_values[[i]][j + 1] <-
+          gsub("=", " = ",
+               gsub(" ", "",
+                    unlist(strsplit(gsub(paste0("^",
+                                                gsub("\\+", "\\\\+",
+                                                     edge_attr_values[[i]][1]),
+                                                ":"),
+                                         "", edge_attr[i]), ","))))[j]
+      }
+    }
+  }
+
   # Determine whether column contents should be concatenated to generate
   # possibly more unique strings
   if (any(grepl("\\+", edge_between_elements, perl = TRUE)) == TRUE){
@@ -169,7 +191,6 @@ graphviz_single_df <- function(df,
             nodes_df[, which(colnames(nodes_df) == column_name)] <-
               combine_vector_contents(nodes_df[, which(colnames(nodes_df) == column_name)],
                                       col_vector)
-
           }
         }
       }
