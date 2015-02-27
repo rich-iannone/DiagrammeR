@@ -11,6 +11,11 @@ graphviz_single_df <- function(df,
                                edge_attr = NULL,
                                add_labels = FALSE){
 
+  # Clean up 'node_attr' statement, if it is provided
+  if (exists("node_attr")){
+   node_attr <- gsub(",([a-z])", ", \\1", gsub("\\n ", "", gsub("[ ]+", " ", node_attr)))
+  }
+
   # Extract the column names that serve as nodes
   edge_between_elements <- gsub(" ", "",
                                 unlist(strsplit(edge_between, "-[-|>]")))
