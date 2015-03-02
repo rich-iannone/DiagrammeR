@@ -57,8 +57,8 @@ replace_in_spec <- function(spec){
 
     # Split the references into a vector of R statements
     split_references <-
-    gsub("\\[[0-9*]\\]:[ ]?", "",
-         unlist(strsplit(x = spec_references, "\\n")))
+      gsub("\\[[0-9*]\\]:[ ]?", "",
+           unlist(strsplit(x = spec_references, "\\n")))
 
     # Evaluate the expressions and save into a list object
     for (i in 1:length(split_references)){
@@ -87,21 +87,21 @@ replace_in_spec <- function(spec){
     for (i in 1:length(split_references)){
       while (grepl(paste0("@@", i, "-", "[0-9]+"), spec_body)){
         the_index <-
-        as.numeric(gsub("^([0-9]+)(.*)", "\\1",
-                        strsplit(spec_body,
-                                 paste0("@@", i, "-"))[[1]][2]))
+          as.numeric(gsub("^([0-9]+)(.*)", "\\1",
+                          strsplit(spec_body,
+                                   paste0("@@", i, "-"))[[1]][2]))
 
         if (the_index > length(eval_expressions[[i]])){
           spec_body <-
-          gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
-               paste0(eval_expressions[[i]][length(eval_expressions[[i]])],
-                      "\\1"),
-               spec_body)
+            gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
+                 paste0(eval_expressions[[i]][length(eval_expressions[[i]])],
+                        "\\1"),
+                 spec_body)
         } else {
           spec_body <-
-          gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
-               paste0(eval_expressions[[i]][the_index], "\\1"),
-               spec_body)
+            gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
+                 paste0(eval_expressions[[i]][the_index], "\\1"),
+                 spec_body)
         }
       }
     }
