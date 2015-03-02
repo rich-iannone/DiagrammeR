@@ -52,6 +52,14 @@ replace_in_spec <- function(spec){
                  spec)
   }
 
+  # Directive for marking superscripted text in a label or tooltip '@_'
+  if (grepl("@^", spec)){
+
+    spec <- gsub('(label|tooltip)[ ]*=[ ]*\'(.*?)@_\\{(.*?)\\}(.*?)\'',
+                 '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUP>\\3</SUP></FONT>\\4>',
+                 spec)
+  }
+
   # Directive for substitution of arbitrary specification text '@@'
   if (grepl("@@", spec)){
 
