@@ -113,6 +113,11 @@ replace_in_spec <- function(spec){
   # Directive for marking subscripted text in a label or tooltip '@_'
   if (grepl("@_", spec)){
 
+    spec <- gsub('(label|tooltip) = \'(.*)@_\\{(.*)\\}(.*)\'',
+                 '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUB>\\3</SUB></FONT>\\4>',
+                 spec)
+
+
   }
 
   if (grepl("@@", spec) == FALSE){
