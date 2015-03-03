@@ -68,6 +68,14 @@ replace_in_spec <- function(spec){
                  spec, perl = TRUE)
   }
 
+  # Make a second pass to add superscripts as inline HTML
+  while (grepl('(label|tooltip)[ ]*=[ ]*<(.*?)@\\^\\{(.+?)\\}(.*?)>', spec)){
+
+    spec <- gsub('(label|tooltip)[ ]*=[ ]*<(.*?)@\\^\\{(.*?)\\}(.*?)>',
+                 '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUP>\\3</SUP></FONT>\\4>',
+                 spec, perl = TRUE)
+  }
+
   # Directive for substitution of arbitrary specification text '@@'
   if (grepl("@@", spec)){
 
