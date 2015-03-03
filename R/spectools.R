@@ -60,6 +60,14 @@ replace_in_spec <- function(spec){
                  spec)
   }
 
+  # Make a second pass to add subscripts as inline HTML
+  while (grepl('(label|tooltip)[ ]*=[ ]*<(.*?)@_\\{(.+?)\\}(.*?)>', spec)){
+
+    spec <- gsub('(label|tooltip)[ ]*=[ ]*<(.*?)@_\\{(.*?)\\}(.*?)>',
+                 '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUB>\\3</SUB></FONT>\\4>',
+                 spec, perl = TRUE)
+  }
+
   # Directive for substitution of arbitrary specification text '@@'
   if (grepl("@@", spec)){
 
