@@ -49,7 +49,7 @@ replace_in_spec <- function(spec){
 
     spec <- gsub('(label|tooltip)[ ]*=[ ]*\'(.*?)@_\\{(.*?)\\}(.*?)\'',
                  '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUB>\\3</SUB></FONT>\\4>',
-                 spec)
+                 spec, perl = TRUE)
   }
 
   # Directive for marking superscripted text in a label or tooltip '@_'
@@ -57,7 +57,7 @@ replace_in_spec <- function(spec){
 
     spec <- gsub('(label|tooltip)[ ]*=[ ]*\'(.*?)@\\^\\{(.*?)\\}(.*?)\'',
                  '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUP>\\3</SUP></FONT>\\4>',
-                 spec)
+                 spec, perl = TRUE)
   }
 
   # Make a second pass to add subscripts as inline HTML
