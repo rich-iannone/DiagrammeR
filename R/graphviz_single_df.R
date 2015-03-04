@@ -293,6 +293,39 @@ graphviz_single_df <- function(df,
       nodes_df <- data.frame(node_id = node_id)
     }
 
+    # Create the necessary attributes columns in 'nodes_df'
+    if (class(node_attr_values) == "list" & length(node_attr_values) > 0){
+
+      for (i in 1:length(node_attr_values)){
+        for (j in 2:length(node_attr_values[[i]])){
+
+          column_name <- gsub("^([a-z]*) =.*", "\\1", node_attr_values[[i]][j])
+          attr_value <- gsub("^[a-z]* = (.*)", "\\1", node_attr_values[[i]][j])
+
+          for (k in 1:nrow(nodes_df)){
+            if (k == 1) col_vector <- vector(mode = "character", length = nrow(nodes_df))
+
+            col_vector[k] <-
+              ifelse(nodes_df[k, colnames(nodes_df) == "origin_id"] == node_attr_values[[i]][1],
+                     attr_value, "")
+          }
+
+          if (!(column_name %in% colnames(nodes_df))){
+            nodes_df <- as.data.frame(cbind(nodes_df, as.character(col_vector)),
+                                      stringsAsFactors = FALSE)
+            colnames(nodes_df)[length(nodes_df)] <- column_name
+
+          }
+
+          if (column_name %in% colnames(nodes_df)){
+            nodes_df[, which(colnames(nodes_df) == column_name)] <-
+              combine_vector_contents(nodes_df[, which(colnames(nodes_df) == column_name)],
+                                      col_vector)
+          }
+        }
+      }
+    }
+
     # Create the 'edges_df' data frame
     for (i in 1:nrow(df)){
       if (i == 1){
@@ -308,6 +341,33 @@ graphviz_single_df <- function(df,
 
       if (i == nrow(df)){
         edges_df <- data.frame(edge_from, edge_to)
+      }
+    }
+
+    # Create the necessary attributes columns in 'edges_df'
+    if (class(edge_attr_values) == "list" & length(edge_attr_values) > 0){
+
+      for (i in 1:length(edge_attr_values)){
+        for (j in 2:length(edge_attr_values[[i]])){
+
+          column_name <- gsub("^([a-z]*) =.*", "\\1", edge_attr_values[[i]][j])
+          attr_value <- gsub("^[a-z]* = (.*)", "\\1", edge_attr_values[[i]][j])
+
+          col_vector <- rep(attr_value, nrow(edges_df))
+
+          if (!(column_name %in% colnames(edges_df))){
+            edges_df <- as.data.frame(cbind(edges_df, as.character(col_vector)),
+                                      stringsAsFactors = FALSE)
+            colnames(edges_df)[length(edges_df)] <- column_name
+
+          }
+
+          if (column_name %in% colnames(edges_df)){
+            edges_df[, which(colnames(edges_df) == column_name)] <-
+              combine_vector_contents(edges_df[, which(colnames(edges_df) == column_name)],
+                                      col_vector)
+          }
+        }
       }
     }
   }
