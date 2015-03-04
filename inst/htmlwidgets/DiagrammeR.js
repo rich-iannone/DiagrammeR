@@ -20,7 +20,45 @@ HTMLWidgets.widget({
         allowing us to callback after manually init and then callback
         after complete
     */
-   window.mermaid.startOnLoad = false;
+    window.mermaid.startOnLoad = false;
+    
+    // set config options for Gantt
+    //   undocumented but these can be provided
+    //   so from R
+    //   m1 <- mermaid(spec)
+    //   m1$x$config = list(ganttConfig = list( barHeight = 100 ) )
+    mermaid.ganttConfig = {
+        titleTopMargin:25,
+        barHeight:20,
+        barGap:4,
+        topPadding:50,
+        sidePadding:100,
+        gridLineStartPadding:35,
+        fontSize:11,
+        numberSectionStyles:4,
+        axisFormatter: [
+            // Within a day
+            ["%I:%M", function (d) {
+                return d.getHours();
+            }],
+            // Monday a week
+            ["w. %U", function (d) {
+                return d.getDay() == 1;
+            }],
+            // Day within a week (not monday)
+            ["%a %d", function (d) {
+                return d.getDay() && d.getDate() != 1;
+            }],
+            // within a month
+            ["%b %d", function (d) {
+                return d.getDate() != 1;
+            }],
+            // Month
+            ["%m-%y", function (d) {
+                return d.getMonth();
+            }]
+        ]
+    };
 
     return {
       // TODO: add instance fields as required
@@ -47,6 +85,19 @@ HTMLWidgets.widget({
       // set display to none
       // should we remove instead??
       el.style.display = "none";
+    }
+    
+    // check for undocumented ganttConfig
+    //   to override the defaults manually entered
+    //   in initialize above
+    //   note this is really sloppy and will not
+    //   work well if multiple gantt charts
+    //   with custom configs here
+    if( typeof x.config !== "undefined" && 
+         typeof x.config.ganttConfig !== "undefined" ){
+      Object.keys(x.config.ganttConfig).map(function(k){
+        window.mermaid.ganttConfig[k] = x.config.ganttConfig[k];
+      })
     }
     
     

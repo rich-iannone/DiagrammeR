@@ -141,7 +141,9 @@ mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
   }
   
   # forward options using x
-  x <- list(diagram = diagram)
+  x <- list(
+    diagram = diagram
+  )
   
   # create widget
   htmlwidgets::createWidget(name = 'DiagrammeR',
