@@ -13,7 +13,7 @@ graphviz_single_df <- function(df,
 
   # Clean up 'node_attr' statement, if it is provided
   if (exists("node_attr")){
-   node_attr <- gsub(",([a-z])", ", \\1", gsub("\\n ", "", gsub("[ ]+", " ", node_attr)))
+    node_attr <- gsub(",([a-z])", ", \\1", gsub("\\n ", "", gsub("[ ]+", " ", node_attr)))
   }
 
   # Clean up 'edge_attr' statement, if it is provided
@@ -284,13 +284,31 @@ graphviz_single_df <- function(df,
     node_id <- gsub("'", "_", unique(as.character(unlist(df[,node_cols],
                                                          use.names = FALSE))))
 
+    left_side_column <- edge_between_elements[1]
+    right_side_column <- edge_between_elements[2]
+
+    stopifnot(any(left_side_column %in% colnames(df)))
+    stopifnot(any(right_side_column %in% colnames(df)))
+
+    ls_col <- which(colnames(df) %in% left_side_column)
+    rs_col <- which(colnames(df) %in% right_side_column)
+
+    ls_origin <- left_side_column
+    rs_origin <- right_side_column
+
+    origin_id <- c(rep(ls_origin, nrow(unique(df[,ls_col]))),
+                   rep(rs_origin, nrow(unique(df[,rs_col]))))
+
     # Create the 'nodes_df' data frame, optionally adding a 'label' column
     if (add_labels == TRUE){
       label <- gsub("'", "&#39;", unique(as.character(unlist(df[,node_cols],
                                                              use.names = FALSE))))
-      nodes_df <- data.frame(node_id = node_id, label = label)
+      nodes_df <- data.frame(node_id = node_id,
+                             origin_id = origin_id,
+                             label = label)
     } else {
-      nodes_df <- data.frame(node_id = node_id)
+      nodes_df <- data.frame(node_id = node_id,
+                             origin_id = origin_id)
     }
 
     # Create the necessary attributes columns in 'nodes_df'
