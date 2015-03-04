@@ -1,0 +1,187 @@
+/* Flowchart */
+.mermaid .label {
+  color: #333333;
+}
+.mermaid .node rect,
+  .node circle,
+  .node polygon {
+  fill: #ececff;
+  stroke: #ccccff;
+  stroke-width: 1px;
+}
+.mermaid .edgePath .path {
+  stroke: #333333 !important;
+}
+.mermaid .cluster rect {
+  fill: #ffffde;
+  rx: 40;
+  stroke: #aaaa33;
+  stroke-width: 1px;
+}
+.mermaid .cluster text {
+  fill: #333333;
+}
+
+/* Gantt chart variables */
+/** Section styling */
+.mermaid .section {
+  stroke: none;
+  opacity: 0.2;
+}
+.mermaid .section0 {
+  fill: rgba(102, 102, 255, 0.49);
+}
+.mermaid .section2 {
+  fill: #fff400;
+}
+.mermaid .section1,
+ .section3 {
+  fill: #ffffff;
+  opacity: 0.2;
+}
+.mermaid .sectionTitle0 {
+  fill: #333333;
+}
+.mermaid .sectionTitle1 {
+  fill: #333333;
+}
+.mermaid .sectionTitle2 {
+  fill: #333333;
+}
+.mermaid .sectionTitle3 {
+  fill: #333333;
+}
+.mermaid .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+}
+/* Grid and axis */
+.mermaid .grid .tick {
+  stroke: #d3d3d3;
+  opacity: 0.3;
+  shape-rendering: crispEdges;
+}
+.mermaid .grid path {
+  stroke-width: 0;
+}
+/* Today line */
+.mermaid .today {
+  fill: none;
+  stroke: #ff0000;
+  stroke-width: 2px;
+}
+/* Task styling */
+/* Default task */
+.mermaid .task {
+  stroke-width: 2;
+}
+.mermaid .taskText {
+  text-anchor: middle;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideRight {
+  fill: #000000;
+  text-anchor: start;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideLeft {
+  fill: #000000;
+  text-anchor: end;
+  font-size: 11px;
+}
+/* Specific task settings for the sections*/
+.mermaid .taskText0,
+ .taskText1,
+ .taskText2,
+ .taskText3 {
+  fill: #ffffff;
+}
+.mermaid .task0,
+ .task1,
+ .task2,
+ .task3 {
+  fill: #8a90dd;
+  stroke: #534fbc;
+}
+.mermaid .taskTextOutside0,
+ .taskTextOutside2 {
+  fill: #000000;
+}
+.mermaid .taskTextOutside1,
+ .taskTextOutside3 {
+  fill: #000000;
+}
+/* Active task */
+.mermaid .active0,
+ .active1,
+ .active2,
+ .active3 {
+  fill: #bfc7ff;
+  stroke: #534fbc;
+}
+.mermaid .activeText0,
+ .activeText1,
+ .activeText2,
+ .activeText3 {
+  fill: #000000 !important;
+}
+/* Completed task */
+.mermaid .done0,
+ .done1,
+ .done2,
+ .done3 {
+  stroke: #808080;
+  fill: #d3d3d3;
+  stroke-width: 2;
+}
+.mermaid .doneText0,
+ .doneText1,
+ .doneText2,
+ .doneText3 {
+  fill: #000000 !important;
+}
+/* Tasks on the critical line */
+.mermaid .crit0,
+ .crit1,
+ .crit2,
+ .crit3 {
+  stroke: #ff8888;
+  fill: #ff0000;
+  stroke-width: 2;
+}
+.mermaid .activeCrit0,
+ .activeCrit1,
+ .activeCrit2,
+ .activeCrit3 {
+  stroke: #ff8888;
+  fill: #bfc7ff;
+  stroke-width: 2;
+}
+.mermaid .doneCrit0,
+ .doneCrit1,
+ .doneCrit2,
+ .doneCrit3 {
+  stroke: #ff8888;
+  fill: #d3d3d3;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges;
+}
+.mermaid .doneCritText0,
+ .doneCritText1,
+ .doneCritText2,
+ .doneCritText3 {
+  fill: #000000 !important;
+}
+.mermaid .activeCritText0,
+.activeCritText1,
+.activeCritText2,
+.activeCritText3 {
+  fill: #000000 !important;
+}
+.mermaid .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #000000;
+}
