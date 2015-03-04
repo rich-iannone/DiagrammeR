@@ -1,6 +1,12 @@
-# DiagrammeR 0.4.1
+# DiagrammeR 0.5
 
 * Added support for subgraphs and Gantt charts in **mermaid** diagrams
+
+* Added function `graphviz_nodes_edges_df` for generating **Graphviz** **DOT** code that defines nodes and edges (and their attributes) from data in two data frames: one for nodes, the other for the edge operations
+
+* Added function `graphviz_single_df` for generating **Graphviz** **DOT** code from a single data frame
+
+* Incorporated the new substitution operators `@_{...}` or `@^{...}` in `grViz` statements for subscripting and superscripting, respectively
 
 # DiagrammeR 0.4
 
