@@ -1,8 +1,8 @@
 Package: DiagrammeR
 Type: Package
 Title: Create Diagrams and Flowcharts Using R
-Version: 0.4
-Date: 2015-01-28
+Version: 0.4.1
+Date: 2015-03-03
 Authors@R: c(
     person("knsv", "", role = c("aut", "cph"), comment = "mermaid.js
     library in htmlwidgets/lib, http://github.com/knsv/mermaid/"),
@@ -10,13 +10,13 @@ Authors@R: c(
     library in htmlwidgets/lib, http://d3js.org"),
     person("Chris", "Pettitt", role = c("aut", "cph"), comment = "dagre-d3.js
     library in htmlwidgets/lib, http://github.com/cpettitt/dagre-d3"),
-    person("mdaines", "", role = c("aut", "cph"), comment = "viz.js
+    person("Mike", "Daines", role = c("aut", "cph"), comment = "viz.js
     library in htmlwidgets/lib, http://github.com/mdaines/viz.js/"),
     person("Richard", "Iannone", role = c("aut", "cre"), comment = "R
     interface", email = "riannone@me.com")
     )
 Maintainer: Richard Iannone <riannone@me.com>
-Description: With the DiagrammeR package, you can create diagrams and flowcharts using R. 
+Description: With the DiagrammeR package, you can create diagrams and flowcharts using R.
     Markdown-like text is used to describe a diagram and, by doing this in R, we can also
     add some R code into the mix and integrate these diagrams in the R console, through R
     Markdown, and in shiny apps.
