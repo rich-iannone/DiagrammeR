@@ -308,9 +308,11 @@ graphviz_single_df <- function(df,
     ls_origin <- left_side_column
     rs_origin <- right_side_column
 
-    origin_id <- c(rep(ls_origin, nrow(unique(df[,ls_col]))),
-                   rep(rs_origin, nrow(unique(df[,rs_col]))))
+    ls_times <- nrow(unique(df[,ls_col]))
+    rs_times <- nrow(unique(df[,rs_col]))
 
+    origin_id <- c(rep(ls_origin, ls_times),
+                   rep(rs_origin, rs_times))
 
     # Create the 'nodes_df' data frame, optionally adding a 'label' column
     if (add_labels == TRUE){
