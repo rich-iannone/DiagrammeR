@@ -280,9 +280,21 @@ graphviz_single_df <- function(df,
     # Determine column indices for the node columns
     node_cols <- which(colnames(df) %in% edge_between_elements)
 
+    # Create vector of node IDs
+    for (i in 1:length(node_cols)){
+      if (i == 1) node_id <- vector(mode = "character", length = 0)
+      node_id_part <- unique(as.character(unlist(df[,node_cols[i]],
+                                                 use.names = FALSE)))
+
+      node_id <- c(node_id, node_id_part)
+    }
+
+    # Replace apostrophes with underscore characters
+    node_id <- gsub("'", "_", node_id)
+
     # Get unique values for each of the columns and use as labels
-    node_id <- gsub("'", "_", unique(as.character(unlist(df[,node_cols],
-                                                         use.names = FALSE))))
+    #node_id <- gsub("'", "_", unique(as.character(unlist(df[,node_cols],
+    #                                                     use.names = FALSE))))
 
     left_side_column <- edge_between_elements[1]
     right_side_column <- edge_between_elements[2]
@@ -298,6 +310,7 @@ graphviz_single_df <- function(df,
 
     origin_id <- c(rep(ls_origin, nrow(unique(df[,ls_col]))),
                    rep(rs_origin, nrow(unique(df[,rs_col]))))
+
 
     # Create the 'nodes_df' data frame, optionally adding a 'label' column
     if (add_labels == TRUE){
