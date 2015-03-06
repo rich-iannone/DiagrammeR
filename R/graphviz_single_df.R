@@ -105,6 +105,13 @@ graphviz_single_df <- function(df,
 
           if (is_num_edge_attribute){
 
+            # Get numeric vector for the given normalization limits
+            num_range_given <-
+              as.numeric(unlist(strsplit(gsub(paste0(edge_attribute,
+                                                     " ([0-9\\.]*) to ([0-9\\.]*).*"),
+                                              "\\1 \\2",
+                                              statement, perl = TRUE), " ")))
+
 
           }
 
