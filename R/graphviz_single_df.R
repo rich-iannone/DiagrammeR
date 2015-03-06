@@ -127,6 +127,12 @@ graphviz_single_df <- function(df,
             # Obtain the column number in the data frame
             comparison_col_num <- which(colnames(df) == comparison_col)
 
+            # Obtain the min and max values for the data to normalize
+            num_range_df_col <- c(min(df[, which(colnames(df) == comparison_col)],
+                                      na.rm = TRUE),
+                                  max(df[, which(colnames(df) == comparison_col)],
+                                      na.rm = TRUE))
+
 
           }
 
