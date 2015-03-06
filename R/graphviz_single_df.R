@@ -91,6 +91,9 @@ graphviz_single_df <- function(df,
                                              ":"),
                                       "", edge_attr[i]), ","))[j])
 
+          # Obtain the edge attribute from the statement
+          edge_attribute <- gsub("^([a-z]*).*", "\\1", statement, perl = TRUE)
+
 
         } else {
           edge_attr_values[[i]][j + 1] <-
