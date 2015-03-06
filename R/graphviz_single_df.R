@@ -124,6 +124,9 @@ graphviz_single_df <- function(df,
             # Validate that the comparison column exists in the data frame
             comparison_col_in_df <- comparison_col %in% colnames(df)
 
+            # Obtain the column number in the data frame
+            comparison_col_num <- which(colnames(df) == comparison_col)
+
 
           }
 
