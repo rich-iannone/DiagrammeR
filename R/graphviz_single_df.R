@@ -94,6 +94,12 @@ graphviz_single_df <- function(df,
           # Obtain the edge attribute from the statement
           edge_attribute <- gsub("^([a-z]*).*", "\\1", statement, perl = TRUE)
 
+          # Create vector of edge attributes that take numeric values
+          numeric_edge_attributes <-
+            c("arrowhead", "arrowsize", "arrowtail", "fontsize",
+              "labelangle", "labeldistance", "labelfontsize",
+              "minlen", "penwidth", "weight")
+
 
         } else {
           edge_attr_values[[i]][j + 1] <-
