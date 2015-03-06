@@ -483,6 +483,9 @@ graphviz_single_df <- function(df,
         }
       }
     }
+
+    # Add in additional attr columns to 'edges_df'
+    edges_df <- cbind(edges_df, scaled_edge_attr_df)
   }
 
   # Extract information on the relationship between nodes
