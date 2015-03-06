@@ -133,6 +133,10 @@ graphviz_single_df <- function(df,
                                   max(df[, which(colnames(df) == comparison_col)],
                                       na.rm = TRUE))
 
+            # Get normalized values for attribute
+            normalized <- num_range_given[1] +
+              ((df[,comparison_col_num] - num_range_df_col[1]) * (num_range_given[2] - num_range_given[1])) /
+              (num_range_df_col[2] - num_range_df_col[1])
 
           }
 
