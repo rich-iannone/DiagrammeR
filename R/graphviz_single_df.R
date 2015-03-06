@@ -83,11 +83,14 @@ graphviz_single_df <- function(df,
                                        "", edge_attr[i]), ","))[j]) == FALSE){
 
           # Create 'statement' object for parsing
-          statement <- gsub("^ ", "", unlist(strsplit(gsub(paste0("^",
-                                      gsub("\\+", "\\\\+",
-                                           edge_attr_values[[i]][1]),
-                                      ":"),
-                               "", edge_attr[i]), ","))[j])
+          statement <-
+            gsub("^ ", "",
+                 unlist(strsplit(gsub(paste0("^",
+                                             gsub("\\+", "\\\\+",
+                                                  edge_attr_values[[i]][1]),
+                                             ":"),
+                                      "", edge_attr[i]), ","))[j])
+
 
         } else {
           edge_attr_values[[i]][j + 1] <-
