@@ -75,14 +75,23 @@ graphviz_single_df <- function(df,
 
       for (j in 1:(strcount(edge_attr[i], ",", "") + 1)){
 
-        edge_attr_values[[i]][j + 1] <-
-          gsub("=", " = ",
-               gsub(" ", "",
-                    unlist(strsplit(gsub(paste0("^",
-                                                gsub("\\+", "\\\\+",
-                                                     edge_attr_values[[i]][1]),
-                                                ":"),
-                                         "", edge_attr[i]), ","))))[j]
+        if (grepl('=',
+                  unlist(strsplit(gsub(paste0("^",
+                                              gsub("\\+", "\\\\+",
+                                                   edge_attr_values[[i]][1]),
+                                              ":"),
+                                       "", edge_attr[i]), ","))[j]) == FALSE){
+
+        } else {
+          edge_attr_values[[i]][j + 1] <-
+            gsub("=", " = ",
+                 gsub(" ", "",
+                      unlist(strsplit(gsub(paste0("^",
+                                                  gsub("\\+", "\\\\+",
+                                                       edge_attr_values[[i]][1]),
+                                                  ":"),
+                                           "", edge_attr[i]), ","))))[j]
+        }
       }
     }
   }
