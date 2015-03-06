@@ -311,6 +311,7 @@ graphviz_single_df <- function(df,
     ls_times <- length(unique(df[,ls_col]))
     rs_times <- length(unique(df[,rs_col]))
 
+    # Create the 'origin_id' vector
     origin_id <- c(rep(ls_origin, ls_times),
                    rep(rs_origin, rs_times))
 
