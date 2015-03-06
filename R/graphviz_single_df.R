@@ -68,7 +68,10 @@ graphviz_single_df <- function(df,
   # Create list of edge attributes, parsed from 'edge_attr' input
   if (!is.null(edge_attr)){
     for (i in 1:length(edge_attr)){
-      if (i == 1) edge_attr_values <- vector("list", length(edge_attr))
+      if (i == 1){
+        edge_attr_values <- vector("list", length(edge_attr))
+        scaled_edge_attr_df <- data.frame(mat.or.vec(nr = nrow(df), nc = 0))
+      }
 
       edge_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1",
                                     edge_attr[i], perl = TRUE)
