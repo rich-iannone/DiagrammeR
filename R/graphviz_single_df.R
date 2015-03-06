@@ -213,6 +213,7 @@ graphviz_single_df <- function(df,
         edge_to <- vector(mode = "character", length = 0)
       }
 
+      # If the left side uses a synthetic ID
       if (exists("ls_synthetic") & !exists("rs_synthetic")){
 
         edge_from_row <- gsub("'", "_", ls_synthetic[i])
@@ -223,6 +224,7 @@ graphviz_single_df <- function(df,
 
       }
 
+      # If the right side uses a synthetic ID
       if (exists("rs_synthetic") & !exists("ls_synthetic")){
 
         edge_from_row <- gsub("'", "_", df[i,edge_between_elements[1]])
@@ -233,6 +235,7 @@ graphviz_single_df <- function(df,
 
       }
 
+      # If both the left and right sides use synthetic IDs
       if (exists("ls_synthetic") & exists("rs_synthetic")){
 
         edge_from_row <- gsub("'", "_", ls_synthetic[i])
