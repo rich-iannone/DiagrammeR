@@ -112,6 +112,9 @@ graphviz_single_df <- function(df,
                                               "\\1 \\2",
                                               statement, perl = TRUE), " ")))
 
+            # Validate the length of the numeric vector
+            num_range_given_correct_length <- length(num_range_given) == 2
+
 
           }
 
