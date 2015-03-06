@@ -141,7 +141,9 @@ graphviz_single_df <- function(df,
               ((df[,comparison_col_num] - num_range_df_col[1]) * (num_range_given[2] - num_range_given[1])) /
               (num_range_df_col[2] - num_range_df_col[1])
 
-          }
+            # Create a data frame of 1 column with normalized data
+            scaled_edge_attr_df_col <- data.frame(normalized)
+            colnames(scaled_edge_attr_df_col) <- edge_attribute
 
 
         } else {
