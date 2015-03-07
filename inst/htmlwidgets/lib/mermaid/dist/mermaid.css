@@ -53,12 +53,14 @@
 }
 .mermaid .sectionTitle {
   text-anchor: start;
+  font-family: Helvetica;
   font-size: 11px;
   text-height: 14px;
 }
 /* Grid and axis */
 .mermaid .grid .tick {
   stroke: #d3d3d3;
+  font-family: Helvetica;
   opacity: 0.3;
   shape-rendering: crispEdges;
 }
@@ -78,16 +80,19 @@
 }
 .mermaid .taskText {
   text-anchor: middle;
+  font-family: Helvetica;
   font-size: 11px;
 }
 .mermaid .taskTextOutsideRight {
   fill: #000000;
   text-anchor: start;
+  font-family: Helvetica;
   font-size: 11px;
 }
 .mermaid .taskTextOutsideLeft {
   fill: #000000;
   text-anchor: end;
+  font-family: Helvetica;
   font-size: 11px;
 }
 /* Specific task settings for the sections*/
@@ -182,6 +187,7 @@
 }
 .mermaid .titleText {
   text-anchor: middle;
+  font-family: Helvetica;
   font-size: 18px;
-  fill: #000000;
+  fill: #2f2f2f;
 }
