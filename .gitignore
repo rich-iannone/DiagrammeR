@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 *.Rproj
+
+*.sublime-project
+*.sublime-workspace
