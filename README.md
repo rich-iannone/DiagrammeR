@@ -408,54 +408,6 @@ grViz(boxes_and_circles, engine = "circo")
 
 <img src="inst/Example_7e_circo.png">
 
-#### Manually Mixing in R with Graphviz DOT
-
-Possibilities are interesting when combining **R** functions with **DiagrammeR** and the `grViz` function. Here's an example of how the **rvest** package and piping with **pipeR** can yield multiple graphs:
-
-```R
-library(rvest)
-library(XML)
-library(pipeR)
-
-# Generate all the examples from viz.js GitHub repo
-html("https://raw.githubusercontent.com/mdaines/viz.js/gh-pages/example.html") %>>%
-  html_nodes("script[type='text/vnd.graphviz']") %>>%
-  lapply(
-    function(x){
-      xmlValue(x) %>>% (~ htmltools::html_print(grViz(.)) ) %>>% grViz
-    }
-  )
-```
-
-<img src="inst/Example_8a.png">
-
-<img src="inst/Example_8b.png">
-
-<img src="inst/Example_8c.png">
-
-<img src="inst/Example_8d.png">
-
-<img src="inst/Example_8e.png">
-
-<img src="inst/Example_8f.png">
-
-Isn't this great? Let's take in some examples straight from the Graphviz gallery:
-
-```R
-readLines("http://www.graphviz.org/Gallery/directed/fsm.gv.txt") %>>%
-  grViz
-
-readLines("http://www.graphviz.org/Gallery/directed/Genetic_Programming.gv.txt") %>>%
-  grViz
-
-readLines("http://www.graphviz.org/Gallery/directed/unix.gv.txt") %>>%
-  grViz
-```
-
-You get some nice figures as a result. Try 'em, you'll see.
-
-For much more information on the **DOT** language, see the excellent [drawing graphs with *dot* manual](http://www.graphviz.org/pdf/dotguide.pdf).
-
 ### Mermaid Graphs
 
 The `mermaid` function processes the specification of a diagram and then renders the diagram. This diagram spec can either exist in the form of a string, a reference to a mermaid file (with a **.mmd** file extension), or as a connection. 
@@ -641,7 +593,7 @@ This is part of the resulting graphic (it's quite wide so I'm displaying just 8 
 
 <img src="inst/Example_5.png">
 
-The **mermaid.js** library also supports [sequence diagrams](http://knsv.github.io/mermaid/sequenceDiagram.html). The ["How to Draw Sequence Diagrams"](http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf) report by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams. Let's replicate the ticket-buying example from Figure 1 of this report and add in some conditionals.
+[Sequence diagrams](http://knsv.github.io/mermaid/sequenceDiagram.html) can be generated. The ["How to Draw Sequence Diagrams"](http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf) report by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams. Here's an example:
 
 ```R
 # Using this "How to Draw a Sequence Diagram" 
@@ -667,7 +619,40 @@ sequenceDiagram
 
 <img src="inst/Example_6.png">
 
-For more examples and additional documentation, see the [`mermaid.js` Wiki](https://github.com/knsv/mermaid/wiki).
+Gannt diagrams can also be generated. Here is an example of how to generate that type of project management diagram.
+
+```R
+mermaid("
+gantt
+dateFormat  YYYY-MM-DD
+title A Very Nice Gantt Diagram
+
+section Basic Tasks
+This is completed                   :done,          first_1,    2014-01-06, 2014-01-08
+This is active                      :active,        first_2,    2014-01-09, 3d
+Do this later                       :               first_3,    after first_2, 5d
+Do this after that                  :               first_4,    after first_3, 5d
+
+section Important Things
+Completed, critical task            :crit, done,    import_1,   2014-01-06,24h
+Also done, also critical            :crit, done,    import_2,   after import_1, 2d
+Doing this important task now       :crit, active,  import_3,   after import_2, 3d
+Next critical task                  :crit,          import_4,   after import_3, 5d
+
+
+section The Extras
+First extras                        :active,        extras_1,   after import_4,  3d
+Second helping                      :               extras_2,   after extras_1, 20h
+More of the extras                  :               extras_3,   after extras_1, 48h
+
+section The Wrap Up
+Congratulations                     :               wrap_1,     after extras_3, 3d
+Some meetings                       :                           5d
+Additional meetings with cake       :                           18h
+")
+```
+
+<img src="inst/mermaid_Gantt_diagram.png">
 
 ### DiagrammeR + shiny
 
