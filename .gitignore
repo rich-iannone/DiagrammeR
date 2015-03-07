@@ -12,6 +12,9 @@
 .Rproj.user
 DiagrammeR.Rproj
 
+# Sublime Text files
+*.sublime-*
+
 # Output files
 *.txt
 *.tif
