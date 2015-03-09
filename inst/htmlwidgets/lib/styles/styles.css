@@ -7,6 +7,8 @@
 }
 
 .DiagrammeR g .label {
-  color: black;
+  font-family: Helvetica;
+  font-size: 14px;
+  color: #333333;
 }
 
