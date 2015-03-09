@@ -72,7 +72,7 @@ digraph boxes_and_circles {
 grViz(boxes_and_circles)
 ```
 
-<img src="inst/Example_7a.png">
+<img src="inst/grViz_1.png">
 
 The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.
 
@@ -109,7 +109,7 @@ digraph boxes_and_circles {
 grViz(boxes_and_circles)
 ```
 
-<img src="inst/Example_7b.png">
+<img src="inst/grViz_2.png">
 
 There are many more attributes. Here are the principal node attributes:
 
@@ -332,11 +332,11 @@ a -> {b c d e f g h i j}
 
 As can be seen in the following output: (1) the node with ID `a` is given the label `top` (after substituting `@@1` with expression after the `[1]:` footnote expression), (2) the nodes with ID values from `b`-`j` are respectively provided values from indices 1 to 9 (using the hypenated form of `@@`) of the evaluated expression `10:20` (in the `[2]:` footnote expression).
 
-<img src="inst/Graphviz_substitution.png">
+<img src="inst/grViz_3.png">
 
 Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So long as a vector object results from evaluation, substitution can be performed.
 
-Here is a final example of a diagram created using R and RStudio information (obtained from the `R.Version` and `rstudio::versionInfo` functions):
+Here is an example of a diagram created using R and RStudio information (obtained from the `R.Version` and `rstudio::versionInfo` functions):
 
 ```R
 grViz("
@@ -382,7 +382,7 @@ digraph nicegraph {
 
 The output will of course vary by the system on which it was generated. Here is my output:
 
-<img src="inst/R_Information_Example.png">
+<img src="inst/grViz_4.png">
 
 #### Graphviz Engines
 
@@ -394,19 +394,19 @@ Here is how the 'boxes_and_circles' graph is rendered with the **neato**, **twop
 grViz(boxes_and_circles, engine = "neato")
 ```
 
-<img src="inst/Example_7c_neato.png">
+<img src="inst/grViz_5.png">
 
 ```R
 grViz(boxes_and_circles, engine = "twopi")
 ```
 
-<img src="inst/Example_7d_twopi.png">
+<img src="inst/grViz_6.png">
 
 ```R
 grViz(boxes_and_circles, engine = "circo")
 ```
 
-<img src="inst/Example_7e_circo.png">
+<img src="inst/grViz_7.png">
 
 ### Mermaid Graphs
 
@@ -444,7 +444,7 @@ mermaid(diagram)
 
 This renders the following image:
 
-<img src="inst/Example_1.png">
+<img src="inst/mermaid_1.png">
 
 The same result can be achieved in a more succinct manner with this **R** statement (using semicolons between statements in the **mermaid** diagram spec):
 
@@ -454,7 +454,7 @@ mermaid("graph LR; A-->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F")
 
 Alternatively, here is the result of using the statement `graph TB` in place of `graph LR`:
 
-<img src="inst/Example_2.png">
+<img src="inst/mermaid_2.png">
 
 Keep in mind that external files can also be called by the `mermaid` function. The file `graph.mmd` can contain the text of the diagram spec as follows
 
@@ -497,7 +497,7 @@ mermaid(diagram)
 
 What you get is this:
 
-<img src="inst/Example_3.png">
+<img src="inst/mermaid_3.png">
 
 Here's an example with line text (that is, text appearing on connecting lines). Simply place text between pipe characters, just after the arrow, right before the node identifier. There are few more CSS properties for the boxes included in this example (`stroke`, `stroke-width`, and `stroke-dasharray`).
 
@@ -517,7 +517,7 @@ mermaid(diagram)
 
 The resultant graphic:
 
-<img src="inst/Example_4.png">
+<img src="inst/mermaid_4.png">
 
 Let's include the values of some **R** objects into a fresh diagram. The `mtcars` dataset is something I go to again and again, so, I'm going to load it up.
 
@@ -591,7 +591,7 @@ mermaid(diagram)
 
 This is part of the resulting graphic (it's quite wide so I'm displaying just 8 of the 11 columns):
 
-<img src="inst/Example_5.png">
+<img src="inst/mermaid_5.png">
 
 [Sequence diagrams](http://knsv.github.io/mermaid/sequenceDiagram.html) can be generated. The ["How to Draw Sequence Diagrams"](http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf) report by Poranen, Makinen, and Nummenmaa offers a good introduction to sequence diagrams. Here's an example:
 
@@ -617,7 +617,7 @@ sequenceDiagram
 ")
 ```
 
-<img src="inst/Example_6.png">
+<img src="inst/mermaid_6.png">
 
 Gannt diagrams can also be generated. Here is an example of how to generate that type of project management diagram.
 
@@ -652,7 +652,7 @@ Additional meetings with cake       :                           18h
 ")
 ```
 
-<img src="inst/mermaid_Gantt_diagram.png">
+<img src="inst/mermaid_7.png">
 
 ### DiagrammeR + shiny
 
@@ -687,7 +687,7 @@ server <- function(input, output){
 shinyApp(ui = ui, server = server)
 ```
 
-<img src="inst/Example_9.gif">
+<img src="inst/shiny_1.gif">
 
 Here is a quick example where we can provide a `mermaid` diagram spec in a `textInput`.
 
