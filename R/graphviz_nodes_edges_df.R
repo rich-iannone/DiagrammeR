@@ -11,7 +11,6 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
 
   # Perform basic checks of the inputs
   stopifnot(class(nodes_df) == "data.frame")
-
   stopifnot(class(edges_df) == "data.frame")
 
   stopifnot(any(c("node", "nodes", "node_id") %in%
@@ -55,12 +54,15 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
   # Create the node block
   #
 
+  # Determine the column number with the node ID
   column_with_node_id <-
     which(colnames(nodes_df) %in% c("node_id", "node", "nodes"))[1]
 
+  # Determine which other columns correspond to node attribute values
   other_columns_with_node_attributes <-
     which(colnames(nodes_df) %in% node_attributes)
 
+  # Construct the 'node_block' character object
   for (i in 1:nrow(nodes_df)){
 
     if (i == 1) node_block <- vector(mode = "character", length = 0)
@@ -94,7 +96,6 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
       line <- paste0("  '", nodes_df[i, column_with_node_id], "'")
     }
 
-    # Construct the 'node_block' character object
     node_block <- c(node_block, line)
   }
 
@@ -140,6 +141,7 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
     }
   }
 
+  # Construct the 'edge_block' character object
   if (exists("from_column") & exists("to_column")){
 
     if (length(from_column) == 1 & length(from_column) == 1){
@@ -169,14 +171,12 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
         # Generate a line of edge objects when an attribute string exists
         if (exists("attr_string")){
 
-
           line <- paste0("  edge",
                          paste0(" [", attr_string, "] "),
                          "'", edges_df[i, from_column], "'",
                          ifelse(directed == TRUE, "->", "--"),
                          "'", edges_df[i, to_column], "'",
                          " ")
-
         }
 
         # Generate a line of edge objects when an attribute string doesn't exist
@@ -188,18 +188,15 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
                    ifelse(directed == TRUE, "->", "--"),
                    "'", edges_df[i, to_column], "'",
                    " ")
-
         }
 
         edge_block <- c(edge_block, line)
-
       }
     }
   }
 
   # Develop the edges block for a data frame containing a column with
   # explicitly defined edge operations
-
   any_columns_with_edge_ops <-
     ifelse(any(c("edge_op", "edge_ops", "edge", "edges") %in%
                  colnames(edges_df)), "TRUE", "FALSE")
@@ -218,7 +215,6 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
       if (i == 1) edge_block <- vector(mode = "character", length = 0)
 
       if (length(other_columns_with_edge_attributes) > 0){
-
 
         for (j in other_columns_with_edge_attributes){
 
@@ -266,7 +262,6 @@ graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
 
       edge_block <- c(edge_block, line)
     }
-
   }
 
   # Construct the 'edge_block' character object
