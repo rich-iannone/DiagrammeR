@@ -19,6 +19,7 @@
   stroke-width: 1px;
 }
 .mermaid .cluster text {
+  font-family: Helvetica;
   fill: #333333;
 }
 
