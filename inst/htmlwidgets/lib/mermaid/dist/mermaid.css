@@ -5,17 +5,17 @@
 .mermaid .node rect,
   .node circle,
   .node polygon {
-  fill: #ececff;
-  stroke: #ccccff;
+  fill: #d2d2d2;
+  stroke: #929193;
   stroke-width: 1px;
 }
 .mermaid .edgePath .path {
   stroke: #333333 !important;
 }
 .mermaid .cluster rect {
-  fill: #ffffde;
+  fill: #ebebeb;
   rx: 40;
-  stroke: #aaaa33;
+  stroke: #929193;
   stroke-width: 1px;
 }
 .mermaid .cluster text {
