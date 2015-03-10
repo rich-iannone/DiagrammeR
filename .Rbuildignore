@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 .bowerrc
 NEWS.md
+.*png$
+.*gif$
+.*sublime.*
