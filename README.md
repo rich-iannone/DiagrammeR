@@ -1,4 +1,4 @@
-<img src="inst/img/img/DiagrammeR.png">
+<img src="inst/img/DiagrammeR.png">
 
 With the **DiagrammeR** package, you can create graph diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. 
 
@@ -6,7 +6,7 @@ Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and v
 
 The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
 
-<img src="inst/img/img/DiagrammeR_flow_diagram.png">
+<img src="inst/img/DiagrammeR_flow_diagram.png">
 
 ### Installation
 
@@ -72,7 +72,7 @@ digraph boxes_and_circles {
 grViz(boxes_and_circles)
 ```
 
-<img src="inst/img/img/grViz_1.png">
+<img src="inst/img/grViz_1.png">
 
 The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.
 
