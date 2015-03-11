@@ -111,6 +111,10 @@ graphviz_single_df <- function(df,
           # in the statement
           is_num_edge_attribute <- edge_attribute %in% numeric_edge_attributes
 
+          # Determine whether there is a valid color edge attribute
+          # in the statement
+          is_col_edge_attribute <- edge_attribute %in% color_edge_attributes
+
           if (is_num_edge_attribute){
 
             # Get numeric vector for the given normalization limits
