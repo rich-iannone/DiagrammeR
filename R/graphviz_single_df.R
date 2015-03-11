@@ -159,6 +159,16 @@ graphviz_single_df <- function(df,
             scaled_edge_attr_df <- cbind(scaled_edge_attr_df, scaled_edge_attr_df_col)
 
           }
+
+          if (is_col_edge_attribute){
+
+            # Get vector of colors for the given normalization limits
+            col_range_given <-
+              unlist(strsplit(gsub(paste0(edge_attribute,
+                                          " ([a-zA-Z]*) to ([a-zA-Z]*).*"),
+                                   "\\1 \\2",
+                                   statement, perl = TRUE), " "))
+
         } else {
           edge_attr_values[[i]][j + 1] <-
             gsub("=", " = ",
