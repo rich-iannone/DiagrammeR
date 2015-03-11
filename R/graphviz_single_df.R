@@ -187,6 +187,9 @@ graphviz_single_df <- function(df,
                                    "\\1",
                                    statement, perl = TRUE)
 
+            # Validate that the comparison column exists in the data frame
+            comparison_col_in_df <- comparison_col %in% colnames(df)
+
         } else {
           edge_attr_values[[i]][j + 1] <-
             gsub("=", " = ",
