@@ -199,6 +199,31 @@ graphviz_single_df <- function(df,
                                   max(df[, which(colnames(df) == comparison_col)],
                                       na.rm = TRUE))
 
+            # Obtain 100 colors within the color range provided
+            number_of_stops <- 100
+
+            for (i in 1:number_of_stops){
+
+              if (i == 1) hex_colors <- vector(mode = "character", length = 0)
+
+              js_call <- paste0("chromato.interpolate('", hex_color_values[1], "', '",
+                                hex_color_values[2], "', ",
+                                i/number_of_stops, ", 'hsl');")
+
+              ct <- new_context("window")
+              invisible(ct$source('https://raw.githubusercontent.com/WeAreVisualizers/chromatography/master/chromatography.js'))
+
+              hex_colors <- c(hex_colors, unlist(strsplit(ct$eval(js_call), ",")))
+
+              if (i == number_of_stops){
+                fractional_hex_colors <-
+                  rbind(data.frame(fraction = 0.0, hex_colors = hex_colors[1],
+                                   stringsAsFactors = FALSE),
+                        data.frame(fraction = seq(from = 1, to = 100, by = 1)/100,
+                                   hex_colors = hex_colors, stringsAsFactors = FALSE))
+              }
+            }
+
         } else {
           edge_attr_values[[i]][j + 1] <-
             gsub("=", " = ",
