@@ -169,6 +169,18 @@ graphviz_single_df <- function(df,
                                    "\\1 \\2",
                                    statement, perl = TRUE), " "))
 
+            # If the colors are named colors, then transform to hex
+            if (all(col_range_given %in% x11_hex()[,1])){
+
+              for (k in 1:length(col_range_given)){
+                if (k == 1) hex_color_values <- vector(mode = 'character', length = 0)
+
+                a_hex_color <- x11_hex()[which(x11_hex()[,1] %in% col_range_given[k]),2]
+
+                hex_color_values <- c(hex_color_values, a_hex_color)
+              }
+            }
+
         } else {
           edge_attr_values[[i]][j + 1] <-
             gsub("=", " = ",
