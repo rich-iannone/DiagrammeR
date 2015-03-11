@@ -107,6 +107,8 @@ graphviz_single_df <- function(df,
           color_edge_attributes <-
             c("color", "fontcolor", "labelfontcolor")
 
+          # Determine whether there is a valid numeric edge attribute
+          # in the statement
           is_num_edge_attribute <- edge_attribute %in% numeric_edge_attributes
 
           if (is_num_edge_attribute){
