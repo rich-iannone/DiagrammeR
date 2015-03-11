@@ -103,7 +103,10 @@ graphviz_single_df <- function(df,
               "labelangle", "labeldistance", "labelfontsize",
               "minlen", "penwidth", "weight")
 
-          # Determine whether edge attribute in statement is valid
+          # Create vector of edge attributes that take color values
+          color_edge_attributes <-
+            c("color", "fontcolor", "labelfontcolor")
+
           is_num_edge_attribute <- edge_attribute %in% numeric_edge_attributes
 
           if (is_num_edge_attribute){
