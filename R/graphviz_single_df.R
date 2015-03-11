@@ -237,6 +237,10 @@ graphviz_single_df <- function(df,
               normalized <- c(normalized, a_hex_color)
             }
 
+            # Create a data frame of 1 column with normalized data
+            scaled_edge_attr_df_col <- data.frame(normalized)
+            colnames(scaled_edge_attr_df_col) <- edge_attribute
+
         } else {
           edge_attr_values[[i]][j + 1] <-
             gsub("=", " = ",
