@@ -224,6 +224,19 @@ graphviz_single_df <- function(df,
               }
             }
 
+            # Get normalized values for attribute
+            for (z in 1:nrow(df)){
+              if (z == 1) normalized <- vector(mode = 'character', length = 0)
+
+              a_hex_color <-
+                fractional_hex_colors[which(fractional_hex_colors[,1] ==
+                        round(df[,comparison_col_num]/
+                                (num_range_df_col[2] - num_range_df_col[1]),
+                              digits = 2)[z]),2]
+
+              normalized <- c(normalized, a_hex_color)
+            }
+
         } else {
           edge_attr_values[[i]][j + 1] <-
             gsub("=", " = ",
