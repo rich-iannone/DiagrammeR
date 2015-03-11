@@ -181,6 +181,12 @@ graphviz_single_df <- function(df,
               }
             }
 
+            # Obtain the column name in df that the attr should be scaled against
+            comparison_col <- gsub(paste0(edge_attribute,
+                                          " [a-zA-Z]* to [a-zA-Z]* with (\\w)"),
+                                   "\\1",
+                                   statement, perl = TRUE)
+
         } else {
           edge_attr_values[[i]][j + 1] <-
             gsub("=", " = ",
