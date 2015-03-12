@@ -7,7 +7,7 @@
 exportSVG(gv)
 }
 \arguments{
-\item{\code{grViz}}{htmlwidget to render as SVG.}
+\item{gv}{htmlwidget to render as SVG.}
 }
 \value{
 \code{string} of SVG XML text.
