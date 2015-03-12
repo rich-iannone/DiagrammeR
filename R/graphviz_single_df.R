@@ -211,7 +211,8 @@ graphviz_single_df <- function(df,
                                 i/number_of_stops, ", 'hsl');")
 
               ct <- new_context("window")
-              invisible(ct$source('https://raw.githubusercontent.com/WeAreVisualizers/chromatography/master/chromatography.js'))
+              invisible(ct$source(system.file("htmlwidgets/lib/chromatography/chromatography.js",
+                                              package = "DiagrammeR")))
 
               hex_colors <- c(hex_colors, unlist(strsplit(ct$eval(js_call), ",")))
 
