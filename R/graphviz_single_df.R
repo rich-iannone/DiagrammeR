@@ -2,6 +2,8 @@
 #' A function to generate DOT code from a single data frame
 #' @param df the data frame object from which node and edge statements in DOT notation are to be generated.
 #' @param edge_between a vector object containing statements that provide information on the relationships between nodes in different columns. The basic syntax takes the form of: "df_column_name_1 [->|--] df_column_name_2".
+#' @param node_attr a vector object containing statements of node attributes.
+#' @param edge_attr a vector object containing statements of edge attributes.
 #' @param add_labels whether to automatically generate a set of node and edge labels based on the node ID and the edge operation, respectively.
 #' @export graphviz_single_df
 
