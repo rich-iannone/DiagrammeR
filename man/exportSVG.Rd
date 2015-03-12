@@ -2,7 +2,7 @@
 % Please edit documentation in R/graphviz_export.R
 \name{exportSVG}
 \alias{exportSVG}
-\title{Export a grViz as SVG with V8}
+\title{Export grViz graph as SVG with \code{V8}}
 \usage{
 exportSVG(gv)
 }
@@ -19,7 +19,7 @@ as SVG in R instead of the browser.
 \examples{
 \dontrun{
  library(DiagrammeR)
- (svg <- exportSVG(grViz('digraph{a->b;c->a;c->b;c->d;}',engine='circo')))
+ (svg <- exportSVG(grViz('digraph{a->b; c->a; c->b; c->d;}', engine = 'circo')))
 
  # this can then be used with htmltools
  #   can save significantly on size of output
