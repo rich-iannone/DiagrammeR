@@ -8,6 +8,7 @@
 #' @param engine string for the Graphviz layout engine; can be
 #' "dot" (default), "neato", "circo", or "twopi". For more information
 #' see \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.
+#' @param allow_subst a boolean that enables/disables subsitution functionality.
 #' @param options parameters supplied to the htmlwidgets framework.
 #' @param width an optional parameter for specifying the width of the resulting graphic
 #' in pixels.
