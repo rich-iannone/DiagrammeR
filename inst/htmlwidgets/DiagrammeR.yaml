@@ -16,3 +16,7 @@ dependencies:
   version: 0.2
   src: htmlwidgets/lib/styles
   stylesheet: styles.css
+- name: chromatography
+  version: 0.1
+  src: htmlwidgets/lib/chromatography
+  script: chromatography.js
