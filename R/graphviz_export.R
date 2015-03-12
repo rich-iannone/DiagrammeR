@@ -1,4 +1,4 @@
-#' Export a grViz as SVG with V8
+#' Export grViz graph as SVG with \code{V8}
 #'
 #' Use viz.js with \code{V8} to get the diagram rendered
 #' as SVG in R instead of the browser.
@@ -10,7 +10,7 @@
 #' @examples
 #' \dontrun{
 #'  library(DiagrammeR)
-#'  (svg <- exportSVG(grViz('digraph{a->b;c->a;c->b;c->d;}',engine='circo')))
+#'  (svg <- exportSVG(grViz('digraph{a->b; c->a; c->b; c->d;}', engine = 'circo')))
 #'
 #'  # this can then be used with htmltools
 #'  #   can save significantly on size of output
