@@ -15,6 +15,8 @@ for a diagram as either text, filename string, or file connection}
 "dot" (default), "neato", "circo", or "twopi". For more information
 see \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.}
 
+\item{allow_subst}{a boolean that enables/disables subsitution functionality.}
+
 \item{options}{parameters supplied to the htmlwidgets framework.}
 
 \item{width}{an optional parameter for specifying the width of the resulting graphic
