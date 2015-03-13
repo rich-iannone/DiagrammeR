@@ -13,9 +13,9 @@ graphviz_single_df(df, edge_between, node_attr = NULL, edge_attr = NULL,
 
 \item{edge_between}{a vector object containing statements that provide information on the relationships between nodes in different columns. The basic syntax takes the form of: "df_column_name_1 [->|--] df_column_name_2".}
 
-\item{node_attr}{a vector object containing statements of node attributes.}
+\item{node_attr}{a vector object containing statements for node attributes.}
 
-\item{edge_attr}{a vector object containing statements of edge attributes.}
+\item{edge_attr}{a vector object containing statements for edge attributes.}
 
 \item{add_labels}{whether to automatically generate a set of node and edge labels based on the node ID and the edge operation, respectively.}
 }
