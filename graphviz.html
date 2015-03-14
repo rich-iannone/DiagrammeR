@@ -7,16 +7,16 @@
         <meta name="description" content="DiagrammeR, an R package that allows you to create flowcharts, diagrams, and graphs with Markdown-like text.">
         <meta name="keywords" content="R, JavaScript, graphviz, mermaid">
         <meta name="author" content="Richard Iannone and DiagrammeR contributors">
-        
+
         <title>
-        DiagrammeR - Documentation  
+        DiagrammeR - Documentation
         </title>
-        
+
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/docs.min.css" rel="stylesheet">
-        
+
         <script src="js/ie-emulation-modes-warning.js"></script>
-        
+
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <link rel="icon" href="/favicon.ico">
     </head>
@@ -123,7 +123,7 @@ grViz(boxes_and_circles)</code></pre>
                     <div><pre><code>A -> B
 A -> C</code></pre></div>
                     <p>In the second role, a subgraph can provide a context for setting attributes. For example, a subgraph could specify that blue is the default color for all nodes defined in it. In the context of graph drawing, a more interesting example is</p>
-                    <div><pre><code>subgraph { 
+                    <div><pre><code>subgraph {
 rank = same; A; B; C;
 }</code></pre></div>
                     <p>This anonymous subgraph specifies that the nodes <code>A</code>, <code>B</code> and <code>C</code> should all be placed on the same rank.</p>
@@ -934,7 +934,7 @@ rank = same; A; B; C;
 
 [1]: 'a'</code></pre>
                         </div>
-                    <p>In the above example, the <code>[1]:</code> footnote expression evaluates as <code>'a'</code>, and, that is what's substituted in place of the <code>@@1</code> (where, in turn, it will be taken as the node ID). 
+                    <p>In the above example, the <code>[1]:</code> footnote expression evaluates as <code>'a'</code>, and, that is what's substituted in place of the <code>@@1</code> (where, in turn, it will be taken as the node ID).
 
                     <p>Substitutions can also be used to insert values from vector indices into the graph specification. Simply use this format:</p>
                         <div>
@@ -1227,7 +1227,7 @@ engine = "circo")</code></pre>
             </div>
             <div class="col-md-3" role="complementary">
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
-                    <ul class="nav bs-docs-sidenav">              
+                    <ul class="nav bs-docs-sidenav">
                         <li>
                             <a href="#graphviz">Graphviz</a>
                             <ul class="nav">
@@ -1262,7 +1262,7 @@ engine = "circo")</code></pre>
                                 <li><a href="#twopi">twopi</a></li>
                                 <li><a href="#circo">circo</a></li>
                             </ul>
-                        </li>              
+                        </li>
                     </ul>
                     <a class="back-to-top" href="#top">Back to top</a>
                 </nav>
@@ -1293,7 +1293,7 @@ engine = "circo")</code></pre>
         <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
         <p>Code licensed under MIT.</p>
         <ul class="bs-docs-footer-links text-muted">
-            <li>Currently v0.4</li>
+            <li>Currently v0.5</li>
             <li>&middot;</li>
             <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
             <li>&middot;</li>
