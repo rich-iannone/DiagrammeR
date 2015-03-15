@@ -384,6 +384,92 @@ The output will of course vary by the system on which it was generated. Here is 
 
 <img src="inst/img/grViz_4.png">
 
+#### Using Data Frames to Define Graphviz Graphs
+
+The `graphviz_single_df` function is provided for generating a chunk of **Graphviz** **DOT** code (specifically `node` and `edge` statements) from a single data frame. The basic idea is to have a prepared data frame available, call the `graphviz_single_df` function to create an string object with the **DOT** code, and then use substitution in the `grViz` function call to insert that **DOT** code.
+
+Edges can be defined between two different columns in the data frame by supplying a string in the form of `[dfcol_1] -> [dfcol_2]` for the `edge_between` argument.
+
+Node attributes can be defined using the `node_attr` argument. Here, a string vector is to be provided using the construction: `c("[dfcol_1]: [node_attr_1] = [value], [node_attr_2] = [value], ...", "[dfcol_2]: [node_attr_1] = [value], [node_attr_2] = [value], ...")`.
+ 
+Edge attributes can be provided as well. A string vector should be provided with the construction: `"1: [edge_attr_1] = [value], [edge_attr_2] = [value], ..."`. Additionally, edge attributes can be scaled to values in a data frame column. This is done by creating a statement in the form: `[edge_attr] [value_1] to [value_2] with [dfcol]`. Currently, scales can be generated from numeric and color values.
+
+The following example outlines how a data frame (with some beforehand preparation) can be used to generate a graph diagram. 
+
+```R
+# Get unique pairs of flight origin and destination as a df
+unique_routes <- unique(nycflights13::flights[,11:12])
+ 
+# Add column with number of flights for each route
+for (i in 1:nrow(unique_routes)){
+  if (i == 1) add_column <- ncol(unique_routes) + 1
+ 
+  unique_routes[i, add_column] <-
+    nrow(subset(nycflights13::flights,
+                origin == as.vector(unique_routes[i,1], mode = 'character') &
+                  dest == as.vector(unique_routes[i,2], mode = 'character')))
+ 
+  if (i == nrow(unique_routes)){
+    colnames(unique_routes)[ncol(unique_routes)] <- 'flights'
+  }
+}
+  
+# Sort 'unique_routes' by descending number of flights
+unique_routes <- unique_routes[with(unique_routes, order(-flights)), ]
+rownames(unique_routes) <- NULL
+ 
+# Use the 'graphviz_single_df' function to specify what to graph, using
+# the 'unique_routes' data frame
+nodes_edges <-
+  graphviz_single_df(
+    df = unique_routes,
+    edge_between = c("origin -> dest"),
+    node_attr = c("origin:
+                   shape = circle,
+                   style = filled,
+                   height = 2,
+                   layer = 'all',
+                   fontname = Helvetica,
+                   fontsize = 42,
+                   fillcolor = lightblue",
+                  "dest: 
+                   shape = circle,
+                   style = filled,
+                   height = 1,
+                   layer = 'all',
+                   fontname = Helvetica,
+                   fontsize = 0,
+                   fillcolor = seagreen3"),
+    edge_attr = "1:
+                   color = #ff000040,
+                   arrowhead = dot,
+                   penwidth 2 to 50 with flights,
+                   arrowsize 1 to 10 with flights,
+                   color blue to red with flights
+                  ")
+ 
+# Create the graph by inserting the 'nodes_edges' object into
+# the Graphviz DOT specification with the substitution syntax
+grViz("
+digraph flights {
+
+  # Graph statements
+  graph [layout = twopi,
+         overlap = false,
+         fixedsize = true,
+         ranksep = 11,
+         outputorder = edgesfirst]
+
+  # Nodes and edges
+  @@1
+
+}
+[1]: nodes_edges
+")
+```
+
+<img src="inst/img/grViz_8.png">
+
 #### Graphviz Engines
 
 Several **Graphviz** engines are available with **DiagrammeR** for rendering graphs. By default, the `grViz` function renders graphs using the standard **dot** engine. However, the **neato**, **twopi**, and **circo** engines are selectable by supplying those names to the `engine` argument. The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
