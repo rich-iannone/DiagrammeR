@@ -51,7 +51,8 @@ boxes_and_circles <- "
 digraph boxes_and_circles {
   
   # several 'node' statements
-  node [shape = box]
+  node [shape = box,
+        fontname = Helvetica]
     A; B; C; D; E; F
   
   node [shape = circle,
@@ -82,6 +83,7 @@ digraph boxes_and_circles {
   
   # several 'node' statements
   node [shape = box,
+        fontname = Helvetica,
         color = blue] // for the letter nodes, use box shapes
     A; B; C; D; E
     F [color = black]
