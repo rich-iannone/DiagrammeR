@@ -591,7 +591,7 @@ Here's an example with line text (that is, text appearing on connecting lines). 
 
 ```R
 diagram <- "
-graph LR
+graph BT
 A(Start)-->|Line Text|B(Keep Going)
 B-->|More Line Text|C(Stop)
     
@@ -677,7 +677,7 @@ paste(connections, collapse = "\n"), "\n",
 mermaid(diagram)
 ```
 
-This is part of the resulting graphic (it's quite wide so I'm displaying just 8 of the 11 columns):
+This is the resulting graphic:
 
 <img src="inst/img/mermaid_5.png">
 
@@ -690,17 +690,17 @@ This is part of the resulting graphic (it's quite wide so I'm displaying just 8 
 
 mermaid("
 sequenceDiagram
-  customer->>ticket seller: ask ticket
-  ticket seller->>database: seats
-  alt tickets available
-    database->>ticket seller: ok
-    ticket seller->>customer: confirm
-    customer->>ticket seller: ok
-    ticket seller->>database: book a seat
-    ticket seller->>printer: print ticket
-  else sold out
-    database->>ticket seller: none left
-    ticket seller->>customer: sorry
+  Customer->>Ticket Seller: Ask for a Ticket
+  Ticket Seller->>Database: Seats
+  alt Tickets Are Available
+    Database->>Ticket Seller: OK
+    Ticket Seller->>Customer: Confirm
+    Customer->>Ticket Seller: OK
+    Ticket Seller->>Database: Book a Seat
+    Ticket Seller->>Printer: Print a Ticket
+  else Sold Out
+    Database->>Ticket Seller: None Left
+    Ticket Seller->>Customer: Sorry!
   end
 ")
 ```
