@@ -50,7 +50,10 @@ graphviz_single_df <- function(df,
   # Create list of node attributes, parsed from 'node_attr' input
   if (!is.null(node_attr)){
     for (i in 1:length(node_attr)){
-      if (i == 1) node_attr_values <- vector("list", length(node_attr))
+      if (i == 1) {
+        node_attr_values <- vector("list", length(node_attr))
+        scaled_node_attr_df <- data.frame(mat.or.vec(nr = nrow(df), nc = 0))
+      }
 
       node_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1", node_attr[i], perl = TRUE)
 
