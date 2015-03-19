@@ -252,7 +252,30 @@ The graph attributes:
 |`URL`          | URL associated with graph (format-dependent)                 |                  |
 |`viewport`     | clipping window on output                                    |                  |
 
-#### Graphviz Substitution
+
+#### Graphviz Engines
+
+Several **Graphviz** engines are available with **DiagrammeR** for rendering graphs. By default, the `grViz` function renders graphs using the standard **dot** engine. However, the **neato**, **twopi**, and **circo** engines are selectable by supplying those names to the `engine` argument. The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
+
+Here is how the 'boxes_and_circles' graph is rendered with the **neato**, **twopi**, and **circo** engines:
+
+```R
+grViz(boxes_and_circles, engine = "neato")
+```
+
+<img src="inst/img/grViz_5.png">
+
+```R
+grViz(boxes_and_circles, engine = "twopi")
+```
+
+<img src="inst/img/grViz_6.png">
+
+```R
+grViz(boxes_and_circles, engine = "circo")
+```
+
+<img src="inst/img/grViz_7.png">#### Graphviz Substitution
 
 Inspired by Razor and the footnote URLs from Markdown, substitution allows for mixing in R expressions into a Graphviz graph specification without sacrificing readability. In the simple example of specifying a single node, the following substitution syntax would be used:
 
@@ -471,30 +494,6 @@ digraph flights {
 ```
 
 <img src="inst/img/grViz_8.png">
-
-#### Graphviz Engines
-
-Several **Graphviz** engines are available with **DiagrammeR** for rendering graphs. By default, the `grViz` function renders graphs using the standard **dot** engine. However, the **neato**, **twopi**, and **circo** engines are selectable by supplying those names to the `engine` argument. The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
-
-Here is how the 'boxes_and_circles' graph is rendered with the **neato**, **twopi**, and **circo** engines:
-
-```R
-grViz(boxes_and_circles, engine = "neato")
-```
-
-<img src="inst/img/grViz_5.png">
-
-```R
-grViz(boxes_and_circles, engine = "twopi")
-```
-
-<img src="inst/img/grViz_6.png">
-
-```R
-grViz(boxes_and_circles, engine = "circo")
-```
-
-<img src="inst/img/grViz_7.png">
 
 ### Mermaid Graphs
 
