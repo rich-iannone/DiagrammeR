@@ -68,6 +68,15 @@ graphviz_single_df <- function(df,
                                               ":"),
                                        "", node_attr[i]), ","))[j]) == FALSE){
 
+          # Create 'statement' object for parsing
+          statement <-
+            gsub("^ ", "",
+                 unlist(strsplit(gsub(paste0("^",
+                                             gsub("\\+", "\\\\+",
+                                                  node_attr_values[[i]][1]),
+                                             ":"),
+                                      "", node_attr[i]), ","))[j])
+
       }
     }
   }
