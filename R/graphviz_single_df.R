@@ -107,6 +107,12 @@ graphviz_single_df <- function(df,
             # Validate the length of the numeric vector
             num_range_given_correct_length <- length(num_range_given) == 2
 
+            # Obtain the column name in df that the attr should be scaled against
+            comparison_col <- gsub(paste0(node_attribute,
+                                          " [0-9\\.]* to [0-9\\.]* with .* (\\w)"),
+                                   "\\1",
+                                   statement, perl = TRUE)
+
           }
 
       }
