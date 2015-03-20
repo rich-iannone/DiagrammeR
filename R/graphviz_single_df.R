@@ -57,6 +57,8 @@ graphviz_single_df <- function(df,
 
       node_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1", node_attr[i], perl = TRUE)
 
+      node_col_num_in_df <- which(colnames(df) == node_attr_values[[i]][1])
+
       for (j in 1:(strcount(node_attr[i], ",", "") + 1)){
 
         node_attr_values[[i]][j + 1] <-
