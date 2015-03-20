@@ -77,6 +77,9 @@ graphviz_single_df <- function(df,
                                              ":"),
                                       "", node_attr[i]), ","))[j])
 
+          # Obtain the node attribute from the statement
+          node_attribute <- gsub("^([a-z]*).*", "\\1", statement, perl = TRUE)
+
       }
     }
   }
