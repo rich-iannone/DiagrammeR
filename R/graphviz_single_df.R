@@ -80,6 +80,10 @@ graphviz_single_df <- function(df,
           # Obtain the node attribute from the statement
           node_attribute <- gsub("^([a-z]*).*", "\\1", statement, perl = TRUE)
 
+          # Create vector of node attributes that take numeric values
+          numeric_node_attributes <-
+            c("fontsize", "height", "labelfontsize", "penwidth", "weight")
+
       }
     }
   }
