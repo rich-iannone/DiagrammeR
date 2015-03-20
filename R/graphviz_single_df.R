@@ -119,6 +119,10 @@ graphviz_single_df <- function(df,
             # Obtain the column number in the data frame
             comparison_col_num <- which(colnames(df) == comparison_col)
 
+            # Define various aggregation functions
+            aggregation_functions <- c("sum", "min", "max", "mean", "sd",
+                                       "variance")
+
           }
 
       }
