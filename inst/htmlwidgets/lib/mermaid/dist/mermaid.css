@@ -2,13 +2,12 @@
 .mermaid .label {
   color: #333333;
 }
-.mermaid .node rect,
-  .node circle,
-  .node polygon {
+.mermaid .node {
   fill: #d2d2d2;
   stroke: #929193;
   stroke-width: 1px;
 }
+
 .mermaid .edgePath .path {
   stroke: #333333 !important;
 }
