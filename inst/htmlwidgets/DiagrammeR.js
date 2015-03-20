@@ -121,13 +121,14 @@ HTMLWidgets.widget({
     //  but use try catch block
     //  to send error to the htmlwidget for display
     try{
-      mermaid.init();
+      mermaid.init( el );
       
       // sort of make our diagram responsive
       //   should we make this an option?
       //   if so, then could easily add to list of post process tasks
       makeResponsive( el );
       
+      /*
       // change the id of our SVG assigned by mermaid to prevent conflict
       //   mermaid.init has a counter that will reset to 0
       //   and cause duplication of SVG id if multiple
@@ -139,8 +140,10 @@ HTMLWidgets.widget({
       if(d3.select(el).select("svg").select("style")[0][0]){
         d3.select(el).select("svg").select("style")[0][0].innerHTML = d3.select(el).select("svg")
           .select("style")[0][0].innerHTML
-          .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
-      }
+      */ 
+      /// sep comment for / in regex    .replace(/mermaidChart[0-9]*/gi, "mermaidChart-" + el.id);
+      /*}
+      */
         
       // set up a container for tasks to perform after completion
       //  one example would be add callbacks for event handling
