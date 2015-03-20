@@ -95,6 +95,10 @@ graphviz_single_df <- function(df,
           # in the statement
           is_col_node_attribute <- node_attribute %in% color_node_attributes
 
+          if (is_num_node_attribute){
+
+          }
+
       }
     }
   }
