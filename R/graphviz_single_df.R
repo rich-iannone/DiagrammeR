@@ -87,6 +87,10 @@ graphviz_single_df <- function(df,
           # Create vector of node attributes that take color values
           color_node_attributes <- c("fillcolor", "fontcolor")
 
+          # Determine whether there is a valid numeric node attribute
+          # in the statement
+          is_num_node_attribute <- node_attribute %in% numeric_node_attributes
+
       }
     }
   }
