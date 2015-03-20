@@ -91,6 +91,10 @@ graphviz_single_df <- function(df,
           # in the statement
           is_num_node_attribute <- node_attribute %in% numeric_node_attributes
 
+          # Determine whether there is a valid color node attribute
+          # in the statement
+          is_col_node_attribute <- node_attribute %in% color_node_attributes
+
       }
     }
   }
