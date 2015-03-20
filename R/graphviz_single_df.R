@@ -84,6 +84,9 @@ graphviz_single_df <- function(df,
           numeric_node_attributes <-
             c("fontsize", "height", "labelfontsize", "penwidth", "weight")
 
+          # Create vector of node attributes that take color values
+          color_node_attributes <- c("fillcolor", "fontcolor")
+
       }
     }
   }
