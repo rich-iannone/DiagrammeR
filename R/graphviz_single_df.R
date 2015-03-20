@@ -61,6 +61,13 @@ graphviz_single_df <- function(df,
 
       for (j in 1:(strcount(node_attr[i], ",", "") + 1)){
 
+        if (grepl('=',
+                  unlist(strsplit(gsub(paste0("^",
+                                              gsub("\\+", "\\\\+",
+                                                   node_attr_values[[i]][1]),
+                                              ":"),
+                                       "", node_attr[i]), ","))[j]) == FALSE){
+
       }
     }
   }
