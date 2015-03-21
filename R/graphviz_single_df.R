@@ -121,7 +121,7 @@ graphviz_single_df <- function(df,
 
             # Define various aggregation functions
             aggregation_functions <- c("sum", "min", "max", "mean", "sd",
-                                       "variance")
+                                       "var")
 
             # Obtain the operation used to aggregate comparison data
             comparison_col_agg_fun <- gsub(paste0(node_attribute,
