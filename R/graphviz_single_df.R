@@ -810,4 +810,6 @@ graphviz_single_df <- function(df,
                             directed = directed)
 
   return(combined_block)
+  }
+  
 }
