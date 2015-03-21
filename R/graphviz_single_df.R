@@ -124,12 +124,13 @@ graphviz_single_df <- function(df,
                                        "var")
 
             # Obtain the operation used to aggregate comparison data
-            comparison_col_agg_fun <- gsub(paste0(node_attribute,
-                                                  ".* with (.*) \\w.*"),
-                                           "\\1",
-                                           statement, perl = TRUE)
-
-
+            comparison_col_agg_fun <-
+              aggregation_functions[
+                which(aggregation_functions %in%
+                        unlist(strsplit(gsub(paste0(node_attribute,
+                                                    ".* with (.*) \\w.*"),
+                                             "\\1",
+                                             statement, perl = TRUE), " ")))]
 
             # Obtain values for comparison with each unique node ID
             for (m in 1:length(unique(df[, node_col_num_in_df]))){
