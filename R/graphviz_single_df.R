@@ -131,8 +131,144 @@ graphviz_single_df <- function(df,
 
 
 
+            # Obtain values for comparison with each unique node ID
+            for (m in 1:length(unique(df[, node_col_num_in_df]))){
+              if (m == 1){
+                unique_vars <- unique(df[, node_col_num_in_df])
+                comparison_col_values <- vector(mode = "numeric", length = 0)
+              }
+
+              # Create data frame subset by each unique variable
+              subset_by_var <- df[df[, node_col_num_in_df] == unique_vars[m],]
+
+              # Perform operations on the data in the comparison column
+              comparison_col_values_1 <- sum(subset_by_var[,comparison_col_num],
+                                             na.rm = TRUE)
+
+              # Create vector of values for each unique variable
+              comparison_col_values <- c(comparison_col_values,
+                                         comparison_col_values_1)
+            }
+
+            # Obtain the min and max values for the data to normalize
+            num_range_df_col <- c(min(df[, which(colnames(df) == comparison_col)],
+                                      na.rm = TRUE),
+                                  max(df[, which(colnames(df) == comparison_col)],
+                                      na.rm = TRUE))
+
+
+
+            # Get normalized values for attribute
+            normalized <- num_range_given[1] +
+              ((df[,comparison_col_num] - num_range_df_col[1]) *
+                 (num_range_given[2] - num_range_given[1])) /
+              (num_range_df_col[2] - num_range_df_col[1])
+
+            # Create a data frame of 1 column with normalized data
+            scaled_node_attr_df_col <- data.frame(normalized)
+            colnames(scaled_node_attr_df_col) <- node_attribute
+
+            # Add data frame column to 'scaled_node_attr_df'
+            scaled_node_attr_df <- cbind(scaled_node_attr_df, scaled_node_attr_df_col)
           }
 
+          if (is_col_node_attribute){
+
+            # Get vector of colors for the given normalization limits
+            col_range_given <-
+              unlist(strsplit(gsub(paste0(node_attribute,
+                                          " ([a-zA-Z]*) to ([a-zA-Z]*).*"),
+                                   "\\1 \\2",
+                                   statement, perl = TRUE), " "))
+
+            # If the colors are named colors, then transform to hex
+            if (all(col_range_given %in% x11_hex()[,1])){
+
+              for (k in 1:length(col_range_given)){
+                if (k == 1) hex_color_values <- vector(mode = 'character', length = 0)
+
+                a_hex_color <- x11_hex()[which(x11_hex()[,1] %in% col_range_given[k]),2]
+
+                hex_color_values <- c(hex_color_values, a_hex_color)
+              }
+            }
+
+            # Obtain the column name in df that the attr should be scaled against
+            comparison_col <- gsub(paste0(node_attribute,
+                                          " [a-zA-Z]* to [a-zA-Z]* with (\\w)"),
+                                   "\\1",
+                                   statement, perl = TRUE)
+
+            # Validate that the comparison column exists in the data frame
+            comparison_col_in_df <- comparison_col %in% colnames(df)
+
+            # Obtain the column number in the data frame
+            comparison_col_num <- which(colnames(df) == comparison_col)
+
+            # Obtain the min and max values for the data to normalize
+            num_range_df_col <- c(min(df[, which(colnames(df) == comparison_col)],
+                                      na.rm = TRUE),
+                                  max(df[, which(colnames(df) == comparison_col)],
+                                      na.rm = TRUE))
+
+            # Obtain 100 colors within the color range provided
+            number_of_stops <- 100
+
+            for (l in 1:number_of_stops){
+
+              if (l == 1) hex_colors <- vector(mode = "character", length = 0)
+
+              js_call <- paste0("chromato.interpolate('", hex_color_values[1], "', '",
+                                hex_color_values[2], "', ",
+                                l/number_of_stops, ", 'hsl');")
+
+              ct <- new_context("window")
+              invisible(ct$source(system.file("htmlwidgets/lib/chromatography/chromatography.js",
+                                              package = "DiagrammeR")))
+
+              hex_colors <- c(hex_colors, unlist(strsplit(ct$eval(js_call), ",")))
+
+              if (l == number_of_stops){
+                fractional_hex_colors <-
+                  rbind(data.frame(fraction = 0.0, hex_colors = hex_colors[1],
+                                   stringsAsFactors = FALSE),
+                        data.frame(fraction = seq(from = 1, to = 100, by = 1)/100,
+                                   hex_colors = hex_colors, stringsAsFactors = FALSE))
+              }
+            }
+
+            # Get normalized values for attribute
+            for (z in 1:nrow(df)){
+              if (z == 1) normalized <- vector(mode = 'character', length = 0)
+
+              a_hex_color <-
+                fractional_hex_colors[which(fractional_hex_colors[,1] ==
+                                              round(df[,comparison_col_num]/
+                                                      (num_range_df_col[2] - num_range_df_col[1]),
+                                                    digits = 2)[z]),2]
+
+              normalized <- c(normalized, a_hex_color)
+            }
+
+            # Create a data frame of 1 column with normalized data
+            scaled_node_attr_df_col <- data.frame(normalized)
+            colnames(scaled_node_attr_df_col) <- node_attribute
+
+            # Add data frame column to 'scaled_edge_attr_df'
+            scaled_node_attr_df <- cbind(scaled_node_attr_df, scaled_node_attr_df_col)
+          }
+
+        } else {
+
+          node_attr_values[[i]][j + 1] <-
+            gsub("=", " = ",
+                 gsub(" ", "",
+                      unlist(strsplit(gsub(paste0("^",
+                                                  gsub("\\+", "\\\\+",
+                                                       node_attr_values[[i]][1]),
+                                                  ":"),
+                                           "", node_attr[i]), ","))))[j]
+        }
       }
     }
   }
@@ -303,9 +439,9 @@ graphviz_single_df <- function(df,
 
               a_hex_color <-
                 fractional_hex_colors[which(fractional_hex_colors[,1] ==
-                        round(df[,comparison_col_num]/
-                                (num_range_df_col[2] - num_range_df_col[1]),
-                              digits = 2)[z]),2]
+                                              round(df[,comparison_col_num]/
+                                                      (num_range_df_col[2] - num_range_df_col[1]),
+                                                    digits = 2)[z]),2]
 
               normalized <- c(normalized, a_hex_color)
             }
