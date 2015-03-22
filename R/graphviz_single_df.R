@@ -52,7 +52,19 @@ graphviz_single_df <- function(df,
     for (i in 1:length(node_attr)){
       if (i == 1) {
         node_attr_values <- vector("list", length(node_attr))
-        scaled_node_attr_df <- data.frame(mat.or.vec(nr = nrow(df), nc = 0))
+
+        node_cols <- which(colnames(df) %in% edge_between_elements)
+
+        unique_nodes_1 <- unique(df[,node_cols[1]])
+
+        unique_nodes_2 <- unique(df[,node_cols[2]])
+
+        unique_nodes_2 <-
+          unique_nodes_2[-which(unique_nodes_2 %in% unique_nodes_1)]
+
+        scaled_node_attr_df_1 <- data.frame(mat.or.vec(nr = length(unique_nodes_1), nc = 0))
+
+        scaled_node_attr_df_2 <- data.frame(mat.or.vec(nr = length(unique_nodes_2), nc = 0))
       }
 
       node_attr_values[[i]] <- gsub("^(([\\w|\\+])*).*", "\\1", node_attr[i], perl = TRUE)
