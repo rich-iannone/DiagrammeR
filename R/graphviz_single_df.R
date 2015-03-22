@@ -155,8 +155,27 @@ graphviz_single_df <- function(df,
               subset_by_var <- df[df[, node_col_num_in_df] == unique_vars[m],]
 
               # Perform operations on the data in the comparison column
-              comparison_col_values_1 <- sum(subset_by_var[,comparison_col_num],
-                                             na.rm = TRUE)
+              if (comparison_col_agg_fun == "sum"){
+                comparison_col_values_1 <- sum(subset_by_var[,comparison_col_num],
+                                               na.rm = TRUE)
+              } else if (comparison_col_agg_fun == "min"){
+                comparison_col_values_1 <- min(subset_by_var[,comparison_col_num],
+                                               na.rm = TRUE)
+              } else if (comparison_col_agg_fun == "max"){
+                comparison_col_values_1 <- max(subset_by_var[,comparison_col_num],
+                                               na.rm = TRUE)
+              } else if (comparison_col_agg_fun == "mean"){
+                comparison_col_values_1 <- mean(subset_by_var[,comparison_col_num],
+                                                na.rm = TRUE)
+              } else if (comparison_col_agg_fun == "sd"){
+                comparison_col_values_1 <- sd(subset_by_var[,comparison_col_num],
+                                              na.rm = TRUE)
+              } else if (comparison_col_agg_fun == "var"){
+                comparison_col_values_1 <- var(subset_by_var[,comparison_col_num],
+                                               na.rm = TRUE)
+              } else {
+                NULL
+              }
 
               # Create vector of values for each unique variable
               comparison_col_values <- c(comparison_col_values,
