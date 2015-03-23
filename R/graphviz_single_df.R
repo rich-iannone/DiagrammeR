@@ -283,9 +283,12 @@ graphviz_single_df <- function(df,
             colnames(scaled_node_attr_df_col) <- node_attribute
 
             # Add data frame column to 'scaled_edge_attr_df'
-            scaled_node_attr_df <- cbind(scaled_node_attr_df, scaled_node_attr_df_col)
+#             if (which(node_cols %in% node_col_num_in_df) == 1){
+#               scaled_node_attr_df_1 <- cbind(scaled_node_attr_df_1, scaled_node_attr_df_col)
+#             } else if (which(node_cols %in% node_col_num_in_df) == 2){
+#               scaled_node_attr_df_2 <- cbind(scaled_node_attr_df_2, scaled_node_attr_df_col)
+#             }
           }
-
         } else {
 
           node_attr_values[[i]][j + 1] <-
