@@ -183,12 +183,8 @@ graphviz_single_df <- function(df,
             }
 
             # Obtain the min and max values for the data to normalize
-            num_range_df_col <- c(min(df[, which(colnames(df) == comparison_col)],
-                                      na.rm = TRUE),
-                                  max(df[, which(colnames(df) == comparison_col)],
-                                      na.rm = TRUE))
-
-
+            num_range_df_col <- c(min(comparison_col_values),
+                                  max(comparison_col_values))
 
             # Get normalized values for attribute
             normalized <- num_range_given[1] +
