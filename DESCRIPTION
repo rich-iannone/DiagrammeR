@@ -4,7 +4,7 @@ Title: Create Diagrams and Flowcharts Using R
 Version: 0.5
 Date: 2015-03-03
 Authors@R: c(
-    person("knsv", "", role = c("aut", "cph"), comment = "mermaid.js
+    person("Knut", "Sveidqvist", role = c("aut", "cph"), comment = "mermaid.js
     library in htmlwidgets/lib, http://github.com/knsv/mermaid/"),
     person("Mike", "Bostock", role = c("aut", "cph"), comment = "d3.js
     library in htmlwidgets/lib, http://d3js.org"),
