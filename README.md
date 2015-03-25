@@ -1,6 +1,6 @@
 <img src="inst/img/DiagrammeR.png">
 
-With the **DiagrammeR** package, you can create graph diagrams and flowcharts using **R**. Markdown-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** apps. 
+With the **DiagrammeR** package, you can create graph diagrams and flowcharts using **R**. **Markdown**-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** web apps. 
 
 Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable.
 
@@ -16,7 +16,7 @@ Install the development version of **DiagrammeR** from GitHub using the **devtoo
 devtools::install_github('rich-iannone/DiagrammeR')
 ```
 
-Or, get the 0.5 release from CRAN.
+Or, get the v0.5 release from **CRAN**.
 
 ```R
 install.packages('DiagrammeR')
@@ -277,7 +277,7 @@ grViz(boxes_and_circles, engine = "circo")
 
 <img src="inst/img/grViz_7.png">#### Graphviz Substitution
 
-Inspired by Razor and the footnote URLs from Markdown, substitution allows for mixing in R expressions into a Graphviz graph specification without sacrificing readability. In the simple example of specifying a single node, the following substitution syntax would be used:
+Inspired by **Razor** and the footnote URLs from **Markdown**, substitution allows for mixing in **R** expressions into a **Graphviz** graph specification without sacrificing readability. In the simple example of specifying a single node, the following substitution syntax would be used:
 
 ```
 digraph {
@@ -299,7 +299,7 @@ Substitutions can also be used to insert values from vector indices into the gra
 
 `@@` + *`[footnote number]`* + `-` + *`[index number]`*
 
-Here is an example of substituting alphabet letters from **R**'s `LETTERS` constant into a Graphviz graph specification.
+Here is an example of substituting alphabet letters from **R**'s `LETTERS` constant into a **Graphviz** graph specification.
 
 ```
 digraph {
@@ -361,7 +361,7 @@ As can be seen in the following output: (1) the node with ID `a` is given the la
 
 Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So long as a vector object results from evaluation, substitution can be performed.
 
-Here is an example of a diagram created using R and RStudio information (obtained from the `R.Version` and `rstudio::versionInfo` functions):
+Here is an example of a diagram created using **R** and **RStudio** information (obtained from the `R.Version` and `rstudioapi::versionInfo` functions):
 
 ```R
 grViz("
@@ -399,8 +399,8 @@ digraph nicegraph {
 }
 
 [1]: paste0(names(R.Version())[1:7], ':\\n ', R.Version()[1:7])
-[2]: paste0('RStudio version:\\n ', rstudio::versionInfo()[[1]])
-[3]: paste0('Current program mode:\\n ', rstudio::versionInfo()[[2]])
+[2]: paste0('RStudio version:\\n ', rstudioapi::versionInfo()[[1]])
+[3]: paste0('Current program mode:\\n ', rstudioapi::versionInfo()[[2]])
 
 ")
 ```
@@ -706,7 +706,7 @@ sequenceDiagram
 
 <img src="inst/img/mermaid_6.png">
 
-Gannt diagrams can also be generated. Here is an example of how to generate that type of project management diagram.
+Gantt diagrams can also be generated. Here is an example of how to generate that type of project management diagram:
 
 ```R
 mermaid("
@@ -741,11 +741,11 @@ Additional meetings with cake       :                           18h
 
 <img src="inst/img/mermaid_7.png">
 
-### DiagrammeR + shiny
+### DiagrammeR + Shiny
 
-As with other **htmlwidgets**, we can easily dynamically bind **DiagrammeR** in **R** with **shiny**. Both `grViz` and `mermaid` (see table below) work with Shiny.
+As with other **htmlwidgets**, we can easily dynamically bind **DiagrammeR** in **R** with **shiny**. Both `grViz` and `mermaid` (see table below) work with **Shiny**.
 
-Using `grViz` with [`shinyAce`](https://github.com/trestletech/shinyAce), we can easily get an interactive playground for our graphviz diagram.
+Using `grViz` with [`shinyAce`](https://github.com/trestletech/shinyAce), we can easily get an interactive playground for our **Graphviz** diagram.
 
 
 ```R
@@ -776,7 +776,7 @@ shinyApp(ui = ui, server = server)
 
 <img src="inst/img/shiny_1.gif">
 
-Here is a quick example where we can provide a `mermaid` diagram spec in a `textInput`.
+Here is a quick example where we can provide a **mermaid** diagram spec in a `textInput`.
 
 ```R
 library(shiny)
@@ -795,7 +795,7 @@ server = function(input, output){
 shinyApp(ui = ui, server = server)
 ```
 
-Not all browsers are currently compatible with the DiagrammeR `mermaid` Shiny app. The following table provides the status for a selection of current browsers.
+Not all browsers are currently compatible with the **DiagrammeR** **mermaid** **Shiny** app. The following table provides the status for a selection of current browsers.
 
 |Browser/Version             | Platform                       | Status           |
 |:---------------------------|:-------------------------------|:-----------------|
