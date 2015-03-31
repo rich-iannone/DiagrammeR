@@ -291,9 +291,11 @@ graphviz_nodes_edges_df <- function(nodes_df = NULL, edges_df = NULL, directed =
 
   }
 
+  # Return the 'node_block' object
+  if (!is.null("nodes_df") & is.null("edges_df")){
+    return(node_block)
+  }
 
-      edge_block <- c(edge_block, line)
-    }
   }
 
   # Construct the 'edge_block' character object
