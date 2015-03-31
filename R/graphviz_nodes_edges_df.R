@@ -18,14 +18,26 @@ graphviz_nodes_edges_df <- function(nodes_df = NULL, edges_df = NULL, directed =
     stopifnot(any(c("node", "nodes", "node_id") %in%
                     colnames(nodes_df)))
 
-  # Force all columns to be of the character class
-  for (i in 1:ncol(nodes_df)){
-    nodes_df[,i] <- as.character(nodes_df[,i])
+    # Force all columns to be of the character class
+    for (i in 1:ncol(nodes_df)){
+
+      nodes_df[,i] <- as.character(nodes_df[,i])
+    }
   }
 
-  # Force all columns to be of the character class
-  for (i in 1:ncol(edges_df)){
-    edges_df[,i] <- as.character(edges_df[,i])
+  if (!is.null("edges_df")){
+
+    stopifnot(class(edges_df) == "data.frame")
+
+    stopifnot(any(c("edge_op", "edge_ops", "edge", "edges",
+                    "edge_from", "edge_to", "from", "to") %in%
+                    colnames(edges_df)))
+
+    # Force all columns to be of the character class
+    for (i in 1:ncol(edges_df)){
+
+      edges_df[,i] <- as.character(edges_df[,i])
+    }
   }
 
   node_attributes <- c("color", "colorscheme", "distortion", "fillcolor",
