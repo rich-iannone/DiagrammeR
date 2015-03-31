@@ -8,7 +8,7 @@
 #' @param directed with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.
 #' @export graphviz_nodes_edges_df
 
-graphviz_nodes_edges_df <- function(nodes_df, edges_df, directed = TRUE){
+graphviz_nodes_edges_df <- function(nodes_df = NULL, edges_df = NULL, directed = TRUE){
 
   # Perform basic checks of the inputs
   stopifnot(class(nodes_df) == "data.frame")
