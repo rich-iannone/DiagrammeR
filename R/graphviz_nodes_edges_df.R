@@ -11,15 +11,12 @@
 graphviz_nodes_edges_df <- function(nodes_df = NULL, edges_df = NULL, directed = TRUE){
 
   # Perform basic checks of the inputs
-  stopifnot(class(nodes_df) == "data.frame")
-  stopifnot(class(edges_df) == "data.frame")
+  if (!is.null("nodes_df")){
 
-  stopifnot(any(c("node", "nodes", "node_id") %in%
-                  colnames(nodes_df)))
+    stopifnot(class(nodes_df) == "data.frame")
 
-  stopifnot(any(c("edge_op", "edge_ops", "edge", "edges",
-                  "edge_from", "edge_to", "from", "to") %in%
-                  colnames(edges_df)))
+    stopifnot(any(c("node", "nodes", "node_id") %in%
+                    colnames(nodes_df)))
 
   # Force all columns to be of the character class
   for (i in 1:ncol(nodes_df)){
