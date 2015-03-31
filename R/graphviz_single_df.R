@@ -121,7 +121,7 @@ graphviz_single_df <- function(df,
 
             # Obtain the column name in df that the attr should be scaled against
             comparison_col <- gsub(paste0(node_attribute,
-                                          " [0-9\\.]* to [0-9\\.]* with .* (\\w)"),
+                                          " .* (\\w)"),
                                    "\\1",
                                    statement, perl = TRUE)
 
