@@ -301,9 +301,11 @@ graphviz_nodes_edges_df <- function(nodes_df = NULL, edges_df = NULL, directed =
     return(edge_block)
   }
 
+  # Return both the 'node_block' and 'edge_block' objects
+  if (!is.null("nodes_df") & !is.null("edges_df")){
 
-  # Combine the 'node_block' and 'edge_block' objects into a 'combined_block'
-  combined_block <- paste(node_block, edge_block, sep = "\n")
+    combined_block <- paste(node_block, edge_block, sep = "\n")
 
-  return(combined_block)
+    return(combined_block)
+  }
 }
