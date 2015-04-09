@@ -14,7 +14,11 @@
 #' @param width an optional parameter for specifying the width of the resulting graphic in pixels.
 #' @param height an optional parameter for specifying the height of the resulting graphic in pixels.
 
-graphviz_nodes_edges_df <- function(nodes_df = NULL, edges_df = NULL, directed = TRUE){
+graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
+                           graph_attrs = NULL, node_attrs = NULL,
+                           edge_attrs = NULL, directed = TRUE,
+                           create_graph = TRUE, width = NULL,
+                           height = NULL){
 
   # Perform basic checks of the inputs
   if (!is.null("nodes_df")){
