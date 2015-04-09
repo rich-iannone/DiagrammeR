@@ -30,7 +30,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
     # Force all columns to be of the character class
     for (i in 1:ncol(nodes_df)){
-
       nodes_df[,i] <- as.character(nodes_df[,i])
     }
   }
@@ -45,7 +44,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
     # Force all columns to be of the character class
     for (i in 1:ncol(edges_df)){
-
       edges_df[,i] <- as.character(edges_df[,i])
     }
   }
