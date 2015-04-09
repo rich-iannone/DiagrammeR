@@ -179,7 +179,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
                                     colnames(edges_df)), "TRUE", "FALSE")
 
-    # Determine which of those columns are edge attributes
+    # Determine which columns in 'edges_df' contains edge attributes
     other_columns_with_edge_attributes <-
       which(colnames(edges_df) %in% edge_attributes)
 
