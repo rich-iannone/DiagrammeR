@@ -71,6 +71,11 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                        "taillabel", "tailport", "tailtarget", "tailtooltip",
                        "tailURL", "target", "tooltip", "weight")
 
+  # Create the default attributes statement for graph attributes
+  if (!is.null(graph_attrs)){
+    graph_attr_stmt <- paste0("graph [", paste(graph_attrs, collapse = ",\n"), "]")
+  }
+
   #
   # Create the node block
   #
