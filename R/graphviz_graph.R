@@ -9,7 +9,8 @@
 #' @param node_attrs an optional vector of node attribute statements that can serve as defaults.
 #' @param edge_attrs an optional vector of edge attribute statements that can serve as defaults.
 #' @param directed with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.
-#' @param create_graph with TRUE (the default) the function render the graph using the 'grViz' function; with FALSE, the generated Graphviz DOT code is returned as a vector object (useful for substituting in a separate 'GrViz' statement).
+#' @param create_graph with TRUE (the default) the function render the graph using the 'grViz' function; with FALSE, the generated Graphviz DOT code is returned as a vector object (useful for substituting in a separate 'grViz' statement).
+#' @param generate_SVG if TRUE, a string of SVG XML text is returned.
 #' @param width an optional parameter for specifying the width of the resulting graphic in pixels.
 #' @param height an optional parameter for specifying the height of the resulting graphic in pixels.
 #' @export graphviz_graph
