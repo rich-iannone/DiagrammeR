@@ -384,10 +384,10 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     grViz(diagram = dot_code, width = width, height = height)
   }
 
-  # Optionally generate SVG text
-  if (generate_SVG == TRUE){
-
-    svg <- exportSVG(grViz(diagram = dot_code, width = width, height = height))
-    return(svg)
-  }
+#   # Optionally generate SVG text
+#   if (generate_SVG == TRUE){
+#
+#     svg <- exportSVG(grViz(diagram = dot_code, width = width, height = height))
+#     return(svg)
+#   }
 }
