@@ -1,7 +1,7 @@
-#' Create DOT code from two data frames
+#' Create DOT code from two data frames and optionally render graph
 #'
-#' A function to generate DOT code from two data frames: one with nodes and the
-#' other with edge operations.
+#' Generates and returns either Graphviz DOT code or a Graphviz graph from two data frames:
+#' one with nodes and the other with edges
 #'
 #' @param nodes_df a data frame containing, at minimum, a column (called 'nodes') which contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.
 #' @param edges_df a data frame containing, at minimum, a column (called 'edge_op') with edge operations as character strings (in the form of '[node_id] -> [node_id]). Alternatively, there may be two columns (called 'edge_from' and 'edge_to') where node IDs are provided. Optionally, additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.
