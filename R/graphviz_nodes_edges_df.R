@@ -327,7 +327,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
     # Construct the 'edge_block' character object
     edge_block <- paste(edge_block, collapse = "\n")
-
   }
 
   # Return portions of DOT code for later substitution
