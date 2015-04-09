@@ -365,7 +365,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   # datasets and variable attributes
   if (create_graph == TRUE){
 
-
     if (exists("combined_attr_stmts")){
       combined_block <- paste(combined_attr_stmts,
                               node_block, edge_block,
@@ -383,5 +382,12 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
     # Render the graph using the 'grViz' function
     grViz(diagram = dot_code, width = width, height = height)
+  }
+
+  # Optionally generate SVG text
+  if (generate_SVG == TRUE){
+
+    svg <- exportSVG(grViz(diagram = dot_code, width = width, height = height))
+    return(svg)
   }
 }
