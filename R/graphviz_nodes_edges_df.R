@@ -81,6 +81,11 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     node_attr_stmt <- paste0("node [", paste(node_attrs, collapse = ",\n"), "]")
   }
 
+  # Create the default attributes statement for edge attributes
+  if (!is.null(edge_attrs)){
+    edge_attr_stmt <- paste0("node [", paste(edge_attrs, collapse = ",\n"), "]")
+  }
+
   #
   # Create the node block
   #
