@@ -5,8 +5,14 @@
 #'
 #' @param nodes_df a data frame containing, at minimum, a column (called 'nodes') which contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.
 #' @param edges_df a data frame containing, at minimum, a column (called 'edge_op') with edge operations as character strings (in the form of '[node_id] -> [node_id]). Alternatively, there may be two columns (called 'edge_from' and 'edge_to') where node IDs are provided. Optionally, additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.
+#' @param graph_attrs an optional vector of graph attribute statements that can serve as defaults.
+#' @param node_attrs an optional vector of node attribute statements that can serve as defaults.
+#' @param edge_attrs an optional vector of edge attribute statements that can serve as defaults.
 #' @param directed with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.
 #' @export graphviz_nodes_edges_df
+#' @param create_graph with TRUE (the default) the function render the graph using the 'grViz' function; with FALSE, the generated Graphviz DOT code is returned as a vector object (useful for substituting in a separate 'GrViz' statement).
+#' @param width an optional parameter for specifying the width of the resulting graphic in pixels.
+#' @param height an optional parameter for specifying the height of the resulting graphic in pixels.
 
 graphviz_nodes_edges_df <- function(nodes_df = NULL, edges_df = NULL, directed = TRUE){
 
