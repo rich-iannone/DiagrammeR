@@ -377,8 +377,11 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                               sep = "\n")
     }
 
-    combined_block <- paste(node_block, edge_block, sep = "\n")
+    # Create DOT code
+    dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
+                       " {\n", "\n", combined_block, "}")
 
-    return(combined_block)
+    # Render the graph using the 'grViz' function
+    grViz(diagram = dot_code, width = width, height = height)
   }
 }
