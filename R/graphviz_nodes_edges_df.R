@@ -330,18 +330,52 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
   }
 
-  # Return the 'node_block' object
-  if (!is.null("nodes_df") & is.null("edges_df")){
-    return(node_block)
+  # Return portions of DOT code for later substitution
+  if (create_graph == FALSE){
+
+    # Return the 'node_block' object
+    if (!is.null("nodes_df") & is.null("edges_df")){
+      return(node_block)
+    }
+
+    # Return the 'edge_block' object
+    if (is.null("nodes_df") & !is.null("edges_df")){
+      return(edge_block)
+    }
+
+    # Return both the 'node_block' and 'edge_block' objects
+    if (!is.null("nodes_df") & !is.null("edges_df")){
+
+      if (exists("combined_attr_stmts")){
+        combined_block <- paste(combined_attr_stmts,
+                                node_block, edge_block,
+                                sep = "\n")
+      }
+
+      if (!exists("combined_attr_stmts")){
+        combined_block <- paste(node_block, edge_block,
+                                sep = "\n")
+      }
+
+      return(combined_block)
+    }
   }
 
-  # Return the 'edge_block' object
-  if (is.null("nodes_df") & !is.null("edges_df")){
-    return(edge_block)
-  }
+  # Create the graph from the chosen attributes and the nodes and edges
+  # datasets and variable attributes
+  if (create_graph == TRUE){
 
-  # Return both the 'node_block' and 'edge_block' objects
-  if (!is.null("nodes_df") & !is.null("edges_df")){
+
+    if (exists("combined_attr_stmts")){
+      combined_block <- paste(combined_attr_stmts,
+                              node_block, edge_block,
+                              sep = "\n")
+    }
+
+    if (!exists("combined_attr_stmts")){
+      combined_block <- paste(node_block, edge_block,
+                              sep = "\n")
+    }
 
     combined_block <- paste(node_block, edge_block, sep = "\n")
 
