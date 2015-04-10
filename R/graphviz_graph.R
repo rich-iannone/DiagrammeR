@@ -53,9 +53,9 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   graph_attributes <- c("layout", "overlap", "fixedsize", "outputorder",
                         "ranksep")
 
-  node_attributes <- c("color", "colorscheme", "distortion", "fillcolor",
+  node_attributes <- c("color", "distortion", "fillcolor",
                        "fixedsize", "fontcolor", "fontname", "fontsize",
-                       "group", "height", "image", "label", "labelloc", "margin",
+                       "group", "height", "label", "labelloc", "margin",
                        "orientation", "penwidth", "peripheries", "shape",
                        "sides", "skew", "style", "tooltip", "width")
 
