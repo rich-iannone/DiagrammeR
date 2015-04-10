@@ -18,7 +18,8 @@
 graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                            graph_attrs = NULL, node_attrs = NULL,
                            edge_attrs = NULL, directed = TRUE,
-                           create_graph = TRUE, generate_SVG = FALSE,
+                           create_graph = TRUE,
+                           return_code = NULL,
                            width = NULL, height = NULL){
 
   # Perform basic checks of the inputs
