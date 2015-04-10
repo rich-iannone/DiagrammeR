@@ -60,7 +60,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                        "sides", "skew", "style", "tooltip", "width")
 
   edge_attributes <- c("arrowhead", "arrowsize", "arrowtail", "color",
-                       "colorscheme", "constraint", "decorate", "dir",
+                       "constraint", "decorate", "dir",
                        "edgeURL", "edgehref", "edgetarget", "edgetooltip",
                        "fontcolor", "fontname", "fontsize", "headclip",
                        "headhref", "headlabel", "headport", "headtarget",
