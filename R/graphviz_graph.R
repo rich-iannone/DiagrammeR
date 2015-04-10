@@ -331,64 +331,43 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     edge_block <- paste(edge_block, collapse = "\n")
   }
 
-  # Return portions of DOT code for later substitution
-  if (create_graph == FALSE){
+  # Create the graph code from the chosen attributes, and the
+  # nodes and edges blocks
+  if (exists("combined_attr_stmts")){
+    combined_block <- paste(combined_attr_stmts,
+                            node_block, edge_block,
+                            sep = "\n")
+  }
 
-    # Return the 'node_block' object
-    if (!is.null("nodes_df") & is.null("edges_df")){
-      return(node_block)
+  if (!exists("combined_attr_stmts")){
+    combined_block <- paste(node_block, edge_block,
+                            sep = "\n")
+  }
+
+  # Create DOT code
+  dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
+                     " {\n", "\n", combined_block, "}")
+
+  # Determine whether any code is asked to be returned
+  if (!is.null(return_code)){
+
+    # Optionally generate SVG text
+    if (return_code == "SVG"){
+
+      svg <- exportSVG(grViz(diagram = dot_code, width = width, height = height))
+
+      return(svg)
     }
 
-    # Return the 'edge_block' object
-    if (is.null("nodes_df") & !is.null("edges_df")){
-      return(edge_block)
-    }
+    if (return_code == "DOT"){
 
-    # Return both the 'node_block' and 'edge_block' objects
-    if (!is.null("nodes_df") & !is.null("edges_df")){
-
-      if (exists("combined_attr_stmts")){
-        combined_block <- paste(combined_attr_stmts,
-                                node_block, edge_block,
-                                sep = "\n")
-      }
-
-      if (!exists("combined_attr_stmts")){
-        combined_block <- paste(node_block, edge_block,
-                                sep = "\n")
-      }
-
-      return(combined_block)
+      return(dot_code)
     }
   }
 
-  # Create the graph from the chosen attributes and the nodes and edges
-  # datasets and variable attributes
   if (create_graph == TRUE){
-
-    if (exists("combined_attr_stmts")){
-      combined_block <- paste(combined_attr_stmts,
-                              node_block, edge_block,
-                              sep = "\n")
-    }
-
-    if (!exists("combined_attr_stmts")){
-      combined_block <- paste(node_block, edge_block,
-                              sep = "\n")
-    }
-
-    # Create DOT code
-    dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
-                       " {\n", "\n", combined_block, "}")
 
     # Render the graph using the 'grViz' function
     grViz(diagram = dot_code, width = width, height = height)
   }
-
-  # Optionally generate SVG text
-#   if (generate_SVG == TRUE){
-#
-#     svg <- exportSVG(grViz(diagram = dot_code, width = width, height = height))
-#     return(svg)
-#   }
 }
