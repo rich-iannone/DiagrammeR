@@ -118,7 +118,6 @@ There are many more attributes. Here are the principal node attributes:
 |Node Attribute| Description                                                 | Default          |
 |:-------------|:------------------------------------------------------------|:-----------------|
 |`color`       | the node shape color                                        | `black`          |
-|`colorscheme` | the scheme for interpreting color names                     |                  |
 |`distortion`  | node distortion for any `shape = polygon`                   |`0.0`             |
 |`fillcolor`   | node fill color                                             |`lightgrey/black` |
 |`fixedsize`   | label text has no affect on node size                       |`false`           |
@@ -413,87 +412,182 @@ The output will of course vary by the system on which it was generated. Here is 
 
 #### Using Data Frames to Define Graphviz Graphs
 
-The `graphviz_single_df` function is provided for generating a chunk of **Graphviz** **DOT** code (specifically `node` and `edge` statements) from a single data frame. The basic idea is to have a prepared data frame available, call the `graphviz_single_df` function to create an string object with the **DOT** code, and then use substitution in the `grViz` function call to insert that **DOT** code.
+##### Data Frames for Nodes and Edges
 
-Edges can be defined between two different columns in the data frame by supplying a string in the form of `[dfcol_1] -> [dfcol_2]` for the `edge_between` argument.
-
-Node attributes can be defined using the `node_attr` argument. Here, a string vector is to be provided using the construction: `c("[dfcol_1]: [node_attr_1] = [value], [node_attr_2] = [value], ...", "[dfcol_2]: [node_attr_1] = [value], [node_attr_2] = [value], ...")`.
- 
-Edge attributes can be provided as well. A string vector should be provided with the construction: `"1: [edge_attr_1] = [value], [edge_attr_2] = [value], ..."`. Additionally, edge attributes can be scaled to values in a data frame column. This is done by creating a statement in the form: `[edge_attr] [value_1] to [value_2] with [dfcol]`. Currently, scales can be generated from numeric and color values.
-
-The following example outlines how a data frame (with some beforehand preparation) can be used to generate a graph diagram. 
+With the `graphviz_graph` function, it's possible to generate a graph diagram from two preprared data frames. The function has the following options:
 
 ```R
-# Get unique pairs of flight origin and destination as a df
-unique_routes <- unique(nycflights13::flights[,11:12])
- 
-# Add column with number of flights for each route
-for (i in 1:nrow(unique_routes)){
-  if (i == 1) add_column <- ncol(unique_routes) + 1
- 
-  unique_routes[i, add_column] <-
-    nrow(subset(nycflights13::flights,
-                origin == as.vector(unique_routes[i,1], mode = 'character') &
-                  dest == as.vector(unique_routes[i,2], mode = 'character')))
- 
-  if (i == nrow(unique_routes)){
-    colnames(unique_routes)[ncol(unique_routes)] <- 'flights'
-  }
-}
-  
-# Sort 'unique_routes' by descending number of flights
-unique_routes <- unique_routes[with(unique_routes, order(-flights)), ]
-rownames(unique_routes) <- NULL
- 
-# Use the 'graphviz_single_df' function to specify what to graph, using
-# the 'unique_routes' data frame
-nodes_edges <-
-  graphviz_single_df(
-    df = unique_routes,
-    edge_between = c("origin -> dest"),
-    node_attr = c("origin:
-                   shape = circle,
-                   style = filled,
-                   height = 2,
-                   layer = 'all',
-                   fontname = Helvetica,
-                   fontsize = 42,
-                   fillcolor = lightblue",
-                  "dest: 
-                   shape = circle,
-                   style = filled,
-                   height = 1,
-                   layer = 'all',
-                   fontname = Helvetica,
-                   fontsize = 0,
-                   fillcolor = seagreen3"),
-    edge_attr = "1:
-                   color = #ff000040,
-                   arrowhead = dot,
-                   penwidth 2 to 50 with flights,
-                   arrowsize 1 to 10 with flights,
-                   color blue to red with flights
-                  ")
- 
-# Create the graph by inserting the 'nodes_edges' object into
-# the Graphviz DOT specification with the substitution syntax
-grViz("
-digraph flights {
-
-  # Graph statements
-  graph [layout = twopi,
-         overlap = false,
-         fixedsize = true,
-         ranksep = 11,
-         outputorder = edgesfirst]
-
-  # Nodes and edges
-  @@1
-
-}
-[1]: nodes_edges
-")
+graphviz_graph(
+    nodes_df,     # provide the name of the data frame with node info         
+    edges_df,     # provide the name of the data frame with edge info 
+    graph_attrs,  # provide a vector of 'graph' attributes
+    node_attrs,   # provide a vector of 'node' attributes as defaults
+    edge_attrs,   # provide a vector of 'edge' attributes as defaults
+    directed,     # is the graph to be directed or undirected? Choose TRUE or FALSE
+    create_graph, # if set to TRUE (the default) the graph will be displayed in the Viewer
+    return_code,  # return the code instead? Choose "DOT" or "SVG" to return those types
+    width,        # optionally set a width in pixels
+    height        # optionally set a height in pixels
+    )
 ```
+
+To get this going, set up two data frames. One is for nodes, the other concerns the edges. Both data frames are parsed by the `graphviz_graph` function and column names that match attributes for either nodes (in the nodes data frame) or edges (in the edges data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.
+
+Which columns might a nodes data frame have? Well, it's important to have at least one column named either "node", "nodes", or "node_id". That's where unique values for the node ID should reside. Here are some notable node attributes:
+
+- "color" -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
+- "distortion" -- the node distortion for any `shape = polygon`
+- "fillcolor" -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- "fixedsize" -- true or false
+- "fontcolor" -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- "fontname" -- the name of the font
+- "fontsize" -- the size of the font for the node label
+- "height" -- the height of the node (only considered if 'fixedsize = true')
+- "label" -- the node label text that replaces the default text (which is the node ID)
+- "penwidth" -- the thickness of the stroke for the shape
+- "peripheries" -- the number of peripheries (essentially, additional shape outlines)
+- "shape" -- the node shape (e.g., ellipse, polygon, circle, etc.)
+- "sides" -- if 'shape = polygon', the number of sides can be provided here
+- "style" -- usually given the value "filled" if you'd like to fill a node with color
+- "tooltip" -- the bog standard browser tooltips; provide text here
+- "width" -- the width of the node (only considered if 'fixedsize = true')
+
+That essentially covers the nodes data frame. For the edges data frame, there are two columns that need to be present: one for the outgoing node edge and another for the incoming node edge. These can be called either "edge_from", "from", "edge_to", or "to". Each of the two columns should contain node IDs and, ideally, they should match those provided in the "node*" column of nodes data frame.
+
+Aside from those mandatory column specifying edge operations. Some examples of edge attributes that can be used include:
+
+- "arrowhead" -- the arrow style at the head end (e.g, `normal`, `dot`) 
+- "arrowsize" -- the scaling factor for the arrowhead and arrowtail
+- "arrowtail" -- the arrow style at the tail end (e.g, `normal`, `dot`) 
+- "color" -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
+- "dir" -- the direction; either `forward`, `back`, `both`, or `none`
+- "fontcolor" -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- "fontname" -- the name of the font
+- "fontsize" -- the size of the font for the node label
+- "headport" -- a cardinal direction for where the arrowhead meets the node
+- "label" -- label text for the line between nodes
+- "minlen" -- minimum rank distance between head and tail 
+- "penwidth" -- the thickness of the stroke for the arrow
+- "tailport" -- a cardinal direction for where the tail is emitted from the node
+- "tooltip" -- provide text here for an edge tooltip
+
+There may be cases where node or edge attributes should apply to all nodes and edges in the graph. In such cases, there's no need to create columns for those attributes where attribute values are repeated in all rows. Instead, supply vectors of attribute statements for the `node_attrs` or `edge_attrs` arguments in the `graphviz_graph` function. For example, you may want circular nodes that are filled with a light blue color, using Helvetica as the label font. If so, use this in `graphviz_graph`:
+
+```R
+graphviz_graph([...],
+               node_attrs = c("shape = circle", "style = filled",
+                              "fillcolor = lightblue", "fontname = Helvetica"),
+               [...])
+```
+
+Likewise, for edges, you may want a certain uniform look that is different from the defaults. Perhaps, a grey line which has a stroke of twice the default thickness:
+
+```R
+graphviz_graph([...],
+               edge_attrs = c("color = gray", "penwidth = 2"),
+               [...])
+```
+
+The graph attributes can be set in a similar manner by supplying a vector to the `graph_attrs` argument. Here's an example where the layout engine is set to 'circo', node overlapping is suppressed, nodes are set to a fixedsize, the separation between nodes is of factor 3, and the edges are drawn first (so as to not obscure the nodes):
+
+```R
+graphviz_graph([...],
+               graph_attrs = c("layout = circo",
+                               "overlap = false",
+                               "fixedsize = true",
+                               "ranksep = 3",
+                               "outputorder = edgesfirst")
+               [...])
+```
+
+Now, an example. Let's use the 'nycflights13' package to prepare some data frames and then create a graph diagram:
+
+```R
+# Get the 'nycflights13' package if not already installed
+# install.packages('nycflights13')
+ 
+# Get the 'lubridate' package if not already installed
+# install.packages('lubridate')
+ 
+# Get the latest build of the 'DiagrammeR' package from GitHub
+# install_github('rich-iannone/DiagrammeR')
+ 
+library("nycflights13")
+library("lubridate")
+library("DiagrammeR")
+ 
+# Choose a day from 2013 for NYC flight data
+# (You can choose any Julian day, it's interesting to see results for different days)
+day_of_year <- 10 
+ 
+# Get A data frame of complete cases (e.g., flights have departure and arrival times)
+nycflights13 <-
+  nycflights13::flights[which(complete.cases(nycflights13::flights) == TRUE), ]
+ 
+# Generate a POSIXct vector of dates using the 'ISOdatetime' function
+date_time <-
+  data.frame("date_time" =
+               ISOdatetime(year = nycflights13[,1],
+                           month = nycflights13[,2],
+                           day = nycflights13[,3],
+                           hour = gsub("[0-9][0-9]$", "", nycflights13[,4]),
+                           min = gsub(".*([0-9][0-9])$", "\\1", nycflights13[,4]),
+                           sec = 0, tz = "GMT"))
+ 
+# Add the POSIXct vector to the 'nycflights13' data frame
+nycflights13 <- cbind(date_time, nycflights13)
+ 
+# Select flights only from the specified day of the year 2013
+nycflights13_day <-
+  subset(nycflights13,
+         date_time >= ymd('2013-01-01', tz = "GMT") + days(day_of_year - 1) &
+          date_time < ymd('2013-01-01', tz = "GMT") + days(day_of_year))
+ 
+# Create the 'nodes' data frame where at least one column is named "nodes" or "node_id"
+nodes <- unique(c(nycflights13[,12],
+                  nycflights13[,13])) # option: change df to 'nycflights13_day' and only
+                                      # airports used for the day will be included
+nodes_df <- data.frame(nodes) # creates the 'nodes_df' data frame
+ 
+# Create the 'edges' data frame
+# Must have columns named 'edge_from' and 'edge_to'
+edge_from <- nycflights13_day[,12] # airport code for departure
+edge_to <- nycflights13_day[,13] # airport code for arrival
+tooltip <- paste(edge_from, "->", edge_to) # creating the 'tooltip' edge attr values
+color <- ifelse(nycflights13_day[,8] < 0,
+                "green", "red") # defining values for the 'color' attr
+edges_df <- data.frame(edge_from,
+                       edge_to,
+                       tooltip, color) # creates the 'edges_df' data frame
+ 
+# Set the graph diagram's default attributes for...
+ 
+# ...nodes
+node_attrs <- c("style = filled", "fillcolor = lightblue",
+                "color = gray", "shape = circle", "fontname = Helvetica",
+                "width = 1")
+
+# ...edges
+edge_attrs <- c("arrowhead = dot")
+ 
+# ...and the graph itself
+graph_attrs <- c("layout = circo",
+                 "overlap = false",
+                 "fixedsize = true",
+                 "ranksep = 3",
+                 "outputorder = edgesfirst")
+ 
+# Generate the graph diagram in the RStudio Viewer.
+# The green lines show flights that weren't late (red indicates late arrivals)
+# This graph is for a single day of flights, airports that are unconnected on a
+# given day may be destinations on another day
+graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
+               graph_attrs = graph_attrs, node_attrs = node_attrs,
+               edge_attrs = edge_attrs, directed = TRUE,
+               width = 1200, height = 800)
+```
+
+This outputs the following graph in the RStudio Viewer:
 
 <img src="inst/img/grViz_8.png">
 
