@@ -440,7 +440,7 @@ graphviz_graph([...],
                [...])
 ```
 
-The graph attributes can be set in a similar manner by supplying a vector to the `graph_attrs` argument. Here's an example where the layout engine is set to 'circo', node overlapping is suppressed, nodes are set to a fixedsize, the separation between nodes is of factor 3, and the edges are drawn first (so as to not obscure the nodes):
+The graph attributes can be set in a similar manner by supplying a vector to the `graph_attrs` argument. Here's an example where the layout engine is set to 'circo', node overlapping is suppressed, nodes are set to a fixed size, the separation between nodes is of factor 3, and the edges are drawn first (so as to not obscure the nodes):
 
 ```R
 graphviz_graph([...],
