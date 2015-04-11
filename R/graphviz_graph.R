@@ -89,17 +89,47 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   }
 
   # Combine default attributes into a single block
-  if (exists("graph_attr_stmt") |
-      exists("node_attr_stmt") |
-      exists("edge_attr_stmt")){
+  if (exists("graph_attr_stmt") & exists("node_attr_stmt") & exists("edge_attr_stmt")){
 
-    combined_attr_stmts <- paste(ifelse(exists("graph_attr_stmt"),
-                                        paste0(graph_attr_stmt, "\n"), NULL),
-                                 ifelse(exists("node_attr_stmt"),
-                                        paste0(node_attr_stmt, "\n"), NULL),
-                                 ifelse(exists("edge_attr_stmt"),
-                                        paste0(edge_attr_stmt), NULL))
+    combined_attr_stmts <- paste(graph_attr_stmt,
+                                 node_attr_stmt,
+                                 edge_attr_stmt, sep = "\n")
   }
+
+  if (!exists("graph_attr_stmt") & exists("node_attr_stmt") & exists("edge_attr_stmt")){
+
+    combined_attr_stmts <- paste(node_attr_stmt,
+                                 edge_attr_stmt, sep = "\n")
+  }
+
+  if (exists("graph_attr_stmt") & !exists("node_attr_stmt") & exists("edge_attr_stmt")){
+
+    combined_attr_stmts <- paste(graph_attr_stmt,
+                                 edge_attr_stmt, sep = "\n")
+  }
+
+  if (exists("graph_attr_stmt") & exists("node_attr_stmt") & !exists("edge_attr_stmt")){
+
+    combined_attr_stmts <- paste(graph_attr_stmt,
+                                 node_attr_stmt, sep = "\n")
+  }
+
+  if (exists("graph_attr_stmt") & !exists("node_attr_stmt") & !exists("edge_attr_stmt")){
+
+    combined_attr_stmts <- paste0(graph_attr_stmt, "\n")
+  }
+
+  if (!exists("graph_attr_stmt") & exists("node_attr_stmt") & !exists("edge_attr_stmt")){
+
+    combined_attr_stmts <- paste0(node_attr_stmt, "\n")
+  }
+
+  if (!exists("graph_attr_stmt") & !exists("node_attr_stmt") & exists("edge_attr_stmt")){
+
+    combined_attr_stmts <- paste0(edge_attr_stmt, "\n")
+  }
+
+
 
   #
   # Create the node block
