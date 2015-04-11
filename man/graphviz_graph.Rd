@@ -13,11 +13,11 @@ graphviz_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
 
 \item{edges_df}{a data frame containing, at minimum, a column (called 'edge_op') with edge operations as character strings (in the form of '[node_id] -> [node_id]). Alternatively, there may be two columns (called 'edge_from' and 'edge_to') where node IDs are provided. Optionally, additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.}
 
-\item{graph_attrs}{an optional vector of graph attribute statements that can serve as defaults.}
+\item{graph_attrs}{an optional vector of graph attribute statements that can serve as defaults for the graph.}
 
-\item{node_attrs}{an optional vector of node attribute statements that can serve as defaults.}
+\item{node_attrs}{an optional vector of node attribute statements that can serve as defaults for nodes.}
 
-\item{edge_attrs}{an optional vector of edge attribute statements that can serve as defaults.}
+\item{edge_attrs}{an optional vector of edge attribute statements that can serve as defaults for edges.}
 
 \item{directed}{with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.}
 
