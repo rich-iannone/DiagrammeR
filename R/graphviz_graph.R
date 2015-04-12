@@ -50,8 +50,8 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     }
   }
 
-  graph_attributes <- c("layout", "overlap", "fixedsize", "outputorder",
-                        "ranksep")
+  graph_attributes <- c("bgcolor", "layout", "overlap", "fixedsize", "mindist",
+                        "nodesep", "outputorder", "ranksep", "rankdir", "stylesheet")
 
   node_attributes <- c("color", "distortion", "fillcolor",
                        "fixedsize", "fontcolor", "fontname", "fontsize",
