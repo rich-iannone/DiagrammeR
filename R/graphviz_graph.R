@@ -139,6 +139,14 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     column_with_node_id <-
       which(colnames(nodes_df) %in% c("node_id", "node", "nodes"))[1]
 
+    # Determine whether positional (x,y) data is included
+    column_with_x <-
+      which(colnames(nodes_df) %in% "x")[1]
+
+    column_with_y <-
+      which(colnames(nodes_df) %in% "y")[1]
+
+
     # Determine which other columns correspond to node attribute values
     other_columns_with_node_attributes <-
       which(colnames(nodes_df) %in% node_attributes)
