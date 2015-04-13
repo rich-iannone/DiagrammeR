@@ -149,10 +149,9 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     if (!is.na(column_with_x) & !is.na(column_with_y)){
 
       pos <- data.frame("pos" =
-                          paste0("'",
-                                 nodes_df[,column_with_x], ",",
-                                 nodes_df[,column_with_x],
-                                 "!'"))
+                          paste0(nodes_df[,column_with_x], ",",
+                                 nodes_df[,column_with_y],
+                                 "!"))
 
       nodes_df <- cbind(nodes_df, pos)
     }
