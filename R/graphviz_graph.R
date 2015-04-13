@@ -188,9 +188,8 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
       # Generate a line of node objects when an attribute string exists
       if (exists("attr_string")){
 
-        line <- paste0("  node",
-                       " [", attr_string, "] ",
-                       "'", nodes_df[i, column_with_node_id], "'")
+        line <- paste0("  '", nodes_df[i, column_with_node_id], "'",
+                       " [", attr_string, "] ")
       }
 
       # Generate a line of node objects when an attribute string doesn't exist
