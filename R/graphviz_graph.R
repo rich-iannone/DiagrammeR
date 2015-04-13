@@ -73,17 +73,17 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
   # Create the default attributes statement for graph attributes
   if (!is.null(graph_attrs)){
-    graph_attr_stmt <- paste0("graph [", paste(graph_attrs, collapse = ",\n"), "]")
+    graph_attr_stmt <- paste0("graph [", paste(graph_attrs, collapse = ",\n       "), "]\n")
   }
 
   # Create the default attributes statement for node attributes
   if (!is.null(node_attrs)){
-    node_attr_stmt <- paste0("node [", paste(node_attrs, collapse = ",\n"), "]")
+    node_attr_stmt <- paste0("node [", paste(node_attrs, collapse = ",\n     "), "]\n")
   }
 
   # Create the default attributes statement for edge attributes
   if (!is.null(edge_attrs)){
-    edge_attr_stmt <- paste0("edge [", paste(edge_attrs, collapse = ",\n"), "]")
+    edge_attr_stmt <- paste0("edge [", paste(edge_attrs, collapse = ",\n     "), "]\n")
   }
 
   # Combine default attributes into a single block
