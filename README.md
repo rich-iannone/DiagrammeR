@@ -440,13 +440,12 @@ graphviz_graph([...],
                [...])
 ```
 
-The graph attributes can be set in a similar manner by supplying a vector to the `graph_attrs` argument. Here's an example where the layout engine is set to 'circo', node overlapping is suppressed, nodes are set to a fixed size, the separation between nodes is of factor 3, and the edges are drawn first (so as to not obscure the nodes):
+The graph attributes can be set in a similar manner by supplying a vector to the `graph_attrs` argument. Here's an example where the layout engine is set to `circo`, node overlapping is suppressed, the separation between nodes is of factor 3, and the edges are drawn first (so as to not obscure the nodes):
 
 ```R
 graphviz_graph([...],
                graph_attrs = c("layout = circo",
                                "overlap = false",
-                               "fixedsize = true",
                                "ranksep = 3",
                                "outputorder = edgesfirst")
                [...])
@@ -547,32 +546,37 @@ If you'd like to return the Graphviz DOT code (to, perhaps, share it or use it d
 
 ```R
 dot_code <- 
-  graphviz_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
-                 edges_df = data.frame(edge_from = c("a", "b", "c"),
-                                       edge_to = c("b", "c", "b")),
-                 graph_attrs = "layout = neato",
-                 node_attrs = "fontname = Helvetica",
-                 edge_attrs = "arrowhead = dot",
-                 return_code = "DOT")
+graphviz_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
+               edges_df = data.frame(edge_from = c("a", "b", "c"),
+                                     edge_to = c("b", "c", "b")),
+               graph_attrs = c("layout = dot", "rankdir = LR"),
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = "arrowhead = dot",
+               return_code = "DOT")
 ```
 
-The output is pretty clean DOT code:
+The output is pretty clean **DOT** code:
 
 ```
 digraph {
 
-graph [layout = neato]
- node [fontname = Helvetica]
- edge [arrowhead = dot]
+graph [layout = dot,
+       rankdir = LR]
+
+node [fontname = Helvetica]
+
+edge [arrowhead = dot]
+
   'a'
   'b'
   'c'
   'a'->'b' 
   'b'->'c' 
-  'c'->'b' }
+  'c'->'b' 
+}
 ```
 
-What about SVGs? Those are the things you should eat for breakfast, every day. Well, you can get those out as well. It's all part of maintaining a balanced diet:
+What about **SVG**s? Those are the things you should eat for breakfast, every day. Well, you can get those out as well. It's all part of maintaining a balanced diet:
 
 ```R
 
@@ -589,7 +593,7 @@ svg_code <-
                  return_code = "SVG")
 ```
 
-The SVG:
+The **SVG**:
 
 ```html
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
