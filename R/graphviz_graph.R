@@ -37,13 +37,14 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   if (class(edges_df) == "data.frame"){
     if (ncol(edges_df) > 2){
 
-    stopifnot(any(c("edge_op", "edge_ops", "edge", "edges",
-                    "edge_from", "edge_to", "from", "to") %in%
-                    colnames(edges_df)))
+      stopifnot(any(c("edge_op", "edge_ops", "edge", "edges",
+                      "edge_from", "edge_to", "from", "to") %in%
+                      colnames(edges_df)))
 
-    # Force all columns to be of the character class
-    for (i in 1:ncol(edges_df)){
-      edges_df[,i] <- as.character(edges_df[,i])
+      # Force all columns to be of the character class
+      for (i in 1:ncol(edges_df)){
+        edges_df[,i] <- as.character(edges_df[,i])
+      }
     }
   }
 
