@@ -146,6 +146,16 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     column_with_y <-
       which(colnames(nodes_df) %in% "y")[1]
 
+    if (!is.na(column_with_x) & !is.na(column_with_y)){
+
+      pos <- data.frame("pos" =
+                          paste0("'",
+                                 nodes_df[,column_with_x], ",",
+                                 nodes_df[,column_with_x],
+                                 "!'"))
+
+      nodes_df <- cbind(nodes_df, pos)
+    }
 
     # Determine which other columns correspond to node attribute values
     other_columns_with_node_attributes <-
