@@ -36,7 +36,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
   if (!is.null("edges_df")){
 
-    stopifnot(class(edges_df) == "data.frame")
 
     stopifnot(any(c("edge_op", "edge_ops", "edge", "edges",
                     "edge_from", "edge_to", "from", "to") %in%
