@@ -563,7 +563,7 @@ digraph {
 
 graph [layout = neato]
  node [fontname = Helvetica]
- node [arrowhead = dot]
+ edge [arrowhead = dot]
   'a'
   'b'
   'c'
