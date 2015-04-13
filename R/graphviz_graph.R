@@ -368,7 +368,10 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     }
 
     # Construct the 'edge_block' character object
-    edge_block <- paste(edge_block, collapse = "\n")
+
+    if (exists("edge_block")){
+      edge_block <- paste(edge_block, collapse = "\n")
+    }
   }
 
   # Create the graph code from the chosen attributes, and the
