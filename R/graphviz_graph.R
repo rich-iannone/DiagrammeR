@@ -368,7 +368,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     }
 
     # Construct the 'edge_block' character object
-
     if (exists("edge_block")){
       edge_block <- paste(edge_block, collapse = "\n")
     }
@@ -405,7 +404,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
   # Create DOT code
   dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
-                     " {\n", "\n", combined_block, "}")
+                     " {\n", "\n", combined_block, "\n}")
 
   # Determine whether any code is asked to be returned
   if (!is.null(return_code)){
