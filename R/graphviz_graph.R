@@ -392,8 +392,15 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   }
 
   if (!exists("combined_attr_stmts")){
+
+    if (exists("edge_block")){
     combined_block <- paste(node_block, edge_block,
                             sep = "\n")
+    }
+
+    if (!exists("edge_block")){
+      combined_block <- node_block
+    }
   }
 
   # Create DOT code
