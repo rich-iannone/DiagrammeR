@@ -364,9 +364,7 @@ Footnote expressions are meant to be flexible. They can span multiple lines, and
 
 #### Using Data Frames to Define Graphviz Graphs
 
-##### Data Frames for Nodes and Edges
-
-With the `graphviz_graph` function, it's possible to generate a graph diagram from two preprared data frames. The function has the following options:
+With the `graphviz_graph` function, it's possible to generate a graph diagram from two data frames. The function has the following options:
 
 ```R
 graphviz_graph(
@@ -385,43 +383,43 @@ graphviz_graph(
 
 To get this going, set up two data frames. One is for nodes, the other concerns the edges. Both data frames are parsed by the `graphviz_graph` function and column names that match attributes for either nodes (in the nodes data frame) or edges (in the edges data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.
 
-Which columns might a nodes data frame have? Well, it's important to have at least one column named either "node", "nodes", or "node_id". That's where unique values for the node ID should reside. Here are some notable node attributes:
+Which columns might a nodes data frame have? Well, it's important to have at least one column named either `node`, `nodes`, or `node_id`. That's where unique values for the node ID should reside. Here are some notable node attributes:
 
-- "color" -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
-- "distortion" -- the node distortion for any `shape = polygon`
-- "fillcolor" -- choose an X11 color or provide a hex code (append 2 digits for alpha)
-- "fixedsize" -- true or false
-- "fontcolor" -- choose an X11 color or provide a hex code (append 2 digits for alpha)
-- "fontname" -- the name of the font
-- "fontsize" -- the size of the font for the node label
-- "height" -- the height of the node (only considered if 'fixedsize = true')
-- "label" -- the node label text that replaces the default text (which is the node ID)
-- "penwidth" -- the thickness of the stroke for the shape
-- "peripheries" -- the number of peripheries (essentially, additional shape outlines)
-- "shape" -- the node shape (e.g., ellipse, polygon, circle, etc.)
-- "sides" -- if 'shape = polygon', the number of sides can be provided here
-- "style" -- usually given the value "filled" if you'd like to fill a node with color
-- "tooltip" -- the bog standard browser tooltips; provide text here
-- "width" -- the width of the node (only considered if 'fixedsize = true')
+- `color` -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
+- `distortion` -- the node distortion for any `shape = polygon`
+- `fillcolor` -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- `fixedsize` -- true or false
+- `fontcolor` -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- `fontname` -- the name of the font
+- `fontsize` -- the size of the font for the node label
+- `height` -- the height of the node
+- `label` -- the node label text that replaces the default text (which is the node ID)
+- `penwidth` -- the thickness of the stroke for the shape
+- `peripheries` -- the number of peripheries (essentially, additional shape outlines)
+- `shape` -- the node shape (e.g., ellipse, polygon, circle, etc.)
+- `sides` -- if `shape = polygon`, the number of sides can be provided here
+- `style` -- usually given the value `filled` if you'd like to fill a node with color
+- `tooltip` -- the bog standard browser tooltips; provide text here
+- `width` -- the width of the node
 
-That essentially covers the nodes data frame. For the edges data frame, there are two columns that need to be present: one for the outgoing node edge and another for the incoming node edge. These can be called either "edge_from", "from", "edge_to", or "to". Each of the two columns should contain node IDs and, ideally, they should match those provided in the "node*" column of nodes data frame.
+That essentially covers the nodes data frame. For the edges data frame, there are two columns that need to be present: one for the outgoing node edge and another for the incoming node edge. These can be called either `edge_from`, `from`, `edge_to`, or `to`. Each of the two columns should contain node IDs and, ideally, they should match those provided in the `node` column of nodes data frame.
 
 Aside from those mandatory column specifying edge operations. Some examples of edge attributes that can be used include:
 
-- "arrowhead" -- the arrow style at the head end (e.g, `normal`, `dot`) 
-- "arrowsize" -- the scaling factor for the arrowhead and arrowtail
-- "arrowtail" -- the arrow style at the tail end (e.g, `normal`, `dot`) 
-- "color" -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
-- "dir" -- the direction; either `forward`, `back`, `both`, or `none`
-- "fontcolor" -- choose an X11 color or provide a hex code (append 2 digits for alpha)
-- "fontname" -- the name of the font
-- "fontsize" -- the size of the font for the node label
-- "headport" -- a cardinal direction for where the arrowhead meets the node
-- "label" -- label text for the line between nodes
-- "minlen" -- minimum rank distance between head and tail 
-- "penwidth" -- the thickness of the stroke for the arrow
-- "tailport" -- a cardinal direction for where the tail is emitted from the node
-- "tooltip" -- provide text here for an edge tooltip
+- `arrowhead` -- the arrow style at the head end (e.g, `normal`, `dot`) 
+- `arrowsize` -- the scaling factor for the arrowhead and arrowtail
+- `arrowtail` -- the arrow style at the tail end (e.g, `normal`, `dot`) 
+- `color` -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
+- `dir` -- the direction; either `forward`, `back`, `both`, or `none`
+- `fontcolor` -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- `fontname` -- the name of the font
+- `fontsize` -- the size of the font for the node label
+- `headport` -- a cardinal direction for where the arrowhead meets the node
+- `label` -- label text for the line between nodes
+- `minlen` -- minimum rank distance between head and tail 
+- `penwidth` -- the thickness of the stroke for the arrow
+- `tailport` -- a cardinal direction for where the tail is emitted from the node
+- `tooltip` -- provide text here for an edge tooltip
 
 There may be cases where node or edge attributes should apply to all nodes and edges in the graph. In such cases, there's no need to create columns for those attributes where attribute values are repeated in all rows. Instead, supply vectors of attribute statements for the `node_attrs` or `edge_attrs` arguments in the `graphviz_graph` function. For example, you may want circular nodes that are filled with a light blue color, using Helvetica as the label font. If so, use this in `graphviz_graph`:
 
@@ -538,11 +536,11 @@ graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
                width = 1200, height = 800)
 ```
 
-This outputs the following graph in the RStudio Viewer:
+This outputs the following graph in the **RStudio** Viewer:
 
 <img src="inst/img/grViz_8.png">
 
-If you'd like to return the Graphviz DOT code (to, perhaps, share it or use it directly with the Graphviz command-line utility), just use `return_code = "DOT"` in the `graphviz_graph` function. Here's a simple example:
+If you'd like to return the **Graphviz** **DOT** code (to, perhaps, share it or use it directly with the **Graphviz** command-line utility), just use `return_code = "DOT"` in the `graphviz_graph` function. Here's a simple example:
 
 ```R
 dot_code <- 
@@ -872,7 +870,6 @@ Completed, critical task            :crit, done,    import_1,   2014-01-06,24h
 Also done, also critical            :crit, done,    import_2,   after import_1, 2d
 Doing this important task now       :crit, active,  import_3,   after import_2, 3d
 Next critical task                  :crit,          import_4,   after import_3, 5d
-
 
 section The Extras
 First extras                        :active,        extras_1,   after import_4,  3d
