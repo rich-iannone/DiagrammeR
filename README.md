@@ -398,7 +398,7 @@ Which columns might a nodes data frame have? Well, it's important to have at lea
 - `peripheries` -- the number of peripheries (essentially, additional shape outlines)
 - `shape` -- the node shape (e.g., ellipse, polygon, circle, etc.)
 - `sides` -- if `shape = polygon`, the number of sides can be provided here
-- `style` -- usually given the value `filled` if you'd like to fill a node with color
+- `style` -- usually given the value `filled` if you'd like to fill a node with a color
 - `tooltip` -- the bog standard browser tooltips; provide text here
 - `width` -- the width of the node
 - `x` -- the x position of the node (requires graph attr `layout = neato` to use)
