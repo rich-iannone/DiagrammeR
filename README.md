@@ -401,6 +401,8 @@ Which columns might a nodes data frame have? Well, it's important to have at lea
 - `style` -- usually given the value `filled` if you'd like to fill a node with color
 - `tooltip` -- the bog standard browser tooltips; provide text here
 - `width` -- the width of the node
+- `x` -- the x position of the node (requires graph attr `layout = neato` to use)
+- `y` -- the y position of the node (requires graph attr `layout = neato` to use)
 
 That essentially covers the nodes data frame. For the edges data frame, there are two columns that need to be present: one for the outgoing node edge and another for the incoming node edge. These can be called either `edge_from`, `from`, `edge_to`, or `to`. Each of the two columns should contain node IDs and, ideally, they should match those provided in the `node` column of nodes data frame.
 
@@ -638,7 +640,6 @@ The **SVG**:
 </g>
 </svg>
 ```
-
 
 ### Mermaid Graphs
 
