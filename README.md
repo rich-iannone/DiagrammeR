@@ -381,9 +381,9 @@ graphviz_graph(
     )
 ```
 
-To get this going, set up two data frames. One is for nodes, the other concerns the edges. Both data frames are parsed by the `graphviz_graph` function and column names that match attributes for either nodes (in the nodes data frame) or edges (in the edges data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.
+To get this going, set up two data frames. One is for nodes, the other concerns the edges. Both data frames are parsed by the `graphviz_graph` function and column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.
 
-Which columns might a nodes data frame have? Well, it's important to have at least one column named either `node`, `nodes`, or `node_id`. That's where unique values for the node ID should reside. Here are some notable node attributes:
+Which columns might a node data frame have? Well, it's important to have at least one column named either `node`, `nodes`, or `node_id`. That's where unique values for the node ID should reside. Here are some notable node attributes:
 
 - `color` -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
 - `distortion` -- the node distortion for any `shape = polygon`
@@ -404,7 +404,7 @@ Which columns might a nodes data frame have? Well, it's important to have at lea
 - `x` -- the x position of the node (requires graph attr `layout = neato` to use)
 - `y` -- the y position of the node (requires graph attr `layout = neato` to use)
 
-That essentially covers the nodes data frame. For the edges data frame, there are two columns that need to be present: one for the outgoing node edge and another for the incoming node edge. These can be called either `edge_from`, `from`, `edge_to`, or `to`. Each of the two columns should contain node IDs and, ideally, they should match those provided in the `node` column of nodes data frame.
+That essentially covers the node data frame. For the edge data frame, there are two columns that need to be present: one for the outgoing node edge and another for the incoming node edge. These can be called either `edge_from`, `from`, `edge_to`, or `to`. Each of the two columns should contain node IDs and, ideally, they should match those provided in the `node` column of node data frame.
 
 Aside from those mandatory column specifying edge operations. Some examples of edge attributes that can be used include:
 
