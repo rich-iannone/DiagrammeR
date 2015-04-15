@@ -58,5 +58,8 @@ combine_nodes <- function(df1, df2){
     }
   }
 
+  # Ensure that the same column names are in each data frame
+  stopifnot(all(colnames(df1) %in% colnames(df2)))
+
   return(df_new)
 }
