@@ -3,6 +3,7 @@
 export(DiagrammeR)
 export(DiagrammeROutput)
 export(combine_nodes)
+export(create_nodes)
 export(exportSVG)
 export(grViz)
 export(grVizOutput)
