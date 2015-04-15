@@ -19,6 +19,19 @@ combine_nodes <- function(df1, df2){
     df_2_missing <- NA
   }
 
+  # Determine the new column names for the appended data frames
+  if (any(!is.na(df_1_missing))){
+    new_column_names_df1 <- c(colnames(df1), df_1_missing)
+  } else {
+    new_column_names_df1 <- NA
+  }
+
+  if (any(!is.na(df_2_missing))){
+    new_column_names_df2 <- c(colnames(df2), df_2_missing)
+  } else {
+    new_column_names_df2 <- NA
+  }
+
 
   return(df_new)
 }
