@@ -7,9 +7,6 @@
 
 combine_nodes <- function(...){
 
-  # Determine whether data frames were supplied
-  stopifnot(class(df1) == "data.frame")
-  stopifnot(class(df2) == "data.frame")
 
   # Examine the column names for each data frame and determine
   # which columns are not common to each df
