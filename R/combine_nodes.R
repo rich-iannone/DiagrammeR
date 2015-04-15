@@ -5,7 +5,7 @@
 #' @return a combined node data frame
 #' @export
 
-combine_nodes <- function(df1, df2){
+combine_nodes <- function(...){
 
   # Determine whether data frames were supplied
   stopifnot(class(df1) == "data.frame")
