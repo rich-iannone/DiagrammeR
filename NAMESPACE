@@ -2,6 +2,7 @@
 
 export(DiagrammeR)
 export(DiagrammeROutput)
+export(combine_edges)
 export(combine_nodes)
 export(create_edges)
 export(create_nodes)
