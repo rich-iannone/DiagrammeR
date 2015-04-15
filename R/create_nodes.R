@@ -19,4 +19,5 @@ create_nodes <- function(...){
 
   nodes_df <- as.data.frame(nodes)
 
+  return(nodes_df)
 }
