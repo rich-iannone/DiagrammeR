@@ -1,7 +1,6 @@
 #' Combine node data frames
-#' @description Combine two node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
-#' @param df1 the first data frame containing node IDs and associated attributes
-#' @param df2 the second data frame containing node IDs and associated attributes
+#' @description Combine several node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
+#' @param ... two or more node data frames, which contain node IDs and associated attributes
 #' @return a combined node data frame
 #' @export
 
@@ -97,9 +96,6 @@ combine_nodes <- function(...){
       }
     }
   }
-
-  # Ensure that the same column names are in each data frame
-  stopifnot(all(colnames(df1) %in% colnames(df2)))
 
   return(df_new)
 }
