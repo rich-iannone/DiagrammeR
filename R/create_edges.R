@@ -23,5 +23,7 @@ create_edges <- function(...){
     }
   }
 
+  edges_df <- as.data.frame(edges)
+
   return(edges_df)
 }
