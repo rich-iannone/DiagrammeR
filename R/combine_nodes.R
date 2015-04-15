@@ -32,6 +32,18 @@ combine_nodes <- function(df1, df2){
     new_column_names_df2 <- NA
   }
 
+  # Add missing columns to df1, with no values
+  if (any(!is.na(df_1_missing))){
+
+    for (i in 1:length(df_1_missing)){
+
+      df1 <- cbind(df1, df_1_missing = rep("", nrow(df1)))
+
+      if (i == length(df_1_missing)){
+        colnames(df1) <- new_column_names_df1
+      }
+    }
+  }
 
   return(df_new)
 }
