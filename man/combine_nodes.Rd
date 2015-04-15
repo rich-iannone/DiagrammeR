@@ -4,17 +4,15 @@
 \alias{combine_nodes}
 \title{Combine node data frames}
 \usage{
-combine_nodes(df1, df2)
+combine_nodes(...)
 }
 \arguments{
-\item{df1}{the first data frame containing node IDs and associated attributes}
-
-\item{df2}{the second data frame containing node IDs and associated attributes}
+\item{...}{two or more node data frames, which contain node IDs and associated attributes}
 }
 \value{
 a combined node data frame
 }
 \description{
-Combine two node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
+Combine several node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
 }
 
