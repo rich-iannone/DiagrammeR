@@ -58,6 +58,25 @@ combine_nodes <- function(df1, df2){
     }
   }
 
+  # Create a new data frame with combined rows
+  for (i in 1:length(colnames(df1))){
+
+    if (i == 1) df_new <- data.frame(mat.or.vec(nr = nrow(df1) + nrow(df2),
+                                                nc = 0), stringsAsFactors = FALSE)
+
+    df_col <- c(as.character(df1[,colnames(df1)[i]]),
+                as.character(df2[,colnames(df1)[i]]))
+
+    df_new <- cbind(df_new, df_col)
+    colnames(df_new)[i] <- colnames(df1)[i]
+
+    if (i == length(colnames(df1))){
+      for (j in 1:ncol(df_new)){
+        df_new[,j] <- as.character(df_new[,j])
+      }
+    }
+  }
+
   # Ensure that the same column names are in each data frame
   stopifnot(all(colnames(df1) %in% colnames(df2)))
 
