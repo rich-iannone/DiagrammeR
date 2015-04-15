@@ -2,7 +2,7 @@
 % Please edit documentation in R/combine_nodes.R
 \name{combine_nodes}
 \alias{combine_nodes}
-\title{Combine node data frames}
+\title{Combine node data frames for Graphviz graphs}
 \usage{
 combine_nodes(...)
 }
