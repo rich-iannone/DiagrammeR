@@ -7,6 +7,7 @@
 
 combine_nodes <- function(...){
 
+  data_frames <- list(...)
 
   # Examine the column names for each data frame and determine
   # which columns are not common to each df
