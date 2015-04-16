@@ -172,19 +172,19 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
             attr_string <- vector(mode = "character", length = 0)
           }
 
-          # Create the node attribute for labels and tooltips when provided
+          # Create the node attributes for labels and tooltips when provided
           if (all(colnames(nodes_df)[j] %in% c("label", "tooltip"),
-              nodes_df[i, j] == '')){
+                  nodes_df[i, j] == '')){
 
             attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
 
           } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
-                       nodes_df[i, j] == '')){
+                         nodes_df[i, j] == '')){
 
             attribute <- NULL
 
           } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
-                       nodes_df[i, j] != '')){
+                         nodes_df[i, j] != '')){
 
             attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
           }
@@ -279,7 +279,33 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                 attr_string <- vector(mode = "character", length = 0)
               }
 
-              attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
+              # Create the edge attributes for labels and tooltips when provided
+              if (all(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
+                                                   "label", "labeltooltip",
+                                                   "taillabel", "tailtooltip",
+                                                   "tooltip"),
+                      edges_df[i, j] == '')){
+
+                attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
+
+              } else if (all(!(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
+                                                            "label", "labeltooltip",
+                                                            "taillabel", "tailtooltip",
+                                                            "tooltip")),
+                             edges_df[i, j] == '')){
+
+                attribute <- NULL
+
+              } else if (all(!(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
+                                                             "label", "labeltooltip",
+                                                             "taillabel", "tailtooltip",
+                                                             "tooltip")),
+                              nodes_df[i, j] != '')){
+
+                attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
+
+              }
+
               attr_string <- c(attr_string, attribute)
             }
 
