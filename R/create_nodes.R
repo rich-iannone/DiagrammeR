@@ -9,6 +9,9 @@ create_nodes <- function(...){
   nodes <- list(...)
 
   number_of_nodes <- length(nodes$nodes)
+  # Stop function if there are no list components
+  stopifnot(!is.null(names(nodes)))
+
 
   for (i in 1:length(nodes)){
 
