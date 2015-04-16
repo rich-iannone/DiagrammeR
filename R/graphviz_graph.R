@@ -172,7 +172,16 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
             attr_string <- vector(mode = "character", length = 0)
           }
 
-          attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
+          # Only create the node attribute for labels and tooltip when they are provided
+          if ((colnames(nodes_df)[j] == "label" | colnames(nodes_df)[j] == "tooltip") &
+              nodes_df[i, j] != ''){
+            attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
+          } else if ((colnames(nodes_df)[j] == "label" | colnames(nodes_df)[j] == "tooltip") &
+                     nodes_df[i, j] == ''){
+            attribute <- NULL
+          } else {
+            attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
+          }
 
           attr_string <- c(attr_string, attribute)
         }
@@ -378,9 +387,9 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   if (exists("combined_attr_stmts")){
 
     if (exists("edge_block")){
-    combined_block <- paste(combined_attr_stmts,
-                            node_block, edge_block,
-                            sep = "\n")
+      combined_block <- paste(combined_attr_stmts,
+                              node_block, edge_block,
+                              sep = "\n")
     }
 
     if (!exists("edge_block")){
@@ -393,8 +402,8 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   if (!exists("combined_attr_stmts")){
 
     if (exists("edge_block")){
-    combined_block <- paste(node_block, edge_block,
-                            sep = "\n")
+      combined_block <- paste(node_block, edge_block,
+                              sep = "\n")
     }
 
     if (!exists("edge_block")){
