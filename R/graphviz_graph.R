@@ -463,6 +463,9 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
                      " {\n", "\n", combined_block, "\n}")
 
+  # Remove empty node or edge attribute statements
+  dot_code <- gsub(" \\[\\] ", "", dot_code)
+
   # Determine whether any code is asked to be returned
   if (!is.null(return_code)){
 
