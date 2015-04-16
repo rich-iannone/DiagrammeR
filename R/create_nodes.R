@@ -8,10 +8,23 @@ create_nodes <- function(...){
 
   nodes <- list(...)
 
-  number_of_nodes <- length(nodes$nodes)
   # Stop function if there are no list components
   stopifnot(!is.null(names(nodes)))
 
+  # Attempt to obtain the number of nodes from the 'node' column
+  if ("node" %in% names(nodes)){
+    number_of_nodes <- length(nodes$node)
+  }
+
+  # Attempt to obtain the number of nodes from the 'nodes' column
+  if ("nodes" %in% names(nodes)){
+    number_of_nodes <- length(nodes$nodes)
+  }
+
+  # Attempt to obtain the number of nodes from the 'node_id' column
+  if ("node_id" %in% names(nodes)){
+    number_of_nodes <- length(nodes$node_id)
+  }
 
   for (i in 1:length(nodes)){
 
