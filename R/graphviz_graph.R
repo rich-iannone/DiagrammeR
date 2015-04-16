@@ -173,13 +173,19 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
           }
 
           # Create the node attribute for labels and tooltips when provided
-          if ((colnames(nodes_df)[j] == "label" | colnames(nodes_df)[j] == "tooltip") &
-              nodes_df[i, j] != ''){
+          if (all(colnames(nodes_df)[j] %in% c("label", "tooltip"),
+              nodes_df[i, j] == '')){
+
             attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
-          } else if ((colnames(nodes_df)[j] == "label" | colnames(nodes_df)[j] == "tooltip") &
-                     nodes_df[i, j] == ''){
+
+          } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
+                       nodes_df[i, j] == '')){
+
             attribute <- NULL
-          } else {
+
+          } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
+                       nodes_df[i, j] != '')){
+
             attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
           }
 
