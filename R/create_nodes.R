@@ -45,6 +45,15 @@ create_nodes <- function(...){
     if (length(nodes[[i]]) > number_of_nodes){
       nodes[[i]] <- nodes[[i]][1:number_of_nodes]
     }
+
+    # Change logical for labels to empty labels
+    if (names(nodes)[i] == "label" & class(nodes[[i]]) == "logical"){
+      nodes[[i]] <- as.character(nodes[[i]])
+
+      for (j in 1:length(nodes[[i]])){
+        nodes[[i]][j] <- ifelse(nodes[[i]][j] == "FALSE", " ", nodes[nodes_column][[1]][j])
+      }
+    }
   }
 
   nodes_df <- as.data.frame(nodes)
