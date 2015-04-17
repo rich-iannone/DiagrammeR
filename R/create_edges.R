@@ -11,6 +11,16 @@ create_edges <- function(...){
   # Stop function if there are no list components
   stopifnot(!is.null(names(edges)))
 
+  # Attempt to obtain the number of edges from the 'edge_from' column
+  if ("edge_from" %in% names(edges)){
+    number_of_edges <- length(edges$edge_from)
+  }
+
+  # Attempt to obtain the number of edges from the 'from' column
+  if ("from" %in% names(edges)){
+    number_of_edges <- length(edges$from)
+  }
+
   number_of_edges <- length(edges$edge_from)
 
   for (i in 1:length(edges)){
