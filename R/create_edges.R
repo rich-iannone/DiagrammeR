@@ -8,6 +8,9 @@ create_edges <- function(...){
 
   edges <- list(...)
 
+  # Stop function if there are no list components
+  stopifnot(!is.null(names(edges)))
+
   number_of_edges <- length(edges$edge_from)
 
   for (i in 1:length(edges)){
