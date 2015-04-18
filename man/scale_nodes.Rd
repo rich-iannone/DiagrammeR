@@ -7,9 +7,9 @@
 scale_nodes(nodes_df, to_scale, node_attr, range, scale_type = "linear")
 }
 \arguments{
-\item{nodes_df}{a data frame containing, at minimum, a column (called 'nodes') which contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.}
+\item{nodes_df}{a data frame containing, at minimum, a column that contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute. These data frames can be conveniently generated using the 'create_nodes' function.}
 
-\item{to_scale}{a vector of numerical values to be scaled; these currently need to be of the same length and order as the node IDs in the supplied node data frame, so, it's recommended to reference a column of values available in 'nodes_df'}
+\item{to_scale}{a vector of numerical values to be scaled; these currently need to be of the same length and order as the node IDs in the supplied node data frame, so, it's recommended to reference a column of values available in 'nodes_df'.}
 
 \item{node_attr}{the name of the node attribute for which scaled values are to be created.}
 
