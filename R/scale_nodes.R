@@ -1,3 +1,14 @@
+#' Create numerical and color scales
+#'
+#' Generates either numeric or color scales for certain node attributes
+#'
+#' @param nodes_df a data frame containing, at minimum, a column (called 'nodes') which contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.
+#' @param to_scale a vector of numerical values to be scaled; these currently need to be of the same length and order as the node IDs in the supplied node data frame, so, it's recommended to reference a column of values available in 'nodes_df'
+#' @param node_attr the name of the node attribute for which scaled values are to be created.
+#' @param range a vector of 2 elements providing either lower and upper numerical or X11 color values.
+#' @param scale_type the type of scaling to perform. Currently, "linear" is the only option available.
+#' @export scale_nodes
+
 scale_nodes <- function(nodes_df,
                         to_scale,
                         node_attr,
