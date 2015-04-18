@@ -20,7 +20,7 @@ scale_nodes <- function(nodes_df,
     c("fontsize", "height", "labelfontsize", "penwidth", "weight", "alpha")
 
   # Create vector of node attributes that take color values
-  color_node_attributes <- c("fillcolor", "fontcolor")
+  color_node_attributes <- c("fillcolor", "fontcolor", "color")
 
   # Determine whether there is a valid numeric node attribute
   # in the statement
