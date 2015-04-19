@@ -212,6 +212,7 @@ scale_nodes <- function(nodes_df,
     colnames(nodes_df)[which(names(nodes_df) %in% "normalized")] <-
       paste0("alpha_", attr_assign[1])
 
+    return(nodes_df)
   }
 
 }
