@@ -136,6 +136,22 @@ scale_nodes <- function(nodes_df,
 
   if (is_alpha_node_attribute){
 
+    # Parse statement and determine if the alpha values should be applied to
+    # a color attribute, or, whether a new color attribute should be created
+    # before applying that alpha
+
+    if (grepl(":", node_attr)){
+      additional_stmt <- unlist(strsplit(node_attr, ":"))[-1]
+    }
+
+    if (exists("additional_stmt") & grepl("=", additional_stmt)){
+      attr_assign <- gsub(" ", "", unlist(strsplit(additional_stmt, "=")))
+    }
+
+    if (exists("additional_stmt") & grepl("=", additional_stmt) == FALSE){
+      attr_assign <- gsub(" ", "", additional_stmt)
+    }
+
   }
 
 }
