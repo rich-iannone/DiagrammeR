@@ -192,6 +192,16 @@ scale_nodes <- function(nodes_df,
 
     # Obtain the min and max values for the data to normalize
     num_range_min_max <- c(min(to_scale), max(to_scale))
+
+    # Get normalized values for attribute if "linear" option chosen
+    if (scale_type == "linear"){
+
+      normalized <- range[1] +
+        ((to_scale - num_range_min_max[1]) *
+           (range[2] - range[1])) /
+        (num_range_min_max[2] - num_range_min_max[1])
+    }
+
   }
 
 }
