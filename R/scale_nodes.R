@@ -133,4 +133,9 @@ scale_nodes <- function(nodes_df,
 
     return(nodes_df)
   }
+
+  if (is_alpha_node_attribute){
+
+  }
+
 }
