@@ -174,6 +174,22 @@ scale_nodes <- function(nodes_df,
           }
         }
       }
+
+      if (length(attr_assign) == 1){
+
+        if (attr_assign[1] %in% color_node_attributes){
+
+          attr_in_df <- attr_assign[1] %in% colnames(nodes_df)
+
+          if (attr_in_df){
+
+            apply_to_column_no <- which(colnames(nodes_df) %in% attr_assign[1])
+
+          }
+        }
+      }
+    }
+
   }
 
 }
