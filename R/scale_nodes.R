@@ -202,6 +202,16 @@ scale_nodes <- function(nodes_df,
         (num_range_min_max[2] - num_range_min_max[1])
     }
 
+    # Create data frame for merging
+    normalized_df <- data.frame(normalized)
+
+    # Column bind both data frames together
+    nodes_df <- cbind(nodes_df, normalized_df)
+
+    # Change temporary name of column to that of attribute chosen
+    colnames(nodes_df)[which(names(nodes_df) %in% "normalized")] <-
+      paste0("alpha_", attr_assign[1])
+
   }
 
 }
