@@ -17,7 +17,7 @@ scale_nodes <- function(nodes_df,
 
   # Create vector of node attributes that take numeric values
   numeric_node_attributes <-
-    c("fontsize", "height", "labelfontsize", "penwidth", "weight", "alpha")
+    c("fontsize", "height", "labelfontsize", "penwidth", "weight")
 
   # Create vector of node attributes that take color values
   color_node_attributes <- c("fillcolor", "fontcolor", "color")
