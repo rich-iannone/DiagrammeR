@@ -30,6 +30,9 @@ scale_nodes <- function(nodes_df,
   # in the statement
   is_col_node_attribute <- node_attr %in% color_node_attributes
 
+  # Determine whether the attribute is an alpha attribute
+  is_alpha_node_attribute <- ifelse(grepl("alpha.*", node_attr), TRUE, FALSE)
+
   if (is_num_node_attribute){
 
     # Stop function if the length of the numeric vector is not 2
