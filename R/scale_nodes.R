@@ -190,6 +190,8 @@ scale_nodes <- function(nodes_df,
       }
     }
 
+    # Obtain the min and max values for the data to normalize
+    num_range_min_max <- c(min(to_scale), max(to_scale))
   }
 
 }
