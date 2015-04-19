@@ -152,6 +152,9 @@ scale_nodes <- function(nodes_df,
       attr_assign <- gsub(" ", "", additional_stmt)
     }
 
+    # Add column for color-type attr in nodes_df
+    if (exists("attr_assign")){
+
   }
 
 }
