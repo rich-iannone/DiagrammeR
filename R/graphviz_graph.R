@@ -208,8 +208,10 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
             nodes_df[i,color_attr_column_no] <-
               paste0(x11_hex()[which(x11_hex()[,1] %in%
                                        as.character(nodes_df[i,color_attr_column_no])), 2],
-                     round(as.numeric(nodes_df[i,alpha_column_no]),0))
+                     formatC(round(as.numeric(nodes_df[i,alpha_column_no]),0),
+                             flag = "0", width = 2))
           }
+
         }
 
         # Append alpha for color values that are hex color values
