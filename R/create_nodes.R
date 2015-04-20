@@ -56,7 +56,7 @@ create_nodes <- function(...){
     }
   }
 
-  nodes_df <- as.data.frame(nodes)
+  nodes_df <- as.data.frame(nodes, stringsAsFactors = FALSE)
 
   return(nodes_df)
 }
