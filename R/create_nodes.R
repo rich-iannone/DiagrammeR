@@ -8,7 +8,7 @@ create_nodes <- function(...){
 
   nodes <- list(...)
 
-  # Stop function if there are no list components
+  # Stop function if there are no named list components
   stopifnot(!is.null(names(nodes)))
 
   # Attempt to obtain the number of nodes from the 'node' column
