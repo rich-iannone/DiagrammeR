@@ -36,18 +36,17 @@ Here is the basic structure:
 
 `[strict] (graph | digraph) [ID] '{' stmt_list '}'`
 
-#### Statements
 
-The graph statement (`graph_stmt`), the node statement (`node_stmt`), and the edge statement (`edge_stmt`) are the three most commonly used statements in the **Graphviz** **DOT** language. Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while an undirected graph must use the `--` operator.
+The `stmt_list` is made up of a collection of graph statements (`graph_stmt`), node statements (`node_stmt`), and edge statements (`edge_stmt`) (they are the three most commonly used statement types in the **Graphviz** **DOT** language). Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while an undirected graph must use the `--` operator.
 
-Within these statements follow statement lists. Thus for a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list item can optionally have an attribute list (`attr_list`) which modify the attributes of either the node or edge.
+For a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list item can optionally have an attribute list (`attr_list`) which modify the attributes of either the node or edge.
 
 Comments may be placed within the statement list. These can be marked using `//` or a `/* */` structure. Comment lines are denoted by a `#` character. Multiple statements within a statement list can be separated by linebreaks or `;` characters between multiple statements.
 
 Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:
 
 ```R
-boxes_and_circles <- "
+grViz("
 digraph boxes_and_circles {
   
   # a 'graph' statement
@@ -56,21 +55,19 @@ digraph boxes_and_circles {
   # several 'node' statements
   node [shape = box,
         fontname = Helvetica]
-    A; B; C; D; E; F
+  A; B; C; D; E; F
   
   node [shape = circle,
         fixedsize = true,
         width = 0.9] // sets as circles
-    1; 2; 3; 4; 5; 6; 7; 8
+  1; 2; 3; 4; 5; 6; 7; 8
 
   # several 'edge' statements
-    A->1; B->2; B->3; B->4; C->A
-    1->D; E->A; 2->4; 1->5; 1->F
-    E->6; 4->6; 5->7; 6->7; 3->8
+  A->1; B->2; B->3; B->4; C->A
+  1->D; E->A; 2->4; 1->5; 1->F
+  E->6; 4->6; 5->7; 6->7; 3->8
 }
-"
-
-grViz(boxes_and_circles)
+")
 ```
 
 <img src="inst/img/grViz_1.png">
@@ -78,7 +75,7 @@ grViz(boxes_and_circles)
 The attributes of the nodes and the edges can be easily modified. In the following, colors can be selectively changed in attribute lists.
 
 ```R
-boxes_and_circles <- "
+grViz("
 digraph boxes_and_circles {
   
   # a 'graph' statement
@@ -88,27 +85,25 @@ digraph boxes_and_circles {
   node [shape = box,
         fontname = Helvetica,
         color = blue] // for the letter nodes, use box shapes
-    A; B; C; D; E
-    F [color = black]
+  A; B; C; D; E
+  F [color = black]
   
   node [shape = circle,
         fixedsize = true,
         width = 0.9] // sets as circles
-    1; 2; 3; 4; 5; 6; 7; 8
+  1; 2; 3; 4; 5; 6; 7; 8
 
   # several 'edge' statements
   edge [color = gray] // this sets all edges to be gray (unless overridden)
-    A->1; B->2
-    B->3 [color = red]
-    B->4
-    C->A [color = green]
-    1->D; E->A; 2->4; 1->5; 1->F
-    E->6; 4->6; 5->7; 6->7
-    3->8 [color = blue]
+  A->1; B->2                   // gray
+  B->3 [color = red]           // red
+  B->4                         // gray
+  C->A [color = green]         // green
+  1->D; E->A; 2->4; 1->5; 1->F // gray
+  E->6; 4->6; 5->7; 6->7       // gray
+  3->8 [color = blue]          // blue
 }
-"
-
-grViz(boxes_and_circles)
+")
 ```
 
 <img src="inst/img/grViz_2.png">
@@ -231,11 +226,11 @@ Before we get to using that, however, you're going to need to create some specia
 
 Which columns might a node data frame have? Well, it's important to have at least one column named either `node`, `nodes`, or `node_id`. That's where unique values for the node ID should reside. Here are some notable node attributes:
 
-- `color` -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
+- `color` -- provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
 - `distortion` -- the node distortion for any `shape = polygon`
-- `fillcolor` -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- `fillcolor` -- provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
 - `fixedsize` -- true or false
-- `fontcolor` -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- `fontcolor` -- provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
 - `fontname` -- the name of the font
 - `fontsize` -- the size of the font for the node label
 - `height` -- the height of the node
@@ -245,7 +240,7 @@ Which columns might a node data frame have? Well, it's important to have at leas
 - `shape` -- the node shape (e.g., ellipse, polygon, circle, etc.)
 - `sides` -- if `shape = polygon`, the number of sides can be provided here
 - `style` -- usually given the value `filled` if you'd like to fill a node with a color
-- `tooltip` -- the bog standard browser tooltips; provide text here
+- `tooltip` -- provide text here for an unstyled browser tooltip
 - `width` -- the width of the node
 - `x` -- the x position of the node (requires graph attr `layout = neato` to use)
 - `y` -- the y position of the node (requires graph attr `layout = neato` to use)
@@ -414,98 +409,118 @@ graphviz_graph(nodes_df = all_nodes,
 
 <img src="inst/img/grViz_9.png">
 
-Now, another example. This time with an external dataset. Let's use the 'nycflights13' package to prepare some data frames and then create a graph diagram:
+#### Creating Numeric and Color Scales for Node and Edge Attributes
+
+With the `scale_nodes` and `scale_edges` functions, it's possible to create and apply scaled node and edge attributes. These attributes can be either of the numeric or color variety. Ideally, the numerical data from which the scaled values are generated should reside in the node or edge data frames. This is recommended because the values need to be of the same length and order as the records in the node or edge data frame.
+
+For nodes, scales can be made for the following attributes:
+
+- `fontsize` *numeric*
+- `labelfontsize` *numeric*
+- `penwidth` *numeric*
+- `height` *numeric*
+- `weight` *numeric*
+- `x` *numeric*
+- `y` *numeric*
+- `color` *color*
+- `fillcolor` *color*
+- `fontcolor` *color*
+
+For edges, scales can be made for the following edge attributes:
+
+- `fontsize` *numeric*
+- `labelfontsize` *numeric*
+- `labelangle` *numeric*
+- `labeldistance` *numeric*
+- `penwidth` *numeric*
+- `arrowsize` *numeric*
+- `minlen` *numeric*
+- `weight` *numeric*
+- `color` *color*
+- `fontcolor` *color*
+- `labelfontcolor` *color*
+
+There is also another attribute for both nodes and edges called `alpha` which is a numeric value from `0`-`100` that modifies the opacity of a specified color attribute. A value of `0` is essentially invisible (i.e., completely transparent) whereas `100` is entirely opaque (i.e., no transparency applied). Creating an alpha scale can be done by either referencing a column containing color attribute values, or, by initializing a color attribute column and then creating an alpha scale at the same time. An example will be useful here, and **RStudio Viewer** output will be shown here after significant changes to the graph. Begin by randomly creating edges and nodes with static attributes:
 
 ```R
-# Get the 'nycflights13' package if not already installed
-# install.packages('nycflights13')
- 
-# Get the 'lubridate' package if not already installed
-# install.packages('lubridate')
- 
-# Get the latest build of the 'DiagrammeR' package from GitHub
-devtools::install_github('rich-iannone/DiagrammeR')
- 
-library("nycflights13")
-library("lubridate")
-library("DiagrammeR")
- 
-# Choose a day from 2013 for NYC flight data
-# (You can choose any Julian day, it's interesting to see results for different days)
-day_of_year <- 10 
+# Setting a seed to make the example reproducible
+set.seed(23)
 
-# Get a data frame of complete cases (e.g., flights have departure and arrival times)
-nycflights13 <-
-  nycflights13::flights[which(complete.cases(nycflights13::flights) == TRUE), ]
+# Create an edge data frame and also include a column of 'random' data
+many_edges <-
+  create_edges(edge_from = sample(seq(1:100), 100, replace = TRUE),
+               edge_to = sample(seq(1:100), 100, replace = TRUE),
+               random_data = sample(seq(1:5000), 100, replace = TRUE))
 
-# Generate a POSIXct vector of dates using the 'ISOdatetime' function
-# Columns 1, 2, and 3 are year, month, and day columns
-# Column 4 is a 4-digit combination of hours (00-23) and minutes (00-59)
-date_time <-
-  data.frame("date_time" =
-               ISOdatetime(year = nycflights13[,1],
-                           month = nycflights13[,2],
-                           day = nycflights13[,3],
-                           hour = gsub("[0-9][0-9]$", "", nycflights13[,4]),
-                           min = gsub(".*([0-9][0-9])$", "\\1", nycflights13[,4]),
-                           sec = 0, tz = "GMT"))
-
-# Add the POSIXct vector 'date_time' to the 'nycflights13' data frame
-nycflights13 <- cbind(date_time, nycflights13)
-
-# Select flights only from the specified day of the year 2013
-nycflights13_day <-
-  subset(nycflights13,
-         date_time >= ymd('2013-01-01', tz = "GMT") + days(day_of_year - 1) &
-           date_time < ymd('2013-01-01', tz = "GMT") + days(day_of_year))
-
-# Create the 'nodes' data frame where at least one column is named "nodes" or "node_id"
-# Column 12 is the 3-letter code for the airport departing from
-# Column 13 is for the airport arriving to
-# (Option: change df to 'nycflights13_day' and only airports used for the day will be included)
-nodes_df <- create_nodes(nodes = unique(c(nycflights13[,12],
-                                    nycflights13[,13])),
-                         label = FALSE)
-
-# The 'edges' data frame must have columns named 'edge_from' and 'edge_to'
-# The color attribute is determined with an 'ifelse' statement, where
-# column 8 is the minutes early (negative values) or minutes late (positive values)
-# for the flight arrival
-edges_df <- create_edges(edge_from = nycflights13_day[,12],
-                         edge_to = nycflights13_day[,13],
-                         color = ifelse(nycflights13_day[,8] < 0,
-                                    "green", "red"))
-
-# Set the graph diagram's default attributes for...
-
-# ...nodes
-node_attrs <- c("style = filled", "fillcolor = lightblue",
-                "color = gray", "shape = circle", "fontname = Helvetica",
-                "width = 1")
-
-# ...edges
-edge_attrs <- c("arrowhead = dot")
-
-# ...and the graph itself
-graph_attrs <- c("layout = circo",
-                 "overlap = false",
-                 "fixedsize = true",
-                 "ranksep = 3",
-                 "outputorder = edgesfirst")
-
-# Generate the graph diagram in the RStudio Viewer.
-# The green lines show flights that weren't late (red indicates late arrivals)
-# This graph is for a single day of flights, airports that are unconnected on a
-# given day may be destinations on another day
-graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
-               graph_attrs = graph_attrs, node_attrs = node_attrs,
-               edge_attrs = edge_attrs, directed = TRUE,
-               width = 1200, height = 800)
+# Create the node data frame, using the nodes that are available in
+# the 'many_edges' data frame; provide 'shape' and 'fillcolor' attributes
+many_nodes <-
+  create_nodes(node = c(unique(many_edges$edge_from),
+                        unique(many_edges$edge_to)),
+               random_data = sample(seq(1:5000),
+                                    length(c(unique(many_edges$edge_from),
+                                             unique(many_edges$edge_to)))),
+               label = FALSE,
+               shape = "circle",
+               fillcolor = "red")
 ```
 
-This outputs the following graph in the **RStudio** Viewer:
+View the graph and also ensure that `style = filled` is present to activate the `fillcolor` node attribute. This statement will be used repeatedly throughout without changing any of the argument values.
+
+```R
+graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
+               node_attrs = "style = filled",
+               graph_attrs = c("layout = twopi", "overlap = false"))
+```
 
 <img src="inst/img/grViz_10.png">
+
+Create a scale for the node attribute `penwidth` (which changes the stroke thickness of the node shape). Using the data in the `random_data`, those values will be scaled linearly from `2` to `10`. 
+ 
+```R
+many_nodes <- scale_nodes(nodes_df = many_nodes,
+                          to_scale = many_nodes$random_data,
+                          node_attr = "penwidth",
+                          range = c(2, 10))
+```
+
+<img src="inst/img/grViz_11.png">
+
+To apply transparency to color values, use the `alpha` node attribute but reference the color attribute that should be modified with the syntax: '`alpha:`[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: '`alpha:`[color_attr]`=`[color]'. The color value can either be an X11 color name or a hexadecimal color value.
+
+```R
+many_nodes <- scale_nodes(nodes_df = many_nodes,
+                          to_scale = many_nodes$random_data,
+                          node_attr = "alpha:fillcolor",
+                          range = c(5, 90))
+```
+
+<img src="inst/img/grViz_12.png">
+
+Edges can have scales applied to edge attributes:
+
+```R
+many_edges <- scale_edges(edges_df = many_edges,
+                          to_scale = many_edges$random_data,
+                          edge_attr = "penwidth",
+                          range = c(0.5, 10))
+```
+
+<img src="inst/img/grViz_13.png">
+
+You can linearly scale color values as well. When creating color scales, ensure that the `V8` library is installed and loaded.
+
+```R
+library(V8)
+many_edges <- scale_edges(edges_df = many_edges,
+                          to_scale = many_edges$penwidth,
+                          edge_attr = "color",
+                          range = c("red", "green"))
+```
+
+<img src="inst/img/grViz_14.png">
+
+#### Exporting Graph Code
 
 If you'd like to return the **Graphviz** **DOT** code (to, perhaps, share it or use it directly with the **Graphviz** command-line utility), just use `return_code = "DOT"` in the `graphviz_graph` function. Here's a simple example:
 
@@ -605,6 +620,101 @@ The **SVG**:
 </g>
 </svg>
 ```
+
+#### An Example with Data from the `nycflights13` Package
+
+Now, yet another example. This time with an external dataset. Let's use the 'nycflights13' package to prepare some data frames and then create a graph diagram:
+
+```R
+# Get the 'nycflights13' package if not already installed
+# install.packages('nycflights13')
+ 
+# Get the 'lubridate' package if not already installed
+# install.packages('lubridate')
+ 
+# Get the latest build of the 'DiagrammeR' package from GitHub
+devtools::install_github('rich-iannone/DiagrammeR')
+ 
+library("nycflights13")
+library("lubridate")
+library("DiagrammeR")
+ 
+# Choose a day from 2013 for NYC flight data
+# (You can choose any Julian day, it's interesting to see results for different days)
+day_of_year <- 10 
+
+# Get a data frame of complete cases (e.g., flights have departure and arrival times)
+nycflights13 <-
+  nycflights13::flights[which(complete.cases(nycflights13::flights) == TRUE), ]
+
+# Generate a POSIXct vector of dates using the 'ISOdatetime' function
+# Columns 1, 2, and 3 are year, month, and day columns
+# Column 4 is a 4-digit combination of hours (00-23) and minutes (00-59)
+date_time <-
+  data.frame("date_time" =
+               ISOdatetime(year = nycflights13[,1],
+                           month = nycflights13[,2],
+                           day = nycflights13[,3],
+                           hour = gsub("[0-9][0-9]$", "", nycflights13[,4]),
+                           min = gsub(".*([0-9][0-9])$", "\\1", nycflights13[,4]),
+                           sec = 0, tz = "GMT"))
+
+# Add the POSIXct vector 'date_time' to the 'nycflights13' data frame
+nycflights13 <- cbind(date_time, nycflights13)
+
+# Select flights only from the specified day of the year 2013
+nycflights13_day <-
+  subset(nycflights13,
+         date_time >= ymd('2013-01-01', tz = "GMT") + days(day_of_year - 1) &
+           date_time < ymd('2013-01-01', tz = "GMT") + days(day_of_year))
+
+# Create the 'nodes' data frame where at least one column is named "nodes" or "node_id"
+# Column 12 is the 3-letter code for the airport departing from
+# Column 13 is for the airport arriving to
+# (Option: change df to 'nycflights13_day' and only airports used for the day will be included)
+nodes_df <- create_nodes(nodes = unique(c(nycflights13[,12],
+                                    nycflights13[,13])),
+                         label = FALSE)
+
+# The 'edges' data frame must have columns named 'edge_from' and 'edge_to'
+# The color attribute is determined with an 'ifelse' statement, where
+# column 8 is the minutes early (negative values) or minutes late (positive values)
+# for the flight arrival
+edges_df <- create_edges(edge_from = nycflights13_day[,12],
+                         edge_to = nycflights13_day[,13],
+                         color = ifelse(nycflights13_day[,8] < 0,
+                                    "green", "red"))
+
+# Set the graph diagram's default attributes for...
+
+# ...nodes
+node_attrs <- c("style = filled", "fillcolor = lightblue",
+                "color = gray", "shape = circle", "fontname = Helvetica",
+                "width = 1")
+
+# ...edges
+edge_attrs <- c("arrowhead = dot")
+
+# ...and the graph itself
+graph_attrs <- c("layout = circo",
+                 "overlap = false",
+                 "fixedsize = true",
+                 "ranksep = 3",
+                 "outputorder = edgesfirst")
+
+# Generate the graph diagram in the RStudio Viewer.
+# The green lines show flights that weren't late (red indicates late arrivals)
+# This graph is for a single day of flights, airports that are unconnected on a
+# given day may be destinations on another day
+graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
+               graph_attrs = graph_attrs, node_attrs = node_attrs,
+               edge_attrs = edge_attrs, directed = TRUE,
+               width = 1200, height = 800)
+```
+
+This outputs the following graph in the **RStudio** Viewer:
+
+<img src="inst/img/grViz_15.png">
 
 ### Mermaid Diagrams
 
