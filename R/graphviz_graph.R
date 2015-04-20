@@ -181,6 +181,60 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
       }
     }
 
+    # Determine whether column 'alpha' with color attr exists
+    if (any(grepl("alpha_.*", colnames(nodes_df)))){
+
+      alpha_column_no <- grep("alpha_.*", colnames(nodes_df))
+
+      color_attr_column_name <-
+        unlist(strsplit(colnames(nodes_df)[
+          (which(grepl("alpha_.*", colnames(nodes_df))))
+          ], "_"))[-1]
+
+      color_attr_column_no <-
+        which(colnames(nodes_df) %in% color_attr_column_name)
+
+      # Append alpha value only if referenced column is for color
+      if (colnames(nodes_df)[color_attr_column_no] %in%
+          c("color", "fillcolor", "fontcolor")){
+
+        # Append alpha for color values that are X11 color names
+        if (all(grepl("[a-z]*", as.character(nodes_df[,color_attr_column_no]))) &
+            all(as.character(nodes_df[,color_attr_column_no]) %in%
+                x11_hex()[,1])){
+
+          for (i in 1:nrow(nodes_df)){
+
+            nodes_df[,color_attr_column_no] <-
+              as.character(nodes_df[,color_attr_column_no])
+
+            nodes_df[i,color_attr_column_no] <-
+              paste0(x11_hex()[which(x11_hex()[,1] %in%
+                                       as.character(nodes_df[i,color_attr_column_no])), 2],
+                     round(nodes_df[i,alpha_column_no],0))
+
+          }
+        }
+
+        # Append alpha for color values that are hex color values
+        if (all(grepl("#[0-9a-fA-F]{6}",
+                      as.character(nodes_df[,color_attr_column_no])))){
+
+          for (i in 1:nrow(nodes_df)){
+
+            nodes_df[,color_attr_column_no] <-
+              as.character(nodes_df[,color_attr_column_no])
+
+            nodes_df[i,color_attr_column_no] <-
+              paste0(nodes_df[i,color_attr_column_no],
+                     round(nodes_df[i,alpha_column_no],0))
+
+          }
+        }
+      }
+    }
+
+
     # Determine which other columns correspond to node attribute values
     other_columns_with_node_attributes <-
       which(colnames(nodes_df) %in% node_attributes)
