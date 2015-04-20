@@ -212,7 +212,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
               paste0(x11_hex()[which(x11_hex()[,1] %in%
                                        as.character(nodes_df[i,color_attr_column_no])), 2],
                      round(nodes_df[i,alpha_column_no],0))
-
           }
         }
 
@@ -228,12 +227,10 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
             nodes_df[i,color_attr_column_no] <-
               paste0(nodes_df[i,color_attr_column_no],
                      round(nodes_df[i,alpha_column_no],0))
-
           }
         }
       }
     }
-
 
     # Determine which other columns correspond to node attribute values
     other_columns_with_node_attributes <-
