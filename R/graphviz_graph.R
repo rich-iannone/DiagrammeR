@@ -215,7 +215,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
         }
 
         # Append alpha for color values that are hex color values
-        if (all(grepl("#[0-9a-fA-F]{6}",
+        if (all(grepl("#[0-9a-fA-F]{6}$",
                       as.character(nodes_df[,color_attr_column_no])))){
 
           for (i in 1:nrow(nodes_df)){
