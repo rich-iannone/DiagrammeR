@@ -2,7 +2,7 @@
 % Please edit documentation in R/scale_nodes.R
 \name{scale_nodes}
 \alias{scale_nodes}
-\title{Create numerical and color scales}
+\title{Create numerical and color scales for node attributes}
 \usage{
 scale_nodes(nodes_df, to_scale, node_attr, range, scale_type = "linear")
 }
@@ -18,6 +18,6 @@ scale_nodes(nodes_df, to_scale, node_attr, range, scale_type = "linear")
 \item{scale_type}{the type of scaling to perform. Currently, "linear" is the only option available.}
 }
 \description{
-Generates either numeric or color scales for certain node attributes
+Generates either numeric or color scales for specified node attributes and applies those scales to node data frames.
 }
 
