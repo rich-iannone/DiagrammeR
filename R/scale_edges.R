@@ -15,19 +15,19 @@ scale_edges <- function(edges_df,
                         range,
                         scale_type = "linear"){
 
-  # Create vector of node attributes that take numeric values
+  # Create vector of edge attributes that take numeric values
   numeric_edge_attributes <-
     c("arrowsize", "fontsize", "labelangle", "labeldistance", "labelfontsize",
       "minlen", "penwidth", "weight")
 
-  # Create vector of node attributes that take color values
+  # Create vector of edge attributes that take color values
   color_edge_attributes <- c("color", "fontcolor", "labelfontcolor")
 
-  # Determine whether there is a valid numeric node attribute
+  # Determine whether there is a valid numeric edge attribute
   # in the statement
   is_num_edge_attribute <- edge_attr %in% numeric_edge_attributes
 
-  # Determine whether there is a valid color node attribute
+  # Determine whether there is a valid color edge attribute
   # in the statement
   is_col_edge_attribute <- edge_attr %in% color_edge_attributes
 
