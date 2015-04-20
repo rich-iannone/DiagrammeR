@@ -223,7 +223,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
             nodes_df[i,color_attr_column_no] <-
               paste0(nodes_df[i,color_attr_column_no],
-                     round(nodes_df[i,alpha_column_no],0))
+                     round(as.numeric(nodes_df[i,alpha_column_no]),0))
           }
         }
       }
