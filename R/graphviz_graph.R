@@ -195,8 +195,8 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
         which(colnames(nodes_df) %in% color_attr_column_name)
 
       # Append alpha value only if referenced column is for color
-      if (colnames(nodes_df)[color_attr_column_no] %in%
-          c("color", "fillcolor", "fontcolor")){
+      if (any(c("color", "fillcolor", "fontcolor") %in%
+              colnames(nodes_df)[color_attr_column_no])){
 
         # Append alpha for color values that are X11 color names
         if (all(grepl("[a-z]*", as.character(nodes_df[,color_attr_column_no]))) &
