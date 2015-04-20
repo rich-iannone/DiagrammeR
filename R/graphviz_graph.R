@@ -154,6 +154,33 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
       nodes_df <- cbind(nodes_df, pos)
     }
 
+    # Determine whether column 'alpha' exists
+    if (any(grepl("$alpha^", colnames(nodes_df)))){
+
+      column_with_alpha_assigned <- grep("$alpha^", colnames(nodes_df))
+
+    } else {
+      column_with_alpha_assigned <- NA
+    }
+
+    if (!is.na(column_with_alpha_assigned)){
+
+      # Determine number of color attributes in node data frame
+      number_of_col_attr <- length(which(colnames(nodes_df) %in%
+                                           c("color", "fillcolor", "fontcolor")))
+
+      # If number of color attrs in df is 1, rename referencing alpha column
+      if (number_of_col_attr == 1){
+
+        name_of_col_attr <-
+          colnames(nodes_df)[which(colnames(nodes_df) %in%
+                                     c("color", "fillcolor", "fontcolor"))]
+
+        colnames(nodes_df)[column_with_alpha_assigned] <-
+          paste0("alpha_", name_of_col_attr)
+      }
+    }
+
     # Determine which other columns correspond to node attribute values
     other_columns_with_node_attributes <-
       which(colnames(nodes_df) %in% node_attributes)
