@@ -376,10 +376,10 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                 attribute <- NULL
 
               } else if (all(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
-                                                     "label", "labeltooltip",
-                                                     "taillabel", "tailtooltip",
-                                                     "tooltip"),
-                        edges_df[i, j] != '')){
+                                                          "label", "labeltooltip",
+                                                          "taillabel", "tailtooltip",
+                                                          "tooltip"),
+                             edges_df[i, j] != '')){
 
                 attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
 
@@ -394,10 +394,10 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                 attribute <- NULL
 
               } else if (all(!(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
-                                                             "label", "labeltooltip",
-                                                             "taillabel", "tailtooltip",
-                                                             "tooltip")),
-                              edges_df[i, j] != '')){
+                                                            "label", "labeltooltip",
+                                                            "taillabel", "tailtooltip",
+                                                            "tooltip")),
+                             edges_df[i, j] != '')){
 
                 attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
 
