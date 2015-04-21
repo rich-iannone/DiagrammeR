@@ -108,6 +108,12 @@ digraph boxes_and_circles {
 
 <img src="inst/img/grViz_2.png">
 
+#### Colors
+
+By default, Graphviz can use colors provided as hexadecimal values, or, as X11 color names. The following provides the entire list of X11 color names. Some colors have additional 4-color palettes based on the named color. Those additional colors can be used by appending the digits `1`-`4` to the color name. Gray (or grey) has variations from `0`-`100`. Please note that, in all color names, 'gray' is interchangeable with 'grey'.
+
+<img src="inst/img/X11_Color_Names.png">
+
 #### Graphviz Engines
 
 Several **Graphviz** engines are available with **DiagrammeR** for rendering graphs. By default, the `grViz` function renders graphs using the standard **dot** engine. However, the **neato**, **twopi**, and **circo** engines are selectable by doing either of the following:
