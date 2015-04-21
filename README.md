@@ -232,11 +232,11 @@ Before we get to using that, however, you're going to need to create some specia
 
 Which columns might a node data frame have? Well, it's important to have at least one column named either `node`, `nodes`, or `node_id`. That's where unique values for the node ID should reside. Here are some notable node attributes:
 
-- `color` -- provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
+- `color` -- provide an **X11** or hexadecimal color (append 2 digits to hex for alpha)
 - `distortion` -- the node distortion for any `shape = polygon`
-- `fillcolor` -- provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
+- `fillcolor` -- provide an **X11** or hexadecimal color (append 2 digits to hex for alpha)
 - `fixedsize` -- true or false
-- `fontcolor` -- provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
+- `fontcolor` -- provide an **X11** or hexadecimal color (append 2 digits to hex for alpha)
 - `fontname` -- the name of the font
 - `fontsize` -- the size of the font for the node label
 - `height` -- the height of the node
@@ -338,9 +338,9 @@ As in the nodes data frame, attributes can be provided. Here are some examples o
 - `arrowhead` -- the arrow style at the head end (e.g, `normal`, `dot`) 
 - `arrowsize` -- the scaling factor for the arrowhead and arrowtail
 - `arrowtail` -- the arrow style at the tail end (e.g, `normal`, `dot`) 
-- `color` -- the stroke color; an X11 color or a hex code (add 2 digits for alpha)
+- `color` -- the stroke color; an **X11** color or a hex code (add 2 digits for alpha)
 - `dir` -- the direction; either `forward`, `back`, `both`, or `none`
-- `fontcolor` -- choose an X11 color or provide a hex code (append 2 digits for alpha)
+- `fontcolor` -- choose an **X11** color or provide a hex code (append 2 digits for alpha)
 - `fontname` -- the name of the font
 - `fontsize` -- the size of the font for the node label
 - `headport` -- a cardinal direction for where the arrowhead meets the node
@@ -492,7 +492,7 @@ many_nodes <- scale_nodes(nodes_df = many_nodes,
 
 <img src="inst/img/grViz_11.png">
 
-To apply transparency to color values, use the `alpha` node attribute but reference the color attribute that should be modified with the syntax: '`alpha:`[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: '`alpha:`[color_attr]`=`[color]'. The color value can either be an X11 color name or a hexadecimal color value.
+To apply transparency to color values, use the `alpha` node attribute but reference the color attribute that should be modified with the syntax: '`alpha:`[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: '`alpha:`[color_attr]`=`[color]'. The color value can either be an **X11** color name or a hexadecimal color value.
 
 ```R
 many_nodes <- scale_nodes(nodes_df = many_nodes,
