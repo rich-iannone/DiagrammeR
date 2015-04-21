@@ -627,9 +627,9 @@ The **SVG**:
 </svg>
 ```
 
-#### An Example with Data from the `nycflights13` Package
+#### An Example with Data from the **nycflights13** Package
 
-Now, yet another example. This time with an external dataset. Let's use the 'nycflights13' package to prepare some data frames and then create a graph diagram:
+Now, yet another example. This time with an external dataset. Let's use the **nycflights13** package to prepare some data frames and then create a graph diagram:
 
 ```R
 # Get the 'nycflights13' package if not already installed
