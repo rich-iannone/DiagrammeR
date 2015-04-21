@@ -110,7 +110,7 @@ digraph boxes_and_circles {
 
 #### Colors
 
-By default, Graphviz can use colors provided as hexadecimal values, or, as X11 color names. The following provides the entire list of X11 color names. Some colors have additional 4-color palettes based on the named color. Those additional colors can be used by appending the digits `1`-`4` to the color name. Gray (or grey) has variations from `0`-`100`. Please note that, in all color names, 'gray' is interchangeable with 'grey'.
+By default, **Graphviz** can use colors provided as hexadecimal values, or, as **X11** color names. The following provides the entire list of **X11** color names. Some colors have additional 4-color palettes based on the named color. Those additional colors can be used by appending the digits `1`-`4` to the color name. Gray (or grey) has variations from `0`-`100`. Please note that, in all color names, 'gray' is interchangeable with 'grey'.
 
 <img src="inst/img/X11_Color_Names.png">
 
