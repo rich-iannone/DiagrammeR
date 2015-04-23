@@ -31,5 +31,8 @@ get_nodes <- function(...){
 
   all_ID_unique <- ifelse(anyDuplicated(node_ID) == 0, TRUE, FALSE)
 
+  if (all_ID_unique == TRUE){
+    return(node_ID)
+  }
 
 }
