@@ -29,6 +29,7 @@ get_nodes <- function(...){
     node_ID <- c(node_ID, nodes_df[,nodes_column])
   }
 
+  all_ID_unique <- ifelse(anyDuplicated(node_ID) == 0, TRUE, FALSE)
 
 
 }
