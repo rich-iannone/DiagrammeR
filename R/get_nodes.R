@@ -7,5 +7,17 @@
 
 get_nodes <- function(nodes_df){
 
+  # Determine which column contains node ID information
+  if ("node" %in% colnames(nodes_df)){
+    nodes_column <- which("node" %in% colnames(nodes_df))
+  } else if ("nodes" %in% colnames(nodes_df)){
+    nodes_column <- which("nodes" %in% colnames(nodes_df))
+  } else if ("node_id" %in% colnames(nodes_df)){
+    nodes_column <- which("node_id" %in% colnames(nodes_df))
+  } else {
+    stop("There is no column with node ID information.")
+  }
+
+
 
 }
