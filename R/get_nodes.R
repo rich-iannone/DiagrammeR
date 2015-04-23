@@ -6,6 +6,15 @@
 #' @export get_nodes
 
 get_nodes <- function(...){
+
+  nodes <- list(...)
+
+  for (i in 1:length(nodes)){
+
+    if (i == 1) node_ID <- vector(mode = "character")
+
+    nodes_df <- nodes[[i]]
+
     # Determine which column contains node ID information
     if ("node" %in% colnames(nodes_df)){
       nodes_column <- which("node" %in% colnames(nodes_df))
@@ -17,6 +26,7 @@ get_nodes <- function(...){
       stop("There is no column with node ID information.")
     }
 
+    node_ID <- c(node_ID, nodes_df[,nodes_column])
   }
 
 
