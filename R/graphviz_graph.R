@@ -131,7 +131,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   # Create the node block
   #
 
-  if (!is.null("nodes_df")){
+  if (!is.null(nodes_df)){
 
     # Determine the column number with the node ID
     column_with_node_id <-
