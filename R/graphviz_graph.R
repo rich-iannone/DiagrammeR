@@ -23,7 +23,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                            width = NULL, height = NULL){
 
   # Perform basic checks of the inputs
-  if (!is.null("nodes_df")){
+  if (!is.null(nodes_df)){
 
     stopifnot(any(c("node", "nodes", "node_id") %in%
                     colnames(nodes_df)))
