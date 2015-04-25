@@ -229,9 +229,9 @@ The `graphviz_graph` function returns a `gv_graph` object, which can be used by 
 
 ```r
 graphviz_render(
-    graph,        # a 'gv_graph' object, created using the `graphviz_graph` function
-    output,       # a string specifying the output type; `graph` (the default) renders
-                  # the graph, `DOT` outputs DOT code for the graph, and `SVG` provides
+    graph,        # a 'gv_graph' object, created using the 'graphviz_graph' function
+    output,       # a string specifying the output type; 'graph' (the default) renders
+                  # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
                   # SVG code for the rendered graph
     width,        # optionally set a width in pixels
     height        # optionally set a height in pixels
@@ -269,8 +269,6 @@ You don't need to use `data.frame` to make a node data frame: you can use the pr
 - selective setting of attributes (i.e., giving attr values of 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)
 - supplying overlong vectors for attributes will result in trimming down to the number of nodes
 - setting `label = FALSE` will conveniently result in a non-labeled node
-
-
 
 Here's an example of how to create a node data frame:
 
