@@ -595,4 +595,5 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     # Render the graph using the 'grViz' function
     grViz(diagram = dot_code, width = width, height = height)
   }
+  return(gv_graph)
 }
