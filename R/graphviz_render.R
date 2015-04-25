@@ -13,5 +13,6 @@ graphviz_render <- function(graph,
                             width = NULL,
                             height = NULL){
 
+  stopifnot(class(gv_graph) == "gv_graph")
 
 }
