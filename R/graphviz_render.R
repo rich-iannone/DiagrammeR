@@ -29,4 +29,12 @@ graphviz_render <- function(graph,
     return(dot_code)
   }
 
+  if (output == "SVG"){
+
+    svg_code <- exportSVG(grViz(diagram = dot_code,
+                                width = width,
+                                height = height))
+
+    return(svg_code)
+  }
 }
