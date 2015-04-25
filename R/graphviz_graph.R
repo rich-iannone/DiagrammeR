@@ -292,6 +292,48 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
     }
   }
 
+  if (is.null(nodes_df) & !is.null(edges_df)){
+
+    from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
+                                    colnames(edges_df)), "TRUE", "FALSE")
+
+    # Determine which columns in 'edges_df' contains edge attributes
+    other_columns_with_edge_attributes <-
+      which(colnames(edges_df) %in% edge_attributes)
+
+    # Determine whether the complementary set of columns is present
+    if (from_to_columns == TRUE){
+
+      both_from_to_columns <- all(c(any(c("edge_from", "from") %in%
+                                          colnames(edges_df))),
+                                  any(c("edge_to", "to") %in%
+                                        colnames(edges_df)))
+    }
+
+    if (exists("both_from_to_columns")){
+
+      if (both_from_to_columns == TRUE){
+
+        from_column <- which(colnames(edges_df) %in% c("edge_from", "from"))[1]
+
+        to_column <- which(colnames(edges_df) %in% c("edge_to", "to"))[1]
+      }
+    }
+
+    nodes_df <- data.frame(nodes = unique(c(edges_df[,from_column],
+                                            edges_df[,to_column])))
+
+    for (i in 1:nrow(nodes_df)){
+
+      if (i == 1) node_block <- vector(mode = "character", length = 0)
+
+      node_block <- c(node_block, paste0("  '", nodes_df[i,1], "'"))
+    }
+
+    # Construct the 'node_block' character object
+    node_block <- paste(node_block, collapse = "\n")
+  }
+
   #
   # Create the edge block
   #
