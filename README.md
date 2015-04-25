@@ -235,6 +235,7 @@ graphviz_render(
                   # SVG code for the rendered graph
     width,        # optionally set a width in pixels
     height        # optionally set a height in pixels
+    )
 ```
 
 With packages such as **magrittr** or **pipeR**, one can conveniently pipe output from `graphviz_graph` to `graphviz_render`. On the topic of packages, it is important to load the **V8** package as it will enable color scaling functionality as will be seen in the following examples.
