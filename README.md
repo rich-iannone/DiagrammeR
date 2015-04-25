@@ -333,7 +333,7 @@ This is the combined node data frame:
 8    h type 2 filled lightblue
 ```
 
-Let's look at the nodes that were created. Use the `graphviz_graph` (just provide the `all_nodes` object at this point) and pipe to `graphviz_render`.
+Let's look at the nodes that were created. Use the `graphviz_graph` (just provide the `all_nodes` object at this point) and pipe to `graphviz_render`. The **pipeR** package (used in these examples) provides a forward pipe with the `%>>%` operator. With **magrittr**, use `%>%` instead.
 
 ```r
 library("pipeR")
