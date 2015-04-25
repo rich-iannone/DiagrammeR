@@ -12,10 +12,7 @@
 
 graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                            graph_attrs = NULL, node_attrs = NULL,
-                           edge_attrs = NULL, directed = TRUE,
-                           create_graph = TRUE,
-                           return_code = NULL,
-                           width = NULL, height = NULL){
+                           edge_attrs = NULL, directed = TRUE){
 
   # Perform basic checks of the inputs
   if (!is.null(nodes_df)){
