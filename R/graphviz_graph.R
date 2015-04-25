@@ -567,6 +567,13 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
   # Determine whether any code is asked to be returned
   if (!is.null(return_code)){
+  # Create the 'gv_graph' list object
+  gv_graph <- list(nodes_df = nodes_df, edges_df = edges_df,
+                   graph_attrs = graph_attrs,
+                   node_attrs = node_attrs,
+                   edge_attrs = edge_attrs,
+                   directed = directed,
+                   dot_code = dot_code)
 
     # Optionally generate SVG text
     if (return_code == "SVG"){
