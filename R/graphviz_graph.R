@@ -565,8 +565,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   # Remove empty node or edge attribute statements
   dot_code <- gsub(" \\[\\] ", "", dot_code)
 
-  # Determine whether any code is asked to be returned
-  if (!is.null(return_code)){
   # Create the 'gv_graph' list object
   gv_graph <- list(nodes_df = nodes_df, edges_df = edges_df,
                    graph_attrs = graph_attrs,
@@ -575,25 +573,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                    directed = directed,
                    dot_code = dot_code)
 
-    # Optionally generate SVG text
-    if (return_code == "SVG"){
   attr(gv_graph, "class") <- "gv_graph"
 
-      svg <- exportSVG(grViz(diagram = dot_code, width = width, height = height))
-
-      return(svg)
-    }
-
-    if (return_code == "DOT"){
-
-      return(dot_code)
-    }
-  }
-
-  if (create_graph == TRUE){
-
-    # Render the graph using the 'grViz' function
-    grViz(diagram = dot_code, width = width, height = height)
-  }
   return(gv_graph)
 }
