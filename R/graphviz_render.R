@@ -23,4 +23,10 @@ graphviz_render <- function(graph,
           width = width,
           height = height)
   }
+
+  if (output == "DOT"){
+
+    return(dot_code)
+  }
+
 }
