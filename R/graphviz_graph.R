@@ -577,6 +577,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
     # Optionally generate SVG text
     if (return_code == "SVG"){
+  attr(gv_graph, "class") <- "gv_graph"
 
       svg <- exportSVG(grViz(diagram = dot_code, width = width, height = height))
 
