@@ -533,13 +533,13 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   # nodes and edges blocks
   if (exists("combined_attr_stmts")){
 
-    if (exists("edge_block")){
+    if (exists("edge_block") & exists("node_block")){
       combined_block <- paste(combined_attr_stmts,
                               node_block, edge_block,
                               sep = "\n")
     }
 
-    if (!exists("edge_block")){
+    if (!exists("edge_block") & exists("node_block")){
       combined_block <- paste(combined_attr_stmts,
                               node_block,
                               sep = "\n")
