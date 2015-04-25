@@ -80,42 +80,35 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
   # Combine default attributes into a single block
   if (exists("graph_attr_stmt") & exists("node_attr_stmt") & exists("edge_attr_stmt")){
-
     combined_attr_stmts <- paste(graph_attr_stmt,
                                  node_attr_stmt,
                                  edge_attr_stmt, sep = "\n")
   }
 
   if (!exists("graph_attr_stmt") & exists("node_attr_stmt") & exists("edge_attr_stmt")){
-
     combined_attr_stmts <- paste(node_attr_stmt,
                                  edge_attr_stmt, sep = "\n")
   }
 
   if (exists("graph_attr_stmt") & !exists("node_attr_stmt") & exists("edge_attr_stmt")){
-
     combined_attr_stmts <- paste(graph_attr_stmt,
                                  edge_attr_stmt, sep = "\n")
   }
 
   if (exists("graph_attr_stmt") & exists("node_attr_stmt") & !exists("edge_attr_stmt")){
-
     combined_attr_stmts <- paste(graph_attr_stmt,
                                  node_attr_stmt, sep = "\n")
   }
 
   if (exists("graph_attr_stmt") & !exists("node_attr_stmt") & !exists("edge_attr_stmt")){
-
     combined_attr_stmts <- paste0(graph_attr_stmt, "\n")
   }
 
   if (!exists("graph_attr_stmt") & exists("node_attr_stmt") & !exists("edge_attr_stmt")){
-
     combined_attr_stmts <- paste0(node_attr_stmt, "\n")
   }
 
   if (!exists("graph_attr_stmt") & !exists("node_attr_stmt") & exists("edge_attr_stmt")){
-
     combined_attr_stmts <- paste0(edge_attr_stmt, "\n")
   }
 
@@ -148,9 +141,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
 
     # Determine whether column 'alpha' exists
     if (any(grepl("$alpha^", colnames(nodes_df)))){
-
       column_with_alpha_assigned <- grep("$alpha^", colnames(nodes_df))
-
     } else {
       column_with_alpha_assigned <- NA
     }
@@ -203,7 +194,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                      formatC(round(as.numeric(nodes_df[i,alpha_column_no]),0),
                              flag = "0", width = 2))
           }
-
         }
 
         # Append alpha for color values that are hex color values
@@ -256,7 +246,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                          nodes_df[i, j] == '')){
 
             attribute <- NULL
-
 
           } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
                          nodes_df[i, j] != '')){
@@ -388,7 +377,6 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                              edges_df[i, j] != '')){
 
                 attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
-
               }
 
               attr_string <- c(attr_string, attribute)
