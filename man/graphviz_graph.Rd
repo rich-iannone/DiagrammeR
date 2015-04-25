@@ -2,11 +2,10 @@
 % Please edit documentation in R/graphviz_graph.R
 \name{graphviz_graph}
 \alias{graphviz_graph}
-\title{Create DOT code from two data frames and optionally render graph}
+\title{Create a graph object using data frames representative of nodes and edges}
 \usage{
 graphviz_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
-  node_attrs = NULL, edge_attrs = NULL, directed = TRUE,
-  create_graph = TRUE, return_code = NULL, width = NULL, height = NULL)
+  node_attrs = NULL, edge_attrs = NULL, directed = TRUE)
 }
 \arguments{
 \item{nodes_df}{a data frame containing, at minimum, a column (called 'nodes') which contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.}
@@ -20,17 +19,8 @@ graphviz_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
 \item{edge_attrs}{an optional vector of edge attribute statements that can serve as defaults for edges.}
 
 \item{directed}{with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.}
-
-\item{create_graph}{with TRUE (the default) the function render the graph using the 'grViz' function; with FALSE, the generated Graphviz DOT code is returned as a vector object (useful for substituting in a separate 'grViz' statement).}
-
-\item{return_code}{if not NULL, the value 'SVG' returns string of SVG XML text whereas the value 'DOT' returns valid Graphviz DOT code.}
-
-\item{width}{an optional parameter for specifying the width of the resulting graphic in pixels.}
-
-\item{height}{an optional parameter for specifying the height of the resulting graphic in pixels.}
 }
 \description{
-Generates and returns either Graphviz DOT code or a Graphviz graph from two data frames:
-one with nodes and the other with edges
+Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
 }
 
