@@ -120,6 +120,8 @@ Several **Graphviz** engines are available with **DiagrammeR** for rendering gra
 - supplying those names to the `engine` argument of the `grViz` function
 - setting the graph attribute `layout` equal to either `neato`, `twopi`, or `circo` in a **Graphviz** graph statement
 
+<img src="inst/img/Graphviz_Engines.png">
+
 The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
 
 #### Graphviz Substitution
