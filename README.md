@@ -4,7 +4,7 @@ With the **DiagrammeR** package, you can create graph diagrams and flowcharts us
 
 Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable.
 
-The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and  both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
+The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
 
 <img src="inst/img/DiagrammeR_flow_diagram.png">
 
@@ -238,7 +238,7 @@ graphviz_render(
     )
 ```
 
-With packages such as **magrittr** or **pipeR**, one can conveniently pipe output from `graphviz_graph` to `graphviz_render`. On the topic of packages, it is important to load the **V8** package as it will enable color scaling functionality as will be seen in the following examples.
+With packages such as [**magrittr**](https://github.com/smbache/magrittr) or [**pipeR**](https://github.com/renkun-ken/pipeR), one can conveniently pipe output from `graphviz_graph` to `graphviz_render`. On the topic of packages, it is important to load the [**V8**](https://github.com/jeroenooms/V8) package as it will enable color scaling functionality (as will be seen in later examples).
 
 Before we get to using the `graphviz_graph` and `graphviz_render` functions, however, we'll need to create some specialized data frames. One is for nodes, the other concerns the edges. Both types of data frames are parsed by the `graphviz_graph` function and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.
 
