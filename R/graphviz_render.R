@@ -17,4 +17,10 @@ graphviz_render <- function(graph,
 
   dot_code <- graph$dot_code
 
+  if (output == "graph"){
+
+    grViz(diagram = dot_code,
+          width = width,
+          height = height)
+  }
 }
