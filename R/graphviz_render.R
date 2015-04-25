@@ -15,4 +15,6 @@ graphviz_render <- function(graph,
 
   stopifnot(class(graph) == "gv_graph")
 
+  dot_code <- graph$dot_code
+
 }
