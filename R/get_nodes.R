@@ -14,6 +14,24 @@ get_nodes <- function(...){
     if (i == 1) node_ID <- vector(mode = "character")
 
     object <- objects[[i]]
+
+    if (class(object) == "gv_graph"){
+
+      object_type <- "gv_graph"
+    }
+
+    if (class(object) == "data.frame"){
+
+      if (any(c("nodes", "node", "node_ID") %in% colnames(object))){
+
+        object_type <- "node_df"
+      }
+
+      if (any(c("edge_from", "edge_to", "from", "to") %in% colnames(object))){
+
+        object_type <- "edge_df"
+      }
+    }
     }
 
   }
