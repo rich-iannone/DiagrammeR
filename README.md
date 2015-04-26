@@ -212,7 +212,11 @@ Footnote expressions are meant to be flexible. They can span multiple lines, and
 
 #### Using Data Frames to Define Graphviz Graphs
 
-If you're planning on creating large graph diagrams, it's better to adopt a different workflow that takes advantage of data frames. With the `graphviz_graph` function, it's possible to generate a graph diagram object without interacting directly with **DOT** code. The function has the following options:
+If you're planning on creating larger graph diagrams and also making use of external datasets, it can be better to use a set of **DiagrammeR** functions that work with data frames. Here is a basic schematic of the graph workflow, using functions to build toward a graph object from a group of data frames.
+
+<img src="inst/img/Graph_Workflow.png">
+
+With the `graphviz_graph` function, it's possible to generate a graph diagram object without interacting directly with **DOT** code. The function has the following options:
 
 ```r
 graphviz_graph(
@@ -428,10 +432,6 @@ graphviz_graph(nodes_df = all_nodes,
 ```
 
 <img src="inst/img/grViz_9.png">
-
-Here is a basic schematic of the graph workflow, using the described functions to build toward a graph object from data frames.
-
-<img src="inst/img/Graph_Workflow.png">
 
 #### Creating Numeric and Color Scales for Node and Edge Attributes
 
