@@ -13,6 +13,7 @@ get_nodes <- function(...){
 
     if (i == 1) node_ID <- vector(mode = "character")
 
+    object <- objects[[i]]
     }
 
   }
