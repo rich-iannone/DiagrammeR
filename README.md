@@ -429,6 +429,10 @@ graphviz_graph(nodes_df = all_nodes,
 
 <img src="inst/img/grViz_9.png">
 
+Here is a basic schematic of the graph workflow, using the described functions to build toward a graph object from data frames.
+
+<img src="inst/img/Graph_Workflow.png">
+
 #### Creating Numeric and Color Scales for Node and Edge Attributes
 
 With the `scale_nodes` and `scale_edges` functions, it's possible to create and apply scaled node and edge attributes. These attributes can be either of the numeric or color variety. Ideally, the numerical data from which the scaled values are generated should reside in the node or edge data frames. This is recommended because the values need to be of the same length and order as the records in the node or edge data frame.
