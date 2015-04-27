@@ -338,7 +338,7 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   # Create the edge block
   #
 
-  if (!is.null("edges_df")){
+  if (!is.null(edges_df)){
 
     # Determine whether 'from' or 'to' columns are in 'edges_df'
     from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
