@@ -41,6 +41,8 @@ create_edges <- function(...){
 
   stopifnot(number_of_edges_from == number_of_edges_to)
 
+  number_of_edges <- number_of_edges_from
+
   for (i in 1:length(edges)){
 
     # Expand vectors with single values to fill to number of edges
