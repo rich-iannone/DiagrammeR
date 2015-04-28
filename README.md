@@ -349,6 +349,16 @@ This is what the diagram looks like, at this early stage:
 
 <img src="inst/img/grViz_5.png">
 
+Want to extract a vector list of node IDs? You can use the `get_nodes` function. It can accept multiple node data frames, edge data frames, or graph objects.
+
+```r
+get_nodes(all_nodes)
+```
+
+```
+[1] "a" "b" "c" "d" "e" "f" "g" "h"
+```
+
 Let's make some edges now. For the edge data frame, there are two columns that need to be present: one for the outgoing node edge, and, another for the incoming node edge. These can be called either `edge_from`, `from`, `edge_to`, or `to`. Each of the two columns should contain node IDs and, ideally, they should match those provided in the node data frame that will be supplied to the `graphviz_graph` function.
 
 As in the nodes data frame, attributes can be provided. Here are some examples of edge attributes that can be used:
@@ -479,11 +489,9 @@ many_edges <-
 # Create the node data frame, using the nodes that are available in
 # the 'many_edges' data frame; provide 'shape' and 'fillcolor' attributes
 many_nodes <-
-  create_nodes(node = c(unique(many_edges$edge_from),
-                        unique(many_edges$edge_to)),
+  create_nodes(node = get_nodes(many_edges),
                random_data = sample(seq(1:5000),
-                                    length(c(unique(many_edges$edge_from),
-                                             unique(many_edges$edge_to)))),
+                                    length(get_nodes(many_edges))),
                label = FALSE,
                shape = "circle",
                fillcolor = "red")
