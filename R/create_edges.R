@@ -39,6 +39,7 @@ create_edges <- function(...){
     edges$to <- as.character(edges$to)
   }
 
+  stopifnot(number_of_edges_from == number_of_edges_to)
 
   for (i in 1:length(edges)){
 
