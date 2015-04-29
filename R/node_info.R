@@ -29,4 +29,7 @@ node_info <- function(graph){
   # Get vector of all labels
   labels <- graph$nodes_df$label
 
+  # Get vector of the top-level nodes
+  top_nodes <- unique(edge_from[which(!(edge_from %in% edge_to))])
+
 }
