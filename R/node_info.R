@@ -23,4 +23,6 @@ node_info <- function(graph){
     edge_to <- graph$edges_df$to
   }
 
+  # Get vector of all node IDs
+  all_nodes <- get_nodes(graph)
 }
