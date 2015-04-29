@@ -32,4 +32,7 @@ node_info <- function(graph){
   # Get vector of the top-level nodes
   top_nodes <- unique(edge_from[which(!(edge_from %in% edge_to))])
 
+  # Get vector of the bottom-level nodes
+  bottom_nodes <- unique(edge_to[which(!(edge_to %in% edge_from))])
+
 }
