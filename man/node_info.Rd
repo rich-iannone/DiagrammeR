@@ -10,6 +10,6 @@ node_info(graph)
 \item{graph}{a graph object of class 'gv_graph'.}
 }
 \description{
-Provides detailed information on nodes and their interrelationships within a graph.
+Returns a data frame with detailed information on nodes and their interrelationships within a graph.
 }
 
