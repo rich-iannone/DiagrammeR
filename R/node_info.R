@@ -25,4 +25,8 @@ node_info <- function(graph){
 
   # Get vector of all node IDs
   all_nodes <- get_nodes(graph)
+
+  # Get vector of all labels
+  labels <- graph$nodes_df$label
+
 }
