@@ -7,7 +7,7 @@
 node_info(graph)
 }
 \arguments{
-\item{graph}{a graph object.}
+\item{graph}{a graph object of class 'gv_graph'.}
 }
 \description{
 Provides detailed information on nodes and their interrelationships within a graph.
