@@ -38,4 +38,7 @@ node_info <- function(graph){
   # Get vector of all nodes neither at the top nor the bottom level
   between_nodes <- all_nodes[which(!(all_nodes %in% c(top_nodes, bottom_nodes)))]
 
+  # Place the nodes in order
+  ordered_nodes <- c(top_nodes, between_nodes, bottom_nodes)
+
 }
