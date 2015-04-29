@@ -41,4 +41,59 @@ node_info <- function(graph){
   # Place the nodes in order
   ordered_nodes <- c(top_nodes, between_nodes, bottom_nodes)
 
+  # Create data frame of node properties
+  for (i in 1:length(ordered_nodes)){
+
+    if (i == 1){
+      node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 4))
+      colnames(node_properties) <- c("node_ID", "label", "parents", "children")
+    }
+
+    #
+    # Get number of parents for each node
+    #
+
+    if (ordered_nodes[i] %in% top_nodes){
+      parents <- 0
+    }
+
+    if (!(ordered_nodes[i] %in% top_nodes)){
+
+      for (j in 1:sum(edge_to %in% ordered_nodes[i])){
+
+        if (j == 1) parents <- vector(mode = "character")
+
+        parents <- c(parents, edge_from[which(edge_to %in% ordered_nodes[i])[j]])
+      }
+
+      parents <- length(parents)
+    }
+
+    #
+    # Get number of childrene for each node
+    #
+
+    if (ordered_nodes[i] %in% bottom_nodes){
+      children <- 0
+    }
+
+    if (!(ordered_nodes[i] %in% bottom_nodes)){
+
+      for (j in 1:sum(edge_from %in% ordered_nodes[i])){
+
+        if (j == 1) children <- vector(mode = "character")
+
+        children <- c(children, edge_from[which(edge_from %in% ordered_nodes[i])[j]])
+      }
+
+      children <- length(children)
+    }
+
+    # Collect information into the 'node_properties' data frame
+    node_properties[i, 1] <- ordered_nodes[i]
+    node_properties[i, 2] <- labels[which(all_nodes %in% ordered_nodes[i])]
+    node_properties[i, 3] <- parents
+    node_properties[i, 4] <- children
+  }
+
 }
