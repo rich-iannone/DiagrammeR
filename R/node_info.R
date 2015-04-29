@@ -96,4 +96,5 @@ node_info <- function(graph){
     node_properties[i, 4] <- children
   }
 
+  return(node_properties)
 }
