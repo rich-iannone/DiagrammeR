@@ -35,4 +35,7 @@ node_info <- function(graph){
   # Get vector of the bottom-level nodes
   bottom_nodes <- unique(edge_to[which(!(edge_to %in% edge_from))])
 
+  # Get vector of all nodes neither at the top nor the bottom level
+  between_nodes <- all_nodes[which(!(all_nodes %in% c(top_nodes, bottom_nodes)))]
+
 }
