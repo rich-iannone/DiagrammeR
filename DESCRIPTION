@@ -16,10 +16,7 @@ Authors@R: c(
     interface", email = "riannone@me.com")
     )
 Maintainer: Richard Iannone <riannone@me.com>
-Description: With the DiagrammeR package, you can create diagrams and flowcharts using R.
-    Markdown-like text is used to describe a diagram and, by doing this in R, we can also
-    add some R code into the mix and integrate these diagrams in the R console, through R
-    Markdown, and in shiny web apps.
+Description: Allows to create diagrams and flowcharts using R.
 License: MIT + file LICENSE
 Imports:
     htmlwidgets (>= 0.3.2), rstudioapi (>= 0.2)
