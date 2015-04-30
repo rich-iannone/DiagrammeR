@@ -1,3 +1,9 @@
+# DiagrammeR 0.6
+
+* Added several functions to work with graphs: `create_nodes`, `create_edges`, `combine_nodes`, `combine_edges`, `scale_nodes`, `scale_edges`, `get_nodes`, `node_info`, `graphviz_graph`, `graphviz_render`, and `graphviz_export`
+
+* Removed the `graphviz_nodes_edges_df` and `graphviz_single_df` functions
+
 # DiagrammeR 0.5
 
 * Added support for subgraphs and Gantt charts in **mermaid** diagrams
