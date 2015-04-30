@@ -91,36 +91,35 @@
                     </div>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">boxes_and_circles &lt;- "
+                            <pre><code class="prettyprint">grViz("
 digraph boxes_and_circles {
 
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+
   # several 'node' statements
-  node [shape = box]
+  node [shape = box,
+        fontname = Helvetica]
   A; B; C; D; E; F
 
   node [shape = circle,
         fixedsize = true,
         width = 0.9] // sets as circles
-    1; 2; 3; 4; 5; 6; 7; 8
+  1; 2; 3; 4; 5; 6; 7; 8
 
   # several 'edge' statements
-    A-&gt;1 B-&gt;2 B-&gt;3 B-&gt;4 C-&gt;A
-    1-&gt;D E-&gt;A 2-&gt;4 1-&gt;5 1-&gt;F
-    E-&gt;6 4-&gt;6 5-&gt;7 6-&gt;7 3-&gt;8
-
-  # a 'graph' statement
-  graph [overlap = true, fontsize = 10]
+  A-&gt;1 B-&gt;2 B-&gt;3 B-&gt;4 C-&gt;A
+  1-&gt;D E-&gt;A 2-&gt;4 1-&gt;5 1-&gt;F
+  E-&gt;6 4-&gt;6 5-&gt;7 6-&gt;7 3-&gt;8
 }
-"
-
-grViz(boxes_and_circles)</code></pre>
+")</code></pre>
                         </div>
                     </div>
                     <h2 id="subgraphs-and-clusters">Subgraphs and Clusters</h2>
                     <p>Subgraphs play three roles in <strong>Graphviz</strong>. First, a subgraph can be used to represent graph structure, indicating that certain nodes and edges should be grouped together. This is the usual role for subgraphs and typically specifies semantic information about the graph components. It can also provide a convenient shorthand for edges. An edge statement allows a subgraph on both the left and right sides of the edge operator. When this occurs, an edge is created from every node on the left to every node on the right. For example, the specification</p>
                     <div><pre><code>A -&gt; {B C}</code></pre></div>
                     <p>is equivalent to</p>
-                    <div><pre><code>A -> B
+                    <div><pre><code>A -&gt; B
 A -> C</code></pre></div>
                     <p>In the second role, a subgraph can provide a context for setting attributes. For example, a subgraph could specify that blue is the default color for all nodes defined in it. In the context of graph drawing, a more interesting example is</p>
                     <div><pre><code>subgraph {
@@ -137,674 +136,10 @@ rank = same; A; B; C;
                     <p>Similarly, to set the arrowhead style of an edge <code>abc -> def</code>, one would use</p>
                     <div><pre><code>abc -> def [arrowhead = diamond]</code></pre></div>
                     <p>Quotation marks are important only for multiword attributes, such might be used in the <code>label</code> attribute.</p>
-                    <h2 id="node-attributes">Node Attributes</h2>
-                    <p>Here are the principal node attributes:</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Node Attribute</th>
-                                    <th>Description</th>
-                                    <th>Default</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>color</code></td>
-                                    <td>the node shape color</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>colorscheme</code></td>
-                                    <td>the scheme for interpreting color names</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>distortion</code></td>
-                                    <td>node distortion for any <code>shape = polygon</code>
-                                </td>
-                                    <td><code>0.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fillcolor</code></td>
-                                    <td>node fill color</td>
-                                    <td><code>lightgrey/black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fixedsize</code></td>
-                                    <td>label text has no affect on node size</td>
-                                    <td><code>false</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontcolor</code></td>
-                                    <td>the font color</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontname</code></td>
-                                    <td>the font family</td>
-                                    <td><code>Times-Roman</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontsize</code></td>
-                                    <td>the point size of the label</td>
-                                    <td><code>14</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>group</code></td>
-                                    <td>the name of the node's horizontal alignment group</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>height</code></td>
-                                    <td>the minimum height in inches</td>
-                                    <td><code>0.5</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>image</code></td>
-                                    <td>the image file name</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelloc</code></td>
-                                    <td>the node label vertical alignment</td>
-                                    <td><code>c</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>margin</code></td>
-                                    <td>the space around a label</td>
-                                    <td><code>0.11, 0.55</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>orientation</code></td>
-                                    <td>the node rotation angle</td>
-                                    <td><code>0.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>penwidth</code></td>
-                                    <td>the width of the pen (in point size) for drawing boundaries</td>
-                                    <td><code>1.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>peripheries</code></td>
-                                    <td>the number of node boundaries</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>shape</code></td>
-                                    <td>the shape of the node</td>
-                                    <td><code>ellipse</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>sides</code></td>
-                                    <td>the number of sides for <code>shape = polygon</code>
-                                </td>
-                                    <td><code>4</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>skew</code></td>
-                                    <td>the skewing of the node for <code>shape = polygon</code>
-                                </td>
-                                    <td><code>0.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>style</code></td>
-                                    <td>graphics options for the node</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>tooltip</code></td>
-                                    <td>the tooltip annotation for the node</td>
-                                    <td>[<em>node label</em>]</td>
-                                </tr>
-                                <tr>
-                                    <td><code>width</code></td>
-                                    <td>the minimum width in inches</td>
-                                    <td><code>0.75</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <h2 id="edge-attributes">Edge Attributes</h2>
-                    <p>Here are the principal edge attributes:</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Edge Attribute</th>
-                                    <th>Description</th>
-                                    <th>Default</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>arrowhead</code></td>
-                                    <td>style of arrowhead at head end</td>
-                                    <td>normal</td>
-                                </tr>
-                                <tr>
-                                    <td><code>arrowsize</code></td>
-                                    <td>scaling factor for arrowheads</td>
-                                    <td><code>1.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>arrowtail</code></td>
-                                    <td>style of arrowhead at tail end</td>
-                                    <td>normal</td>
-                                </tr>
-                                <tr>
-                                    <td><code>color</code></td>
-                                    <td>edge stroke color</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>colorscheme</code></td>
-                                    <td>the scheme for interpreting color names</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>constraint</code></td>
-                                    <td>whether edge should affect node ranking</td>
-                                    <td>true</td>
-                                </tr>
-                                <tr>
-                                    <td><code>decorate</code></td>
-                                    <td>setting this draws line between labels with their edges</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>dir</code></td>
-                                    <td>direction; either <code>forward</code>, <code>back</code>, <code>both</code>, or <code>none</code></td>
-                                    <td><code>forward</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>edgeURL</code></td>
-                                    <td>URL attached to non-label part of edge</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>edgehref</code></td>
-                                    <td>same as <code>edgeURL</code> attribute</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>edgetarget</code></td>
-                                    <td>if an URL is set, this determines the browser window for URL</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>edgetooltip</code></td>
-                                    <td>a tooltip annotation for the non-label part of edge</td>
-                                    <td>label</td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontcolor</code></td>
-                                    <td>the font color</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontname</code></td>
-                                    <td>the font family</td>
-                                    <td><code>Times-Roman</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontsize</code></td>
-                                    <td>the point size of the label</td>
-                                    <td><code>14</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>headclip</code></td>
-                                    <td>if false, edge is not clipped to head node boundary</td>
-                                    <td>true</td>
-                                </tr>
-                                <tr>
-                                    <td><code>headhref</code></td>
-                                    <td>same as <code>headURL</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>headlabel</code></td>
-                                    <td>label placed near head of edge</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>headport</code></td>
-                                    <td>can be either: <code>n</code>, <code>ne</code>, <code>e</code>, <code>se</code>, <code>s</code>, <code>sw</code>, <code>w</code>, <code>nw</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>headtarget</code></td>
-                                    <td>if <code>headURL</code> is set, determines the browser window for URL</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>headtooltip</code></td>
-                                    <td>a tooltip annotation near head of edge</td>
-                                    <td>label</td>
-                                </tr>
-                                <tr>
-                                    <td><code>headURL</code></td>
-                                    <td>URL attached to head label</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>href</code></td>
-                                    <td>alias for URL</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>id</code></td>
-                                    <td>any string (user-defined output object tags)</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>label</code></td>
-                                    <td>edge label</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelangle</code></td>
-                                    <td>angle in degrees which head or tail label is rotated off edge</td>
-                                    <td><code>-25.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labeldistance</code></td>
-                                    <td>scaling factor for distance of head or tail label from node</td>
-                                    <td><code>1.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelfloat</code></td>
-                                    <td>lessen constraints on edge label placement</td>
-                                    <td>false</td>
-                                </tr>
-                                    <tr>
-                                    <td><code>labelfontcolor</code></td>
-                                    <td>typeface color for head and tail labels</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelfontname</code></td>
-                                    <td>font family for head and tail labels</td>
-                                    <td><code>Times-Roman</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelfontsize</code></td>
-                                    <td>point size for head and tail labels</td>
-                                    <td><code>14</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelhref</code></td>
-                                    <td>same as <code>labelURL</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelURL</code></td>
-                                    <td>URL for label, overrides <code>edgeURL</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labeltarget</code></td>
-                                    <td>if <code>URL</code> or <code>labelURL</code> set, determines browser window for URL</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labeltooltip</code></td>
-                                    <td>tooltip annotation near label</td>
-                                    <td>label</td>
-                                </tr>
-                                <tr>
-                                    <td><code>layer</code></td>
-                                    <td>
-                                    <code>all</code>, <em>id</em> or <em>id</em>:<em>id</em>, or a comma-separated list</td>
-                                    <td>overlay range</td>
-                                </tr>
-                                <tr>
-                                    <td><code>lhead</code></td>
-                                    <td>name of cluster to use as head of edge</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>ltail</code></td>
-                                    <td>name of cluster to use as tail of edge</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>minlen</code></td>
-                                    <td>minimum rank distance between head and tail</td>
-                                    <td><code>1</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>penwidth</code></td>
-                                    <td>width of pen for drawing edge stroke, in points</td>
-                                    <td><code>1.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>samehead</code></td>
-                                    <td>tag for head node; edge heads with the same tag are merged onto the same port</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>sametail</code></td>
-                                    <td>tag for tail node; edge tails with the same tag are merged onto the same port</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>style</code></td>
-                                    <td>graphics options</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>tailclip</code></td>
-                                    <td>if false, edge is not clipped to tail node boundary</td>
-                                    <td>true</td>
-                                </tr>
-                                <tr>
-                                    <td><code>tailhref</code></td>
-                                    <td>same as <code>tailURL</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>taillabel</code></td>
-                                    <td>label placed near tail of edge</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>tailport</code></td>
-                                    <td>can be either: <code>n</code>, <code>ne</code>, <code>e</code>, <code>se</code>, <code>s</code>, <code>sw</code>, <code>w</code>, <code>nw</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>tailtarget</code></td>
-                                    <td>if <code>tailURL</code> is set, determines browser window for URL</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>tailtooltip</code></td>
-                                    <td>tooltip annotation near tail of edge</td>
-                                    <td>label</td>
-                                </tr>
-                                <tr>
-                                    <td><code>tailURL</code></td>
-                                    <td>URL attached to tail label</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>target</code></td>
-                                    <td>if <code>URL</code> is set, determines browser window for URL</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>tooltip</code></td>
-                                    <td>tooltip annotation</td>
-                                    <td>label</td>
-                                </tr>
-                                <tr>
-                                    <td><code>weight</code></td>
-                                    <td>integer cost of stretching an edge</td>
-                                    <td><code>1</code></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <h2 id="graph-attributes">Graph Attributes</h2>
-                    <p>Here are the principal graph attributes:</p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Graph Attribute</th>
-                                    <th>Description</th>
-                                    <th>Default</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><code>aspect</code></td>
-                                    <td>controls aspect ratio adjustment</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>bgcolor</code></td>
-                                    <td>background color for drawing and initial fill color</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>center</code></td>
-                                    <td>center drawing</td>
-                                    <td>false</td>
-                                </tr>
-                                <tr>
-                                    <td><code>clusterrank</code></td>
-                                    <td><code>local</code> but optionally <code>global</code> or <code>none</code></td>
-                                    <td><code>local</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>color</code></td>
-                                    <td>the color for clusters, outline color, and fill color</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>colorscheme</code></td>
-                                    <td>the scheme for interpreting color names</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>compound</code></td>
-                                    <td>allow edges between clusters</td>
-                                    <td>false</td>
-                                </tr>
-                                <tr>
-                                    <td><code>concentrate</code></td>
-                                    <td>enables edge concentrators</td>
-                                    <td>false</td>
-                                </tr>
-                                <tr>
-                                    <td><code>dpi</code></td>
-                                    <td>dpi for image output</td>
-                                    <td>96</td>
-                                </tr>
-                                <tr>
-                                    <td><code>fillcolor</code></td>
-                                    <td>cluster fill color</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontcolor</code></td>
-                                    <td>typeface color</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontname</code></td>
-                                    <td>font family</td>
-                                    <td><code>Times-Roman</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontpath</code></td>
-                                    <td>list of directories to search for paths</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>fontsize</code></td>
-                                    <td>point size of label</td>
-                                    <td><code>14</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>id</code></td>
-                                    <td>any string (user-defined output object tags)</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>label</code></td>
-                                    <td>any string</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>labeljust</code></td>
-                                    <td>label justification; <code>l</code> or <code>r</code> for left or right</td>
-                                    <td>centered</td>
-                                </tr>
-                                <tr>
-                                    <td><code>labelloc</code></td>
-                                    <td>label location; <code>t</code> or <code>b</code> for top or bottom</td>
-                                    <td>top</td>
-                                </tr>
-                                <tr>
-                                    <td><code>landscape</code></td>
-                                    <td>graph orientation; <code>true</code> for landscape</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>layers</code></td>
-                                    <td><em>id</em>:<em>id</em>:<em>id</em>...</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>layersep</code></td>
-                                    <td>specifies separator character to split <code>layers</code></td>
-                                    <td><code>:</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>margin</code></td>
-                                    <td>margin (in inches) included in <code>page</code></td>
-                                    <td><code>0.5</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>mindist</code></td>
-                                    <td>minimum separation (in inches) between all nodes</td>
-                                    <td><code>1.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>nodesep</code></td>
-                                    <td>separation (in inches) between nodes</td>
-                                    <td><code>0.25</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>nojustify</code></td>
-                                    <td>justify to label if set as true</td>
-                                    <td>false</td>
-                                </tr>
-                                <tr>
-                                    <td><code>ordering</code></td>
-                                    <td>if <code>out</code> edge order is preserved</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>orientation</code></td>
-                                    <td>if <code>rotate</code> is not used and the value is <code>landscape</code>, then landscape</td>
-                                    <td><code>portrait</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>outputorder</code></td>
-                                    <td>or <code>nodesfirst</code>, <code>edgesfirst</code></td>
-                                    <td>breadthfirst</td>
-                                </tr>
-                                <tr>
-                                    <td><code>page</code></td>
-                                    <td>unit of pagination (e.g., "<code>8.5,11</code>")</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>pagedir</code></td>
-                                    <td>traversal order of pages</td>
-                                    <td><code>BL</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>pencolor</code></td>
-                                    <td>color for drawing cluster boundaries</td>
-                                    <td><code>black</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>penwidth</code></td>
-                                    <td>width of pen, in points, for drawing boundaries</td>
-                                    <td><code>1.0</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>peripheries</code></td>
-                                    <td>number of cluster boundaries</td>
-                                    <td><code>1</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>rank</code></td>
-                                    <td>choices are: <code>same</code>, <code>min</code>, <code>max</code>, <code>source</code> or <code>sink</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>rankdir</code></td>
-                                    <td>choices are: <code>LR</code> (left to right) or <code>TB</code> (top to bottom)</td>
-                                    <td><code>TB</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>ranksep</code></td>
-                                    <td>separation between ranks, in inches</td>
-                                    <td><code>0.75</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>ratio</code></td>
-                                    <td>approximate aspect ratio desired: <code>fill</code> or <code>auto</code></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>rotate</code></td>
-                                    <td>if set to <code>90</code>, set orientation to landscape</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>samplepoints</code></td>
-                                    <td>number of points used to represent ellipses and circles on output</td>
-                                    <td><code>8</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>searchsize</code></td>
-                                    <td>maximum edges with negative cut values to check when looking for a minimum one during network simplex</td>
-                                    <td><code>30</code></td>
-                                </tr>
-                                <tr>
-                                    <td><code>size</code></td>
-                                    <td>maximum drawing size, in inches</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>splines</code></td>
-                                    <td>draw edges as splines, polylines, lines</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>style</code></td>
-                                    <td>graphics options for clusters (e.g., <code>filled</code>)</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>stylesheet</code></td>
-                                    <td>pathname or URL to XML style sheet for SVG</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>target</code></td>
-                                    <td>if <code>URL</code> is set, determines browser window for URL</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>tooltip</code></td>
-                                    <td>tooltip annotation for cluster</td>
-                                    <td>label</td>
-                                </tr>
-                                <tr>
-                                    <td><code>truecolor</code></td>
-                                    <td>if set, force 24-bit or indexed color in image output</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>URL</code></td>
-                                    <td>URL associated with graph (format-dependent)</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><code>viewport</code></td>
-                                    <td>clipping window on output</td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <h2 id="colors">Colors</h2>
+                    <p>By default, <strong>Graphviz</strong> can use colors provided as hexadecimal values, or, as <strong>X11</strong> color names. The following provides the entire list of <strong>X11</strong> color names. Some colors have additional 4-color palettes based on the named color. Those additional colors can be used by appending the digits <code>1</code>-<code>4</code> to the color name. Gray (or grey) has variations from <code>0</code>-<code>100</code>. Please note that, in all color names, 'gray' is interchangeable with 'grey'.</p>
+                    <div>
+                        <img src="img/X11_Color_Names.png" class="img-responsive center-block">
                     </div>
                     <h2 id="node-shapes">Node Shapes</h2>
                     <p>There's no shortage of shapes available for nodes. Nodes can be changed from the default <code>ellipse</code> shape by using the <code>shape</code> parameter. This table provides a listing of all the possible node shapes.</p>
@@ -917,7 +252,7 @@ rank = same; A; B; C;
 [...graph spec with substitutions using @@ notation and footnote R expressions...]
 ")</code></pre>
                         </div>
-                    <p> If you specify a subsitution with <code>@@</code>, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an <strong>R</strong> vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the <code>@@</code> notation is immediately followed by a number and that number should correspond to the number of the footnoted <strong>R</strong> expression.
+                    <p>If you specify a subsitution with <code>@@</code>, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an <strong>R</strong> vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the <code>@@</code> notation is immediately followed by a number and that number should correspond to the number of the footnoted <strong>R</strong> expression.</p>
                     <p>The substitution construction is:</p>
                         <div>
                             <pre><code>"@@" + [footnote number]</code></pre>
@@ -934,15 +269,14 @@ rank = same; A; B; C;
 
 [1]: 'a'</code></pre>
                         </div>
-                    <p>In the above example, the <code>[1]:</code> footnote expression evaluates as <code>'a'</code>, and, that is what's substituted in place of the <code>@@1</code> (where, in turn, it will be taken as the node ID).
-
+                    <p>In the above example, the <code>[1]:</code> footnote expression evaluates as <code>'a'</code>, and, that is what's substituted in place of the <code>@@1</code> (where, in turn, it will be taken as the node ID).</p>
                     <p>Substitutions can also be used to insert values from vector indices into the graph specification. Simply use this format:</p>
                         <div>
                             <pre><code>"@@" + [footnote number] + "-" + [index number]</code></pre>
                         </div>
-
-                    <p>Here's an example of how specific values from vectors can be inserted into the graph:<p>
-                        <pre><code>digraph {
+                    <p>Here's an example of how specific values from vectors can be inserted into the graph:</p>
+                        <div>
+                            <pre><code>digraph {
 alpha
 @@1-1; @@1-2; @@1-3; @@1-4; @@1-5
 @@1-6; @@1-7; @@1-8; @@1-9; @@1-10
@@ -958,13 +292,9 @@ A; B; C; D; E
 F; G; H; I; J
 }</code></pre>
                     </div>
-
                     <h2 id="examples">Examples</h2>
                     <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from <strong>R</strong>'s <code>LETTERS</code> constant into a <strong>Graphviz</strong> graph specification.</p>
-                    <div>
                     <p>You can mix subtitutions of single-values objects and those specifying indices of <strong>R</strong> vector objects. As an example:</p>
-
-
                     <div class="bs-example">
                         <img src="img/Graphviz_substitution.png" class="img-responsive center-block">
                     </div>
@@ -995,7 +325,7 @@ a -> {b c d e f g h i j}
 ")</code></pre>
                         </div>
                     </div>
-                    <p>As can be seen from the output:<p>
+                    <p>As can be seen from the output:</p>
                     <ol>
                         <li>the node with ID <code>a</code> is given the label "top" (after substituting <code>@@1</code> with expression after the <code>[1]:</code> footnote expression)</li>
                         <li>the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices 1 to 9 (using the hypenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression)</li>
@@ -1048,10 +378,18 @@ digraph nicegraph {
 ")</code></pre>
                         </div>
                     </div>
-                </div>
                 <div class="bs-docs-section">
                     <h1 id="rendering-engines" class="page-header">Rendering Engines</h1>
                     <p class="lead"><strong>Graphviz</strong> layouts can be modified radically by rendering the graph with different <strong>Graphviz</strong> engines. Let's learn all about those engines and what they can do.</p>
+                    <h2 id="the-engines">The Engines</h2>
+                    <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by doing either of the following:</p>
+                        <ul>
+                            <li>supplying those names to the engine argument of the grViz function</li>
+                            <li>setting the graph attribute layout equal to either neato, twopi, or circo in a Graphviz graph statement</li>
+                        </ul>
+                    <div>
+                        <img src="img/Graphviz_Engines.png" class="img-responsive center-block">
+                    </div>
                     <h2 id="dot">dot</h2>
                     <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument.</p>
                     <div><pre><code class="prettyprint">grViz("[...graph spec...]", engine = "[dot|neato|twopi|circo]")</code></pre></div>
@@ -1155,7 +493,7 @@ engine = "neato")</code></pre>
                     <div class="bs-example">
                         <img src="img/several-ranks-neato-overlap-true.png" class="img-responsive center-block">
                     </div>
-                    <p>The graph specification can have an entirely different layout with <strong>neato</strong> engine if the graph attribute <code>overlap</code> is set to <code>false</code> instead of the default <code>true</code> value (<a href="https://gist.github.com/rich-iannone/c58b07f992a1f9ab5d3e">GitHub gist</a>). What occurs in this case is that node overlaps are removed by a Voronoi-based technique.
+                    <p>The graph specification can have an entirely different layout with <strong>neato</strong> engine if the graph attribute <code>overlap</code> is set to <code>false</code> instead of the default <code>true</code> value (<a href="https://gist.github.com/rich-iannone/c58b07f992a1f9ab5d3e">GitHub gist</a>). What occurs in this case is that node overlaps are removed by a Voronoi-based technique.</p>
                     <div class="bs-example">
                         <img src="img/several-ranks-neato-overlap-false.png" class="img-responsive center-block">
                     </div>
@@ -1224,6 +562,510 @@ engine = "circo")</code></pre>
                         </div>
                     </div>
                 </div>
+                <div class="bs-docs-section">
+                    <h1 id="functions-for-building-graphs" class="page-header">Functions for Building Graphs</h1>
+                    <p class="lead">If you're planning on creating larger graph diagrams and also making use of external datasets, it can be better to use a set of <strong>DiagrammeR</strong> functions that work with data frames. Here is a basic schematic of the graph workflow, using functions to build toward a graph object from a group of data frames.</p>
+                    <div>
+                        <img src="img/Graph_Workflow.png" class="img-responsive center-block">
+                    </div>
+                    <h2 id="create-graph-render">Create Graph, Render</h2>
+                    <p>With the <code>graphviz_graph</code> function, it's possible to generate a graph diagram object without interacting directly with <strong>DOT</strong> code. The function has the following options:</p>
+<div>
+<pre><code>graphviz_graph(
+    nodes_df,     # provide the name of the data frame with node info         
+    edges_df,     # provide the name of the data frame with edge info 
+    graph_attrs,  # provide a vector of 'graph' attributes
+    node_attrs,   # provide a vector of 'node' attributes as defaults
+    edge_attrs,   # provide a vector of 'edge' attributes as defaults
+    directed      # is the graph to be directed or undirected? Choose TRUE or FALSE
+    )
+</code></pre>
+                    </div>
+                    <p>The <code>graphviz_graph</code> function returns a <code>gv_graph</code> object, which can be used by additional processing functions. One such function is the <code>graphviz_render</code> function, which allows for both visualizing the graph object and creating output files:</p>
+                    <div>
+<pre><code>graphviz_render(
+    graph,        # a 'gv_graph' object, created using the 'graphviz_graph' function
+    output,       # a string specifying the output type; 'graph' (the default) renders
+                  # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
+                  # SVG code for the rendered graph
+    width,        # optionally set a width in pixels
+    height        # optionally set a height in pixels
+    )
+</code></pre>
+                    </div>
+                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>graphviz_graph</code> to <code>graphviz_render</code>. On the topic of packages, it is important to load the <strong>V8</strong> package as it will enable color scaling functionality (as will be seen in later examples).</p>
+                    <p>Before we get to using the <code>graphviz_graph</code> and <code>graphviz_render</code> functions, however, we'll need to create some specialized data frames. One is for nodes, the other concerns the edges. Both types of data frames are parsed by the <code>graphviz_graph</code> function and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.</p>
+                    <p>Which columns might a node data frame have? Well, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. Here are some notable node attributes:</p>
+                        <ul>
+                            <li><code>color</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
+                            <li><code>distortion</code> &mdash; the node distortion for any <code>shape = polygon</code></li>
+                            <li><code>fillcolor</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
+                            <li><code>fixedsize</code> &mdash; <code>true</code> or <code>false</code></li>
+                            <li><code>fontcolor</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
+                            <li><code>fontname</code> &mdash; the name of the font</li>
+                            <li><code>fontsize</code> &mdash; the size of the font for the node label</li>
+                            <li><code>height</code> &mdash; the height of the node</li>
+                            <li><code>label</code> &mdash; the node label text that replaces the default text (which is the node ID)</li>
+                            <li><code>penwidth</code> &mdash; the thickness of the stroke for the shape</li>
+                            <li><code>peripheries</code> &mdash; the number of peripheries (essentially, additional shape outlines)</li>
+                            <li><code>shape</code> &mdash; the node shape (e.g., <code>ellipse</code>, <code>polygon</code>, <code>circle</code>, etc.)</li>
+                            <li><code>sides</code> &mdash; if <code>shape = polygon</code>, the number of sides can be provided here</li>
+                            <li><code>style</code> &mdash; usually given the value filled if you'd like to fill a node with a color</li>
+                            <li><code>tooltip</code> &mdash; provide text here for an unstyled browser tooltip</li>
+                            <li><code>width</code> &mdash; the width of the node</li>
+                            <li><code>x</code> &mdash; the x position of the node (requires graph attr <code>layout = neato</code> to use)</li>
+                            <li><code>y</code> &mdash; the y position of the node (requires graph attr <code>layout = neato</code> to use)</li>
+                        </ul>
+                    <p>You don't need to use <code>data.frame</code> to make a node data frame: you can use the provided <code>create_nodes</code> function. It's similar in principle to the base <strong>R</strong> <code>data.frame</code> function except that it adds in the following conveniences for graph diagram work:</p>
+                        <ul>
+                            <li>single values are repeated for n number of nodes supplied</li>
+                            <li>selective setting of attributes (e.g., giving attr values for 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)</li>
+                            <li>supplying overlong vectors for attributes will result in trimming down to the number of nodes</li>
+                            <li>setting <code>label = FALSE</code> will conveniently result in a non-labeled node</li>
+                        </ul>
+                    <h2 id="function-examples">Examples</h2>
+                    <p>Here's an example of how to create a node data frame:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">type_1_nodes &lt;-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               label = "type 1",
+               style = "filled",
+               color = "aqua",
+               shape = c("circle", "circle",
+                         "triangle", "triangle"))
+</code></pre>
+                        </div>
+                    </div>
+                    <p>The <code>type_1_nodes</code> object is indeed a data frame, and, this is good since it's familar and easy to work with. Note that singly supplied attribute values are repeated throughout:</p>
+                    <div>
+<pre><code> nodes  label  style color    shape
+1    a type 1 filled  aqua   circle
+2    b type 1 filled  aqua   circle
+3    c type 1 filled  aqua triangle
+4    d type 1 filled  aqua triangle
+</code></pre>
+                    </div>
+                    <p>Let's make another node data frame:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">type_2_nodes &lt;-
+  create_nodes(nodes = c("e", "f", "g", "h"),
+               label = "type 2",
+               style = "filled",
+               color = "lightblue",
+               peripheries = c(2, 2))
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Here is the resulting data frame (notice that values for the <code>peripheries</code> node attribute are only provided twice):</p>
+                    <div>
+<pre><code> nodes  label  style     color peripheries
+1    e type 2 filled lightblue           2
+2    f type 2 filled lightblue           2
+3    g type 2 filled lightblue
+4    h type 2 filled lightblue
+</code></pre>
+                    </div>                    
+                    <p>Now that we have these groups of nodes in <code>type_1_nodes</code> and <code>type_2_nodes</code>, there may be occasion to combine them into a single node data frame. This can be done with the <code>combine_nodes</code> function (which works much like <code>rbind</code> except that it accepts data frames with columns differing in number, names, and ordering).</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">all_nodes &lt;- combine_nodes(type_1_nodes, type_2_nodes)</code></pre>
+                        </div>
+                    </div>
+                    <p>This is the combined node data frame:</p>
+                    <div>
+<pre><code> nodes  label  style     color    shape peripheries
+1    a type 1 filled      aqua   circle
+2    b type 1 filled      aqua   circle
+3    c type 1 filled      aqua triangle
+4    d type 1 filled      aqua triangle
+5    e type 2 filled lightblue                    2
+6    f type 2 filled lightblue                    2
+7    g type 2 filled lightblue
+8    h type 2 filled lightblue
+</code></pre>
+                    </div>
+                    <p>Let's look at the nodes that were created. Use the <code>graphviz_graph</code> (just provide the all_nodes object at this point) and pipe to <code>graphviz_render</code>. The <strong>pipeR</strong> package (used in these examples) provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead. So, this is what the diagram looks like at this point:</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-1.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">library("pipeR")
+
+graphviz_graph(nodes_df = all_nodes) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>Want to extract a vector list of node IDs? You can use the get_nodes function. It can accept multiple node data frames, edge data frames, or graph objects.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">get_nodes(all_nodes)</code></pre>
+                        </div>
+                    </div>
+                    <div>
+<pre><code>[1] "a" "b" "c" "d" "e" "f" "g" "h"</code></pre>
+                    </div>
+                    <p>Let's make some edges now. For the edge data frame, there are two columns that need to be present: one for the outgoing node edge, and, another for the incoming node edge. These can be called either edge_from, from, edge_to, or to. Each of the two columns should contain node IDs and, ideally, they should match those provided in the node data frame that will be supplied to the graphviz_graph function.</p>
+                    <p>As in the nodes data frame, attributes can be provided. Here are some examples of edge attributes that can be used:</p>
+                        <ul>
+                            <li><code>arrowhead</code> &mdash; the arrow style at the head end (e.g, <code>normal</code>, <code>dot</code>)</li>
+                            <li><code>arrowsize</code> &mdash; the scaling factor for the arrowhead and arrowtail</li>
+                            <li><code>arrowtail</code> &mdash; the arrow style at the tail end (e.g, <code>normal</code>, <code>dot</code>)</li>
+                            <li><code>color</code> &mdash; the stroke color; an <strong>X11</strong> color or a hex code (add 2 digits for alpha)</li>
+                            <li><code>dir</code> &mdash; the direction; either <code>forward</code>, <code>back</code>, <code>both</code>, or <code>none</code></li>
+                            <li><code>fontcolor</code> &mdash; choose an <strong>X11</strong> color or provide a hex code (append 2 digits for alpha)</li>
+                            <li><code>fontname</code> &mdash; the name of the font</li>
+                            <li><code>fontsize</code> &mdash; the size of the font for the node label</li>
+                            <li><code>headport</code> &mdash; a cardinal direction for where the arrowhead meets the node</li>
+                            <li><code>label</code> &mdash; label text for the line between nodes</li>
+                            <li><code>minlen</code> &mdash; minimum rank distance between head and tail</li>
+                            <li><code>penwidth</code> &mdash; the thickness of the stroke for the arrow</li>
+                            <li><code>tailport</code> &mdash; a cardinal direction for where the tail is emitted from the node</li>
+                            <li><code>tooltip</code> &mdash; provide text here for an edge tooltip</li>
+                        </ul>
+                    <p>Let's create some edges between nodes using the create_edges function:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">type_1_edges &lt;-
+  create_edges(edge_from = c("a", "a", "b", "c"),
+               edge_to = c("b", "d", "d", "a"))
+
+type_2_edges &lt;-
+  create_edges(edge_from = c("e", "g", "h", "h"),
+               edge_to = c("g", "h", "f", "e"),
+               arrowhead = "dot",
+               color = "red")</code></pre>
+                        </div>
+                    </div>                  
+                    <p>Two edge data frames were just created. If you'd like to include all those edges in your graph, just use the combine_edges function:</p>
+                    <div>
+<pre><code>all_edges &lt;- combine_edges(type_1_edges, type_2_edges)</code></pre>
+                    </div>
+                    <p>Now we have node and edge data frames that can be combined. The next step is to incorporate those edges into the <code>graphviz_graph</code> function and then render the graph.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-2.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
+               edges_df = all_edges) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>Not bad for an example graph. There may be cases where node or edge attributes should apply to all nodes and edges in the graph. In such cases, there's no need to create columns for those attributes where attribute values are repeated in all rows. Instead, supply vectors of attribute statements for the <code>node_attrs</code> or <code>edge_attrs</code> arguments in the <code>graphviz_graph</code> function. For example, you may want to use <code>Helvetica</code> as the label font. If so, use this in <code>graphviz_graph</code>:</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-3.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
+               edges_df = all_edges,
+               node_attrs = "fontname = Helvetica") %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>Likewise, for edges, you may want a certain uniform look that is different from the defaults. Perhaps, a grey line which has a thicker line stroke.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-4.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
+               edges_df = all_edges,
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = c("color = gray", "penwidth = 4")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>circo</code>, node overlapping is suppressed, the separation between nodes is of factor <code>3</code>, and the edges are drawn first (so as to not obscure the nodes).</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-5.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
+               edges_df = all_edges,
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = c("color = gray", "penwidth = 4"),
+               graph_attrs = c("layout = circo",
+                               "overlap = false",
+                               "ranksep = 3",
+                               "outputorder = edgesfirst")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <h1 id="numeric-color-scales" class="page-header">Scaling Node and Edge Attributes</h1>
+                    <p>With the <code>scale_nodes</code> and <code>scale_edges</code> functions, it's possible to create and apply scaled node and edge attributes. These attributes can be either of the numeric or color variety. Ideally, the numerical data from which the scaled values are generated should reside in the node or edge data frames. This is recommended because the values need to be of the same length and order as the records in the node or edge data frame.</p>
+                    <p>For nodes, scales can be made for the following attributes:</p>
+                        <ul>
+                            <li><code>fontsize</code> <em>numeric</em></em></li>
+                            <li><code>labelfontsize</code> <em>numeric</em></li>
+                            <li><code>penwidth</code> <em>numeric</em></li>
+                            <li><code>height</code> <em>numeric</em></li>
+                            <li><code>weight</code> <em>numeric</em></li>
+                            <li><code>x</code> <em>numeric</em></li>
+                            <li><code>y</code> <em>numeric</em></li>
+                            <li><code>color</code> <em>color</em></li>
+                            <li><code>fillcolor</code> <em>color</em></li>
+                            <li><code>fontcolor</code> <em>color</em></li>
+                        </ul>
+                    <p>For edges, scales can be made for the following edge attributes:</p>
+                        <ul>
+                            <li><code>fontsize</code> <em>numeric</em></li>
+                            <li><code>labelfontsize</code> <em>numeric</em></li>
+                            <li><code>labelangle</code> <em>numeric</em></li>
+                            <li><code>labeldistance</code> <em>numeric</em></li>
+                            <li><code>penwidth</code> <em>numeric</em></li>
+                            <li><code>arrowsize</code> <em>numeric</em></li>
+                            <li><code>minlen</code> <em>numeric</em></li>
+                            <li><code>weight</code> <em>numeric</em></li>
+                            <li><code>color</code> <em>color</em></li>
+                            <li><code>fontcolor</code> <em>color</em></li>
+                            <li><code>labelfontcolor</code> <em>color</em></li>
+                        </ul>
+                    <p>There is also another attribute for both nodes and edges called <code>alpha</code> which is a numeric value from <code>0</code>-<code>100</code> that modifies the opacity of a specified color attribute. A value of <code>0</code> is essentially invisible (i.e., completely transparent) whereas <code>100</code> is entirely opaque (i.e., no transparency applied). Creating an alpha scale can be done by either referencing a column containing color attribute values, or, by initializing a color attribute column and then creating an alpha scale at the same time. An example will be useful here, alongside <strong>RStudio</strong> <strong>Viewer</strong> output. Begin by randomly creating edges and nodes with static attributes:</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-2-1.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint"># Set a seed to make the example reproducible
+set.seed(23)
+
+# Create an edge data frame and also include a column of 'random' data
+many_edges &lt;-
+  create_edges(edge_from = sample(seq(1:100), 100, replace = TRUE),
+               edge_to = sample(seq(1:100), 100, replace = TRUE),
+               random_data = sample(seq(1:5000), 100, replace = TRUE))
+
+# Create the node data frame, using the nodes that are available in
+# the 'many_edges' data frame; provide 'shape' and 'fillcolor' attributes
+many_nodes &lt;-
+  create_nodes(node = get_nodes(many_edges),
+               random_data = sample(seq(1:5000),
+                                    length(get_nodes(many_edges))),
+               label = FALSE,
+               shape = "circle",
+               fillcolor = "red")
+
+# View the graph and also ensure that style = filled is present
+# to activate the fillcolor node attribute
+graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
+               node_attrs = "style = filled",
+               graph_attrs = c("layout = twopi", 
+                               "overlap = false")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>Create a scale for the node attribute <code>penwidth</code> (which changes the stroke thickness of the node shape). Using the data in <code>random_data</code>, those values will be scaled linearly from <code>2</code> to <code>10</code>.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-2-2.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">many_nodes &lt;- scale_nodes(nodes_df = many_nodes,
+                             to_scale = many_nodes$random_data,
+                             node_attr = "penwidth",
+                             range = c(2, 10))
+
+graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
+               node_attrs = "style = filled",
+               graph_attrs = c("layout = twopi", 
+                               "overlap = false")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>To apply transparency to color values, use the <code>alpha</code> node attribute but reference the <code>color</code> attribute that should be modified with the syntax: 'alpha:[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: 'alpha:[color_attr]=[color]'. The color value can either be an <strong>X11</strong> color name or a hexadecimal color value.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-2-3.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">many_nodes &lt;- scale_nodes(nodes_df = many_nodes,
+                          to_scale = many_nodes$random_data,
+                          node_attr = "alpha:fillcolor",
+                          range = c(5, 90))
+
+graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
+               node_attrs = "style = filled",
+               graph_attrs = c("layout = twopi", 
+                               "overlap = false")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>Edges can have scales applied to edge attributes:</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-2-4.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">many_edges &lt;- scale_edges(edges_df = many_edges,
+                             to_scale = many_edges$random_data,
+                             edge_attr = "penwidth",
+                             range = c(0.5, 10))
+
+graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
+               node_attrs = "style = filled",
+               graph_attrs = c("layout = twopi", 
+                               "overlap = false")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>You can linearly scale color values as well. When creating color scales, ensure that the <strong>V8</strong> library is installed and loaded.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-2-5.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint"># install.packages("V8")
+library("V8")
+                    
+many_edges &lt;- scale_edges(edges_df = many_edges,
+                             to_scale = many_edges$penwidth,
+                             edge_attr = "color",
+                             range = c("red", "green"))
+
+graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
+               node_attrs = "style = filled",
+               graph_attrs = c("layout = twopi", 
+                               "overlap = false")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <h1 id="exporting-graph-code" class="page-header">Exporting Graph Code</h1>
+                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>graphviz_render</code> function. Here's a simple example:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
+               edges_df = data.frame(edge_from = c("a", "b", "c"),
+               edge_to = c("b", "c", "b")),
+               graph_attrs = c("layout = dot", "rankdir = LR"),
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = "arrowhead = dot") %>>%
+                 graphviz_render(output = "DOT") %>>% cat</code></pre>
+                        </div>
+                    </div>
+                    <p>The output is pretty clean DOT code:</p>
+<div>
+<pre><code>digraph {
+
+  graph [layout = dot,
+         rankdir = LR]
+
+  node [fontname = Helvetica]
+
+  edge [arrowhead = dot]
+
+  'a'
+  'b'
+  'c'
+  'a'->'b' 
+  'b'->'c' 
+  'c'->'b' 
+}</code></pre>
+</div>
+                    <p>What about SVGs? Those are the things you should eat for breakfast, every day. Well, you can get those out as well. It's all part of maintaining a balanced diet:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint"># install.packages("V8")
+library("V8")
+
+graphviz_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
+               edges_df = data.frame(edge_from = c("a", "b", "c"),
+                                     edge_to = c("b", "c", "b")),
+               graph_attrs = c("layout = dot", "rankdir = LR"),
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = "arrowhead = dot") %>>%
+               graphviz_render(output = "SVG") %>>% cat</code></pre>
+                        </div>
+                    </div>
+                    <h1 id="nycflights13-example" class="page-header">Example with nycflights13</h1>
+                    <p>Now, yet another example. This time with an external dataset. Let's use the <strong>nycflights13</strong> package to prepare some data frames and then create a graph diagram.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-3-1.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint"># Get the 'nycflights13' package if not already installed
+# install.packages('nycflights13')
+
+# Get the 'lubridate' package if not already installed
+# install.packages('lubridate')
+
+# Get the latest build of the 'DiagrammeR' package from GitHub
+devtools::install_github('rich-iannone/DiagrammeR')
+
+library("nycflights13")
+library("lubridate")
+library("DiagrammeR")
+
+# Choose a day from 2013 for NYC flight data
+# (You can choose any Julian day, it's interesting to see results for different days)
+day_of_year &lt;- 10 
+
+# Get a data frame of complete cases (e.g., flights have departure and arrival times)
+nycflights13 &lt;-
+  nycflights13::flights[which(complete.cases(nycflights13::flights) == TRUE), ]
+
+# Generate a POSIXct vector of dates using the 'ISOdatetime' function
+# Columns 1, 2, and 3 are year, month, and day columns
+# Column 4 is a 4-digit combination of hours (00-23) and minutes (00-59)
+date_time &lt;-
+  data.frame("date_time" =
+               ISOdatetime(year = nycflights13[,1],
+                           month = nycflights13[,2],
+                           day = nycflights13[,3],
+                           hour = gsub("[0-9][0-9]$", "", nycflights13[,4]),
+                           min = gsub(".*([0-9][0-9])$", "\\1", nycflights13[,4]),
+                           sec = 0, tz = "GMT"))
+
+# Add the POSIXct vector 'date_time' to the 'nycflights13' data frame
+nycflights13 &lt;- cbind(date_time, nycflights13)
+
+# Select flights only from the specified day of the year 2013
+nycflights13_day &lt;-
+  subset(nycflights13,
+         date_time >= ymd('2013-01-01', tz = "GMT") + days(day_of_year - 1) &
+           date_time &lt; ymd('2013-01-01', tz = "GMT") + days(day_of_year))
+
+# Create the 'nodes' data frame where at least one column is named "nodes" or "node_id"
+# Column 12 is the 3-letter code for the airport departing from
+# Column 13 is for the airport arriving to
+# (Option: change df to 'nycflights13_day' and only airports used for the day will be included)
+nodes_df &lt;- create_nodes(nodes = unique(c(nycflights13[,12],
+                                    nycflights13[,13])),
+                         label = FALSE)
+
+# The 'edges' data frame must have columns named 'edge_from' and 'edge_to'
+# The color attribute is determined with an 'ifelse' statement, where
+# column 8 is the minutes early (negative values) or minutes late (positive values)
+# for the flight arrival
+edges_df &lt;- create_edges(edge_from = nycflights13_day[,12],
+                         edge_to = nycflights13_day[,13],
+                         color = ifelse(nycflights13_day[,8] &lt; 0,
+                                    "green", "red"))
+
+# Set the graph diagram's default attributes for...
+
+# ...nodes
+node_attrs &lt;- c("style = filled", "fillcolor = lightblue",
+                "color = gray", "shape = circle", "fontname = Helvetica",
+                "width = 1")
+
+# ...edges
+edge_attrs &lt;- c("arrowhead = dot")
+
+# ...and the graph itself
+graph_attrs &lt;- c("layout = circo",
+                 "overlap = false",
+                 "fixedsize = true",
+                 "ranksep = 3",
+                 "outputorder = edgesfirst")
+
+# Generate the graph diagram in the RStudio Viewer.
+# The green lines show flights that weren't late (red indicates late arrivals)
+# This graph is for a single day of flights, airports that are unconnected on a
+# given day may be destinations on another day
+graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
+               graph_attrs = graph_attrs, node_attrs = node_attrs,
+               edge_attrs = edge_attrs, directed = TRUE) %>>%
+                 graphviz_render(width = 1200, height = 800)</code></pre>
+                        </div>
+                    </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-3" role="complementary">
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
@@ -1240,9 +1082,7 @@ engine = "circo")</code></pre>
                         <li>
                             <a href="#attributes">Attributes</a>
                             <ul class="nav">
-                                <li><a href="#node-attributes">Node Attributes</a></li>
-                                <li><a href="#edge-attributes">Edge Attributes</a></li>
-                                <li><a href="#graph-attributes">Graph Attributes</a></li>
+                                <li><a href="#colors">Colors</a></li>
                                 <li><a href="#node-shapes">Node Shapes</a></li>
                                 <li><a href="#arrow-shapes">Arrow Shapes</a></li>
                             </ul>
@@ -1257,10 +1097,21 @@ engine = "circo")</code></pre>
                         <li>
                             <a href="#rendering-engines">Rendering Engines</a>
                             <ul class="nav">
+                                <li><a href="#the-engines">The Engines</a></li>
                                 <li><a href="#dot">dot</a></li>
                                 <li><a href="#neato">neato</a></li>
                                 <li><a href="#twopi">twopi</a></li>
                                 <li><a href="#circo">circo</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#functions-for-building-graphs">Functions for Building Graphs</a>
+                            <ul class="nav">
+                                <li><a href="#create-graph-render">Create Graph, Render</a></li>
+                                <li><a href="#function-examples">Examples</a></li>
+                                <li><a href="#numeric-color-scales">Scaling Node and Edge Attributes</a></li>
+                                <li><a href="#exporting-graph-code">Exporting Graph Code</a></li>
+                                <li><a href="#nycflights13-example">Example with nycflights13</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -1269,58 +1120,56 @@ engine = "circo")</code></pre>
             </div>
         </div>
 
-<footer class="bs-docs-footer" role="contentinfo">
-    <div class="container">
-        <div class="bs-docs-social">
-            <ul class="bs-docs-social-buttons">
-                <li>
-                    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=watch&amp;count=true" width="90" height="20" title="Star on GitHub"></iframe>
-                </li>
-                <li>
-                    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=fork&amp;count=true" width="90" height="20" title="Fork on GitHub"></iframe>
-                </li>
-            </ul>
-            <ul class="bs-docs-social-buttons">
-                <li class="follow-btn">
-                    <a href="https://twitter.com/riannone" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @riannone</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+        <footer class="bs-docs-footer" role="contentinfo">
+            <div class="container">
+                <div class="bs-docs-social">
+                    <ul class="bs-docs-social-buttons">
+                        <li>
+                            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=watch&amp;count=true" width="90" height="20" title="Star on GitHub"></iframe>
+                        </li>
+                        <li>
+                            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=fork&amp;count=true" width="90" height="20" title="Fork on GitHub"></iframe>
+                        </li>
+                    </ul>
+                    <ul class="bs-docs-social-buttons">
+                        <li class="follow-btn">
+                            <a href="https://twitter.com/riannone" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @riannone</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-    <div class="container">
-        <p>Designed and built by Richard Iannone <a href="https://twitter.com/riannone" target="_blank">@riannone</a>.</p>
-        <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
-        <p>Code licensed under MIT.</p>
-        <ul class="bs-docs-footer-links text-muted">
-            <li>Currently v0.5</li>
-            <li>&middot;</li>
-            <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
-            <li>&middot;</li>
-            <li><a href="https://github.com/rich-iannone/DiagrammeR/issues">Issues</a></li>
-            <li>&middot;</li>
-            <li><a href="https://github.com/rich-iannone/DiagrammeR/releases">Releases</a></li>
-        </ul>
-    </div>
-</footer>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./js/docs.min.js"></script>
-<script src="./js/ie10-viewport-bug-workaround.js"></script>
-<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-
-<script>
-  window.twttr = (function (d,s,id) {
-    var t, js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
-    js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
-    return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
-  }(document, "script", "twitter-wjs"));
-</script>
+            <div class="container">
+                <p>Designed and built by Richard Iannone <a href="https://twitter.com/riannone" target="_blank">@riannone</a>.</p>
+                <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
+                <p>Code licensed under MIT.</p>
+                <ul class="bs-docs-footer-links text-muted">
+                    <li>Currently v0.5</li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/rich-iannone/DiagrammeR/issues">Issues</a></li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/rich-iannone/DiagrammeR/releases">Releases</a></li>
+                </ul>
+            </div>
+        </footer>
 
 
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/docs.min.js"></script>
+        <script src="./js/ie10-viewport-bug-workaround.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+        <script>
+          window.twttr = (function (d,s,id) {
+            var t, js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+            js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+            return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+          }(document, "script", "twitter-wjs"));
+        </script>
+
+    </body>
 </html>
-
