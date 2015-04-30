@@ -384,8 +384,8 @@ digraph nicegraph {
                     <h2 id="the-engines">The Engines</h2>
                     <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by doing either of the following:</p>
                         <ul>
-                            <li>supplying those names to the engine argument of the grViz function</li>
-                            <li>setting the graph attribute layout equal to either neato, twopi, or circo in a Graphviz graph statement</li>
+                            <li>supplying those names to the engine argument of the <code>grViz</code> function</li>
+                            <li>setting the graph attribute layout equal to either <code>neato</code>, <code>twopi</code>, or <code>circo</code> in a <strong>Graphviz</strong> graph statement</li>
                         </ul>
                     <div>
                         <img src="img/Graphviz_Engines.png" class="img-responsive center-block">
@@ -686,7 +686,7 @@ engine = "circo")</code></pre>
 8    h type 2 filled lightblue
 </code></pre>
                     </div>
-                    <p>Let's look at the nodes that were created. Use the <code>graphviz_graph</code> (just provide the all_nodes object at this point) and pipe to <code>graphviz_render</code>. The <strong>pipeR</strong> package (used in these examples) provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead. So, this is what the diagram looks like at this point:</p>
+                    <p>Let's look at the nodes that were created. Use the <code>graphviz_graph</code> (just provide the <code>all_nodes</code> object at this point) and pipe to <code>graphviz_render</code>. The <strong>pipeR</strong> package (used in these examples) provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead. So, this is what the diagram looks like at this point:</p>
                     <div class="bs-example">
                         <img src="img/grviz_example-1-1.png" class="img-responsive center-block">
                     </div>
@@ -697,7 +697,7 @@ engine = "circo")</code></pre>
 graphviz_graph(nodes_df = all_nodes) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
-                    <p>Want to extract a vector list of node IDs? You can use the get_nodes function. It can accept multiple node data frames, edge data frames, or graph objects.</p>
+                    <p>Want to extract a vector list of node IDs? You can use the <code>get_nodes</code> function. It can accept multiple node data frames, edge data frames, or graph objects.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">get_nodes(all_nodes)</code></pre>
@@ -706,7 +706,7 @@ graphviz_graph(nodes_df = all_nodes) %>>% graphviz_render</code></pre>
                     <div>
 <pre><code>[1] "a" "b" "c" "d" "e" "f" "g" "h"</code></pre>
                     </div>
-                    <p>Let's make some edges now. For the edge data frame, there are two columns that need to be present: one for the outgoing node edge, and, another for the incoming node edge. These can be called either edge_from, from, edge_to, or to. Each of the two columns should contain node IDs and, ideally, they should match those provided in the node data frame that will be supplied to the graphviz_graph function.</p>
+                    <p>Let's make some edges now. For the edge data frame, there are two columns that need to be present: one for the outgoing node edge, and, another for the incoming node edge. These can be called either <code>edge_from</code>, <code>from</code>, <code>edge_to</code>, or <code>to</code>. Each of the two columns should contain node IDs and, ideally, they should match those provided in the node data frame that will be supplied to the <code>graphviz_graph</code> function.</p>
                     <p>As in the nodes data frame, attributes can be provided. Here are some examples of edge attributes that can be used:</p>
                         <ul>
                             <li><code>arrowhead</code> &mdash; the arrow style at the head end (e.g, <code>normal</code>, <code>dot</code>)</li>
@@ -738,7 +738,7 @@ type_2_edges &lt;-
                color = "red")</code></pre>
                         </div>
                     </div>                  
-                    <p>Two edge data frames were just created. If you'd like to include all those edges in your graph, just use the combine_edges function:</p>
+                    <p>Two edge data frames were just created. If you'd like to include all those edges in your graph, just use the <code>combine_edges</code> function:</p>
                     <div>
 <pre><code>all_edges &lt;- combine_edges(type_1_edges, type_2_edges)</code></pre>
                     </div>
@@ -937,7 +937,7 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                  graphviz_render(output = "DOT") %>>% cat</code></pre>
                         </div>
                     </div>
-                    <p>The output is pretty clean DOT code:</p>
+                    <p>The output is pretty clean <strong>DOT</strong> code:</p>
 <div>
 <pre><code>digraph {
 
@@ -956,19 +956,19 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
   'c'->'b' 
 }</code></pre>
 </div>
-                    <p>What about SVGs? Those are the things you should eat for breakfast, every day. Well, you can get those out as well. It's all part of maintaining a balanced diet:</p>
+                    <p>What about <strong>SVG</strong>s? Those are the things you should eat for breakfast, every day. Well, you can get those out as well. It's all part of maintaining a balanced diet:</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint"># install.packages("V8")
 library("V8")
 
-graphviz_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
-               edges_df = data.frame(edge_from = c("a", "b", "c"),
-                                     edge_to = c("b", "c", "b")),
+graphviz_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
+               edges_df = create_edges(edge_from = c("a", "b", "c"),
+                                       edge_to = c("b", "c", "b")),
                graph_attrs = c("layout = dot", "rankdir = LR"),
                node_attrs = "fontname = Helvetica",
                edge_attrs = "arrowhead = dot") %>>%
-               graphviz_render(output = "SVG") %>>% cat</code></pre>
+                 graphviz_render(output = "SVG") %>>% cat</code></pre>
                         </div>
                     </div>
                     <h1 id="nycflights13-example" class="page-header">Example with nycflights13</h1>
@@ -1144,7 +1144,7 @@ graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
                 <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
                 <p>Code licensed under MIT.</p>
                 <ul class="bs-docs-footer-links text-muted">
-                    <li>Currently v0.5</li>
+                    <li>Currently v0.6</li>
                     <li>&middot;</li>
                     <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
                     <li>&middot;</li>
