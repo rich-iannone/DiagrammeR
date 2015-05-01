@@ -16,7 +16,7 @@ Install the development version of **DiagrammeR** from GitHub using the **devtoo
 devtools::install_github('rich-iannone/DiagrammeR')
 ```
 
-Or, get the v0.5 release from **CRAN**.
+Or, get the v0.6 release from **CRAN**.
 
 ```r
 install.packages('DiagrammeR')
