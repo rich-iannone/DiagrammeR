@@ -4,7 +4,7 @@
 #' @param chroma_range a vector representing a range of chroma values from 0 to 3.
 #' @param lightness_range a vector representing a range of lightness values from 0 to 2.
 #' @param alpha an optional alpha value in the range of 0-100 to append to the hexadecimal color values.
-#' @return an edge data frame
+#' @return vector of hexadecimal color values
 #' @export
 
 hex_palette <- function(number,
