@@ -38,8 +38,9 @@ node_info <- function(graph){
   # need to consider any edge information
   if (is.null(graph$edges_df)){
 
-    node_properties <- as.data.frame(mat.or.vec(nr = length(all_nodes), nc = 5))
-    colnames(node_properties) <- c("node_ID", "label", "type", "predecessors", "successors")
+    node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 7))
+    colnames(node_properties) <- c("node_ID", "label", "type", "degree",
+                                   "predecessors", "successors", "loops")
 
     node_properties[, 1] <- all_nodes
     node_properties[, 2] <- labels
@@ -47,6 +48,8 @@ node_info <- function(graph){
                                    type, rep(NA, length(all_nodes)))
     node_properties[, 4] <- rep(0, length(all_nodes))
     node_properties[, 5] <- rep(0, length(all_nodes))
+    node_properties[, 6] <- rep(0, length(all_nodes))
+    node_properties[, 7] <- rep(0, length(all_nodes))
 
     return(node_properties)
   }
