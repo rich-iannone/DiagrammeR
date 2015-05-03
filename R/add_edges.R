@@ -14,6 +14,8 @@ add_edges <- function(graph,
                       to = NULL,
                       relationship = NULL){
 
+  edges_df_available <- FALSE
+  from_to_available <- FALSE
 
 
   return(gv_graph)
