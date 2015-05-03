@@ -4,19 +4,19 @@
 \alias{add_edges}
 \title{Add edges to an existing graph object}
 \usage{
-add_edges(graph, edges = NULL, edge_from = NULL, edge_to = NULL,
-  type = NULL)
+add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
+  relationship = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
 
-\item{edges}{an edge data frame that is created using 'create_edges'.}
+\item{edges_df}{an edge data frame that is created using 'create_edges'.}
 
-\item{edge_from}{the outgoing node from which the edge is connected.}
+\item{from}{a vector of the outgoing nodes from which each edge is connected.}
 
-\item{edge_to}{the incoming node to which the edge is connected.}
+\item{to}{a vector of the incoming nodes to which each edge is connected.}
 
-\item{type}{a string specifying the relationship between the connected nodes.}
+\item{relationship}{a string specifying the relationship between the connected nodes.}
 }
 \value{
 a graph object of class 'gv_graph'.
