@@ -45,4 +45,77 @@ add_edges <- function(graph,
     from_to_available <- ifelse(all_nodes_in_graph, TRUE, FALSE)
   }
 
+  # Create the new graph object
+  if (is.null(graph$edges_df)){
+
+    if (edges_df_available == TRUE){
+
+      gv_graph <-
+        graphviz_graph(nodes_df = graph$nodes_df,
+                       edges_df = edges_df)
+
+      return(gv_graph)
+    }
+
+    if (from_to_available == TRUE){
+
+      if (!is.null(relationship)){
+
+        gv_graph <-
+          graphviz_graph(nodes_df = graph$nodes_df,
+                         edges_df = create_edges(edge_from = from,
+                                                 edge_to = to,
+                                                 relationship = relationship))
+      }
+
+      if (is.null(relationship)){
+
+        gv_graph <-
+          graphviz_graph(nodes_df = graph$nodes_df,
+                         edges_df = create_edges(edge_from = from,
+                                                 edge_to = to))
+      }
+
+      return(gv_graph)
+    }
+  }
+
+  if (!is.null(graph$edges_df)){
+
+    if (edges_df_available == TRUE){
+
+      combined_edges <- combine_edges(graph$edges_df,
+                                      edges_df)
+
+      gv_graph <-
+        graphviz_graph(nodes_df = graph$nodes_df,
+                       edges_df = combined_edges)
+
+      return(gv_graph)
+    }
+
+    if (from_to_available == TRUE){
+
+      if (!is.null(relationship)){
+
+        combined_edges <- combine_edges(graph$edges_df,
+                                      create_edges(edge_from = from,
+                                                   edge_to = to,
+                                                   relationship = relationship))
+      }
+
+      if (is.null(relationship)){
+
+        combined_edges <- combine_edges(graph$edges_df,
+                                        create_edges(edge_from = from,
+                                                     edge_to = to))
+      }
+
+      gv_graph <-
+        graphviz_graph(nodes_df = graph$nodes_df,
+                       edges_df = combined_edges)
+
+      return(gv_graph)
+    }
+  }
 }
