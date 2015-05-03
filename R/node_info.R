@@ -44,82 +44,101 @@ node_info <- function(graph){
     node_properties[, 1] <- all_nodes
     node_properties[, 2] <- labels
     node_properties[, 3] <- ifelse(exists("type"),
-                                    type, rep(NA, length(all_nodes)))
+                                   type, rep(NA, length(all_nodes)))
     node_properties[, 4] <- rep(0, length(all_nodes))
     node_properties[, 5] <- rep(0, length(all_nodes))
 
     return(node_properties)
   }
 
-  # Get vector of the top-level nodes
-  top_nodes <- unique(edge_from[which(!(edge_from %in% edge_to))])
+  if (!is.null(graph$edges_df)){
 
-  # Get vector of the bottom-level nodes
-  bottom_nodes <- unique(edge_to[which(!(edge_to %in% edge_from))])
+    # Get vector of the top-level nodes
+    top_nodes <- unique(edge_from[which(!(edge_from %in% edge_to))])
 
-  # Get vector of all nodes neither at the top nor the bottom level
-  between_nodes <- all_nodes[which(!(all_nodes %in% c(top_nodes, bottom_nodes)))]
+    # Get vector of the bottom-level nodes
+    bottom_nodes <- unique(edge_to[which(!(edge_to %in% edge_from))])
 
-  # Place the nodes in order
-  ordered_nodes <- c(top_nodes, between_nodes, bottom_nodes)
+    # Get vector of all nodes neither at the top nor the bottom level
+    between_nodes <- all_nodes[which(!(all_nodes %in% c(top_nodes, bottom_nodes)))]
 
-  # Create data frame of node properties
-  for (i in 1:length(ordered_nodes)){
+    # Place the nodes in order
+    ordered_nodes <- c(top_nodes, between_nodes, bottom_nodes)
 
-    if (i == 1){
-      node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 5))
-      colnames(node_properties) <- c("node_ID", "label", "type", "predecessors", "successors")
-    }
+    # Create data frame of node properties
+    for (i in 1:length(ordered_nodes)){
 
-    #
-    # Get number of predecessors for each node
-    #
-
-    if (ordered_nodes[i] %in% top_nodes){
-      predecessors <- 0
-    }
-
-    if (!(ordered_nodes[i] %in% top_nodes)){
-
-      for (j in 1:sum(edge_to %in% ordered_nodes[i])){
-
-        if (j == 1) predecessors <- vector(mode = "character")
-
-        predecessors <- c(predecessors, edge_from[which(edge_to %in% ordered_nodes[i])[j]])
+      if (i == 1){
+        node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 7))
+        colnames(node_properties) <- c("node_ID", "label", "type", "degree",
+                                       "predecessors", "successors", "loops")
       }
 
-      predecessors <- length(predecessors)
-    }
+      #
+      # Get degree for each node
+      #
 
-    #
-    # Get number of successors for each node
-    #
+      degree <- sum(c(graph$edges_df$edge_from, graph$edges_df$edge_to) %in%
+                      ordered_nodes[i])
+      #
+      # Get number of predecessors for each node
+      #
 
-    if (ordered_nodes[i] %in% bottom_nodes){
-      successors <- 0
-    }
-
-    if (!(ordered_nodes[i] %in% bottom_nodes)){
-
-      for (j in 1:sum(edge_from %in% ordered_nodes[i])){
-
-        if (j == 1) successors <- vector(mode = "character")
-
-        successors <- c(successors, edge_from[which(edge_from %in% ordered_nodes[i])[j]])
+      if (ordered_nodes[i] %in% top_nodes | degree == 0){
+        predecessors <- 0
       }
 
-      successors <- length(successors)
+      if (!(ordered_nodes[i] %in% top_nodes) & degree != 0){
+
+        for (j in 1:sum(edge_to %in% ordered_nodes[i])){
+
+          if (j == 1) predecessors <- vector(mode = "character")
+
+          predecessors <- c(predecessors, edge_from[which(edge_to %in% ordered_nodes[i])[j]])
+        }
+
+        predecessors <- length(predecessors)
+      }
+
+      #
+      # Get number of successors for each node
+      #
+
+      if (ordered_nodes[i] %in% bottom_nodes | degree == 0){
+        successors <- 0
+      }
+
+      if (!(ordered_nodes[i] %in% bottom_nodes) & degree != 0){
+
+        for (j in 1:sum(edge_from %in% ordered_nodes[i])){
+
+          if (j == 1) successors <- vector(mode = "character")
+
+          successors <- c(successors, edge_from[which(edge_from %in% ordered_nodes[i])[j]])
+        }
+
+        successors <- length(successors)
+      }
+
+      #
+      # Get number of loops for each node
+      #
+
+      loops <- sum(graph$edges_df$edge_from == graph$edges_df$edge_to &
+                     graph$edges_df$edge_to == ordered_nodes[i])
+
+      # Collect information into the 'node_properties' data frame
+      node_properties[i, 1] <- ordered_nodes[i]
+      node_properties[i, 2] <- labels[which(all_nodes %in% ordered_nodes[i])]
+      node_properties[i, 3] <- ifelse(exists("type"),
+                                      type[which(all_nodes %in% ordered_nodes[i])],
+                                      rep(NA, length(ordered_nodes)))
+      node_properties[i, 4] <- degree
+      node_properties[i, 5] <- predecessors
+      node_properties[i, 6] <- successors
+      node_properties[i, 7] <- loops
     }
 
-    # Collect information into the 'node_properties' data frame
-    node_properties[i, 1] <- ordered_nodes[i]
-    node_properties[i, 2] <- labels[which(all_nodes %in% ordered_nodes[i])]
-    node_properties[i, 3] <- ifelse(exists("type"),
-                                    type[which(all_nodes %in% ordered_nodes[i])],
-                                    rep(NA, length(ordered_nodes)))
-    node_properties[i, 4] <- predecessors
-    node_properties[i, 5] <- successors
+    return(node_properties)
   }
-
-  return(node_properties)
 }
