@@ -9,6 +9,9 @@ node_info(graph)
 \arguments{
 \item{graph}{a graph object of class 'gv_graph'.}
 }
+\value{
+a data frame containing information specific to each node within the graph.
+}
 \description{
 Returns a data frame with detailed information on nodes and their interrelationships within a graph.
 }
