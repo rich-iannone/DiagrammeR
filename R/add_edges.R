@@ -35,4 +35,14 @@ add_edges <- function(graph,
     edges_df_available <- ifelse(edges_df_valid & all_nodes_in_graph,
                                  TRUE, FALSE)
   }
+
+  if ((!is.null(edges_df) & edges_df_available == FALSE) |
+      (!is.null(from) & !is.null(to))){
+
+    # Ensure that the nodes specified are in the graph object
+    all_nodes_in_graph <- all(unique(c(from, to)) %in% get_nodes(graph))
+
+    from_to_available <- ifelse(all_nodes_in_graph, TRUE, FALSE)
+  }
+
 }
