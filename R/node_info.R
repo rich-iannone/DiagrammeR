@@ -24,6 +24,10 @@ node_info <- function(graph){
     edge_to <- graph$edges_df$to
   }
 
+  if ("relationship" %in% colnames(graph$nodes_df)){
+    relationship <- graph$nodes_df$relationship
+  }
+
   # Get vector of all node IDs
   all_nodes <- get_nodes(graph)
 
