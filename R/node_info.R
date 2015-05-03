@@ -34,6 +34,23 @@ node_info <- function(graph){
   # Get vector of all labels
   labels <- graph$nodes_df$label
 
+  # For graphs with no edges, create a 'node_properties' data frame that doesn't
+  # need to consider any edge information
+  if (is.null(graph$edges_df)){
+
+    node_properties <- as.data.frame(mat.or.vec(nr = length(all_nodes), nc = 5))
+    colnames(node_properties) <- c("node_ID", "label", "type", "predecessors", "successors")
+
+    node_properties[, 1] <- all_nodes
+    node_properties[, 2] <- labels
+    node_properties[, 3] <- ifelse(exists("type"),
+                                    type, rep(NA, length(all_nodes)))
+    node_properties[, 4] <- rep(0, length(all_nodes))
+    node_properties[, 5] <- rep(0, length(all_nodes))
+
+    return(node_properties)
+  }
+
   # Get vector of the top-level nodes
   top_nodes <- unique(edge_from[which(!(edge_from %in% edge_to))])
 
