@@ -46,54 +46,54 @@ node_info <- function(graph){
 
     if (i == 1){
       node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 4))
-      colnames(node_properties) <- c("node_ID", "label", "parents", "children")
+      colnames(node_properties) <- c("node_ID", "label", "predecessors", "successors")
     }
 
     #
-    # Get number of parents for each node
+    # Get number of predecessors for each node
     #
 
     if (ordered_nodes[i] %in% top_nodes){
-      parents <- 0
+      predecessors <- 0
     }
 
     if (!(ordered_nodes[i] %in% top_nodes)){
 
       for (j in 1:sum(edge_to %in% ordered_nodes[i])){
 
-        if (j == 1) parents <- vector(mode = "character")
+        if (j == 1) predecessors <- vector(mode = "character")
 
-        parents <- c(parents, edge_from[which(edge_to %in% ordered_nodes[i])[j]])
+        predecessors <- c(predecessors, edge_from[which(edge_to %in% ordered_nodes[i])[j]])
       }
 
-      parents <- length(parents)
+      predecessors <- length(predecessors)
     }
 
     #
-    # Get number of childrene for each node
+    # Get number of successors for each node
     #
 
     if (ordered_nodes[i] %in% bottom_nodes){
-      children <- 0
+      successors <- 0
     }
 
     if (!(ordered_nodes[i] %in% bottom_nodes)){
 
       for (j in 1:sum(edge_from %in% ordered_nodes[i])){
 
-        if (j == 1) children <- vector(mode = "character")
+        if (j == 1) successors <- vector(mode = "character")
 
-        children <- c(children, edge_from[which(edge_from %in% ordered_nodes[i])[j]])
+        successors <- c(successors, edge_from[which(edge_from %in% ordered_nodes[i])[j]])
       }
 
-      children <- length(children)
+      successors <- length(successors)
     }
 
     # Collect information into the 'node_properties' data frame
     node_properties[i, 1] <- ordered_nodes[i]
     node_properties[i, 2] <- labels[which(all_nodes %in% ordered_nodes[i])]
-    node_properties[i, 3] <- parents
-    node_properties[i, 4] <- children
+    node_properties[i, 3] <- predecessors
+    node_properties[i, 4] <- successors
   }
 
   return(node_properties)
