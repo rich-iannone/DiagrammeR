@@ -17,6 +17,22 @@ add_edges <- function(graph,
   edges_df_available <- FALSE
   from_to_available <- FALSE
 
+  if (!is.null(edges_df)){
 
-  return(gv_graph)
+    # Ensure that the appropriate columns specifying edges are present
+    edge_from_present <- "edge_from" %in% colnames(edges_df)
+    edge_to_present <- "edge_to" %in% colnames(edges_df)
+
+    from_present <- "from" %in% colnames(edges_df)
+    to_present <- "to" %in% colnames(edges_df)
+
+    edges_df_valid <- ((edge_from_present & edge_to_present) |
+                         (from_present & to_present))
+
+    # Ensure that the nodes specified are in the graph object
+    all_nodes_in_graph <- all(get_nodes(edges_df) %in% get_nodes(graph))
+
+    edges_df_available <- ifelse(edges_df_valid & all_nodes_in_graph,
+                                 TRUE, FALSE)
+  }
 }
