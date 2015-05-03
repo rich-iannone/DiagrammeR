@@ -9,10 +9,10 @@
 #' @export add_edges
 
 add_edges <- function(graph,
-                      edges = NULL,
-                      edge_from = NULL,
-                      edge_to = NULL,
-                      type = NULL){
+                      edges_df = NULL,
+                      from = NULL,
+                      to = NULL,
+                      relationship = NULL){
 
 
 
