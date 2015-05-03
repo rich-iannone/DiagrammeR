@@ -50,8 +50,8 @@ node_info <- function(graph){
   for (i in 1:length(ordered_nodes)){
 
     if (i == 1){
-      node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 4))
-      colnames(node_properties) <- c("node_ID", "label", "predecessors", "successors")
+      node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 5))
+      colnames(node_properties) <- c("node_ID", "label", "type", "predecessors", "successors")
     }
 
     #
@@ -97,8 +97,11 @@ node_info <- function(graph){
     # Collect information into the 'node_properties' data frame
     node_properties[i, 1] <- ordered_nodes[i]
     node_properties[i, 2] <- labels[which(all_nodes %in% ordered_nodes[i])]
-    node_properties[i, 3] <- predecessors
-    node_properties[i, 4] <- successors
+    node_properties[i, 3] <- ifelse(exists("type"),
+                                    type[which(all_nodes %in% ordered_nodes[i])],
+                                    rep(NA, length(ordered_nodes)))
+    node_properties[i, 4] <- predecessors
+    node_properties[i, 5] <- successors
   }
 
   return(node_properties)
