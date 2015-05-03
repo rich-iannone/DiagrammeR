@@ -3,6 +3,7 @@
 #' Returns a data frame with detailed information on nodes and their interrelationships within a graph.
 #'
 #' @param graph a graph object of class 'gv_graph'.
+#' @return a data frame containing information specific to each node within the graph.
 #' @export node_info
 
 node_info <- function(graph){
