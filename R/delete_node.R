@@ -17,4 +17,10 @@ delete_node <- function(graph,
     stop("Only a single node can be added using 'add_node")
   }
 
+  # Determine whether node to delete is in the graph
+  if (node_is_single_value == TRUE){
+
+    can_delete_node_id <- ifelse(node %in% get_nodes(graph), TRUE, FALSE)
+  }
+
 }
