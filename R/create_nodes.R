@@ -1,6 +1,6 @@
 #' Create nodes for Graphviz graphs
 #' @description Combine several named vectors for nodes and their attributes.
-#' @param ... one or more named vectors for nodes and associated attributes
+#' @param ... one or more named vectors for nodes and associated attributes.
 #' @return a node data frame
 #' @export
 
