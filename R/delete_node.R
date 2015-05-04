@@ -23,4 +23,21 @@ delete_node <- function(graph,
     can_delete_node_id <- ifelse(node %in% get_nodes(graph), TRUE, FALSE)
   }
 
+  # Modify graph if node is available
+  if (node_is_single_value & can_delete_node_id){
+
+    # Create a revised node data frame
+    revised_nodes_df <- graph$nodes_df[-which(graph$nodes_df$nodes == node),]
+
+    # Create a revised edge data frame
+    revised_edges_df <- graph$edges_df[-which((graph$edges_df$edge_from == node) |
+                                         (graph$edges_df$edge_to == node)),]
+
+    # Create a revised graph and return that graph
+    gv_graph <-
+      graphviz_graph(nodes_df = revised_nodes_df,
+                     edges_df = revised_edges_df)
+
+    return(gv_graph)
+  }
 }
