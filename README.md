@@ -669,6 +669,7 @@ devtools::install_github('rich-iannone/DiagrammeR')
 library("nycflights13")
 library("lubridate")
 library("DiagrammeR")
+library("pipeR")
  
 # Choose a day from 2013 for NYC flight data
 # (You can choose any Julian day, it's interesting to see results for different days)
