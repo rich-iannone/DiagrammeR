@@ -55,6 +55,28 @@ add_node <- function(graph,
                                                    label = label,
                                                    type = type))
 
+      if (node_attributes_provided == TRUE){
+
+        for (i in 1:length(node_attributes)){
+
+          if (names(node_attributes)[i] %in% colnames(combined_nodes)){
+
+            combined_nodes[nrow(combined_nodes),
+                           which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+              node_attributes[i][[1]]
+          }
+
+          if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
+
+            combined_nodes <- cbind(combined_nodes,
+                                    c(rep("", length = nrow(combined_nodes) - 1),
+                                      node_attributes[i][[1]]))
+
+            colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+          }
+        }
+      }
+
       combined_edges <- combine_edges(graph$edges_df,
                                       create_edges(edge_from = from,
                                                    edge_to = rep(node, length(from))))
@@ -82,6 +104,28 @@ add_node <- function(graph,
                                       create_nodes(nodes = node,
                                                    label = label,
                                                    type = type))
+
+      if (node_attributes_provided == TRUE){
+
+        for (i in 1:length(node_attributes)){
+
+          if (names(node_attributes)[i] %in% colnames(combined_nodes)){
+
+            combined_nodes[nrow(combined_nodes),
+                           which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+              node_attributes[i][[1]]
+          }
+
+          if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
+
+            combined_nodes <- cbind(combined_nodes,
+                                    c(rep("", length = nrow(combined_nodes) - 1),
+                                      node_attributes[i][[1]]))
+
+            colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+          }
+        }
+      }
 
       combined_edges <- combine_edges(graph$edges_df,
                                       create_edges(edge_from = rep(node, length(to)),
@@ -117,6 +161,28 @@ add_node <- function(graph,
                                                    label = label,
                                                    type = type))
 
+      if (node_attributes_provided == TRUE){
+
+        for (i in 1:length(node_attributes)){
+
+          if (names(node_attributes)[i] %in% colnames(combined_nodes)){
+
+            combined_nodes[nrow(combined_nodes),
+                           which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+              node_attributes[i][[1]]
+          }
+
+          if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
+
+            combined_nodes <- cbind(combined_nodes,
+                                    c(rep("", length = nrow(combined_nodes) - 1),
+                                      node_attributes[i][[1]]))
+
+            colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+          }
+        }
+      }
+
       combined_edges <- combine_edges(graph$edges_df,
                                       create_edges(edge_from = from,
                                                    edge_to = rep(node, length(from))))
@@ -141,10 +207,32 @@ add_node <- function(graph,
                                                  label = label,
                                                  type = type))
 
-    gv_graph <-
-      graphviz_graph(nodes_df = combined_nodes,
-                     edges_df = graph$edges_df)
+    if (node_attributes_provided == TRUE){
 
-    return(gv_graph)
+      for (i in 1:length(node_attributes)){
+
+        if (names(node_attributes)[i] %in% colnames(combined_nodes)){
+
+          combined_nodes[nrow(combined_nodes),
+                         which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+            node_attributes[i][[1]]
+        }
+
+        if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
+
+          combined_nodes <- cbind(combined_nodes,
+                c(rep("", length = nrow(combined_nodes) - 1),
+                  node_attributes[i][[1]]))
+
+          colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+        }
+      }
+
+      gv_graph <-
+        graphviz_graph(nodes_df = combined_nodes,
+                       edges_df = graph$edges_df)
+
+      return(gv_graph)
+    }
   }
 }
