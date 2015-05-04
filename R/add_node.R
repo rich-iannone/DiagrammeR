@@ -6,6 +6,7 @@
 #' @param to an optional vector containing node IDs to which edges will be directed from the new node.
 #' @param label a character object for supplying an optional label to the node. Setting to TRUE ascribes the node ID to the label. Setting to FALSE yields a blank label.
 #' @param type an optional string that describes the entity type for the node to be added.
+#' @param ... one or more vectors pertaining to node attributes.
 #' @return a graph object of class 'gv_graph'.
 #' @export add_node
 
