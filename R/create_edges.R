@@ -2,7 +2,7 @@
 #' @description Combine several named vectors for edges and their attributes.
 #' @param ... one or more named vectors for edges and associated attributes
 #' @return an edge data frame
-#' @export
+#' @export create_edges
 
 create_edges <- function(...){
 
