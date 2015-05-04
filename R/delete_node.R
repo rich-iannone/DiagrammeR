@@ -8,4 +8,7 @@
 delete_node <- function(graph,
                         node){
 
+  # Verify that 'node' is given as a single value
+  node_is_single_value <- ifelse(length(node) == 1, TRUE, FALSE)
+
 }
