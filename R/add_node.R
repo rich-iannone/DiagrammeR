@@ -22,6 +22,15 @@ add_node <- function(graph,
   # Stop function if node not a single value
   if (node_is_single_value == FALSE){
 
+    stop("Only a single node can be added using 'add_node")
+  }
+
+  # Determine whether node to add is already in graph
+  if (node_is_single_value == TRUE){
+
+    can_add_node_id <- ifelse(!(node %in% get_nodes(graph)), TRUE, FALSE)
+  }
+
 
 
 }
