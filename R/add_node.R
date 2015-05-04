@@ -87,6 +87,44 @@ add_node <- function(graph,
     }
   }
 
+  # Modify graph if both 'to' and 'from' values provided
+  if (!is.null(from) & !is.null(to)){
+
+    from_nodes_available <- ifelse(all(from %in% get_nodes(graph)), TRUE, FALSE)
+
+    to_nodes_available <- ifelse(all(to %in% get_nodes(graph)), TRUE, FALSE)
+
+    if (from_nodes_available == FALSE){
+      stop("The nodes from which edges should be applied to the new node are not available.")
+    }
+
+    if (to_nodes_available == FALSE){
+      stop("The nodes to which edges should be applied from the new node are not available.")
+    }
+
+    if (from_nodes_available & to_nodes_available){
+
+      combined_nodes <- combine_nodes(graph$nodes_df,
+                                      create_nodes(nodes = node,
+                                                   label = label,
+                                                   type = type))
+
+      combined_edges <- combine_edges(graph$edges_df,
+                                      create_edges(from = from,
+                                                   to = rep(node, length(from))))
+
+      combined_edges <- combine_edges(combined_edges,
+                                      create_edges(from = rep(node, length(to)),
+                                                   to = to))
+
+      gv_graph <-
+        graphviz_graph(nodes_df = combined_nodes,
+                       edges_df = combined_edges)
+
+      return(gv_graph)
+    }
+  }
+
 
 
 }
