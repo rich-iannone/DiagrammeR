@@ -4,21 +4,20 @@
 \alias{add_node}
 \title{Add a node to an existing graph object}
 \usage{
-add_node(graph, node = NULL, from = NULL, to = NULL, label = NULL,
-  type = NULL)
+add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
 
 \item{node}{a node ID for the newly connected node.}
 
-\item{from}{a vector containing node IDs from which edges will be directed to the new node.}
+\item{from}{an optional vector containing node IDs from which edges will be directed to the new node.}
 
-\item{to}{a vector containing node IDs to which edges will be directed from the new node.}
+\item{to}{an optional vector containing node IDs to which edges will be directed from the new node.}
 
-\item{label}{an optional label to be ascribed to the node for visual display.}
+\item{label}{a character object for supplying an optional label to the node. Setting to TRUE ascribes the node ID to the label. Setting to FALSE yields a blank label.}
 
-\item{type}{a vector of strings reppresenting the entity type for the nodes.}
+\item{type}{an optional string that describes the entity type for the node to be added.}
 }
 \value{
 a graph object of class 'gv_graph'.
