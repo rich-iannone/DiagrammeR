@@ -85,6 +85,7 @@ add_node <- function(graph,
         graphviz_graph(nodes_df = combined_nodes,
                        edges_df = combined_edges)
 
+      # Create a revised graph and return that graph
       return(gv_graph)
     }
   }
@@ -135,6 +136,7 @@ add_node <- function(graph,
         graphviz_graph(nodes_df = combined_nodes,
                        edges_df = combined_edges)
 
+      # Create a revised graph and return that graph
       return(gv_graph)
     }
   }
@@ -195,6 +197,7 @@ add_node <- function(graph,
         graphviz_graph(nodes_df = combined_nodes,
                        edges_df = combined_edges)
 
+      # Create a revised graph and return that graph
       return(gv_graph)
     }
   }
@@ -228,6 +231,7 @@ add_node <- function(graph,
         }
       }
 
+      # Create a revised graph and return that graph
       gv_graph <-
         graphviz_graph(nodes_df = combined_nodes,
                        edges_df = graph$edges_df)
