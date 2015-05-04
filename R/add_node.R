@@ -56,8 +56,8 @@ add_node <- function(graph,
                                                    type = type))
 
       combined_edges <- combine_edges(graph$edges_df,
-                                      create_edges(from = from,
-                                                   to = rep(node, length(from))))
+                                      create_edges(edge_from = from,
+                                                   edge_to = rep(node, length(from))))
 
       gv_graph <-
         graphviz_graph(nodes_df = combined_nodes,
@@ -84,8 +84,8 @@ add_node <- function(graph,
                                                    type = type))
 
       combined_edges <- combine_edges(graph$edges_df,
-                                      create_edges(from = rep(node, length(to)),
-                                                   to = to))
+                                      create_edges(edge_from = rep(node, length(to)),
+                                                   edge_to = to))
 
       gv_graph <-
         graphviz_graph(nodes_df = combined_nodes,
@@ -118,12 +118,12 @@ add_node <- function(graph,
                                                    type = type))
 
       combined_edges <- combine_edges(graph$edges_df,
-                                      create_edges(from = from,
-                                                   to = rep(node, length(from))))
+                                      create_edges(edge_from = from,
+                                                   edge_to = rep(node, length(from))))
 
       combined_edges <- combine_edges(combined_edges,
-                                      create_edges(from = rep(node, length(to)),
-                                                   to = to))
+                                      create_edges(edge_from = rep(node, length(to)),
+                                                   edge_to = to))
 
       gv_graph <-
         graphviz_graph(nodes_df = combined_nodes,
