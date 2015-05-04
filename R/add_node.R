@@ -36,6 +36,9 @@ add_node <- function(graph,
   # Place triple dot vectors in a list
   node_attributes <- list(...)
 
+  # Determine whether optional node attributes provided
+  node_attributes_provided <- ifelse(length(node_attributes) > 0, TRUE, FALSE)
+
   # Modify graph if only 'from' values provided
   if (!is.null(from) & is.null(to)){
 
