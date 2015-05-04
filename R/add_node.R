@@ -16,6 +16,9 @@ add_node <- function(graph,
                      label = TRUE,
                      type = NULL){
 
+  # Verify that 'node' is given as a single value
+  node_is_single_value <- ifelse(length(node) == 1, TRUE, FALSE)
+
 
 
 }
