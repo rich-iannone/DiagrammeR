@@ -10,10 +10,10 @@
 #' @export add_node
 
 add_node <- function(graph,
-                     node = NULL,
+                     node,
                      from = NULL,
                      to = NULL,
-                     label = NULL,
+                     label = TRUE,
                      type = NULL){
 
 
