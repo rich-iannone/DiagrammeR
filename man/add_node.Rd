@@ -4,7 +4,8 @@
 \alias{add_node}
 \title{Add a node to an existing graph object}
 \usage{
-add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL)
+add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL,
+  ...)
 }
 \arguments{
 \item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
@@ -18,6 +19,8 @@ add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL)
 \item{label}{a character object for supplying an optional label to the node. Setting to TRUE ascribes the node ID to the label. Setting to FALSE yields a blank label.}
 
 \item{type}{an optional string that describes the entity type for the node to be added.}
+
+\item{...}{one or more vectors pertaining to node attributes.}
 }
 \value{
 a graph object of class 'gv_graph'.

@@ -7,7 +7,7 @@
 create_nodes(...)
 }
 \arguments{
-\item{...}{one or more named vectors for nodes and associated attributes}
+\item{...}{one or more named vectors for nodes and associated attributes.}
 }
 \value{
 a node data frame
