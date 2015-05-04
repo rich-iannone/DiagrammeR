@@ -11,4 +11,10 @@ delete_node <- function(graph,
   # Verify that 'node' is given as a single value
   node_is_single_value <- ifelse(length(node) == 1, TRUE, FALSE)
 
+  # Stop function if node not a single value
+  if (node_is_single_value == FALSE){
+
+    stop("Only a single node can be added using 'add_node")
+  }
+
 }
