@@ -140,7 +140,4 @@ add_node <- function(graph,
       return(gv_graph)
     }
   }
-
-
-
 }
