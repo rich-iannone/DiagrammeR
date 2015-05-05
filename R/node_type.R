@@ -5,7 +5,7 @@
 #' @param mode the type of operation to perform post-query. To remove the type definition from a node, use either 'delete', 'remove', or 'drop'. To add a type definition to a node with no type set, use 'add' or 'create'. To update a node's type definition, use 'update'. To return the value of a node type, use 'read'. To determine whether there is a type set for the selected node, use 'available'.
 #' @param value a string denoting the node type, supplied only if 'mode' was set to either 'add', 'create', or 'update'.
 #' @return a graph object of class 'gv_graph'.
-#' @export edge_relationship
+#' @export node_type
 
 node_type <- function(graph,
                       node,
