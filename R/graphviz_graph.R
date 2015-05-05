@@ -14,6 +14,29 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
                            graph_attrs = NULL, node_attrs = NULL,
                            edge_attrs = NULL, directed = TRUE){
 
+  # If nodes, edges, and attributes not provided, create empty graph
+  if (all(c(is.null(nodes_df), is.null(edges_df),
+        is.null(graph_attrs), is.null(node_attrs),
+        is.null(edge_attrs)))){
+
+    # Create DOT code with nothing in graph
+    dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
+                       " {\n", "\n}")
+
+    # Create the 'gv_graph' list object
+    gv_graph <- list(nodes_df = NULL,
+                     edges_df = NULL,
+                     graph_attrs = NULL,
+                     node_attrs = NULL,
+                     edge_attrs = NULL,
+                     directed = ifelse(directed == TRUE, TRUE, FALSE),
+                     dot_code = dot_code)
+
+    attr(gv_graph, "class") <- "gv_graph"
+
+    return(gv_graph)
+  }
+
   # Perform basic checks of the inputs
   if (!is.null(nodes_df)){
 
