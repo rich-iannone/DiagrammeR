@@ -28,3 +28,19 @@ node_type <- function(graph,
 
     type_set <- ifelse(graph$nodes_df$type[node_row] == "",
                                FALSE, TRUE)
+
+    # Remove type if a type is set
+    if (mode %in% c("delete", "remove", "drop")){
+
+      if (type_set == FALSE){
+
+        return(graph)
+      }
+
+      if (type_set == TRUE){
+
+        graph$nodes_df$type[node_row] <- ""
+
+        return(graph)
+      }
+    }
