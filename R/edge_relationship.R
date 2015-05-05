@@ -30,4 +30,20 @@ edge_relationship <- function(graph,
     relationship_set <- ifelse(graph$edges_df$relationship[edge_row] == "",
                                FALSE, TRUE)
 
+    # Remove relationship if a relationship is set
+    if (mode %in% c("delete", "remove", "drop")){
+
+      if (relationship_set == FALSE){
+
+        return(graph)
+      }
+
+      if (relationship_set == TRUE){
+
+        graph$edges_df$relationship[edge_row] <- ""
+
+        return(graph)
+      }
+    }
+
 }
