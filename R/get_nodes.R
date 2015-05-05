@@ -1,8 +1,7 @@
 #' Get vector of node IDs
-#'
 #' Provides information on the node IDs from one or several node data frames, edge data frames, or graph objects.
-#'
 #' @param ... a collection of node data frames, edge data frames, or graph objects.
+#' @return a vector of node ID values
 #' @export get_nodes
 
 get_nodes <- function(...){
