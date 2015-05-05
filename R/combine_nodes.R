@@ -1,4 +1,4 @@
-#' Combine node data frames for Graphviz graphs
+#' Combine multiple node data frames into a single node data frame
 #' @description Combine several node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
 #' @param ... two or more node data frames, which contain node IDs and associated attributes
 #' @return a combined node data frame
