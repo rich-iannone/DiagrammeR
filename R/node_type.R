@@ -44,3 +44,19 @@ node_type <- function(graph,
         return(graph)
       }
     }
+
+    # Add a type to a node with no type definition set
+    if (mode %in% c("add", "create")){
+
+      if (type_set == TRUE){
+
+        return(graph)
+      }
+
+      if (type_set == FALSE & !is.null(value)){
+
+        graph$nodes_df$type[node_row] <- value
+
+        return(graph)
+      }
+    }
