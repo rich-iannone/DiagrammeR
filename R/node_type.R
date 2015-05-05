@@ -76,3 +76,19 @@ node_type <- function(graph,
         return(graph)
       }
     }
+
+    # Return the value of an existing node type
+    if (mode == "read"){
+
+      if (type_set == FALSE){
+
+        return(NA)
+      }
+
+      if (type_set == TRUE){
+
+        type_value <- graph$nodes_df$type[node_row]
+
+        return(type_value)
+      }
+    }
