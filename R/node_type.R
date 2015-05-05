@@ -12,5 +12,6 @@ node_type <- function(graph,
                       mode = "read",
                       value = NULL){
 
-}
 
+  # Determine if node is present within the graph
+  node_is_in_graph <- node_present(graph = graph, node = node)
