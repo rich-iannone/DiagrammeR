@@ -589,7 +589,8 @@ graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
   dot_code <- gsub(" \\[\\] ", "", dot_code)
 
   # Create the 'gv_graph' list object
-  gv_graph <- list(nodes_df = nodes_df, edges_df = edges_df,
+  gv_graph <- list(nodes_df = nodes_df,
+                   edges_df = edges_df,
                    graph_attrs = graph_attrs,
                    node_attrs = node_attrs,
                    edge_attrs = edge_attrs,
