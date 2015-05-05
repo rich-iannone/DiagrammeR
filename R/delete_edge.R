@@ -10,10 +10,6 @@ delete_edge <- function(graph,
                         from,
                         to){
 
-  graph <- graph_6
-  from <- "a"
-  to <- "d"
-
   # Verify that each of the values for 'from' and 'to' are given as a single values
   from_is_single_value <- ifelse(length(from) == 1, TRUE, FALSE)
   to_is_single_value <- ifelse(length(to) == 1, TRUE, FALSE)
