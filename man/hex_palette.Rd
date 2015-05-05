@@ -17,7 +17,7 @@ hex_palette(number, hue_range = c(0, 360), chroma_range = c(0, 3),
 \item{alpha}{an optional alpha value in the range of 0-100 to append to the hexadecimal color values.}
 }
 \value{
-vector of hexadecimal color values
+a vector of hexadecimal color values
 }
 \description{
 Generate a randomized set of colors from the CIE Lab Color space using a set of HCL range values.

@@ -2,14 +2,19 @@
 % Please edit documentation in R/get_nodes.R
 \name{get_nodes}
 \alias{get_nodes}
-\title{Get vector of node IDs}
+\title{Get vector of node IDs
+Provides information on the node IDs from one or several node data frames, edge data frames, or graph objects.}
 \usage{
 get_nodes(...)
 }
 \arguments{
 \item{...}{a collection of node data frames, edge data frames, or graph objects.}
 }
+\value{
+a vector of node ID values
+}
 \description{
+Get vector of node IDs
 Provides information on the node IDs from one or several node data frames, edge data frames, or graph objects.
 }
 
