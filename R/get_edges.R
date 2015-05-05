@@ -62,7 +62,6 @@ get_edges <- function(...,
 
     edge_list[[1]] <- c(edge_list[[1]], object[,from_column])
     edge_list[[2]] <- c(edge_list[[2]], object[,to_column])
-
   }
 
   if (object_type == "edge_df"){
@@ -84,13 +83,11 @@ get_edges <- function(...,
 
     edge_list[[1]] <- c(edge_list[[1]], object[,from_column])
     edge_list[[2]] <- c(edge_list[[2]], object[,to_column])
-
   }
 
   if (return_type == "list"){
 
     return(edge_list)
-
   }
 
   if (return_type == "df"){
