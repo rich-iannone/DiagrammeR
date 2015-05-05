@@ -92,3 +92,19 @@ node_type <- function(graph,
         return(type_value)
       }
     }
+
+    # Determine whether a node type definition has been set
+    if (mode == "available"){
+
+      if (type_set == FALSE){
+
+        return(FALSE)
+      }
+
+      if (type_set == TRUE){
+
+        return(TRUE)
+      }
+    }
+  }
+}
