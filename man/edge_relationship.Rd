@@ -4,7 +4,7 @@
 \alias{edge_relationship}
 \title{Create, read, update, delete, or report status of an edge relationship}
 \usage{
-edge_relationship(graph, from, to, mode = "update", value = NULL)
+edge_relationship(graph, from, to, mode = "read", value = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
