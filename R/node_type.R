@@ -60,3 +60,19 @@ node_type <- function(graph,
         return(graph)
       }
     }
+
+    # Update an existing type definition for a node
+    if (mode == "update"){
+
+      if (type_set == FALSE){
+
+        return(graph)
+      }
+
+      if (type_set == TRUE & !is.null(value)){
+
+        graph$nodes_df$type[node_row] <- value
+
+        return(graph)
+      }
+    }
