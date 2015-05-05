@@ -9,10 +9,10 @@
 #' @export edge_relationship
 
 edge_relationship <- function(graph,
-                         from,
-                         to,
-                         mode = "update",
-                         value = NULL){
+                              from,
+                              to,
+                              mode = "read",
+                              value = NULL){
 
 
 }
