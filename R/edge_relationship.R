@@ -62,4 +62,20 @@ edge_relationship <- function(graph,
       }
     }
 
+    # Update an existing relationship for an edge
+    if (mode == "update"){
+
+      if (relationship_set == FALSE){
+
+        return(graph)
+      }
+
+      if (relationship_set == TRUE & !is.null(value)){
+
+        graph$edges_df$relationship[edge_row] <- value
+
+        return(graph)
+      }
+    }
+
 }
