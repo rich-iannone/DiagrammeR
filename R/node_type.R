@@ -21,3 +21,10 @@ node_type <- function(graph,
 
     stop("The specified node is not present in the graph.")
   }
+
+  if (node_is_in_graph == TRUE){
+
+    node_row <- which(graph$nodes_df$nodes == node)
+
+    type_set <- ifelse(graph$nodes_df$type[node_row] == "",
+                               FALSE, TRUE)
