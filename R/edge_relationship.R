@@ -46,4 +46,20 @@ edge_relationship <- function(graph,
       }
     }
 
+    # Add a relationship to an edge with no set relationship
+    if (mode %in% c("add", "create")){
+
+      if (relationship_set == TRUE){
+
+        return(graph)
+      }
+
+      if (relationship_set == FALSE & !is.null(value)){
+
+        graph$edges_df$relationship[edge_row] <- value
+
+        return(graph)
+      }
+    }
+
 }
