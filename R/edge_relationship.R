@@ -17,4 +17,10 @@ edge_relationship <- function(graph,
   # Determine if edge is present within the graph
   edge_is_in_graph <- edge_present(graph = graph, from = from, to = to)
 
+  # Stop function if edge is not present within the graph
+  if (edge_is_in_graph == FALSE){
+
+    stop("The specified edge is not present in the graph.")
+  }
+
 }
