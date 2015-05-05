@@ -78,4 +78,20 @@ edge_relationship <- function(graph,
       }
     }
 
+    # Return the value of an existing relationship for an edge
+    if (mode == "read"){
+
+      if (relationship_set == FALSE){
+
+        return(NA)
+      }
+
+      if (relationship_set == TRUE){
+
+        relationship_value <- graph$edges_df$relationship[edge_row]
+
+        return(relationship_value)
+      }
+    }
+
 }
