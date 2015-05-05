@@ -23,4 +23,11 @@ edge_relationship <- function(graph,
     stop("The specified edge is not present in the graph.")
   }
 
+  if (edge_is_in_graph == TRUE){
+
+    edge_row <- which(graph$edges_df$edge_from == from & graph$edges_df$edge_to == to)
+
+    relationship_set <- ifelse(graph$edges_df$relationship[edge_row] == "",
+                               FALSE, TRUE)
+
 }
