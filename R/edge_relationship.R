@@ -14,5 +14,7 @@ edge_relationship <- function(graph,
                               mode = "read",
                               value = NULL){
 
+  # Determine if edge is present within the graph
+  edge_is_in_graph <- edge_present(graph = graph, from = from, to = to)
 
 }
