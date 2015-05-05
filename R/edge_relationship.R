@@ -94,7 +94,7 @@ edge_relationship <- function(graph,
       }
     }
 
-    # Return the value of an existing relationship for an edge
+    # Determine whether a relationship has been set
     if (mode == "available"){
 
       if (relationship_set == FALSE){
