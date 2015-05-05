@@ -14,7 +14,7 @@ delete_node <- function(graph,
   # Stop function if node not a single value
   if (node_is_single_value == FALSE){
 
-    stop("Only a single node can be added using 'add_node")
+    stop("Only a single node can be added using 'add_node'")
   }
 
   # Determine whether node to delete is in the graph
