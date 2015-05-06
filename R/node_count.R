@@ -112,9 +112,13 @@ node_count <- function(graph,
 
       types_are_available <- ifelse(all(type %in% all_types), TRUE, FALSE)
 
+      if (types_are_available){
 
+        unset_type_for_node_count <- nrow(subset(graph$nodes_df, type == ''))
 
+        if (type == ""){
 
+          total_node_count <- unset_type_for_node_count
         }
 
 
