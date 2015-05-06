@@ -121,7 +121,9 @@ node_count <- function(graph,
           total_node_count <- unset_type_for_node_count
         }
 
+        if (type != ""){
 
+          nodes_df_set_type <- graph$nodes_df[-which(graph$nodes_df$type == ''),]
 
           for (i in 1:length(type)){
 
@@ -138,9 +140,13 @@ node_count <- function(graph,
           }
         }
 
+        if (types_are_available == FALSE){
 
+          total_node_count <- NA
         }
       }
     }
+
+    return(total_node_count)
   }
 }
