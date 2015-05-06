@@ -97,6 +97,12 @@ node_count <- function(graph,
           all_types <- vector(mode = "character")
         }
 
+        all_types <- c(all_types,
+                       node_type(graph = graph,
+                                 all_nodes[i],
+                                 mode = "read"))
+
+        all_types <- unique(all_types)
 
       }
 
