@@ -104,6 +104,10 @@ node_count <- function(graph,
 
         all_types <- unique(all_types)
 
+        if (any(is.na(all_types))){
+
+          all_types[which(is.na(all_types))] <- ""
+        }
       }
 
 
