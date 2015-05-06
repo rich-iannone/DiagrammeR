@@ -65,8 +65,21 @@ node_count <- function(graph,
 
         if (i == length(all_types)){
           names(total_node_count) <- all_types
+
+          if (any(names(total_node_count) == "")){
+            names(total_node_count)[which(names(total_node_count) == "")] <- "<no type>"
+
+            total_node_count <-
+              c(total_node_count[which(names(total_node_count) == "<no type>")],
+                total_node_count[-which(names(total_node_count) == "<no type>")])
+          }
         }
       }
+    }
+
+    return(total_node_count)
+  }
+
 
       return(total_node_count)
     }
