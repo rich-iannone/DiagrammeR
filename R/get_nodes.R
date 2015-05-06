@@ -8,6 +8,9 @@ get_nodes <- function(...){
 
   objects <- list(...)
 
+  # Determine the length of the 'objects' list
+  length_of_objects <- length(objects)
+
   for (i in 1:length(objects)){
 
     if (i == 1) node_ID <- vector(mode = "character")
