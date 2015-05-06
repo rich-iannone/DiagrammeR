@@ -11,6 +11,19 @@ get_nodes <- function(...){
   # Determine the length of the 'objects' list
   length_of_objects <- length(objects)
 
+  # If there is more than one object supplied, check for existance of a graph object
+  if (length_of_objects > 1){
+
+    # Determine the classes of the first two objects
+    class_object_1 <- class(objects[[1]])
+    class_object_2 <- class(objects[[2]])
+
+    if (any("gv_graph" %in% c(class_object_1, class_object_2))){
+
+      stop("Only a single graph can be supplied.")
+    }
+  }
+
   for (i in 1:length(objects)){
 
     if (i == 1) node_ID <- vector(mode = "character")
