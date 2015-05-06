@@ -48,6 +48,10 @@ node_count <- function(graph,
                                  mode = "read"))
         all_types <- unique(all_types)
 
+        if (any(is.na(all_types))){
+
+          all_types[which(is.na(all_types))] <- ""
+        }
       }
 
       for (i in 1:length(all_types)){
