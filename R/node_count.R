@@ -62,7 +62,6 @@ node_count <- function(graph,
           c(total_node_count,
             nrow(graph$nodes_df[which(graph$nodes_df$type == all_types[i]),]))
 
-
         if (i == length(all_types)){
           names(total_node_count) <- all_types
 
