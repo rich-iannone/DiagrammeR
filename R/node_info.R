@@ -42,8 +42,13 @@ node_info <- function(graph){
 
     node_properties[, 1] <- all_nodes
     node_properties[, 2] <- labels
-    node_properties[, 3] <- ifelse(exists("type"),
-                                   type, rep(NA, length(all_nodes)))
+
+    if (exists("type")){
+      node_properties[, 3] <- type
+    } else {
+      node_properties[, 3] <- rep(NA, length(all_nodes))
+    }
+
     node_properties[, 4] <- rep(0, length(all_nodes))
     node_properties[, 5] <- rep(0, length(all_nodes))
     node_properties[, 6] <- rep(0, length(all_nodes))
