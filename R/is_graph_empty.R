@@ -6,5 +6,9 @@
 
 is_graph_empty <- function(graph){
 
+  # Determine if graph is empty by checking for NULL value
+  graph_is_empty <- is.null(graph$nodes_df)
+
+  return(graph_is_empty)
 
 }
