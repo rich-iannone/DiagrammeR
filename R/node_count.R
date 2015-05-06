@@ -110,6 +110,7 @@ node_count <- function(graph,
         }
       }
 
+      types_are_available <- ifelse(all(type %in% all_types), TRUE, FALSE)
 
 
 
