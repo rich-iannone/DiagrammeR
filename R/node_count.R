@@ -88,8 +88,14 @@ node_count <- function(graph,
       total_node_count <- 0
     }
 
-    # If type is a character vector, get counts by supplied types
-    if (class(type) == "character"){
+    if (is_graph_empty(graph) == FALSE){
+
+      for (i in 1:length(get_nodes(graph))){
+
+        if (i == 1){
+          all_nodes <- get_nodes(graph)
+          all_types <- vector(mode = "character")
+        }
 
       if (is_graph_empty(graph) == TRUE){
 
