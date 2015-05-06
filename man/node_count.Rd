@@ -4,14 +4,14 @@
 \alias{node_count}
 \title{Get count of all nodes or certain types of nodes}
 \usage{
-node_count(graph, node, type = FALSE)
+node_count(graph, type = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
 
-\item{node}{a value that may or may not match a node ID in the graph.}
-
 \item{type}{either a logical value, where TRUE provides a named vector of node count by type and FALSE (the default) provides a total count, or, a string corresponding to one or more node types.}
+
+\item{node}{a value that may or may not match a node ID in the graph.}
 }
 \value{
 a logical value
