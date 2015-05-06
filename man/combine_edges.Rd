@@ -2,7 +2,7 @@
 % Please edit documentation in R/combine_edges.R
 \name{combine_edges}
 \alias{combine_edges}
-\title{Combine edge data frames for Graphviz graphs}
+\title{Combine multiple edge data frames into a single edge data frame}
 \usage{
 combine_edges(...)
 }

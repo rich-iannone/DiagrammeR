@@ -8,9 +8,9 @@ graphviz_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
   node_attrs = NULL, edge_attrs = NULL, directed = TRUE)
 }
 \arguments{
-\item{nodes_df}{a data frame containing, at minimum, a column (called 'nodes') which contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.}
+\item{nodes_df}{an optional data frame containing, at minimum, a column (called 'nodes') which contains node IDs for the graph. Additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.}
 
-\item{edges_df}{a data frame containing, at minimum, a column (called 'edge_op') with edge operations as character strings (in the form of '[node_id] -> [node_id]). Alternatively, there may be two columns (called 'edge_from' and 'edge_to') where node IDs are provided. Optionally, additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.}
+\item{edges_df}{an optional data frame containing, at minimum, a column (called 'edge_op') with edge operations as character strings (in the form of '[node_id] -> [node_id]). Alternatively, there may be two columns (called 'edge_from' and 'edge_to') where node IDs are provided. Additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.}
 
 \item{graph_attrs}{an optional vector of graph attribute statements that can serve as defaults for the graph.}
 
@@ -19,6 +19,9 @@ graphviz_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
 \item{edge_attrs}{an optional vector of edge attribute statements that can serve as defaults for edges.}
 
 \item{directed}{with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.}
+}
+\value{
+a graph object of class 'gv_graph'.
 }
 \description{
 Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
