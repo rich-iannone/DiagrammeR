@@ -80,8 +80,9 @@ node_count <- function(graph,
     return(total_node_count)
   }
 
+  # If type is a character vector, get counts by supplied types
+  if (class(type) == "character"){
 
-      return(total_node_count)
     }
 
     # If type is a character vector, get counts by supplied types
