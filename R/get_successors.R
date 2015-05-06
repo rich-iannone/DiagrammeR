@@ -17,7 +17,15 @@ get_successors <- function(graph,
   # Obtain the node's successors
   if (graph_is_not_empty & node_is_in_graph & nrow(edge_info(graph)) > 0){
 
-    successors <- graph$edges_df[graph$edges_df$edge_from == node,]$edge_to
+    if (length(graph$edges_df[graph$edges_df$edge_from == node,]$edge_to) == 0){
+
+      successors <- NA
+
+    } else {
+
+      successors <- graph$edges_df[graph$edges_df$edge_from == node,]$edge_to
+
+    }
 
     return(successors)
   }
