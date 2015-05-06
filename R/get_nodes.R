@@ -50,16 +50,31 @@ get_nodes <- function(...){
 
     if (object_type == "gv_graph"){
 
+      if (is_graph_empty(object)){
+
+        node_ID <- NA
+
+        return(node_ID)
+      }
+
       object <- object$nodes_df
 
       if ("node" %in% colnames(object)){
+
         nodes_column <- which("node" %in% colnames(object))
+
       } else if ("nodes" %in% colnames(object)){
+
         nodes_column <- which("nodes" %in% colnames(object))
+
       } else if ("node_id" %in% colnames(object)){
+
         nodes_column <- which("node_id" %in% colnames(object))
+
       } else {
+
         stop("There is no column with node ID information.")
+
       }
 
       node_ID <- c(node_ID, object[,nodes_column])
@@ -68,13 +83,21 @@ get_nodes <- function(...){
     if (object_type == "node_df"){
 
       if ("node" %in% colnames(object)){
+
         nodes_column <- which("node" %in% colnames(object))
+
       } else if ("nodes" %in% colnames(object)){
+
         nodes_column <- which("nodes" %in% colnames(object))
+
       } else if ("node_id" %in% colnames(object)){
+
         nodes_column <- which("node_id" %in% colnames(object))
+
       } else {
+
         stop("There is no column with node ID information.")
+
       }
 
       node_ID <- c(node_ID, object[,nodes_column])
@@ -105,6 +128,7 @@ get_nodes <- function(...){
   all_ID_unique <- ifelse(anyDuplicated(node_ID) == 0, TRUE, FALSE)
 
   if (all_ID_unique == TRUE){
+
     return(node_ID)
   }
 }
