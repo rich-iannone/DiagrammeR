@@ -7,7 +7,6 @@
 #' @export node_count
 
 node_count <- function(graph,
-                       node,
                        type = FALSE){
 
 
