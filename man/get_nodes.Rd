@@ -7,7 +7,7 @@
 get_nodes(...)
 }
 \arguments{
-\item{...}{a collection of node data frames, edge data frames, or graph objects.}
+\item{...}{a collection of node data frames, edge data frames, or a single graph object.}
 }
 \value{
 a vector of node ID values
