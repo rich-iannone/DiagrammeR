@@ -97,31 +97,16 @@ node_count <- function(graph,
           all_types <- vector(mode = "character")
         }
 
-      if (is_graph_empty(graph) == TRUE){
 
-        total_node_count <- 0
       }
 
-      if (is_graph_empty(graph) == FALSE){
 
-        for (i in 1:length(get_nodes(graph))){
 
-          if (i == 1){
-            all_nodes <- get_nodes(graph)
-            all_types <- vector(mode = "character")
-          }
 
-          all_types <- c(all_types,
-                         node_type(graph = graph,
-                                   all_nodes[i],
-                                   mode = "read"))
-          all_types <- unique(all_types)
 
         }
 
-        types_are_available <- ifelse(all(type %in% all_types), TRUE, FALSE)
 
-        if (types_are_available){
 
           for (i in 1:length(type)){
 
@@ -138,12 +123,7 @@ node_count <- function(graph,
           }
         }
 
-          if (types_are_available == FALSE){
 
-            total_node_count <- NA
-          }
-
-          return(total_node_count)
         }
       }
     }
