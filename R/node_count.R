@@ -54,8 +54,10 @@ node_count <- function(graph,
 
         if (i == 1) total_node_count <- vector(mode = "numeric")
 
-        total_node_count <- c(total_node_count,
-                              nrow(subset(graph$nodes_df, type == all_types[i])))
+        total_node_count <-
+          c(total_node_count,
+            nrow(graph$nodes_df[which(graph$nodes_df$type == all_types[i]),]))
+
 
         if (i == length(all_types)){
           names(total_node_count) <- all_types
@@ -98,13 +100,16 @@ node_count <- function(graph,
 
             if (i == 1) total_node_count <- vector(mode = "numeric")
 
-            total_node_count <- c(total_node_count,
-                                  nrow(subset(graph$nodes_df, type == type[i])))
+            total_node_count <-
+              c(total_node_count,
+                nrow(nodes_df_set_type[which(nodes_df_set_type$type == type[i]),]))
 
             if (i == length(type)){
+
               names(total_node_count) <- type
             }
           }
+        }
 
           if (types_are_available == FALSE){
 
