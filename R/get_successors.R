@@ -8,4 +8,7 @@
 get_successors <- function(graph,
                            node){
 
+  # Determine whether graph has nodes
+  graph_is_not_empty <- !is_graph_empty(graph)
+
 }
