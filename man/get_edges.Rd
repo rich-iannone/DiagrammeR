@@ -15,6 +15,6 @@ get_edges(..., return_type = "list")
 a list, data frame, or a vector object, depending on the value given to 'return_type'.
 }
 \description{
-Provides information on the node IDs associated with edges from one or several node data frames, edge data frames, or graph objects.
+Provides information on the node IDs associated with edges from one or more edge data frames, or, a graph object.
 }
 
