@@ -2,17 +2,17 @@
 % Please edit documentation in R/create_edges.R
 \name{create_edges}
 \alias{create_edges}
-\title{Create edges for Graphviz graphs}
+\title{Create a data frame with edges and their attributes}
 \usage{
 create_edges(...)
 }
 \arguments{
-\item{...}{one or more named vectors for edges and associated attributes}
+\item{...}{one or more named vectors for edges and associated attributes.}
 }
 \value{
-an edge data frame
+a data frame
 }
 \description{
-Combine several named vectors for edges and their attributes.
+Combine several named vectors for edges and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
 }
 
