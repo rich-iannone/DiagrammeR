@@ -1,5 +1,5 @@
 #' Get node IDs associated with edges
-#' @description Provides information on the node IDs associated with edges from one or several node data frames, edge data frames, or graph objects.
+#' @description Provides information on the node IDs associated with edges from one or more edge data frames, or, a graph object.
 #' @param ... a collection of edge data frames or graph objects.
 #' @param return_type using 'list' (the default) will provide a list object containing vectors of outgoing and incoming node IDs associated with edges. With 'df', a data frame containing outgoing and incoming node IDs associated with edges. With 'vector' or 'string', a vector of character objects representing the edges is provided.
 #' @return a list, data frame, or a vector object, depending on the value given to 'return_type'.
