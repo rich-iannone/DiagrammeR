@@ -3,15 +3,15 @@
 #' @param graph a graph object of class 'gv_graph' that is created using 'graphviz_graph'.
 #' @param from a node ID from which the edge to be queried is outgoing.
 #' @param to a node ID to which the edge to be queried is incoming.
-#' @param mode the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'available'.
-#' @param value a string denoting the relationship, supplied only if 'mode' was set to either 'add', 'create', or 'update'.
+#' @param action the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'available'.
+#' @param value a string denoting the relationship, supplied only if 'action' was set to either 'add', 'create', or 'update'.
 #' @return a graph object of class 'gv_graph'.
 #' @export edge_relationship
 
 edge_relationship <- function(graph,
                               from,
                               to,
-                              mode = "read",
+                              action = "read",
                               value = NULL){
 
   # Determine if edge is present within the graph
@@ -31,7 +31,7 @@ edge_relationship <- function(graph,
                                FALSE, TRUE)
 
     # Remove relationship if a relationship is set
-    if (mode %in% c("delete", "remove", "drop")){
+    if (action %in% c("delete", "remove", "drop")){
 
       if (relationship_set == FALSE){
 
@@ -47,7 +47,7 @@ edge_relationship <- function(graph,
     }
 
     # Add a relationship to an edge with no set relationship
-    if (mode %in% c("add", "create")){
+    if (action %in% c("add", "create")){
 
       if (relationship_set == TRUE){
 
@@ -63,7 +63,7 @@ edge_relationship <- function(graph,
     }
 
     # Update an existing relationship for an edge
-    if (mode == "update"){
+    if (action == "update"){
 
       if (relationship_set == FALSE){
 
@@ -79,7 +79,7 @@ edge_relationship <- function(graph,
     }
 
     # Return the value of an existing relationship for an edge
-    if (mode == "read"){
+    if (action == "read"){
 
       if (relationship_set == FALSE){
 
@@ -95,7 +95,7 @@ edge_relationship <- function(graph,
     }
 
     # Determine whether a relationship has been set
-    if (mode == "available"){
+    if (action == "available"){
 
       if (relationship_set == FALSE){
 
