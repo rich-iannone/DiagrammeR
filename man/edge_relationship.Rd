@@ -13,7 +13,7 @@ edge_relationship(graph, from, to, action = "read", value = NULL)
 
 \item{to}{a node ID to which the edge to be queried is incoming.}
 
-\item{action}{the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'available'.}
+\item{action}{the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'check'.}
 
 \item{value}{a string denoting the relationship, supplied only if 'action' was set to either 'add', 'create', or 'update'.}
 }
