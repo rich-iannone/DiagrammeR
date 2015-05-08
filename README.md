@@ -33,20 +33,6 @@ It's possible to make diagrams using the **Graphviz** support included in the **
 
 #### Directly Defining a Graphviz Graph
 
-The **Graphviz** graph specification must begin with a directive stating whether a directed graph (`digraph`) or an undirected graph (`graph`) is desired. Semantically, this indicates whether or not there is a natural direction from one of the edge's nodes to the other. An optional graph `ID` follows this and paired curly braces denotes the body of the statement list (`stmt_list`). 
-
-Optionally, A graph may also be described as `strict`. This forbids the creation of multi-edges, i.e., there can be at most one edge with a given tail node and head node in the directed case. For undirected graphs, there can be at most one edge connected to the same two nodes. Subsequent edge statements using the same two nodes will identify the edge with the previously defined one and apply any attributes given in the edge statement.
-
-Here is the basic structure:
-
-`[strict] (graph | digraph) [ID] '{' stmt_list '}'`
-
-The `stmt_list` is made up of a collection of graph statements (`graph_stmt`), node statements (`node_stmt`), and edge statements (`edge_stmt`) (they are the three most commonly used statement types in the **Graphviz** **DOT** language). Graph statements allow for attributes to be set for all components of the graph. Node statements define and provide attributes for graph nodes. Edge statements specify the edge operations between nodes and they supply attributes to the edges. For the edge operations, a directed graph must specify an edge using the edge operator `->` while an undirected graph must use the `--` operator.
-
-For a node statement, a list of nodes is expected. For an edge statement, a list of edge operations. Any of the list item can optionally have an attribute list (`attr_list`) which modify the attributes of either the node or edge.
-
-Comments may be placed within the statement list. These can be marked using `//` or a `/* */` structure. Comment lines are denoted by a `#` character. Multiple statements within a statement list can be separated by linebreaks or `;` characters between multiple statements.
-
 Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:
 
 ```r
@@ -215,7 +201,7 @@ As can be seen in the following output: (1) the node with ID `a` is given the la
 
 Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So long as a vector object results from evaluation, substitution can be performed.
 
-#### Using Data Frames to Define Graphviz Graphs
+#### Using Functions to Define Graphs
 
 If you're planning on creating larger graph diagrams and also making use of external datasets, it can be better to use a set of **DiagrammeR** functions that work with data frames. Here is a basic schematic of the graph workflow, using functions to build toward a graph object from a group of data frames.
 
