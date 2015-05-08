@@ -15,7 +15,7 @@ edge_relationship(graph, from, to, action = "read", value = NULL)
 
 \item{action}{the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'check'.}
 
-\item{value}{a string denoting the relationship, supplied only if 'action' was set to either 'add', 'create', or 'update'.}
+\item{value}{a string denoting the relationship, to be supplied when either adding or updating an edge relationship.}
 }
 \value{
 a graph object of class 'gv_graph'.
