@@ -2,13 +2,16 @@
 
 [![Issue Stats](http://issuestats.com/github/rich-iannone/DiagrammeR/badge/pr?style=flat)](http://issuestats.com/github/rich-iannone/DiagrammeR) [![Issue Stats](http://issuestats.com/github/rich-iannone/DiagrammeR/badge/issue?style=flat)](http://issuestats.com/github/rich-iannone/DiagrammeR)
 
-With the **DiagrammeR** package, you can create graph diagrams and flowcharts using **R**. **Markdown**-like text is used to describe a diagram and, by doing this in **R**, we can also add some **R** code into the mix and integrate these diagrams in the **R** console, through **R Markdown**, and in **shiny** web apps. 
+With the **DiagrammeR** package, you can create graph diagrams and flowcharts using **R**. You can either use **Markdown**-like text to describe and render a diagram, or, use a collection of functions to create graph objects from R objects and render/export at will. Because we are doing this in **R** we can always add some **R** code into the mix. The output can be viewed in the **RStudio** Viewer, it can be incorporated in **R Markdown**, and it can be integrated in **shiny** web apps.
+
+<img src="inst/img/DiagrammeR_flow_diagram.png">
 
 Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable.
 
+Have a look over the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/docs.html) to learn much more about **DiagrammeR** than from what's available in this **README**. 
+
 The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
 
-<img src="inst/img/DiagrammeR_flow_diagram.png">
 
 ### Installation
 
