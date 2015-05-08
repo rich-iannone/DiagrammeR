@@ -94,8 +94,8 @@
                     <p>With the <code>graphviz_graph</code> function, it's possible to generate a graph diagram object without interacting directly with <strong>DOT</strong> code. The function has the following options:</p>
 <div>
 <pre><code>graphviz_graph(
-    nodes_df,     # provide the name of the data frame with node info         
-    edges_df,     # provide the name of the data frame with edge info 
+    nodes_df,     # provide the name of the data frame with node info
+    edges_df,     # provide the name of the data frame with edge info
     graph_attrs,  # provide a vector of 'graph' attributes
     node_attrs,   # provide a vector of 'node' attributes as defaults
     edge_attrs,   # provide a vector of 'edge' attributes as defaults
@@ -188,7 +188,7 @@
 3    g type 2 filled lightblue
 4    h type 2 filled lightblue
 </code></pre>
-                    </div>                    
+                    </div>
                     <p>Now that we have these groups of nodes in <code>type_1_nodes</code> and <code>type_2_nodes</code>, there may be occasion to combine them into a single node data frame. This can be done with the <code>combine_nodes</code> function (which works much like <code>rbind</code> except that it accepts data frames with columns differing in number, names, and ordering).</p>
                     <div class="highlight">
                         <div>
@@ -259,7 +259,7 @@ type_2_edges &lt;-
                arrowhead = "dot",
                color = "red")</code></pre>
                         </div>
-                    </div>                  
+                    </div>
                     <p>Two edge data frames were just created. If you'd like to include all those edges in your graph, just use the <code>combine_edges</code> function:</p>
                     <div>
 <pre><code>all_edges &lt;- combine_edges(type_1_edges, type_2_edges)</code></pre>
@@ -371,7 +371,7 @@ many_nodes &lt;-
 # to activate the fillcolor node attribute
 graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi", 
+               graph_attrs = c("layout = twopi",
                                "overlap = false")) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
@@ -388,7 +388,7 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
 
 graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi", 
+               graph_attrs = c("layout = twopi",
                                "overlap = false")) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
@@ -405,7 +405,7 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
 
 graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi", 
+               graph_attrs = c("layout = twopi",
                                "overlap = false")) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
@@ -422,7 +422,7 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
 
 graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi", 
+               graph_attrs = c("layout = twopi",
                                "overlap = false")) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
@@ -434,7 +434,7 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                         <div>
                             <pre><code class="prettyprint"># install.packages("V8")
 library("V8")
-                    
+
 many_edges &lt;- scale_edges(edges_df = many_edges,
                              to_scale = many_edges$penwidth,
                              edge_attr = "color",
@@ -442,7 +442,7 @@ many_edges &lt;- scale_edges(edges_df = many_edges,
 
 graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi", 
+               graph_attrs = c("layout = twopi",
                                "overlap = false")) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
@@ -473,9 +473,9 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
   'a'
   'b'
   'c'
-  'a'->'b' 
-  'b'->'c' 
-  'c'->'b' 
+  'a'->'b'
+  'b'->'c'
+  'c'->'b'
 }</code></pre>
 </div>
                     <p>What about <strong>SVG</strong>s? Those are the things you should eat for breakfast, every day. Well, you can get those out as well. It's all part of maintaining a balanced diet:</p>
@@ -515,7 +515,7 @@ library("DiagrammeR")
 
 # Choose a day from 2013 for NYC flight data
 # (You can choose any Julian day, it's interesting to see results for different days)
-day_of_year &lt;- 10 
+day_of_year &lt;- 10
 
 # Get a data frame of complete cases (e.g., flights have departure and arrival times)
 nycflights13 &lt;-
@@ -644,7 +644,7 @@ graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
                             <img src="img/graph-functions/get_predecessors_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/get_successors_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/get_sucessors_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/node_count_2x.png" class="img-responsive center-block">
