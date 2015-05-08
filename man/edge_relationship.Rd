@@ -4,7 +4,7 @@
 \alias{edge_relationship}
 \title{Create, read, update, delete, or report status of an edge relationship}
 \usage{
-edge_relationship(graph, from, to, mode = "read", value = NULL)
+edge_relationship(graph, from, to, action = "read", value = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
@@ -13,9 +13,9 @@ edge_relationship(graph, from, to, mode = "read", value = NULL)
 
 \item{to}{a node ID to which the edge to be queried is incoming.}
 
-\item{mode}{the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'available'.}
+\item{action}{the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'available'.}
 
-\item{value}{a string denoting the relationship, supplied only if 'mode' was set to either 'add', 'create', or 'update'.}
+\item{value}{a string denoting the relationship, supplied only if 'action' was set to either 'add', 'create', or 'update'.}
 }
 \value{
 a graph object of class 'gv_graph'.
