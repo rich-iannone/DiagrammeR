@@ -2,14 +2,14 @@
 #' @description From a graph object of class 'gv_graph', query a node in the graph (using the node ID) and perform operations on the type definition for that node.
 #' @param graph a graph object of class 'gv_graph' that is created using 'graphviz_graph'.
 #' @param node a node ID corresponding to the node to be selected.
-#' @param mode the type of operation to perform post-query. To remove the type definition from a node, use either 'delete', 'remove', or 'drop'. To add a type definition to a node with no type set, use 'add' or 'create'. To update a node's type definition, use 'update'. To return the value of a node type, use 'read'. To determine whether there is a type set for the selected node, use 'available'.
-#' @param value a string denoting the node type, supplied only if 'mode' was set to either 'add', 'create', or 'update'.
+#' @param action the type of operation to perform post-query. To remove the type definition from a node, use either 'delete', 'remove', or 'drop'. To add a type definition to a node with no type set, use 'add' or 'create'. To update a node's type definition, use 'update'. To return the value of a node type, use 'read'. To determine whether there is a type set for the selected node, use 'available'.
+#' @param value a string denoting the node type, supplied only if 'action' was set to either 'add', 'create', or 'update'.
 #' @return a graph object of class 'gv_graph'.
 #' @export node_type
 
 node_type <- function(graph,
                       node,
-                      mode = "read",
+                      action = "read",
                       value = NULL){
 
 
@@ -30,7 +30,7 @@ node_type <- function(graph,
                                FALSE, TRUE)
 
     # Remove type if a type is set
-    if (mode %in% c("delete", "remove", "drop")){
+    if (action %in% c("delete", "remove", "drop")){
 
       if (type_set == FALSE){
 
@@ -46,7 +46,7 @@ node_type <- function(graph,
     }
 
     # Add a type to a node with no type definition set
-    if (mode %in% c("add", "create")){
+    if (action %in% c("add", "create")){
 
       if (type_set == TRUE){
 
@@ -62,7 +62,7 @@ node_type <- function(graph,
     }
 
     # Update an existing type definition for a node
-    if (mode == "update"){
+    if (action == "update"){
 
       if (type_set == FALSE){
 
@@ -78,7 +78,7 @@ node_type <- function(graph,
     }
 
     # Return the value of an existing node type
-    if (mode == "read"){
+    if (action == "read"){
 
       if (type_set == FALSE){
 
@@ -94,7 +94,7 @@ node_type <- function(graph,
     }
 
     # Determine whether a node type definition has been set
-    if (mode == "available"){
+    if (action == "available"){
 
       if (type_set == FALSE){
 
