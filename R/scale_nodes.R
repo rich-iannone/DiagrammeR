@@ -168,7 +168,6 @@ scale_nodes <- function(nodes_df,
             colnames(nodes_df)[length(nodes_df)] <- attr_assign[1]
 
             apply_to_column_no <- which(colnames(nodes_df) %in% attr_assign[1])
-
           }
         }
       }
@@ -182,7 +181,6 @@ scale_nodes <- function(nodes_df,
           if (attr_in_df){
 
             apply_to_column_no <- which(colnames(nodes_df) %in% attr_assign[1])
-
           }
         }
       }
@@ -212,5 +210,4 @@ scale_nodes <- function(nodes_df,
 
     return(nodes_df)
   }
-
 }
