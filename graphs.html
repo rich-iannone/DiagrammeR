@@ -88,37 +88,30 @@
                     </ul>
                 </div>
                 <div class="bs-docs-section">
-                    <h1 id="graph-workflow" class="page-header">Graph Workflow</h1>
-                    <p class="lead">If you're planning on creating graph diagrams and also making use of external datasets, you can make use a set of <strong>DiagrammeR</strong> functions that work well with and as data frames.</p>
-                    <h2 id="create-graph-render">Create Graph, Render</h2>
-                    <p>With the <code>graphviz_graph</code> function, it's possible to generate a graph diagram object without interacting directly with <strong>DOT</strong> code. The function has the following options:</p>
-<div>
-<pre><code>graphviz_graph(
-    nodes_df,     # provide the name of the data frame with node info
-    edges_df,     # provide the name of the data frame with edge info
-    graph_attrs,  # provide a vector of 'graph' attributes
-    node_attrs,   # provide a vector of 'node' attributes as defaults
-    edge_attrs,   # provide a vector of 'edge' attributes as defaults
-    directed      # is the graph to be directed or undirected? Choose TRUE or FALSE
-    )
-</code></pre>
-                    </div>
-                    <p>The <code>graphviz_graph</code> function returns a <code>gv_graph</code> object, which can be used by additional processing functions. One such function is the <code>graphviz_render</code> function, which allows for both visualizing the graph object and creating output files:</p>
-                    <div>
-<pre><code>graphviz_render(
-    graph,        # a 'gv_graph' object, created using the 'graphviz_graph' function
-    output,       # a string specifying the output type; 'graph' (the default) renders
-                  # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
-                  # SVG code for the rendered graph
-    width,        # optionally set a width in pixels
-    height        # optionally set a height in pixels
-    )
-</code></pre>
-                    </div>
-                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>graphviz_graph</code> to <code>graphviz_render</code>. On the topic of packages, it is important to load the <strong>V8</strong> package as it will enable color scaling functionality (as will be seen in later examples).</p>
-                    <p>Before we get to using the <code>graphviz_graph</code> and <code>graphviz_render</code> functions, however, we'll need to create some specialized data frames. One is for nodes, the other concerns the edges. Both types of data frames are parsed by the <code>graphviz_graph</code> function and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.</p>
-                    <p>Which columns might a node data frame have? Well, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. Here are some notable node attributes:</p>
-                        <ul>
+                    <h1 id="graph-functions" class="page-header">Graph Functions</h1>
+                    <p class="lead">If you're planning on creating graph diagrams and also making use of external datasets, you can make use a set of <strong>DiagrammeR</strong> functions that work well with data frames. Data and attributes can be collected in this way, provided to a graph object, and then inspected, manipulated, and displayed.</p>
+                    <h2 id="node-edge-data-frames">Node/Edge Data Frames</h2>
+                    <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis.</p>
+                        <div>
+                            <img src="img/graph-functions/create_nodes_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/create_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/scale_nodes_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/scale_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/combine_nodes_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/combine_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>When creating a data frame for nodes, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
+                    <ul>
                             <li><code>color</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
                             <li><code>distortion</code> &mdash; the node distortion for any <code>shape = polygon</code></li>
                             <li><code>fillcolor</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
@@ -138,66 +131,56 @@
                             <li><code>x</code> &mdash; the x position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                             <li><code>y</code> &mdash; the y position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                         </ul>
-                    <p>You don't need to use <code>data.frame</code> to make a node data frame: you can use the provided <code>create_nodes</code> function. It's similar in principle to the base <strong>R</strong> <code>data.frame</code> function except that it adds in the following conveniences for graph diagram work:</p>
+                    <p>While you can use the <code>data.frame</code> function to make a node data frame, it is likely better to use the provided create_nodes function. It's similar in principle to the base <strong>R</strong> <code>data.frame</code> function except that it adds in the following conveniences for graph diagram work:
                         <ul>
                             <li>single values are repeated for n number of nodes supplied</li>
                             <li>selective setting of attributes (e.g., giving attr values for 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)</li>
                             <li>supplying overlong vectors for attributes will result in trimming down to the number of nodes</li>
                             <li>setting <code>label = FALSE</code> will conveniently result in a non-labeled node</li>
                         </ul>
-                    <h2 id="function-examples">Examples</h2>
-                    <p>Here's an example of how to create a node data frame:</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">type_1_nodes &lt;-
+                            <pre><code class="prettyprint"># Create two data frames for nodes
+# Singly supplied attribute values are repeated down
+nodes_1 &lt;-
   create_nodes(nodes = c("a", "b", "c", "d"),
                label = "type 1",
                style = "filled",
                color = "aqua",
                shape = c("circle", "circle",
                          "triangle", "triangle"))
-</code></pre>
-                        </div>
-                    </div>
-                    <p>The <code>type_1_nodes</code> object is indeed a data frame, and, this is good since it's familar and easy to work with. Note that singly supplied attribute values are repeated throughout:</p>
-                    <div>
-<pre><code> nodes  label  style color    shape
+
+nodes_1
+
+ nodes  label  style color    shape
 1    a type 1 filled  aqua   circle
 2    b type 1 filled  aqua   circle
 3    c type 1 filled  aqua triangle
 4    d type 1 filled  aqua triangle
-</code></pre>
-                    </div>
-                    <p>Let's make another node data frame:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">type_2_nodes &lt;-
+
+nodes_2 &lt;-
   create_nodes(nodes = c("e", "f", "g", "h"),
                label = "type 2",
                style = "filled",
                color = "lightblue",
                peripheries = c(2, 2))
-</code></pre>
-                        </div>
-                    </div>
-                    <p>Here is the resulting data frame (notice that values for the <code>peripheries</code> node attribute are only provided twice):</p>
-                    <div>
-<pre><code> nodes  label  style     color peripheries
+
+ nodes  label  style     color peripheries
 1    e type 2 filled lightblue           2
 2    f type 2 filled lightblue           2
 3    g type 2 filled lightblue
 4    h type 2 filled lightblue
 </code></pre>
-                    </div>
-                    <p>Now that we have these groups of nodes in <code>type_1_nodes</code> and <code>type_2_nodes</code>, there may be occasion to combine them into a single node data frame. This can be done with the <code>combine_nodes</code> function (which works much like <code>rbind</code> except that it accepts data frames with columns differing in number, names, and ordering).</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">all_nodes &lt;- combine_nodes(type_1_nodes, type_2_nodes)</code></pre>
                         </div>
                     </div>
-                    <p>This is the combined node data frame:</p>
-                    <div>
-<pre><code> nodes  label  style     color    shape peripheries
+                    <p>There may be occasion to combine several of these data frames into a single node data frame. This can be done with the combine_nodes function (which works much like rbind except that it accepts data frames with columns differing in number, names, and ordering).</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint"># Create two data frames for nodes
+all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
+
+
+ nodes  label  style     color    shape peripheries
 1    a type 1 filled      aqua   circle
 2    b type 1 filled      aqua   circle
 3    c type 1 filled      aqua triangle
@@ -207,29 +190,10 @@
 7    g type 2 filled lightblue
 8    h type 2 filled lightblue
 </code></pre>
-                    </div>
-                    <p>Let's look at the nodes that were created. Use the <code>graphviz_graph</code> (just provide the <code>all_nodes</code> object at this point) and pipe to <code>graphviz_render</code>. The <strong>pipeR</strong> package (used in these examples) provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead. So, this is what the diagram looks like at this point:</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-1-1.png" class="img-responsive center-block">
-                    </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">library("pipeR")
-
-graphviz_graph(nodes_df = all_nodes) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
-                    <p>Want to extract a vector list of node IDs? You can use the <code>get_nodes</code> function. It can accept multiple node data frames, edge data frames, or graph objects.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">get_nodes(all_nodes)</code></pre>
-                        </div>
-                    </div>
-                    <div>
-<pre><code>[1] "a" "b" "c" "d" "e" "f" "g" "h"</code></pre>
-                    </div>
-                    <p>Let's make some edges now. For the edge data frame, there are two columns that need to be present: one for the outgoing node edge, and, another for the incoming node edge. These can be called either <code>edge_from</code>, <code>from</code>, <code>edge_to</code>, or <code>to</code>. Each of the two columns should contain node IDs and, ideally, they should match those provided in the node data frame that will be supplied to the <code>graphviz_graph</code> function.</p>
-                    <p>As in the nodes data frame, attributes can be provided. Here are some examples of edge attributes that can be used:</p>
+                    <p>When making a data frame for edge data, there are two columns that need to be present: one for the outgoing node edge, and, another for the incoming node edge. These can be called either <code>edge_from</code>, <code>from</code>, <code>edge_to</code>, or <code>to</code>. Each of the two columns should contain node IDs. Ideally, they should include only those node IDs provided in the node data frame before they both of those data frames are supplied to the <code>graphviz_graph</code> function.</p>
+                    <p>As in the nodes data frame, attributes can be provided for edges. The following edge attributes can be used:</p>
                         <ul>
                             <li><code>arrowhead</code> &mdash; the arrow style at the head end (e.g, <code>normal</code>, <code>dot</code>)</li>
                             <li><code>arrowsize</code> &mdash; the scaling factor for the arrowhead and arrowtail</li>
@@ -246,74 +210,24 @@ graphviz_graph(nodes_df = all_nodes) %>>% graphviz_render</code></pre>
                             <li><code>tailport</code> &mdash; a cardinal direction for where the tail is emitted from the node</li>
                             <li><code>tooltip</code> &mdash; provide text here for an edge tooltip</li>
                         </ul>
-                    <p>Let's create some edges between nodes using the create_edges function:</p>
+                    <p>Use the create_edges function to create data frames for edges and their attributes:</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">type_1_edges &lt;-
+                            <pre><code class="prettyprint">edges_2 &lt;-
   create_edges(edge_from = c("a", "a", "b", "c"),
                edge_to = c("b", "d", "d", "a"))
 
-type_2_edges &lt;-
+edges_1 &lt;-
   create_edges(edge_from = c("e", "g", "h", "h"),
                edge_to = c("g", "h", "f", "e"),
                arrowhead = "dot",
                color = "red")</code></pre>
                         </div>
                     </div>
-                    <p>Two edge data frames were just created. If you'd like to include all those edges in your graph, just use the <code>combine_edges</code> function:</p>
+                    <p>The above example creates two data frames for edge definitions and their associated attributes. Use the <code>combine_edges</code> function to safely create a single data for edge data:</p>
                     <div>
-<pre><code>all_edges &lt;- combine_edges(type_1_edges, type_2_edges)</code></pre>
+<pre><code>all_edges &lt;- combine_edges(edges_1, edges_2)</code></pre>
                     </div>
-                    <p>Now we have node and edge data frames that can be combined. The next step is to incorporate those edges into the <code>graphviz_graph</code> function and then render the graph.</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-1-2.png" class="img-responsive center-block">
-                    </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
-               edges_df = all_edges) %>>% graphviz_render</code></pre>
-                        </div>
-                    </div>
-                    <p>Not bad for an example graph. There may be cases where node or edge attributes should apply to all nodes and edges in the graph. In such cases, there's no need to create columns for those attributes where attribute values are repeated in all rows. Instead, supply vectors of attribute statements for the <code>node_attrs</code> or <code>edge_attrs</code> arguments in the <code>graphviz_graph</code> function. For example, you may want to use <code>Helvetica</code> as the label font. If so, use this in <code>graphviz_graph</code>:</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-1-3.png" class="img-responsive center-block">
-                    </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
-               edges_df = all_edges,
-               node_attrs = "fontname = Helvetica") %>>% graphviz_render</code></pre>
-                        </div>
-                    </div>
-                    <p>Likewise, for edges, you may want a certain uniform look that is different from the defaults. Perhaps, a grey line which has a thicker line stroke.</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-1-4.png" class="img-responsive center-block">
-                    </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
-               edges_df = all_edges,
-               node_attrs = "fontname = Helvetica",
-               edge_attrs = c("color = gray", "penwidth = 4")) %>>% graphviz_render</code></pre>
-                        </div>
-                    </div>
-                    <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>circo</code>, node overlapping is suppressed, the separation between nodes is of factor <code>3</code>, and the edges are drawn first (so as to not obscure the nodes).</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-1-5.png" class="img-responsive center-block">
-                    </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
-               edges_df = all_edges,
-               node_attrs = "fontname = Helvetica",
-               edge_attrs = c("color = gray", "penwidth = 4"),
-               graph_attrs = c("layout = circo",
-                               "overlap = false",
-                               "ranksep = 3",
-                               "outputorder = edgesfirst")) %>>% graphviz_render</code></pre>
-                        </div>
-                    </div>
-                    <h1 id="numeric-color-scales" class="page-header">Scaling Node and Edge Attributes</h1>
                     <p>With the <code>scale_nodes</code> and <code>scale_edges</code> functions, it's possible to create and apply scaled node and edge attributes. These attributes can be either of the numeric or color variety. Ideally, the numerical data from which the scaled values are generated should reside in the node or edge data frames. This is recommended because the values need to be of the same length and order as the records in the node or edge data frame.</p>
                     <p>For nodes, scales can be made for the following attributes:</p>
                         <ul>
@@ -446,7 +360,89 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                                "overlap = false")) %>>% graphviz_render</code></pre>
                         </div>
                     </div>
-                    <h1 id="exporting-graph-code" class="page-header">Exporting Graph Code</h1>
+                    <h2 id="create-render-graph">Create and Render Graph</h2>
+                    <p>Eventually, you'll want to make a graph and then see that graph. Two functions make that possible.</p>
+                        <div>
+                            <img src="img/graph-functions/graphviz_graph_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/graphviz_render_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>With the <code>graphviz_graph</code> function, it's possible to generate a graph diagram object without interacting directly with <strong>DOT</strong> code. The function has the following options:</p>
+<div>
+<pre><code>graphviz_graph(
+    nodes_df,     # provide the name of the data frame with node info
+    edges_df,     # provide the name of the data frame with edge info
+    graph_attrs,  # provide a vector of 'graph' attributes
+    node_attrs,   # provide a vector of 'node' attributes as defaults
+    edge_attrs,   # provide a vector of 'edge' attributes as defaults
+    directed      # is the graph to be directed or undirected? Choose TRUE or FALSE
+    )
+</code></pre>
+                    </div>
+                    <p>The <code>graphviz_graph</code> function returns a <code>gv_graph</code> object, which can be used by additional processing functions.</p>
+                    <p>The <code>graphviz_render</code> function allows for both visualizing the graph object and creating output files:</p>
+                    <div>
+<pre><code>graphviz_render(
+    graph,        # a 'gv_graph' object, created using the 'graphviz_graph' function
+    output,       # a string specifying the output type; 'graph' (the default) renders
+                  # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
+                  # SVG code for the rendered graph
+    width,        # optionally set a width in pixels
+    height        # optionally set a height in pixels
+    )
+</code></pre>
+                    </div>
+                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>graphviz_graph</code> to <code>graphviz_render</code>. The <strong>pipeR</strong> package (used in these examples) provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-1.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">library("pipeR")
+
+graphviz_graph(nodes_df = all_nodes) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>There may be cases where node or edge attributes should apply to all nodes and edges in the graph. In such cases, there's no need to create columns for those attributes where attribute values are repeated in all rows. Instead, supply vectors of attribute statements for the <code>node_attrs</code> or <code>edge_attrs</code> arguments in the <code>graphviz_graph</code> function. For example, you may want to use <code>Helvetica</code> as the label font. If so, use this in <code>graphviz_graph</code>:</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-3.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
+               edges_df = all_edges,
+               node_attrs = "fontname = Helvetica") %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>Likewise, for edges, you may want a certain uniform look that is different from the defaults. Perhaps, a grey line which has a thicker line stroke.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-4.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
+               edges_df = all_edges,
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = c("color = gray", "penwidth = 4")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
+                    <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>circo</code>, node overlapping is suppressed, the separation between nodes is of factor <code>3</code>, and the edges are drawn first (so as to not obscure the nodes).</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-1-5.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">graphviz_graph(nodes_df = all_nodes,
+               edges_df = all_edges,
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = c("color = gray", "penwidth = 4"),
+               graph_attrs = c("layout = circo",
+                               "overlap = false",
+                               "ranksep = 3",
+                               "outputorder = edgesfirst")) %>>% graphviz_render</code></pre>
+                        </div>
+                    </div>
                     <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>graphviz_render</code> function. Here's a simple example:</p>
                     <div class="highlight">
                         <div>
@@ -478,7 +474,7 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
   'c'->'b'
 }</code></pre>
 </div>
-                    <p>What about <strong>SVG</strong>s? Those are the things you should eat for breakfast, every day. Well, you can get those out as well. It's all part of maintaining a balanced diet:</p>
+                    <p>For <strong>SVG</strong> output:</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint"># install.packages("V8")
@@ -493,6 +489,58 @@ graphviz_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
                  graphviz_render(output = "SVG") %>>% cat</code></pre>
                         </div>
                     </div>
+                    <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
+                    <p>Knowing what's in the graph is important. Several functions allow you to get information about the current state of the graph object. You can get very general information about the graph's node or edges, or, more specific information such as the predecessors and successors for a certain node in the graph</p>
+                        <div>
+                            <img src="img/graph-functions/is_graph_empty_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/node_info_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/edge_info_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/node_present_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/edge_present_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/get_nodes_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/get_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/get_predecessors_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/get_sucessors_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/node_count_2x.png" class="img-responsive center-block">
+                        </div>
+                    <h2 id="modifying-the-graph">Modifying the Graph</h2>
+                    <p>Add nodes, delete edges, modify relationships between nodes, set node type declarations... Those are some of the things you can do with these graph construction/destruction functions.</p>
+                        <div>
+                            <img src="img/graph-functions/add_node_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/add_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/delete_node_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/delete_edge_2x.png" class="img-responsive center-block">
+                        </div>
+                         <div>
+                            <img src="img/graph-functions/node_type_2x.png" class="img-responsive center-block">
+                        </div>
+                         <div>
+                            <img src="img/graph-functions/edge_relationship_2x.png" class="img-responsive center-block">
+                        </div>
                     <h1 id="nycflights13-example" class="page-header">Example with nycflights13</h1>
                     <p>Now, yet another example. This time with an external dataset. Let's use the <strong>nycflights13</strong> package to prepare some data frames and then create a graph diagram.</p>
                     <div class="bs-example">
@@ -586,88 +634,101 @@ graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
                  graphviz_render(width = 1200, height = 800)</code></pre>
                         </div>
                     </div>
-                    <div class="bs-docs-section">
-                    <h1 id="graph-function-reference" class="page-header">Graph Function Reference</h1>
-                    <p class="lead">While the <strong>DiagrammeR</strong> graph functions are surely nice, there are a lot of them. This section breaks down the functions by use, providing examples along the way. This will keep you continually building those graph objects.</p>
-                    <h2 id="building-node-edge-df">Building Node and Edge DFs</h2>
-                    <p>It's sometimes helpful to collect data into specialized data frames before submitting the node/edges/attributes to a graph object. Here are some functions to make that sort of thing possible.</p>
+                </div>
+                <div class="bs-docs-section">
+                    <h1 id="examples" class="page-header">Examples</h1>
+                    <p class="lead">Here is a selection of examples to demonstrate how these graph functions can be used with external datasets.</p>
+                    <h2 id="nycflights13">Data from nycflights13</h2>
+                    <p>Let's use the <strong>nycflights13</strong> package to prepare some data frames and then create a graph diagram.</p>
+                    <div class="bs-example">
+                        <img src="img/grviz_example-3-1.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
                         <div>
-                            <img src="img/graph-functions/create_nodes_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/create_edges_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/scale_nodes_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/scale_edges_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/combine_nodes_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/combine_edges_2x.png" class="img-responsive center-block">
-                        </div>
-                    <h2 id="graph-and-render">Graph and Render</h2>
-                    <p>Eventually, you'll want to make a graph and then see that graph. Two functions make that possible.</p>
-                        <div>
-                            <img src="img/graph-functions/graphviz_graph_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/graphviz_render_2x.png" class="img-responsive center-block">
-                        </div>
-                    <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
-                    <p>Knowing what's in the graph is important. Like, "how many predecessors did that node have, again?" Well, now it's easy to find out.</p>
-                        <div>
-                            <img src="img/graph-functions/is_graph_empty_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/node_info_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/edge_info_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/node_present_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/edge_present_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/get_nodes_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/get_edges_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/get_predecessors_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/get_sucessors_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/node_count_2x.png" class="img-responsive center-block">
-                        </div>
-                    <h2 id="modifying-the-graph">Modifying the Graph</h2>
-                    <p>Add nodes, delete edges, modify relationships between nodes, set node type declarations... Those are some of the things you can do with these graph construction/destruction functions.</p>
-                        <div>
-                            <img src="img/graph-functions/add_node_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/add_edges_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/delete_node_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/delete_edge_2x.png" class="img-responsive center-block">
-                        </div>
-                         <div>
-                            <img src="img/graph-functions/node_type_2x.png" class="img-responsive center-block">
-                        </div>
-                         <div>
-                            <img src="img/graph-functions/edge_relationship_2x.png" class="img-responsive center-block">
+                            <pre><code class="prettyprint"># Get the 'nycflights13' package if not already installed
+# install.packages('nycflights13')
+
+# Get the 'lubridate' package if not already installed
+# install.packages('lubridate')
+
+# Get the latest build of the 'DiagrammeR' package from GitHub
+devtools::install_github('rich-iannone/DiagrammeR')
+
+library("nycflights13")
+library("lubridate")
+library("DiagrammeR")
+
+# Choose a day from 2013 for NYC flight data
+# (You can choose any Julian day, it's interesting to see results for different days)
+day_of_year &lt;- 10
+
+# Get a data frame of complete cases (e.g., flights have departure and arrival times)
+nycflights13 &lt;-
+  nycflights13::flights[which(complete.cases(nycflights13::flights) == TRUE), ]
+
+# Generate a POSIXct vector of dates using the 'ISOdatetime' function
+# Columns 1, 2, and 3 are year, month, and day columns
+# Column 4 is a 4-digit combination of hours (00-23) and minutes (00-59)
+date_time &lt;-
+  data.frame("date_time" =
+               ISOdatetime(year = nycflights13[,1],
+                           month = nycflights13[,2],
+                           day = nycflights13[,3],
+                           hour = gsub("[0-9][0-9]$", "", nycflights13[,4]),
+                           min = gsub(".*([0-9][0-9])$", "\\1", nycflights13[,4]),
+                           sec = 0, tz = "GMT"))
+
+# Add the POSIXct vector 'date_time' to the 'nycflights13' data frame
+nycflights13 &lt;- cbind(date_time, nycflights13)
+
+# Select flights only from the specified day of the year 2013
+nycflights13_day &lt;-
+  subset(nycflights13,
+         date_time >= ymd('2013-01-01', tz = "GMT") + days(day_of_year - 1) &
+           date_time &lt; ymd('2013-01-01', tz = "GMT") + days(day_of_year))
+
+# Create the 'nodes' data frame where at least one column is named "nodes" or "node_id"
+# Column 12 is the 3-letter code for the airport departing from
+# Column 13 is for the airport arriving to
+# (Option: change df to 'nycflights13_day' and only airports used for the day will be included)
+nodes_df &lt;- create_nodes(nodes = unique(c(nycflights13[,12],
+                                    nycflights13[,13])),
+                         label = FALSE)
+
+# The 'edges' data frame must have columns named 'edge_from' and 'edge_to'
+# The color attribute is determined with an 'ifelse' statement, where
+# column 8 is the minutes early (negative values) or minutes late (positive values)
+# for the flight arrival
+edges_df &lt;- create_edges(edge_from = nycflights13_day[,12],
+                         edge_to = nycflights13_day[,13],
+                         color = ifelse(nycflights13_day[,8] &lt; 0,
+                                    "green", "red"))
+
+# Set the graph diagram's default attributes for...
+
+# ...nodes
+node_attrs &lt;- c("style = filled", "fillcolor = lightblue",
+                "color = gray", "shape = circle", "fontname = Helvetica",
+                "width = 1")
+
+# ...edges
+edge_attrs &lt;- c("arrowhead = dot")
+
+# ...and the graph itself
+graph_attrs &lt;- c("layout = circo",
+                 "overlap = false",
+                 "fixedsize = true",
+                 "ranksep = 3",
+                 "outputorder = edgesfirst")
+
+# Generate the graph diagram in the RStudio Viewer.
+# The green lines show flights that weren't late (red indicates late arrivals)
+# This graph is for a single day of flights, airports that are unconnected on a
+# given day may be destinations on another day
+graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
+               graph_attrs = graph_attrs, node_attrs = node_attrs,
+               edge_attrs = edge_attrs, directed = TRUE) %>>%
+                 graphviz_render(width = 1200, height = 800)</code></pre>
                         </div>
                     </div>
                 </div>
@@ -682,22 +743,18 @@ graphviz_graph(nodes_df = nodes_df, edges_df = edges_df,
                             </ul>
                         </li>
                         <li>
-                            <a href="#graphs-workflow">Graph Workflow</a>
+                            <a href="#graph-functions">Graph Functions</a>
                             <ul class="nav">
-                                <li><a href="#create-graph-render">Create Graph, Render</a></li>
-                                <li><a href="#function-examples">Examples</a></li>
-                                <li><a href="#numeric-color-scales">Scaling Node and Edge Attributes</a></li>
-                                <li><a href="#exporting-graph-code">Exporting Graph Code</a></li>
-                                <li><a href="#nycflights13-example">Example with nycflights13</a></li>
+                                <li><a href="#node-edge-data-frames">Node/Edge Data Frames</a></li>
+                                <li><a href="#create-render-graph">Create and Render Graph</a></li>
+                                <li><a href="#inspecting-the-graph">Inspecting the Graph</a></li>
+                                <li><a href="#modifying-the-graph">Modifying the Graph</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#graph-function-reference">Graph Function Reference</a>
+                            <a href="#examples">Examples</a>
                             <ul class="nav">
-                                <li><a href="#building-node-edge-df">Building Node and Edge DFs</a></li>
-                                <li><a href="#graph-and-render">Graph and Render</a></li>
-                                <li><a href="#inspecting-the-graph">Inspecting the Graph</a></li>
-                                <li><a href="#modifying-the-graph">Modifying the Graph</a></li>
+                                <li><a href="#nycflights13">Data from nycflights13</a></li>
                             </ul>
                         </li>
                     </ul>
