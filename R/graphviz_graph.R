@@ -7,9 +7,9 @@
 #' @param edge_attrs an optional vector of edge attribute statements that can serve as defaults for edges.
 #' @param directed with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.
 #' @return a graph object of class 'gv_graph'.
-#' @export graphviz_graph
+#' @export create_graph
 
-graphviz_graph <- function(nodes_df = NULL, edges_df = NULL,
+create_graph <- function(nodes_df = NULL, edges_df = NULL,
                            graph_attrs = NULL, node_attrs = NULL,
                            edge_attrs = NULL, directed = TRUE){
 
