@@ -434,8 +434,8 @@ create_graph(nodes_df = all_nodes) %>>% render_graph</code></pre>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">create_graph(nodes_df = all_nodes,
-               edges_df = all_edges,
-               node_attrs = "fontname = Helvetica") %>>% render_graph</code></pre>
+             edges_df = all_edges,
+             node_attrs = "fontname = Helvetica") %>>% render_graph</code></pre>
                         </div>
                     </div>
                     <p>Likewise, for edges, you may want a certain uniform look that is different from the defaults. Perhaps, a grey line which has a thicker line stroke.</p>
@@ -445,9 +445,9 @@ create_graph(nodes_df = all_nodes) %>>% render_graph</code></pre>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">create_graph(nodes_df = all_nodes,
-               edges_df = all_edges,
-               node_attrs = "fontname = Helvetica",
-               edge_attrs = c("color = gray", "penwidth = 4")) %>>% render_graph</code></pre>
+             edges_df = all_edges,
+             node_attrs = "fontname = Helvetica",
+             edge_attrs = c("color = gray", "penwidth = 4")) %>>% render_graph</code></pre>
                         </div>
                     </div>
                     <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>circo</code>, node overlapping is suppressed, the separation between nodes is of factor <code>3</code>, and the edges are drawn first (so as to not obscure the nodes).</p>
@@ -457,25 +457,25 @@ create_graph(nodes_df = all_nodes) %>>% render_graph</code></pre>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">create_graph(nodes_df = all_nodes,
-               edges_df = all_edges,
-               node_attrs = "fontname = Helvetica",
-               edge_attrs = c("color = gray", "penwidth = 4"),
-               graph_attrs = c("layout = circo",
-                               "overlap = false",
-                               "ranksep = 3",
-                               "outputorder = edgesfirst")) %>>% render_graph</code></pre>
+             edges_df = all_edges,
+             node_attrs = "fontname = Helvetica",
+             edge_attrs = c("color = gray", "penwidth = 4"),
+             graph_attrs = c("layout = circo",
+                             "overlap = false",
+                             "ranksep = 3",
+                             "outputorder = edgesfirst")) %>>% render_graph</code></pre>
                         </div>
                     </div>
                     <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph</code> function. Here's a simple example:</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">create_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
-               edges_df = data.frame(edge_from = c("a", "b", "c"),
-               edge_to = c("b", "c", "b")),
-               graph_attrs = c("layout = dot", "rankdir = LR"),
-               node_attrs = "fontname = Helvetica",
-               edge_attrs = "arrowhead = dot") %>>%
-                 render_graph(output = "DOT") %>>% cat</code></pre>
+             edges_df = data.frame(edge_from = c("a", "b", "c"),
+             edge_to = c("b", "c", "b")),
+             graph_attrs = c("layout = dot", "rankdir = LR"),
+             node_attrs = "fontname = Helvetica",
+             edge_attrs = "arrowhead = dot") %>>%
+               render_graph(output = "DOT") %>>% cat</code></pre>
                         </div>
                     </div>
                     <p>The output is pretty clean <strong>DOT</strong> code:</p>
@@ -504,12 +504,12 @@ create_graph(nodes_df = all_nodes) %>>% render_graph</code></pre>
 library("V8")
 
 create_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
-               edges_df = create_edges(edge_from = c("a", "b", "c"),
-                                       edge_to = c("b", "c", "b")),
-               graph_attrs = c("layout = dot", "rankdir = LR"),
-               node_attrs = "fontname = Helvetica",
-               edge_attrs = "arrowhead = dot") %>>%
-                 render_graph(output = "SVG") %>>% cat</code></pre>
+             edges_df = create_edges(edge_from = c("a", "b", "c"),
+                                     edge_to = c("b", "c", "b")),
+             graph_attrs = c("layout = dot", "rankdir = LR"),
+             node_attrs = "fontname = Helvetica",
+             edge_attrs = "arrowhead = dot") %>>%
+               render_graph(output = "SVG") %>>% cat</code></pre>
                         </div>
                     </div>
                     <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
