@@ -19,7 +19,7 @@ Maintainer: Richard Iannone <riannone@me.com>
 Description: Allows to create diagrams and flowcharts using R.
 License: MIT + file LICENSE
 Imports:
-    htmlwidgets (>= 0.3.2), rstudioapi (>= 0.2)
+    htmlwidgets (>= 0.3.2), rstudioapi (>= 0.2), stringr (>= 1.0.0)
 Suggests:
     knitr, V8 (>= 0.5)
 VignetteBuilder: knitr
