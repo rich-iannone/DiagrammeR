@@ -7,7 +7,7 @@
 node_count(graph, type = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
+\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
 
 \item{type}{either a logical value, where TRUE provides a named vector of node count by type and FALSE (the default) provides a total count, or, a string corresponding to one or more node types.}
 

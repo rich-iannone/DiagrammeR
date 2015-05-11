@@ -8,7 +8,7 @@ add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL,
   ...)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
+\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
 
 \item{node}{a node ID for the newly connected node.}
 

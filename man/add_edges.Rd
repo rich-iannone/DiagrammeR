@@ -8,7 +8,7 @@ add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
   relationship = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
+\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
 
 \item{edges_df}{an edge data frame that is created using 'create_edges'.}
 

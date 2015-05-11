@@ -7,7 +7,7 @@
 node_type(graph, node, action = "read", value = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
+\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
 
 \item{node}{a node ID corresponding to the node to be selected.}
 

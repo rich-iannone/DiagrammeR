@@ -7,7 +7,7 @@
 edge_relationship(graph, from, to, action = "read", value = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
+\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
 
 \item{from}{a node ID from which the edge to be queried is outgoing.}
 

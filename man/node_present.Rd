@@ -7,7 +7,7 @@
 node_present(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'graphviz_graph'.}
+\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
 
 \item{node}{a value that may or may not match a node ID in the graph.}
 }
