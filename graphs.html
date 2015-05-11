@@ -96,19 +96,19 @@
                             <img src="img/graph-functions/create_nodes_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/combine_nodes_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/create_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/combine_edges_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/scale_nodes_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/scale_edges_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/combine_nodes_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/combine_edges_2x.png" class="img-responsive center-block">
                         </div>
                     <p>When creating a data frame for nodes, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
                     <ul>
@@ -151,12 +151,11 @@ nodes_1 &lt;-
                          "triangle", "triangle"))
 
 nodes_1
-
- nodes  label  style color    shape
-1    a type 1 filled  aqua   circle
-2    b type 1 filled  aqua   circle
-3    c type 1 filled  aqua triangle
-4    d type 1 filled  aqua triangle
+#>   nodes  label  style color    shape
+#> 1     a type 1 filled  aqua   circle
+#> 2     b type 1 filled  aqua   circle
+#> 3     c type 1 filled  aqua triangle
+#> 4     d type 1 filled  aqua triangle
 
 nodes_2 &lt;-
   create_nodes(nodes = c("e", "f", "g", "h"),
@@ -165,11 +164,12 @@ nodes_2 &lt;-
                color = "lightblue",
                peripheries = c(2, 2))
 
- nodes  label  style     color peripheries
-1    e type 2 filled lightblue           2
-2    f type 2 filled lightblue           2
-3    g type 2 filled lightblue
-4    h type 2 filled lightblue
+nodes_2
+#>   nodes  label  style     color peripheries
+#> 1     e type 2 filled lightblue           2
+#> 2     f type 2 filled lightblue           2
+#> 3     g type 2 filled lightblue
+#> 4     h type 2 filled lightblue
 </code></pre>
                         </div>
                     </div>
@@ -179,16 +179,16 @@ nodes_2 &lt;-
                             <pre><code class="prettyprint"># Create two data frames for nodes
 all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
 
-
- nodes  label  style     color    shape peripheries
-1    a type 1 filled      aqua   circle
-2    b type 1 filled      aqua   circle
-3    c type 1 filled      aqua triangle
-4    d type 1 filled      aqua triangle
-5    e type 2 filled lightblue                    2
-6    f type 2 filled lightblue                    2
-7    g type 2 filled lightblue
-8    h type 2 filled lightblue
+all_nodes
+#>   nodes  label  style     color    shape peripheries
+#> 1     a type 1 filled      aqua   circle
+#> 2     b type 1 filled      aqua   circle
+#> 3     c type 1 filled      aqua triangle
+#> 4     d type 1 filled      aqua triangle
+#> 5     e type 2 filled lightblue                    2
+#> 6     f type 2 filled lightblue                    2
+#> 7     g type 2 filled lightblue
+#> 8     h type 2 filled lightblue
 </code></pre>
                         </div>
                     </div>
@@ -213,23 +213,49 @@ all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
                     <p>Use the create_edges function to create data frames for edges and their attributes:</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">edges_2 &lt;-
+                            <pre><code class="prettyprint">edges_1 &lt;-
   create_edges(edge_from = c("a", "a", "b", "c"),
                edge_to = c("b", "d", "d", "a"))
 
-edges_1 &lt;-
+edges_1
+#>    edge_from edge_to
+#> 1          a       b
+#> 2          a       d
+#> 3          b       d
+#> 4          c       a
+
+edges_2 &lt;-
   create_edges(edge_from = c("e", "g", "h", "h"),
                edge_to = c("g", "h", "f", "e"),
                arrowhead = "dot",
-               color = "red")</code></pre>
+               color = "red")
+
+edges_2
+#>    edge_from edge_to arrowhead color
+#> 1          e       g       dot   red
+#> 2          g       h       dot   red
+#> 3          h       f       dot   red
+#> 4          h       e       dot   red</code></pre>
                         </div>
                     </div>
                     <p>The above example creates two data frames for edge definitions and their associated attributes. Use the <code>combine_edges</code> function to safely create a single data for edge data:</p>
-                    <div>
-<pre><code>all_edges &lt;- combine_edges(edges_1, edges_2)</code></pre>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">all_edges &lt;- combine_edges(edges_1, edges_2)
+
+all_edges
+#>    edge_from edge_to arrowhead color
+#> 1          a       b                
+#> 2          a       d                
+#> 3          b       d                
+#> 4          c       a                
+#> 5          e       g       dot   red
+#> 6          g       h       dot   red
+#> 7          h       f       dot   red
+#> 8          h       e       dot   red</code></pre>
+                        </div>
                     </div>
-                    <p>With the <code>scale_nodes</code> and <code>scale_edges</code> functions, it's possible to create and apply scaled node and edge attributes. These attributes can be either of the numeric or color variety. Ideally, the numerical data from which the scaled values are generated should reside in the node or edge data frames. This is recommended because the values need to be of the same length and order as the records in the node or edge data frame.</p>
-                    <p>For nodes, scales can be made for the following attributes:</p>
+                    <p>With the <code>scale_nodes</code> function, it's possible to create node attributes with values that are scaled to numerical data in another column. The scaled attribute values can consist of either numerical values or hexadecimal color values. Scaled values can be made for the following attributes:</p>
                         <ul>
                             <li><code>fontsize</code> <em>numeric</em></em></li>
                             <li><code>labelfontsize</code> <em>numeric</em></li>
@@ -241,6 +267,7 @@ edges_1 &lt;-
                             <li><code>color</code> <em>color</em></li>
                             <li><code>fillcolor</code> <em>color</em></li>
                             <li><code>fontcolor</code> <em>color</em></li>
+                            <li><code>alpha</code> <em>color</em></li>
                         </ul>
                     <p>For edges, scales can be made for the following edge attributes:</p>
                         <ul>
@@ -255,50 +282,44 @@ edges_1 &lt;-
                             <li><code>color</code> <em>color</em></li>
                             <li><code>fontcolor</code> <em>color</em></li>
                             <li><code>labelfontcolor</code> <em>color</em></li>
+                            <li><code>alpha</code> <em>color</em></li>
                         </ul>
-                    <p>There is also another attribute for both nodes and edges called <code>alpha</code> which is a numeric value from <code>0</code>-<code>100</code> that modifies the opacity of a specified color attribute. A value of <code>0</code> is essentially invisible (i.e., completely transparent) whereas <code>100</code> is entirely opaque (i.e., no transparency applied). Creating an alpha scale can be done by either referencing a column containing color attribute values, or, by initializing a color attribute column and then creating an alpha scale at the same time. An example will be useful here, alongside <strong>RStudio</strong> <strong>Viewer</strong> output. Begin by randomly creating edges and nodes with static attributes:</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-2-1.png" class="img-responsive center-block">
-                    </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint"># Set a seed to make the example reproducible
-set.seed(23)
+                    <p>There is also another attribute for both nodes and edges called <code>alpha</code> which is a numeric value from <code>0</code>-<code>100</code> that modifies the opacity of a specified color attribute. A value of <code>0</code> is essentially invisible (i.e., completely transparent) whereas <code>100</code> is entirely opaque (i.e., no transparency applied). Creating an alpha scale can be done by either referencing a column containing color attribute values, or, by initializing a color attribute column and then creating an alpha scale at the same time.</p>
 
-# Create an edge data frame and also include a column of 'random' data
-many_edges &lt;-
-  create_edges(edge_from = sample(seq(1:100), 100, replace = TRUE),
-               edge_to = sample(seq(1:100), 100, replace = TRUE),
-               random_data = sample(seq(1:5000), 100, replace = TRUE))
-
-# Create the node data frame, using the nodes that are available in
-# the 'many_edges' data frame; provide 'shape' and 'fillcolor' attributes
-many_nodes &lt;-
-  create_nodes(node = get_nodes(many_edges),
-               random_data = sample(seq(1:5000),
-                                    length(get_nodes(many_edges))),
-               label = FALSE,
-               shape = "circle",
-               fillcolor = "red")
-
-# View the graph and also ensure that style = filled is present
-# to activate the fillcolor node attribute
-graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
-               node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi",
-                               "overlap = false")) %>>% graphviz_render</code></pre>
-                        </div>
-                    </div>
+                    <p>An example will be useful here, alongside <strong>RStudio</strong> <strong>Viewer</strong> output. Begin by randomly creating edges and nodes with static attributes:</p>
                     <p>Create a scale for the node attribute <code>penwidth</code> (which changes the stroke thickness of the node shape). Using the data in <code>random_data</code>, those values will be scaled linearly from <code>2</code> to <code>10</code>.</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-2-2.png" class="img-responsive center-block">
-                    </div>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">many_nodes &lt;- scale_nodes(nodes_df = many_nodes,
+                            <pre><code class="prettyprint"># Create a data frame for nodes and insert a randomized data column
+nodes &lt;- scale_nodes(nodes_df = many_nodes,
                              to_scale = many_nodes$random_data,
                              node_attr = "penwidth",
                              range = c(2, 10))
+
+nodes
+#>    node random_data
+#> 1    21        3130
+#> 2    23        1614
+#> 3    27        3182
+#> 4    34        2986
+#> 5    85        3745
+#> ..  ...         ...
+
+# Use the 'scale_nodes' function to scale an attribute value
+# to data in another column
+nodes <- scale_nodes(nodes_df = many_nodes,
+                          to_scale = many_nodes$random_data,
+                          node_attr = "penwidth",
+                          range = c(2, 10))
+
+nodes
+#>    node random_data  penwidth
+#> 1    21        3130  7.032524
+#> 2    23        1614  4.536023
+#> 3    27        3182  7.118156
+#> 4    34        2986  6.795389
+#> 5    85        3745  8.045286
+#> ..  ...         ...       ...
 
 graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                node_attrs = "style = filled",
@@ -307,43 +328,45 @@ graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
                         </div>
                     </div>
                     <p>To apply transparency to color values, use the <code>alpha</code> node attribute but reference the <code>color</code> attribute that should be modified with the syntax: 'alpha:[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: 'alpha:[color_attr]=[color]'. The color value can either be an <strong>X11</strong> color name or a hexadecimal color value.</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-2-3.png" class="img-responsive center-block">
-                    </div>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">many_nodes &lt;- scale_nodes(nodes_df = many_nodes,
-                          to_scale = many_nodes$random_data,
+                            <pre><code class="prettyprint">nodes &lt;- scale_nodes(nodes_df = nodes,
+                          to_scale = nodes$random_data,
                           node_attr = "alpha:fillcolor",
                           range = c(5, 90))
 
-graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
-               node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi",
-                               "overlap = false")) %>>% graphviz_render</code></pre>
+many_nodes
+#>    node random_data alpha_fillcolor
+#> 1    85        2928       54.831206
+#> 2   158        3806       70.193495
+#> 3   191        4194       76.982297
+#> 4   371        3757       69.336147
+#> 5    58        1434       28.690819</code></pre>
                         </div>
                     </div>
                     <p>Edges can have scales applied to edge attributes:</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-2-4.png" class="img-responsive center-block">
-                    </div>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">many_edges &lt;- scale_edges(edges_df = many_edges,
-                             to_scale = many_edges$random_data,
-                             edge_attr = "penwidth",
-                             range = c(0.5, 10))
+                            <pre><code class="prettyprint">edges &lt;-
+  create_edges(edge_from = sample(seq(1:10), 5, replace = FALSE),
+               edge_to = sample(seq(1:10), 5, replace = FALSE),
+               random_data = sample(seq(1:500), 5, replace = TRUE))
 
-graphviz_graph(nodes_df = many_nodes, edges_df = many_edges,
-               node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi",
-                               "overlap = false")) %>>% graphviz_render</code></pre>
+edges &lt;- scale_edges(edges_df = edges,
+                     to_scale = edges$random_data,
+                     edge_attr = "color",
+                     range = c("red", "green"))
+
+edges
+#>   edge_from edge_to random_data   color
+#> 1         7       9         446 #0FFF00
+#> 2        10       1         459 #00FF00
+#> 3         9       8          55 #FF0500
+#> 4         3       7         148 #FF7500
+#> 5         2       2         333 #9EFF00</code></pre>
                         </div>
                     </div>
                     <p>You can linearly scale color values as well. When creating color scales, ensure that the <strong>V8</strong> library is installed and loaded.</p>
-                    <div class="bs-example">
-                        <img src="img/grviz_example-2-5.png" class="img-responsive center-block">
-                    </div>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint"># install.packages("V8")
@@ -521,6 +544,28 @@ graphviz_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
                         <div>
                             <img src="img/graph-functions/node_count_2x.png" class="img-responsive center-block">
                         </div>
+                    <p>The <code>is_graph_empty</code> and <code>is_directed</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> on whether the graph is empty and whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that toggle the graph between directed and undirected states. The <code>node_info</code> and <code>edge_info</code> provide information about the nodes and edges in the graph. The information is presented in the form of a data frame. For <code>node_info</code>, the following data is returned:</p>
+                        <ul>
+                            <li>node</li>
+                            <li>label</li>
+                            <li>type</li>
+                            <li>degree</li>
+                            <li>indegree</li>
+                            <li>outdegree</li>
+                            <li>loops</li>
+                        </ul>
+                    <p>From the <code>edge_info</code> function, the resultant data frame has the following columns:</p>
+                        <ul>
+                            <li>edge_from</li>
+                            <li>edge_to</li>
+                            <li>relationship</li>
+                            <li>label</li>
+                        </ul>
+                    <p>All the aforementioned functions take only a graph object when called.</p>
+                    <p>The <code>node_present</code> and <code>edge_present</code> functions are used to determine whether a node (based on its node ID) or an edge (based on two node IDs) is present in a graph object. Both functions return a logical value of either <code>TRUE</code> or <code>FALSE</code>.</p>
+                    <p>The purpose of the <code>get_nodes</code> and <code>get_edges</code> functions is to return either all of the nodes or edges (i.e., pairs of nodes, ordered by direction) available in the graph, or, in data frames for nodes or edges. For <code>get_nodes</code>, one can simply supply either a graph object, a data frame for nodes, or a data frame for edges, and a vector of node IDs will be returned. For the <code>get_edges</code> function, there is an additional argument called <code>return_type</code>, where you can specify three different types of return objects: a list with <code>return_type = list</code>, a data frame with <code>return_type = df</code>, and a character vector with <code>return_type = vector</code>. Whereas <code>get_nodes</code> works with graph objects and data frames for nodes and edges, <code>get_edges</code> works only with graph objects and data frames for node data.</p>
+                    <p>The <code>get_predecessors</code> and <code>get_successors</code> function take both a graph object and a specified node in that graph and determine which nodes are its predecessors or successors, respectively.</p>
+                    <p>To get a count of all or certain types of nodes available in the graph, you can use the <code>node_count</code> function. The argument <code>type</code> can either be supplied with a <code>TRUE</code> or <code>FALSE</code> value, or, a character vector containing the values for the node type which may be available for nodes in the graph. Providing <code>TRUE</code> will issue a named vector of node counts by their type. Any nodes with a <code>type</code> attribute not set with a value are placed into a separate count category. Using <code>type = FALSE</code> with <code>node_count</code> simply supplied a single-value vector with a total count of nodes in the graph. By providing a vector of character values of available node <code>type</code> values, a numerical named vector of counts for only those specified types will be returned.</p>
                     <h2 id="modifying-the-graph">Modifying the Graph</h2>
                     <p>Add nodes, delete edges, modify relationships between nodes, set node type declarations... Those are some of the things you can do with these graph construction/destruction functions.</p>
                         <div>
