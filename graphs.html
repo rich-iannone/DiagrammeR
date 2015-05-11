@@ -93,6 +93,9 @@
                     <h2 id="node-edge-data-frames">Node/Edge Data Frames</h2>
                     <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis.</p>
                         <div>
+                            <img src="img/graph-functions/header_node_edge_df_processing_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/create_nodes_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
@@ -386,6 +389,9 @@ create_graph(nodes_df = many_nodes, edges_df = many_edges,
                     <h2 id="create-render-graph">Create and Render Graph</h2>
                     <p>Eventually, you'll want to make a graph and then see that graph. Two functions make that possible.</p>
                         <div>
+                            <img src="img/graph-functions/header_graph_object_creation_and_rendering_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/create_graph_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
@@ -515,6 +521,9 @@ create_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
                     <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
                     <p>Knowing what's in the graph is important. Several functions allow you to get information about the current state of the graph object. You can get very general information about the graph's node or edges, or, more specific information such as the predecessors and successors for a certain node in the graph</p>
                         <div>
+                            <img src="img/graph-functions/header_graph_inspection_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/is_graph_empty_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
@@ -568,6 +577,9 @@ create_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
                     <p>To get a count of all or certain types of nodes available in the graph, you can use the <code>node_count</code> function. The argument <code>type</code> can either be supplied with a <code>TRUE</code> or <code>FALSE</code> value, or, a character vector containing the values for the node type which may be available for nodes in the graph. Providing <code>TRUE</code> will issue a named vector of node counts by their type. Any nodes with a <code>type</code> attribute not set with a value are placed into a separate count category. Using <code>type = FALSE</code> with <code>node_count</code> simply supplied a single-value vector with a total count of nodes in the graph. By providing a vector of character values of available node <code>type</code> values, a numerical named vector of counts for only those specified types will be returned.</p>
                     <h2 id="modifying-the-graph">Modifying the Graph</h2>
                     <p>Add nodes, delete edges, modify relationships between nodes, set node type declarations... Those are some of the things you can do with these graph construction/destruction functions.</p>
+                        <div>
+                            <img src="img/graph-functions/header_graph_modification_2x.png" class="img-responsive center-block">
+                        </div>
                         <div>
                             <img src="img/graph-functions/add_node_2x.png" class="img-responsive center-block">
                         </div>
