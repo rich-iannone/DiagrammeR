@@ -31,7 +31,12 @@ render_graph <- function(graph,
 
   if (output == "graph"){
 
-    grViz(diagram = dot_code, width = width, height = height)
-  }
+    # If the DOT code contains no references to external images, then simply
+    # use the 'grViz' function to render the graph
+    if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == FALSE){
+
+      grViz(diagram = dot_code, width = width, height = height)
+    }
+
 
 }
