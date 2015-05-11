@@ -42,6 +42,16 @@ render_graph <- function(graph,
     # can access those images and display them in the graph
     if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == TRUE){
 
+      all_replacement_nodes_circles <-
+        str_detect(dot_code, "\\[.*?shape[ ]*?=[ ]*?'circle'.*?, img.*?].*")
+
+      # Add in 'shape = circle' for all nodes containing to image links
+      if (all_replacement_nodes_circles == FALSE){
+
+        dot_code <- str_replace_all(dot_code, "\\[(.*?img.*?)]",
+                                    "\\[\\1, shape = 'circle'].*")
+      }
+
       gv <- grViz(dot_code)
 
       gv_SVG <- exportSVG(gv)
@@ -58,7 +68,7 @@ render_graph <- function(graph,
 
         id_collection <-
           gsub("^\"([a-zA-Z]*)\".*$", "\\1", unlist(str_extract_all(gv$x$diagram,
-                                                                "(\"[a-zA-Z]*?\") \\[.*?id.*?\\]")))
+                                                                    "(\"[a-zA-Z]*?\") \\[.*?id.*?\\]")))
       }
 
       # Extract 'g' elements from SVG that correspond to IDs
