@@ -310,7 +310,7 @@ nodes
 
 # Use the 'scale_nodes' function to scale an attribute value
 # to data in another column
-nodes <- scale_nodes(nodes_df = many_nodes,
+nodes &lt;- scale_nodes(nodes_df = many_nodes,
                           to_scale = many_nodes$random_data,
                           node_attr = "penwidth",
                           range = c(2, 10))
@@ -783,9 +783,9 @@ graph_attrs &lt;- c("layout = circo",
 # This graph is for a single day of flights, airports that are unconnected on a
 # given day may be destinations on another day
 create_graph(nodes_df = nodes_df, edges_df = edges_df,
-               graph_attrs = graph_attrs, node_attrs = node_attrs,
-               edge_attrs = edge_attrs, directed = TRUE) %>>%
-                 render_graph(width = 1200, height = 800)</code></pre>
+             graph_attrs = graph_attrs, node_attrs = node_attrs,
+             edge_attrs = edge_attrs, directed = TRUE) %>>%
+               render_graph(width = 1200, height = 800)</code></pre>
                         </div>
                     </div>
                 </div>
