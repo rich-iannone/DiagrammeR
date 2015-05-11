@@ -7,9 +7,9 @@
 #' @export render_graph
 
 render_graph <- function(graph,
-                            output = "graph",
-                            width = NULL,
-                            height = NULL){
+                         output = "graph",
+                         width = NULL,
+                         height = NULL){
 
   stopifnot(class(graph) == "gv_graph")
 
