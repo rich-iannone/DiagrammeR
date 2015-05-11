@@ -1,6 +1,6 @@
 #' Determine whether a specified edge is present in an existing graph object
 #' @description From a graph object of class 'gv_graph', determine whether a directed edge (defined by a pair of node IDs extant in the graph) is present.
-#' @param graph a graph object of class 'gv_graph' that is created using 'graphviz_graph'.
+#' @param graph a graph object of class 'gv_graph' that is created using 'create_graph'.
 #' @param from a node ID from which the edge to be queried is outgoing.
 #' @param to a node ID to which the edge to be queried is incoming.
 #' @return a logical value

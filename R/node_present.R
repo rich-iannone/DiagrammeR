@@ -1,6 +1,6 @@
 #' Determine whether a specified node is present in an existing graph object
 #' @description From a graph object of class 'gv_graph', determine whether a specified node is present.
-#' @param graph a graph object of class 'gv_graph' that is created using 'graphviz_graph'.
+#' @param graph a graph object of class 'gv_graph' that is created using 'create_graph'.
 #' @param node a value that may or may not match a node ID in the graph.
 #' @return a logical value
 #' @export node_present

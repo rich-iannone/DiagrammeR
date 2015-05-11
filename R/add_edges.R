@@ -1,6 +1,6 @@
 #' Add edges to an existing graph object
 #' @description With a graph object of class 'gv_graph', add one or more edges of specified types to nodes within the graph.
-#' @param graph a graph object of class 'gv_graph' that is created using 'graphviz_graph'.
+#' @param graph a graph object of class 'gv_graph' that is created using 'create_graph'.
 #' @param edges_df an edge data frame that is created using 'create_edges'.
 #' @param from a vector of the outgoing nodes from which each edge is connected.
 #' @param to a vector of the incoming nodes to which each edge is connected.
@@ -51,7 +51,7 @@ add_edges <- function(graph,
     if (edges_df_available == TRUE){
 
       gv_graph <-
-        graphviz_graph(nodes_df = graph$nodes_df,
+        create_graph(nodes_df = graph$nodes_df,
                        edges_df = edges_df)
 
       return(gv_graph)
@@ -62,7 +62,7 @@ add_edges <- function(graph,
       if (!is.null(relationship)){
 
         gv_graph <-
-          graphviz_graph(nodes_df = graph$nodes_df,
+          create_graph(nodes_df = graph$nodes_df,
                          edges_df = create_edges(edge_from = from,
                                                  edge_to = to,
                                                  relationship = relationship))
@@ -71,7 +71,7 @@ add_edges <- function(graph,
       if (is.null(relationship)){
 
         gv_graph <-
-          graphviz_graph(nodes_df = graph$nodes_df,
+          create_graph(nodes_df = graph$nodes_df,
                          edges_df = create_edges(edge_from = from,
                                                  edge_to = to))
       }
@@ -88,7 +88,7 @@ add_edges <- function(graph,
                                       edges_df)
 
       gv_graph <-
-        graphviz_graph(nodes_df = graph$nodes_df,
+        create_graph(nodes_df = graph$nodes_df,
                        edges_df = combined_edges)
 
       return(gv_graph)
@@ -112,7 +112,7 @@ add_edges <- function(graph,
       }
 
       gv_graph <-
-        graphviz_graph(nodes_df = graph$nodes_df,
+        create_graph(nodes_df = graph$nodes_df,
                        edges_df = combined_edges)
 
       return(gv_graph)

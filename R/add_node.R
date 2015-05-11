@@ -1,6 +1,6 @@
 #' Add a node to an existing graph object
 #' @description With a graph object of class 'gv_graph', add a new node of a specified type to extant nodes within the graph.
-#' @param graph a graph object of class 'gv_graph' that is created using 'graphviz_graph'.
+#' @param graph a graph object of class 'gv_graph' that is created using 'create_graph'.
 #' @param node a node ID for the newly connected node.
 #' @param from an optional vector containing node IDs from which edges will be directed to the new node.
 #' @param to an optional vector containing node IDs to which edges will be directed from the new node.
@@ -82,7 +82,7 @@ add_node <- function(graph,
                                                    edge_to = rep(node, length(from))))
 
       gv_graph <-
-        graphviz_graph(nodes_df = combined_nodes,
+        create_graph(nodes_df = combined_nodes,
                        edges_df = combined_edges)
 
       # Create a revised graph and return that graph
@@ -133,7 +133,7 @@ add_node <- function(graph,
                                                    edge_to = to))
 
       gv_graph <-
-        graphviz_graph(nodes_df = combined_nodes,
+        create_graph(nodes_df = combined_nodes,
                        edges_df = combined_edges)
 
       # Create a revised graph and return that graph
@@ -194,7 +194,7 @@ add_node <- function(graph,
                                                    edge_to = to))
 
       gv_graph <-
-        graphviz_graph(nodes_df = combined_nodes,
+        create_graph(nodes_df = combined_nodes,
                        edges_df = combined_edges)
 
       # Create a revised graph and return that graph
@@ -233,7 +233,7 @@ add_node <- function(graph,
 
       # Create a revised graph and return that graph
       gv_graph <-
-        graphviz_graph(nodes_df = combined_nodes,
+        create_graph(nodes_df = combined_nodes,
                        edges_df = graph$edges_df)
 
       return(gv_graph)
