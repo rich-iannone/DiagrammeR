@@ -69,7 +69,7 @@ create_graph <- function(nodes_df = NULL, edges_df = NULL,
                        "fixedsize", "fontcolor", "fontname", "fontsize",
                        "group", "height", "label", "labelloc", "margin",
                        "orientation", "penwidth", "peripheries", "pos", "shape",
-                       "sides", "skew", "style", "tooltip", "width")
+                       "sides", "skew", "style", "tooltip", "width", "img")
 
   edge_attributes <- c("arrowhead", "arrowsize", "arrowtail", "color",
                        "constraint", "decorate", "dir",
