@@ -31,13 +31,6 @@ render_graph <- function(graph,
 
   if (output == "graph"){
 
-    # If the DOT code contains no references to external images, then simply
-    # use the 'grViz' function to render the graph
-    if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == FALSE){
-
-      grViz(diagram = dot_code, width = width, height = height)
-    }
-
     # If the DOT code contains references to images, create an HTML file that
     # can access those images and display them in the graph
     if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == TRUE){
@@ -186,6 +179,13 @@ render_graph <- function(graph,
 
       # Display the HTML file in the Viewer
       rstudioapi::viewer(htmlFile)
+    }
+
+    # If the DOT code contains no references to external images, then simply
+    # use the 'grViz' function to render the graph
+    if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == FALSE){
+
+      grViz(diagram = dot_code, width = width, height = height)
     }
   }
 }
