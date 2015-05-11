@@ -42,7 +42,7 @@ render_graph <- function(graph,
       if (all_replacement_nodes_circles == FALSE){
 
         dot_code <- str_replace_all(dot_code, "\\[(.*?img.*?)]",
-                                    "\\[\\1, shape = 'circle'].*")
+                                    "\\[\\1, shape = 'circle']")
       }
 
       gv <- grViz(dot_code)
