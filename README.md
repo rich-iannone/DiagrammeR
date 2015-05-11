@@ -220,10 +220,10 @@ create_graph(
     )
 ```
 
-The `create_graph` function returns a `gv_graph` object, which can be used by additional processing functions. One such function is the `graphviz_render` function, which allows for both visualizing the graph object and creating output files:
+The `create_graph` function returns a `gv_graph` object, which can be used by additional processing functions. One such function is the `render_graph` function, which allows for both visualizing the graph object and creating output files:
 
 ```r
-graphviz_render(
+render_graph(
     graph,        # a 'gv_graph' object, created using the 'create_graph' function
     output,       # a string specifying the output type; 'graph' (the default) renders
                   # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
@@ -233,9 +233,9 @@ graphviz_render(
     )
 ```
 
-With packages such as [**magrittr**](https://github.com/smbache/magrittr) or [**pipeR**](https://github.com/renkun-ken/pipeR), one can conveniently pipe output from `create_graph` to `graphviz_render`. On the topic of packages, it is important to load the [**V8**](https://github.com/jeroenooms/V8) package as it will enable color scaling functionality (as will be seen in later examples).
+With packages such as [**magrittr**](https://github.com/smbache/magrittr) or [**pipeR**](https://github.com/renkun-ken/pipeR), one can conveniently pipe output from `create_graph` to `render_graph`. On the topic of packages, it is important to load the [**V8**](https://github.com/jeroenooms/V8) package as it will enable color scaling functionality (as will be seen in later examples).
 
-Before we get to using the `create_graph` and `graphviz_render` functions, however, we'll need to create some specialized data frames. One is for nodes, the other concerns the edges. Both types of data frames are parsed by the `create_graph` function and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.
+Before we get to using the `create_graph` and `render_graph` functions, however, we'll need to create some specialized data frames. One is for nodes, the other concerns the edges. Both types of data frames are parsed by the `create_graph` function and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match are disregarded, so, there's no harm in having pre-existing or added columns with useful data for analysis.
 
 Which columns might a node data frame have? Well, it's important to have at least one column named either `node`, `nodes`, or `node_id`. That's where unique values for the node ID should reside. Here are some notable node attributes:
 
@@ -328,12 +328,12 @@ This is the combined node data frame:
 8    h type 2 filled lightblue
 ```
 
-Let's look at the nodes that were created. Use the `create_graph` (just provide the `all_nodes` object at this point) and pipe to `graphviz_render`. The **pipeR** package (used in these examples) provides a forward pipe with the `%>>%` operator. With **magrittr**, use `%>%` instead.
+Let's look at the nodes that were created. Use the `create_graph` (just provide the `all_nodes` object at this point) and pipe to `render_graph`. The **pipeR** package (used in these examples) provides a forward pipe with the `%>>%` operator. With **magrittr**, use `%>%` instead.
 
 ```r
 library("pipeR")
 
-create_graph(nodes_df = all_nodes) %>>% graphviz_render
+create_graph(nodes_df = all_nodes) %>>% render_graph
 ```
 
 This is what the diagram looks like, at this early stage:
@@ -393,7 +393,7 @@ Very nice, now we have graph-able node and edge data frames. Let's just go ahead
 
 ```r
 create_graph(nodes_df = all_nodes,
-               edges_df = all_edges) %>>% graphviz_render
+               edges_df = all_edges) %>>% render_graph
 ```
 
 <img src="inst/img/grViz_6.png">
@@ -403,7 +403,7 @@ Not bad for an example graph. There may be cases where node or edge attributes s
 ```r
 create_graph(nodes_df = all_nodes,
                edges_df = all_edges,
-               node_attrs = "fontname = Helvetica") %>>% graphviz_render
+               node_attrs = "fontname = Helvetica") %>>% render_graph
 ```
 
 <img src="inst/img/grViz_7.png">
@@ -414,7 +414,7 @@ Likewise, for edges, you may want a certain uniform look that is different from 
 create_graph(nodes_df = all_nodes,
                edges_df = all_edges,
                node_attrs = "fontname = Helvetica",
-               edge_attrs = c("color = gray", "penwidth = 4")) %>>% graphviz_render
+               edge_attrs = c("color = gray", "penwidth = 4")) %>>% render_graph
 ```
 
 <img src="inst/img/grViz_8.png">
@@ -429,7 +429,7 @@ create_graph(nodes_df = all_nodes,
                graph_attrs = c("layout = circo",
                                "overlap = false",
                                "ranksep = 3",
-                               "outputorder = edgesfirst")) %>>% graphviz_render
+                               "outputorder = edgesfirst")) %>>% render_graph
 ```
 
 <img src="inst/img/grViz_9.png">
@@ -494,7 +494,7 @@ View the graph and also ensure that `style = filled` is present to activate the 
 create_graph(nodes_df = many_nodes, edges_df = many_edges,
                node_attrs = "style = filled",
                graph_attrs = c("layout = twopi", "overlap = false")) %>>%
-  graphviz_render
+  render_graph
 ```
 
 <img src="inst/img/grViz_10.png">
@@ -547,7 +547,7 @@ many_edges <- scale_edges(edges_df = many_edges,
 
 #### Exporting Graph Code
 
-If you'd like to return the **Graphviz** **DOT** code (to, perhaps, share it or use it directly with the **Graphviz** command-line utility), just use `output = "DOT"` in the `graphviz_render` function. Here's a simple example:
+If you'd like to return the **Graphviz** **DOT** code (to, perhaps, share it or use it directly with the **Graphviz** command-line utility), just use `output = "DOT"` in the `render_graph` function. Here's a simple example:
 
 ```r
 create_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
@@ -556,7 +556,7 @@ create_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
                graph_attrs = c("layout = dot", "rankdir = LR"),
                node_attrs = "fontname = Helvetica",
                edge_attrs = "arrowhead = dot") %>>%
-  graphviz_render(output = "DOT") %>>% cat
+  render_graph(output = "DOT") %>>% cat
 ```
 
 The output is pretty clean **DOT** code:
@@ -592,7 +592,7 @@ create_graph(nodes_df = data.frame(nodes = c("a", "b", "c")),
                graph_attrs = c("layout = dot", "rankdir = LR"),
                node_attrs = "fontname = Helvetica",
                edge_attrs = "arrowhead = dot") %>>%
-  graphviz_render(output = "SVG") %>>% cat             
+  render_graph(output = "SVG") %>>% cat             
 ```
 
 The **SVG**:
@@ -732,7 +732,7 @@ graph_attrs <- c("layout = circo",
 create_graph(nodes_df = nodes_df, edges_df = edges_df,
                graph_attrs = graph_attrs, node_attrs = node_attrs,
                edge_attrs = edge_attrs, directed = TRUE) %>>%
-  graphviz_render(width = 1200, height = 800)
+  render_graph(width = 1200, height = 800)
                
 ```
 
