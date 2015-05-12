@@ -79,7 +79,7 @@ render_graph <- function(graph,
 
         id_collection <-
           gsub("^\"([a-zA-Z0-9_]*)\".*$", "\\1", unlist(str_extract_all(gv$x$diagram,
-                                                                    "(\"[a-zA-Z0-9_]*?\") \\[.*?id.*?\\]")))
+                                                                        "(\"[a-zA-Z0-9_]*?\") \\[.*?id.*?\\]")))
       }
 
       # Extract 'g' elements from SVG that correspond to IDs
