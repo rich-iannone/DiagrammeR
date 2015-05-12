@@ -38,7 +38,8 @@ render_graph <- function(graph,
         grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code)){
 
       all_replacement_nodes_circles <-
-        str_detect(dot_code, "\\[.*?shape[ ]*?=[ ]*?'circle'.*?, img.*?].*")
+        str_detect(dot_code, "\\[.*?shape[ ]*?=[ ]*?'circle'.*?, img.*?].*") &
+        str_detect(dot_code, "\\[.*?shape[ ]*?=[ ]*?'circle'.*?, icon.*?].*")
 
       # Add in 'shape = circle' for all nodes containing to image links
       if (all_replacement_nodes_circles == FALSE){
