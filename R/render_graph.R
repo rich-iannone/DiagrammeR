@@ -34,7 +34,8 @@ render_graph <- function(graph,
 
     # If the DOT code contains references to images, create an HTML file that
     # can access those images and display them in the graph
-    if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == TRUE){
+    if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
+        grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code)){
 
       all_replacement_nodes_circles <-
         str_detect(dot_code, "\\[.*?shape[ ]*?=[ ]*?'circle'.*?, img.*?].*")
