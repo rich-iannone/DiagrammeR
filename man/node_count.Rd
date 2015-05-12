@@ -10,13 +10,11 @@ node_count(graph, type = FALSE)
 \item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
 
 \item{type}{either a logical value, where TRUE provides a named vector of node count by type and FALSE (the default) provides a total count, or, a string corresponding to one or more node types.}
-
-\item{node}{a value that may or may not match a node ID in the graph.}
 }
 \value{
-a logical value
+a numeric vector of single length
 }
 \description{
-From a graph object of class 'gv_graph', get a count of nodes in the graph and optionally obtain count of nodes by their type.
+From a graph object of class 'gv_graph', get a count of nodes in the graph and optionally obtain a count of nodes by their type.
 }
 
