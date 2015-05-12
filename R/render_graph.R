@@ -46,6 +46,9 @@ render_graph <- function(graph,
 
         dot_code <- str_replace_all(dot_code, "\\[(.*?img.*?)]",
                                     "\\[\\1, shape = 'circle']")
+        dot_code <- str_replace_all(dot_code, "\\[(.*?icon.*?)]",
+                                    "\\[\\1, shape = 'circle']")
+      }
       }
 
       gv <- grViz(dot_code)
