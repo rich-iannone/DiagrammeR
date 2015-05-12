@@ -49,6 +49,18 @@ render_graph <- function(graph,
         dot_code <- str_replace_all(dot_code, "\\[(.*?icon.*?)]",
                                     "\\[\\1, shape = 'circle']")
       }
+
+      # For icons, substitute their shorthand names for web links to png graphics
+      while (grepl("icon[ ]*?=[ ]*?", dot_code)){
+
+        icon_name <- gsub("'", "",
+                          gsub("icon[ ]*?=[ ]*?'", "",
+                               str_extract(dot_code, "icon[ ]*?=[ ]*?'(.*?)'")))
+
+        icon_link <- image_icon(icon_name)
+
+        dot_code <- str_replace(dot_code, icon_name, icon_link)
+        dot_code <- str_replace(dot_code, "icon", "img")
       }
 
       gv <- grViz(dot_code)
