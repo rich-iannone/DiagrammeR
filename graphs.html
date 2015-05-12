@@ -93,25 +93,46 @@
                     <h2 id="node-edge-data-frames">Node/Edge Data Frames</h2>
                     <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis.</p>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/header_node_edge_df_processing_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/create_nodes_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/combine_nodes_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/create_edges_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/combine_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/scale_nodes_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/scale_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>When creating a data frame for nodes, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
                     <ul>
@@ -389,13 +410,22 @@ create_graph(nodes_df = many_nodes, edges_df = many_edges,
                     <h2 id="create-render-graph">Create and Render Graph</h2>
                     <p>Eventually, you'll want to make a graph and then see that graph. Two functions make that possible.</p>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/header_graph_object_creation_and_rendering_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/create_graph_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/render_graph_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>With the <code>create_graph</code> function, it's possible to generate a graph diagram object without interacting directly with <strong>DOT</strong> code. The function has the following options:</p>
 <div>
@@ -521,37 +551,70 @@ create_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
                     <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
                     <p>Knowing what's in the graph is important. Several functions allow you to get information about the current state of the graph object. You can get very general information about the graph's node or edges, or, more specific information such as the predecessors and successors for a certain node in the graph</p>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/header_graph_inspection_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/is_graph_empty_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/node_info_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/edge_info_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/node_present_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/edge_present_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/get_nodes_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/get_edges_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/get_predecessors_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/get_sucessors_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/node_count_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>The <code>is_graph_empty</code> and <code>is_directed</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> on whether the graph is empty and whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that toggle the graph between directed and undirected states. The <code>node_info</code> and <code>edge_info</code> provide information about the nodes and edges in the graph. The information is presented in the form of a data frame. For <code>node_info</code>, the following data is returned:</p>
                         <ul>
@@ -578,25 +641,46 @@ create_graph(nodes_df = create_nodes(nodes = c("a", "b", "c")),
                     <h2 id="modifying-the-graph">Modifying the Graph</h2>
                     <p>Add nodes, delete edges, modify relationships between nodes, set node type declarations... Those are some of the things you can do with these graph construction/destruction functions.</p>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/header_graph_modification_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/add_node_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/add_edges_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/delete_node_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/delete_edge_2x.png" class="img-responsive center-block">
                         </div>
-                         <div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/node_type_2x.png" class="img-responsive center-block">
                         </div>
-                         <div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
                             <img src="img/graph-functions/edge_relationship_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>The <code>add_node</code> function allows one to add a single node to a graph. Specify the graph to which the node should be added and the node ID for the <code>node</code> argument, and a node will be added. While the other arguments are optional, using just <code>graph</code> and <code>node</code> will result in the addition of an unconnected node. This might be desirable (say, if the graph is empty), but the more likely case is that edges to other nodes will be required upon addition of a new node. The <code>from</code> and <code>to</code> arguments (both optional) are where you would specify connections from existing nodes to the new node (with <code>to</code>), and connections to existing nodes from the new node (with <code>from</code>). A vector of node IDs can be supplied to either argument. The <code>label</code> and <code>type</code> arguments allow for direct setting of these node attributes during the addition of a node. Finally, a named vector of node attributes and their values can be included in the <code>add_node</code> call.</p>
                     <p>The <code>add_edges</code> function is meant for adding edges between extant graph nodes. Because the nodes must exist in the graph, this function cannot be invoked for an empty graph. (It can, however, be used for a graph with a single node since an edge can be created as a loop from and to the same node.) there are two means to add edges to a graph with this function:</p>
