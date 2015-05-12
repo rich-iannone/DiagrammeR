@@ -6,4 +6,8 @@
 
 display_graph_object <- function(graph){
 
+  # Get updated counts of nodes in graph
+  total_node_count <- node_count(graph = graph,
+                                 type = FALSE)
+
 }
