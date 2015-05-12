@@ -3,7 +3,7 @@
 #' @param graph a graph object of class 'gv_graph' that is created using 'create_graph'.
 #' @param node a value that may or may not match a node ID in the graph.
 #' @param type either a logical value, where TRUE provides a named vector of node count by type and FALSE (the default) provides a total count, or, a string corresponding to one or more node types.
-#' @return a logical value
+#' @return a numeric vector of single length
 #' @export node_count
 
 node_count <- function(graph,
