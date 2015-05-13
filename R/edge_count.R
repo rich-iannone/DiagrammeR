@@ -133,7 +133,15 @@ edge_count <- function(graph,
         # that was specified)
         if (relationship != ""){
 
-          edges_df_set_relationship <- graph$edges_df[-which(graph$edges_df$relationship == ''),]
+          if (all(graph$edges_df$relationship == '') == FALSE){
+
+            edges_df_set_relationship <- graph$edges_df
+
+          } else {
+
+            edges_df_set_relationship <-
+              graph$edges_df[-which(graph$edges_df$relationship == ''),]
+          }
 
           for (i in 1:length(relationship)){
 
