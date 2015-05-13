@@ -44,7 +44,7 @@ node_count <- function(graph,
         all_types <- c(all_types,
                        node_type(graph = graph,
                                  all_nodes[i],
-                                 mode = "read"))
+                                 action = "read"))
         all_types <- unique(all_types)
 
         if (any(is.na(all_types))){
@@ -98,7 +98,7 @@ node_count <- function(graph,
         all_types <- c(all_types,
                        node_type(graph = graph,
                                  all_nodes[i],
-                                 mode = "read"))
+                                 action = "read"))
 
         all_types <- unique(all_types)
 
