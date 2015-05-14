@@ -1,5 +1,5 @@
 #' Create a simple color palette
-#' @description Generate a randomized set of colors from the CIE Lab Color space using a set of HCL range values.
+#' Generate a randomized set of colors from the CIE Lab Color space using a set of HCL range values.
 #' @param hue_range a vector representing a range of hues from 0 to 360.
 #' @param chroma_range a vector representing a range of chroma values from 0 to 3.
 #' @param lightness_range a vector representing a range of lightness values from 0 to 2.

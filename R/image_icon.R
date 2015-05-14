@@ -1,5 +1,5 @@
 #' Icons and their download locations
-#' @description A function to create a data frame with image icons and their web addresses
+#' A function to create a data frame with image icons and their web addresses
 #' @export image_icon
 
 image_icon <- function(icon_name){
