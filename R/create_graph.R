@@ -367,7 +367,7 @@ create_graph <- function(nodes_df = NULL,
 
     # Determine whether 'from' or 'to' columns are in 'edges_df'
     from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
-                                    colnames(edges_df)), "TRUE", "FALSE")
+                                    colnames(edges_df)), TRUE, FALSE)
 
     # Determine which columns in 'edges_df' contains edge attributes
     other_columns_with_edge_attributes <-
@@ -483,7 +483,7 @@ create_graph <- function(nodes_df = NULL,
     # explicitly defined edge operations
     any_columns_with_edge_ops <-
       ifelse(any(c("edge_op", "edge_ops", "edge", "edges") %in%
-                   colnames(edges_df)), "TRUE", "FALSE")
+                   colnames(edges_df)), TRUE, FALSE)
 
     if (any_columns_with_edge_ops == TRUE){
 
