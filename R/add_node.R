@@ -32,6 +32,9 @@ add_node <- function(graph,
 
     can_add_node_id <- ifelse(!node_present(graph = graph, node = node), TRUE, FALSE)
   }
+
+  if (can_add_node_id == FALSE){
+    stop("The node is already present in the graph.")
   }
 
   # Place triple dot vectors in a list
