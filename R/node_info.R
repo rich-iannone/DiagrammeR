@@ -6,6 +6,16 @@
 
 node_info <- function(graph){
 
+  # If graph is empty, return an empty data frame
+  if (is_graph_empty(graph = graph) == TRUE){
+
+    node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 7))
+    colnames(node_properties) <- c("node_ID", "label", "type", "degree",
+                                   "indegree", "outdegree", "loops")
+
+    return(node_properties)
+  }
+
   if ("edge_from" %in% colnames(graph$edges_df)){
     edge_from <- graph$edges_df$edge_from
   }
