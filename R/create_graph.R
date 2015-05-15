@@ -346,7 +346,8 @@ create_graph <- function(nodes_df = NULL,
       }
     }
 
-    nodes_df <- get_nodes(edges_df)
+    nodes_df <- as.data.frame(get_nodes(edges_df), stringsAsFactors = FALSE)
+    colnames(nodes_df) <- "nodes"
 
     for (i in 1:length(nodes_df)){
 
