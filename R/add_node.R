@@ -228,8 +228,8 @@ add_node <- function(graph,
         if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
 
           combined_nodes <- cbind(combined_nodes,
-                c(rep("", length = nrow(combined_nodes) - 1),
-                  node_attributes[i][[1]]))
+                                  c(rep("", length = nrow(combined_nodes) - 1),
+                                    node_attributes[i][[1]]))
 
           colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
         }
@@ -238,7 +238,7 @@ add_node <- function(graph,
       # Create a revised graph and return that graph
       gv_graph <-
         create_graph(nodes_df = combined_nodes,
-                       edges_df = graph$edges_df)
+                     edges_df = graph$edges_df)
 
       return(gv_graph)
     }
