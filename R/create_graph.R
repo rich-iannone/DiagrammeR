@@ -346,8 +346,7 @@ create_graph <- function(nodes_df = NULL,
       }
     }
 
-    nodes_df <- data.frame(nodes = unique(c(edges_df[,from_column],
-                                            edges_df[,to_column])))
+    nodes_df <- get_nodes(edges_df)
 
     for (i in 1:nrow(nodes_df)){
 
