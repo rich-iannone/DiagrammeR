@@ -18,8 +18,8 @@ create_graph <- function(nodes_df = NULL,
 
   # If nodes, edges, and attributes not provided, create empty graph
   if (all(c(is.null(nodes_df), is.null(edges_df),
-        is.null(graph_attrs), is.null(node_attrs),
-        is.null(edge_attrs)))){
+            is.null(graph_attrs), is.null(node_attrs),
+            is.null(edge_attrs)))){
 
     # Create DOT code with nothing in graph
     dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
