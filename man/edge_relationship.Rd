@@ -2,7 +2,8 @@
 % Please edit documentation in R/edge_relationship.R
 \name{edge_relationship}
 \alias{edge_relationship}
-\title{Create, read, update, delete, or report status of an edge relationship}
+\title{Create, read, update, delete, or report status of an edge relationship
+From a graph object of class 'gv_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.}
 \usage{
 edge_relationship(graph, from, to, action = "read", value = NULL)
 }
@@ -21,6 +22,7 @@ edge_relationship(graph, from, to, action = "read", value = NULL)
 a graph object of class 'gv_graph'.
 }
 \description{
+Create, read, update, delete, or report status of an edge relationship
 From a graph object of class 'gv_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
 }
 

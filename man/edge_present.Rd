@@ -2,7 +2,8 @@
 % Please edit documentation in R/edge_present.R
 \name{edge_present}
 \alias{edge_present}
-\title{Determine whether a specified edge is present in an existing graph object}
+\title{Determine whether a specified edge is present in an existing graph object
+From a graph object of class 'gv_graph', determine whether a directed edge (defined by a pair of node IDs extant in the graph) is present.}
 \usage{
 edge_present(graph, from, to)
 }
@@ -17,6 +18,7 @@ edge_present(graph, from, to)
 a logical value
 }
 \description{
+Determine whether a specified edge is present in an existing graph object
 From a graph object of class 'gv_graph', determine whether a directed edge (defined by a pair of node IDs extant in the graph) is present.
 }
 

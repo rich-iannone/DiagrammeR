@@ -2,7 +2,8 @@
 % Please edit documentation in R/create_graph.R
 \name{create_graph}
 \alias{create_graph}
-\title{Create a graph object using data frames representative of nodes and edges}
+\title{Create a graph object using data frames representative of nodes and edges
+Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.}
 \usage{
 create_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
   node_attrs = NULL, edge_attrs = NULL, directed = TRUE)
@@ -24,6 +25,7 @@ create_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
 a graph object of class 'gv_graph'.
 }
 \description{
+Create a graph object using data frames representative of nodes and edges
 Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
 }
 

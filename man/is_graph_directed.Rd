@@ -2,7 +2,8 @@
 % Please edit documentation in R/is_graph_directed.R
 \name{is_graph_directed}
 \alias{is_graph_directed}
-\title{Is the graph a directed graph?}
+\title{Is the graph a directed graph?
+Determines whether a graph is set to be directed or not and returns a logical value to that effect.}
 \usage{
 is_graph_directed(graph)
 }
@@ -13,6 +14,7 @@ is_graph_directed(graph)
 a logical value
 }
 \description{
+Is the graph a directed graph?
 Determines whether a graph is set to be directed or not and returns a logical value to that effect.
 }
 

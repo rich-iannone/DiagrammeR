@@ -2,7 +2,8 @@
 % Please edit documentation in R/is_graph_empty.R
 \name{is_graph_empty}
 \alias{is_graph_empty}
-\title{Is the graph empty?}
+\title{Is the graph empty?
+Determines whether a graph contains any nodes and returns a logical value to reflect emptiness.}
 \usage{
 is_graph_empty(graph)
 }
@@ -13,6 +14,7 @@ is_graph_empty(graph)
 a logical value
 }
 \description{
+Is the graph empty?
 Determines whether a graph contains any nodes and returns a logical value to reflect emptiness.
 }
 

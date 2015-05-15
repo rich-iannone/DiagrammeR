@@ -2,7 +2,8 @@
 % Please edit documentation in R/add_node.R
 \name{add_node}
 \alias{add_node}
-\title{Add a node to an existing graph object}
+\title{Add a node to an existing graph object
+With a graph object of class 'gv_graph', add a new node of a specified type to extant nodes within the graph.}
 \usage{
 add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL,
   ...)
@@ -26,6 +27,7 @@ add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL,
 a graph object of class 'gv_graph'.
 }
 \description{
+Add a node to an existing graph object
 With a graph object of class 'gv_graph', add a new node of a specified type to extant nodes within the graph.
 }
 

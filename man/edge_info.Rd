@@ -2,7 +2,8 @@
 % Please edit documentation in R/edge_info.R
 \name{edge_info}
 \alias{edge_info}
-\title{Get detailed information on edges}
+\title{Get detailed information on edges
+Obtain a data frame with detailed information on edges and their interrelationships within a graph.}
 \usage{
 edge_info(graph)
 }
@@ -13,6 +14,7 @@ edge_info(graph)
 a data frame containing information specific to each edge within the graph.
 }
 \description{
+Get detailed information on edges
 Obtain a data frame with detailed information on edges and their interrelationships within a graph.
 }
 

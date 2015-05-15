@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_predecessors.R
 \name{get_predecessors}
 \alias{get_predecessors}
-\title{Get node IDs for predecessor nodes to the specified node}
+\title{Get node IDs for predecessor nodes to the specified node
+Provides a vector of node IDs for all nodes that have a link to the given node.}
 \usage{
 get_predecessors(graph, node)
 }
@@ -15,6 +16,7 @@ get_predecessors(graph, node)
 a vector of node ID values.
 }
 \description{
+Get node IDs for predecessor nodes to the specified node
 Provides a vector of node IDs for all nodes that have a link to the given node.
 }
 

@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_edges.R
 \name{get_edges}
 \alias{get_edges}
-\title{Get node IDs associated with edges}
+\title{Get node IDs associated with edges
+Provides information on the node IDs associated with edges from one or more edge data frames, or, a graph object.}
 \usage{
 get_edges(..., return_type = "list")
 }
@@ -15,6 +16,7 @@ get_edges(..., return_type = "list")
 a list, data frame, or a vector object, depending on the value given to 'return_type'.
 }
 \description{
+Get node IDs associated with edges
 Provides information on the node IDs associated with edges from one or more edge data frames, or, a graph object.
 }
 

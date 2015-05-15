@@ -2,7 +2,8 @@
 % Please edit documentation in R/add_edges.R
 \name{add_edges}
 \alias{add_edges}
-\title{Add edges to an existing graph object}
+\title{Add edges to an existing graph object
+With a graph object of class 'gv_graph', add one or more edges of specified types to nodes within the graph.}
 \usage{
 add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
   relationship = NULL)
@@ -22,6 +23,7 @@ add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
 a graph object of class 'gv_graph'.
 }
 \description{
+Add edges to an existing graph object
 With a graph object of class 'gv_graph', add one or more edges of specified types to nodes within the graph.
 }
 
