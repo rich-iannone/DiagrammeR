@@ -1,8 +1,8 @@
 Package: DiagrammeR
 Type: Package
 Title: Create Diagrams and Flowcharts Using R
-Version: 0.6
-Date: 2015-04-30
+Version: 0.7
+Date: 2015-05-15
 Authors@R: c(
     person("Knut", "Sveidqvist", role = c("aut", "cph"), comment = "mermaid.js
     library in htmlwidgets/lib, http://github.com/knsv/mermaid/"),
@@ -16,7 +16,7 @@ Authors@R: c(
     interface", email = "riannone@me.com")
     )
 Maintainer: Richard Iannone <riannone@me.com>
-Description: Allows to create diagrams and flowcharts using R.
+Description: Create graph diagrams and flowcharts using R.
 License: MIT + file LICENSE
 Imports:
     htmlwidgets (>= 0.3.2), rstudioapi (>= 0.2), stringr (>= 1.0.0)
