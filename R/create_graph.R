@@ -9,9 +9,12 @@
 #' @return a graph object of class 'gv_graph'.
 #' @export create_graph
 
-create_graph <- function(nodes_df = NULL, edges_df = NULL,
-                           graph_attrs = NULL, node_attrs = NULL,
-                           edge_attrs = NULL, directed = TRUE){
+create_graph <- function(nodes_df = NULL,
+                         edges_df = NULL,
+                         graph_attrs = NULL,
+                         node_attrs = NULL,
+                         edge_attrs = NULL,
+                         directed = TRUE){
 
   # If nodes, edges, and attributes not provided, create empty graph
   if (all(c(is.null(nodes_df), is.null(edges_df),
