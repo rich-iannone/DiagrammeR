@@ -250,5 +250,15 @@ add_node <- function(graph,
 
       return(gv_graph)
     }
+
+    if (node_attributes_provided == FALSE){
+
+      # Create a revised graph and return that graph
+      gv_graph <-
+        create_graph(nodes_df = combined_nodes,
+                     edges_df = graph$edges_df)
+
+      return(gv_graph)
+    }
   }
 }
