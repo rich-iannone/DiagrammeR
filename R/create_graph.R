@@ -319,8 +319,9 @@ create_graph <- function(nodes_df = NULL,
 
   if (is.null(nodes_df) & !is.null(edges_df)){
 
-    from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
-                                    colnames(edges_df)), "TRUE", "FALSE")
+    from_to_columns <-
+      ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
+                   colnames(edges_df)), TRUE, FALSE)
 
     # Determine which columns in 'edges_df' contains edge attributes
     other_columns_with_edge_attributes <-
