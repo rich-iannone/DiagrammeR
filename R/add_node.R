@@ -24,7 +24,8 @@ add_node <- function(graph,
   # Stop function if node not a single value
   if (node_is_single_value == FALSE){
 
-    stop("Only a single node can be added using 'add_node'.")
+    message("Only a single node can be added.")
+    return(graph)
   }
 
   # Determine whether node to add is already in graph
@@ -34,7 +35,8 @@ add_node <- function(graph,
   }
 
   if (can_add_node_id == FALSE){
-    stop("The node is already present in the graph.")
+    message("The node is already present in the graph.")
+    return(graph)
   }
 
   # Place triple dot vectors in a list
