@@ -281,11 +281,11 @@ edges_2 &lt;-
                color = "red")
 
 edges_2
-#>    edge_from edge_to arrowhead color
-#> 1          e       g       dot   red
-#> 2          g       h       dot   red
-#> 3          h       f       dot   red
-#> 4          h       e       dot   red
+#>   edge_from edge_to relationship arrowhead color
+#> 1         e       g     receives       dot   red
+#> 2         g       h     receives       dot   red
+#> 3         h       f     receives       dot   red
+#> 4         h       e     receives       dot   red
 
 ###
 # Combine two data frames for edges
@@ -343,7 +343,8 @@ all_edges
 
 ###
 # Create a data frame for nodes
-# Add an attribute which has values scaled to data in a column
+# Add an attribute which has values scaled to data
+# in a column
 ###
 
 set.seed(24)
@@ -361,8 +362,8 @@ nodes
 #> 4     4       example    9
 #> 5     5       example   11
 
-# Use the 'scale_nodes' function to create an attribute column
-# that's scaled to data in another column
+# Use the 'scale_nodes' function to create an attribute
+# column that's scaled to data in another column
 nodes &lt;- scale_nodes(nodes_df = nodes,
                      to_scale = nodes$data,
                      node_attr = "penwidth",
@@ -378,7 +379,8 @@ nodes
 
 ###
 # Create a data frames for edges
-# Add an attribute which has values scaled to data in a column
+# Add an attribute which has values scaled to data
+# in a column
 ###
 
 set.seed(24)
@@ -395,8 +397,8 @@ edges
 #> 2         b       d           given_to   12
 #> 3         c       a           given_to   34
 
-# Use the 'scale_edges' function to create an attribute column
-# that's scaled to data in another column
+# Use the 'scale_edges' function to create an attribute
+# column that's scaled to data in another column
 edges &lt;- scale_edges(edges_df = edges,
                      to_scale = edges$data,
                      edge_attr = "penwidth",
@@ -482,12 +484,12 @@ create_graph(nodes_df = many_nodes, edges_df = many_edges,
                     <p>The <code>render_graph</code> function allows for both visualizing the graph object and creating output files:</p>
                     <div>
 <pre><code>render_graph(
-    graph,        # a 'gv_graph' object, created using the 'create_graph' function
-    output,       # a string specifying the output type; 'graph' (the default) renders
-                  # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
-                  # SVG code for the rendered graph
-    width,        # optionally set a width in pixels
-    height        # optionally set a height in pixels
+    graph,   # a 'gv_graph' object, created using the 'create_graph' function
+    output,  # a string specifying the output type; 'graph' (the default) renders
+             # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
+             # SVG code for the rendered graph
+    width,   # optionally set a width in pixels
+    height   # optionally set a height in pixels
     )
 </code></pre>
                     </div>
@@ -573,16 +575,17 @@ graph
 #> [1] "gv_graph"
 
 ###
-# Create a graph with both nodes and nodes defined, and,
-# add some default attributes
+# Create a graph with both nodes and nodes
+# defined, and, add some default attributes
 ###
 
-graph &lt;- create_graph(nodes_df = nodes,
-                      edges_df = edges,
-                      graph_attrs = "rankdir = LR",
-                      node_attrs = "fontname = Helvetica",
-                      edge_attrs = c("color = blue",
-                                     "arrowsize = 2"))
+graph &lt;-
+  create_graph(nodes_df = nodes,
+               edges_df = edges,
+               graph_attrs = "rankdir = LR",
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = c("color = blue",
+                              "arrowsize = 2"))
 
 graph
 #> $nodes_df
@@ -713,9 +716,9 @@ create_graph(nodes_df = nodes,
                             "arrowsize = 0.5")) %>>%
   display_graph_object
 
-# Use pipeR %>>% operator between 'create_graph', 'render_graph',
-# and 'cat' calls; the 'dot.gv' can be directly opened in
-# Rstudio and further edited (there's even code coloring)
+# Use pipeR %>>% operator between 'create_graph',
+# 'render_graph', and 'cat' calls; the 'dot.gv' can be
+# directly opened in Rstudio and further edited
 create_graph(nodes_df = nodes,
              edges_df = edges,
              graph_attrs = "layout = neato",
@@ -735,9 +738,10 @@ create_graph(nodes_df = nodes,
                             "arrowsize = 0.5")) %>>%
   render_graph(output = "SVG") %>>% cat(file = "~/graph.svg")
 
-# Very large graphs are possible to make but rendering to the
-# RStudio Viewer is not advisable; better to export as DOT or SVG,
-# view a visual summary, or use graph inspection functions
+# Very large graphs are possible to make but rendering
+# to the RStudio Viewer is not advisable; better to export
+# as DOT or SVG, view a visual summary, or use graph
+# inspection functions
 create_graph(nodes_df =
                create_nodes(node = sample(1:90000, 90000)),
              edges_df =
@@ -884,7 +888,6 @@ node_info(graph)
 #> 5        F     F  a_to_g      0        0         0     0
 #>..      ...   ...     ...    ...      ...       ...   ...
 
-# This doesn't create correct label column (has NA values for blanks)
 edge_info(graph)
 #>    edge_from edge_to     relationship label
 #> 1          A       Z letter_to_letter  edge
