@@ -668,7 +668,7 @@ display_graph_object(graph)</code></pre>
                         </div>
                     </div>
                     <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph</code> to <code>render_graph</code>. The <strong>pipeR</strong> package provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead.</p>
-                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph</code> function. Here's a simple example:</p>
+                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph</code> function. For SVG output, use <code>output =  "SVG"</code>Here's a simple example:</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">library(DiagrammeR)
@@ -728,7 +728,7 @@ create_graph(nodes_df = nodes,
                             "arrowsize = 0.5")) %>>%
   render_graph(output = "DOT") %>>% cat(file = "~/dot.gv")
 
-# To generate an SVG file, use 'output = "SVG"'
+# Generate an SVG file
 create_graph(nodes_df = nodes,
              edges_df = edges,
              graph_attrs = "layout = neato",
@@ -862,11 +862,12 @@ edges &lt;-
                label = "edge",
                relationship = "letter_to_letter")
 
-graph &lt;- create_graph(nodes_df = nodes,
-                      edges_df = edges,
-                      graph_attrs = "layout = neato",
-                      node_attrs = c("fontname = Helvetica",
-                                     "shape = circle"))
+graph &lt;-
+  create_graph(nodes_df = nodes,
+               edges_df = edges,
+               graph_attrs = "layout = neato",
+               node_attrs = c("fontname = Helvetica",
+                              "shape = circle"))
 
 ###
 # Is the graph empty?
@@ -979,12 +980,12 @@ get_edges(graph, return_type = "df")
 
 # A character string with node IDs can instead be gotten
 get_edges(graph, return_type = "vector")
-#>  [1] "A -> Z" "H -> U" "W -> O" "U -> K" "I -> V"
-#>  [6] "M -> M" "U -> N" "T -> C" "I -> D" "R -> Z"
-#> [11] "O -> B" "G -> G" "O -> U" "A -> Y" "V -> H"
-#> [16] "I -> V" "M -> R" "K -> V" "R -> Z" "T -> S"
-#> [21] "Y -> Q" "R -> I" "M -> P" "L -> S" "H -> E"
-#> [26] "V -> P"
+#>  [1] "A -&gt; Z" "H -&gt; U" "W -&gt; O" "U -&gt; K" "I -&gt; V"
+#>  [6] "M -&gt; M" "U -&gt; N" "T -&gt; C" "I -&gt; D" "R -&gt; Z"
+#> [11] "O -&gt; B" "G -&gt; G" "O -&gt; U" "A -&gt; Y" "V -&gt; H"
+#> [16] "I -&gt; V" "M -&gt; R" "K -&gt; V" "R -&gt; Z" "T -&gt; S"
+#> [21] "Y -&gt; Q" "R -&gt; I" "M -&gt; P" "L -&gt; S" "H -&gt; E"
+#> [26] "V -&gt; P"
 
 ###
 # As with 'get_nodes', the 'get_edges' function works
@@ -1108,22 +1109,64 @@ node_count(graph, type = FALSE)
                             <pre><code class="prettyprint">library(DiagrammeR)
 
 # Create an empty graph
-graph &lt- create_graph()
+graph &lt;- create_graph()
 
 # Add two nodes
 graph &lt;- add_node(graph, node = "a")
 graph &lt;- add_node(graph, node = "b")
 
-# Get information on nodes in graph
 node_info(graph)
-
 #>   node_ID label type degree indegree outdegree loops
 #> 1       a     a   NA      0        0         0     0
 #> 2       b     b   NA      0        0         0     0
 
 # Add an edge
 graph &lt;- add_edges(graph, from = "a", to = "b",
-                   relationship = "to_get")</code></pre>
+                   relationship = "to_get")
+
+edge_info(graph)
+#>   edge_from edge_to relationship label
+#> 1         a       b       to_get    NA
+
+# Add two more nodes
+graph &lt;- add_node(graph, node = "c")
+graph &lt;- add_node(graph, node = "d")
+
+node_info(graph)
+#>   node_ID label type degree indegree outdegree loops
+#> 1       a     a   NA      1        0         1     0
+#> 2       c     c   NA      0        0         0     0
+#> 3       d     d   NA      0        0         0     0
+#> 4       b     b   NA      1        1         0     0
+
+# Add two more edges
+graph &lt;-
+  add_edges(graph,
+            from = c("a", "a"),
+            to = c("c", "d"),
+            relationship = "received_from")
+
+edge_info(graph)
+#>   edge_from edge_to  relationship label
+#> 1         a       b        to_get    NA
+#> 2         a       c received_from    NA
+#> 3         a       d received_from    NA
+
+# Remove a node (removing a node removes its edges)
+graph &lt;- delete_node(graph, node = "d")
+
+node_info(graph)
+#>   node_ID label type degree indegree outdegree loops
+#> 1       a     a   NA      2        0         2     0
+#> 2       b     b   NA      1        1         0     0
+#> 3       c     c   NA      1        1         0     0
+
+# Remove an edge (removing an edge retains nodes)
+graph &lt;- delete_edge(graph, from = "a", to = "c")
+
+edge_info(graph)
+#>   edge_from edge_to relationship label
+#> 1         a       b       to_get    NA</code></pre>
                         </div>
                     </div>
                 </div>
