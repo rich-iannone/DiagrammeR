@@ -35,6 +35,7 @@ add_node <- function(graph,
   }
 
   if (can_add_node_id == FALSE){
+
     message("The node is already present in the graph.")
     return(graph)
   }
@@ -51,7 +52,8 @@ add_node <- function(graph,
     from_nodes_available <- ifelse(all(from %in% get_nodes(graph)), TRUE, FALSE)
 
     if (from_nodes_available == FALSE){
-      stop("The nodes from which edges should be applied to the new node are not available.")
+      message("The nodes from which edges should be applied to the new node are not available.")
+      return(graph)
     }
 
     if (from_nodes_available){
@@ -102,7 +104,9 @@ add_node <- function(graph,
     to_nodes_available <- ifelse(all(to %in% get_nodes(graph)), TRUE, FALSE)
 
     if (to_nodes_available == FALSE){
-      stop("The nodes to which edges should be applied from the new node are not available.")
+
+      message("The nodes to which edges should be applied from the new node are not available.")
+      return(graph)
     }
 
     if (from_nodes_available){
@@ -155,11 +159,13 @@ add_node <- function(graph,
     to_nodes_available <- ifelse(all(to %in% get_nodes(graph)), TRUE, FALSE)
 
     if (from_nodes_available == FALSE){
-      stop("The nodes from which edges should be applied to the new node are not available.")
+      message("The nodes from which edges should be applied to the new node are not available.")
+      return(graph)
     }
 
     if (to_nodes_available == FALSE){
-      stop("The nodes to which edges should be applied from the new node are not available.")
+      message("The nodes to which edges should be applied from the new node are not available.")
+      return(graph)
     }
 
     if (from_nodes_available & to_nodes_available){
