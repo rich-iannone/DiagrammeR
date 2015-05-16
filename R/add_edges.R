@@ -14,6 +14,11 @@ add_edges <- function(graph,
                       to = NULL,
                       relationship = NULL){
 
+  if (is_graph_empty(graph) == TRUE){
+    message("Edges cannot be added to an empty graph")
+    return(graph)
+  }
+
   edges_df_available <- FALSE
   from_to_available <- FALSE
 
