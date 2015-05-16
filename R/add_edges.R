@@ -19,6 +19,19 @@ add_edges <- function(graph,
     return(graph)
   }
 
+  if (is_graph_empty(graph) == FALSE){
+
+    if (!is.null(from) & !is.null(to)){
+
+      if (any(get_edges(graph)[[1]] == from &
+              get_edges(graph)[[2]] == to)){
+
+        message("This edge already exists")
+        return(graph)
+      }
+    }
+  }
+
   edges_df_available <- FALSE
   from_to_available <- FALSE
 
