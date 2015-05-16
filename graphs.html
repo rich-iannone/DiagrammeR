@@ -1108,13 +1108,21 @@ node_count(graph, type = FALSE)
                             <pre><code class="prettyprint">library(DiagrammeR)
 
 # Create an empty graph
-graph <- create_graph(nodes_df = create_nodes(nodes = "a"))
+graph &lt- create_graph()
 
-# Add a node
-graph <- add_node(graph, node = "b")
+# Add two nodes
+graph &lt;- add_node(graph, node = "a")
+graph &lt;- add_node(graph, node = "b")
+
+# Get information on nodes in graph
+node_info(graph)
+
+#>   node_ID label type degree indegree outdegree loops
+#> 1       a     a   NA      0        0         0     0
+#> 2       b     b   NA      0        0         0     0
 
 # Add an edge
-graph <- add_edges(graph, from = "a", to = "b",
+graph &lt;- add_edges(graph, from = "a", to = "b",
                    relationship = "to_get")</code></pre>
                         </div>
                     </div>
