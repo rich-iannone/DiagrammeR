@@ -14,7 +14,8 @@ delete_node <- function(graph,
   # Stop function if node not a single value
   if (node_is_single_value == FALSE){
 
-    stop("Only a single node can be deleted using 'delete_node'")
+    message("Only a single node can be deleted using 'delete_node'.")
+    return(graph)
   }
 
   # Determine whether node to delete is in the graph
