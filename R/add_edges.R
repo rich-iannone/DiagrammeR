@@ -57,7 +57,7 @@ add_edges <- function(graph,
 
       gv_graph <-
         create_graph(nodes_df = graph$nodes_df,
-                       edges_df = edges_df)
+                     edges_df = edges_df)
 
       return(gv_graph)
     }
@@ -68,17 +68,17 @@ add_edges <- function(graph,
 
         gv_graph <-
           create_graph(nodes_df = graph$nodes_df,
-                         edges_df = create_edges(edge_from = from,
-                                                 edge_to = to,
-                                                 relationship = relationship))
+                       edges_df = create_edges(edge_from = from,
+                                               edge_to = to,
+                                               relationship = relationship))
       }
 
       if (is.null(relationship)){
 
         gv_graph <-
           create_graph(nodes_df = graph$nodes_df,
-                         edges_df = create_edges(edge_from = from,
-                                                 edge_to = to))
+                       edges_df = create_edges(edge_from = from,
+                                               edge_to = to))
       }
 
       return(gv_graph)
@@ -94,7 +94,7 @@ add_edges <- function(graph,
 
       gv_graph <-
         create_graph(nodes_df = graph$nodes_df,
-                       edges_df = combined_edges)
+                     edges_df = combined_edges)
 
       return(gv_graph)
     }
@@ -104,9 +104,9 @@ add_edges <- function(graph,
       if (!is.null(relationship)){
 
         combined_edges <- combine_edges(graph$edges_df,
-                                      create_edges(edge_from = from,
-                                                   edge_to = to,
-                                                   relationship = relationship))
+                                        create_edges(edge_from = from,
+                                                     edge_to = to,
+                                                     relationship = relationship))
       }
 
       if (is.null(relationship)){
@@ -118,7 +118,7 @@ add_edges <- function(graph,
 
       gv_graph <-
         create_graph(nodes_df = graph$nodes_df,
-                       edges_df = combined_edges)
+                     edges_df = combined_edges)
 
       return(gv_graph)
     }
