@@ -23,6 +23,13 @@ delete_node <- function(graph,
     can_delete_node_id <- ifelse(node %in% get_nodes(graph), TRUE, FALSE)
   }
 
+  # Stop function if node in the graph
+  if (can_delete_node_id == FALSE){
+
+    message("The specified node is not available in the graph.")
+    return(graph)
+  }
+
   # Modify graph if node is available
   if (node_is_single_value & can_delete_node_id){
 
