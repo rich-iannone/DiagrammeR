@@ -19,15 +19,35 @@ add_edges <- function(graph,
     return(graph)
   }
 
+  if (is.null(graph$edges_df)){
+
+    if (!is.null(relationship)){
+
+      gv_graph <-
+        create_graph(nodes_df = graph$nodes_df,
+                     edges_df = create_edges(edge_from = from,
+                                             edge_to = to,
+                                             relationship = relationship))
+    }
+
+    if (is.null(relationship)){
+
+      gv_graph <-
+        create_graph(nodes_df = graph$nodes_df,
+                     edges_df = create_edges(edge_from = from,
+                                             edge_to = to))
+    }
+
+    return(gv_graph)
+  }
+
   if (is_graph_empty(graph) == FALSE){
-
     if (!is.null(from) & !is.null(to)){
-
       if (any(get_edges(graph)[[1]] == from &
               get_edges(graph)[[2]] == to)){
 
-        message("This edge already exists")
-        return(graph)
+      message("This edge already exists")
+      return(graph)
       }
     }
   }
@@ -64,40 +84,6 @@ add_edges <- function(graph,
   }
 
   # Create the new graph object
-  if (is.null(graph$edges_df)){
-
-    if (edges_df_available == TRUE){
-
-      gv_graph <-
-        create_graph(nodes_df = graph$nodes_df,
-                     edges_df = edges_df)
-
-      return(gv_graph)
-    }
-
-    if (from_to_available == TRUE){
-
-      if (!is.null(relationship)){
-
-        gv_graph <-
-          create_graph(nodes_df = graph$nodes_df,
-                       edges_df = create_edges(edge_from = from,
-                                               edge_to = to,
-                                               relationship = relationship))
-      }
-
-      if (is.null(relationship)){
-
-        gv_graph <-
-          create_graph(nodes_df = graph$nodes_df,
-                       edges_df = create_edges(edge_from = from,
-                                               edge_to = to))
-      }
-
-      return(gv_graph)
-    }
-  }
-
   if (!is.null(graph$edges_df)){
 
     if (edges_df_available == TRUE){
