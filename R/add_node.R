@@ -216,18 +216,30 @@ add_node <- function(graph,
 
   # Modify graph if none of 'to' nor 'from' values provided
   if (is.null(from) & is.null(to)){
-
     if (!is.null(type)){
-      combined_nodes <- combine_nodes(graph$nodes_df,
-                                      create_nodes(nodes = node,
-                                                   label = label,
-                                                   type = type))
+      if (!is.null(graph$nodes_df)){
+
+        combined_nodes <- combine_nodes(graph$nodes_df,
+                                        create_nodes(nodes = node,
+                                                     label = label,
+                                                     type = type))
+      } else {
+        combined_nodes <- create_nodes(nodes = node,
+                                       label = label,
+                                       type = type)
+      }
     }
 
     if (is.null(type)){
-      combined_nodes <- combine_nodes(graph$nodes_df,
-                                      create_nodes(nodes = node,
-                                                   label = label))
+      if (!is.null(graph$nodes_df)){
+
+        combined_nodes <- combine_nodes(graph$nodes_df,
+                                        create_nodes(nodes = node,
+                                                     label = label))
+      } else {
+        combined_nodes <- create_nodes(nodes = node,
+                                       label = label)
+      }
     }
 
     if (node_attributes_provided == TRUE){
