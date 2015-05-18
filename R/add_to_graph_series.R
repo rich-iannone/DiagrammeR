@@ -5,8 +5,8 @@
 #' @return a graph series object of type 'dgr_graph_1D'.
 #' @export add_to_graph_series
 
-add_to_graph_series <- function(graph = NULL,
-                                graph_series = NULL){
+add_to_graph_series <- function(graph,
+                                graph_series){
 
   # Add graph to graph series
   graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
