@@ -14,6 +14,10 @@ create_graph_series <- function(graph = NULL,
   graph_series <- list(graphs = NULL, series_name = series_name, series_type = series_type)
   attr(graph_series, "class") <- "dgr_graph_1D"
 
-  return(graph_series)
+  if (is.null(graph)){
+    return(graph_series)
+  }
+
+
 
 }
