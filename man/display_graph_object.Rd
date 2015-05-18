@@ -3,17 +3,17 @@
 \name{display_graph_object}
 \alias{display_graph_object}
 \title{Update and display graph object in Viewer
-Using a 'gv_graph' object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.}
+Using a 'dgr_graph' object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.}
 \usage{
 display_graph_object(graph, width = 400)
 }
 \arguments{
-\item{graph}{a 'gv_graph' object, created using the \code{create_graph} function.}
+\item{graph}{a 'dgr_graph' object, created using the \code{create_graph} function.}
 
 \item{width}{the width of the graph representation in pixels.}
 }
 \description{
 Update and display graph object in Viewer
-Using a 'gv_graph' object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
+Using a 'dgr_graph' object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
 }
 

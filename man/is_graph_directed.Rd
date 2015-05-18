@@ -8,7 +8,7 @@ Determines whether a graph is set to be directed or not and returns a logical va
 is_graph_directed(graph)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph'.}
+\item{graph}{a graph object of class 'dgr_graph'.}
 }
 \value{
 a logical value

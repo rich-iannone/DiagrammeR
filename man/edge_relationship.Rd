@@ -3,12 +3,12 @@
 \name{edge_relationship}
 \alias{edge_relationship}
 \title{Create, read, update, delete, or report status of an edge relationship
-From a graph object of class 'gv_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.}
+From a graph object of class 'dgr_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.}
 \usage{
 edge_relationship(graph, from, to, action = "read", value = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
 
 \item{from}{a node ID from which the edge to be queried is outgoing.}
 
@@ -19,10 +19,10 @@ edge_relationship(graph, from, to, action = "read", value = NULL)
 \item{value}{a string denoting the relationship, to be supplied when either adding or updating an edge relationship.}
 }
 \value{
-a graph object of class 'gv_graph'.
+a graph object of class 'dgr_graph'.
 }
 \description{
 Create, read, update, delete, or report status of an edge relationship
-From a graph object of class 'gv_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
+From a graph object of class 'dgr_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
 }
 

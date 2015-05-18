@@ -3,13 +3,13 @@
 \name{add_node}
 \alias{add_node}
 \title{Add a node to an existing graph object
-With a graph object of class 'gv_graph', add a new node of a specified type to extant nodes within the graph.}
+With a graph object of class 'dgr_graph', add a new node of a specified type to extant nodes within the graph.}
 \usage{
 add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL,
   ...)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
 
 \item{node}{a node ID for the newly connected node.}
 
@@ -24,10 +24,10 @@ add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL,
 \item{...}{one or more vectors pertaining to node attributes.}
 }
 \value{
-a graph object of class 'gv_graph'.
+a graph object of class 'dgr_graph'.
 }
 \description{
 Add a node to an existing graph object
-With a graph object of class 'gv_graph', add a new node of a specified type to extant nodes within the graph.
+With a graph object of class 'dgr_graph', add a new node of a specified type to extant nodes within the graph.
 }
 

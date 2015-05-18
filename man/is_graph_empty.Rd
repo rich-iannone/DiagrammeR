@@ -8,7 +8,7 @@ Determines whether a graph contains any nodes and returns a logical value to ref
 is_graph_empty(graph)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph'.}
+\item{graph}{a graph object of class 'dgr_graph'.}
 }
 \value{
 a logical value

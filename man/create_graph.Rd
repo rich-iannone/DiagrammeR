@@ -22,7 +22,7 @@ create_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
 \item{directed}{with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.}
 }
 \value{
-a graph object of class 'gv_graph'.
+a graph object of class 'dgr_graph'.
 }
 \description{
 Create a graph object using data frames representative of nodes and edges

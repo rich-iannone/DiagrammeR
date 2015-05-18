@@ -3,12 +3,12 @@
 \name{node_present}
 \alias{node_present}
 \title{Determine whether a specified node is present in an existing graph object
-From a graph object of class 'gv_graph', determine whether a specified node is present.}
+From a graph object of class 'dgr_graph', determine whether a specified node is present.}
 \usage{
 node_present(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
 
 \item{node}{a value that may or may not match a node ID in the graph.}
 }
@@ -17,6 +17,6 @@ a logical value
 }
 \description{
 Determine whether a specified node is present in an existing graph object
-From a graph object of class 'gv_graph', determine whether a specified node is present.
+From a graph object of class 'dgr_graph', determine whether a specified node is present.
 }
 

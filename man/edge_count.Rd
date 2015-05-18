@@ -3,12 +3,12 @@
 \name{edge_count}
 \alias{edge_count}
 \title{Get count of all edges or edges with distinct relationship types
-From a graph object of class 'gv_graph', get a count of edges in the graph and optionally obtain a count of edges by their relationship type.}
+From a graph object of class 'dgr_graph', get a count of edges in the graph and optionally obtain a count of edges by their relationship type.}
 \usage{
 edge_count(graph, relationship = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
 
 \item{relationship}{either a logical value, where TRUE provides a named vector of edge count by type and FALSE (the default) provides a total count of edges, or, a string corresponding to one or more edge relationship types.}
 }
@@ -17,6 +17,6 @@ a numeric vector of single length
 }
 \description{
 Get count of all edges or edges with distinct relationship types
-From a graph object of class 'gv_graph', get a count of edges in the graph and optionally obtain a count of edges by their relationship type.
+From a graph object of class 'dgr_graph', get a count of edges in the graph and optionally obtain a count of edges by their relationship type.
 }
 

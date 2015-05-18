@@ -3,12 +3,12 @@
 \name{node_type}
 \alias{node_type}
 \title{Create, read, update, delete, or report status of a node type definition
-From a graph object of class 'gv_graph', query a node in the graph (using the node ID) and perform operations on the type definition for that node.}
+From a graph object of class 'dgr_graph', query a node in the graph (using the node ID) and perform operations on the type definition for that node.}
 \usage{
 node_type(graph, node, action = "read", value = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class 'gv_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
 
 \item{node}{a node ID corresponding to the node to be selected.}
 
@@ -17,10 +17,10 @@ node_type(graph, node, action = "read", value = NULL)
 \item{value}{a string denoting the node type, to be supplied when either adding or updating a node type definition.}
 }
 \value{
-a graph object of class 'gv_graph'.
+a graph object of class 'dgr_graph'.
 }
 \description{
 Create, read, update, delete, or report status of a node type definition
-From a graph object of class 'gv_graph', query a node in the graph (using the node ID) and perform operations on the type definition for that node.
+From a graph object of class 'dgr_graph', query a node in the graph (using the node ID) and perform operations on the type definition for that node.
 }
 
