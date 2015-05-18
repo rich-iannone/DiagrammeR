@@ -5,9 +5,12 @@
 \title{Create a graph series object
 Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.}
 \usage{
-create_graph_series(series_name = NULL, series_type = "sequential")
+create_graph_series(graph = NULL, series_name = NULL,
+  series_type = "sequential")
 }
 \arguments{
+\item{graph}{a graph object to add to the new graph series object}
+
 \item{series_name}{an optional name to ascribe to the series.}
 
 \item{series_type}{either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).}
