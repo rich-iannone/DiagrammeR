@@ -5,7 +5,7 @@
 \title{Add graph object to a graph series object
 Add a graph object to and extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.}
 \usage{
-add_to_graph_series(graph = NULL, graph_series = NULL)
+add_to_graph_series(graph, graph_series)
 }
 \arguments{
 \item{graph}{a graph object to add to the graph series object}
