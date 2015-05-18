@@ -1,5 +1,6 @@
 #' Create a graph series object
 #' Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
+#' @param graph a graph object to add to the new graph series object
 #' @param series_name an optional name to ascribe to the series.
 #' @param series_type either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).
 #' @return a graph series object of type 'dgr_graph_1D'.
