@@ -8,7 +8,7 @@
 create_graph_series <- function(series_name = NULL,
                                 series_type = "sequential"){
 
-  # Initialize a graph array object
+  # Initialize an empty graph series object
   graph_series <- list(graphs = NULL, series_name = series_name, series_type = series_type)
   attr(graph_series, "class") <- "dgr_graph_1D"
 
