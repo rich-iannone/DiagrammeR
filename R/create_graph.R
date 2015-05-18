@@ -6,7 +6,7 @@
 #' @param node_attrs an optional vector of node attribute statements that can serve as defaults for nodes.
 #' @param edge_attrs an optional vector of edge attribute statements that can serve as defaults for edges.
 #' @param directed with TRUE (the default) or FALSE, either directed or undirected edge operations will be generated, respectively.
-#' @return a graph object of class 'gv_graph'.
+#' @return a graph object of class 'dgr_graph'.
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,
@@ -25,8 +25,8 @@ create_graph <- function(nodes_df = NULL,
     dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
                        " {\n", "\n}")
 
-    # Create the 'gv_graph' list object
-    gv_graph <- list(nodes_df = NULL,
+    # Create the 'dgr_graph' list object
+    dgr_graph <- list(nodes_df = NULL,
                      edges_df = NULL,
                      graph_attrs = NULL,
                      node_attrs = NULL,
@@ -34,9 +34,9 @@ create_graph <- function(nodes_df = NULL,
                      directed = ifelse(directed == TRUE, TRUE, FALSE),
                      dot_code = dot_code)
 
-    attr(gv_graph, "class") <- "gv_graph"
+    attr(dgr_graph, "class") <- "dgr_graph"
 
-    return(gv_graph)
+    return(dgr_graph)
   }
 
   # Perform basic checks of the inputs
@@ -591,8 +591,8 @@ create_graph <- function(nodes_df = NULL,
   # Remove empty node or edge attribute statements
   dot_code <- gsub(" \\[\\] ", "", dot_code)
 
-  # Create the 'gv_graph' list object
-  gv_graph <- list(nodes_df = nodes_df,
+  # Create the 'dgr_graph' list object
+  dgr_graph <- list(nodes_df = nodes_df,
                    edges_df = edges_df,
                    graph_attrs = graph_attrs,
                    node_attrs = node_attrs,
@@ -600,7 +600,7 @@ create_graph <- function(nodes_df = NULL,
                    directed = directed,
                    dot_code = dot_code)
 
-  attr(gv_graph, "class") <- "gv_graph"
+  attr(dgr_graph, "class") <- "dgr_graph"
 
-  return(gv_graph)
+  return(dgr_graph)
 }

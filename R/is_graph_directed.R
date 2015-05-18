@@ -1,6 +1,6 @@
 #' Is the graph a directed graph?
 #' Determines whether a graph is set to be directed or not and returns a logical value to that effect.
-#' @param graph a graph object of class 'gv_graph'.
+#' @param graph a graph object of class 'dgr_graph'.
 #' @return a logical value
 #' @export is_graph_directed
 

@@ -19,9 +19,9 @@ get_edges <- function(...,
 
     object <- objects[[i]]
 
-    if (class(object) == "gv_graph"){
+    if (class(object) == "dgr_graph"){
 
-      object_type <- "gv_graph"
+      object_type <- "dgr_graph"
     }
 
     if (any(c("edge_from", "edge_to", "from", "to") %in% colnames(object))){
@@ -30,7 +30,7 @@ get_edges <- function(...,
     }
   }
 
-  if (object_type == "gv_graph"){
+  if (object_type == "dgr_graph"){
 
     object <- object$edges_df
 

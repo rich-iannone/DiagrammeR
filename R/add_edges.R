@@ -1,11 +1,11 @@
 #' Add edges to an existing graph object
-#' With a graph object of class 'gv_graph', add one or more edges of specified types to nodes within the graph.
-#' @param graph a graph object of class 'gv_graph' that is created using 'create_graph'.
+#' With a graph object of class 'dgr_graph', add one or more edges of specified types to nodes within the graph.
+#' @param graph a graph object of class 'dgr_graph' that is created using 'create_graph'.
 #' @param edges_df an edge data frame that is created using 'create_edges'.
 #' @param from a vector of the outgoing nodes from which each edge is connected.
 #' @param to a vector of the incoming nodes to which each edge is connected.
 #' @param relationship a string specifying the relationship between the connected nodes.
-#' @return a graph object of class 'gv_graph'.
+#' @return a graph object of class 'dgr_graph'.
 #' @export add_edges
 
 add_edges <- function(graph,
@@ -23,7 +23,7 @@ add_edges <- function(graph,
 
     if (!is.null(relationship)){
 
-      gv_graph <-
+      dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
                      edges_df = create_edges(edge_from = from,
                                              edge_to = to,
@@ -32,13 +32,13 @@ add_edges <- function(graph,
 
     if (is.null(relationship)){
 
-      gv_graph <-
+      dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
                      edges_df = create_edges(edge_from = from,
                                              edge_to = to))
     }
 
-    return(gv_graph)
+    return(dgr_graph)
   }
 
   if (is_graph_empty(graph) == FALSE){
@@ -91,11 +91,11 @@ add_edges <- function(graph,
       combined_edges <- combine_edges(graph$edges_df,
                                       edges_df)
 
-      gv_graph <-
+      dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
                      edges_df = combined_edges)
 
-      return(gv_graph)
+      return(dgr_graph)
     }
 
     if (from_to_available == TRUE){
@@ -115,11 +115,11 @@ add_edges <- function(graph,
                                                      edge_to = to))
       }
 
-      gv_graph <-
+      dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
                      edges_df = combined_edges)
 
-      return(gv_graph)
+      return(dgr_graph)
     }
   }
 }

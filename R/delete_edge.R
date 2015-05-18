@@ -1,9 +1,9 @@
 #' Delete an edge from an existing graph object
-#' From a graph object of class 'gv_graph', delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.
-#' @param graph a graph object of class 'gv_graph' that is created using 'create_graph'.
+#' From a graph object of class 'dgr_graph', delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.
+#' @param graph a graph object of class 'dgr_graph' that is created using 'create_graph'.
 #' @param from a node ID from which the edge to be removed is outgoing.
 #' @param to a node ID to which the edge to be removed is incoming.
-#' @return a graph object of class 'gv_graph'.
+#' @return a graph object of class 'dgr_graph'.
 #' @export delete_edge
 
 delete_edge <- function(graph,
@@ -44,10 +44,10 @@ delete_edge <- function(graph,
 
       row.names(revised_edges_df) <- NULL
 
-      gv_graph <- create_graph(nodes_df = graph$nodes_df,
+      dgr_graph <- create_graph(nodes_df = graph$nodes_df,
                                  edges_df = revised_edges_df)
     }
   }
 
-  return(gv_graph)
+  return(dgr_graph)
 }

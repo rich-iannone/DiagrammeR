@@ -18,7 +18,7 @@ get_nodes <- function(...){
     class_object_1 <- class(objects[[1]])
     class_object_2 <- class(objects[[2]])
 
-    if (any("gv_graph" %in% c(class_object_1, class_object_2))){
+    if (any("dgr_graph" %in% c(class_object_1, class_object_2))){
 
       stop("Only a single graph can be supplied.")
     }
@@ -30,9 +30,9 @@ get_nodes <- function(...){
 
     object <- objects[[i]]
 
-    if (class(object) == "gv_graph"){
+    if (class(object) == "dgr_graph"){
 
-      object_type <- "gv_graph"
+      object_type <- "dgr_graph"
     }
 
     if (class(object) == "data.frame"){
@@ -48,7 +48,7 @@ get_nodes <- function(...){
       }
     }
 
-    if (object_type == "gv_graph"){
+    if (object_type == "dgr_graph"){
 
       if (is_graph_empty(object)){
 
