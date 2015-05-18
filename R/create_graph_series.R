@@ -5,7 +5,8 @@
 #' @return a graph series object of type 'dgr_graph_1D'.
 #' @export create_graph_series
 
-create_graph_series <- function(series_name = NULL,
+create_graph_series <- function(graph = NULL,
+                                series_name = NULL,
                                 series_type = "sequential"){
 
   # Initialize an empty graph series object
