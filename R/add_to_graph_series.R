@@ -1,0 +1,15 @@
+#' Add graph object to a graph series object
+#' Add a graph object to and extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
+#' @param graph a graph object to add to the graph series object
+#' @param graph_series a graph series object to which the graph object will be added.
+#' @return a graph series object of type 'dgr_graph_1D'.
+#' @export add_to_graph_series
+
+add_to_graph_series <- function(graph = NULL,
+                                graph_series = NULL){
+
+  # Add graph to graph series
+  graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
+
+  return(graph_series)
+}
