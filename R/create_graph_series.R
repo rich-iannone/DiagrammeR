@@ -18,6 +18,8 @@ create_graph_series <- function(graph = NULL,
     return(graph_series)
   }
 
+  # Add graph to graph series
+  graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
 
-
+  return(graph_series)
 }
