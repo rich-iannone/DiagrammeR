@@ -8,6 +8,21 @@
 remove_from_graph_series <- function(index = "last",
                                      graph_series){
 
+  if (index == "last"){
+    graph_series$graphs[[length(graph_series$graphs)]] <- NULL
 
-  return(graph_series)
+    return(graph_series)
+  }
+
+  if (index == "first"){
+    graph_series$graphs[[1]] <- NULL
+
+    return(graph_series)
+  }
+
+  if (class(index) == "numeric"){
+    graph_series$graphs[[index]] <- NULL
+
+    return(graph_series)
+  }
 }
