@@ -17,7 +17,9 @@ create_graph_series <- function(graph = NULL,
                                 series_type = "sequential"){
 
   # Initialize an empty graph series object
-  graph_series <- list(graphs = NULL, series_name = series_name, series_type = series_type)
+  graph_series <- list(graphs = NULL, graph_name = NULL,
+                       graph_time = NULL, graph_tz = NULL,
+                       series_name = series_name, series_type = series_type)
   attr(graph_series, "class") <- "dgr_graph_1D"
 
   if (is.null(graph)){
