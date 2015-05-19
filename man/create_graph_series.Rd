@@ -15,7 +15,7 @@ create_graph_series(graph = NULL, graph_name = NULL, graph_time = NULL,
 
 \item{graph_time}{a vector of date or date-time strings which is required for a graph series of the type 'temporal'.}
 
-\item{graph_tz}{a single time zone tz value corresponding to the date or date-time string supplied as values to 'graph_time'.}
+\item{graph_tz}{an optional value for the time zone (tz) value corresponding to the date or date-time string supplied as values to 'graph_time'. If no time zone is set, then the times will be set to 'GMT'.}
 
 \item{series_name}{an optional name to ascribe to the series.}
 
