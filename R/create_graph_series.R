@@ -3,7 +3,7 @@
 #' @param graph a graph object to add to the new graph series object
 #' @param graph_name an optional vector of strings for labeling the graphs added to the graph series.
 #' @param graph_time a vector of date or date-time strings which is required for a graph series of the type 'temporal'.
-#' @param graph_tz a single time zone tz value corresponding to the date or date-time string supplied as values to 'graph_time'.
+#' @param graph_tz an optional value for the time zone (tz) value corresponding to the date or date-time string supplied as values to 'graph_time'. If no time zone is set, then the times will be set to 'GMT'.
 #' @param series_name an optional name to ascribe to the series.
 #' @param series_type either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).
 #' @return a graph series object of type 'dgr_graph_1D'.
