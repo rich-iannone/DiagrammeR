@@ -26,8 +26,12 @@ create_graph_series <- function(graph = NULL,
     return(graph_series)
   }
 
-  # Add graph to graph series
-  graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
+  # Add graphs to the initialized graph series
+  for (i in 1:length(graph)){
+
+    graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph[i]
+
+  }
 
   return(graph_series)
 }
