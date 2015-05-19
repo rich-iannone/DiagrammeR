@@ -1,6 +1,9 @@
 #' Create a graph series object
 #' Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
 #' @param graph a graph object to add to the new graph series object
+#' @param graph_name an optional vector of strings for labeling the graphs added to the graph series.
+#' @param graph_time a vector of date or date-time strings which is required for a graph series of the type 'temporal'.
+#' @param graph_tz a single time zone tz value corresponding to the date or date-time string supplied as values to 'graph_time'.
 #' @param series_name an optional name to ascribe to the series.
 #' @param series_type either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).
 #' @return a graph series object of type 'dgr_graph_1D'.
