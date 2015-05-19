@@ -7,6 +7,9 @@
 #' @export create_graph_series
 
 create_graph_series <- function(graph = NULL,
+                                graph_name = NULL,
+                                graph_time = NULL,
+                                graph_tz = NULL,
                                 series_name = NULL,
                                 series_type = "sequential"){
 
