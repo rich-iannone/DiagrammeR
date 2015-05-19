@@ -3,7 +3,7 @@
 \name{add_to_graph_series}
 \alias{add_to_graph_series}
 \title{Add graph object to a graph series object
-Add a graph object to and extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.}
+Add a graph object to an extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.}
 \usage{
 add_to_graph_series(graph, graph_series)
 }
@@ -17,6 +17,6 @@ a graph series object of type 'dgr_graph_1D'.
 }
 \description{
 Add graph object to a graph series object
-Add a graph object to and extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
+Add a graph object to an extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
 }
 
