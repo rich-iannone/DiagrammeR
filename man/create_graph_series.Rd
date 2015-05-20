@@ -11,12 +11,6 @@ create_graph_series(graph = NULL, graph_name = NULL, graph_time = NULL,
 \arguments{
 \item{graph}{a graph object to add to the new graph series object.}
 
-\item{graph_name}{an optional string for labeling the graph added to the graph series.}
-
-\item{graph_time}{a date or date-time string which is required for a graph series of the type 'temporal'.}
-
-\item{graph_tz}{an optional value for the time zone (tz) value corresponding to the date or date-time string supplied as a value to 'graph_time'. If no time zone is provided then it will be set to 'GMT'.}
-
 \item{series_name}{an optional name to ascribe to the series.}
 
 \item{series_type}{either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).}
