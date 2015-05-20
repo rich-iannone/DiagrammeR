@@ -1,9 +1,9 @@
 #' Create a graph series object
 #' Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
-#' @param graph a graph object to add to the new graph series object
-#' @param graph_name an optional vector of strings for labeling the graphs added to the graph series.
-#' @param graph_time a vector of date or date-time strings which is required for a graph series of the type 'temporal'.
-#' @param graph_tz an optional value for the time zone (tz) value corresponding to the date or date-time string supplied as values to 'graph_time'. If no time zone is set, then the times will be set to 'GMT'.
+#' @param graph a graph object to add to the new graph series object.
+#' @param graph_name an optional string for labeling the graph added to the graph series.
+#' @param graph_time a date or date-time string which is required for a graph series of the type 'temporal'.
+#' @param graph_tz an optional value for the time zone (tz) value corresponding to the date or date-time string supplied as a value to 'graph_time'. If no time zone is provided then it will be set to 'GMT'.
 #' @param series_name an optional name to ascribe to the series.
 #' @param series_type either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).
 #' @return a graph series object of type 'dgr_graph_1D'.
@@ -26,12 +26,8 @@ create_graph_series <- function(graph = NULL,
     return(graph_series)
   }
 
-  # Add graphs to the initialized graph series
-  for (i in 1:length(graph)){
-
-    graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph[i]
-
-  }
+  # Add a graph to the initialized graph series
+    graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
 
   return(graph_series)
 }
