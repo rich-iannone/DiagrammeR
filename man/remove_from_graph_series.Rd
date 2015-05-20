@@ -5,12 +5,12 @@
 \title{Remove graph object from a graph series object
 Remove a single graph object from an array of graph objects in a graph series object.}
 \usage{
-remove_from_graph_series(index = "last", graph_series)
+remove_from_graph_series(graph_series, index = "last")
 }
 \arguments{
-\item{index}{the location of the graph object to be removed from the graph series object.}
-
 \item{graph_series}{a graph series object from which the graph object will be removed.}
+
+\item{index}{the index of the graph object to be removed from the graph series object.}
 }
 \value{
 a graph series object of type 'dgr_graph_1D'.
