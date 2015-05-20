@@ -14,7 +14,10 @@ create_graph <- function(nodes_df = NULL,
                          graph_attrs = NULL,
                          node_attrs = NULL,
                          edge_attrs = NULL,
-                         directed = TRUE){
+                         directed = TRUE,
+                         graph_name = NULL,
+                         graph_time = NULL,
+                         graph_tz = NULL){
 
   # If nodes, edges, and attributes not provided, create empty graph
   if (all(c(is.null(nodes_df), is.null(edges_df),
