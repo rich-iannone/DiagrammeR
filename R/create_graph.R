@@ -598,13 +598,16 @@ create_graph <- function(nodes_df = NULL,
   dot_code <- gsub(" \\[\\] ", "", dot_code)
 
   # Create the 'dgr_graph' list object
-  dgr_graph <- list(nodes_df = nodes_df,
-                   edges_df = edges_df,
-                   graph_attrs = graph_attrs,
-                   node_attrs = node_attrs,
-                   edge_attrs = edge_attrs,
-                   directed = directed,
-                   dot_code = dot_code)
+  dgr_graph <- list(graph_name = graph_name,
+                    graph_time = graph_time,
+                    graph_tz = graph_tz,
+                    nodes_df = nodes_df,
+                    edges_df = edges_df,
+                    graph_attrs = graph_attrs,
+                    node_attrs = node_attrs,
+                    edge_attrs = edge_attrs,
+                    directed = directed,
+                    dot_code = dot_code)
 
   attr(dgr_graph, "class") <- "dgr_graph"
 
