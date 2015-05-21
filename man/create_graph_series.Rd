@@ -6,7 +6,8 @@
 Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.}
 \usage{
 create_graph_series(graph = NULL, graph_name = NULL, graph_time = NULL,
-  graph_tz = NULL, series_name = NULL, series_type = "sequential")
+  graph_tz = NULL, series_name = NULL, series_type = "sequential",
+  series_scripts = NULL)
 }
 \arguments{
 \item{graph}{a graph object to add to the new graph series object.}
@@ -14,6 +15,8 @@ create_graph_series(graph = NULL, graph_name = NULL, graph_time = NULL,
 \item{series_name}{an optional name to ascribe to the series.}
 
 \item{series_type}{either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).}
+
+\item{series_scripts}{a vector of R scripts or paths to R scripts.}
 }
 \value{
 a graph series object of type 'dgr_graph_1D'.
