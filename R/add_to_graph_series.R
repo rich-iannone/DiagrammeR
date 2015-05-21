@@ -8,6 +8,9 @@
 add_to_graph_series <- function(graph,
                                 graph_series){
 
+  # Get the series type
+  series_type <- graph_series$series_type
+
   # Add graph to graph series
   graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
 
