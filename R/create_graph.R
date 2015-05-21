@@ -32,13 +32,16 @@ create_graph <- function(nodes_df = NULL,
                        " {\n", "\n}")
 
     # Create the 'dgr_graph' list object
-    dgr_graph <- list(nodes_df = NULL,
-                     edges_df = NULL,
-                     graph_attrs = NULL,
-                     node_attrs = NULL,
-                     edge_attrs = NULL,
-                     directed = ifelse(directed == TRUE, TRUE, FALSE),
-                     dot_code = dot_code)
+    dgr_graph <- list(graph_name = graph_name,
+                      graph_time = graph_time,
+                      graph_tz = graph_tz,
+                      nodes_df = NULL,
+                      edges_df = NULL,
+                      graph_attrs = NULL,
+                      node_attrs = NULL,
+                      edge_attrs = NULL,
+                      directed = ifelse(directed == TRUE, TRUE, FALSE),
+                      dot_code = dot_code)
 
     attr(dgr_graph, "class") <- "dgr_graph"
 
