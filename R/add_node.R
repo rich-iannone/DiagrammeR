@@ -91,7 +91,10 @@ add_node <- function(graph,
 
       dgr_graph <-
         create_graph(nodes_df = combined_nodes,
-                     edges_df = combined_edges)
+                     edges_df = combined_edges,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
 
       # Create a revised graph and return that graph
       return(dgr_graph)
@@ -144,7 +147,10 @@ add_node <- function(graph,
 
       dgr_graph <-
         create_graph(nodes_df = combined_nodes,
-                     edges_df = combined_edges)
+                     edges_df = combined_edges,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
 
       # Create a revised graph and return that graph
       return(dgr_graph)
@@ -207,7 +213,10 @@ add_node <- function(graph,
 
       dgr_graph <-
         create_graph(nodes_df = combined_nodes,
-                     edges_df = combined_edges)
+                     edges_df = combined_edges,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
 
       # Create a revised graph and return that graph
       return(dgr_graph)
@@ -266,7 +275,10 @@ add_node <- function(graph,
       # Create a revised graph and return that graph
       dgr_graph <-
         create_graph(nodes_df = combined_nodes,
-                     edges_df = graph$edges_df)
+                     edges_df = graph$edges_df,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
 
       return(dgr_graph)
     }
@@ -276,7 +288,10 @@ add_node <- function(graph,
       # Create a revised graph and return that graph
       dgr_graph <-
         create_graph(nodes_df = combined_nodes,
-                     edges_df = graph$edges_df)
+                     edges_df = graph$edges_df,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
 
       return(dgr_graph)
     }
