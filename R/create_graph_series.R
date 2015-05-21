@@ -3,6 +3,7 @@
 #' @param graph a graph object to add to the new graph series object.
 #' @param series_name an optional name to ascribe to the series.
 #' @param series_type either a 'sequential' type (the default) or a 'temporal' type (which requires date-time strings and time zone codes to be supplied).
+#' @param series_scripts a vector of R scripts or paths to R scripts.
 #' @return a graph series object of type 'dgr_graph_1D'.
 #' @export create_graph_series
 
@@ -11,12 +12,14 @@ create_graph_series <- function(graph = NULL,
                                 graph_time = NULL,
                                 graph_tz = NULL,
                                 series_name = NULL,
-                                series_type = "sequential"){
+                                series_type = "sequential",
+                                series_scripts = NULL){
 
   # Initialize an empty graph series object
   graph_series <- list(graphs = NULL,
                        series_name = series_name,
-                       series_type = series_type)
+                       series_type = series_type,
+                       series_scripts = series_scripts)
   attr(graph_series, "class") <- "dgr_graph_1D"
 
   if (is.null(graph)){
