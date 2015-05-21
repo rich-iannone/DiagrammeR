@@ -27,7 +27,10 @@ add_edges <- function(graph,
         create_graph(nodes_df = graph$nodes_df,
                      edges_df = create_edges(edge_from = from,
                                              edge_to = to,
-                                             relationship = relationship))
+                                             relationship = relationship),
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
     }
 
     if (is.null(relationship)){
@@ -35,7 +38,10 @@ add_edges <- function(graph,
       dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
                      edges_df = create_edges(edge_from = from,
-                                             edge_to = to))
+                                             edge_to = to),
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
     }
 
     return(dgr_graph)
@@ -93,7 +99,10 @@ add_edges <- function(graph,
 
       dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
-                     edges_df = combined_edges)
+                     edges_df = combined_edges,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
 
       return(dgr_graph)
     }
@@ -117,7 +126,10 @@ add_edges <- function(graph,
 
       dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
-                     edges_df = combined_edges)
+                     edges_df = combined_edges,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
 
       return(dgr_graph)
     }
