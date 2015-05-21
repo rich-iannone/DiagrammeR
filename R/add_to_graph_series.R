@@ -11,6 +11,11 @@ add_to_graph_series <- function(graph,
   # Get the series type
   series_type <- graph_series$series_type
 
+  # Stop function if graph is not valid
+  if (class(graph) != "dgr_graph"){
+    return(graph_series)
+  }
+
   # Add graph to graph series
   graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
 
