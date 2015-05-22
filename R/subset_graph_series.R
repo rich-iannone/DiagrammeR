@@ -18,7 +18,7 @@ subset_graph_series <- function(graph_series,
   if (by == "number"){
 
     # validate the value provided for 'values'
-    if (class(subset) != "numeric"){
+    if (class(values) != "numeric"){
 
       return(graph_series)
     }
