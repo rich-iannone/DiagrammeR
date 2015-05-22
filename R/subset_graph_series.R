@@ -10,5 +10,9 @@ subset_graph_series <- function(graph_series,
                                 by = "number",
                                 values){
 
+  if (graph_count(graph_series = graph_series) == 0){
+
+    return(graph_series)
+  }
 
 }
