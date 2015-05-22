@@ -8,6 +8,11 @@ graph_count <- function(graph_series){
 
   if (class(graph_series) == "dgr_graph_1D"){
 
+    if (is.null(graph_series$graphs)){
+
+      return(0)
+    }
+
     return(length(series$graphs))
   }
 }
