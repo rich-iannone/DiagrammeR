@@ -13,6 +13,6 @@ graph_count <- function(graph_series){
       return(0)
     }
 
-    return(length(series$graphs))
+    return(length(graph_series$graphs))
   }
 }
