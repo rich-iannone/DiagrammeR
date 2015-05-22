@@ -74,6 +74,14 @@
                 <div class="bs-docs-section">
                     <h1 id="building-graphs" class="page-header">Building Graphs</h1>
                     <p class="lead"><strong>DiagrammeR</strong> has a nice set of functions for building graphs. You can continually build the graph object, modify its attributes, get information from it, and render a graph diagram. </p>
+                    <h2 id="graph-functions">Graph Functions</h2>
+                    <p>A collection of graph functions is available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, draw information from the graph object, and much more.</p>
+                    <div>
+                        <img src="img/graph-functions/graph_functions_2x.png" class="img-responsive center-block">
+                    </div>
+                    <div>
+                        <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                    </div>
                     <h2 id="the-graph-object">The Graph Object</h2>
                     <p>The <strong>DiagrammeR</strong> graph object, created by using the function <code>create_graph</code>, holds information on a graph's nodes, edges, default attributes, and rendering code. Creating a graph object can be as simple as using <code>create_graph()</code>, however, that will be an empty graph and you'll want to populate it.</p>
                     <p>The <strong>DiagrammeR</strong> graph object holds buckets of data that reflect the current state of the graph. The graph can be inspected, nodes and edges can be added, edited, or removed, and, a visualization of the graph or export of its data can be made at any point. The different facets of what make up the graph object can be visualized as follows.</p>
@@ -1288,6 +1296,7 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
                         <li>
                             <a href="#building-graphs">Building Graphs</a>
                             <ul class="nav">
+                                <li><a href="#graph-functions">Graph Functions</a></li>
                                 <li><a href="#the-graph-object">The Graph Object</a></li>
                             </ul>
                         </li>
