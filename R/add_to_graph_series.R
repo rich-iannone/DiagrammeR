@@ -31,6 +31,40 @@ add_to_graph_series <- function(graph,
     return(graph_series)
   }
 
+  # For a graph series with a temporal type, determine if 'graph_time' and,
+  # optionally, a 'graph_tz' value is provided
+  if (series_type == "temporal"){
 
-  return(graph_series)
+    is_time_provided <- ifelse(!is.null(graph$graph_time), TRUE, FALSE)
+    is_tz_provided <- ifelse(!is.null(graph$graph_tz), TRUE, FALSE)
+
+    if (is_time_provided == FALSE){
+
+      return(graph_series)
+    } else {
+
+      if (is_tz_provided == FALSE){
+
+        graph$graph_tz <- "GMT"
+      }
+
+      is_time_in_correct_format <-
+        ifelse(grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                     graph$graph_time) |
+                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$",
+                       graph$graph_time) |
+                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$",
+                       graph$graph_time), TRUE, FALSE)
+
+      is_tz_in_correct_format <-
+        ifelse(graph$graph_tz %in% OlsonNames(), TRUE, FALSE)
+
+      if (is_time_in_correct_format & is_tz_in_correct_format){
+
+        graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
+
+        return(graph_series)
+      }
+    }
+  }
 }
