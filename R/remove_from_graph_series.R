@@ -20,7 +20,7 @@ remove_from_graph_series <- function(graph_series,
     return(graph_series)
   }
 
-  if (class(index) == "numeric"){
+  if (class(index) == "numeric" | class(index) == "integer"){
     graph_series$graphs[[index]] <- NULL
 
     return(graph_series)
