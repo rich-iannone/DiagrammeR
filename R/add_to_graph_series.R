@@ -59,6 +59,16 @@ add_to_graph_series <- function(graph,
       is_tz_in_correct_format <-
         ifelse(graph$graph_tz %in% OlsonNames(), TRUE, FALSE)
 
+      if (is_time_in_correct_format == FALSE){
+
+        return(graph_series)
+      }
+
+      if (is_tz_in_correct_format == FALSE){
+
+        return(graph_series)
+      }
+
       if (is_time_in_correct_format & is_tz_in_correct_format){
 
         graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
