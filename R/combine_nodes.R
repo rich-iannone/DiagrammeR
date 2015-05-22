@@ -1,8 +1,8 @@
 #' Combine multiple node data frames into a single node data frame
-#' Combine several node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
-#' @param ... two or more node data frames, which contain node IDs and associated attributes
-#' @return a combined node data frame
-#' @export
+#' Combine several node data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
+#' @param ... two or more node data frames, which contain node IDs and associated attributes.
+#' @return a combined node data frame.
+#' @export combine_nodes
 
 combine_nodes <- function(...){
 

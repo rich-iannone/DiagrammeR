@@ -1,10 +1,10 @@
 #' Create a simple color palette
-#' Generate a randomized set of colors from the CIE Lab Color space using a set of HCL range values.
-#' @param hue_range a vector representing a range of hues from 0 to 360.
-#' @param chroma_range a vector representing a range of chroma values from 0 to 3.
-#' @param lightness_range a vector representing a range of lightness values from 0 to 2.
-#' @param alpha an optional alpha value in the range of 0-100 to append to the hexadecimal color values.
-#' @return a vector of hexadecimal color values
+#' Generate a randomized set of colors from the CIE Lab color space using a set of HCL range values.
+#' @param hue_range a vector representing a range of hues from \code{0} to \code{360}.
+#' @param chroma_range a vector representing a range of chroma values from \code{0} to \code{3}.
+#' @param lightness_range a vector representing a range of lightness values from \code{0} to \code{2}.
+#' @param alpha an optional alpha value in the range of \code{0}-\code{100} to append to the hexadecimal color values.
+#' @return a vector of hexadecimal color values.
 #' @export roll_palette
 
 roll_palette <- function(number,

@@ -1,8 +1,8 @@
 #' Determine whether a specified node is present in an existing graph object
-#' From a graph object of class 'dgr_graph', determine whether a specified node is present.
-#' @param graph a graph object of class 'dgr_graph' that is created using 'create_graph'.
+#' From a graph object of class \code{dgr_graph}, determine whether a specified node is present.
+#' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param node a value that may or may not match a node ID in the graph.
-#' @return a logical value
+#' @return a logical value.
 #' @export node_present
 
 node_present <- function(graph,

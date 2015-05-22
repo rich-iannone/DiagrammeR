@@ -1,6 +1,6 @@
-#' Update and display graph object in Viewer
-#' Using a 'dgr_graph' object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
-#' @param graph a 'dgr_graph' object, created using the \code{create_graph} function.
+#' Update and display graph object in the Viewer
+#' Using a \code{dgr_graph} object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
+#' @param graph a \code{dgr_graph} object, created using the \code{create_graph} function.
 #' @param width the width of the graph representation in pixels.
 #' @export display_graph_object
 

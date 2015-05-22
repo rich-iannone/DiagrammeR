@@ -1,10 +1,10 @@
 #' Create, read, update, delete, or report status of a node type definition
-#' From a graph object of class 'dgr_graph', query a node in the graph (using the node ID) and perform operations on the type definition for that node.
-#' @param graph a graph object of class 'dgr_graph' that is created using 'create_graph'.
+#' From a graph object of class \code{dgr_graph}, query a node in the graph (using the node ID) and perform operations on the type definition for that node.
+#' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param node a node ID corresponding to the node to be selected.
-#' @param action the type of operation to perform post-query. To remove the type definition from a node, use either 'delete', 'remove', or 'drop'. To add a type definition to a node with no type set, use 'add' or 'create'. To update a node's type definition, use 'update'. To return the value of a node type, use 'read'. To determine whether there is a type set for the selected node, use 'check'.
+#' @param action the operation to perform on the node's type attribute. To remove the type definition from a node, use either \code{delete}, \code{remove}, or \code{drop}. To add a type definition to a node with no type set, use \code{add} or \code{create}. To update a node's type definition, use \code{update}. To return the value of a node type, use \code{read}. To determine whether there is a type set for the selected node, use \code{check}.
 #' @param value a string denoting the node type, to be supplied when either adding or updating a node type definition.
-#' @return a graph object of class 'dgr_graph'.
+#' @return a graph object of class \code{dgr_graph}.
 #' @export node_type
 
 node_type <- function(graph,

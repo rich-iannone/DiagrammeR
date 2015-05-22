@@ -1,11 +1,11 @@
 #' Create, read, update, delete, or report status of an edge relationship
-#' From a graph object of class 'dgr_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
-#' @param graph a graph object of class 'dgr_graph' that is created using 'create_graph'.
+#' From a graph object of class \code{dgr_graph}, query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
+#' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param from a node ID from which the edge to be queried is outgoing.
 #' @param to a node ID to which the edge to be queried is incoming.
-#' @param action the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'check'.
+#' @param action the operation to perform on the edge's relationship attribute. To remove a relationship from an edge, use either \code{delete}, \code{remove}, or \code{drop}. To add a relationship to an edge with no set relationship, use \code{add} or \code{create}. To update an edge relationship, use \code{update}. To return the value of an edge relationship, use \code{read}. To determine whether there is a set relationship, use \code{check}.
 #' @param value a string denoting the relationship, to be supplied when either adding or updating an edge relationship.
-#' @return a graph object of class 'dgr_graph'.
+#' @return a graph object of class \code{dgr_graph}.
 #' @export edge_relationship
 
 edge_relationship <- function(graph,

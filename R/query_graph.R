@@ -1,6 +1,6 @@
 #' Perform query on graph object
 #' With a graph object, perform a query to return a graph selection
-#' @param graph a graph object of class 'dgr_graph'.
+#' @param graph a graph object of class \code{dgr_graph}.
 #' @param query a query string
 #' @return a graph selection object
 #' @import stringr

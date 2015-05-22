@@ -1,7 +1,7 @@
 #' Create a data frame with edges and their attributes
 #' Combine several named vectors for edges and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
 #' @param ... one or more named vectors for edges and associated attributes.
-#' @return a data frame
+#' @return a data frame.
 #' @export create_edges
 
 create_edges <- function(...){

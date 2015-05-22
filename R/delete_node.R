@@ -1,8 +1,8 @@
 #' Delete a node from an existing graph object
-#' From a graph object of class 'dgr_graph', delete an existing node by specifying its node ID.
-#' @param graph a graph object of class 'dgr_graph' that is created using 'create_graph'.
+#' From a graph object of class \code{dgr_graph}, delete an existing node by specifying its node ID.
+#' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param node a node ID for the node to be deleted from the graph.
-#' @return a graph object of class 'dgr_graph'.
+#' @return a graph object of class \code{dgr_graph}.
 #' @export delete_node
 
 delete_node <- function(graph,

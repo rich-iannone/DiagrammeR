@@ -1,6 +1,6 @@
 #' Render the graph or output in various formats
-#' Using a 'dgr_graph' object, either render graph in the Viewer or output in various formats.
-#' @param graph a 'dgr_graph' object, created using the \code{create_graph} function
+#' Using a \code{dgr_graph} object, either render graph in the Viewer or output in various formats.
+#' @param graph a \code{dgr_graph} object, created using the \code{create_graph} function.
 #' @param output a string specifying the output type; \code{graph} (the default) renders the graph using the \code{grViz} function, \code{DOT} outputs DOT code for the graph, and \code{SVG} provides SVG code for the rendered graph.
 #' @param width an optional parameter for specifying the width of the resulting graphic in pixels.
 #' @param height an optional parameter for specifying the height of the resulting graphic in pixels.

@@ -1,6 +1,6 @@
 #' Get detailed information on edges
 #' Obtain a data frame with detailed information on edges and their interrelationships within a graph.
-#' @param graph a graph object of class 'dgr_graph'.
+#' @param graph a graph object of class \code{dgr_graph}.
 #' @return a data frame containing information specific to each edge within the graph.
 #' @export edge_info
 
