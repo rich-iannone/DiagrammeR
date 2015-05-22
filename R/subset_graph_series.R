@@ -15,4 +15,27 @@ subset_graph_series <- function(graph_series,
     return(graph_series)
   }
 
+  if (by == "number"){
+
+    # validate the value provided for 'values'
+    if (class(subset) != "numeric"){
+
+      return(graph_series)
+    }
+
+    indices_in_graph_series <-
+      1:graph_count(graph_series = graph_series)
+
+    indices_in_subset_value <- values
+
+    for (i in which(indices_in_graph_series %in%
+                                    indices_in_subset_value)){
+
+      graph_series <-
+        remove_from_graph_series(graph_series = graph_series,
+                                 index = i)
+    }
+
+    return(graph_series)
+  }
 }
