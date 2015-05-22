@@ -8,7 +8,7 @@
 
 subset_graph_series <- function(graph_series,
                                 by = "number",
-                                subset){
+                                values){
 
 
 }
