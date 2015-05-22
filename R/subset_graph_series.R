@@ -28,8 +28,8 @@ subset_graph_series <- function(graph_series,
 
     indices_in_subset_value <- values
 
-    for (i in which(indices_in_graph_series %in%
-                                    indices_in_subset_value)){
+    for (i in which(!(indices_in_graph_series %in%
+                                    indices_in_subset_value))){
 
       graph_series <-
         remove_from_graph_series(graph_series = graph_series,
