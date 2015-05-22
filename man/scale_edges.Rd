@@ -8,15 +8,15 @@ Generates either numeric or color scales for specified edge attributes and appli
 scale_edges(edges_df, to_scale, edge_attr, range, scale_type = "linear")
 }
 \arguments{
-\item{edges_df}{a data frame containing, at minimum, a column (called 'edge_op') with edge operations as character strings (in the form of '[node_id] -> [node_id]). Alternatively, there may be two columns where node IDs specifying edges are provided.}
+\item{edges_df}{a data frame containing, at minimum, a column (called \code{edge_op}) with edge operations as character strings (in the form of \code{[node_id] -> [node_id]}). Alternatively, there may be two columns where node IDs specifying edges are provided.}
 
-\item{to_scale}{a vector of numerical values to be scaled; these currently need to be of the same length and order as the edge operations in the supplied edge data frame, so, it's recommended to reference a column of values available in 'edges_df'.}
+\item{to_scale}{a vector of numerical values to be scaled; these currently need to be of the same length and order as the edge operations in the supplied edge data frame, so, it's recommended to reference a column of values available in \code{edges_df}.}
 
 \item{edge_attr}{the name of the edge attribute for which scaled values are to be created.}
 
 \item{range}{a vector of 2 elements providing either lower and upper numerical or X11 color values.}
 
-\item{scale_type}{the type of scaling to perform. Currently, "linear" is the only option available.}
+\item{scale_type}{the type of scaling to perform. Currently, \code{linear} is the only option available.}
 }
 \description{
 Create numerical and color scales for edge attributes

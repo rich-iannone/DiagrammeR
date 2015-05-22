@@ -8,7 +8,7 @@ With a graph object, perform a query to return a graph selection}
 query_graph(graph, query)
 }
 \arguments{
-\item{graph}{a graph object of class 'dgr_graph'.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{query}{a query string}
 }

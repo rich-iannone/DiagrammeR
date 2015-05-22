@@ -3,25 +3,25 @@
 \name{roll_palette}
 \alias{roll_palette}
 \title{Create a simple color palette
-Generate a randomized set of colors from the CIE Lab Color space using a set of HCL range values.}
+Generate a randomized set of colors from the CIE Lab color space using a set of HCL range values.}
 \usage{
 roll_palette(number, hue_range = c(0, 360), chroma_range = c(0, 3),
   lightness_range = c(0.75, 1.5), alpha = NULL, display_colors = TRUE)
 }
 \arguments{
-\item{hue_range}{a vector representing a range of hues from 0 to 360.}
+\item{hue_range}{a vector representing a range of hues from \code{0} to \code{360}.}
 
-\item{chroma_range}{a vector representing a range of chroma values from 0 to 3.}
+\item{chroma_range}{a vector representing a range of chroma values from \code{0} to \code{3}.}
 
-\item{lightness_range}{a vector representing a range of lightness values from 0 to 2.}
+\item{lightness_range}{a vector representing a range of lightness values from \code{0} to \code{2}.}
 
-\item{alpha}{an optional alpha value in the range of 0-100 to append to the hexadecimal color values.}
+\item{alpha}{an optional alpha value in the range of \code{0}-\code{100} to append to the hexadecimal color values.}
 }
 \value{
-a vector of hexadecimal color values
+a vector of hexadecimal color values.
 }
 \description{
 Create a simple color palette
-Generate a randomized set of colors from the CIE Lab Color space using a set of HCL range values.
+Generate a randomized set of colors from the CIE Lab color space using a set of HCL range values.
 }
 

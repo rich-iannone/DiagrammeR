@@ -3,18 +3,18 @@
 \name{combine_edges}
 \alias{combine_edges}
 \title{Combine multiple edge data frames into a single edge data frame
-Combine several edge data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.}
+Combine several edge data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.}
 \usage{
 combine_edges(...)
 }
 \arguments{
-\item{...}{two or more edge data frames, which contain edge IDs and associated attributes}
+\item{...}{two or more edge data frames, which contain edge IDs and associated attributes.}
 }
 \value{
-a combined edge data frame
+a combined edge data frame.
 }
 \description{
 Combine multiple edge data frames into a single edge data frame
-Combine several edge data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
+Combine several edge data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
 }
 

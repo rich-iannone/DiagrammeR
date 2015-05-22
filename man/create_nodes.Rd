@@ -11,7 +11,7 @@ create_nodes(...)
 \item{...}{one or more named vectors for nodes and associated attributes.}
 }
 \value{
-a data frame
+a data frame.
 }
 \description{
 Create a data frame with nodes and their attributes

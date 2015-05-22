@@ -11,7 +11,7 @@ get_nodes(...)
 \item{...}{a collection of node data frames, edge data frames, or a single graph object.}
 }
 \value{
-a vector of node ID values
+a vector of node ID values.
 }
 \description{
 Get vector of node IDs

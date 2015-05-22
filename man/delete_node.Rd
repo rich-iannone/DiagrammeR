@@ -3,20 +3,20 @@
 \name{delete_node}
 \alias{delete_node}
 \title{Delete a node from an existing graph object
-From a graph object of class 'dgr_graph', delete an existing node by specifying its node ID.}
+From a graph object of class \code{dgr_graph}, delete an existing node by specifying its node ID.}
 \usage{
 delete_node(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
 
 \item{node}{a node ID for the node to be deleted from the graph.}
 }
 \value{
-a graph object of class 'dgr_graph'.
+a graph object of class \code{dgr_graph}.
 }
 \description{
 Delete a node from an existing graph object
-From a graph object of class 'dgr_graph', delete an existing node by specifying its node ID.
+From a graph object of class \code{dgr_graph}, delete an existing node by specifying its node ID.
 }
 

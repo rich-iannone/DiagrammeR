@@ -26,7 +26,7 @@ create_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
 
 \item{graph_time}{a date or date-time string (required for insertion of graph into a graph series of the type \code{temporal}).}
 
-\item{graph_tz}{an optional value for the time zone (tz) value corresponding to the date or date-time string supplied as a value to \code{graph_time}. If no time zone is provided then it will be set to \code{GMT}.}
+\item{graph_tz}{an optional value for the time zone (\code{tz}) value corresponding to the date or date-time string supplied as a value to \code{graph_time}. If no time zone is provided then it will be set to \code{GMT}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

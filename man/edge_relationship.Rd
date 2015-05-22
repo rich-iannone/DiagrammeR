@@ -3,26 +3,26 @@
 \name{edge_relationship}
 \alias{edge_relationship}
 \title{Create, read, update, delete, or report status of an edge relationship
-From a graph object of class 'dgr_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.}
+From a graph object of class \code{dgr_graph}, query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.}
 \usage{
 edge_relationship(graph, from, to, action = "read", value = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
 
 \item{from}{a node ID from which the edge to be queried is outgoing.}
 
 \item{to}{a node ID to which the edge to be queried is incoming.}
 
-\item{action}{the type of operation to perform post-query. To remove a relationship from an edge, use either 'delete', 'remove', or 'drop'. To add a relationship to an edge with no set relationship, use 'add' or 'create'. To update an edge relationship, use 'update'. To return the value of an edge relationship, use 'read'. To determine whether there is a set relationship, use 'check'.}
+\item{action}{the operation to perform on the edge's relationship attribute. To remove a relationship from an edge, use either \code{delete}, \code{remove}, or \code{drop}. To add a relationship to an edge with no set relationship, use \code{add} or \code{create}. To update an edge relationship, use \code{update}. To return the value of an edge relationship, use \code{read}. To determine whether there is a set relationship, use \code{check}.}
 
 \item{value}{a string denoting the relationship, to be supplied when either adding or updating an edge relationship.}
 }
 \value{
-a graph object of class 'dgr_graph'.
+a graph object of class \code{dgr_graph}.
 }
 \description{
 Create, read, update, delete, or report status of an edge relationship
-From a graph object of class 'dgr_graph', query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
+From a graph object of class \code{dgr_graph}, query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
 }
 

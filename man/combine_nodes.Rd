@@ -3,18 +3,18 @@
 \name{combine_nodes}
 \alias{combine_nodes}
 \title{Combine multiple node data frames into a single node data frame
-Combine several node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.}
+Combine several node data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.}
 \usage{
 combine_nodes(...)
 }
 \arguments{
-\item{...}{two or more node data frames, which contain node IDs and associated attributes}
+\item{...}{two or more node data frames, which contain node IDs and associated attributes.}
 }
 \value{
-a combined node data frame
+a combined node data frame.
 }
 \description{
 Combine multiple node data frames into a single node data frame
-Combine several node data frames in the style of rbind, except, it works regardless of the number and ordering of the columns.
+Combine several node data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
 }
 

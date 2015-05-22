@@ -3,15 +3,15 @@
 \name{add_edges}
 \alias{add_edges}
 \title{Add edges to an existing graph object
-With a graph object of class 'dgr_graph', add one or more edges of specified types to nodes within the graph.}
+With a graph object of class \code{dgr_graph}, add one or more edges of specified types to nodes within the graph.}
 \usage{
 add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
   relationship = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
 
-\item{edges_df}{an edge data frame that is created using 'create_edges'.}
+\item{edges_df}{an edge data frame that is created using \code{create_edges}.}
 
 \item{from}{a vector of the outgoing nodes from which each edge is connected.}
 
@@ -20,10 +20,10 @@ add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
 \item{relationship}{a string specifying the relationship between the connected nodes.}
 }
 \value{
-a graph object of class 'dgr_graph'.
+a graph object of class \code{dgr_graph}.
 }
 \description{
 Add edges to an existing graph object
-With a graph object of class 'dgr_graph', add one or more edges of specified types to nodes within the graph.
+With a graph object of class \code{dgr_graph}, add one or more edges of specified types to nodes within the graph.
 }
 

@@ -8,7 +8,7 @@ Obtain a data frame with detailed information on nodes and their interrelationsh
 node_info(graph)
 }
 \arguments{
-\item{graph}{a graph object of class 'dgr_graph'.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a data frame containing information specific to each node within the graph.

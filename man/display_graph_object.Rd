@@ -2,18 +2,18 @@
 % Please edit documentation in R/display_graph_object.R
 \name{display_graph_object}
 \alias{display_graph_object}
-\title{Update and display graph object in Viewer
-Using a 'dgr_graph' object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.}
+\title{Update and display graph object in the Viewer
+Using a \code{dgr_graph} object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.}
 \usage{
 display_graph_object(graph, width = 400)
 }
 \arguments{
-\item{graph}{a 'dgr_graph' object, created using the \code{create_graph} function.}
+\item{graph}{a \code{dgr_graph} object, created using the \code{create_graph} function.}
 
 \item{width}{the width of the graph representation in pixels.}
 }
 \description{
-Update and display graph object in Viewer
-Using a 'dgr_graph' object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
+Update and display graph object in the Viewer
+Using a \code{dgr_graph} object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
 }
 

@@ -3,12 +3,12 @@
 \name{render_graph}
 \alias{render_graph}
 \title{Render the graph or output in various formats
-Using a 'dgr_graph' object, either render graph in the Viewer or output in various formats.}
+Using a \code{dgr_graph} object, either render graph in the Viewer or output in various formats.}
 \usage{
 render_graph(graph, output = "graph", width = NULL, height = NULL)
 }
 \arguments{
-\item{graph}{a 'dgr_graph' object, created using the \code{create_graph} function}
+\item{graph}{a \code{dgr_graph} object, created using the \code{create_graph} function.}
 
 \item{output}{a string specifying the output type; \code{graph} (the default) renders the graph using the \code{grViz} function, \code{DOT} outputs DOT code for the graph, and \code{SVG} provides SVG code for the rendered graph.}
 
@@ -18,6 +18,6 @@ render_graph(graph, output = "graph", width = NULL, height = NULL)
 }
 \description{
 Render the graph or output in various formats
-Using a 'dgr_graph' object, either render graph in the Viewer or output in various formats.
+Using a \code{dgr_graph} object, either render graph in the Viewer or output in various formats.
 }
 

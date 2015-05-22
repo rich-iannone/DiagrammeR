@@ -3,12 +3,12 @@
 \name{image_icon}
 \alias{image_icon}
 \title{Icons and their download locations
-A function to create a data frame with image icons and their web addresses}
+Create a data frame with image icons and their web addresses.}
 \usage{
 image_icon(icon_name)
 }
 \description{
 Icons and their download locations
-A function to create a data frame with image icons and their web addresses
+Create a data frame with image icons and their web addresses.
 }
 

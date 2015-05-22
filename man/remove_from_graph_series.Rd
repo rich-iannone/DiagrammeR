@@ -13,7 +13,7 @@ remove_from_graph_series(graph_series, index = "last")
 \item{index}{the index of the graph object to be removed from the graph series object.}
 }
 \value{
-a graph series object of type 'dgr_graph_1D'.
+a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
 Remove graph object from a graph series object

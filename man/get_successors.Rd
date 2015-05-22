@@ -8,7 +8,7 @@ Provides a vector of node IDs for all nodes that have a link from the given node
 get_successors(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class 'dgr_graph'.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{node}{a node ID for the selected node.}
 }

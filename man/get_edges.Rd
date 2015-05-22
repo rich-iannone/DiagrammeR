@@ -10,10 +10,10 @@ get_edges(..., return_type = "list")
 \arguments{
 \item{...}{a collection of edge data frames or graph objects.}
 
-\item{return_type}{using 'list' (the default) will provide a list object containing vectors of outgoing and incoming node IDs associated with edges. With 'df', a data frame containing outgoing and incoming node IDs associated with edges. With 'vector' or 'string', a vector of character objects representing the edges is provided.}
+\item{return_type}{using \code{list} (the default) will provide a list object containing vectors of outgoing and incoming node IDs associated with edges. With \code{df}, a data frame containing outgoing and incoming node IDs associated with edges. With \code{vector} or \code{string}, a vector of character objects representing the edges is provided.}
 }
 \value{
-a list, data frame, or a vector object, depending on the value given to 'return_type'.
+a list, data frame, or a vector object, depending on the value given to \code{return_type}.
 }
 \description{
 Get node IDs associated with edges

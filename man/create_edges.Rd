@@ -11,7 +11,7 @@ create_edges(...)
 \item{...}{one or more named vectors for edges and associated attributes.}
 }
 \value{
-a data frame
+a data frame.
 }
 \description{
 Create a data frame with edges and their attributes

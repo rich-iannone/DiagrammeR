@@ -3,22 +3,22 @@
 \name{delete_edge}
 \alias{delete_edge}
 \title{Delete an edge from an existing graph object
-From a graph object of class 'dgr_graph', delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.}
+From a graph object of class \code{dgr_graph}, delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.}
 \usage{
 delete_edge(graph, from, to)
 }
 \arguments{
-\item{graph}{a graph object of class 'dgr_graph' that is created using 'create_graph'.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
 
 \item{from}{a node ID from which the edge to be removed is outgoing.}
 
 \item{to}{a node ID to which the edge to be removed is incoming.}
 }
 \value{
-a graph object of class 'dgr_graph'.
+a graph object of class \code{dgr_graph}.
 }
 \description{
 Delete an edge from an existing graph object
-From a graph object of class 'dgr_graph', delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.
+From a graph object of class \code{dgr_graph}, delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.
 }
 
