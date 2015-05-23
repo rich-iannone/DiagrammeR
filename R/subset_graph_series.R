@@ -40,4 +40,94 @@ subset_graph_series <- function(graph_series,
 
     return(graph_series)
   }
+
+  if (by == "time"){
+
+    # validate the value provided for 'values'
+    if (class(values) == "numeric"){
+
+      return(graph_series)
+    }
+
+    is_tz_in_correct_format <-
+      ifelse(tz %in% OlsonNames(), TRUE, FALSE)
+
+    if (is_tz_in_correct_format == FALSE){
+
+      return(graph_series)
+    }
+
+    for (i in 1:length(values)){
+
+      is_time_in_correct_format <-
+        ifelse(grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                     values[i]) |
+                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$",
+                       values[i]) |
+                 grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$",
+                       values[i]), TRUE, FALSE)
+
+      if (is_time_in_correct_format == FALSE){
+
+        return(graph_series)
+      }
+    }
+
+    # Create subset based on range
+    if (length(values) == 2){
+
+      for (i in 1:graph_count(graph_series = graph_series)){
+
+        if (i == 1){
+          dates_times_in_series <- vector(mode = "numeric", length = 0)
+          tz_in_series <- vector(mode = "character", length = 0)
+          }
+
+        dates_times_in_series <-
+          c(dates_times_in_series, graph_series$graphs[[i]]$graph_time)
+
+        tz_in_series <-
+          c(tz_in_series, graph_series$graphs[[i]]$graph_tz)
+
+      }
+
+      for (i in 1:length(dates_times_in_series)){
+
+        if (i == 1){
+          dates_times_in_series_with_tz <-
+            as.POSIXct(rep("1970-01-01", length(dates_times_in_series)),
+                       tz = "GMT")
+        }
+
+        dates_times_in_series_with_tz[i] <-
+          as.POSIXct(dates_times_in_series[i], tz = tz_in_series[i])
+      }
+
+
+      date_times_in_series_to_retain <-
+        which(dates_times_in_series_with_tz[dates_times_in_series_with_tz >
+                                              as.POSIXct(values[1], tz = tz) &
+                                              dates_times_in_series_with_tz <
+                                              as.POSIXct(values[2], tz = tz)] %in%
+                dates_times_in_series_with_tz)
+
+      # Remove selected graphs from the series
+      for (i in which(!(1:length(dates_times_in_series_with_tz) %in%
+                        date_times_in_series_to_retain))){
+
+        graph_series <-
+          remove_from_graph_series(graph_series = graph_series,
+                                   index = i)
+      }
+
+      return(graph_series)
+    }
+
+    # Create subset based on exact time
+    if (length(values) == 1){
+
+
+    }
+
+  }
 }
