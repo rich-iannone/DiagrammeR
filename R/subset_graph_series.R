@@ -8,7 +8,8 @@
 
 subset_graph_series <- function(graph_series,
                                 by = "number",
-                                values){
+                                values,
+                                tz = NULL){
 
   if (graph_count(graph_series = graph_series) == 0){
 
