@@ -3,10 +3,10 @@
 #' @param graph a graph object to add to the graph series object.
 #' @param graph_series a graph series object to which the graph object will be added.
 #' @return a graph series object of type \code{dgr_graph_1D}.
-#' @export add_to_graph_series
+#' @export add_to_series
 
-add_to_graph_series <- function(graph,
-                                graph_series){
+add_to_series <- function(graph,
+                          graph_series){
 
   # Get the series type
   series_type <- graph_series$series_type

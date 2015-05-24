@@ -5,12 +5,12 @@
 #' @param series_type either a \code{sequential} type (the default) or a \code{temporal} type (which requires date-time strings and time zone codes to be supplied).
 #' @param series_scripts a vector of R scripts or paths to R scripts.
 #' @return a graph series object of type \code{dgr_graph_1D}.
-#' @export create_graph_series
+#' @export create_series
 
-create_graph_series <- function(graph = NULL,
-                                series_name = NULL,
-                                series_type = "sequential",
-                                series_scripts = NULL){
+create_series <- function(graph = NULL,
+                          series_name = NULL,
+                          series_type = "sequential",
+                          series_scripts = NULL){
 
   # Initialize an empty graph series object
   graph_series <- list(graphs = NULL,
@@ -24,7 +24,7 @@ create_graph_series <- function(graph = NULL,
   }
 
   # Add a graph to the initialized graph series
-    graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
+  graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
 
   return(graph_series)
 }

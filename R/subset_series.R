@@ -5,12 +5,12 @@
 #' @param values where the subsetting of the graph series by to occur via graph indices (where \code{by = number}), provide a vector of those indices; when subsetting by time (where \code{by = time}), a range of times can be provided as a vector.
 #' @param tz the time zone (\code{tz}) corresponding to dates or date-time string provided in \code{values} (if \code{by = "date"}).
 #' @return a graph series object of type \code{dgr_graph_1D}.
-#' @export subset_graph_series
+#' @export subset_series
 
-subset_graph_series <- function(graph_series,
-                                by = "number",
-                                values,
-                                tz = NULL){
+subset_series <- function(graph_series,
+                          by = "number",
+                          values,
+                          tz = NULL){
 
   if (graph_count(graph_series = graph_series) == 0){
 
