@@ -30,8 +30,6 @@ subset_graph_series <- function(graph_series,
 
     indices_in_subset_value <- values
 
-    for (i in which(!(indices_in_graph_series %in%
-                                    indices_in_subset_value))){
     graphs_to_remove <-
       which(!(indices_in_graph_series %in%
                 indices_in_subset_value))
@@ -39,6 +37,7 @@ subset_graph_series <- function(graph_series,
     graphs_to_remove <-
       sort(graphs_to_remove, decreasing = TRUE)
 
+    for (i in graphs_to_remove){
 
       graph_series <-
         remove_from_graph_series(graph_series = graph_series,
@@ -88,7 +87,7 @@ subset_graph_series <- function(graph_series,
         if (i == 1){
           dates_times_in_series <- vector(mode = "numeric", length = 0)
           tz_in_series <- vector(mode = "character", length = 0)
-          }
+        }
 
         dates_times_in_series <-
           c(dates_times_in_series, graph_series$graphs[[i]]$graph_time)
