@@ -36,6 +36,9 @@ subset_graph_series <- function(graph_series,
       which(!(indices_in_graph_series %in%
                 indices_in_subset_value))
 
+    graphs_to_remove <-
+      sort(graphs_to_remove, decreasing = TRUE)
+
 
       graph_series <-
         remove_from_graph_series(graph_series = graph_series,
