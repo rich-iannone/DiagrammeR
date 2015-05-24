@@ -40,8 +40,8 @@ subset_series <- function(graph_series,
     for (i in graphs_to_remove){
 
       graph_series <-
-        remove_from_graph_series(graph_series = graph_series,
-                                 index = i)
+        remove_from_series(graph_series = graph_series,
+                           index = i)
     }
 
     return(graph_series)
@@ -124,7 +124,7 @@ subset_series <- function(graph_series,
       for (i in graphs_to_remove){
 
         graph_series <-
-          remove_from_graph_series(graph_series = graph_series,
+          remove_from_series(graph_series = graph_series,
                                    index = i)
       }
 
