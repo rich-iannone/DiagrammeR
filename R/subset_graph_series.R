@@ -115,8 +115,7 @@ subset_graph_series <- function(graph_series,
         sort(date_times_in_series_to_remove, decreasing = TRUE)
 
       # Remove selected graphs from the series
-      for (i in which(1:length(dates_times_in_series_with_tz) %in%
-                        date_times_in_series_to_retain)){
+      for (i in date_times_in_series_to_remove){
 
         graph_series <-
           remove_from_graph_series(graph_series = graph_series,
@@ -131,6 +130,5 @@ subset_graph_series <- function(graph_series,
 
 
     }
-
   }
 }
