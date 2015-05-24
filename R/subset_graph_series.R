@@ -104,12 +104,15 @@ subset_graph_series <- function(graph_series,
       }
 
 
-      date_times_in_series_to_retain <-
-        which(dates_times_in_series_with_tz[dates_times_in_series_with_tz >
-                                              as.POSIXct(values[1], tz = tz) &
-                                              dates_times_in_series_with_tz <
-                                              as.POSIXct(values[2], tz = tz)] %in%
-                dates_times_in_series_with_tz)
+      date_times_in_series_to_remove <-
+        which(!(1:length(dates_times_in_series_with_tz) %in%
+                  which(dates_times_in_series_with_tz >=
+                          as.POSIXct(values[1], tz = tz) &
+                          dates_times_in_series_with_tz <=
+                          as.POSIXct(values[2], tz = tz))))
+
+      date_times_in_series_to_remove <-
+        sort(date_times_in_series_to_remove, decreasing = TRUE)
 
       # Remove selected graphs from the series
       for (i in which(1:length(dates_times_in_series_with_tz) %in%
