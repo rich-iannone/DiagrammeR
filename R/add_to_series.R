@@ -14,12 +14,14 @@ add_to_series <- function(graph,
   # Stop function if graph is not valid
   if (class(graph) != "dgr_graph"){
 
+    message("The supplied graph object is not valid.")
     return(graph_series)
   }
 
   # Stop function if graph series type is not valid
   if (!(series_type %in% c("sequential", "temporal"))){
 
+    message("The graph series type is neither 'sequential' nor 'temporal'")
     return(graph_series)
   }
 
@@ -40,6 +42,7 @@ add_to_series <- function(graph,
 
     if (is_time_provided == FALSE){
 
+      message("No time information is provided in this graph object.")
       return(graph_series)
     } else {
 
@@ -61,11 +64,13 @@ add_to_series <- function(graph,
 
       if (is_time_in_correct_format == FALSE){
 
+        message("The time provided in this graph object is not in the correct format.")
         return(graph_series)
       }
 
       if (is_tz_in_correct_format == FALSE){
 
+        message("The time zone provided in this graph object is not in the correct format.")
         return(graph_series)
       }
 
