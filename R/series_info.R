@@ -13,6 +13,14 @@ series_info <- function(graph_series){
   colnames(series_properties) <-
     c("graph", "name", "date_time", "tz", "nodes", "edges", "directed")
 
+  series_properties[,1] <- as.numeric(series_properties[,1])
+  series_properties[,2] <- as.character(series_properties[,2])
+  series_properties[,3] <- as.character(series_properties[,3])
+  series_properties[,4] <- as.character(series_properties[,4])
+  series_properties[,5] <- as.numeric(series_properties[,5])
+  series_properties[,6] <- as.numeric(series_properties[,6])
+  series_properties[,7] <- as.logical(series_properties[,7])
+
   if (graphs_in_series == 0){
 
     return(series_properties)
