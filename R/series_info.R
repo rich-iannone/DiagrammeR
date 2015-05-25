@@ -37,4 +37,6 @@ series_info <- function(graph_series){
 
     series_properties[i, 7] <- is_graph_directed(graph_series$graphs[[i]])
   }
+
+  return(series_properties)
 }
