@@ -30,14 +30,26 @@ series_info <- function(graph_series){
 
     series_properties[i, 1] <- i
 
+    if (!is.null(graph_series$graphs[[i]]$graph_name)){
     series_properties[i, 2] <-
       graph_series$graphs[[i]]$graph_name
+    } else {
+      series_properties[i, 2] <- NA
+    }
 
-    series_properties[i, 3] <-
-      graph_series$graphs[[i]]$graph_time
+    if (!is.null(graph_series$graphs[[i]]$graph_time)){
+      series_properties[i, 3] <-
+        graph_series$graphs[[i]]$graph_time
+    } else {
+      series_properties[i, 3] <- NA
+    }
 
-    series_properties[i, 4] <-
-      graph_series$graphs[[i]]$graph_tz
+    if (!is.null(graph_series$graphs[[i]]$graph_tz)){
+      series_properties[i, 4] <-
+        graph_series$graphs[[i]]$graph_tz
+    } else {
+      series_properties[i, 4] <- NA
+    }
 
     series_properties[i, 5] <- node_count(graph_series$graphs[[i]])
 
