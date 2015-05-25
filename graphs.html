@@ -194,13 +194,14 @@
                     <p>There may be occasion to combine several of these data frames into a single node data frame. This can be done with the <code>combine_nodes</code> function (which works much like <code>rbind</code> except that it accepts data frames with columns differing in number, names, and ordering).</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-
-###
+                            <pre><code class="prettyprint">###
 # Create two data frames for nodes
 # Singly supplied attribute values are repeated down
 ###
 
+library(DiagrammeR)
+
+# Create a node data frame
 nodes_1 &lt;-
   create_nodes(nodes = c("a", "b", "c", "d"),
                label = FALSE,
@@ -218,6 +219,7 @@ nodes_1
 #> 3     c       lower filled  aqua rectangle  9.4
 #> 4     d       lower filled  aqua rectangle  2.7
 
+# Create another node data frame
 nodes_2 &lt;-
   create_nodes(nodes = c("e", "f", "g", "h"),
                label = FALSE,
@@ -238,6 +240,7 @@ nodes_2
 # Combine two data frames for nodes
 ###
 
+# Combine node data frames with 'combine_nodes'
 all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
 
 all_nodes
@@ -274,13 +277,14 @@ all_nodes
                     <p>Use the <code>create_edges</code> function to create data frames for edges and their attributes. Data frames for edge definitions and their associated attributes can then be safely combined using the <code>combine_edges</code> function.</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-
-###
-# Create two data frames for nodes
+                            <pre><code class="prettyprint">###
+# Create two data frames for edges
 # Singly supplied attribute values are repeated down
 ###
 
+library(DiagrammeR)
+
+# Create an edge data frame
 edges_1 &lt;-
   create_edges(edge_from = c("a", "a", "b", "c"),
                edge_to = c("b", "d", "d", "a"),
@@ -295,6 +299,7 @@ edges_1
 #> 3         b       d     requires green  2.6
 #> 4         c       a     requires green  0.6
 
+# Create another edge data frame
 edges_2 &lt;-
   create_edges(edge_from = c("e", "g", "h", "h"),
                edge_to = c("g", "h", "f", "e"),
@@ -313,6 +318,7 @@ edges_2
 # Combine two data frames for edges
 ###
 
+# Combine edge data frames with 'combine_edges'
 all_edges &lt;- combine_edges(edges_1, edges_2)
 
 all_edges
@@ -361,16 +367,17 @@ all_edges
                     <p>Examples will be useful here. You can create a scale for the node and edge attribute <code>penwidth</code> (which changes the stroke thickness of the node shape or of the arrow). Using the data in the <code>data</code> attribute, those values will be scaled linearly from <code>2</code> to <code>5</code> for nodes and <code>1</code> to <code>5</code> for edges.</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-
-###
+                            <pre><code class="prettyprint">###
 # Create a data frame for nodes
 # Add an attribute which has values scaled to data
 # in a column
 ###
 
+library(DiagrammeR)
+
 set.seed(24)
 
+# Create a node data frame
 nodes &lt;- create_nodes(nodes = 1:5,
                       label = FALSE,
                       type = "example",
@@ -407,6 +414,7 @@ nodes
 
 set.seed(24)
 
+# Create an edge data frame
 edges &lt;- create_edges(edge_from = c("a", "b", "c"),
                       edge_to = c("d", "d", "a"),
                       label = '',
@@ -436,7 +444,11 @@ edges
                     <p>To apply transparency to color values, use the <code>alpha</code> node attribute but reference the <code>color</code> attribute that should be modified with the syntax: 'alpha:[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: 'alpha:[color_attr]=[color]'. The color value can either be an <strong>X11</strong> color name or a hexadecimal color value.</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">nodes &lt;- scale_nodes(nodes_df = nodes,
+                            <pre><code class="prettyprint">library(DiagrammeR)
+
+# Scale a node data frame and create an 'alpha' attribute
+# that's applied to fillcolor
+nodes &lt;- scale_nodes(nodes_df = nodes,
                           to_scale = nodes$random_data,
                           node_attr = "alpha:fillcolor",
                           range = c(5, 90))
@@ -515,15 +527,16 @@ create_graph(nodes_df = many_nodes, edges_df = many_edges,
     )
 </code></pre>
                     </div>
-                    <p>There may be cases where node or edge attributes should apply to all nodes and edges in the graph. In such cases, there's no need to create columns for those attributes where attribute values are repeated in all rows. Instead, supply vectors of attribute statements for the <code>node_attrs</code> or <code>edge_attrs</code> arguments in the <code>create_graph</code> function.</p>
+                    <p>For a first, simple example we can create an empty graph by using the <code>create_graph</code> function and supplying no arguments. This may be useful for initializing a graph object and then adding nodes and edges using functions such as <code>add_node</code> and <code>add_edges</code>.</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-
-###
+                            <pre><code class="prettyprint">###
 # Create an empty graph
 ###
 
+library(DiagrammeR)
+
+# Create the graph object
 graph &lt;- create_graph()
 
 graph
@@ -549,12 +562,22 @@ graph
 #> [1] "digraph {\n\n}"
 #>
 #> attr(,"class")
-#> [1] "gv_graph"
-
-###
+#> [1] "gv_graph"</code></pre>
+                        </div>
+                    </div>
+<p>This next example will include just nodes in a graph object, and, quite often you'll want to have node or edge attributes that should apply to all nodes and edges in the graph. For that there's no need to create columns for those shared attributes (where you might repeat attribute values through all rows of a node or edge data frame). Instead, supply vectors of attribute statements for the <code>node_attrs</code> or <code>edge_attrs</code> arguments in the <code>create_graph</code> function. In this example, a graph containing just nodes will be created.</p>
+<div class="bs-example">
+                        <img src="img/graph-functions/nodes_only_example.png" class="img-responsive center-block">
+                    </div>
+<div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
 # Create a graph with nodes but no edges
 ###
 
+library(DiagrammeR)
+
+# Create a node data frame
 nodes &lt;-
   create_nodes(nodes = c("a", "b", "c", "d"),
                label = FALSE,
@@ -596,15 +619,44 @@ graph
 #> attr(,"class")
 #> [1] "gv_graph"
 
-###
-# Create a graph with both nodes and nodes
+# View the graph in the RStudio Viewer
+render_graph(graph)</code></pre>
+                        </div>
+                    </div>
+<p>This next example will include both nodes and edges contained within a graph object. In this case, values for the <code>type</code> and <code>relationship</code> attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.</p>
+<div class="bs-example">
+                        <img src="img/graph-functions/nodes_edges_example.png" class="img-responsive center-block">
+                    </div>
+<div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a graph with both nodes and edges
 # defined, and, add some default attributes
+# for nodes and edges
 ###
+
+library(DiagrammeR)
+
+# Create a node data frame
+nodes &lt;-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               label = FALSE,
+               type = "lower",
+               style = "filled",
+               color = "aqua",
+               shape = c("circle", "circle",
+                         "rectangle", "rectangle"),
+               data = c(3.5, 2.6, 9.4, 2.7))
+
+edges &lt;-
+  create_edges(edge_from = c("a", "b", "c"),
+               edge_to = c("d", "c", "a"),
+               relationship = "leading_to")
+
 
 graph &lt;-
   create_graph(nodes_df = nodes,
                edges_df = edges,
-               graph_attrs = "rankdir = LR",
                node_attrs = "fontname = Helvetica",
                edge_attrs = c("color = blue",
                               "arrowsize = 2"))
@@ -624,7 +676,7 @@ graph
 #> 3         c       a   leading_to
 #>
 #> $graph_attrs
-#> [1] "rankdir = LR"
+#> [1] NULL
 #>
 #> $node_attrs
 #> [1] "fontname = Helvetica"
@@ -639,18 +691,27 @@ graph
 #> [1] "digraph {\n\ngraph [rankdir = LR]\n\nnode [fontnam...
 #>
 #> attr(,"class")
-#> [1] "gv_graph"</code></pre>
+#> [1] "gv_graph"
+
+# View the graph in the RStudio Viewer
+render_graph(graph)</code></pre>
                         </div>
                     </div>
-                    <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>circo</code>, node overlapping is suppressed, the separation between nodes is of factor <code>3</code>, and the edges are drawn first (so as to not obscure the nodes).</p>
+                    <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>twopi</code> and this provides for a radically different layout of nodes than the standard method. Also, because we are using sampling in this example, setting a seed with <code>set.seed</code> will make the example reproducible.</p>
+                    <div class="bs-example">
+                        <img src="img/graph-functions/LETTERS_example.png" class="img-responsive center-block">
+                    </div>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-
-###
+                            <pre><code class="prettyprint">###
 # Create a graph
 ###
 
+library(DiagrammeR)
+
+set.seed(23)
+
+# Create a node data frame
 nodes &lt;-
   create_nodes(nodes = LETTERS,
                type = "letter",
@@ -682,7 +743,10 @@ graph &lt;-
 render_graph(graph)</code></pre>
                         </div>
                     </div>
-                    <p>For a visual summary of the graph, use the <code>display_graph_object</code> function.</p>
+                    <p>For a visual summary of the graph, use the <code>display_graph_object</code> function. The top numbers here indicate that there is <code>1</code> graph attribute set, <code>2</code> node attributes set, and <code>2</code> edge attributes set. The number in the blue region indicates the number of nodes in the graph, and the number in the green regions provides the number of edges.</p>
+                    <div class="bs-example">
+                        <img src="img/graph-functions/graph_summary_example.png" class="img-responsive center-block">
+                    </div>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint"># View a visual summary of the graph in the RStudio Viewer
@@ -693,14 +757,15 @@ display_graph_object(graph)</code></pre>
                     <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph</code> function. For SVG output, use <code>output =  "SVG"</code>Here's a simple example:</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-library(pipeR)
-library(V8)
-
-###
+                            <pre><code class="prettyprint">###
 # Create nodes and edges data frames for graph
 ###
 
+library(DiagrammeR)
+library(pipeR)
+library(V8)
+
+# Create a node data frame
 nodes &lt;-
   create_nodes(nodes = LETTERS,
                type = "letter",
@@ -839,20 +904,20 @@ create_graph(nodes_df =
                         </div>
                     <p>The <code>is_graph_empty</code> and <code>is_directed</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> on whether the graph is empty and whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that toggle the graph between directed and undirected states. The <code>node_info</code> and <code>edge_info</code> provide information about the nodes and edges in the graph. The information is presented in the form of a data frame. For <code>node_info</code>, the following data is returned:</p>
                         <ul>
-                            <li>node</li>
-                            <li>label</li>
-                            <li>type</li>
-                            <li>degree</li>
-                            <li>indegree</li>
-                            <li>outdegree</li>
-                            <li>loops</li>
+                            <li><code>node</code></li>
+                            <li><code>label</code></li>
+                            <li><code>type</code></li>
+                            <li><code>degree</code></li>
+                            <li><code>indegree</code></li>
+                            <li><code>outdegree</code></li>
+                            <li><code>loops</code></li>
                         </ul>
                     <p>From the <code>edge_info</code> function, the resultant data frame has the following columns:</p>
                         <ul>
-                            <li>edge_from</li>
-                            <li>edge_to</li>
-                            <li>relationship</li>
-                            <li>label</li>
+                            <li><code>edge_from</code></li>
+                            <li><code>edge_to</code></li>
+                            <li><code>relationship</code></li>
+                            <li><code>label</code></li>
                         </ul>
                     <p>All the aforementioned functions take only a graph object when called.</p>
                     <p>The <code>node_present</code> and <code>edge_present</code> functions are used to determine whether a node (based on its node ID) or an edge (based on two node IDs) is present in a graph object. Both functions return a logical value of either <code>TRUE</code> or <code>FALSE</code>.</p>
@@ -861,15 +926,16 @@ create_graph(nodes_df =
                     <p>To get a count of all or certain types of nodes available in the graph, you can use the <code>node_count</code> function. The argument <code>type</code> can either be supplied with a <code>TRUE</code> or <code>FALSE</code> value, or, a character vector containing the values for the node type which may be available for nodes in the graph. Providing <code>TRUE</code> will issue a named vector of node counts by their type. Any nodes with a <code>type</code> attribute not set with a value are placed into a separate count category. Using <code>type = FALSE</code> with <code>node_count</code> simply supplied a single-value vector with a total count of nodes in the graph. By providing a vector of character values of available node <code>type</code> values, a numerical named vector of counts for only those specified types will be returned.</p>
                     <div class="highlight">
                         <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-library(pipeR)
-
-###
+                            <pre><code class="prettyprint">###
 # Create a graph
 ###
 
+library(DiagrammeR)
+library(pipeR)
+
 set.seed(26)
 
+# Create a node data frame
 nodes &lt;-
   create_nodes(nodes = LETTERS,
                label = TRUE,
@@ -878,12 +944,14 @@ nodes &lt;-
                         rep("q_to_x", 8),
                         rep("y_and_z",2)))
 
+# Create an edge data frame
 edges &lt;-
   create_edges(edge_from = sample(LETTERS, replace = TRUE),
                edge_to = sample(LETTERS, replace = TRUE),
                label = "edge",
                relationship = "letter_to_letter")
 
+# Create a graph object
 graph &lt;-
   create_graph(nodes_df = nodes,
                edges_df = edges,
@@ -895,6 +963,7 @@ graph &lt;-
 # Is the graph empty?
 ###
 
+# Use the 'is_graph_empty' function to return a logical value
 is_graph_empty(graph)
 #> FALSE
 
@@ -902,6 +971,7 @@ is_graph_empty(graph)
 # Get basic information on the graph's nodes and edges
 ###
 
+# Use the 'node_info' function to return a data frame
 node_info(graph)
 #>    node_ID label    type degree indegree outdegree loops
 #> 1        A     A  a_to_g      2        0         2     0
@@ -911,6 +981,7 @@ node_info(graph)
 #> 5        F     F  a_to_g      0        0         0     0
 #>..      ...   ...     ...    ...      ...       ...   ...
 
+# Use the 'edge_info' function to return a data frame
 edge_info(graph)
 #>    edge_from edge_to     relationship label
 #> 1          A       Z letter_to_letter  edge
@@ -925,6 +996,7 @@ edge_info(graph)
 ###
 
 # Verify that node with ID 'a' is not in graph
+# with the 'node_present' function
 node_present(graph, "a")
 #> FALSE
 
@@ -941,6 +1013,7 @@ all(sapply(LETTERS, function(x) node_present(graph, x)))
 ###
 
 # Is there any edge between nodes with IDs 'A' and 'B'?
+# Use the 'edge_present' function to find out
 edge_present(graph, from = "A", to = "B")
 #> FALSE
 
@@ -953,6 +1026,7 @@ edge_present(graph, from = "K", to = "V")
 # for nodes or edges
 ###
 
+# Use the 'get_nodes' function to return node ID values
 get_nodes(graph)
 #> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L"
 #> [13] "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X"
@@ -1000,7 +1074,7 @@ get_edges(graph, return_type = "df")
 #> 5     I  V
 #>..   ... ..
 
-# A character string with node IDs can instead be gotten
+# A character string with node IDs can also be obtained
 get_edges(graph, return_type = "vector")
 #>  [1] "A -&gt; Z" "H -&gt; U" "W -&gt; O" "U -&gt; K" "I -&gt; V"
 #>  [6] "M -&gt; M" "U -&gt; N" "T -&gt; C" "I -&gt; D" "R -&gt; Z"
@@ -1030,8 +1104,6 @@ all(get_edges(edges, return_type = "vector") ==
 # Get all the predecessors or all of the successors
 # of a given node
 ###
-
-render_graph(graph)
 
 # If there are no predecessors, NA is returned
 get_predecessors(graph, node = "A")
@@ -1064,7 +1136,7 @@ node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
 # Get a count of all nodes in a graph
 ###
 
-# Get counts of nodes grouped by the "type" attribute
+# Get counts of nodes grouped by the 'type' attribute
 node_count(graph, type = TRUE) # the default
 #> a_to_g  h_to_p  q_to_x y_and_z
 #>      7       9       8       2
@@ -1137,6 +1209,7 @@ graph &lt;- create_graph()
 graph &lt;- add_node(graph, node = "a")
 graph &lt;- add_node(graph, node = "b")
 
+# Get information on all nodes in graph
 node_info(graph)
 #>   node_ID label type degree indegree outdegree loops
 #> 1       a     a   NA      0        0         0     0
@@ -1146,6 +1219,7 @@ node_info(graph)
 graph &lt;- add_edges(graph, from = "a", to = "b",
                    relationship = "to_get")
 
+# Get information on all edges in graph
 edge_info(graph)
 #>   edge_from edge_to relationship label
 #> 1         a       b       to_get    NA
@@ -1154,6 +1228,7 @@ edge_info(graph)
 graph &lt;- add_node(graph, node = "c")
 graph &lt;- add_node(graph, node = "d")
 
+# Get information on all nodes in graph
 node_info(graph)
 #>   node_ID label type degree indegree outdegree loops
 #> 1       a     a   NA      1        0         1     0
@@ -1168,6 +1243,7 @@ graph &lt;-
             to = c("c", "d"),
             relationship = "received_from")
 
+# Get information on all edges in graph
 edge_info(graph)
 #>   edge_from edge_to  relationship label
 #> 1         a       b        to_get    NA
@@ -1177,6 +1253,7 @@ edge_info(graph)
 # Remove a node (removing a node removes its edges)
 graph &lt;- delete_node(graph, node = "d")
 
+# Get information on all nodes in graph
 node_info(graph)
 #>   node_ID label type degree indegree outdegree loops
 #> 1       a     a   NA      2        0         2     0
@@ -1186,6 +1263,7 @@ node_info(graph)
 # Remove an edge (removing an edge retains nodes)
 graph &lt;- delete_edge(graph, from = "a", to = "c")
 
+# Get information on all edges in graph
 edge_info(graph)
 #>   edge_from edge_to relationship label
 #> 1         a       b       to_get    NA</code></pre>
@@ -1211,9 +1289,9 @@ edge_info(graph)
 # Get the latest build of the 'DiagrammeR' package from GitHub
 devtools::install_github('rich-iannone/DiagrammeR')
 
-library("nycflights13")
-library("lubridate")
-library("DiagrammeR")
+library(nycflights13)
+library(lubridate)
+library(DiagrammeR)
 
 # Choose a day from 2013 for NYC flight data
 # (You can choose any Julian day, it's interesting to see results for different days)
