@@ -13,6 +13,11 @@ series_info <- function(graph_series){
   colnames(series_properties) <-
     c("graph", "name", "date_time", "tz", "nodes", "edges", "directed")
 
+  if (graphs_in_series == 0){
+
+    return(series_properties)
+  }
+
   for (i in 1:graphs_in_series){
 
     series_properties[i, 1] <- i
