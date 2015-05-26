@@ -111,39 +111,35 @@ add_node <- function(graph,
       return(graph)
     }
 
-    if (from_nodes_available){
+    combined_nodes <- combine_nodes(graph$nodes_df,
+                                    create_nodes(nodes = node,
+                                                 label = label,
+                                                 type = type))
 
-      combined_nodes <- combine_nodes(graph$nodes_df,
-                                      create_nodes(nodes = node,
-                                                   label = label,
-                                                   type = type))
+    if (node_attributes_provided == TRUE){
 
-      if (node_attributes_provided == TRUE){
+      for (i in 1:length(node_attributes)){
 
-        for (i in 1:length(node_attributes)){
+        if (names(node_attributes)[i] %in% colnames(combined_nodes)){
 
-          if (names(node_attributes)[i] %in% colnames(combined_nodes)){
+          combined_nodes[nrow(combined_nodes),
+                         which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+            node_attributes[i][[1]]
+        }
 
-            combined_nodes[nrow(combined_nodes),
-                           which(colnames(combined_nodes) == names(node_attributes)[i])] <-
-              node_attributes[i][[1]]
-          }
+        if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
 
-          if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
+          combined_nodes <- cbind(combined_nodes,
+                                  c(rep("", length = nrow(combined_nodes) - 1),
+                                    node_attributes[i][[1]]))
 
-            combined_nodes <- cbind(combined_nodes,
-                                    c(rep("", length = nrow(combined_nodes) - 1),
-                                      node_attributes[i][[1]]))
-
-            colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
-          }
+          colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
         }
       }
 
       combined_edges <- combine_edges(graph$edges_df,
                                       create_edges(edge_from = rep(node, length(to)),
                                                    edge_to = to))
-
 
       # Create the revised graph object
       dgr_graph <-
