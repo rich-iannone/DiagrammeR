@@ -22,6 +22,32 @@ create_graph <- function(nodes_df = NULL,
                          graph_time = NULL,
                          graph_tz = NULL){
 
+  # Create vector of graph attributes
+  graph_attributes <- c("bgcolor", "layout", "overlap", "fixedsize", "mindist",
+                        "nodesep", "outputorder", "ranksep", "rankdir", "stylesheet")
+
+  # Create vector of node attributes
+  node_attributes <- c("color", "distortion", "fillcolor",
+                       "fixedsize", "fontcolor", "fontname", "fontsize",
+                       "group", "height", "label", "labelloc", "margin",
+                       "orientation", "penwidth", "peripheries", "pos", "shape",
+                       "sides", "skew", "style", "tooltip", "width", "img", "icon")
+
+  # Create vector of edge attributes
+  edge_attributes <- c("arrowhead", "arrowsize", "arrowtail", "color",
+                       "constraint", "decorate", "dir",
+                       "edgeURL", "edgehref", "edgetarget", "edgetooltip",
+                       "fontcolor", "fontname", "fontsize", "headclip",
+                       "headhref", "headlabel", "headport", "headtarget",
+                       "headtooltip", "headURL", "href", "id", "label",
+                       "labelangle", "labeldistance", "labelfloat", "labelfontcolor",
+                       "labelfontname", "labelfontsize", "labelhref", "labelURL",
+                       "labeltarget", "labeltooltip", "layer", "lhead",
+                       "ltail", "minlen", "penwidth", "samehead",
+                       "sametail", "style", "tailclip", "tailhref",
+                       "taillabel", "tailport", "tailtarget", "tailtooltip",
+                       "tailURL", "target", "tooltip", "weight")
+
   # If nodes, edges, and attributes not provided, create empty graph
   if (all(c(is.null(nodes_df), is.null(edges_df),
             is.null(graph_attrs), is.null(node_attrs),
@@ -74,28 +100,7 @@ create_graph <- function(nodes_df = NULL,
     }
   }
 
-  graph_attributes <- c("bgcolor", "layout", "overlap", "fixedsize", "mindist",
-                        "nodesep", "outputorder", "ranksep", "rankdir", "stylesheet")
 
-  node_attributes <- c("color", "distortion", "fillcolor",
-                       "fixedsize", "fontcolor", "fontname", "fontsize",
-                       "group", "height", "label", "labelloc", "margin",
-                       "orientation", "penwidth", "peripheries", "pos", "shape",
-                       "sides", "skew", "style", "tooltip", "width", "img", "icon")
-
-  edge_attributes <- c("arrowhead", "arrowsize", "arrowtail", "color",
-                       "constraint", "decorate", "dir",
-                       "edgeURL", "edgehref", "edgetarget", "edgetooltip",
-                       "fontcolor", "fontname", "fontsize", "headclip",
-                       "headhref", "headlabel", "headport", "headtarget",
-                       "headtooltip", "headURL", "href", "id", "label",
-                       "labelangle", "labeldistance", "labelfloat", "labelfontcolor",
-                       "labelfontname", "labelfontsize", "labelhref", "labelURL",
-                       "labeltarget", "labeltooltip", "layer", "lhead",
-                       "ltail", "minlen", "penwidth", "samehead",
-                       "sametail", "style", "tailclip", "tailhref",
-                       "taillabel", "tailport", "tailtarget", "tailtooltip",
-                       "tailURL", "target", "tooltip", "weight")
 
   # Create the default attributes statement for graph attributes
   if (!is.null(graph_attrs)){
