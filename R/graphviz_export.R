@@ -1,6 +1,5 @@
 #' Export grViz graph as SVG with \code{V8}
-#' Use viz.js with \code{V8} to get the diagram rendered
-#' as SVG in R instead of the browser.
+#' @description Use viz.js with \code{V8} to get the diagram rendered as SVG in R instead of the browser.
 #' @param gv htmlwidget to render as SVG.
 #' @return \code{string} of SVG XML text.
 #' @examples

@@ -2,8 +2,7 @@
 % Please edit documentation in R/get_successors.R
 \name{get_successors}
 \alias{get_successors}
-\title{Get node IDs for successor nodes to the specified node
-Provides a vector of node IDs for all nodes that have a link from the given node.}
+\title{Get node IDs for successor nodes to the specified node}
 \usage{
 get_successors(graph, node)
 }
@@ -16,7 +15,6 @@ get_successors(graph, node)
 a vector of node ID values.
 }
 \description{
-Get node IDs for successor nodes to the specified node
 Provides a vector of node IDs for all nodes that have a link from the given node.
 }
 

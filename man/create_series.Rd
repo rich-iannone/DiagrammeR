@@ -2,8 +2,7 @@
 % Please edit documentation in R/create_series.R
 \name{create_series}
 \alias{create_series}
-\title{Create a graph series object
-Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.}
+\title{Create a graph series object}
 \usage{
 create_series(graph = NULL, series_name = NULL,
   series_type = "sequential", series_scripts = NULL)
@@ -21,7 +20,6 @@ create_series(graph = NULL, series_name = NULL,
 a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
-Create a graph series object
 Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
 }
 

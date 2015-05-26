@@ -1,5 +1,5 @@
 #' Get detailed information on nodes
-#' Obtain a data frame with detailed information on nodes and their interrelationships within a graph.
+#' @description Obtain a data frame with detailed information on nodes and their interrelationships within a graph.
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @return a data frame containing information specific to each node within the graph.
 #' @export node_info

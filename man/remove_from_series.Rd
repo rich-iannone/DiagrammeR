@@ -2,8 +2,7 @@
 % Please edit documentation in R/remove_from_series.R
 \name{remove_from_series}
 \alias{remove_from_series}
-\title{Remove graph object from a graph series object
-Remove a single graph object from an array of graph objects in a graph series object.}
+\title{Remove graph object from a graph series object}
 \usage{
 remove_from_series(graph_series, index = "last")
 }
@@ -16,7 +15,6 @@ remove_from_series(graph_series, index = "last")
 a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
-Remove graph object from a graph series object
 Remove a single graph object from an array of graph objects in a graph series object.
 }
 

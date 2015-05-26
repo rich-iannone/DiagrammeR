@@ -2,8 +2,7 @@
 % Please edit documentation in R/delete_edge.R
 \name{delete_edge}
 \alias{delete_edge}
-\title{Delete an edge from an existing graph object
-From a graph object of class \code{dgr_graph}, delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.}
+\title{Delete an edge from an existing graph object}
 \usage{
 delete_edge(graph, from, to)
 }
@@ -18,7 +17,6 @@ delete_edge(graph, from, to)
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Delete an edge from an existing graph object
 From a graph object of class \code{dgr_graph}, delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.
 }
 

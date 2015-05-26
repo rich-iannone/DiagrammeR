@@ -2,8 +2,7 @@
 % Please edit documentation in R/edge_count.R
 \name{edge_count}
 \alias{edge_count}
-\title{Get count of all edges or edges with distinct relationship types
-From a graph object of class \code{dgr_graph}, get a count of edges in the graph and optionally obtain a count of edges by their relationship type.}
+\title{Get count of all edges or edges with distinct relationship types}
 \usage{
 edge_count(graph, relationship = FALSE)
 }
@@ -16,7 +15,6 @@ edge_count(graph, relationship = FALSE)
 a numeric vector of single length.
 }
 \description{
-Get count of all edges or edges with distinct relationship types
 From a graph object of class \code{dgr_graph}, get a count of edges in the graph and optionally obtain a count of edges by their relationship type.
 }
 

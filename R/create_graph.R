@@ -1,5 +1,5 @@
 #' Create a graph object using data frames representative of nodes and edges
-#' Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
+#' @description Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
 #' @param nodes_df an optional data frame containing, at minimum, a column (called \code{nodes}) which contains node IDs for the graph. Additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.
 #' @param edges_df an optional data frame containing, at minimum, a column (called \code{edge_op}) with edge operations as character strings (in the form of \code{[node_id] -> [node_id]}). Alternatively, there may be two columns (called \code{edge_from} and \code{edge_to}) where node IDs are provided. Additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.
 #' @param graph_attrs an optional vector of graph attribute statements that can serve as defaults for the graph.

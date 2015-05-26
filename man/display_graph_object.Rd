@@ -2,8 +2,7 @@
 % Please edit documentation in R/display_graph_object.R
 \name{display_graph_object}
 \alias{display_graph_object}
-\title{Update and display graph object in the Viewer
-Using a \code{dgr_graph} object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.}
+\title{Update and display graph object}
 \usage{
 display_graph_object(graph, width = 400)
 }
@@ -13,7 +12,6 @@ display_graph_object(graph, width = 400)
 \item{width}{the width of the graph representation in pixels.}
 }
 \description{
-Update and display graph object in the Viewer
 Using a \code{dgr_graph} object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
 }
 

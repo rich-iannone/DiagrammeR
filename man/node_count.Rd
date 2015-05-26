@@ -2,8 +2,7 @@
 % Please edit documentation in R/node_count.R
 \name{node_count}
 \alias{node_count}
-\title{Get count of all nodes or certain types of nodes
-From a graph object of class \code{dgr_graph}, get a count of nodes in the graph and optionally obtain a count of nodes by their type.}
+\title{Get count of all nodes or certain types of nodes}
 \usage{
 node_count(graph, type = FALSE)
 }
@@ -16,7 +15,6 @@ node_count(graph, type = FALSE)
 a numeric vector of single length.
 }
 \description{
-Get count of all nodes or certain types of nodes
 From a graph object of class \code{dgr_graph}, get a count of nodes in the graph and optionally obtain a count of nodes by their type.
 }
 

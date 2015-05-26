@@ -2,8 +2,7 @@
 % Please edit documentation in R/add_to_series.R
 \name{add_to_series}
 \alias{add_to_series}
-\title{Add graph object to a graph series object
-Add a graph object to an extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.}
+\title{Add graph object to a graph series object}
 \usage{
 add_to_series(graph, graph_series)
 }
@@ -16,7 +15,6 @@ add_to_series(graph, graph_series)
 a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
-Add graph object to a graph series object
 Add a graph object to an extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
 }
 

@@ -1,5 +1,5 @@
 #' Add a node to an existing graph object
-#' With a graph object of class \code{dgr_graph}, add a new node of a specified type to extant nodes within the graph.
+#' @description With a graph object of class \code{dgr_graph}, add a new node of a specified type to extant nodes within the graph.
 #' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param node a node ID for the newly connected node.
 #' @param from an optional vector containing node IDs from which edges will be directed to the new node.

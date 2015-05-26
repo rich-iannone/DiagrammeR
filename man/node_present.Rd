@@ -2,8 +2,7 @@
 % Please edit documentation in R/node_present.R
 \name{node_present}
 \alias{node_present}
-\title{Determine whether a specified node is present in an existing graph object
-From a graph object of class \code{dgr_graph}, determine whether a specified node is present.}
+\title{Determine whether a specified node is present in an existing graph object}
 \usage{
 node_present(graph, node)
 }
@@ -16,7 +15,6 @@ node_present(graph, node)
 a logical value.
 }
 \description{
-Determine whether a specified node is present in an existing graph object
 From a graph object of class \code{dgr_graph}, determine whether a specified node is present.
 }
 

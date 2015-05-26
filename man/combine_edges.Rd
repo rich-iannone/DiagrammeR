@@ -2,8 +2,7 @@
 % Please edit documentation in R/combine_edges.R
 \name{combine_edges}
 \alias{combine_edges}
-\title{Combine multiple edge data frames into a single edge data frame
-Combine several edge data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.}
+\title{Combine multiple edge data frames into a single edge data frame}
 \usage{
 combine_edges(...)
 }
@@ -14,7 +13,6 @@ combine_edges(...)
 a combined edge data frame.
 }
 \description{
-Combine multiple edge data frames into a single edge data frame
 Combine several edge data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
 }
 

@@ -1,5 +1,5 @@
 #' Create a data frame with nodes and their attributes
-#' Combine several named vectors for nodes and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
+#' @description Combine several named vectors for nodes and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
 #' @param ... one or more named vectors for nodes and associated attributes.
 #' @return a data frame.
 #' @export create_nodes

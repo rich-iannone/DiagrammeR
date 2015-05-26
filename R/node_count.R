@@ -1,5 +1,5 @@
 #' Get count of all nodes or certain types of nodes
-#' From a graph object of class \code{dgr_graph}, get a count of nodes in the graph and optionally obtain a count of nodes by their type.
+#' @description From a graph object of class \code{dgr_graph}, get a count of nodes in the graph and optionally obtain a count of nodes by their type.
 #' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param type either a logical value, where \code{TRUE} provides a named vector of node count by type and \code{FALSE} (the default) provides a total count, or, a string corresponding to one or more node types.
 #' @return a numeric vector of single length.

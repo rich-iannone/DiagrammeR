@@ -2,8 +2,7 @@
 % Please edit documentation in R/scale_edges.R
 \name{scale_edges}
 \alias{scale_edges}
-\title{Create numerical and color scales for edge attributes
-Generates either numeric or color scales for specified edge attributes and applies those scales to edge data frames.}
+\title{Create numerical and color scales for edge attributes}
 \usage{
 scale_edges(edges_df, to_scale, edge_attr, range, scale_type = "linear")
 }
@@ -19,7 +18,6 @@ scale_edges(edges_df, to_scale, edge_attr, range, scale_type = "linear")
 \item{scale_type}{the type of scaling to perform. Currently, \code{linear} is the only option available.}
 }
 \description{
-Create numerical and color scales for edge attributes
 Generates either numeric or color scales for specified edge attributes and applies those scales to edge data frames.
 }
 

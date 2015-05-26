@@ -2,8 +2,7 @@
 % Please edit documentation in R/roll_palette.R
 \name{roll_palette}
 \alias{roll_palette}
-\title{Create a simple color palette
-Generate a randomized set of colors from the CIE Lab color space using a set of HCL range values.}
+\title{Create a simple color palette}
 \usage{
 roll_palette(number, hue_range = c(0, 360), chroma_range = c(0, 3),
   lightness_range = c(0.75, 1.5), alpha = NULL, display_colors = TRUE)
@@ -21,7 +20,6 @@ roll_palette(number, hue_range = c(0, 360), chroma_range = c(0, 3),
 a vector of hexadecimal color values.
 }
 \description{
-Create a simple color palette
 Generate a randomized set of colors from the CIE Lab color space using a set of HCL range values.
 }
 

@@ -10,8 +10,7 @@ replace_in_spec(spec)
 \item{spec}{String spec to be parsed and evaluated}
 }
 \description{
-Use Razor-like syntax to define a template for use in a \code{grViz}
-diagram.
+Use Razor-like syntax to define a template for use in a \code{grViz} diagram.
 }
 \examples{
 \dontrun{

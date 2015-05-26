@@ -1,6 +1,5 @@
 #' R + mermaid.js
-#' Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
-#' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+#' @description Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #' @param diagram diagram in mermaid markdown-like language or
 #'  file (as a connection or file name) containing a diagram specification.
 #' If no diagram is provided \code{diagram = ""} then the function will assume that

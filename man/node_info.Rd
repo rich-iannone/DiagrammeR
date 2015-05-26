@@ -2,8 +2,7 @@
 % Please edit documentation in R/node_info.R
 \name{node_info}
 \alias{node_info}
-\title{Get detailed information on nodes
-Obtain a data frame with detailed information on nodes and their interrelationships within a graph.}
+\title{Get detailed information on nodes}
 \usage{
 node_info(graph)
 }
@@ -14,7 +13,6 @@ node_info(graph)
 a data frame containing information specific to each node within the graph.
 }
 \description{
-Get detailed information on nodes
 Obtain a data frame with detailed information on nodes and their interrelationships within a graph.
 }
 

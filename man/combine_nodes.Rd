@@ -2,8 +2,7 @@
 % Please edit documentation in R/combine_nodes.R
 \name{combine_nodes}
 \alias{combine_nodes}
-\title{Combine multiple node data frames into a single node data frame
-Combine several node data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.}
+\title{Combine multiple node data frames into a single node data frame}
 \usage{
 combine_nodes(...)
 }
@@ -14,7 +13,6 @@ combine_nodes(...)
 a combined node data frame.
 }
 \description{
-Combine multiple node data frames into a single node data frame
 Combine several node data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
 }
 

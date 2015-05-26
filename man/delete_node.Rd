@@ -2,8 +2,7 @@
 % Please edit documentation in R/delete_node.R
 \name{delete_node}
 \alias{delete_node}
-\title{Delete a node from an existing graph object
-From a graph object of class \code{dgr_graph}, delete an existing node by specifying its node ID.}
+\title{Delete a node from an existing graph object}
 \usage{
 delete_node(graph, node)
 }
@@ -16,7 +15,6 @@ delete_node(graph, node)
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Delete a node from an existing graph object
 From a graph object of class \code{dgr_graph}, delete an existing node by specifying its node ID.
 }
 

@@ -2,8 +2,7 @@
 % Please edit documentation in R/graph_count.R
 \name{graph_count}
 \alias{graph_count}
-\title{Count graphs in a graph series object
-Counts the total number of graphs in a graph series object.}
+\title{Count graphs in a graph series object}
 \usage{
 graph_count(graph_series)
 }
@@ -14,7 +13,6 @@ graph_count(graph_series)
 a numeric vector representing a count of graphs in a graph series object.
 }
 \description{
-Count graphs in a graph series object
 Counts the total number of graphs in a graph series object.
 }
 

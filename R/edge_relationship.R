@@ -1,5 +1,5 @@
 #' Create, read, update, delete, or report status of an edge relationship
-#' From a graph object of class \code{dgr_graph}, query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
+#' @description From a graph object of class \code{dgr_graph}, query an edge in the graph (defined by a pair of node IDs extant in the graph) and perform operations on the relationship for that edge.
 #' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param from a node ID from which the edge to be queried is outgoing.
 #' @param to a node ID to which the edge to be queried is incoming.

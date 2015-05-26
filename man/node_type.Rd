@@ -2,8 +2,7 @@
 % Please edit documentation in R/node_type.R
 \name{node_type}
 \alias{node_type}
-\title{Create, read, update, delete, or report status of a node type definition
-From a graph object of class \code{dgr_graph}, query a node in the graph (using the node ID) and perform operations on the type definition for that node.}
+\title{Create, read, update, delete, or report status of a node type definition}
 \usage{
 node_type(graph, node, action = "read", value = NULL)
 }
@@ -20,7 +19,6 @@ node_type(graph, node, action = "read", value = NULL)
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Create, read, update, delete, or report status of a node type definition
 From a graph object of class \code{dgr_graph}, query a node in the graph (using the node ID) and perform operations on the type definition for that node.
 }
 

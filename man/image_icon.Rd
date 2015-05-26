@@ -2,13 +2,11 @@
 % Please edit documentation in R/image_icon.R
 \name{image_icon}
 \alias{image_icon}
-\title{Icons and their download locations
-Create a data frame with image icons and their web addresses.}
+\title{Icons and their download locations}
 \usage{
 image_icon(icon_name)
 }
 \description{
-Icons and their download locations
 Create a data frame with image icons and their web addresses.
 }
 

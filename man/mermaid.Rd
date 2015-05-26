@@ -2,9 +2,7 @@
 % Please edit documentation in R/mermaid.R
 \name{mermaid}
 \alias{mermaid}
-\title{R + mermaid.js
-Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
-with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.}
+\title{R + mermaid.js}
 \usage{
 mermaid(diagram = "", ..., width = NULL, height = NULL)
 }
@@ -28,9 +26,7 @@ including the R console, within R Markdown documents,
 and within Shiny output bindings.
 }
 \description{
-R + mermaid.js
-Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
-with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
 \dontrun{

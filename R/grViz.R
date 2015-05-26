@@ -1,8 +1,5 @@
 #' R + viz.js
-#'
-#' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js}
-#' with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
-#'
+#' @description Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #' @param diagram \href{http://graphviz.org}{graphviz} spec
 #' for a diagram as either text, filename string, or file connection.
 #' @param engine string for the Graphviz layout engine; can be

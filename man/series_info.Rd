@@ -2,8 +2,7 @@
 % Please edit documentation in R/series_info.R
 \name{series_info}
 \alias{series_info}
-\title{Get detailed information on a graph series
-Obtain a data frame with detailed information on the graphs within a graph series.}
+\title{Get detailed information on a graph series}
 \usage{
 series_info(graph_series)
 }
@@ -14,7 +13,6 @@ series_info(graph_series)
 a data frame containing information on the graphs within the supplied graph series.
 }
 \description{
-Get detailed information on a graph series
 Obtain a data frame with detailed information on the graphs within a graph series.
 }
 

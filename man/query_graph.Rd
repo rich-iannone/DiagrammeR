@@ -2,8 +2,7 @@
 % Please edit documentation in R/query_graph.R
 \name{query_graph}
 \alias{query_graph}
-\title{Perform query on graph object
-With a graph object, perform a query to return a graph selection}
+\title{Perform query on graph object}
 \usage{
 query_graph(graph, query)
 }
@@ -16,7 +15,6 @@ query_graph(graph, query)
 a graph selection object
 }
 \description{
-Perform query on graph object
-With a graph object, perform a query to return a graph selection
+With a graph object, perform a query to return a graph selection.
 }
 

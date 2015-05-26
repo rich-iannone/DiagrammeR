@@ -1,10 +1,10 @@
 #' R + mermaid.js
 #'
-#' Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
+#' @description Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or
 #' \href{https://github.com/knsv/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
-#' 
-#' @param diagram diagram in \code{graphviz} or \code{mermaid} format or a 
+#'
+#' @param diagram diagram in \code{graphviz} or \code{mermaid} format or a
 #' file (as a connection or file name) containing a diagram specification. The
 #' recommended filename extensions are '.gv' and '.mmd' for the Graphviz and the
 #' mermaid diagram specifications, respectively. If no diagram is provided,
@@ -18,7 +18,7 @@
 #' intelligently print itself into HTML in a variety of contexts
 #' including the R console, within R Markdown documents,
 #' and within Shiny output bindings.
-#' @examples 
+#' @examples
 #' \dontrun{
 #' # note the whitespace is not important
 #' DiagrammeR("
@@ -31,7 +31,7 @@
 #'     D-->F
 #'     E-->F
 #' ")
-#' 
+#'
 #' DiagrammeR("
 #'    graph TB
 #'    A-->B
@@ -42,13 +42,13 @@
 #'    D-->F
 #'    E-->F
 #' ")
-#' 
+#'
 #' DiagrammeR("graph LR;A(Rounded)-->B[Squared];B-->C{A Decision};
 #'  C-->D[Square One];C-->E[Square Two];
 #'  style A fill:#E5E25F;  style B fill:#87AB51; style C fill:#3C8937;
 #'  style D fill:#23772C;  style E fill:#B6E6E6;"
 #' )
-#' 
+#'
 #' # Load in the 'mtcars' dataset
 #' data(mtcars)
 #' connections <- sapply(
@@ -68,7 +68,7 @@
 #'    )
 #'  }
 #' )
-#' 
+#'
 #' DiagrammeR(
 #'    paste0(
 #'      "graph TD;", "\n",
@@ -93,14 +93,14 @@
 #'   ,tags$div(class="mermaid",diagramSpec)
 #'   ,DiagrammeR()
 #' ))
-#' 
+#'
 #' # sequence diagrams
-#' # Using this "How to Draw a Sequence Diagram" 
+#' # Using this "How to Draw a Sequence Diagram"
 #' #   http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
 #' # draw some sequence diagrams with DiagrammeR
-#' 
+#'
 #' library(DiagrammeR)
-#' 
+#'
 #' DiagrammeR("
 #' sequenceDiagram;
 #'    customer->>ticket seller: ask ticket;
@@ -117,7 +117,7 @@
 #'    end
 #' ")
 #' }
-#' 
+#'
 #' @import htmlwidgets
 #'
 #' @export

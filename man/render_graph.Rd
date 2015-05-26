@@ -2,8 +2,7 @@
 % Please edit documentation in R/render_graph.R
 \name{render_graph}
 \alias{render_graph}
-\title{Render the graph or output in various formats
-Using a \code{dgr_graph} object, either render graph in the Viewer or output in various formats.}
+\title{Render the graph or output in various formats}
 \usage{
 render_graph(graph, output = "graph", width = NULL, height = NULL)
 }
@@ -17,7 +16,6 @@ render_graph(graph, output = "graph", width = NULL, height = NULL)
 \item{height}{an optional parameter for specifying the height of the resulting graphic in pixels.}
 }
 \description{
-Render the graph or output in various formats
 Using a \code{dgr_graph} object, either render graph in the Viewer or output in various formats.
 }
 
