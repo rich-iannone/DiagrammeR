@@ -51,9 +51,11 @@ series_info <- function(graph_series){
       series_properties[i, 4] <- NA
     }
 
-    series_properties[i, 5] <- node_count(graph_series$graphs[[i]])
+    series_properties[i, 5] <- ifelse(!is.null(nrow(graph_series$graphs[[i]]$nodes_df)),
+                                      nrow(graph_series$graphs[[i]]$nodes_df), 0)
 
-    series_properties[i, 6] <- edge_count(graph_series$graphs[[i]])
+    series_properties[i, 6] <- ifelse(!is.null(nrow(graph_series$graphs[[i]]$edges_df)),
+                                      nrow(graph_series$graphs[[i]]$edges_df), 0)
 
     series_properties[i, 7] <- is_graph_directed(graph_series$graphs[[i]])
   }
