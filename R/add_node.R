@@ -144,9 +144,14 @@ add_node <- function(graph,
                                       create_edges(edge_from = rep(node, length(to)),
                                                    edge_to = to))
 
+
+      # Create the revised graph object
       dgr_graph <-
         create_graph(nodes_df = combined_nodes,
                      edges_df = combined_edges,
+                     graph_attrs = graph$graph_attrs,
+                     node_attrs = graph$node_attrs,
+                     edge_attrs = graph$edge_attrs,
                      graph_name = graph$graph_name,
                      graph_time = graph$graph_time,
                      graph_tz = graph$graph_tz)
@@ -210,9 +215,13 @@ add_node <- function(graph,
                                       create_edges(edge_from = rep(node, length(to)),
                                                    edge_to = to))
 
+      # Create the revised graph object
       dgr_graph <-
         create_graph(nodes_df = combined_nodes,
                      edges_df = combined_edges,
+                     graph_attrs = graph$graph_attrs,
+                     node_attrs = graph$node_attrs,
+                     edge_attrs = graph$edge_attrs,
                      graph_name = graph$graph_name,
                      graph_time = graph$graph_time,
                      graph_tz = graph$graph_tz)
