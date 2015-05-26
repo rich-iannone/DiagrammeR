@@ -2,12 +2,12 @@
 % Please edit documentation in R/spectools.R
 \name{replace_in_spec}
 \alias{replace_in_spec}
-\title{Razor-like Template for Diagram Spec}
+\title{Razor-like template for diagram specification}
 \usage{
 replace_in_spec(spec)
 }
 \arguments{
-\item{spec}{String spec to be parsed and evaluated}
+\item{spec}{string spec to be parsed and evaluated}
 }
 \description{
 Use Razor-like syntax to define a template for use in a \code{grViz} diagram.
