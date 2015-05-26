@@ -74,6 +74,31 @@ create_graph <- function(nodes_df = NULL,
     return(dgr_graph)
   }
 
+  # If nodes and edges not provided, but other attributes are,
+  # create any empty graph with attributes
+  if (all(c(is.null(nodes_df), is.null(edges_df)))){
+
+    # Create DOT code with nothing in graph
+    dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
+                       " {\n", "\n}")
+
+    # Create the 'dgr_graph' list object
+    dgr_graph <- list(graph_name = graph_name,
+                      graph_time = graph_time,
+                      graph_tz = graph_tz,
+                      nodes_df = NULL,
+                      edges_df = NULL,
+                      graph_attrs = graph_attrs,
+                      node_attrs = node_attrs,
+                      edge_attrs = edge_attrs,
+                      directed = ifelse(directed == TRUE, TRUE, FALSE),
+                      dot_code = dot_code)
+
+    attr(dgr_graph, "class") <- "dgr_graph"
+
+    return(dgr_graph)
+  }
+
   # Perform basic checks of the inputs
   if (!is.null(nodes_df)){
 
