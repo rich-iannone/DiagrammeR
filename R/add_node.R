@@ -36,7 +36,6 @@ add_node <- function(graph,
 
   if (can_add_node_id == FALSE){
 
-    message("The node is already present in the graph.")
     return(graph)
   }
 
