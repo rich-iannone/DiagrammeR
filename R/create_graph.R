@@ -125,8 +125,6 @@ create_graph <- function(nodes_df = NULL,
     }
   }
 
-
-
   # Create the default attributes statement for graph attributes
   if (!is.null(graph_attrs)){
     graph_attr_stmt <- paste0("graph [", paste(graph_attrs, collapse = ",\n       "), "]\n")
