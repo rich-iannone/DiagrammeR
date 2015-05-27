@@ -9,7 +9,7 @@ trigger_script(graph_series, script = 1)
 \arguments{
 \item{graph_series}{a graph series object of type \code{dgr_graph_1D}.}
 
-\item{script}{the index of the script character string or path reference held in in the graph series to be migrated.}
+\item{script}{the index of the script character string or path reference held in in the graph series.}
 }
 \value{
 a graph series object of type \code{dgr_graph_1D}.
