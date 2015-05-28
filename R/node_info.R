@@ -145,7 +145,9 @@ node_info <- function(graph){
 
       # Collect information into the 'node_properties' data frame
       node_properties[i, 1] <- ordered_nodes[i]
-      node_properties[i, 2] <- labels[which(all_nodes %in% ordered_nodes[i])]
+      node_properties[i, 2] <- ifelse(!is.null(labels[which(all_nodes %in% ordered_nodes[i])]),
+                                      labels[which(all_nodes %in% ordered_nodes[i])],
+                                      NA)
       node_properties[i, 3] <- ifelse(exists("type"),
                                       type[which(all_nodes %in% ordered_nodes[i])],
                                       rep(NA, length(ordered_nodes)))
