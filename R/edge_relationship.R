@@ -25,7 +25,7 @@ edge_relationship <- function(graph,
 
   if (edge_is_in_graph == TRUE){
 
-    edge_row <- which(graph$edges_df$edge_from == from & graph$edges_df$edge_to == to)
+    edge_row <- which(graph$edges_df$from == from & graph$edges_df$to == to)
 
     relationship_set <- ifelse(graph$edges_df$relationship[edge_row] == "",
                                FALSE, TRUE)
