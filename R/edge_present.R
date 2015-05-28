@@ -35,8 +35,8 @@ edge_present <- function(graph,
   # Determine whether a matching edge is available in the graph
   if (nodes_available_in_graph){
 
-    edge_is_in_graph <- ifelse(any(graph$edges_df$edge_from == from &
-                                     graph$edges_df$edge_to == to),
+    edge_is_in_graph <- ifelse(any(graph$edges_df$from == from &
+                                     graph$edges_df$to == to),
                                TRUE, FALSE)
 
     return(edge_is_in_graph)
