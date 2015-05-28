@@ -8,11 +8,11 @@
 #' @export roll_palette
 
 roll_palette <- function(number,
-                        hue_range = c(0, 360),
-                        chroma_range = c(0, 3),
-                        lightness_range = c(0.75, 1.5),
-                        alpha = NULL,
-                        display_colors = TRUE){
+                         hue_range = c(0, 360),
+                         chroma_range = c(0, 3),
+                         lightness_range = c(0.75, 1.5),
+                         alpha = NULL,
+                         display_colors = TRUE){
 
   # Construct the JS call
   js_call <- paste0("var colors = createPalette.generate(",
