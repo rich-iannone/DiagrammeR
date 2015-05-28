@@ -20,7 +20,7 @@ edge_present <- function(graph,
     stop("Only single nodes for 'from' and 'to' should be specified.")
   }
 
-  # Determine whether pair of node provided are in the graph
+  # Determine whether pair of nodes provided are in the graph
   if (from_is_single_value == TRUE & to_is_single_value == TRUE){
 
     nodes_available_in_graph <- ifelse(all(c(from, to) %in% get_nodes(graph)), TRUE, FALSE)
