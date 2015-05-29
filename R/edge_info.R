@@ -30,7 +30,7 @@ edge_info <- function(graph){
     relationship <- graph$edges_df$relationship
   }
 
-  # For graphs with no edges, create a 'edge_properties' data frame that doesn't
+  # For graphs with no edges, create an 'edge_properties' data frame that doesn't
   # need to consider any edge information
   if (is.null(graph$edges_df)){
 
@@ -41,6 +41,7 @@ edge_info <- function(graph){
     return(edge_properties)
   }
 
+  # For graphs with no edges, create an 'edge_properties' data frame
   if (!is.null(graph$edges_df)){
 
     # Create data frame of edge properties
