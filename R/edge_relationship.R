@@ -83,7 +83,9 @@ edge_relationship <- function(graph,
 
       if (relationship_set == FALSE){
 
-        return(NA)
+        relationship_value <- NA
+
+        return(relationship_value)
       }
 
       if (relationship_set == TRUE){
