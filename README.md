@@ -2,16 +2,11 @@
 
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen) [![Issue Stats](http://issuestats.com/github/rich-iannone/DiagrammeR/badge/pr?style=flat)](http://issuestats.com/github/rich-iannone/DiagrammeR) [![Issue Stats](http://issuestats.com/github/rich-iannone/DiagrammeR/badge/issue?style=flat)](http://issuestats.com/github/rich-iannone/DiagrammeR)
 
-With the **DiagrammeR** package, you can create graph diagrams and flowcharts using **R**. You can either use **Markdown**-like text to describe and render a diagram, or, use a collection of functions to create graph objects from **R** objects and render/export at will. Because we are doing this in **R** we can always add some **R** code into the mix. The output can be viewed in the **RStudio** Viewer, it can be incorporated in **R Markdown**, and it can be integrated in **shiny** web apps.
+With the **DiagrammeR** package, you can create easily graph diagrams using **R**. You can either use **Markdown**-like text to describe and render a diagram, or, use a collection of functions to create graph objects from **R** objects and render/export at will. The output can be viewed in the **RStudio** Viewer, it can be incorporated in **R Markdown**, and it can be integrated in **shiny** web apps. Because we are doing this in **R** we can always add more **R** code into the mix.
 
 <img src="inst/img/DiagrammeR_flow_diagram.png">
 
-Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable.
-
-Have a look at the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/docs.html). You can really learn a lot more about **DiagrammeR** there (much more than from this `README`). 
-
-The package leverages the infrastructure provided by [**htmlwidgets**](http://htmlwidgets.org) to bridge **R** and both [**mermaid.js**](https://github.com/knsv/mermaid) and [**viz.js**](https://github.com/mdaines/viz.js/).
-
+Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable. After that, have a look at the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/docs.html). You can really learn a lot more about **DiagrammeR** there (much more than from this `README`). 
 
 ### Installation
 
@@ -115,93 +110,7 @@ Several **Graphviz** engines are available with **DiagrammeR** for rendering gra
 
 The **neato** engine provides spring model layouts. This is a suitable engine if the graph is not too large (<100 nodes) and you don't know anything else about it. The **neato** engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. The **twopi** engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. The **circo** engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.
 
-#### Graphviz Substitution
-
-Inspired by **Razor** and the footnote URLs from **Markdown**, substitution allows for mixing in **R** expressions into a **Graphviz** graph specification without sacrificing readability. In the simple example of specifying a single node, the following substitution syntax would be used:
-
-```
-digraph {
-@@1
-}
-
-[1]: 'a'
-```
-
-Importantly, the footnote expressions should reside below the closing curly brace of the `graph` or `digraph` expression. It should always take the form of:
-
-`[` + *`[footnote number]`* + `]:`
-
-In the above example, the `[1]:` footnote expression evaluates as `'a'`, and, that is what's substituted at the `@@1` location (where, in turn, it will be taken as the node ID). The substitution construction is:
-
-`@@` + *`[footnote number]`*
-
-Substitutions can also be used to insert values from vector indices into the graph specification. Simply use this format:
-
-`@@` + *`[footnote number]`* + `-` + *`[index number]`*
-
-Here is an example of substituting alphabet letters from **R**'s `LETTERS` constant into a **Graphviz** graph specification.
-
-```
-digraph {
-alpha
-@@1-1; @@1-2; @@1-3; @@1-4; @@1-5
-@@1-6; @@1-7; @@1-8; @@1-9; @@1-10
-}
-
-[1]: LETTERS
-```
-
-After evaluation of the footnote expressions and substitution, the graph specification becomes this:
-
-```
-digraph {
-alpha
-A; B; C; D; E
-F; G; H; I; J
-}
-```
-
-To take advantage of substitution and render the graph, simply use the `grViz` function with the graph specification:
-
-```r
-grViz("...graph spec with substitutions...")
-```
-
-A mixture of both types of subtitutions can be used. As an example:
-
-```r
-grViz("
-digraph a_nice_graph {
-
-# node definitions with substituted label text
-node [fontname = Helvetica]
-a [label = '@@1']
-b [label = '@@2-1']
-c [label = '@@2-2']
-d [label = '@@2-3']
-e [label = '@@2-4']
-f [label = '@@2-5']
-g [label = '@@2-6']
-h [label = '@@2-7']
-i [label = '@@2-8']
-j [label = '@@2-9']
-
-# edge definitions with the node IDs
-a -> {b c d e f g h i j}
-}
-
-[1]: 'top'
-[2]: 10:20
-")
-```
-
-As can be seen in the following output: (1) the node with ID `a` is given the label `top` (after substituting `@@1` with expression after the `[1]:` footnote expression), (2) the nodes with ID values from `b`-`j` are respectively provided values from indices 1 to 9 (using the hypenated form of `@@`) of the evaluated expression `10:20` (in the `[2]:` footnote expression).
-
-<img src="inst/img/grViz_3.png">
-
-Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So long as a vector object results from evaluation, substitution can be performed.
-
-#### Using Functions to Define Graphs
+#### Using DiagrammeR Functions to Define Graphs
 
 If you're planning on creating larger graph diagrams and also making use of external datasets, it can be better to use a set of **DiagrammeR** functions that work with data frames. Here is a basic schematic of the graph workflow, using functions to build toward a graph object from a group of data frames.
 
@@ -258,14 +167,7 @@ Which columns might a node data frame have? Well, it's important to have at leas
 - `x` -- the x position of the node (requires graph attr `layout = neato` to use)
 - `y` -- the y position of the node (requires graph attr `layout = neato` to use)
 
-You don't need to use `data.frame` to make a node data frame: you can use the provided `create_nodes` function. It's similar in principle to the base **R** `data.frame` function except that it adds in the following conveniences for graph diagram work: 
-
-- single values are repeated for *n* number of nodes supplied
-- selective setting of attributes (i.e., giving attr values of 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)
-- supplying overlong vectors for attributes will result in trimming down to the number of nodes
-- setting `label = FALSE` will conveniently result in a non-labeled node
-
-Here's an example of how to create a node data frame:
+Use the `create_nodes` function to create node data frames. Here's an example of how to create a node data frame:
 
 ```r
 type_1_nodes <-
@@ -277,7 +179,7 @@ type_1_nodes <-
                          "triangle", "triangle"))
 ```
 
-The `type_1_nodes` object is indeed a data frame, and, this is good since it's familar and easy to work with. Note that singly supplied attribute values are repeated throughout:
+Note that singly supplied attribute values are repeated throughout:
 
 ```
  nodes  label  style color    shape
