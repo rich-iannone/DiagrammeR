@@ -140,7 +140,15 @@
                     <h1 id="graph-functions" class="page-header">Graph Functions</h1>
                     <p class="lead">If you're planning on creating graph diagrams and also making use of external datasets, you can make use of a set of <strong>DiagrammeR</strong> functions that work well with data frames. Data and attributes can be collected in this way, provided to a graph object, and then inspected, manipulated, and displayed.</p>
                     <h2 id="node-edge-data-frames">Node/Edge Data Frames</h2>
-                    <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis.</p>
+                    <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. The functions are useful because one can add field data to these data frames and selectively add and scale attributes. There are 6 functions for creating node and edge data frames:</p>
+                    <ul>
+                            <li><code>create_nodes</code> <em>Create a data frame with nodes and their attributes</em></li>
+                            <li><code>create_edges</code> <em>Create a data frame with edges and their attributes</em></li>
+                            <li><code>scale_nodes</code> <em>Create numerical and color scales for node attributes</em></li>
+                            <li><code>scale_edges</code> <em>Create numerical and color scales for edge attributes</em></li>
+                            <li><code>combine_nodes</code> <em>Combine multiple node data frames into a single node data frame</em></li>
+                            <li><code>combine_edges</code> <em>Combine multiple edge data frames into a single edge data frame</em></li>
+                    </ul>
                         <div>
                             <img src="img/graph-functions/header_node_edge_df_processing_2x.png" class="img-responsive center-block">
                         </div>
@@ -180,7 +188,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>When creating a data frame for nodes, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
+                    <p>Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a data frame for nodes, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
                     <ul>
                             <li><code>color</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
                             <li><code>distortion</code> &mdash; the node distortion for any <code>shape = polygon</code></li>
@@ -497,7 +505,12 @@ create_graph(nodes_df = many_nodes, edges_df = many_edges,
                         </div>
                     </div>
                     <h2 id="create-render-graph">Create and Render Graph</h2>
-                    <p>Eventually, you'll want to make a graph and then see that graph. Two functions make that possible.</p>
+                    <p>Eventually, you'll want to make a graph and then see that graph. There are 3 functions that make graph creation and viewing possible:</p>
+                    <ul>
+                            <li><code>create_graph</code> <em>Create a graph object using data frames representative of nodes and edges</em></li>
+                            <li><code>render_graph</code> <em>Render the graph or output in various formats</em></li>
+                            <li><code>display_graph_object</code> <em>Update and display graph object</em></li>
+                    </ul>
                         <div>
                             <img src="img/graph-functions/header_graph_object_creation_and_rendering_2x.png" class="img-responsive center-block">
                         </div>
@@ -856,6 +869,21 @@ create_graph(nodes_df =
                     </div>
                     <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
                     <p>Knowing what's in the graph is important. Several functions allow you to get information about the current state of the graph object. You can get very general information about the graph's node or edges, or, more specific information such as the predecessors and successors for a certain node in the graph</p>
+                    <p>There are 12 functions that can be used to inspect graphs:</p>
+                    <ul>
+                            <li><code>node_info</code> <em>Get detailed information on nodes</em></li>
+                            <li><code>edge_info</code> <em>Get detailed information on edges</em></li>
+                            <li><code>node_present</code> <em>Determine whether a specified node is present in an existing graph object</em></li>
+                            <li><code>edge_present</code> <em>Determine whether a specified edge is present in an existing graph object</em></li>
+                            <li><code>get_nodes</code> <em>Get vector of node IDs</em></li>
+                            <li><code>get_edges</code> <em>Get node IDs associated with edges</em></li>
+                            <li><code>get_predecessors</code> <em>Get node IDs for predecessor nodes to the specified node</em></li>
+                            <li><code>get_successors</code> <em>Get node IDs for successor nodes to the specified node</em></li>
+                            <li><code>node_count</code> <em>Get count of all nodes or certain types of nodes</em></li>
+                            <li><code>edge_count</code> <em>Get count of all edges or edges with distinct relationship types</em></li>
+                            <li><code>is_graph_empty</code> <em>Is the graph empty?</em></li>
+                            <li><code>is_graph_directed</code> <em>Is the graph a directed graph?</em></li>
+                    </ul>
                         <div>
                             <img src="img/graph-functions/header_graph_inspection_2x.png" class="img-responsive center-block">
                         </div>
@@ -948,7 +976,6 @@ create_graph(nodes_df =
 ###
 
 library(DiagrammeR)
-library(pipeR)
 
 set.seed(26)
 
@@ -1165,6 +1192,15 @@ node_count(graph, type = FALSE)
                     </div>
                     <h2 id="modifying-the-graph">Modifying the Graph</h2>
                     <p>Add nodes, delete edges, modify relationships between nodes, set node type declarations... Those are some of the things you can do with these graph construction/destruction functions.</p>
+                    <p>There are 6 functions with which one can modify graphs:</p>
+                    <ul>
+                            <li><code>add_node</code> <em>Add a node to an existing graph object</em></li>
+                            <li><code>add_edges</code> <em>Add edges to an existing graph object</em></li>
+                            <li><code>delete_node</code> <em>Delete a node from an existing graph object</em></li>
+                            <li><code>delete_edge</code> <em>Delete an edge from an existing graph object</em></li>
+                            <li><code>node_type</code> <em>Create, read, update, delete, or report status of a node type definition</em></li>
+                            <li><code>edge_relationship</code> <em>Create, read, update, delete, or report status of an edge relationship</em></li>
+                    </ul>
                         <div>
                             <img src="img/graph-functions/header_graph_modification_2x.png" class="img-responsive center-block">
                         </div>
@@ -1286,6 +1322,295 @@ edge_info(graph)
 #> 1         a       b       to_get    NA</code></pre>
                         </div>
                     </div>
+                    <h2 id="using-graph-series">Using a Series of Graphs</h2>
+                    <p>There may be situations where multiple graphs are required for analysis. A convenient means to work with several graphs is with the graph series object, which serializes graph objects. The time and sequence properties of the contained graphs can be used for subsetting. Scripts can be triggered for the series that allow for things such as data collection and creation of multiple graphs within the series object.</p>
+                    <p>There are 8 functions available for working with a graph series:</p>
+                    <ul>
+                            <li><code>create_series</code> <em>Create a graph series object</em></li>
+                            <li><code>add_to_series</code> <em>Add graph object to a graph series object</em></li>
+                            <li><code>remove_from_series</code> <em>Remove graph object from a graph series object</em></li>
+                            <li><code>graph_count</code> <em>Count graphs in a graph series object</em></li>
+                            <li><code>subset_series</code> <em>Subset a graph series object</em></li>
+                            <li><code>trigger_script</code> <em>Trigger a script embedded in a graph series object</em></li>
+                            <li><code>render_graph_from_series</code> <em>Render a graph available in a series</em></li>
+                            <li><code>series_info</code> <em>Get detailed information on a graph series</em></li>
+                    </ul>
+                <p>The following example demonstrates how to create a series object with an existing graph object:</p>
+                <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">#####
+# Create and manipulate a graph series
+#####
+
+library(DiagrammeR)
+library(pipeR)
+
+# Create three different graphs
+graph_1 &lt;- create_graph() %>>%
+  add_node("a") %>>% add_node("b") %>>% add_node("c") %>>%
+  add_edges(from = c("a", "a", "b"),
+            to =   c("c", "b", "c"))
+
+graph_2 &lt;- graph_1 %>>%
+  add_node("d") %>>% add_edges(from = "d", to = "c")
+
+graph_3 &lt;- graph_2 %>>%
+  add_node("e") %>>% add_edges(from = "e", to = "b")
+
+# Create an empty graph series
+series &lt;- create_series(series_type = "sequential")
+
+# Confirm that the series is empty
+graph_count(series)
+#> [1] 0
+
+# Add graphs to the graph series
+series &lt;- graph_1 %>>% add_to_series(series)
+series &lt;- graph_2 %>>% add_to_series(series)
+series &lt;- graph_3 %>>% add_to_series(series)
+
+# Count the number of graphs in the series
+graph_count(series)
+#> [1] 3
+
+# Get information on the graphs in the series
+series_info(series)
+#>   graph name date_time   tz nodes edges directed
+#> 1     1 &lt;NA>      &lt;NA> &lt;NA>     3     3     TRUE
+#> 2     2 &lt;NA>      &lt;NA> &lt;NA>     4     4     TRUE
+#> 3     3 &lt;NA>      &lt;NA> &lt;NA>     5     5     TRUE
+
+# Remove 2 graphs from graph series
+series &lt;- remove_from_series(graph_series = series, index = 2)
+series &lt;- remove_from_series(graph_series = series, index = "last")
+
+# Count the number of graphs in the series
+graph_count(series)
+#> [1] 1</code></pre>
+                        </div>
+                    </div>
+                    <p>With the <code>subset_series</code> function you can create a graph series object that contains a subset of graphs. This is useful if you collect and process data into temporal graphs and you'd like to conduct an analysis over some time frame (e.g., graphs generated from collected data on weekdays vs. those graphs using data on weekend days). The <code>subset_series</code> function works well with both <code>sequential</code> and <code>temporal</code> graph series types.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">#####
+# Subset a graph series by time and by sequence
+#####
+
+library("DiagrammeR")
+library("pipeR")
+
+# Create two graphs with the time attributes set
+graph_time_1 &lt;-
+  create_graph(graph_name = "graph_with_time_1",
+               graph_time = "2015-03-25 03:00",
+               graph_tz = "GMT") %>>%
+  add_node("a") %>>% add_node("b") %>>% add_node("c") %>>%
+  add_edges(from = c("a", "a", "b"),
+            to =   c("c", "b", "c"))
+
+graph_time_2 &lt;-
+  create_graph(graph_name = "graph_with_time_2",
+               graph_time = "2015-03-26 03:00",
+               graph_tz = "GMT") %>>%
+  add_node("d") %>>% add_node("e") %>>% add_node("f") %>>%
+  add_edges(from = c("d", "d", "e"),
+            to =   c("f", "e", "f"))
+
+graph_time_3 &lt;-
+  create_graph(graph_name = "graph_with_time_3",
+               graph_time = "2015-03-27 15:00",
+               graph_tz = "GMT") %>>%
+  add_node("x") %>>% add_node("y") %>>% add_node("z") %>>%
+  add_edges(from = c("x", "x", "y"),
+            to =   c("z", "y", "z"))
+
+
+# Create an empty graph series
+series_temporal &lt;- create_series(series_type = "temporal")
+
+# Add graphs to the graph series
+series_temporal &lt;- graph_time_1 %>>% add_to_series(series_temporal)
+series_temporal &lt;- graph_time_2 %>>% add_to_series(series_temporal)
+series_temporal &lt;- graph_time_3 %>>% add_to_series(series_temporal)
+
+# Subset graph series by sequence
+series_sequence_subset &lt;-
+  subset_series(graph_series = series_temporal,
+                by = "number",
+                values = 2)
+
+graph_count(series_sequence_subset)
+#> [1] 1
+
+# Subset graph series by date-time
+series_time_subset &lt;-
+  subset_series(graph_series = series_temporal,
+                by = "time",
+                values = c("2015-03-25 12:00",
+                           "2015-03-26 12:00"),
+                tz = "GMT")
+
+graph_count(series_time_subset)
+#> [1] 1</code></pre>
+                        </div>
+                    </div>
+                    <p>Because data collection and using rules to determine how the graph should be generated can be scripted, it makes sense to have those scripts close at hand and also to have the ability to periodically trigger those scripts. For this use case, the <code>trigger_script</code> function will prove useful. It simply runs a script contained in a graph series object, and, returns a modified graph series object. In the following example, a script is directly added to graph series object as a character vector. There is the option to instead use a reference to an R script on disk. This is done by supplying a path to the file (including the file name) in the <code>series_scripts</code> argument when calling the <code>create_series</code> function.</p>
+                    <p>In the following example, a script essentially takes an empty graph series and builds up a random graph, adding a new node and edges with each triggering of the script. On new days, the script will create a new graph and build that graph. Throughout the script, <code>_SELF_</code> refers to the graph series in which the script is contained.</p>
+                    <div class="bs-example">
+                        <img src="img/graph-functions/script_trigger_example.png" class="img-responsive center-block">
+                    </div>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">#####
+# Trigger a script and render select graphs from a graph series
+#####
+
+library("DiagrammeR")
+
+sample_node_script &lt;-
+'
+graph_attrs &lt;- c("layout = twopi",
+                 "overlap = FALSE",
+                 "outputorder = edgesfirst")
+
+node_attrs &lt;- c("shape = circle",
+                "fixedsize = TRUE",
+                "width = 1",
+                "penwidth = 1",
+                "color = DodgerBlue",
+                "style = filled",
+                "fillcolor = Aqua",
+                "alpha_fillcolor = 0.5",
+                "fontname = Helvetica",
+                "fontcolor = Grey25")
+
+edge_attrs &lt;- c("arrowhead = dot",
+                "minlen = 1.5",
+                "color = Green",
+                "penwidth = 2")
+
+# If there is no graph available in the series, then, make one!
+if (graph_count(graph_series = _SELF_) == 0){
+
+  _SELF_ &lt;-
+    add_to_series(graph = create_graph(graph_attrs = graph_attrs,
+                                       node_attrs = node_attrs,
+                                       edge_attrs = edge_attrs,
+                                       graph_name = paste0("data_", Sys.Date()),
+                                       graph_time = as.character(Sys.Date()),
+                                       graph_tz = Sys.timezone()),
+                  graph_series = _SELF_)
+
+}
+
+# Determine the index of the last graph in the series
+last_graph_in_series &lt;- graph_count(graph_series = _SELF_)
+
+# If it is a new day, create a new graph in the series to populate with data
+if (Sys.Date() > as.Date(_SELF_$graphs[[last_graph_in_series]]$graph_time,
+                          tz = _SELF_$graphs[[last_graph_in_series]]$graph_tz)){
+
+  _SELF_ &lt;-
+    add_to_series(graph = create_graph(graph_attrs = graph_attrs,
+                                       node_attrs = node_attrs,
+                                       edge_attrs = edge_attrs,
+                                       graph_name = paste0("data_", Sys.Date()),
+                                       graph_time = as.character(Sys.Date()),
+                                       graph_tz = Sys.timezone()),
+                  graph_series = _SELF_)
+
+  last_graph_in_series &lt;- graph_count(graph_series = _SELF_)
+}
+
+# Create a node to place into the graph
+letters &lt;- paste(sample(LETTERS, 5), collapse = "")
+
+# Add node to the most recent graph and attach it to
+# another randomly picked node available in the graph.
+# Note that adding an edge only works in the case that
+# there is at least one node available in the graph.
+# For convenience, the relevant graph is extracted from
+# the series, then placed back in the series.
+if (!is.na(sample(get_nodes(_SELF_$graphs[[last_graph_in_series]]), 1))){
+
+  graph &lt;- _SELF_$graphs[[last_graph_in_series]]
+
+  graph &lt;- add_node(graph = graph,
+                    node = letters)
+
+  graph &lt;- add_edges(graph = graph,
+                     from = letters,
+                     to = sample(get_nodes(graph = graph), 1))
+
+} else {
+
+  graph &lt;- _SELF_$graphs[[last_graph_in_series]]
+
+  graph &lt;- add_node(graph = graph,
+                    node = letters)
+}
+
+# Remove old graph from series
+_SELF_ &lt;- remove_from_series(graph_series = _SELF_,
+                             index = "last")
+
+# Add new graph to correct position in series
+# The "add_to_series" function always adds a graph to the
+# end of the graph series.
+_SELF_ &lt;- add_to_series(graph = graph,
+                        graph_series = _SELF_)
+
+return(_SELF_)
+'
+
+# Create an empty graph series of the 'temporal' type and add
+# that script as one of the graph series' 'series scripts'
+series_temporal &lt;- create_series(series_type = "temporal",
+                                 series_scripts = sample_node_script)
+
+# Call the function 60 times, this will generate 60 random nodes
+# with 59 edges
+for (i in seq(1, 60)){
+
+  series_temporal &lt;-
+    trigger_script(graph_series = series_temporal,
+                   script = 1)
+
+  if (i == 60) break
+}
+
+# Display the results in the RStudio Viewer
+render_graph_from_series(graph_series = series_temporal,
+                         graph_no = graph_count(series_temporal))
+
+# Get some basic information about the graphs in the graph series object
+series_info(series_temporal)
+
+# Write the script to a file
+cat(sample_node_script, file = "~/Desktop/sample_node_script.R")
+
+# Create a reference to the file instead of including text directly
+# in the "series_temporal" object
+series_temporal &lt;-
+  create_series(series_type = "temporal",
+                series_scripts = "~/Desktop/sample_node_script.R")
+
+# Call the function 60 times, this will generate 60 random nodes
+# with 59 edges
+for (i in seq(1, 60)){
+
+  series_temporal &lt;-
+    trigger_script(graph_series = series_temporal,
+                   script = 1)
+
+  if (i == 60) break
+}
+
+# Display the results in the RStudio Viewer
+render_graph_from_series(graph_series = series_temporal,
+                         graph_no = graph_count(series_temporal)</code></pre>
+                        </div>
+                    </div>
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="examples" class="page-header">Examples</h1>
@@ -1343,24 +1668,29 @@ nycflights13_day &lt;-
 # Column 12 is the 3-letter code for the airport departing from
 # Column 13 is for the airport arriving to
 # (Option: change df to 'nycflights13_day' and only airports used for the day will be included)
-nodes_df &lt;- create_nodes(nodes = unique(c(nycflights13[,12],
-                                    nycflights13[,13])),
-                         label = FALSE)
+nodes_df &lt;-
+   create_nodes(nodes = unique(c(nycflights13[,12],
+                                 nycflights13[,13])),
+                label = FALSE)
 
 # The 'edges' data frame must have columns named 'edge_from' and 'edge_to'
 # The color attribute is determined with an 'ifelse' statement, where
 # column 8 is the minutes early (negative values) or minutes late (positive values)
 # for the flight arrival
-edges_df &lt;- create_edges(edge_from = nycflights13_day[,12],
-                         edge_to = nycflights13_day[,13],
-                         color = ifelse(nycflights13_day[,8] &lt; 0,
-                                    "green", "red"))
+edges_df &lt;-
+   create_edges(edge_from = nycflights13_day[,12],
+                edge_to = nycflights13_day[,13],
+                color = ifelse(nycflights13_day[,8] &lt; 0,
+                               "green", "red"))
 
 # Set the graph diagram's default attributes for...
 
 # ...nodes
-node_attrs &lt;- c("style = filled", "fillcolor = lightblue",
-                "color = gray", "shape = circle", "fontname = Helvetica",
+node_attrs &lt;- c("style = filled",
+                "fillcolor = lightblue",
+                "color = gray",
+                "shape = circle",
+                "fontname = Helvetica",
                 "width = 1")
 
 # ...edges
@@ -1373,8 +1703,8 @@ graph_attrs &lt;- c("layout = circo",
                  "ranksep = 3",
                  "outputorder = edgesfirst")
 
-# Generate the graph diagram in the RStudio Viewer.
-# The green lines show flights that weren't late (red indicates late arrivals)
+# Generate the graph diagram and render in the RStudio Viewer.
+# The green lines show flights that weren't late (red indicates late arrivals).
 # This graph is for a single day of flights, airports that are unconnected on a
 # given day may be destinations on another day
 create_graph(nodes_df = nodes_df, edges_df = edges_df,
@@ -1403,6 +1733,7 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
                                 <li><a href="#create-render-graph">Create and Render Graph</a></li>
                                 <li><a href="#inspecting-the-graph">Inspecting the Graph</a></li>
                                 <li><a href="#modifying-the-graph">Modifying the Graph</a></li>
+                                <li><a href="#using-graph-series">Using a Series of Graphs</a></li>
                             </ul>
                         </li>
                         <li>
