@@ -112,11 +112,7 @@ The **neato** engine provides spring model layouts. This is a suitable engine if
 
 #### Using DiagrammeR Functions to Define Graphs
 
-If you're planning on creating larger graph diagrams and also making use of external datasets, it can be better to use a set of **DiagrammeR** functions that work with data frames. Here is a basic schematic of the graph workflow, using functions to build toward a graph object from a group of data frames.
-
-<img src="inst/img/Graph_Workflow.png">
-
-With the `create_graph` function, it's possible to generate a graph diagram object without interacting directly with **DOT** code. The function has the following options:
+If you're planning on creating larger graph diagrams and also making use of external datasets, it can be better to use a set of **DiagrammeR** functions that work with data frames. With the `create_graph` function, it's possible to generate a graph diagram object without interacting directly with **DOT** code. The function has the following options:
 
 ```r
 create_graph(
