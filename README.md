@@ -2,13 +2,13 @@
 
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen) [![Issue Stats](http://issuestats.com/github/rich-iannone/DiagrammeR/badge/pr?style=flat)](http://issuestats.com/github/rich-iannone/DiagrammeR) [![Issue Stats](http://issuestats.com/github/rich-iannone/DiagrammeR/badge/issue?style=flat)](http://issuestats.com/github/rich-iannone/DiagrammeR)
 
-With the **DiagrammeR** package, you can create easily graph diagrams using **R**. You can either use **Markdown**-like text to describe and render a diagram, or, use a collection of functions to create graph objects from **R** objects and render/export at will. The output can be viewed in the **RStudio** Viewer, it can be incorporated in **R Markdown**, and it can be integrated in **shiny** web apps. Because we are doing this in **R** we can always add more **R** code into the mix.
+With the **DiagrammeR** package, you can create easily graph diagrams using **R**. You can either use **Markdown**-like text to describe and render a diagram, or, use a collection of functions to create graph objects from **R** objects and render/export at will. The output can be viewed in the **RStudio** Viewer, it can be incorporated in **R Markdown**, and it can be integrated in **shiny** web apps. Because we are doing this in **R** we can and always should add much more **R** code into the mix.
 
-Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable. After that, have a look at the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/docs.html) to learn more. 
+Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable. After being all fired up from that intense video-tutorial extravaganza, have a look at the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/docs.html) to learn more.
 
 ## Creating Graphviz Graphs
 
-It's possible to make single graph diagrams using the **Graphviz** support included in package. Simply specify a valid **Graphviz** graph in the **DOT** language either in the form of a string, a reference to a **Graphviz** file (with a **.gv** file extension), or as a text connection. 
+It's possible to make single graph diagrams using the **Graphviz** support included in package. Simply specify a valid **Graphviz** graph in the **DOT** language either in the form of a string, a reference to a **Graphviz** file (with a **.gv** file extension), or as a text connection.
 
 Here is an example where nodes (in this case styled as rectangles and circles) can be easily defined along with their connections:
 
@@ -80,7 +80,11 @@ Want to learn more? Head over to the [**DiagrammeR Docs**](http://rich-iannone.g
 
 ## An Example with Data from the **nycflights13** Package
 
-Using the `flights` dataset from the **nycflights13** **R** package, create a graph diagram. Here, the green lines show flights that weren't late arriving at their destinations (red indicates those late arrivals). This graph is for a single day of flights.
+Using the `flights` dataset from the **nycflights13** **R** package, create a graph diagram. Here, the green lines show flights that weren't late arriving at their destinations (red indicates those late arrivals). Things to note are:
+
+- the use of other packages to modify a data frame (because we are using **R**, after all)
+- piped expressions with the `pipeR` package (the **DiagrammeR** functions are very pipe-able)
+- the `circo` layout for the graph (it's a nice circular arrangement of nodes)
 
 <img src="inst/img/grViz_15.png">
 
