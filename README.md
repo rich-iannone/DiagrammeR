@@ -82,7 +82,7 @@ A collection of graph functions is available for creating and manipulating graph
 
 <img src="inst/img/DiagrammeR_graph_functions.png">
 
-With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames for that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have columns of arbitrary data alongside columns named for node or edge attributes. Having columns of data available on a per-node or per-edge basis allows for easy numerical scaling of attributes and thus a highly visual means to differentiate nodes and edges by size, color, shape, opacity, length, etc.
+With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames for that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have columns of arbitrary data alongside columns named for node or edge attributes. Because metadata can exist alongside the node and edge definitions, we can easily scale the values of the styling attributes and thus enable a highly visual means to differentiate nodes and edges by size, color, shape, opacity, length, etc.
 
 Here is a simple workflow for building and rendering a graph object:
 
