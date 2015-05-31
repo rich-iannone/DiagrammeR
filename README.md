@@ -6,20 +6,6 @@ With the **DiagrammeR** package, you can create easily graph diagrams using **R*
 
 Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable. After that, have a look at the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/docs.html) to learn more. 
 
-## Installation
-
-Install the development version of **DiagrammeR** from GitHub using the **devtools** package.
-
-```r
-devtools::install_github('rich-iannone/DiagrammeR')
-```
-
-Or, get the v0.6 release from **CRAN**.
-
-```r
-install.packages('DiagrammeR')
-```
-
 ## Creating Graphviz Graphs
 
 It's possible to make single graph diagrams using the **Graphviz** support included in package. Simply specify a valid **Graphviz** graph in the **DOT** language either in the form of a string, a reference to a **Graphviz** file (with a **.gv** file extension), or as a text connection. 
@@ -179,5 +165,23 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
                graph_attrs = graph_attrs, node_attrs = node_attrs,
                edge_attrs = edge_attrs, directed = TRUE) %>>%
   render_graph(width = 1200, height = 800)
+```
+
+## Installation
+
+If this package looks interesting then you'll want to install it for further testing.
+
+**DiagrammeR** is used in an **R** environment. If you don't have an **R** installation, it can be obtained from the [**Comprehensive R Archive Network (CRAN)**](http://cran.rstudio.com). It is recommended that [**RStudio**](http://www.rstudio.com/products/RStudio/) be used as the **R** IDE to take advantage of its rendering capabilities and the code-coloring support for **Graphviz** and **mermaid** diagrams.
+
+As for **DiagrammeR**, install the development version from GitHub using the **devtools** package.
+
+```r
+devtools::install_github('rich-iannone/DiagrammeR')
+```
+
+Or, get the v0.6 release from **CRAN**.
+
+```r
+install.packages('DiagrammeR')
 ```
 
