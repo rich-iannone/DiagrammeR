@@ -66,7 +66,7 @@ This only scratches the surface. At [DiagrammeR Docs](http://rich-iannone.github
 
 ## Using DiagrammeR Functions to Define Graphs
 
-A collection of graph functions is available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, draw information from the graph object, and much more.
+In the last example you saw what was essentially a text string being passed into a single function. That's not very **R**-like, is it? Well, it's a good thing that there's a collection of graph functions available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, create graph objects, render those graphs, modify those graphs, get information from the graphs, create a series of graphs, and... so much more.
 
 <img src="inst/img/DiagrammeR_graph_functions.png">
 
