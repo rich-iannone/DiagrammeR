@@ -62,6 +62,8 @@ There is a great variety of ways to style the nodes and edges in a **Graphviz** 
 
 <img src="inst/img/Graphviz_Engines.png", width = 100%>
 
+This only scratches the surface. At [DiagrammeR Docs](http://rich-iannone.github.io/DiagrammeR/graphviz.html), you can learn quite a lot more about this.
+
 ## Using DiagrammeR Functions to Define Graphs
 
 A collection of graph functions is available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, draw information from the graph object, and much more.
