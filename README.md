@@ -60,7 +60,7 @@ There is a great variety of ways to style the nodes and edges in a **Graphviz** 
 <img src="inst/img/header_edge_attributes.png">
 <img src="inst/img/edge_attributes.png">
 
-<img src="inst/img/Graphviz_Engines.png", width = 100%>
+<img src="inst/img/layout_types.png">
 
 This only scratches the surface. At [DiagrammeR Docs](http://rich-iannone.github.io/DiagrammeR/graphviz.html), you can learn quite a lot more about this.
 
