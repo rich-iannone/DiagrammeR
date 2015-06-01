@@ -89,18 +89,12 @@ Using the `flights` dataset from the **nycflights13** **R** package, create a gr
 <img src="inst/img/grViz_15.png">
 
 ```r
-# Get the 'nycflights13' package if not already installed
-# install.packages('nycflights13')
- 
-# Get the 'lubridate' package if not already installed
-# install.packages('lubridate')
- 
 # Get the latest build of the 'DiagrammeR' package from GitHub
 devtools::install_github('rich-iannone/DiagrammeR')
- 
+
+library("DiagrammeR") 
 library("nycflights13")
 library("lubridate")
-library("DiagrammeR")
 library("pipeR")
  
 # Choose a day from 2013 for NYC flight data
