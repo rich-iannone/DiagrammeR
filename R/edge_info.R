@@ -6,17 +6,17 @@
 
 edge_info <- function(graph){
 
-  if ("edge_from" %in% colnames(graph$edges_df)){
-    edge_from <- graph$edges_df$edge_from
-  }
+#   if ("edge_from" %in% colnames(graph$edges_df)){
+#     edge_from <- graph$edges_df$edge_from
+#   }
 
   if ("from" %in% colnames(graph$edges_df)){
     edge_from <- graph$edges_df$from
   }
 
-  if ("edge_to" %in% colnames(graph$edges_df)){
-    edge_to <- graph$edges_df$edge_to
-  }
+#   if ("edge_to" %in% colnames(graph$edges_df)){
+#     edge_to <- graph$edges_df$edge_to
+#   }
 
   if ("to" %in% colnames(graph$edges_df)){
     edge_to <- graph$edges_df$to
