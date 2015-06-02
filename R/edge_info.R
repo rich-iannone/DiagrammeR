@@ -35,8 +35,7 @@ edge_info <- function(graph){
   if (is.null(graph$edges_df)){
 
     edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 4))
-    colnames(edge_properties) <- c("edge_from", "edge_to", "relationship",
-                                   "label")
+    colnames(edge_properties) <- c("from", "to", "relationship", "label")
 
     return(edge_properties)
   }
@@ -49,8 +48,7 @@ edge_info <- function(graph){
 
       if (i == 1){
         edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 4))
-        colnames(edge_properties) <- c("edge_from", "edge_to", "relationship",
-                                       "label")
+        colnames(edge_properties) <- c("from", "to", "relationship", "label")
       }
 
       # Collect information into the 'edge_properties' data frame
