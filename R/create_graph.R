@@ -114,8 +114,7 @@ create_graph <- function(nodes_df = NULL,
   if (class(edges_df) == "data.frame"){
     if (ncol(edges_df) > 2){
 
-      stopifnot(any(c("edge_op", "edge_ops", "edge", "edges",
-                      "edge_from", "edge_to", "from", "to") %in%
+      stopifnot(any(c("from", "to") %in%
                       colnames(edges_df)))
 
       # Force all columns to be of the character class
@@ -357,7 +356,7 @@ create_graph <- function(nodes_df = NULL,
   if (is.null(nodes_df) & !is.null(edges_df)){
 
     from_to_columns <-
-      ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
+      ifelse(any(c("from", "to") %in%
                    colnames(edges_df)), TRUE, FALSE)
 
     # Determine which columns in 'edges_df' contains edge attributes
@@ -367,9 +366,9 @@ create_graph <- function(nodes_df = NULL,
     # Determine whether the complementary set of columns is present
     if (from_to_columns == TRUE){
 
-      both_from_to_columns <- all(c(any(c("edge_from", "from") %in%
+      both_from_to_columns <- all(c(any(c("from") %in%
                                           colnames(edges_df))),
-                                  any(c("edge_to", "to") %in%
+                                  any(c("to") %in%
                                         colnames(edges_df)))
     }
 
@@ -377,9 +376,9 @@ create_graph <- function(nodes_df = NULL,
 
       if (both_from_to_columns == TRUE){
 
-        from_column <- which(colnames(edges_df) %in% c("edge_from", "from"))[1]
+        from_column <- which(colnames(edges_df) %in% c("from"))[1]
 
-        to_column <- which(colnames(edges_df) %in% c("edge_to", "to"))[1]
+        to_column <- which(colnames(edges_df) %in% c("to"))[1]
       }
     }
 
@@ -404,7 +403,7 @@ create_graph <- function(nodes_df = NULL,
   if (!is.null(edges_df)){
 
     # Determine whether 'from' or 'to' columns are in 'edges_df'
-    from_to_columns <- ifelse(any(c("edge_from", "edge_to", "from", "to") %in%
+    from_to_columns <- ifelse(any(c("from", "to") %in%
                                     colnames(edges_df)), TRUE, FALSE)
 
     # Determine which columns in 'edges_df' contains edge attributes
@@ -414,9 +413,9 @@ create_graph <- function(nodes_df = NULL,
     # Determine whether the complementary set of columns is present
     if (from_to_columns == TRUE){
 
-      both_from_to_columns <- all(c(any(c("edge_from", "from") %in%
+      both_from_to_columns <- all(c(any(c("from") %in%
                                           colnames(edges_df))),
-                                  any(c("edge_to", "to") %in%
+                                  any(c("to") %in%
                                         colnames(edges_df)))
     }
 
@@ -425,9 +424,9 @@ create_graph <- function(nodes_df = NULL,
 
       if (both_from_to_columns == TRUE){
 
-        from_column <- which(colnames(edges_df) %in% c("edge_from", "from"))[1]
+        from_column <- which(colnames(edges_df) %in% c("from"))[1]
 
-        to_column <- which(colnames(edges_df) %in% c("edge_to", "to"))[1]
+        to_column <- which(colnames(edges_df) %in% c("to"))[1]
       }
     }
 
