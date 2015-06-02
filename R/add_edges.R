@@ -70,9 +70,6 @@ add_edges <- function(graph,
   if (!is.null(edges_df)){
 
     # Ensure that the appropriate columns specifying edges are present
-    edge_from_present <- "edge_from" %in% colnames(edges_df)
-    edge_to_present <- "edge_to" %in% colnames(edges_df)
-
     from_present <- "from" %in% colnames(edges_df)
     to_present <- "to" %in% colnames(edges_df)
 
