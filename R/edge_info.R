@@ -26,6 +26,10 @@ edge_info <- function(graph){
     type <- graph$nodes_df$type
   }
 
+  if ("label" %in% colnames(graph$edges_df)){
+    label <- graph$edges_df$label
+  }
+
   if ("relationship" %in% colnames(graph$edges_df)){
     relationship <- graph$edges_df$relationship
   }
