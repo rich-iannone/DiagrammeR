@@ -42,7 +42,7 @@ get_nodes <- function(...){
         object_type <- "node_df"
       }
 
-      if (any(c("edge_from", "edge_to", "from", "to") %in% colnames(object))){
+      if (any(c("from", "to") %in% colnames(object))){
 
         object_type <- "edge_df"
       }
@@ -105,18 +105,18 @@ get_nodes <- function(...){
 
     if (object_type == "edge_df"){
 
-      both_from_to_columns <- all(c(any(c("edge_from", "from") %in%
+      both_from_to_columns <- all(c(any(c("from") %in%
                                           colnames(object))),
-                                  any(c("edge_to", "to") %in%
+                                  any(c("to") %in%
                                         colnames(object)))
 
       if (exists("both_from_to_columns")){
 
         if (both_from_to_columns == TRUE){
 
-          from_column <- which(colnames(object) %in% c("edge_from", "from"))[1]
+          from_column <- which(colnames(object) %in% "from")[1]
 
-          to_column <- which(colnames(object) %in% c("edge_to", "to"))[1]
+          to_column <- which(colnames(object) %in% "to")[1]
         }
       }
 
