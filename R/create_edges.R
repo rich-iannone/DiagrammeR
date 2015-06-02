@@ -13,10 +13,10 @@ create_edges <- function(...){
 
   # Attempt to obtain the number of edges from the 'edge_from' column
   # If 'edge_from' column exists, ensure that it is classed as character
-  if ("edge_from" %in% names(edges)){
-    number_of_edges_from <- length(edges$edge_from)
-    edges$edge_from <- as.character(edges$edge_from)
-  }
+#   if ("edge_from" %in% names(edges)){
+#     number_of_edges_from <- length(edges$edge_from)
+#     edges$edge_from <- as.character(edges$edge_from)
+#   }
 
   # Attempt to obtain the number of edges from the 'from' column
   # If 'from' column exists, ensure that it is classed as character
@@ -27,10 +27,10 @@ create_edges <- function(...){
 
   # Attempt to obtain the number of edges from the 'edge_to' column
   # If 'edge_to' column exists, ensure that it is classed as character
-  if ("edge_to" %in% names(edges)){
-    number_of_edges_to <- length(edges$edge_to)
-    edges$edge_to <- as.character(edges$edge_to)
-  }
+#   if ("edge_to" %in% names(edges)){
+#     number_of_edges_to <- length(edges$edge_to)
+#     edges$edge_to <- as.character(edges$edge_to)
+#   }
 
   # Attempt to obtain the number of edges from the 'to' column
   # If 'to' column exists, ensure that it is classed as character
