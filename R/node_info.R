@@ -20,8 +20,16 @@ node_info <- function(graph){
     edge_from <- graph$edges_df$from
   }
 
+  if ("edge_from" %in% colnames(graph$edges_df)){
+    edge_from <- graph$edges_df$edge_from
+  }
+
   if ("to" %in% colnames(graph$edges_df)){
     edge_to <- graph$edges_df$to
+  }
+
+  if ("edge_to" %in% colnames(graph$edges_df)){
+    edge_to <- graph$edges_df$edge_to
   }
 
   if ("type" %in% colnames(graph$nodes_df)){
