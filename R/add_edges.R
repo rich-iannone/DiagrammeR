@@ -73,8 +73,7 @@ add_edges <- function(graph,
     from_present <- "from" %in% colnames(edges_df)
     to_present <- "to" %in% colnames(edges_df)
 
-    edges_df_valid <- ((edge_from_present & edge_to_present) |
-                         (from_present & to_present))
+    edges_df_valid <- from_present & to_present
 
     # Ensure that the nodes specified are in the graph object
     all_nodes_in_graph <- all(get_nodes(edges_df) %in% get_nodes(graph))
