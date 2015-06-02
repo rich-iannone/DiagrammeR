@@ -22,10 +22,6 @@ edge_info <- function(graph){
     edge_to <- graph$edges_df$to
   }
 
-  if ("type" %in% colnames(graph$nodes_df)){
-    type <- graph$nodes_df$type
-  }
-
   if ("label" %in% colnames(graph$edges_df)){
     label <- graph$edges_df$label
   }
