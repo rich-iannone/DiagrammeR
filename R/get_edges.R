@@ -24,7 +24,7 @@ get_edges <- function(...,
       object_type <- "dgr_graph"
     }
 
-    if (any(c("edge_from", "edge_to", "from", "to") %in% colnames(object))){
+    if (any(c("from", "to") %in% colnames(object))){
 
       object_type <- "edge_df"
     }
@@ -36,11 +36,7 @@ get_edges <- function(...,
 
     no_edges <- FALSE
 
-    if ("edge_from" %in% colnames(object)){
-
-      from_column <- which(colnames(object) == "edge_from")
-
-    } else if ("from" %in% colnames(object)){
+    if ("from" %in% colnames(object)){
 
       from_column <- which(colnames(object) == "from")
 
@@ -49,11 +45,7 @@ get_edges <- function(...,
       no_edges <- TRUE
     }
 
-    if ("edge_to" %in% colnames(object)){
-
-      to_column <- which(colnames(object) == "edge_to")
-
-    } else if ("to" %in% colnames(object)){
+    if ("to" %in% colnames(object)){
 
       to_column <- which(colnames(object) == "to")
 
@@ -90,18 +82,18 @@ get_edges <- function(...,
 
   if (object_type == "edge_df"){
 
-    both_from_to_columns <- all(c(any(c("edge_from", "from") %in%
+    both_from_to_columns <- all(c(any(c("from") %in%
                                         colnames(object))),
-                                any(c("edge_to", "to") %in%
+                                any(c("to") %in%
                                       colnames(object)))
 
     if (exists("both_from_to_columns")){
 
       if (both_from_to_columns == TRUE){
 
-        from_column <- which(colnames(object) %in% c("edge_from", "from"))[1]
+        from_column <- which(colnames(object) %in% "from")[1]
 
-        to_column <- which(colnames(object) %in% c("edge_to", "to"))[1]
+        to_column <- which(colnames(object) %in% "to")[1]
       }
     }
 
