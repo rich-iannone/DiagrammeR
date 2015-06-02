@@ -1335,7 +1335,7 @@ edge_info(graph)
                             <li><code>render_graph_from_series</code> <em>Render a graph available in a series</em></li>
                             <li><code>series_info</code> <em>Get detailed information on a graph series</em></li>
                     </ul>
-                <p>The following example demonstrates how to create a series object with an existing graph object:</p>
+                <p>The following example demonstrates how to create a series object with an existing graph object using the <code>create_series</code> and <code>add_to_series</code> functions. Since we'd likely want to be able to remove graphs from a series, the <code>remove_from_series</code> function will be used. The use of <code>count_graphs</code> and <code>series_info</code> allows us to get information about the graph series object: <code>count_graphs</code> returns a simple count of graph objects are present in a graph series, and <code>series_info</code> yields a data frame with basic information about each graph object present in the graph series.</p>
                 <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">#####
