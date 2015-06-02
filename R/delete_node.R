@@ -38,8 +38,8 @@ delete_node <- function(graph,
     revised_nodes_df <- graph$nodes_df[-which(graph$nodes_df$nodes == node),]
 
     # Create a revised edge data frame
-    revised_edges_df <- graph$edges_df[-which((graph$edges_df$edge_from == node) |
-                                         (graph$edges_df$edge_to == node)),]
+    revised_edges_df <- graph$edges_df[-which((graph$edges_df$from == node) |
+                                         (graph$edges_df$to == node)),]
 
     # Create a revised graph and return that graph
     dgr_graph <-
