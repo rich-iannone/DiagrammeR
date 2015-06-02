@@ -35,10 +35,10 @@ delete_edge <- function(graph,
   # Determine whether a matching edge is available in the graph
   if (nodes_available_in_graph){
 
-    if (any(graph$edges_df$edge_from == from & graph$edges_df$edge_to == to)){
+    if (any(graph$edges_df$from == from & graph$edges_df$to == to)){
 
       row_id_edge_removal <-
-        which(graph$edges_df$edge_from == from & graph$edges_df$edge_to == to)
+        which(graph$edges_df$from == from & graph$edges_df$to == to)
 
       revised_edges_df <- graph$edges_df[-row_id_edge_removal,]
 
