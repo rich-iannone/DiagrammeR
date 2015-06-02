@@ -25,8 +25,8 @@ add_edges <- function(graph,
 
       dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
-                     edges_df = create_edges(edge_from = from,
-                                             edge_to = to,
+                     edges_df = create_edges(from = from,
+                                             to = to,
                                              relationship = relationship),
                      graph_attrs = graph$graph_attrs,
                      node_attrs = graph$node_attrs,
@@ -40,8 +40,8 @@ add_edges <- function(graph,
 
       dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
-                     edges_df = create_edges(edge_from = from,
-                                             edge_to = to),
+                     edges_df = create_edges(from = from,
+                                             to = to),
                      graph_attrs = graph$graph_attrs,
                      node_attrs = graph$node_attrs,
                      edge_attrs = graph$edge_attrs,
@@ -121,16 +121,16 @@ add_edges <- function(graph,
       if (!is.null(relationship)){
 
         combined_edges <- combine_edges(graph$edges_df,
-                                        create_edges(edge_from = from,
-                                                     edge_to = to,
+                                        create_edges(from = from,
+                                                     to = to,
                                                      relationship = relationship))
       }
 
       if (is.null(relationship)){
 
         combined_edges <- combine_edges(graph$edges_df,
-                                        create_edges(edge_from = from,
-                                                     edge_to = to))
+                                        create_edges(from = from,
+                                                     to = to))
       }
 
       dgr_graph <-
