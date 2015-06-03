@@ -281,8 +281,7 @@ all_nodes
 </code></pre>
                         </div>
                     </div>
-                    <p>When making a data frame for edge data, there are two columns that need to be present: one for the outgoing node edge, and, another for the incoming node edge. These can be called either <code>edge_from</code>, <code>from</code>, <code>edge_to</code>, or <code>to</code>. Each of the two columns should contain node IDs. Ideally, they should include only those node IDs provided in the node data frame before they both of those data frames are supplied to the <code>create_graph</code> function.</p>
-                    <p>As in the nodes data frame, attributes can be provided for edges. The following edge attributes can be used:</p>
+                    <p>When making a data frame for edge data, there are two columns that need to be present: one for the outgoing node edge (<code>from</code>), and, another for the incoming node edge (<code>to</code>). Each of the two columns should contain node IDs. As for the node data frame, attributes can be provided for edges. The following edge attributes can be used:</p>
                         <ul>
                             <li><code>arrowhead</code> &mdash; the arrow style at the head end (e.g, <code>normal</code>, <code>dot</code>)</li>
                             <li><code>arrowsize</code> &mdash; the scaling factor for the arrowhead and arrowtail</li>
@@ -311,33 +310,33 @@ library(DiagrammeR)
 
 # Create an edge data frame
 edges_1 &lt;-
-  create_edges(edge_from = c("a", "a", "b", "c"),
-               edge_to = c("b", "d", "d", "a"),
+  create_edges(from = c("a", "a", "b", "c"),
+               to = c("b", "d", "d", "a"),
                relationship = "requires",
                color = "green",
                data = c(2.7, 8.9, 2.6, 0.6))
 
 edges_1
-#>   edge_from edge_to relationship color data
-#> 1         a       b     requires green  2.7
-#> 2         a       d     requires green  8.9
-#> 3         b       d     requires green  2.6
-#> 4         c       a     requires green  0.6
+#>   from to relationship color data
+#> 1    a  b     requires green  2.7
+#> 2    a  d     requires green  8.9
+#> 3    b  d     requires green  2.6
+#> 4    c  a     requires green  0.6
 
 # Create another edge data frame
 edges_2 &lt;-
-  create_edges(edge_from = c("e", "g", "h", "h"),
-               edge_to = c("g", "h", "f", "e"),
+  create_edges(from = c("e", "g", "h", "h"),
+               to = c("g", "h", "f", "e"),
                relationship = "receives",
                arrowhead = "dot",
                color = "red")
 
 edges_2
-#>   edge_from edge_to relationship arrowhead color
-#> 1         e       g     receives       dot   red
-#> 2         g       h     receives       dot   red
-#> 3         h       f     receives       dot   red
-#> 4         h       e     receives       dot   red
+#>   from to relationship arrowhead color
+#> 1    e  g     receives       dot   red
+#> 2    g  h     receives       dot   red
+#> 3    h  f     receives       dot   red
+#> 4    h  e     receives       dot   red
 
 ###
 # Combine two data frames for edges
@@ -347,15 +346,15 @@ edges_2
 all_edges &lt;- combine_edges(edges_1, edges_2)
 
 all_edges
-#>   edge_from edge_to relationship color data arrowhead
-#> 1         a       b     requires green  2.7
-#> 2         a       d     requires green  8.9
-#> 3         b       d     requires green  2.6
-#> 4         c       a     requires green  0.6
-#> 5         e       g     receives   red            dot
-#> 6         g       h     receives   red            dot
-#> 7         h       f     receives   red            dot
-#> 8         h       e     receives   red            dot
+#>   from to relationship color data arrowhead
+#> 1    a  b     requires green  2.7
+#> 2    a  d     requires green  8.9
+#> 3    b  d     requires green  2.6
+#> 4    c  a     requires green  0.6
+#> 5    e  g     receives   red            dot
+#> 6    g  h     receives   red            dot
+#> 7    h  f     receives   red            dot
+#> 8    h  e     receives   red            dot
 </code></pre>
                         </div>
                     </div>
@@ -440,17 +439,17 @@ nodes
 set.seed(24)
 
 # Create an edge data frame
-edges &lt;- create_edges(edge_from = c("a", "b", "c"),
-                      edge_to = c("d", "d", "a"),
+edges &lt;- create_edges(from = c("a", "b", "c"),
+                      to = c("d", "d", "a"),
                       label = '',
                       relationship = "given_to",
                       data = sample(seq(1:50), 10))
 
 edges
-#>   edge_from edge_to label relationship data
-#> 1         a       d           given_to   15
-#> 2         b       d           given_to   12
-#> 3         c       a           given_to   34
+#>   from to label relationship data
+#> 1    a  d           given_to   15
+#> 2    b  d           given_to   12
+#> 3    c  a           given_to   34
 
 # Use the 'scale_edges' function to create an attribute
 # column that's scaled to data in another column
@@ -460,10 +459,10 @@ edges &lt;- scale_edges(edges_df = edges,
                      range = c(1, 5))
 
 edges
-#>   edge_from edge_to label relationship data penwidth
-#> 1         a       d           given_to   15 1.545455
-#> 2         b       d           given_to   12 1.000000
-#> 3         c       a           given_to   34 5.000000</code></pre>
+#>   from to label relationship data penwidth
+#> 1    a  d           given_to   15 1.545455
+#> 2    b  d           given_to   12 1.000000
+#> 3    c  a           given_to   34 5.000000</code></pre>
                         </div>
                     </div>
                     <p>To apply transparency to color values, use the <code>alpha</code> node attribute but reference the <code>color</code> attribute that should be modified with the syntax: 'alpha:[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: 'alpha:[color_attr]=[color]'. The color value can either be an <strong>X11</strong> color name or a hexadecimal color value.</p>
@@ -679,8 +678,8 @@ nodes &lt;-
                data = c(3.5, 2.6, 9.4, 2.7))
 
 edges &lt;-
-  create_edges(edge_from = c("a", "b", "c"),
-               edge_to = c("d", "c", "a"),
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
                relationship = "leading_to")
 
 
@@ -700,10 +699,10 @@ graph
 #> 4     d       lower filled  aqua rectangle  2.7
 #>
 #> $edges_df
-#>   edge_from edge_to relationship
-#> 1         a       d   leading_to
-#> 2         b       c   leading_to
-#> 3         c       a   leading_to
+#>   from to relationship
+#> 1    a  d   leading_to
+#> 2    b  c   leading_to
+#> 3    c  a   leading_to
 #>
 #> $graph_attrs
 #> [1] NULL
@@ -755,8 +754,8 @@ nodes &lt;-
                                   replace = TRUE))
 
 edges &lt;-
-  create_edges(edge_from = sample(LETTERS, replace = TRUE),
-               edge_to = sample(LETTERS, replace = TRUE),
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
                relationship = "letter_to_letter")
 
 
@@ -788,7 +787,7 @@ display_graph_object(graph)</code></pre>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create nodes and edges data frames for graph
+# Create node and edge data frames for graph
 ###
 
 library(DiagrammeR)
@@ -809,8 +808,8 @@ nodes &lt;-
                                   replace = TRUE))
 
 edges &lt;-
-  create_edges(edge_from = sample(LETTERS, replace = TRUE),
-               edge_to = sample(LETTERS, replace = TRUE),
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
                relationship = "letter_to_letter")
 
 # Use the pipeR %>>% operator between 'create_graph',
@@ -990,8 +989,8 @@ nodes &lt;-
 
 # Create an edge data frame
 edges &lt;-
-  create_edges(edge_from = sample(LETTERS, replace = TRUE),
-               edge_to = sample(LETTERS, replace = TRUE),
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
                label = "edge",
                relationship = "letter_to_letter")
 
@@ -1027,13 +1026,13 @@ node_info(graph)
 
 # Use the 'edge_info' function to return a data frame
 edge_info(graph)
-#>    edge_from edge_to     relationship label
-#> 1          A       Z letter_to_letter  edge
-#> 2          H       U letter_to_letter  edge
-#> 3          W       O letter_to_letter  edge
-#> 4          U       K letter_to_letter  edge
-#> 5          I       V letter_to_letter  edge
-#>..        ...     ...              ...   ...
+#>    from  to     relationship label
+#> 1     A   Z letter_to_letter  edge
+#> 2     H   U letter_to_letter  edge
+#> 3     W   O letter_to_letter  edge
+#> 4     U   K letter_to_letter  edge
+#> 5     I   V letter_to_letter  edge
+#>..   ... ...              ...   ...
 
 ###
 # Find out if a node is present in the graph
@@ -1673,13 +1672,13 @@ nodes_df &lt;-
                                  nycflights13[,13])),
                 label = FALSE)
 
-# The 'edges' data frame must have columns named 'edge_from' and 'edge_to'
+# The 'edges' data frame must have columns named 'from' and 'to'
 # The color attribute is determined with an 'ifelse' statement, where
 # column 8 is the minutes early (negative values) or minutes late (positive values)
 # for the flight arrival
 edges_df &lt;-
-   create_edges(edge_from = nycflights13_day[,12],
-                edge_to = nycflights13_day[,13],
+   create_edges(from = nycflights13_day[,12],
+                to = nycflights13_day[,13],
                 color = ifelse(nycflights13_day[,8] &lt; 0,
                                "green", "red"))
 
@@ -1747,7 +1746,6 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
                 </nav>
             </div>
         </div>
-
         <footer class="bs-docs-footer" role="contentinfo">
             <div class="container">
                 <div class="bs-docs-social">
@@ -1766,7 +1764,6 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
                     </ul>
                 </div>
             </div>
-
             <div class="container">
                 <p>Designed and built by Richard Iannone <a href="https://twitter.com/riannone" target="_blank">@riannone</a>.</p>
                 <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
@@ -1782,7 +1779,6 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
                 </ul>
             </div>
         </footer>
-
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="./js/bootstrap.min.js"></script>
