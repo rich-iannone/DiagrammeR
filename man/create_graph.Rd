@@ -11,7 +11,7 @@ create_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
 \arguments{
 \item{nodes_df}{an optional data frame containing, at minimum, a column (called \code{nodes}) which contains node IDs for the graph. Additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.}
 
-\item{edges_df}{an optional data frame containing, at minimum, a column (called \code{edge_op}) with edge operations as character strings (in the form of \code{[node_id] -> [node_id]}). Alternatively, there may be two columns (called \code{edge_from} and \code{edge_to}) where node IDs are provided. Additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.}
+\item{edges_df}{an optional data frame containing, at minimum, a column (called \code{edge_op}) with edge operations as character strings (in the form of \code{[node_id] -> [node_id]}). Alternatively, there may be two columns (called \code{from} and \code{to}) where node IDs are provided. Additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.}
 
 \item{graph_attrs}{an optional vector of graph attribute statements that can serve as defaults for the graph.}
 
