@@ -134,12 +134,12 @@ nodes_df <- create_nodes(nodes = unique(c(nycflights13[,12],
                                     nycflights13[,13])),
                          label = FALSE)
 
-# The 'edges' data frame must have columns named 'edge_from' and 'edge_to'
+# The 'edges' data frame must have columns named 'from' and 'to'
 # The color attribute is determined with an 'ifelse' statement, where
 # column 8 is the minutes early (negative values) or minutes late (positive values)
 # for the flight arrival
-edges_df <- create_edges(edge_from = nycflights13_day[,12],
-                         edge_to = nycflights13_day[,13],
+edges_df <- create_edges(from = nycflights13_day[,12],
+                         to = nycflights13_day[,13],
                          color = ifelse(nycflights13_day[,8] < 0,
                                     "green", "red"))
 
