@@ -473,9 +473,9 @@ edges
 # Scale a node data frame and create an 'alpha' attribute
 # that's applied to fillcolor
 nodes &lt;- scale_nodes(nodes_df = nodes,
-                          to_scale = nodes$random_data,
-                          node_attr = "alpha:fillcolor",
-                          range = c(5, 90))
+                     to_scale = nodes$random_data,
+                     node_attr = "alpha:fillcolor",
+                     range = c(5, 90))
 
 nodes
 #>    node random_data alpha_fillcolor
@@ -493,14 +493,14 @@ nodes
 library("V8")
 
 many_edges &lt;- scale_edges(edges_df = many_edges,
-                             to_scale = many_edges$penwidth,
-                             edge_attr = "color",
-                             range = c("red", "green"))
+                          to_scale = many_edges$penwidth,
+                          edge_attr = "color",
+                          range = c("red", "green"))
 
 create_graph(nodes_df = many_nodes, edges_df = many_edges,
-               node_attrs = "style = filled",
-               graph_attrs = c("layout = twopi",
-                               "overlap = false")) %>>% render_graph</code></pre>
+             node_attrs = "style = filled",
+             graph_attrs = c("layout = twopi",
+                             "overlap = false")) %>>% render_graph</code></pre>
                         </div>
                     </div>
                     <h2 id="create-render-graph">Create and Render Graph</h2>
