@@ -7,7 +7,7 @@
 create_edges(...)
 }
 \arguments{
-\item{...}{one or more named vectors for edges and associated attributes.}
+\item{...}{one or more named vectors for edges and associated attributes; the names for the named vectors must include \code{from} and \code{to} alongside any named vectors for the edge attributes and ancillary data.}
 }
 \value{
 a data frame.
