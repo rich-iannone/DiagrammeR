@@ -1517,7 +1517,7 @@ graph_count(series_time_subset)
 #> [1] 1</code></pre>
                         </div>
                     </div>
-                    <p>Because data collection and using rules to determine how the graph should be generated can be scripted, it makes sense to have those scripts close at hand and also to have the ability to periodically trigger those scripts. For this use case, the <code>trigger_script</code> function will prove useful. It simply runs a script contained in a graph series object, and, returns a modified graph series object. In the following example, a script is directly added to graph series object as a character vector. There is the option to instead use a reference to an R script on disk. This is done by supplying a path to the file (including the file name) in the <code>series_scripts</code> argument when calling the <code>create_series</code> function.</p>
+                    <p>Because data collection and using rules to determine how the graph should be generated can be scripted, it makes sense to have those scripts close at hand and also to have the ability to periodically trigger those scripts. For this use case, the <code>trigger_script</code> function will prove useful. It simply runs a script contained in a graph series object, and, returns a modified graph series object. In the following example, a script is directly added to graph series object as a character vector. There is the option to instead use a reference to an **R** script on disk. This is done by supplying a path to the file (including the file name) in the <code>series_scripts</code> argument when calling the <code>create_series</code> function.</p>
                     <p>In the following example, a script essentially takes an empty graph series and builds up a random graph, adding a new node and edges with each triggering of the script. On new days, the script will create a new graph and build that graph. Throughout the script, <code>_SELF_</code> refers to the graph series in which the script is contained.</p>
                     <div class="bs-example">
                         <img src="img/graph-functions/script_trigger_example.png" class="img-responsive center-block">
@@ -1833,7 +1833,7 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
                 <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
                 <p>Code licensed under MIT.</p>
                 <ul class="bs-docs-footer-links text-muted">
-                    <li>Currently v0.7</li>
+                    <li>Currently v0.8.1</li>
                     <li>&middot;</li>
                     <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
                     <li>&middot;</li>
