@@ -1,5 +1,5 @@
 #' Import a graph from various graph formats
-#' @description Import a variety of graphs from different graph formats and create a graph object
+#' @description Import a variety of graphs from different graph formats and create a graph object.
 #' @param graph_file a connection to a graph file.
 #' @param graph_name an optional string for labeling the graph object.
 #' @param graph_time a date or date-time string (required for insertion of graph into a graph series of the type \code{temporal}).
