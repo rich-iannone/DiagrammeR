@@ -18,7 +18,19 @@ import_graph <- function(graph_file,
   # Obtain file extension
   file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
 
+  # Determine file type from file extension
+  if (file_extension == "graphml"){
 
-  # Create 'edges_df'
+    file_type <- "graphml"
+
+  } else if (file_extension == "gexf"){
+
+    file_type <- "gexf"
+
+  } else {
+
+    file_type <- NA
+  }
+
 
 }
