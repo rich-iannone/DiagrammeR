@@ -12,6 +12,8 @@ import_graph <- function(graph_file,
                          graph_time = NULL,
                          graph_tz = NULL){
 
+  # Determine file existence
+  file_exists <- file.exists(graph_file)
 
   # Create 'nodes_df'
 
