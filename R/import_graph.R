@@ -15,7 +15,8 @@ import_graph <- function(graph_file,
   # Determine file existence
   file_exists <- file.exists(graph_file)
 
-  # Create 'nodes_df'
+  # Obtain file extension
+  file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
 
 
   # Create 'edges_df'
