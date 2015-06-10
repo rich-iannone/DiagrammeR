@@ -63,6 +63,9 @@ import_graph <- function(graph_file,
                                       "\".*?\""), "\"", ""))
     }
 
+    # Create all nodes for graph
+    all_nodes <- create_nodes(nodes = nodes_ids)
+
   }
 
 
