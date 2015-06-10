@@ -91,7 +91,10 @@ import_graph <- function(graph_file,
 
     # Create the graph
     the_graph <- create_graph(nodes_df = all_nodes,
-                              edges_df = all_edges)
+                              edges_df = all_edges,
+                              graph_name = graph_name,
+                              graph_time = graph_time,
+                              graph_tz = graph_tz)
 
     # Return the graph
     return(the_graph)
