@@ -33,4 +33,32 @@ a graph object of class \code{dgr_graph}.
 \description{
 Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
 }
+\examples{
+\dontrun{
+nodes <-
+create_nodes(nodes = LETTERS,
+          type = "letter",
+          shape = sample(c("circle", "rectangle"),
+                         length(LETTERS),
+                         replace = TRUE),
+          fillcolor = sample(c("aqua", "gray80",
+                               "pink", "lightgreen",
+                              "azure", "yellow"),
+                                length(LETTERS),
+                                replace = TRUE))
+
+edges <-
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
+               relationship = "letter_to_letter")
+
+graph <- create_graph(nodes_df = nodes,
+                      edges_df = edges,
+                      graph_attrs = "layout = neato",
+                      node_attrs = c("fontname = Helvetica",
+                                     "style = filled"),
+                      edge_attrs = c("color = gray20",
+                                     "arrowsize = 0.5"))
+}
+}
 
