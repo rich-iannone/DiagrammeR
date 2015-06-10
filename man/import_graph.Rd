@@ -20,6 +20,6 @@ import_graph(graph_file, graph_name = NULL, graph_time = NULL,
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Import a variety of graphs from different graph formats and create a graph object
+Import a variety of graphs from different graph formats and create a graph object.
 }
 
