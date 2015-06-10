@@ -9,6 +9,33 @@
 #' @param graph_name an optional string for labeling the graph object.
 #' @param graph_time a date or date-time string (required for insertion of graph into a graph series of the type \code{temporal}).
 #' @param graph_tz an optional value for the time zone (\code{tz}) corresponding to the date or date-time string supplied as a value to \code{graph_time}. If no time zone is provided then it will be set to \code{GMT}.
+#' @examples
+#' \dontrun{
+#' nodes <-
+#' create_nodes(nodes = LETTERS,
+#'           type = "letter",
+#'           shape = sample(c("circle", "rectangle"),
+#'                          length(LETTERS),
+#'                          replace = TRUE),
+#'           fillcolor = sample(c("aqua", "gray80",
+#'                                "pink", "lightgreen",
+#'                               "azure", "yellow"),
+#'                                 length(LETTERS),
+#'                                 replace = TRUE))
+#'
+#' edges <-
+#'   create_edges(from = sample(LETTERS, replace = TRUE),
+#'                to = sample(LETTERS, replace = TRUE),
+#'                relationship = "letter_to_letter")
+#'
+#' graph <- create_graph(nodes_df = nodes,
+#'                       edges_df = edges,
+#'                       graph_attrs = "layout = neato",
+#'                       node_attrs = c("fontname = Helvetica",
+#'                                      "style = filled"),
+#'                       edge_attrs = c("color = gray20",
+#'                                      "arrowsize = 0.5"))
+#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export create_graph
 
