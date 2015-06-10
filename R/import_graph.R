@@ -39,6 +39,9 @@ import_graph <- function(graph_file,
 
   if (file_type == "graphml"){
 
+    # Read in the .graphml document as a vector object
+    graphml_document <- readLines(graph_file)
+
   }
 
 
