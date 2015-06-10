@@ -100,5 +100,9 @@ import_graph <- function(graph_file,
     return(the_graph)
   }
 
+  if (file_type == "gml"){
+
+  }
+
 
 }
