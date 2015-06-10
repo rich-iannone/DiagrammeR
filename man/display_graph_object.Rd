@@ -14,4 +14,24 @@ display_graph_object(graph, width = 400)
 \description{
 Using a \code{dgr_graph} object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
 }
+\examples{
+\dontrun{
+Create a simple graph and display a visual summary
+of simple graph properties
+nodes <-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               label = FALSE,
+               type = "letter")
+
+edges <-
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               relationship = "connected_to")
+
+graph <- create_graph(nodes_df = nodes,
+                      edges_df = edges)
+
+display_graph_object(graph, width = 640)
+}
+}
 

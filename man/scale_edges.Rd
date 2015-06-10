@@ -16,8 +16,26 @@ scale_edges(edges_df, to_scale, edge_attr, range, scale_type = "linear")
 \item{range}{a vector of 2 elements providing either lower and upper numerical or X11 color values.}
 
 \item{scale_type}{the type of scaling to perform. Currently, \code{linear} is the only option available.}
+
+\item{return}{an edge data frame.}
 }
 \description{
 Generates either numeric or color scales for specified edge attributes and applies those scales to edge data frames.
+}
+\examples{
+\dontrun{
+# Add an edge attribute which has values scaled to
+# numeric data in another column
+edges <- create_edges(from = c("a", "b", "c"),
+                      to = c("d", "d", "a"),
+                      label = '',
+                      relationship = "given_to",
+                      data = sample(seq(1:50), 10))
+
+edges <- scale_edges(edges_df = edges,
+                     to_scale = edges$data,
+                     edge_attr = "penwidth",
+                     range = c(1, 5))
+}
 }
 

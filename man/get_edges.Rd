@@ -17,4 +17,61 @@ a list, data frame, or a vector object, depending on the value given to \code{re
 \description{
 Provides information on the node IDs associated with edges from one or more edge data frames, or, a graph object.
 }
+\examples{
+\dontrun{
+# Before getting node ID values, create a simple graph
+nodes <-
+  create_nodes(nodes = LETTERS,
+               label = TRUE,
+               type = c(rep("a_to_g", 7),
+                        rep("h_to_p", 9),
+                        rep("q_to_x", 8),
+                        rep("y_and_z",2)))
+
+edges <-
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
+               label = "edge",
+               relationship = "letter_to_letter")
+
+graph <-
+  create_graph(nodes_df = nodes,
+               edges_df = edges,
+               graph_attrs = "layout = neato",
+               node_attrs = c("fontname = Helvetica",
+                              "shape = circle"))
+
+# Can get the 'outgoing' and 'incoming' node ID values
+# in a list object
+get_edges(graph, return_type = "list") # the default
+#> [[1]]
+#>  [1] "A" "H" "W" "U" "I" "M" "U" "T" "I" "R" "O"
+#> [12] "G" "O" "A" "V" "I" "M" "K" "R" "T" "Y" "R"
+#> [23] "M" "L" "H" "V"
+
+#> [[2]]
+#>  [1] "Z" "U" "O" "K" "V" "M" "N" "C" "D" "Z" "B"
+#> [12] "G" "U" "Y" "H" "V" "R" "V" "Z" "S" "Q" "I"
+#> [23] "P" "S" "E" "P"
+
+# Similarly, you can specify that a data frame is given
+get_edges(graph, return_type = "df")
+#>    from to
+#> 1     A  Z
+#> 2     H  U
+#> 3     W  O
+#> 4     U  K
+#> 5     I  V
+#>..   ... ..
+
+# A character string with node IDs can instead be gotten
+get_edges(graph, return_type = "vector")
+#>  [1] "A -> Z" "H -> U" "W -> O" "U -> K" "I -> V"
+#>  [6] "M -> M" "U -> N" "T -> C" "I -> D" "R -> Z"
+#> [11] "O -> B" "G -> G" "O -> U" "A -> Y" "V -> H"
+#> [16] "I -> V" "M -> R" "K -> V" "R -> Z" "T -> S"
+#> [21] "Y -> Q" "R -> I" "M -> P" "L -> S" "H -> E"
+#> [26] "V -> P"
+}
+}
 

@@ -15,4 +15,13 @@ a data frame.
 \description{
 Combine several named vectors for edges and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
 }
+\examples{
+\dontrun{
+# Create an edge data frame
+edges <-
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               relationship = "leading_to")
+}
+}
 

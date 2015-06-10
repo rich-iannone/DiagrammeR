@@ -35,30 +35,37 @@ Generates a graph object using data frames for nodes and/or edges; the graph obj
 }
 \examples{
 \dontrun{
+# Create an empty graph
+graph <- create_graph()
+
+# Create a graph with nodes but no edges
 nodes <-
-create_nodes(nodes = LETTERS,
-          type = "letter",
-          shape = sample(c("circle", "rectangle"),
-                         length(LETTERS),
-                         replace = TRUE),
-          fillcolor = sample(c("aqua", "gray80",
-                               "pink", "lightgreen",
-                              "azure", "yellow"),
-                                length(LETTERS),
-                                replace = TRUE))
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               label = FALSE,
+               type = "lower",
+               style = "filled",
+               color = "aqua",
+               shape = c("circle", "circle",
+                         "rectangle", "rectangle"),
+               data = c(3.5, 2.6, 9.4, 2.7))
 
+graph <- create_graph(nodes_df = nodes)
+
+# Create a graph with edges but no nodes
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               relationship = "letter_to_letter")
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               relationship = "leading_to")
 
+graph <- create_graph(edges_df = edges)
+
+# Create a graph with both nodes and nodes defined, and,
+# add some default attributes
 graph <- create_graph(nodes_df = nodes,
                       edges_df = edges,
-                      graph_attrs = "layout = neato",
-                      node_attrs = c("fontname = Helvetica",
-                                     "style = filled"),
-                      edge_attrs = c("color = gray20",
-                                     "arrowsize = 0.5"))
+                      node_attrs = "fontname = Helvetica",
+                      edge_attrs = c("color = blue",
+                                     "arrowsize = 2"))
 }
 }
 

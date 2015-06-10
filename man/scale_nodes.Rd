@@ -17,7 +17,25 @@ scale_nodes(nodes_df, to_scale, node_attr, range, scale_type = "linear")
 
 \item{scale_type}{the type of scaling to perform. Currently, \code{linear} is the only option available.}
 }
+\value{
+a node data frame.
+}
 \description{
 Generates either numeric or color scales for specified node attributes and applies those scales to node data frames.
+}
+\examples{
+\dontrun{
+# Add a node attribute which has values scaled to
+# numeric data in another column
+nodes <- create_nodes(nodes = 1:5,
+                      label = FALSE,
+                      type = "example",
+                      data = sample(seq(1:20), 5))
+
+nodes <- scale_nodes(nodes_df = nodes,
+                     to_scale = nodes$data,
+                     node_attr = "penwidth",
+                     range = c(2, 5))
+}
 }
 
