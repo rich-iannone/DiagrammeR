@@ -19,4 +19,20 @@ a graph object of class \code{dgr_graph}.
 \description{
 From a graph object of class \code{dgr_graph}, delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.
 }
+\examples{
+\dontrun{
+# Create an empty graph
+graph <- create_graph()
+
+# Add two nodes
+graph <- add_node(graph, node = "a")
+graph <- add_node(graph, node = "b")
+
+# Add an edge
+graph <- add_edges(graph, from = "a", to = "b")
+
+# Delete the edge
+graph <- delete_edge(graph, from = "a", to = "b")
+}
+}
 

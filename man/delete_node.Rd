@@ -17,4 +17,17 @@ a graph object of class \code{dgr_graph}.
 \description{
 From a graph object of class \code{dgr_graph}, delete an existing node by specifying its node ID.
 }
+\examples{
+\dontrun{
+# Create an empty graph
+graph <- create_graph()
+
+# Add two nodes
+graph <- add_node(graph, node = "a")
+graph <- add_node(graph, node = "b")
+
+# Delete a node
+graph <- delete_node(graph, node = "a")
+}
+}
 

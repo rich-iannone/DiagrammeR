@@ -17,4 +17,38 @@ a numeric vector of single length.
 \description{
 From a graph object of class \code{dgr_graph}, get a count of nodes in the graph and optionally obtain a count of nodes by their type.
 }
+\examples{
+\dontrun{
+# Before getting counts of nodes, create a simple graph
+nodes <-
+  create_nodes(nodes = LETTERS,
+               label = TRUE,
+               type = c(rep("a_to_g", 7),
+                        rep("h_to_p", 9),
+                        rep("q_to_x", 8),
+                        rep("y_and_z",2)))
+
+edges <-
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
+               label = "edge",
+               relationship = "letter_to_letter")
+
+graph <-
+  create_graph(nodes_df = nodes,
+               edges_df = edges,
+               graph_attrs = "layout = neato",
+               node_attrs = c("fontname = Helvetica",
+                              "shape = circle"))
+
+# Get counts of nodes grouped by the "type" attribute
+node_count(graph, type = TRUE) # the default
+#> a_to_g  h_to_p  q_to_x y_and_z
+#>      7       9       8       2
+
+# Get a total count of nodes with no grouping
+node_count(graph, type = FALSE)
+#> [1] 26
+}
+}
 
