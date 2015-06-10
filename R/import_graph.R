@@ -24,6 +24,10 @@ import_graph <- function(graph_file,
 
     file_type <- "graphml"
 
+  } else if (file_extension == "gml"){
+
+    file_type <- "gml"
+
   } else if (file_extension == "gexf"){
 
     file_type <- "gexf"
