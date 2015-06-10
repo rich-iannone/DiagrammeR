@@ -4,6 +4,21 @@
 #' @param from a node ID from which the edge to be removed is outgoing.
 #' @param to a node ID to which the edge to be removed is incoming.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' # Create an empty graph
+#' graph <- create_graph()
+#'
+#' # Add two nodes
+#' graph <- add_node(graph, node = "a")
+#' graph <- add_node(graph, node = "b")
+#'
+#' # Add an edge
+#' graph <- add_edges(graph, from = "a", to = "b")
+#'
+#' # Delete the edge
+#' graph <- delete_edge(graph, from = "a", to = "b")
+#' }
 #' @export delete_edge
 
 delete_edge <- function(graph,

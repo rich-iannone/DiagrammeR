@@ -3,6 +3,18 @@
 #' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param node a node ID for the node to be deleted from the graph.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' # Create an empty graph
+#' graph <- create_graph()
+#'
+#' # Add two nodes
+#' graph <- add_node(graph, node = "a")
+#' graph <- add_node(graph, node = "b")
+#'
+#' # Delete a node
+#' graph <- delete_node(graph, node = "a")
+#' }
 #' @export delete_node
 
 delete_node <- function(graph,
