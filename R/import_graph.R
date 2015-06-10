@@ -93,6 +93,8 @@ import_graph <- function(graph_file,
     the_graph <- create_graph(nodes_df = all_nodes,
                               edges_df = all_edges)
 
+    # Return the graph
+    return(the_graph)
   }
 
 
