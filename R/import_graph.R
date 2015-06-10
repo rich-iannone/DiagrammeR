@@ -84,6 +84,11 @@ import_graph <- function(graph_file,
           str_replace_all(unlist(str_extract_all(graphml_document[xml_edges[[1]][i]],
                                                  "\".*?\""))[2], "\"", ""))
     }
+
+    # Create all edges for graph
+    all_edges <- create_edges(from = edges_from,
+                              to = edges_to)
+
   }
 
 
