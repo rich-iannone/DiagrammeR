@@ -37,5 +37,9 @@ import_graph <- function(graph_file,
     file_type <- NA
   }
 
+  if (file_type == "graphml"){
+
+  }
+
 
 }
