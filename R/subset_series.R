@@ -5,6 +5,64 @@
 #' @param values where the subsetting of the graph series by to occur via graph indices (where \code{by = number}), provide a vector of those indices; when subsetting by time (where \code{by = time}), a range of times can be provided as a vector.
 #' @param tz the time zone (\code{tz}) corresponding to dates or date-time string provided in \code{values} (if \code{by = "date"}).
 #' @return a graph series object of type \code{dgr_graph_1D}.
+#' @examples
+#' \dontrun{
+#' # Create three graphs (using \code{pipeR} for speed)
+#' # and create a graph series using those graphs
+#' library(pipeR)
+#'
+#' graph_time_1 <-
+#'   create_graph(graph_name = "graph_with_time_1",
+#'                graph_time = "2015-03-25 03:00",
+#'                graph_tz = "GMT") %>>%
+#'   add_node("a") %>>% add_node("b") %>>% add_node("c") %>>%
+#'   add_edges(from = c("a", "a", "b"),
+#'             to =   c("c", "b", "c"))
+#'
+#' graph_time_2 <-
+#'   create_graph(graph_name = "graph_with_time_2",
+#'                graph_time = "2015-03-26 03:00",
+#'                graph_tz = "GMT") %>>%
+#'   add_node("d") %>>% add_node("e") %>>% add_node("f") %>>%
+#'   add_edges(from = c("d", "d", "e"),
+#'             to =   c("f", "e", "f"))
+#'
+#' graph_time_3 <-
+#'   create_graph(graph_name = "graph_with_time_3",
+#'                graph_time = "2015-03-27 15:00",
+#'                graph_tz = "GMT") %>>%
+#'   add_node("x") %>>% add_node("y") %>>% add_node("z") %>>%
+#'   add_edges(from = c("x", "x", "y"),
+#'             to =   c("z", "y", "z"))
+#'
+#' # Create an empty graph series
+#' series_temporal <- create_series(series_type = "temporal")
+#'
+#' # Add graphs to the graph series
+#' series_temporal <- graph_time_1 %>>% add_to_series(series_temporal)
+#' series_temporal <- graph_time_2 %>>% add_to_series(series_temporal)
+#' series_temporal <- graph_time_3 %>>% add_to_series(series_temporal)
+#'
+#' # Subset graph series by sequence
+#' series_sequence_subset <-
+#'   subset_series(graph_series = series_temporal,
+#'                 by = "number",
+#'                 values = 2)
+#'
+#' graph_count(series_sequence_subset)
+#' #> [1] 1
+#'
+#' # Subset graph series by date-time
+#' series_time_subset <-
+#'   subset_series(graph_series = series_temporal,
+#'                 by = "time",
+#'                 values = c("2015-03-25 12:00",
+#'                            "2015-03-26 12:00"),
+#'                 tz = "GMT")
+#'
+#' graph_count(series_time_subset)
+#' #> [1] 1
+#' }
 #' @export subset_series
 
 subset_series <- function(graph_series,
