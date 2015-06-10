@@ -52,6 +52,17 @@ import_graph <- function(graph_file,
       list(edge_start = grep("<edge ", graphml_document),
            edge_end = grep("</edge>", graphml_document))
 
+    # Determine all node ID values for the graph
+    for (i in 1:length(xml_nodes[[1]])){
+
+      if (i == 1) nodes_ids <- vector(mode = "character")
+
+      nodes_ids <-
+        c(nodes_ids,
+          str_replace_all(str_extract(graphml_document[xml_nodes[[1]][i]],
+                                      "\".*?\""), "\"", ""))
+    }
+
   }
 
 
