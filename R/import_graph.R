@@ -47,6 +47,11 @@ import_graph <- function(graph_file,
       list(node_start = grep("<node ", graphml_document),
            node_end = grep("</node>", graphml_document))
 
+    # Determine the starting and ending indices of the <edge> tags
+    xml_edges <-
+      list(edge_start = grep("<edge ", graphml_document),
+           edge_end = grep("</edge>", graphml_document))
+
   }
 
 
