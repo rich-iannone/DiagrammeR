@@ -66,6 +66,24 @@ import_graph <- function(graph_file,
     # Create all nodes for graph
     all_nodes <- create_nodes(nodes = nodes_ids)
 
+    # Determine all edge values for the graph
+    for (i in 1:length(xml_edges[[1]])){
+
+      if (i == 1) {
+        edges_from <- vector(mode = "character")
+        edges_to <- vector(mode = "character")
+      }
+
+      edges_from <-
+        c(edges_from,
+          str_replace_all(unlist(str_extract_all(graphml_document[xml_edges[[1]][i]],
+                                                 "\".*?\""))[1], "\"", ""))
+
+      edges_to <-
+        c(edges_to,
+          str_replace_all(unlist(str_extract_all(graphml_document[xml_edges[[1]][i]],
+                                                 "\".*?\""))[2], "\"", ""))
+    }
   }
 
 
