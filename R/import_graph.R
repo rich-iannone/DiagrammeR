@@ -42,6 +42,11 @@ import_graph <- function(graph_file,
     # Read in the .graphml document as a vector object
     graphml_document <- readLines(graph_file)
 
+    # Determine the starting and ending indices of the <node> tags
+    xml_nodes <-
+      list(node_start = grep("<node ", graphml_document),
+           node_end = grep("</node>", graphml_document))
+
   }
 
 
