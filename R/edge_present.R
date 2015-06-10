@@ -4,6 +4,39 @@
 #' @param from a node ID from which the edge to be queried is outgoing.
 #' @param to a node ID to which the edge to be queried is incoming.
 #' @return a logical value.
+#' @examples
+#' \dontrun{
+#' # Before finding out whether a particular edge is present,
+#' # create a simple graph
+#' nodes <-
+#'   create_nodes(nodes = LETTERS,
+#'                label = TRUE,
+#'                type = c(rep("a_to_g", 7),
+#'                         rep("h_to_p", 9),
+#'                         rep("q_to_x", 8),
+#'                         rep("y_and_z",2)))
+#'
+#' edges <-
+#'   create_edges(from = sample(LETTERS, replace = TRUE),
+#'                to = sample(LETTERS, replace = TRUE),
+#'                label = "edge",
+#'                relationship = "letter_to_letter")
+#'
+#' graph <-
+#'   create_graph(nodes_df = nodes,
+#'                edges_df = edges,
+#'                graph_attrs = "layout = neato",
+#'                node_attrs = c("fontname = Helvetica",
+#'                               "shape = circle"))
+#'
+#' # Is there any edge between nodes with IDs 'A' and 'B'?
+#' edge_present(graph, from = "A", to = "B")
+#' #> FALSE
+#'
+#' # Verify that there is an edge between nodes 'K' and 'V'
+#' edge_present(graph, from = "K", to = "V")
+#' #> TRUE
+#' }
 #' @export edge_present
 
 edge_present <- function(graph,

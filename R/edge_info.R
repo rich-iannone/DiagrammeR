@@ -2,6 +2,39 @@
 #' @description Obtain a data frame with detailed information on edges and their interrelationships within a graph.
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @return a data frame containing information specific to each edge within the graph.
+#' @examples
+#' \dontrun{
+#' # Create a simple graph and get edge information from it
+#' nodes <-
+#'   create_nodes(nodes = LETTERS,
+#'                label = TRUE,
+#'                type = c(rep("a_to_g", 7),
+#'                         rep("h_to_p", 9),
+#'                         rep("q_to_x", 8),
+#'                         rep("y_and_z",2)))
+#'
+#' edges <-
+#'   create_edges(from = sample(LETTERS, replace = TRUE),
+#'                to = sample(LETTERS, replace = TRUE),
+#'                label = "edge",
+#'                relationship = "letter_to_letter")
+#'
+#' graph <-
+#'   create_graph(nodes_df = nodes,
+#'                edges_df = edges,
+#'                graph_attrs = "layout = neato",
+#'                node_attrs = c("fontname = Helvetica",
+#'                               "shape = circle"))
+#'
+#' edge_info(graph)
+#' #>    from   to     relationship label
+#' #> 1     A    Z letter_to_letter  edge
+#' #> 2     H    U letter_to_letter  edge
+#' #> 3     W    O letter_to_letter  edge
+#' #> 4     U    K letter_to_letter  edge
+#' #> 5     I    V letter_to_letter  edge
+#' #>..   ...  ...              ...   ...
+#' }
 #' @export edge_info
 
 edge_info <- function(graph){

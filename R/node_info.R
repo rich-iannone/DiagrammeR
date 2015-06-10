@@ -2,6 +2,39 @@
 #' @description Obtain a data frame with detailed information on nodes and their interrelationships within a graph.
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @return a data frame containing information specific to each node within the graph.
+#' @examples
+#' \dontrun{
+#' # Create a simple graph and get node information from it
+#' nodes <-
+#'   create_nodes(nodes = LETTERS,
+#'                label = TRUE,
+#'                type = c(rep("a_to_g", 7),
+#'                         rep("h_to_p", 9),
+#'                         rep("q_to_x", 8),
+#'                         rep("y_and_z",2)))
+#'
+#' edges <-
+#'   create_edges(from = sample(LETTERS, replace = TRUE),
+#'                to = sample(LETTERS, replace = TRUE),
+#'                label = "edge",
+#'                relationship = "letter_to_letter")
+#'
+#' graph <-
+#'   create_graph(nodes_df = nodes,
+#'                edges_df = edges,
+#'                graph_attrs = "layout = neato",
+#'                node_attrs = c("fontname = Helvetica",
+#'                               "shape = circle"))
+#'
+#' node_info(graph)
+#' #>    node_ID label    type degree indegree outdegree loops
+#' #> 1        A     A  a_to_g      2        0         2     0
+#' #> 2        W     W  q_to_x      1        0         1     0
+#' #> 3        T     T  q_to_x      2        0         2     0
+#' #> 4        L     L  h_to_p      1        0         1     0
+#' #> 5        F     F  a_to_g      0        0         0     0
+#' #>..      ...   ...     ...    ...      ...       ...   ...
+#' }
 #' @export node_info
 
 node_info <- function(graph){

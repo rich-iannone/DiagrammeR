@@ -6,6 +6,15 @@
 #' @param to a vector of the incoming nodes to which each edge is connected.
 #' @param relationship a string specifying the relationship between the connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' # Create a graph with two nodes
+#' graph <- create_graph(create_nodes(nodes = c("a", "b")))
+#'
+#' # Add an edge between those nodes and attach a relationship
+#' graph <- add_edges(graph, from = "a", to = "b",
+#'                    relationship = "to_get")
+#' }
 #' @export add_edges
 
 add_edges <- function(graph,

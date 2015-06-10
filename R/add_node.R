@@ -8,6 +8,15 @@
 #' @param type an optional string that describes the entity type for the node to be added.
 #' @param ... one or more vectors pertaining to node attributes.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' # Create an empty graph
+#' graph <- create_graph()
+#'
+#' # Add two nodes
+#' graph <- add_node(graph, node = "a")
+#' graph <- add_node(graph, node = "b")
+#' }
 #' @export add_node
 
 add_node <- function(graph,

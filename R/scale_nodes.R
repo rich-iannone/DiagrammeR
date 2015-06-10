@@ -5,6 +5,21 @@
 #' @param node_attr the name of the node attribute for which scaled values are to be created.
 #' @param range a vector of 2 elements providing either lower and upper numerical or X11 color values.
 #' @param scale_type the type of scaling to perform. Currently, \code{linear} is the only option available.
+#' @return a node data frame.
+#' @examples
+#' \dontrun{
+#' # Add a node attribute which has values scaled to
+#' # numeric data in another column
+#' nodes <- create_nodes(nodes = 1:5,
+#'                       label = FALSE,
+#'                       type = "example",
+#'                       data = sample(seq(1:20), 5))
+#'
+#' nodes <- scale_nodes(nodes_df = nodes,
+#'                      to_scale = nodes$data,
+#'                      node_attr = "penwidth",
+#'                      range = c(2, 5))
+#' }
 #' @export scale_nodes
 
 scale_nodes <- function(nodes_df,

@@ -5,6 +5,22 @@
 #' @param edge_attr the name of the edge attribute for which scaled values are to be created.
 #' @param range a vector of 2 elements providing either lower and upper numerical or X11 color values.
 #' @param scale_type the type of scaling to perform. Currently, \code{linear} is the only option available.
+#' @param return an edge data frame.
+#' @examples
+#' \dontrun{
+#' # Add an edge attribute which has values scaled to
+#' # numeric data in another column
+#' edges <- create_edges(from = c("a", "b", "c"),
+#'                       to = c("d", "d", "a"),
+#'                       label = '',
+#'                       relationship = "given_to",
+#'                       data = sample(seq(1:50), 10))
+#'
+#' edges <- scale_edges(edges_df = edges,
+#'                      to_scale = edges$data,
+#'                      edge_attr = "penwidth",
+#'                      range = c(1, 5))
+#' }
 #' @export scale_edges
 
 scale_edges <- function(edges_df,

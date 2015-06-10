@@ -2,6 +2,25 @@
 #' @description Combine several edge data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
 #' @param ... two or more edge data frames, which contain edge IDs and associated attributes.
 #' @return a combined edge data frame.
+#' @examples
+#' \dontrun{
+#' # Combine two edge data frames
+#' edges_1 <-
+#'   create_edges(from = c("a", "a", "b", "c"),
+#'                to = c("b", "d", "d", "a"),
+#'                relationship = "requires",
+#'                color = "green",
+#'                data = c(2.7, 8.9, 2.6, 0.6))
+#'
+#' edges_2 <-
+#'   create_edges(from = c("e", "g", "h", "h"),
+#'                to = c("g", "h", "f", "e"),
+#'                relationship = "receives",
+#'                arrowhead = "dot",
+#'                color = "red")
+#'
+#' all_edges <- combine_edges(edges_1, edges_2)
+#' }
 #' @export combine_edges
 
 combine_edges <- function(...){
