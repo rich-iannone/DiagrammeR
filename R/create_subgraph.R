@@ -62,13 +62,20 @@ create_subgraph <- function(graph,
     get_nodes(graph = graph)[which(!(get_nodes(graph = graph) %in%
                                        nodes_in_neighbourhood))]
 
+  # Get a node data frame that doesn't contain the excluded nodes
+  nodes_df <-
+    graph$nodes_df[which(!(graph$nodes_df$nodes %in% excluded_nodes)),]
+
+
+  # Get an edge data frame that doesn't contain the excluded nodes
+  edges_df <-
+    graph$edges_df[which(!(graph$edges_df$from %in% excluded_nodes) &
+                           !(graph$edges_df$to %in% excluded_nodes)),]
+
   # Create a subgraph based on the neighborhood
   subgraph <-
-    create_graph(nodes_df = subset(graph$nodes_df,
-                                   !(nodes %in% excluded_nodes)),
-                 edges_df = subset(graph$edges_df,
-                                   !(from %in% excluded_nodes) &
-                                     !(to %in% excluded_nodes)),
+    create_graph(nodes_df = nodes_df,
+                 edges_df = edges_df,
                  graph_attrs = graph$graph_attrs,
                  node_attrs = graph$node_attrs,
                  edge_attrs = graph$edge_attrs,
