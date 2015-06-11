@@ -63,6 +63,11 @@ import_graph <- function(graph_file,
                                       "\".*?\""), "\"", ""))
     }
 
+    # Determine indices that contain first node attributes
+    node_key_indices <-
+      xml_nodes[[1]][1] - 1 +
+      grep("key", graphml_document[xml_nodes[[1]][1]:xml_nodes[[2]][1]])
+
     # Create all nodes for graph
     all_nodes <- create_nodes(nodes = nodes_ids)
 
