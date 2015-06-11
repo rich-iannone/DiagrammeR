@@ -68,6 +68,11 @@ import_graph <- function(graph_file,
       xml_nodes[[1]][1] - 1 +
       grep("key", graphml_document[xml_nodes[[1]][1]:xml_nodes[[2]][1]])
 
+    # Obtain names of keys
+    node_key_names <-
+      gsub(".*?\"(.*?)\".*", "\\1",
+           graphml_document[node_key_indices])
+
     # Create all nodes for graph
     all_nodes <- create_nodes(nodes = nodes_ids)
 
