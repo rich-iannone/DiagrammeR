@@ -123,7 +123,7 @@ mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
     diagram <- paste0(diagram, collapse = "\n")
   } else {
     # check for vector with length > 1 and concatenate
-    if (length(diagram) > 1 ){
+    if (length(diagram) > 1){
 
       nosep <- grep(x = diagram, pattern = "[;\n]")
 
