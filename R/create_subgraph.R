@@ -3,6 +3,38 @@
 #' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
 #' @param starting_node the node from which the subgraph will originate.
 #' @param distance the maximum number of steps from the \code{starting_node} for inclusion in the subgraph.
+#' @examples
+#' \dontrun{
+#' # Create a graph, then, create a subgraph of that larger graph
+#' nodes <-
+#'   create_nodes(nodes = LETTERS,
+#'                type = "letter",
+#'                shape = sample(c("circle", "rectangle"),
+#'                               length(LETTERS),
+#'                               replace = TRUE),
+#'                fillcolor = sample(c("aqua", "gray80",
+#'                                     "pink", "lightgreen",
+#'                                     "azure", "yellow"),
+#'                                   length(LETTERS),
+#'                                   replace = TRUE))
+#'
+#' edges <-
+#'   create_edges(from = sample(LETTERS, replace = TRUE),
+#'                to = sample(LETTERS, replace = TRUE),
+#'                relationship = "letter_to_letter")
+#'
+#' graph <- create_graph(nodes_df = nodes,
+#'                       edges_df = edges,
+#'                       graph_attrs = "layout = neato",
+#'                       node_attrs = c("fontname = Helvetica",
+#'                                      "style = filled"),
+#'                       edge_attrs = c("color = gray20",
+#'                                      "arrowsize = 0.5"))
+#'
+#' subgraph <- create_subgraph(graph = graph,
+#'                             starting_node = "U",
+#'                             distance = 2)
+#' }
 #' @export create_subgraph
 
 create_subgraph <- function(graph,
