@@ -12,7 +12,7 @@ It's possible to make single graph diagrams using the **Graphviz** support inclu
 
 Here is an example where nodes (in this case styled as rectangles and circles) can be easily defined along with their connections:
 
-<img src="inst/img/grViz_2.png">
+<img src="inst/img/grViz.png">
 ```r
 grViz("
 digraph {
@@ -86,7 +86,7 @@ Using the `flights` dataset from the **nycflights13** **R** package, create a gr
 - piped expressions with the `pipeR` package (the **DiagrammeR** functions are very pipe-able)
 - the `circo` layout for the graph (it's a nice circular arrangement of nodes)
 
-<img src="inst/img/grViz_15.png">
+<img src="inst/img/flights.png">
 
 ```r
 # Get the latest build of the 'DiagrammeR' package from GitHub
