@@ -93,7 +93,10 @@ import_graph <- function(graph_file,
     }
 
     # Create all nodes for graph
-    all_nodes <- create_nodes(nodes = nodes_ids)
+    all_nodes <- create_nodes(nodes = nodes_ids,
+                              label = node_attributes[[which(node_key_names == "label")]],
+                              x = node_attributes[[which(node_key_names == "x")]],
+                              y = node_attributes[[which(node_key_names == "y")]])
 
     # Determine all edge values for the graph
     for (i in 1:length(xml_edges[[1]])){
