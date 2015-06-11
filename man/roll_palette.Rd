@@ -8,6 +8,8 @@ roll_palette(number, hue_range = c(0, 360), chroma_range = c(0, 3),
   lightness_range = c(0.75, 1.5), alpha = NULL, display_colors = TRUE)
 }
 \arguments{
+\item{number}{the number of colors to include in the palette.}
+
 \item{hue_range}{a vector representing a range of hues from \code{0} to \code{360}.}
 
 \item{chroma_range}{a vector representing a range of chroma values from \code{0} to \code{3}.}
@@ -15,6 +17,8 @@ roll_palette(number, hue_range = c(0, 360), chroma_range = c(0, 3),
 \item{lightness_range}{a vector representing a range of lightness values from \code{0} to \code{2}.}
 
 \item{alpha}{an optional alpha value in the range of \code{0}-\code{100} to append to the hexadecimal color values.}
+
+\item{display_colors}{an option for displaying the rolled color palette in the RStudio Viewer pane.}
 }
 \value{
 a vector of hexadecimal color values.

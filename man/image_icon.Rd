@@ -6,6 +6,9 @@
 \usage{
 image_icon(icon_name)
 }
+\arguments{
+\item{icon_name}{the name of the FontAwesome icon.}
+}
 \description{
 Create a data frame with image icons and their web addresses.
 }
