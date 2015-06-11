@@ -16,6 +16,10 @@
 #'              lightness_range = c(0.75, 1.5),
 #'              alpha = NULL,
 #'              display_colors = TRUE)
+#'
+#' [1] "#F7DC9D" "#D937E5" "#8880B9" "#119F35" "#7CEAB7"
+#' [6] "#F8877D" "#C08B1B" "#B1E2F9" "#8E9573" "#74A31C"
+#' [11] "#51A053" "#50C9A4"
 #' }
 #' @export roll_palette
 
