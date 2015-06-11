@@ -4,7 +4,7 @@
 #' @param query a query string
 #' @return a graph selection object
 #' @import stringr
-#' @export query_graph
+
 
 query_graph <- function(graph,
                         query){
