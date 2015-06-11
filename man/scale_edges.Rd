@@ -16,8 +16,9 @@ scale_edges(edges_df, to_scale, edge_attr, range, scale_type = "linear")
 \item{range}{a vector of 2 elements providing either lower and upper numerical or X11 color values.}
 
 \item{scale_type}{the type of scaling to perform. Currently, \code{linear} is the only option available.}
-
-\item{return}{an edge data frame.}
+}
+\value{
+an edge data frame.
 }
 \description{
 Generates either numeric or color scales for specified edge attributes and applies those scales to edge data frames.
