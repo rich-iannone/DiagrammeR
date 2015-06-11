@@ -2,7 +2,7 @@ Package: DiagrammeR
 Type: Package
 Title: Create Diagrams and Flowcharts Using R
 Version: 0.7
-Date: 2015-05-15
+Date: 2015-06-11
 Authors@R: c(
     person("Knut", "Sveidqvist", role = c("aut", "cph"), comment = "mermaid.js
     library in htmlwidgets/lib, http://github.com/knsv/mermaid/"),
