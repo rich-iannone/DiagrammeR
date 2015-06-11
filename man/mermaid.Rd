@@ -30,7 +30,8 @@ Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js}
 }
 \examples{
 \dontrun{
-# note the whitespace is not important
+# Create a simple graph running left to right (note
+# that the whitespace is not important)
 DiagrammeR("
   graph LR
     A-->B
@@ -41,7 +42,8 @@ DiagrammeR("
     D-->F
     E-->F
 ")
-
+# Create the equivalent graph but have it running
+# from top to bottom
 DiagrammeR("
    graph TB
    A-->B
@@ -53,6 +55,8 @@ DiagrammeR("
    E-->F
 ")
 
+# Create a graph with different node shapes and
+# provide fill styles for each node
 DiagrammeR("graph LR;A(Rounded)-->B[Squared];B-->C{A Decision};
  C-->D[Square One];C-->E[Square Two];
  style A fill:#E5E25F;  style B fill:#87AB51; style C fill:#3C8937;
@@ -79,6 +83,7 @@ connections <- sapply(
  }
 )
 
+# Create a diagram using the 'connections' object
 DiagrammeR(
    paste0(
      "graph TD;", "\\n",
@@ -88,8 +93,9 @@ DiagrammeR(
    )
  )
 
-# also with DiagrammeR() you can use tags from htmltools
-# just make sure to use class = "mermaid"
+# Also with \\code{DiagrammeR()}, you can use tags
+# from \\code{htmltools} (just make sure to use
+# \\code{class = "mermaid"})
 library(htmltools)
 diagramSpec = "
 graph LR;
@@ -104,26 +110,20 @@ html_print(tagList(
   ,DiagrammeR()
 ))
 
-# sequence diagrams
-# Using this "How to Draw a Sequence Diagram"
- http://www.cs.uku.fi/research/publications/reports/A-2003-1/page91.pdf
-draw some sequence diagrams with DiagrammeR
-
-library(DiagrammeR)
-
+# Create a sequence diagram
 DiagrammeR("
 sequenceDiagram;
-   customer->>ticket seller: ask ticket;
+   customer->>ticket seller: ask for a ticket;
    ticket seller->>database: seats;
    alt tickets available
      database->>ticket seller: ok;
      ticket seller->>customer: confirm;
      customer->>ticket seller: ok;
      ticket seller->>database: book a seat;
-     ticket seller->>printer: print ticket;
+     ticket seller->>printer: print a ticket;
    else sold out
      database->>ticket seller: none left;
-     ticket seller->>customer:  sorry;
+     ticket seller->>customer: sorry;
    end
 ")
 }
