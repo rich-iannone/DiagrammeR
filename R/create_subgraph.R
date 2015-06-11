@@ -75,7 +75,7 @@ create_subgraph <- function(graph,
                  directed = graph$directed,
                  graph_name = graph$graph_name,
                  graph_time = graph$graph_time,
-                 graph_tz = graph$graph_tz) %>>% render_graph()
+                 graph_tz = graph$graph_tz)
 
   # Return the subgraph
   return(subgraph)
