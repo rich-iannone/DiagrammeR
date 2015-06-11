@@ -5,7 +5,7 @@
 #' @param edge_attr the name of the edge attribute for which scaled values are to be created.
 #' @param range a vector of 2 elements providing either lower and upper numerical or X11 color values.
 #' @param scale_type the type of scaling to perform. Currently, \code{linear} is the only option available.
-#' @param return an edge data frame.
+#' @return an edge data frame.
 #' @examples
 #' \dontrun{
 #' # Add an edge attribute which has values scaled to
