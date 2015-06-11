@@ -73,6 +73,25 @@ import_graph <- function(graph_file,
       gsub(".*?\"(.*?)\".*", "\\1",
            graphml_document[node_key_indices])
 
+    # Obtain list of vectors for all node attributes
+    node_attributes <- list()
+
+    for (i in 1:length(node_key_names)){
+
+      for (j in 1:length(xml_nodes[[1]])){
+
+        if (j == 1) attribute <- vector(mode = "character")
+
+        attribute <-
+          c(attribute,
+            gsub(".*?>(.*?)<.*", "\\1", graphml_document[xml_nodes[[1]][j] + i]))
+
+        if (j == length(xml_nodes[[1]])){
+          node_attributes[[i]] <-  attribute
+        }
+      }
+    }
+
     # Create all nodes for graph
     all_nodes <- create_nodes(nodes = nodes_ids)
 
