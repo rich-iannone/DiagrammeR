@@ -2,7 +2,7 @@
 ^\.Rproj\.user$
 .bowerrc
 NEWS.md
-.*png$
-.*gif$
 .*csv$
 .*sublime.*
+query_graph.*
+import_graph.*
