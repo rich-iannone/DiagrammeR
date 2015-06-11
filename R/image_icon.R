@@ -1,5 +1,6 @@
 #' Icons and their download locations
 #' @description Create a data frame with image icons and their web addresses.
+#' @param icon_name the name of the FontAwesome icon.
 #' @export image_icon
 
 image_icon <- function(icon_name){
