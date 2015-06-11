@@ -26,4 +26,15 @@ a vector of hexadecimal color values.
 \description{
 Generate a randomized set of colors from the CIE Lab color space using a set of HCL range values.
 }
+\examples{
+\dontrun{
+# Create a palette of 12 colors
+roll_palette(number = 12,
+             hue_range = c(0, 360),
+             chroma_range = c(0, 3),
+             lightness_range = c(0.75, 1.5),
+             alpha = NULL,
+             display_colors = TRUE)
+}
+}
 
