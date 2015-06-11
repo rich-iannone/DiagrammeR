@@ -4,5 +4,3 @@
 NEWS.md
 .*csv$
 .*sublime.*
-query_graph.*
-import_graph.*
