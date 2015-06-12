@@ -1,0 +1,5 @@
+dependencies:
+  - name: vivagraph
+    version: 0.7.12
+    src: htmlwidgets/lib/VivaGraphJS/dist
+    script: vivagraph.min.js
