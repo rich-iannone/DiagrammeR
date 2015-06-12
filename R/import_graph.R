@@ -102,7 +102,7 @@ import_graph <- function(graph_file,
     # Determine all edge values for the graph
     for (i in 1:length(xml_edges[[1]])){
 
-      if (i == 1) {
+      if (i == 1){
         edges_from <- vector(mode = "character")
         edges_to <- vector(mode = "character")
       }
