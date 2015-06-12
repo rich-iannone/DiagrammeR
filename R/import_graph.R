@@ -88,6 +88,7 @@ import_graph <- function(graph_file,
 
         if (j == length(xml_nodes[[1]])){
           node_attributes[[i]] <-  attribute
+          names(node_attributes) <- node_key_names
         }
       }
     }
