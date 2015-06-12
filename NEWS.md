@@ -1,3 +1,11 @@
+# DiagrammeR 0.7
+
+* Renamed functions `graphviz_graph` and `graphviz_render` to `create_graph` and `render_graph`, respectively
+
+* Removed function `graphviz_export` (exporting now handled with `render_graph`)
+
+* Added several new functions to inspect, analyze, and modify graphs: `display_graph_object`, `node_info`, `edge_info`, `node_present`, `edge_present`, `get_nodes`, `get_edges`, `get_predecessors`, `get_successors`, `node_count`, `edge_count`, `is_graph_empty`, `is_graph_directed`, `add_node`, `add_edges`, `delete_node`, `delete_edge`, `node_type`, `edge_relationship`, `create_series`, `add_to_series`, `remove_from_series`, `graph_count`, `subset_series`, `trigger_script`, `render_graph_from_series`, and `series_info`
+
 # DiagrammeR 0.6
 
 * Added several functions to work with graphs: `create_nodes`, `create_edges`, `combine_nodes`, `combine_edges`, `scale_nodes`, `scale_edges`, `get_nodes`, `node_info`, `graphviz_graph`, `graphviz_render`, and `graphviz_export`
