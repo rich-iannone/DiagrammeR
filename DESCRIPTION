@@ -4,16 +4,37 @@ Title: Create Diagrams and Flowcharts Using R
 Version: 0.7
 Date: 2015-06-11
 Authors@R: c(
-    person("Knut", "Sveidqvist", role = c("aut", "cph"), comment = "mermaid.js
-    library in htmlwidgets/lib, http://github.com/knsv/mermaid/"),
-    person("Mike", "Bostock", role = c("aut", "cph"), comment = "d3.js
-    library in htmlwidgets/lib, http://d3js.org"),
-    person("Chris", "Pettitt", role = c("aut", "cph"), comment = "dagre-d3.js
-    library in htmlwidgets/lib, http://github.com/cpettitt/dagre-d3"),
-    person("Mike", "Daines", role = c("aut", "cph"), comment = "viz.js
-    library in htmlwidgets/lib, http://github.com/mdaines/viz.js/"),
-    person("Richard", "Iannone", role = c("aut", "cre"), comment = "R
-    interface", email = "riannone@me.com")
+      person(
+        "Knut", "Sveidqvist"
+        , role = c("aut", "cph")
+        , comment = "mermaid.js library in htmlwidgets/lib, http://github.com/knsv/mermaid/"
+      ),
+      person(
+        "Mike", "Bostock"
+        , role = c("aut", "cph")
+        , comment = "d3.js library in htmlwidgets/lib, http://d3js.org"
+      ),
+      person(
+        "Chris", "Pettitt"
+        , role = c("aut", "cph")
+        , comment = "dagre-d3.js library in htmlwidgets/lib, http://github.com/cpettitt/dagre-d3"
+      ),
+      person(
+        "Mike", "Daines"
+        , role = c("aut", "cph")
+        , comment = "viz.js library in htmlwidgets/lib, http://github.com/mdaines/viz.js/"
+      ),
+      person(
+        "Andrei", "Kashcha"
+        , role = c("aut", "cph")
+        , comment = "vivagraphjs library in htmlwidgets/lib, https://github.com/anvaka/VivaGraphJS"
+      ),
+      person(
+        "Richard", "Iannone"
+        , role = c("aut", "cre")
+        , comment = "R interface"
+        , email = "riannone@me.com"
+      )
     )
 Maintainer: Richard Iannone <riannone@me.com>
 Description: Create graph diagrams and flowcharts using R.
