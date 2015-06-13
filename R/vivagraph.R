@@ -81,6 +81,12 @@ vivagraph <- function(nodes_df = data.frame(),
                       width = NULL,
                       elementId = NULL){
 
+  if (inherits(graph, "dgr_graph")){
+
+    nodes_df <- graph$nodes_df
+    edges_df <- graph$edges_df
+  }
+
   #  if nodes_df provided then check to make sure there is a column named id
   #  if not then name the first column id
   if(is.data.frame(nodes_df)){
