@@ -71,8 +71,7 @@
 #' }
 #' @export vivagraph
 
-vivagraph <- function(nodes_df = data.frame(),
-                      edges_df = data.frame(),
+vivagraph <- function(graph = NULL,
                       igrf  = NULL,
                       layout = "forceDirected",
                       positions = NULL,
