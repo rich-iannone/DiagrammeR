@@ -99,6 +99,14 @@ vivagraph <- function(graph = NULL,
     }
   }
 
+  # Get data frame of node positions if it is provided in graph object
+  if (all(c("x", "y") %in% colnames(nodes_df))){
+
+    positions <-
+      data.frame(x = nodes_df[, which(colnames(nodes_df) %in% "x")],
+                 y = nodes_df[, which(colnames(nodes_df) %in% "y")])
+  }
+
   # If 'edges_df' provided then check to make sure there is a column named from and to
   # if not then name the first column 'from' and name the second column 'to'
   if (is.data.frame(edges_df)){
