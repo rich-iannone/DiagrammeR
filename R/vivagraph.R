@@ -88,11 +88,11 @@ vivagraph <- function(graph = NULL,
 
   #  if nodes_df provided then check to make sure there is a column named id
   #  if not then name the first column id
-  if(is.data.frame(nodes_df)){
+  if (is.data.frame(nodes_df)){
 
-    if(nrow(nodes_df) > 0){
+    if (nrow(nodes_df) > 0){
 
-      if(!("id" %in% colnames(nodes_df))){
+      if (!("id" %in% colnames(nodes_df))){
 
         colnames(nodes_df)[1] <- "id"
       }
@@ -101,11 +101,11 @@ vivagraph <- function(graph = NULL,
 
   # If 'edges_df' provided then check to make sure there is a column named from and to
   # if not then name the first column 'from' and name the second column 'to'
-  if(is.data.frame(edges_df)){
+  if (is.data.frame(edges_df)){
 
-    if(nrow(edges_df) > 0 && ncol(edges_df) > 1){
+    if (nrow(edges_df) > 0 && ncol(edges_df) > 1){
 
-      if(!("from" %in% colnames(nodes_df)) || !("to" %in% colnames(nodes_df))){
+      if (!("from" %in% colnames(edges_df)) || !("to" %in% colnames(edges_df))){
 
         colnames(edges_df)[1] <- "from"
         colnames(edges_df)[2] <- "to"
@@ -119,12 +119,13 @@ vivagraph <- function(graph = NULL,
   }
 
   # If 'nodes_df' is a vector then make it a data frame with column named 'id'
-  if( is.vector(nodes_df)){
+  if (is.vector(nodes_df)){
+
     nodes_df <- data.frame(id = nodes_df)
   }
 
   # Check to see if 'nodes_df' is an igraph object
-  if(inherits(nodes_df, "igraph")){
+  if (inherits(nodes_df, "igraph")){
 
     # Try to make this easy if someone accidentally provides an igraph
     # as the first parameter
@@ -137,18 +138,21 @@ vivagraph <- function(graph = NULL,
   if(inherits(igrf, "igraph")){
 
     # Assume if we are given an igraph that igraph is available
-    igrf_df <- igraph::get.data.frame( igrf, what = "both" )
+    igrf_df <- igraph::get.data.frame(igrf, what = "both")
 
     # warn if igraph provided as igrf and also nodes and edges
-    if(nrow(nodes_df) > 0) warning( "overwriting nodes with igraph igrf", call. = F )
-    if(nrow(edges_df) > 0) warning( "overwriting edges with igraph igrf", call. = F )
+    if(nrow(nodes_df) > 0) warning("overwriting nodes with igraph igrf",
+                                   call. = FALSE)
+
+    if(nrow(edges_df) > 0) warning("overwriting edges with igraph igrf",
+                                   call. = FALSE)
+
     if(nrow(nodes_df) > 0){
 
       nodes_df <-
         data.frame(id = igrf_df$vertices[,1],
                    igrf_df$vertices[,-1],
                    stringsAsFactors = FALSE)
-
     } else {
 
       # If there are no nodes then just take all unique values from edges
@@ -162,21 +166,24 @@ vivagraph <- function(graph = NULL,
     # If position is a function then assume a layout for igraph
     if (is.function(layout)){
 
-      positions = layout.norm(layout(igrf),
-                              xmin = -1,
-                              xmax = 1,
-                              ymin = -1,
-                              ymax = 1)
+      positions <-
+        layout.norm(layout(igrf),
+                    xmin = -1,
+                    xmax = 1,
+                    ymin = -1,
+                    ymax = 1)
 
-      positions = data.frame(x = positions[,1] * 100,
-                             y = -positions[,2] * 100)
+      positions <-
+        data.frame(x = positions[,1] * 100,
+                   y = -positions[,2] * 100)
 
-      layout = "constant"
+      layout <- "constant"
     }
   }
 
   x <-
-    list(network = list(nodes_df = nodes_df, edges_df = edges_df),
+    list(network = list(nodes_df = nodes_df,
+                        edges_df = edges_df),
          layout = layout,
          positions = positions,
          config = config)
