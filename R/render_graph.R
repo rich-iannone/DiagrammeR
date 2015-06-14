@@ -41,6 +41,7 @@
 
 render_graph <- function(graph,
                          output = "graph",
+                         layout = NULL,
                          width = NULL,
                          height = NULL){
 
