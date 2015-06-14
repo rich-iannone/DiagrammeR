@@ -243,5 +243,8 @@ render_graph <- function(graph,
 
   if (output == "vivagraph"){
 
+    layout <- ifelse(is.null(layout) & node_count(graph) < 1000,
+                     "forceDirected", "constant")
+
   }
 }
