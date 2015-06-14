@@ -240,4 +240,8 @@ render_graph <- function(graph,
       grViz(diagram = dot_code, width = width, height = height)
     }
   }
+
+  if (output == "vivagraph"){
+
+  }
 }
