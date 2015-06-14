@@ -4,12 +4,15 @@
 \alias{render_graph}
 \title{Render the graph or output in various formats}
 \usage{
-render_graph(graph, output = "graph", width = NULL, height = NULL)
+render_graph(graph, output = "graph", layout = NULL, width = NULL,
+  height = NULL)
 }
 \arguments{
 \item{graph}{a \code{dgr_graph} object, created using the \code{create_graph} function.}
 
-\item{output}{a string specifying the output type; \code{graph} (the default) renders the graph using the \code{grViz} function, \code{DOT} outputs DOT code for the graph, and \code{SVG} provides SVG code for the rendered graph.}
+\item{output}{a string specifying the output type; \code{graph} (the default) renders the graph using the \code{grViz} function, \code{vivagraph} renders the graph using the \code{vivagraph} function, \code{DOT} outputs DOT code for the graph, and \code{SVG} provides SVG code for the rendered graph.}
+
+\item{layout}{a string specifying a layout type for a \code{vivagraph} rendering of the graph, either \code{forceDirected} or \code{constant}.}
 
 \item{width}{an optional parameter for specifying the width of the resulting graphic in pixels.}
 
