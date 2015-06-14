@@ -246,5 +246,9 @@ render_graph <- function(graph,
     layout <- ifelse(is.null(layout) & node_count(graph) < 1000,
                      "forceDirected", "constant")
 
+    vivagraph(graph = graph,
+              layout = layout,
+              height = NULL,
+              width = NULL)
   }
 }
