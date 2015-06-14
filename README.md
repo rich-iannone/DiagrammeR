@@ -89,9 +89,6 @@ Using the `flights` dataset from the **nycflights13** **R** package, create a gr
 <img src="inst/img/flights.png">
 
 ```r
-# Get the latest build of the 'DiagrammeR' package from GitHub
-devtools::install_github('rich-iannone/DiagrammeR')
-
 library("DiagrammeR") 
 library("nycflights13")
 library("lubridate")
@@ -179,7 +176,7 @@ As for **DiagrammeR**, install the development version from GitHub using the **d
 devtools::install_github('rich-iannone/DiagrammeR')
 ```
 
-Or, get the v0.6 release from **CRAN**.
+Or, get the v0.7 release from **CRAN**.
 
 ```r
 install.packages('DiagrammeR')
