@@ -92,18 +92,17 @@ HTMLWidgets.widget({
             var ui = Viva.Graph.svg('g')
   
             var svgText = Viva.Graph.svg('text')
-                            .attr('y', '-12px')
+                            .attr('font-family', 'sans-serif')
+                            .attr('font-size', '10px')
+                            .attr('y', '-8px')
                             .attr('x', '-8px')
                             .text(node.id);
-  
+
             var img = Viva.Graph.svg('circle')
                         .attr('r', 7)
-                        .attr('stroke', '#fff')
-                        .attr('stroke-width', '1.5px');
-                        
-            ui.append( svgText );
-            ui.append( img );
-  
+                        .attr('stroke', 'gray')
+                        .attr('stroke-width', '1px')
+                        .attr('fill', 'purple');
             ui.onmouseover = function() { // mouse over
                 highlightRelatedNodes(node.id, true)
             };
