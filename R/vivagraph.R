@@ -1,12 +1,6 @@
 #' Render graphs with VivaGraphJS
 #'
-#' @param nodes_df \code{data.frame} or \code{vector} providing an identifier
-#'            for each node. If \code{nodes_df} is a \code{data.frame}, then all other
-#'            columns besides \code{[,1]} or \code{[,"id"]} will be assigned as attributes.
-#' @param edges_df \code{data.frame} [or \code{vector} of edges providing a from/source
-#'            node identifier and a to/target node identifier.
-#'            If \code{edges_df} contains >2 columns, then all other
-#'            columns besides \code{[,1:2]} will be assigned as attributes.
+#' @param graph a \code{dgr_graph} object, created using the \code{create_graph} function.
 #' @param igrf \code{igraph} graph. We will try to smartly convert the \code{igrf}
 #'            using \code{get.data.frame(what = "both")}.
 #' @param layout \code{string} or a layout function from \code{igraph}.  \code{"forceDirected"}
