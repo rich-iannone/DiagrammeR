@@ -48,14 +48,13 @@
 #'                edge_attrs = c("color = gray20",
 #'                               "arrowsize = 0.5"))
 #'
-#' # Render the graph using the \code{vivagraph} function
-#' vivagraph(graph$nodes_df, graph$edges_df)
+#' # Render graph
+#' vivagraph(graph = graph)
 #'
 #' # Using the igraph examples
 #' library(igraph)
-#' library(DiagrammeR)
 #'
-#' vivagraph(graph.ring(10))
+#' vivagraph(igrf = graph.ring(10))
 #'
 #' vivagraph(erdos.renyi.game(100, 1/100))
 #'
