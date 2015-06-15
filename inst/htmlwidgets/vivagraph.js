@@ -29,7 +29,7 @@ HTMLWidgets.widget({
             layout = Viva.Graph.Layout[x.layout](graph);
 
         //  for defined positions if provided
-        if (!( x.positions === null ) && x.layout === "constant"){
+        if (!(x.positions === null) && x.layout === "constant"){
 
           x.positions.x.map( function(pos, inc){
             positions.push({
