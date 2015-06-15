@@ -9,6 +9,8 @@ vivagraph(graph = NULL, igrf = NULL, layout = "forceDirected",
   elementId = NULL)
 }
 \arguments{
+\item{graph}{a \code{dgr_graph} object, created using the \code{create_graph} function.}
+
 \item{igrf}{\code{igraph} graph. We will try to smartly convert the \code{igrf}
 using \code{get.data.frame(what = "both")}.}
 
@@ -29,15 +31,6 @@ for our htmlwidget.}
 
 \item{width}{\code{string} or \code{integer} with a valid CSS \code{width} for the container
 for our htmlwidget.}
-
-\item{nodes_df}{\code{data.frame} or \code{vector} providing an identifier
-for each node. If \code{nodes_df} is a \code{data.frame}, then all other
-columns besides \code{[,1]} or \code{[,"id"]} will be assigned as attributes.}
-
-\item{edges_df}{\code{data.frame} [or \code{vector} of edges providing a from/source
-node identifier and a to/target node identifier.
-If \code{edges_df} contains >2 columns, then all other
-columns besides \code{[,1:2]} will be assigned as attributes.}
 
 \item{elementID}{\code{string} with a valid CSS \code{id}.}
 }
@@ -74,14 +67,13 @@ graph <-
                edge_attrs = c("color = gray20",
                               "arrowsize = 0.5"))
 
-# Render the graph using the \\code{vivagraph} function
-vivagraph(graph$nodes_df, graph$edges_df)
+# Render graph
+vivagraph(graph = graph)
 
 # Using the igraph examples
 library(igraph)
-library(DiagrammeR)
 
-vivagraph(graph.ring(10))
+vivagraph(igrf = graph.ring(10))
 
 vivagraph(erdos.renyi.game(100, 1/100))
 
