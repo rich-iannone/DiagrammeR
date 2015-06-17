@@ -77,62 +77,63 @@ vivagraph <- function(graph = NULL,
 
     nodes_df <- graph$nodes_df
     edges_df <- graph$edges_df
-  }
-
-  #  if nodes_df provided then check to make sure there is a column named id
-  #  if not then name the first column id
-  if (is.data.frame(nodes_df)){
-
-    if (nrow(nodes_df) > 0){
-
-      if (!("id" %in% colnames(nodes_df))){
-
-        colnames(nodes_df)[1] <- "id"
+  
+  
+    #  if nodes_df provided then check to make sure there is a column named id
+    #  if not then name the first column id
+    if (is.data.frame(nodes_df)){
+  
+      if (nrow(nodes_df) > 0){
+  
+        if (!("id" %in% colnames(nodes_df))){
+  
+          colnames(nodes_df)[1] <- "id"
+        }
       }
+    }
+  
+    # Get data frame of node positions if it is provided in graph object
+    if (all(c("x", "y") %in% colnames(nodes_df))){
+  
+      positions <-
+        data.frame(x = nodes_df[, which(colnames(nodes_df) %in% "x")],
+                   y = nodes_df[, which(colnames(nodes_df) %in% "y")])
+    }
+  
+    # If 'edges_df' provided then check to make sure there is a column named from and to
+    # if not then name the first column 'from' and name the second column 'to'
+    if (is.data.frame(edges_df)){
+  
+      if (nrow(edges_df) > 0 && ncol(edges_df) > 1){
+  
+        if (!("from" %in% colnames(edges_df)) || !("to" %in% colnames(edges_df))){
+  
+          colnames(edges_df)[1] <- "from"
+          colnames(edges_df)[2] <- "to"
+        }
+  
+      } else if (ncol(edges_df) > 0 && ncol(edges_df) < 2){
+        warning("vivagraph expects edges_df to contain at least two columns for source->target",
+                call. = FALSE
+        )
+      }
+    }
+  
+    # If 'nodes_df' is a vector then make it a data frame with column named 'id'
+    if (is.vector(nodes_df)){
+  
+      nodes_df <- data.frame(id = nodes_df)
     }
   }
 
-  # Get data frame of node positions if it is provided in graph object
-  if (all(c("x", "y") %in% colnames(nodes_df))){
-
-    positions <-
-      data.frame(x = nodes_df[, which(colnames(nodes_df) %in% "x")],
-                 y = nodes_df[, which(colnames(nodes_df) %in% "y")])
-  }
-
-  # If 'edges_df' provided then check to make sure there is a column named from and to
-  # if not then name the first column 'from' and name the second column 'to'
-  if (is.data.frame(edges_df)){
-
-    if (nrow(edges_df) > 0 && ncol(edges_df) > 1){
-
-      if (!("from" %in% colnames(edges_df)) || !("to" %in% colnames(edges_df))){
-
-        colnames(edges_df)[1] <- "from"
-        colnames(edges_df)[2] <- "to"
-      }
-
-    } else if (ncol(edges_df) > 0 && ncol(edges_df) < 2){
-      warning("vivagraph expects edges_df to contain at least two columns for source->target",
-              call. = FALSE
-      )
-    }
-  }
-
-  # If 'nodes_df' is a vector then make it a data frame with column named 'id'
-  if (is.vector(nodes_df)){
-
-    nodes_df <- data.frame(id = nodes_df)
-  }
-
-  # Check to see if 'nodes_df' is an igraph object
-  if (inherits(nodes_df, "igraph")){
+  # Check to see if 'graph' is an igraph object
+  if (inherits(graph, "igraph")){
 
     # Try to make this easy if someone accidentally provides an igraph
     # as the first parameter
 
-    igrf <- nodes_df
-    nodes_df <- data.frame()
+    igrf <- graph
+    graph <- NULL
   }
 
   # If we are given an igraph, try to smartly convert using 'get.data.frame'
@@ -142,13 +143,10 @@ vivagraph <- function(graph = NULL,
     igrf_df <- igraph::get.data.frame(igrf, what = "both")
 
     # warn if igraph provided as igrf and also nodes and edges
-    if(nrow(nodes_df) > 0) warning("overwriting nodes with igraph igrf",
+    if(!is.null(graph)) warning("overwriting nodes and edges with igraph igrf",
                                    call. = FALSE)
 
-    if(nrow(edges_df) > 0) warning("overwriting edges with igraph igrf",
-                                   call. = FALSE)
-
-    if(nrow(nodes_df) > 0){
+    if(ncol(igrf_df$vertices) > 0){
 
       nodes_df <-
         data.frame(id = igrf_df$vertices[,1],
