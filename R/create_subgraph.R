@@ -34,6 +34,8 @@
 #' subgraph <- create_subgraph(graph = graph,
 #'                             starting_node = "U",
 #'                             distance = 2)
+#'
+#' render_graph(subgraph, output = "graph")
 #' }
 #' @export create_subgraph
 
