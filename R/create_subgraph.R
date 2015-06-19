@@ -36,6 +36,8 @@
 #'                             distance = 2)
 #'
 #' render_graph(subgraph, output = "graph")
+#'
+#' render_graph(subgraph, output = "vivagraph")
 #' }
 #' @export create_subgraph
 
