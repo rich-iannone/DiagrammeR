@@ -64,12 +64,28 @@ render_graph <- function(graph,
     return(svg_code)
   }
 
-  if (output == "graph"){
+  if (output == "vivagraph"){
 
-    # If the DOT code contains references to images, create an HTML file that
-    # can access those images and display them in the graph
-    if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
-        grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code)){
+    layout <- ifelse(is.null(layout) & node_count(graph) < 1000,
+                     "forceDirected", "constant")
+
+    vivagraph(graph = graph,
+              layout = layout,
+              height = NULL,
+              width = NULL)
+  }
+
+  # If the DOT code contains no references to external images, then simply
+  # use the 'grViz' function to render the graph
+  if (output == "graph" & grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == FALSE){
+
+    grViz(diagram = dot_code, width = width, height = height)
+  }
+
+  # If the DOT code contains references to images, create an HTML file that
+  # can access those images and display them in the graph
+  if (output == "graph" & (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
+      grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code))){
 
       all_replacement_nodes_circles <-
         str_detect(dot_code, "\\[.*?shape[ ]*?=[ ]*?'circle'.*?, img.*?].*") &
@@ -233,23 +249,4 @@ render_graph <- function(graph,
       # Display the HTML file in the Viewer
       rstudioapi::viewer(htmlFile)
     }
-
-    # If the DOT code contains no references to external images, then simply
-    # use the 'grViz' function to render the graph
-    if (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) == FALSE){
-
-      grViz(diagram = dot_code, width = width, height = height)
-    }
-  }
-
-  if (output == "vivagraph"){
-
-    layout <- ifelse(is.null(layout) & node_count(graph) < 1000,
-                     "forceDirected", "constant")
-
-    vivagraph(graph = graph,
-              layout = layout,
-              height = NULL,
-              width = NULL)
-  }
 }
