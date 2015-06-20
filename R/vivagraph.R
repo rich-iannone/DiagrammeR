@@ -1,5 +1,5 @@
-#' Render graphs with VivaGraphJS
-#'
+#' Render graph with VivaGraphJS
+#' @description Render a graph object with the VivaGraphJS library.
 #' @param graph a \code{dgr_graph} object, created using the \code{create_graph} function.
 #' @param igrf \code{igraph} graph. We will try to smartly convert the \code{igrf}
 #'            using \code{get.data.frame(what = "both")}.
@@ -77,51 +77,51 @@ vivagraph <- function(graph = NULL,
 
     nodes_df <- graph$nodes_df
     edges_df <- graph$edges_df
-  
-  
+
+
     #  if nodes_df provided then check to make sure there is a column named id
     #  if not then name the first column id
     if (is.data.frame(nodes_df)){
-  
+
       if (nrow(nodes_df) > 0){
-  
+
         if (!("id" %in% colnames(nodes_df))){
-  
+
           colnames(nodes_df)[1] <- "id"
         }
       }
     }
-  
+
     # Get data frame of node positions if it is provided in graph object
     if (all(c("x", "y") %in% colnames(nodes_df))){
-  
+
       positions <-
         data.frame(x = nodes_df[, which(colnames(nodes_df) %in% "x")],
                    y = nodes_df[, which(colnames(nodes_df) %in% "y")])
     }
-  
+
     # If 'edges_df' provided then check to make sure there is a column named from and to
     # if not then name the first column 'from' and name the second column 'to'
     if (is.data.frame(edges_df)){
-  
+
       if (nrow(edges_df) > 0 && ncol(edges_df) > 1){
-  
+
         if (!("from" %in% colnames(edges_df)) || !("to" %in% colnames(edges_df))){
-  
+
           colnames(edges_df)[1] <- "from"
           colnames(edges_df)[2] <- "to"
         }
-  
+
       } else if (ncol(edges_df) > 0 && ncol(edges_df) < 2){
         warning("vivagraph expects edges_df to contain at least two columns for source->target",
                 call. = FALSE
         )
       }
     }
-  
+
     # If 'nodes_df' is a vector then make it a data frame with column named 'id'
     if (is.vector(nodes_df)){
-  
+
       nodes_df <- data.frame(id = nodes_df)
     }
   }
