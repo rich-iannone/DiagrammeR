@@ -44,9 +44,17 @@ graph <- create_graph(nodes_df = nodes,
                       edge_attrs = c("color = gray20",
                                      "arrowsize = 0.5"))
 
+# Create a subgraph centered around node "U" and include
+# those nodes up to (and including) 2 connections away
 subgraph <- create_subgraph(graph = graph,
                             starting_node = "U",
                             distance = 2)
+
+# Render the graph using Graphviz
+render_graph(subgraph)
+
+# Render the graph using VivaGraph
+render_graph(subgraph, output = "vivagraph")
 }
 }
 

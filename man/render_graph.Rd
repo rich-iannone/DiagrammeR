@@ -51,7 +51,11 @@ graph <-
                edge_attrs = c("color = gray20",
                               "arrowsize = 0.5"))
 
+# Render the graph using Graphviz
 render_graph(graph)
+
+# Render the graph using VivaGraph
+render_graph(graph, output = "vivagraph")
 }
 }
 
