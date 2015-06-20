@@ -2,7 +2,7 @@
 % Please edit documentation in R/vivagraph.R
 \name{vivagraph}
 \alias{vivagraph}
-\title{Render graphs with VivaGraphJS}
+\title{Render graph with VivaGraphJS}
 \usage{
 vivagraph(graph = NULL, igrf = NULL, layout = "forceDirected",
   positions = NULL, config = NULL, height = NULL, width = NULL,
@@ -35,7 +35,7 @@ for our htmlwidget.}
 \item{elementID}{\code{string} with a valid CSS \code{id}.}
 }
 \description{
-Render graphs with VivaGraphJS
+Render a graph object with the VivaGraphJS library.
 }
 \examples{
 \dontrun{
