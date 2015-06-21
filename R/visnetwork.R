@@ -38,6 +38,6 @@ visnetwork <- function(graph,
 
   # Render the graph
   visNetwork(nodes = nodes, edges = edges) %>%
-    visEdges(arrow = 'from', color = 'gray') %>%
+    visEdges(arrow = 'to', color = 'gray') %>%
     visInteraction(navigationButtons = TRUE)
 }
