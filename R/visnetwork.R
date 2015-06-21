@@ -10,7 +10,8 @@ visnetwork <- function(graph,
   nodes <- graph$nodes_df
   edges <- graph$edges_df
 
-  # Modify names of columns for visNetwork
+  # Modify names of columns in 'nodes' for compatibility with
+  # visNetwork data frames for nodes
   colnames(nodes)[which(colnames(nodes) == "nodes")] <- "id"
   colnames(nodes)[which(colnames(nodes) == "type")] <- "group"
   colnames(nodes)[which(colnames(nodes) == "fillcolor")] <- "color"
