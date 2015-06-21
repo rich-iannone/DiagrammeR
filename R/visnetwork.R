@@ -19,6 +19,9 @@ visnetwork <- function(graph,
   # Modify names of columns in 'edges' for compatibility with
   # visNetwork data frames for edges
   colnames(edges)[which(colnames(edges) == "relationship")] <- "label"
+  colnames(edges)[which(colnames(edges) == "label")] <- "title"
+  colnames(edges)[which(colnames(edges) == "penwidth")] <- "value"
+
 
   # Change all X11 colors to hexadecimal values
   for (i in 1:length(nodes$color)){
