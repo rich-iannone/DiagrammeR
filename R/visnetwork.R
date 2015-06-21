@@ -15,6 +15,9 @@ visnetwork <- function(graph,
   colnames(nodes)[which(colnames(nodes) == "nodes")] <- "id"
   colnames(nodes)[which(colnames(nodes) == "type")] <- "group"
   colnames(nodes)[which(colnames(nodes) == "fillcolor")] <- "color"
+
+  # Modify names of columns in 'edges' for compatibility with
+  # visNetwork data frames for edges
   colnames(edges)[which(colnames(edges) == "relationship")] <- "label"
 
   # Change all X11 colors to hexadecimal values
