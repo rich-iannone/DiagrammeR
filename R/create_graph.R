@@ -1,14 +1,29 @@
 #' Create a graph object using data frames representative of nodes and edges
-#' @description Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
-#' @param nodes_df an optional data frame containing, at minimum, a column (called \code{nodes}) which contains node IDs for the graph. Additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.
-#' @param edges_df an optional data frame containing, at minimum, a column (called \code{edge_op}) with edge operations as character strings (in the form of \code{[node_id] -> [node_id]}). Alternatively, there may be two columns (called \code{from} and \code{to}) where node IDs are provided. Additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.
-#' @param graph_attrs an optional vector of graph attribute statements that can serve as defaults for the graph.
-#' @param node_attrs an optional vector of node attribute statements that can serve as defaults for nodes.
-#' @param edge_attrs an optional vector of edge attribute statements that can serve as defaults for edges.
-#' @param directed with \code{TRUE} (the default) or \code{FALSE}, either directed or undirected edge operations will be generated, respectively.
+#' @description Generates a graph object using data frames for nodes and/or
+#' edges; the graph object can be manipulated by other functions.
+#' @param nodes_df an optional data frame containing, at minimum, a column
+#' (called \code{nodes}) which contains node IDs for the graph. Additional
+#' columns (named as Graphviz node attributes) can be included with values for
+#' the named node attribute.
+#' @param edges_df an optional data frame containing, at minimum, two
+#' columns (called \code{from} and \code{to}) where node IDs are provided.
+#' Additional columns (named as Graphviz edge attributes) can be included with
+#' values for the named edge attribute.
+#' @param graph_attrs an optional vector of graph attribute statements that
+#' can serve as defaults for the graph.
+#' @param node_attrs an optional vector of node attribute statements that can
+#' serve as defaults for nodes.
+#' @param edge_attrs an optional vector of edge attribute statements that can
+#' serve as defaults for edges.
+#' @param directed with \code{TRUE} (the default) or \code{FALSE}, either
+#' directed or undirected edge operations will be generated, respectively.
 #' @param graph_name an optional string for labeling the graph object.
-#' @param graph_time a date or date-time string (required for insertion of graph into a graph series of the type \code{temporal}).
-#' @param graph_tz an optional value for the time zone (\code{tz}) corresponding to the date or date-time string supplied as a value to \code{graph_time}. If no time zone is provided then it will be set to \code{GMT}.
+#' @param graph_time a date or date-time string (required for insertion of
+#' graph into a graph series of the type \code{temporal}).
+#' @param graph_tz an optional value for the time zone (\code{tz})
+#' corresponding to the date or date-time string supplied as a value to
+#' \code{graph_time}. If no time zone is provided then it will be set to
+#' \code{GMT}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -57,30 +72,33 @@ create_graph <- function(nodes_df = NULL,
                          graph_tz = NULL){
 
   # Create vector of graph attributes
-  graph_attributes <- c("bgcolor", "layout", "overlap", "fixedsize", "mindist",
-                        "nodesep", "outputorder", "ranksep", "rankdir", "stylesheet")
+  graph_attributes <-
+    c("bgcolor", "layout", "overlap", "fixedsize", "mindist",
+      "nodesep", "outputorder", "ranksep", "rankdir", "stylesheet")
 
   # Create vector of node attributes
-  node_attributes <- c("color", "distortion", "fillcolor",
-                       "fixedsize", "fontcolor", "fontname", "fontsize",
-                       "group", "height", "label", "labelloc", "margin",
-                       "orientation", "penwidth", "peripheries", "pos", "shape",
-                       "sides", "skew", "style", "tooltip", "width", "img", "icon")
+  node_attributes <-
+    c("color", "distortion", "fillcolor",
+      "fixedsize", "fontcolor", "fontname", "fontsize",
+      "group", "height", "label", "labelloc", "margin",
+      "orientation", "penwidth", "peripheries", "pos", "shape",
+      "sides", "skew", "style", "tooltip", "width", "img", "icon")
 
   # Create vector of edge attributes
-  edge_attributes <- c("arrowhead", "arrowsize", "arrowtail", "color",
-                       "constraint", "decorate", "dir",
-                       "edgeURL", "edgehref", "edgetarget", "edgetooltip",
-                       "fontcolor", "fontname", "fontsize", "headclip",
-                       "headhref", "headlabel", "headport", "headtarget",
-                       "headtooltip", "headURL", "href", "id", "label",
-                       "labelangle", "labeldistance", "labelfloat", "labelfontcolor",
-                       "labelfontname", "labelfontsize", "labelhref", "labelURL",
-                       "labeltarget", "labeltooltip", "layer", "lhead",
-                       "ltail", "minlen", "penwidth", "samehead",
-                       "sametail", "style", "tailclip", "tailhref",
-                       "taillabel", "tailport", "tailtarget", "tailtooltip",
-                       "tailURL", "target", "tooltip", "weight")
+  edge_attributes <-
+    c("arrowhead", "arrowsize", "arrowtail", "color",
+      "constraint", "decorate", "dir",
+      "edgeURL", "edgehref", "edgetarget", "edgetooltip",
+      "fontcolor", "fontname", "fontsize", "headclip",
+      "headhref", "headlabel", "headport", "headtarget",
+      "headtooltip", "headURL", "href", "id", "label",
+      "labelangle", "labeldistance", "labelfloat", "labelfontcolor",
+      "labelfontname", "labelfontsize", "labelhref", "labelURL",
+      "labeltarget", "labeltooltip", "layer", "lhead",
+      "ltail", "minlen", "penwidth", "samehead",
+      "sametail", "style", "tailclip", "tailhref",
+      "taillabel", "tailport", "tailtarget", "tailtooltip",
+      "tailURL", "target", "tooltip", "weight")
 
   # If nodes, edges, and attributes not provided, create empty graph
   if (all(c(is.null(nodes_df), is.null(edges_df),
@@ -160,50 +178,71 @@ create_graph <- function(nodes_df = NULL,
 
   # Create the default attributes statement for graph attributes
   if (!is.null(graph_attrs)){
-    graph_attr_stmt <- paste0("graph [", paste(graph_attrs, collapse = ",\n       "), "]\n")
+    graph_attr_stmt <-
+      paste0("graph [",
+             paste(graph_attrs,
+                   collapse = ",\n       "), "]\n")
   }
 
   # Create the default attributes statement for node attributes
   if (!is.null(node_attrs)){
-    node_attr_stmt <- paste0("node [", paste(node_attrs, collapse = ",\n     "), "]\n")
+    node_attr_stmt <-
+      paste0("node [", paste(node_attrs,
+                             collapse = ",\n     "), "]\n")
   }
 
   # Create the default attributes statement for edge attributes
   if (!is.null(edge_attrs)){
-    edge_attr_stmt <- paste0("edge [", paste(edge_attrs, collapse = ",\n     "), "]\n")
+    edge_attr_stmt <-
+      paste0("edge [", paste(edge_attrs,
+                             collapse = ",\n     "), "]\n")
   }
 
   # Combine default attributes into a single block
-  if (exists("graph_attr_stmt") & exists("node_attr_stmt") & exists("edge_attr_stmt")){
+  if (exists("graph_attr_stmt") &
+      exists("node_attr_stmt") &
+      exists("edge_attr_stmt")){
     combined_attr_stmts <- paste(graph_attr_stmt,
                                  node_attr_stmt,
                                  edge_attr_stmt, sep = "\n")
   }
 
-  if (!exists("graph_attr_stmt") & exists("node_attr_stmt") & exists("edge_attr_stmt")){
+  if (!exists("graph_attr_stmt") &
+      exists("node_attr_stmt") &
+      exists("edge_attr_stmt")){
     combined_attr_stmts <- paste(node_attr_stmt,
                                  edge_attr_stmt, sep = "\n")
   }
 
-  if (exists("graph_attr_stmt") & !exists("node_attr_stmt") & exists("edge_attr_stmt")){
+  if (exists("graph_attr_stmt") &
+      !exists("node_attr_stmt") &
+      exists("edge_attr_stmt")){
     combined_attr_stmts <- paste(graph_attr_stmt,
                                  edge_attr_stmt, sep = "\n")
   }
 
-  if (exists("graph_attr_stmt") & exists("node_attr_stmt") & !exists("edge_attr_stmt")){
+  if (exists("graph_attr_stmt") &
+      exists("node_attr_stmt") &
+      !exists("edge_attr_stmt")){
     combined_attr_stmts <- paste(graph_attr_stmt,
                                  node_attr_stmt, sep = "\n")
   }
 
-  if (exists("graph_attr_stmt") & !exists("node_attr_stmt") & !exists("edge_attr_stmt")){
+  if (exists("graph_attr_stmt") &
+      !exists("node_attr_stmt") &
+      !exists("edge_attr_stmt")){
     combined_attr_stmts <- paste0(graph_attr_stmt, "\n")
   }
 
-  if (!exists("graph_attr_stmt") & exists("node_attr_stmt") & !exists("edge_attr_stmt")){
+  if (!exists("graph_attr_stmt") &
+      exists("node_attr_stmt") &
+      !exists("edge_attr_stmt")){
     combined_attr_stmts <- paste0(node_attr_stmt, "\n")
   }
 
-  if (!exists("graph_attr_stmt") & !exists("node_attr_stmt") & exists("edge_attr_stmt")){
+  if (!exists("graph_attr_stmt") &
+      !exists("node_attr_stmt") &
+      exists("edge_attr_stmt")){
     combined_attr_stmts <- paste0(edge_attr_stmt, "\n")
   }
 
@@ -244,8 +283,9 @@ create_graph <- function(nodes_df = NULL,
     if (!is.na(column_with_alpha_assigned)){
 
       # Determine number of color attributes in node data frame
-      number_of_col_attr <- length(which(colnames(nodes_df) %in%
-                                           c("color", "fillcolor", "fontcolor")))
+      number_of_col_attr <-
+        length(which(colnames(nodes_df) %in%
+                       c("color", "fillcolor", "fontcolor")))
 
       # If number of color attrs in df is 1, rename referencing alpha column
       if (number_of_col_attr == 1){
@@ -277,7 +317,8 @@ create_graph <- function(nodes_df = NULL,
               colnames(nodes_df)[color_attr_column_no])){
 
         # Append alpha for color values that are X11 color names
-        if (all(grepl("[a-z]*", as.character(nodes_df[,color_attr_column_no]))) &
+        if (all(grepl("[a-z]*",
+                      as.character(nodes_df[,color_attr_column_no]))) &
             all(as.character(nodes_df[,color_attr_column_no]) %in%
                 x11_hex()[,1])){
 
@@ -335,7 +376,8 @@ create_graph <- function(nodes_df = NULL,
           } else if (all(colnames(nodes_df)[j] %in% c("label", "tooltip"),
                          nodes_df[i, j] != '')){
 
-            attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
+            attribute <-
+              paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
 
           } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
                          nodes_df[i, j] == '')){
@@ -345,7 +387,8 @@ create_graph <- function(nodes_df = NULL,
           } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
                          nodes_df[i, j] != '')){
 
-            attribute <- paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
+            attribute <-
+              paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
           }
 
           attr_string <- c(attr_string, attribute)
