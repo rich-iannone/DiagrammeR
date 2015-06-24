@@ -9,29 +9,44 @@ create_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
   graph_name = NULL, graph_time = NULL, graph_tz = NULL)
 }
 \arguments{
-\item{nodes_df}{an optional data frame containing, at minimum, a column (called \code{nodes}) which contains node IDs for the graph. Additional columns (named as Graphviz node attributes) can be included with values for the named node attribute.}
+\item{nodes_df}{an optional data frame containing, at minimum, a column
+(called \code{nodes}) which contains node IDs for the graph. Additional
+columns (named as Graphviz node attributes) can be included with values for
+the named node attribute.}
 
-\item{edges_df}{an optional data frame containing, at minimum, a column (called \code{edge_op}) with edge operations as character strings (in the form of \code{[node_id] -> [node_id]}). Alternatively, there may be two columns (called \code{from} and \code{to}) where node IDs are provided. Additional columns (named as Graphviz edge attributes) can be included with values for the named edge attribute.}
+\item{edges_df}{an optional data frame containing, at minimum, two
+columns (called \code{from} and \code{to}) where node IDs are provided.
+Additional columns (named as Graphviz edge attributes) can be included with
+values for the named edge attribute.}
 
-\item{graph_attrs}{an optional vector of graph attribute statements that can serve as defaults for the graph.}
+\item{graph_attrs}{an optional vector of graph attribute statements that
+can serve as defaults for the graph.}
 
-\item{node_attrs}{an optional vector of node attribute statements that can serve as defaults for nodes.}
+\item{node_attrs}{an optional vector of node attribute statements that can
+serve as defaults for nodes.}
 
-\item{edge_attrs}{an optional vector of edge attribute statements that can serve as defaults for edges.}
+\item{edge_attrs}{an optional vector of edge attribute statements that can
+serve as defaults for edges.}
 
-\item{directed}{with \code{TRUE} (the default) or \code{FALSE}, either directed or undirected edge operations will be generated, respectively.}
+\item{directed}{with \code{TRUE} (the default) or \code{FALSE}, either
+directed or undirected edge operations will be generated, respectively.}
 
 \item{graph_name}{an optional string for labeling the graph object.}
 
-\item{graph_time}{a date or date-time string (required for insertion of graph into a graph series of the type \code{temporal}).}
+\item{graph_time}{a date or date-time string (required for insertion of
+graph into a graph series of the type \code{temporal}).}
 
-\item{graph_tz}{an optional value for the time zone (\code{tz}) corresponding to the date or date-time string supplied as a value to \code{graph_time}. If no time zone is provided then it will be set to \code{GMT}.}
+\item{graph_tz}{an optional value for the time zone (\code{tz})
+corresponding to the date or date-time string supplied as a value to
+\code{graph_time}. If no time zone is provided then it will be set to
+\code{GMT}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Generates a graph object using data frames for nodes and/or edges; the graph object can be manipulated by other functions.
+Generates a graph object using data frames for nodes and/or
+edges; the graph object can be manipulated by other functions.
 }
 \examples{
 \dontrun{
