@@ -42,22 +42,6 @@ visnetwork <- function(graph,
   colnames(edges)[which(colnames(edges) == "label")] <- "title"
   colnames(edges)[which(colnames(edges) == "penwidth")] <- "value"
 
-  # Change all X11 colors to hexadecimal values for node colors
-  # colors to hexadecimal
-  x11_to_hex <- function(graph){
-
-    for (i in 1:length(flights_graph$nodes_df$color)){
-
-      if (i == 1) hex_color_values <- vector(mode = 'character', length = 0)
-
-      a_hex_color <- x11_hex()[which(x11_hex()[,1] %in% nodes_df$color[i]),2]
-
-      hex_color_values <- c(hex_color_values, a_hex_color)
-    }
-
-    nodes_df$color <- hex_color_values
-  }
-
   # Render the graph
   visNetwork(nodes = nodes, edges = edges) %>%
     visEdges(arrow = 'to', color = 'gray') %>%
