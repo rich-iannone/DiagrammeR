@@ -78,6 +78,9 @@ test_that("edge data frames can be successfully combined", {
   #> 7    h  f     receives   red            dot
   #> 8    h  e     receives   red            dot
 
+  # Expect that a data frame is generated
+  expect_true(class(all_edges) == "data.frame")
+
   # Expect that the combined edge data frame has 8 rows
   expect_equal(nrow(all_edges), 8L)
 
