@@ -40,7 +40,7 @@ test_that("a correct edge data frame is generated", {
   expect_equal(nrow(edges_1), 4L)
   expect_equal(nrow(edges_2), 4L)
 
-  # Expect that each of the node data frames has 5 columns
+  # Expect that each of the edge data frames has 5 columns
   expect_equal(ncol(edges_1), 5L)
   expect_equal(ncol(edges_2), 5L)
 
