@@ -60,7 +60,8 @@ delete_edge <- function(graph,
       row.names(revised_edges_df) <- NULL
 
       dgr_graph <- create_graph(nodes_df = graph$nodes_df,
-                                 edges_df = revised_edges_df)
+                                 edges_df = revised_edges_df,
+                                graph_attrs = graph$graph_attrs)
     }
   }
 
