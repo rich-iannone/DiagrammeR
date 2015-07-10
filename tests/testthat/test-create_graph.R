@@ -14,6 +14,9 @@ test_that("an empty graph object can be created and such an object is correct", 
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph) == "dgr_graph")
 
+  # Expect that the use of 'is_graph_empty' function will result in TRUE
+  expect_true(is_graph_empty(graph))
+
   # Expect that several of the graph components are NULL
   expect_null(graph$graph_name)
   expect_null(graph$graph_time)
@@ -26,6 +29,9 @@ test_that("an empty graph object can be created and such an object is correct", 
 
   # Expect that the empty graph is directed by default
   expect_true(graph$directed)
+
+  # Expect that the 'is_graph_directed' function will return TRUE
+  expect_true(is_graph_directed(graph))
 
   # Expect that the Graphviz DOT code for an empty graph
   # is essentially an empty Graphviz diagram
