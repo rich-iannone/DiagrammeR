@@ -9,9 +9,6 @@ test_that("adding a node to a graph is possible", {
   graph <- add_node(graph, node = "a")
   graph <- add_node(graph, node = "b")
 
-  # Create the graph object using the node data frame
-  graph <- create_graph(nodes_df = nodes)
-
   # Expect that names in this graph object match a prescribed set of names
   expect_true(all(names(graph) == c("graph_name", "graph_time", "graph_tz",
                                     "nodes_df", "edges_df", "graph_attrs",
