@@ -1,8 +1,8 @@
-context("Creating a graph series can be done")
+context("Creating and manipulating graph series objects")
 
 test_that("creating an empty series is possible", {
 
-  # Create an empty graph series
+  # Create an empty graph series of the 'sequential' type
   series <- create_series(series_type = "sequential")
 
   # Expect an object of class "dgr_graph_1D"
@@ -18,6 +18,23 @@ test_that("creating an empty series is possible", {
 
   # Expect that the series is empty
   expect_equal(graph_count(series), 0)
+
+  # Create an empty graph series of the 'temporal' type
+  series_temporal <- create_series(series_type = "temporal")
+
+  # Expect that this series is empty
+  expect_equal(graph_count(series_temporal), 0)
+
+  # Expect that several series components are NULL
+  expect_null(series_temporal$graphs)
+  expect_null(series_temporal$series_name)
+  expect_null(series_temporal$series_scripts)
+
+  # Expect an object of class "dgr_graph_1D"
+  expect_is(series_temporal, "dgr_graph_1D")
+
+  # Expect that the series type is sequential
+  expect_equal(series_temporal$series_type, "temporal")
 })
 
 test_that("adding graphs to a series is also possible", {
@@ -72,4 +89,122 @@ test_that("adding graphs to a series is also possible", {
   expect_equivalent(graph_1, series$graphs[[1]])
   expect_equivalent(graph_2, series$graphs[[2]])
   expect_equivalent(graph_3, series$graphs[[3]])
+})
+
+test_that("removing graphs from a series is possible", {
+
+  library(magrittr)
+
+  # Create an empty graph series
+  series <- create_series(series_type = "sequential")
+
+  # Create three different graphs
+  graph_1 <- create_graph() %>%
+    add_node("a") %>% add_node("b") %>% add_node("c") %>%
+    add_edges(from = c("a", "a", "b"),
+              to   = c("c", "b", "c"))
+
+  graph_2 <- graph_1 %>%
+    add_node("d") %>% add_edges(from = "d", to = "c")
+
+  graph_3 <- graph_2 %>%
+    add_node("e") %>% add_edges(from = "e", to = "b")
+
+  # Add graphs to the graph series
+  series <- graph_1 %>% add_to_series(series)
+  series <- graph_2 %>% add_to_series(series)
+  series <- graph_3 %>% add_to_series(series)
+
+  # Expect that the series has a graph count of 3
+  expect_equal(graph_count(series), 3L)
+  expect_equal(length(series$graphs), 3L)
+
+  # Remove the last graph from the series
+  series_2 <- remove_from_series(graph_series = series)
+
+  # Expect that the graph count is now 2
+  expect_equal(graph_count(series_2), 2L)
+
+  # Remove the first graph from the series
+  series_removed_1 <- remove_from_series(graph_series = series, index = 1)
+
+  # Expect that the first created graph is not in the series
+  expect_false(series_removed_1$graphs[[1]]$dot_code == graph_1$dot_code)
+
+  # Expect that graph 1 in the series is equivalent to the 'graph_2' object
+  expect_true(series_removed_1$graphs[[1]]$dot_code == graph_2$dot_code)
+})
+
+test_that("subsetting graphs from a temporal series is possible", {
+
+  library(magrittr)
+
+  # Create three graphs with the time attributes set
+  graph_time_1 <-
+    create_graph(graph_name = "graph_with_time_1",
+                 graph_time = "2015-03-25 03:00",
+                 graph_tz = "GMT") %>%
+    add_node("a") %>% add_node("b") %>% add_node("c") %>%
+    add_edges(from = c("a", "a", "b"),
+              to =   c("c", "b", "c"))
+
+  graph_time_2 <-
+    create_graph(graph_name = "graph_with_time_2",
+                 graph_time = "2015-03-26 03:00",
+                 graph_tz = "GMT") %>%
+    add_node("d") %>% add_node("e") %>% add_node("f") %>%
+    add_edges(from = c("d", "d", "e"),
+              to =   c("f", "e", "f"))
+
+  graph_time_3 <-
+    create_graph(graph_name = "graph_with_time_3",
+                 graph_time = "2015-03-27 15:00",
+                 graph_tz = "GMT") %>%
+    add_node("x") %>% add_node("y") %>% add_node("z") %>%
+    add_edges(from = c("x", "x", "y"),
+              to =   c("z", "y", "z"))
+
+  # Create an empty graph series
+  series_temporal <- create_series(series_type = "temporal")
+
+  # Add graphs to the graph series
+  series_temporal <- graph_time_1 %>% add_to_series(series_temporal)
+  series_temporal <- graph_time_2 %>% add_to_series(series_temporal)
+  series_temporal <- graph_time_3 %>% add_to_series(series_temporal)
+
+  # Expect a graph count of 3
+  expect_equal(graph_count(series_temporal), 3L)
+
+  # Subset graph series by sequence
+  series_sequence_subset <-
+    subset_series(graph_series = series_temporal,
+                  by = "number",
+                  values = 2)
+
+  # Expect a single graph in the series
+  expect_equal(graph_count(series_sequence_subset), 1L)
+
+  # Expect that this subset graph is the same as 'graph_time_2'
+  expect_true(series_sequence_subset$graphs[[1]]$dot_code ==
+                graph_time_2$dot_code)
+
+  # Subset graph series by date-time
+  series_time_subset <-
+    subset_series(graph_series = series_temporal,
+                  by = "time",
+                  values = c("2015-03-25 12:00",
+                             "2015-03-26 12:00"),
+                  tz = "GMT")
+
+  # Expect a single graph in the series
+  expect_equal(graph_count(series_time_subset), 1L)
+
+  # Expect that the time for the subset graph is within the
+  # bounds specified when calling 'subset_series'
+  expect_true(all(c(as.POSIXct(series_time_subset$graphs[[1]]$graph_time,
+             tz = series_time_subset$graphs[[1]]$graph_tz) >
+    as.POSIXct("2015-03-25 12:00", tz = "GMT"),
+    as.POSIXct(series_time_subset$graphs[[1]]$graph_time,
+               tz = series_time_subset$graphs[[1]]$graph_tz) <
+    as.POSIXct("2015-03-26 12:00", tz = "GMT"))))
 })
