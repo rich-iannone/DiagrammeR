@@ -8,16 +8,6 @@ test_that("values are scaled correctly", {
                         type = "example",
                         data = c(1, 2, 3, 4, 5, 10, 20))
 
-  # Result
-  #>   nodes label    type data
-  #> 1     1       example    1
-  #> 2     2       example    2
-  #> 3     3       example    3
-  #> 4     4       example    4
-  #> 5     5       example    5
-  #> 6     6       example   10
-  #> 7     7       example   20
-
   # Use the 'scale_nodes' function to create an attribute column
   # that's scaled to data in another column
   nodes <- scale_nodes(nodes_df = nodes,
@@ -25,27 +15,11 @@ test_that("values are scaled correctly", {
                        node_attr = "penwidth",
                        range = c(2, 5))
 
-  # Result
-  #>   nodes label    type data penwidth
-  #> 1     1       example    1 2.000000
-  #> 2     2       example    2 2.157895
-  #> 3     3       example    3 2.315789
-  #> 4     4       example    4 2.473684
-  #> 5     5       example    5 2.631579
-  #> 6     6       example   10 3.421053
-  #> 7     7       example   20 5.000000
-
   # Create a data frame for edges and insert a data column
   edges <- create_edges(from = c("a", "b", "c"),
                         to = c("d", "d", "a"),
                         relationship = "given_to",
                         data = c(2.5, 3.2, 7.9))
-
-  # Result
-  #>   from to relationship data
-  #> 1    a  d     given_to  2.5
-  #> 2    b  d     given_to  3.2
-  #> 3    c  a     given_to  7.9
 
   # Use the 'scale_edges' function to create an attribute column
   # that's scaled to data in another column
@@ -53,12 +27,6 @@ test_that("values are scaled correctly", {
                        to_scale = edges$data,
                        edge_attr = "penwidth",
                        range = c(1, 5))
-
-  # Result
-  #>   from to relationship data penwidth
-  #> 1    a  d     given_to  2.5 1.000000
-  #> 2    b  d     given_to  3.2 1.518519
-  #> 3    c  a     given_to  7.9 5.000000
 
   # Expect that a data frame is generated when using 'scale_nodes'
   expect_true(class(nodes) == "data.frame")
