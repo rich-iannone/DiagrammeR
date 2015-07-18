@@ -84,3 +84,14 @@ test_that("getting an edge count for a graph is possible", {
   expect_is(total_count_of_edges, "integer")
   expect_equal(total_count_of_edges, 26L)
 })
+
+test_that("getting a node/edge count for an empty graph is possible", {
+
+  empty_graph <- create_graph()
+
+  # Expect that a node count of an empty graph will return 0
+  expect_equal(node_count(empty_graph), 0L)
+
+  # Expect that an edge count of an empty graph will return 0
+  expect_equal(edge_count(empty_graph), 0L)
+})
