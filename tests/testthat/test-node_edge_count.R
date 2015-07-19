@@ -91,7 +91,9 @@ test_that("getting a node/edge count for an empty graph is possible", {
 
   # Expect that a node count of an empty graph will return 0
   expect_equal(node_count(empty_graph), 0L)
+  expect_equal(node_count(empty_graph, type = FALSE), 0L)
 
   # Expect that an edge count of an empty graph will return 0
   expect_equal(edge_count(empty_graph), 0L)
+  expect_equal(edge_count(empty_graph, relationship = FALSE), 0L)
 })
