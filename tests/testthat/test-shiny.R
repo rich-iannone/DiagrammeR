@@ -124,3 +124,46 @@ test_that("creating a shiny app with a graph object is possible", {
   expect_null(the_shiny_app$onStart)
   expect_equal(length(the_shiny_app$options), 0L)
 })
+
+test_that("creating a shiny app with mermaid code is possible", {
+
+  library(shiny)
+
+  # Use mermaid graphing code in a character object
+  diagram_mermaid_code <- "
+  graph LR
+    A-->B
+    A-->C
+    C-->E
+    B-->D
+    C-->D
+    D-->F
+    E-->F
+"
+
+  # Create the shiny app "server" object
+  server <- function(input, output) {
+    output$diagram_mermaid_code <- renderDiagrammeR({
+      grViz({
+        diagram_mermaid_code
+      })
+    })
+  }
+
+  # Create the shiny app "ui" object
+  ui <- fluidPage(
+    DiagrammeROutput('diagram_mermaid_code', width = "100%", height = "760px")
+  )
+
+  # Create shiny app as an object
+  the_shiny_app <- shinyApp(ui = ui, server = server)
+
+  # Expect that the 'the_shiny_app' is indeed a shiny app
+  expect_is(the_shiny_app, "shiny.appobj")
+
+  # Expect that the shiny app contains the requisite components
+  expect_is(the_shiny_app$httpHandler, "function")
+  expect_is(the_shiny_app$serverFuncSource, "function")
+  expect_null(the_shiny_app$onStart)
+  expect_equal(length(the_shiny_app$options), 0L)
+})
