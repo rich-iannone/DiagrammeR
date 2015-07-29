@@ -27,8 +27,10 @@ edge_relationship <- function(graph,
 
     edge_row <- which(graph$edges_df$from == from & graph$edges_df$to == to)
 
-    relationship_set <- ifelse(graph$edges_df$relationship[edge_row] == "",
-                               FALSE, TRUE)
+    relationship_set <-
+      ifelse(is.null(graph$edges_df$relationship[edge_row]) ||
+               graph$edges_df$relationship[edge_row] == "",
+             FALSE, TRUE)
 
     # Remove relationship if a relationship is set
     if (action %in% c("delete", "remove", "drop")){
