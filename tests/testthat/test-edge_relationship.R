@@ -41,4 +41,25 @@ test_that("a specified edge relationship can be read from graph objects", {
                                  to = "d",
                                  action = "read"),
                "leading_to")
+
+  # Create an edge data frame with no edge relationships set
+  edges_no_rel <-
+    create_edges(from = c("a", "b", "c"),
+                 to = c("d", "c", "a"))
+
+  # Create the graph object using the node and edge data frames
+  graph_no_rel <-
+    create_graph(nodes_df = nodes,
+                 edges_df = edges_no_rel,
+                 graph_attrs = "layout = dot",
+                 node_attrs = "fontname = Helvetica",
+                 edge_attrs = c("color = blue",
+                                "arrowsize = 2"))
+
+  # Expect an NA value to be returned when reading an unset
+  # relationship for an edge
+  expect_true(is.na(edge_relationship(graph_no_rel,
+                                 from = "a",
+                                 to = "d",
+                                 action = "read")))
 })
