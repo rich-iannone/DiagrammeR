@@ -1,6 +1,6 @@
 context("Edge relationships")
 
-test_that("edge relationships can be determined", {
+test_that("a specified edge relationship can be read from graph objects", {
 
   # Create a node data frame
   nodes <-
