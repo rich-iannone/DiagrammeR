@@ -58,7 +58,21 @@ edge_relationship <- function(graph,
 
       if (relationship_set == FALSE & !is.null(value)){
 
-        graph$edges_df$relationship[edge_row] <- value
+        if (is.null(graph$edges_df$relationship)){
+
+          rel_col <-
+            vector(mode = "character",
+                 length = nrow(graph$edges_df))
+
+          rel_col[edge_row] <- value
+
+          graph$edges_df$relationship <- rel_col
+        }
+
+        if (!is.null(graph$edges_df$relationship)){
+
+          graph$edges_df$relationship[edge_row] <- value
+        }
 
         return(graph)
       }
