@@ -168,6 +168,16 @@ test_that("removing an edge relationship is possible", {
                                  from = "a",
                                  to = "d",
                                  action = "check"))
+
+  # Attempt to remove an edge relationship across the 'a->d' edge
+  # where the relationship had already been removed; the expectation
+  # is that nothing will occur and the graph will be returned unchanged
+  expect_equal(graph_ad_remove_1,
+    edge_relationship(graph_ad_remove_1,
+                      from = "a",
+                      to = "d",
+                      action = "delete"))
+
 })
 
 test_that("edge relationships can be set for edges in graph objects", {
@@ -204,6 +214,17 @@ test_that("edge relationships can be set for edges in graph objects", {
                       to = "d",
                       action = "add",
                       value = "new_rel")
+
+  # Attempt to add an edge relationship across the 'a->d' edge
+  # where a relationship already exists; the expectation
+  # is that nothing will occur and the graph will be returned unchanged
+  # (update must be used to make a change to an extant relationship)
+  expect_equal(graph_ad_rel,
+               edge_relationship(graph_ad_rel,
+                                 from = "a",
+                                 to = "d",
+                                 action = "add",
+                                 value = "newer_rel"))
 
   # Expect a TRUE value to be returned when inspecting the
   # 'a->d' edge "check" action but FALSE for the other edges
