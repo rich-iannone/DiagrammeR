@@ -7,12 +7,15 @@
 display_graph_object(graph, width = 400)
 }
 \arguments{
-\item{graph}{a \code{dgr_graph} object, created using the \code{create_graph} function.}
+\item{graph}{a \code{dgr_graph} object, created using the
+\code{create_graph} function.}
 
 \item{width}{the width of the graph representation in pixels.}
 }
 \description{
-Using a \code{dgr_graph} object, update values of counts for nodes, edges, attributes, directed state, and display the schematic in the RStudio Viewer.
+Using a \code{dgr_graph} object, update values of counts for
+nodes, edges, attributes, directed state, and display the schematic in the
+RStudio Viewer.
 }
 \examples{
 \dontrun{

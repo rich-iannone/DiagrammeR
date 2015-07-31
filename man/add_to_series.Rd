@@ -9,13 +9,16 @@ add_to_series(graph, graph_series)
 \arguments{
 \item{graph}{a graph object to add to the graph series object.}
 
-\item{graph_series}{a graph series object to which the graph object will be added.}
+\item{graph_series}{a graph series object to which the graph object will be
+added.}
 }
 \value{
 a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
-Add a graph object to an extant graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
+Add a graph object to an extant graph series object for
+storage of multiple graphs across a sequential or temporal one-dimensional
+array.
 }
 \examples{
 \dontrun{

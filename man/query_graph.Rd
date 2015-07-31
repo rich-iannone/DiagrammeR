@@ -15,6 +15,7 @@ query_graph(graph, query)
 a graph selection object
 }
 \description{
-With a graph object, perform a query to return a graph selection.
+With a graph object, perform a query to return a graph
+selection.
 }
 

@@ -8,7 +8,8 @@ add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
   relationship = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\code{create_graph}.}
 
 \item{edges_df}{an edge data frame that is created using \code{create_edges}.}
 
@@ -16,13 +17,15 @@ add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
 
 \item{to}{a vector of the incoming nodes to which each edge is connected.}
 
-\item{relationship}{a string specifying the relationship between the connected nodes.}
+\item{relationship}{a string specifying the relationship between the
+connected nodes.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class \code{dgr_graph}, add one or more edges of specified types to nodes within the graph.
+With a graph object of class \code{dgr_graph}, add one or more
+edges of specified types to nodes within the graph.
 }
 \examples{
 \dontrun{

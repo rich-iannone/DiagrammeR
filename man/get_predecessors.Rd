@@ -15,7 +15,8 @@ get_predecessors(graph, node)
 a vector of node ID values.
 }
 \description{
-Provides a vector of node IDs for all nodes that have a link to the given node.
+Provides a vector of node IDs for all nodes that have a link
+to the given node.
 }
 \examples{
 \dontrun{

@@ -13,7 +13,9 @@ create_nodes(...)
 a data frame.
 }
 \description{
-Combine several named vectors for nodes and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
+Combine several named vectors for nodes and their attributes
+into a data frame, which can be combined with other similarly-generated data
+frame, or, added to a graph object.
 }
 \examples{
 \dontrun{

@@ -12,7 +12,9 @@ create_series(graph = NULL, series_name = NULL,
 
 \item{series_name}{an optional name to ascribe to the series.}
 
-\item{series_type}{either a \code{sequential} type (the default) or a \code{temporal} type (which requires date-time strings and time zone codes to be supplied).}
+\item{series_type}{either a \code{sequential} type (the default) or a
+\code{temporal} type (which requires date-time strings and time zone codes
+to be supplied).}
 
 \item{series_scripts}{a vector of R scripts or paths to R scripts.}
 }
@@ -20,7 +22,8 @@ create_series(graph = NULL, series_name = NULL,
 a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
-Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
+Create a graph series object for storage of multiple graphs
+across a sequential or temporal one-dimensional array.
 }
 \examples{
 \dontrun{

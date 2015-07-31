@@ -13,7 +13,8 @@ is_graph_directed(graph)
 a logical value.
 }
 \description{
-Determines whether a graph is set to be directed or not and returns a logical value to that effect.
+Determines whether a graph is set to be directed or not and
+returns a logical value to that effect.
 }
 \examples{
 \dontrun{

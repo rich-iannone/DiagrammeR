@@ -7,7 +7,8 @@
 delete_edge(graph, from, to)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\code{create_graph}.}
 
 \item{from}{a node ID from which the edge to be removed is outgoing.}
 
@@ -17,7 +18,9 @@ delete_edge(graph, from, to)
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, delete an existing edge by specifying a pair of node IDs corresponding to the edge direction.
+From a graph object of class \code{dgr_graph}, delete an
+existing edge by specifying a pair of node IDs corresponding to the edge
+direction.
 }
 \examples{
 \dontrun{

@@ -9,13 +9,15 @@ trigger_script(graph_series, script = 1)
 \arguments{
 \item{graph_series}{a graph series object of type \code{dgr_graph_1D}.}
 
-\item{script}{the index of the script character string or path reference held in in the graph series.}
+\item{script}{the index of the script character string or path reference
+held in in the graph series.}
 }
 \value{
 a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
-Run an R script located inside or referenced from the graph series object in order to migrate the state of one or more contained graphs.
+Run an R script located inside or referenced from the graph
+series object in order to migrate the state of one or more contained graphs.
 }
 \examples{
 \dontrun{

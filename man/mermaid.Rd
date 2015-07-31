@@ -26,7 +26,9 @@ including the R console, within R Markdown documents,
 and within Shiny output bindings.
 }
 \description{
-Make diagrams in R using \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+Make diagrams in R using
+\href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
+provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
 \dontrun{

@@ -7,7 +7,8 @@
 edge_present(graph, from, to)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\code{create_graph}.}
 
 \item{from}{a node ID from which the edge to be queried is outgoing.}
 
@@ -17,7 +18,9 @@ edge_present(graph, from, to)
 a logical value.
 }
 \description{
-From a graph object of class \code{dgr_graph}, determine whether a directed edge (defined by a pair of node IDs extant in the graph) is present.
+From a graph object of class \code{dgr_graph}, determine
+whether a directed edge (defined by a pair of node IDs extant in the graph)
+is present.
 }
 \examples{
 \dontrun{

@@ -7,18 +7,28 @@
 node_type(graph, node, action = "read", value = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created
+using \code{create_graph}.}
 
 \item{node}{a node ID corresponding to the node to be selected.}
 
-\item{action}{the operation to perform on the node's type attribute. To remove the type definition from a node, use either \code{delete}, \code{remove}, or \code{drop}. To add a type definition to a node with no type set, use \code{add} or \code{create}. To update a node's type definition, use \code{update}. To return the value of a node type, use \code{read}. To determine whether there is a type set for the selected node, use \code{check}.}
+\item{action}{the operation to perform on the node's type attribute. To
+remove the type definition from a node, use either \code{delete},
+\code{remove}, or \code{drop}. To add a type definition to a node with no
+type set, use \code{add} or \code{create}. To update a node's type
+definition, use \code{update}. To return the value of a node type, use
+\code{read}. To determine whether there is a type set for the selected node,
+use \code{check}.}
 
-\item{value}{a string denoting the node type, to be supplied when either adding or updating a node type definition.}
+\item{value}{a string denoting the node type, to be supplied when either
+adding or updating a node type definition.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, query a node in the graph (using the node ID) and perform operations on the type definition for that node.
+From a graph object of class \code{dgr_graph}, query a node in
+the graph (using the node ID) and perform operations on the type definition
+for that node.
 }
 

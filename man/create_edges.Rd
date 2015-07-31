@@ -7,13 +7,17 @@
 create_edges(...)
 }
 \arguments{
-\item{...}{one or more named vectors for edges and associated attributes; the names for the named vectors must include \code{from} and \code{to} alongside any named vectors for the edge attributes and ancillary data.}
+\item{...}{one or more named vectors for edges and associated attributes;
+the names for the named vectors must include \code{from} and \code{to}
+alongside any named vectors for the edge attributes and ancillary data.}
 }
 \value{
 a data frame.
 }
 \description{
-Combine several named vectors for edges and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
+Combine several named vectors for edges and their attributes
+into a data frame, which can be combined with other similarly-generated data
+frame, or, added to a graph object.
 }
 \examples{
 \dontrun{

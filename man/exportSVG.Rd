@@ -13,7 +13,8 @@ exportSVG(gv)
 \code{string} of SVG XML text.
 }
 \description{
-Use viz.js with \code{V8} to get the diagram rendered as SVG in R instead of the browser.
+Use viz.js with \code{V8} to get the diagram rendered as SVG
+in R instead of the browser.
 }
 \examples{
 \dontrun{

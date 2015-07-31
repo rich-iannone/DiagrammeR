@@ -7,7 +7,8 @@
 node_present(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created
+using \code{create_graph}.}
 
 \item{node}{a value that may or may not match a node ID in the graph.}
 }
@@ -15,7 +16,8 @@ node_present(graph, node)
 a logical value.
 }
 \description{
-From a graph object of class \code{dgr_graph}, determine whether a specified node is present.
+From a graph object of class \code{dgr_graph}, determine
+whether a specified node is present.
 }
 \examples{
 \dontrun{

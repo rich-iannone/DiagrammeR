@@ -9,28 +9,30 @@ vivagraph(graph = NULL, igrf = NULL, layout = "forceDirected",
   elementId = NULL)
 }
 \arguments{
-\item{graph}{a \code{dgr_graph} object, created using the \code{create_graph} function.}
+\item{graph}{a \code{dgr_graph} object, created using the \code{create_graph}
+function.}
 
-\item{igrf}{\code{igraph} graph. We will try to smartly convert the \code{igrf}
-using \code{get.data.frame(what = "both")}.}
+\item{igrf}{\code{igraph} graph. We will try to smartly convert the
+\code{igrf} using \code{get.data.frame(what = "both")}.}
 
-\item{layout}{\code{string} or a layout function from \code{igraph}.  \code{"forceDirected"}
-the default and will use the \code{"forceDirected"} layout engine from
-VivaGraphJS/ngraph.forceDirected.  \code{"constant"} is the other \code{string}
-option for layout. However, if desired, we can also take advantage of a
-layout function from \code{igraph}, by providing this as our \code{layout} parameter.}
+\item{layout}{\code{string} or a layout function from \code{igraph}.
+\code{"forceDirected"} the default and will use the \code{"forceDirected"}
+layout engine from VivaGraphJS/ngraph.forceDirected. \code{"constant"} is the
+other \code{string} option for layout. However, if desired, we can also take
+advantage of a layout function from \code{igraph}, by providing this as our
+\code{layout} parameter.}
 
-\item{positions}{\code{data.frame} of two columns \code{x} and \code{y} with fixed
-positions if you intend to provide preset positions for nodes.}
+\item{positions}{\code{data.frame} of two columns \code{x} and \code{y} with
+fixed positions if you intend to provide preset positions for nodes.}
 
-\item{config}{\code{list} of other config options. While currently this does nothing,
-we expect to add additional configuration options here.}
+\item{config}{\code{list} of other config options. While currently this does
+nothing, we expect to add additional configuration options here.}
 
-\item{height}{\code{string} or \code{integer} with a valid CSS \code{height} for the container
-for our htmlwidget.}
+\item{height}{\code{string} or \code{integer} with a valid CSS \code{height}
+for the container for our htmlwidget.}
 
-\item{width}{\code{string} or \code{integer} with a valid CSS \code{width} for the container
-for our htmlwidget.}
+\item{width}{\code{string} or \code{integer} with a valid CSS \code{width}
+for the container for our htmlwidget.}
 
 \item{elementID}{\code{string} with a valid CSS \code{id}.}
 }

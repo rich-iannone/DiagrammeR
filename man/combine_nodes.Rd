@@ -7,13 +7,15 @@
 combine_nodes(...)
 }
 \arguments{
-\item{...}{two or more node data frames, which contain node IDs and associated attributes.}
+\item{...}{two or more node data frames, which contain node IDs and
+associated attributes.}
 }
 \value{
 a combined node data frame.
 }
 \description{
-Combine several node data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
+Combine several node data frames in the style of \code{rbind},
+except, it works regardless of the number and ordering of the columns.
 }
 \examples{
 \dontrun{

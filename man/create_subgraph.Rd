@@ -7,14 +7,17 @@
 create_subgraph(graph, starting_node, distance)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created
+using \code{create_graph}.}
 
 \item{starting_node}{the node from which the subgraph will originate.}
 
-\item{distance}{the maximum number of steps from the \code{starting_node} for inclusion in the subgraph.}
+\item{distance}{the maximum number of steps from the \code{starting_node}
+for inclusion in the subgraph.}
 }
 \description{
-Create a subgraph for a neighborhood of nodes connected a specified distance from the selected node.
+Create a subgraph for a neighborhood of nodes connected a
+specified distance from the selected node.
 }
 \examples{
 \dontrun{

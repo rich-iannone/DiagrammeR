@@ -7,15 +7,21 @@
 edge_count(graph, relationship = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using \code{create_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\code{create_graph}.}
 
-\item{relationship}{either a logical value, where \code{TRUE} provides a named vector of edge count by type and \code{FALSE} (the default) provides a total count of edges, or, a string corresponding to one or more edge relationship types.}
+\item{relationship}{either a logical value, where \code{TRUE} provides a
+named vector of edge count by type and \code{FALSE} (the default) provides
+a total count of edges, or, a string corresponding to one or more edge
+relationship types.}
 }
 \value{
 a numeric vector of single length.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get a count of edges in the graph and optionally obtain a count of edges by their relationship type.
+From a graph object of class \code{dgr_graph}, get a count of
+edges in the graph and optionally obtain a count of edges by their
+relationship type.
 }
 \examples{
 \dontrun{

@@ -7,9 +7,11 @@
 visnetwork(graph, nav_buttons = TRUE)
 }
 \arguments{
-\item{graph}{a \code{dgr_graph} object, created using the \code{create_graph} function.}
+\item{graph}{a \code{dgr_graph} object, created using the
+\code{create_graph} function.}
 
-\item{nav_buttons}{a boolean value that determines whether navigation buttons should be displayed along with the rendered graph.}
+\item{nav_buttons}{a boolean value that determines whether navigation
+buttons should be displayed along with the rendered graph.}
 }
 \description{
 Render a graph object with the visNetwork R package.
