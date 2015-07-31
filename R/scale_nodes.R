@@ -1,10 +1,21 @@
 #' Create numerical and color scales for node attributes
-#' @description Generates either numeric or color scales for specified node attributes and applies those scales to node data frames.
-#' @param nodes_df a data frame containing, at minimum, a column that contains node IDs for the graph. Optionally, additional columns (named as Graphviz node attributes) can be included with values for the named node attribute. These data frames can be conveniently generated using the \code{create_nodes} function.
-#' @param to_scale a vector of numerical values serving as a basis for scaling; these currently need to be of the same length and order as the node IDs in the supplied node data frame, so, it's recommended that the value be a reference to a column of values residing in \code{nodes_df}.
-#' @param node_attr the name of the node attribute for which scaled values are to be created.
-#' @param range a vector of 2 elements providing either lower and upper numerical or X11 color values.
-#' @param scale_type the type of scaling to perform. Currently, \code{linear} is the only option available.
+#' @description Generates either numeric or color scales for specified node
+#' attributes and applies those scales to node data frames.
+#' @param nodes_df a data frame containing, at minimum, a column that contains
+#' node IDs for the graph. Optionally, additional columns (named as Graphviz
+#' node attributes) can be included with values for the named node attribute.
+#' These data frames can be conveniently generated using the
+#' \code{create_nodes} function.
+#' @param to_scale a vector of numerical values serving as a basis for scaling;
+#' these currently need to be of the same length and order as the node IDs in
+#' the supplied node data frame, so, it's recommended that the value be a
+#' reference to a column of values residing in \code{nodes_df}.
+#' @param node_attr the name of the node attribute for which scaled values are
+#' to be created.
+#' @param range a vector of 2 elements providing either lower and upper
+#' numerical or X11 color values.
+#' @param scale_type the type of scaling to perform. Currently, \code{linear}
+#' is the only option available.
 #' @return a node data frame.
 #' @examples
 #' \dontrun{

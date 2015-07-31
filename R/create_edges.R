@@ -1,6 +1,10 @@
 #' Create a data frame with edges and their attributes
-#' @description Combine several named vectors for edges and their attributes into a data frame, which can be combined with other similarly-generated data frame, or, added to a graph object.
-#' @param ... one or more named vectors for edges and associated attributes; the names for the named vectors must include \code{from} and \code{to} alongside any named vectors for the edge attributes and ancillary data.
+#' @description Combine several named vectors for edges and their attributes
+#' into a data frame, which can be combined with other similarly-generated data
+#' frame, or, added to a graph object.
+#' @param ... one or more named vectors for edges and associated attributes;
+#' the names for the named vectors must include \code{from} and \code{to}
+#' alongside any named vectors for the edge attributes and ancillary data.
 #' @return a data frame.
 #' @examples
 #' \dontrun{

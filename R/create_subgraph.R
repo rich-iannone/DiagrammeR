@@ -1,8 +1,11 @@
 #' Create a subgraph based on a walk distance from a specified node
-#' @description Create a subgraph for a neighborhood of nodes connected a specified distance from the selected node.
-#' @param graph a graph object of class \code{dgr_graph} that is created using \code{create_graph}.
+#' @description Create a subgraph for a neighborhood of nodes connected a
+#' specified distance from the selected node.
+#' @param graph a graph object of class \code{dgr_graph} that is created
+#' using \code{create_graph}.
 #' @param starting_node the node from which the subgraph will originate.
-#' @param distance the maximum number of steps from the \code{starting_node} for inclusion in the subgraph.
+#' @param distance the maximum number of steps from the \code{starting_node}
+#' for inclusion in the subgraph.
 #' @examples
 #' \dontrun{
 #' # Create a graph, then, create a subgraph of that larger graph

@@ -1,6 +1,8 @@
 #' Combine multiple edge data frames into a single edge data frame
-#' @description Combine several edge data frames in the style of \code{rbind}, except, it works regardless of the number and ordering of the columns.
-#' @param ... two or more edge data frames, which contain edge IDs and associated attributes.
+#' @description Combine several edge data frames in the style of \code{rbind},
+#' except, it works regardless of the number and ordering of the columns.
+#' @param ... two or more edge data frames, which contain edge IDs and
+#' associated attributes.
 #' @return a combined edge data frame.
 #' @examples
 #' \dontrun{

@@ -1,6 +1,8 @@
 #' Get vector of node IDs
-#' @description Provides information on the node IDs from one or several node data frames, edge data frames, or graph objects.
-#' @param ... a collection of node data frames, edge data frames, or a single graph object.
+#' @description Provides information on the node IDs from one or several node
+#' data frames, edge data frames, or graph objects.
+#' @param ... a collection of node data frames, edge data frames, or a single
+#' graph object.
 #' @return a vector of node ID values.
 #' @examples
 #' \dontrun{

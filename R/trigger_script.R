@@ -1,7 +1,9 @@
 #' Trigger a script embedded in a graph series object
-#' @description Run an R script located inside or referenced from the graph series object in order to migrate the state of one or more contained graphs.
+#' @description Run an R script located inside or referenced from the graph
+#' series object in order to migrate the state of one or more contained graphs.
 #' @param graph_series a graph series object of type \code{dgr_graph_1D}.
-#' @param script the index of the script character string or path reference held in in the graph series.
+#' @param script the index of the script character string or path reference
+#' held in in the graph series.
 #' @return a graph series object of type \code{dgr_graph_1D}.
 #' @examples
 #' \dontrun{

@@ -1,11 +1,17 @@
 #' Create a simple color palette
-#' @description Generate a randomized set of colors from the CIE Lab color space using a set of HCL range values.
+#' @description Generate a randomized set of colors from the CIE Lab color
+#' space using a set of HCL range values.
 #' @param number the number of colors to include in the palette.
-#' @param hue_range a vector representing a range of hues from \code{0} to \code{360}.
-#' @param chroma_range a vector representing a range of chroma values from \code{0} to \code{3}.
-#' @param lightness_range a vector representing a range of lightness values from \code{0} to \code{2}.
-#' @param alpha an optional alpha value in the range of \code{0}-\code{100} to append to the hexadecimal color values.
-#' @param display_colors an option for displaying the rolled color palette in the RStudio Viewer pane.
+#' @param hue_range a vector representing a range of hues from \code{0} to
+#' \code{360}.
+#' @param chroma_range a vector representing a range of chroma values from
+#' \code{0} to \code{3}.
+#' @param lightness_range a vector representing a range of lightness values
+#' from \code{0} to \code{2}.
+#' @param alpha an optional alpha value in the range of \code{0}-\code{100} to
+#' append to the hexadecimal color values.
+#' @param display_colors an option for displaying the rolled color palette in
+#' the RStudio Viewer pane.
 #' @return a vector of hexadecimal color values.
 #' @examples
 #' \dontrun{

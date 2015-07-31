@@ -1,8 +1,11 @@
 #' Create a graph series object
-#' @description Create a graph series object for storage of multiple graphs across a sequential or temporal one-dimensional array.
+#' @description Create a graph series object for storage of multiple graphs
+#' across a sequential or temporal one-dimensional array.
 #' @param graph a graph object to add to the new graph series object.
 #' @param series_name an optional name to ascribe to the series.
-#' @param series_type either a \code{sequential} type (the default) or a \code{temporal} type (which requires date-time strings and time zone codes to be supplied).
+#' @param series_type either a \code{sequential} type (the default) or a
+#' \code{temporal} type (which requires date-time strings and time zone codes
+#' to be supplied).
 #' @param series_scripts a vector of R scripts or paths to R scripts.
 #' @return a graph series object of type \code{dgr_graph_1D}.
 #' @examples
