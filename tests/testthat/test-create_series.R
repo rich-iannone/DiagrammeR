@@ -89,6 +89,30 @@ test_that("adding graphs to a series is also possible", {
   expect_equivalent(graph_1, series$graphs[[1]])
   expect_equivalent(graph_2, series$graphs[[2]])
   expect_equivalent(graph_3, series$graphs[[3]])
+
+  # Create a series with a graph
+  series_w_graph <- create_series(graph = graph_1,
+                                  series_type = "sequential")
+
+  # Expect an object of class "dgr_graph_1D"
+  expect_is(series_w_graph, "dgr_graph_1D")
+
+  # Expect that the series type is sequential
+  expect_equal(series_w_graph$series_type, "sequential")
+
+  # Expect that the 'graphs' component is not NULL
+  expect_true(!is.null(series_w_graph$graphs))
+
+  # Expect that the series has a graph count of 1
+  expect_equal(graph_count(series_w_graph), 1L)
+
+  # Expect that several series components are NULL
+  expect_null(series_w_graph$series_name)
+  expect_null(series_w_graph$series_scripts)
+
+  # Expect that the graphs within the graph series object
+  # are indeed graph objects
+  expect_is(series_w_graph$graphs[[1]], "dgr_graph")
 })
 
 test_that("removing graphs from a series is possible", {
