@@ -61,6 +61,14 @@ test_that("adding a node to a graph is possible", {
   # unassigned "type" values
   expect_true(is.na(node_type(graph_3, node = "a")))
   expect_true(is.na(node_type(graph_3, node = "b")))
+
+  # Create a graph with a single, unlabeled node
+  graph_unlabeled <- create_graph()
+  graph_unlabeled <- add_node(graph = graph_unlabeled,
+                              node = "a", label = FALSE)
+
+  # Expect that the graph will have one unlabeled node
+  expect_true(node_info(graph = graph_unlabeled)$label == " ")
 })
 
 test_that("adding an edge to a graph is possible", {
