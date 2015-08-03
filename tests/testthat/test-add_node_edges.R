@@ -38,6 +38,13 @@ test_that("adding a node to a graph is possible", {
 
   # Expect that the 'nodes_df' data frame has 2 rows
   expect_true(nrow(graph$nodes_df) == 2L)
+
+  # Add a node that already exists in the graph
+  graph_2 <- add_node(graph, node = "a")
+
+  # Expect that the graph won't change states
+  expect_equal(graph, graph_2)
+
 })
 
 test_that("adding an edge to a graph is possible", {
