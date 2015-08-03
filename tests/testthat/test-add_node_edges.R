@@ -45,6 +45,22 @@ test_that("adding a node to a graph is possible", {
   # Expect that the graph won't change states
   expect_equal(graph, graph_2)
 
+  # Add a node with attributes to the graph
+  graph_3 <- add_node(graph,
+                      node = "c",
+                      type = "fresh")
+
+  # Expect that there will be 3 nodes in the graph
+  expect_equal(node_count(graph_3), 3L)
+
+  # Expect that the "type" value will be present for the node
+  # in the new graph
+  expect_equal(node_type(graph_3, node = "c"), "fresh")
+
+  # Expect that the other nodes in the graph will still have
+  # unassigned "type" values
+  expect_true(is.na(node_type(graph_3, node = "a")))
+  expect_true(is.na(node_type(graph_3, node = "b")))
 })
 
 test_that("adding an edge to a graph is possible", {
