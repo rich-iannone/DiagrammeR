@@ -115,4 +115,14 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect that the 'nodes_df' data frame has 1 row
   expect_true(nrow(graph$edges_df) == 1L)
+
+  # Create another empty graph
+  graph_empty <- create_graph()
+
+  # Expect a specific message when calling 'add_edges' on an empty graph
+  expect_message(add_edges(graph = graph_empty),
+                 "Edges cannot be added to an empty graph")
+
+  # Expect no change to the graph after calling 'add_edges' on an empty graph
+  expect_equal(add_edges(graph = create_graph()), create_graph())
 })
