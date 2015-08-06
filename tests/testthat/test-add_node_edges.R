@@ -118,7 +118,7 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect a message when adding an existing edge to the graph
   expect_message(add_edges(graph, from = "a", to = "b"),
-                           "This edge already exists")
+                 "This edge already exists")
 
   # Expect no change to the graph after attempting to add an
   # existing edge to that graph
@@ -134,4 +134,42 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect no change to the graph after calling 'add_edges' on an empty graph
   expect_equal(add_edges(graph = create_graph()), create_graph())
+})
+
+test_that("adding a node to a graph is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Create a node data frame
+  nodes <-
+    create_nodes(nodes = c("a", "b", "c", "d"),
+                 label = FALSE,
+                 type = "lower",
+                 style = "filled",
+                 shape = "circle")
+
+  # Create a graph with nodes but no edges
+  graph <- create_graph(nodes_df = nodes)
+
+  # Create an edge data frame
+  edges <-
+    create_edges(from = c("a", "b", "c"),
+                 to = c("d", "c", "a"),
+                 relationship = "leading_to")
+
+  # Add the edges to the graph using 'add_edges'
+  graph_edges_added <-
+    add_edges(graph, edges_df = edges)
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_edges_added) == "dgr_graph")
+
+  # Expect that the 'edges' object will be the same as in
+  # 'graph_edges_added$edges_df'
+  expect_equal(edges, graph_edges_added$edges_df)
+
+  # Expect that the 'nodes' object will be the same as in
+  # 'graph_edges_added$nodes_df'
+  expect_equal(nodes, graph_edges_added$nodes_df)
 })
