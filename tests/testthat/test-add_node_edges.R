@@ -116,6 +116,15 @@ test_that("adding an edge to a graph is possible", {
   # Expect that the 'nodes_df' data frame has 1 row
   expect_true(nrow(graph$edges_df) == 1L)
 
+  # Expect a message when adding an existing edge to the graph
+  expect_message(add_edges(graph, from = "a", to = "b"),
+                           "This edge already exists")
+
+  # Expect no change to the graph after attempting to add an
+  # existing edge to that graph
+  expect_equal(graph,
+               add_edges(graph, from = "a", to = "b"))
+
   # Create another empty graph
   graph_empty <- create_graph()
 
