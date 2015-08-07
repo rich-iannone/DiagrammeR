@@ -8,7 +8,7 @@ test_that("a color palette can be generated", {
                             chroma_range = c(0, 3),
                             lightness_range = c(0.75, 1.5),
                             alpha = NULL,
-                            display_colors = TRUE)
+                            display_colors = FALSE)
 
   # Expect that a vector object of "character" class is generated
   expect_is(colors_12, "character")
