@@ -12,6 +12,7 @@
 #' append to the hexadecimal color values.
 #' @param display_colors an option for displaying the rolled color palette in
 #' the RStudio Viewer pane.
+#' @import V8
 #' @return a vector of hexadecimal color values.
 #' @examples
 #' \dontrun{
