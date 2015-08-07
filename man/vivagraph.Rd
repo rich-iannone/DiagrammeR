@@ -34,7 +34,7 @@ for the container for our htmlwidget.}
 \item{width}{\code{string} or \code{integer} with a valid CSS \code{width}
 for the container for our htmlwidget.}
 
-\item{elementID}{\code{string} with a valid CSS \code{id}.}
+\item{elementId}{\code{string} with a valid CSS \code{id}.}
 }
 \description{
 Render a graph object with the VivaGraphJS library.
