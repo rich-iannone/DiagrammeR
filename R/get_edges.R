@@ -125,7 +125,7 @@ get_edges <- function(...,
 
     if (return_type == "df" & no_edges == TRUE){
 
-      edge_df <- as.data.frame(edge_list)
+      edge_df <- as.data.frame(edge_list, stringsAsFactors = FALSE)
       colnames(edge_df) <- c("from", "to")
 
       return(edge_df)
@@ -170,7 +170,7 @@ get_edges <- function(...,
 
   if (return_type == "df"){
 
-    edge_df <- as.data.frame(edge_list)
+    edge_df <- as.data.frame(edge_list, stringsAsFactors = FALSE)
     colnames(edge_df) <- c("from", "to")
 
     return(edge_df)
