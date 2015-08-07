@@ -18,7 +18,7 @@
 #' for the container for our htmlwidget.
 #' @param height \code{string} or \code{integer} with a valid CSS \code{height}
 #' for the container for our htmlwidget.
-#' @param elementID \code{string} with a valid CSS \code{id}.
+#' @param elementId \code{string} with a valid CSS \code{id}.
 #'
 #' @examples
 #' \dontrun{
