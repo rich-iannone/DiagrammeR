@@ -42,7 +42,12 @@ test_that("getting node IDs from various objects is possible", {
   # Expect that the same node IDs will be returned from the
   # graph object, the node data frame, and the edge data frame
   expect_equal(get_nodes(graph), get_nodes(nodes))
-  expect_equal(get_nodes(graph), get_nodes(edges))
+
+  # Expect that the number of nodes obtain from the entire graph
+  # will be greater than the nodes associated with edges (since there
+  # will be free nodes with no edges)
+  expect_more_than(length(get_nodes(graph)),
+                   length(get_nodes(edges)))
 })
 
 test_that("getting node IDs associated within a graph's edges is possible", {
