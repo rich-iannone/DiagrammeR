@@ -40,8 +40,9 @@ Maintainer: Richard Iannone <riannone@me.com>
 Description: Create graph diagrams and flowcharts using R.
 License: MIT + file LICENSE
 Imports:
-    htmlwidgets (>= 0.3.2), rstudioapi (>= 0.2), stringr (>= 1.0.0)
+    htmlwidgets (>= 0.3.2), rstudioapi (>= 0.2),
+    stringr (>= 1.0.0), V8 (>= 0.5)
 Suggests:
-    knitr, V8 (>= 0.5),
+    knitr,
     testthat
 VignetteBuilder: knitr
