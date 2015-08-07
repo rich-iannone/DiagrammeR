@@ -4,6 +4,8 @@
 #' \code{create_graph} function.
 #' @param nav_buttons a boolean value that determines whether navigation
 #' buttons should be displayed along with the rendered graph.
+#' @import visNetwork
+#' @export visnetwork
 
 visnetwork <- function(graph,
                        nav_buttons = TRUE){
