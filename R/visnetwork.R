@@ -4,6 +4,28 @@
 #' \code{create_graph} function.
 #' @param nav_buttons a boolean value that determines whether navigation
 #' buttons should be displayed along with the rendered graph.
+#' @examples
+#' \dontrun{
+#' # Create a node data frame
+#' nodes <-
+#'   create_nodes(nodes = c("a", "b", "c", "d", "e", "f"),
+#'                label = TRUE,
+#'                type = c("1", "1", "1", "2", "2", "2"),
+#'                shape = c("circle", "circle",
+#'                          "rectangle", "rectangle"))
+#'
+#' # Create an edge data frame
+#' edges <-
+#'   create_edges(from = c("a", "b", "c", "d", "f", "e"),
+#'                to = c("d", "c", "a", "c", "a", "d"),
+#'                relationship = "leading_to")
+#'
+#' # Create a graph object
+#' graph <- create_graph(nodes_df = nodes,
+#'                       edges_df = edges)
+#'
+#' visnetwork(graph)
+#' }
 #' @import visNetwork
 #' @export visnetwork
 
