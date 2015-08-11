@@ -35,8 +35,7 @@
 #' @import visNetwork
 #' @export visnetwork
 
-visnetwork <- function(graph,
-                       nav_buttons = FALSE){
+visnetwork <- function(graph){
 
   # Extract node and edge data frames from the graph object
   nodes <- graph$nodes_df
@@ -53,8 +52,4 @@ visnetwork <- function(graph,
   colnames(edges)[which(colnames(edges) == "label")] <- "title"
   colnames(edges)[which(colnames(edges) == "penwidth")] <- "value"
 
-  # Render the graph
-  visNetwork(nodes = nodes, edges = edges) %>%
-    visEdges(arrows = 'to', color = 'gray') %>%
-    visInteraction(navigationButtons = nav_buttons)
 }
