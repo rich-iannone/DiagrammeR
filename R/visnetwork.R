@@ -10,14 +10,20 @@
 #' nodes <-
 #'   create_nodes(nodes = c("a", "b", "c", "d", "e", "f"),
 #'                label = TRUE,
+#'                fillcolor = c("red", "red", "orange", "pink",
+#'                          "purple", "black"),
+#'                borderwidth = c(2, 1, 0.5, 1, 1.8, 1),
+#'                value = c(2, 1, 0.5, 1, 1.8, 1),
 #'                type = c("1", "1", "1", "2", "2", "2"),
-#'                shape = c("circle", "circle",
-#'                          "rectangle", "rectangle"))
+#'                x = c(1, 2, 3, 4, 5, 6),
+#'                y = c(-2, -1, 0, 6, 4, 1))
 #'
 #' # Create an edge data frame
 #' edges <-
 #'   create_edges(from = c("a", "b", "c", "d", "f", "e"),
 #'                to = c("d", "c", "a", "c", "a", "d"),
+#'                color = c("green", "green", "grey", "grey",
+#'                          "blue", "blue"),
 #'                relationship = "leading_to")
 #'
 #' # Create a graph object
