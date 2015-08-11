@@ -13,7 +13,8 @@ render_graph(graph, output = "graph", layout = NULL, width = NULL,
 
 \item{output}{a string specifying the output type; \code{graph} (the
 default) renders the graph using the \code{grViz} function, \code{vivagraph}
-renders the graph using the \code{vivagraph} function, \code{DOT} outputs
+renders the graph using the \code{vivagraph} function, \code{visNetwork}
+renders the graph using the \code{visnetwork} function, \code{DOT} outputs
 DOT code for the graph, and \code{SVG} provides SVG code for the rendered
 graph.}
 
@@ -35,13 +36,14 @@ Viewer or output in various formats.
 # Create a graph and then view it in the RStudio Viewer
 nodes <-
   create_nodes(nodes = LETTERS,
+               label = TRUE,
                type = "letter",
-               shape = sample(c("circle", "rectangle"),
+               shape = sample(c("circle", "square"),
                               length(LETTERS),
                               replace = TRUE),
-               fillcolor = sample(c("aqua", "gray80",
+               fillcolor = sample(c("aqua", "orange",
                                     "pink", "lightgreen",
-                                    "azure", "yellow"),
+                                    "black", "yellow"),
                                   length(LETTERS),
                                   replace = TRUE))
 
@@ -65,6 +67,9 @@ render_graph(graph)
 
 # Render the graph using VivaGraph
 render_graph(graph, output = "vivagraph")
+
+# Render the graph using visNetwork
+render_graph(graph, output = "visNetwork")
 }
 }
 
