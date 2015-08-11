@@ -31,7 +31,6 @@
 #'                      node_attr = "penwidth",
 #'                      range = c(2, 5))
 #' }
-#' @importFrom V8 new_context
 #' @export scale_nodes
 
 scale_nodes <- function(nodes_df,
