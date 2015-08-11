@@ -20,13 +20,14 @@
 #' # Create a graph and then view it in the RStudio Viewer
 #' nodes <-
 #'   create_nodes(nodes = LETTERS,
+#'                label = TRUE,
 #'                type = "letter",
-#'                shape = sample(c("circle", "rectangle"),
+#'                shape = sample(c("circle", "square"),
 #'                               length(LETTERS),
 #'                               replace = TRUE),
-#'                fillcolor = sample(c("aqua", "gray80",
+#'                fillcolor = sample(c("aqua", "orange",
 #'                                     "pink", "lightgreen",
-#'                                     "azure", "yellow"),
+#'                                     "black", "yellow"),
 #'                                   length(LETTERS),
 #'                                   replace = TRUE))
 #'
@@ -50,6 +51,9 @@
 #'
 #' # Render the graph using VivaGraph
 #' render_graph(graph, output = "vivagraph")
+#'
+#' # Render the graph using visNetwork
+#' render_graph(graph, output = "visNetwork")
 #' }
 #' @import stringr
 #' @export render_graph
