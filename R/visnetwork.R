@@ -45,6 +45,8 @@ visnetwork <- function(graph){
   # visNetwork data frames for nodes
   colnames(nodes)[which(colnames(nodes) == "nodes")] <- "id"
   colnames(nodes)[which(colnames(nodes) == "type")] <- "group"
+  colnames(nodes)[which(colnames(nodes) == "label")] <- "title"
+  colnames(nodes)[which(colnames(nodes) == "fillcolor")] <- "color"
 
   # Modify names of columns in 'edges' for compatibility with
   # visNetwork data frames for edges
