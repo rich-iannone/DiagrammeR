@@ -12,7 +12,6 @@
 #' append to the hexadecimal color values.
 #' @param display_colors an option for displaying the rolled color palette in
 #' the RStudio Viewer pane.
-#' @importFrom V8 new_context
 #' @return a vector of hexadecimal color values.
 #' @examples
 #' \dontrun{
@@ -36,6 +35,11 @@ roll_palette <- function(number,
                          lightness_range = c(0.75, 1.5),
                          alpha = NULL,
                          display_colors = TRUE){
+
+  # Check to make sure that V8 is available
+  if (!requireNamespace("V8")) stop("V8 is required to export.", call. = F)
+
+  stopifnot(packageVersion("V8") >= "0.5")
 
   # Construct the JS call
   js_call <- paste0("var colors = createPalette.generate(",
