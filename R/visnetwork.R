@@ -8,6 +8,7 @@
 #' @export visnetwork
 
 visnetwork <- function(graph,
+                       nav_buttons = FALSE){
 
   # Extract node and edge data frames from the graph object
   nodes <- graph$nodes_df
