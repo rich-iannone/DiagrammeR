@@ -256,6 +256,7 @@ render_graph <- function(graph,
                             grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code))){
 
     grViz(diagram = dot_code, width = width, height = height)
+
   } else if (output == "vivagraph"){
 
     layout <- ifelse(is.null(layout) & node_count(graph) < 1000,
@@ -265,5 +266,9 @@ render_graph <- function(graph,
               layout = layout,
               height = NULL,
               width = NULL)
+
+  } else if (output == "visNetwork"){
+
+    visnetwork(graph)
   }
 }
