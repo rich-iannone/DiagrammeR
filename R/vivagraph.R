@@ -64,6 +64,7 @@
 #' vivagraph(erdos.renyi.game(100, 1/100), layout = layout.circle)
 #' vivagraph(graph.famous("Zachary"), layout = layout.grid)
 #' }
+#' @import igraph
 #' @export vivagraph
 
 vivagraph <- function(graph = NULL,
