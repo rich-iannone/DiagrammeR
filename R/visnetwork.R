@@ -54,4 +54,21 @@ visnetwork <- function(graph){
   colnames(edges)[which(colnames(edges) == "label")] <- "title"
   colnames(edges)[which(colnames(edges) == "penwidth")] <- "value"
 
+  # Create the visNetwork object
+  vn_obj <- visNetwork(nodes = nodes, edges = edges)
+
+  vn_obj <- visEdges(graph = vn_obj,
+                     arrows = list(to = list(enabled = TRUE,
+                                             scaleFactor = 1)))
+
+  vn_obj <- visPhysics(graph = vn_obj,
+                       solver = "forceAtlas2Based",
+                       forceAtlas2Based = list(gravitationalConstant = -10))
+
+  vn_obj <- visPhysics(graph = vn_obj,
+                       stabilization = list(enabled = TRUE,
+                                            onlyDynamicEdges = FALSE,
+                                            fit = TRUE))
+
+  vn_obj
 }
