@@ -45,6 +45,14 @@ test_that("adding a node to a graph is possible", {
   # Expect that the graph won't change states
   expect_equal(graph, graph_2)
 
+  # Expect a specific message when more than a single node is specified
+  expect_message(add_node(graph, node = c("y", "z")),
+                 "Only a single node can be added")
+
+  # Expect that attempting to add more than a single node will return an
+  # unchanged graph
+  expect_equal(graph, add_node(graph, node = c("y", "z")))
+
   # Add a node with attributes to the graph
   graph_3 <- add_node(graph,
                       node = "c",
@@ -69,6 +77,9 @@ test_that("adding a node to a graph is possible", {
 
   # Expect that the graph will have one unlabeled node
   expect_true(node_info(graph = graph_unlabeled)$label == " ")
+
+
+
 })
 
 test_that("adding an edge to a graph is possible", {
