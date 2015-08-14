@@ -73,10 +73,11 @@ add_node <- function(graph,
 
     if (from_nodes_available){
 
-      combined_nodes <- combine_nodes(graph$nodes_df,
-                                      create_nodes(nodes = node,
-                                                   label = label,
-                                                   type = type))
+      combined_nodes <-
+        combine_nodes(graph$nodes_df,
+                      create_nodes(nodes = node,
+                                   label = label,
+                                   type = ifelse(is.null(type), "", type)))
 
       if (node_attributes_provided == TRUE){
 
@@ -100,21 +101,42 @@ add_node <- function(graph,
         }
       }
 
-      combined_edges <- combine_edges(graph$edges_df,
-                                      create_edges(from = from,
-                                                   to = rep(node, length(from))))
 
-      dgr_graph <-
-        create_graph(nodes_df = combined_nodes,
-                     edges_df = combined_edges,
-                     graph_attrs = graph$graph_attrs,
-                     node_attrs = graph$node_attrs,
-                     edge_attrs = graph$edge_attrs,
-                     graph_name = graph$graph_name,
-                     graph_time = graph$graph_time,
-                     graph_tz = graph$graph_tz)
+      if (!is.null(graph$edges_df)){
 
-      # Create a revised graph and return that graph
+        combined_edges <-
+          combine_edges(graph$edges_df,
+                        create_edges(from = from,
+                                     to = rep(node, length(from))))
+
+        dgr_graph <-
+          create_graph(nodes_df = combined_nodes,
+                       edges_df = combined_edges,
+                       graph_attrs = graph$graph_attrs,
+                       node_attrs = graph$node_attrs,
+                       edge_attrs = graph$edge_attrs,
+                       graph_name = graph$graph_name,
+                       graph_time = graph$graph_time,
+                       graph_tz = graph$graph_tz)
+
+      }
+
+      if (is.null(graph$edges_df)){
+
+        dgr_graph <-
+          create_graph(nodes_df = combined_nodes,
+                       edges_df = create_edges(from = from,
+                                               to = rep(node, length(from))),
+                       graph_attrs = graph$graph_attrs,
+                       node_attrs = graph$node_attrs,
+                       edge_attrs = graph$edge_attrs,
+                       graph_name = graph$graph_name,
+                       graph_time = graph$graph_time,
+                       graph_tz = graph$graph_tz)
+
+      }
+
+      # Return the revised graph
       return(dgr_graph)
     }
   }
@@ -130,10 +152,11 @@ add_node <- function(graph,
       return(graph)
     }
 
-    combined_nodes <- combine_nodes(graph$nodes_df,
-                                    create_nodes(nodes = node,
-                                                 label = label,
-                                                 type = type))
+    combined_nodes <-
+      combine_nodes(graph$nodes_df,
+                    create_nodes(nodes = node,
+                                 label = label,
+                                 type = ifelse(is.null(type), "", type)))
 
     if (node_attributes_provided == TRUE){
 
@@ -174,6 +197,42 @@ add_node <- function(graph,
       # Create a revised graph and return that graph
       return(dgr_graph)
     }
+
+    if (!is.null(graph$edges_df)){
+
+      combined_edges <-
+        combine_edges(graph$edges_df,
+                      create_edges(from = rep(node, length(to)),
+                                   to = to))
+
+      dgr_graph <-
+        create_graph(nodes_df = combined_nodes,
+                     edges_df = combined_edges,
+                     graph_attrs = graph$graph_attrs,
+                     node_attrs = graph$node_attrs,
+                     edge_attrs = graph$edge_attrs,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
+    }
+
+    if (is.null(graph$edges_df)){
+
+      dgr_graph <-
+        create_graph(nodes_df = combined_nodes,
+                     edges_df = create_edges(from = rep(node, length(to)),
+                                             to = to),
+                     graph_attrs = graph$graph_attrs,
+                     node_attrs = graph$node_attrs,
+                     edge_attrs = graph$edge_attrs,
+                     graph_name = graph$graph_name,
+                     graph_time = graph$graph_time,
+                     graph_tz = graph$graph_tz)
+
+    }
+
+    # Return the revised graph
+    return(dgr_graph)
   }
 
   # Modify graph if both 'to' and 'from' values provided
