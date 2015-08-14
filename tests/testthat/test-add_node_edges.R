@@ -78,8 +78,55 @@ test_that("adding a node to a graph is possible", {
   # Expect that the graph will have one unlabeled node
   expect_true(node_info(graph = graph_unlabeled)$label == " ")
 
+  # Add a node to the graph that is joined from another
+  graph_from <- add_node(graph_3,
+                         node = "d",
+                         from = "c")
 
+  # Expect that 'edges_df' is not NULL
+  expect_true(!is.null(graph_from$edges_df))
 
+  # Expect that the new node is available in the graph
+  expect_true(node_present(graph_from, "d"))
+
+  # Expect that the edge from "c" to "d" is in the graph
+  expect_true(edge_present(graph_from, from = "c", to = "d"))
+
+  # Expect that the node label is the same as the ID, since the
+  # default value for the 'label' argument is TRUE
+  expect_true(
+    node_info(graph_from)[which(node_info(graph_from)$node_ID == "d"),]$node_ID ==
+    node_info(graph_from)[which(node_info(graph_from)$node_ID == "d"),]$label
+  )
+
+  # Expect that for node "d", the 'type' is not set since the
+  # default value for the 'type' argument is NULL
+  expect_true(is.na(node_type(graph_from, node = "d")))
+
+  # Add a node to the graph that is joined to another
+  graph_to <- add_node(graph_3,
+                       node = "d",
+                       to = "c")
+
+  # Expect that 'edges_df' is not NULL
+  expect_true(!is.null(graph_to$edges_df))
+
+  # Expect that the new node is available in the graph
+  expect_true(node_present(graph_to, "d"))
+
+  # Expect that the edge from "d" to "c" is in the graph
+  expect_true(edge_present(graph_to, from = "d", to = "c"))
+
+  # Expect that the node label is the same as the ID, since the
+  # default value for the 'label' argument is TRUE
+  expect_true(
+    node_info(graph_to)[which(node_info(graph_to)$node_ID == "d"),]$node_ID ==
+      node_info(graph_to)[which(node_info(graph_to)$node_ID == "d"),]$label
+  )
+
+  # Expect that for node "d", the 'type' is not set since the
+  # default value for the 'type' argument is NULL
+  expect_true(is.na(node_type(graph_to, node = "d")))
 })
 
 test_that("adding an edge to a graph is possible", {
