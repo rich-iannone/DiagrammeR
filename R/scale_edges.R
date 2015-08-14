@@ -31,6 +31,7 @@
 #'                      edge_attr = "penwidth",
 #'                      range = c(1, 5))
 #' }
+#' @import V8
 #' @export scale_edges
 
 scale_edges <- function(edges_df,

@@ -14,12 +14,13 @@
 #'  library(htmltools)
 #'  html_print(HTML(svg))
 #' }
+#' @import V8
 #' @export
 
 exportSVG <- function(gv){
   # check to make sure that V8 is available
   if(!requireNamespace("V8")) stop("V8 is required to export.", call. = F)
-  stopifnot(packageVersion("V8") >= "0.5")
+  stopifnot(packageVersion("V8") >= "0.6")
 
   # check to make sure gv is grViz
   if(!inherits(gv,"grViz")) "gv must be a grViz htmlwidget."
