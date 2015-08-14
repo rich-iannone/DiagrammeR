@@ -27,6 +27,7 @@
 #' #> [6] "#F8877D" "#C08B1B" "#B1E2F9" "#8E9573" "#74A31C"
 #' #> [11] "#51A053" "#50C9A4"
 #' }
+#' @import V8
 #' @export roll_palette
 
 roll_palette <- function(number,
