@@ -47,5 +47,5 @@ URL: https://github.com/rich-iannone/DiagrammeR
 Suggests:
     knitr,
     testthat,
-    V8 (>= 0.5)
+    V8 (>= 0.6)
 VignetteBuilder: knitr
