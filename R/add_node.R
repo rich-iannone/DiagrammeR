@@ -254,10 +254,11 @@ add_node <- function(graph,
 
     if (from_nodes_available & to_nodes_available){
 
-      combined_nodes <- combine_nodes(graph$nodes_df,
-                                      create_nodes(nodes = node,
-                                                   label = label,
-                                                   type = type))
+      combined_nodes <-
+        combine_nodes(graph$nodes_df,
+                      create_nodes(nodes = node,
+                                   label = label,
+                                   type = ifelse(is.null(type), "", type)))
 
       if (node_attributes_provided == TRUE){
 
@@ -281,13 +282,39 @@ add_node <- function(graph,
         }
       }
 
-      combined_edges <- combine_edges(graph$edges_df,
-                                      create_edges(from = from,
-                                                   to = rep(node, length(from))))
+      if (!is.null(graph$edges_df)){
 
-      combined_edges <- combine_edges(combined_edges,
-                                      create_edges(from = rep(node, length(to)),
-                                                   to = to))
+        combined_edges_1 <-
+          combine_edges(graph$edges_df,
+                        create_edges(from = from,
+                                     to = rep(node, length(from))))
+      }
+
+      if (is.null(graph$edges_df)){
+
+        combined_edges_1 <-
+          create_edges(from = from,
+                       to = rep(node, length(from)))
+      }
+
+      if (!is.null(graph$edges_df)){
+
+        combined_edges_2 <-
+          combine_edges(combined_edges,
+                        create_edges(from = rep(node, length(to)),
+                                     to = to))
+      }
+
+      if (is.null(graph$edges_df)){
+
+        combined_edges_2 <-
+          create_edges(from = rep(node, length(to)),
+                       to = to)
+      }
+
+      combined_edges <-
+        combine_edges(combined_edges_1,
+                      combined_edges_2)
 
       # Create the revised graph object
       dgr_graph <-
