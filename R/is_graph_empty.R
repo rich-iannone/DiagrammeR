@@ -36,5 +36,4 @@ is_graph_empty <- function(graph){
   graph_is_empty <- is.null(graph$nodes_df)
 
   return(graph_is_empty)
-
 }
