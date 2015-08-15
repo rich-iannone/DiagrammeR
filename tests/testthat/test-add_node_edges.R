@@ -96,7 +96,7 @@ test_that("adding a node to a graph is possible", {
   # default value for the 'label' argument is TRUE
   expect_true(
     node_info(graph_from)[which(node_info(graph_from)$node_ID == "d"),]$node_ID ==
-    node_info(graph_from)[which(node_info(graph_from)$node_ID == "d"),]$label
+      node_info(graph_from)[which(node_info(graph_from)$node_ID == "d"),]$label
   )
 
   # Expect that for node "d", the 'type' is not set since the
@@ -120,13 +120,46 @@ test_that("adding a node to a graph is possible", {
   # Expect that the node label is the same as the ID, since the
   # default value for the 'label' argument is TRUE
   expect_true(
-    node_info(graph_to)[which(node_info(graph_to)$node_ID == "d"),]$node_ID ==
-      node_info(graph_to)[which(node_info(graph_to)$node_ID == "d"),]$label
+    node_info(graph_to)[
+      which(node_info(graph_to)$node_ID == "d"),]$node_ID ==
+      node_info(graph_to)[
+        which(node_info(graph_to)$node_ID == "d"),]$label
   )
 
   # Expect that for node "d", the 'type' is not set since the
   # default value for the 'type' argument is NULL
   expect_true(is.na(node_type(graph_to, node = "d")))
+
+  # Add a node to the graph that is joined from another and to another
+  graph_to_from <- add_node(graph_3,
+                            node = "d",
+                            from = "a",
+                            to = "b")
+
+  # Expect that 'edges_df' is not NULL
+  expect_true(!is.null(graph_to_from$edges_df))
+
+  # Expect that the new node is available in the graph
+  expect_true(node_present(graph_to_from, "d"))
+
+  # Expect that the edge from "a" to "d" is in the graph
+  expect_true(edge_present(graph_to_from, from = "a", to = "d"))
+
+  # Expect that the edge from "d" to "b" is in the graph
+  expect_true(edge_present(graph_to_from, from = "d", to = "b"))
+
+  # Expect that the node label is the same as the ID, since the
+  # default value for the 'label' argument is TRUE
+  expect_true(
+    node_info(graph_to_from)[
+      which(node_info(graph_to_from)$node_ID == "d"),]$node_ID ==
+      node_info(graph_to_from)[
+        which(node_info(graph_to_from)$node_ID == "d"),]$label
+  )
+
+  # Expect that for node "d", the 'type' is not set since the
+  # default value for the 'type' argument is NULL
+  expect_true(is.na(node_type(graph_to_from, node = "d")))
 })
 
 test_that("adding an edge to a graph is possible", {
