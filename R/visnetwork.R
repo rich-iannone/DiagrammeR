@@ -8,9 +8,9 @@
 #' nodes <-
 #'   create_nodes(nodes = c("a", "b", "c", "d", "e", "f"),
 #'                label = TRUE,
-#'                fillcolor = c("red", "red", "orange", "pink",
-#'                          "purple", "black"),
-#'                borderwidth = c(2, 1, 0.5, 1, 1.8, 1),
+#'                fillcolor = c("lightgrey", "red", "orange", "pink",
+#'                          "aqua", "yellow"),
+#'                shape = "circle",
 #'                value = c(2, 1, 0.5, 1, 1.8, 1),
 #'                type = c("1", "1", "1", "2", "2", "2"),
 #'                x = c(1, 2, 3, 4, 5, 6),
