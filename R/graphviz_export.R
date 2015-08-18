@@ -14,7 +14,7 @@
 #'  library(htmltools)
 #'  html_print(HTML(svg))
 #' }
-#' @import V8
+#' @importFrom V8 new_context
 #' @export
 
 exportSVG <- function(gv){
@@ -25,7 +25,7 @@ exportSVG <- function(gv){
   # check to make sure gv is grViz
   if(!inherits(gv,"grViz")) "gv must be a grViz htmlwidget."
 
-  ct <- V8::new_context("window")
+  ct <- new_context("window")
   invisible(ct$source(system.file("htmlwidgets/lib/viz/viz.js", package = "DiagrammeR")))
 
   svg <- ct$call("Viz", gv$x$diagram, "svg", gv$x$config$engine, gv$x$config$options )
