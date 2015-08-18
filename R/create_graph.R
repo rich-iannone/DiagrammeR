@@ -154,7 +154,7 @@ create_graph <- function(nodes_df = NULL,
   # Perform basic checks of the inputs
   if (!is.null(nodes_df)){
 
-    stopifnot("node" %in% colnames(nodes_df))
+    stopifnot("nodes" %in% colnames(nodes_df))
 
     # Force all columns to be of the character class
     for (i in 1:ncol(nodes_df)){
