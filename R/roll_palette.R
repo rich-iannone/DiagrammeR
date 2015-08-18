@@ -61,7 +61,7 @@ roll_palette <- function(number,
     rect(0:(n-1)/n, 0, 1:n/n, 1, col = col, border = border)
   }
 
-  ct <- V8::new_context("window")
+  ct <- new_context("window")
 
   invisible(ct$source(system.file("htmlwidgets/lib/chromatography/chromatography.js",
                                   package = "DiagrammeR")))
