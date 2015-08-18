@@ -40,7 +40,7 @@ roll_palette <- function(number,
   # Check to make sure that V8 is available
   if (!requireNamespace("V8")) stop("V8 is required to export.", call. = F)
 
-  stopifnot(packageVersion("V8") >= "0.5")
+  stopifnot(packageVersion("V8") >= "0.6")
 
   # Construct the JS call
   js_call <- paste0("var colors = createPalette.generate(",
