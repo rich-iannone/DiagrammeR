@@ -10,7 +10,7 @@
 #' \code{graph_time}. If no time zone is provided then it will be set to
 #' \code{GMT}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @import stringr
+#' @importFrom stringr str_replace_all
 #' @export import_graph
 
 import_graph <- function(graph_file,
@@ -143,6 +143,4 @@ import_graph <- function(graph_file,
   if (file_type == "gml"){
 
   }
-
-
 }
