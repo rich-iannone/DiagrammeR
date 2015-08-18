@@ -120,7 +120,7 @@ scale_edges <- function(edges_df,
                         hex_color_values[2], "', ",
                         j/number_of_stops, ", 'hsl');")
 
-      ct <- V8::new_context("window")
+      ct <- new_context("window")
       invisible(ct$source(system.file("htmlwidgets/lib/chromatography/chromatography.js",
                                       package = "DiagrammeR")))
 
