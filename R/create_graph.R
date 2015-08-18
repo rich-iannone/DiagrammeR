@@ -253,7 +253,7 @@ create_graph <- function(nodes_df = NULL,
 
     # Determine the column number with the node ID
     column_with_node_id <-
-      which(colnames(nodes_df) %in% c("node_id", "node", "nodes"))[1]
+      which(colnames(nodes_df) %in% "nodes")[1]
 
     # Determine whether positional (x,y) data is included
     column_with_x <-
