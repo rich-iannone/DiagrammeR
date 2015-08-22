@@ -49,6 +49,40 @@ test_that("getting info about a graph's nodes is possible", {
   expect_is(info_nodes$indegree, "numeric")
   expect_is(info_nodes$outdegree, "numeric")
   expect_is(info_nodes$loops, "numeric")
+
+  # Create a graph with 4 nodes (with type information) but no edges
+  graph <- create_graph()
+  graph <- add_node(graph, node = "a", type = "free")
+  graph <- add_node(graph, node = "b", type = "free")
+  graph <- add_node(graph, node = "c", type = "free")
+  graph <- add_node(graph, node = "d", type = "free")
+
+  # Get information on nodes that have no edges
+  info_nodes_no_edges <- node_info(graph)
+
+  # Expect a data frame object
+  expect_true(class(info_nodes_no_edges) == "data.frame")
+
+  # Expect that the data frame has 7 columns
+  expect_true(ncol(info_nodes_no_edges) == 7L)
+
+  # Expect that the data frame has 4 rows
+  expect_true(nrow(info_nodes_no_edges) == 4L)
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Get information on nodes from the empty graph
+  info_nodes_empty_graph <- node_info(graph)
+
+  # Expect a data frame object
+  expect_true(class(info_nodes_empty_graph) == "data.frame")
+
+  # Expect that the data frame has 7 columns
+  expect_true(ncol(info_nodes_empty_graph) == 7L)
+
+  # Expect that the data frame has 4 rows
+  expect_true(nrow(info_nodes_empty_graph) == 0L)
 })
 
 test_that("getting info about a graph's edges is possible", {
@@ -95,4 +129,22 @@ test_that("getting info about a graph's edges is possible", {
   expect_is(info_edges$to, "character")
   expect_is(info_edges$relationship, "character")
   expect_is(info_edges$label, "character")
+
+  # Create a graph with 4 nodes but no edges
+  graph <- create_graph()
+  graph <- add_node(graph, node = "a")
+  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph, node = "c")
+  graph <- add_node(graph, node = "d")
+
+  info_graph_no_edges <- edge_info(graph)
+
+  # Expect a data frame object
+  expect_true(class(info_graph_no_edges) == "data.frame")
+
+  # Expect that the data frame has 4 columns
+  expect_true(ncol(info_graph_no_edges) == 4L)
+
+  # Expect that the data frame has no rows
+  expect_true(nrow(info_graph_no_edges) == 0L)
 })
