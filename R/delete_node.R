@@ -26,8 +26,7 @@ delete_node <- function(graph,
   # Stop function if node not a single value
   if (node_is_single_value == FALSE){
 
-    message("Only a single node can be deleted using 'delete_node'.")
-    return(graph)
+    stop("Only a single node can be deleted using 'delete_node'.")
   }
 
   # Determine whether node to delete is in the graph
@@ -39,8 +38,7 @@ delete_node <- function(graph,
   # Stop function if node in the graph
   if (can_delete_node_id == FALSE){
 
-    message("The specified node is not available in the graph.")
-    return(graph)
+    stop("The specified node is not available in the graph.")
   }
 
   # Modify graph if node is available
