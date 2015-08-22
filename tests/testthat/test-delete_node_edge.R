@@ -5,7 +5,7 @@ test_that("nodes and edges can be deleted from a graph", {
   # Create an empty graph
   graph <- create_graph()
 
-  # Add two nodes
+  # Add four nodes
   graph <- add_node(graph, node = "a")
   graph <- add_node(graph, node = "b")
   graph <- add_node(graph, node = "c")
@@ -68,7 +68,7 @@ test_that("the function can be stopped with certain input values", {
   # Create an empty graph
   graph <- create_graph()
 
-  # Add two nodes
+  # Add four nodes
   graph <- add_node(graph, node = "a")
   graph <- add_node(graph, node = "b")
   graph <- add_node(graph, node = "c")
