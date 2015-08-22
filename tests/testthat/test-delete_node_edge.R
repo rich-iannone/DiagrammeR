@@ -62,3 +62,40 @@ test_that("nodes and edges can be deleted from a graph", {
   expect_true(node_present(graph, node = "a"))
   expect_true(node_present(graph, node = "c"))
 })
+
+test_that("the function can be stopped with certain input values", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add two nodes
+  graph <- add_node(graph, node = "a")
+  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph, node = "c")
+  graph <- add_node(graph, node = "d")
+
+  # Add edges
+  graph <- add_edges(graph, from = "a", to = "b",
+                     relationship = "to_get")
+
+  graph <-
+    add_edges(graph,
+              from = c("a", "a"),
+              to = c("c", "d"),
+              relationship = "received_from")
+
+  # Expect an error the node specified is not a single value
+  expect_error(delete_node(graph, node = c("a", "b")))
+
+  # Expect an error if the node specified is not present in the graph
+  expect_error(delete_node(graph, node = "e"))
+
+  # Expect an error if either node specified is not a single value
+  expect_error(delete_edge(graph, from = c("a", "b"), to = "c"))
+
+  # Expect an error if both nodes specified are not present in the graph
+  expect_error(delete_edge(graph, from = "a", to = "e"))
+
+})
+
+
