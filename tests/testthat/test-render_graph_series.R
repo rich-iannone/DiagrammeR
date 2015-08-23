@@ -36,6 +36,35 @@ test_that("rendering a graph is indeed possible", {
 
   # Expect that the 'rendered_graph' object inherits from 'grViz' & 'htmlwidget'
   expect_is(rendered_graph, c("grViz", "htmlwidget"))
+
+  # Create a graph with image references
+  nodes_icon <-
+    create_nodes(nodes = c("a", "b", "c", "d",
+                          "e", "f", "g", "h"),
+                 icon = c("fa-music",
+                          "fa-soundcloud",
+                          "fa-headphones",
+                          "fa-spotify",
+                          "fa-file-code-o",
+                          "fa-github",
+                          "fa-git",
+                          "fa-bitbucket"))
+
+  edges_icon <-
+    create_edges(from = c("a", "a", "a",
+                          "e", "e", "e"),
+                 to = c("b", "c", "d",
+                        "f", "g", "h"))
+
+  graph_icon <-
+    create_graph(nodes_df = nodes_icon,
+                 edges_df = edges_icon)
+
+  # Render the graph object and create a 'grViz'/'htmlwidget' object
+  rendered_graph_icons <- render_graph(graph_icon)
+
+  # Expect that the 'rendered_graph_icons' object doesn't inherit from anything
+  expect_true(is.null(class(rendered_graph_icons)))
 })
 
 test_that("exporting Graphviz DOT code is indeed possible", {
@@ -122,13 +151,13 @@ test_that("rendering a graph from a series is also possible", {
   expect_message(render_graph_from_series(graph_series = series,
                                           graph_no = 4),
                  paste0("The index chosen doesn't correspond to that of a",
-                  " graph in the series."))
+                        " graph in the series."))
 
   # Expect that each of the graphs is different
   expect_true(render_graph_from_series(graph_series = series,
-                           graph_no = 1)$x$diagram !=
-    render_graph_from_series(graph_series = series,
-                             graph_no = 2)$x$diagram)
+                                       graph_no = 1)$x$diagram !=
+                render_graph_from_series(graph_series = series,
+                                         graph_no = 2)$x$diagram)
 
   expect_true(render_graph_from_series(graph_series = series,
                                        graph_no = 2)$x$diagram !=
@@ -139,6 +168,4 @@ test_that("rendering a graph from a series is also possible", {
                                        graph_no = 1)$x$diagram !=
                 render_graph_from_series(graph_series = series,
                                          graph_no = 3)$x$diagram)
-
 })
-
