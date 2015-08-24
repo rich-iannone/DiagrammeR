@@ -159,4 +159,12 @@ test_that("rendering a graph from a series is also possible", {
                                        graph_no = 1)$x$diagram !=
                 render_graph_from_series(graph_series = series,
                                          graph_no = 3)$x$diagram)
+
+  # Create an empty graph series
+  empty_series <- create_series(series_type = "sequential")
+
+  # Expect an error if there are no graphs in the series
+  expect_error(
+    render_graph_from_series(graph_series = empty_series)
+  )
 })
