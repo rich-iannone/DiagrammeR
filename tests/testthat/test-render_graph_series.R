@@ -138,20 +138,11 @@ test_that("rendering a graph from a series is also possible", {
   # Expect that the 'rendered_graph' object inherits from 'grViz' & 'htmlwidget'
   expect_is(series_graph_2, c("grViz", "htmlwidget"))
 
-  # Attempt to render graph 4 from the series (which doesn't exist)
-  series_graph_above_limit <-
+  # Expect error when rendering graph 4 from the series (which doesn't exist)
+  expect_error(
     render_graph_from_series(graph_series = series,
                              graph_no = 4)
-
-  # Expect that "series_graph_above_limit" will be NULL
-  expect_null(series_graph_above_limit)
-
-  # Expect a specific message returned if the index chosen doesn't correspond
-  # to a graph in the series
-  expect_message(render_graph_from_series(graph_series = series,
-                                          graph_no = 4),
-                 paste0("The index chosen doesn't correspond to that of a",
-                        " graph in the series."))
+  )
 
   # Expect that each of the graphs is different
   expect_true(render_graph_from_series(graph_series = series,
