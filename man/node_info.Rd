@@ -49,6 +49,18 @@ node_info(graph)
 #> 4        L     L  h_to_p      1        0         1     0
 #> 5        F     F  a_to_g      0        0         0     0
 #>..      ...   ...     ...    ...      ...       ...   ...
+
+# Import a large graph
+power_grid <-
+import_graph(system.file("examples/power_grid.graphml",
+                         package = "DiagrammeR"))
+
+# Use dplyr::filter to determine which nodes are highly
+# connected in this graph
+library(dplyr)
+
+high_connect_nodes <-
+  filter(node_info(power_grid), degree > 10)$node_ID
 }
 }
 
