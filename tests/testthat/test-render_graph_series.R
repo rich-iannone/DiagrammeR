@@ -64,7 +64,7 @@ test_that("rendering a graph is indeed possible", {
   rendered_graph_icons <- render_graph(graph_icon)
 
   # Expect that the 'rendered_graph_icons' object doesn't inherit from anything
-  expect_true(is.null(class(rendered_graph_icons)))
+  expect_equal((class(rendered_graph_icons)), "NULL")
 })
 
 test_that("exporting Graphviz DOT code is indeed possible", {
