@@ -219,12 +219,8 @@ test_that("adding an edge to a graph is possible", {
   # Create another empty graph
   graph_empty <- create_graph()
 
-  # Expect a specific message when calling 'add_edges' on an empty graph
-  expect_message(add_edges(graph = graph_empty),
-                 "Edges cannot be added to an empty graph")
-
-  # Expect no change to the graph after calling 'add_edges' on an empty graph
-  expect_equal(add_edges(graph = create_graph()), create_graph())
+  # Expect an error when calling 'add_edges' on an empty graph
+  expect_error(add_edges(graph = graph_empty))
 })
 
 test_that("adding a node to a graph is possible", {
