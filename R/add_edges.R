@@ -48,7 +48,7 @@ add_edges <- function(graph,
                                  TRUE, FALSE)
 
     # If not all the nodes specified in the edge data frame are in the
-    # graph, return the original graph with a message
+    # graph, stop the function
     if (edges_df_available == FALSE){
 
       stop("Not all nodes specified in the edge data frame are in the graph")
