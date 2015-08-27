@@ -2,6 +2,8 @@ context("Rendering a graph object")
 
 test_that("rendering a graph is indeed possible", {
 
+  library(stringr)
+
   # Create a node data frame
   nodes <-
     create_nodes(nodes = LETTERS,
