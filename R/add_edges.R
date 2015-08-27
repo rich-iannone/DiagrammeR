@@ -138,12 +138,10 @@ add_edges <- function(graph,
                      graph_name = graph$graph_name,
                      graph_time = graph$graph_time,
                      graph_tz = graph$graph_tz)
+
+      return(dgr_graph)
     }
-
-    return(dgr_graph)
   }
-
-
 
   # If 'graph$edges_df' is not null then use both 'combine_edges' and
   # 'create_edges' to add an edge
@@ -181,4 +179,6 @@ add_edges <- function(graph,
 
     return(dgr_graph)
   }
+
+  return(dgr_graph)
 }
