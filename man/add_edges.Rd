@@ -35,6 +35,22 @@ graph <- create_graph(create_nodes(nodes = c("a", "b")))
 # Add an edge between those nodes and attach a relationship
 graph <- add_edges(graph, from = "a", to = "b",
                    relationship = "to_get")
+
+# Examples of using 'create_edges' with 'add_edges' to include
+# line attributes
+graph <- create_graph() \%>\%
+add_node("a") \%>\%
+  add_node("b") \%>\%
+  add_edges(create_edges(from = "a", to = "b",
+                         style = "solid")) \%>\%
+  add_node("c") \%>\%
+  add_node("d") \%>\%
+  add_edges(create_edges(from = "c", to = "d",
+                         style = "dashed")) \%>\%
+  add_node("e") \%>\%
+  add_node("f") \%>\%
+  add_edges(create_edges(from = "e", to = "f",
+                         style = "dotted"))
 }
 }
 
