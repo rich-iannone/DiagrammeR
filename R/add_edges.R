@@ -20,6 +20,9 @@
 #'
 #' # Examples of using 'create_edges' with 'add_edges' to include
 #' # line attributes
+#'
+#' library(magrittr)
+#'
 #' graph <- create_graph() %>%
 #' add_node("a") %>%
 #'   add_node("b") %>%
