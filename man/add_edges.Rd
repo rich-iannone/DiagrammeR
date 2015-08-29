@@ -38,8 +38,11 @@ graph <- add_edges(graph, from = "a", to = "b",
 
 # Examples of using 'create_edges' with 'add_edges' to include
 # line attributes
+
+library(magrittr)
+
 graph <- create_graph() \%>\%
-add_node("a") \%>\%
+  add_node("a") \%>\%
   add_node("b") \%>\%
   add_edges(create_edges(from = "a", to = "b",
                          style = "solid")) \%>\%
@@ -50,7 +53,11 @@ add_node("a") \%>\%
   add_node("e") \%>\%
   add_node("f") \%>\%
   add_edges(create_edges(from = "e", to = "f",
-                         style = "dotted"))
+                         style = "dotted")) \%>\%
+  add_node("g") \%>\%
+  add_node("h") \%>\%
+  add_edges(create_edges(from = "g", to = "h",
+                         style = "bold"))
 }
 }
 
