@@ -6,6 +6,9 @@ env:
  global:
    - CRAN: http://cran.rstudio.com
 
+apt_packages:
+  - libv8-dev
+
 notifications:
   email:
     on_success: change
