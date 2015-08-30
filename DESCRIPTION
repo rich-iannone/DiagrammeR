@@ -42,7 +42,7 @@ License: MIT + file LICENSE
 Imports:
     htmlwidgets (>= 0.5), rstudioapi (>= 0.3.1),
     stringr (>= 1.0.0), visNetwork (>= 0.1.0),
-    V8 (>= 0.6)
+    V8 (>= 0.6), shiny (>= 0.12)
 URL: https://github.com/rich-iannone/DiagrammeR
 Suggests:
     knitr,
