@@ -6,6 +6,11 @@ sudo: required
 apt_packages:
   - libv8-dev
 
+r_packages:
+  - rstudioapi
+  - stringr
+  - shiny
+
 notifications:
   email:
     on_success: change
