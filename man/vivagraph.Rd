@@ -4,20 +4,16 @@
 \alias{vivagraph}
 \title{Render graph with VivaGraphJS}
 \usage{
-vivagraph(graph = NULL, igrf = NULL, layout = "forceDirected",
-  positions = NULL, config = NULL, height = NULL, width = NULL,
-  elementId = NULL)
+vivagraph(graph = NULL, layout = "forceDirected", positions = NULL,
+  config = NULL, height = NULL, width = NULL, elementId = NULL)
 }
 \arguments{
 \item{graph}{a \code{dgr_graph} object, created using the \code{create_graph}
 function.}
 
-\item{igrf}{\code{igraph} graph. We will try to smartly convert the
-\code{igrf} using \code{get.data.frame(what = "both")}.}
-
-\item{layout}{\code{string} or a layout function from \code{igraph}.
-\code{"forceDirected"} the default and will use the \code{"forceDirected"}
-layout engine from VivaGraphJS/ngraph.forceDirected. \code{"constant"} is the
+\item{layout}{a \code{string} where \code{"forceDirected"} the default and
+will use the \code{"forceDirected"} layout engine from
+VivaGraphJS/ngraph.forceDirected. \code{"constant"} is the
 other \code{string} option for layout. However, if desired, we can also take
 advantage of a layout function from \code{igraph}, by providing this as our
 \code{layout} parameter.}
@@ -71,17 +67,6 @@ graph <-
 
 # Render graph
 vivagraph(graph = graph)
-
-# Using the igraph examples
-library(igraph)
-
-vivagraph(igrf = graph.ring(10))
-
-vivagraph(erdos.renyi.game(100, 1/100))
-
-# Utilizing igraph layouts
-vivagraph(erdos.renyi.game(100, 1/100), layout = layout.circle)
-vivagraph(graph.famous("Zachary"), layout = layout.grid)
 }
 }
 
