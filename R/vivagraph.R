@@ -2,11 +2,9 @@
 #' @description Render a graph object with the VivaGraphJS library.
 #' @param graph a \code{dgr_graph} object, created using the \code{create_graph}
 #' function.
-#' @param igrf \code{igraph} graph. We will try to smartly convert the
-#' \code{igrf} using \code{get.data.frame(what = "both")}.
-#' @param layout \code{string} or a layout function from \code{igraph}.
-#' \code{"forceDirected"} the default and will use the \code{"forceDirected"}
-#' layout engine from VivaGraphJS/ngraph.forceDirected. \code{"constant"} is the
+#' @param layout a \code{string} where \code{"forceDirected"} the default and
+#' will use the \code{"forceDirected"} layout engine from
+#' VivaGraphJS/ngraph.forceDirected. \code{"constant"} is the
 #' other \code{string} option for layout. However, if desired, we can also take
 #' advantage of a layout function from \code{igraph}, by providing this as our
 #' \code{layout} parameter.
@@ -52,22 +50,10 @@
 #'
 #' # Render graph
 #' vivagraph(graph = graph)
-#'
-#' # Using the igraph examples
-#' library(igraph)
-#'
-#' vivagraph(igrf = graph.ring(10))
-#'
-#' vivagraph(erdos.renyi.game(100, 1/100))
-#'
-#' # Utilizing igraph layouts
-#' vivagraph(erdos.renyi.game(100, 1/100), layout = layout.circle)
-#' vivagraph(graph.famous("Zachary"), layout = layout.grid)
 #' }
 #' @export vivagraph
 
 vivagraph <- function(graph = NULL,
-                      igrf  = NULL,
                       layout = "forceDirected",
                       positions = NULL,
                       config = NULL,
@@ -128,59 +114,6 @@ vivagraph <- function(graph = NULL,
     }
   }
 
-  # Check to see if 'graph' is an igraph object
-  if (inherits(graph, "igraph")){
-
-    # Try to make this easy if someone accidentally provides an igraph
-    # as the first parameter
-
-    igrf <- graph
-    graph <- NULL
-  }
-
-  # If we are given an igraph, try to smartly convert using 'get.data.frame'
-  if(inherits(igrf, "igraph")){
-
-    # Assume if we are given an igraph that igraph is available
-    igrf_df <- igraph::get.data.frame(igrf, what = "both")
-
-    # warn if igraph provided as igrf and also nodes and edges
-    if(!is.null(graph)) warning("overwriting nodes and edges with igraph igrf",
-                                   call. = FALSE)
-
-    if(ncol(igrf_df$vertices) > 0){
-
-      nodes_df <-
-        data.frame(id = igrf_df$vertices[,1],
-                   igrf_df$vertices[,-1],
-                   stringsAsFactors = FALSE)
-    } else {
-
-      # If there are no nodes then just take all unique values from edges
-      nodes_df <-
-        data.frame(id = unique(c(igrf_df$edges$from,
-                                 igrf_df$edges$to)))
-    }
-
-    edges_df <- igrf_df$edges
-
-    # If position is a function then assume a layout for igraph
-    if (is.function(layout)){
-
-      positions <-
-        layout.norm(layout(igrf),
-                    xmin = -1,
-                    xmax = 1,
-                    ymin = -1,
-                    ymax = 1)
-
-      positions <-
-        data.frame(x = positions[,1] * 100,
-                   y = -positions[,2] * 100)
-
-      layout <- "constant"
-    }
-  }
 
   x <-
     list(network = list(nodes_df = nodes_df,
