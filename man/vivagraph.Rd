@@ -11,12 +11,8 @@ vivagraph(graph = NULL, layout = "forceDirected", positions = NULL,
 \item{graph}{a \code{dgr_graph} object, created using the \code{create_graph}
 function.}
 
-\item{layout}{a \code{string} where \code{"forceDirected"} the default and
-will use the \code{"forceDirected"} layout engine from
-VivaGraphJS/ngraph.forceDirected. \code{"constant"} is the
-other \code{string} option for layout. However, if desired, we can also take
-advantage of a layout function from \code{igraph}, by providing this as our
-\code{layout} parameter.}
+\item{layout}{a \code{string} where \code{"forceDirected"} is the default
+whereas \code{"constant"} is another layout option.}
 
 \item{positions}{\code{data.frame} of two columns \code{x} and \code{y} with
 fixed positions if you intend to provide preset positions for nodes.}
@@ -65,7 +61,6 @@ graph <-
                edge_attrs = c("color = gray20",
                               "arrowsize = 0.5"))
 
-# Render graph
 vivagraph(graph = graph)
 }
 }
