@@ -2,12 +2,8 @@
 #' @description Render a graph object with the VivaGraphJS library.
 #' @param graph a \code{dgr_graph} object, created using the \code{create_graph}
 #' function.
-#' @param layout a \code{string} where \code{"forceDirected"} the default and
-#' will use the \code{"forceDirected"} layout engine from
-#' VivaGraphJS/ngraph.forceDirected. \code{"constant"} is the
-#' other \code{string} option for layout. However, if desired, we can also take
-#' advantage of a layout function from \code{igraph}, by providing this as our
-#' \code{layout} parameter.
+#' @param layout a \code{string} where \code{"forceDirected"} is the default
+#' whereas \code{"constant"} is another layout option.
 #' @param positions \code{data.frame} of two columns \code{x} and \code{y} with
 #' fixed positions if you intend to provide preset positions for nodes.
 #' @param config \code{list} of other config options. While currently this does
@@ -17,7 +13,6 @@
 #' @param height \code{string} or \code{integer} with a valid CSS \code{height}
 #' for the container for our htmlwidget.
 #' @param elementId \code{string} with a valid CSS \code{id}.
-#'
 #' @examples
 #' \dontrun{
 #' # Create a graph using the \code{create_nodes}, \code{create_edges},
@@ -48,7 +43,6 @@
 #'                edge_attrs = c("color = gray20",
 #'                               "arrowsize = 0.5"))
 #'
-#' # Render graph
 #' vivagraph(graph = graph)
 #' }
 #' @export vivagraph
@@ -65,7 +59,6 @@ vivagraph <- function(graph = NULL,
 
     nodes_df <- graph$nodes_df
     edges_df <- graph$edges_df
-
 
     #  if nodes_df provided then check to make sure there is a column named id
     #  if not then name the first column id
