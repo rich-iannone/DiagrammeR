@@ -192,5 +192,10 @@ import_graph <- function(graph_file,
       to <- c(to, str_split(sif_file[i], "\t")[[1]][3:length_stmt])
     }
 
+    # Create an edge data frame
+    edges_df <- create_edges(from = from,
+                             to = to,
+                             relationship = relationship)
+
   }
 }
