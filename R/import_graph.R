@@ -156,5 +156,14 @@ import_graph <- function(graph_file,
     # Initialize the vector for a node data frame
     nodes <- vector(mode = "character")
 
+    # Determine which nodes are present in the graph
+    for (i in 1:length(sif_file)){
+
+      nodes <- c(nodes,
+                 ifelse(length(unlist(str_split(sif_file[i], "\t"))) == 1,
+                        unlist(str_split(sif_file[i], "\t"))[1],
+                        unlist(str_split(sif_file[i], "\t"))[-2]))
+    }
+
   }
 }
