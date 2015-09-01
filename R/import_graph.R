@@ -153,5 +153,8 @@ import_graph <- function(graph_file,
     # Read in the SIF document as a vector object
     sif_document <- readLines(graph_file)
 
+    # Initialize the vector for a node data frame
+    nodes <- vector(mode = "character")
+
   }
 }
