@@ -180,5 +180,17 @@ import_graph <- function(graph_file,
     # Initialize vectors for an edge data frame
     from <- to <- relationship <- vector(mode = "character")
 
+    # Obtain complete vectors for the edge data frame
+    for (i in which(str_count(sif_file, "\\t") > 1)){
+
+      length_stmt <- length(str_split(sif_file[i], "\t")[[1]])
+
+      from <- c(from, str_split(sif_file[i], "\t")[[1]][1])
+
+      relationship <- c(relationship, str_split(sif_file[i], "\t")[[1]][2])
+
+      to <- c(to, str_split(sif_file[i], "\t")[[1]][3:length_stmt])
+    }
+
   }
 }
