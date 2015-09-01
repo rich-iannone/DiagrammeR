@@ -147,4 +147,11 @@ import_graph <- function(graph_file,
   if (file_type == "gml"){
 
   }
+
+  if (file_type == "sif"){
+
+    # Read in the SIF document as a vector object
+    sif_document <- readLines(graph_file)
+
+  }
 }
