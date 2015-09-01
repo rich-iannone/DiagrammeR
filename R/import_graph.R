@@ -177,5 +177,8 @@ import_graph <- function(graph_file,
       single_nodes <- which(!str_detect(sif_file, "\\t"))
     }
 
+    # Initialize vectors for an edge data frame
+    from <- to <- relationship <- vector(mode = "character")
+
   }
 }
