@@ -201,5 +201,7 @@ import_graph <- function(graph_file,
     the_graph <- create_graph(nodes_df = nodes_df,
                               edges_df = edges_df)
 
+    # Return the graph
+    return(the_graph)
   }
 }
