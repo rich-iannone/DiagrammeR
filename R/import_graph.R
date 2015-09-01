@@ -165,5 +165,8 @@ import_graph <- function(graph_file,
                         unlist(str_split(sif_file[i], "\t"))[-2]))
     }
 
+    # Obtain a unique vector of nodes in the graph
+    nodes <- unique(nodes)
+
   }
 }
