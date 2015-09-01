@@ -168,5 +168,8 @@ import_graph <- function(graph_file,
     # Obtain a unique vector of nodes in the graph
     nodes <- unique(nodes)
 
+    # Create a node data frame
+    nodes_df <- create_nodes(nodes = nodes)
+
   }
 }
