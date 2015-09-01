@@ -171,5 +171,11 @@ import_graph <- function(graph_file,
     # Create a node data frame
     nodes_df <- create_nodes(nodes = nodes)
 
+    # Determine which lines have single nodes
+    if (any(!str_detect(sif_file, "\\t"))){
+
+      single_nodes <- which(!str_detect(sif_file, "\\t"))
+    }
+
   }
 }
