@@ -14,6 +14,7 @@
 #' @export import_graph
 
 import_graph <- function(graph_file,
+                         file_type = NULL,
                          graph_name = NULL,
                          graph_time = NULL,
                          graph_tz = NULL){
