@@ -25,11 +25,8 @@ import_graph <- function(graph_file,
   # Stop function if file doesn't exist
   if (file.exists(graph_file) == FALSE){
 
-  # Obtain file extension
-  file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
-
-  # Determine file type from file extension
-  if (file_extension == "graphml"){
+    stop("The file as specified doesn't exist.")
+  }
 
     file_type <- "graphml"
 
