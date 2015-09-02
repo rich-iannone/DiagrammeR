@@ -28,9 +28,12 @@ import_graph <- function(graph_file,
     stop("The file as specified doesn't exist.")
   }
 
-    file_type <- "graphml"
+  # Stop function if 'file_type' specified is not part of the group
+  # that can be imported
+  if (!(tolower(file_type) %in% c("graphml", "sif"))){
 
-  } else if (file_extension == "gml"){
+    stop("The file type as specified cannot be imported.")
+  }
 
     file_type <- "gml"
 
