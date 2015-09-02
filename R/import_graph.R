@@ -2,6 +2,9 @@
 #' @description Import a variety of graphs from different graph formats and
 #' create a graph object.
 #' @param graph_file a connection to a graph file.
+#' @param file_type the type of file to be imported. Options are:
+#' \code{graphml} (GraphML) and \code{sif} (SIF). If not supplied, the function
+#' will infer the type by its file extension.
 #' @param graph_name an optional string for labeling the graph object.
 #' @param graph_time a date or date-time string (required for insertion of
 #' graph into a graph series of the type \code{temporal}).
