@@ -35,7 +35,9 @@ import_graph <- function(graph_file,
     stop("The file type as specified cannot be imported.")
   }
 
-    file_type <- "gml"
+  # Obtain file extension if no value supplied for 'file_type'
+  if (is.null(file_type)){
+    file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
 
   } else if (file_extension == "gexf"){
 
