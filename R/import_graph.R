@@ -39,13 +39,17 @@ import_graph <- function(graph_file,
   if (is.null(file_type)){
     file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
 
-  } else if (file_extension == "gexf"){
+    # Determine file type from file extension
+    if (file_extension == "graphml"){
 
-    file_type <- "gexf"
+      file_type <- "graphml"
+    } else if (file_extension == "sif"){
 
-  } else {
+      file_type <- "sif"
+    } else {
 
-    file_type <- NA
+      stop("The file type is not known so it can't be imported.")
+    }
   }
 
   if (file_type == "graphml"){
