@@ -36,7 +36,6 @@ test_that("an empty graph object can be created and such an object is correct", 
   # Expect that the Graphviz DOT code for an empty graph
   # is essentially an empty Graphviz diagram
   expect_match(graph$dot_code, "digraph \\{\n\n\\}")
-
 })
 
 test_that("a graph object with nodes can be created correctly", {
@@ -194,4 +193,47 @@ test_that("a graph object with nodes and edges can be created correctly", {
   expect_true(nrow(graph$edges_df) == 3L)
 })
 
+test_that("different combinations of inputs can result in a graph", {
 
+  # Create the graph object with only 'node_attrs'
+  graph_n <- create_graph(node_attrs = "fontname = Helvetica")
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_n) == "dgr_graph")
+
+  # Expect that several of the graph components are NULL or not NULL
+  expect_null(graph_n$graph_name)
+  expect_null(graph_n$graph_time)
+  expect_null(graph_n$graph_tz)
+  expect_null(graph_n$graph_attrs)
+  expect_null(graph_n$edge_attrs)
+  expect_false(is.null(graph_n$node_attrs))
+
+  # Create the graph object with only 'edge_attrs'
+  graph_e <- create_graph(edge_attrs = "color = blue")
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_e) == "dgr_graph")
+
+  # Expect that several of the graph components are NULL or not NULL
+  expect_null(graph_e$graph_name)
+  expect_null(graph_e$graph_time)
+  expect_null(graph_e$graph_tz)
+  expect_null(graph_e$graph_attrs)
+  expect_null(graph_e$node_attrs)
+  expect_false(is.null(graph_e$edge_attrs))
+
+  # Create the graph object with only 'graph_attrs'
+  graph_g <- create_graph(graph_attrs = "layout = circo")
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_g) == "dgr_graph")
+
+  # Expect that several of the graph components are NULL or not NULL
+  expect_null(graph_g$graph_name)
+  expect_null(graph_g$graph_time)
+  expect_null(graph_g$graph_tz)
+  expect_null(graph_g$node_attrs)
+  expect_null(graph_g$edges_attrs)
+  expect_false(is.null(graph_g$graph_attrs))
+})
