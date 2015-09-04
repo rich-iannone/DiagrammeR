@@ -234,6 +234,52 @@ test_that("different combinations of inputs can result in a graph", {
   expect_null(graph_g$graph_time)
   expect_null(graph_g$graph_tz)
   expect_null(graph_g$node_attrs)
-  expect_null(graph_g$edges_attrs)
+  expect_null(graph_g$edge_attrs)
   expect_false(is.null(graph_g$graph_attrs))
+
+  # Create the graph object with only 'graph_attrs' and 'edge_attrs'
+  graph_ge <- create_graph(graph_attrs = "layout = circo",
+                           edge_attrs = "color = blue")
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_ge) == "dgr_graph")
+
+  # Expect that several of the graph components are NULL or not NULL
+  expect_null(graph_ge$graph_name)
+  expect_null(graph_ge$graph_time)
+  expect_null(graph_ge$graph_tz)
+  expect_null(graph_ge$node_attrs)
+  expect_false(is.null(graph_ge$edge_attrs))
+  expect_false(is.null(graph_ge$graph_attrs))
+
+  # Create the graph object with only 'graph_attrs' and 'node_attrs'
+  graph_gn <- create_graph(graph_attrs = "layout = circo",
+                           node_attrs = "fontname = Helvetica")
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_gn) == "dgr_graph")
+
+  # Expect that several of the graph components are NULL or not NULL
+  expect_null(graph_gn$graph_name)
+  expect_null(graph_gn$graph_time)
+  expect_null(graph_gn$graph_tz)
+  expect_null(graph_gn$edge_attrs)
+  expect_false(is.null(graph_gn$node_attrs))
+  expect_false(is.null(graph_gn$graph_attrs))
+
+  # Create the graph object with only 'node_attrs' and 'edge_attrs'
+  graph_ne <- create_graph(node_attrs = "fontname = Helvetica",
+                           edge_attrs = "color = blue")
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_ne) == "dgr_graph")
+
+  # Expect that several of the graph components are NULL or not NULL
+  expect_null(graph_ne$graph_name)
+  expect_null(graph_ne$graph_time)
+  expect_null(graph_ne$graph_tz)
+  expect_null(graph_ne$graph_attrs)
+  expect_false(is.null(graph_ne$node_attrs))
+  expect_false(is.null(graph_ne$edge_attrs))
+
 })
