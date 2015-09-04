@@ -44,7 +44,8 @@ test_that("importing an .sif file is possible", {
 
   sif_graph <-
     import_graph(system.file("examples/Human_Interactome_May_sif",
-                             package = "DiagrammeR"))
+                             package = "DiagrammeR"),
+                 file_type = "sif")
 
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(sif_graph) == "dgr_graph")
