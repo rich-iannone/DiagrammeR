@@ -60,4 +60,7 @@ test_that("importing an .sif file is possible", {
 
   # Expect that the 'edges_df' component is a data frame
   expect_true(class(sif_graph$edges_df) == "data.frame")
+
+  # Expect that the graph is a directed graph
+  expect_true(sif_graph$directed == TRUE)
 })
