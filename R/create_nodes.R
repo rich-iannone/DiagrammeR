@@ -26,21 +26,9 @@ create_nodes <- function(...){
   # Stop function if there are no named list components
   stopifnot(!is.null(names(nodes)))
 
-  # Attempt to obtain the number of nodes from the 'node' column
-  if ("node" %in% names(nodes)){
-    nodes_column <- which("node" %in% names(nodes))
-    number_of_nodes <- length(nodes[nodes_column][[1]])
-  }
-
   # Attempt to obtain the number of nodes from the 'nodes' column
   if ("nodes" %in% names(nodes)){
     nodes_column <- which("nodes" %in% names(nodes))
-    number_of_nodes <- length(nodes[nodes_column][[1]])
-  }
-
-  # Attempt to obtain the number of nodes from the 'node_id' column
-  if ("node_id" %in% names(nodes)){
-    nodes_column <- which("node_id" %in% names(nodes))
     number_of_nodes <- length(nodes[nodes_column][[1]])
   }
 
