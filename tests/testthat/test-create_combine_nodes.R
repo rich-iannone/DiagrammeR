@@ -56,6 +56,40 @@ test_that("a correct node data frame is generated", {
   # Expect that the numeric 'data' values are numeric
   expect_true(class(nodes_1$data) == "numeric")
   expect_true(class(nodes_2$data) == "numeric")
+
+  # Create a node data frame using a vector with length > 1 and
+  # length < length(from | to)
+  nodes_var_1 <-
+    create_nodes(nodes = c("a", "a", "b", "c"),
+                 color = c("green", "green"))
+
+  # Expect that a data frame is generated
+  expect_is(nodes_var_1, "data.frame")
+
+  # Expect that the data frame has 4 rows
+  expect_equal(nrow(nodes_var_1), 4L)
+
+  # Expect that the 'color' attribute is only written twice and not
+  # repeated down
+  expect_equal(nodes_var_1$color, c("green", "green", "", ""))
+
+  # Create a node data frame using a vector with
+  # length > length(from | to)
+  nodes_var_2 <-
+    create_nodes(nodes = c("a", "a", "b", "c"),
+                 color = c("green", "green",
+                           "green", "green",
+                           "green", "green"))
+
+  # Expect that a data frame is generated
+  expect_is(nodes_var_2, "data.frame")
+
+  # Expect that the data frame has 4 rows
+  expect_equal(nrow(nodes_var_2), 4L)
+
+  # Expect that the 'color' attribute is only written twice and not
+  # repeated down
+  expect_equal(nodes_var_2$color, c("green", "green", "green", "green"))
 })
 
 test_that("node data frames can be successfully combined", {
