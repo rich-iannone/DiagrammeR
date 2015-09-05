@@ -40,27 +40,3 @@ test_that("importing a .graphml file is possible", {
   expect_true(nrow(graphml_graph$edges_df) == 6594L)
 })
 
-test_that("importing an .sif file is possible", {
-
-  sif_graph <-
-    import_graph(system.file("examples/Human_Interactome_May_sif",
-                             package = "DiagrammeR"),
-                 file_type = "sif")
-
-  # Expect a graph object of class 'dgr_graph'
-  expect_true(class(sif_graph) == "dgr_graph")
-
-  # Expect that several of the graph components are NULL
-  expect_null(sif_graph$graph_name)
-  expect_null(sif_graph$graph_time)
-  expect_null(sif_graph$graph_tz)
-
-  # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(sif_graph$nodes_df) == "data.frame")
-
-  # Expect that the 'edges_df' component is a data frame
-  expect_true(class(sif_graph$edges_df) == "data.frame")
-
-  # Expect that the graph is a directed graph
-  expect_true(sif_graph$directed == TRUE)
-})
