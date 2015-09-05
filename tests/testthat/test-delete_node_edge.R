@@ -74,10 +74,11 @@ test_that("the function can be stopped with certain input values", {
   graph <- add_node(graph, node = "c")
   graph <- add_node(graph, node = "d")
 
-  # Add edges
+  # Add edges with the 'to_get' relationship
   graph <- add_edges(graph, from = "a", to = "b",
                      relationship = "to_get")
 
+  # Add edges with the 'received_from' relationship
   graph <-
     add_edges(graph,
               from = c("a", "a"),
@@ -95,7 +96,4 @@ test_that("the function can be stopped with certain input values", {
 
   # Expect an error if both nodes specified are not present in the graph
   expect_error(delete_edge(graph, from = "a", to = "e"))
-
 })
-
-
