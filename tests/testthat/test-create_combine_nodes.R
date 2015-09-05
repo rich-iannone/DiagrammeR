@@ -104,17 +104,6 @@ test_that("node data frames can be successfully combined", {
   # Combine the 2 node data frames
   all_nodes <- combine_nodes(nodes_1, nodes_2)
 
-  # Result
-  #>   nodes label  type  style color     shape data
-  #> 1     a       lower filled  aqua    circle  3.5
-  #> 2     b       lower filled  aqua    circle  2.6
-  #> 3     c       lower filled  aqua rectangle  9.4
-  #> 4     d       lower filled  aqua rectangle  2.7
-  #> 5     e       upper filled   red  triangle  0.5
-  #> 6     f       upper filled   red  triangle  3.9
-  #> 7     g       upper filled   red  triangle  3.7
-  #> 8     h       upper filled   red  triangle  8.2
-
   # Expect that the combined node data frame has 8 rows
   expect_equal(nrow(all_nodes), 8L)
 
