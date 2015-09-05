@@ -13,13 +13,6 @@ test_that("a correct node data frame is generated", {
                            "rectangle", "rectangle"),
                  data = c(3.5, 2.6, 9.4, 2.7))
 
-  # Result
-  #>   nodes label  type  style color     shape data
-  #> 1     a       lower filled  aqua    circle  3.5
-  #> 2     b       lower filled  aqua    circle  2.6
-  #> 3     c       lower filled  aqua rectangle  9.4
-  #> 4     d       lower filled  aqua rectangle  2.7
-
   # Create 'nodes_2' node data frame
   nodes_2 <-
     create_nodes(nodes = c("e", "f", "g", "h"),
@@ -29,13 +22,6 @@ test_that("a correct node data frame is generated", {
                  color = "red",
                  shape = "triangle",
                  data = c(0.5, 3.9, 3.7, 8.2))
-
-  # Result
-  #>   nodes label  type  style color    shape data
-  #> 1     e       upper filled   red triangle  0.5
-  #> 2     f       upper filled   red triangle  3.9
-  #> 3     g       upper filled   red triangle  3.7
-  #> 4     h       upper filled   red triangle  8.1
 
   # Expect that each of the node data frames has 4 rows
   expect_equal(nrow(nodes_1), 4L)
