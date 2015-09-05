@@ -29,6 +29,46 @@ test_that("a correct edge data frame is generated", {
   # Expect that each of the edge data frames has 5 columns
   expect_equal(ncol(edges_1), 5L)
   expect_equal(ncol(edges_2), 5L)
+
+  # Create an edge data frame using a vector with length > 1 and
+  # length < length(from | to)
+  edges_var_1 <-
+    create_edges(from = c("a", "a", "b", "c"),
+                 to = c("b", "d", "d", "a"),
+                 relationship = "requires",
+                 color = c("green", "green"),
+                 data = c(2.7, 8.9, 2.6, 0.6))
+
+  # Expect that a data frame is generated
+  expect_is(edges_var_1, "data.frame")
+
+  # Expect that the data frame has 4 rows
+  expect_equal(nrow(edges_var_1), 4L)
+
+  # Expect that the 'color' attribute is only written twice and not
+  # repeated down
+  expect_equal(edges_var_1$color, c("green", "green", "", ""))
+
+  # Create an edge data frame using a vector with
+  # length > length(from | to)
+  edges_var_2 <-
+    create_edges(from = c("a", "a", "b", "c"),
+                 to = c("b", "d", "d", "a"),
+                 relationship = "requires",
+                 color = c("green", "green",
+                           "green", "green",
+                           "green", "green"),
+                 data = c(2.7, 8.9, 2.6, 0.6))
+
+  # Expect that a data frame is generated
+  expect_is(edges_var_2, "data.frame")
+
+  # Expect that the data frame has 4 rows
+  expect_equal(nrow(edges_var_2), 4L)
+
+  # Expect that the 'color' attribute is only written twice and not
+  # repeated down
+  expect_equal(edges_var_2$color, c("green", "green", "green", "green"))
 })
 
 test_that("two edge data frames can be successfully combined", {
