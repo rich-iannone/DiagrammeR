@@ -57,11 +57,6 @@ roll_palette <- function(number,
 
   hex_colors <- unlist(strsplit(ct$eval(js_call), ","))
 
-  if (display_colors == TRUE){
-
-    display_in_viewer(hex_colors)
-  }
-
   if (!is.null(alpha)){
 
     is_alpha_numeric <- ifelse(is.numeric(alpha), TRUE, FALSE)
