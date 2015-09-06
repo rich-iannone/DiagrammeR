@@ -34,8 +34,7 @@ roll_palette <- function(number,
                          hue_range = c(0, 360),
                          chroma_range = c(0, 3),
                          lightness_range = c(0.75, 1.5),
-                         alpha = NULL,
-                         display_colors = TRUE){
+                         alpha = NULL){
 
   # Check to make sure that V8 is available
   if (!requireNamespace("V8")) stop("V8 is required to export.", call. = F)
