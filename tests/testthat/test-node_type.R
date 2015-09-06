@@ -102,4 +102,45 @@ test_that("a specified node type can be read from graph objects", {
   expect_false(node_type(graph = graph,
                         node = "b",
                         action = "check"))
+
+  # Attempt to remove a type value for a node where no type value is set
+  graph_attempt_remove_type_b <-
+    node_type(graph = graph,
+            node = "b",
+            action = "delete")
+
+  # Expect that the graph returned is exactly the same as the input graph
+  expect_equal(graph, graph_attempt_remove_type_b)
+
+  # Attempt to add a type value for a node where a type value is already set
+  graph_attempt_add_type_a <-
+    node_type(graph = graph,
+              node = "a",
+              action = "add",
+              value = "update_a")
+
+  # Expect that the graph returned is exactly the same as the input graph
+  # and no change was made to the type value of node "a"
+  expect_equal(graph, graph_attempt_add_type_a)
+
+  # Update the type value for a node where a type value is already set
+  graph_attempt_update_type_a <-
+    node_type(graph = graph,
+              node = "a",
+              action = "update",
+              value = "update_a")
+
+  # Expect that the type value of node "a" was changed to "update_a"
+  expect_equal(graph_attempt_update_type_a$nodes_df$type[1], "update_a")
+
+  # Attempt to update a type value for a node where no type value is set
+  graph_attempt_update_type_b <-
+    node_type(graph = graph,
+              node = "b",
+              action = "update",
+              value = "update_b")
+
+  # Expect that the graph returned is exactly the same as the input graph
+  # since there is no type value for node "b" to update
+  expect_equal(graph, graph_attempt_update_type_b)
 })
