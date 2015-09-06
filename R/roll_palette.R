@@ -53,14 +53,6 @@ roll_palette <- function(number,
                     lightness_range[2], "; }, true, 50);",
                     "var colors = createPalette.diffSort(colors); colors;")
 
-  # Add function to display colors in the RStudio Viewer
-  display_in_viewer <- function(col, border = "light gray", ...){
-    n <- length(col)
-    plot(0, 0, type = "n", xlim = c(0, 1), ylim = c(0, 1),
-         axes = FALSE, xlab = "", ylab = "", ...)
-    rect(0:(n-1)/n, 0, 1:n/n, 1, col = col, border = border)
-  }
-
   ct <- new_context("window")
 
   invisible(ct$source(system.file("htmlwidgets/lib/chromatography/chromatography.js",
