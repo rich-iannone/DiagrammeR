@@ -10,8 +10,6 @@
 #' from \code{0} to \code{2}.
 #' @param alpha an optional alpha value in the range of \code{0}-\code{100} to
 #' append to the hexadecimal color values.
-#' @param display_colors an option for displaying the rolled color palette in
-#' the RStudio Viewer pane.
 #' @return a vector of hexadecimal color values.
 #' @examples
 #' \dontrun{
