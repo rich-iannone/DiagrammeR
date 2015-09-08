@@ -121,6 +121,58 @@ test_that("adding graphs to a series is also possible", {
                   graph_series = series_w_graph)
   )
 
+  # Expect an error if graph series type is not valid
+  graph_series_invalid_type <-
+    create_series(series_type = "circular")
+
+  expect_error(
+    add_to_series(graph = graph_1,
+                  graph_series = graph_series_invalid_type)
+  )
+
+  # Expect an error if a graph with no time information is added to a
+  # graph series type of the "temporal" type
+  graph_series_temporal_type <-
+    create_series(series_type = "temporal")
+
+  graph_no_time <-
+    create_graph(graph_name = "graph_no_time")
+
+  expect_error(
+    add_to_series(graph = graph_no_time,
+                  graph_series = graph_series_temporal_type)
+  )
+
+  # Expect an error if a graph with time information that is not in the
+  # correct format is added to a graph series type of the "temporal" type
+  graph_series_temporal_type <-
+    create_series(series_type = "temporal")
+
+  graph_incorrect_time <-
+    create_graph(graph_name = "graph_incorrect_time",
+                 graph_time = "2015-033-25 03:00",
+                 graph_tz = "GMT")
+
+  expect_error(
+    add_to_series(graph = graph_incorrect_time,
+                  graph_series = graph_series_temporal_type)
+  )
+
+  # Expect an error if a graph with time information with an incorrect time zone
+  # name (i.e., not in `OlsonNames()` is added to a graph series type of the
+  # "temporal" type
+  graph_series_temporal_type <-
+    create_series(series_type = "temporal")
+
+  graph_incorrect_tz <-
+    create_graph(graph_name = "graph_incorrect_tz",
+                 graph_time = "2015-03-25 03:00",
+                 graph_tz = "America/NewYork")
+
+  expect_error(
+    add_to_series(graph = graph_incorrect_tz,
+                  graph_series = graph_series_temporal_type)
+  )
 })
 
 test_that("removing graphs from a series is possible", {
@@ -234,9 +286,9 @@ test_that("subsetting graphs from a temporal series is possible", {
   # Expect that the time for the subset graph is within the
   # bounds specified when calling 'subset_series'
   expect_true(all(c(as.POSIXct(series_time_subset$graphs[[1]]$graph_time,
-             tz = series_time_subset$graphs[[1]]$graph_tz) >
-    as.POSIXct("2015-03-25 12:00", tz = "GMT"),
-    as.POSIXct(series_time_subset$graphs[[1]]$graph_time,
-               tz = series_time_subset$graphs[[1]]$graph_tz) <
-    as.POSIXct("2015-03-26 12:00", tz = "GMT"))))
+                               tz = series_time_subset$graphs[[1]]$graph_tz) >
+                      as.POSIXct("2015-03-25 12:00", tz = "GMT"),
+                    as.POSIXct(series_time_subset$graphs[[1]]$graph_time,
+                               tz = series_time_subset$graphs[[1]]$graph_tz) <
+                      as.POSIXct("2015-03-26 12:00", tz = "GMT"))))
 })
