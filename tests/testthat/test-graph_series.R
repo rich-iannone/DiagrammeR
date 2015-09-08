@@ -113,6 +113,14 @@ test_that("adding graphs to a series is also possible", {
   # Expect that the graphs within the graph series object
   # are indeed graph objects
   expect_is(series_w_graph$graphs[[1]], "dgr_graph")
+
+  # Expect an error when adding something other than a graph
+  # object to a graph series
+  expect_error(
+    add_to_series(graph = series_w_graph,
+                  graph_series = series_w_graph)
+  )
+
 })
 
 test_that("removing graphs from a series is possible", {
