@@ -86,13 +86,13 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   expect_is(gotten_edges_list, "list")
 
   # Expect that the list is of length 2
-  expect_true(length(gotten_edges_list) == 2L)
+  expect_true(length(gotten_edges_list) == 2)
 
   # Expect character vectors of length 26 in 'gotten_edges_list'
-  expect_true(length(gotten_edges_list[[1]]) == 26L)
+  expect_true(length(gotten_edges_list[[1]]) == 26)
   expect_is(gotten_edges_list[[1]], "character")
 
-  expect_true(length(gotten_edges_list[[2]]) == 26L)
+  expect_true(length(gotten_edges_list[[2]]) == 26)
   expect_is(gotten_edges_list[[2]], "character")
 
   # Get the 'outgoing' and 'incoming' node ID values
@@ -103,12 +103,12 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   expect_is(gotten_edges_df, "data.frame")
 
   # Expect that the data frame has 2 columns
-  expect_true(ncol(gotten_edges_df) == 2L)
+  expect_true(ncol(gotten_edges_df) == 2)
 
   # Expect columns of class 'character' and 26 rows in 'gotten_edges_df'
   expect_is(gotten_edges_df[,1], "character")
   expect_is(gotten_edges_df[,2], "character")
-  expect_true(nrow(gotten_edges_df) == 26L)
+  expect_true(nrow(gotten_edges_df) == 26)
 
   # Get the 'outgoing' and 'incoming' node ID values
   # in a vector object
@@ -118,8 +118,57 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   expect_is(gotten_edges_vector, "character")
 
   # Expect that the vector object is of length 26
-  expect_true(length(gotten_edges_vector) == 26L)
+  expect_true(length(gotten_edges_vector) == 26)
 
   # Expect that the ' -> ' substring is in each vector component
   expect_true(all(grepl(" -> ", gotten_edges_vector)))
+})
+
+test_that("getting edge information from an edge data frame is possible", {
+
+  # Create a simple edge data frame
+  edges <- create_edges(from = c("a", "a"),
+                        to = c("b", "c"))
+
+  # Get edges from the edge data frame as a returned vector object
+  edges_vector_from_edf <-
+    get_edges(edges, return_type = "vector")
+
+  # Expect a vector object of class 'character'
+  expect_is(edges_vector_from_edf, "character")
+
+  # Expect that the vector object is of length 26
+  expect_true(length(edges_vector_from_edf) == 2)
+
+  # Expect that the ' -> ' substring is in each vector component
+  expect_true(all(grepl(" -> ", edges_vector_from_edf)))
+
+  # Get edges from the edge data frame as a returned list object
+  edges_list_from_edf <-
+    get_edges(edges, return_type = "list")
+
+  # Expect that the list is of length 2
+  expect_true(length(edges_list_from_edf) == 2)
+
+  # Expect character vectors of length 26 in 'gotten_edges_list'
+  expect_true(length(edges_list_from_edf[[1]]) == 2)
+  expect_is(edges_list_from_edf[[1]], "character")
+
+  expect_true(length(edges_list_from_edf[[2]]) == 2)
+  expect_is(edges_list_from_edf[[2]], "character")
+
+  # Get edges from the edge data frame as a returned data frame object
+  edges_df_from_edf <-
+    get_edges(edges, return_type = "df")
+
+  # Expect a data frame object
+  expect_is(edges_df_from_edf, "data.frame")
+
+  # Expect that the data frame has 2 columns
+  expect_true(ncol(edges_df_from_edf) == 2)
+
+  # Expect columns of class 'character' and 26 rows in 'gotten_edges_df'
+  expect_is(edges_df_from_edf[,1], "character")
+  expect_is(edges_df_from_edf[,2], "character")
+  expect_true(nrow(edges_df_from_edf) == 2)
 })
