@@ -73,6 +73,7 @@ add_to_series <- function(graph,
       stop("No time information is provided in this graph object.")
     } else {
 
+      # If time zone not provided, automatically provide the "GMT" time zone
       if (is_tz_provided == FALSE){
 
         graph$graph_tz <- "GMT"
