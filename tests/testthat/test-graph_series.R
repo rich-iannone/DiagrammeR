@@ -173,6 +173,23 @@ test_that("adding graphs to a series is also possible", {
     add_to_series(graph = graph_incorrect_tz,
                   graph_series = graph_series_temporal_type)
   )
+
+  # If no time zone provided, expect that "GMT" will be added to
+  # `[graph]`$graph_tz
+  graph_series_temporal_type <-
+    create_series(series_type = "temporal")
+
+  graph_no_tz_provided <-
+    create_graph(graph_name = "graph_no_tz_provided",
+                 graph_time = "2015-03-25 03:00")
+
+  graph_series_temporal_type_tz_GMT <-
+    add_to_series(graph = graph_no_tz_provided,
+                  graph_series = graph_series_temporal_type)
+
+  expect_equal(graph_series_temporal_type_tz_GMT$graphs[[1]]$graph_tz,
+               "GMT")
+
 })
 
 test_that("removing graphs from a series is possible", {
