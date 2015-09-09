@@ -124,8 +124,7 @@ add_edges <- function(graph,
     if (any(get_edges(graph)[[1]] == from &
             get_edges(graph)[[2]] == to)){
 
-      message("This edge already exists")
-      return(graph)
+      stop("This edge already exists")
     }
   }
 
