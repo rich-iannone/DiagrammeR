@@ -46,12 +46,15 @@ test_that("adding a node to a graph is possible", {
   expect_equal(graph, graph_2)
 
   # Expect a specific message when more than a single node is specified
-  expect_message(add_node(graph, node = c("y", "z")),
-                 "Only a single node can be added")
+  expect_error(
+    add_node(graph, node = c("y", "z"))
+  )
 
   # Expect that attempting to add more than a single node will return an
   # unchanged graph
-  expect_equal(graph, add_node(graph, node = c("y", "z")))
+  expect_error(
+    add_node(graph, node = c("y", "z"))
+  )
 
   # Add a node with attributes to the graph
   graph_3 <- add_node(graph,
@@ -160,6 +163,21 @@ test_that("adding a node to a graph is possible", {
   # Expect that for node "d", the 'type' is not set since the
   # default value for the 'type' argument is NULL
   expect_true(is.na(node_type(graph_to_from, node = "d")))
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add a node
+  graph <- add_node(graph, node = "a")
+
+  # Add another node, connecting with only a value provided for 'from' but
+  # where the reference node is not in the graph
+  expect_error(
+    add_node(graph, node = "b", from = "c")
+  )
+
+
+
 })
 
 test_that("adding an edge to a graph is possible", {
@@ -208,8 +226,9 @@ test_that("adding an edge to a graph is possible", {
   expect_true(nrow(graph$edges_df) == 1L)
 
   # Expect a message when adding an existing edge to the graph
-  expect_message(add_edges(graph, from = "a", to = "b"),
-                 "This edge already exists")
+  expect_error(
+    add_edges(graph, from = "a", to = "b")
+  )
 
   # Expect no change to the graph after attempting to add an
   # existing edge to that graph
