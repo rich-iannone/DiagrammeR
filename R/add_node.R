@@ -40,8 +40,7 @@ add_node <- function(graph,
   # Stop function if node not a single value
   if (node_is_single_value == FALSE){
 
-    message("Only a single node can be added.")
-    return(graph)
+    stop("Only a single node can be added.")
   }
 
   # Determine whether node to add is already in graph
@@ -67,8 +66,8 @@ add_node <- function(graph,
     from_nodes_available <- ifelse(all(from %in% get_nodes(graph)), TRUE, FALSE)
 
     if (from_nodes_available == FALSE){
-      message("The nodes from which edges should be applied to the new node are not available.")
-      return(graph)
+
+      stop("The nodes from which edges should be applied to the new node are not available.")
     }
 
     if (from_nodes_available){
@@ -148,8 +147,7 @@ add_node <- function(graph,
 
     if (to_nodes_available == FALSE){
 
-      message("The nodes to which edges should be applied from the new node are not available.")
-      return(graph)
+      stop("The nodes to which edges should be applied from the new node are not available.")
     }
 
     combined_nodes <-
@@ -243,13 +241,13 @@ add_node <- function(graph,
     to_nodes_available <- ifelse(all(to %in% get_nodes(graph)), TRUE, FALSE)
 
     if (from_nodes_available == FALSE){
-      message("The nodes from which edges should be applied to the new node are not available.")
-      return(graph)
+
+      stop("The nodes from which edges should be applied to the new node are not available.")
     }
 
     if (to_nodes_available == FALSE){
-      message("The nodes to which edges should be applied from the new node are not available.")
-      return(graph)
+
+      stop("The nodes to which edges should be applied from the new node are not available.")
     }
 
     if (from_nodes_available & to_nodes_available){
