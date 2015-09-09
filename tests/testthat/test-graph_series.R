@@ -189,7 +189,6 @@ test_that("adding graphs to a series is also possible", {
 
   expect_equal(graph_series_temporal_type_tz_GMT$graphs[[1]]$graph_tz,
                "GMT")
-
 })
 
 test_that("removing graphs from a series is possible", {
@@ -217,14 +216,14 @@ test_that("removing graphs from a series is possible", {
   series <- graph_3 %>% add_to_series(series)
 
   # Expect that the series has a graph count of 3
-  expect_equal(graph_count(series), 3L)
-  expect_equal(length(series$graphs), 3L)
+  expect_equal(graph_count(series), 3)
+  expect_equal(length(series$graphs), 3)
 
   # Remove the last graph from the series
   series_2 <- remove_from_series(graph_series = series)
 
   # Expect that the graph count is now 2
-  expect_equal(graph_count(series_2), 2L)
+  expect_equal(graph_count(series_2), 2)
 
   # Remove the first graph from the series
   series_removed_1 <- remove_from_series(graph_series = series, index = 1)
@@ -234,6 +233,16 @@ test_that("removing graphs from a series is possible", {
 
   # Expect that graph 1 in the series is equivalent to the 'graph_2' object
   expect_true(series_removed_1$graphs[[1]]$dot_code == graph_2$dot_code)
+
+  # Remove the first graph from the series using the 'first' character vector
+  series_removed_2 <- remove_from_series(graph_series = series,
+                                         index = "first")
+
+  # Expect that the first created graph is not in the series
+  expect_false(series_removed_2$graphs[[1]]$dot_code == graph_1$dot_code)
+
+  # Expect that graph 1 in the series is equivalent to the 'graph_2' object
+  expect_true(series_removed_2$graphs[[1]]$dot_code == graph_2$dot_code)
 })
 
 test_that("subsetting graphs from a temporal series is possible", {
@@ -274,7 +283,7 @@ test_that("subsetting graphs from a temporal series is possible", {
   series_temporal <- graph_time_3 %>% add_to_series(series_temporal)
 
   # Expect a graph count of 3
-  expect_equal(graph_count(series_temporal), 3L)
+  expect_equal(graph_count(series_temporal), 3)
 
   # Subset graph series by sequence
   series_sequence_subset <-
@@ -283,7 +292,7 @@ test_that("subsetting graphs from a temporal series is possible", {
                   values = 2)
 
   # Expect a single graph in the series
-  expect_equal(graph_count(series_sequence_subset), 1L)
+  expect_equal(graph_count(series_sequence_subset), 1)
 
   # Expect that this subset graph is the same as 'graph_time_2'
   expect_true(series_sequence_subset$graphs[[1]]$dot_code ==
@@ -298,7 +307,7 @@ test_that("subsetting graphs from a temporal series is possible", {
                   tz = "GMT")
 
   # Expect a single graph in the series
-  expect_equal(graph_count(series_time_subset), 1L)
+  expect_equal(graph_count(series_time_subset), 1)
 
   # Expect that the time for the subset graph is within the
   # bounds specified when calling 'subset_series'
