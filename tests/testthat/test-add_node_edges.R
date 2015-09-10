@@ -230,11 +230,6 @@ test_that("adding an edge to a graph is possible", {
     add_edges(graph, from = "a", to = "b")
   )
 
-  # Expect no change to the graph after attempting to add an
-  # existing edge to that graph
-  expect_equal(graph,
-               add_edges(graph, from = "a", to = "b"))
-
   # Create another empty graph
   graph_empty <- create_graph()
 
