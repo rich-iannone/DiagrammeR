@@ -46,7 +46,8 @@ add_node <- function(graph,
   # Determine whether node to add is already in graph
   if (node_is_single_value == TRUE){
 
-    can_add_node_id <- ifelse(!node_present(graph = graph, node = node), TRUE, FALSE)
+    can_add_node_id <-
+      ifelse(!node_present(graph = graph, node = node), TRUE, FALSE)
   }
 
   if (can_add_node_id == FALSE){
@@ -58,12 +59,14 @@ add_node <- function(graph,
   node_attributes <- list(...)
 
   # Determine whether optional node attributes provided
-  node_attributes_provided <- ifelse(length(node_attributes) > 0, TRUE, FALSE)
+  node_attributes_provided <-
+    ifelse(length(node_attributes) > 0, TRUE, FALSE)
 
   # Modify graph if only 'from' values provided
   if (!is.null(from) & is.null(to)){
 
-    from_nodes_available <- ifelse(all(from %in% get_nodes(graph)), TRUE, FALSE)
+    from_nodes_available <-
+      ifelse(all(from %in% get_nodes(graph)), TRUE, FALSE)
 
     if (from_nodes_available == FALSE){
 
@@ -269,11 +272,13 @@ add_node <- function(graph,
 
           if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
 
-            combined_nodes <- cbind(combined_nodes,
-                                    c(rep("", length = nrow(combined_nodes) - 1),
-                                      node_attributes[i][[1]]))
+            combined_nodes <-
+              cbind(combined_nodes,
+                    c(rep("", length = nrow(combined_nodes) - 1),
+                      node_attributes[i][[1]]))
 
-            colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+            colnames(combined_nodes)[ncol(combined_nodes)] <-
+              names(node_attributes)[i]
           }
         }
       }
@@ -369,11 +374,13 @@ add_node <- function(graph,
 
         if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
 
-          combined_nodes <- cbind(combined_nodes,
-                                  c(rep("", length = nrow(combined_nodes) - 1),
-                                    node_attributes[i][[1]]))
+          combined_nodes <-
+            cbind(combined_nodes,
+                  c(rep("", length = nrow(combined_nodes) - 1),
+                    node_attributes[i][[1]]))
 
-          colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+          colnames(combined_nodes)[ncol(combined_nodes)] <-
+            names(node_attributes)[i]
         }
       }
 
