@@ -100,7 +100,6 @@ add_node <- function(graph,
         }
       }
 
-
       if (!is.null(graph$edges_df)){
 
         combined_edges <-
@@ -117,7 +116,6 @@ add_node <- function(graph,
                        graph_name = graph$graph_name,
                        graph_time = graph$graph_time,
                        graph_tz = graph$graph_tz)
-
       }
 
       if (is.null(graph$edges_df)){
@@ -132,7 +130,6 @@ add_node <- function(graph,
                        graph_name = graph$graph_name,
                        graph_time = graph$graph_time,
                        graph_tz = graph$graph_tz)
-
       }
 
       # Return the revised graph
@@ -173,13 +170,15 @@ add_node <- function(graph,
                                   c(rep("", length = nrow(combined_nodes) - 1),
                                     node_attributes[i][[1]]))
 
-          colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+          colnames(combined_nodes)[ncol(combined_nodes)] <-
+            names(node_attributes)[i]
         }
       }
 
-      combined_edges <- combine_edges(graph$edges_df,
-                                      create_edges(from = rep(node, length(to)),
-                                                   to = to))
+      combined_edges <-
+        combine_edges(graph$edges_df,
+                      create_edges(from = rep(node, length(to)),
+                                   to = to))
 
       # Create the revised graph object
       dgr_graph <-
@@ -226,7 +225,6 @@ add_node <- function(graph,
                      graph_name = graph$graph_name,
                      graph_time = graph$graph_time,
                      graph_tz = graph$graph_tz)
-
     }
 
     # Return the revised graph
