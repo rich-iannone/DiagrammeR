@@ -22,8 +22,8 @@ test_that("script triggers result in modification of the graph series", {
   # Create an empty graph series with the script loaded
   test_series <- create_series(series_scripts = test_series_script)
 
-
-  # Trigger the script and modify the graph series three times
+  # Trigger the script and modify the graph within the graph series
+  # three times
   test_series_1 <-
       trigger_script(graph_series = test_series,
                      script = 1)
