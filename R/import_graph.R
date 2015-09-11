@@ -30,7 +30,6 @@ import_graph <- function(graph_file,
 
   # Stop function if 'file_type' specified is not part of the group
   # that can be imported
-
   if (!is.null(file_type)){
 
     if (!(tolower(file_type) %in% c("graphml", "sif"))){
@@ -166,12 +165,12 @@ import_graph <- function(graph_file,
     nodes <- vector(mode = "character")
 
     # Determine which nodes are present in the graph
-    for (i in 1:length(sif_file)){
+    for (i in 1:length(sif_document)){
 
       nodes <- c(nodes,
-                 ifelse(length(unlist(str_split(sif_file[i], "\t"))) == 1,
-                        unlist(str_split(sif_file[i], "\t"))[1],
-                        unlist(str_split(sif_file[i], "\t"))[-2]))
+                 ifelse(length(unlist(str_split(sif_document[i], "\t"))) == 1,
+                        unlist(str_split(sif_document[i], "\t"))[1],
+                        unlist(str_split(sif_document[i], "\t"))[-2]))
     }
 
     # Obtain a unique vector of nodes in the graph
@@ -181,24 +180,24 @@ import_graph <- function(graph_file,
     nodes_df <- create_nodes(nodes = nodes)
 
     # Determine which lines have single nodes
-    if (any(!str_detect(sif_file, "\\t"))){
+    if (any(!str_detect(sif_document, "\\t"))){
 
-      single_nodes <- which(!str_detect(sif_file, "\\t"))
+      single_nodes <- which(!str_detect(sif_document, "\\t"))
     }
 
     # Initialize vectors for an edge data frame
     from <- to <- relationship <- vector(mode = "character")
 
     # Obtain complete vectors for the edge data frame
-    for (i in which(str_count(sif_file, "\\t") > 1)){
+    for (i in which(str_count(sif_document, "\\t") > 1)){
 
-      length_stmt <- length(str_split(sif_file[i], "\t")[[1]])
+      length_stmt <- length(str_split(sif_document[i], "\t")[[1]])
 
-      from <- c(from, str_split(sif_file[i], "\t")[[1]][1])
+      from <- c(from, str_split(sif_document[i], "\t")[[1]][1])
 
-      relationship <- c(relationship, str_split(sif_file[i], "\t")[[1]][2])
+      relationship <- c(relationship, str_split(sif_document[i], "\t")[[1]][2])
 
-      to <- c(to, str_split(sif_file[i], "\t")[[1]][3:length_stmt])
+      to <- c(to, str_split(sif_document[i], "\t")[[1]][3:length_stmt])
     }
 
     # Create an edge data frame
