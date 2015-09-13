@@ -175,9 +175,6 @@ test_that("adding a node to a graph is possible", {
   expect_error(
     add_node(graph, node = "b", from = "c")
   )
-
-
-
 })
 
 test_that("adding an edge to a graph is possible", {
