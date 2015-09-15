@@ -37,7 +37,6 @@
 .mermaid .messageLine0 {
   stroke-width: 1.5;
   stroke-dasharray: "2 2";
-  marker-end: "url(#arrowhead)";
   stroke: #333333;
 }
 .mermaid .messageLine1 {
@@ -71,7 +70,6 @@
 .mermaid .loopLine {
   stroke-width: 2;
   stroke-dasharray: "2 2";
-  marker-end: "url(#arrowhead)";
   stroke: #ccccff;
 }
 .mermaid .note {
