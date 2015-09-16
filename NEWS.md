@@ -1,3 +1,7 @@
+# DiagrammeR 0.8
+
+* most functions have been debugged thoroughly and now have tests applied 
+
 # DiagrammeR 0.7
 
 * Renamed functions `graphviz_graph` and `graphviz_render` to `create_graph` and `render_graph`, respectively
