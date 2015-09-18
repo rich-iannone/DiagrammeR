@@ -9,8 +9,8 @@
 #' # Create a node data frame
 #' nodes <-
 #'   create_nodes(nodes = c("a", "b", "c", "d"),
-#'                label = FALSE,
-#'                type = "lower",
+#'                label = TRUE,
+#'                type = c("lower", "lower", "upper", "upper"),
 #'                style = "filled",
 #'                color = "aqua",
 #'                shape = c("circle", "circle",
