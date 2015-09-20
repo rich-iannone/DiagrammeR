@@ -36,8 +36,9 @@ graph <- create_graph(create_nodes(nodes = c("a", "b")))
 graph <- add_edges(graph, from = "a", to = "b",
                    relationship = "to_get")
 
-# Examples of using 'create_edges' with 'add_edges' to include
-# line attributes
+# Examples of pipeable graph building using 'create_edges' with
+# 'add_edges' in order to include values for the 'style' edge attribute
+# (it modifies the style of the connecting line)
 
 library(magrittr)
 

@@ -54,19 +54,22 @@ edges; the graph object can be manipulated by other functions.
 graph <- create_graph()
 
 # Create a graph with nodes but no edges
-nodes <-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               label = FALSE,
-               type = "lower",
-               style = "filled",
-               color = "aqua",
-               shape = c("circle", "circle",
-                         "rectangle", "rectangle"),
-               data = c(3.5, 2.6, 9.4, 2.7))
+nodes <- create_nodes(nodes = c("a", "b", "c", "d"))
 
 graph <- create_graph(nodes_df = nodes)
 
-# Create a graph with edges but no nodes
+# Create a graph with nodes with values, types, labels
+nodes <- create_nodes(nodes = c("a", "b", "c", "d"))
+               label = TRUE,
+               type = c("type_1", "type_1",
+                        "type_5", "type_2"),
+               shape = c("circle", "circle",
+                         "rectangle", "rectangle"),
+               values = c(3.5, 2.6, 9.4, 2.7))
+
+graph <- create_graph(nodes_df = nodes)
+
+# Create a graph from an edge data frame, the nodes will
 edges <-
   create_edges(from = c("a", "b", "c"),
                to = c("d", "c", "a"),
@@ -75,7 +78,7 @@ edges <-
 graph <- create_graph(edges_df = edges)
 
 # Create a graph with both nodes and nodes defined, and,
-# add some default attributes
+# add some default attributes for nodes and edges
 graph <- create_graph(nodes_df = nodes,
                       edges_df = edges,
                       node_attrs = "fontname = Helvetica",
