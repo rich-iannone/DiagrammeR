@@ -283,4 +283,38 @@ test_that("edge relationships can be set for edges in graph objects", {
                                  from = "a",
                                  to = "d",
                                  action = "check"))
+
+  # Create a node data frame
+  nodes <-
+    create_nodes(nodes = c("a", "b", "c"))
+
+  # Create an edge data frame with edge relationships set as empty values
+  edges_rel_empty <-
+    create_edges(from = c("a", "b", "c"),
+                 to = c("b", "c", "a"),
+                 relationship = c(""))
+
+  # Create the graph object using the node and edge data frames
+  graph_rel_empty <-
+    create_graph(nodes_df = nodes,
+                 edges_df = edges_rel_empty)
+
+  # Get an edge count and expect 3 edges
+  expect_equal(edge_count(graph_rel_empty), 3)
+
+  # Get relationship values to be returned as NAs for all 3 edges
+  expect_equal(edge_relationship(graph_rel_empty,
+                    from = "a",
+                    to = "b"),
+               NA)
+
+  expect_equal(edge_relationship(graph_rel_empty,
+                                 from = "b",
+                                 to = "c"),
+               NA)
+
+  expect_equal(edge_relationship(graph_rel_empty,
+                                 from = "c",
+                                 to = "a"),
+               NA)
 })
