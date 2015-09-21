@@ -5,7 +5,7 @@ test_that("adding a node to a graph is possible", {
   # Create an empty graph
   graph <- create_graph()
 
-  # Add two nodes
+  # Add two nodes to the graph
   graph <- add_node(graph, node = "a")
   graph <- add_node(graph, node = "b")
 
