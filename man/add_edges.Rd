@@ -32,7 +32,7 @@ edges of specified types to nodes within the graph.
 # Create a graph with two nodes
 graph <- create_graph(create_nodes(nodes = c("a", "b")))
 
-# Add an edge between those nodes and attach a relationship
+# Add an edge between those nodes and attach a relationship to the edge
 graph <- add_edges(graph, from = "a", to = "b",
                    relationship = "to_get")
 
