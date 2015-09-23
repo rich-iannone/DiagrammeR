@@ -32,7 +32,7 @@
 #'
 #' # Create a graph with nodes but no edges
 #' nodes <- create_nodes(nodes = c("a", "b", "c", "d"))
-#' 
+#'
 #' graph <- create_graph(nodes_df = nodes)
 #'
 #' # Create a graph with nodes with values, types, labels
@@ -43,9 +43,9 @@
 #'                shape = c("circle", "circle",
 #'                          "rectangle", "rectangle"),
 #'                values = c(3.5, 2.6, 9.4, 2.7))
-#' 
+#'
 #' graph <- create_graph(nodes_df = nodes)
-#' 
+#'
 #' # Create a graph from an edge data frame, the nodes will
 #  # be inferred and added but they won't have additional
 #  # properties, attributes, or values
