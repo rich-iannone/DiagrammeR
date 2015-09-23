@@ -47,7 +47,7 @@
 #'                               "arrowsize = 0.5"))
 #'
 #' # Render the graph using Graphviz
-#' render_graph(graph, output = "gv")
+#' render_graph(graph)
 #'
 #' # Render the graph using VivaGraph
 #' render_graph(graph, output = "vivagraph")
@@ -59,7 +59,7 @@
 #' @export render_graph
 
 render_graph <- function(graph,
-                         output = "gv",
+                         output = "graph",
                          layout = NULL,
                          width = NULL,
                          height = NULL){
@@ -84,7 +84,7 @@ render_graph <- function(graph,
 
   # If the DOT code contains references to images, create an HTML file that
   # can access those images and display them in the graph
-  if (output == "gv" & (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
+  if (output == "graph" & (grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
                            grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code))){
 
     all_replacement_nodes_circles <-
@@ -252,7 +252,7 @@ render_graph <- function(graph,
 
   # If the DOT code contains no references to external images, then simply
   # use the 'grViz' function to render the graph
-  if (output == "gv" & !(grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
+  if (output == "graph" & !(grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
                             grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code))){
 
     grViz(diagram = dot_code, width = width, height = height)
