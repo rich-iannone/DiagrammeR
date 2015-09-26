@@ -10,20 +10,20 @@
 #' @return a graph series object of type \code{dgr_graph_1D}.
 #' @examples
 #' \dontrun{
-#' # Create three graphs (using \code{pipeR} for speed)
+#' # Create three graphs (using \code{magrittr} pipes)
 #' # and create a graph series using those graphs
-#' library(pipeR)
+#' library(magrittr)
 #'
-#' graph_1 <- create_graph() %>>%
-#'   add_node("a") %>>% add_node("b") %>>% add_node("c") %>>%
+#' graph_1 <- create_graph() %>%
+#'   add_node("a") %>% add_node("b") %>% add_node("c") %>%
 #'   add_edges(from = c("a", "a", "b"),
 #'             to =   c("c", "b", "c"))
 #'
-#' graph_2 <- graph_1 %>>%
-#'   add_node("d") %>>% add_edges(from = "d", to = "c")
+#' graph_2 <- graph_1 %>%
+#'   add_node("d") %>% add_edges(from = "d", to = "c")
 #'
-#' graph_3 <- graph_2 %>>%
-#'   add_node("e") %>>% add_edges(from = "e", to = "b")
+#' graph_3 <- graph_2 %>%
+#'   add_node("e") %>% add_edges(from = "e", to = "b")
 #'
 #' # Create an empty graph series
 #' series <- create_series(series_type = "sequential")
@@ -45,6 +45,7 @@ create_series <- function(graph = NULL,
                        series_name = series_name,
                        series_type = series_type,
                        series_scripts = series_scripts)
+
   attr(graph_series, "class") <- "dgr_graph_1D"
 
   if (is.null(graph)){
