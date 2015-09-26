@@ -4,8 +4,7 @@
 \alias{add_edges}
 \title{Add edges to an existing graph object}
 \usage{
-add_edges(graph, edges_df = NULL, from = NULL, to = NULL,
-  relationship = NULL)
+add_edges(graph, edges_df = NULL, from = NULL, to = NULL, rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created using
@@ -34,7 +33,7 @@ graph <- create_graph(create_nodes(nodes = c("a", "b")))
 
 # Add an edge between those nodes and attach a relationship to the edge
 graph <- add_edges(graph, from = "a", to = "b",
-                   relationship = "to_get")
+                   rel = "to_get")
 
 # Examples of pipeable graph building using 'create_edges' with
 # 'add_edges' in order to include values for the 'style' edge attribute
