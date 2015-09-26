@@ -16,13 +16,13 @@
 #' @param value a string denoting the relationship, to be supplied when either
 #' adding or updating an edge relationship.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export edge_relationship
+#' @export edge_rel
 
-edge_relationship <- function(graph,
-                              from,
-                              to,
-                              action = "read",
-                              value = NULL){
+edge_rel <- function(graph,
+                     from,
+                     to,
+                     action = "read",
+                     value = NULL){
 
   # Determine if edge is present within the graph
   edge_is_in_graph <- edge_present(graph = graph, from = from, to = to)
