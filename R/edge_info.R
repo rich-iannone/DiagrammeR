@@ -61,8 +61,8 @@ edge_info <- function(graph){
     label <- graph$edges_df$label
   }
 
-  if ("relationship" %in% colnames(graph$edges_df)){
-    relationship <- graph$edges_df$relationship
+  if ("rel" %in% colnames(graph$edges_df)){
+    rel <- graph$edges_df$rel
   }
 
   # For graphs with no edges, create an 'edge_properties' data frame that doesn't
@@ -70,7 +70,7 @@ edge_info <- function(graph){
   if (is.null(graph$edges_df)){
 
     edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 4))
-    colnames(edge_properties) <- c("from", "to", "relationship", "label")
+    colnames(edge_properties) <- c("from", "to", "rel", "label")
 
     return(edge_properties)
   }
@@ -83,14 +83,14 @@ edge_info <- function(graph){
 
       if (i == 1){
         edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 4))
-        colnames(edge_properties) <- c("from", "to", "relationship", "label")
+        colnames(edge_properties) <- c("from", "to", "rel", "label")
       }
 
       # Collect information into the 'edge_properties' data frame
       edge_properties[i, 1] <- edge_from[i]
       edge_properties[i, 2] <- edge_to[i]
-      edge_properties[i, 3] <- ifelse(exists("relationship"),
-                                      relationship[which((edge_from %in% edge_from[i]) &
+      edge_properties[i, 3] <- ifelse(exists("rel"),
+                                      rel[which((edge_from %in% edge_from[i]) &
                                                            (edge_to %in% edge_to[i]))],
                                       rep(NA, length(edge_from)))
       edge_properties[i, 4] <- ifelse(exists("label"),
