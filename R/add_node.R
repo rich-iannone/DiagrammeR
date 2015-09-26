@@ -88,17 +88,20 @@ add_node <- function(graph,
           if (names(node_attributes)[i] %in% colnames(combined_nodes)){
 
             combined_nodes[nrow(combined_nodes),
-                           which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+                           which(colnames(combined_nodes) ==
+                                   names(node_attributes)[i])] <-
               node_attributes[i][[1]]
           }
 
           if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
 
-            combined_nodes <- cbind(combined_nodes,
-                                    c(rep("", length = nrow(combined_nodes) - 1),
-                                      node_attributes[i][[1]]))
+            combined_nodes <-
+              cbind(combined_nodes,
+                    c(rep("", length = nrow(combined_nodes) - 1),
+                      node_attributes[i][[1]]))
 
-            colnames(combined_nodes)[ncol(combined_nodes)] <- names(node_attributes)[i]
+            colnames(combined_nodes)[ncol(combined_nodes)] <-
+              names(node_attributes)[i]
           }
         }
       }
@@ -163,15 +166,17 @@ add_node <- function(graph,
         if (names(node_attributes)[i] %in% colnames(combined_nodes)){
 
           combined_nodes[nrow(combined_nodes),
-                         which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+                         which(colnames(combined_nodes) ==
+                                 names(node_attributes)[i])] <-
             node_attributes[i][[1]]
         }
 
         if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
 
-          combined_nodes <- cbind(combined_nodes,
-                                  c(rep("", length = nrow(combined_nodes) - 1),
-                                    node_attributes[i][[1]]))
+          combined_nodes <-
+            cbind(combined_nodes,
+                  c(rep("", length = nrow(combined_nodes) - 1),
+                    node_attributes[i][[1]]))
 
           colnames(combined_nodes)[ncol(combined_nodes)] <-
             names(node_attributes)[i]
@@ -266,7 +271,8 @@ add_node <- function(graph,
           if (names(node_attributes)[i] %in% colnames(combined_nodes)){
 
             combined_nodes[nrow(combined_nodes),
-                           which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+                           which(colnames(combined_nodes) ==
+                                   names(node_attributes)[i])] <-
               node_attributes[i][[1]]
           }
 
@@ -338,26 +344,30 @@ add_node <- function(graph,
     if (!is.null(type)){
       if (!is.null(graph$nodes_df)){
 
-        combined_nodes <- combine_nodes(graph$nodes_df,
-                                        create_nodes(nodes = node,
-                                                     label = label,
-                                                     type = type))
+        combined_nodes <-
+          combine_nodes(graph$nodes_df,
+                        create_nodes(nodes = node,
+                                     label = label,
+                                     type = type))
       } else {
-        combined_nodes <- create_nodes(nodes = node,
-                                       label = label,
-                                       type = type)
+        combined_nodes <-
+          create_nodes(nodes = node,
+                       label = label,
+                       type = type)
       }
     }
 
     if (is.null(type)){
       if (!is.null(graph$nodes_df)){
 
-        combined_nodes <- combine_nodes(graph$nodes_df,
-                                        create_nodes(nodes = node,
-                                                     label = label))
+        combined_nodes <-
+          combine_nodes(graph$nodes_df,
+                        create_nodes(nodes = node,
+                                     label = label))
       } else {
-        combined_nodes <- create_nodes(nodes = node,
-                                       label = label)
+        combined_nodes <-
+          create_nodes(nodes = node,
+                       label = label)
       }
     }
 
@@ -368,7 +378,8 @@ add_node <- function(graph,
         if (names(node_attributes)[i] %in% colnames(combined_nodes)){
 
           combined_nodes[nrow(combined_nodes),
-                         which(colnames(combined_nodes) == names(node_attributes)[i])] <-
+                         which(colnames(combined_nodes) ==
+                                 names(node_attributes)[i])] <-
             node_attributes[i][[1]]
         }
 
