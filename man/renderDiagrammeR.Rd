@@ -11,7 +11,8 @@ renderDiagrammeR(expr, env = parent.frame(), quoted = FALSE)
 
 \item{env}{the environment in which to evaluate expr.}
 
-\item{quoted}{is expr a quoted expression (with quote())? This is useful if you want to save an expression in a variable.}
+\item{quoted}{is expr a quoted expression (with quote())? This is useful
+if you want to save an expression in a variable.}
 }
 \description{
 Widget render function for use in Shiny

@@ -15,8 +15,8 @@ get_successors(graph, node)
 a vector of node ID values.
 }
 \description{
-Provides a vector of node IDs for all nodes that have a link
-from the given node.
+Provides a vector of node IDs for all nodes that have a
+connection from the given node.
 }
 \examples{
 \dontrun{
