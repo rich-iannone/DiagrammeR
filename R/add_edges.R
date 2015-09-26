@@ -16,7 +16,7 @@
 #'
 #' # Add an edge between those nodes and attach a relationship to the edge
 #' graph <- add_edges(graph, from = "a", to = "b",
-#'                    relationship = "to_get")
+#'                    rel = "to_get")
 #'
 #' # Examples of pipeable graph building using 'create_edges' with
 #' # 'add_edges' in order to include values for the 'style' edge attribute
@@ -48,7 +48,7 @@ add_edges <- function(graph,
                       edges_df = NULL,
                       from = NULL,
                       to = NULL,
-                      relationship = NULL){
+                      rel = NULL){
 
   if (is_graph_empty(graph) == TRUE){
 
@@ -133,13 +133,13 @@ add_edges <- function(graph,
   if (is.null(graph$edges_df)){
 
     # If a relationship is defined, add that in the 'create_edges' call
-    if (!is.null(relationship)){
+    if (!is.null(rel)){
 
       dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
                      edges_df = create_edges(from = from,
                                              to = to,
-                                             relationship = relationship),
+                                             rel = rel),
                      graph_attrs = graph$graph_attrs,
                      node_attrs = graph$node_attrs,
                      edge_attrs = graph$edge_attrs,
@@ -149,7 +149,7 @@ add_edges <- function(graph,
     }
 
     # If a relationship is not defined, use a simpler 'create_edges' call
-    if (is.null(relationship)){
+    if (is.null(rel)){
 
       dgr_graph <-
         create_graph(nodes_df = graph$nodes_df,
@@ -171,17 +171,17 @@ add_edges <- function(graph,
   if (!is.null(graph$edges_df)){
 
     # If a relationship is defined, add that in the 'create_edges' call
-    if (!is.null(relationship)){
+    if (!is.null(rel)){
 
       combined_edges <-
         combine_edges(graph$edges_df,
                       create_edges(from = from,
                                    to = to,
-                                   relationship = relationship))
+                                   rel = rel))
     }
 
     # If a relationship is not defined, use a simpler 'create_edges' call
-    if (is.null(relationship)){
+    if (is.null(rel)){
 
       combined_edges <-
         combine_edges(graph$edges_df,
