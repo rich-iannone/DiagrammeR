@@ -73,7 +73,7 @@ graph <- create_graph(nodes_df = nodes)
 edges <-
   create_edges(from = c("a", "b", "c"),
                to = c("d", "c", "a"),
-               relationship = "leading_to")
+               rel = "leading_to")
 
 graph <- create_graph(edges_df = edges)
 
