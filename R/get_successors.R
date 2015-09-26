@@ -1,6 +1,6 @@
 #' Get node IDs for successor nodes to the specified node
-#' @description Provides a vector of node IDs for all nodes that have a link
-#' from the given node.
+#' @description Provides a vector of node IDs for all nodes that have a
+#' connection from the given node.
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @param node a node ID for the selected node.
 #' @return a vector of node ID values.
@@ -54,11 +54,9 @@ get_successors <- function(graph,
     if (length(graph$edges_df[graph$edges_df$from == node,]$to) == 0){
 
       successors <- NA
-
     } else {
 
       successors <- graph$edges_df[graph$edges_df$from == node,]$to
-
     }
 
     return(successors)
