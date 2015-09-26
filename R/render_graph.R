@@ -34,7 +34,7 @@
 #' edges <-
 #'   create_edges(from = sample(LETTERS, replace = TRUE),
 #'                to = sample(LETTERS, replace = TRUE),
-#'                relationship = "letter_to_letter")
+#'                rel = "letter_to_letter")
 #'
 #'
 #' graph <-
