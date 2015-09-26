@@ -38,8 +38,8 @@ edge_relationship <- function(graph,
     edge_row <- which(graph$edges_df$from == from & graph$edges_df$to == to)
 
     relationship_set <-
-      ifelse(is.null(graph$edges_df$relationship[edge_row]) ||
-               graph$edges_df$relationship[edge_row] == "",
+      ifelse(is.null(graph$edges_df$rel[edge_row]) ||
+               graph$edges_df$rel[edge_row] == "",
              FALSE, TRUE)
 
     # Remove relationship if a relationship is set
@@ -52,7 +52,7 @@ edge_relationship <- function(graph,
 
       if (relationship_set == TRUE){
 
-        graph$edges_df$relationship[edge_row] <- ""
+        graph$edges_df$rel[edge_row] <- ""
 
         return(graph)
       }
@@ -68,7 +68,7 @@ edge_relationship <- function(graph,
 
       if (relationship_set == FALSE & !is.null(value)){
 
-        if (is.null(graph$edges_df$relationship)){
+        if (is.null(graph$edges_df$rel)){
 
           rel_col <-
             vector(mode = "character",
@@ -76,12 +76,12 @@ edge_relationship <- function(graph,
 
           rel_col[edge_row] <- value
 
-          graph$edges_df$relationship <- rel_col
+          graph$edges_df$rel <- rel_col
         }
 
-        if (!is.null(graph$edges_df$relationship)){
+        if (!is.null(graph$edges_df$rel)){
 
-          graph$edges_df$relationship[edge_row] <- value
+          graph$edges_df$rel[edge_row] <- value
         }
 
         return(graph)
@@ -98,7 +98,7 @@ edge_relationship <- function(graph,
 
       if (relationship_set == TRUE & !is.null(value)){
 
-        graph$edges_df$relationship[edge_row] <- value
+        graph$edges_df$rel[edge_row] <- value
 
         return(graph)
       }
@@ -116,7 +116,7 @@ edge_relationship <- function(graph,
 
       if (relationship_set == TRUE){
 
-        relationship_value <- graph$edges_df$relationship[edge_row]
+        relationship_value <- graph$edges_df$rel[edge_row]
 
         return(relationship_value)
       }
