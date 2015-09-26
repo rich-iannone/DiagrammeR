@@ -18,17 +18,26 @@
 #' @export
 
 exportSVG <- function(gv){
-  # check to make sure that V8 is available
-  if(!requireNamespace("V8")) stop("V8 is required to export.", call. = F)
+
+  # Check to make sure that V8 is available
+  if(!requireNamespace("V8")) stop("V8 is required to export.",
+                                   call. = FALSE)
+
   stopifnot(packageVersion("V8") >= "0.6")
 
-  # check to make sure gv is grViz
-  if(!inherits(gv,"grViz")) "gv must be a grViz htmlwidget."
+  # Check to make sure gv is grViz
+  if(!inherits(gv, "grViz")) "gv must be a grViz htmlwidget."
 
   ct <- new_context("window")
-  invisible(ct$source(system.file("htmlwidgets/lib/viz/viz.js", package = "DiagrammeR")))
 
-  svg <- ct$call("Viz", gv$x$diagram, "svg", gv$x$config$engine, gv$x$config$options )
+  invisible(ct$source(system.file("htmlwidgets/lib/viz/viz.js",
+                                  package = "DiagrammeR")))
+
+  svg <- ct$call("Viz",
+                 gv$x$diagram,
+                 "svg",
+                 gv$x$config$engine,
+                 gv$x$config$options )
 
   return(svg)
 }
