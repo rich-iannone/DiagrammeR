@@ -48,7 +48,7 @@ visnetwork <- function(graph){
 
   # Modify names of columns in 'edges' for compatibility with
   # visNetwork data frames for edges
-  colnames(edges)[which(colnames(edges) == "relationship")] <- "label"
+  colnames(edges)[which(colnames(edges) == "rel")] <- "label"
   colnames(edges)[which(colnames(edges) == "tooltip")] <- "title"
   colnames(edges)[which(colnames(edges) == "penwidth")] <- "value"
 
