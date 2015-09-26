@@ -6,11 +6,11 @@
 #' @examples
 #' \dontrun{
 #'  library(DiagrammeR)
-#'  (svg <- exportSVG(grViz('digraph{a->b; c->a; c->b; c->d;}', engine = 'circo')))
+#'  (svg <- exportSVG(grViz('digraph{a->b; c->a; c->b; c->d;}',
+#'    engine = 'circo')))
 #'
-#'  # this can then be used with htmltools
-#'  #   can save significantly on size of output
-#'  #   using svg rather than unrendered grViz
+#'  # this can then be used with htmltools and can save significantly
+#'  # on size of output using svg rather than unrendered grViz
 #'  library(htmltools)
 #'  html_print(HTML(svg))
 #' }
