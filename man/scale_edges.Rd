@@ -40,7 +40,7 @@ attributes and applies those scales to edge data frames.
 edges <- create_edges(from = c("a", "b", "c"),
                       to = c("d", "d", "a"),
                       label = '',
-                      relationship = "given_to",
+                      rel = "given_to",
                       data = sample(seq(1:50), 10))
 
 edges <- scale_edges(edges_df = edges,

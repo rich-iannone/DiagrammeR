@@ -33,7 +33,7 @@ edges <-
                to = c("d", "c", "a", "c", "a", "d"),
                color = c("green", "green", "grey", "grey",
                          "blue", "blue"),
-               relationship = "leading_to")
+               rel = "leading_to")
 
 # Create a graph object
 graph <- create_graph(nodes_df = nodes,
