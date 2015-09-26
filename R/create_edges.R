@@ -12,7 +12,7 @@
 #' edges <-
 #'   create_edges(from = c("a", "b", "c"),
 #'                to = c("d", "c", "a"),
-#'                relationship = "leading_to")
+#'                rel = "leading_to")
 #' }
 #' @export create_edges
 
