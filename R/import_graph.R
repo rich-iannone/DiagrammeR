@@ -186,7 +186,7 @@ import_graph <- function(graph_file,
     }
 
     # Initialize vectors for an edge data frame
-    from <- to <- relationship <- vector(mode = "character")
+    from <- to <- rel <- vector(mode = "character")
 
     # Obtain complete vectors for the edge data frame
     for (i in which(str_count(sif_document, "\\t") > 1)){
@@ -195,7 +195,7 @@ import_graph <- function(graph_file,
 
       from <- c(from, str_split(sif_document[i], "\t")[[1]][1])
 
-      relationship <- c(relationship, str_split(sif_document[i], "\t")[[1]][2])
+      rel <- c(rel, str_split(sif_document[i], "\t")[[1]][2])
 
       to <- c(to, str_split(sif_document[i], "\t")[[1]][3:length_stmt])
     }
@@ -203,7 +203,7 @@ import_graph <- function(graph_file,
     # Create an edge data frame
     edges_df <- create_edges(from = from,
                              to = to,
-                             relationship = relationship)
+                             rel = rel)
 
     # Create a graph object
     the_graph <- create_graph(nodes_df = nodes_df,
