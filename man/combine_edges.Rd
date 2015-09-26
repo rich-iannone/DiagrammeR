@@ -23,14 +23,14 @@ except, it works regardless of the number and ordering of the columns.
 edges_1 <-
   create_edges(from = c("a", "a", "b", "c"),
                to = c("b", "d", "d", "a"),
-               relationship = "requires",
+               rel = "requires",
                color = "green",
                data = c(2.7, 8.9, 2.6, 0.6))
 
 edges_2 <-
   create_edges(from = c("e", "g", "h", "h"),
                to = c("g", "h", "f", "e"),
-               relationship = "receives",
+               rel = "receives",
                arrowhead = "dot",
                color = "red")
 
