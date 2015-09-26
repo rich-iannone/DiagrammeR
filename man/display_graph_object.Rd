@@ -29,7 +29,7 @@ nodes <-
 edges <-
   create_edges(from = c("a", "b", "c"),
                to = c("d", "c", "a"),
-               relationship = "connected_to")
+               rel = "connected_to")
 
 graph <- create_graph(nodes_df = nodes,
                       edges_df = edges)
