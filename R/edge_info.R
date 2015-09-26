@@ -19,7 +19,7 @@
 #'   create_edges(from = sample(LETTERS, replace = TRUE),
 #'                to = sample(LETTERS, replace = TRUE),
 #'                label = "edge",
-#'                relationship = "letter_to_letter")
+#'                rel = "letter_to_letter")
 #'
 #' graph <-
 #'   create_graph(nodes_df = nodes,
@@ -29,7 +29,7 @@
 #'                               "shape = circle"))
 #'
 #' edge_info(graph)
-#' #>    from   to     relationship label
+#' #>    from   to              rel label
 #' #> 1     A    Z letter_to_letter  edge
 #' #> 2     H    U letter_to_letter  edge
 #' #> 3     W    O letter_to_letter  edge
