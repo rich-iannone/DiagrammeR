@@ -18,7 +18,7 @@ test_that("getting info about a graph's nodes is possible", {
     create_edges(from = sample(LETTERS, replace = TRUE),
                  to = sample(LETTERS, replace = TRUE),
                  label = "edge",
-                 relationship = "letter_to_letter")
+                 rel = "letter_to_letter")
 
   # Create the graph object using the node and edge data frames
   graph <- create_graph(nodes_df = nodes,
@@ -103,7 +103,7 @@ test_that("getting info about a graph's edges is possible", {
     create_edges(from = sample(LETTERS, replace = TRUE),
                  to = sample(LETTERS, replace = TRUE),
                  label = "edge",
-                 relationship = "letter_to_letter")
+                 rel = "letter_to_letter")
 
   # Create the graph object using the node and edge data frames
   graph <- create_graph(nodes_df = nodes,
@@ -127,7 +127,7 @@ test_that("getting info about a graph's edges is possible", {
   # Expect that all columns will be classed as "character"
   expect_is(info_edges$from, "character")
   expect_is(info_edges$to, "character")
-  expect_is(info_edges$relationship, "character")
+  expect_is(info_edges$rel, "character")
   expect_is(info_edges$label, "character")
 
   # Create a graph with 4 nodes but no edges
