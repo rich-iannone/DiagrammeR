@@ -18,7 +18,7 @@ test_that("values are scaled correctly", {
   # Create a data frame for edges and insert a data column
   edges <- create_edges(from = c("a", "b", "c"),
                         to = c("d", "d", "a"),
-                        relationship = "given_to",
+                        rel = "given_to",
                         data = c(2.5, 3.2, 7.9))
 
   # Use the 'scale_edges' function to create an attribute column

@@ -18,7 +18,7 @@ test_that("getting a node count for a graph is possible", {
     create_edges(from = sample(LETTERS, replace = TRUE),
                  to = sample(LETTERS, replace = TRUE),
                  label = "edge",
-                 relationship = "letter_to_letter")
+                 rel = "letter_to_letter")
 
   # Create the graph object using the node and edge data frames
   graph <- create_graph(nodes_df = nodes,
@@ -62,7 +62,7 @@ test_that("getting an edge count for a graph is possible", {
     create_edges(from = sample(LETTERS, replace = TRUE),
                  to = sample(LETTERS, replace = TRUE),
                  label = "edge",
-                 relationship = "letter_to_letter")
+                 rel = "letter_to_letter")
 
   # Create the graph object using the node and edge data frames
   graph <- create_graph(nodes_df = nodes,
@@ -72,13 +72,13 @@ test_that("getting an edge count for a graph is possible", {
                                        "shape = circle"))
 
   # Obtain a count of nodes by relationship
-  count_of_edges <- edge_count(graph, relationship = TRUE)
+  count_of_edges <- edge_count(graph, rel = TRUE)
 
   # Expect that the 'count_of_edges' object is a named vector
   expect_true(!is.null(names(count_of_edges)))
 
   # Obtain a total count of edges
-  total_count_of_edges <- edge_count(graph, relationship = FALSE)
+  total_count_of_edges <- edge_count(graph, rel = FALSE)
 
   # Expect that the 'total_count_of_edges' object is a named vector
   expect_is(total_count_of_edges, "integer")
@@ -89,37 +89,37 @@ test_that("getting an edge count for a graph is possible", {
   edges_missing_rels <-
     create_edges(from = c("a", "a"),
                  to = c("b", "c"),
-                 relationship = c("rel", ""))
+                 rel = c("rel", ""))
 
   graph_edges_missing_rels <-
     create_graph(edges_df = edges_missing_rels)
 
   # Expect that the count of edges here will be 2
   expect_equal(edge_count(graph = graph_edges_missing_rels,
-                          relationship = FALSE), 2L)
+                          rel = FALSE), 2L)
 
   # Expect that the names in the named vector returned will be
-  # '<no relationship>' and 'rel'
+  # '<no rel>' and 'rel'
   expect_equal(names(edge_count(graph = graph_edges_missing_rels,
-                                relationship = TRUE)),
-               c("<no relationship>", "rel"))
+                                rel = TRUE)),
+               c("<no rel>", "rel"))
 
   # Expect that the values for the named vector returned will be 1 in both cases
   expect_equal(edge_count(graph = graph_edges_missing_rels,
-                          relationship = TRUE)[[1]], 1)
+                          rel = TRUE)[[1]], 1)
 
   expect_equal(edge_count(graph = graph_edges_missing_rels,
-                          relationship = TRUE)[[2]], 1)
+                          rel = TRUE)[[2]], 1)
 
   # Expect that requesting the count of edges with no relationship value set
   # will return a value of 1
   expect_equal(edge_count(graph = graph_edges_missing_rels,
-                          relationship = ""), 1)
+                          rel = ""), 1)
 
   # Expect that requesting the count of edges with a relationship value set
   # to 'rel' will return a value of 1 in a named vector
   expect_equal(edge_count(graph = graph_edges_missing_rels,
-                          relationship = "rel")[[1]], 1)
+                          rel = "rel")[[1]], 1)
 })
 
 test_that("getting a node/edge count for an empty graph is possible", {
@@ -131,10 +131,10 @@ test_that("getting a node/edge count for an empty graph is possible", {
   expect_equal(node_count(empty_graph, type = TRUE), 0)
 
   # Expect that an edge count of an empty graph will return 0
-  expect_equal(edge_count(empty_graph, relationship = FALSE), 0)
-  expect_equal(edge_count(empty_graph, relationship = TRUE), 0)
+  expect_equal(edge_count(empty_graph, rel = FALSE), 0)
+  expect_equal(edge_count(empty_graph, rel = TRUE), 0)
 
   # Expect that an edge count with a relationship value set to any
   # character vector will automatically return 0
-  expect_equal(edge_count(empty_graph, relationship = "rel"), 0)
+  expect_equal(edge_count(empty_graph, rel = "rel"), 0)
 })

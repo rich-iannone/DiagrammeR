@@ -13,13 +13,13 @@ test_that("nodes and edges can be deleted from a graph", {
 
   # Add edges
   graph <- add_edges(graph, from = "a", to = "b",
-                     relationship = "to_get")
+                     rel = "to_get")
 
   graph <-
     add_edges(graph,
               from = c("a", "a"),
               to = c("c", "d"),
-              relationship = "received_from")
+              rel = "received_from")
 
   # Get the graph's nodes
   graph_nodes <- get_nodes(graph)
@@ -76,14 +76,14 @@ test_that("the function can be stopped with certain input values", {
 
   # Add edges with the 'to_get' relationship
   graph <- add_edges(graph, from = "a", to = "b",
-                     relationship = "to_get")
+                     rel = "to_get")
 
   # Add edges with the 'received_from' relationship
   graph <-
     add_edges(graph,
               from = c("a", "a"),
               to = c("c", "d"),
-              relationship = "received_from")
+              rel = "received_from")
 
   # Expect an error the node specified is not a single value
   expect_error(delete_node(graph, node = c("a", "b")))

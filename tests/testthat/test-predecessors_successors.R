@@ -18,7 +18,7 @@ test_that("getting a node's predecessors/successors is possible", {
     create_edges(from = sample(LETTERS, replace = TRUE),
                  to = sample(LETTERS, replace = TRUE),
                  label = "edge",
-                 relationship = "letter_to_letter")
+                 rel = "letter_to_letter")
 
   # Create the graph object using the node and edge data frames
   graph <- create_graph(nodes_df = nodes,

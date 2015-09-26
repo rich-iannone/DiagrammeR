@@ -6,7 +6,7 @@ test_that("a correct edge data frame is generated", {
   edges_1 <-
     create_edges(from = c("a", "a", "b", "c"),
                  to = c("b", "d", "d", "a"),
-                 relationship = "requires",
+                 rel = "requires",
                  color = "green",
                  data = c(2.7, 8.9, 2.6, 0.6))
 
@@ -14,7 +14,7 @@ test_that("a correct edge data frame is generated", {
   edges_2 <-
     create_edges(from = c("e", "g", "h", "h"),
                  to = c("g", "h", "f", "e"),
-                 relationship = "receives",
+                 rel = "receives",
                  arrowhead = "dot",
                  color = "red")
 
@@ -35,7 +35,7 @@ test_that("a correct edge data frame is generated", {
   edges_var_1 <-
     create_edges(from = c("a", "a", "b", "c"),
                  to = c("b", "d", "d", "a"),
-                 relationship = "requires",
+                 rel = "requires",
                  color = c("green", "green"),
                  data = c(2.7, 8.9, 2.6, 0.6))
 
@@ -54,7 +54,7 @@ test_that("a correct edge data frame is generated", {
   edges_var_2 <-
     create_edges(from = c("a", "a", "b", "c"),
                  to = c("b", "d", "d", "a"),
-                 relationship = "requires",
+                 rel = "requires",
                  color = c("green", "green",
                            "green", "green",
                            "green", "green"),
@@ -77,7 +77,7 @@ test_that("two edge data frames can be successfully combined", {
   edges_1 <-
     create_edges(from = c("a", "a", "b", "c"),
                  to = c("b", "d", "d", "a"),
-                 relationship = "requires",
+                 rel = "requires",
                  color = "green",
                  data = c(2.7, 8.9, 2.6, 0.6))
 
@@ -85,7 +85,7 @@ test_that("two edge data frames can be successfully combined", {
   edges_2 <-
     create_edges(from = c("e", "g", "h", "h"),
                  to = c("g", "h", "f", "e"),
-                 relationship = "receives",
+                 rel = "receives",
                  arrowhead = "dot",
                  color = "red")
 
@@ -108,7 +108,7 @@ test_that("three edge data frames can be successfully combined", {
   edges_1 <-
     create_edges(from = c("a", "a"),
                  to = c("b", "d"),
-                 relationship = "requires",
+                 rel = "requires",
                  color = "green",
                  data = c(2.7, 8.9))
 
@@ -116,7 +116,7 @@ test_that("three edge data frames can be successfully combined", {
   edges_2 <-
     create_edges(from = c("b", "c"),
                  to = c("d", "a"),
-                 relationship = "requires",
+                 rel = "requires",
                  color = "green",
                  data = c(2.6, 0.6))
 
@@ -124,7 +124,7 @@ test_that("three edge data frames can be successfully combined", {
   edges_3 <-
     create_edges(from = c("e", "g", "h", "h"),
                  to = c("g", "h", "f", "e"),
-                 relationship = "receives",
+                 rel = "receives",
                  arrowhead = "dot",
                  color = "red")
 

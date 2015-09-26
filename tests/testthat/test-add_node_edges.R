@@ -188,7 +188,7 @@ test_that("adding an edge to a graph is possible", {
 
   # Add an edge
   graph <- add_edges(graph, from = "a", to = "b",
-                     relationship = "to_get")
+                     rel = "to_get")
 
   # Expect that names in this graph object match a prescribed set of names
   expect_true(all(names(graph) == c("graph_name", "graph_time", "graph_tz",
@@ -254,7 +254,7 @@ test_that("adding a node to a graph is possible", {
   edges <-
     create_edges(from = c("a", "b", "c"),
                  to = c("d", "c", "a"),
-                 relationship = "leading_to")
+                 rel = "leading_to")
 
   # Add the edges to the graph using 'add_edges'
   graph_edges_added <-

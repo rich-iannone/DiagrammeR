@@ -19,7 +19,7 @@ test_that("exporting a graph to SVG code is possible", {
   edges <-
     create_edges(from = c("a", "b", "c"),
                  to = c("d", "c", "a"),
-                 relationship = "leading_to")
+                 rel = "leading_to")
 
   # Create the graph object using the node and edge data frames
   graph <- create_graph(nodes_df = nodes,
