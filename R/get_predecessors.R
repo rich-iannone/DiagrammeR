@@ -20,7 +20,7 @@
 #'   create_edges(from = sample(LETTERS, replace = TRUE),
 #'                to = sample(LETTERS, replace = TRUE),
 #'                label = "edge",
-#'                relationship = "letter_to_letter")
+#'                rel = "letter_to_letter")
 #'
 #' graph <-
 #'   create_graph(nodes_df = nodes,
