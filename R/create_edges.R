@@ -50,7 +50,8 @@ create_edges <- function(...){
 
     # Expand vectors with length > 1 and length < 'number_of_edges'
     if (length(edges[[i]]) > 1 & length(edges[[i]]) < number_of_edges){
-      edges[[i]] <- c(edges[[i]], rep("", (number_of_edges - length(edges[[i]]))))
+      edges[[i]] <- c(edges[[i]],
+                      rep("", (number_of_edges - length(edges[[i]]))))
     }
 
     # Trim vectors with number of values exceeding number of edges

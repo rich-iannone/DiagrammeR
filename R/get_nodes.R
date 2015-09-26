@@ -55,7 +55,8 @@ get_nodes <- function(...){
   # Determine the length of the 'objects' list
   length_of_objects <- length(objects)
 
-  # If there is more than one object supplied, check for existance of a graph object
+  # If there is more than one object supplied, check for existance
+  # of a graph object
   if (length_of_objects > 1){
 
     # Determine the classes of the first two objects

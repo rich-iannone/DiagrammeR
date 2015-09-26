@@ -96,13 +96,15 @@ edge_count <- function(graph,
 
         total_edge_count <-
           c(total_edge_count,
-            nrow(graph$edges_df[which(graph$edges_df$rel == all_relationships[i]),]))
+            nrow(graph$edges_df[which(graph$edges_df$rel ==
+                                        all_relationships[i]),]))
 
         if (i == length(all_relationships)){
           names(total_edge_count) <- all_relationships
 
           if (any(names(total_edge_count) == "")){
-            names(total_edge_count)[which(names(total_edge_count) == "")] <- "<no rel>"
+            names(total_edge_count)[which(names(total_edge_count) == "")] <-
+              "<no rel>"
 
             total_edge_count <-
               c(total_edge_count[which(names(total_edge_count) == "<no rel>")],
@@ -150,13 +152,15 @@ edge_count <- function(graph,
 
       # Determine whether those edge relationships provides are all
       # available in the graph
-      relationships_are_available <- ifelse(all(rel %in% all_relationships), TRUE, FALSE)
+      relationships_are_available <-
+        ifelse(all(rel %in% all_relationships), TRUE, FALSE)
 
       if (relationships_are_available){
 
         # Determine how many relationship rows are unsets for the edges
         # available in the graph
-        unset_relationship_for_node_count <- nrow(subset(graph$edges_df, rel == ''))
+        unset_relationship_for_node_count <-
+          nrow(subset(graph$edges_df, rel == ''))
 
         # Determine the total count of edges with relationship not set
         # (if that was specified)

@@ -28,7 +28,8 @@ delete_edge <- function(graph,
                         from,
                         to){
 
-  # Verify that each of the values for 'from' and 'to' are given as a single values
+  # Verify that each of the values for 'from' and 'to' are given as
+  # single values
   from_is_single_value <- ifelse(length(from) == 1, TRUE, FALSE)
   to_is_single_value <- ifelse(length(to) == 1, TRUE, FALSE)
 
@@ -41,7 +42,8 @@ delete_edge <- function(graph,
   # Determine whether pair of node provided are in the graph
   if (from_is_single_value == TRUE & to_is_single_value == TRUE){
 
-    nodes_available_in_graph <- ifelse(all(c(from, to) %in% get_nodes(graph)), TRUE, FALSE)
+    nodes_available_in_graph <-
+      ifelse(all(c(from, to) %in% get_nodes(graph)), TRUE, FALSE)
   }
 
   # Stop function if both nodes not present in graph
