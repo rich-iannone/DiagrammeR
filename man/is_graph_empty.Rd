@@ -13,8 +13,8 @@ is_graph_empty(graph)
 a logical value.
 }
 \description{
-Determines whether a graph contains any nodes and returns a
-logical value to reflect emptiness.
+Provides a logical value on whether the graph is empty (i.e.,
+contains no nodes).
 }
 \examples{
 \dontrun{
