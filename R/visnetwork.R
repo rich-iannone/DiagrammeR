@@ -68,11 +68,14 @@ visnetwork <- function(graph){
   colnames(nodes)[which(colnames(nodes) == "tooltip")] <- "title"
   colnames(nodes)[which(colnames(nodes) == "fillcolor")] <- "color"
 
-  # Modify names of columns in 'edges' for compatibility with
-  # visNetwork data frames for edges
-  colnames(edges)[which(colnames(edges) == "rel")] <- "label"
-  colnames(edges)[which(colnames(edges) == "tooltip")] <- "title"
-  colnames(edges)[which(colnames(edges) == "penwidth")] <- "value"
+  if (!is.null(graph$edges_df)){
+
+    # Modify names of columns in 'edges' for compatibility with
+    # visNetwork data frames for edges
+    colnames(edges)[which(colnames(edges) == "rel")] <- "label"
+    colnames(edges)[which(colnames(edges) == "tooltip")] <- "title"
+    colnames(edges)[which(colnames(edges) == "penwidth")] <- "width"
+  }
 
   # Create the visNetwork object
   vn_obj <- visNetwork(nodes = nodes, edges = edges)
