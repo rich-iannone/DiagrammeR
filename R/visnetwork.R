@@ -56,6 +56,10 @@ visnetwork <- function(graph){
     edges <- edges[,-1]
   }
 
+  # Remove the 'pos' column, if it exists
+  if ("pos" %in% colnames(nodes)){
+    nodes <- nodes[,-(which(colnames(nodes) %in% "pos"))]
+  }
 
   # Modify names of columns in 'nodes' for compatibility with
   # visNetwork data frames for nodes
