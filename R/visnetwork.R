@@ -94,4 +94,9 @@ visnetwork <- function(graph){
                                             fit = TRUE))
 
   vn_obj
+    # Normalize x and y values
+
+    nodes$x <- as.numeric(nodes$x) - mean(as.numeric(nodes$x))
+
+    nodes$y <- (-as.numeric(nodes$y)) - mean(-(as.numeric(nodes$y)))
 }
