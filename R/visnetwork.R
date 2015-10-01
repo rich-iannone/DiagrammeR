@@ -36,8 +36,16 @@
 visnetwork <- function(graph){
 
   # Extract node and edge data frames from the graph object
-  nodes <- graph$nodes_df
-  edges <- graph$edges_df
+  if (!is.null(graph$nodes_df)){
+
+    nodes <- graph$nodes_df
+  }
+
+  if (!is.null(graph$edges_df)){
+
+    edges <- graph$edges_df
+  }
+
 
   # Modify names of columns in 'nodes' for compatibility with
   # visNetwork data frames for nodes
