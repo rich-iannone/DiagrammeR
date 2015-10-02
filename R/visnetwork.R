@@ -106,8 +106,7 @@ visnetwork <- function(graph){
 
   if (all(c("x", "y") %in% colnames(nodes))){
 
-    # Normalize x and y values
-
+    #Normalize x and y values
     nodes$x <- as.numeric(nodes$x) - mean(as.numeric(nodes$x))
 
     nodes$y <- (-as.numeric(nodes$y)) - mean(-(as.numeric(nodes$y)))
@@ -117,7 +116,7 @@ visnetwork <- function(graph){
       vn_obj <- visNetwork(nodes = nodes)
 
       vn_obj <- visNodes(graph = vn_obj,
-                         physics = FALSE,
+                         physics = TRUE,
                          fixed = FALSE)
 
       vn_obj <- visInteraction(graph = vn_obj,
@@ -130,14 +129,13 @@ visnetwork <- function(graph){
       vn_obj <- visNetwork(nodes = nodes, edges = edges)
 
       vn_obj <- visNodes(graph = vn_obj,
-                         physics = FALSE,
+                         physics = TRUE,
                          fixed = FALSE)
 
       vn_obj <- visEdges(graph = vn_obj,
                          arrows = list(to = list(enabled = TRUE,
                                                  scaleFactor = 1)),
                          smooth = FALSE,
-                         physics = TRUE,
                          font = list(color = "#343434",
                                      size = 14,
                                      face = "arial",
@@ -145,10 +143,6 @@ visnetwork <- function(graph){
                                      strokeWidth = 2,
                                      strokeColor = "#ffffff",
                                      align = "middle"))
-
-      vn_obj <- visPhysics(graph = vn_obj,
-                           solver = "repulsion",
-                           forceAtlas2Based = list(centralGravity = 0.2))
 
       vn_obj <- visPhysics(graph = vn_obj,
                            stabilization = list(enabled = TRUE,
