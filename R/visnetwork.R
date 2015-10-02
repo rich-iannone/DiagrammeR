@@ -129,28 +129,43 @@ visnetwork <- function(graph){
 
     if (!is.null(graph$edges_df)){
 
+      if ("arrow" %in% colnames(edges)){
+        if (all(edges[which(colnames(edges) %in% "arrow")] == FALSE)){
+          arrows_for_edges <- FALSE
+        } else {
+          arrows_for_edges <- FALSE
+        }
+      } else {
+        arrows_for_edges <- FALSE
+      }
+
       vn_obj <- visNetwork(nodes = nodes, edges = edges)
 
       vn_obj <- visNodes(graph = vn_obj,
                          physics = FALSE,
                          fixed = FALSE)
 
-      vn_obj <- visEdges(graph = vn_obj,
-                         arrows = list(to = list(enabled = TRUE,
-                                                 scaleFactor = 1)),
-                         smooth = FALSE,
-                         font = list(color = "#343434",
-                                     size = 14,
-                                     face = "arial",
-                                     background = NULL,
-                                     strokeWidth = 2,
-                                     strokeColor = "#ffffff",
-                                     align = "middle"))
+      vn_obj <-
+        visEdges(graph = vn_obj,
+                 arrows = list(to =
+                                 list(enabled =
+                                        ifelse(arrows_for_edges,
+                                               TRUE, FALSE),
+                                      scaleFactor = 1)),
+                 smooth = FALSE,
+                 font = list(color = "#343434",
+                             size = 14,
+                             face = "arial",
+                             background = NULL,
+                             strokeWidth = 2,
+                             strokeColor = "#ffffff",
+                             align = "middle"))
 
-      vn_obj <- visPhysics(graph = vn_obj,
-                           stabilization = list(enabled = FALSE,
-                                                onlyDynamicEdges = FALSE,
-                                                fit = TRUE))
+      vn_obj <-
+        visPhysics(graph = vn_obj,
+                   stabilization = list(enabled = FALSE,
+                                        onlyDynamicEdges = FALSE,
+                                        fit = TRUE))
 
       vn_obj <- visInteraction(graph = vn_obj,
                                dragNodes = FALSE)
