@@ -106,18 +106,21 @@ visnetwork <- function(graph){
 
   if (all(c("x", "y") %in% colnames(nodes))){
 
-    #Normalize x and y values
-    nodes$x <- as.numeric(nodes$x) - mean(as.numeric(nodes$x))
-
-    nodes$y <- (-as.numeric(nodes$y)) - mean(-(as.numeric(nodes$y)))
+    # Reverse y values
+    nodes$y <- -as.numeric(nodes$y)
 
     if (is.null(graph$edges_df)){
 
       vn_obj <- visNetwork(nodes = nodes)
 
       vn_obj <- visNodes(graph = vn_obj,
-                         physics = TRUE,
+                         physics = FALSE,
                          fixed = FALSE)
+
+      vn_obj <- visPhysics(graph = vn_obj,
+                           stabilization = list(enabled = FALSE,
+                                                onlyDynamicEdges = FALSE,
+                                                fit = TRUE))
 
       vn_obj <- visInteraction(graph = vn_obj,
                                dragNodes = FALSE)
@@ -129,7 +132,7 @@ visnetwork <- function(graph){
       vn_obj <- visNetwork(nodes = nodes, edges = edges)
 
       vn_obj <- visNodes(graph = vn_obj,
-                         physics = TRUE,
+                         physics = FALSE,
                          fixed = FALSE)
 
       vn_obj <- visEdges(graph = vn_obj,
@@ -145,8 +148,8 @@ visnetwork <- function(graph){
                                      align = "middle"))
 
       vn_obj <- visPhysics(graph = vn_obj,
-                           stabilization = list(enabled = TRUE,
-                                                onlyDynamicEdges = TRUE,
+                           stabilization = list(enabled = FALSE,
+                                                onlyDynamicEdges = FALSE,
                                                 fit = TRUE))
 
       vn_obj <- visInteraction(graph = vn_obj,
