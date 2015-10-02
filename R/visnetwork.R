@@ -30,7 +30,7 @@
 #'
 #' visnetwork(graph)
 #' }
-#' @importFrom visNetwork visNetwork visEdges visPhysics
+#' @importFrom visNetwork visNetwork visInteraction visEdges visPhysics visNodes
 #' @export visnetwork
 
 visnetwork <- function(graph){
