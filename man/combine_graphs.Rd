@@ -7,7 +7,9 @@
 combine_graphs(x, y)
 }
 \arguments{
-\item{x}{a \code{DiagrammeR} graph object to which another graph will be joined.}
+\item{x}{a \code{DiagrammeR} graph object to which another graph will be
+joined. This graph should be considered the host graph as the resulting
+graph will retain only the attributes of this graph.}
 
 \item{y}{a \code{DiagrammeR} graph object that is to be joined with the graph
 suppled as \code{x}.}
