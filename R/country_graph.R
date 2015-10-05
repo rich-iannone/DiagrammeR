@@ -15,13 +15,11 @@ country_graph <- function(iso_a2 = NULL,
              stringsAsFactors = FALSE)
 
   if (!is.null(iso_a2)){
-    country_subset <- subset(coordinates_by_country,
-                             country_iso_a2 == iso_a2)
+    countries <- iso_a2
   }
 
-  if (!is.null(iso_a3)){
-    country_subset <- subset(coordinates_by_country,
-                             country_iso_a3 == iso_a3)
+  if (is.null(iso_a2)){
+    countries <- unique(coordinates_by_country$country_iso_a2)
   }
 
 
