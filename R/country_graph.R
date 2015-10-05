@@ -37,7 +37,7 @@ country_graph <- function(iso_a2 = NULL,
   }
 
   if (is.null(iso_a2)){
-    countries <- unique(coordinates_by_country$country_iso_a2)
+    countries <- all_iso_a2
   }
 
   for (k in 1:length(countries)){
