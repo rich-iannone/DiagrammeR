@@ -12,6 +12,7 @@ country_graph <- function(iso_a2 = NULL,
   coordinates_by_country <-
     read.csv(system.file("examples/boundary_coordinates_by_country.csv",
                          package = "DiagrammeR"),
+             na.strings = "NANA",
              stringsAsFactors = FALSE)
 
   if (!is.null(iso_a2)){
