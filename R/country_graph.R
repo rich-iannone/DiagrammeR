@@ -42,11 +42,8 @@ country_graph <- function(iso_a2 = NULL,
 
   for (k in 1:length(countries)){
 
-    if (!is.null(iso_a2)){
-      country_subset <- subset(coordinates_by_country,
-                               country_iso_a2 == countries[k])
-      countries <- iso_a2
-    }
+    country_subset <- subset(coordinates_by_country,
+                             country_iso_a2 == countries[k])
 
     for (i in 1:length(unique(country_subset$poly_no))){
 
