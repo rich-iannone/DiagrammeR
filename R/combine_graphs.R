@@ -11,15 +11,32 @@
 
 combine_graphs <- function(x, y){
 
-  dgr_graph <-
-    create_graph(nodes_df = combine_nodes(x$nodes, y$nodes),
-                 edges_df = combine_edges(x$edges, y$edges),
-                 graph_attrs = x$graph_attrs,
-                 node_attrs = x$node_attrs,
-                 edge_attrs = x$edge_attrs,
-                 graph_name = x$graph_name,
-                 graph_time = x$graph_time,
-                 graph_tz = x$graph_tz)
+  if (is.null(x$dot_code)){
+
+    dgr_graph <-
+      create_graph(nodes_df = combine_nodes(x$nodes, y$nodes),
+                   edges_df = combine_edges(x$edges, y$edges),
+                   graph_attrs = x$graph_attrs,
+                   node_attrs = x$node_attrs,
+                   edge_attrs = x$edge_attrs,
+                   graph_name = x$graph_name,
+                   graph_time = x$graph_time,
+                   graph_tz = x$graph_tz,
+                   generate_dot = FALSE)
+  }
+
+  if (!is.null(x$dot_code)){
+
+    dgr_graph <-
+      create_graph(nodes_df = combine_nodes(x$nodes, y$nodes),
+                   edges_df = combine_edges(x$edges, y$edges),
+                   graph_attrs = x$graph_attrs,
+                   node_attrs = x$node_attrs,
+                   edge_attrs = x$edge_attrs,
+                   graph_name = x$graph_name,
+                   graph_time = x$graph_time,
+                   graph_tz = x$graph_tz)
+  }
 
   return(dgr_graph)
 }
