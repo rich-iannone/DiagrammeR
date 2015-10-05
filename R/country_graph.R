@@ -47,7 +47,6 @@ country_graph <- function(iso_a2 = NULL,
 
     for (i in 1:length(unique(country_subset$poly_no))){
 
-
       if (i == 1) {
 
         nodes <- create_nodes(nodes = "")
@@ -57,8 +56,6 @@ country_graph <- function(iso_a2 = NULL,
         edges <- edges[-1,]
       }
 
-
-
       subset_poly <- subset(country_subset, poly_no == i)
 
       nodes <-
@@ -67,8 +64,8 @@ country_graph <- function(iso_a2 = NULL,
                                                   "_",
                                                   rownames(subset_poly)),
                                    shape = "image",
-                                   x = subset_poly$lon * 20,
-                                   y = subset_poly$lat * 20,
+                                   x = subset_poly$lon * 40,
+                                   y = subset_poly$lat * 40,
                                    image = "https://raw.githubusercontent.com/rich-iannone/DiagrammeR/master/inst/examples/NFFFFFF-0.png"))
 
       edges <-
