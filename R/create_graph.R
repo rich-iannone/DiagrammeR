@@ -180,6 +180,10 @@ create_graph <- function(nodes_df = NULL,
     }
   }
 
+  #
+  # Create the DOT attributes block
+  #
+
   # Create the default attributes statement for graph attributes
   if (!is.null(graph_attrs)){
     graph_attr_stmt <-
@@ -251,7 +255,7 @@ create_graph <- function(nodes_df = NULL,
   }
 
   #
-  # Create the node block
+  # Create the DOT node block
   #
 
   if (!is.null(nodes_df)){
@@ -478,7 +482,7 @@ create_graph <- function(nodes_df = NULL,
   }
 
   #
-  # Create the edge block
+  # Create the DOT edge block
   #
 
   if (!is.null(edges_df)){
