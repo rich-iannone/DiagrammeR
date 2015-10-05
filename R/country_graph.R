@@ -24,43 +24,60 @@ country_graph <- function(iso_a2 = NULL,
 
   for (k in 1:length(countries)){
 
-  for (i in 1:length(unique(country_subset$poly_no))){
-
-    if (i == 1){
-
-      nodes <- create_nodes(nodes = "")
-
-      edges <- create_edges(from = "", to = "")
-      edges <- edges[-1,]
+    if (!is.null(iso_a2)){
+      country_subset <- subset(coordinates_by_country,
+                               country_iso_a2 == countries[k])
+      countries <- iso_a2
     }
 
-    subset_poly <- subset(country_subset, poly_no == i)
+    for (i in 1:length(unique(country_subset$poly_no))){
 
-    nodes <-
-      combine_nodes(nodes,
-                    create_nodes(nodes = rownames(subset_poly),
-                                 shape = "image",
-                                 x = subset_poly$lon * 20,
-                                 y = subset_poly$lat * 20,
-                                 image = "https://raw.githubusercontent.com/rich-iannone/DiagrammeR/master/inst/examples/NFFFFFF-0.png"))
 
-    edges <-
-      combine_edges(edges,
-                    create_edges(from = rownames(subset_poly),
-                                 to = c(rownames(subset_poly)[2:length(rownames(subset_poly))],
-                                        rownames(subset_poly)[1]),
-                                 color = "black",
-                                 arrow = FALSE))
-  }
+      if (i == 1) {
 
-  nodes <- nodes[-1,]
+        nodes <- create_nodes(nodes = "")
+
+        edges <- create_edges(from = "", to = "")
+
+        edges <- edges[-1,]
+      }
+
+
+
+      subset_poly <- subset(country_subset, poly_no == i)
+
+      nodes <-
+        combine_nodes(nodes,
+                      create_nodes(nodes = paste0(countries[k],
+                                                  "_",
+                                                  rownames(subset_poly)),
+                                   shape = "image",
+                                   x = subset_poly$lon * 20,
+                                   y = subset_poly$lat * 20,
+                                   image = "https://raw.githubusercontent.com/rich-iannone/DiagrammeR/master/inst/examples/NFFFFFF-0.png"))
+
+      edges <-
+        combine_edges(edges,
+                      create_edges(from = paste0(countries[k],
+                                                 "_",
+                                                 rownames(subset_poly)),
+                                   to = c(paste0(countries[k],
+                                                 "_",
+                                                 rownames(subset_poly)[2:length(rownames(subset_poly))]),
+                                          paste0(countries[k],
+                                                 "_",
+                                                 rownames(subset_poly)[1])),
+                                   color = "black",
+                                   arrow = FALSE))
+    }
+
+    nodes <- nodes[-1,]
+
     if (k == 1){
       dgr_graph <- create_graph(nodes_df = nodes,
                                 edges_df = edges)
     }
 
-  dgr_graph <- create_graph(nodes_df = nodes,
-                            edges_df = edges)
     if (k > 1){
       graph_2 <- create_graph(nodes_df = nodes,
                               edges_df = edges)
