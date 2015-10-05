@@ -1,14 +1,12 @@
 #' Create a graph object that contains the boundaries of a country
 #' @description Create a graph object that contains the boundaries of a country.
 #' @param iso_a2 the ISO 2-letter identifier for a country.
-#' @param iso_a3 the ISO 3-letter identifier for a country.
 #' @param option an integer that is used for alternate views of certain
 #' countries.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export country_graph
 
 country_graph <- function(iso_a2 = NULL,
-                          iso_a3 = NULL,
                           option = 1){
 
   coordinates_by_country <-
