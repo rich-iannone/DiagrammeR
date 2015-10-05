@@ -4,12 +4,10 @@
 \alias{country_graph}
 \title{Create a graph object that contains the boundaries of a country}
 \usage{
-country_graph(iso_a2 = NULL, iso_a3 = NULL, option = 1)
+country_graph(iso_a2 = NULL, option = 1)
 }
 \arguments{
 \item{iso_a2}{the ISO 2-letter identifier for a country.}
-
-\item{iso_a3}{the ISO 3-letter identifier for a country.}
 
 \item{option}{an integer that is used for alternate views of certain
 countries.}
