@@ -15,6 +15,23 @@ country_graph <- function(iso_a2 = NULL,
              na.strings = "NANA",
              stringsAsFactors = FALSE)
 
+  all_iso_a2 <-
+    c("AF", "AO", "AL", "AE", "AR", "AM", "AQ", "TF", "AU", "AT", "AZ", "BI",
+      "BE", "BJ", "BF", "BD", "BG", "BS", "BA", "BY", "BZ", "BO", "BR", "BN",
+      "BT", "BW", "CF", "CA", "CH", "CL", "CN", "CI", "CM", "CD", "CG", "CO",
+      "CR", "CU", "CY", "CZ", "DE", "DJ", "DK", "DO", "DZ", "EC", "EG", "ER",
+      "ES", "EE", "ET", "FI", "FJ", "FK", "FR", "GA", "GB", "GE", "GH", "GN",
+      "GM", "GW", "GQ", "GR", "GL", "GT", "GY", "HN", "HR", "HT", "HU", "ID",
+      "IN", "IE", "IR", "IQ", "IS", "IL", "IT", "JM", "JO", "JP", "KZ", "KE",
+      "KG", "KH", "KR", "KW", "LA", "LB", "LR", "LY", "LK", "LS", "LT", "LU",
+      "LV", "MA", "MD", "MG", "MX", "MK", "ML", "MM", "ME", "MN", "MZ", "MR",
+      "MW", "MY", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NZ", "OM",
+      "PK", "PA", "PE", "PH", "PG", "PL", "PR", "KP", "PT", "PY", "PS", "QA",
+      "RO", "RU", "RW", "EH", "SA", "SD", "SS", "SN", "SB", "SL", "SV", "SO",
+      "RS", "SR", "SK", "SI", "SE", "SZ", "SY", "TD", "TG", "TH", "TJ", "TM",
+      "TL", "TT", "TN", "TR", "TW", "TZ", "UG", "UA", "UY", "US", "UZ", "VE",
+      "VN", "VU", "YE", "ZA", "ZM", "ZW")
+
   if (!is.null(iso_a2)){
     countries <- iso_a2
   }
