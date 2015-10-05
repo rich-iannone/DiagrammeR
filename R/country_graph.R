@@ -22,6 +22,7 @@ country_graph <- function(iso_a2 = NULL,
     countries <- unique(coordinates_by_country$country_iso_a2)
   }
 
+  for (k in 1:length(countries)){
 
   for (i in 1:length(unique(country_subset$poly_no))){
 
@@ -53,9 +54,20 @@ country_graph <- function(iso_a2 = NULL,
   }
 
   nodes <- nodes[-1,]
+    if (k == 1){
+      dgr_graph <- create_graph(nodes_df = nodes,
+                                edges_df = edges)
+    }
 
   dgr_graph <- create_graph(nodes_df = nodes,
                             edges_df = edges)
+    if (k > 1){
+      graph_2 <- create_graph(nodes_df = nodes,
+                              edges_df = edges)
+
+      dgr_graph <- combine_graphs(dgr_graph, graph_2)
+    }
+  }
 
   return(dgr_graph)
 }
