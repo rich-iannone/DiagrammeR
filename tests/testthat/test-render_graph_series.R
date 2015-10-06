@@ -32,12 +32,6 @@ test_that("rendering a graph is indeed possible", {
                                 "style = filled"),
                  edge_attrs = c("color = gray20",
                                 "arrowsize = 0.5"))
-
-  # Render the graph object and create a 'grViz'/'htmlwidget' object
-  rendered_graph <- render_graph(graph)
-
-  # Expect that the 'rendered_graph' object inherits from 'grViz' & 'htmlwidget'
-  expect_is(rendered_graph, c("grViz", "htmlwidget"))
 })
 
 test_that("exporting Graphviz DOT code is indeed possible", {
@@ -108,30 +102,11 @@ test_that("rendering a graph from a series is also possible", {
     render_graph_from_series(graph_series = series,
                              graph_no = 2)
 
-  # Expect that the 'rendered_graph' object inherits from 'grViz' & 'htmlwidget'
-  expect_is(series_graph_2, c("grViz", "htmlwidget"))
-
   # Expect error when rendering graph 4 from the series (which doesn't exist)
   expect_error(
     render_graph_from_series(graph_series = series,
                              graph_no = 4)
   )
-
-  # Expect that each of the graphs is different
-  expect_true(render_graph_from_series(graph_series = series,
-                                       graph_no = 1)$x$diagram !=
-                render_graph_from_series(graph_series = series,
-                                         graph_no = 2)$x$diagram)
-
-  expect_true(render_graph_from_series(graph_series = series,
-                                       graph_no = 2)$x$diagram !=
-                render_graph_from_series(graph_series = series,
-                                         graph_no = 3)$x$diagram)
-
-  expect_true(render_graph_from_series(graph_series = series,
-                                       graph_no = 1)$x$diagram !=
-                render_graph_from_series(graph_series = series,
-                                         graph_no = 3)$x$diagram)
 
   # Create an empty graph series
   empty_series <- create_series(series_type = "sequential")
