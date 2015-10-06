@@ -257,8 +257,8 @@ render_graph <- function(graph,
 
     # If the DOT code contains no references to external images, then simply
     # use the 'grViz' function to render the graph
-    if (output == "graph" & !(grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
-                              grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code))){
+    if (!(grepl("\\[.*?img[ ]*?=[ ]*?", dot_code) |
+          grepl("\\[.*?icon[ ]*?=[ ]*?", dot_code))){
 
       grViz(diagram = dot_code, width = width, height = height)
 
