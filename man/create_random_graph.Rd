@@ -4,10 +4,12 @@
 \alias{create_random_graph}
 \title{Create a randomized graph}
 \usage{
-create_random_graph(n)
+create_random_graph(n, m)
 }
 \arguments{
 \item{n}{the number of nodes to use in the random graph.}
+
+\item{m}{the number of edges to use in the random graph.}
 }
 \description{
 Create a graph of up to \code{n} nodes with randomized edge

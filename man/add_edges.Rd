@@ -16,7 +16,7 @@ add_edges(graph, edges_df = NULL, from = NULL, to = NULL, rel = NULL)
 
 \item{to}{a vector of the incoming nodes to which each edge is connected.}
 
-\item{relationship}{a string specifying the relationship between the
+\item{rel}{a string specifying the relationship between the
 connected nodes.}
 }
 \value{
