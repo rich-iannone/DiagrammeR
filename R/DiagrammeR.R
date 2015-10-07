@@ -141,8 +141,11 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 #' @param height a valid CSS unit for the height or a number, which will be
 #' coerced to a string and have "px" appended.
 #' @export
-DiagrammeROutput <- function(outputId, width = '100%', height = '400px'){
-  shinyWidgetOutput(outputId, 'DiagrammeR', width, height, package = 'DiagrammeR')
+DiagrammeROutput <- function(outputId,
+                             width = '100%',
+                             height = '400px'){
+
+  htmlwidgets::shinyWidgetOutput(outputId, 'DiagrammeR', width, height, package = 'DiagrammeR')
 }
 
 #' Widget render function for use in Shiny
@@ -151,7 +154,13 @@ DiagrammeROutput <- function(outputId, width = '100%', height = '400px'){
 #' @param quoted is expr a quoted expression (with quote())? This is useful
 #' if you want to save an expression in a variable.
 #' @export
-renderDiagrammeR <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderDiagrammeR <- function(expr,
+                             env = parent.frame(),
+                             quoted = FALSE){
+
   if (!quoted) expr <- substitute(expr)
-  shinyRenderWidget(expr, DiagrammeROutput, env, quoted = TRUE)
+
+  htmlwidgets::shinyRenderWidget(expr,
+                                 DiagrammeROutput,
+                                 env, quoted = TRUE)
 }
