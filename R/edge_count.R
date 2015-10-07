@@ -4,7 +4,7 @@
 #' relationship type.
 #' @param graph a graph object of class \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param relationship either a logical value, where \code{TRUE} provides a
+#' @param rel either a logical value, where \code{TRUE} provides a
 #' named vector of edge count by type and \code{FALSE} (the default) provides
 #' a total count of edges, or, a string corresponding to one or more edge
 #' relationship types.
