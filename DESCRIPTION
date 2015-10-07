@@ -47,4 +47,3 @@ URL: https://github.com/rich-iannone/DiagrammeR
 Suggests:
     knitr,
     testthat
-VignetteBuilder: knitr
