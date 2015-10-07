@@ -15,6 +15,9 @@ create_random_graph <- function(n, m){
   edges <-
     create_edges(from = sample(1:n, n, replace = TRUE),
                  to = sample(1:n, n, replace = TRUE))
+  # Stop function if the number of edges requested exceeds that of a
+  # fully connected graph
+  if (m > n * ((n - 1)/ 2)){
 
   nodes <-
     create_nodes(nodes = 1:n,
