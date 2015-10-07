@@ -12,20 +12,16 @@
 
 create_random_graph <- function(n, m){
 
-  edges <-
-    create_edges(from = sample(1:n, n, replace = TRUE),
-                 to = sample(1:n, n, replace = TRUE))
   # Stop function if the number of edges requested exceeds that of a
   # fully connected graph
   if (m > n * ((n - 1)/ 2)){
 
-  nodes <-
-    create_nodes(nodes = 1:n,
-                 value = sample(seq(0.5, 10, 0.5), n, replace = TRUE))
+    stop(paste0("The number of edges exceeds the maximum possible (",
+                n * ((n - 1)/ 2),
+                ")"))
+  }
 
   graph <-
-    create_graph(nodes_df = nodes,
-                 edges_df = edges)
 
   return(graph)
 }
