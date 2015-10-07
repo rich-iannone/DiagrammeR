@@ -9,6 +9,8 @@
 country_graph <- function(iso_a2 = NULL,
                           option = 1){
 
+  country_iso_a2 <- poly_no <- NA
+
   coordinates_by_country <-
     read.csv(system.file("examples/boundary_coordinates_by_country.csv",
                          package = "DiagrammeR"),

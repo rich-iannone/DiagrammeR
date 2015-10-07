@@ -66,6 +66,8 @@ render_graph <- function(graph,
 
   stopifnot(class(graph) == "dgr_graph")
 
+  str_c <- NA
+
   dot_code <- graph$dot_code
 
   if (output == "DOT"){
