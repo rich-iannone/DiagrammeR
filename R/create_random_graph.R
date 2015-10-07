@@ -22,6 +22,41 @@ create_random_graph <- function(n, m){
   }
 
   graph <-
+    create_graph(nodes_df = create_nodes(nodes = 1:n,
+                                         value = sample(seq(0.5, 10, 0.5),
+                                                        n, replace = TRUE)),
+                 directed = FALSE)
+
+  if (m > 0){
+    for (i in 1:m){
+
+      edge_placed <- FALSE
+
+      while (edge_placed == FALSE) {
+
+        edge_placed <- FALSE
+
+        node_a <- sample(seq(1, n, 1), 1)
+        node_b <- sample(seq(1, n, 1)[-which(1:n %in% node_a)], 1)
+
+        edge_in_graph <-
+          edge_present(graph,
+                       from = node_a,
+                       to = node_b) |
+          edge_present(graph,
+                       from = node_b,
+                       to = node_a)
+
+        if (edge_in_graph == FALSE){
+          graph <- add_edges(graph,
+                             from = node_a,
+                             to = node_b)
+
+          edge_placed <- TRUE
+        }
+      }
+    }
+  }
 
   return(graph)
 }
