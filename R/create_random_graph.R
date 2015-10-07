@@ -2,6 +2,7 @@
 #' @description Create a graph of up to \code{n} nodes with randomized edge
 #' assignments.
 #' @param n the number of nodes to use in the random graph.
+#' @param m the number of edges to use in the random graph.
 #' @examples
 #' \dontrun{
 #' # Create a random graph with 50 nodes
@@ -9,7 +10,7 @@
 #' }
 #' @export create_random_graph
 
-create_random_graph <- function(n){
+create_random_graph <- function(n, m){
 
   edges <-
     create_edges(from = sample(1:n, n, replace = TRUE),
