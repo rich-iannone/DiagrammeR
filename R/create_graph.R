@@ -473,11 +473,11 @@ create_graph <- function(nodes_df = NULL,
 
       nodes_df <- create_nodes(nodes = get_nodes(edges_df))
 
-      for (i in 1:length(nodes_df)){
+      for (i in 1:nrow(nodes_df)){
 
         if (i == 1) node_block <- vector(mode = "character", length = 0)
 
-        node_block <- c(node_block, paste0("  '", nodes_df[i], "'"))
+        node_block <- c(node_block, paste0("  '", nodes_df[i, 1], "'"))
       }
 
       # Construct the 'node_block' character object
