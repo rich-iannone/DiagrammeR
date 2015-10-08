@@ -14,6 +14,45 @@
 combine_graphs <- function(x, y,
                            edges_df = NULL){
 
+  if (any(get_nodes(x) %in% get_nodes(y))){
+
+    stop("Cannot combine graphs with common node ID values")
+  }
+
+  combined_nodes <- combine_nodes(x$nodes_df,
+                                  y$nodes_df)
+
+  if (!is.null(edges_df)){
+
+    # Stop function if edge data frame doesn't fulfill certain conditions
+
+    if (!(all(get_nodes(edges_df) %in% c(get_nodes(x), get_nodes(y))))){
+      stop("Not all nodes in this edge data frame exist in the 2 graphs.")
+    }
+
+    for (i in 1:nrow(edges_df)){
+
+      if (edges_df$from[i] %in% get_nodes(x)){
+        if ((edges_df$to[i] %in% get_nodes(y)) == FALSE){
+          stop("Edges supplied in this edge data frame must be across graphs.")
+        }
+      }
+
+      if (edges_df$from[i] == edges_df$to[i]){
+        stop("Edges supplied in this edge data frame cannot contain loops.")
+      }
+    }
+
+    combined_edges <- combine_edges(x$edges_df,
+                                    y$edges_df,
+                                    edges_df)
+  }
+
+  if (is.null(edges_df)){
+    combined_edges <- combine_edges(x$edges_df,
+                                    y$edges_df)
+  }
+
   if (is.null(x$dot_code)){
 
     dgr_graph <-
