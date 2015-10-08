@@ -55,6 +55,7 @@ delete_node <- function(graph,
     dgr_graph <-
       create_graph(nodes_df = revised_nodes_df,
                      edges_df = revised_edges_df,
+                   directed = graph$directed,
                    graph_attrs = graph$graph_attrs)
 
     return(dgr_graph)
