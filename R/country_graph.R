@@ -6,8 +6,7 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @export country_graph
 
-country_graph <- function(iso_a2 = NULL,
-                          option = 1){
+country_graph <- function(iso_a2 = NULL){
 
   country_iso_a2 <- poly_no <- NA
 
