@@ -84,7 +84,19 @@ render_graph <- function(graph,
     return(svg_code)
   }
 
-  if (output == "graph" & !is.null(dot_code)){
+  if (output == "graph" & is.null(graph$dot_code)){
+
+    graph <- create_graph(nodes_df = graph$nodes_df,
+                          edges_df = graph$edges_df,
+                          graph_attrs = graph$graph_attrs,
+                          node_attrs = graph$node_attrs,
+                          edge_attrs = graph$edge_attrs,
+                          directed = graph$directed,
+                          graph_name = graph$graph_name,
+                          graph_time = graph$graph_time,
+                          graph_tz = graph$graph_tz,
+                          generate_dot = TRUE)
+  }
 
   # If the DOT code contains references to images, create an HTML file that
   # can access those images and display them in the graph
