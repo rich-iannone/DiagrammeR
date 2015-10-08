@@ -55,7 +55,6 @@
 #' # Render the graph using visNetwork
 #' render_graph(graph, output = "visNetwork")
 #' }
-#' @importFrom stringr str_detect str_replace str_replace_all str_extract str_count
 #' @export render_graph
 
 render_graph <- function(graph,
