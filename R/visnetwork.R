@@ -89,9 +89,17 @@ visnetwork <- function(graph){
 
       vn_obj <- visNetwork(nodes = nodes, edges = edges)
 
-      vn_obj <- visEdges(graph = vn_obj,
-                         arrows = list(to = list(enabled = TRUE,
-                                                 scaleFactor = 1)))
+      if (is_graph_directed(graph)){
+        vn_obj <- visEdges(graph = vn_obj,
+                           arrows = list(to = list(enabled = TRUE,
+                                                   scaleFactor = 1)))
+      }
+
+      if (is_graph_directed(graph) == FALSE){
+        vn_obj <- visEdges(graph = vn_obj,
+                           arrows = list(to = list(enabled = FALSE,
+                                                   scaleFactor = 1)))
+      }
     }
 
     vn_obj <- visPhysics(graph = vn_obj,
