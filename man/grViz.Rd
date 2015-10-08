@@ -62,7 +62,6 @@ digraph G {
       execute -> compare;
 }
 ')
-
 }
 }
 
