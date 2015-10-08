@@ -4,6 +4,7 @@
 #' @param scaling_factor the factor for which degree coordinates for country
 #' boundries will be multiplied.
 #' @return a graph object of class \code{dgr_graph}.
+#' @importFrom utils read.csv
 #' @export country_graph
 
 country_graph <- function(iso_a2 = NULL,
