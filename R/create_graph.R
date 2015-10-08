@@ -38,7 +38,7 @@
 #' graph <- create_graph(nodes_df = nodes)
 #'
 #' # Create a graph with nodes with values, types, labels
-#' nodes <- create_nodes(nodes = c("a", "b", "c", "d"))
+#' nodes <- create_nodes(nodes = c("a", "b", "c", "d"),
 #'                label = TRUE,
 #'                type = c("type_1", "type_1",
 #'                         "type_5", "type_2"),
@@ -51,10 +51,9 @@
 #' # Create a graph from an edge data frame, the nodes will
 #  # be inferred and added but they won't have additional
 #  # properties, attributes, or values
-#' edges <-
-#'   create_edges(from = c("a", "b", "c"),
-#'                to = c("d", "c", "a"),
-#'                rel = "leading_to")
+#' edges <- create_edges(from = c("a", "b", "c"),
+#'                       to = c("d", "c", "a"),
+#'                       rel = "leading_to")
 #'
 #' graph <- create_graph(edges_df = edges)
 #'
