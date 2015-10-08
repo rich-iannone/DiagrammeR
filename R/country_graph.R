@@ -3,10 +3,13 @@
 #' @param iso_a2 the ISO 2-letter identifier for a country.
 #' @param option an integer that is used for alternate views of certain
 #' countries.
+#' @param the factor for which degree coordinates for country boundries will
+#' be multiplied.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export country_graph
 
-country_graph <- function(iso_a2 = NULL){
+country_graph <- function(iso_a2 = NULL,
+                          scaling_factor = 40){
 
   country_iso_a2 <- poly_no <- NA
 
@@ -65,8 +68,8 @@ country_graph <- function(iso_a2 = NULL){
                                                   "_",
                                                   rownames(subset_poly)),
                                    shape = "image",
-                                   x = subset_poly$lon * 40,
-                                   y = subset_poly$lat * 40,
+                                   x = subset_poly$lon * scaling_factor,
+                                   y = subset_poly$lat * scaling_factor,
                                    image = "https://raw.githubusercontent.com/rich-iannone/DiagrammeR/master/inst/examples/NFFFFFF-0.png"))
 
       edges <-
