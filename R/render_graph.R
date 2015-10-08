@@ -67,12 +67,12 @@ render_graph <- function(graph,
 
   if (output == "DOT"){
 
-    return(dot_code)
+    return(graph$dot_code)
   }
 
   if (output == "SVG"){
 
-    svg_code <- exportSVG(grViz(diagram = dot_code,
+    svg_code <- exportSVG(grViz(diagram = graph$dot_code,
                                 width = width,
                                 height = height))
 
