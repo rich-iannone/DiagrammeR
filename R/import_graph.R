@@ -13,7 +13,8 @@
 #' \code{graph_time}. If no time zone is provided then it will be set to
 #' \code{GMT}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @importFrom stringr str_detect str_split str_count str_replace_all str_extract_all
+#' @importFrom stringr str_extract str_detect str_split str_count
+#' str_replace_all str_extract_all
 #' @export import_graph
 
 import_graph <- function(graph_file,
