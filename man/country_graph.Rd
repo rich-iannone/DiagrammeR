@@ -4,13 +4,16 @@
 \alias{country_graph}
 \title{Create a graph object that contains the boundaries of a country}
 \usage{
-country_graph(iso_a2 = NULL)
+country_graph(iso_a2 = NULL, scaling_factor = 40)
 }
 \arguments{
 \item{iso_a2}{the ISO 2-letter identifier for a country.}
 
 \item{option}{an integer that is used for alternate views of certain
 countries.}
+
+\item{the}{factor for which degree coordinates for country boundries will
+be multiplied.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
