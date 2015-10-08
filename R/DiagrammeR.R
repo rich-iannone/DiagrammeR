@@ -7,13 +7,13 @@
 #'
 #' @param diagram diagram in \code{graphviz} or \code{mermaid} format or a
 #' file (as a connection or file name) containing a diagram specification. The
-#' recommended filename extensions are '.gv' and '.mmd' for the Graphviz and the
-#' mermaid diagram specifications, respectively. If no diagram is provided,
-#' \code{diagram = ""} then the function will assume that
+#' recommended filename extensions are \code{.gv} and \code{.mmd} for the
+#' Graphviz and the mermaid diagram specifications, respectively. If no diagram
+#' is provided (\code{diagram = ""}) then the function will assume that
 #' a diagram will be provided by \code{\link[htmltools]{tags}} and
 #' \code{DiagrammeR} is just being used for dependency injection.
-#' @param type string - either "mermaid" (default) or "grViz" indicating
-#' the type of diagram spec and the desired parser/renderer
+#' @param type string - either \code{mermaid} (default) or \code{grViz}
+#' indicating the type of diagram spec and the desired parser/renderer
 #' @param ... any other parameters to pass to \code{grViz} or \code{mermaid}
 #' @return An object of class \code{htmlwidget} that will
 #' intelligently print itself into HTML in a variety of contexts
@@ -137,9 +137,9 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 #' Widget output function for use in Shiny
 #' @param outputId output variable to read from
 #' @param width a valid CSS unit for the width or a number, which will be
-#' coerced to a string and have "px" appended.
+#' coerced to a string and have \code{px} appended.
 #' @param height a valid CSS unit for the height or a number, which will be
-#' coerced to a string and have "px" appended.
+#' coerced to a string and have \code{px} appended.
 #' @export
 DiagrammeROutput <- function(outputId,
                              width = '100%',
