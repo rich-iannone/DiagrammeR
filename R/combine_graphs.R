@@ -56,8 +56,8 @@ combine_graphs <- function(x, y,
   if (is.null(x$dot_code)){
 
     dgr_graph <-
-      create_graph(nodes_df = combine_nodes(x$nodes, y$nodes),
-                   edges_df = combine_edges(x$edges, y$edges),
+      create_graph(nodes_df = combined_nodes,
+                   edges_df = combined_edges,
                    graph_attrs = x$graph_attrs,
                    node_attrs = x$node_attrs,
                    edge_attrs = x$edge_attrs,
@@ -73,8 +73,8 @@ combine_graphs <- function(x, y,
   if (!is.null(x$dot_code)){
 
     dgr_graph <-
-      create_graph(nodes_df = combine_nodes(x$nodes, y$nodes),
-                   edges_df = combine_edges(x$edges, y$edges),
+      create_graph(nodes_df = combined_nodes,
+                   edges_df = combined_edges,
                    graph_attrs = x$graph_attrs,
                    node_attrs = x$node_attrs,
                    edge_attrs = x$edge_attrs,
