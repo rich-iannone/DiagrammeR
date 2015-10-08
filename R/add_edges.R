@@ -51,8 +51,7 @@ add_edges <- function(graph,
                       rel = NULL){
 
   if (is_graph_empty(graph) == TRUE){
-
-    stop("Edges cannot be added to an empty graph")
+    stop("Edges cannot be added to an empty graph.")
   }
 
   # If an edge data frame is supplied, it will be used to add edges to
@@ -74,8 +73,7 @@ add_edges <- function(graph,
     # If not all the nodes specified in the edge data frame are in the
     # graph, stop the function
     if (edges_df_available == FALSE){
-
-      stop("Not all nodes specified in the edge data frame are in the graph")
+      stop("Not all nodes specified in the edge data frame are in the graph.")
     }
 
     # If the 'edges_df' component of the graph is not null, combine the
@@ -123,8 +121,7 @@ add_edges <- function(graph,
 
     if (any(get_edges(graph)[[1]] == from &
             get_edges(graph)[[2]] == to)){
-
-      stop("This edge already exists")
+      stop("This edge already exists.")
     }
   }
 
