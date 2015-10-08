@@ -95,6 +95,7 @@ render_graph <- function(graph,
                           generate_dot = TRUE)
   }
 
+  if (output == "vivagraph"){
 
     layout <- ifelse(is.null(layout) & node_count(graph) < 1000,
                      "forceDirected", "constant")
@@ -107,5 +108,12 @@ render_graph <- function(graph,
   } else if (output == "visNetwork"){
 
     visnetwork(graph)
+
+  } else if (output == "graph"){
+
+    grViz(diagram = graph$dot_code,
+          engine = layout,
+          width = width,
+          height = height)
   }
 }
