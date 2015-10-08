@@ -38,6 +38,12 @@ combine_graphs <- function(x, y,
         }
       }
 
+      if (edges_df$from[i] %in% get_nodes(y)){
+        if ((edges_df$to[i] %in% get_nodes(x)) == FALSE){
+          stop("Edges supplied in this edge data frame must be across graphs.")
+        }
+      }
+
       if (edges_df$from[i] == edges_df$to[i]){
         stop("Edges supplied in this edge data frame cannot contain loops.")
       }
