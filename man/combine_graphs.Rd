@@ -4,7 +4,7 @@
 \alias{combine_graphs}
 \title{Combine two graphs into a single graph}
 \usage{
-combine_graphs(x, y)
+combine_graphs(x, y, edges_df = NULL)
 }
 \arguments{
 \item{x}{a \code{DiagrammeR} graph object to which another graph will be
@@ -13,6 +13,9 @@ graph will retain only the attributes of this graph.}
 
 \item{y}{a \code{DiagrammeR} graph object that is to be joined with the graph
 suppled as \code{x}.}
+
+\item{edges_df}{an optional edge data frame that allows for connections
+between nodes across the graphs to be combined.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
