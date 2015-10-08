@@ -15,6 +15,7 @@
 #'  html_print(HTML(svg))
 #' }
 #' @importFrom V8 new_context
+#' @importFrom utils packageVersion
 #' @export
 
 exportSVG <- function(gv){

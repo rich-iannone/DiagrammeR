@@ -26,6 +26,7 @@
 #' #> [11] "#51A053" "#50C9A4"
 #' }
 #' @importFrom V8 new_context
+#' @importFrom utils packageVersion
 #' @export roll_palette
 
 roll_palette <- function(number,
