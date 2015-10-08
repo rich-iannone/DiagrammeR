@@ -4,7 +4,7 @@
 \alias{country_graph}
 \title{Create a graph object that contains the boundaries of a country}
 \usage{
-country_graph(iso_a2 = NULL, option = 1)
+country_graph(iso_a2 = NULL)
 }
 \arguments{
 \item{iso_a2}{the ISO 2-letter identifier for a country.}
