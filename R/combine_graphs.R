@@ -6,10 +6,13 @@
 #' graph will retain only the attributes of this graph.
 #' @param y a \code{DiagrammeR} graph object that is to be joined with the graph
 #' suppled as \code{x}.
+#' @param edges_df an optional edge data frame that allows for connections
+#' between nodes across the graphs to be combined.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export combine_graphs
 
-combine_graphs <- function(x, y){
+combine_graphs <- function(x, y,
+                           edges_df = NULL){
 
   if (is.null(x$dot_code)){
 
