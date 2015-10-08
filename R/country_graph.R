@@ -1,10 +1,8 @@
 #' Create a graph object that contains the boundaries of a country
 #' @description Create a graph object that contains the boundaries of a country.
 #' @param iso_a2 the ISO 2-letter identifier for a country.
-#' @param option an integer that is used for alternate views of certain
-#' countries.
-#' @param the factor for which degree coordinates for country boundries will
-#' be multiplied.
+#' @param scaling_factor the factor for which degree coordinates for country
+#' boundries will be multiplied.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export country_graph
 
