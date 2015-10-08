@@ -130,7 +130,7 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
   } else if( grepl( x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )  ) {
     grViz( diagram, ... )
   } else {
-    stop ( "type should equal 'mermaid' or 'grViz' ")
+    stop("The type should be 'mermaid' or 'grViz'.")
   }
 }
 
@@ -145,7 +145,11 @@ DiagrammeROutput <- function(outputId,
                              width = '100%',
                              height = '400px'){
 
-  htmlwidgets::shinyWidgetOutput(outputId, 'DiagrammeR', width, height, package = 'DiagrammeR')
+  htmlwidgets::shinyWidgetOutput(outputId,
+                                 'DiagrammeR',
+                                 width,
+                                 height,
+                                 package = 'DiagrammeR')
 }
 
 #' Widget render function for use in Shiny
@@ -162,5 +166,6 @@ renderDiagrammeR <- function(expr,
 
   htmlwidgets::shinyRenderWidget(expr,
                                  DiagrammeROutput,
-                                 env, quoted = TRUE)
+                                 env,
+                                 quoted = TRUE)
 }
