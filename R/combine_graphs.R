@@ -19,6 +19,9 @@ combine_graphs <- function(x, y){
                    graph_attrs = x$graph_attrs,
                    node_attrs = x$node_attrs,
                    edge_attrs = x$edge_attrs,
+                   directed = ifelse(is_graph_directed(x) == FALSE ||
+                                       is_graph_directed(y) == FALSE,
+                                     FALSE, TRUE),
                    graph_name = x$graph_name,
                    graph_time = x$graph_time,
                    graph_tz = x$graph_tz,
@@ -33,6 +36,9 @@ combine_graphs <- function(x, y){
                    graph_attrs = x$graph_attrs,
                    node_attrs = x$node_attrs,
                    edge_attrs = x$edge_attrs,
+                   directed = ifelse(is_graph_directed(x) == FALSE ||
+                                       is_graph_directed(y) == FALSE,
+                                     FALSE, TRUE),
                    graph_name = x$graph_name,
                    graph_time = x$graph_time,
                    graph_tz = x$graph_tz)
