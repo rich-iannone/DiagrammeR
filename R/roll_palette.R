@@ -16,8 +16,8 @@
 #' # Create a palette of 12 colors
 #' roll_palette(number = 12,
 #'              hue_range = c(0, 360),
-#'              chroma_range = c(0, 3),
-#'              lightness_range = c(0.75, 1.5),
+#'              chroma_range = c(0, 0.9),
+#'              lightness_range = c(1, 1.5),
 #'              alpha = NULL,
 #'              display_colors = TRUE)
 #'
