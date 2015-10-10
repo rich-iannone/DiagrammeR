@@ -1,6 +1,7 @@
 #' Combine two graphs into a single graph
 #' @description Combine two graphs in order to make a new graph, merging nodes
-#' and edges in the process.
+#' and edges in the process. The use of an optional data frame allows for
+#' new edges to be formed across the combined graphs.
 #' @param x a \code{DiagrammeR} graph object to which another graph will be
 #' joined. This graph should be considered the host graph as the resulting
 #' graph will retain only the attributes of this graph.
