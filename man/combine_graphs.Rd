@@ -22,6 +22,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Combine two graphs in order to make a new graph, merging nodes
-and edges in the process.
+and edges in the process. The use of an optional data frame allows for
+new edges to be formed across the combined graphs.
 }
 
