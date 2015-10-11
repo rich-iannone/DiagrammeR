@@ -45,5 +45,6 @@ Imports:
     V8 (>= 0.6)
 URL: https://github.com/rich-iannone/DiagrammeR
 Suggests:
+    V8 (>= 0.6),
     knitr,
     testthat
