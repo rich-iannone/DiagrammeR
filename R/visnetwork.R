@@ -75,6 +75,11 @@ visnetwork <- function(graph){
     colnames(edges)[which(colnames(edges) == "rel")] <- "label"
     colnames(edges)[which(colnames(edges) == "tooltip")] <- "title"
     colnames(edges)[which(colnames(edges) == "penwidth")] <- "width"
+
+    # Obtain 'fontcolor' values if the column exists in 'edges'
+    if ("fontcolor" %in% colnames(edges)){
+      fontcolor <- edges[,-(which(colnames(edges) %in% "fontcolor"))]
+    }
   }
 
   # Create the visNetwork object
