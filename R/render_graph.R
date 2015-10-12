@@ -6,9 +6,8 @@
 #' @param output a string specifying the output type; \code{graph} (the
 #' default) renders the graph using the \code{grViz} function, \code{vivagraph}
 #' renders the graph using the \code{vivagraph} function, \code{visNetwork}
-#' renders the graph using the \code{visnetwork} function, \code{DOT} outputs
-#' DOT code for the graph, and \code{SVG} provides SVG code for the rendered
-#' graph.
+#' renders the graph using the \code{visnetwork} function, and \code{DOT}
+#' outputs DOT code for the graph.
 #' @param layout a string specifying a layout type for a \code{vivagraph}
 #' rendering of the graph, either \code{forceDirected} or \code{constant}.
 #' @param width an optional parameter for specifying the width of the resulting
@@ -68,15 +67,6 @@ render_graph <- function(graph,
   if (output == "DOT"){
 
     return(graph$dot_code)
-  }
-
-  if (output == "SVG"){
-
-    svg_code <- exportSVG(grViz(diagram = graph$dot_code,
-                                width = width,
-                                height = height))
-
-    return(svg_code)
   }
 
   if (output == "graph" & is.null(graph$dot_code)){
