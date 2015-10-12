@@ -14,9 +14,8 @@ render_graph(graph, output = "graph", layout = NULL, width = NULL,
 \item{output}{a string specifying the output type; \code{graph} (the
 default) renders the graph using the \code{grViz} function, \code{vivagraph}
 renders the graph using the \code{vivagraph} function, \code{visNetwork}
-renders the graph using the \code{visnetwork} function, \code{DOT} outputs
-DOT code for the graph, and \code{SVG} provides SVG code for the rendered
-graph.}
+renders the graph using the \code{visnetwork} function, and \code{DOT}
+outputs DOT code for the graph.}
 
 \item{layout}{a string specifying a layout type for a \code{vivagraph}
 rendering of the graph, either \code{forceDirected} or \code{constant}.}
