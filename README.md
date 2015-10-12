@@ -178,7 +178,7 @@ You can install the development version of **DiagrammeR** from **GitHub** using 
 devtools::install_github('rich-iannone/DiagrammeR')
 ```
 
-Or, get the v0.7 release from **CRAN**.
+Or, get the v0.8 release from **CRAN**.
 
 ```r
 install.packages('DiagrammeR')
