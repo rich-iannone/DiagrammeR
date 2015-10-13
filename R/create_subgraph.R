@@ -6,6 +6,7 @@
 #' @param starting_node the node from which the subgraph will originate.
 #' @param distance the maximum number of steps from the \code{starting_node}
 #' for inclusion in the subgraph.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
 #' # Create a graph, then, create a subgraph of that larger graph
