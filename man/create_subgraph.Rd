@@ -15,6 +15,9 @@ using \code{create_graph}.}
 \item{distance}{the maximum number of steps from the \code{starting_node}
 for inclusion in the subgraph.}
 }
+\value{
+a graph object of class \code{dgr_graph}.
+}
 \description{
 Create a subgraph for a neighborhood of nodes connected a
 specified distance from the selected node.
