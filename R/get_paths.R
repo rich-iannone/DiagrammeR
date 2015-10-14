@@ -10,6 +10,10 @@
 get_paths <- function(graph,
                       node){
 
+  if (all(is.na(get_successors(graph, node)))){
+    return(NA)
+  }
+
   # Initialize paths with starting node
   paths <- list(node)
 
