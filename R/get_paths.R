@@ -10,6 +10,7 @@
 get_paths <- function(graph,
                       node){
 
+  # Initialize paths with starting node
   paths <- list(node)
 
   repeat{
