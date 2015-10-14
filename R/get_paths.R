@@ -51,4 +51,5 @@ get_paths <- function(graph,
     if (all(check)) break
   }
 
+  return(paths)
 }
