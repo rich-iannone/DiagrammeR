@@ -56,5 +56,12 @@ get_paths <- function(graph,
     if (all(check)) break
   }
 
+  # Arrange vectors in list in order of increasing length
+  order <- sapply(1:length(paths), function(x) length(paths[[x]]))
+  names(order) <- 1:length(paths)
+  order <- sort(order)
+  order <- as.numeric(names(order))
+  paths <- paths[order]
+
   return(paths)
 }
