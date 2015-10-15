@@ -24,7 +24,12 @@ get_paths <- function(graph,
       if (any(!is.na(get_successors(graph,
                                     paths[[i]][length(paths[[i]])])))){
 
+        # Get the successors for the last node in the given path
         next_nodes <- get_successors(graph, paths[[i]][length(paths[[i]])])
+
+        # Filter next_nodes if cycles are detected
+        next_nodes <- next_nodes[which(!(next_nodes %in%
+          paths[[i]][1:length(paths[[i]]) - 1]))]
 
         if (length(next_nodes) > 1){
 
@@ -49,8 +54,15 @@ get_paths <- function(graph,
 
       if (k == 1) check <- vector()
 
-      check <- c(check, is.na(get_successors(graph,
-                                             paths[[k]][length(paths[[k]])])))
+      check <- c(check, any(is.na(get_successors(graph,
+                                                 paths[[k]][length(paths[[k]])]))|
+                              (paths[[k]][length(paths[[k]])] %in%
+                                 paths[[k]][1:length(paths[[k]]) - 1])))
+
+      if (paths[[k]][length(paths[[k]])] %in%
+          paths[[k]][1:length(paths[[k]]) - 1]){
+        paths[[k]] <- paths[[k]][-length(paths[[k]])]
+      }
     }
 
     if (all(check)) break
@@ -64,4 +76,5 @@ get_paths <- function(graph,
   paths <- paths[order]
 
   return(paths)
+
 }
