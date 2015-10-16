@@ -25,11 +25,13 @@ get_paths <- function(graph,
                                     paths[[i]][length(paths[[i]])])))){
 
         # Get the successors for the last node in the given path
-        next_nodes <- get_successors(graph, paths[[i]][length(paths[[i]])])
+        next_nodes <-
+          get_successors(graph, paths[[i]][length(paths[[i]])])
 
         # Filter next_nodes if cycles are detected
-        next_nodes <- next_nodes[which(!(next_nodes %in%
-          paths[[i]][1:length(paths[[i]]) - 1]))]
+        next_nodes <-
+          next_nodes[which(!(next_nodes %in%
+                               paths[[i]][1:length(paths[[i]]) - 1]))]
 
         if (length(next_nodes) > 1){
 
@@ -50,15 +52,21 @@ get_paths <- function(graph,
       }
     }
 
+    # Check each node visited in the present iteration for
+    # whether their traversals should end
     for (k in 1:length(paths)){
-
       if (k == 1) check <- vector()
 
-      check <- c(check, any(is.na(get_successors(graph,
-                                                 paths[[k]][length(paths[[k]])]))|
-                              (paths[[k]][length(paths[[k]])] %in%
-                                 paths[[k]][1:length(paths[[k]]) - 1])))
+      check <-
+        c(check,
+          any(is.na(get_successors(graph,
+                                   paths[[k]][length(paths[[k]])]))|
+                all(get_successors(graph,
+                                   paths[[k]][length(paths[[k]])]) %in%
+                      paths[[k]])))
 
+      # Remove nodes from vectors within paths if they
+      # were previously traversed
       if (paths[[k]][length(paths[[k]])] %in%
           paths[[k]][1:length(paths[[k]]) - 1]){
         paths[[k]] <- paths[[k]][-length(paths[[k]])]
@@ -76,5 +84,4 @@ get_paths <- function(graph,
   paths <- paths[order]
 
   return(paths)
-
 }
