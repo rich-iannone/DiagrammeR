@@ -61,5 +61,25 @@ create_random_graph <- function(n,
     }
   }
 
+  if (fully_connected == TRUE){
+
+    repeat {
+
+      if (any(node_info(graph)$degree == 0)){
+
+        unconnected_nodes <-
+          node_info(graph)[which(node_info(graph)$degree == 0),1]
+
+        connected_nodes <-
+          setdiff(get_nodes(graph), unconnected_nodes)
+
+        graph <-
+          add_edges(graph,
+                    from = sample(unconnected_nodes, 1),
+                    to = sample(connected_nodes, 1))
+      } else { break }
+    }
+  }
+
   return(graph)
 }
