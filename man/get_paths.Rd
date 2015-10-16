@@ -4,12 +4,14 @@
 \alias{get_paths}
 \title{Get paths from a specified node in a directed graph}
 \usage{
-get_paths(graph, from)
+get_paths(graph, from = NULL, to = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{from}{the node from which all paths will be determined.}
+
+\item{to}{the node to which all paths will be determined.}
 }
 \value{
 a list of paths comprising vectors of node IDs in sequence of
