@@ -2,21 +2,21 @@
 #' @description Obtain a list of all possible paths from a given node within
 #' a directed graph
 #' @param graph a graph object of class \code{dgr_graph}.
-#' @param node the node from which all paths will be determined.
+#' @param from the node from which all paths will be determined.
 #' @return a list of paths comprising vectors of node IDs in sequence of
 #' traversal through the graph
 #' @export get_paths
 
 get_paths <- function(graph,
-                      node){
+                      from){
 
   # If the given node has no successors, return NA
-  if (all(is.na(get_successors(graph, node)))){
+  if (all(is.na(get_successors(graph, from)))){
     return(NA)
   }
 
   # Initialize paths with starting node
-  paths <- list(node)
+  paths <- list(from)
 
   repeat{
 
