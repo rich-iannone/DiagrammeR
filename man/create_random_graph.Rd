@@ -4,12 +4,18 @@
 \alias{create_random_graph}
 \title{Create a randomized graph}
 \usage{
-create_random_graph(n, m)
+create_random_graph(n, m, directed = FALSE, fully_connected = FALSE)
 }
 \arguments{
 \item{n}{the number of nodes to use in the random graph.}
 
 \item{m}{the number of edges to use in the random graph.}
+
+\item{directed}{an option for whether the random graph should be
+undirected (default) or directed.}
+
+\item{fully_connected}{should the graph be fully connected (i.e. no
+free nodes).}
 }
 \description{
 Create a graph of up to \code{n} nodes with randomized edge
@@ -17,8 +23,8 @@ assignments.
 }
 \examples{
 \dontrun{
-# Create a random graph with 50 nodes
-graph_random <- create_random_graph(50)
+# Create a random graph with 50 nodes and 75 edges
+graph_random <- create_random_graph(50, 75)
 }
 }
 
