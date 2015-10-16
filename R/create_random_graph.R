@@ -3,6 +3,10 @@
 #' assignments.
 #' @param n the number of nodes to use in the random graph.
 #' @param m the number of edges to use in the random graph.
+#' @param directed an option for whether the random graph should be
+#' undirected (default) or directed.
+#' @param fully_connected should the graph be fully connected (i.e. no
+#' free nodes).
 #' @examples
 #' \dontrun{
 #' # Create a random graph with 50 nodes and 75 edges
