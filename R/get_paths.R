@@ -33,6 +33,8 @@ get_paths <- function(graph,
           next_nodes[which(!(next_nodes %in%
                                paths[[i]][1:length(paths[[i]]) - 1]))]
 
+        # Apply traversed nodes to each of the path vectors in a
+        # multiple degree context
         if (length(next_nodes) > 1){
 
           for (j in 1:length(next_nodes)){
@@ -45,6 +47,8 @@ get_paths <- function(graph,
           }
         }
 
+        # Apply traversed nodes to each of the path vectors in a
+        # single degree context
         if (length(next_nodes) == 1){
 
           paths[[i]] <- c(paths[[i]], next_nodes[1])
