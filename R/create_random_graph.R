@@ -10,7 +10,10 @@
 #' }
 #' @export create_random_graph
 
-create_random_graph <- function(n, m){
+create_random_graph <- function(n,
+                                m,
+                                directed = FALSE,
+                                fully_connected = FALSE){
 
   # Stop function if the number of edges requested exceeds that of a
   # fully connected graph
