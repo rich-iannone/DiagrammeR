@@ -3,12 +3,14 @@
 #' a directed graph
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @param from the node from which all paths will be determined.
+#' @param to the node to which all paths will be determined.
 #' @return a list of paths comprising vectors of node IDs in sequence of
 #' traversal through the graph
 #' @export get_paths
 
 get_paths <- function(graph,
-                      from){
+                      from = NULL,
+                      to = NULL){
 
   # If the given node has no successors, return NA
   if (all(is.na(get_successors(graph, from)))){
