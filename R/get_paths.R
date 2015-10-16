@@ -10,6 +10,7 @@
 get_paths <- function(graph,
                       node){
 
+  # If the given node has no successors, return NA
   if (all(is.na(get_successors(graph, node)))){
     return(NA)
   }
