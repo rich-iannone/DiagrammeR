@@ -5,8 +5,8 @@
 #' @param m the number of edges to use in the random graph.
 #' @examples
 #' \dontrun{
-#' # Create a random graph with 50 nodes
-#' graph_random <- create_random_graph(50)
+#' # Create a random graph with 50 nodes and 75 edges
+#' graph_random <- create_random_graph(50, 75)
 #' }
 #' @export create_random_graph
 
