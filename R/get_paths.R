@@ -4,6 +4,12 @@
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @param from the node from which all paths will be determined.
 #' @param to the node to which all paths will be determined.
+#' @param shortest_path an option to return paths that are the shortest in the
+#' set of all determined paths.
+#' @param longest_path an option to return paths that are the longest in the
+#' set of all determined paths.
+#' @param distance a vector of integer values that specify which of the valid
+#' paths to return when filtering by distance
 #' @return a list of paths comprising vectors of node IDs in sequence of
 #' traversal through the graph
 #' @export get_paths
