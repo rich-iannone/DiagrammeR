@@ -10,7 +10,10 @@
 
 get_paths <- function(graph,
                       from = NULL,
-                      to = NULL){
+                      to = NULL,
+                      shortest_path = FALSE,
+                      longest_path = FALSE,
+                      distance = NULL){
 
   # If the given node has no successors, return NA
   if (all(is.na(get_successors(graph, from)))){
