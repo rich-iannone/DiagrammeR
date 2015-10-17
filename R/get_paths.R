@@ -103,6 +103,7 @@ get_paths <- function(graph,
   # begin and end with those nodes
   if (!is.null(from) & !is.null(to)){
 
+    # Determine which paths contain the 2nd node target
     paths_with_end_node <-
       which(sapply(1:length(paths), function(x) to %in% paths[[x]]))
 
@@ -110,11 +111,14 @@ get_paths <- function(graph,
       return(NA)
     }
 
+    # Obtain a vector of path lengths for each of the valid paths
     path_lengths <-
       sapply(paths_with_end_node, function(x) which(paths[[x]] %in% to))
 
+    # Apply list indices as names for the 'paths_lengths' vector
     names(path_lengths) <- paths_with_end_node
 
+    # Filter the 'path_lengths' vector by chosen criteria
     if (shortest_path == TRUE & longest_path == FALSE){
       path_lengths <- as.numeric(names(path_lengths[which(path_lengths == min(path_lengths))]))
     } else if (shortest_path == FALSE & longest_path == TRUE){
@@ -125,12 +129,15 @@ get_paths <- function(graph,
       path_lengths <- as.numeric(names(path_lengths))
     }
 
+    # If there are no paths that match the chosen criteria, return NA
     if (length(path_lengths) == 0){
       return(NA)
     }
 
     paths <- paths[path_lengths]
 
+    # Modify 'paths' list of vectors such that nodes at the beginning and end
+    # of each vector are the 'from' and 'to' nodes
     for (i in 1:length(paths)){
       paths[[i]] <-
         paths[[i]][1:which(paths[[i]] == to)]
