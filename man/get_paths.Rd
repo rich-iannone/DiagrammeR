@@ -4,7 +4,8 @@
 \alias{get_paths}
 \title{Get paths from a specified node in a directed graph}
 \usage{
-get_paths(graph, from = NULL, to = NULL)
+get_paths(graph, from = NULL, to = NULL, shortest_path = FALSE,
+  longest_path = FALSE, distance = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph}.}
@@ -12,6 +13,15 @@ get_paths(graph, from = NULL, to = NULL)
 \item{from}{the node from which all paths will be determined.}
 
 \item{to}{the node to which all paths will be determined.}
+
+\item{shortest_path}{an option to return paths that are the shortest in the
+set of all determined paths.}
+
+\item{longest_path}{an option to return paths that are the longest in the
+set of all determined paths.}
+
+\item{distance}{a vector of integer values that specify which of the valid
+paths to return when filtering by distance}
 }
 \value{
 a list of paths comprising vectors of node IDs in sequence of
