@@ -99,5 +99,43 @@ get_paths <- function(graph,
   order <- as.numeric(names(order))
   paths <- paths[order]
 
+  # If both a 'from' node and a 'to' node specified, get paths that
+  # begin and end with those nodes
+  if (!is.null(from) & !is.null(to)){
+
+    paths_with_end_node <-
+      which(sapply(1:length(paths), function(x) to %in% paths[[x]]))
+
+    if (length(paths_with_end_node) == 0){
+      return(NA)
+    }
+
+    path_lengths <-
+      sapply(paths_with_end_node, function(x) which(paths[[x]] %in% to))
+
+    names(path_lengths) <- paths_with_end_node
+
+    if (shortest_path == TRUE & longest_path == FALSE){
+      path_lengths <- as.numeric(names(path_lengths[which(path_lengths == min(path_lengths))]))
+    } else if (shortest_path == FALSE & longest_path == TRUE){
+      path_lengths <- as.numeric(names(path_lengths[which(path_lengths == max(path_lengths))]))
+    } else if (!is.null(distance) == TRUE){
+      path_lengths <- as.numeric(names(path_lengths[which(path_lengths %in% distance)]))
+    } else if (is.null(distance) == TRUE & (shortest_path == FALSE & longest_path == FALSE)){
+      path_lengths <- as.numeric(names(path_lengths))
+    }
+
+    if (length(path_lengths) == 0){
+      return(NA)
+    }
+
+    paths <- paths[path_lengths]
+
+    for (i in 1:length(paths)){
+      paths[[i]] <-
+        paths[[i]][1:which(paths[[i]] == to)]
+    }
+  }
+
   return(paths)
 }
