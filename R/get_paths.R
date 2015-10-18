@@ -22,74 +22,88 @@ get_paths <- function(graph,
                       distance = NULL){
 
   # If the given node has no successors, return NA
-  if (all(is.na(get_successors(graph, from)))){
-    return(NA)
-  }
+  #   if (all(is.na(get_successors(graph, from)))){
+  #     return(NA)
+  #   }
 
-  # Initialize paths with starting node
-  paths <- list(from)
+  if (is.null(from)) from <- get_nodes(graph)
 
-  repeat{
+  for (m in 1:length(from)){
 
-    for (i in 1:length(paths)){
+    if (m == 1) all_paths <- list()
 
-      if (any(!is.na(get_successors(graph,
-                                    paths[[i]][length(paths[[i]])])))){
+    # Initialize paths with starting node
+    paths <- list(from[m])
 
-        # Get the successors for the last node in the given path
-        next_nodes <-
-          get_successors(graph, paths[[i]][length(paths[[i]])])
+    repeat{
 
-        # Filter next_nodes if cycles are detected
-        next_nodes <-
-          next_nodes[which(!(next_nodes %in%
-                               paths[[i]][1:length(paths[[i]]) - 1]))]
+      for (i in 1:length(paths)){
 
-        # Apply traversed nodes to each of the path vectors in a
-        # multiple degree context
-        if (length(next_nodes) > 1){
+        if (any(!is.na(get_successors(graph,
+                                      paths[[i]][length(paths[[i]])])))){
 
-          for (j in 1:length(next_nodes)){
+          # Get the successors for the last node in the given path
+          next_nodes <-
+            get_successors(graph, paths[[i]][length(paths[[i]])])
 
-            if (j == 1) paths[[i]] <-
-                c(paths[[i]], next_nodes[1])
+          # Filter next_nodes if cycles are detected
+          next_nodes <-
+            next_nodes[which(!(next_nodes %in%
+                                 paths[[i]][1:length(paths[[i]]) - 1]))]
 
-            if (j > 1) paths[[length(paths) + 1]] <-
-                c(paths[[i]][-length(paths[[i]])], next_nodes[j])
+          # Apply traversed nodes to each of the path vectors in a
+          # multiple degree context
+          if (length(next_nodes) > 1){
+
+            for (j in 1:length(next_nodes)){
+
+              if (j == 1) paths[[i]] <-
+                  c(paths[[i]], next_nodes[1])
+
+              if (j > 1) paths[[length(paths) + 1]] <-
+                  c(paths[[i]][-length(paths[[i]])], next_nodes[j])
+            }
+          }
+
+          # Apply traversed nodes to each of the path vectors in a
+          # single degree context
+          if (length(next_nodes) == 1){
+
+            paths[[i]] <- c(paths[[i]], next_nodes[1])
           }
         }
+      }
 
-        # Apply traversed nodes to each of the path vectors in a
-        # single degree context
-        if (length(next_nodes) == 1){
+      # Check each node visited in the present iteration for
+      # whether their traversals should end
+      for (k in 1:length(paths)){
+        if (k == 1) check <- vector()
 
-          paths[[i]] <- c(paths[[i]], next_nodes[1])
+        check <-
+          c(check,
+            any(is.na(get_successors(graph,
+                                     paths[[k]][length(paths[[k]])]))|
+                  all(get_successors(graph,
+                                     paths[[k]][length(paths[[k]])]) %in%
+                        paths[[k]])))
+
+        # Remove nodes from vectors within paths if they
+        # were previously traversed
+        if (paths[[k]][length(paths[[k]])] %in%
+            paths[[k]][1:length(paths[[k]]) - 1]){
+          paths[[k]] <- paths[[k]][-length(paths[[k]])]
         }
       }
+
+      if (all(check)) break
     }
 
-    # Check each node visited in the present iteration for
-    # whether their traversals should end
-    for (k in 1:length(paths)){
-      if (k == 1) check <- vector()
-
-      check <-
-        c(check,
-          any(is.na(get_successors(graph,
-                                   paths[[k]][length(paths[[k]])]))|
-                all(get_successors(graph,
-                                   paths[[k]][length(paths[[k]])]) %in%
-                      paths[[k]])))
-
-      # Remove nodes from vectors within paths if they
-      # were previously traversed
-      if (paths[[k]][length(paths[[k]])] %in%
-          paths[[k]][1:length(paths[[k]]) - 1]){
-        paths[[k]] <- paths[[k]][-length(paths[[k]])]
-      }
+    if (!(length(paths) == 1 & is.na(paths[1]))){
+      all_paths <- c(all_paths, paths)
     }
 
-    if (all(check)) break
+    if (m == length(from)) paths <- all_paths
+
   }
 
   # Arrange vectors in list in order of increasing length
@@ -98,6 +112,80 @@ get_paths <- function(graph,
   order <- sort(order)
   order <- as.numeric(names(order))
   paths <- paths[order]
+
+  # Remove paths of single length
+  for (i in 1:length(paths)){
+    if (i == 1) single_length_paths <- vector(mode = "numeric")
+
+    if (length(paths[[i]]) == 1){
+      single_length_paths <- c(single_length_paths, i)
+    }
+
+    if (i == length(paths)){
+      paths[single_length_paths] <- NULL
+    }
+  }
+
+  # If only 'from' but not the 'to' node specified, get paths that
+  # consider the filtering criteria
+  if (!is.null(from) & is.null(to)){
+
+    # Filter the 'path_lengths' vector by chosen criteria
+    if (shortest_path == TRUE & longest_path == FALSE){
+
+      # Remove paths not of shortest length
+      for (i in 1:length(paths)){
+        if (i == 1){
+          not_shortest_length_paths <- vector(mode = "numeric")
+          shortest_length <- min(sapply(1:length(paths), function(x) length(paths[[x]])))
+        }
+
+        if (length(paths[[i]]) != shortest_length){
+          not_shortest_length_paths <- c(not_shortest_length_paths, i)
+        }
+
+        if (i == length(paths)){
+          paths[not_shortest_length_paths] <- NULL
+        }
+      }
+
+    } else if (shortest_path == FALSE & longest_path == TRUE){
+
+      # Remove paths not of longest length
+      for (i in 1:length(paths)){
+        if (i == 1){
+          not_longest_length_paths <- vector(mode = "numeric")
+          longest_length <- max(sapply(1:length(paths), function(x) length(paths[[x]])))
+        }
+
+        if (length(paths[[i]]) != longest_length){
+          not_longest_length_paths <- c(not_longest_length_paths, i)
+        }
+
+        if (i == length(paths)){
+          paths[not_longest_length_paths] <- NULL
+        }
+      }
+
+    } else if (!is.null(distance) == TRUE){
+
+      # Remove paths not of specified lengths
+      for (i in 1:length(paths)){
+        if (i == 1){
+          not_specified_length_paths <- vector(mode = "numeric")
+          specified_lengths <- distance
+        }
+
+        if (length(paths[[i]]) != specified_lengths){
+          not_specified_length_paths <- c(not_specified_length_paths, i)
+        }
+
+        if (i == length(paths)){
+          paths[not_specified_length_paths] <- NULL
+        }
+      }
+    }
+  }
 
   # If both a 'from' node and a 'to' node specified, get paths that
   # begin and end with those nodes
