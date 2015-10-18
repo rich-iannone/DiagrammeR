@@ -10,8 +10,8 @@
 #' set of all determined paths.
 #' @param distance a vector of integer values that specify which of the valid
 #' paths to return when filtering by distance
-#' @return a list of paths comprising vectors of node IDs in sequence of
-#' traversal through the graph
+#' @return a list of paths, sorted by ascending traversal length, comprising
+#' vectors of node IDs in sequence of traversal through the graph
 #' @export get_paths
 
 get_paths <- function(graph,
