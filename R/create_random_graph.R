@@ -18,6 +18,10 @@
 #' # Create a random, undirected graph that's fully connected
 #' random_graph_undirected <-
 #'   create_random_graph(30, 30, fully_connected = TRUE)
+#'
+#' # Create a directed graph with a seed set so that it's reproducible
+#' directed_graph <-
+#'   create_random_graph(15, 34, set_seed = 50)
 #' }
 #' @export create_random_graph
 
