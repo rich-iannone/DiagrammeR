@@ -25,6 +25,8 @@ create_random_graph <- function(n,
                                 fully_connected = FALSE,
                                 set_seed = NULL){
 
+  if (!is.null(set_seed)) set.seed(set_seed, kind = "Mersenne-Twister")
+
   # Stop function if the number of edges requested exceeds that of a
   # fully connected graph
   if (m > n * ((n - 1)/ 2)){
@@ -50,6 +52,7 @@ create_random_graph <- function(n,
         edge_placed <- FALSE
 
         node_a <- sample(seq(1, n, 1), 1)
+
         node_b <- sample(seq(1, n, 1)[-which(1:n %in% node_a)], 1)
 
         edge_in_graph <-
