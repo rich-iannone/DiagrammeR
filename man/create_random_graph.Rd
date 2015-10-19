@@ -4,7 +4,8 @@
 \alias{create_random_graph}
 \title{Create a randomized graph}
 \usage{
-create_random_graph(n, m, directed = FALSE, fully_connected = FALSE)
+create_random_graph(n, m, directed = FALSE, fully_connected = FALSE,
+  set_seed = NULL)
 }
 \arguments{
 \item{n}{the number of nodes to use in the random graph.}
@@ -16,6 +17,9 @@ undirected (default) or directed.}
 
 \item{fully_connected}{should the graph be fully connected (i.e. no
 free nodes).}
+
+\item{set_seed}{supplying a value sets a random seed of the
+\code{Mersenne-Twister} implementation.}
 }
 \description{
 Create a graph of up to \code{n} nodes with randomized edge
@@ -23,8 +27,13 @@ assignments.
 }
 \examples{
 \dontrun{
-# Create a random graph with 50 nodes and 75 edges
-graph_random <- create_random_graph(50, 75)
+# Create a random, directed graph with 50 nodes and 75 edges
+random_graph_directed <-
+  create_random_graph(50, 75, directed = TRUE)
+
+# Create a random, undirected graph that's fully connected
+random_graph_undirected <-
+  create_random_graph(30, 30, fully_connected = TRUE)
 }
 }
 
