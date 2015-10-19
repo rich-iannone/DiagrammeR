@@ -7,6 +7,8 @@
 #' undirected (default) or directed.
 #' @param fully_connected should the graph be fully connected (i.e. no
 #' free nodes).
+#' @param set_seed supplying a value sets a random seed of the
+#'\code{Mersenne-Twister} implementation.
 #' @examples
 #' \dontrun{
 #' # Create a random, directed graph with 50 nodes and 75 edges
