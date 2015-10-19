@@ -9,8 +9,13 @@
 #' free nodes).
 #' @examples
 #' \dontrun{
-#' # Create a random graph with 50 nodes and 75 edges
-#' graph_random <- create_random_graph(50, 75)
+#' # Create a random, directed graph with 50 nodes and 75 edges
+#' random_graph_directed <-
+#'   create_random_graph(50, 75, directed = TRUE)
+#'
+#' # Create a random, undirected graph that's fully connected
+#' random_graph_undirected <-
+#'   create_random_graph(30, 30, fully_connected = TRUE)
 #' }
 #' @export create_random_graph
 
