@@ -43,6 +43,7 @@ Imports:
     htmlwidgets (>= 0.5), rstudioapi (>= 0.3.1),
     stringr (>= 1.0.0), visNetwork (>= 0.1.1)
 URL: https://github.com/rich-iannone/DiagrammeR
+BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Suggests:
     knitr,
     testthat
