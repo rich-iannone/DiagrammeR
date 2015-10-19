@@ -22,7 +22,8 @@
 create_random_graph <- function(n,
                                 m,
                                 directed = FALSE,
-                                fully_connected = FALSE){
+                                fully_connected = FALSE,
+                                set_seed = NULL){
 
   # Stop function if the number of edges requested exceeds that of a
   # fully connected graph
