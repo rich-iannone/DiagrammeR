@@ -7,6 +7,7 @@
 #' undirected (default) or directed.
 #' @param fully_connected should the graph be fully connected (i.e. no
 #' free nodes).
+#' @param display_labels display node labels.
 #' @param set_seed supplying a value sets a random seed of the
 #'\code{Mersenne-Twister} implementation.
 #' @examples
