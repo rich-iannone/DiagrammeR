@@ -10,6 +10,10 @@
 #' @param display_labels display node labels.
 #' @param set_seed supplying a value sets a random seed of the
 #'\code{Mersenne-Twister} implementation.
+#' @param node_id an optional vector of unique node ID values to apply to the
+#' randomized graph. The length of the vector should ideally correspond to
+#' the value supplied in \code{n}; vectors longer than the length of \code{n}
+#' will be truncated.
 #' @examples
 #' \dontrun{
 #' # Create a random, directed graph with 50 nodes and 75 edges
