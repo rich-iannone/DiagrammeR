@@ -27,6 +27,12 @@
 #' # Create a directed graph with a seed set so that it's reproducible
 #' directed_graph <-
 #'   create_random_graph(15, 34, set_seed = 50)
+#'
+#' # Create a directed, random graph with a supplied set of node IDs
+#' random_directed_graph_letters <-
+#'   create_random_graph(n = 10, m = 20,
+#'                       directed = TRUE,
+#'                       node_id = LETTERS)
 #' }
 #' @export create_random_graph
 
