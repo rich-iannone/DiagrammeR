@@ -5,7 +5,7 @@
 \title{Create a randomized graph}
 \usage{
 create_random_graph(n, m, directed = FALSE, fully_connected = FALSE,
-  display_labels = TRUE, set_seed = NULL)
+  display_labels = TRUE, set_seed = NULL, node_id = NULL)
 }
 \arguments{
 \item{n}{the number of nodes to use in the random graph.}
@@ -22,6 +22,11 @@ free nodes).}
 
 \item{set_seed}{supplying a value sets a random seed of the
 \code{Mersenne-Twister} implementation.}
+
+\item{node_id}{an optional vector of unique node ID values to apply to the
+randomized graph. The length of the vector should ideally correspond to
+the value supplied in \code{n}; vectors longer than the length of \code{n}
+will be truncated.}
 }
 \description{
 Create a graph of up to \code{n} nodes with randomized edge
