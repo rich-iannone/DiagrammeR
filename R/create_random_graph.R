@@ -29,6 +29,7 @@ create_random_graph <- function(n,
                                 m,
                                 directed = FALSE,
                                 fully_connected = FALSE,
+                                display_labels = TRUE,
                                 set_seed = NULL){
 
   if (!is.null(set_seed)) set.seed(set_seed, kind = "Mersenne-Twister")
