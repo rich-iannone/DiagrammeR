@@ -44,14 +44,8 @@ create_random_graph <- function(n,
                 ")"))
   }
 
-  graph <-
-    create_graph(nodes_df =
-                   create_nodes(nodes = 1:n,
-                                label = ifelse(display_labels == TRUE,
-                                               TRUE, FALSE),
-                                value = sample(seq(0.5, 10, 0.5),
-                                               n, replace = TRUE)),
-                 directed = ifelse(directed == TRUE, TRUE, FALSE))
+  if (!is.null(node_id)){
+
     # Stop function if all values are not unique
     if (anyDuplicated(node_id) != 0){
       stop("The supplied node IDs are not unique.")
@@ -62,6 +56,25 @@ create_random_graph <- function(n,
       stop("Not enough node ID values were provided.")
     }
 
+    graph <-
+      create_graph(nodes_df =
+                     create_nodes(nodes = node_id[1:n],
+                                  label = ifelse(display_labels == TRUE,
+                                                 TRUE, FALSE),
+                                  value = sample(seq(0.5, 10, 0.5),
+                                                 n, replace = TRUE)),
+                   directed = ifelse(directed == TRUE, TRUE, FALSE))
+  } else {
+
+    graph <-
+      create_graph(nodes_df =
+                     create_nodes(nodes = 1:n,
+                                  label = ifelse(display_labels == TRUE,
+                                                 TRUE, FALSE),
+                                  value = sample(seq(0.5, 10, 0.5),
+                                                 n, replace = TRUE)),
+                   directed = ifelse(directed == TRUE, TRUE, FALSE))
+  }
 
   if (m > 0){
     for (i in 1:m){
