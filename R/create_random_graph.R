@@ -57,6 +57,11 @@ create_random_graph <- function(n,
       stop("The supplied node IDs are not unique.")
     }
 
+    # Stop function if not enough node IDs values were provided
+    if (length(node_id) < n){
+      stop("Not enough node ID values were provided.")
+    }
+
 
   if (m > 0){
     for (i in 1:m){
