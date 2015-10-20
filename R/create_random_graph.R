@@ -85,9 +85,11 @@ create_random_graph <- function(n,
 
         edge_placed <- FALSE
 
-        node_a <- sample(seq(1, n, 1), 1)
+        node_a <-
+          sample(get_nodes(graph), 1)
 
-        node_b <- sample(seq(1, n, 1)[-which(1:n %in% node_a)], 1)
+        node_b <-
+          sample(get_nodes(graph)[-which(get_nodes(graph) %in% node_a)], 1)
 
         edge_in_graph <-
           edge_present(graph,
