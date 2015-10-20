@@ -52,6 +52,11 @@ create_random_graph <- function(n,
                                 value = sample(seq(0.5, 10, 0.5),
                                                n, replace = TRUE)),
                  directed = ifelse(directed == TRUE, TRUE, FALSE))
+    # Stop function if all values are not unique
+    if (anyDuplicated(node_id) != 0){
+      stop("The supplied node IDs are not unique.")
+    }
+
 
   if (m > 0){
     for (i in 1:m){
