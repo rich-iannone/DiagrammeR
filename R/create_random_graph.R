@@ -46,6 +46,8 @@ create_random_graph <- function(n,
   graph <-
     create_graph(nodes_df =
                    create_nodes(nodes = 1:n,
+                                label = ifelse(display_labels == TRUE,
+                                               TRUE, FALSE),
                                 value = sample(seq(0.5, 10, 0.5),
                                                n, replace = TRUE)),
                  directed = ifelse(directed == TRUE, TRUE, FALSE))
