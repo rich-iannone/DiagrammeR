@@ -50,12 +50,12 @@ create_random_graph <- function(n,
 
   if (!is.null(node_id)){
 
-    # Stop function if all values are not unique
+    # Stop function if all node ID values are not unique
     if (anyDuplicated(node_id) != 0){
       stop("The supplied node IDs are not unique.")
     }
 
-    # Stop function if not enough node IDs values were provided
+    # Stop function if insufficient node IDs values provided
     if (length(node_id) < n){
       stop("Not enough node ID values were provided.")
     }
