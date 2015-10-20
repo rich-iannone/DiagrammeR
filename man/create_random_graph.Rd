@@ -5,7 +5,7 @@
 \title{Create a randomized graph}
 \usage{
 create_random_graph(n, m, directed = FALSE, fully_connected = FALSE,
-  set_seed = NULL)
+  display_labels = TRUE, set_seed = NULL)
 }
 \arguments{
 \item{n}{the number of nodes to use in the random graph.}
@@ -17,6 +17,8 @@ undirected (default) or directed.}
 
 \item{fully_connected}{should the graph be fully connected (i.e. no
 free nodes).}
+
+\item{display_labels}{display node labels.}
 
 \item{set_seed}{supplying a value sets a random seed of the
 \code{Mersenne-Twister} implementation.}
