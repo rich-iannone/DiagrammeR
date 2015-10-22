@@ -28,44 +28,46 @@ create_nodes <- function(nodes,
     type <- rep("", length(nodes))
   }
 
+  # Collect extra vectors of data as 'extras'
   extras <- list(...)
 
   # Attempt to obtain the number of nodes from the 'nodes' column
-  if ("nodes" %in% names(nodes)){
-    nodes_column <- which("nodes" %in% names(nodes))
-    number_of_nodes <- length(nodes[nodes_column][[1]])
-  }
+  number_of_nodes <- length(nodes)
 
-  for (i in 1:length(nodes)){
+  for (i in 1:length(extras)){
 
     # Expand vectors with single values to fill to number of nodes
-    if (length(nodes[[i]]) == 1){
-      nodes[[i]] <- rep(nodes[[i]], number_of_nodes)
+    if (length(extras[[i]]) == 1){
+      extras[[i]] <- rep(extras[[i]], number_of_nodes)
     }
 
     # Expand vectors with length > 1 and length < 'number_of_nodes'
-    if (length(nodes[[i]]) > 1 & length(nodes[[i]]) < number_of_nodes){
-      nodes[[i]] <-
-        c(nodes[[i]], rep("", (number_of_nodes - length(nodes[[i]]))))
+    if (length(extras[[i]]) > 1 & length(extras[[i]]) < number_of_nodes){
+      extras[[i]] <-
+        c(extras[[i]], rep("", (number_of_nodes - length(extras[[i]]))))
     }
 
     # Trim vectors with number of values exceeding number of nodes
-    if (length(nodes[[i]]) > number_of_nodes){
-      nodes[[i]] <- nodes[[i]][1:number_of_nodes]
+    if (length(extras[[i]]) > number_of_nodes){
+      extras[[i]] <- extras[[i]][1:number_of_nodes]
     }
 
     # Change logical for labels to empty labels
-    if (names(nodes)[i] == "label" & class(nodes[[i]]) == "logical"){
-      nodes[[i]] <- as.character(nodes[[i]])
+    if (class(label) == "logical" & length(label) == 1){
 
-      for (j in 1:length(nodes[[i]])){
-        nodes[[i]][j] <-
-          ifelse(nodes[[i]][j] == "FALSE", " ", nodes[nodes_column][[1]][j])
+      if (label == TRUE){
+
+        label <- as.character(nodes)
+
+      } else {
+
+        label <- rep("", length(nodes))
       }
     }
   }
 
-  nodes_df <- as.data.frame(nodes, stringsAsFactors = FALSE)
+  nodes_df <- data.frame(nodes = nodes, label = label, type = type, extras,
+                         stringsAsFactors = FALSE)
 
   return(nodes_df)
 }
