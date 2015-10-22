@@ -2,7 +2,10 @@
 #' @description Combine several named vectors for nodes and their attributes
 #' into a data frame, which can be combined with other similarly-generated data
 #' frame, or, added to a graph object.
-#' @param ... one or more named vectors for nodes and associated attributes.
+#' @param nodes the node ID value(s) for the node(s) to be created.
+#' @param type an optional 'type' description for each node.
+#' @param label an optional label for each node.
+#' @param ... one or more named vectors for associated attributes.
 #' @return a data frame.
 #' @examples
 #' \dontrun{
