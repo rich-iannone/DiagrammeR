@@ -36,37 +36,59 @@ create_edges <- function(from,
     rel <- as.character(rel)
   }
 
-  # Obtain the number of edges from the 'to' column
-  # Ensure that it is classed as character
-  if ("to" %in% names(edges)){
-    number_of_edges_to <- length(edges$to)
-    edges$to <- as.character(edges$to)
-  }
-
-  stopifnot(number_of_edges_from == number_of_edges_to)
-
-  number_of_edges <- number_of_edges_from
-
-  for (i in 1:length(edges)){
+  if (!is.null(rel)){
 
     # Expand vectors with single values to fill to number of edges
-    if (length(edges[[i]]) == 1){
-      edges[[i]] <- rep(edges[[i]], number_of_edges)
+    if (length(rel) == 1){
+      rel <- rep(rel, length(from))
     }
 
-    # Expand vectors with length > 1 and length < 'number_of_edges'
-    if (length(edges[[i]]) > 1 & length(edges[[i]]) < number_of_edges){
-      edges[[i]] <- c(edges[[i]],
-                      rep("", (number_of_edges - length(edges[[i]]))))
+    # Expand vectors with length > 1 and length < 'length(from)'
+    if (length(rel) > 1 & length(rel) < length(from)){
+      rel <-
+        c(rel, rep("", (length(from) - length(rel))))
     }
 
     # Trim vectors with number of values exceeding number of edges
-    if (length(edges[[i]]) > number_of_edges){
-      edges[[i]] <- edges[[i]][1:number_of_edges]
+    if (length(rel) > length(from)){
+      rel <- rel[1:length(from)]
     }
   }
 
-  edges_df <- as.data.frame(edges, stringsAsFactors = FALSE)
+  # Collect extra vectors of data as 'extras'
+  extras <- list(...)
+
+  if (length(extras) > 0){
+
+    for (i in 1:length(extras)){
+
+      # Expand vectors with single values to fill to number of edges
+      if (length(extras[[i]]) == 1){
+        extras[[i]] <- rep(extras[[i]], length(from))
+      }
+
+      # Expand vectors with length > 1 and length < length(from)
+      if (length(extras[[i]]) > 1 & length(extras[[i]]) < length(from)){
+        extras[[i]] <- c(extras[[i]],
+                         rep("", (length(from) - length(extras[[i]]))))
+      }
+
+      # Trim vectors with number of values exceeding number of edges
+      if (length(extras[[i]]) > length(from)){
+        extras[[i]] <- extras[[i]][1:length(from)]
+      }
+    }
+  }
+
+  if (length(extras) > 0){
+
+    edges_df <- data.frame(from = from, to = to, rel = rel,
+                           extras, stringsAsFactors = FALSE)
+  } else {
+
+    edges_df <- data.frame(from = from, to = to, rel = rel,
+                           stringsAsFactors = FALSE)
+  }
 
   return(edges_df)
 }
