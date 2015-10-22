@@ -48,7 +48,8 @@
 #' }
 #' @export get_nodes
 
-get_nodes <- function(...){
+get_nodes <- function(...,
+                      type = NULL){
 
   objects <- list(...)
 
