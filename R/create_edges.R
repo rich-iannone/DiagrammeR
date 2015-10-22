@@ -21,16 +21,19 @@ create_edges <- function(from,
                          rel = NULL,
                          ...){
 
-  edges <- list(...)
+  # Stop function if vector lengths for 'from' and 'to' not equal
+  stopifnot(length(from) == length(to))
 
-  # Stop function if there are no list components
-  stopifnot(!is.null(names(edges)))
+  # Ensure that 'from' and 'to' vectors classed as character
+  from <- as.character(from)
+  to <- as.character(to)
 
-  # Obtain the number of edges from the 'from' column
-  # Ensure that it is classed as character
-  if ("from" %in% names(edges)){
-    number_of_edges_from <- length(edges$from)
-    edges$from <- as.character(edges$from)
+  # rel is NULL, create empty character vector; class as character
+  # otherwise
+  if (is.null(rel)){
+    rel <- as.character(rep("", length(from)))
+  } else {
+    rel <- as.character(rel)
   }
 
   # Obtain the number of edges from the 'to' column
