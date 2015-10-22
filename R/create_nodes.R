@@ -12,13 +12,13 @@
 #' # Create a node data frame
 #' nodes <-
 #'   create_nodes(nodes = c("a", "b", "c", "d"),
+#'                type = "letter",
 #'                label = TRUE,
-#'                type = c("lower", "lower", "upper", "upper"),
 #'                style = "filled",
 #'                color = "aqua",
 #'                shape = c("circle", "circle",
 #'                          "rectangle", "rectangle"),
-#'                data = c(3.5, 2.6, 9.4, 2.7))
+#'                value = c(3.5, 2.6, 9.4, 2.7))
 #' }
 #' @export create_nodes
 
