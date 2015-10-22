@@ -2,9 +2,12 @@
 #' @description Combine several named vectors for edges and their attributes
 #' into a data frame, which can be combined with other similarly-generated data
 #' frame, or, added to a graph object.
-#' @param ... one or more named vectors for edges and associated attributes;
-#' the names for the named vectors must include \code{from} and \code{to}
-#' alongside any named vectors for the edge attributes and ancillary data.
+#' @param from a vector of node ID values from which edges are outbound. The
+#' vector length must equal to that of the \code{to} vector.
+#' @param to a vector of node ID values to which edges are incoming. The
+#' vector length must equal to that of the \code{from} vector.
+#' @param rel an optional 'rel' description for each edge.
+#' @param ... one or more named vectors for associated attributes.
 #' @return a data frame.
 #' @examples
 #' \dontrun{
