@@ -66,8 +66,19 @@ create_nodes <- function(nodes,
     }
   }
 
-  nodes_df <- data.frame(nodes = nodes, label = label, type = type, extras,
-                         stringsAsFactors = FALSE)
+  # Change logical for labels to empty labels
+  if (class(label) == "logical" & length(label) == 1){
+
+    if (label == TRUE){
+
+      label <- as.character(nodes)
+
+    } else {
+
+      label <- rep("", length(nodes))
+    }
+  }
+
   if (length(extras) > 0){
 
     nodes_df <- data.frame(nodes = nodes, type = type, label = label,
