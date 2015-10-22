@@ -28,8 +28,6 @@ create_nodes <- function(nodes,
     type <- rep("", length(nodes))
   }
 
-  # Stop function if there are no named list components
-  stopifnot(!is.null(names(nodes)))
   extras <- list(...)
 
   # Attempt to obtain the number of nodes from the 'nodes' column
