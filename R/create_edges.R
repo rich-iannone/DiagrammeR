@@ -16,7 +16,10 @@
 #' }
 #' @export create_edges
 
-create_edges <- function(...){
+create_edges <- function(from,
+                         to,
+                         rel = NULL,
+                         ...){
 
   edges <- list(...)
 
