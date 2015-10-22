@@ -34,7 +34,7 @@ test_that("importing a .graphml file is possible", {
   expect_true(nrow(graphml_graph$nodes_df) == 4941)
 
   # Expect that the 'edges_df' data frame has 2 columns
-  expect_true(ncol(graphml_graph$edges_df) == 2)
+  expect_true(ncol(graphml_graph$edges_df) == 3)
 
   # Expect that the 'edges_df' data frame has 6594 rows
   expect_true(nrow(graphml_graph$edges_df) == 6594)
