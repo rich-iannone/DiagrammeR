@@ -45,7 +45,7 @@ node_count <- function(graph,
                        type = FALSE){
 
   # If type is FALSE, get a total count of nodes
-  if (type == FALSE){
+  if (class(type) == "logical" & type == FALSE){
 
     if (is_graph_empty(graph) == TRUE){
 
@@ -61,7 +61,7 @@ node_count <- function(graph,
   }
 
   # If type set to TRUE, get a named vector of counts by type
-  if (type == TRUE){
+  if (class(type) == "logical" & type == TRUE){
 
     if (is_graph_empty(graph) == TRUE){
 
