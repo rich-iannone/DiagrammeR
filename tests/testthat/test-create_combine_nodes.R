@@ -32,8 +32,8 @@ test_that("a correct node data frame is generated", {
   expect_equal(ncol(nodes_2), 7L)
 
   # Expect that 'label = FALSE' produces blank label columns
-  expect_true(all(nodes_1$label == rep(" ", 4)))
-  expect_true(all(nodes_2$label == rep(" ", 4)))
+  expect_true(all(nodes_1$label == rep("", 4)))
+  expect_true(all(nodes_2$label == rep("", 4)))
 
   # Expect that a single value repeats across rows
   expect_true(all(nodes_1$type == rep("lower", 4)))
@@ -73,9 +73,10 @@ test_that("a correct node data frame is generated", {
   # Expect that the data frame has 4 rows
   expect_equal(nrow(nodes_var_2), 4L)
 
-  # Expect that the 'color' attribute is only written twice and not
-  # repeated down
+  # Expect that the 'color' attribute is trimmed to correct number
+  # of rows
   expect_equal(nodes_var_2$color, c("green", "green", "green", "green"))
+
 })
 
 test_that("node data frames can be successfully combined", {
@@ -111,7 +112,7 @@ test_that("node data frames can be successfully combined", {
   expect_equal(ncol(all_nodes), 7L)
 
   # Expect that the 'label' columns has spaces for labels
-  expect_true(all(all_nodes$label == rep(" ", 8)))
+  expect_true(all(all_nodes$label == rep("", 8)))
 
   # Expect that the rows combined correctly
   expect_true(all(c(nodes_1[,1], nodes_2[,1]) ==
