@@ -28,40 +28,46 @@ create_nodes <- function(nodes,
     type <- as.character(rep("", length(nodes)))
   }
 
-  # Collect extra vectors of data as 'extras'
-  extras <- list(...)
-
-  # Attempt to obtain the number of nodes from the 'nodes' column
-  number_of_nodes <- length(nodes)
-
-  for (i in 1:length(extras)){
+  if (!is.null(type)){
 
     # Expand vectors with single values to fill to number of nodes
-    if (length(extras[[i]]) == 1){
-      extras[[i]] <- rep(extras[[i]], number_of_nodes)
+    if (length(type) == 1){
+      type <- rep(type, length(nodes))
     }
 
-    # Expand vectors with length > 1 and length < 'number_of_nodes'
-    if (length(extras[[i]]) > 1 & length(extras[[i]]) < number_of_nodes){
-      extras[[i]] <-
-        c(extras[[i]], rep("", (number_of_nodes - length(extras[[i]]))))
+    # Expand vectors with length > 1 and length < 'length(nodes)'
+    if (length(type) > 1 & length(type) < length(nodes)){
+      type <-
+        c(type, rep("", (length(nodes) - length(type))))
     }
 
     # Trim vectors with number of values exceeding number of nodes
-    if (length(extras[[i]]) > number_of_nodes){
-      extras[[i]] <- extras[[i]][1:number_of_nodes]
+    if (length(type) > length(nodes)){
+      type <- type[1:length(nodes)]
     }
+  }
 
-    # Change logical for labels to empty labels
-    if (class(label) == "logical" & length(label) == 1){
+  # Collect extra vectors of data as 'extras'
+  extras <- list(...)
 
-      if (label == TRUE){
+  if (length(extras) > 0){
 
-        label <- as.character(nodes)
+    for (i in 1:length(extras)){
 
-      } else {
+      # Expand vectors with single values to fill to number of nodes
+      if (length(extras[[i]]) == 1){
+        extras[[i]] <- rep(extras[[i]], length(nodes))
+      }
 
-        label <- rep("", length(nodes))
+      # Expand vectors with length > 1 and length < 'length(nodes)'
+      if (length(extras[[i]]) > 1 & length(extras[[i]]) < length(nodes)){
+        extras[[i]] <-
+          c(extras[[i]], rep("", (length(nodes) - length(extras[[i]]))))
+      }
+
+      # Trim vectors with number of values exceeding number of nodes
+      if (length(extras[[i]]) > length(nodes)){
+        extras[[i]] <- extras[[i]][1:length(nodes)]
       }
     }
   }
