@@ -19,7 +19,10 @@
 #' }
 #' @export create_nodes
 
-create_nodes <- function(...){
+create_nodes <- function(nodes,
+                         type = NULL,
+                         label = nodes,
+                         ...){
 
   nodes <- list(...)
 
