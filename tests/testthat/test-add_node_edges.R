@@ -33,8 +33,8 @@ test_that("adding a node to a graph is possible", {
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
 
-  # Expect that the 'nodes_df' data frame has 2 columns
-  expect_true(ncol(graph$nodes_df) == 2L)
+  # Expect that the 'nodes_df' data frame has 3 columns
+  expect_true(ncol(graph$nodes_df) == 3L)
 
   # Expect that the 'nodes_df' data frame has 2 rows
   expect_true(nrow(graph$nodes_df) == 2L)
@@ -79,7 +79,7 @@ test_that("adding a node to a graph is possible", {
                               node = "a", label = FALSE)
 
   # Expect that the graph will have one unlabeled node
-  expect_true(node_info(graph = graph_unlabeled)$label == " ")
+  expect_true(node_info(graph = graph_unlabeled)$label == "")
 
   # Add a node to the graph that is joined from another
   graph_from <- add_node(graph_3,
@@ -175,6 +175,7 @@ test_that("adding a node to a graph is possible", {
   expect_error(
     add_node(graph, node = "b", from = "c")
   )
+
 })
 
 test_that("adding an edge to a graph is possible", {
@@ -232,6 +233,7 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect an error when calling 'add_edges' on an empty graph
   expect_error(add_edges(graph = graph_empty))
+
 })
 
 test_that("adding a node to a graph is possible", {
@@ -270,4 +272,5 @@ test_that("adding a node to a graph is possible", {
   # Expect that the 'nodes' object will be the same as in
   # 'graph_edges_added$nodes_df'
   expect_equal(nodes, graph_edges_added$nodes_df)
+
 })
