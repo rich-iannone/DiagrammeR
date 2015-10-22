@@ -48,7 +48,7 @@ node_count <- function(graph,
   if (class(type) == "character"){
 
     count_of_type <-
-      length(which(node_info(graph)[,3] == type))
+      length(which(node_info(graph)[,3] %in% type))
 
     return(total_node_count)
   }
