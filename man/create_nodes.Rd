@@ -4,10 +4,16 @@
 \alias{create_nodes}
 \title{Create a data frame with nodes and their attributes}
 \usage{
-create_nodes(...)
+create_nodes(nodes, type = NULL, label = nodes, ...)
 }
 \arguments{
-\item{...}{one or more named vectors for nodes and associated attributes.}
+\item{nodes}{the node ID value(s) for the node(s) to be created.}
+
+\item{type}{an optional 'type' description for each node.}
+
+\item{label}{an optional label for each node.}
+
+\item{...}{one or more named vectors for associated attributes.}
 }
 \value{
 a data frame.
