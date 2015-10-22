@@ -27,8 +27,8 @@ test_that("importing a .graphml file is possible", {
   # Expect that the graph is a directed graph
   expect_true(graphml_graph$directed == TRUE)
 
-  # Expect that the 'nodes_df' data frame has 9 columns
-  expect_true(ncol(graphml_graph$nodes_df) == 9)
+  # Expect that the 'nodes_df' data frame has 11 columns
+  expect_true(ncol(graphml_graph$nodes_df) == 11)
 
   # Expect that the 'nodes_df' data frame has 4941 rows
   expect_true(nrow(graphml_graph$nodes_df) == 4941)
@@ -38,6 +38,7 @@ test_that("importing a .graphml file is possible", {
 
   # Expect that the 'edges_df' data frame has 6594 rows
   expect_true(nrow(graphml_graph$edges_df) == 6594)
+
 })
 
 test_that("importing a .sif file is possible", {
@@ -66,8 +67,8 @@ test_that("importing a .sif file is possible", {
   # Expect that the graph is a directed graph
   expect_true(sif_graph$directed == TRUE)
 
-  # Expect that the 'nodes_df' data frame has 1 column
-  expect_true(ncol(sif_graph$nodes_df) == 1)
+  # Expect that the 'nodes_df' data frame has 3 columns
+  expect_true(ncol(sif_graph$nodes_df) == 3)
 
   # Expect that the 'nodes_df' data frame has 8347 rows
   expect_true(nrow(sif_graph$nodes_df) == 8347)
@@ -77,4 +78,5 @@ test_that("importing a .sif file is possible", {
 
   # Expect that the 'edges_df' data frame has 61263 rows
   expect_true(nrow(sif_graph$edges_df) == 61263)
+
 })
