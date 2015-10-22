@@ -52,6 +52,13 @@ node_count(graph, type = TRUE) # the default
 # Get a total count of nodes with no grouping
 node_count(graph, type = FALSE)
 #> [1] 26
+
+# Get a count of nodes of one or more specified types
+node_count(graph, type = "a_to_g")
+#> [1] 7
+
+node_count(graph, type = c("a_to_g", "q_to_x"))
+#> [1] 15
 }
 }
 
