@@ -25,7 +25,7 @@ create_nodes <- function(nodes,
                          ...){
 
   if (is.null(type)){
-    type <- rep("", length(nodes))
+    type <- as.character(rep("", length(nodes)))
   }
 
   # Collect extra vectors of data as 'extras'
