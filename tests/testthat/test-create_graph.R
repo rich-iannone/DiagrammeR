@@ -36,6 +36,7 @@ test_that("an empty graph object can be created and such an object is correct", 
   # Expect that the Graphviz DOT code for an empty graph
   # is essentially an empty Graphviz diagram
   expect_match(graph$dot_code, "digraph \\{\n\n\\}")
+
 })
 
 test_that("a graph object with nodes can be created correctly", {
@@ -83,6 +84,7 @@ test_that("a graph object with nodes can be created correctly", {
 
   # Expect that the 'nodes_df' data frame has 4 rows
   expect_true(nrow(graph$nodes_df) == 4L)
+
 })
 
 test_that("a graph object can be created with a just an edge data frame", {
@@ -117,7 +119,7 @@ test_that("a graph object can be created with a just an edge data frame", {
   expect_true(class(graph$edges_df) == "data.frame")
 
   # Expect that the 'nodes_df' data frame has 1 column
-  expect_true(ncol(graph$nodes_df) == 1L)
+  expect_true(ncol(graph$nodes_df) == 3L)
 
   # Expect that the 'nodes_df' data frame has 4 rows
   expect_true(nrow(graph$nodes_df) == 4L)
@@ -191,6 +193,7 @@ test_that("a graph object with nodes and edges can be created correctly", {
 
   # Expect that the 'edges_df' data frame has 3 rows
   expect_true(nrow(graph$edges_df) == 3L)
+
 })
 
 test_that("different combinations of inputs can result in a graph", {
