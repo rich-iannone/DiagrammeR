@@ -27,11 +27,26 @@ frame, or, added to a graph object.
 }
 \examples{
 \dontrun{
-# Create an edge data frame
+# Create a simple edge data frame and view results
 edges <-
   create_edges(from = c("a", "b", "c"),
                to = c("d", "c", "a"),
                rel = "leading_to")
+
+render_graph(create_graph(edges_df = edges),
+             output = "visNetwork")
+
+# Create an edge data frame with additional parameters
+edges <-
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               rel = "leading_to",
+               length = c(50, 100, 250),
+               color = "green",
+               width = c(1, 1, 2))
+
+render_graph(create_graph(edges_df = edges),
+             output = "visNetwork")
 }
 }
 
