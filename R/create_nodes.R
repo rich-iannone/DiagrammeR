@@ -68,6 +68,15 @@ create_nodes <- function(nodes,
 
   nodes_df <- data.frame(nodes = nodes, label = label, type = type, extras,
                          stringsAsFactors = FALSE)
+  if (length(extras) > 0){
+
+    nodes_df <- data.frame(nodes = nodes, type = type, label = label,
+                           extras, stringsAsFactors = FALSE)
+  } else {
+
+    nodes_df <- data.frame(nodes = nodes, type = type, label = label,
+                           stringsAsFactors = FALSE)
+  }
 
   return(nodes_df)
 }
