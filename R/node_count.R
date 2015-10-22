@@ -50,7 +50,7 @@ node_count <- function(graph,
     count_of_type <-
       length(which(node_info(graph)[,3] %in% type))
 
-    return(total_node_count)
+    return(count_of_type)
   }
 
   # If type is FALSE, get a total count of nodes
