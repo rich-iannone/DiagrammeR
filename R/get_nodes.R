@@ -83,7 +83,7 @@ get_nodes <- function(...,
 
     if (class(object) == "data.frame"){
 
-      if (any(c("nodes", "node", "node_ID") %in% colnames(object))){
+      if ("nodes" %in% colnames(object)){
 
         object_type <- "node_df"
       }
