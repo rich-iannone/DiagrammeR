@@ -24,6 +24,9 @@ create_nodes <- function(nodes,
                          label = nodes,
                          ...){
 
+  if (is.null(type)){
+    type <- rep("", length(nodes))
+  }
 
   # Stop function if there are no named list components
   stopifnot(!is.null(names(nodes)))
