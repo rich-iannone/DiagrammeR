@@ -34,7 +34,7 @@ edges <-
                rel = "leading_to")
 
 render_graph(create_graph(edges_df = edges),
-             output = "visNetwork")
+                          output = "visNetwork")
 
 # Create an edge data frame with additional parameters
 edges <-
@@ -46,7 +46,7 @@ edges <-
                width = c(1, 1, 2))
 
 render_graph(create_graph(edges_df = edges),
-             output = "visNetwork")
+                          output = "visNetwork")
 }
 }
 
