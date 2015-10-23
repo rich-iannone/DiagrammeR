@@ -68,6 +68,7 @@
 #' @export get_edges
 
 get_edges <- function(...,
+                      rel = NULL,
                       return_type = "list"){
 
   objects <- list(...)
