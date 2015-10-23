@@ -20,13 +20,15 @@
 #'                type = c(rep("a_to_g", 7),
 #'                         rep("h_to_p", 9),
 #'                         rep("q_to_x", 8),
-#'                         rep("y_and_z",2)))
+#'                         rep("y_and_z", 2)))
 #'
 #' edges <-
 #'   create_edges(from = sample(LETTERS, replace = TRUE),
 #'                to = sample(LETTERS, replace = TRUE),
-#'                label = "edge",
-#'                rel = "letter_to_letter")
+#'                rel = c(rep("rel_a", 7),
+#'                        rep("rel_b", 9),
+#'                        rep("rel_c", 8),
+#'                        rep("rel_d", 2)))
 #'
 #' graph <-
 #'   create_graph(nodes_df = nodes,
