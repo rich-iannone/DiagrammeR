@@ -1,7 +1,9 @@
 #' Get node IDs associated with edges
-#' @description Provides information on the node IDs associated with edges from
-#' one or more edge data frames, or, a graph object.
-#' @param ... a collection of edge data frames or graph objects.
+#' @description Provides information on the node IDs associated with edges
+#' from a graph object or an edge data frame.
+#' @param ... a graph object or an edge data frame.
+#' @param rel an optional character vector of \code{rel} values to filter the
+#' output of node ID values.
 #' @param return_type using \code{list} (the default) will provide a list
 #' object containing vectors of outgoing and incoming node IDs associated
 #' with edges. With \code{df}, a data frame containing outgoing and incoming
