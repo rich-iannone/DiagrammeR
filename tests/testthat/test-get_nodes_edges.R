@@ -193,25 +193,13 @@ test_that("getting edge information from a graph with no edges is possible ", {
   edges_list_from_graph_no_edges <-
     get_edges(graph_no_edges, return_type = "list")
 
-  # Expect that the list is of length 2
-  expect_true(length(edges_list_from_graph_no_edges) == 2)
-
-  # Expect character vectors of length 1 in 'gotten_edges_list'
-  expect_true(length(edges_list_from_graph_no_edges[[1]]) == 1)
-  expect_true(length(edges_list_from_graph_no_edges[[2]]) == 1)
+  # Expect that an NA is returned
+  expect_true(is.na(edges_list_from_graph_no_edges))
 
   # Get edges from an edgeless graph returned as a data frame
   edges_df_from_graph_no_edges <-
     get_edges(graph_no_edges, return_type = "df")
 
-  # Expect a data frame object
-  expect_is(edges_df_from_graph_no_edges, "data.frame")
-
-  # Expect that the data frame has 2 columns
-  expect_true(ncol(edges_df_from_graph_no_edges) == 2)
-
-  # Expect columns of class 'character' and 0 rows in 'gotten_edges_df'
-  expect_is(edges_df_from_graph_no_edges[,1], "character")
-  expect_is(edges_df_from_graph_no_edges[,2], "character")
-  expect_true(nrow(edges_df_from_graph_no_edges) == 0)
+  # Expect that an NA is returned
+  expect_true(is.na(edges_df_from_graph_no_edges))
 })
