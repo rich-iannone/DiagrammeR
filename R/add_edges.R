@@ -58,21 +58,12 @@ add_edges <- function(graph,
   # the graph's nodes
   if (!is.null(edges_df)){
 
-    # Ensure that the appropriate columns specifying edges are present
-    from_present <- "from" %in% colnames(edges_df)
-    to_present <- "to" %in% colnames(edges_df)
-
-    edges_df_valid <- from_present & to_present
-
     # Ensure that the nodes specified are in the graph object
     all_nodes_in_graph <- all(get_nodes(edges_df) %in% get_nodes(graph))
 
-    edges_df_available <- ifelse(edges_df_valid & all_nodes_in_graph,
-                                 TRUE, FALSE)
-
     # If not all the nodes specified in the edge data frame are in the
     # graph, stop the function
-    if (edges_df_available == FALSE){
+    if (all_nodes_in_graph == FALSE){
       stop("Not all nodes specified in the edge data frame are in the graph.")
     }
 
