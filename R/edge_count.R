@@ -42,166 +42,58 @@
 edge_count <- function(graph,
                        rel = FALSE){
 
-  # If type is FALSE, get a total count of edges
-  if (rel == FALSE){
+  # If graph is empty, return 0
+  if (is_graph_empty(graph) == TRUE){
 
-    if (is_graph_empty(graph) == TRUE){
-
-      total_edge_count <- 0
-    }
-
-    if (is_graph_empty(graph) == FALSE){
-
-      total_edge_count <- length(get_edges(graph)[[1]])
-    }
-
-    return(total_edge_count)
+    return(0)
   }
 
-  # If relationship set to TRUE, get a named vector of counts by relationship
-  if (rel == TRUE){
-
-    if (is_graph_empty(graph) == TRUE){
-
-      total_edge_count <- 0
-    }
-
-    if (is_graph_empty(graph) == FALSE){
-
-      for (i in 1:length(get_edges(graph)[[1]])){
-
-        if (i == 1){
-          all_edges <- get_edges(graph, return_type = "df")
-          all_relationships <- vector(mode = "character")
-        }
-
-        all_relationships <-
-          c(all_relationships,
-            edge_rel(graph = graph,
-                     from = all_edges[i,1],
-                     to = all_edges[i,2],
-                     action = "read"))
-
-        all_relationships <- unique(all_relationships)
-
-        if (any(is.na(all_relationships))){
-
-          all_relationships[which(is.na(all_relationships))] <- ""
-        }
-      }
-
-      for (i in 1:length(all_relationships)){
-
-        if (i == 1) total_edge_count <- vector(mode = "numeric")
-
-        total_edge_count <-
-          c(total_edge_count,
-            nrow(graph$edges_df[which(graph$edges_df$rel ==
-                                        all_relationships[i]),]))
-
-        if (i == length(all_relationships)){
-          names(total_edge_count) <- all_relationships
-
-          if (any(names(total_edge_count) == "")){
-            names(total_edge_count)[which(names(total_edge_count) == "")] <-
-              "<no rel>"
-
-            total_edge_count <-
-              c(total_edge_count[which(names(total_edge_count) == "<no rel>")],
-                total_edge_count[-which(names(total_edge_count) == "<no rel>")])
-          }
-        }
-      }
-    }
-
-    return(total_edge_count)
-  }
-
-  # If relationship is a character vector, get counts by supplied relationships
+  # If rel is a string, get a count of edge for a specific rel
   if (class(rel) == "character"){
 
-    if (is_graph_empty(graph) == TRUE){
+    count_of_rel <-
+      length(which(graph$edges_df$rel %in% rel))
 
-      total_edge_count <- 0
+    return(count_of_rel)
+  }
+
+  # If rel is set to FALSE, get a total count of edges
+  if (all(class(rel) == "logical" & rel == FALSE)){
+
+    total_edge_count <- length(graph$edges_df$rel)
+
+    return(total_edge_count)
+  }
+
+  # If rel set to TRUE, get a named vector of counts by relationship
+  if (all(class(rel) == "logical" & rel == TRUE)){
+
+    all_relationships <- unique(graph$edges_df$rel)
+
+    if (any(is.na(all_relationships))){
+
+      all_relationships[which(is.na(all_relationships))] <- ""
     }
 
-    if (is_graph_empty(graph) == FALSE){
+    for (i in 1:length(all_relationships)){
 
-      # Determine all edge relationship types available in graph
-      for (i in 1:length(get_edges(graph)[[1]])){
+      if (i == 1) total_edge_count <- vector(mode = "numeric")
 
-        if (i == 1){
-          all_edges <- get_edges(graph, return_type = "df")
-          all_relationships <- vector(mode = "character")
-        }
+      total_edge_count <-
+        c(total_edge_count,
+          nrow(graph$edges_df[which(graph$edges_df$rel ==
+                                      all_relationships[i]),]))
 
-        all_relationships <-
-          c(all_relationships,
-            edge_rel(graph = graph,
-                     from = all_edges[i,1],
-                     to = all_edges[i,2],
-                     action = "read"))
+      if (i == length(all_relationships)){
+        names(total_edge_count) <- all_relationships
 
-        all_relationships <- unique(all_relationships)
+        if (any(names(total_edge_count) == "")){
+          names(total_edge_count)[which(names(total_edge_count) == "")] <-
+            "<no rel>"
 
-        if (any(is.na(all_relationships))){
-
-          all_relationships[which(is.na(all_relationships))] <- ""
-        }
-      }
-
-      # Determine whether those edge relationships provides are all
-      # available in the graph
-      relationships_are_available <-
-        ifelse(all(rel %in% all_relationships), TRUE, FALSE)
-
-      if (relationships_are_available){
-
-        # Determine how many relationship rows are unsets for the edges
-        # available in the graph
-        unset_relationship_for_node_count <-
-          nrow(subset(graph$edges_df, rel == ''))
-
-        # Determine the total count of edges with relationship not set
-        # (if that was specified)
-        if (rel == ""){
-
-          total_edge_count <- unset_relationship_for_node_count
-        }
-
-        # Determine the total count of edges with relationship set (if
-        # that was specified)
-        if (rel != ""){
-
-          if (all(graph$edges_df$rel == '') == FALSE){
-
-            edges_df_set_relationship <- graph$edges_df
-
-          } else {
-
-            edges_df_set_relationship <-
-              graph$edges_df[-which(graph$edges_df$rel == ''),]
-          }
-
-          for (i in 1:length(rel)){
-
-            if (i == 1) total_edge_count <- vector(mode = "numeric")
-
-            total_edge_count <-
-              c(total_edge_count,
-                nrow(edges_df_set_relationship[which(edges_df_set_relationship$rel ==
-                                                       rel[i]),]))
-
-            if (i == length(rel)){
-
-              names(total_edge_count) <- rel
-            }
-          }
-        }
-
-        if (relationships_are_available == FALSE){
-
-          total_edge_count <- NA
+          total_edge_count <-
+            c(total_edge_count[which(names(total_edge_count) == "<no rel>")],
+              total_edge_count[-which(names(total_edge_count) == "<no rel>")])
         }
       }
     }
