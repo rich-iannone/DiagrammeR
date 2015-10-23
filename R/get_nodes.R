@@ -3,6 +3,8 @@
 #' data frames, edge data frames, or graph objects.
 #' @param ... a collection of node data frames, edge data frames, or a single
 #' graph object.
+#' @param type an optional character vector of \code{type} values to filter the
+#' node ID values returned.
 #' @return a vector of node ID values.
 #' @examples
 #' \dontrun{
