@@ -21,11 +21,6 @@ get_paths <- function(graph,
                       longest_path = FALSE,
                       distance = NULL){
 
-  # If the given node has no successors, return NA
-  #   if (all(is.na(get_successors(graph, from)))){
-  #     return(NA)
-  #   }
-
   if (is.null(from)) from <- get_nodes(graph)
 
   for (m in 1:length(from)){
