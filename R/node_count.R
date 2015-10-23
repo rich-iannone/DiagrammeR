@@ -52,6 +52,12 @@
 node_count <- function(graph,
                        type = FALSE){
 
+  # If graph is empty, return 0
+  if (is_graph_empty(graph) == TRUE){
+
+    return(0)
+  }
+
   # If type is a string, get a count of nodes for a specific type
   if (class(type) == "character"){
 
@@ -64,15 +70,6 @@ node_count <- function(graph,
   # If type is FALSE, get a total count of nodes
   if (class(type) == "logical" & type == FALSE){
 
-    if (is_graph_empty(graph) == TRUE){
-
-      total_node_count <- 0
-    }
-
-    if (is_graph_empty(graph) == FALSE){
-
-      total_node_count <- length(get_nodes(graph))
-    }
 
     return(total_node_count)
   }
@@ -80,12 +77,7 @@ node_count <- function(graph,
   # If type set to TRUE, get a named vector of counts by type
   if (class(type) == "logical" & type == TRUE){
 
-    if (is_graph_empty(graph) == TRUE){
 
-      total_node_count <- 0
-    }
-
-    if (is_graph_empty(graph) == FALSE){
 
       for (i in 1:length(get_nodes(graph))){
 
