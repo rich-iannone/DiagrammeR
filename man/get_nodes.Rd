@@ -4,11 +4,14 @@
 \alias{get_nodes}
 \title{Get vector of node IDs}
 \usage{
-get_nodes(...)
+get_nodes(..., type = NULL)
 }
 \arguments{
 \item{...}{a collection of node data frames, edge data frames, or a single
 graph object.}
+
+\item{type}{an optional character vector of \code{type} values to filter the
+node ID values returned.}
 }
 \value{
 a vector of node ID values.
