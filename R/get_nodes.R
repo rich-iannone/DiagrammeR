@@ -103,24 +103,6 @@ get_nodes <- function(...,
         return(node_ID)
       }
 
-      object <- object$nodes_df
-
-      if ("node" %in% colnames(object)){
-
-        nodes_column <- which("node" %in% colnames(object))
-
-      } else if ("nodes" %in% colnames(object)){
-
-        nodes_column <- which("nodes" %in% colnames(object))
-
-      } else if ("node_id" %in% colnames(object)){
-
-        nodes_column <- which("node_id" %in% colnames(object))
-
-      } else {
-
-        stop("There is no column with node ID information.")
-
       }
 
       node_ID <- c(node_ID, object[,nodes_column])
@@ -128,21 +110,6 @@ get_nodes <- function(...,
 
     if (object_type == "node_df"){
 
-      if ("node" %in% colnames(object)){
-
-        nodes_column <- which("node" %in% colnames(object))
-
-      } else if ("nodes" %in% colnames(object)){
-
-        nodes_column <- which("nodes" %in% colnames(object))
-
-      } else if ("node_id" %in% colnames(object)){
-
-        nodes_column <- which("node_id" %in% colnames(object))
-
-      } else {
-
-        stop("There is no column with node ID information.")
 
       }
 
@@ -150,21 +117,6 @@ get_nodes <- function(...,
     }
 
     if (object_type == "edge_df"){
-
-      both_from_to_columns <- all(c(any(c("from") %in%
-                                          colnames(object))),
-                                  any(c("to") %in%
-                                        colnames(object)))
-
-      if (exists("both_from_to_columns")){
-
-        if (both_from_to_columns == TRUE){
-
-          from_column <- which(colnames(object) %in% "from")[1]
-
-          to_column <- which(colnames(object) %in% "to")[1]
-        }
-      }
 
       node_ID <- c(node_ID, unique(c(object[,from_column],
                                      object[,to_column])))
