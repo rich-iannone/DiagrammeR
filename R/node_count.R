@@ -70,6 +70,7 @@ node_count <- function(graph,
   # If type is FALSE, get a total count of nodes
   if (all(class(type) == "logical" & type == FALSE)){
 
+    total_node_count <- length(graph$nodes_df$nodes)
 
     return(total_node_count)
   }
