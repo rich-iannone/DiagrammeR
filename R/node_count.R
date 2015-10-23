@@ -78,45 +78,42 @@ node_count <- function(graph,
   # If type set to TRUE, get a named vector of counts by type
   if (all(class(type) == "logical" & type == TRUE)){
 
+    for (i in 1:length(get_nodes(graph))){
 
-
-      for (i in 1:length(get_nodes(graph))){
-
-        if (i == 1){
-          all_nodes <- get_nodes(graph)
-          all_types <- vector(mode = "character")
-        }
-
-        all_types <- c(all_types,
-                       node_type(graph = graph,
-                                 all_nodes[i],
-                                 action = "read"))
-        all_types <- unique(all_types)
-
-        if (any(is.na(all_types))){
-
-          all_types[which(is.na(all_types))] <- ""
-        }
+      if (i == 1){
+        all_nodes <- get_nodes(graph)
+        all_types <- vector(mode = "character")
       }
 
-      for (i in 1:length(all_types)){
+      all_types <- c(all_types,
+                     node_type(graph = graph,
+                               all_nodes[i],
+                               action = "read"))
+      all_types <- unique(all_types)
 
-        if (i == 1) total_node_count <- vector(mode = "numeric")
+      if (any(is.na(all_types))){
 
-        total_node_count <-
-          c(total_node_count,
-            nrow(graph$nodes_df[which(graph$nodes_df$type == all_types[i]),]))
+        all_types[which(is.na(all_types))] <- ""
+      }
+    }
 
-        if (i == length(all_types)){
-          names(total_node_count) <- all_types
+    for (i in 1:length(all_types)){
 
-          if (any(names(total_node_count) == "")){
-            names(total_node_count)[which(names(total_node_count) == "")] <- "<no type>"
+      if (i == 1) total_node_count <- vector(mode = "numeric")
 
-            total_node_count <-
-              c(total_node_count[which(names(total_node_count) == "<no type>")],
-                total_node_count[-which(names(total_node_count) == "<no type>")])
-          }
+      total_node_count <-
+        c(total_node_count,
+          nrow(graph$nodes_df[which(graph$nodes_df$type == all_types[i]),]))
+
+      if (i == length(all_types)){
+        names(total_node_count) <- all_types
+
+        if (any(names(total_node_count) == "")){
+          names(total_node_count)[which(names(total_node_count) == "")] <- "<no type>"
+
+          total_node_count <-
+            c(total_node_count[which(names(total_node_count) == "<no type>")],
+              total_node_count[-which(names(total_node_count) == "<no type>")])
         }
       }
     }
