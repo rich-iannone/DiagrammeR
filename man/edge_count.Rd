@@ -37,7 +37,6 @@ nodes <-
 edges <-
   create_edges(from = sample(LETTERS, replace = TRUE),
                to = sample(LETTERS, replace = TRUE),
-               label = "edge",
                rel = c(rep("rel_a", 7),
                        rep("rel_b", 9),
                        rep("rel_c", 8),

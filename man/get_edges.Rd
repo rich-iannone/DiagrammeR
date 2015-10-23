@@ -4,10 +4,13 @@
 \alias{get_edges}
 \title{Get node IDs associated with edges}
 \usage{
-get_edges(..., return_type = "list")
+get_edges(..., rel = NULL, return_type = "list")
 }
 \arguments{
-\item{...}{a collection of edge data frames or graph objects.}
+\item{...}{a graph object or an edge data frame.}
+
+\item{rel}{an optional character vector of \code{rel} values to filter the
+output of node ID values.}
 
 \item{return_type}{using \code{list} (the default) will provide a list
 object containing vectors of outgoing and incoming node IDs associated
@@ -20,8 +23,8 @@ a list, data frame, or a vector object, depending on the value
 given to \code{return_type}.
 }
 \description{
-Provides information on the node IDs associated with edges from
-one or more edge data frames, or, a graph object.
+Provides information on the node IDs associated with edges
+from a graph object or an edge data frame.
 }
 \examples{
 \dontrun{
@@ -32,13 +35,15 @@ nodes <-
                type = c(rep("a_to_g", 7),
                         rep("h_to_p", 9),
                         rep("q_to_x", 8),
-                        rep("y_and_z",2)))
+                        rep("y_and_z", 2)))
 
 edges <-
   create_edges(from = sample(LETTERS, replace = TRUE),
                to = sample(LETTERS, replace = TRUE),
-               label = "edge",
-               rel = "letter_to_letter")
+               rel = c(rep("rel_a", 7),
+                       rep("rel_b", 9),
+                       rep("rel_c", 8),
+                       rep("rel_d", 2)))
 
 graph <-
   create_graph(nodes_df = nodes,

@@ -35,7 +35,6 @@ nodes <-
 edges <-
   create_edges(from = sample(LETTERS, replace = TRUE),
                to = sample(LETTERS, replace = TRUE),
-               label = "edge",
                rel = "letter_to_letter")
 
 graph <-
