@@ -73,103 +73,49 @@ get_edges <- function(...,
 
   objects <- list(...)
 
-  for (i in 1:length(objects)){
+  object <- objects[[1]]
 
-    if (i == 1) {
-      edge_list <- vector(mode = "list")
-      edge_list[[1]] <- edge_list[[2]] <- vector(mode = "character")
+  if (class(object) == "dgr_graph"){
+
+    if (is.null(object$edges_df)){
+      return(NA)
     }
-
-    object <- objects[[i]]
-
-    if (class(object) == "dgr_graph"){
-
-      object_type <- "dgr_graph"
-    }
-
-    if (any(c("from", "to") %in% colnames(object))){
-
-      object_type <- "edge_df"
-    }
-  }
-
-  if (object_type == "dgr_graph"){
 
     object <- object$edges_df
-
-    no_edges <- FALSE
-
-    if ("from" %in% colnames(object)){
-
-      from_column <- which(colnames(object) == "from")
-
-    } else {
-
-      no_edges <- TRUE
-    }
-
-    if ("to" %in% colnames(object)){
-
-      to_column <- which(colnames(object) == "to")
-
-    } else {
-
-      no_edges <- TRUE
-    }
-
-    if (return_type == "list" & no_edges == TRUE){
-
-      edge_list[[1]] <- edge_list[[2]] <- NA
-
-      return(edge_list)
-    }
-
-    if (return_type == "df" & no_edges == TRUE){
-
-      edge_df <- as.data.frame(edge_list, stringsAsFactors = FALSE)
-      colnames(edge_df) <- c("from", "to")
-
-      return(edge_df)
-    }
-
-    if (return_type %in% c("vector", "string") & no_edges == TRUE){
-
-      edge_vector <- NA
-
-      return(edge_vector)
-    }
-
-    edge_list[[1]] <- c(edge_list[[1]], object[,from_column])
-    edge_list[[2]] <- c(edge_list[[2]], object[,to_column])
-  }
-
-  if (object_type == "edge_df"){
-
-    both_from_to_columns <- all(c(any(c("from") %in%
-                                        colnames(object))),
-                                any(c("to") %in%
-                                      colnames(object)))
-
-    if (exists("both_from_to_columns")){
-
-      if (both_from_to_columns == TRUE){
-
-        from_column <- which(colnames(object) %in% "from")[1]
-
-        to_column <- which(colnames(object) %in% "to")[1]
-      }
-    }
-
-    edge_list[[1]] <- c(edge_list[[1]], object[,from_column])
-    edge_list[[2]] <- c(edge_list[[2]], object[,to_column])
   }
 
   if (return_type == "list"){
+
+    edge_list <- vector(mode = "list")
+    edge_list[[1]] <- edge_list[[2]] <- vector(mode = "character")
+
+    if (is.null(rel)){
+      edge_list[[1]] <- c(edge_list[[1]], object$from)
+      edge_list[[2]] <- c(edge_list[[2]], object$to)
+    }
+
+    if (!is.null(rel)){
+      edge_list[[1]] <- c(edge_list[[1]], object$from[which(object$rel %in% rel)])
+      edge_list[[2]] <- c(edge_list[[2]], object$to[which(object$rel %in% rel)])
+    }
 
     return(edge_list)
   }
 
   if (return_type == "df"){
+
+    edge_list <- vector(mode = "list")
+    edge_list[[1]] <- edge_list[[2]] <- vector(mode = "character")
+
+    if (is.null(rel)){
+      edge_list[[1]] <- c(edge_list[[1]], object$from)
+      edge_list[[2]] <- c(edge_list[[2]], object$to)
+    }
+
+    if (!is.null(rel)){
+      edge_list[[1]] <- c(edge_list[[1]], object$from[which(object$rel %in% rel)])
+      edge_list[[2]] <- c(edge_list[[2]], object$to[which(object$rel %in% rel)])
+    }
 
     edge_df <- as.data.frame(edge_list, stringsAsFactors = FALSE)
     colnames(edge_df) <- c("from", "to")
@@ -177,7 +123,20 @@ get_edges <- function(...,
     return(edge_df)
   }
 
-  if (return_type %in% c("vector", "string")){
+  if (return_type == "vector"){
+
+    edge_list <- vector(mode = "list")
+    edge_list[[1]] <- edge_list[[2]] <- vector(mode = "character")
+
+    if (is.null(rel)){
+      edge_list[[1]] <- c(edge_list[[1]], object$from)
+      edge_list[[2]] <- c(edge_list[[2]], object$to)
+    }
+
+    if (!is.null(rel)){
+      edge_list[[1]] <- c(edge_list[[1]], object$from[which(object$rel %in% rel)])
+      edge_list[[2]] <- c(edge_list[[2]], object$to[which(object$rel %in% rel)])
+    }
 
     edge_vector <- paste(edge_list[[1]], "->", edge_list[[2]])
 
