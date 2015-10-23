@@ -18,13 +18,16 @@
 #'                type = c(rep("a_to_g", 7),
 #'                         rep("h_to_p", 9),
 #'                         rep("q_to_x", 8),
-#'                         rep("y_and_z",2)))
+#'                         rep("y_and_z", 2)))
 #'
 #' edges <-
 #'   create_edges(from = sample(LETTERS, replace = TRUE),
 #'                to = sample(LETTERS, replace = TRUE),
 #'                label = "edge",
-#'                rel = "letter_to_letter")
+#'                rel = c(rep("rel_a", 7),
+#'                        rep("rel_b", 9),
+#'                        rep("rel_c", 8),
+#'                        rep("rel_d", 2)))
 #'
 #' graph <-
 #'   create_graph(nodes_df = nodes,
@@ -36,6 +39,13 @@
 #' # Get a total count of edges with no grouping
 #' edge_count(graph, rel = FALSE)
 #' #> [1] 26
+#'
+#' # Get a count of edge of one or more specified rels
+#' edge_count(graph, rel = "rel_a")
+#' #> [1] 7
+#'
+#' edge_count(graph, rel = c("rel_a", "rel_b"))
+#' #> [1] 16
 #' }
 #' @export edge_count
 
