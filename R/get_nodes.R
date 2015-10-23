@@ -103,23 +103,35 @@ get_nodes <- function(...,
         return(node_ID)
       }
 
+      if (is.null(type)){
+        node_ID <- c(node_ID, object$nodes_df$nodes)
       }
 
-      node_ID <- c(node_ID, object[,nodes_column])
+      if (!is.null(type)){
+        node_ID <-
+          c(node_ID,
+            object$nodes_df$nodes[which(object$nodes_df$type %in% type)])
+      }
     }
 
     if (object_type == "node_df"){
 
-
+      if (is.null(type)){
+        node_ID <- c(node_ID, object$nodes)
       }
 
-      node_ID <- c(node_ID, object[,nodes_column])
+      if (!is.null(type)){
+        node_ID <-
+          c(node_ID,
+            object$nodes[which(object$type %in% type)])
+      }
+
     }
 
     if (object_type == "edge_df"){
 
-      node_ID <- c(node_ID, unique(c(object[,from_column],
-                                     object[,to_column])))
+      node_ID <- c(node_ID, unique(c(object$from,
+                                     object$to)))
     }
   }
 
