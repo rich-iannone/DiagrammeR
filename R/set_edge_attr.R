@@ -53,7 +53,7 @@ set_edge_attr <- function(x,
   }
 
 
-  if (!(attr %in% colnames(nodes_df))){
+  if (!(attr %in% colnames(edges_df))){
 
     edges_df <- cbind(edges, rep("", nrow(edges_df)))
 
