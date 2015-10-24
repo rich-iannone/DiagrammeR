@@ -72,9 +72,16 @@ set_node_attr <- function(x,
 
   if (attr %in% colnames(nodes_df)){
 
-    nodes_df[which(nodes_df$nodes %in% nodes),ncol(nodes_df)] <- value
-  }
+    if (nodes == "*"){
 
+      nodes_df[,which(colnames(nodes_df) %in% attr)] <- value
+
+    } else {
+
+      nodes_df[which(nodes_df$nodes %in% nodes),
+               which(colnames(nodes_df) %in% attr)] <- value
+    }
+  }
 
   if (!(attr %in% colnames(nodes_df))){
 
@@ -84,7 +91,14 @@ set_node_attr <- function(x,
 
     colnames(nodes_df)[ncol(nodes_df)] <- attr
 
-    nodes_df[which(nodes_df$nodes %in% nodes),ncol(nodes_df)] <- value
+    if (nodes == "*"){
+
+      nodes_df[,ncol(nodes_df)] <- value
+
+    } else {
+
+      nodes_df[which(nodes_df$nodes %in% nodes),ncol(nodes_df)] <- value
+    }
   }
 
   if (object_type == "dgr_graph"){
