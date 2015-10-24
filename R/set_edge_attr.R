@@ -83,7 +83,8 @@ set_edge_attr <- function(x,
   if (attr %in% colnames(edges_df)){
 
     edges_df[which((edges_df$from %in% from) &
-                     (edges_df$to %in% to)),ncol(edges_df)] <- value
+                     (edges_df$to %in% to)),
+             which(colnames(edges_df) %in% attr)] <- value
   }
 
 
