@@ -10,6 +10,40 @@
 #' chosen edges.
 #' @return either a graph object of class \code{dgr_graph} or an edge
 #' data frame, depending on what type of object was supplied to \code{x}.
+#' @examples
+#' \dontrun{
+#' # Create a simple graph
+#' nodes <-
+#'   create_nodes(nodes = c("a", "b", "c", "d"),
+#'                type = "letter",
+#'                label = TRUE,
+#'                value = c(3.5, 2.6, 9.4, 2.7))
+#'
+#' edges <-
+#'   create_edges(from = c("a", "b", "c"),
+#'                to = c("d", "c", "a"),
+#'                rel = "leading_to")
+#'
+#' graph <-
+#'   create_graph(nodes_df = nodes,
+#'                edges_df = edges)
+#'
+#' # Set attribute 'color = "green"' for edges "a" -> "d"
+#' # and "c" -> "a" using the graph object
+#' graph <-
+#'   set_edge_attr(x = graph,
+#'                 from = c("a", "c"),
+#'                 to = c("d", "a"),
+#'                 attr = "color", value = "green")
+#'
+#' # Set attribute 'color = "green"' for edges "a" -> "d"
+#' # and "c" -> "a" using the node data frame
+#' edges <-
+#'   set_edge_attr(x = edges,
+#'                 from = c("a", "c"),
+#'                 to = c("d", "a"),
+#'                 attr = "color", value = "green")
+#' }
 #' @export set_edge_attr
 
 set_edge_attr <- function(x,
