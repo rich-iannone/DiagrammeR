@@ -10,42 +10,31 @@
 #' \dontrun{
 #' # Before getting node ID values, create a simple graph
 #' nodes <-
-#'   create_nodes(nodes = LETTERS,
+#'   create_nodes(nodes = c("a", "b", "c", "d"),
+#'                type = "letter",
 #'                label = TRUE,
-#'                type = c(rep("a_to_g", 7),
-#'                         rep("h_to_p", 9),
-#'                         rep("q_to_x", 8),
-#'                         rep("y_and_z",2)))
+#'                value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' edges <-
-#'   create_edges(from = sample(LETTERS, replace = TRUE),
-#'                to = sample(LETTERS, replace = TRUE),
-#'                rel = "letter_to_letter")
+#'   create_edges(from = c("a", "b", "c"),
+#'                to = c("d", "c", "a"),
+#'                rel = "leading_to")
 #'
 #' graph <-
 #'   create_graph(nodes_df = nodes,
-#'                edges_df = edges,
-#'                graph_attrs = "layout = neato",
-#'                node_attrs = c("fontname = Helvetica",
-#'                               "shape = circle"))
+#'                edges_df = edges)
 #'
 #' # Get a vector of all nodes in a graph
 #' get_nodes(graph)
-#' #> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L"
-#' #> [13] "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X"
-#' #> [25] "Y" "Z"
+#' #> [1] "a" "b" "c" "d"
 #'
 #' # Get a vector of node ID values from a node data frame
 #' get_nodes(nodes)
-#' #> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L"
-#' #> [13] "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X"
-#' #> [25] "Y" "Z"
+#' #> [1] "a" "b" "c" "d"
 #'
 #' # Get a vector of node ID values from an edge data frame
 #' get_nodes(edges)
-#' #> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L"
-#' #> [13] "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X"
-#' #> [25] "Y" "Z"
+#' #> [1] "a" "b" "c" "d"
 #' }
 #' @export get_nodes
 
