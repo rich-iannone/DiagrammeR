@@ -25,4 +25,35 @@ data frame, depending on what type of object was supplied to \code{x}.
 From a graph object of class \code{dgr_graph} or a node
 data frame, set node attribute properties for one or more nodes.
 }
+\examples{
+\dontrun{
+# Create a simple graph
+nodes <-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               type = "letter",
+               label = TRUE,
+               value = c(3.5, 2.6, 9.4, 2.7))
+
+edges <-
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               rel = "leading_to")
+
+graph <-
+  create_graph(nodes_df = nodes,
+               edges_df = edges)
+
+# Set attribute 'color = "green"' for nodes "a" and "c" using
+# the graph object
+graph <-
+  set_node_attr(x = graph, nodes = c("a", "c"),
+                attr = "color", value = "green")
+
+# Set attribute 'color = "green"' for nodes "a" and "c" using
+# the node data frame
+nodes <-
+  set_node_attr(x = nodes, nodes = c("a", "c"),
+                attr = "color", value = "green")
+}
+}
 
