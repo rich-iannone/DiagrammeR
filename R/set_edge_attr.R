@@ -86,11 +86,27 @@ set_edge_attr <- function(x,
 
   if (attr %in% colnames(edges_df)){
 
-    edges_df[which((edges_df$from %in% from) &
-                     (edges_df$to %in% to)),
-             which(colnames(edges_df) %in% attr)] <- value
-  }
+    if (from == "*" & to != "*"){
 
+      edges_df[which(edges_df$to %in% to),
+               which(colnames(edges_df) %in% attr)] <- value
+
+    } else if (from != "*" & to == "*"){
+
+      edges_df[which(edges_df$from %in% from),
+               which(colnames(edges_df) %in% attr)] <- value
+
+    } else if (from == "*" & to == "*"){
+
+      edges_df[,which(colnames(edges_df) %in% attr)] <- value
+
+    } else {
+
+      edges_df[which((edges_df$from %in% from) &
+                       (edges_df$to %in% to)),
+               which(colnames(edges_df) %in% attr)] <- value
+    }
+  }
 
   if (!(attr %in% colnames(edges_df))){
 
@@ -100,8 +116,26 @@ set_edge_attr <- function(x,
 
     colnames(edges_df)[ncol(edges_df)] <- attr
 
-    edges_df[which((edges_df$from %in% from) &
-                     (edges_df$to %in% to)),ncol(edges_df)] <- value
+    if (from == "*" & to != "*"){
+
+      edges_df[which(edges_df$to %in% to),
+               ncol(edges_df)] <- value
+
+    } else if (from != "*" & to == "*"){
+
+      edges_df[which(edges_df$from %in% from),
+               ncol(edges_df)] <- value
+
+    } else if (from == "*" & to == "*"){
+
+      edges_df[,ncol(edges_df)] <- value
+
+    } else {
+
+      edges_df[which((edges_df$from %in% from) &
+                       (edges_df$to %in% to)),
+               ncol(edges_df)] <- value
+    }
   }
 
   if (object_type == "dgr_graph"){
