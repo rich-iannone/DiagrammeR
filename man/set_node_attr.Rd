@@ -15,7 +15,8 @@ using \code{create_graph}, or a node data frame.}
 \item{value}{the value to be set for the chosen attribute for the
 chosen nodes.}
 
-\item{node}{a vector of node IDs.}
+\item{node}{either a vector of node IDs, or, the string "*" to select
+all nodes in the graph or node data frame.}
 }
 \value{
 either a graph object of class \code{dgr_graph} or a node

@@ -10,9 +10,13 @@ set_edge_attr(x, from, to, attr, value)
 \item{x}{either a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}, or an edge data frame.}
 
-\item{from}{a vector of node IDs from which the edge is outgoing.}
+\item{from}{a vector of node IDs from which the edge is outgoing, or,
+the string "*" to select all outgoing nodes in the graph or node data
+frame.}
 
-\item{to}{a vector of node IDs to which the edge is incoming.}
+\item{to}{a vector of node IDs to which the edge is incoming, or,
+the string "*" to select all incoming nodes in the graph or node data
+frame.}
 
 \item{attr}{the name of the attribute to set.}
 
