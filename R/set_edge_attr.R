@@ -110,7 +110,7 @@ set_edge_attr <- function(x,
 
   if (!(attr %in% colnames(edges_df))){
 
-    edges_df <- cbind(edges, rep("", nrow(edges_df)))
+    edges_df <- cbind(edges_df, rep("", nrow(edges_df)))
 
     edges_df[,ncol(edges_df)] <- as.character(edges_df[,ncol(edges_df)])
 
