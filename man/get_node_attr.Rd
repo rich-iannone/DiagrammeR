@@ -32,7 +32,8 @@ nodes <-
 edges <-
   create_edges(from = c("a", "b", "c"),
                to = c("d", "c", "a"),
-               rel = "leading_to")
+               rel = "leading_to",
+               color = c("pink", "blue", "red"))
 
 graph <-
   create_graph(nodes_df = nodes,
