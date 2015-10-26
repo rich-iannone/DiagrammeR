@@ -3,12 +3,10 @@
 #' data frame, set edge attribute properties for one or more edges
 #' @param x either a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}, or an edge data frame.
-#' @param from a vector of node IDs from which the edge is outgoing, or,
-#' the string "*" to select all outgoing nodes in the graph or node data
-#' frame.
-#' @param to a vector of node IDs to which the edge is incoming, or,
-#' the string "*" to select all incoming nodes in the graph or node data
-#' frame.
+#' @param from an optional vector of node IDs from which the edge is outgoing
+#' for filtering list of nodes with outgoing edges in the graph.
+#' @param to an optional vector of node IDs from which the edge is incoming
+#' for filtering list of nodes with incoming edges in the graph.
 #' @param attr the name of the attribute to set.
 #' @param value the value to be set for the chosen attribute for the
 #' chosen edges.
