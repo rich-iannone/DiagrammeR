@@ -74,8 +74,8 @@
 #' @export set_edge_attr
 
 set_edge_attr <- function(x,
-                          from,
-                          to,
+                          from = NULL,
+                          to = NULL,
                           attr,
                           value){
 
