@@ -4,7 +4,7 @@
 \alias{set_node_attr}
 \title{Set node attributes}
 \usage{
-set_node_attr(x, nodes, attr, value)
+set_node_attr(x, nodes = NULL, attr, value)
 }
 \arguments{
 \item{x}{either a graph object of class \code{dgr_graph} that is created
@@ -15,8 +15,8 @@ using \code{create_graph}, or a node data frame.}
 \item{value}{the value to be set for the chosen attribute for the
 chosen nodes.}
 
-\item{node}{either a vector of node IDs, or, the string "*" to select
-all nodes in the graph or node data frame.}
+\item{node}{an optional vector of node IDs for filtering list of
+nodes present in the graph.}
 }
 \value{
 either a graph object of class \code{dgr_graph} or a node
