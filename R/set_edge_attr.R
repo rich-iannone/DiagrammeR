@@ -47,6 +47,29 @@
 #'                 from = c("a", "c"),
 #'                 to = c("d", "a"),
 #'                 attr = "color", value = "green")
+#'
+#' # Set attribute 'color = "blue"' for all edges in graph
+#' graph <-
+#'   set_edge_attr(x = graph,
+#'                 from = "*",
+#'                 to = "*",
+#'                 attr = "color", value = "blue")
+#'
+#' # Set attribute 'color = "pink"' for all edges in graph
+#' # outbound from "a"
+#' graph <-
+#'   set_edge_attr(x = graph,
+#'                 from = "a",
+#'                 to = "*",
+#'                 attr = "color", value = "pink")
+#'
+#' # Set attribute 'color = "black"' for all edges in graph
+#' # inbound to "a"
+#' graph <-
+#'   set_edge_attr(x = graph,
+#'                 from = "*",
+#'                 to = "a",
+#'                 attr = "color", value = "black")
 #' }
 #' @export set_edge_attr
 
