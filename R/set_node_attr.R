@@ -49,7 +49,7 @@
 #' @export set_node_attr
 
 set_node_attr <- function(x,
-                          nodes,
+                          nodes = NULL,
                           attr,
                           value){
 
