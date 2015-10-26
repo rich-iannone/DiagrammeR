@@ -87,8 +87,10 @@ set_edge_attr <- function(x,
     stop("Only one value should be provided.")
   }
 
-  if (length(from) != length(to)){
-    stop("The number of nodes 'from' and 'to' must be the same.")
+  if (!is.null(from) & !is.null(to)){
+    if (length(from) != length(to)){
+      stop("The number of nodes 'from' and 'to' must be the same.")
+    }
   }
 
   if (class(x) == "dgr_graph"){
