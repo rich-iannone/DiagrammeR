@@ -55,6 +55,12 @@ graph <-
 nodes <-
   set_node_attr(x = nodes, nodes = c("a", "c"),
                 attr = "color", value = "green")
+
+#' # Set attribute 'color = "blue"' for all nodes
+# the node data frame
+nodes <-
+  set_node_attr(x = nodes, nodes = "*",
+                attr = "color", value = "blue")
 }
 }
 
