@@ -79,7 +79,7 @@ set_node_attr <- function(x,
 
   if (attr %in% colnames(nodes_df)){
 
-    if (length(nodes) == 1 & nodes[1] == "*"){
+    if (is.null(nodes)){
 
       nodes_df[,which(colnames(nodes_df) %in% attr)] <- value
 
@@ -98,7 +98,7 @@ set_node_attr <- function(x,
 
     colnames(nodes_df)[ncol(nodes_df)] <- attr
 
-    if (length(nodes) == 1 & nodes[1] == "*"){
+    if (is.null(nodes)){
 
       nodes_df[,ncol(nodes_df)] <- value
 
