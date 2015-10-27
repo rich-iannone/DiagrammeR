@@ -12,17 +12,11 @@
 #' nodes <-
 #'   create_nodes(nodes = c("a", "b", "c", "d"),
 #'                type = "letter",
-#'                label = TRUE,
+#'                color = c("red", "green", "grey", "blue"),
 #'                value = c(3.5, 2.6, 9.4, 2.7))
 #'
-#' edges <-
-#'   create_edges(from = c("a", "b", "c"),
-#'                to = c("d", "c", "a"),
-#'                rel = "leading_to")
-#'
 #' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges)
+#'   create_graph(nodes_df = nodes)
 #'
 #' # Get a vector of all nodes in a graph
 #' get_nodes(graph)
@@ -32,9 +26,19 @@
 #' get_nodes(nodes)
 #' #> [1] "a" "b" "c" "d"
 #'
-#' # Get a vector of node ID values from an edge data frame
-#' get_nodes(edges)
-#' #> [1] "a" "b" "c" "d"
+#' # Get a vector of node ID values using a numeric
+#' # comparison (i.e., all nodes with 'value' attribute
+#' # greater than 3)
+#' get_nodes(graph, node_attr = "value",
+#'           comparison = "> 3")
+#' #> [1] "a" "c"
+#'
+#' # Get a vector of node ID values using a regex
+#' # pattern (i.e., all nodes with 'color' attribute
+#' # that begins with "gr")
+#' get_nodes(graph, node_attr = "color",
+#'           regex = "^gr")
+#' #> [1] "b" "c"
 #' }
 #' @export get_nodes
 
