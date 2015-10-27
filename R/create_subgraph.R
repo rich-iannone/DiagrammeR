@@ -103,8 +103,8 @@ create_subgraph <- function(graph,
 
   # Determine which nodes are excluded from this neighborhood
   excluded_nodes <-
-    get_nodes(graph = graph)[which(!(get_nodes(graph = graph) %in%
-                                       nodes_in_neighbourhood))]
+    get_nodes(graph)[which(!(get_nodes(graph) %in%
+                               nodes_in_neighbourhood))]
 
   # Get a node data frame that doesn't contain the excluded nodes
   nodes_df <-
