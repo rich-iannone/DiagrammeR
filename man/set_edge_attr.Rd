@@ -4,19 +4,17 @@
 \alias{set_edge_attr}
 \title{Set edge attributes}
 \usage{
-set_edge_attr(x, from, to, attr, value)
+set_edge_attr(x, from = NULL, to = NULL, attr, value)
 }
 \arguments{
 \item{x}{either a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}, or an edge data frame.}
 
-\item{from}{a vector of node IDs from which the edge is outgoing, or,
-the string "*" to select all outgoing nodes in the graph or node data
-frame.}
+\item{from}{an optional vector of node IDs from which the edge is outgoing
+for filtering list of nodes with outgoing edges in the graph.}
 
-\item{to}{a vector of node IDs to which the edge is incoming, or,
-the string "*" to select all incoming nodes in the graph or node data
-frame.}
+\item{to}{an optional vector of node IDs from which the edge is incoming
+for filtering list of nodes with incoming edges in the graph.}
 
 \item{attr}{the name of the attribute to set.}
 
@@ -58,7 +56,7 @@ graph <-
                 attr = "color", value = "green")
 
 # Set attribute 'color = "green"' for edges "a" -> "d"
-# and "c" -> "a" using the node data frame
+# and "c" -> "a" using the edge data frame
 edges <-
   set_edge_attr(x = edges,
                 from = c("a", "c"),
@@ -68,8 +66,6 @@ edges <-
 # Set attribute 'color = "blue"' for all edges in graph
 graph <-
   set_edge_attr(x = graph,
-                from = "*",
-                to = "*",
                 attr = "color", value = "blue")
 
 # Set attribute 'color = "pink"' for all edges in graph
@@ -77,14 +73,12 @@ graph <-
 graph <-
   set_edge_attr(x = graph,
                 from = "a",
-                to = "*",
                 attr = "color", value = "pink")
 
 # Set attribute 'color = "black"' for all edges in graph
 # inbound to "a"
 graph <-
   set_edge_attr(x = graph,
-                from = "*",
                 to = "a",
                 attr = "color", value = "black")
 }

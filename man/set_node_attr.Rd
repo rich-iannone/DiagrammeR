@@ -59,8 +59,7 @@ nodes <-
 #' # Set attribute 'color = "blue"' for all nodes
 # the node data frame
 nodes <-
-  set_node_attr(x = nodes, nodes = "*",
-                attr = "color", value = "blue")
+  set_node_attr(x = nodes, attr = "color", value = "blue")
 }
 }
 
