@@ -36,7 +36,6 @@ test_that("an empty graph object can be created and such an object is correct", 
   # Expect that the Graphviz DOT code for an empty graph
   # is essentially an empty Graphviz diagram
   expect_match(graph$dot_code, "digraph \\{\n\n\\}")
-
 })
 
 test_that("a graph object with nodes can be created correctly", {
@@ -80,11 +79,10 @@ test_that("a graph object with nodes can be created correctly", {
   expect_true(graph$directed == TRUE)
 
   # Expect that the 'nodes_df' data frame has 7 columns
-  expect_true(ncol(graph$nodes_df) == 7L)
+  expect_true(ncol(graph$nodes_df) == 7)
 
   # Expect that the 'nodes_df' data frame has 4 rows
-  expect_true(nrow(graph$nodes_df) == 4L)
-
+  expect_true(nrow(graph$nodes_df) == 4)
 })
 
 test_that("a graph object can be created with a just an edge data frame", {
@@ -118,16 +116,16 @@ test_that("a graph object can be created with a just an edge data frame", {
   # Expect that the 'nodes_df' component is a data frame
   expect_true(class(graph$edges_df) == "data.frame")
 
-  # Expect that the 'nodes_df' data frame has 1 column
-  expect_true(ncol(graph$nodes_df) == 3L)
+  # Expect that the 'nodes_df' data frame has 3 columns
+  expect_true(ncol(graph$nodes_df) == 3)
 
   # Expect that the 'nodes_df' data frame has 4 rows
-  expect_true(nrow(graph$nodes_df) == 4L)
+  expect_true(nrow(graph$nodes_df) == 4)
 
   # Expect that the 'nodes_df' component contains the node IDs specified
   # in the edge data frame
-  expect_equal(graph$nodes_df$nodes, get_nodes(graph$edges_df))
-
+  expect_equal(graph$nodes_df$nodes,
+               unique(c(graph$edges_df$from, graph$edges_df$to)))
 })
 
 test_that("a graph object with nodes and edges can be created correctly", {
@@ -173,27 +171,26 @@ test_that("a graph object with nodes and edges can be created correctly", {
 
   # Expect that the 'node_attrs' component is a character vector of length 1
   expect_true(class(graph$node_attrs) == "character")
-  expect_equal(length(graph$node_attrs), 1L)
+  expect_equal(length(graph$node_attrs), 1)
 
   # Expect that the 'edge_attrs' component is a character vector of length 2
   expect_true(class(graph$edge_attrs) == "character")
-  expect_equal(length(graph$edge_attrs), 2L)
+  expect_equal(length(graph$edge_attrs), 2)
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
 
   # Expect that the 'nodes_df' data frame has 7 columns
-  expect_true(ncol(graph$nodes_df) == 7L)
+  expect_true(ncol(graph$nodes_df) == 7)
 
   # Expect that the 'nodes_df' data frame has 4 rows
-  expect_true(nrow(graph$nodes_df) == 4L)
+  expect_true(nrow(graph$nodes_df) == 4)
 
   # Expect that the 'edges_df' data frame has 3 columns
-  expect_true(ncol(graph$edges_df) == 3L)
+  expect_true(ncol(graph$edges_df) == 3)
 
   # Expect that the 'edges_df' data frame has 3 rows
-  expect_true(nrow(graph$edges_df) == 3L)
-
+  expect_true(nrow(graph$edges_df) == 3)
 })
 
 test_that("different combinations of inputs can result in a graph", {
@@ -284,5 +281,4 @@ test_that("different combinations of inputs can result in a graph", {
   expect_null(graph_ne$graph_attrs)
   expect_false(is.null(graph_ne$node_attrs))
   expect_false(is.null(graph_ne$edge_attrs))
-
 })
