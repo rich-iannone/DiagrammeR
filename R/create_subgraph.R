@@ -64,14 +64,14 @@ create_subgraph <- function(graph,
       nodes[[i]] <- vector(mode = "character")
 
       nodes[[i]] <-
-        c(as.character(get_edges(graph = graph,
+        c(as.character(get_edges(graph,
                                  return_type = "df")[
-                                   which(get_edges(graph = graph,
+                                   which(get_edges(graph,
                                                    return_type = "df")[,1] ==
                                            starting_node),2]),
-          as.character(get_edges(graph = graph,
+          as.character(get_edges(graph,
                                  return_type = "df")[
-                                   which(get_edges(graph = graph,
+                                   which(get_edges(graph,
                                                    return_type = "df")[,2] ==
                                            starting_node),1]))
     }
@@ -84,14 +84,14 @@ create_subgraph <- function(graph,
 
         nodes[[i]] <-
           c(nodes[[i]],
-            as.character(get_edges(graph = graph,
+            as.character(get_edges(graph,
                                    return_type = "df")[
-                                     which(get_edges(graph = graph,
+                                     which(get_edges(graph,
                                                      return_type = "df")[,1] ==
                                              nodes[[i-1]][j]),2]),
-            as.character(get_edges(graph = graph,
+            as.character(get_edges(graph,
                                    return_type = "df")[
-                                     which(get_edges(graph = graph,
+                                     which(get_edges(graph,
                                                      return_type = "df")[,2] ==
                                              nodes[[i-1]][j]),1]))
       }
