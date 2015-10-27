@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_nodes.R
 \name{get_nodes}
 \alias{get_nodes}
-\title{Get vector of node IDs}
+\title{Get a vector of node ID values}
 \usage{
 get_nodes(x, node_attr = NULL, comparison = NULL, regex = NULL)
 }
@@ -23,7 +23,7 @@ nodes returned.}
 a vector of node ID values.
 }
 \description{
-Obtain a vector of node IDs from a graph object or
+Obtain a vector of node ID values from a graph object or
 a node data frame, optionally using a logical expression or regular
 expression for filtering.
 }

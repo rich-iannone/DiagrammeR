@@ -4,13 +4,21 @@
 \alias{get_edges}
 \title{Get node IDs associated with edges}
 \usage{
-get_edges(..., rel = NULL, return_type = "list")
+get_edges(x, edge_attr = NULL, comparison = NULL, regex = NULL,
+  return_type = "list")
 }
 \arguments{
-\item{...}{a graph object or an edge data frame.}
+\item{x}{either a graph object of class \code{dgr_graph} that is created
+using \code{create_graph} or an edge data frame.}
 
-\item{rel}{an optional character vector of \code{rel} values to filter the
-output of node ID values.}
+\item{edge_attr}{an optional character vector of edge attribute values for
+filtering the edges returned.}
+
+\item{comparison}{an optional logical expression for filtering the edges
+returned.}
+
+\item{regex}{an optional regular expression (regex) for filtering the
+edges returned.}
 
 \item{return_type}{using \code{list} (the default) will provide a list
 object containing vectors of outgoing and incoming node IDs associated
@@ -23,66 +31,62 @@ a list, data frame, or a vector object, depending on the value
 given to \code{return_type}.
 }
 \description{
-Provides information on the node IDs associated with edges
-from a graph object or an edge data frame.
+Obtain a list, data frame, or vector of node IDs from a graph
+object or an edge data frame, optionally using a logical expression or
+regular expression for filtering.
 }
 \examples{
 \dontrun{
-# Before getting node ID values, create a simple graph
+# Before getting edges, create a simple graph
 nodes <-
-  create_nodes(nodes = LETTERS,
-               label = TRUE,
-               type = c(rep("a_to_g", 7),
-                        rep("h_to_p", 9),
-                        rep("q_to_x", 8),
-                        rep("y_and_z", 2)))
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               type = "letter",
+               color = c("red", "green", "grey", "blue"),
+               value = c(3.5, 2.6, 9.4, 2.7))
 
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               rel = c(rep("rel_a", 7),
-                       rep("rel_b", 9),
-                       rep("rel_c", 8),
-                       rep("rel_d", 2)))
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               rel = "leading_to",
+               color = c("pink", "blue", "red"),
+               value = c(3.9, 2.5, 7.3))
 
 graph <-
   create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = neato",
-               node_attrs = c("fontname = Helvetica",
-                              "shape = circle"))
+               edges_df = edges)
 
-# Can get the 'outgoing' and 'incoming' node ID values
-# in a list object
-get_edges(graph, return_type = "list") # the default
+# Get all edges within a graph, returned as a list
+get_edges(graph)
 #> [[1]]
-#>  [1] "A" "H" "W" "U" "I" "M" "U" "T" "I" "R" "O"
-#> [12] "G" "O" "A" "V" "I" "M" "K" "R" "T" "Y" "R"
-#> [23] "M" "L" "H" "V"
-
+#> [1] "a" "b" "c"
+#>
 #> [[2]]
-#>  [1] "Z" "U" "O" "K" "V" "M" "N" "C" "D" "Z" "B"
-#> [12] "G" "U" "Y" "H" "V" "R" "V" "Z" "S" "Q" "I"
-#> [23] "P" "S" "E" "P"
+#> [1] "d" "c" "a"
 
-# Similarly, you can specify that a data frame is given
+# Get all edges within a graph, returned as a data frame
 get_edges(graph, return_type = "df")
-#>    from to
-#> 1     A  Z
-#> 2     H  U
-#> 3     W  O
-#> 4     U  K
-#> 5     I  V
-#>..   ... ..
+#>   from to
+#> 1    a  d
+#> 2    b  c
+#> 3    c  a
 
-# A character string with node IDs can instead be gotten
+# Get all edges within a graph, returned as a vector
 get_edges(graph, return_type = "vector")
-#>  [1] "A -> Z" "H -> U" "W -> O" "U -> K" "I -> V"
-#>  [6] "M -> M" "U -> N" "T -> C" "I -> D" "R -> Z"
-#> [11] "O -> B" "G -> G" "O -> U" "A -> Y" "V -> H"
-#> [16] "I -> V" "M -> R" "K -> V" "R -> Z" "T -> S"
-#> [21] "Y -> Q" "R -> I" "M -> P" "L -> S" "H -> E"
-#> [26] "V -> P"
+#> [1] "a -> d" "b -> c" "c -> a"
+
+# Get a vector of edges using a numeric
+# comparison (i.e., all edges with 'value' attribute
+# greater than 3)
+get_edges(graph, edge_attr = "value",
+          comparison = "> 3",
+          return_type = "vector")
+#> [1] "a -> d" "c -> a"
+
+# Get a vector of edges using a regex pattern (i.e.,
+# all nodes with 'color' attribute that begins with "p")
+get_edges(graph, edge_attr = "color",
+          regex = "^p", return_type = "vector")
+#> [1] "a -> d"
 }
 }
 
