@@ -38,8 +38,10 @@
 #' }
 #' @export get_nodes
 
-get_nodes <- function(...,
-                      type = NULL){
+get_nodes <- function(x,
+                      node_attr = NULL,
+                      comparison = NULL,
+                      regex = NULL){
 
   objects <- list(...)
 
