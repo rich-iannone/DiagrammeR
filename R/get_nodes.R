@@ -43,94 +43,96 @@ get_nodes <- function(x,
                       comparison = NULL,
                       regex = NULL){
 
-  objects <- list(...)
+  if (!is.null(comparison) & !is.null(regex)){
+    stop("A comparison and a regex pattern cannot be used together.")
+  }
 
-  # Determine the length of the 'objects' list
-  length_of_objects <- length(objects)
+  if (class(x) == "dgr_graph"){
 
-  # If there is more than one object supplied, check for existance
-  # of a graph object
-  if (length_of_objects > 1){
+    if (is_graph_empty(x)){
 
-    # Determine the classes of the first two objects
-    class_object_1 <- class(objects[[1]])
-    class_object_2 <- class(objects[[2]])
+      node_ID <- NA
 
-    if (any("dgr_graph" %in% c(class_object_1, class_object_2))){
+      return(node_ID)
 
-      stop("Only a single graph can be supplied.")
+    } else {
+
+      nodes_df <- x$nodes_df
     }
   }
 
-  for (i in 1:length(objects)){
+  if (class(x) == "data.frame"){
 
-    if (i == 1) node_ID <- vector(mode = "character")
+    if (colnames(x)[1] == "nodes"){
 
-    object <- objects[[i]]
-
-    if (class(object) == "dgr_graph"){
-
-      object_type <- "dgr_graph"
-    }
-
-    if (class(object) == "data.frame"){
-
-      if ("nodes" %in% colnames(object)){
-
-        object_type <- "node_df"
-      }
-
-      if (any(c("from", "to") %in% colnames(object))){
-
-        object_type <- "edge_df"
-      }
-    }
-
-    if (object_type == "dgr_graph"){
-
-      if (is_graph_empty(object)){
-
-        node_ID <- NA
-
-        return(node_ID)
-      }
-
-      if (is.null(type)){
-        node_ID <- c(node_ID, object$nodes_df$nodes)
-      }
-
-      if (!is.null(type)){
-        node_ID <-
-          c(node_ID,
-            object$nodes_df$nodes[which(object$nodes_df$type %in% type)])
-      }
-    }
-
-    if (object_type == "node_df"){
-
-      if (is.null(type)){
-        node_ID <- c(node_ID, object$nodes)
-      }
-
-      if (!is.null(type)){
-        node_ID <-
-          c(node_ID,
-            object$nodes[which(object$type %in% type)])
-      }
-
-    }
-
-    if (object_type == "edge_df"){
-
-      node_ID <- c(node_ID, unique(c(object$from,
-                                     object$to)))
+      nodes_df <- x
     }
   }
 
-  all_ID_unique <- ifelse(anyDuplicated(node_ID) == 0, TRUE, FALSE)
+  if (!is.null(node_attr)){
+    if (length(node_attr) > 1){
+      stop("Only one node attribute can be specified.")
+    }
 
-  if (all_ID_unique == TRUE){
-
-    return(node_ID)
+    if (!(node_attr %in% colnames(nodes_df)[-1])){
+      stop("The specified attribute is not availalbe")
+    }
   }
+
+  if (is.null(node_attr)){
+    nodes <- nodes_df$nodes
+  }
+
+  if (!is.null(node_attr)){
+
+    column_number <-
+      which(colnames(nodes_df) %in% node_attr)
+
+    # Filter using a logical expression
+    if (!is.null(comparison) & is.null(regex)){
+
+      if (grepl("^>.*", comparison)){
+        rows_where_true_le <-
+          which(nodes_df[,column_number] >
+                  as.numeric(gsub(">(.*)", "\\1", comparison)))
+      }
+
+      if (grepl("^>=.*", comparison)){
+        rows_where_true_le <-
+          which(nodes_df[,column_number] >=
+                  as.numeric(gsub(">=(.*)", "\\1", comparison)))
+      }
+
+      if (grepl("^<.*", comparison)){
+        rows_where_true_le <-
+          which(nodes_df[,column_number] <
+                  as.numeric(gsub("<(.*)", "\\1", comparison)))
+      }
+
+      if (grepl("^<=.*", comparison)){
+        rows_where_true_le <-
+          which(nodes_df[,column_number] <=
+                  as.numeric(gsub("<=(.*)", "\\1", comparison)))
+      }
+
+      if (grepl("^==.*", comparison)){
+        rows_where_true_le <-
+          which(nodes_df[,column_number] ==
+                  as.numeric(gsub("==(.*)", "\\1", comparison)))
+      }
+
+      nodes <- nodes_df[rows_where_true_le, 1]
+    }
+
+    # Filter using a regex
+    if (is.null(comparison) & !is.null(regex)){
+
+      rows_where_true_regex <-
+        which(grepl(regex, as.character(nodes_df[,column_number])))
+
+      nodes <- nodes_df[rows_where_true_regex, 1]
+    }
+  }
+
+  return(nodes)
 }
