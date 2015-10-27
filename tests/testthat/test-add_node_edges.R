@@ -34,10 +34,10 @@ test_that("adding a node to a graph is possible", {
   expect_true(graph$directed == TRUE)
 
   # Expect that the 'nodes_df' data frame has 3 columns
-  expect_true(ncol(graph$nodes_df) == 3L)
+  expect_true(ncol(graph$nodes_df) == 3)
 
   # Expect that the 'nodes_df' data frame has 2 rows
-  expect_true(nrow(graph$nodes_df) == 2L)
+  expect_true(nrow(graph$nodes_df) == 2)
 
   # Add a node that already exists in the graph
   graph_2 <- add_node(graph, node = "a")
@@ -62,7 +62,7 @@ test_that("adding a node to a graph is possible", {
                       type = "fresh")
 
   # Expect that there will be 3 nodes in the graph
-  expect_equal(node_count(graph_3), 3L)
+  expect_equal(node_count(graph_3), 3)
 
   # Expect that the "type" value will be present for the node
   # in the new graph
@@ -218,10 +218,10 @@ test_that("adding an edge to a graph is possible", {
   expect_true(graph$directed == TRUE)
 
   # Expect that the 'nodes_df' data frame has 3 columns
-  expect_true(ncol(graph$edges_df) == 3L)
+  expect_true(ncol(graph$edges_df) == 3)
 
   # Expect that the 'nodes_df' data frame has 1 row
-  expect_true(nrow(graph$edges_df) == 1L)
+  expect_true(nrow(graph$edges_df) == 1)
 
   # Expect a message when adding an existing edge to the graph
   expect_error(
@@ -272,5 +272,4 @@ test_that("adding a node to a graph is possible", {
   # Expect that the 'nodes' object will be the same as in
   # 'graph_edges_added$nodes_df'
   expect_equal(nodes, graph_edges_added$nodes_df)
-
 })
