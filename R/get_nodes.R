@@ -1,10 +1,11 @@
 #' Get vector of node IDs
-#' @description Provides information on the node IDs from one or several node
-#' data frames, edge data frames, or graph objects.
 #' @param ... a collection of node data frames, edge data frames, or a single
 #' graph object.
 #' @param type an optional character vector of \code{type} values to filter the
 #' node ID values returned.
+#' @description Obtain a vector of node IDs from a graph object or
+#' a node data frame, optionally using a logical expression or regular
+#' expression for filtering.
 #' @return a vector of node ID values.
 #' @examples
 #' \dontrun{
