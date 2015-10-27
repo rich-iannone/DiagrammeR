@@ -1,5 +1,5 @@
-#' Get vector of node IDs
-#' @description Obtain a vector of node IDs from a graph object or
+#' Get a vector of node ID values
+#' @description Obtain a vector of node ID values from a graph object or
 #' a node data frame, optionally using a logical expression or regular
 #' expression for filtering.
 #' @param x either a graph object of class \code{dgr_graph} that is created
