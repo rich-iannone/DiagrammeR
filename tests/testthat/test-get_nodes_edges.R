@@ -47,7 +47,8 @@ test_that("getting node IDs from various objects is possible", {
   # will be greater than the nodes associated with edges (since there
   # will be free nodes with no edges)
   expect_more_than(length(get_nodes(graph)),
-                   length(get_nodes(edges)))
+                   length(unique(c(graph$edges_df$from,
+                                   graph$edges_df$to))))
 })
 
 test_that("getting node IDs associated within a graph's edges is possible", {
