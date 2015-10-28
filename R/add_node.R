@@ -53,13 +53,6 @@ add_node <- function(graph,
     return(graph)
   }
 
-  # Place triple dot vectors in a list
-  node_attributes <- list(...)
-
-  # Determine whether optional node attributes provided
-  node_attributes_provided <-
-    ifelse(length(node_attributes) > 0, TRUE, FALSE)
-
   # Modify graph if only 'from' values provided
   if (!is.null(from) & is.null(to)){
 
@@ -78,31 +71,6 @@ add_node <- function(graph,
                       create_nodes(nodes = node,
                                    label = label,
                                    type = ifelse(is.null(type), "", type)))
-
-      if (node_attributes_provided == TRUE){
-
-        for (i in 1:length(node_attributes)){
-
-          if (names(node_attributes)[i] %in% colnames(combined_nodes)){
-
-            combined_nodes[nrow(combined_nodes),
-                           which(colnames(combined_nodes) ==
-                                   names(node_attributes)[i])] <-
-              node_attributes[i][[1]]
-          }
-
-          if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
-
-            combined_nodes <-
-              cbind(combined_nodes,
-                    c(rep("", length = nrow(combined_nodes) - 1),
-                      node_attributes[i][[1]]))
-
-            colnames(combined_nodes)[ncol(combined_nodes)] <-
-              names(node_attributes)[i]
-          }
-        }
-      }
 
       if (!is.null(graph$edges_df)){
 
@@ -160,52 +128,6 @@ add_node <- function(graph,
                     create_nodes(nodes = node,
                                  label = label,
                                  type = ifelse(is.null(type), "", type)))
-
-    if (node_attributes_provided == TRUE){
-
-      for (i in 1:length(node_attributes)){
-
-        if (names(node_attributes)[i] %in% colnames(combined_nodes)){
-
-          combined_nodes[nrow(combined_nodes),
-                         which(colnames(combined_nodes) ==
-                                 names(node_attributes)[i])] <-
-            node_attributes[i][[1]]
-        }
-
-        if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
-
-          combined_nodes <-
-            cbind(combined_nodes,
-                  c(rep("", length = nrow(combined_nodes) - 1),
-                    node_attributes[i][[1]]))
-
-          colnames(combined_nodes)[ncol(combined_nodes)] <-
-            names(node_attributes)[i]
-        }
-      }
-
-      combined_edges <-
-        combine_edges(graph$edges_df,
-                      create_edges(from = rep(node, length(to)),
-                                   to = to))
-
-      # Create the revised graph object
-      dgr_graph <-
-        create_graph(nodes_df = combined_nodes,
-                     edges_df = combined_edges,
-                     graph_attrs = graph$graph_attrs,
-                     node_attrs = graph$node_attrs,
-                     edge_attrs = graph$edge_attrs,
-                     directed = ifelse(is_graph_directed(graph),
-                                       TRUE, FALSE),
-                     graph_name = graph$graph_name,
-                     graph_time = graph$graph_time,
-                     graph_tz = graph$graph_tz)
-
-      # Create a revised graph and return that graph
-      return(dgr_graph)
-    }
 
     if (!is.null(graph$edges_df)){
 
@@ -271,31 +193,6 @@ add_node <- function(graph,
                       create_nodes(nodes = node,
                                    label = label,
                                    type = ifelse(is.null(type), "", type)))
-
-      if (node_attributes_provided == TRUE){
-
-        for (i in 1:length(node_attributes)){
-
-          if (names(node_attributes)[i] %in% colnames(combined_nodes)){
-
-            combined_nodes[nrow(combined_nodes),
-                           which(colnames(combined_nodes) ==
-                                   names(node_attributes)[i])] <-
-              node_attributes[i][[1]]
-          }
-
-          if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
-
-            combined_nodes <-
-              cbind(combined_nodes,
-                    c(rep("", length = nrow(combined_nodes) - 1),
-                      node_attributes[i][[1]]))
-
-            colnames(combined_nodes)[ncol(combined_nodes)] <-
-              names(node_attributes)[i]
-          }
-        }
-      }
 
       if (!is.null(graph$edges_df)){
 
@@ -381,62 +278,19 @@ add_node <- function(graph,
       }
     }
 
-    if (node_attributes_provided == TRUE){
+    # Create a revised graph and return that graph
+    dgr_graph <-
+      create_graph(nodes_df = combined_nodes,
+                   edges_df = graph$edges_df,
+                   graph_attrs = graph$graph_attrs,
+                   node_attrs = graph$node_attrs,
+                   edge_attrs = graph$edge_attrs,
+                   directed = ifelse(is_graph_directed(graph),
+                                     TRUE, FALSE),
+                   graph_name = graph$graph_name,
+                   graph_time = graph$graph_time,
+                   graph_tz = graph$graph_tz)
 
-      for (i in 1:length(node_attributes)){
-
-        if (names(node_attributes)[i] %in% colnames(combined_nodes)){
-
-          combined_nodes[nrow(combined_nodes),
-                         which(colnames(combined_nodes) ==
-                                 names(node_attributes)[i])] <-
-            node_attributes[i][[1]]
-        }
-
-        if (!(names(node_attributes)[i] %in% colnames(combined_nodes))){
-
-          combined_nodes <-
-            cbind(combined_nodes,
-                  c(rep("", length = nrow(combined_nodes) - 1),
-                    node_attributes[i][[1]]))
-
-          colnames(combined_nodes)[ncol(combined_nodes)] <-
-            names(node_attributes)[i]
-        }
-      }
-
-      # Create a revised graph and return that graph
-      dgr_graph <-
-        create_graph(nodes_df = combined_nodes,
-                     edges_df = graph$edges_df,
-                     graph_attrs = graph$graph_attrs,
-                     node_attrs = graph$node_attrs,
-                     edge_attrs = graph$edge_attrs,
-                     directed = ifelse(is_graph_directed(graph),
-                                       TRUE, FALSE),
-                     graph_name = graph$graph_name,
-                     graph_time = graph$graph_time,
-                     graph_tz = graph$graph_tz)
-
-      return(dgr_graph)
-    }
-
-    if (node_attributes_provided == FALSE){
-
-      # Create a revised graph and return that graph
-      dgr_graph <-
-        create_graph(nodes_df = combined_nodes,
-                     edges_df = graph$edges_df,
-                     graph_attrs = graph$graph_attrs,
-                     node_attrs = graph$node_attrs,
-                     edge_attrs = graph$edge_attrs,
-                     directed = ifelse(is_graph_directed(graph),
-                                       TRUE, FALSE),
-                     graph_name = graph$graph_name,
-                     graph_time = graph$graph_time,
-                     graph_tz = graph$graph_tz)
-
-      return(dgr_graph)
-    }
+    return(dgr_graph)
   }
 }
