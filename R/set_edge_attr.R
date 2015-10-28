@@ -7,7 +7,7 @@
 #' for filtering list of nodes with outgoing edges in the graph.
 #' @param to an optional vector of node IDs from which the edge is incoming
 #' for filtering list of nodes with incoming edges in the graph.
-#' @param attr the name of the attribute to set.
+#' @param edge_attr the name of the attribute to set.
 #' @param value the value to be set for the chosen attribute for the
 #' chosen edges.
 #' @return either a graph object of class \code{dgr_graph} or an edge
@@ -36,7 +36,7 @@
 #'   set_edge_attr(x = graph,
 #'                 from = c("a", "c"),
 #'                 to = c("d", "a"),
-#'                 attr = "color", value = "green")
+#'                 edge_attr = "color", value = "green")
 #'
 #' # Set attribute 'color = "green"' for edges "a" -> "d"
 #' # and "c" -> "a" using the edge data frame
@@ -44,36 +44,36 @@
 #'   set_edge_attr(x = edges,
 #'                 from = c("a", "c"),
 #'                 to = c("d", "a"),
-#'                 attr = "color", value = "green")
+#'                 edge_attr = "color", value = "green")
 #'
 #' # Set attribute 'color = "blue"' for all edges in graph
 #' graph <-
 #'   set_edge_attr(x = graph,
-#'                 attr = "color", value = "blue")
+#'                 edge_attr = "color", value = "blue")
 #'
 #' # Set attribute 'color = "pink"' for all edges in graph
 #' # outbound from "a"
 #' graph <-
 #'   set_edge_attr(x = graph,
 #'                 from = "a",
-#'                 attr = "color", value = "pink")
+#'                 edge_attr = "color", value = "pink")
 #'
 #' # Set attribute 'color = "black"' for all edges in graph
 #' # inbound to "a"
 #' graph <-
 #'   set_edge_attr(x = graph,
 #'                 to = "a",
-#'                 attr = "color", value = "black")
+#'                 edge_attr = "color", value = "black")
 #' }
 #' @export set_edge_attr
 
 set_edge_attr <- function(x,
                           from = NULL,
                           to = NULL,
-                          attr,
+                          edge_attr,
                           value){
 
-  if (attr == "from" | attr == "to"){
+  if (edge_attr == "from" | edge_attr == "to"){
     stop("You cannot alter values associated with node IDs.")
   }
 
@@ -103,37 +103,37 @@ set_edge_attr <- function(x,
     }
   }
 
-  if (attr %in% colnames(edges_df)){
+  if (edge_attr %in% colnames(edges_df)){
 
     if (is.null(from) & !is.null(to)){
 
       edges_df[which(edges_df$to %in% to),
-               which(colnames(edges_df) %in% attr)] <- value
+               which(colnames(edges_df) %in% edge_attr)] <- value
 
     } else if (!is.null(from) & is.null(to)){
 
       edges_df[which(edges_df$from %in% from),
-               which(colnames(edges_df) %in% attr)] <- value
+               which(colnames(edges_df) %in% edge_attr)] <- value
 
     } else if (is.null(from) & is.null(to)){
 
-      edges_df[,which(colnames(edges_df) %in% attr)] <- value
+      edges_df[,which(colnames(edges_df) %in% edge_attr)] <- value
 
     } else {
 
       edges_df[which((edges_df$from %in% from) &
                        (edges_df$to %in% to)),
-               which(colnames(edges_df) %in% attr)] <- value
+               which(colnames(edges_df) %in% edge_attr)] <- value
     }
   }
 
-  if (!(attr %in% colnames(edges_df))){
+  if (!(edge_attr %in% colnames(edges_df))){
 
     edges_df <- cbind(edges_df, rep("", nrow(edges_df)))
 
     edges_df[,ncol(edges_df)] <- as.character(edges_df[,ncol(edges_df)])
 
-    colnames(edges_df)[ncol(edges_df)] <- attr
+    colnames(edges_df)[ncol(edges_df)] <- edge_attr
 
     if (is.null(from) & !is.null(to)){
 

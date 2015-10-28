@@ -5,7 +5,7 @@
 #' using \code{create_graph}, or a node data frame.
 #' @param nodes an optional vector of node IDs for filtering list of
 #' nodes present in the graph.
-#' @param attr the name of the attribute to set.
+#' @param node_attr the name of the attribute to set.
 #' @param value the value to be set for the chosen attribute for the
 #' chosen nodes.
 #' @return either a graph object of class \code{dgr_graph} or a node
@@ -32,27 +32,27 @@
 #' # the graph object
 #' graph <-
 #'   set_node_attr(x = graph, nodes = c("a", "c"),
-#'                 attr = "color", value = "green")
+#'                 node_attr = "color", value = "green")
 #'
 #' # Set attribute 'color = "green"' for nodes "a" and "c" using
 #' # the node data frame
 #' nodes <-
 #'   set_node_attr(x = nodes, nodes = c("a", "c"),
-#'                 attr = "color", value = "green")
+#'                 node_attr = "color", value = "green")
 #'
 #' #' # Set attribute 'color = "blue"' for all nodes
 #' # the node data frame
 #' nodes <-
-#'   set_node_attr(x = nodes, attr = "color", value = "blue")
+#'   set_node_attr(x = nodes, node_attr = "color", value = "blue")
 #' }
 #' @export set_node_attr
 
 set_node_attr <- function(x,
                           nodes = NULL,
-                          attr,
+                          node_attr,
                           value){
 
-  if (attr == "nodes"){
+  if (node_attr == "nodes"){
     stop("You cannot change the node ID.")
   }
 
@@ -76,26 +76,26 @@ set_node_attr <- function(x,
     }
   }
 
-  if (attr %in% colnames(nodes_df)){
+  if (node_attr %in% colnames(nodes_df)){
 
     if (is.null(nodes)){
 
-      nodes_df[,which(colnames(nodes_df) %in% attr)] <- value
+      nodes_df[,which(colnames(nodes_df) %in% node_attr)] <- value
 
     } else {
 
       nodes_df[which(nodes_df$nodes %in% nodes),
-               which(colnames(nodes_df) %in% attr)] <- value
+               which(colnames(nodes_df) %in% node_attr)] <- value
     }
   }
 
-  if (!(attr %in% colnames(nodes_df))){
+  if (!(node_attr %in% colnames(nodes_df))){
 
     nodes_df <- cbind(nodes_df, rep("", nrow(nodes_df)))
 
     nodes_df[,ncol(nodes_df)] <- as.character(nodes_df[,ncol(nodes_df)])
 
-    colnames(nodes_df)[ncol(nodes_df)] <- attr
+    colnames(nodes_df)[ncol(nodes_df)] <- node_attr
 
     if (is.null(nodes)){
 
