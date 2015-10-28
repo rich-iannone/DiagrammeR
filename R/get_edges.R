@@ -107,7 +107,7 @@ get_edges <- function(x,
 
   if (!is.null(edge_attr)){
     if (length(edge_attr) > 1){
-      stop("Only one node attribute can be specified.")
+      stop("Only one edge attribute can be specified.")
     }
 
     if (!(edge_attr %in% colnames(edges_df)[-(1:2)])){
