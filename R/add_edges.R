@@ -6,7 +6,7 @@
 #' @param edges_df an edge data frame that is created using \code{create_edges}.
 #' @param from a vector of the outgoing nodes from which each edge is connected.
 #' @param to a vector of the incoming nodes to which each edge is connected.
-#' @param rel a string specifying the relationship between the
+#' @param rel an optional string specifying the relationship between the
 #' connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
