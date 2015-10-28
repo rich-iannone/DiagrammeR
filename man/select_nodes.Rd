@@ -8,6 +8,9 @@ select_nodes(graph, nodes = NULL, node_attr = NULL, comparison = NULL,
   regex = NULL, set_op = "union")
 }
 \arguments{
+\item{graph}{a graph object of class \code{dgr_graph} that is created
+using \code{create_graph}.}
+
 \item{nodes}{an optional vector of node IDs for filtering list of
 nodes present in the graph.}
 
@@ -22,9 +25,6 @@ nodes returned.}
 
 \item{set_op}{an option to perform a set union, intersection, or
 difference on the previous selection, if it exists.}
-
-\item{x}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
