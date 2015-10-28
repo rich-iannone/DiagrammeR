@@ -3,7 +3,7 @@
 #' data frame, set node attribute properties for one or more nodes.
 #' @param x either a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}, or a node data frame.
-#' @param node an optional vector of node IDs for filtering list of
+#' @param nodes an optional vector of node IDs for filtering list of
 #' nodes present in the graph.
 #' @param attr the name of the attribute to set.
 #' @param value the value to be set for the chosen attribute for the
