@@ -1,5 +1,5 @@
 #' Create a subgraph based on a selection of nodes or edges
-#' @description Create a subgraph based on a selection of nodes or edges\
+#' @description Create a subgraph based on a selection of nodes or edges
 #' extant in the graph object.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
