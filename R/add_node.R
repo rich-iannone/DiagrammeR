@@ -37,19 +37,16 @@ add_node <- function(graph,
 
   # Stop function if node not a single value
   if (node_is_single_value == FALSE){
-
     stop("Only a single node can be added.")
   }
 
   # Determine whether node to add is already in graph
   if (node_is_single_value == TRUE){
-
     can_add_node_id <-
       ifelse(!node_present(graph = graph, node = node), TRUE, FALSE)
   }
 
   if (can_add_node_id == FALSE){
-
     return(graph)
   }
 
@@ -177,12 +174,10 @@ add_node <- function(graph,
     to_nodes_available <- ifelse(all(to %in% get_nodes(graph)), TRUE, FALSE)
 
     if (from_nodes_available == FALSE){
-
       stop("The nodes from which edges should be applied to the new node are not available.")
     }
 
     if (to_nodes_available == FALSE){
-
       stop("The nodes to which edges should be applied from the new node are not available.")
     }
 
@@ -196,37 +191,22 @@ add_node <- function(graph,
 
       if (!is.null(graph$edges_df)){
 
-        combined_edges_1 <-
+        combined_edges <-
           combine_edges(graph$edges_df,
                         create_edges(from = from,
-                                     to = rep(node, length(from))))
-      }
-
-      if (is.null(graph$edges_df)){
-
-        combined_edges_1 <-
-          create_edges(from = from,
-                       to = rep(node, length(from)))
-      }
-
-      if (!is.null(graph$edges_df)){
-
-        combined_edges_2 <-
-          combine_edges(combined_edges,
+                                     to = rep(node, length(from))),
                         create_edges(from = rep(node, length(to)),
                                      to = to))
       }
 
       if (is.null(graph$edges_df)){
 
-        combined_edges_2 <-
-          create_edges(from = rep(node, length(to)),
-                       to = to)
+        combined_edges <-
+          combine_edges(create_edges(from = from,
+                                     to = rep(node, length(from))),
+                        create_edges(from = rep(node, length(to)),
+                                     to = to))
       }
-
-      combined_edges <-
-        combine_edges(combined_edges_1,
-                      combined_edges_2)
 
       # Create the revised graph object
       dgr_graph <-
