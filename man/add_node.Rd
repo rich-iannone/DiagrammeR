@@ -4,8 +4,7 @@
 \alias{add_node}
 \title{Add a node to an existing graph object}
 \usage{
-add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL,
-  ...)
+add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created using
@@ -25,8 +24,6 @@ Setting to \code{TRUE} ascribes the node ID to the label. Setting to
 
 \item{type}{an optional string that describes the entity type for the node
 to be added.}
-
-\item{...}{one or more vectors pertaining to node attributes.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
