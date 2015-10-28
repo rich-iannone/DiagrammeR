@@ -84,7 +84,7 @@ get_edges <- function(x,
 
   if (class(x) == "dgr_graph"){
 
-    if (is_graph_empty(x)){
+    if (is_graph_empty(x) | is.null(x$edges_df)){
 
       edges <- NA
 
