@@ -13,41 +13,6 @@
 #' @param set_op an option to perform a set union, intersection, or
 #' difference on the previous selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
-#' @examples
-#' \dontrun{
-#' # Create a simple graph
-#' nodes <-
-#'   create_nodes(nodes = c("a", "b", "c", "d"),
-#'                type = "letter",
-#'                label = TRUE,
-#'                value = c(3.5, 2.6, 9.4, 2.7))
-#'
-#' edges <-
-#'   create_edges(from = c("a", "b", "c"),
-#'                to = c("d", "c", "a"),
-#'                rel = "leading_to")
-#'
-#' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges)
-#'
-#' # Set attribute 'color = "green"' for nodes "a" and "c" using
-#' # the graph object
-#' graph <-
-#'   set_node_attr(x = graph, nodes = c("a", "c"),
-#'                 attr = "color", value = "green")
-#'
-#' # Set attribute 'color = "green"' for nodes "a" and "c" using
-#' # the node data frame
-#' nodes <-
-#'   set_node_attr(x = nodes, nodes = c("a", "c"),
-#'                 attr = "color", value = "green")
-#'
-#' #' # Set attribute 'color = "blue"' for all nodes
-#' # the node data frame
-#' nodes <-
-#'   set_node_attr(x = nodes, attr = "color", value = "blue")
-#' }
 #' @export select_nodes
 
 select_nodes <- function(graph,
