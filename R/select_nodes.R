@@ -1,6 +1,6 @@
 #' Select nodes
 #' @description Select nodes from a graph object of class \code{dgr_graph}.
-#' @param x a graph object of class \code{dgr_graph} that is created
+#' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @param nodes an optional vector of node IDs for filtering list of
 #' nodes present in the graph.
