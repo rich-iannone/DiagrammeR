@@ -115,7 +115,7 @@ get_edges <- function(x,
     }
   }
 
-  if (is.null(node_attr)){
+  if (is.null(edge_attr)){
     from <- edges_df$from
     to <- edges_df$to
   }
