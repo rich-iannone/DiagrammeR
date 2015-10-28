@@ -13,7 +13,6 @@
 #' \code{FALSE} yields a blank label.
 #' @param type an optional string that describes the entity type for the node
 #' to be added.
-#' @param ... one or more vectors pertaining to node attributes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -31,8 +30,7 @@ add_node <- function(graph,
                      from = NULL,
                      to = NULL,
                      label = TRUE,
-                     type = NULL,
-                     ...){
+                     type = NULL){
 
   # Verify that 'node' is given as a single value
   node_is_single_value <- ifelse(length(node) == 1, TRUE, FALSE)
