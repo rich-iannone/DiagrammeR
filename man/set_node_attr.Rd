@@ -10,13 +10,13 @@ set_node_attr(x, nodes = NULL, attr, value)
 \item{x}{either a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}, or a node data frame.}
 
+\item{nodes}{an optional vector of node IDs for filtering list of
+nodes present in the graph.}
+
 \item{attr}{the name of the attribute to set.}
 
 \item{value}{the value to be set for the chosen attribute for the
 chosen nodes.}
-
-\item{node}{an optional vector of node IDs for filtering list of
-nodes present in the graph.}
 }
 \value{
 either a graph object of class \code{dgr_graph} or a node
