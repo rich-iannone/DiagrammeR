@@ -14,7 +14,7 @@ using \code{create_graph}.}
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Create a subgraph based on a selection of nodes or edges\
+Create a subgraph based on a selection of nodes or edges
 extant in the graph object.
 }
 
