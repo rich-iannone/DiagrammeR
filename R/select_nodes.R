@@ -130,6 +130,10 @@ select_nodes <- function(graph,
   # Incorporate selected nodes into graph's selection section
   if (set_op == "union"){
     nodes_combined <- union(nodes_prev_selection, nodes_selected)
+  } else if (set_op == "intersect"){
+    nodes_combined <- intersect(nodes_prev_selection, nodes_selected)
+  } else if (set_op == "difference"){
+    nodes_combined <- setdiff(nodes_prev_selection, nodes_selected)
   }
 
   graph$selection$nodes <- nodes_combined
