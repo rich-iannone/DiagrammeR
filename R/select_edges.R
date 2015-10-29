@@ -161,8 +161,11 @@ select_edges <- function(graph,
 
   # Incorporate selected edges into graph's selection section
   if (set_op == "union"){
-
     edges_combined <- union(edges_prev_selection, edges_selected)
+  } else if (set_op == "intersect"){
+    edges_combined <- intersect(edges_prev_selection, edges_selected)
+  } else if (set_op == "difference"){
+    edges_combined <- setdiff(edges_prev_selection, edges_selected)
   }
 
   from_combined <- gsub("\\s", "",
