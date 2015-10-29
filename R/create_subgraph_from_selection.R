@@ -26,6 +26,22 @@ create_subgraph_from_selection <- function(graph){
                              graph$edges_df$to %in% selection_nodes),]
   }
 
+  # Filter the edges in the graph
+  if (!is.null(graph$selection$edges)){
+
+    selection_from <- graph$selection$edges$from
+    selection_to <- graph$selection$edges$to
+
+    selection_edges_df <-
+      graph$edges_df[which(graph$edges_df$from %in% selection_from &
+                             graph$edges_df$to %in% selection_to),]
+
+    selection_nodes_df <-
+      graph$nodes_df[which(graph$nodes_df$nodes %in%
+                             unique(c(selection_edges_df$from,
+                                      selection_edges_df$to))),]
+  }
+
   # Create a subgraph
   subgraph <-
     create_graph(nodes_df = selection_nodes_df,
