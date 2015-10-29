@@ -57,8 +57,9 @@ select_edges <- function(graph,
         stop("One of more of the incoming nodes specified are not part of an edge.")
       }
 
-      edges_df <-
-        edges_df[which(edges_df$to %in% to),]
+      edges_selected <-
+        get_edges(edges_df[which(edges_df$to %in% to),],
+                  return_type = "vector")
 
     } else if (!is.null(from) & is.null(to)){
 
@@ -66,8 +67,9 @@ select_edges <- function(graph,
         stop("One of more of the outgoing nodes specified are not part of an edge.")
       }
 
-      edges_df <-
-        edges_df[which(edges_df$from %in% from),]
+      edges_selected <-
+        get_edges(edges_df[which(edges_df$from %in% from),],
+                  return_type = "vector")
 
     } else if (is.null(from) & is.null(to)){
 
@@ -78,18 +80,16 @@ select_edges <- function(graph,
       if (any(!(to %in% edges_df$to))){
         stop("One of more of the incoming nodes specified are not part of an edge.")
       }
-
-      edges_df <- edges_df
+      edges_selected <-
+        get_edges(edges_df, return_type = "vector")
 
     } else {
 
-      edges_df <-
-        edges_df[which((edges_df$from %in% from) &
-                         (edges_df$to %in% to)),]
+      edges_selected <-
+        get_edges(edges_df[which((edges_df$from %in% from) &
+                                   (edges_df$to %in% to)),],
+                  return_type = "vector")
     }
-
-    from_selected <- edges_df$from
-    to_selected <- edges_df$to
   }
 
   if (!is.null(edge_attr)){
@@ -102,36 +102,33 @@ select_edges <- function(graph,
 
       if (grepl("^>.*", comparison)){
         rows_where_true_le <-
-          which(edges_df[,column_number] >
+          which(as.numeric(edges_df[,column_number]) >
                   as.numeric(gsub(">(.*)", "\\1", comparison)))
       }
 
-      if (grepl("^>=.*", comparison)){
-        rows_where_true_le <-
-          which(edges_df[,column_number] >=
-                  as.numeric(gsub(">=(.*)", "\\1", comparison)))
-      }
 
       if (grepl("^<.*", comparison)){
         rows_where_true_le <-
-          which(edges_df[,column_number] <
+          which(as.numeric(edges_df[,column_number]) <
                   as.numeric(gsub("<(.*)", "\\1", comparison)))
       }
 
-      if (grepl("^<=.*", comparison)){
-        rows_where_true_le <-
-          which(edges_df[,column_number] <=
-                  as.numeric(gsub("<=(.*)", "\\1", comparison)))
-      }
 
       if (grepl("^==.*", comparison)){
         rows_where_true_le <-
-          which(edges_df[,column_number] ==
+          which(as.numeric(edges_df[,column_number]) ==
                   as.numeric(gsub("==(.*)", "\\1", comparison)))
       }
 
-      from_selected <- edges_df[rows_where_true_le, 1]
-      to_selected <- edges_df[rows_where_true_le, 2]
+      if (grepl("^!=.*", comparison)){
+        rows_where_true_le <-
+          which(as.numeric(edges_df[,column_number]) !=
+                  as.numeric(gsub("!=(.*)", "\\1", comparison)))
+      }
+
+      edges_selected <-
+        get_edges(edges_df[rows_where_true_le, ],
+                  return_type = "vector")
     }
 
     # Filter using a regex
@@ -140,28 +137,33 @@ select_edges <- function(graph,
       rows_where_true_regex <-
         which(grepl(regex, as.character(edges_df[,column_number])))
 
-      from_selected <- edges_df[rows_where_true_regex, 1]
-      to_selected <- edges_df[rows_where_true_regex, 2]
+      edges_selected <-
+        get_edges(edges_df[rows_where_true_regex, ],
+                  return_type = "vector")
     }
   }
 
   # Obtain vectors of node IDs associated with edges already present
   if (!is.null(graph$selection)){
     if (!is.null(graph$selection$edges)){
-      from_prev_selection <- graph$selection$edges$from
-      to_prev_selection <- graph$selection$edges$to
+      edges_prev_selection <-
+        get_edges(graph$selection$edges, return_type = "vector")
     }
   } else {
-    from_prev_selection <- vector(mode = "character")
-    to_prev_selection <- vector(mode = "character")
+    edges_prev_selection <- vector(mode = "character")
   }
 
   # Incorporate selected edges into graph's selection section
   if (set_op == "union"){
 
-    from_combined <- union(from_prev_selection, from_selected)
-    to_combined <- union(to_prev_selection, to_selected)
+    edges_combined <- union(edges_prev_selection, edges_selected)
   }
+
+  from_combined <- gsub("\\s", "",
+                        gsub("(.*)(->|--)(.*)", "\\1", edges_combined))
+
+  to_combined <- gsub("\\s", "",
+                      gsub("(.*)(->|--)(.*)", "\\3", edges_combined))
 
   graph$selection$edges$from <- from_combined
   graph$selection$edges$to <- to_combined
