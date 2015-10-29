@@ -145,7 +145,7 @@ select_edges <- function(graph,
     }
   }
 
-  # Obtain vector of node IDs selection of nodes already present
+  # Obtain vectors of node IDs associated with edges already present
   if (!is.null(graph$selection)){
     if (!is.null(graph$selection$edges)){
       from_prev_selection <- graph$selection$edges$from
@@ -156,8 +156,9 @@ select_edges <- function(graph,
     to_prev_selection <- vector(mode = "character")
   }
 
-  # Incorporate selected nodes into graph's selection section
+  # Incorporate selected edges into graph's selection section
   if (set_op == "union"){
+
     from_combined <- union(from_prev_selection, from_selected)
     to_combined <- union(to_prev_selection, to_selected)
   }
