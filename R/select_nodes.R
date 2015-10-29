@@ -10,8 +10,10 @@
 #' returned.
 #' @param regex an optional regular expression (regex) for filtering the
 #' nodes returned.
-#' @param set_op an option to perform a set union, intersection, or
-#' difference on the previous selection, if it exists.
+#' @param set_op the set operation to perform upon consecutive selections
+#' of graph nodes. This can either be as a \code{union} (the default), as an
+#' \code{intersection}, or, as a \code{difference} on the previous selection,
+#' if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export select_nodes
 
