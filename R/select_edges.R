@@ -146,8 +146,14 @@ select_edges <- function(graph,
   # Obtain vectors of node IDs associated with edges already present
   if (!is.null(graph$selection)){
     if (!is.null(graph$selection$edges)){
+      from_prev_selection <- graph$selection$edges$from
+      to_prev_selection <- graph$selection$edges$to
+
       edges_prev_selection <-
-        get_edges(graph$selection$edges, return_type = "vector")
+        sapply(1:length(from_prev_selection),
+               function(x) paste(from_prev_selection[x],
+                                 "->",
+                                 to_prev_selection[x]))
     }
   } else {
     edges_prev_selection <- vector(mode = "character")
