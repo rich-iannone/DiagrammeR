@@ -50,6 +50,44 @@ select_edges <- function(graph,
   }
 
   if (is.null(edge_attr)){
+
+    if (is.null(from) & !is.null(to)){
+
+      if (any(!(to %in% edges_df$to))){
+        stop("One of more of the incoming nodes specified are not part of an edge.")
+      }
+
+      edges_df <-
+        edges_df[which(edges_df$to %in% to),]
+
+    } else if (!is.null(from) & is.null(to)){
+
+      if (any(!(from %in% edges_df$from))){
+        stop("One of more of the outgoing nodes specified are not part of an edge.")
+      }
+
+      edges_df <-
+        edges_df[which(edges_df$from %in% from),]
+
+    } else if (is.null(from) & is.null(to)){
+
+      if (any(!(from %in% edges_df$from))){
+        stop("One of more of the outgoing nodes specified are not part of an edge.")
+      }
+
+      if (any(!(to %in% edges_df$to))){
+        stop("One of more of the incoming nodes specified are not part of an edge.")
+      }
+
+      edges_df <- edges_df
+
+    } else {
+
+      edges_df <-
+        edges_df[which((edges_df$from %in% from) &
+                         (edges_df$to %in% to)),]
+    }
+
     from_selected <- edges_df$from
     to_selected <- edges_df$to
   }
