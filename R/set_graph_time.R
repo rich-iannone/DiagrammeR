@@ -9,8 +9,8 @@
 #' @export set_graph_time
 
 set_graph_time <- function(graph,
-                           time,
-                           tz){
+                           time = NULL,
+                           tz = NULL){
 
   dgr_graph <-
     create_graph(nodes_df = graph$nodes_df,
