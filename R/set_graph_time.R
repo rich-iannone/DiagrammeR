@@ -36,34 +36,18 @@ set_graph_time <- function(graph,
     tz <- "GMT"
   }
 
-  if (!is.null(tz)){
-    dgr_graph <-
-      create_graph(nodes_df = graph$nodes_df,
-                   edges_df = graph$nodes_df,
-                   graph_attrs = graph$graph_attrs,
-                   node_attrs = graph$node_attrs,
-                   edge_attrs = graph$edge_attrs,
-                   directed = ifelse(is_graph_directed(graph),
-                                     TRUE, FALSE),
-                   graph_name = graph$graph_name,
-                   graph_time = ifelse(!is.null(time),
-                                       time, graph$graph_time),
-                   graph_tz = tz)
-  } else {
-
-    dgr_graph <-
-      create_graph(nodes_df = graph$nodes_df,
-                   edges_df = graph$nodes_df,
-                   graph_attrs = graph$graph_attrs,
-                   node_attrs = graph$node_attrs,
-                   edge_attrs = graph$edge_attrs,
-                   directed = ifelse(is_graph_directed(graph),
-                                     TRUE, FALSE),
-                   graph_name = graph$graph_name,
-                   graph_time = ifelse(!is.null(time),
-                                       time, graph$graph_time),
-                   graph_tz = graph$graph_tz)
-  }
+  dgr_graph <-
+    create_graph(nodes_df = graph$nodes_df,
+                 edges_df = graph$nodes_df,
+                 graph_attrs = graph$graph_attrs,
+                 node_attrs = graph$node_attrs,
+                 edge_attrs = graph$edge_attrs,
+                 directed = ifelse(is_graph_directed(graph),
+                                   TRUE, FALSE),
+                 graph_name = graph$graph_name,
+                 graph_time = ifelse(!is.null(time),
+                                     time, graph$graph_time),
+                 graph_tz = tz)
 
   if (!is.null(graph$selection)){
     dgr_graph$selection <- graph$selection
