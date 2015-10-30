@@ -13,7 +13,8 @@ set_graph_time <- function(graph,
                            tz = NULL){
 
   if (is.null(time) & is.null(tz)){
-    stop("No values provided for `time` or `tz`.")
+    time <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
+    tz <- Sys.timezone()
   }
 
   if (class(time)[1] == "POSIXct"){
