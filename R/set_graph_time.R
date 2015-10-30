@@ -12,6 +12,10 @@ set_graph_time <- function(graph,
                            time = NULL,
                            tz = NULL){
 
+  if (is.null(time) & is.null(tz)){
+    stop("No values provided for `time` or `tz`.")
+  }
+
   if (class(time)[1] == "POSIXct"){
 
     if (!is.null(attr(time, "tzone"))){
