@@ -45,8 +45,8 @@ set_edge_attr_with_selection <- function(graph,
             "->",
             graph$selection$edges$to)
 
-    graph$edges_df[which(graph_edges %in% selection_edges),
-                   which(colnames(edges_df) %in% edge_attr)] <- value
+    edges_df[which(graph_edges %in% selection_edges),
+             which(colnames(edges_df) %in% edge_attr)] <- value
   }
 
   if (!(edge_attr %in% colnames(edges_df))){
@@ -67,8 +67,8 @@ set_edge_attr_with_selection <- function(graph,
             "->",
             graph$selection$edges$to)
 
-    graph$edges_df[which(graph_edges %in% selection_edges),
-                   ncol(edges_df)] <- value
+    edges_df[which(graph_edges %in% selection_edges),
+             ncol(edges_df)] <- value
   }
 
   # Create new graph object while retaining the selection
