@@ -3,6 +3,48 @@
 #' extant in the graph object.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
+#' @examples
+#' \dontrun{
+#' # Create a simple graph
+#' nodes <-
+#'   create_nodes(nodes = c("a", "b", "c", "d",
+#'                          "e", "f", "g", "h"),
+#'                value = c(3.5, 2.6, 9.4, 2.7,
+#'                          5.2, 2.1, 4.8, 8.5))
+#'
+#' edges <-
+#'   create_edges(from = c("a", "b", "c", "g", "e",
+#'                         "e", "h", "f", "a", "c"),
+#'                to = c("d", "c", "a", "c", "h",
+#'                       "b", "d", "e", "f", "d"))
+#'
+#' graph <-
+#'   create_graph(nodes_df = nodes,
+#'                edges_df = edges)
+#'
+#' get_nodes(graph)
+#' #> [1] "a" "b" "c" "d" "e" "f" "g" "h"
+#'
+#' get_edges(graph, return_type = "vector")
+#' #> [1] "a -> d" "b -> c" "c -> a" "g -> c" "e -> h"
+#' #> [6] "e -> b" "h -> d" "f -> e" "a -> f" "c -> d"
+#'
+#' # Create a selection of nodes, stored within the
+#' # graph object
+#' graph <-
+#'   select_nodes(graph, node_attr = "value",
+#'                comparison = "> 3")
+#'
+#' # Create a subgraph based on the selection
+#' subgraph <-
+#'   create_subgraph_from_selection(graph)
+#'
+#' get_nodes(subgraph)
+#' #> [1] "a" "c" "e" "g" "h"
+#'
+#' get_edges(subgraph, return_type = "vector")
+#' #> [1] "c -> a" "g -> c" "e -> h"
+#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export create_subgraph_from_selection
 
