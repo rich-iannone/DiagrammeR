@@ -3,6 +3,14 @@
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @param name the name to set for the graph.
+#' @examples
+#' \dontrun{
+#' # Create an empty graph
+#' graph <- create_graph()
+#'
+#' # Provide the new graph with a name
+#' graph <- set_graph_name(graph, "example_name")
+#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export set_graph_name
 
