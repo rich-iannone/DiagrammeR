@@ -12,6 +12,21 @@ set_graph_time <- function(graph,
                            time = NULL,
                            tz = NULL){
 
+  if (class(time)[1] == "POSIXct"){
+
+    if (!is.null(attr(time, "tzone"))){
+      tz <- attr(time, "tzone")
+    }
+
+    time <- format(time, "%Y-%m-%d %H:%M:%S")
+  }
+
+  if (!is.null(tz)){
+    if (!(tz %in% OlsonNames())){
+      stop("The time zone provided must be available in `OlsonNames()`.")
+    }
+  }
+
   dgr_graph <-
     create_graph(nodes_df = graph$nodes_df,
                  edges_df = graph$nodes_df,
