@@ -32,6 +32,10 @@ set_graph_time <- function(graph,
     }
   }
 
+  if (is.null(tz) & is.null(graph$graph_tz)){
+    tz <- "GMT"
+  }
+
   if (!is.null(tz)){
     dgr_graph <-
       create_graph(nodes_df = graph$nodes_df,
