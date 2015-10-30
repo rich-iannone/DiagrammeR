@@ -4,7 +4,7 @@
 \alias{set_graph_time}
 \title{Set graph date-time and timezone}
 \usage{
-set_graph_time(graph, time, tz)
+set_graph_time(graph, time = NULL, tz = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
