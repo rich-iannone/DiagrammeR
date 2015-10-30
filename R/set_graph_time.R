@@ -5,6 +5,25 @@
 #' using \code{create_graph}.
 #' @param time the date-time to set for the graph.
 #' @param tz the timezone to set for the graph.
+#' \dontrun{
+#' # Create an empty graph
+#' graph <- create_graph()
+#'
+#' # Provide the new graph with a timestamp (if `tz` not supplied,
+#' # `GMT` is used as the time zone)
+#' graph_1 <-
+#'   set_graph_time(graph,
+#'                  time = "2015-10-25 15:23:00")
+#'
+#' # Provide the new graph with a timestamp that is the current
+#' # time; the time zone is inferred from the user's locale
+#' graph_2 <- set_graph_time(graph)
+#'
+#' # The time zone can be updated when a timestamp is present
+#' graph_2 <-
+#'   set_graph_time(graph_2,
+#'                  tz = "America/Los_Angeles")
+#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export set_graph_time
 
