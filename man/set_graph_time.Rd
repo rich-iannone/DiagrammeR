@@ -12,7 +12,16 @@ using \code{create_graph}.}
 
 \item{time}{the date-time to set for the graph.}
 
-\item{tz}{the timezone to set for the graph.
+\item{tz}{the timezone to set for the graph.}
+}
+\value{
+a graph object of class \code{dgr_graph}.
+}
+\description{
+Set the time and timezone for a graph object of class
+\code{dgr_graph}.
+}
+\examples{
 \dontrun{
 # Create an empty graph
 graph <- create_graph()
@@ -31,13 +40,6 @@ graph_2 <- set_graph_time(graph)
 graph_2 <-
   set_graph_time(graph_2,
                  tz = "America/Los_Angeles")
-}}
 }
-\value{
-a graph object of class \code{dgr_graph}.
-}
-\description{
-Set the time and timezone for a graph object of class
-\code{dgr_graph}.
 }
 

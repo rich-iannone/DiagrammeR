@@ -55,7 +55,7 @@ get_edge_attr(x = graph,
 get_edge_attr(x = graph,
               from = "a")
 
-# Get edges attributes for all edges in graph inbound
+# Get edge attributes for all edges in graph inbound
 # to "a"
 get_edge_attr(x = graph,
               to = "a")

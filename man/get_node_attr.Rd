@@ -10,7 +10,7 @@ get_node_attr(x, nodes = NULL)
 \item{x}{either a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}, or a node data frame.}
 
-\item{node}{an optional vector of node IDs for filtering list of
+\item{nodes}{an optional vector of node IDs for filtering list of
 nodes present in the graph.}
 }
 \value{
