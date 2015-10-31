@@ -5,6 +5,7 @@
 #' using \code{create_graph}.
 #' @param time the date-time to set for the graph.
 #' @param tz the timezone to set for the graph.
+#' @examples
 #' \dontrun{
 #' # Create an empty graph
 #' graph <- create_graph()
