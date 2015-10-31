@@ -1,10 +1,10 @@
-#' Create a subgraph based on a walk distance from a specified node
-#' @description Create a subgraph for a neighborhood of nodes connected a
-#' specified distance from the selected node.
+#' Select nodes based on a walk distance from a specified node
+#' @description Select those nodes in the neighborhood of nodes connected
+#' a specified distance from an initial node.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
-#' @param starting_node the node from which the subgraph will originate.
-#' @param distance the maximum number of steps from the \code{starting_node}
+#' @param node the node from which the traversal will originate.
+#' @param distance the maximum number of steps from the \code{node}
 #' for inclusion in the subgraph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
@@ -35,23 +35,19 @@
 #'                       edge_attrs = c("color = gray20",
 #'                                      "arrowsize = 0.5"))
 #'
-#' # Create a subgraph centered around node "U" and include
-#' # those nodes up to (and including) 2 connections away
-#' subgraph <- create_subgraph(graph = graph,
-#'                             starting_node = "U",
-#'                             distance = 2)
-#'
-#' # Render the graph using Graphviz
-#' render_graph(subgraph)
-#'
-#' # Render the graph using VivaGraph
-#' render_graph(subgraph, output = "vivagraph")
+#' # Create a selection of nodes centered around node "U" and
+#' # including those nodes a depth of 2 edges away
+#' graph <-
+#'   select_nodes_in_neighborhood(graph = graph,
+#'                                node = "U",
+#'                                distance = 2)
 #' }
-#' @export create_subgraph
+#' @export select_nodes_in_neighborhood
 
-create_subgraph <- function(graph,
-                            starting_node,
-                            distance){
+select_nodes_in_neighborhood <- function(graph,
+                                         node,
+                                         distance,
+                                         set_op = "union"){
 
   # Create and empty list object
   nodes <- list()
@@ -68,12 +64,12 @@ create_subgraph <- function(graph,
                                  return_type = "df")[
                                    which(get_edges(graph,
                                                    return_type = "df")[,1] ==
-                                           starting_node),2]),
+                                           node),2]),
           as.character(get_edges(graph,
                                  return_type = "df")[
                                    which(get_edges(graph,
                                                    return_type = "df")[,2] ==
-                                           starting_node),1]))
+                                           node),1]))
     }
 
     if (i > 1){
@@ -99,35 +95,27 @@ create_subgraph <- function(graph,
   }
 
   # From list of nodes, obtain vector of unique nodes as neighbors
-  nodes_in_neighbourhood <- unique(unlist(nodes))
+  nodes_selected <- unique(unlist(nodes))
 
-  # Determine which nodes are excluded from this neighborhood
-  excluded_nodes <-
-    get_nodes(graph)[which(!(get_nodes(graph) %in%
-                               nodes_in_neighbourhood))]
+  # Obtain vector of node IDs selection of nodes already present
+  if (!is.null(graph$selection)){
+    if (!is.null(graph$selection$nodes)){
+      nodes_prev_selection <- graph$selection$nodes
+    }
+  } else {
+    nodes_prev_selection <- vector(mode = "character")
+  }
 
-  # Get a node data frame that doesn't contain the excluded nodes
-  nodes_df <-
-    graph$nodes_df[which(!(graph$nodes_df$nodes %in% excluded_nodes)),]
+  # Incorporate selected nodes into graph's selection section
+  if (set_op == "union"){
+    nodes_combined <- union(nodes_prev_selection, nodes_selected)
+  } else if (set_op == "intersect"){
+    nodes_combined <- intersect(nodes_prev_selection, nodes_selected)
+  } else if (set_op == "difference"){
+    nodes_combined <- setdiff(nodes_prev_selection, nodes_selected)
+  }
 
+  graph$selection$nodes <- nodes_combined
 
-  # Get an edge data frame that doesn't contain the excluded nodes
-  edges_df <-
-    graph$edges_df[which(!(graph$edges_df$from %in% excluded_nodes) &
-                           !(graph$edges_df$to %in% excluded_nodes)),]
-
-  # Create a subgraph based on the neighborhood
-  subgraph <-
-    create_graph(nodes_df = nodes_df,
-                 edges_df = edges_df,
-                 graph_attrs = graph$graph_attrs,
-                 node_attrs = graph$node_attrs,
-                 edge_attrs = graph$edge_attrs,
-                 directed = graph$directed,
-                 graph_name = graph$graph_name,
-                 graph_time = graph$graph_time,
-                 graph_tz = graph$graph_tz)
-
-  # Return the subgraph
-  return(subgraph)
+  return(graph)
 }
