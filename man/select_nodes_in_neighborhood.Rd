@@ -31,7 +31,7 @@ nodes <-
                shape = sample(c("circle", "rectangle"),
                               length(LETTERS),
                               replace = TRUE),
-               fillcolor = sample(c("aqua", "gray80",
+               fillcolor = sample(c("aqua", "red",
                                     "pink", "lightgreen",
                                     "azure", "yellow"),
                                   length(LETTERS),
