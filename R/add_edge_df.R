@@ -35,7 +35,7 @@ add_edge_df <- function(graph,
   if (!is.null(graph$edges_df)){
 
     combined_edges <- combine_edges(graph$edges_df,
-                                    edges_df)
+                                    edge_df)
 
     dgr_graph <-
       create_graph(nodes_df = graph$nodes_df,
@@ -58,7 +58,7 @@ add_edge_df <- function(graph,
 
     dgr_graph <-
       create_graph(nodes_df = graph$nodes_df,
-                   edges_df = edges_df,
+                   edges_df = edge_df,
                    graph_attrs = graph$graph_attrs,
                    node_attrs = graph$node_attrs,
                    edge_attrs = graph$edge_attrs,
