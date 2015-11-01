@@ -3,7 +3,7 @@
 #' edge data frame to that graph.
 #' @param graph a graph object of class \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param edges_df an edge data frame that is created using \code{create_edges}.
+#' @param edge_df an edge data frame that is created using \code{create_edges}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
