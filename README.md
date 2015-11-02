@@ -18,6 +18,8 @@ Here is an example where nodes (in this case styled as rectangles and circles) c
 
 <img src="inst/img/grViz.png">
 ```r
+library(DiagrammeR)
+
 grViz("
 digraph {
   
@@ -66,15 +68,54 @@ There is a great variety of ways to style the nodes and edges in a **Graphviz** 
 
 <img src="inst/img/layout_types.png">
 
-This only scratches the surface. At [DiagrammeR Docs](http://rich-iannone.github.io/DiagrammeR/graphviz.html), you can learn quite a lot more about this.
-
 ## Using DiagrammeR Functions to Define Graphs
 
-In the last example you saw what was essentially a text string being passed into a single function. That's not very **R**-like, is it? Well, it's a good thing that there's a collection of graph functions available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, create graph objects, render those graphs, modify those graphs, get information from the graphs, create a series of graphs, and... so much more.
+In the last example you saw what was essentially a text string being passed into a single function. That's not very **R**-like, is it? Well, it's a good thing that there's a collection of graph functions available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, create graph objects, render those graphs, modify those graphs, get information from the graphs, create a series of graphs, and... so much more. A lot of the graph functions work together in a pipeline using **magrittr** pipes. Here is an example of an approach to building the simple graph above using **DiagrammeR** functions:
+
+```r
+library(DiagrammeR)
+library(magrittr)
+
+graph <-
+  create_graph() %>%
+  set_global_graph_attr("graph", "overlap", "true") %>%
+  set_global_graph_attr("node", "shape", "box") %>%
+  set_global_graph_attr("node", "fontname", "Helvetica") %>%
+  set_global_graph_attr("node", "color", "blue") %>%
+  set_global_graph_attr("edge", "color", "gray") %>%
+  add_node_df(create_nodes(c("A", "B", "C", "D", "E", "F"))) %>%
+  set_node_attr("F", "color", "black") %>%
+  add_node_df(create_nodes(1:8)) %>%
+  select_nodes(1:8) %>%
+  set_node_attr_with_selection("shape", "circle") %>%
+  set_node_attr_with_selection("fixedsize", "true") %>%
+  set_node_attr_with_selection("width", 0.9) %>%
+  clear_selection() %>%
+  add_edges("A", "1") %>%
+  add_edges("B", "2") %>%
+  add_edges("B", "3") %>%
+  add_edges("B", "4") %>%
+  add_edges("C", "A") %>%
+  add_edges("1", "D") %>%
+  add_edges("E", "A") %>%
+  add_edges("2", "4") %>%
+  add_edges("1", "5") %>%
+  add_edges("1", "F") %>%
+  add_edges("E", "6") %>%
+  add_edges("4", "6") %>%
+  add_edges("5", "7") %>%
+  add_edges("6", "7") %>%
+  add_edges("3", "8") %>%
+  set_edge_attr("B", "3", "color", "red") %>%
+  set_edge_attr("C", "A", "color", "green") %>%
+  set_edge_attr("3", "8", "color", "blue")
+
+render_graph(graph)
+```
+
+With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have node and edge attributes and also columns of other data. Because attributes are available in the node and edge data frames, we can easily scale the values of the styling attributes and thus enable a highly visual means to differentiate nodes and edges by size, color, shape, opacity, length, etc. Here are some of the functions available:
 
 <img src="inst/img/DiagrammeR_graph_functions.png">
-
-With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have columns of arbitrary data alongside columns named for node or edge attributes. Because metadata can exist alongside the node and edge definitions, we can easily scale the values of the styling attributes and thus enable a highly visual means to differentiate nodes and edges by size, color, shape, opacity, length, etc.
 
 Here is a simple workflow for building and rendering a graph object:
 
@@ -84,13 +125,11 @@ Want to learn more? Head over to the [**DiagrammeR Docs**](http://rich-iannone.g
 
 ## An Example with Data from the **nycflights13** Package
 
-Using the `flights` dataset from the **nycflights13** **R** package, we can create a graph diagram. Here, the green lines show flights that weren't late arriving at their destinations (red indicates those late arrivals). Things to note are:
-
-- the use of other packages to modify a data frame (because we are using **R**, after all)
-- piped expressions with the `magrittr` package (many **DiagrammeR** functions can be piped)
-- the `circo` layout for the graph (creating a circular arrangement of nodes)
+Using the `flights` dataset from the **nycflights13** **R** package, we can create a graph diagram. Here, the green lines show flights that weren't late arriving at their destinations (red indicates those late arrivals).
 
 <img src="inst/img/flights.png">
+
+The **R** code for generating this:
 
 ```r
 library("DiagrammeR") 
