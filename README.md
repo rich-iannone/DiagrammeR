@@ -83,9 +83,12 @@ graph <-
   set_global_graph_attr("node", "fontname", "Helvetica") %>%
   set_global_graph_attr("node", "color", "blue") %>%
   set_global_graph_attr("edge", "color", "gray") %>%
-  add_node_df(create_nodes(c("A", "B", "C", "D", "E", "F"))) %>%
+  add_node("A") %>% add_node("B") %>% add_node("C") %>%
+  add_node("D") %>% add_node("E") %>% add_node("F") %>%
+  add_node("1") %>% add_node("2") %>% add_node("3") %>%
+  add_node("4") %>% add_node("5") %>% add_node("6") %>%
+  add_node("7") %>% add_node("8") %>%
   set_node_attr("F", "color", "black") %>%
-  add_node_df(create_nodes(1:8)) %>%
   select_nodes(1:8) %>%
   set_node_attr_with_selection("shape", "circle") %>%
   set_node_attr_with_selection("fixedsize", "true") %>%
