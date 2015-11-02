@@ -54,64 +54,6 @@ add_edges <- function(graph,
     stop("Edges cannot be added to an empty graph.")
   }
 
-  # If an edge data frame is supplied, it will be used to add edges to
-  # the graph's nodes
-  if (!is.null(edges_df)){
-
-    # Ensure that the nodes specified are in the graph object
-    all_nodes_in_graph <-
-      all(edges_df$from %in% get_nodes(graph)) &
-      all(edges_df$to %in% get_nodes(graph))
-
-    # If not all the nodes specified in the edge data frame are in the
-    # graph, stop the function
-    if (all_nodes_in_graph == FALSE){
-      stop("Not all nodes specified in the edge data frame are in the graph.")
-    }
-
-    # If the 'edges_df' component of the graph is not null, combine the
-    # incoming edge data frame with the existing edge definitions in the
-    # graph object
-    if (!is.null(graph$edges_df)){
-
-      combined_edges <- combine_edges(graph$edges_df,
-                                      edges_df)
-
-      dgr_graph <-
-        create_graph(nodes_df = graph$nodes_df,
-                     edges_df = combined_edges,
-                     graph_attrs = graph$graph_attrs,
-                     node_attrs = graph$node_attrs,
-                     edge_attrs = graph$edge_attrs,
-                     directed = ifelse(is_graph_directed(graph),
-                                       TRUE, FALSE),
-                     graph_name = graph$graph_name,
-                     graph_time = graph$graph_time,
-                     graph_tz = graph$graph_tz)
-
-      return(dgr_graph)
-    }
-
-    # If the 'edges_df' component of the graph is null, insert the
-    # edge data frame into the graph object
-    if (is.null(graph$edges_df)){
-
-      dgr_graph <-
-        create_graph(nodes_df = graph$nodes_df,
-                     edges_df = edges_df,
-                     graph_attrs = graph$graph_attrs,
-                     node_attrs = graph$node_attrs,
-                     edge_attrs = graph$edge_attrs,
-                     directed = ifelse(is_graph_directed(graph),
-                                       TRUE, FALSE),
-                     graph_name = graph$graph_name,
-                     graph_time = graph$graph_time,
-                     graph_tz = graph$graph_tz)
-
-      return(dgr_graph)
-    }
-  }
-
   # If an edge between nodes is requested and that edge exists, stop function
   if (all(!is.null(from), !is.null(to),
       all(!is.na(get_edges(graph, return_type = "vector"))))){
