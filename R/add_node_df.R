@@ -20,7 +20,7 @@ add_node_df <- function(graph,
 
   # If not all the nodes specified in the node data frame are in the
   # graph, stop the function
-  if (all_nodes_in_graph == FALSE){
+  if (all_nodes_not_in_graph == FALSE){
     stop("One or more of the nodes specified are already in the graph.")
   }
 
