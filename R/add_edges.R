@@ -3,7 +3,6 @@
 #' edges of specified types to nodes within the graph.
 #' @param graph a graph object of class \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param edges_df an edge data frame that is created using \code{create_edges}.
 #' @param from a vector of the outgoing nodes from which each edge is connected.
 #' @param to a vector of the incoming nodes to which each edge is connected.
 #' @param rel an optional string specifying the relationship between the
