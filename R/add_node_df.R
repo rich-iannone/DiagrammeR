@@ -13,7 +13,7 @@
 add_node_df <- function(graph,
                         node_df){
 
-  # Ensure that the nodes in the node data frame specified are in
+  # Ensure that the nodes in the node data frame specified are not in
   # the graph object
   all_nodes_in_graph <-
     all(node_df$nodes %in% get_nodes(graph))
