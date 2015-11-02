@@ -4,13 +4,11 @@
 \alias{add_edges}
 \title{Add edges to an existing graph object}
 \usage{
-add_edges(graph, edges_df = NULL, from = NULL, to = NULL, rel = NULL)
+add_edges(graph, from = NULL, to = NULL, rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created using
 \code{create_graph}.}
-
-\item{edges_df}{an edge data frame that is created using \code{create_edges}.}
 
 \item{from}{a vector of the outgoing nodes from which each edge is connected.}
 
@@ -34,30 +32,6 @@ graph <- create_graph(create_nodes(nodes = c("a", "b")))
 # Add an edge between those nodes and attach a relationship to the edge
 graph <- add_edges(graph, from = "a", to = "b",
                    rel = "to_get")
-
-# Examples of pipeable graph building using 'create_edges' with
-# 'add_edges' in order to include values for the 'style' edge attribute
-# (it modifies the style of the connecting line)
-
-library(magrittr)
-
-graph <- create_graph() \%>\%
-  add_node("a") \%>\%
-  add_node("b") \%>\%
-  add_edges(create_edges(from = "a", to = "b",
-                         style = "solid")) \%>\%
-  add_node("c") \%>\%
-  add_node("d") \%>\%
-  add_edges(create_edges(from = "c", to = "d",
-                         style = "dashed")) \%>\%
-  add_node("e") \%>\%
-  add_node("f") \%>\%
-  add_edges(create_edges(from = "e", to = "f",
-                         style = "dotted")) \%>\%
-  add_node("g") \%>\%
-  add_node("h") \%>\%
-  add_edges(create_edges(from = "g", to = "h",
-                         style = "bold"))
 }
 }
 
