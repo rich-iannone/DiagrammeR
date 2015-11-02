@@ -21,7 +21,7 @@ add_node_df <- function(graph,
   # If not all the nodes specified in the node data frame are in the
   # graph, stop the function
   if (all_nodes_in_graph == FALSE){
-    stop("Not all nodes specified in the node data frame are in the graph.")
+    stop("One or more of the nodes specified are already in the graph.")
   }
 
   # If the 'nodes_df' component of the graph is not null, combine the
