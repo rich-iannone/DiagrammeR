@@ -18,7 +18,7 @@ add_node_df <- function(graph,
   # graph object
   if (!is.null(graph$nodes_df)){
 
-    combined_nodes <- combine_nodes(graph$edges_df,
+    combined_nodes <- combine_nodes(graph$nodes_df,
                                     node_df)
 
     dgr_graph <-
