@@ -45,7 +45,6 @@
 #' @export add_edges
 
 add_edges <- function(graph,
-                      edges_df = NULL,
                       from = NULL,
                       to = NULL,
                       rel = NULL){
