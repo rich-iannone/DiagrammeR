@@ -161,16 +161,16 @@ set_edge_attr <- function(x,
 
     # Create new graph object
     dgr_graph <-
-      create_graph(nodes_df = graph$nodes_df,
+      create_graph(nodes_df = x$nodes_df,
                    edges_df = edges_df,
-                   graph_attrs = graph$graph_attrs,
-                   node_attrs = graph$node_attrs,
-                   edge_attrs = graph$edge_attrs,
-                   directed = ifelse(is_graph_directed(graph),
+                   graph_attrs = x$graph_attrs,
+                   node_attrs = x$node_attrs,
+                   edge_attrs = x$edge_attrs,
+                   directed = ifelse(is_graph_directed(x),
                                      TRUE, FALSE),
-                   graph_name = graph$graph_name,
-                   graph_time = graph$graph_time,
-                   graph_tz = graph$graph_tz)
+                   graph_name = x$graph_name,
+                   graph_time = x$graph_time,
+                   graph_tz = x$graph_tz)
 
     return(dgr_graph)
   }
