@@ -5,6 +5,25 @@
 #' the current nodes in the selection with those nodes traversed to.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a simple graph
+#' graph <-
+#'   create_graph() %>%
+#'   add_node_df(create_nodes(1:6)) %>%
+#'   add_edges(c("1", "1", "3", "4", "4"),
+#'             c("2", "3", "4", "5", "6"))
+#'
+#' # Starting from node "1", traverse nodes as far as possible then return
+#' # back to node "1"
+#' node_1_attr <-
+#'   graph %>% select_nodes("1") %>%
+#'   trav_out() %>% trav_out() %>% trav_out() %>%
+#'   trav_in() %>% trav_in() %>% trav_in() %>%
+#'   get_node_attr_from_selection()
+#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export trav_in
 
