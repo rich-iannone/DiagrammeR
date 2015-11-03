@@ -22,20 +22,48 @@ trav_in <- function(graph){
 
   selection_node <- graph$traversals[[length(graph$traversals)]][1]
 
-  graph$selection$nodes <- selection_node
+  if (length(graph$traversals) == 1){
 
-  for (i in length(graph$traversals):1){
-    if (graph$traversals[[i]][2] %in% current_selection){
-      graph$traversals[[i]] <- NULL
-    }
+    graph$selection$nodes <- selection_node
+    graph$traversals <- NULL
+
+    return(graph)
   }
 
-  if (!is.null(graph$traversals)){
-
-    if (length(graph$traversals) == 0){
-      graph$traversals <- NULL
+  if (length(graph$traversals) > 1){
+    for (i in length(graph$traversals):1){
+      if (graph$traversals[[i]][2] %in% selection_node){
+        predecessor_to_selection_node <- graph$traversals[[i]][1]
+      }
     }
-  }
 
-  return(graph)
+    for (i in length(graph$traversals):1){
+      if (i == length(graph$traversals)){
+        all_selection_nodes <- vector(mode = "character")
+      }
+
+      if (graph$traversals[[i]][1] %in% predecessor_to_selection_node){
+        all_selection_nodes <-
+          c(all_selection_nodes,
+            graph$traversals[[i]][2])
+      }
+    }
+
+    graph$selection$nodes <- all_selection_nodes
+
+    for (i in length(graph$traversals):1){
+      if (graph$traversals[[i]][2] %in% current_selection){
+        graph$traversals[[i]] <- NULL
+      }
+    }
+
+    if (!is.null(graph$traversals)){
+
+      if (length(graph$traversals) == 0){
+        graph$traversals <- NULL
+      }
+    }
+
+    return(graph)
+  }
 }
