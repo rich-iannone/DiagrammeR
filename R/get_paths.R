@@ -169,7 +169,7 @@ get_paths <- function(graph,
 
     } else if (!is.null(distance) == TRUE){
 
-      # Remove paths not of specified lengths
+      # Remove paths not of specified distances
       for (i in 1:length(paths)){
         if (i == 1){
           not_specified_length_paths <- vector(mode = "numeric")
