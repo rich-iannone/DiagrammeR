@@ -31,4 +31,70 @@ vectors of node IDs in sequence of traversal through the graph
 Obtain a list of all possible paths from a given node within
 a directed graph
 }
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create a simple graph
+graph <-
+  create_graph() \%>\%
+  add_node_df(create_nodes(1:8)) \%>\%
+  add_edges(c("1", "1", "3", "3", "4", "2", "7", "4"),
+            c("2", "3", "4", "5", "6", "7", "5", "8"))
+
+# Get a list of all paths outward from node "1"
+get_paths(graph, from = "1")
+#> [[1]]
+#> [1] "1" "3" "5"
+#>
+#> [[2]]
+#> [1] "1" "2" "7" "5"
+#>
+#> [[3]]
+#> [1] "1" "3" "4" "6"
+#>
+#> [[4]]
+#> [1] "1" "3" "4" "8"
+
+# Get a list of all paths leading to node "6"
+get_paths(graph, to = "6")
+#> [[1]]
+#> [1] "4" "6"
+#>
+#> [[2]]
+#> [1] "3" "4" "6"
+#>
+#> [[3]]
+#> [1] "1" "3" "4" "6"
+
+#' # Get a list of all paths from "1" to "5"
+get_paths(graph, from = "1", to = "5")
+#> [[1]]
+#> [1] "1" "3" "5"
+#>
+#> [[2]]
+#> [1] "1" "2" "7" "5"
+
+# Get a list of all paths from "1" up to a distance of 2 node traversals
+get_paths(graph, from = "1", distance = 2)
+#> [[1]]
+#> [1] "1" "3" "5"
+#>
+#> [[2]]
+#> [1] "1" "2" "7"
+#>
+#> [[3]]
+#> [1] "1" "3" "4"
+
+# Get a list of the shortest paths from "1" to "5"
+get_paths(graph, from = "1", to = "5", shortest_path = TRUE)
+#> [[1]]
+#> [1] "1" "3" "5"
+
+# Get a list of the longest paths from "1" to "5"
+get_paths(graph, from = "1", to = "5", longest_path = TRUE)
+#> [[1]]
+#> [1] "1" "2" "7" "5"
+}
+}
 
