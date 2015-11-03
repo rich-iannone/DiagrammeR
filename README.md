@@ -78,6 +78,8 @@ library(magrittr)
 
 graph <-
   create_graph() %>%
+  set_graph_name("Boxes and Circles") %>%
+  set_graph_time() %>%
   set_global_graph_attr("graph", "overlap", "true") %>%
   set_global_graph_attr("node", "shape", "box") %>%
   set_global_graph_attr("node", "fontname", "Helvetica") %>%
