@@ -47,7 +47,7 @@ select_edges <- function(graph,
     }
 
     if (!(edge_attr %in% colnames(edges_df)[-(1:2)])){
-      stop("The specified attribute is not availalbe")
+      stop("The specified attribute is not available")
     }
   }
 
