@@ -106,7 +106,7 @@ graph <-
 render_graph(graph)
 ```
 
-With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have node and edge attributes and also columns of other data. Because attributes are available in the node and edge data frames, we can easily scale the values of the styling attributes and thus enable a highly visual means to differentiate nodes and edges by size, color, shape, opacity, length, etc. Here are some of the functions available:
+With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have node and edge attributes and also columns of other data. Then we can incorporate the data into a graph object which can itself be subject to inspection and transformations. Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and modify the values of the styling attributes and differentiate nodes and edges by size, color, shape, opacity, length, etc. Here are some of the available graph functions:
 
 <img src="inst/img/DiagrammeR_graph_functions.png">
 
