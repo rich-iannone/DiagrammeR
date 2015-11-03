@@ -184,6 +184,12 @@ get_paths <- function(graph,
           paths[not_specified_length_paths] <- NULL
         }
       }
+
+      # Trim paths to specified distance
+      for (i in 1:length(paths)){
+        paths[[i]] <- paths[[i]][1:(specified_lengths + 1)]
+      }
+
     }
   }
 
