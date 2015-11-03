@@ -38,7 +38,8 @@ graph <-
   create_graph(nodes_df = nodes,
                edges_df = edges)
 
-# Select edges "b" -> "c" and "a" -> "d" in the graph
+# Select edges "b" -> "c" and "a" -> "d" in the graph and get
+# the edge attributes for that selection
 graph \%>\% select_edges(from = c("b", "a"), to = c("c", "d")) \%>\%
   get_edge_attr_from_selection()
 #>   from to        rel color
