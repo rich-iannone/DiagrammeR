@@ -29,8 +29,7 @@ add_edges <- function(graph,
   }
 
   # If an edge between nodes is requested and that edge exists, stop function
-  if (all(!is.null(from), !is.null(to),
-      all(!is.na(get_edges(graph, return_type = "vector"))))){
+  if (all(!is.na(get_edges(graph, return_type = "vector")))){
 
     if (any(get_edges(graph)[[1]] == from &
             get_edges(graph)[[2]] == to)){
