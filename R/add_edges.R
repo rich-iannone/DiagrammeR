@@ -5,7 +5,7 @@
 #' \code{create_graph}.
 #' @param from a vector of the outgoing nodes from which each edge is connected.
 #' @param to a vector of the incoming nodes to which each edge is connected.
-#' @param rel an optional string specifying the relationship between the
+#' @param rel an optional vector specifying the relationship between the
 #' connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
