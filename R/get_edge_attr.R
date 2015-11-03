@@ -7,7 +7,6 @@
 #' outgoing for filtering the list of edges present in the graph.
 #' @param to an optional vector of node IDs to which the edge is
 #' incoming for filtering the list of edges present in the graph.
-#' @return an edge data frame.
 #' @examples
 #' \dontrun{
 #' # Create a simple graph
@@ -45,6 +44,7 @@
 #' get_edge_attr(x = graph,
 #'               to = "a")
 #' }
+#' @return an edge data frame.
 #' @export get_edge_attr
 
 get_edge_attr <- function(x,
