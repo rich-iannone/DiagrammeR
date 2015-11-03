@@ -190,6 +190,8 @@ get_paths <- function(graph,
         paths[[i]] <- paths[[i]][1:(specified_lengths + 1)]
       }
 
+      # Create a unique list of paths
+      paths <- unique(paths)
     }
   }
 
