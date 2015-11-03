@@ -4,7 +4,7 @@
 \alias{add_edges}
 \title{Add edges to an existing graph object}
 \usage{
-add_edges(graph, from = NULL, to = NULL, rel = NULL)
+add_edges(graph, from, to, rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created using
@@ -14,7 +14,7 @@ add_edges(graph, from = NULL, to = NULL, rel = NULL)
 
 \item{to}{a vector of the incoming nodes to which each edge is connected.}
 
-\item{rel}{an optional string specifying the relationship between the
+\item{rel}{an optional vector specifying the relationship between the
 connected nodes.}
 }
 \value{
