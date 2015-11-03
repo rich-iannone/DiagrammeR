@@ -83,32 +83,22 @@ graph <-
   set_global_graph_attr("node", "fontname", "Helvetica") %>%
   set_global_graph_attr("node", "color", "blue") %>%
   set_global_graph_attr("edge", "color", "gray") %>%
-  add_node("A") %>% add_node("B") %>% add_node("C") %>%
-  add_node("D") %>% add_node("E") %>% add_node("F") %>%
-  add_node("1") %>% add_node("2") %>% add_node("3") %>%
-  add_node("4") %>% add_node("5") %>% add_node("6") %>%
-  add_node("7") %>% add_node("8") %>%
+  add_node_df(create_nodes(c("A", "B", "C", "D", "E", "F"))) %>%
   set_node_attr("F", "color", "black") %>%
+  add_node_df(create_nodes(1:8)) %>%
   select_nodes(1:8) %>%
   set_node_attr_with_selection("shape", "circle") %>%
   set_node_attr_with_selection("fixedsize", "true") %>%
   set_node_attr_with_selection("width", 0.9) %>%
   clear_selection() %>%
-  add_edges("A", "1") %>%
-  add_edges("B", "2") %>%
-  add_edges("B", "3") %>%
-  add_edges("B", "4") %>%
-  add_edges("C", "A") %>%
-  add_edges("1", "D") %>%
-  add_edges("E", "A") %>%
-  add_edges("2", "4") %>%
-  add_edges("1", "5") %>%
-  add_edges("1", "F") %>%
-  add_edges("E", "6") %>%
-  add_edges("4", "6") %>%
-  add_edges("5", "7") %>%
-  add_edges("6", "7") %>%
-  add_edges("3", "8") %>%
+  add_edge_df(create_edges(c("A", "B", "B", "B",
+                             "C", "1", "E", "2",
+                             "1", "1", "E", "4",
+                             "5", "6", "3"),
+                           c("1", "2", "3", "4",
+                             "A", "D", "A", "4",
+                             "5", "F", "6", "6",
+                             "7", "7", "8"))) %>%
   set_edge_attr("B", "3", "color", "red") %>%
   set_edge_attr("C", "A", "color", "green") %>%
   set_edge_attr("3", "8", "color", "blue")
