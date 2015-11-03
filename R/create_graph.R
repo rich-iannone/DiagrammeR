@@ -282,7 +282,7 @@ create_graph <- function(nodes_df = NULL,
                                    nodes_df[,column_with_y],
                                    "!"))
 
-        nodes_df <- cbind(nodes_df, pos)
+        nodes_df$pos <- pos$pos
       }
 
       # Determine whether column 'alpha' exists
