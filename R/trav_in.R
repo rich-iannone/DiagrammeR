@@ -22,7 +22,21 @@ trav_in <- function(graph){
 
   selection_node <- graph$traversals[[length(graph$traversals)]][1]
 
-  if (length(graph$traversals) == 1){
+
+  # Determine whether traversals all contain the common starting node
+  for (i in 1:length(graph$traversals)){
+    if (i == 1) starting_node_present <- vector(mode = "logical")
+
+    starting_node <- graph$traversals[[1]][1]
+
+    if (graph$traversals[[i]][1] == starting_node){
+      starting_node_present <- c(starting_node_present, TRUE)
+    } else {
+      starting_node_present <- c(starting_node_present, FALSE)
+    }
+  }
+
+  if (all(starting_node_present)){
 
     graph$selection$nodes <- selection_node
     graph$traversals <- NULL
