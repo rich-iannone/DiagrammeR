@@ -176,7 +176,7 @@ get_paths <- function(graph,
           specified_lengths <- distance
         }
 
-        if (length(paths[[i]]) != specified_lengths){
+        if (length(paths[[i]]) < specified_lengths + 1){
           not_specified_length_paths <- c(not_specified_length_paths, i)
         }
 
