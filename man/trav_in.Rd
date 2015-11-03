@@ -32,11 +32,12 @@ graph <-
 
 # Starting from node "1", traverse nodes as far as possible then return
 # back to node "1"
-node_1_attr <-
-  graph \%>\% select_nodes("1") \%>\%
+graph \%>\% select_nodes("1") \%>\%
   trav_out() \%>\% trav_out() \%>\% trav_out() \%>\%
   trav_in() \%>\% trav_in() \%>\% trav_in() \%>\%
   get_node_attr_from_selection()
+#>   nodes type label
+#> 1     1          1
 }
 }
 
