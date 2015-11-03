@@ -20,8 +20,8 @@
 #' @export add_edges
 
 add_edges <- function(graph,
-                      from = NULL,
-                      to = NULL,
+                      from,
+                      to,
                       rel = NULL){
 
   if (is_graph_empty(graph) == TRUE){
