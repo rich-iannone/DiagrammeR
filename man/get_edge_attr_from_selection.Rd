@@ -11,10 +11,39 @@ get_edge_attr_from_selection(graph)
 using \code{create_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+an edge data frame.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get edge
 attribute properties for edges available in a selection.
+}
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create a simple graph
+nodes <-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               type = "letter",
+               label = TRUE,
+               value = c(3.5, 2.6, 9.4, 2.7))
+
+edges <-
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               rel = "leading_to",
+               color = c("pink", "blue", "red"))
+
+graph <-
+  create_graph(nodes_df = nodes,
+               edges_df = edges)
+
+# Select edges "b" -> "c" and "a" -> "d" in the graph
+graph \%>\% select_edges(from = c("b", "a"), to = c("c", "d")) \%>\%
+  get_edge_attr_from_selection()
+#>   from to        rel color
+#> 1    a  d leading_to  pink
+#> 2    b  c leading_to  blue
+}
 }
 
