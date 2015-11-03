@@ -108,6 +108,11 @@ get_paths <- function(graph,
   order <- as.numeric(names(order))
   paths <- paths[order]
 
+  # If only a single vector returned, return NA
+  if (length(paths) == 1 & length(paths[[1]]) == 1){
+    return(NA)
+  }
+
   # Remove paths of single length
   for (i in 1:length(paths)){
     if (i == 1) single_length_paths <- vector(mode = "numeric")
