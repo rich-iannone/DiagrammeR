@@ -1,11 +1,11 @@
 #' Add edges to an existing graph object
-#' @description With a graph object of class \code{dgr_graph}, add one or more
-#' edges of specified types to nodes within the graph.
+#' @description With a graph object of class \code{dgr_graph}, add an edge
+#' to nodes within the graph.
 #' @param graph a graph object of class \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param from a vector of the outgoing nodes from which each edge is connected.
-#' @param to a vector of the incoming nodes to which each edge is connected.
-#' @param rel an optional vector specifying the relationship between the
+#' @param from the outgoing node from which the edge is connected.
+#' @param to the incoming nodes to which each edge is connected.
+#' @param rel an optional string specifying the relationship between the
 #' connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
@@ -14,18 +14,21 @@
 #' graph <- create_graph(create_nodes(nodes = c("a", "b")))
 #'
 #' # Add an edge between those nodes and attach a relationship to the edge
-#' graph <- add_edges(graph, from = "a", to = "b",
-#'                    rel = "to_get")
+#' graph <- add_edge(graph, from = "a", to = "b", rel = "to_get")
 #' }
-#' @export add_edges
+#' @export add_edge
 
-add_edges <- function(graph,
-                      from,
-                      to,
-                      rel = NULL){
+add_edge <- function(graph,
+                     from,
+                     to,
+                     rel = NULL){
 
   if (is_graph_empty(graph) == TRUE){
     stop("Edges cannot be added to an empty graph.")
+  }
+
+  if (length(from) > 1 | length(to) > 1){
+    stop("Only one edge can be specified.")
   }
 
   # If an edge between nodes is requested and that edge exists, stop function
