@@ -101,9 +101,9 @@ graph <- _SELF_$graphs[[last_graph_in_series]]
 graph <- add_node(graph = graph,
                   node = letters)
 
-graph <- add_edges(graph = graph,
-                   from = letters,
-                   to = sample(get_nodes(graph = graph), 1))
+graph <- add_edge(graph = graph,
+                  from = letters,
+                  to = sample(get_nodes(graph = graph), 1))
 
 } else {
 

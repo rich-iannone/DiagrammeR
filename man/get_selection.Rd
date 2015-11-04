@@ -25,8 +25,9 @@ library(magrittr)
 graph <-
   create_graph() \%>\%
   add_node_df(create_nodes(1:6)) \%>\%
-  add_edges(c("1", "1", "3", "4", "4"),
-            c("2", "3", "4", "5", "6"))
+  add_edge("1", "2") \%>\% add_edge("1", "3") \%>\%
+  add_edge("3", "4") \%>\% add_edge("4", "5") \%>\%
+  add_edge("4", "6")
 
 # Select node "4", select all nodes a distance of 1 away from "4",
 # and return the selection of nodes as a list object

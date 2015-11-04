@@ -27,8 +27,8 @@ library(magrittr)
 graph <-
   create_graph() \%>\%
   add_node_df(create_nodes(1:6)) \%>\%
-  add_edges(c("1", "1", "3", "4", "4"),
-            c("2", "3", "4", "5", "6"))
+  add_edge_df(create_edges(c("1", "1", "3", "4", "4"),
+                           c("2", "3", "4", "5", "6")))
 
 # Starting from node "1", traverse nodes twice then get the node
 # attribute information at the landing nodes
