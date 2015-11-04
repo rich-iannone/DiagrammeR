@@ -16,7 +16,7 @@ specified with \code{graph}, \code{node}, or \code{edge}.}
 \item{attr_for_type}{the name of the attribute to set for the \code{type}
 of global attribute specified.}
 
-\item{the}{value to be set for the chosen attribute specified in the
+\item{value}{the value to be set for the chosen attribute specified in the
 \code{attr_for_type} argument.}
 }
 \value{
@@ -29,6 +29,24 @@ object of class \code{dgr_graph}.
 }
 \examples{
 \dontrun{
+library(magrittr)
+
+# Create a new graph and set some global attributes
+graph <- create_graph() \%>\%
+  set_global_graph_attr("graph", "overlap", "true") \%>\%
+  set_global_graph_attr("node", "fontname", "Helvetica") \%>\%
+  set_global_graph_attr("edge", "color", "gray")
+
+# Verify that the global attributes have been set
+get_global_graph_attr(graph)
+#> $graph_attrs
+#> [1] "overlap = true"
+#>
+#> $node_attrs
+#> [1] "fontname = Helvetica"
+#>
+#> $edge_attrs
+#> [1] "color = gray"
 }
 }
 
