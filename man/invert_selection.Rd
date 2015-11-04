@@ -12,7 +12,13 @@ using \code{create_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
-#' @examples
+}
+\description{
+Modify the selection of nodes or edges within a graph
+object such that all nodes or edges previously unselected will now be
+selected and vice versa.
+}
+\examples{
 \dontrun{
 # Create a simple graph
 nodes <-
@@ -46,10 +52,5 @@ get_selection(graph)
 #> $nodes
 #> [1] "b" "d"
 }
-}
-\description{
-Modify the selection of nodes or edges within a graph
-object such that all nodes or edges previously unselected will now be
-selected and vice versa.
 }
 
