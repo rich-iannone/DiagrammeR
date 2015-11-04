@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_edge.R
 \name{add_edge}
 \alias{add_edge}
-\title{Add edges to an existing graph object}
+\title{Add an edge to an existing graph object}
 \usage{
 add_edge(graph, from, to, rel = NULL)
 }
