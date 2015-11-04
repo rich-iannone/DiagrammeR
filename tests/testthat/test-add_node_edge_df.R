@@ -92,7 +92,7 @@ test_that("adding an edge df to a graph is possible", {
   expect_true(class(graph_3$edges_df) == "data.frame")
 
   # Expect that the 'edges_df' data frame has 6 rows
-  expect_true(nrow(graph_3$edges_df) == 6)
+  expect_true(nrow(graph_3$edges_df) == 3)
 
   # Expect that the 'edges_df' data frame has 3 columns
   expect_true(ncol(graph_3$edges_df) == 3)
@@ -104,5 +104,5 @@ test_that("adding an edge df to a graph is possible", {
                 edge_df = create_edges("b", "d"))
 
   # Expect that the 'edges_df' data frame has 4 rows
-  expect_true(nrow(graph_3$edges_df) == 7)
+  expect_true(nrow(graph_3$edges_df) == 4)
 })
