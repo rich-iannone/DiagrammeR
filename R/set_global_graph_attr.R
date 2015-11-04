@@ -8,7 +8,7 @@
 #' specified with \code{graph}, \code{node}, or \code{edge}.
 #' @param attr_for_type the name of the attribute to set for the \code{type}
 #' of global attribute specified.
-#' @param the value to be set for the chosen attribute specified in the
+#' @param value the value to be set for the chosen attribute specified in the
 #' \code{attr_for_type} argument.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
