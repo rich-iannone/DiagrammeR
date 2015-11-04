@@ -22,6 +22,18 @@
 #' # Add two nodes
 #' graph <- add_node(graph, node = "a")
 #' graph <- add_node(graph, node = "b")
+#'
+#' get_nodes(graph)
+#' #> [1] "a" "b"
+#'
+#' # Add a node with 'type' defined
+#' graph <- add_node(graph, node = "c", type = "letter")
+#'
+#' get_node_df(graph)
+#' #>   nodes   type label
+#' #> 1     a            a
+#' #> 2     b            b
+#' #> 3     c letter     c
 #' }
 #' @export add_node
 
