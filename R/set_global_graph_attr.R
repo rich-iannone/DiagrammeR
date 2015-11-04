@@ -13,6 +13,24 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a new graph and set some global attributes
+#' graph <- create_graph() %>%
+#'   set_global_graph_attr("graph", "overlap", "true") %>%
+#'   set_global_graph_attr("node", "fontname", "Helvetica") %>%
+#'   set_global_graph_attr("edge", "color", "gray")
+#'
+#' # Verify that the global attributes have been set
+#' get_global_graph_attr(graph)
+#' #> $graph_attrs
+#' #> [1] "overlap = true"
+#' #>
+#' #> $node_attrs
+#' #> [1] "fontname = Helvetica"
+#' #>
+#' #> $edge_attrs
+#' #> [1] "color = gray"
 #' }
 #' @export set_global_graph_attr
 
