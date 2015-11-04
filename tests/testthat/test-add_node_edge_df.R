@@ -1,6 +1,6 @@
 context("Adding node and/or edge data frames to an existing graph object")
 
-test_that("adding a node df to a graph is possible", {
+test_that("adding a node df or an edge df to a graph is possible", {
 
   # Create an empty graph
   graph <- create_graph()
