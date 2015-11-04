@@ -1,6 +1,6 @@
 context("Adding node and/or edge data frames to an existing graph object")
 
-test_that("adding a node df or an edge df to a graph is possible", {
+test_that("adding a node df to a graph is possible", {
 
   # Create an empty graph
   graph <- create_graph()
@@ -74,4 +74,48 @@ test_that("adding a node df or an edge df to a graph is possible", {
 
   # Expect that the 'edges_df' data frame has 3 columns
   expect_true(ncol(graph_3$edges_df) == 3)
+})
+
+test_that("adding an edge df to a graph is possible", {
+
+  # Create an edge data frame
+  edges <-
+    create_edges(from = c("a", "b", "c"),
+                 to = c("d", "c", "a"),
+                 rel = "leading_to")
+
+  # Adding an edge df to an empty graph results in an error
+  expect_error(add_edge_df(graph = create_graph(),
+                           edge_df = edges))
+
+  # Adding an edge df with edges between nodes not in the
+  # graph will result in an error
+  expect_error(
+    add_edge_df(graph = create_graph(create_nodes("a")),
+                edge_df = edges)
+  )
+
+  # Add the edge data frame to the graph
+  graph_3 <- add_edge_df(graph = graph_3, edge_df = edges)
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(graph_3) == "dgr_graph")
+
+  # Expect that the 'edges_df' component is a data frame
+  expect_true(class(graph_3$edges_df) == "data.frame")
+
+  # Expect that the 'edges_df' data frame has 3 rows
+  expect_true(nrow(graph_3$edges_df) == 3)
+
+  # Expect that the 'edges_df' data frame has 3 columns
+  expect_true(ncol(graph_3$edges_df) == 3)
+
+  # Add another edge to a graph that already has some
+  # edges defined
+  graph_3 <-
+    add_edge_df(graph = graph_3,
+                edge_df = create_edges("b", "d"))
+
+  # Expect that the 'edges_df' data frame has 4 rows
+  expect_true(nrow(graph_3$edges_df) == 4)
 })
