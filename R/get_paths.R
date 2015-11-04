@@ -18,8 +18,10 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_node_df(create_nodes(1:8)) %>%
-#'   add_edges(c("1", "1", "3", "3", "4", "2", "7", "4"),
-#'             c("2", "3", "4", "5", "6", "7", "5", "8"))
+#'   add_edge("1", "2") %>% add_edge("1", "3") %>%
+#'   add_edge("3", "4") %>% add_edge("3", "5") %>%
+#'   add_edge("4", "6") %>% add_edge("2", "7") %>%
+#'   add_edge("7", "5") %>% add_edge("4", "8")
 #'
 #' # Get a list of all paths outward from node "1"
 #' get_paths(graph, from = "1")

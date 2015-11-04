@@ -16,14 +16,13 @@
 #'
 #' graph_1 <- create_graph() %>%
 #'   add_node("a") %>% add_node("b") %>% add_node("c") %>%
-#'   add_edges(from = c("a", "a", "b"),
-#'             to =   c("c", "b", "c"))
+#'   add_edge("a", "c") %>% add_edge("a", "b") %>% add_edge("b", "c")
 #'
 #' graph_2 <- graph_1 %>%
-#'   add_node("d") %>% add_edges(from = "d", to = "c")
+#'   add_node("d") %>% add_edge("d", "c")
 #'
 #' graph_3 <- graph_2 %>%
-#'   add_node("e") %>% add_edges(from = "e", to = "b")
+#'   add_node("e") %>% add_edge("e", "b")
 #'
 #' # Create an empty graph series
 #' series <- create_series(series_type = "sequential")

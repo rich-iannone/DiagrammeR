@@ -17,7 +17,7 @@
 #' graph <- add_node(graph, node = "b")
 #'
 #' # Add an edge
-#' graph <- add_edges(graph, from = "a", to = "b")
+#' graph <- add_edge(graph, from = "a", to = "b")
 #'
 #' # Delete the edge
 #' graph <- delete_edge(graph, from = "a", to = "b")
