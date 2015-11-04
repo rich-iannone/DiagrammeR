@@ -40,6 +40,7 @@
 #' get_selection(graph)
 #' #> $nodes
 #' #> [1] "a" "c"
+#' }
 #' @export select_nodes
 
 select_nodes <- function(graph,
