@@ -93,14 +93,14 @@ graph <-
   set_node_attr_with_selection("fixedsize", "true") %>%
   set_node_attr_with_selection("width", 0.9) %>%
   clear_selection() %>%
-  add_edges(c("A", "B", "B", "B",
-              "C", "1", "E", "2",
-              "1", "1", "E", "4",
-              "5", "6", "3"),
-            c("1", "2", "3", "4",
-              "A", "D", "A", "4",
-              "5", "F", "6", "6",
-              "7", "7", "8")) %>%
+  add_edge_df(create_edges(c("A", "B", "B", "B",
+                             "C", "1", "E", "2",
+                             "1", "1", "E", "4",
+                             "5", "6", "3"),
+                           c("1", "2", "3", "4",
+                             "A", "D", "A", "4",
+                             "5", "F", "6", "6",
+                             "7", "7", "8"))) %>%
   set_edge_attr("B", "3", "color", "red") %>%
   set_edge_attr("C", "A", "color", "green") %>%
   set_edge_attr("3", "8", "color", "blue")
