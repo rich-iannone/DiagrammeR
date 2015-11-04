@@ -110,9 +110,9 @@ create_random_graph <- function(n,
                        to = node_a)
 
         if (edge_in_graph == FALSE){
-          graph <- add_edges(graph,
-                             from = node_a,
-                             to = node_b)
+          graph <- add_edge(graph,
+                            from = node_a,
+                            to = node_b)
 
           edge_placed <- TRUE
         }
@@ -133,9 +133,9 @@ create_random_graph <- function(n,
           setdiff(get_nodes(graph), unconnected_nodes)
 
         graph <-
-          add_edges(graph,
-                    from = sample(unconnected_nodes, 1),
-                    to = sample(connected_nodes, 1))
+          add_edge(graph,
+                   from = sample(unconnected_nodes, 1),
+                   to = sample(connected_nodes, 1))
       } else { break }
     }
   }
