@@ -12,14 +12,9 @@ test_that("nodes and edges can be deleted from a graph", {
   graph <- add_node(graph, node = "d")
 
   # Add edges
-  graph <- add_edges(graph, from = "a", to = "b",
-                     rel = "to_get")
-
-  graph <-
-    add_edges(graph,
-              from = c("a", "a"),
-              to = c("c", "d"),
-              rel = "received_from")
+  graph <- add_edge(graph, from = "a", to = "b", rel = "to_get")
+  graph <- add_edge(graph, from = "a", to = "c", rel = "received_from")
+  graph <- add_edge(graph, from = "c", to = "d", rel = "received_from")
 
   # Get the graph's nodes
   graph_nodes <- get_nodes(graph)
@@ -74,16 +69,10 @@ test_that("the function can be stopped with certain input values", {
   graph <- add_node(graph, node = "c")
   graph <- add_node(graph, node = "d")
 
-  # Add edges with the 'to_get' relationship
-  graph <- add_edges(graph, from = "a", to = "b",
-                     rel = "to_get")
-
-  # Add edges with the 'received_from' relationship
-  graph <-
-    add_edges(graph,
-              from = c("a", "a"),
-              to = c("c", "d"),
-              rel = "received_from")
+  # Add edges
+  graph <- add_edge(graph, from = "a", to = "b", rel = "to_get")
+  graph <- add_edge(graph, from = "a", to = "c", rel = "received_from")
+  graph <- add_edge(graph, from = "c", to = "d", rel = "received_from")
 
   # Expect an error the node specified is not a single value
   expect_error(delete_node(graph, node = c("a", "b")))

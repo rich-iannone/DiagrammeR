@@ -47,14 +47,13 @@ test_that("adding graphs to a series is also possible", {
   # Create three different graphs
   graph_1 <- create_graph() %>%
     add_node("a") %>% add_node("b") %>% add_node("c") %>%
-    add_edges(from = c("a", "a", "b"),
-              to   = c("c", "b", "c"))
+    add_edge("a", "c") %>% add_edge("a", "b") %>% add_edge("b", "c")
 
   graph_2 <- graph_1 %>%
-    add_node("d") %>% add_edges(from = "d", to = "c")
+    add_node("d") %>% add_edge("d", "c")
 
   graph_3 <- graph_2 %>%
-    add_node("e") %>% add_edges(from = "e", to = "b")
+    add_node("e") %>% add_edge("e", "b")
 
   # Add graphs to the graph series
   series <- graph_1 %>% add_to_series(series)
@@ -201,14 +200,13 @@ test_that("removing graphs from a series is possible", {
   # Create three different graphs
   graph_1 <- create_graph() %>%
     add_node("a") %>% add_node("b") %>% add_node("c") %>%
-    add_edges(from = c("a", "a", "b"),
-              to   = c("c", "b", "c"))
+    add_edge("a", "c") %>% add_edge("a", "b") %>% add_edge("b", "c")
 
   graph_2 <- graph_1 %>%
-    add_node("d") %>% add_edges(from = "d", to = "c")
+    add_node("d") %>% add_edge("d", "c")
 
   graph_3 <- graph_2 %>%
-    add_node("e") %>% add_edges(from = "e", to = "b")
+    add_node("e") %>% add_edge("e", "b")
 
   # Add graphs to the graph series
   series <- graph_1 %>% add_to_series(series)
@@ -255,24 +253,21 @@ test_that("subsetting graphs from a temporal series is possible", {
                  graph_time = "2015-03-25 03:00",
                  graph_tz = "GMT") %>%
     add_node("a") %>% add_node("b") %>% add_node("c") %>%
-    add_edges(from = c("a", "a", "b"),
-              to =   c("c", "b", "c"))
+    add_edge("a", "c") %>% add_edge("a", "b") %>% add_edge("b", "c")
 
   graph_time_2 <-
     create_graph(graph_name = "graph_with_time_2",
                  graph_time = "2015-03-26 03:00",
                  graph_tz = "GMT") %>%
     add_node("d") %>% add_node("e") %>% add_node("f") %>%
-    add_edges(from = c("d", "d", "e"),
-              to =   c("f", "e", "f"))
+    add_edge("d", "f") %>% add_edge("d", "e") %>% add_edge("e", "f")
 
   graph_time_3 <-
     create_graph(graph_name = "graph_with_time_3",
                  graph_time = "2015-03-27 15:00",
                  graph_tz = "GMT") %>%
     add_node("x") %>% add_node("y") %>% add_node("z") %>%
-    add_edges(from = c("x", "x", "y"),
-              to =   c("z", "y", "z"))
+    add_edge("x", "z") %>% add_edge("x", "y") %>% add_edge("y", "z")
 
   # Create an empty graph series
   series_temporal <- create_series(series_type = "temporal")

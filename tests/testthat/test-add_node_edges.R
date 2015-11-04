@@ -187,8 +187,7 @@ test_that("adding an edge to a graph is possible", {
   graph <- add_node(graph, node = "b")
 
   # Add an edge
-  graph <- add_edges(graph, from = "a", to = "b",
-                     rel = "to_get")
+  graph <- add_edge(graph, from = "a", to = "b", rel = "to_get")
 
   # Expect that names in this graph object match a prescribed set of names
   expect_true(all(names(graph) == c("graph_name", "graph_time", "graph_tz",
@@ -224,12 +223,12 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect a message when adding an existing edge to the graph
   expect_error(
-    add_edges(graph, from = "a", to = "b")
+    add_edge(graph, from = "a", to = "b")
   )
 
   # Create another empty graph
   graph_empty <- create_graph()
 
-  # Expect an error when calling 'add_edges' on an empty graph
-  expect_error(add_edges(graph = graph_empty))
+  # Expect an error when calling 'add_edge' on an empty graph
+  expect_error(add_edge(graph = graph_empty))
 })
