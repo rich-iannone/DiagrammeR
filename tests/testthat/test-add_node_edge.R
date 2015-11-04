@@ -172,9 +172,7 @@ test_that("adding a node to a graph is possible", {
 
   # Add another node, connecting with only a value provided for 'from' but
   # where the reference node is not in the graph
-  expect_error(
-    add_node(graph, node = "b", from = "c")
-  )
+  expect_error(add_node(graph, node = "b", from = "c"))
 })
 
 test_that("adding an edge to a graph is possible", {
@@ -222,13 +220,11 @@ test_that("adding an edge to a graph is possible", {
   expect_true(nrow(graph$edges_df) == 1)
 
   # Expect a message when adding an existing edge to the graph
-  expect_error(
-    add_edge(graph, from = "a", to = "b")
-  )
+  expect_error(add_edge(graph, from = "a", to = "b"))
 
-  # Create another empty graph
-  graph_empty <- create_graph()
+  # Expect an error when attempting to add more than 1 edge
+  expect_error(add_edge(graph, from = c("a", "b"), to = "b"))
 
   # Expect an error when calling 'add_edge' on an empty graph
-  expect_error(add_edge(graph = graph_empty))
+  expect_error(add_edge(graph = create_graph()))
 })
