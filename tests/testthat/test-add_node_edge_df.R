@@ -53,6 +53,12 @@ test_that("adding a node df to a graph is possible", {
   # Expect that the 'nodes_df' data frame has 5 columns
   expect_true(ncol(graph_2$nodes_df) == 5)
   expect_true(ncol(graph_3$nodes_df) == 5)
+
+  # Expect an error if adding a node data frame that contains one or more
+  # nodes already in the graph
+  expect_error(
+    add_node_df(graph = graph_3, node_df = create_nodes("a"))
+  )
 })
 
 test_that("adding an edge df to a graph is possible", {
