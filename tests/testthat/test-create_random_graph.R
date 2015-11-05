@@ -49,9 +49,6 @@ test_that("a random graph can be made to various specifications", {
   # Expect 10 nodes in graph
   expect_equal(node_count(random_graph_10_15_fully_connected), 10)
 
-  # Expect 15 edges in graph
-  expect_equal(edge_count(random_graph_10_15_fully_connected), 15)
-
   # Expect the graph is directed
   expect_false(is_graph_directed(random_graph_10_15_fully_connected))
 
