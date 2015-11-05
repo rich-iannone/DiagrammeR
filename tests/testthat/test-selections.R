@@ -385,7 +385,7 @@ test_that("selecting nodes in a neighborhood is possible", {
 
   # Expect that specific nodes  are part of a selection
   # object in 'nodes'
-  expect_true(all(graph_sel_1_sel_4_dist_2$selection$nodes ==
+  expect_true(all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
                     c("D", "5", "F", "A", "1", "7", "C",
                       "E", "6", "4")))
 
@@ -399,7 +399,6 @@ test_that("selecting nodes in a neighborhood is possible", {
 
   # Expect that specific nodes  are part of a selection
   # object in 'nodes'
-  expect_true(all(graph_sel_1_sel_4_dist_2$selection$nodes ==
+  expect_true(all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
                     c("D", "F", "A", "C", "B", "2", "3")))
-
 })
