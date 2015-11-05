@@ -323,3 +323,42 @@ test_that("selecting an edge in a graph is possible", {
                  regex = "a")
   )
 })
+
+test_that("selecting nodes in a neighborhood is possible", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node("A") %>% add_node("B") %>% add_node("C") %>%
+    add_node("D") %>% add_node("E") %>% add_node("F") %>%
+    add_node("1") %>% add_node("2") %>% add_node("3") %>%
+    add_node("4") %>% add_node("5") %>% add_node("6") %>%
+    add_node("7") %>% add_node("8") %>%
+    add_edge("A", "1") %>%
+    add_edge("B", "2") %>%
+    add_edge("B", "3") %>%
+    add_edge("B", "4") %>%
+    add_edge("C", "A") %>%
+    add_edge("1", "D") %>%
+    add_edge("E", "A") %>%
+    add_edge("2", "4") %>%
+    add_edge("1", "5") %>%
+    add_edge("1", "F") %>%
+    add_edge("E", "6") %>%
+    add_edge("4", "6") %>%
+    add_edge("5", "7") %>%
+    add_edge("6", "7") %>%
+    add_edge("3", "8")
+
+  # Create a selection of nodes centered around node "U" and
+  # including those nodes a depth of 2 edges away
+  graph_sel_1_dist_2 <-
+    select_nodes_in_neighborhood(graph = graph,
+                                 node = "1",
+                                 distance = 2)
+
+  # Expect that nodes "a", "b", "c", and "d" are part of a selection
+  # object in 'nodes'
+  expect_true(all(graph_sel_1_dist_2$selection$nodes ==
+                    c("D", "5", "F", "A", "1", "7", "C", "E")))
+})
