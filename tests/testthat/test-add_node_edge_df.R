@@ -63,6 +63,30 @@ test_that("adding a node df to a graph is possible", {
 
 test_that("adding an edge df to a graph is possible", {
 
+  graph <- create_graph()
+
+  # Create a node data frame
+  nodes <-
+    create_nodes(nodes = c("a", "b", "c", "d"),
+                 type = "letter",
+                 color = c("red", "green", "grey", "blue"),
+                 value = c(3.5, 2.6, 9.4, 2.7))
+
+  # Add the node data frame to the graph object to create a
+  # graph with nodes
+  graph_2 <- add_node_df(graph = graph, node_df = nodes)
+
+  # Create another node data frame
+  nodes_2 <-
+    create_nodes(nodes = c("e", "f", "g", "h"),
+                 type = "letter",
+                 color = c("white", "brown", "aqua", "pink"),
+                 value = c(1.6, 6.4, 0.8, 4.2))
+
+  # Add the second node data frame to the graph object to
+  # add more nodes with attributes to the graph
+  graph_3 <- add_node_df(graph = graph_2, node_df = nodes_2)
+
   # Create an edge data frame
   edges <-
     create_edges(from = c("a", "b", "c"),
