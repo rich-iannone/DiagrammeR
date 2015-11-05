@@ -2,6 +2,8 @@ context("Setting and getting node attributes")
 
 test_that("setting node attrs", {
 
+  library(magrittr)
+
   # Create a graph
   graph <-
     create_graph() %>%
