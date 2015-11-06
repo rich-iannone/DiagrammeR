@@ -172,9 +172,6 @@ create_graph <- function(nodes_df = NULL,
   if (class(edges_df) == "data.frame"){
     if (ncol(edges_df) > 2){
 
-      stopifnot(any(c("from", "to") %in%
-                      colnames(edges_df)))
-
       # Force all columns to be of the character class
       for (i in 1:ncol(edges_df)){
         edges_df[,i] <- as.character(edges_df[,i])
