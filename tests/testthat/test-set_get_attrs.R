@@ -40,16 +40,9 @@ test_that("setting a time for the graph name can be done", {
   # Expect that the time zone is set to "GMT"
   expect_true(graph_1$graph_tz == "GMT")
 
-  # Provide the new graph with a timestamp that is the current
-  # time; the time zone is inferred from the user's locale
-  graph_2 <- set_graph_time(graph)
-
-  # Expect that the time zone is set to that of the user's locale
-  expect_true(graph_2$graph_tz == Sys.timezone())
-
   # Update tz when a timestamp is already present
   graph_2 <-
-    set_graph_time(graph_2,
+    set_graph_time(graph_1,
                    tz = "America/Los_Angeles")
 
   # Expect that the time zone has been changed
