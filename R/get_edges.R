@@ -111,7 +111,7 @@ get_edges <- function(x,
     }
 
     if (!(edge_attr %in% colnames(edges_df)[-(1:2)])){
-      stop("The specified attribute is not available")
+      stop("The specified attribute is not available.")
     }
   }
 
