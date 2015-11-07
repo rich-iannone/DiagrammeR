@@ -49,6 +49,17 @@ test_that("getting node IDs from various objects is possible", {
   expect_more_than(length(get_nodes(graph)),
                    length(unique(c(graph$edges_df$from,
                                    graph$edges_df$to))))
+
+  # Get the node df from the graph using `get_node_df()`
+  node_df_from_graph <- get_node_df(graph)
+
+  # Expect that the nodes from the graph and from the extracted
+  # node df are the same
+  expect_true(all(get_nodes(node_df_from_graph) == get_nodes(graph)))
+
+  # Expect that using `get_node_df()` on a graph with no nodes
+  # will return an NA
+  expect_true(is.na(get_node_df(create_graph())))
 })
 
 test_that("getting node IDs associated within a graph's edges is possible", {
@@ -123,6 +134,18 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Expect that the ' -> ' substring is in each vector component
   expect_true(all(grepl(" -> ", gotten_edges_vector)))
+
+  # Get the edge df from the graph using `get_edge_df()`
+  edge_df_from_graph <- get_edge_df(graph)
+
+  # Expect that the edges from the graph and from the extracted
+  # edge df are the same
+  expect_true(all(get_edges(edge_df_from_graph, return_type = "vector") ==
+        get_edges(edge_df_from_graph, return_type = "vector")))
+
+  # Expect that using `get_edge_df()` on a graph with no edges
+  # will return an NA
+  expect_true(is.na(get_edge_df(create_graph(nodes_df = create_nodes("a")))))
 })
 
 test_that("getting edge information from an edge data frame is possible", {
