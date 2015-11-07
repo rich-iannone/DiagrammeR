@@ -80,4 +80,23 @@ test_that("setting node attrs", {
 
   # Expect that all nodes have the attribute set
   expect_true(all(graph_set_all$nodes_df$value == "5"))
+
+  # Select node "A" and apply a node attribute using that
+  # node selection
+  graph_node_selection <-
+    graph %>% select_nodes("A") %>%
+    set_node_attr_with_selection(node_attr = "value", value = 5)
+
+  # Expect that node "A" has node attr set for `value`
+  expect_equal(graph_node_selection$nodes_df[which(graph_node_selection$nodes_df$nodes == "A"), 4],
+               "5")
+
+  # Expect that getting the node attribute from a
+  # selection works in the same way
+  expect_equal(get_node_attr_from_selection(graph_node_selection)$value,
+               "5")
+
+  # Expect that getting the node attribute from a  graph without
+  # a selection will result in an error
+  expect_error(get_node_attr_from_selection(graph))
 })
