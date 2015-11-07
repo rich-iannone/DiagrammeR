@@ -397,8 +397,55 @@ test_that("selecting nodes in a neighborhood is possible", {
                                  distance = 2,
                                  set_op = "difference")
 
-  # Expect that specific nodes  are part of a selection
+  # Expect that specific nodes are part of a selection
   # object in 'nodes'
   expect_true(all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
                     c("D", "F", "A", "C", "B", "2", "3")))
+})
+
+test_that("getting a selection is possible", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node("A") %>% add_node("B") %>% add_node("C") %>%
+    add_node("D") %>% add_node("E") %>% add_node("F") %>%
+    add_node("1") %>% add_node("2") %>% add_node("3") %>%
+    add_node("4") %>% add_node("5") %>% add_node("6") %>%
+    add_node("7") %>% add_node("8") %>%
+    add_edge("A", "1") %>%
+    add_edge("B", "2") %>%
+    add_edge("B", "3") %>%
+    add_edge("B", "4") %>%
+    add_edge("C", "A") %>%
+    add_edge("1", "D") %>%
+    add_edge("E", "A") %>%
+    add_edge("2", "4") %>%
+    add_edge("1", "5") %>%
+    add_edge("1", "F") %>%
+    add_edge("E", "6") %>%
+    add_edge("4", "6") %>%
+    add_edge("5", "7") %>%
+    add_edge("6", "7") %>%
+    add_edge("3", "8")
+
+  # Select all nodes in graph and get selection
+  graph_node_selection_1 <-
+    graph %>% select_nodes() %>% get_selection()
+
+  # Expect that specific nodes are returned
+  expect_true(all(graph_node_selection_1$nodes ==
+                    c("1", "2", "3", "4", "5", "6", "7", "8")))
+
+  # Select all edges in graph and get selection
+  graph_edge_selection_1 <-
+    graph %>% select_edges() %>% get_selection()
+
+  # Expect that specific nodes are returned
+  expect_true(all(graph_edge_selection_1$edges$from ==
+                    c("1", "1", "3", "3", "4", "2", "7", "4")))
+  # Expect that specific nodes are returned
+  expect_true(all(graph_edge_selection_1$edges$to ==
+                    c("2", "3", "4", "5", "6", "7", "5", "8")))
+
 })
