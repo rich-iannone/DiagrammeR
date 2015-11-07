@@ -48,17 +48,6 @@ test_that("setting a time for the graph name can be done", {
   # Expect that the time zone has been changed
   expect_true(graph_2$graph_tz == "America/Los_Angeles")
 
-  # Set the current time and apply the time zone of the
-  # user's locale when not supplying time-date values to
-  # `set_graph_time()`
-  graph_3 <- set_graph_time(graph)
-
-  # Expect a time to be set
-  expect_true(!is.null(graph_3$graph_time))
-
-  # Expect a time zone to be set
-  expect_true(!is.null(graph_3$graph_tz))
-
   # Expect an error when setting a time zone that is
   # not in `OlsonNames()`
   expect_error(
