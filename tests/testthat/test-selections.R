@@ -435,7 +435,8 @@ test_that("getting a selection is possible", {
 
   # Expect that specific nodes are returned
   expect_true(all(graph_node_selection_1$nodes ==
-                    c("1", "2", "3", "4", "5", "6", "7", "8")))
+                    c("A", "B", "C", "D", "E", "F", "1",
+                      "2", "3", "4", "5", "6", "7", "8")))
 
   # Select all edges in graph and get selection
   graph_edge_selection_1 <-
@@ -443,9 +444,10 @@ test_that("getting a selection is possible", {
 
   # Expect that specific nodes are returned
   expect_true(all(graph_edge_selection_1$edges$from ==
-                    c("1", "1", "3", "3", "4", "2", "7", "4")))
+                    c("A", "B", "B", "B", "C", "1", "E", "2",
+                      "1", "1", "E", "4", "5", "6", "3")))
   # Expect that specific nodes are returned
   expect_true(all(graph_edge_selection_1$edges$to ==
-                    c("2", "3", "4", "5", "6", "7", "5", "8")))
-
+                    c("1", "2", "3", "4", "A", "D", "A", "4",
+                      "5", "F", "6", "6", "7", "7", "8")))
 })
