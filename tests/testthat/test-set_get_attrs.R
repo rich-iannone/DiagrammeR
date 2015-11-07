@@ -65,6 +65,15 @@ test_that("setting a time for the graph name can be done", {
     set_graph_time(graph_2,
                    tz = "Moon/Moon")
   )
+
+  # Create a graph with a node and a node selection
+  graph_selection <-
+    create_graph() %>% add_node("A") %>% select_nodes() %>%
+    set_graph_time()
+
+  # Expect that the selection is retained after setting
+  # date-time and time zone
+  expect_true(!is.null(graph_selection$selection$nodes))
 })
 
 test_that("setting/getting global graph attributes can be done", {
