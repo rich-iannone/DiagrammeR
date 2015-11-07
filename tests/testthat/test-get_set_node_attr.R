@@ -71,4 +71,13 @@ test_that("setting node attrs", {
   # Expect that node "A" has node attr set for `value`
   expect_equal(graph_select_a$nodes_df[which(graph_select_a$nodes_df$nodes == "A"), 4],
                "5")
+
+  # Set attribute for all nodes
+  graph_set_all <-
+    set_node_attr(graph,
+                  node_attr = "value",
+                  value = 5)
+
+  # Expect that all nodes have the attribute set
+  expect_true(all(graph_set_all$nodes_df$value == "5"))
 })
