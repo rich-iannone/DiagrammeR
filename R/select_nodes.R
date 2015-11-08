@@ -66,7 +66,7 @@ select_nodes <- function(graph,
     }
 
     if (!(node_attr %in% colnames(nodes_df)[-1])){
-      stop("The specified attribute is not availalbe")
+      stop("The specified attribute is not available.")
     }
   }
 
