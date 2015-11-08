@@ -132,6 +132,13 @@ test_that("selecting a node in a graph is possible", {
                  regex = "a")
   )
 
+  # Expect an error if specifying an attribute that doesn't exist
+  expect_error(
+    select_nodes(graph = graph,
+                 node_attr = "fontname",
+                 regex = "a")
+  )
+
   # Expect an error if specifying a node that doesn't exist
   expect_error(
     select_nodes(graph = graph,
