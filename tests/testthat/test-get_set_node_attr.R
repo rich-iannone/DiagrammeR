@@ -1,6 +1,6 @@
 context("Setting and getting node attributes")
 
-test_that("setting node attrs", {
+test_that("setting node attributes is possible", {
 
   library(magrittr)
 
@@ -96,7 +96,19 @@ test_that("setting node attrs", {
   expect_equal(get_node_attr_from_selection(graph_node_selection)$value,
                "5")
 
-  # Expect that getting the node attribute from a  graph without
+  # Expect that getting the node attribute from a graph without
   # a selection will result in an error
   expect_error(get_node_attr_from_selection(graph))
+
+  # Expect an error if the attribute selected is `nodes`
+  expect_error(
+    set_node_attr(graph, nodes = "A",
+                  node_attr = "nodes", value = "B")
+  )
+
+  # Expect an error if the attribute selected is `nodes`
+  expect_error(
+    set_node_attr(graph, nodes = "A",
+                  node_attr = "value", value = c("1", "2"))
+  )
 })
