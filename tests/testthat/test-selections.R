@@ -86,6 +86,17 @@ test_that("selecting a node in a graph is possible", {
   # object in 'nodes'
   expect_true(all(graph_val_letter$selection$nodes == c("a", "b", "c", "d")))
 
+  # Select nodes where `type` is `letter` and filter to nodes "a" and "b"
+  graph_val_letter_a_b <-
+    select_nodes(graph = graph,
+                 nodes = c("a", "b"),
+                 node_attr = "type",
+                 regex = "let")
+
+  # Expect that nodes "a", "b", "c", and "d" are part of a selection
+  # object in 'nodes'
+  expect_true(all(graph_val_letter_a_b$selection$nodes == c("a", "b")))
+
   # Create a union of selections in a magrittr pipeline
   graph_sel_union_a_b_c_d <-
     graph %>% select_nodes(c("a", "b")) %>% select_nodes(c("c", "d"))
