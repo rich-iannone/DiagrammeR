@@ -308,6 +308,38 @@ test_that("selecting an edge in a graph is possible", {
   # object in 'edges/to'
   expect_true(graph_sel_edge_difference_ad$selection$edges$to == "d")
 
+  # Select edges, specifying only the 'from' node
+  graph_from_a <-
+    select_edges(graph,
+                 from = "a")
+
+  # Expect that only the edge "a" -> "d" is selected
+  expect_true(graph_from_a$selection$edges$from == "a")
+  expect_true(graph_from_a$selection$edges$to == "d")
+
+  # Expect an error if when only specifying the 'from' node,
+  # that node isn't present in the graph
+  expect_error(
+    select_edges(graph,
+                 from = "g")
+  )
+
+  # Select edges, specifying only the 'to' node
+  graph_to_c <-
+    select_edges(graph,
+                 to = "c")
+
+  # Expect that only the edge "b" -> "c" is selected
+  expect_true(graph_to_c$selection$edges$from == "b")
+  expect_true(graph_to_c$selection$edges$to == "c")
+
+  # Expect an error if when only specifying the 'to' node,
+  # that node isn't present in the graph
+  expect_error(
+    select_edges(graph,
+                 to = "g")
+  )
+
   # Expect an error if a comparison and regex are used together
   expect_error(
     select_edges(graph = graph,
@@ -323,10 +355,23 @@ test_that("selecting an edge in a graph is possible", {
                  to = "c")
   )
 
+  # Expect an error if selecting edges from a graph with nodes
+  # but no edges
+  expect_error(
+    select_edges(graph = create_graph(create_nodes(nodes = "a")))
+  )
+
   # Expect an error if specifying more than one attribute
   expect_error(
     select_edges(graph = graph,
                  edge_attr = c("rel", "width"),
+                 regex = "a")
+  )
+
+  # Expect an error if specifying an attribute that doesn't exist
+  expect_error(
+    select_edges(graph = graph,
+                 edge_attr = "fontname",
                  regex = "a")
   )
 })
