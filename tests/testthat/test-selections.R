@@ -451,3 +451,64 @@ test_that("getting a selection is possible", {
                     c("1", "2", "3", "4", "A", "D", "A", "4",
                       "5", "F", "6", "6", "7", "7", "8")))
 })
+
+test_that("inverting a selection is possible", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node("A") %>% add_node("B") %>% add_node("C") %>%
+    add_node("D") %>% add_node("E") %>% add_node("F") %>%
+    add_node("1") %>% add_node("2") %>% add_node("3") %>%
+    add_node("4") %>% add_node("5") %>% add_node("6") %>%
+    add_node("7") %>% add_node("8") %>%
+    add_edge("A", "1") %>%
+    add_edge("B", "2") %>%
+    add_edge("B", "3") %>%
+    add_edge("B", "4") %>%
+    add_edge("C", "A") %>%
+    add_edge("1", "D") %>%
+    add_edge("E", "A") %>%
+    add_edge("2", "4") %>%
+    add_edge("1", "5") %>%
+    add_edge("1", "F") %>%
+    add_edge("E", "6") %>%
+    add_edge("4", "6") %>%
+    add_edge("5", "7") %>%
+    add_edge("6", "7") %>%
+    add_edge("3", "8")
+
+  # Select nodes "1" and "2" in the graph
+  graph_select_1_2 <-
+    graph %>% select_nodes("1") %>% select_nodes("2")
+
+  # Invert the selection so that every other node is selected
+  graph_select_1_2_inverted <-
+    graph_select_1_2 %>% invert_selection()
+
+  # Expect that all nodes except "1" and "2" are in selection
+  expect_true(all(graph_select_1_2_inverted$selection$nodes %in%
+                    c("A", "B", "C", "D", "E", "F",
+                      "3","4", "5", "6", "7", "8")))
+
+  # Select edges "1" -> "5" and "4" -> "6" in the graph
+  graph_select_edges_1_5__4_6 <-
+    graph %>% select_edges("1", "5") %>% select_edges("4", "6")
+
+  # Invert the selection so that every other edge is selected
+  graph_select_edges_1_5__4_6_inverted <-
+    graph_select_edges_1_5__4_6 %>% invert_selection()
+
+  # Expect that every other edge is now in the selection
+  expect_true(all(graph_select_edges_1_5__4_6_inverted$selection$edges$from %in%
+                    c("A", "B", "B", "B", "C", "1", "E",
+                      "2", "1", "E", "5", "6", "3")))
+  expect_true(all(graph_select_edges_1_5__4_6_inverted$selection$edges$to %in%
+                    c("1", "2", "3", "4", "A", "D", "A",
+                      "4", "F", "6", "7", "7", "8")))
+
+  # Expect an error if inverting selection that doesn't exist
+  expect_error(
+    invert_selection(graph)
+  )
+})
