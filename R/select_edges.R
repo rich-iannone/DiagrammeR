@@ -75,13 +75,6 @@ select_edges <- function(graph,
 
     } else if (is.null(from) & is.null(to)){
 
-      if (any(!(from %in% edges_df$from))){
-        stop("One of more of the outgoing nodes specified are not part of an edge.")
-      }
-
-      if (any(!(to %in% edges_df$to))){
-        stop("One of more of the incoming nodes specified are not part of an edge.")
-      }
       edges_selected <-
         get_edges(edges_df, return_type = "vector")
 
