@@ -96,6 +96,48 @@ test_that("setting node attributes is possible", {
   expect_equal(get_node_attr_from_selection(graph_node_selection)$value,
                "5")
 
+  # Get the node data frame from the graph as a separate object
+  graph_node_df <- graph$nodes_df
+
+  # Set attribute for named node "A" in the ndf
+  graph_node_df_set_a <-
+    set_node_attr(graph_node_df,
+                  nodes = "A",
+                  node_attr = "value",
+                  value = 5)
+
+  # Expect that node "A" has node attr set for `value`
+  expect_equal(graph_node_df_set_a[which(graph_node_df_set_a$nodes == "A"), 4],
+               "5")
+
+  # Get node attribute for named node "A"
+  graph_node_df_set_a_node_attr_df <-
+    get_node_attr(graph_node_df_set_a,
+                  nodes = "A")
+
+  # Expect that node "A" has node attr set for `value`
+  expect_equal(graph_node_df_set_a_node_attr_df$value, "5")
+
+  # Set attribute for named node "A" with a different value
+  graph_node_df_set_a_node_attr_df <-
+    set_node_attr(graph_node_df_set_a,
+                  nodes = "A",
+                  node_attr = "value",
+                  value = 8)
+
+  # Expect that node "A" in the ndf has node attr set for `value`
+  expect_equal(graph_node_df_set_a_node_attr_df[which(graph_node_df_set_a_node_attr_df$nodes == "A"), 4],
+               "8")
+
+  # Set attribute for all nodes in the ndf
+  graph_node_df_set_all <-
+    set_node_attr(graph_node_df,
+                  node_attr = "value",
+                  value = 5)
+
+  # Expect that all nodes in the ndf will have the attribute set
+  expect_true(all(graph_node_df_set_all$value == "5"))
+
   # Expect that getting the node attribute from a graph without
   # a selection will result in an error
   expect_error(get_node_attr_from_selection(graph))
