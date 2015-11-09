@@ -3,6 +3,10 @@
 #' attribute properties for nodes available in a selection.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
+#' @param node_attr an optional node attribute to be supplied when a
+#' vector of node attribute values is desired.
+#' @param mode a option to recast the returned vector of node attribute
+#' value as \code{numeric} or \code{character}.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
