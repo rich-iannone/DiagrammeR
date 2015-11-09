@@ -47,7 +47,7 @@ get_node_attr_from_selection <- function(graph,
     stop("There is no selection of nodes available.")
   }
 
-  nodes_df <- get_node_attr(graph, graph$selection$nodes)
+  nodes_df <- get_node_attr(graph, nodes = graph$selection$nodes)
 
   if (is.null(node_attr)){
     return(nodes_df)
