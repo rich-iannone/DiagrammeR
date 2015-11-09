@@ -3,16 +3,17 @@
 #' of a specified type to extant nodes within the graph.
 #' @param graph a graph object of class \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param node a node ID for the newly connected node.
+#' @param type an optional string that describes the entity type for the node
+#' to be added.
+#' @param label a character object for supplying an optional label to the node.
+#' Setting to \code{TRUE} ascribes the node ID to the label. Setting to
+#' \code{FALSE} yields a blank label.
 #' @param from an optional vector containing node IDs from which edges will be
 #' directed to the new node.
 #' @param to an optional vector containing node IDs to which edges will be
 #' directed from the new node.
-#' @param label a character object for supplying an optional label to the node.
-#' Setting to \code{TRUE} ascribes the node ID to the label. Setting to
-#' \code{FALSE} yields a blank label.
-#' @param type an optional string that describes the entity type for the node
-#' to be added.
+#' @param node an optional node ID for the newly connected node. If no value
+#' is provided, a node ID will assigned as a monotonically increasing integer.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
