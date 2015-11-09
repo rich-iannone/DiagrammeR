@@ -4,14 +4,19 @@
 \alias{add_node}
 \title{Add a node to an existing graph object}
 \usage{
-add_node(graph, node = NULL, from = NULL, to = NULL, label = TRUE,
-  type = NULL)
+add_node(graph, type = NULL, label = TRUE, from = NULL, to = NULL,
+  node = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{node}{a node ID for the newly connected node.}
+\item{type}{an optional string that describes the entity type for the node
+to be added.}
+
+\item{label}{a character object for supplying an optional label to the node.
+Setting to \code{TRUE} ascribes the node ID to the label. Setting to
+\code{FALSE} yields a blank label.}
 
 \item{from}{an optional vector containing node IDs from which edges will be
 directed to the new node.}
@@ -19,12 +24,8 @@ directed to the new node.}
 \item{to}{an optional vector containing node IDs to which edges will be
 directed from the new node.}
 
-\item{label}{a character object for supplying an optional label to the node.
-Setting to \code{TRUE} ascribes the node ID to the label. Setting to
-\code{FALSE} yields a blank label.}
-
-\item{type}{an optional string that describes the entity type for the node
-to be added.}
+\item{node}{an optional node ID for the newly connected node. If no value
+is provided, a node ID will assigned as a monotonically increasing integer.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -39,20 +40,20 @@ of a specified type to extant nodes within the graph.
 graph <- create_graph()
 
 # Add two nodes
-graph <- add_node(graph, node = "a")
-graph <- add_node(graph, node = "b")
+graph <- add_node(graph)
+graph <- add_node(graph)
 
 get_nodes(graph)
-#> [1] "a" "b"
+#> [1] "1" "2"
 
 # Add a node with 'type' defined
-graph <- add_node(graph, node = "c", type = "letter")
+graph <- add_node(graph, type = "person")
 
 get_node_df(graph)
 #>   nodes   type label
-#> 1     a            a
-#> 2     b            b
-#> 3     c letter     c
+#> 1     1            1
+#> 2     2            2
+#> 3     3 person     3
 }
 }
 
