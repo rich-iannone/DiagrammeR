@@ -38,7 +38,7 @@
 get_edge_attr_from_selection <- function(graph){
 
   if (is.null(graph$selection$edges)){
-    stop("There is no selection of nodes available.")
+    stop("There is no selection of edges available.")
   }
 
   edges_df <- get_edge_attr(graph,
