@@ -64,5 +64,28 @@ get_node_attr <- function(x,
       nodes_df[which(nodes_df$nodes %in% nodes),]
   }
 
-  return(nodes_df)
+  if (is.null(node_attr)){
+    return(nodes_df)
+  }
+
+  if (!is.null(node_attr)){
+
+    if (node_attr %in% colnames(nodes_df)[-1]){
+
+      nodes_attr_vector <-
+        nodes_df[,which(colnames(nodes_df) %in% node_attr)]
+
+      if (!is.null(mode)){
+        if (mode == "numeric"){
+          nodes_attr_vector <- as.numeric(nodes_attr_vector)
+        }
+
+        if (mode == "character"){
+          nodes_attr_vector <- as.character(nodes_attr_vector)
+        }
+      }
+    }
+
+    return(nodes_attr_vector)
+  }
 }
