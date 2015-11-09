@@ -471,11 +471,13 @@ test_that("getting a selection is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node("A") %>% add_node("B") %>% add_node("C") %>%
-    add_node("D") %>% add_node("E") %>% add_node("F") %>%
-    add_node("1") %>% add_node("2") %>% add_node("3") %>%
-    add_node("4") %>% add_node("5") %>% add_node("6") %>%
-    add_node("7") %>% add_node("8") %>%
+    add_node(node = "A") %>% add_node(node = "B") %>%
+    add_node(node = "C") %>% add_node(node = "D") %>%
+    add_node(node = "E") %>% add_node(node = "F") %>%
+    add_node(node = "1") %>% add_node(node = "2") %>%
+    add_node(node = "3") %>% add_node(node = "4") %>%
+    add_node(node = "5") %>% add_node(node = "6") %>%
+    add_node(node = "7") %>% add_node(node = "8") %>%
     add_edge("A", "1") %>%
     add_edge("B", "2") %>%
     add_edge("B", "3") %>%
@@ -520,11 +522,13 @@ test_that("inverting a selection is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node("A") %>% add_node("B") %>% add_node("C") %>%
-    add_node("D") %>% add_node("E") %>% add_node("F") %>%
-    add_node("1") %>% add_node("2") %>% add_node("3") %>%
-    add_node("4") %>% add_node("5") %>% add_node("6") %>%
-    add_node("7") %>% add_node("8") %>%
+    add_node(node = "A") %>% add_node(node = "B") %>%
+    add_node(node = "C") %>% add_node(node = "D") %>%
+    add_node(node = "E") %>% add_node(node = "F") %>%
+    add_node(node = "1") %>% add_node(node = "2") %>%
+    add_node(node = "3") %>% add_node(node = "4") %>%
+    add_node(node = "5") %>% add_node(node = "6") %>%
+    add_node(node = "7") %>% add_node(node = "8") %>%
     add_edge("A", "1") %>%
     add_edge("B", "2") %>%
     add_edge("B", "3") %>%
@@ -581,11 +585,13 @@ test_that("clearing a selection is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node("A") %>% add_node("B") %>% add_node("C") %>%
-    add_node("D") %>% add_node("E") %>% add_node("F") %>%
-    add_node("1") %>% add_node("2") %>% add_node("3") %>%
-    add_node("4") %>% add_node("5") %>% add_node("6") %>%
-    add_node("7") %>% add_node("8") %>%
+    add_node(node = "A") %>% add_node(node = "B") %>%
+    add_node(node = "C") %>% add_node(node = "D") %>%
+    add_node(node = "E") %>% add_node(node = "F") %>%
+    add_node(node = "1") %>% add_node(node = "2") %>%
+    add_node(node = "3") %>% add_node(node = "4") %>%
+    add_node(node = "5") %>% add_node(node = "6") %>%
+    add_node(node = "7") %>% add_node(node = "8") %>%
     add_edge("A", "1") %>%
     add_edge("B", "2") %>%
     add_edge("B", "3") %>%
