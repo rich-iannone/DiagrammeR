@@ -35,7 +35,9 @@
 #' @return an edge data frame.
 #' @export get_edge_attr_from_selection
 
-get_edge_attr_from_selection <- function(graph){
+get_edge_attr_from_selection <- function(graph,
+                                         edge_attr = NULL,
+                                         mode = NULL){
 
   if (is.null(graph$selection$edges)){
     stop("There is no selection of edges available.")
