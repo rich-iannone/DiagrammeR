@@ -74,7 +74,7 @@ get_node_attr <- function(x,
 
   if (!is.null(node_attr)){
 
-    if (node_attr %in% colnames(nodes_df)[-1]){
+    if (any(node_attr %in% colnames(nodes_df)[-1])){
 
       nodes_attr_vector <-
         nodes_df[,which(colnames(nodes_df) %in% node_attr)]

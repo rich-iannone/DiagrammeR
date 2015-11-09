@@ -57,7 +57,7 @@ get_edge_attr_from_selection <- function(graph,
 
   if (!is.null(edge_attr)){
 
-    if (edge_attr %in% colnames(edges_df)[-c(1:2)]){
+    if (any(edge_attr %in% colnames(edges_df)[-c(1:2)])){
 
       edges_attr_vector <-
         edges_df[,which(colnames(edges_df) %in% edge_attr)]
