@@ -20,20 +20,20 @@
 #' graph <- create_graph()
 #'
 #' # Add two nodes
-#' graph <- add_node(graph, node = "a")
-#' graph <- add_node(graph, node = "b")
+#' graph <- add_node(graph)
+#' graph <- add_node(graph)
 #'
 #' get_nodes(graph)
-#' #> [1] "a" "b"
+#' #> [1] "1" "2"
 #'
 #' # Add a node with 'type' defined
-#' graph <- add_node(graph, node = "c", type = "letter")
+#' graph <- add_node(graph, type = "person")
 #'
 #' get_node_df(graph)
 #' #>   nodes   type label
-#' #> 1     a            a
-#' #> 2     b            b
-#' #> 3     c letter     c
+#' #> 1     1            1
+#' #> 2     2            2
+#' #> 3     3 person     3
 #' }
 #' @export add_node
 
