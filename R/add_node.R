@@ -38,11 +38,11 @@
 #' @export add_node
 
 add_node <- function(graph,
-                     node = NULL,
+                     type = NULL,
+                     label = TRUE,
                      from = NULL,
                      to = NULL,
-                     label = TRUE,
-                     type = NULL){
+                     node = NULL){
 
   # If node ID not provided, create a monotonically increasing ID value
   if (is.null(node)){
