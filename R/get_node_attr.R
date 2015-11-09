@@ -82,6 +82,9 @@ get_node_attr <- function(x,
       if (!is.null(mode)){
         if (mode == "numeric"){
           nodes_attr_vector <- as.numeric(nodes_attr_vector)
+
+          nodes_attr_vector <-
+            nodes_attr_vector[which(!is.na(nodes_attr_vector))]
         }
 
         if (mode == "character"){

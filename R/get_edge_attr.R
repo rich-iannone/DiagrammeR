@@ -108,6 +108,9 @@ get_edge_attr <- function(x,
       if (!is.null(mode)){
         if (mode == "numeric"){
           edges_attr_vector <- as.numeric(edges_attr_vector)
+
+          edges_attr_vector <-
+            edges_attr_vector[which(!is.na(edges_attr_vector))]
         }
 
         if (mode == "character"){
