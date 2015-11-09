@@ -34,7 +34,9 @@
 #' @export get_node_attr
 
 get_node_attr <- function(x,
-                          nodes = NULL){
+                          node_attr = NULL,
+                          mode = NULL,
+                          nodes = NULL,){
 
   if (class(x) == "dgr_graph"){
 
