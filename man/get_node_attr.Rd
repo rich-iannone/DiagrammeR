@@ -4,11 +4,17 @@
 \alias{get_node_attr}
 \title{Get node attributes}
 \usage{
-get_node_attr(x, nodes = NULL)
+get_node_attr(x, node_attr = NULL, mode = NULL, nodes = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}, or a node data frame.}
+
+\item{node_attr}{an optional node attribute to be supplied when a
+vector of node attribute values is desired.}
+
+\item{mode}{a option to recast the returned vector of node attribute
+value as \code{numeric} or \code{character}.}
 
 \item{nodes}{an optional vector of node IDs for filtering list of
 nodes present in the graph.}
