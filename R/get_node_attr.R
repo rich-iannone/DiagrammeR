@@ -40,7 +40,7 @@
 get_node_attr <- function(x,
                           node_attr = NULL,
                           mode = NULL,
-                          nodes = NULL,){
+                          nodes = NULL){
 
   if (class(x) == "dgr_graph"){
 
