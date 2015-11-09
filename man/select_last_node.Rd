@@ -19,8 +19,4 @@ Select the last node from a graph object of class
 record of the graph's node data frame. In practice, this will
 typically be the last node added to the graph.
 }
-\examples{
-\dontrun{
-}
-}
 
