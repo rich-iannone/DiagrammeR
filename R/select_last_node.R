@@ -6,9 +6,6 @@
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @examples
-#' \dontrun{
-#' }
 #' @export select_last_node
 
 select_last_node <- function(graph){
