@@ -47,5 +47,28 @@ get_edge_attr_from_selection <- function(graph,
                             from = graph$selection$edges$from,
                             to = graph$selection$edges$to)
 
-  return(edges_df)
+  if (is.null(edge_attr)){
+    return(edges_df)
+  }
+
+  if (!is.null(edge_attr)){
+
+    if (edge_attr %in% colnames(edges_df)[-c(1:2)]){
+
+      edges_attr_vector <-
+        edges_df[,which(colnames(edges_df) %in% edge_attr)]
+
+      if (!is.null(mode)){
+        if (mode == "numeric"){
+          edges_attr_vector <- as.numeric(edges_attr_vector)
+        }
+
+        if (mode == "character"){
+          edges_attr_vector <- as.character(edges_attr_vector)
+        }
+      }
+    }
+
+    return(edges_attr_vector)
+  }
 }
