@@ -3,6 +3,10 @@
 #' attribute properties for edges available in a selection.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
+#' @param edge_attr an optional edge attribute to be supplied when a
+#' vector of edge attribute values is desired.
+#' @param mode a option to recast the returned vector of edge attribute
+#' value as \code{numeric} or \code{character}.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
