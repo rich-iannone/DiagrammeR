@@ -35,7 +35,9 @@
 #' @return a node data frame.
 #' @export get_node_attr_from_selection
 
-get_node_attr_from_selection <- function(graph){
+get_node_attr_from_selection <- function(graph,
+                                         node_attr = NULL,
+                                         mode = NULL){
 
   if (is.null(graph$selection$nodes)){
     stop("There is no selection of nodes available.")
