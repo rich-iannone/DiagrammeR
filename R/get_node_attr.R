@@ -3,6 +3,10 @@
 #' data frame, get node attribute properties for one or more nodes.
 #' @param x either a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}, or a node data frame.
+#' @param node_attr an optional node attribute to be supplied when a
+#' vector of node attribute values is desired.
+#' @param mode a option to recast the returned vector of node attribute
+#' value as \code{numeric} or \code{character}.
 #' @param nodes an optional vector of node IDs for filtering list of
 #' nodes present in the graph.
 #' @return a node data frame.
