@@ -4,7 +4,8 @@
 \alias{add_node}
 \title{Add a node to an existing graph object}
 \usage{
-add_node(graph, node, from = NULL, to = NULL, label = TRUE, type = NULL)
+add_node(graph, node = NULL, from = NULL, to = NULL, label = TRUE,
+  type = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created using
