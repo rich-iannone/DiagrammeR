@@ -44,6 +44,30 @@ add_node <- function(graph,
                      label = TRUE,
                      type = NULL){
 
+  # If node ID not provided, create a monotonically increasing ID value
+  if (is.null(node)){
+
+    if (node_count(graph) == 0){
+      node <- 1
+    }
+
+    if (node_count(graph) > 0){
+
+      if (suppressWarnings(any(as.numeric(get_nodes(graph))))){
+
+        numeric_components <-
+          suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
+
+        node <-
+          max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
+      }
+
+      if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))){
+        node <- 1
+      }
+    }
+  }
+
   # Verify that 'node' is given as a single value
   node_is_single_value <- ifelse(length(node) == 1, TRUE, FALSE)
 
