@@ -38,7 +38,7 @@
 #' @export add_node
 
 add_node <- function(graph,
-                     node,
+                     node = NULL,
                      from = NULL,
                      to = NULL,
                      label = TRUE,
