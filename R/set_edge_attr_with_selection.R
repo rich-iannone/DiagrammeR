@@ -25,12 +25,6 @@ set_edge_attr_with_selection <- function(graph,
     stop("Only one value should be provided.")
   }
 
-  if (!is.null(from) & !is.null(to)){
-    if (length(from) != length(to)){
-      stop("The number of nodes 'from' and 'to' must be the same.")
-    }
-  }
-
   edges_df <- graph$edges_df
 
   if (edge_attr %in% colnames(edges_df)){
