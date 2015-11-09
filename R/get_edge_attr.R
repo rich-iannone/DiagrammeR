@@ -48,6 +48,8 @@
 #' @export get_edge_attr
 
 get_edge_attr <- function(x,
+                          edge_attr = NULL,
+                          mode = NULL,
                           from = NULL,
                           to = NULL){
 
