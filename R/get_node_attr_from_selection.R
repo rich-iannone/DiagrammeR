@@ -74,6 +74,8 @@ get_node_attr_from_selection <- function(graph,
       }
     }
 
-    return(nodes_attr_vector)
+    graph$deposit <- nodes_attr_vector
+
+    return(graph)
   }
 }

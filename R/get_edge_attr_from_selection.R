@@ -76,6 +76,8 @@ get_edge_attr_from_selection <- function(graph,
       }
     }
 
-    return(edges_attr_vector)
+    graph$deposit <- edges_attr_vector
+
+    return(graph)
   }
 }
