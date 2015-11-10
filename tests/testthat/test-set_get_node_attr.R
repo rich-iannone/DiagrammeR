@@ -2,40 +2,45 @@ context("Setting and getting node attributes")
 
 test_that("setting node attributes is possible", {
 
-  library(magrittr)
-
   # Create a graph
-  graph <-
-    create_graph() %>%
-    add_node(node = "A") %>% add_node(node = "B") %>%
-    add_node(node = "C") %>% add_node(node = "D") %>%
-    add_node(node = "E") %>% add_node(node = "F") %>%
-    add_node(node = "1") %>% add_node(node = "2") %>%
-    add_node(node = "3") %>% add_node(node = "4") %>%
-    add_node(node = "5") %>% add_node(node = "6") %>%
-    add_node(node = "7") %>% add_node(node = "8") %>%
-    add_edge("A", "1") %>%
-    add_edge("B", "2") %>%
-    add_edge("B", "3") %>%
-    add_edge("B", "4") %>%
-    add_edge("C", "A") %>%
-    add_edge("1", "D") %>%
-    add_edge("E", "A") %>%
-    add_edge("2", "4") %>%
-    add_edge("1", "5") %>%
-    add_edge("1", "F") %>%
-    add_edge("E", "6") %>%
-    add_edge("4", "6") %>%
-    add_edge("5", "7") %>%
-    add_edge("6", "7") %>%
-    add_edge("3", "8")
+  graph <- create_graph()
+  graph <- add_node(graph, node = "A")
+  graph <- add_node(graph, node = "B")
+  graph <- add_node(graph, node = "C")
+  graph <- add_node(graph, node = "D")
+  graph <- add_node(graph, node = "E")
+  graph <- add_node(graph, node = "F")
+  graph <- add_node(graph, node = "1")
+  graph <- add_node(graph, node = "2")
+  graph <- add_node(graph, node = "3")
+  graph <- add_node(graph, node = "4")
+  graph <- add_node(graph, node = "5")
+  graph <- add_node(graph, node = "6")
+  graph <- add_node(graph, node = "7")
+  graph <- add_node(graph, node = "8")
+  graph <- add_edge(graph, "A", "1")
+  graph <- add_edge(graph, "B", "2")
+  graph <- add_edge(graph, "B", "3")
+  graph <- add_edge(graph, "B", "4")
+  graph <- add_edge(graph, "C", "A")
+  graph <- add_edge(graph, "1", "D")
+  graph <- add_edge(graph, "E", "A")
+  graph <- add_edge(graph, "2", "4")
+  graph <- add_edge(graph, "1", "5")
+  graph <- add_edge(graph, "1", "F")
+  graph <- add_edge(graph, "E", "6")
+  graph <- add_edge(graph, "4", "6")
+  graph <- add_edge(graph, "5", "7")
+  graph <- add_edge(graph, "6", "7")
+  graph <- add_edge(graph, "3", "8")
+
+  succeed(message = "Success has been forced")
 
   # Set attribute for named node "A"
-  graph_set_a <-
-    set_node_attr(graph,
-                  nodes = "A",
-                  node_attr = "value",
-                  value = 5)
+  graph_set_a <- set_node_attr(graph,
+                               nodes = "A",
+                               node_attr = "value",
+                               values = 5)
 
   # Expect that node "A" has node attr set for `value`
   expect_equal(graph_set_a$nodes_df[which(graph_set_a$nodes_df$nodes == "A"), 4],
@@ -54,7 +59,7 @@ test_that("setting node attributes is possible", {
     set_node_attr(graph,
                   nodes = "A",
                   node_attr = "value",
-                  value = 8)
+                  values = 8)
 
   # Expect that node "A" has node attr set for `value`
   expect_equal(graph_set_a$nodes_df[which(graph_set_a$nodes_df$nodes == "A"), 4],
@@ -78,7 +83,7 @@ test_that("setting node attributes is possible", {
   graph_set_all <-
     set_node_attr(graph,
                   node_attr = "value",
-                  value = 5)
+                  values = 5)
 
   # Expect that all nodes have the attribute set
   expect_true(all(graph_set_all$nodes_df$value == "5"))
@@ -106,7 +111,7 @@ test_that("setting node attributes is possible", {
     set_node_attr(graph_node_df,
                   nodes = "A",
                   node_attr = "value",
-                  value = 5)
+                  values = 5)
 
   # Expect that node "A" has node attr set for `value`
   expect_equal(graph_node_df_set_a[which(graph_node_df_set_a$nodes == "A"), 4],
@@ -125,7 +130,7 @@ test_that("setting node attributes is possible", {
     set_node_attr(graph_node_df_set_a,
                   nodes = "A",
                   node_attr = "value",
-                  value = 8)
+                  values = 8)
 
   # Expect that node "A" in the ndf has node attr set for `value`
   expect_equal(graph_node_df_set_a_node_attr_df[which(graph_node_df_set_a_node_attr_df$nodes == "A"), 4],
@@ -135,7 +140,7 @@ test_that("setting node attributes is possible", {
   graph_node_df_set_all <-
     set_node_attr(graph_node_df,
                   node_attr = "value",
-                  value = 5)
+                  values = 5)
 
   # Expect that all nodes in the ndf will have the attribute set
   expect_true(all(graph_node_df_set_all$value == "5"))
@@ -147,43 +152,49 @@ test_that("setting node attributes is possible", {
   # Expect an error if the attribute selected is `nodes`
   expect_error(
     set_node_attr(graph, nodes = "A",
-                  node_attr = "nodes", value = "B")
+                  node_attr = "nodes", values = "B")
   )
 
   # Expect an error if the attribute selected is `nodes`
   expect_error(
     set_node_attr(graph, nodes = "A",
-                  node_attr = "value", value = c("1", "2"))
+                  node_attr = "value", values = c("1", "2"))
   )
 })
 
 test_that("setting edge attributes is possible", {
 
   # Create a graph
-  graph <-
-    create_graph() %>%
-    add_node(node = "A") %>% add_node(node = "B") %>%
-    add_node(node = "C") %>% add_node(node = "D") %>%
-    add_node(node = "E") %>% add_node(node = "F") %>%
-    add_node(node = "1") %>% add_node(node = "2") %>%
-    add_node(node = "3") %>% add_node(node = "4") %>%
-    add_node(node = "5") %>% add_node(node = "6") %>%
-    add_node(node = "7") %>% add_node(node = "8") %>%
-    add_edge("A", "1") %>%
-    add_edge("B", "2") %>%
-    add_edge("B", "3") %>%
-    add_edge("B", "4") %>%
-    add_edge("C", "A") %>%
-    add_edge("1", "D") %>%
-    add_edge("E", "A") %>%
-    add_edge("2", "4") %>%
-    add_edge("1", "5") %>%
-    add_edge("1", "F") %>%
-    add_edge("E", "6") %>%
-    add_edge("4", "6") %>%
-    add_edge("5", "7") %>%
-    add_edge("6", "7") %>%
-    add_edge("3", "8")
+  graph <- create_graph()
+  graph <- add_node(graph, node = "A")
+  graph <- add_node(graph, node = "B")
+  graph <- add_node(graph, node = "C")
+  graph <- add_node(graph, node = "D")
+  graph <- add_node(graph, node = "E")
+  graph <- add_node(graph, node = "F")
+  graph <- add_node(graph, node = "1")
+  graph <- add_node(graph, node = "2")
+  graph <- add_node(graph, node = "3")
+  graph <- add_node(graph, node = "4")
+  graph <- add_node(graph, node = "5")
+  graph <- add_node(graph, node = "6")
+  graph <- add_node(graph, node = "7")
+  graph <- add_node(graph, node = "8")
+  graph <- add_edge(graph, "A", "1")
+  graph <- add_edge(graph, "B", "2")
+  graph <- add_edge(graph, "B", "3")
+  graph <- add_edge(graph, "B", "4")
+  graph <- add_edge(graph, "C", "A")
+  graph <- add_edge(graph, "1", "D")
+  graph <- add_edge(graph, "E", "A")
+  graph <- add_edge(graph, "2", "4")
+  graph <- add_edge(graph, "1", "5")
+  graph <- add_edge(graph, "1", "F")
+  graph <- add_edge(graph, "E", "6")
+  graph <- add_edge(graph, "4", "6")
+  graph <- add_edge(graph, "5", "7")
+  graph <- add_edge(graph, "6", "7")
+  graph <- add_edge(graph, "3", "8")
 
   # Set edge attribute for edge "A" -> "1"
   graph_set_a_1 <-
@@ -191,7 +202,7 @@ test_that("setting edge attributes is possible", {
                   from = "A",
                   to = "1",
                   edge_attr = "value",
-                  value = 5)
+                  values = 5)
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
@@ -217,7 +228,7 @@ test_that("setting edge attributes is possible", {
                   from = "A",
                   to = "1",
                   edge_attr = "value",
-                  value = 8)
+                  values = 8)
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
@@ -246,7 +257,7 @@ test_that("setting edge attributes is possible", {
   graph_set_all <-
     set_edge_attr(graph,
                   edge_attr = "value",
-                  value = 5)
+                  values = 5)
 
   # Expect that all edges have the attribute set
   expect_true(all(graph_set_all$edges_df$value == "5"))
