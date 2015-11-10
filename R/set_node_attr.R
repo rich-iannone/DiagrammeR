@@ -32,18 +32,18 @@
 #' # the graph object
 #' graph <-
 #'   set_node_attr(x = graph, nodes = c("a", "c"),
-#'                 node_attr = "color", value = "green")
+#'                 node_attr = "color", values = "green")
 #'
 #' # Set attribute 'color = "green"' for nodes "a" and "c" using
 #' # the node data frame
 #' nodes <-
 #'   set_node_attr(x = nodes, nodes = c("a", "c"),
-#'                 node_attr = "color", value = "green")
+#'                 node_attr = "color", values = "green")
 #'
 #' #' # Set attribute 'color = "blue"' for all nodes
 #' # the node data frame
 #' nodes <-
-#'   set_node_attr(x = nodes, node_attr = "color", value = "blue")
+#'   set_node_attr(x = nodes, node_attr = "color", values = "blue")
 #' }
 #' @export set_node_attr
 
