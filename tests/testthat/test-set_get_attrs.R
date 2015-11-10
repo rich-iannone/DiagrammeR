@@ -14,7 +14,7 @@ test_that("setting a graph name can be done", {
 
   # Add a nodes/edges and then a node selection to the original graph
   graph_1 <- graph %>% add_node(1) %>% add_node(2) %>%
-    add_edge(1, 2) %>% select_nodes(1)
+    add_edge(1, 2) %>% select_nodes(nodes = 1)
 
   # Set a graph name
   graph_name_1 <- set_graph_name(graph_1, "test_that_name_again")

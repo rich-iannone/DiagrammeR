@@ -67,7 +67,7 @@ test_that("setting node attributes is possible", {
 
   # Select node "A"
   graph_select_a <-
-    select_nodes(graph, "A")
+    select_nodes(graph, nodes = "A")
 
   # Set attribute for selected node "A"
   graph_select_a <-
@@ -91,7 +91,7 @@ test_that("setting node attributes is possible", {
   # Select node "A" and apply a node attribute using that
   # node selection
   graph_node_selection <-
-    graph %>% select_nodes("A") %>%
+    graph %>% select_nodes(nodes = "A") %>%
     set_node_attr_with_selection(node_attr = "value", value = 5)
 
   # Expect that node "A" has node attr set for `value`
@@ -265,7 +265,7 @@ test_that("setting edge attributes is possible", {
   # Select edge "A" -> "1" and apply an edge attribute using that
   # edge selection
   graph_edge_selection <-
-    graph %>% select_edges("A", "1") %>%
+    graph %>% select_edges(from = "A", to = "1") %>%
     set_edge_attr_with_selection(edge_attr = "value", value = 5)
 
   # Expect that edge "A" -> "1" has edge attr set for `value`

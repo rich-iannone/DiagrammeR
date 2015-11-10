@@ -41,7 +41,7 @@ test_that("selecting a node in a graph is possible", {
   graph_val_gt_3 <-
     select_nodes(graph = graph,
                  node_attr = "value",
-                 comparison = ">3")
+                 search = ">3")
 
   # Expect that nodes "a" and "c" are part of a selection
   # object in 'nodes'
@@ -51,7 +51,7 @@ test_that("selecting a node in a graph is possible", {
   graph_val_lt_3 <-
     select_nodes(graph = graph,
                  node_attr = "value",
-                 comparison = "<3")
+                 search = "<3")
 
   # Expect that nodes "a" and "c" are part of a selection
   # object in 'nodes'
@@ -61,7 +61,7 @@ test_that("selecting a node in a graph is possible", {
   graph_val_eq_2_7 <-
     select_nodes(graph = graph,
                  node_attr = "value",
-                 comparison = "==2.7")
+                 search = "==2.7")
 
   # Expect that node "d" is part of a selection object in 'nodes'
   expect_true(all(graph_val_eq_2_7$selection$nodes == "d"))
@@ -70,7 +70,7 @@ test_that("selecting a node in a graph is possible", {
   graph_val_neq_2_7 <-
     select_nodes(graph = graph,
                  node_attr = "value",
-                 comparison = "!=2.7")
+                 search = "!=2.7")
 
   # Expect that nodes "a", "b", and "c" are part of a selection
   # object in 'nodes'
@@ -80,7 +80,7 @@ test_that("selecting a node in a graph is possible", {
   graph_val_letter <-
     select_nodes(graph = graph,
                  node_attr = "type",
-                 regex = "let")
+                 search = "let")
 
   # Expect that nodes "a", "b", "c", and "d" are part of a selection
   # object in 'nodes'
@@ -91,7 +91,7 @@ test_that("selecting a node in a graph is possible", {
     select_nodes(graph = graph,
                  nodes = c("a", "b"),
                  node_attr = "type",
-                 regex = "let")
+                 search = "let")
 
   # Expect that nodes "a", "b", "c", and "d" are part of a selection
   # object in 'nodes'
@@ -99,7 +99,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Create a union of selections in a magrittr pipeline
   graph_sel_union_a_b_c_d <-
-    graph %>% select_nodes(c("a", "b")) %>% select_nodes(c("c", "d"))
+    graph %>% select_nodes(nodes = c("a", "b")) %>%
+    select_nodes(nodes = c("c", "d"))
 
   # Expect that nodes "a", "b", "c", and "d" are part of a selection
   # object in 'nodes'
@@ -107,8 +108,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Create a intersection of selections in a magrittr pipeline
   graph_sel_intersect <-
-    graph %>% select_nodes(c("a", "b", "c")) %>%
-    select_nodes(c("b", "c", "d"), set_op = "intersect")
+    graph %>% select_nodes(nodes = c("a", "b", "c")) %>%
+    select_nodes(nodes = c("b", "c", "d"), set_op = "intersect")
 
   # Expect that nodes "b" and "c" are part of a selection object
   # in 'nodes'
@@ -116,19 +117,11 @@ test_that("selecting a node in a graph is possible", {
 
   # Create a selection that is a difference of selections
   graph_sel_difference <-
-    graph %>% select_nodes(c("a", "b", "c")) %>%
-    select_nodes(c("b", "c"), set_op = "difference")
+    graph %>% select_nodes(nodes = c("a", "b", "c")) %>%
+    select_nodes(nodes = c("b", "c"), set_op = "difference")
 
   # Expect that node "a" is part of a selection object in 'nodes'
   expect_true(all(graph_sel_difference$selection$nodes == "a"))
-
-  # Expect an error if a comparison and regex are used together
-  expect_error(
-    select_nodes(graph = graph,
-                 node_attr = "value",
-                 comparison = ">3",
-                 regex = "3")
-  )
 
   # Expect an error if selecting nodes from an empty graph
   expect_error(
@@ -140,14 +133,14 @@ test_that("selecting a node in a graph is possible", {
   expect_error(
     select_nodes(graph = graph,
                  node_attr = c("label", "value"),
-                 regex = "a")
+                 search = "a")
   )
 
   # Expect an error if specifying an attribute that doesn't exist
   expect_error(
     select_nodes(graph = graph,
                  node_attr = "fontname",
-                 regex = "a")
+                 search = "a")
   )
 
   # Expect an error if specifying a node that doesn't exist
@@ -160,7 +153,7 @@ test_that("selecting a node in a graph is possible", {
     select_nodes(graph = graph,
                  nodes = "e",
                  node_attr = "value",
-                 comparison = ">0")
+                 search = ">0")
   )
 })
 
@@ -215,7 +208,7 @@ test_that("selecting an edge in a graph is possible", {
   graph_width_gt_2 <-
     select_edges(graph = graph,
                  edge_attr = "width",
-                 comparison = ">2")
+                 search = ">2")
 
   # Expect that node "c" is part of a selection
   # object in 'edges/from'
@@ -229,7 +222,7 @@ test_that("selecting an edge in a graph is possible", {
   graph_width_lt_3 <-
     select_edges(graph = graph,
                  edge_attr = "width",
-                 comparison = "<3")
+                 search = "<3")
 
   # Expect that nodes "a" and "b" are part of a selection
   # object in 'edges/from'
@@ -243,7 +236,7 @@ test_that("selecting an edge in a graph is possible", {
   graph_width_eq_2 <-
     select_edges(graph = graph,
                  edge_attr = "width",
-                 comparison = "== 2")
+                 search = "== 2")
 
   # Expect that node "b" is part of a selection
   # object in 'edges/from'
@@ -257,7 +250,7 @@ test_that("selecting an edge in a graph is possible", {
   graph_width_neq_2 <-
     select_edges(graph = graph,
                  edge_attr = "width",
-                 comparison = "!=2")
+                 search = "!=2")
 
   # Expect that nodes "a" and "c" are part of a selection
   # object in 'edges/from'
@@ -271,7 +264,7 @@ test_that("selecting an edge in a graph is possible", {
   graph_val_leading_to <-
     select_edges(graph = graph,
                  edge_attr = "rel",
-                 regex = "leading")
+                 search = "leading")
 
   # Expect that nodes "a", "b", and "c" are part of a selection
   # object in 'edges/from'
@@ -283,7 +276,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Create a union of selections in a magrittr pipeline
   graph_sel_union_ab_bc <-
-    graph %>% select_edges("a", "d") %>% select_edges("b", "c")
+    graph %>% select_edges(from = "a", to = "d") %>%
+    select_edges(from = "b", to = "c")
 
   # Expect that nodes "a" and "b" are part of a selection
   # object in 'edges/from'
@@ -295,8 +289,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Create a intersection of selections in a magrittr pipeline
   graph_sel_intersect_bc <-
-    graph %>% select_edges(c("a", "b"), c("d", "c")) %>%
-    select_edges(c("b", "c"), c("c", "a"), set_op = "intersect")
+    graph %>% select_edges(from = c("a", "b"), to = c("d", "c")) %>%
+    select_edges(from = c("b", "c"), to = c("c", "a"), set_op = "intersect")
 
   # Expect that node "b" is part of a selection
   # object in 'edges/from'
@@ -308,8 +302,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Create a selection that is a difference of selections
   graph_sel_edge_difference_ad <-
-    graph %>% select_edges(c("a", "b", "c"), c("d", "c", "a")) %>%
-    select_edges(c("b", "c"), c("c", "a"), set_op = "difference")
+    graph %>% select_edges(from = c("a", "b", "c"), to = c("d", "c", "a")) %>%
+    select_edges(from = c("b", "c"), to = c("c", "a"), set_op = "difference")
 
   # Expect that node "c" is part of a selection
   # object in 'edges/from'
@@ -351,14 +345,6 @@ test_that("selecting an edge in a graph is possible", {
                  to = "g")
   )
 
-  # Expect an error if a comparison and regex are used together
-  expect_error(
-    select_edges(graph = graph,
-                 edge_attr = "width",
-                 comparison = ">3",
-                 regex = "3")
-  )
-
   # Expect an error if selecting edges from an empty graph
   expect_error(
     select_edges(graph = create_graph(),
@@ -376,14 +362,14 @@ test_that("selecting an edge in a graph is possible", {
   expect_error(
     select_edges(graph = graph,
                  edge_attr = c("rel", "width"),
-                 regex = "a")
+                 search = "a")
   )
 
   # Expect an error if specifying an attribute that doesn't exist
   expect_error(
     select_edges(graph = graph,
                  edge_attr = "fontname",
-                 regex = "a")
+                 search = "a")
   )
 })
 
@@ -547,7 +533,7 @@ test_that("inverting a selection is possible", {
 
   # Select nodes "1" and "2" in the graph
   graph_select_1_2 <-
-    graph %>% select_nodes("1") %>% select_nodes("2")
+    graph %>% select_nodes(nodes = "1") %>% select_nodes(nodes = "2")
 
   # Invert the selection so that every other node is selected
   graph_select_1_2_inverted <-
@@ -560,7 +546,8 @@ test_that("inverting a selection is possible", {
 
   # Select edges "1" -> "5" and "4" -> "6" in the graph
   graph_select_edges_1_5__4_6 <-
-    graph %>% select_edges("1", "5") %>% select_edges("4", "6")
+    graph %>% select_edges(from = "1", to = "5") %>%
+    select_edges(from = "4", to = "6")
 
   # Invert the selection so that every other edge is selected
   graph_select_edges_1_5__4_6_inverted <-
