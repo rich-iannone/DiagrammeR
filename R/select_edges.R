@@ -2,16 +2,16 @@
 #' @description Select edges from a graph object of class \code{dgr_graph}.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
+#' @param edge_attr an optional character vector of edge attribute values for
+#' filtering the edges returned.
+#' @param search an option to provide a logical expression with a comparison
+#' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+#' for numerical filtering, or, a regular expression for filtering the nodes
+#' returned through string matching.
 #' @param from an optional vector of node IDs from which the edge is
 #' outgoing for filtering the list of edges present in the graph.
 #' @param to an optional vector of node IDs to which the edge is
 #' incoming for filtering the list of edges present in the graph.
-#' @param edge_attr an optional character vector of edge attribute values for
-#' filtering the edges returned.
-#' @param comparison an optional logical expression for filtering the edges
-#' returned.
-#' @param regex an optional regular expression (regex) for filtering the
-#' edges returned.
 #' @param set_op the set operation to perform upon consecutive selections
 #' of graph edges This can either be as a \code{union} (the default), as an
 #' \code{intersection}, or, as a \code{difference} on the previous selection,
