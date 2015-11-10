@@ -1,4 +1,4 @@
-#' Select nodes
+#' Select nodes in a graph
 #' @description Select nodes from a graph object of class \code{dgr_graph}.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
