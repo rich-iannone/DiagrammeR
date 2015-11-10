@@ -71,7 +71,7 @@ set_edge_attr <- function(x,
                           from = NULL,
                           to = NULL,
                           edge_attr,
-                          value){
+                          values){
 
   if (edge_attr == "from" | edge_attr == "to"){
     stop("You cannot alter values associated with node IDs.")
