@@ -6,7 +6,7 @@
 #' @param nodes an optional vector of node IDs for filtering list of
 #' nodes present in the graph.
 #' @param node_attr the name of the attribute to set.
-#' @param value the value to be set for the chosen attribute for the
+#' @param values the values to be set for the chosen attribute for the
 #' chosen nodes.
 #' @return either a graph object of class \code{dgr_graph} or a node
 #' data frame, depending on what type of object was supplied to \code{x}.
