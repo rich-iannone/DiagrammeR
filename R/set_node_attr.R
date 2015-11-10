@@ -50,7 +50,7 @@
 set_node_attr <- function(x,
                           nodes = NULL,
                           node_attr,
-                          value){
+                          values){
 
   if (node_attr == "nodes"){
     stop("You cannot change the node ID.")
