@@ -4,7 +4,7 @@
 \alias{set_edge_attr}
 \title{Set edge attributes}
 \usage{
-set_edge_attr(x, from = NULL, to = NULL, edge_attr, value)
+set_edge_attr(x, from = NULL, to = NULL, edge_attr, values)
 }
 \arguments{
 \item{x}{either a graph object of class \code{dgr_graph} that is created
@@ -18,7 +18,7 @@ for filtering list of nodes with incoming edges in the graph.}
 
 \item{edge_attr}{the name of the attribute to set.}
 
-\item{value}{the value to be set for the chosen attribute for the
+\item{values}{the values to be set for the chosen attribute for the
 chosen edges.}
 }
 \value{
@@ -53,7 +53,7 @@ graph <-
   set_edge_attr(x = graph,
                 from = c("a", "c"),
                 to = c("d", "a"),
-                edge_attr = "color", value = "green")
+                edge_attr = "color", values = "green")
 
 # Set attribute 'color = "green"' for edges "a" -> "d"
 # and "c" -> "a" using the edge data frame
@@ -61,26 +61,26 @@ edges <-
   set_edge_attr(x = edges,
                 from = c("a", "c"),
                 to = c("d", "a"),
-                edge_attr = "color", value = "green")
+                edge_attr = "color", values = "green")
 
 # Set attribute 'color = "blue"' for all edges in graph
 graph <-
   set_edge_attr(x = graph,
-                edge_attr = "color", value = "blue")
+                edge_attr = "color", values = "blue")
 
 # Set attribute 'color = "pink"' for all edges in graph
 # outbound from "a"
 graph <-
   set_edge_attr(x = graph,
                 from = "a",
-                edge_attr = "color", value = "pink")
+                edge_attr = "color", values = "pink")
 
 # Set attribute 'color = "black"' for all edges in graph
 # inbound to "a"
 graph <-
   set_edge_attr(x = graph,
                 to = "a",
-                edge_attr = "color", value = "black")
+                edge_attr = "color", values = "black")
 }
 }
 
