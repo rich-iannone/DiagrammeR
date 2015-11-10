@@ -74,34 +74,63 @@ set_node_attr <- function(x,
     }
   }
 
-  if (node_attr %in% colnames(nodes_df)){
+  if (length(values) != 1 & length(values) != nrow(nodes_df)){
+    stop("The length of values provided must either be 1 or that of the number of rows in the ndf.")
+  }
 
-    if (is.null(nodes)){
+  if (length(values) == 1){
 
-      nodes_df[,which(colnames(nodes_df) %in% node_attr)] <- value
+    if (node_attr %in% colnames(nodes_df)){
 
-    } else {
+      if (is.null(nodes)){
 
-      nodes_df[which(nodes_df$nodes %in% nodes),
-               which(colnames(nodes_df) %in% node_attr)] <- value
+        nodes_df[, which(colnames(nodes_df) %in% node_attr)] <- values
+
+      } else {
+
+        nodes_df[which(nodes_df$nodes %in% nodes),
+                 which(colnames(nodes_df) %in% node_attr)] <- values
+      }
+    }
+
+    if (!(node_attr %in% colnames(nodes_df))){
+
+      nodes_df <- cbind(nodes_df, rep("", nrow(nodes_df)))
+
+      nodes_df[, ncol(nodes_df)] <- as.character(nodes_df[,ncol(nodes_df)])
+
+      colnames(nodes_df)[ncol(nodes_df)] <- node_attr
+
+      if (is.null(nodes)){
+
+        nodes_df[, ncol(nodes_df)] <- values
+
+      } else {
+
+        nodes_df[which(nodes_df$nodes %in% nodes),ncol(nodes_df)] <- values
+      }
     }
   }
 
-  if (!(node_attr %in% colnames(nodes_df))){
+  if (length(values) == nrow(nodes_df)){
 
-    nodes_df <- cbind(nodes_df, rep("", nrow(nodes_df)))
+    if (length(values) == nrow(nodes_df)){
 
-    nodes_df[,ncol(nodes_df)] <- as.character(nodes_df[,ncol(nodes_df)])
+      if (node_attr %in% colnames(nodes_df)){
 
-    colnames(nodes_df)[ncol(nodes_df)] <- node_attr
+        nodes_df[, which(colnames(nodes_df) %in% node_attr)] <- values
+      }
 
-    if (is.null(nodes)){
+      if (!(node_attr %in% colnames(nodes_df))){
 
-      nodes_df[,ncol(nodes_df)] <- value
+        nodes_df <- cbind(nodes_df, rep("", nrow(nodes_df)))
 
-    } else {
+        nodes_df[, ncol(nodes_df)] <- as.character(nodes_df[,ncol(nodes_df)])
 
-      nodes_df[which(nodes_df$nodes %in% nodes),ncol(nodes_df)] <- value
+        colnames(nodes_df)[ncol(nodes_df)] <- node_attr
+
+        nodes_df[, ncol(nodes_df)] <- values
+      }
     }
   }
 
