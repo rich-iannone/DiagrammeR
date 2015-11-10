@@ -49,10 +49,6 @@ select_nodes <- function(graph,
                          nodes = NULL,
                          set_op = "union"){
 
-  if (!is.null(comparison) & !is.null(regex)){
-    stop("A comparison and a regex pattern cannot be used together.")
-  }
-
   if (is_graph_empty(graph)){
     stop("The graph is empty so no selections can be made.")
   }
