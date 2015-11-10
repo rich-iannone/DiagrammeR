@@ -77,10 +77,6 @@ set_edge_attr <- function(x,
     stop("You cannot alter values associated with node IDs.")
   }
 
-  if (length(value) > 1){
-    stop("Only one value should be provided.")
-  }
-
   if (!is.null(from) & !is.null(to)){
     if (length(from) != length(to)){
       stop("The number of nodes 'from' and 'to' must be the same.")
