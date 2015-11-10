@@ -46,8 +46,7 @@
 select_nodes <- function(graph,
                          nodes = NULL,
                          node_attr = NULL,
-                         comparison = NULL,
-                         regex = NULL,
+                         search = NULL,
                          set_op = "union"){
 
   if (!is.null(comparison) & !is.null(regex)){
