@@ -4,8 +4,8 @@
 \alias{select_edges}
 \title{Select edges in a graph}
 \usage{
-select_edges(graph, edge_attr = NULL, search = NULL, from = NULL,
-  to = NULL, set_op = "union")
+select_edges(graph, edge_attr = NULL, search = NULL, set_op = "union",
+  from = NULL, to = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
@@ -19,16 +19,16 @@ operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
 for numerical filtering, or, a regular expression for filtering the nodes
 returned through string matching.}
 
+\item{set_op}{the set operation to perform upon consecutive selections
+of graph edges This can either be as a \code{union} (the default), as an
+\code{intersection}, or, as a \code{difference} on the previous selection,
+if it exists.}
+
 \item{from}{an optional vector of node IDs from which the edge is
 outgoing for filtering the list of edges present in the graph.}
 
 \item{to}{an optional vector of node IDs to which the edge is
 incoming for filtering the list of edges present in the graph.}
-
-\item{set_op}{the set operation to perform upon consecutive selections
-of graph edges This can either be as a \code{union} (the default), as an
-\code{intersection}, or, as a \code{difference} on the previous selection,
-if it exists.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

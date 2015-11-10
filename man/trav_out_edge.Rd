@@ -2,8 +2,7 @@
 % Please edit documentation in R/trav_out_edge.R
 \name{trav_out_edge}
 \alias{trav_out_edge}
-\title{Traverse outward from a selected node, skipping over edges, and creating
-a new node selection}
+\title{Traverse from one or more selected nodes onto adjacent, outward edges}
 \usage{
 trav_out_edge(graph, rel = NULL)
 }
@@ -18,8 +17,9 @@ the traversal to outgoing edges.}
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph} move to the
-outgoing edge from a selection one or more selected nodes. An optional
-filter by edge relationship can limit the set of edges traversed to.
+From a graph object of class \code{dgr_graph} move to
+outgoing edges from a selection one or more selected nodes, thereby
+creating a selection of edges. An optional filter by edge relationship
+can limit the set of edges traversed to.
 }
 

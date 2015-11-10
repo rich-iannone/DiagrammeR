@@ -4,8 +4,8 @@
 \alias{select_nodes}
 \title{Select nodes in a graph}
 \usage{
-select_nodes(graph, node_attr = NULL, search = NULL, nodes = NULL,
-  set_op = "union")
+select_nodes(graph, node_attr = NULL, search = NULL, set_op = "union",
+  nodes = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
@@ -19,13 +19,13 @@ operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
 for numerical filtering, or, a regular expression for filtering the nodes
 returned through string matching.}
 
-\item{nodes}{an optional vector of node IDs for filtering list of
-nodes present in the graph.}
-
 \item{set_op}{the set operation to perform upon consecutive selections
 of graph nodes. This can either be as a \code{union} (the default), as an
 \code{intersection}, or, as a \code{difference} on the previous selection,
 if it exists.}
+
+\item{nodes}{an optional vector of node IDs for filtering list of
+nodes present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
