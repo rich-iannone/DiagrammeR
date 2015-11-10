@@ -8,7 +8,7 @@
 #' @param to an optional vector of node IDs from which the edge is incoming
 #' for filtering list of nodes with incoming edges in the graph.
 #' @param edge_attr the name of the attribute to set.
-#' @param value the value to be set for the chosen attribute for the
+#' @param values the values to be set for the chosen attribute for the
 #' chosen edges.
 #' @return either a graph object of class \code{dgr_graph} or an edge
 #' data frame, depending on what type of object was supplied to \code{x}.
