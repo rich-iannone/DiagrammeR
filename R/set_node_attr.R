@@ -56,9 +56,7 @@ set_node_attr <- function(x,
     stop("You cannot change the node ID.")
   }
 
-  if (length(value) > 1){
-    stop("Only one value should be provided.")
-  }
+
 
   if (class(x) == "dgr_graph"){
 
