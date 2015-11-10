@@ -8,12 +8,12 @@
 #' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
 #' for numerical filtering, or, a regular expression for filtering the nodes
 #' returned through string matching.
-#' @param nodes an optional vector of node IDs for filtering list of
-#' nodes present in the graph.
 #' @param set_op the set operation to perform upon consecutive selections
 #' of graph nodes. This can either be as a \code{union} (the default), as an
 #' \code{intersection}, or, as a \code{difference} on the previous selection,
 #' if it exists.
+#' @param nodes an optional vector of node IDs for filtering list of
+#' nodes present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -46,8 +46,8 @@
 select_nodes <- function(graph,
                          node_attr = NULL,
                          search = NULL,
-                         nodes = NULL,
-                         set_op = "union"){
+                         set_op = "union",
+                         nodes = NULL,){
 
   if (is_graph_empty(graph)){
     stop("The graph is empty so no selections can be made.")

@@ -8,23 +8,23 @@
 #' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
 #' for numerical filtering, or, a regular expression for filtering the nodes
 #' returned through string matching.
-#' @param from an optional vector of node IDs from which the edge is
-#' outgoing for filtering the list of edges present in the graph.
-#' @param to an optional vector of node IDs to which the edge is
-#' incoming for filtering the list of edges present in the graph.
 #' @param set_op the set operation to perform upon consecutive selections
 #' of graph edges This can either be as a \code{union} (the default), as an
 #' \code{intersection}, or, as a \code{difference} on the previous selection,
 #' if it exists.
+#' @param from an optional vector of node IDs from which the edge is
+#' outgoing for filtering the list of edges present in the graph.
+#' @param to an optional vector of node IDs to which the edge is
+#' incoming for filtering the list of edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export select_edges
 
 select_edges <- function(graph,
                          edge_attr = NULL,
                          search = NULL,
+                         set_op = "union",
                          from = NULL,
-                         to = NULL,
-                         set_op = "union"){
+                         to = NULL,){
 
   if (is_graph_empty(graph)){
     stop("The graph is empty so no selections can be made.")
