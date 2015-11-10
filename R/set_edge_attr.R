@@ -99,57 +99,83 @@ set_edge_attr <- function(x,
     }
   }
 
-  if (edge_attr %in% colnames(edges_df)){
+  if (length(values) != 1 & length(values) != nrow(edges_df)){
+    stop("The length of values provided must either be 1 or that of the number of rows in the edf.")
+  }
 
-    if (is.null(from) & !is.null(to)){
+  if (length(values) == 1){
 
-      edges_df[which(edges_df$to %in% to),
-               which(colnames(edges_df) %in% edge_attr)] <- value
+    if (edge_attr %in% colnames(edges_df)){
 
-    } else if (!is.null(from) & is.null(to)){
+      if (is.null(from) & !is.null(to)){
 
-      edges_df[which(edges_df$from %in% from),
-               which(colnames(edges_df) %in% edge_attr)] <- value
+        edges_df[which(edges_df$to %in% to),
+                 which(colnames(edges_df) %in% edge_attr)] <- values
 
-    } else if (is.null(from) & is.null(to)){
+      } else if (!is.null(from) & is.null(to)){
 
-      edges_df[,which(colnames(edges_df) %in% edge_attr)] <- value
+        edges_df[which(edges_df$from %in% from),
+                 which(colnames(edges_df) %in% edge_attr)] <- values
 
-    } else {
+      } else if (is.null(from) & is.null(to)){
 
-      edges_df[which((edges_df$from %in% from) &
-                       (edges_df$to %in% to)),
-               which(colnames(edges_df) %in% edge_attr)] <- value
+        edges_df[, which(colnames(edges_df) %in% edge_attr)] <- values
+
+      } else {
+
+        edges_df[which((edges_df$from %in% from) &
+                         (edges_df$to %in% to)),
+                 which(colnames(edges_df) %in% edge_attr)] <- values
+      }
+    }
+
+    if (!(edge_attr %in% colnames(edges_df))){
+
+      edges_df <- cbind(edges_df, rep("", nrow(edges_df)))
+
+      edges_df[, ncol(edges_df)] <- as.character(edges_df[,ncol(edges_df)])
+
+      colnames(edges_df)[ncol(edges_df)] <- edge_attr
+
+      if (is.null(from) & !is.null(to)){
+
+        edges_df[which(edges_df$to %in% to),
+                 ncol(edges_df)] <- values
+
+      } else if (!is.null(from) & is.null(to)){
+
+        edges_df[which(edges_df$from %in% from),
+                 ncol(edges_df)] <- values
+
+      } else if (is.null(from) & is.null(to)){
+
+        edges_df[, ncol(edges_df)] <- values
+
+      } else {
+
+        edges_df[which((edges_df$from %in% from) &
+                         (edges_df$to %in% to)),
+                 ncol(edges_df)] <- values
+      }
     }
   }
 
-  if (!(edge_attr %in% colnames(edges_df))){
+  if (length(values) == nrow(edges_df)){
 
-    edges_df <- cbind(edges_df, rep("", nrow(edges_df)))
+    if (edge_attr %in% colnames(edges_df)){
 
-    edges_df[,ncol(edges_df)] <- as.character(edges_df[,ncol(edges_df)])
+      edges_df[, which(colnames(edges_df) %in% edge_attr)] <- values
+    }
 
-    colnames(edges_df)[ncol(edges_df)] <- edge_attr
+    if (!(edge_attr %in% colnames(edges_df))){
 
-    if (is.null(from) & !is.null(to)){
+      edges_df <- cbind(edges_df, rep("", nrow(edges_df)))
 
-      edges_df[which(edges_df$to %in% to),
-               ncol(edges_df)] <- value
+      edges_df[, ncol(edges_df)] <- as.character(edges_df[,ncol(edges_df)])
 
-    } else if (!is.null(from) & is.null(to)){
+      colnames(edges_df)[ncol(edges_df)] <- edge_attr
 
-      edges_df[which(edges_df$from %in% from),
-               ncol(edges_df)] <- value
-
-    } else if (is.null(from) & is.null(to)){
-
-      edges_df[,ncol(edges_df)] <- value
-
-    } else {
-
-      edges_df[which((edges_df$from %in% from) &
-                       (edges_df$to %in% to)),
-               ncol(edges_df)] <- value
+      edges_df[, ncol(edges_df)] <- values
     }
   }
 
