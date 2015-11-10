@@ -20,11 +20,10 @@
 #' @export select_edges
 
 select_edges <- function(graph,
+                         edge_attr = NULL,
+                         search = NULL,
                          from = NULL,
                          to = NULL,
-                         edge_attr = NULL,
-                         comparison = NULL,
-                         regex = NULL,
                          set_op = "union"){
 
   if (!is.null(comparison) & !is.null(regex)){
