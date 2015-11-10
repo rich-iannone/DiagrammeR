@@ -4,24 +4,23 @@
 \alias{select_nodes}
 \title{Select nodes}
 \usage{
-select_nodes(graph, nodes = NULL, node_attr = NULL, comparison = NULL,
-  regex = NULL, set_op = "union")
+select_nodes(graph, node_attr = NULL, search = NULL, nodes = NULL,
+  set_op = "union")
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}.}
 
-\item{nodes}{an optional vector of node IDs for filtering list of
-nodes present in the graph.}
-
 \item{node_attr}{an optional character vector of node attribute values for
 filtering the node ID values returned.}
 
-\item{comparison}{an optional logical expression for filtering the nodes
-returned.}
+\item{search}{an option to provide a logical expression with a comparison
+operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+for numerical filtering, or, a regular expression for filtering the nodes
+returned through string matching.}
 
-\item{regex}{an optional regular expression (regex) for filtering the
-nodes returned.}
+\item{nodes}{an optional vector of node IDs for filtering list of
+nodes present in the graph.}
 
 \item{set_op}{the set operation to perform upon consecutive selections
 of graph nodes. This can either be as a \code{union} (the default), as an
