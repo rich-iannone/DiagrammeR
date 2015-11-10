@@ -2,29 +2,28 @@
 % Please edit documentation in R/select_edges.R
 \name{select_edges}
 \alias{select_edges}
-\title{Select edges}
+\title{Select edges in a graph}
 \usage{
-select_edges(graph, from = NULL, to = NULL, edge_attr = NULL,
-  comparison = NULL, regex = NULL, set_op = "union")
+select_edges(graph, edge_attr = NULL, search = NULL, from = NULL,
+  to = NULL, set_op = "union")
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}.}
+
+\item{edge_attr}{an optional character vector of edge attribute values for
+filtering the edges returned.}
+
+\item{search}{an option to provide a logical expression with a comparison
+operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+for numerical filtering, or, a regular expression for filtering the nodes
+returned through string matching.}
 
 \item{from}{an optional vector of node IDs from which the edge is
 outgoing for filtering the list of edges present in the graph.}
 
 \item{to}{an optional vector of node IDs to which the edge is
 incoming for filtering the list of edges present in the graph.}
-
-\item{edge_attr}{an optional character vector of edge attribute values for
-filtering the edges returned.}
-
-\item{comparison}{an optional logical expression for filtering the edges
-returned.}
-
-\item{regex}{an optional regular expression (regex) for filtering the
-edges returned.}
 
 \item{set_op}{the set operation to perform upon consecutive selections
 of graph edges This can either be as a \code{union} (the default), as an

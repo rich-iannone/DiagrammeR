@@ -2,7 +2,7 @@
 % Please edit documentation in R/select_nodes.R
 \name{select_nodes}
 \alias{select_nodes}
-\title{Select nodes}
+\title{Select nodes in a graph}
 \usage{
 select_nodes(graph, node_attr = NULL, search = NULL, nodes = NULL,
   set_op = "union")
