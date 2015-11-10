@@ -119,6 +119,8 @@ get_edge_attr <- function(x,
       }
     }
 
-    return(edges_attr_vector)
+    graph$deposit <- edges_attr_vector
+
+    return(graph)
   }
 }

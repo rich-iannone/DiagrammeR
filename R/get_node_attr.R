@@ -93,6 +93,8 @@ get_node_attr <- function(x,
       }
     }
 
-    return(nodes_attr_vector)
+    graph$deposit <- nodes_attr_vector
+
+    return(graph)
   }
 }
