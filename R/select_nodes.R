@@ -95,43 +95,54 @@ select_nodes <- function(graph,
     column_number <-
       which(colnames(nodes_df) %in% node_attr)
 
-    # Filter using a logical expression
-    if (!is.null(comparison) & is.null(regex)){
+    # If a search term provided, filter using a logical expression
+    # or a regex match
+    if (!is.null(search)){
 
-      if (grepl("^>.*", comparison)){
-        rows_where_true_le <-
-          which(nodes_df[,column_number] >
-                  as.numeric(gsub(">(.*)", "\\1", comparison)))
+      if (grepl("^>.*", search) | grepl("^<.*", search) |
+          grepl("^==.*", search) | grepl("^!=.*", search)){
+        logical_expression <- TRUE } else {
+          logical_expression <- FALSE
+        }
+
+      # Filter using a logical expression
+      if (logical_expression){
+
+        if (grepl("^>.*", search)){
+          rows_where_true_le <-
+            which(nodes_df[,column_number] >
+                    as.numeric(gsub(">(.*)", "\\1", search)))
+        }
+
+        if (grepl("^<.*", search)){
+          rows_where_true_le <-
+            which(nodes_df[,column_number] <
+                    as.numeric(gsub("<(.*)", "\\1", search)))
+        }
+
+        if (grepl("^==.*", search)){
+          rows_where_true_le <-
+            which(nodes_df[,column_number] ==
+                    as.numeric(gsub("==(.*)", "\\1", search)))
+        }
+
+        if (grepl("^!=.*", search)){
+          rows_where_true_le <-
+            which(nodes_df[,column_number] !=
+                    as.numeric(gsub("!=(.*)", "\\1", search)))
+        }
+
+        nodes_selected <- nodes_df[rows_where_true_le, 1]
       }
 
-      if (grepl("^<.*", comparison)){
-        rows_where_true_le <-
-          which(nodes_df[,column_number] <
-                  as.numeric(gsub("<(.*)", "\\1", comparison)))
+      # Filter using a `search` value as a regular expression
+      if (logical_expression == FALSE){
+
+        rows_where_true_regex <-
+          which(grepl(search, as.character(nodes_df[,column_number])))
+
+        nodes_selected <- nodes_df[rows_where_true_regex, 1]
       }
-
-      if (grepl("^==.*", comparison)){
-        rows_where_true_le <-
-          which(nodes_df[,column_number] ==
-                  as.numeric(gsub("==(.*)", "\\1", comparison)))
-      }
-
-      if (grepl("^!=.*", comparison)){
-        rows_where_true_le <-
-          which(nodes_df[,column_number] !=
-                  as.numeric(gsub("!=(.*)", "\\1", comparison)))
-      }
-
-      nodes_selected <- nodes_df[rows_where_true_le, 1]
-    }
-
-    # Filter using a regex
-    if (is.null(comparison) & !is.null(regex)){
-
-      rows_where_true_regex <-
-        which(grepl(regex, as.character(nodes_df[,column_number])))
-
-      nodes_selected <- nodes_df[rows_where_true_regex, 1]
     }
   }
 
