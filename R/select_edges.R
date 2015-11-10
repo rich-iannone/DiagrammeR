@@ -87,49 +87,60 @@ select_edges <- function(graph,
     column_number <-
       which(colnames(edges_df) %in% edge_attr)
 
-    # Filter using a logical expression
-    if (!is.null(comparison) & is.null(regex)){
+    # If a search term provided, filter using a logical expression
+    # or a regex match
+    if (!is.null(search)){
 
-      if (grepl("^>.*", comparison)){
-        rows_where_true_le <-
-          which(as.numeric(edges_df[,column_number]) >
-                  as.numeric(gsub(">(.*)", "\\1", comparison)))
+      if (grepl("^>.*", search) | grepl("^<.*", search) |
+          grepl("^==.*", search) | grepl("^!=.*", search)){
+        logical_expression <- TRUE } else {
+          logical_expression <- FALSE
+        }
+
+      # Filter using a logical expression
+      if (logical_expression){
+
+        if (grepl("^>.*", search)){
+          rows_where_true_le <-
+            which(as.numeric(edges_df[,column_number]) >
+                    as.numeric(gsub(">(.*)", "\\1", search)))
+        }
+
+
+        if (grepl("^<.*", search)){
+          rows_where_true_le <-
+            which(as.numeric(edges_df[,column_number]) <
+                    as.numeric(gsub("<(.*)", "\\1", search)))
+        }
+
+
+        if (grepl("^==.*", search)){
+          rows_where_true_le <-
+            which(as.numeric(edges_df[,column_number]) ==
+                    as.numeric(gsub("==(.*)", "\\1", search)))
+        }
+
+        if (grepl("^!=.*", search)){
+          rows_where_true_le <-
+            which(as.numeric(edges_df[,column_number]) !=
+                    as.numeric(gsub("!=(.*)", "\\1", search)))
+        }
+
+        edges_selected <-
+          get_edges(edges_df[rows_where_true_le, ],
+                    return_type = "vector")
       }
 
+      # Filter using a `search` value as a regular expression
+      if (logical_expression == FALSE){
 
-      if (grepl("^<.*", comparison)){
-        rows_where_true_le <-
-          which(as.numeric(edges_df[,column_number]) <
-                  as.numeric(gsub("<(.*)", "\\1", comparison)))
+        rows_where_true_regex <-
+          which(grepl(search, as.character(edges_df[,column_number])))
+
+        edges_selected <-
+          get_edges(edges_df[rows_where_true_regex, ],
+                    return_type = "vector")
       }
-
-
-      if (grepl("^==.*", comparison)){
-        rows_where_true_le <-
-          which(as.numeric(edges_df[,column_number]) ==
-                  as.numeric(gsub("==(.*)", "\\1", comparison)))
-      }
-
-      if (grepl("^!=.*", comparison)){
-        rows_where_true_le <-
-          which(as.numeric(edges_df[,column_number]) !=
-                  as.numeric(gsub("!=(.*)", "\\1", comparison)))
-      }
-
-      edges_selected <-
-        get_edges(edges_df[rows_where_true_le, ],
-                  return_type = "vector")
-    }
-
-    # Filter using a regex
-    if (is.null(comparison) & !is.null(regex)){
-
-      rows_where_true_regex <-
-        which(grepl(regex, as.character(edges_df[,column_number])))
-
-      edges_selected <-
-        get_edges(edges_df[rows_where_true_regex, ],
-                  return_type = "vector")
     }
   }
 
