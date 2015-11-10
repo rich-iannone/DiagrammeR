@@ -47,7 +47,7 @@ select_nodes <- function(graph,
                          node_attr = NULL,
                          search = NULL,
                          set_op = "union",
-                         nodes = NULL,){
+                         nodes = NULL){
 
   if (is_graph_empty(graph)){
     stop("The graph is empty so no selections can be made.")

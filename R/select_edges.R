@@ -24,7 +24,7 @@ select_edges <- function(graph,
                          search = NULL,
                          set_op = "union",
                          from = NULL,
-                         to = NULL,){
+                         to = NULL){
 
   if (is_graph_empty(graph)){
     stop("The graph is empty so no selections can be made.")
