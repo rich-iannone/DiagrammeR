@@ -88,7 +88,7 @@ graph <-
   add_node_df(create_nodes(c("A", "B", "C", "D", "E", "F"))) %>%
   set_node_attr("F", "color", "black") %>%
   add_node_df(create_nodes(1:8)) %>%
-  select_nodes(1:8) %>%
+  select_nodes(nodes = 1:8) %>%
   set_node_attr_with_selection("shape", "circle") %>%
   set_node_attr_with_selection("fixedsize", "true") %>%
   set_node_attr_with_selection("width", 0.9) %>%
