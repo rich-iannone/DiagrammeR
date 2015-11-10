@@ -42,8 +42,8 @@ trav_out_edge <- function(graph,
     if (!is.null(rel)){
 
       if (edge_rel(graph = graph,
-               from = distance_1_paths[[i]][1],
-               to = distance_1_paths[[i]][2]) %in% rel){
+                   from = distance_1_paths[[i]][1],
+                   to = distance_1_paths[[i]][2]) %in% rel){
 
         from_nodes <-
           c(from_nodes,
