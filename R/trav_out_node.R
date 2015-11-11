@@ -1,7 +1,7 @@
 #' Traverse from one or more selected edges toward adjacent outward nodes
 #' @description From a graph object of class \code{dgr_graph} move to
 #' adjacent, outward nodes from a selection of one or more selected edges,
-#' thereby creating a selection of nodes. An optional filter by node type
+#' thereby creating a selection of nodes. An optional filter by node attribute
 #' can limit the set of nodes traversed to.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
