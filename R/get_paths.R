@@ -88,7 +88,21 @@ get_paths <- function(graph,
                       longest_path = FALSE,
                       distance = NULL){
 
-  if (is.null(from)) from <- get_nodes(graph)
+  reverse_paths <- FALSE
+
+  if (is.null(from) & !is.null(to)){
+
+    from_switch <- graph$edges_df$from
+    to_switch <- graph$edges_df$to
+
+    graph$edges_df$from <- to_switch
+    graph$edges_df$to <- from_switch
+
+    from <- to
+    to <- NULL
+
+    reverse_paths <- TRUE
+  }
 
   for (m in 1:length(from)){
 
@@ -165,7 +179,6 @@ get_paths <- function(graph,
     }
 
     if (m == length(from)) paths <- all_paths
-
   }
 
   # Arrange vectors in list in order of increasing length
@@ -304,6 +317,13 @@ get_paths <- function(graph,
     for (i in 1:length(paths)){
       paths[[i]] <-
         paths[[i]][1:which(paths[[i]] == to)]
+    }
+  }
+
+  if (reverse_paths <- TRUE){
+
+    for (i in 1:length(paths)){
+      paths[[i]] <- rev(paths[[i]])
     }
   }
 
