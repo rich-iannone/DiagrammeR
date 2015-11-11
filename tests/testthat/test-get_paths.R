@@ -28,13 +28,11 @@ test_that("getting lists of node IDs using `get_paths()` is possible", {
   # Get a list of all paths leading to node "6"
   paths_to_6 <- get_paths(graph, to = "6")
 
-  # Expect a list of 3 components
-  expect_equal(length(paths_to_6), 3)
+  # Expect a list of 1 component
+  expect_equal(length(paths_to_6), 1)
 
-  # Expect specific node IDs in each list
-  expect_true(all(paths_to_6[[1]] == c("4", "6")))
-  expect_true(all(paths_to_6[[2]] == c("3", "4", "6")))
-  expect_true(all(paths_to_6[[3]] == c("1", "3", "4", "6")))
+  # Expect specific node IDs in the list
+  expect_true(all(paths_to_6[[1]] == c("1", "3", "4", "6")))
 
   #' # Get a list of all paths from "1" to "5"
   paths_from_1_to_5 <- get_paths(graph, from = "1", to = "5")
