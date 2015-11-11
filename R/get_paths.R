@@ -320,7 +320,7 @@ get_paths <- function(graph,
     }
   }
 
-  if (reverse_paths <- TRUE){
+  if (reverse_paths == TRUE){
 
     for (i in 1:length(paths)){
       paths[[i]] <- rev(paths[[i]])
