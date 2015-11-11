@@ -4,14 +4,19 @@
 \alias{trav_out_edge}
 \title{Traverse from one or more selected nodes onto adjacent, outward edges}
 \usage{
-trav_out_edge(graph, rel = NULL)
+trav_out_edge(graph, edge_attr = NULL, search = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}.}
 
-\item{rel}{an optional vector of edge relationship values for filtering
-the traversal to outgoing edges.}
+\item{edge_attr}{an optional character vector of edge attribute values for
+filtering the node ID values returned.}
+
+\item{search}{an option to provide a logical expression with a comparison
+operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+for numerical filtering, or, a regular expression for filtering the edges
+returned through string matching.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -19,7 +24,7 @@ a graph object of class \code{dgr_graph}.
 \description{
 From a graph object of class \code{dgr_graph} move to
 outgoing edges from a selection of one or more selected nodes, thereby
-creating a selection of edges. An optional filter by edge relationship
+creating a selection of edges. An optional filter by edge attribute
 can limit the set of edges traversed to.
 }
 
