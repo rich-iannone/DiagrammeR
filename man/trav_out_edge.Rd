@@ -18,7 +18,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph} move to
-outgoing edges from a selection one or more selected nodes, thereby
+outgoing edges from a selection of one or more selected nodes, thereby
 creating a selection of edges. An optional filter by edge relationship
 can limit the set of edges traversed to.
 }
