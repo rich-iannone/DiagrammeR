@@ -56,6 +56,16 @@ add_nodes_from_csv <- function(graph,
                       values = csv[i,j])
     }
 
+    # Optionally set the `label` attribute from a specified
+    # column from the CSV
+    if (!is.null(label_col)){
+      graph <-
+        set_node_attr(x = graph,
+                      nodes = nodes_created[i],
+                      node_attr = "label",
+                      values = csv[i, which(colnames(csv) %in% label_col)])
+    }
+
     }
   }
 
