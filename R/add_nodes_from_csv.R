@@ -60,6 +60,18 @@ add_nodes_from_csv <- function(graph,
     csv <- csv[,columns_retained]
   }
 
+  # If values for 'rename_attrs' provided, rename the CSV columns
+  # by those replacement values
+  if (!is.null(rename_attrs)){
+
+    if (length(rename_attrs) != length(colnames(csv))){
+      stop(paste0("The number of values specified for column name changes ",
+                  "does not match the number of columns available"))
+    }
+
+    colnames(csv) <- rename_attrs
+  }
+
   # Create node ID values
   for (i in 1:rows_in_csv){
     graph <- add_node(graph = graph, label = FALSE)
