@@ -5,11 +5,19 @@
 \title{Traverse outward from a selected node, skipping over edges, and creating
 a new node selection}
 \usage{
-trav_out(graph)
+trav_out(graph, node_attr = NULL, search = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}.}
+
+\item{node_attr}{an optional character vector of node attribute values for
+filtering the node ID values returned.}
+
+\item{search}{an option to provide a logical expression with a comparison
+operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+for numerical filtering, or, a regular expression for filtering the nodes
+returned through string matching.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -32,8 +40,8 @@ graph <-
 
 # Starting from node "1", traverse nodes twice then get the node
 # attribute information at the landing nodes
-graph \%>\% select_nodes("1") \%>\%
-  trav_out() \%>\% trav_out() \%>\%
+graph \%>\% select_nodes(nodes = "1") \%>\%
+  trav_out \%>\% trav_out \%>\%
   get_node_attr_from_selection()
 #>   nodes type label
 #> 4     4          4
