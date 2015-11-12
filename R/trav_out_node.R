@@ -45,8 +45,8 @@ trav_out_node <- function(graph,
         }
 
         if (grepl("^>.*", search)){
-          if (get_node_attr(graph,
-                            nodes = landing_nodes[i])[1,column_number] >
+          if (as.numeric(get_node_attr(graph,
+                            nodes = landing_nodes[i])[1,column_number]) >
               as.numeric(gsub(">(.*)", "\\1", search))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
@@ -54,27 +54,27 @@ trav_out_node <- function(graph,
         }
 
         if (grepl("^<.*", search)){
-          if (get_node_attr(graph,
-                            nodes = landing_nodes[i])[1,column_number] <
-              as.numeric(gsub(">(.*)", "\\1", search))){
+          if (as.numeric(get_node_attr(graph,
+                            nodes = landing_nodes[i])[1,column_number]) <
+              as.numeric(gsub("<(.*)", "\\1", search))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
         }
 
         if (grepl("^==.*", search)){
-          if (get_node_attr(graph,
-                            nodes = landing_nodes[i])[1,column_number] ==
-              as.numeric(gsub(">(.*)", "\\1", search))){
+          if (as.numeric(get_node_attr(graph,
+                            nodes = landing_nodes[i])[1,column_number]) ==
+              as.numeric(gsub("==(.*)", "\\1", search))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
         }
 
         if (grepl("^!=.*", search)){
-          if (get_node_attr(graph,
-                            nodes = landing_nodes[i])[1,column_number] !=
-              as.numeric(gsub(">(.*)", "\\1", search))){
+          if (as.numeric(get_node_attr(graph,
+                            nodes = landing_nodes[i])[1,column_number]) !=
+              as.numeric(gsub("!=(.*)", "\\1", search))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
