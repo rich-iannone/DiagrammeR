@@ -54,7 +54,7 @@ add_node <- function(graph,
 
     if (node_count(graph) > 0){
 
-      if (suppressWarnings(any(as.numeric(get_nodes(graph))))){
+      if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))){
 
         numeric_components <-
           suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
