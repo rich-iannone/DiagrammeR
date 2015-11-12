@@ -38,6 +38,20 @@ add_nodes_from_csv <- function(graph,
   # Get existing nodes in graph object
   nodes_existing <- get_nodes(x = graph)
 
+  # If values for 'select_cols' provided, filter the CSV columns
+  # by those named columns
+  if (!is.null(select_cols)){
+
+    # If none of the specified values in 'select_cols' are in
+    # the CSV, stop the function
+    if (all(select_cols %in% colnames(csv)) == FALSE){
+      stop("None of the values specified for selecting columns are available.")
+    }
+
+    columns_retained <- which(colnames(csv) %in% select_cols)
+    csv <- csv[,columns_retained]
+  }
+
   # Create node ID values
   for (i in 1:rows_in_csv){
     graph <- add_node(graph = graph, label = FALSE)
