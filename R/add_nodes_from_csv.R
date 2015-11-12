@@ -77,7 +77,7 @@ add_nodes_from_csv <- function(graph,
     }
   }
 
-  # Set the `type` attribute with a single value repeated down
+  # Optionally set the `type` attribute with a single value repeated down
   if (!is.null(set_type)){
     graph <- select_nodes(graph = graph, nodes = nodes_created)
     graph <- set_node_attr_with_selection(graph = graph,
