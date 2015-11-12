@@ -5,7 +5,8 @@
 \title{Add nodes and attributes from a CSV file}
 \usage{
 add_nodes_from_csv(graph, csv_path, set_type = NULL, select_cols = NULL,
-  rename_attrs = NULL, id_col = NULL, type_col = NULL, label_col = NULL)
+  drop_cols = NULL, rename_attrs = NULL, id_col = NULL, type_col = NULL,
+  label_col = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
