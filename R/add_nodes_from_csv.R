@@ -83,6 +83,7 @@ add_nodes_from_csv <- function(graph,
     graph <- set_node_attr_with_selection(graph = graph,
                                           node_attr = "type",
                                           value = set_type)
+    graph <- clear_selection(graph = graph)
   }
 
   return(graph)
