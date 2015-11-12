@@ -49,10 +49,13 @@ add_nodes_from_csv <- function(graph,
   for (i in 1:rows_in_csv){
     for (j in 1:cols_in_csv){
 
-      graph <- set_node_attr(x = graph,
-                             nodes = nodes_created[i],
-                             node_attr = colnames(csv)[j],
-                             values = csv[i,j])
+      graph <-
+        set_node_attr(x = graph,
+                      nodes = nodes_created[i],
+                      node_attr = colnames(csv)[j],
+                      values = csv[i,j])
+    }
+
     }
   }
 
