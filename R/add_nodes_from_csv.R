@@ -52,6 +52,14 @@ add_nodes_from_csv <- function(graph,
     csv <- csv[,columns_retained]
   }
 
+  # If values for 'drop_cols' provided, filter the CSV columns
+  # by those named columns
+  if (is.null(select_cols) & !is.null(drop_cols)){
+
+    columns_retained <- which(!(colnames(csv) %in% drop_cols))
+    csv <- csv[,columns_retained]
+  }
+
   # Create node ID values
   for (i in 1:rows_in_csv){
     graph <- add_node(graph = graph, label = FALSE)
