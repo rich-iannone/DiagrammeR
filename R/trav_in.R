@@ -5,6 +5,12 @@
 #' the current nodes in the selection with those nodes traversed to.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
+#' @param node_attr an optional character vector of node attribute values for
+#' filtering the node ID values returned.
+#' @param match an option to provide a logical expression with a comparison
+#' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+#' for numerical filtering, or, a character string for filtering the edges
+#' returned through string matching.
 #' @examples
 #' \dontrun{
 #' library(magrittr)

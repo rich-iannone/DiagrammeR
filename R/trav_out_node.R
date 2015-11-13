@@ -7,9 +7,9 @@
 #' using \code{create_graph}.
 #' @param node_attr an optional character vector of node attribute values for
 #' filtering the node ID values returned.
-#' @param search an option to provide a logical expression with a comparison
+#' @param match an option to provide a logical expression with a comparison
 #' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
-#' for numerical filtering, or, a regular expression for filtering the nodes
+#' for numerical filtering, or, a character string for filtering the edges
 #' returned through string matching.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export trav_out_node
