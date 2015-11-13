@@ -57,15 +57,37 @@
 #' @export render_graph
 
 render_graph <- function(graph,
-                         output = "graph",
+                         output = NULL,
                          layout = NULL,
                          width = NULL,
                          height = NULL){
 
   stopifnot(class(graph) == "dgr_graph")
 
-  if (output == "DOT"){
+  if (is.null(output) & !is.null(graph$graph_attrs)){
 
+    if ("output = visNetwork" %in% graph$graph_attrs){
+     output <- "visNetwork"
+    }
+
+    if ("output = vivagraph" %in% graph$graph_attrs){
+      output <- "vivagraph"
+    }
+
+    if ("output = graph" %in% graph$graph_attrs){
+      output <- "graph"
+    }
+
+    if ("output = Graphviz" %in% graph$graph_attrs){
+      output <- "graph"
+    }
+  }
+
+  if (is.null(output)){
+    output <- "graph"
+  }
+
+  if (output == "DOT"){
     return(graph$dot_code)
   }
 
