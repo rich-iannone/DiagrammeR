@@ -4,7 +4,7 @@
 \alias{trav_in_node}
 \title{Traverse from one or more selected edges toward adjacent inward nodes}
 \usage{
-trav_in_node(graph, node_attr = NULL, search = NULL)
+trav_in_node(graph, node_attr = NULL, match = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
@@ -13,9 +13,9 @@ using \code{create_graph}.}
 \item{node_attr}{an optional character vector of node attribute values for
 filtering the node ID values returned.}
 
-\item{search}{an option to provide a logical expression with a comparison
+\item{match}{an option to provide a logical expression with a comparison
 operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
-for numerical filtering, or, a regular expression for filtering the nodes
+for numerical filtering, or, a character string for filtering the edges
 returned through string matching.}
 }
 \value{
