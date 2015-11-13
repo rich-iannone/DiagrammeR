@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_n_nodes_from_selection.R
 \name{add_n_nodes_from_selection}
 \alias{add_n_nodes_from_selection}
-\title{Add a multiple of new nodes to one or more selected nodes}
+\title{Add a multiple of new nodes with edges from one or more selected nodes}
 \usage{
 add_n_nodes_from_selection(graph, n, set_node_type = NULL,
   set_edge_rel = NULL)
@@ -25,7 +25,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add n new nodes to one or more nodes available in a graph
-object of class \code{dgr_graph}, and optionally set node \code{type}
-and edge \code{rel} values to the new nodes and edges.
+object of class \code{dgr_graph}, with edges moving from the nodes in
+the selection toward the newly created nodes. Optionally, set node
+\code{type} and edge \code{rel} values for the new nodes and edges.
 }
 
