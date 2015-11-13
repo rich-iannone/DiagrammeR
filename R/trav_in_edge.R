@@ -16,7 +16,7 @@
 
 trav_in_edge <- function(graph,
                          edge_attr = NULL,
-                         search = NULL){
+                         match = NULL){
 
   if (is.null(graph$selection$nodes)){
     stop("There is no selection of nodes available.")
@@ -51,12 +51,12 @@ trav_in_edge <- function(graph,
         distance_1_paths[[i]][2])
   }
 
-  # If a search term provided, filter using a logical expression
+  # If a match term provided, filter using a logical expression
   # or a regex match
-  if (!is.null(search)){
+  if (!is.null(match)){
 
-    if (grepl("^>.*", search) | grepl("^<.*", search) |
-        grepl("^==.*", search) | grepl("^!=.*", search)){
+    if (grepl("^>.*", match) | grepl("^<.*", match) |
+        grepl("^==.*", match) | grepl("^!=.*", match)){
       logical_expression <- TRUE } else {
         logical_expression <- FALSE
       }
@@ -71,44 +71,44 @@ trav_in_edge <- function(graph,
           column_number <- which(colnames(graph$edges_df) %in% edge_attr)
         }
 
-        if (grepl("^>.*", search)){
+        if (grepl("^>.*", match)){
           if (as.numeric(get_edge_attr(graph,
                                        from = from_nodes[i],
                                        to = to_nodes[i])[1, column_number]) >
-              as.numeric(gsub(">(.*)", "\\1", search))){
+              as.numeric(gsub(">(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
             nodes_to <- c(nodes_to, to_nodes[i])
           }
         }
 
-        if (grepl("^<.*", search)){
+        if (grepl("^<.*", match)){
           if (as.numeric(get_edge_attr(graph,
                                        from = from_nodes[i],
                                        to = to_nodes[i])[1, column_number]) <
-              as.numeric(gsub("<(.*)", "\\1", search))){
+              as.numeric(gsub("<(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
             nodes_to <- c(nodes_to, to_nodes[i])
           }
         }
 
-        if (grepl("^==.*", search)){
+        if (grepl("^==.*", match)){
           if (as.numeric(get_edge_attr(graph,
                                        from = from_nodes[i],
                                        to = to_nodes[i])[1, column_number]) ==
-              as.numeric(gsub("==(.*)", "\\1", search))){
+              as.numeric(gsub("==(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
             nodes_to <- c(nodes_to, to_nodes[i])
           }
         }
 
-        if (grepl("^!=.*", search)){
+        if (grepl("^!=.*", match)){
           if (as.numeric(get_edge_attr(graph,
                                        from = from_nodes[i],
                                        to = to_nodes[i])[1, column_number]) !=
-              as.numeric(gsub("!=(.*)", "\\1", search))){
+              as.numeric(gsub("!=(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
             nodes_to <- c(nodes_to, to_nodes[i])
@@ -117,8 +117,12 @@ trav_in_edge <- function(graph,
       }
     }
 
-    # Filter using a `search` value as a regular expression
+    # Filter using a `match` value
     if (logical_expression == FALSE){
+
+      if (is.numeric(match)){
+        match <- as.character(match)
+      }
 
       for (i in 1:length(from_nodes)){
 
@@ -128,10 +132,10 @@ trav_in_edge <- function(graph,
           column_number <- which(colnames(graph$edges_df) %in% edge_attr)
         }
 
-        if (grepl(search,
-                  get_edge_attr(graph,
-                                from = from_nodes[i],
-                                to = to_nodes[i])[1, column_number])){
+        if (match ==
+            get_edge_attr(graph,
+                          from = from_nodes[i],
+                          to = to_nodes[i])[1, column_number]){
 
           nodes_from <- c(nodes_from, from_nodes[i])
           nodes_to <- c(nodes_to, to_nodes[i])
@@ -152,9 +156,6 @@ trav_in_edge <- function(graph,
 
   # Remove the node selection in graph
   graph$selection$nodes <- NULL
-
-  # Update the list of traversals in graph
-  graph$traversals <- NULL
 
   # Update edge selection in graph
   graph$selection$edges$from <- from_nodes

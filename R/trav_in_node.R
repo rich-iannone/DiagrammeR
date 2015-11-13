@@ -16,7 +16,7 @@
 
 trav_in_node <- function(graph,
                          node_attr = NULL,
-                         search = NULL){
+                         match = NULL){
 
   if (is.null(graph$selection$edges)){
     stop("There is no selection of edges available.")
@@ -25,12 +25,12 @@ trav_in_node <- function(graph,
   # Create a selection of nodes using the edge selection
   landing_nodes <- unique(graph$selection$edges$from)
 
-  # If a search term provided, filter using a logical expression
+  # If a match term provided, filter using a logical expression
   # or a regex match
-  if (!is.null(search)){
+  if (!is.null(match)){
 
-    if (grepl("^>.*", search) | grepl("^<.*", search) |
-        grepl("^==.*", search) | grepl("^!=.*", search)){
+    if (grepl("^>.*", match) | grepl("^<.*", match) |
+        grepl("^==.*", match) | grepl("^!=.*", match)){
       logical_expression <- TRUE } else {
         logical_expression <- FALSE
       }
@@ -44,37 +44,37 @@ trav_in_node <- function(graph,
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
-        if (grepl("^>.*", search)){
+        if (grepl("^>.*", match)){
           if (get_node_attr(graph,
                             nodes = landing_nodes[i])[1,column_number] >
-              as.numeric(gsub(">(.*)", "\\1", search))){
+              as.numeric(gsub(">(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
         }
 
-        if (grepl("^<.*", search)){
+        if (grepl("^<.*", match)){
           if (get_node_attr(graph,
                             nodes = landing_nodes[i])[1,column_number] <
-              as.numeric(gsub(">(.*)", "\\1", search))){
+              as.numeric(gsub(">(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
         }
 
-        if (grepl("^==.*", search)){
+        if (grepl("^==.*", match)){
           if (get_node_attr(graph,
                             nodes = landing_nodes[i])[1,column_number] ==
-              as.numeric(gsub(">(.*)", "\\1", search))){
+              as.numeric(gsub(">(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
         }
 
-        if (grepl("^!=.*", search)){
+        if (grepl("^!=.*", match)){
           if (get_node_attr(graph,
                             nodes = landing_nodes[i])[1,column_number] !=
-              as.numeric(gsub(">(.*)", "\\1", search))){
+              as.numeric(gsub(">(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
@@ -82,8 +82,12 @@ trav_in_node <- function(graph,
       }
     }
 
-    # Filter using a `search` value as a regular expression
+    # Filter using a `match` value
     if (logical_expression == FALSE){
+
+      if (is.numeric(match)){
+        match <- as.character(match)
+      }
 
       for (i in 1:length(landing_nodes)){
 
@@ -92,8 +96,9 @@ trav_in_node <- function(graph,
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
-        if (grepl(search, get_node_attr(graph,
-                                        nodes = landing_nodes[i])[1,column_number])){
+        if (match ==
+            get_node_attr(graph,
+                          nodes = landing_nodes[i])[1,column_number]){
 
           to_nodes <- c(to_nodes, landing_nodes[i])
         }
@@ -114,9 +119,6 @@ trav_in_node <- function(graph,
 
   # Update node selection in graph
   graph$selection$nodes <- landing_nodes
-
-  # Remove traversals in graph
-  graph$traversals <- NULL
 
   return(graph)
 }

@@ -34,7 +34,9 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @export trav_in
 
-trav_in <- function(graph){
+trav_in <- function(graph,
+                    node_attr = NULL,
+                    match = NULL){
 
   if (is.null(graph$selection$nodes)){
     stop("There is no selection of nodes available.")
@@ -64,12 +66,12 @@ trav_in <- function(graph){
     return(graph)
   }
 
-  # If a search term provided, filter using a logical expression
+  # If a match term provided, filter using a logical expression
   # or a regex match
-  if (!is.null(search)){
+  if (!is.null(match)){
 
-    if (grepl("^>.*", search) | grepl("^<.*", search) |
-        grepl("^==.*", search) | grepl("^!=.*", search)){
+    if (grepl("^>.*", match) | grepl("^<.*", match) |
+        grepl("^==.*", match) | grepl("^!=.*", match)){
       logical_expression <- TRUE } else {
         logical_expression <- FALSE
       }
@@ -83,37 +85,37 @@ trav_in <- function(graph){
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
-        if (grepl("^>.*", search)){
+        if (grepl("^>.*", match)){
           if (as.numeric(get_node_attr(graph,
                                        nodes = predecessors[i])[1,column_number]) >
-              as.numeric(gsub(">(.*)", "\\1", search))){
+              as.numeric(gsub(">(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
         }
 
-        if (grepl("^<.*", search)){
+        if (grepl("^<.*", match)){
           if (as.numeric(get_node_attr(graph,
                                        nodes = predecessors[i])[1,column_number]) <
-              as.numeric(gsub("<(.*)", "\\1", search))){
+              as.numeric(gsub("<(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
         }
 
-        if (grepl("^==.*", search)){
+        if (grepl("^==.*", match)){
           if (as.numeric(get_node_attr(graph,
                                        nodes = predecessors[i])[1,column_number]) ==
-              as.numeric(gsub("==(.*)", "\\1", search))){
+              as.numeric(gsub("==(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
         }
 
-        if (grepl("^!=.*", search)){
+        if (grepl("^!=.*", match)){
           if (as.numeric(get_node_attr(graph,
                                        nodes = predecessors[i])[1,column_number]) !=
-              as.numeric(gsub("!=(.*)", "\\1", search))){
+              as.numeric(gsub("!=(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
@@ -121,8 +123,12 @@ trav_in <- function(graph){
       }
     }
 
-    # Filter using a `search` value as a regular expression
+    # Filter using a `match` value
     if (logical_expression == FALSE){
+
+      if (is.numeric(match)){
+        match <- as.character(match)
+      }
 
       for (i in 1:length(predecessors)){
 
@@ -131,8 +137,9 @@ trav_in <- function(graph){
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
-        if (grepl(search, get_node_attr(graph,
-                                        nodes = predecessors[i])[1,column_number])){
+        if (match ==
+            get_node_attr(graph,
+                          nodes = predecessors[i])[1,column_number]){
 
           to_nodes <- c(to_nodes, predecessors[i])
         }
