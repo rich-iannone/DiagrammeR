@@ -3,12 +3,12 @@
 #' from data in a CSV file.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
-#' @param csv path a path to a CSV file.
-#' @param set_type an optional string to apply a `type` attribute to all
-#' nodes created from the CSV records.
+#' @param csv_path a path to a CSV file.
+#' @param set_type an optional string to apply a \code{type} attribute to
+#' all nodes created from the CSV records.
 #' @param select_cols an optional character vector for specifying which
 #' columns in the CSV file should be imported as node attributes.
-#' @param rename_attrs an optional character for renaming attributes.
+#' @param rename_attrs an optional character for renaming node attributes.
 #' @param id_col an option to apply a column of data in the CSV file
 #' as node ID values.
 #' @param type_col an option to apply a column of data in the CSV file
