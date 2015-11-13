@@ -4,15 +4,18 @@
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @param csv_path a path to a CSV file.
-#' @param from_col from_col
-#' @param from_attr from_attr
-#' @param to_col to_col
-#' @param to_attr to_attr
+#' @param from_col the name of the CSV column from which edges originate.
+#' @param from_attr the mapping of \code{from_col} values to attributes of
+#' the graph's nodes.
+#' @param to_col to_col the name of the CSV column to which edges terminate.
+#' @param to_attr the mapping of \code{to_col} values to attributes of
+#' the graph's nodes.
 #' @param set_rel an optional string to apply a \code{rel} attribute to
 #' all edges created from the CSV records.
 #' @param select_cols an optional character vector for specifying which
 #' columns in the CSV file should be imported as edge attributes.
-#' @param rename_attrs an optional character for renaming edge attributes.
+#' @param rename_attrs an optional character vector for renaming edge
+#' attributes.
 #' @param rel_col an option to apply a column of data in the CSV file
 #' as \code{rel} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
