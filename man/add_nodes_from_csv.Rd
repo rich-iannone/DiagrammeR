@@ -12,13 +12,15 @@ add_nodes_from_csv(graph, csv_path, set_type = NULL, select_cols = NULL,
 \item{graph}{a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}.}
 
-\item{set_type}{an optional string to apply a `type` attribute to all
-nodes created from the CSV records.}
+\item{csv_path}{a path to a CSV file.}
+
+\item{set_type}{an optional string to apply a \code{type} attribute to
+all nodes created from the CSV records.}
 
 \item{select_cols}{an optional character vector for specifying which
 columns in the CSV file should be imported as node attributes.}
 
-\item{rename_attrs}{an optional character for renaming attributes.}
+\item{rename_attrs}{an optional character for renaming node attributes.}
 
 \item{id_col}{an option to apply a column of data in the CSV file
 as node ID values.}
@@ -28,8 +30,6 @@ as \code{type} attribute values.}
 
 \item{label_col}{an option to apply a column of data in the CSV file
 as \code{label} attribute values.}
-
-\item{csv}{path a path to a CSV file.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
