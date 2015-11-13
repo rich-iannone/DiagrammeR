@@ -1,7 +1,8 @@
-#' Add a multiple of new nodes to one or more selected nodes
+#' Add a multiple of new nodes with edges from one or more selected nodes
 #' @description Add n new nodes to one or more nodes available in a graph
-#' object of class \code{dgr_graph}, and optionally set node \code{type}
-#' and edge \code{rel} values to the new nodes and edges.
+#' object of class \code{dgr_graph}, with edges moving from the nodes in
+#' the selection toward the newly created nodes. Optionally, set node
+#' \code{type} and edge \code{rel} values for the new nodes and edges.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @param n the number of new nodes to attach as successor nodes to the
