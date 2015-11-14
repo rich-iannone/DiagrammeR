@@ -28,35 +28,112 @@ delete_node <- function(graph,
     stop("Only a single node can be deleted using 'delete_node'.")
   }
 
-  # Determine whether node to delete is in the graph
-  if (node_is_single_value == TRUE){
-    can_delete_node_id <- ifelse(node %in% get_nodes(graph), TRUE, FALSE)
-  }
-
   # Stop function if node is not in the graph
-  if (can_delete_node_id == FALSE){
+  if (!(node %in% get_nodes(graph))){
     stop("The specified node is not available in the graph.")
   }
 
-  # Modify graph if node is available
-  if (node_is_single_value & can_delete_node_id){
+  # If single node in graph create an empty graph, retaining
+  # all global attributes
+  if (nrow(graph$nodes) == 1){
+
+    # Create a revised graph and return that graph
+    dgr_graph <-
+      create_graph(nodes_df = NULL,
+                   edges_df = NULL,
+                   directed = graph$directed,
+                   graph_attrs = graph$graph_attrs,
+                   node_attrs = graph$node_attrs,
+                   edge_attrs = graph$edge_attrs,
+                   graph_name = graph$graph_name,
+                   graph_tz = graph$graph_tz,
+                   graph_time = graph$graph_time)
+
+    return(dgr_graph)
+  }
+
+  if (!is.null(graph$edges_df)){
+
+    # If number of edges in graph is greater than one
+    if (!is.null(graph$edges_df) & nrow(graph$edges_df > 1)){
+
+      # Create a revised node data frame
+      revised_nodes_df <- graph$nodes_df[-which(graph$nodes_df$nodes == node),]
+
+      # Create a revised edge data frame
+      if (nrow(graph$edges_df[-which((graph$edges_df$from == node) |
+                                     (graph$edges_df$to == node)),]) == 0) {
+        revised_edges_df <- graph$edges_df
+      } else {
+        revised_edges_df <- graph$edges_df[-which((graph$edges_df$from == node) |
+                                                    (graph$edges_df$to == node)),]
+      }
+
+      # Create a revised graph and return that graph
+      dgr_graph <-
+        create_graph(nodes_df = revised_nodes_df,
+                     edges_df = revised_edges_df,
+                     directed = graph$directed,
+                     graph_attrs = graph$graph_attrs,
+                     node_attrs = graph$node_attrs,
+                     edge_attrs = graph$edge_attrs,
+                     graph_name = graph$graph_name,
+                     graph_tz = graph$graph_tz,
+                     graph_time = graph$graph_time)
+
+      return(dgr_graph)
+    }
+
+    if (!is.null(graph$edges_df) & nrow(graph$edges_df <= 1)){
+
+      # Create a revised node data frame
+      revised_nodes_df <- graph$nodes_df[-which(graph$nodes_df$nodes == node),]
+
+      # Create a revised graph and return that graph
+      dgr_graph <-
+        create_graph(nodes_df = revised_nodes_df,
+                     edges_df = NULL,
+                     directed = graph$directed,
+                     graph_attrs = graph$graph_attrs,
+                     node_attrs = graph$node_attrs,
+                     edge_attrs = graph$edge_attrs,
+                     graph_name = graph$graph_name,
+                     graph_tz = graph$graph_tz,
+                     graph_time = graph$graph_time)
+
+      return(dgr_graph)
+    }
+  }
+
+  if (is.null(graph$edges_df)){
 
     # Create a revised node data frame
     revised_nodes_df <- graph$nodes_df[-which(graph$nodes_df$nodes == node),]
 
-    # Create a revised edge data frame
-    if (nrow(graph$edges_df[-which((graph$edges_df$from == node) |
-                                    (graph$edges_df$to == node)),]) == 0) {
-      revised_edges_df <- graph$edges_df
-    } else {
-      revised_edges_df <- graph$edges_df[-which((graph$edges_df$from == node) |
-                                                  (graph$edges_df$to == node)),]
-    }
+    # Create a revised graph and return that graph
+    dgr_graph <-
+      create_graph(nodes_df = revised_nodes_df,
+                   edges_df = NULL,
+                   directed = graph$directed,
+                   graph_attrs = graph$graph_attrs,
+                   node_attrs = graph$node_attrs,
+                   edge_attrs = graph$edge_attrs,
+                   graph_name = graph$graph_name,
+                   graph_tz = graph$graph_tz,
+                   graph_time = graph$graph_time)
+
+    return(dgr_graph)
+  }
+
+  if (!is.null(graph$edges_df) & nrow(graph$edges_df <= 1)){
+
+    # Create a revised node data frame
+    revised_nodes_df <- graph$nodes_df[-which(graph$nodes_df$nodes == node),]
 
     # Create a revised graph and return that graph
     dgr_graph <-
       create_graph(nodes_df = revised_nodes_df,
-                   edges_df = revised_edges_df,
+                   edges_df = NULL,
                    directed = graph$directed,
                    graph_attrs = graph$graph_attrs,
                    node_attrs = graph$node_attrs,
