@@ -23,8 +23,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph} move to
-adjacent, outward nodes from a selection of one or more selected edges,
-thereby creating a selection of nodes. An optional filter by node attribute
-can limit the set of nodes traversed to.
+adjacent nodes from a selection of one or more selected edges where the
+edges are outward edges to those nodes. This creates a selection of nodes.
+An optional filter by node attribute can limit the set of nodes traversed to.
 }
 
