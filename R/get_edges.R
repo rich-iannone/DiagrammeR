@@ -59,15 +59,17 @@
 #' # Get a vector of edges using a numeric
 #' # comparison (i.e., all edges with 'value' attribute
 #' # greater than 3)
-#' get_edges(graph, edge_attr = "value",
-#'           comparison = "> 3",
+#' get_edges(graph,
+#'           edge_attr = "value",
+#'           match = "> 3",
 #'           return_type = "vector")
 #' #> [1] "a -> d" "c -> a"
 #'
-#' # Get a vector of edges using a regex pattern (i.e.,
-#' # all nodes with 'color' attribute that begins with "p")
-#' get_edges(graph, edge_attr = "color",
-#'           regex = "^p", return_type = "vector")
+#' # Get a vector of edges using a match
+#' get_edges(graph,
+#'           edge_attr = "color",
+#'           match = "pink",
+#'           return_type = "vector")
 #' #> [1] "a -> d"
 #' }
 #' @export get_edges
