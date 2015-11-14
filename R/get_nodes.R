@@ -34,16 +34,18 @@
 #' # Get a vector of node ID values using a numeric
 #' # comparison (i.e., all nodes with 'value' attribute
 #' # greater than 3)
-#' get_nodes(graph, node_attr = "value",
-#'           comparison = "> 3")
+#' get_nodes(graph,
+#'           node_attr = "value",
+#'           match = "> 3")
 #' #> [1] "a" "c"
 #'
-#' # Get a vector of node ID values using a regex
+#' # Get a vector of node ID values using a match
 #' # pattern (i.e., all nodes with 'color' attribute
-#' # that begins with "gr")
-#' get_nodes(graph, node_attr = "color",
-#'           regex = "^gr")
-#' #> [1] "b" "c"
+#' # of "green")
+#' get_nodes(graph,
+#'           node_attr = "color",
+#'           match = "green")
+#' #> [1] "b"
 #' }
 #' @export get_nodes
 
