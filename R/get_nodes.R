@@ -140,13 +140,10 @@ get_nodes <- function(x,
         match <- as.character(match)
       }
 
-      if (is.null(comparison) & !is.null(match)){
+      rows_where_true_match <-
+        which(match == as.character(nodes_df[,column_number]))
 
-        rows_where_true_match <-
-          which(match == as.character(nodes_df[,column_number]))
-
-        nodes <- nodes_df[rows_where_true_match, 1]
-      }
+      nodes <- nodes_df[rows_where_true_match, 1]
     }
   }
 
