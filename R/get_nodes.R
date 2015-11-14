@@ -1,7 +1,7 @@
 #' Get a vector of node ID values
 #' @description Obtain a vector of node ID values from a graph object or
-#' a node data frame, optionally using a logical expression or regular
-#' expression for filtering.
+#' a node data frame. An optional filter by node attribute can limit the set
+#' of node ID values returned.
 #' @param x either a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph} or a node data frame.
 #' @param node_attr an optional character vector of node attribute values for
