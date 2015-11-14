@@ -1,7 +1,7 @@
 #' Get node IDs associated with edges
 #' @description Obtain a list, data frame, or vector of node IDs from a graph
-#' object or an edge data frame, optionally using a logical expression or
-#' regular expression for filtering.
+#' object or an edge data frame. An optional filter by edge attribute
+#' can limit the set of edges returned.
 #' @param x either a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph} or an edge data frame.
 #' @param edge_attr an optional character vector of edge attribute values for
