@@ -6,10 +6,10 @@
 #' using \code{create_graph} or a node data frame.
 #' @param node_attr an optional character vector of node attribute values for
 #' filtering the node ID values returned.
-#' @param comparison an optional logical expression for filtering the nodes
-#' returned.
-#' @param regex an optional regular expression (regex) for filtering the
-#' nodes returned.
+#' @param match an option to provide a logical expression with a comparison
+#' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+#' for numerical filtering, or, a character string for filtering the edges
+#' returned through string matching.
 #' @return a vector of node ID values.
 #' @examples
 #' \dontrun{
