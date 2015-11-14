@@ -6,10 +6,10 @@
 #' using \code{create_graph} or an edge data frame.
 #' @param edge_attr an optional character vector of edge attribute values for
 #' filtering the edges returned.
-#' @param comparison an optional logical expression for filtering the edges
-#' returned.
-#' @param regex an optional regular expression (regex) for filtering the
-#' edges returned.
+#' @param match an option to provide a logical expression with a comparison
+#' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+#' for numerical filtering, or, a character string for filtering the edges
+#' returned through string matching.
 #' @param return_type using \code{list} (the default) will provide a list
 #' object containing vectors of outgoing and incoming node IDs associated
 #' with edges. With \code{df}, a data frame containing outgoing and incoming
