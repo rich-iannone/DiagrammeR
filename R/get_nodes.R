@@ -51,7 +51,6 @@
 
 get_nodes <- function(x,
                       node_attr = NULL,
-                      comparison = NULL,
                       match = NULL){
 
   if (class(x) == "dgr_graph"){
