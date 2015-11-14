@@ -106,22 +106,10 @@ get_nodes <- function(x,
                   as.numeric(gsub(">(.*)", "\\1", comparison)))
       }
 
-      if (grepl("^>=.*", comparison)){
-        rows_where_true_le <-
-          which(nodes_df[,column_number] >=
-                  as.numeric(gsub(">=(.*)", "\\1", comparison)))
-      }
-
       if (grepl("^<.*", comparison)){
         rows_where_true_le <-
           which(nodes_df[,column_number] <
                   as.numeric(gsub("<(.*)", "\\1", comparison)))
-      }
-
-      if (grepl("^<=.*", comparison)){
-        rows_where_true_le <-
-          which(nodes_df[,column_number] <=
-                  as.numeric(gsub("<=(.*)", "\\1", comparison)))
       }
 
       if (grepl("^==.*", comparison)){
