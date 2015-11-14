@@ -1,8 +1,8 @@
 #' Traverse from one or more selected edges toward adjacent outward nodes
 #' @description From a graph object of class \code{dgr_graph} move to
-#' adjacent, outward nodes from a selection of one or more selected edges,
-#' thereby creating a selection of nodes. An optional filter by node attribute
-#' can limit the set of nodes traversed to.
+#' adjacent nodes from a selection of one or more selected edges where the
+#' edges are outward edges to those nodes. This creates a selection of nodes.
+#' An optional filter by node attribute can limit the set of nodes traversed to.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @param node_attr an optional character vector of node attribute values for
@@ -23,7 +23,7 @@ trav_out_node <- function(graph,
   }
 
   # Create a selection of nodes using the edge selection
-  landing_nodes <- unique(graph$selection$edges$to)
+  landing_nodes <- unique(graph$selection$edges$from)
 
   # If a match term provided, filter using a logical expression
   # or a regex match
