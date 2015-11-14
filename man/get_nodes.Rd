@@ -4,7 +4,7 @@
 \alias{get_nodes}
 \title{Get a vector of node ID values}
 \usage{
-get_nodes(x, node_attr = NULL, comparison = NULL, regex = NULL)
+get_nodes(x, node_attr = NULL, comparison = NULL, match = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class \code{dgr_graph} that is created
@@ -13,19 +13,18 @@ using \code{create_graph} or a node data frame.}
 \item{node_attr}{an optional character vector of node attribute values for
 filtering the node ID values returned.}
 
-\item{comparison}{an optional logical expression for filtering the nodes
-returned.}
-
-\item{regex}{an optional regular expression (regex) for filtering the
-nodes returned.}
+\item{match}{an option to provide a logical expression with a comparison
+operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
+for numerical filtering, or, a character string for filtering the edges
+returned through string matching.}
 }
 \value{
 a vector of node ID values.
 }
 \description{
 Obtain a vector of node ID values from a graph object or
-a node data frame, optionally using a logical expression or regular
-expression for filtering.
+a node data frame. An optional filter by node attribute can limit the set
+of node ID values returned.
 }
 \examples{
 \dontrun{
@@ -50,16 +49,18 @@ get_nodes(nodes)
 # Get a vector of node ID values using a numeric
 # comparison (i.e., all nodes with 'value' attribute
 # greater than 3)
-get_nodes(graph, node_attr = "value",
-          comparison = "> 3")
+get_nodes(graph,
+          node_attr = "value",
+          match = "> 3")
 #> [1] "a" "c"
 
-# Get a vector of node ID values using a regex
+# Get a vector of node ID values using a match
 # pattern (i.e., all nodes with 'color' attribute
-# that begins with "gr")
-get_nodes(graph, node_attr = "color",
-          regex = "^gr")
-#> [1] "b" "c"
+# of "green")
+get_nodes(graph,
+          node_attr = "color",
+          match = "green")
+#> [1] "b"
 }
 }
 
