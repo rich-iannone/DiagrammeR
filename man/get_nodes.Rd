@@ -4,7 +4,7 @@
 \alias{get_nodes}
 \title{Get a vector of node ID values}
 \usage{
-get_nodes(x, node_attr = NULL, comparison = NULL, match = NULL)
+get_nodes(x, node_attr = NULL, match = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class \code{dgr_graph} that is created
