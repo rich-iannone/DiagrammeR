@@ -29,13 +29,13 @@
 #'                               "shape = circle"))
 #'
 #' node_info(graph)
-#' #>    node_ID label    type degree indegree outdegree loops
-#' #> 1        A     A  a_to_g      2        0         2     0
-#' #> 2        W     W  q_to_x      1        0         1     0
-#' #> 3        T     T  q_to_x      2        0         2     0
-#' #> 4        L     L  h_to_p      1        0         1     0
-#' #> 5        F     F  a_to_g      0        0         0     0
-#' #>..      ...   ...     ...    ...      ...       ...   ...
+#' #>    node label    type degree indegree outdegree loops
+#' #> 1     A     A  a_to_g      2        0         2     0
+#' #> 2     W     W  q_to_x      1        0         1     0
+#' #> 3     T     T  q_to_x      2        0         2     0
+#' #> 4     L     L  h_to_p      1        0         1     0
+#' #> 5     F     F  a_to_g      0        0         0     0
+#' #>..   ...   ...     ...    ...      ...       ...   ...
 #'
 #' # Import a large graph
 #' power_grid <-
@@ -47,7 +47,7 @@
 #' library(dplyr)
 #'
 #' high_connect_nodes <-
-#'   filter(node_info(power_grid), degree > 10)$node_ID
+#'   filter(node_info(power_grid), degree > 10)$node
 #' }
 #' @export node_info
 
@@ -57,7 +57,7 @@ node_info <- function(graph){
   if (is_graph_empty(graph = graph) == TRUE){
 
     node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 7))
-    colnames(node_properties) <- c("node_ID", "label", "type", "degree",
+    colnames(node_properties) <- c("node", "label", "type", "degree",
                                    "indegree", "outdegree", "loops")
 
     return(node_properties)
@@ -86,7 +86,7 @@ node_info <- function(graph){
   if (is.null(graph$edges_df)){
 
     node_properties <- as.data.frame(mat.or.vec(nr = length(all_nodes), nc = 7))
-    colnames(node_properties) <- c("node_ID", "label", "type", "degree",
+    colnames(node_properties) <- c("node", "label", "type", "degree",
                                    "indegree", "outdegree", "loops")
 
     node_properties[, 1] <- all_nodes
@@ -125,7 +125,7 @@ node_info <- function(graph){
 
       if (i == 1){
         node_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 7))
-        colnames(node_properties) <- c("node_ID", "label", "type", "degree",
+        colnames(node_properties) <- c("node", "label", "type", "degree",
                                        "indegree", "outdegree", "loops")
       }
 
