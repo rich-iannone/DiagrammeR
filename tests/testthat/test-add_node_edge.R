@@ -98,8 +98,8 @@ test_that("adding a node to a graph is possible", {
   # Expect that the node label is the same as the ID, since the
   # default value for the 'label' argument is TRUE
   expect_true(
-    node_info(graph_from)[which(node_info(graph_from)$node_ID == "d"),]$node_ID ==
-      node_info(graph_from)[which(node_info(graph_from)$node_ID == "d"),]$label
+    node_info(graph_from)[which(node_info(graph_from)$node == "d"),]$node ==
+      node_info(graph_from)[which(node_info(graph_from)$node == "d"),]$label
   )
 
   # Expect that for node "d", the 'type' is not set since the
@@ -124,9 +124,9 @@ test_that("adding a node to a graph is possible", {
   # default value for the 'label' argument is TRUE
   expect_true(
     node_info(graph_to)[
-      which(node_info(graph_to)$node_ID == "d"),]$node_ID ==
+      which(node_info(graph_to)$node == "d"),]$node ==
       node_info(graph_to)[
-        which(node_info(graph_to)$node_ID == "d"),]$label
+        which(node_info(graph_to)$node == "d"),]$label
   )
 
   # Expect that for node "d", the 'type' is not set since the
@@ -155,9 +155,9 @@ test_that("adding a node to a graph is possible", {
   # default value for the 'label' argument is TRUE
   expect_true(
     node_info(graph_to_from)[
-      which(node_info(graph_to_from)$node_ID == "d"),]$node_ID ==
+      which(node_info(graph_to_from)$node == "d"),]$node ==
       node_info(graph_to_from)[
-        which(node_info(graph_to_from)$node_ID == "d"),]$label
+        which(node_info(graph_to_from)$node == "d"),]$label
   )
 
   # Expect that for node "d", the 'type' is not set since the
