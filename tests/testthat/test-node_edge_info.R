@@ -34,13 +34,13 @@ test_that("getting info about a graph's nodes is possible", {
   expect_true(class(info_nodes) == "data.frame")
 
   # Expect that the data frame has 7 columns
-  expect_true(ncol(info_nodes) == 7L)
+  expect_true(ncol(info_nodes) == 7)
 
   # Expect that the data frame has 26 rows
-  expect_true(nrow(info_nodes) == 26L)
+  expect_true(nrow(info_nodes) == 26)
 
   # Expect that certain columns will be classed as "character"
-  expect_is(info_nodes$node_ID, "character")
+  expect_is(info_nodes$node, "character")
   expect_is(info_nodes$label, "character")
   expect_is(info_nodes$type, "character")
 
@@ -64,10 +64,10 @@ test_that("getting info about a graph's nodes is possible", {
   expect_true(class(info_nodes_no_edges) == "data.frame")
 
   # Expect that the data frame has 7 columns
-  expect_true(ncol(info_nodes_no_edges) == 7L)
+  expect_true(ncol(info_nodes_no_edges) == 7)
 
   # Expect that the data frame has 4 rows
-  expect_true(nrow(info_nodes_no_edges) == 4L)
+  expect_true(nrow(info_nodes_no_edges) == 4)
 
   # Create an empty graph
   graph <- create_graph()
@@ -79,10 +79,10 @@ test_that("getting info about a graph's nodes is possible", {
   expect_true(class(info_nodes_empty_graph) == "data.frame")
 
   # Expect that the data frame has 7 columns
-  expect_true(ncol(info_nodes_empty_graph) == 7L)
+  expect_true(ncol(info_nodes_empty_graph) == 7)
 
   # Expect that the data frame has 4 rows
-  expect_true(nrow(info_nodes_empty_graph) == 0L)
+  expect_true(nrow(info_nodes_empty_graph) == 0)
 })
 
 test_that("getting info about a graph's edges is possible", {
@@ -118,17 +118,16 @@ test_that("getting info about a graph's edges is possible", {
   # Expect a data frame object
   expect_true(class(info_edges) == "data.frame")
 
-  # Expect that the data frame has 4 columns
-  expect_true(ncol(info_edges) == 4L)
+  # Expect that the data frame has 3 columns
+  expect_true(ncol(info_edges) == 3)
 
   # Expect that the data frame has 26 rows
-  expect_true(nrow(info_edges) == 26L)
+  expect_true(nrow(info_edges) == 26)
 
   # Expect that all columns will be classed as "character"
   expect_is(info_edges$from, "character")
   expect_is(info_edges$to, "character")
   expect_is(info_edges$rel, "character")
-  expect_is(info_edges$label, "character")
 
   # Create a graph with 4 nodes but no edges
   graph <- create_graph()
@@ -142,9 +141,9 @@ test_that("getting info about a graph's edges is possible", {
   # Expect a data frame object
   expect_true(class(info_graph_no_edges) == "data.frame")
 
-  # Expect that the data frame has 4 columns
-  expect_true(ncol(info_graph_no_edges) == 4L)
+  # Expect that the data frame has 3 columns
+  expect_true(ncol(info_graph_no_edges) == 3)
 
   # Expect that the data frame has no rows
-  expect_true(nrow(info_graph_no_edges) == 0L)
+  expect_true(nrow(info_graph_no_edges) == 0)
 })
