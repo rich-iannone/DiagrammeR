@@ -42,13 +42,13 @@ graph <-
                               "shape = circle"))
 
 node_info(graph)
-#>    node_ID label    type degree indegree outdegree loops
-#> 1        A     A  a_to_g      2        0         2     0
-#> 2        W     W  q_to_x      1        0         1     0
-#> 3        T     T  q_to_x      2        0         2     0
-#> 4        L     L  h_to_p      1        0         1     0
-#> 5        F     F  a_to_g      0        0         0     0
-#>..      ...   ...     ...    ...      ...       ...   ...
+#>    node label    type degree indegree outdegree loops
+#> 1     A     A  a_to_g      2        0         2     0
+#> 2     W     W  q_to_x      1        0         1     0
+#> 3     T     T  q_to_x      2        0         2     0
+#> 4     L     L  h_to_p      1        0         1     0
+#> 5     F     F  a_to_g      0        0         0     0
+#>..   ...   ...     ...    ...      ...       ...   ...
 
 # Import a large graph
 power_grid <-
@@ -60,7 +60,7 @@ import_graph(system.file("examples/power_grid.graphml",
 library(dplyr)
 
 high_connect_nodes <-
-  filter(node_info(power_grid), degree > 10)$node_ID
+  filter(node_info(power_grid), degree > 10)$node
 }
 }
 
