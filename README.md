@@ -112,10 +112,6 @@ With the graph-building functions, it's possible to generate a graph with data a
 
 <img src="inst/img/DiagrammeR_graph_functions.png">
 
-Here is a simple workflow for building and rendering a graph object:
-
-<img src="inst/img/example_DiagrammeR_workflow.png">
-
 Want to learn more? Head over to the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/graphs.html) to see plenty of examples and explanations.
 
 ## An Example with Data from the **nycflights13** Package
