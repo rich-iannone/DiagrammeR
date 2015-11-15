@@ -31,7 +31,6 @@ nodes <-
 edges <-
   create_edges(from = sample(LETTERS, replace = TRUE),
                to = sample(LETTERS, replace = TRUE),
-               label = "edge",
                rel = "letter_to_letter")
 
 graph <-
@@ -42,13 +41,13 @@ graph <-
                               "shape = circle"))
 
 edge_info(graph)
-#>    from   to              rel label
-#> 1     A    Z letter_to_letter  edge
-#> 2     H    U letter_to_letter  edge
-#> 3     W    O letter_to_letter  edge
-#> 4     U    K letter_to_letter  edge
-#> 5     I    V letter_to_letter  edge
-#>..   ...  ...              ...   ...
+#>    from   to              rel
+#> 1     A    Z letter_to_letter
+#> 2     H    U letter_to_letter
+#> 3     W    O letter_to_letter
+#> 4     U    K letter_to_letter
+#> 5     I    V letter_to_letter
+#>..   ...  ...              ...
 }
 }
 
