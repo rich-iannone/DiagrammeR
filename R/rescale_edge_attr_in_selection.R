@@ -22,14 +22,15 @@ rescale_edge_attr_in_selection <- function(graph,
                                            from_lower_bound = NULL,
                                            from_upper_bound = NULL){
 
-  if (!any(edge_attr_from %in% colnames(edges_df)[-c(1:2)])){
-    stop("The edge attribute to scale isn't present in the edf.")
-  }
-
+  # Get edge attributes for the selected edges
   edges_df <-
     get_edge_attr(graph,
                   from = graph$selection$edges$from,
                   to = graph$selection$edges$to)
+
+  if (!any(edge_attr_from %in% colnames(edges_df)[-c(1:2)])){
+    stop("The edge attribute to scale isn't present in the edf.")
+  }
 
   edges_attr_vector <-
     edges_df[,which(colnames(edges_df) %in% edge_attr_from)]
