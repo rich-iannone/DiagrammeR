@@ -16,17 +16,17 @@
 #' @param label_col an option to apply a column of data in the data frame
 #' as \code{label} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export add_nodes_from_data_frame
+#' @export add_nodes_from_df
 
-add_nodes_from_data_frame <- function(graph,
-                                      df,
-                                      set_type = NULL,
-                                      select_cols = NULL,
-                                      drop_cols = NULL,
-                                      rename_attrs = NULL,
-                                      id_col = NULL,
-                                      type_col = NULL,
-                                      label_col = NULL){
+add_nodes_from_df <- function(graph,
+                              df,
+                              set_type = NULL,
+                              select_cols = NULL,
+                              drop_cols = NULL,
+                              rename_attrs = NULL,
+                              id_col = NULL,
+                              type_col = NULL,
+                              label_col = NULL){
 
   # Get numbers of rows and columns in df
   rows_in_df <- nrow(df)

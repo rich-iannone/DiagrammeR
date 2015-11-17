@@ -20,19 +20,19 @@
 #' @param rel_col an option to apply a column of data in the data frame as
 #' \code{rel} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export add_edges_from_data_frame
+#' @export add_edges_from_df
 
-add_edges_from_data_frame <- function(graph,
-                                      df,
-                                      from_col,
-                                      from_attr,
-                                      to_col,
-                                      to_attr,
-                                      set_rel = NULL,
-                                      select_cols = NULL,
-                                      drop_cols = NULL,
-                                      rename_attrs = NULL,
-                                      rel_col = NULL){
+add_edges_from_df <- function(graph,
+                              df,
+                              from_col,
+                              from_attr,
+                              to_col,
+                              to_attr,
+                              set_rel = NULL,
+                              select_cols = NULL,
+                              drop_cols = NULL,
+                              rename_attrs = NULL,
+                              rel_col = NULL){
 
   # Get numbers of rows and columns in df
   rows_in_df <- nrow(df)
