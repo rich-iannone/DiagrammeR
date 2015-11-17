@@ -1,5 +1,5 @@
-#' Select a graph available in a series
-#' @description Using a graph series object of type \code{dgr_graph_1D}, select
+#' Get a graph available in a series
+#' @description Using a graph series object of type \code{dgr_graph_1D}, get
 #' a graph object.
 #' @param graph_series a graph series object of type \code{dgr_graph_1D}.
 #' @param graph_no the index of the graph in the graph series.
@@ -27,25 +27,23 @@
 #' series <- graph_2 %>% add_to_series(series)
 #' series <- graph_3 %>% add_to_series(series)
 #'
-#' # Select the second graph in the series
+#' # Get the second graph in the series
 #' extracted_graph <-
-#'   select_graph_from_series(graph_series = series,
+#'   get_graph_from_series(graph_series = series,
 #'                            graph_no = 2)
 #' }
-#' @export select_graph_from_series
+#' @export get_graph_from_series
 
-select_graph_from_series <- function(graph_series,
-                                     graph_no){
+get_graph_from_series <- function(graph_series,
+                                  graph_no){
 
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)){
-
     stop("There are no graphs in this graph series.")
   }
 
   # Stop function if 'graph_no' out of range
   if (!(graph_no %in% 1:graph_count(graph_series))){
-
     stop("The index chosen doesn't correspond to that of a graph in the series.")
   }
 
