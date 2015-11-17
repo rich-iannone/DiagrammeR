@@ -1,15 +1,25 @@
 #' Rescale numeric edge attribute values for edges in a selection
 #' @description From a graph object of class \code{dgr_graph}, take a set of
 #' numeric values for edge attributes specified in a selection of edges,
-#' rescale, then write a new set of edge attribute values.
+#' rescale to a new numeric or color range, then write a new set of edge
+#' attribute values.
 #' @param graph a graph object of class \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param edge_attr_from edge_attr_from
-#' @param edge_attr_to edge_attr_to
-#' @param to_lower_bound to_lower_bound
-#' @param to_upper_bound to_upper_bound
-#' @param from_lower_bound from_lower_bound
-#' @param from_upper_bound from_upper_bound
+#' @param edge_attr_from the edge attribute containing numeric data that
+#' is to be rescaled to new numeric or color values.
+#' @param edge_attr_to the name of the new or existing edge attribute that
+#' will contain the scaled values. If the edge attribute exists for the
+#' selected edges, rescaled values will replace any existing values.
+#' @param to_lower_bound the lower bound value for the set of rescaled
+#' values. This can be a numeric value or an X11 color name.
+#' @param to_upper_bound the upper bound value for the set of rescaled
+#' values. This can be a numeric value or an X11 color name.
+#' @param from_lower_bound an optional, manually set lower bound value for
+#' the set of values to be rescaled. If not set, the minimum value of the set of
+#' values to be rescaled will be used.
+#' @param from_upper_bound an optional, manually set upper bound value for
+#' the set of values to be rescaled. If not set, the minimum value of the set of
+#' values to be rescaled will be used.
 #' @return a graph object of class \code{dgr_graph}.
 #' @import scales
 #' @export rescale_edge_attr_in_selection
