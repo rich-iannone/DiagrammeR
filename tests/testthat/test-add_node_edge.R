@@ -228,3 +228,85 @@ test_that("adding an edge to a graph is possible", {
   # Expect an error when calling 'add_edge' on an empty graph
   expect_error(add_edge(graph = create_graph()))
 })
+
+test_that("adding several nodes to a graph at once is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Expect that 10 nodes were added to the empty graph
+  expect_equal(node_count(graph), 10)
+
+  # Expect monotonically-increasing node ID values from 1 to 10
+  expect_equal(get_nodes(graph),
+               c("1", "2", "3", "4", "5",
+                 "6", "7", "8", "9", "10"))
+
+  # Expect that no `type` values have been set
+  expect_equal(get_node_df(graph)$type,
+               rep("", 10))
+
+  # Expect that no `label` values have been set
+  expect_equal(get_node_df(graph)$label,
+               rep("", 10))
+
+  # Create a graph with 10 nodes of a specified type
+  graph <- create_graph()
+  graph <- add_n_nodes(graph, 10, "test_node")
+
+  # Expect that 10 nodes were added to the empty graph
+  expect_equal(node_count(graph), 10)
+
+  # Expect monotonically-increasing node ID values from 1 to 10
+  expect_equal(get_nodes(graph), as.character(seq(1, 10)))
+
+  # Expect that a `type` value have been set for all nodes
+  expect_equal(get_node_df(graph)$type,
+               rep("test_node", 10))
+
+  # Expect that no `label` values have been set
+  expect_equal(get_node_df(graph)$label,
+               rep("", 10))
+})
+
+test_that("adding several nodes from a selected node is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Select the node with ID of '5'
+  graph <- select_nodes(graph, nodes = "5")
+
+  # Add 10 nodes as successors to the selected node
+  graph <- add_n_nodes_from_selection(graph, 10)
+
+  # Expect a total of 20 nodes in the graph
+  expect_equal(node_count(graph), 20)
+
+  # Expect monotonically-increasing node ID values from 1 to 20
+  expect_equal(get_nodes(graph), as.character(seq(1, 20)))
+
+  # Expect a total of 10 edges in the graph
+  expect_equal(edge_count(graph), 10)
+
+  # Expect that node IDs where edges are 'from' belong
+  # to the node with ID of '5'
+  expect_equal(get_edge_df(graph)$from,
+               rep("5", 10))
+
+  # Expect that node IDs where edges are 'to' increase
+  # from '11' to '20'
+  expect_equal(get_edge_df(graph)$to,
+               as.character(seq(11, 20)))
+
+  # Expect that the edge relationship has not been set
+  # for any of the edges
+  expect_equal(get_edge_df(graph)$rel,
+               rep("", 10))
+})
