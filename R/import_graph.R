@@ -42,13 +42,12 @@ import_graph <- function(graph_file,
 
     # Determine file type from file extension
     if (file_extension == "graphml"){
-
       file_type <- "graphml"
+    } else if (file_extension == "gml"){
+      file_type <- "gml"
     } else if (file_extension == "sif"){
-
       file_type <- "sif"
     } else {
-
       stop("The file type is not known so it can't be imported.")
     }
   }
@@ -93,7 +92,6 @@ import_graph <- function(graph_file,
     node_attributes <- list()
 
     for (i in 1:length(node_key_names)){
-
       for (j in 1:length(xml_nodes[[1]])){
 
         if (j == 1) attribute <- vector(mode = "character")
