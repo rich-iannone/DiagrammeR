@@ -50,10 +50,6 @@ get_edge_attr_from_selection <- function(graph,
                             from = graph$selection$edges$from,
                             to = graph$selection$edges$to)
 
-  if (is.null(edge_attr)){
-    return(edges_df)
-  }
-
   if (!is.null(edge_attr)){
 
     if (any(edge_attr %in% colnames(edges_df)[-c(1:2)])){
