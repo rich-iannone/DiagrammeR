@@ -8,6 +8,8 @@
 #' all nodes created from the data frame records.
 #' @param select_cols an optional character vector for specifying which
 #' columns in the data frame file should be imported as node attributes.
+#' @param drop_cols an optional character vector for dropping columns
+#' from the incoming data.
 #' @param rename_attrs an optional character for renaming node attributes.
 #' @param id_col an option to apply a column of data in the data frame
 #' as node ID values.

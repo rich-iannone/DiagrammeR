@@ -14,6 +14,8 @@
 #' all edges created from the CSV records.
 #' @param select_cols an optional character vector for specifying which
 #' columns in the CSV file should be imported as edge attributes.
+#' @param drop_cols an optional character vector for dropping columns
+#' from the incoming data.
 #' @param rename_attrs an optional character vector for renaming edge
 #' attributes.
 #' @param rel_col an option to apply a column of data in the CSV file
