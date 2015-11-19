@@ -55,21 +55,7 @@ get_edge_attr <- function(graph,
                           from = NULL,
                           to = NULL){
 
-  if (class(x) == "dgr_graph"){
-
-    object_type <- "dgr_graph"
-
-    edges_df <- x$edges_df
-  }
-
-  if (class(x) == "data.frame"){
-
-    if (all(c("from", "to") %in% colnames(x))){
-
-      object_type <- "edge_df"
-      edges_df <- x
-    }
-  }
+  edges_df <- graph$edges_df
 
   if (is.null(from) & !is.null(to)){
 
@@ -92,11 +78,6 @@ get_edge_attr <- function(graph,
                        (edges_df$to %in% to)),]
   }
 
-  if (is.null(edge_attr)){
-    return(edges_df)
-  }
-
-  if (!is.null(edge_attr)){
 
     if (any(edge_attr %in% colnames(edges_df)[-c(1:2)])){
 

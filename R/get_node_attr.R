@@ -40,21 +40,8 @@ get_node_attr <- function(graph,
                           mode = NULL,
                           nodes = NULL){
 
-  if (class(x) == "dgr_graph"){
 
-    object_type <- "dgr_graph"
-
-    nodes_df <- x$nodes_df
-  }
-
-  if (class(x) == "data.frame"){
-
-    if ("nodes" %in% colnames(x)){
-
-      object_type <- "node_df"
-      nodes_df <- x
-    }
-  }
+  nodes_df <- graph$nodes_df
 
   if (is.null(nodes) == TRUE){
 
@@ -66,13 +53,6 @@ get_node_attr <- function(graph,
       nodes_df[which(nodes_df$nodes %in% nodes),]
   }
 
-  if (is.null(node_attr)){
-    return(nodes_df)
-  }
-
-  if (!is.null(node_attr)){
-
-    if (any(node_attr %in% colnames(nodes_df)[-1])){
 
       nodes_attr_vector <-
         nodes_df[,which(colnames(nodes_df) %in% node_attr)]
