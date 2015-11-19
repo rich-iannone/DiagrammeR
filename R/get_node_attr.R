@@ -37,8 +37,8 @@
 #' }
 #' @export get_node_attr
 
-get_node_attr <- function(x,
-                          node_attr = NULL,
+get_node_attr <- function(graph,
+                          node_attr,
                           mode = NULL,
                           nodes = NULL){
 

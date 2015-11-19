@@ -51,8 +51,8 @@
 #' @return an edge data frame.
 #' @export get_edge_attr
 
-get_edge_attr <- function(x,
-                          edge_attr = NULL,
+get_edge_attr <- function(graph,
+                          edge_attr,
                           mode = NULL,
                           from = NULL,
                           to = NULL){
