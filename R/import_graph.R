@@ -152,6 +152,82 @@ import_graph <- function(graph_file,
     return(the_graph)
   }
 
+  if (file_type == "gml"){
+
+    # Read in the .gml document as a vector object
+    gml_document <- paste(readLines(graph_file), collapse = "")
+
+    # Extract information on whether graph is directed
+    graph_directed <-
+      unlist(
+        str_replace_all(
+          str_extract_all(gml_document, "directed [0-1]"),
+          "directed ", ""))
+
+    # Extract all node definitions
+    node_defs <- unlist(str_extract_all(gml_document, "node \\[.*?\\]"))
+
+    node_id <-
+      str_replace_all(
+        str_extract_all(
+          node_defs,
+          "id [a-z0-9_]*"),
+        "id ", "")
+
+    node_label <-
+      str_replace_all(
+        str_replace_all(
+          str_extract_all(node_defs,
+                          "label \\\".*?\\\""),
+          "label \"", ""),
+        "\"", "")
+
+    # Extract all edge definitions
+    edge_defs <- unlist(str_extract_all(gml_document, "edge \\[.*?\\]"))
+
+    edges_from <-
+      str_replace_all(
+        str_extract_all(
+          edge_defs,
+          "source [a-z0-9_]*"),
+        "source ", "")
+
+    edges_to <-
+      str_replace_all(
+        str_extract_all(
+          edge_defs,
+          "target [a-z0-9_]*"),
+        "target ", "")
+
+    edge_label <-
+      str_replace_all(
+        str_replace_all(
+          str_extract_all(edge_defs,
+                          "label \\\".*?\\\""),
+          "label \"", ""),
+        "\"", "")
+
+    # Create all nodes for graph
+    all_nodes <-
+      create_nodes(nodes = node_id,
+                   label = node_label)
+
+    # Create all edges for graph
+    all_edges <-
+      create_edges(from = edges_from,
+                   to = edges_to)
+
+    # Create the graph
+    the_graph <-
+      create_graph(nodes_df = all_nodes,
+                   edges_df = all_edges,
+                   directed = ifelse(graph_directed == "1",
+                                     TRUE, FALSE))
+
+    # Return the graph
+    return(the_graph)
+  }
+
   if (file_type == "sif"){
 
     # Read in the SIF document as a vector object
