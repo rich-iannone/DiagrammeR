@@ -39,7 +39,7 @@
 #' @export get_edge_attr_from_selection
 
 get_edge_attr_from_selection <- function(graph,
-                                         edge_attr = NULL,
+                                         edge_attr,
                                          mode = NULL){
 
   if (is.null(graph$selection$edges)){

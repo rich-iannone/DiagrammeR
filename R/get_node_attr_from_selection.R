@@ -39,7 +39,7 @@
 #' @export get_node_attr_from_selection
 
 get_node_attr_from_selection <- function(graph,
-                                         node_attr = NULL,
+                                         node_attr,
                                          mode = NULL){
 
   if (is.null(graph$selection$nodes)){
