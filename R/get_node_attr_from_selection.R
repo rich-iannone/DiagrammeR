@@ -3,10 +3,10 @@
 #' attribute properties for nodes available in a selection.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
-#' @param node_attr an optional node attribute to be supplied when a
-#' vector of node attribute values is desired.
+#' @param node_attr the node attribute from which to obtain values.
 #' @param mode a option to recast the returned vector of node attribute
 #' value as \code{numeric} or \code{character}.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
@@ -36,7 +36,6 @@
 #' #> 1     a letter     a   3.5
 #' #> 3     c letter     c   9.4
 #' }
-#' @return a node data frame.
 #' @export get_node_attr_from_selection
 
 get_node_attr_from_selection <- function(graph,

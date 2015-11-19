@@ -3,10 +3,10 @@
 #' attribute properties for edges available in a selection.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
-#' @param edge_attr an optional edge attribute to be supplied when a
-#' vector of edge attribute values is desired.
+#' @param edge_attr the edge attribute from which to obtain values.
 #' @param mode a option to recast the returned vector of edge attribute
 #' value as \code{numeric} or \code{character}.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
@@ -36,7 +36,6 @@
 #' #> 1    a  d leading_to  pink
 #' #> 2    b  c leading_to  blue
 #' }
-#' @return an edge data frame.
 #' @export get_edge_attr_from_selection
 
 get_edge_attr_from_selection <- function(graph,
