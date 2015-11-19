@@ -78,28 +78,27 @@ get_edge_attr <- function(graph,
                        (edges_df$to %in% to)),]
   }
 
+  if (any(edge_attr %in% colnames(edges_df)[-c(1:2)])){
 
-    if (any(edge_attr %in% colnames(edges_df)[-c(1:2)])){
+    edges_attr_vector <-
+      edges_df[,which(colnames(edges_df) %in% edge_attr)]
 
-      edges_attr_vector <-
-        edges_df[,which(colnames(edges_df) %in% edge_attr)]
+    if (!is.null(mode)){
+      if (mode == "numeric"){
+        edges_attr_vector <- as.numeric(edges_attr_vector)
 
-      if (!is.null(mode)){
-        if (mode == "numeric"){
-          edges_attr_vector <- as.numeric(edges_attr_vector)
+        edges_attr_vector <-
+          edges_attr_vector[which(!is.na(edges_attr_vector))]
+      }
 
-          edges_attr_vector <-
-            edges_attr_vector[which(!is.na(edges_attr_vector))]
-        }
-
-        if (mode == "character"){
-          edges_attr_vector <- as.character(edges_attr_vector)
-        }
+      if (mode == "character"){
+        edges_attr_vector <- as.character(edges_attr_vector)
       }
     }
-
-    graph$deposit <- edges_attr_vector
-
-    return(graph)
   }
+
+  graph$deposit <- edges_attr_vector
+
+  return(graph)
+
 }
