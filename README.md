@@ -110,7 +110,13 @@ render_graph(graph)
 
 With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have node and edge attributes and also columns of other data. Then we can incorporate the data into a graph object which can itself be subject to inspection and transformations. Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and modify the values of the styling attributes and differentiate nodes and edges by size, color, shape, opacity, length, etc. Here are some of the available graph functions:
 
-<img src="inst/img/DiagrammeR_graph_functions.png">
+<img src="inst/img/graph_functions_1.png">
+<img src="inst/img/graph_functions_2.png">
+<img src="inst/img/graph_functions_3.png">
+<img src="inst/img/graph_functions_4.png">
+<img src="inst/img/graph_functions_5.png">
+<img src="inst/img/graph_functions_6.png">
+<img src="inst/img/graph_functions_7.png">
 
 Want to learn more? Head over to the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/graphs.html) to see plenty of examples and explanations.
 
