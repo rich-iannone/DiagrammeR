@@ -118,8 +118,6 @@ With the graph-building functions, it's possible to generate a graph with data a
 <img src="inst/img/graph_functions_6.png">
 <img src="inst/img/graph_functions_7.png">
 
-Want to learn more? Head over to the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/graphs.html) to see plenty of examples and explanations.
-
 ## An Example with Data from the **nycflights13** Package
 
 Using the `flights` dataset from the **nycflights13** **R** package, we can create a graph diagram. Here, the green lines show flights that weren't late arriving at their destinations (red indicates those late arrivals).
