@@ -67,7 +67,7 @@ test_that("a random graph can be made to various specifications", {
 
   # Expect the node attribute 'value' to sum to 44
   expect_equal(
-    sum(as.numeric(get_node_attr(random_graph_10_15_seed_set)[,4])),
+    sum(as.numeric(get_node_df(random_graph_10_15_seed_set)[,4])),
     44
   )
 
