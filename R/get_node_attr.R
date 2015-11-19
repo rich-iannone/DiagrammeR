@@ -8,31 +8,6 @@
 #' @param nodes an optional vector of node IDs for filtering list of
 #' nodes present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
-#' @examples
-#' \dontrun{
-#' # Create a simple graph
-#' nodes <-
-#'   create_nodes(nodes = c("a", "b", "c", "d"),
-#'                type = "letter",
-#'                label = TRUE,
-#'                value = c(3.5, 2.6, 9.4, 2.7))
-#'
-#' edges <-
-#'   create_edges(from = c("a", "b", "c"),
-#'                to = c("d", "c", "a"),
-#'                rel = "leading_to",
-#'                color = c("pink", "blue", "red"))
-#'
-#' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges)
-#'
-#' # Get node attributes for all nodes in the graph
-#' get_node_attr(x = graph)
-#'
-#' # Get node attributes for nodes "a" and "c" in the graph
-#' get_node_attr(x = graph, nodes = c("a", "c"))
-#' }
 #' @export get_node_attr
 
 get_node_attr <- function(graph,
