@@ -20,6 +20,9 @@ all nodes created from the data frame records.}
 \item{select_cols}{an optional character vector for specifying which
 columns in the data frame file should be imported as node attributes.}
 
+\item{drop_cols}{an optional character vector for dropping columns
+from the incoming data.}
+
 \item{rename_attrs}{an optional character for renaming node attributes.}
 
 \item{id_col}{an option to apply a column of data in the data frame

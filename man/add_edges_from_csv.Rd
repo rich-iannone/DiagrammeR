@@ -30,6 +30,9 @@ all edges created from the CSV records.}
 \item{select_cols}{an optional character vector for specifying which
 columns in the CSV file should be imported as edge attributes.}
 
+\item{drop_cols}{an optional character vector for dropping columns
+from the incoming data.}
+
 \item{rename_attrs}{an optional character vector for renaming edge
 attributes.}
 
