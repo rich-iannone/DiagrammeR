@@ -11,8 +11,8 @@ import_graph(graph_file, file_type = NULL, graph_name = NULL,
 \item{graph_file}{a connection to a graph file.}
 
 \item{file_type}{the type of file to be imported. Options are:
-\code{graphml} (GraphML) and \code{sif} (SIF). If not supplied, the function
-will infer the type by its file extension.}
+\code{graphml} (GraphML), \code{gml} (GML), and \code{sif} (SIF). If not
+supplied, the function will infer the type by its file extension.}
 
 \item{graph_name}{an optional string for labeling the graph object.}
 
