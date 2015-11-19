@@ -4,20 +4,19 @@
 \alias{get_node_attr_from_selection}
 \title{Get node attributes based on a selection of nodes}
 \usage{
-get_node_attr_from_selection(graph, node_attr = NULL, mode = NULL)
+get_node_attr_from_selection(graph, node_attr, mode = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}.}
 
-\item{node_attr}{an optional node attribute to be supplied when a
-vector of node attribute values is desired.}
+\item{node_attr}{the node attribute from which to obtain values.}
 
 \item{mode}{a option to recast the returned vector of node attribute
 value as \code{numeric} or \code{character}.}
 }
 \value{
-a node data frame.
+a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get node

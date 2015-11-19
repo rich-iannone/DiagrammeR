@@ -4,14 +4,12 @@
 \alias{get_node_attr}
 \title{Get node attributes}
 \usage{
-get_node_attr(x, node_attr = NULL, mode = NULL, nodes = NULL)
+get_node_attr(graph, node_attr, mode = NULL, nodes = NULL)
 }
 \arguments{
-\item{x}{either a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}, or a node data frame.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node_attr}{an optional node attribute to be supplied when a
-vector of node attribute values is desired.}
+\item{node_attr}{the node attribute from which to obtain values.}
 
 \item{mode}{a option to recast the returned vector of node attribute
 value as \code{numeric} or \code{character}.}
@@ -20,11 +18,11 @@ value as \code{numeric} or \code{character}.}
 nodes present in the graph.}
 }
 \value{
-a node data frame.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph} or a node
-data frame, get node attribute properties for one or more nodes.
+From a graph object of class \code{dgr_graph}, get node
+attribute properties for one or more nodes.
 }
 \examples{
 \dontrun{

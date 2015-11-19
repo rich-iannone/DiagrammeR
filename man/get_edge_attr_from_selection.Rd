@@ -4,20 +4,19 @@
 \alias{get_edge_attr_from_selection}
 \title{Get edge attributes based on a selection of edges}
 \usage{
-get_edge_attr_from_selection(graph, edge_attr = NULL, mode = NULL)
+get_edge_attr_from_selection(graph, edge_attr, mode = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph} that is created
 using \code{create_graph}.}
 
-\item{edge_attr}{an optional edge attribute to be supplied when a
-vector of edge attribute values is desired.}
+\item{edge_attr}{the edge attribute from which to obtain values.}
 
 \item{mode}{a option to recast the returned vector of edge attribute
 value as \code{numeric} or \code{character}.}
 }
 \value{
-an edge data frame.
+a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get edge

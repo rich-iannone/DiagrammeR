@@ -4,14 +4,12 @@
 \alias{get_edge_attr}
 \title{Get edge attributes}
 \usage{
-get_edge_attr(x, edge_attr = NULL, mode = NULL, from = NULL, to = NULL)
+get_edge_attr(graph, edge_attr, mode = NULL, from = NULL, to = NULL)
 }
 \arguments{
-\item{x}{either a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}, or an edge data frame.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr}{an optional edge attribute to be supplied when a
-vector of edge attribute values is desired.}
+\item{edge_attr}{the edge attribute from which to obtain values.}
 
 \item{mode}{a option to recast the returned vector of edge attribute
 value as \code{numeric} or \code{character}.}
@@ -23,11 +21,11 @@ outgoing for filtering the list of edges present in the graph.}
 incoming for filtering the list of edges present in the graph.}
 }
 \value{
-an edge data frame.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph} or an edge
-data frame, get edge attribute properties for one or more edges
+From a graph object of class \code{dgr_graph}, get edge
+attribute properties for one or more edges
 }
 \examples{
 \dontrun{
