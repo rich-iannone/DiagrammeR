@@ -34,8 +34,6 @@ test_that("setting node attributes is possible", {
   graph <- add_edge(graph, "6", "7")
   graph <- add_edge(graph, "3", "8")
 
-  succeed(message = "Success has been forced")
-
   # Set attribute for named node "A"
   graph_set_a <- set_node_attr(graph,
                                nodes = "A",
@@ -46,13 +44,10 @@ test_that("setting node attributes is possible", {
   expect_equal(graph_set_a$nodes_df[which(graph_set_a$nodes_df$nodes == "A"), 4],
                "5")
 
-  # Get node attribute for named node "A"
-  graph_set_a_node_attr_df <-
-    get_node_attr(graph_set_a,
-                  nodes = "A")
-
   # Expect that node "A" has node attr set for `value`
-  expect_equal(graph_set_a_node_attr_df$value, "5")
+  expect_equal(withdraw_values(get_node_attr(graph_set_a,
+                                             node_attr = "value",
+                                             nodes = "A")), "5")
 
   # Set attribute for named node "A" with a different value
   graph_set_a <-
@@ -62,8 +57,9 @@ test_that("setting node attributes is possible", {
                   values = 8)
 
   # Expect that node "A" has node attr set for `value`
-  expect_equal(graph_set_a$nodes_df[which(graph_set_a$nodes_df$nodes == "A"), 4],
-               "8")
+  expect_equal(withdraw_values(get_node_attr(graph_set_a,
+                                             node_attr = "value",
+                                             nodes = "A")), "8")
 
   # Select node "A"
   graph_select_a <-
@@ -100,7 +96,9 @@ test_that("setting node attributes is possible", {
 
   # Expect that getting the node attribute from a
   # selection works in the same way
-  expect_equal(get_node_attr_from_selection(graph_node_selection)$value,
+  expect_equal(
+    withdraw_values(
+      get_node_attr_from_selection(graph_node_selection, node_attr = "value")),
                "5")
 
   # Get the node data frame from the graph as a separate object
@@ -116,14 +114,6 @@ test_that("setting node attributes is possible", {
   # Expect that node "A" has node attr set for `value`
   expect_equal(graph_node_df_set_a[which(graph_node_df_set_a$nodes == "A"), 4],
                "5")
-
-  # Get node attribute for named node "A"
-  graph_node_df_set_a_node_attr_df <-
-    get_node_attr(graph_node_df_set_a,
-                  nodes = "A")
-
-  # Expect that node "A" has node attr set for `value`
-  expect_equal(graph_node_df_set_a_node_attr_df$value, "5")
 
   # Set attribute for named node "A" with a different value
   graph_node_df_set_a_node_attr_df <-
@@ -211,16 +201,14 @@ test_that("setting edge attributes is possible", {
     "5")
 
   # Get edge attribute for edge "A" -> "1"
-  graph_set_a_1_edge_attr_df <-
-    get_edge_attr(graph_set_a_1,
+  graph_set_a_1_edge_attr <-
+    withdraw_values(get_edge_attr(graph_set_a_1,
+                  edge_attr = "value",
                   from = "A",
-                  to = "1")
+                  to = "1"))
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
-  expect_equal(
-    graph_set_a_1_edge_attr_df[which(graph_set_a_1_edge_attr_df$from == "A" &
-                                       graph_set_a_1_edge_attr_df$to == "1"), 4],
-    "5")
+  expect_equal(graph_set_a_1_edge_attr, "5")
 
   # Set attribute for named edge "A" -> "1" with a different value
   graph_set_a_1 <-
@@ -232,10 +220,11 @@ test_that("setting edge attributes is possible", {
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
-    graph_set_a_1$edges_df[which(graph_set_a_1$edges_df$from == "A" &
-                                   graph_set_a_1$edges_df$to == "1"), 4],
+      withdraw_values(get_edge_attr(graph_set_a_1,
+                                    edge_attr = "value",
+                                    from = "A",
+                                    to = "1")),
     "8")
-
 
   # Select edge "A" -> "1"
   graph_select_a_1 <-
@@ -249,8 +238,10 @@ test_that("setting edge attributes is possible", {
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
-    graph_select_a_1$edges_df[which(graph_select_a_1$edges_df$from == "A" &
-                                      graph_select_a_1$edges_df$to == "1"), 4],
+    withdraw_values(get_edge_attr(graph_select_a_1,
+                                  edge_attr = "value",
+                                  from = "A",
+                                  to = "1")),
     "5")
 
   # Set attribute for all edges
@@ -273,9 +264,4 @@ test_that("setting edge attributes is possible", {
     graph_edge_selection$edges_df[which(graph_edge_selection$edges_df$from == "A" &
                                           graph_edge_selection$edges_df$to == "1"), 4],
     "5")
-
-  # Expect that getting the node attribute from a
-  # selection works in the same way
-  expect_equal(get_edge_attr_from_selection(graph_edge_selection)$value,
-               "5")
 })
