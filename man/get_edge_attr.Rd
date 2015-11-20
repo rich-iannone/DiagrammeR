@@ -27,42 +27,4 @@ a graph object of class \code{dgr_graph}.
 From a graph object of class \code{dgr_graph}, get edge
 attribute properties for one or more edges
 }
-\examples{
-\dontrun{
-# Create a simple graph
-nodes <-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               type = "letter",
-               label = TRUE,
-               value = c(3.5, 2.6, 9.4, 2.7))
-
-edges <-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"),
-               rel = "leading_to",
-               color = c("pink", "blue", "red"))
-
-graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
-
-# Get edge attributes for all edges in the graph
-get_edge_attr(x = graph)
-
-# Get edge attributes for edges "a" -> "d" and "c" -> "a" in
-# the graph
-get_edge_attr(x = graph,
-              from = c("a", "c"), to = c("d", "a"))
-
-# Get edge attributes for all edges in graph outbound
-# from "a"
-get_edge_attr(x = graph,
-              from = "a")
-
-# Get edge attributes for all edges in graph inbound
-# to "a"
-get_edge_attr(x = graph,
-              to = "a")
-}
-}
 
