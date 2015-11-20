@@ -34,9 +34,10 @@ rescale_edge_attr_in_selection <- function(graph,
 
   # Get edge attributes for the selected edges
   edges_df <-
-    get_edge_attr(graph,
-                  from = graph$selection$edges$from,
-                  to = graph$selection$edges$to)
+    get_edge_df(graph)[which(get_edge_df(graph)[,1]
+                             %in% graph$selection$edges$from &
+                               get_edge_df(graph)[,2]
+                             %in% graph$selection$edges$to),]
 
   if (!any(edge_attr_from %in% colnames(edges_df)[-c(1:2)])){
     stop("The edge attribute to scale isn't present in the edf.")

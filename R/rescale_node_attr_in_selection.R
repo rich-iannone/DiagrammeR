@@ -34,8 +34,8 @@ rescale_node_attr_in_selection <- function(graph,
 
   # Get node attributes for the selected nodes
   nodes_df <-
-    get_node_attr(graph,
-                  nodes = graph$selection$nodes)
+    get_node_df(graph)[which(get_node_df(graph)[,1]
+                             %in% graph$selection$nodes),]
 
   if (!any(node_attr_from %in% colnames(nodes_df)[-1])){
     stop("The node attribute to scale isn't present in the ndf.")
