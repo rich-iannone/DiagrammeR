@@ -86,8 +86,8 @@ trav_in <- function(graph,
         }
 
         if (grepl("^>.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = predecessors[i])[1,column_number]) >
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  predecessors[i]), column_number]) >
               as.numeric(gsub(">(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
@@ -95,8 +95,8 @@ trav_in <- function(graph,
         }
 
         if (grepl("^<.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = predecessors[i])[1,column_number]) <
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  predecessors[i]), column_number]) <
               as.numeric(gsub("<(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
@@ -104,8 +104,8 @@ trav_in <- function(graph,
         }
 
         if (grepl("^==.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = predecessors[i])[1,column_number]) ==
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  predecessors[i]), column_number]) ==
               as.numeric(gsub("==(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
@@ -113,8 +113,8 @@ trav_in <- function(graph,
         }
 
         if (grepl("^!=.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = predecessors[i])[1,column_number]) !=
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  predecessors[i]), column_number]) !=
               as.numeric(gsub("!=(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, predecessors[i])
@@ -138,8 +138,8 @@ trav_in <- function(graph,
         }
 
         if (match ==
-            get_node_attr(graph,
-                          nodes = predecessors[i])[1,column_number]){
+            get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                     predecessors[i]), column_number]){
 
           to_nodes <- c(to_nodes, predecessors[i])
         }

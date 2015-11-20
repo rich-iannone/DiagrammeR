@@ -85,8 +85,8 @@ trav_out <- function(graph,
         }
 
         if (grepl("^>.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = successors[i])[1,column_number]) >
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  successors[i]), column_number]) >
               as.numeric(gsub(">(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, successors[i])
@@ -94,8 +94,8 @@ trav_out <- function(graph,
         }
 
         if (grepl("^<.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = successors[i])[1,column_number]) <
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  successors[i]), column_number]) <
               as.numeric(gsub("<(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, successors[i])
@@ -103,8 +103,8 @@ trav_out <- function(graph,
         }
 
         if (grepl("^==.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = successors[i])[1,column_number]) ==
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  successors[i]), column_number]) ==
               as.numeric(gsub("==(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, successors[i])
@@ -112,8 +112,8 @@ trav_out <- function(graph,
         }
 
         if (grepl("^!=.*", match)){
-          if (as.numeric(get_node_attr(graph,
-                                       nodes = successors[i])[1,column_number]) !=
+          if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                                  successors[i]), column_number]) !=
               as.numeric(gsub("!=(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, successors[i])
@@ -136,8 +136,9 @@ trav_out <- function(graph,
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
-        if (grepl(match, get_node_attr(graph,
-                                        nodes = successors[i])[1,column_number])){
+        if (match ==
+            get_node_df(graph)[which(get_node_df(graph)[,1] %in%
+                                     successors[i]), column_number]){
 
           to_nodes <- c(to_nodes, successors[i])
         }

@@ -72,9 +72,10 @@ trav_out_edge <- function(graph,
         }
 
         if (grepl("^>.*", match)){
-          if (as.numeric(get_edge_attr(graph,
-                                       from = from_nodes[i],
-                                       to = to_nodes[i])[1, column_number]) >
+          if (as.numeric(get_edge_df(graph)[which(get_edge_df(graph)[,1]
+                                                  %in% from_nodes[i] &
+                                                  get_edge_df(graph)[,2]
+                                                  %in% to_nodes[i]), column_number]) >
               as.numeric(gsub(">(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
@@ -83,9 +84,10 @@ trav_out_edge <- function(graph,
         }
 
         if (grepl("^<.*", match)){
-          if (as.numeric(get_edge_attr(graph,
-                                       from = from_nodes[i],
-                                       to = to_nodes[i])[1, column_number]) <
+          if (as.numeric(get_edge_df(graph)[which(get_edge_df(graph)[,1]
+                                                  %in% from_nodes[i] &
+                                                  get_edge_df(graph)[,2]
+                                                  %in% to_nodes[i]), column_number]) <
               as.numeric(gsub("<(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
@@ -94,9 +96,10 @@ trav_out_edge <- function(graph,
         }
 
         if (grepl("^==.*", match)){
-          if (as.numeric(get_edge_attr(graph,
-                                       from = from_nodes[i],
-                                       to = to_nodes[i])[1, column_number]) ==
+          if (as.numeric(get_edge_df(graph)[which(get_edge_df(graph)[,1]
+                                                  %in% from_nodes[i] &
+                                                  get_edge_df(graph)[,2]
+                                                  %in% to_nodes[i]), column_number]) ==
               as.numeric(gsub("==(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
@@ -105,9 +108,10 @@ trav_out_edge <- function(graph,
         }
 
         if (grepl("^!=.*", match)){
-          if (as.numeric(get_edge_attr(graph,
-                                       from = from_nodes[i],
-                                       to = to_nodes[i])[1, column_number]) !=
+          if (as.numeric(get_edge_df(graph)[which(get_edge_df(graph)[,1]
+                                                  %in% from_nodes[i] &
+                                                  get_edge_df(graph)[,2]
+                                                  %in% to_nodes[i]), column_number]) !=
               as.numeric(gsub("!=(.*)", "\\1", match))){
 
             nodes_from <- c(nodes_from, from_nodes[i])
@@ -133,9 +137,10 @@ trav_out_edge <- function(graph,
         }
 
         if (match ==
-            get_edge_attr(graph,
-                          from = from_nodes[i],
-                          to = to_nodes[i])[1, column_number]){
+            get_edge_df(graph)[which(get_edge_df(graph)[,1]
+                                     %in% from_nodes[i] &
+                                     get_edge_df(graph)[,2]
+                                     %in% to_nodes[i]), column_number]){
 
           nodes_from <- c(nodes_from, from_nodes[i])
           nodes_to <- c(nodes_to, to_nodes[i])
