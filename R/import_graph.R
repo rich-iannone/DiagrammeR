@@ -210,7 +210,7 @@ import_graph <- function(graph_file,
     # Create all nodes for graph
     all_nodes <-
       create_nodes(nodes = node_id,
-                   label = node_label)
+                   label = FALSE)
 
     # Create all edges for graph
     all_edges <-
