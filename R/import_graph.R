@@ -304,7 +304,8 @@ import_graph <- function(graph_file,
 
     # Create a graph object
     the_graph <- create_graph(nodes_df = nodes_df,
-                              edges_df = edges_df)
+                              edges_df = edges_df,
+                              generate_dot = FALSE)
 
     # Return the graph
     return(the_graph)
