@@ -165,7 +165,7 @@ import_graph <- function(graph_file,
           "directed ", ""))
 
     # Extract all node definitions
-    node_defs <- unlist(str_extract_all(gml_document, "node \\[.*?\\]"))
+    node_defs <- unlist(str_extract_all(gml_document, "node[ ]*?\\[.*?\\]"))
 
     node_id <-
       str_replace_all(
@@ -183,7 +183,7 @@ import_graph <- function(graph_file,
         "\"", "")
 
     # Extract all edge definitions
-    edge_defs <- unlist(str_extract_all(gml_document, "edge \\[.*?\\]"))
+    edge_defs <- unlist(str_extract_all(gml_document, "edge[ ]*?\\[.*?\\]"))
 
     edges_from <-
       str_replace_all(
