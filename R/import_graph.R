@@ -167,6 +167,7 @@ import_graph <- function(graph_file,
     # Extract all node definitions
     node_defs <- unlist(str_extract_all(gml_document, "node[ ]*?\\[.*?\\]"))
 
+    # Get all node ID values
     node_id <-
       str_replace_all(
         str_extract_all(
@@ -174,13 +175,16 @@ import_graph <- function(graph_file,
           "id [a-z0-9_]*"),
         "id ", "")
 
-    node_label <-
-      str_replace_all(
+    # Get all node label values, if they exist
+    if (any(str_detect(node_defs, "label"))){
+      node_label <-
         str_replace_all(
-          str_extract_all(node_defs,
-                          "label \\\".*?\\\""),
-          "label \"", ""),
-        "\"", "")
+          str_replace_all(
+            str_extract_all(node_defs,
+                            "label \\\".*?\\\""),
+            "label \"", ""),
+          "\"", "")
+    }
 
     # Extract all edge definitions
     edge_defs <- unlist(str_extract_all(gml_document, "edge[ ]*?\\[.*?\\]"))
