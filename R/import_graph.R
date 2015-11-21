@@ -199,23 +199,42 @@ import_graph <- function(graph_file,
           "target [a-z0-9_]*"),
         "target ", "")
 
-    edge_label <-
-      str_replace_all(
+
+    if (any(str_detect(edge_defs, "label"))){
+      edge_label <-
+        str_replace_all(
+          str_replace_all(
+            str_extract_all(edge_defs,
+                            "label \\\".*?\\\""),
+            "label \"", ""),
+          "\"", "")
+    }
+
+    if (any(str_detect(edge_defs, "value"))){
+      edge_value <-
         str_replace_all(
           str_extract_all(edge_defs,
-                          "label \\\".*?\\\""),
-          "label \"", ""),
-        "\"", "")
+                          "value [a-z0-9\\.]*"),
+          "value ", "")
+    }
 
     # Create all nodes for graph
     all_nodes <-
       create_nodes(nodes = node_id,
                    label = FALSE)
 
+    if (exists("node_label")){
+      all_nodes$label <- node_label
+    }
+
     # Create all edges for graph
     all_edges <-
       create_edges(from = edges_from,
                    to = edges_to)
+
+    if (exists("edge_value")){
+      all_edges$data_value <- edge_value
+    }
 
     # Create the graph
     the_graph <-
