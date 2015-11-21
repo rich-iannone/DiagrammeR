@@ -146,7 +146,8 @@ import_graph <- function(graph_file,
                    graph_tz = graph_tz,
                    node_attrs = c("shape = circle", "width = 10",
                                   "style = filled", "color = black"),
-                   graph_attrs = "layout = neato")
+                   graph_attrs = "layout = neato",
+                   generate_dot = FALSE)
 
     # Return the graph
     return(the_graph)
