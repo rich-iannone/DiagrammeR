@@ -27,13 +27,13 @@ test_that("importing a .graphml file is possible", {
   # Expect that the graph is a directed graph
   expect_true(graphml_graph$directed == TRUE)
 
-  # Expect that the 'nodes_df' data frame has 11 columns
-  expect_true(ncol(graphml_graph$nodes_df) == 11)
+  # Expect that the 'nodes_df' data frame has 10 columns
+  expect_true(ncol(graphml_graph$nodes_df) == 10)
 
   # Expect that the 'nodes_df' data frame has 4941 rows
   expect_true(nrow(graphml_graph$nodes_df) == 4941)
 
-  # Expect that the 'edges_df' data frame has 2 columns
+  # Expect that the 'edges_df' data frame has 3 columns
   expect_true(ncol(graphml_graph$edges_df) == 3)
 
   # Expect that the 'edges_df' data frame has 6594 rows
