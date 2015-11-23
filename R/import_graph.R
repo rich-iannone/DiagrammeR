@@ -146,7 +146,8 @@ import_graph <- function(graph_file,
                    graph_tz = graph_tz,
                    node_attrs = c("shape = circle", "width = 10",
                                   "style = filled", "color = black"),
-                   graph_attrs = "layout = neato")
+                   graph_attrs = "layout = neato",
+                   generate_dot = FALSE)
 
     # Return the graph
     return(the_graph)
@@ -165,8 +166,9 @@ import_graph <- function(graph_file,
           "directed ", ""))
 
     # Extract all node definitions
-    node_defs <- unlist(str_extract_all(gml_document, "node \\[.*?\\]"))
+    node_defs <- unlist(str_extract_all(gml_document, "node[ ]*?\\[.*?\\]"))
 
+    # Get all node ID values
     node_id <-
       str_replace_all(
         str_extract_all(
@@ -174,16 +176,19 @@ import_graph <- function(graph_file,
           "id [a-z0-9_]*"),
         "id ", "")
 
-    node_label <-
-      str_replace_all(
+    # Get all node label values, if they exist
+    if (any(str_detect(node_defs, "label"))){
+      node_label <-
         str_replace_all(
-          str_extract_all(node_defs,
-                          "label \\\".*?\\\""),
-          "label \"", ""),
-        "\"", "")
+          str_replace_all(
+            str_extract_all(node_defs,
+                            "label \\\".*?\\\""),
+            "label \"", ""),
+          "\"", "")
+    }
 
     # Extract all edge definitions
-    edge_defs <- unlist(str_extract_all(gml_document, "edge \\[.*?\\]"))
+    edge_defs <- unlist(str_extract_all(gml_document, "edge[ ]*?\\[.*?\\]"))
 
     edges_from <-
       str_replace_all(
@@ -199,30 +204,50 @@ import_graph <- function(graph_file,
           "target [a-z0-9_]*"),
         "target ", "")
 
-    edge_label <-
-      str_replace_all(
+
+    if (any(str_detect(edge_defs, "label"))){
+      edge_label <-
+        str_replace_all(
+          str_replace_all(
+            str_extract_all(edge_defs,
+                            "label \\\".*?\\\""),
+            "label \"", ""),
+          "\"", "")
+    }
+
+    if (any(str_detect(edge_defs, "value"))){
+      edge_value <-
         str_replace_all(
           str_extract_all(edge_defs,
-                          "label \\\".*?\\\""),
-          "label \"", ""),
-        "\"", "")
+                          "value [a-z0-9\\.]*"),
+          "value ", "")
+    }
 
     # Create all nodes for graph
     all_nodes <-
       create_nodes(nodes = node_id,
-                   label = node_label)
+                   label = FALSE)
+
+    if (exists("node_label")){
+      all_nodes$label <- node_label
+    }
 
     # Create all edges for graph
     all_edges <-
       create_edges(from = edges_from,
                    to = edges_to)
 
+    if (exists("edge_value")){
+      all_edges$data_value <- edge_value
+    }
+
     # Create the graph
     the_graph <-
       create_graph(nodes_df = all_nodes,
                    edges_df = all_edges,
                    directed = ifelse(graph_directed == "1",
-                                     TRUE, FALSE))
+                                     TRUE, FALSE),
+                   generate_dot = FALSE)
 
     # Return the graph
     return(the_graph)
@@ -279,7 +304,8 @@ import_graph <- function(graph_file,
 
     # Create a graph object
     the_graph <- create_graph(nodes_df = nodes_df,
-                              edges_df = edges_df)
+                              edges_df = edges_df,
+                              generate_dot = FALSE)
 
     # Return the graph
     return(the_graph)
