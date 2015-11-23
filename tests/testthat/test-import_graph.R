@@ -78,5 +78,43 @@ test_that("importing a .sif file is possible", {
 
   # Expect that the 'edges_df' data frame has 61263 rows
   expect_true(nrow(sif_graph$edges_df) == 61263)
+})
 
+test_that("importing a .gml file is possible", {
+
+  gml_graph <-
+    import_graph(graph_file = system.file("examples/karate.gml",
+                                          package = "DiagrammeR"))
+
+  # Expect a graph object of class 'dgr_graph'
+  expect_true(class(gml_graph) == "dgr_graph")
+
+  # Expect that several of the graph components are NULL
+  expect_null(gml_graph$graph_name)
+  expect_null(gml_graph$graph_time)
+  expect_null(gml_graph$graph_tz)
+
+  # Expect that the 'nodes_df' component is a data frame
+  expect_true(class(gml_graph$nodes_df) == "data.frame")
+
+  # Expect that the 'edges_df' component is a data frame
+  expect_true(class(gml_graph$edges_df) == "data.frame")
+
+  # Expect that the 'node_attrs' is a vector of length 0
+  expect_equal(length(gml_graph$node_attrs), 0)
+
+  # Expect that the graph is an undirected graph
+  expect_true(gml_graph$directed == FALSE)
+
+  # Expect that the 'nodes_df' data frame has 3 columns
+  expect_true(ncol(gml_graph$nodes_df) == 3)
+
+  # Expect that the 'nodes_df' data frame has 34 rows
+  expect_true(nrow(gml_graph$nodes_df) == 34)
+
+  # Expect that the 'edges_df' data frame has 3 columns
+  expect_true(ncol(gml_graph$edges_df) == 3)
+
+  # Expect that the 'edges_df' data frame has 78 rows
+  expect_true(nrow(gml_graph$edges_df) == 78)
 })
