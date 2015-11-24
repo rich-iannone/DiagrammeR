@@ -116,7 +116,8 @@ visnetwork <- function(graph){
                                               onlyDynamicEdges = FALSE,
                                               fit = TRUE))
 
-    vn_obj <- visLayout(improvedLayout = TRUE)
+    vn_obj <- visLayout(graph = vn_obj,
+                        improvedLayout = TRUE)
   }
 
   if (all(c("x", "y") %in% colnames(nodes))){
