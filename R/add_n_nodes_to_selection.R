@@ -35,6 +35,8 @@ add_n_nodes_to_selection <- function(graph,
                         to = nodes_in_selection[i],
                         label = FALSE)
 
+      graph$selection$nodes <- nodes_in_selection
+
       # Apply node `type` value to all new edges, if supplied
       if (!is.null(set_node_type)){
 
@@ -45,6 +47,8 @@ add_n_nodes_to_selection <- function(graph,
           set_node_attr_with_selection(graph = graph,
                                        node_attr = "type",
                                        value = set_node_type)
+
+        graph$selection$nodes <- nodes_in_selection
       }
 
       # Apply edge `rel` value to all new edges, if supplied
@@ -57,6 +61,8 @@ add_n_nodes_to_selection <- function(graph,
           set_edge_attr_with_selection(graph = graph,
                                        edge_attr = "rel",
                                        value = set_edge_rel)
+
+        graph$selection$nodes <- nodes_in_selection
       }
     }
   }
