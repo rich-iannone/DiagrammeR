@@ -10,67 +10,54 @@ With **DiagrammeR**, you can easily create graph diagrams. You can either use **
 
 Go to the [**project website**](http://rich-iannone.github.io/DiagrammeR/) and view a video walkthrough for a graph diagram that's created with a few lines of text and is just as easily customizable. After being all fired up from that intense video-tutorial extravaganza, have a look at the [**DiagrammeR Docs**](http://rich-iannone.github.io/DiagrammeR/docs.html) to learn more.
 
-## Creating Graphviz Graphs
+<img src="inst/img/simple-graph.png">
 
-It's possible to make graph diagrams using the **Graphviz** support included in package. Simply specify a valid **Graphviz** graph in the **DOT** language either in the form of a string, a reference to a **Graphviz** file (with a **.gv** file extension), or as a text connection.
+It's possible to make the above graph diagram using using **Graphviz** **DOT** code (as text within the **DiagrammeR** `grViz()` function) or through a combination of **DiagrammeR** functions, strung together with the **magrittr** `%>%` pipe. 
 
-Here is an example where nodes (in this case styled as rectangles and circles) can be easily defined along with their connections:
+So, with **Graphviz**:
 
-<img src="inst/img/grViz.png">
 ```r
 library(DiagrammeR)
 
 grViz("
-digraph {
-  
-  # graph attributes
+digraph DAG {
+      
+  # Intialization of graph attributes
   graph [overlap = true]
-  
-  # node attributes
+      
+  # Initialization of node attributes
   node [shape = box,
         fontname = Helvetica,
-        color = blue]
-  
-  # edge attributes
-  edge [color = gray]
-  
-  # node statements
-  A; B; C; D; E
-  F [color = black]
-  
-  # node attributes
-  node [shape = circle,
-        fixedsize = true,
-        width = 0.9]
-  
-  # node statements
-  1; 2; 3; 4; 5; 6; 7; 8
+        color = blue,
+        type = box,
+        fixedsize = true]
+      
+  # Initialization of edge attributes
+  edge [color = green,
+        rel = yields]
+      
+  # Node statements
+  1; 2; 3; 4; 8; 9; 10; 11
+      
+  # Revision to node attributes
+  node [shape = circle]
+      
+  # Node statements
+  5; 6; 7
+      
+  # Edge statements
+  1->5; 2->6; 3->9; 4->7; 5->8; 5->10; 7->11
 
-  # edge statements
-  A->1; B->2                   // gray
-  B->3 [color = red]           // red
-  B->4                         // gray
-  C->A [color = green]         // green
-  1->D; E->A; 2->4; 1->5; 1->F // gray
-  E->6; 4->6; 5->7; 6->7       // gray
-  3->8 [color = blue]          // blue
+  # Revision to edge attributes
+  edge [color = red]
+
+  # Edge statements
+  1->8; 3->6; 3->11; 3->7; 5->9; 6->10
 }
 ")
 ```
 
-There is a great variety of ways to style the nodes and edges in a **Graphviz** graph diagram. Also, the layout of a graph can changed by using the **neato**, **twopi**, and **circo** rendering engines.
-
-<img src="inst/img/header_node_attributes.png">
-<img src="inst/img/node_attributes.png">
-
-<img src="inst/img/header_edge_attributes.png">
-<img src="inst/img/edge_attributes.png">
-
-<img src="inst/img/layout_types.png">
-
-## Using DiagrammeR Functions to Define Graphs
-
-In the last example you saw what was essentially a text string being passed into a single function. That's not very **R**-like, is it? Well, it's a good thing that there's a collection of graph functions available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, create graph objects, render those graphs, modify those graphs, get information from the graphs, create a series of graphs, and... so much more. A lot of the graph functions work together in a pipeline using **magrittr** pipes. Here is an example of an approach to building the simple graph above using **DiagrammeR** functions:
+With **magrittr** and **DiagrammeR**'s graph functions:
 
 ```r
 library(DiagrammeR)
@@ -78,37 +65,42 @@ library(magrittr)
 
 graph <-
   create_graph() %>%
-  set_graph_name("Boxes and Circles") %>%
-  set_graph_time() %>%
+  set_graph_name("DAG") %>%
   set_global_graph_attr("graph", "overlap", "true") %>%
-  set_global_graph_attr("node", "shape", "box") %>%
-  set_global_graph_attr("node", "fontname", "Helvetica") %>%
+  set_global_graph_attr("graph", "fixedsize", "true") %>%
   set_global_graph_attr("node", "color", "blue") %>%
-  set_global_graph_attr("edge", "color", "gray") %>%
-  add_node_df(create_nodes(c("A", "B", "C", "D", "E", "F"))) %>%
-  set_node_attr("F", "color", "black") %>%
-  add_node_df(create_nodes(1:8)) %>%
-  select_nodes(nodes = 1:8) %>%
+  set_global_graph_attr("node", "fontname", "Helvetica") %>%
+  add_n_nodes(11) %>%
+  select_nodes_by_id(1:4) %>% 
+  set_node_attr_with_selection("shape", "box") %>%
+  set_node_attr_with_selection("type", "box") %>%
+  clear_selection %>%
+  select_nodes_by_id(5:7) %>% 
   set_node_attr_with_selection("shape", "circle") %>%
-  set_node_attr_with_selection("fixedsize", "true") %>%
-  set_node_attr_with_selection("width", 0.9) %>%
-  clear_selection() %>%
-  add_edge_df(create_edges(c("A", "B", "B", "B",
-                             "C", "1", "E", "2",
-                             "1", "1", "E", "4",
-                             "5", "6", "3"),
-                           c("1", "2", "3", "4",
-                             "A", "D", "A", "4",
-                             "5", "F", "6", "6",
-                             "7", "7", "8"))) %>%
-  set_edge_attr("B", "3", "color", "red") %>%
-  set_edge_attr("C", "A", "color", "green") %>%
-  set_edge_attr("3", "8", "color", "blue")
+  set_node_attr_with_selection("type", "circle") %>%
+  clear_selection %>%
+  select_nodes_by_id(8:11) %>% 
+  set_node_attr_with_selection("shape", "box") %>%
+  set_node_attr_with_selection("type", "box") %>%
+  clear_selection %>%
+  add_edge(1, 5) %>% add_edge(2, 6) %>%
+  add_edge(3, 9) %>% add_edge(4, 7) %>%
+  add_edge(5, 8) %>% add_edge(5, 10) %>%
+  add_edge(7, 11) %>% select_edges %>%
+  set_edge_attr_with_selection("color", "green") %>%
+  add_edge(1, 8) %>% add_edge(3, 6) %>%
+  add_edge(3, 11) %>% add_edge(3, 7) %>%
+  add_edge(5, 9) %>% add_edge(6, 10) %>%
+  select_edges("color", "^$") %>%
+  set_edge_attr_with_selection("color", "red") %>%
+  clear_selection
 
 render_graph(graph)
 ```
 
-With the graph-building functions, it's possible to generate a graph with data available in a data frame. The general idea is to build specialized data frames that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have node and edge attributes and also columns of other data. Then we can incorporate the data into a graph object which can itself be subject to inspection and transformations. Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and modify the values of the styling attributes and differentiate nodes and edges by size, color, shape, opacity, length, etc. Here are some of the available graph functions:
+The graph functions allow you create graph objects, render those graphs, modify those graphs, get information from the graphs, create a series of graphs, perform scaling of attribute values with data values, and do other useful things.
+
+This functionality makes it possible to generate a network graph with data available in tabular datasets. The general idea is to build specialized data frames that contain either node data and attributes (node data frames) and those data frames that contain edge data and edge attributes (edge data frames). These data frames are permitted to have node and edge attributes and also columns of other data. Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and modify the values of the styling attributes and differentiate nodes and edges by size, color, shape, opacity, length, etc. Here is a listing of the available graph functions:
 
 <img src="inst/img/graph_functions_1.png">
 <img src="inst/img/graph_functions_2.png">
