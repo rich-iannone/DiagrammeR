@@ -31,14 +31,14 @@
 #' # Select edges "b" -> "c" and "a" -> "d" in the graph and get
 #' # the edge attributes for that selection
 #' graph %>% select_edges(from = c("b", "a"), to = c("c", "d")) %>%
-#'   get_edge_attr_from_selection()
+#'   deposit_edge_attr_from_selection()
 #' #>   from to        rel color
 #' #> 1    a  d leading_to  pink
 #' #> 2    b  c leading_to  blue
 #' }
-#' @export get_edge_attr_from_selection
+#' @export deposit_edge_attr_from_selection
 
-get_edge_attr_from_selection <- function(graph,
+deposit_edge_attr_from_selection <- function(graph,
                                          edge_attr,
                                          mode = NULL){
 

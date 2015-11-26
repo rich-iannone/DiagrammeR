@@ -10,9 +10,9 @@
 #' @param to an optional vector of node IDs to which the edge is
 #' incoming for filtering the list of edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export get_edge_attr
+#' @export deposit_edge_attr
 
-get_edge_attr <- function(graph,
+deposit_edge_attr <- function(graph,
                           edge_attr,
                           mode = NULL,
                           from = NULL,
