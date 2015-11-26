@@ -1,22 +1,22 @@
-#' Get a count of edges available in a selection
+#' Get a count of nodes available in a selection
 #' @description From a graph object of class \code{dgr_graph}, get a
-#' count of edges available in a selection.
+#' count of nodes available in a selection.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export get_edge_count_in_selection
+#' @export deposit_node_count_in_selection
 
-get_edge_count_in_selection <- function(graph){
+deposit_node_count_in_selection <- function(graph){
 
-  # If no edge selection is available, return the graph unchanged
-  if (is.null(graph$selection$edges)){
+  # If no node selection is available, return the graph unchanged
+  if (is.null(graph$selection$nodes)){
 
     return(graph)
 
   } else {
 
     # Place numeric vector of single length as a deposit in the graph
-    graph$deposit <- length(graph$selection$edges$from)
+    graph$deposit <- length(graph$selection$nodes)
 
     return(graph)
   }
