@@ -11,9 +11,9 @@
 #' @export deposit_node_attr
 
 deposit_node_attr <- function(graph,
-                          node_attr,
-                          mode = NULL,
-                          nodes = NULL){
+                              node_attr,
+                              mode = NULL,
+                              nodes = NULL){
 
 
   nodes_df <- graph$nodes_df

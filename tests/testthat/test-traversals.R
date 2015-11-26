@@ -95,5 +95,5 @@ test_that("simple traversals across nodes is possible", {
   expect_error(graph %>% trav_out_node)
   expect_error(graph %>% trav_in_edge)
   expect_error(graph %>% trav_out_edge)
-
 })
+

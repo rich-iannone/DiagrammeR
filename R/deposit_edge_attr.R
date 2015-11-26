@@ -13,10 +13,10 @@
 #' @export deposit_edge_attr
 
 deposit_edge_attr <- function(graph,
-                          edge_attr,
-                          mode = NULL,
-                          from = NULL,
-                          to = NULL){
+                              edge_attr,
+                              mode = NULL,
+                              from = NULL,
+                              to = NULL){
 
   edges_df <- graph$edges_df
 
