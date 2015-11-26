@@ -31,14 +31,14 @@
 #' # Select nodes "a" and "c" in the graph and get the node
 #' # attributes for that selection
 #' graph %>% select_nodes(nodes = c("a", "c")) %>%
-#'   get_node_attr_from_selection()
+#'   deposit_node_attr_from_selection()
 #' #>   nodes   type label value
 #' #> 1     a letter     a   3.5
 #' #> 3     c letter     c   9.4
 #' }
-#' @export get_node_attr_from_selection
+#' @export deposit_node_attr_from_selection
 
-get_node_attr_from_selection <- function(graph,
+deposit_node_attr_from_selection <- function(graph,
                                          node_attr,
                                          mode = NULL){
 
