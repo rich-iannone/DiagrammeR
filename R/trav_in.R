@@ -130,8 +130,8 @@ trav_in <- function(graph,
   }
 
   # Update node selection in graph
-  if (length(successors) > 0){
-    graph$selection$nodes <- successors
+  if (length(predecessors) > 0){
+    graph$selection$nodes <- predecessors
     return(graph)
   } else {
     return(graph)
