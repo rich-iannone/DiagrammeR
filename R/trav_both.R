@@ -161,7 +161,10 @@ trav_both <- function(graph,
   }
 
   # Update node selection in graph
-  graph$selection$nodes <- succ_pred
-
-  return(graph)
+  if (length(succ_pred) > 0){
+    graph$selection$nodes <- succ_pred
+    return(graph)
+  } else {
+    return(graph)
+  }
 }
