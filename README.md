@@ -86,7 +86,8 @@ graph <-
   add_edge(1, 5) %>% add_edge(2, 6) %>%
   add_edge(3, 9) %>% add_edge(4, 7) %>%
   add_edge(5, 8) %>% add_edge(5, 10) %>%
-  add_edge(7, 11) %>% select_edges %>%
+  add_edge(7, 11) %>% 
+  select_edges %>%
   set_edge_attr_with_selection("color", "green") %>%
   add_edge(1, 8) %>% add_edge(3, 6) %>%
   add_edge(3, 11) %>% add_edge(3, 7) %>%
