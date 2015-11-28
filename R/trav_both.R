@@ -41,9 +41,6 @@ trav_both <- function(graph,
     }
   }
 
-  # Get the current selection of nodes
-  selected_nodes <- get_selection(graph)$nodes
-
   # Get all paths leading inward from node in selection
   for (i in 1:length(selected_nodes)){
     if (i == 1) predecessors <- vector(mode = "character")
