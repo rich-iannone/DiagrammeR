@@ -16,7 +16,6 @@ combine_graphs <- function(x, y,
                            edges_df = NULL){
 
   if (any(get_nodes(x) %in% get_nodes(y))){
-
     stop("Cannot combine graphs with common node ID values")
   }
 
@@ -26,8 +25,8 @@ combine_graphs <- function(x, y,
   if (!is.null(edges_df)){
 
     # Stop function if edge data frame doesn't fulfill certain conditions
-
-    if (!(all(get_nodes(edges_df) %in% c(get_nodes(x), get_nodes(y))))){
+    if (!(all(unique(c(edges_df$from, edges_df$to)) %in%
+              c(get_nodes(x), get_nodes(y))))){
       stop("Not all nodes in this edge data frame exist in the 2 graphs.")
     }
 
