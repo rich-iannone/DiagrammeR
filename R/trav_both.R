@@ -56,7 +56,7 @@ trav_both <- function(graph,
     }
   }
 
-  # If no successors returned, then there are no paths outward,
+  # If no successors and no predecessors returned then there are no paths outward,
   # so return the same graph object without modifying the node selection
   if (length(successors) == 0 & length(predecessors) == 0){
     return(graph)
