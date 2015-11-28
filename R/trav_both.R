@@ -147,7 +147,7 @@ trav_both <- function(graph,
 
         if (match ==
             get_node_df(graph)[which(get_node_df(graph)[,1] %in%
-                                     landing_nodes[i]), column_number]){
+                                     succ_pred[i]), column_number]){
 
           to_nodes <- c(to_nodes, succ_pred[i])
         }
