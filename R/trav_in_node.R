@@ -56,7 +56,7 @@ trav_in_node <- function(graph,
         if (grepl("^<.*", match)){
           if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
                                                   landing_nodes[i]), column_number]) <
-              as.numeric(gsub(">(.*)", "\\1", match))){
+              as.numeric(gsub("<(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
@@ -65,7 +65,7 @@ trav_in_node <- function(graph,
         if (grepl("^==.*", match)){
           if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
                                                   landing_nodes[i]), column_number]) ==
-              as.numeric(gsub(">(.*)", "\\1", match))){
+              as.numeric(gsub("==(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
@@ -74,7 +74,7 @@ trav_in_node <- function(graph,
         if (grepl("^!=.*", match)){
           if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
                                                   landing_nodes[i]), column_number]) !=
-              as.numeric(gsub(">(.*)", "\\1", match))){
+              as.numeric(gsub("!=(.*)", "\\1", match))){
 
             to_nodes <- c(to_nodes, landing_nodes[i])
           }
