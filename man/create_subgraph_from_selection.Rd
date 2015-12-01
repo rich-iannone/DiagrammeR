@@ -46,8 +46,9 @@ get_edges(graph, return_type = "vector")
 # Create a selection of nodes, stored within the
 # graph object
 graph <-
-  select_nodes(graph, node_attr = "value",
-               comparison = "> 3")
+  select_nodes(graph,
+               node_attr = "value",
+               search = "> 3")
 
 # Create a subgraph based on the selection
 subgraph <-
