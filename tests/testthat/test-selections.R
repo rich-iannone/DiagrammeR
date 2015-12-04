@@ -155,6 +155,47 @@ test_that("selecting a node in a graph is possible", {
                  node_attr = "value",
                  search = ">0")
   )
+
+  # Select the last node in a graph
+  graph_last_node <-
+    select_last_node(graph)
+
+  # Expect that the node selected is the last in the ndf
+  expect_true(
+    get_nodes(graph_last_node)[length(get_nodes(graph_last_node))] ==
+      get_selection(graph_last_node)[[1]]
+  )
+
+  # Expect an error if trying to select the last node from an empty graph
+  expect_error(
+    select_last_node(create_graph())
+  )
+
+  # Select the last edge in a graph
+  graph_last_edge <-
+    select_last_edge(graph)
+
+  # Expect that the edge selected is the last in the edf
+  expect_true(
+    get_edges(graph_last_edge)[[1]][length(get_edges(graph_last_edge)[[1]])] ==
+      get_selection(graph_last_edge)$edges$from
+  )
+
+  expect_true(
+    get_edges(graph_last_edge)[[2]][length(get_edges(graph_last_edge)[[2]])] ==
+      get_selection(graph_last_edge)$edges$to
+  )
+
+  # Expect an error if trying to select the last edge from an empty graph
+  expect_error(
+    select_last_edge(create_graph())
+  )
+
+  # Expect an error if trying to select the last edge from a graph with
+  # no edges
+  expect_error(
+    select_last_edge(create_graph(nodes_df = create_nodes(1)))
+  )
 })
 
 test_that("selecting an edge in a graph is possible", {
@@ -567,37 +608,20 @@ test_that("inverting a selection is possible", {
   )
 })
 
-test_that("clearing a selection is possible", {
+test_that("getting/clearing a selection is possible", {
 
   # Create a graph
   graph <-
-    create_graph() %>%
-    add_node(node = "A") %>% add_node(node = "B") %>%
-    add_node(node = "C") %>% add_node(node = "D") %>%
-    add_node(node = "E") %>% add_node(node = "F") %>%
-    add_node(node = "1") %>% add_node(node = "2") %>%
-    add_node(node = "3") %>% add_node(node = "4") %>%
-    add_node(node = "5") %>% add_node(node = "6") %>%
-    add_node(node = "7") %>% add_node(node = "8") %>%
-    add_edge("A", "1") %>%
-    add_edge("B", "2") %>%
-    add_edge("B", "3") %>%
-    add_edge("B", "4") %>%
-    add_edge("C", "A") %>%
-    add_edge("1", "D") %>%
-    add_edge("E", "A") %>%
-    add_edge("2", "4") %>%
-    add_edge("1", "5") %>%
-    add_edge("1", "F") %>%
-    add_edge("E", "6") %>%
-    add_edge("4", "6") %>%
-    add_edge("5", "7") %>%
-    add_edge("6", "7") %>%
-    add_edge("3", "8")
+    create_graph() %>% add_node %>% add_node %>%
+    add_edge(1, 2)
 
   # Select all nodes in the graph
   graph_select_all_nodes <-
     graph %>% select_nodes()
+
+  # Get the selection and expect both nodes to be present
+  expect_true(all(c("1", "2") %in%
+                    get_selection(graph_select_all_nodes)[[1]]))
 
   # Clear the selection
   graph_select_all_nodes_cleared <-
@@ -605,4 +629,8 @@ test_that("clearing a selection is possible", {
 
   # Expect no selection to be present in the graph
   expect_null(graph_select_all_nodes_cleared$selection)
+
+  # Expect an NA value returned when getting a selection that
+  # is not present
+  expect_true(is.na(get_selection(graph_select_all_nodes_cleared)))
 })

@@ -30,7 +30,7 @@
 #'
 #' visnetwork(graph)
 #' }
-#' @importFrom visNetwork visNetwork visInteraction visEdges visPhysics visNodes
+#' @importFrom visNetwork visNetwork visInteraction visEdges visPhysics visNodes visLayout
 #' @export visnetwork
 
 visnetwork <- function(graph){
@@ -115,6 +115,9 @@ visnetwork <- function(graph){
                          stabilization = list(enabled = TRUE,
                                               onlyDynamicEdges = FALSE,
                                               fit = TRUE))
+
+    vn_obj <- visLayout(graph = vn_obj,
+                        improvedLayout = TRUE)
   }
 
   if (all(c("x", "y") %in% colnames(nodes))){

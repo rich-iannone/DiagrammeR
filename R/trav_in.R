@@ -11,26 +11,6 @@
 #' operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
 #' for numerical filtering, or, a character string for filtering the edges
 #' returned through string matching.
-#' @examples
-#' \dontrun{
-#' library(magrittr)
-#'
-#' # Create a simple graph
-#' graph <-
-#'   create_graph() %>%
-#'   add_node_df(create_nodes(1:6)) %>%
-#'   add_edge_df(create_edges(c("1", "1", "3", "4", "4"),
-#'                            c("2", "3", "4", "5", "6")))
-#'
-#' # Starting from node "1", traverse nodes as far as possible then return
-#' # back to node "1"
-#' graph %>% select_nodes("1") %>%
-#'   trav_out() %>% trav_out() %>% trav_out() %>%
-#'   trav_in() %>% trav_in() %>% trav_in() %>%
-#'   get_node_attr_from_selection()
-#' #>   nodes type label
-#' #> 1     1          1
-#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export trav_in
 
@@ -150,7 +130,10 @@ trav_in <- function(graph,
   }
 
   # Update node selection in graph
-  graph$selection$nodes <- predecessors
-
-  return(graph)
+  if (length(predecessors) > 0){
+    graph$selection$nodes <- predecessors
+    return(graph)
+  } else {
+    return(graph)
+  }
 }

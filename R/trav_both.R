@@ -41,9 +41,6 @@ trav_both <- function(graph,
     }
   }
 
-  # Get the current selection of nodes
-  selected_nodes <- get_selection(graph)$nodes
-
   # Get all paths leading inward from node in selection
   for (i in 1:length(selected_nodes)){
     if (i == 1) predecessors <- vector(mode = "character")
@@ -59,7 +56,7 @@ trav_both <- function(graph,
     }
   }
 
-  # If no successors returned, then there are no paths outward,
+  # If no successors and no predecessors returned then there are no paths outward,
   # so return the same graph object without modifying the node selection
   if (length(successors) == 0 & length(predecessors) == 0){
     return(graph)
@@ -150,7 +147,7 @@ trav_both <- function(graph,
 
         if (match ==
             get_node_df(graph)[which(get_node_df(graph)[,1] %in%
-                                     landing_nodes[i]), column_number]){
+                                     succ_pred[i]), column_number]){
 
           to_nodes <- c(to_nodes, succ_pred[i])
         }
@@ -161,7 +158,10 @@ trav_both <- function(graph,
   }
 
   # Update node selection in graph
-  graph$selection$nodes <- succ_pred
-
-  return(graph)
+  if (length(succ_pred) > 0){
+    graph$selection$nodes <- succ_pred
+    return(graph)
+  } else {
+    return(graph)
+  }
 }

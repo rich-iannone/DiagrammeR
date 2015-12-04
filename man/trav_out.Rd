@@ -27,24 +27,4 @@ From a graph object of class \code{dgr_graph} move outward
 from one or more nodes present in a selection to other nodes, replacing
 the current nodes in the selection with those nodes traversed to.
 }
-\examples{
-\dontrun{
-library(magrittr)
-
-# Create a simple graph
-graph <-
-  create_graph() \%>\%
-  add_node_df(create_nodes(1:6)) \%>\%
-  add_edge_df(create_edges(c("1", "1", "3", "4", "4"),
-                           c("2", "3", "4", "5", "6")))
-
-# Starting from node "1", traverse nodes twice then get the node
-# attribute information at the landing nodes
-graph \%>\% select_nodes(nodes = "1") \%>\%
-  trav_out \%>\% trav_out \%>\%
-  get_node_attr_from_selection()
-#>   nodes type label
-#> 4     4          4
-}
-}
 

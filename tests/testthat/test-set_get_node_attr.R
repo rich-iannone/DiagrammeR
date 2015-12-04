@@ -45,9 +45,9 @@ test_that("setting node attributes is possible", {
                "5")
 
   # Expect that node "A" has node attr set for `value`
-  expect_equal(withdraw_values(get_node_attr(graph_set_a,
-                                             node_attr = "value",
-                                             nodes = "A")), "5")
+  expect_equal(withdraw_values(deposit_node_attr(graph_set_a,
+                                                 node_attr = "value",
+                                                 nodes = "A")), "5")
 
   # Set attribute for named node "A" with a different value
   graph_set_a <-
@@ -57,9 +57,9 @@ test_that("setting node attributes is possible", {
                   values = 8)
 
   # Expect that node "A" has node attr set for `value`
-  expect_equal(withdraw_values(get_node_attr(graph_set_a,
-                                             node_attr = "value",
-                                             nodes = "A")), "8")
+  expect_equal(withdraw_values(deposit_node_attr(graph_set_a,
+                                                 node_attr = "value",
+                                                 nodes = "A")), "8")
 
   # Select node "A"
   graph_select_a <-
@@ -98,8 +98,8 @@ test_that("setting node attributes is possible", {
   # selection works in the same way
   expect_equal(
     withdraw_values(
-      get_node_attr_from_selection(graph_node_selection, node_attr = "value")),
-               "5")
+      deposit_node_attr_from_selection(graph_node_selection, node_attr = "value")),
+    "5")
 
   # Get the node data frame from the graph as a separate object
   graph_node_df <- graph$nodes_df
@@ -137,7 +137,7 @@ test_that("setting node attributes is possible", {
 
   # Expect that getting the node attribute from a graph without
   # a selection will result in an error
-  expect_error(get_node_attr_from_selection(graph))
+  expect_error(deposit_node_attr_from_selection(graph))
 
   # Expect an error if the attribute selected is `nodes`
   expect_error(
@@ -202,10 +202,10 @@ test_that("setting edge attributes is possible", {
 
   # Get edge attribute for edge "A" -> "1"
   graph_set_a_1_edge_attr <-
-    withdraw_values(get_edge_attr(graph_set_a_1,
-                  edge_attr = "value",
-                  from = "A",
-                  to = "1"))
+    withdraw_values(deposit_edge_attr(graph_set_a_1,
+                                      edge_attr = "value",
+                                      from = "A",
+                                      to = "1"))
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(graph_set_a_1_edge_attr, "5")
@@ -220,10 +220,10 @@ test_that("setting edge attributes is possible", {
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
-      withdraw_values(get_edge_attr(graph_set_a_1,
-                                    edge_attr = "value",
-                                    from = "A",
-                                    to = "1")),
+    withdraw_values(deposit_edge_attr(graph_set_a_1,
+                                      edge_attr = "value",
+                                      from = "A",
+                                      to = "1")),
     "8")
 
   # Select edge "A" -> "1"
@@ -238,10 +238,10 @@ test_that("setting edge attributes is possible", {
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
-    withdraw_values(get_edge_attr(graph_select_a_1,
-                                  edge_attr = "value",
-                                  from = "A",
-                                  to = "1")),
+    withdraw_values(deposit_edge_attr(graph_select_a_1,
+                                      edge_attr = "value",
+                                      from = "A",
+                                      to = "1")),
     "5")
 
   # Set attribute for all edges
