@@ -39,5 +39,6 @@ test_that("a subgraph can be created and such an object is correct", {
 
   # Expect an error when attempting to create a subgraph with
   # a graph without an active selection
-  expect_error(graph %>% clear_selection %>% create_subgraph_from_selection)
+  graph <- clear_selection(graph)
+  expect_error(create_subgraph_from_selection(graph))
 })
