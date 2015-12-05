@@ -309,6 +309,29 @@ test_that("adding several nodes from a selected node is possible", {
   # for any of the edges
   expect_equal(get_edge_df(graph)$rel,
                rep("", 10))
+
+  # Create another empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Select the node with ID of '5'
+  graph <- select_nodes(graph, nodes = "5")
+
+  # Add 10 nodes as successors to the selected node,
+  # this time with a node `type` and edge `rel` set for
+  # each of the new nodes and edges
+  graph <-
+    add_n_nodes_from_selection(graph, 10,
+                               set_node_type = "new",
+                               set_edge_rel = "related")
+
+  # Expect that all edges have a `rel` set
+  expect_true(all(get_edge_df(graph)[, 3] == "related"))
+
+  # Expect that all new nodes have a `type` set
+  expect_true(all(get_node_df(graph)[11:20, 2] == "new"))
 })
 
 test_that("adding several nodes to a selected node is possible", {
@@ -348,4 +371,27 @@ test_that("adding several nodes to a selected node is possible", {
   # for any of the edges
   expect_equal(get_edge_df(graph)$rel,
                rep("", 10))
+
+  # Create another empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Select the node with ID of '5'
+  graph <- select_nodes(graph, nodes = "5")
+
+  # Add 10 nodes as predecessors to the selected node,
+  # this time with a node `type` and edge `rel` set for
+  # each of the new nodes and edges
+  graph <-
+    add_n_nodes_to_selection(graph, 10,
+                             set_node_type = "new",
+                             set_edge_rel = "related")
+
+  # Expect that all edges have a `rel` set
+  expect_true(all(get_edge_df(graph)[, 3] == "related"))
+
+  # Expect that all new nodes have a `type` set
+  expect_true(all(get_node_df(graph)[11:20, 2] == "new"))
 })
