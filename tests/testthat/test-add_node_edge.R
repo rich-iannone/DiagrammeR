@@ -310,3 +310,42 @@ test_that("adding several nodes from a selected node is possible", {
   expect_equal(get_edge_df(graph)$rel,
                rep("", 10))
 })
+
+test_that("adding several nodes to a selected node is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Select the node with ID of '5'
+  graph <- select_nodes(graph, nodes = "5")
+
+  # Add 10 nodes as predecessors to the selected node
+  graph <- add_n_nodes_to_selection(graph, 10)
+
+  # Expect a total of 20 nodes in the graph
+  expect_equal(node_count(graph), 20)
+
+  # Expect monotonically-increasing node ID values from 1 to 20
+  expect_equal(get_nodes(graph), as.character(seq(1, 20)))
+
+  # Expect a total of 10 edges in the graph
+  expect_equal(edge_count(graph), 10)
+
+  # Expect that node IDs where edges are 'to' belong
+  # to the node with ID of '5'
+  expect_equal(get_edge_df(graph)$to,
+               rep("5", 10))
+
+  # Expect that node IDs where edges are 'from' increase
+  # from '11' to '20'
+  expect_equal(get_edge_df(graph)$from,
+               as.character(seq(11, 20)))
+
+  # Expect that the edge relationship has not been set
+  # for any of the edges
+  expect_equal(get_edge_df(graph)$rel,
+               rep("", 10))
+})
