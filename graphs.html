@@ -93,7 +93,14 @@
                     <h2 id="the-graph-functions">The Graph Functions</h2>
                     <p>A collection of graph functions is available for creating and manipulating graphs (specifically, graph objects). They allow you to generate node and edge data frames (collections of nodes or edges along with their attributes), perform scaling of attribute values with data values, draw information from the graph object, and much more.</p>
                     <div>
-                        <img src="img/graph-functions/graph_functions_2x.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_1.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_2.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_3.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_4.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_5.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_6.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_7.png" class="img-responsive center-block">
+                        <img src="img/graph-functions/graph_functions_8.png" class="img-responsive center-block">
                     </div>
                     <div>
                         <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -101,12 +108,6 @@
                     <h2 id="the-graph-object">The Graph Object</h2>
                     <p>The <strong>DiagrammeR</strong> graph object, created by using the function <code>create_graph</code>, holds information on a graph's nodes, edges, default attributes, and rendering code. Creating a graph object can be as simple as using <code>create_graph()</code>, however, that will be an empty graph and you'll want to populate it.</p>
                     <p>The <strong>DiagrammeR</strong> graph object holds buckets of data that reflect the current state of the graph. The graph can be inspected, nodes and edges can be added, edited, or removed, and, a visualization of the graph or export of its data can be made at any point. The different facets of what make up the graph object can be visualized as follows.</p>
-                    <div>
-                        <img src="img/graph-functions/graph_object.png" class="img-responsive center-block">
-                    </div>
-                    <div>
-                        <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                    </div>
                     <p>Essentially, the elements that make up a graph are tightly coupled inside the graph object. The myriad functions developed for working with the graph object:</p>
                     <ul>
                         <li>preserve the integrity of the data</li>
@@ -140,12 +141,10 @@
                     <h1 id="graph-functions" class="page-header">Graph Functions</h1>
                     <p class="lead">If you're planning on creating graph diagrams and also making use of external datasets, you can make use of a set of <strong>DiagrammeR</strong> functions that work well with data frames. Data and attributes can be collected in this way, provided to a graph object, and then inspected, manipulated, and displayed.</p>
                     <h2 id="node-edge-data-frames">Node/Edge Data Frames</h2>
-                    <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. The functions are useful because one can add field data to these data frames and selectively add and scale attributes. There are 6 functions for creating node and edge data frames:</p>
+                    <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. The functions are useful because one can add field data to these data frames and selectively add and scale attributes. Some of the functions for creating node and edge data frames include:</p>
                     <ul>
                             <li><code>create_nodes</code> <em>Create a data frame with nodes and their attributes</em></li>
                             <li><code>create_edges</code> <em>Create a data frame with edges and their attributes</em></li>
-                            <li><code>scale_nodes</code> <em>Create numerical and color scales for node attributes</em></li>
-                            <li><code>scale_edges</code> <em>Create numerical and color scales for edge attributes</em></li>
                             <li><code>combine_nodes</code> <em>Combine multiple node data frames into a single node data frame</em></li>
                             <li><code>combine_edges</code> <em>Combine multiple edge data frames into a single edge data frame</em></li>
                     </ul>
@@ -172,18 +171,6 @@
                         </div>
                         <div>
                             <img src="img/graph-functions/combine_edges_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/scale_nodes_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/scale_edges_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -387,84 +374,7 @@ all_edges
                             <li><code>labelfontcolor</code> <em>color</em></li>
                             <li><code>alpha</code> <em>color</em></li>
                         </ul>
-                    <p>There is also another attribute for both nodes and edges called <code>alpha</code> which is a numeric value from <code>0</code>-<code>100</code> that modifies the opacity of a specified color attribute. A value of <code>0</code> is essentially invisible (i.e., completely transparent) whereas <code>100</code> is entirely opaque (i.e., no transparency applied). Creating an alpha scale can be done by either referencing a column containing color attribute values, or, by initializing a color attribute column and then creating an alpha scale at the same time.</p>
-                    <p>Examples will be useful here. You can create a scale for the node and edge attribute <code>penwidth</code> (which changes the stroke thickness of the node shape or of the arrow). Using the data in the <code>data</code> attribute, those values will be scaled linearly from <code>2</code> to <code>5</code> for nodes and <code>1</code> to <code>5</code> for edges.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
-# Create a data frame for nodes
-# Add an attribute which has values scaled to data
-# in a column
-###
-
-library(DiagrammeR)
-
-set.seed(24)
-
-# Create a node data frame
-nodes &lt;- create_nodes(nodes = 1:5,
-                      label = FALSE,
-                      type = "example",
-                      data = sample(seq(1:20), 5))
-
-nodes
-#>   nodes label    type data
-#> 1     1       example    6
-#> 2     2       example    5
-#> 3     3       example   13
-#> 4     4       example    9
-#> 5     5       example   11
-
-# Use the 'scale_nodes' function to create an attribute
-# column that's scaled to data in another column
-nodes &lt;- scale_nodes(nodes_df = nodes,
-                     to_scale = nodes$data,
-                     node_attr = "penwidth",
-                     range = c(2, 5))
-
-nodes
-#>   nodes label    type data penwidth
-#> 1     1       example    6    2.375
-#> 2     2       example    5    2.000
-#> 3     3       example   13    5.000
-#> 4     4       example    9    3.500
-#> 5     5       example   11    4.250
-
-###
-# Create a data frames for edges
-# Add an attribute which has values scaled to data
-# in a column
-###
-
-set.seed(24)
-
-# Create an edge data frame
-edges &lt;- create_edges(from = c("a", "b", "c"),
-                      to = c("d", "d", "a"),
-                      label = '',
-                      relationship = "given_to",
-                      data = sample(seq(1:50), 10))
-
-edges
-#>   from to label relationship data
-#> 1    a  d           given_to   15
-#> 2    b  d           given_to   12
-#> 3    c  a           given_to   34
-
-# Use the 'scale_edges' function to create an attribute
-# column that's scaled to data in another column
-edges &lt;- scale_edges(edges_df = edges,
-                     to_scale = edges$data,
-                     edge_attr = "penwidth",
-                     range = c(1, 5))
-
-edges
-#>   from to label relationship data penwidth
-#> 1    a  d           given_to   15 1.545455
-#> 2    b  d           given_to   12 1.000000
-#> 3    c  a           given_to   34 5.000000</code></pre>
-                        </div>
-                    </div>
+                    <p>There is also another attribute for both nodes and edges called <code>alpha</code> which is a numeric value from <code>0</code>-<code>100</code> that modifies the opacity of a specified color attribute. A value of <code>0</code> is essentially invisible (i.e., completely transparent) whereas <code>100</code> is entirely opaque (i.e., no transparency applied).</p>
                     <p>To apply transparency to color values, use the <code>alpha</code> node attribute but reference the <code>color</code> attribute that should be modified with the syntax: 'alpha:[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: 'alpha:[color_attr]=[color]'. The color value can either be an <strong>X11</strong> color name or a hexadecimal color value.</p>
                     <div class="highlight">
                         <div>
@@ -486,29 +396,12 @@ nodes
 #> 5    58        1434       28.690819</code></pre>
                         </div>
                     </div>
-                    <p>You can linearly scale color values as well. When creating color scales, ensure that the <strong>V8</strong> library is installed and loaded.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint"># install.packages("V8")
-library("V8")
 
-many_edges &lt;- scale_edges(edges_df = many_edges,
-                          to_scale = many_edges$penwidth,
-                          edge_attr = "color",
-                          range = c("red", "green"))
-
-create_graph(nodes_df = many_nodes, edges_df = many_edges,
-             node_attrs = "style = filled",
-             graph_attrs = c("layout = twopi",
-                             "overlap = false")) %>>% render_graph</code></pre>
-                        </div>
-                    </div>
                     <h2 id="create-render-graph">Create and Render Graph</h2>
-                    <p>Eventually, you'll want to make a graph and then see that graph. There are 3 functions that make graph creation and viewing possible:</p>
+                    <p>Eventually, you'll want to make a graph and then see that graph. There are 2 functions that make graph creation and viewing possible:</p>
                     <ul>
                             <li><code>create_graph</code> <em>Create a graph object using data frames representative of nodes and edges</em></li>
                             <li><code>render_graph</code> <em>Render the graph or output in various formats</em></li>
-                            <li><code>display_graph_object</code> <em>Update and display graph object</em></li>
                     </ul>
                         <div>
                             <img src="img/graph-functions/header_graph_object_creation_and_rendering_2x.png" class="img-responsive center-block">
@@ -521,12 +414,6 @@ create_graph(nodes_df = many_nodes, edges_df = many_edges,
                         </div>
                         <div>
                             <img src="img/graph-functions/render_graph_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/display_graph_object_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -772,18 +659,8 @@ graph &lt;-
 render_graph(graph)</code></pre>
                         </div>
                     </div>
-                    <p>For a visual summary of the graph, use the <code>display_graph_object</code> function. The top numbers here indicate that there is <code>1</code> graph attribute set, <code>2</code> node attributes set, and <code>2</code> edge attributes set. The number in the blue region (<code>26</code>) indicates the number of nodes in the graph, and the number in the green region (also <code>26</code>) provides the number of edges.</p>
-                    <div class="bs-example">
-                        <img src="img/graph-functions/graph_summary_example.png" class="img-responsive center-block">
-                    </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint"># View a visual summary of the graph in the RStudio Viewer
-display_graph_object(graph)</code></pre>
-                        </div>
-                    </div>
                     <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph</code> to <code>render_graph</code>. The <strong>pipeR</strong> package provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead.</p>
-                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph</code> function. For <strong>SVG</strong> output, use <code>output = "SVG"</code>. Here's a simple example:</p>
+                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph</code> function. Here's a simple example:</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -792,7 +669,6 @@ display_graph_object(graph)</code></pre>
 
 library(DiagrammeR)
 library(pipeR)
-library(V8)
 
 # Create a node data frame
 nodes &lt;-
@@ -842,28 +718,7 @@ create_graph(nodes_df = nodes,
                             "style = filled"),
              edge_attrs = c("color = gray20",
                             "arrowsize = 0.5")) %>>%
-  render_graph(output = "DOT") %>>% cat(file = "~/dot.gv")
-
-# Generate an SVG file
-create_graph(nodes_df = nodes,
-             edges_df = edges,
-             graph_attrs = "layout = neato",
-             node_attrs = c("fontname = Helvetica",
-                            "style = filled"),
-             edge_attrs = c("color = gray20",
-                            "arrowsize = 0.5")) %>>%
-  render_graph(output = "SVG") %>>% cat(file = "~/graph.svg")
-
-# Very large graphs are possible to make but rendering
-# to the RStudio Viewer is not advisable; better to export
-# as DOT or SVG, view a visual summary, or use graph
-# inspection functions
-create_graph(nodes_df =
-               create_nodes(node = sample(1:90000, 90000)),
-             edges_df =
-               create_edges(from = sample(1:90000, 90000),
-                            to = sample(1:90000, 90000))) %>>%
-  display_graph_object</code></pre>
+  render_graph(output = "DOT") %>>% cat(file = "~/dot.gv")</code></pre>
                         </div>
                     </div>
                     <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
