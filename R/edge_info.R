@@ -79,9 +79,7 @@ edge_info <- function(graph){
       edge_properties[i, 2] <- edge_to[i]
 
       edge_properties[i, 3] <-
-        ifelse(exists("rel"),
-               rel[which((edge_from %in% edge_from[i]) &
-                           (edge_to %in% edge_to[i]))],
+        ifelse("rel" %in% colnames(graph$edges_df),
                rep(NA, length(edge_from)))
     }
 
