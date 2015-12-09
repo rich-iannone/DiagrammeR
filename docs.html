@@ -92,7 +92,7 @@
                     <h1 id="getting-started" class="page-header">Getting Started</h1>
                     <p class="lead"></p>
                     <h2 id="install-of-r-and-rstudio">Install of R and RStudio</h2>
-                    <p><strong>DiagrammeR</strong> is used in an <strong>R</strong> environment. If you don't have an <strong>R</strong> installation, it can be obtained from the <strong>R</strong> website. It is recommended that an IDE be used and the best one is undoubtedly <strong>RStudio</strong>. Currently, the Preview Release of <strong>RStudio</strong> is recommended for use with <strong>DiagrammeR</strong> as it has support for external <strong>DiagrammeR</strong> files and syntax coloring</p>
+                    <p><strong>DiagrammeR</strong> is used in an <strong>R</strong> environment. If you don't have an <strong>R</strong> installation, it can be obtained from the <strong>R</strong> website. It is recommended that an IDE be used and the best one is undoubtedly <strong>RStudio</strong>.</p>
                     <div class="row bs-downloads">
                         <div class="col-sm-6">
                         <h3>R</h3>
@@ -104,7 +104,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <p><a href="http://cran.rstudio.com">Download latest release (v3.2.0)</a></p>
+                                        <p><a href="http://cran.rstudio.com">Download latest release</a></p>
                                         <p><strong>R</strong> is a free software environment for statistical computing and graphics. It runs on a wide variety of <strong>UNIX</strong> platforms, <strong>Mac OS X</strong>, and <strong>Windows</strong>.</p>
                                     </div>
                                 </li>
@@ -120,7 +120,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <p><a href="http://www.rstudio.com/products/rstudio/download/preview/">Download Preview Release (RStudio v0.99.441 Preview)</a></p>
+                                        <p><a href="http://www.rstudio.com/products/rstudio/download/preview/">Download Preview Release</a></p>
                                         <p><strong>RStudio</strong> is an IDE that provides a great set of tools for working in <strong>R</strong>. You get a code editor, a console, and customizable panes for package management, navigating local files, source control, and more.</p>
                                     </div>
                                 </li>
@@ -207,7 +207,7 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">Version 0.5</h4>
-                                <p>&middot; Added support for subgraphs and Gantt charts in <strong>mermaid</strong> diagrams<br />&middot; added function <code>graphviz_nodes_edges_df</code> for generating <strong>Graphviz</strong> <strong>DOT</strong> code that defines nodes and edges (and their attributes) from data in two data frames: one for nodes, the other for the edge operations<br />&middot; Added function <code>graphviz_single_df</code> for generating <strong>Graphviz</strong> <strong>DOT</strong> code from a single data frame<br />&middot; Incorporated the new substitution operators <code>@_{...}</code> or <code>@^{...}</code> in <code>grViz</code> statements for subscripting and superscripting, respectively</p>
+                                <p>&middot; added support for subgraphs and Gantt charts in <strong>mermaid</strong> diagrams<br />&middot; added function <code>graphviz_nodes_edges_df</code> for generating <strong>Graphviz</strong> <strong>DOT</strong> code that defines nodes and edges (and their attributes) from data in two data frames: one for nodes, the other for the edge operations<br />&middot; added function <code>graphviz_single_df</code> for generating <strong>Graphviz</strong> <strong>DOT</strong> code from a single data frame<br />&middot; incorporated the new substitution operators <code>@_{...}</code> or <code>@^{...}</code> in <code>grViz</code> statements for subscripting and superscripting, respectively</p>
                             </div>
                         </li>
                     </ul>
@@ -220,7 +220,33 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">Version 0.6</h4>
-                                <p>&middot; Added several functions to work with graphs: <code>create_nodes</code>, <code>create_edges</code>, <code>combine_nodes</code>, <code>combine_edges</code>, <code>scale_nodes</code>, <code>scale_edges</code>, <code>get_nodes</code>, <code>node_info</code>, <code>graphviz_graph</code>, <code>graphviz_render</code>, and <code>graphviz_export</code><br />&middot; Removed the <code>graphviz_nodes_edges_df</code> and <code>graphviz_single_df</code> functions</p>
+                                <p>&middot; added several functions to work with graphs: <code>create_nodes</code>, <code>create_edges</code>, <code>combine_nodes</code>, <code>combine_edges</code>, <code>scale_nodes</code>, <code>scale_edges</code>, <code>get_nodes</code>, <code>node_info</code>, <code>graphviz_graph</code>, <code>graphviz_render</code>, and <code>graphviz_export</code><br />&middot; removed the <code>graphviz_nodes_edges_df</code> and <code>graphviz_single_df</code> functions</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="media-list">
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="img/0_7.png" alt="0.4" width="100">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Version 0.7</h4>
+                                <p>&middot; renamed functions <code>graphviz_graph</code> and <code>graphviz_render</code> to <code>create_graph</code> and <code>render_graph</code>, respectively<br />&middot; removed function <code>graphviz_export</code> (exporting now handled with <code>render_graph</code>)<br />&middot; added several new functions to inspect, analyze, and modify graphs: <code>display_graph_object</code>, <code>node_info</code>, <code>edge_info</code>,  <code>node_present</code>, <code>edge_present</code>, <code>get_nodes</code>, <code>get_edges</code>, <code>get_predecessors</code>, <code>get_successors</code>, <code>node_count</code>, <code>edge_count</code>, <code>is_graph_empty</code>, <code>is_graph_directed</code>, <code>add_node</code>, <code>add_edges</code>, <code>delete_node</code>, <code>delete_edge</code>, <code>node_type</code>, <code>edge_relationship</code>, <code>create_series</code>, <code>add_to_series</code>, <code>remove_from_series</code>, <code>graph_count</code>, <code>subset_series</code>, <code>trigger_script</code>, <code>render_graph_from_series</code>, <code>series_info</code></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="media-list">
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="img/0_8.png" alt="0.4" width="100">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Version 0.8</h4>
+                                <p>&middot; revised many graph functions so they work better together<br />&middot; added many testthat tests to maintain the quality of the graph functions<br />&middot; added functions <code>create_random_graph</code>, <code>import_graph</code>, <code>combine_graphs</code>, <code>country_graph</code> and <code>select_graph_from_series</code><br />&middot; support for <strong>visNetwork</strong> graphs as a rendering option with <code>render_graph</code></p>
                             </div>
                         </li>
                     </ul>
