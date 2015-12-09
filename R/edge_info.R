@@ -49,7 +49,7 @@ edge_info <- function(graph){
   }
 
   if ("rel" %in% colnames(graph$edges_df)){
-    rel <- graph$edges_df$rel
+    relationship <- graph$edges_df$rel
   }
 
   # For graphs with no edges, create an 'edge_properties' data frame
@@ -79,7 +79,9 @@ edge_info <- function(graph){
       edge_properties[i, 2] <- edge_to[i]
 
       edge_properties[i, 3] <-
-        ifelse("rel" %in% colnames(graph$edges_df),
+        ifelse(exists("relationship"),
+               relationship[which((edge_from %in% edge_from[i]) &
+                           (edge_to %in% edge_to[i]))],
                rep(NA, length(edge_from)))
     }
 
