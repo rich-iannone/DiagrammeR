@@ -1,6 +1,6 @@
-#' Select edges in a graph by node ID values
+#' Select edges in a graph using node ID values
 #' @description Select edges in a graph object of class
-#' \code{dgr_graph} by node ID values. If nodes have IDs that are
+#' \code{dgr_graph} using node ID values. If nodes have IDs that are
 #' monotonically increasing integer values, then numeric ranges can
 #' be used for the selection.
 #' @param graph a graph object of class \code{dgr_graph} that is created
@@ -12,10 +12,11 @@
 #' \code{intersection}, or, as a \code{difference} on the previous selection,
 #' if it exists.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export select_edges_by_id
+#' @export select_edges_by_node_id
 
-select_edges_by_id <- function(graph, nodes, set_op = "union"){
+select_edges_by_node_id <- function(graph, nodes, set_op = "union"){
 
+  # Extract the edge data frame from the graph
   edge_df <- get_edge_df(graph)
 
   from <-
@@ -26,6 +27,7 @@ select_edges_by_id <- function(graph, nodes, set_op = "union"){
     edge_df[unique(c(which(edge_df$from %in% nodes),
                      which(edge_df$to %in% nodes))),][,2]
 
+  # Create the selection
   graph$selection$edges$from <- from
   graph$selection$edges$to <- to
 

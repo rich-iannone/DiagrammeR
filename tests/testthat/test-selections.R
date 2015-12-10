@@ -414,16 +414,56 @@ test_that("selecting an edge in a graph is possible", {
   )
 })
 
+test_that("selecting edges via node IDs is possible", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node(node = "A") %>% add_node(node = "B") %>%
+    add_node(node = "C") %>% add_node(node = "D") %>%
+    add_node(node = "E") %>% add_node(node = "F") %>%
+    add_node(node = "1") %>% add_node(node = "2") %>%
+    add_node(node = "3") %>% add_node(node = "4") %>%
+    add_node(node = "5") %>% add_node(node = "6") %>%
+    add_node(node = "7") %>% add_node(node = "8") %>%
+    add_edge("A", "1") %>%
+    add_edge("B", "2") %>%
+    add_edge("B", "3") %>%
+    add_edge("B", "4") %>%
+    add_edge("C", "A") %>%
+    add_edge("1", "D") %>%
+    add_edge("E", "A") %>%
+    add_edge("2", "4") %>%
+    add_edge("1", "5") %>%
+    add_edge("1", "F") %>%
+    add_edge("E", "6") %>%
+    add_edge("4", "6") %>%
+    add_edge("5", "7") %>%
+    add_edge("6", "7") %>%
+    add_edge("3", "8")
+
+  # Select all edges associated with nodes with ID `C`, `A`, and `E`
+  graph <- select_edges_by_node_id(graph, nodes = c("C", "A", "E"))
+
+  # Expect that certain edges with be available in the selection
+  expect_true(all(graph$selection$edges$from %in%
+                    c("A", "C", "E", "E")))
+  expect_true(all(graph$selection$edges$to %in%
+                    c("1", "A", "A", "6")))
+})
+
 test_that("selecting nodes in a neighborhood is possible", {
 
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node("A") %>% add_node("B") %>% add_node("C") %>%
-    add_node("D") %>% add_node("E") %>% add_node("F") %>%
-    add_node("1") %>% add_node("2") %>% add_node("3") %>%
-    add_node("4") %>% add_node("5") %>% add_node("6") %>%
-    add_node("7") %>% add_node("8") %>%
+    add_node(node = "A") %>% add_node(node = "B") %>%
+    add_node(node = "C") %>% add_node(node = "D") %>%
+    add_node(node = "E") %>% add_node(node = "F") %>%
+    add_node(node = "1") %>% add_node(node = "2") %>%
+    add_node(node = "3") %>% add_node(node = "4") %>%
+    add_node(node = "5") %>% add_node(node = "6") %>%
+    add_node(node = "7") %>% add_node(node = "8") %>%
     add_edge("A", "1") %>%
     add_edge("B", "2") %>%
     add_edge("B", "3") %>%
