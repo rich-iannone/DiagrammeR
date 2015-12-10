@@ -145,7 +145,7 @@ A -> C</code></pre></div>
 rank = same; A; B; C;
 }</code></pre></div>
                     <p>This anonymous subgraph specifies that the nodes <code>A</code>, <code>B</code> and <code>C</code> should all be placed on the same rank.</p>
-                    <p>The third role for subgraphs directly involves how the graph will be laid out by certain layout engines. If the name of the subgraph begins with <code>cluster</code>, <strong>Graphviz</strong> notes the subgraph as a special cluster subgraph. If supported, the layout engine will make it such that the nodes belonging to the cluster are drawn together, with the entire drawing of the cluster contained within a bounding rectangle.</p>
+                    <p>The third role for subgraphs directly involves how the graph will be laid out by certain layout types. If the name of the subgraph begins with <code>cluster</code>, <strong>Graphviz</strong> notes the subgraph as a special cluster subgraph. If supported, the layout will make it such that the nodes belonging to the cluster are drawn together, with the entire drawing of the cluster contained within a bounding rectangle.</p>
                 </div>
                 <div class="bs-docs-section">
                     <h1 id="attributes" class="page-header">Attributes</h1>
@@ -398,21 +398,17 @@ digraph nicegraph {
                         </div>
                     </div>
                 <div class="bs-docs-section">
-                    <h1 id="rendering-engines" class="page-header">Rendering Engines</h1>
-                    <p class="lead"><strong>Graphviz</strong> layouts can be modified radically by rendering the graph with different <strong>Graphviz</strong> engines. Let's learn all about those engines and what they can do.</p>
-                    <h2 id="the-engines">The Engines</h2>
-                    <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by doing either of the following:</p>
-                        <ul>
-                            <li>supplying those names to the engine argument of the <code>grViz</code> function</li>
-                            <li>setting the graph attribute layout equal to either <code>neato</code>, <code>twopi</code>, or <code>circo</code> in a <strong>Graphviz</strong> graph statement</li>
-                        </ul>
+                    <h1 id="graphviz-layouts" class="page-header">Graphviz Layouts</h1>
+                    <p class="lead"><strong>Graphviz</strong> layouts can be modified radically by rendering the graph with different <strong>Graphviz</strong> layouts.</p>
+                    <h2 id="the-layouts">The Layouts</h2>
+                    <p>By default, the <code>grViz</code> function renders graphs with the standard <strong>dot</strong> layout. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> layouts are selectable by setting the graph attribute <code>layout</code> equal to either <code>neato</code>, <code>twopi</code>, or <code>circo</code> in a <strong>Graphviz</strong> graph statement.</p>
                     <div>
                         <img src="img/Graphviz_Engines.png" class="img-responsive center-block">
                     </div>
                     <h2 id="dot">dot</h2>
-                    <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> engine. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines are selectable by supplying those names to the <code>engine</code> argument.</p>
-                    <div><pre><code class="prettyprint">grViz("[...graph spec...]", engine = "[dot|neato|twopi|circo]")</code></pre></div>
-                    <p>The <strong>dot</strong> engine flows the directed graph in the direction of rank (i.e., downstream nodes of the same rank are aligned). By default, the direction is from top to bottom (where the graph attribute <code>rankdir</code> is set to <code>TB</code>). The following examples will use the same <strong>Graphviz</strong> <strong>DOT</strong> code, differing only in the choice of engine. Here is the default <strong>dot</strong> output.</p>
+                    <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> layout. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> layouts are selectable by supplying those names in a <code>layout</code> statement.</p>
+                    <div><pre><code class="prettyprint">graph [layout = dot|neato|twopi|circo]</code></pre></div>
+                    <p>The <strong>dot</strong> layout flows the directed graph in the direction of rank (i.e., downstream nodes of the same rank are aligned). By default, the direction is from top to bottom (where the graph attribute <code>rankdir</code> is set to <code>TB</code>). The following examples will use the same <strong>Graphviz</strong> <strong>DOT</strong> code, differing only in the choice of layout. Here is the default <strong>dot</strong> output.</p>
                     <div class="bs-example">
                         <img src="img/engine-dot-TB.png" class="img-responsive center-block">
                     </div>
@@ -420,6 +416,8 @@ digraph nicegraph {
                         <div>
                             <pre><code class="prettyprint">grViz("
 digraph dot {
+
+graph [layout = dot]
 
 node [shape = circle,
       style = filled,
@@ -439,8 +437,7 @@ a -> {b c d}
 b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
-}",
-engine = "dot")</code></pre>
+}")</code></pre>
                         </div>
                     </div>
                     <p>Note that in the previous example, rank 1 is the red node whereas ranks 2 and 3 are colored green and yellow, respectively. Alternatively, the rank direction can be set to left to right in a <code>graph</code> statement (<code>rankdir = LR</code>).</p>
@@ -452,7 +449,8 @@ engine = "dot")</code></pre>
                             <pre><code class="prettyprint">grViz("
 digraph dot {
 
-graph [rankdir = LR]
+graph [layout = dot,
+       rankdir = LR]
 
 node [shape = circle,
       style = filled,
@@ -472,12 +470,11 @@ a -> {b c d}
 b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
-}",
-engine = "dot")</code></pre>
+}")</code></pre>
                         </div>
                     </div>
                     <h2 id="neato">neato</h2>
-                    <p>The <strong>neato</strong> engine provides spring model layouts. This is a suitable engine if the graph is not too large (less than 100 nodes) and you don't know anything else about it. The <strong>neato</strong> engine attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. Have a look at the previous graph, rendered with the <strong>neato</strong> engine:</p>
+                    <p>The <strong>neato</strong> layout provides spring model layouts. This is a suitable layout if the graph is not too large (less than 100 nodes) and you don't know anything else about it. The <strong>neato</strong> layout attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. Have a look at the previous graph, rendered with the <strong>neato</strong> layout:</p>
                     <div class="bs-example">
                         <img src="img/engine-neato.png" class="img-responsive center-block">
                     </div>
@@ -486,6 +483,8 @@ engine = "dot")</code></pre>
                             <pre><code class="prettyprint">grViz("
 digraph neato {
 
+graph [layout = neato]
+
 node [shape = circle,
       style = filled,
       color = grey,
@@ -504,20 +503,19 @@ a -> {b c d}
 b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
-}",
-engine = "neato")</code></pre>
+}")</code></pre>
                         </div>
                     </div>
                     <p>Things do actually get interesting if there are lots of nodes. Here is an example of an undirected graph with 407 nodes amongst several ranks. Graph edges have varying lengths. (The code is not presented here as it is rather lenghty but it is available as a <a href="https://gist.github.com/rich-iannone/de0bb88d155a2c1c7e38">GitHub gist</a>.)</p>
                     <div class="bs-example">
                         <img src="img/several-ranks-neato-overlap-true.png" class="img-responsive center-block">
                     </div>
-                    <p>The graph specification can have an entirely different layout with <strong>neato</strong> engine if the graph attribute <code>overlap</code> is set to <code>false</code> instead of the default <code>true</code> value (<a href="https://gist.github.com/rich-iannone/c58b07f992a1f9ab5d3e">GitHub gist</a>). What occurs in this case is that node overlaps are removed by a Voronoi-based technique.</p>
+                    <p>The graph specification can have an entirely different layout with the <strong>neato</strong> layout if the graph attribute <code>overlap</code> is set to <code>false</code> instead of the default <code>true</code> value (<a href="https://gist.github.com/rich-iannone/c58b07f992a1f9ab5d3e">GitHub gist</a>). What occurs in this case is that node overlaps are removed by a Voronoi-based technique.</p>
                     <div class="bs-example">
                         <img src="img/several-ranks-neato-overlap-false.png" class="img-responsive center-block">
                     </div>
                     <h2 id="twopi">twopi</h2>
-                    <p>The <strong>twopi</strong> engine provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. In the following example, that root node is the red one.</p>
+                    <p>The <strong>twopi</strong> layout provides radial layouts. Nodes are placed on concentric circles depending their distance from a given root node. In the following example, that root node is the red one.</p>
                     <div class="bs-example">
                         <img src="img/engine-twopi.png" class="img-responsive center-block">
                     </div>
@@ -526,6 +524,8 @@ engine = "neato")</code></pre>
                             <pre><code class="prettyprint">grViz("
 digraph twopi {
 
+graph [layout = twopi]
+
 node [shape = circle,
       style = filled,
       color = grey,
@@ -544,12 +544,11 @@ a -> {b c d}
 b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
-}",
-engine = "twopi")</code></pre>
+}")</code></pre>
                         </div>
                     </div>
                     <h2 id="circo">circo</h2>
-                    <p>The <strong>circo</strong> engine provide circular layouts. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
+                    <p>With <strong>circo</strong>, a circular layout results. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
                     <div class="bs-example">
                         <img src="img/engine-circo.png" class="img-responsive center-block">
                     </div>
@@ -558,6 +557,8 @@ engine = "twopi")</code></pre>
                             <pre><code class="prettyprint">grViz("
 digraph circo {
 
+graph [layout = circo]
+
 node [shape = circle,
       style = filled,
       color = grey,
@@ -576,8 +577,7 @@ a -> {b c d}
 b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
-}",
-engine = "circo")</code></pre>
+}")</code></pre>
                         </div>
                         </div>
                     </div>
@@ -611,9 +611,9 @@ engine = "circo")</code></pre>
                             </ul>
                         </li>
                         <li>
-                            <a href="#rendering-engines">Rendering Engines</a>
+                            <a href="#graphviz-layouts">Graphviz Layouts</a>
                             <ul class="nav">
-                                <li><a href="#the-engines">The Engines</a></li>
+                                <li><a href="#the-layouts">The Layouts</a></li>
                                 <li><a href="#dot">dot</a></li>
                                 <li><a href="#neato">neato</a></li>
                                 <li><a href="#twopi">twopi</a></li>
