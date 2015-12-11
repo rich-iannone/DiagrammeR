@@ -149,9 +149,6 @@
                             <li><code>combine_edges</code> <em>Combine multiple edge data frames into a single edge data frame</em></li>
                     </ul>
                         <div>
-                            <img src="img/graph-functions/header_node_edge_df_processing_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
                             <img src="img/graph-functions/create_nodes_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
@@ -345,67 +342,12 @@ all_edges
 </code></pre>
                         </div>
                     </div>
-                    <p>With the <code>scale_nodes</code> function, it's possible to create node attributes with values that are scaled to numerical data in another column. The scaled attribute values can consist of either numerical values or hexadecimal color values. Scaled values can be made for the following attributes:</p>
-                        <ul>
-                            <li><code>fontsize</code> <em>numeric</em></li>
-                            <li><code>labelfontsize</code> <em>numeric</em></li>
-                            <li><code>penwidth</code> <em>numeric</em></li>
-                            <li><code>height</code> <em>numeric</em></li>
-                            <li><code>weight</code> <em>numeric</em></li>
-                            <li><code>x</code> <em>numeric</em></li>
-                            <li><code>y</code> <em>numeric</em></li>
-                            <li><code>color</code> <em>color</em></li>
-                            <li><code>fillcolor</code> <em>color</em></li>
-                            <li><code>fontcolor</code> <em>color</em></li>
-                            <li><code>alpha</code> <em>color</em></li>
-                        </ul>
-                    <p>For edges, the <code>scale_edges</code> function can be used to create scaled values for the following edge attributes:</p>
-                        <ul>
-                            <li><code>fontsize</code> <em>numeric</em></li>
-                            <li><code>labelfontsize</code> <em>numeric</em></li>
-                            <li><code>labelangle</code> <em>numeric</em></li>
-                            <li><code>labeldistance</code> <em>numeric</em></li>
-                            <li><code>penwidth</code> <em>numeric</em></li>
-                            <li><code>arrowsize</code> <em>numeric</em></li>
-                            <li><code>minlen</code> <em>numeric</em></li>
-                            <li><code>weight</code> <em>numeric</em></li>
-                            <li><code>color</code> <em>color</em></li>
-                            <li><code>fontcolor</code> <em>color</em></li>
-                            <li><code>labelfontcolor</code> <em>color</em></li>
-                            <li><code>alpha</code> <em>color</em></li>
-                        </ul>
-                    <p>There is also another attribute for both nodes and edges called <code>alpha</code> which is a numeric value from <code>0</code>-<code>100</code> that modifies the opacity of a specified color attribute. A value of <code>0</code> is essentially invisible (i.e., completely transparent) whereas <code>100</code> is entirely opaque (i.e., no transparency applied).</p>
-                    <p>To apply transparency to color values, use the <code>alpha</code> node attribute but reference the <code>color</code> attribute that should be modified with the syntax: 'alpha:[color_attr]'. If the referenced color attribute doesn't exist, use the following syntax: 'alpha:[color_attr]=[color]'. The color value can either be an <strong>X11</strong> color name or a hexadecimal color value.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
-
-# Scale a node data frame and create an 'alpha' attribute
-# that's applied to fillcolor
-nodes &lt;- scale_nodes(nodes_df = nodes,
-                     to_scale = nodes$random_data,
-                     node_attr = "alpha:fillcolor",
-                     range = c(5, 90))
-
-nodes
-#>    node random_data alpha_fillcolor
-#> 1    85        2928       54.831206
-#> 2   158        3806       70.193495
-#> 3   191        4194       76.982297
-#> 4   371        3757       69.336147
-#> 5    58        1434       28.690819</code></pre>
-                        </div>
-                    </div>
-
                     <h2 id="create-render-graph">Create and Render Graph</h2>
                     <p>Eventually, you'll want to make a graph and then see that graph. There are 2 functions that make graph creation and viewing possible:</p>
                     <ul>
                             <li><code>create_graph</code> <em>Create a graph object using data frames representative of nodes and edges</em></li>
                             <li><code>render_graph</code> <em>Render the graph or output in various formats</em></li>
                     </ul>
-                        <div>
-                            <img src="img/graph-functions/header_graph_object_creation_and_rendering_2x.png" class="img-responsive center-block">
-                        </div>
                         <div>
                             <img src="img/graph-functions/create_graph_2x.png" class="img-responsive center-block">
                         </div>
@@ -739,9 +681,6 @@ create_graph(nodes_df = nodes,
                             <li><code>is_graph_directed</code> <em>Is the graph a directed graph?</em></li>
                     </ul>
                         <div>
-                            <img src="img/graph-functions/header_graph_inspection_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
                             <img src="img/graph-functions/node_info_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
@@ -1069,9 +1008,6 @@ node_count(graph, type = FALSE)
                             <li><code>edge_relationship</code> <em>Create, read, update, delete, or report status of an edge relationship</em></li>
                     </ul>
                         <div>
-                            <img src="img/graph-functions/header_graph_modification_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
                             <img src="img/graph-functions/add_node_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
@@ -1202,9 +1138,6 @@ edge_info(graph)
                             <li><code>render_graph_from_series</code> <em>Render a graph available in a series</em></li>
                             <li><code>series_info</code> <em>Get detailed information on a graph series</em></li>
                     </ul>
-                    <div>
-                            <img src="img/graph-functions/header_graph_series_2x.png" class="img-responsive center-block">
-                        </div>
                         <div>
                             <img src="img/graph-functions/create_series_2x.png" class="img-responsive center-block">
                         </div>
