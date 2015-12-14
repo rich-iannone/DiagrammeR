@@ -296,12 +296,12 @@ library(DiagrammeR)
 edges_1 &lt;-
   create_edges(from = c("a", "a", "b", "c"),
                to = c("b", "d", "d", "a"),
-               relationship = "requires",
+               rel = "requires",
                color = "green",
                data = c(2.7, 8.9, 2.6, 0.6))
 
 edges_1
-#>   from to relationship color data
+#>   from to rel color data
 #> 1    a  b     requires green  2.7
 #> 2    a  d     requires green  8.9
 #> 3    b  d     requires green  2.6
@@ -311,12 +311,12 @@ edges_1
 edges_2 &lt;-
   create_edges(from = c("e", "g", "h", "h"),
                to = c("g", "h", "f", "e"),
-               relationship = "receives",
+               rel = "receives",
                arrowhead = "dot",
                color = "red")
 
 edges_2
-#>   from to relationship arrowhead color
+#>   from to rel arrowhead color
 #> 1    e  g     receives       dot   red
 #> 2    g  h     receives       dot   red
 #> 3    h  f     receives       dot   red
@@ -330,7 +330,7 @@ edges_2
 all_edges &lt;- combine_edges(edges_1, edges_2)
 
 all_edges
-#>   from to relationship color data arrowhead
+#>   from to rel color data arrowhead
 #> 1    a  b     requires green  2.7
 #> 2    a  d     requires green  8.9
 #> 3    b  d     requires green  2.6
@@ -481,7 +481,7 @@ graph
 render_graph(graph)</code></pre>
                         </div>
                     </div>
-<p>This next example will include both nodes and edges contained within a graph object. In this case, values for the <code>type</code> and <code>relationship</code> attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.</p>
+<p>This next example will include both nodes and edges contained within a graph object. In this case, values for the <code>type</code> and <code>rel</code> attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.</p>
 <div class="bs-example">
                         <img src="img/graph-functions/nodes_edges_example.png" class="img-responsive center-block">
                     </div>
@@ -509,7 +509,7 @@ nodes &lt;-
 edges &lt;-
   create_edges(from = c("a", "b", "c"),
                to = c("d", "c", "a"),
-               relationship = "leading_to")
+               rel = "leading_to")
 
 
 graph &lt;-
@@ -528,7 +528,7 @@ graph
 #> 4     d       lower filled  aqua rectangle  2.7
 #>
 #> $edges_df
-#>   from to relationship
+#>   from to rel
 #> 1    a  d   leading_to
 #> 2    b  c   leading_to
 #> 3    c  a   leading_to
@@ -585,7 +585,7 @@ nodes &lt;-
 edges &lt;-
   create_edges(from = sample(LETTERS, replace = TRUE),
                to = sample(LETTERS, replace = TRUE),
-               relationship = "letter_to_letter")
+               rel = "letter_to_letter")
 
 
 graph &lt;-
@@ -628,7 +628,7 @@ nodes &lt;-
 edges &lt;-
   create_edges(from = sample(LETTERS, replace = TRUE),
                to = sample(LETTERS, replace = TRUE),
-               relationship = "letter_to_letter")
+               rel = "letter_to_letter")
 
 # Use the pipeR %>>% operator between 'create_graph',
 # and 'render_graph' or 'display_graph_object' calls
@@ -767,7 +767,7 @@ create_graph(nodes_df = nodes,
                         <ul>
                             <li><code>edge_from</code></li>
                             <li><code>edge_to</code></li>
-                            <li><code>relationship</code></li>
+                            <li><code>rel</code></li>
                             <li><code>label</code></li>
                         </ul>
                     <p>The <code>node_present</code> and <code>edge_present</code> functions are used to determine whether a node (based on its node ID) or an edge (based on two node IDs) is present in a graph object. Both functions return a logical value of either <code>TRUE</code> or <code>FALSE</code>.</p>
@@ -799,7 +799,7 @@ edges &lt;-
   create_edges(from = sample(LETTERS, replace = TRUE),
                to = sample(LETTERS, replace = TRUE),
                label = "edge",
-               relationship = "letter_to_letter")
+               rel = "letter_to_letter")
 
 # Create a graph object
 graph &lt;-
@@ -833,7 +833,7 @@ node_info(graph)
 
 # Use the 'edge_info' function to return a data frame
 edge_info(graph)
-#>    from  to     relationship label
+#>    from  to     rel label
 #> 1     A   Z letter_to_letter  edge
 #> 2     H   U letter_to_letter  edge
 #> 3     W   O letter_to_letter  edge
@@ -1005,7 +1005,7 @@ node_count(graph, type = FALSE)
                             <li><code>delete_node</code> <em>Delete a node from an existing graph object</em></li>
                             <li><code>delete_edge</code> <em>Delete an edge from an existing graph object</em></li>
                             <li><code>node_type</code> <em>Create, read, update, delete, or report status of a node type definition</em></li>
-                            <li><code>edge_relationship</code> <em>Create, read, update, delete, or report status of an edge relationship</em></li>
+                            <li><code>edge_rel</code> <em>Create, read, update, delete, or report status of an edge relationship</em></li>
                     </ul>
                         <div>
                             <img src="img/graph-functions/add_node_2x.png" class="img-responsive center-block">
@@ -1046,14 +1046,14 @@ node_count(graph, type = FALSE)
                     <p>The <code>add_node</code> function allows one to add a single node to a graph. Specify the graph to which the node should be added and the node ID for the <code>node</code> argument, and a node will be added. While the other arguments are optional, using just <code>graph</code> and <code>node</code> will result in the addition of an unconnected node. This might be desirable (say, if the graph is empty), but the more likely case is that edges to other nodes will be required upon addition of a new node. The <code>from</code> and <code>to</code> arguments (both optional) are where you would specify connections from existing nodes to the new node (with <code>to</code>), and connections to existing nodes from the new node (with <code>from</code>). A vector of node IDs can be supplied to either argument. The <code>label</code> and <code>type</code> arguments allow for direct setting of these node attributes during the addition of a node. Finally, a named vector of node attributes and their values can be included in the <code>add_node</code> call.</p>
                     <p>The <code>add_edges</code> function is meant for adding edges between extant graph nodes. Because the nodes must exist in the graph, this function cannot be invoked for an empty graph. (It can, however, be used for a graph with a single node since an edge can be created as a loop from and to the same node.) there are two means to add edges to a graph with this function:</p>
                     <ol>
-                      <li>specify <code>from</code> and <code>to</code> nodes for the edge to be added; add an edge <code>relationship</code> string as a value for the <code>relationship</code> argument</li>
+                      <li>specify <code>from</code> and <code>to</code> nodes for the edge to be added; add an edge <code>rel</code> string as a value for the <code>rel</code> argument</li>
                       <li>supply a data frame for edges, which contains columns for incoming and outgoing nodes, and, various edge attributes</li>
                     </ol>
-                    <p>It can be advantageous to supply a data frame for edges to this function's <code>edges_df</code> argument. This simply because one can supply a range of edge attributes for the new edge. On the other hand, providing only values to the <code>from</code>, <code>to</code>, and <code>relationship</code> arguments may be sufficient, especially if styling if not required or handled through default edge attributes.</p>
+                    <p>It can be advantageous to supply a data frame for edges to this function's <code>edges_df</code> argument. This simply because one can supply a range of edge attributes for the new edge. On the other hand, providing only values to the <code>from</code>, <code>to</code>, and <code>rel</code> arguments may be sufficient, especially if styling if not required or handled through default edge attributes.</p>
                     <p>The function <code>delete_node</code> removes a node from the graph. All of the removed node's edges with other nodes in the graph will also be removed in this operation. Supply only a single node ID to the <code>node</code> argument.</p>
                     <p>The function <code>delete_edge</code> removes an edge from the graph. Specify the graph object in <code>graph</code>, the nodes in <code>nodes</code>, and the function will remove that edge if it exists.</p>
                     <p>The <code>node_type</code> function provides various means to check the <code>type</code> attribute for a node and perform different operations on that attribute. The different functionalities of <code>node_type</code> can be changed through the use of these different keywords for the <code>action</code> argument: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code>. With <code>read</code> set as the action, a node ID supplied with the graph object yields that node's <code>type</code> attribute. Using <code>action = check</code> with a node ID, you can check whether a <code>type</code> attribute exists (it will return <code>TRUE</code> or <code>FALSE</code>. If the <code>type</code> attribute hasn't been set for a node, you can add that using <code>action = add</code> along with a string supplied for the <code>value</code> argument. If a <code>type</code> attribute has alredy been set for a node and you'd like to change it, use <code>action = update</code> and include the updated string with the <code>value</code> argument. Deleting a <code>type</code> attribute for a node is easily accomplished by using <code>action = delete</code>.</p>
-                    <p>The <code>edge_relationship</code> function is similar in principle and use to the <code>node_type</code> function. In this function, the edge's <code>relationship</code> attribute can be checked for existence, added, removed, or updated. As with the <code>node_type</code> function, this function uses the <code>action</code> argument and performs various actions with these keywords: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code> (same keywords as those for <code>node_type</code>. Using <code>read</code>, supply node IDs for the <code>from</code> and <code>to</code> arguments. With that, you will receive the edge's currently set <code>relationship</code> attribute. The <code>relationship</code> attribute may or may not be set, so, using <code>action = check</code> with a specified edge, the existence of the <code>relationship</code> attribute can be verified through a <code>TRUE</code> or <code>FALSE</code> return value. An unset <code>relationship</code> attribute for an edge can be set by using <code>action = add</code> and a character string for the <code>value</code> argument. To update an already set <code>relationship</code> attribute for an edge, use <code>action = update</code> and provide the updated relationship string with the <code>value</code> argument. Deleting a <code>relationship</code> attribute for an edge is done by using <code>action = delete</code> with an edge.</p>
+                    <p>The <code>edge_rel</code> function is similar in principle and use to the <code>node_type</code> function. In this function, the edge's <code>rel</code> attribute can be checked for existence, added, removed, or updated. As with the <code>node_type</code> function, this function uses the <code>action</code> argument and performs various actions with these keywords: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code> (same keywords as those for <code>node_type</code>. Using <code>read</code>, supply node IDs for the <code>from</code> and <code>to</code> arguments. With that, you will receive the edge's currently set <code>rel</code> attribute. The <code>rel</code> attribute may or may not be set, so, using <code>action = check</code> with a specified edge, the existence of the <code>rel</code> attribute can be verified through a <code>TRUE</code> or <code>FALSE</code> return value. An unset <code>rel</code> attribute for an edge can be set by using <code>action = add</code> and a character string for the <code>value</code> argument. To update an already set <code>rel</code> attribute for an edge, use <code>action = update</code> and provide the updated relationship string with the <code>value</code> argument. Deleting a <code>rel</code> attribute for an edge is done by using <code>action = delete</code> with an edge.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">library(DiagrammeR)
@@ -1073,12 +1073,12 @@ node_info(graph)
 
 # Add an edge
 graph &lt;- add_edges(graph, from = "a", to = "b",
-                   relationship = "to_get")
+                      rel = "to_get")
 
 # Get information on all edges in graph
 edge_info(graph)
-#>   edge_from edge_to relationship label
-#> 1         a       b       to_get    NA
+#>   edge_from edge_to    rel  label
+#> 1         a       b to_get     NA
 
 # Add two more nodes
 graph &lt;- add_node(graph, node = "c")
@@ -1097,11 +1097,11 @@ graph &lt;-
   add_edges(graph,
             from = c("a", "a"),
             to = c("c", "d"),
-            relationship = "received_from")
+            rel = "received_from")
 
 # Get information on all edges in graph
 edge_info(graph)
-#>   edge_from edge_to  relationship label
+#>   edge_from edge_to           rel label
 #> 1         a       b        to_get    NA
 #> 2         a       c received_from    NA
 #> 3         a       d received_from    NA
@@ -1121,8 +1121,8 @@ graph &lt;- delete_edge(graph, from = "a", to = "c")
 
 # Get information on all edges in graph
 edge_info(graph)
-#>   edge_from edge_to relationship label
-#> 1         a       b       to_get    NA</code></pre>
+#>   edge_from edge_to    rel label
+#> 1         a       b to_get    NA</code></pre>
                         </div>
                     </div>
                     <h2 id="using-graph-series">Using a Series of Graphs</h2>
