@@ -150,11 +150,26 @@ rank = same; A; B; C;
                 <div class="bs-docs-section">
                     <h1 id="attributes" class="page-header">Attributes</h1>
                     <p class="lead"><strong>Graphviz</strong> attributes allow you to style your <strong>Graphviz</strong> graph. Combinations of attributes for nodes, edges, clusters, and for the entire graph provide for highly-customized layouts.</p>
+                    <h2 id="node-attributes">Node Attributes</h2>
                     <p>All <strong>Graphviz</strong> attributes are specified by name-value pairs. Thus, to set the fillcolor of a node <code>abc</code>, one would use</p>
                     <div><pre><code>abc [fillcolor = red]</code></pre></div>
-                    <p>Similarly, to set the arrowhead style of an edge <code>abc -> def</code>, one would use</p>
+                    <p></p>
+                    <div>
+                        <img src="img/graph-functions/header_node_attributes_2x.png" class="img-responsive center-block">
+                    </div>
+                    <div>
+                        <img src="img/graph-functions/node_attributes_2x.png" class="img-responsive center-block">
+                    </div>
+                    <h2 id="edge-attributes">Edge Attributes</h2>
+                    <p>Edge attributes are set the same way as node attributes. For example, to set the arrowhead style of an edge <code>abc -> def</code>, one would use</p>
                     <div><pre><code>abc -> def [arrowhead = diamond]</code></pre></div>
                     <p>Quotation marks are important only for multiword attributes, such might be used in the <code>label</code> attribute.</p>
+                    <div>
+                        <img src="img/graph-functions/header_edge_attributes_2x.png" class="img-responsive center-block">
+                    </div>
+                    <div>
+                        <img src="img/graph-functions/edge_attributes_2x.png" class="img-responsive center-block">
+                    </div>
                     <h2 id="colors">Colors</h2>
                     <p>By default, <strong>Graphviz</strong> can use colors provided as hexadecimal values, or, as <strong>X11</strong> color names. The following provides the entire list of <strong>X11</strong> color names. Some colors have additional 4-color palettes based on the named color. Those additional colors can be used by appending the digits <code>1</code>-<code>4</code> to the color name. Gray (or grey) has variations from <code>0</code>-<code>100</code>. Please note that, in all color names, 'gray' is interchangeable with 'grey'.</p>
                     <div>
@@ -598,6 +613,8 @@ d -> {q r s t u v}
                         <li>
                             <a href="#attributes">Attributes</a>
                             <ul class="nav">
+                                <li><a href="#node-attributes">Node Attributes</a></li>
+                                <li><a href="#edge-attributes">Edge Attributes</a></li>
                                 <li><a href="#colors">Colors</a></li>
                                 <li><a href="#node-shapes">Node Shapes</a></li>
                                 <li><a href="#arrow-shapes">Arrow Shapes</a></li>
