@@ -91,8 +91,8 @@
                     <h1 id="graphviz" class="page-header">Graphviz</h1>
                     <p class="lead"><strong>Graphviz</strong> support is an integral part of the <strong>DiagrammeR</strong> package. <strong>Graphviz</strong> consists of a graph description language called the <strong>DOT</strong> language and it also comprises various tools that can process the <strong>DOT</strong> language. <strong>DOT</strong> is highly customizable and it allows you to control line colors, arrow shapes, node shapes, and many other layout features.</p>
                     <h2 id="diagrammer-implementation">DiagrammeR Implementation</h2>
-                    <p>For <strong>Graphviz</strong> graphs, <strong>DiagrammeR</strong> uses the processing function called <code>grViz</code>. What you pass into <code>grViz</code> is a valid graph specification in the <strong>DOT</strong> language. The <strong>DOT</strong> graph description can either be delivered to <code>grViz</code> in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
-                    <p>All of the code examples provided in later sections call the <code>grViz</code> function in an <strong>R</strong> script and pass in a graph description as a string. It is important to consider that strings in <strong>R</strong> cannot contain any unescaped double-quote characters. However, the <code>grViz</code> function allows for single-quote characters in their place. As a further convenience, when the <strong>DOT</strong> graph description is supplied as a file (e.g., 'dot-graph.gv') or as a text connection, either format for quotes will be accepted.</p>
+                    <p>For <strong>Graphviz</strong> graphs, <strong>DiagrammeR</strong> uses the processing function called <code>grViz()</code>. What you pass into <code>grViz()</code> is a valid graph specification in the <strong>DOT</strong> language. The <strong>DOT</strong> graph description can either be delivered to <code>grViz()</code> in the form of a string, a reference to a <strong>Graphviz</strong> file (with a <code>.gv</code> file extension), or as a text connection.</p>
+                    <p>All of the code examples provided in later sections call the <code>grViz()</code> function in an <strong>R</strong> script and pass in a graph description as a string. It is important to consider that strings in <strong>R</strong> cannot contain any unescaped double-quote characters. However, the <code>grViz()</code> function allows for single-quote characters in their place. As a further convenience, when the <strong>DOT</strong> graph description is supplied as a file (e.g., 'dot-graph.gv') or as a text connection, either format for quotes will be accepted.</p>
                     <p>In very recent builds of <strong>RStudio</strong>, the use of an external text file with the <code>.gv</code> file extension can provide the advantage of syntax coloring and previewing in the <strong>RStudio</strong> Viewer pane after saving (if 'Preview on Save' is selected), or, by pressing the 'Preview' button on the Source pane.</p>
                     <img src="img/rstudio-graphviz-syntax-coloring.png" class="img-responsive center-block">
                     <h2 id="defining-a-graphviz-graph">Defining a Graphviz Graph</h2>
@@ -276,11 +276,11 @@ rank = same; A; B; C;
                     <h1 id="substitution" class="page-header">Substitution</h1>
                     <p class="lead">Inspired by <strong>Razor</strong> and the footnote style in <strong>Markdown</strong>, <strong>Graphviz</strong> substitution allows for mixing in <strong>R</strong> expressions into a <strong>Graphviz</strong> graph specification without sacrificing readability.</p>
                     <h2 id="how-it-works">How It Works</h2>
-                    <p>To take advantage of substitution when rendering a graph, simply use the <code>grViz</code> function with <strong>Graphviz</strong> <strong>DOT</strong> code:</p>
+                    <p>To take advantage of substitution when rendering a graph, simply use the <code>grViz()</code> function with <strong>Graphviz</strong> <strong>DOT</strong> code:</p>
                         <div>
                             <pre><code class="prettyprint">grViz("[...graph spec with substitutions using @@ notation and footnote R expressions...]")</code></pre>
                         </div>
-                    <p>The notation <code>@@</code> within <strong>GraphViz</strong> <strong>DOT</strong> will indicate where the substitution is to take place and corresponding <strong>R</strong> expressions will provide values to be substituted. The <code>grViz</code> function will autodetect whether the working <strong>Graphviz</strong> graph specification contains <code>@@</code>s between the curly braces of the <code>[graph|digraph] {...}</code> DOT construction.</p>
+                    <p>The notation <code>@@</code> within <strong>GraphViz</strong> <strong>DOT</strong> will indicate where the substitution is to take place and corresponding <strong>R</strong> expressions will provide values to be substituted. The <code>grViz()</code> function will autodetect whether the working <strong>Graphviz</strong> graph specification contains <code>@@</code>s between the curly braces of the <code>[graph|digraph] {...}</code> DOT construction.</p>
                         <div>
                             <pre><code class="prettyprint">grViz("
 [...graph spec with substitutions using @@ notation and footnote R expressions...]
@@ -365,7 +365,7 @@ a -> {b c d e f g h i j}
                         <li>the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices 1 to 9 (using the hypenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression)</li>
                     </ol>
                     <p>Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So, as long as a vector object results from evaluation, substitution can be performed.</p>
-                    <p>Here is a final example of a diagram created using <strong>R</strong> and <strong>RStudio</strong> information (obtained from the <code>R.Version</code> and <code>rstudioapi::versionInfo</code> functions). The output will of course vary by the system on which it was generated. Here is the output from the dev machine:</p>
+                    <p>Here is a final example of a diagram created using <strong>R</strong> and <strong>RStudio</strong> information (obtained from the <code>R.Version()</code> and <code>rstudioapi::versionInfo()</code> functions). The output will of course vary by the system on which it was generated. Here is the output from the dev machine:</p>
                     <div class="bs-example">
                         <img src="img/r_Information.png" class="img-responsive center-block">
                     </div>
@@ -416,12 +416,12 @@ digraph nicegraph {
                     <h1 id="graphviz-layouts" class="page-header">Graphviz Layouts</h1>
                     <p class="lead"><strong>Graphviz</strong> layouts can be modified radically by rendering the graph with different <strong>Graphviz</strong> layouts.</p>
                     <h2 id="the-layouts">The Layouts</h2>
-                    <p>By default, the <code>grViz</code> function renders graphs with the standard <strong>dot</strong> layout. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> layouts are selectable by setting the graph attribute <code>layout</code> equal to either <code>neato</code>, <code>twopi</code>, or <code>circo</code> in a <strong>Graphviz</strong> graph statement.</p>
+                    <p>By default, the <code>grViz()</code> function renders graphs with the standard <strong>dot</strong> layout. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> layouts are selectable by setting the graph attribute <code>layout</code> equal to either <code>neato</code>, <code>twopi</code>, or <code>circo</code> in a <strong>Graphviz</strong> graph statement.</p>
                     <div>
                         <img src="img/Graphviz_Engines.png" class="img-responsive center-block">
                     </div>
                     <h2 id="dot">dot</h2>
-                    <p>By default, the <code>grViz</code> function renders graphs using the standard <strong>dot</strong> layout. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> layouts are selectable by supplying those names in a <code>layout</code> statement.</p>
+                    <p>By default, the <code>grViz()</code> function renders graphs using the standard <strong>dot</strong> layout. However, the <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> layouts are selectable by supplying those names in a <code>layout</code> statement.</p>
                     <div><pre><code class="prettyprint">graph [layout = dot|neato|twopi|circo]</code></pre></div>
                     <p>The <strong>dot</strong> layout flows the directed graph in the direction of rank (i.e., downstream nodes of the same rank are aligned). By default, the direction is from top to bottom (where the graph attribute <code>rankdir</code> is set to <code>TB</code>). The following examples will use the same <strong>Graphviz</strong> <strong>DOT</strong> code, differing only in the choice of layout. Here is the default <strong>dot</strong> output.</p>
                     <div class="bs-example">
