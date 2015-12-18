@@ -106,7 +106,7 @@
                         <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                     </div>
                     <h2 id="the-graph-object">The Graph Object</h2>
-                    <p>The <strong>DiagrammeR</strong> graph object, created by using the function <code>create_graph</code>, holds information on a graph's nodes, edges, default attributes, and rendering code. Creating a graph object can be as simple as using <code>create_graph()</code>, however, that will be an empty graph and you'll want to populate it.</p>
+                    <p>The <strong>DiagrammeR</strong> graph object, created by using the function <code>create_graph()</code>, holds information on a graph's nodes, edges, default attributes, and rendering code. Creating a graph object can be as simple as using <code>create_graph()</code>, however, that will be an empty graph and you'll want to populate it.</p>
                     <p>The <strong>DiagrammeR</strong> graph object holds buckets of data that reflect the current state of the graph. The graph can be inspected, nodes and edges can be added, edited, or removed, and, a visualization of the graph or export of its data can be made at any point. The different facets of what make up the graph object can be visualized as follows.</p>
                     <p>Essentially, the elements that make up a graph are tightly coupled inside the graph object. The myriad functions developed for working with the graph object:</p>
                     <ul>
@@ -123,10 +123,10 @@
                     <h2 id="node-edge-data-frames">Node/Edge Data Frames</h2>
                     <p>These functions are used to create specialized data frames. One type is for nodes, the other for edges. The functions are useful because one can add field data to these data frames and selectively add and scale attributes. Some of the functions for creating node and edge data frames include:</p>
                     <ul>
-                            <li><code>create_nodes</code> <em>Create a data frame with nodes and their attributes</em></li>
-                            <li><code>create_edges</code> <em>Create a data frame with edges and their attributes</em></li>
-                            <li><code>combine_nodes</code> <em>Combine multiple node data frames into a single node data frame</em></li>
-                            <li><code>combine_edges</code> <em>Combine multiple edge data frames into a single edge data frame</em></li>
+                            <li><code>create_nodes()</code> <em>Create a data frame with nodes and their attributes</em></li>
+                            <li><code>create_edges()</code> <em>Create a data frame with edges and their attributes</em></li>
+                            <li><code>combine_nodes()</code> <em>Combine multiple node data frames into a single node data frame</em></li>
+                            <li><code>combine_edges()</code> <em>Combine multiple edge data frames into a single edge data frame</em></li>
                     </ul>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -155,7 +155,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a data frame for nodes, it's important to have at least one column named either <code>node</code>, <code>nodes</code>, or <code>node_id</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
+                    <p>Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a data frame for nodes, it's important to have at least one column named <code>nodes</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
                     <ul>
                             <li><code>color</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
                             <li><code>distortion</code> &mdash; the node distortion for any <code>shape = polygon</code></li>
@@ -176,14 +176,14 @@
                             <li><code>x</code> &mdash; the x position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                             <li><code>y</code> &mdash; the y position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                         </ul>
-                    <p>While you can use the <code>data.frame</code> function to make a node data frame, it is likely better to use the provided <code>create_nodes</code> function. It's similar in principle to the base <strong>R</strong> <code>data.frame</code> function except that it adds in the following conveniences for graph diagram work:
+                    <p>While you can use the <code>data.frame()</code> function to make a node data frame, it is likely better to use the provided <code>create_nodes()</code> function. It's similar in principle to the base <strong>R</strong> <code>data.frame()</code> function except that it adds in the following conveniences for graph diagram work:
                         <ul>
                             <li>single values are repeated for n number of nodes supplied</li>
                             <li>selective setting of attributes (e.g., giving attr values for 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)</li>
                             <li>supplying overlong vectors for attributes will result in trimming down to the number of nodes</li>
                             <li>setting <code>label = FALSE</code> will conveniently result in a non-labeled node</li>
                         </ul>
-                    <p>There may be occasion to combine several of these data frames into a single node data frame. This can be done with the <code>combine_nodes</code> function (which works much like <code>rbind</code> except that it accepts data frames with columns differing in number, names, and ordering).</p>
+                    <p>There may be occasion to combine several of these data frames into a single node data frame. This can be done with the <code>combine_nodes()</code> function (which works much like <code>rbind()</code> except that it accepts data frames with columns differing in number, names, and ordering).</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -265,7 +265,7 @@ all_nodes
                             <li><code>tailport</code> &mdash; a cardinal direction for where the tail is emitted from the node</li>
                             <li><code>tooltip</code> &mdash; provide text here for an edge tooltip</li>
                         </ul>
-                    <p>Use the <code>create_edges</code> function to create data frames for edges and their attributes. Data frames for edge definitions and their associated attributes can then be safely combined using the <code>combine_edges</code> function.</p>
+                    <p>Use the <code>create_edges()</code> function to create data frames for edges and their attributes. Data frames for edge definitions and their associated attributes can then be safely combined using the <code>combine_edges()</code> function.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -328,8 +328,8 @@ all_edges
                     <h2 id="create-render-graph">Create and Render Graph</h2>
                     <p>Eventually, you'll want to make a graph and then see that graph. There are 2 functions that make graph creation and viewing possible:</p>
                     <ul>
-                            <li><code>create_graph</code> <em>Create a graph object using data frames representative of nodes and edges</em></li>
-                            <li><code>render_graph</code> <em>Render the graph or output in various formats</em></li>
+                            <li><code>create_graph()</code> <em>Create a graph object using data frames representative of nodes and edges</em></li>
+                            <li><code>render_graph()</code> <em>Render the graph or output in various formats</em></li>
                     </ul>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -346,32 +346,32 @@ all_edges
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>With the <code>create_graph</code> function, it's possible to generate a graph diagram object without interacting directly with <strong>DOT</strong> code. The function has the following options:</p>
+                    <p>With the <code>create_graph()</code> function, it's possible to generate a graph diagram object without interacting directly with <strong>DOT</strong> code. The function has the following options:</p>
 <div>
 <pre><code>create_graph(
     nodes_df,     # provide the name of the data frame with node info
     edges_df,     # provide the name of the data frame with edge info
-    graph_attrs,  # provide a vector of 'graph' attributes
-    node_attrs,   # provide a vector of 'node' attributes as defaults
-    edge_attrs,   # provide a vector of 'edge' attributes as defaults
-    directed      # is the graph to be directed or undirected? Choose TRUE or FALSE
+    graph_attrs,  # provide a vector of `graph` attributes
+    node_attrs,   # provide a vector of `node` attributes as defaults
+    edge_attrs,   # provide a vector of `edge` attributes as defaults
+    directed      # is the graph to be directed or undirected? Choose
+                  # `TRUE` or `FALSE`
     )
 </code></pre>
                     </div>
-                    <p>The <code>create_graph</code> function returns a <code>gv_graph</code> object, which can be used by additional processing functions.</p>
-                    <p>The <code>render_graph</code> function allows for both visualizing the graph object and creating output files:</p>
+                    <p>The <code>create_graph()</code> function returns a <code>dgr_graph</code> object, which can be used by additional processing functions.</p>
+                    <p>The <code>render_graph()</code> function allows for both visualizing the graph object and creating output files:</p>
                     <div>
 <pre><code>render_graph(
-    graph,   # a 'gv_graph' object, created using the 'create_graph' function
-    output,  # a string specifying the output type; 'graph' (the default) renders
-             # the graph, 'DOT' outputs DOT code for the graph, and 'SVG' provides
-             # SVG code for the rendered graph
+    graph,   # a 'dgr_graph' object, created using the `create_graph()` function
+    output,  # a string specifying the output type; `graph` (the default) renders
+             # the graph and `DOT` outputs DOT code for the graph
     width,   # optionally set a width in pixels
     height   # optionally set a height in pixels
     )
 </code></pre>
                     </div>
-                    <p>For a first, simple example we can create an empty graph by using the <code>create_graph</code> function and supplying no arguments. This may be useful for initializing a graph object and then adding nodes and edges using functions such as <code>add_node</code> and <code>add_edge</code>.</p>
+                    <p>For a first, simple example we can create an empty graph by using the <code>create_graph()</code> function and supplying no arguments. This may be useful for initializing a graph object and then adding nodes and edges using functions such as <code>add_node()</code> and <code>add_edge()</code>.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -406,10 +406,10 @@ graph
 #> [1] "digraph {\n\n}"
 #>
 #> attr(,"class")
-#> [1] "gv_graph"</code></pre>
+#> [1] "dgr_graph"</code></pre>
                         </div>
                     </div>
-<p>This next example will include just nodes in a graph object, and, quite often you'll want to have node or edge attributes that should apply to all nodes and edges in the graph. For that there's no need to create columns for those shared attributes (where you might repeat attribute values through all rows of a node or edge data frame). Instead, supply vectors of attribute statements for the <code>node_attrs</code> or <code>edge_attrs</code> arguments in the <code>create_graph</code> function. In this example, a graph containing just nodes will be created.</p>
+<p>This next example will include just nodes in a graph object, and, quite often you'll want to have node or edge attributes that should apply to all nodes and edges in the graph. For that there's no need to create columns for those shared attributes (where you might repeat attribute values through all rows of a node or edge data frame). Instead, supply vectors of attribute statements for the <code>node_attrs</code> or <code>edge_attrs</code> arguments in the <code>create_graph()</code> function. In this example, a graph containing just nodes will be created.</p>
 <div class="bs-example">
                         <img src="img/graph-functions/nodes_only_example.png" class="img-responsive center-block">
                     </div>
@@ -461,7 +461,7 @@ graph
 #> [1] "digraph {\n\n  'a' [label = ' ', style = 'filled',...
 #>
 #> attr(,"class")
-#> [1] "gv_graph"
+#> [1] "dgr_graph"
 
 # View the graph in the RStudio Viewer
 render_graph(graph)</code></pre>
@@ -535,13 +535,13 @@ graph
 #> [1] "digraph {\n\ngraph [rankdir = LR]\n\nnode [fontnam...
 #>
 #> attr(,"class")
-#> [1] "gv_graph"
+#> [1] "dgr_graph"
 
 # View the graph in the RStudio Viewer
 render_graph(graph)</code></pre>
                         </div>
                     </div>
-                    <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>twopi</code> and this provides for a radically different layout of nodes than the standard method. Also, because we are using sampling in this example, setting a seed with <code>set.seed</code> will make the example reproducible.</p>
+                    <p>The graph attributes can be set in a similar manner by supplying a vector to the <code>graph_attrs</code> argument. In the next rendering, the layout engine is set to <code>twopi</code> and this provides for a radically different layout of nodes than the standard method. Also, because we are using sampling in this example, setting a seed with <code>set.seed()</code> will make the example reproducible.</p>
                     <div class="bs-example">
                         <img src="img/graph-functions/LETTERS_example.png" class="img-responsive center-block">
                     </div>
@@ -587,8 +587,8 @@ graph &lt;-
 render_graph(graph)</code></pre>
                         </div>
                     </div>
-                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph</code> to <code>render_graph</code>. The <strong>pipeR</strong> package provides a forward pipe with the <code>%>>%</code> operator. With <strong>magrittr</strong>, use <code>%>%</code> instead.</p>
-                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph</code> function. Here's a simple example:</p>
+                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph()</code> to <code>render_graph()</code>. The <strong>magrittr</strong> package provides a forward pipe with the <code>%>%</code> operator. With <strong>pipeR</strong>, use <code>%>>%</code> instead.</p>
+                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph()</code> function. Here's a simple example:</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -616,7 +616,7 @@ edges &lt;-
                to = sample(LETTERS, replace = TRUE),
                rel = "letter_to_letter")
 
-# Use the pipeR %>>% operator between 'create_graph',
+# Use the magrittr %>% operator between 'create_graph',
 # and 'render_graph' or 'display_graph_object' calls
 create_graph(nodes_df = nodes,
              edges_df = edges,
@@ -624,7 +624,7 @@ create_graph(nodes_df = nodes,
              node_attrs = c("fontname = Helvetica",
                             "style = filled"),
              edge_attrs = c("color = gray20",
-                            "arrowsize = 0.5")) %>>%
+                            "arrowsize = 0.5")) %>%
   render_graph
 
 create_graph(nodes_df = nodes,
@@ -633,10 +633,10 @@ create_graph(nodes_df = nodes,
              node_attrs = c("fontname = Helvetica",
                             "style = filled"),
              edge_attrs = c("color = gray20",
-                            "arrowsize = 0.5")) %>>%
+                            "arrowsize = 0.5")) %>%
   display_graph_object
 
-# Use pipeR %>>% operator between 'create_graph',
+# Use the %>% operator between 'create_graph',
 # 'render_graph', and 'cat' calls; the 'dot.gv' can be
 # directly opened in Rstudio and further edited
 create_graph(nodes_df = nodes,
@@ -645,26 +645,26 @@ create_graph(nodes_df = nodes,
              node_attrs = c("fontname = Helvetica",
                             "style = filled"),
              edge_attrs = c("color = gray20",
-                            "arrowsize = 0.5")) %>>%
-  render_graph(output = "DOT") %>>% cat(file = "~/dot.gv")</code></pre>
+                            "arrowsize = 0.5")) %>%
+  render_graph(output = "DOT") %>% cat(file = "~/dot.gv")</code></pre>
                         </div>
                     </div>
                     <h2 id="inspecting-the-graph">Inspecting the Graph</h2>
                     <p>Knowing what's in the graph is important. Several functions allow you to get information about the current state of the graph object. You can get very general information about the graph's node or edges, or, more specific information such as the predecessors and successors for a certain node in the graph</p>
                     <p>There are 12 functions that can be used to inspect graphs:</p>
                     <ul>
-                            <li><code>node_info</code> <em>Get detailed information on nodes</em></li>
-                            <li><code>edge_info</code> <em>Get detailed information on edges</em></li>
-                            <li><code>node_present</code> <em>Determine whether a specified node is present in an existing graph object</em></li>
-                            <li><code>edge_present</code> <em>Determine whether a specified edge is present in an existing graph object</em></li>
-                            <li><code>get_nodes</code> <em>Get vector of node IDs</em></li>
-                            <li><code>get_edges</code> <em>Get node IDs associated with edges</em></li>
-                            <li><code>get_predecessors</code> <em>Get node IDs for predecessor nodes to the specified node</em></li>
-                            <li><code>get_successors</code> <em>Get node IDs for successor nodes to the specified node</em></li>
-                            <li><code>node_count</code> <em>Get count of all nodes or certain types of nodes</em></li>
-                            <li><code>edge_count</code> <em>Get count of all edges or edges with distinct relationship types</em></li>
-                            <li><code>is_graph_empty</code> <em>Is the graph empty?</em></li>
-                            <li><code>is_graph_directed</code> <em>Is the graph a directed graph?</em></li>
+                            <li><code>node_info()</code> <em>Get detailed information on nodes</em></li>
+                            <li><code>edge_info()</code> <em>Get detailed information on edges</em></li>
+                            <li><code>node_present()</code> <em>Determine whether a specified node is present in an existing graph object</em></li>
+                            <li><code>edge_present()</code> <em>Determine whether a specified edge is present in an existing graph object</em></li>
+                            <li><code>get_nodes()</code> <em>Get vector of node IDs</em></li>
+                            <li><code>get_edges()</code> <em>Get node IDs associated with edges</em></li>
+                            <li><code>get_predecessors()</code> <em>Get node IDs for predecessor nodes to the specified node</em></li>
+                            <li><code>get_successors()</code> <em>Get node IDs for successor nodes to the specified node</em></li>
+                            <li><code>node_count()</code> <em>Get count of all nodes or certain types of nodes</em></li>
+                            <li><code>edge_count()</code> <em>Get count of all edges or edges with distinct relationship types</em></li>
+                            <li><code>is_graph_empty()</code> <em>Is the graph empty?</em></li>
+                            <li><code>is_graph_directed()</code> <em>Is the graph a directed graph?</em></li>
                     </ul>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -742,7 +742,7 @@ create_graph(nodes_df = nodes,
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
 
-                    <p>The <code>node_info</code> and <code>edge_info</code> functions provide information about the nodes and edges in the graph. The information is presented in the form of a data frame. For <code>node_info</code>, the following data is returned:</p>
+                    <p>The <code>node_info()</code> and <code>edge_info()</code> functions provide information about the nodes and edges in the graph. The information is presented in the form of a data frame. For <code>node_info()</code>, the following data is returned:</p>
                         <ul>
                             <li><code>node</code></li>
                             <li><code>label</code></li>
@@ -752,18 +752,18 @@ create_graph(nodes_df = nodes,
                             <li><code>outdegree</code></li>
                             <li><code>loops</code></li>
                         </ul>
-                    <p>From the <code>edge_info</code> function, the resultant data frame has the following columns:</p>
+                    <p>From the <code>edge_info()</code> function, the resultant data frame has the following columns:</p>
                         <ul>
-                            <li><code>edge_from</code></li>
-                            <li><code>edge_to</code></li>
+                            <li><code>from</code></li>
+                            <li><code>to</code></li>
                             <li><code>rel</code></li>
                             <li><code>label</code></li>
                         </ul>
-                    <p>The <code>node_present</code> and <code>edge_present</code> functions are used to determine whether a node (based on its node ID) or an edge (based on two node IDs) is present in a graph object. Both functions return a logical value of either <code>TRUE</code> or <code>FALSE</code>.</p>
-                    <p>The purpose of the <code>get_nodes</code> and <code>get_edges</code> functions is to return either all of the nodes or edges (i.e., pairs of nodes, ordered by direction) available in the graph, or, in data frames for nodes or edges. For <code>get_nodes</code>, one can simply supply either a graph object, a data frame for nodes, or a data frame for edges, and a vector of node IDs will be returned. For the <code>get_edges</code> function, there is an additional argument called <code>return_type</code>, where you can specify three different types of return objects: a list with <code>return_type = list</code>, a data frame with <code>return_type = df</code>, and a character vector with <code>return_type = vector</code>. Whereas <code>get_nodes</code> works with graph objects and data frames for nodes and edges, <code>get_edges</code> works only with graph objects and data frames for node data.</p>
-                    <p>The <code>get_predecessors</code> and <code>get_successors</code> function take both a graph object and a specified node in that graph and determine which nodes are its predecessors or successors, respectively.</p>
-                    <p>To get a count of all or certain types of nodes available in the graph, you can use the <code>node_count</code> function. The argument <code>type</code> can either be supplied with a <code>TRUE</code> or <code>FALSE</code> value, or, a character vector containing the values for the node type which may be available for nodes in the graph. Providing <code>TRUE</code> will issue a named vector of node counts by their type. Any nodes with a <code>type</code> attribute not set with a value are placed into a separate count category. Using <code>type = FALSE</code> with <code>node_count</code> simply supplied a single-value vector with a total count of nodes in the graph. By providing a vector of character values of available node <code>type</code> values, a numerical named vector of counts for only those specified types will be returned.</p>
-                    <p>The <code>is_graph_empty</code> and <code>is_graph_directed</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> for whether the graph is empty or whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that may toggle the graph between directed and undirected states.</p>
+                    <p>The <code>node_present()</code> and <code>edge_present()</code> functions are used to determine whether a node (based on its node ID) or an edge (based on two node IDs) is present in a graph object. Both functions return a logical value of either <code>TRUE</code> or <code>FALSE</code>.</p>
+                    <p>The purpose of the <code>get_nodes()</code> and <code>get_edges()</code> functions is to return either all of the nodes or edges (i.e., pairs of nodes, ordered by direction) available in the graph, or, in data frames for nodes or edges. For <code>get_nodes()</code>, one can simply supply either a graph object, a data frame for nodes, or a data frame for edges, and a vector of node IDs will be returned. For the <code>get_edges()</code> function, there is an additional argument called <code>return_type</code>, where you can specify three different types of return objects: a list with <code>return_type = list</code>, a data frame with <code>return_type = df</code>, and a character vector with <code>return_type = vector</code>. Whereas <code>get_nodes()</code> works with graph objects and data frames for nodes and edges, <code>get_edges()</code> works only with graph objects and node data frames.</p>
+                    <p>The <code>get_predecessors()</code> and <code>get_successors()</code> function take both a graph object and a specified node in that graph and determine which nodes are its predecessors or successors, respectively.</p>
+                    <p>To get a count of all or certain types of nodes available in the graph, you can use the <code>node_count()</code> function. The argument <code>type</code> can either be supplied with a <code>TRUE</code> or <code>FALSE</code> value, or, a character vector containing the values for the node type which may be available for nodes in the graph. Providing <code>TRUE</code> will issue a named vector of node counts by their type. Any nodes with a <code>type</code> attribute not set with a value are placed into a separate count category. Using <code>type = FALSE</code> with <code>node_count()</code> simply supplies a single-value vector with a total count of nodes in the graph. By providing a vector of character values of available node <code>type</code> values, a numerical named vector of counts for only those specified types will be returned.</p>
+                    <p>The <code>is_graph_empty()</code> and <code>is_graph_directed()</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> for whether the graph is empty or whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that may toggle the graph between directed and undirected states.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -989,12 +989,12 @@ node_count(graph, type = FALSE)
                     <p>Add nodes, delete edges, modify relationships between nodes, and set node type declarations. Those are some of the things you can do with these graph construction/destruction functions.</p>
                     <p>There are 6 functions with which one can modify graphs:</p>
                     <ul>
-                            <li><code>add_node</code> <em>Add a node to an existing graph object</em></li>
-                            <li><code>add_edge</code> <em>Add edges to an existing graph object</em></li>
-                            <li><code>delete_node</code> <em>Delete a node from an existing graph object</em></li>
-                            <li><code>delete_edge</code> <em>Delete an edge from an existing graph object</em></li>
-                            <li><code>node_type</code> <em>Create, read, update, delete, or report status of a node type definition</em></li>
-                            <li><code>edge_rel</code> <em>Create, read, update, delete, or report status of an edge relationship</em></li>
+                            <li><code>add_node()</code> <em>Add a node to an existing graph object</em></li>
+                            <li><code>add_edge()</code> <em>Add edges to an existing graph object</em></li>
+                            <li><code>delete_node()</code> <em>Delete a node from an existing graph object</em></li>
+                            <li><code>delete_edge()</code> <em>Delete an edge from an existing graph object</em></li>
+                            <li><code>node_type()</code> <em>Create, read, update, delete, or report status of a node type definition</em></li>
+                            <li><code>edge_rel()</code> <em>Create, read, update, delete, or report status of an edge relationship</em></li>
                     </ul>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -1035,17 +1035,17 @@ node_count(graph, type = FALSE)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>The <code>add_node</code> function allows one to add a single node to a graph. Specify the graph to which the node should be added and the node ID for the <code>node</code> argument, and a node will be added. While the other arguments are optional, using just <code>graph</code> and <code>node</code> will result in the addition of an unconnected node. This might be desirable (say, if the graph is empty), but the more likely case is that edges to other nodes will be required upon addition of a new node. The <code>from</code> and <code>to</code> arguments (both optional) are where you would specify connections from existing nodes to the new node (with <code>to</code>), and connections to existing nodes from the new node (with <code>from</code>). A vector of node IDs can be supplied to either argument. The <code>label</code> and <code>type</code> arguments allow for direct setting of these node attributes during the addition of a node. Finally, a named vector of node attributes and their values can be included in the <code>add_node</code> call.</p>
-                    <p>The <code>add_edge</code> function is meant for adding edges between extant graph nodes. Because the nodes must exist in the graph, this function cannot be invoked for an empty graph. (It can, however, be used for a graph with a single node since an edge can be created as a loop from and to the same node.) there are two means to add edges to a graph with this function:</p>
+                    <p>The <code>add_node()</code> function allows one to add a single node to a graph. Specify the graph to which the node should be added and the node ID for the <code>node</code> argument, and a node will be added. While the other arguments are optional, using just <code>graph</code> and <code>node</code> will result in the addition of an unconnected node. This might be desirable (say, if the graph is empty), but the more likely case is that edges to other nodes will be required upon addition of a new node. The <code>from</code> and <code>to</code> arguments (both optional) are where you would specify connections from existing nodes to the new node (with <code>to</code>), and connections to existing nodes from the new node (with <code>from</code>). A vector of node IDs can be supplied to either argument. The <code>label</code> and <code>type</code> arguments allow for direct setting of these node attributes during the addition of a node. Finally, a named vector of node attributes and their values can be included in the <code>add_node()</code> call.</p>
+                    <p>The <code>add_edge()</code> function is meant for adding edges between extant graph nodes. Because the nodes must exist in the graph, this function cannot be invoked for an empty graph. (It can, however, be used for a graph with a single node since an edge can be created as a loop from and to the same node.) there are two means to add edges to a graph with this function:</p>
                     <ol>
                       <li>specify <code>from</code> and <code>to</code> nodes for the edge to be added; add an edge <code>rel</code> string as a value for the <code>rel</code> argument</li>
                       <li>supply a data frame for edges, which contains columns for incoming and outgoing nodes, and, various edge attributes</li>
                     </ol>
                     <p>It can be advantageous to supply a data frame for edges to this function's <code>edges_df</code> argument. This simply because one can supply a range of edge attributes for the new edge. On the other hand, providing only values to the <code>from</code>, <code>to</code>, and <code>rel</code> arguments may be sufficient, especially if styling if not required or handled through default edge attributes.</p>
-                    <p>The function <code>delete_node</code> removes a node from the graph. All of the removed node's edges with other nodes in the graph will also be removed in this operation. Supply only a single node ID to the <code>node</code> argument.</p>
-                    <p>The function <code>delete_edge</code> removes an edge from the graph. Specify the graph object in <code>graph</code>, the nodes in <code>nodes</code>, and the function will remove that edge if it exists.</p>
-                    <p>The <code>node_type</code> function provides various means to check the <code>type</code> attribute for a node and perform different operations on that attribute. The different functionalities of <code>node_type</code> can be changed through the use of these different keywords for the <code>action</code> argument: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code>. With <code>read</code> set as the action, a node ID supplied with the graph object yields that node's <code>type</code> attribute. Using <code>action = check</code> with a node ID, you can check whether a <code>type</code> attribute exists (it will return <code>TRUE</code> or <code>FALSE</code>. If the <code>type</code> attribute hasn't been set for a node, you can add that using <code>action = add</code> along with a string supplied for the <code>value</code> argument. If a <code>type</code> attribute has alredy been set for a node and you'd like to change it, use <code>action = update</code> and include the updated string with the <code>value</code> argument. Deleting a <code>type</code> attribute for a node is easily accomplished by using <code>action = delete</code>.</p>
-                    <p>The <code>edge_rel</code> function is similar in principle and use to the <code>node_type</code> function. In this function, the edge's <code>rel</code> attribute can be checked for existence, added, removed, or updated. As with the <code>node_type</code> function, this function uses the <code>action</code> argument and performs various actions with these keywords: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code> (same keywords as those for <code>node_type</code>. Using <code>read</code>, supply node IDs for the <code>from</code> and <code>to</code> arguments. With that, you will receive the edge's currently set <code>rel</code> attribute. The <code>rel</code> attribute may or may not be set, so, using <code>action = check</code> with a specified edge, the existence of the <code>rel</code> attribute can be verified through a <code>TRUE</code> or <code>FALSE</code> return value. An unset <code>rel</code> attribute for an edge can be set by using <code>action = add</code> and a character string for the <code>value</code> argument. To update an already set <code>rel</code> attribute for an edge, use <code>action = update</code> and provide the updated relationship string with the <code>value</code> argument. Deleting a <code>rel</code> attribute for an edge is done by using <code>action = delete</code> with an edge.</p>
+                    <p>The function <code>delete_node()</code> removes a node from the graph. All of the removed node's edges with other nodes in the graph will also be removed in this operation. Supply only a single node ID to the <code>node</code> argument.</p>
+                    <p>The function <code>delete_edge()</code> removes an edge from the graph. Specify the graph object in <code>graph</code>, the nodes in <code>nodes</code>, and the function will remove that edge if it exists.</p>
+                    <p>The <code>node_type()</code> function provides various means to check the <code>type</code> attribute for a node and perform different operations on that attribute. The different functionalities of <code>node_type</code> can be changed through the use of these different keywords for the <code>action</code> argument: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code>. With <code>read</code> set as the action, a node ID supplied with the graph object yields that node's <code>type</code> attribute. Using <code>action = check</code> with a node ID, you can check whether a <code>type</code> attribute exists (it will return <code>TRUE</code> or <code>FALSE</code>. If the <code>type</code> attribute hasn't been set for a node, you can add that using <code>action = add</code> along with a string supplied for the <code>value</code> argument. If a <code>type</code> attribute has alredy been set for a node and you'd like to change it, use <code>action = update</code> and include the updated string with the <code>value</code> argument. Deleting a <code>type</code> attribute for a node is easily accomplished by using <code>action = delete</code>.</p>
+                    <p>The <code>edge_rel()</code> function is similar in principle and use to the <code>node_type()</code> function. In this function, the edges' <code>rel</code> attribute can be checked for existence, added, removed, or updated. As with the <code>node_type()</code> function, this function uses the <code>action</code> argument and performs various actions with these keywords: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code> (same keywords as those for <code>node_type()</code>). Using <code>read</code>, supply node IDs for the <code>from</code> and <code>to</code> arguments. With that, you will receive the edge's currently set <code>rel</code> attribute. The <code>rel</code> attribute may or may not be set, so, using <code>action = check</code> with a specified edge, the existence of the <code>rel</code> attribute can be verified through a <code>TRUE</code> or <code>FALSE</code> return value. An unset <code>rel</code> attribute for an edge can be set by using <code>action = add</code> and a character string for the <code>value</code> argument. To update an already set <code>rel</code> attribute for an edge, use <code>action = update</code> and provide the updated relationship string with the <code>value</code> argument. Deleting a <code>rel</code> attribute for an edge is done by using <code>action = delete</code> with an edge.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">library(DiagrammeR)
@@ -1121,14 +1121,14 @@ edge_info(graph)
                     <p>There may be situations where multiple graphs are required for analysis. A convenient means to work with several graphs is with the graph series object, which serializes graph objects. The time and sequence properties of the contained graphs can be used for subsetting. Scripts can be triggered for the series that allow for things such as data collection and creation of multiple graphs within the series object.</p>
                     <p>There are 8 functions available for working with a graph series:</p>
                     <ul>
-                            <li><code>create_series</code> <em>Create a graph series object</em></li>
-                            <li><code>add_to_series</code> <em>Add graph object to a graph series object</em></li>
-                            <li><code>remove_from_series</code> <em>Remove graph object from a graph series object</em></li>
-                            <li><code>graph_count</code> <em>Count graphs in a graph series object</em></li>
-                            <li><code>subset_series</code> <em>Subset a graph series object</em></li>
-                            <li><code>trigger_script</code> <em>Trigger a script embedded in a graph series object</em></li>
-                            <li><code>render_graph_from_series</code> <em>Render a graph available in a series</em></li>
-                            <li><code>series_info</code> <em>Get detailed information on a graph series</em></li>
+                            <li><code>create_series()</code> <em>Create a graph series object</em></li>
+                            <li><code>add_to_series()</code> <em>Add graph object to a graph series object</em></li>
+                            <li><code>remove_from_series()</code> <em>Remove graph object from a graph series object</em></li>
+                            <li><code>graph_count()</code> <em>Count graphs in a graph series object</em></li>
+                            <li><code>subset_series()</code> <em>Subset a graph series object</em></li>
+                            <li><code>trigger_script()</code> <em>Trigger a script embedded in a graph series object</em></li>
+                            <li><code>render_graph_from_series()</code> <em>Render a graph available in a series</em></li>
+                            <li><code>series_info()</code> <em>Get detailed information on a graph series</em></li>
                     </ul>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -1181,7 +1181,7 @@ edge_info(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                <p>The following example demonstrates how to create a series object with an existing graph object using the <code>create_series</code> and <code>add_to_series</code> functions. Since we'd likely want to be able to remove graphs from a series, the <code>remove_from_series</code> function will be used. The use of <code>count_graphs</code> and <code>series_info</code> allows us to get information about the graph series object: <code>count_graphs</code> returns a simple count of graph objects are present in a graph series, and <code>series_info</code> yields a data frame with basic information about each graph object present in the graph series.</p>
+                <p>The following example demonstrates how to create a series object with an existing graph object using the <code>create_series()</code> and <code>add_to_series()</code> functions. Since we'd likely want to be able to remove graphs from a series, the <code>remove_from_series()</code> function will be used. The use of <code>count_graphs()</code> and <code>series_info()</code> allows us to get information about the graph series object: <code>count_graphs()</code> returns a simple count of graph objects are present in a graph series, and <code>series_info()</code> yields a data frame with basic information about each graph object present in the graph series.</p>
                 <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">#####
@@ -1192,16 +1192,16 @@ library(DiagrammeR)
 library(pipeR)
 
 # Create three different graphs
-graph_1 &lt;- create_graph() %>>%
-  add_node("a") %>>% add_node("b") %>>% add_node("c") %>>%
+graph_1 &lt;- create_graph() %>%
+  add_node("a") %>% add_node("b") %>% add_node("c") %>%
   add_edge(from = c("a", "a", "b"),
             to =   c("c", "b", "c"))
 
-graph_2 &lt;- graph_1 %>>%
-  add_node("d") %>>% add_edge(from = "d", to = "c")
+graph_2 &lt;- graph_1 %>%
+  add_node("d") %>% add_edge(from = "d", to = "c")
 
-graph_3 &lt;- graph_2 %>>%
-  add_node("e") %>>% add_edge(from = "e", to = "b")
+graph_3 &lt;- graph_2 %>%
+  add_node("e") %>% add_edge(from = "e", to = "b")
 
 # Create an empty graph series
 series &lt;- create_series(series_type = "sequential")
@@ -1211,9 +1211,9 @@ graph_count(series)
 #> [1] 0
 
 # Add graphs to the graph series
-series &lt;- graph_1 %>>% add_to_series(series)
-series &lt;- graph_2 %>>% add_to_series(series)
-series &lt;- graph_3 %>>% add_to_series(series)
+series &lt;- graph_1 %>% add_to_series(series)
+series &lt;- graph_2 %>% add_to_series(series)
+series &lt;- graph_3 %>% add_to_series(series)
 
 # Count the number of graphs in the series
 graph_count(series)
@@ -1235,7 +1235,7 @@ graph_count(series)
 #> [1] 1</code></pre>
                         </div>
                     </div>
-                    <p>With the <code>subset_series</code> function you can create a graph series object that contains a subset of graphs. This is useful if you collect and process data into temporal graphs and you'd like to conduct an analysis over some time frame (e.g., graphs generated from collected data on weekdays vs. those graphs using data on weekend days). The <code>subset_series</code> function works well with both <code>sequential</code> and <code>temporal</code> graph series types.</p>
+                    <p>With the <code>subset_series()</code> function you can create a graph series object that contains a subset of graphs. This is useful if you collect and process data into temporal graphs and you'd like to conduct an analysis over some time frame (e.g., graphs generated from collected data on weekdays vs. those graphs using data on weekend days). The <code>subset_series()</code> function works well with both <code>sequential</code> and <code>temporal</code> graph series types.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">#####
@@ -1249,24 +1249,24 @@ library("pipeR")
 graph_time_1 &lt;-
   create_graph(graph_name = "graph_with_time_1",
                graph_time = "2015-03-25 03:00",
-               graph_tz = "GMT") %>>%
-  add_node("a") %>>% add_node("b") %>>% add_node("c") %>>%
+               graph_tz = "GMT") %>%
+  add_node("a") %>% add_node("b") %>% add_node("c") %>%
   add_edge(from = c("a", "a", "b"),
            to =   c("c", "b", "c"))
 
 graph_time_2 &lt;-
   create_graph(graph_name = "graph_with_time_2",
                graph_time = "2015-03-26 03:00",
-               graph_tz = "GMT") %>>%
-  add_node("d") %>>% add_node("e") %>>% add_node("f") %>>%
+               graph_tz = "GMT") %>%
+  add_node("d") %>% add_node("e") %>% add_node("f") %>%
   add_edge(from = c("d", "d", "e"),
            to =   c("f", "e", "f"))
 
 graph_time_3 &lt;-
   create_graph(graph_name = "graph_with_time_3",
                graph_time = "2015-03-27 15:00",
-               graph_tz = "GMT") %>>%
-  add_node("x") %>>% add_node("y") %>>% add_node("z") %>>%
+               graph_tz = "GMT") %>%
+  add_node("x") %>% add_node("y") %>% add_node("z") %>%
   add_edge(from = c("x", "x", "y"),
            to =   c("z", "y", "z"))
 
@@ -1275,9 +1275,9 @@ graph_time_3 &lt;-
 series_temporal &lt;- create_series(series_type = "temporal")
 
 # Add graphs to the graph series
-series_temporal &lt;- graph_time_1 %>>% add_to_series(series_temporal)
-series_temporal &lt;- graph_time_2 %>>% add_to_series(series_temporal)
-series_temporal &lt;- graph_time_3 %>>% add_to_series(series_temporal)
+series_temporal &lt;- graph_time_1 %>% add_to_series(series_temporal)
+series_temporal &lt;- graph_time_2 %>% add_to_series(series_temporal)
+series_temporal &lt;- graph_time_3 %>% add_to_series(series_temporal)
 
 # Subset graph series by sequence
 series_sequence_subset &lt;-
@@ -1300,7 +1300,7 @@ graph_count(series_time_subset)
 #> [1] 1</code></pre>
                         </div>
                     </div>
-                    <p>Because data collection and using rules to determine how the graph should be generated can be scripted, it makes sense to have those scripts close at hand and also to have the ability to periodically trigger those scripts. For this use case, the <code>trigger_script</code> function will prove useful. It simply runs a script contained in a graph series object, and, returns a modified graph series object. In the following example, a script is directly added to graph series object as a character vector. There is the option to instead use a reference to an **R** script on disk. This is done by supplying a path to the file (including the file name) in the <code>series_scripts</code> argument when calling the <code>create_series</code> function.</p>
+                    <p>Because data collection and using rules to determine how the graph should be generated can be scripted, it makes sense to have those scripts close at hand and also to have the ability to periodically trigger those scripts. For this use case, the <code>trigger_script()</code> function will prove useful. It simply runs a script contained in a graph series object, and, returns a modified graph series object. In the following example, a script is directly added to graph series object as a character vector. There is the option to instead use a reference to an **R** script on disk. This is done by supplying a path to the file (including the file name) in the <code>series_scripts</code> argument when calling the <code>create_series()</code> function.</p>
                     <p>In the following example, a script essentially takes an empty graph series and builds up a random graph, adding a new node and edges with each triggering of the script. On new days, the script will create a new graph and build that graph. Throughout the script, <code>_SELF_</code> refers to the graph series in which the script is contained.</p>
                     <div class="bs-example">
                         <img src="img/graph-functions/script_trigger_example.png" class="img-responsive center-block">
@@ -1555,7 +1555,7 @@ graph_attrs &lt;- c("layout = circo",
 # given day may be destinations on another day
 create_graph(nodes_df = nodes_df, edges_df = edges_df,
              graph_attrs = graph_attrs, node_attrs = node_attrs,
-             edge_attrs = edge_attrs, directed = TRUE) %>>%
+             edge_attrs = edge_attrs, directed = TRUE) %>%
                render_graph(width = 1200, height = 800)</code></pre>
                         </div>
                     </div>
