@@ -284,11 +284,11 @@ edges_1 &lt;-
                data = c(2.7, 8.9, 2.6, 0.6))
 
 edges_1
-#>   from to rel color data
-#> 1    a  b     requires green  2.7
-#> 2    a  d     requires green  8.9
-#> 3    b  d     requires green  2.6
-#> 4    c  a     requires green  0.6
+#>   from to      rel color data
+#> 1    a  b requires green  2.7
+#> 2    a  d requires green  8.9
+#> 3    b  d requires green  2.6
+#> 4    c  a requires green  0.6
 
 # Create another edge data frame
 edges_2 &lt;-
@@ -299,11 +299,11 @@ edges_2 &lt;-
                color = "red")
 
 edges_2
-#>   from to rel arrowhead color
-#> 1    e  g     receives       dot   red
-#> 2    g  h     receives       dot   red
-#> 3    h  f     receives       dot   red
-#> 4    h  e     receives       dot   red
+#>   from to      rel arrowhead color
+#> 1    e  g receives       dot   red
+#> 2    g  h receives       dot   red
+#> 3    h  f receives       dot   red
+#> 4    h  e receives       dot   red
 
 ###
 # Combine two data frames for edges
@@ -313,15 +313,15 @@ edges_2
 all_edges &lt;- combine_edges(edges_1, edges_2)
 
 all_edges
-#>   from to rel color data arrowhead
-#> 1    a  b     requires green  2.7
-#> 2    a  d     requires green  8.9
-#> 3    b  d     requires green  2.6
-#> 4    c  a     requires green  0.6
-#> 5    e  g     receives   red            dot
-#> 6    g  h     receives   red            dot
-#> 7    h  f     receives   red            dot
-#> 8    h  e     receives   red            dot
+#>   from to      rel color data arrowhead
+#> 1    a  b requires green  2.7
+#> 2    a  d requires green  8.9
+#> 3    b  d requires green  2.6
+#> 4    c  a requires green  0.6
+#> 5    e  g receives   red            dot
+#> 6    g  h receives   red            dot
+#> 7    h  f receives   red            dot
+#> 8    h  e receives   red            dot
 </code></pre>
                         </div>
                     </div>
@@ -514,10 +514,10 @@ graph
 #> 4     d       lower filled  aqua rectangle  2.7
 #>
 #> $edges_df
-#>   from to rel
-#> 1    a  d   leading_to
-#> 2    b  c   leading_to
-#> 3    c  a   leading_to
+#>   from to        rel
+#> 1    a  d leading_to
+#> 2    b  c leading_to
+#> 3    c  a leading_to
 #>
 #> $graph_attrs
 #> [1] NULL
@@ -812,17 +812,17 @@ is_graph_empty(graph)
 
 # Use the 'node_info' function to return a data frame
 node_info(graph)
-#>    node_ID label    type degree indegree outdegree loops
-#> 1        A     A  a_to_g      2        0         2     0
-#> 2        W     W  q_to_x      1        0         1     0
-#> 3        T     T  q_to_x      2        0         2     0
-#> 4        L     L  h_to_p      1        0         1     0
-#> 5        F     F  a_to_g      0        0         0     0
-#>..      ...   ...     ...    ...      ...       ...   ...
+#>    node label    type degree indegree outdegree loops
+#> 1     A     A  a_to_g      2        0         2     0
+#> 2     W     W  q_to_x      1        0         1     0
+#> 3     T     T  q_to_x      2        0         2     0
+#> 4     L     L  h_to_p      1        0         1     0
+#> 5     F     F  a_to_g      0        0         0     0
+#>..   ...   ...     ...    ...      ...       ...   ...
 
 # Use the 'edge_info' function to return a data frame
 edge_info(graph)
-#>    from  to     rel label
+#>    from  to              rel label
 #> 1     A   Z letter_to_letter  edge
 #> 2     H   U letter_to_letter  edge
 #> 3     W   O letter_to_letter  edge
@@ -1059,9 +1059,9 @@ graph &lt;- add_node(graph, node = "b")
 
 # Get information on all nodes in graph
 node_info(graph)
-#>   node_ID label type degree indegree outdegree loops
-#> 1       a     a   NA      0        0         0     0
-#> 2       b     b   NA      0        0         0     0
+#>   node label type degree indegree outdegree loops
+#> 1    a     a   NA      0        0         0     0
+#> 2    b     b   NA      0        0         0     0
 
 # Add an edge
 graph &lt;- add_edge(graph, from = "a", to = "b",
@@ -1069,8 +1069,8 @@ graph &lt;- add_edge(graph, from = "a", to = "b",
 
 # Get information on all edges in graph
 edge_info(graph)
-#>   edge_from edge_to    rel  label
-#> 1         a       b to_get     NA
+#>   from to    rel  label
+#> 1    a  b to_get     NA
 
 # Add two more nodes
 graph &lt;- add_node(graph, node = "c")
@@ -1078,11 +1078,11 @@ graph &lt;- add_node(graph, node = "d")
 
 # Get information on all nodes in graph
 node_info(graph)
-#>   node_ID label type degree indegree outdegree loops
-#> 1       a     a   NA      1        0         1     0
-#> 2       c     c   NA      0        0         0     0
-#> 3       d     d   NA      0        0         0     0
-#> 4       b     b   NA      1        1         0     0
+#>   node label type degree indegree outdegree loops
+#> 1    a     a   NA      1        0         1     0
+#> 2    c     c   NA      0        0         0     0
+#> 3    d     d   NA      0        0         0     0
+#> 4    b     b   NA      1        1         0     0
 
 # Add two more edges
 graph &lt;-
@@ -1093,28 +1093,28 @@ graph &lt;-
 
 # Get information on all edges in graph
 edge_info(graph)
-#>   edge_from edge_to           rel label
-#> 1         a       b        to_get    NA
-#> 2         a       c received_from    NA
-#> 3         a       d received_from    NA
+#>   from to           rel label
+#> 1    a  b        to_get    NA
+#> 2    a  c received_from    NA
+#> 3    a  d received_from    NA
 
 # Remove a node (removing a node removes its edges)
 graph &lt;- delete_node(graph, node = "d")
 
 # Get information on all nodes in graph
 node_info(graph)
-#>   node_ID label type degree indegree outdegree loops
-#> 1       a     a   NA      2        0         2     0
-#> 2       b     b   NA      1        1         0     0
-#> 3       c     c   NA      1        1         0     0
+#>   node label type degree indegree outdegree loops
+#> 1    a     a   NA      2        0         2     0
+#> 2    b     b   NA      1        1         0     0
+#> 3    c     c   NA      1        1         0     0
 
 # Remove an edge (removing an edge retains nodes)
 graph &lt;- delete_edge(graph, from = "a", to = "c")
 
 # Get information on all edges in graph
 edge_info(graph)
-#>   edge_from edge_to    rel label
-#> 1         a       b to_get    NA</code></pre>
+#>   from to    rel label
+#> 1    a  b to_get    NA</code></pre>
                         </div>
                     </div>
                     <h2 id="using-graph-series">Using a Series of Graphs</h2>
@@ -1510,10 +1510,10 @@ nycflights13_day &lt;-
          date_time >= ymd('2013-01-01', tz = "GMT") + days(day_of_year - 1) &
            date_time &lt; ymd('2013-01-01', tz = "GMT") + days(day_of_year))
 
-# Create the 'nodes' data frame where at least one column is named "nodes" or "node_id"
+# Create the 'nodes' data frame where at least one column is named `nodes`
 # Column 12 is the 3-letter code for the airport departing from
 # Column 13 is for the airport arriving to
-# (Option: change df to 'nycflights13_day' and only airports used for the day will be included)
+# (Option: change df to `nycflights13_day` and only airports used for the day will be included)
 nodes_df &lt;-
    create_nodes(nodes = unique(c(nycflights13[,12],
                                  nycflights13[,13])),
