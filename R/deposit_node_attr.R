@@ -1,4 +1,4 @@
-#' Get node attributes
+#' Deposit node attributes in the graph
 #' @description From a graph object of class \code{dgr_graph}, get node
 #' attribute properties for one or more nodes.
 #' @param graph a graph object of class \code{dgr_graph}.
