@@ -1,6 +1,7 @@
 #' Deposit node attributes in the graph
 #' @description From a graph object of class \code{dgr_graph}, get node
-#' attribute properties for one or more nodes.
+#' attribute properties for one or more nodes and deposit those values
+#' in the graph for later retrieval using \code{withdraw_values}.
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @param node_attr the node attribute from which to obtain values.
 #' @param mode a option to recast the returned vector of node attribute
