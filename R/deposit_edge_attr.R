@@ -61,6 +61,7 @@ deposit_edge_attr <- function(graph,
     }
   }
 
+  # Place vector of edge attributes as a deposit in the graph
   graph$deposit <- edges_attr_vector
 
   return(graph)
