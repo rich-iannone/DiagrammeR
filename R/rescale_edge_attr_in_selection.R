@@ -82,7 +82,7 @@ rescale_edge_attr_in_selection <- function(graph,
                   from = graph$selection$edges$from,
                   to = graph$selection$edges$to,
                   edge_attr = edge_attr_to,
-                  value = edges_attr_vector_rescaled)
+                  values = edges_attr_vector_rescaled)
 
   return(graph)
 }
