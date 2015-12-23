@@ -2,7 +2,7 @@
 % Please edit documentation in R/deposit_node_attr_from_selection.R
 \name{deposit_node_attr_from_selection}
 \alias{deposit_node_attr_from_selection}
-\title{Get node attributes based on a selection of nodes}
+\title{Deposit node attributes (based on a selection of nodes) in the graph}
 \usage{
 deposit_node_attr_from_selection(graph, node_attr, mode = NULL)
 }
@@ -20,6 +20,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get node
-attribute properties for nodes available in a selection.
+attribute properties for nodes available in a selection and deposit
+those values in the graph for later retrieval using \code{withdraw_values}.
 }
 

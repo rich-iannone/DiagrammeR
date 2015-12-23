@@ -2,7 +2,7 @@
 % Please edit documentation in R/deposit_edge_attr_from_selection.R
 \name{deposit_edge_attr_from_selection}
 \alias{deposit_edge_attr_from_selection}
-\title{Get edge attributes based on a selection of edges}
+\title{Deposit edge attributes (based on a selection of edges) in the graph}
 \usage{
 deposit_edge_attr_from_selection(graph, edge_attr, mode = NULL)
 }
@@ -20,6 +20,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get edge
-attribute properties for edges available in a selection.
+attribute properties for edges available in a selection and deposit
+those values in the graph for later retrieval using \code{withdraw_values}.
 }
 
