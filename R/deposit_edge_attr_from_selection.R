@@ -1,6 +1,7 @@
-#' Get edge attributes based on a selection of edges
+#' Deposit edge attributes (based on a selection of edges) in the graph
 #' @description From a graph object of class \code{dgr_graph}, get edge
-#' attribute properties for edges available in a selection.
+#' attribute properties for edges available in a selection and deposit
+#' those values in the graph for later retrieval using \code{withdraw_values}.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @param edge_attr the edge attribute from which to obtain values.
