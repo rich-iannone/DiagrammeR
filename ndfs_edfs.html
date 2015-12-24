@@ -274,47 +274,6 @@ all_nodes
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Combine two node data frames
-###
-
-library(DiagrammeR)
-
-# Create an ndf
-nodes_1 &lt;-
-  create_nodes(nodes = 1:4,
-               label = TRUE,
-               type = "lower",
-               data = c(8.2, 5.2, 1.2, 14.9))
-
-
-# Create another ndf
-nodes_2 &lt;-
-  create_nodes(nodes = 5:8,
-               label = TRUE,
-               type = "upper",
-               data = c(0.3, 6.3, 10.7, 1.2))
-
-# Combine the ndfs
-all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
-
-all_nodes
-#>   nodes  type label data
-#> 1     1 lower     1  8.2
-#> 2     2 lower     2  5.2
-#> 3     3 lower     3  1.2
-#> 4     4 lower     4 14.9
-#> 5     5 upper     5  0.3
-#> 6     6 upper     6  6.3
-#> 7     7 upper     7 10.7
-#> 8     8 upper     8  1.2
-</code></pre>
-                        </div>
-                    </div>
-
-                    <p>Use the <code>create_edges()</code> function to create data frames for edges and their attributes. Data frames for edge definitions and their associated attributes can then be safely combined using the <code>combine_edges()</code> function.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
 # Create two data frames for edges
 # Singly supplied attribute values are repeated down
 ###
