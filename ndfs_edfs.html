@@ -91,7 +91,7 @@
                     <h1 id="node-and-edge-data-frames" class="page-header">Node and Edge Data Frames</h1>
                     <p class="lead">These functions are used to create and manipulate specialized data frames: node data frames (<em>ndf</em>s) and edge data frames (<em>edf</em>s). The functions are useful because one can selectively add field data to these data frames and combine them as necessary before addition to a graph object.</p>
                     <h2 id="create_nodes">The `create_nodes` function</h2>
-                    <p>With the <code>create_nodes()</code> function, one can create a node data frame (<em>ndf</em>) with nodes and their attributes.</p>
+                    <p>With the <code>create_nodes()</code> function, one can create a node data frame (<em>ndf</em>) with nodes and their attributes. This object is really just an <strong>R</strong> <code>data.frame</code> object. In most cases, it's recommended to use <code>create_nodes()</code> instead of <code>data.frame()</code> (or, <code>as.data.frame()</code>) to create an <em>ndf</em>. Using <code>create_nodes()</code> allows for validation of the input data (so that the integrity of the graph is not comprimised) and the function provides some additional functionality that the base <strong>R</strong> functions for data frame creation do not have.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -123,7 +123,7 @@
                             <li><code>y</code> &mdash; the y position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                         </ul>
                     <h2 id="create_edges">The `create_edges` function</h2>
-                    <p>Using the <code>create_edges()</code> function, an edge data frame (edf) (comprising edges and their attributes) is created.</p>
+                    <p>Using the <code>create_edges()</code> function, an edge data frame (edf) (comprising edges and their attributes) is created. As with the <code>create_nodes()</code> function, the resulting object is an <strong>R</strong> <code>data.frame</code> object. While the usual means for creating data frames could be used to create an <em>edf</em>, the <code>create_edges()</code> function provides some conveniences and validation of the final object (e.g., checking for uniqueness of the supplied node ID values).</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -133,6 +133,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
+                    <p>Edges define the connections between nodes in a graph. So, in a sense, an edge data frame is a complementary component to the node data frame within a graph. Therefore, the edf contains node ID information in two columns named <code>from</code> and <code>to</code>.</p>
                     <p>When making a data frame for edge data, there are two columns that need to be present: one for the outgoing node edge (<code>from</code>), and, another for the incoming node edge (<code>to</code>). Each of the two columns should contain node IDs. As for the node data frame, attributes can be provided for edges. The following edge attributes can be used:</p>
                         <ul>
                             <li><code>arrowhead</code> &mdash; the arrow style at the head end (e.g, <code>normal</code>, <code>dot</code>)</li>
