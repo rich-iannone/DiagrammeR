@@ -89,9 +89,9 @@
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="node-and-edge-data-frames" class="page-header">Node and Edge Data Frames</h1>
-                    <p class="lead">These functions are used to create and manipulate specialized data frames: node data frames (ndfs) and edge data frames (edfs). The functions are useful because one can selectively add field data to these data frames and combine them as necessary before addition to a graph object.</p>
+                    <p class="lead">These functions are used to create and manipulate specialized data frames: node data frames (<em>ndf</em>s) and edge data frames (<em>edf</em>s). The functions are useful because one can selectively add field data to these data frames and combine them as necessary before addition to a graph object.</p>
                     <h2 id="create_nodes">The `create_nodes` function</h2>
-                    <p>With the <code>create_nodes()</code> function, one can create a node data frame (ndf) with nodes and their attributes.</p>
+                    <p>With the <code>create_nodes()</code> function, one can create a node data frame (<em>ndf</em>) with nodes and their attributes.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -101,7 +101,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>Both types of data frames are parsed and those column names that match attributes for either nodes (in the node data frame) or edges (in the edge data frame) will be used to provide attribute values on a per-node or per-edge basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a data frame for nodes, it's important to have at least one column named <code>nodes</code>. That's where unique values for the node ID should reside. As for other attribute columns, here are all of the node attribute names and the types of values to supply:</p>
+                    <p>When incorporated into a graph, an <em>ndf</em> is parsed and column names that match keywords for node attributes indicate to <strong>DiagrammeR</strong> that the values in such columns should provide attribute values on a per-node basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a node data frame, one column named <code>nodes</code> will be created (and it will be the first column in the <em>ndf</em>). That's where unique values for the node ID should reside. As for other attribute columns, the <code>type</code> and <code>label</code> columns will also be created. However, these do not necessarily need to be populated with values and thus they can be left blank, if desired. Other attributes are voluntarily added as named vectors for the <strong>R</strong> <em>triple-dot</em> (<code>...</code>) argument. Here are all of the node attribute names and the types of values to supply:</p>
                     <ul>
                             <li><code>color</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
                             <li><code>distortion</code> &mdash; the node distortion for any <code>shape = polygon</code></li>
