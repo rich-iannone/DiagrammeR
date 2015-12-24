@@ -129,6 +129,56 @@
                             <li><code>x</code> &mdash; the x position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                             <li><code>y</code> &mdash; the y position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                         </ul>
+                    <p>In the following examples, node data frames are created. There are a few worthwhile things to notice here. The nodes can be supplied as a character vector (as in <code>c("a", "b", "c", "d")</code>), or, as a range of integers (<code>1:4</code>). It may be a matter of preference, but the numbering system seems to be the better choice (and other functions available in the package will take advantage of a graph with ID values that are available as monotonically increasing integer values). Secondly, a single logical value can be supplied to the <code>label</code> argument, where <code>TRUE</code> copies the node ID to the label attribute, and <code>FALSE</code> yields a blank, unset value for all nodes in the <em>ndf</em>. Finally, the provision of single values in a call that creates more than a single node will result in all nodes having that attribute (e.g., <code>color = "aqua"</code> sets all nodes in the ndf with the 'aqua' color).</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create two data frames for nodes
+# Singly supplied attribute values are repeated down
+###
+
+library(DiagrammeR)
+
+# Create a node data frame
+nodes_1 &lt;-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               label = FALSE,
+               type = "lower",
+               style = "filled",
+               color = "aqua",
+               shape = c("circle", "circle",
+                         "rectangle", "rectangle"),
+               data = c(3.5, 2.6, 9.4, 2.7))
+
+# Inspect the `nodes_1` ndf
+nodes_1
+#>   nodes   type label  style color     shape data
+#> 1     a  lower       filled  aqua    circle  3.5
+#> 2     b  lower       filled  aqua    circle  2.6
+#> 3     c  lower       filled  aqua rectangle  9.4
+#> 4     d  lower       filled  aqua rectangle  2.7
+
+# Create another node data frame
+nodes_2 &lt;-
+  create_nodes(nodes = 1:4,
+               label = TRUE,
+               type = "upper",
+               style = "filled",
+               color = "red",
+               shape = "triangle",
+               data = c(0.5, 3.9, 3.7, 8.2))
+
+# Inspect the `nodes_2` ndf
+nodes_2
+#>   nodes  type label  style color    shape data
+#> 1     1 upper     1 filled   red triangle  0.5
+#> 2     2 upper     2 filled   red triangle  3.9
+#> 3     3 upper     3 filled   red triangle  3.7
+#> 4     4 upper     4 filled   red triangle  8.1
+
+</code></pre>
+                        </div>
+                    </div>
                     <h2 id="create_edges">The `create_edges` function</h2>
                     <p>Using the <code>create_edges()</code> function, an edge data frame (edf) (comprising edges and their attributes) is created. As with the <code>create_nodes()</code> function, the resulting object is an <strong>R</strong> <code>data.frame</code> object. While the usual means for creating data frames could be used to create an <em>edf</em>, the <code>create_edges()</code> function provides some conveniences and validation of the final object (e.g., checking for uniqueness of the supplied node ID values). Also, there is a special attribute for a edge called a <code>rel</code>, which is short for relationship. This is an optional attribute, so, it can be left blank. However, it's advantageous to have these types of group labels set for all edges, especially if the resulting graph is to be fashioned as a <em>property graph</em>. (The node <code>type</code> values must also be set for each node to model your graph as a property graph.)</p>
                         <div>
