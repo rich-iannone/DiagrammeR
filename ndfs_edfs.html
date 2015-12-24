@@ -219,7 +219,46 @@ nodes_2
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>There may be occasion to combine several <em>ndf</em>s into a single node data frame. The <code>combine_nodes()</code> function works much like the base <strong>R</strong> <code>rbind()</code> function except that it accepts <em>ndf</em>s with columns differing in number, names, and ordering. Obtaining several node data frames may result from collecting data from various sources, at different times (where the collected data is different), or, simply from multiple calls of <code>create_nodes()</code> for practical or readability purposes, to name a few examples.</p>
+                    <p>There may be occasion to combine several <em>ndf</em>s into a single node data frame. The <code>combine_nodes()</code> function works much like the base <strong>R</strong> <code>rbind()</code> function except that it accepts <em>ndf</em>s with columns differing in number, names, and ordering. Obtaining several node data frames may result from collecting data from various sources, at different times (where the collected data is different), or, simply from multiple calls of <code>create_nodes()</code> for practical or readability purposes, to name a few examples. Speaking of examples:</p>
+                                        <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Combine two node data frames
+###
+
+library(DiagrammeR)
+
+# Create an ndf
+nodes_1 &lt;-
+  create_nodes(nodes = 1:4,
+               label = TRUE,
+               type = "lower",
+               data = c(8.2, 5.2, 1.2, 14.9))
+
+
+# Create another ndf
+nodes_2 &lt;-
+  create_nodes(nodes = 5:8,
+               label = TRUE,
+               type = "upper",
+               data = c(0.3, 6.3, 10.7, 1.2))
+
+# Combine the ndfs
+all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
+
+all_nodes
+#>   nodes  type label data
+#> 1     1 lower     1  8.2
+#> 2     2 lower     2  5.2
+#> 3     3 lower     3  1.2
+#> 4     4 lower     4 14.9
+#> 5     5 upper     5  0.3
+#> 6     6 upper     6  6.3
+#> 7     7 upper     7 10.7
+#> 8     8 upper     8  1.2
+</code></pre>
+                        </div>
+                    </div>
                     <h2 id="combine_edges">The `combine_edges` function</h2>
                     <p>There may be cases where one might take data from one or more data frames and create multiple edge data frames. One can combine multiple edge data frames (<em>edf</em>s) with the <code>combine_edges()</code> function. Any number of <em>edf</em>s can be safely combined with one call of this function.</p>
                         <div>
@@ -235,64 +274,39 @@ nodes_2
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create two data frames for nodes
-# Singly supplied attribute values are repeated down
+# Combine two node data frames
 ###
 
 library(DiagrammeR)
 
-# Create a node data frame
+# Create an ndf
 nodes_1 &lt;-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               label = FALSE,
+  create_nodes(nodes = 1:4,
+               label = TRUE,
                type = "lower",
-               style = "filled",
-               color = "aqua",
-               shape = c("circle", "circle",
-                         "rectangle", "rectangle"),
-               data = c(3.5, 2.6, 9.4, 2.7))
+               data = c(8.2, 5.2, 1.2, 14.9))
 
-nodes_1
-#>   nodes label  type  style color     shape data
-#> 1     a       lower filled  aqua    circle  3.5
-#> 2     b       lower filled  aqua    circle  2.6
-#> 3     c       lower filled  aqua rectangle  9.4
-#> 4     d       lower filled  aqua rectangle  2.7
 
-# Create another node data frame
+# Create another ndf
 nodes_2 &lt;-
-  create_nodes(nodes = c("e", "f", "g", "h"),
-               label = FALSE,
+  create_nodes(nodes = 5:8,
+               label = TRUE,
                type = "upper",
-               style = "filled",
-               color = "red",
-               shape = "triangle",
-               data = c(0.5, 3.9, 3.7, 8.2))
+               data = c(0.3, 6.3, 10.7, 1.2))
 
-nodes_2
-#>   nodes label  type  style color    shape data
-#> 1     e       upper filled   red triangle  0.5
-#> 2     f       upper filled   red triangle  3.9
-#> 3     g       upper filled   red triangle  3.7
-#> 4     h       upper filled   red triangle  8.1
-
-###
-# Combine two data frames for nodes
-###
-
-# Combine node data frames with 'combine_nodes'
+# Combine the ndfs
 all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
 
 all_nodes
-#>   nodes label  type  style color     shape data
-#> 1     a       lower filled  aqua    circle  3.5
-#> 2     b       lower filled  aqua    circle  2.6
-#> 3     c       lower filled  aqua rectangle  9.4
-#> 4     d       lower filled  aqua rectangle  2.7
-#> 5     e       upper filled   red  triangle  0.5
-#> 6     f       upper filled   red  triangle  3.9
-#> 7     g       upper filled   red  triangle  3.7
-#> 8     h       upper filled   red  triangle  8.2
+#>   nodes  type label data
+#> 1     1 lower     1  8.2
+#> 2     2 lower     2  5.2
+#> 3     3 lower     3  1.2
+#> 4     4 lower     4 14.9
+#> 5     5 upper     5  0.3
+#> 6     6 upper     6  6.3
+#> 7     7 upper     7 10.7
+#> 8     8 upper     8  1.2
 </code></pre>
                         </div>
                     </div>
