@@ -132,8 +132,7 @@
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create two data frames for nodes
-# Singly supplied attribute values are repeated down
+# Create node data frames
 ###
 
 library(DiagrammeR)
@@ -189,8 +188,7 @@ nodes_2
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>Edges define the connections between nodes in a graph. So, in a sense, an edge data frame is a complementary component to the node data frame within a graph. Therefore, the edf contains node ID information in two columns named <code>from</code> and <code>to</code>.</p>
-                    <p>When making a data frame for edge data, there are two columns that need to be present: one for the outgoing node edge (<code>from</code>), and, another for the incoming node edge (<code>to</code>). Each of the two columns should contain node IDs. As for the node data frame, attributes can be provided for edges. The following edge attributes can be used:</p>
+                    <p>Edges define the connections between nodes in a graph. So, in a sense, an edge data frame is a complementary component to the node data frame within a graph. Therefore, the edf contains node ID information in two columns named <code>from</code> and <code>to</code>. So, when making an edge data frame, there are two equal-length vectors that need to be supplied to the <code>create_edges()</code> function: one for the outgoing node edge (<code>from</code>), and, another for the incoming node edge (<code>to</code>). Each of the two columns will contain node ID values. As for the node data frame, attributes can be provided for each of the edges. The following edge attributes can be used:</p>
                         <ul>
                             <li><code>arrowhead</code> &mdash; the arrow style at the head end (e.g, <code>normal</code>, <code>dot</code>)</li>
                             <li><code>arrowsize</code> &mdash; the scaling factor for the arrowhead and arrowtail</li>
@@ -207,6 +205,46 @@ nodes_2
                             <li><code>tailport</code> &mdash; a cardinal direction for where the tail is emitted from the node</li>
                             <li><code>tooltip</code> &mdash; provide text here for an edge tooltip</li>
                         </ul>
+                    <p>Here are a few examples of how edge data frames can be created:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create edge data frames
+###
+
+library(DiagrammeR)
+
+# Create an edge data frame
+edges_1 &lt;-
+  create_edges(from = c("a", "a", "b", "c"),
+               to = c("b", "d", "d", "a"),
+               rel = "requires",
+               color = "green",
+               data = c(2.7, 8.9, 2.6, 0.6))
+
+edges_1
+#>   from to      rel color data
+#> 1    a  b requires green  2.7
+#> 2    a  d requires green  8.9
+#> 3    b  d requires green  2.6
+#> 4    c  a requires green  0.6
+
+# Create another edge data frame
+edges_2 &lt;-
+  create_edges(from = c("e", "g", "h", "h"),
+               to = c("g", "h", "f", "e"),
+               rel = "receives",
+               arrowhead = "dot",
+               color = "red")
+
+edges_2
+#>   from to      rel arrowhead color
+#> 1    e  g receives       dot   red
+#> 2    g  h receives       dot   red
+#> 3    h  f receives       dot   red
+#> 4    h  e receives       dot   red
+</code></pre></div>
+                    </div>
                     <h2 id="combine_nodes">The `combine_nodes` function</h2>
                     <p>Several node data frames (<em>ndf</em>s) can be combined into one using the <code>combine_nodes()</code> function. You can combine two <em>ndf</em>s in a single call of <code>combine_nodes()</code>, or, combine even more in a single pass.</p>
                         <div>
@@ -273,8 +311,7 @@ all_nodes
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create two data frames for edges
-# Singly supplied attribute values are repeated down
+# Combine two edge data frames
 ###
 
 library(DiagrammeR)
@@ -287,13 +324,6 @@ edges_1 &lt;-
                color = "green",
                data = c(2.7, 8.9, 2.6, 0.6))
 
-edges_1
-#>   from to      rel color data
-#> 1    a  b requires green  2.7
-#> 2    a  d requires green  8.9
-#> 3    b  d requires green  2.6
-#> 4    c  a requires green  0.6
-
 # Create another edge data frame
 edges_2 &lt;-
   create_edges(from = c("e", "g", "h", "h"),
@@ -301,17 +331,6 @@ edges_2 &lt;-
                rel = "receives",
                arrowhead = "dot",
                color = "red")
-
-edges_2
-#>   from to      rel arrowhead color
-#> 1    e  g receives       dot   red
-#> 2    g  h receives       dot   red
-#> 3    h  f receives       dot   red
-#> 4    h  e receives       dot   red
-
-###
-# Combine two data frames for edges
-###
 
 # Combine edge data frames with 'combine_edges'
 all_edges &lt;- combine_edges(edges_1, edges_2)
