@@ -67,7 +67,7 @@
                       <a href="graphs.html">Graph Functions</a>
                     </li>
                     <li class="active">
-                      <a href="ndfs_edfs.html">ndfs/edfs</a>
+                      <a href="ndfs_edfs.html">NDFs/EDFs</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -89,16 +89,16 @@
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="node-and-edge-data-frames" class="page-header">Node and Edge Data Frames</h1>
-                    <p class="lead">These functions are used to create and manipulate specialized data frames: node data frames (<em>ndf</em>s) and edge data frames (<em>edf</em>s). The functions are useful because one can selectively add field data to these data frames and combine them as necessary before addition to a graph object.</p>
+                    <p class="lead">These functions are used to create and manipulate specialized data frames: node data frames (<em>NDF</em>s) and edge data frames (<em>EDF</em>s). The functions are useful because one can selectively add field data to these data frames and combine them as necessary before addition to a graph object.</p>
                     <h2 id="create_nodes">The `create_nodes` function</h2>
-                    <p>With the <code>create_nodes()</code> function, one can create a node data frame (<em>ndf</em>) with nodes and their attributes. This object is really just an <strong>R</strong> <code>data.frame</code> object. In most cases, it's recommended to use <code>create_nodes()</code> instead of <code>data.frame()</code> (or, <code>as.data.frame()</code>) to create an <em>ndf</em>. Using <code>create_nodes()</code> allows for validation of the input data (so that the integrity of the graph is not comprimised) and the function provides some additional functionality that the base <strong>R</strong> functions for data frame creation do not have:</p>
+                    <p>With the <code>create_nodes()</code> function, one can create a node data frame (<em>NDF</em>) with nodes and their attributes. This object is really just an <strong>R</strong> <code>data.frame</code> object. In most cases, it's recommended to use <code>create_nodes()</code> instead of <code>data.frame()</code> (or, <code>as.data.frame()</code>) to create an <em>NDF</em>. Using <code>create_nodes()</code> allows for validation of the input data (so that the integrity of the graph is not comprimised) and the function provides some additional functionality that the base <strong>R</strong> functions for data frame creation do not have:</p>
                         <ul>
                             <li>single values are repeated for n number of nodes supplied</li>
                             <li>selective setting of attributes (e.g., giving attr values for 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)</li>
                             <li>supplying overlong vectors for attributes will result in trimming down to the number of nodes</li>
                             <li>setting <code>label = FALSE</code> will conveniently result in a non-labeled node</li>
                         </ul>
-                    <p>The function only has one argument that requires values to be supplied: the <code>nodes</code> argument. Just supplying a set of unique ID values for <code>nodes</code> will create an <em>ndf</em> with nodes that have no additional attributes.</p>
+                    <p>The function only has one argument that requires values to be supplied: the <code>nodes</code> argument. Just supplying a set of unique ID values for <code>nodes</code> will create an <em>NDF</em> with nodes that have no additional attributes.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -108,7 +108,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>When incorporated into a graph, an <em>ndf</em> is parsed and column names that match keywords for node attributes indicate to <strong>DiagrammeR</strong> that the values in such columns should provide attribute values on a per-node basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a node data frame, one column named <code>nodes</code> will be created (and it will be the first column in the <em>ndf</em>). That's where unique values for the node ID should reside. As for other attribute columns, the <code>type</code> and <code>label</code> columns will also be created. However, these do not necessarily need to be populated with values and thus they can be left blank, if desired. Other attributes are voluntarily added as named vectors for the <strong>R</strong> <em>triple-dot</em> (<code>...</code>) argument. Here are all of the node attribute names and the types of values to supply:</p>
+                    <p>When incorporated into a graph, an <em>NDF</em> is parsed and column names that match keywords for node attributes indicate to <strong>DiagrammeR</strong> that the values in such columns should provide attribute values on a per-node basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a node data frame, one column named <code>nodes</code> will be created (and it will be the first column in the <em>NDF</em>). That's where unique values for the node ID should reside. As for other attribute columns, the <code>type</code> and <code>label</code> columns will also be created. However, these do not necessarily need to be populated with values and thus they can be left blank, if desired. Other attributes are voluntarily added as named vectors for the <strong>R</strong> <em>triple-dot</em> (<code>...</code>) argument. Here are all of the node attribute names and the types of values to supply:</p>
                     <ul>
                             <li><code>color</code> &mdash; provide an <strong>X11</strong> or hexadecimal color (append 2 digits to hex for alpha)</li>
                             <li><code>distortion</code> &mdash; the node distortion for any <code>shape = polygon</code></li>
@@ -128,7 +128,7 @@
                             <li><code>x</code> &mdash; the x position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                             <li><code>y</code> &mdash; the y position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                         </ul>
-                    <p>In the following examples, node data frames are created. There are a few worthwhile things to notice here. The nodes can be supplied as a character vector (as in <code>c("a", "b", "c", "d")</code>), or, as a range of integers (<code>1:4</code>). It may be a matter of preference, but the numbering system seems to be the better choice (and other functions available in the package will take advantage of a graph with ID values that are available as monotonically increasing integer values). Secondly, a single logical value can be supplied to the <code>label</code> argument, where <code>TRUE</code> copies the node ID to the label attribute, and <code>FALSE</code> yields a blank, unset value for all nodes in the <em>ndf</em>. Finally, the provision of single values in a call that creates more than a single node will result in all nodes having that attribute (e.g., <code>color = "aqua"</code> sets all nodes in the ndf with the 'aqua' color).</p>
+                    <p>In the following examples, node data frames are created. There are a few worthwhile things to notice here. The nodes can be supplied as a character vector (as in <code>c("a", "b", "c", "d")</code>), or, as a range of integers (<code>1:4</code>). It may be a matter of preference, but the numbering system seems to be the better choice (and other functions available in the package will take advantage of a graph with ID values that are available as monotonically increasing integer values). Secondly, a single logical value can be supplied to the <code>label</code> argument, where <code>TRUE</code> copies the node ID to the label attribute, and <code>FALSE</code> yields a blank, unset value for all nodes in the <em>NDF</em>. Finally, the provision of single values in a call that creates more than a single node will result in all nodes having that attribute (e.g., <code>color = "aqua"</code> sets all nodes in the NDF with the 'aqua' color).</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -148,7 +148,7 @@ nodes_1 &lt;-
                          "rectangle", "rectangle"),
                data = c(3.5, 2.6, 9.4, 2.7))
 
-# Inspect the `nodes_1` ndf
+# Inspect the `nodes_1` NDF
 nodes_1
 #>   nodes   type label  style color     shape data
 #> 1     a  lower       filled  aqua    circle  3.5
@@ -166,7 +166,7 @@ nodes_2 &lt;-
                shape = "triangle",
                data = c(0.5, 3.9, 3.7, 8.2))
 
-# Inspect the `nodes_2` ndf
+# Inspect the `nodes_2` NDF
 nodes_2
 #>   nodes  type label  style color    shape data
 #> 1     1 upper     1 filled   red triangle  0.5
@@ -178,7 +178,7 @@ nodes_2
                         </div>
                     </div>
                     <h2 id="create_edges">The `create_edges` function</h2>
-                    <p>Using the <code>create_edges()</code> function, an edge data frame (edf) (comprising edges and their attributes) is created. As with the <code>create_nodes()</code> function, the resulting object is an <strong>R</strong> <code>data.frame</code> object. While the usual means for creating data frames could be used to create an <em>edf</em>, the <code>create_edges()</code> function provides some conveniences and validation of the final object (e.g., checking for uniqueness of the supplied node ID values). Also, there is a special attribute for a edge called a <code>rel</code>, which is short for relationship. This is an optional attribute, so, it can be left blank. However, it's advantageous to have these types of group labels set for all edges, especially if the resulting graph is to be fashioned as a <em>property graph</em>. (The node <code>type</code> values must also be set for each node to model your graph as a property graph.)</p>
+                    <p>Using the <code>create_edges()</code> function, an edge data frame (EDF) (comprising edges and their attributes) is created. As with the <code>create_nodes()</code> function, the resulting object is an <strong>R</strong> <code>data.frame</code> object. While the usual means for creating data frames could be used to create an <em>EDF</em>, the <code>create_edges()</code> function provides some conveniences and validation of the final object (e.g., checking for uniqueness of the supplied node ID values). Also, there is a special attribute for a edge called a <code>rel</code>, which is short for relationship. This is an optional attribute, so, it can be left blank. However, it's advantageous to have these types of group labels set for all edges, especially if the resulting graph is to be fashioned as a <em>property graph</em>. (The node <code>type</code> values must also be set for each node to model your graph as a property graph.)</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -188,7 +188,7 @@ nodes_2
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>Edges define the connections between nodes in a graph. So, in a sense, an edge data frame is a complementary component to the node data frame within a graph. Therefore, the edf contains node ID information in two columns named <code>from</code> and <code>to</code>. So, when making an edge data frame, there are two equal-length vectors that need to be supplied to the <code>create_edges()</code> function: one for the outgoing node edge (<code>from</code>), and, another for the incoming node edge (<code>to</code>). Each of the two columns will contain node ID values. As for the node data frame, attributes can be provided for each of the edges. The following edge attributes can be used:</p>
+                    <p>Edges define the connections between nodes in a graph. So, in a sense, an edge data frame is a complementary component to the node data frame within a graph. Therefore, the EDF contains node ID information in two columns named <code>from</code> and <code>to</code>. So, when making an edge data frame, there are two equal-length vectors that need to be supplied to the <code>create_edges()</code> function: one for the outgoing node edge (<code>from</code>), and, another for the incoming node edge (<code>to</code>). Each of the two columns will contain node ID values. As for the node data frame, attributes can be provided for each of the edges. The following edge attributes can be used:</p>
                         <ul>
                             <li><code>arrowhead</code> &mdash; the arrow style at the head end (e.g, <code>normal</code>, <code>dot</code>)</li>
                             <li><code>arrowsize</code> &mdash; the scaling factor for the arrowhead and arrowtail</li>
@@ -246,7 +246,7 @@ edges_2
 </code></pre></div>
                     </div>
                     <h2 id="combine_nodes">The `combine_nodes` function</h2>
-                    <p>Several node data frames (<em>ndf</em>s) can be combined into one using the <code>combine_nodes()</code> function. You can combine two <em>ndf</em>s in a single call of <code>combine_nodes()</code>, or, combine even more in a single pass.</p>
+                    <p>Several node data frames (<em>NDF</em>s) can be combined into one using the <code>combine_nodes()</code> function. You can combine two <em>NDF</em>s in a single call of <code>combine_nodes()</code>, or, combine even more in a single pass.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -256,7 +256,7 @@ edges_2
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>There may be occasion to combine several <em>ndf</em>s into a single node data frame. The <code>combine_nodes()</code> function works much like the base <strong>R</strong> <code>rbind()</code> function except that it accepts <em>ndf</em>s with columns differing in number, names, and ordering. Obtaining several node data frames may result from collecting data from various sources, at different times (where the collected data is different), or, simply from multiple calls of <code>create_nodes()</code> for practical or readability purposes, to name a few examples. Speaking of examples:</p>
+                    <p>There may be occasion to combine several <em>NDF</em>s into a single node data frame. The <code>combine_nodes()</code> function works much like the base <strong>R</strong> <code>rbind()</code> function except that it accepts <em>NDF</em>s with columns differing in number, names, and ordering. Obtaining several node data frames may result from collecting data from various sources, at different times (where the collected data is different), or, simply from multiple calls of <code>create_nodes()</code> for practical or readability purposes, to name a few examples. Speaking of examples:</p>
                                         <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -265,7 +265,7 @@ edges_2
 
 library(DiagrammeR)
 
-# Create an ndf
+# Create an NDF
 nodes_1 &lt;-
   create_nodes(nodes = 1:4,
                label = TRUE,
@@ -273,14 +273,14 @@ nodes_1 &lt;-
                data = c(8.2, 5.2, 1.2, 14.9))
 
 
-# Create another ndf
+# Create another NDF
 nodes_2 &lt;-
   create_nodes(nodes = 5:8,
                label = TRUE,
                type = "upper",
                data = c(0.3, 6.3, 10.7, 1.2))
 
-# Combine the ndfs
+# Combine the NDFs
 all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
 
 all_nodes
@@ -297,7 +297,7 @@ all_nodes
                         </div>
                     </div>
                     <h2 id="combine_edges">The `combine_edges` function</h2>
-                    <p>There may be cases where one might take data from one or more data frames and create multiple edge data frames. One can combine multiple edge data frames (<em>edf</em>s) with the <code>combine_edges()</code> function. Any number of <em>edf</em>s can be safely combined with one call of this function.</p>
+                    <p>There may be cases where one might take data from one or more data frames and create multiple edge data frames. One can combine multiple edge data frames (<em>EDF</em>s) with the <code>combine_edges()</code> function. Any number of <em>EDF</em>s can be safely combined with one call of this function.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -307,7 +307,7 @@ all_nodes
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>Again, it is advantageous to use this combining function for the purpose of coalescing <em>edf</em>s. Once a single, combined <em>edf</em> is generated, it is much easier to incorporate that data into a <strong>DiagrammeR</strong> graph object.</p>
+                    <p>Again, it is advantageous to use this combining function for the purpose of coalescing <em>EDF</em>s. Once a single, combined <em>EDF</em> is generated, it is much easier to incorporate that data into a <strong>DiagrammeR</strong> graph object.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
