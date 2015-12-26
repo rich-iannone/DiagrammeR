@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="DiagrammeR, an R package that allows you to create flowcharts, diagrams, and graphs with Markdown-like text.">
+        <meta name="keywords" content="R, JavaScript, graphviz, mermaid">
+        <meta name="author" content="Richard Iannone and DiagrammeR contributors">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="icon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="icon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="icon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="icon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="icon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="icon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="icon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="icon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="icon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="icon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+        <link rel="manifest" href="icon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="icon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <title>
+        DiagrammeR - Documentation
+        </title>
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/docs.min.css" rel="stylesheet">
+
+        <script src="js/ie-emulation-modes-warning.js"></script>
+
+    </head>
+
+<body>
+    <a id="skippy" class="sr-only sr-only-focusable" href="#content"><div class="container"><span class="skiplink-text">Skip to main content</span></div></a>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand">DiagrammeR</a>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                      <a href="docs.html">Start</a>
+                    </li>
+                    <li>
+                      <a href="io.html">I/O</a>
+                    </li>
+                    <li>
+                      <a href="graphviz_and_mermaid.html">Graphviz/Mermaid</a>
+                    </li>
+                    <li>
+                      <a href="graphs.html">Graph Functions</a>
+                    </li>
+                    <li>
+                      <a href="ndfs_edfs.html">NDFs/EDFs</a>
+                    </li>
+                    <li class="active">
+                      <a href="graph_creation.html">Graph Creation</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Docs page layout -->
+    <div class="bs-docs-header" id="content">
+        <div class="container">
+        <h1>DiagrammeR Docs</h1>
+        <p>Get an overview of DiagrammeR, learn the syntax, check out some examples.</p>
+        </div>
+    </div>
+    <div class="container bs-docs-container">
+        <div class="row">
+            <div class="col-md-9" role="main">
+                <div class="bs-docs-section">
+                    <h1 id="graph-creation" class="page-header">Graph Creation</h1>
+                    <p class="lead">These functions are used to create a graph object.</p>
+                    <h2 id="create_graph">The `create_graph` function</h2>
+                    <p>The <code>create_graph()</code> function creates a graph object. The function also allows for intialization of the graph name, the graph time (as a time with an optional time zone included), and any default attributes for the graph (i.e., graph, node, or edge attributes).</p>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/create_graph_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>For the <code>nodes_df</code> and <code>edges_df</code> arguments, one can supply a node data frame and an edge data frame, respectively. The <code>dgr_graph</code> object can be initialized wtihout any nodes or edges (by not supplying an <em>NDF</em> or an <em>EDF</em> in the function call), and this is a favorable option when supplying nodes and edges using other functions that modify an existing graph. Here is an example whereby an empty graph (initialized as a directed graph) is created. Note that the <code>nodes_df</code> and <code>edges_df</code> data frames are <code>NULL</code>, signifying an empty graph.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create an empty graph
+###
+
+library(DiagrammeR)
+
+# Create the graph object
+graph &lt;- create_graph()
+
+graph
+#> $graph_name
+#> NULL
+#>
+#> $graph_time
+#> NULL
+#>
+#> $graph_tz
+#> NULL
+#>
+#> $nodes_df
+#> NULL
+#>
+#> $edges_df
+#> NULL
+#>
+#> $graph_attrs
+#> NULL
+#>
+#> $node_attrs
+#> NULL
+#>
+#> $edge_attrs
+#> NULL
+#>
+#> $directed
+#> [1] TRUE
+#>
+#> $dot_code
+#> [1] "digraph {\n\n}"
+#>
+#> attr(,"class")
+#> [1] "dgr_graph"
+</code></pre>
+                        </div>
+                    </div>
+                    <p>It's possible to include an <em>NDF</em> and not an <em>EDF</em> when calling <code>create_graph</code>. Alternatively, an <em>EDF</em> can be supplied without need to supply an <em>NDF</em> (in which case the node ID values will be inferred but no node attributes will be available).</p>
+                    <div>
+                      <div>
+                        <pre><code class="prettyprint">###
+# Create a graph with nodes but no edges
+###
+
+library(DiagrammeR)
+
+# Create an NDF
+nodes &lt;-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               label = FALSE,
+               type = "lower",
+               style = "filled",
+               color = "aqua",
+               shape = c("circle", "circle",
+                         "rectangle", "rectangle"),
+               data = c(3.5, 2.6, 9.4, 2.7))
+
+graph &lt;- create_graph(nodes_df = nodes)
+
+graph
+#> $graph_name
+#> NULL
+#>
+#> $graph_time
+#> NULL
+#>
+#> $graph_tz
+#> NULL
+#>
+#> $nodes_df
+#>   nodes  type label  style color     shape data
+#> 1     a lower       filled  aqua    circle  3.5
+#> 2     b lower       filled  aqua    circle  2.6
+#> 3     c lower       filled  aqua rectangle  9.4
+#> 4     d lower       filled  aqua rectangle  2.7
+#>
+#> $edges_df
+#> NULL
+#>
+#> $graph_attrs
+#> NULL
+#>
+#> $node_attrs
+#> NULL
+#>
+#> $edge_attrs
+#> NULL
+#>
+#> $directed
+#> [1] TRUE
+#>
+#> $dot_code
+#> [1] "digraph {\n\n  'a' [style = 'filled', color = 'aqua', shape = 'circle'] \n  'b' [style = 'filled', color = 'aqua', shape = 'circle'] \n  'c' [style = 'filled', color = 'aqua', shape = 'rectangle'] \n  'd' [style = 'filled', color = 'aqua', shape = 'rectangle'] \n}"
+#>
+#> attr(,"class")
+#> [1] "dgr_graph"
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Quite often, there will be cases where node or edge attributes should be applied to all nodes or edges in the graph. To achieve this, there's no need to create columns in <em>NDF</em>s or <em>EDF</em>s for those attributes (where you would repeat attribute values through all rows of those columns). Default graph attributes can be provided for the graph with the <code>graph_attrs</code>, <code>node_attrs</code>, and <code>edge_attrs</code> arguments. To supply these attributes, use vectors of graph, node, or edge attributes.</p>
+                    <p>If you want the graph to be a directed graph, then the value for the <code>directed</code> argument should be set as <code>TRUE</code> (which is the default value). Choose <code>FALSE</code> for an undirected graph.</p>
+                    <p>This next example will include both nodes and edges contained within a graph object. In this case, values for the <code>type</code> and <code>rel</code> attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a graph with both nodes and edges
+# defined, and, add some default attributes
+# for nodes and edges
+###
+
+library(DiagrammeR)
+
+# Create a node data frame
+nodes &lt;-
+  create_nodes(nodes = c("a", "b", "c", "d"),
+               label = FALSE,
+               type = "lower",
+               style = "filled",
+               color = "aqua",
+               shape = c("circle", "circle",
+                         "rectangle", "rectangle"),
+               data = c(3.5, 2.6, 9.4, 2.7))
+
+edges &lt;-
+  create_edges(from = c("a", "b", "c"),
+               to = c("d", "c", "a"),
+               rel = "leading_to")
+
+graph &lt;-
+  create_graph(nodes_df = nodes,
+               edges_df = edges,
+               node_attrs = "fontname = Helvetica",
+               edge_attrs = c("color = blue",
+                              "arrowsize = 2"))
+
+graph
+#> $nodes_df
+#>   nodes label  type  style color     shape data
+#> 1     a       lower filled  aqua    circle  3.5
+#> 2     b       lower filled  aqua    circle  2.6
+#> 3     c       lower filled  aqua rectangle  9.4
+#> 4     d       lower filled  aqua rectangle  2.7
+#>
+#> $edges_df
+#>   from to        rel
+#> 1    a  d leading_to
+#> 2    b  c leading_to
+#> 3    c  a leading_to
+#>
+#> $graph_attrs
+#> [1] NULL
+#>
+#> $node_attrs
+#> [1] "fontname = Helvetica"
+#>
+#> $edge_attrs
+#> [1] "color = blue"  "arrowsize = 2"
+#>
+#> $directed
+#> [1] TRUE
+#>
+#> $dot_code
+#> [1] "digraph {\n\ngraph [rankdir = LR]\n\nnode [fontnam...
+#>
+#> attr(,"class")
+#> [1] "dgr_graph"
+</code></pre>
+                        </div>
+                    </div>
+                    <h2 id="render_graph">The `render_graph` function</h2>
+                    <p>With the <code>render_graph()</code> function, ...</p>
+                    <p></p>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/render_graph_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph()</code> to <code>render_graph()</code>. The <strong>magrittr</strong> package provides a forward pipe with the <code>%>%</code> operator. With <strong>pipeR</strong>, use <code>%>>%</code> instead.</p>
+                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph()</code> function. Here's a simple example:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create node and edge data frames for graph
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a node data frame
+nodes &lt;-
+  create_nodes(nodes = LETTERS,
+               type = "letter",
+               shape = sample(c("circle", "rectangle"),
+                              length(LETTERS),
+                              replace = TRUE),
+               fillcolor = sample(c("aqua", "gray80",
+                                    "pink", "lightgreen",
+                                    "azure", "yellow"),
+                                  length(LETTERS),
+                                  replace = TRUE))
+
+edges &lt;-
+  create_edges(from = sample(LETTERS, replace = TRUE),
+               to = sample(LETTERS, replace = TRUE),
+               rel = "letter_to_letter")
+
+# Use the magrittr %>% operator between 'create_graph',
+# and 'render_graph' calls
+create_graph(nodes_df = nodes,
+             edges_df = edges,
+             graph_attrs = "layout = neato",
+             node_attrs = c("fontname = Helvetica",
+                            "style = filled"),
+             edge_attrs = c("color = gray20",
+                            "arrowsize = 0.5")) %>%
+  render_graph
+
+# Use the %>% operator between 'create_graph',
+# 'render_graph', and 'cat' calls; the 'dot.gv' can be
+# directly opened in Rstudio and further edited
+create_graph(nodes_df = nodes,
+             edges_df = edges,
+             graph_attrs = "layout = neato",
+             node_attrs = c("fontname = Helvetica",
+                            "style = filled"),
+             edge_attrs = c("color = gray20",
+                            "arrowsize = 0.5")) %>%
+  render_graph(output = "DOT") %>% cat(file = "~/dot.gv")
+</code></pre>
+                        </div>
+                    </div>
+                    <h2 id="create_random_graph">The `create_random_graph` function</h2>
+                    <p>With the <code>create_random_graph()</code> function, ...</p>
+                    <p></p>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/create_random_graph_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>additional text</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create node data frames
+###
+
+library(DiagrammeR)
+
+
+</code></pre>
+                        </div>
+                    </div>
+                    <h2 id="combine_graphs">The `combine_graphs` function</h2>
+                    <p>With the <code>combine_graphs()</code> function, ...</p>
+                    <p></p>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/combine_graphs_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>additional text</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create node data frames
+###
+
+library(DiagrammeR)
+
+
+</code></pre>
+                        </div>
+                    </div>
+                    <h2 id="import_graph">The `import_graph` function</h2>
+                    <p>With the <code>import_graph()</code> function, ...</p>
+                    <p></p>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/import_graph_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>additional text</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create node data frames
+###
+
+library(DiagrammeR)
+
+
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" role="complementary">
+                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+                    <ul class="nav bs-docs-sidenav">
+                        <li>
+                            <a href="#graph-creation">Graph Creation</a>
+                            <ul class="nav">
+                                <li><a href="#create_graph">The `create_graph` Function</a></li>
+                                <li><a href="#render_graph">The `render_graph` Function</a></li>
+                                <li><a href="#create_random_graph">The `create_random_graph` Function</a></li>
+                                <li><a href="#combine_graphs">The `combine_graphs` Function</a></li>
+                                <li><a href="#import_graph">The `import_graph` Function</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class="back-to-top" href="#top">Back to top</a>
+                </nav>
+            </div>
+        </div>
+        <footer class="bs-docs-footer" role="contentinfo">
+            <div class="container">
+                <div class="bs-docs-social">
+                    <ul class="bs-docs-social-buttons">
+                        <li>
+                            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=watch&amp;count=true" width="90" height="20" title="Star on GitHub"></iframe>
+                        </li>
+                        <li>
+                            <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=rich-iannone&amp;repo=DiagrammeR&amp;type=fork&amp;count=true" width="90" height="20" title="Fork on GitHub"></iframe>
+                        </li>
+                    </ul>
+                    <ul class="bs-docs-social-buttons">
+                        <li class="follow-btn">
+                            <a href="https://twitter.com/riannone" class="twitter-follow-button" data-link-color="#0069D6" data-show-count="true">Follow @riannone</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container">
+                <p>Designed and built by Richard Iannone <a href="https://twitter.com/riannone" target="_blank">@riannone</a>.</p>
+                <p>Valuable contributions by Kent Russell <a href="https://twitter.com/timelyportfolio" target="_blank">@timelyportfolio</a>, JJ Allaire <a href="https://twitter.com/rstudio" target="_blank">@rstudio</a>, and Michaël Benesty <a href="https://twitter.com/pommedeterre33" target="_blank">@pommedeterre33</a>.</p>
+                <p>Code licensed under MIT.</p>
+                <ul class="bs-docs-footer-links text-muted">
+                    <li>Currently v0.8.1</li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/rich-iannone/DiagrammeR">GitHub</a></li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/rich-iannone/DiagrammeR/issues">Issues</a></li>
+                    <li>&middot;</li>
+                    <li><a href="https://github.com/rich-iannone/DiagrammeR/releases">Releases</a></li>
+                </ul>
+            </div>
+        </footer>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/docs.min.js"></script>
+        <script src="./js/ie10-viewport-bug-workaround.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+        <script>
+          window.twttr = (function (d,s,id) {
+            var t, js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return; js=d.createElement(s); js.id=id; js.async=1;
+            js.src="https://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+            return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+          }(document, "script", "twitter-wjs"));
+        </script>
+
+    </body>
+</html>
