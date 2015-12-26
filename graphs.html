@@ -635,7 +635,7 @@ edges &lt;-
                rel = "letter_to_letter")
 
 # Use the magrittr %>% operator between 'create_graph',
-# and 'render_graph' or 'display_graph_object' calls
+# and 'render_graph' calls
 create_graph(nodes_df = nodes,
              edges_df = edges,
              graph_attrs = "layout = neato",
@@ -644,15 +644,6 @@ create_graph(nodes_df = nodes,
              edge_attrs = c("color = gray20",
                             "arrowsize = 0.5")) %>%
   render_graph
-
-create_graph(nodes_df = nodes,
-             edges_df = edges,
-             graph_attrs = "layout = neato",
-             node_attrs = c("fontname = Helvetica",
-                            "style = filled"),
-             edge_attrs = c("color = gray20",
-                            "arrowsize = 0.5")) %>%
-  display_graph_object
 
 # Use the %>% operator between 'create_graph',
 # 'render_graph', and 'cat' calls; the 'dot.gv' can be
