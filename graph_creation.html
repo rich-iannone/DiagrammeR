@@ -401,7 +401,7 @@ library(DiagrammeR)
                         </div>
                     </div>
                     <h2 id="import_graph">The `import_graph` function</h2>
-                    <p>The <code>import_graph()</code> function is all about loading in graphs from files. There are numerous graph file formats and while <strong>DiagrammeR</strong> does not support too many of them at this point, those formats that are supported are amongst the most well-used. (Support for other file formats is forthcoming.) Thus far, <code>import_graph()</code> will import GraphML (.graphml), GML (.gml), and SIF (.sif) graph files. As with the <code>create_graph()</code> function, <code>import_graph()</code> allows for provision of a name and a date-time for the newly imported graph.</p>
+                    <p>The <code>import_graph()</code> function is all about loading in graphs from files. There are numerous graph file formats and while <strong>DiagrammeR</strong> does not support too many of them at this point, those formats that are supported are amongst the most well used. (Support for other file formats is forthcoming.) Thus far, <code>import_graph()</code> will import GraphML (<code>.graphml</code>), GML (<code>.gml</code>), and SIF (<code>.sif</code>) graph files. As with the <code>create_graph()</code> function, <code>import_graph()</code> allows for provision of a name and a date-time for the newly imported graph.</p>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -412,7 +412,7 @@ library(DiagrammeR)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>additional text</p>
+                    <p>For the <code>graph_file</code> argument, a path to a graph file (one that can be opened) is expected. For <code>file_type</code>, you can explicitly specify the type of file to be imported. The options are: <code>graphml</code> (GraphML), <code>gml</code> (GML), and <code>sif</code> (SIF). If not supplied, the function will infer the type by the file extension of the file pointed toward. The <code>graph_name</code>, <code>graph_time</code>, and <code>graph_tz</code> can be optionally supplied. These behave in exactly the same way as in the <code>create_graph()</code> function.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
