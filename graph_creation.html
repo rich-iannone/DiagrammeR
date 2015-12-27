@@ -413,13 +413,16 @@ library(DiagrammeR)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>For the <code>graph_file</code> argument, a path to a graph file (one that can be opened) is expected. For <code>file_type</code>, you can explicitly specify the type of file to be imported. The options are: <code>graphml</code> (GraphML), <code>gml</code> (GML), and <code>sif</code> (SIF). If not supplied, the function will infer the type by the file extension of the file pointed toward. The <code>graph_name</code>, <code>graph_time</code>, and <code>graph_tz</code> can be optionally supplied. These behave in exactly the same way as in the <code>create_graph()</code> function.</p>
+                    <p>For testing purposes, example files of each type are included in the <strong>DiagrammeR</strong>package.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create node data frames
+# Import a GraphML file
 ###
 
 library(DiagrammeR)
+
+# Create a path to the GraphML file
 
 
 </code></pre>
