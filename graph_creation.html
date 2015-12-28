@@ -104,6 +104,20 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
+                    <p>The components of the created graph object are:</p>
+                    <ul>
+                      <li><code>graph_name</code> — optional character vector with a name for the graph</li>
+                      <li><code>graph_time</code> — optional character vector that's date and/or time</li>
+                      <li><code>graph_tz</code> — optional character vector with the time zone for <code>graph_time</code></li>
+                      <li><code>nodes_df</code> — optional data frame with the graph's nodes (or vertices) and attributes for each</li>
+                      <li><code>edges_df</code> — optional data frame with edges between nodes/vertices and attributes for each</li>
+                      <li><code>graph_attrs</code> — optional character vector of attributes pertaining to the entire graph</li>
+                      <li><code>node_attrs</code> — optional character vector of attributes pertaining to the nodes of the graph</li>
+                      <li><code>edge_attrs</code> — optional character vector of attributes pertaining to the edges of the graph</li>
+                      <li><code>directed</code> — a required logical value stating whether the graph should be considered a directed graph (<code>TRUE</code>, the default) or an undirected graph (<code>FALSE</code>)</li>
+                      <li><code>dot_code</code> — an optional character vector containing the automatically generated Graphviz DOT code for the graph</li>
+                    </ul>
+                    <p>These components for the <code>dgr_graph</code> graph object are always present, and always in the specified order, however, the optional components may have <code>NULL</code> values if they are not set (e.g., an edgeless graph will have <code>edges_df</code> returning a <code>NULL</code>). To access any of these components directly for a graph named <code>graph</code>, simply use the construction <code>graph$[component]</code> (so, enter <code>graph$nodes_df</code> into the <strong>R</strong> console to examine the graph's <em>NDF</em>). In forthcoming examples, this type of inspection will be used to reveal the contents of created graph objects, however, there are convenience functions (covered later) that directly return certain graph components without need for the <code>$</code> operator.</p>
                     <p>For the <code>nodes_df</code> and <code>edges_df</code> arguments, one can supply a node data frame and an edge data frame, respectively. The <code>dgr_graph</code> object can be initialized wtihout any nodes or edges (by not supplying an <em>NDF</em> or an <em>EDF</em> in the function call), and this is a favorable option when supplying nodes and edges using other functions that modify an existing graph. Here is an example whereby an empty graph (initialized as a directed graph) is created. Note that the <code>nodes_df</code> and <code>edges_df</code> data frames are <code>NULL</code>, signifying an empty graph.</p>
                     <div class="highlight">
                         <div>
@@ -116,43 +130,24 @@ library(DiagrammeR)
 # Create the graph object
 graph &lt;- create_graph()
 
-graph
-#> $graph_name
-#> NULL
-#>
-#> $graph_time
-#> NULL
-#>
-#> $graph_tz
-#> NULL
-#>
-#> $nodes_df
-#> NULL
-#>
-#> $edges_df
-#> NULL
-#>
-#> $graph_attrs
-#> NULL
-#>
-#> $node_attrs
-#> NULL
-#>
-#> $edge_attrs
-#> NULL
-#>
-#> $directed
-#> [1] TRUE
-#>
-#> $dot_code
-#> [1] "digraph {\n\n}"
-#>
-#> attr(,"class")
+# Get the class of the object
+class(graph)
 #> [1] "dgr_graph"
+
+# It's an empty graph, so no NDF or EDF
+graph$nodes_df
+#> NULL
+
+graph$edges_df
+#> NULL
+
+# By default, the graph is considered as directed
+graph$directed
+#> [1] TRUE
 </code></pre>
                         </div>
                     </div>
-                    <p>It's possible to include an <em>NDF</em> and not an <em>EDF</em> when calling <code>create_graph</code>. Alternatively, an <em>EDF</em> can be supplied without need to supply an <em>NDF</em> (in which case the node ID values will be inferred but no node attributes will be available).</p>
+                    <p>It's possible to include an <em>NDF</em> and not an <em>EDF</em> when calling <code>create_graph</code>. What you would get is an edgeless graph (a graph with nodes but no edges between those nodes. This may be somewhat silly, but edges can always be defined later (with functions such as <code>add_edge()</code>, <code>add_edge_df()</code>, <code>add_edges_from_df</code>, etc., and these functions are covered in a subsequent section).</p>
                     <div>
                       <div>
                         <pre><code class="prettyprint">###
@@ -163,57 +158,45 @@ library(DiagrammeR)
 
 # Create an NDF
 nodes &lt;-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               label = FALSE,
-               type = "lower",
-               style = "filled",
-               color = "aqua",
-               shape = c("circle", "circle",
-                         "rectangle", "rectangle"),
-               data = c(3.5, 2.6, 9.4, 2.7))
+  create_nodes(
+    nodes = 1:4,
+    label = FALSE,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7)
+  )
 
-graph &lt;- create_graph(nodes_df = nodes)
-
-graph
-#> $graph_name
-#> NULL
-#>
-#> $graph_time
-#> NULL
-#>
-#> $graph_tz
-#> NULL
-#>
-#> $nodes_df
+# Examine the NDF
+nodes
 #>   nodes  type label  style color     shape data
-#> 1     a lower       filled  aqua    circle  3.5
-#> 2     b lower       filled  aqua    circle  2.6
-#> 3     c lower       filled  aqua rectangle  9.4
-#> 4     d lower       filled  aqua rectangle  2.7
-#>
-#> $edges_df
-#> NULL
-#>
-#> $graph_attrs
-#> NULL
-#>
-#> $node_attrs
-#> NULL
-#>
-#> $edge_attrs
-#> NULL
-#>
-#> $directed
+#> 1     1 lower       filled  aqua    circle  3.5
+#> 2     2 lower       filled  aqua    circle  2.6
+#> 3     3 lower       filled  aqua rectangle  9.4
+#> 4     4 lower       filled  aqua rectangle  2.7
+
+# Create the graph and include the `nodes` NDF
+graph &lt;-
+  create_graph(nodes_df = nodes)
+
+# Examine the NDF within the graph object
+graph$nodes_df
+#>   nodes  type label  style color     shape data
+#> 1     1 lower       filled  aqua    circle  3.5
+#> 2     2 lower       filled  aqua    circle  2.6
+#> 3     3 lower       filled  aqua rectangle  9.4
+#> 4     4 lower       filled  aqua rectangle  2.7
+
+# It's the same NDF (outside and inside the graph)
+all(nodes == graph$nodes_df)
 #> [1] TRUE
-#>
-#> $dot_code
-#> [1] "digraph {\n\n  'a' [style = 'filled', color = 'aqua', shape = 'circle'] \n  'b' [style = 'filled', color = 'aqua', shape = 'circle'] \n  'c' [style = 'filled', color = 'aqua', shape = 'rectangle'] \n  'd' [style = 'filled', color = 'aqua', shape = 'rectangle'] \n}"
-#>
-#> attr(,"class")
-#> [1] "dgr_graph"
 </code></pre>
                         </div>
                     </div>
+                    <p>Alternatively, an <em>EDF</em> can be supplied without need to supply an <em>NDF</em> (in which case the node ID values will be inferred but no node attributes will be available).</p>
+
                     <p>Quite often, there will be cases where node or edge attributes should be applied to all nodes or edges in the graph. To achieve this, there's no need to create columns in <em>NDF</em>s or <em>EDF</em>s for those attributes (where you would repeat attribute values through all rows of those columns). Default graph attributes can be provided for the graph with the <code>graph_attrs</code>, <code>node_attrs</code>, and <code>edge_attrs</code> arguments. To supply these attributes, use vectors of graph, node, or edge attributes.</p>
                     <p>If you want the graph to be a directed graph, then the value for the <code>directed</code> argument should be set as <code>TRUE</code> (which is the default value). Choose <code>FALSE</code> for an undirected graph.</p>
                     <p>This next example will include both nodes and edges contained within a graph object. In this case, values for the <code>type</code> and <code>rel</code> attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.</p>
@@ -429,7 +412,7 @@ graphml_graph &lt;-
       system.file("examples/power_grid.graphml",
                   package = "DiagrammeR"),
     graph_name = "power_grid"
-    )
+  )
 
 # Open a graph from a GML file
 gml_graph &lt;-
@@ -438,7 +421,7 @@ gml_graph &lt;-
       system.file("examples/karate.gml",
                   package = "DiagrammeR"),
     graph_name = "karate"
-    )
+  )
 
 # Open a graph from a SIF file
 sif_graph &lt;-
@@ -447,7 +430,7 @@ sif_graph &lt;-
       system.file("examples/Human_Interactome.sif",
                   package = "DiagrammeR"),
     graph_name = "Human_Interactome"
-    )
+  )
 </code></pre>
                         </div>
                     </div>
