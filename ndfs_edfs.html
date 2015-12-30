@@ -108,7 +108,7 @@
                 <div class="bs-docs-section">
                     <h1 id="node-and-edge-data-frames" class="page-header">Node and Edge Data Frames</h1>
                     <p class="lead">These functions are used to create and manipulate specialized data frames: node data frames (<em>NDF</em>s) and edge data frames (<em>EDF</em>s). The functions are useful because one can selectively add field data to these data frames and combine them as necessary before addition to a graph object.</p>
-                    <h2 id="create_nodes">Creating an NDF</h2>
+                    <h2 id="creating-an-ndf">Creating an NDF</h2>
                     <p>With the <code>create_nodes()</code> function, one can create a node data frame (<em>NDF</em>) with nodes and their attributes. This object is really just an <strong>R</strong> <code>data.frame</code> object. In most cases, it's recommended to use <code>create_nodes()</code> instead of <code>data.frame()</code> (or, <code>as.data.frame()</code>) to create an <em>NDF</em>. Using <code>create_nodes()</code> allows for validation of the input data (so that the integrity of the graph is not comprimised) and the function provides some additional functionality that the base <strong>R</strong> functions for data frame creation do not have:</p>
                         <ul>
                             <li>single values are repeated for n number of nodes supplied</li>
@@ -195,7 +195,7 @@ nodes_2
 </code></pre>
                         </div>
                     </div>
-                    <h2 id="create_edges">Creating an EDF</h2>
+                    <h2 id="creating-an-edf">Creating an EDF</h2>
                     <p>Using the <code>create_edges()</code> function, an edge data frame (EDF) (comprising edges and their attributes) is created. As with the <code>create_nodes()</code> function, the resulting object is an <strong>R</strong> <code>data.frame</code> object. While the usual means for creating data frames could be used to create an <em>EDF</em>, the <code>create_edges()</code> function provides some conveniences and validation of the final object (e.g., checking for uniqueness of the supplied node ID values). Also, there is a special attribute for a edge called a <code>rel</code>, which is short for relationship. This is an optional attribute, so, it can be left blank. However, it's advantageous to have these types of group labels set for all edges, especially if the resulting graph is to be fashioned as a <em>property graph</em>. (The node <code>type</code> values must also be set for each node to model your graph as a property graph.)</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -263,7 +263,7 @@ edges_2
 #> 4    h  e receives       dot   red
 </code></pre></div>
                     </div>
-                    <h2 id="combine_nodes">Combining NDFs</h2>
+                    <h2 id="combining_ndfs">Combining NDFs</h2>
                     <p>Several node data frames (<em>NDF</em>s) can be combined into one using the <code>combine_nodes()</code> function. You can combine two <em>NDF</em>s in a single call of <code>combine_nodes()</code>, or, combine even more in a single pass.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -314,7 +314,7 @@ all_nodes
 </code></pre>
                         </div>
                     </div>
-                    <h2 id="combine_edges">Combining EDFs</h2>
+                    <h2 id="combining_edfs">Combining EDFs</h2>
                     <p>There may be cases where one might take data from one or more data frames and create multiple edge data frames. One can combine multiple edge data frames (<em>EDF</em>s) with the <code>combine_edges()</code> function. Any number of <em>EDF</em>s can be safely combined with one call of this function.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -373,10 +373,10 @@ all_edges
                         <li>
                             <a href="#node-and-edge-data-frames">Node and Edge Data Frames</a>
                             <ul class="nav">
-                                <li><a href="#create_nodes">Creating an NDF</a></li>
-                                <li><a href="#create_edges">Creating an EDF</a></li>
-                                <li><a href="#combine_nodes">Combining NDFs</a></li>
-                                <li><a href="#combine_edges">Combining EDFs</a></li>
+                                <li><a href="#creating-an-ndf">Creating an NDF</a></li>
+                                <li><a href="#creating-an-edf">Creating an EDF</a></li>
+                                <li><a href="#combining_ndfs">Combining NDFs</a></li>
+                                <li><a href="#combining_edfs">Combining EDFs</a></li>
                             </ul>
                         </li>
                     </ul>
