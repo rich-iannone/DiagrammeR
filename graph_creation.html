@@ -420,8 +420,7 @@ create_graph(
 
 
                     <h2 id="creating-a-random-graph">Creating a 'Random' Graph</h2>
-                    <p>With the <code>create_random_graph()</code> function, ...</p>
-                    <p></p>
+                    <p>Creating a random graph is actually quite useful. Seeing these graphs with specified numbers of nodes and edges will allow you to quickly get a sense of how connected graphs can be at different sizes.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -431,16 +430,79 @@ create_graph(
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>additional text</p>
+                    <p>The <code>create_random_graph()</code> function is provided with several options for creating random graphs. The best way to understand the use of the function is through several examples. In all these examples, the function will be wrapped in <code>render_graph()</code> (with <code>output = "visNetwork"</code>) to quickly inspect the graph upon creation. (Alternatively, the <strong>magrittr</strong> package's <code>%>%</code> operator can pipe output from <code>create_random_graph()</code> directly to <code>render_graph()</code>.)</p>
+                    <p>We can create a not-so-random graph with 2 nodes and 1 edge (by default, the graphs produced are undirected graphs). The argument <code>n</code> is the number of nodes, and <code>m</code> is the number of edges.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create node data frames
+# Create a very simple random graph
 ###
 
 library(DiagrammeR)
 
+render_graph(
+  create_random_graph(n = 2, m = 1),
+  output = "visNetwork")
+</code></pre>
+                        </div>
+                    </div>
+                    <p>It's better with more nodes and edges though. Try this again with 15 nodes and 30 edges:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a random graph with 15 nodes, 30 edges
+###
 
+library(DiagrammeR)
+
+render_graph(
+  create_random_graph(n = 15, m = 30),
+  output = "visNetwork")
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Notice that a maximum of one edge is created between a pair of nodes (i.e., no multiple edges created). What if you specify a number of edges (<code>m</code>) that exceeds the number in a fully-connected graph of size <code>n</code>? You get an error, however, it's an informative error (providing the maximum number of edges <code>m</code> for the given <code>n</code>) but it's an error nonetheless.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a random, fully-connected graph of 15 nodes
+###
+
+library(DiagrammeR)
+
+# Attempt to generate a random graph with 15 nodes
+# and 200 edges (more than the number of edges in a
+# fully-connected graph with single edges between nodes)
+render_graph(
+  create_random_graph(n = 15, m = 200),
+  output = "visNetwork")
+
+# --------------------------------------------------------
+# Error in create_random_graph(n = 15, m = 200) :
+#   The number of edges exceeds the maximum possible (105)
+# --------------------------------------------------------
+
+# Use `n = 15` and `m = 105` to yield a fully-connected
+# graph with 15 nodes:
+
+render_graph(
+  create_random_graph(n = 15, m = 105),
+  output = "visNetwork")
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Going the opposite way, you don't need to have edges. Simply specify <code>m = 0</code> for any number of nodes <code>n</code>:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a random graph of 15 nodes with no edges
+###
+
+library(DiagrammeR)
+
+render_graph(
+  create_random_graph(n = 512, m = 0),
+  output = "visNetwork")
 </code></pre>
                         </div>
                     </div>
