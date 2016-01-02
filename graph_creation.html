@@ -227,63 +227,51 @@ library(DiagrammeR)
 
 # Create a node data frame
 nodes &lt;-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               label = FALSE,
-               type = "lower",
-               style = "filled",
-               color = "aqua",
-               shape = c("circle", "circle",
-                         "rectangle", "rectangle"),
-               data = c(3.5, 2.6, 9.4, 2.7))
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    label = FALSE,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7)
+  )
 
 edges &lt;-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"),
-               rel = "leading_to")
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = "leading_to"
+  )
 
 graph &lt;-
-  create_graph(nodes_df = nodes,
-               edges_df = edges,
-               node_attrs = "fontname = Helvetica",
-               edge_attrs = c("color = blue",
-                              "arrowsize = 2"))
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = c("color = blue",
+                   "arrowsize = 2")
+  )
 
-graph
-#> $nodes_df
-#>   nodes label  type  style color     shape data
-#> 1     a       lower filled  aqua    circle  3.5
-#> 2     b       lower filled  aqua    circle  2.6
-#> 3     c       lower filled  aqua rectangle  9.4
-#> 4     d       lower filled  aqua rectangle  2.7
-#>
-#> $edges_df
+# Examine the NDF within the graph object
+graph$nodes_df
+#>   nodes  type label  style color     shape data
+#> 1     a lower       filled  aqua    circle  3.5
+#> 2     b lower       filled  aqua    circle  2.6
+#> 3     c lower       filled  aqua rectangle  9.4
+#> 4     d lower       filled  aqua rectangle  2.7
+
+graph$edges_df
 #>   from to        rel
 #> 1    a  d leading_to
 #> 2    b  c leading_to
 #> 3    c  a leading_to
-#>
-#> $graph_attrs
-#> [1] NULL
-#>
-#> $node_attrs
-#> [1] "fontname = Helvetica"
-#>
-#> $edge_attrs
-#> [1] "color = blue"  "arrowsize = 2"
-#>
-#> $directed
-#> [1] TRUE
-#>
-#> $dot_code
-#> [1] "digraph {\n\ngraph [rankdir = LR]\n\nnode [fontnam...
-#>
-#> attr(,"class")
-#> [1] "dgr_graph"
 </code></pre>
                         </div>
                     </div>
                     <h2 id="viewing-a-graph-object">Viewing a Graph Object</h2>
-                    <p>With the <code>render_graph()</code> function, ...</p>
+                    <p>With the <code>render_graph()</code> function, it's possible to view the graph object in the <strong>RStudio Viewer</strong>, or, output the <strong>DOT</strong> code for the current state of the graph.</p>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -294,60 +282,143 @@ graph
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph()</code> to <code>render_graph()</code>. The <strong>magrittr</strong> package provides a forward pipe with the <code>%>%</code> operator. With <strong>pipeR</strong>, use <code>%>>%</code> instead.</p>
                     <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph()</code> function. Here's a simple example:</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create node and edge data frames for graph
+# Create a simple graph and display it
+###
+
+library(DiagrammeR)
+
+# Create simple node and edge data frames
+nodes &lt;-
+  create_nodes(nodes = 1:4,
+               type = "number")
+
+edges &lt;-
+  create_edges(from = c(1, 1, 3, 1),
+               to = c(2, 3, 4, 4),
+               rel = "related")
+
+# Create the graph object, incorporating the NDF and
+# the EDF, and, providing some global attributes
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "layout = neato",
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = "color = gray20"
+  )
+
+# View the graph
+render_graph(graph)
+</code></pre>
+                        </div>
+                    </div>
+                    <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph()</code> to <code>render_graph()</code>. The <strong>magrittr</strong> package provides a forward pipe with the <code>%>%</code> operator. With <strong>pipeR</strong>, use <code>%>>%</code> instead.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Use magrittr's %>% to create a graph and
+# then view it without storing that graph object
 ###
 
 library(DiagrammeR)
 library(magrittr)
 
-# Create a node data frame
+# Create simple node and edge data frames
 nodes &lt;-
-  create_nodes(nodes = LETTERS,
-               type = "letter",
-               shape = sample(c("circle", "rectangle"),
-                              length(LETTERS),
-                              replace = TRUE),
-               fillcolor = sample(c("aqua", "gray80",
-                                    "pink", "lightgreen",
-                                    "azure", "yellow"),
-                                  length(LETTERS),
-                                  replace = TRUE))
+  create_nodes(nodes = 1:4,
+               type = "number")
 
 edges &lt;-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               rel = "letter_to_letter")
+  create_edges(from = c(1, 1, 3, 1),
+               to = c(2, 3, 4, 4),
+               rel = "related")
 
-# Use the magrittr %>% operator between 'create_graph',
-# and 'render_graph' calls
-create_graph(nodes_df = nodes,
-             edges_df = edges,
-             graph_attrs = "layout = neato",
-             node_attrs = c("fontname = Helvetica",
-                            "style = filled"),
-             edge_attrs = c("color = gray20",
-                            "arrowsize = 0.5")) %>%
-  render_graph
+# Create the graph object, incorporating the NDF and
+# the EDF, and, providing some global attributes
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "layout = neato",
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = "color = gray20")
 
-# Use the %>% operator between 'create_graph',
-# 'render_graph', and 'cat' calls; the 'dot.gv' can be
-# directly opened in Rstudio and further edited
-create_graph(nodes_df = nodes,
-             edges_df = edges,
-             graph_attrs = "layout = neato",
-             node_attrs = c("fontname = Helvetica",
-                            "style = filled"),
-             edge_attrs = c("color = gray20",
-                            "arrowsize = 0.5")) %>%
-  render_graph(output = "DOT") %>% cat(file = "~/dot.gv")
+# Use the %>% operator between `create_graph()` and
+# `render_graph()`
+create_graph(
+  nodes_df = nodes,
+  edges_df = edges,
+  graph_attrs = "layout = neato",
+  node_attrs = "fontname = Helvetica",
+  edge_attrs = "color = gray20"
+) %>% render_graph
 </code></pre>
                         </div>
                     </div>
+                    <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph()</code> function. Here's a simple example:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Use magrittr's %>% to create a graph and
+# then output the DOT code for the graph
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create simple node and edge data frames
+nodes &lt;-
+  create_nodes(nodes = 1:4,
+               type = "number")
+
+edges &lt;-
+  create_edges(from = c(1, 1, 3, 1),
+               to = c(2, 3, 4, 4),
+               rel = "related")
+
+# Create the graph object, incorporating the NDF and
+# the EDF, and, providing some global attributes
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "layout = neato",
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = "color = gray20"
+  )
+
+# Use the %>% operator between `create_graph()` and
+# `render_graph()` (using the output = "DOT" option)
+create_graph(
+  nodes_df = nodes,
+  edges_df = edges,
+  graph_attrs = "layout = neato",
+  node_attrs = "fontname = Helvetica",
+  edge_attrs = "color = gray20"
+) %>% render_graph(output = "DOT")
+#> [1] "digraph {\n\ngraph [layout = neato]\n\nnode [fontname = Helvetica]\n\nedge [color = gray20]\n\n  '1' [label = '1'] \n  '2' [label = '2'] \n  '3' [label = '3'] \n  '4' [label = '4'] \n  '1'->'2' \n  '1'->'3' \n  '3'->'4' \n  '1'->'4' \n}"
+
+# Use the R `cat()` function to direct the DOT code
+# to a `.gv` file (DiagrammeR can open this file
+# directly for viewing and editing)
+create_graph(
+  nodes_df = nodes,
+  edges_df = edges,
+  graph_attrs = "layout = neato",
+  node_attrs = "fontname = Helvetica",
+  edge_attrs = "color = gray20"
+) %>% render_graph(output = "DOT") %>%
+ cat(file = "~/dot.gv")
+</code></pre>
+                        </div>
+                    </div>
+
+
                     <h2 id="creating-a-random-graph">Creating a 'Random' Graph</h2>
                     <p>With the <code>create_random_graph()</code> function, ...</p>
                     <p></p>
