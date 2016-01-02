@@ -107,7 +107,7 @@
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="graph-creation" class="page-header">Graph Creation</h1>
-                    <p class="lead">These functions are used to create a graph object.</p>
+                    <p class="lead">Creating a graph object is undoubtedly important. I dare say it is one of the fundamental aspects of the <strong>DiagrammeR</strong> world. With the graph object produced, so many other things are possible. For instance, you can inspect certain aspects of the graph, modify the graph in many ways that suit your workflow, view the graph (or part of the graph!) in the <strong>RStudio Viewer</strong>, or perform graph traversals and thus create complex graph queries using <strong>magrittr</strong> or <strong>pipeR</strong> pipelines. The possibilities are really very exciting and it all begins with creating those graph objects.</p>
                     <h2 id="creating-a-graph-object">Creating a Graph Object</h2>
                     <p>The <code>create_graph()</code> function creates a graph object. The function also allows for intialization of the graph name, the graph time (as a time with an optional time zone included), and any default attributes for the graph (i.e., graph, node, or edge attributes).</p>
                         <div>
@@ -506,9 +506,41 @@ render_graph(
 </code></pre>
                         </div>
                     </div>
+                    <p>Setting a seed is a great way to create something random yet reproduce that random something (there are many reasons to do this; creating examples is one use). This can be done with the <code>create_random_graph()</code> function by specifying a seed number with the argument <code>set_seed</code>. Here's an example:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a reproducible, random graph
+###
+
+library(DiagrammeR)
+
+render_graph(
+  create_random_graph(n = 5, m = 4,
+                      set_seed = 30),
+  output = "visNetwork")
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Upon repeat runs, the connections in the graph will be the same each and every time (<code>3</code> is a free node, <code>1</code> is connected to <code>2</code> and <code>5</code>, etc.).</p>
+                    <p>By default, the random graphs generated are undirected graphs. To produce directed graphs, simply include <code>directed = TRUE</code> in the <code>create_random_graph()</code> statement.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a random, directed graph
+###
+
+library(DiagrammeR)
+
+render_graph(
+  create_random_graph(n = 15, m = 22,
+                      directed = TRUE),
+  output = "visNetwork")
+</code></pre>
+                        </div>
+                    </div>
                     <h2 id="combining-graphs">Combining Graphs</h2>
-                    <p>With the <code>combine_graphs()</code> function, ...</p>
-                    <p></p>
+                    <p>With the <code>combine_graphs()</code> function, one can combine two graphs in order to make a new graph, merging nodes and edges in the process. The use of an optional edge data frame (<em>EDF</em>) allows for new edges to be formed across the combined graphs.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -518,21 +550,107 @@ render_graph(
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>additional text</p>
+                    <p>While you would provide two graphs (for arguments <code>x</code> and <code>y</code>), the order here is important. The graph provided as <code>x</code> is considered the graph object to which another graph will be joined. This graph should be considered the host graph as the resulting graph will retain only the attributes of this graph. The graph provided as <code>y</code> is thus the graph object that is to be joined with the graph suppled as <code>x</code>.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Create node data frames
+# Create two graphs and combine them into one
 ###
 
 library(DiagrammeR)
 
+# Create the first graph
+nodes_1 &lt;-
+  create_nodes(nodes = 1:10)
 
+edges_1 &lt;-
+  create_edges(from = 1:9,
+               to = 2:10)
+
+graph_1 &lt;-
+  create_graph(nodes_df = nodes_1,
+               edges_df = edges_1,
+               graph_attrs = "rankdir = LR")
+
+# Create the second graph (note that node ID values
+# are different from those of the first graph)
+nodes_2 &lt;-
+  create_nodes(nodes = 11:20)
+
+edges_2 &lt;-
+  create_edges(from = 11:19,
+               to = 12:20)
+
+graph_2 &lt;-
+  create_graph(nodes_df = nodes_2,
+               edges_df = edges_2,
+               graph_attrs = "rankdir = TD")
+
+# Combine the two graphs, the global graph attribute
+# `graph_attrs = "rankdir = LR"` will be retained since
+# it is part of the graph supplied as `x`
+combined_graph &lt;-
+  combine_graphs(x = graph_1, y = graph_2)
+
+# Display the combined graph
+render_graph(combined_graph)
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Joining two graphs by simply supplying them as <code>x</code> and <code>y</code> will not by itself create connections between the two graphs. To conveniently create connections between the joined graphs, one can supply an <em>EDF</em> to the <code>edges_df</code> argument. Otherwise, connections could always to be made in subsequent function calls using <code>add_edge()</code>, <code>add_edge_df()</code>, or <code>add_edges_from_df()</code>.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create two graphs and combine them
+# with new edges created
+###
+
+library(DiagrammeR)
+
+# Create the first graph
+nodes_1 &lt;-
+  create_nodes(nodes = 1:10)
+
+edges_1 &lt;-
+  create_edges(from = 1:9,
+               to = 2:10)
+
+graph_1 &lt;-
+  create_graph(nodes_df = nodes_1,
+               edges_df = edges_1,
+               graph_attrs = "rankdir = LR")
+
+# Create the second graph
+nodes_2 &lt;-
+  create_nodes(nodes = 11:20)
+
+edges_2 &lt;-
+  create_edges(from = 11:19,
+               to = 12:20)
+
+graph_2 &lt;-
+  create_graph(nodes_df = nodes_2,
+               edges_df = edges_2)
+
+# Create an auxiliary EDF for creating edges across the
+# two graphs supplied as `x` and `y` to `combine_graphs()`
+extra_edges &lt;-
+  create_edges(from = c(5, 19, 1),
+               to = c(12, 3, 11))
+
+# Combine the two graphs, adding the `extra_edges` EDF
+# to the `edges_df` argument
+combined_graph &lt;-
+  combine_graphs(x = graph_1, y = graph_2,
+                 edges_df = extra_edges)
+
+# Display the combined graph
+render_graph(combined_graph)
 </code></pre>
                         </div>
                     </div>
                     <h2 id="importing-a-graph-from-a-file">Importing a Graph from a File</h2>
-                    <p>The <code>import_graph()</code> function is all about loading in graphs from files. There are numerous graph file formats and while <strong>DiagrammeR</strong> does not support too many of them at this point, those formats that are supported are amongst the most well used. (Support for other file formats is forthcoming.) Thus far, <code>import_graph()</code> will import GraphML (<code>.graphml</code>), GML (<code>.gml</code>), and SIF (<code>.sif</code>) graph files. As with the <code>create_graph()</code> function, <code>import_graph()</code> allows for provision of a name and a date-time for the newly imported graph.</p>
+                    <p>The <code>import_graph()</code> function is all about loading in graphs from files. There are numerous graph file formats and while <strong>DiagrammeR</strong> does not support too many of them at this point, those formats that are supported are amongst the most well used. (Support for other file formats is forthcoming.) Thus far, <code>import_graph()</code> will import <strong>GraphML</strong> (<code>.graphml</code>), <strong>GML</strong> (<code>.gml</code>), and <strong>SIF</strong> (<code>.sif</code>) graph files. As with the <code>create_graph()</code> function, <code>import_graph()</code> allows for provision of a name and a date-time for the newly imported graph.</p>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -543,8 +661,8 @@ library(DiagrammeR)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>For the <code>graph_file</code> argument, a path to a graph file (one that can be opened) is expected. For <code>file_type</code>, you can explicitly specify the type of file to be imported. The options are: <code>graphml</code> (GraphML), <code>gml</code> (GML), and <code>sif</code> (SIF). If not supplied, the function will infer the type by the file extension of the file pointed toward. The <code>graph_name</code>, <code>graph_time</code>, and <code>graph_tz</code> can be optionally supplied. These behave in exactly the same way as in the <code>create_graph()</code> function.</p>
-                    <p>For testing purposes, example files of each type are included in the <strong>DiagrammeR</strong> package. The GraphML file <code>power_grid.graphml</code> contains an undirected graph of a power station network across several northwestern U.S. states. It contains 4941 nodes and 6594 edges. Do you like karate? If so, you'll be happy to know that the GML example (<code>karate.gml</code>) is representative of friendships amongst members of a karate club, circa early 1970s. It is a relatively small graph with 34 nodes and 78 edges. The human interactome SIF file <code>Human_Interactome.sif</code> is a fairly large graph with 8347 nodes and 61,263 edges.</p>
+                    <p>For the <code>graph_file</code> argument, a path to a graph file (one that can be opened) is expected. For <code>file_type</code>, you can explicitly specify the type of file to be imported. The options are: <code>graphml</code> (<strong>GraphML</strong>), <code>gml</code> (<strong>GML</strong>), and <code>sif</code> (<strong>SIF</strong>). If not supplied, the function will infer the type by the file extension of the file pointed toward. The <code>graph_name</code>, <code>graph_time</code>, and <code>graph_tz</code> can be optionally supplied. These behave in exactly the same way as in the <code>create_graph()</code> function.</p>
+                    <p>For testing purposes, example files of each type are included in the <strong>DiagrammeR</strong> package. The <strong>GraphML</strong> file <code>power_grid.graphml</code> contains an undirected graph of a power station network across several northwestern U.S. states. It contains 4941 nodes and 6594 edges. Do you like karate? If so, you'll be happy to know that the <strong>GML</strong> example (<code>karate.gml</code>) is representative of friendships amongst members of a karate club, circa early 1970s. It is a relatively small graph with 34 nodes and 78 edges. The human interactome <strong>SIF</strong> file <code>Human_Interactome.sif</code> is a fairly large graph with 8347 nodes and 61,263 edges.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
