@@ -120,9 +120,9 @@
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>As with all of the <code>select_...()</code> functions, the <code>graph</code> argument is the first in the function signature. This is beneficial for forward-piping the graph in a pipeline and propogating a series of tranformations on the graph. There may be situations where several types of selections be applied to the graphs nodes or edges (say, selecting all nodes of a graph in the first step and then subtracting nodes of a specific type from that group) and this is where the pipeline paradigm becomes incredibly useful, and, as an added bonus, easy to read and to reason about.</p>
-                    <p>The main handle on selectivity for the <code>select_nodes()</code> function is the node attributes of the graph's internal <em>NDF</em>, which contains columns for all possible node attributes for nodes in the graph. By providing a single node attribute as a character value for the <code>node_attr</code> argument, you can select nodes by supplying a search term for the <code>search</code> argument. For <code>search</code>, there are two possible input types:</p>
+                    <p>The main handle on selectivity for the <code>select_nodes()</code> function is through the node attributes of the graph's internal <em>NDF</em>, which contains columns for all possible node attributes in the graph. By providing a single node attribute as a character value for the <code>node_attr</code> argument, you can select nodes by supplying a search term for the <code>search</code> argument. For <code>search</code>, there are two possible input types:</p>
                     <ol>
-                      <li>a logical expression with a comparison operator (<code>></code>, <code><</code>, <code>==</code>, or <code>!=</code>) followed by a number for numerical filtering</li>
+                      <li>a logical expression with a comparison operator (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, or <code>!=</code>) followed by a number for numerical filtering</li>
                       <li>a regular expression for filtering through string matching</li>
                     </ol>
                     <p>In the first example, nodes will be selected based on a logical expression operating on a collection of numeric values (the node attribute arbitrarily named <code>data</code>).</p>
@@ -142,17 +142,7 @@ nodes &lt;-
              2.2, 6.0)
   )
 
-edges &lt;-
-  create_edges(
-    from = c(1, 2, 3),
-    to = c(4, 3, 1)
-  )
-
-graph &lt;-
-  create_graph(
-    nodes_df = nodes,
-    edges_df = edges
-  )
+graph &lt;- create_graph(nodes_df = nodes)
 
 # Select nodes where the `data` attribute has a value
 # greater than 7.0 (it's the first 2 nodes)
@@ -170,7 +160,134 @@ graph$selection
 </code></pre>
                         </div>
                     </div>
-                    <p>Nodes can be selected either entirely by their node ID values, or, filtered by node ID values.</p>
+                    <p>A selection of nodes can be obtained through a match using a regular expression operating on a collection of character-based values (the node attribute arbitrarily named <code>fruits</code>).</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Select nodes based on the text values
+# of a specified node attribute
+###
+
+library(DiagrammeR)
+
+nodes &lt;-
+  create_nodes(
+    nodes = 1:4,
+    fruits = c("apples", "apricots",
+               "bananas", "plums")
+  )
+
+graph &lt;- create_graph(nodes_df = nodes)
+
+# Select nodes where the `fruits` attribute has a match
+# on the first letters being `ap` (the first 2 nodes);
+# The regular expression for is `^ap` (where the ^
+# denotes the beginning of the text to the parsed)
+graph &lt;-
+  select_nodes(
+    graph = graph,
+    node_attr = "fruits",
+    search = "^ap"
+  )
+
+# Inspect the graph's `selection` list
+graph$selection
+#> $nodes
+#> [1] "1" "2"
+</code></pre>
+                        </div>
+                    </div>
+                    <p>The situation may arise when a more specialized match needs to be made (i.e., matching this but not that, or, matching two different types of things). This is where the <code>set_op</code> argument becomes useful. When a selection of nodes is performed using <code>select_nodes()</code> (or any of the other <code>select_...()</code> functions that operate on nodes), the selection is stored in the graph object. This is seen in the above examples where <code>graph$selection</code> was used to verify which nodes were in the selection. Because the selection is retained (at least until <code>clear_selection()</code> is called, or, a selection of edges is made), multiple uses <code>select_nodes()</code> can modify the set of selected nodes depending on the option provided in the <code>set_op</code> argument. These set operations are:</p>
+                    <ul>
+                      <li>union — creates a union of selected nodes in consecutive operations that create a selection of nodes (this is the default option)</li>
+                      <li>intersect — modifies the list of selected nodes such that only those nodes common to both consecutive node selection operations will retained</li>
+                      <li>difference — modifies the list of selected nodes such that the only nodes retained are those that are different in the second node selection operation compared to the first</li>
+                    </ul>
+                    <p>These set operations behave exactly as the base <strong>R</strong> functions: <code>union()</code>, <code>intersect()</code>/<code>intersection()</code>, and <code>setdiff()</code> (they are actually used internally). Furthermore, most of the <code>select_...()</code> functions contain the <code>set_op</code> argument, so, they behave the same way with regard to modifying the node or edge selection in a pipeline of selection operations. As examples are important in fully understanding how these can work for more complex selections, here are a few:</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Create a number of complex node selections
+# using magrittr pipelines and different types
+# of set operations
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a single graph object to be used for multiple
+# node selections
+nodes &lt;-
+  create_nodes(
+    nodes = 1:9,
+    type = c("fruit", "fruit", "fruit",
+             "veg", "veg", "veg",
+             "nut", "nut", "nut"),
+    label = c("pineapple", "apple", "apricot",
+              "cucumber", "celery", "endive",
+              "hazelnut", "almond", "chestnut"),
+    count = c(6, 3, 8, 7, 2, 6, 9, 9, 7)
+  )
+
+graph &lt;- create_graph(nodes_df = nodes)
+
+# Inspect the graph's NDF
+graph$nodes_df
+#>   nodes  type     label count
+#> 1     1 fruit pineapple     6
+#> 2     2 fruit     apple     3
+#> 3     3 fruit   apricot     8
+#> 4     4   veg  cucumber     7
+#> 5     5   veg    celery     2
+#> 6     6   veg    endive     6
+#> 7     7   nut  hazelnut     9
+#> 8     8   nut    almond    22
+#> 9     9   nut  chestnut    16
+
+# Select all foods that either begin with `c` or
+# end with `e`
+graph %>%
+  select_nodes(node_attr = "label",
+               search = "^c") %>%
+  select_nodes(node_attr = "label",
+               search = "e$",
+               set_op = "union")
+
+# Inspect the graph's `selection` list
+graph$selection
+#> $nodes
+#> "4" "5" "9" "1" "2" "6"
+
+# Select any food beginning with `a` and having a
+# count less than 5
+graph %>%
+  select_nodes(node_attr = "label",
+               search = "^a") %>%
+  select_nodes(node_attr = "count",
+               search = "&lt;5",
+               set_op = "intersect")
+
+# Inspect the graph's `selection` list
+graph$selection
+#> $nodes
+#> [1] "2"
+
+# Select any fruit not containing `apple` in its name
+graph %>%
+  select_nodes(node_attr = "type",
+               search = "fruit") %>%
+  select_nodes(node_attr = "label",
+               search = "apple",
+               set_op = "difference")
+
+# Inspect the graph's `selection` list
+graph$selection
+#> $nodes
+#> [1] "3"
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Nodes can be selected either entirely by their node ID values, or, filtered by a set of node ID values.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
