@@ -103,8 +103,8 @@
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="graph-series" class="page-header">Graph Series</h1>
-                    <p class="lead">Sometimes you'll need to have several graphs and make comparisons across them.</p>
-                    <h2 id="create_series">`create_series`</h2>
+                    <p class="lead">There may be situations where multiple graphs are required for analysis. A convenient means to work with several graphs is with the graph series object, which serializes graph objects. The time and sequence properties of the contained graphs can be used for subsetting. Scripts can be triggered for the series that allow for things such as data collection and creation of multiple graphs within the series object.</p>
+                    <h2 id="graph-series-basics">Graph Series Basics</h2>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -112,21 +112,6 @@
                         <div>
                             <img src="img/graph-functions/create_series_2x.png" class="img-responsive center-block">
                         </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                    <p></p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
-# Title
-###
-
-</code></pre>
-                        </div>
-                    </div>
-                    <h2 id="add_to_remove_from_series">`add_to_series`, `remove_from_series`</h2>
-                    <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -142,7 +127,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>The following example demonstrates how to create a series object with an existing graph object using the <code>create_series()</code> and <code>add_to_series()</code> functions. Since we'd likely want to be able to remove graphs from a series, the <code>remove_from_series()</code> function will be used. The use of <code>count_graphs()</code> and <code>series_info()</code> allows us to get information about the graph series object: <code>count_graphs()</code> returns a simple count of graph objects are present in a graph series, and <code>series_info()</code> yields a data frame with basic information about each graph object present in the graph series.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -152,7 +137,7 @@
 </code></pre>
                         </div>
                     </div>
-                    <h2 id="subset_series">`subset_series`</h2>
+                    <h2 id="getting-a-subset-of-a-series">Getting a Subset of a Series</h2>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -172,7 +157,7 @@
 </code></pre>
                         </div>
                     </div>
-                    <h2 id="trigger_script">`trigger_script`</h2>
+                    <h2 id="series-scripts">Series Scripts</h2>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -192,7 +177,7 @@
 </code></pre>
                         </div>
                     </div>
-                    <h2 id="render_graph_from_series">`render_graph_from_series`</h2>
+                    <h2 id="rendering-a-specific-graph-in-a-series">Rendering a Specific Graph in a Series</h2>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -212,7 +197,7 @@
 </code></pre>
                         </div>
                     </div>
-                    <h2 id="series_info_graph_count">`series_info`, `graph_count`</h2>
+                    <h2 id="inspection-functions-for-a-graph-series">Inspection Functions for a Graph Series</h2>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -245,11 +230,13 @@
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
                     <ul class="nav bs-docs-sidenav">
                         <li>
-                            <a href="#graph-series">Graph graph-series</a>
+                            <a href="#graph-series">Graph Series</a>
                             <ul class="nav">
-                                <li><a href="#deposit_node_edge_attr_from_selection">`deposit_node_attr`, `deposit_edge_attr`, `deposit_node_attr_from_selection`, `deposit_edge_attr_from_selection`</a></li>
-                                <li><a href="#deposit_node_edge_count_in_selection">`deposit_node_count_in_selection`, `deposit_edge_count_in_selection`</a></li>
-                                <li><a href="#withdraw_values">`withdraw_values`</a></li>
+                                <li><a href="#graph-series-basics">Graph Series Basics</a></li>
+                                <li><a href="#getting-a-subset-of-a-series">Getting a Subset of a Series</a></li>
+                                <li><a href="#series-scripts">Series Scripts</a></li>
+                                <li><a href="#rendering-a-specific-graph-in-a-series">Rendering a Specific Graph in a Series</a></li>
+                                <li><a href="#inspection-functions-for-a-graph-series">Inspection Functions for a Graph Series</a></li>
                             </ul>
                         </li>
                     </ul>
