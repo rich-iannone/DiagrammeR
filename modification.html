@@ -125,7 +125,8 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>The <code>add_node()</code> function allows one to add a single node to a graph. Specify the graph to which the node should be added and the node ID for the <code>node</code> argument, and a node will be added. While the other arguments are optional, using just <code>graph</code> and <code>node</code> will result in the addition of an unconnected node. This might be desirable (say, if the graph is empty), but the more likely case is that edges to other nodes will be required upon addition of a new node. The <code>from</code> and <code>to</code> arguments (both optional) are where you would specify connections from existing nodes to the new node (with <code>to</code>), and connections to existing nodes from the new node (with <code>from</code>). A vector of node IDs can be supplied to either argument. The <code>label</code> and <code>type</code> arguments allow for direct setting of these node attributes during the addition of a node. Finally, a named vector of node attributes and their values can be included in the <code>add_node()</code> call.</p>
+                    <p>The <code>add_edge()</code> function is meant for adding an edge between two extant graph nodes. Because the nodes must exist in the graph, this function cannot be invoked for an empty graph. (It can, however, be used for a graph with a single node since an edge can be created as a loop from and to the same node.) The basic means to add an edge to a graph with this function is to specify <code>from</code> and <code>to</code> nodes for the edge to be added. One can optionally add an edge <code>rel</code> string as a value for the <code>rel</code> argument.
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
@@ -281,7 +282,8 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>The function <code>delete_node()</code> removes a single node from the graph. All of the removed node's edges with other nodes in the graph will also be removed in this operation. Supply only a single node ID to the <code>node</code> argument.</p>
+                    <p>The function <code>delete_edge()</code> removes a single edge from the graph. Specify the graph object in <code>graph</code>, the nodes in <code>from</code> and <code>to</code>, and the edge will removed if it exists.</p>
                     <div class="highlight">
                       <div>
                             <pre><code class="prettyprint">###
@@ -329,7 +331,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>The <code>node_type()</code> function provides various means to check the <code>type</code> attribute for a node and perform different operations on that attribute. The different functionalities of <code>node_type</code> can be changed through the use of these different keywords for the <code>action</code> argument: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code>. With <code>read</code> set as the action, a node ID supplied with the graph object yields that node's <code>type</code> attribute. Using <code>action = check</code> with a node ID, you can check whether a <code>type</code> attribute exists (it will return <code>TRUE</code> or <code>FALSE</code>. If the <code>type</code> attribute hasn't been set for a node, you can add that using <code>action = add</code> along with a string supplied for the <code>value</code> argument. If a <code>type</code> attribute has alredy been set for a node and you'd like to change it, use <code>action = update</code> and include the updated string with the <code>value</code> argument. Deleting a <code>type</code> attribute for a node is easily accomplished by using <code>action = delete</code>.</p>
                     <div class="highlight">
                       <div>
                             <pre><code class="prettyprint">###
@@ -350,7 +352,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>The <code>edge_rel()</code> function is similar in principle and use to the <code>node_type()</code> function. In this function, the edges' <code>rel</code> attribute can be checked for existence, added, removed, or updated. As with the <code>node_type()</code> function, this function uses the <code>action</code> argument and performs various actions with these keywords: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code> (same keywords as those for <code>node_type()</code>). Using <code>read</code>, supply node IDs for the <code>from</code> and <code>to</code> arguments. With that, you will receive the edge's currently set <code>rel</code> attribute. The <code>rel</code> attribute may or may not be set, so, using <code>action = check</code> with a specified edge, the existence of the <code>rel</code> attribute can be verified through a <code>TRUE</code> or <code>FALSE</code> return value. An unset <code>rel</code> attribute for an edge can be set by using <code>action = add</code> and a character string for the <code>value</code> argument. To update an already set <code>rel</code> attribute for an edge, use <code>action = update</code> and provide the updated relationship string with the <code>value</code> argument. Deleting a <code>rel</code> attribute for an edge is done by using <code>action = delete</code> with an edge.</p>
                     <div class="highlight">
                       <div>
                             <pre><code class="prettyprint">###
