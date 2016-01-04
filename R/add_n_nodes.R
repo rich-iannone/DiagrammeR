@@ -1,12 +1,11 @@
 #' Add a multiple of new nodes to the graph
-#' @description Add n new nodes to a graph object of class \code{dgr_graph},
-#' with edges moving from the nodes in the selection toward the newly created
-#' nodes. Optionally, set node \code{type} values for the new nodes.
+#' @description Add n new nodes to a graph object of class \code{dgr_graph}.
+#' Optionally, set node \code{type} values for the new nodes.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @param n the number of new nodes to add to the graph.
-#' @param set_node_type an optional string to apply a \code{type} attribute to
-#' all newly created nodes.
+#' @param set_node_type an optional string to apply a \code{type} attribute
+#' to all newly created nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @export add_n_nodes
 
