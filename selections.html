@@ -246,79 +246,96 @@ graph$nodes_df
 
 # Select all foods that either begin with `c` or
 # end with `e`
-graph %>%
-  select_nodes(node_attr = "label",
-               search = "^c") %>%
-  select_nodes(node_attr = "label",
-               search = "e$",
-               set_op = "union")
+graph_1 &lt;-
+  graph %>%
+    select_nodes(node_attr = "label",
+                 search = "^c") %>%
+    select_nodes(node_attr = "label",
+                 search = "e$",
+                 set_op = "union")
 
 # Inspect the graph's `selection` list
-graph$selection
+graph_1$selection
 #> $nodes
 #> "4" "5" "9" "1" "2" "6"
 
 # Select any food beginning with `a` and having a
 # count less than 5
-graph %>%
-  select_nodes(node_attr = "label",
-               search = "^a") %>%
-  select_nodes(node_attr = "count",
-               search = "&lt;5",
-               set_op = "intersect")
+graph_2 &lt;-
+  graph %>%
+    select_nodes(node_attr = "label",
+                 search = "^a") %>%
+    select_nodes(node_attr = "count",
+                 search = "&lt;5",
+                 set_op = "intersect")
 
 # Inspect the graph's `selection` list
-graph$selection
+graph_2$selection
 #> $nodes
 #> [1] "2"
 
 # Select any fruit not containing `apple` in its name
-graph %>%
-  select_nodes(node_attr = "type",
-               search = "fruit") %>%
-  select_nodes(node_attr = "label",
-               search = "apple",
-               set_op = "difference")
+graph_3 &lt;-
+  graph %>%
+    select_nodes(node_attr = "type",
+                 search = "fruit") %>%
+    select_nodes(node_attr = "label",
+                 search = "apple",
+                 set_op = "difference")
 
 # Inspect the graph's `selection` list
-graph$selection
+graph_3$selection
 #> $nodes
 #> [1] "3"
 </code></pre>
                         </div>
                     </div>
-                    <p>Nodes can be selected either entirely by their node ID values, or, filtered by a set of node ID values.</p>
+                    <p>There is an additional filtering option available as the <code>nodes</code> argument. Here, a vector of node ID values can be supplied and this will indicate to the function that only that subset of nodes will be considered for <code>select_nodes()</code>. Note that, if <code>node_attr</code> and <code>search</code> are provided with <code>NULL</code> values (the default) and <code>nodes</code> is given a vector of node ID values, it will be those very nodes that will make up the selection in this function call. While this is convenient and often a good method for selecting nodes (so long as one knows which node IDs need to be selected), the function <code>select_nodes_by_id()</code> handles this use case more directly (as the <code>nodes</code> argument is in the second position in the function signature).</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Select nodes solely by their ID values
+# Select nodes from a subset of all
+# available nodes in the graph
 ###
 
 library(DiagrammeR)
+library(magrittr)
 
+# Create a simple graph with some numeric data
 nodes &lt;-
   create_nodes(
-    nodes = 1:4,
+    nodes = 1:10,
+    data = seq(0.5, 5, 0.5)
   )
 
-edges &lt;-
-  create_edges(
-    from = c(1, 2, 3),
-    to = c(4, 3, 1)
-  )
+graph &lt;- create_graph(nodes_df = nodes)
 
-graph &lt;-
-  create_graph(
-    nodes_df = nodes,
-    edges_df = edges
-  )
+# Inspect the graph's NDF
+graph$nodes_df
+#>    nodes type label data
+#> 1      1          1  0.5
+#> 2      2          2    1
+#> 3      3          3  1.5
+#> 4      4          4    2
+#> 5      5          5  2.5
+#> 6      6          6    3
+#> 7      7          7  3.5
+#> 8      8          8    4
+#> 9      9          9  4.5
+#> 10    10         10    5
 
-# Select nodes `1` and `3`
-graph &lt;-
-  select_nodes(
-    graph = graph,
-    nodes = c(1, 3)
-  )
+# Select from a subset of nodes (given as
+# `nodes = 1:6`) where the data value is greater
+# than `1.5`
+graph %&lt;>%
+  select_nodes(node_attr = "data",
+               search = ">1.5",
+               nodes = 1:6)
+
+# Inspect the graph's `selection` list
+graph$selection
+#> $nodes
+#> [1] "4" "5" "6"
 </code></pre>
                         </div>
                     </div>
