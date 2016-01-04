@@ -306,9 +306,29 @@
                     <div class="highlight">
                       <div>
                             <pre><code class="prettyprint">###
-# Title
+# Is the graph empty? Is it directed?
 ###
 
+# Create an empty graph
+graph &lt;- create_graph()
+
+# Use the 'is_graph_empty' function to return a
+# logical value
+is_graph_empty(graph)
+#> TRUE
+
+# Add a node to the graph
+graph %&lt;>% add_node
+
+# Now the function will return `FALSE` because there is
+# a node in the graph
+is_graph_empty(graph)
+#> FALSE
+
+# When created, graphs are set as `directed` by
+# default; to verify that's the case here:
+is_graph_directed(graph)
+#> TRUE
 </code></pre>
                         </div>
                     </div>
