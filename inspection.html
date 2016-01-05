@@ -145,9 +145,61 @@
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Title
+# Get basic information on the graph's nodes and edges
 ###
 
+library(DiagrammeR)
+
+set.seed(26)
+
+# Create an NDF
+nodes &lt;-
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z",2))
+  )
+
+# Create an EDF
+edges &lt;-
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    label = "edge",
+    rel = "letter_to_letter"
+  )
+
+# Create a graph object
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+  )
+
+# Use the `node_info()` function, returning a data
+# frame with information on the graph's nodes
+node_info(graph)
+#>    node label    type degree indegree outdegree loops
+#> 1     A     A  a_to_g      2        0         2     0
+#> 2     W     W  q_to_x      1        0         1     0
+#> 3     T     T  q_to_x      2        0         2     0
+#> 4     L     L  h_to_p      1        0         1     0
+#> 5     F     F  a_to_g      0        0         0     0
+#>..   ...   ...     ...    ...      ...       ...   ...
+
+# Use the `edge_info()` function, returning a data
+# frame with information on the graph's edges
+edge_info(graph)
+#>    from  to              rel label
+#> 1     A   Z letter_to_letter  edge
+#> 2     H   U letter_to_letter  edge
+#> 3     W   O letter_to_letter  edge
+#> 4     U   K letter_to_letter  edge
+#> 5     I   V letter_to_letter  edge
+#>..   ... ...              ...   ...
 </code></pre>
                         </div>
                     </div>
@@ -172,9 +224,65 @@
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">###
-# Title
+# Find out if a node or edge is present in the graph
 ###
 
+library(DiagrammeR)
+
+set.seed(26)
+
+# Create an NDF
+nodes &lt;-
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z",2))
+  )
+
+# Create an EDF
+edges &lt;-
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    label = "edge",
+    rel = "letter_to_letter"
+  )
+
+# Create a graph object
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+  )
+
+# Verify that node with ID `a` is not in graph with
+# the `node_present()` function (it won't be because
+# the `LETTERS` vector is made up of capital letters)
+node_present(graph, "a")
+#> FALSE
+
+# Is node with ID `A` in the graph?
+node_present(graph, "A")
+#> TRUE
+
+# Are all node ID values from the LETTERS vector in
+# the graph?
+all(sapply(LETTERS, function(x) node_present(graph, x)))
+#> TRUE
+
+# Moving to the inspection of edges: is there any edge
+# from node ID `A` to node ID `B`? Use the
+# `edge_present()` function to find out
+edge_present(graph, from = "A", to = "B")
+#> FALSE
+
+# Verify that there is an edge from node ID `K` to node
+# ID `V`
+edge_present(graph, from = "K", to = "V")
+#> TRUE
 </code></pre>
                         </div>
                     </div>
@@ -199,9 +307,107 @@
                     <div class="highlight">
                       <div>
                             <pre><code class="prettyprint">###
-# Title
+# Get a vector of all nodes in a graph, or in NDFs
+# or EDFs
 ###
 
+library("DiagrammeR")
+
+set.seed(26)
+
+# Create an NDF
+nodes &lt;-
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z",2))
+  )
+
+# Create an EDF
+edges &lt;-
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    label = "edge",
+    rel = "letter_to_letter"
+  )
+
+# Create a graph object
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+  )
+
+# Use the `get_nodes()` function to return node ID
+# values
+get_nodes(graph)
+#> [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L"
+#> [13] "M" "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X"
+#> [25] "Y" "Z"
+
+# Can extract a vector of node ID values from an NDF
+table(get_nodes(nodes) %in% get_nodes(graph))
+#>
+#> TRUE
+#>   26
+
+# Can also extract a vector of node ID values from
+# an EDF
+table(get_nodes(graph) %in% get_nodes(edges))
+#>
+#> FALSE  TRUE
+#>     3    23
+
+# Can get the 'outgoing' and 'incoming' node ID values
+# in a list object
+get_edges(graph, return_type = "list") # the default
+#> [[1]]
+#>  [1] "A" "H" "W" "U" "I" "M" "U" "T" "I" "R" "O"
+#> [12] "G" "O" "A" "V" "I" "M" "K" "R" "T" "Y" "R"
+#> [23] "M" "L" "H" "V"
+
+#> [[2]]
+#>  [1] "Z" "U" "O" "K" "V" "M" "N" "C" "D" "Z" "B"
+#> [12] "G" "U" "Y" "H" "V" "R" "V" "Z" "S" "Q" "I"
+#> [23] "P" "S" "E" "P"
+
+# Similarly, you can specify that a data frame is given
+get_edges(graph, return_type = "df")
+#>    from to
+#> 1     A  Z
+#> 2     H  U
+#> 3     W  O
+#> 4     U  K
+#> 5     I  V
+#>..   ... ..
+
+# A character string with node IDs can also be obtained
+get_edges(graph, return_type = "vector")
+#>  [1] "A -&gt; Z" "H -&gt; U" "W -&gt; O" "U -&gt; K" "I -&gt; V"
+#>  [6] "M -&gt; M" "U -&gt; N" "T -&gt; C" "I -&gt; D" "R -&gt; Z"
+#> [11] "O -&gt; B" "G -&gt; G" "O -&gt; U" "A -&gt; Y" "V -&gt; H"
+#> [16] "I -&gt; V" "M -&gt; R" "K -&gt; V" "R -&gt; Z" "T -&gt; S"
+#> [21] "Y -&gt; Q" "R -&gt; I" "M -&gt; P" "L -&gt; S" "H -&gt; E"
+#> [26] "V -&gt; P"
+
+# As with `get_nodes()`, the `get_edges()` function
+# works in an analogous manner with EDFs
+
+all(get_edges(edges, return_type = "list")[[1]] ==
+      get_edges(graph, return_type = "list")[[1]])
+#> TRUE
+
+all(get_edges(edges, return_type = "df") ==
+      get_edges(graph, return_type = "df"))
+#> TRUE
+
+all(get_edges(edges, return_type = "vector") ==
+      get_edges(graph, return_type = "vector"))
+#> TRUE
 </code></pre>
                         </div>
                     </div>
@@ -226,9 +432,72 @@
                     <div class="highlight">
                       <div>
                             <pre><code class="prettyprint">###
-# Title
+# Get all the predecessors or all of the
+# successors of a given node
 ###
 
+library("DiagrammeR")
+
+set.seed(26)
+
+# Create an NDF
+nodes &lt;-
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z",2))
+  )
+
+# Create an EDF
+edges &lt;-
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    label = "edge",
+    rel = "letter_to_letter"
+  )
+
+# Create a graph object
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+  )
+
+# If there are no predecessors, `NA` is returned
+get_predecessors(graph, node = "A")
+#> [1] NA
+
+get_successors(graph, node = "A")
+#> [1] "Z" "Y"
+
+get_successors(graph, node = "Z")
+#> [1] NA
+
+get_predecessors(graph, node = "Z")
+#> [1] "A" "R" "R"
+
+# Find isolated nodes in a graph (they have neither
+# successors nor predecessors)
+intersect(
+  names(which(
+         is.na(sapply(get_nodes(graph),
+                           function(x) get_successors(
+                             graph, x))))),
+  names(which(
+          is.na(sapply(get_nodes(graph),
+                           function(x) get_predecessors(
+                             graph, x)))))
+)
+#> [1] "F" "J" "X"
+
+# The isolated nodes can also be found by subsetting
+# the resulting data frame yielded by `node_info()`
+node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
+#> [1] "F" "J" "X"
 </code></pre>
                         </div>
                     </div>
