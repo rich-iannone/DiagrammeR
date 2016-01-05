@@ -520,10 +520,7 @@ node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
                         </div>
                     <div class="highlight">
                       <div>
-                            <pre><code class="prettyprint">###
-# Title
-###
-
+                            <pre><code class="prettyprint">
 </code></pre>
                         </div>
                     </div>
@@ -548,9 +545,48 @@ node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
                     <div class="highlight">
                       <div>
                             <pre><code class="prettyprint">###
-# Title
+# Get a count of all nodes in a graph
 ###
 
+library("DiagrammeR")
+
+set.seed(26)
+
+# Create an NDF
+nodes &lt;-
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z",2))
+  )
+
+# Create an EDF
+edges &lt;-
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    label = "edge",
+    rel = "letter_to_letter"
+  )
+
+# Create a graph object
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+  )
+
+# Get counts of nodes grouped by the `type` attribute
+node_count(graph, type = TRUE)
+#> a_to_g  h_to_p  q_to_x y_and_z
+#>      7       9       8       2
+
+# Get a total count of nodes with no grouping
+node_count(graph, type = FALSE)
+#> [1] 26
 </code></pre>
                         </div>
                     </div>
@@ -614,10 +650,7 @@ is_graph_directed(graph)
                         </div>
                     <div class="highlight">
                       <div>
-                            <pre><code class="prettyprint">###
-# Title
-###
-
+                            <pre><code class="prettyprint">
 </code></pre>
                         </div>
                     </div>
@@ -634,10 +667,7 @@ is_graph_directed(graph)
                         </div>
                     <div class="highlight">
                       <div>
-                            <pre><code class="prettyprint">###
-# Title
-###
-
+                            <pre><code class="prettyprint">
 </code></pre>
                         </div>
                     </div>
@@ -654,10 +684,7 @@ is_graph_directed(graph)
                         </div>
                     <div class="highlight">
                       <div>
-                            <pre><code class="prettyprint">###
-# Title
-###
-
+                            <pre><code class="prettyprint">
 </code></pre>
                         </div>
                     </div>
