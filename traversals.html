@@ -104,9 +104,9 @@
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="traversals" class="page-header">Traversals</h1>
-                    <p class="lead">Imagine diving into a graph and moving across the graph's nodes, jumping onto an edge, perhaps bypassing those edges and simply alighting to different nodes with specific attributes. Traversals are quite important as part of a graph query. You can develop sophisticated pipelines that allow for selective movement across the graph (based on conditions you specify per traversal) and the gleaning of information from nodes and edges. There are many important use cases, so, an in-depth primer of <strong>DiagrammeR</strong>'s traversal functions is provided alongside numerous practical examples.</p>
+                    <p class="lead">Imagine diving into a graph and moving across the graph's nodes, jumping onto an edge, perhaps bypassing those edges and simply alighting to different nodes with specific attributes. Traversals are quite important as part of a graph query. You can develop sophisticated pipelines that allow for selective movement across the graph (based on conditions you specify per traversal) and the gleaning of information from nodes and edges. Importantly, traversals begin with selections of nodes or edges and the act of traversing modifies the selection of nodes or edges. One may select a single node, for instance, perform one or more traversals away from that initial node, and perhaps create a selection of several different nodes (or even edges). There are many important use cases, so, an in-depth primer of <strong>DiagrammeR</strong>'s traversal functions is provided alongside numerous practical examples.</p>
                     <h2 id="traversals-across-nodes">Traversals Across Nodes</h2>
-                    <p></p>
+                    <p>To traverse across connected nodes without regard to the properties of the edges between the nodes, three functions are available: <code>trav_out()</code>, <code>trav_in()</code>, and <code>trav_both()</code>. These types of traversals always require an initial selection of one or more nodes, and, after traversing, a selection of one or more nodes is returned.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -128,7 +128,7 @@
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p> Directionality of the traversal is the key differentiator between these functions.</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">
