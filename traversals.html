@@ -190,6 +190,31 @@ create_graph() %>% add_node %>%
                         </div>
                     </div>
                     <p>The <code>trav_both()</code> function results in traversals to adjacent nodes regardless of the edge directions between those nodes. So, in a sense, the direction of movement to adjacent nodes is <em>in</em> and <em>out</em>, or, <em>both</em>. For the example of <code>{2,3,4}->1->{5,6,7}</code>, where node <code>1</code> is the only node in the selection, all of nodes <code>2</code> through to node <code>6</code> will be part of the new selection after calling <code>trav_both()</code>.</p>
+                    <div class="highlight">
+                        <div>
+                            <pre><code class="prettyprint">###
+# Perform traversals from a single
+# node using `trav_both()`
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create the graph described in the paragraph
+# above ({`2...4`} -> `1` -> {`5...7`}), start
+# from node `1` (as a selection), traverse to
+# all other adjacent nodes and then obtain the
+# current selection
+create_graph() %>% add_node %>%
+  select_nodes_by_id(1) %>%
+  add_n_nodes_to_selection(3) %>%
+  add_n_nodes_from_selection(3) %>%
+  trav_both %>% get_selection
+#> $nodes
+#> [1] "5" "6" "7" "2" "3" "4"
+</code></pre>
+                        </div>
+                    </div>
                     <p>So far, these functions are described as modifying selections of nodes based solely on node adjacency and the direction of the edges between the adjacent nodes. Indeed without supplying values to the function, traversals occur without regard to the attributes of the nodes traversed to. However, the arguments <code>node_attr</code> and <code>match</code> are available for filtering the traversals to those that satisfy logical statements on numeric attributes or matches on character attributes. For a property graph, where values are available for all nodes' <code>type</code> attribute and all edges' <code>rel</code> attribute, a traversal with <code>trav_out()</code> could, for example, be performed for all outbound, adjacent nodes that have a specific <code>type</code> label. This is done by setting <code>node_attr = type</code> and providing the value of that <code>type</code> for the <code>match</code> argument.</p>
                     <div class="highlight">
                         <div>
