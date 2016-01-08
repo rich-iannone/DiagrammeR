@@ -129,9 +129,8 @@
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>Directionality of the traversal is the key differentiator between these three functions. The <code>trav_out()</code> function allows for traversals to connected nodes that are outbound nodes in relation to the origin nodes (in a directed graph). With the <code>trav_in()</code> function, the movement is reversed: traversals are towards connected nodes are inbound nodes. For example, take the edge described by <code>1->2</code> and the origin node is the node with ID <code>1</code>; the <code>trav_out()</code> function would change the node selection from node <code>1</code> to node <code>2</code> because these nodes are adjacent to each other and the edge leads from the origin node to an outbound node. If node <code>1</code> has outbound edges to other nodes (e.g., <code>1->{2,3,4}</code>) then all of those nodes connected to outbound edges of the origin node will be part of the new selection. Take another example with a central node as the selected node, and that node has both outbound and inbound edges to adjacent nodes: <code>{2,3,4}->1->{5,6,7}</code>. Should the function <code>trav_in()</code> be used, then nodes <code>2</code>, <code>3</code>, and <code>4</code> will become the selected nodes; using <code>trav_out()</code> will result in nodes <code>5</code>, <code>6</code>, and <code>7</code> becoming the selected nodes. Here are several examples of traversals across nodes.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Perform two types of traversals from
 # a single node using `trav_out()` and
 # `trav_in()`
@@ -167,6 +166,18 @@ create_graph() %>% add_node %>% add_node %>%
 #> $nodes
 #> [1] "2"
 
+# Multiple traversals can be made in a single magrittr
+# pipeline
+create_graph() %>% add_n_nodes(5) %>%
+  add_edge(1, 2) %>% add_edge(2, 3) %>%
+  add_edge(3, 4) %>% add_edge(4, 5) %>%
+  select_nodes_by_id(1) %>%
+  trav_out %>% trav_out %>%
+  trav_out %>% trav_out %>%
+  get_selection
+#> $nodes
+#> [1] "5"
+
 # A selection of multiple nodes can occur as a result
 # of a traversal
 create_graph() %>% add_node %>%
@@ -187,12 +198,10 @@ create_graph() %>% add_node %>%
 #>  [1] "12" "13" "14" "15" "16" "17"
 #>  [7] "18" "19" "20" "21"
 </code></pre>
-                        </div>
                     </div>
                     <p>The <code>trav_both()</code> function results in traversals to adjacent nodes regardless of the edge directions between those nodes. So, in a sense, the direction of movement to adjacent nodes is <em>in</em> and <em>out</em>, or, <em>both</em>. For the example of <code>{2,3,4}->1->{5,6,7}</code>, where node <code>1</code> is the only node in the selection, all of nodes <code>2</code> through to node <code>6</code> will be part of the new selection after calling <code>trav_both()</code>.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Perform traversals from a single
 # node using `trav_both()`
 ###
@@ -213,17 +222,250 @@ create_graph() %>% add_node %>%
 #> $nodes
 #> [1] "5" "6" "7" "2" "3" "4"
 </code></pre>
-                        </div>
                     </div>
                     <p>So far, these functions are described as modifying selections of nodes based solely on node adjacency and the direction of the edges between the adjacent nodes. Indeed without supplying values to the function, traversals occur without regard to the attributes of the nodes traversed to. However, the arguments <code>node_attr</code> and <code>match</code> are available for filtering the traversals to those that satisfy logical statements on numeric attributes or matches on character attributes. For a property graph, where values are available for all nodes' <code>type</code> attribute and all edges' <code>rel</code> attribute, a traversal with <code>trav_out()</code> could, for example, be performed for all outbound, adjacent nodes that have a specific <code>type</code> label. This is done by setting <code>node_attr = type</code> and providing the value of that <code>type</code> for the <code>match</code> argument.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">###
+# Perform traversals with conditions
+# based on node `type` values
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a common graph with nodes having
+# various `type` values; set to render
+# always using `visNetwork` when calling
+# `render_graph()`
+graph &lt;-
+  create_graph() %>%
+  set_global_graph_attr("graph",
+                        "output",
+                        "visNetwork") %>%
+  add_node("type_a", FALSE) %>%
+  add_n_nodes(4, "type_b") %>%
+  add_edge(1, 2) %>%
+  add_edge(1, 3) %>%
+  add_edge(4, 1) %>%
+  add_edge(5, 1) %>%
+  add_n_nodes(4, "type_c") %>%
+  add_edge(1, 6) %>%
+  add_edge(1, 7) %>%
+  add_edge(8, 1) %>%
+  add_edge(9, 1)
+
+# View the created graph
+render_graph(graph)
+
+graph %>% select_nodes_by_id(1) %>%
+  trav_out %>% get_selection
+
+graph %>% select_nodes_by_id(1) %>%
+  trav_out("type", "type_b") %>%
+  get_selection
+
+graph %>% select_nodes_by_id(1) %>%
+  trav_out("type", "type_c") %>%
+  get_selection
+
+# Once the nodes have been selected via
+# a traversal, a useful thing to do would
+# be to attach new nodes to that selection
+updated_graph &lt;-
+  graph %>% select_nodes_by_id(1) %>%
+  trav_out("type", "type_c") %>%
+  add_n_nodes_from_selection(1, "type_d")
+
+# View the updated graph
+render_graph(updated_graph)
 </code></pre>
-                        </div>
                     </div>
+                    <p>We are not limited to starting a traversal from a single node ID value, we can begin from a selection of nodes based on a regular expression and traverse to a matching <code>type</code> string value (or to other node attributes that have <code>character</code> values). The following example uses a random graph of food entities with arbitrary edges between them.</p>
+                    <div>
+                        <pre><code class="prettyprint">###
+# Perform traversals with conditions
+# based on node `label` regex matches
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a graph with fruit, vegetables,
+# and nuts
+nodes &lt;-
+  create_nodes(
+    nodes = 1:9,
+    type = c("fruit", "fruit", "fruit",
+             "veg", "veg", "veg",
+             "nut", "nut", "nut"),
+    label = c("pineapple", "apple", "apricot",
+              "cucumber", "celery", "endive",
+              "hazelnut", "almond", "chestnut")
+    )
+
+edges &lt;-
+  create_edges(
+    from = c(9, 3, 6, 2, 6, 2, 8, 2, 5, 5),
+    to = c(1, 1, 4, 3, 7, 8, 1, 5, 3, 6)
+    )
+
+graph &lt;-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "output = visNetwork"
+    )
+
+# View the graph
+render_graph(graph)
+
+# View the internal NDF for sake of reference
+get_node_df(graph)
+#>   nodes  type     label
+#> 1     1 fruit pineapple
+#> 2     2 fruit     apple
+#> 3     3 fruit   apricot
+#> 4     4   veg  cucumber
+#> 5     5   veg    celery
+#> 6     6   veg    endive
+#> 7     7   nut  hazelnut
+#> 8     8   nut    almond
+#> 9     9   nut  chestnut
+
+# Select all nodes with a label beginning with
+# `a` and traverse outward to all nodes
+graph %>% select_nodes(node_attr = "label",
+                       search = "^a") %>%
+  trav_out %>% get_selection
+
+#> $nodes
+#> [1] "3" "8" "5" "1"
+
+# This traversal results in a rather large
+# selection of nodes: `3` (`apricot`), `8`
+# (`almond`), `5` (`celery`), and `1` (`pineapple`)
+
+# Now, select all nodes with a label beginning with
+# `c` (in this case, the `cucumber` and `chestnut`
+# and then traverse outward to any node of the
+# `fruit` type
+graph %>% select_nodes(node_attr = "label",
+                       search = "^c") %>%
+  trav_out(node_attr = "type",
+           match = "fruit") %>% get_selection
+#> $nodes
+#> [1] "3" "1"
+
+# The traversal has resulted in a selection of
+# nodes `3` (`apricot`) and `1` (`pineapple`)
+</code></pre>
+                    </div>
+                    <p>Traversals can also be constrained to those nodes satisfying logical statements based on numerical data. So long as the attribute provided for <code>node_attr</code> contains numerical data, the comparisons <code>&lt;</code>, <code>></code>, <code>==</code>, and <code>!=</code> can be used alongside a value for <code>match</code> argument. This type of traversal can have a great many use cases but here is a generic example using the <code>trav_both()</code> traversal function:</p>
+                                        <div>
+                        <pre><code class="prettyprint">###
+# Perform traversals with conditions
+# based on node `type` values
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a random graph (but set a seed!)
+# of 5 nodes, and 10 edges; it'll create
+# numerical data values for each node at
+# no extra charge
+random_graph &lt;-
+  create_random_graph(5, 10, TRUE,
+                      set_seed = 20) %>%
+  set_global_graph_attr("graph",
+                        "output",
+                        "visNetwork")
+
+# View the graph's internal NDF
+random_graph %>% get_node_df
+#>   nodes type label value
+#> 1     1          1     9
+#> 2     2          2     8
+#> 3     3          3     3
+#> 4     4          4   5.5
+#> 5     5          5    10
+
+# View the graph's internal EDF
+random_graph %>% get_edge_df
+#>    from to rel
+#> 1     5  1
+#> 2     1  3
+#> 3     2  4
+#> 4     4  1
+#> 5     3  2
+#> 6     5  2
+#> 7     3  5
+#> 8     3  4
+#> 9     2  1
+#> 10    5  4
+
+# View a rendering of the graph and note
+# that apparently larger nodes are
+# indicative of larger values in nodes'
+# `value` attribute
+render_graph(random_graph)
+
+# Now select node `3`, perform a traversal
+# to other adjacent nodes, and then look
+# at which nodes are traversed to
+random_graph %>%
+  select_nodes_by_id(3) %>%
+  trav_both %>%
+  get_selection
+#> $nodes
+#> [1] "2" "5" "4" "1"
+
+# Perform a similar traversal but, this
+# time, only traverse to those nodes
+# with `value` less than 8.5
+random_graph %>%
+  select_nodes_by_id(3) %>%
+  trav_both("value", "&lt;8.5") %>%
+  get_selection
+#> $nodes
+#> [1] "2" "4"
+
+# That was a subset of the possible
+# traversals with `trav_both()`; using
+# a condition of greater than 8.5 will
+# yield the other nodes
+random_graph %>%
+  select_nodes_by_id(3) %>%
+  trav_both("value", ">8.5") %>%
+  get_selection
+#> $nodes
+#> [1] "5" "1"
+
+# An exact match on a numeric value
+# is possible through use of `==`
+# before the value; in this case, use
+# a value of 10
+random_graph %>%
+  select_nodes_by_id(3) %>%
+  trav_both("value", "==10") %>%
+  get_selection
+#> $nodes
+#> [1] "5"
+
+# For a traversal to all values except
+# a specified value, use `!=` before
+# such value
+random_graph %>%
+  select_nodes_by_id(3) %>%
+  trav_both("value", "!=10") %>%
+  get_selection
+#> $nodes
+#> [1] "2" "4" "1"
+</code></pre>
+                    </div>
+                    <p>Traversing from node to node with <code>trav_out()</code>, <code>trav_in()</code>, or <code>trav_both()</code> can result in very specific targeting of nodes. As seen, once the traversal has occurred, the new selection can be used to obtain data from those nodes, or, modify the graph (by adding new nodes to the selection). Especially with the use of a <strong>magrittr</strong> pipeline, the selection of nodes, the transversals, and the resulting actions become quite readable (as is the case with most <strong>R</strong> statements using <strong>magrittr</strong>).</p>
                     <h2 id="traversals-from-nodes-to-edges">Traversals from Nodes to Edges</h2>
-                    <p></p>
+                    <p>Moving across nodes using traversal functions is quite a powerful thing to do. However, especially with information-rich graphs, some useful data can exist in the graph's edges. For this reason, we can traverse from nodes onto adjacent edges. As with the node-to-node traversal functions, the direction of the edge is important and a key distinction between the functions <code>trav_out_edge()</code> and <code>trav_in_edge()</code>. These types of traversals always begin at nodes (and thus require an initial selection of one or more nodes) and typically end with a selection of one or more edges. If no traversal can be made, then the initial selection of nodes is retained.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -239,7 +481,8 @@ create_graph() %>% add_node %>%
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>Starting with the <code>trav_out_edge()</code> function, suppose there is a selection of a single node <code>1</code> in the very simple graph of <code>1->2</code>. Calling the <code>trav_out_edge()</code> function in its simplest form (without values supplied except for the graph itself) will result in an edge selection and that edge will be the <code>1->2</code> edge (which initiates at node <code>1</code> and terminates at node <code>2</code>. Thus, the traversal is from one or more nodes onto adjacent, <em>outward</em> edges. On the same graph, with the same selection, calling the <code>trav_in_edge()</code> function will not result in a traversal (the initial node selection of node <code>1</code> will be retained, as though nothing happened). This is because the <code>trav_in_edge()</code> function performs the converse traversal, where the traversal is from one or more nodes onto adjacent, <em>inward</em> edges. Put another way, <code>trav_in_edge()</code> will change the selection to edges that point toward the intially-selected node(s), if any.</p>
+                    <p>As with the node-to-node traversal functions, these traversals are much more powerful when used with matching conditions as they increase selectivity. That only certain edges may be traversed to (and selected) is important, especially in those cases where the traversal continues onto nodes (but more on that in the next section).</p>
                     <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">
