@@ -131,9 +131,8 @@
                     </ul>
                     <p>These components for the <code>dgr_graph</code> graph object are always present, and always in the specified order, however, the optional components may have <code>NULL</code> values if they are not set (e.g., an edgeless graph will have <code>edges_df</code> returning a <code>NULL</code>). To access any of these components directly for a graph named <code>graph</code>, simply use the construction <code>graph$[component]</code> (so, enter <code>graph$nodes_df</code> into the <strong>R</strong> console to examine the graph's <em>NDF</em>). In forthcoming examples, this type of inspection will be used to reveal the contents of created graph objects, however, there are convenience functions (covered later) that directly return certain graph components without need for the <code>$</code> operator.</p>
                     <p>For the <code>nodes_df</code> and <code>edges_df</code> arguments, one can supply a node data frame and an edge data frame, respectively. The <code>dgr_graph</code> object can be initialized wtihout any nodes or edges (by not supplying an <em>NDF</em> or an <em>EDF</em> in the function call), and this is a favorable option when supplying nodes and edges using other functions that modify an existing graph. Here is an example whereby an empty graph (initialized as a directed graph) is created. Note that the <code>nodes_df</code> and <code>edges_df</code> data frames are <code>NULL</code>, signifying an empty graph.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create an empty graph
 ###
 
@@ -155,13 +154,10 @@ graph$edges_df
 
 # By default, the graph is considered as directed
 graph$directed
-#> [1] TRUE
-</code></pre>
-                        </div>
+#> [1] TRUE</code></pre>
                     </div>
                     <p>It's possible to include an <em>NDF</em> and not an <em>EDF</em> when calling <code>create_graph</code>. What you would get is an edgeless graph (a graph with nodes but no edges between those nodes. This may be somewhat silly, but edges can always be defined later (with functions such as <code>add_edge()</code>, <code>add_edge_df()</code>, <code>add_edges_from_df</code>, etc., and these functions are covered in a subsequent section).</p>
                     <div>
-                      <div>
                         <pre><code class="prettyprint">###
 # Create a graph with nodes but no edges
 ###
@@ -203,18 +199,15 @@ graph$nodes_df
 
 # It's the same NDF (outside and inside the graph)
 all(nodes == graph$nodes_df)
-#> [1] TRUE
-</code></pre>
-                        </div>
+#> [1] TRUE</code></pre>
                     </div>
                     <p>Alternatively, an <em>EDF</em> can be supplied without need to supply an <em>NDF</em> (in which case the node ID values will be inferred but no node attributes will be available).</p>
 
                     <p>Quite often, there will be cases where node or edge attributes should be applied to all nodes or edges in the graph. To achieve this, there's no need to create columns in <em>NDF</em>s or <em>EDF</em>s for those attributes (where you would repeat attribute values through all rows of those columns). Default graph attributes can be provided for the graph with the <code>graph_attrs</code>, <code>node_attrs</code>, and <code>edge_attrs</code> arguments. To supply these attributes, use vectors of graph, node, or edge attributes.</p>
                     <p>If you want the graph to be a directed graph, then the value for the <code>directed</code> argument should be set as <code>TRUE</code> (which is the default value). Choose <code>FALSE</code> for an undirected graph.</p>
                     <p>This next example will include both nodes and edges contained within a graph object. In this case, values for the <code>type</code> and <code>rel</code> attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a graph with both nodes and edges
 # defined, and, add some default attributes
 # for nodes and edges
@@ -263,9 +256,7 @@ graph$edges_df
 #>   from to        rel
 #> 1    a  d leading_to
 #> 2    b  c leading_to
-#> 3    c  a leading_to
-</code></pre>
-                        </div>
+#> 3    c  a leading_to</code></pre>
                     </div>
                     <h2 id="viewing-a-graph-object">Viewing a Graph Object</h2>
                     <p>With the <code>render_graph()</code> function, it's possible to view the graph object in the <strong>RStudio Viewer</strong>, or, output the <strong>DOT</strong> code for the current state of the graph.</p>
@@ -280,9 +271,8 @@ graph$edges_df
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph()</code> function. Here's a simple example:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a simple graph and display it
 ###
 
@@ -310,14 +300,11 @@ graph &lt;-
   )
 
 # View the graph
-render_graph(graph)
-</code></pre>
-                        </div>
+render_graph(graph)</code></pre>
                     </div>
                     <p>With packages such as <strong>magrittr</strong> or <strong>pipeR</strong>, one can conveniently pipe output from <code>create_graph()</code> to <code>render_graph()</code>. The <strong>magrittr</strong> package provides a forward pipe with the <code>%>%</code> operator. With <strong>pipeR</strong>, use <code>%>>%</code> instead.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Use magrittr's %>% to create a graph and
 # then view it without storing that graph object
 ###
@@ -353,14 +340,11 @@ create_graph(
   graph_attrs = "layout = neato",
   node_attrs = "fontname = Helvetica",
   edge_attrs = "color = gray20"
-) %>% render_graph
-</code></pre>
-                        </div>
+) %>% render_graph</code></pre>
                     </div>
                     <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph()</code> function. Here's a simple example:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Use magrittr's %>% to create a graph and
 # then output the DOT code for the graph
 ###
@@ -410,12 +394,8 @@ create_graph(
   node_attrs = "fontname = Helvetica",
   edge_attrs = "color = gray20"
 ) %>% render_graph(output = "DOT") %>%
- cat(file = "~/dot.gv")
-</code></pre>
-                        </div>
+ cat(file = "~/dot.gv")</code></pre>
                     </div>
-
-
                     <h2 id="creating-a-random-graph">Creating a 'Random' Graph</h2>
                     <p>Creating a random graph is actually quite useful. Seeing these graphs with specified numbers of nodes and edges will allow you to quickly get a sense of how connected graphs can be at different sizes.</p>
                         <div>
@@ -429,9 +409,8 @@ create_graph(
                         </div>
                     <p>The <code>create_random_graph()</code> function is provided with several options for creating random graphs. The best way to understand the use of the function is through several examples. In all these examples, the function will be wrapped in <code>render_graph()</code> (with <code>output = "visNetwork"</code>) to quickly inspect the graph upon creation. (Alternatively, the <strong>magrittr</strong> package's <code>%>%</code> operator can pipe output from <code>create_random_graph()</code> directly to <code>render_graph()</code>.)</p>
                     <p>We can create a not-so-random graph with 2 nodes and 1 edge (by default, the graphs produced are undirected graphs). The argument <code>n</code> is the number of nodes, and <code>m</code> is the number of edges.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a very simple random graph
 ###
 
@@ -439,14 +418,11 @@ library(DiagrammeR)
 
 render_graph(
   create_random_graph(n = 2, m = 1),
-  output = "visNetwork")
-</code></pre>
-                        </div>
+  output = "visNetwork")</code></pre>
                     </div>
                     <p>It's better with more nodes and edges though. Try this again with 15 nodes and 30 edges:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a random graph with 15 nodes, 30 edges
 ###
 
@@ -454,14 +430,11 @@ library(DiagrammeR)
 
 render_graph(
   create_random_graph(n = 15, m = 30),
-  output = "visNetwork")
-</code></pre>
-                        </div>
+  output = "visNetwork")</code></pre>
                     </div>
                     <p>Notice that a maximum of one edge is created between a pair of nodes (i.e., no multiple edges created). What if you specify a number of edges (<code>m</code>) that exceeds the number in a fully-connected graph of size <code>n</code>? You get an error, however, it's an informative error (providing the maximum number of edges <code>m</code> for the given <code>n</code>) but it's an error nonetheless.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a random, fully-connected graph of 15 nodes
 ###
 
@@ -484,14 +457,11 @@ render_graph(
 
 render_graph(
   create_random_graph(n = 15, m = 105),
-  output = "visNetwork")
-</code></pre>
-                        </div>
+  output = "visNetwork")</code></pre>
                     </div>
                     <p>Going the opposite way, you don't need to have edges. Simply specify <code>m = 0</code> for any number of nodes <code>n</code>:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a random graph of 15 nodes with no edges
 ###
 
@@ -499,14 +469,11 @@ library(DiagrammeR)
 
 render_graph(
   create_random_graph(n = 512, m = 0),
-  output = "visNetwork")
-</code></pre>
-                        </div>
+  output = "visNetwork")</code></pre>
                     </div>
                     <p>Setting a seed is a great way to create something random yet reproduce that random something (there are many reasons to do this; creating examples is one use). This can be done with the <code>create_random_graph()</code> function by specifying a seed number with the argument <code>set_seed</code>. Here's an example:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a reproducible, random graph
 ###
 
@@ -515,14 +482,11 @@ library(DiagrammeR)
 render_graph(
   create_random_graph(n = 5, m = 4,
                       set_seed = 30),
-  output = "visNetwork")
-</code></pre>
-                        </div>
+  output = "visNetwork")</code></pre>
                     </div>
                     <p>Upon repeat runs, the connections in the graph will be the same each and every time (<code>3</code> is a free node, <code>1</code> is connected to <code>2</code> and <code>5</code>, etc.).</p>
                     <p>By default, the random graphs generated are undirected graphs. To produce directed graphs, simply include <code>directed = TRUE</code> in the <code>create_random_graph()</code> statement.</p>
-                    <div class="highlight">
-                        <div>
+                    <div>
                             <pre><code class="prettyprint">###
 # Create a random, directed graph
 ###
@@ -532,9 +496,7 @@ library(DiagrammeR)
 render_graph(
   create_random_graph(n = 15, m = 22,
                       directed = TRUE),
-  output = "visNetwork")
-</code></pre>
-                        </div>
+  output = "visNetwork")</code></pre>
                     </div>
                     <h2 id="combining-graphs">Combining Graphs</h2>
                     <p>With the <code>combine_graphs()</code> function, one can combine two graphs in order to make a new graph, merging nodes and edges in the process. The use of an optional edge data frame (<em>EDF</em>) allows for new edges to be formed across the combined graphs.</p>
@@ -548,9 +510,8 @@ render_graph(
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>While you would provide two graphs (for arguments <code>x</code> and <code>y</code>), the order here is important. The graph provided as <code>x</code> is considered the graph object to which another graph will be joined. This graph should be considered the host graph as the resulting graph will retain only the attributes of this graph. The graph provided as <code>y</code> is thus the graph object that is to be joined with the graph suppled as <code>x</code>.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create two graphs and combine them into one
 ###
 
@@ -590,14 +551,11 @@ combined_graph &lt;-
   combine_graphs(x = graph_1, y = graph_2)
 
 # Display the combined graph
-render_graph(combined_graph)
-</code></pre>
-                        </div>
+render_graph(combined_graph)</code></pre>
                     </div>
                     <p>Joining two graphs by simply supplying them as <code>x</code> and <code>y</code> will not by itself create connections between the two graphs. To conveniently create connections between the joined graphs, one can supply an <em>EDF</em> to the <code>edges_df</code> argument. Otherwise, connections could always to be made in subsequent function calls using <code>add_edge()</code>, <code>add_edge_df()</code>, or <code>add_edges_from_df()</code>.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create two graphs and combine them
 # with new edges created
 ###
@@ -642,9 +600,7 @@ combined_graph &lt;-
                  edges_df = extra_edges)
 
 # Display the combined graph
-render_graph(combined_graph)
-</code></pre>
-                        </div>
+render_graph(combined_graph)</code></pre>
                     </div>
                     <h2 id="importing-a-graph-from-a-file">Importing a Graph from a File</h2>
                     <p>The <code>import_graph()</code> function is all about loading in graphs from files. There are numerous graph file formats and while <strong>DiagrammeR</strong> does not support too many of them at this point, those formats that are supported are amongst the most well used. (Support for other file formats is forthcoming.) Thus far, <code>import_graph()</code> will import <strong>GraphML</strong> (<code>.graphml</code>), <strong>GML</strong> (<code>.gml</code>), and <strong>SIF</strong> (<code>.sif</code>) graph files. As with the <code>create_graph()</code> function, <code>import_graph()</code> allows for provision of a name and a date-time for the newly imported graph.</p>
@@ -660,9 +616,8 @@ render_graph(combined_graph)
                         </div>
                     <p>For the <code>graph_file</code> argument, a path to a graph file (one that can be opened) is expected. For <code>file_type</code>, you can explicitly specify the type of file to be imported. The options are: <code>graphml</code> (<strong>GraphML</strong>), <code>gml</code> (<strong>GML</strong>), and <code>sif</code> (<strong>SIF</strong>). If not supplied, the function will infer the type by the file extension of the file pointed toward. The <code>graph_name</code>, <code>graph_time</code>, and <code>graph_tz</code> can be optionally supplied. These behave in exactly the same way as in the <code>create_graph()</code> function.</p>
                     <p>For testing purposes, example files of each type are included in the <strong>DiagrammeR</strong> package. The <strong>GraphML</strong> file <code>power_grid.graphml</code> contains an undirected graph of a power station network across several northwestern U.S. states. It contains 4941 nodes and 6594 edges. Do you like karate? If so, you'll be happy to know that the <strong>GML</strong> example (<code>karate.gml</code>) is representative of friendships amongst members of a karate club, circa early 1970s. It is a relatively small graph with 34 nodes and 78 edges. The human interactome <strong>SIF</strong> file <code>Human_Interactome.sif</code> is a fairly large graph with 8347 nodes and 61,263 edges.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Import graphs from various types of graph file formats
 ###
 
@@ -675,7 +630,7 @@ graphml_graph &lt;-
       system.file("examples/power_grid.graphml",
                   package = "DiagrammeR"),
     graph_name = "power_grid"
-  )
+    )
 
 # Open a graph from a GML file
 gml_graph &lt;-
@@ -684,7 +639,7 @@ gml_graph &lt;-
       system.file("examples/karate.gml",
                   package = "DiagrammeR"),
     graph_name = "karate"
-  )
+    )
 
 # Open a graph from a SIF file
 sif_graph &lt;-
@@ -693,9 +648,7 @@ sif_graph &lt;-
       system.file("examples/Human_Interactome.sif",
                   package = "DiagrammeR"),
     graph_name = "Human_Interactome"
-  )
-</code></pre>
-                        </div>
+    )</code></pre>
                     </div>
                 </div>
             </div>
