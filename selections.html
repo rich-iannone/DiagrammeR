@@ -123,9 +123,8 @@
                       <li>a regular expression for filtering through string matching</li>
                     </ol>
                     <p>In the first example, nodes will be selected based on a logical expression operating on a collection of numeric values (the node attribute arbitrarily named <code>data</code>).</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Select nodes based on the numeric values
 # of a specified node attribute
 ###
@@ -153,14 +152,11 @@ graph &lt;-
 # Inspect the graph's `selection` list
 graph$selection
 #> $nodes
-#> [1] "1" "2"
-</code></pre>
-                        </div>
+#> [1] "1" "2"</code></pre>
                     </div>
                     <p>A selection of nodes can be obtained through a match using a regular expression operating on a collection of character-based values (the node attribute arbitrarily named <code>fruits</code>).</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Select nodes based on the text values
 # of a specified node attribute
 ###
@@ -190,9 +186,7 @@ graph &lt;-
 # Inspect the graph's `selection` list
 graph$selection
 #> $nodes
-#> [1] "1" "2"
-</code></pre>
-                        </div>
+#> [1] "1" "2"</code></pre>
                     </div>
                     <p>The situation may arise when a more specialized match needs to be made (i.e., matching this but not that, or, matching two different types of things). This is where the <code>set_op</code> argument becomes useful. When a selection of nodes is performed using <code>select_nodes()</code> (or any of the other <code>select_...()</code> functions that operate on nodes), the selection is stored in the graph object. This is seen in the above examples where <code>graph$selection</code> was used to verify which nodes were in the selection. Because the selection is retained (at least until <code>clear_selection()</code> is called, or, a selection of edges is made), multiple uses <code>select_nodes()</code> can modify the set of selected nodes depending on the option provided in the <code>set_op</code> argument. These set operations are:</p>
                     <ul>
@@ -201,9 +195,8 @@ graph$selection
                       <li>difference — modifies the list of selected nodes such that the only nodes retained are those that are different in the second node selection operation compared to the first</li>
                     </ul>
                     <p>These set operations behave exactly as the base <strong>R</strong> functions: <code>union()</code>, <code>intersect()</code>/<code>intersection()</code>, and <code>setdiff()</code> (they are actually used internally). Furthermore, most of the <code>select_...()</code> functions contain the <code>set_op</code> argument, so, they behave the same way with regard to modifying the node or edge selection in a pipeline of selection operations. As examples are important in fully understanding how these can work for more complex selections, here are a few:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a number of complex node selections
 # using magrittr pipelines and different types
 # of set operations
@@ -283,14 +276,11 @@ graph_3 &lt;-
 # Inspect the graph's `selection` list
 graph_3$selection
 #> $nodes
-#> [1] "3"
-</code></pre>
-                        </div>
+#> [1] "3"</code></pre>
                     </div>
                     <p>There is an additional filtering option available as the <code>nodes</code> argument. Here, a vector of node ID values can be supplied and this will indicate to the function that only that subset of nodes will be considered for <code>select_nodes()</code>. Note that, if <code>node_attr</code> and <code>search</code> are provided with <code>NULL</code> values (the default) and <code>nodes</code> is given a vector of node ID values, it will be those very nodes that will make up the selection in this function call. While this is convenient and often a good method for selecting nodes (so long as one knows which node IDs need to be selected), the function <code>select_nodes_by_id()</code> handles this use case more directly (as the <code>nodes</code> argument is in the second position in the function signature).</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Select nodes from a subset of all
 # available nodes in the graph
 ###
@@ -332,9 +322,7 @@ graph %&lt;>%
 # Inspect the graph's `selection` list
 graph$selection
 #> $nodes
-#> [1] "4" "5" "6"
-</code></pre>
-                        </div>
+#> [1] "4" "5" "6"</code></pre>
                     </div>
                     <h2 id="creating-an-edge-selection">Creating an Edge Selection</h2>
                     <p></p>
@@ -348,11 +336,9 @@ graph$selection
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p></p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="selecting-the-last-node-edge-created">Selecting the Last Node/Edge Created</h2>
                     <p></p>
@@ -371,11 +357,9 @@ graph$selection
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="selecting-nodes-by-id-values">Selecting Nodes by ID Values</h2>
                     <p></p>
@@ -389,11 +373,9 @@ graph$selection
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p></p>
-                    <div class="highlight">
-                        <div>
+                    <div>
                             <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="selecting-nodes-in-a-neighborhood">Selecting Nodes in a Neighborhood</h2>
                     <p></p>
@@ -407,11 +389,9 @@ graph$selection
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p></p>
-                    <div class="highlight">
-                        <div>
+                    <div>
                             <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="selecting-nodes-by-their-degree">Selecting Nodes by their Degree</h2>
                     <p></p>
@@ -425,11 +405,9 @@ graph$selection
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p></p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="inverting-and-clearing-a-selection">Inverting and Clearing a Selection</h2>
                     <p></p>
@@ -449,11 +427,9 @@ graph$selection
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p></p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                 </div>
             </div>
