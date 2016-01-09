@@ -128,9 +128,8 @@
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>The following example demonstrates how to create a series object with an existing graph object using the <code>create_series()</code> and <code>add_to_series()</code> functions. Since we'd likely want to be able to remove graphs from a series, the <code>remove_from_series()</code> function will be used. The use of <code>count_graphs()</code> and <code>series_info()</code> allows us to get information about the graph series object: <code>count_graphs()</code> returns a simple count of graph objects are present in a graph series, and <code>series_info()</code> yields a data frame with basic information about each graph object present in the graph series.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create and manipulate a graph series
 ###
 
@@ -179,7 +178,6 @@ series &lt;-
 length(series$graphs)
 #> [1] 1
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="getting-a-subset-of-a-series">Getting a Subset of a Series</h2>
                     <p></p>
@@ -193,9 +191,8 @@ length(series$graphs)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>With the <code>subset_series()</code> function you can create a graph series object that contains a subset of graphs. This is useful if you collect and process data into temporal graphs and you'd like to conduct an analysis over some time frame (e.g., graphs generated from collected data on weekdays vs. those graphs using data on weekend days). The <code>subset_series()</code> function works well with both <code>sequential</code> and <code>temporal</code> graph series types.</p>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Subset a graph series by time and by sequence
 ###
 
@@ -263,9 +260,7 @@ series_time_subset &lt;-
 
 # Count the number of graphs in this series
 length(series_time_subset)
-#> [1] 1
-</code></pre>
-                        </div>
+#> [1] 1</code></pre>
                     </div>
                     <h2 id="series-scripts">Series Scripts</h2>
                     <p></p>
@@ -278,11 +273,9 @@ length(series_time_subset)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="rendering-a-specific-graph-in-a-series">Rendering a Specific Graph in a Series</h2>
                     <p></p>
@@ -295,11 +288,9 @@ length(series_time_subset)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="inspection-functions-for-a-graph-series">Inspection Functions for a Graph Series</h2>
                     <p></p>
@@ -319,11 +310,9 @@ length(series_time_subset)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p></p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                 </div>
             </div>
