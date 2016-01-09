@@ -144,9 +144,8 @@
                             <li><code>y</code> &mdash; the y position of the node (requires graph attr <code>layout = neato</code> to use)</li>
                         </ul>
                     <p>In the following examples, node data frames are created. There are a few worthwhile things to notice here. The nodes can be supplied as a character vector (as in <code>c("a", "b", "c", "d")</code>), or, as a range of integers (<code>1:4</code>). It may be a matter of preference, but the numbering system seems to be the better choice (and other functions available in the package will take advantage of a graph with ID values that are available as monotonically increasing integer values). Secondly, a single logical value can be supplied to the <code>label</code> argument, where <code>TRUE</code> copies the node ID to the label attribute, and <code>FALSE</code> yields a blank, unset value for all nodes in the <em>NDF</em>. Finally, the provision of single values in a call that creates more than a single node will result in all nodes having that attribute (e.g., <code>color = "aqua"</code> sets all nodes in the NDF with the 'aqua' color).</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create node data frames
 ###
 
@@ -187,10 +186,7 @@ nodes_2
 #> 1     1 upper     1 filled   red triangle  0.5
 #> 2     2 upper     2 filled   red triangle  3.9
 #> 3     3 upper     3 filled   red triangle  3.7
-#> 4     4 upper     4 filled   red triangle  8.1
-
-</code></pre>
-                        </div>
+#> 4     4 upper     4 filled   red triangle  8.1</code></pre>
                     </div>
                     <h2 id="creating-an-edf">Creating an EDF</h2>
                     <p>Using the <code>create_edges()</code> function, an edge data frame (EDF) (comprising edges and their attributes) is created. As with the <code>create_nodes()</code> function, the resulting object is an <strong>R</strong> <code>data.frame</code> object. While the usual means for creating data frames could be used to create an <em>EDF</em>, the <code>create_edges()</code> function provides some conveniences and validation of the final object (e.g., checking for uniqueness of the supplied node ID values). Also, there is a special attribute for a edge called a <code>rel</code>, which is short for relationship. This is an optional attribute, so, it can be left blank. However, it's advantageous to have these types of group labels set for all edges, especially if the resulting graph is to be fashioned as a <em>property graph</em>. (The node <code>type</code> values must also be set for each node to model your graph as a property graph.)</p>
@@ -221,9 +217,8 @@ nodes_2
                             <li><code>tooltip</code> &mdash; provide text here for an edge tooltip</li>
                         </ul>
                     <p>Here are a few examples of how edge data frames can be created:</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create edge data frames
 ###
 
@@ -258,7 +253,7 @@ edges_2
 #> 2    g  h receives       dot   red
 #> 3    h  f receives       dot   red
 #> 4    h  e receives       dot   red
-</code></pre></div>
+</code></pre>
                     </div>
                     <h2 id="combining_ndfs">Combining NDFs</h2>
                     <p>Several node data frames (<em>NDF</em>s) can be combined into one using the <code>combine_nodes()</code> function. You can combine two <em>NDF</em>s in a single call of <code>combine_nodes()</code>, or, combine even more in a single pass.</p>
@@ -272,9 +267,8 @@ edges_2
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>There may be occasion to combine several <em>NDF</em>s into a single node data frame. The <code>combine_nodes()</code> function works much like the base <strong>R</strong> <code>rbind()</code> function except that it accepts <em>NDF</em>s with columns differing in number, names, and ordering. Obtaining several node data frames may result from collecting data from various sources, at different times (where the collected data is different), or, simply from multiple calls of <code>create_nodes()</code> for practical or readability purposes, to name a few examples. Speaking of examples:</p>
-                                        <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Combine two node data frames
 ###
 
@@ -307,9 +301,7 @@ all_nodes
 #> 5     5 upper     5  0.3
 #> 6     6 upper     6  6.3
 #> 7     7 upper     7 10.7
-#> 8     8 upper     8  1.2
-</code></pre>
-                        </div>
+#> 8     8 upper     8  1.2</code></pre>
                     </div>
                     <h2 id="combining_edfs">Combining EDFs</h2>
                     <p>There may be cases where one might take data from one or more data frames and create multiple edge data frames. One can combine multiple edge data frames (<em>EDF</em>s) with the <code>combine_edges()</code> function. Any number of <em>EDF</em>s can be safely combined with one call of this function.</p>
@@ -323,9 +315,8 @@ all_nodes
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>Again, it is advantageous to use this combining function for the purpose of coalescing <em>EDF</em>s. Once a single, combined <em>EDF</em> is generated, it is much easier to incorporate that data into a <strong>DiagrammeR</strong> graph object.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Combine two edge data frames
 ###
 
@@ -361,8 +352,7 @@ all_edges
 #> 7    h  f receives   red            dot
 #> 8    h  e receives   red            dot
 </code></pre></div>
-                    </div>
-                </div>
+                  </div>
             </div>
             <div class="col-md-3" role="complementary">
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
