@@ -139,9 +139,8 @@
                             <li><code>rel</code></li>
                             <li><code>label</code></li>
                         </ul>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Get basic information on the graph's nodes and edges
 ###
 
@@ -196,9 +195,7 @@ edge_info(graph)
 #> 3     W   O letter_to_letter  edge
 #> 4     U   K letter_to_letter  edge
 #> 5     I   V letter_to_letter  edge
-#>..   ... ...              ...   ...
-</code></pre>
-                        </div>
+#>..   ... ...              ...   ...</code></pre>
                     </div>
                     <h2 id="determining-whether-a-node-or-edge-is-present">Determining Whether a Node or Edge is Present</h2>
                     <p></p>
@@ -218,9 +215,8 @@ edge_info(graph)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>The <code>node_present()</code> and <code>edge_present()</code> functions are used to determine whether a node (based on its node ID) or an edge (based on two node IDs) is present in a graph object. Both functions return a logical value of either <code>TRUE</code> or <code>FALSE</code>.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Find out if a node or edge is present in the graph
 ###
 
@@ -281,7 +277,6 @@ edge_present(graph, from = "A", to = "B")
 edge_present(graph, from = "K", to = "V")
 #> TRUE
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="getting-a-collection-of-nodes-or-edges">Getting a Collection of Nodes or Edges</h2>
                     <p></p>
@@ -301,9 +296,8 @@ edge_present(graph, from = "K", to = "V")
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>The purpose of the <code>get_nodes()</code> and <code>get_edges()</code> functions is to return either all of the nodes or edges (i.e., pairs of nodes, ordered by direction) available in the graph, or, in data frames for nodes or edges. For <code>get_nodes()</code>, one can simply supply either a graph object, a data frame for nodes, or a data frame for edges, and a vector of node IDs will be returned. For the <code>get_edges()</code> function, there is an additional argument called <code>return_type</code>, where you can specify three different types of return objects: a list with <code>return_type = list</code>, a data frame with <code>return_type = df</code>, and a character vector with <code>return_type = vector</code>. Whereas <code>get_nodes()</code> works with graph objects and data frames for nodes and edges, <code>get_edges()</code> works only with graph objects and node data frames.</p>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Get a vector of all nodes in a graph, or in NDFs
 # or EDFs
 ###
@@ -404,9 +398,7 @@ all(get_edges(edges, return_type = "df") ==
 
 all(get_edges(edges, return_type = "vector") ==
       get_edges(graph, return_type = "vector"))
-#> TRUE
-</code></pre>
-                        </div>
+#> TRUE</code></pre>
                     </div>
                     <h2 id="getting-the-predecessors-or-successors-of-a-node">Getting the Predecessors or Successors of a Node</h2>
                     <p></p>
@@ -426,9 +418,8 @@ all(get_edges(edges, return_type = "vector") ==
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>The <code>get_predecessors()</code> and <code>get_successors()</code> function take both a graph object and a specified node in that graph and determine which nodes are its predecessors or successors, respectively.</p>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Get all the predecessors or all of the
 # successors of a given node
 ###
@@ -494,9 +485,7 @@ intersect(
 # The isolated nodes can also be found by subsetting
 # the resulting data frame yielded by `node_info()`
 node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
-#> [1] "F" "J" "X"
-</code></pre>
-                        </div>
+#> [1] "F" "J" "X"</code></pre>
                     </div>
                     <h2 id="extracting-ndfs-or-edfs-from-a-graph">Extracting NDFs or EDFs from a Graph</h2>
                     <p></p>
@@ -515,11 +504,9 @@ node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <div class="highlight">
-                      <div>
+                    <div>
                             <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="getting-counts-of-nodes-or-edges">Getting Counts of Nodes or Edges</h2>
                     <p></p>
@@ -539,9 +526,8 @@ node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>To get a count of all or certain types of nodes available in the graph, you can use the <code>node_count()</code> function. The argument <code>type</code> can either be supplied with a <code>TRUE</code> or <code>FALSE</code> value, or, a character vector containing the values for the node type which may be available for nodes in the graph. Providing <code>TRUE</code> will issue a named vector of node counts by their type. Any nodes with a <code>type</code> attribute not set with a value are placed into a separate count category. Using <code>type = FALSE</code> with <code>node_count()</code> simply supplies a single-value vector with a total count of nodes in the graph. By providing a vector of character values of available node <code>type</code> values, a numerical named vector of counts for only those specified types will be returned.</p>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Get a count of all nodes in a graph
 ###
 
@@ -583,9 +569,7 @@ node_count(graph, type = TRUE)
 
 # Get a total count of nodes with no grouping
 node_count(graph, type = FALSE)
-#> [1] 26
-</code></pre>
-                        </div>
+#> [1] 26</code></pre>
                     </div>
                     <h2 id="is-the-graph-empty-directed">Is the Graph Empty? Directed?</h2>
                     <p></p>
@@ -605,9 +589,8 @@ node_count(graph, type = FALSE)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <p>The <code>is_graph_empty()</code> and <code>is_graph_directed()</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> for whether the graph is empty or whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that may toggle the graph between directed and undirected states.</p>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Is the graph empty? Is it directed?
 ###
 
@@ -630,9 +613,7 @@ is_graph_empty(graph)
 # When created, graphs are set as `directed` by
 # default; to verify that's the case here:
 is_graph_directed(graph)
-#> TRUE
-</code></pre>
-                        </div>
+#> TRUE</code></pre>
                     </div>
                     <h2 id="getting-the-graphs-global-attributes">Getting the Graph's Global Attributes</h2>
                     <p></p>
@@ -645,11 +626,9 @@ is_graph_directed(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="getting-the-current-selection-of-nodes-edges">Getting the Current Selection of Nodes/Edges</h2>
                     <p></p>
@@ -662,11 +641,9 @@ is_graph_directed(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                     <h2 id="obtaining-path-information-from-a-graph">Obtaining Path Information from a Graph</h2>
                     <p></p>
@@ -679,11 +656,9 @@ is_graph_directed(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <div class="highlight">
-                      <div>
-                            <pre><code class="prettyprint">
+                    <div>
+                        <pre><code class="prettyprint">
 </code></pre>
-                        </div>
                     </div>
                 </div>
             </div>
