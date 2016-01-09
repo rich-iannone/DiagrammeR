@@ -773,9 +773,8 @@ create_graph(nodes_df = nodes,
                     <p>The <code>get_predecessors()</code> and <code>get_successors()</code> function take both a graph object and a specified node in that graph and determine which nodes are its predecessors or successors, respectively.</p>
                     <p>To get a count of all or certain types of nodes available in the graph, you can use the <code>node_count()</code> function. The argument <code>type</code> can either be supplied with a <code>TRUE</code> or <code>FALSE</code> value, or, a character vector containing the values for the node type which may be available for nodes in the graph. Providing <code>TRUE</code> will issue a named vector of node counts by their type. Any nodes with a <code>type</code> attribute not set with a value are placed into a separate count category. Using <code>type = FALSE</code> with <code>node_count()</code> simply supplies a single-value vector with a total count of nodes in the graph. By providing a vector of character values of available node <code>type</code> values, a numerical named vector of counts for only those specified types will be returned.</p>
                     <p>The <code>is_graph_empty()</code> and <code>is_graph_directed()</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> for whether the graph is empty or whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that may toggle the graph between directed and undirected states.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">###
+                    <div>
+                        <pre><code class="prettyprint">###
 # Create a graph
 ###
 
@@ -992,7 +991,6 @@ node_count(graph, type = TRUE) # the default
 # Get a total count of nodes with no grouping
 node_count(graph, type = FALSE)
 #> [1] 26</code></pre>
-                        </div>
                     </div>
                     <h2 id="modifying-the-graph">Modifying the Graph</h2>
                     <p>Add nodes, delete edges, modify relationships between nodes, and set node type declarations. Those are some of the things you can do with these graph construction/destruction functions.</p>
@@ -1055,9 +1053,8 @@ node_count(graph, type = FALSE)
                     <p>The function <code>delete_edge()</code> removes an edge from the graph. Specify the graph object in <code>graph</code>, the nodes in <code>nodes</code>, and the function will remove that edge if it exists.</p>
                     <p>The <code>node_type()</code> function provides various means to check the <code>type</code> attribute for a node and perform different operations on that attribute. The different functionalities of <code>node_type</code> can be changed through the use of these different keywords for the <code>action</code> argument: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code>. With <code>read</code> set as the action, a node ID supplied with the graph object yields that node's <code>type</code> attribute. Using <code>action = check</code> with a node ID, you can check whether a <code>type</code> attribute exists (it will return <code>TRUE</code> or <code>FALSE</code>. If the <code>type</code> attribute hasn't been set for a node, you can add that using <code>action = add</code> along with a string supplied for the <code>value</code> argument. If a <code>type</code> attribute has alredy been set for a node and you'd like to change it, use <code>action = update</code> and include the updated string with the <code>value</code> argument. Deleting a <code>type</code> attribute for a node is easily accomplished by using <code>action = delete</code>.</p>
                     <p>The <code>edge_rel()</code> function is similar in principle and use to the <code>node_type()</code> function. In this function, the edges' <code>rel</code> attribute can be checked for existence, added, removed, or updated. As with the <code>node_type()</code> function, this function uses the <code>action</code> argument and performs various actions with these keywords: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code> (same keywords as those for <code>node_type()</code>). Using <code>read</code>, supply node IDs for the <code>from</code> and <code>to</code> arguments. With that, you will receive the edge's currently set <code>rel</code> attribute. The <code>rel</code> attribute may or may not be set, so, using <code>action = check</code> with a specified edge, the existence of the <code>rel</code> attribute can be verified through a <code>TRUE</code> or <code>FALSE</code> return value. An unset <code>rel</code> attribute for an edge can be set by using <code>action = add</code> and a character string for the <code>value</code> argument. To update an already set <code>rel</code> attribute for an edge, use <code>action = update</code> and provide the updated relationship string with the <code>value</code> argument. Deleting a <code>rel</code> attribute for an edge is done by using <code>action = delete</code> with an edge.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">library(DiagrammeR)
+                    <div>
+                        <pre><code class="prettyprint">library(DiagrammeR)
 
 # Create an empty graph
 graph &lt;- create_graph()
@@ -1124,7 +1121,6 @@ graph &lt;- delete_edge(graph, from = "a", to = "c")
 edge_info(graph)
 #>   from to    rel label
 #> 1    a  b to_get    NA</code></pre>
-                        </div>
                     </div>
                     <h2 id="using-graph-series">Using a Series of Graphs</h2>
                     <p>There may be situations where multiple graphs are required for analysis. A convenient means to work with several graphs is with the graph series object, which serializes graph objects. The time and sequence properties of the contained graphs can be used for subsetting. Scripts can be triggered for the series that allow for things such as data collection and creation of multiple graphs within the series object.</p>
@@ -1191,7 +1187,6 @@ edge_info(graph)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                 <p>The following example demonstrates how to create a series object with an existing graph object using the <code>create_series()</code> and <code>add_to_series()</code> functions. Since we'd likely want to be able to remove graphs from a series, the <code>remove_from_series()</code> function will be used. The use of <code>count_graphs()</code> and <code>series_info()</code> allows us to get information about the graph series object: <code>count_graphs()</code> returns a simple count of graph objects are present in a graph series, and <code>series_info()</code> yields a data frame with basic information about each graph object present in the graph series.</p>
-                <div class="highlight">
                         <div>
                             <pre><code class="prettyprint">#####
 # Create and manipulate a graph series
@@ -1242,12 +1237,10 @@ series &lt;- remove_from_series(graph_series = series, index = "last")
 # Count the number of graphs in the series
 graph_count(series)
 #> [1] 1</code></pre>
-                        </div>
                     </div>
                     <p>With the <code>subset_series()</code> function you can create a graph series object that contains a subset of graphs. This is useful if you collect and process data into temporal graphs and you'd like to conduct an analysis over some time frame (e.g., graphs generated from collected data on weekdays vs. those graphs using data on weekend days). The <code>subset_series()</code> function works well with both <code>sequential</code> and <code>temporal</code> graph series types.</p>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">#####
+                    <div>
+                        <pre><code class="prettyprint">#####
 # Subset a graph series by time and by sequence
 #####
 
@@ -1307,16 +1300,14 @@ series_time_subset &lt;-
 
 graph_count(series_time_subset)
 #> [1] 1</code></pre>
-                        </div>
                     </div>
                     <p>Because data collection and using rules to determine how the graph should be generated can be scripted, it makes sense to have those scripts close at hand and also to have the ability to periodically trigger those scripts. For this use case, the <code>trigger_script()</code> function will prove useful. It simply runs a script contained in a graph series object, and, returns a modified graph series object. In the following example, a script is directly added to graph series object as a character vector. There is the option to instead use a reference to an **R** script on disk. This is done by supplying a path to the file (including the file name) in the <code>series_scripts</code> argument when calling the <code>create_series()</code> function.</p>
                     <p>In the following example, a script essentially takes an empty graph series and builds up a random graph, adding a new node and edges with each triggering of the script. On new days, the script will create a new graph and build that graph. Throughout the script, <code>_SELF_</code> refers to the graph series in which the script is contained.</p>
                     <div class="bs-example">
                         <img src="img/graph-functions/script_trigger_example.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">#####
+                    <div>
+                        <pre><code class="prettyprint">#####
 # Trigger a script and render select graphs from a graph series
 #####
 
@@ -1464,7 +1455,6 @@ for (i in seq(1, 60)){
 # Display the results in the RStudio Viewer
 render_graph_from_series(graph_series = series_temporal,
                          graph_no = graph_count(series_temporal)</code></pre>
-                        </div>
                     </div>
                 </div>
                 <div class="bs-docs-section">
@@ -1475,9 +1465,8 @@ render_graph_from_series(graph_series = series_temporal,
                     <div class="bs-example">
                         <img src="img/grviz_example-3-1.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint"># Get the 'nycflights13' package if not already installed
+                    <div>
+                        <pre><code class="prettyprint"># Get the 'nycflights13' package if not already installed
 # install.packages('nycflights13')
 
 # Get the 'lubridate' package if not already installed
@@ -1566,7 +1555,6 @@ create_graph(nodes_df = nodes_df, edges_df = edges_df,
              graph_attrs = graph_attrs, node_attrs = node_attrs,
              edge_attrs = edge_attrs, directed = TRUE) %>%
                render_graph(width = 1200, height = 800)</code></pre>
-                        </div>
                     </div>
                 </div>
             </div>
