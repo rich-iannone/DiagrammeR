@@ -602,6 +602,7 @@ combined_graph &lt;-
 # Display the combined graph
 render_graph(combined_graph)</code></pre>
                     </div>
+                    <p>There are likely quite a few uses for the <code>combine_graphs()</code> function, such as combining subgraphs (with the <code>create_subgraph()</code> function), combining graphs made from data collected at different times, etc.</p>
                     <h2 id="importing-a-graph-from-a-file">Importing a Graph from a File</h2>
                     <p>The <code>import_graph()</code> function is all about loading in graphs from files. There are numerous graph file formats and while <strong>DiagrammeR</strong> does not support too many of them at this point, those formats that are supported are amongst the most well used. (Support for other file formats is forthcoming.) Thus far, <code>import_graph()</code> will import <strong>GraphML</strong> (<code>.graphml</code>), <strong>GML</strong> (<code>.gml</code>), and <strong>SIF</strong> (<code>.sif</code>) graph files. As with the <code>create_graph()</code> function, <code>import_graph()</code> allows for provision of a name and a date-time for the newly imported graph.</p>
                     <p></p>
@@ -650,6 +651,7 @@ sif_graph &lt;-
     graph_name = "Human_Interactome"
     )</code></pre>
                     </div>
+                <p>Once you've imported a graph, you're free to use it as any graph you might make yourself with <code>create_graph()</code>.</p>
                 </div>
             </div>
             <div class="col-md-3" role="complementary">
