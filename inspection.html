@@ -575,8 +575,9 @@ create_random_graph(5, 10,
 #> 4    4  1
 #> 5    3  2   </code></pre>
                     </div>
+                    <p>Likely, there will not be much use of these functions compared to others in the package but within the context of a <strong>magrittr</strong> statement the functions' names confer semantic information about what exactly is being done. If you need to build additional functions that extend those available in <strong>DiagrammeR</strong> then the use of these functions may be useful for such tasks.</p>
                     <h2 id="getting-counts-of-nodes-or-edges">Getting Counts of Nodes or Edges</h2>
-                    <p></p>
+                    <p>Understanding the size of the graph is often important for EDA tasks. The graph size is partially attributable to the total number of nodes and the total number of edges. The functions <code>node_count()</code> and <code>edge_count()</code> both provide simple counts of all nodes and edges, respectively, in a graph. Furthermore, for property graphs where node <code>type</code> attributes and edge <code>rel</code> attributes are available, these functions can provide counts partitioned by the nodes or edges with different <code>type</code> or <code>rel</code> labels.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
