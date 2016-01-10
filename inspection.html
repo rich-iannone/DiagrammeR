@@ -513,9 +513,67 @@ node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
+                    <p>Both functions only require the graph object name as value for the <code>graph</code> argument. Here are a few examples that show the use <code>get_node_df()</code> and <code>get_edge_df()</code>.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Extract a graph's NDF and
+# EDF and do worthwhile things
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Show the NDF from a randomly
+# created graph
+create_random_graph(5, 10,
+                    directed = TRUE,
+                    set_seed = 20) %>%
+  get_node_df
+#>   nodes type label value
+#> 1     1          1     9
+#> 2     2          2     8
+#> 3     3          3     3
+#> 4     4          4   5.5
+#> 5     5          5    10
+
+# Take this a step further and
+# get the mean value from the
+# `value` node attribute
+create_random_graph(5, 10,
+                    directed = TRUE,
+                    set_seed = 20) %>%
+  get_node_df %>% .$value %>%
+  as.numeric %>% mean
+#> [1] 7.1
+
+# An empty graph doesn't have an
+# NDF, so calling `get_node_df()`
+# returns `NA`
+create_graph() %>% get_node_df
+#> [1] NA
+
+# A graph with nodes but no edges
+# likewise doesn't have an EDF
+# so calling `get_edge_df()` will
+# return `NA`
+create_random_graph(5, 0) %>%
+  get_edge_df
+#> [1] NA
+
+# Getting the EDF from a graph
+# is hardly different from getting
+# an NDF. Get the 'head' of the
+# graph's EDF
+create_random_graph(5, 10,
+                    directed = TRUE,
+                    set_seed = 20) %>%
+  get_edge_df %>% .[1:5,]
+#> from to rel
+#> 1    5  1
+#> 2    1  3
+#> 3    2  4
+#> 4    4  1
+#> 5    3  2   </code></pre>
                     </div>
                     <h2 id="getting-counts-of-nodes-or-edges">Getting Counts of Nodes or Edges</h2>
                     <p></p>
