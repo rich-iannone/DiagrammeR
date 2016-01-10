@@ -400,8 +400,8 @@ all(get_edges(edges, return_type = "vector") ==
       get_edges(graph, return_type = "vector"))
 #> TRUE</code></pre>
                     </div>
-                    <h2 id="getting-the-predecessors-or-successors-of-a-node">Getting the Predecessors or Successors of a Node</h2>
-                    <p></p>
+                    <h2 id="getting-the-direct-predecessors-or-successors-of-a-node">Getting the Direct Predecessors or Successors of a Node</h2>
+                    <p>The direct predecessors and direct successors of a particular node can be obtained through two easy-to-use functions: <code>get_predecessors()</code> and <code>get_successors()</code>. In order to be clear on what exactly these functions will return, a brief foray in graph theory will useful. Defining an edge between nodes as an arrow (with components <code>x</code>, <code>y</code>), such arrow is thought to be directed from <code>x</code> to <code>y</code>. The <code>y</code> component is termed the <em>head</em> and <code>x</code> is termed the <em>tail</em> of the arrow. Orientation is important as <code>y</code> is considered to be a direct successor of <code>x</code> and <code>x</code> is considered to be a direct predecessor of <code>y</code>. Supposing that <code>x</code> and <code>y</code> adjoin two different nodes in the graph, then this definition extended to mean direct predecessor nodes and direct successor nodes. There is the case that arrow components <code>x</code> and <code>y</code> are incident on the same node, and this is a node with a loop. In such a case, that node is both the direct predecessor and the direct successor of itself (where its degree is equal to 2). The aforementioned functions will return the node ID value(s) for the direct predecessors and direct successors of a given node. This is important to stress, since if a <em>path</em> exists between two distinct nodes, then the node at the end of the path is said to be a successor of node at the beginning of the path and <em>reachable</em> from that node (which is a predecessor of node at the end of the path.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -417,15 +417,17 @@ all(get_edges(edges, return_type = "vector") ==
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>The <code>get_predecessors()</code> and <code>get_successors()</code> function take both a graph object and a specified node in that graph and determine which nodes are its predecessors or successors, respectively.</p>
+                    <p>The <code>get_predecessors()</code> and <code>get_successors()</code> functions take both a graph object and a specified node (provided as the node ID value) in that graph and they determine which nodes are its direct predecessors or successors, respectively. This is a more direct and convenient means of determining direct predecessor or successor node ID values than performing a traversal, or extracting the graph's EDF and using base <strong>R</strong> function to elucidate such node ID values.</p>
                     <div>
                         <pre><code class="prettyprint">###
-# Get all the predecessors or all of the
-# successors of a given node
+# Get all the direct predecessors
+# or all of the direct successors
+# of a given node
 ###
 
 library("DiagrammeR")
 
+# Set a seed
 set.seed(26)
 
 # Create an NDF
@@ -442,8 +444,8 @@ nodes &lt;-
 # Create an EDF
 edges &lt;-
   create_edges(
-    from = sample(LETTERS, replace = TRUE),
-    to = sample(LETTERS, replace = TRUE),
+    from = sample(LETTERS, TRUE),
+    to = sample(LETTERS, TRUE),
     label = "edge",
     rel = "letter_to_letter"
   )
@@ -455,7 +457,8 @@ graph &lt;-
     edges_df = edges,
   )
 
-# If there are no predecessors, `NA` is returned
+# If there are no predecessors,
+# `NA` is returned
 get_predecessors(graph, node = "A")
 #> [1] NA
 
@@ -468,27 +471,33 @@ get_successors(graph, node = "Z")
 get_predecessors(graph, node = "Z")
 #> [1] "A" "R" "R"
 
-# Find isolated nodes in a graph (they have neither
-# successors nor predecessors)
+# Find isolated nodes in a graph
+# (they have neither successors nor
+# predecessors)
 intersect(
-  names(which(
-         is.na(sapply(get_nodes(graph),
-                           function(x) get_successors(
-                             graph, x))))),
-  names(which(
-          is.na(sapply(get_nodes(graph),
-                           function(x) get_predecessors(
-                             graph, x)))))
+  names(
+    which(
+      is.na(sapply(
+              get_nodes(graph),
+                 function(x) get_successors(
+                    graph, x))))),
+  names(
+    which(
+      is.na(sapply(
+              get_nodes(graph),
+                 function(x) get_predecessors(
+                    graph, x)))))
 )
 #> [1] "F" "J" "X"
 
-# The isolated nodes can also be found by subsetting
-# the resulting data frame yielded by `node_info()`
+# The isolated nodes can also be
+# found by subsetting the resulting
+# data frame yielded by `node_info()`
 node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
 #> [1] "F" "J" "X"</code></pre>
                     </div>
                     <h2 id="extracting-ndfs-or-edfs-from-a-graph">Extracting NDFs or EDFs from a Graph</h2>
-                    <p></p>
+                    <p>Most graph objects should have an internal node data frame (<em>NDF</em>) and and internal edge data frame (<em>EDF</em>). The <em>NDF</em> represents the nodes and their attributes, and, the <em>EDF</em> represents the edges between nodes and the edge attributes. These can be directly accessed from the graph object using <code>[graph_name]$nodes_df</code> or <code>[graph_name]$edges_df</code>. A better way to do this is to use either the <code>get_node_df()</code> or the <code>get_edge_df()</code> function.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -505,7 +514,7 @@ node_info(graph)[which(node_info(graph)["degree"] == 0), ][, 1]
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <div>
-                            <pre><code class="prettyprint">
+                        <pre><code class="prettyprint">
 </code></pre>
                     </div>
                     <h2 id="getting-counts-of-nodes-or-edges">Getting Counts of Nodes or Edges</h2>
@@ -671,7 +680,7 @@ is_graph_directed(graph)
                                 <li><a href="#getting-summary-info-on-nodes-or-edges">Getting Summary Info on Nodes or Edges</a></li>
                                 <li><a href="#determining-whether-a-node-or-edge-is-present">Determining Whether a Node or Edge is Present</a></li>
                                 <li><a href="#getting-a-collection-of-nodes-or-edges">Getting a Collection of Nodes or Edges</a></li>
-                                <li><a href="#getting-the-predecessors-or-successors-of-a-node">Getting the Predecessors or Successors of a Node</a></li>
+                                <li><a href="#getting-the-direct-predecessors-or-successors-of-a-node">Getting the Direct Predecessors or Successors of a Node</a></li>
                                 <li><a href="#extracting-ndfs-or-edfs-from-a-graph">Extracting NDFs or EDFs from a Graph</a></li>
                                 <li><a href="#getting-counts-of-nodes-or-edges">Getting Counts of Nodes or Edges</a></li>
                                 <li><a href="#is-the-graph-empty-directed">Is the Graph Empty? Directed?</a></li>
