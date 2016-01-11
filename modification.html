@@ -126,7 +126,9 @@
                     <p>The <code>add_edge()</code> function is meant for adding an edge between two extant graph nodes. Because the nodes must exist in the graph, this function cannot be invoked for an empty graph. (It can, however, be used for a graph with a single node since an edge can be created as a loop from and to the same node.) The basic means to add an edge to a graph with this function is to specify <code>from</code> and <code>to</code> nodes for the edge to be added. One can optionally add an edge <code>rel</code> string as a value for the <code>rel</code> argument.
                     <div>
                         <pre><code class="prettyprint">###
-# Title
+# Add single nodes and edges
+# with the `add_node()` and
+# `add_edge()` functions
 ###
 
 library(DiagrammeR)
@@ -192,7 +194,7 @@ get_edge_df(graph)
 </code></pre>
                     </div>
                     <h2 id="adding-several-new-nodes-to-a-graph">Adding Several New Nodes to a Graph</h2>
-                    <p></p>
+                    <p>Add a multiple of new nodes to the graph in a single function call with the <code>add_n_nodes()</code> function.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -202,9 +204,35 @@ get_edge_df(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>Add a multiple of new nodes to the graph in a single function call with <code>add_n_nodes()</code>. The argument <code>n</code> is for the number of new nodes to add to the graph, so, supply an integer that is greater than or equal to <code>1</code>. Optionally, set node <code>type</code> values for the new nodes (this is important for creating property graphs). The <code>set_node_type</code> argument takes an optional string for applying a single <code>type</code> attribute to all newly created nodes.</p>
+                    <p>The argument <code>n</code> is for the number of new nodes to add to the graph, so, supply an integer that is greater than or equal to <code>1</code>. Optionally, set node <code>type</code> values for the new nodes (this is important for creating property graphs). The <code>set_node_type</code> argument takes an optional string for applying a single <code>type</code> attribute to all the newly created nodes.</p>
                     <div>
-                        <pre><code class="prettyprint">
+                        <pre><code class="prettyprint">###
+# Add several nodes with different
+# `type` attributes to the graph
+# with a the `add_n_nodes()`
+# functions
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Add 20 nodes to an empty graph
+create_graph(graph_attrs =
+               "output = visNetwork") %>%
+  add_n_nodes(20) %>%
+  render_graph
+
+# Add 20 nodes of 4 different types to
+# an empty graph and then create edges
+# between them
+create_graph(graph_attrs =
+               "output = visNetwork") %>%
+  add_n_nodes(5, "A") %>%
+  add_n_nodes(5, "B") %>%
+  add_n_nodes(5, "C") %>%
+  add_n_nodes(5, "D") %>%
+  add_edge_df(create_edges(1:19, 2:20)) %>%
+  render_graph
 </code></pre>
                     </div>
                     <h2 id="adding-several-new-nodes-to-or-from-a-selection-of-nodes">Adding Several New Nodes to or from a Selection of Nodes</h2>
@@ -405,7 +433,7 @@ get_edge_df(graph)
 </code></pre>
                     </div>
                     <h2 id="setting-node-or-edge-attributes">Setting Node or Edge Attributes</h2>
-                    <p>A group of functions is provided for workingg with node and edge attributes.</p>
+                    <p>Once a node or edge is in the graph, there are still opportunities to add or modify node or edge attribute values. There are four functions that help with this sort of task: <code>set_node_attr()</code>, <code>set_edge_attr()</code>, <code>set_node_attr_with_selection()</code>, and <code>set_edge_attr_with_selection()</code>.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -433,7 +461,7 @@ get_edge_df(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>When adding or modifying node attributes, you can target all the nodes at once (using <code>set_node_attr()</code> with no values provided to the <code>nodes</code> argument). Specific nodes can be targeted by providing a vector of node ID values to the <code>nodes</code> argument of the <code>set_node_attr()</code> function or by creating a selection of nodes (using <code>select_nodes()</code>, <code>select_nodes_by_id()</code>, <code>select_nodes_by_degree()</code>, etc.) and using the <code>set_node_attr_with_selection()</code> function. Similarly, for additions or modifications of edge attributes, the <code>set_edge_attr()</code> and <code>set_edge_attr_with_selection()</code> are used in the same manner.</p>
                     <div>
                         <pre><code class="prettyprint">
 </code></pre>
