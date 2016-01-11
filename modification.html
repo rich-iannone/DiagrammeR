@@ -405,7 +405,7 @@ get_edge_df(graph)
 </code></pre>
                     </div>
                     <h2 id="setting-node-or-edge-attributes">Setting Node or Edge Attributes</h2>
-                    <p>A group of functions is provided for workingg with node and edge attributes.</p>
+                    <p>Once a node or edge is in the graph, there are still opportunities to add or modify node or edge attribute values. There are four functions that help with this sort of task: <code>set_node_attr()</code>, <code>set_edge_attr()</code>, <code>set_node_attr_with_selection()</code>, and <code>set_edge_attr_with_selection()</code>.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -433,7 +433,7 @@ get_edge_df(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>When adding or modifying node attributes, you can target all the nodes at once (using <code>set_node_attr()</code> with no values provided to the <code>nodes</code> argument). Specific nodes can be targeted by providing a vector of node ID values to the <code>nodes</code> argument of the <code>set_node_attr()</code> function or by creating a selection of nodes (using <code>select_nodes()</code>, <code>select_nodes_by_id()</code>, <code>select_nodes_by_degree()</code>, etc.) and using the <code>set_node_attr_with_selection()</code> function. Similarly, for additions or modifications of edge attributes, the <code>set_edge_attr()</code> and <code>set_edge_attr_with_selection()</code> are used in the same manner.</p>
                     <div>
                         <pre><code class="prettyprint">
 </code></pre>
