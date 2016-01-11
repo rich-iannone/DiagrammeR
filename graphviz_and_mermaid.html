@@ -123,9 +123,8 @@
                     <div class="bs-example">
                         <img src="img/Example_7a.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">grViz("
+                    <div>
+                        <pre><code class="prettyprint">grViz("
 digraph boxes_and_circles {
 
   # a 'graph' statement
@@ -147,7 +146,6 @@ digraph boxes_and_circles {
   E-&gt;6 4-&gt;6 5-&gt;7 6-&gt;7 3-&gt;8
 }
 ")</code></pre>
-                        </div>
                     </div>
                     <h2 id="subgraphs-and-clusters">Subgraphs and Clusters</h2>
                     <p>Subgraphs play three roles in <strong>Graphviz</strong>. First, a subgraph can be used to represent graph structure, indicating that certain nodes and edges should be grouped together. This is the usual role for subgraphs and typically specifies semantic information about the graph components. It can also provide a convenient shorthand for edges. An edge statement allows a subgraph on both the left and right sides of the edge operator. When this occurs, an edge is created from every node on the left to every node on the right. For example, the specification</p>
@@ -347,9 +345,8 @@ F; G; H; I; J
                     <div class="bs-example">
                         <img src="img/Graphviz_substitution.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">grViz("
+                    <div>
+                        <pre><code class="prettyprint">grViz("
 digraph a_nice_graph {
 
 # node definitions with substituted label text
@@ -372,7 +369,6 @@ a -> {b c d e f g h i j}
 [1]: 'top'
 [2]: 10:20
 ")</code></pre>
-                        </div>
                     </div>
                     <p>As can be seen from the output:</p>
                     <ol>
@@ -384,9 +380,8 @@ a -> {b c d e f g h i j}
                     <div class="bs-example">
                         <img src="img/r_Information.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">grViz("
+                    <div>
+                        <pre><code class="prettyprint">grViz("
 digraph nicegraph {
 
   # graph, node, and edge definitions
@@ -425,7 +420,6 @@ digraph nicegraph {
 [3]: paste0('Current program mode:\\n ', rstudioapi::versionInfo()[[2]])
 
 ")</code></pre>
-                        </div>
                     </div>
                 <div class="bs-docs-section">
                     <h1 id="graphviz-layouts" class="page-header">Graphviz Layouts</h1>
@@ -442,9 +436,8 @@ digraph nicegraph {
                     <div class="bs-example">
                         <img src="img/engine-dot-TB.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">grViz("
+                    <div>
+                        <pre><code class="prettyprint">grViz("
 digraph dot {
 
 graph [layout = dot]
@@ -468,15 +461,13 @@ b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
 }")</code></pre>
-                        </div>
                     </div>
                     <p>Note that in the previous example, rank 1 is the red node whereas ranks 2 and 3 are colored green and yellow, respectively. Alternatively, the rank direction can be set to left to right in a <code>graph</code> statement (<code>rankdir = LR</code>).</p>
                     <div class="bs-example">
                         <img src="img/engine-dot-LR.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">grViz("
+                    <div>
+                        <pre><code class="prettyprint">grViz("
 digraph dot {
 
 graph [layout = dot,
@@ -501,16 +492,14 @@ b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
 }")</code></pre>
-                        </div>
                     </div>
                     <h2 id="neato">neato</h2>
                     <p>The <strong>neato</strong> layout provides spring model layouts. This is a suitable layout if the graph is not too large (less than 100 nodes) and you don't know anything else about it. The <strong>neato</strong> layout attempts to minimize a global energy function, which is equivalent to statistical multi-dimensional scaling. Have a look at the previous graph, rendered with the <strong>neato</strong> layout:</p>
                     <div class="bs-example">
                         <img src="img/engine-neato.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">grViz("
+                    <div>
+                        <pre><code class="prettyprint">grViz("
 digraph neato {
 
 graph [layout = neato]
@@ -534,7 +523,6 @@ b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
 }")</code></pre>
-                        </div>
                     </div>
                     <p>Things do actually get interesting if there are lots of nodes. Here is an example of an undirected graph with 407 nodes amongst several ranks. Graph edges have varying lengths. (The code is not presented here as it is rather lenghty but it is available as a <a href="https://gist.github.com/rich-iannone/de0bb88d155a2c1c7e38">GitHub gist</a>.)</p>
                     <div class="bs-example">
@@ -549,9 +537,8 @@ d -> {q r s t u v}
                     <div class="bs-example">
                         <img src="img/engine-twopi.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">grViz("
+                    <div>
+                        <pre><code class="prettyprint">grViz("
 digraph twopi {
 
 graph [layout = twopi]
@@ -575,15 +562,13 @@ b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
 }")</code></pre>
-                        </div>
                     </div>
                     <h2 id="circo">circo</h2>
                     <p>With <strong>circo</strong>, a circular layout results. This is suitable for certain diagrams of multiple cyclic structures, such as certain telecommunications networks.</p>
                     <div class="bs-example">
                         <img src="img/engine-circo.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
+                    <div>
                             <pre><code class="prettyprint">grViz("
 digraph circo {
 
@@ -608,7 +593,6 @@ b -> {e f g h i j}
 c -> {k l m n o p}
 d -> {q r s t u v}
 }")</code></pre>
-                        </div>
                         </div>
                         <h1 id="mermaid" class="page-header">mermaid</h1>
                     <p class="lead">The <strong>mermaid</strong> library is part of <strong>DiagrammeR</strong>. With it, you can describe graphs and sequence diagrams.</p>
@@ -635,9 +619,8 @@ d -> {q r s t u v}
                     <div class="bs-example">
                         <img src="img/mermaid_1.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph LR
   A-->B
   A-->C
@@ -647,7 +630,6 @@ graph LR
   D-->F
   E-->F
 ")</code></pre>
-                        </div>
                     </div>
                     <p>The same result can be achieved in a more succinct manner with this R statement (using semicolons between statements in the mermaid diagram spec):</p>
                     <div><pre><code>mermaid("graph LR; A-->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F")</code></pre></div>
@@ -655,9 +637,8 @@ graph LR
                     <div class="bs-example">
                         <img src="img/mermaid_2.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph TB
   A-->B
   A-->C
@@ -667,7 +648,6 @@ graph TB
   D-->F
   E-->F
 ")</code></pre>
-                        </div>
                     </div>
                     <p>Keep in mind that external .mmd files can also be called by the <strong>mermaid</strong> function. The file <code>graph.mmd</code> can contain the text of the diagram specification as follows:
 <div><pre><code>graph LR
@@ -687,76 +667,64 @@ graph TB
                     <div class="bs-example">
                         <img src="img/mermaid_text_1.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph LR
   A[node text]
 ")</code></pre>
-                        </div>
                     </div>
                     <p>Text placed in a node shaped as a rounded rectangle is done using <code>(</code> and <code>)</code></p>
                     <div class="bs-example">
                         <img src="img/mermaid_text_2.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph LR
   A(node text)
 ")</code></pre>
-                        </div>
                     </div>
                     <p>A circular node with text can be created by encapsulating the text with <code>((</code> and <code>))</code></p>
                     <div class="bs-example">
                         <img src="img/mermaid_text_3.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph LR
   A((node text))
 ")</code></pre>
-                        </div>
                     </div>
                     <p>A rhombus node is made with <code>{</code> and <code>}</code></p>
                     <div class="bs-example">
                         <img src="img/mermaid_text_4.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph LR
   A{node text}
 ")</code></pre>
-                        </div>
                     </div>
                     <p>Finally, there is a special type of shape which is asymmetric and resembles a flag. Only one representation is possible at this time, which is constructed with <code>></code> and <code>]</code></p>
                     <div class="bs-example">
                         <img src="img/mermaid_text_5.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph LR
   A>node text]
 ")</code></pre>
-                        </div>
                     </div>
                     <p>Combining these node shapes together in a single graph, the following may be obtained</p>
                       <div class="bs-example">
                         <img src="img/mermaid_text_6.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 graph LR
 A(Rounded)-->B[Rectangular]
 B-->C{A Rhombus}
 C-->D[Rectangle One]
 C-->E[Rectangle Two]
 ")</code></pre>
-                        </div>
                     </div>
                 </div>
                   <h2 id="mermaid-sequence-diagrams">mermaid Sequence Diagrams</h2>
@@ -764,9 +732,8 @@ C-->E[Rectangle Two]
                     <div class="bs-example">
                         <img src="img/mermaid-sequence-diagram-example.png" class="img-responsive center-block">
                     </div>
-                    <div class="highlight">
-                        <div>
-                            <pre><code class="prettyprint">mermaid("
+                    <div>
+                        <pre><code class="prettyprint">mermaid("
 sequenceDiagram
   customer->>ticket seller: ask ticket
   ticket seller->>database: seats
@@ -781,7 +748,6 @@ sequenceDiagram
     ticket seller->>customer: sorry
   end
 ")</code></pre></div>
-                    </div>
                 </div>
             </div>
             <div class="col-md-3" role="complementary">
