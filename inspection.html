@@ -104,9 +104,9 @@
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="inspection" class="page-header">Inspection</h1>
-                    <p class="lead">Suppose you have a giant graph with many nodes and many edges. Moreover, the information contained within the nodes and edges is granular, highly specific, and perhaps obtained from data collection over varying periods of time. Chances are, if you're creating such a graph, you'll want to inspect parts of the graph (or get summaries of the entire graph) for reporting purposes. This is where <strong>DiagrammeR</strong>'s inspection functions are helpful. They make it rather easy to get the information you need from various facets of the graph.</p>
+                    <p class="lead">Suppose you have a giant graph with many nodes and many edges. Moreover, the information contained within the nodes and edges is granular, highly specific, and perhaps obtained from data collection over varying periods of time. Chances are, if you've built up such a graph, you'll want to inspect parts of the graph (or get summaries of the entire graph) for reporting purposes or to inform further graph modification. This is where <strong>DiagrammeR</strong>'s inspection functions are helpful. They make it rather easy to get the information you need from various facets of the graph.</p>
                     <h2 id="getting-summary-info-on-nodes-or-edges">Getting Summary Info on Nodes or Edges</h2>
-                    <p></p>
+                    <p>To get basic information on each the graph's nodes or edges, the <code>node_info()</code> and <code>edge_info()</code> functions can be used. These functions quickly return data frames with useful information for each node or edge.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -132,6 +132,7 @@
                             <li><code>outdegree</code></li>
                             <li><code>loops</code></li>
                         </ul>
+                    <p>The <code>node</code> column contains node ID values for each of the graph's nodes. The nodes' <code>label</code> and <code>type</code> values are optional yet useful. If these are not set for any of the nodes, the columns with still be present in the resultant data frame and the values contained will be empty strings. The node <code>degree</code>, <code>indegree</code>, and <code>outdegree</code> are counts of how many edges are incident on a specific node. The <code>degree</code> is determined by the total number of edges incident on the node regardless of the direction of the arrow (in a directed graph). The <code>indegree</code> is considered as the number of edges with arrows directed toward the node whereas the <code>outdegree</code> is such count with arrows directed away from the node. Thus, the sum of a node's <code>indegree</code> and <code>outdegree</code> values will be equal to the <code>degree</code> value. The number of <code>loops</code> indicates those edges that originate and terminate from the same node (the contribution to the <code>indegree</code> and <code>outdegree</code> will be <code>1</code> and the contribution to the node's degree will be <code>2</code>).</p>
                     <p>From the <code>edge_info()</code> function, the resultant data frame has the following columns:</p>
                         <ul>
                             <li><code>from</code></li>
