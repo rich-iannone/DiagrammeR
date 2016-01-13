@@ -815,7 +815,22 @@ get_paths(graph,
           from = 1, to = 5,
           longest_path = TRUE)
 #> [[1]]
-#> [1] "1" "2" "7" "5"</code></pre>
+#> [1] "1" "2" "7" "5"
+
+# Use the overwhelming power of
+# magrittr to color nodes in the
+# longest path from `1` -> `5`
+# green and all other nodes brown
+graph %>%
+  select_nodes_by_id(
+    get_paths(., 1, 5,
+              longest_path = TRUE)[[1]]) %>%
+  set_node_attr_with_selection("color", "green") %>%
+  invert_selection %>%
+  set_node_attr_with_selection("color", "brown") %>%
+  render_graph
+
+<img src="img/obtaining-path-information-from-a-graph-2.png" class="img-responsive center-block"></code></pre>
                     </div>
                 </div>
             </div>
