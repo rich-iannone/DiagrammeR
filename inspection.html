@@ -641,7 +641,7 @@ node_count(graph, type = FALSE)
 #> [1] 26</code></pre>
                     </div>
                     <h2 id="is-the-graph-empty-directed">Is the Graph Empty? Directed?</h2>
-                    <p></p>
+                    <p>Rather than using accessing the graph object to determine whether the graph is empty or whether it is a directed graph, you can use the <code>is_graph_empty()</code> or <code>is_graph_directed()</code> function to return a logical value. This slightly improves code readability over using statements such as <code>is.null([graph]$nodes_df)</code> or <code>[graph]$directed</code> to get the same answer.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -715,7 +715,7 @@ is_graph_directed(graph)
 </code></pre>
                     </div>
                     <h2 id="obtaining-path-information-from-a-graph">Obtaining Path Information from a Graph</h2>
-                    <p></p>
+                    <p>For a directed graph, a list of all possible paths from a between two nodes, or, to or from a given node can be obtained with the <code>get_paths()</code> function. There are options to filter the list of paths returned to only the shortest paths, the longest paths, or to those paths within a given range of distances.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -725,9 +725,97 @@ is_graph_directed(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
+                        <p>The <code>get_paths()</code> gets information on possible traversal paths from a graph object supplied in <code>graph</code>. Although the <code>from</code> and <code>to</code> arguments are formally optional argument that have default values of <code>NULL</code>, at least one of those arguments must be supplied with a node ID value. In this way, a list of all paths either from a node or to a node will be returned as a list object. Providing both a node ID value for <code>from</code> and for <code>to</code> will return a list of all possible paths between the two different nodes.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Get a selection of possible
+# paths through a graph
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a simple graph
+graph &lt;-
+  create_graph(graph_attrs =
+                 "output = visNetwork") %>%
+  add_node_df(create_nodes(1:8)) %>%
+  add_edge(1, 2) %>% add_edge(1, 3) %>%
+  add_edge(3, 4) %>% add_edge(3, 5) %>%
+  add_edge(4, 6) %>% add_edge(2, 7) %>%
+  add_edge(7, 5) %>% add_edge(4, 8)
+
+# View the graph
+render_graph(graph)
+
+<img src="img/obtaining-path-information-from-a-graph-1.png" class="img-responsive center-block">
+
+# Get a list of all paths outward
+# from node `1`
+get_paths(graph, from = 1)
+#> [[1]]
+#> [1] "1" "3" "5"
+#>
+#> [[2]]
+#> [1] "1" "2" "7" "5"
+#>
+#> [[3]]
+#> [1] "1" "3" "4" "6"
+#>
+#> [[4]]
+#> [1] "1" "3" "4" "8"
+
+# Get a list of all paths leading
+# to node `6`
+get_paths(graph, to = 6)
+#> [[1]]
+#> [1] "4" "6"
+#>
+#> [[2]]
+#> [1] "3" "4" "6"
+#>
+#> [[3]]
+#> [1] "1" "3" "4" "6"
+
+# Get a list of all paths
+# from `1` to `5`
+get_paths(graph,
+          from = 1, to = 5)
+#> [[1]]
+#> [1] "1" "3" "5"
+#>
+#> [[2]]
+#> [1] "1" "2" "7" "5"
+
+# Get a list of all paths from
+# `1` up to a distance of 2
+# node traversals
+get_paths(graph,
+          from = 1, distance = 2)
+#> [[1]]
+#> [1] "1" "3" "5"
+#>
+#> [[2]]
+#> [1] "1" "2" "7"
+#>
+#> [[3]]
+#> [1] "1" "3" "4"
+
+# Get a list of the shortest
+# paths from `1` to `5`
+get_paths(graph,
+          from = 1, to = 5,
+          shortest_path = TRUE)
+#> [[1]]
+#> [1] "1" "3" "5"
+
+# Get a list of the longest
+# paths from `1` to `5`
+get_paths(graph,
+          from = 1, to = 5,
+          longest_path = TRUE)
+#> [[1]]
+#> [1] "1" "2" "7" "5"</code></pre>
                     </div>
                 </div>
             </div>
