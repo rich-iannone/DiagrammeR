@@ -256,7 +256,7 @@ create_graph(graph_attrs =
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>It's occasionally convenient to select one or more nodes and then add several nodes to or from them. Any use of <code>add_n_nodes_from_selection()</code> or <code>add_n_nodes_to_selection()</code> requires a selection of one or more nodes in the graph and this can be done with either of the node selection functions (e.g., <code>select_nodes()</code>, <code>select_nodes_by_degree()</code>, etc.). Both functions have <code>set_node_type</code> and <code>set_edge_rel</code> arguments, which allow you to optionally provide a common value for either the node <code>type</code> or for the edge <code>rel</code> type for all new nodes and edges created through this function call.</p>
                     <div>
                         <pre><code class="prettyprint">###
 # Add several nodes with different
@@ -298,6 +298,28 @@ create_graph(graph_attrs =
   render_graph
 
 <img src="img/adding-several-new-nodes-to-or-from-a-selection-of-nodes-2.png" class="img-responsive center-block">
+
+# Create a graph in the same
+# manner but add relationships
+# and other attributes
+create_graph(graph_attrs =
+               "output = visNetwork") %>%
+  add_n_nodes(1, "A") %>% select_last_node %>%
+  set_node_attr_with_selection("value", 5) %>%
+  add_n_nodes_to_selection(3, "B", "toward") %>%
+  clear_selection %>%
+  select_nodes("type", "B") %>%
+  set_node_attr_with_selection("value", 4) %>%
+  add_n_nodes_from_selection(3, "C", "away") %>%
+  clear_selection %>%
+  select_nodes("type", "C") %>%
+  set_node_attr_with_selection("value", 3) %>%
+  add_n_nodes_to_selection(5, "D", "toward") %>%
+  select_nodes("type", "D") %>%
+  set_node_attr_with_selection("value", 2) %>%
+  render_graph
+
+<img src="img/adding-several-new-nodes-to-or-from-a-selection-of-nodes-3.png" class="img-responsive center-block">
 </code></pre>
                     </div>
                     <h2 id="adding-nodes-or-edges-from-a-data-frame">Adding Nodes or Edges from a Data Frame</h2>
