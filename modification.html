@@ -319,11 +319,10 @@ create_graph(graph_attrs =
   set_node_attr_with_selection("value", 2) %>%
   render_graph
 
-<img src="img/adding-several-new-nodes-to-or-from-a-selection-of-nodes-3.png" class="img-responsive center-block">
-</code></pre>
+<img src="img/adding-several-new-nodes-to-or-from-a-selection-of-nodes-3.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="adding-nodes-or-edges-from-a-data-frame">Adding Nodes or Edges from a Data Frame</h2>
-                    <p></p>
+                    <p>So long as you are careful not to introduce nodes with duplicate ID values, you can add a node data frame (<em>NDF</em>) to existing graph. You can also add an edge data frame (<em>EDF</em>) to an existing graph. This can be done upon creation of the graph using the <code>create_graph()</code> function, however, these functions are useful for adding bundles of nodes/edges, perhaps whenever new data is available.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
