@@ -172,7 +172,7 @@ get_edge_df(graph)
 #> 1    1  2    </code></pre>
                     </div>
                     <h2 id="adding-an-ndf-or-edf-to-a-graph">Adding an NDF or EDF to a Graph</h2>
-                    <p></p>
+                    <p>So long as you are careful not to introduce nodes with duplicate ID values, you can add a node data frame (<em>NDF</em>) to existing graph. You can also add an edge data frame (<em>EDF</em>) to an existing graph. This can be done upon creation of the graph using the <code>create_graph()</code> function, however, these it can be useful to add collections of nodes or edges as <em>NDF</em>s or <em>EDF</em>s, perhaps whenever new data is available for the graph.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -190,8 +190,111 @@ get_edge_df(graph)
                         </div>
                     <p></p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Add several nodes and
+# edges to the graph in the
+# form of NDFs and EDFs
+###
+
+library(DiagrammeR)
+
+# Create an empty graph
+graph &lt;- create_graph()
+
+# Create a node data frame
+nodes &lt;-
+  create_nodes(
+    nodes = 1:4,
+    type = "a",
+    color = c("red", "green",
+              "grey", "blue"),
+    value = c(3.5, 2.6,
+              9.4, 2.7))
+
+# Add the node data frame to the
+# graph object to create a graph
+# with nodes
+graph &lt;-
+  add_node_df(graph = graph, node_df = nodes)
+
+get_node_df(graph)
+#>   nodes type label color value
+#> 1     1    a     1   red   3.5
+#> 2     2    a     2 green   2.6
+#> 3     3    a     3  grey   9.4
+#> 4     4    a     4  blue   2.7
+
+# Create another node data frame
+nodes_2 &lt;-
+  create_nodes(
+    nodes = 5:8,
+    type = "b",
+    color = c("orange", "brown",
+              "aqua", "pink"),
+    value = c(1.6, 6.4,
+              0.8, 4.2))
+
+# Add the second node data frame
+# to the graph object to add more
+# nodes with attributes to the graph
+graph &lt;-
+  add_node_df(graph = graph,
+              node_df = nodes_2)
+
+# Check the graph's internal
+# NDF to see that the two NDFs
+# were added
+get_node_df(graph)
+#>   nodes type label  color value
+#> 1     1    a     1    red   3.5
+#> 2     2    a     2  green   2.6
+#> 3     3    a     3   grey   9.4
+#> 4     4    a     4   blue   2.7
+#> 5     5    b     5 orange   1.6
+#> 6     6    b     6  brown   6.4
+#> 7     7    b     7   aqua   0.8
+#> 8     8    b     8   pink   4.2
+
+# Create edges by first specifying
+# `from` to `to` vectors of node
+# ID values
+from &lt;-
+  c(1, 3, 5, 2, 3, 5, 2, 5, 3)
+
+to &lt;-
+  c(3, 6, 2, 7, 8, 7, 4, 4, 5)
+
+# Create the EDF
+edges &lt;-
+  create_edges(from = from,
+               to = to,
+               rel = "toward")
+
+# Add the EDF to the graph
+graph &lt;-
+  add_edge_df(graph,
+              edge_df = edges)
+
+# Check the graph's internal
+# EDF to see that the EDF
+# was indeed added
+get_edge_df(graph)
+#>   from to    rel
+#> 1    1  3 toward
+#> 2    3  6 toward
+#> 3    5  2 toward
+#> 4    2  7 toward
+#> 5    3  8 toward
+#> 6    5  7 toward
+#> 7    2  4 toward
+#> 8    5  4 toward
+#> 9    3  5 toward
+
+# View the graph
+render_graph(graph)
+
+
+<img src="img/adding-nodes-or-edges-from-a-data-frame-1.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="adding-several-new-nodes-to-a-graph">Adding Several New Nodes to a Graph</h2>
                     <p>Add a multiple of new nodes to the graph in a single function call with the <code>add_n_nodes()</code> function.</p>
@@ -322,7 +425,7 @@ create_graph(graph_attrs =
 <img src="img/adding-several-new-nodes-to-or-from-a-selection-of-nodes-3.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="adding-nodes-or-edges-from-a-data-frame">Adding Nodes or Edges from a Data Frame</h2>
-                    <p>So long as you are careful not to introduce nodes with duplicate ID values, you can add a node data frame (<em>NDF</em>) to existing graph. You can also add an edge data frame (<em>EDF</em>) to an existing graph. This can be done upon creation of the graph using the <code>create_graph()</code> function, however, these it can be useful to add collections of nodes or edges as <em>NDF</em>s or <em>EDF</em>s, perhaps whenever new data is available for the graph.</p>
+                    <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -341,96 +444,7 @@ create_graph(graph_attrs =
                     <p></p>
                     <div>
                         <pre><code class="prettyprint">
-# Create an empty graph
-graph &lt;- create_graph()
-
-# Create a node data frame
-nodes &lt;-
-  create_nodes(nodes = 1:4,
-               type = "a",
-               color = c("red", "green", "grey", "blue"),
-               value = c(3.5, 2.6, 9.4, 2.7))
-
-# Add the node data frame to the graph object to create a
-# graph with nodes
-graph &lt;-
-  add_node_df(graph = graph, node_df = nodes)
-
-get_node_df(graph)
-#>   nodes type label color value
-#> 1     1    a     1   red   3.5
-#> 2     2    a     2 green   2.6
-#> 3     3    a     3  grey   9.4
-#> 4     4    a     4  blue   2.7
-
-# Create another node data frame
-nodes_2 &lt;-
-  create_nodes(
-    nodes = 5:8,
-    type = "b",
-    color = c("orange", "brown",
-              "aqua", "pink"),
-    value = c(1.6, 6.4, 0.8, 4.2))
-
-# Add the second node data frame to the graph object to
-# add more nodes with attributes to the graph
-graph &lt;-
-  add_node_df(graph = graph, node_df = nodes_2)
-
-# Check the graph's internal
-# NDF to see that the two NDFs
-# were added
-get_node_df(graph)
-#>   nodes type label  color value
-#> 1     1    a     1    red   3.5
-#> 2     2    a     2  green   2.6
-#> 3     3    a     3   grey   9.4
-#> 4     4    a     4   blue   2.7
-#> 5     5    b     5 orange   1.6
-#> 6     6    b     6  brown   6.4
-#> 7     7    b     7   aqua   0.8
-#> 8     8    b     8   pink   4.2
-
-# Create edges by first specifying
-# `from` to `to` vectors of node
-# ID values
-from &lt;-
-  c(1, 3, 5, 2, 3, 5, 2, 5, 3)
-
-to &lt;-
-  c(3, 6, 2, 7, 8, 7, 4, 4, 5)
-
-# Create the EDF
-edges &lt;-
-  create_edges(from = from,
-               to = to,
-               rel = "toward")
-
-# Add the EDF to the graph
-graph &lt;-
-  add_edge_df(graph,
-              edge_df = edges)
-
-# Check the graph's internal
-# EDF to see that the EDF
-# was indeed added
-get_edge_df(graph)
-#>   from to    rel
-#> 1    1  3 toward
-#> 2    3  6 toward
-#> 3    5  2 toward
-#> 4    2  7 toward
-#> 5    3  8 toward
-#> 6    5  7 toward
-#> 7    2  4 toward
-#> 8    5  4 toward
-#> 9    3  5 toward
-
-# View the graph
-render_graph(graph)
-
-
-<img src="img/adding-nodes-or-edges-from-a-data-frame-1.png" class="img-responsive center-block"></code></pre>
+</code></pre>
                     </div>
                     <h2 id="adding-nodes-or-edges-from-a-csv-file">Adding Nodes or Edges from a CSV File</h2>
                     <p></p>
