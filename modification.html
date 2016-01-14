@@ -137,8 +137,9 @@ library(magrittr)
 # Create an empty graph
 graph &lt;- create_graph()
 
-# Add two nodes, they will be given ID values that
-# are monotonically increasing from `1`
+# Add two nodes, they will be
+# given ID values that are
+# monotonically increasing from `1`
 graph &lt;- add_node(graph)
 graph &lt;- add_node(graph)
 
@@ -152,9 +153,11 @@ get_node_df(graph)
 #> 1     1            1
 #> 2     2            2
 
-# Create the same graph with magrittr `%>%` pipes
+# Create the same graph with
+# magrittr `%>%` pipes
 graph &lt;-
-  create_graph() %>% add_node %>% add_node
+  create_graph() %>%
+  add_node %>% add_node
 
 # Show the graph's internal NDF
 get_node_df(graph)
@@ -215,7 +218,8 @@ nodes &lt;-
 # graph object to create a graph
 # with nodes
 graph &lt;-
-  add_node_df(graph = graph, node_df = nodes)
+  add_node_df(graph = graph,
+              node_df = nodes)
 
 get_node_df(graph)
 #>   nodes type label color value
@@ -236,7 +240,8 @@ nodes_2 &lt;-
 
 # Add the second node data frame
 # to the graph object to add more
-# nodes with attributes to the graph
+# nodes with attributes to the
+# graph
 graph &lt;-
   add_node_df(graph = graph,
               node_df = nodes_2)
