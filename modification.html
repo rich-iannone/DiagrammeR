@@ -586,8 +586,30 @@ create_graph(graph_attrs =
                     <p>The <code>set_graph_name()</code> function takes a <code>graph</code> object and a value for the <code>graph_name</code> (this can be provided as <code>numeric</code> value but will be coerced to a <code>character</code> value.</p>
                     <p>The <code>set_graph_time()</code> function can be provided with a date or date-time string (for the <code>graph_time</code> argument). This will be useful if the graph is to be inserted into a graph series of the <code>temporal</code> type. An optional value for the time zone (tz) corresponding to the date or date-time string supplied as a value to <code>graph_time</code>. If no time zone is provided then it will be implicitly set to GMT.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Set the graph's name, then
+# modify the name
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create an empty graph
+graph &lt;- create_graph()
+
+# Set the graph's name
+graph %&lt;>% set_graph_name("nice_graph")
+
+# Check the name of the graph
+graph$graph_name
+#> [1] "nice_graph"
+
+# Change the graph's name
+graph %&lt;>% set_graph_name(1)
+
+# Verify that the name has changed
+graph$graph_name
+#> [1] "1"</code></pre>
                     </div>
                     <h2 id="setting-global-attributes-for-a-graph">Setting Global Attributes for a Graph</h2>
                     <p></p>
