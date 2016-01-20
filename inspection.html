@@ -473,21 +473,23 @@ get_predecessors(graph, node = "Z")
 #> [1] "A" "R" "R"
 
 # Find isolated nodes in a graph
-# (they have neither successors nor
-# predecessors)
+# (they have neither successors
+# nor predecessors)
 intersect(
   names(
     which(
-      is.na(sapply(
-              get_nodes(graph),
-                 function(x) get_successors(
-                    graph, x))))),
+      is.na(
+        sapply(
+          get_nodes(graph),
+            function(x) get_successors(
+              graph, x))))),
   names(
     which(
-      is.na(sapply(
-              get_nodes(graph),
-                 function(x) get_predecessors(
-                    graph, x)))))
+      is.na(
+        sapply(
+          get_nodes(graph),
+            function(x) get_predecessors(
+              graph, x)))))
 )
 #> [1] "F" "J" "X"
 
@@ -618,8 +620,10 @@ nodes &lt;-
 # Create an EDF
 edges &lt;-
   create_edges(
-    from = sample(LETTERS, replace = TRUE),
-    to = sample(LETTERS, replace = TRUE),
+    from = sample(LETTERS,
+                  replace = TRUE),
+    to = sample(LETTERS,
+                replace = TRUE),
     label = "edge",
     rel = "letter_to_letter"
   )
@@ -631,12 +635,14 @@ graph &lt;-
     edges_df = edges,
   )
 
-# Get counts of nodes grouped by the `type` attribute
+# Get counts of nodes grouped by
+# the `type` attribute
 node_count(graph, type = TRUE)
 #> a_to_g  h_to_p  q_to_x y_and_z
 #>      7       9       8       2
 
-# Get a total count of nodes with no grouping
+# Get a total count of nodes with
+# no grouping
 node_count(graph, type = FALSE)
 #> [1] 26</code></pre>
                     </div>
@@ -660,27 +666,31 @@ node_count(graph, type = FALSE)
                     <p>The <code>is_graph_empty()</code> and <code>is_graph_directed()</code> functions simply return either <code>TRUE</code> or <code>FALSE</code> for whether the graph is empty or whether the graph is a directed graph. These are likely to be most useful in verification statement for scripts that add and remove nodes from the graph, or, those scripts that may toggle the graph between directed and undirected states.</p>
                     <div>
                         <pre><code class="prettyprint">###
-# Is the graph empty? Is it directed?
+# Is the graph empty?
+# Is it directed?
 ###
+
+library("DiagrammeR")
 
 # Create an empty graph
 graph &lt;- create_graph()
 
-# Use the 'is_graph_empty' function to return a
-# logical value
+# Use the 'is_graph_empty' function
+# to return a logical value
 is_graph_empty(graph)
 #> TRUE
 
 # Add a node to the graph
 graph %&lt;>% add_node
 
-# Now the function will return `FALSE` because there is
-# a node in the graph
+# Now the function will return `FALSE`
+# because there is a node in the graph
 is_graph_empty(graph)
 #> FALSE
 
-# When created, graphs are set as `directed` by
-# default; to verify that's the case here:
+# When created, graphs are set as
+# `directed` by default; to verify
+# that's the case here:
 is_graph_directed(graph)
 #> TRUE</code></pre>
                     </div>
@@ -700,7 +710,7 @@ is_graph_directed(graph)
 </code></pre>
                     </div>
                     <h2 id="getting-the-current-selection-of-nodes-edges">Getting the Current Selection of Nodes/Edges</h2>
-                    <p></p>
+                    <p>There are several functions that create selections of nodes (e.g., <code>select_nodes()</code>, <code>select_nodes_by_id</code>, etc.) and several more that create selections of edges (e.g., <code>select_edges()</code>, <code>select_last_edge()</code>, etc.). To inspect the current selection of nodes or edges, you can use the <code>get_selection()</code> function on a graph object.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -711,8 +721,28 @@ is_graph_directed(graph)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                    <p>The graph object itself stores any selections of nodes or edges. Therefore, the only argument to the <code>get_selection()</code> function is <code>graph</code>.</p>
+                        <pre><code class="prettyprint">###
+# Get the current selection
+###
+
+library("DiagrammeR")
+
+# If there is no selection in the
+# graph, `get_selection()` returns
+# `NA`
+create_graph() %>% get_selection
+#> [1] NA
+
+# Create a graph, add 5 nodes,
+# select all nodes, then get the
+# current selection
+create_graph() %>%
+  add_n_nodes(5) %>%
+  select_nodes %>%
+  get_selection
+$nodes
+[1] "1" "2" "3" "4" "5"</code></pre>
                     </div>
                     <h2 id="obtaining-path-information-from-a-graph">Obtaining Path Information from a Graph</h2>
                     <p>For a directed graph, a list of all possible paths from a between two nodes, or, to or from a given node can be obtained with the <code>get_paths()</code> function. There are options to filter the list of paths returned to only the shortest paths, the longest paths, or to those paths within a given range of distances.</p>
