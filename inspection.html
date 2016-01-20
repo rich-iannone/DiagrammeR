@@ -722,7 +722,7 @@ is_graph_directed(graph)
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                     <div>
-                    <p>The graph object itself stores any selections of nodes or edges. Therefore, the only argument to the <code>get_selection()</code> function is <code>graph</code>.</p>
+                    <p>The graph object itself stores any selections of nodes or edges. Therefore, the only argument to the <code>get_selection()</code> function is <code>graph</code>. Formally, if there is a selection of any type, it is stored as a <code>list</code> object within <code>[graph]$selection</code>. Should the selection be a node selection, then a vector of nodes will be available in <code>[graph]$selection$nodes</code>. If the selection is an edge selection, there will be two accesible vectors: <code>[graph]$selection$edges$from</code> and <code>[graph]$selection$edges$to</code>. The <code>get_selection()</code> function returns a list originating at <code>[graph]$selection</code>. Thus if vectors are required, one still needs to access to appropriate list members (i.e., <code>$nodes</code> for the selection of nodes and <code>$edges$from</code> and <code>$edges$to</code> for the selection of edges).</p>
                         <pre><code class="prettyprint">###
 # Get the current selection
 ###
@@ -738,12 +738,22 @@ create_graph() %>% get_selection
 
 # Create a graph, add 5 nodes,
 # select all nodes, then get the
-# current selection
+# current selection as a list
 create_graph() %>%
   add_n_nodes(5) %>%
   select_nodes %>%
   get_selection
 #> $nodes
+#> [1] "1" "2" "3" "4" "5"
+
+# Do the same as above except
+# return the selection of nodes
+# as a vector rather than a list
+create_graph() %>%
+  add_n_nodes(5) %>%
+  select_nodes %>%
+  get_selection %>%
+  .$nodes
 #> [1] "1" "2" "3" "4" "5"
 
 # Create a graph, add a node,
