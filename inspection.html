@@ -671,6 +671,7 @@ node_count(graph, type = FALSE)
 ###
 
 library("DiagrammeR")
+library("magrittr")
 
 # Create an empty graph
 graph &lt;- create_graph()
@@ -727,6 +728,7 @@ is_graph_directed(graph)
 ###
 
 library("DiagrammeR")
+library("magrittr")
 
 # If there is no selection in the
 # graph, `get_selection()` returns
@@ -741,8 +743,24 @@ create_graph() %>%
   add_n_nodes(5) %>%
   select_nodes %>%
   get_selection
-$nodes
-[1] "1" "2" "3" "4" "5"</code></pre>
+#> $nodes
+#> [1] "1" "2" "3" "4" "5"
+
+# Create a graph, add a node,
+# select that nodes, add 5 new
+# nodes to node `1`
+create_graph() %>%
+  add_n_nodes(1) %>%
+  select_nodes %>%
+  add_n_nodes_from_selection(5) %>%
+  select_edges_by_node_id(1:6) %>%
+  get_selection
+#> $edges
+#> $edges$from
+#> [1] "1" "1" "1" "1" "1"
+#>
+#> $edges$to
+#> [1] "2" "3" "4" "5" "6"</code></pre>
                     </div>
                     <h2 id="obtaining-path-information-from-a-graph">Obtaining Path Information from a Graph</h2>
                     <p>For a directed graph, a list of all possible paths from a between two nodes, or, to or from a given node can be obtained with the <code>get_paths()</code> function. There are options to filter the list of paths returned to only the shortest paths, the longest paths, or to those paths within a given range of distances.</p>
