@@ -175,8 +175,12 @@ select_edges <- function(graph,
   to_combined <- gsub("\\s", "",
                       gsub("(.*)(->|--)(.*)", "\\3", edges_combined))
 
+  # Create selection of edges
   graph$selection$edges$from <- from_combined
   graph$selection$edges$to <- to_combined
+
+  # Remove any selection of nodes
+  graph$selection$nodes <- NULL
 
   return(graph)
 }
