@@ -463,9 +463,11 @@ render_graph(
 
 library(DiagrammeR)
 
-# Attempt to generate a random graph with 15 nodes
-# and 200 edges (more than the number of edges in a
-# fully-connected graph with single edges between nodes)
+# Attempt to generate a random
+# graph with 15 nodes and 200 edges
+# (more than the number of edges in
+# a fully-connected graph with
+# single edges between nodes)
 render_graph(
   create_random_graph(n = 15, m = 200),
   output = "visNetwork")
@@ -475,9 +477,9 @@ render_graph(
 #   The number of edges exceeds the maximum possible (105)
 # --------------------------------------------------------
 
-# Use `n = 15` and `m = 105` to yield a fully-connected
-# graph with 15 nodes:
-
+# Use `n = 15` and `m = 105` to
+# yield a fully-connected graph
+# with 15 nodes
 render_graph(
   create_random_graph(n = 15, m = 105),
   output = "visNetwork")</code></pre>
@@ -491,6 +493,8 @@ render_graph(
 
 library(DiagrammeR)
 
+# Create a random graph with
+# 512 nodes but no edges
 render_graph(
   create_random_graph(n = 512, m = 0),
   output = "visNetwork")</code></pre>
@@ -503,6 +507,9 @@ render_graph(
 
 library(DiagrammeR)
 
+# Create a random graph with
+# a seed set so that the same graph
+# will be generated every time
 render_graph(
   create_random_graph(n = 5, m = 4,
                       set_seed = 30),
@@ -517,6 +524,9 @@ render_graph(
 
 library(DiagrammeR)
 
+# Create a random graph but with
+# directed edges by setting
+# `directed = TRUE`
 render_graph(
   create_random_graph(n = 15, m = 22,
                       directed = TRUE),
@@ -568,9 +578,11 @@ graph_2 &lt;-
                edges_df = edges_2,
                graph_attrs = "rankdir = TD")
 
-# Combine the two graphs, the global graph attribute
-# `graph_attrs = "rankdir = LR"` will be retained since
-# it is part of the graph supplied as `x`
+# Combine the two graphs, the
+# global graph attribute
+# `graph_attrs = "rankdir = LR"`
+# will be retained since it is
+# part of the graph supplied as `x`
 combined_graph &lt;-
   combine_graphs(x = graph_1, y = graph_2)
 
@@ -611,16 +623,20 @@ graph_2 &lt;-
   create_graph(nodes_df = nodes_2,
                edges_df = edges_2)
 
-# Create an auxiliary EDF for creating edges across the
-# two graphs supplied as `x` and `y` to `combine_graphs()`
+# Create an auxiliary EDF for
+# creating edges across the two
+# graphs supplied as `x` and `y`
+# to `combine_graphs()`
 extra_edges &lt;-
   create_edges(from = c(5, 19, 1),
                to = c(12, 3, 11))
 
-# Combine the two graphs, adding the `extra_edges` EDF
-# to the `edges_df` argument
+# Combine the two graphs, adding
+# the `extra_edges` EDF to the
+# `edges_df` argument
 combined_graph &lt;-
-  combine_graphs(x = graph_1, y = graph_2,
+  combine_graphs(x = graph_1,
+                 y = graph_2,
                  edges_df = extra_edges)
 
 # Display the combined graph
