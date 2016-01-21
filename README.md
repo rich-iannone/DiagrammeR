@@ -151,6 +151,8 @@ View the property graph.
 graph %>% render_graph
 ```
 
+<img src="inst/img/graph_example_1.png">
+
 Now that the graph is set up, you can construct queries with **magrittr** pipelines to get specific answers from the graph. 
 
 Get the average age of all the contributors:
@@ -249,6 +251,8 @@ graph %<>%
 
 graph %>% render_graph
 ```
+
+<img src="inst/img/graph_example_2.png">
 
 Get all email addresses to contributors (but not maintainers) of the **randomizer** and **supercalc88 projects:
 ```r
