@@ -474,7 +474,7 @@ create_graph(graph_attrs =
 </code></pre>
                     </div>
                     <h2 id="deleting-a-node-or-edge-from-a-graph">Deleting a Node or Edge from a Graph</h2>
-                    <p></p>
+                    <p>Graphs can undergo all sorts of modifications, and this includes the removal of nodes or edges. The <code>delete_node()</code> and <code>delete_edge()</code> functions allow for the removal of single nodes or edges. Also, when deleting a node that has edges, those edge definitions will also be removed.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -490,12 +490,113 @@ create_graph(graph_attrs =
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>The function <code>delete_node()</code> removes a single node from the graph. All of the removed node's edges with other nodes in the graph will also be removed in this operation. Supply only a single node ID to the <code>node</code> argument.</p>
+                    <p>The function <code>delete_node()</code> removes a single node from the graph. The functions expects a node ID value to uniquely identify the node to be deleted. As the function can only delete a single node per call, supply only a single node ID to the <code>node</code> argument. All of the removed node's edges with other nodes in the graph will also be removed in this operation.</p>
+                    <div>
+                    <pre><code class="prettyprint">###
+# Delete specific nodes
+# from the graph using
+# `delete_node()`
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a graph with a central
+# node and multiples of children nodes
+graph &lt;-
+create_graph(graph_attrs =
+               "output = visNetwork") %>%
+  add_n_nodes(1, "A") %>%
+  select_nodes %>%
+  add_n_nodes_from_selection(3, "B") %>%
+  clear_selection %>%
+  select_nodes("type", "B") %>%
+  add_n_nodes_from_selection(3, "C")
+
+# View the graph
+graph %>% render_graph
+
+<img src="img/deleting-a-node-or-edge-from-a-graph-1.png" class="img-responsive center-block">
+
+# Remove the central node (`1`) by
+# specifying the node ID directly
+graph_delete_node_1 &lt;-
+  graph %>% delete_node(1)
+
+# View the modified graph
+graph_delete_node_1 %>% render_graph
+
+<img src="img/deleting-a-node-or-edge-from-a-graph-2.png" class="img-responsive center-block">
+
+# Remove the first (and only) node
+# with `type = A` from the graph
+# (this is node `1`, as before)
+graph_delete_node_2 &lt;-
+  graph %>%
+  delete_node(
+    get_nodes(., "type", "A")[1]
+    )
+
+# Inspect a list of nodes to
+# ensure that node `1` has been
+# removed
+get_nodes(graph_delete_node_2)
+#> [1] "2"  "3"  "4"  "5"  "6"
+#> [6] "7"  "8"  "9"  "10"
+#> [10] "11"  "12"  "13"
+
+# Also, edges were removed from
+# this node removal; check that
+# there are no edges from or to
+# node `1`
+graph_delete_node_2 %>%
+  get_edges %>%
+  {
+    from &lt;- .[[1]]
+    to &lt;- .[[2]]
+    nodes_in_edges &lt;- c(from, to)
+  } %>% is_in(1, .)
+#> [1] FALSE</code></pre>
+</div>
                     <p>The function <code>delete_edge()</code> removes a single edge from the graph. Specify the graph object in <code>graph</code>, the nodes in <code>from</code> and <code>to</code>, and the edge will removed if it exists.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
-                    </div>
+                    <pre><code class="prettyprint">###
+# Delete specific edges
+# from the graph using
+# `delete_edge()`
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a graph with a central
+# node and multiples of children nodes;
+# this is the same graph as in the
+# previous example
+graph &lt;-
+create_graph(graph_attrs =
+               "output = visNetwork") %>%
+  add_n_nodes(1, "A") %>%
+  select_nodes %>%
+  add_n_nodes_from_selection(3, "B") %>%
+  clear_selection %>%
+  select_nodes("type", "B") %>%
+  add_n_nodes_from_selection(3, "C")
+
+# Remove the several edges by
+# specifying the node ID values
+# that make up those edges
+graph_delete_edges &lt;-
+  graph %>%
+  delete_edge(1, 2) %>%
+  delete_edge(1, 3) %>%
+  delete_edge(1, 4)
+
+graph_delete_edges %>% render_graph
+
+
+<img src="img/deleting-a-node-or-edge-from-a-graph-3.png" class="img-responsive center-block"></code></pre>
+                      </div>
                     <h2 id="deleting-nodes-or-edges-using-a-selection">Deleting Nodes or Edges Using a Selection</h2>
                     <p></p>
                         <div>
