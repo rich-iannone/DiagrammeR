@@ -255,7 +255,7 @@ graph %>% render_graph
 
 <img src="inst/img/graph_example_2.png">
 
-Get all email addresses to contributors (but not maintainers) of the **randomizer** and **supercalc88 projects:
+Get all email addresses to contributors (but not maintainers) of the **randomizer** and **supercalc88** projects:
 ```r
 graph %>% select_nodes("project", "randomizer") %>%
   select_nodes("project", "supercalc") %>%
