@@ -125,8 +125,9 @@
                     <p>In the first example, nodes will be selected based on a logical expression operating on a collection of numeric values (the node attribute arbitrarily named <code>data</code>).</p>
                     <div>
                         <pre><code class="prettyprint">###
-# Select nodes based on the numeric values
-# of a specified node attribute
+# Select nodes based on the
+# numeric values of a specified
+# node attribute
 ###
 
 library(DiagrammeR)
@@ -140,8 +141,9 @@ nodes &lt;-
 
 graph &lt;- create_graph(nodes_df = nodes)
 
-# Select nodes where the `data` attribute has a value
-# greater than 7.0 (it's the first 2 nodes)
+# Select nodes where the `data` attribute
+# has a value greater than 7.0 (it's the
+# first 2 nodes)
 graph &lt;-
   select_nodes(
     graph = graph,
@@ -172,10 +174,12 @@ nodes &lt;-
 
 graph &lt;- create_graph(nodes_df = nodes)
 
-# Select nodes where the `fruits` attribute has a match
-# on the first letters being `ap` (the first 2 nodes);
-# The regular expression for is `^ap` (where the ^
-# denotes the beginning of the text to the parsed)
+# Select nodes where the `fruits`
+# attribute has a match on the first
+# letters being `ap` (the first 2 nodes);
+# The regular expression for is `^ap`
+# (where the ^ denotes the beginning of
+# the text to the parsed)
 graph &lt;-
   select_nodes(
     graph = graph,
@@ -197,16 +201,17 @@ graph$selection
                     <p>These set operations behave exactly as the base <strong>R</strong> functions: <code>union()</code>, <code>intersect()</code>/<code>intersection()</code>, and <code>setdiff()</code> (they are actually used internally). Furthermore, most of the <code>select_...()</code> functions contain the <code>set_op</code> argument, so, they behave the same way with regard to modifying the node or edge selection in a pipeline of selection operations. As examples are important in fully understanding how these can work for more complex selections, here are a few:</p>
                     <div>
                         <pre><code class="prettyprint">###
-# Create a number of complex node selections
-# using magrittr pipelines and different types
+# Create a number of complex
+# node selections using magrittr
+# pipelines and different types
 # of set operations
 ###
 
 library(DiagrammeR)
 library(magrittr)
 
-# Create a single graph object to be used for multiple
-# node selections
+# Create a single graph object to be
+# used for multiple node selections
 nodes &lt;-
   create_nodes(
     nodes = 1:9,
@@ -234,8 +239,8 @@ graph$nodes_df
 #> 8     8   nut    almond    22
 #> 9     9   nut  chestnut    16
 
-# Select all foods that either begin with `c` or
-# end with `e`
+# Select all foods that either begin
+# with `c` or end with `e`
 graph_1 &lt;-
   graph %>%
     select_nodes(node_attr = "label",
@@ -249,8 +254,8 @@ graph_1$selection
 #> $nodes
 #> "4" "5" "9" "1" "2" "6"
 
-# Select any food beginning with `a` and having a
-# count less than 5
+# Select any food beginning with `a` and
+# having a count less than 5
 graph_2 &lt;-
   graph %>%
     select_nodes(node_attr = "label",
@@ -264,7 +269,8 @@ graph_2$selection
 #> $nodes
 #> [1] "2"
 
-# Select any fruit not containing `apple` in its name
+# Select any fruit not containing `apple`
+# in its name
 graph_3 &lt;-
   graph %>%
     select_nodes(node_attr = "type",
@@ -288,7 +294,8 @@ graph_3$selection
 library(DiagrammeR)
 library(magrittr)
 
-# Create a simple graph with some numeric data
+# Create a simple graph with some
+# numeric data
 nodes &lt;-
   create_nodes(
     nodes = 1:10,
@@ -311,21 +318,21 @@ graph$nodes_df
 #> 9      9          9  4.5
 #> 10    10         10    5
 
-# Select from a subset of nodes (given as
-# `nodes = 1:6`) where the data value is greater
-# than `1.5`
+# Select from a subset of nodes
+# (given as `nodes = 1:6`) where
+# the data value is greater than `1.5`
 graph %&lt;>%
   select_nodes(node_attr = "data",
                search = ">1.5",
                nodes = 1:6)
 
-# Inspect the graph's `selection` list
+# Inspect the graph's `selection`
 graph$selection
 #> $nodes
 #> [1] "4" "5" "6"</code></pre>
                     </div>
                     <h2 id="creating-an-edge-selection">Creating an Edge Selection</h2>
-                    <p></p>
+                    <p>Selecting edges in a graph is done in a manner quite similar to selecting nodes. The primary means for targeting a specific edges is through any available edge attributes (e.g., <code>rel</code>, styling attributes such as <code>color</code>, or arbitrary data values available for edges).</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -335,10 +342,62 @@ graph$selection
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>The <code>graph</code> argument is the first in the function signature. That <code>graph</code> is first, forward-piping the graph in a pipeline becomes easy with <strong>magrittr</strong> or <strong>pipeR</strong>. When providing an edge attribute category as a character value for the <code>edge_attr</code> argument, you can select edges by supplying a search term for the <code>search</code> argument. There are two possible input types for <code>search</code>:</p>
+                    <ol>
+                      <li>a logical expression with a comparison operator (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, or <code>!=</code>) followed by a number for numerical filtering</li>
+                      <li>a regular expression for filtering through string matching</li>
+                    </ol>
+                    <p>The first example is of a selection of edges based on a logical expression operating on a collection of numeric values (the edge attribute arbitrarily named <code>data</code>).</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Select edges based on the
+# numeric values of a specified
+# edge attribute
+###
+
+library(DiagrammeR)
+
+nodes &lt;-
+  create_nodes(1:4)
+
+edges &lt;-
+  create_edges(
+    from = 1:4,
+    to = c(2:4, 1),
+    data = c(8.6, 2.8,
+             6.3, 4.5)
+    )
+
+graph &lt;-
+  create_graph(nodes, edges)
+
+# Inspect the graph's EDF
+get_edge_df(graph)
+#>   from to rel data
+#> 1    1  2      8.6
+#> 2    2  3      2.8
+#> 3    3  4      6.3
+#> 4    4  1      4.5
+
+# Select edges where the `data`
+# attribute has a value
+# greater than 5.0 (it's the
+# edges `1 -> 2` and `3 -> 4`
+graph &lt;-
+  select_edges(
+    graph = graph,
+    edge_attr = "data",
+    search = ">5.0"
+  )
+
+# Inspect the graph's `selection`
+get_selection(graph)
+#> $edges
+#> $edges$from
+#> [1] "1" "3"
+#>
+#> $edges$to
+#> [1] "2" "4"</code></pre>
                     </div>
                     <h2 id="selecting-the-last-node-edge-created">Selecting the Last Node/Edge Created</h2>
                     <p></p>
