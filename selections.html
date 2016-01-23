@@ -347,7 +347,7 @@ graph$selection
                       <li>a logical expression with a comparison operator (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, or <code>!=</code>) followed by a number for numerical filtering</li>
                       <li>a regular expression for filtering through string matching</li>
                     </ol>
-                    <p>The first example is of a selection of edges based on a logical expression operating on a collection of numeric values (the edge attribute arbitrarily named <code>data</code>).</p>
+                    <p>The following example shows how to create selections of edges based on a logical expression operating on a collection of numeric values (the edge attribute arbitrarily named <code>data</code>).</p>
                     <div>
                         <pre><code class="prettyprint">###
 # Select edges based on the
@@ -399,8 +399,8 @@ get_selection(graph)
 #> $edges$to
 #> [1] "2" "4"</code></pre>
                     </div>
-                    <h2 id="selecting-the-last-node-edge-created">Selecting the Last Node/Edge Created</h2>
-                    <p></p>
+                    <h2 id="selecting-the-last-node-or-edge-in-an-ndf-or-edf">Selecting the Last Node or Edge in an NDF or EDF</h2>
+                    <p>You can select the last node or edge from the graph's internal node data frame (<em>NDF</em>) or internal edge data frame (<em>EDF</em>), respectively. Usually, this will be the last node or edge created since new nodes or edges are added to the bottom of the data frame and there is no shuffling of these positions. Immediately after creating a single node or edge, calling either the <code>select_last_node()</code> or the <code>select_last_edge()</code> functions will result in a selection of the last node or edge created.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -416,9 +416,103 @@ get_selection(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
+                        <p>For both functions, <code>graph</code> is the only argument. Simply providing a graph object will make a single node selection when <code>select_last_node()</code> is invoked, or a single edge selection when <code>select_last_edge()</code> is invoked.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Create a graph, select
+# the last node of the graph's
+# NDF, then, select the last
+# edge of the graph's EDF
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+nodes &lt;-
+  create_nodes(1:4)
+
+edges &lt;-
+  create_edges(
+    from = 1:4,
+    to = c(2:4, 1),
+    data = c(8.6, 2.8,
+             6.3, 4.5)
+    )
+
+graph &lt;-
+  create_graph(nodes, edges)
+
+# Inspect the graph's NDF
+get_node_df(graph)
+#>   nodes type label
+#> 1     1          1
+#> 2     2          2
+#> 3     3          3
+#> 4     4          4
+
+# Inspect the graph's EDF
+get_edge_df(graph)
+#>   from to rel data
+#> 1    1  2      8.6
+#> 2    2  3      2.8
+#> 3    3  4      6.3
+#> 4    4  1      4.5
+
+# Select the last node in
+# the graph's NDF and confirm
+# that the selection was made
+graph %>% select_last_node %>% get_selection
+#> $nodes
+#> [1] "4"
+
+# Select the last edge in
+# the graph's EDF and confirm
+# that the selection was made
+graph %>% select_last_edge %>% get_selection
+#>$edges
+#>$edges$from
+#>[1] "4"
+#>
+#>$edges$to
+#>[1] "1"
+
+# Create a graph, node-by-node and
+# edge-by-edge and add attributes
+graph_2 &lt;-
+  create_graph(graph_attrs =
+                 "output = visNetwork") %>%
+  add_node %>%
+  select_last_node %>%
+  set_node_attr_with_selection(
+    "timestamp", as.character(Sys.time())) %>%
+  set_node_attr_with_selection(
+    "type", "A") %>%
+  clear_selection %>%
+  add_node %>%
+  select_last_node %>%
+  set_node_attr_with_selection(
+    "timestamp", as.character(Sys.time())) %>%
+  set_node_attr_with_selection(
+    "type", "B") %>%
+  add_edge(1, 2, "AB") %>%
+  select_last_edge %>%
+  set_edge_attr_with_selection(
+    "timestamp", as.character(Sys.time()))
+
+# View the new graph
+graph_2 %>% render_graph
+
+<img src="img/selecting-the-last-node-or-edge-in-an-ndf-or-edf-1.png" class="img-responsive center-block">
+# Inspect the new graph's NDF
+graph_2 %>% get_node_df
+#>   nodes type label           timestamp
+#> 1     1    A     1 2016-01-22 17:00:51
+#> 2     2    B     2 2016-01-22 17:00:51
+
+# Inspect the new graph's EDF
+graph_2 %>% get_edge_df
+#>   from to rel           timestamp
+#> 1    1  2  AB 2016-01-22 17:00:51</code></pre>
                     </div>
                     <h2 id="selecting-nodes-by-id-values">Selecting Nodes by ID Values</h2>
                     <p></p>
@@ -500,7 +594,7 @@ get_selection(graph)
                             <ul class="nav">
                                 <li><a href="#creating-a-node-selection">Creating a Node Selection</a></li>
                                 <li><a href="#creating-an-edge-selection">Creating an Edge Selection</a></li>
-                                <li><a href="#selecting-the-last-node-edge-created">Selecting the Last Node/Edge Created</a></li>
+                                <li><a href="#selecting-the-last-node-or-edge-in-an-ndf-or-edf">Selecting the Last Node or Edge in an NDF or EDF</a></li>
                                 <li><a href="#selecting-nodes-by-id-values">Selecting Nodes by ID Values</a></li>
                                 <li><a href="#selecting-nodes-in-a-neighborhood">Selecting Nodes in a Neighborhood</a></li>
                                 <li><a href="#selecting-nodes-by-their-degree">Selecting Nodes by their Degree</a></li>
