@@ -699,7 +699,6 @@ for (i in 1:node_count(graph)){
 graph %>% render_graph
 
 <img src="img/creating-a-subgraph-1.png" class="img-responsive center-block">
-
 # Create a subgraph solely with nodes
 # where `type` is `A` and any edges
 # are between nodes of the same type
@@ -717,8 +716,39 @@ select_nodes %>%
   render_graph
 
 <img src="img/creating-a-subgraph-2.png" class="img-responsive center-block">
+# Create subgraphs of all node types
+# and place them into a graph series
+subgraphs &lt;-
+  create_series(series_name = "subgraphs")
 
-</code></pre>
+for (i in 1:4){
+  subgraphs &lt;-
+    graph %>%
+    select_nodes("type", LETTERS[i]) %>%
+    create_subgraph_from_selection %>%
+    set_graph_name(LETTERS[i]) %>%
+    add_to_series(series_of_subgraphs)
+}
+
+# With `series_info()`, you can get basic
+# info about which graphs are in the series
+series_info(subgraphs)
+#>   graph name date_time   tz nodes edges directed
+#> 1     1    A      &lt;NA> &lt;NA>    33    10     TRUE
+#> 2     2    B      &lt;NA> &lt;NA>    28     6     TRUE
+#> 3     3    C      &lt;NA> &lt;NA>    32    13     TRUE
+#> 4     4    D      &lt;NA> &lt;NA>    27     8     TRUE
+
+# You can any of the subgraphs with the
+# `render_graph_from_series()` function
+
+render_graph_from_series(subgraphs, 1)
+render_graph_from_series(subgraphs, 2)
+render_graph_from_series(subgraphs, 3)
+render_graph_from_series(subgraphs, 4)
+
+
+<img src="img/creating-a-subgraph-3.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="setting-a-graphs-name-and-time-attributes">Setting a Graph's Name and Time Attributes</h2>
                     <p>Setting the graph's name and time attributes can be useful when there is a collection of graphs and such properties can help when distinguishing the graph objects. The functions that deal with graph series objects can take advantage of any graph names and graph date-time values that are available. The <code>create_graph()</code> function affords the option to set these parameters upon graph creation, however, the <code>set_graph_name()</code> and <code>set_graph_time</code> provide additional opportunities to add, modify, or remove such attributes.</p>
