@@ -664,7 +664,60 @@ graph_delete_edges %>% render_graph
                         </div>
                     <p>The following examples demonstrate how a selection of nodes and a subsequet creation of a subgraph can allow for a more focussed view of a larger graph.</p>
                     <div>
-                        <pre><code class="prettyprint">
+                        <pre><code class="prettyprint">###
+# Create a graph, create various
+# subgraphs, and do some
+# interesting things with them
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a random graph with 120 nodes
+# and 145 edges
+graph &lt;-
+  create_random_graph(120, 145,
+                      directed = TRUE,
+                      fully_connected = TRUE,
+                      set_seed = 20) %>%
+  set_global_graph_attr("graph",
+                        "output",
+                        "visNetwork")
+
+# Randomly assign node `type` values
+# of `A`, `B`, `C`, and `D` to each
+# of the graph's nodes
+for (i in 1:node_count(graph)){
+  graph %&lt;>%
+    node_type(i, action = "add",
+              sample(LETTERS[1:4], 1))
+}
+
+# View this new graph; differently
+# colored nodes are those with different
+# `type` values
+graph %>% render_graph
+
+<img src="img/creating-a-subgraph-1.png" class="img-responsive center-block">
+
+# Create a subgraph solely with nodes
+# where `type` is `A` and any edges
+# are between nodes of the same type
+subgraph_a_nodes &lt;-
+  graph %>%
+  select_nodes("type", "A") %>%
+  create_subgraph_from_selection
+
+# View the subgraph after coloring
+# all nodes `lightgray`
+subgraph_a_nodes %>%
+select_nodes %>%
+  set_node_attr_with_selection("color",
+                               "lightgray") %>%
+  render_graph
+
+<img src="img/creating-a-subgraph-2.png" class="img-responsive center-block">
+
 </code></pre>
                     </div>
                     <h2 id="setting-a-graphs-name-and-time-attributes">Setting a Graph's Name and Time Attributes</h2>
