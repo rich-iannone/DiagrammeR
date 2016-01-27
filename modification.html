@@ -662,12 +662,13 @@ graph_delete_edges %>% render_graph
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>The following examples demonstrate how a selection of nodes and a subsequet creation of a subgraph can allow for a more focussed view of a larger graph.</p>
+                    <p>The following example demonstrates how a selection of nodes based on their <code>type</code> values (using <code>select_nodes()</code>) and the subsequent creation of subgraphs can allow for a more focussed view of a larger graph.</p>
                     <div>
                         <pre><code class="prettyprint">###
-# Create a graph, create various
-# subgraphs, and do some
-# interesting things with them
+# Create a graph, and create
+# subgraphs based on both
+# selections of nodes and
+# selections of edges
 ###
 
 library(DiagrammeR)
@@ -676,21 +677,24 @@ library(magrittr)
 # Create a random graph with 120 nodes
 # and 145 edges
 graph &lt;-
-  create_random_graph(120, 145,
-                      directed = TRUE,
-                      fully_connected = TRUE,
-                      set_seed = 20) %>%
-  set_global_graph_attr("graph",
-                        "output",
-                        "visNetwork")
+  create_random_graph(
+    120, 145,
+    directed = TRUE,
+    fully_connected = TRUE,
+    set_seed = 20) %>%
+  set_global_graph_attr(
+    "graph",
+    "output",
+    "visNetwork")
 
 # Randomly assign node `type` values
 # of `A`, `B`, `C`, and `D` to each
 # of the graph's nodes
 for (i in 1:node_count(graph)){
   graph %&lt;>%
-    node_type(i, action = "add",
-              sample(LETTERS[1:4], 1))
+    node_type(
+      i, action = "add",
+      sample(LETTERS[1:4], 1))
 }
 
 # View this new graph; differently
@@ -711,8 +715,9 @@ subgraph_a_nodes &lt;-
 # all nodes `lightgray`
 subgraph_a_nodes %>%
 select_nodes %>%
-  set_node_attr_with_selection("color",
-                               "lightgray") %>%
+  set_node_attr_with_selection(
+    "color",
+    "lightgray") %>%
   render_graph
 
 <img src="img/creating-a-subgraph-2.png" class="img-responsive center-block">
@@ -749,6 +754,49 @@ render_graph_from_series(subgraphs, 4)
 
 
 <img src="img/creating-a-subgraph-3.png" class="img-responsive center-block"></code></pre>
+                    </div>
+                    <p>Also possible is the creation of a subgraph based on a selection of edges. </p>
+                                        <div>
+                        <pre><code class="prettyprint">###
+# Create a graph, and create
+# subgraphs based on both
+# selections of nodes and
+# selections of edges
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create the same random graph
+# as in the previous example
+# (120 nodes and 145 edges)
+graph &lt;-
+  create_random_graph(
+    120, 145,
+    directed = TRUE,
+    fully_connected = TRUE,
+    set_seed = 20) %>%
+  set_global_graph_attr(
+    "graph",
+    "output",
+    "visNetwork")
+
+# Randomly assign node `type` values
+# of `A`, `B`, `C`, and `D` to each
+# of the graph's nodes
+for (i in 1:node_count(graph)){
+  graph %&lt;>%
+    node_type(
+      i, action = "add",
+      sample(LETTERS[1:4], 1))
+}
+
+# View the subgraph; the blue nodes
+# those with `type` values of `A`
+graph %>% render_graph
+
+
+<img src="img/creating-a-subgraph-4.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="setting-a-graphs-name-and-time-attributes">Setting a Graph's Name and Time Attributes</h2>
                     <p>Setting the graph's name and time attributes can be useful when there is a collection of graphs and such properties can help when distinguishing the graph objects. The functions that deal with graph series objects can take advantage of any graph names and graph date-time values that are available. The <code>create_graph()</code> function affords the option to set these parameters upon graph creation, however, the <code>set_graph_name()</code> and <code>set_graph_time</code> provide additional opportunities to add, modify, or remove such attributes.</p>
