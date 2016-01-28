@@ -598,7 +598,7 @@ graph_delete_edges %>% render_graph
 <img src="img/deleting-a-node-or-edge-from-a-graph-3.png" class="img-responsive center-block"></code></pre>
                       </div>
                     <h2 id="deleting-nodes-or-edges-using-a-selection">Deleting Nodes or Edges Using a Selection</h2>
-                    <p></p>
+                    <p>While the removal of several nodes or several edges can be performed with multiple statements using the <code>delete_node()</code> and <code>delete_edge()</code> functions, an often more desirable solution for greater removals is to create a selection of nodes or edges and delete the members with such selections. The latter strategy can be accomplished with the <code>delete_nodes_in_selection()</code> and <code>delete_edges_in_selection()</code> functions.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -614,10 +614,88 @@ graph_delete_edges %>% render_graph
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p></p>
+                    <p>These functions only require a graph object with some selection of nodes or edges already set within the object. Recall that selections of nodes or edges can be made with a number of different functions (e.g., <code>select_nodes()</code>, <code>select_edges()</code>, <code>select_nodes_by_id()</code>, <code>select_edges_by_node_id()</code>, etc.). The following examples demonstrate how multiple nodes or edges can be removed by using a selection then invocation of either of these functions.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Delete a number of nodes
+# from the graph by making
+# a selection and then using
+# `delete_nodes_in_selection()`
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a random graph with 150
+# nodes and 180 edges
+graph &lt;-
+  create_random_graph(
+    150, 180,
+    directed = TRUE,
+    fully_connected = TRUE,
+    set_seed = 20) %>%
+  set_global_graph_attr(
+    "graph",
+    "output",
+    "visNetwork")
+
+# Set a random seed
+set.seed(20)
+
+# Randomly assign node `type` values
+# of `1`, `2`, `3`, `4`, and `5` to
+# each of the graph's nodes
+for (i in 1:node_count(graph)){
+  graph %&lt;>%
+    node_type(
+      i, action = "add",
+      sample(1:5, 1))
+}
+
+# View this new graph; differently
+# colored nodes are those with
+# different `type` values
+graph %>% render_graph
+
+<img src="img/deleting-nodes-or-edges-using-a-selection-1.png" class="img-responsive center-block">
+# A table of counts by node
+# `type` can be displayed
+graph %>% node_count(type = TRUE)
+#>  5  4  2  3  1
+#> 38 19 24 33 36
+
+# Create a selection of nodes to
+# mark them for deletion; first,
+# select all nodes and delete all
+# of them from the graph
+graph_emptied &lt;-
+  graph %>% select_nodes %>%
+  delete_nodes_in_selection
+
+# Ensure that the graph is empty
+node_count(graph_emptied)
+#> [1] 0
+
+# Try a different type of
+# selection that deletes all
+# nodes corresponding to types
+# `1` and `5`
+graph_1_5_removed &lt;-
+  graph %>%
+  select_nodes("type", 1) %>%
+  select_nodes("type", 5) %>%
+  delete_nodes_in_selection
+
+graph_1_5_removed %>%
+  node_count(type = TRUE)
+
+# Ensure that nodes of types
+# `1` and `5` are no longer
+# in the graph
+graph_1_5_removed %>%
+  node_count(type = TRUE)
+#>  4  2  3
+#> 19 24 33</code></pre>
                     </div>
                     <h2 id="working-with-the-node-type-attribute">Working with the Node <code>type</code> Attribute</h2>
                     <p></p>
