@@ -695,7 +695,35 @@ graph_1_5_removed %>%
 graph_1_5_removed %>%
   node_count(type = TRUE)
 #>  4  2  3
-#> 19 24 33</code></pre>
+#> 19 24 33
+
+# View the modified graph, it
+# looks a lot simpler now!
+graph_1_5_removed %>%
+  render_graph
+
+<img src="img/deleting-nodes-or-edges-using-a-selection-2.png" class="img-responsive center-block">
+# Try yet another type of
+# mass deletion where edges
+# are retained on the basis
+# nodes present with large
+# numerical data values; free
+# nodes are then also removed
+graph_large_node_interactions &lt;-
+  graph %>%
+  select_edges_by_node_id(
+    get_nodes(., "value", "&lt;7")) %>%
+  delete_edges_in_selection %>%
+  clear_selection %>%
+  select_nodes_by_degree("both", 0) %>%
+  delete_nodes_in_selection
+
+# View the revised graph
+graph_large_node_interactions %>%
+  render_graph
+
+
+<img src="img/deleting-nodes-or-edges-using-a-selection-3.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="working-with-the-node-type-attribute">Working with the Node <code>type</code> Attribute</h2>
                     <p></p>
