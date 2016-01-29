@@ -1036,7 +1036,46 @@ c(graph$graph_time,
                         </div>
                     <p>When adding or modifying node attributes, you can target all the nodes at once (using <code>set_node_attr()</code> with no values provided to the <code>nodes</code> argument). Specific nodes can be targeted by providing a vector of node ID values to the <code>nodes</code> argument of the <code>set_node_attr()</code> function or by creating a selection of nodes (using <code>select_nodes()</code>, <code>select_nodes_by_id()</code>, <code>select_nodes_by_degree()</code>, etc.) and using the <code>set_node_attr_with_selection()</code> function. Similarly, for additions or modifications of edge attributes, the <code>set_edge_attr()</code> and <code>set_edge_attr_with_selection()</code> are used in the same manner.</p>
                     <div>
-                        <pre><code class="prettyprint">
+                        <pre><code class="prettyprint">###
+# Create a simple graph then
+# set and modify several of
+# the nodes' attributes
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a random graph of
+# 80 nodes, 140 edges
+graph &lt;-
+  create_random_graph(
+    80, 140,
+    directed = TRUE,
+    fully_connected = TRUE,
+    set_seed = 25) %>%
+  set_global_graph_attr(
+    "graph",
+    "output",
+    "visNetwork")
+
+# View the initial graph
+graph %>% render_graph
+
+# Create new node attributes and
+# modify existing node attributes
+graph_modified_node_attrs &lt;-
+  graph %>%
+  set_node_attr(
+    get_nodes(.), "type", "A") %>%
+  set_node_attr(
+    c(1, 2, 3), "type", "B") %>%
+  set_node_attr(
+    c(1, 2, 3), "value", 50) %>%
+  render_graph
+
+# View the modified graph
+graph_modified_node_attrs %>%
+  render_graph
 </code></pre>
                     </div>
                     <h2 id="rescaling-node-and-edge-attributes">Rescaling Node and Edge Attributes</h2>
