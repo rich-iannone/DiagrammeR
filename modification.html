@@ -738,8 +738,131 @@ graph_large_node_interactions %>%
                         </div>
                     <p>The <code>node_type()</code> function provides several means to check the <code>type</code> attribute for a node and perform different operations on that attribute. The different functionalities of <code>node_type</code> can be changed through the use of these different keywords for the <code>action</code> argument: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code>. With <code>read</code> set as the action, a node ID supplied with the graph object yields that node's <code>type</code> attribute. Using <code>action = check</code> with a node ID, you can check whether a <code>type</code> attribute exists (it will return <code>TRUE</code> or <code>FALSE</code>. If the <code>type</code> attribute hasn't been set for a node, you can add that using <code>action = add</code> along with a string supplied for the <code>value</code> argument. If a <code>type</code> attribute has alredy been set for a node and you'd like to change it, use <code>action = update</code> and include the updated string with the <code>value</code> argument. Deleting a <code>type</code> attribute for a node is easily accomplished by using <code>action = delete</code>.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Use the `node_type()`
+# function to inspect and
+# make careful modifications
+# to a node's `type` value
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a simple NDF
+nodes &lt;-
+  create_nodes(
+    nodes = 1:4,
+    type = c("1st", "2nd",
+             "3rd", "4th"))
+
+# Create the graph object using the NDf
+graph &lt;-
+  create_graph(nodes_df = nodes)
+
+# Read the node `type` attributes
+graph %>% node_type(1, "read")
+#> [1] "1st"
+
+graph %>% node_type(2, "read")
+#> [1] "2nd"
+
+graph %>% node_type(3, "read")
+#> [1] "3rd"
+
+graph %>% node_type(4, "read")
+#> [1] "4th"
+
+# Get all the node types into
+# a vector object
+all_types &lt;-
+  graph %>%
+  {
+    node_types &lt;-
+      sapply(1:node_count(.),
+             function(x)
+             {node_type(., x,
+                        "read")})
+  }
+
+# What can you expect if the node
+# ID provided doesn't match belong
+# to any node in the graph? (An error.)
+graph %>%
+  node_type(5, "read")
+# --------------------------------------------------------
+# Error in node_type(., 5, "read") :
+#   The specified node is not present in the graph.
+# --------------------------------------------------------
+
+# Remove a type assigned to node
+# `4` using either of three
+# keywords: `delete`, `remove`,
+# or `drop`
+graph %&lt;>%
+  node_type(4, "delete")
+
+# Now that node doesn't have a
+# `type` value; it yields an
+# NA when queried about that
+graph %>%
+  node_type(4, "read")
+#> [1] NA
+
+# Add back the type assigned to
+# node `4` using either of two
+# keywords: `add` or `create`
+graph %&lt;>%
+  node_type(4, "add", "fourth")
+
+# Add a node to the graph; the
+# new node is added without a
+# `type` value assigned
+graph %&lt;>% add_node
+
+# Expect a value of FALSE when
+# checking whether node `5` (just
+# added) has a `type` value
+# assigned
+graph %>%
+  node_type(5, "check")
+#> [1] FALSE
+
+# When trying to remove a `type`
+# for a node where no type value
+# is set, there won't be an
+# error, and, the graph won't
+# change
+graph_no_change_1 &lt;-
+  graph %>%
+  node_type(5, "delete")
+
+graph_no_change_1 %>%
+  node_type(5, "read")
+#> [1] NA
+
+# Attempt to add a `type` value
+# for a node where a `type` value
+# is already set; the value
+# won't change (need to use the
+# `update` mode)
+graph_no_change_2 &lt;-
+  graph %>%
+  node_type(1, "add", "first")
+
+graph_no_change_2 %>%
+  node_type(1, "read")
+#> [1] "1st"
+
+# Using `update` results in the
+# modification of the `type`
+# value, for reals...
+graph %&lt;>%
+  node_type(1, "update", "first")
+
+# ...but use `read` to be sure
+graph %>%
+  node_type(1, "read")
+#> [1] "first"</code></pre>
                     </div>
                     <h2 id="working-with-the-edge-rel-attribute">Working with the Edge <code>rel</code> Attribute</h2>
                     <p></p>
