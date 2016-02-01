@@ -755,7 +755,8 @@ nodes &lt;-
     type = c("1st", "2nd",
              "3rd", "4th"))
 
-# Create the graph object using the NDf
+# Create the graph object using
+# the NDF
 graph &lt;-
   create_graph(nodes_df = nodes)
 
@@ -877,8 +878,107 @@ graph %>%
                         </div>
                     <p>The <code>edge_rel()</code> function is similar in principle and use to the <code>node_type()</code> function. In this function, the edges' <code>rel</code> attribute can be checked for existence, added, removed, or updated. As with the <code>node_type()</code> function, this function uses the <code>action</code> argument and performs various actions with these keywords: <code>read</code>, <code>check</code>, <code>add</code>, <code>update</code>, and <code>delete</code> (same keywords as those for <code>node_type()</code>). Using <code>read</code>, supply node IDs for the <code>from</code> and <code>to</code> arguments. With that, you will receive the edge's currently set <code>rel</code> attribute. The <code>rel</code> attribute may or may not be set, so, using <code>action = check</code> with a specified edge, the existence of the <code>rel</code> attribute can be verified through a <code>TRUE</code> or <code>FALSE</code> return value. An unset <code>rel</code> attribute for an edge can be set by using <code>action = add</code> and a character string for the <code>value</code> argument. To update an already set <code>rel</code> attribute for an edge, use <code>action = update</code> and provide the updated relationship string with the <code>value</code> argument. Deleting a <code>rel</code> attribute for an edge is done by using <code>action = delete</code> with an edge.</p>
                     <div>
-                        <pre><code class="prettyprint">
-</code></pre>
+                        <pre><code class="prettyprint">###
+# Use the `edge_rel()`
+# function to inspect and to
+# make several modifications
+# to an edge's `rel` value
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a simple NDF
+nodes &lt;-
+  create_nodes(
+    nodes = 1:4,
+    type = c("1st", "2nd",
+             "3rd", "4th"))
+
+# Create a simple EDF
+edges &lt;-
+  create_edges(
+    from = c(1, 2, 3),
+    to = c(4, 3, 1),
+    rel = c("relates_to",
+            "did_with",
+            "relates_with"))
+
+# Create the graph object using
+# the NDF and the EDF
+graph &lt;-
+  create_graph(nodes_df = nodes,
+               edges_df = edges)
+
+# Using a `read` action on an
+# edge with a relationship set
+# will return the relationship
+# label
+graph %>%
+  edge_rel(1, 4, "read")
+#> [1] "relates_to"
+
+# Using a `read` action on an
+# edge relationship for an
+# edge that doesn't exist will
+# throw an error
+graph %>%
+  edge_rel(1, 2, "read")
+# --------------------------------------------------------
+# Error in edge_rel(., 1, 2, "read") :
+#   The specified edge is not present in the graph.
+# --------------------------------------------------------
+
+# Remove the edge rel across
+# the `1`->`4` edge using the
+# `delete` action (synonymous
+# with `remove` and `drop`)
+graph %&lt;>%
+  edge_rel(1, 4, "delete")
+
+# Check that the relationship
+# value has been removed
+# (FALSE value indidcates there
+# is no `rel` set for this edge)
+graph %>%
+  edge_rel(1, 4, "check")
+#> [1] FALSE
+
+# Using the `read` action will
+# return an NA for the same
+# reason
+graph %>%
+  edge_rel(1, 4, "read")
+#> [1] NA
+
+# Attempting to remove the same
+# edge `rel` value won't throw
+# an error and the graph won't
+# change
+graph %&lt;>%
+  edge_rel(1, 4, "delete")
+
+# Add a new edge `rel` value
+# across the `1`->`4` edge using
+# the `add` action
+graph %&lt;>%
+  edge_rel(1, 4, "add",
+           "relates_to")
+
+# If you'd like to change the
+# `rel` value for the `1`->`4`
+# edge, use the `update` action
+# (`add` only works for those
+# edges where `rel` is not set)
+graph %&lt;>%
+  edge_rel(1, 4, "update",
+           "did_with")
+
+# Check that the `rel` value for
+# the `1`->`4` edge has been set
+graph %>%
+  edge_rel(1, 4, "read")
+#> [1] "did_with"</code></pre>
                     </div>
                     <h2 id="creating-a-subgraph">Creating a Subgraph</h2>
                     <p>A subgraph is a distinct graph composed of a subset of node and edges from another graph. Creating a subgraph in <strong>DiagrammeR</strong> is done by first creating a selection of nodes or edges and then invoking the <code>create_subgraph_from_selection()</code> function.</p>
