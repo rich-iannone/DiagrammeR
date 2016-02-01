@@ -22,6 +22,7 @@
 #' values to be rescaled will be used.
 #' @return a graph object of class \code{dgr_graph}.
 #' @import scales
+#' @importFrom grDevices colors
 #' @export rescale_edge_attr_in_selection
 
 rescale_edge_attr_in_selection <- function(graph,
