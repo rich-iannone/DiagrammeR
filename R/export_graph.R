@@ -20,7 +20,7 @@ export_graph <- function(graph,
     print("To use this function, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeR')")
   }
 
-  if (file_type == "PNG"){
+  if (file_type == "PNG" | file_type == "png"){
     rsvg_png(charToRaw(DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
              file = file_name,
              width = width,
