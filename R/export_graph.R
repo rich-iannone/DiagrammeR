@@ -17,7 +17,7 @@ export_graph <- function(graph,
                          height = NULL){
 
   if (!("DiagrammeRsvg" %in% rownames(installed.packages()))){
-    print("To use this function, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeR')")
+    stop("To use this function, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeR')")
   }
 
   if (file_type == "PNG" | file_type == "png"){
