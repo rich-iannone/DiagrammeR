@@ -28,6 +28,18 @@ export_graph <- function(graph,
     file_type <- "pdf"
   }
 
+  # If `file_name` provided but `file_type` is not, infer
+  # the output file type based on the extension; if no
+  # extension provided, default to PDF export
+  if (is.null(file_type) & !is.null(file_name)){
+    if (grepl("\\.", file_name)){
+      file_type <- gsub(".*\\.([A-Za-z])", "\\1", file_name)
+    } else {
+      file_name <- paste0(file_name, ".pdf")
+      file_type <- "pdf"
+    }
+  }
+
   if (file_type == "PNG" | file_type == "png"){
     rsvg_png(charToRaw(DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
              file = file_name,
