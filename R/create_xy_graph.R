@@ -28,6 +28,7 @@
 #' marks.
 #' @param color_axis_labels the color of the axis
 #' labels.
+#' @import scales
 #' @export create_xy_graph
 
 create_xy_graph <- function(series_pts,
@@ -38,6 +39,7 @@ create_xy_graph <- function(series_pts,
                             y_min,
                             y_max,
                             y_divisions,
+                            aspect_ratio = c(1, 1),
                             x_axis_lab_dist = 0.3,
                             y_axis_lab_dist = 0.3,
                             x_axis_tick_width = 0.1,
@@ -45,12 +47,21 @@ create_xy_graph <- function(series_pts,
                             color_axis_ticks = "gray",
                             color_axis_labels = "gray"){
 
+  # Define the x-span and the y-span
+  # by the aspect ratio
+  x_span <- 10 * aspect_ratio[1]
+  y_span <- 10 * aspect_ratio[2]
+
+  # Rescale series data
+  series_pts$x <- rescale(series_pts$x, to = c(0, x_span/x_max * 10))
+  series_pts$y <- rescale(series_pts$y, to = c(0, y_span/y_max * 10))
+
   # Define the x-axis span
   x_axis_nodes <-
     create_nodes(
       nodes = c("x0", "xn"),
       label = " ",
-      x = c(x_min, x_max + 0.5),
+      x = c(0, x_span + 0.5),
       y = 0,
       width = 0.01,
       height = 0.01,
