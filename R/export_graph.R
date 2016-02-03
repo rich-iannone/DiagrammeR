@@ -20,6 +20,14 @@ export_graph <- function(graph,
     stop("To use this function, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeR')")
   }
 
+  # If no `file_name` or `file_type` provided, default to
+  # writing a PDF with a unique `file_name` value based
+  # on user's current date/time
+  if (is.null(file_name) & is.null(file_type)){
+    file_name <- paste0("graph_", format(Sys.time(), "%Y_%m_%d__%H_%M_%S"), ".pdf")
+    file_type <- "pdf"
+  }
+
   if (file_type == "PNG" | file_type == "png"){
     rsvg_png(charToRaw(DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
              file = file_name,
