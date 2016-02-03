@@ -206,6 +206,12 @@ create_xy_graph <- function(series_pts,
     set_global_graph_attr(graph_components,
                           "node", "margin", "0.0")
 
+  graph_components <-
+    set_global_graph_attr(graph_components,
+                          "graph", "ratio",
+                          aspect_ratio[2]/
+                            aspect_ratio[1])
+
   # Add the (x, y) points
   graph_with_data <-
     add_node_df(graph_components, series_pts)
