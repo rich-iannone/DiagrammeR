@@ -14,6 +14,8 @@
 #' @param y_max the maximum y value to display.
 #' @param y_divisions the number of divisions between
 #' major y-axis marks.
+#' @param aspect_ratio the aspect ratio of the plot
+#' area.
 #' @param x_axis_lab_dist the distance between the x
 #' axis and its labels.
 #' @param y_axis_lab_dist the distance between the y
