@@ -5,8 +5,8 @@
 \title{Create an (x, y) scatterplot graph}
 \usage{
 create_xy_graph(series_pts, series_lines, x_min, x_max, x_divisions, y_min,
-  y_max, y_divisions, x_axis_lab_dist = 0.3, y_axis_lab_dist = 0.3,
-  x_axis_tick_width = 0.1, y_axis_tick_width = 0.1,
+  y_max, y_divisions, aspect_ratio = c(1, 1), x_axis_lab_dist = 0.3,
+  y_axis_lab_dist = 0.3, x_axis_tick_width = 0.1, y_axis_tick_width = 0.1,
   color_axis_ticks = "gray", color_axis_labels = "gray")
 }
 \arguments{
