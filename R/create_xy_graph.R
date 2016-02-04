@@ -332,5 +332,9 @@ create_xy_graph <- function(series_pts = NULL,
       add_edge_df(graph_with_data, series_lines)
   }
 
-  return(graph_with_data)
+  if (is.null(series_pts) & is.null(series_lines)){
+    return(graph_components)
+  } else{
+    return(graph_with_data)
+  }
 }
