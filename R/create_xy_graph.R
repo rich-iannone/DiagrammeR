@@ -95,8 +95,9 @@ create_xy_graph <- function(series_pts,
   y_span <- 10 * aspect_ratio[2]
 
   # Rescale series data
-  series_pts$x <- rescale(series_pts$x, to = c(0, x_span/x_max * 10))
-  series_pts$y <- rescale(series_pts$y, to = c(0, y_span/y_max * 10))
+  series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_min, x_max))
+  series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_min, y_max))
+
 
   # Define the x-axis span
   x_axis_nodes <-
