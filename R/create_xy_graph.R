@@ -321,12 +321,16 @@ create_xy_graph <- function(series_pts = NULL,
                             aspect_ratio[1])
 
   # Add the (x, y) points
+  if (is.null(series_pts)){
   graph_with_data <-
     add_node_df(graph_components, series_pts)
+  }
 
   # Add the lines between (x, y) points
+  if (!is.null(series_lines)){
   graph_with_data <-
     add_edge_df(graph_with_data, series_lines)
+  }
 
   return(graph_with_data)
 }
