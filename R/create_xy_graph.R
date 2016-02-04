@@ -95,19 +95,21 @@ create_xy_graph <- function(series_pts = NULL,
   y_span <- 10 * aspect_ratio[2]
 
   # Rescale series data and subset by chart bounds
-  series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_min, x_max))
-  series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_min, y_max))
-  series_pts <- subset(series_pts, x >= 0)
-  series_pts <- subset(series_pts, y >= 0)
-  series_pts <- subset(series_pts, x <= x_span)
-  series_pts <- subset(series_pts, y <= y_span)
+  if (!is.null(series_pts)){
+    series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_min, x_max))
+    series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_min, y_max))
+    series_pts <- subset(series_pts, x >= 0)
+    series_pts <- subset(series_pts, y >= 0)
+    series_pts <- subset(series_pts, x <= x_span)
+    series_pts <- subset(series_pts, y <= y_span)
+  }
 
   # Remove extraneous series lines
   if (!is.null(series_lines)){
-  series_lines <-
-    series_lines[which(series_lines$from %in% series_pts$nodes),]
-  series_lines <-
-    series_lines[which(series_lines$to %in% series_pts$nodes),]
+    series_lines <-
+      series_lines[which(series_lines$from %in% series_pts$nodes),]
+    series_lines <-
+      series_lines[which(series_lines$to %in% series_pts$nodes),]
   }
 
   # Define the x-axis span
@@ -320,14 +322,14 @@ create_xy_graph <- function(series_pts = NULL,
 
   # Add the (x, y) points
   if (is.null(series_pts)){
-  graph_with_data <-
-    add_node_df(graph_components, series_pts)
+    graph_with_data <-
+      add_node_df(graph_components, series_pts)
   }
 
   # Add the lines between (x, y) points
   if (!is.null(series_lines)){
-  graph_with_data <-
-    add_edge_df(graph_with_data, series_lines)
+    graph_with_data <-
+      add_edge_df(graph_with_data, series_lines)
   }
 
   return(graph_with_data)
