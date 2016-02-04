@@ -94,11 +94,9 @@ create_xy_graph <- function(series_pts = NULL,
   x_span <- 10 * aspect_ratio[1]
   y_span <- 10 * aspect_ratio[2]
 
-  # Rescale series data
+  # Rescale series data and subset by chart bounds
   series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_min, x_max))
   series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_min, y_max))
-
-  # Subset by chart bounds
   series_pts <- subset(series_pts, x >= 0)
   series_pts <- subset(series_pts, y >= 0)
   series_pts <- subset(series_pts, x <= x_span)
