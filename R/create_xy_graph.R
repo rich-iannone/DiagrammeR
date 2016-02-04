@@ -103,7 +103,7 @@ create_xy_graph <- function(series_pts,
     create_nodes(
       nodes = c("x0", "xn"),
       label = " ",
-      x = c(0, x_span + 0.5),
+      x = c(0, x_span),
       y = 0,
       width = 0.01,
       height = 0.01,
@@ -115,7 +115,7 @@ create_xy_graph <- function(series_pts,
       nodes = c("y0", "yn"),
       label = " ",
       x = 0,
-      y = c(0, y_span + 0.5),
+      y = c(0, y_span),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -125,25 +125,27 @@ create_xy_graph <- function(series_pts,
     create_edges(
       from = "x0",
       to = "xn",
-      color = color_axis_ticks)
+      color = color_axis_ticks,
+      arrowhead = "none")
 
   # Define the y-axis line
   y_axis_edge <-
     create_edges(
       from = "y0",
       to = "yn",
-      color = color_axis_ticks)
+      color = color_axis_ticks,
+      arrowhead = "none")
 
   # Define an NDF that contains
   # the x-axis tick marks
   x_axis_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("x_tick_l-", 1:x_divisions),
-                paste0("x_tick_u-", 1:x_divisions)),
+      nodes = c(paste0("x_tick_l-", 0:x_divisions),
+                paste0("x_tick_u-", 0:x_divisions)),
       label = " ",
-      x = rep(seq(0, x_span, ((x_span - 0) / x_divisions ) )[-1], 2),
-      y = c(rep(0 - x_axis_tick_width, x_divisions),
-            rep(0 + x_axis_tick_width, x_divisions)),
+      x = rep(seq(0, x_span, ((x_span - 0) / x_divisions)), 2),
+      y = c(rep(0 - x_axis_tick_width, x_divisions + 1),
+            rep(0 + x_axis_tick_width, x_divisions + 1)),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -152,8 +154,8 @@ create_xy_graph <- function(series_pts,
   # x-axis tick marks
   x_axis_tick_edges <-
     create_edges(
-      from = paste0("x_tick_l-", 1:x_divisions),
-      to =   paste0("x_tick_u-", 1:x_divisions),
+      from = paste0("x_tick_l-", 0:x_divisions),
+      to =   paste0("x_tick_u-", 0:x_divisions),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -161,12 +163,12 @@ create_xy_graph <- function(series_pts,
   # the y-axis tick marks
   y_axis_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("y_tick_l-", 1:y_divisions),
-                paste0("y_tick_u-", 1:y_divisions)),
+      nodes = c(paste0("y_tick_l-", 0:y_divisions),
+                paste0("y_tick_u-", 0:y_divisions)),
       label = " ",
-      y = rep(seq(0, y_span, ((y_span - 0) / y_divisions ) )[-1], 2),
-      x = c(rep(0 - y_axis_tick_width, y_divisions),
-            rep(0 + y_axis_tick_width, y_divisions)),
+      y = rep(seq(0, y_span, ((y_span - 0) / y_divisions)), 2),
+      x = c(rep(0 - y_axis_tick_width, y_divisions + 1),
+            rep(0 + y_axis_tick_width, y_divisions + 1)),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -175,8 +177,8 @@ create_xy_graph <- function(series_pts,
   # y-axis tick marks
   y_axis_tick_edges <-
     create_edges(
-      from = paste0("y_tick_l-", 1:y_divisions),
-      to =   paste0("y_tick_u-", 1:y_divisions),
+      from = paste0("y_tick_l-", 0:y_divisions),
+      to =   paste0("y_tick_u-", 0:y_divisions),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -184,12 +186,12 @@ create_xy_graph <- function(series_pts,
   # the x-axis minor tick marks
   x_axis_minor_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("x_minor_tick_l-", 1:(x_divisions*2)),
-                paste0("x_minor_tick_u-", 1:(x_divisions*2))),
+      nodes = c(paste0("x_minor_tick_l-", 0:(x_divisions * 2)),
+                paste0("x_minor_tick_u-", 0:(x_divisions * 2))),
       label = " ",
-      x = rep(seq(0, x_span, ((x_span - 0) / (x_divisions*2) ) )[-1], 2),
-      y = c(rep(0 - x_axis_tick_width/2, (x_divisions*2)),
-            rep(0 + x_axis_tick_width/2, (x_divisions*2))),
+      x = rep(seq(0, x_span, ((x_span - 0) / (x_divisions * 2))), 2),
+      y = c(rep(0 - x_axis_tick_width/2, ((x_divisions + 1) * 2)),
+            rep(0 + x_axis_tick_width/2, ((x_divisions + 1) * 2))),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -198,8 +200,8 @@ create_xy_graph <- function(series_pts,
   # x-axis tick marks
   x_axis_minor_tick_edges <-
     create_edges(
-      from = paste0("x_minor_tick_l-", 1:(x_divisions*2)),
-      to =   paste0("x_minor_tick_u-", 1:(x_divisions*2)),
+      from = paste0("x_minor_tick_l-", 0:(x_divisions * 2)),
+      to =   paste0("x_minor_tick_u-", 0:(x_divisions * 2)),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -207,12 +209,12 @@ create_xy_graph <- function(series_pts,
   # the y-axis minor tick marks
   y_axis_minor_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("y_minor_tick_l-", 1:(y_divisions*2)),
-                paste0("y_minor_tick_u-", 1:(y_divisions*2))),
+      nodes = c(paste0("y_minor_tick_l-", 0:(y_divisions * 2)),
+                paste0("y_minor_tick_u-", 0:(y_divisions * 2))),
       label = " ",
-      y = rep(seq(0, y_span, ((y_span - 0) / (y_divisions*2) ) )[-1], 2),
-      x = c(rep(0 - y_axis_tick_width/2, (y_divisions*2)),
-            rep(0 + y_axis_tick_width/2, (y_divisions*2))),
+      y = rep(seq(0, y_span, ((y_span - 0) / (y_divisions * 2))), 2),
+      x = c(rep(0 - y_axis_tick_width/2, ((y_divisions + 1) * 2)),
+            rep(0 + y_axis_tick_width/2, ((y_divisions + 1) * 2))),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -221,8 +223,8 @@ create_xy_graph <- function(series_pts,
   # y-axis tick minor marks
   y_axis_minor_tick_edges <-
     create_edges(
-      from = paste0("y_minor_tick_l-", 1:(y_divisions*2)),
-      to =   paste0("y_minor_tick_u-", 1:(y_divisions*2)),
+      from = paste0("y_minor_tick_l-", 0:(y_divisions * 2)),
+      to =   paste0("y_minor_tick_u-", 0:(y_divisions * 2)),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -230,9 +232,9 @@ create_xy_graph <- function(series_pts,
   # the x-axis labels
   x_axis_labels <-
     create_nodes(
-      nodes = paste0("xlab-", 1:x_divisions),
-      label = seq(0, x_max, ((x_max - 0) / x_divisions ) )[-1],
-      x = seq(0, x_span, ((x_span - 0) / x_divisions ) )[-1],
+      nodes = paste0("xlab-", 0:x_divisions),
+      label = seq(x_min, x_max, ((x_max - x_min) / x_divisions)),
+      x = seq(0, x_span, ((x_span - 0) / x_divisions)),
       y = 0 - y_axis_lab_dist,
       type = "x_axis_labels",
       shape = "plaintext",
@@ -242,10 +244,10 @@ create_xy_graph <- function(series_pts,
   # the y-axis labels
   y_axis_labels <-
     create_nodes(
-      nodes = paste0("ylab-", 1:y_divisions),
-      label = seq(0, y_max, ((y_max - 0) / y_divisions ) )[-1],
+      nodes = paste0("ylab-", 0:y_divisions),
+      label = seq(y_min, y_max, ((y_max - y_min) / y_divisions)),
       x = 0 - y_axis_lab_dist,
-      y = seq(0, y_span, ((y_span - 0) / y_divisions ) )[-1],
+      y = seq(0, y_span, ((y_span - 0) / y_divisions)),
       type = "y_axis_labels",
       shape = "plaintext",
       fontcolor = color_axis_labels)
