@@ -30,6 +30,9 @@ major x-axis marks.}
 \item{y_divisions}{the number of divisions between
 major y-axis marks.}
 
+\item{aspect_ratio}{the aspect ratio of the plot
+area.}
+
 \item{x_axis_lab_dist}{the distance between the x
 axis and its labels.}
 
@@ -52,5 +55,48 @@ labels.}
 Create an (x, y) scatterplot graph
 using an NDF and an EDF for connecting
 lines.
+}
+\examples{
+\dontrun{
+library(magrittr)
+# Create a series of (x, y) data
+# points as an NDF
+series_01 <-
+  create_xy_pts(
+    series_label = "series_01",
+    x = c(0.0, 1.3, 3.3, 5.2,
+          6.2, 7.9, 8.6, 9.7),
+    y = c(2.5, 1.6, 2.7, 3.2,
+          4.2, 6.9, 8.7, 5.1),
+    shape = "circle",
+    line_width = 2.5,
+    fill_color = "white",
+    line_color = "blue")
+
+# Create an EDF with connections
+# between (x, y) data points
+series_01_lines <-
+  create_xy_lines(
+    xy_pts = series_01,
+    line_color = "blue",
+    line_width = 2.5
+  )
+
+# Create an (x, y) plot
+xy_plot <-
+create_xy_graph(
+  series_pts = series_01,
+  series_lines = series_01_lines,
+  x_min = 0, x_max = 10,
+  x_divisions = 10,
+  y_min = 0, y_max = 10,
+  y_divisions = 10)
+
+# View the plot
+xy_plot \%>\% render_graph
+
+# Save the graph as a PDF
+xy_plot \%>\% export_graph
+}
 }
 
