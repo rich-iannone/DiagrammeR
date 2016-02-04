@@ -73,8 +73,8 @@
 #' @import scales
 #' @export create_xy_graph
 
-create_xy_graph <- function(series_pts,
-                            series_lines,
+create_xy_graph <- function(series_pts = NULL,
+                            series_lines = NULL,
                             x_min,
                             x_max,
                             x_divisions,
