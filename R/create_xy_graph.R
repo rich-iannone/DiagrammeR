@@ -105,10 +105,12 @@ create_xy_graph <- function(series_pts = NULL,
   series_pts <- subset(series_pts, y <= y_span)
 
   # Remove extraneous series lines
+  if (!is.null(series_lines)){
   series_lines <-
     series_lines[which(series_lines$from %in% series_pts$nodes),]
   series_lines <-
     series_lines[which(series_lines$to %in% series_pts$nodes),]
+  }
 
   # Define the x-axis span
   x_axis_nodes <-
