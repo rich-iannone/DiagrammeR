@@ -98,6 +98,17 @@ create_xy_graph <- function(series_pts,
   series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_min, x_max))
   series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_min, y_max))
 
+  # Subset by chart bounds
+  series_pts <- subset(series_pts, x >= 0)
+  series_pts <- subset(series_pts, y >= 0)
+  series_pts <- subset(series_pts, x <= x_span)
+  series_pts <- subset(series_pts, y <= y_span)
+
+  # Remove extraneous series lines
+  series_lines <-
+    series_lines[which(series_lines$from %in% series_pts$nodes),]
+  series_lines <-
+    series_lines[which(series_lines$to %in% series_pts$nodes),]
 
   # Define the x-axis span
   x_axis_nodes <-
