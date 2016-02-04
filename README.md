@@ -112,9 +112,9 @@ This functionality makes it possible to generate a network graph with data avail
 <img src="inst/img/graph_functions_7.png">
 <img src="inst/img/graph_functions_8.png">
 
-## Graph Example
+## Network Graph Example
 
-Let's create a property graph by combining CSV data that pertains to contributors to three software projects. The CSV files (`contributors.csv`, `projects.csv`, and `projects_and_contributors.csv`) are available in the **DiagrammeR** package. Together they provide the properties `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` to the `person` nodes; `project`, `start_date`, `stars`, and `language` to the `project` nodes; and the `contributor_role` and `commits` properties to the edges.
+Let's create a network graph by combining CSV data that pertains to contributors to three software projects. The CSV files (`contributors.csv`, `projects.csv`, and `projects_and_contributors.csv`) are available in the **DiagrammeR** package. Together they provide the properties `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` to the `person` nodes; `project`, `start_date`, `stars`, and `language` to the `project` nodes; and the `contributor_role` and `commits` properties to the edges.
 
 ```r
 library(DiagrammeR)
