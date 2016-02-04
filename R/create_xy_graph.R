@@ -321,7 +321,7 @@ create_xy_graph <- function(series_pts = NULL,
                             aspect_ratio[1])
 
   # Add the (x, y) points
-  if (is.null(series_pts)){
+  if (!is.null(series_pts)){
     graph_with_data <-
       add_node_df(graph_components, series_pts)
   }
