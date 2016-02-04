@@ -139,6 +139,52 @@ create_xy_graph <- function(series_pts,
       arrowhead = "none")
 
   # Define an NDF that contains
+  # the x-axis minor tick marks
+  x_axis_minor_tick_nodes <-
+    create_nodes(
+      nodes = c(paste0("x_minor_tick_l-", 1:(x_divisions*2)),
+                paste0("x_minor_tick_u-", 1:(x_divisions*2))),
+      label = " ",
+      x = rep(seq(0, x_span, ((x_span - 0) / (x_divisions*2) ) )[-1], 2),
+      y = c(rep(0 - x_axis_tick_width/2, (x_divisions*2)),
+            rep(0 + x_axis_tick_width/2, (x_divisions*2))),
+      width = 0.01,
+      height = 0.01,
+      shape = "plaintext")
+
+  # Define an EDF that draws the
+  # x-axis tick marks
+  x_axis_minor_tick_edges <-
+    create_edges(
+      from = paste0("x_minor_tick_l-", 1:(x_divisions*2)),
+      to =   paste0("x_minor_tick_u-", 1:(x_divisions*2)),
+      color = color_axis_ticks,
+      arrowhead = "none")
+
+  # Define an NDF that contains
+  # the y-axis minor tick marks
+  y_axis_minor_tick_nodes <-
+    create_nodes(
+      nodes = c(paste0("y_minor_tick_l-", 1:(y_divisions*2)),
+                paste0("y_minor_tick_u-", 1:(y_divisions*2))),
+      label = " ",
+      y = rep(seq(0, y_span, ((y_span - 0) / (y_divisions*2) ) )[-1], 2),
+      x = c(rep(0 - y_axis_tick_width/2, (y_divisions*2)),
+            rep(0 + y_axis_tick_width/2, (y_divisions*2))),
+      width = 0.01,
+      height = 0.01,
+      shape = "plaintext")
+
+  # Define an EDF that draws the
+  # y-axis tick minor marks
+  y_axis_minor_tick_edges <-
+    create_edges(
+      from = paste0("y_minor_tick_l-", 1:(y_divisions*2)),
+      to =   paste0("y_minor_tick_u-", 1:(y_divisions*2)),
+      color = color_axis_ticks,
+      arrowhead = "none")
+
+  # Define an NDF that contains
   # the x-axis labels
   x_axis_labels <-
     create_nodes(
@@ -167,13 +213,17 @@ create_xy_graph <- function(series_pts,
     combine_nodes(
       x_axis_nodes, y_axis_nodes,
       x_axis_labels, y_axis_labels,
-      x_axis_tick_nodes, y_axis_tick_nodes)
+      x_axis_tick_nodes, y_axis_tick_nodes,
+      x_axis_minor_tick_nodes,
+      y_axis_minor_tick_nodes)
 
   # Combine all EDFs for the chart components
   chart_component_edges <-
     combine_edges(
       x_axis_edge, y_axis_edge,
-      x_axis_tick_edges, y_axis_tick_edges)
+      x_axis_tick_edges, y_axis_tick_edges,
+      x_axis_minor_tick_edges,
+      y_axis_minor_tick_edges)
 
   # Combine the finalized NDFs and EDFs for the
   # graph components and create a graph object
