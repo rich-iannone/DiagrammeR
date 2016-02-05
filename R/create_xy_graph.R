@@ -59,8 +59,8 @@
 #' # Create an (x, y) plot
 #' xy_plot <-
 #'   create_xy_graph(
-#'     series_pts = series_01,
-#'     series_lines = series_01_lines,
+#'     series_01,
+#'     series_01_lines,
 #'     x_name = "x title",
 #'     y_name = "y title",
 #'     heading = "The graph name",
