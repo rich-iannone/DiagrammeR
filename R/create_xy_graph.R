@@ -75,8 +75,7 @@
 #' @import scales
 #' @export create_xy_graph
 
-create_xy_graph <- function(series_pts = NULL,
-                            series_lines = NULL,
+create_xy_graph <- function(...,
                             aspect_ratio = c(1, 1),
                             x_scale = NULL,
                             y_scale = NULL,
