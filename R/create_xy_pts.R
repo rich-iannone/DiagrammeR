@@ -25,8 +25,8 @@ create_xy_pts <- function(series_label,
                           line_width = 2.5,
                           fill_color = "white",
                           line_color = "black",
-                          width = 0.25,
-                          height = 0.25){
+                          width = 0.15,
+                          height = 0.15){
 
   # Stop function if any of several
   # conditions not met
