@@ -30,6 +30,8 @@
 #' marks.
 #' @param color_axis_labels the color of the axis
 #' labels.
+#' @param bg_color the color for the background of the
+#' entire viewable area
 #' @examples
 #' \dontrun{
 #' library(magrittr)
