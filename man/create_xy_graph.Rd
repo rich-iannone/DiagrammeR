@@ -4,46 +4,48 @@
 \alias{create_xy_graph}
 \title{Create an (x, y) scatterplot graph}
 \usage{
-create_xy_graph(series_pts, series_lines, x_min, x_max, x_divisions, y_min,
-  y_max, y_divisions, aspect_ratio = c(1, 1), x_axis_lab_dist = 0.3,
-  y_axis_lab_dist = 0.3, x_axis_tick_width = 0.1, y_axis_tick_width = 0.1,
+create_xy_graph(..., aspect_ratio = c(1, 1), x_scale = NULL,
+  y_scale = NULL, xy_major_steps = NULL, x_name = NULL, y_name = NULL,
+  heading = NULL, right_heading = NULL, x_name_location = "inside",
+  xy_axis_lab_dist = c(0, 0), xy_axis_tick_width = c(0.1, 0.1),
   color_axis_ticks = "gray", color_axis_labels = "gray")
 }
 \arguments{
-\item{series_pts}{an NDF containing points for
-graphing.}
-
-\item{series_lines}{an EDF containing connecting
-lines.}
-
-\item{x_min}{the minimum x value to display.}
-
-\item{x_max}{the maximum x value to display.}
-
-\item{x_divisions}{the number of divisions between
-major x-axis marks.}
-
-\item{y_min}{the minimum y value to display.}
-
-\item{y_max}{the maximum y value to display.}
-
-\item{y_divisions}{the number of divisions between
-major y-axis marks.}
+\item{...}{one or more NDFs containing points
+(created through the use of the \code{create_xy_pts()}
+function) or EDFs containing lines (created using
+the \code{create_xy_lines()} function).}
 
 \item{aspect_ratio}{the aspect ratio of the plot
 area.}
 
-\item{x_axis_lab_dist}{the distance between the x
-axis and its labels.}
+\item{x_scale}{the minimum and maximum x value to
+display on the x-axis.}
 
-\item{y_axis_lab_dist}{the distance between the y
-axis and its labels.}
+\item{y_scale}{the minimum and maximum y value to
+display on the y-axis.}
 
-\item{x_axis_tick_width}{the span of the x-axis tick
-marks.}
+\item{xy_major_steps}{the number of major steps
+across the x and y directions.}
 
-\item{y_axis_tick_width}{the span of the y-axis tick
-marks.}
+\item{x_name}{the x-axis name.}
+
+\item{y_name}{the y-axis name.}
+
+\item{heading}{a graph heading placed above the plot
+area.}
+
+\item{right_heading}{a right-aligned graph heading
+placed above the plot area.}
+
+\item{x_name_location}{the location of the x-axis
+name, either \code{inside} (default) or \code{outside}.}
+
+\item{xy_axis_lab_dist}{the distances between the x
+and y axes and their labels.}
+
+\item{xy_axis_tick_width}{the widths of the x- and
+y-axis tick mark}
 
 \item{color_axis_ticks}{the color of the axis tick
 marks.}
@@ -84,13 +86,13 @@ series_01_lines <-
 
 # Create an (x, y) plot
 xy_plot <-
-create_xy_graph(
-  series_pts = series_01,
-  series_lines = series_01_lines,
-  x_min = 0, x_max = 10,
-  x_divisions = 10,
-  y_min = 0, y_max = 10,
-  y_divisions = 10)
+  create_xy_graph(
+    series_01,
+    series_01_lines,
+    x_name = "x title",
+    y_name = "y title",
+    heading = "The graph name",
+    right_heading = "A right-aligned heading")
 
 # View the plot
 xy_plot \%>\% render_graph
