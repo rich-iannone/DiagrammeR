@@ -27,9 +27,12 @@ select_edges_by_node_id <- function(graph, nodes, set_op = "union"){
     edge_df[unique(c(which(edge_df$from %in% nodes),
                      which(edge_df$to %in% nodes))),][,2]
 
-  # Create the selection
+  # Create selection of edges
   graph$selection$edges$from <- from
   graph$selection$edges$to <- to
+
+  # Remove any selection of nodes
+  graph$selection$nodes <- NULL
 
   return(graph)
 }

@@ -1,5 +1,5 @@
 #' Add edges and attributes from a data frame
-#' @description Add nodes and their attributes to an existing graph object
+#' @description Add edges and their attributes to an existing graph object
 #' from data in a data frame.
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.

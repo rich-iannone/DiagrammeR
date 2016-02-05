@@ -2,7 +2,7 @@
 % Please edit documentation in R/deposit_node_count_in_selection.R
 \name{deposit_node_count_in_selection}
 \alias{deposit_node_count_in_selection}
-\title{Get a count of nodes available in a selection}
+\title{Deposit a count of nodes (available in a selection) in the graph}
 \usage{
 deposit_node_count_in_selection(graph)
 }
@@ -15,6 +15,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get a
-count of nodes available in a selection.
+count of nodes available in a selection and deposit that value in
+the graph for later retrieval using \code{withdraw_values}
 }
 

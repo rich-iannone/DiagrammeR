@@ -1,6 +1,7 @@
-#' Get a count of nodes available in a selection
+#' Deposit a count of nodes (available in a selection) in the graph
 #' @description From a graph object of class \code{dgr_graph}, get a
-#' count of nodes available in a selection.
+#' count of nodes available in a selection and deposit that value in
+#' the graph for later retrieval using \code{withdraw_values}
 #' @param graph a graph object of class \code{dgr_graph} that is created
 #' using \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.

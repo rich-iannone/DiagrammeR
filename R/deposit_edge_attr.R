@@ -1,6 +1,7 @@
-#' Get edge attributes
+#' Deposit edge attributes in the graph
 #' @description From a graph object of class \code{dgr_graph}, get edge
-#' attribute properties for one or more edges
+#' attribute properties for one or more edges and deposit those values
+#' in the graph for later retrieval using \code{withdraw_values}.
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @param edge_attr the edge attribute from which to obtain values.
 #' @param mode a option to recast the returned vector of edge attribute
@@ -60,6 +61,7 @@ deposit_edge_attr <- function(graph,
     }
   }
 
+  # Place vector of edge attributes as a deposit in the graph
   graph$deposit <- edges_attr_vector
 
   return(graph)

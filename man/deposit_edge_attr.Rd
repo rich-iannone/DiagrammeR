@@ -2,7 +2,7 @@
 % Please edit documentation in R/deposit_edge_attr.R
 \name{deposit_edge_attr}
 \alias{deposit_edge_attr}
-\title{Get edge attributes}
+\title{Deposit edge attributes in the graph}
 \usage{
 deposit_edge_attr(graph, edge_attr, mode = NULL, from = NULL, to = NULL)
 }
@@ -25,6 +25,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get edge
-attribute properties for one or more edges
+attribute properties for one or more edges and deposit those values
+in the graph for later retrieval using \code{withdraw_values}.
 }
 

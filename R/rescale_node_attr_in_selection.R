@@ -22,6 +22,7 @@
 #' values to be rescaled will be used.
 #' @return a graph object of class \code{dgr_graph}.
 #' @import scales
+#' @importFrom grDevices colors
 #' @export rescale_node_attr_in_selection
 
 rescale_node_attr_in_selection <- function(graph,
@@ -79,7 +80,7 @@ rescale_node_attr_in_selection <- function(graph,
     set_node_attr(x = graph,
                   nodes = graph$selection$nodes,
                   node_attr = node_attr_to,
-                  value = nodes_attr_vector_rescaled)
+                  values = nodes_attr_vector_rescaled)
 
   return(graph)
 }

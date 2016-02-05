@@ -2,7 +2,7 @@
 % Please edit documentation in R/deposit_node_attr.R
 \name{deposit_node_attr}
 \alias{deposit_node_attr}
-\title{Get node attributes}
+\title{Deposit node attributes in the graph}
 \usage{
 deposit_node_attr(graph, node_attr, mode = NULL, nodes = NULL)
 }
@@ -22,6 +22,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get node
-attribute properties for one or more nodes.
+attribute properties for one or more nodes and deposit those values
+in the graph for later retrieval using \code{withdraw_values}.
 }
 

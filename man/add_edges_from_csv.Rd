@@ -43,7 +43,7 @@ as \code{rel} attribute values.}
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Add nodes and their attributes to an existing graph object
+Add edges and their attributes to an existing graph object
 from data in a CSV file.
 }
 

@@ -1,4 +1,4 @@
-#' Add an edge to an existing graph object
+#' Add an edge between nodes in a graph object
 #' @description With a graph object of class \code{dgr_graph}, add an edge
 #' to nodes within the graph.
 #' @param graph a graph object of class \code{dgr_graph} that is created using
