@@ -221,17 +221,17 @@ create_xy_graph <- function(...,
 
   # Define the graph heading
   if (!is.null(heading)){
-  heading_node <-
-    create_nodes(
-      nodes = "heading",
-      label = paste0(heading, "\\l"),
-      x = x_span/2,
-      y = 10.4,
-      fontsize = 24,
-      fontcolor = "gray15",
-      width = x_span,
-      height = 0.5,
-      shape = "plaintext")
+    heading_node <-
+      create_nodes(
+        nodes = "heading",
+        label = paste0(heading, "\\l"),
+        x = x_span/2,
+        y = 10.4,
+        fontsize = 24,
+        fontcolor = "gray15",
+        width = x_span,
+        height = 0.5,
+        shape = "plaintext")
   }
 
   # Define the graph's right-aligned heading
