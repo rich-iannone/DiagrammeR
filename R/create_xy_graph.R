@@ -6,24 +6,26 @@
 #' graphing.
 #' @param series_lines an EDF containing connecting
 #' lines.
-#' @param x_min the minimum x value to display.
-#' @param x_max the maximum x value to display.
-#' @param x_divisions the number of divisions between
-#' major x-axis marks.
-#' @param y_min the minimum y value to display.
-#' @param y_max the maximum y value to display.
-#' @param y_divisions the number of divisions between
-#' major y-axis marks.
 #' @param aspect_ratio the aspect ratio of the plot
 #' area.
-#' @param x_axis_lab_dist the distance between the x
-#' axis and its labels.
-#' @param y_axis_lab_dist the distance between the y
-#' axis and its labels.
-#' @param x_axis_tick_width the span of the x-axis tick
-#' marks.
-#' @param y_axis_tick_width the span of the y-axis tick
-#' marks.
+#' @param x_scale the minimum and maximum x value to
+#' display on the x-axis.
+#' @param y_scale the minimum and maximum y value to
+#' display on the y-axis.
+#' @param xy_major_steps the number of major steps
+#' across the x and y directions.
+#' @param x_name the x-axis name.
+#' @param y_name the y-axis name.
+#' @param heading a graph heading placed above the plot
+#' area.
+#' @param right_heading a right-aligned graph heading
+#' placed above the plot area.
+#' @param x_name_location the location of the x-axis
+#' name, either \code{inside} (default) or \code{outside}.
+#' @param xy_axis_lab_dist the distances between the x
+#' and y axes and their labels.
+#' @param xy_axis_tick_width the widths of the x- and
+#' y-axis tick mark
 #' @param color_axis_ticks the color of the axis tick
 #' marks.
 #' @param color_axis_labels the color of the axis
