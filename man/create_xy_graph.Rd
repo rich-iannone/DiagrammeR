@@ -8,7 +8,8 @@ create_xy_graph(..., aspect_ratio = c(1, 1), x_scale = NULL,
   y_scale = NULL, xy_major_steps = NULL, x_name = NULL, y_name = NULL,
   heading = NULL, right_heading = NULL, x_name_location = "inside",
   xy_axis_lab_dist = c(0, 0), xy_axis_tick_width = c(0.1, 0.1),
-  color_axis_ticks = "gray", color_axis_labels = "gray")
+  color_axis_ticks = "gray", color_axis_labels = "gray",
+  bg_color = "transparent")
 }
 \arguments{
 \item{...}{one or more NDFs containing points
@@ -52,6 +53,9 @@ marks.}
 
 \item{color_axis_labels}{the color of the axis
 labels.}
+
+\item{bg_color}{the color for the background of the
+entire viewable area}
 }
 \description{
 Create an (x, y) scatterplot graph
