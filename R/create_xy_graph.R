@@ -87,6 +87,8 @@ create_xy_graph <- function(...,
                             heading = NULL,
                             right_heading = NULL,
                             x_name_location = "inside",
+                            include_legend = TRUE,
+                            legend_offset = c(0, 0),
                             xy_axis_lab_dist = c(0.0, 0.0),
                             xy_axis_tick_width = c(0.1, 0.1),
                             color_axis_ticks = "gray",
@@ -266,6 +268,42 @@ create_xy_graph <- function(...,
         width = x_span,
         height = 0.5,
         shape = "plaintext")
+  }
+
+
+  if (include_legend == TRUE){
+    # Define the graph legend
+    if (!is.null(series_pts)){
+      graph_legend_nodes <-
+        create_nodes(
+          nodes = paste0(unique(series_pts$type), "_node_legend"),
+          label = " ",
+          x = x_span - legend_offset[1],
+          y = y_span -
+            seq(0, (length(unique(series_pts$type)) - 1) * 5/x_span, 5/x_span) -
+            legend_offset[2],
+          style = "filled",
+          fillcolor = unique(series_pts$fillcolor),
+          color = unique(series_pts$color),
+          shape = unique(series_pts$shape),
+          penwidth = 2.5,
+          width = 0.25,
+          height = 0.25)
+
+      graph_legend_node_labels <-
+        create_nodes(
+          nodes = paste0(unique(series_pts$type), "_node_label_legend"),
+          label = paste0(unique(series_pts$type), "\\r"),
+          x = x_span/2 - 0.25,
+          y = y_span -
+            seq(0, (length(unique(series_pts$type)) - 1) * 5/x_span, 5/x_span) -
+            legend_offset[2],
+          fontsize = 18,
+          fontcolor = "gray15",
+          width = x_span,
+          height = 0.5,
+          shape = "plaintext")
+    }
   }
 
   # Define the x-axis span
@@ -476,7 +514,9 @@ create_xy_graph <- function(...,
       x_axis_labels, y_axis_labels,
       x_axis_tick_nodes, y_axis_tick_nodes,
       x_axis_minor_tick_nodes,
-      y_axis_minor_tick_nodes)
+      y_axis_minor_tick_nodes,
+      graph_legend_nodes,
+      graph_legend_node_labels)
 
   if (!is.null(x_name)){
     chart_component_nodes <-
@@ -500,6 +540,17 @@ create_xy_graph <- function(...,
     chart_component_nodes <-
       combine_nodes(chart_component_nodes,
                     heading_right_node)
+  }
+
+  if (include_legend == TRUE){
+    if (!is.null(series_pts)){
+      chart_component_nodes <-
+        combine_nodes(chart_component_nodes,
+                      graph_legend_nodes)
+      chart_component_nodes <-
+        combine_nodes(chart_component_nodes,
+                      graph_legend_node_labels)
+    }
   }
 
   # Combine all EDFs for the chart components
