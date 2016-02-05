@@ -22,6 +22,9 @@
 #' placed above the plot area.
 #' @param x_name_location the location of the x-axis
 #' name, either \code{inside} (default) or \code{outside}.
+#' @param an option on whether to include a legend.
+#' @param the x and y offset (from top-right) of the
+#' legend.
 #' @param xy_axis_lab_dist the distances between the x
 #' and y axes and their labels.
 #' @param xy_axis_tick_width the widths of the x- and
