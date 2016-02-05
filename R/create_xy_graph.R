@@ -90,6 +90,76 @@ create_xy_graph <- function(...,
                             color_axis_ticks = "gray",
                             color_axis_labels = "gray"){
 
+  # Take multiple series of points and lines
+  pts_lines_df <- list(...)
+
+  for (i in 1:length(pts_lines_df)){
+    if (i == 1){
+      pts_df <- vector(mode = "numeric")
+      lines_df <- vector(mode = "numeric")
+    }
+
+    if ("nodes" %in% colnames(pts_lines_df[[i]])){
+      pts_df <- c(pts_df, i)
+    }
+
+    if ("from" %in% colnames(pts_lines_df[[i]]) &
+        "to" %in% colnames(pts_lines_df[[i]])){
+      lines_df <- c(lines_df, i)
+    }
+  }
+
+  if (length(pts_df) == 0){
+    series_pts <- NULL
+  } else if (length(pts_df) == 1){
+    series_pts <- pts_lines_df[[pts_df]]
+  } else if (length(pts_df) > 1){
+    for (i in 2:length(pts_df)){
+
+      if (i == 2){
+        series_pts <-
+          combine_nodes(
+            pts_lines_df[[pts_df[1]]],
+            pts_lines_df[[pts_df[2]]])
+      }
+
+      if (i > 2){
+        series_pts <-
+          combine_nodes(
+            series_pts,
+            pts_lines_df[[pts_df[i]]])
+      }
+
+      if (i == length(pts_df)){
+        series_pts$x <- as.numeric(series_pts$x)
+        series_pts$y <- as.numeric(series_pts$y)
+      }
+    }
+  }
+
+  if (length(lines_df) == 0){
+    series_lines <- NULL
+  } else if (length(lines_df) == 1){
+    series_lines <- pts_lines_df[[lines_df]]
+  } else if (length(lines_df) > 1){
+    for (i in 2:length(lines_df)){
+
+      if (i == 2){
+        series_lines <-
+          combine_edges(
+            pts_lines_df[[lines_df[1]]],
+            pts_lines_df[[lines_df[2]]])
+      }
+
+      if (i > 2){
+        series_lines <-
+          combine_edges(
+            series_lines,
+            pts_lines_df[[lines_df[i]]])
+      }
+    }
+  }
+
   # If `x_scale`, `y_scale`, and `xy_major_steps` not
   # provided, devise bounds and breaks
   if (is.null(x_scale) &
