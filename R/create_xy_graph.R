@@ -2,10 +2,10 @@
 #' @description Create an (x, y) scatterplot graph
 #' using an NDF and an EDF for connecting
 #' lines.
-#' @param series_pts an NDF containing points for
-#' graphing.
-#' @param series_lines an EDF containing connecting
-#' lines.
+#' @param ... one or more NDFs containing points
+#' (created through the use of the \code{create_xy_pts()}
+#' function) or EDFs containing lines (created using
+#' the \code{create_xy_lines()} function).
 #' @param aspect_ratio the aspect ratio of the plot
 #' area.
 #' @param x_scale the minimum and maximum x value to
