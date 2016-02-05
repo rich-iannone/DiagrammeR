@@ -519,9 +519,11 @@ create_xy_graph <- function(...,
     set_global_graph_attr(graph_components,
                           "graph", "layout", "neato")
 
+  # Set the color for the background of the entire
+  # viewable area
   graph_components <-
     set_global_graph_attr(graph_components,
-                          "graph", "bgcolor", "transparent")
+                          "graph", "bgcolor", bg_color)
 
   graph_components <-
     set_global_graph_attr(graph_components,
