@@ -88,108 +88,125 @@ create_xy_graph <- function(...,
                             xy_axis_lab_dist = c(0.0, 0.0),
                             xy_axis_tick_width = c(0.1, 0.1),
                             color_axis_ticks = "gray",
-                            color_axis_labels = "gray"){
+                            color_axis_labels = "gray",
+                            bg_color = "transparent"){
 
   # Take multiple series of points and lines
   pts_lines_df <- list(...)
 
-  for (i in 1:length(pts_lines_df)){
-    if (i == 1){
-      pts_df <- vector(mode = "numeric")
-      lines_df <- vector(mode = "numeric")
-    }
+  if (length(pts_lines_df) > 0){
 
-    if ("nodes" %in% colnames(pts_lines_df[[i]])){
-      pts_df <- c(pts_df, i)
-    }
-
-    if ("from" %in% colnames(pts_lines_df[[i]]) &
-        "to" %in% colnames(pts_lines_df[[i]])){
-      lines_df <- c(lines_df, i)
-    }
-  }
-
-  if (length(pts_df) == 0){
-    series_pts <- NULL
-  } else if (length(pts_df) == 1){
-    series_pts <- pts_lines_df[[pts_df]]
-  } else if (length(pts_df) > 1){
-    for (i in 2:length(pts_df)){
-
-      if (i == 2){
-        series_pts <-
-          combine_nodes(
-            pts_lines_df[[pts_df[1]]],
-            pts_lines_df[[pts_df[2]]])
+    for (i in 1:length(pts_lines_df)){
+      if (i == 1){
+        pts_df <- vector(mode = "numeric")
+        lines_df <- vector(mode = "numeric")
       }
 
-      if (i > 2){
-        series_pts <-
-          combine_nodes(
-            series_pts,
-            pts_lines_df[[pts_df[i]]])
+      if ("nodes" %in% colnames(pts_lines_df[[i]])){
+        pts_df <- c(pts_df, i)
       }
 
-      if (i == length(pts_df)){
-        series_pts$x <- as.numeric(series_pts$x)
-        series_pts$y <- as.numeric(series_pts$y)
+      if ("from" %in% colnames(pts_lines_df[[i]]) &
+          "to" %in% colnames(pts_lines_df[[i]])){
+        lines_df <- c(lines_df, i)
       }
     }
-  }
 
-  if (length(lines_df) == 0){
-    series_lines <- NULL
-  } else if (length(lines_df) == 1){
-    series_lines <- pts_lines_df[[lines_df]]
-  } else if (length(lines_df) > 1){
-    for (i in 2:length(lines_df)){
+    if (length(pts_df) == 0){
+      series_pts <- NULL
+    } else if (length(pts_df) == 1){
+      series_pts <- pts_lines_df[[pts_df]]
+    } else if (length(pts_df) > 1){
+      for (i in 2:length(pts_df)){
 
-      if (i == 2){
-        series_lines <-
-          combine_edges(
-            pts_lines_df[[lines_df[1]]],
-            pts_lines_df[[lines_df[2]]])
-      }
+        if (i == 2){
+          series_pts <-
+            combine_nodes(
+              pts_lines_df[[pts_df[1]]],
+              pts_lines_df[[pts_df[2]]])
+        }
 
-      if (i > 2){
-        series_lines <-
-          combine_edges(
-            series_lines,
-            pts_lines_df[[lines_df[i]]])
+        if (i > 2){
+          series_pts <-
+            combine_nodes(
+              series_pts,
+              pts_lines_df[[pts_df[i]]])
+        }
+
+        if (i == length(pts_df)){
+          series_pts$x <- as.numeric(series_pts$x)
+          series_pts$y <- as.numeric(series_pts$y)
+        }
       }
     }
-  }
 
-  # If `x_scale`, `y_scale`, and `xy_major_steps` not
-  # provided, devise bounds and breaks
-  if (is.null(x_scale) &
-      is.null(y_scale) &
-      is.null(xy_major_steps) &
-      !is.null(series_pts)){
+    if (length(lines_df) == 0){
+      series_lines <- NULL
+    } else if (length(lines_df) == 1){
+      series_lines <- pts_lines_df[[lines_df]]
+    } else if (length(lines_df) > 1){
+      for (i in 2:length(lines_df)){
 
-    x_scale <-
-      c(cbreaks(c(min(series_pts$x),
-                  max(series_pts$x)),
-                pretty_breaks(10))[[1]][1],
-        tail(cbreaks(c(min(series_pts$x),
-                       max(series_pts$x)),
-                     pretty_breaks(10))[[1]], 1))
+        if (i == 2){
+          series_lines <-
+            combine_edges(
+              pts_lines_df[[lines_df[1]]],
+              pts_lines_df[[lines_df[2]]])
+        }
 
-    y_scale <-
-      c(cbreaks(c(min(series_pts$y),
-                  max(series_pts$y)),
-                pretty_breaks(10))[[1]][1],
-        tail(cbreaks(c(min(series_pts$y),
-                       max(series_pts$y)),
-                     pretty_breaks(10))[[1]], 1))
+        if (i > 2){
+          series_lines <-
+            combine_edges(
+              series_lines,
+              pts_lines_df[[lines_df[i]]])
+        }
+      }
+    }
 
-    xy_major_steps <-
-      c(length(cbreaks(c(min(series_pts$x),
+    # If `x_scale`, `y_scale`, and `xy_major_steps` not
+    # provided, devise bounds and breaks
+    if (is.null(x_scale) &
+        is.null(y_scale) &
+        is.null(xy_major_steps) &
+        !is.null(series_pts)){
+
+      x_scale <-
+        c(cbreaks(c(min(series_pts$x),
+                    max(series_pts$x)),
+                  pretty_breaks(10))[[1]][1],
+          tail(cbreaks(c(min(series_pts$x),
                          max(series_pts$x)),
-                       pretty_breaks(10))[[1]]) - 1,
-        length(cbreaks(c(min(series_pts$y),
+                       pretty_breaks(10))[[1]], 1))
+
+      y_scale <-
+        c(cbreaks(c(min(series_pts$y),
+                    max(series_pts$y)),
+                  pretty_breaks(10))[[1]][1],
+          tail(cbreaks(c(min(series_pts$y),
                          max(series_pts$y)),
-                       pretty_breaks(10))[[1]]) - 1)
+                       pretty_breaks(10))[[1]], 1))
+
+      xy_major_steps <-
+        c(length(cbreaks(c(min(series_pts$x),
+                           max(series_pts$x)),
+                         pretty_breaks(10))[[1]]) - 1,
+          length(cbreaks(c(min(series_pts$y),
+                           max(series_pts$y)),
+                         pretty_breaks(10))[[1]]) - 1)
+    }
+  }
+
+  if (length(pts_lines_df) == 0){
+    if (is.null(x_scale) &
+        is.null(y_scale) &
+        is.null(xy_major_steps)){
+
+      x_scale <- c(0, 10)
+      y_scale <- c(0, 10)
+      xy_major_steps <- c(10, 10)
+      series_pts <- NULL
+      series_lines <- NULL
+    }
   }
 
   # Define the x-span and the y-span
