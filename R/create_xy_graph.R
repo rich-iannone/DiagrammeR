@@ -199,8 +199,12 @@ create_xy_graph <- function(...,
 
   # Rescale series data and subset by chart bounds
   if (!is.null(series_pts)){
-    series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_scale[1], x_scale[2]))
-    series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_scale[1], y_scale[2]))
+    series_pts$x <- rescale(series_pts$x,
+                            to = c(0, x_span),
+                            from = c(x_scale[1], x_scale[2]))
+    series_pts$y <- rescale(series_pts$y,
+                            to = c(0, y_span),
+                            from = c(y_scale[1], y_scale[2]))
     series_pts <- subset(series_pts, x >= 0)
     series_pts <- subset(series_pts, y >= 0)
     series_pts <- subset(series_pts, x <= x_span)
