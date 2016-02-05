@@ -421,6 +421,52 @@ create_xy_graph <- function(...,
       arrowhead = "none")
 
   # Define an NDF that contains
+  # the x-axis major grid lines
+  x_axis_major_grid_nodes <-
+    create_nodes(
+      nodes = c(paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
+                paste0("x_maj_grid_u-", 1:xy_major_steps[1])),
+      label = " ",
+      x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1]))[-1], 2),
+      y = c(rep(0, xy_major_steps[1] + 1)[-1],
+            rep(y_span, xy_major_steps[1] + 1)[-1]),
+      width = 0.01,
+      height = 0.01,
+      shape = "plaintext")
+
+  # Define an EDF that draws the
+  # x-axis major grid lines
+  x_axis_major_grid_edges <-
+    create_edges(
+      from = paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
+      to =   paste0("x_maj_grid_u-", 1:xy_major_steps[1]),
+      color = "gray95",
+      arrowhead = "none")
+
+  # Define an NDF that contains
+  # the y-axis major grid lines
+  y_axis_major_grid_nodes <-
+    create_nodes(
+      nodes = c(paste0("y_maj_grid_l-", 1:xy_major_steps[2]),
+                paste0("y_maj_grid_u-", 1:xy_major_steps[2])),
+      label = " ",
+      y = rep(seq(0, y_span, ((y_span - 0) / xy_major_steps[2]))[-1], 2),
+      x = c(rep(0, xy_major_steps[2] + 1)[-1],
+            rep(y_span, xy_major_steps[2] + 1)[-1]),
+      width = 0.01,
+      height = 0.01,
+      shape = "plaintext")
+
+  # Define an EDF that draws the
+  # x-axis major grid lines
+  y_axis_major_grid_edges <-
+    create_edges(
+      from = paste0("y_maj_grid_l-", 1:xy_major_steps[2]),
+      to =   paste0("y_maj_grid_u-", 1:xy_major_steps[2]),
+      color = "gray95",
+      arrowhead = "none")
+
+  # Define an NDF that contains
   # the y-axis tick marks
   y_axis_tick_nodes <-
     create_nodes(
@@ -526,6 +572,8 @@ create_xy_graph <- function(...,
       x_axis_tick_nodes, y_axis_tick_nodes,
       x_axis_minor_tick_nodes,
       y_axis_minor_tick_nodes,
+      x_axis_major_grid_nodes,
+      y_axis_major_grid_nodes,
       graph_legend_nodes,
       graph_legend_node_labels)
 
@@ -570,7 +618,9 @@ create_xy_graph <- function(...,
       x_axis_edge, y_axis_edge,
       x_axis_tick_edges, y_axis_tick_edges,
       x_axis_minor_tick_edges,
-      y_axis_minor_tick_edges)
+      y_axis_minor_tick_edges,
+      x_axis_major_grid_edges,
+      y_axis_major_grid_edges)
 
   # Combine the finalized NDFs and EDFs for the
   # graph components and create a graph object
