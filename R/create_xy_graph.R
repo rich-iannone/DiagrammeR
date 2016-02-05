@@ -214,16 +214,58 @@ create_xy_graph <- function(series_pts = NULL,
       color = color_axis_ticks,
       arrowhead = "none")
 
+  # Define the x-axis name
+  if (!is.null(x_name)){
+    if (x_name_location == "inside"){
+      x_axis_name <-
+        create_nodes(
+          nodes = "x_axis_name",
+          label = paste0(x_name, "\\r"),
+          fontsize = 14,
+          fontcolor = "gray",
+          x = x_span/2,
+          y = 0.3,
+          width = x_span,
+          height = 0.01,
+          shape = "plaintext")
+    } else if (x_name_location == "outside"){
+      x_axis_name <-
+        create_nodes(
+          nodes = "x_axis_name",
+          label = x_name,
+          fontsize = 14,
+          fontcolor = "gray",
+          x = x_span/2,
+          y = 0 - 0.6,
+          width = 0.01,
+          height = 0.01,
+          shape = "plaintext")
+    }
+  }
+
+  # Define the y-axis name
+  if (!is.null(y_name)){
+    y_axis_name <-
+      create_nodes(
+        nodes = "y_axis_name",
+        label = paste0(y_name, "\\l"),
+        fontcolor = "gray",
+        fontsize = 14,
+        x = 0.6,
+        y = y_span,
+        shape = "plaintext")
+  }
+
   # Define an NDF that contains
   # the x-axis tick marks
   x_axis_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("x_tick_l-", 0:x_divisions),
-                paste0("x_tick_u-", 0:x_divisions)),
+      nodes = c(paste0("x_tick_l-", 0:xy_major_steps[1]),
+                paste0("x_tick_u-", 0:xy_major_steps[1])),
       label = " ",
-      x = rep(seq(0, x_span, ((x_span - 0) / x_divisions)), 2),
-      y = c(rep(0 - x_axis_tick_width, x_divisions + 1),
-            rep(0 + x_axis_tick_width, x_divisions + 1)),
+      x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1])), 2),
+      y = c(rep(0 - xy_axis_tick_width[1], xy_major_steps[1] + 1),
+            rep(0 + xy_axis_tick_width[1], xy_major_steps[1] + 1)),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -232,8 +274,8 @@ create_xy_graph <- function(series_pts = NULL,
   # x-axis tick marks
   x_axis_tick_edges <-
     create_edges(
-      from = paste0("x_tick_l-", 0:x_divisions),
-      to =   paste0("x_tick_u-", 0:x_divisions),
+      from = paste0("x_tick_l-", 0:xy_major_steps[1]),
+      to =   paste0("x_tick_u-", 0:xy_major_steps[1]),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -241,12 +283,12 @@ create_xy_graph <- function(series_pts = NULL,
   # the y-axis tick marks
   y_axis_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("y_tick_l-", 0:y_divisions),
-                paste0("y_tick_u-", 0:y_divisions)),
+      nodes = c(paste0("y_tick_l-", 0:xy_major_steps[2]),
+                paste0("y_tick_u-", 0:xy_major_steps[2])),
       label = " ",
-      y = rep(seq(0, y_span, ((y_span - 0) / y_divisions)), 2),
-      x = c(rep(0 - y_axis_tick_width, y_divisions + 1),
-            rep(0 + y_axis_tick_width, y_divisions + 1)),
+      y = rep(seq(0, y_span, ((y_span - 0) / xy_major_steps[2])), 2),
+      x = c(rep(0 - xy_axis_tick_width[2], xy_major_steps[2] + 1),
+            rep(0 + xy_axis_tick_width[2], xy_major_steps[2] + 1)),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -255,8 +297,8 @@ create_xy_graph <- function(series_pts = NULL,
   # y-axis tick marks
   y_axis_tick_edges <-
     create_edges(
-      from = paste0("y_tick_l-", 0:y_divisions),
-      to =   paste0("y_tick_u-", 0:y_divisions),
+      from = paste0("y_tick_l-", 0:xy_major_steps[2]),
+      to =   paste0("y_tick_u-", 0:xy_major_steps[2]),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -264,12 +306,12 @@ create_xy_graph <- function(series_pts = NULL,
   # the x-axis minor tick marks
   x_axis_minor_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("x_minor_tick_l-", 0:(x_divisions * 2)),
-                paste0("x_minor_tick_u-", 0:(x_divisions * 2))),
+      nodes = c(paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
+                paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2))),
       label = " ",
-      x = rep(seq(0, x_span, ((x_span - 0) / (x_divisions * 2))), 2),
-      y = c(rep(0 - x_axis_tick_width/2, ((x_divisions + 1) * 2)),
-            rep(0 + x_axis_tick_width/2, ((x_divisions + 1) * 2))),
+      x = rep(seq(0, x_span, ((x_span - 0) / (xy_major_steps[1] * 2))), 2),
+      y = c(rep(0 - xy_axis_tick_width[1]/2, ((xy_major_steps[1] + 1) * 2)),
+            rep(0 + xy_axis_tick_width[1]/2, ((xy_major_steps[1] + 1) * 2))),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -278,8 +320,8 @@ create_xy_graph <- function(series_pts = NULL,
   # x-axis tick marks
   x_axis_minor_tick_edges <-
     create_edges(
-      from = paste0("x_minor_tick_l-", 0:(x_divisions * 2)),
-      to =   paste0("x_minor_tick_u-", 0:(x_divisions * 2)),
+      from = paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
+      to =   paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2)),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -287,12 +329,12 @@ create_xy_graph <- function(series_pts = NULL,
   # the y-axis minor tick marks
   y_axis_minor_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("y_minor_tick_l-", 0:(y_divisions * 2)),
-                paste0("y_minor_tick_u-", 0:(y_divisions * 2))),
+      nodes = c(paste0("y_minor_tick_l-", 0:(xy_major_steps[2] * 2)),
+                paste0("y_minor_tick_u-", 0:(xy_major_steps[2] * 2))),
       label = " ",
-      y = rep(seq(0, y_span, ((y_span - 0) / (y_divisions * 2))), 2),
-      x = c(rep(0 - y_axis_tick_width/2, ((y_divisions + 1) * 2)),
-            rep(0 + y_axis_tick_width/2, ((y_divisions + 1) * 2))),
+      y = rep(seq(0, y_span, ((y_span - 0) / (xy_major_steps[2] * 2))), 2),
+      x = c(rep(0 - xy_axis_tick_width[2]/2, ((xy_major_steps[2] + 1) * 2)),
+            rep(0 + xy_axis_tick_width[2]/2, ((xy_major_steps[2] + 1) * 2))),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -301,8 +343,8 @@ create_xy_graph <- function(series_pts = NULL,
   # y-axis tick minor marks
   y_axis_minor_tick_edges <-
     create_edges(
-      from = paste0("y_minor_tick_l-", 0:(y_divisions * 2)),
-      to =   paste0("y_minor_tick_u-", 0:(y_divisions * 2)),
+      from = paste0("y_minor_tick_l-", 0:(xy_major_steps[2] * 2)),
+      to =   paste0("y_minor_tick_u-", 0:(xy_major_steps[2] * 2)),
       color = color_axis_ticks,
       arrowhead = "none")
 
@@ -310,10 +352,12 @@ create_xy_graph <- function(series_pts = NULL,
   # the x-axis labels
   x_axis_labels <-
     create_nodes(
-      nodes = paste0("xlab-", 0:x_divisions),
-      label = seq(x_min, x_max, ((x_max - x_min) / x_divisions)),
-      x = seq(0, x_span, ((x_span - 0) / x_divisions)),
-      y = 0 - y_axis_lab_dist,
+      nodes = paste0("xlab-", 0:xy_major_steps[1]),
+      label = seq(x_scale[1],
+                  x_scale[2],
+                  ((x_scale[2] - x_scale[1]) / xy_major_steps[1])),
+      x = seq(0, x_span, ((x_span - 0) / xy_major_steps[1])),
+      y = -0.3 - xy_axis_lab_dist[1],
       type = "x_axis_labels",
       shape = "plaintext",
       fontcolor = color_axis_labels)
@@ -322,10 +366,13 @@ create_xy_graph <- function(series_pts = NULL,
   # the y-axis labels
   y_axis_labels <-
     create_nodes(
-      nodes = paste0("ylab-", 0:y_divisions),
-      label = seq(y_min, y_max, ((y_max - y_min) / y_divisions)),
-      x = 0 - y_axis_lab_dist,
-      y = seq(0, y_span, ((y_span - 0) / y_divisions)),
+      nodes = paste0("ylab-", 0:xy_major_steps[2]),
+      label = paste0(seq(y_scale[1],
+                         y_scale[2],
+                         ((y_scale[2] - y_scale[1]) / xy_major_steps[2])),
+                     "\\r"),
+      x = -0.6 - xy_axis_lab_dist[2],
+      y = seq(0, y_span, ((y_span - 0) / xy_major_steps[2])),
       type = "y_axis_labels",
       shape = "plaintext",
       fontcolor = color_axis_labels)
@@ -338,6 +385,30 @@ create_xy_graph <- function(series_pts = NULL,
       x_axis_tick_nodes, y_axis_tick_nodes,
       x_axis_minor_tick_nodes,
       y_axis_minor_tick_nodes)
+
+  if (!is.null(x_name)){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    x_axis_name)
+  }
+
+  if (!is.null(y_name)){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    y_axis_name)
+  }
+
+  if (!is.null(heading)){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    heading_node)
+  }
+
+  if (!is.null(right_heading)){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    heading_right_node)
+  }
 
   # Combine all EDFs for the chart components
   chart_component_edges <-
