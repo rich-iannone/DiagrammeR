@@ -58,13 +58,13 @@
 #'
 #' # Create an (x, y) plot
 #' xy_plot <-
-#' create_xy_graph(
-#'   series_pts = series_01,
-#'   series_lines = series_01_lines,
-#'   x_min = 0, x_max = 10,
-#'   x_divisions = 10,
-#'   y_min = 0, y_max = 10,
-#'   y_divisions = 10)
+#'   create_xy_graph(
+#'     series_pts = series_01,
+#'     series_lines = series_01_lines,
+#'     x_name = "x title",
+#'     y_name = "y title",
+#'     heading = "The graph name",
+#'     right_heading = "A right-aligned heading")
 #'
 #' # View the plot
 #' xy_plot %>% render_graph
