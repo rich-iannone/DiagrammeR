@@ -146,6 +146,36 @@ create_xy_graph <- function(series_pts = NULL,
       series_lines[which(series_lines$to %in% series_pts$nodes),]
   }
 
+  # Define the graph heading
+  if (!is.null(heading)){
+  heading_node <-
+    create_nodes(
+      nodes = "heading",
+      label = paste0(heading, "\\l"),
+      x = x_span/2,
+      y = 10.4,
+      fontsize = 24,
+      fontcolor = "gray15",
+      width = x_span,
+      height = 0.5,
+      shape = "plaintext")
+  }
+
+  # Define the graph's right-aligned heading
+  if (!is.null(right_heading)){
+    heading_right_node <-
+      create_nodes(
+        nodes = "heading_right",
+        label = paste0(right_heading, "\\r"),
+        x = x_span/2,
+        y = 10.4,
+        fontsize = 24,
+        fontcolor = "gray15",
+        width = x_span,
+        height = 0.5,
+        shape = "plaintext")
+  }
+
   # Define the x-axis span
   x_axis_nodes <-
     create_nodes(
