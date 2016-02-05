@@ -77,19 +77,51 @@
 
 create_xy_graph <- function(series_pts = NULL,
                             series_lines = NULL,
-                            x_min,
-                            x_max,
-                            x_divisions,
-                            y_min,
-                            y_max,
-                            y_divisions,
                             aspect_ratio = c(1, 1),
-                            x_axis_lab_dist = 0.3,
-                            y_axis_lab_dist = 0.3,
-                            x_axis_tick_width = 0.1,
-                            y_axis_tick_width = 0.1,
+                            x_scale = NULL,
+                            y_scale = NULL,
+                            xy_major_steps = NULL,
+                            x_name = NULL,
+                            y_name = NULL,
+                            heading = NULL,
+                            right_heading = NULL,
+                            x_name_location = "inside",
+                            xy_axis_lab_dist = c(0.0, 0.0),
+                            xy_axis_tick_width = c(0.1, 0.1),
                             color_axis_ticks = "gray",
                             color_axis_labels = "gray"){
+
+  # If `x_scale`, `y_scale`, and `xy_major_steps` not
+  # provided, devise bounds and breaks
+  if (is.null(x_scale) &
+      is.null(y_scale) &
+      is.null(xy_major_steps) &
+      !is.null(series_pts)){
+
+    x_scale <-
+      c(cbreaks(c(min(series_pts$x),
+                  max(series_pts$x)),
+                pretty_breaks(10))[[1]][1],
+        tail(cbreaks(c(min(series_pts$x),
+                       max(series_pts$x)),
+                     pretty_breaks(10))[[1]], 1))
+
+    y_scale <-
+      c(cbreaks(c(min(series_pts$y),
+                  max(series_pts$y)),
+                pretty_breaks(10))[[1]][1],
+        tail(cbreaks(c(min(series_pts$y),
+                       max(series_pts$y)),
+                     pretty_breaks(10))[[1]], 1))
+
+    xy_major_steps <-
+      c(length(cbreaks(c(min(series_pts$x),
+                         max(series_pts$x)),
+                       pretty_breaks(10))[[1]]) - 1,
+        length(cbreaks(c(min(series_pts$y),
+                         max(series_pts$y)),
+                       pretty_breaks(10))[[1]]) - 1)
+  }
 
   # Define the x-span and the y-span
   # by the aspect ratio
@@ -98,8 +130,8 @@ create_xy_graph <- function(series_pts = NULL,
 
   # Rescale series data and subset by chart bounds
   if (!is.null(series_pts)){
-    series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_min, x_max))
-    series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_min, y_max))
+    series_pts$x <- rescale(series_pts$x, to = c(0, x_span), from = c(x_scale[1], x_scale[2]))
+    series_pts$y <- rescale(series_pts$y, to = c(0, y_span), from = c(y_scale[1], y_scale[2]))
     series_pts <- subset(series_pts, x >= 0)
     series_pts <- subset(series_pts, y >= 0)
     series_pts <- subset(series_pts, x <= x_span)
