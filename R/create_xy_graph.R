@@ -37,45 +37,53 @@
 #' entire viewable area
 #' @examples
 #' \dontrun{
+#' library(DiagrammeRsvg)
 #' library(magrittr)
-#' # Create a series of (x, y) data
-#' # points as an NDF
-#' series_01 <-
+#'
+#' # Create three groups (Setosa, Versicolor, and Virginica)
+#' # of x,y datapoints for petal length (x) and petal width (y)
+#' setosa <-
 #'   create_xy_pts(
-#'     series_label = "series_01",
-#'     x = c(0.0, 1.3, 3.3, 5.2,
-#'           6.2, 7.9, 8.6, 9.7),
-#'     y = c(2.5, 1.6, 2.7, 3.2,
-#'           4.2, 6.9, 8.7, 5.1),
-#'     shape = "circle",
-#'     line_width = 2.5,
-#'     fill_color = "white",
+#'     series_label = "Setosa",
+#'     x = subset(iris, Species == "setosa")$Petal.Length,
+#'     y = subset(iris, Species == "setosa")$Petal.Width,
+#'     line_color = "red")
+#'
+#' versicolor <-
+#'   create_xy_pts(
+#'     series_label = "Versicolor",
+#'     x = subset(iris, Species == "versicolor")$Petal.Length,
+#'     y = subset(iris, Species == "versicolor")$Petal.Width,
+#'     line_color = "green")
+#'
+#' virginica <-
+#'   create_xy_pts(
+#'     series_label = "Virginica",
+#'     x = subset(iris, Species == "virginica")$Petal.Length,
+#'     y = subset(iris, Species == "virginica")$Petal.Width,
 #'     line_color = "blue")
 #'
-#' # Create an EDF with connections
-#' # between (x, y) data points
-#' series_01_lines <-
-#'   create_xy_lines(
-#'     xy_pts = series_01,
-#'     line_color = "blue",
-#'     line_width = 2.5
-#'   )
-#'
-#' # Create an (x, y) plot
-#' xy_plot <-
+#' # Add these xy points to the `create_xy_graph()`
+#' # function and add axis titles and a heading
+#' iris_length_width <-
 #'   create_xy_graph(
-#'     series_01,
-#'     series_01_lines,
-#'     x_name = "x title",
-#'     y_name = "y title",
-#'     heading = "The graph name",
-#'     right_heading = "A right-aligned heading")
+#'     setosa,
+#'     versicolor,
+#'     virginica,
+#'     x_name = "Petal Length",
+#'     y_name = "Petal Width",
+#'     heading = "Iris Dataset",
+#'     legend_offset = c(0, 6),
+#'     bg_color = "white")
 #'
-#' # View the plot
-#' xy_plot %>% render_graph
+#' # View the graph
+#' iris_length_width %>% render_graph
 #'
-#' # Save the graph as a PDF
-#' xy_plot %>% export_graph
+#' # Export the graph to a PDF file
+#' iris_length_width %>% export_graph("iris.pdf")
+#'
+#' # Export the graph to a PDF file
+#' iris_length_width %>% export_graph("iris.png")
 #' }
 #' @import scales
 #' @export create_xy_graph
