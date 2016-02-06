@@ -18,8 +18,6 @@
 #' @param y_name the y-axis name.
 #' @param heading a graph heading placed above the plot
 #' area.
-#' @param right_heading a right-aligned graph heading
-#' placed above the plot area.
 #' @param x_name_location the location of the x-axis
 #' name, either \code{inside} (default) or \code{outside}.
 #' @param an option on whether to include a legend.
@@ -96,7 +94,6 @@ create_xy_graph <- function(...,
                             x_name = NULL,
                             y_name = NULL,
                             heading = NULL,
-                            right_heading = NULL,
                             x_name_location = "inside",
                             include_legend = TRUE,
                             legend_offset = c(0, 0),
