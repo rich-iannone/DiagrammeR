@@ -9,7 +9,8 @@
 #' @param line_width the line width for the shape representing the
 #' data point.
 #' @param fill_color the fill color for the shape representing the
-#' data point.
+#' data point. If \code{none} or \code{transparent} provided,
+#' then the shape will not be filled with a color.
 #' @param line_color the color of the shape line representing the
 #' data point.
 #' @param width the width of the shape representing the
