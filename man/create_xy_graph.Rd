@@ -6,7 +6,7 @@
 \usage{
 create_xy_graph(..., aspect_ratio = c(1, 1), x_scale = NULL,
   y_scale = NULL, xy_major_steps = NULL, x_name = NULL, y_name = NULL,
-  heading = NULL, right_heading = NULL, x_name_location = "inside",
+  heading = NULL, footer = NULL, x_name_location = "inside",
   include_legend = TRUE, legend_offset = c(0, 0), xy_axis_lab_dist = c(0,
   0), xy_axis_tick_width = c(0.1, 0.1), color_axis_ticks = "gray",
   color_axis_labels = "gray", bg_color = "transparent")
@@ -33,14 +33,20 @@ across the x and y directions.}
 
 \item{y_name}{the y-axis name.}
 
-\item{heading}{a graph heading placed above the plot
-area.}
+\item{heading}{text to display as a heading above
+the plot area.}
 
-\item{right_heading}{a right-aligned graph heading
-placed above the plot area.}
+\item{footer}{text to display as a footer below the
+plot area.}
 
 \item{x_name_location}{the location of the x-axis
 name, either \code{inside} (default) or \code{outside}.}
+
+\item{include_legend}{an option on whether to
+include a legend.}
+
+\item{legend_offset}{the x and y offset (from
+top-right) of the legend.}
 
 \item{xy_axis_lab_dist}{the distances between the x
 and y axes and their labels.}
@@ -56,11 +62,6 @@ labels.}
 
 \item{bg_color}{the color for the background of the
 entire viewable area}
-
-\item{an}{option on whether to include a legend.}
-
-\item{the}{x and y offset (from top-right) of the
-legend.}
 }
 \description{
 Create an (x, y) scatterplot graph

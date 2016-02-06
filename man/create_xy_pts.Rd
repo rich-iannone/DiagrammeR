@@ -4,9 +4,9 @@
 \alias{create_xy_pts}
 \title{Create a series of (x, y) points for a graph}
 \usage{
-create_xy_pts(series_label, x, y, shape = "circle", line_width = 2.5,
-  fill_color = "white", line_color = "black", width = 0.15,
-  height = 0.15)
+create_xy_pts(series_label, x, y, size = NULL, shape = "circle",
+  line_width = 2.5, fill_color = "none", line_color = "black",
+  width = 0.15, height = 0.15)
 }
 \arguments{
 \item{series_label}{a name for the series of (x, y)
@@ -22,7 +22,8 @@ points.}
 data point.}
 
 \item{fill_color}{the fill color for the shape representing the
-data point.}
+data point. If \code{none} or \code{transparent} provided,
+then the shape will not be filled with a color.}
 
 \item{line_color}{the color of the shape line representing the
 data point.}
