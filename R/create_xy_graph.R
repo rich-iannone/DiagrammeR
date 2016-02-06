@@ -250,17 +250,51 @@ create_xy_graph <- function(...,
 
   # Define the graph heading
   if (!is.null(heading)){
+
+    heading_levels <- nchar(gsub("^(#*).*", "\\1", heading))
+
+    if (any(heading_levels > 0)){
+      heading_fontsize <- vector(mode = "numeric")
+      for (i in 1:length(heading_levels)){
+        if (heading_levels[i] == 0) heading_fontsize[i] <- 24
+        if (heading_levels[i] == 1) heading_fontsize[i] <- 32
+        if (heading_levels[i] == 2) heading_fontsize[i] <- 24
+        if (heading_levels[i] == 3) heading_fontsize[i] <- 19
+        if (heading_levels[i] == 4) heading_fontsize[i] <- 16
+        if (heading_levels[i] == 5) heading_fontsize[i] <- 13
+        if (heading_levels[i] == 6) heading_fontsize[i] <- 11
+      }
+
+      heading <- gsub("^(#| )*(.*)", "\\2", heading)
+    }
+
     heading_node <-
       create_nodes(
         nodes = "heading",
-        label = paste0(heading, "\\l"),
+        label = paste0(heading[1], "\\l"),
+        labelloc = "b",
         x = x_span/2,
         y = 10.4,
-        fontsize = 24,
+        fontsize = heading_fontsize[1],
         fontcolor = "gray15",
         width = x_span,
         height = 0.5,
         shape = "plaintext")
+
+    if (length(heading) > 1){
+      heading_right_node <-
+        create_nodes(
+          nodes = "heading_right",
+          label = paste0(heading[2], "\\r"),
+          labelloc = "b",
+          x = x_span/2,
+          y = 10.4,
+          fontsize = heading_fontsize[2],
+          fontcolor = "gray15",
+          width = x_span,
+          height = 0.5,
+          shape = "plaintext")
+    }
   }
 
   # Define the graph's right-aligned heading
@@ -592,7 +626,7 @@ create_xy_graph <- function(...,
                     heading_node)
   }
 
-  if (!is.null(right_heading)){
+  if (!is.null(heading) & length(heading) > 1){
     chart_component_nodes <-
       combine_nodes(chart_component_nodes,
                     heading_right_node)
