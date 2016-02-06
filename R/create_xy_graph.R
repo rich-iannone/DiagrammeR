@@ -275,10 +275,10 @@ create_xy_graph <- function(...,
         label = paste0(heading[1], "\\l"),
         labelloc = "b",
         x = x_span/2,
-        y = 10.4,
+        y = 10.5,
         fontsize = heading_fontsize[1],
         fontcolor = "gray15",
-        width = x_span,
+        width = x_span * 1.15,
         height = 0.5,
         shape = "plaintext")
 
@@ -289,7 +289,7 @@ create_xy_graph <- function(...,
           label = paste0(heading[2], "\\r"),
           labelloc = "b",
           x = x_span/2,
-          y = 10.4,
+          y = 10.5,
           fontsize = heading_fontsize[2],
           fontcolor = "gray15",
           width = x_span,
@@ -298,24 +298,57 @@ create_xy_graph <- function(...,
     }
   }
 
-  # Define the graph's right-aligned heading
-  if (!is.null(right_heading)){
-    heading_right_node <-
+  # Define the graph footer
+  if (!is.null(footer)){
+
+    heading_levels <- nchar(gsub("^(#*).*", "\\1", footer))
+
+    if (any(heading_levels > 0)){
+      footer_fontsize <- vector(mode = "numeric")
+      for (i in 1:length(heading_levels)){
+        if (heading_levels[i] == 0) footer_fontsize[i] <- 16
+        if (heading_levels[i] == 1) footer_fontsize[i] <- 32
+        if (heading_levels[i] == 2) footer_fontsize[i] <- 24
+        if (heading_levels[i] == 3) footer_fontsize[i] <- 19
+        if (heading_levels[i] == 4) footer_fontsize[i] <- 16
+        if (heading_levels[i] == 5) footer_fontsize[i] <- 13
+        if (heading_levels[i] == 6) footer_fontsize[i] <- 11
+      }
+
+      footer <- gsub("^(#| )*(.*)", "\\2", footer)
+    }
+
+    footer_node <-
       create_nodes(
-        nodes = "heading_right",
-        label = paste0(right_heading, "\\r"),
+        nodes = "footer",
+        label = paste0(footer[1], "\\l"),
+        labelloc = "b",
         x = x_span/2,
-        y = 10.4,
-        fontsize = 24,
+        y = -0.7,
+        fontsize = footer_fontsize[1],
         fontcolor = "gray15",
-        width = x_span,
+        width = x_span * 1.15,
         height = 0.5,
         shape = "plaintext")
+
+    if (length(footer) > 1){
+      footer_right_node <-
+        create_nodes(
+          nodes = "footer_right",
+          label = paste0(footer[2], "\\r"),
+          labelloc = "b",
+          x = x_span/2,
+          y = -0.7,
+          fontsize = footer_fontsize[2],
+          fontcolor = "gray15",
+          width = x_span,
+          height = 0.5,
+          shape = "plaintext")
+    }
   }
 
-
+  # Define the graph legend
   if (include_legend == TRUE){
-    # Define the graph legend
     if (!is.null(series_pts)){
       graph_legend_nodes <-
         create_nodes(
@@ -325,8 +358,6 @@ create_xy_graph <- function(...,
           y = y_span -
             seq(0, (length(unique(series_pts$type)) - 1) * 5/x_span, 5/x_span) -
             legend_offset[2],
-          style = "filled",
-          fillcolor = unique(series_pts$fillcolor),
           color = unique(series_pts$color),
           shape = unique(series_pts$shape),
           penwidth = 2.5,
@@ -631,6 +662,18 @@ create_xy_graph <- function(...,
     chart_component_nodes <-
       combine_nodes(chart_component_nodes,
                     heading_right_node)
+  }
+
+  if (!is.null(footer)){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    footer_node)
+  }
+
+  if (!is.null(footer) & length(footer) > 1){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    footer_right_node)
   }
 
   if (include_legend == TRUE){
