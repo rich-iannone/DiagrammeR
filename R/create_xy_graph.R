@@ -9,11 +9,16 @@
 #' @param aspect_ratio the aspect ratio of the plot
 #' area.
 #' @param x_scale the minimum and maximum x value to
-#' display on the x-axis.
+#' display on the x-axis. Not providing values will
+#' result in autoscaling in the x direction based on
+#' provided x values.
 #' @param y_scale the minimum and maximum y value to
-#' display on the y-axis.
+#' display on the y-axis. Not providing values will
+#' result in autoscaling in the y direction based on
+#' provided y values.
 #' @param xy_major_steps the number of major steps
-#' across the x and y directions.
+#' across the x and y directions. Not providing values
+#' will result in automatically provided major steps.
 #' @param x_name the x-axis name.
 #' @param y_name the y-axis name.
 #' @param heading text to display as a heading above
@@ -22,7 +27,7 @@
 #' plot area.
 #' @param x_name_location the location of the x-axis
 #' name, either \code{inside} (default) or \code{outside}.
-#' @param include_legend an option on whether to
+#' @param include_legend an option for whether to
 #' include a legend.
 #' @param legend_offset the x and y offset (from
 #' top-right) of the legend.
