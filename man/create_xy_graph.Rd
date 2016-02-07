@@ -21,13 +21,18 @@ the \code{create_xy_lines()} function).}
 area.}
 
 \item{x_scale}{the minimum and maximum x value to
-display on the x-axis.}
+display on the x-axis. Not providing values will
+result in autoscaling in the x direction based on
+provided x values.}
 
 \item{y_scale}{the minimum and maximum y value to
-display on the y-axis.}
+display on the y-axis. Not providing values will
+result in autoscaling in the y direction based on
+provided y values.}
 
 \item{xy_major_steps}{the number of major steps
-across the x and y directions.}
+across the x and y directions. Not providing values
+will result in automatically provided major steps.}
 
 \item{x_name}{the x-axis name.}
 
@@ -42,7 +47,7 @@ plot area.}
 \item{x_name_location}{the location of the x-axis
 name, either \code{inside} (default) or \code{outside}.}
 
-\item{include_legend}{an option on whether to
+\item{include_legend}{an option for whether to
 include a legend.}
 
 \item{legend_offset}{the x and y offset (from
