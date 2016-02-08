@@ -49,8 +49,9 @@ create_xy_pts <- function(series_label,
     chart_nodes <-
       create_nodes(
         nodes = paste0(series_label, "_", 1:point_count),
-        label = " ",
         type = series_label,
+        label = " ",
+        graph_component = "xy_pts",
         x = x,
         y = y,
         shape = shape,
@@ -67,8 +68,9 @@ create_xy_pts <- function(series_label,
     chart_nodes <-
       create_nodes(
         nodes = paste0(series_label, "_", 1:point_count),
-        label = " ",
         type = series_label,
+        label = " ",
+        graph_component = "xy_pts",
         x = x,
         y = y,
         shape = shape,
