@@ -6,9 +6,11 @@
 \usage{
 create_xy_graph(..., aspect_ratio = c(1, 1), x_scale = NULL,
   y_scale = NULL, xy_major_steps = NULL, x_name = NULL, y_name = NULL,
-  heading = NULL, footer = NULL, x_name_location = "inside",
+  heading = NULL, footer = NULL, xy_value_labels = NULL,
+  xy_value_decimals = NULL, x_name_location = "inside",
   x_tick_marks = "centered", y_tick_marks = "centered",
-  include_legend = TRUE, legend_offset = c(0, 0),
+  include_legend = TRUE, legend_offset = c(0, 0), x_value_prefix = NULL,
+  y_value_prefix = NULL, x_value_suffix = NULL, y_value_suffix = NULL,
   bg_color = "transparent")
 }
 \arguments{
@@ -43,6 +45,21 @@ the plot area.}
 
 \item{footer}{text to display as a footer below the
 plot area.}
+
+\item{xy_value_labels}{the format for displaying
+values of the x and y axes. Options are
+\code{numeric} (the default) and \code{percentage}.
+If a single-length value is provided, then that
+format type will be applied to both the x and y
+axes. Providing a vector of length 2 will apply the
+formats to the x and y axes, respectively.}
+
+\item{xy_value_decimals}{the number of decimal
+places to show for numeric values labeling the x and
+y axes. If a single-length value is provided, then
+that value will be applied to both the x and y
+axes. Providing a vector of length 2 will apply
+formatting to the x and y axes, respectively.}
 
 \item{x_name_location}{the location of the x-axis
 name, either \code{inside} (default) or \code{outside}.}
