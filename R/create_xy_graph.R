@@ -191,6 +191,27 @@ create_xy_graph <- function(...,
       }
     }
 
+    if (length(error_list) == 1){
+
+      pts_lines_df[[error_list]][[1]]$x <-
+        as.numeric(pts_lines_df[[error_list]][[1]]$x)
+
+      pts_lines_df[[error_list]][[1]]$y <-
+        as.numeric(pts_lines_df[[error_list]][[1]]$y)
+
+      series_pts <-
+        combine_nodes(
+          series_pts,
+          pts_lines_df[[error_list]][[1]]
+        )
+
+      series_lines <-
+        combine_edges(
+          series_lines,
+          pts_lines_df[[error_list]][[2]]
+        )
+    }
+
     # If `x_scale`, `y_scale`, and `xy_major_steps` not
     # provided, devise bounds and breaks
     if (is.null(x_scale) &
@@ -199,27 +220,27 @@ create_xy_graph <- function(...,
         !is.null(series_pts)){
 
       x_scale <-
-        c(cbreaks(c(min(series_pts$x),
-                    max(series_pts$x)),
+        c(cbreaks(c(min(as.numeric(series_pts$x)),
+                    max(as.numeric(series_pts$x))),
                   pretty_breaks(10))[[1]][1],
-          tail(cbreaks(c(min(series_pts$x),
-                         max(series_pts$x)),
+          tail(cbreaks(c(min(as.numeric(series_pts$x)),
+                         max(as.numeric(series_pts$x))),
                        pretty_breaks(10))[[1]], 1))
 
       y_scale <-
-        c(cbreaks(c(min(series_pts$y),
-                    max(series_pts$y)),
+        c(cbreaks(c(min(as.numeric(series_pts$y)),
+                    max(as.numeric(series_pts$y))),
                   pretty_breaks(10))[[1]][1],
-          tail(cbreaks(c(min(series_pts$y),
-                         max(series_pts$y)),
+          tail(cbreaks(c(min(as.numeric(series_pts$y)),
+                         max(as.numeric(series_pts$y))),
                        pretty_breaks(10))[[1]], 1))
 
       xy_major_steps <-
-        c(length(cbreaks(c(min(series_pts$x),
-                           max(series_pts$x)),
+        c(length(cbreaks(c(min(as.numeric(series_pts$x)),
+                           max(as.numeric(series_pts$x))),
                          pretty_breaks(10))[[1]]) - 1,
-          length(cbreaks(c(min(series_pts$y),
-                           max(series_pts$y)),
+          length(cbreaks(c(min(as.numeric(series_pts$y)),
+                           max(as.numeric(series_pts$y))),
                          pretty_breaks(10))[[1]]) - 1)
     }
   }
