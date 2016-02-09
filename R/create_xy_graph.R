@@ -104,13 +104,15 @@ create_xy_graph <- function(...,
                             heading = NULL,
                             footer = NULL,
                             x_name_location = "inside",
+                            x_tick_marks = "centered",
+                            y_tick_marks = "centered",
                             include_legend = TRUE,
                             legend_offset = c(0, 0),
-                            xy_axis_lab_dist = c(0.0, 0.0),
-                            xy_axis_tick_width = c(0.1, 0.1),
-                            color_axis_ticks = "gray",
-                            color_axis_labels = "gray",
                             bg_color = "transparent"){
+
+  # Define basic graph layout properties
+  xy_axis_lab_dist <- c(0.0, 0.0)
+  xy_axis_tick_width <- c(0.1, 0.1)
 
   # Take multiple series of points and lines
   pts_lines_df <- list(...)
@@ -121,6 +123,7 @@ create_xy_graph <- function(...,
       if (i == 1){
         pts_df <- vector(mode = "numeric")
         lines_df <- vector(mode = "numeric")
+        error_list <- vector(mode = "numeric")
       }
 
       if ("nodes" %in% colnames(pts_lines_df[[i]])){
@@ -130,6 +133,10 @@ create_xy_graph <- function(...,
       if ("from" %in% colnames(pts_lines_df[[i]]) &
           "to" %in% colnames(pts_lines_df[[i]])){
         lines_df <- c(lines_df, i)
+      }
+
+      if (inherits(pts_lines_df[[i]], "dgr_graph_xy_err")){
+        error_list <- c(error_list, i)
       }
     }
 
