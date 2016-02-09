@@ -27,18 +27,14 @@
 #' plot area.
 #' @param x_name_location the location of the x-axis
 #' name, either \code{inside} (default) or \code{outside}.
+#' @param x_tick_marks choose whether to show tick
+#' marks along the x axis, and where to show them.
+#' @param y_tick_marks choose whether to show tick
+#' marks along the y axis, and where to show them.
 #' @param include_legend an option for whether to
 #' include a legend.
 #' @param legend_offset the x and y offset (from
 #' top-right) of the legend.
-#' @param xy_axis_lab_dist the distances between the x
-#' and y axes and their labels.
-#' @param xy_axis_tick_width the widths of the x- and
-#' y-axis tick mark
-#' @param color_axis_ticks the color of the axis tick
-#' marks.
-#' @param color_axis_labels the color of the axis
-#' labels.
 #' @param bg_color the color for the background of the
 #' entire viewable area
 #' @examples
