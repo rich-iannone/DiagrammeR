@@ -308,10 +308,13 @@ create_xy_graph <- function(...,
     heading_node <-
       create_nodes(
         nodes = "heading",
+        type = "graph_component",
         label = paste0(heading[1], "\\l"),
+        graph_component = "heading_left",
         labelloc = "b",
         x = x_span/2,
         y = 10.5,
+        fontname = "Helvetica",
         fontsize = heading_fontsize[1],
         fontcolor = "gray15",
         width = x_span * 1.15,
@@ -322,10 +325,13 @@ create_xy_graph <- function(...,
       heading_right_node <-
         create_nodes(
           nodes = "heading_right",
+          type = "graph_component",
           label = paste0(heading[2], "\\r"),
+          graph_component = "heading_right",
           labelloc = "b",
           x = x_span/2,
           y = 10.5,
+          fontname = "Helvetica",
           fontsize = heading_fontsize[2],
           fontcolor = "gray15",
           width = x_span,
@@ -357,10 +363,13 @@ create_xy_graph <- function(...,
     footer_node <-
       create_nodes(
         nodes = "footer",
+        type = "graph_component",
         label = paste0(footer[1], "\\l"),
+        graph_component = "footer_left",
         labelloc = "b",
         x = x_span/2,
         y = -0.7,
+        fontname = "Helvetica",
         fontsize = footer_fontsize[1],
         fontcolor = "gray15",
         width = x_span * 1.15,
@@ -371,10 +380,13 @@ create_xy_graph <- function(...,
       footer_right_node <-
         create_nodes(
           nodes = "footer_right",
+          type = "graph_component",
           label = paste0(footer[2], "\\r"),
+          graph_component = "footer_right",
           labelloc = "b",
           x = x_span/2,
           y = -0.7,
+          fontname = "Helvetica",
           fontsize = footer_fontsize[2],
           fontcolor = "gray15",
           width = x_span,
@@ -389,7 +401,9 @@ create_xy_graph <- function(...,
       graph_legend_nodes <-
         create_nodes(
           nodes = paste0(unique(series_pts$type), "_node_legend"),
+          type = "graph_component",
           label = " ",
+          graph_component = "legend_markers",
           x = x_span - legend_offset[1],
           y = y_span -
             seq(0, (length(unique(series_pts$type)) - 1) * 5/x_span, 5/x_span) -
@@ -403,11 +417,14 @@ create_xy_graph <- function(...,
       graph_legend_node_labels <-
         create_nodes(
           nodes = paste0(unique(series_pts$type), "_node_label_legend"),
+          type = "graph_component",
           label = paste0(unique(series_pts$type), "\\r"),
+          graph_component = "legend_labels",
           x = x_span/2 - 0.25,
           y = y_span -
             seq(0, (length(unique(series_pts$type)) - 1) * 5/x_span, 5/x_span) -
             legend_offset[2],
+          fontname = "Helvetica",
           fontsize = 18,
           fontcolor = "gray15",
           width = x_span,
@@ -420,7 +437,9 @@ create_xy_graph <- function(...,
   x_axis_nodes <-
     create_nodes(
       nodes = c("x0", "xn"),
+      type = "graph_component",
       label = " ",
+      graph_component = "x_axis_span",
       x = c(0, x_span),
       y = 0,
       width = 0.01,
@@ -431,7 +450,9 @@ create_xy_graph <- function(...,
   y_axis_nodes <-
     create_nodes(
       nodes = c("y0", "yn"),
+      type = "graph_component",
       label = " ",
+      graph_component = "y_axis_span",
       x = 0,
       y = c(0, y_span),
       width = 0.01,
@@ -443,7 +464,9 @@ create_xy_graph <- function(...,
     create_edges(
       from = "x0",
       to = "xn",
-      color = color_axis_ticks,
+      graph_component = "x_axis_line",
+      penwidth = 1.0,
+      color = "gray",
       arrowhead = "none")
 
   # Define the y-axis line
@@ -451,7 +474,9 @@ create_xy_graph <- function(...,
     create_edges(
       from = "y0",
       to = "yn",
-      color = color_axis_ticks,
+      graph_component = "y_axis_line",
+      penwidth = 1.0,
+      color = "gray",
       arrowhead = "none")
 
   # Define the x-axis name
@@ -460,7 +485,10 @@ create_xy_graph <- function(...,
       x_axis_name <-
         create_nodes(
           nodes = "x_axis_name",
+          type = "graph_component",
           label = paste0(x_name, "\\r"),
+          graph_component = "x_axis_name_inside",
+          fontname = "Helvetica",
           fontsize = 14,
           fontcolor = "gray",
           x = x_span/2,
@@ -472,7 +500,10 @@ create_xy_graph <- function(...,
       x_axis_name <-
         create_nodes(
           nodes = "x_axis_name",
+          type = "graph_component",
           label = x_name,
+          graph_component = "x_axis_name_outside",
+          fontname = "Helvetica",
           fontsize = 14,
           fontcolor = "gray",
           x = x_span/2,
@@ -488,13 +519,18 @@ create_xy_graph <- function(...,
     y_axis_name <-
       create_nodes(
         nodes = "y_axis_name",
+        type = "graph_component",
         label = paste0(y_name, "\\l"),
-        fontcolor = "gray",
+        graph_component = "y_axis_name",
+        fontname = "Helvetica",
         fontsize = 14,
+        fontcolor = "gray",
         x = 0.6,
         y = y_span,
         shape = "plaintext")
   }
+
+
 
   # Define an NDF that contains
   # the x-axis tick marks
@@ -502,10 +538,14 @@ create_xy_graph <- function(...,
     create_nodes(
       nodes = c(paste0("x_tick_l-", 0:xy_major_steps[1]),
                 paste0("x_tick_u-", 0:xy_major_steps[1])),
+      type = "graph_component",
       label = " ",
+      graph_component = "x_axis_major_ticks",
       x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1])), 2),
-      y = c(rep(0 - xy_axis_tick_width[1], xy_major_steps[1] + 1),
-            rep(0 + xy_axis_tick_width[1], xy_major_steps[1] + 1)),
+      y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[1], 0),
+                xy_major_steps[1] + 1),
+            rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[1], 0),
+                xy_major_steps[1] + 1)),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -516,7 +556,9 @@ create_xy_graph <- function(...,
     create_edges(
       from = paste0("x_tick_l-", 0:xy_major_steps[1]),
       to =   paste0("x_tick_u-", 0:xy_major_steps[1]),
-      color = color_axis_ticks,
+      graph_component = "x_axis_major_tick_lines",
+      color = "gray",
+      penwidth = 1.0,
       arrowhead = "none")
 
   # Define an NDF that contains
@@ -525,7 +567,9 @@ create_xy_graph <- function(...,
     create_nodes(
       nodes = c(paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
                 paste0("x_maj_grid_u-", 1:xy_major_steps[1])),
+      type = "graph_component",
       label = " ",
+      graph_component = "x_axis_major_grid",
       x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1]))[-1], 2),
       y = c(rep(0, xy_major_steps[1] + 1)[-1],
             rep(y_span, xy_major_steps[1] + 1)[-1]),
@@ -539,6 +583,8 @@ create_xy_graph <- function(...,
     create_edges(
       from = paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
       to =   paste0("x_maj_grid_u-", 1:xy_major_steps[1]),
+      graph_component = "x_axis_major_grid_lines",
+      penwidth = 1.0,
       color = "gray95",
       arrowhead = "none")
 
@@ -548,7 +594,9 @@ create_xy_graph <- function(...,
     create_nodes(
       nodes = c(paste0("y_maj_grid_l-", 1:xy_major_steps[2]),
                 paste0("y_maj_grid_u-", 1:xy_major_steps[2])),
+      type = "graph_component",
       label = " ",
+      graph_component = "y_axis_major_grid",
       y = rep(seq(0, y_span, ((y_span - 0) / xy_major_steps[2]))[-1], 2),
       x = c(rep(0, xy_major_steps[2] + 1)[-1],
             rep(y_span, xy_major_steps[2] + 1)[-1]),
@@ -557,11 +605,13 @@ create_xy_graph <- function(...,
       shape = "plaintext")
 
   # Define an EDF that draws the
-  # x-axis major grid lines
+  # y-axis major grid lines
   y_axis_major_grid_edges <-
     create_edges(
       from = paste0("y_maj_grid_l-", 1:xy_major_steps[2]),
       to =   paste0("y_maj_grid_u-", 1:xy_major_steps[2]),
+      graph_component = "y_axis_major_grid_lines",
+      penwidth = 1.0,
       color = "gray95",
       arrowhead = "none")
 
@@ -571,10 +621,14 @@ create_xy_graph <- function(...,
     create_nodes(
       nodes = c(paste0("y_tick_l-", 0:xy_major_steps[2]),
                 paste0("y_tick_u-", 0:xy_major_steps[2])),
+      type = "graph_component",
       label = " ",
+      graph_component = "y_axis_major_ticks",
       y = rep(seq(0, y_span, ((y_span - 0) / xy_major_steps[2])), 2),
-      x = c(rep(0 - xy_axis_tick_width[2], xy_major_steps[2] + 1),
-            rep(0 + xy_axis_tick_width[2], xy_major_steps[2] + 1)),
+      x = c(rep(0 - ifelse(y_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[2], 0),
+                xy_major_steps[2] + 1),
+            rep(0 + ifelse(y_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[2], 0),
+                xy_major_steps[2] + 1)),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -585,7 +639,9 @@ create_xy_graph <- function(...,
     create_edges(
       from = paste0("y_tick_l-", 0:xy_major_steps[2]),
       to =   paste0("y_tick_u-", 0:xy_major_steps[2]),
-      color = color_axis_ticks,
+      graph_component = "y_axis_major_tick_lines",
+      penwidth = 1.0,
+      color = "gray",
       arrowhead = "none")
 
   # Define an NDF that contains
@@ -594,10 +650,14 @@ create_xy_graph <- function(...,
     create_nodes(
       nodes = c(paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
                 paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2))),
+      type = "graph_component",
       label = " ",
+      graph_component = "x_axis_minor_ticks",
       x = rep(seq(0, x_span, ((x_span - 0) / (xy_major_steps[1] * 2))), 2),
-      y = c(rep(0 - xy_axis_tick_width[1]/2, ((xy_major_steps[1] + 1) * 2)),
-            rep(0 + xy_axis_tick_width[1]/2, ((xy_major_steps[1] + 1) * 2))),
+      y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[1]/2, 0),
+                ((xy_major_steps[1] + 1) * 2)),
+            rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[1]/2, 0),
+                ((xy_major_steps[1] + 1) * 2))),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -608,7 +668,9 @@ create_xy_graph <- function(...,
     create_edges(
       from = paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
       to =   paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2)),
-      color = color_axis_ticks,
+      graph_component = "x_axis_minor_tick_lines",
+      penwidth = 1.0,
+      color = "gray",
       arrowhead = "none")
 
   # Define an NDF that contains
@@ -617,10 +679,14 @@ create_xy_graph <- function(...,
     create_nodes(
       nodes = c(paste0("y_minor_tick_l-", 0:(xy_major_steps[2] * 2)),
                 paste0("y_minor_tick_u-", 0:(xy_major_steps[2] * 2))),
+      type = "graph_component",
       label = " ",
+      graph_component = "y_axis_minor_ticks",
       y = rep(seq(0, y_span, ((y_span - 0) / (xy_major_steps[2] * 2))), 2),
-      x = c(rep(0 - xy_axis_tick_width[2]/2, ((xy_major_steps[2] + 1) * 2)),
-            rep(0 + xy_axis_tick_width[2]/2, ((xy_major_steps[2] + 1) * 2))),
+      x = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[2]/2, 0),
+                ((xy_major_steps[2] + 1) * 2)),
+            rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[2]/2, 0),
+                ((xy_major_steps[2] + 1) * 2))),
       width = 0.01,
       height = 0.01,
       shape = "plaintext")
@@ -631,7 +697,9 @@ create_xy_graph <- function(...,
     create_edges(
       from = paste0("y_minor_tick_l-", 0:(xy_major_steps[2] * 2)),
       to =   paste0("y_minor_tick_u-", 0:(xy_major_steps[2] * 2)),
-      color = color_axis_ticks,
+      graph_component = "y_axis_minor_tick_lines",
+      penwidth = 1.0,
+      color = "gray",
       arrowhead = "none")
 
   # Define an NDF that contains
@@ -639,40 +707,42 @@ create_xy_graph <- function(...,
   x_axis_labels <-
     create_nodes(
       nodes = paste0("xlab-", 0:xy_major_steps[1]),
+      type = "graph_component",
       label = seq(x_scale[1],
                   x_scale[2],
                   ((x_scale[2] - x_scale[1]) / xy_major_steps[1])),
+      graph_component = "x_axis_labels",
       x = seq(0, x_span, ((x_span - 0) / xy_major_steps[1])),
       y = -0.3 - xy_axis_lab_dist[1],
-      type = "x_axis_labels",
       shape = "plaintext",
-      fontcolor = color_axis_labels)
+      fontcolor = "gray")
 
   # Define an NDF that contains
   # the y-axis labels
   y_axis_labels <-
     create_nodes(
       nodes = paste0("ylab-", 0:xy_major_steps[2]),
+      type = "graph_component",
       label = paste0(seq(y_scale[1],
                          y_scale[2],
                          ((y_scale[2] - y_scale[1]) / xy_major_steps[2])),
                      "\\r"),
+      graph_component = "y_axis_labels",
       x = -0.6 - xy_axis_lab_dist[2],
       y = seq(0, y_span, ((y_span - 0) / xy_major_steps[2])),
-      type = "y_axis_labels",
       shape = "plaintext",
-      fontcolor = color_axis_labels)
+      fontcolor = "gray")
 
   # Combine all NDFs for the chart components
   chart_component_nodes <-
     combine_nodes(
       x_axis_nodes, y_axis_nodes,
       x_axis_labels, y_axis_labels,
+      x_axis_major_grid_nodes,
+      y_axis_major_grid_nodes,
       x_axis_tick_nodes, y_axis_tick_nodes,
       x_axis_minor_tick_nodes,
       y_axis_minor_tick_nodes,
-      x_axis_major_grid_nodes,
-      y_axis_major_grid_nodes,
       graph_legend_nodes,
       graph_legend_node_labels)
 
