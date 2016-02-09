@@ -354,6 +354,24 @@ create_xy_graph <- function(...,
         format = "f"), "%")
   }
 
+  # Add prefixes if supplied
+  if (!is.null(x_value_prefix)){
+    x_labels <- paste0(x_value_prefix, x_labels)
+  }
+
+  if (!is.null(y_value_prefix)){
+    y_labels <- paste0(y_value_prefix, y_labels)
+  }
+
+  # Add suffixes if supplied
+  if (!is.null(x_value_suffix)){
+    x_labels <- paste0(x_labels, x_value_suffix)
+  }
+
+  if (!is.null(y_value_suffix)){
+    y_labels <- paste0(y_labels, y_value_suffix)
+  }
+
   # Remove extraneous series lines
   if (!is.null(series_lines)){
     series_lines <-
