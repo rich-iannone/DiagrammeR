@@ -76,6 +76,18 @@ include a legend.}
 \item{legend_offset}{the x and y offset (from
 top-right) of the legend.}
 
+\item{x_value_prefix}{a fixed prefix to apply to all
+labels of the x axis.}
+
+\item{y_value_prefix}{a fixed prefix to apply to all
+labels of the y axis.}
+
+\item{x_value_suffix}{a fixed suffix to apply to all
+labels of the x axis.}
+
+\item{y_value_suffix}{a fixed suffix to apply to all
+labels of the y axis.}
+
 \item{bg_color}{the color for the background of the
 entire viewable area}
 }
