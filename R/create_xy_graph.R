@@ -292,6 +292,68 @@ create_xy_graph <- function(...,
     series_pts <- subset(series_pts, y <= y_span)
   }
 
+  if (!is.null(xy_value_decimals)){
+    x_value_decimals <- xy_value_decimals[1]
+  } else {
+    x_value_decimals <- 1
+  }
+
+  if (!is.null(xy_value_decimals) & length(xy_value_decimals) == 2){
+    y_value_decimals <- xy_value_decimals[2]
+  } else if (!is.null(xy_value_decimals) & length(xy_value_decimals) == 1){
+    y_value_decimals <- xy_value_decimals[1]
+  } else {
+    y_value_decimals <- 1
+  }
+
+  if (!is.null(xy_value_labels)){
+    x_value_labels <- xy_value_labels[1]
+  } else {
+    x_value_labels <- "numeric"
+  }
+
+  if (!is.null(xy_value_labels) & length(xy_value_labels) == 2){
+    y_value_labels <- xy_value_labels[2]
+  } else if (!is.null(xy_value_labels) & length(xy_value_labels) == 1){
+    y_value_labels <- xy_value_labels[1]
+  } else {
+    y_value_labels <- "numeric"
+  }
+
+  # Format the `x_labels` object
+  if (x_value_labels == "numeric"){
+    x_labels <-
+      formatC(
+        seq(x_scale[1], x_scale[2],
+            ((x_scale[2] - x_scale[1]) / xy_major_steps[1])),
+        digits = x_value_decimals,
+        format = "f")
+  } else if (x_value_labels == "percentage"){
+    x_labels <-
+      paste0(formatC(
+        seq(x_scale[1], x_scale[2],
+            ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
+        digits = x_value_decimals,
+        format = "f"), "%")
+  }
+
+  # Format the `y_labels` object
+  if (y_value_labels == "numeric"){
+    y_labels <-
+      formatC(
+        seq(y_scale[1], y_scale[2],
+            ((y_scale[2] - y_scale[1]) / xy_major_steps[2])),
+        digits = y_value_decimals,
+        format = "f")
+  } else if (y_value_labels == "percentage"){
+    y_labels <-
+      paste0(formatC(
+        seq(y_scale[1], y_scale[2],
+            ((y_scale[2] - y_scale[1]) / xy_major_steps[2])) * 100,
+        digits = y_value_decimals,
+        format = "f"), "%")
+  }
+
   # Remove extraneous series lines
   if (!is.null(series_lines)){
     series_lines <-
@@ -544,8 +606,6 @@ create_xy_graph <- function(...,
         y = y_span,
         shape = "plaintext")
   }
-
-
 
   # Define an NDF that contains
   # the x-axis tick marks
