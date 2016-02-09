@@ -48,6 +48,14 @@
 #' include a legend.
 #' @param legend_offset the x and y offset (from
 #' top-right) of the legend.
+#' @param x_value_prefix a fixed prefix to apply to all
+#' labels of the x axis.
+#' @param y_value_prefix a fixed prefix to apply to all
+#' labels of the y axis.
+#' @param x_value_suffix a fixed suffix to apply to all
+#' labels of the x axis.
+#' @param y_value_suffix a fixed suffix to apply to all
+#' labels of the y axis.
 #' @param bg_color the color for the background of the
 #' entire viewable area
 #' @examples
