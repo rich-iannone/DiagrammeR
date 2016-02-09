@@ -25,6 +25,19 @@
 #' the plot area.
 #' @param footer text to display as a footer below the
 #' plot area.
+#' @param xy_value_labels the format for displaying
+#' values of the x and y axes. Options are
+#' \code{numeric} (the default) and \code{percentage}.
+#' If a single-length value is provided, then that
+#' format type will be applied to both the x and y
+#' axes. Providing a vector of length 2 will apply the
+#' formats to the x and y axes, respectively.
+#' @param xy_value_decimals the number of decimal
+#' places to show for numeric values labeling the x and
+#' y axes. If a single-length value is provided, then
+#' that value will be applied to both the x and y
+#' axes. Providing a vector of length 2 will apply
+#' formatting to the x and y axes, respectively.
 #' @param x_name_location the location of the x-axis
 #' name, either \code{inside} (default) or \code{outside}.
 #' @param x_tick_marks choose whether to show tick
