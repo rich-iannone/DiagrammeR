@@ -27,11 +27,13 @@
 #' plot area.
 #' @param xy_value_labels the format for displaying
 #' values of the x and y axes. Options are
-#' \code{numeric} (the default) and \code{percentage}.
-#' If a single-length value is provided, then that
-#' format type will be applied to both the x and y
-#' axes. Providing a vector of length 2 will apply the
-#' formats to the x and y axes, respectively.
+#' \code{numeric} (the default), \code{percentage}, or
+#' currency through the use of applying a 3-letter or
+#' 3-number ISO 4217 currency codes. If a single-length
+#' value is provided, then that format type will be
+#' applied to both the x and y axes. Providing a vector
+#' of length 2 will apply the formats to the x and y
+#' axes, respectively.
 #' @param xy_value_decimals the number of decimal
 #' places to show for numeric values labeling the x and
 #' y axes. If a single-length value is provided, then
