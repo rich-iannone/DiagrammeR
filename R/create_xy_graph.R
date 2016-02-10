@@ -338,11 +338,34 @@ create_xy_graph <- function(...,
         format = "f")
   } else if (x_value_labels == "percentage"){
     x_labels <-
-      paste0(formatC(
-        seq(x_scale[1], x_scale[2],
-            ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
-        digits = x_value_decimals,
-        format = "f"), "%")
+      paste0(
+        formatC(
+          seq(x_scale[1], x_scale[2],
+              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
+          digits = x_value_decimals,
+          format = "f"), "%")
+  } else if (x_value_labels %in% currency()$iso_4217_code){
+    x_labels <-
+      paste0(
+        currency()[which(currency()$iso_4217_code %in%
+                           x_value_labels),5],
+        formatC(
+          seq(x_scale[1], x_scale[2],
+              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
+          digits = currency()[which(currency()$iso_4217_code %in%
+                                      x_value_labels),3],
+          format = "f"))
+  } else if (x_value_labels %in% currency()$curr_number){
+    x_labels <-
+      paste0(
+        currency()[which(currency()$curr_number %in%
+                           x_value_labels),5],
+        formatC(
+          seq(x_scale[1], x_scale[2],
+              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
+          digits = currency()[which(currency()$curr_number %in%
+                                      x_value_labels),3],
+          format = "f"))
   }
 
   # Format the `y_labels` object
