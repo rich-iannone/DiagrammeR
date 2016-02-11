@@ -823,14 +823,17 @@ create_xy_graph <- function(...,
       create_nodes(
         nodes = "y_axis_name",
         type = "graph_component",
-        label = paste0(y_name, "\\l"),
+        label = paste0("    ", y_name, " \\l"),
         graph_component = "y_axis_name",
         fontname = "Helvetica",
         fontsize = 14,
         fontcolor = "gray",
-        x = 0.6,
+        x = x_span/2,
         y = y_span,
-        shape = "plaintext")
+        width = x_span,
+        height = 0.1,
+        color = "#FFFFFF00",
+        shape = "rectangle")
   }
 
   # Define an NDF that contains
