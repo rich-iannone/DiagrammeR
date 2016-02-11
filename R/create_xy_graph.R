@@ -1041,9 +1041,14 @@ create_xy_graph <- function(...,
       y_axis_major_grid_nodes,
       x_axis_tick_nodes, y_axis_tick_nodes,
       x_axis_minor_tick_nodes,
-      y_axis_minor_tick_nodes,
-      graph_legend_nodes,
-      graph_legend_node_labels)
+      y_axis_minor_tick_nodes)
+
+  if (exists("graph_legend_nodes") & exists("graph_legend_node_labels")){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    graph_legend_nodes,
+                    graph_legend_node_labels)
+  }
 
   if (!is.null(x_name)){
     chart_component_nodes <-
