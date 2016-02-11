@@ -48,13 +48,13 @@ plot area.}
 
 \item{xy_value_labels}{the format for displaying
 values of the x and y axes. Options are
-\code{numeric} (the default), \code{percentage}, or
-currency through the use of applying a 3-letter or
-3-number ISO 4217 currency codes. If a single-length
-value is provided, then that format type will be
-applied to both the x and y axes. Providing a vector
-of length 2 will apply the formats to the x and y
-axes, respectively.}
+\code{numeric} (the default), \code{percentage},
+\code{date_time} or currency (by use of a 3-letter
+or 3-number ISO 4217 currency code. If a
+single-length value is provided, then that format
+type will be applied to both the x and y axes.
+Providing a vector of length 2 will apply the
+formats to the x and y axes, respectively.}
 
 \item{xy_value_decimals}{the number of decimal
 places to show for numeric values labeling the x and
@@ -133,9 +133,9 @@ iris_length_width <-
     setosa,
     versicolor,
     virginica,
-    x_name = "Petal Length",
-    y_name = "Petal Width",
-    heading = "Iris Dataset",
+    x_name = "Petal Length (cm)",
+    y_name = "Petal Width (cm)",
+    heading = "#Iris Dataset",
     legend_offset = c(0, 6),
     bg_color = "white")
 
