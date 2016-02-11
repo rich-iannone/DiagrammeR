@@ -148,10 +148,15 @@ create_xy_graph <- function(...,
       if (i == 1){
         pts_df <- vector(mode = "numeric")
         lines_df <- vector(mode = "numeric")
+
         error_list <- vector(mode = "numeric")
+
+        x_date_pts <- vector(mode = "numeric")
+        y_date_pts <- vector(mode = "numeric")
       }
 
-      if ("nodes" %in% colnames(pts_lines_df[[i]])){
+      if (all("numeric" %in% pts_lines_df[[i]]$x_format) &
+          all("numeric" %in% pts_lines_df[[i]]$y_format)){
         pts_df <- c(pts_df, i)
       }
 
@@ -162,6 +167,14 @@ create_xy_graph <- function(...,
 
       if (inherits(pts_lines_df[[i]], "dgr_graph_xy_err")){
         error_list <- c(error_list, i)
+      }
+
+      if (all("date" %in% pts_lines_df[[i]]$x_format)){
+        x_date_pts <- c(x_date_pts, i)
+      }
+
+      if (all("date" %in% pts_lines_df[[i]]$y_format)){
+        y_date_pts <- c(y_date_pts, i)
       }
     }
 
@@ -235,6 +248,52 @@ create_xy_graph <- function(...,
           series_lines,
           pts_lines_df[[error_list]][[2]]
         )
+    }
+
+    if (length(x_date_pts) == 0){
+      series_x_date_pts <- NULL
+    } else if (length(x_date_pts) == 1){
+      series_x_date_pts <- pts_lines_df[[x_date_pts]]
+    } else if (length(x_date_pts) > 1){
+      for (i in 2:length(x_date_pts)){
+
+        if (i == 2){
+          series_x_date_pts <-
+            combine_edges(
+              pts_lines_df[[x_date_pts[1]]],
+              pts_lines_df[[x_date_pts[2]]])
+        }
+
+        if (i > 2){
+          series_x_date_pts <-
+            combine_edges(
+              series_x_date_pts,
+              pts_lines_df[[x_date_pts[i]]])
+        }
+      }
+    }
+
+    if (length(y_date_pts) == 0){
+      series_y_date_pts <- NULL
+    } else if (length(y_date_pts) == 1){
+      series_y_date_pts <- pts_lines_df[[y_date_pts]]
+    } else if (length(y_date_pts) > 1){
+      for (i in 2:length(y_date_pts)){
+
+        if (i == 2){
+          series_y_date_pts <-
+            combine_edges(
+              pts_lines_df[[y_date_pts[1]]],
+              pts_lines_df[[y_date_pts[2]]])
+        }
+
+        if (i > 2){
+          series_y_date_pts <-
+            combine_edges(
+              series_y_date_pts,
+              pts_lines_df[[y_date_pts[i]]])
+        }
+      }
     }
 
     # If `x_scale`, `y_scale`, and `xy_major_steps` not
