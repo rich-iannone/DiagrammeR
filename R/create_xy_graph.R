@@ -491,7 +491,6 @@ create_xy_graph <- function(...,
     x <- as.Date(as.POSIXct(x_scale, origin = "1970-01-01", tz = "GMT"))
     t <- date_trans()
     x_labels <- t$format(t$breaks(range(x)))
-
     xy_major_steps[1] <- length(t$format(t$breaks(range(x)))) - 1
   } else if (x_value_labels %in% currency()$iso_4217_code){
     x_labels <-
@@ -540,7 +539,6 @@ create_xy_graph <- function(...,
     y <- as.Date(as.POSIXct(y_scale, origin = "1970-01-01", tz = "GMT"))
     t <- date_trans()
     y_labels <- t$format(t$breaks(range(y)))
-
     xy_major_steps[2] <- length(t$format(t$breaks(range(y)))) - 1
   } else if (y_value_labels %in% currency()$iso_4217_code){
     y_labels <-
