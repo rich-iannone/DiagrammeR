@@ -301,31 +301,87 @@ create_xy_graph <- function(...,
     if (is.null(x_scale) &
         is.null(y_scale) &
         is.null(xy_major_steps) &
-        !is.null(series_pts)){
+        (!is.null(series_pts)) |
+        !is.null(series_x_date_pts) |
+        !is.null(series_y_date_pts)){
 
-      x_scale <-
-        c(cbreaks(c(min(as.numeric(series_pts$x)),
-                    max(as.numeric(series_pts$x))),
-                  pretty_breaks(10))[[1]][1],
-          tail(cbreaks(c(min(as.numeric(series_pts$x)),
-                         max(as.numeric(series_pts$x))),
-                       pretty_breaks(10))[[1]], 1))
-
-      y_scale <-
-        c(cbreaks(c(min(as.numeric(series_pts$y)),
-                    max(as.numeric(series_pts$y))),
-                  pretty_breaks(10))[[1]][1],
-          tail(cbreaks(c(min(as.numeric(series_pts$y)),
-                         max(as.numeric(series_pts$y))),
-                       pretty_breaks(10))[[1]], 1))
-
-      xy_major_steps <-
-        c(length(cbreaks(c(min(as.numeric(series_pts$x)),
+      if (!is.null(series_pts)){
+        x_scale <-
+          c(cbreaks(c(min(as.numeric(series_pts$x)),
+                      max(as.numeric(series_pts$x))),
+                    pretty_breaks(10))[[1]][1],
+            tail(cbreaks(c(min(as.numeric(series_pts$x)),
                            max(as.numeric(series_pts$x))),
-                         pretty_breaks(10))[[1]]) - 1,
-          length(cbreaks(c(min(as.numeric(series_pts$y)),
+                         pretty_breaks(10))[[1]], 1))
+
+        y_scale <-
+          c(cbreaks(c(min(as.numeric(series_pts$y)),
+                      max(as.numeric(series_pts$y))),
+                    pretty_breaks(10))[[1]][1],
+            tail(cbreaks(c(min(as.numeric(series_pts$y)),
                            max(as.numeric(series_pts$y))),
-                         pretty_breaks(10))[[1]]) - 1)
+                         pretty_breaks(10))[[1]], 1))
+
+        xy_major_steps <-
+          c(length(cbreaks(c(min(as.numeric(series_pts$x)),
+                             max(as.numeric(series_pts$x))),
+                           pretty_breaks(10))[[1]]) - 1,
+            length(cbreaks(c(min(as.numeric(series_pts$y)),
+                             max(as.numeric(series_pts$y))),
+                           pretty_breaks(10))[[1]]) - 1)
+      }
+
+      if (!is.null(series_x_date_pts)){
+        x_scale <-
+          c(cbreaks(c(min(as.numeric(series_x_date_pts$x)),
+                      max(as.numeric(series_x_date_pts$x))),
+                    pretty_breaks(10))[[1]][1],
+            tail(cbreaks(c(min(as.numeric(series_x_date_pts$x)),
+                           max(as.numeric(series_x_date_pts$x))),
+                         pretty_breaks(10))[[1]], 1))
+
+        y_scale <-
+          c(cbreaks(c(min(as.numeric(series_x_date_pts$y)),
+                      max(as.numeric(series_x_date_pts$y))),
+                    pretty_breaks(10))[[1]][1],
+            tail(cbreaks(c(min(as.numeric(series_x_date_pts$y)),
+                           max(as.numeric(series_x_date_pts$y))),
+                         pretty_breaks(10))[[1]], 1))
+
+        xy_major_steps <-
+          c(length(cbreaks(c(min(as.numeric(series_x_date_pts$x)),
+                             max(as.numeric(series_x_date_pts$x))),
+                           pretty_breaks(10))[[1]]) - 1,
+            length(cbreaks(c(min(as.numeric(series_x_date_pts$y)),
+                             max(as.numeric(series_x_date_pts$y))),
+                           pretty_breaks(10))[[1]]) - 1)
+      }
+
+      if (!is.null(series_y_date_pts)){
+        x_scale <-
+          c(cbreaks(c(min(as.numeric(series_y_date_pts$x)),
+                      max(as.numeric(series_y_date_pts$x))),
+                    pretty_breaks(10))[[1]][1],
+            tail(cbreaks(c(min(as.numeric(series_y_date_pts$x)),
+                           max(as.numeric(series_y_date_pts$x))),
+                         pretty_breaks(10))[[1]], 1))
+
+        y_scale <-
+          c(cbreaks(c(min(as.numeric(series_y_date_pts$y)),
+                      max(as.numeric(series_y_date_pts$y))),
+                    pretty_breaks(10))[[1]][1],
+            tail(cbreaks(c(min(as.numeric(series_y_date_pts$y)),
+                           max(as.numeric(series_y_date_pts$y))),
+                         pretty_breaks(10))[[1]], 1))
+
+        xy_major_steps <-
+          c(length(cbreaks(c(min(as.numeric(series_y_date_pts$x)),
+                             max(as.numeric(series_y_date_pts$x))),
+                           pretty_breaks(10))[[1]]) - 1,
+            length(cbreaks(c(min(as.numeric(series_y_date_pts$y)),
+                             max(as.numeric(series_y_date_pts$y))),
+                           pretty_breaks(10))[[1]]) - 1)
+      }
     }
   }
 
