@@ -33,12 +33,49 @@ create_xy_pts <- function(series_label,
   # Stop function if any of several
   # conditions not met
   stopifnot(length(x) == length(y))
+  stopifnot(length(x) > 0)
   if (!is.null(size)){
     stopifnot(length(size) == length(x))
   }
-  stopifnot(is.numeric(x))
-  stopifnot(is.numeric(y))
-  stopifnot(length(x) > 0)
+
+  # Determine the format of x
+  if (all(grepl("-", x)) & !all(grepl(":", x))){
+    x_date <- try(as.Date(x, format = "%Y-%m-%d"))
+    if (all(class(x_date) != "try-error") &
+        !any(is.na(x_date))) x_format <- "date"
+  }
+
+  if (all(grepl("-", x)) & all(grepl(":", x))){
+    x_datetime <- try(as.POSIXct(x, format = "%Y-%m-%d %H:%M", tz = "GMT"))
+    if (all(class(x_datetime) != "try-error") &
+        !any(is.na(x_datetime))) x_format <- "datetime"
+  }
+
+  if (inherits(x, "numeric")) x_format <- "numeric"
+
+  # Determine the format of y
+  if (all(grepl("-", y)) & !all(grepl(":", y))){
+    y_date <- try(as.Date(y, format = "%Y-%m-%d"))
+    if (all(class(y_date) != "try-error") &
+        !any(is.na(y_date))) y_format <- "date"
+  }
+
+  if (all(grepl("-", y)) & all(grepl(":", y))){
+    y_datetime <- try(as.POSIXct(y, format = "%Y-%m-%d %H:%M", tz = "GMT"))
+    if (all(class(y_datetime) != "try-error") &
+        !any(is.na(y_datetime))) y_format <- "datetime"
+  }
+
+  if (inherits(y, "numeric")) y_format <- "numeric"
+
+  # Perform conversions of date/date-time to numeric values
+  if (x_format %in% c("datetime", "date")){
+    x <- as.integer(as.POSIXct(x, tz = "GMT"))
+  }
+
+  if (y_format %in% c("datetime", "date")){
+    y <- as.integer(as.POSIXct(x, tz = "GMT"))
+  }
 
   # Count the number of points in the plot
   point_count <- length(x)
@@ -54,6 +91,8 @@ create_xy_pts <- function(series_label,
         graph_component = "xy_pts",
         x = x,
         y = y,
+        x_format = x_format,
+        y_format = y_format,
         shape = shape,
         penwidth = line_width,
         style = "filled",
@@ -73,6 +112,8 @@ create_xy_pts <- function(series_label,
         graph_component = "xy_pts",
         x = x,
         y = y,
+        x_format = x_format,
+        y_format = y_format,
         shape = shape,
         penwidth = line_width,
         color = line_color,
