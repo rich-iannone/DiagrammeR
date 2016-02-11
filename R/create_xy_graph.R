@@ -487,6 +487,12 @@ create_xy_graph <- function(...,
               ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
           digits = x_value_decimals,
           format = "f"), "%")
+  } else if (x_value_labels == "date"){
+    x <- as.Date(as.POSIXct(x_scale, origin = "1970-01-01", tz = "GMT"))
+    t <- date_trans()
+    x_labels <- t$format(t$breaks(range(x)))
+
+    xy_major_steps[1] <- length(t$format(t$breaks(range(x)))) - 1
   } else if (x_value_labels %in% currency()$iso_4217_code){
     x_labels <-
       paste0(
@@ -494,7 +500,7 @@ create_xy_graph <- function(...,
                            x_value_labels),5],
         formatC(
           seq(x_scale[1], x_scale[2],
-              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
+              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])),
           digits = currency()[which(currency()$iso_4217_code %in%
                                       x_value_labels), 3],
           format = "f"))
@@ -505,7 +511,7 @@ create_xy_graph <- function(...,
                            x_value_labels),5],
         formatC(
           seq(x_scale[1], x_scale[2],
-              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])) * 100,
+              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])),
           digits = currency()[which(currency()$curr_number %in%
                                       x_value_labels), 3],
           format = "f"))
@@ -526,6 +532,12 @@ create_xy_graph <- function(...,
             ((y_scale[2] - y_scale[1]) / xy_major_steps[2])) * 100,
         digits = y_value_decimals,
         format = "f"), "%")
+  } else if (y_value_labels == "date"){
+    y <- as.Date(as.POSIXct(y_scale, origin = "1970-01-01", tz = "GMT"))
+    t <- date_trans()
+    y_labels <- t$format(t$breaks(range(y)))
+
+    xy_major_steps[2] <- length(t$format(t$breaks(range(y)))) - 1
   } else if (y_value_labels %in% currency()$iso_4217_code){
     y_labels <-
       paste0(
@@ -533,7 +545,7 @@ create_xy_graph <- function(...,
                            y_value_labels),5],
         formatC(
           seq(y_scale[1], y_scale[2],
-              ((y_scale[2] - y_scale[1]) / xy_major_steps[2])) * 100,
+              ((y_scale[2] - y_scale[1]) / xy_major_steps[2])),
           digits = currency()[which(currency()$iso_4217_code %in%
                                       y_value_labels), 3],
           format = "f"))
@@ -544,7 +556,7 @@ create_xy_graph <- function(...,
                            y_value_labels),5],
         formatC(
           seq(y_scale[1], y_scale[2],
-              ((y_scale[2] - y_scale[1]) / xy_major_steps[2])) * 100,
+              ((y_scale[2] - y_scale[1]) / xy_major_steps[2])),
           digits = currency()[which(currency()$curr_number %in%
                                       y_value_labels), 3],
           format = "f"))
