@@ -95,9 +95,9 @@
 #'     setosa,
 #'     versicolor,
 #'     virginica,
-#'     x_name = "Petal Length",
-#'     y_name = "Petal Width",
-#'     heading = "Iris Dataset",
+#'     x_name = "Petal Length (cm)",
+#'     y_name = "Petal Width (cm)",
+#'     heading = "#Iris Dataset",
 #'     legend_offset = c(0, 6),
 #'     bg_color = "white")
 #'
