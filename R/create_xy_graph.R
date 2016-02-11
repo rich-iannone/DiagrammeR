@@ -1106,8 +1106,7 @@ create_xy_graph <- function(...,
       x_axis_tick_edges,
       y_axis_tick_edges,
       x_axis_minor_tick_edges,
-      y_axis_minor_tick_edges
-    )
+      y_axis_minor_tick_edges)
 
   # Combine the finalized NDFs and EDFs for the
   # graph components and create a graph object
@@ -1154,13 +1153,28 @@ create_xy_graph <- function(...,
       add_node_df(graph_components, series_pts)
   }
 
+  if (!is.null(series_pts)){
+    graph_with_data <-
+      add_node_df(graph_components, series_pts)
+  }
+
+  if (!is.null(series_x_date_pts)){
+    graph_with_data <-
+      add_node_df(graph_components, series_x_date_pts)
+  }
+
+  if (!is.null(series_y_date_pts)){
+    graph_with_data <-
+      add_node_df(graph_components, series_y_date_pts)
+  }
+
   # Add the lines between (x, y) points
   if (!is.null(series_lines)){
     graph_with_data <-
       add_edge_df(graph_with_data, series_lines)
   }
 
-  if (is.null(series_pts) & is.null(series_lines)){
+  if (!exists("graph_with_data")){
     return(graph_components)
   } else{
     return(graph_with_data)
