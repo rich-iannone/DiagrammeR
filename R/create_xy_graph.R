@@ -492,32 +492,86 @@ create_xy_graph <- function(...,
     t <- date_trans()
     x_labels <- t$format(t$breaks(range(x)))
     xy_major_steps[1] <- length(t$format(t$breaks(range(x)))) - 1
-  } else if (x_value_labels %in% currency()$iso_4217_code){
+  } else if (gsub("([A-Z][A-Z][A-Z]).*", "\\1", x_value_labels) %in%
+             currency()$iso_4217_code){
+
+    if (grepl("[A-Z][A-Z][A-Z]:(K|k)", x_value_labels)){
+      divisor <- 1000
+      suffix <- "K"
+    } else if (grepl("[A-Z][A-Z][A-Z]:(M|m)", x_value_labels)){
+      divisor <- 1000000
+      suffix <- "M"
+    } else if (grepl("[A-Z][A-Z][A-Z]:(B|b)", x_value_labels)){
+      divisor <- 1000000000
+      suffix <- "B"
+    } else if (grepl("[A-Z][A-Z][A-Z]:(T|t)", x_value_labels)){
+      divisor <- 1000000000000
+      suffix <- "T"
+    } else {
+      divisor <- 1
+      suffix <- ""
+    }
+
+    currency_code <- gsub("([A-Z][A-Z][A-Z]).*", "\\1", x_value_labels)
+
+    values <-
+      seq(x_scale[1], x_scale[2],
+          ((x_scale[2] - x_scale[1]) /
+             xy_major_steps[1])) / divisor
+
+    digits <-
+      ifelse(x_scale[2]/divisor <= 5,
+             currency()[which(currency()$iso_4217_code %in%
+                                currency_code), 3], 0)
+
     x_labels <-
       paste0(
         currency()[which(currency()$iso_4217_code %in%
-                           x_value_labels),5],
-        formatC(
-          seq(x_scale[1], x_scale[2],
-              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])),
-          digits = ifelse(x_scale[2] <= 5,
-            currency()[which(currency()$iso_4217_code %in%
-                                      x_value_labels), 3],
-            0),
-          format = "f"))
-  } else if (x_value_labels %in% currency()$curr_number){
+                           currency_code),5],
+        formatC(values,
+                digits = ifelse(x_scale[2]/divisor <= 5,
+                                digits, 0), format = "f"), suffix)
+
+
+  } else if (gsub("([0-9][0-9][0-9]).*", "\\1", x_value_labels) %in%
+             currency()$curr_number){
+
+    if (grepl("[0-9][0-9][0-9]:(K|k)", x_value_labels)){
+      divisor <- 1000
+      suffix <- "K"
+    } else if (grepl("[0-9][0-9][0-9]:(M|m)", x_value_labels)){
+      divisor <- 1000000
+      suffix <- "M"
+    } else if (grepl("[0-9][0-9][0-9]:(B|b)", x_value_labels)){
+      divisor <- 1000000000
+      suffix <- "B"
+    } else if (grepl("[0-9][0-9][0-9]:(T|t)", x_value_labels)){
+      divisor <- 1000000000000
+      suffix <- "T"
+    } else {
+      divisor <- 1
+      suffix <- ""
+    }
+
+    currency_code <- gsub("([0-9][0-9][0-9]).*", "\\1", x_value_labels)
+
+    values <-
+      seq(x_scale[1], x_scale[2],
+          ((x_scale[2] - x_scale[1]) /
+             xy_major_steps[1])) / divisor
+
+    digits <-
+      ifelse(x_scale[2]/divisor <= 5,
+             currency()[which(currency()$curr_number %in%
+                                currency_code), 3], 0)
+
     x_labels <-
       paste0(
         currency()[which(currency()$curr_number %in%
-                           x_value_labels),5],
-        formatC(
-          seq(x_scale[1], x_scale[2],
-              ((x_scale[2] - x_scale[1]) / xy_major_steps[1])),
-          digits = ifelse(x_scale[2] <= 5,
-            currency()[which(currency()$curr_number %in%
-                                      x_value_labels), 3],
-            0),
-          format = "f"))
+                           currency_code),5],
+        formatC(values,
+                digits = ifelse(x_scale[2]/divisor <= 5,
+                                digits, 0), format = "f"), suffix)
   }
 
   # Format the `y_labels` object
@@ -540,32 +594,85 @@ create_xy_graph <- function(...,
     t <- date_trans()
     y_labels <- t$format(t$breaks(range(y)))
     xy_major_steps[2] <- length(t$format(t$breaks(range(y)))) - 1
-  } else if (y_value_labels %in% currency()$iso_4217_code){
+  } else if (gsub("([A-Z][A-Z][A-Z]).*", "\\1", y_value_labels) %in%
+             currency()$iso_4217_code){
+
+    if (grepl("[A-Z][A-Z][A-Z]:(K|k)", y_value_labels)){
+      divisor <- 1000
+      suffix <- "K"
+    } else if (grepl("[A-Z][A-Z][A-Z]:(M|m)", y_value_labels)){
+      divisor <- 1000000
+      suffix <- "M"
+    } else if (grepl("[A-Z][A-Z][A-Z]:(B|b)", y_value_labels)){
+      divisor <- 1000000000
+      suffix <- "B"
+    } else if (grepl("[A-Z][A-Z][A-Z]:(T|t)", y_value_labels)){
+      divisor <- 1000000000000
+      suffix <- "T"
+    } else {
+      divisor <- 1
+      suffix <- ""
+    }
+
+    currency_code <- gsub("([A-Z][A-Z][A-Z]).*", "\\1", y_value_labels)
+
+    values <-
+      seq(y_scale[1], y_scale[2],
+                  ((y_scale[2] - y_scale[1]) /
+                     xy_major_steps[2])) / divisor
+
+    digits <-
+      ifelse(y_scale[2]/divisor <= 5,
+             currency()[which(currency()$iso_4217_code %in%
+                                currency_code), 3], 0)
+
     y_labels <-
       paste0(
         currency()[which(currency()$iso_4217_code %in%
-                           y_value_labels),5],
-        formatC(
-          seq(y_scale[1], y_scale[2],
-              ((y_scale[2] - y_scale[1]) / xy_major_steps[2])),
-          digits = ifelse(y_scale[2] <= 5,
-            currency()[which(currency()$iso_4217_code %in%
-                                      y_value_labels), 3],
-            0),
-          format = "f"))
-  } else if (y_value_labels %in% currency()$curr_number){
+                           currency_code),5],
+        formatC(values,
+          digits = ifelse(y_scale[2]/divisor <= 5,
+            digits, 0), format = "f"), suffix)
+
+  } else if (gsub("([0-9][0-9][0-9]).*", "\\1", y_value_labels) %in%
+             currency()$curr_number){
+
+    if (grepl("[0-9][0-9][0-9]:(K|k)", y_value_labels)){
+      divisor <- 1000
+      suffix <- "K"
+    } else if (grepl("[0-9][0-9][0-9]:(M|m)", y_value_labels)){
+      divisor <- 1000000
+      suffix <- "M"
+    } else if (grepl("[0-9][0-9][0-9]:(B|b)", y_value_labels)){
+      divisor <- 1000000000
+      suffix <- "B"
+    } else if (grepl("[0-9][0-9][0-9]:(T|t)", y_value_labels)){
+      divisor <- 1000000000000
+      suffix <- "T"
+    } else {
+      divisor <- 1
+      suffix <- ""
+    }
+
+    currency_code <- gsub("([0-9][0-9][0-9]).*", "\\1", y_value_labels)
+
+    values <-
+      seq(y_scale[1], y_scale[2],
+          ((y_scale[2] - y_scale[1]) /
+             xy_major_steps[2])) / divisor
+
+    digits <-
+      ifelse(y_scale[2]/divisor <= 5,
+             currency()[which(currency()$curr_number %in%
+                                currency_code), 3], 0)
+
     y_labels <-
       paste0(
         currency()[which(currency()$curr_number %in%
-                           y_value_labels),5],
-        formatC(
-          seq(y_scale[1], y_scale[2],
-              ((y_scale[2] - y_scale[1]) / xy_major_steps[2])),
-          digits = ifelse(y_scale[2] <= 5,
-            currency()[which(currency()$curr_number %in%
-                                      y_value_labels), 3],
-            0),
-          format = "f"))
+                           currency_code),5],
+        formatC(values,
+                digits = ifelse(y_scale[2]/divisor <= 5,
+                                digits, 0), format = "f"), suffix)
   }
 
   # Add prefixes if supplied
