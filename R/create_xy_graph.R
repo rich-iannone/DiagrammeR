@@ -44,8 +44,14 @@
 #' name, either \code{inside} (default) or \code{outside}.
 #' @param x_tick_marks choose whether to show tick
 #' marks along the x axis, and where to show them.
+#' Options are \code{inside} (default), \code{outside},
+#' or \code{centered}.
 #' @param y_tick_marks choose whether to show tick
 #' marks along the y axis, and where to show them.
+#' Options are \code{inside} (default), \code{outside},
+#' or \code{centered}.
+#' @param include_xy_minima choose whether to show the
+#' minimum values for the x and y axes, respectively.
 #' @param include_legend an option for whether to
 #' include a legend.
 #' @param legend_offset the x and y offset (from
