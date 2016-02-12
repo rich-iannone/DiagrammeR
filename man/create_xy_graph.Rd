@@ -67,10 +67,17 @@ formatting to the x and y axes, respectively.}
 name, either \code{inside} (default) or \code{outside}.}
 
 \item{x_tick_marks}{choose whether to show tick
-marks along the x axis, and where to show them.}
+marks along the x axis, and where to show them.
+Options are \code{inside} (default), \code{outside},
+or \code{centered}.}
 
 \item{y_tick_marks}{choose whether to show tick
-marks along the y axis, and where to show them.}
+marks along the y axis, and where to show them.
+Options are \code{inside} (default), \code{outside},
+or \code{centered}.}
+
+\item{include_xy_minima}{choose whether to show the
+minimum values for the x and y axes, respectively.}
 
 \item{include_legend}{an option for whether to
 include a legend.}
