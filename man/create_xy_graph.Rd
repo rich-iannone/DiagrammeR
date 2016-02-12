@@ -25,12 +25,12 @@ area.}
 \item{x_scale}{the minimum and maximum x value to
 display on the x-axis. Not providing values will
 result in autoscaling in the x direction based on
-provided x values.}
+provided data.}
 
 \item{y_scale}{the minimum and maximum y value to
 display on the y-axis. Not providing values will
 result in autoscaling in the y direction based on
-provided y values.}
+provided data.}
 
 \item{xy_major_steps}{the number of major steps
 across the x and y directions. Not providing values
@@ -41,20 +41,36 @@ will result in automatically provided major steps.}
 \item{y_name}{the y-axis name.}
 
 \item{heading}{text to display as a heading above
-the plot area.}
+the plot area. Providing two character values
+will result in left- and right-justified text on
+the same line above the plot area. Using
+consecuctive \code{#} signs increases the header
+level and has the result of reducing the size of the
+text.}
 
 \item{footer}{text to display as a footer below the
-plot area.}
+plot area. Providing two character values
+will result in left- and right-justified text on
+the same line below the plot area. Using
+consecuctive \code{#} signs increases the header
+level and has the result of reducing the size of the
+text.}
 
 \item{xy_value_labels}{the format for displaying
 values of the x and y axes. Options are
 \code{numeric} (the default), \code{percentage},
 \code{date_time} or currency (by use of a 3-letter
-or 3-number ISO 4217 currency code. If a
-single-length value is provided, then that format
-type will be applied to both the x and y axes.
-Providing a vector of length 2 will apply the
-formats to the x and y axes, respectively.}
+or 3-number ISO 4217 currency code. If using
+currency, one can additionally state whether to
+abbreviate large values with a \code{K} (thousands),
+an \code{M} (millions), a \code{B} (billions), or a
+\code{T} (trillions) by appending the currency code
+with a colon the letter for the abbreviated label
+(e.g., \code{USD:M}). If a single-length value is
+provided, then that format type will be applied to
+both the x and y axes. Providing a vector of length
+2 will allow for application of the provided formats
+to the x and y axes, respectively.}
 
 \item{xy_value_decimals}{the number of decimal
 places to show for numeric values labeling the x and
