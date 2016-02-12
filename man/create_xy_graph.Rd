@@ -8,10 +8,10 @@ create_xy_graph(..., aspect_ratio = c(1, 1), x_scale = NULL,
   y_scale = NULL, xy_major_steps = NULL, x_name = NULL, y_name = NULL,
   heading = NULL, footer = NULL, xy_value_labels = NULL,
   xy_value_decimals = NULL, x_name_location = "inside",
-  x_tick_marks = "centered", y_tick_marks = "centered",
-  include_legend = TRUE, legend_offset = c(0, 0), x_value_prefix = NULL,
-  y_value_prefix = NULL, x_value_suffix = NULL, y_value_suffix = NULL,
-  bg_color = "transparent")
+  x_tick_marks = "inside", y_tick_marks = "inside",
+  include_xy_minima = c(TRUE, TRUE), include_legend = TRUE,
+  legend_offset = c(0, 0), x_value_prefix = NULL, y_value_prefix = NULL,
+  x_value_suffix = NULL, y_value_suffix = NULL, bg_color = "transparent")
 }
 \arguments{
 \item{...}{one or more NDFs containing points
