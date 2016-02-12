@@ -1133,6 +1133,10 @@ create_xy_graph <- function(...,
       shape = "plaintext",
       fontcolor = "gray")
 
+  if (include_xy_minima[1] == FALSE){
+    x_axis_labels[1, 8] <- "#FFFFFF00"
+  }
+
   # Define an NDF that contains
   # the y-axis labels
   y_axis_labels <-
@@ -1145,6 +1149,10 @@ create_xy_graph <- function(...,
       y = seq(0, y_span, ((y_span - 0) / xy_major_steps[2])),
       shape = "plaintext",
       fontcolor = "gray")
+
+  if (include_xy_minima[2] == FALSE){
+    y_axis_labels[1, 8] <- "#FFFFFF00"
+  }
 
   # Combine all NDFs for the chart components
   chart_component_nodes <-
