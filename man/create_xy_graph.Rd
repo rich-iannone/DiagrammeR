@@ -36,9 +36,9 @@ provided data.}
 across the x and y directions. Not providing values
 will result in automatically provided major steps.}
 
-\item{x_name}{the x-axis name.}
+\item{x_name}{an optional x-axis name.}
 
-\item{y_name}{the y-axis name.}
+\item{y_name}{an optional y-axis name.}
 
 \item{heading}{text to display as a heading above
 the plot area. Providing two character values
