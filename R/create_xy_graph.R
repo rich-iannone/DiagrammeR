@@ -19,8 +19,8 @@
 #' @param xy_major_steps the number of major steps
 #' across the x and y directions. Not providing values
 #' will result in automatically provided major steps.
-#' @param x_name the x-axis name.
-#' @param y_name the y-axis name.
+#' @param x_name an optional x-axis name.
+#' @param y_name an optional y-axis name.
 #' @param heading text to display as a heading above
 #' the plot area. Providing two character values
 #' will result in left- and right-justified text on
