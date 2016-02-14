@@ -1159,6 +1159,7 @@ create_xy_graph <- function(...,
       x = seq(0, x_span, ((x_span - 0) / xy_major_steps[1])),
       y = -0.3 - xy_axis_lab_dist[1],
       shape = "plaintext",
+      fontname = "Helvetica",
       fontcolor = "gray")
 
   if (include_xy_minima[1] == FALSE){
@@ -1176,6 +1177,7 @@ create_xy_graph <- function(...,
       x = -0.6 - xy_axis_lab_dist[2],
       y = seq(0, y_span, ((y_span - 0) / xy_major_steps[2])),
       shape = "plaintext",
+      fontname = "Helvetica",
       fontcolor = "gray")
 
   if (include_xy_minima[2] == FALSE){
