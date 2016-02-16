@@ -9,7 +9,7 @@
 
 create_xy_lines <- function(xy_pts,
                             line_width = 2.5,
-                            line_color = "gray"){
+                            line_color = "gray50"){
 
   # Get a count of points from the NDF
   point_count <- nrow(xy_pts)
