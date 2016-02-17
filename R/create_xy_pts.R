@@ -26,7 +26,7 @@ create_xy_pts <- function(series_label,
                           shape = "circle",
                           line_width = 2.5,
                           fill_color = "none",
-                          line_color = "black",
+                          line_color = "gray15",
                           width = 0.15,
                           height = 0.15){
 
