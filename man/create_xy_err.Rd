@@ -5,7 +5,7 @@
 \title{Create a series of (x, y) error values for a graph}
 \usage{
 create_xy_err(xy_pts, x_err = NULL, y_err = NULL, line_width = 1.5,
-  line_color = "gray", x_err_pos = NULL, x_err_neg = NULL,
+  line_color = "gray50", x_err_pos = NULL, x_err_neg = NULL,
   y_err_pos = NULL, y_err_neg = NULL)
 }
 \arguments{

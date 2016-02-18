@@ -4,7 +4,7 @@
 \alias{create_xy_lines}
 \title{Create a joining lines for (x, y) points}
 \usage{
-create_xy_lines(xy_pts, line_width = 2.5, line_color = "gray")
+create_xy_lines(xy_pts, line_width = 2.5, line_color = "gray50")
 }
 \arguments{
 \item{xy_pts}{an NDF containing (x, y) for graphing}

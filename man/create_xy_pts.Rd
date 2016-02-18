@@ -5,7 +5,7 @@
 \title{Create a series of (x, y) points for a graph}
 \usage{
 create_xy_pts(series_label, x, y, size = NULL, shape = "circle",
-  line_width = 2.5, fill_color = "none", line_color = "black",
+  line_width = 2.5, fill_color = "none", line_color = "gray15",
   width = 0.15, height = 0.15)
 }
 \arguments{
