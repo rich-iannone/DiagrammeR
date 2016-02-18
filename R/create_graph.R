@@ -169,7 +169,7 @@ create_graph <- function(nodes_df = NULL,
     }
   }
 
-  if (class(edges_df) == "data.frame"){
+  if (inherits(edges_df,"data.frame")){
     if (ncol(edges_df) > 2){
 
       # Force all columns to be of the character class

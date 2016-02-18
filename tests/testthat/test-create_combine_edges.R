@@ -19,8 +19,8 @@ test_that("a correct edge data frame is generated", {
                  color = "red")
 
   # Expect that data frames are generated
-  expect_true(class(edges_1) == "data.frame")
-  expect_true(class(edges_2) == "data.frame")
+  expect_true(inherits(edges_1,"data.frame"))
+  expect_true(inherits(edges_2,"data.frame"))
 
   # Expect that each of the edge data frames has 4 rows
   expect_equal(nrow(edges_1), 4L)
@@ -93,7 +93,7 @@ test_that("two edge data frames can be successfully combined", {
   all_edges <- combine_edges(edges_1, edges_2)
 
   # Expect that a data frame is generated
-  expect_true(class(all_edges) == "data.frame")
+  expect_true(inherits(all_edges,"data.frame"))
 
   # Expect that the combined edge data frame has 8 rows
   expect_equal(nrow(all_edges), 8L)
@@ -132,7 +132,7 @@ test_that("three edge data frames can be successfully combined", {
   all_edges <- combine_edges(edges_1, edges_2, edges_3)
 
   # Expect that a data frame is generated
-  expect_true(class(all_edges) == "data.frame")
+  expect_true(inherits(all_edges,"data.frame"))
 
   # Expect that the combined edge data frame has 8 rows
   expect_equal(nrow(all_edges), 8L)

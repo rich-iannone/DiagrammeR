@@ -65,7 +65,7 @@ set_node_attr <- function(x,
     nodes_df <- x$nodes_df
   }
 
-  if (class(x) == "data.frame"){
+  if(inherits(x,"data.frame")){
 
     if ("nodes" %in% colnames(x)){
 

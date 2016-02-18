@@ -31,7 +31,7 @@ test_that("getting info about a graph's nodes is possible", {
   info_nodes <- node_info(graph)
 
   # Expect a data frame object
-  expect_true(class(info_nodes) == "data.frame")
+  expect_true(inherits(info_nodes,"data.frame"))
 
   # Expect that the data frame has 7 columns
   expect_true(ncol(info_nodes) == 7)
@@ -61,7 +61,7 @@ test_that("getting info about a graph's nodes is possible", {
   info_nodes_no_edges <- node_info(graph)
 
   # Expect a data frame object
-  expect_true(class(info_nodes_no_edges) == "data.frame")
+  expect_true(inherits(info_nodes_no_edges,"data.frame"))
 
   # Expect that the data frame has 7 columns
   expect_true(ncol(info_nodes_no_edges) == 7)
@@ -76,7 +76,7 @@ test_that("getting info about a graph's nodes is possible", {
   info_nodes_empty_graph <- node_info(graph)
 
   # Expect a data frame object
-  expect_true(class(info_nodes_empty_graph) == "data.frame")
+  expect_true(inherits(info_nodes_empty_graph,"data.frame"))
 
   # Expect that the data frame has 7 columns
   expect_true(ncol(info_nodes_empty_graph) == 7)
@@ -116,7 +116,7 @@ test_that("getting info about a graph's edges is possible", {
   info_edges <- edge_info(graph)
 
   # Expect a data frame object
-  expect_true(class(info_edges) == "data.frame")
+  expect_true(inherits(info_edges,"data.frame"))
 
   # Expect that the data frame has 3 columns
   expect_true(ncol(info_edges) == 3)
@@ -139,7 +139,7 @@ test_that("getting info about a graph's edges is possible", {
   info_graph_no_edges <- edge_info(graph)
 
   # Expect a data frame object
-  expect_true(class(info_graph_no_edges) == "data.frame")
+  expect_true(inherits(info_graph_no_edges,"data.frame"))
 
   # Expect that the data frame has 3 columns
   expect_true(ncol(info_graph_no_edges) == 3)

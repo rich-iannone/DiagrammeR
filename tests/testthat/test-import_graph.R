@@ -15,10 +15,10 @@ test_that("importing a .graphml file is possible", {
   expect_null(graphml_graph$graph_tz)
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(graphml_graph$nodes_df) == "data.frame")
+  expect_true(inherits(graphml_graph$nodes_df,"data.frame"))
 
   # Expect that the 'edges_df' component is a data frame
-  expect_true(class(graphml_graph$edges_df) == "data.frame")
+  expect_true(inherits(graphml_graph$edges_df,"data.frame"))
 
   # Expect that the 'node_attrs' component is a character vector of length 1
   expect_true(class(graphml_graph$node_attrs) == "character")
@@ -56,10 +56,10 @@ test_that("importing a .sif file is possible", {
   expect_null(sif_graph$graph_tz)
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(sif_graph$nodes_df) == "data.frame")
+  expect_true(inherits(sif_graph$nodes_df,"data.frame"))
 
   # Expect that the 'edges_df' component is a data frame
-  expect_true(class(sif_graph$edges_df) == "data.frame")
+  expect_true(inherits(sif_graph$edges_df,"data.frame"))
 
   # Expect that the 'node_attrs' is a vector of length 0
   expect_equal(length(sif_graph$node_attrs), 0)
@@ -95,10 +95,10 @@ test_that("importing a .gml file is possible", {
   expect_null(gml_graph$graph_tz)
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(gml_graph$nodes_df) == "data.frame")
+  expect_true(inherits(gml_graph$nodes_df,"data.frame"))
 
   # Expect that the 'edges_df' component is a data frame
-  expect_true(class(gml_graph$edges_df) == "data.frame")
+  expect_true(inherits(gml_graph$edges_df,"data.frame"))
 
   # Expect that the 'node_attrs' is a vector of length 0
   expect_equal(length(gml_graph$node_attrs), 0)
