@@ -294,7 +294,7 @@ date_axis <- function(series_pts,
     }
   }
 
-  if (total_days_in_data >= 1140){
+  if (total_days_in_data >= 1140 & total_days_in_data < 1300){
 
     major_tick_fractional <-
       tick_fractions[which(all_days_within_data %in% month_int_dates_within_data)]
@@ -323,6 +323,37 @@ date_axis <- function(series_pts,
              tick_label_values)
     }
   }
+
+  if (total_days_in_data >= 1300){
+
+    major_tick_fractional <-
+      tick_fractions[which(all_days_within_data %in% month_int_dates_within_data)]
+
+    minor_tick_fractional <- NULL
+
+    tick_label_locations_fractional <-
+      major_tick_fractional
+
+    tick_label_just <-
+      rep("", length(tick_label_locations_fractional))
+
+    tick_label_values <-
+      c(paste0(month_abbrev_within_data[1], "\n",
+               year_number_within_data[1],
+               tick_label_just[1]),
+        paste0(month_abbrev_within_data[-1], "\n",
+               ifelse(month_abbrev_within_data[-1] == "Jan",
+                      year_number_within_data[-1],
+                      " "),
+               tick_label_just[-1]))
+
+    if (total_days_in_data > 750){
+      tick_label_values <-
+        gsub("^([A-Z])([a-z][a-z])(.*)", "\\1\\3",
+             tick_label_values)
+    }
+  }
+
 
   axis_defs <-
     list(tick_fractions = tick_fractions,
