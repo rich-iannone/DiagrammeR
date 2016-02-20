@@ -33,13 +33,6 @@ date_axis <- function(series_pts,
       origin = "1970-01-01",
       tz = "GMT"), "%Y"))
 
-  # Get range of days for data
-  days_in_data <-
-    as.numeric(format(as.POSIXct(
-      all_days_within_data,
-      origin = "1970-01-01",
-      tz = "GMT"), "%d"))
-
   # Get range of years for data
   years_in_data <-
     as.numeric(format(as.POSIXct(
@@ -60,6 +53,13 @@ date_axis <- function(series_pts,
     seq(from = min(series_pts$x),
         to = max(series_pts$x),
         by = 86400)
+
+  # Get range of days for data
+  days_in_data <-
+    as.numeric(format(as.POSIXct(
+      all_days_within_data,
+      origin = "1970-01-01",
+      tz = "GMT"), "%d"))
 
   # Check condition that all data lies within
   # the same month
