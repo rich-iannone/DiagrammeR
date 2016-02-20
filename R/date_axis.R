@@ -254,7 +254,23 @@ date_axis <- function(series_pts,
       rep("", length(tick_label_locations_fractional))
 
     tick_label_values <-
-      days_in_data
+      c(paste0(
+        format(as.POSIXct(
+          all_days_within_data[1],
+          origin = "1970-01-01",
+          tz = "GMT"), "%b"), " ",
+        days_in_data[1], "\n", year_numbers[1],
+        tick_label_just[1]),
+        ifelse(days_in_data[-1] == 1,
+               paste0(
+                 format(as.POSIXct(
+                   all_days_within_data[-1],
+                   origin = "1970-01-01",
+                   tz = "GMT"), "%b"), " ",
+                 days_in_data[-1],
+                 tick_label_just[-1]),
+               paste0(days_in_data[-1],
+                      tick_label_just[-1])))
   }
 
   if (total_days_in_data >= 15 & total_days_in_data < 60){
