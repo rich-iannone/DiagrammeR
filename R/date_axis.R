@@ -263,7 +263,7 @@ date_axis <- function(series_pts,
       tick_fractions[which(all_days_within_data %in% month_int_dates_within_data)]
 
     minor_tick_fractional <-
-      all_days_within_data
+      tick_fractions
 
     tick_label_locations_fractional <-
       tick_fractions[which(all_days_within_data %in% month_int_dates_within_data)]
@@ -273,7 +273,7 @@ date_axis <- function(series_pts,
 
     tick_label_values <-
       c(paste0(month_abbrev_within_data[1], "\n",
-               year_number_within_data[1],
+               year_numbers[1],
                tick_label_just[1]),
         paste0(month_abbrev_within_data[-1], "\n",
                ifelse(month_abbrev_within_data[-1] == "Jan",
@@ -298,7 +298,7 @@ date_axis <- function(series_pts,
 
     tick_label_values <-
       c(paste0(month_abbrev_within_data[1], "\n",
-               year_number_within_data[1],
+               year_numbers[1],
                tick_label_just[1]),
         paste0(month_abbrev_within_data[-1], "\n",
                ifelse(month_abbrev_within_data[-1] == "Jan",
