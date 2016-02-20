@@ -4,16 +4,15 @@
 \alias{date_axis}
 \title{Construct the date axis}
 \usage{
-date_axis(series_pts, plot_data_within_month = FALSE)
+date_axis(series_pts, full_month = FALSE)
 }
 \arguments{
 \item{series_pts}{an NDF containing points where
 the \code{x_format} attribute is of type \code{date}.}
 
-\item{plot_data_within_month}{a choice for whether
-to display an entire month of days where the data
-corresponds to points contained within a single
-month.}
+\item{full_month}{a choice for whether to display an
+entire month of days where the data corresponds to
+points contained within a single month.}
 }
 \description{
 Create the date axis when provided
