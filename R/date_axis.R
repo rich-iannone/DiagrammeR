@@ -217,6 +217,13 @@ date_axis <- function(series_pts,
       odd_month_int_dates[which(
         odd_month_int_dates <= max(series_pts$x))]))
 
+  year_int_dates_within_data <-
+    sort(intersect(
+      year_int_dates[which(
+        year_int_dates >= min(series_pts$x))],
+      year_int_dates[which(
+        year_int_dates <= max(series_pts$x))]))
+
   month_abbrev_within_data <-
     format(as.POSIXct(
       month_int_dates_within_data,
@@ -225,7 +232,7 @@ date_axis <- function(series_pts,
 
   year_number_within_data <-
     format(as.POSIXct(
-      month_int_dates_within_data,
+      year_int_dates_within_data,
       origin = "1970-01-01",
       tz = "GMT"), "%Y")
 
