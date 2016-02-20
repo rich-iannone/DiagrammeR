@@ -3,14 +3,13 @@
 #' points that correspond to dates.
 #' @param series_pts an NDF containing points where
 #' the \code{x_format} attribute is of type \code{date}.
-#' @param plot_data_within_month a choice for whether
-#' to display an entire month of days where the data
-#' corresponds to points contained within a single
-#' month.
+#' @param full_month a choice for whether to display an
+#' entire month of days where the data corresponds to
+#' points contained within a single month.
 #' @export date_axis
 
 date_axis <- function(series_pts,
-                      plot_data_within_month = FALSE){
+                      full_month = FALSE){
 
   # Get the day numbers
   day_numbers <-
@@ -69,7 +68,7 @@ date_axis <- function(series_pts,
            TRUE, FALSE)
 
   if (all_data_within_a_month == TRUE &
-      plot_data_within_month == TRUE){
+      full_month == TRUE){
 
     # Get the month number
     the_month_number <-
