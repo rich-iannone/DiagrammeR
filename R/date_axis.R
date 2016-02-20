@@ -182,6 +182,20 @@ date_axis <- function(series_pts,
     }
   }
 
+  # Get integer date values for all years in dataset
+  for (i in 1:length(years_in_data)){
+    if (i == 1){
+      year_int_dates <- vector(mode = "numeric")
+    }
+    year_int_dates <-
+      c(year_int_dates,
+        ISOdatetime(
+          year = years_in_data[i],
+          month = 1,
+          day = 1, hour = 0,
+          min = 0, sec = 0, tz = "GMT"))
+  }
+
   month_int_dates_within_data <-
     sort(intersect(
       month_int_dates[which(
