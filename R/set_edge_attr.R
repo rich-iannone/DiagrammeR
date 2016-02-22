@@ -90,7 +90,7 @@ set_edge_attr <- function(x,
     edges_df <- x$edges_df
   }
 
-  if (class(x) == "data.frame"){
+  if(inherits(x,"data.frame")){
 
     if (all(c("from", "to") %in% colnames(x))){
 
