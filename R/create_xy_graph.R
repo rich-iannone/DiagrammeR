@@ -954,59 +954,120 @@ create_xy_graph <- function(...,
 
   # Define an NDF that contains
   # the x-axis tick marks
-  x_axis_tick_nodes <-
-    create_nodes(
-      nodes = c(paste0("x_tick_l-", 0:xy_major_steps[1]),
-                paste0("x_tick_u-", 0:xy_major_steps[1])),
-      type = "graph_component",
-      label = " ",
-      graph_component = "x_axis_major_ticks",
-      x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1])), 2),
-      y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[1], 0),
-                xy_major_steps[1] + 1),
-            rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[1], 0),
-                xy_major_steps[1] + 1)),
-      width = 0.01,
-      height = 0.01,
-      shape = "plaintext")
+  if (x_value_labels != "date"){
+    x_axis_tick_nodes <-
+      create_nodes(
+        nodes = c(paste0("x_tick_l-", 0:xy_major_steps[1]),
+                  paste0("x_tick_u-", 0:xy_major_steps[1])),
+        type = "graph_component",
+        label = " ",
+        graph_component = "x_axis_major_ticks",
+        x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1])), 2),
+        y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[1], 0),
+                  xy_major_steps[1] + 1),
+              rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[1], 0),
+                  xy_major_steps[1] + 1)),
+        width = 0.01,
+        height = 0.01,
+        shape = "plaintext")
 
-  # Define an EDF that draws the
-  # x-axis tick marks
-  x_axis_tick_edges <-
-    create_edges(
-      from = paste0("x_tick_l-", 0:xy_major_steps[1]),
-      to =   paste0("x_tick_u-", 0:xy_major_steps[1]),
-      graph_component = "x_axis_major_tick_lines",
-      color = "gray",
-      penwidth = 1.0,
-      arrowhead = "none")
+    # Define an EDF that draws the
+    # x-axis tick marks
+    x_axis_tick_edges <-
+      create_edges(
+        from = paste0("x_tick_l-", 0:xy_major_steps[1]),
+        to =   paste0("x_tick_u-", 0:xy_major_steps[1]),
+        graph_component = "x_axis_major_tick_lines",
+        color = "gray",
+        penwidth = 1.0,
+        arrowhead = "none")
+
+  } else if (x_value_labels == "date"){
+
+    x_axis_tick_nodes <-
+      create_nodes(
+        nodes = c(paste0("x_tick-l-", 1:(length(axis_defs$major_tick_fractional))),
+                  paste0("x_tick-u-", 1:(length(axis_defs$major_tick_fractional)))),
+        type = "graph_component",
+        label = " ",
+        x = c(axis_defs$major_tick_fractional,
+              axis_defs$major_tick_fractional) * 10,
+        y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[1], 0),
+                  length(axis_defs$major_tick_fractional)),
+              rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[1], 0),
+                  length(axis_defs$major_tick_fractional))),
+        height = 0.05,
+        width = 0.05,
+        shape = "plaintext")
+
+    # Define an EDF that draws the
+    # x-axis tick marks
+    x_axis_tick_edges <-
+      create_edges(
+        from = paste0("x_tick-l-", 1:(length(axis_defs$major_tick_fractional))),
+        to =   paste0("x_tick-u-", 1:(length(axis_defs$major_tick_fractional))),
+        graph_component = "x_axis_major_tick_lines",
+        color = "gray",
+        penwidth = 1.0,
+        arrowhead = "none")
+  }
 
   # Define an NDF that contains
   # the x-axis major grid lines
-  x_axis_major_grid_nodes <-
-    create_nodes(
-      nodes = c(paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
-                paste0("x_maj_grid_u-", 1:xy_major_steps[1])),
-      type = "graph_component",
-      label = " ",
-      graph_component = "x_axis_major_grid",
-      x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1]))[-1], 2),
-      y = c(rep(0, xy_major_steps[1] + 1)[-1],
-            rep(y_span, xy_major_steps[1] + 1)[-1]),
-      width = 0.01,
-      height = 0.01,
-      shape = "plaintext")
+  if (x_value_labels != "date"){
+    x_axis_major_grid_nodes <-
+      create_nodes(
+        nodes = c(paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
+                  paste0("x_maj_grid_u-", 1:xy_major_steps[1])),
+        type = "graph_component",
+        label = " ",
+        graph_component = "x_axis_major_grid",
+        x = rep(seq(0, x_span, ((x_span - 0) / xy_major_steps[1]))[-1], 2),
+        y = c(rep(0, xy_major_steps[1] + 1)[-1],
+              rep(y_span, xy_major_steps[1] + 1)[-1]),
+        width = 0.01,
+        height = 0.01,
+        shape = "plaintext")
+
+  } else if (x_value_labels == "date"){
+
+    x_axis_major_grid_nodes <-
+      create_nodes(
+        nodes = c(paste0("x_maj_grid_l-", 1:(length(axis_defs$major_tick_fractional))),
+                  paste0("x_maj_grid_u-", 1:(length(axis_defs$major_tick_fractional)))),
+        type = "graph_component",
+        label = " ",
+        x = c(axis_defs$major_tick_fractional,
+              axis_defs$major_tick_fractional) * 10,
+        y = c(rep(0, length(axis_defs$major_tick_fractional)),
+              rep(y_span, length(axis_defs$major_tick_fractional))),
+        height = 0.05,
+        width = 0.05,
+        shape = "plaintext")
+  }
 
   # Define an EDF that draws the
   # x-axis major grid lines
-  x_axis_major_grid_edges <-
-    create_edges(
-      from = paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
-      to =   paste0("x_maj_grid_u-", 1:xy_major_steps[1]),
-      graph_component = "x_axis_major_grid_lines",
-      penwidth = 1.0,
-      color = "gray95",
-      arrowhead = "none")
+
+  if (x_value_labels != "date"){
+    x_axis_major_grid_edges <-
+      create_edges(
+        from = paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
+        to =   paste0("x_maj_grid_u-", 1:xy_major_steps[1]),
+        graph_component = "x_axis_major_grid_lines",
+        penwidth = 1.0,
+        color = "gray95",
+        arrowhead = "none")
+  } else if (x_value_labels == "date"){
+    x_axis_major_grid_edges <-
+      create_edges(
+        from = paste0("x_maj_grid_l-", 1:(length(axis_defs$major_tick_fractional))),
+        to =   paste0("x_maj_grid_u-", 1:(length(axis_defs$major_tick_fractional))),
+        graph_component = "x_axis_major_grid_lines",
+        penwidth = 1.0,
+        color = "gray95",
+        arrowhead = "none")
+  }
 
   # Define an NDF that contains
   # the y-axis major grid lines
@@ -1068,34 +1129,72 @@ create_xy_graph <- function(...,
 
   # Define an NDF that contains
   # the x-axis minor tick marks
-  x_axis_minor_tick_nodes <-
-    create_nodes(
-      nodes = c(paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
-                paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2))),
-      type = "graph_component",
-      label = " ",
-      graph_component = "x_axis_minor_ticks",
-      x = rep(seq(0, x_span, ((x_span - 0) / (xy_major_steps[1] * 2))), 2),
-      y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"),
-                           xy_axis_tick_width[1]/2, 0),
-                ((xy_major_steps[1] + 1) * 2)),
-            rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"),
-                           xy_axis_tick_width[1]/2, 0),
-                ((xy_major_steps[1] + 1) * 2))),
-      width = 0.01,
-      height = 0.01,
-      shape = "plaintext")
+  if (x_value_labels != "date"){
 
-  # Define an EDF that draws the
-  # x-axis tick marks
-  x_axis_minor_tick_edges <-
-    create_edges(
-      from = paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
-      to =   paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2)),
-      graph_component = "x_axis_minor_tick_lines",
-      penwidth = 1.0,
-      color = "gray",
-      arrowhead = "none")
+    x_axis_minor_tick_nodes <-
+      create_nodes(
+        nodes = c(paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
+                  paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2))),
+        type = "graph_component",
+        label = " ",
+        graph_component = "x_axis_minor_ticks",
+        x = rep(seq(0, x_span, ((x_span - 0) / (xy_major_steps[1] * 2))), 2),
+        y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"),
+                             xy_axis_tick_width[1]/2, 0),
+                  ((xy_major_steps[1] + 1) * 2)),
+              rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"),
+                             xy_axis_tick_width[1]/2, 0),
+                  ((xy_major_steps[1] + 1) * 2))),
+        width = 0.01,
+        height = 0.01,
+        shape = "plaintext")
+
+    # Define an EDF that draws the
+    # x-axis tick marks
+    x_axis_minor_tick_edges <-
+      create_edges(
+        from = paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
+        to =   paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2)),
+        graph_component = "x_axis_minor_tick_lines",
+        penwidth = 1.0,
+        color = "gray",
+        arrowhead = "none")
+
+  } else if (x_value_labels != "date"){
+
+    if (!is.null(axis_defs$minor_tick_fractional)){
+
+      x_axis_minor_tick_nodes <-
+        create_nodes(
+          nodes = c(paste0("x_minor_tick_l-", 1:(length(axis_defs$minor_tick_fractional))),
+                    paste0("x_minor_tick_u-", 1:(length(axis_defs$minor_tick_fractional)))),
+          type = "graph_component",
+          label = " ",
+          graph_component = "x_axis_minor_ticks",
+          x = c(axis_defs$minor_tick_fractional * x_span,
+                axis_defs$minor_tick_fractional * x_span),
+          y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"),
+                               xy_axis_tick_width[1]/2, 0),
+                    length(axis_defs$minor_tick_fractional) * 2),
+                rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"),
+                               xy_axis_tick_width[1]/2, 0),
+                    length(axis_defs$minor_tick_fractional) * 2)),
+          width = 0.01,
+          height = 0.01,
+          shape = "plaintext")
+
+      # Define an EDF that draws the
+      # x-axis tick marks
+      x_axis_minor_tick_edges <-
+        create_edges(
+          from = paste0("x_minor_tick_l-", 1:(length(axis_defs$minor_tick_fractional))),
+          to =   paste0("x_minor_tick_u-", 1:(length(axis_defs$minor_tick_fractional))),
+          graph_component = "x_axis_minor_tick_lines",
+          penwidth = 1.0,
+          color = "gray",
+          arrowhead = "none")
+    }
+  }
 
   # Define an NDF that contains
   # the y-axis minor tick marks
@@ -1130,20 +1229,37 @@ create_xy_graph <- function(...,
 
   # Define an NDF that contains
   # the x-axis labels
-  x_axis_labels <-
-    create_nodes(
-      nodes = paste0("xlab-", 0:xy_major_steps[1]),
-      type = "graph_component",
-      label = x_labels,
-      graph_component = "x_axis_labels",
-      x = seq(0, x_span, ((x_span - 0) / xy_major_steps[1])),
-      y = -0.3 - xy_axis_lab_dist[1],
-      shape = "plaintext",
-      fontname = "Helvetica",
-      fontcolor = "gray")
+  if (x_value_labels != "date"){
+    x_axis_labels <-
+      create_nodes(
+        nodes = paste0("xlab-", 0:xy_major_steps[1]),
+        type = "graph_component",
+        label = x_labels,
+        graph_component = "x_axis_labels",
+        x = seq(0, x_span, ((x_span - 0) / xy_major_steps[1])),
+        y = -0.3 - xy_axis_lab_dist[1],
+        shape = "plaintext",
+        fontname = "Helvetica",
+        fontcolor = "gray")
 
-  if (include_xy_minima[1] == FALSE){
-    x_axis_labels[1, 8] <- "#FFFFFF00"
+    if (include_xy_minima[1] == FALSE){
+      x_axis_labels[1, which(colnames(x_axis_labels) == "fontcolor")] <- "#FFFFFF00"
+    }
+
+  } else if (x_value_labels == "date"){
+
+    x_axis_labels <-
+      create_nodes(
+        nodes = paste0("xlab-", 1:length(axis_defs$tick_label_locations_fractional)),
+        type = "graph_component",
+        label = x_labels,
+        graph_component = "x_axis_labels",
+        x = axis_defs$tick_label_locations_fractional * x_span,
+        y = -0.3 - xy_axis_lab_dist[1],
+        labelloc = "t",
+        shape = "plaintext",
+        fontname = "Helvetica",
+        fontcolor = "gray")
   }
 
   # Define an NDF that contains
@@ -1161,7 +1277,7 @@ create_xy_graph <- function(...,
       fontcolor = "gray")
 
   if (include_xy_minima[2] == FALSE){
-    y_axis_labels[1, 8] <- "#FFFFFF00"
+    y_axis_labels[1, which(colnames(y_axis_labels) == "fontcolor")] <- "#FFFFFF00"
   }
 
   # Combine all NDFs for the chart components
