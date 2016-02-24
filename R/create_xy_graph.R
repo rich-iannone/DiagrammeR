@@ -620,8 +620,8 @@ create_xy_graph <- function(...,
 
     values <-
       seq(y_scale[1], y_scale[2],
-                  ((y_scale[2] - y_scale[1]) /
-                     xy_major_steps[2])) / divisor
+          ((y_scale[2] - y_scale[1]) /
+             xy_major_steps[2])) / divisor
 
     digits <-
       ifelse(y_scale[2]/divisor <= 5,
@@ -633,8 +633,8 @@ create_xy_graph <- function(...,
         currency()[which(currency()$iso_4217_code %in%
                            currency_code),5],
         formatC(values,
-          digits = ifelse(y_scale[2]/divisor <= 5,
-            digits, 0), format = "f"), suffix)
+                digits = ifelse(y_scale[2]/divisor <= 5,
+                                digits, 0), format = "f"), suffix)
 
   } else if (gsub("([0-9][0-9][0-9]).*", "\\1", y_value_labels) %in%
              currency()$curr_number){
@@ -914,6 +914,7 @@ create_xy_graph <- function(...,
           width = x_span,
           height = 0.01,
           shape = "plaintext")
+
     } else if (x_name_location == "outside"){
       x_axis_name <-
         create_nodes(
