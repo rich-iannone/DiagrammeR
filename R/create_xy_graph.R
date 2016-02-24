@@ -434,9 +434,11 @@ create_xy_graph <- function(...,
   }
 
   if (!is.null(series_x_date_pts)){
+
+    axis_defs <- date_axis(series_pts = series_x_date_pts)
+
     series_x_date_pts$x <- rescale(as.numeric(series_x_date_pts$x),
-                                   to = c(0, x_span),
-                                   from = c(x_scale[1], x_scale[2]))
+                                   to = c(0, x_span))
     series_x_date_pts$y <- rescale(as.numeric(series_x_date_pts$y),
                                    to = c(0, y_span),
                                    from = c(y_scale[1], y_scale[2]))
@@ -444,19 +446,6 @@ create_xy_graph <- function(...,
     series_x_date_pts <- subset(series_x_date_pts, y >= 0)
     series_x_date_pts <- subset(series_x_date_pts, x <= x_span)
     series_x_date_pts <- subset(series_x_date_pts, y <= y_span)
-  }
-
-  if (!is.null(series_y_date_pts)){
-    series_y_date_pts$x <- rescale(as.numeric(series_y_date_pts$x),
-                                   to = c(0, x_span),
-                                   from = c(x_scale[1], x_scale[2]))
-    series_y_date_pts$y <- rescale(as.numeric(series_y_date_pts$y),
-                                   to = c(0, y_span),
-                                   from = c(y_scale[1], y_scale[2]))
-    series_y_date_pts <- subset(series_y_date_pts, x >= 0)
-    series_y_date_pts <- subset(series_y_date_pts, y >= 0)
-    series_y_date_pts <- subset(series_y_date_pts, x <= x_span)
-    series_y_date_pts <- subset(series_y_date_pts, y <= y_span)
   }
 
   if (!is.null(xy_value_decimals)){
