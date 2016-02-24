@@ -38,6 +38,18 @@ create_xy_pts <- function(series_label,
     stopifnot(length(size) == length(x))
   }
 
+  # Combine x and y in a data frame
+  xy_df <-
+    data.frame(x = x, y = y,
+               stringsAsFactors = FALSE)
+
+  # Arrange in ascending order of x
+  xy_df <- xy_df[order(xy_df[,1]),]
+
+  # Get sorted vectors of x and y
+  x <- xy_df$x
+  y <- xy_df$y
+
   # Determine the format of x
   if (all(grepl("-", x)) & !all(grepl(":", x))){
     x_date <- try(as.Date(x, format = "%Y-%m-%d"))
