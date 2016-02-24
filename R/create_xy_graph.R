@@ -493,10 +493,7 @@ create_xy_graph <- function(...,
           digits = x_value_decimals,
           format = "f"), "%")
   } else if (x_value_labels == "date"){
-    x <- as.Date(as.POSIXct(x_scale, origin = "1970-01-01", tz = "GMT"))
-    t <- date_trans()
-    x_labels <- t$format(t$breaks(range(x)))
-    xy_major_steps[1] <- length(t$format(t$breaks(range(x)))) - 1
+    x_labels <- axis_defs$tick_label_values
   } else if (gsub("([A-Z][A-Z][A-Z]).*", "\\1", x_value_labels) %in%
              currency()$iso_4217_code){
 
