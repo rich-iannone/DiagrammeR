@@ -355,13 +355,6 @@ create_xy_graph <- function(...,
       }
 
       if (!is.null(series_x_date_pts)){
-        x_scale <-
-          c(cbreaks(c(min(as.numeric(series_x_date_pts$x)),
-                      max(as.numeric(series_x_date_pts$x))),
-                    pretty_breaks(10))[[1]][1],
-            tail(cbreaks(c(min(as.numeric(series_x_date_pts$x)),
-                           max(as.numeric(series_x_date_pts$x))),
-                         pretty_breaks(10))[[1]], 1))
 
         y_scale <-
           c(cbreaks(c(min(as.numeric(series_x_date_pts$y)),
