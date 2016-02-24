@@ -28,7 +28,7 @@ test_that("adding a node to a graph is possible", {
   expect_null(graph$edge_attrs)
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(graph$nodes_df) == "data.frame")
+  expect_true(inherits(graph$nodes_df,"data.frame"))
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
@@ -205,10 +205,10 @@ test_that("adding an edge to a graph is possible", {
   expect_null(graph$edge_attrs)
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(graph$nodes_df) == "data.frame")
+  expect_true(inherits(graph$nodes_df,"data.frame"))
 
   # Expect that the 'edges_df' component is a data frame
-  expect_true(class(graph$edges_df) == "data.frame")
+  expect_true(inherits(graph$edges_df,"data.frame"))
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)

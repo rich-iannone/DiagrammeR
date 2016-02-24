@@ -93,7 +93,7 @@ get_edges <- function(x,
     }
   }
 
-  if (class(x) == "data.frame"){
+  if (inherits(x,"data.frame")){
 
     if (colnames(x)[1] == "from" &
         colnames(x)[2] == "to"){

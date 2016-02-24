@@ -73,7 +73,7 @@ test_that("a graph object with nodes can be created correctly", {
   expect_null(graph$edge_attrs)
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(graph$nodes_df) == "data.frame")
+  expect_true(inherits(graph$nodes_df,"data.frame"))
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
@@ -108,13 +108,13 @@ test_that("a graph object can be created with a just an edge data frame", {
   expect_null(graph$edge_attrs)
 
   # Expect that the 'edges_df' component is a data frame
-  expect_true(class(graph$edges_df) == "data.frame")
+  expect_true(inherits(graph$edges_df,"data.frame"))
 
   # Expect that the 'nodes_df' component is not NULL
   expect_true(!is.null(graph$nodes_df))
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(graph$edges_df) == "data.frame")
+  expect_true(inherits(graph$edges_df,"data.frame"))
 
   # Expect that the 'nodes_df' data frame has 3 columns
   expect_true(ncol(graph$nodes_df) == 3)
@@ -164,10 +164,10 @@ test_that("a graph object with nodes and edges can be created correctly", {
   expect_null(graph$graph_attrs)
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(class(graph$nodes_df) == "data.frame")
+  expect_true(inherits(graph$nodes_df,"data.frame"))
 
   # Expect that the 'edges_df' component is a data frame
-  expect_true(class(graph$edges_df) == "data.frame")
+  expect_true(inherits(graph$edges_df,"data.frame"))
 
   # Expect that the 'node_attrs' component is a character vector of length 1
   expect_true(class(graph$node_attrs) == "character")
