@@ -314,13 +314,19 @@ date_axis <- function(series_pts,
 
     tick_label_values <-
       c(paste0(month_abbrev_within_data[1], "\n",
-               year_numbers[1],
+               ifelse(month_abbrev_within_data[1] != "Jan",
+                      years_in_data[1], ""),
                tick_label_just[1]),
         paste0(month_abbrev_within_data[-1], "\n",
-               ifelse(month_abbrev_within_data[-1] == "Jan",
-                      year_number_within_data[-1],
-                      " "),
                tick_label_just[-1]))
+
+    if (any(grepl("Jan\n", tick_label_values))){
+      for (i in 1:sum(grepl("Jan\n", tick_label_values))){
+        tick_label_values[which(grepl("Jan\n", tick_label_values))][i] <-
+          paste0(tick_label_values[which(grepl("Jan\n", tick_label_values))][i],
+                 year_number_within_data[i])
+      }
+    }
 
     if (total_days_in_data > 750){
       tick_label_values <-
@@ -344,13 +350,19 @@ date_axis <- function(series_pts,
 
     tick_label_values <-
       c(paste0(month_abbrev_within_data[1], "\n",
-               year_number_within_data[1],
+               ifelse(month_abbrev_within_data[1] != "Jan",
+                      years_in_data[1], ""),
                tick_label_just[1]),
         paste0(month_abbrev_within_data[-1], "\n",
-               ifelse(month_abbrev_within_data[-1] == "Jan",
-                      year_number_within_data[-1],
-                      " "),
                tick_label_just[-1]))
+
+    if (any(grepl("Jan\n", tick_label_values))){
+      for (i in 1:sum(grepl("Jan\n", tick_label_values))){
+        tick_label_values[which(grepl("Jan\n", tick_label_values))][i] <-
+          paste0(tick_label_values[which(grepl("Jan\n", tick_label_values))][i],
+                 year_number_within_data[i])
+      }
+    }
 
     if (total_days_in_data > 750){
       tick_label_values <-
