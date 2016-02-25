@@ -1362,9 +1362,19 @@ create_xy_graph <- function(...,
       x_axis_major_grid_edges,
       y_axis_major_grid_edges,
       x_axis_tick_edges,
-      y_axis_tick_edges,
-      x_axis_minor_tick_edges,
-      y_axis_minor_tick_edges)
+      y_axis_tick_edges)
+
+  if (exists("x_axis_minor_tick_edges")){
+    chart_component_edges <-
+      combine_edges(chart_component_edges,
+                    x_axis_minor_tick_edges)
+  }
+
+  if (exists("y_axis_minor_tick_edges")){
+    chart_component_edges <-
+      combine_edges(chart_component_edges,
+                    y_axis_minor_tick_edges)
+  }
 
   # Combine the finalized NDFs and EDFs for the
   # graph components and create a graph object
