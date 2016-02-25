@@ -186,7 +186,7 @@ select_nodes_by_degree <- function(graph,
       }
     }
 
-    if (grepl("^!=.*", degree_values)){
+    if (grepl("^==.*", degree_values)){
 
       if (degree_type == "both" | degree_type == "degree"){
         nodes_selected <-
