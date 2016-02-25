@@ -1287,9 +1287,19 @@ create_xy_graph <- function(...,
       x_axis_labels, y_axis_labels,
       x_axis_major_grid_nodes,
       y_axis_major_grid_nodes,
-      x_axis_tick_nodes, y_axis_tick_nodes,
-      x_axis_minor_tick_nodes,
-      y_axis_minor_tick_nodes)
+      x_axis_tick_nodes, y_axis_tick_nodes)
+
+  if (exists("x_axis_minor_tick_nodes")){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    x_axis_minor_tick_nodes)
+  }
+
+  if (exists("y_axis_minor_tick_nodes")){
+    chart_component_nodes <-
+      combine_nodes(chart_component_nodes,
+                    y_axis_minor_tick_nodes)
+  }
 
   if (exists("graph_legend_nodes") & exists("graph_legend_node_labels")){
     chart_component_nodes <-
