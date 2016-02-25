@@ -439,6 +439,7 @@ create_xy_graph <- function(...,
 
     series_x_date_pts$x <- rescale(as.numeric(series_x_date_pts$x),
                                    to = c(0, x_span))
+    series_x_date_pts$x <- round(series_x_date_pts$x, digits = 3)
     series_x_date_pts$y <- rescale(as.numeric(series_x_date_pts$y),
                                    to = c(0, y_span),
                                    from = c(y_scale[1], y_scale[2]))
