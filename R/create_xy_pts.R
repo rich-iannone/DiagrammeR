@@ -104,7 +104,10 @@ create_xy_pts <- function(series_label,
       y = y,
       x_format = x_format,
       y_format = y_format,
-      shape = shape,
+      shape = ifelse(fill_color %in%
+                       c("none", "transparent") &
+                       line_color == "none",
+                     "none", shape),
       penwidth = line_width,
       fillcolor = ifelse(fill_color %in%
                            c("none", "transparent"),
@@ -115,11 +118,11 @@ create_xy_pts <- function(series_label,
       width = ifelse(fill_color %in%
                        c("none", "transparent") &
                        line_color == "none",
-                     0.0001, width),
+                     0, width),
       height = ifelse(fill_color %in%
                        c("none", "transparent") &
                        line_color == "none",
-                     0.0001, height))
+                     0, height))
 
   return(chart_nodes)
 }
