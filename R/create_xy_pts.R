@@ -94,45 +94,26 @@ create_xy_pts <- function(series_label,
 
   # Create the NDF that contains a set
   # of (x, y) points alongside attributes
-  if (!(fill_color %in% c("none", "transparent"))){
-    chart_nodes <-
-      create_nodes(
-        nodes = paste0(series_label, "_", 1:point_count),
-        type = series_label,
-        label = " ",
-        graph_component = "xy_pts",
-        x = x,
-        y = y,
-        x_format = x_format,
-        y_format = y_format,
-        shape = shape,
-        penwidth = line_width,
-        style = "filled",
-        fillcolor = fill_color,
-        color = line_color,
-        fixedsize = "true",
-        width = width,
-        height = height)
-  }
-
-  if (fill_color %in% c("none", "transparent")){
-    chart_nodes <-
-      create_nodes(
-        nodes = paste0(series_label, "_", 1:point_count),
-        type = series_label,
-        label = " ",
-        graph_component = "xy_pts",
-        x = x,
-        y = y,
-        x_format = x_format,
-        y_format = y_format,
-        shape = shape,
-        penwidth = line_width,
-        color = line_color,
-        fixedsize = "true",
-        width = width,
-        height = height)
-  }
+  chart_nodes <-
+    create_nodes(
+      nodes = paste0(series_label, "_", 1:point_count),
+      type = series_label,
+      label = " ",
+      graph_component = "xy_pts",
+      x = x,
+      y = y,
+      x_format = x_format,
+      y_format = y_format,
+      shape = shape,
+      penwidth = line_width,
+      fillcolor = ifelse(fill_color %in%
+                           c("none", "transparent"),
+                         "#FFFFFF00", fill_color),
+      color = ifelse(line_color == "none", "#FFFFFF00",
+                     line_color),
+      fixedsize = "true",
+      width = width,
+      height = height)
 
   return(chart_nodes)
 }
