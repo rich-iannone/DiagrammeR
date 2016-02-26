@@ -107,7 +107,7 @@ create_xy_pts <- function(series_label,
       shape = ifelse(fill_color %in%
                        c("none", "transparent") &
                        line_color == "none",
-                     "none", shape),
+                     "point", shape),
       penwidth = line_width,
       fillcolor = ifelse(fill_color %in%
                            c("none", "transparent"),
