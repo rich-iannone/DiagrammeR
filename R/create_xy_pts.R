@@ -112,8 +112,14 @@ create_xy_pts <- function(series_label,
       color = ifelse(line_color == "none", "#FFFFFF00",
                      line_color),
       fixedsize = "true",
-      width = width,
-      height = height)
+      width = ifelse(fill_color %in%
+                       c("none", "transparent") &
+                       line_color == "none",
+                     0.0001, width),
+      height = ifelse(fill_color %in%
+                       c("none", "transparent") &
+                       line_color == "none",
+                     0.0001, height))
 
   return(chart_nodes)
 }
