@@ -698,10 +698,12 @@ create_xy_graph <- function(...,
 
   # Remove extraneous series lines
   if (!is.null(series_lines)){
+    if (!exists("series_pts")){
     series_lines <-
       series_lines[which(series_lines$from %in% series_pts$nodes),]
     series_lines <-
       series_lines[which(series_lines$to %in% series_pts$nodes),]
+    }
   }
 
   # Define the graph heading
