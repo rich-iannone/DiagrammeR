@@ -455,9 +455,11 @@ create_xy_graph <- function(...,
     x_value_decimals <- 1
   }
 
-  if (!is.null(xy_value_decimals) & length(xy_value_decimals) == 2){
+  if (!is.null(xy_value_decimals) &
+      length(xy_value_decimals) == 2){
     y_value_decimals <- xy_value_decimals[2]
-  } else if (!is.null(xy_value_decimals) & length(xy_value_decimals) == 1){
+  } else if (!is.null(xy_value_decimals) &
+             length(xy_value_decimals) == 1){
     y_value_decimals <- xy_value_decimals[1]
   } else {
     y_value_decimals <- 1
@@ -469,9 +471,11 @@ create_xy_graph <- function(...,
     x_value_labels <- "numeric"
   }
 
-  if (!is.null(xy_value_labels) & length(xy_value_labels) == 2){
+  if (!is.null(xy_value_labels) &
+      length(xy_value_labels) == 2){
     y_value_labels <- xy_value_labels[2]
-  } else if (!is.null(xy_value_labels) & length(xy_value_labels) == 1){
+  } else if (!is.null(xy_value_labels) &
+             length(xy_value_labels) == 1){
     y_value_labels <- xy_value_labels[1]
   } else {
     y_value_labels <- "numeric"
@@ -495,19 +499,24 @@ create_xy_graph <- function(...,
           format = "f"), "%")
   } else if (x_value_labels == "date"){
     x_labels <- axis_defs$tick_label_values
-  } else if (gsub("([A-Z][A-Z][A-Z]).*", "\\1", x_value_labels) %in%
+  } else if (gsub("([A-Z][A-Z][A-Z]).*",
+                  "\\1", x_value_labels) %in%
              currency()$iso_4217_code){
 
-    if (grepl("[A-Z][A-Z][A-Z]:(K|k)", x_value_labels)){
+    if (grepl("[A-Z][A-Z][A-Z]:(K|k)",
+              x_value_labels)){
       divisor <- 1000
       suffix <- "K"
-    } else if (grepl("[A-Z][A-Z][A-Z]:(M|m)", x_value_labels)){
+    } else if (grepl("[A-Z][A-Z][A-Z]:(M|m)",
+                     x_value_labels)){
       divisor <- 1000000
       suffix <- "M"
-    } else if (grepl("[A-Z][A-Z][A-Z]:(B|b)", x_value_labels)){
+    } else if (grepl("[A-Z][A-Z][A-Z]:(B|b)",
+                     x_value_labels)){
       divisor <- 1000000000
       suffix <- "B"
-    } else if (grepl("[A-Z][A-Z][A-Z]:(T|t)", x_value_labels)){
+    } else if (grepl("[A-Z][A-Z][A-Z]:(T|t)",
+                     x_value_labels)){
       divisor <- 1000000000000
       suffix <- "T"
     } else {
@@ -515,7 +524,8 @@ create_xy_graph <- function(...,
       suffix <- ""
     }
 
-    currency_code <- gsub("([A-Z][A-Z][A-Z]).*", "\\1", x_value_labels)
+    currency_code <- gsub("([A-Z][A-Z][A-Z]).*",
+                          "\\1", x_value_labels)
 
     values <-
       seq(x_scale[1], x_scale[2],
@@ -533,22 +543,28 @@ create_xy_graph <- function(...,
                            currency_code),5],
         formatC(values,
                 digits = ifelse(x_scale[2]/divisor <= 5,
-                                digits, 0), format = "f"), suffix)
+                                digits, 0), format = "f"),
+        suffix)
 
 
-  } else if (gsub("([0-9][0-9][0-9]).*", "\\1", x_value_labels) %in%
+  } else if (gsub("([0-9][0-9][0-9]).*",
+                  "\\1", x_value_labels) %in%
              currency()$curr_number){
 
-    if (grepl("[0-9][0-9][0-9]:(K|k)", x_value_labels)){
+    if (grepl("[0-9][0-9][0-9]:(K|k)",
+              x_value_labels)){
       divisor <- 1000
       suffix <- "K"
-    } else if (grepl("[0-9][0-9][0-9]:(M|m)", x_value_labels)){
+    } else if (grepl("[0-9][0-9][0-9]:(M|m)",
+                     x_value_labels)){
       divisor <- 1000000
       suffix <- "M"
-    } else if (grepl("[0-9][0-9][0-9]:(B|b)", x_value_labels)){
+    } else if (grepl("[0-9][0-9][0-9]:(B|b)",
+                     x_value_labels)){
       divisor <- 1000000000
       suffix <- "B"
-    } else if (grepl("[0-9][0-9][0-9]:(T|t)", x_value_labels)){
+    } else if (grepl("[0-9][0-9][0-9]:(T|t)",
+                     x_value_labels)){
       divisor <- 1000000000000
       suffix <- "T"
     } else {
@@ -556,7 +572,8 @@ create_xy_graph <- function(...,
       suffix <- ""
     }
 
-    currency_code <- gsub("([0-9][0-9][0-9]).*", "\\1", x_value_labels)
+    currency_code <- gsub("([0-9][0-9][0-9]).*",
+                          "\\1", x_value_labels)
 
     values <-
       seq(x_scale[1], x_scale[2],
@@ -574,7 +591,8 @@ create_xy_graph <- function(...,
                            currency_code),5],
         formatC(values,
                 digits = ifelse(x_scale[2]/divisor <= 5,
-                                digits, 0), format = "f"), suffix)
+                                digits, 0), format = "f"),
+        suffix)
   }
 
   # Format the `y_labels` object
@@ -593,23 +611,30 @@ create_xy_graph <- function(...,
         digits = y_value_decimals,
         format = "f"), "%")
   } else if (y_value_labels == "date"){
-    y <- as.Date(as.POSIXct(y_scale, origin = "1970-01-01", tz = "GMT"))
+    y <- as.Date(as.POSIXct(y_scale,
+                            origin = "1970-01-01",
+                            tz = "GMT"))
     t <- date_trans()
     y_labels <- t$format(t$breaks(range(y)))
     xy_major_steps[2] <- length(t$format(t$breaks(range(y)))) - 1
-  } else if (gsub("([A-Z][A-Z][A-Z]).*", "\\1", y_value_labels) %in%
+  } else if (gsub("([A-Z][A-Z][A-Z]).*",
+                  "\\1", y_value_labels) %in%
              currency()$iso_4217_code){
 
-    if (grepl("[A-Z][A-Z][A-Z]:(K|k)", y_value_labels)){
+    if (grepl("[A-Z][A-Z][A-Z]:(K|k)",
+              y_value_labels)){
       divisor <- 1000
       suffix <- "K"
-    } else if (grepl("[A-Z][A-Z][A-Z]:(M|m)", y_value_labels)){
+    } else if (grepl("[A-Z][A-Z][A-Z]:(M|m)",
+                     y_value_labels)){
       divisor <- 1000000
       suffix <- "M"
-    } else if (grepl("[A-Z][A-Z][A-Z]:(B|b)", y_value_labels)){
+    } else if (grepl("[A-Z][A-Z][A-Z]:(B|b)",
+                     y_value_labels)){
       divisor <- 1000000000
       suffix <- "B"
-    } else if (grepl("[A-Z][A-Z][A-Z]:(T|t)", y_value_labels)){
+    } else if (grepl("[A-Z][A-Z][A-Z]:(T|t)",
+                     y_value_labels)){
       divisor <- 1000000000000
       suffix <- "T"
     } else {
@@ -617,7 +642,8 @@ create_xy_graph <- function(...,
       suffix <- ""
     }
 
-    currency_code <- gsub("([A-Z][A-Z][A-Z]).*", "\\1", y_value_labels)
+    currency_code <- gsub("([A-Z][A-Z][A-Z]).*",
+                          "\\1", y_value_labels)
 
     values <-
       seq(y_scale[1], y_scale[2],
@@ -635,21 +661,27 @@ create_xy_graph <- function(...,
                            currency_code),5],
         formatC(values,
                 digits = ifelse(y_scale[2]/divisor <= 5,
-                                digits, 0), format = "f"), suffix)
+                                digits, 0), format = "f"),
+        suffix)
 
-  } else if (gsub("([0-9][0-9][0-9]).*", "\\1", y_value_labels) %in%
+  } else if (gsub("([0-9][0-9][0-9]).*", "\\1",
+                  y_value_labels) %in%
              currency()$curr_number){
 
-    if (grepl("[0-9][0-9][0-9]:(K|k)", y_value_labels)){
+    if (grepl("[0-9][0-9][0-9]:(K|k)",
+              y_value_labels)){
       divisor <- 1000
       suffix <- "K"
-    } else if (grepl("[0-9][0-9][0-9]:(M|m)", y_value_labels)){
+    } else if (grepl("[0-9][0-9][0-9]:(M|m)",
+                     y_value_labels)){
       divisor <- 1000000
       suffix <- "M"
-    } else if (grepl("[0-9][0-9][0-9]:(B|b)", y_value_labels)){
+    } else if (grepl("[0-9][0-9][0-9]:(B|b)",
+                     y_value_labels)){
       divisor <- 1000000000
       suffix <- "B"
-    } else if (grepl("[0-9][0-9][0-9]:(T|t)", y_value_labels)){
+    } else if (grepl("[0-9][0-9][0-9]:(T|t)",
+                     y_value_labels)){
       divisor <- 1000000000000
       suffix <- "T"
     } else {
@@ -657,7 +689,8 @@ create_xy_graph <- function(...,
       suffix <- ""
     }
 
-    currency_code <- gsub("([0-9][0-9][0-9]).*", "\\1", y_value_labels)
+    currency_code <- gsub("([0-9][0-9][0-9]).*",
+                          "\\1", y_value_labels)
 
     values <-
       seq(y_scale[1], y_scale[2],
@@ -675,7 +708,8 @@ create_xy_graph <- function(...,
                            currency_code),5],
         formatC(values,
                 digits = ifelse(y_scale[2]/divisor <= 5,
-                                digits, 0), format = "f"), suffix)
+                                digits, 0), format = "f"),
+        suffix)
   }
 
   # Add prefixes if supplied
@@ -821,7 +855,8 @@ create_xy_graph <- function(...,
     if (!is.null(series_pts)){
       graph_legend_nodes <-
         create_nodes(
-          nodes = paste0(unique(series_pts$type), "_node_legend"),
+          nodes = paste0(unique(series_pts$type),
+                         "_node_legend"),
           type = "graph_component",
           label = " ",
           graph_component = "legend_markers",
@@ -837,9 +872,11 @@ create_xy_graph <- function(...,
 
       graph_legend_node_labels <-
         create_nodes(
-          nodes = paste0(unique(series_pts$type), "_node_label_legend"),
+          nodes = paste0(unique(series_pts$type),
+                         "_node_label_legend"),
           type = "graph_component",
-          label = paste0(unique(series_pts$type), "\\r"),
+          label = paste0(unique(series_pts$type),
+                         "\\r"),
           graph_component = "legend_labels",
           x = x_span/2 - 0.25,
           y = y_span -
@@ -960,8 +997,10 @@ create_xy_graph <- function(...,
   if (x_value_labels != "date"){
     x_axis_tick_nodes <-
       create_nodes(
-        nodes = c(paste0("x_tick_l-", 0:xy_major_steps[1]),
-                  paste0("x_tick_u-", 0:xy_major_steps[1])),
+        nodes = c(paste0("x_tick_l-",
+                         0:xy_major_steps[1]),
+                  paste0("x_tick_u-",
+                         0:xy_major_steps[1])),
         type = "graph_component",
         label = " ",
         graph_component = "x_axis_major_ticks",
@@ -978,8 +1017,10 @@ create_xy_graph <- function(...,
     # x-axis tick marks
     x_axis_tick_edges <-
       create_edges(
-        from = paste0("x_tick_l-", 0:xy_major_steps[1]),
-        to =   paste0("x_tick_u-", 0:xy_major_steps[1]),
+        from = paste0("x_tick_l-",
+                      0:xy_major_steps[1]),
+        to =   paste0("x_tick_u-",
+                      0:xy_major_steps[1]),
         graph_component = "x_axis_major_tick_lines",
         color = "gray",
         penwidth = 1.0,
@@ -989,15 +1030,19 @@ create_xy_graph <- function(...,
 
     x_axis_tick_nodes <-
       create_nodes(
-        nodes = c(paste0("x_tick-l-", 1:(length(axis_defs$major_tick_fractional))),
-                  paste0("x_tick-u-", 1:(length(axis_defs$major_tick_fractional)))),
+        nodes = c(paste0("x_tick-l-",
+                         1:(length(axis_defs$major_tick_fractional))),
+                  paste0("x_tick-u-",
+                         1:(length(axis_defs$major_tick_fractional)))),
         type = "graph_component",
         label = " ",
         x = c(axis_defs$major_tick_fractional,
               axis_defs$major_tick_fractional) * 10,
-        y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"), xy_axis_tick_width[1], 0),
+        y = c(rep(0 - ifelse(x_tick_marks %in% c("centered", "outside"),
+                             xy_axis_tick_width[1], 0),
                   length(axis_defs$major_tick_fractional)),
-              rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"), xy_axis_tick_width[1], 0),
+              rep(0 + ifelse(x_tick_marks %in% c("centered", "inside"),
+                             xy_axis_tick_width[1], 0),
                   length(axis_defs$major_tick_fractional))),
         height = 0.05,
         width = 0.05,
@@ -1007,8 +1052,10 @@ create_xy_graph <- function(...,
     # x-axis tick marks
     x_axis_tick_edges <-
       create_edges(
-        from = paste0("x_tick-l-", 1:(length(axis_defs$major_tick_fractional))),
-        to =   paste0("x_tick-u-", 1:(length(axis_defs$major_tick_fractional))),
+        from = paste0("x_tick-l-",
+                      1:(length(axis_defs$major_tick_fractional))),
+        to =   paste0("x_tick-u-",
+                      1:(length(axis_defs$major_tick_fractional))),
         graph_component = "x_axis_major_tick_lines",
         color = "gray",
         penwidth = 1.0,
@@ -1020,8 +1067,10 @@ create_xy_graph <- function(...,
   if (x_value_labels != "date"){
     x_axis_major_grid_nodes <-
       create_nodes(
-        nodes = c(paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
-                  paste0("x_maj_grid_u-", 1:xy_major_steps[1])),
+        nodes = c(paste0("x_maj_grid_l-",
+                         1:xy_major_steps[1]),
+                  paste0("x_maj_grid_u-",
+                         1:xy_major_steps[1])),
         type = "graph_component",
         label = " ",
         graph_component = "x_axis_major_grid",
@@ -1036,8 +1085,10 @@ create_xy_graph <- function(...,
 
     x_axis_major_grid_nodes <-
       create_nodes(
-        nodes = c(paste0("x_maj_grid_l-", 1:(length(axis_defs$major_tick_fractional))),
-                  paste0("x_maj_grid_u-", 1:(length(axis_defs$major_tick_fractional)))),
+        nodes = c(paste0("x_maj_grid_l-",
+                         1:(length(axis_defs$major_tick_fractional))),
+                  paste0("x_maj_grid_u-",
+                         1:(length(axis_defs$major_tick_fractional)))),
         type = "graph_component",
         label = " ",
         x = c(axis_defs$major_tick_fractional,
@@ -1055,8 +1106,10 @@ create_xy_graph <- function(...,
   if (x_value_labels != "date"){
     x_axis_major_grid_edges <-
       create_edges(
-        from = paste0("x_maj_grid_l-", 1:xy_major_steps[1]),
-        to =   paste0("x_maj_grid_u-", 1:xy_major_steps[1]),
+        from = paste0("x_maj_grid_l-",
+                      1:xy_major_steps[1]),
+        to =   paste0("x_maj_grid_u-",
+                      1:xy_major_steps[1]),
         graph_component = "x_axis_major_grid_lines",
         penwidth = 1.0,
         color = "gray95",
@@ -1064,8 +1117,10 @@ create_xy_graph <- function(...,
   } else if (x_value_labels == "date"){
     x_axis_major_grid_edges <-
       create_edges(
-        from = paste0("x_maj_grid_l-", 1:(length(axis_defs$major_tick_fractional))),
-        to =   paste0("x_maj_grid_u-", 1:(length(axis_defs$major_tick_fractional))),
+        from = paste0("x_maj_grid_l-",
+                      1:(length(axis_defs$major_tick_fractional))),
+        to =   paste0("x_maj_grid_u-",
+                      1:(length(axis_defs$major_tick_fractional))),
         graph_component = "x_axis_major_grid_lines",
         penwidth = 1.0,
         color = "gray95",
@@ -1076,8 +1131,10 @@ create_xy_graph <- function(...,
   # the y-axis major grid lines
   y_axis_major_grid_nodes <-
     create_nodes(
-      nodes = c(paste0("y_maj_grid_l-", 1:xy_major_steps[2]),
-                paste0("y_maj_grid_u-", 1:xy_major_steps[2])),
+      nodes = c(paste0("y_maj_grid_l-",
+                       1:xy_major_steps[2]),
+                paste0("y_maj_grid_u-",
+                       1:xy_major_steps[2])),
       type = "graph_component",
       label = " ",
       graph_component = "y_axis_major_grid",
@@ -1092,8 +1149,10 @@ create_xy_graph <- function(...,
   # y-axis major grid lines
   y_axis_major_grid_edges <-
     create_edges(
-      from = paste0("y_maj_grid_l-", 1:xy_major_steps[2]),
-      to =   paste0("y_maj_grid_u-", 1:xy_major_steps[2]),
+      from = paste0("y_maj_grid_l-",
+                    1:xy_major_steps[2]),
+      to =   paste0("y_maj_grid_u-",
+                    1:xy_major_steps[2]),
       graph_component = "y_axis_major_grid_lines",
       penwidth = 1.0,
       color = "gray95",
@@ -1103,8 +1162,10 @@ create_xy_graph <- function(...,
   # the y-axis tick marks
   y_axis_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("y_tick_l-", 0:xy_major_steps[2]),
-                paste0("y_tick_u-", 0:xy_major_steps[2])),
+      nodes = c(paste0("y_tick_l-",
+                       0:xy_major_steps[2]),
+                paste0("y_tick_u-",
+                       0:xy_major_steps[2])),
       type = "graph_component",
       label = " ",
       graph_component = "y_axis_major_ticks",
@@ -1123,8 +1184,10 @@ create_xy_graph <- function(...,
   # y-axis tick marks
   y_axis_tick_edges <-
     create_edges(
-      from = paste0("y_tick_l-", 0:xy_major_steps[2]),
-      to =   paste0("y_tick_u-", 0:xy_major_steps[2]),
+      from = paste0("y_tick_l-",
+                    0:xy_major_steps[2]),
+      to =   paste0("y_tick_u-",
+                    0:xy_major_steps[2]),
       graph_component = "y_axis_major_tick_lines",
       penwidth = 1.0,
       color = "gray",
@@ -1136,8 +1199,10 @@ create_xy_graph <- function(...,
 
     x_axis_minor_tick_nodes <-
       create_nodes(
-        nodes = c(paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
-                  paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2))),
+        nodes = c(paste0("x_minor_tick_l-",
+                         0:(xy_major_steps[1] * 2)),
+                  paste0("x_minor_tick_u-",
+                         0:(xy_major_steps[1] * 2))),
         type = "graph_component",
         label = " ",
         graph_component = "x_axis_minor_ticks",
@@ -1156,8 +1221,10 @@ create_xy_graph <- function(...,
     # x-axis tick marks
     x_axis_minor_tick_edges <-
       create_edges(
-        from = paste0("x_minor_tick_l-", 0:(xy_major_steps[1] * 2)),
-        to =   paste0("x_minor_tick_u-", 0:(xy_major_steps[1] * 2)),
+        from = paste0("x_minor_tick_l-",
+                      0:(xy_major_steps[1] * 2)),
+        to =   paste0("x_minor_tick_u-",
+                      0:(xy_major_steps[1] * 2)),
         graph_component = "x_axis_minor_tick_lines",
         penwidth = 1.0,
         color = "gray",
@@ -1169,8 +1236,10 @@ create_xy_graph <- function(...,
 
       x_axis_minor_tick_nodes <-
         create_nodes(
-          nodes = c(paste0("x_minor_tick_l-", 1:(length(axis_defs$minor_tick_fractional))),
-                    paste0("x_minor_tick_u-", 1:(length(axis_defs$minor_tick_fractional)))),
+          nodes = c(paste0("x_minor_tick_l-",
+                           1:(length(axis_defs$minor_tick_fractional))),
+                    paste0("x_minor_tick_u-",
+                           1:(length(axis_defs$minor_tick_fractional)))),
           type = "graph_component",
           label = " ",
           graph_component = "x_axis_minor_ticks",
@@ -1190,8 +1259,10 @@ create_xy_graph <- function(...,
       # x-axis tick marks
       x_axis_minor_tick_edges <-
         create_edges(
-          from = paste0("x_minor_tick_l-", 1:(length(axis_defs$minor_tick_fractional))),
-          to =   paste0("x_minor_tick_u-", 1:(length(axis_defs$minor_tick_fractional))),
+          from = paste0("x_minor_tick_l-",
+                        1:(length(axis_defs$minor_tick_fractional))),
+          to =   paste0("x_minor_tick_u-",
+                        1:(length(axis_defs$minor_tick_fractional))),
           graph_component = "x_axis_minor_tick_lines",
           penwidth = 1.0,
           color = "gray",
@@ -1203,8 +1274,10 @@ create_xy_graph <- function(...,
   # the y-axis minor tick marks
   y_axis_minor_tick_nodes <-
     create_nodes(
-      nodes = c(paste0("y_minor_tick_l-", 0:(xy_major_steps[2] * 2)),
-                paste0("y_minor_tick_u-", 0:(xy_major_steps[2] * 2))),
+      nodes = c(paste0("y_minor_tick_l-",
+                       0:(xy_major_steps[2] * 2)),
+                paste0("y_minor_tick_u-",
+                       0:(xy_major_steps[2] * 2))),
       type = "graph_component",
       label = " ",
       graph_component = "y_axis_minor_ticks",
@@ -1223,8 +1296,10 @@ create_xy_graph <- function(...,
   # y-axis tick minor marks
   y_axis_minor_tick_edges <-
     create_edges(
-      from = paste0("y_minor_tick_l-", 0:(xy_major_steps[2] * 2)),
-      to =   paste0("y_minor_tick_u-", 0:(xy_major_steps[2] * 2)),
+      from = paste0("y_minor_tick_l-",
+                    0:(xy_major_steps[2] * 2)),
+      to =   paste0("y_minor_tick_u-",
+                    0:(xy_major_steps[2] * 2)),
       graph_component = "y_axis_minor_tick_lines",
       penwidth = 1.0,
       color = "gray",
@@ -1253,7 +1328,8 @@ create_xy_graph <- function(...,
 
     x_axis_labels <-
       create_nodes(
-        nodes = paste0("xlab-", 1:length(axis_defs$tick_label_locations_fractional)),
+        nodes = paste0("xlab-",
+                       1:length(axis_defs$tick_label_locations_fractional)),
         type = "graph_component",
         label = x_labels,
         graph_component = "x_axis_labels",
@@ -1304,7 +1380,8 @@ create_xy_graph <- function(...,
                     y_axis_minor_tick_nodes)
   }
 
-  if (exists("graph_legend_nodes") & exists("graph_legend_node_labels")){
+  if (exists("graph_legend_nodes") &
+      exists("graph_legend_node_labels")){
     chart_component_nodes <-
       combine_nodes(chart_component_nodes,
                     graph_legend_nodes,
