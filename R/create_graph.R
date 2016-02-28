@@ -425,8 +425,24 @@ create_graph <- function(nodes_df = NULL,
         node_block <- c(node_block, line)
       }
 
+      if('rank' %in% colnames(nodes_df)){
+        node_block <- c(node_block, tapply(node_block, nodes_df$rank, FUN = function(x){
+          if(length(x) > 1){
+            x <- paste0('subgraph{rank = same\n',
+                        paste0(x, collapse = '\n'),
+                        '}\n')
+          }
+          return(x)
+        }))
+      }
+
+      #node_block <- paste(node_block, collapse = "\n")
+
+
+
       # Construct the 'node_block' character object
       node_block <- paste(node_block, collapse = "\n")
+
 
       # Remove the 'attr_string' object if it exists
       if (exists("attr_string") == TRUE){
@@ -481,6 +497,8 @@ create_graph <- function(nodes_df = NULL,
       # Construct the 'node_block' character object
       node_block <- paste(node_block, collapse = "\n")
     }
+
+
 
     #
     # Create the DOT edge block
