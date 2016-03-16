@@ -10,17 +10,21 @@ export_graph(graph, file_name = NULL, file_type = NULL, width = NULL,
 \arguments{
 \item{graph}{a graph object.}
 
-\item{file_name}{the name of the exported file (including it's extension).}
+\item{file_name}{the name of the exported file
+(including it's extension).}
 
-\item{file_type}{the type of file to be exported. Options are:
-\code{png}, \code{pdf}, \code{svg}, and \code{ps}.}
+\item{file_type}{the type of file to be exported.
+Options are: \code{png}, \code{pdf}, \code{svg},
+and \code{ps}.}
 
-\item{width}{output width in pixels or \code{NULL} for default.}
+\item{width}{output width in pixels or \code{NULL}
+for default.}
 
-\item{height}{output height in pixels or \code{NULL} for default.}
+\item{height}{output height in pixels or \code{NULL}
+for default.}
 }
 \description{
-Export a graph to a variety of file formats such as
-PNG, PDF, SVG, and PostScript.
+Export a graph to a variety of file
+formats such as PNG, PDF, SVG, and PostScript.
 }
 
