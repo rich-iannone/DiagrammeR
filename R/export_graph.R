@@ -1,12 +1,16 @@
 #' Export a graph to various file formats
-#' @description Export a graph to a variety of file formats such as
-#' PNG, PDF, SVG, and PostScript.
+#' @description Export a graph to a variety of file
+#' formats such as PNG, PDF, SVG, and PostScript.
 #' @param graph a graph object.
-#' @param file_name the name of the exported file (including it's extension).
-#' @param file_type the type of file to be exported. Options are:
-#' \code{png}, \code{pdf}, \code{svg}, and \code{ps}.
-#' @param width output width in pixels or \code{NULL} for default.
-#' @param height output height in pixels or \code{NULL} for default.
+#' @param file_name the name of the exported file
+#' (including it's extension).
+#' @param file_type the type of file to be exported.
+#' Options are: \code{png}, \code{pdf}, \code{svg},
+#' and \code{ps}.
+#' @param width output width in pixels or \code{NULL}
+#' for default.
+#' @param height output height in pixels or \code{NULL}
+#' for default.
 #' @import rsvg
 #' @export export_graph
 
