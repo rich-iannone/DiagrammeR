@@ -1,4 +1,4 @@
-#' Construct the date axis
+#' Construct the date axis for plotting
 #' @description Create the date axis when provided
 #' points that correspond to dates.
 #' @param series_pts an NDF containing points where
