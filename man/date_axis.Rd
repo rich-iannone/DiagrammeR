@@ -2,7 +2,7 @@
 % Please edit documentation in R/date_axis.R
 \name{date_axis}
 \alias{date_axis}
-\title{Construct the date axis}
+\title{Construct the date axis for plotting}
 \usage{
 date_axis(series_pts, full_month = FALSE)
 }
