@@ -76,7 +76,7 @@ create_graph <- function(nodes_df = NULL,
                          graph_name = NULL,
                          graph_time = NULL,
                          graph_tz = NULL,
-                         generate_dot = TRUE){
+                         generate_dot = TRUE) {
 
   # Create vector of graph attributes
   graph_attributes <-
@@ -110,23 +110,27 @@ create_graph <- function(nodes_df = NULL,
   # If nodes, edges, and attributes not provided, create empty graph
   if (all(c(is.null(nodes_df), is.null(edges_df),
             is.null(graph_attrs), is.null(node_attrs),
-            is.null(edge_attrs)))){
+            is.null(edge_attrs)))) {
 
     # Create DOT code with nothing in graph
-    dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
-                       " {\n", "\n}")
+    dot_code <-
+      paste0(ifelse(directed,
+                    "digraph", "graph"),
+             " {\n", "\n}")
 
     # Create the 'dgr_graph' list object
-    dgr_graph <- list(graph_name = graph_name,
-                      graph_time = graph_time,
-                      graph_tz = graph_tz,
-                      nodes_df = NULL,
-                      edges_df = NULL,
-                      graph_attrs = NULL,
-                      node_attrs = NULL,
-                      edge_attrs = NULL,
-                      directed = ifelse(directed == TRUE, TRUE, FALSE),
-                      dot_code = dot_code)
+    dgr_graph <-
+      list(graph_name = graph_name,
+           graph_time = graph_time,
+           graph_tz = graph_tz,
+           nodes_df = NULL,
+           edges_df = NULL,
+           graph_attrs = NULL,
+           node_attrs = NULL,
+           edge_attrs = NULL,
+           directed = ifelse(directed,
+                             TRUE, FALSE),
+           dot_code = dot_code)
 
     attr(dgr_graph, "class") <- "dgr_graph"
 
@@ -135,23 +139,28 @@ create_graph <- function(nodes_df = NULL,
 
   # If nodes and edges not provided, but other attributes are,
   # create any empty graph with attributes
-  if (all(c(is.null(nodes_df), is.null(edges_df)))){
+  if (all(c(is.null(nodes_df),
+            is.null(edges_df)))) {
 
     # Create DOT code with nothing in graph
-    dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
-                       " {\n", "\n}")
+    dot_code <-
+      paste0(ifelse(directed,
+                    "digraph", "graph"),
+             " {\n", "\n}")
 
     # Create the 'dgr_graph' list object
-    dgr_graph <- list(graph_name = graph_name,
-                      graph_time = graph_time,
-                      graph_tz = graph_tz,
-                      nodes_df = NULL,
-                      edges_df = NULL,
-                      graph_attrs = graph_attrs,
-                      node_attrs = node_attrs,
-                      edge_attrs = edge_attrs,
-                      directed = ifelse(directed == TRUE, TRUE, FALSE),
-                      dot_code = dot_code)
+    dgr_graph <-
+      list(graph_name = graph_name,
+           graph_time = graph_time,
+           graph_tz = graph_tz,
+           nodes_df = NULL,
+           edges_df = NULL,
+           graph_attrs = graph_attrs,
+           node_attrs = node_attrs,
+           edge_attrs = edge_attrs,
+           directed = ifelse(directed,
+                             TRUE, FALSE),
+           dot_code = dot_code)
 
     attr(dgr_graph, "class") <- "dgr_graph"
 
@@ -159,149 +168,170 @@ create_graph <- function(nodes_df = NULL,
   }
 
   # Perform basic checks of the inputs
-  if (!is.null(nodes_df)){
+  if (!is.null(nodes_df)) {
 
     stopifnot("nodes" %in% colnames(nodes_df))
 
     # Force all columns to be of the character class
-    for (i in 1:ncol(nodes_df)){
+    for (i in 1:ncol(nodes_df)) {
       nodes_df[,i] <- as.character(nodes_df[,i])
     }
   }
 
-  if (inherits(edges_df,"data.frame")){
-    if (ncol(edges_df) > 2){
+  if (inherits(edges_df,"data.frame")) {
+    if (ncol(edges_df) > 2) {
 
       # Force all columns to be of the character class
-      for (i in 1:ncol(edges_df)){
+      for (i in 1:ncol(edges_df)) {
         edges_df[,i] <- as.character(edges_df[,i])
       }
     }
   }
 
-  if (generate_dot == TRUE){
+  if (generate_dot) {
 
     #
     # Create the DOT attributes block
     #
 
-    # Create the default attributes statement for graph attributes
-    if (!is.null(graph_attrs)){
+    # Create the default attributes statement
+    # for graph attributes
+    if (!is.null(graph_attrs)) {
       graph_attr_stmt <-
         paste0("graph [",
                paste(graph_attrs,
-                     collapse = ",\n       "), "]\n")
+                     collapse = ",\n       "),
+               "]\n")
     }
 
-    # Create the default attributes statement for node attributes
-    if (!is.null(node_attrs)){
+    # Create the default attributes statement
+    # for node attributes
+    if (!is.null(node_attrs)) {
       node_attr_stmt <-
         paste0("node [", paste(node_attrs,
-                               collapse = ",\n     "), "]\n")
+                               collapse = ",\n     "),
+               "]\n")
     }
 
-    # Create the default attributes statement for edge attributes
-    if (!is.null(edge_attrs)){
+    # Create the default attributes statement
+    # for edge attributes
+    if (!is.null(edge_attrs)) {
       edge_attr_stmt <-
         paste0("edge [", paste(edge_attrs,
-                               collapse = ",\n     "), "]\n")
+                               collapse = ",\n     "),
+               "]\n")
     }
 
     # Combine default attributes into a single block
     if (exists("graph_attr_stmt") &
         exists("node_attr_stmt") &
-        exists("edge_attr_stmt")){
-      combined_attr_stmts <- paste(graph_attr_stmt,
-                                   node_attr_stmt,
-                                   edge_attr_stmt, sep = "\n")
+        exists("edge_attr_stmt")) {
+      combined_attr_stmts <-
+        paste(graph_attr_stmt,
+              node_attr_stmt,
+              edge_attr_stmt, sep = "\n")
     }
 
     if (!exists("graph_attr_stmt") &
         exists("node_attr_stmt") &
-        exists("edge_attr_stmt")){
-      combined_attr_stmts <- paste(node_attr_stmt,
-                                   edge_attr_stmt, sep = "\n")
+        exists("edge_attr_stmt")) {
+      combined_attr_stmts <-
+        paste(node_attr_stmt,
+              edge_attr_stmt, sep = "\n")
     }
 
     if (exists("graph_attr_stmt") &
         !exists("node_attr_stmt") &
-        exists("edge_attr_stmt")){
-      combined_attr_stmts <- paste(graph_attr_stmt,
-                                   edge_attr_stmt, sep = "\n")
+        exists("edge_attr_stmt")) {
+      combined_attr_stmts <-
+        paste(graph_attr_stmt,
+              edge_attr_stmt, sep = "\n")
     }
 
     if (exists("graph_attr_stmt") &
         exists("node_attr_stmt") &
-        !exists("edge_attr_stmt")){
-      combined_attr_stmts <- paste(graph_attr_stmt,
-                                   node_attr_stmt, sep = "\n")
+        !exists("edge_attr_stmt")) {
+      combined_attr_stmts <-
+        paste(graph_attr_stmt,
+              node_attr_stmt, sep = "\n")
     }
 
     if (exists("graph_attr_stmt") &
         !exists("node_attr_stmt") &
-        !exists("edge_attr_stmt")){
-      combined_attr_stmts <- paste0(graph_attr_stmt, "\n")
+        !exists("edge_attr_stmt")) {
+      combined_attr_stmts <-
+        paste0(graph_attr_stmt, "\n")
     }
 
     if (!exists("graph_attr_stmt") &
         exists("node_attr_stmt") &
-        !exists("edge_attr_stmt")){
-      combined_attr_stmts <- paste0(node_attr_stmt, "\n")
+        !exists("edge_attr_stmt")) {
+      combined_attr_stmts <-
+        paste0(node_attr_stmt, "\n")
     }
 
     if (!exists("graph_attr_stmt") &
         !exists("node_attr_stmt") &
-        exists("edge_attr_stmt")){
-      combined_attr_stmts <- paste0(edge_attr_stmt, "\n")
+        exists("edge_attr_stmt")) {
+      combined_attr_stmts <-
+        paste0(edge_attr_stmt, "\n")
     }
 
     #
     # Create the DOT node block
     #
 
-    if (!is.null(nodes_df)){
+    if (!is.null(nodes_df)) {
 
       # Determine the column number with the node ID
       column_with_node_id <-
         which(colnames(nodes_df) %in% "nodes")[1]
 
-      # Determine whether positional (x,y) data is included
+      # Determine whether positional (x,y)
+      # data is included
       column_with_x <-
         which(colnames(nodes_df) %in% "x")[1]
 
       column_with_y <-
         which(colnames(nodes_df) %in% "y")[1]
 
-      if (!is.na(column_with_x) & !is.na(column_with_y)){
+      if (!is.na(column_with_x) & !is.na(column_with_y)) {
 
-        pos <- data.frame("pos" =
-                            paste0(nodes_df[,column_with_x], ",",
-                                   nodes_df[,column_with_y],
-                                   "!"))
+        pos <-
+          data.frame("pos" =
+                       paste0(nodes_df[,column_with_x],
+                              ",",
+                              nodes_df[,column_with_y],
+                              "!"))
 
         nodes_df$pos <- pos$pos
       }
 
       # Determine whether column 'alpha' exists
-      if (any(grepl("$alpha^", colnames(nodes_df)))){
-        column_with_alpha_assigned <- grep("$alpha^", colnames(nodes_df))
+      if (any(grepl("$alpha^", colnames(nodes_df)))) {
+        column_with_alpha_assigned <-
+          grep("$alpha^", colnames(nodes_df))
       } else {
         column_with_alpha_assigned <- NA
       }
 
-      if (!is.na(column_with_alpha_assigned)){
+      if (!is.na(column_with_alpha_assigned)) {
 
-        # Determine number of color attributes in node data frame
+        # Determine the number of color attributes in
+        # the node data frame
         number_of_col_attr <-
           length(which(colnames(nodes_df) %in%
-                         c("color", "fillcolor", "fontcolor")))
+                         c("color", "fillcolor",
+                           "fontcolor")))
 
-        # If number of color attrs in df is 1, rename referencing alpha column
-        if (number_of_col_attr == 1){
+        # If the number of color attrs in df is 1,
+        # rename referencing alpha column
+        if (number_of_col_attr == 1) {
 
           name_of_col_attr <-
             colnames(nodes_df)[which(colnames(nodes_df) %in%
-                                       c("color", "fillcolor", "fontcolor"))]
+                                       c("color", "fillcolor",
+                                         "fontcolor"))]
 
           colnames(nodes_df)[column_with_alpha_assigned] <-
             paste0("alpha_", name_of_col_attr)
@@ -309,7 +339,7 @@ create_graph <- function(nodes_df = NULL,
       }
 
       # Determine whether column 'alpha' with color attr exists
-      if (any(grepl("alpha_.*", colnames(nodes_df)))){
+      if (any(grepl("alpha_.*", colnames(nodes_df)))) {
 
         alpha_column_no <- grep("alpha_.*", colnames(nodes_df))
 
@@ -323,15 +353,15 @@ create_graph <- function(nodes_df = NULL,
 
         # Append alpha value only if referenced column is for color
         if (any(c("color", "fillcolor", "fontcolor") %in%
-                colnames(nodes_df)[color_attr_column_no])){
+                colnames(nodes_df)[color_attr_column_no])) {
 
           # Append alpha for color values that are X11 color names
           if (all(grepl("[a-z]*",
                         as.character(nodes_df[,color_attr_column_no]))) &
               all(as.character(nodes_df[,color_attr_column_no]) %in%
-                  x11_hex()[,1])){
+                  x11_hex()[,1])) {
 
-            for (i in 1:nrow(nodes_df)){
+            for (i in 1:nrow(nodes_df)) {
 
               nodes_df[i,color_attr_column_no] <-
                 paste0(x11_hex()[which(x11_hex()[,1] %in%
@@ -341,11 +371,12 @@ create_graph <- function(nodes_df = NULL,
             }
           }
 
-          # Append alpha for color values that are hex color values
+          # Append alpha for color values that
+          # are hex color values
           if (all(grepl("#[0-9a-fA-F]{6}$",
-                        as.character(nodes_df[,color_attr_column_no])))){
+                        as.character(nodes_df[,color_attr_column_no])))) {
 
-            for (i in 1:nrow(nodes_df)){
+            for (i in 1:nrow(nodes_df)) {
 
               nodes_df[,color_attr_column_no] <-
                 as.character(nodes_df[,color_attr_column_no])
@@ -358,336 +389,325 @@ create_graph <- function(nodes_df = NULL,
         }
       }
 
-      # Determine which other columns correspond to node attribute values
+      # Determine which other columns correspond
+      # to node attribute values
       other_columns_with_node_attributes <-
         which(colnames(nodes_df) %in% node_attributes)
 
       # Construct the 'node_block' character object
-      for (i in 1:nrow(nodes_df)){
+      for (i in 1:nrow(nodes_df)) {
 
-        if (i == 1) node_block <- vector(mode = "character", length = 0)
+        if (i == 1) {
+          node_block <- vector(mode = "character", length = 0)
+        }
 
-        if (length(other_columns_with_node_attributes) > 0){
-
-          for (j in other_columns_with_node_attributes){
-
-            if (j == other_columns_with_node_attributes[1]){
-
+        if (length(other_columns_with_node_attributes) > 0) {
+          for (j in other_columns_with_node_attributes) {
+            if (j == other_columns_with_node_attributes[1]) {
               attr_string <- vector(mode = "character", length = 0)
             }
 
-            # Create the node attributes for labels and tooltips when provided
+            # Create the node attributes for labels
+            # and tooltips when provided
             if (all(colnames(nodes_df)[j] %in% c("label", "tooltip"),
-                    nodes_df[i, j] == '')){
-
+                    nodes_df[i, j] == '')) {
               attribute <- NULL
-
             } else if (all(colnames(nodes_df)[j] %in% c("label", "tooltip"),
-                           nodes_df[i, j] != '')){
-
+                           nodes_df[i, j] != '')) {
               attribute <-
                 paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
-
             } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
-                           nodes_df[i, j] == '')){
-
+                           nodes_df[i, j] == '')) {
               attribute <- NULL
-
             } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
-                           nodes_df[i, j] != '')){
-
+                           nodes_df[i, j] != '')) {
               attribute <-
                 paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
             }
-
             attr_string <- c(attr_string, attribute)
           }
 
-          if (j == other_columns_with_node_attributes[length(other_columns_with_node_attributes)]){
-
+          if (j == other_columns_with_node_attributes[length(other_columns_with_node_attributes)]) {
             attr_string <- paste(attr_string, collapse = ", ")
           }
         }
 
         # Generate a line of node objects when an attribute string exists
-        if (exists("attr_string")){
-
+        if (exists("attr_string")) {
           line <- paste0("  '", nodes_df[i, column_with_node_id], "'",
                          " [", attr_string, "] ")
         }
 
         # Generate a line of node objects when an attribute string doesn't exist
-        if (!exists("attr_string")){
-
+        if (!exists("attr_string")) {
           line <- paste0("  '", nodes_df[i, column_with_node_id], "'")
         }
-
         node_block <- c(node_block, line)
       }
 
-      if('rank' %in% colnames(nodes_df)){
-        node_block <- c(node_block, tapply(node_block, nodes_df$rank, FUN = function(x){
-          if(length(x) > 1){
-            x <- paste0('subgraph{rank = same\n',
-                        paste0(x, collapse = '\n'),
-                        '}\n')
-          }
-          return(x)
-        }))
+      if('rank' %in% colnames(nodes_df)) {
+        node_block <-
+          c(node_block,
+            tapply(node_block,
+                   nodes_df$rank, FUN = function(x) {
+                     if(length(x) > 1) {
+                       x <- paste0('subgraph{rank = same\n',
+                                   paste0(x, collapse = '\n'),
+                                   '}\n')
+                     }
+                     return(x)
+                   }))
       }
-
-      #node_block <- paste(node_block, collapse = "\n")
-
-
 
       # Construct the 'node_block' character object
       node_block <- paste(node_block, collapse = "\n")
 
-
       # Remove the 'attr_string' object if it exists
-      if (exists("attr_string") == TRUE){
+      if (exists("attr_string")) {
         rm(attr_string)
       }
 
       # Remove the 'attribute' object if it exists
-      if (exists("attribute") == TRUE){
+      if (exists("attribute")) {
         rm(attribute)
       }
     }
 
-    if (is.null(nodes_df) & !is.null(edges_df)){
-
+    if (is.null(nodes_df) & !is.null(edges_df)) {
       from_to_columns <-
         ifelse(any(c("from", "to") %in%
                      colnames(edges_df)), TRUE, FALSE)
 
-      # Determine which columns in 'edges_df' contains edge attributes
+      # Determine which columns in the `edges_df` df
+      # contains edge attributes
       other_columns_with_edge_attributes <-
         which(colnames(edges_df) %in% edge_attributes)
 
-      # Determine whether the complementary set of columns is present
-      if (from_to_columns == TRUE){
-
-        both_from_to_columns <- all(c(any(c("from") %in%
-                                            colnames(edges_df))),
-                                    any(c("to") %in%
-                                          colnames(edges_df)))
+      # Determine whether the complementary set of
+      # columns is present
+      if (from_to_columns) {
+        both_from_to_columns <-
+          all(c(any(c("from") %in%
+                      colnames(edges_df))),
+              any(c("to") %in%
+                    colnames(edges_df)))
       }
 
-      if (exists("both_from_to_columns")){
-
-        if (both_from_to_columns == TRUE){
-
-          from_column <- which(colnames(edges_df) %in% c("from"))[1]
-
-          to_column <- which(colnames(edges_df) %in% c("to"))[1]
+      if (exists("both_from_to_columns")) {
+        if (both_from_to_columns) {
+          from_column <-
+            which(colnames(edges_df) %in% c("from"))[1]
+          to_column <-
+            which(colnames(edges_df) %in% c("to"))[1]
         }
       }
 
       nodes_df <-
-        create_nodes(nodes = unique(c(edges_df$from, edges_df$to)))
+        create_nodes(nodes = unique(c(edges_df$from,
+                                      edges_df$to)))
 
-      for (i in 1:nrow(nodes_df)){
-
-        if (i == 1) node_block <- vector(mode = "character", length = 0)
-
-        node_block <- c(node_block, paste0("  '", nodes_df[i, 1], "'"))
+      for (i in 1:nrow(nodes_df)) {
+        if (i == 1) {
+          node_block <-
+            vector(mode = "character", length = 0)
+        }
+        node_block <-
+          c(node_block,
+            paste0("  '",
+                   nodes_df[i, 1], "'"))
       }
 
       # Construct the 'node_block' character object
       node_block <- paste(node_block, collapse = "\n")
     }
-
-
 
     #
     # Create the DOT edge block
     #
 
-    if (!is.null(edges_df)){
+    if (!is.null(edges_df)) {
 
-      # Determine whether 'from' or 'to' columns are in 'edges_df'
-      from_to_columns <- ifelse(any(c("from", "to") %in%
-                                      colnames(edges_df)), TRUE, FALSE)
+      # Determine whether 'from' or 'to' columns are
+      # in `edges_df`
+      from_to_columns <-
+        ifelse(any(c("from", "to") %in%
+                     colnames(edges_df)), TRUE, FALSE)
 
-      # Determine which columns in 'edges_df' contains edge attributes
+      # Determine which columns in `edges_df`
+      # contain edge attributes
       other_columns_with_edge_attributes <-
         which(colnames(edges_df) %in% edge_attributes)
 
-      # Determine whether the complementary set of columns is present
-      if (from_to_columns == TRUE){
-
-        both_from_to_columns <- all(c(any(c("from") %in%
-                                            colnames(edges_df))),
-                                    any(c("to") %in%
-                                          colnames(edges_df)))
+      # Determine whether the complementary set of
+      # columns is present
+      if (from_to_columns) {
+        both_from_to_columns <-
+          all(c(any(c("from") %in%
+                      colnames(edges_df))),
+              any(c("to") %in%
+                    colnames(edges_df)))
       }
 
-      # If the complementary set of columns is present, determine the positions
-      if (exists("both_from_to_columns")){
-
-        if (both_from_to_columns == TRUE){
-
-          from_column <- which(colnames(edges_df) %in% c("from"))[1]
-
-          to_column <- which(colnames(edges_df) %in% c("to"))[1]
+      # If the complementary set of columns is present,
+      # determine the positions
+      if (exists("both_from_to_columns")) {
+        if (both_from_to_columns) {
+          from_column <-
+            which(colnames(edges_df) %in% c("from"))[1]
+          to_column <-
+            which(colnames(edges_df) %in% c("to"))[1]
         }
       }
 
       # Construct the 'edge_block' character object
-      if (exists("from_column") & exists("to_column")){
-
-        if (length(from_column) == 1 & length(from_column) == 1){
-
-          for (i in 1:nrow(edges_df)){
-
-            if (i == 1) edge_block <- vector(mode = "character", length = 0)
-
-            if (length(other_columns_with_edge_attributes) > 0){
-
-              for (j in other_columns_with_edge_attributes){
-
-                if (j == other_columns_with_edge_attributes[1]){
+      if (exists("from_column") &
+          exists("to_column")) {
+        if (length(from_column) == 1 &
+            length(from_column) == 1) {
+          for (i in 1:nrow(edges_df)) {
+            if (i == 1) {
+              edge_block <-
+                vector(mode = "character", length = 0)
+              }
+            if (length(other_columns_with_edge_attributes) > 0) {
+              for (j in other_columns_with_edge_attributes) {
+                if (j == other_columns_with_edge_attributes[1]) {
                   attr_string <- vector(mode = "character", length = 0)
                 }
-
-                # Create the edge attributes for labels and tooltips when provided
-                if (all(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
-                                                     "label", "labeltooltip",
-                                                     "taillabel", "tailtooltip",
-                                                     "tooltip"),
-                        edges_df[i, j] == '')){
+                # Create the edge attributes for labels
+                # and tooltips when provided
+                if (all(colnames(edges_df)[j] %in%
+                        c("edgetooltip", "headtooltip",
+                          "label", "labeltooltip",
+                          "taillabel", "tailtooltip",
+                          "tooltip"),
+                        edges_df[i, j] == '')) {
+                  attribute <- NULL
+                } else if (all(colnames(edges_df)[j] %in%
+                               c("edgetooltip", "headtooltip",
+                                 "label", "labeltooltip",
+                                 "taillabel", "tailtooltip",
+                                 "tooltip"),
+                               edges_df[i, j] != '')) {
+                  attribute <-
+                    paste0(colnames(edges_df)[j],
+                           " = ", "'", edges_df[i, j],
+                           "'")
+                } else if (all(!(colnames(edges_df)[j] %in%
+                                 c("edgetooltip", "headtooltip",
+                                   "label", "labeltooltip",
+                                   "taillabel", "tailtooltip",
+                                   "tooltip")),
+                               edges_df[i, j] == '')) {
 
                   attribute <- NULL
-
-                } else if (all(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
-                                                            "label", "labeltooltip",
-                                                            "taillabel", "tailtooltip",
-                                                            "tooltip"),
-                               edges_df[i, j] != '')){
-
-                  attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
-
-
-
-                } else if (all(!(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
-                                                              "label", "labeltooltip",
-                                                              "taillabel", "tailtooltip",
-                                                              "tooltip")),
-                               edges_df[i, j] == '')){
-
-                  attribute <- NULL
-
-                } else if (all(!(colnames(edges_df)[j] %in% c("edgetooltip", "headtooltip",
-                                                              "label", "labeltooltip",
-                                                              "taillabel", "tailtooltip",
-                                                              "tooltip")),
-                               edges_df[i, j] != '')){
-
+                } else if (all(!(colnames(edges_df)[j] %in%
+                                 c("edgetooltip", "headtooltip",
+                                   "label", "labeltooltip",
+                                   "taillabel", "tailtooltip",
+                                   "tooltip")),
+                               edges_df[i, j] != '')) {
                   attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
                 }
-
                 attr_string <- c(attr_string, attribute)
               }
 
-              if (j == other_columns_with_edge_attributes[length(other_columns_with_edge_attributes)]){
+              if (j == other_columns_with_edge_attributes[length(other_columns_with_edge_attributes)]) {
                 attr_string <- paste(attr_string, collapse = ", ")
               }
             }
 
             # Generate a line of edge objects when an attribute string exists
-            if (exists("attr_string")){
-
-              line <- paste0("'", edges_df[i, from_column], "'",
-                             ifelse(directed == TRUE, "->", "--"),
-                             "'", edges_df[i, to_column], "'",
-                             paste0(" [", attr_string, "] "))
+            if (exists("attr_string")) {
+              line <-
+                paste0("'", edges_df[i, from_column], "'",
+                       ifelse(directed, "->", "--"),
+                       "'", edges_df[i, to_column], "'",
+                       paste0(" [", attr_string, "] "))
             }
 
             # Generate a line of edge objects when an attribute string doesn't exist
-            if (!exists("attr_string")){
-
+            if (!exists("attr_string")) {
               line <-
                 paste0("  ",
                        "'", edges_df[i, from_column], "'",
-                       ifelse(directed == TRUE, "->", "--"),
+                       ifelse(directed, "->", "--"),
                        "'", edges_df[i, to_column], "'",
                        " ")
             }
-
             edge_block <- c(edge_block, line)
           }
         }
       }
 
-      # Construct the 'edge_block' character object
-      if (exists("edge_block")){
+      # Construct the `edge_block` character object
+      if (exists("edge_block")) {
         edge_block <- paste(edge_block, collapse = "\n")
       }
     }
 
     # Create the graph code from the chosen attributes, and the
     # nodes and edges blocks
-    if (exists("combined_attr_stmts")){
-
-      if (exists("edge_block") & exists("node_block")){
-        combined_block <- paste(combined_attr_stmts,
-                                node_block, edge_block,
-                                sep = "\n")
+    if (exists("combined_attr_stmts")) {
+      if (exists("edge_block") & exists("node_block")) {
+        combined_block <-
+          paste(combined_attr_stmts,
+                node_block, edge_block,
+                sep = "\n")
       }
-
-      if (!exists("edge_block") & exists("node_block")){
-        combined_block <- paste(combined_attr_stmts,
-                                node_block,
-                                sep = "\n")
+      if (!exists("edge_block") & exists("node_block")) {
+        combined_block <-
+          paste(combined_attr_stmts,
+                node_block,
+                sep = "\n")
       }
     }
-
-    if (!exists("combined_attr_stmts")){
-
-      if (exists("edge_block")){
+    if (!exists("combined_attr_stmts")) {
+      if (exists("edge_block")) {
         combined_block <- paste(node_block, edge_block,
                                 sep = "\n")
       }
-
-      if (!exists("edge_block")){
+      if (!exists("edge_block")) {
         combined_block <- node_block
       }
     }
 
     # Create DOT code
-    dot_code <- paste0(ifelse(directed == TRUE, "digraph", "graph"),
-                       " {\n", "\n", combined_block, "\n}")
+    dot_code <-
+      paste0(ifelse(directed, "digraph", "graph"),
+             " {\n", "\n", combined_block, "\n}")
 
     # Remove empty node or edge attribute statements
     dot_code <- gsub(" \\[\\] ", "", dot_code)
 
-    # Create the 'dgr_graph' list object
-    dgr_graph <- list(graph_name = graph_name,
-                      graph_time = graph_time,
-                      graph_tz = graph_tz,
-                      nodes_df = nodes_df,
-                      edges_df = edges_df,
-                      graph_attrs = graph_attrs,
-                      node_attrs = node_attrs,
-                      edge_attrs = edge_attrs,
-                      directed = directed,
-                      dot_code = dot_code)
+    # Create the `dgr_graph` list object
+    dgr_graph <-
+      list(graph_name = graph_name,
+           graph_time = graph_time,
+           graph_tz = graph_tz,
+           nodes_df = nodes_df,
+           edges_df = edges_df,
+           graph_attrs = graph_attrs,
+           node_attrs = node_attrs,
+           edge_attrs = edge_attrs,
+           directed = directed,
+           dot_code = dot_code)
   }
 
-  if (generate_dot == FALSE){
+  if (generate_dot == FALSE) {
 
-    # Create the 'dgr_graph' list object
-    dgr_graph <- list(graph_name = graph_name,
-                      graph_time = graph_time,
-                      graph_tz = graph_tz,
-                      nodes_df = nodes_df,
-                      edges_df = edges_df,
-                      graph_attrs = graph_attrs,
-                      node_attrs = node_attrs,
-                      edge_attrs = edge_attrs,
-                      directed = directed,
-                      dot_code = NULL)
+    # Create the `dgr_graph` list object
+    dgr_graph <-
+      list(graph_name = graph_name,
+           graph_time = graph_time,
+           graph_tz = graph_tz,
+           nodes_df = nodes_df,
+           edges_df = edges_df,
+           graph_attrs = graph_attrs,
+           node_attrs = node_attrs,
+           edge_attrs = edge_attrs,
+           directed = directed,
+           dot_code = NULL)
   }
 
   attr(dgr_graph, "class") <- "dgr_graph"
