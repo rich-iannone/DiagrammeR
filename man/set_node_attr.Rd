@@ -7,59 +7,74 @@
 set_node_attr(x, nodes = NULL, node_attr, values)
 }
 \arguments{
-\item{x}{either a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}, or a node data frame.}
+\item{x}{either a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}, or a node data frame.}
 
-\item{nodes}{an optional vector of node IDs for filtering list of
-nodes present in the graph.}
+\item{nodes}{an optional vector of node IDs for
+filtering list of nodes present in the graph.}
 
 \item{node_attr}{the name of the attribute to set.}
 
-\item{values}{the values to be set for the chosen attribute for the
-chosen nodes.}
+\item{values}{the values to be set for the chosen
+attribute for the chosen nodes.}
 }
 \value{
-either a graph object of class \code{dgr_graph} or a node
-data frame, depending on what type of object was supplied to \code{x}.
+either a graph object of class
+\code{dgr_graph} or a node data frame, depending on
+what type of object was supplied to \code{x}.
 }
 \description{
-From a graph object of class \code{dgr_graph} or a node
-data frame, set node attribute properties for one or more nodes.
+From a graph object of class
+\code{dgr_graph} or a node data frame, set node
+attribute properties for one or more nodes.
 }
 \examples{
 \dontrun{
 # Create a simple graph
 nodes <-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               type = "letter",
-               label = TRUE,
-               value = c(3.5, 2.6, 9.4, 2.7))
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    type = "letter",
+    label = TRUE,
+    value = c(3.5, 2.6, 9.4, 2.7))
 
 edges <-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"),
-               rel = "leading_to")
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = "leading_to")
 
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
-# Set attribute 'color = "green"' for nodes "a" and "c" using
-# the graph object
+# Set attribute `color = "green"` for nodes `a`
+# and `c` using the graph object
 graph <-
-  set_node_attr(x = graph, nodes = c("a", "c"),
-                node_attr = "color", values = "green")
+  set_node_attr(
+    x = graph,
+    nodes = c("a", "c"),
+    node_attr = "color",
+    values = "green")
 
-# Set attribute 'color = "green"' for nodes "a" and "c" using
+# Set attribute 'color = "green"' for nodes `a`
+# and `c` using the node data frame
+nodes <-
+  set_node_attr(
+    x = nodes,
+    nodes = c("a", "c"),
+    node_attr = "color",
+    values = "green")
+
+# Set attribute `color = "blue"` for all nodes
 # the node data frame
 nodes <-
-  set_node_attr(x = nodes, nodes = c("a", "c"),
-                node_attr = "color", values = "green")
-
-#' # Set attribute 'color = "blue"' for all nodes
-# the node data frame
-nodes <-
-  set_node_attr(x = nodes, node_attr = "color", values = "blue")
+  set_node_attr(
+    x = nodes,
+    node_attr = "color",
+    values = "blue")
 }
 }
 

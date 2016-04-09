@@ -7,51 +7,62 @@
 get_edges(x, edge_attr = NULL, match = NULL, return_type = "list")
 }
 \arguments{
-\item{x}{either a graph object of class \code{dgr_graph} that is created
-using \code{create_graph} or an edge data frame.}
+\item{x}{either a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph} or an edge data frame.}
 
-\item{edge_attr}{an optional character vector of edge attribute values for
-filtering the edges returned.}
+\item{edge_attr}{an optional character vector of
+edge attribute values for filtering the edges
+returned.}
 
-\item{match}{an option to provide a logical expression with a comparison
-operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
-for numerical filtering, or, a character string for filtering the edges
-returned through string matching.}
+\item{match}{an option to provide a logical
+expression with a comparison operator (\code{>},
+\code{<}, \code{==}, or \code{!=}) followed by a
+number for numerical filtering, or, a character
+string for filtering the edges returned through
+string matching.}
 
-\item{return_type}{using \code{list} (the default) will provide a list
-object containing vectors of outgoing and incoming node IDs associated
-with edges. With \code{df}, a data frame containing outgoing and incoming
-node IDs associated with edges. With \code{vector} or \code{string}, a
-vector of character objects representing the edges is provided.}
+\item{return_type}{using \code{list} (the default)
+will provide a list object containing vectors of
+outgoing and incoming node IDs associated with
+edges. With \code{df}, a data frame containing
+outgoing and incoming node IDs associated with
+edges. With \code{vector} or \code{string}, a
+vector of character objects representing the edges
+is provided.}
 }
 \value{
-a list, data frame, or a vector object, depending on the value
-given to \code{return_type}.
+a list, data frame, or a vector object,
+depending on the value given to \code{return_type}.
 }
 \description{
-Obtain a list, data frame, or vector of node IDs from a graph
-object or an edge data frame. An optional filter by edge attribute
-can limit the set of edges returned.
+Obtain a list, data frame, or vector of
+node IDs from a graph object or an edge data frame.
+An optional filter by edge attribute can limit the
+set of edges returned.
 }
 \examples{
 \dontrun{
 # Before getting edges, create a simple graph
 nodes <-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               type = "letter",
-               color = c("red", "green", "grey", "blue"),
-               value = c(3.5, 2.6, 9.4, 2.7))
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    type = "letter",
+    color = c("red", "green", "grey", "blue"),
+    value = c(3.5, 2.6, 9.4, 2.7))
 
 edges <-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"),
-               rel = "leading_to",
-               color = c("pink", "blue", "red"),
-               value = c(3.9, 2.5, 7.3))
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = "leading_to",
+    color = c("pink", "blue", "red"),
+    value = c(3.9, 2.5, 7.3))
 
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
 # Get all edges within a graph, returned as a list
 get_edges(graph)
@@ -61,7 +72,8 @@ get_edges(graph)
 #> [[2]]
 #> [1] "d" "c" "a"
 
-# Get all edges within a graph, returned as a data frame
+# Get all edges within a graph, returned as a
+# data frame
 get_edges(graph, return_type = "df")
 #>   from to
 #> 1    a  d
@@ -73,19 +85,21 @@ get_edges(graph, return_type = "vector")
 #> [1] "a -> d" "b -> c" "c -> a"
 
 # Get a vector of edges using a numeric
-# comparison (i.e., all edges with 'value' attribute
-# greater than 3)
-get_edges(graph,
-          edge_attr = "value",
-          match = "> 3",
-          return_type = "vector")
+# comparison (i.e., all edges with a `value`
+# attribute greater than 3)
+get_edges(
+  graph,
+  edge_attr = "value",
+  match = "> 3",
+  return_type = "vector")
 #> [1] "a -> d" "c -> a"
 
 # Get a vector of edges using a match
-get_edges(graph,
-          edge_attr = "color",
-          match = "pink",
-          return_type = "vector")
+get_edges(
+  graph,
+  edge_attr = "color",
+  match = "pink",
+  return_type = "vector")
 #> [1] "a -> d"
 }
 }
