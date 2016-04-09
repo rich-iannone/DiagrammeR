@@ -7,30 +7,40 @@
 add_edge(graph, from, to, rel = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{from}{the outgoing node from which the edge is connected.}
+\item{from}{the outgoing node from which the edge
+is connected.}
 
-\item{to}{the incoming nodes to which each edge is connected.}
+\item{to}{the incoming nodes to which each edge
+is connected.}
 
-\item{rel}{an optional string specifying the relationship between the
+\item{rel}{an optional string specifying the
+relationship between the
 connected nodes.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class \code{dgr_graph}, add an edge
-to nodes within the graph.
+With a graph object of class
+\code{dgr_graph}, add an edge to nodes within the
+graph.
 }
 \examples{
 \dontrun{
 # Create a graph with two nodes
-graph <- create_graph(create_nodes(nodes = c("a", "b")))
+graph <-
+  create_graph(create_nodes(nodes = c("a", "b")))
 
-# Add an edge between those nodes and attach a relationship to the edge
-graph <- add_edge(graph, from = "a", to = "b", rel = "to_get")
+# Add an edge between those nodes and attach a
+# relationship to the edge
+graph <-
+ add_edge(graph,
+          from = "a", to = "b",
+          rel = "to_get")
 }
 }
 
