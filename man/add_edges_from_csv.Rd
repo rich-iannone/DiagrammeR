@@ -9,41 +9,46 @@ add_edges_from_csv(graph, csv_path, from_col, from_attr, to_col, to_attr,
   rename_attrs = NULL, rel_col = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
 \item{csv_path}{a path to a CSV file.}
 
-\item{from_col}{the name of the CSV column from which edges originate.}
+\item{from_col}{the name of the CSV column from
+which edges originate.}
 
-\item{from_attr}{the mapping of \code{from_col} values to attributes of
-the graph's nodes.}
+\item{from_attr}{the mapping of \code{from_col}
+values to attributes of the graph's nodes.}
 
-\item{to_col}{to_col the name of the CSV column to which edges terminate.}
+\item{to_col}{to_col the name of the CSV column to
+which edges terminate.}
 
-\item{to_attr}{the mapping of \code{to_col} values to attributes of
-the graph's nodes.}
+\item{to_attr}{the mapping of \code{to_col} values
+to attributes of the graph's nodes.}
 
-\item{set_rel}{an optional string to apply a \code{rel} attribute to
-all edges created from the CSV records.}
+\item{set_rel}{an optional string to apply a
+\code{rel} attribute to all edges created from the
+CSV records.}
 
-\item{select_cols}{an optional character vector for specifying which
-columns in the CSV file should be imported as edge attributes.}
+\item{select_cols}{an optional character vector for
+specifying which columns in the CSV file should be
+imported as edge attributes.}
 
-\item{drop_cols}{an optional character vector for dropping columns
-from the incoming data.}
+\item{drop_cols}{an optional character vector for
+dropping columns from the incoming data.}
 
-\item{rename_attrs}{an optional character vector for renaming edge
-attributes.}
+\item{rename_attrs}{an optional character vector for
+renaming edge attributes.}
 
-\item{rel_col}{an option to apply a column of data in the CSV file
-as \code{rel} attribute values.}
+\item{rel_col}{an option to apply a column of data
+in the CSV file as \code{rel} attribute values.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Add edges and their attributes to an existing graph object
-from data in a CSV file.
+Add edges and their attributes to an
+existing graph object from data in a CSV file.
 }
 

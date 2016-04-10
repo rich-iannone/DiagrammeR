@@ -2,44 +2,52 @@
 % Please edit documentation in R/add_edge_df.R
 \name{add_edge_df}
 \alias{add_edge_df}
-\title{Add edges from an edge data frame to an existing graph object}
+\title{Add edges from an edge data frame to an existing
+graph object}
 \usage{
 add_edge_df(graph, edge_df)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{edge_df}{an edge data frame that is created using \code{create_edges}.}
+\item{edge_df}{an edge data frame that is created
+using \code{create_edges}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class \code{dgr_graph} add edges from an
-edge data frame to that graph.
+With a graph object of class
+\code{dgr_graph} add edges from an edge data frame
+to that graph.
 }
 \examples{
 \dontrun{
 # Create a graph with nodes and no edges
 nodes <-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               type = "letter",
-               color = c("red", "green", "grey", "blue"),
-               value = c(3.5, 2.6, 9.4, 2.7))
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    type = "letter",
+    color = c("red", "green", "grey", "blue"),
+    value = c(3.5, 2.6, 9.4, 2.7))
 
 graph <- create_graph(nodes_df = nodes)
 
 # Create an edge data frame
 edges <-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"),
-               rel = "leading_to")
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = "leading_to")
 
 # Add the edge data frame to the graph object to create a
 # graph with both nodes and edges
 graph <-
-  add_edge_df(graph = graph, edge_df = edges)
+  add_edge_df(
+    graph = graph,
+    edge_df = edges)
 
 get_edges(graph, return_type = "vector")
 #> [1] "a -> d" "b -> c" "c -> a"
