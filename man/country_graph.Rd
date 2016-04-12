@@ -2,20 +2,23 @@
 % Please edit documentation in R/country_graph.R
 \name{country_graph}
 \alias{country_graph}
-\title{Create a graph object that contains the boundaries of a country}
+\title{Create a graph object that contains the boundaries
+of a country}
 \usage{
 country_graph(iso_a2 = NULL, scaling_factor = 40)
 }
 \arguments{
-\item{iso_a2}{the ISO 2-letter identifier for a country.}
+\item{iso_a2}{the ISO 2-letter identifier for a
+country.}
 
-\item{scaling_factor}{the factor for which degree coordinates for country
-boundries will be multiplied.}
+\item{scaling_factor}{the factor for which degree
+coordinates for country boundries will be multiplied.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Create a graph object that contains the boundaries of a country.
+Create a graph object that contains the
+boundaries of a country.
 }
 

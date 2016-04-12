@@ -2,44 +2,51 @@
 % Please edit documentation in R/combine_nodes.R
 \name{combine_nodes}
 \alias{combine_nodes}
-\title{Combine multiple node data frames into a single node data frame}
+\title{Combine multiple node data frames into a single
+node data frame}
 \usage{
 combine_nodes(...)
 }
 \arguments{
-\item{...}{two or more node data frames, which contain node IDs and
-associated attributes.}
+\item{...}{two or more node data frames, which
+contain node IDs and associated attributes.}
 }
 \value{
 a combined node data frame.
 }
 \description{
-Combine several node data frames in the style of \code{rbind},
-except, it works regardless of the number and ordering of the columns.
+Combine several node data frames in the
+style of \code{rbind}, except, it works regardless
+of the number and ordering of the columns.
 }
 \examples{
 \dontrun{
-# Combine two node data frames
+# Create a node data frame (ndf)
 nodes_1 <-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               label = FALSE,
-               type = "lower",
-               style = "filled",
-               color = "aqua",
-               shape = c("circle", "circle",
-                         "rectangle", "rectangle"),
-               data = c(3.5, 2.6, 9.4, 2.7))
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    label = FALSE,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
 
+# Create another ndf
 nodes_2 <-
-  create_nodes(nodes = c("e", "f", "g", "h"),
-               label = FALSE,
-               type = "upper",
-               style = "filled",
-               color = "red",
-               shape = "triangle",
-               data = c(0.5, 3.9, 3.7, 8.2))
+  create_nodes(
+    nodes = c("e", "f", "g", "h"),
+    label = FALSE,
+    type = "upper",
+    style = "filled",
+    color = "red",
+    shape = "triangle",
+    data = c(0.5, 3.9, 3.7, 8.2))
 
-all_nodes <- combine_nodes(nodes_1, nodes_2)
+# Combine the two node data frames
+all_nodes <-
+  combine_nodes(nodes_1, nodes_2)
 }
 }
 

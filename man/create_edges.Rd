@@ -7,46 +7,61 @@
 create_edges(from, to, rel = NULL, ...)
 }
 \arguments{
-\item{from}{a vector of node ID values from which edges are outbound. The
-vector length must equal to that of the \code{to} vector.}
+\item{from}{a vector of node ID values from which
+edges are outbound. The vector length must equal
+that of the \code{to} vector.}
 
-\item{to}{a vector of node ID values to which edges are incoming. The
-vector length must equal to that of the \code{from} vector.}
+\item{to}{a vector of node ID values to which edges
+are incoming. The vector length must equal that of
+the \code{from} vector.}
 
-\item{rel}{an optional 'rel' description for each edge.}
+\item{rel}{an optional \code{rel} label for each
+edge.}
 
-\item{...}{one or more named vectors for associated attributes.}
+\item{...}{one or more named vectors for associated
+attributes.}
 }
 \value{
-a data frame.
+an edge data frame (edf).
 }
 \description{
-Combine several named vectors for edges and their attributes
-into a data frame, which can be combined with other similarly-generated data
-frame, or, added to a graph object.
+Combine several named vectors for edges
+and their attributes into a data frame, which can be
+combined with other similarly-generated data frames,
+or, added to a graph object.
 }
 \examples{
 \dontrun{
-# Create a simple edge data frame and view results
+# Create a simple edge data frame (edf) and
+# view the results
 edges <-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"),
-               rel = "leading_to")
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = "leading_to")
 
-render_graph(create_graph(edges_df = edges),
-                          output = "visNetwork")
+# Render the graph to make it viewable in
+# the Viewer pane
+render_graph(
+  create_graph(edges_df = edges),
+  output = "visNetwork")
 
-# Create an edge data frame with additional parameters
+# Create an edge data frame with several
+# additional parameters
 edges <-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"),
-               rel = "leading_to",
-               length = c(50, 100, 250),
-               color = "green",
-               width = c(1, 1, 2))
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = "leading_to",
+    length = c(50, 100, 250),
+    color = "green",
+    width = c(1, 1, 2))
 
-render_graph(create_graph(edges_df = edges),
-                          output = "visNetwork")
+# Render the graph to make it viewable in
+# the Viewer pane
+render_graph(
+  create_graph(edges_df = edges),
+  output = "visNetwork")
 }
 }
 

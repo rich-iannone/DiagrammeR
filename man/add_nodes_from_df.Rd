@@ -9,36 +9,40 @@ add_nodes_from_df(graph, df, set_type = NULL, select_cols = NULL,
   label_col = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
 \item{df}{the name of the data frame object.}
 
-\item{set_type}{an optional string to apply a \code{type} attribute to
-all nodes created from the data frame records.}
+\item{set_type}{an optional string to apply a
+\code{type} attribute to all nodes created from the
+data frame records.}
 
-\item{select_cols}{an optional character vector for specifying which
-columns in the data frame file should be imported as node attributes.}
+\item{select_cols}{an optional character vector for
+specifying which columns in the data frame file
+should be imported as node attributes.}
 
-\item{drop_cols}{an optional character vector for dropping columns
-from the incoming data.}
+\item{drop_cols}{an optional character vector for
+dropping columns from the incoming data.}
 
-\item{rename_attrs}{an optional character for renaming node attributes.}
+\item{rename_attrs}{an optional character for
+renaming node attributes.}
 
-\item{id_col}{an option to apply a column of data in the data frame
-as node ID values.}
+\item{id_col}{an option to apply a column of data in
+the data frame as node ID values.}
 
-\item{type_col}{an option to apply a column of data in the data frame
-as \code{type} attribute values.}
+\item{type_col}{an option to apply a column of data
+in the data frame as \code{type} attribute values.}
 
-\item{label_col}{an option to apply a column of data in the data frame
-as \code{label} attribute values.}
+\item{label_col}{an option to apply a column of data
+in the data frame as \code{label} attribute values.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Add nodes and their attributes to an existing graph object
-from data in a data frame.
+Add nodes and their attributes to an
+existing graph object from data in a data frame.
 }
 

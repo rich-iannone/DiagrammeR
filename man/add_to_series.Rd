@@ -7,37 +7,49 @@
 add_to_series(graph, graph_series)
 }
 \arguments{
-\item{graph}{a graph object to add to the graph series object.}
+\item{graph}{a graph object to add to the graph
+series object.}
 
-\item{graph_series}{a graph series object to which the graph object will be
-added.}
+\item{graph_series}{a graph series object to which
+the graph object will be added.}
 }
 \value{
-a graph series object of type \code{dgr_graph_1D}.
+a graph series object of type
+\code{dgr_graph_1D}.
 }
 \description{
-Add a graph object to an extant graph series object for
-storage of multiple graphs across a sequential or temporal one-dimensional
-array.
+Add a graph object to an extant graph
+series object for storage of multiple graphs across
+a sequential or temporal one-dimensional array.
 }
 \examples{
 \dontrun{
-# Create three graphs (using \\code{pipeR} for speed)
-# and create a graph series using those graphs
+# Create three graphs and then create a graph
+# series with those new graph objects
 library(magrittr)
 
-graph_1 <- create_graph() \%>\%
-  add_node("a") \%>\% add_node("b") \%>\% add_node("c") \%>\%
-  add_edge("a", "c") \%>\% add_edge("a", "b") \%>\% add_edge("b", "c")
+graph_1 <-
+  create_graph() \%>\%
+  add_node("a") \%>\%
+  add_node("b") \%>\%
+  add_node("c") \%>\%
+  add_edge("a", "c") \%>\%
+  add_edge("a", "b") \%>\%
+  add_edge("b", "c")
 
-graph_2 <- graph_1 \%>\%
-  add_node("d") \%>\% add_edge("d", "c")
+graph_2 <-
+  graph_1 \%>\%
+  add_node("d") \%>\%
+  add_edge("d", "c")
 
-graph_3 <- graph_2 \%>\%
-  add_node("e") \%>\% add_edge("e", "b")
+graph_3 <-
+  graph_2 \%>\%
+  add_node("e") \%>\%
+  add_edge("e", "b")
 
 # Create an empty graph series
-series <- create_series(series_type = "sequential")
+series <-
+  create_series(series_type = "sequential")
 
 # Add graphs to the graph series
 series <- graph_1 \%>\% add_to_series(series)
