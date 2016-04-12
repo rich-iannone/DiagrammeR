@@ -8,31 +8,35 @@ add_node(graph, type = NULL, label = TRUE, from = NULL, to = NULL,
   node = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{type}{an optional string that describes the entity type for the node
-to be added.}
+\item{type}{an optional string that describes the
+entity type for the node to be added.}
 
-\item{label}{a character object for supplying an optional label to the node.
-Setting to \code{TRUE} ascribes the node ID to the label. Setting to
+\item{label}{a character object for supplying an
+optional label to the node. Setting to \code{TRUE}
+ascribes the node ID to the label. Setting to
 \code{FALSE} yields a blank label.}
 
-\item{from}{an optional vector containing node IDs from which edges will be
-directed to the new node.}
+\item{from}{an optional vector containing node IDs
+from which edges will be directed to the new node.}
 
-\item{to}{an optional vector containing node IDs to which edges will be
-directed from the new node.}
+\item{to}{an optional vector containing node IDs to
+which edges will be directed from the new node.}
 
-\item{node}{an optional node ID for the newly connected node. If no value
-is provided, a node ID will assigned as a monotonically increasing integer.}
+\item{node}{an optional node ID for the newly
+connected node. If no value is provided, a node ID
+will assigned as a monotonically increasing integer.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class \code{dgr_graph}, add a new node
-of a specified type to extant nodes within the graph.
+With a graph object of class
+\code{dgr_graph}, add a new node of a specified type
+to extant nodes within the graph.
 }
 \examples{
 \dontrun{
