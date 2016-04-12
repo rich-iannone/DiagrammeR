@@ -43,7 +43,7 @@ add_edges_from_csv <- function(graph,
   # Load in CSV file
   csv <- read.csv(csv_path, stringsAsFactors = FALSE)
 
-  # Get numbers of rows and columns in CSV
+  # Get numbers of rows and columns in the CSV
   rows_in_csv <- nrow(csv)
   cols_in_csv <- ncol(csv)
 
@@ -60,38 +60,40 @@ add_edges_from_csv <- function(graph,
     stop("The value specified in `to_col` is not in the CSV file.")
   }
 
-  # Verify that value for `from_attr` is in the graph's ndf
+  # Verify that value for `from_attr` is in the
+  # graph's ndf
   if (!(from_attr %in% colnames(get_node_df(graph)))) {
     stop("The value specified in `from_attr` is not in the graph.")
   }
 
-  # Verify that value for `to_attr` is in the graph's ndf
+  # Verify that value for `to_attr` is in the
+  # graph's ndf
   if (!(to_attr %in% colnames(get_node_df(graph)))) {
     stop("The value specified in `to_attr` is not in the graph.")
   }
 
-  # Verify that all values in `from_col` in the CSV are available
-  # in the graph
+  # Verify that all values in `from_col` in the CSV are
+  # available in the graph
   if (!(all(csv[,which(colnames(csv) == from_col)] %in%
             get_node_df(graph)[,which(colnames(get_node_df(graph)) == from_attr)]))) {
     stop(paste0("The `from` values in the CSV don't all match the requested",
                 "node attribute value in the graph."))
   }
 
-  # Verify that all values in `to_col` in the CSV are available
-  # in the graph
+  # Verify that all values in `to_col` in the CSV are
+  # available in the graph
   if (!(all(csv[,which(colnames(csv) == to_col)] %in%
             get_node_df(graph)[,which(colnames(get_node_df(graph)) == to_attr)]))) {
     stop(paste0("The `to` values in the CSV don't all match the requested",
                 "node attribute values in the graph."))
   }
 
-  ## If values for 'select_cols' provided, filter the CSV columns
-  ## by those named columns
+  # If values for `select_cols` provided, filter the
+  # CSV columns by those named columns
   if (!is.null(select_cols)) {
 
-    # If none of the specified values in 'select_cols' are in
-    # the CSV, stop the function
+    # If none of the specified values in `select_cols`
+    # are in the CSV, stop the function
     if (all(select_cols %in% colnames(csv)) == FALSE) {
       stop("None of the values specified for selecting columns are available.")
     }
@@ -99,15 +101,15 @@ add_edges_from_csv <- function(graph,
     csv <- csv[,columns_retained]
   }
 
-  # If values for 'drop_cols' provided, filter the CSV columns
-  # by those named columns
+  # If values for `drop_cols` provided, filter the CSV
+  # columns by those named columns
   if (is.null(select_cols) & !is.null(drop_cols)) {
     columns_retained <- which(!(colnames(csv) %in% drop_cols))
     csv <- csv[,columns_retained]
   }
 
-  ## If values for 'rename_attrs' provided, rename the CSV columns
-  ## by those replacement values
+  # If values for `rename_attrs` provided, rename the
+  # CSV columns by those replacement values
   if (!is.null(rename_attrs)) {
     if (length(rename_attrs) != length(colnames(csv))) {
       stop(paste0("The number of values specified for column name changes ",
@@ -168,8 +170,8 @@ add_edges_from_csv <- function(graph,
           values = csv[i,j])
     }
 
-    # Optionally set the `rel` attribute from a specified
-    # column from the CSV
+    # Optionally set the `rel` attribute from a
+    # specified column in the CSV
     if (!is.null(rel_col)) {
       graph <-
         set_edge_attr(
@@ -181,7 +183,8 @@ add_edges_from_csv <- function(graph,
     }
   }
 
-  # Optionally set the `rel` attribute with a single value repeated down
+  # Optionally set the `rel` attribute with a single
+  # value repeated down
   if (!is.null(set_rel)) {
     graph <-
       select_edges(

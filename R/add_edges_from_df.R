@@ -40,7 +40,7 @@ add_edges_from_df <- function(graph,
                               rename_attrs = NULL,
                               rel_col = NULL) {
 
-  # Get numbers of rows and columns in df
+  # Get numbers of rows and columns in the df
   rows_in_df <- nrow(df)
   cols_in_df <- ncol(df)
 
@@ -73,7 +73,7 @@ add_edges_from_df <- function(graph,
   # Verify that all values in `from_col` in the data
   # frame are available in the graph
   if (!(all(df[,which(colnames(df) == from_col)] %in%
-            get_node_df(graph)[,which(colnames(get_node_df(graph)) == from_attr)]))) {
+            get_node_df(graph)[, which(colnames(get_node_df(graph)) == from_attr)]))) {
     stop(paste0("The `from` values in the df don't all match the requested",
                 "node attribute value in the graph."))
   }
@@ -81,7 +81,7 @@ add_edges_from_df <- function(graph,
   # Verify that all values in `to_col` in the data
   # frame are available in the graph
   if (!(all(df[,which(colnames(df) == to_col)] %in%
-            get_node_df(graph)[,which(colnames(get_node_df(graph)) == to_attr)]))) {
+            get_node_df(graph)[, which(colnames(get_node_df(graph)) == to_attr)]))) {
     stop(paste0("The `to` values in the df don't all match the requested",
                 "node attribute values in the graph."))
   }
@@ -90,8 +90,8 @@ add_edges_from_df <- function(graph,
   # data frame columns by those named columns
   if (!is.null(select_cols)) {
 
-    # If none of the specified values in `select_cols` are in
-    # the data frame, stop the function
+    # If none of the specified values in `select_cols`
+    # are in the data frame, stop the function
     if (all(select_cols %in% colnames(df)) == FALSE) {
       stop("None of the values specified for selecting columns are available.")
     }
