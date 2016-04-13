@@ -7,25 +7,32 @@
 deposit_edge_attr(graph, edge_attr, mode = NULL, from = NULL, to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
-\item{edge_attr}{the edge attribute from which to obtain values.}
+\item{edge_attr}{the edge attribute from which to
+obtain values.}
 
-\item{mode}{a option to recast the returned vector of edge attribute
-value as \code{numeric} or \code{character}.}
+\item{mode}{a option to recast the returned vector
+of edge attribute value as \code{numeric} or
+\code{character}.}
 
-\item{from}{an optional vector of node IDs from which the edge is
-outgoing for filtering the list of edges present in the graph.}
+\item{from}{an optional vector of node IDs from
+which the edge is outgoing for filtering the list of
+edges present in the graph.}
 
-\item{to}{an optional vector of node IDs to which the edge is
-incoming for filtering the list of edges present in the graph.}
+\item{to}{an optional vector of node IDs to which
+the edge is incoming for filtering the list of
+edges present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get edge
-attribute properties for one or more edges and deposit those values
-in the graph for later retrieval using \code{withdraw_values}.
+From a graph object of class
+\code{dgr_graph}, get edge attribute properties for
+one or more edges and deposit those values in the
+graph for later retrieval using
+\code{withdraw_values}.
 }
 

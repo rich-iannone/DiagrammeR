@@ -7,22 +7,27 @@
 deposit_node_attr(graph, node_attr, mode = NULL, nodes = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
-\item{node_attr}{the node attribute from which to obtain values.}
+\item{node_attr}{the node attribute from which to
+obtain values.}
 
-\item{mode}{a option to recast the returned vector of node attribute
-value as \code{numeric} or \code{character}.}
+\item{mode}{a option to recast the returned vector
+of node attribute value as \code{numeric} or
+\code{character}.}
 
-\item{nodes}{an optional vector of node IDs for filtering list of
-nodes present in the graph.}
+\item{nodes}{an optional vector of node IDs for
+filtering the list of nodes present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get node
-attribute properties for one or more nodes and deposit those values
-in the graph for later retrieval using \code{withdraw_values}.
+From a graph object of class
+\code{dgr_graph}, get node attribute properties for
+one or more nodes and deposit those values in the
+graph for later retrieval using
+\code{withdraw_values}.
 }
 

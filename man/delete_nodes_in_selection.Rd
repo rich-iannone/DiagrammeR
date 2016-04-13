@@ -7,14 +7,16 @@
 delete_nodes_in_selection(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-In a graph object of class \code{dgr_graph}, delete
-all nodes present in a selection.
+In a graph object of class
+\code{dgr_graph}, delete all nodes present in a
+selection.
 }
 

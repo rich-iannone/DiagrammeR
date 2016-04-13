@@ -2,25 +2,31 @@
 % Please edit documentation in R/deposit_edge_attr_from_selection.R
 \name{deposit_edge_attr_from_selection}
 \alias{deposit_edge_attr_from_selection}
-\title{Deposit edge attributes (based on a selection of edges) in the graph}
+\title{Deposit edge attributes (based on a selection of
+edges) in the graph}
 \usage{
 deposit_edge_attr_from_selection(graph, edge_attr, mode = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
-\item{edge_attr}{the edge attribute from which to obtain values.}
+\item{edge_attr}{the edge attribute from which to
+obtain values.}
 
-\item{mode}{a option to recast the returned vector of edge attribute
-value as \code{numeric} or \code{character}.}
+\item{mode}{a option to recast the returned vector
+of edge attribute value as \code{numeric} or
+\code{character}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get edge
-attribute properties for edges available in a selection and deposit
-those values in the graph for later retrieval using \code{withdraw_values}.
+From a graph object of class
+\code{dgr_graph}, get edge attribute properties for
+edges available in a selection and deposit those
+values in the graph for later retrieval using
+\code{withdraw_values}.
 }
 
