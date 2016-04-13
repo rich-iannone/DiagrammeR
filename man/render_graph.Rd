@@ -32,34 +32,39 @@ Viewer or output in various formats.
 }
 \examples{
 \dontrun{
-# Create a graph and then view it in the RStudio Viewer
+# Create a node data frame (ndf)
 nodes <-
-  create_nodes(nodes = LETTERS,
-               label = TRUE,
-               type = "letter",
-               shape = sample(c("circle", "square"),
-                              length(LETTERS),
-                              replace = TRUE),
-               fillcolor = sample(c("aqua", "orange",
-                                    "pink", "lightgreen",
-                                    "black", "yellow"),
-                                  length(LETTERS),
-                                  replace = TRUE))
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = "letter",
+    shape = sample(c("circle", "square"),
+                   length(LETTERS),
+                   replace = TRUE),
+    fillcolor = sample(c("aqua", "orange",
+                         "pink", "lightgreen",
+                         "black", "yellow"),
+                       length(LETTERS),
+                       replace = TRUE))
 
+# Create an edge data frame (edf)
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               rel = "letter_to_letter")
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    rel = "letter_to_letter")
 
-
+# Create a graph object using the ndf and edf, and,
+# add a few attributes for the graph appearance
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = twopi",
-               node_attrs = c("fontname = Helvetica",
-                              "style = filled"),
-               edge_attrs = c("color = gray20",
-                              "arrowsize = 0.5"))
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "layout = twopi",
+    node_attrs = c("fontname = Helvetica",
+                   "style = filled"),
+    edge_attrs = c("color = gray20",
+                   "arrowsize = 0.5"))
 
 # Render the graph using Graphviz
 render_graph(graph)
