@@ -48,7 +48,8 @@ deposit_node_attr_from_selection <- function(graph,
       }
     }
 
-    # Place vector of node attributes as a deposit in the graph
+    # Place vector of node attributes as a deposit
+    # in the graph
     graph$deposit <- nodes_attr_vector
 
     return(graph)
