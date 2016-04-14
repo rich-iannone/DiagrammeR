@@ -2,61 +2,70 @@
 % Please edit documentation in R/edge_count.R
 \name{edge_count}
 \alias{edge_count}
-\title{Get count of all edges or edges with distinct relationship types}
+\title{Get count of all edges or edges with distinct
+relationship types}
 \usage{
 edge_count(graph, rel = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{rel}{either a logical value, where \code{TRUE} provides a
-named vector of edge count by type and \code{FALSE} (the default) provides
-a total count of edges, or, a string corresponding to one or more edge
-relationship types.}
+\item{rel}{either a logical value, where \code{TRUE}
+provides a named vector of edge count by type and
+\code{FALSE} (the default) provides a total count of
+edges, or, a string corresponding to one or more
+edge relationship types.}
 }
 \value{
 a numeric vector of single length.
 }
 \description{
-From a graph object of class \code{dgr_graph}, get a count of
-edges in the graph and optionally obtain a count of edges by their
+From a graph object of class
+\code{dgr_graph}, get a count of edges in the graph
+and optionally obtain a count of edges by their
 relationship type.
 }
 \examples{
 \dontrun{
-# Before getting counts of edges, create a simple graph
+# Create a node data frame (ndf)
 nodes <-
-  create_nodes(nodes = LETTERS,
-               label = TRUE,
-               type = c(rep("a_to_g", 7),
-                        rep("h_to_p", 9),
-                        rep("q_to_x", 8),
-                        rep("y_and_z", 2)))
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z", 2)))
 
+# Create an edge data frame (edf)
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               rel = c(rep("rel_a", 7),
-                       rep("rel_b", 9),
-                       rep("rel_c", 8),
-                       rep("rel_d", 2)))
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    rel = c(rep("rel_a", 7),
+            rep("rel_b", 9),
+            rep("rel_c", 8),
+            rep("rel_d", 2)))
 
+# Create a graph using the ndf and edf
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = neato",
-               node_attrs = c("fontname = Helvetica",
-                              "shape = circle"))
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
-# Get a total count of edges with no grouping
+# Get a total count of edges in the graph
 edge_count(graph, rel = FALSE)
 #> [1] 26
 
-# Get a count of edge of one or more specified rels
+# Get a count of edges that have the relationship
+# `rel_a`
 edge_count(graph, rel = "rel_a")
 #> [1] 7
 
+# Get a count of edges with relationships
+# `rel_a` and `rel_b`
 edge_count(graph, rel = c("rel_a", "rel_b"))
 #> [1] 16
 }

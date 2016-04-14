@@ -2,56 +2,63 @@
 % Please edit documentation in R/edge_present.R
 \name{edge_present}
 \alias{edge_present}
-\title{Determine whether a specified edge is present in an existing graph object}
+\title{Determine whether a specified edge is present in an
+existing graph object}
 \usage{
 edge_present(graph, from, to)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created using
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{from}{a node ID from which the edge to be queried is outgoing.}
+\item{from}{a node ID from which the edge to be
+queried is outgoing.}
 
-\item{to}{a node ID to which the edge to be queried is incoming.}
+\item{to}{a node ID to which the edge to be queried
+is incoming.}
 }
 \value{
 a logical value.
 }
 \description{
-From a graph object of class \code{dgr_graph}, determine
-whether a directed edge (defined by a pair of node IDs extant in the graph)
+From a graph object of class
+\code{dgr_graph}, determine whether a directed edge
+(defined by a pair of node IDs extant in the graph)
 is present.
 }
 \examples{
 \dontrun{
-# Before finding out whether a particular edge is present,
-# create a simple graph
+# Create a node data frame (ndf)
 nodes <-
-  create_nodes(nodes = LETTERS,
-               label = TRUE,
-               type = c(rep("a_to_g", 7),
-                        rep("h_to_p", 9),
-                        rep("q_to_x", 8),
-                        rep("y_and_z",2)))
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z", 2)))
 
+# Create an edge data frame (edf)
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               label = "edge",
-               rel = "letter_to_letter")
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    rel = "letter_to_letter")
 
+# Create a graph using the ndf and edf
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = neato",
-               node_attrs = c("fontname = Helvetica",
-                              "shape = circle"))
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
-# Is there any edge between nodes with IDs 'A' and 'B'?
+# Is there any edge between nodes with IDs
+# `A` and `B`?
 edge_present(graph, from = "A", to = "B")
 #> FALSE
 
-# Verify that there is an edge between nodes 'K' and 'V'
+# Verify that there is an edge between nodes
+# `K` and `V`
 edge_present(graph, from = "K", to = "V")
 #> TRUE
 }
