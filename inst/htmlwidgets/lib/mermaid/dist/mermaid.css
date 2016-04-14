@@ -3,12 +3,13 @@
 /* Gantt chart variables */
 .mermaid .label {
   color: #333333;
+  font-weight: 400;
 }
 
-.node rect,
+.mermaid .node rect,
 .node circle,
-.node ellipse,
-.node polygon {
+.mermaid .node ellipse,
+.mermaid .node polygon {
   fill: #ECECFF;
   stroke: #CCCCFF;
   stroke-width: 1px;
@@ -19,9 +20,6 @@
 
 .mermaid g .edgeLabel {
   background-color: white;
-  /* padding to avoid cutoff text in non-chrome browsers */
-  padding-left: 8px;
-  padding-right: 10px;
 }
 
 .mermaid .cluster rect {
