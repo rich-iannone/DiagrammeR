@@ -2,12 +2,14 @@
 % Please edit documentation in R/get_predecessors.R
 \name{get_predecessors}
 \alias{get_predecessors}
-\title{Get node IDs for predecessor nodes to the specified node}
+\title{Get node IDs for predecessor nodes to the specified
+node}
 \usage{
 get_predecessors(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{node}{a node ID for the selected node.}
 }
@@ -15,35 +17,30 @@ get_predecessors(graph, node)
 a vector of node ID values.
 }
 \description{
-Provides a vector of node IDs for all nodes that have a
+Provides a vector of node IDs for all
+nodes that have a
 connection to the given node.
 }
 \examples{
 \dontrun{
-# Before getting node ID values for predecessors of
-# a specified node, create a simple graph
+# Create a node data frame (ndf)
 nodes <-
-  create_nodes(nodes = LETTERS,
-               label = TRUE,
-               type = c(rep("a_to_g", 7),
-                        rep("h_to_p", 9),
-                        rep("q_to_x", 8),
-                        rep("y_and_z",2)))
+  create_nodes(
+    nodes = LETTERS)
 
+# Create an edge data frame (edf)
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               label = "edge",
-               rel = "letter_to_letter")
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE))
 
+# From the ndf and edf, create a graph object
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = neato",
-               node_attrs = c("fontname = Helvetica",
-                              "shape = circle"))
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
-# Get predecessors for node "Z" in the graph
+# Get predecessors for node `Z` in the graph
 get_predecessors(graph, node = "Z")
 #> [1] "A" "R" "R"
 
