@@ -39,7 +39,7 @@
 get_predecessors <- function(graph,
                              node) {
 
-  # Determine whether graph has any nodes
+  # Determine whether the graph has any nodes
   graph_is_not_empty <- !is_graph_empty(graph)
 
   # Determine whether `node` is in the graph
@@ -57,7 +57,6 @@ get_predecessors <- function(graph,
       predecessors <-
         graph$edges_df[graph$edges_df$to == node,]$from
     }
-
     return(predecessors)
   }
 }
