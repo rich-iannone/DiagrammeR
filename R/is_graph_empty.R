@@ -1,7 +1,8 @@
 #' Is the graph empty?
-#' @description Provides a logical value on whether the graph is empty (i.e.,
-#' contains no nodes).
-#' @param graph a graph object of class \code{dgr_graph}.
+#' @description Provides a logical value on whether the
+#' graph is empty (i.e., contains no nodes).
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @return a logical value.
 #' @examples
 #' \dontrun{
@@ -12,27 +13,32 @@
 #' is_graph_empty(graph)
 #' #> [1] TRUE
 #'
-#' # Create a graph with nodes and edges
+#' # Create a node data frame
 #' nodes <-
-#'   create_nodes(nodes = c("a", "b", "c", "d"))
+#'   create_nodes(
+#'     nodes = c("a", "b", "c", "d"))
 #'
+#' # Create an edge data frame
 #' edges <-
-#'   create_edges(from = c("a", "b", "c"),
-#'                to = c("d", "c", "a"))
+#'   create_edges(
+#'     from = c("a", "b", "c"),
+#'     to = c("d", "c", "a"))
 #'
+#' # Create a graph
 #' graph <-
 #'   create_graph(nodes_df = nodes,
 #'                edges_df = edges)
 #'
-#' # Determine whether the graph is empty
+#' # Determine whether this graph is empty
 #' is_graph_empty(graph)
 #' #> [1] FALSE
 #' }
 #' @export is_graph_empty
 
-is_graph_empty <- function(graph){
+is_graph_empty <- function(graph) {
 
-  # Determine if graph is empty by checking for NULL value
+  # Determine if graph is empty by checking for
+  # a NULL value at `graph$nodes_df`
   graph_is_empty <- is.null(graph$nodes_df)
 
   return(graph_is_empty)

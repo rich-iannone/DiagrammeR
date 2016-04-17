@@ -1,11 +1,12 @@
 #' Icons and their download locations
-#' @description Create a data frame with image icons and their web addresses.
+#' @description Create a data frame with image icons
+#' and their web addresses.
 #' @param icon_name the name of the FontAwesome icon.
 #' @export image_icon
 
-image_icon <- function(icon_name){
+image_icon <- function(icon_name) {
 
-  if (grepl("fa.*", icon_name)){
+  if (grepl("fa.*", icon_name)) {
 
     icon_name <- gsub("fa-", "", icon_name)
 
@@ -517,11 +518,15 @@ image_icon <- function(icon_name){
       "youtube-square",
       "youtube")
 
-    web_address <- paste0(stub, icon_names, extension)
+    web_address <-
+      paste0(stub, icon_names, extension)
 
-    fa_icons <- as.data.frame(cbind(icon_names, web_address), stringsAsFactors = FALSE)
+    fa_icons <-
+      as.data.frame(cbind(icon_names, web_address),
+                    stringsAsFactors = FALSE)
 
-    icon_address <- fa_icons[which(fa_icons[,1] == icon_name),2]
+    icon_address <-
+      fa_icons[which(fa_icons[,1] == icon_name), 2]
 
     return(icon_address)
   }
