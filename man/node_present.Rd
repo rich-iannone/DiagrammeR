@@ -2,59 +2,60 @@
 % Please edit documentation in R/node_present.R
 \name{node_present}
 \alias{node_present}
-\title{Determine whether a specified node is present in an existing graph object}
+\title{Determine whether a specified node is present in an
+existing graph object}
 \usage{
 node_present(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
-\item{node}{a value that may or may not match a node ID in the graph.}
+\item{node}{a value that may or may not match a node
+ID in the graph.}
 }
 \value{
 a logical value.
 }
 \description{
-From a graph object of class \code{dgr_graph}, determine
-whether a specified node is present.
+From a graph object of class
+\code{dgr_graph}, determine whether a specified node
+is present.
 }
 \examples{
 \dontrun{
-# Before finding out whether a particular node is present,
-# create a simple graph
+# Create a node data frame
 nodes <-
-  create_nodes(nodes = LETTERS,
-               label = TRUE,
-               type = c(rep("a_to_g", 7),
-                        rep("h_to_p", 9),
-                        rep("q_to_x", 8),
-                        rep("y_and_z",2)))
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = "letter")
 
+# Create an edge data frame
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               label = "edge",
-               rel = "letter_to_letter")
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    rel = "letter_to_letter")
 
+# Create a graph
 graph <-
   create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = neato",
-               node_attrs = c("fontname = Helvetica",
-                              "shape = circle"))
+               edges_df = edges)
 
-# Verify that node with ID 'a' is not in graph
+# Verify that node with ID `a` is not in graph
 node_present(graph, "a")
 #> FALSE
 
-# Is node with ID 'A' in the graph?
+# Is node with ID `A` in the graph?
 node_present(graph, "A")
 #> TRUE
 
 # Are all node ID values from the LETTERS vector
 in the graph?
-all(sapply(LETTERS, function(x) node_present(graph, x)))
+all(sapply(LETTERS,
+      function(x) node_present(graph, x)))
 #> TRUE
 }
 }

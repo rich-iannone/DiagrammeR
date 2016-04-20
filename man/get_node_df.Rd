@@ -7,14 +7,15 @@
 get_node_df(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 }
 \value{
 a node data frame.
 }
 \description{
-From a graph, obtain a node data frame with all current
-node attributes.
+From a graph, obtain a node data frame
+with all current node attributes.
 }
 

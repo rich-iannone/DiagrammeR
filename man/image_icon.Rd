@@ -10,6 +10,7 @@ image_icon(icon_name)
 \item{icon_name}{the name of the FontAwesome icon.}
 }
 \description{
-Create a data frame with image icons and their web addresses.
+Create a data frame with image icons
+and their web addresses.
 }
 

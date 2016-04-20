@@ -7,25 +7,31 @@
 is_graph_directed(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 }
 \value{
 a logical value.
 }
 \description{
-Determines whether a graph is set to be directed or not and
-returns a logical value to that effect.
+Determines whether a graph is set to be
+directed or not and returns a logical value to that
+effect.
 }
 \examples{
 \dontrun{
-# Create a graph with nodes and edges
+# Create a node data frame
 nodes <-
-  create_nodes(nodes = c("a", "b", "c", "d"))
+  create_nodes(
+    nodes = c("a", "b", "c", "d"))
 
+# Create an edge data frame
 edges <-
-  create_edges(from = c("a", "b", "c"),
-               to = c("d", "c", "a"))
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"))
 
+# Create a graph
 graph <-
   create_graph(nodes_df = nodes,
                edges_df = edges)
