@@ -7,39 +7,41 @@
 node_info(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 }
 \value{
-a data frame containing information specific to each node within
-the graph.
+a data frame containing information specific
+to each node within the graph.
 }
 \description{
-Obtain a data frame with detailed information on nodes and
-their interrelationships within a graph.
+Obtain a data frame with detailed
+information on nodes and their interrelationships
+within a graph.
 }
 \examples{
 \dontrun{
-# Create a simple graph and get node information from it
+# Create a node data frame
 nodes <-
-  create_nodes(nodes = LETTERS,
-               label = TRUE,
-               type = c(rep("a_to_g", 7),
-                        rep("h_to_p", 9),
-                        rep("q_to_x", 8),
-                        rep("y_and_z",2)))
+  create_nodes(
+    nodes = LETTERS,
+    label = TRUE,
+    type = c(rep("a_to_g", 7),
+             rep("h_to_p", 9),
+             rep("q_to_x", 8),
+             rep("y_and_z",2)))
 
+# Create an edge data frame
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               label = "edge",
-               rel = "letter_to_letter")
+  create_edges(
+    from = sample(LETTERS, replace = TRUE),
+    to = sample(LETTERS, replace = TRUE),
+    rel = "letter_to_letter")
 
+# Create a graph
 graph <-
   create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = neato",
-               node_attrs = c("fontname = Helvetica",
-                              "shape = circle"))
+               edges_df = edges)
 
 node_info(graph)
 #>    node label    type degree indegree outdegree loops
@@ -52,11 +54,12 @@ node_info(graph)
 
 # Import a large graph
 power_grid <-
-import_graph(system.file("examples/power_grid.graphml",
-                         package = "DiagrammeR"))
+  import_graph(
+    system.file("examples/power_grid.graphml",
+                package = "DiagrammeR"))
 
-# Use dplyr::filter to determine which nodes are highly
-# connected in this graph
+# Use `dplyr::filter` to determine which nodes are
+# highly connected in this graph
 library(dplyr)
 
 high_connect_nodes <-
