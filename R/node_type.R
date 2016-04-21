@@ -22,6 +22,63 @@
 #' supplied when either adding or updating a node type
 #' definition.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a node data frame
+#' nodes <-
+#'   create_nodes(
+#'     nodes = 1:5,
+#'     type = c("a", "b", "c", "a", "c"))
+#'
+#' # Create an edge data frame
+#' edges <-
+#'   create_edges(
+#'     from = c(1, 3, 5, 2, 4),
+#'     to = c(2, 2, 4, 4, 3))
+#'
+#' # Create a graph
+#' graph <-
+#'   create_graph(nodes_df = nodes,
+#'                edges_df = edges)
+#'
+#' # Read the node `type` for node `1`
+#' graph %>%
+#'   node_type(1)
+#' #> [1] "a"
+#'
+#' # Remove the `type` value entirely from
+#' # node `1`
+#' graph %<>%
+#'   node_type(1, "delete")
+#'
+#' # Check that node `1` no longer has a
+#' # `type` assignment
+#' graph %>%
+#'   node_type(1, "check")
+#' #> [1] FALSE
+#'
+#' # Add the `type` value "b" to node `1`
+#' graph %<>%
+#'   node_type(1, "add", "b")
+#'
+#' # Read the node `type` for node `1`
+#' graph %>%
+#'   node_type(1)
+#' #> [1] "b"
+#'
+#' # Perform an in-place update of the `type`
+#' # value for node `1` ("b" to "a")
+#' graph %<>%
+#'   node_type(1, "update", "a")
+#'
+#' # Read the node `type` for node `1` to ensure
+#' # that the change was made
+#' graph %>%
+#'   node_type(1)
+#' #> [1] "a"
+#' }
 #' @export node_type
 
 node_type <- function(graph,
