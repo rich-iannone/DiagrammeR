@@ -58,39 +58,32 @@ select_nodes_by_degree <- function(graph,
   }
 
   if (is.null(node_attr)) {
-
     nodes_selected <- nodes_df$nodes
-
     if (!is.null(nodes)) {
-
       if (any(!(nodes %in% nodes_selected))) {
         stop("One of more of the nodes specified are not available in the graph.")
       }
-
       nodes_selected <- nodes
     }
   }
 
   if (!is.null(node_attr)) {
-
-    # Filter nodes_df by node ID values in 'nodes'
+    # Filter nodes_df by node ID values in `nodes`
     if (!is.null(nodes)) {
-
       if (any(!(nodes %in% nodes_df$nodes))) {
         stop("One of more of the nodes specified are not available in the graph.")
       }
-
       nodes_df <- nodes_df[which(nodes_df$nodes %in% nodes),]
     }
 
-    # Determine the column number for which the 'node_attr' is available
+    # Determine the column number for which the
+    # `node_attr` is available
     column_number <-
       which(colnames(nodes_df) %in% node_attr)
 
-    # If a search term provided, filter using a logical expression
-    # or a regex match
+    # If a search term provided, filter using a logical
+    # expression or a regex match
     if (!is.null(search)) {
-
       if (grepl("^>.*", search) | grepl("^<.*", search) |
           grepl("^==.*", search) | grepl("^!=.*", search)) {
         logical_expression <- TRUE } else {
@@ -99,31 +92,26 @@ select_nodes_by_degree <- function(graph,
 
       # Filter using a logical expression
       if (logical_expression) {
-
         if (grepl("^>.*", search)) {
           rows_where_true_le <-
             which(nodes_df[,column_number] >
                     as.numeric(gsub(">(.*)", "\\1", search)))
         }
-
         if (grepl("^<.*", search)) {
           rows_where_true_le <-
             which(nodes_df[,column_number] <
                     as.numeric(gsub("<(.*)", "\\1", search)))
         }
-
         if (grepl("^==.*", search)) {
           rows_where_true_le <-
             which(nodes_df[,column_number] ==
                     as.numeric(gsub("==(.*)", "\\1", search)))
         }
-
         if (grepl("^!=.*", search)) {
           rows_where_true_le <-
             which(nodes_df[,column_number] !=
                     as.numeric(gsub("!=(.*)", "\\1", search)))
         }
-
         nodes_selected <- nodes_df[rows_where_true_le, 1]
       }
 
@@ -139,8 +127,10 @@ select_nodes_by_degree <- function(graph,
   }
 
   # Filter node ID values by degree type and degree values
-  if (grepl("^>.*", degree_values) | grepl("^<.*", degree_values) |
-      grepl("^==.*", degree_values) | grepl("^!=.*", degree_values)) {
+  if (grepl("^>.*", degree_values) |
+      grepl("^<.*", degree_values) |
+      grepl("^==.*", degree_values) |
+      grepl("^!=.*", degree_values)) {
     logical_expression <- TRUE } else {
       logical_expression <- FALSE
     }
@@ -151,23 +141,29 @@ select_nodes_by_degree <- function(graph,
 
       if (degree_type == "both" | degree_type == "degree") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 4] >
-                                 as.numeric(gsub(">(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 4] >
+                as.numeric(gsub(">(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "in") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 5] >
-                                 as.numeric(gsub(">(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 5] >
+                as.numeric(gsub(">(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "out") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 6] >
-                                 as.numeric(gsub(">(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 6] >
+                as.numeric(gsub(">(.*)", "\\1", degree_values))),1]
       }
     }
 
@@ -175,23 +171,29 @@ select_nodes_by_degree <- function(graph,
 
       if (degree_type == "both" | degree_type == "degree") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 4] <
-                                 as.numeric(gsub("<(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 4] <
+                as.numeric(gsub("<(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "in") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 5] <
-                                 as.numeric(gsub("<(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 5] <
+                as.numeric(gsub("<(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "out") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 6] <
-                                 as.numeric(gsub("<(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 6] <
+                as.numeric(gsub("<(.*)", "\\1", degree_values))),1]
       }
     }
 
@@ -199,23 +201,29 @@ select_nodes_by_degree <- function(graph,
 
       if (degree_type == "both" | degree_type == "degree") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 4] ==
-                                 as.numeric(gsub("==(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 4] ==
+                as.numeric(gsub("==(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "in") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 5] ==
-                                 as.numeric(gsub("==(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 5] ==
+                as.numeric(gsub("==(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "out") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 6] ==
-                                 as.numeric(gsub("==(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 6] ==
+                as.numeric(gsub("==(.*)", "\\1", degree_values))),1]
       }
     }
 
@@ -223,48 +231,59 @@ select_nodes_by_degree <- function(graph,
 
       if (degree_type == "both" | degree_type == "degree") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 4] !=
-                                 as.numeric(gsub("!=(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 4] !=
+                as.numeric(gsub("!=(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "in") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 5] !=
-                                 as.numeric(gsub("!=(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 5] !=
+                as.numeric(gsub("!=(.*)", "\\1", degree_values))),1]
       }
 
       if (degree_type == "out") {
         nodes_selected <-
-          node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                          nodes_selected), 6] !=
-                                 as.numeric(gsub("!=(.*)", "\\1", degree_values))),1]
+          node_info(graph)[
+            which(node_info(graph)[
+              which(node_info(graph)[,1] %in%
+                      nodes_selected), 6] !=
+                as.numeric(gsub("!=(.*)", "\\1", degree_values))),1]
       }
     }
   }
 
   if (logical_expression == FALSE) {
-
     if (degree_type == "both" | degree_type == "degree") {
       nodes_selected <-
-        node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                        nodes_selected), 4] ==
-                                 as.numeric(degree_values)),1]
+        node_info(graph)[
+          which(node_info(graph)[
+            which(node_info(graph)[,1] %in%
+                    nodes_selected), 4] ==
+              as.numeric(degree_values)),1]
     }
 
     if (degree_type == "in") {
       nodes_selected <-
-        node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                        nodes_selected), 5] ==
-                                 as.numeric(degree_values)),1]
+        node_info(graph)[
+          which(node_info(graph)[
+            which(node_info(graph)[,1] %in%
+                    nodes_selected), 5] ==
+              as.numeric(degree_values)),1]
     }
 
     if (degree_type == "out") {
       nodes_selected <-
-        node_info(graph)[which(node_info(graph)[which(node_info(graph)[,1] %in%
-                                                        nodes_selected), 6] ==
-                                 as.numeric(degree_values)),1]
+        node_info(graph)[
+          which(node_info(graph)[
+            which(node_info(graph)[,1] %in%
+                    nodes_selected), 6] ==
+              as.numeric(degree_values)),1]
     }
   }
 
@@ -293,6 +312,5 @@ select_nodes_by_degree <- function(graph,
   }
 
   graph$selection$nodes <- nodes_combined
-
   return(graph)
 }
