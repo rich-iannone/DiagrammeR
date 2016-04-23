@@ -2,21 +2,52 @@
 % Please edit documentation in R/select_last_edge.R
 \name{select_last_edge}
 \alias{select_last_edge}
-\title{Select last edge in a series of edges defined in a graph}
+\title{Select last edge in a series of edges defined in a
+graph}
 \usage{
 select_last_edge(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Select the last edge from a graph object of class
-\code{dgr_graph}. Strictly, this is the edge definition that
-encompasses the last record of the graph's edge data frame. In
-practice, this will typically be the last edge created.
+Select the last edge from a graph
+object of class \code{dgr_graph}. Strictly, this is
+the edge definition that encompasses the last record
+of the graph's edge data frame. In practice, this
+will typically be the last edge created.
+}
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create an empty graph
+graph <- create_graph()
+
+# Add three nodes to the graph
+graph \%<>\% add_n_nodes(3)
+
+# Add two edges to the graph
+graph \%<>\%
+  add_edge(1, 2) \%>\%
+  add_edge(2, 3)
+
+# Select the last edge added
+graph \%<>\% select_last_edge
+
+# Get the current selection
+graph \%>\% get_selection
+#> $edges
+#> $edges$from
+#> [1] "2"
+#>
+#> $edges$to
+#> [1] "3"
+}
 }
 
