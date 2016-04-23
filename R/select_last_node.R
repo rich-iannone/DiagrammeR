@@ -28,9 +28,9 @@
 #' }
 #' @export select_last_node
 
-select_last_node <- function(graph){
+select_last_node <- function(graph) {
 
-  if (is_graph_empty(graph)){
+  if (is_graph_empty(graph)) {
     stop("The graph is empty so no selections can be made.")
   }
 
