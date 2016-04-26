@@ -7,24 +7,27 @@
 select_edges_by_node_id(graph, nodes, set_op = "union")
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
-\item{nodes}{a vector of node IDs for the selection of nodes present
-in the graph.}
+\item{nodes}{a vector of node IDs for the selection
+of nodes present in the graph.}
 
-\item{set_op}{the set operation to perform upon consecutive selections
-of graph nodes. This can either be as a \code{union} (the default), as an
-\code{intersection}, or, as a \code{difference} on the previous selection,
-if it exists.}
+\item{set_op}{the set operation to perform upon
+consecutive selections of graph nodes. This can
+either be as a \code{union} (the default), as an
+\code{intersection}, or, as a \code{difference} on
+the previous selection, if it exists.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
 Select edges in a graph object of class
-\code{dgr_graph} using node ID values. If nodes have IDs that are
-monotonically increasing integer values, then numeric ranges can
-be used for the selection.
+\code{dgr_graph} using node ID values. If nodes have
+IDs that are monotonically increasing integer
+values, then numeric ranges can be used for the
+selection.
 }
 
