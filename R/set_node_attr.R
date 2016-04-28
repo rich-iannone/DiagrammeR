@@ -65,76 +65,87 @@
 set_node_attr <- function(x,
                           nodes = NULL,
                           node_attr,
-                          values){
+                          values) {
 
-  if (node_attr == "nodes"){
+  if (node_attr == "nodes") {
     stop("You cannot change the node ID.")
   }
 
-  if (class(x) == "dgr_graph"){
-
+  if (class(x) == "dgr_graph") {
     object_type <- "dgr_graph"
-
     nodes_df <- x$nodes_df
   }
 
-  if (inherits(x, "data.frame")){
+  if (inherits(x, "data.frame")) {
 
-    if ("nodes" %in% colnames(x)){
-
+    if ("nodes" %in% colnames(x)) {
       object_type <- "node_df"
       nodes_df <- x
     }
   }
 
   if (length(values) != 1 &
-      length(values) != nrow(nodes_df)){
+      length(values) != nrow(nodes_df)) {
     stop("The length of values provided must either be 1 or that of the number of rows in the ndf.")
   }
 
-  if (length(values) == 1){
+  if (length(values) == 1) {
 
-    if (node_attr %in% colnames(nodes_df)){
+    if (node_attr %in% colnames(nodes_df)) {
 
-      if (is.null(nodes)){
-        nodes_df[, which(colnames(nodes_df) %in% node_attr)] <- values
+      if (is.null(nodes)) {
+        nodes_df[, which(colnames(nodes_df) %in%
+                           node_attr)] <- values
       } else {
         nodes_df[which(nodes_df$nodes %in% nodes),
-                 which(colnames(nodes_df) %in% node_attr)] <- values
+                 which(colnames(nodes_df) %in%
+                         node_attr)] <- values
       }
     }
 
-    if (!(node_attr %in% colnames(nodes_df))){
-      nodes_df <- cbind(nodes_df, rep("", nrow(nodes_df)))
-      nodes_df[, ncol(nodes_df)] <- as.character(nodes_df[,ncol(nodes_df)])
+    if (!(node_attr %in% colnames(nodes_df))) {
+      nodes_df <-
+        cbind(nodes_df, rep("", nrow(nodes_df)))
+
+      nodes_df[, ncol(nodes_df)] <-
+        as.character(nodes_df[,ncol(nodes_df)])
+
       colnames(nodes_df)[ncol(nodes_df)] <- node_attr
 
-      if (is.null(nodes)){
+      if (is.null(nodes)) {
         nodes_df[, ncol(nodes_df)] <- values
       } else {
-        nodes_df[which(nodes_df$nodes %in% nodes),ncol(nodes_df)] <- values
+        nodes_df[which(nodes_df$nodes %in%
+                         nodes), ncol(nodes_df)] <- values
       }
     }
   }
 
-  if (length(values) == nrow(nodes_df)){
+  if (length(values) == nrow(nodes_df)) {
 
-    if (length(values) == nrow(nodes_df)){
+    if (length(values) == nrow(nodes_df)) {
 
-      if (node_attr %in% colnames(nodes_df)){
-        nodes_df[, which(colnames(nodes_df) %in% node_attr)] <- values
+      if (node_attr %in% colnames(nodes_df)) {
+        nodes_df[, which(colnames(nodes_df) %in%
+                           node_attr)] <- values
       }
 
-      if (!(node_attr %in% colnames(nodes_df))){
-        nodes_df <- cbind(nodes_df, rep("", nrow(nodes_df)))
-        nodes_df[, ncol(nodes_df)] <- as.character(nodes_df[,ncol(nodes_df)])
-        colnames(nodes_df)[ncol(nodes_df)] <- node_attr
+      if (!(node_attr %in% colnames(nodes_df))) {
+        nodes_df <-
+          cbind(nodes_df, rep("", nrow(nodes_df)))
+
+        nodes_df[, ncol(nodes_df)] <-
+          as.character(nodes_df[,ncol(nodes_df)])
+
+        colnames(nodes_df)[ncol(nodes_df)] <-
+          node_attr
+
         nodes_df[, ncol(nodes_df)] <- values
       }
     }
   }
 
-  if (object_type == "dgr_graph"){
+  if (object_type == "dgr_graph") {
 
     # Create new graph object
     dgr_graph <-
@@ -153,7 +164,7 @@ set_node_attr <- function(x,
     return(dgr_graph)
   }
 
-  if (object_type == "node_df"){
+  if (object_type == "node_df") {
     return(nodes_df)
   }
 }
