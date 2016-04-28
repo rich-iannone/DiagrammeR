@@ -7,6 +7,8 @@
 #' graphs within the supplied graph series.
 #' @examples
 #' \dontrun{
+#' library(magrittr)
+#'
 #' # Create three graphs
 #' graph_1 <-
 #'   create_graph() %>%
@@ -59,16 +61,22 @@ series_info <- function(graph_series) {
 
   series_properties[,1] <-
     as.numeric(series_properties[,1])
+
   series_properties[,2] <-
     as.character(series_properties[,2])
+
   series_properties[,3] <-
     as.character(series_properties[,3])
+
   series_properties[,4] <-
     as.character(series_properties[,4])
+
   series_properties[,5] <-
     as.numeric(series_properties[,5])
+
   series_properties[,6] <-
     as.numeric(series_properties[,6])
+
   series_properties[,7] <-
     as.logical(series_properties[,7])
 
