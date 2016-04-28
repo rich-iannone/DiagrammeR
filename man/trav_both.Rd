@@ -2,30 +2,36 @@
 % Please edit documentation in R/trav_both.R
 \name{trav_both}
 \alias{trav_both}
-\title{Traverse from one or more selected nodes to predecessors and successors,
-irrespective of edges, creating a new node selection}
+\title{Traverse from one or more selected nodes to
+predecessors and successors, irrespective of edges,
+creating a new node selection}
 \usage{
 trav_both(graph, node_attr = NULL, match = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
-\item{node_attr}{an optional character vector of node attribute values for
-filtering the node ID values returned.}
+\item{node_attr}{an optional character vector of
+node attribute values for filtering the node ID
+values returned.}
 
-\item{match}{an option to provide a logical expression with a comparison
-operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
-for numerical filtering, or, a character string for filtering the edges
-returned through string matching.}
+\item{match}{an option to provide a logical
+expression with a comparison operator (\code{>},
+\code{<}, \code{==}, or \code{!=}) followed by a
+number for numerical filtering, or, a character
+string for filtering the edges returned through
+string matching.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph} move toward both
-predecessor and successor nodes from one or more nodes present in a
-selection. The current nodes in the selection are replaced with those nodes
-traversed to.
+From a graph object of class
+\code{dgr_graph} move toward both predecessor and
+successor nodes from one or more nodes present in a
+selection. The current nodes in the selection are
+replaced with those nodes traversed to.
 }
 

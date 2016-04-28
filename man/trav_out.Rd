@@ -2,29 +2,35 @@
 % Please edit documentation in R/trav_out.R
 \name{trav_out}
 \alias{trav_out}
-\title{Traverse outward from a selected node, skipping over edges, and creating
-a new node selection}
+\title{Traverse outward from a selected node, skipping over
+edges, and creating a new node selection}
 \usage{
 trav_out(graph, node_attr = NULL, match = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
-\item{node_attr}{an optional character vector of node attribute values for
-filtering the node ID values returned.}
+\item{node_attr}{an optional character vector of
+node attribute values for filtering the node ID
+values returned.}
 
-\item{match}{an option to provide a logical expression with a comparison
-operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
-for numerical filtering, or, a character string for filtering the edges
-returned through string matching.}
+\item{match}{an option to provide a logical
+expression with a comparison operator (\code{>},
+\code{<}, \code{==}, or \code{!=}) followed by a
+number for numerical filtering, or, a character
+string for filtering the edges returned through
+string matching.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph} move outward
-from one or more nodes present in a selection to other nodes, replacing
-the current nodes in the selection with those nodes traversed to.
+From a graph object of class
+\code{dgr_graph} move outward from one or more nodes
+present in a selection to other nodes, replacing
+the current nodes in the selection with those nodes
+traversed to.
 }
 
