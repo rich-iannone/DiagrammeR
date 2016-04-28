@@ -22,9 +22,9 @@
 
 trav_in <- function(graph,
                     node_attr = NULL,
-                    match = NULL){
+                    match = NULL) {
 
-  if (is.null(graph$selection$nodes)){
+  if (is.null(graph$selection$nodes)) {
     stop("There is no selection of nodes available.")
   }
 
@@ -32,7 +32,7 @@ trav_in <- function(graph,
   selected_nodes <- get_selection(graph)$nodes
 
   # Get all paths leading inward from node in selection
-  for (i in 1:length(selected_nodes)){
+  for (i in 1:length(selected_nodes)) {
     if (i == 1) predecessors <- vector(mode = "character")
 
     if (!is.na(
@@ -43,7 +43,7 @@ trav_in <- function(graph,
             graph = graph, selected_nodes[i]))
     }
 
-    if (i == length(selected_nodes)){
+    if (i == length(selected_nodes)) {
       predecessors <- unique(predecessors)
     }
   }
@@ -51,62 +51,62 @@ trav_in <- function(graph,
   # if no predecessors returned, then there are no
   # paths outward, so return the same graph object
   # without modifying the node selection
-  if (length(predecessors) == 0){
+  if (length(predecessors) == 0) {
     return(graph)
   }
 
   # If a match term provided, filter using a logical
   # expression or a regex match
-  if (!is.null(match)){
+  if (!is.null(match)) {
 
     if (grepl("^>.*", match) | grepl("^<.*", match) |
-        grepl("^==.*", match) | grepl("^!=.*", match)){
+        grepl("^==.*", match) | grepl("^!=.*", match)) {
       logical_expression <- TRUE } else {
         logical_expression <- FALSE
       }
 
-    if (logical_expression){
+    if (logical_expression) {
 
-      for (i in 1:length(predecessors)){
+      for (i in 1:length(predecessors)) {
 
-        if (i == 1){
+        if (i == 1) {
           to_nodes <- vector(mode = "character")
 
           column_number <-
             which(colnames(graph$nodes_df) %in% node_attr)
         }
 
-        if (grepl("^>.*", match)){
+        if (grepl("^>.*", match)) {
           if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
                                                   predecessors[i]), column_number]) >
-              as.numeric(gsub(">(.*)", "\\1", match))){
+              as.numeric(gsub(">(.*)", "\\1", match))) {
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
         }
 
-        if (grepl("^<.*", match)){
+        if (grepl("^<.*", match)) {
           if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
                                                   predecessors[i]), column_number]) <
-              as.numeric(gsub("<(.*)", "\\1", match))){
+              as.numeric(gsub("<(.*)", "\\1", match))) {
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
         }
 
-        if (grepl("^==.*", match)){
+        if (grepl("^==.*", match)) {
           if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
                                                   predecessors[i]), column_number]) ==
-              as.numeric(gsub("==(.*)", "\\1", match))){
+              as.numeric(gsub("==(.*)", "\\1", match))) {
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
         }
 
-        if (grepl("^!=.*", match)){
+        if (grepl("^!=.*", match)) {
           if (as.numeric(get_node_df(graph)[which(get_node_df(graph)[,1] %in%
                                                   predecessors[i]), column_number]) !=
-              as.numeric(gsub("!=(.*)", "\\1", match))){
+              as.numeric(gsub("!=(.*)", "\\1", match))) {
 
             to_nodes <- c(to_nodes, predecessors[i])
           }
@@ -115,21 +115,21 @@ trav_in <- function(graph,
     }
 
     # Filter using a `match` value
-    if (logical_expression == FALSE){
+    if (logical_expression == FALSE) {
 
-      if (is.numeric(match)){
+      if (is.numeric(match)) {
         match <- as.character(match)
       }
 
-      for (i in 1:length(predecessors)){
-        if (i == 1){
+      for (i in 1:length(predecessors)) {
+        if (i == 1) {
           to_nodes <- vector(mode = "character")
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
         if (match ==
             get_node_df(graph)[which(get_node_df(graph)[,1] %in%
-                                     predecessors[i]), column_number]){
+                                     predecessors[i]), column_number]) {
 
           to_nodes <- c(to_nodes, predecessors[i])
         }
@@ -139,7 +139,7 @@ trav_in <- function(graph,
   }
 
   # Update node selection in graph
-  if (length(predecessors) > 0){
+  if (length(predecessors) > 0) {
     graph$selection$nodes <- predecessors
     return(graph)
   } else {
