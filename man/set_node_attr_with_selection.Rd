@@ -7,19 +7,43 @@
 set_node_attr_with_selection(graph, node_attr, value)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
 \item{node_attr}{the name of the attribute to set.}
 
-\item{value}{the value to be set for the chosen attribute for the
-chosen nodes.}
+\item{value}{the value to be set for the chosen
+attribute for the chosen nodes.}
 }
 \value{
-either a graph object of class \code{dgr_graph}.
+either a graph object of class
+\code{dgr_graph}.
 }
 \description{
-From a graph object of class \code{dgr_graph}, set node
-attribute properties for nodes available in a selection.
+From a graph object of class
+\code{dgr_graph}, set node attribute properties for
+nodes available in a selection.
+}
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create a simple graph, select the last node
+# added, and set a value for the `type` attribute
+graph <-
+  create_graph() \%>\%
+  add_node \%>\%
+  add_node \%>\%
+  select_last_node \%>\%
+  set_node_attr_with_selection(
+    node_attr = "type", value = "a") \%>\%
+  clear_selection
+
+graph \%>\% get_node_df
+#>   nodes type label
+#> 1     1          1
+#> 2     2    a     2
+}
 }
 
