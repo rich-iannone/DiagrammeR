@@ -18,7 +18,34 @@
 #' The \code{graphframes} option modifies column names
 #' to match those required by the Spark GraphFrames
 #' package.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
 #'
+#' # Create a node data frame (ndf)
+#' nodes <-
+#'   create_nodes(
+#'     nodes = c("a", "b", "c", "d"),
+#'     type = c("A", "A", "Z", "Z"),
+#'     label = TRUE,
+#'     value = c(3.5, 2.6, 9.4, 2.7))
+#'
+#' # Create an edge data frame (edf)
+#' edges <-
+#'   create_edges(
+#'     from = c("a", "b", "c"),
+#'     to = c("d", "c", "a"),
+#'     rel = c("A", "Z", "A"))
+#'
+#' # Create a graph with the ndf and edf
+#' graph <-
+#'   create_graph(nodes_df = nodes,
+#'                edges_df = edges)
+#'
+#' # Create separate `nodes.csv` and `edges.csv`
+#' # files in the working directory
+#' graph %>% export_csv
+#' }
 #' @export export_csv
 
 export_csv <- function(graph,
