@@ -8,32 +8,125 @@ select_edges(graph, edge_attr = NULL, search = NULL, set_op = "union",
   from = NULL, to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
-\item{edge_attr}{an optional character vector of edge attribute values for
-filtering the edges returned.}
+\item{edge_attr}{an optional character vector of
+edge attribute values for filtering the edges
+returned.}
 
-\item{search}{an option to provide a logical expression with a comparison
-operator (\code{>}, \code{<}, \code{==}, or \code{!=}) followed by a number
-for numerical filtering, or, a regular expression for filtering the nodes
-returned through string matching.}
+\item{search}{an option to provide a logical
+expression with a comparison operator (\code{>},
+\code{<}, \code{==}, or \code{!=}) followed by a
+number for numerical filtering, or, a regular
+expression for filtering the nodes returned through
+string matching.}
 
-\item{set_op}{the set operation to perform upon consecutive selections
-of graph edges This can either be as a \code{union} (the default), as an
-\code{intersection}, or, as a \code{difference} on the previous selection,
-if it exists.}
+\item{set_op}{the set operation to perform upon
+consecutive selections of graph edges This can
+either be as a \code{union} (the default), as an
+\code{intersection}, or, as a \code{difference} on
+the previous selection, if it exists.}
 
-\item{from}{an optional vector of node IDs from which the edge is
-outgoing for filtering the list of edges present in the graph.}
+\item{from}{an optional vector of node IDs from
+which the edge is outgoing for filtering the list of
+edges present in the graph.}
 
-\item{to}{an optional vector of node IDs to which the edge is
-incoming for filtering the list of edges present in the graph.}
+\item{to}{an optional vector of node IDs to which
+the edge is incoming for filtering the list of
+edges present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Select edges from a graph object of class \code{dgr_graph}.
+Select edges from a graph object of
+class \code{dgr_graph}.
+}
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create a node data frame (ndf)
+nodes <-
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    type = "letter",
+    label = TRUE,
+    value = c(3.5, 2.6, 9.4, 2.7))
+
+# Create an edge data frame (edf)
+edges <-
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = c("A", "Z", "A"),
+    value = c(6.4, 2.9, 5.0))
+
+# Create a graph with the ndf and edf
+graph <-
+  create_graph(nodes_df = nodes,
+               edges_df = edges)
+
+# Explicitly select the edge `a` -> `d`
+graph <-
+  graph \%>\%
+  select_edges(
+    from = "a",
+    to = "d")
+
+# Verify that an edge selection has been made
+# using the `get_selection()` function
+get_selection(graph)
+#> $edges
+#> $edges$from
+#> [1] "b"
+#>
+#> $edges$to
+#> [1] "c"
+
+# Select edges based on the relationship label
+# being `Z`
+graph <-
+  graph \%>\%
+  clear_selection \%>\%
+  select_edges(
+    edge_attr = "rel",
+    search = "Z")
+
+# Verify that an edge selection has been made, and
+# recall that the `b` -> `c` edge uniquely has the
+# `Z` relationship label
+get_selection(graph)
+#> $edges
+#> $edges$from
+#> [1] "b"
+#>
+#> $edges$to
+#> [1] "c"
+
+# Select edges based on the edge value attribute
+# being greater than 3.0 (first clearing the current
+# selection of edges)
+graph <-
+  graph \%>\%
+  clear_selection \%>\%
+  select_edges(
+    edge_attr = "value",
+    search = ">3.0")
+
+# Verify that the correct edge selection has been
+# made; in this case, edges `a` -> `d` and
+# `c` -> `a` have values for `value` greater than
+# 3.0
+get_selection(graph)
+#> $edges
+#> $edges$from
+#> [1] "a" "c"
+#>
+#> $edges$to
+#> [1] "d" "a"
+}
 }
 
