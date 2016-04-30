@@ -25,7 +25,7 @@ a graph object of class \code{dgr_graph}.
 \description{
 Set global attributes of a specific type (either
 \code{graph_attrs}, \code{node_attrs}, or \code{edge_attrs} for a graph
-object of class \code{dgr_graph}.
+object of class \code{dgr_graph}).
 }
 \examples{
 \dontrun{
