@@ -1,7 +1,7 @@
 #' Set global graph attributes
 #' @description Set global attributes of a specific type (either
 #' \code{graph_attrs}, \code{node_attrs}, or \code{edge_attrs} for a graph
-#' object of class \code{dgr_graph}.
+#' object of class \code{dgr_graph}).
 #' @param graph a graph object of class \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @param type the specific type of global graph attribute to set. The type is
