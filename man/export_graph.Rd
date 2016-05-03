@@ -27,4 +27,39 @@ for default.}
 Export a graph to a variety of file
 formats such as PNG, PDF, SVG, and PostScript.
 }
+\examples{
+\dontrun{
+library(magrittr)
+library(DiagrammeRsvg)
+
+# Create a node data frame (ndf)
+nodes <-
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    type = c("A", "A", "Z", "Z"),
+    label = TRUE,
+    value = c(3.5, 2.6, 9.4, 2.7))
+
+# Create an edge data frame (edf)
+edges <-
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = c("A", "Z", "A"))
+
+# Create a graph with the ndf and edf
+graph <-
+  create_graph(nodes_df = nodes,
+               edges_df = edges)
+
+# Create a PDF file for the graph (`graph.pdf`)
+graph \%>\% export_graph("graph.pdf")
+
+# Create a PNG file for the graph (`mypng`)
+graph \%>\%
+export_graph(
+  file_name = "mypng",
+  file_type = "PNG")
+}
+}
 
