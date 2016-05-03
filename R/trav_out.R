@@ -18,6 +18,93 @@
 #' string for filtering the edges returned through
 #' string matching.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a graph
+#' graph <-
+#' create_graph() %>%
+#'   add_node %>% add_node %>%
+#'   add_node %>% add_node %>%
+#'   add_edge(1, 2) %>%
+#'   add_edge(2, 3) %>%
+#'   add_edge(3, 4)
+#'
+#' # Starting at node `1`, traverse to node `4`,
+#' # storing the traversed location as a selection in
+#' # the graph object
+#' graph <-
+#'   graph %>%
+#'   select_nodes_by_id(1) %>%
+#'   trav_out %>% trav_out %>% trav_out
+#'
+#' # Verify that the selection has been made by using
+#' # the `get_selection()` function
+#' get_selection(graph)
+#' #> $nodes
+#' #> [1] "4"
+#'
+#' # Modify the graph by adding `type` values for
+#' # each of the nodes (recall that node `4` is now
+#' # selected since the traversal ended at that node)
+#' graph <-
+#'   graph %>%
+#'   set_node_attr_with_selection(
+#'     node_attr = "type", value = "z") %>%
+#'   clear_selection %>%
+#'   select_nodes_by_id(1:3) %>%
+#'   set_node_attr_with_selection(
+#'     node_attr = "type", value = "a") %>%
+#'   clear_selection
+#'
+#' # When traversing outward from node `3` to `4`,
+#' # you can set a condition that determines whether
+#' # such traversal is permitted; in this case the
+#' # condition is to traverse only to nodes where
+#' # the type value is set to `a` (but node `4` has
+#' # its `type` set to `z`, so, no traversal)
+#' graph %>%
+#'   select_nodes_by_id(3) %>%
+#'   trav_out("type", "a") %>%
+#'   get_selection
+#' #> $nodes
+#' #> [1] "3"
+#'
+#' # Setting the condition to traverse only to nodes
+#' # where the type is `z` will result in a traversal
+#' graph %>%
+#'   select_nodes_by_id(3) %>%
+#'   trav_out("type", "z") %>%
+#'   get_selection
+#' #> $nodes
+#' #> [1] "4"
+#'
+#' # We can also set traversal conditions to satisfy
+#' # numeric comparisons... the graph will be first
+#' # modified
+#' graph <-
+#'   graph %>%
+#'   set_node_attr(1, "value", 3.4) %>%
+#'   set_node_attr(2, "value", 6.7) %>%
+#'   set_node_attr(3, "value", 9.1) %>%
+#'   set_node_attr(4, "value", 2.5)
+#'
+#' # Traverse from nodes `1` to `4`, setting the
+#' # condition that each node traversed to must have
+#' # a `value` greater than 3.0 (although 3 separate
+#' # traversals are intended, the last traversal does
+#' # not reach node `4` since its value is not
+#' # greater than 3.0)
+#' graph %>%
+#'   select_nodes_by_id(1) %>%
+#'   trav_out("value", ">3.0") %>%
+#'   trav_out("value", ">3.0") %>%
+#'   trav_out("value", ">3.0") %>%
+#'   get_selection
+#' #> $nodes
+#' #> [1] "3"
+#' }
 #' @export trav_out
 
 trav_out <- function(graph,
