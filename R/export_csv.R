@@ -73,8 +73,8 @@ export_csv <- function(graph,
     }
 
     # Modify column names for easier import into a
-    # Spark GraphFrame after using the `csvreader`
-    # package
+    # Spark GraphFrame using the `spark-csv` pkg with
+    # `sqlContext.read.format('com.databricks.spark.csv')`
     if (colnames_type == "graphframes") {
 
       # Modify column names in the ndf
