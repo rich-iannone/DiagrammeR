@@ -46,8 +46,7 @@
 #' #> [1] "1"
 #'
 #' # Modify the graph by adding `type` values for
-#' # each of the nodes (recall that node `4` is now
-#' # selected since the traversal ended at that node)
+#' # each of the nodes
 #' graph <-
 #'   graph %>%
 #'   select_nodes_by_id(4) %>%
