@@ -81,17 +81,15 @@ graph <-
 # you can set a condition that determines whether
 # such traversal is permitted; in this case the
 # condition is to traverse only to nodes where
-# the type value is set to `a` (but node `3` has
+# the type value is set to `a` (since node `3` has
 # its `type` set to `z`, so, a traversal to `1`
-# proceeds but there is no traversal to `3`
-# )
+# proceeds but there will be no traversal to `3`)
 graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_both("type", "a") \%>\%
   get_selection
 #> $nodes
 #> [1] "1"
-
 
 # We can also set traversal conditions to satisfy
 # numeric comparisons... the graph will be first
@@ -114,7 +112,7 @@ graph \%>\%
 #> [1] "3"
 
 # Changing the condition to traverse to values less
-# than 5.0 results in an alternate selection
+# than 5.0 results in an alternate node selection
 graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_both("value", "<5.0") \%>\%
