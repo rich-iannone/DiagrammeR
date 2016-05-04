@@ -130,7 +130,8 @@ trav_both <- function(graph,
       get_successors(graph, selected_nodes[i])[1])) {
       successors <-
         c(successors,
-          get_successors(graph = graph, selected_nodes[i]))
+          get_successors(graph = graph,
+                         selected_nodes[i]))
     }
 
     if (i == length(selected_nodes)) {
