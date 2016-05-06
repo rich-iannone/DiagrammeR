@@ -7,14 +7,16 @@
 withdraw_values(graph)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph} that is created
-using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 }
 \value{
 a vector of node or edge attribute values.
 }
 \description{
-Get the vector of node or edge attribute values stored
-in a graph object of class \code{dgr_graph}.
+Get the vector of node or edge
+attribute values stored in a graph object of class
+\code{dgr_graph}.
 }
 
