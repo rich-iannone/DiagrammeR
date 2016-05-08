@@ -19,6 +19,40 @@
 #' string for filtering the edges returned through
 #' string matching.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a simple graph
+#' graph <-
+#'  create_graph() %>%
+#'  add_node %>%
+#'  add_node %>%
+#'  add_node %>%
+#'  add_node %>%
+#'  add_edge(1, 2) %>%
+#'  add_edge(2, 3) %>%
+#'  add_edge(3, 4)
+#'
+#' # Traverse from nodes `1` to to `4` by, in an
+#' # alternating manner, moving from nodes onto edges,
+#' # from edges onto nodes
+#' graph <-
+#'   graph %>%
+#'   select_nodes_by_id(1) %>%
+#'   trav_out_edge %>%
+#'   trav_in_node %>%
+#'   trav_out_edge %>%
+#'   trav_in_node %>%
+#'   trav_out_edge %>%
+#'   trav_in_node
+#'
+#' # Verify that the selection has been made by using
+#' # the `get_selection()` function
+#' get_selection(graph)
+#' #> $nodes
+#' #> [1] "4"
+#' }
 #' @export trav_out_edge
 
 trav_out_edge <- function(graph,
