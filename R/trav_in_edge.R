@@ -52,6 +52,7 @@
 #' get_selection(graph)
 #' #> $nodes
 #' #> [1] "1"
+#' }
 #' @export trav_in_edge
 
 trav_in_edge <- function(graph,
