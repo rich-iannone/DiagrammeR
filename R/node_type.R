@@ -26,13 +26,13 @@
 #' \dontrun{
 #' library(magrittr)
 #'
-#' # Create a node data frame
+#' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
 #'     nodes = 1:5,
 #'     type = c("a", "b", "c", "a", "c"))
 #'
-#' # Create an edge data frame
+#' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
 #'     from = c(1, 3, 5, 2, 4),
