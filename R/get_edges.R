@@ -27,7 +27,7 @@
 #' depending on the value given to \code{return_type}.
 #' @examples
 #' \dontrun{
-#' # Before getting edges, create a simple graph
+#' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
 #'     nodes = c("a", "b", "c", "d"),
@@ -35,6 +35,7 @@
 #'     color = c("red", "green", "grey", "blue"),
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
+#' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
 #'     from = c("a", "b", "c"),
@@ -43,6 +44,7 @@
 #'     color = c("pink", "blue", "red"),
 #'     value = c(3.9, 2.5, 7.3))
 #'
+#' # Create a graph
 #' graph <-
 #'   create_graph(
 #'     nodes_df = nodes,
