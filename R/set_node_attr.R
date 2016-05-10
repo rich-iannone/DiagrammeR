@@ -15,7 +15,7 @@
 #' what type of object was supplied to \code{x}.
 #' @examples
 #' \dontrun{
-#' # Create a simple graph
+#' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
 #'     nodes = c("a", "b", "c", "d"),
@@ -23,12 +23,14 @@
 #'     label = TRUE,
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
+#' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
 #'     from = c("a", "b", "c"),
 #'     to = c("d", "c", "a"),
 #'     rel = "leading_to")
 #'
+#' # Create a graph
 #' graph <-
 #'   create_graph(
 #'     nodes_df = nodes,
