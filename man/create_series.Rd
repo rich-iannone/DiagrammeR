@@ -35,7 +35,7 @@ temporal one-dimensional array.
 \dontrun{
 library(magrittr)
 
-# Create three different graphs
+# Create three graphs
 graph_1 <-
   create_graph() \%>\%
   add_node("a") \%>\%
@@ -55,14 +55,17 @@ graph_3 <-
   add_node("e") \%>\%
   add_edge("e", "b")
 
-# Create an empty graph series
+# Create an empty graph series and add
+# the graphs
 series <-
-  create_series()
+  create_series() \%>\%
+  add_to_series(graph_1, .) \%>\%
+  add_to_series(graph_2, .) \%>\%
+  add_to_series(graph_3, .)
 
-# Add the graph objects to the graph series
-series <- graph_1 \%>\% add_to_series(series)
-series <- graph_2 \%>\% add_to_series(series)
-series <- graph_3 \%>\% add_to_series(series)
+# Count the number of graphs in the graph series
+graph_count(series)
+#> [1] 3
 }
 }
 

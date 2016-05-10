@@ -35,4 +35,51 @@ a graph object of class \code{dgr_graph}.
 Import a variety of graphs from
 different graph formats and create a graph object.
 }
+\examples{
+\dontrun{
+library(magrittr)
+
+# Import a GraphML graph file
+graphml_graph <-
+  import_graph(
+    system.file("examples/power_grid.graphml",
+                package = "DiagrammeR"))
+
+# Get a count of the graph's nodes
+graphml_graph \%>\% node_count
+#> [1] 4941
+
+# Get a count of the graph's edges
+graphml_graph \%>\% edge_count
+#> [1] 6594
+
+# Import an SIF graph file
+sif_graph <-
+  import_graph(
+    system.file("examples/Human_Interactome.sif",
+                package = "DiagrammeR"))
+
+# Get a count of the graph's nodes
+sif_graph \%>\% node_count
+#> [1] 8347
+
+# Get a count of the graph's edges
+sif_graph \%>\% edge_count
+#> [1] 61263
+
+# Import a GML graph file
+gml_graph <-
+  import_graph(
+    system.file("examples/karate.gml",
+                package = "DiagrammeR"))
+
+# Get a count of the graph's nodes
+gml_graph \%>\% node_count
+#> [1] 34
+
+# Get a count of the graph's edges
+gml_graph \%>\% edge_count
+#> [1] 78
+}
+}
 

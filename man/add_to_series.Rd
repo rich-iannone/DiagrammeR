@@ -24,10 +24,9 @@ a sequential or temporal one-dimensional array.
 }
 \examples{
 \dontrun{
-# Create three graphs and then create a graph
-# series with those new graph objects
 library(magrittr)
 
+# Create three graphs
 graph_1 <-
   create_graph() \%>\%
   add_node("a") \%>\%
@@ -47,14 +46,17 @@ graph_3 <-
   add_node("e") \%>\%
   add_edge("e", "b")
 
-# Create an empty graph series
+# Create an empty graph series and add
+# the graphs
 series <-
-  create_series(series_type = "sequential")
+  create_series() \%>\%
+  add_to_series(graph_1, .) \%>\%
+  add_to_series(graph_2, .) \%>\%
+  add_to_series(graph_3, .)
 
-# Add graphs to the graph series
-series <- graph_1 \%>\% add_to_series(series)
-series <- graph_2 \%>\% add_to_series(series)
-series <- graph_3 \%>\% add_to_series(series)
+# Count the number of graphs in the graph series
+graph_count(series)
+#> [1] 3
 }
 }
 

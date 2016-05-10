@@ -21,7 +21,7 @@ within a graph.
 }
 \examples{
 \dontrun{
-# Create a node data frame
+# Create a node data frame (ndf)
 nodes <-
   create_nodes(
     nodes = LETTERS,
@@ -31,7 +31,7 @@ nodes <-
              rep("q_to_x", 8),
              rep("y_and_z",2)))
 
-# Create an edge data frame
+# Create an edge data frame (edf)
 edges <-
   create_edges(
     from = sample(LETTERS, replace = TRUE),
@@ -43,6 +43,7 @@ graph <-
   create_graph(nodes_df = nodes,
                edges_df = edges)
 
+# Get information on the graph's nodes
 node_info(graph)
 #>    node label    type degree indegree outdegree loops
 #> 1     A     A  a_to_g      2        0         2     0

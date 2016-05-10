@@ -77,22 +77,13 @@ graph_time_3 <-
   add_edge("x", "y") \%>\%
   add_edge("y", "z")
 
-# Create an empty graph series
+# Create an empty graph series and add
+# the graphs
 series_temporal <-
-  create_series(series_type = "temporal")
-
-# Add graphs to the graph series
-series_temporal <-
-  graph_time_1 \%>\%
-    add_to_series(series_temporal)
-
-series_temporal <-
-  graph_time_2 \%>\%
-    add_to_series(series_temporal)
-
-series_temporal <-
-  graph_time_3 \%>\%
-    add_to_series(series_temporal)
+  create_series(series_type = "temporal") \%>\%
+  add_to_series(graph_time_1, .) \%>\%
+  add_to_series(graph_time_2, .) \%>\%
+  add_to_series(graph_time_3, .)
 
 # Subset graph series by sequence
 series_sequence_subset <-
