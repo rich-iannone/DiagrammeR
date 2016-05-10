@@ -31,16 +31,27 @@ graph.
 }
 \examples{
 \dontrun{
+library(magrittr)
+
 # Create a graph with two nodes
 graph <-
-  create_graph(create_nodes(nodes = c("a", "b")))
+  create_graph() \%>\%
+  add_n_nodes(2)
 
 # Add an edge between those nodes and attach a
 # relationship to the edge
 graph <-
- add_edge(graph,
-          from = "a", to = "b",
-          rel = "to_get")
+ add_edge(
+   graph,
+   from = 1,
+   to = 2,
+   rel = "to_get")
+
+# Use the `edge_info()` function to verify that
+# the edge has been created
+edge_info(graph)
+#>   from to    rel
+#> 1    1  2 to_get
 }
 }
 
