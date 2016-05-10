@@ -13,12 +13,12 @@
 #' is_graph_empty(graph)
 #' #> [1] TRUE
 #'
-#' # Create a node data frame
+#' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
 #'     nodes = c("a", "b", "c", "d"))
 #'
-#' # Create an edge data frame
+#' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
 #'     from = c("a", "b", "c"),
