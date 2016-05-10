@@ -78,15 +78,16 @@ import_graph <- function(graph_file,
     stop("The file as specified doesn't exist.")
   }
 
-  # Stop function if 'file_type' specified is not part of the group
-  # that can be imported
+  # Stop function if `file_type` specified is not part
+  # of the group that can be imported
   if (!is.null(file_type)) {
     if (!(tolower(file_type) %in% c("graphml", "gml", "sif"))) {
       stop("The file type as specified cannot be imported.")
     }
   }
 
-  # Obtain file extension if no value supplied for 'file_type'
+  # Obtain file extension if no value supplied
+  # for `file_type`
   if (is.null(file_type)) {
     file_extension <- gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file)
 
@@ -107,12 +108,14 @@ import_graph <- function(graph_file,
     # Read in the .graphml document as a vector object
     graphml_document <- readLines(graph_file)
 
-    # Determine the starting and ending indices of the <node> tags
+    # Determine the starting and ending indices of
+    # the <node> tags
     xml_nodes <-
       list(node_start = grep("<node ", graphml_document),
            node_end = grep("</node>", graphml_document))
 
-    # Determine the starting and ending indices of the <edge> tags
+    # Determine the starting and ending indices of the
+    # <edge> tags
     xml_edges <-
       list(edge_start = grep("<edge ", graphml_document),
            edge_end = grep("</edge>", graphml_document))
@@ -124,14 +127,17 @@ import_graph <- function(graph_file,
 
       nodes_ids <-
         c(nodes_ids,
-          str_replace_all(str_extract(graphml_document[xml_nodes[[1]][i]],
-                                      "\".*?\""), "\"", ""))
+          str_replace_all(
+            str_extract(graphml_document[xml_nodes[[1]][i]],
+                        "\".*?\""), "\"", ""))
     }
 
-    # Determine indices that contain first node attributes
+    # Determine indices that contain first
+    # node attributes
     node_key_indices <-
       xml_nodes[[1]][1] - 1 +
-      grep("key", graphml_document[xml_nodes[[1]][1]:xml_nodes[[2]][1]])
+      grep("key",
+           graphml_document[xml_nodes[[1]][1]:xml_nodes[[2]][1]])
 
     # Obtain names of keys
     node_key_names <-
@@ -143,19 +149,23 @@ import_graph <- function(graph_file,
 
     for (i in 1:length(node_key_names)) {
       for (j in 1:length(xml_nodes[[1]])) {
-
-        if (j == 1) attribute <- vector(mode = "character")
+        if (j == 1) {
+          attribute <- vector(mode = "character")
+        }
 
         attribute <-
           c(attribute,
-            gsub(".*?>(.*?)<.*", "\\1", graphml_document[xml_nodes[[1]][j] + i]))
+            gsub(".*?>(.*?)<.*", "\\1",
+                 graphml_document[xml_nodes[[1]][j] + i]))
 
         if (j == length(xml_nodes[[1]])) {
           node_attributes[[i]] <-  attribute
         }
       }
 
-      if (i == length(node_key_names)) names(node_attributes) <- node_key_names
+      if (i == length(node_key_names)) {
+        names(node_attributes) <- node_key_names
+      }
     }
 
     # Create all nodes for graph
@@ -174,14 +184,16 @@ import_graph <- function(graph_file,
       edges_from <-
         c(edges_from,
           str_replace_all(
-            unlist(str_extract_all(graphml_document[xml_edges[[1]][i]],
-                                   "\".*?\""))[1], "\"", ""))
+            unlist(str_extract_all(
+              graphml_document[xml_edges[[1]][i]],
+              "\".*?\""))[1], "\"", ""))
 
       edges_to <-
         c(edges_to,
           str_replace_all(
-            unlist(str_extract_all(graphml_document[xml_edges[[1]][i]],
-                                   "\".*?\""))[2], "\"", ""))
+            unlist(str_extract_all(
+              graphml_document[xml_edges[[1]][i]],
+              "\".*?\""))[2], "\"", ""))
     }
 
     # Create all edges for graph
@@ -197,8 +209,10 @@ import_graph <- function(graph_file,
         graph_name = graph_name,
         graph_time = graph_time,
         graph_tz = graph_tz,
-        node_attrs = c("shape = circle", "width = 10",
-                       "style = filled", "color = black"),
+        node_attrs = c("shape = circle",
+                       "width = 10",
+                       "style = filled",
+                       "color = black"),
         graph_attrs = "layout = neato",
         generate_dot = FALSE)
 
@@ -238,16 +252,18 @@ import_graph <- function(graph_file,
       node_label <-
         str_replace_all(
           str_replace_all(
-            str_extract_all(node_defs,
-                            "label \\\".*?\\\""),
+            str_extract_all(
+              node_defs,
+              "label \\\".*?\\\""),
             "label \"", ""),
           "\"", "")
     }
 
     # Extract all edge definitions
     edge_defs <-
-      unlist(str_extract_all(gml_document,
-                             "edge[ ]*?\\[.*?\\]"))
+      unlist(str_extract_all(
+        gml_document,
+        "edge[ ]*?\\[.*?\\]"))
 
     edges_from <-
       str_replace_all(
@@ -268,8 +284,9 @@ import_graph <- function(graph_file,
       edge_label <-
         str_replace_all(
           str_replace_all(
-            str_extract_all(edge_defs,
-                            "label \\\".*?\\\""),
+            str_extract_all(
+              edge_defs,
+              "label \\\".*?\\\""),
             "label \"", ""),
           "\"", "")
     }
@@ -277,8 +294,9 @@ import_graph <- function(graph_file,
     if (any(str_detect(edge_defs, "value"))) {
       edge_value <-
         str_replace_all(
-          str_extract_all(edge_defs,
-                          "value [a-z0-9\\.]*"),
+          str_extract_all(
+            edge_defs,
+            "value [a-z0-9\\.]*"),
           "value ", "")
     }
 
@@ -323,11 +341,11 @@ import_graph <- function(graph_file,
 
     # Determine which nodes are present in the graph
     for (i in 1:length(sif_document)) {
-
       nodes <-
         c(nodes,
           ifelse(
-            length(unlist(str_split(sif_document[i], "\t"))) == 1,
+            length(
+              unlist(str_split(sif_document[i], "\t"))) == 1,
             unlist(str_split(sif_document[i], "\t"))[1],
             unlist(str_split(sif_document[i], "\t"))[-2]))
     }
