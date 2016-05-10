@@ -34,14 +34,14 @@ selection.
 \dontrun{
 library(magrittr)
 
-# Create a node data frame
+# Create a node data frame (ndf)
 nodes <- create_nodes(nodes = 1:10)
 
 # Create a graph
 graph <- create_graph(nodes_df = nodes)
 
 # Select nodes `1` to `5` and show that
-# selection of nodes
+# selection of nodes with `get_selection()`
 graph \%>\%
   select_nodes_by_id(1:5) \%>\%
   get_selection
