@@ -7,10 +7,9 @@
 #' graphs in a graph series object.
 #' @examples
 #' \dontrun{
-#' # Create three graphs (using \code{magrittr} pipes)
-#' # and create a graph series using those graphs
 #' library(magrittr)
 #'
+#' # Create three simple graphs
 #' graph_1 <-
 #'   create_graph() %>%
 #'   add_node("a") %>%
@@ -30,13 +29,13 @@
 #'   add_node("e") %>%
 #'   add_edge("e", "b")
 #'
-#' # Create an empty graph series
-#' series <- create_series(series_type = "sequential")
-#'
-#' # Add graphs to the graph series
-#' series <- graph_1 %>% add_to_series(series)
-#' series <- graph_2 %>% add_to_series(series)
-#' series <- graph_3 %>% add_to_series(series)
+#' # Create an empty graph series and add
+#' # the graphs
+#' series <-
+#'   create_series() %>%
+#'   add_to_series(graph_1, .) %>%
+#'   add_to_series(graph_2, .) %>%
+#'   add_to_series(graph_3, .)
 #'
 #' # Count the number of graphs in the graph series
 #' graph_count(series)
