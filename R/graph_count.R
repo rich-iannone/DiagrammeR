@@ -9,7 +9,7 @@
 #' \dontrun{
 #' library(magrittr)
 #'
-#' # Create three simple graphs
+#' # Create three graphs
 #' graph_1 <-
 #'   create_graph() %>%
 #'   add_node("a") %>%

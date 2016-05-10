@@ -29,14 +29,13 @@
 #'   add_node("e") %>%
 #'   add_edge("e", "b")
 #'
-#' # Create an empty graph series
+#' # Create an empty graph series and add
+#' # the graphs
 #' series <-
-#'   create_series(series_type = "sequential")
-#'
-#' # Add graphs to the graph series
-#' series <- graph_1 %>% add_to_series(series)
-#' series <- graph_2 %>% add_to_series(series)
-#' series <- graph_3 %>% add_to_series(series)
+#'   create_series() %>%
+#'   add_to_series(graph_1, .) %>%
+#'   add_to_series(graph_2, .) %>%
+#'   add_to_series(graph_3, .)
 #'
 #' # Get the second graph in the series
 #' extracted_graph <-
