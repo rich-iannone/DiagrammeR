@@ -30,6 +30,12 @@
 #'    from = 1,
 #'    to = 2,
 #'    rel = "to_get")
+#'
+#' # Use the `edge_info()` function to verify that
+#' # the edge has been created
+#' edge_info(graph)
+#' #>   from to    rel
+#' #> 1    1  2 to_get
 #' }
 #' @export add_edge
 
