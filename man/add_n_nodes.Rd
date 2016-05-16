@@ -34,6 +34,7 @@ graph <-
   create_graph() \%>\%
   add_n_nodes(5)
 
+# Get the graph's nodes
 graph \%>\% get_nodes
 #> [1] "1" "2" "3" "4" "5"
 }

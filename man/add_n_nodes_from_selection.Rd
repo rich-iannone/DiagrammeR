@@ -33,4 +33,31 @@ in the selection toward the newly created nodes.
 Optionally, set node \code{type} and edge \code{rel}
 values for the new nodes and edges.
 }
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create an empty graph, add a node to it, select
+# that node, and 5 more nodes to the graph with
+# edges from the original node to all of the new
+# nodes
+graph <-
+  create_graph() \%>\%
+  add_n_nodes(1) \%>\%
+  select_last_node \%>\%
+  add_n_nodes_from_selection(5)
+
+# Get the graph's nodes
+graph \%>\% get_nodes
+#> [1] "1" "2" "3" "4" "5" "6"
+
+# Get the graph's edges
+graph \%>\% get_edges
+#> [[1]]
+#> [1] "1" "1" "1" "1" "1"
+#>
+#> [[2]]
+#> [1] "2" "3" "4" "5" "6"
+}
+}
 
