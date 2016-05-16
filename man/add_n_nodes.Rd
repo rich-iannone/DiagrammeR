@@ -24,4 +24,18 @@ Add n new nodes to a graph object of
 class \code{dgr_graph}. Optionally, set node
 \code{type} values for the new nodes.
 }
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create an empty graph and add 5 nodes to it; these
+# nodes will be given ID values from 1 to 5
+graph <-
+  create_graph() \%>\%
+  add_n_nodes(5)
+
+graph \%>\% get_nodes
+#> [1] "1" "2" "3" "4" "5"
+}
+}
 
