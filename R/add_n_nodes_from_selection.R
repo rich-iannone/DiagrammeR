@@ -35,12 +35,8 @@
 #' #> [1] "1" "2" "3" "4" "5" "6"
 #'
 #' # Get the graph's edges
-#' graph %>% get_edges
-#' #> [[1]]
-#' #> [1] "1" "1" "1" "1" "1"
-#' #>
-#' #> [[2]]
-#' #> [1] "2" "3" "4" "5" "6"
+#' graph %>% get_edges(return_type = "vector")
+#' #> "1 -> 2" "1 -> 3" "1 -> 4" "1 -> 5" "1 -> 6"
 #' }
 #' @export add_n_nodes_from_selection
 
