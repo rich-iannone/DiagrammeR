@@ -5,6 +5,37 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @return an edge data frame.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a graph using several piped functions
+#' graph <-
+#'   create_graph() %>%
+#'   add_n_nodes(1, "a") %>%
+#'   select_last_node %>%
+#'   add_n_nodes_from_selection(5, "b") %>%
+#'   select_edges_by_node_id(3:5) %>%
+#'   set_edge_attr_with_selection(
+#'     "color", "green") %>%
+#'   set_edge_attr_with_selection(
+#'     "rel", "a") %>%
+#'   invert_selection %>%
+#'   set_edge_attr_with_selection(
+#'     "color", "blue") %>%
+#'   set_edge_attr_with_selection(
+#'     "rel", "b") %>%
+#'   clear_selection
+#'
+#' # Get the graph's internal edge data frame (edf)
+#' graph %>% get_edge_df
+#' #>   from to rel color
+#' #> 1    1  2   b  blue
+#' #> 2    1  3   a green
+#' #> 3    1  4   a green
+#' #> 4    1  5   a green
+#' #> 5    1  6   b  blue
+#' }
 #' @export get_edge_df
 
 get_edge_df <- function(graph) {
