@@ -1,31 +1,41 @@
-#' Create a graph object using data frames representative of nodes and edges
-#' @description Generates a graph object using data frames for nodes and/or
-#' edges; the graph object can be manipulated by other functions.
-#' @param nodes_df an optional data frame containing, at minimum, a column
-#' (called \code{nodes}) which contains node IDs for the graph. Additional
-#' columns (named as Graphviz node attributes) can be included with values for
-#' the named node attribute.
-#' @param edges_df an optional data frame containing, at minimum, two
-#' columns (called \code{from} and \code{to}) where node IDs are provided.
-#' Additional columns (named as Graphviz edge attributes) can be included with
-#' values for the named edge attribute.
-#' @param graph_attrs an optional vector of graph attribute statements that
-#' can serve as defaults for the graph.
-#' @param node_attrs an optional vector of node attribute statements that can
-#' serve as defaults for nodes.
-#' @param edge_attrs an optional vector of edge attribute statements that can
-#' serve as defaults for edges.
-#' @param directed with \code{TRUE} (the default) or \code{FALSE}, either
-#' directed or undirected edge operations will be generated, respectively.
-#' @param graph_name an optional string for labeling the graph object.
-#' @param graph_time a date or date-time string (required for insertion of
-#' graph into a graph series of the type \code{temporal}).
-#' @param graph_tz an optional value for the time zone (\code{tz})
-#' corresponding to the date or date-time string supplied as a value to
-#' \code{graph_time}. If no time zone is provided then it will be set to
+#' Create a graph object
+#' @description Generates a graph object with the
+#' option to use node data frames (ndfs) and/or edge
+#' data frames (edfs) to populate the initial graph.
+#' @param nodes_df an optional data frame containing,
+#' at minimum, a column (called \code{nodes}) which
+#' contains node IDs for the graph. Additional
+#' columns (named as Graphviz node attributes) can be
+#' included with values for the named node attribute.
+#' @param edges_df an optional data frame containing,
+#' at minimum, two columns (called \code{from} and
+#' \code{to}) where node IDs are provided. Additional
+#' columns (named as Graphviz edge attributes) can be
+#' included with values for the named edge attribute.
+#' @param graph_attrs an optional vector of graph
+#' attribute statements that can serve as defaults
+#' for the graph.
+#' @param node_attrs an optional vector of node
+#' attribute statements that can serve as defaults for
+#' nodes.
+#' @param edge_attrs an optional vector of edge
+#' attribute statements that can serve as defaults for
+#' edges.
+#' @param directed with \code{TRUE} (the default) or
+#' \code{FALSE}, either directed or undirected edge
+#' operations will be generated, respectively.
+#' @param graph_name an optional string for labeling
+#' the graph object.
+#' @param graph_time a date or date-time string
+#' (required for insertion of graph into a graph series
+#' of the type \code{temporal}).
+#' @param graph_tz an optional value for the time zone
+#' (\code{tz}) corresponding to the date or date-time
+#' string supplied as a value to \code{graph_time}. If
+#' no time zone is provided then it will be set to
 #' \code{GMT}.
-#' @param generate_dot an option to generate Graphviz DOT code and place
-#' into the graph object.
+#' @param generate_dot an option to generate Graphviz
+#' DOT code and place into the graph object.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -167,8 +177,9 @@ create_graph <- function(nodes_df = NULL,
     return(dgr_graph)
   }
 
-  # If nodes and edges not provided, but other attributes are,
-  # create any empty graph with attributes
+  # If nodes and edges not provided, but other
+  # attributes are, create any empty graph with
+  # attributes
   if (all(c(is.null(nodes_df),
             is.null(edges_df)))) {
 
@@ -359,16 +370,18 @@ create_graph <- function(nodes_df = NULL,
         if (number_of_col_attr == 1) {
 
           name_of_col_attr <-
-            colnames(nodes_df)[which(colnames(nodes_df) %in%
-                                       c("color", "fillcolor",
-                                         "fontcolor"))]
+            colnames(nodes_df)[
+              which(colnames(nodes_df) %in%
+                      c("color", "fillcolor",
+                        "fontcolor"))]
 
           colnames(nodes_df)[column_with_alpha_assigned] <-
             paste0("alpha_", name_of_col_attr)
         }
       }
 
-      # Determine whether column 'alpha' with color attr exists
+      # Determine whether column 'alpha' with
+      # color attr exists
       if (any(grepl("alpha_.*", colnames(nodes_df)))) {
 
         alpha_column_no <- grep("alpha_.*", colnames(nodes_df))
@@ -381,23 +394,25 @@ create_graph <- function(nodes_df = NULL,
         color_attr_column_no <-
           which(colnames(nodes_df) %in% color_attr_column_name)
 
-        # Append alpha value only if referenced column is for color
+        # Append alpha value only if referenced
+        # column is for color
         if (any(c("color", "fillcolor", "fontcolor") %in%
                 colnames(nodes_df)[color_attr_column_no])) {
 
-          # Append alpha for color values that are X11 color names
+          # Append alpha for color values that are
+          # X11 color names
           if (all(grepl("[a-z]*",
                         as.character(nodes_df[,color_attr_column_no]))) &
               all(as.character(nodes_df[,color_attr_column_no]) %in%
                   x11_hex()[,1])) {
 
             for (i in 1:nrow(nodes_df)) {
-
               nodes_df[i,color_attr_column_no] <-
-                paste0(x11_hex()[which(x11_hex()[,1] %in%
-                                         as.character(nodes_df[i,color_attr_column_no])), 2],
-                       formatC(round(as.numeric(nodes_df[i,alpha_column_no]),0),
-                               flag = "0", width = 2))
+                paste0(x11_hex()[
+                  which(x11_hex()[,1] %in%
+                          as.character(nodes_df[i,color_attr_column_no])), 2],
+                  formatC(round(as.numeric(nodes_df[i,alpha_column_no]),0),
+                          flag = "0", width = 2))
             }
           }
 
@@ -407,7 +422,6 @@ create_graph <- function(nodes_df = NULL,
                         as.character(nodes_df[,color_attr_column_no])))) {
 
             for (i in 1:nrow(nodes_df)) {
-
               nodes_df[,color_attr_column_no] <-
                 as.character(nodes_df[,color_attr_column_no])
 
@@ -426,7 +440,6 @@ create_graph <- function(nodes_df = NULL,
 
       # Construct the 'node_block' character object
       for (i in 1:nrow(nodes_df)) {
-
         if (i == 1) {
           node_block <- vector(mode = "character", length = 0)
         }
@@ -439,38 +452,50 @@ create_graph <- function(nodes_df = NULL,
 
             # Create the node attributes for labels
             # and tooltips when provided
-            if (all(colnames(nodes_df)[j] %in% c("label", "tooltip"),
+            if (all(colnames(nodes_df)[j] %in%
+                    c("label", "tooltip"),
                     nodes_df[i, j] == '')) {
               attribute <- NULL
-            } else if (all(colnames(nodes_df)[j] %in% c("label", "tooltip"),
+            } else if (all(colnames(nodes_df)[j] %in%
+                           c("label", "tooltip"),
                            nodes_df[i, j] != '')) {
               attribute <-
-                paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
-            } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
+                paste0(colnames(nodes_df)[j],
+                       " = ", "'", nodes_df[i, j], "'")
+            } else if (all(!(colnames(nodes_df)[j] %in%
+                             c("label", "tooltip")),
                            nodes_df[i, j] == '')) {
               attribute <- NULL
-            } else if (all(!(colnames(nodes_df)[j] %in% c("label", "tooltip")),
+            } else if (all(!(colnames(nodes_df)[j] %in%
+                             c("label", "tooltip")),
                            nodes_df[i, j] != '')) {
               attribute <-
-                paste0(colnames(nodes_df)[j], " = ", "'", nodes_df[i, j], "'")
+                paste0(colnames(nodes_df)[j],
+                       " = ", "'", nodes_df[i, j], "'")
             }
             attr_string <- c(attr_string, attribute)
           }
 
-          if (j == other_columns_with_node_attributes[length(other_columns_with_node_attributes)]) {
+          if (j == other_columns_with_node_attributes[
+            length(other_columns_with_node_attributes)]) {
             attr_string <- paste(attr_string, collapse = ", ")
           }
         }
 
-        # Generate a line of node objects when an attribute string exists
+        # Generate a line of node objects when an
+        # attribute string exists
         if (exists("attr_string")) {
           line <- paste0("  '", nodes_df[i, column_with_node_id], "'",
                          " [", attr_string, "] ")
         }
 
-        # Generate a line of node objects when an attribute string doesn't exist
+        # Generate a line of node objects when an
+        # attribute string doesn't exist
         if (!exists("attr_string")) {
-          line <- paste0("  '", nodes_df[i, column_with_node_id], "'")
+          line <-
+            paste0("  '",
+                   nodes_df[i, column_with_node_id],
+                   "'")
         }
         node_block <- c(node_block, line)
       }
@@ -489,15 +514,15 @@ create_graph <- function(nodes_df = NULL,
                    }))
       }
 
-      # Construct the 'node_block' character object
+      # Construct the `node_block` character object
       node_block <- paste(node_block, collapse = "\n")
 
-      # Remove the 'attr_string' object if it exists
+      # Remove the `attr_string` object if it exists
       if (exists("attr_string")) {
         rm(attr_string)
       }
 
-      # Remove the 'attribute' object if it exists
+      # Remove the `attribute` object if it exists
       if (exists("attribute")) {
         rm(attribute)
       }
@@ -547,7 +572,7 @@ create_graph <- function(nodes_df = NULL,
                    nodes_df[i, 1], "'"))
       }
 
-      # Construct the 'node_block' character object
+      # Construct the `node_block` character object
       node_block <- paste(node_block, collapse = "\n")
     }
 
@@ -557,7 +582,7 @@ create_graph <- function(nodes_df = NULL,
 
     if (!is.null(edges_df)) {
 
-      # Determine whether 'from' or 'to' columns are
+      # Determine whether `from` or `to` columns are
       # in `edges_df`
       from_to_columns <-
         ifelse(any(c("from", "to") %in%
@@ -589,7 +614,7 @@ create_graph <- function(nodes_df = NULL,
         }
       }
 
-      # Construct the 'edge_block' character object
+      # Construct the `edge_block` character object
       if (exists("from_column") &
           exists("to_column")) {
         if (length(from_column) == 1 &
@@ -598,7 +623,7 @@ create_graph <- function(nodes_df = NULL,
             if (i == 1) {
               edge_block <-
                 vector(mode = "character", length = 0)
-              }
+            }
             if (length(other_columns_with_edge_attributes) > 0) {
               for (j in other_columns_with_edge_attributes) {
                 if (j == other_columns_with_edge_attributes[1]) {
@@ -637,17 +662,21 @@ create_graph <- function(nodes_df = NULL,
                                    "taillabel", "tailtooltip",
                                    "tooltip")),
                                edges_df[i, j] != '')) {
-                  attribute <- paste0(colnames(edges_df)[j], " = ", "'", edges_df[i, j], "'")
+                  attribute <-
+                    paste0(colnames(edges_df)[j],
+                           " = ", "'", edges_df[i, j], "'")
                 }
                 attr_string <- c(attr_string, attribute)
               }
 
-              if (j == other_columns_with_edge_attributes[length(other_columns_with_edge_attributes)]) {
+              if (j == other_columns_with_edge_attributes[
+                length(other_columns_with_edge_attributes)]) {
                 attr_string <- paste(attr_string, collapse = ", ")
               }
             }
 
-            # Generate a line of edge objects when an attribute string exists
+            # Generate a line of edge objects when an
+            # attribute string exists
             if (exists("attr_string")) {
               line <-
                 paste0("'", edges_df[i, from_column], "'",
@@ -656,7 +685,8 @@ create_graph <- function(nodes_df = NULL,
                        paste0(" [", attr_string, "] "))
             }
 
-            # Generate a line of edge objects when an attribute string doesn't exist
+            # Generate a line of edge objects when an
+            # attribute string doesn't exist
             if (!exists("attr_string")) {
               line <-
                 paste0("  ",
@@ -676,8 +706,8 @@ create_graph <- function(nodes_df = NULL,
       }
     }
 
-    # Create the graph code from the chosen attributes, and the
-    # nodes and edges blocks
+    # Create the graph code from the chosen attributes,
+    # and the nodes and edges blocks
     if (exists("combined_attr_stmts")) {
       if (exists("edge_block") & exists("node_block")) {
         combined_block <-
