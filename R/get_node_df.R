@@ -28,7 +28,8 @@
 #'   clear_selection %>%
 #'   select_nodes("value", "<15") %>%
 #'   set_node_attr_with_selection(
-#'     "value", 10.0)
+#'     "value", 10.0) %>%
+#'   clear_selection
 #'
 #' # Get the graph's internal node data frame (ndf)
 #' graph %>% get_node_df
