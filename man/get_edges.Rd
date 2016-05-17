@@ -27,9 +27,8 @@ will provide a list object containing vectors of
 outgoing and incoming node IDs associated with
 edges. With \code{df}, a data frame containing
 outgoing and incoming node IDs associated with
-edges. With \code{vector} or \code{string}, a
-vector of character objects representing the edges
-is provided.}
+edges. With \code{vector}, a vector of character
+objects representing the edges is provided.}
 }
 \value{
 a list, data frame, or a vector object,
