@@ -68,7 +68,7 @@ ILS,376,2,Israeli new shekel
 INR,356,2,Indian rupee
 IQD,368,3,Iraqi dinar
 IRR,364,2,Iranian rial
-ISK,352,0,Icelandic krÃ_na
+ISK,352,0,Icelandic krona
 JMD,388,2,Jamaican dollar
 JOD,400,3,Jordanian dinar
 JPY,392,0,Japanese yen
@@ -92,7 +92,7 @@ MDL,498,2,Moldovan leu
 MGA,969,1,Malagasy ariary
 MKD,807,2,Macedonian denar
 MMK,104,2,Myanmar kyat
-MNT,496,2,Mongolian tÃ¶grÃ¶g
+MNT,496,2,Mongolian togrog
 MOP,446,1,Macanese pataca
 MRO,478,1,Mauritanian ouguiya
 MUR,480,2,Mauritian rupee
@@ -104,7 +104,7 @@ MYR,458,2,Malaysian ringgit
 MZN,943,2,Mozambican metical
 NAD,516,2,Namibian dollar
 NGN,566,2,Nigerian naira
-NIO,558,2,Nicaraguan cÃ_rdoba
+NIO,558,2,Nicaraguan cordoba
 NOK,578,2,Norwegian krone
 NPR,524,2,Nepalese rupee
 NZD,554,2,New Zealand dollar
@@ -114,8 +114,8 @@ PEN,604,2,Peruvian Sol
 PGK,598,2,Papua New Guinean kina
 PHP,608,2,Philippine peso
 PKR,586,2,Pakistani rupee
-PLN,985,2,Polish zÅ‚oty
-PYG,600,0,Paraguayan guaranÃ_
+PLN,985,2,Polish zloty
+PYG,600,0,Paraguayan guarani
 QAR,634,2,Qatari riyal
 RON,946,2,Romanian Leu
 RSD,941,2,Serbian dinar
@@ -132,14 +132,14 @@ SLL,694,2,Sierra Leonean leone
 SOS,706,2,Somali shilling
 SRD,968,2,Surinamese dollar
 SSP,728,2,South Sudanese pound
-STD,678,2,SÃ£o TomÃ© and PrÃ_ncipe dobra
+STD,678,2,SÃ£o TomÃ© and Principe dobra
 SYP,760,2,Syrian pound
 SZL,748,2,Swazi lilangeni
 THB,764,2,Thai baht
 TJS,972,2,Tajikistani somoni
 TMT,934,2,Turkmenistani manat
 TND,788,3,Tunisian dinar
-TOP,776,2,Tongan paÊ»anga
+TOP,776,2,Tongan pa'anga
 TRY,949,2,Turkish lira
 TTD,780,2,Trinidad and Tobago dollar
 TWD,901,2,New Taiwan dollar
@@ -152,7 +152,7 @@ USS,998,2,United States dollar
 UYI,940,0,Uruguay Peso en Unidades Indexadas
 UYU,858,2,Uruguayan peso
 UZS,860,2,Uzbekistan som
-VEF,937,2,Venezuelan bolÃ_var
+VEF,937,2,Venezuelan bolivar
 VND,704,0,Vietnamese dong
 VUV,548,0,Vanuatu vatu
 WST,882,2,Samoan tala
