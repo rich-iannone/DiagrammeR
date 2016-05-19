@@ -9,11 +9,11 @@
 #' frame object.
 #' @param from_col the name of the table column from
 #' which edges originate.
-#' @param from_attr the mapping of \code{from_col}
+#' @param from_mapping the mapping of \code{from_col}
 #' values to attributes of the graph's nodes.
 #' @param to_col to_col the name of the table column to
 #' which edges terminate.
-#' @param to_attr the mapping of \code{to_col} values
+#' @param to_mapping the mapping of \code{to_col} values
 #' to attributes of the graph's nodes.
 #' @param set_rel an optional string to apply a
 #' \code{rel} attribute to all edges created from the
@@ -33,9 +33,9 @@
 add_edges_from_table <- function(graph,
                                  table,
                                  from_col,
-                                 from_attr,
+                                 from_mapping,
                                  to_col,
-                                 to_attr,
+                                 to_mapping,
                                  set_rel = NULL,
                                  select_cols = NULL,
                                  drop_cols = NULL,
@@ -50,57 +50,57 @@ add_edges_from_table <- function(graph,
     csv <- table
   }
 
-  # Get numbers of rows and columns in the CSV
+  # Get numbers of rows and columns in the table
   rows_in_csv <- nrow(csv)
   cols_in_csv <- ncol(csv)
 
   # Get rownames for existing edges in graph object
   edges_existing_rownames <- rownames(get_edge_df(graph))
 
-  # Verify that value for `from_col` is in the CSV
+  # Verify that value for `from_col` is in the table
   if (!(from_col %in% colnames(csv))) {
-    stop("The value specified in `from_col` is not in the CSV file.")
+    stop("The value specified in `from_col` is not in the table.")
   }
 
-  # Verify that value for `to_col` is in the CSV
+  # Verify that value for `to_col` is in the table
   if (!(to_col %in% colnames(csv))) {
-    stop("The value specified in `to_col` is not in the CSV file.")
+    stop("The value specified in `to_col` is not in the table.")
   }
 
-  # Verify that value for `from_attr` is in the
+  # Verify that value for `from_mapping` is in the
   # graph's ndf
-  if (!(from_attr %in% colnames(get_node_df(graph)))) {
-    stop("The value specified in `from_attr` is not in the graph.")
+  if (!(from_mapping %in% colnames(get_node_df(graph)))) {
+    stop("The value specified in `from_mapping` is not in the graph.")
   }
 
-  # Verify that value for `to_attr` is in the
+  # Verify that value for `to_mapping` is in the
   # graph's ndf
-  if (!(to_attr %in% colnames(get_node_df(graph)))) {
-    stop("The value specified in `to_attr` is not in the graph.")
+  if (!(to_mapping %in% colnames(get_node_df(graph)))) {
+    stop("The value specified in `to_mapping` is not in the graph.")
   }
 
-  # Verify that all values in `from_col` in the CSV are
+  # Verify that all values in `from_col` in the table are
   # available in the graph
   if (!(all(csv[,which(colnames(csv) == from_col)] %in%
-            get_node_df(graph)[,which(colnames(get_node_df(graph)) == from_attr)]))) {
-    stop(paste0("The `from` values in the CSV don't all match the requested",
+            get_node_df(graph)[,which(colnames(get_node_df(graph)) == from_mapping)]))) {
+    stop(paste0("The `from` values in the table don't all match the requested",
                 "node attribute value in the graph."))
   }
 
-  # Verify that all values in `to_col` in the CSV are
+  # Verify that all values in `to_col` in the table are
   # available in the graph
   if (!(all(csv[,which(colnames(csv) == to_col)] %in%
-            get_node_df(graph)[,which(colnames(get_node_df(graph)) == to_attr)]))) {
-    stop(paste0("The `to` values in the CSV don't all match the requested",
+            get_node_df(graph)[,which(colnames(get_node_df(graph)) == to_mapping)]))) {
+    stop(paste0("The `to` values in the table don't all match the requested",
                 "node attribute values in the graph."))
   }
 
   # If values for `select_cols` provided, filter the
-  # CSV columns by those named columns
+  # table columns by those named columns
   if (!is.null(select_cols)) {
 
     # If none of the specified values in `select_cols`
-    # are in the CSV, stop the function
+    # are in the table, stop the function
     if (all(select_cols %in% colnames(csv)) == FALSE) {
       stop("None of the values specified for selecting columns are available.")
     }
@@ -108,15 +108,15 @@ add_edges_from_table <- function(graph,
     csv <- csv[,columns_retained]
   }
 
-  # If values for `drop_cols` provided, filter the CSV
-  # columns by those named columns
+  # If values for `drop_cols` provided, filter the
+  # table columns by those named columns
   if (is.null(select_cols) & !is.null(drop_cols)) {
     columns_retained <- which(!(colnames(csv) %in% drop_cols))
     csv <- csv[,columns_retained]
   }
 
   # If values for `rename_attrs` provided, rename the
-  # CSV columns by those replacement values
+  # table columns by those replacement values
   if (!is.null(rename_attrs)) {
     if (length(rename_attrs) != length(colnames(csv))) {
       stop(paste0("The number of values specified for column name changes ",
@@ -125,25 +125,25 @@ add_edges_from_table <- function(graph,
     colnames(csv) <- rename_attrs
   }
 
-  # Get relevant column numbers from the CSV table
+  # Get relevant column numbers from the table
   from_col_value <- which(colnames(csv) == from_col)
   to_col_value <- which(colnames(csv) == to_col)
 
   # Get relevant column numbers from the graph's ndf
-  from_attr_value <-
-    which(colnames(get_node_df(graph)) == from_attr)
+  from_mapping_value <-
+    which(colnames(get_node_df(graph)) == from_mapping)
 
-  to_attr_value <-
-    which(colnames(get_node_df(graph)) == to_attr)
+  to_mapping_value <-
+    which(colnames(get_node_df(graph)) == to_mapping)
 
   # Create edges
   for (i in 1:rows_in_csv) {
     graph <-
       add_edge(
         graph = graph,
-        from = get_node_df(graph)[which(get_node_df(graph)[,from_attr_value] ==
+        from = get_node_df(graph)[which(get_node_df(graph)[,from_mapping_value] ==
                                           csv[i, from_col_value]), 1],
-        to = get_node_df(graph)[which(get_node_df(graph)[,to_attr_value] ==
+        to = get_node_df(graph)[which(get_node_df(graph)[,to_mapping_value] ==
                                         csv[i, to_col_value]), 1])
   }
 
@@ -152,7 +152,7 @@ add_edges_from_table <- function(graph,
     as.numeric(setdiff(rownames(get_edge_df(graph)),
                        edges_existing_rownames))
 
-  # Get column numbers in CSV that are edge attributes
+  # Get column numbers in table that are edge attributes
   if (!is.null(rel_col)) {
     edge_attr_cols_csv <-
       which(colnames(csv) %in%
@@ -165,7 +165,7 @@ add_edges_from_table <- function(graph,
                       c(from_col, to_col)))
   }
 
-  # Add CSV columns as attributes
+  # Add table columns as attributes
   for (i in edges_created_rownames) {
     for (j in edge_attr_cols_csv) {
       graph <-
@@ -178,7 +178,7 @@ add_edges_from_table <- function(graph,
     }
 
     # Optionally set the `rel` attribute from a
-    # specified column in the CSV
+    # specified column in the table
     if (!is.null(rel_col)) {
       graph <-
         set_edge_attr(
