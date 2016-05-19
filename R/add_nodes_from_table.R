@@ -202,14 +202,11 @@ add_nodes_from_table <- function(graph,
   }
 
   # Optionally set the `label` attribute from a
-  # specified column in the CSV
+  # specified column in the CSV (this copies into
+  # the `label` column)
   if (!is.null(label_col)) {
     if (any(colnames(csv) == label_col)) {
-
-      #colnames(csv)[which(colnames(csv) == label_col)] <- "label"
-
       csv$label <- csv[,which(colnames(csv) == label_col)]
-      csv <- csv[,-which(colnames(csv) == label_col)]
     }
   }
 
