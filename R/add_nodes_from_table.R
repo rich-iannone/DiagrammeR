@@ -1,44 +1,46 @@
-#' Add nodes and attributes from a CSV file
+#' Add nodes and attributes to graph from a table
 #' @description Add nodes and their attributes to an
-#' existing graph object from data in a CSV file.
+#' existing graph object from data in a CSV file or a
+#' data frame.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param csv_path a path to a CSV file.
+#' @param table either a path to a CSV file or a data
+#' frame object.
 #' @param set_type an optional string to apply a
 #' \code{type} attribute to all nodes created from the
-#' CSV records.
+#' table records.
 #' @param select_cols an optional character vector for
-#' specifying which columns in the CSV file should be
+#' specifying which columns in the table that should be
 #' imported as node attributes.
 #' @param drop_cols an optional character vector for
 #' dropping columns from the incoming data.
 #' @param rename_attrs an optional character for
 #' renaming node attributes.
 #' @param id_col an option to apply a column of data in
-#' the CSV file as node ID values.
+#' the table as node ID values.
 #' @param type_col an option to apply a column of data
-#' in the CSV file as \code{type} attribute values.
+#' in the table as \code{type} attribute values.
 #' @param label_col an option to apply a column of data
-#' in the CSV file as \code{label} attribute values.
+#' in the table as \code{label} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
 #' library(dplyr)
 #'
-#' # Specify a path to the CSV file
+#' # Specify a path to a CSV file
 #' path_to_csv <-
 #'   system.file("examples/currencies.csv",
 #'               package = "DiagrammeR")
 #'
 #' # To add nodes from a CSV file, call the
-#' # `add_nodes_from_csv()` function; new node ID
+#' # `add_nodes_from_table()` function; new node ID
 #' # values will be created as a monotonically-
-#' # increasing value from 1
+#' # increasing values from 1
 #' graph_1 <-
 #'   create_graph() %>%
-#'   add_nodes_from_csv(path_to_csv)
+#'   add_nodes_from_table(path_to_csv)
 #'
 #' # View the graph's internal node data frame (ndf)
 #' # with `get_node_df()` and dplyr's `as.tbl()`
@@ -61,14 +63,14 @@
 #' #> Variables not shown: exponent (chr)
 #' #>   currency_name (chr)
 #'
-#' # If you would like to assign any of the CSV columns
-#' # to `type` or `label` attributes, this can be done
-#' # with the `type_col` and `label_col` arguments; to
-#' # set a static `type` attribute for all of the CSV
-#' # records, use `set_type`
+#' # If you would like to assign any of the table's
+#' # columns as `type` or `label` attributes, this can
+#' # be done with the `type_col` and `label_col`
+#' # arguments; to set a static `type` attribute for
+#' # all of the table records, use `set_type`
 #' graph_2 <-
 #'   create_graph() %>%
-#'   add_nodes_from_csv(
+#'   add_nodes_from_table(
 #'     path_to_csv,
 #'     set_type = "currency",
 #'     label_col = "iso_4217_code")
@@ -84,13 +86,13 @@
 #' #> 3     3 currency   ALL           8        2
 #' #> Variables not shown: currency_name (chr)
 #'
-#' # Suppose you would like to not include certain CSV
-#' # column data in the resulting graph... you can use
-#' # the `drop_cols` argument to choose which columns
-#' # to not include as attributes
+#' # Suppose you would like to not include certain
+#' # columns from the table in the resulting graph; you
+#' # can use the `drop_cols` argument to choose which
+#' # columns to not include as attributes in the graph
 #' graph_3 <-
 #'   create_graph() %>%
-#'   add_nodes_from_csv(
+#'   add_nodes_from_table(
 #'     path_to_csv,
 #'     set_type = "currency",
 #'     label_col = "iso_4217_code",
@@ -106,20 +108,25 @@
 #' #> 3     3 currency   ALL           8
 #' #> Variables not shown: currency_name (chr)
 #' }
-#' @export add_nodes_from_csv
+#' @export add_nodes_from_table
 
-add_nodes_from_csv <- function(graph,
-                               csv_path,
-                               set_type = NULL,
-                               select_cols = NULL,
-                               drop_cols = NULL,
-                               rename_attrs = NULL,
-                               id_col = NULL,
-                               type_col = NULL,
-                               label_col = NULL) {
+add_nodes_from_table <- function(graph,
+                                 table,
+                                 set_type = NULL,
+                                 select_cols = NULL,
+                                 drop_cols = NULL,
+                                 rename_attrs = NULL,
+                                 id_col = NULL,
+                                 type_col = NULL,
+                                 label_col = NULL) {
 
-  # Load in CSV file
-  csv <- read.csv(csv_path, stringsAsFactors = FALSE)
+  if (inherits(table, "character")) {
+    # Load in CSV file
+    csv <- read.csv(table, stringsAsFactors = FALSE)
+  } else if (inherits(table, "data.frame")) {
+    # Rename `table` object as `csv`
+    csv <- table
+  }
 
   # Get numbers of rows in the CSV
   rows_in_csv <- nrow(csv)
