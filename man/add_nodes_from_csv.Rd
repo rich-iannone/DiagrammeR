@@ -45,4 +45,89 @@ a graph object of class \code{dgr_graph}.
 Add nodes and their attributes to an
 existing graph object from data in a CSV file.
 }
+\examples{
+\dontrun{
+library(magrittr)
+library(dplyr)
+
+# Specify a path to the CSV file
+path_to_csv <-
+  system.file("examples/currencies.csv",
+              package = "DiagrammeR")
+
+# To add nodes from a CSV file, call the
+# `add_nodes_from_csv()` function; new node ID
+# values will be created as a monotonically-
+# increasing value from 1
+graph_1 <-
+  create_graph() \%>\%
+  add_nodes_from_csv(path_to_csv)
+
+# View the graph's internal node data frame (ndf)
+# with `get_node_df()` and dplyr's `as.tbl()`
+graph_1 \%>\% get_node_df \%>\% as.tbl
+#> Source: local data frame [171 x 7]
+#>
+#>    nodes  type label iso_4217_code curr_number
+#>    (chr) (chr) (chr)         (chr)       (chr)
+#> 1      1                       AED         784
+#> 2      2                       AFN         971
+#> 3      3                       ALL           8
+#> 4      4                       AMD          51
+#> 5      5                       ANG         532
+#> 6      6                       AOA         973
+#> 7      7                       ARS          32
+#> 8      8                       AUD          36
+#> 9      9                       AWG         533
+#> 10    10                       AZN         944
+#> ..   ...   ...   ...           ...         ...
+#> Variables not shown: exponent (chr)
+#>   currency_name (chr)
+
+# If you would like to assign any of the CSV columns
+# to `type` or `label` attributes, this can be done
+# with the `type_col` and `label_col` arguments; to
+# set a static `type` attribute for all of the CSV
+# records, use `set_type`
+graph_2 <-
+  create_graph() \%>\%
+  add_nodes_from_csv(
+    path_to_csv,
+    set_type = "currency",
+    label_col = "iso_4217_code")
+
+# View the first 3 lines of the graph's internal ndf
+graph_2 \%>\% get_node_df \%>\% head(3) \%>\% as.tbl
+#> Source: local data frame [3 x 6]
+#>
+#>   nodes     type label curr_number exponent
+#>   (chr)    (chr) (chr)       (chr)    (chr)
+#> 1     1 currency   AED         784        2
+#> 2     2 currency   AFN         971        2
+#> 3     3 currency   ALL           8        2
+#> Variables not shown: currency_name (chr)
+
+# Suppose you would like to not include certain CSV
+# column data in the resulting graph... you can use
+# the `drop_cols` argument to choose which columns
+# to not include as attributes
+graph_3 <-
+  create_graph() \%>\%
+  add_nodes_from_csv(
+    path_to_csv,
+    set_type = "currency",
+    label_col = "iso_4217_code",
+    drop_cols = "exponent")
+
+graph_3 \%>\% get_node_df \%>\% head(3) \%>\% as.tbl
+#> Source: local data frame [3 x 5]
+#>
+#>   nodes     type label curr_number
+#>   (chr)    (chr) (chr)       (chr)
+#> 1     1 currency   AED         784
+#> 2     2 currency   AFN         971
+#> 3     3 currency   ALL           8
+#> Variables not shown: currency_name (chr)
+}
+}
 
