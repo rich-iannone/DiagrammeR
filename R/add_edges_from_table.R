@@ -1,47 +1,54 @@
-#' Add edges and attributes from a CSV file
+#' Add edges and attributes to graph from a table
 #' @description Add edges and their attributes to an
-#' existing graph object from data in a CSV file.
+#' existing graph object from data in a CSV file or a
+#' data frame.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param csv_path a path to a CSV file.
-#' @param from_col the name of the CSV column from
+#' @param table either a path to a CSV file or a data
+#' frame object.
+#' @param from_col the name of the table column from
 #' which edges originate.
 #' @param from_attr the mapping of \code{from_col}
 #' values to attributes of the graph's nodes.
-#' @param to_col to_col the name of the CSV column to
+#' @param to_col to_col the name of the table column to
 #' which edges terminate.
 #' @param to_attr the mapping of \code{to_col} values
 #' to attributes of the graph's nodes.
 #' @param set_rel an optional string to apply a
 #' \code{rel} attribute to all edges created from the
-#' CSV records.
+#' table records.
 #' @param select_cols an optional character vector for
-#' specifying which columns in the CSV file should be
+#' specifying which columns in the table that should be
 #' imported as edge attributes.
 #' @param drop_cols an optional character vector for
 #' dropping columns from the incoming data.
 #' @param rename_attrs an optional character vector for
 #' renaming edge attributes.
 #' @param rel_col an option to apply a column of data
-#' in the CSV file as \code{rel} attribute values.
+#' in the table as \code{rel} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export add_edges_from_csv
+#' @export add_edges_from_table
 
-add_edges_from_csv <- function(graph,
-                               csv_path,
-                               from_col,
-                               from_attr,
-                               to_col,
-                               to_attr,
-                               set_rel = NULL,
-                               select_cols = NULL,
-                               drop_cols = NULL,
-                               rename_attrs = NULL,
-                               rel_col = NULL) {
+add_edges_from_table <- function(graph,
+                                 table,
+                                 from_col,
+                                 from_attr,
+                                 to_col,
+                                 to_attr,
+                                 set_rel = NULL,
+                                 select_cols = NULL,
+                                 drop_cols = NULL,
+                                 rename_attrs = NULL,
+                                 rel_col = NULL) {
 
-  # Load in CSV file
-  csv <- read.csv(csv_path, stringsAsFactors = FALSE)
+  if (inherits(table, "character")) {
+    # Load in CSV file
+    csv <- read.csv(table, stringsAsFactors = FALSE)
+  } else if (inherits(table, "data.frame")) {
+    # Rename `table` object as `csv`
+    csv <- table
+  }
 
   # Get numbers of rows and columns in the CSV
   rows_in_csv <- nrow(csv)
