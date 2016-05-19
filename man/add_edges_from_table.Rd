@@ -4,7 +4,7 @@
 \alias{add_edges_from_table}
 \title{Add edges and attributes to graph from a table}
 \usage{
-add_edges_from_table(graph, table, from_col, from_attr, to_col, to_attr,
+add_edges_from_table(graph, table, from_col, from_mapping, to_col, to_mapping,
   set_rel = NULL, select_cols = NULL, drop_cols = NULL,
   rename_attrs = NULL, rel_col = NULL)
 }
@@ -19,13 +19,13 @@ frame object.}
 \item{from_col}{the name of the table column from
 which edges originate.}
 
-\item{from_attr}{the mapping of \code{from_col}
+\item{from_mapping}{the mapping of \code{from_col}
 values to attributes of the graph's nodes.}
 
 \item{to_col}{to_col the name of the table column to
 which edges terminate.}
 
-\item{to_attr}{the mapping of \code{to_col} values
+\item{to_mapping}{the mapping of \code{to_col} values
 to attributes of the graph's nodes.}
 
 \item{set_rel}{an optional string to apply a
