@@ -22,6 +22,90 @@
 #' @param label_col an option to apply a column of data
 #' in the CSV file as \code{label} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#' library(dplyr)
+#'
+#' # Specify a path to the CSV file
+#' path_to_csv <-
+#'   system.file("examples/currencies.csv",
+#'               package = "DiagrammeR")
+#'
+#' # To add nodes from a CSV file, call the
+#' # `add_nodes_from_csv()` function; new node ID
+#' # values will be created as a monotonically-
+#' # increasing value from 1
+#' graph_1 <-
+#'   create_graph() %>%
+#'   add_nodes_from_csv(path_to_csv)
+#'
+#' # View the graph's internal node data frame (ndf)
+#' # with `get_node_df()` and dplyr's `as.tbl()`
+#' graph_1 %>% get_node_df %>% as.tbl
+#' #> Source: local data frame [171 x 7]
+#' #>
+#' #>    nodes  type label iso_4217_code curr_number
+#' #>    (chr) (chr) (chr)         (chr)       (chr)
+#' #> 1      1                       AED         784
+#' #> 2      2                       AFN         971
+#' #> 3      3                       ALL           8
+#' #> 4      4                       AMD          51
+#' #> 5      5                       ANG         532
+#' #> 6      6                       AOA         973
+#' #> 7      7                       ARS          32
+#' #> 8      8                       AUD          36
+#' #> 9      9                       AWG         533
+#' #> 10    10                       AZN         944
+#' #> ..   ...   ...   ...           ...         ...
+#' #> Variables not shown: exponent (chr)
+#' #>   currency_name (chr)
+#'
+#' # If you would like to assign any of the CSV columns
+#' # to `type` or `label` attributes, this can be done
+#' # with the `type_col` and `label_col` arguments; to
+#' # set a static `type` attribute for all of the CSV
+#' # records, use `set_type`
+#' graph_2 <-
+#'   create_graph() %>%
+#'   add_nodes_from_csv(
+#'     path_to_csv,
+#'     set_type = "currency",
+#'     label_col = "iso_4217_code")
+#'
+#' # View the first 3 lines of the graph's internal ndf
+#' graph_2 %>% get_node_df %>% head(3) %>% as.tbl
+#' #> Source: local data frame [3 x 6]
+#' #>
+#' #>   nodes     type label curr_number exponent
+#' #>   (chr)    (chr) (chr)       (chr)    (chr)
+#' #> 1     1 currency   AED         784        2
+#' #> 2     2 currency   AFN         971        2
+#' #> 3     3 currency   ALL           8        2
+#' #> Variables not shown: currency_name (chr)
+#'
+#' # Suppose you would like to not include certain CSV
+#' # column data in the resulting graph... you can use
+#' # the `drop_cols` argument to choose which columns
+#' # to not include as attributes
+#' graph_3 <-
+#'   create_graph() %>%
+#'   add_nodes_from_csv(
+#'     path_to_csv,
+#'     set_type = "currency",
+#'     label_col = "iso_4217_code",
+#'     drop_cols = "exponent")
+#'
+#' graph_3 %>% get_node_df %>% head(3) %>% as.tbl
+#' #> Source: local data frame [3 x 5]
+#' #>
+#' #>   nodes     type label curr_number
+#' #>   (chr)    (chr) (chr)       (chr)
+#' #> 1     1 currency   AED         784
+#' #> 2     2 currency   AFN         971
+#' #> 3     3 currency   ALL           8
+#' #> Variables not shown: currency_name (chr)
+#' }
 #' @export add_nodes_from_csv
 
 add_nodes_from_csv <- function(graph,
@@ -37,12 +121,34 @@ add_nodes_from_csv <- function(graph,
   # Load in CSV file
   csv <- read.csv(csv_path, stringsAsFactors = FALSE)
 
-  # Get numbers of rows and columns in the CSV
+  # Get numbers of rows in the CSV
   rows_in_csv <- nrow(csv)
-  cols_in_csv <- ncol(csv)
 
-  # Get existing nodes in graph object
-  nodes_existing <- get_nodes(x = graph)
+  # Create an empty NDF and column bind
+  # with the CSV data
+  empty_ndf <-
+    create_nodes(nodes = 1:rows_in_csv, label = FALSE)
+  empty_ndf[1:rows_in_csv, 1] <- ""
+  csv <- cbind(empty_ndf, csv)
+
+  if (is.null(id_col)){
+    if (node_count(graph) == 0) {
+      starting_node <- 1
+    } else {
+      if (suppressWarnings(any(!(is.na(as.numeric(graph$nodes_df$nodes)))))){
+        starting_node <-
+          suppressWarnings(
+            max(
+              as.numeric(
+                graph$nodes_df[
+                  which(!is.na(
+                    as.numeric(graph$nodes_df$nodes))),
+                  1])) + 1)
+      } else {
+        starting_node <- 1
+      }
+    }
+  }
 
   # If values for `select_cols` are provided, filter
   # the CSV columns by those named columns
@@ -70,79 +176,60 @@ add_nodes_from_csv <- function(graph,
     csv <- csv[,columns_retained]
   }
 
-  # If values for `rename_attrs` provided, rename the
-  # CSV columns by those replacement values
+  # Add column of ID values to `csv` object
+  if (is.null(id_col)) {
+    csv$nodes <-
+      starting_node:(rows_in_csv + starting_node - 1)
+  }
+
+  # If values for `rename_attrs` provided, rename all
+  # of the CSV columns by those replacement values
+  # (number of new names should match number of columns
+  # even after selecting or dropping columns)
   if (!is.null(rename_attrs)) {
     if (length(rename_attrs) != length(colnames(csv))) {
       stop(paste0("The number of values specified for column name changes ",
                   "does not match the number of columns available"))
     }
-
     colnames(csv) <- rename_attrs
   }
 
-  # Create node ID values
-  for (i in 1:rows_in_csv) {
-    graph <- add_node(graph = graph, label = FALSE)
+  # Optionally set the `label` attribute from a
+  # specified column in the CSV
+  if (!is.null(label_col)) {
+    if (any(colnames(csv) == label_col)) {
+
+      #colnames(csv)[which(colnames(csv) == label_col)] <- "label"
+
+      csv$label <- csv[,which(colnames(csv) == label_col)]
+      csv <- csv[,-which(colnames(csv) == label_col)]
+    }
   }
 
-  # Get vector of nodes created
-  nodes_created <-
-    setdiff(get_nodes(x = graph), nodes_existing)
-
-  # Add CSV columns as attributes
-  for (i in 1:rows_in_csv) {
-    for (j in 1:cols_in_csv) {
-
-      graph <-
-        set_node_attr(
-          x = graph,
-          nodes = nodes_created[i],
-          node_attr = colnames(csv)[j],
-          values = csv[i,j])
+  # Optionally set the `type` attribute from a
+  # specified column in the CSV
+  if (!is.null(type_col)) {
+    if (any(colnames(csv) == type_col)) {
+      colnames(csv)[which(colnames(csv) == type_col)] <- "type"
     }
+  }
 
-    # Optionally set the `label` attribute from a
-    # specified column in the CSV
-    if (!is.null(label_col)) {
-
-      graph <-
-        set_node_attr(
-          x = graph,
-          nodes = nodes_created[i],
-          node_attr = "label",
-          values = csv[i, which(colnames(csv) %in%
-                                  label_col)])
-    }
-
-    # Optionally set the `type` attribute from a
-    # specified column in the CSV
-    if (!is.null(type_col)) {
-      graph <-
-        set_node_attr(
-          x = graph,
-          nodes = nodes_created[i],
-          node_attr = "type",
-          values = csv[i, which(colnames(csv) %in%
-                                  type_col)])
+  # Optionally set the `id` attribute from a
+  # specified column in the CSV
+  if (!is.null(id_col)) {
+    if (any(colnames(csv) == id_col)) {
+      colnames(csv)[which(colnames(csv) == id_col)] <- "nodes"
     }
   }
 
   # Optionally set the `type` attribute with a single
   # value repeated down
   if (!is.null(set_type)) {
-
-    graph <-
-      select_nodes(graph = graph, nodes = nodes_created)
-
-    graph <-
-      set_node_attr_with_selection(
-        graph = graph,
-        node_attr = "type",
-        value = set_type)
-
-    graph <- clear_selection(graph = graph)
+    csv$type <- set_type
   }
+
+  # Add as a node data frame to the graph
+  graph <- add_node_df(graph, csv)
 
   return(graph)
 }
