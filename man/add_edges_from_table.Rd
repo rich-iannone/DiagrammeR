@@ -19,14 +19,18 @@ frame object.}
 \item{from_col}{the name of the table column from
 which edges originate.}
 
-\item{from_mapping}{the mapping of \code{from_col}
-values to attributes of the graph's nodes.}
+\item{from_mapping}{a single character value for
+the mapping of a column in the external table
+(supplied as \code{from_col}) to a column in the
+graph's internal node data frame (ndf).}
 
 \item{to_col}{to_col the name of the table column to
 which edges terminate.}
 
-\item{to_mapping}{the mapping of \code{to_col} values
-to attributes of the graph's nodes.}
+\item{to_mapping}{a single character value for
+the mapping of a column in the external table
+(supplied as \code{to_col}) to a column in the
+graph's internal node data frame (ndf).}
 
 \item{set_rel}{an optional string to apply a
 \code{rel} attribute to all edges created from the
