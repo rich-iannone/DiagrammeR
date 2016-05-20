@@ -9,12 +9,16 @@
 #' frame object.
 #' @param from_col the name of the table column from
 #' which edges originate.
-#' @param from_mapping the mapping of \code{from_col}
-#' values to attributes of the graph's nodes.
+#' @param from_mapping a single character value for
+#' the mapping of a column in the external table
+#' (supplied as \code{from_col}) to a column in the
+#' graph's internal node data frame (ndf).
 #' @param to_col to_col the name of the table column to
 #' which edges terminate.
-#' @param to_mapping the mapping of \code{to_col} values
-#' to attributes of the graph's nodes.
+#' @param to_mapping a single character value for
+#' the mapping of a column in the external table
+#' (supplied as \code{to_col}) to a column in the
+#' graph's internal node data frame (ndf).
 #' @param set_rel an optional string to apply a
 #' \code{rel} attribute to all edges created from the
 #' table records.
