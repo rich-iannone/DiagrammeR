@@ -1,4 +1,4 @@
-#' Add a multiple of new nodes to the graph
+#' Add one or several unconnected nodes to the graph
 #' @description Add n new nodes to a graph object of
 #' class \code{dgr_graph}. Optionally, set node
 #' \code{type} values for the new nodes.
