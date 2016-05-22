@@ -13,7 +13,7 @@
 #' the mapping of a column in the external table
 #' (supplied as \code{from_col}) to a column in the
 #' graph's internal node data frame (ndf).
-#' @param to_col to_col the name of the table column to
+#' @param to_col the name of the table column to
 #' which edges terminate.
 #' @param to_mapping a single character value for
 #' the mapping of a column in the external table
