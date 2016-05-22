@@ -159,8 +159,7 @@ Get the average age of all the contributors:
 graph %>% 
   select_nodes("type", "person") %>%
   deposit_node_attr_from_selection(
-    "age",
-    "numeric") %>%
+    "age", "numeric") %>%
   withdraw_values %>% 
   mean
 #> [1] 33.6
@@ -171,8 +170,7 @@ Get the total number of commits to all software projects:
 graph %>% 
   select_edges %>%
   deposit_edge_attr_from_selection(
-    "commits",
-    "numeric") %>%
+    "commits", "numeric") %>%
   withdraw_values %>% 
   sum
 #> [1] 5182
@@ -184,8 +182,7 @@ graph %>%
   select_nodes("name", "Josh") %>%
   trav_out_edge(c("maintainer", "contributer")) %>%
   deposit_edge_attr_from_selection(
-    "commits",
-    "numeric") %>%
+    "commits", "numeric") %>%
   withdraw_values %>% 
   sum
 #> [1] 227
@@ -197,8 +194,7 @@ graph %>%
   select_nodes("name", "Louisa") %>%
   trav_out_edge %>%
   deposit_edge_attr_from_selection(
-    "commits",
-    "numeric") %>%
+    "commits", "numeric") %>%
   withdraw_values %>% 
   sum
 #> [1] 615
@@ -294,12 +290,10 @@ graph %>%
   select_nodes("project", "randomizer") %>%
   trav_in %>%
   deposit_node_attr_from_selection(
-    "follower_count",
-    "numeric") %>%
+    "follower_count", "numeric") %>%
   select_nodes("project", "randomizer") %>%
   trav_in(
-    "follower_count",
-    max(withdraw_values(.))) %>%
+    "follower_count", max(withdraw_values(.))) %>%
   deposit_node_attr_from_selection("name") %>%
   withdraw_values
 #> [1] "Kim"
