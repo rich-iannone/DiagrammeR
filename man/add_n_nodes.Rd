@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_n_nodes.R
 \name{add_n_nodes}
 \alias{add_n_nodes}
-\title{Add a multiple of new nodes to the graph}
+\title{Add one or several unconnected nodes to the graph}
 \usage{
 add_n_nodes(graph, n, set_node_type = NULL)
 }
