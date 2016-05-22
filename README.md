@@ -10,7 +10,7 @@ With the **DiagrammeR** package, you can create network graph diagrams. You can 
 
 <img src="inst/img/simple-graph.png">
 
-It's possible to make the above graph diagram using using **Graphviz** **DOT** code (as text within the **DiagrammeR** `grViz()` function) or through a combination of **DiagrammeR** functions, strung together with the **magrittr** `%>%` pipe. 
+It's possible to make the above graph diagram using using **Graphviz** **DOT** code (as text within the **DiagrammeR** `grViz()` function) or through a combination of **DiagrammeR** functions strung together with the **magrittr** `%>%` pipe. 
 
 So, with **Graphviz**:
 
