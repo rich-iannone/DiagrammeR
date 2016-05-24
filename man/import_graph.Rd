@@ -12,8 +12,9 @@ import_graph(graph_file, file_type = NULL, graph_name = NULL,
 
 \item{file_type}{the type of file to be imported.
 Options are: \code{graphml} (GraphML), \code{gml}
-(GML), and \code{sif} (SIF). If not supplied, the
-function will infer the type by its file extension.}
+(GML), \code{sif} (SIF), and \code{mtx}
+(MatrixMarket format). If not supplied, the function
+will infer the type by its file extension.}
 
 \item{graph_name}{an optional string for labeling
 the graph object.}
