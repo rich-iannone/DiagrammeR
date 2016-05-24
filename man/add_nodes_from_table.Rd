@@ -13,7 +13,7 @@ add_nodes_from_table(graph, table, set_type = NULL, select_cols = NULL,
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{table}{either a path to a CSV file or a data
+\item{table}{either a path to a CSV file, or, a data
 frame object.}
 
 \item{set_type}{an optional string to apply a

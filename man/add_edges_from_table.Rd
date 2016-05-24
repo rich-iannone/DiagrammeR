@@ -13,7 +13,7 @@ add_edges_from_table(graph, table, from_col, from_mapping, to_col, to_mapping,
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{table}{either a path to a CSV file or a data
+\item{table}{either a path to a CSV file, or, a data
 frame object.}
 
 \item{from_col}{the name of the table column from
