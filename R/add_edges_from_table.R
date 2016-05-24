@@ -5,7 +5,7 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param table either a path to a CSV file or a data
+#' @param table either a path to a CSV file, or, a data
 #' frame object.
 #' @param from_col the name of the table column from
 #' which edges originate.
