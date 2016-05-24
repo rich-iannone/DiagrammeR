@@ -4,8 +4,9 @@
 #' @param graph_file a connection to a graph file.
 #' @param file_type the type of file to be imported.
 #' Options are: \code{graphml} (GraphML), \code{gml}
-#' (GML), and \code{sif} (SIF). If not supplied, the
-#' function will infer the type by its file extension.
+#' (GML), \code{sif} (SIF), and \code{mtx}
+#' (MatrixMarket format). If not supplied, the function
+#' will infer the type by its file extension.
 #' @param graph_name an optional string for labeling
 #' the graph object.
 #' @param graph_time a date or date-time string
@@ -98,9 +99,59 @@ import_graph <- function(graph_file,
       file_type <- "gml"
     } else if (file_extension == "sif") {
       file_type <- "sif"
+    } else if (file_extension == "mtx") {
+      file_type <- "mtx"
     } else {
       stop("The file type is not known so it can't be imported.")
     }
+  }
+
+  if (file_type == "mtx"){
+
+    # Read in the .mtx document as a vector object
+    mtx_document <- readLines(graph_file)
+
+    # Determine which line the data fields begin
+    first_line <- grep("^(\\w*) (\\w*)$", mtx_document)[1]
+
+    # Create an edge data frame
+    edges <-
+      create_edges(
+        from = sapply(
+          strsplit(
+            mtx_document[first_line:length(mtx_document)],
+            " "), "[[", 1),
+        to = sapply(
+          strsplit(
+            mtx_document[first_line:length(mtx_document)],
+            " "), "[[", 2))
+
+    # Create a node data frame
+    nodes <-
+      create_nodes(
+        nodes = unique(
+          unlist(
+            strsplit(
+              mtx_document[first_line:length(mtx_document)],
+              " "))))
+
+	# Create the graph
+    the_graph <-
+      create_graph(
+        nodes_df = nodes,
+        edges_df = edges,
+        graph_name = graph_name,
+        graph_time = graph_time,
+        graph_tz = graph_tz,
+        node_attrs = c("shape = circle",
+                       "width = 10",
+                       "style = filled",
+                       "color = black"),
+        graph_attrs = "layout = neato",
+        generate_dot = FALSE)
+
+    # Return the graph
+    return(the_graph)
   }
 
   if (file_type == "graphml") {
