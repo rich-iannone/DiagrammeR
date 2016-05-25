@@ -18,4 +18,20 @@ to the graph
 Get a data frame with metrics for a
 graph.
 }
+\examples{
+\dontrun{
+# Import a GraphML graph file available in the
+# DiagrammeR package
+power_grid <-
+  import_graph(
+    system.file("examples/power_grid.graphml",
+                package = "DiagrammeR"),
+    graph_name = "power_grid")
+
+# Display a data frame with graph information
+graph_info(power_grid)
+#>         name nodes edges      density min_degree max_degree avg_degree time tz
+#> 1 power_grid  4941  6594 0.0005403027          1         19          3
+}
+}
 
