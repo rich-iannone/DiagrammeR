@@ -14,9 +14,9 @@ graph_info <- function(graph) {
     as.data.frame(mat.or.vec(nr = 0, nc = 9))
 
   colnames(graph_metrics) <-
-    c("name", "time", "tz", "nodes", "edges",
-      "density", "min_degree", "max_degree",
-      "avg_degree")
+    c("name", "nodes", "edges", "density",
+      "min_degree", "max_degree",
+      "avg_degree", "time", "tz")
 
   # Get the number of nodes
   n_nodes <- node_count(graph)
@@ -50,31 +50,31 @@ graph_info <- function(graph) {
 
   # Add graph time to the data frame
   if (is.null(graph$graph_time)) {
-    graph_metrics[1, 2] <- ""
+    graph_metrics[1, 8] <- ""
   } else {
-    graph_metrics[1, 2] <- graph$graph_time
+    graph_metrics[1, 8] <- graph$graph_time
   }
 
   # Add graph time zone (tz) to the data frame
   if (is.null(graph$graph_tz)) {
-    graph_metrics[1, 3] <- ""
+    graph_metrics[1, 9] <- ""
   } else {
-    graph_metrics[1, 3] <- graph$graph_tz
+    graph_metrics[1, 9] <- graph$graph_tz
   }
 
   # Add count of nodes to the data frame
-  graph_metrics[1, 4] <- n_nodes
+  graph_metrics[1, 2] <- n_nodes
 
   # Add count of edges to the data frame
-  graph_metrics[1, 5] <- n_edges
+  graph_metrics[1, 3] <- n_edges
 
   # Add density calculation to the data frame
-  graph_metrics[1, 6] <- density
+  graph_metrics[1, 4] <- density
 
   # Add degree data to the data frame
-  graph_metrics[1, 7] <- min_deg
-  graph_metrics[1, 8] <- max_deg
-  graph_metrics[1, 9] <- avg_deg
+  graph_metrics[1, 5] <- min_deg
+  graph_metrics[1, 6] <- max_deg
+  graph_metrics[1, 7] <- avg_deg
 
   return(graph_metrics)
 }
