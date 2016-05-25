@@ -5,6 +5,21 @@
 #' \code{dgr_graph}.
 #' @return a data frame containing metrics pertaining
 #' to the graph
+#' @examples
+#' \dontrun{
+#' # Import a GraphML graph file available in the
+#' # DiagrammeR package
+#' power_grid <-
+#'   import_graph(
+#'     system.file("examples/power_grid.graphml",
+#'                 package = "DiagrammeR"),
+#'     graph_name = "power_grid")
+#'
+#' # Display a data frame with graph information
+#' graph_info(power_grid)
+#' #>         name nodes edges      density min_degree max_degree avg_degree time tz
+#' #> 1 power_grid  4941  6594 0.0005403027          1         19          3
+#' }
 #' @export graph_info
 
 graph_info <- function(graph) {
@@ -15,8 +30,8 @@ graph_info <- function(graph) {
 
   colnames(graph_metrics) <-
     c("name", "nodes", "edges", "density",
-      "min_degree", "max_degree",
-      "avg_degree", "time", "tz")
+      "min_deg", "max_deg",
+      "avg_deg", "time", "tz")
 
   # Get the number of nodes
   n_nodes <- node_count(graph)
