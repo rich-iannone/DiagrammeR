@@ -4,9 +4,10 @@
 #' @param graph_file a connection to a graph file.
 #' @param file_type the type of file to be imported.
 #' Options are: \code{graphml} (GraphML), \code{gml}
-#' (GML), \code{sif} (SIF), and \code{mtx}
-#' (MatrixMarket format). If not supplied, the function
-#' will infer the type by its file extension.
+#' (GML), \code{sif} (SIF), \code{edges} (a .edges
+#' file), and \code{mtx} (MatrixMarket format). If not
+#' supplied, the function will infer the type by its
+#' file extension.
 #' @param graph_name an optional string for labeling
 #' the graph object.
 #' @param graph_time a date or date-time string
