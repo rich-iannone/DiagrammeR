@@ -139,7 +139,7 @@ import_graph <- function(graph_file,
               edges_document[first_line:length(edges_document)],
               " "))))
 
-	# Create the graph
+    # Create the graph
     the_graph <-
       create_graph(
         nodes_df = nodes,
@@ -187,7 +187,7 @@ import_graph <- function(graph_file,
               mtx_document[first_line:length(mtx_document)],
               " "))))
 
-	# Create the graph
+    # Create the graph
     the_graph <-
       create_graph(
         nodes_df = nodes,
@@ -301,8 +301,9 @@ import_graph <- function(graph_file,
 
     # Create all edges for graph
     all_edges <-
-      create_edges(from = edges_from,
-                   to = edges_to)
+      create_edges(
+        from = edges_from,
+        to = edges_to)
 
     # Create the graph
     the_graph <-
@@ -339,8 +340,9 @@ import_graph <- function(graph_file,
 
     # Extract all node definitions
     node_defs <-
-      unlist(str_extract_all(gml_document,
-                             "node[ ]*?\\[.*?\\]"))
+      unlist(
+        str_extract_all(gml_document,
+                        "node[ ]*?\\[.*?\\]"))
 
     # Get all node ID values
     node_id <-
