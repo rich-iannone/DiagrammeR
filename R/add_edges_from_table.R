@@ -37,7 +37,8 @@
 #' library(magrittr)
 #' library(dplyr)
 #'
-#' graph_1 <- create_graph() %>%
+#' # Create a graph from a CSV file
+#' graph <- create_graph() %>%
 #' add_edges_from_table(
 #'   system.file("examples/projects_and_contributors.csv",
 #'               package = "DiagrammeR"),
