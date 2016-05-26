@@ -32,14 +32,29 @@
 #' @param rel_col an option to apply a column of data
 #' in the table as \code{rel} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#' library(dplyr)
+#'
+#' graph_1 <- create_graph() %>%
+#' add_edges_from_table(
+#'   system.file("examples/projects_and_contributors.csv",
+#'               package = "DiagrammeR"),
+#'   from_col = "contributor_name",
+#'   to_col = "project_name",
+#'   rel_col = "contributor_role",
+#'   set_rel = "contributes_to")
+#'
+#' }
 #' @export add_edges_from_table
 
 add_edges_from_table <- function(graph,
                                  table,
                                  from_col,
-                                 from_mapping,
+                                 from_mapping = NULL,
                                  to_col,
-                                 to_mapping,
+                                 to_mapping = NULL,
                                  set_rel = NULL,
                                  select_cols = NULL,
                                  drop_cols = NULL,
@@ -73,14 +88,107 @@ add_edges_from_table <- function(graph,
 
   # Verify that value for `from_mapping` is in the
   # graph's ndf
-  if (!(from_mapping %in% colnames(get_node_df(graph)))) {
-    stop("The value specified in `from_mapping` is not in the graph.")
+  if (!is.null(from_mapping)) {
+    if (!(from_mapping %in% colnames(get_node_df(graph)))) {
+      stop("The value specified in `from_mapping` is not in the graph.")
+    }
   }
 
   # Verify that value for `to_mapping` is in the
   # graph's ndf
-  if (!(to_mapping %in% colnames(get_node_df(graph)))) {
-    stop("The value specified in `to_mapping` is not in the graph.")
+  if (!is.null(to_mapping)) {
+    if (!(to_mapping %in% colnames(get_node_df(graph)))) {
+      stop("The value specified in `to_mapping` is not in the graph.")
+    }
+  }
+
+  if (is.null(from_mapping) & is.null(to_mapping)) {
+
+    if (node_count(graph) == 0) {
+      starting_node <- 1
+    } else {
+      if (suppressWarnings(any(!(is.na(as.numeric(graph$nodes_df$nodes)))))){
+        starting_node <-
+          suppressWarnings(
+            max(
+              as.numeric(
+                graph$nodes_df[
+                  which(!is.na(
+                    as.numeric(graph$nodes_df$nodes))),
+                  1])) + 1)
+      } else {
+        starting_node <- 1
+      }
+    }
+
+    # If values for `select_cols` are provided, filter
+    # the CSV columns by those named columns
+    if (!is.null(select_cols)) {
+
+      # If none of the specified values in `select_cols`
+      # are in the CSV, stop the function
+      if (all(select_cols %in% colnames(csv)) == FALSE) {
+        stop("None of the values specified for selecting columns are available.")
+      }
+
+      columns_retained <-
+        which(colnames(csv) %in% select_cols)
+
+      csv <- csv[,columns_retained]
+    }
+
+    # If values for `drop_cols` provided, filter the CSV
+    # columns by those named columns
+    if (is.null(select_cols) & !is.null(drop_cols)) {
+
+      columns_retained <-
+        which(!(colnames(csv) %in% drop_cols))
+
+      csv <- csv[,columns_retained]
+    }
+
+    # If values for `rename_attrs` provided, rename all
+    # of the CSV columns by those replacement values
+    # (number of new names should match number of columns
+    # even after selecting or dropping columns)
+    if (!is.null(rename_attrs)) {
+      if (length(rename_attrs) != length(colnames(csv))) {
+        stop(paste0("The number of values specified for column name changes ",
+                    "does not match the number of columns available"))
+      }
+      colnames(csv) <- rename_attrs
+    }
+
+    # Optionally set the `rel` attribute from a
+    # specified column in the CSV (this copies into
+    # the `rel` column)
+    if (!is.null(rel_col)) {
+      if (any(colnames(csv) == rel_col)) {
+        csv$rel <- csv[,which(colnames(csv) == rel_col)]
+      }
+    }
+
+    # Get the unique set of nodes to add to the graph
+    nodes <-
+      create_nodes(
+        nodes = unique(
+          c(csv[, which(colnames(csv) %in% from_col)],
+            csv[, which(colnames(csv) %in% to_col)])))
+
+    # Add node data frame to the graph
+    graph <- add_node_df(graph, nodes)
+
+    # Create an edge data frame
+    edges <-
+      create_edges(
+        from = csv[, which(colnames(csv) %in% from_col)],
+        to = csv[, which(colnames(csv) %in% to_col)]
+      )
+
+    # Add edge data frame to the graph
+    graph <- add_edge_df(graph, edges)
+
+    return(graph)
   }
 
   # Verify that all values in `from_col` in the table are
