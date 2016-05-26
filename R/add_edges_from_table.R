@@ -47,6 +47,13 @@
 #'   rel_col = "contributor_role",
 #'   set_rel = "contributes_to")
 #'
+#' # Get a count of nodes in the graph
+#' node_count(graph)
+#' #> [1] 13
+#'
+#' # Get a count of edges in the graph
+#' edge_count(graph)
+#' #> [1] 13
 #' }
 #' @export add_edges_from_table
 
