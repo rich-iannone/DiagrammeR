@@ -4,9 +4,9 @@
 \alias{add_edges_from_table}
 \title{Add edges and attributes to graph from a table}
 \usage{
-add_edges_from_table(graph, table, from_col, from_mapping, to_col, to_mapping,
-  set_rel = NULL, select_cols = NULL, drop_cols = NULL,
-  rename_attrs = NULL, rel_col = NULL)
+add_edges_from_table(graph, table, from_col, from_mapping = NULL, to_col,
+  to_mapping = NULL, set_rel = NULL, select_cols = NULL,
+  drop_cols = NULL, rename_attrs = NULL, rel_col = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -56,5 +56,21 @@ a graph object of class \code{dgr_graph}.
 Add edges and their attributes to an
 existing graph object from data in a CSV file or a
 data frame.
+}
+\examples{
+\dontrun{
+library(magrittr)
+library(dplyr)
+
+graph_1 <- create_graph() \%>\%
+add_edges_from_table(
+  system.file("examples/projects_and_contributors.csv",
+              package = "DiagrammeR"),
+  from_col = "contributor_name",
+  to_col = "project_name",
+  rel_col = "contributor_role",
+  set_rel = "contributes_to")
+
+}
 }
 
