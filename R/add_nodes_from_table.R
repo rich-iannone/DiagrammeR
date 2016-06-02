@@ -121,6 +121,7 @@ add_nodes_from_table <- function(graph,
                                  label_col = NULL) {
 
   if (inherits(table, "character")) {
+
     # Load in CSV file
     csv <- read.csv(table, stringsAsFactors = FALSE)
   } else if (inherits(table, "data.frame")) {
@@ -202,7 +203,7 @@ add_nodes_from_table <- function(graph,
   }
 
   # Optionally set the `label` attribute from a
-  # specified column in the CSV (this copies into
+  # specified column in the CSV (this copies data into
   # the `label` column)
   if (!is.null(label_col)) {
     if (any(colnames(csv) == label_col)) {
