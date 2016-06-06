@@ -487,40 +487,41 @@ test_that("selecting nodes in a neighborhood is possible", {
                                  node = "1",
                                  distance = 2)
 
-  # Expect that specific nodes  are part of a selection
+  # Expect that specific nodes are part of a selection
   # object in 'nodes'
   expect_true(all(graph_sel_1_dist_2$selection$nodes ==
-                    c("D", "5", "F", "A", "1", "7", "C", "E")))
+                    c("1", "D", "5", "F", "A", "7",
+                      "C", "E")))
 
   # Create a selection of nodes centered around node "U" and
-  # including those nodes a depth of 2 edges away
+  # including those nodes a distance of 4 nodes away
   graph_sel_1_sel_4_dist_2 <-
     select_nodes_in_neighborhood(graph = graph_sel_1_dist_2,
                                  node = "4",
                                  distance = 2)
 
-  # Expect that specific nodes  are part of a selection
+  # Expect that specific nodes are part of a selection
   # object in 'nodes'
   expect_true(all(graph_sel_1_sel_4_dist_2$selection$nodes ==
-                    c("D", "5", "F", "A", "1", "7", "C",
-                      "E", "6", "B", "2", "4", "3")))
+                    c("1", "D", "5", "F", "A", "7", "C",
+                      "E", "4", "6", "B", "2", "3")))
 
-  # Create a selection of nodes centered around node "U" and
-  # including those nodes a depth of 2 edges away
+  # Create a selection of nodes centered around node "A" and
+  # including those nodes a distance of 3 nodes away
   graph_sel_1_sel_4_dist_2_sel_A_dist_3 <-
     select_nodes_in_neighborhood(graph = graph_sel_1_sel_4_dist_2,
                                  node = "A",
                                  distance = 3,
                                  set_op = "intersect")
 
-  # Expect that specific nodes  are part of a selection
+  # Expect that specific nodes are part of a selection
   # object in 'nodes'
   expect_true(all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
-                    c("D", "5", "F", "A", "1", "7", "C",
-                      "E", "6", "4")))
+                    c("1", "D", "5", "F", "A", "7",
+                      "C", "E", "4", "6")))
 
-  # Create a selection of nodes centered around node "U" and
-  # including those nodes a depth of 2 edges away
+  # Create a selection of nodes centered around node "7" and
+  # including those nodes a distance of 2 nodes away
   graph_sel_1_sel_4_dist_2_sel_A_dist_3 <-
     select_nodes_in_neighborhood(graph = graph_sel_1_sel_4_dist_2,
                                  node = "7",
