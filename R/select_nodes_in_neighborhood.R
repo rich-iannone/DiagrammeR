@@ -19,38 +19,65 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
-#' # Create a graph
-#' nodes <-
-#'   create_nodes(nodes = LETTERS,
-#'                type = "letter",
-#'                shape = sample(c("circle", "rectangle"),
-#'                               length(LETTERS),
-#'                               replace = TRUE),
-#'                fillcolor = sample(c("aqua", "red",
-#'                                     "pink", "lightgreen",
-#'                                     "azure", "yellow"),
-#'                                   length(LETTERS),
-#'                                   replace = TRUE))
+#' library(magrittr)
 #'
-#' edges <-
-#'   create_edges(from = sample(LETTERS, replace = TRUE),
-#'                to = sample(LETTERS, replace = TRUE),
-#'                rel = "letter_to_letter")
-#'
-#' graph <- create_graph(nodes_df = nodes,
-#'                       edges_df = edges,
-#'                       graph_attrs = "layout = neato",
-#'                       node_attrs = c("fontname = Helvetica",
-#'                                      "style = filled"),
-#'                       edge_attrs = c("color = gray20",
-#'                                      "arrowsize = 0.5"))
-#'
-#' # Create a selection of nodes centered around node "U" and
-#' # including those nodes a depth of 2 edges away
+#' # Create a graph with a tree structure that's
+#' # 4 levels deep (begins with node `1`, branching
+#' # by 3 nodes at each level); the resulting graph
+#' # contains 40 nodes, numbered `1` through `40`
 #' graph <-
-#'   select_nodes_in_neighborhood(graph = graph,
-#'                                node = "U",
-#'                                distance = 2)
+#'   create_graph(graph_attrs = 'layout = twopi') %>%
+#'   add_node("A") %>% select_nodes %>%
+#'   add_n_nodes_from_selection(3, "B") %>%
+#'   clear_selection %>%
+#'   select_nodes("type", "B") %>%
+#'   add_n_nodes_from_selection(3, "C") %>%
+#'   clear_selection %>%
+#'   select_nodes("type", "C") %>%
+#'   add_n_nodes_from_selection(3, "D") %>%
+#'   clear_selection
+#'
+#' # Create a graph selection by selecting nodes
+#' # in the neighborhood of node `1`, where the
+#' # neighborhood is limited by nodes that are 1
+#' # connection away from node `1`
+#' graph %<>%
+#'   select_nodes_in_neighborhood(
+#'     node = 1,
+#'     distance = 1)
+#'
+#' # Get the selection of nodes
+#' graph %>% get_selection
+#' #> $nodes
+#' #> [1] "1" "2" "3" "4"
+#'
+#' # Perform another selection of nodes, this time
+#' # with a neighborhood spanning 2 nodes from node `1`
+#' graph %<>%
+#'   clear_selection %>%
+#'   select_nodes_in_neighborhood(
+#'     node = 1,
+#'     distance = 2)
+#'
+#' # Get the selection of nodes
+#' graph %>% get_selection
+#' #> $nodes
+#' #> [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+#' #> [10] "10" "11" "12" "13"
+#'
+#' # Perform a final selection of nodes, using
+#' # `distance = 3`, this effectively selects all 40
+#' # nodes in this graph
+#' graph %<>%
+#'   clear_selection %>%
+#'   select_nodes_in_neighborhood(
+#'     node = 1,
+#'     distance = 3)
+#'
+#' # Get a count of the nodes selected to verify
+#' # that all 40 nodes have indeed been selected
+#' graph %>% get_selection %>% unlist %>% length
+#> [1] 40
 #' }
 #' @export select_nodes_in_neighborhood
 
