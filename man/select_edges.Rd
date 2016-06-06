@@ -24,10 +24,11 @@ expression for filtering the nodes returned through
 string matching.}
 
 \item{set_op}{the set operation to perform upon
-consecutive selections of graph edges This can
+consecutive selections of graph nodes. This can
 either be as a \code{union} (the default), as an
-\code{intersection}, or, as a \code{difference} on
-the previous selection, if it exists.}
+intersection of selections with \code{intersect},
+or, as a \code{difference} on the previous
+selection, if it exists.}
 
 \item{from}{an optional vector of node IDs from
 which the edge is outgoing for filtering the list of

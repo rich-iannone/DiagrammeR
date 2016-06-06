@@ -37,8 +37,9 @@ string matching.}
 \item{set_op}{the set operation to perform upon
 consecutive selections of graph nodes. This can
 either be as a \code{union} (the default), as an
-\code{intersection}, or, as a \code{difference} on
-the previous selection, if it exists.}
+intersection of selections with \code{intersect},
+or, as a \code{difference} on the previous
+selection, if it exists.}
 
 \item{nodes}{an optional vector of node IDs for
 filtering list of nodes present in the graph.}
