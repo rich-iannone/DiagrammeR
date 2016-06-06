@@ -6,10 +6,12 @@
 #' @param node the node from which the traversal will originate.
 #' @param distance the maximum number of steps from the \code{node}
 #' for inclusion in the subgraph.
-#' @param set_op the set operation to perform upon consecutive selections
-#' of graph nodes. This can either be as a \code{union} (the default), as an
-#' \code{intersection}, or, as a \code{difference} on the previous selection,
-#' if it exists.
+#' @param set_op the set operation to perform upon
+#' consecutive selections of graph nodes. This can
+#' either be as a \code{union} (the default), as an
+#' intersection of selections with \code{intersect},
+#' or, as a \code{difference} on the previous
+#' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
