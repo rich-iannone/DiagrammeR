@@ -11,6 +11,100 @@
 #' @param match the value of the node attribute to
 #' match on.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a graph with a tree structure that's
+#' # 3 levels deep (begins with node `1`, branching
+#' # by 2 nodes at each level)
+#' #
+#' # The resulting graph contains 15 nodes, numbered
+#' # `1` through `15`; one main branch has all its 7
+#' # nodes colored `red`, the other main branch has
+#' # 3 of its 7 nodes colored `blue`
+#' #
+#' # A schematic of the graph:
+#' #
+#' #   red->[7 red nodes]
+#' #    /
+#' # [1]
+#' #    \
+#' #  blue->[3 blue nodes, 4 black nodes]
+#' #
+#' graph <-
+#'   create_graph() %>%
+#'   add_node("A") %>%
+#'   select_nodes %>%
+#'   add_n_nodes_from_selection(2, "B") %>%
+#'   clear_selection %>%
+#'   select_nodes("type", "B") %>%
+#'   add_n_nodes_from_selection(2, "C") %>%
+#'   clear_selection %>%
+#'   select_nodes("type", "C") %>%
+#'   add_n_nodes_from_selection(2, "D") %>%
+#'   clear_selection %>%
+#'   select_nodes_by_id(
+#'     c(2, 4, 5, 8, 9, 10, 11)) %>%
+#'   set_node_attr_with_selection(
+#'     node_attr = 'color',
+#'     value = 'red') %>%
+#'   clear_selection %>%
+#'   select_nodes_by_id(
+#'     c(3, 6, 7)) %>%
+#'   set_node_attr_with_selection(
+#'     node_attr = 'color',
+#'     value = 'blue') %>%
+#'   select_edges(from = 1, to = 2) %>%
+#'   set_edge_attr_with_selection(
+#'     edge_attr = 'color',
+#'     value = 'red') %>%
+#'   clear_selection %>%
+#'   select_edges(from = 1, to = 3) %>%
+#'   set_edge_attr_with_selection(
+#'     edge_attr = 'color',
+#'     value = 'blue') %>%
+#'   clear_selection
+#'
+#' # Create a graph selection of all nodes with the
+#' # attribute `color = red`; Begin at node `1` and
+#' # traverse along the red edge to the first `red` node,
+#' # then, find the larger neighborhood of red nodes and
+#' # create a node selection from that collection
+#' graph %<>%
+#'   select_nodes_by_id(1) %>%
+#'   trav_out_edge('color', 'red') %>%
+#'   trav_in_node %>%
+#'   select_nbr_nodes_by_node_attr(
+#'     node_attr = 'color',
+#'     match = 'red')
+#'
+#' # Get selection of nodes; it comprises the entire set
+#' # of 7 red nodes that have adjacency to each other
+#' graph %>% get_selection
+#' #> $nodes
+#' #> [1] "2"  "4"  "5"  "8"  "9"  "10" "11"
+#'
+#' # Create a graph selection of all nodes with the
+#' # attribute `color = blue`; Begin at node `1` and
+#' # traverse along the blue edge to the first `blue`
+#' # node, then, find the larger neighborhood of blue
+#' # nodes and create a node selection
+#' graph %<>%
+#'   clear_selection %>%
+#'   select_nodes_by_id(1) %>%
+#'   trav_out_edge('color', 'blue') %>%
+#'   trav_in_node %>%
+#'   select_nbr_nodes_by_node_attr(
+#'     node_attr = 'color',
+#'     match = 'blue')
+#'
+#' # Get selection of nodes; it comprises the entire set
+#' # of 3 blue nodes that have adjacency to each other
+#' graph %>% get_selection
+#' #> $nodes
+#' #> [1] "3" "6" "7"
+#' }
 #' @export select_nbr_nodes_by_node_attr
 
 select_nbr_nodes_by_node_attr <- function(graph,
