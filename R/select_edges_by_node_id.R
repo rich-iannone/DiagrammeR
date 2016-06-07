@@ -19,7 +19,9 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @export select_edges_by_node_id
 
-select_edges_by_node_id <- function(graph, nodes, set_op = "union") {
+select_edges_by_node_id <- function(graph,
+                                    nodes,
+                                    set_op = "union") {
 
   # Extract the edge data frame from the graph
   edge_df <- get_edge_df(graph)
