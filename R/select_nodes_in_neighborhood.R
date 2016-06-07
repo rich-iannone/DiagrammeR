@@ -77,7 +77,7 @@
 #' # Get a count of the nodes selected to verify
 #' # that all 40 nodes have indeed been selected
 #' graph %>% get_selection %>% unlist %>% length
-#> [1] 40
+#' #> [1] 40
 #' }
 #' @export select_nodes_in_neighborhood
 
