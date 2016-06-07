@@ -1,9 +1,10 @@
 #' Select edges in a graph using node ID values
 #' @description Select edges in a graph object of class
-#' \code{dgr_graph} using node ID values. If nodes have
-#' IDs that are monotonically increasing integer
-#' values, then numeric ranges can be used for the
-#' selection.
+#' \code{dgr_graph} using node ID values. All edges
+#' associated with the provided nodes will be included
+#' in the selection. If nodes have IDs that are
+#' monotonically increasing integer values, then
+#' numeric ranges can be provided for the selection.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
