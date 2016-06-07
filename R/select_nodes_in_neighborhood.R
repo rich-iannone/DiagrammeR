@@ -86,7 +86,7 @@ select_nodes_in_neighborhood <- function(graph,
                                          distance,
                                          set_op = "union") {
 
-  # Create and empty list object
+  # Create an empty list object
   nodes <- list()
 
   # Find nodes belonging to the neighborhood

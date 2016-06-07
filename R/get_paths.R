@@ -128,7 +128,7 @@ get_paths <- function(graph,
     # Initialize paths with starting node
     paths <- list(from[m])
 
-    repeat{
+    repeat {
 
       for (i in 1:length(paths)) {
 
