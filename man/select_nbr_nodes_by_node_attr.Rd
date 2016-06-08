@@ -83,9 +83,10 @@ graph <-
 
 # Create a graph selection of all nodes with the
 # attribute `color = red`; Begin at node `1` and
-# traverse along the red edge to the first `red` node,
-# then, find the larger neighborhood of red nodes and
-# create a node selection from that collection
+# traverse along the red edge to the first `red`
+# node, then, find the larger neighborhood of red
+# nodes and create a node selection from that
+# collection
 graph \%<>\%
   select_nodes_by_id(1) \%>\%
   trav_out_edge('color', 'red') \%>\%
@@ -94,8 +95,9 @@ graph \%<>\%
     node_attr = 'color',
     match = 'red')
 
-# Get selection of nodes; it comprises the entire set
-# of 7 red nodes that have adjacency to each other
+# Get selection of nodes; it comprises the
+# entire set of 7 red nodes that have adjacency
+# to each other
 graph \%>\% get_selection
 #> $nodes
 #> [1] "2"  "4"  "5"  "8"  "9"  "10" "11"
@@ -114,8 +116,9 @@ graph \%<>\%
     node_attr = 'color',
     match = 'blue')
 
-# Get selection of nodes; it comprises the entire set
-# of 3 blue nodes that have adjacency to each other
+# Get selection of nodes; it comprises the
+# entire set of 3 blue nodes that have adjacency
+# to each other
 graph \%>\% get_selection
 #> $nodes
 #> [1] "3" "6" "7"
