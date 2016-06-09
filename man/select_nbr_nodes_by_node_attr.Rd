@@ -133,6 +133,74 @@ graph \%<>\%
 graph \%>\% get_selection
 #> $nodes
 #> [1] "3" "6" "7"
+
+# Selection of neighbors can be done via numerical
+# comparisons as well; start with creating a random,
+# directed graph with 18 nodes and 22 edges
+random_graph <-
+  create_random_graph(
+    n = 18,
+    m = 22,
+    directed = TRUE,
+    fully_connected = TRUE,
+    set_seed = 20) \%>\%
+  set_global_graph_attr(
+    'graph', 'layout', 'sfdp') \%>\%
+  set_global_graph_attr(
+    'graph', 'overlap', 'false')
+
+# This graph cannot be shown in this help page
+# but you may be interested in displaying it with
+# `render_graph()`
+random_graph \%>\% render_graph
+
+# The `create_random_graph()` function randomly
+# assigns numerical values to all nodes (as the `value`
+# attribute) from 0 to 10 and to 1 decimal place.
+# By selecting a node (`8`), we can test whether any
+# nodes adjacent and beyond are numerically equivalent
+# in `value`
+random_graph \%>\%
+  select_nodes_by_id(8) \%>\%
+  select_nbr_nodes_by_node_attr(
+    node_attr = 'value') \%>\%
+  get_selection
+#> $nodes
+#> [1] "8"
+
+# There was no additional selection aside from `8`
+# since neighbors did not have `value = 1.0` as an
+# attribute
+#
+# We can, however, set a tolerance for ascribing
+# similarly by using either the `tol_abs` or `tol_pct`
+# arguments (the first applies absolute lower and upper
+# bounds from the value in the starting node and the
+# latter uses a percentage difference to do the same);
+# Try setting `tol_abs` with a fairly large range to
+# determine if several nodes can be selected
+random_graph \%>\%
+  select_nodes_by_id(8) \%>\%
+  select_nbr_nodes_by_node_attr(
+    node_attr = 'value',
+    tol_abs = c(3, 3)) \%>\%
+  get_selection
+#> $nodes
+#> [1] "8"  "9"  "13" "17" "10" "18" "3"
+
+# That resulted in a fairly large selection of 7
+# neigboring nodes; For sake of example, setting the
+# range to be very large will effectively select all
+# the adjacent nodes (18 in total)
+random_graph \%>\%
+  select_nodes_by_id(8) \%>\%
+  select_nbr_nodes_by_node_attr(
+    node_attr = 'value',
+    tol_abs = c(10, 10)) \%>\%
+  get_selection
+#> $nodes
+#> [1] "8"  "2"  "9"  "13" "14" "1"  "17" "10" "5"  "6"
+#> [11] "12" "15" "18" "11" "3"  "16" "7"  "4"
 }
 }
 
