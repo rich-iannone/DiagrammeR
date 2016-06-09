@@ -8,8 +8,19 @@
 #' \code{create_graph}.
 #' @param node_attr the name of the node attribute
 #' to use to compare with adjacent nodes.
-#' @param match the value of the node attribute to
-#' match on.
+#' @param tol_abs if the values contained in the node
+#' attribute \code{node_attr} are numeric, one can
+#' optionally supply a numeric vector of length 2 that
+#' provides a lower and upper numeric bound as criteria
+#' for neighboring node similarity to the starting
+#' node.
+#' @param tol_pct if the values contained in the node
+#' attribute \code{node_attr} are numeric, one can
+#' optionally supply a numeric vector of length 2 that
+#' specify lower and upper bounds as negative and
+#' positive percentage changes to the value of the
+#' starting node. These bounds serve as criteria for
+#' neighboring node similarity to the starting node.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -77,8 +88,7 @@
 #'   trav_out_edge('color', 'red') %>%
 #'   trav_in_node %>%
 #'   select_nbr_nodes_by_node_attr(
-#'     node_attr = 'color',
-#'     match = 'red')
+#'     node_attr = 'color')
 #'
 #' # Get selection of nodes; it comprises the
 #' # entire set of 7 red nodes that have adjacency
@@ -98,8 +108,7 @@
 #'   trav_out_edge('color', 'blue') %>%
 #'   trav_in_node %>%
 #'   select_nbr_nodes_by_node_attr(
-#'     node_attr = 'color',
-#'     match = 'blue')
+#'     node_attr = 'color')
 #'
 #' # Get selection of nodes; it comprises the
 #' # entire set of 3 blue nodes that have adjacency
@@ -112,19 +121,78 @@
 
 select_nbr_nodes_by_node_attr <- function(graph,
                                           node_attr,
-                                          match) {
+                                          tol_abs = NULL,
+                                          tol_pct = NULL) {
+
+  # Get value to match on
+  match <-
+    get_node_df(graph)[
+      which(get_node_df(graph)[, 1] ==
+              get_selection(graph)[[1]])
+      , which(colnames(get_node_df(graph)) ==
+                node_attr)]
 
   # Create an empty list object
   nodes <- list()
 
-  # Get the set of all nodes in graph that
-  # satisfy the condition
-  graph_nodes_with_attr <-
-    graph$nodes_df[
-      which(
-        graph$nodes_df[, which(
-          colnames(graph$nodes_df) ==
-            node_attr)] == match), 1]
+  # Extract all `node_attr` values to test for their
+  # type
+  attr_values <-
+    get_node_df(graph)[
+      , which(colnames(get_node_df(graph)) ==
+                node_attr)]
+
+  # Determine whether `node_attr` values are numeric
+  node_attr_numeric <-
+    ifelse(suppressWarnings(any(is.na(as.numeric(attr_values)))),
+           FALSE, TRUE)
+
+  if (node_attr_numeric == FALSE) {
+
+    # Get the set of all nodes in graph that
+    # satisfy one or more conditions
+    graph_nodes_with_attr <-
+      graph$nodes_df[
+        which(
+          graph$nodes_df[, which(
+            colnames(graph$nodes_df) ==
+              node_attr)] %in% match), 1]
+  }
+
+  if (node_attr_numeric == TRUE) {
+
+    match <- as.numeric(match)
+
+    if (!is.null(tol_abs)) {
+      match_range <-
+        c(match - tol_abs[1], match + tol_abs[2])
+    }
+
+    if (!is.null(tol_pct)) {
+      match_range <-
+        c(match - match * tol_pct[1]/100,
+          match + match * tol_pct[2]/100)
+    }
+
+    if (is.null(tol_abs) & is.null(tol_pct)) {
+      match_range <- c(match, match)
+    }
+
+    # Get the set of all nodes in graph that
+    # satisfy one or more conditions
+    graph_nodes_with_attr <-
+      graph$nodes_df[
+        intersect(
+          which(
+            as.numeric(graph$nodes_df[, which(
+              colnames(graph$nodes_df) ==
+                node_attr)]) >= match_range[1]),
+          which(
+            as.numeric(graph$nodes_df[, which(
+              colnames(graph$nodes_df) ==
+                node_attr)]) <= match_range[2]))
+        , 1]
+  }
 
   # place starting node in the neighbourhood vector
   neighborhood <- get_selection(graph)[[1]]
