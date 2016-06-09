@@ -26,7 +26,7 @@ node.}
 \item{tol_pct}{if the values contained in the node
 attribute \code{node_attr} are numeric, one can
 optionally supply a numeric vector of length 2 that
-specify lower and upper bounds as negative and
+specifies lower and upper bounds as negative and
 positive percentage changes to the value of the
 starting node. These bounds serve as criteria for
 neighboring node similarity to the starting node.}
@@ -35,9 +35,12 @@ neighboring node similarity to the starting node.}
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Beginning with a selection of a single
-node, select those nodes in a neighborhood
-of nodes that have a common node attribute.
+With a graph containing a selection of
+a single node serving as the starting point, select
+those nodes in a potential neighborhood of nodes
+(adjacent to the starting node) that have a common
+or similar node attribute to the currently selected
+node.
 }
 \examples{
 \dontrun{
