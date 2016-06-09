@@ -5,7 +5,8 @@
 \title{Select neighboring nodes based on node attribute
 similarity}
 \usage{
-select_nbr_nodes_by_node_attr(graph, node_attr, match)
+select_nbr_nodes_by_node_attr(graph, node_attr, tol_abs = NULL,
+  tol_pct = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -15,8 +16,20 @@ select_nbr_nodes_by_node_attr(graph, node_attr, match)
 \item{node_attr}{the name of the node attribute
 to use to compare with adjacent nodes.}
 
-\item{match}{the value of the node attribute to
-match on.}
+\item{tol_abs}{if the values contained in the node
+attribute \code{node_attr} are numeric, one can
+optionally supply a numeric vector of length 2 that
+provides a lower and upper numeric bound as criteria
+for neighboring node similarity to the starting
+node.}
+
+\item{tol_pct}{if the values contained in the node
+attribute \code{node_attr} are numeric, one can
+optionally supply a numeric vector of length 2 that
+specify lower and upper bounds as negative and
+positive percentage changes to the value of the
+starting node. These bounds serve as criteria for
+neighboring node similarity to the starting node.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -92,8 +105,7 @@ graph \%<>\%
   trav_out_edge('color', 'red') \%>\%
   trav_in_node \%>\%
   select_nbr_nodes_by_node_attr(
-    node_attr = 'color',
-    match = 'red')
+    node_attr = 'color')
 
 # Get selection of nodes; it comprises the
 # entire set of 7 red nodes that have adjacency
@@ -113,8 +125,7 @@ graph \%<>\%
   trav_out_edge('color', 'blue') \%>\%
   trav_in_node \%>\%
   select_nbr_nodes_by_node_attr(
-    node_attr = 'color',
-    match = 'blue')
+    node_attr = 'color')
 
 # Get selection of nodes; it comprises the
 # entire set of 3 blue nodes that have adjacency
