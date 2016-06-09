@@ -5,11 +5,11 @@
 #' @param x either a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}, or a node data frame.
-#' @param nodes an optional vector of node IDs for
-#' filtering list of nodes present in the graph.
 #' @param node_attr the name of the attribute to set.
 #' @param values the values to be set for the chosen
 #' attribute for the chosen nodes.
+#' @param nodes an optional vector of node IDs for
+#' filtering list of nodes present in the graph.
 #' @return either a graph object of class
 #' \code{dgr_graph} or a node data frame, depending on
 #' what type of object was supplied to \code{x}.
@@ -41,18 +41,18 @@
 #' graph <-
 #'   set_node_attr(
 #'     x = graph,
-#'     nodes = c("a", "c"),
 #'     node_attr = "color",
-#'     values = "green")
+#'     values = "green",
+#'     nodes = c("a", "c"))
 #'
 #' # Set attribute 'color = "green"' for nodes `a`
 #' # and `c` using the node data frame
 #' nodes <-
 #'   set_node_attr(
 #'     x = nodes,
-#'     nodes = c("a", "c"),
 #'     node_attr = "color",
-#'     values = "green")
+#'     values = "green",
+#'     nodes = c("a", "c"))
 #'
 #' # Set attribute `color = "blue"` for all nodes
 #' # the node data frame
@@ -65,9 +65,9 @@
 #' @export set_node_attr
 
 set_node_attr <- function(x,
-                          nodes = NULL,
                           node_attr,
-                          values) {
+                          values,
+                          nodes = NULL) {
 
   if (node_attr == "nodes") {
     stop("You cannot change the node ID.")

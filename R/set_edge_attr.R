@@ -5,15 +5,15 @@
 #' @param x either a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}, or an edge data frame.
+#' @param edge_attr the name of the attribute to set.
+#' @param values the values to be set for the chosen
+#' attribute for the chosen edges.
 #' @param from an optional vector of node IDs from
 #' which the edge is outgoing for filtering list of
 #' nodes with outgoing edges in the graph.
 #' @param to an optional vector of node IDs from which
 #' the edge is incoming for filtering list of nodes
 #' with incoming edges in the graph.
-#' @param edge_attr the name of the attribute to set.
-#' @param values the values to be set for the chosen
-#' attribute for the chosen edges.
 #' @return either a graph object of class
 #' \code{dgr_graph} or an edge data frame, depending on
 #' what type of object was supplied to \code{x}.
@@ -43,20 +43,20 @@
 #' graph <-
 #'   set_edge_attr(
 #'     x = graph,
-#'     from = c("a", "c"),
-#'     to = c("d", "a"),
 #'     edge_attr = "color",
-#'     values = "green")
+#'     values = "green",
+#'     from = c("a", "c"),
+#'     to = c("d", "a"))
 #'
 #' # Set attribute `color = "green"` for edges
 #' # `a` -> `d` and `c` -> `a` using the edge data frame
 #' edges <-
 #'   set_edge_attr(
 #'     x = edges,
-#'     from = c("a", "c"),
-#'     to = c("d", "a"),
 #'     edge_attr = "color",
-#'     values = "green")
+#'     values = "green",
+#'     from = c("a", "c"),
+#'     to = c("d", "a"))
 #'
 #' # Set attribute `color = "blue"` for all edges in graph
 #' graph <-
@@ -70,26 +70,26 @@
 #' graph <-
 #'   set_edge_attr(
 #'     x = graph,
-#'     from = "a",
 #'     edge_attr = "color",
-#'     values = "pink")
+#'     values = "pink",
+#'     from = "a")
 #'
 #' # Set attribute `color = "black"` for all edges in
 #' # graph inbound to `a`
 #' graph <-
 #'   set_edge_attr(
 #'     x = graph,
-#'     to = "a",
 #'     edge_attr = "color",
-#'     values = "black")
+#'     values = "black",
+#'     to = "a")
 #' }
 #' @export set_edge_attr
 
 set_edge_attr <- function(x,
-                          from = NULL,
-                          to = NULL,
                           edge_attr,
-                          values) {
+                          values,
+                          from = NULL,
+                          to = NULL) {
 
   if (edge_attr == "from" | edge_attr == "to") {
     stop("You cannot alter values associated with node IDs.")
