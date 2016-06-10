@@ -39,8 +39,6 @@ get_graph_time <- function(graph,
                            as_posixct = TRUE,
                            get_tz = FALSE) {
 
-  graph <- graph_1
-
   if (!is.null(graph$graph_time) &
       !is.null(graph$graph_tz)) {
     time <- graph$graph_time
