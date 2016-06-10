@@ -23,27 +23,29 @@ object of class \code{dgr_graph}.
 }
 \examples{
 \dontrun{
-# Create an empty graph
-graph <- create_graph()
+library(magrittr)
 
-# Provide the new graph with a timestamp (if `tz`
-# is not supplied, `GMT` is used as the time zone)
-graph_1 <-
-  set_graph_time(
-    graph,
-    time = "2015-10-25 15:23:00")
+# Create an empty graph and set the graph's time;
+# if nothing is supplied for the `tz` argument,
+# `GMT` is used as the time zone
+graph <-
+  create_graph() \%>\%
+    set_graph_time(
+      time = "2015-10-25 15:23:00")
 
-# Provide the new graph with a timestamp that is
-# the current time; the time zone is inferred from
-# the user's locale
-graph_2 <- set_graph_time(graph)
+# Get the graph's time as a POSIXct-formatted object
+# using `get_graph_time()`
+graph \%>\% get_graph_time
+#> [1] "2015-10-25 15:23:00 GMT"
 
-# The time zone can be updated when a timestamp
-# is present
-graph_2 <-
-  set_graph_time(
-    graph_2,
-    tz = "America/Los_Angeles")
+# Get the graph's time as a character object
+graph \%>\% get_graph_time(as_posixct = FALSE)
+#> [1] "2015-10-25 15:23:00"
+
+# Get just the time zone associated with the
+# graph time
+graph \%>\% get_graph_time(get_tz = TRUE)
+#> [1] "GMT"
 }
 }
 

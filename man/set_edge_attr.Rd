@@ -55,8 +55,8 @@ graph <-
     nodes_df = nodes,
     edges_df = edges)
 
-# Set attribute `color = "green"` for edges `a` -> `d`
-# and `c` -> `a` using the graph object
+# Set attribute `color = "green"` for edges
+# `a` -> `d` and `c` -> `a` using the graph object
 graph <-
   set_edge_attr(
     x = graph,
@@ -66,7 +66,8 @@ graph <-
     to = c("d", "a"))
 
 # Set attribute `color = "green"` for edges
-# `a` -> `d` and `c` -> `a` using the edge data frame
+# `a` -> `d` and `c` -> `a` using the edge
+# data frame
 edges <-
   set_edge_attr(
     x = edges,
@@ -75,7 +76,8 @@ edges <-
     from = c("a", "c"),
     to = c("d", "a"))
 
-# Set attribute `color = "blue"` for all edges in graph
+# Set attribute `color = "blue"` for all edges
+# in the graph
 graph <-
   set_edge_attr(
     x = graph,
