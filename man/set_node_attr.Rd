@@ -4,20 +4,20 @@
 \alias{set_node_attr}
 \title{Set node attributes}
 \usage{
-set_node_attr(x, nodes = NULL, node_attr, values)
+set_node_attr(x, node_attr, values, nodes = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class
 \code{dgr_graph} that is created using
 \code{create_graph}, or a node data frame.}
 
-\item{nodes}{an optional vector of node IDs for
-filtering list of nodes present in the graph.}
-
 \item{node_attr}{the name of the attribute to set.}
 
 \item{values}{the values to be set for the chosen
 attribute for the chosen nodes.}
+
+\item{nodes}{an optional vector of node IDs for
+filtering list of nodes present in the graph.}
 }
 \value{
 either a graph object of class
@@ -57,18 +57,18 @@ graph <-
 graph <-
   set_node_attr(
     x = graph,
-    nodes = c("a", "c"),
     node_attr = "color",
-    values = "green")
+    values = "green",
+    nodes = c("a", "c"))
 
 # Set attribute 'color = "green"' for nodes `a`
 # and `c` using the node data frame
 nodes <-
   set_node_attr(
     x = nodes,
-    nodes = c("a", "c"),
     node_attr = "color",
-    values = "green")
+    values = "green",
+    nodes = c("a", "c"))
 
 # Set attribute `color = "blue"` for all nodes
 # the node data frame
