@@ -73,13 +73,12 @@ set_node_attr <- function(x,
     stop("You cannot change the node ID.")
   }
 
-  if (class(x) == "dgr_graph") {
+  if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     nodes_df <- x$nodes_df
   }
 
   if (inherits(x, "data.frame")) {
-
     if ("nodes" %in% colnames(x)) {
       object_type <- "node_df"
       nodes_df <- x
@@ -117,8 +116,9 @@ set_node_attr <- function(x,
       if (is.null(nodes)) {
         nodes_df[, ncol(nodes_df)] <- values
       } else {
-        nodes_df[which(nodes_df$nodes %in%
-                         nodes), ncol(nodes_df)] <- values
+        nodes_df[
+          which(nodes_df$nodes %in%
+                  nodes), ncol(nodes_df)] <- values
       }
     }
   }

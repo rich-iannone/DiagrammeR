@@ -38,8 +38,8 @@
 #'     nodes_df = nodes,
 #'     edges_df = edges)
 #'
-#' # Set attribute `color = "green"` for edges `a` -> `d`
-#' # and `c` -> `a` using the graph object
+#' # Set attribute `color = "green"` for edges
+#' # `a` -> `d` and `c` -> `a` using the graph object
 #' graph <-
 #'   set_edge_attr(
 #'     x = graph,
@@ -49,7 +49,8 @@
 #'     to = c("d", "a"))
 #'
 #' # Set attribute `color = "green"` for edges
-#' # `a` -> `d` and `c` -> `a` using the edge data frame
+#' # `a` -> `d` and `c` -> `a` using the edge
+#' # data frame
 #' edges <-
 #'   set_edge_attr(
 #'     x = edges,
@@ -58,7 +59,8 @@
 #'     from = c("a", "c"),
 #'     to = c("d", "a"))
 #'
-#' # Set attribute `color = "blue"` for all edges in graph
+#' # Set attribute `color = "blue"` for all edges
+#' # in the graph
 #' graph <-
 #'   set_edge_attr(
 #'     x = graph,
@@ -101,10 +103,8 @@ set_edge_attr <- function(x,
     }
   }
 
-  if (class(x) == "dgr_graph") {
-
+  if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
-
     edges_df <- x$edges_df
   }
 
@@ -127,22 +127,28 @@ set_edge_attr <- function(x,
 
       if (is.null(from) & !is.null(to)) {
         edges_df[which(edges_df$to %in% to),
-                 which(colnames(edges_df) %in% edge_attr)] <- values
+                 which(colnames(edges_df) %in%
+                         edge_attr)] <- values
       } else if (!is.null(from) & is.null(to)) {
         edges_df[which(edges_df$from %in% from),
-                 which(colnames(edges_df) %in% edge_attr)] <- values
+                 which(colnames(edges_df) %in%
+                         edge_attr)] <- values
       } else if (is.null(from) & is.null(to)) {
-        edges_df[, which(colnames(edges_df) %in% edge_attr)] <- values
+        edges_df[, which(colnames(edges_df) %in%
+                           edge_attr)] <- values
       } else {
         edges_df[which((edges_df$from %in% from) &
                          (edges_df$to %in% to)),
-                 which(colnames(edges_df) %in% edge_attr)] <- values
+                 which(colnames(edges_df) %in%
+                         edge_attr)] <- values
       }
     }
 
     if (!(edge_attr %in% colnames(edges_df))) {
-      edges_df <- cbind(edges_df, rep("", nrow(edges_df)))
-      edges_df[, ncol(edges_df)] <- as.character(edges_df[, ncol(edges_df)])
+      edges_df <-
+        cbind(edges_df, rep("", nrow(edges_df)))
+      edges_df[, ncol(edges_df)] <-
+        as.character(edges_df[, ncol(edges_df)])
       colnames(edges_df)[ncol(edges_df)] <- edge_attr
 
       if (is.null(from) & !is.null(to)) {
@@ -164,12 +170,15 @@ set_edge_attr <- function(x,
   if (length(values) == nrow(edges_df)) {
 
     if (edge_attr %in% colnames(edges_df)) {
-      edges_df[, which(colnames(edges_df) %in% edge_attr)] <- values
+      edges_df[, which(colnames(edges_df) %in%
+                         edge_attr)] <- values
     }
 
     if (!(edge_attr %in% colnames(edges_df))) {
-      edges_df <- cbind(edges_df, rep("", nrow(edges_df)))
-      edges_df[, ncol(edges_df)] <- as.character(edges_df[,ncol(edges_df)])
+      edges_df <-
+        cbind(edges_df, rep("", nrow(edges_df)))
+      edges_df[, ncol(edges_df)] <-
+        as.character(edges_df[,ncol(edges_df)])
       colnames(edges_df)[ncol(edges_df)] <- edge_attr
       edges_df[, ncol(edges_df)] <- values
     }
