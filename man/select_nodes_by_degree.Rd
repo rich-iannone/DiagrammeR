@@ -2,11 +2,10 @@
 % Please edit documentation in R/select_nodes_by_degree.R
 \name{select_nodes_by_degree}
 \alias{select_nodes_by_degree}
-\title{Get node degree values from nodes available in a
-selection}
+\title{Select nodes in the graph based on their degree
+values}
 \usage{
-select_nodes_by_degree(graph, degree_type, degree_values, node_attr = NULL,
-  search = NULL, set_op = "union", nodes = NULL)
+select_nodes_by_degree(graph, degree_type, degree_values, set_op = "union")
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -19,20 +18,9 @@ outdegree, and \code{both} or \code{degree} for the
 total degree (i.e., indegree + outdegree).}
 
 \item{degree_values}{a logical expression with a
-comparison operator (\code{>}, \code{<}, \code{==},
-or \code{!=}) followed by a number for numerical
-filtering.}
-
-\item{node_attr}{an optional character vector of
-node attribute values for filtering the node ID
-values returned.}
-
-\item{search}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a regular
-expression for filtering the nodes returned through
-string matching.}
+comparison operator (\code{>}, \code{>=}, \code{<},
+\code{<=}, \code{==}, or \code{!=}) followed by a
+number for numerical filtering.}
 
 \item{set_op}{the set operation to perform upon
 consecutive selections of graph nodes. This can
@@ -40,16 +28,13 @@ either be as a \code{union} (the default), as an
 intersection of selections with \code{intersect},
 or, as a \code{difference} on the previous
 selection, if it exists.}
-
-\item{nodes}{an optional vector of node IDs for
-filtering list of nodes present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, get a vector of node ID values
-from nodes available in a selection.
+Using a graph object of class
+\code{dgr_graph}, create a selection of nodes
+that have certain degree values.
 }
 
