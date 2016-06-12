@@ -4,7 +4,7 @@
 \alias{set_node_attr}
 \title{Set node attributes}
 \usage{
-set_node_attr(x, node_attr, values, nodes = NULL)
+set_node_attr(x, node_attr, values, nodes = NULL, use_selection = FALSE)
 }
 \arguments{
 \item{x}{either a graph object of class
@@ -18,6 +18,13 @@ attribute for the chosen nodes.}
 
 \item{nodes}{an optional vector of node IDs for
 filtering list of nodes present in the graph.}
+
+\item{use_selection}{an option for whether to use
+a selection of edges already available in the graph
+for edge attribute modification. If \code{TRUE}, and
+there is a valid edge selection available, any
+values provided to the \code{from} and \code{to}
+arguments will be disregarded.}
 }
 \value{
 either a graph object of class
