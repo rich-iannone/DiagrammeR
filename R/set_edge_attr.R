@@ -114,8 +114,7 @@ set_edge_attr <- function(x,
     object_type <- "dgr_graph"
     edges_df <- x$edges_df
 
-    if (use_selection){
-
+    if (use_selection) {
       if (is.null(graph$selection$edges$from) |
           is.null(graph$selection$edges$to)) {
         stop("There is no selection of edges available in the graph.")
@@ -127,7 +126,6 @@ set_edge_attr <- function(x,
   }
 
   if (inherits(x, "data.frame")) {
-
     if (all(c("from", "to") %in% colnames(x))) {
       object_type <- "edge_df"
       edges_df <- x
