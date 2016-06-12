@@ -41,10 +41,11 @@ add_n_nodes <- function(graph,
         select_last_node(graph = graph)
 
       graph <-
-        set_node_attr_with_selection(
+        set_node_attr(
           graph = graph,
           node_attr = "type",
-          value = set_node_type)
+          value = set_node_type,
+          use_selection = TRUE)
     }
   }
 

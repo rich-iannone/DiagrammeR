@@ -44,15 +44,18 @@ add_n_nodes_to_selection <- function(graph,
                                      set_node_type = NULL,
                                      set_edge_rel = NULL) {
 
-  # If no node selection is available, return the graph unchanged
+  # If no node selection is available, return
+  # the graph unchanged
   if (is.null(graph$selection$nodes)) {
     return(graph)
   }
 
-  # Get a vector of nodes available in the graph's selection
+  # Get a vector of nodes available in the
+  # graph's selection
   nodes_in_selection <- graph$selection$nodes
 
-  # For all nodes in selection, create `n` successor nodes
+  # For all nodes in selection, create `n`
+  # successor nodes
   for (i in 1:length(nodes_in_selection)) {
     for (j in 1:n) {
 
@@ -64,32 +67,36 @@ add_n_nodes_to_selection <- function(graph,
 
       graph$selection$nodes <- nodes_in_selection
 
-      # Apply node `type` value to all new edges, if supplied
+      # Apply node `type` value to all new edges,
+      # if supplied
       if (!is.null(set_node_type)) {
 
         graph <-
           select_last_node(graph = graph)
 
         graph <-
-          set_node_attr_with_selection(
+          set_node_attr(
             graph = graph,
             node_attr = "type",
-            value = set_node_type)
+            value = set_node_type,
+            use_selection = TRUE)
 
         graph$selection$nodes <- nodes_in_selection
       }
 
-      # Apply edge `rel` value to all new edges, if supplied
+      # Apply edge `rel` value to all new edges,
+      # if supplied
       if (!is.null(set_edge_rel)) {
 
         graph <-
           select_last_edge(graph = graph)
 
         graph <-
-          set_edge_attr_with_selection(
+          set_edge_attr(
             graph = graph,
             edge_attr = "rel",
-            value = set_edge_rel)
+            value = set_edge_rel,
+            use_selection = TRUE)
 
         graph$selection$nodes <- nodes_in_selection
       }

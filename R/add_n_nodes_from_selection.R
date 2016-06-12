@@ -74,10 +74,11 @@ add_n_nodes_from_selection <- function(graph,
           select_last_node(graph = graph)
 
         graph <-
-          set_node_attr_with_selection(
+          set_node_attr(
             graph = graph,
             node_attr = "type",
-            value = set_node_type)
+            value = set_node_type,
+            use_selection = TRUE)
 
         graph$selection$nodes <- nodes_in_selection
       }
@@ -90,10 +91,11 @@ add_n_nodes_from_selection <- function(graph,
           select_last_edge(graph = graph)
 
         graph <-
-          set_edge_attr_with_selection(
+          set_edge_attr(
             graph = graph,
             edge_attr = "rel",
-            value = set_edge_rel)
+            value = set_edge_rel,
+            use_selection = TRUE)
 
         graph$selection$nodes <- nodes_in_selection
       }
