@@ -102,25 +102,30 @@ test_that("selective traversals with `trav_out()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>% add_node %>% add_node %>% add_node %>%
-    add_edge(1, 2) %>% add_edge(2, 3) %>% add_edge(3, 4) %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
     select_nodes %>%
-    set_node_attr_with_selection(node_attr = "type", value = "circle") %>%
+    set_node_attr_ws("type", "circle") %>%
     clear_selection %>%
     select_nodes_by_id(c(2, 3)) %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 10) %>%
+    set_node_attr_ws("data_value", 10) %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "square") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "square") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "triangle") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "triangle") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_edges() %>%
-    set_edge_attr_with_selection(edge_attr = "data_value", value = 5) %>%
-    set_edge_attr_with_selection(edge_attr = "rel", value = "related_to") %>%
+    set_edge_attr_ws("data_value", 5) %>%
+    set_edge_attr_ws("rel", "related_to") %>%
     clear_selection
 
   # Starting at node `1`, traverse to node `2` with a
@@ -193,25 +198,30 @@ test_that("selective traversals with `trav_in()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>% add_node %>% add_node %>% add_node %>%
-    add_edge(1, 2) %>% add_edge(2, 3) %>% add_edge(3, 4) %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
     select_nodes %>%
-    set_node_attr_with_selection(node_attr = "type", value = "circle") %>%
+    set_node_attr_ws("type", "circle") %>%
     clear_selection %>%
     select_nodes_by_id(c(2, 3)) %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 10) %>%
+    set_node_attr_ws("data_value", 10) %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "square") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "square") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "triangle") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "triangle") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_edges() %>%
-    set_edge_attr_with_selection(edge_attr = "data_value", value = 5) %>%
-    set_edge_attr_with_selection(edge_attr = "rel", value = "related_to") %>%
+    set_edge_attr_ws("data_value", 5) %>%
+    set_edge_attr_ws("rel", "related_to") %>%
     clear_selection
 
   # Starting at node `4`, traverse to node `3` with a
@@ -285,25 +295,30 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>% add_node %>% add_node %>% add_node %>%
-    add_edge(1, 2) %>% add_edge(2, 3) %>% add_edge(3, 4) %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
     select_nodes %>%
-    set_node_attr_with_selection(node_attr = "type", value = "circle") %>%
+    set_node_attr_ws("type", "circle") %>%
     clear_selection %>%
     select_nodes_by_id(c(2, 3)) %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 10) %>%
+    set_node_attr_ws("data_value", 10) %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "square") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "square") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "triangle") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "triangle") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_edges() %>%
-    set_edge_attr_with_selection(edge_attr = "data_value", value = 5) %>%
-    set_edge_attr_with_selection(edge_attr = "rel", value = "related_to") %>%
+    set_edge_attr_ws("data_value", 5) %>%
+    set_edge_attr_ws("rel", "related_to") %>%
     clear_selection
 
   # Starting at node `1`, traverse to edge between nodes
@@ -384,25 +399,30 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>% add_node %>% add_node %>% add_node %>%
-    add_edge(1, 2) %>% add_edge(2, 3) %>% add_edge(3, 4) %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
     select_nodes %>%
-    set_node_attr_with_selection(node_attr = "type", value = "circle") %>%
+    set_node_attr_ws("type", "circle") %>%
     clear_selection %>%
     select_nodes_by_id(c(2, 3)) %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 10) %>%
+    set_node_attr_ws("data_value", 10) %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "square") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "square") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "triangle") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "triangle") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_edges() %>%
-    set_edge_attr_with_selection(edge_attr = "data_value", value = 5) %>%
-    set_edge_attr_with_selection(edge_attr = "rel", value = "related_to") %>%
+    set_edge_attr_ws("data_value", 5) %>%
+    set_edge_attr_ws("rel", "related_to") %>%
     clear_selection
 
   # Starting at node `4`, traverse to edge between nodes
@@ -483,25 +503,30 @@ test_that("selective traversals with `trav_in_node()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>% add_node %>% add_node %>% add_node %>%
-    add_edge(1, 2) %>% add_edge(2, 3) %>% add_edge(3, 4) %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
     select_nodes %>%
-    set_node_attr_with_selection(node_attr = "type", value = "circle") %>%
+    set_node_attr_ws("type", "circle") %>%
     clear_selection %>%
     select_nodes_by_id(c(2, 3)) %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 10) %>%
+    set_node_attr_ws("data_value", 10) %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "square") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "square") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "triangle") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "triangle") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_edges() %>%
-    set_edge_attr_with_selection(edge_attr = "data_value", value = 5) %>%
-    set_edge_attr_with_selection(edge_attr = "rel", value = "related_to") %>%
+    set_edge_attr_ws("data_value", 5) %>%
+    set_edge_attr_ws("rel", "related_to") %>%
     clear_selection
 
   # Starting at edge `3` -> `4`, traverse to node `4` with
@@ -577,25 +602,30 @@ test_that("selective traversals with `trav_out_node()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>% add_node %>% add_node %>% add_node %>%
-    add_edge(1, 2) %>% add_edge(2, 3) %>% add_edge(3, 4) %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
     select_nodes %>%
-    set_node_attr_with_selection(node_attr = "type", value = "circle") %>%
+    set_node_attr_ws("type", "circle") %>%
     clear_selection %>%
     select_nodes_by_id(c(2, 3)) %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 10) %>%
+    set_node_attr_ws("data_value", 10) %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "square") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "square") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "triangle") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "triangle") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_edges() %>%
-    set_edge_attr_with_selection(edge_attr = "data_value", value = 5) %>%
-    set_edge_attr_with_selection(edge_attr = "rel", value = "related_to") %>%
+    set_edge_attr_ws("data_value", 5) %>%
+    set_edge_attr_ws("rel", "related_to") %>%
     clear_selection
 
   # Starting at edge `1` -> `2`, traverse to node `1` with
@@ -672,22 +702,30 @@ test_that("selective traversals with `trav_both()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>% add_node %>% add_node %>% add_node %>% add_node %>%
-    add_edge(1, 2) %>% add_edge(2, 3) %>% add_edge(3, 4) %>% add_edge(4, 5) %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
     select_nodes %>%
-    set_node_attr_with_selection(node_attr = "type", value = "circle") %>%
+    set_node_attr_ws("type", "circle") %>%
     clear_selection %>%
-    select_nodes_by_id(c(2, 3, 4)) %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 10) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "circle") %>%
+    select_nodes_by_id(c(2, 3)) %>%
+    set_node_attr_ws("data_value", 10) %>%
     clear_selection %>%
-    select_nodes_by_id(5) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "square") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    select_nodes_by_id(4) %>%
+    set_node_attr_ws("shape", "square") %>%
+    set_node_attr_ws("data_value", 5) %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    set_node_attr_with_selection(node_attr = "shape", value = "triangle") %>%
-    set_node_attr_with_selection(node_attr = "data_value", value = 5) %>%
+    set_node_attr_ws("shape", "triangle") %>%
+    set_node_attr_ws("data_value", 5) %>%
+    clear_selection %>%
+    select_edges() %>%
+    set_edge_attr_ws("data_value", 5) %>%
+    set_edge_attr_ws("rel", "related_to") %>%
     clear_selection
 
   # Starting at node `3`, traverse to nodes `2` and `4` with a
@@ -727,32 +765,33 @@ test_that("selective traversals with `trav_both()` are possible", {
   expect_true(all(get_selection(graph)[[1]] %in% c("2", "4")))
 
   # Starting at node `3`, attempt traverse to nodes `2` and `4`
-  # with a match expression that won't yield a match
+  # with a match expression that won't yield a match in one
+  # direction
   graph <-
     graph %>% clear_selection %>% select_nodes_by_id(3) %>%
     trav_both(node_attr = "data_value", match = "!=10")
 
   # Expect that the node `3` is the current selection
-  expect_equal(get_selection(graph)[[1]], "3")
+  expect_equal(get_selection(graph)[[1]], "4")
 
   # Starting at node `3`, traverse to nodes `2` and `4` with a
   # character match expression
   graph <-
     graph %>% clear_selection %>% select_nodes_by_id(3) %>%
-    trav_both(node_attr = "shape", match = "circle")
+    trav_both(node_attr = "type", match = "circle")
 
   # Expect that nodes `2` and `4` are in the current selection
   expect_true(all(get_selection(graph)[[1]] %in% c("2", "4")))
 
   # Starting at node `3`, attempt to traverse to nodes `2` and
   # `4` with a character match expression that won't yield a
-  # match
+  # match in one direction
   graph <-
     graph %>% clear_selection %>% select_nodes_by_id(3) %>%
     trav_both(node_attr = "shape", match = "square")
 
-  # Expect that the node `3` is the current selection
-  expect_equal(get_selection(graph)[[1]], "3")
+  # Expect that the node `4` is the current selection
+  expect_equal(get_selection(graph)[[1]], "4")
 
   # Starting at node `2`, traverse to nodes `1` and `3` with a
   # character match expression
@@ -763,12 +802,12 @@ test_that("selective traversals with `trav_both()` are possible", {
   # Expect that the node `1` is the current selection
   expect_equal(get_selection(graph)[[1]], "1")
 
-  # Starting at node `2`, traverse to nodes `1` and `3` with a
+  # Starting at node `2`, traverse to node `2` with a
   # character match expression
   graph <-
     graph %>% clear_selection %>% select_nodes_by_id(2) %>%
     trav_both(node_attr = "shape", match = "circle")
 
   # Expect that the node `3` is the current selection
-  expect_equal(get_selection(graph)[[1]], "3")
+  expect_equal(get_selection(graph)[[1]], "2")
 })
