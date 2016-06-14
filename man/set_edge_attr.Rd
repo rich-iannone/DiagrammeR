@@ -4,8 +4,7 @@
 \alias{set_edge_attr}
 \title{Set edge attributes}
 \usage{
-set_edge_attr(x, edge_attr, values, from = NULL, to = NULL,
-  use_selection = FALSE)
+set_edge_attr(x, edge_attr, values, from = NULL, to = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class
@@ -24,13 +23,6 @@ nodes with outgoing edges in the graph.}
 \item{to}{an optional vector of node IDs from which
 the edge is incoming for filtering list of nodes
 with incoming edges in the graph.}
-
-\item{use_selection}{an option for whether to use
-a selection of edges already available in the graph
-for edge attribute modification. If \code{TRUE}, and
-there is a valid edge selection available, any
-values provided to the \code{from} and \code{to}
-arguments will be disregarded.}
 }
 \value{
 either a graph object of class
