@@ -6,9 +6,9 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export delete_nodes_in_selection
+#' @export delete_nodes_ws
 
-delete_nodes_in_selection <- function(graph) {
+delete_nodes_ws <- function(graph) {
 
   # If no node selection is available, return
   # the graph unchanged
