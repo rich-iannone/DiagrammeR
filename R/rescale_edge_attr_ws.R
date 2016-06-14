@@ -23,15 +23,15 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @import scales
 #' @importFrom grDevices colors
-#' @export rescale_edge_attr_in_selection
+#' @export rescale_edge_attr_ws
 
-rescale_edge_attr_in_selection <- function(graph,
-                                           edge_attr_from,
-                                           edge_attr_to,
-                                           to_lower_bound = 0,
-                                           to_upper_bound = 1,
-                                           from_lower_bound = NULL,
-                                           from_upper_bound = NULL){
+rescale_edge_attr_ws <- function(graph,
+                                 edge_attr_from,
+                                 edge_attr_to,
+                                 to_lower_bound = 0,
+                                 to_upper_bound = 1,
+                                 from_lower_bound = NULL,
+                                 from_upper_bound = NULL){
 
   # Get edge attributes for the selected edges
   edges_df <-

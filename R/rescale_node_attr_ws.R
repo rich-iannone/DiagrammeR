@@ -23,19 +23,20 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @import scales
 #' @importFrom grDevices colors
-#' @export rescale_node_attr_in_selection
+#' @export rescale_node_attr_ws
 
-rescale_node_attr_in_selection <- function(graph,
-                                           node_attr_from,
-                                           node_attr_to,
-                                           to_lower_bound = 0,
-                                           to_upper_bound = 1,
-                                           from_lower_bound = NULL,
-                                           from_upper_bound = NULL){
+rescale_node_attr_ws <- function(graph,
+                                 node_attr_from,
+                                 node_attr_to,
+                                 to_lower_bound = 0,
+                                 to_upper_bound = 1,
+                                 from_lower_bound = NULL,
+                                 from_upper_bound = NULL){
 
   # Get node attributes for the selected nodes
   nodes_df <-
-    get_node_df(graph)[which(get_node_df(graph)[,1]
+    get_node_df(graph)[
+      which(get_node_df(graph)[,1]
                              %in% graph$selection$nodes),]
 
   if (!any(node_attr_from %in% colnames(nodes_df)[-1])){
