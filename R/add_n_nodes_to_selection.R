@@ -54,53 +54,55 @@ add_n_nodes_to_selection <- function(graph,
   # graph's selection
   nodes_in_selection <- graph$selection$nodes
 
-  # For all nodes in selection, create `n`
-  # successor nodes
   for (i in 1:length(nodes_in_selection)) {
-    for (j in 1:n) {
 
-      graph <-
-        add_node(
-          graph = graph,
-          to = nodes_in_selection[i],
-          label = FALSE)
+    if (node_count(graph) == 0){
+      node <- 1
+    }
 
-      graph$selection$nodes <- nodes_in_selection
+    if (node_count(graph) > 0){
+      if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))){
 
-      # Apply node `type` value to all new edges,
-      # if supplied
-      if (!is.null(set_node_type)) {
+        numeric_components <-
+          suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
 
-        graph <-
-          select_last_node(graph = graph)
-
-        graph <-
-          set_node_attr(
-            graph = graph,
-            node_attr = "type",
-            value = set_node_type,
-            use_selection = TRUE)
-
-        graph$selection$nodes <- nodes_in_selection
+        node <-
+          max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
       }
 
-      # Apply edge `rel` value to all new edges,
-      # if supplied
-      if (!is.null(set_edge_rel)) {
-
-        graph <-
-          select_last_edge(graph = graph)
-
-        graph <-
-          set_edge_attr(
-            graph = graph,
-            edge_attr = "rel",
-            value = set_edge_rel,
-            use_selection = TRUE)
-
-        graph$selection$nodes <- nodes_in_selection
+      if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))){
+        node <- 1
       }
     }
+
+    if (!is.null(set_node_type)) {
+      new_nodes <-
+        create_nodes(nodes = seq(node, node + n - 1, 1),
+                     type = set_node_type)
+    } else {
+      new_nodes <-
+        create_nodes(nodes = seq(node, node + n - 1, 1))
+    }
+
+    if (!is.null(set_edge_rel)) {
+
+      new_edges <-
+        create_edges(from = seq(node, node + n - 1, 1),
+                     to = rep(nodes_in_selection[i], n),
+                     rel = set_edge_rel)
+    } else {
+      new_edges <-
+        create_edges(from = seq(node, node + n - 1, 1),
+                     to = rep(nodes_in_selection[i], n))
+    }
+
+    graph <-
+      add_node_df(graph, new_nodes)
+
+    graph <-
+      add_edge_df(graph, new_edges)
+
+    graph$selection$nodes <- nodes_in_selection
   }
 
   return(graph)

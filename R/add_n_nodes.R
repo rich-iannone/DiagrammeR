@@ -29,25 +29,38 @@ add_n_nodes <- function(graph,
                         n,
                         set_node_type = NULL) {
 
-  # Create `n` new nodes in the graph
-  for (i in 1:n){
-    graph <- add_node(graph = graph,
-                      label = FALSE)
+  if (node_count(graph) == 0){
+    node <- 1
+  }
 
-    # Apply node `type` value to all new nodes,
-    # if supplied
-    if (!is.null(set_node_type)) {
-      graph <-
-        select_last_node(graph = graph)
+  if (node_count(graph) > 0){
+    if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))){
 
-      graph <-
-        set_node_attr(
-          graph = graph,
-          node_attr = "type",
-          value = set_node_type,
-          use_selection = TRUE)
+      numeric_components <-
+        suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
+
+      node <-
+        max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
+    }
+
+    if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))){
+      node <- 1
     }
   }
+
+  if (!is.null(set_node_type)) {
+    new_nodes <-
+      create_nodes(nodes = seq(node, node + n - 1, 1),
+                   label = FALSE,
+                   type = set_node_type)
+  } else {
+    new_nodes <-
+      create_nodes(nodes = seq(node, node + n - 1, 1),
+                   label = FALSE)
+  }
+
+  graph <-
+    add_node_df(graph, new_nodes)
 
   return(graph)
 }
