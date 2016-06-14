@@ -1,4 +1,4 @@
-#' Delete all selected edges
+#' Delete all selected edges in an edge selection
 #' @description In a graph object of class
 #' \code{dgr_graph}, delete all edges present in a
 #' selection.

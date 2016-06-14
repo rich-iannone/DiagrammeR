@@ -1,4 +1,4 @@
-#' Delete all selected nodes
+#' Delete all selected nodes in a node selection
 #' @description In a graph object of class
 #' \code{dgr_graph}, delete all nodes present in a
 #' selection.
