@@ -10,12 +10,6 @@
 #' attribute for the chosen nodes.
 #' @param nodes an optional vector of node IDs for
 #' filtering list of nodes present in the graph.
-#' @param use_selection an option for whether to use
-#' a selection of edges already available in the graph
-#' for edge attribute modification. If \code{TRUE}, and
-#' there is a valid edge selection available, any
-#' values provided to the \code{from} and \code{to}
-#' arguments will be disregarded.
 #' @return either a graph object of class
 #' \code{dgr_graph} or a node data frame, depending on
 #' what type of object was supplied to \code{x}.
@@ -73,8 +67,7 @@
 set_node_attr <- function(x,
                           node_attr,
                           values,
-                          nodes = NULL,
-                          use_selection = FALSE) {
+                          nodes = NULL) {
 
   if (node_attr == "nodes") {
     stop("You cannot change the node ID.")
@@ -83,14 +76,6 @@ set_node_attr <- function(x,
   if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     nodes_df <- x$nodes_df
-
-    if (use_selection) {
-      if (is.null(graph$selection$nodes)) {
-        stop("There is no selection of nodes available in the graph.")
-      } else {
-        nodes <- graph$selection$nodes
-      }
-    }
   }
 
   if (inherits(x, "data.frame")) {
@@ -177,9 +162,8 @@ set_node_attr <- function(x,
 
     # Retain the node selection if one was
     # available initially
-    if (use_selection) {
-      dgr_graph$selection <- graph$selection
-    }
+    dgr_graph$selection <- x$selection
+
 
     return(dgr_graph)
   }

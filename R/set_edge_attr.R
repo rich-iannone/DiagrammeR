@@ -14,12 +14,6 @@
 #' @param to an optional vector of node IDs from which
 #' the edge is incoming for filtering list of nodes
 #' with incoming edges in the graph.
-#' @param use_selection an option for whether to use
-#' a selection of edges already available in the graph
-#' for edge attribute modification. If \code{TRUE}, and
-#' there is a valid edge selection available, any
-#' values provided to the \code{from} and \code{to}
-#' arguments will be disregarded.
 #' @return either a graph object of class
 #' \code{dgr_graph} or an edge data frame, depending on
 #' what type of object was supplied to \code{x}.
@@ -97,8 +91,7 @@ set_edge_attr <- function(x,
                           edge_attr,
                           values,
                           from = NULL,
-                          to = NULL,
-                          use_selection = FALSE) {
+                          to = NULL) {
 
   if (edge_attr == "from" | edge_attr == "to") {
     stop("You cannot alter values associated with node IDs.")
@@ -113,16 +106,6 @@ set_edge_attr <- function(x,
   if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     edges_df <- x$edges_df
-
-    if (use_selection) {
-      if (is.null(graph$selection$edges$from) |
-          is.null(graph$selection$edges$to)) {
-        stop("There is no selection of edges available in the graph.")
-      } else {
-        from <- graph$selection$edges$from
-        to <- graph$selection$edges$to
-      }
-    }
   }
 
   if (inherits(x, "data.frame")) {
@@ -214,11 +197,8 @@ set_edge_attr <- function(x,
         graph_time = x$graph_time,
         graph_tz = x$graph_tz)
 
-    # Retain the edge selection if one was
-    # available initially
-    if (use_selection) {
-      dgr_graph$selection <- graph$selection
-    }
+    # Retain the edge selection
+    dgr_graph$selection <- x$selection
 
     return(dgr_graph)
   }
