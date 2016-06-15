@@ -108,7 +108,7 @@ graph <- select_nodes(graph, nodes = c("c", "d"))
 
 # Delete the nodes specified in the selection
 graph_node_deletion <-
-  delete_nodes_in_selection(graph)
+  delete_nodes_ws(graph)
 
 # Expect a node count of 2
 expect_equal(node_count(graph_node_deletion), 2)
@@ -118,7 +118,7 @@ expect_true(all(c("a", "b") %in% get_nodes(graph_node_deletion)))
 
 # Expect the graph to be unchanged if there is no node selection
 graph <- clear_selection(graph)
-graph <- delete_nodes_in_selection(graph)
+graph <- delete_nodes_ws(graph)
 
 # Expect a node count of 4
 expect_equal(node_count(graph), 4)
@@ -132,7 +132,7 @@ graph <- select_edges(graph, from = "a", to = "c")
 
 # Delete the edges specified in the selection
 graph_edge_deletion <-
-  delete_edges_in_selection(graph)
+  delete_edges_ws(graph)
 
 # Expect an edge count of 1
 expect_equal(edge_count(graph_edge_deletion), 1)
@@ -142,7 +142,7 @@ expect_true("c -> d" %in% get_edges(graph_edge_deletion, return_type = "vector")
 
 # Expect the graph to be unchanged if there is no edge selection
 graph <- clear_selection(graph)
-graph <- delete_edges_in_selection(graph)
+graph <- delete_edges_ws(graph)
 
 # Expect an edge count of 3
 expect_equal(edge_count(graph), 3)
