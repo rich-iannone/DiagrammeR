@@ -14,7 +14,7 @@
 #'     15, 24,
 #'     fully_connected = TRUE,
 #'     set_seed = 20))
-#' #> [1] "4"  "8"  "15"
+#' #> [1] "13"
 #' }
 #' @export get_periphery
 
