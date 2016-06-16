@@ -12,14 +12,20 @@ get_eccentricity(graph, nodes = NULL, return_type = "vector")
 
 \item{nodes}{an optional vector of node IDs for
 filtering the list of nodes present in the graph.}
+
+\item{return_type}{using \code{vector} (the default)
+will provide a named vector of eccentricity values
+(the node IDs serve as names). With \code{df},
+a data frame containing node IDs and eccentricity
+values is provided.}
 }
 \value{
 a data frame containing metrics pertaining
-to the graph
+to the graph.
 }
 \description{
 Get a named vector or data frame with
-node eccentricity values
+node eccentricity values.
 }
 \examples{
 \dontrun{
