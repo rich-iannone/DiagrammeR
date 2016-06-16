@@ -18,4 +18,16 @@ vector.
 Get the graph diameter, which is the
 maximum eccentricity.
 }
+\examples{
+\dontrun{
+# Get the graph diameter for a randomly-created
+# graph
+get_graph_diameter(
+  create_random_graph(
+    5, 7,
+    fully_connected = TRUE,
+    set_seed = 20))
+#> [1] 4
+}
+}
 
