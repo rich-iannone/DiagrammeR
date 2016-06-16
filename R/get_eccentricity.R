@@ -52,11 +52,12 @@ get_eccentricity <- function(graph,
     }
 
     longest_path <-
-      get_paths(
-        graph,
-        from = get_nodes(graph)[i],
-        longest_path = TRUE) %>%
-      unlist %>% length
+      length(
+        unlist(
+          get_paths(
+            graph,
+            from = get_nodes(graph)[i],
+            longest_path = TRUE)))
 
     eccentricity <-
       c(eccentricity, longest_path)
