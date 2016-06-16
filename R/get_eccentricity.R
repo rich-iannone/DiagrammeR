@@ -7,6 +7,16 @@
 #' filtering the list of nodes present in the graph.
 #' @return a data frame containing metrics pertaining
 #' to the graph
+#' @examples
+#' \dontrun{
+#' # Get the eccentricities for all nodes in
+#' # a randomly-created graph
+#' get_eccentricity(
+#'   graph = create_random_graph(
+#'             15, 20, set_seed = 20))
+#' #>  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+#' #> 10  8  2  7  1  1  7  7  1  6  2  2  8  7  9
+#' }
 #' @export get_eccentricity
 
 get_eccentricity <- function(graph,
