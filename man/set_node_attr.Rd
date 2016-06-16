@@ -17,7 +17,7 @@ set_node_attr(x, node_attr, values, nodes = NULL)
 attribute for the chosen nodes.}
 
 \item{nodes}{an optional vector of node IDs for
-filtering list of nodes present in the graph.}
+filtering the list of nodes present in the graph.}
 }
 \value{
 either a graph object of class
