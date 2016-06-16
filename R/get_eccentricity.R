@@ -1,12 +1,17 @@
 #' Get node eccentricities
 #' @description Get a named vector or data frame with
-#' node eccentricity values
+#' node eccentricity values.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param nodes an optional vector of node IDs for
 #' filtering the list of nodes present in the graph.
+#' @param return_type using \code{vector} (the default)
+#' will provide a named vector of eccentricity values
+#' (the node IDs serve as names). With \code{df},
+#' a data frame containing node IDs and eccentricity
+#' values is provided.
 #' @return a data frame containing metrics pertaining
-#' to the graph
+#' to the graph.
 #' @examples
 #' \dontrun{
 #' # Get the eccentricities for all nodes in
