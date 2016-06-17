@@ -34,7 +34,7 @@ starting node. These bounds serve as criteria for
 neighboring node similarity to the starting node.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a vector of node ID values.
 }
 \description{
 With a graph a single node serving as

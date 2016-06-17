@@ -14,7 +14,7 @@ get_nbrs(graph, nodes)
 \item{nodes}{a vector of node ID values.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a vector of node ID values.
 }
 \description{
 With one or more nodes, get the set of
@@ -24,7 +24,7 @@ all neighboring nodes
 \dontrun{
 library(magrittr)
 
-# Createa a random, directed graph with 18 nodes
+# Create a random, directed graph with 18 nodes
 # and 22 edges
 random_graph <-
   create_random_graph(
@@ -41,7 +41,13 @@ random_graph <-
 # Find all neighbor nodes for node `5`
 random_graph \%>\%
   get_nbrs(5)
+#> [1] "1"  "2"  "12" "18"
 
+# Find all neighbor nodes for nodes `5`, `7`,
+# and `15`
+random_graph \%>\%
+  get_nbrs(c(5, 7, 15))
+#> [1] "1"  "2"  "6"  "11" "12" "18"
 }
 }
 
