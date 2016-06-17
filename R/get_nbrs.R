@@ -5,7 +5,7 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @param nodes a vector of node ID values.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a vector of node ID values.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
