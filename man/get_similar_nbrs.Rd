@@ -12,6 +12,9 @@ get_similar_nbrs(graph, node, node_attr, tol_abs = NULL, tol_pct = NULL)
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
+\item{node}{a single-length vector containing a
+node ID value.}
+
 \item{node_attr}{the name of the node attribute
 to use to compare with adjacent nodes.}
 
