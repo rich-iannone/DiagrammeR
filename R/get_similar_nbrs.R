@@ -9,6 +9,8 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
+#' @param node a single-length vector containing a
+#' node ID value.
 #' @param node_attr the name of the node attribute
 #' to use to compare with adjacent nodes.
 #' @param tol_abs if the values contained in the node
