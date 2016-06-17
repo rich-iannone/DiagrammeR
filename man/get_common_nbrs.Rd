@@ -19,7 +19,7 @@ a vector of node ID values.
 }
 \description{
 With two or more nodes, get the set of
-common neighboring nodes
+common neighboring nodes.
 }
 \examples{
 \dontrun{
