@@ -1,10 +1,10 @@
-#' Select neighboring nodes based on node attribute
+#' Get neighboring nodes based on node attribute
 #' similarity
-#' @description With a graph containing a selection of
-#' a single node serving as the starting point, select
-#' those nodes in a potential neighborhood of nodes
-#' (adjacent to the starting node) that have a common
-#' or similar node attribute to the currently selected
+#' @description With a graph a single node serving as
+#' the starting point, get those nodes in a potential
+#' neighborhood of nodes (adjacent to the starting
+#' node) that have a common or similar (within
+#' threshold values) node attribute to the starting
 #' node.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
@@ -80,49 +80,38 @@
 #'     value = 'blue') %>%
 #'   clear_selection
 #'
-#' # Create a graph selection of all nodes with the
-#' # attribute `color = red`; Begin at node `1` and
-#' # traverse along the red edge to the first `red`
-#' # node, then, find the larger neighborhood of red
-#' # nodes and create a node selection from that
-#' # collection
+#' # Get all nodes with the node attribute
+#' # `color = red`; Begin at node `1` and traverse
+#' # along the red edge to the first `red` node, then,
+#' # find the larger neighborhood of red nodes (the
+#' # collection of nodes comprises the entire set of 7
+#' # red nodes that have adjacency to each other)
 #' graph %<>%
 #'   select_nodes_by_id(1) %>%
 #'   trav_out_edge('color', 'red') %>%
 #'   trav_in_node %>%
-#'   select_nbr_nodes_by_node_attr(
+#'   get_similar_nbrs(
 #'     node_attr = 'color')
-#'
-#' # Get selection of nodes; it comprises the
-#' # entire set of 7 red nodes that have adjacency
-#' # to each other
-#' graph %>% get_selection
 #' #> $nodes
 #' #> [1] "2"  "4"  "5"  "8"  "9"  "10" "11"
 #'
-#' # Create a graph selection of all nodes with the
-#' # attribute `color = blue`; Begin at node `1` and
-#' # traverse along the blue edge to the first `blue`
-#' # node, then, find the larger neighborhood of blue
-#' # nodes and create a node selection
+#' # Get all nodes with the attribute `color = blue`;
+#' # Begin at node `1` and traverse along the blue edge
+#' # to the first `blue` node, then, find the larger
+#' # neighborhood of blue nodes (it comprises the
+#' # entire set of 3 blue nodes that have adjacency
+#' # to each other)
 #' graph %<>%
-#'   clear_selection %>%
 #'   select_nodes_by_id(1) %>%
 #'   trav_out_edge('color', 'blue') %>%
 #'   trav_in_node %>%
-#'   select_nbr_nodes_by_node_attr(
+#'   get_similar_nbrs(
 #'     node_attr = 'color')
-#'
-#' # Get selection of nodes; it comprises the
-#' # entire set of 3 blue nodes that have adjacency
-#' # to each other
-#' graph %>% get_selection
-#' #> $nodes
 #' #> [1] "3" "6" "7"
 #'
-#' # Selection of neighbors can be done via numerical
-#' # comparisons as well; start with creating a random,
-#' # directed graph with 18 nodes and 22 edges
+#' # Getting similar neighbors can also be done through
+#' # numerical comparisons; start with creating a
+#' # random, directed graph with 18 nodes and 22 edges
 #' random_graph <-
 #'   create_random_graph(
 #'     n = 18,
@@ -148,13 +137,12 @@
 #' # in `value`
 #' random_graph %>%
 #'   select_nodes_by_id(8) %>%
-#'   select_nbr_nodes_by_node_attr(
-#'     node_attr = 'value') %>%
-#'   get_selection
+#'   get_similar_nbrs(
+#'     node_attr = 'value')
 #' #> $nodes
 #' #> [1] "8"
 #'
-#' # There was no additional selection aside from `8`
+#' # There were no additional nodes aside from `8`
 #' # since neighbors did not have `value = 1.0` as an
 #' # attribute
 #' #
@@ -167,41 +155,40 @@
 #' # determine if several nodes can be selected
 #' random_graph %>%
 #'   select_nodes_by_id(8) %>%
-#'   select_nbr_nodes_by_node_attr(
+#'   get_similar_nbrs(
 #'     node_attr = 'value',
-#'     tol_abs = c(3, 3)) %>%
-#'   get_selection
+#'     tol_abs = c(3, 3))
 #' #> $nodes
 #' #> [1] "8"  "9"  "13" "17" "10" "18" "3"
 #'
-#' # That resulted in a fairly large selection of 7
+#' # That resulted in a fairly large sset of 7
 #' # neigboring nodes; For sake of example, setting the
 #' # range to be very large will effectively select all
 #' # the adjacent nodes (18 in total)
 #' random_graph %>%
 #'   select_nodes_by_id(8) %>%
-#'   select_nbr_nodes_by_node_attr(
+#'   get_similar_nbrs(
 #'     node_attr = 'value',
-#'     tol_abs = c(10, 10)) %>%
-#'   get_selection
+#'     tol_abs = c(10, 10))
 #' #> $nodes
-#' #> [1] "8"  "2"  "9"  "13" "14" "1"  "17" "10" "5"  "6"
-#' #> [11] "12" "15" "18" "11" "3"  "16" "7"  "4"
+#' #> [1] "8"  "2"  "9"  "13" "14" "1"  "17" "10" "5"
+#' #> [10] "6" "12" "15" "18" "11" "3"  "16" "7"  "4"
 #' }
-#' @export select_nbr_nodes_by_node_attr
+#' @export get_similar_nbrs
 
-select_nbr_nodes_by_node_attr <- function(graph,
-                                          node_attr,
-                                          tol_abs = NULL,
-                                          tol_pct = NULL) {
+get_similar_nbrs <- function(graph,
+                             node,
+                             node_attr,
+                             tol_abs = NULL,
+                             tol_pct = NULL) {
 
   # Get value to match on
   match <-
     get_node_df(graph)[
       which(get_node_df(graph)[, 1] ==
-              get_selection(graph)[[1]])
-      , which(colnames(get_node_df(graph)) ==
-                node_attr)]
+              node),
+      which(colnames(get_node_df(graph)) ==
+              node_attr)]
 
   # Create an empty list object
   nodes <- list()
@@ -267,7 +254,7 @@ select_nbr_nodes_by_node_attr <- function(graph,
   }
 
   # place starting node in the neighbourhood vector
-  neighborhood <- get_selection(graph)[[1]]
+  neighborhood <- node
 
   # Initialize `i`
   i <- 1
@@ -313,8 +300,5 @@ select_nbr_nodes_by_node_attr <- function(graph,
   # and adjacency conditions
   matching_nodes <- nodes[length(nodes)][[1]]
 
-  # Replace the graph selection with the matched nodes
-  graph$selection$nodes <- matching_nodes
-
-  return(graph)
+  return(matching_nodes)
 }
