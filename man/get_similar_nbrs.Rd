@@ -76,22 +76,22 @@ graph <-
   clear_selection \%>\%
   select_nodes_by_id(
     c(2, 4, 5, 8, 9, 10, 11)) \%>\%
-  set_node_attr_with_selection(
+  set_node_attr_ws(
     node_attr = 'color',
     value = 'red') \%>\%
   clear_selection \%>\%
   select_nodes_by_id(
     c(3, 6, 7)) \%>\%
-  set_node_attr_with_selection(
+  set_node_attr_ws(
     node_attr = 'color',
     value = 'blue') \%>\%
   select_edges(from = 1, to = 2) \%>\%
-  set_edge_attr_with_selection(
+  set_edge_attr_ws(
     edge_attr = 'color',
     value = 'red') \%>\%
   clear_selection \%>\%
   select_edges(from = 1, to = 3) \%>\%
-  set_edge_attr_with_selection(
+  set_edge_attr_ws(
     edge_attr = 'color',
     value = 'blue') \%>\%
   clear_selection
@@ -102,13 +102,13 @@ graph <-
 # find the larger neighborhood of red nodes (the
 # collection of nodes comprises the entire set of 7
 # red nodes that have adjacency to each other)
-graph \%<>\%
+graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out_edge('color', 'red') \%>\%
   trav_in_node \%>\%
   get_similar_nbrs(
+    node = get_selection(.)[[1]],
     node_attr = 'color')
-#> $nodes
 #> [1] "2"  "4"  "5"  "8"  "9"  "10" "11"
 
 # Get all nodes with the attribute `color = blue`;
@@ -117,11 +117,12 @@ graph \%<>\%
 # neighborhood of blue nodes (it comprises the
 # entire set of 3 blue nodes that have adjacency
 # to each other)
-graph \%<>\%
+graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out_edge('color', 'blue') \%>\%
   trav_in_node \%>\%
   get_similar_nbrs(
+    node = get_selection(.)[[1]],
     node_attr = 'color')
 #> [1] "3" "6" "7"
 
@@ -146,21 +147,20 @@ random_graph <-
 random_graph \%>\% render_graph
 
 # The `create_random_graph()` function randomly
-# assigns numerical values to all nodes (as the `value`
-# attribute) from 0 to 10 and to 1 decimal place.
-# By selecting a node (`8`), we can test whether any
-# nodes adjacent and beyond are numerically equivalent
-# in `value`
+# assigns numerical values to all nodes (as the
+# `value` attribute) from 0 to 10 and to 1 decimal
+# place. By starting with node (`8`), we can test
+# whether any nodes adjacent and beyond are
+# numerically equivalent in `value`
 random_graph \%>\%
-  select_nodes_by_id(8) \%>\%
   get_similar_nbrs(
+    node = 8,
     node_attr = 'value')
-#> $nodes
 #> [1] "8"
 
 # There were no additional nodes aside from `8`
-# since neighbors did not have `value = 1.0` as an
-# attribute
+# since its neighbors did not have `value = 1.0` as
+# an attribute
 #
 # We can, however, set a tolerance for ascribing
 # similarly by using either the `tol_abs` or `tol_pct`
@@ -170,25 +170,23 @@ random_graph \%>\%
 # Try setting `tol_abs` with a fairly large range to
 # determine if several nodes can be selected
 random_graph \%>\%
-  select_nodes_by_id(8) \%>\%
   get_similar_nbrs(
+    node = 8,
     node_attr = 'value',
     tol_abs = c(3, 3))
-#> $nodes
 #> [1] "8"  "9"  "13" "17" "10" "18" "3"
 
-# That resulted in a fairly large sset of 7
+# That resulted in a fairly large set of 7
 # neigboring nodes; For sake of example, setting the
-# range to be very large will effectively select all
-# the adjacent nodes (18 in total)
+# range to be very large will effectively return all
+# 18 nodes in the graph
 random_graph \%>\%
-  select_nodes_by_id(8) \%>\%
   get_similar_nbrs(
+    node = 8,
     node_attr = 'value',
-    tol_abs = c(10, 10))
-#> $nodes
-#> [1] "8"  "2"  "9"  "13" "14" "1"  "17" "10" "5"
-#> [10] "6" "12" "15" "18" "11" "3"  "16" "7"  "4"
+    tol_abs = c(10, 10)) \%>\%
+    length
+#> [1] 18
 }
 }
 
