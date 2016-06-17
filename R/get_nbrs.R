@@ -25,15 +25,26 @@
 #'     'graph', 'overlap', 'false')
 #'
 #' # Find all neighbor nodes for node `5`
-#' random_graph %>%
-#'   get_nbrs(5)
+#' random_graph %>% get_nbrs(5)
 #' #> [1] "1"  "2"  "12" "18"
 #'
 #' # Find all neighbor nodes for nodes `5`, `7`,
 #' # and `15`
-#' random_graph %>%
-#'   get_nbrs(c(5, 7, 15))
+#' random_graph %>% get_nbrs(c(5, 7, 15))
 #' #> [1] "1"  "2"  "6"  "11" "12" "18"
+#'
+#' # Get neighbors for node `11` and add a node
+#' # attribute to color the nodes green, then, color
+#' # all other nodes light gray
+#' random_graph %<>%
+#'   select_nodes_by_id(get_nbrs(., 11)) %>%
+#'   set_node_attr_ws('color', 'green') %>%
+#'   invert_selection %>%
+#'   set_node_attr_ws('color', 'gray85') %>%
+#'   clear_selection
+#'
+#' # Render the graph to see the change
+#' random_graph %>% render_graph
 #' }
 #' @export get_nbrs
 
