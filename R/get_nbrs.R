@@ -40,7 +40,8 @@
 get_nbrs <- function(graph,
                      nodes) {
 
-  # Get predecessors for all nodes in `nodes`
+  # Get predecessors and successors for all nodes
+  # in `nodes`
   for (i in 1:length(nodes)) {
     if (i == 1) {
       node_nbrs <- vector(mode = 'numeric')
