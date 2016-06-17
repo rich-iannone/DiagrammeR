@@ -1,6 +1,6 @@
 #' Get all common neighbors between two or more nodes
 #' @description With two or more nodes, get the set of
-#' common neighboring nodes
+#' common neighboring nodes.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.

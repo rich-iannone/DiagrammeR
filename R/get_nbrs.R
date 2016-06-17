@@ -1,6 +1,6 @@
 #' Get all neighbors of one or more nodes
 #' @description With one or more nodes, get the set of
-#' all neighboring nodes
+#' all neighboring nodes.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
