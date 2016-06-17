@@ -42,7 +42,8 @@ random_graph <-
 # Find all non-neighbors of node `5`
 random_graph \%>\%
   get_non_nbrs(5)
-#> [1] "1"  "2"  "12" "18"
+#>  [1] "3"  "4"  "6"  "7"  "8"  "9"  "10" "11" "13"
+#> [12] "14" "15" "16" "17"
 }
 }
 
