@@ -36,7 +36,9 @@
 #' }
 #' @export select_nodes_by_id
 
-select_nodes_by_id <- function(graph, nodes, set_op = "union") {
+select_nodes_by_id <- function(graph,
+                               nodes,
+                               set_op = "union") {
 
   # Get a vector of node ID values from the graph
   nodes_in_graph <- graph$nodes_df$nodes
@@ -62,11 +64,14 @@ select_nodes_by_id <- function(graph, nodes, set_op = "union") {
   # Incorporate selected nodes into graph's
   # selection
   if (set_op == "union") {
-    nodes_combined <- union(nodes_prev_selection, nodes)
+    nodes_combined <-
+      union(nodes_prev_selection, nodes)
   } else if (set_op == "intersect") {
-    nodes_combined <- intersect(nodes_prev_selection, nodes)
+    nodes_combined <-
+      intersect(nodes_prev_selection, nodes)
   } else if (set_op == "difference") {
-    nodes_combined <- setdiff(nodes_prev_selection, nodes)
+    nodes_combined <-
+      setdiff(nodes_prev_selection, nodes)
   }
 
   graph$selection$nodes <- nodes_combined
