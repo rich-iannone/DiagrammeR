@@ -26,7 +26,7 @@
 #' positive percentage changes to the value of the
 #' starting node. These bounds serve as criteria for
 #' neighboring node similarity to the starting node.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a vector of node ID values.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
