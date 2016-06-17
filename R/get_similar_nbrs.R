@@ -95,7 +95,7 @@
 #'   get_similar_nbrs(
 #'     node = get_selection(.)[[1]],
 #'     node_attr = 'color')
-#' #> [1] "2"  "4"  "5"  "8"  "9"  "10" "11"
+#' #> [1] "4"  "5"  "8"  "9"  "10" "11"
 #'
 #' # Get all nodes with the attribute `color = blue`;
 #' # Begin at node `1` and traverse along the blue edge
@@ -110,7 +110,7 @@
 #'   get_similar_nbrs(
 #'     node = get_selection(.)[[1]],
 #'     node_attr = 'color')
-#' #> [1] "3" "6" "7"
+#' #> [1] "6" "7"
 #'
 #' # Getting similar neighbors can also be done through
 #' # numerical comparisons; start with creating a
@@ -142,37 +142,37 @@
 #'   get_similar_nbrs(
 #'     node = 8,
 #'     node_attr = 'value')
-#' #> [1] "8"
+#' #> [1] NA
 #'
-#' # There were no additional nodes aside from `8`
-#' # since its neighbors did not have `value = 1.0` as
-#' # an attribute
+#' # There are no nodes neighboring `8` that have a
+#' # `value` node attribute equal to `1.0` as node does
 #' #
 #' # We can, however, set a tolerance for ascribing
-#' # similarly by using either the `tol_abs` or `tol_pct`
-#' # arguments (the first applies absolute lower and upper
-#' # bounds from the value in the starting node and the
-#' # latter uses a percentage difference to do the same);
-#' # Try setting `tol_abs` with a fairly large range to
-#' # determine if several nodes can be selected
+#' # similarly by using either the `tol_abs` or
+#' # `tol_pct` arguments (the first applies absolute
+#' # lower and upper bounds from the value in the
+#' # starting node and the latter uses a percentage
+#' # difference to do the same); try setting `tol_abs`
+#' # with a fairly large range to determine if several
+#' # nodes can be selected
 #' random_graph %>%
 #'   get_similar_nbrs(
 #'     node = 8,
 #'     node_attr = 'value',
 #'     tol_abs = c(3, 3))
-#' #> [1] "8"  "9"  "13" "17" "10" "18" "3"
+#' #> [1] "3"  "9"  "10" "13" "17" "18"
 #'
 #' # That resulted in a fairly large set of 7
 #' # neigboring nodes; For sake of example, setting the
 #' # range to be very large will effectively return all
-#' # 18 nodes in the graph
+#' # nodes in the graph except for the starting node
 #' random_graph %>%
 #'   get_similar_nbrs(
 #'     node = 8,
 #'     node_attr = 'value',
 #'     tol_abs = c(10, 10)) %>%
 #'     length
-#' #> [1] 18
+#' #> [1] 17
 #' }
 #' @export get_similar_nbrs
 
