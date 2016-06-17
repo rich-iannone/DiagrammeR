@@ -298,7 +298,35 @@ get_similar_nbrs <- function(graph,
 
   # Get the final set of nodes that satisfy similarity
   # and adjacency conditions
-  matching_nodes <- nodes[length(nodes)][[1]]
+  matching_nodes <-
+    setdiff(nodes[length(nodes)][[1]], node)
+
+  # If there are no matching nodes, assign NA to
+  # `matching_nodes`
+  if (length(matching_nodes) == 0) {
+    matching_nodes <- NA
+  }
+
+  # If `matching_nodes` has node ID values, determine
+  # if the node ID values are numeric and, if so, apply
+  # a numeric sort
+  if (all(!is.na(matching_nodes))) {
+
+    # Determine whether the node ID values are entirely
+    # numeric
+    node_id_numeric <-
+      ifelse(
+        suppressWarnings(
+          any(is.na(as.numeric(matching_nodes)))),
+        FALSE, TRUE)
+
+    # If the node ID values are numeric, then apply a
+    # numeric sort and reclass as a `character` type
+    if (node_id_numeric) {
+      matching_nodes <-
+        as.character(sort(as.numeric(matching_nodes)))
+    }
+  }
 
   return(matching_nodes)
 }
