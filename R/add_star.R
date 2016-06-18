@@ -34,6 +34,11 @@ add_star <- function(graph,
                      rel = NULL,
                      nodes = NULL){
 
+  # Stop if n is too small
+  if (n <= 3)  {
+    stop("The value for n must be at least 4.")
+  }
+
   if (!is.null(nodes)) {
     if (length(nodes) != n) {
       stop("The number of node IDs supplied is not equal to n.")

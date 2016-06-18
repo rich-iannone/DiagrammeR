@@ -32,6 +32,11 @@ add_cycle <- function(graph,
                       rel = NULL,
                       nodes = NULL){
 
+  # Stop if n is too small
+  if (n <= 2)  {
+    stop("The value for n must be at least 3.")
+  }
+
   if (!is.null(nodes)) {
     if (length(nodes) != n) {
       stop("The number of node IDs supplied is not equal to n.")
