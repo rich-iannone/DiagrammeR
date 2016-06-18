@@ -2,6 +2,7 @@
 
 export(DiagrammeR)
 export(DiagrammeROutput)
+export(add_cycle)
 export(add_edge)
 export(add_edge_df)
 export(add_edges_from_table)
