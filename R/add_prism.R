@@ -88,18 +88,6 @@ add_prism <- function(graph,
     }
   }
 
-  c(nodes[1:(length(nodes)/2)],
-    nodes[((length(nodes)/2) + 1):length(nodes)],
-    nodes[1:(length(nodes)/2)])
-
-
-  c(nodes[2:(length(nodes)/2)],
-    nodes[1],
-    nodes[((length(nodes)/2) + 2):length(nodes)],
-    nodes[((length(nodes)/2) + 1)],
-    nodes[1:(length(nodes)/2)] + n)
-
-
   prism_nodes <-
     create_nodes(
       nodes = nodes,
