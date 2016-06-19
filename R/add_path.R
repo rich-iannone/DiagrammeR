@@ -4,7 +4,7 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param n the number of nodes comprising the path
+#' @param n the number of nodes comprising the path.
 #' @param type an optional string that describes the
 #' entity type for the nodes to be added.
 #' @param label either a vector object of length
@@ -14,7 +14,7 @@
 #' \code{FALSE} yields a blank label.
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
-#' node path
+#' node path.
 #' @param nodes an optional vector of node IDs of
 #' length \code{n} for the newly created nodes. If
 #' nothing is provided, node IDs will assigned as
@@ -34,7 +34,7 @@ add_path <- function(graph,
 
   # Stop if n is too small
   if (n <= 1)  {
-    stop("The value for n must be at least 3.")
+    stop("The value for n must be at least 2.")
   }
 
   if (!is.null(nodes)) {
