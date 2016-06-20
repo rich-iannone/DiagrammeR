@@ -40,6 +40,26 @@ get_selection <- function(graph) {
   if (is.null(graph$selection)) {
     return(NA)
   }
-  selection <- graph$selection
-  return(selection)
+
+  if (names(graph$selection) == 'nodes') {
+    selection <- graph$selection[[1]]
+    return(selection)
+  }
+
+  if (names(graph$selection) == 'edges') {
+    selection_from <- graph$selection[[1]][[1]]
+    selection_to <- graph$selection[[1]][[2]]
+
+    if (is_graph_directed(graph)) {
+      selection <-
+        paste(selection_from, selection_to, sep = " -> ")
+    }
+
+    if (is_graph_directed(graph) == FALSE) {
+      selection <-
+        paste(selection_from, selection_to, sep = " - ")
+    }
+
+    return(selection)
+  }
 }
