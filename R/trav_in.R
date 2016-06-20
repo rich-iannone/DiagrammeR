@@ -116,7 +116,7 @@ trav_in <- function(graph,
   }
 
   # Get the current selection of nodes
-  selected_nodes <- get_selection(graph)$nodes
+  selected_nodes <- get_selection(graph)
 
   # Get all paths leading inward from node in selection
   for (i in 1:length(selected_nodes)) {
