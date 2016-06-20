@@ -21,17 +21,16 @@
 #'
 #' # Select node `4`, then select all nodes a
 #' # distance of 1 away from node `4`, and finally
-#' # return the selection of nodes as a list object
+#' # return the selection of nodes as a vector object
 #' graph %>%
 #'   select_nodes(nodes = "4") %>%
 #'   select_nodes_in_neighborhood(
 #'     node = "4", distance = 1) %>%
 #'   get_selection()
-#' #> $nodes
 #' #> [1] "4" "5" "6" "3"
 #' }
-#' @return a list object with the current selection of
-#' nodes or edges.
+#' @return a vector with the current selection of nodes
+#' or edges.
 #' @export get_selection
 
 get_selection <- function(graph) {
