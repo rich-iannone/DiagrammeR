@@ -22,6 +22,15 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a new graph and add 3 paths of varying
+#' # lengths
+#' graph <-
+#'   create_graph() %>%
+#'   add_path(4, "four_path") %>%
+#'   add_path(5, "five_path") %>%
+#'   add_path(6, "six_path")
 #' }
 #' @export add_path
 
