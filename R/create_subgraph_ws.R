@@ -43,7 +43,7 @@
 #'
 #' # Create a subgraph based on the selection
 #' subgraph <-
-#'   create_subgraph_from_selection(graph)
+#'   create_subgraph_ws(graph)
 #'
 #' # Check the nodes available in the subgraph
 #' get_nodes(subgraph)
@@ -54,9 +54,9 @@
 #' #> [1] "c -> a" "g -> c" "e -> h"
 #' }
 #' @return a graph object of class \code{dgr_graph}.
-#' @export create_subgraph_from_selection
+#' @export create_subgraph_ws
 
-create_subgraph_from_selection <- function(graph) {
+create_subgraph_ws <- function(graph) {
 
   # Stop function if the graph does not contain a selection
   if (is.null(graph$selection)) {
