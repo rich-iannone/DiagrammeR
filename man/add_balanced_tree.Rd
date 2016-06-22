@@ -43,6 +43,16 @@ With a graph object of class
 }
 \examples{
 \dontrun{
+library(magrittr)
+
+# Create a new graph and add 3 different types of
+# balanced trees of height 2 (branching twice) and
+# different branching ratios
+graph <-
+  create_graph() \%>\%
+  add_balanced_tree(2, 2, "binary") \%>\%
+  add_balanced_tree(3, 2, "tertiary") \%>\%
+  add_balanced_tree(4, 2, "quaternary")
 }
 }
 
