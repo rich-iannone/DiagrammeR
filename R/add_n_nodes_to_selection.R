@@ -61,39 +61,52 @@ add_n_nodes_to_selection <- function(graph,
     }
 
     if (node_count(graph) > 0){
-      if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))){
+      if (!is.na(
+        suppressWarnings(
+          any(as.numeric(get_nodes(graph)))))){
 
         numeric_components <-
-          suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
+          suppressWarnings(
+            which(
+              !is.na(as.numeric(get_nodes(graph)))))
 
         node <-
-          max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
+          max(
+            as.integer(
+              as.numeric(
+                get_nodes(graph)[
+                  numeric_components]))) + 1
       }
 
-      if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))){
+      if (suppressWarnings(
+        all(
+          is.na(as.numeric(get_nodes(graph)))))){
         node <- 1
       }
     }
 
     if (!is.null(set_node_type)) {
       new_nodes <-
-        create_nodes(nodes = seq(node, node + n - 1, 1),
-                     type = set_node_type)
+        create_nodes(
+          nodes = seq(node, node + n - 1, 1),
+          type = set_node_type)
     } else {
       new_nodes <-
-        create_nodes(nodes = seq(node, node + n - 1, 1))
+        create_nodes(
+          nodes = seq(node, node + n - 1, 1))
     }
 
     if (!is.null(set_edge_rel)) {
-
       new_edges <-
-        create_edges(from = seq(node, node + n - 1, 1),
-                     to = rep(nodes_in_selection[i], n),
-                     rel = set_edge_rel)
+        create_edges(
+          from = seq(node, node + n - 1, 1),
+          to = rep(nodes_in_selection[i], n),
+          rel = set_edge_rel)
     } else {
       new_edges <-
-        create_edges(from = seq(node, node + n - 1, 1),
-                     to = rep(nodes_in_selection[i], n))
+        create_edges(
+          from = seq(node, node + n - 1, 1),
+          to = rep(nodes_in_selection[i], n))
     }
 
     graph <-
