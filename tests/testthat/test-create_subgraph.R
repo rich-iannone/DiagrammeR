@@ -28,7 +28,7 @@ test_that("a subgraph can be created and such an object is correct", {
 
   # Create a subgraph based on the selection
   subgraph <-
-    create_subgraph_from_selection(graph)
+    create_subgraph_ws(graph)
 
   # Expect that only those nodes with a value >3 are in the subgraph
   expect_true(all(c("a", "c", "e", "g", "h") %in% get_nodes(subgraph)))
@@ -40,5 +40,5 @@ test_that("a subgraph can be created and such an object is correct", {
   # Expect an error when attempting to create a subgraph with
   # a graph without an active selection
   graph <- clear_selection(graph)
-  expect_error(create_subgraph_from_selection(graph))
+  expect_error(create_subgraph_ws(graph))
 })
