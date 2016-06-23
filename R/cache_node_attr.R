@@ -1,7 +1,7 @@
-#' Deposit node attributes in the graph
+#' Cache node attributes in the graph
 #' @description From a graph object of class
 #' \code{dgr_graph}, get node attribute properties for
-#' one or more nodes and deposit those values in the
+#' one or more nodes and cache those values in the
 #' graph for later retrieval using
 #' \code{withdraw_values}.
 #' @param graph a graph object of class
@@ -14,12 +14,12 @@
 #' @param nodes an optional vector of node IDs for
 #' filtering the list of nodes present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export deposit_node_attr
+#' @export cache_node_attr
 
-deposit_node_attr <- function(graph,
-                              node_attr,
-                              mode = NULL,
-                              nodes = NULL) {
+cache_node_attr <- function(graph,
+                            node_attr,
+                            mode = NULL,
+                            nodes = NULL) {
 
 
   nodes_df <- graph$nodes_df
@@ -49,9 +49,8 @@ deposit_node_attr <- function(graph,
     }
   }
 
-  # Place vector of node attributes as a deposit
-  # in the graph
-  graph$deposit <- nodes_attr_vector
+  # Cache vector of node attributes in the graph
+  graph$cache <- nodes_attr_vector
 
   return(graph)
 }
