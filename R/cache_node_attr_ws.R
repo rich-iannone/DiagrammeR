@@ -1,8 +1,8 @@
-#' Deposit node attributes (based on a selection of
+#' Cache node attributes (based on a selection of
 #' nodes) in the graph
 #' @description From a graph object of class
 #' \code{dgr_graph}, get node attribute properties for
-#' nodes available in a selection and deposit those
+#' nodes available in a selection and cache those
 #' values in the graph for later retrieval using
 #' \code{withdraw_values}.
 #' @param graph a graph object of class
@@ -14,11 +14,11 @@
 #' of node attribute value as \code{numeric} or
 #' \code{character}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export deposit_node_attr_from_selection
+#' @export cache_node_attr_ws
 
-deposit_node_attr_from_selection <- function(graph,
-                                             node_attr,
-                                             mode = NULL) {
+cache_node_attr_ws <- function(graph,
+                               node_attr,
+                               mode = NULL) {
 
   if (is.null(graph$selection$nodes)) {
     stop("There is no selection of nodes available.")
@@ -48,9 +48,9 @@ deposit_node_attr_from_selection <- function(graph,
       }
     }
 
-    # Place vector of node attributes as a deposit
+    # Cache vector of node attributes
     # in the graph
-    graph$deposit <- nodes_attr_vector
+    graph$cache <- nodes_attr_vector
 
     return(graph)
   }
