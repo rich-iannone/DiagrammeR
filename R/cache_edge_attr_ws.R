@@ -1,8 +1,8 @@
-#' Deposit edge attributes (based on a selection of
+#' Cache edge attributes (based on a selection of
 #' edges) in the graph
 #' @description From a graph object of class
 #' \code{dgr_graph}, get edge attribute properties for
-#' edges available in a selection and deposit those
+#' edges available in a selection and cache those
 #' values in the graph for later retrieval using
 #' \code{withdraw_values}.
 #' @param graph a graph object of class
@@ -14,11 +14,11 @@
 #' of edge attribute value as \code{numeric} or
 #' \code{character}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export deposit_edge_attr_from_selection
+#' @export cache_edge_attr_ws
 
-deposit_edge_attr_from_selection <- function(graph,
-                                             edge_attr,
-                                             mode = NULL) {
+cache_edge_attr_ws <- function(graph,
+                               edge_attr,
+                               mode = NULL) {
 
   if (is.null(graph$selection$edges)) {
     stop("There is no selection of edges available.")
@@ -54,9 +54,8 @@ deposit_edge_attr_from_selection <- function(graph,
       }
     }
 
-    # Place vector of edge attributes as a deposit
-    # in the graph
-    graph$deposit <- edges_attr_vector
+    # Cache vector of edge attributes  in the graph
+    graph$cache <- edges_attr_vector
 
     return(graph)
   }
