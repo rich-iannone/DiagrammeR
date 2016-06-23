@@ -15,13 +15,14 @@
 #' number for numerical filtering, or, a character
 #' string for filtering the edges returned through
 #' string matching.
-#' @param return_type using \code{list} (the default)
-#' will provide a list object containing vectors of
-#' outgoing and incoming node IDs associated with
-#' edges. With \code{df}, a data frame containing
-#' outgoing and incoming node IDs associated with
-#' edges. With \code{vector}, a vector of character
-#' objects representing the edges is provided.
+#' @param return_type using \code{vector} (the
+#' default), a vector of  character objects
+#' representing the edges is provided. With
+#' \code{list} a list object will be provided that
+#' contains vectors of outgoing and incoming node IDs
+#' associated with edges. With \code{df}, a data frame
+#' containing outgoing and incoming node IDs associated
+#' with edges.
 #' @return a list, data frame, or a vector object,
 #' depending on the value given to \code{return_type}.
 #' @examples
