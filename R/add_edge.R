@@ -54,10 +54,14 @@ add_edge <- function(graph,
 
   # If an edge between nodes is requested and that
   # edge exists, stop function
-  if (all(!is.na(get_edges(graph,
-                           return_type = "vector")))) {
-    if (any(get_edges(graph)[[1]] == from &
-            get_edges(graph)[[2]] == to)) {
+  if (all(
+    !is.na(get_edges(graph,
+                     return_type = "vector")))) {
+    if (any(
+      get_edges(
+        graph, return_type = "list")[[1]] == from &
+      get_edges(
+        graph, return_type = "list")[[2]] == to)) {
       stop("This edge already exists.")
     }
   }
