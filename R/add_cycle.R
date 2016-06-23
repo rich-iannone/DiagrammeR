@@ -22,6 +22,22 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a new graph and add a cycle of nodes to it
+#' graph <-
+#'   create_graph() %>%
+#'   add_cycle(6)
+#'
+#' # Get node information from this graph
+#' node_info(graph)
+#' #>   node label type deg indeg outdeg loops
+#' #> 1    1     1        2     1      1     0
+#' #> 2    2     2        2     1      1     0
+#' #> 3    3     3        2     1      1     0
+#' #> 4    4     4        2     1      1     0
+#' #> 5    5     5        2     1      1     0
+#' #> 6    6     6        2     1      1     0
 #' }
 #' @export add_cycle
 

@@ -36,22 +36,22 @@
 #'
 #' # Get node information from this graph
 #' node_info(graph)
-#' #>    node label      type degree indegree outdegree loops
-#' #> 1     1     1 four_star      3        0         3     0
-#' #> 2     5     5 five_star      4        0         4     0
-#' #> 3    10    10  six_star      5        0         5     0
-#' #> 4     2     2 four_star      1        1         0     0
-#' #> 5     3     3 four_star      1        1         0     0
-#' #> 6     4     4 four_star      1        1         0     0
-#' #> 7     6     6 five_star      1        1         0     0
-#' #> 8     7     7 five_star      1        1         0     0
-#' #> 9     8     8 five_star      1        1         0     0
-#' #> 10    9     9 five_star      1        1         0     0
-#' #> 11   11    11  six_star      1        1         0     0
-#' #> 12   12    12  six_star      1        1         0     0
-#' #> 13   13    13  six_star      1        1         0     0
-#' #> 14   14    14  six_star      1        1         0     0
-#' #> 15   15    15  six_star      1        1         0     0
+#' #>    node label      type deg indeg outdeg loops
+#' #> 1     1     1 four_star   3     0      3     0
+#' #> 2     5     5 five_star   4     0      4     0
+#' #> 3    10    10  six_star   5     0      5     0
+#' #> 4     2     2 four_star   1     1      0     0
+#' #> 5     3     3 four_star   1     1      0     0
+#' #> 6     4     4 four_star   1     1      0     0
+#' #> 7     6     6 five_star   1     1      0     0
+#' #> 8     7     7 five_star   1     1      0     0
+#' #> 9     8     8 five_star   1     1      0     0
+#' #> 10    9     9 five_star   1     1      0     0
+#' #> 11   11    11  six_star   1     1      0     0
+#' #> 12   12    12  six_star   1     1      0     0
+#' #> 13   13    13  six_star   1     1      0     0
+#' #> 14   14    14  six_star   1     1      0     0
+#' #> 15   15    15  six_star   1     1      0     0
 #' }
 #' @export add_star
 
