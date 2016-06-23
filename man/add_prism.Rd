@@ -52,7 +52,7 @@ graph <-
   create_graph() \%>\%
   add_prism(3, "prism")
 
-# Get information on the graph's nodes
+# Get node information from this graph
 node_info(graph)
 #>   node label  type deg indeg outdeg loops
 #> 1    1     1 prism   3     1      2     0

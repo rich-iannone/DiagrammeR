@@ -49,6 +49,25 @@ graph <-
   add_path(4, "four_path") \%>\%
   add_path(5, "five_path") \%>\%
   add_path(6, "six_path")
+
+# Get node information from this graph
+node_info(graph)
+#>    node label      type deg indeg outdeg loops
+#> 1     1     1 four_path   1     0      1     0
+#> 2     5     5 five_path   1     0      1     0
+#> 3    10    10  six_path   1     0      1     0
+#> 4     2     2 four_path   2     1      1     0
+#> 5     3     3 four_path   2     1      1     0
+#> 6     6     6 five_path   2     1      1     0
+#> 7     7     7 five_path   2     1      1     0
+#> 8     8     8 five_path   2     1      1     0
+#> 9    11    11  six_path   2     1      1     0
+#> 10   12    12  six_path   2     1      1     0
+#> 11   13    13  six_path   2     1      1     0
+#> 12   14    14  six_path   2     1      1     0
+#> 13    4     4 four_path   1     1      0     0
+#> 14    9     9 five_path   1     1      0     0
+#> 15   15    15  six_path   1     1      0     0
 }
 }
 
