@@ -1,7 +1,7 @@
-#' Deposit edge attributes in the graph
+#' Cache edge attributes in the graph
 #' @description From a graph object of class
 #' \code{dgr_graph}, get edge attribute properties for
-#' one or more edges and deposit those values in the
+#' one or more edges and cache those values in the
 #' graph for later retrieval using
 #' \code{withdraw_values}.
 #' @param graph a graph object of class
@@ -18,13 +18,13 @@
 #' the edge is incoming for filtering the list of
 #' edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export deposit_edge_attr
+#' @export cache_edge_attr
 
-deposit_edge_attr <- function(graph,
-                              edge_attr,
-                              mode = NULL,
-                              from = NULL,
-                              to = NULL) {
+cache_edge_attr <- function(graph,
+                            edge_attr,
+                            mode = NULL,
+                            from = NULL,
+                            to = NULL) {
 
   edges_df <- graph$edges_df
 
@@ -64,8 +64,8 @@ deposit_edge_attr <- function(graph,
     }
   }
 
-  # Place vector of edge attributes as a deposit in the graph
-  graph$deposit <- edges_attr_vector
+  # Cache vector of edge attributes in the graph
+  graph$cache <- edges_attr_vector
 
   return(graph)
 }
