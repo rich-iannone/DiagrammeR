@@ -45,9 +45,9 @@ test_that("getting info about a graph's nodes is possible", {
   expect_is(info_nodes$type, "character")
 
   # Expect that certain columns will be classed as "numeric"
-  expect_is(info_nodes$degree, "numeric")
-  expect_is(info_nodes$indegree, "numeric")
-  expect_is(info_nodes$outdegree, "numeric")
+  expect_is(info_nodes$deg, "numeric")
+  expect_is(info_nodes$indeg, "numeric")
+  expect_is(info_nodes$outdeg, "numeric")
   expect_is(info_nodes$loops, "numeric")
 
   # Create a graph with 4 nodes (with type information) but no edges
