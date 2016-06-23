@@ -29,7 +29,7 @@ graph_info <- function(graph) {
     as.data.frame(mat.or.vec(nr = 0, nc = 9))
 
   colnames(graph_metrics) <-
-    c("name", "nodes", "edges", "density",
+    c("name", "n", "e", "dens",
       "min_deg", "max_deg",
       "avg_deg", "time", "tz")
 
