@@ -27,6 +27,6 @@ From a graph object of class
 \code{dgr_graph}, get node attribute properties for
 nodes available in a selection and cache those
 values in the graph for later retrieval using
-\code{withdraw_values}.
+\code{get_cache}.
 }
 
