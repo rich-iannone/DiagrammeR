@@ -121,22 +121,24 @@ library(magrittr)
 graph <-
   create_graph() %>%
   set_graph_name("software_projects") %>%
-  set_global_graph_attr("graph",
-                        "output",
-                        "visNetwork") %>%
+  set_global_graph_attr(
+    "graph", "output", "visNetwork") %>%
   add_nodes_from_table(
-    system.file("examples/contributors.csv",
-                package = "DiagrammeR"),
+    system.file(
+      "examples/contributors.csv",
+      package = "DiagrammeR"),
     set_type = "person",
     label_col = "name") %>%
   add_nodes_from_table(
-    system.file("examples/projects.csv",
-                package = "DiagrammeR"),
+    system.file(
+      "examples/projects.csv",
+      package = "DiagrammeR"),
     set_type = "project",
     label_col = "project") %>%
   add_edges_from_table(
-    system.file("examples/projects_and_contributors.csv",
-                package = "DiagrammeR"),
+    system.file(
+      "examples/projects_and_contributors.csv",
+      package = "DiagrammeR"),
     from_col = "contributor_name",
     from_mapping = "name",
     to_col = "project_name",
@@ -158,9 +160,8 @@ Get the average age of all the contributors:
 ```r
 graph %>% 
   select_nodes("type", "person") %>%
-  deposit_node_attr_from_selection(
-    "age", "numeric") %>%
-  withdraw_values %>% 
+  cache_node_attr_ws("age", "numeric") %>%
+  get_cache %>% 
   mean
 #> [1] 33.6
 ```
@@ -169,9 +170,8 @@ Get the total number of commits to all software projects:
 ```r
 graph %>% 
   select_edges %>%
-  deposit_edge_attr_from_selection(
-    "commits", "numeric") %>%
-  withdraw_values %>% 
+  cache_edge_attr_ws("commits", "numeric") %>%
+  get_cache %>% 
   sum
 #> [1] 5182
 ```
@@ -181,9 +181,8 @@ Get the total number of commits from Josh as a maintainer and as a contributor:
 graph %>% 
   select_nodes("name", "Josh") %>%
   trav_out_edge(c("maintainer", "contributer")) %>%
-  deposit_edge_attr_from_selection(
-    "commits", "numeric") %>%
-  withdraw_values %>% 
+  cache_edge_attr_ws("commits", "numeric") %>%
+  get_cache %>% 
   sum
 #> [1] 227
 ```
@@ -193,60 +192,58 @@ Get the total number of commits from Louisa:
 graph %>% 
   select_nodes("name", "Louisa") %>%
   trav_out_edge %>%
-  deposit_edge_attr_from_selection(
-    "commits", "numeric") %>%
-  withdraw_values %>% 
+  cache_edge_attr_ws("commits", "numeric") %>%
+  get_cache %>% 
   sum
 #> [1] 615
 ```
 
 Get the names of people in graph above age 32:
 ```r
-graph %>% select_nodes("type", "person") %>%
+graph %>% 
+  select_nodes("type", "person") %>%
   select_nodes("age", ">32", "intersect") %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
+  cache_node_attr_ws("name") %>%
+  get_cache
 #> [1] "Jack"   "Sheryl" "Roger"  "Kim"    "Jon"
 ```
 
 Get the total number of commits from all people to the **supercalc** project:
 ```r
-graph %>% select_nodes("project", "supercalc") %>%
+graph %>% 
+  select_nodes("project", "supercalc") %>%
   trav_in_edge %>%
-  deposit_edge_attr_from_selection(
-    "commits", "numeric") %>%
-  withdraw_values %>% 
+  cache_edge_attr_ws("commits", "numeric") %>%
+  get_cache %>% 
   sum
 #> [1] 1676
 ```
 
 Who committed the most to the **supercalc** project?
 ```r
-graph %>% select_nodes("project", "supercalc") %>%
+graph %>% 
+  select_nodes("project", "supercalc") %>%
   trav_in_edge %>%
-  deposit_edge_attr_from_selection(
-    "commits", "numeric") %>%
+  cache_edge_attr_ws("commits", "numeric") %>%
   trav_in_node %>%
-  trav_in_edge(
-    "commits", max(withdraw_values(.))) %>%
+  trav_in_edge("commits", max(get_cache(.))) %>%
   trav_out_node %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
+  cache_node_attr_ws("name") %>%
+  get_cache
 #> [1] "Sheryl"
 ```
 
 What is the email address of the individual that contributed the least to the **randomizer** project?
 ```r
-graph %>% select_nodes("project", "randomizer") %>%
+graph %>% 
+  select_nodes("project", "randomizer") %>%
   trav_in_edge %>%
-  deposit_edge_attr_from_selection(
-    "commits", "numeric") %>%
+  cache_edge_attr_ws("commits", "numeric") %>%
   trav_in_node %>%
-  trav_in_edge(
-    "commits", min(withdraw_values(.))) %>%
+  trav_in_edge("commits", min(get_cache(.))) %>%
   trav_out_node %>%
-  deposit_node_attr_from_selection("email") %>%
-  withdraw_values
+  cache_node_attr_ws("email") %>%
+  get_cache
 #> [1] "the_will@graphymail.com"
 ```
 
@@ -275,9 +272,8 @@ graph %>%
   select_nodes("project", "supercalc") %>%
   trav_in_edge("rel", "contributor") %>%
   trav_out_node %>%
-  deposit_node_attr_from_selection(
-    "email", "character") %>%
-  withdraw_values
+  cache_node_attr_ws("email", "character") %>%
+  get_cache
 #> [1] "lhe99@mailing-fun.com"  "josh_ch@megamail.kn"
 #> [3] "roger_that@whalemail.net"  "the_simone@a-q-w-o.net"
 #> [5] "kim_3251323@ohhh.ai"  "the_will@graphymail.com"
@@ -289,13 +285,11 @@ Which committer to the **randomizer** project has the highest number of follower
 graph %>% 
   select_nodes("project", "randomizer") %>%
   trav_in %>%
-  deposit_node_attr_from_selection(
-    "follower_count", "numeric") %>%
+  cache_node_attr_ws("follower_count", "numeric") %>%
   select_nodes("project", "randomizer") %>%
-  trav_in(
-    "follower_count", max(withdraw_values(.))) %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
+  trav_in("follower_count", max(get_cache(.))) %>%
+  cache_node_attr_ws("name") %>%
+  get_cache
 #> [1] "Kim"
 ```
 
@@ -304,8 +298,8 @@ Which people have committed to more than one project?
 graph %>%
   select_nodes_by_degree(
     "out", ">1", "type", "person") %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
+  cache_node_attr_ws("name") %>%
+  get_cache
 #> [1] "Louisa"  "Josh"  "Kim"
 ```
 
