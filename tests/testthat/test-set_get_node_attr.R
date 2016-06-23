@@ -50,8 +50,8 @@ test_that("setting node attributes is possible", {
 
   # Expect that node "A" has node attr set for `value`
   expect_equal(
-    withdraw_values(
-      deposit_node_attr(
+    get_cache(
+      cache_node_attr(
         graph_set_a,
         node_attr = "value",
         nodes = "A")), "5")
@@ -66,8 +66,8 @@ test_that("setting node attributes is possible", {
 
   # Expect that node "A" has node attr set for `value`
   expect_equal(
-    withdraw_values(
-      deposit_node_attr(
+    get_cache(
+      cache_node_attr(
         graph_set_a,
         node_attr = "value",
         nodes = "A")), "8")
@@ -116,8 +116,8 @@ test_that("setting node attributes is possible", {
   # Expect that getting the node attribute from a
   # selection works in the same way
   expect_equal(
-    withdraw_values(
-      deposit_node_attr_from_selection(
+    get_cache(
+      cache_node_attr_ws(
         graph_node_selection, node_attr = "value")),
     "5")
 
@@ -164,7 +164,7 @@ test_that("setting node attributes is possible", {
 
   # Expect that getting the node attribute from a graph without
   # a selection will result in an error
-  expect_error(deposit_node_attr_from_selection(graph))
+  expect_error(cache_node_attr_ws(graph))
 
   # Expect an error if the attribute selected is `nodes`
   expect_error(
@@ -233,8 +233,8 @@ test_that("setting edge attributes is possible", {
 
   # Get edge attribute for edge "A" -> "1"
   graph_set_a_1_edge_attr <-
-    withdraw_values(
-      deposit_edge_attr(
+    get_cache(
+      cache_edge_attr(
         graph_set_a_1,
         edge_attr = "value",
         from = "A",
@@ -254,8 +254,8 @@ test_that("setting edge attributes is possible", {
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
-    withdraw_values(
-      deposit_edge_attr(
+    get_cache(
+      cache_edge_attr(
         graph_set_a_1,
         edge_attr = "value",
         from = "A",
@@ -276,8 +276,8 @@ test_that("setting edge attributes is possible", {
 
   # Expect that edge "A" -> "1" has edge attr set for `value`
   expect_equal(
-    withdraw_values(
-      deposit_edge_attr(
+    get_cache(
+      cache_edge_attr(
         graph_select_a_1,
         edge_attr = "value",
         from = "A",
