@@ -204,8 +204,9 @@ graph %>%
   select_nodes("type", "person") %>%
   select_nodes("age", ">32", "intersect") %>%
   cache_node_attr_ws("name") %>%
-  get_cache
-#> [1] "Jack"   "Sheryl" "Roger"  "Kim"    "Jon"
+  get_cache %>%
+  sort
+#> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
 ```
 
 Get the total number of commits from all people to the **supercalc** project:
@@ -273,11 +274,12 @@ graph %>%
   trav_in_edge("rel", "contributor") %>%
   trav_out_node %>%
   cache_node_attr_ws("email", "character") %>%
-  get_cache
-#> [1] "lhe99@mailing-fun.com"  "josh_ch@megamail.kn"
-#> [3] "roger_that@whalemail.net"  "the_simone@a-q-w-o.net"
-#> [5] "kim_3251323@ohhh.ai"  "the_will@graphymail.com"
-#> [7] "j_2000@ultramail.io"
+  get_cache %>% 
+  sort
+#> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
+#> [3] "kim_3251323@ohhh.ai"      "lhe99@mailing-fun.com"   
+#> [5] "roger_that@whalemail.net" "the_simone@a-q-w-o.net"  
+#> [7] "the_will@graphymail.com" 
 ```
 
 Which committer to the **randomizer** project has the highest number of followers?
@@ -296,11 +298,11 @@ graph %>%
 Which people have committed to more than one project?
 ```r
 graph %>%
-  select_nodes_by_degree(
-    "out", ">1", "type", "person") %>%
+  select_nodes_by_degree("out", ">1") %>%
   cache_node_attr_ws("name") %>%
-  get_cache
-#> [1] "Louisa"  "Josh"  "Kim"
+  get_cache %>% 
+  sort
+#> [1] "Josh"  "Kim"  "Louisa"
 ```
 
 ## Installation
