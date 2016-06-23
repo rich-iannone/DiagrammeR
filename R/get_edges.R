@@ -92,7 +92,7 @@
 get_edges <- function(x,
                       edge_attr = NULL,
                       match = NULL,
-                      return_type = "list") {
+                      return_type = "vector") {
 
   if (class(x) == "dgr_graph") {
 
