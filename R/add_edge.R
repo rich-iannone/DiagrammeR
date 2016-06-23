@@ -112,8 +112,9 @@ add_edge <- function(graph,
     }
   }
 
-  # If `graph$edges_df` is not null then use both
-  # `combine_edges()` and `create_edges()` to add an edge
+  # If `graph$edges_df` is not NULL then use both
+  # `combine_edges()` and `create_edges()` to
+  # add an edge
   if (!is.null(graph$edges_df)) {
 
     # If a relationship is defined, add that in the
