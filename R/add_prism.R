@@ -27,6 +27,22 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a new graph and add a prism
+#' graph <-
+#'   create_graph() %>%
+#'   add_prism(3, "prism")
+#'
+#' # Get information on the graph's nodes
+#' node_info(graph)
+#' #>   node label  type deg indeg outdeg loops
+#' #> 1    1     1 prism   3     1      2     0
+#' #> 2    2     2 prism   3     1      2     0
+#' #> 3    3     3 prism   3     1      2     0
+#' #> 4    4     4 prism   3     2      1     0
+#' #> 5    5     5 prism   3     2      1     0
+#' #> 6    6     6 prism   3     2      1     0
 #' }
 #' @export add_prism
 
