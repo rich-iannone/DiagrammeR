@@ -2,8 +2,7 @@
 #' @description From a graph object of class
 #' \code{dgr_graph}, get node attribute properties for
 #' one or more nodes and cache those values in the
-#' graph for later retrieval using
-#' \code{withdraw_values}.
+#' graph for later retrieval using \code{get_cache}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param node_attr the node attribute from which to
