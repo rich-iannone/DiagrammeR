@@ -64,8 +64,8 @@ node_info <- function(graph) {
       as.data.frame(mat.or.vec(nr = 0, nc = 7))
 
     colnames(node_properties) <-
-      c("node", "label", "type", "degree",
-        "indegree", "outdegree", "loops")
+      c("node", "label", "type", "deg",
+        "indeg", "outdeg", "loops")
 
     return(node_properties)
   }
@@ -98,8 +98,8 @@ node_info <- function(graph) {
                                nc = 7))
 
     colnames(node_properties) <-
-      c("node", "label", "type", "degree",
-        "indegree", "outdegree", "loops")
+      c("node", "label", "type", "deg",
+        "indeg", "outdeg", "loops")
 
     node_properties[, 1] <- all_nodes
     node_properties[, 2] <- labels
@@ -148,8 +148,8 @@ node_info <- function(graph) {
                                    nc = 7))
 
         colnames(node_properties) <-
-          c("node", "label", "type", "degree",
-            "indegree", "outdegree", "loops")
+          c("node", "label", "type", "deg",
+            "indeg", "outdeg", "loops")
       }
 
       # Get degree for each node
