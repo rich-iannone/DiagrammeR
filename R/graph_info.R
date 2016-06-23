@@ -13,12 +13,12 @@
 #'   import_graph(
 #'     system.file("examples/power_grid.graphml",
 #'                 package = "DiagrammeR"),
-#'     graph_name = "power_grid")
+#'     graph_name = "p_grid")
 #'
 #' # Display a data frame with graph information
 #' graph_info(power_grid)
-#' #>         name nodes edges      density min_degree max_degree avg_degree time tz
-#' #> 1 power_grid  4941  6594 0.0005403027          1         19          3
+#' #>     name    n    e         dens min_deg max_deg avg_deg time tz
+#' #> 1 p_grid 4941 6594 0.0005403027       1      19       3
 #' }
 #' @export graph_info
 
