@@ -20,7 +20,7 @@ test_that("nodes and edges can be deleted from a graph", {
   graph_nodes <- get_nodes(graph)
 
   # Get the graph's edges
-  graph_edges <- get_edges(graph)
+  graph_edges <- get_edges(graph, return_type = "list")
 
   # Remove a node (removing a node removes its edges)
   graph <- delete_node(graph, node = "d")
@@ -29,7 +29,8 @@ test_that("nodes and edges can be deleted from a graph", {
   graph_nodes_delete_node <- get_nodes(graph)
 
   # Get the graph's edges after calling 'delete_node'
-  graph_edges_delete_node <- get_edges(graph)
+  graph_edges_delete_node <-
+    get_edges(graph, return_type = "list")
 
   # Expect that the number of nodes will be decreased
   expect_less_than(
@@ -51,7 +52,8 @@ test_that("nodes and edges can be deleted from a graph", {
   graph <- delete_edge(graph, "a", "c")
 
   # Get the graph's edges after calling 'delete_node'
-  graph_edges_delete_edge <- get_edges(graph)
+  graph_edges_delete_edge <-
+    get_edges(graph, return_type = "list")
 
   # Expect that edge between nodes "a" and "c" will
   # not be present
