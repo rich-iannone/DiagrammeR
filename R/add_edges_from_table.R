@@ -82,7 +82,8 @@ add_edges_from_table <- function(graph,
   cols_in_csv <- ncol(csv)
 
   # Get rownames for existing edges in graph object
-  edges_existing_rownames <- rownames(get_edge_df(graph))
+  edges_existing_rownames <-
+    rownames(get_edge_df(graph))
 
   # Verify that value for `from_col` is in the table
   if (!(from_col %in% colnames(csv))) {
@@ -115,7 +116,9 @@ add_edges_from_table <- function(graph,
     if (node_count(graph) == 0) {
       starting_node <- 1
     } else {
-      if (suppressWarnings(any(!(is.na(as.numeric(graph$nodes_df$nodes)))))){
+      if (suppressWarnings(
+        any(!(is.na(
+          as.numeric(graph$nodes_df$nodes)))))) {
         starting_node <-
           suppressWarnings(
             max(
@@ -201,8 +204,10 @@ add_edges_from_table <- function(graph,
 
   # Verify that all values in `from_col` in the table are
   # available in the graph
-  if (!(all(csv[,which(colnames(csv) == from_col)] %in%
-            get_node_df(graph)[,which(colnames(get_node_df(graph)) == from_mapping)]))) {
+  if (!(all(
+    csv[,which(colnames(csv) == from_col)] %in%
+    get_node_df(graph)[,
+                       which(colnames(get_node_df(graph)) == from_mapping)]))) {
     stop(paste0("The `from` values in the table don't all match the requested",
                 "node attribute value in the graph."))
   }
@@ -231,14 +236,16 @@ add_edges_from_table <- function(graph,
   # If values for `drop_cols` provided, filter the
   # table columns by those named columns
   if (is.null(select_cols) & !is.null(drop_cols)) {
-    columns_retained <- which(!(colnames(csv) %in% drop_cols))
+    columns_retained <-
+      which(!(colnames(csv) %in% drop_cols))
     csv <- csv[,columns_retained]
   }
 
   # If values for `rename_attrs` provided, rename the
   # table columns by those replacement values
   if (!is.null(rename_attrs)) {
-    if (length(rename_attrs) != length(colnames(csv))) {
+    if (length(rename_attrs) !=
+        length(colnames(csv))) {
       stop(paste0("The number of values specified for column name changes ",
                   "does not match the number of columns available"))
     }
@@ -261,16 +268,23 @@ add_edges_from_table <- function(graph,
     graph <-
       add_edge(
         graph = graph,
-        from = get_node_df(graph)[which(get_node_df(graph)[,from_mapping_value] ==
-                                          csv[i, from_col_value]), 1],
-        to = get_node_df(graph)[which(get_node_df(graph)[,to_mapping_value] ==
-                                        csv[i, to_col_value]), 1])
+        from = get_node_df(graph)[
+          which(get_node_df(graph)[
+            ,from_mapping_value] ==
+              csv[i, from_col_value]), 1],
+        to = get_node_df(graph)[
+          which(get_node_df(graph)[
+            ,to_mapping_value] ==
+              csv[i, to_col_value]), 1])
   }
 
   # Get rownames for edges created
   edges_created_rownames <-
-    as.numeric(setdiff(rownames(get_edge_df(graph)),
-                       edges_existing_rownames))
+    as.numeric(
+      setdiff(
+        rownames(
+          get_edge_df(graph)),
+        edges_existing_rownames))
 
   # Get column numbers in table that are edge attributes
   if (!is.null(rel_col)) {
@@ -291,8 +305,12 @@ add_edges_from_table <- function(graph,
       graph <-
         set_edge_attr(
           x = graph,
-          from = get_edge_df(graph)[which(rownames(get_edge_df(graph)) == i),1],
-          to = get_edge_df(graph)[which(rownames(get_edge_df(graph)) == i),2],
+          from = get_edge_df(graph)[
+            which(
+              rownames(get_edge_df(graph)) == i), 1],
+          to = get_edge_df(graph)[
+            which(
+              rownames(get_edge_df(graph)) == i), 2],
           edge_attr = colnames(csv)[j],
           values = csv[i,j])
     }
@@ -303,10 +321,15 @@ add_edges_from_table <- function(graph,
       graph <-
         set_edge_attr(
           x = graph,
-          from = get_edge_df(graph)[which(rownames(get_edge_df(graph)) == i),1],
-          to = get_edge_df(graph)[which(rownames(get_edge_df(graph)) == i),2],
+          from = get_edge_df(graph)[
+            which(
+              rownames(get_edge_df(graph)) == i),1],
+          to = get_edge_df(graph)[
+            which(
+              rownames(get_edge_df(graph)) == i),2],
           edge_attr = "rel",
-          values = csv[i, which(colnames(csv) %in% rel_col)])
+          values = csv[i, which(colnames(csv) %in%
+                                  rel_col)])
     }
   }
 
@@ -316,8 +339,10 @@ add_edges_from_table <- function(graph,
     graph <-
       select_edges(
         graph = graph,
-        from = get_edge_df(graph)[edges_created_rownames, 1],
-        to = get_edge_df(graph)[edges_created_rownames, 2])
+        from = get_edge_df(graph)[
+          edges_created_rownames, 1],
+        to = get_edge_df(graph)[
+          edges_created_rownames, 2])
 
     graph <-
       set_edge_attr_with_selection(
