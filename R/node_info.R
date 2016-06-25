@@ -32,13 +32,14 @@
 #'
 #' # Get information on the graph's nodes
 #' node_info(graph)
-#' #>    node label    type degree indegree outdegree loops
-#' #> 1     A     A  a_to_g      2        0         2     0
-#' #> 2     W     W  q_to_x      1        0         1     0
-#' #> 3     T     T  q_to_x      2        0         2     0
-#' #> 4     L     L  h_to_p      1        0         1     0
-#' #> 5     F     F  a_to_g      0        0         0     0
-#' #>..   ...   ...     ...    ...      ...       ...   ...
+#' #>    node label    type deg indeg outdeg loops
+#' #> 1     A     A  a_to_g   1     0      1     0
+#' #> 2     B     B  a_to_g   1     0      1     0
+#' #> 3     C     C  a_to_g   3     2      1     0
+#' #> 4     D     D  a_to_g   1     1      0     0
+#' #> 5     E     E  a_to_g   1     0      1     0
+#' #> 6     F     F  a_to_g   2     1      1     0
+#' #>..   ...   ...     ... ...   ...    ...   ...
 #'
 #' # Import a large graph
 #' power_grid <-
@@ -94,8 +95,9 @@ node_info <- function(graph) {
   if (is.null(graph$edges_df)) {
 
     node_properties <-
-      as.data.frame(mat.or.vec(nr = length(all_nodes),
-                               nc = 7))
+      as.data.frame(
+        mat.or.vec(nr = length(all_nodes),
+                   nc = 7))
 
     colnames(node_properties) <-
       c("node", "label", "type", "deg",
@@ -123,17 +125,20 @@ node_info <- function(graph) {
 
     # Get vector of the top-level nodes
     top_nodes <-
-      unique(edge_from[which(!(edge_from %in% edge_to))])
+      unique(edge_from[which(!(edge_from %in%
+                                 edge_to))])
 
     # Get vector of the bottom-level nodes
     bottom_nodes <-
-      unique(edge_to[which(!(edge_to %in% edge_from))])
+      unique(edge_to[which(!(edge_to %in%
+                               edge_from))])
 
     # Get vector of all nodes neither at the top nor
     # the bottom level
     between_nodes <-
-      all_nodes[which(!(all_nodes %in% c(top_nodes,
-                                         bottom_nodes)))]
+      all_nodes[which(!(all_nodes %in%
+                          c(top_nodes,
+                            bottom_nodes)))]
 
     # Place the nodes in order
     ordered_nodes <-
@@ -154,17 +159,23 @@ node_info <- function(graph) {
 
       # Get degree for each node
       degree <-
-        sum(c(graph$edges_df$from, graph$edges_df$to) %in%
+        sum(c(graph$edges_df$from,
+              graph$edges_df$to) %in%
               ordered_nodes[i])
 
       # Get indegree for each node
-      if (ordered_nodes[i] %in% top_nodes | degree == 0) {
+      if (ordered_nodes[i] %in%
+          top_nodes | degree == 0) {
         indegree <- 0
       }
 
-      if (!(ordered_nodes[i] %in% top_nodes) & degree != 0) {
-        for (j in 1:sum(edge_to %in% ordered_nodes[i])) {
-          if (j == 1) indegree <- vector(mode = "character")
+      if (!(ordered_nodes[i] %in%
+            top_nodes) & degree != 0) {
+        for (j in 1:sum(edge_to %in%
+                        ordered_nodes[i])) {
+          if (j == 1) {
+            indegree <- vector(mode = "character")
+          }
           indegree <-
             c(indegree,
               edge_from[which(edge_to %in%
@@ -174,16 +185,22 @@ node_info <- function(graph) {
       }
 
       # Get outdegree for each node
-      if (ordered_nodes[i] %in% bottom_nodes | degree == 0) {
+      if (ordered_nodes[i] %in%
+          bottom_nodes | degree == 0) {
         outdegree <- 0
       }
 
-      if (!(ordered_nodes[i] %in% bottom_nodes) & degree != 0) {
-        for (j in 1:sum(edge_from %in% ordered_nodes[i])) {
-          if (j == 1) outdegree <- vector(mode = "character")
+      if (!(ordered_nodes[i] %in% bottom_nodes) &
+          degree != 0) {
+        for (j in 1:sum(edge_from %in%
+                        ordered_nodes[i])) {
+          if (j == 1) {
+            outdegree <- vector(mode = "character")
+          }
           outdegree <-
-            c(outdegree, edge_from[which(edge_from %in%
-                                           ordered_nodes[i])[j]])
+            c(outdegree,
+              edge_from[which(edge_from %in%
+                                ordered_nodes[i])[j]])
         }
         outdegree <- length(outdegree)
       }
@@ -193,20 +210,23 @@ node_info <- function(graph) {
         sum(graph$edges_df$from == graph$edges_df$to &
               graph$edges_df$to == ordered_nodes[i])
 
-      # Collect information into the 'node_properties' data frame
+      # Collect information into the `node_properties`
+      # data frame
       node_properties[i, 1] <-
         ordered_nodes[i]
 
       node_properties[i, 2] <-
-        ifelse(!is.null(labels[which(all_nodes %in%
-                                       ordered_nodes[i])]),
-               labels[which(all_nodes %in%
-                              ordered_nodes[i])],
-               NA)
+        ifelse(!is.null(
+          labels[which(all_nodes %in%
+                         ordered_nodes[i])]),
+          labels[which(all_nodes %in%
+                         ordered_nodes[i])],
+          NA)
 
       node_properties[i, 3] <-
         ifelse(exists("type"),
-               type[which(all_nodes %in% ordered_nodes[i])],
+               type[which(all_nodes %in%
+                            ordered_nodes[i])],
                rep(NA, length(ordered_nodes)))
 
       node_properties[i, 4] <- degree
@@ -214,6 +234,12 @@ node_info <- function(graph) {
       node_properties[i, 6] <- outdegree
       node_properties[i, 7] <- loops
     }
+
+    node_properties <-
+      node_properties[order(node_properties[,1]), ]
+
+    rownames(node_properties) <- NULL
+
     return(node_properties)
   }
 }
