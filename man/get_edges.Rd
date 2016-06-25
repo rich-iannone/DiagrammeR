@@ -4,7 +4,7 @@
 \alias{get_edges}
 \title{Get node IDs associated with edges}
 \usage{
-get_edges(x, edge_attr = NULL, match = NULL, return_type = "list")
+get_edges(x, edge_attr = NULL, match = NULL, return_type = "vector")
 }
 \arguments{
 \item{x}{either a graph object of class
@@ -22,13 +22,14 @@ number for numerical filtering, or, a character
 string for filtering the edges returned through
 string matching.}
 
-\item{return_type}{using \code{list} (the default)
-will provide a list object containing vectors of
-outgoing and incoming node IDs associated with
-edges. With \code{df}, a data frame containing
-outgoing and incoming node IDs associated with
-edges. With \code{vector}, a vector of character
-objects representing the edges is provided.}
+\item{return_type}{using \code{vector} (the
+default), a vector of  character objects
+representing the edges is provided. With
+\code{list} a list object will be provided that
+contains vectors of outgoing and incoming node IDs
+associated with edges. With \code{df}, a data frame
+containing outgoing and incoming node IDs associated
+with edges.}
 }
 \value{
 a list, data frame, or a vector object,

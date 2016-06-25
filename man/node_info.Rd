@@ -45,13 +45,14 @@ graph <-
 
 # Get information on the graph's nodes
 node_info(graph)
-#>    node label    type degree indegree outdegree loops
-#> 1     A     A  a_to_g      2        0         2     0
-#> 2     W     W  q_to_x      1        0         1     0
-#> 3     T     T  q_to_x      2        0         2     0
-#> 4     L     L  h_to_p      1        0         1     0
-#> 5     F     F  a_to_g      0        0         0     0
-#>..   ...   ...     ...    ...      ...       ...   ...
+#>    node label    type deg indeg outdeg loops
+#> 1     A     A  a_to_g   1     0      1     0
+#> 2     B     B  a_to_g   1     0      1     0
+#> 3     C     C  a_to_g   3     2      1     0
+#> 4     D     D  a_to_g   1     1      0     0
+#> 5     E     E  a_to_g   1     0      1     0
+#> 6     F     F  a_to_g   2     1      1     0
+#>..   ...   ...     ... ...   ...    ...   ...
 
 # Import a large graph
 power_grid <-
