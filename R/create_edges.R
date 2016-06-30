@@ -20,9 +20,16 @@
 #' # view the results
 #' edges <-
 #'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"),
-#'     rel = "leading_to")
+#'     from = c(1, 2, 3),
+#'     to = c(4, 3, 1),
+#'     rel = "a")
+#'
+#' # Display the `edges` edf
+#' edges
+#' #>   from to rel
+#' #> 1    1  4   a
+#' #> 2    2  3   a
+#' #> 3    3  1   a
 #'
 #' # Render the graph to make it viewable in
 #' # the Viewer pane
@@ -34,12 +41,12 @@
 #' # additional parameters
 #' edges <-
 #'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"),
-#'     rel = "leading_to",
+#'     from = c(1, 2, 3),
+#'     to = c(4, 3, 1),
+#'     rel = "a",
 #'     length = c(50, 100, 250),
 #'     color = "green",
-#'     width = c(1, 1, 2))
+#'     width = c(1, 5, 2))
 #'
 #' # Render the graph to make it viewable in
 #' # the Viewer pane
