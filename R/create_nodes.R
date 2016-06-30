@@ -16,8 +16,8 @@
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
-#'     type = "letter",
+#'     nodes = 1:4,
+#'     type = "a",
 #'     label = TRUE,
 #'     style = "filled",
 #'     color = "aqua",
