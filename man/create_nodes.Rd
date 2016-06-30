@@ -32,14 +32,22 @@ or, added to a graph object.
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
-    nodes = c("a", "b", "c", "d"),
-    type = "letter",
+    nodes = 1:4,
+    type = "a",
     label = TRUE,
     style = "filled",
     color = "aqua",
     shape = c("circle", "circle",
               "rectangle", "rectangle"),
     value = c(3.5, 2.6, 9.4, 2.7))
+
+# Display the `nodes` ndf
+nodes
+#>   nodes type label  style color     shape value
+#> 1     1    a     1 filled  aqua    circle   3.5
+#> 2     2    a     2 filled  aqua    circle   2.6
+#> 3     3    a     3 filled  aqua rectangle   9.4
+#> 4     4    a     4 filled  aqua rectangle   2.7
 }
 }
 
