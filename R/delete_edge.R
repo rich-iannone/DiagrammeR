@@ -69,9 +69,9 @@ delete_edge <- function(graph,
     stop("The nodes specified are not both present in the graph.")
   }
 
-  # Determine whether a matching edge is available
-  # in the graph
-  if (nodes_available_in_graph) {
+  # Edge removal case for directed graphs
+  if (nodes_available_in_graph &
+      is_graph_directed(graph)) {
 
     if (any(graph$edges_df$from == from &
             graph$edges_df$to == to)) {
@@ -95,8 +95,62 @@ delete_edge <- function(graph,
           edge_attrs = graph$edge_attrs,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
-          graph_time = graph$graph_time
-        )
+          graph_time = graph$graph_time)
+    }
+  }
+
+  # Edge removal case for undirected graphs
+  if (nodes_available_in_graph &
+      is_graph_directed(graph) == FALSE) {
+
+    if (any(graph$edges_df$from == from &
+            graph$edges_df$to == to)) {
+
+      row_id_edge_removal <-
+        which(graph$edges_df$from == from &
+                graph$edges_df$to == to)
+
+      revised_edges_df <-
+        graph$edges_df[-row_id_edge_removal,]
+
+      row.names(revised_edges_df) <- NULL
+
+      dgr_graph <-
+        create_graph(
+          nodes_df = graph$nodes_df,
+          edges_df = revised_edges_df,
+          directed = graph$directed,
+          graph_attrs = graph$graph_attrs,
+          node_attrs = graph$node_attrs,
+          edge_attrs = graph$edge_attrs,
+          graph_name = graph$graph_name,
+          graph_tz = graph$graph_tz,
+          graph_time = graph$graph_time)
+    }
+
+    if (any(graph$edges_df$from == to &
+            graph$edges_df$to == from)) {
+
+      row_id_edge_removal <-
+        which(graph$edges_df$from == to &
+                graph$edges_df$to == from)
+
+      revised_edges_df <-
+        graph$edges_df[-row_id_edge_removal,]
+
+      row.names(revised_edges_df) <- NULL
+
+      dgr_graph <-
+        create_graph(
+          nodes_df = graph$nodes_df,
+          edges_df = revised_edges_df,
+          directed = graph$directed,
+          graph_attrs = graph$graph_attrs,
+          node_attrs = graph$node_attrs,
+          edge_attrs = graph$edge_attrs,
+          graph_name = graph$graph_name,
+          graph_tz = graph$graph_tz,
+          graph_time = graph$graph_time)
     }
   }
 
