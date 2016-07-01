@@ -1,16 +1,16 @@
-#' Get all nodes reachable from a starting node
+#' Get all nodes connected to a specified node
 #' @description With a single node serving as
-#' the starting point get all nodes reachable (i.e.,
-#' with a traversible path) to that starting node.
+#' the starting point get all nodes connected (i.e.,
+#' with a traversible path) to that node.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @param node a single-length vector containing a
 #' node ID value.
 #' @return a vector of node ID values.
-#' @export get_all_reachable_nodes
+#' @export get_all_connected_nodes
 
-get_all_reachable_nodes <- function(graph,
+get_all_connected_nodes <- function(graph,
                                     node) {
 
   # Create an empty list object
@@ -19,8 +19,8 @@ get_all_reachable_nodes <- function(graph,
   # Get a vector of all nodes in the graph
   graph_nodes <- get_nodes(graph)
 
-  # place starting node in the `reachable`` vector
-  reachable <- node
+  # place starting node in the `connected`` vector
+  connected <- node
 
   # Initialize `i`
   i <- 1
@@ -28,10 +28,10 @@ get_all_reachable_nodes <- function(graph,
   repeat {
 
     # From the starting node get all adjacent nodes
-    # that are not in the `reachable` vector
-    reachable <-
+    # that are not in the `connected` vector
+    connected <-
       unique(
-        c(reachable,
+        c(connected,
           intersect(
             unique(c(
               get_edges(
@@ -40,18 +40,18 @@ get_all_reachable_nodes <- function(graph,
                   which(get_edges(
                     graph,
                     return_type = "df")[, 1] %in%
-                      reachable), 2],
+                      connected), 2],
               get_edges(
                 graph,
                 return_type = "df")[
                   which(get_edges(
                     graph,
                     return_type = "df")[, 2] %in%
-                      reachable), 1])),
+                      connected), 1])),
             graph_nodes)))
 
-    # Place reachable nodes in `nodes` list
-    nodes[[i]] <- reachable
+    # Place connected nodes in `nodes` list
+    nodes[[i]] <- connected
 
     # Break if current iteration yields no change in
     # the `nodes` list
@@ -62,31 +62,31 @@ get_all_reachable_nodes <- function(graph,
     i <- i + 1
   }
 
-  # If there are no nodes in the `reachable` vector`,
+  # If there are no nodes in the `connected` vector`,
   # return NA
-  if (length(reachable) == 0) {
+  if (length(connected) == 0) {
     return(NA)
   }
 
-  # Remove the starting node from the `reachable`
+  # Remove the starting node from the `connected`
   # vector to get the neighbors of the starting node
-  reachable <-
-    setdiff(reachable, node)
+  connected <-
+    setdiff(connected, node)
 
   # Determine if the node ID values in the
-  # `reachable` vector are numeric
+  # `connected` vector are numeric
   node_id_numeric <-
     ifelse(
       suppressWarnings(
-        any(is.na(as.numeric(reachable)))),
+        any(is.na(as.numeric(connected)))),
       FALSE, TRUE)
 
   # If the node ID values are numeric, then apply a
   # numeric sort and reclass as a `character` type
   if (node_id_numeric) {
-    reachable <-
-      as.character(sort(as.numeric(reachable)))
+    connected <-
+      as.character(sort(as.numeric(connected)))
   }
 
-  return(reachable)
+  return(connected)
 }
