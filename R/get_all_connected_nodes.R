@@ -53,6 +53,14 @@ get_all_connected_nodes <- function(graph,
     # Place connected nodes in `nodes` list
     nodes[[i]] <- connected
 
+    # If there is only the starting node in the
+    # `connected` vector on the first pass, return NA
+    if (i == 1 & length(connected) == 1) {
+      if (connected == node) {
+        return(NA)
+      }
+    }
+
     # Break if current iteration yields no change in
     # the `nodes` list
     if (i > 1){
@@ -60,12 +68,6 @@ get_all_connected_nodes <- function(graph,
     }
 
     i <- i + 1
-  }
-
-  # If there are no nodes in the `connected` vector`,
-  # return NA
-  if (length(connected) == 0) {
-    return(NA)
   }
 
   # Remove the starting node from the `connected`
