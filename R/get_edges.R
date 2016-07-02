@@ -1,5 +1,5 @@
 #' Get node IDs associated with edges
-#' @description Obtain a list, data frame, or vector of
+#' @description Obtain a vector, data frame, or list of
 #' node IDs from a graph object or an edge data frame.
 #' An optional filter by edge attribute can limit the
 #' set of edges returned.
@@ -16,7 +16,7 @@
 #' string for filtering the edges returned through
 #' string matching.
 #' @param return_type using \code{vector} (the
-#' default), a vector of  character objects
+#' default), a vector of character objects
 #' representing the edges is provided. With
 #' \code{list} a list object will be provided that
 #' contains vectors of outgoing and incoming node IDs
