@@ -36,7 +36,8 @@ get_connected_components <- function(graph,
 
   repeat {
 
-    # Get a random node from the graph
+    # Get a random node from the vector of remaining
+    # nodes
     starting_node <- sample(graph_nodes, 1)
 
     # Place connected nodes in `nodes` list
@@ -56,6 +57,8 @@ get_connected_components <- function(graph,
     # Remove nodes from `graph_nodes`
     graph_nodes <- setdiff(graph_nodes, nodes[[i]])
 
+    # Break if there are no remaining nodes to assign
+    # to a connected component
     if (length(graph_nodes) == 0) break
 
     i <- i + 1
