@@ -18,6 +18,7 @@
 get_connected_components <- function(graph,
                                      return_type = "df") {
 
+  # Get all node ID values for nodes in the graph
   graph_nodes <- get_nodes(graph)
 
   # Determine if the node ID values in the
@@ -37,7 +38,6 @@ get_connected_components <- function(graph,
 
     # Get a random node from the graph
     starting_node <- sample(graph_nodes, 1)
-
 
     # Place connected nodes in `nodes` list
     nodes[[i]] <-
@@ -61,14 +61,12 @@ get_connected_components <- function(graph,
     i <- i + 1
   }
 
+  # Order list component vectors by decreasing length
   nodes <-
     nodes[order(sapply(nodes, length),
                 decreasing = TRUE)]
 
-
   if (return_type == "list") {
-
-
     return(nodes)
   }
 
