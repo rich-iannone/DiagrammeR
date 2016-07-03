@@ -1,7 +1,7 @@
 #' Get all nodes connected to a specified node
 #' @description With a single node serving as
 #' the starting point get all nodes connected (i.e.,
-#' with a traversible path) to that node.
+#' reachable with a traversible path) to that node.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
