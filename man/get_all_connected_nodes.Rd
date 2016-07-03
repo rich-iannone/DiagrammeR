@@ -20,7 +20,7 @@ a vector of node ID values.
 \description{
 With a single node serving as
 the starting point get all nodes connected (i.e.,
-with a traversible path) to that node.
+reachable with a traversible path) to that node.
 }
 \examples{
 \dontrun{
