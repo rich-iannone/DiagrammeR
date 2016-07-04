@@ -44,9 +44,9 @@ add_edges <- function(graph,
       from = from,
       to = to)
 
-  dgr_graph <-
+  new_graph <-
     add_edge_df(graph,
                 new_edges)
 
-  return(dgr_graph)
+  return(new_graph)
 }
