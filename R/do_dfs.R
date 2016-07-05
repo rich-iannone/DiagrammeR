@@ -68,7 +68,9 @@ do_dfs <- function(graph,
       if (all(graph_nodes %in% unique(search_path))){
         break
       } else {
-        starting_node <- sample(setdiff(graph_nodes, unique(search_path)), 1)
+        starting_node <-
+          sample(setdiff(graph_nodes,
+                         unique(search_path)), 1)
         search_path <- c(search_path, starting_node)
         current <- starting_node
       }
@@ -76,16 +78,23 @@ do_dfs <- function(graph,
       repeat {
 
         if (all(current == starting_node &
-                (all(get_successors(graph, current) %in% search_path) |
+                (all(get_successors(graph, current) %in%
+                     search_path) |
                  is.na(get_successors(graph, current))))) {
           break
         } else if (!any(is.na(get_successors(graph, current))) &
                    length(get_successors(graph, current)) > 0 &
-                   !all(get_successors(graph, current) %in% search_path)) {
-          current <- setdiff(get_successors(graph, current), search_path)[1]
+                   !all(get_successors(graph, current) %in%
+                        search_path)) {
+          current <-
+            setdiff(get_successors(graph, current),
+                    search_path)[1]
         } else if (any(is.na(get_successors(graph, current))) |
-                   all(get_successors(graph, current) %in% search_path)) {
-          current <- intersect(get_predecessors(graph, current), search_path)
+                   all(get_successors(graph, current) %in%
+                       search_path)) {
+          current <-
+            intersect(get_predecessors(graph, current),
+                      search_path)
         } else {
           break
         }
@@ -104,16 +113,23 @@ do_dfs <- function(graph,
     repeat {
 
       if (all(current == starting_node &
-              (all(get_successors(graph, current) %in% search_path) |
+              (all(get_successors(graph, current) %in%
+                   search_path) |
                is.na(get_successors(graph, current))))) {
         break
       } else if (!any(is.na(get_successors(graph, current))) &
                  length(get_successors(graph, current)) > 0 &
-                 !all(get_successors(graph, current) %in% search_path)) {
-        current <- setdiff(get_successors(graph, current), search_path)[1]
+                 !all(get_successors(graph, current) %in%
+                      search_path)) {
+        current <-
+          setdiff(get_successors(graph, current),
+                  search_path)[1]
       } else if (any(is.na(get_successors(graph, current))) |
-                 all(get_successors(graph, current) %in% search_path)) {
-        current <- intersect(get_predecessors(graph, current), search_path)
+                 all(get_successors(graph, current) %in%
+                     search_path)) {
+        current <-
+          intersect(get_predecessors(graph, current),
+                    search_path)
       } else {
         break
       }
