@@ -11,8 +11,8 @@ do_dfs(graph, node = NULL)
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{node}{an optional single-length vector
-containing a node ID value.}
+\item{node}{an optional node ID value to specify
+a single starting point for the dfs.}
 }
 \value{
 a list object containing dfs information.
