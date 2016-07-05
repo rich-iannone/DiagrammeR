@@ -5,8 +5,8 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param node an optional single-length vector
-#' containing a node ID value.
+#' @param node an optional node ID value to specify
+#' a single starting point for the dfs.
 #' @return a list object containing dfs information.
 #' @examples
 #' \dontrun{
