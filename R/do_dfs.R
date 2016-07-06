@@ -7,6 +7,11 @@
 #' \code{create_graph}.
 #' @param node an optional node ID value to specify
 #' a single starting point for the dfs.
+#' @param direction using \code{all} (the default), the
+#' dfs will ignore edge direction while traversing
+#' through the graph. With \code{out}, traversals
+#' between adjacent nodes will respect the edge
+#' direction.
 #' @return a list object containing dfs information.
 #' @examples
 #' \dontrun{
@@ -53,27 +58,167 @@
 #' @export do_dfs
 
 do_dfs <- function(graph,
-                   node = NULL) {
+                   node = NULL,
+                   direction = "all") {
 
-  if (is.null(node)) {
+  if (direction == "all") {
 
-    # Get all nodes available in the graph
-    graph_nodes <- get_nodes(graph)
+    if (is.null(node)) {
 
-    # Initialize the `search_path` vector
-    search_path <- vector(mode = "character")
+      # Get all nodes available in the graph
+      graph_nodes <- get_nodes(graph)
 
-    repeat {
+      # Initialize the `search_path` and `visited` vectors
+      search_path <- vector(mode = "character")
+      visited <- vector(mode = "character")
 
-      if (all(graph_nodes %in% unique(search_path))){
-        break
-      } else {
-        starting_node <-
-          sample(setdiff(graph_nodes,
-                         unique(search_path)), 1)
-        search_path <- c(search_path, starting_node)
-        current <- starting_node
+      repeat {
+
+        if (all(graph_nodes %in% unique(search_path))){
+          break
+        } else {
+          starting_node <-
+            sample(setdiff(graph_nodes,
+                           unique(search_path)), 1)
+
+          current <- starting_node
+          stack <- starting_node
+          search_path <- c(search_path, starting_node)
+          visited <- c(visited, starting_node)
+        }
+
+        repeat {
+
+          if (stack[length(stack)] == starting_node &
+              all(get_nbrs(graph, current) %in% visited)) {
+
+            # Entirely traversed, empty stack
+            stack <- stack[-length(stack)]
+            break
+
+          } else if (!all(get_nbrs(graph, current) %in% visited)) {
+
+            # Available neighbor to visit, add to stack
+            current <-
+              setdiff(get_nbrs(graph, current),
+                      visited)[1]
+
+            stack <- unique(c(stack, current))
+            visited <- c(visited, current)
+            search_path <- c(search_path, current)
+
+          } else if (all(get_nbrs(graph, current) %in% visited)) {
+
+            # No neighbors to visit, revisit previous in stack
+            stack <- stack[-length(stack)]
+            current <- stack[length(stack)]
+            search_path <- c(search_path, current)
+
+          } else {
+            break
+          }
+        }
       }
+    }
+
+    if (!is.null(node)) {
+
+      starting_node <- node
+      stack <- starting_node
+      search_path <- node
+      current <- node
+      visited <- node
+
+      repeat {
+
+        if (stack[length(stack)] == starting_node &
+            all(get_nbrs(graph, current) %in% visited)) {
+
+          # Entirely traversed, empty stack
+          stack <- stack[-length(stack)]
+          break
+
+        } else if (!all(get_nbrs(graph, current) %in% visited)) {
+
+          # Available neighbor to visit, add to stack
+          current <-
+            setdiff(get_nbrs(graph, current),
+                    visited)[1]
+
+          stack <- unique(c(stack, current))
+          visited <- c(visited, current)
+          search_path <- c(search_path, current)
+
+        } else if (all(get_nbrs(graph, current) %in% visited)) {
+
+          # No neighbors to visit, revisit previous in stack
+          stack <- stack[-length(stack)]
+          current <- stack[length(stack)]
+          search_path <- c(search_path, current)
+
+        } else {
+          break
+        }
+      }
+    }
+  }
+
+  if (direction == "out") {
+
+    if (is.null(node)) {
+
+      # Get all nodes available in the graph
+      graph_nodes <- get_nodes(graph)
+
+      # Initialize the `search_path` vector
+      search_path <- vector(mode = "character")
+
+      repeat {
+
+        if (all(graph_nodes %in% unique(search_path))){
+          break
+        } else {
+          starting_node <-
+            sample(setdiff(graph_nodes,
+                           unique(search_path)), 1)
+          search_path <- c(search_path, starting_node)
+          current <- starting_node
+        }
+
+        repeat {
+
+          if (all(current == starting_node &
+                  (all(get_successors(graph, current) %in%
+                       search_path) |
+                   is.na(get_successors(graph, current))))) {
+            break
+          } else if (!any(is.na(get_successors(graph, current))) &
+                     length(get_successors(graph, current)) > 0 &
+                     !all(get_successors(graph, current) %in%
+                          search_path)) {
+            current <-
+              setdiff(get_successors(graph, current),
+                      search_path)[1]
+          } else if (any(is.na(get_successors(graph, current))) |
+                     all(get_successors(graph, current) %in%
+                         search_path)) {
+            current <-
+              intersect(get_predecessors(graph, current),
+                        search_path)
+          } else {
+            break
+          }
+
+          search_path <- c(search_path, current)
+        }
+      }
+    }
+
+    if (!is.null(node)) {
+
+      starting_node <- node
+      search_path <- starting_node
+      current <- starting_node
 
       repeat {
 
@@ -101,40 +246,6 @@ do_dfs <- function(graph,
 
         search_path <- c(search_path, current)
       }
-    }
-  }
-
-  if (!is.null(node)) {
-
-    starting_node <- node
-    search_path <- starting_node
-    current <- starting_node
-
-    repeat {
-
-      if (all(current == starting_node &
-              (all(get_successors(graph, current) %in%
-                   search_path) |
-               is.na(get_successors(graph, current))))) {
-        break
-      } else if (!any(is.na(get_successors(graph, current))) &
-                 length(get_successors(graph, current)) > 0 &
-                 !all(get_successors(graph, current) %in%
-                      search_path)) {
-        current <-
-          setdiff(get_successors(graph, current),
-                  search_path)[1]
-      } else if (any(is.na(get_successors(graph, current))) |
-                 all(get_successors(graph, current) %in%
-                     search_path)) {
-        current <-
-          intersect(get_predecessors(graph, current),
-                    search_path)
-      } else {
-        break
-      }
-
-      search_path <- c(search_path, current)
     }
   }
 
