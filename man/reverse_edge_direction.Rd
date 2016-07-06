@@ -30,6 +30,11 @@ graph <-
 # are directed toward the root of the tree
 graph <-
   graph \%>\% reverse_edge_direction
+
+# Inspect the graph's edges
+graph \%>\% get_edges
+#> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2" "6 -> 3"
+#> [6] "7 -> 3"
 }
 }
 
