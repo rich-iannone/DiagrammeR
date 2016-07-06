@@ -4,7 +4,7 @@
 \alias{do_dfs}
 \title{Perform a depth-first search}
 \usage{
-do_dfs(graph, node = NULL)
+do_dfs(graph, node = NULL, direction = "all")
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -13,6 +13,12 @@ do_dfs(graph, node = NULL)
 
 \item{node}{an optional node ID value to specify
 a single starting point for the dfs.}
+
+\item{direction}{using \code{all} (the default), the
+dfs will ignore edge direction while traversing
+through the graph. With \code{out}, traversals
+between adjacent nodes will respect the edge
+direction.}
 }
 \value{
 a list object containing dfs information.
