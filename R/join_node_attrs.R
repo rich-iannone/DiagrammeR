@@ -13,6 +13,37 @@
 #' \code{create_graph}.
 #' @return a graph object of class
 #' \code{dgr_graph}.
+#' @examples
+#' \dontrun{
+#' library(magrittr)
+#'
+#' # Create a simple graph
+#' graph <-
+#'   create_graph() %>%
+#'   add_n_nodes(5) %>%
+#'   add_edges("1->2 1->3 2->4 2->5 3->5")
+#'
+#' # Create a data frame with node ID values and a
+#' # set of numeric values
+#' df <- data.frame(nodes = 1:6, values = rnorm(6, 5))
+#'
+#' # Join the values in the data frame to the
+#' # graph's nodes; this works as a left join using
+#' # identically-named columns in the graph and the df
+#' # (in this case `nodes` is common to both)
+#' graph <-
+#'   graph %>% join_node_attrs(df)
+#'
+#' # Get the graph's internal ndf to show that the
+#' # join has been made
+#' get_node_df(graph)
+#' #>   nodes type label           values
+#' #> 1     1            4.27988818205506
+#' #> 2     2             5.3499594040959
+#' #> 3     3            5.43965531750004
+#' #> 4     4            3.50233363164518
+#' #> 5     5            5.04599475422798
+#' }
 #' @export join_node_attrs
 
 join_node_attrs <- function(graph,
