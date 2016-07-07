@@ -27,4 +27,40 @@ identical to a column in the graph's edge data frame
 function means that there is no possibility that
 edges in the graph might be removed after the join.
 }
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create a simple graph
+graph <-
+  create_graph() \%>\%
+  add_n_nodes(5) \%>\%
+  add_edges("1->2 1->3 2->4 2->5 3->5")
+
+# Create a data frame with node ID values
+# representing the graph edges (with `from` and `to`
+# columns), and, a set of numeric values
+df <-
+  data.frame(from = c(1, 1, 2, 2, 3),
+             to = c(2, 3, 4, 5, 5),
+             values = rnorm(5, 5))
+
+# Join the values in the data frame to the
+# graph's edges; this works as a left join using
+# identically-named columns in the graph and the df
+# (in this case `from` and `to` are common to both)
+graph <-
+  graph \%>\% join_edge_attrs(df)
+
+# Get the graph's internal edf to show that the
+# join has been made
+get_edge_df(graph)
+#>   from to rel           values
+#> 1    1  2     7.13009924330664
+#> 2    1  3     4.91228554626235
+#> 3    2  4     3.53310530960626
+#> 4    2  5      5.6516614809259
+#> 5    3  5     5.87955663602654
+}
+}
 
