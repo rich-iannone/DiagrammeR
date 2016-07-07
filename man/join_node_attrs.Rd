@@ -7,7 +7,9 @@
 join_node_attrs(graph, df)
 }
 \arguments{
-\item{graph}{a graph object of class
+\item{graph}{a graph object of class}
+
+\item{df}{the data frame to use for joining.
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 }
