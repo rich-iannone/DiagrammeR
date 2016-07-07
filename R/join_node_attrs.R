@@ -8,6 +8,7 @@
 #' means that there is no possibility that nodes in the
 #' graph might be removed after the join.
 #' @param graph a graph object of class
+#' @param df the data frame to use for joining.
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @return a graph object of class
