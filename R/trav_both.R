@@ -26,9 +26,7 @@
 #' # Create a graph
 #' graph <-
 #' create_graph() %>%
-#'   add_node %>%
-#'   add_node %>%
-#'   add_node %>%
+#'   add_n_nodes(3) %>%
 #'   add_edge(1, 2) %>%
 #'   add_edge(2, 3)
 #'
@@ -45,7 +43,6 @@
 #' # Verify that the selection has been made by using
 #' # the `get_selection()` function
 #' get_selection(graph)
-#' #> $nodes
 #' #> [1] "3" "1"
 #'
 #' # Modify the graph by adding `type` values for
@@ -73,7 +70,6 @@
 #'   select_nodes_by_id(2) %>%
 #'   trav_both("type", "a") %>%
 #'   get_selection
-#' #> $nodes
 #' #> [1] "1"
 #'
 #' # We can also set traversal conditions to satisfy
@@ -93,7 +89,6 @@
 #'   select_nodes_by_id(2) %>%
 #'   trav_both("value", ">5.0") %>%
 #'   get_selection
-#' #> $nodes
 #' #> [1] "3"
 #'
 #' # Changing the condition to traverse to values less
@@ -102,7 +97,6 @@
 #'   select_nodes_by_id(2) %>%
 #'   trav_both("value", "<5.0") %>%
 #'   get_selection
-#' #> $nodes
 #' #> [1] "1"
 #' }
 #' @export trav_both
