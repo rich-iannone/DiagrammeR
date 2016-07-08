@@ -54,8 +54,10 @@ grViz <- function(diagram = "",
     )
   )
 
-  # Only use the viewer for newer versions of RStudio
-  viewer.suppress <- !rstudioapi::isAvailable("0.99.120")
+  # Only use the viewer for newer versions of RStudio,
+  # but allow other, non-RStudio viewers
+  viewer.suppress <- rstudioapi::isAvailable() &&
+    !rstudioapi::isAvailable("0.99.120")
 
   # Create widget
   htmlwidgets::createWidget(
