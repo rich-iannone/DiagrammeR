@@ -40,8 +40,7 @@ library(magrittr)
 # Create a graph
 graph <-
 create_graph() \%>\%
-  add_node \%>\% add_node \%>\%
-  add_node \%>\% add_node \%>\%
+  add_n_nodes(4) \%>\%
   add_edge(1, 2) \%>\%
   add_edge(2, 3) \%>\%
   add_edge(3, 4)
@@ -57,7 +56,6 @@ graph <-
 # Verify that the selection has been made by using
 # the `get_selection()` function
 get_selection(graph)
-#> $nodes
 #> [1] "4"
 
 # Modify the graph by adding `type` values for
@@ -83,7 +81,6 @@ graph \%>\%
   select_nodes_by_id(3) \%>\%
   trav_out("type", "a") \%>\%
   get_selection
-#> $nodes
 #> [1] "3"
 
 # Setting the condition to traverse only to nodes
@@ -92,7 +89,6 @@ graph \%>\%
   select_nodes_by_id(3) \%>\%
   trav_out("type", "z") \%>\%
   get_selection
-#> $nodes
 #> [1] "4"
 
 # We can also set traversal conditions to satisfy
@@ -117,7 +113,6 @@ graph \%>\%
   trav_out("value", ">3.0") \%>\%
   trav_out("value", ">3.0") \%>\%
   get_selection
-#> $nodes
 #> [1] "3"
 }
 }
