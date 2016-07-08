@@ -18,13 +18,80 @@ provided. With \code{list}, an anologous list object
 is provided.}
 }
 \value{
-a list, data frame, or a vector object,
-depending on the value given to \code{return_type}.
+a data frame or a list object, depending on
+the value given to \code{return_type}.
 }
 \description{
 Determine which nodes in a graph belong
 to different connected components (i.e., distinct
 sets of nodes with traversable paths to and from
 each node in the set).
+}
+\examples{
+\dontrun{
+library(magrittr)
+
+# Create a random graph
+graph <-
+  create_random_graph(36, 50, set_seed = 1)
+
+# Check if the graph is connected
+is_graph_connected(graph)
+#> [1] TRUE
+
+# Modify the graph so that it becomes disconnected
+# (with two clusters of nodes)
+graph <-
+  graph \%>\%
+  delete_edge(10, 36) \%>\%
+  delete_edge(25, 27) \%>\%
+  delete_edge(28, 29) \%>\%
+  delete_edge(4, 29) \%>\%
+  delete_edge(24, 32)
+
+# Verify that the graph is disconnected
+is_graph_connected(graph)
+#> [1] FALSE
+
+# Get the graph's connected components
+get_connected_components(graph)
+#>    component nodes
+#> 1          1     1
+#> 2          1     3
+#> 3          1     4
+#> 4          1     5
+#> 5          1     6
+#> 6          1     7
+#> 7          1     8
+#> 8          1     9
+#> 9          1    11
+#> 10         1    14
+#> 11         1    16
+#> 12         1    18
+#> 13         1    19
+#> 14         1    21
+#> 15         1    22
+#> 16         1    23
+#> 17         1    25
+#> 18         1    26
+#> 19         1    28
+#> 20         1    30
+#> 21         1    32
+#> 22         1    33
+#> 23         1    34
+#> 24         1    35
+#> 25         1    36
+#> 26         2     2
+#> 27         2    10
+#> 28         2    12
+#> 29         2    13
+#> 30         2    15
+#> 31         2    17
+#> 32         2    20
+#> 33         2    24
+#> 34         2    27
+#> 35         2    29
+#> 36         2    31
+}
 }
 
