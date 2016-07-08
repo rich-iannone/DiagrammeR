@@ -148,7 +148,7 @@ is_graph_connected <- function(graph) {
   for (i in 1:length(unique(c(node_pairs[,1],
                               node_pairs[,2])))) {
 
-    if (length(get_all_reachable_nodes(
+    if (length(get_all_connected_nodes(
       graph = graph,
       node = unique(c(node_pairs[,1],
                       node_pairs[,2]))[i])) !=
