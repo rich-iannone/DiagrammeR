@@ -7,25 +7,23 @@
 #' @return a logical value.
 #' @examples
 #' \dontrun{
-#' # Create a node data frame (ndf)
-#' nodes <-
-#'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"))
+#' library(magrittr)
 #'
-#' # Create an edge data frame (edf)
-#' edges <-
-#'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"))
-#'
-#' # Create a graph
+#' # Create an empty graph; by default, new graphs
+#' # made by `create_graph()` are directed`
 #' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges)
+#'   create_graph()
 #'
 #' # Determine whether the graph is directed
 #' is_graph_directed(graph)
 #' #> [1] TRUE
+#'
+#' # Use the `set_graph_undirected()` function and
+#' # check again whether the graph is directed
+#' graph %>%
+#'   set_graph_undirected %>%
+#'   is_graph_directed
+#' #> [1] FALSE
 #' }
 #' @export is_graph_directed
 
