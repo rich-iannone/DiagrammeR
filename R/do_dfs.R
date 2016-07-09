@@ -28,9 +28,9 @@
 #' dfs_info <-
 #'   graph %>% do_dfs(1)
 #'
-#' # The `dfs_info` list object contains information
-#' # on the nodes visited (in the order visited) and
-#' # the complete search path
+#' # The do_dfs function creates a list with
+#' # information on the nodes visited (in the order
+#' # visited) and the complete search path
 #' dfs_info
 #' #> $visited
 #' #> [1] "1" "2" "4" "5" "3" "6" "7"
@@ -41,7 +41,8 @@
 #'
 #' # The dfs can be done on the entire graph, where
 #' # random nodes are chosen as starting points until
-#' # the entire graph has been traversed
+#' # the entire graph has been traversed; here, dfs
+#' # started at one tree and finished on the other
 #' graph %>% do_dfs
 #' #> $visited
 #' #>  [1] "3"  "1"  "2"  "4"  "5"  "6"  "7"  "11"
@@ -67,6 +68,10 @@
 #' #> $search_path
 #' #> [1] "3" "6" "3" "7" "3"
 #'
+#' # Reversing the edge directions with the
+#' # `reverse_edge_direction()` function and performing
+#' # dfs at the same node as before results in a
+#' # different set of visited nodes
 #' graph %>%
 #'   reverse_edge_direction %>%
 #'   do_dfs(3, "out")
@@ -95,7 +100,7 @@ do_dfs <- function(graph,
 
       repeat {
 
-        if (all(graph_nodes %in% unique(search_path))){
+        if (all(graph_nodes %in% unique(search_path))) {
           break
         } else {
           starting_node <-
@@ -196,7 +201,7 @@ do_dfs <- function(graph,
 
       repeat {
 
-        if (all(graph_nodes %in% unique(search_path))){
+        if (all(graph_nodes %in% unique(search_path))) {
           break
         } else {
           starting_node <-
