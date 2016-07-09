@@ -19,6 +19,8 @@ graph is empty (i.e., contains no nodes).
 }
 \examples{
 \dontrun{
+library(magrittr)
+
 # Create an empty graph
 graph <- create_graph()
 
@@ -26,21 +28,10 @@ graph <- create_graph()
 is_graph_empty(graph)
 #> [1] TRUE
 
-# Create a node data frame (ndf)
-nodes <-
-  create_nodes(
-    nodes = c("a", "b", "c", "d"))
-
-# Create an edge data frame (edf)
-edges <-
-  create_edges(
-    from = c("a", "b", "c"),
-    to = c("d", "c", "a"))
-
-# Create a graph
+# Create a non-empty graph
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph() \%>\%
+  add_n_nodes(3)
 
 # Determine whether this graph is empty
 is_graph_empty(graph)
