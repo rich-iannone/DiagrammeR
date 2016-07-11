@@ -40,6 +40,13 @@ get_constraint(graph)
 #> 8     8  0.3072222
 #> 9     9  0.4479167
 #> 10   10  0.4447222
+
+# Get the constaint scores for only nodes
+# `5` and `7`
+get_constraint(graph, c(5, 7))
+#>    node constraint
+#> 5     5  0.3711188
+#> 7     7  0.3735494
 }
 }
 
