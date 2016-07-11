@@ -27,16 +27,16 @@ graph <-
   create_graph() \%>\%
   add_n_nodes(1, "a") \%>\%
   select_last_node \%>\%
-  add_n_nodes_from_selection(5, "b") \%>\%
+  add_n_nodes_ws(5, "b", "from") \%>\%
   select_edges_by_node_id(3:5) \%>\%
-  set_edge_attr_with_selection(
+  set_edge_attrs_ws(
     "color", "green") \%>\%
-  set_edge_attr_with_selection(
+  set_edge_attrs_ws(
     "rel", "a") \%>\%
   invert_selection \%>\%
-  set_edge_attr_with_selection(
+  set_edge_attrs_ws(
     "color", "blue") \%>\%
-  set_edge_attr_with_selection(
+  set_edge_attrs_ws(
     "rel", "b") \%>\%
   clear_selection
 

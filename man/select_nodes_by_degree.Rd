@@ -49,9 +49,9 @@ random_graph <-
     fully_connected = TRUE,
     directed = TRUE,
     set_seed = 25) \%>\%
-  set_global_graph_attr(
+  set_global_graph_attrs(
     'graph', 'layout', 'neato') \%>\%
-  set_global_graph_attr(
+  set_global_graph_attrs(
     'graph', 'overlap', 'false')
 
 # Report which nodes have a total degree (indegree

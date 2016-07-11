@@ -96,10 +96,10 @@ graph \%>\%
 # modified
 graph <-
   graph \%>\%
-  set_node_attr(1, "value", 3.4) \%>\%
-  set_node_attr(2, "value", 6.7) \%>\%
-  set_node_attr(3, "value", 9.1) \%>\%
-  set_node_attr(4, "value", 2.5)
+  set_node_attrs(1, "value", 3.4) \%>\%
+  set_node_attrs(2, "value", 6.7) \%>\%
+  set_node_attrs(3, "value", 9.1) \%>\%
+  set_node_attrs(4, "value", 2.5)
 
 # Traverse from nodes `1` to `4`, setting the
 # condition that each node traversed to must have
