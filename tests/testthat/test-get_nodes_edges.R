@@ -6,26 +6,30 @@ test_that("getting node IDs from various objects is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(nodes = LETTERS,
-                 label = TRUE,
-                 type = c(rep("a_to_g", 7),
-                          rep("h_to_p", 9),
-                          rep("q_to_x", 8),
-                          rep("y_and_z",2)))
+    create_nodes(
+      nodes = LETTERS,
+      label = TRUE,
+      type = c(rep("a_to_g", 7),
+               rep("h_to_p", 9),
+               rep("q_to_x", 8),
+               rep("y_and_z",2)))
 
   # Create an edge data frame
   edges <-
-    create_edges(from = sample(LETTERS, replace = TRUE),
-                 to = sample(LETTERS, replace = TRUE),
-                 label = "edge",
-                 relationship = "letter_to_letter")
+    create_edges(
+      from = sample(LETTERS, replace = TRUE),
+      to = sample(LETTERS, replace = TRUE),
+      label = "edge",
+      relationship = "letter_to_letter")
 
   # Create the graph object using the node and edge data frames
-  graph <- create_graph(nodes_df = nodes,
-                        edges_df = edges,
-                        graph_attrs = "layout = neato",
-                        node_attrs = c("fontname = Helvetica",
-                                       "shape = circle"))
+  graph <-
+    create_graph(
+      nodes_df = nodes,
+      edges_df = edges,
+      graph_attrs = "layout = neato",
+      node_attrs = c("fontname = Helvetica",
+                     "shape = circle"))
 
   # Get information on the graph's nodes
   gotten_nodes <- get_nodes(graph)
@@ -46,9 +50,9 @@ test_that("getting node IDs from various objects is possible", {
   # Expect that the number of nodes obtain from the entire graph
   # will be greater than the nodes associated with edges (since there
   # will be free nodes with no edges)
-  expect_more_than(length(get_nodes(graph)),
-                   length(unique(c(graph$edges_df$from,
-                                   graph$edges_df$to))))
+  expect_gt(length(get_nodes(graph)),
+            length(unique(c(graph$edges_df$from,
+                            graph$edges_df$to))))
 
   # Get the node df from the graph using `get_node_df()`
   node_df_from_graph <- get_node_df(graph)
@@ -68,27 +72,30 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(nodes = LETTERS,
-                 label = TRUE,
-                 type = c(rep("a_to_g", 7),
-                          rep("h_to_p", 9),
-                          rep("q_to_x", 8),
-                          rep("y_and_z",2)))
+    create_nodes(
+      nodes = LETTERS,
+      label = TRUE,
+      type = c(rep("a_to_g", 7),
+               rep("h_to_p", 9),
+               rep("q_to_x", 8),
+               rep("y_and_z",2)))
 
   # Create an edge data frame
   edges <-
-    create_edges(from = sample(LETTERS, replace = TRUE),
-                 to = sample(LETTERS, replace = TRUE),
-                 label = "edge",
-                 relationship = "letter_to_letter")
+    create_edges(
+      from = sample(LETTERS, replace = TRUE),
+      to = sample(LETTERS, replace = TRUE),
+      label = "edge",
+      relationship = "letter_to_letter")
 
   # Create the graph object using the node and edge data frames
   graph <-
-    create_graph(nodes_df = nodes,
-                 edges_df = edges,
-                 graph_attrs = "layout = neato",
-                 node_attrs = c("fontname = Helvetica",
-                                "shape = circle"))
+    create_graph(
+      nodes_df = nodes,
+      edges_df = edges,
+      graph_attrs = "layout = neato",
+      node_attrs = c("fontname = Helvetica",
+                     "shape = circle"))
 
   # Get the 'outgoing' and 'incoming' node ID values
   # in a list object
@@ -141,7 +148,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   # Expect that the edges from the graph and from the extracted
   # edge df are the same
   expect_true(all(get_edges(edge_df_from_graph, return_type = "vector") ==
-        get_edges(edge_df_from_graph, return_type = "vector")))
+                    get_edges(edge_df_from_graph, return_type = "vector")))
 
   # Expect that using `get_edge_df()` on a graph with no edges
   # will return an NA
@@ -151,8 +158,10 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 test_that("getting edge information from an edge data frame is possible", {
 
   # Create a simple edge data frame
-  edges <- create_edges(from = c("a", "a"),
-                        to = c("b", "c"))
+  edges <-
+    create_edges(
+      from = c("a", "a"),
+      to = c("b", "c"))
 
   # Get edges from the edge data frame as a returned vector object
   edges_vector_from_edf <-

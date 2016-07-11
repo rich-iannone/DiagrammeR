@@ -33,12 +33,12 @@ test_that("nodes and edges can be deleted from a graph", {
     get_edges(graph, return_type = "list")
 
   # Expect that the number of nodes will be decreased
-  expect_less_than(
+  expect_lt(
     length(graph_nodes_delete_node),
     length(graph_nodes))
 
   # Expect that the number of edges will be decreased
-  expect_less_than(
+  expect_lt(
     length(graph_edges_delete_node[[1]]),
     length(graph_edges[[1]]))
 

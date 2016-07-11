@@ -296,7 +296,7 @@ test_that("adding several nodes from a selected node is possible", {
   graph <- select_nodes(graph, nodes = "5")
 
   # Add 10 nodes as successors to the selected node
-  graph <- add_n_nodes_from_selection(graph, 10)
+  graph <- add_n_nodes_ws(graph, 10, "from")
 
   # Expect a total of 20 nodes in the graph
   expect_equal(node_count(graph), 20)
@@ -335,8 +335,9 @@ test_that("adding several nodes from a selected node is possible", {
   # this time with a node `type` and edge `rel` set for
   # each of the new nodes and edges
   graph <-
-    add_n_nodes_from_selection(
+    add_n_nodes_ws(
       graph, 10,
+      direction = "from",
       set_node_type = "new",
       set_edge_rel = "related")
 
@@ -359,7 +360,7 @@ test_that("adding several nodes to a selected node is possible", {
   graph <- select_nodes(graph, nodes = "5")
 
   # Add 10 nodes as predecessors to the selected node
-  graph <- add_n_nodes_to_selection(graph, 10)
+  graph <- add_n_nodes_ws(graph, 10, "to")
 
   # Expect a total of 20 nodes in the graph
   expect_equal(node_count(graph), 20)
@@ -398,8 +399,9 @@ test_that("adding several nodes to a selected node is possible", {
   # this time with a node `type` and edge `rel` set for
   # each of the new nodes and edges
   graph <-
-    add_n_nodes_to_selection(
+    add_n_nodes_ws(
       graph, 10,
+      direction = "to",
       set_node_type = "new",
       set_edge_rel = "related")
 
