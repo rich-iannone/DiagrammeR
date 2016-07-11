@@ -11,9 +11,8 @@ get_betweenness(graph)
 \code{dgr_graph}.}
 }
 \value{
-a named vector of betweenness scores for
-each of the nodes (where the node ID values comprise
-the names in the vector).
+a data frame with betweenness scores for
+each of the nodes.
 }
 \description{
 Get the betweenness centrality scores
