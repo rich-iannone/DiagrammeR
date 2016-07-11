@@ -64,34 +64,40 @@ library(magrittr)
 graph <-
   create_graph() %>%
   set_graph_name("DAG") %>%
-  set_global_graph_attr("graph", "overlap", "true") %>%
-  set_global_graph_attr("graph", "fixedsize", "true") %>%
-  set_global_graph_attr("node", "color", "blue") %>%
-  set_global_graph_attr("node", "fontname", "Helvetica") %>%
+  set_global_graph_attrs("graph", "overlap", "true") %>%
+  set_global_graph_attrs("graph", "fixedsize", "true") %>%
+  set_global_graph_attrs("node", "color", "blue") %>%
+  set_global_graph_attrs("node", "fontname", "Helvetica") %>%
   add_n_nodes(11) %>%
   select_nodes_by_id(1:4) %>% 
-  set_node_attr_ws("shape", "box") %>%
-  set_node_attr_ws("type", "box") %>%
+  set_node_attrs_ws("shape", "box") %>%
+  set_node_attrs_ws("type", "box") %>%
   clear_selection %>%
   select_nodes_by_id(5:7) %>% 
-  set_node_attr_ws("shape", "circle") %>%
-  set_node_attr_ws("type", "circle") %>%
+  set_node_attrs_ws("shape", "circle") %>%
+  set_node_attrs_ws("type", "circle") %>%
   clear_selection %>%
   select_nodes_by_id(8:11) %>% 
-  set_node_attr_ws("shape", "box") %>%
-  set_node_attr_ws("type", "box") %>%
+  set_node_attrs_ws("shape", "box") %>%
+  set_node_attrs_ws("type", "box") %>%
   clear_selection %>%
-  add_edge(1, 5) %>% add_edge(2, 6) %>%
-  add_edge(3, 9) %>% add_edge(4, 7) %>%
-  add_edge(5, 8) %>% add_edge(5, 10) %>%
+  add_edge(1, 5) %>% 
+  add_edge(2, 6) %>%
+  add_edge(3, 9) %>% 
+  add_edge(4, 7) %>%
+  add_edge(5, 8) %>% 
+  add_edge(5, 10) %>%
   add_edge(7, 11) %>% 
   select_edges %>%
-  set_edge_attr_ws("color", "green") %>%
-  add_edge(1, 8) %>% add_edge(3, 6) %>%
-  add_edge(3, 11) %>% add_edge(3, 7) %>%
-  add_edge(5, 9) %>% add_edge(6, 10) %>%
+  set_edge_attrs_ws("color", "green") %>%
+  add_edge(1, 8) %>% 
+  add_edge(3, 6) %>%
+  add_edge(3, 11) %>% 
+  add_edge(3, 7) %>%
+  add_edge(5, 9) %>% 
+  add_edge(6, 10) %>%
   select_edges("color", "^$") %>%
-  set_edge_attr_ws("color", "red") %>%
+  set_edge_attrs_ws("color", "red") %>%
   clear_selection
 
 render_graph(graph)
@@ -121,7 +127,7 @@ library(magrittr)
 graph <-
   create_graph() %>%
   set_graph_name("software_projects") %>%
-  set_global_graph_attr(
+  set_global_graph_attrs(
     "graph", "output", "visNetwork") %>%
   add_nodes_from_table(
     system.file(
@@ -160,7 +166,7 @@ Get the average age of all the contributors:
 ```r
 graph %>% 
   select_nodes("type", "person") %>%
-  cache_node_attr_ws("age", "numeric") %>%
+  cache_node_attrs_ws("age", "numeric") %>%
   get_cache %>% 
   mean
 #> [1] 33.6
@@ -170,7 +176,7 @@ Get the total number of commits to all software projects:
 ```r
 graph %>% 
   select_edges %>%
-  cache_edge_attr_ws("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   get_cache %>% 
   sum
 #> [1] 5182
@@ -181,7 +187,7 @@ Get the total number of commits from Josh as a maintainer and as a contributor:
 graph %>% 
   select_nodes("name", "Josh") %>%
   trav_out_edge %>%
-  cache_edge_attr_ws("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   get_cache %>% 
   sum
 #> [1] 227
@@ -192,7 +198,7 @@ Get the total number of commits from Louisa:
 graph %>% 
   select_nodes("name", "Louisa") %>%
   trav_out_edge %>%
-  cache_edge_attr_ws("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   get_cache %>% 
   sum
 #> [1] 615
@@ -203,7 +209,7 @@ Get the names of people in graph above age 32:
 graph %>% 
   select_nodes("type", "person") %>%
   select_nodes("age", ">32", "intersect") %>%
-  cache_node_attr_ws("name") %>%
+  cache_node_attrs_ws("name") %>%
   get_cache %>%
   sort
 #> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
@@ -214,7 +220,7 @@ Get the total number of commits from all people to the **supercalc** project:
 graph %>% 
   select_nodes("project", "supercalc") %>%
   trav_in_edge %>%
-  cache_edge_attr_ws("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   get_cache %>% 
   sum
 #> [1] 1676
@@ -225,11 +231,11 @@ Who committed the most to the **supercalc** project?
 graph %>% 
   select_nodes("project", "supercalc") %>%
   trav_in_edge %>%
-  cache_edge_attr_ws("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   trav_in_node %>%
   trav_in_edge("commits", max(get_cache(.))) %>%
   trav_out_node %>%
-  cache_node_attr_ws("name") %>%
+  cache_node_attrs_ws("name") %>%
   get_cache
 #> [1] "Sheryl"
 ```
@@ -239,11 +245,11 @@ What is the email address of the individual that contributed the least to the **
 graph %>% 
   select_nodes("project", "randomizer") %>%
   trav_in_edge %>%
-  cache_edge_attr_ws("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   trav_in_node %>%
   trav_in_edge("commits", min(get_cache(.))) %>%
   trav_out_node %>%
-  cache_node_attr_ws("email") %>%
+  cache_node_attrs_ws("email") %>%
   get_cache
 #> [1] "the_will@graphymail.com"
 ```
@@ -258,7 +264,7 @@ graph %<>%
       "project", "stringbuildeR"),
     "contributor") %>%
   select_last_edge %>%
-  set_edge_attr_ws("commits", 15) %>%
+  set_edge_attrs_ws("commits", 15) %>%
   clear_selection
 
 graph %>% render_graph
@@ -273,7 +279,7 @@ graph %>%
   select_nodes("project", "supercalc") %>%
   trav_in_edge("rel", "contributor") %>%
   trav_out_node %>%
-  cache_node_attr_ws("email", "character") %>%
+  cache_node_attrs_ws("email", "character") %>%
   get_cache %>% 
   sort
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
@@ -287,10 +293,10 @@ Which committer to the **randomizer** project has the highest number of follower
 graph %>% 
   select_nodes("project", "randomizer") %>%
   trav_in %>%
-  cache_node_attr_ws("follower_count", "numeric") %>%
+  cache_node_attrs_ws("follower_count", "numeric") %>%
   select_nodes("project", "randomizer") %>%
   trav_in("follower_count", max(get_cache(.))) %>%
-  cache_node_attr_ws("name") %>%
+  cache_node_attrs_ws("name") %>%
   get_cache
 #> [1] "Kim"
 ```
@@ -299,7 +305,7 @@ Which people have committed to more than one project?
 ```r
 graph %>%
   select_nodes_by_degree("out", ">1") %>%
-  cache_node_attr_ws("name") %>%
+  cache_node_attrs_ws("name") %>%
   get_cache %>% 
   sort
 #> [1] "Josh"  "Kim"  "Louisa"
