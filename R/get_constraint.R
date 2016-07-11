@@ -47,5 +47,22 @@ get_constraint <- function(graph,
                constraint = constraint_scores,
                stringsAsFactors = FALSE)
 
+  # If vector of node IDs provided in `nodes` then
+  # subset the output data frame
+  if (!is.null(nodes)) {
+
+    if (!all(as.character(nodes) %in%
+             get_nodes(graph))) {
+      stop("One or more nodes provided not in graph.")
+    }
+
+    constraint_scores_df <-
+      constraint_scores_df[
+        which(constraint_scores_df[,1] %in%
+                as.character(nodes)),]
+
+    rownames(constraint_scores_df) <- NULL
+  }
+
   return(constraint_scores_df)
 }
