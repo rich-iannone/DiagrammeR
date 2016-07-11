@@ -8,27 +8,31 @@ render_graph(graph, output = NULL, layout = NULL, width = NULL,
   height = NULL)
 }
 \arguments{
-\item{graph}{a \code{dgr_graph} object, created using the
-\code{create_graph} function.}
+\item{graph}{a \code{dgr_graph} object, created
+using the \code{create_graph} function.}
 
-\item{output}{a string specifying the output type; \code{graph} (the
-default) renders the graph using the \code{grViz} function, \code{vivagraph}
-renders the graph using the \code{vivagraph} function, \code{visNetwork}
-renders the graph using the \code{visnetwork} function, and \code{DOT}
+\item{output}{a string specifying the output type;
+\code{graph} (the default) renders the graph using
+the \code{grViz} function, \code{vivagraph}
+renders the graph using the \code{vivagraph}
+function, \code{visNetwork} renders the graph using
+the \code{visnetwork} function, and \code{DOT}
 outputs DOT code for the graph.}
 
-\item{layout}{a string specifying a layout type for a \code{vivagraph}
-rendering of the graph, either \code{forceDirected} or \code{constant}.}
+\item{layout}{a string specifying a layout type for
+a \code{vivagraph} rendering of the graph, either
+\code{forceDirected} or \code{constant}.}
 
-\item{width}{an optional parameter for specifying the width of the resulting
-graphic in pixels.}
+\item{width}{an optional parameter for specifying
+the width of the resulting graphic in pixels.}
 
-\item{height}{an optional parameter for specifying the height of the
-resulting graphic in pixels.}
+\item{height}{an optional parameter for specifying
+the height of the resulting graphic in pixels.}
 }
 \description{
-Using a \code{dgr_graph} object, either render graph in the
-Viewer or output in various formats.
+Using a \code{dgr_graph} object, either
+render graph in the Viewer or output in various
+formats.
 }
 \examples{
 \dontrun{
