@@ -180,7 +180,7 @@ Get the total number of commits from Josh as a maintainer and as a contributor:
 ```r
 graph %>% 
   select_nodes("name", "Josh") %>%
-  trav_out_edge(c("maintainer", "contributer")) %>%
+  trav_out_edge %>%
   cache_edge_attr_ws("commits", "numeric") %>%
   get_cache %>% 
   sum
