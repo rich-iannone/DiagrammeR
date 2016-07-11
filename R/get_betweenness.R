@@ -3,9 +3,8 @@
 #' for all nodes in a graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @return a named vector of betweenness scores for
-#' each of the nodes (where the node ID values comprise
-#' the names in the vector).
+#' @return a data frame with betweenness scores for
+#' each of the nodes.
 #' @examples
 #' \dontrun{
 #' # Create a random graph
