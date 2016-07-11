@@ -41,7 +41,7 @@ get_betweenness <- function(graph) {
   # Create df with betweenness scores
   betweenness_scores_df <-
     data.frame(node = names(betweenness_scores),
-               score = betweenness_scores,
+               betweenness = betweenness_scores,
                stringsAsFactors = FALSE)
 
   return(betweenness_scores_df)
