@@ -42,6 +42,7 @@ License: MIT + file LICENSE
 Imports:
     htmlwidgets (>= 0.6),
     igraph (>= 1.0.0),
+    influenceR (>= 0.1.0),
     rstudioapi (>= 0.6),
     stringr (>= 1.0.0),
     visNetwork (>= 1.0.0),
