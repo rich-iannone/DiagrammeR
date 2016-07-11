@@ -122,9 +122,9 @@
 #'     directed = TRUE,
 #'     fully_connected = TRUE,
 #'     set_seed = 20) %>%
-#'   set_global_graph_attr(
+#'   set_global_graph_attrs(
 #'     'graph', 'layout', 'sfdp') %>%
-#'   set_global_graph_attr(
+#'   set_global_graph_attrs(
 #'     'graph', 'overlap', 'false')
 #'
 #' # This graph cannot be shown in this help page

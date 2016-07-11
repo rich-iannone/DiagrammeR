@@ -303,7 +303,7 @@ add_edges_from_table <- function(graph,
   for (i in edges_created_rownames) {
     for (j in edge_attr_cols_csv) {
       graph <-
-        set_edge_attr(
+        set_edge_attrs(
           x = graph,
           from = get_edge_df(graph)[
             which(
@@ -319,7 +319,7 @@ add_edges_from_table <- function(graph,
     # specified column in the table
     if (!is.null(rel_col)) {
       graph <-
-        set_edge_attr(
+        set_edge_attrs(
           x = graph,
           from = get_edge_df(graph)[
             which(

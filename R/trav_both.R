@@ -77,9 +77,9 @@
 #' # modified
 #' graph <-
 #'   graph %>%
-#'   set_node_attr(1, "value", 3.4) %>%
-#'   set_node_attr(2, "value", 6.7) %>%
-#'   set_node_attr(3, "value", 9.1)
+#'   set_node_attrs(1, "value", 3.4) %>%
+#'   set_node_attrs(2, "value", 6.7) %>%
+#'   set_node_attrs(3, "value", 9.1)
 #'
 #' # Traverse from node `2` to both `1` and `3`,
 #' # setting the condition that each node traversed to

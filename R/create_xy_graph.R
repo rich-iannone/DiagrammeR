@@ -733,10 +733,10 @@ create_xy_graph <- function(...,
   # Remove extraneous series lines
   if (!is.null(series_lines)){
     if (!exists("series_pts")){
-    series_lines <-
-      series_lines[which(series_lines$from %in% series_pts$nodes),]
-    series_lines <-
-      series_lines[which(series_lines$to %in% series_pts$nodes),]
+      series_lines <-
+        series_lines[which(series_lines$from %in% series_pts$nodes),]
+      series_lines <-
+        series_lines[which(series_lines$to %in% series_pts$nodes),]
     }
   }
 
@@ -1466,36 +1466,36 @@ create_xy_graph <- function(...,
                  edges_df = chart_component_edges)
 
   graph_components <-
-    set_global_graph_attr(graph_components,
-                          "graph", "layout", "neato")
+    set_global_graph_attrs(graph_components,
+                           "graph", "layout", "neato")
 
   # Set the color for the background of the entire
   # viewable area
   graph_components <-
-    set_global_graph_attr(graph_components,
-                          "graph", "bgcolor", bg_color)
+    set_global_graph_attrs(graph_components,
+                           "graph", "bgcolor", bg_color)
 
   graph_components <-
-    set_global_graph_attr(graph_components,
-                          "graph", "ratio", "1")
+    set_global_graph_attrs(graph_components,
+                           "graph", "ratio", "1")
 
   graph_components <-
-    set_global_graph_attr(graph_components,
-                          "node", "fontname", "Helvetica")
+    set_global_graph_attrs(graph_components,
+                           "node", "fontname", "Helvetica")
 
   graph_components <-
-    set_global_graph_attr(graph_components,
-                          "node", "fixedsize", "true")
+    set_global_graph_attrs(graph_components,
+                           "node", "fixedsize", "true")
 
   graph_components <-
-    set_global_graph_attr(graph_components,
-                          "node", "margin", "0.0")
+    set_global_graph_attrs(graph_components,
+                           "node", "margin", "0.0")
 
   graph_components <-
-    set_global_graph_attr(graph_components,
-                          "graph", "ratio",
-                          aspect_ratio[2]/
-                            aspect_ratio[1])
+    set_global_graph_attrs(graph_components,
+                           "graph", "ratio",
+                           aspect_ratio[2]/
+                             aspect_ratio[1])
 
   # Add the (x, y) points
   if (!is.null(series_pts)){

@@ -14,20 +14,20 @@
 #'   create_graph() %>%
 #'   add_n_nodes(1, "a") %>%
 #'   select_last_node %>%
-#'   add_n_nodes_from_selection(5, "b") %>%
+#'   add_n_nodes_ws(5, "b", "from") %>%
 #'   select_nodes_by_id(1) %>%
-#'   set_node_attr_with_selection(
+#'   set_node_attrs_ws(
 #'     "value", 25.3) %>%
 #'   clear_selection %>%
 #'   select_nodes_by_id(2:4) %>%
-#'   set_node_attr_with_selection(
+#'   set_node_attrs_ws(
 #'     "color", "grey70") %>%
 #'   invert_selection %>%
-#'   set_node_attr_with_selection(
+#'   set_node_attrs_ws(
 #'     "color", "grey80") %>%
 #'   clear_selection %>%
 #'   select_nodes("value", "<15") %>%
-#'   set_node_attr_with_selection(
+#'   set_node_attrs_ws(
 #'     "value", 10.0) %>%
 #'   clear_selection
 #'
