@@ -69,9 +69,9 @@ test_that("setting/getting global graph attributes can be done", {
 
   # Create a new graph and set some global attributes
   graph <- create_graph() %>%
-    set_global_graph_attr("graph", "overlap", "true") %>%
-    set_global_graph_attr("node", "fontname", "Helvetica") %>%
-    set_global_graph_attr("edge", "color", "gray")
+    set_global_graph_attrs("graph", "overlap", "true") %>%
+    set_global_graph_attrs("node", "fontname", "Helvetica") %>%
+    set_global_graph_attrs("edge", "color", "gray")
 
   # Verify that the global attributes have been set
   expect_true(graph$graph_attrs[1] == "overlap = true")
@@ -84,9 +84,9 @@ test_that("setting/getting global graph attributes can be done", {
   expect_equal(length(graph$edge_attrs), 1)
 
   # Expect that getting the global attributes is possible
-  expect_equal(length(get_global_graph_attr(graph)), 3)
+  expect_equal(length(get_global_graph_attrs(graph)), 3)
 
-  expect_true(get_global_graph_attr(graph)[1][[1]] == "overlap = true")
-  expect_true(get_global_graph_attr(graph)[2][[1]] == "fontname = Helvetica")
-  expect_true(get_global_graph_attr(graph)[3][[1]] == "color = gray")
+  expect_true(get_global_graph_attrs(graph)[1][[1]] == "overlap = true")
+  expect_true(get_global_graph_attrs(graph)[2][[1]] == "fontname = Helvetica")
+  expect_true(get_global_graph_attrs(graph)[3][[1]] == "color = gray")
 })
