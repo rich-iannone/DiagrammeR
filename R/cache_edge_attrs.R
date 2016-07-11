@@ -17,13 +17,13 @@
 #' the edge is incoming for filtering the list of
 #' edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export cache_edge_attr
+#' @export cache_edge_attrs
 
-cache_edge_attr <- function(graph,
-                            edge_attr,
-                            mode = NULL,
-                            from = NULL,
-                            to = NULL) {
+cache_edge_attrs <- function(graph,
+                             edge_attr,
+                             mode = NULL,
+                             from = NULL,
+                             to = NULL) {
 
   edges_df <- graph$edges_df
 

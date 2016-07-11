@@ -41,7 +41,7 @@
 #' # Set attribute `color = "green"` for edges
 #' # `a` -> `d` and `c` -> `a` using the graph object
 #' graph <-
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     x = graph,
 #'     edge_attr = "color",
 #'     values = "green",
@@ -52,7 +52,7 @@
 #' # `a` -> `d` and `c` -> `a` using the edge
 #' # data frame
 #' edges <-
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     x = edges,
 #'     edge_attr = "color",
 #'     values = "green",
@@ -62,7 +62,7 @@
 #' # Set attribute `color = "blue"` for all edges
 #' # in the graph
 #' graph <-
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     x = graph,
 #'     edge_attr = "color",
 #'     values = "blue")
@@ -70,7 +70,7 @@
 #' # Set attribute `color = "pink"` for all edges in
 #' # graph outbound from `a`
 #' graph <-
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     x = graph,
 #'     edge_attr = "color",
 #'     values = "pink",
@@ -79,19 +79,19 @@
 #' # Set attribute `color = "black"` for all edges in
 #' # graph inbound to `a`
 #' graph <-
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     x = graph,
 #'     edge_attr = "color",
 #'     values = "black",
 #'     to = "a")
 #' }
-#' @export set_edge_attr
+#' @export set_edge_attrs
 
-set_edge_attr <- function(x,
-                          edge_attr,
-                          values,
-                          from = NULL,
-                          to = NULL) {
+set_edge_attrs <- function(x,
+                           edge_attr,
+                           values,
+                           from = NULL,
+                           to = NULL) {
 
   if (edge_attr == "from" | edge_attr == "to") {
     stop("You cannot alter values associated with node IDs.")

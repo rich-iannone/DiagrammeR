@@ -32,32 +32,32 @@
 #'         rel = "rel")
 #'     add_edge_df(., edges)
 #'   } %>%
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     "value", 1.6, 1, 2) %>%
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     "value", 4.3, 1, 4) %>%
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     "value", 2.9, 2, 3) %>%
-#'   set_edge_attr(
+#'   set_edge_attrs(
 #'     "value", 8.4, 4, 3)
 #'
 #' # Get the values for the `value` edge attribute
-#' graph %>% get_edge_attr(edge_attr = "value")
+#' graph %>% get_edge_attrs(edge_attr = "value")
 #' #> 1 -> 2 2 -> 3 1 -> 4 4 -> 3
 #' #> 1.6    2.9    4.3    8.4
 #'
 #' # To only return edge attribute values for specified
 #' # edges, use the `from` and `to` arguments
-#' graph %>% get_edge_attr("value", c(1, 2), c(2, 3))
+#' graph %>% get_edge_attrs("value", c(1, 2), c(2, 3))
 #' #> 1 -> 2 2 -> 3
 #' #> 1.6    2.9
 #' }
-#' @export get_edge_attr
+#' @export get_edge_attrs
 
-get_edge_attr <- function(x,
-                          edge_attr,
-                          from = NULL,
-                          to = NULL) {
+get_edge_attrs <- function(x,
+                           edge_attr,
+                           from = NULL,
+                           to = NULL) {
 
   if (edge_attr == "from" | edge_attr == "to") {
     stop("This is not an edge attribute.")

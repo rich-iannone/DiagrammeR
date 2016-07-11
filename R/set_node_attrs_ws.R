@@ -10,11 +10,11 @@
 #' @param value the value to be set for the chosen
 #' attribute for the nodes in the current selection.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export set_node_attr_ws
+#' @export set_node_attrs_ws
 
-set_node_attr_ws <- function(graph,
-                             node_attr,
-                             value) {
+set_node_attrs_ws <- function(graph,
+                              node_attr,
+                              value) {
 
   nodes_df <- graph$nodes_df
   nodes <- graph$selection$nodes

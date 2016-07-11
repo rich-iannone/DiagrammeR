@@ -13,12 +13,12 @@
 #' @param nodes an optional vector of node IDs for
 #' filtering the list of nodes present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export cache_node_attr
+#' @export cache_node_attrs
 
-cache_node_attr <- function(graph,
-                            node_attr,
-                            mode = NULL,
-                            nodes = NULL) {
+cache_node_attrs <- function(graph,
+                             node_attr,
+                             mode = NULL,
+                             nodes = NULL) {
 
 
   nodes_df <- graph$nodes_df

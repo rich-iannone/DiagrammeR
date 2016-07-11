@@ -30,22 +30,22 @@
 #' # Get all of the values from the `value` node
 #' # attribute as a named vector
 #' random_graph %>%
-#'   get_node_attr("value")
+#'   get_node_attrs("value")
 #' #> 1   2   3   4
 #' #> 9.0 8.0 3.0 5.5
 #'
 #' # To only return node attribute values for specified
 #' # nodes, use the `nodes` argument
 #' random_graph %>%
-#'   get_node_attr("value", nodes = c(1, 3))
+#'   get_node_attrs("value", nodes = c(1, 3))
 #' #> 1 3
 #' #> 9 3
 #' }
-#' @export get_node_attr
+#' @export get_node_attrs
 
-get_node_attr <- function(x,
-                          node_attr,
-                          nodes = NULL) {
+get_node_attrs <- function(x,
+                           node_attr,
+                           nodes = NULL) {
 
   if (node_attr == "nodes") {
     stop("This is not a node attribute.")

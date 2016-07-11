@@ -39,16 +39,16 @@
 #' # Set attribute `color = "green"` for nodes `a`
 #' # and `c` using the graph object
 #' graph <-
-#'   set_node_attr(
+#'   set_node_attrs(
 #'     x = graph,
 #'     node_attr = "color",
 #'     values = "green",
 #'     nodes = c("a", "c"))
 #'
-#' # Set attribute 'color = "green"' for nodes `a`
+#' # Set attribute `color = "green"`` for nodes `a`
 #' # and `c` using the node data frame
 #' nodes <-
-#'   set_node_attr(
+#'   set_node_attrs(
 #'     x = nodes,
 #'     node_attr = "color",
 #'     values = "green",
@@ -57,17 +57,17 @@
 #' # Set attribute `color = "blue"` for all nodes
 #' # the node data frame
 #' nodes <-
-#'   set_node_attr(
+#'   set_node_attrs(
 #'     x = nodes,
 #'     node_attr = "color",
 #'     values = "blue")
 #' }
-#' @export set_node_attr
+#' @export set_node_attrs
 
-set_node_attr <- function(x,
-                          node_attr,
-                          values,
-                          nodes = NULL) {
+set_node_attrs <- function(x,
+                           node_attr,
+                           values,
+                           nodes = NULL) {
 
   if (node_attr == "nodes") {
     stop("You cannot change the node ID.")
@@ -163,7 +163,6 @@ set_node_attr <- function(x,
     # Retain the node selection if one was
     # available initially
     dgr_graph$selection <- x$selection
-
 
     return(dgr_graph)
   }

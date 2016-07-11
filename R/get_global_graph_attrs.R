@@ -13,15 +13,15 @@
 #' # Create a new graph and set some global attributes
 #' graph <-
 #'   create_graph() %>%
-#'   set_global_graph_attr(
+#'   set_global_graph_attrs(
 #'     "graph", "overlap", "true") %>%
-#'   set_global_graph_attr(
+#'   set_global_graph_attrs(
 #'     "node", "fontname", "Helvetica") %>%
-#'   set_global_graph_attr(
+#'   set_global_graph_attrs(
 #'     "edge", "color", "gray")
 #'
 #' # Verify that the global attributes have been set
-#' get_global_graph_attr(graph)
+#' get_global_graph_attrs(graph)
 #' #> $graph_attrs
 #' #> [1] "overlap = true"
 #' #>
@@ -31,11 +31,11 @@
 #' #> $edge_attrs
 #' #> [1] "color = gray"
 #' }
-#' @export get_global_graph_attr
+#' @export get_global_graph_attrs
 
-get_global_graph_attr <- function(graph) {
+get_global_graph_attrs <- function(graph) {
 
-    return(list(graph_attrs = graph$graph_attrs,
-                node_attrs = graph$node_attrs,
-                edge_attrs = graph$edge_attrs))
+  return(list(graph_attrs = graph$graph_attrs,
+              node_attrs = graph$node_attrs,
+              edge_attrs = graph$edge_attrs))
 }

@@ -1,19 +1,19 @@
-#' Rescale numeric edge attribute values for edges in a
-#' selection
+#' Rescale numeric node attribute values for nodes
+#' in a selection
 #' @description From a graph object of class
 #' \code{dgr_graph}, take a set of numeric values for
-#' edge attributes specified in a selection of edges,
+#' node attributes specified in a selection of nodes,
 #' rescale to a new numeric or color range, then write
-#' a new set of edge attribute values.
+#' a new set of node attribute values.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param edge_attr_from the edge attribute containing
+#' @param node_attr_from the node attribute containing
 #' numeric data that is to be rescaled to new numeric
 #' or color values.
-#' @param edge_attr_to the name of the new or existing
-#' edge attribute that will contain the scaled values.
-#' If the edge attribute exists for the selected edges,
+#' @param node_attr_to the name of the new or existing
+#' node attribute that will contain the scaled values.
+#' If the node attribute exists for the selected nodes,
 #' rescaled values will replace any existing values.
 #' @param to_lower_bound the lower bound value for the
 #' set of rescaled values. This can be a numeric value
@@ -32,34 +32,33 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @import scales
 #' @importFrom grDevices colors
-#' @export rescale_edge_attr_ws
+#' @export rescale_node_attrs_ws
 
-rescale_edge_attr_ws <- function(graph,
-                                 edge_attr_from,
-                                 edge_attr_to,
-                                 to_lower_bound = 0,
-                                 to_upper_bound = 1,
-                                 from_lower_bound = NULL,
-                                 from_upper_bound = NULL) {
+rescale_node_attrs_ws <- function(graph,
+                                  node_attr_from,
+                                  node_attr_to,
+                                  to_lower_bound = 0,
+                                  to_upper_bound = 1,
+                                  from_lower_bound = NULL,
+                                  from_upper_bound = NULL) {
 
-  # Get edge attributes for the selected edges
-  edges_df <-
-    get_edge_df(
-      graph)[which(get_edge_df(graph)[,1]
-                   %in% graph$selection$edges$from &
-                     get_edge_df(graph)[,2]
-                   %in% graph$selection$edges$to),]
+  # Get node attributes for the selected nodes
+  nodes_df <-
+    get_node_df(
+      graph)[which(
+        get_node_df(graph)[,1]
+        %in% graph$selection$nodes),]
 
-  if (!any(edge_attr_from %in%
-           colnames(edges_df)[-c(1:2)])) {
-    stop("The edge attribute to scale isn't present in the edf.")
+  if (!any(node_attr_from %in%
+           colnames(nodes_df)[-1])) {
+    stop("The node attribute to scale isn't present in the ndf.")
   }
 
-  edges_attr_vector <-
-    edges_df[,which(colnames(edges_df) %in%
-                      edge_attr_from)]
+  nodes_attr_vector <-
+    nodes_df[,which(colnames(nodes_df) %in%
+                      node_attr_from)]
 
-  edges_attr_vector <- as.numeric(edges_attr_vector)
+  nodes_attr_vector <- as.numeric(nodes_attr_vector)
 
   if ((!is.null(from_lower_bound) &
        is.null(from_upper_bound)) |
@@ -68,42 +67,41 @@ rescale_edge_attr_ws <- function(graph,
       (is.null(from_lower_bound) &
        is.null(from_upper_bound))) {
 
-    from <- range(edges_attr_vector,
+    from <- range(nodes_attr_vector,
                   na.rm = TRUE, finite = TRUE)
   } else {
     from <- c(from_lower_bound, from_upper_bound)
   }
 
-  # Get vector of rescaled, numeric edge
+  # Get vector of rescaled, numeric node
   # attribute values
   if (is.numeric(to_lower_bound) &
       is.numeric(to_upper_bound)) {
 
-    edges_attr_vector_rescaled <-
-      round(rescale(x = edges_attr_vector,
+    nodes_attr_vector_rescaled <-
+      round(rescale(x = nodes_attr_vector,
                     to = c(to_lower_bound,
                            to_upper_bound),
                     from = from), 3)
   }
 
-  # Get vector of rescaled, edge attribute color values
+  # Get vector of rescaled, node attribute color values
   if ((to_lower_bound %in% colors()) &
       (to_upper_bound %in% colors())) {
 
-    edges_attr_vector_rescaled <-
-      cscale(x = edges_attr_vector,
+    nodes_attr_vector_rescaled <-
+      cscale(x = nodes_attr_vector,
              palette = seq_gradient_pal(to_lower_bound,
                                         to_upper_bound))
   }
 
-  # Set the edge attribute values for edges specified
+  # Set the node attribute values for nodes specified
   # in selection
   graph <-
-    set_edge_attr(x = graph,
-                  from = graph$selection$edges$from,
-                  to = graph$selection$edges$to,
-                  edge_attr = edge_attr_to,
-                  values = edges_attr_vector_rescaled)
+    set_node_attrs(x = graph,
+                   nodes = graph$selection$nodes,
+                   node_attr = node_attr_to,
+                   values = nodes_attr_vector_rescaled)
 
   return(graph)
 }

@@ -14,11 +14,11 @@
 #' of node attribute value as \code{numeric} or
 #' \code{character}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export cache_node_attr_ws
+#' @export cache_node_attrs_ws
 
-cache_node_attr_ws <- function(graph,
-                               node_attr,
-                               mode = NULL) {
+cache_node_attrs_ws <- function(graph,
+                                node_attr,
+                                mode = NULL) {
 
   if (is.null(graph$selection$nodes)) {
     stop("There is no selection of nodes available.")

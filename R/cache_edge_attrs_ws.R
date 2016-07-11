@@ -14,11 +14,11 @@
 #' of edge attribute value as \code{numeric} or
 #' \code{character}.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export cache_edge_attr_ws
+#' @export cache_edge_attrs_ws
 
-cache_edge_attr_ws <- function(graph,
-                               edge_attr,
-                               mode = NULL) {
+cache_edge_attrs_ws <- function(graph,
+                                edge_attr,
+                                mode = NULL) {
 
   if (is.null(graph$selection$edges)) {
     stop("There is no selection of edges available.")

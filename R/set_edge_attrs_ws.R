@@ -9,11 +9,11 @@
 #' @param value the value to be set for the chosen
 #' attribute for the edges in the current selection.
 #' @return a graph object of class \code{dgr_graph}.
-#' @export set_edge_attr_ws
+#' @export set_edge_attrs_ws
 
-set_edge_attr_ws <- function(graph,
-                             edge_attr,
-                             value) {
+set_edge_attrs_ws <- function(graph,
+                              edge_attr,
+                              value) {
 
   edges_df <- graph$edges_df
   from <- graph$selection$edges$from
