@@ -15,6 +15,7 @@
 #' # those nodes that if any were to be removed, the
 #' # graph would become disconnected)
 #' get_articulation_points(graph)
+#' #> [1] "8"  "22" "24"
 #' }
 #' @importFrom igraph articulation_points as_ids
 #' @export get_articulation_points
