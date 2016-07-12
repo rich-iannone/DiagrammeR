@@ -22,12 +22,12 @@ identified as articulation points.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 1)
+  30, 50, set_seed = 1)
 
 # Get the articulation points in the graph (i.e.,
 # those nodes that if any were to be removed, the
 # graph would become disconnected)
-
+get_articulation_points(graph)
 }
 }
 
