@@ -28,6 +28,7 @@ graph <-
 # those nodes that if any were to be removed, the
 # graph would become disconnected)
 get_articulation_points(graph)
+#> [1] "8"  "22" "24"
 }
 }
 
