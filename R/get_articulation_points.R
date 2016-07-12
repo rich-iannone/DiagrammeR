@@ -9,14 +9,14 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 1)
+#'   30, 50, set_seed = 1)
 #'
 #' # Get the articulation points in the graph (i.e.,
 #' # those nodes that if any were to be removed, the
 #' # graph would become disconnected)
-#'
+#' get_articulation_points(graph)
 #' }
-#' @importFrom igraph articulation_points
+#' @importFrom igraph articulation_points as_ids
 #' @export get_articulation_points
 
 get_articulation_points <- function(graph) {
@@ -28,6 +28,8 @@ get_articulation_points <- function(graph) {
   articulation_points <-
     igraph::articulation_points(ig_graph)
 
+  articulation_points <-
+    igraph::as_ids(articulation_points)
 
   return(articulation_points)
 }
