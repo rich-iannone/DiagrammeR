@@ -4,12 +4,25 @@
 \alias{join_node_attrs}
 \title{Join new node attribute values using a data frame}
 \usage{
-join_node_attrs(graph, df)
+join_node_attrs(graph, df, by_graph = NULL, by_df = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class}
 
-\item{df}{the data frame to use for joining.
+\item{df}{the data frame to use for joining.}
+
+\item{by_graph}{optional specification of the column
+in the graph's internal node data frame for the left
+join. If both \code{by_graph} and \code{by_df} are
+not provided, then a natural join will occur if
+there are columns in the graph's ndf and in
+\code{df} with identical names.}
+
+\item{by_df}{optional specification of the column in
+\code{df} for the left join. If both \code{by_graph}
+and \code{by_df} are not provided, then a natural
+join will occur if there are columns in the graph's
+ndf and in \code{df} with identical names.
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 }
@@ -19,13 +32,9 @@ a graph object of class
 }
 \description{
 Join new node attribute values in a
-left join using a data frame. The data frame to join
-should have at least one column with a name
-identical to a column in the graph's node data frame
-(e.g., \code{nodes} in both to join on the node ID
-values). The use of a left join in this function
-means that there is no possibility that nodes in the
-graph might be removed after the join.
+left join using a data frame. The use of a left join
+in this function allows for no possibility that
+nodes in the graph might be removed after the join.
 }
 \examples{
 \dontrun{
@@ -35,7 +44,7 @@ library(magrittr)
 graph <-
   create_graph() \%>\%
   add_n_nodes(5) \%>\%
-  add_edges("1->2 1->3 2->4 2->5 3->5")
+  add_edges_w_string("1->2 1->3 2->4 2->5 3->5")
 
 # Create a data frame with node ID values and a
 # set of numeric values
