@@ -4,7 +4,7 @@
 \alias{join_edge_attrs}
 \title{Join new edge attribute values using a data frame}
 \usage{
-join_edge_attrs(graph, df)
+join_edge_attrs(graph, df, by_graph = NULL, by_df = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class}
@@ -19,12 +19,8 @@ a graph object of class
 }
 \description{
 Join new edge attribute values in a
-left join using a data frame. The data frame to join
-should have at least one column with a name
-identical to a column in the graph's edge data frame
-(e.g., \code{rel} in both to join on the edge
-\code{rel} values). The use of a left join in this
-function means that there is no possibility that
+left join using a data frame. The use of a left join
+in this function allows for no possibility that
 edges in the graph might be removed after the join.
 }
 \examples{
