@@ -41,7 +41,7 @@ get_betweenness(graph)
 #> 9     9    3.466667
 #> 10   10    1.166667
 
-# Add the betweenness values the the graph
+# Add the betweenness values to the graph
 # as a node attribute
 graph <-
   graph \%>\%
