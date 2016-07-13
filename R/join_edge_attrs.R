@@ -21,7 +21,7 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(5) %>%
-#'   add_edges("1->2 1->3 2->4 2->5 3->5")
+#'   add_edges_w_string("1->2 1->3 2->4 2->5 3->5")
 #'
 #' # Create a data frame with node ID values
 #' # representing the graph edges (with `from` and `to`

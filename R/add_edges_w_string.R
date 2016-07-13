@@ -26,7 +26,8 @@
 #' # Add edges between nodes using a character string
 #' graph <-
 #'   graph %>%
-#'   add_edges("1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
+#'   add_edges_w_string(
+#'     "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
 #' }
 #' @export add_edges_w_string
 
