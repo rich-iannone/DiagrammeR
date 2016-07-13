@@ -1,11 +1,7 @@
 #' Join new edge attribute values using a data frame
 #' @description Join new edge attribute values in a
-#' left join using a data frame. The data frame to join
-#' should have at least one column with a name
-#' identical to a column in the graph's edge data frame
-#' (e.g., \code{rel} in both to join on the edge
-#' \code{rel} values). The use of a left join in this
-#' function means that there is no possibility that
+#' left join using a data frame. The use of a left join
+#' in this function allows for no possibility that
 #' edges in the graph might be removed after the join.
 #' @param graph a graph object of class
 #' @param df the data frame to use for joining.
@@ -51,7 +47,17 @@
 #' @export join_edge_attrs
 
 join_edge_attrs <- function(graph,
-                            df) {
+                            df,
+                            by_graph = NULL,
+                            by_df = NULL) {
+
+  if (is.null(by_graph) & !is.null(by_df)) {
+    stop("Both column specifications must be provided.")
+  }
+
+  if (!is.null(by_graph) & is.null(by_df)) {
+    stop("Both column specifications must be provided.")
+  }
 
   # Extract the graph's edf
   edges <- get_edge_df(graph)
@@ -59,8 +65,21 @@ join_edge_attrs <- function(graph,
   # Get column names from the graph's edf
   column_names <- colnames(edges)
 
-  # Perform a left join on the `edges` data frame
-  edges <- merge(edges, df, all.x = TRUE)
+  if (is.null(by_graph) & is.null(by_df)) {
+
+    # Perform a left join on the `edges` data frame
+    edges <- merge(edges, df, all.x = TRUE)
+  }
+
+  if (!is.null(by_graph) & !is.null(by_df)) {
+
+    # Perform a left join on the `edges` data frame
+    edges <-
+      merge(edges, df,
+            all.x = TRUE,
+            by.x = by_graph,
+            by.y = by_df)
+  }
 
   # Get new column names in the revised edf
   new_col_names <-
