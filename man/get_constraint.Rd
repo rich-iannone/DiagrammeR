@@ -9,6 +9,11 @@ get_constraint(graph, nodes = NULL)
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{nodes}{an optional vector of node IDs to
+consider for constraint scores. If not supplied,
+then constraint scores for all nodes in the graph
+will be calculated.}
 }
 \value{
 a data frame with constraint scores for one
