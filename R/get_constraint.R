@@ -4,6 +4,10 @@
 #' graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
+#' @param nodes an optional vector of node IDs to
+#' consider for constraint scores. If not supplied,
+#' then constraint scores for all nodes in the graph
+#' will be calculated.
 #' @return a data frame with constraint scores for one
 #' or more graph nodes.
 #' @examples
