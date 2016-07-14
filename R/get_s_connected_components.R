@@ -6,6 +6,7 @@
 #' \code{create_graph}.
 #' @return a data frame with nodes and their membership
 #' in different strongly connected components.
+#' @importFrom igraph components
 #' @export get_s_connected_components
 
 get_s_connected_components <- function(graph) {
