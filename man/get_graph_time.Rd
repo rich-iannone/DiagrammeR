@@ -13,6 +13,9 @@ get_graph_time(graph, as_posixct = TRUE, get_tz = FALSE)
 
 \item{as_posixct}{an option to return the graph time
 as POSIXct.}
+
+\item{get_tz}{an option to just return the graph's
+time zone.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
