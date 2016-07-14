@@ -6,6 +6,8 @@
 #' \code{create_graph}.
 #' @param as_posixct an option to return the graph time
 #' as POSIXct.
+#' @param get_tz an option to just return the graph's
+#' time zone.
 #' @examples
 #' \dontrun{
 #' library(magrittr)
