@@ -345,7 +345,7 @@ add_edges_from_table <- function(graph,
           edges_created_rownames, 2])
 
     graph <-
-      set_edge_attr_with_selection(
+      set_edge_attrs_ws(
         graph = graph,
         edge_attr = "rel",
         value = set_rel)
