@@ -45,7 +45,7 @@
 #'   file_name = "mypng",
 #'   file_type = "PNG")
 #' }
-#' @import rsvg
+#' @import rsvg DiagrammeRsvg
 #' @export export_graph
 
 export_graph <- function(graph,
