@@ -41,21 +41,30 @@ get_graph_time <- function(graph,
                            as_posixct = TRUE,
                            get_tz = FALSE) {
 
+  # If the graph has a time and time zone,
+  # assign those to the `time` and `tz` objects
   if (!is.null(graph$graph_time) &
       !is.null(graph$graph_tz)) {
     time <- graph$graph_time
     tz <- graph$graph_tz
   }
 
+  # If the graph does not have a time assigned,
+  # return NA
   if (is.null(graph$graph_time)) {
    time <- NA
    tz <- NA
   }
 
+  # If graph time requested as POSIXct, then
+  # create the POSIXct object
   if (as_posixct == TRUE) {
     time <- as.POSIXct(time, tz = tz)
   }
 
+  # If just the time zone is requested with
+  # `get_tz == TRUE`, return the time zone, otherwise
+  # return the graph time
   if (get_tz == TRUE) {
     return(tz)
   } else {
