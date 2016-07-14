@@ -7,6 +7,17 @@
 #' @param df the data frame to use for joining.
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
+#' @param by_graph optional specification of the column
+#' in the graph's internal edge data frame for the left
+#' join. If both \code{by_graph} and \code{by_df} are
+#' not provided, then a natural join will occur if
+#' there are columns in the graph's edf and in
+#' \code{df} with identical names.
+#' @param by_df optional specification of the column in
+#' \code{df} for the left join. If both \code{by_graph}
+#' and \code{by_df} are not provided, then a natural
+#' join will occur if there are columns in the graph's
+#' edf and in \code{df} with identical names.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
