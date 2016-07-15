@@ -52,7 +52,7 @@ node_present(graph, "A")
 #> TRUE
 
 # Are all node ID values from the LETTERS vector
-in the graph?
+# in the graph?
 all(sapply(LETTERS,
       function(x) node_present(graph, x)))
 #> TRUE
