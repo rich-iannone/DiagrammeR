@@ -26,7 +26,7 @@ dgr_graph <-
 # Confirm that `dgr_graph` is a DiagrammeR graph
 # by getting the object's class
 class(dgr_graph)
-[1] "dgr_graph"
+#> [1] "dgr_graph"
 
 # Convert the DiagrammeR graph to an igraph object
 ig_graph <-
