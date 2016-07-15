@@ -48,6 +48,7 @@ existing graph object from data in a CSV file or a
 data frame.
 }
 \examples{
+\dontrun{
 library(magrittr)
 library(dplyr)
 
@@ -129,5 +130,6 @@ graph_3 \%>\% get_node_df \%>\% head(3) \%>\% as.tbl
 #> 2     2 currency   AFN         971
 #> 3     3 currency   ALL           8
 #> Variables not shown: currency_name (chr)
+}
 }
 
