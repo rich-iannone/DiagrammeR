@@ -53,5 +53,6 @@ URL: https://github.com/rich-iannone/DiagrammeR
 BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Suggests:
     knitr,
+    magrittr,
     testthat
 RoxygenNote: 5.0.1
