@@ -28,6 +28,7 @@ sets of nodes with traversable paths to and from
 each node in the set).
 }
 \examples{
+\dontrun{
 library(magrittr)
 
 # Create a random graph
@@ -66,5 +67,6 @@ get_connected_components(graph)
 #> 9          1   11
 #> 10         1   14
 #> ..         ..  ..
+}
 }
 

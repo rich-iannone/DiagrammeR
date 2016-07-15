@@ -19,6 +19,7 @@ graph periphery (i.e., have the maximum eccentricity
 in the graph).
 }
 \examples{
+\dontrun{
 # Get the nodes that are in the graph periphery of
 # a randomly-created graph
 get_periphery(
@@ -27,5 +28,6 @@ get_periphery(
     fully_connected = TRUE,
     set_seed = 20))
 #> [1] "13"
+}
 }
 
