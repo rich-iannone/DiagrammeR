@@ -25,6 +25,7 @@
 #' in the table as \code{label} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
+#' \dontrun{
 #' library(magrittr)
 #' library(dplyr)
 #'
@@ -106,6 +107,7 @@
 #' #> 2     2 currency   AFN         971
 #' #> 3     3 currency   ALL           8
 #' #> Variables not shown: currency_name (chr)
+#' }
 #' @export add_nodes_from_table
 
 add_nodes_from_table <- function(graph,
