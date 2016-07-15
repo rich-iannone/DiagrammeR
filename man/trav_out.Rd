@@ -62,11 +62,11 @@ get_selection(graph)
 # selected since the traversal ended at that node)
 graph <-
   graph \%>\%
-  set_node_attr_with_selection(
+  set_node_attrs_ws(
     node_attr = "type", value = "z") \%>\%
   clear_selection \%>\%
   select_nodes_by_id(1:3) \%>\%
-  set_node_attr_with_selection(
+  set_node_attrs_ws(
     node_attr = "type", value = "a") \%>\%
   clear_selection
 
