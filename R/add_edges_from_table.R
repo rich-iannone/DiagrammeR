@@ -33,6 +33,7 @@
 #' in the table as \code{rel} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
+#' \dontrun{
 #' library(magrittr)
 #' library(dplyr)
 #'
@@ -53,6 +54,7 @@
 #' # Get a count of edges in the graph
 #' edge_count(graph)
 #' #> [1] 13
+#' }
 #' @export add_edges_from_table
 
 add_edges_from_table <- function(graph,
