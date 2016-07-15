@@ -26,7 +26,7 @@ graph <-
   create_graph() \%>\%
   add_n_nodes(1, "a") \%>\%
   select_last_node \%>\%
-  add_n_nodes_ws(5, "b", "from") \%>\%
+  add_n_nodes_ws(5, "from", "b") \%>\%
   select_nodes_by_id(1) \%>\%
   set_node_attrs_ws(
     "value", 25.3) \%>\%
@@ -45,12 +45,12 @@ graph <-
 
 # Get the graph's internal node data frame (ndf)
 graph \%>\% get_node_df
-#> nodes type label value  color
+#>   nodes type label value  color
 #> 1     1    a        25.3 grey80
-#> 2     2    b          10 grey70
-#> 3     3    b          10 grey70
-#> 4     4    b          10 grey70
-#> 5     5    b          10 grey80
-#> 6     6    b          10 grey80
+#> 2     2    b     2    10 grey70
+#> 3     3    b     3    10 grey70
+#> 4     4    b     4    10 grey70
+#> 5     5    b     5    10 grey80
+#> 6     6    b     6    10 grey80
 }
 
