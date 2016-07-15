@@ -28,10 +28,10 @@
 #'   create_graph(graph_attrs = 'layout = twopi') %>%
 #'   add_node("A") %>%
 #'   select_nodes %>%
-#'   add_n_nodes_from_selection(3, "B") %>%
+#'   add_n_nodes_ws(3, "from", "B") %>%
 #'   clear_selection %>%
 #'   select_nodes("type", "B") %>%
-#'   add_n_nodes_from_selection(3, "C") %>%
+#'   add_n_nodes_ws(3, "from", "C") %>%
 #'   clear_selection
 #'
 #' # Create a graph selection by selecting edges
