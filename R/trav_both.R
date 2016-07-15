@@ -50,11 +50,11 @@
 #'   graph %>%
 #'   clear_selection %>%
 #'   select_nodes_by_id(1) %>%
-#'   set_node_attr_with_selection(
+#'   set_node_attrs_ws(
 #'     node_attr = "type", value = "a") %>%
 #'   clear_selection %>%
 #'   select_nodes_by_id(3) %>%
-#'   set_node_attr_with_selection(
+#'   set_node_attrs_ws(
 #'     node_attr = "type", value = "z") %>%
 #'   clear_selection
 #'
