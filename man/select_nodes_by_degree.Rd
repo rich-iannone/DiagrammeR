@@ -103,7 +103,7 @@ random_graph \%>\%
 random_graph_2 <-
   random_graph \%>\%
   select_nodes_by_degree('in', '>5') \%>\%
-  set_node_attr_with_selection(
+  set_node_attrs_ws(
     node_attr = 'color', value = 'red')
 
 # Get the selection of nodes
