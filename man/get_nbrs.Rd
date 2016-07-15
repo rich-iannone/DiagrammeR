@@ -51,9 +51,9 @@ random_graph \%>\% get_nbrs(c(5, 7, 15))
 # all other nodes light gray
 random_graph \%<>\%
   select_nodes_by_id(get_nbrs(., 11)) \%>\%
-  set_node_attr_ws('color', 'green') \%>\%
+  set_node_attrs_ws('color', 'green') \%>\%
   invert_selection \%>\%
-  set_node_attr_ws('color', 'gray85') \%>\%
+  set_node_attrs_ws('color', 'gray85') \%>\%
   clear_selection
 
 # Render the graph to see the change
