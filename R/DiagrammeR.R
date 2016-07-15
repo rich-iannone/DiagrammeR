@@ -20,6 +20,7 @@
 #' including the R console, within R Markdown documents,
 #' and within Shiny output bindings.
 #' @examples
+#' \dontrun{
 #' # note the whitespace is not important
 #' DiagrammeR("
 #'   graph LR
@@ -116,6 +117,7 @@
 #'      ticket seller->>customer:  sorry;
 #'    end
 #' ")
+#' }
 #' @import htmlwidgets
 #' @export
 
