@@ -43,7 +43,6 @@ values for all the new nodes and edges created,
 respectively.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create an empty graph, add a node to it, select
@@ -81,6 +80,5 @@ graph \%>\% get_nodes
 # Get the graph's edges
 graph \%>\% get_edges
 #> "2 -> 1" "3 -> 1" "4 -> 1" "5 -> 1" "6 -> 1"
-}
 }
 

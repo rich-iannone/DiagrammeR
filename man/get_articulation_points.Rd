@@ -18,7 +18,6 @@ Get the nodes in the graph that are
 identified as articulation points.
 }
 \examples{
-\dontrun{
 # Create a random graph
 graph <-
   create_random_graph(
@@ -29,6 +28,5 @@ graph <-
 # graph would become disconnected)
 get_articulation_points(graph)
 #> [1] "8"  "22" "24"
-}
 }
 

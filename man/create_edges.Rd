@@ -31,7 +31,6 @@ combined with other similarly-generated data frames,
 or, added to a graph object.
 }
 \examples{
-\dontrun{
 # Create a simple edge data frame (edf) and
 # view the results
 edges <-
@@ -69,6 +68,5 @@ edges <-
 render_graph(
   create_graph(edges_df = edges),
   output = "visNetwork")
-}
 }
 

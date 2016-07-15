@@ -21,7 +21,6 @@ selection of nodes or edges extant in the graph
 object.
 }
 \examples{
-\dontrun{
 # Create a simple graph
 nodes <-
   create_nodes(
@@ -66,6 +65,5 @@ get_nodes(subgraph)
 # Check the edges available in the subgraph
 get_edges(subgraph, return_type = "vector")
 #> [1] "c -> a" "g -> c" "e -> h"
-}
 }
 

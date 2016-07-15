@@ -28,7 +28,6 @@ From a graph object of class
 is present.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -61,6 +60,5 @@ edge_present(graph, from = "A", to = "B")
 # `K` and `V`
 edge_present(graph, from = "K", to = "V")
 #> TRUE
-}
 }
 

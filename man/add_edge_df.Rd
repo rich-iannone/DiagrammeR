@@ -24,7 +24,6 @@ With a graph object of class
 to that graph.
 }
 \examples{
-\dontrun{
 # Create a graph with nodes and no edges
 nodes <-
   create_nodes(
@@ -51,6 +50,5 @@ graph <-
 
 get_edges(graph, return_type = "vector")
 #> [1] "a -> d" "b -> c" "c -> a"
-}
 }
 

@@ -22,7 +22,6 @@ Get the set of all nodes not
 neighboring a single graph node.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a random, directed graph with 18 nodes
@@ -44,6 +43,5 @@ random_graph \%>\%
   get_non_nbrs(5)
 #>  [1] "3"  "4"  "6"  "7"  "8"  "9"  "10" "11" "13"
 #> [12] "14" "15" "16" "17"
-}
 }
 

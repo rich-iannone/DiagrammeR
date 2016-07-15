@@ -30,7 +30,6 @@ With a graph object of class
 graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph with two nodes
@@ -52,6 +51,5 @@ graph <-
 edge_info(graph)
 #>   from to    rel
 #> 1    1  2 to_get
-}
 }
 

@@ -19,7 +19,6 @@ Counts the total number of graphs in a
 graph series object.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create three graphs
@@ -53,6 +52,5 @@ series <-
 # Count the number of graphs in the graph series
 graph_count(series)
 #> [1] 3
-}
 }
 

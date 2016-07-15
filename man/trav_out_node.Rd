@@ -35,7 +35,6 @@ a selection of nodes. An optional filter by node
 attribute can limit the set of nodes traversed to.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a simple graph
@@ -58,6 +57,5 @@ graph <-
 # made by using the `get_selection()` function
 get_selection(graph)
 #> [1] "1"
-}
 }
 

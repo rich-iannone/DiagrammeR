@@ -21,7 +21,6 @@ With one or more nodes, get the set of
 all neighboring nodes.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a random, directed graph with 18 nodes
@@ -59,6 +58,5 @@ random_graph \%<>\%
 
 # Render the graph to see the change
 random_graph \%>\% render_graph
-}
 }
 

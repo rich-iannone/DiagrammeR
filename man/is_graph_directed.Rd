@@ -19,7 +19,6 @@ directed or not and returns a logical value to that
 effect.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create an empty graph; by default, new graphs
@@ -37,6 +36,5 @@ graph \%>\%
   set_graph_undirected \%>\%
   is_graph_directed
 #> [1] FALSE
-}
 }
 

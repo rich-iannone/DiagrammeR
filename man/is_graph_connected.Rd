@@ -18,7 +18,6 @@ Determines whether a graph is a
 connected graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # This graph, created using `create_random_graph()`
@@ -52,6 +51,5 @@ graph_3 <-
 
 graph_3 \%>\% is_graph_connected
 #> [1] FALSE
-}
 }
 

@@ -35,7 +35,6 @@ package.}
 Export a graph to CSV files.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a node data frame (ndf)
@@ -61,6 +60,5 @@ graph <-
 # Create separate `nodes.csv` and `edges.csv`
 # files in the working directory
 graph \%>\% export_csv
-}
 }
 

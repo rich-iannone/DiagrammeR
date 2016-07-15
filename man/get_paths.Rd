@@ -37,7 +37,6 @@ Obtain a list of all possible paths
 from a given node within a directed graph
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a simple graph
@@ -115,6 +114,5 @@ get_paths(
   longest_path = TRUE)
 #> [[1]]
 #> [1] "1" "2" "7" "5"
-}
 }
 

@@ -35,7 +35,6 @@ selection. The current nodes in the selection are
 replaced with those nodes traversed to.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph
@@ -113,6 +112,5 @@ graph \%>\%
   trav_both("value", "<5.0") \%>\%
   get_selection
 #> [1] "1"
-}
 }
 

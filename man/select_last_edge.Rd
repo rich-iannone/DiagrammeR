@@ -23,7 +23,6 @@ of the graph's edge data frame. In practice, this
 will typically be the last edge created.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create an empty graph
@@ -48,6 +47,5 @@ graph \%>\% get_selection
 #>
 #> $edges$to
 #> [1] "3"
-}
 }
 

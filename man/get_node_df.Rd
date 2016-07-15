@@ -19,7 +19,6 @@ From a graph, obtain a node data frame
 with all current node attributes.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph using several piped functions
@@ -53,6 +52,5 @@ graph \%>\% get_node_df
 #> 4     4    b          10 grey70
 #> 5     5    b          10 grey80
 #> 6     6    b          10 grey80
-}
 }
 

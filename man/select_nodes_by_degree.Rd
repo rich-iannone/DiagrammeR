@@ -38,7 +38,6 @@ Using a graph object of class
 that have certain degree values.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a random graph with a high amount
@@ -111,6 +110,5 @@ random_graph_2 <-
 random_graph_2 \%>\% get_selection
 #> $nodes
 #> [1] "4" "6"
-}
 }
 

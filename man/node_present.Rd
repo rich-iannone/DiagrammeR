@@ -24,7 +24,6 @@ From a graph object of class
 is present.
 }
 \examples{
-\dontrun{
 # Create a node data frame
 nodes <-
   create_nodes(
@@ -57,6 +56,5 @@ in the graph?
 all(sapply(LETTERS,
       function(x) node_present(graph, x)))
 #> TRUE
-}
 }
 

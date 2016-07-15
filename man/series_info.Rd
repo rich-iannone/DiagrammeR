@@ -19,7 +19,6 @@ Obtain a data frame with information
 on the graphs within a graph series.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create three graphs
@@ -56,6 +55,5 @@ series_info(series)
 #> 1     1 <NA>      <NA> <NA>     3     3     TRUE
 #> 2     2 <NA>      <NA> <NA>     4     4     TRUE
 #> 3     3 <NA>      <NA> <NA>     5     5     TRUE
-}
 }
 

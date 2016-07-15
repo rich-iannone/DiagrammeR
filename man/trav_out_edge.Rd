@@ -35,7 +35,6 @@ edge attribute can limit the set of edges traversed
 to.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a simple graph
@@ -63,6 +62,5 @@ graph <-
 # the `get_selection()` function
 get_selection(graph)
 #> [1] "4"
-}
 }
 

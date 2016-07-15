@@ -19,7 +19,6 @@ Clear the selection of nodes or edges
 within a graph object.
 }
 \examples{
-\dontrun{
 # Create a simple graph
 nodes <-
   create_nodes(
@@ -56,6 +55,5 @@ graph <- clear_selection(graph = graph)
 # Verify that the node selection has been cleared
 get_selection(graph)
 #> [1] NA
-}
 }
 

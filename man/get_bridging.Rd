@@ -20,7 +20,6 @@ Valente's Bridging vertex measure) for all nodes in
 a graph.
 }
 \examples{
-\dontrun{
 # Create a random graph
 graph <-
   create_random_graph(
@@ -39,6 +38,5 @@ get_bridging(graph)
 #> 8     8 0.006666667
 #> 9     9 0.005555556
 #> 10   10 0.006790123
-}
 }
 

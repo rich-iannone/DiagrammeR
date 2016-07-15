@@ -23,7 +23,6 @@ From a graph object of class
 specifying its node ID.
 }
 \examples{
-\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -33,6 +32,5 @@ graph <- add_node(graph, node = "b")
 
 # Delete a node
 graph <- delete_node(graph, node = "a")
-}
 }
 

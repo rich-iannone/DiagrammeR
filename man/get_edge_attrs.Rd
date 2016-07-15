@@ -32,7 +32,6 @@ From a graph object of class
 attribute values for one or more edges.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a simple graph where edges have an edge
@@ -67,6 +66,5 @@ graph \%>\% get_edge_attrs(edge_attr = "value")
 graph \%>\% get_edge_attrs("value", c(1, 2), c(2, 3))
 #> 1 -> 2 2 -> 3
 #> 1.6    2.9
-}
 }
 

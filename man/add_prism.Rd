@@ -44,7 +44,6 @@ With a graph object of class
 \code{dgr_graph}, add a node prism to the graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a new graph and add a prism
@@ -61,6 +60,5 @@ node_info(graph)
 #> 4    4     4 prism   3     2      1     0
 #> 5    5     5 prism   3     2      1     0
 #> 6    6     6 prism   3     2      1     0
-}
 }
 

@@ -33,7 +33,6 @@ monotonically increasing integer values, then
 numeric ranges can be provided for the selection.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph with a tree structure that's
@@ -93,6 +92,5 @@ graph \%>\%
   l/e
 }
 #> [1] 0.75
-}
 }
 

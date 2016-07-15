@@ -33,7 +33,6 @@ or \code{edge_attrs} for a graph object of class
 \code{dgr_graph}).
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a new graph and set some global attributes
@@ -55,6 +54,5 @@ get_global_graph_attrs(graph)
 #>
 #> $edge_attrs
 #> [1] "color = gray"
-}
 }
 

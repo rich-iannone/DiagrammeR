@@ -18,7 +18,6 @@ Provides a logical value on whether the
 graph is empty (i.e., contains no nodes).
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create an empty graph
@@ -36,6 +35,5 @@ graph <-
 # Determine whether this graph is empty
 is_graph_empty(graph)
 #> [1] FALSE
-}
 }
 

@@ -32,7 +32,6 @@ values, then numeric ranges can be used for the
 selection.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a node data frame (ndf)
@@ -48,6 +47,5 @@ graph \%>\%
   get_selection
 #> $nodes
 #> [1] "1" "2" "3" "4" "5"
-}
 }
 

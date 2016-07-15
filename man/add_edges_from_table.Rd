@@ -58,7 +58,6 @@ existing graph object from data in a CSV file or a
 data frame.
 }
 \examples{
-\dontrun{
 library(magrittr)
 library(dplyr)
 
@@ -79,6 +78,5 @@ node_count(graph)
 # Get a count of edges in the graph
 edge_count(graph)
 #> [1] 13
-}
 }
 

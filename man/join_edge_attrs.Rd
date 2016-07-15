@@ -37,7 +37,6 @@ in this function allows for no possibility that
 edges in the graph might be removed after the join.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a simple graph
@@ -70,6 +69,5 @@ get_edge_df(graph)
 #> 3    2  4     3.53310530960626
 #> 4    2  5      5.6516614809259
 #> 5    3  5     5.87955663602654
-}
 }
 

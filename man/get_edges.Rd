@@ -42,7 +42,6 @@ An optional filter by edge attribute can limit the
 set of edges returned.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -103,6 +102,5 @@ get_edges(
   match = "pink",
   return_type = "vector")
 #> [1] "a -> d"
-}
 }
 

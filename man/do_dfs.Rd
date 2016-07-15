@@ -29,7 +29,6 @@ the starting point or using the whole graph,
 perform a depth-first search.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph containing two balanced trees
@@ -95,6 +94,5 @@ graph \%>\%
 #>
 #> $search_path
 #> [1] "3" "1" "3"
-}
 }
 

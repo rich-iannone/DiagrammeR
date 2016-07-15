@@ -34,7 +34,6 @@ the current nodes in the selection with those nodes
 traversed to.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph
@@ -114,6 +113,5 @@ graph \%>\%
   trav_in("value", ">5.0") \%>\%
   get_selection
 #> [1] "2"
-}
 }
 

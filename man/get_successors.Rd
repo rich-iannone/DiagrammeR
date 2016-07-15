@@ -22,7 +22,6 @@ nodes that have a
 connection from the given node.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -47,6 +46,5 @@ get_successors(graph, node = "A")
 # If there are no successors, NA is returned
 get_successors(graph, node = "Z")
 #> [1] NA
-}
 }
 

@@ -43,7 +43,6 @@ and perform operations on the relationship for that
 edge.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a node data frame (ndf)
@@ -101,7 +100,5 @@ graph \%<>\%
 graph \%>\%
   edge_rel(1, 2)
 #> [1] "rel a"
-
-}
 }
 

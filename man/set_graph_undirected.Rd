@@ -18,7 +18,6 @@ Take a graph which is directed and
 convert it to an undirected graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph with a directed tree
@@ -33,6 +32,5 @@ graph <-
 # Perform a check on whether graph is directed
 graph \%>\% is_graph_directed
 #> [1] FALSE
-}
 }
 

@@ -39,7 +39,6 @@ the node ID) and perform operations on the type
 definition for that node.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a node data frame (ndf)
@@ -94,6 +93,5 @@ graph \%<>\%
 graph \%>\%
   node_type(1)
 #> [1] "a"
-}
 }
 

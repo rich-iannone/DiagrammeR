@@ -28,7 +28,6 @@ and optionally obtain a count of edges by their
 relationship type.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -68,6 +67,5 @@ edge_count(graph, rel = "rel_a")
 # `rel_a` and `rel_b`
 edge_count(graph, rel = c("rel_a", "rel_b"))
 #> [1] 16
-}
 }
 

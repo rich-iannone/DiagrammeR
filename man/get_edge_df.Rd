@@ -19,7 +19,6 @@ From a graph, obtain an edge data frame
 with all current edge attributes.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph using several piped functions
@@ -48,6 +47,5 @@ graph \%>\% get_edge_df
 #> 3    1  4   a green
 #> 4    1  5   a green
 #> 5    1  6   b  blue
-}
 }
 

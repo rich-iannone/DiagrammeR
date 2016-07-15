@@ -25,7 +25,6 @@ Burt's Constraint Index) for one or more nodes in a
 graph.
 }
 \examples{
-\dontrun{
 # Create a random graph
 graph <-
   create_random_graph(
@@ -52,6 +51,5 @@ get_constraint(graph, c(5, 7))
 #>    node constraint
 #> 5     5  0.3711188
 #> 7     7  0.3735494
-}
 }
 

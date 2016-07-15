@@ -30,7 +30,6 @@ From a graph object of class
 attribute properties for one or more nodes.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -77,6 +76,5 @@ nodes <-
     x = nodes,
     node_attr = "color",
     values = "blue")
-}
 }
 

@@ -39,7 +39,6 @@ With a graph object of class
 \code{dgr_graph}, add a node cycle to the graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a new graph and add a cycle of nodes to it
@@ -56,6 +55,5 @@ node_info(graph)
 #> 4    4     4        2     1      1     0
 #> 5    5     5        2     1      1     0
 #> 6    6     6        2     1      1     0
-}
 }
 

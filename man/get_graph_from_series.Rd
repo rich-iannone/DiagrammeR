@@ -18,7 +18,6 @@ Using a graph series object of type
 \code{dgr_graph_1D}, get a graph object.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create three graphs
@@ -54,6 +53,5 @@ extracted_graph <-
   get_graph_from_series(
     graph_series = series,
     graph_no = 2)
-}
 }
 

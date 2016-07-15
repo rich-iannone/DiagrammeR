@@ -30,7 +30,6 @@ separated by a single space. For undirected graphs,
 \code{--} should replace \code{->}.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph with 10 nodes
@@ -43,6 +42,5 @@ graph <-
   graph \%>\%
   add_edges_w_string(
     "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
-}
 }
 

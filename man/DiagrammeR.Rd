@@ -33,7 +33,6 @@ Make diagrams in R using
 provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
-\dontrun{
 # note the whitespace is not important
 DiagrammeR("
   graph LR
@@ -130,7 +129,5 @@ sequenceDiagram;
      ticket seller->>customer:  sorry;
    end
 ")
-}
-
 }
 

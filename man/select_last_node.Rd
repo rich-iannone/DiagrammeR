@@ -22,7 +22,6 @@ node data frame. In practice, this will typically be
 the last node added to the graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create an empty graph
@@ -38,6 +37,5 @@ graph \%<>\% select_last_node
 graph \%>\% get_selection
 #> $nodes
 #> [1] "3"
-}
 }
 

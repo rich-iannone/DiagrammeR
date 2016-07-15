@@ -34,7 +34,6 @@ of nodes connected a specified distance from an
 initial node.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph with a tree structure that's
@@ -94,6 +93,5 @@ graph \%<>\%
 # that all 40 nodes have indeed been selected
 graph \%>\% get_selection \%>\% unlist \%>\% length
 #> [1] 40
-}
 }
 

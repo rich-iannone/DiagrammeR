@@ -23,7 +23,6 @@ the starting point get all nodes connected (i.e.,
 reachable with a traversible path) to that node.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # This graph, created using `create_random_graph()`
@@ -75,6 +74,5 @@ graph_2 \%>\% get_all_connected_nodes(1)
 graph_2 \%>\% get_all_connected_nodes(2)
 #> [1] "10" "12" "13" "15" "17" "20" "24" "27"
 #> [9] "29" "31"
-}
 }
 

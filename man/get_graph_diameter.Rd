@@ -19,7 +19,6 @@ Get the graph diameter, which is the
 maximum eccentricity.
 }
 \examples{
-\dontrun{
 # Get the graph diameter for a randomly-created
 # graph
 get_graph_diameter(
@@ -28,6 +27,5 @@ get_graph_diameter(
     fully_connected = TRUE,
     set_seed = 20))
 #> [1] 4
-}
 }
 

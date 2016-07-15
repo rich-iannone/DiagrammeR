@@ -39,7 +39,6 @@ With a graph object of class
 to extant nodes within the graph.
 }
 \examples{
-\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -58,6 +57,5 @@ get_node_df(graph)
 #> 1     1            1
 #> 2     2            2
 #> 3     3 person     3
-}
 }
 

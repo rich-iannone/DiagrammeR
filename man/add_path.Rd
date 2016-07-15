@@ -39,7 +39,6 @@ With a graph object of class
 \code{dgr_graph}, add a node path to the graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a new graph and add 3 paths of varying
@@ -68,6 +67,5 @@ node_info(graph)
 #> 13    4     4 four_path   1     1      0     0
 #> 14    9     9 five_path   1     1      0     0
 #> 15   15    15  six_path   1     1      0     0
-}
 }
 

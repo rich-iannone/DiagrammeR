@@ -22,7 +22,6 @@ degree frequency. The bin width is set to 1 and
 zero-value degrees are omitted from the output.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a random, directed graph with 18 nodes
@@ -43,6 +42,5 @@ random_graph <-
 random_graph \%>\% get_degree_histogram
 #> 1 2 3 4 5
 #> 4 6 3 4 1
-}
 }
 

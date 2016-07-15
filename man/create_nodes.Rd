@@ -28,7 +28,6 @@ combined with other similarly-generated data frames,
 or, added to a graph object.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -48,6 +47,5 @@ nodes
 #> 2     2    a     2 filled  aqua    circle   2.6
 #> 3     3    a     3 filled  aqua rectangle   9.4
 #> 4     4    a     4 filled  aqua rectangle   2.7
-}
 }
 

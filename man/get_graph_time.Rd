@@ -25,7 +25,6 @@ Set the time and timezone for a graph
 object of class \code{dgr_graph}.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create an empty graph and set the graph's time;
@@ -49,6 +48,5 @@ graph \%>\% get_graph_time(as_posixct = FALSE)
 # graph time
 graph \%>\% get_graph_time(get_tz = TRUE)
 #> [1] "GMT"
-}
 }
 

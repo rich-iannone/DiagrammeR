@@ -27,7 +27,6 @@ specifying a pair of node IDs corresponding to the
 edge direction.
 }
 \examples{
-\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -48,6 +47,5 @@ graph <-
     graph = graph,
     from = "a",
     to = "b")
-}
 }
 

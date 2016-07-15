@@ -45,7 +45,6 @@ threshold values) node attribute to the starting
 node.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph with a tree structure that's
@@ -190,6 +189,5 @@ random_graph \%>\%
     tol_abs = c(10, 10)) \%>\%
     length
 #> [1] 17
-}
 }
 

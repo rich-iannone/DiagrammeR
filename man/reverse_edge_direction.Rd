@@ -18,7 +18,6 @@ Take a directed graph and reverse the
 edge directions.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a graph with a directed tree
@@ -35,6 +34,5 @@ graph <-
 graph \%>\% get_edges
 #> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2" "6 -> 3"
 #> [6] "7 -> 3"
-}
 }
 

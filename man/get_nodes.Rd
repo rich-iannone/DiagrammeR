@@ -32,7 +32,6 @@ filter by node attribute can limit the set of node
 ID values returned.
 }
 \examples{
-\dontrun{
 # Before getting node ID values, create a
 # simple graph
 nodes <-
@@ -71,6 +70,5 @@ get_nodes(
   node_attr = "color",
   match = "green")
 #> [1] "b"
-}
 }
 

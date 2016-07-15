@@ -26,7 +26,6 @@ From a graph object of class
 and optionally obtain a count of nodes by their type.
 }
 \examples{
-\dontrun{
 # Create a node data frame
 nodes <-
   create_nodes(
@@ -66,6 +65,5 @@ node_count(graph, type = "a_to_g")
 
 node_count(graph, type = c("a_to_g", "q_to_x"))
 #> [1] 15
-}
 }
 

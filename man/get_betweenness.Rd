@@ -19,7 +19,6 @@ Get the betweenness centrality scores
 for all nodes in a graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a random graph
@@ -49,6 +48,5 @@ graph <-
     get_betweenness(.),
     by_graph = "nodes",
     by_df = "node")
-}
 }
 

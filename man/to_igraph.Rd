@@ -18,7 +18,6 @@ Convert a DiagrammeR graph to
 an igraph graph object.
 }
 \examples{
-\dontrun{
 # Create a DiagrammeR graph object
 dgr_graph <-
   create_random_graph(
@@ -43,6 +42,5 @@ summary(ig_graph)
 #> IGRAPH UN-B 36 50 --
 #> + attr: name (v/c), type (v/c), label
 #> | (v/c), value (v/c), rel (e/c)
-}
 }
 

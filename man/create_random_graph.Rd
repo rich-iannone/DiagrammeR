@@ -36,7 +36,6 @@ Create a graph of up to \code{n} nodes
 with randomized edge assignments.
 }
 \examples{
-\dontrun{
 # Create a random, directed graph with 50 nodes
 # and 75 edges
 random_graph_directed <-
@@ -69,6 +68,5 @@ random_directed_graph_letters <-
     m = 20,
     directed = TRUE,
     node_id = LETTERS)
-}
 }
 

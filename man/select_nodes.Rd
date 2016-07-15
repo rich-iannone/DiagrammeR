@@ -41,7 +41,6 @@ Select nodes from a graph object of
 class \code{dgr_graph}.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a node data frame (ndf)
@@ -108,6 +107,5 @@ graph <-
 get_selection(graph)
 #> $nodes
 #> [1] "a" "c"
-}
 }
 

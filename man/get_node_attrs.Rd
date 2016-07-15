@@ -28,7 +28,6 @@ From a graph object of class
 attribute values for one or more nodes.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # With the `create_random_graph()` function, get
@@ -55,6 +54,5 @@ random_graph \%>\%
   get_node_attrs("value", nodes = c(1, 3))
 #> 1 3
 #> 9 3
-}
 }
 

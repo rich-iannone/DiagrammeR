@@ -22,7 +22,6 @@ With two or more nodes, get the set of
 common neighboring nodes.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a random, directed graph with 18 nodes
@@ -49,6 +48,5 @@ random_graph \%>\%
 random_graph \%>\%
   get_common_nbrs(c(9, 17))
 #> [1] "1"
-}
 }
 

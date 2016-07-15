@@ -46,7 +46,6 @@ Select edges from a graph object of
 class \code{dgr_graph}.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a node data frame (ndf)
@@ -128,6 +127,5 @@ get_selection(graph)
 #>
 #> $edges$to
 #> [1] "d" "a"
-}
 }
 

@@ -37,7 +37,6 @@ in this function allows for no possibility that
 nodes in the graph might be removed after the join.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a simple graph
@@ -66,6 +65,5 @@ get_node_df(graph)
 #> 3     3            5.43965531750004
 #> 4     4            3.50233363164518
 #> 5     5            5.04599475422798
-}
 }
 

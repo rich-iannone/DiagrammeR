@@ -23,7 +23,6 @@ series object for storage of multiple graphs across
 a sequential or temporal one-dimensional array.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create three graphs
@@ -57,6 +56,5 @@ series <-
 # Count the number of graphs in the graph series
 graph_count(series)
 #> [1] 3
-}
 }
 

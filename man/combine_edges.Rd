@@ -21,7 +21,6 @@ regardless of the number and ordering of the
 columns.
 }
 \examples{
-\dontrun{
 # Combine two edge data frames
 edges_1 <-
   create_edges(
@@ -41,6 +40,5 @@ edges_2 <-
 
 all_edges <-
   combine_edges(edges_1, edges_2)
-}
 }
 

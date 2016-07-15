@@ -35,7 +35,6 @@ From a graph object of class
 attribute properties for one or more edges
 }
 \examples{
-\dontrun{
 # Create a simple graph
 nodes <-
   create_nodes(
@@ -101,6 +100,5 @@ graph <-
     edge_attr = "color",
     values = "black",
     to = "a")
-}
 }
 

@@ -23,7 +23,6 @@ set of graph objects contained within a graph series
 object.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create three graphs
@@ -70,6 +69,5 @@ series_info(series)
 #>   graph name date_time   tz nodes edges directed
 #> 1     1 keep      <NA> <NA>     3     3     TRUE
 #> 2     2 keep      <NA> <NA>     5     5     TRUE
-}
 }
 

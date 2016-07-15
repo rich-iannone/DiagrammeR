@@ -37,7 +37,6 @@ graphs' index positions in the graph series or
 through selection via graphs' date-time attributes.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create three graphs
@@ -106,6 +105,5 @@ series_time_subset <-
 
 graph_count(series_time_subset)
 #> [1] 1
-}
 }
 

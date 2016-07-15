@@ -18,7 +18,6 @@ Obtain a data frame with detailed information on edges and
 their interrelationships within a graph.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -52,6 +51,5 @@ edge_info(graph)
 #> 4     U    K letter_to_letter
 #> 5     I    V letter_to_letter
 #>..   ...  ...              ...
-}
 }
 

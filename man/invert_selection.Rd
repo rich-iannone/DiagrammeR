@@ -21,7 +21,6 @@ previously unselected will now be selected and vice
 versa.
 }
 \examples{
-\dontrun{
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -58,6 +57,5 @@ graph <- invert_selection(graph = graph)
 get_selection(graph)
 #> $nodes
 #> [1] "b" "d"
-}
 }
 

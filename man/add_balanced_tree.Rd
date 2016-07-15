@@ -42,7 +42,6 @@ With a graph object of class
 \code{dgr_graph}, add a balanced tree to the graph.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a new graph and add 3 different types of
@@ -98,6 +97,5 @@ node_info(graph)
 #> 39   39    39 quaternary   1     1      0     0
 #> 40   40    40 quaternary   1     1      0     0
 #> 41   41    41 quaternary   1     1      0     0
-}
 }
 

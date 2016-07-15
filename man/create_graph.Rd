@@ -63,7 +63,6 @@ option to use node data frames (ndfs) and/or edge
 data frames (edfs) to populate the initial graph.
 }
 \examples{
-\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -125,6 +124,5 @@ graph <-
     node_attrs = "fontname = Helvetica",
     edge_attrs = c("color = blue",
                    "arrowsize = 2"))
-}
 }
 

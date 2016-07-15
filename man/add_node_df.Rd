@@ -24,7 +24,6 @@ With a graph object of class
 that graph.
 }
 \examples{
-\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -71,6 +70,5 @@ get_node_df(graph)
 #> 6     f letter     f brown   6.4
 #> 7     g letter     g  aqua   0.8
 #> 8     h letter     h  pink   4.2
-}
 }
 

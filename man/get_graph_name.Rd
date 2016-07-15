@@ -21,7 +21,6 @@ Get the name of a graph object of class
 \code{dgr_graph}.
 }
 \examples{
-\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -31,6 +30,5 @@ graph <- set_graph_name(graph, "the_name")
 # Get the graph's name
 get_graph_name(graph)
 #> [1] "the_name"
-}
 }
 

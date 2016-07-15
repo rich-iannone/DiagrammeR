@@ -21,7 +21,6 @@ Get the current selection of nodes or
 edges from a graph object of class \code{dgr_graph}.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create a simple graph
@@ -50,6 +49,5 @@ graph \%>\%
   select_edges_by_node_id(4) \%>\%
   get_selection
 #> [1] "4 -> 5" "4 -> 6" "3 -> 4"
-}
 }
 

@@ -15,7 +15,6 @@ Use Razor-like syntax to define a template for use in a
 }
 \examples{
 \dontrun{
-
 # a simple example to use a LETTER as a node label
 spec <- "
   digraph { '@1' }
@@ -46,6 +45,5 @@ a -> { b c d e f g h i j}
 "
 grViz(replace_in_spec(spec))
 }
-
 }
 

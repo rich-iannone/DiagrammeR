@@ -25,7 +25,6 @@ class \code{dgr_graph}. Optionally, set node
 \code{type} values for the new nodes.
 }
 \examples{
-\dontrun{
 library(magrittr)
 
 # Create an empty graph and add 5 nodes to it; these
@@ -37,6 +36,5 @@ graph <-
 # Get the graph's nodes
 graph \%>\% get_nodes
 #> [1] "1" "2" "3" "4" "5"
-}
 }
 
