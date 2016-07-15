@@ -14,6 +14,7 @@
 #' @return a data frame or a list object, depending on
 #' the value given to \code{return_type}.
 #' @examples
+#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a random graph
@@ -52,6 +53,7 @@
 #' #> 9          1   11
 #' #> 10         1   14
 #' #> ..         ..  ..
+#' }
 #' @importFrom stats na.omit
 #' @export get_connected_components
 

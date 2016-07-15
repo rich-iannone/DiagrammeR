@@ -6,6 +6,7 @@
 #' \code{dgr_graph}.
 #' @return a vector of node IDs.
 #' @examples
+#' \dontrun{
 #' # Get the nodes that are in the graph periphery of
 #' # a randomly-created graph
 #' get_periphery(
@@ -14,6 +15,7 @@
 #'     fully_connected = TRUE,
 #'     set_seed = 20))
 #' #> [1] "13"
+#' }
 #' @export get_periphery
 
 get_periphery <- function(graph) {
