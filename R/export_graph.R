@@ -46,6 +46,7 @@
 #'   file_type = "PNG")
 #' }
 #' @import rsvg DiagrammeRsvg
+#' @importFrom utils installed.packages
 #' @export export_graph
 
 export_graph <- function(graph,
@@ -54,7 +55,8 @@ export_graph <- function(graph,
                          width = NULL,
                          height = NULL) {
 
-  if (!("DiagrammeRsvg" %in% rownames(installed.packages()))) {
+  if (!("DiagrammeRsvg" %in%
+        rownames(utils::installed.packages()))) {
     stop("To use this function, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
   }
 

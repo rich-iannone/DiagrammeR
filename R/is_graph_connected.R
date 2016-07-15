@@ -38,6 +38,7 @@
 #'
 #' graph_3 %>% is_graph_connected
 #' #> [1] FALSE
+#' @importFrom utils combn
 #' @export is_graph_connected
 
 is_graph_connected <- function(graph) {
@@ -49,7 +50,7 @@ is_graph_connected <- function(graph) {
   }
 
   node_pairs <-
-    as.data.frame(t(combn(get_nodes(graph), 2)),
+    as.data.frame(t(utils::combn(get_nodes(graph), 2)),
                   stringsAsFactors = FALSE)
   graph_edges <-
     get_edges(graph, return_type = "df")

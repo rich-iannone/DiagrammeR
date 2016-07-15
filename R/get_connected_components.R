@@ -52,6 +52,7 @@
 #' #> 9          1   11
 #' #> 10         1   14
 #' #> ..         ..  ..
+#' @importFrom stats na.omit
 #' @export get_connected_components
 
 get_connected_components <- function(graph,
@@ -81,7 +82,7 @@ get_connected_components <- function(graph,
 
     # Place connected nodes in `nodes` list
     nodes[[i]] <-
-      na.omit(
+      stats::na.omit(
         c(get_all_connected_nodes(graph,
                                   starting_node),
           starting_node))

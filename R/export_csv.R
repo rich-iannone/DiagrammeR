@@ -44,6 +44,7 @@
 #' # Create separate `nodes.csv` and `edges.csv`
 #' # files in the working directory
 #' graph %>% export_csv
+#' @importFrom utils write.csv
 #' @export export_csv
 
 export_csv <- function(graph,
@@ -85,13 +86,13 @@ export_csv <- function(graph,
   }
 
   # Write the CSV files to the output directory
-  write.csv(nodes_df,
-            file = paste0(output_path,
-                          "/", ndf_name),
-            row.names = FALSE, quote = FALSE)
+  utils::write.csv(nodes_df,
+                   file = paste0(output_path,
+                                 "/", ndf_name),
+                   row.names = FALSE, quote = FALSE)
 
-  write.csv(edges_df,
-            file = paste0(output_path,
-                          "/", edf_name),
-            row.names = FALSE, quote = FALSE)
+  utils::write.csv(edges_df,
+                   file = paste0(output_path,
+                                 "/", edf_name),
+                   row.names = FALSE, quote = FALSE)
 }
