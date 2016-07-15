@@ -23,6 +23,7 @@ Set the time and timezone for a graph
 object of class \code{dgr_graph}.
 }
 \examples{
+\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -44,5 +45,6 @@ graph_2 <-
   set_graph_time(
     graph_2,
     tz = "America/Los_Angeles")
+}
 }
 
