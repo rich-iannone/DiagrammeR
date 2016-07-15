@@ -79,24 +79,6 @@
 #'   set_node_attrs(1, "value", 3.4) %>%
 #'   set_node_attrs(2, "value", 6.7) %>%
 #'   set_node_attrs(3, "value", 9.1)
-#'
-#' # Traverse from node `2` to both `1` and `3`,
-#' # setting the condition that each node traversed to
-#' # must have a `value` greater than 5.0 (node `1` has
-#' # a `value` of 3.4)
-#' graph %>%
-#'   select_nodes_by_id(2) %>%
-#'   trav_both("value", ">5.0") %>%
-#'   get_selection
-#' #> [1] "3"
-#'
-#' # Changing the condition to traverse to values less
-#' # than 5.0 results in an alternate node selection
-#' graph %>%
-#'   select_nodes_by_id(2) %>%
-#'   trav_both("value", "<5.0") %>%
-#'   get_selection
-#' #> [1] "1"
 #' @export trav_both
 
 trav_both <- function(graph,
