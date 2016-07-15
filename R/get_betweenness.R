@@ -34,7 +34,8 @@
 #'   join_node_attrs(
 #'     get_betweenness(.),
 #'     by_graph = "nodes",
-#'     by_df = "node")#' @importFrom influenceR betweenness
+#'     by_df = "node")
+#' @importFrom influenceR betweenness
 #' @export get_betweenness
 
 get_betweenness <- function(graph) {
