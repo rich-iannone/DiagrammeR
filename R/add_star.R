@@ -23,7 +23,6 @@
 #' is considered the first node in this series.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a new graph and add 3 stars of varying
@@ -52,7 +51,6 @@
 #' #> 13   13    13  six_star   1     1      0     0
 #' #> 14   14    14  six_star   1     1      0     0
 #' #> 15   15    15  six_star   1     1      0     0
-#' }
 #' @export add_star
 
 add_star <- function(graph,

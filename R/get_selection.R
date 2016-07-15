@@ -6,7 +6,6 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a simple graph
@@ -35,7 +34,6 @@
 #'   select_edges_by_node_id(4) %>%
 #'   get_selection
 #' #> [1] "4 -> 5" "4 -> 6" "3 -> 4"
-#' }
 #' @return a vector with the current selection of nodes
 #' or edges.
 #' @export get_selection

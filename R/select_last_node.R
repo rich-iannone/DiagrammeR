@@ -9,7 +9,6 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create an empty graph
@@ -25,7 +24,6 @@
 #' graph %>% get_selection
 #' #> $nodes
 #' #> [1] "3"
-#' }
 #' @export select_last_node
 
 select_last_node <- function(graph) {

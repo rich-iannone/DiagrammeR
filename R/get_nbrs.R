@@ -7,7 +7,6 @@
 #' @param nodes a vector of node ID values.
 #' @return a vector of node ID values.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a random, directed graph with 18 nodes
@@ -45,7 +44,6 @@
 #'
 #' # Render the graph to see the change
 #' random_graph %>% render_graph
-#' }
 #' @export get_nbrs
 
 get_nbrs <- function(graph,

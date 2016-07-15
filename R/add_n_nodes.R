@@ -10,7 +10,6 @@
 #' \code{type} attribute to all newly created nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create an empty graph and add 5 nodes to it; these
@@ -22,7 +21,6 @@
 #' # Get the graph's nodes
 #' graph %>% get_nodes
 #' #> [1] "1" "2" "3" "4" "5"
-#' }
 #' @export add_n_nodes
 
 add_n_nodes <- function(graph,

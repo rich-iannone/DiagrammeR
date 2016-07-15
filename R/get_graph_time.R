@@ -9,7 +9,6 @@
 #' @param get_tz an option to just return the graph's
 #' time zone.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create an empty graph and set the graph's time;
@@ -33,7 +32,6 @@
 #' # graph time
 #' graph %>% get_graph_time(get_tz = TRUE)
 #' #> [1] "GMT"
-#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export get_graph_time
 

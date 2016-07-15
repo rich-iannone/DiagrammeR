@@ -9,7 +9,6 @@
 #' node ID value.
 #' @return a vector of node ID values.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # This graph, created using `create_random_graph()`
@@ -61,7 +60,6 @@
 #' graph_2 %>% get_all_connected_nodes(2)
 #' #> [1] "10" "12" "13" "15" "17" "20" "24" "27"
 #' #> [9] "29" "31"
-#' }
 #' @export get_all_connected_nodes
 
 get_all_connected_nodes <- function(graph,

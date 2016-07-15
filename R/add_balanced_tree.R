@@ -22,7 +22,6 @@
 #' monotonically increasing integers.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a new graph and add 3 different types of
@@ -78,7 +77,6 @@
 #' #> 39   39    39 quaternary   1     1      0     0
 #' #> 40   40    40 quaternary   1     1      0     0
 #' #> 41   41    41 quaternary   1     1      0     0
-#' }
 #' @export add_balanced_tree
 
 add_balanced_tree <- function(graph,

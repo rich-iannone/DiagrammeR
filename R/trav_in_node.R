@@ -20,7 +20,6 @@
 #' string matching.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a simple graph
@@ -42,7 +41,6 @@
 #' # made by using the `get_selection()` function
 #' get_selection(graph)
 #' #> [1] "2"
-#' }
 #' @export trav_in_node
 
 trav_in_node <- function(graph,

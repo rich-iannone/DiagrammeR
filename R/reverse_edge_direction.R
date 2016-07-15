@@ -5,7 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph with a directed tree
@@ -22,7 +21,6 @@
 #' graph %>% get_edges
 #' #> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2" "6 -> 3"
 #' #> [6] "7 -> 3"
-#' }
 #' @export reverse_edge_direction
 
 reverse_edge_direction <- function(graph) {

@@ -20,7 +20,6 @@
 #' will assigned as a monotonically increasing integer.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create an empty graph
 #' graph <- create_graph()
 #'
@@ -39,7 +38,6 @@
 #' #> 1     1            1
 #' #> 2     2            2
 #' #> 3     3 person     3
-#' }
 #' @export add_node
 
 add_node <- function(graph,

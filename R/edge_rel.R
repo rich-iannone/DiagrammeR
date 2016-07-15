@@ -26,7 +26,6 @@
 #' relationship.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a node data frame (ndf)
@@ -84,8 +83,6 @@
 #' graph %>%
 #'   edge_rel(1, 2)
 #' #> [1] "rel a"
-#'
-#' }
 #' @export edge_rel
 
 edge_rel <- function(graph,

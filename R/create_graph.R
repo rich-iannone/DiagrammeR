@@ -38,7 +38,6 @@
 #' DOT code and place into the graph object.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create an empty graph
 #' graph <- create_graph()
 #'
@@ -100,7 +99,6 @@
 #'     node_attrs = "fontname = Helvetica",
 #'     edge_attrs = c("color = blue",
 #'                    "arrowsize = 2"))
-#' }
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,

@@ -9,7 +9,6 @@
 #' bin width equal to 1) where the degree values
 #' serve as names.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a random, directed graph with 18 nodes
@@ -30,7 +29,6 @@
 #' random_graph %>% get_degree_histogram
 #' #> 1 2 3 4 5
 #' #> 4 6 3 4 1
-#' }
 #' @export get_degree_histogram
 
 get_degree_histogram <- function(graph) {

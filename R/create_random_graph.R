@@ -18,7 +18,6 @@
 #' supplied in \code{n}; vectors longer than the length
 #' of \code{n} will be truncated.
 #' @examples
-#' \dontrun{
 #' # Create a random, directed graph with 50 nodes
 #' # and 75 edges
 #' random_graph_directed <-
@@ -51,7 +50,6 @@
 #'     m = 20,
 #'     directed = TRUE,
 #'     node_id = LETTERS)
-#' }
 #' @export create_random_graph
 
 create_random_graph <- function(n,

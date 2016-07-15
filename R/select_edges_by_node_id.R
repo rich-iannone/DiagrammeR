@@ -18,7 +18,6 @@
 #' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph with a tree structure that's
@@ -78,7 +77,6 @@
 #'   l/e
 #' }
 #' #> [1] 0.75
-#' }
 #' @export select_edges_by_node_id
 
 select_edges_by_node_id <- function(graph,

@@ -11,7 +11,6 @@
 #' @return a data frame with closeness values for
 #' each of the nodes.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a random graph
@@ -41,7 +40,6 @@
 #'     get_closeness(.),
 #'     by_graph = "nodes",
 #'     by_df = "node")
-#' }
 #' @importFrom igraph closeness
 #' @export get_closeness
 

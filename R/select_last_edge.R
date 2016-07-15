@@ -10,7 +10,6 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create an empty graph
@@ -35,7 +34,6 @@
 #' #>
 #' #> $edges$to
 #' #> [1] "3"
-#' }
 #' @export select_last_edge
 
 select_last_edge <- function(graph) {

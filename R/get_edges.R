@@ -26,7 +26,6 @@
 #' @return a list, data frame, or a vector object,
 #' depending on the value given to \code{return_type}.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -87,7 +86,6 @@
 #'   match = "pink",
 #'   return_type = "vector")
 #' #> [1] "a -> d"
-#' }
 #' @export get_edges
 
 get_edges <- function(x,

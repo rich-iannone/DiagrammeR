@@ -17,7 +17,6 @@
 #' argument.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a new graph and set some global attributes
@@ -39,7 +38,6 @@
 #' #>
 #' #> $edge_attrs
 #' #> [1] "color = gray"
-#' }
 #' @export set_global_graph_attrs
 
 set_global_graph_attrs <- function(graph,

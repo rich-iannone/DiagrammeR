@@ -10,7 +10,6 @@
 #' ID in the graph.
 #' @return a logical value.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame
 #' nodes <-
 #'   create_nodes(
@@ -43,7 +42,6 @@
 #' all(sapply(LETTERS,
 #'       function(x) node_present(graph, x)))
 #' #> TRUE
-#' }
 #' @export node_present
 
 node_present <- function(graph,

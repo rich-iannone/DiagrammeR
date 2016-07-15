@@ -8,7 +8,6 @@
 #' contain edge IDs and associated attributes.
 #' @return a combined edge data frame.
 #' @examples
-#' \dontrun{
 #' # Combine two edge data frames
 #' edges_1 <-
 #'   create_edges(
@@ -28,7 +27,6 @@
 #'
 #' all_edges <-
 #'   combine_edges(edges_1, edges_2)
-#' }
 #' @export combine_edges
 
 combine_edges <- function(...) {

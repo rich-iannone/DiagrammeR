@@ -8,7 +8,6 @@
 #' at least 2.
 #' @return a vector of node ID values.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a random, directed graph with 18 nodes
@@ -35,7 +34,6 @@
 #' random_graph %>%
 #'   get_common_nbrs(c(9, 17))
 #' #> [1] "1"
-#' }
 #' @export get_common_nbrs
 
 get_common_nbrs <- function(graph,

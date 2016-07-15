@@ -15,7 +15,6 @@
 #' including the R console, within R Markdown documents,
 #' and within Shiny output bindings.
 #' @examples
-#' \dontrun{
 #' # Create a simple graph running left to right (note
 #' # that the whitespace is not important)
 #' DiagrammeR("
@@ -112,8 +111,6 @@
 #'      ticket seller->>customer: sorry;
 #'    end
 #' ")
-#' }
-#'
 #' @import htmlwidgets
 #' @export
 

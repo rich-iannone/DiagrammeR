@@ -25,7 +25,6 @@
 #' \code{rel} attribute to all newly created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create an empty graph, add a node to it, select
@@ -63,7 +62,6 @@
 #' # Get the graph's edges
 #' graph %>% get_edges
 #' #> "2 -> 1" "3 -> 1" "4 -> 1" "5 -> 1" "6 -> 1"
-#' }
 #' @export add_n_nodes_ws
 
 add_n_nodes_ws <- function(graph,

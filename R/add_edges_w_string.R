@@ -15,7 +15,6 @@
 #' relationship between the connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph with 10 nodes
@@ -28,7 +27,6 @@
 #'   graph %>%
 #'   add_edges_w_string(
 #'     "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
-#' }
 #' @export add_edges_w_string
 
 add_edges_w_string <- function(graph,

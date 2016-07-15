@@ -6,7 +6,6 @@
 #' \code{create_graph}.
 #' @return a node data frame.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph using several piped functions
@@ -40,7 +39,6 @@
 #' #> 4     4    b          10 grey70
 #' #> 5     5    b          10 grey80
 #' #> 6     6    b          10 grey80
-#' }
 #' @export get_node_df
 
 get_node_df <- function(graph) {

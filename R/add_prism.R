@@ -26,7 +26,6 @@
 #' monotonically increasing integers.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a new graph and add a prism
@@ -43,7 +42,6 @@
 #' #> 4    4     4 prism   3     2      1     0
 #' #> 5    5     5 prism   3     2      1     0
 #' #> 6    6     6 prism   3     2      1     0
-#' }
 #' @export add_prism
 
 add_prism <- function(graph,

@@ -6,7 +6,6 @@
 #' \code{dgr_graph}.
 #' @return a logical value.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create an empty graph; by default, new graphs
@@ -24,7 +23,6 @@
 #'   set_graph_undirected %>%
 #'   is_graph_directed
 #' #> [1] FALSE
-#' }
 #' @export is_graph_directed
 
 is_graph_directed <- function(graph) {

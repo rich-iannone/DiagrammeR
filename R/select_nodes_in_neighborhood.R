@@ -18,7 +18,6 @@
 #' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph with a tree structure that's
@@ -78,7 +77,6 @@
 #' # that all 40 nodes have indeed been selected
 #' graph %>% get_selection %>% unlist %>% length
 #' #> [1] 40
-#' }
 #' @export select_nodes_in_neighborhood
 
 select_nodes_in_neighborhood <- function(graph,

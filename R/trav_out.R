@@ -19,7 +19,6 @@
 #' string matching.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph
@@ -99,7 +98,6 @@
 #'   trav_out("value", ">3.0") %>%
 #'   get_selection
 #' #> [1] "3"
-#' }
 #' @export trav_out
 
 trav_out <- function(graph,

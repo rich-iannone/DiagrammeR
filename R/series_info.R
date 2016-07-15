@@ -6,7 +6,6 @@
 #' @return a data frame containing information on the
 #' graphs within the supplied graph series.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create three graphs
@@ -43,7 +42,6 @@
 #' #> 1     1 <NA>      <NA> <NA>     3     3     TRUE
 #' #> 2     2 <NA>      <NA> <NA>     4     4     TRUE
 #' #> 3     3 <NA>      <NA> <NA>     5     5     TRUE
-#' }
 #' @export series_info
 
 series_info <- function(graph_series) {

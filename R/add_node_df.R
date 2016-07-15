@@ -10,7 +10,6 @@
 #' using \code{create_nodes}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create an empty graph
 #' graph <- create_graph()
 #'
@@ -57,7 +56,6 @@
 #' #> 6     f letter     f brown   6.4
 #' #> 7     g letter     g  aqua   0.8
 #' #> 8     h letter     h  pink   4.2
-#' }
 #' @export add_node_df
 
 add_node_df <- function(graph,

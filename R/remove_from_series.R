@@ -9,7 +9,6 @@
 #' @return a graph series object of type
 #' \code{dgr_graph_1D}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create three graphs
@@ -56,7 +55,6 @@
 #' #>   graph name date_time   tz nodes edges directed
 #' #> 1     1 keep      <NA> <NA>     3     3     TRUE
 #' #> 2     2 keep      <NA> <NA>     5     5     TRUE
-#' }
 #' @export remove_from_series
 
 remove_from_series <- function(graph_series,

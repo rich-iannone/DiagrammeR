@@ -5,7 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a logical value.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # This graph, created using `create_random_graph()`
@@ -39,7 +38,6 @@
 #'
 #' graph_3 %>% is_graph_connected
 #' #> [1] FALSE
-#' }
 #' @export is_graph_connected
 
 is_graph_connected <- function(graph) {

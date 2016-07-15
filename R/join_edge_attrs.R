@@ -21,7 +21,6 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a simple graph
@@ -54,7 +53,6 @@
 #' #> 3    2  4     3.53310530960626
 #' #> 4    2  5      5.6516614809259
 #' #> 5    3  5     5.87955663602654
-#' }
 #' @export join_edge_attrs
 
 join_edge_attrs <- function(graph,

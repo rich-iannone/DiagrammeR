@@ -11,7 +11,6 @@
 #' @return a data frame with constraint scores for one
 #' or more graph nodes.
 #' @examples
-#' \dontrun{
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -38,7 +37,6 @@
 #' #>    node constraint
 #' #> 5     5  0.3711188
 #' #> 7     7  0.3735494
-#' }
 #' @importFrom influenceR constraint
 #' @export get_constraint
 

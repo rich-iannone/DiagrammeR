@@ -15,7 +15,6 @@
 #' specify which of the valid paths to return when
 #' filtering by distance.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a simple graph
@@ -93,7 +92,6 @@
 #'   longest_path = TRUE)
 #' #> [[1]]
 #' #> [1] "1" "2" "7" "5"
-#' }
 #' @return a list of paths, sorted by ascending
 #' traversal length, comprising vectors of node IDs in
 #' sequence of traversal through the graph.

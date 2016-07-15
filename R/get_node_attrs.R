@@ -13,7 +13,6 @@
 #' @return a named vector of node attribute values for
 #' the attribute given by \code{node_attr} by node ID.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # With the `create_random_graph()` function, get
@@ -40,7 +39,6 @@
 #'   get_node_attrs("value", nodes = c(1, 3))
 #' #> 1 3
 #' #> 9 3
-#' }
 #' @export get_node_attrs
 
 get_node_attrs <- function(x,

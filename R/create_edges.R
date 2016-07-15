@@ -15,7 +15,6 @@
 #' attributes.
 #' @return an edge data frame (edf).
 #' @examples
-#' \dontrun{
 #' # Create a simple edge data frame (edf) and
 #' # view the results
 #' edges <-
@@ -53,7 +52,6 @@
 #' render_graph(
 #'   create_graph(edges_df = edges),
 #'   output = "visNetwork")
-#' }
 #' @export create_edges
 
 create_edges <- function(from,

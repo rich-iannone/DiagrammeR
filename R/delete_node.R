@@ -9,7 +9,6 @@
 #' from the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create an empty graph
 #' graph <- create_graph()
 #'
@@ -19,7 +18,6 @@
 #'
 #' # Delete a node
 #' graph <- delete_node(graph, node = "a")
-#' }
 #' @export delete_node
 
 delete_node <- function(graph,

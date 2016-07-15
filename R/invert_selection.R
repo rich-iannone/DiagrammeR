@@ -8,7 +8,6 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -45,7 +44,6 @@
 #' get_selection(graph)
 #' #> $nodes
 #' #> [1] "b" "d"
-#' }
 #' @export invert_selection
 
 invert_selection <- function(graph) {

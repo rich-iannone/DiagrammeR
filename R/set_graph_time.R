@@ -7,7 +7,6 @@
 #' @param time the date-time to set for the graph.
 #' @param tz the timezone to set for the graph.
 #' @examples
-#' \dontrun{
 #' # Create an empty graph
 #' graph <- create_graph()
 #'
@@ -29,7 +28,6 @@
 #'   set_graph_time(
 #'     graph_2,
 #'     tz = "America/Los_Angeles")
-#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export set_graph_time
 

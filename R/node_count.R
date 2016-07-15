@@ -12,7 +12,6 @@
 #' to filter the node count.
 #' @return a numeric vector of single length.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame
 #' nodes <-
 #'   create_nodes(
@@ -52,7 +51,6 @@
 #'
 #' node_count(graph, type = c("a_to_g", "q_to_x"))
 #' #> [1] 15
-#' }
 #' @export node_count
 
 node_count <- function(graph,

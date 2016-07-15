@@ -6,7 +6,6 @@
 #' @param graph_no the index of the graph in the graph
 #' series.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create three graphs
@@ -42,7 +41,6 @@
 #'   get_graph_from_series(
 #'     graph_series = series,
 #'     graph_no = 2)
-#' }
 #' @export get_graph_from_series
 
 get_graph_from_series <- function(graph_series,

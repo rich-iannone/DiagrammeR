@@ -5,7 +5,6 @@
 #' \code{dgr_graph}.
 #' @return an igraph object.
 #' @examples
-#' \dontrun{
 #' # Create a DiagrammeR graph object
 #' dgr_graph <-
 #'   create_random_graph(
@@ -30,7 +29,6 @@
 #' #> IGRAPH UN-B 36 50 --
 #' #> + attr: name (v/c), type (v/c), label
 #' #> | (v/c), value (v/c), rel (e/c)
-#' }
 #' @importFrom igraph graph_from_data_frame
 #' @export to_igraph
 

@@ -6,7 +6,6 @@
 #' @return the graph diameter as a single-length
 #' vector.
 #' @examples
-#' \dontrun{
 #' # Get the graph diameter for a randomly-created
 #' # graph
 #' get_graph_diameter(
@@ -15,7 +14,6 @@
 #'     fully_connected = TRUE,
 #'     set_seed = 20))
 #' #> [1] 4
-#' }
 #' @export get_graph_diameter
 
 get_graph_diameter <- function(graph) {

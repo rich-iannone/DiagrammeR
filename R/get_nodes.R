@@ -17,7 +17,6 @@
 #' string matching.
 #' @return a vector of node ID values.
 #' @examples
-#' \dontrun{
 #' # Before getting node ID values, create a
 #' # simple graph
 #' nodes <-
@@ -56,7 +55,6 @@
 #'   node_attr = "color",
 #'   match = "green")
 #' #> [1] "b"
-#' }
 #' @export get_nodes
 
 get_nodes <- function(x,

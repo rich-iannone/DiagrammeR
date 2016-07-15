@@ -28,7 +28,6 @@
 #' neighboring node similarity to the starting node.
 #' @return a vector of node ID values.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph with a tree structure that's
@@ -173,7 +172,6 @@
 #'     tol_abs = c(10, 10)) %>%
 #'     length
 #' #> [1] 17
-#' }
 #' @export get_similar_nbrs
 
 get_similar_nbrs <- function(graph,

@@ -13,7 +13,6 @@
 #' is incoming.
 #' @return a logical value.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -46,7 +45,6 @@
 #' # `K` and `V`
 #' edge_present(graph, from = "K", to = "V")
 #' #> TRUE
-#' }
 #' @export edge_present
 
 edge_present <- function(graph,

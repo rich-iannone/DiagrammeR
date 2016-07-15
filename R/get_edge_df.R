@@ -6,7 +6,6 @@
 #' \code{create_graph}.
 #' @return an edge data frame.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph using several piped functions
@@ -35,7 +34,6 @@
 #' #> 3    1  4   a green
 #' #> 4    1  5   a green
 #' #> 5    1  6   b  blue
-#' }
 #' @export get_edge_df
 
 get_edge_df <- function(graph) {

@@ -14,7 +14,6 @@
 #' \code{dgr_graph} or a node data frame, depending on
 #' what type of object was supplied to \code{x}.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -61,7 +60,6 @@
 #'     x = nodes,
 #'     node_attr = "color",
 #'     values = "blue")
-#' }
 #' @export set_node_attrs
 
 set_node_attrs <- function(x,

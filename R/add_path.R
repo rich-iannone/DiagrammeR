@@ -21,7 +21,6 @@
 #' monotonically increasing integers.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a new graph and add 3 paths of varying
@@ -50,7 +49,6 @@
 #' #> 13    4     4 four_path   1     1      0     0
 #' #> 14    9     9 five_path   1     1      0     0
 #' #> 15   15    15  six_path   1     1      0     0
-#' }
 #' @export add_path
 
 add_path <- function(graph,

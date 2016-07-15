@@ -5,7 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a logical value.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create an empty graph
@@ -23,7 +22,6 @@
 #' # Determine whether this graph is empty
 #' is_graph_empty(graph)
 #' #> [1] FALSE
-#' }
 #' @export is_graph_empty
 
 is_graph_empty <- function(graph) {

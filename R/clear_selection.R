@@ -6,7 +6,6 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create a simple graph
 #' nodes <-
 #'   create_nodes(
@@ -43,7 +42,6 @@
 #' # Verify that the node selection has been cleared
 #' get_selection(graph)
 #' #> [1] NA
-#' }
 #' @export clear_selection
 
 clear_selection <- function(graph) {

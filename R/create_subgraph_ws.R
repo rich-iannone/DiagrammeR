@@ -7,7 +7,6 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @examples
-#' \dontrun{
 #' # Create a simple graph
 #' nodes <-
 #'   create_nodes(
@@ -52,7 +51,6 @@
 #' # Check the edges available in the subgraph
 #' get_edges(subgraph, return_type = "vector")
 #' #> [1] "c -> a" "g -> c" "e -> h"
-#' }
 #' @return a graph object of class \code{dgr_graph}.
 #' @export create_subgraph_ws
 

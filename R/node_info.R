@@ -7,7 +7,6 @@
 #' @return a data frame containing information specific
 #' to each node within the graph.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -40,20 +39,6 @@
 #' #> 5     E     E  a_to_g   1     0      1     0
 #' #> 6     F     F  a_to_g   2     1      1     0
 #' #>..   ...   ...     ... ...   ...    ...   ...
-#'
-#' # Import a large graph
-#' power_grid <-
-#'   import_graph(
-#'     system.file("examples/power_grid.graphml",
-#'                 package = "DiagrammeR"))
-#'
-#' # Use `dplyr::filter` to determine which nodes are
-#' # highly connected in this graph
-#' library(dplyr)
-#'
-#' high_connect_nodes <-
-#'   filter(node_info(power_grid), degree > 10)$node
-#' }
 #' @export node_info
 
 node_info <- function(graph) {

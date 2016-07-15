@@ -8,7 +8,6 @@
 #' @param node a node ID for the selected node.
 #' @return a vector of node ID values.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -33,7 +32,6 @@
 #' # If there are no predecessors, NA is returned
 #' get_predecessors(graph, node = "A")
 #' #> [1] NA
-#' }
 #' @export get_predecessors
 
 get_predecessors <- function(graph,

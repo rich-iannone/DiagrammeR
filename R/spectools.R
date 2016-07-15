@@ -4,7 +4,6 @@
 #' @param spec string spec to be parsed and evaluated
 #' @examples
 #' \dontrun{
-#'
 #' # a simple example to use a LETTER as a node label
 #' spec <- "
 #'   digraph { '@@1' }
@@ -35,7 +34,6 @@
 #' "
 #' grViz(replace_in_spec(spec))
 #' }
-#'
 #' @export
 
 replace_in_spec <- function(spec){

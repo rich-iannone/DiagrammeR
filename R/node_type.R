@@ -23,7 +23,6 @@
 #' definition.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a node data frame (ndf)
@@ -78,7 +77,6 @@
 #' graph %>%
 #'   node_type(1)
 #' #> [1] "a"
-#' }
 #' @export node_type
 
 node_type <- function(graph,

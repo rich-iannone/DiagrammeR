@@ -27,7 +27,6 @@
 #' edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a node data frame (ndf)
@@ -109,7 +108,6 @@
 #' #>
 #' #> $edges$to
 #' #> [1] "d" "a"
-#' }
 #' @export select_edges
 
 select_edges <- function(graph,

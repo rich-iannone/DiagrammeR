@@ -14,7 +14,6 @@
 #' direction.
 #' @return a list object containing dfs information.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph containing two balanced trees
@@ -80,7 +79,6 @@
 #' #>
 #' #> $search_path
 #' #> [1] "3" "1" "3"
-#' }
 #' @export do_dfs
 
 do_dfs <- function(graph,

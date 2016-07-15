@@ -17,7 +17,6 @@
 #' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a node data frame (ndf)
@@ -33,7 +32,6 @@
 #'   get_selection
 #' #> $nodes
 #' #> [1] "1" "2" "3" "4" "5"
-#' }
 #' @export select_nodes_by_id
 
 select_nodes_by_id <- function(graph,

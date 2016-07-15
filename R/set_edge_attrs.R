@@ -18,7 +18,6 @@
 #' \code{dgr_graph} or an edge data frame, depending on
 #' what type of object was supplied to \code{x}.
 #' @examples
-#' \dontrun{
 #' # Create a simple graph
 #' nodes <-
 #'   create_nodes(
@@ -84,7 +83,6 @@
 #'     edge_attr = "color",
 #'     values = "black",
 #'     to = "a")
-#' }
 #' @export set_edge_attrs
 
 set_edge_attrs <- function(x,

@@ -5,7 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph with a directed tree
@@ -20,7 +19,6 @@
 #' # Perform a check on whether graph is directed
 #' graph %>% is_graph_directed
 #' #> [1] FALSE
-#' }
 #' @export set_graph_undirected
 
 set_graph_undirected <- function(graph) {

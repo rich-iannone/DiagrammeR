@@ -12,7 +12,6 @@
 #' attributes.
 #' @return a node data frame (ndf).
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -32,7 +31,6 @@
 #' #> 2     2    a     2 filled  aqua    circle   2.6
 #' #> 3     3    a     3 filled  aqua rectangle   9.4
 #' #> 4     4    a     4 filled  aqua rectangle   2.7
-#' }
 #' @export create_nodes
 
 create_nodes <- function(nodes,

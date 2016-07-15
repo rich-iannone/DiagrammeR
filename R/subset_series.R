@@ -21,7 +21,6 @@
 #' @return a graph series object of type
 #' \code{dgr_graph_1D}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create three graphs
@@ -90,7 +89,6 @@
 #'
 #' graph_count(series_time_subset)
 #' #> [1] 1
-#' }
 #' @export subset_series
 
 subset_series <- function(graph_series,

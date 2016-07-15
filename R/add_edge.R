@@ -14,7 +14,6 @@
 #' connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a graph with two nodes
@@ -36,7 +35,6 @@
 #' edge_info(graph)
 #' #>   from to    rel
 #' #> 1    1  2 to_get
-#' }
 #' @export add_edge
 
 add_edge <- function(graph,

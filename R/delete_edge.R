@@ -12,7 +12,6 @@
 #' is incoming.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create an empty graph
 #' graph <- create_graph()
 #'
@@ -33,7 +32,6 @@
 #'     graph = graph,
 #'     from = "a",
 #'     to = "b")
-#' }
 #' @export delete_edge
 
 delete_edge <- function(graph,

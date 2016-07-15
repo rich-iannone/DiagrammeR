@@ -10,7 +10,6 @@
 #' using \code{create_edges}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create a graph with nodes and no edges
 #' nodes <-
 #'   create_nodes(
@@ -37,7 +36,6 @@
 #'
 #' get_edges(graph, return_type = "vector")
 #' #> [1] "a -> d" "b -> c" "c -> a"
-#' }
 #' @export add_edge_df
 
 add_edge_df <- function(graph,

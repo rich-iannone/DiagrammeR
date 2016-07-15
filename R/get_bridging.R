@@ -7,7 +7,6 @@
 #' @return a data frame with bridging scores for
 #' each of the nodes.
 #' @examples
-#' \dontrun{
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -26,7 +25,6 @@
 #' #> 8     8 0.006666667
 #' #> 9     9 0.005555556
 #' #> 10   10 0.006790123
-#' }
 #' @importFrom influenceR bridging
 #' @export get_bridging
 

@@ -22,7 +22,6 @@
 #' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a random graph with a high amount
@@ -95,7 +94,6 @@
 #' random_graph_2 %>% get_selection
 #' #> $nodes
 #' #> [1] "4" "6"
-#' }
 #' @export select_nodes_by_degree
 
 select_nodes_by_degree <- function(graph,

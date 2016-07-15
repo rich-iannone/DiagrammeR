@@ -5,7 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a vector of node IDs.
 #' @examples
-#' \dontrun{
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -16,7 +15,6 @@
 #' # graph would become disconnected)
 #' get_articulation_points(graph)
 #' #> [1] "8"  "22" "24"
-#' }
 #' @importFrom igraph articulation_points as_ids
 #' @export get_articulation_points
 

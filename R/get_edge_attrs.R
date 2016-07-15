@@ -16,7 +16,6 @@
 #' @return a named vector of edge attribute values for
 #' the attribute given by \code{edge_attr} by edge.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a simple graph where edges have an edge
@@ -51,7 +50,6 @@
 #' graph %>% get_edge_attrs("value", c(1, 2), c(2, 3))
 #' #> 1 -> 2 2 -> 3
 #' #> 1.6    2.9
-#' }
 #' @export get_edge_attrs
 
 get_edge_attrs <- function(x,

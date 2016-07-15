@@ -14,7 +14,6 @@
 #' edge relationship types.
 #' @return a numeric vector of single length.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -54,7 +53,6 @@
 #' # `rel_a` and `rel_b`
 #' edge_count(graph, rel = c("rel_a", "rel_b"))
 #' #> [1] 16
-#' }
 #' @export edge_count
 
 edge_count <- function(graph,

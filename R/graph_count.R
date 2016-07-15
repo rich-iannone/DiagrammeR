@@ -6,7 +6,6 @@
 #' @return a numeric vector representing a count of
 #' graphs in a graph series object.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create three graphs
@@ -40,7 +39,6 @@
 #' # Count the number of graphs in the graph series
 #' graph_count(series)
 #' #> [1] 3
-#' }
 #' @export graph_count
 
 graph_count <- function(graph_series) {

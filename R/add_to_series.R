@@ -9,7 +9,6 @@
 #' @return a graph series object of type
 #' \code{dgr_graph_1D}.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create three graphs
@@ -43,7 +42,6 @@
 #' # Count the number of graphs in the graph series
 #' graph_count(series)
 #' #> [1] 3
-#' }
 #' @export add_to_series
 
 add_to_series <- function(graph,

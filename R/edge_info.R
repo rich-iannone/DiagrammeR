@@ -5,7 +5,6 @@
 #' @return a data frame containing information specific to each edge within
 #' the graph.
 #' @examples
-#' \dontrun{
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
@@ -39,7 +38,6 @@
 #' #> 4     U    K letter_to_letter
 #' #> 5     I    V letter_to_letter
 #' #>..   ...  ...              ...
-#' }
 #' @export edge_info
 
 edge_info <- function(graph){

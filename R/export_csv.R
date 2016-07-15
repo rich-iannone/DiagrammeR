@@ -19,7 +19,6 @@
 #' to match those required by the Spark GraphFrames
 #' package.
 #' @examples
-#' \dontrun{
 #' library(magrittr)
 #'
 #' # Create a node data frame (ndf)
@@ -45,7 +44,6 @@
 #' # Create separate `nodes.csv` and `edges.csv`
 #' # files in the working directory
 #' graph %>% export_csv
-#' }
 #' @export export_csv
 
 export_csv <- function(graph,
