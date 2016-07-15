@@ -13,7 +13,7 @@
 #'   create_graph() %>%
 #'   add_n_nodes(1, "a") %>%
 #'   select_last_node %>%
-#'   add_n_nodes_ws(5, "b", "from") %>%
+#'   add_n_nodes_ws(5, "from", "b") %>%
 #'   select_edges_by_node_id(3:5) %>%
 #'   set_edge_attrs_ws(
 #'     "color", "green") %>%
