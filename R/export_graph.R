@@ -45,7 +45,6 @@
 #'   file_name = "mypng",
 #'   file_type = "PNG")
 #' }
-#' @import rsvg DiagrammeRsvg
 #' @importFrom utils installed.packages
 #' @export export_graph
 
