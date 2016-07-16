@@ -84,7 +84,7 @@ export_graph <- function(graph,
   }
 
   if (file_type == "PNG" | file_type == "png") {
-    rsvg_png(
+    rsvg::rsvg_png(
       charToRaw(
         DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
       file = file_name,
@@ -93,7 +93,7 @@ export_graph <- function(graph,
   }
 
   if (file_type == "PDF" | file_type == "pdf") {
-    rsvg_pdf(
+    rsvg::rsvg_pdf(
       charToRaw(
         DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
       file = file_name,
@@ -102,7 +102,7 @@ export_graph <- function(graph,
   }
 
   if (file_type == "SVG" | file_type == "svg") {
-    rsvg_svg(
+    rsvg::rsvg_svg(
       charToRaw(
         DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
       file = file_name,
@@ -111,7 +111,7 @@ export_graph <- function(graph,
   }
 
   if (file_type == "PS" | file_type == "ps") {
-    rsvg_ps(
+    rsvg::rsvg_ps(
       charToRaw(
         DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
       file = file_name,
