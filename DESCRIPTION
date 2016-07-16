@@ -40,19 +40,19 @@ Maintainer: Richard Iannone <riannone@me.com>
 Description: Create graph diagrams and flowcharts using R.
 License: MIT + file LICENSE
 Imports:
-    DiagrammeRsvg (>= 0.1),
     htmlwidgets (>= 0.6),
     igraph (>= 1.0.0),
     influenceR (>= 0.1.0),
     rstudioapi (>= 0.6),
     stringr (>= 1.0.0),
     visNetwork (>= 1.0.0),
-    scales (>= 0.4.0),
-    rsvg (>= 0.5)
+    scales (>= 0.4.0)
 URL: https://github.com/rich-iannone/DiagrammeR
 BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Suggests:
+    DiagrammeRsvg,
     knitr,
     magrittr,
+    rsvg,
     testthat
 RoxygenNote: 5.0.1
