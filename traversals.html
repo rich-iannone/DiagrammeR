@@ -255,7 +255,7 @@ library(magrittr)
 # `render_graph()`
 graph &lt;-
   create_graph() %>%
-  set_global_graph_attr(
+  set_global_graph_attrs(
     "graph", "output", "visNetwork") %>%
   add_node("type_a", FALSE) %>%
   add_n_nodes(4, "type_b") %>%
@@ -406,7 +406,7 @@ library(magrittr)
 random_graph &lt;-
   create_random_graph(
     5, 10, TRUE, set_seed = 20) %>%
-  set_global_graph_attr(
+  set_global_graph_attrs(
     "graph", "output", "visNetwork")
 
 # View the graph's internal NDF
@@ -657,7 +657,7 @@ graph %>%
 
 # From all food-based nodes,
 # determine which was liked the most
-# (note the use of `invert-selection()`)
+# (note the use of `invert_selection()`)
 graph %>%
   select_nodes(node_attr = "type",
                search = "person") %>%
