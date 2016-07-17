@@ -143,58 +143,73 @@ library(magrittr)
 # between them (`1` -> `2`); starting from node
 # `1` (as a selection), traverse to node `2`
 # and then obtain the current selection
-create_graph() %>% add_node %>% add_node %>%
-  add_edge(1, 2) %>% select_nodes_by_id(1) %>%
-  trav_out %>% get_selection
-#> $nodes
+create_graph() %>%
+  add_node %>%
+  add_node %>%
+  add_edge(1, 2) %>%
+  select_nodes_by_id(1) %>%
+  trav_out %>%
+  get_selection
 #> [1] "2"
 
-# If no traversal can occur the selection is not
+# If no traversal can occur, the selection is not
 # altered. To demonstrate, use a similar pipeline
 # but reverse the edge direction
-create_graph() %>% add_node %>% add_node %>%
-  add_edge(2, 1) %>% select_nodes_by_id(1) %>%
-  trav_out %>% get_selection
-#> $nodes
+create_graph() %>%
+  add_node %>%
+  add_node %>%
+  add_edge(2, 1) %>%
+  select_nodes_by_id(1) %>%
+  trav_out %>%
+  get_selection
 #> [1] "1"
 
 # A traversal can occur if `trav_in()` is used
 # instead of `trav_out()`
-create_graph() %>% add_node %>% add_node %>%
-  add_edge(2, 1) %>% select_nodes_by_id(1) %>%
-  trav_in %>% get_selection
-#> $nodes
+create_graph() %>%
+  add_node %>%
+  add_node %>%
+  add_edge(2, 1) %>%
+  select_nodes_by_id(1) %>%
+  trav_in %>%
+  get_selection
 #> [1] "2"
 
 # Multiple traversals can be made in a single
 # magrittr pipeline
-create_graph() %>% add_n_nodes(5) %>%
-  add_edge(1, 2) %>% add_edge(2, 3) %>%
-  add_edge(3, 4) %>% add_edge(4, 5) %>%
+create_graph() %>%
+  add_n_nodes(5) %>%
+  add_edge(1, 2) %>%
+  add_edge(2, 3) %>%
+  add_edge(3, 4) %>%
+  add_edge(4, 5) %>%
   select_nodes_by_id(1) %>%
-  trav_out %>% trav_out %>%
-  trav_out %>% trav_out %>%
+  trav_out %>%
+  trav_out %>%
+  trav_out %>%
+  trav_out %>%
   get_selection
-#> $nodes
 #> [1] "5"
 
 # A selection of multiple nodes can occur as
 # a result of a traversal
-create_graph() %>% add_node %>%
+create_graph() %>%
+  add_node %>%
   select_nodes_by_id(1) %>%
   add_n_nodes_from_selection(10) %>%
   add_n_nodes_to_selection(10) %>%
-  trav_out %>% get_selection
-#> $nodes
+  trav_out %>%
+  get_selection
 #>  [1] "2"  "3"  "4"  "5"  "6"  "7"  "8"
 #>  [8] "9"  "10" "11"
 
-create_graph() %>% add_node %>%
+create_graph() %>%
+  add_node %>%
   select_nodes_by_id(1) %>%
   add_n_nodes_from_selection(10) %>%
   add_n_nodes_to_selection(10) %>%
-  trav_in %>% get_selection
-#> $nodes
+  trav_in %>%
+  get_selection
 #>  [1] "12" "13" "14" "15" "16" "17"
 #>  [7] "18" "19" "20" "21"
 </code></pre>
@@ -214,12 +229,13 @@ library(magrittr)
 # start from node `1` (as a selection),
 # traverse to all other adjacent nodes and
 # then obtain the current selection
-create_graph() %>% add_node %>%
+create_graph() %>%
+  add_node %>%
   select_nodes_by_id(1) %>%
   add_n_nodes_to_selection(3) %>%
   add_n_nodes_from_selection(3) %>%
-  trav_both %>% get_selection
-#> $nodes
+  trav_both %>%
+  get_selection
 #> [1] "5" "6" "7" "2" "3" "4"
 </code></pre>
                     </div>
@@ -239,9 +255,8 @@ library(magrittr)
 # `render_graph()`
 graph &lt;-
   create_graph() %>%
-  set_global_graph_attr("graph",
-                        "output",
-                        "visNetwork") %>%
+  set_global_graph_attr(
+    "graph", "output", "visNetwork") %>%
   add_node("type_a", FALSE) %>%
   add_n_nodes(4, "type_b") %>%
   add_edge(1, 2) %>%
@@ -259,10 +274,13 @@ render_graph(graph)
 
 <img src="img/traversals-across-nodes-1.png" class="img-responsive center-block">
 
-graph %>% select_nodes_by_id(1) %>%
-  trav_out %>% get_selection
+graph %>%
+  select_nodes_by_id(1) %>%
+  trav_out %>%
+  get_selection
 
-graph %>% select_nodes_by_id(1) %>%
+graph %>%
+  select_nodes_by_id(1) %>%
   trav_out("type", "type_b") %>%
   get_selection
 
@@ -274,9 +292,10 @@ graph %>% select_nodes_by_id(1) %>%
 # a traversal, a useful thing to do would
 # be to attach new nodes to that selection
 updated_graph &lt;-
-  graph %>% select_nodes_by_id(1) %>%
+  graph %>%
+  select_nodes_by_id(1) %>%
   trav_out("type", "type_c") %>%
-  add_n_nodes_from_selection(1, "type_d")
+  add_n_nodes_ws(1, "from", "type_d")
 
 # View the updated graph
 render_graph(updated_graph)
@@ -305,21 +324,18 @@ nodes &lt;-
               "apricot", "cucumber",
               "celery", "endive",
               "hazelnut", "almond",
-              "chestnut")
-    )
+              "chestnut"))
 
 edges &lt;-
   create_edges(
     from = c(9, 3, 6, 2, 6, 2, 8, 2, 5, 5),
-    to = c(1, 1, 4, 3, 7, 8, 1, 5, 3, 6)
-    )
+    to = c(1, 1, 4, 3, 7, 8, 1, 5, 3, 6))
 
 graph &lt;-
   create_graph(
     nodes_df = nodes,
     edges_df = edges,
-    graph_attrs = "output = visNetwork"
-    )
+    graph_attrs = "output = visNetwork")
 
 # View the graph
 render_graph(graph)
@@ -342,11 +358,12 @@ get_node_df(graph)
 
 # Select all nodes with a label beginning
 # with `a` and traverse outward to all nodes
-graph %>% select_nodes(node_attr = "label",
-                       search = "^a") %>%
-  trav_out %>% get_selection
-
-#> $nodes
+graph %>%
+  select_nodes(
+    node_attr = "label",
+    search = "^a") %>%
+  trav_out %>%
+  get_selection
 #> [1] "3" "8" "5" "1"
 
 # This traversal results in a rather large
@@ -358,11 +375,14 @@ graph %>% select_nodes(node_attr = "label",
 # with `c` (in this case, the `cucumber` and
 # `chestnut` and then traverse outward to any
 # node of the `fruit` type
-graph %>% select_nodes(node_attr = "label",
-                       search = "^c") %>%
-  trav_out(node_attr = "type",
-           match = "fruit") %>% get_selection
-#> $nodes
+graph %>%
+  select_nodes(
+    node_attr = "label",
+    search = "^c") %>%
+  trav_out(
+    node_attr = "type",
+    match = "fruit") %>%
+  get_selection
 #> [1] "3" "1"
 
 # The traversal has resulted in a selection of
@@ -384,11 +404,10 @@ library(magrittr)
 # numerical data values for each node at
 # no extra charge
 random_graph &lt;-
-  create_random_graph(5, 10, TRUE,
-                      set_seed = 20) %>%
-  set_global_graph_attr("graph",
-                        "output",
-                        "visNetwork")
+  create_random_graph(
+    5, 10, TRUE, set_seed = 20) %>%
+  set_global_graph_attr(
+    "graph", "output", "visNetwork")
 
 # View the graph's internal NDF
 random_graph %>% get_node_df
@@ -428,7 +447,6 @@ random_graph %>%
   select_nodes_by_id(3) %>%
   trav_both %>%
   get_selection
-#> $nodes
 #> [1] "2" "5" "4" "1"
 
 # Perform a similar traversal but, this
@@ -438,7 +456,6 @@ random_graph %>%
   select_nodes_by_id(3) %>%
   trav_both("value", "&lt;8.5") %>%
   get_selection
-#> $nodes
 #> [1] "2" "4"
 
 # That was a subset of the possible
@@ -449,7 +466,6 @@ random_graph %>%
   select_nodes_by_id(3) %>%
   trav_both("value", ">8.5") %>%
   get_selection
-#> $nodes
 #> [1] "5" "1"
 
 # An exact match on a numeric value
@@ -460,7 +476,6 @@ random_graph %>%
   select_nodes_by_id(3) %>%
   trav_both("value", "==10") %>%
   get_selection
-#> $nodes
 #> [1] "5"
 
 # For a traversal to all values except
@@ -470,7 +485,6 @@ random_graph %>%
   select_nodes_by_id(3) %>%
   trav_both("value", "!=10") %>%
   get_selection
-#> $nodes
 #> [1] "2" "4" "1"
 </code></pre>
                     </div>
@@ -509,66 +523,61 @@ library(magrittr)
 # from node `1` (as a selection), traverse
 # to the edge and then obtain the current
 # selection
-create_graph() %>% add_node %>% add_node %>%
-  add_edge(1, 2) %>% select_nodes_by_id(1) %>%
-  trav_out_edge %>% get_selection
-#> $edges
-#> $edges$from
-#> [1] "1"
-#>
-#> $edges$to
-#> [1] "2"
+create_graph() %>%
+  add_node %>%
+  add_node %>%
+  add_edge(1, 2) %>%
+  select_nodes_by_id(1) %>%
+  trav_out_edge %>%
+  get_selection
+#> [1] "1 -> 2"
 
 # If no traversal can occur the selection is
 # not altered. To demonstrate, use a similar
 # pipeline but reverse the edge direction
-create_graph() %>% add_node %>% add_node %>%
-  add_edge(2, 1) %>% select_nodes_by_id(1) %>%
-  trav_out_edge %>% get_selection
-#> $nodes
+create_graph() %>%
+  add_node %>%
+  add_node %>%
+  add_edge(2, 1) %>%
+  select_nodes_by_id(1) %>%
+  trav_out_edge %>%
+  get_selection
 #> [1] "1"
 
 # A traversal can occur if `trav_in_edge()`
 # is used instead of `trav_out_edge()`
-create_graph() %>% add_node %>% add_node %>%
-  add_edge(2, 1) %>% select_nodes_by_id(1) %>%
-  trav_in_edge %>% get_selection
-#> $edges
-#> $edges$from
-#> [1] "2"
-#>
-#> $edges$to
-#> [1] "1"
+create_graph() %>%
+  add_node %>%
+  add_node %>%
+  add_edge(2, 1) %>%
+  select_nodes_by_id(1) %>%
+  trav_in_edge %>%
+  get_selection
+#> [1] "2 -> 1"
 
 # A selection of multiple edges can occur
 # as a result of a traversal
-create_graph() %>% add_node %>%
+create_graph() %>%
+  add_node %>%
   select_nodes_by_id(1) %>%
-  add_n_nodes_from_selection(10) %>%
-  add_n_nodes_to_selection(10) %>%
-  trav_out_edge %>% get_selection
-#> $edges
-#> $edges$from
-#> [1] "1" "1" "1" "1" "1" "1" "1"
-#> [8] "1" "1" "1"
-#>
-#> $edges$to
-#> [1] "2"  "3"  "4"  "5"  "6"  "7"
-#> [7] "8"  "9"  "10" "11"
+  add_n_nodes_ws(10, "from") %>%
+  add_n_nodes_ws(10, "to") %>%
+  trav_out_edge %>%
+  get_selection
+#> [1] "1 -> 2"  "1 -> 3"  "1 -> 4"  "1 -> 5"
+#> [5] "1 -> 6"  "1 -> 7"  "1 -> 8"  "1 -> 9"
+#> [9] "1 -> 10" "1 -> 11"
 
-create_graph() %>% add_node %>%
+create_graph() %>%
+  add_node %>%
   select_nodes_by_id(1) %>%
-  add_n_nodes_from_selection(10) %>%
-  add_n_nodes_to_selection(10) %>%
-  trav_in_edge %>% get_selection
-#> $edges
-#> $edges$from
-#> [1] "2"  "3"  "4"  "5"  "6"  "7"
-#> [7] "8"  "9"  "10" "11"
-#>
-#> $edges$to
-#> [1] "1" "1" "1" "1" "1" "1" "1"
-#> [8] "1" "1" "1"</code></pre>
+  add_n_nodes_ws(10, "from") %>%
+  add_n_nodes_ws(10, "to") %>%
+  trav_in_edge %>%
+  get_selection
+#> [1] "12 -> 1" "13 -> 1" "14 -> 1" "15 -> 1"
+#> [5] "16 -> 1" "17 -> 1" "18 -> 1" "19 -> 1"
+#> [9] "20 -> 1" "21 -> 1"</code></pre>
                     </div>
                     <p>To introduce conditions on the traversal, values can be supplied to the <code>edge_attr</code> and <code>match</code> arguments. As with the node-to-node traversal functions, these optional values induce filtering of the node-to-edge traversals. If a graph is fashioned as a property graph that has values set for node <code>type</code> edges <code>rel</code> attributes, traversals with <code>trav_out_edge()</code> and <code>trav_in_edge()</code> be restricted to selection of edges that have a specific <code>rel</code> label. This is done by setting <code>edge_attr = rel</code> and providing the value of that relationship for the <code>match</code> argument.</p>
                     <div>
@@ -603,8 +612,7 @@ nodes &lt;-
               "apple", "apricot",
               "cucumber", "celery",
               "endive", "hazelnut",
-              "almond", "chestnut")
-  )
+              "almond", "chestnut"))
 
 edges &lt;-
   create_edges(
@@ -618,15 +626,13 @@ edges &lt;-
           c("likes", "dislikes",
             "allergic_to"), 5,
           TRUE,
-          c(0.5, 0.25, 0.25))))
-  )
+          c(0.5, 0.25, 0.25)))))
 
 graph &lt;-
   create_graph(
     nodes_df = nodes,
     edges_df = edges,
-    graph_attrs = "output = visNetwork"
-  )
+    graph_attrs = "output = visNetwork")
 
 # Behold the food preferences graph!
 graph %>% render_graph
@@ -645,8 +651,8 @@ graph %>%
   select_nodes(node_attr = "type",
                search = "nut") %>%
   trav_in_edge %>%
-  deposit_edge_count_in_selection %>%
-  withdraw_values
+  cache_edge_count_ws %>%
+  get_cache
 #> [1] 25
 
 # From all food-based nodes,
@@ -658,8 +664,8 @@ graph %>%
   invert_selection %>%
   trav_in_edge(edge_attr = "rel",
                match = "likes") %>%
-  deposit_edge_count_in_selection %>%
-  withdraw_values
+  cache_edge_count_ws %>%
+  get_cache
 #> [1] 13
 
 # So, there are 13 foods liked out of
@@ -667,17 +673,13 @@ graph %>%
 # which people have an allergy to
 # the foods
 graph %>%
-  select_nodes(node_attr = "type",
-               search = "person") %>%
-  trav_out_edge(edge_attr = "rel",
-                match = "allergic_to") %>%
+  select_nodes(
+    node_attr = "type", search = "person") %>%
+  trav_out_edge(
+    edge_attr = "rel", match = "allergic_to") %>%
   get_selection
-#> $edges
-#> $edges$from
-#> [1] "1" "2" "3" "4" "5" "5" "5"
-#>
-#> $edges$to
-#> [1] "10" "11" "10" "10" "6"  "9"  "7"
+#> [1] "1 -> 10" "2 -> 11" "3 -> 10" "4 -> 10"
+#> [5] "5 -> 6"  "5 -> 9"  "5 -> 7"
 
 # It ends up that all the people were
 # allergic to at least one food (note
@@ -701,12 +703,12 @@ library(magrittr)
 # Create a random graph
 # (10 nodes, 20 edges)
 graph &lt;-
-  create_random_graph(10, 20,
-                      directed = TRUE,
-                      set_seed = 20) %>%
-  set_global_graph_attr("graph",
-                        "output",
-                        "visNetwork")
+  create_random_graph(
+    10, 20,
+    directed = TRUE,
+    set_seed = 20) %>%
+  set_global_graph_attrs(
+    "graph", "output", "visNetwork")
 
 # Set a seed for the various uses
 # of the `sample()` function
@@ -714,27 +716,27 @@ set.seed(20)
 
 # Use a `for` loop to randomly set
 # various `type` values to nodes
-for (i in 1:node_count(graph)){
+for (i in 1:node_count(graph)) {
   graph %&lt;>%
-    set_node_attr(
+    set_node_attrs(
       nodes = i,
       node_attr = "type",
       values = sample(
-        c("A", "B", "C"), 1)
-    )}
+        c("A", "B", "C"), 1))
+}
 
 # Use another `for` loop to randomly
 # set various numerical values to
 # the graph's edges
-for (i in 1:edge_count(graph)){
+for (i in 1:edge_count(graph)) {
   graph %&lt;>%
-    set_edge_attr(
+    set_edge_attrs(
       from = get_edges(., return_type = "df")[i, 1],
       to = get_edges(., return_type = "df")[i, 2],
       edge_attr = "data_value",
       values = sample(
-        seq(0, 8, 0.5), 1)
-    )}
+        seq(0, 8, 0.5), 1))
+}
 
 # Look at the graph
 graph %>% render_graph
@@ -747,10 +749,11 @@ graph %>% render_graph
 # determine the count of those edges
 graph %>%
   select_nodes() %>%
-  trav_in_edge(edge_attr = "data_value",
-               match = "&lt;4.0") %>%
-  deposit_edge_count_in_selection %>%
-  withdraw_values
+  trav_in_edge(
+    edge_attr = "data_value",
+    match = "&lt;4.0") %>%
+  cache_edge_count_ws %>%
+  get_cache
 #> [1] 12
 
 # Select all the edges that are outbound
@@ -759,10 +762,13 @@ graph %>%
 # get the values into a tabulation
 graph %>%
   select_nodes() %>%
-  trav_out_edge(edge_attr = "data_value",
-               match = ">4.0") %>%
-  deposit_edge_attr_from_selection("data_value") %>%
-  withdraw_values %>% as.numeric %>% table
+  trav_out_edge(
+    edge_attr = "data_value",
+    match = ">4.0") %>%
+  cache_edge_attrs_ws("data_value") %>%
+  get_cache %>%
+  as.numeric %>%
+  table
 #> .
 #> 2.5 5.5 6 6.5 7.5 8
 #>   1   1 3   1   1 1</code></pre>
@@ -817,8 +823,7 @@ nodes &lt;-
               "apple", "apricot",
               "cucumber", "celery",
               "endive", "hazelnut",
-              "almond", "chestnut")
-  )
+              "almond", "chestnut"))
 
 edges &lt;-
   create_edges(
@@ -832,15 +837,13 @@ edges &lt;-
           c("likes", "dislikes",
             "allergic_to"), 5,
           TRUE,
-          c(0.5, 0.25, 0.25))))
-  )
+          c(0.5, 0.25, 0.25)))))
 
 graph &lt;-
   create_graph(
     nodes_df = nodes,
     edges_df = edges,
-    graph_attrs = "output = visNetwork"
-  )
+    graph_attrs = "output = visNetwork")
 
 # Have a look at the graph
 graph %>% render_graph
@@ -852,22 +855,21 @@ graph %>% render_graph
 # nodes (by adding a `color` attribute)
 graph_allergies &lt;-
   graph %>%
-  select_nodes(node_attr = "type",
-               search = "person") %>%
+  select_nodes(
+    node_attr = "type",
+    search = "person") %>%
   invert_selection %>%
-  trav_in_edge(edge_attr = "rel",
-               match = "allergic_to") %>%
+  trav_in_edge(
+    edge_attr = "rel",
+    match = "allergic_to") %>%
   trav_in_node %>%
-  set_node_attr_with_selection("color",
-                               "red") %>%
+  set_node_attrs_ws("color", "red") %>%
   invert_selection %>%
-  set_node_attr_with_selection("color",
-                               "green") %>%
+  set_node_attrs_ws("color", "green") %>%
   clear_selection %>%
-  select_nodes(node_attr = "type",
-               search = "person") %>%
-  set_node_attr_with_selection("color",
-                               "blue")
+  select_nodes(
+    node_attr = "type", search = "person") %>%
+  set_node_attrs_ws("color", "blue")
 
 # Display the modified graph, where green
 # nodes represent safe foods for the
@@ -880,14 +882,16 @@ graph_allergies %>% render_graph
 # Get a vector of those foods that are
 # deemed risky for this particular group
 graph %>%
-  select_nodes(node_attr = "type",
-               search = "person") %>%
+  select_nodes(
+    node_attr = "type",
+    search = "person") %>%
   invert_selection %>%
-  trav_in_edge(edge_attr = "rel",
-               match = "allergic_to") %>%
+  trav_in_edge(
+    edge_attr = "rel",
+    match = "allergic_to") %>%
   trav_in_node %>%
-  deposit_node_attr_from_selection("label") %>%
-  withdraw_values
+  cache_node_attrs_ws("label") %>%
+  get_cache
 #> [1] "pineapple"  "apple"  "cucumber"
 #> [4] "celery"  "endive"</code></pre>
                             </div>
@@ -906,12 +910,12 @@ library(magrittr)
 # Create a random graph
 # (10 nodes, 20 edges)
 graph &lt;-
-  create_random_graph(10, 20,
-                      directed = TRUE,
-                      set_seed = 20) %>%
-  set_global_graph_attr("graph",
-                        "output",
-                        "visNetwork")
+  create_random_graph(
+    10, 20,
+    directed = TRUE,
+    set_seed = 20) %>%
+  set_global_graph_attrs(
+    "graph", "output", "visNetwork")
 
 # Set a seed for the various uses
 # of the `sample()` function
@@ -919,27 +923,27 @@ set.seed(20)
 
 # Use a `for` loop to randomly set
 # various `type` values to nodes
-for (i in 1:node_count(graph)){
+for (i in 1:node_count(graph)) {
   graph %&lt;>%
-    set_node_attr(
+    set_node_attrs(
       nodes = i,
       node_attr = "type",
       values = sample(
-        c("A", "B", "C"), 1)
-    )}
+        c("A", "B", "C"), 1))
+}
 
 # Use another `for` loop to randomly
 # set various numerical values to
 # the graph's edges
 for (i in 1:edge_count(graph)){
   graph %&lt;>%
-    set_edge_attr(
+    set_edge_attrs(
       from = get_edges(., return_type = "df")[i, 1],
       to = get_edges(., return_type = "df")[i, 2],
       edge_attr = "data_value",
       values = sample(
-        seq(0, 8, 0.5), 1)
-    )}
+        seq(0, 8, 0.5), 1))
+}
 
 # Look at the graph
 graph %>% render_graph
@@ -947,21 +951,23 @@ graph %>% render_graph
 # Peform a traversal from nodes with a
 # `value` &lt;6, out to edges with a `data_value`
 # &lt;4, and onto nodes with a `value &lt;2
-graph %>% select_nodes("value", "&lt;6") %>%
+graph %>%
+  select_nodes("value", "&lt;6") %>%
   trav_out_edge("data_value", "&lt;4") %>%
   trav_in_node("value", "&lt;2") %>%
   get_selection
-#> $nodes
 #> [1] "7"
 
 # From this traversal, only the node with
 # ID of `7` is the selected node; so, what was
 # the actual `value`?
-graph %>% select_nodes("value", "&lt;6") %>%
+graph %>%
+  select_nodes("value", "&lt;6") %>%
   trav_out_edge("data_value", "&lt;4") %>%
   trav_in_node("value", "&lt;2") %>%
-  deposit_node_attr_from_selection("value") %>%
-  withdraw_values %>% as.numeric
+  cache_node_attrs_ws("value") %>%
+  get_cache %>%
+  as.numeric
 #> [1] 1</code></pre>
                         </div>
                     </div>
@@ -1022,21 +1028,23 @@ colnames(read.csv(projects_and_contributors_csv,
 graph &lt;-
   create_graph() %>%
   set_graph_name("software_projects") %>%
-  set_global_graph_attr("graph",
-                        "output",
-                        "visNetwork") %>%
-  add_nodes_from_csv(contributors_csv,
-                     set_type = "person",
-                     label_col = "name") %>%
-  add_nodes_from_csv(projects_csv,
-                     set_type = "project",
-                     label_col = "project") %>%
-  add_edges_from_csv(projects_and_contributors_csv,
-                     from_col = "contributor_name",
-                     from_attr = "name",
-                     to_col = "project_name",
-                     to_attr = "project",
-                     rel_col = "contributor_role")
+  set_global_graph_attrs(
+    "graph", "output", "visNetwork") %>%
+  add_nodes_from_table(
+    contributors_csv,
+    set_type = "person",
+    label_col = "name") %>%
+  add_nodes_from_table(
+    projects_csv,
+    set_type = "project",
+    label_col = "project") %>%
+  add_edges_from_table(
+    projects_and_contributors_csv,
+    from_col = "contributor_name",
+    from_mapping = "name",
+    to_col = "project_name",
+    to_mapping = "project",
+    rel_col = "contributor_role")
 
 # View the graph
 graph %>% render_graph
@@ -1044,35 +1052,39 @@ graph %>% render_graph
 <img src="img/software-repository-example-1.png" class="img-responsive center-block">
 
 # Get the average age of all the contributors
-graph %>% select_nodes("type", "person") %>%
-  deposit_node_attr_from_selection("age",
-                                   "numeric") %>%
-  withdraw_values %>% mean
+graph %>%
+  select_nodes("type", "person") %>%
+  cache_node_attrs_ws("age", "numeric") %>%
+  get_cache %>%
+  mean
 #> [1] 33.6
 
 # Get the total number of commits to all software
 # projects
-graph %>% select_edges %>%
-  deposit_edge_attr_from_selection("commits",
-                                   "numeric") %>%
-  withdraw_values %>% sum
+graph %>%
+  select_edges %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
+  get_cache %>%
+  sum
 #> [1] 5182
 
 # Get total number of commits from Josh as a maintainer
 # and a contributor
-graph %>% select_nodes("name", "Josh") %>%
-  trav_out_edge(c("maintainer", "contributer")) %>%
-  deposit_edge_attr_from_selection("commits",
-                                   "numeric") %>%
-  withdraw_values %>% sum
+graph %>%
+  select_nodes("name", "Josh") %>%
+  trav_out_edge %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
+  get_cache %>%
+  sum
 #> [1] 227
 
 # Get total number of commits from Louisa
-graph %>% select_nodes("name", "Louisa") %>%
+graph %>%
+  select_nodes("name", "Louisa") %>%
   trav_out_edge %>%
-  deposit_edge_attr_from_selection("commits",
-                                   "numeric") %>%
-  withdraw_values %>% sum
+  cache_edge_attrs_ws("commits", "numeric") %>%
+  get_cache %>%
+  sum
 #> [1] 615
 
 # As a bit of an aside, we can use selections and
@@ -1082,9 +1094,10 @@ graph %>% select_nodes("name", "Louisa") %>%
 # by the edge attribute `commits` to a range of
 # 0.5 to 3.0
 graph_scale_width_edges &lt;-
-  graph %>% select_edges %>%
-  rescale_edge_attr_in_selection("commits", "width",
-                                 0.5, 3.0)
+  graph %>%
+  select_edges %>%
+  rescale_edge_attrs_ws(
+    "commits", "width", 0.5, 3.0)
 
 # Inspect the graph's internal EDF
 get_edge_df(graph_scale_width_edges)
@@ -1112,9 +1125,10 @@ graph_scale_width_edges %>% render_graph
 # Select all edges and apply a color attribute based
 # on another edge attribute
 graph_scale_color_edges &lt;-
-  graph %>% select_edges %>%
-  rescale_edge_attr_in_selection("commits", "color",
-                                 "gray95", "gray5")
+  graph %>%
+  select_edges %>%
+  rescale_edge_attrs_ws(
+    "commits", "color", "gray95", "gray5")
 
 # Render the graph, darker edges represent higher
 # commits
@@ -1123,41 +1137,47 @@ graph_scale_color_edges %>% render_graph
 <img src="img/software-repository-example-3.png" class="img-responsive center-block">
 
 # Get the names of people in graph above age 32
-graph %>% select_nodes("type", "person") %>%
+graph %>%
+  select_nodes("type", "person") %>%
   select_nodes("age", ">32", "intersect") %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
-#> [1] "Jack"   "Sheryl" "Roger"  "Kim"    "Jon"
+  cache_node_attrs_ws("name") %>%
+  get_cache %>%
+  sort
+#> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
 
 # Get the total number of commits from all people to
 # the `supercalc` project
-graph %>% select_nodes("project", "supercalc") %>%
+graph %>%
+  select_nodes("project", "supercalc") %>%
   trav_in_edge %>%
-  deposit_edge_attr_from_selection("commits", "numeric") %>%
-  withdraw_values %>% sum
+  cache_edge_attrs_ws("commits", "numeric") %>%
+  withdraw_values %>%
+  sum
 #> [1] 1676
 
 # Who committed the most to the `supercalc` project?
-graph %>% select_nodes("project", "supercalc") %>%
+graph %>%
+  select_nodes("project", "supercalc") %>%
   trav_in_edge %>%
-  deposit_edge_attr_from_selection("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   trav_in_node %>%
-  trav_in_edge("commits", max(withdraw_values(.))) %>%
+  trav_in_edge("commits", max(get_cache(.))) %>%
   trav_out_node %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
+  cache_node_attrs_ws("name") %>%
+  get_cache
 #> [1] "Sheryl"
 
 # What is the email address of the individual that
 # contributed the least to the `randomizer` project?
-graph %>% select_nodes("project", "randomizer") %>%
+graph %>%
+  select_nodes("project", "randomizer") %>%
   trav_in_edge %>%
-  deposit_edge_attr_from_selection("commits", "numeric") %>%
+  cache_edge_attrs_ws("commits", "numeric") %>%
   trav_in_node %>%
-  trav_in_edge("commits", min(withdraw_values(.))) %>%
+  trav_in_edge("commits", min(get_cache(.))) %>%
   trav_out_node %>%
-  deposit_node_attr_from_selection("email") %>%
-  withdraw_values
+  cache_node_attrs_ws("email") %>%
+  get_cache
 #> [1] "the_will@graphymail.com"
 
 # Update the graph, because, it has come to our
@@ -1165,13 +1185,14 @@ graph %>% select_nodes("project", "randomizer") %>%
 # `stringbuildeR` and has made 15 new commits to
 # that project
 graph %&lt;>%
-  add_edge(get_nodes(.,
-                     "name", "Kim"),
-           get_nodes(.,
-                     "project", "stringbuildeR"),
-           "contributor") %>%
+  add_edge(
+    get_nodes(.,
+      "name", "Kim"),
+    get_nodes(.,
+      "project", "stringbuildeR"),
+    "contributor") %>%
   select_last_edge %>%
-  set_edge_attr_with_selection("commits", 15) %>%
+  set_edge_attrs_ws("commits", 15) %>%
   clear_selection
 
 # View the graph's internal EDF, the newest
@@ -1201,12 +1222,13 @@ graph %>% render_graph
 # Get all email addresses to contributors (but not
 # maintainers) of the `randomizer` and `supercalc`
 # projects
-graph %>% select_nodes("project", "randomizer") %>%
+graph %>%
+  select_nodes("project", "randomizer") %>%
   select_nodes("project", "supercalc") %>%
   trav_in_edge("rel", "contributor") %>%
   trav_out_node %>%
-  deposit_node_attr_from_selection("email", "character") %>%
-  withdraw_values
+  cache_node_attrs_ws("email", "character") %>%
+  get_cache
 #> [1] "lhe99@mailing-fun.com"  "josh_ch@megamail.kn"
 #> [3] "roger_that@whalemail.net"  "the_simone@a-q-w-o.net"
 #> [5] "kim_3251323@ohhh.ai"  "the_will@graphymail.com"
@@ -1214,25 +1236,24 @@ graph %>% select_nodes("project", "randomizer") %>%
 
 # Which committer to the `randomizer` project has the
 # highest number of followers?
-graph %>% select_nodes("project", "randomizer") %>%
-  trav_in %>%
-  deposit_node_attr_from_selection("follower_count",
-                                   "numeric") %>%
+graph %>%
   select_nodes("project", "randomizer") %>%
-  trav_in("follower_count",
-          max(withdraw_values(.))) %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
+  trav_in %>%
+  cache_node_attrs_ws("follower_count", "numeric") %>%
+  select_nodes("project", "randomizer") %>%
+  trav_in("follower_count", max(get_cache(.))) %>%
+  cache_node_attrs_ws("name") %>%
+  get_cache
 #> [1] "Kim"
 
 # Which people have committed to more than one
 # project?
 graph %>%
-  select_nodes_by_degree("out", ">1",
-                         "type", "person") %>%
-  deposit_node_attr_from_selection("name") %>%
-  withdraw_values
-#> [1] "Louisa"  "Josh"  "Kim"</code></pre>
+  select_nodes_by_degree("out", ">1") %>%
+  cache_node_attrs_ws("name") %>%
+  get_cache %>%
+  sort
+#> [1] "Josh"  "Kim"  "Louisa"</code></pre>
                         </div>
                     </div>
                 </div>
