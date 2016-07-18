@@ -157,7 +157,8 @@ get_node_df(graph)
 # magrittr `%>%` pipes
 graph &lt;-
   create_graph() %>%
-  add_node %>% add_node
+  add_node %>%
+  add_node
 
 # Show the graph's internal NDF
 get_node_df(graph)
@@ -167,7 +168,8 @@ get_node_df(graph)
 
 # Add an edge between the two nodes
 graph &lt;-
-  graph %>% add_edge(1, 2)
+  graph %>%
+  add_edge(1, 2)
 
 # Show the graph's internal EDF
 get_edge_df(graph)
@@ -211,8 +213,7 @@ nodes &lt;-
     type = "a",
     color = c("red", "green",
               "grey", "blue"),
-    value = c(3.5, 2.6,
-              9.4, 2.7))
+    value = c(3.5, 2.6, 9.4, 2.7))
 
 # Add the node data frame to the
 # graph object to create a graph
@@ -235,16 +236,16 @@ nodes_2 &lt;-
     type = "b",
     color = c("orange", "brown",
               "aqua", "pink"),
-    value = c(1.6, 6.4,
-              0.8, 4.2))
+    value = c(1.6, 6.4, 0.8, 4.2))
 
 # Add the second node data frame
 # to the graph object to add more
 # nodes with attributes to the
 # graph
 graph &lt;-
-  add_node_df(graph = graph,
-              node_df = nodes_2)
+  add_node_df(
+    graph = graph,
+    node_df = nodes_2)
 
 # Check the graph's internal
 # NDF to see that the two NDFs
@@ -271,14 +272,16 @@ to &lt;-
 
 # Create the EDF
 edges &lt;-
-  create_edges(from = from,
-               to = to,
-               rel = "toward")
+  create_edges(
+    from = from,
+    to = to,
+    rel = "toward")
 
 # Add the EDF to the graph
 graph &lt;-
-  add_edge_df(graph,
-              edge_df = edges)
+  add_edge_df(
+    graph,
+    edge_df = edges)
 
 # Check the graph's internal
 # EDF to see that the EDF
@@ -325,8 +328,8 @@ library(DiagrammeR)
 library(magrittr)
 
 # Add 20 nodes to an empty graph
-create_graph(graph_attrs =
-               "output = visNetwork") %>%
+create_graph(
+  graph_attrs = "output = visNetwork") %>%
   add_n_nodes(20) %>%
   render_graph
 
@@ -335,8 +338,8 @@ create_graph(graph_attrs =
 # Add 20 nodes of 4 different types to
 # an empty graph and then create edges
 # between them
-create_graph(graph_attrs =
-               "output = visNetwork") %>%
+create_graph(
+  graph_attrs = "output = visNetwork") %>%
   add_n_nodes(5, "A") %>%
   add_n_nodes(5, "B") %>%
   add_n_nodes(5, "C") %>%
@@ -378,8 +381,8 @@ library(magrittr)
 
 # Create a graph with a central
 # node and multiples of children nodes
-create_graph(graph_attrs =
-               "output = visNetwork") %>%
+create_graph(
+  graph_attrs = "output = visNetwork") %>%
   add_node("A") %>% select_nodes %>%
   add_n_nodes_from_selection(3, "B") %>%
   clear_selection %>%
@@ -534,8 +537,7 @@ graph_delete_node_1 %>% render_graph
 graph_delete_node_2 &lt;-
   graph %>%
   delete_node(
-    get_nodes(., "type", "A")[1]
-    )
+    get_nodes(., "type", "A")[1])
 
 # Inspect a list of nodes to
 # ensure that node `1` has been
@@ -635,9 +637,7 @@ graph &lt;-
     fully_connected = TRUE,
     set_seed = 20) %>%
   set_global_graph_attr(
-    "graph",
-    "output",
-    "visNetwork")
+    "graph", "output", "visNetwork")
 
 # Set a random seed
 set.seed(20)
@@ -645,7 +645,7 @@ set.seed(20)
 # Randomly assign node `type` values
 # of `1`, `2`, `3`, `4`, and `5` to
 # each of the graph's nodes
-for (i in 1:node_count(graph)){
+for (i in 1:node_count(graph)) {
   graph %&lt;>%
     node_type(
       i, action = "add",
@@ -703,11 +703,10 @@ graph_1_5_removed %>%
   render_graph
 
 <img src="img/deleting-nodes-or-edges-using-a-selection-2.png" class="img-responsive center-block">
-# Try yet another type of
-# mass deletion where edges
-# are retained on the basis
-# nodes present with large
-# numerical data values; free
+# Try yet another type of mass
+# deletion where edges are retained
+# on the basis nodes present with
+# large numerical data values; free
 # nodes are then also removed
 graph_large_node_interactions &lt;-
   graph %>%
@@ -1012,14 +1011,12 @@ graph &lt;-
     fully_connected = TRUE,
     set_seed = 20) %>%
   set_global_graph_attr(
-    "graph",
-    "output",
-    "visNetwork")
+    "graph", "output", "visNetwork")
 
 # Randomly assign node `type` values
 # of `A`, `B`, `C`, and `D` to each
 # of the graph's nodes
-for (i in 1:node_count(graph)){
+for (i in 1:node_count(graph)) {
   graph %&lt;>%
     node_type(
       i, action = "add",
@@ -1055,7 +1052,7 @@ select_nodes %>%
 subgraphs &lt;-
   create_series(series_name = "subgraphs")
 
-for (i in 1:4){
+for (i in 1:4) {
   subgraphs &lt;-
     graph %>%
     select_nodes("type", LETTERS[i]) %>%
@@ -1113,7 +1110,7 @@ graph &lt;-
 # Randomly assign node `type` values
 # of `A`, `B`, `C`, and `D` to each
 # of the graph's nodes
-for (i in 1:node_count(graph)){
+for (i in 1:node_count(graph)) {
   graph %&lt;>%
     node_type(
       i, action = "add",
