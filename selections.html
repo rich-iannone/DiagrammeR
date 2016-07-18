@@ -136,8 +136,7 @@ nodes &lt;-
   create_nodes(
     nodes = 1:4,
     data = c(9.7, 8.5,
-             2.2, 6.0)
-  )
+             2.2, 6.0))
 
 graph &lt;- create_graph(nodes_df = nodes)
 
@@ -148,12 +147,10 @@ graph &lt;-
   select_nodes(
     graph = graph,
     node_attr = "data",
-    search = ">7.0"
-  )
+    search = ">7.0")
 
-# Inspect the graph's `selection` list
+# Get the graph's current selection
 graph$selection
-#> $nodes
 #> [1] "1" "2"</code></pre>
                     </div>
                     <p>A selection of nodes can be obtained through a match using a regular expression operating on a collection of character-based values (the node attribute arbitrarily named <code>fruits</code>).</p>
@@ -169,27 +166,24 @@ nodes &lt;-
   create_nodes(
     nodes = 1:4,
     fruits = c("apples", "apricots",
-               "bananas", "plums")
-  )
+               "bananas", "plums"))
 
 graph &lt;- create_graph(nodes_df = nodes)
 
 # Select nodes where the `fruits`
 # attribute has a match on the first
 # letters being `ap` (the first 2 nodes);
-# The regular expression for is `^ap`
+# The regular expression to use is `^ap`
 # (where the ^ denotes the beginning of
 # the text to the parsed)
 graph &lt;-
   select_nodes(
     graph = graph,
     node_attr = "fruits",
-    search = "^ap"
-  )
+    search = "^ap")
 
-# Inspect the graph's `selection` list
+# Get the graph's current selection
 graph$selection
-#> $nodes
 #> [1] "1" "2"</code></pre>
                     </div>
                     <p>The situation may arise when a more specialized match needs to be made (i.e., matching this but not that, or, matching two different types of things). This is where the <code>set_op</code> argument becomes useful. When a selection of nodes is performed using <code>select_nodes()</code> (or any of the other <code>select_...()</code> functions that operate on nodes), the selection is stored in the graph object. This is seen in the above examples where <code>graph$selection</code> was used to verify which nodes were in the selection. Because the selection is retained (at least until <code>clear_selection()</code> is called, or, a selection of edges is made), multiple uses <code>select_nodes()</code> can modify the set of selected nodes depending on the option provided in the <code>set_op</code> argument. These set operations are:</p>
@@ -221,8 +215,7 @@ nodes &lt;-
     label = c("pineapple", "apple", "apricot",
               "cucumber", "celery", "endive",
               "hazelnut", "almond", "chestnut"),
-    count = c(6, 3, 8, 7, 2, 6, 9, 9, 7)
-  )
+    count = c(6, 3, 8, 7, 2, 6, 9, 9, 7))
 
 graph &lt;- create_graph(nodes_df = nodes)
 
@@ -249,9 +242,8 @@ graph_1 &lt;-
                  search = "e$",
                  set_op = "union")
 
-# Inspect the graph's `selection` list
+# Get the graph's current selection
 graph_1$selection
-#> $nodes
 #> "4" "5" "9" "1" "2" "6"
 
 # Select any food beginning with `a` and
@@ -264,9 +256,8 @@ graph_2 &lt;-
                  search = "&lt;5",
                  set_op = "intersect")
 
-# Inspect the graph's `selection` list
+# Get the graph's current selection
 graph_2$selection
-#> $nodes
 #> [1] "2"
 
 # Select any fruit not containing `apple`
@@ -279,9 +270,8 @@ graph_3 &lt;-
                  search = "apple",
                  set_op = "difference")
 
-# Inspect the graph's `selection` list
+# Get the graph's current selection
 graph_3$selection
-#> $nodes
 #> [1] "3"</code></pre>
                     </div>
                     <p>There is an additional filtering option available as the <code>nodes</code> argument. Here, a vector of node ID values can be supplied and this will indicate to the function that only that subset of nodes will be considered for <code>select_nodes()</code>. Note that, if <code>node_attr</code> and <code>search</code> are provided with <code>NULL</code> values (the default) and <code>nodes</code> is given a vector of node ID values, it will be those very nodes that will make up the selection in this function call. While this is convenient and often a good method for selecting nodes (so long as one knows which node IDs need to be selected), the function <code>select_nodes_by_id()</code> handles this use case more directly (as the <code>nodes</code> argument is in the second position in the function signature).</p>
@@ -299,8 +289,7 @@ library(magrittr)
 nodes &lt;-
   create_nodes(
     nodes = 1:10,
-    data = seq(0.5, 5, 0.5)
-  )
+    data = seq(0.5, 5, 0.5))
 
 graph &lt;- create_graph(nodes_df = nodes)
 
@@ -322,13 +311,13 @@ graph$nodes_df
 # (given as `nodes = 1:6`) where
 # the data value is greater than `1.5`
 graph %&lt;>%
-  select_nodes(node_attr = "data",
-               search = ">1.5",
-               nodes = 1:6)
+  select_nodes(
+    node_attr = "data",
+    search = ">1.5",
+    nodes = 1:6)
 
-# Inspect the graph's `selection`
+# Get the graph's current selection
 graph$selection
-#> $nodes
 #> [1] "4" "5" "6"</code></pre>
                     </div>
                     <h2 id="creating-an-edge-selection">Creating an Edge Selection</h2>
@@ -364,9 +353,7 @@ edges &lt;-
   create_edges(
     from = 1:4,
     to = c(2:4, 1),
-    data = c(8.6, 2.8,
-             6.3, 4.5)
-    )
+    data = c(8.6, 2.8, 6.3, 4.5))
 
 graph &lt;-
   create_graph(nodes, edges)
@@ -387,17 +374,11 @@ graph &lt;-
   select_edges(
     graph = graph,
     edge_attr = "data",
-    search = ">5.0"
-  )
+    search = ">5.0")
 
-# Inspect the graph's `selection`
+# Get the graph's current selection
 get_selection(graph)
-#> $edges
-#> $edges$from
-#> [1] "1" "3"
-#>
-#> $edges$to
-#> [1] "2" "4"</code></pre>
+#> [1] "1->2"  "3->4"</code></pre>
                     </div>
                     <h2 id="selecting-the-last-node-or-edge-in-an-ndf-or-edf">Selecting the Last Node or Edge in an NDF or EDF</h2>
                     <p>You can select the last node or edge from the graph's internal node data frame (<em>NDF</em>) or internal edge data frame (<em>EDF</em>), respectively. Usually, this will be the last node or edge created since new nodes or edges are added to the bottom of the data frame and there is no shuffling of these positions. Immediately after creating a single node or edge, calling either the <code>select_last_node()</code> or the <code>select_last_edge()</code> functions will result in a selection of the last node or edge created.</p>
@@ -435,9 +416,7 @@ edges &lt;-
   create_edges(
     from = 1:4,
     to = c(2:4, 1),
-    data = c(8.6, 2.8,
-             6.3, 4.5)
-    )
+    data = c(8.6, 2.8, 6.3, 4.5))
 
 graph &lt;-
   create_graph(nodes, edges)
@@ -458,45 +437,39 @@ get_edge_df(graph)
 #> 3    3  4      6.3
 #> 4    4  1      4.5
 
-# Select the last node in
-# the graph's NDF and confirm
+# Select the last node in the graph's NDF and confirm
 # that the selection was made
-graph %>% select_last_node %>% get_selection
-#> $nodes
+graph %>%
+  select_last_node %>%
+  get_selection
 #> [1] "4"
 
-# Select the last edge in
-# the graph's EDF and confirm
+# Select the last edge in the graph's EDF and confirm
 # that the selection was made
-graph %>% select_last_edge %>% get_selection
-#>$edges
-#>$edges$from
-#>[1] "4"
-#>
-#>$edges$to
-#>[1] "1"
+graph %>%
+  select_last_edge %>%
+  get_selection
+#>[1] "4->1"
 
 # Create a graph, node-by-node and
 # edge-by-edge and add attributes
 graph_2 &lt;-
-  create_graph(graph_attrs =
-                 "output = visNetwork") %>%
+  create_graph(
+    graph_attrs = "output = visNetwork") %>%
   add_node %>%
   select_last_node %>%
-  set_node_attr_with_selection(
+  set_node_attrs_ws(
     "timestamp", as.character(Sys.time())) %>%
-  set_node_attr_with_selection(
-    "type", "A") %>%
+  set_node_attrs_ws("type", "A") %>%
   clear_selection %>%
   add_node %>%
   select_last_node %>%
-  set_node_attr_with_selection(
+  set_node_attrs_ws(
     "timestamp", as.character(Sys.time())) %>%
-  set_node_attr_with_selection(
-    "type", "B") %>%
+  set_node_attrs_ws("type", "B") %>%
   add_edge(1, 2, "AB") %>%
   select_last_edge %>%
-  set_edge_attr_with_selection(
+  set_edge_attrs_ws(
     "timestamp", as.character(Sys.time()))
 
 # View the new graph
