@@ -53,10 +53,20 @@ add_edges_w_string <- function(graph,
       sapply(strsplit(edges_split, "--"), "[[", 2)
   }
 
-  new_edges <-
-    create_edges(
-      from = from,
-      to = to)
+  if (is.null(rel)) {
+    new_edges <-
+      create_edges(
+        from = from,
+        to = to)
+  }
+
+  if (!is.null(rel)) {
+    new_edges <-
+      create_edges(
+        from = from,
+        to = to,
+        rel = rel)
+  }
 
   new_graph <-
     add_edge_df(graph,
