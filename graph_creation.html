@@ -147,15 +147,15 @@ class(graph)
 
 # It's an empty graph, so no NDF
 # or EDF
-graph$nodes_df
+get_node_df(graph)
 #> NULL
 
-graph$edges_df
+get_edge_df(graph)
 #> NULL
 
 # By default, the graph is
 # considered as directed
-graph$directed
+is_graph_directed(graph)
 #> [1] TRUE</code></pre>
                     </div>
                     <p>It's possible to include an <em>NDF</em> and not an <em>EDF</em> when calling <code>create_graph</code>. What you would get is an edgeless graph (a graph with nodes but no edges between those nodes. This may be somewhat silly, but edges can always be defined later (with functions such as <code>add_edge()</code>, <code>add_edge_df()</code>, <code>add_edges_from_table()</code>, etc., and these functions are covered in a subsequent section).</p>
