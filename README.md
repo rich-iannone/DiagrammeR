@@ -67,36 +67,20 @@ graph <-
   set_global_graph_attrs("node", "color", "blue") %>%
   set_global_graph_attrs("node", "fontname", "Helvetica") %>%
   add_n_nodes(11) %>%
-  select_nodes_by_id(1:4) %>% 
+  select_nodes_by_id(c(1:4, 8:11)) %>% 
   set_node_attrs_ws("shape", "box") %>%
-  set_node_attrs_ws("type", "box") %>%
   clear_selection %>%
   select_nodes_by_id(5:7) %>% 
   set_node_attrs_ws("shape", "circle") %>%
-  set_node_attrs_ws("type", "circle") %>%
   clear_selection %>%
-  select_nodes_by_id(8:11) %>% 
-  set_node_attrs_ws("shape", "box") %>%
-  set_node_attrs_ws("type", "box") %>%
-  clear_selection %>%
-  add_edge(1, 5) %>% 
-  add_edge(2, 6) %>%
-  add_edge(3, 9) %>% 
-  add_edge(4, 7) %>%
-  add_edge(5, 8) %>% 
-  add_edge(5, 10) %>%
-  add_edge(7, 11) %>% 
-  select_edges %>%
+  add_edges_w_string(
+    "1->5 2->6 3->9 4->7 5->8 5->10 7->11", "green") %>%
+  add_edges_w_string(
+    "1->8 3->6 3->11 3->7 5->9 6->10", "red") %>%
+  select_edges("rel", "green") %>%
   set_edge_attrs_ws("color", "green") %>%
-  add_edge(1, 8) %>% 
-  add_edge(3, 6) %>%
-  add_edge(3, 11) %>% 
-  add_edge(3, 7) %>%
-  add_edge(5, 9) %>% 
-  add_edge(6, 10) %>%
-  select_edges("color", "^$") %>%
-  set_edge_attrs_ws("color", "red") %>%
-  clear_selection
+  invert_selection %>%
+  set_edge_attrs_ws("color", "red")
 
 render_graph(graph)
 ```
