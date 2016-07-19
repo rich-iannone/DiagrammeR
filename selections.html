@@ -150,7 +150,7 @@ graph &lt;-
     search = ">7.0")
 
 # Get the graph's current selection
-graph$selection
+get_selection(graph)
 #> [1] "1" "2"</code></pre>
                     </div>
                     <p>A selection of nodes can be obtained through a match using a regular expression operating on a collection of character-based values (the node attribute arbitrarily named <code>fruits</code>).</p>
@@ -183,7 +183,7 @@ graph &lt;-
     search = "^ap")
 
 # Get the graph's current selection
-graph$selection
+get_selection(graph)
 #> [1] "1" "2"</code></pre>
                     </div>
                     <p>The situation may arise when a more specialized match needs to be made (i.e., matching this but not that, or, matching two different types of things). This is where the <code>set_op</code> argument becomes useful. When a selection of nodes is performed using <code>select_nodes()</code> (or any of the other <code>select_...()</code> functions that operate on nodes), the selection is stored in the graph object. This is seen in the above examples where <code>graph$selection</code> was used to verify which nodes were in the selection. Because the selection is retained (at least until <code>clear_selection()</code> is called, or, a selection of edges is made), multiple uses <code>select_nodes()</code> can modify the set of selected nodes depending on the option provided in the <code>set_op</code> argument. These set operations are:</p>
@@ -220,7 +220,7 @@ nodes &lt;-
 graph &lt;- create_graph(nodes_df = nodes)
 
 # Inspect the graph's NDF
-graph$nodes_df
+get_node_df(graph)
 #>   nodes  type     label count
 #> 1     1 fruit pineapple     6
 #> 2     2 fruit     apple     3
@@ -236,42 +236,48 @@ graph$nodes_df
 # with `c` or end with `e`
 graph_1 &lt;-
   graph %>%
-    select_nodes(node_attr = "label",
-                 search = "^c") %>%
-    select_nodes(node_attr = "label",
-                 search = "e$",
-                 set_op = "union")
+    select_nodes(
+      node_attr = "label",
+      search = "^c") %>%
+    select_nodes(
+      node_attr = "label",
+      search = "e$",
+      set_op = "union")
 
 # Get the graph's current selection
-graph_1$selection
+get_selection(graph)
 #> "4" "5" "9" "1" "2" "6"
 
 # Select any food beginning with `a` and
 # having a count less than 5
 graph_2 &lt;-
   graph %>%
-    select_nodes(node_attr = "label",
-                 search = "^a") %>%
-    select_nodes(node_attr = "count",
-                 search = "&lt;5",
-                 set_op = "intersect")
+    select_nodes(
+      node_attr = "label",
+      search = "^a") %>%
+    select_nodes(
+      node_attr = "count",
+      search = "&lt;5",
+      set_op = "intersect")
 
 # Get the graph's current selection
-graph_2$selection
+get_selection(graph_2)
 #> [1] "2"
 
 # Select any fruit not containing `apple`
 # in its name
 graph_3 &lt;-
   graph %>%
-    select_nodes(node_attr = "type",
-                 search = "fruit") %>%
-    select_nodes(node_attr = "label",
-                 search = "apple",
-                 set_op = "difference")
+    select_nodes(
+      node_attr = "type",
+      search = "fruit") %>%
+    select_nodes(
+      node_attr = "label",
+      search = "apple",
+      set_op = "difference")
 
 # Get the graph's current selection
-graph_3$selection
+get_selection(graph_3)
 #> [1] "3"</code></pre>
                     </div>
                     <p>There is an additional filtering option available as the <code>nodes</code> argument. Here, a vector of node ID values can be supplied and this will indicate to the function that only that subset of nodes will be considered for <code>select_nodes()</code>. Note that, if <code>node_attr</code> and <code>search</code> are provided with <code>NULL</code> values (the default) and <code>nodes</code> is given a vector of node ID values, it will be those very nodes that will make up the selection in this function call. While this is convenient and often a good method for selecting nodes (so long as one knows which node IDs need to be selected), the function <code>select_nodes_by_id()</code> handles this use case more directly (as the <code>nodes</code> argument is in the second position in the function signature).</p>
@@ -294,7 +300,7 @@ nodes &lt;-
 graph &lt;- create_graph(nodes_df = nodes)
 
 # Inspect the graph's NDF
-graph$nodes_df
+get_node_df(graph)
 #>    nodes type label data
 #> 1      1          1  0.5
 #> 2      2          2    1
@@ -317,7 +323,7 @@ graph %&lt;>%
     nodes = 1:6)
 
 # Get the graph's current selection
-graph$selection
+get_selection(graph)
 #> [1] "4" "5" "6"</code></pre>
                     </div>
                     <h2 id="creating-an-edge-selection">Creating an Edge Selection</h2>
