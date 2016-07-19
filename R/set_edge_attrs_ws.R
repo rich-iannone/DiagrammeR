@@ -32,8 +32,11 @@ set_edge_attrs_ws <- function(graph,
       edges_df[, which(colnames(edges_df) %in%
                          edge_attr)] <- value
     } else {
-      edges_df[which((edges_df$from %in% from) &
-                       (edges_df$to %in% to)),
+      edf_vector <-
+        paste0(edges_df$from, " -> ", edges_df$to)
+      sel_vector <- get_selection(graph)
+
+      edges_df[which(edf_vector %in% sel_vector),
                which(colnames(edges_df) %in%
                        edge_attr)] <- value
     }
@@ -55,8 +58,11 @@ set_edge_attrs_ws <- function(graph,
     } else if (is.null(from) & is.null(to)) {
       edges_df[, ncol(edges_df)] <- value
     } else {
-      edges_df[which((edges_df$from %in% from) &
-                       (edges_df$to %in% to)),
+      edf_vector <-
+        paste0(edges_df$from, " -> ", edges_df$to)
+      sel_vector <- get_selection(graph)
+
+      edges_df[which(edf_vector %in% sel_vector),
                ncol(edges_df)] <- value
     }
   }
