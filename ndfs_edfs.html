@@ -153,14 +153,15 @@ library(DiagrammeR)
 
 # Create a node data frame
 nodes_1 &lt;-
-  create_nodes(nodes = c("a", "b", "c", "d"),
-               label = FALSE,
-               type = "lower",
-               style = "filled",
-               color = "aqua",
-               shape = c("circle", "circle",
-                         "rectangle", "rectangle"),
-               data = c(3.5, 2.6, 9.4, 2.7))
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    label = FALSE,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
 
 # Inspect the `nodes_1` NDF
 nodes_1
@@ -172,13 +173,14 @@ nodes_1
 
 # Create another node data frame
 nodes_2 &lt;-
-  create_nodes(nodes = 1:4,
-               label = TRUE,
-               type = "upper",
-               style = "filled",
-               color = "red",
-               shape = "triangle",
-               data = c(0.5, 3.9, 3.7, 8.2))
+  create_nodes(
+    nodes = 1:4,
+    label = TRUE,
+    type = "upper",
+    style = "filled",
+    color = "red",
+    shape = "triangle",
+    data = c(0.5, 3.9, 3.7, 8.2))
 
 # Inspect the `nodes_2` NDF
 nodes_2
@@ -226,11 +228,12 @@ library(DiagrammeR)
 
 # Create an edge data frame
 edges_1 &lt;-
-  create_edges(from = c("a", "a", "b", "c"),
-               to = c("b", "d", "d", "a"),
-               rel = "requires",
-               color = "green",
-               data = c(2.7, 8.9, 2.6, 0.6))
+  create_edges(
+    from = c("a", "a", "b", "c"),
+    to = c("b", "d", "d", "a"),
+    rel = "requires",
+    color = "green",
+    data = c(2.7, 8.9, 2.6, 0.6))
 
 edges_1
 #>   from to      rel color data
@@ -241,11 +244,12 @@ edges_1
 
 # Create another edge data frame
 edges_2 &lt;-
-  create_edges(from = c("e", "g", "h", "h"),
-               to = c("g", "h", "f", "e"),
-               rel = "receives",
-               arrowhead = "dot",
-               color = "red")
+  create_edges(
+    from = c("e", "g", "h", "h"),
+    to = c("g", "h", "f", "e"),
+    rel = "receives",
+    arrowhead = "dot",
+    color = "red")
 
 edges_2
 #>   from to      rel arrowhead color
@@ -276,18 +280,20 @@ library(DiagrammeR)
 
 # Create an NDF
 nodes_1 &lt;-
-  create_nodes(nodes = 1:4,
-               label = TRUE,
-               type = "lower",
-               data = c(8.2, 5.2, 1.2, 14.9))
+  create_nodes(
+    nodes = 1:4,
+    label = TRUE,
+    type = "lower",
+    data = c(8.2, 5.2, 1.2, 14.9))
 
 
 # Create another NDF
 nodes_2 &lt;-
-  create_nodes(nodes = 5:8,
-               label = TRUE,
-               type = "upper",
-               data = c(0.3, 6.3, 10.7, 1.2))
+  create_nodes(
+    nodes = 5:8,
+    label = TRUE,
+    type = "upper",
+    data = c(0.3, 6.3, 10.7, 1.2))
 
 # Combine the NDFs
 all_nodes &lt;- combine_nodes(nodes_1, nodes_2)
@@ -324,19 +330,21 @@ library(DiagrammeR)
 
 # Create an edge data frame
 edges_1 &lt;-
-  create_edges(from = c("a", "a", "b", "c"),
-               to = c("b", "d", "d", "a"),
-               rel = "requires",
-               color = "green",
-               data = c(2.7, 8.9, 2.6, 0.6))
+  create_edges(
+    from = c("a", "a", "b", "c"),
+    to = c("b", "d", "d", "a"),
+    rel = "requires",
+    color = "green",
+    data = c(2.7, 8.9, 2.6, 0.6))
 
 # Create another edge data frame
 edges_2 &lt;-
-  create_edges(from = c("e", "g", "h", "h"),
-               to = c("g", "h", "f", "e"),
-               rel = "receives",
-               arrowhead = "dot",
-               color = "red")
+  create_edges(
+    from = c("e", "g", "h", "h"),
+    to = c("g", "h", "f", "e"),
+    rel = "receives",
+    arrowhead = "dot",
+    color = "red")
 
 # Combine edge data frames with 'combine_edges'
 all_edges &lt;- combine_edges(edges_1, edges_2)
