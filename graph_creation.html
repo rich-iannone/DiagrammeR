@@ -158,7 +158,7 @@ graph$edges_df
 graph$directed
 #> [1] TRUE</code></pre>
                     </div>
-                    <p>It's possible to include an <em>NDF</em> and not an <em>EDF</em> when calling <code>create_graph</code>. What you would get is an edgeless graph (a graph with nodes but no edges between those nodes. This may be somewhat silly, but edges can always be defined later (with functions such as <code>add_edge()</code>, <code>add_edge_df()</code>, <code>add_edges_from_df</code>, etc., and these functions are covered in a subsequent section).</p>
+                    <p>It's possible to include an <em>NDF</em> and not an <em>EDF</em> when calling <code>create_graph</code>. What you would get is an edgeless graph (a graph with nodes but no edges between those nodes. This may be somewhat silly, but edges can always be defined later (with functions such as <code>add_edge()</code>, <code>add_edge_df()</code>, <code>add_edges_from_table()</code>, etc., and these functions are covered in a subsequent section).</p>
                     <div>
                         <pre><code class="prettyprint">###
 # Create a graph with nodes but no edges
@@ -176,8 +176,7 @@ nodes &lt;-
     color = "aqua",
     shape = c("circle", "circle",
               "rectangle", "rectangle"),
-    data = c(3.5, 2.6, 9.4, 2.7)
-  )
+    data = c(3.5, 2.6, 9.4, 2.7))
 
 # Examine the NDF
 nodes
@@ -189,11 +188,10 @@ nodes
 
 # Create the graph and include the
 # `nodes` NDF
-graph &lt;-
-  create_graph(nodes_df = nodes)
+graph &lt;- create_graph(nodes_df = nodes)
 
 # Examine the NDF within the graph object
-graph$nodes_df
+get_node_df(graph)
 #>   nodes  type label  style color     shape data
 #> 1     1 lower       filled  aqua    circle  3.5
 #> 2     2 lower       filled  aqua    circle  2.6
@@ -228,15 +226,13 @@ nodes &lt;-
     color = "aqua",
     shape = c("circle", "circle",
               "rectangle", "rectangle"),
-    data = c(3.5, 2.6, 9.4, 2.7)
-  )
+    data = c(3.5, 2.6, 9.4, 2.7))
 
 edges &lt;-
   create_edges(
     from = c("a", "b", "c"),
     to = c("d", "c", "a"),
-    rel = "leading_to"
-  )
+    rel = "leading_to")
 
 graph &lt;-
   create_graph(
@@ -244,19 +240,18 @@ graph &lt;-
     edges_df = edges,
     node_attrs = "fontname = Helvetica",
     edge_attrs = c("color = blue",
-                   "arrowsize = 2")
-  )
+                   "arrowsize = 2"))
 
 # Examine the NDF within the
 # graph object
-graph$nodes_df
+get_node_df(graph)
 #>   nodes  type label  style color     shape data
 #> 1     a lower       filled  aqua    circle  3.5
 #> 2     b lower       filled  aqua    circle  2.6
 #> 3     c lower       filled  aqua rectangle  9.4
 #> 4     d lower       filled  aqua rectangle  2.7
 
-graph$edges_df
+get_edge_df(graph)
 #>   from to        rel
 #> 1    a  d leading_to
 #> 2    b  c leading_to
@@ -285,14 +280,16 @@ library(DiagrammeR)
 
 # Create a simple NDF
 nodes &lt;-
-  create_nodes(nodes = 1:4,
-               type = "number")
+  create_nodes(
+    nodes = 1:4,
+    type = "number")
 
 # Create a simple EDF
 edges &lt;-
-  create_edges(from = c(1, 1, 3, 1),
-               to = c(2, 3, 4, 4),
-               rel = "related")
+  create_edges(
+    from = c(1, 1, 3, 1),
+    to = c(2, 3, 4, 4),
+    rel = "related")
 
 # Create the graph object,
 # incorporating the NDF and
@@ -304,8 +301,7 @@ graph &lt;-
     edges_df = edges,
     graph_attrs = "layout = neato",
     node_attrs = "fontname = Helvetica",
-    edge_attrs = "color = gray20"
-  )
+    edge_attrs = "color = gray20")
 
 # View the graph
 render_graph(graph)</code></pre>
@@ -322,14 +318,16 @@ library(magrittr)
 
 # Create a simple NDF
 nodes &lt;-
-  create_nodes(nodes = 1:4,
-               type = "number")
+  create_nodes(
+    nodes = 1:4,
+    type = "number")
 
 # Create a simple EDF
 edges &lt;-
-  create_edges(from = c(1, 1, 3, 1),
-               to = c(2, 3, 4, 4),
-               rel = "related")
+  create_edges(
+    from = c(1, 1, 3, 1),
+    to = c(2, 3, 4, 4),
+    rel = "related")
 
 # Create the graph object,
 # incorporating the NDF and
@@ -350,8 +348,8 @@ create_graph(
   edges_df = edges,
   graph_attrs = "layout = neato",
   node_attrs = "fontname = Helvetica",
-  edge_attrs = "color = gray20"
-) %>% render_graph</code></pre>
+  edge_attrs = "color = gray20") %>%
+  render_graph</code></pre>
                     </div>
                     <p>If you'd like to return the <strong>Graphviz</strong> <strong>DOT</strong> code (to, perhaps, share it or use it directly with the <strong>Graphviz</strong> command-line utility), just use <code>output = "DOT"</code> in the <code>render_graph()</code> function. Here's a simple example:</p>
                     <div>
@@ -365,14 +363,16 @@ library(magrittr)
 
 # Create a simple NDF
 nodes &lt;-
-  create_nodes(nodes = 1:4,
-               type = "number")
+  create_nodes(
+    nodes = 1:4,
+    type = "number")
 
 # Create a simple EDF
 edges &lt;-
-  create_edges(from = c(1, 1, 3, 1),
-               to = c(2, 3, 4, 4),
-               rel = "related")
+  create_edges(
+    from = c(1, 1, 3, 1),
+    to = c(2, 3, 4, 4),
+    rel = "related")
 
 # Create the graph object,
 # incorporating the NDF and
@@ -384,8 +384,7 @@ graph &lt;-
     edges_df = edges,
     graph_attrs = "layout = neato",
     node_attrs = "fontname = Helvetica",
-    edge_attrs = "color = gray20"
-  )
+    edge_attrs = "color = gray20")
 
 # Use the %>% operator between
 # `create_graph()` and `render_graph()`
@@ -395,8 +394,8 @@ create_graph(
   edges_df = edges,
   graph_attrs = "layout = neato",
   node_attrs = "fontname = Helvetica",
-  edge_attrs = "color = gray20"
-) %>% render_graph(output = "DOT")
+  edge_attrs = "color = gray20") %>%
+  render_graph(output = "DOT")
 #> [1] "digraph {\n\ngraph [layout = neato]\n\nnode [fontname = Helvetica]\n\nedge [color = gray20]\n\n  '1' [label = '1'] \n  '2' [label = '2'] \n  '3' [label = '3'] \n  '4' [label = '4'] \n  '1'->'2' \n  '1'->'3' \n  '3'->'4' \n  '1'->'4' \n}"
 
 # Use the R `cat()` function to
@@ -408,9 +407,9 @@ create_graph(
   edges_df = edges,
   graph_attrs = "layout = neato",
   node_attrs = "fontname = Helvetica",
-  edge_attrs = "color = gray20"
-) %>% render_graph(output = "DOT") %>%
- cat(file = "~/dot.gv")</code></pre>
+  edge_attrs = "color = gray20") %>%
+  render_graph(output = "DOT") %>%
+  cat(file = "~/dot.gv")</code></pre>
                     </div>
                     <h2 id="creating-a-random-graph">Creating a 'Random' Graph</h2>
                     <p>Creating a random graph is actually quite useful. Seeing these graphs with specified numbers of nodes and edges will allow you to quickly get a sense of how connected graphs can be at different sizes.</p>
@@ -528,8 +527,8 @@ library(DiagrammeR)
 # directed edges by setting
 # `directed = TRUE`
 render_graph(
-  create_random_graph(n = 15, m = 22,
-                      directed = TRUE),
+  create_random_graph(
+    n = 15, m = 22, directed = TRUE),
   output = "visNetwork")</code></pre>
                     </div>
                     <h2 id="combining-graphs">Combining Graphs</h2>
@@ -556,13 +555,15 @@ nodes_1 &lt;-
   create_nodes(nodes = 1:10)
 
 edges_1 &lt;-
-  create_edges(from = 1:9,
-               to = 2:10)
+  create_edges(
+    from = 1:9,
+    to = 2:10)
 
 graph_1 &lt;-
-  create_graph(nodes_df = nodes_1,
-               edges_df = edges_1,
-               graph_attrs = "rankdir = LR")
+  create_graph(
+    nodes_df = nodes_1,
+    edges_df = edges_1,
+    graph_attrs = "rankdir = LR")
 
 # Create the second graph (note that node ID values
 # are different from those of the first graph)
@@ -570,13 +571,15 @@ nodes_2 &lt;-
   create_nodes(nodes = 11:20)
 
 edges_2 &lt;-
-  create_edges(from = 11:19,
-               to = 12:20)
+  create_edges(
+    from = 11:19,
+    to = 12:20)
 
 graph_2 &lt;-
-  create_graph(nodes_df = nodes_2,
-               edges_df = edges_2,
-               graph_attrs = "rankdir = TD")
+  create_graph(
+    nodes_df = nodes_2,
+    edges_df = edges_2,
+    graph_attrs = "rankdir = TD")
 
 # Combine the two graphs, the
 # global graph attribute
@@ -589,7 +592,7 @@ combined_graph &lt;-
 # Display the combined graph
 render_graph(combined_graph)</code></pre>
                     </div>
-                    <p>Joining two graphs by simply supplying them as <code>x</code> and <code>y</code> will not by itself create connections between the two graphs. To conveniently create connections between the joined graphs, one can supply an <em>EDF</em> to the <code>edges_df</code> argument. Otherwise, connections could always to be made in subsequent function calls using <code>add_edge()</code>, <code>add_edge_df()</code>, or <code>add_edges_from_df()</code>.</p>
+                    <p>Joining two graphs by simply supplying them as <code>x</code> and <code>y</code> will not by itself create connections between the two graphs. To conveniently create connections between the joined graphs, one can supply an <em>EDF</em> to the <code>edges_df</code> argument. Otherwise, connections could always to be made in subsequent function calls using <code>add_edge()</code>, <code>add_edge_df()</code>, or <code>add_edges_from_table()</code>.</p>
                     <div>
                         <pre><code class="prettyprint">###
 # Create two graphs and combine them
@@ -603,41 +606,47 @@ nodes_1 &lt;-
   create_nodes(nodes = 1:10)
 
 edges_1 &lt;-
-  create_edges(from = 1:9,
-               to = 2:10)
+  create_edges(
+    from = 1:9,
+    to = 2:10)
 
 graph_1 &lt;-
-  create_graph(nodes_df = nodes_1,
-               edges_df = edges_1,
-               graph_attrs = "rankdir = LR")
+  create_graph(
+    nodes_df = nodes_1,
+    edges_df = edges_1,
+    graph_attrs = "rankdir = LR")
 
 # Create the second graph
 nodes_2 &lt;-
   create_nodes(nodes = 11:20)
 
 edges_2 &lt;-
-  create_edges(from = 11:19,
-               to = 12:20)
+  create_edges(
+    from = 11:19,
+    to = 12:20)
 
 graph_2 &lt;-
-  create_graph(nodes_df = nodes_2,
-               edges_df = edges_2)
+  create_graph(
+    nodes_df = nodes_2,
+    edges_df = edges_2)
 
 # Create an auxiliary EDF for
 # creating edges across the two
 # graphs supplied as `x` and `y`
 # to `combine_graphs()`
 extra_edges &lt;-
-  create_edges(from = c(5, 19, 1),
-               to = c(12, 3, 11))
+  create_edges(
+    from = c(5, 19, 1),
+    to = c(12, 3, 11))
 
 # Combine the two graphs, adding
 # the `extra_edges` EDF to the
 # `edges_df` argument
 combined_graph &lt;-
-  combine_graphs(x = graph_1,
-                 y = graph_2,
-                 edges_df = extra_edges)
+  combine_graphs(
+    x = graph_1,
+    y = graph_2,
+    edges_df = extra_edges)
 
 # Display the combined graph
 render_graph(combined_graph)</code></pre>
@@ -670,8 +679,7 @@ graphml_graph &lt;-
     graph_file =
       system.file("examples/power_grid.graphml",
                   package = "DiagrammeR"),
-    graph_name = "power_grid"
-    )
+    graph_name = "power_grid")
 
 # Open a graph from a GML file
 gml_graph &lt;-
@@ -679,8 +687,7 @@ gml_graph &lt;-
     graph_file =
       system.file("examples/karate.gml",
                   package = "DiagrammeR"),
-    graph_name = "karate"
-    )
+    graph_name = "karate")
 
 # Open a graph from a SIF file
 sif_graph &lt;-
@@ -688,8 +695,7 @@ sif_graph &lt;-
     graph_file =
       system.file("examples/Human_Interactome.sif",
                   package = "DiagrammeR"),
-    graph_name = "Human_Interactome"
-    )</code></pre>
+    graph_name = "Human_Interactome")</code></pre>
                     </div>
                 <p>Once you've imported a graph, you're free to use it as any graph you might make yourself with <code>create_graph()</code>.</p>
                 </div>
