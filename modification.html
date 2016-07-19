@@ -429,41 +429,19 @@ create_graph(
 
 <img src="img/adding-several-new-nodes-to-or-from-a-selection-of-nodes-3.png" class="img-responsive center-block"></code></pre>
                     </div>
-                    <h2 id="adding-nodes-or-edges-from-a-data-frame">Adding Nodes or Edges from a Data Frame</h2>
+                    <h2 id="adding-nodes-or-edges-from-a-table">Adding Nodes or Edges from a Table</h2>
                     <p></p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/add_nodes_from_df_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/add_nodes_from_table_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/add_edges_from_df_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                    <p></p>
-                    <div>
-                        <pre><code class="prettyprint">
-</code></pre>
-                    </div>
-                    <h2 id="adding-nodes-or-edges-from-a-csv-file">Adding Nodes or Edges from a CSV File</h2>
-                    <p></p>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/add_nodes_from_csv_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/add_edges_from_csv_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/add_edges_from_table_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -473,7 +451,7 @@ create_graph(
                         <pre><code class="prettyprint">
 </code></pre>
                     </div>
-                    <h2 id="deleting-a-node-or-edge-from-a-graph">Deleting a Node or Edge from a Graph</h2>
+                    <h2 id="deleting-a-node-or-edge-from-a-graph">Deleting a Node or Edge from a Table</h2>
                     <p>Graphs can undergo all sorts of modifications, and this includes the removal of nodes or edges. The <code>delete_node()</code> and <code>delete_edge()</code> functions allow for the removal of single nodes or edges. Also, when deleting a node that has edges, those edge definitions will also be removed.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -508,10 +486,10 @@ create_graph(graph_attrs =
                "output = visNetwork") %>%
   add_n_nodes(1, "A") %>%
   select_nodes %>%
-  add_n_nodes_from_selection(3, "B") %>%
+  add_n_nodes_ws(3, "B") %>%
   clear_selection %>%
   select_nodes("type", "B") %>%
-  add_n_nodes_from_selection(3, "C")
+  add_n_nodes_ws(3, "C")
 
 # View the graph
 graph %>% render_graph
@@ -573,14 +551,14 @@ library(magrittr)
 # this is the same graph as in the
 # previous example
 graph &lt;-
-create_graph(graph_attrs =
-               "output = visNetwork") %>%
+create_graph(
+  graph_attrs = "output = visNetwork") %>%
   add_n_nodes(1, "A") %>%
   select_nodes %>%
-  add_n_nodes_from_selection(3, "B") %>%
+  add_n_nodes_ws(3, "from", "B") %>%
   clear_selection %>%
   select_nodes("type", "B") %>%
-  add_n_nodes_from_selection(3, "C")
+  add_n_nodes_ws(3, "from", "C")
 
 # Remove the several edges by
 # specifying the node ID values
@@ -597,18 +575,18 @@ graph_delete_edges %>% render_graph
 <img src="img/deleting-a-node-or-edge-from-a-graph-3.png" class="img-responsive center-block"></code></pre>
                       </div>
                     <h2 id="deleting-nodes-or-edges-using-a-selection">Deleting Nodes or Edges Using a Selection</h2>
-                    <p>While the removal of several nodes or several edges can be performed with multiple statements using the <code>delete_node()</code> and <code>delete_edge()</code> functions, an often more desirable solution for greater removals is to create a selection of nodes or edges and delete the members with such selections. The latter strategy can be accomplished with the <code>delete_nodes_in_selection()</code> and <code>delete_edges_in_selection()</code> functions.</p>
+                    <p>While the removal of several nodes or several edges can be performed with multiple statements using the <code>delete_node()</code> and <code>delete_edge()</code> functions, an often more desirable solution for greater removals is to create a selection of nodes or edges and delete the members with such selections. The latter strategy can be accomplished with the <code>delete_nodes_ws()</code> and <code>delete_edges_ws()</code> functions.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/delete_nodes_in_selection_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/delete_nodes_ws_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/delete_edges_in_selection_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/delete_edges_ws_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -619,7 +597,7 @@ graph_delete_edges %>% render_graph
 # Delete a number of nodes
 # from the graph by making
 # a selection and then using
-# `delete_nodes_in_selection()`
+# `delete_nodes_ws()`
 ###
 
 library(DiagrammeR)
@@ -633,7 +611,7 @@ graph &lt;-
     directed = TRUE,
     fully_connected = TRUE,
     set_seed = 20) %>%
-  set_global_graph_attr(
+  set_global_graph_attrs(
     "graph", "output", "visNetwork")
 
 # Set a random seed
@@ -666,8 +644,9 @@ graph %>% node_count(type = TRUE)
 # select all nodes and delete all
 # of them from the graph
 graph_emptied &lt;-
-  graph %>% select_nodes %>%
-  delete_nodes_in_selection
+  graph %>%
+  select_nodes %>%
+  delete_nodes_ws
 
 # Ensure that the graph is empty
 node_count(graph_emptied)
@@ -681,7 +660,7 @@ graph_1_5_removed &lt;-
   graph %>%
   select_nodes("type", 1) %>%
   select_nodes("type", 5) %>%
-  delete_nodes_in_selection
+  delete_nodes_ws
 
 graph_1_5_removed %>%
   node_count(type = TRUE)
@@ -709,10 +688,10 @@ graph_large_node_interactions &lt;-
   graph %>%
   select_edges_by_node_id(
     get_nodes(., "value", "&lt;7")) %>%
-  delete_edges_in_selection %>%
+  delete_edges_ws %>%
   clear_selection %>%
   select_nodes_by_degree("both", 0) %>%
-  delete_nodes_in_selection
+  delete_nodes_ws
 
 # View the revised graph
 graph_large_node_interactions %>%
@@ -903,8 +882,9 @@ edges &lt;-
 # Create the graph object using
 # the NDF and the EDF
 graph &lt;-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
 # Using a `read` action on an
 # edge with a relationship set
@@ -958,8 +938,8 @@ graph %&lt;>%
 # across the `1`->`4` edge using
 # the `add` action
 graph %&lt;>%
-  edge_rel(1, 4, "add",
-           "relates_to")
+  edge_rel(
+    1, 4, "add", "relates_to")
 
 # If you'd like to change the
 # `rel` value for the `1`->`4`
@@ -967,8 +947,8 @@ graph %&lt;>%
 # (`add` only works for those
 # edges where `rel` is not set)
 graph %&lt;>%
-  edge_rel(1, 4, "update",
-           "did_with")
+  edge_rel(
+    1, 4, "update", "did_with")
 
 # Check that the `rel` value for
 # the `1`->`4` edge has been set
@@ -977,12 +957,12 @@ graph %>%
 #> [1] "did_with"</code></pre>
                     </div>
                     <h2 id="creating-a-subgraph">Creating a Subgraph</h2>
-                    <p>A subgraph is a distinct graph composed of a subset of node and edges from another graph. Creating a subgraph in <strong>DiagrammeR</strong> is done by first creating a selection of nodes or edges and then invoking the <code>create_subgraph_from_selection()</code> function.</p>
+                    <p>A subgraph is a distinct graph composed of a subset of node and edges from another graph. Creating a subgraph in <strong>DiagrammeR</strong> is done by first creating a selection of nodes or edges and then invoking the <code>create_subgraph_ws()</code> function.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/create_subgraph_from_selection_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/create_subgraph_ws_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -1007,7 +987,7 @@ graph &lt;-
     directed = TRUE,
     fully_connected = TRUE,
     set_seed = 20) %>%
-  set_global_graph_attr(
+  set_global_graph_attrs(
     "graph", "output", "visNetwork")
 
 # Randomly assign node `type` values
@@ -1032,15 +1012,14 @@ graph %>% render_graph
 subgraph_a_nodes &lt;-
   graph %>%
   select_nodes("type", "A") %>%
-  create_subgraph_from_selection
+  create_subgraph_ws
 
 # View the subgraph after coloring
 # all nodes `lightgray`
 subgraph_a_nodes %>%
 select_nodes %>%
-  set_node_attr_with_selection(
-    "color",
-    "lightgray") %>%
+  set_node_attrs_ws(
+    "color", "lightgray") %>%
   render_graph
 
 <img src="img/creating-a-subgraph-2.png" class="img-responsive center-block">
@@ -1053,7 +1032,7 @@ for (i in 1:4) {
   subgraphs &lt;-
     graph %>%
     select_nodes("type", LETTERS[i]) %>%
-    create_subgraph_from_selection %>%
+    create_subgraph_ws %>%
     set_graph_name(LETTERS[i]) %>%
     add_to_series(series_of_subgraphs)
 }
@@ -1099,10 +1078,8 @@ graph &lt;-
     directed = TRUE,
     fully_connected = TRUE,
     set_seed = 20) %>%
-  set_global_graph_attr(
-    "graph",
-    "output",
-    "visNetwork")
+  set_global_graph_attrs(
+    "graph", "output", "visNetwork")
 
 # Randomly assign node `type` values
 # of `A`, `B`, `C`, and `D` to each
@@ -1196,8 +1173,9 @@ graph$graph_tz
 # timestamp (i.e., date + time) and
 # a time zone
 graph %&lt;>%
-  set_graph_time("2015-01-30 15:26:54",
-                 "Pacific/Pago_Pago")
+  set_graph_time(
+    "2015-01-30 15:26:54",
+    "Pacific/Pago_Pago")
 
 # Let's check both the time and
 # the time zone set for the graph
@@ -1212,7 +1190,7 @@ c(graph$graph_time,
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/set_global_graph_attr_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/set_global_graph_attrs_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -1223,35 +1201,35 @@ c(graph$graph_time,
 </code></pre>
                     </div>
                     <h2 id="setting-node-or-edge-attributes">Setting Node or Edge Attributes</h2>
-                    <p>Once a node or edge is in the graph, there are still opportunities to add or modify node or edge attribute values. There are four functions that help with this sort of task: <code>set_node_attr()</code>, <code>set_edge_attr()</code>, <code>set_node_attr_with_selection()</code>, and <code>set_edge_attr_with_selection()</code>.</p>
+                    <p>Once a node or edge is in the graph, there are still opportunities to add or modify node or edge attribute values. There are four functions that help with this sort of task: <code>set_node_attrs()</code>, <code>set_edge_attrs()</code>, <code>set_node_attrs_ws()</code>, and <code>set_edge_attrs_ws()</code>.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/set_node_attr_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
-                        <div>
-                            <img src="img/graph-functions/set_edge_attr_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/set_node_attrs_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/set_node_attr_with_selection_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/set_edge_attrs_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/set_edge_attr_with_selection_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/set_node_attrs_ws_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>When adding or modifying node attributes, you can target all the nodes at once (using <code>set_node_attr()</code> with no values provided to the <code>nodes</code> argument). Specific nodes can be targeted by providing a vector of node ID values to the <code>nodes</code> argument of the <code>set_node_attr()</code> function or by creating a selection of nodes (using <code>select_nodes()</code>, <code>select_nodes_by_id()</code>, <code>select_nodes_by_degree()</code>, etc.) and using the <code>set_node_attr_with_selection()</code> function. Similarly, for additions or modifications of edge attributes, the <code>set_edge_attr()</code> and <code>set_edge_attr_with_selection()</code> are used in the same manner.</p>
+                        <div>
+                            <img src="img/graph-functions/set_edge_attrs_ws_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>When adding or modifying node attributes, you can target all the nodes at once (using <code>set_node_attrs()</code> with no values provided to the <code>nodes</code> argument). Specific nodes can be targeted by providing a vector of node ID values to the <code>nodes</code> argument of the <code>set_node_attrs()</code> function or by creating a selection of nodes (using <code>select_nodes()</code>, <code>select_nodes_by_id()</code>, <code>select_nodes_by_degree()</code>, etc.) and using the <code>set_node_attrs_ws()</code> function. Similarly, for additions or modifications of edge attributes, the <code>set_edge_attrs()</code> and <code>set_edge_attrs_ws()</code> are used in the same manner.</p>
                     <div>
                         <pre><code class="prettyprint">###
 # Create a simple graph then
@@ -1270,10 +1248,8 @@ graph &lt;-
     directed = TRUE,
     fully_connected = TRUE,
     set_seed = 25) %>%
-  set_global_graph_attr(
-    "graph",
-    "output",
-    "visNetwork")
+  set_global_graph_attrs(
+    "graph", "output", "visNetwork")
 
 # View the initial graph
 graph %>% render_graph
@@ -1283,11 +1259,11 @@ graph %>% render_graph
 # modify existing node attributes
 graph_modified_node_attrs &lt;-
   graph %>%
-  set_node_attr(
+  set_node_attrs(
     get_nodes(.), "type", "A") %>%
-  set_node_attr(
+  set_node_attrs(
     c(1, 2, 3), "type", "B") %>%
-  set_node_attr(
+  set_node_attrs(
     c(1, 2, 3), "value", 50) %>%
   render_graph
 
@@ -1299,18 +1275,18 @@ graph_modified_node_attrs %>%
 <img src="img/setting-node-or-edge-attributes-2.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="rescaling-node-and-edge-attributes">Rescaling Node and Edge Attributes</h2>
-                    <p>Mainly for purposes of scaling data values to values supplied to aesthetics, the <code>rescale_node_attr_in_selection()</code> and <code>rescale_edge_attr_in_selection()</code> functions are available. Both allow for rescaling continuous numeric values to another set of numeric values or to a color range.</p>
+                    <p>Mainly for purposes of scaling data values to values supplied to aesthetics, the <code>rescale_node_attrs_ws()</code> and <code>rescale_edge_attrs_ws()</code> functions are available. Both allow for rescaling continuous numeric values to another set of numeric values or to a color range.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/rescale_node_attr_in_selection_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/rescale_node_attrs_ws_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
-                            <img src="img/graph-functions/rescale_edge_attr_in_selection_2x.png" class="img-responsive center-block">
+                            <img src="img/graph-functions/rescale_edge_attrs_ws_2x.png" class="img-responsive center-block">
                         </div>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
@@ -1332,8 +1308,7 @@ graph_modified_node_attrs %>%
                                 <li><a href="#adding-an-ndf-or-edf-to-a-graph">Adding an NDF or EDF to a Graph</a></li>
                                 <li><a href="#adding-several-new-nodes-to-a-graph">Adding Several New Nodes to a Graph</a></li>
                                 <li><a href="#adding-several-new-nodes-to-or-from-a-selection-of-nodes">Adding Several New Nodes to or from a Selection of Nodes</a></li>
-                                <li><a href="#adding-nodes-or-edges-from-a-data-frame">Adding Nodes or Edges from a Data Frame</a></li>
-                                <li><a href="#adding-nodes-or-edges-from-a-csv-file">Adding Nodes or Edges from a CSV File</a></li>
+                                <li><a href="#adding-nodes-or-edges-from-a-table">Adding Nodes or Edges from a CSV File</a></li>
                                 <li><a href="#deleting-a-node-or-edge-from-a-graph">Deleting a Node or Edge from a Graph</a></li>
                                 <li><a href="#deleting-nodes-or-edges-using-a-selection">Deleting Nodes or Edges Using a Selection</a></li>
                                 <li><a href="#working-with-the-node-type-attribute">Working with the Node <code>type</code> Attribute</a></li>
