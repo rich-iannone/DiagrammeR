@@ -45,38 +45,7 @@
 #' #> 7    10    10   tertiary   4     1      3     0
 #' #> 8    11    11   tertiary   4     1      3     0
 #' #> 9    22    22 quaternary   5     1      4     0
-#' #> 10   23    23 quaternary   5     1      4     0
-#' #> 11   24    24 quaternary   5     1      4     0
-#' #> 12   25    25 quaternary   5     1      4     0
-#' #> 13    4     4     binary   1     1      0     0
-#' #> 14    5     5     binary   1     1      0     0
-#' #> 15    6     6     binary   1     1      0     0
-#' #> 16    7     7     binary   1     1      0     0
-#' #> 17   12    12   tertiary   1     1      0     0
-#' #> 18   13    13   tertiary   1     1      0     0
-#' #> 19   14    14   tertiary   1     1      0     0
-#' #> 20   15    15   tertiary   1     1      0     0
-#' #> 21   16    16   tertiary   1     1      0     0
-#' #> 22   17    17   tertiary   1     1      0     0
-#' #> 23   18    18   tertiary   1     1      0     0
-#' #> 24   19    19   tertiary   1     1      0     0
-#' #> 25   20    20   tertiary   1     1      0     0
-#' #> 26   26    26 quaternary   1     1      0     0
-#' #> 27   27    27 quaternary   1     1      0     0
-#' #> 28   28    28 quaternary   1     1      0     0
-#' #> 29   29    29 quaternary   1     1      0     0
-#' #> 30   30    30 quaternary   1     1      0     0
-#' #> 31   31    31 quaternary   1     1      0     0
-#' #> 32   32    32 quaternary   1     1      0     0
-#' #> 33   33    33 quaternary   1     1      0     0
-#' #> 34   34    34 quaternary   1     1      0     0
-#' #> 35   35    35 quaternary   1     1      0     0
-#' #> 36   36    36 quaternary   1     1      0     0
-#' #> 37   37    37 quaternary   1     1      0     0
-#' #> 38   38    38 quaternary   1     1      0     0
-#' #> 39   39    39 quaternary   1     1      0     0
-#' #> 40   40    40 quaternary   1     1      0     0
-#' #> 41   41    41 quaternary   1     1      0     0
+#' #> ..   ..    .. ..........  ..    ..     ..    ..
 #' @export add_balanced_tree
 
 add_balanced_tree <- function(graph,
