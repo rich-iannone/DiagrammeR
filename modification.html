@@ -119,9 +119,6 @@
                         <div>
                             <img src="img/graph-functions/add_edge_2x.png" class="img-responsive center-block">
                         </div>
-                        <div>
-                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
-                        </div>
                     <p>The <code>add_node()</code> function allows one to add a single node to a graph. Specify the graph to which the node should be added and the node ID for the <code>node</code> argument, and a node will be added. While the other arguments are optional, using just <code>graph</code> and <code>node</code> will result in the addition of an unconnected node. This might be desirable (say, if the graph is empty), but the more likely case is that edges to other nodes will be required upon addition of a new node. The <code>from</code> and <code>to</code> arguments (both optional) are where you would specify connections from existing nodes to the new node (with <code>to</code>), and connections to existing nodes from the new node (with <code>from</code>). A vector of node IDs can be supplied to either argument. The <code>label</code> and <code>type</code> arguments allow for direct setting of these node attributes during the addition of a node. Finally, a named vector of node attributes and their values can be included in the <code>add_node()</code> call.</p>
                     <p>The <code>add_edge()</code> function is meant for adding an edge between two extant graph nodes. Because the nodes must exist in the graph, this function cannot be invoked for an empty graph. (It can, however, be used for a graph with a single node since an edge can be created as a loop from and to the same node.) The basic means to add an edge to a graph with this function is to specify <code>from</code> and <code>to</code> nodes for the edge to be added. One can optionally add an edge <code>rel</code> string as a value for the <code>rel</code> argument.
                     <div>
@@ -304,8 +301,8 @@ render_graph(graph)
 
 <img src="img/adding-an-ndf-or-edf-to-a-graph-1.png" class="img-responsive center-block"></code></pre>
                     </div>
-                    <h2 id="adding-several-new-nodes-to-a-graph">Adding Several New Nodes to a Graph</h2>
-                    <p>Add a multiple of new nodes to the graph in a single function call with the <code>add_n_nodes()</code> function.</p>
+                    <h2 id="adding-several-new-nodes-or-edges-to-a-graph">Adding Several New Nodes or Edges to a Graph</h2>
+                    <p>There may be times when the addition of many individual nodes or edges is desired. Add a multiple of new nodes to the graph in a single function call with the <code>add_n_nodes()</code> function. Or, add several edges using a string representation with <code>add_edges_w_string()</code>.</p>
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
@@ -315,7 +312,13 @@ render_graph(graph)
                         <div>
                             <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
                         </div>
-                    <p>The argument <code>n</code> is for the number of new nodes to add to the graph, so, supply an integer that is greater than or equal to <code>1</code>. Optionally, set node <code>type</code> values for the new nodes (this is important for creating property graphs). The <code>set_node_type</code> argument takes an optional string for applying a single <code>type</code> attribute to all the newly created nodes.</p>
+                        <div>
+                            <img src="img/graph-functions/add_edges_w_string_2x.png" class="img-responsive center-block">
+                        </div>
+                        <div>
+                            <img src="img/graph-functions/spacer_2x.png" class="img-responsive center-block">
+                        </div>
+                    <p>When adding nodes with <code>add_n_nodes()</code>, the argument <code>n</code> is for the number of new nodes to add to the graph, so, supply an integer that is greater than or equal to <code>1</code>. Optionally, set node <code>type</code> values for the new nodes (this is important for creating property graphs). The <code>set_node_type</code> argument takes an optional string for applying a single <code>type</code> attribute to all the newly created nodes.</p>
                     <div>
                         <pre><code class="prettyprint">###
 # Add several nodes with different
@@ -349,6 +352,34 @@ create_graph(
 
 
 <img src="img/adding-several-new-nodes-to-a-graph-2.png" class="img-responsive center-block"></code></pre>
+                    </div>
+<p>The <code>add_edges_w_string()</code> function provides an easy way to declare edges between nodes, provided that the node IDs are known in advance. The <code>edges</code> argument is supplied with a string that defines edges between the nodes' IDs. If the graph is directed, then the format is <code>[ID]->[ID] [ID]->[ID] ...</code>. If the graph is undirected then <code>-></code> should be replaced by <code>--</code>. The <code>rel</code> argument provides an option to set a common edge <code>rel</code> value for all the edges created (again, could be important for creating property graphs).
+                    <div>
+                        <pre><code class="prettyprint">###
+# Add several nodes of different
+# types and add edges between the
+# nodes with `add_edges_w_string()`
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Add 12 nodes to an empty graph and
+# then create edges between all nodes
+create_graph(
+  graph_attrs = "output = visNetwork") %>%
+  add_n_nodes(4, "A") %>%
+  add_n_nodes(4, "B") %>%
+  add_n_nodes(4, "C") %>%
+  add_edges_w_string(
+    "1->6 2->10 5->8 9->2", "X") %>%
+  add_edges_w_string(
+    "3->7 6->2 11->5 12->2", "Y") %>%
+  add_edges_w_string(
+    "4->8 9->4 7->9 10->1", "Z") %>%
+  render_graph
+
+<img src="img/adding-several-new-nodes-to-a-graph-3.png" class="img-responsive center-block"></code></pre>
                     </div>
                     <h2 id="adding-several-new-nodes-to-or-from-a-selection-of-nodes">Adding Several New Nodes to or from a Selection of Nodes</h2>
                     <p>Add a number of nodes to the graph by attaching them to or from a selection of nodes with <code>add_n_nodes_ws()</code>. The nodes created can be assigned a common value for their <code>type</code> attribute.</p>
@@ -1306,7 +1337,7 @@ graph_modified_node_attrs %>%
                             <ul class="nav">
                                 <li><a href="#adding-a-node-or-edge-to-a-graph">Adding a Node or Edge to a Graph</a></li>
                                 <li><a href="#adding-an-ndf-or-edf-to-a-graph">Adding an NDF or EDF to a Graph</a></li>
-                                <li><a href="#adding-several-new-nodes-to-a-graph">Adding Several New Nodes to a Graph</a></li>
+                                <li><a href="#adding-several-new-nodes-or-edges-to-a-graph">Adding Several New Nodes or Edges to a Graph</a></li>
                                 <li><a href="#adding-several-new-nodes-to-or-from-a-selection-of-nodes">Adding Several New Nodes to or from a Selection of Nodes</a></li>
                                 <li><a href="#adding-nodes-or-edges-from-a-table">Adding Nodes or Edges from a CSV File</a></li>
                                 <li><a href="#deleting-a-node-or-edge-from-a-graph">Deleting a Node or Edge from a Graph</a></li>
