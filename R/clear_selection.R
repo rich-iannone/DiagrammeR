@@ -33,7 +33,6 @@
 #'
 #' # Verify that a node selection has been made
 #' get_selection(graph)
-#' #> $nodes
 #' #> [1] "a" "c"
 #'
 #' # Clear the selection with `clear_selection()`
