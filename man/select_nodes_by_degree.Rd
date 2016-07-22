@@ -58,17 +58,15 @@ random_graph <-
 random_graph \%>\%
   select_nodes_by_degree('both', '==9') \%>\%
   get_selection
-#> $nodes
-#> [1] "4"  "8"  "11" "18" "20" "24" "31"
+#> [1] "11" "18" "20" "24" "31" "4"  "8"
 
 # Report which nodes have a total degree greater
 # than or equal to 9
 random_graph \%>\%
   select_nodes_by_degree('both', '>=9') \%>\%
   get_selection
-#> $nodes
-#>  [1] "4"  "5"  "7"  "8"  "9"  "11" "18" "20" "24"
-#> [10] "31" "32"
+#>  [1] "11" "18" "20" "24" "31" "32" "4"  "5"  "7"
+#> [10] "8"  "9"
 
 # Combine two calls of `select_nodes_by_degree()`
 # to get those nodes with total degree less than 3
@@ -79,7 +77,6 @@ random_graph \%>\%
   select_nodes_by_degree('both', '<3') \%>\%
   select_nodes_by_degree('both', '>10') \%>\%
   get_selection
-#> $nodes
 #> [1] "16" "5"  "7"
 
 # Combine two calls of `select_nodes_by_degree()`
@@ -91,7 +88,6 @@ random_graph \%>\%
   select_nodes_by_degree('both', '>=3') \%>\%
   select_nodes_by_degree('both', '<=10', 'intersect') \%>\%
   get_selection
-#> $nodes
 #> [1] "1"  "2"  "3"  "4"  "6"  "8"  "9"  "11" "13"
 #> [10] "14" "15" "17" "18" "19" "20" "21" "22" "24"
 #> [19] "25" "26" "27" "28" "29" "30" "31" "32" "33"
@@ -108,7 +104,6 @@ random_graph_2 <-
 
 # Get the selection of nodes
 random_graph_2 \%>\% get_selection
-#> $nodes
 #> [1] "4" "6"
 }
 
