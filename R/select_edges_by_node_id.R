@@ -37,46 +37,33 @@
 #' # Create a graph selection by selecting edges
 #' # associated with nodes `1` and `2`
 #' graph %<>%
-#'   select_edges_by_node_id(
-#'     nodes = 1:2)
+#'   select_edges_by_node_id(1:2)
 #'
 #' # Get the selection of edges
 #' graph %>% get_selection
-#' #> $edges
-#' #> $edges$from
-#' #> [1] "1" "1" "1" "2" "2" "2"
-#' #>
-#' #> $edges$to
-#' #> [1] "2" "3" "4" "5" "6" "7"
+#' #> "1 -> 2" "1 -> 3" "1 -> 4"
 #'
-#' # Perform another selection of nodes, this time
-#' # with a neighborhood spanning 2 nodes from node `1`
+#' # Perform another selection of nodes, with nodes
+#' # `1`, `2`, and `4`
 #' graph %<>%
 #'   clear_selection %>%
-#'   select_edges_by_node_id(
-#'     nodes = c(1, 2, 4))
+#'   select_edges_by_node_id(c(1, 2, 4))
 #'
 #' # Get the selection of edges
 #' graph %>% get_selection
-#' #> $edges
-#' #> $edges$from
-#' #> [1] "1" "1" "1" "2" "2" "2" "4" "4" "4"
-#' #>
-#' #> $edges$to
-#' #> [1] "2"  "3"  "4"  "5"  "6"  "7"  "11" "12" "13"
+#' #> [1] "1 -> 2" "1 -> 3" "1 -> 4" "4 -> 5"
+#' #> [5] "4 -> 6" "4 -> 7"
 #'
 #' # Get a fraction of the edges selected over all
 #' # the edges in the graph
 #' graph %>%
 #' {
 #'   l <- get_selection(.) %>%
-#'     unlist(.) %>%
-#'     length(.) %>%
-#'     divide_by_int(2)
+#'     length(.)
 #'   e <- edge_count(.)
 #'   l/e
 #' }
-#' #> [1] 0.75
+#' #> [1] 1
 #' @export select_edges_by_node_id
 
 select_edges_by_node_id <- function(graph,
