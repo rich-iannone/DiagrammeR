@@ -7,9 +7,9 @@
 #' @return a data frame with nodes and their membership
 #' in different strongly connected components.
 #' @importFrom igraph components
-#' @export get_s_connected_components
+#' @export get_s_connected_cmpts
 
-get_s_connected_components <- function(graph) {
+get_s_connected_cmpts <- function(graph) {
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

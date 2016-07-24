@@ -40,7 +40,7 @@
 #' #> [1] FALSE
 #'
 #' # Get the graph's connected components
-#' get_connected_components(graph)
+#' get_connected_cmpts(graph)
 #' #>    component node
 #' #> 1          1    1
 #' #> 2          1    3
@@ -55,10 +55,10 @@
 #' #> ..         ..  ..
 #' }
 #' @importFrom stats na.omit
-#' @export get_connected_components
+#' @export get_connected_cmpts
 
-get_connected_components <- function(graph,
-                                     return_type = "df") {
+get_connected_cmpts <- function(graph,
+                                return_type = "df") {
 
   # Get all node ID values for nodes in the graph
   graph_nodes <- get_nodes(graph)
