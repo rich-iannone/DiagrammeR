@@ -31,7 +31,12 @@
 #'
 #' # Create a data frame with node ID values and a
 #' # set of numeric values
-#' df <- data.frame(nodes = 1:6, values = rnorm(6, 5))
+#' set.seed(25)
+#'
+#' df <-
+#'   data.frame(
+#'     nodes = 1:6,
+#'     values = round(rnorm(6, 5), 2))
 #'
 #' # Join the values in the data frame to the
 #' # graph's nodes; this works as a left join using
@@ -43,12 +48,33 @@
 #' # Get the graph's internal ndf to show that the
 #' # join has been made
 #' get_node_df(graph)
-#' #>   nodes type label           values
-#' #> 1     1            4.27988818205506
-#' #> 2     2             5.3499594040959
-#' #> 3     3            5.43965531750004
-#' #> 4     4            3.50233363164518
-#' #> 5     5            5.04599475422798
+#' #>   nodes type label values
+#' #> 1     1              4.79
+#' #> 2     2              3.96
+#' #> 3     3              3.85
+#' #> 4     4              5.32
+#' #> 5     5               3.5
+#'
+#' # Get betweenness values for each node and
+#' # add them as a node attribute (Note the
+#' # column names `nodes` and `node` in the
+#' # different tables still result in a
+#' # natural join)
+#' graph <-
+#'   graph %>%
+#'   join_node_attrs(
+#'     get_betweenness(.))
+#'
+#' # Get the graph's internal ndf to show that
+#' # this join has been made
+#' get_node_df(graph)
+#' #>   nodes type label values betweenness
+#' #> 1     1              4.79           2
+#' #> 2     2              3.96           7
+#' #> 3     3              3.85           1
+#' #> 4     4              5.32           0
+#' #> 5     5               3.5           2
+#'
 #' @export join_node_attrs
 
 join_node_attrs <- function(graph,
