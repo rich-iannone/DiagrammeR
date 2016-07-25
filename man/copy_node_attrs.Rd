@@ -24,7 +24,7 @@ a graph object of class
 Within a graph's internal NDF, copy the
 contents an existing node attribute and create a
 distinct node attribute within the NDF with a
-different attribute name
+different attribute name.
 }
 \examples{
 library(magrittr)
@@ -33,8 +33,7 @@ library(magrittr)
 graph <-
   create_random_graph(
   5, 10, set_seed = 3) \%>\%
-  select_nodes \%>\%
-  set_node_attrs_ws("shape", "circle")
+  set_node_attrs("shape", "circle")
 
 # Get the graph's internal ndf to show which
 # node attributes are available
