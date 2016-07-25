@@ -76,7 +76,17 @@ join_node_attrs <- function(graph,
   if (is.null(by_graph) & is.null(by_df)) {
 
     # Perform a left join on the `nodes` data frame
-    nodes <- merge(nodes, df, all.x = TRUE)
+    if ("node" %in% colnames(df)) {
+      nodes <-
+        merge(nodes, df,
+              all.x = TRUE,
+              by.x = "nodes",
+              by.y = "node")
+    } else {
+
+      # Perform a left join on the `nodes` data frame
+      nodes <- merge(nodes, df, all.x = TRUE)
+    }
   }
 
   if (!is.null(by_graph) & !is.null(by_df)) {
