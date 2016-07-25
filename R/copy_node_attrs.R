@@ -2,7 +2,7 @@
 #' @description Within a graph's internal NDF, copy the
 #' contents an existing node attribute and create a
 #' distinct node attribute within the NDF with a
-#' different attribute name
+#' different attribute name.
 #' @param graph a graph object of class
 #' @param node_attr_from the name of the node attribute
 #' column from which values will be copied.
