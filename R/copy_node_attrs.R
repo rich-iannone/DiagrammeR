@@ -18,8 +18,7 @@
 #' graph <-
 #'   create_random_graph(
 #'   5, 10, set_seed = 3) %>%
-#'   select_nodes %>%
-#'   set_node_attrs_ws("shape", "circle")
+#'   set_node_attrs("shape", "circle")
 #'
 #' # Get the graph's internal ndf to show which
 #' # node attributes are available
