@@ -63,9 +63,9 @@ copy_node_attrs <- function(graph,
   # Get column names from the graph's ndf
   column_names_graph <- colnames(nodes)
 
-  # Stop function if `cp_from` is not one
+  # Stop function if `node_attr_from` is not one
   # of the graph's column
-  if (!(!all(column_names_graph %in% node_attr_from))) {
+  if (!any(column_names_graph %in% node_attr_from)) {
     stop("The node attribute to copy is not in the ndf.")
   }
 
