@@ -21,10 +21,10 @@ a graph object of class
 \code{dgr_graph}.
 }
 \description{
-Within a graph's internal NDF, copy the
-contents an existing node attribute and create a
-distinct node attribute within the NDF with a
-different attribute name.
+Within a graph's internal node data
+frame (ndf), copy the contents an existing node
+attribute and create a distinct node attribute
+within the ndf with a different attribute name.
 }
 \examples{
 library(magrittr)

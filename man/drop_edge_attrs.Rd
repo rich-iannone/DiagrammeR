@@ -17,8 +17,8 @@ a graph object of class
 \code{dgr_graph}.
 }
 \description{
-Within a graph's internal EDF, remove
-an existing edge attribute.
+Within a graph's internal edge data
+frame (edf), remove an existing edge attribute.
 }
 \examples{
 library(magrittr)

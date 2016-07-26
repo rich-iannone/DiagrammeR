@@ -21,10 +21,10 @@ a graph object of class
 \code{dgr_graph}.
 }
 \description{
-Within a graph's internal EDF, copy the
-contents an existing edge attribute and create a
-distinct edge attribute within the EDF with a
-different attribute name.
+Within a graph's internal edge data
+frame (edf), copy the contents an existing edge
+attribute and create a distinct edge attribute
+within the edf with a different attribute name.
 }
 \examples{
 library(magrittr)

@@ -33,12 +33,12 @@ a graph object of class
 \code{dgr_graph}.
 }
 \description{
-Within a graph's internal EDF, mutate
-numeric edge attribute values using an expression.
-Optionally, one can specify a different edge
-attribute name and create a new edge attribute while
-retaining the original edge attribute and its
-values.
+Within a graph's internal edge data
+frame (edf), mutate numeric edge attribute values
+using an expression. Optionally, one can specify a
+different edge attribute name and create a new edge
+attribute while retaining the original edge
+attribute and its values.
 }
 \examples{
 library(magrittr)
