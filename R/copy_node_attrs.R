@@ -51,6 +51,12 @@ copy_node_attrs <- function(graph,
                             node_attr_from,
                             node_attr_to) {
 
+  # Stop function if `node_attr_from` and
+  # `node_attr_to` are identical
+  if (node_attr_from == node_attr_to) {
+    stop("You cannot use make a copy with the same name.")
+  }
+
   # Stop function if `node_attr_to` is `nodes` or `node`
   if (any(c("nodes", "node") %in% node_attr_to)) {
     stop("You cannot use those names.")
