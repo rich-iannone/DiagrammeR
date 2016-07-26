@@ -95,11 +95,11 @@ mutate_node_attrs <- function(graph,
 
   # Get the column number for the node attr to copy
   col_num_evaluate <-
-    which(colnames(nodes) %in% column)
+    which(colnames(nodes) %in% node_attr_from)
 
   # If node attribute is not numeric, stop function
   if (is.na(suppressWarnings(
-    any(as.numeric(nodes[,col_num_evaluate]))))){
+    any(as.numeric(nodes[, col_num_evaluate]))))){
     stop("The node attribute to mutate is not numeric.")
   }
 
