@@ -149,8 +149,7 @@ mutate_node_attrs <- function(graph,
   } else {
     # The node attribute values will be overwritten
     # by the mutated value (no new node attrs)
-    nodes[,col_num_evaluate] <-
-      mutated_vector
+    nodes[,ncol(nodes)] <- mutated_vector
   }
 
   # Create a new graph object
