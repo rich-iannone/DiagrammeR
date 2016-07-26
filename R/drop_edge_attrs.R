@@ -1,6 +1,6 @@
 #' Drop an edge attribute column
-#' @description Within a graph's internal EDF, remove
-#' an existing edge attribute.
+#' @description Within a graph's internal edge data
+#' frame (edf), remove an existing edge attribute.
 #' @param graph a graph object of class
 #' @param edge_attr the name of the edge attribute
 #' column to drop.

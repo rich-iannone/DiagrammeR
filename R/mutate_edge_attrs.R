@@ -1,10 +1,10 @@
 #' Mutate a set of edge attribute values
-#' @description Within a graph's internal EDF, mutate
-#' numeric edge attribute values using an expression.
-#' Optionally, one can specify a different edge
-#' attribute name and create a new edge attribute while
-#' retaining the original edge attribute and its
-#' values.
+#' @description Within a graph's internal edge data
+#' frame (edf), mutate numeric edge attribute values
+#' using an expression. Optionally, one can specify a
+#' different edge attribute name and create a new edge
+#' attribute while retaining the original edge
+#' attribute and its values.
 #' @param graph a graph object of class
 #' @param edge_attr_from the name of the edge attribute
 #' column from which values will be mutated.
