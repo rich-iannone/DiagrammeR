@@ -90,12 +90,18 @@ mutate_node_attrs <- function(graph,
   # Stop function if `node_attr_from` is not one
   # of the graph's column
   if (!any(column_names_graph %in% node_attr_from)) {
-    stop("The node attribute to copy is not in the ndf.")
+    stop("The node attribute to mutate is not in the ndf.")
   }
 
   # Get the column number for the node attr to copy
   col_num_evaluate <-
     which(colnames(nodes) %in% column)
+
+  # If node attribute is not numeric, stop function
+  if (is.na(suppressWarnings(
+    any(as.numeric(nodes[,col_num_evaluate]))))){
+    stop("The node attribute to mutate is not numeric.")
+  }
 
   # Extract the vector to evaluate from the `nodes` df
   vector_to_eval <-
