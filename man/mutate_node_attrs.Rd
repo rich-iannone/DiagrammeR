@@ -65,7 +65,7 @@ graph <-
   mutate_node_attrs("value", ". / 2")
 
 # Get the graph's internal ndf to show that the
-# node attribute had been mutated
+# node attribute values had been mutated
 get_node_df(graph)
 #>   nodes type label value
 #> 1     1          1     1
