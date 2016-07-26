@@ -47,7 +47,7 @@
 #'   mutate_node_attrs("value", ". / 2")
 #'
 #' # Get the graph's internal ndf to show that the
-#' # node attribute had been mutated
+#' # node attribute values had been mutated
 #' get_node_df(graph)
 #' #>   nodes type label value
 #' #> 1     1          1     1
@@ -72,7 +72,6 @@
 #' #> 3     3          3     2 1.69315
 #' #> 4     4          4  1.75 1.55962
 #' #> 5     5          5  3.25 2.17865
-#'
 #' @export mutate_node_attrs
 
 mutate_node_attrs <- function(graph,
@@ -155,7 +154,7 @@ mutate_node_attrs <- function(graph,
   } else {
     # The node attribute values will be overwritten
     # by the mutated value (no new node attrs)
-    nodes[,ncol(nodes)] <- mutated_vector
+    nodes[, ncol(nodes)] <- mutated_vector
   }
 
   # Create a new graph object
