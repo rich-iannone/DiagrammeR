@@ -68,29 +68,32 @@ graph <-
 
 # Get the graph's internal edf to show that the
 # edge attribute values had been mutated
-get_node_df(graph)
-#>   nodes type label value
-#> 1     1          1     1
-#> 2     2          2  4.25
-#> 3     3          3     2
-#> 4     4          4  1.75
-#> 5     5          5  3.25
+get_edge_df(graph)
+#>   from to rel value
+#> 1    4  1       4.5
+#> 2    2  4       4.5
+#> 3    4  3       4.5
+#> 4    3  5       4.5
+#> 5    5  1       4.5
+#> 6    4  5       4.5
 
-# Create a new edge attribute, called `width`,
+# Create a new edge attribute, called `penwidth`,
 # that is the log of values in `value` plus 1
 graph <-
   graph \%>\%
-  mutate_edge_attrs("value", "log(.) + 1", "width")
+  mutate_edge_attrs(
+    "value", "log(.) + 1", "penwidth")
 
 # Get the graph's internal edf to show that the
 # edge attribute values had been mutated and used as
-# the new edge attribute `width`
+# the new edge attribute `penwidth`
 get_edge_df(graph)
-#>   nodes type label value   width
-#> 1     1          1     1       1
-#> 2     2          2  4.25 2.44692
-#> 3     3          3     2 1.69315
-#> 4     4          4  1.75 1.55962
-#> 5     5          5  3.25 2.17865
+#>   from to rel value penwidth
+#> 1    4  1       4.5  2.50408
+#> 2    2  4       4.5  2.50408
+#> 3    4  3       4.5  2.50408
+#> 4    3  5       4.5  2.50408
+#> 5    5  1       4.5  2.50408
+#> 6    4  5       4.5  2.50408
 }
 

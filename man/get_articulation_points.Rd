@@ -18,6 +18,8 @@ Get the nodes in the graph that are
 identified as articulation points.
 }
 \examples{
+library(magrittr)
+
 # Create a random graph
 graph <-
   create_random_graph(
