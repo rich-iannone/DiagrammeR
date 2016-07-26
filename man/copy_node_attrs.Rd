@@ -32,7 +32,7 @@ library(magrittr)
 # Create a random graph
 graph <-
   create_random_graph(
-  5, 10, set_seed = 3) \%>\%
+    5, 10, set_seed = 3) \%>\%
   set_node_attrs("shape", "circle")
 
 # Get the graph's internal ndf to show which
