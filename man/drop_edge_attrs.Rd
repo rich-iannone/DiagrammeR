@@ -49,11 +49,12 @@ graph <-
 # Get the graph's internal edf to show that the
 # edge attribute had been removed
 get_edge_df(graph)
-#>   nodes type label
-#> 1     1          1
-#> 2     2          2
-#> 3     3          3
-#> 4     4          4
-#> 5     5          5
+#>   from to rel penwidth
+#> 1    4  1            6
+#> 2    2  4            6
+#> 3    4  3            6
+#> 4    3  5            6
+#> 5    5  1            6
+#> 6    4  5            6
 }
 
