@@ -33,12 +33,12 @@ a graph object of class
 \code{dgr_graph}.
 }
 \description{
-Within a graph's internal NDF, mutate
-numeric node attribute values using an expression.
-Optionally, one can specify a different node
-attribute name and create a new node attribute while
-retaining the original node attribute and its
-values.
+Within a graph's internal node data
+frame (ndf), mutate numeric node attribute values
+using an expression. Optionally, one can specify a
+different node attribute name and create a new node
+attribute while retaining the original node
+attribute and its values.
 }
 \examples{
 library(magrittr)
