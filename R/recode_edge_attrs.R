@@ -85,7 +85,7 @@ recode_edge_attrs <- function(graph,
   # Stop function if `edge_attr_from` is not one
   # of the graph's edge attributes
   if (!any(column_names_graph %in% edge_attr_from)) {
-    stop("The node attribute to mutate is not in the ndf.")
+    stop("The edge attribute to recode is not in the edf.")
   }
 
   # Get the column number for the edge attr to recode
