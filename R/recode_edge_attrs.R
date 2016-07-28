@@ -152,7 +152,7 @@ recode_edge_attrs <- function(graph,
   } else {
     # The edge attribute values will be overwritten
     # by the recoded value (no new edge attrs)
-    edges[, ncol(edges)] <- recoded_vector
+    edges[, col_num_recode] <- recoded_vector
   }
 
   # Create a new graph object

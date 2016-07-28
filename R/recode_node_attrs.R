@@ -167,7 +167,7 @@ recode_node_attrs <- function(graph,
   } else {
     # The node attribute values will be overwritten
     # by the recoded value (no new node attrs)
-    nodes[, ncol(nodes)] <- recoded_vector
+    nodes[, col_num_recode] <- recoded_vector
   }
 
   # Create a new graph object
