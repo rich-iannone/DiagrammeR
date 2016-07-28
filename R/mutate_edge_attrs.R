@@ -158,7 +158,7 @@ mutate_edge_attrs <- function(graph,
   } else {
     # The edge attribute values will be overwritten
     # by the mutated value (no new edge attrs)
-    edges[,ncol(edges)] <- mutated_vector
+    edges[, col_num_evaluate] <- mutated_vector
   }
 
   # Create a new graph object

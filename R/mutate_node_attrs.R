@@ -104,7 +104,7 @@ mutate_node_attrs <- function(graph,
 
   # Extract the vector to evaluate from the `nodes` df
   vector_to_eval <-
-    as.numeric(nodes[,col_num_evaluate])
+    as.numeric(nodes[, col_num_evaluate])
 
   parsed_expression <-
     gsub("([^0-9])(\\.)([^0-9])",
@@ -154,7 +154,7 @@ mutate_node_attrs <- function(graph,
   } else {
     # The node attribute values will be overwritten
     # by the mutated value (no new node attrs)
-    nodes[, ncol(nodes)] <- mutated_vector
+    nodes[, col_num_evaluate] <- mutated_vector
   }
 
   # Create a new graph object
