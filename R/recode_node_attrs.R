@@ -97,6 +97,12 @@ recode_node_attrs <- function(graph,
   # Get column names from the graph's ndf
   column_names_graph <- colnames(nodes)
 
+  # Stop function if `node_attr_from` is not one
+  # of the graph's node attributes
+  if (!any(column_names_graph %in% node_attr_from)) {
+    stop("The node attribute to mutate is not in the ndf.")
+  }
+
   # Get the column number for the node attr to recode
   col_num_recode <-
     which(colnames(nodes) %in% node_attr_from)
