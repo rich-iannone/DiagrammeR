@@ -61,7 +61,7 @@ test_that("Copying edge attributes is possible", {
   # Add 5 edges to the graph
   graph <-
     add_edges_w_string(
-    graph, "1->3 2->4 1->4 3->2")
+      graph, "1->3 2->4 1->4 3->2")
 
   # Add an edge attribute
   graph <- set_edge_attrs(graph, "value", 1)
@@ -241,4 +241,414 @@ test_that("Mutating node attributes is possible", {
 
   # Expect each value in `value_2` to be 8
   expect_equal(graph$nodes_df$value_2, c("8", "8"))
+})
+
+test_that("Mutating edge attributes is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 4 nodes to the graph
+  graph <- add_n_nodes(graph, 4)
+
+  # Add 5 edges to the graph
+  graph <-
+    add_edges_w_string(
+      graph, "1->3 2->4 1->4 3->2")
+
+  # Add edge attributes
+  graph <- set_edge_attrs(graph, "value", 1)
+  graph <- set_edge_attrs(graph, "color", "red")
+
+  # Expect an error if `edge_attr_from` is not one
+  # of the graph's columns
+  expect_error(
+    mutate_edge_attrs(
+      graph, "value_2", ". * 2"))
+
+  # Expect an error if trying to mutate a non-numeric
+  # edge attribute
+  expect_error(
+    mutate_edge_attrs(
+      graph, "shape", ". * 2"))
+
+  # Mutate the `value` edge attribute
+  graph <-
+    mutate_edge_attrs(
+      graph, "value", ". * 2")
+
+  # Expect each value in `value` to be 2
+  expect_equal(graph$edges_df$value,
+               c("2", "2", "2", "2"))
+
+  # Mutate the `value` edge attribute again but
+  # also copy mutated values into `value_2`
+  graph <-
+    mutate_edge_attrs(
+      graph, "value", ". * 2",
+      edge_attr_to = "value_2")
+
+  # Verify that the new column has been made
+  expect_true("value_2" %in% colnames(graph$edges_df))
+
+  # Expect each value in `value_2` to be 4
+  expect_equal(graph$edges_df$value_2,
+               c("4", "4", "4", "4"))
+
+  # Expect an error if `edge_attr_to` is `from` or `to`
+  expect_error(
+    mutate_edge_attrs(
+      graph, "value", ". * 2",
+      edge_attr_to = "from"))
+
+  expect_error(
+    mutate_edge_attrs(
+      graph, "value", ". * 2",
+      edge_attr_to = "to"))
+
+  # Mutate the `value` edge attribute and
+  # copy and overwrite mutated values into `value_2`
+  graph <-
+    mutate_edge_attrs(
+      graph, "value", ". * 4",
+      edge_attr_to = "value_2")
+
+  # Expect each value in `value_2` to be 8
+  expect_equal(graph$edges_df$value_2,
+               c("8", "8", "8", "8"))
+})
+
+test_that("Recoding node attributes is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add two nodes to the graph
+  graph <- add_node(graph, node = "a")
+  graph <- add_node(graph, node = "b")
+
+  # Add node attributes
+  graph <- set_node_attrs(graph, "value", 1)
+  graph <- set_node_attrs(graph, "shape", "square")
+
+  # Expect an error if `node_attr_from` is not one
+  # of the graph's columns
+  expect_error(
+    recode_node_attrs(
+      graph, "value_2", "1" = "2"))
+
+  # Recode the `value` node attribute
+  graph <-
+    recode_node_attrs(
+      graph, "value", "1" = "2")
+
+  # Expect each value in `value` to be 2
+  expect_equal(graph$nodes_df$value, c("2", "2"))
+
+  # Recode the `value` node attribute again but
+  # also copy recoded values into `value_2`
+  graph <-
+    recode_node_attrs(
+      graph, "value", "2" = "4",
+      node_attr_to = "value_2")
+
+  # Verify that the new column has been made
+  expect_true("value_2" %in% colnames(graph$nodes_df))
+
+  # Expect each value in `value_2` to be 4
+  expect_equal(graph$nodes_df$value_2, c("4", "4"))
+
+  # Expect an error if `node_attr_to` is `nodes` or `node`
+  expect_error(
+    recode_node_attrs(
+      graph, "value", "2" = "4",
+      node_attr_to = "nodes"))
+
+  expect_error(
+    recode_node_attrs(
+      graph, "value", "2" = "4",
+      node_attr_to = "node"))
+
+  # Recode the `value` node attribute and
+  # copy and overwrite recoded values into `value_2`
+  graph <-
+    recode_node_attrs(
+      graph, "value", "2" = "8",
+      node_attr_to = "value_2")
+
+  # Expect each value in `value_2` to be 8
+  expect_equal(graph$nodes_df$value_2, c("8", "8"))
+
+  # Create another graph but use different node
+  # attribute values
+  graph <- create_graph()
+  graph <- add_n_nodes(graph, 4)
+  graph <- set_node_attrs(graph, "value",
+                          c(1, 1, 2, 3))
+  graph <- set_node_attrs(graph, "shape",
+                          c("square", "square",
+                            "circle", "triangle"))
+
+  # Recode the `value` node attribute, using the
+  # `otherwise` argument
+  graph <-
+    recode_node_attrs(
+      graph, "value", "1" = "2", otherwise = "4")
+
+  # Expect values in `value` to be 2, 2, 4, 4
+  expect_equal(graph$nodes_df$value,
+               c("2", "2", "4", "4"))
+
+  # Recode the `value` node attribute again but
+  # also copy recoded values into `value_2`
+  graph <-
+    recode_node_attrs(
+      graph, "value", "2" = "4",
+      otherwise = "8", node_attr_to = "value_2")
+
+  # Expect values in `value_2` to be 4, 4, 8, 8
+  expect_equal(graph$nodes_df$value_2,
+               c("4", "4", "8", "8"))
+
+  # Recode the `value` node attribute and
+  # copy and overwrite recoded values into `value_2`
+  graph <-
+    recode_node_attrs(
+      graph, "value", "2" = "8",
+      otherwise = "16", node_attr_to = "value_2")
+
+  # Expect values in `value_2` to be 8, 8, 16, 16
+  expect_equal(graph$nodes_df$value_2,
+               c("8", "8", "16", "16"))
+
+  # Recode the `shape` node attribute
+  graph <-
+    recode_node_attrs(
+      graph, "shape", "square" = "rectangle")
+
+  # Expect certain values in `shape`
+  expect_equal(graph$nodes_df$shape,
+               c("rectangle", "rectangle",
+                 "circle", "triangle"))
+
+  # Recode the `shape` node attribute using the
+  # `otherwise` argument
+  graph <-
+    recode_node_attrs(
+      graph, "shape",
+      "rectangle" = "circle",
+      "circle" = "square",
+      otherwise = "diamond")
+
+  # Expect certain values in `shape`
+  expect_equal(graph$nodes_df$shape,
+               c("circle", "circle",
+                 "square", "diamond"))
+
+  # Recode the `shape` node attribute and copy into
+  # results to `shape_2`
+  graph <-
+    recode_node_attrs(
+      graph, "shape",
+      "circle" = "rectangle",
+      "square" = "circle",
+      node_attr_to = "shape_2")
+
+  # Expect certain values in `shape_2`
+  expect_equal(graph$nodes_df$shape_2,
+               c("rectangle", "rectangle",
+                 "circle", "diamond"))
+
+  # Recode the `shape` node attribute and overwrite
+  # results in `shape_2`
+  graph <-
+    recode_node_attrs(
+      graph, "shape",
+      "circle" = "rectangle",
+      "square" = "circle",
+      otherwise = "triangle",
+      node_attr_to = "shape_2")
+
+  # Expect certain values in `shape_2`
+  expect_equal(graph$nodes_df$shape_2,
+               c("rectangle", "rectangle",
+                 "circle", "triangle"))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+test_that("Recoding edge attributes is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 4 nodes to the graph
+  graph <- add_n_nodes(graph, 4)
+
+  # Add 5 edges to the graph
+  graph <-
+    add_edges_w_string(
+      graph, "1->3 2->4 1->4 3->2")
+
+  # Add edge attributes
+  graph <- set_edge_attrs(graph, "value",
+                          c(1, 1, 2, 3))
+  graph <- set_edge_attrs(graph, "color",
+                          c("red", "red",
+                            "blue", "black"))
+
+  # Expect an error if `edge_attr_from` is not one
+  # of the graph's columns
+  expect_error(
+    recode_edge_attrs(
+      graph, "value_2", "1" = "2"))
+
+  # Recode the `value` edge attribute
+  graph <-
+    recode_edge_attrs(
+      graph, "value", "1" = "2")
+
+  # Expect values in `value` to be 2, 2, 2, 3
+  expect_equal(graph$edges_df$value,
+               c("2", "2", "2", "3"))
+
+  # Recode the `value` edge attribute again but
+  # also copy recoded values into `value_2`
+  graph <-
+    recode_edge_attrs(
+      graph, "value", "2" = "4",
+      edge_attr_to = "value_2")
+
+  # Verify that the new column has been made
+  expect_true("value_2" %in% colnames(graph$edges_df))
+
+  # Expect certain values in `value_2`
+  expect_equal(graph$edges_df$value_2,
+               c("4", "4", "4", "3"))
+
+  # Expect an error if `edge_attr_to` is `from` or `to`
+  expect_error(
+    recode_edge_attrs(
+      graph, "value", "2" = "4",
+      edge_attr_to = "from"))
+
+  expect_error(
+    recode_edge_attrs(
+      graph, "value", "2" = "4",
+      edge_attr_to = "to"))
+
+  # Recode the `value` edge attribute and
+  # copy and overwrite recoded values into `value_2`
+  graph <-
+    recode_edge_attrs(
+      graph, "value", "2" = "8",
+      edge_attr_to = "value_2")
+
+  # Expect certain values in `value_2`
+  expect_equal(graph$edges_df$value_2,
+               c("8", "8", "8", "3"))
+
+  # Recode the `value` edge attribute, using the
+  # `otherwise` argument
+  graph <-
+    recode_edge_attrs(
+      graph, "value", "2" = "4", otherwise = "8")
+
+  # Expect certain values in `value`
+  expect_equal(graph$edges_df$value,
+               c("4", "4", "4", "8"))
+
+  # Recode the `value` edge attribute again but
+  # also copy recoded values into `value_3`
+  graph <-
+    recode_edge_attrs(
+      graph, "value", "4" = "8",
+      otherwise = "16", edge_attr_to = "value_3")
+
+  # Expect certain values in `value_3`
+  expect_equal(graph$edges_df$value_3,
+               c("8", "8", "8", "16"))
+
+  # Recode the `value` edge attribute and
+  # copy and overwrite recoded values into `value_3`
+  graph <-
+    recode_edge_attrs(
+      graph, "value", "4" = "12",
+      otherwise = "16", edge_attr_to = "value_3")
+
+  # Expect certain values in `value_3`
+  expect_equal(graph$edges_df$value_3,
+               c("12", "12", "12", "16"))
+
+  # Recode the `color` edge attribute
+  graph <-
+    recode_edge_attrs(
+      graph, "color", "red" = "gray")
+
+  # Expect certain values in `color`
+  expect_equal(graph$edges_df$color,
+               c("gray", "gray",
+                 "blue", "black"))
+
+  # Recode the `color` edge attribute using the
+  # `otherwise` argument
+  graph <-
+    recode_edge_attrs(
+      graph, "color",
+      "gray" = "blue",
+      "blue" = "green",
+      otherwise = "yellow")
+
+  # Expect certain values in `color`
+  expect_equal(graph$edges_df$color,
+               c("blue", "blue",
+                 "green", "yellow"))
+
+  # Recode the `color` edge attribute and copy into
+  # results to `color_2`
+  graph <-
+    recode_edge_attrs(
+      graph, "color",
+      "blue" = "yellow",
+      "green" = "blue",
+      edge_attr_to = "color_2")
+
+  # Expect certain values in `color_2`
+  expect_equal(graph$edges_df$color_2,
+               c("yellow", "yellow",
+                 "blue", "yellow"))
+
+  # Recode the `color` node attribute and overwrite
+  # results in `color_2`
+  graph <-
+    recode_edge_attrs(
+      graph, "color",
+      "blue" = "green",
+      otherwise = "black",
+      edge_attr_to = "color_2")
+
+  # Expect certain values in `color_2`
+  expect_equal(graph$edges_df$color_2,
+               c("green", "green",
+                 "black", "black"))
 })
