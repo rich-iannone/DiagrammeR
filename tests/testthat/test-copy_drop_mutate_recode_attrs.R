@@ -174,3 +174,71 @@ test_that("Dropping edge attributes is possible", {
   expect_error(drop_edge_attrs(graph, "to"))
   expect_error(drop_edge_attrs(graph, "rel"))
 })
+
+test_that("Mutating node attributes is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add two nodes to the graph
+  graph <- add_node(graph, node = "a")
+  graph <- add_node(graph, node = "b")
+
+  # Add node attributes
+  graph <- set_node_attrs(graph, "value", 1)
+  graph <- set_node_attrs(graph, "shape", "square")
+
+  # Expect an error if `node_attr_from` is not one
+  # of the graph's columns
+  expect_error(
+    mutate_node_attrs(
+      graph, "value_2", ". * 2"))
+
+  # Expect an error if trying to mutate a non-numeric
+  # node attribute
+  expect_error(
+    mutate_node_attrs(
+      graph, "shape", ". * 2"))
+
+  # Mutate the `value` node attribute
+  graph <-
+    mutate_node_attrs(
+      graph, "value", ". * 2")
+
+  # Expect each value in `value` to be 2
+  expect_equal(graph$nodes_df$value, c("2", "2"))
+
+  # Mutate the `value` node attribute again but
+  # also copy mutated values into `value_2`
+  graph <-
+    mutate_node_attrs(
+      graph, "value", ". * 2",
+      node_attr_to = "value_2")
+
+  # Verify that the new column has been made
+  expect_true("value_2" %in% colnames(graph$nodes_df))
+
+  # Expect each value in `value_2` to be 4
+  expect_equal(graph$nodes_df$value_2, c("4", "4"))
+
+  # Expect an error if `node_attr_to` is `nodes` or `node`
+  expect_error(
+    mutate_node_attrs(
+      graph, "value", ". * 2",
+      node_attr_to = "nodes"))
+
+  expect_error(
+    mutate_node_attrs(
+      graph, "value", ". * 2",
+      node_attr_to = "node"))
+
+  # Mutate the `value` node attribute and
+  # copy and overwrite mutated values into `value_2`
+  graph <-
+    mutate_node_attrs(
+      graph, "value", ". * 4",
+      node_attr_to = "value_2")
+
+  # Expect each value in `value_2` to be 8
+  expect_equal(graph$nodes_df$value_2, c("8", "8"))
+})
