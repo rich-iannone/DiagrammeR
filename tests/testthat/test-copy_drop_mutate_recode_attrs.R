@@ -475,28 +475,6 @@ test_that("Recoding node attributes is possible", {
                  "circle", "triangle"))
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 test_that("Recoding edge attributes is possible", {
 
   # Create an empty graph
