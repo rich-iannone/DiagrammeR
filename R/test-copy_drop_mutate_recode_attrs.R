@@ -103,3 +103,74 @@ test_that("Copying edge attributes is possible", {
     copy_edge_attrs(
       graph, "values", "value_3"))
 })
+
+test_that("Dropping node attributes is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add two nodes to the graph
+  graph <- add_node(graph, node = "a")
+  graph <- add_node(graph, node = "b")
+
+  # Add a node attribute
+  graph <- set_node_attrs(graph, "value", 1)
+
+  # Expect an error if the length of `node_attr` > 1
+  expect_error(
+    drop_node_attrs(graph, c("value", "label")))
+
+  # Expect an error if a column to drop does not exist
+  expect_error(
+    drop_node_attrs(graph, "value_2"))
+
+  # Drop the `value` node attribute
+  graph <- drop_node_attrs(graph, "value")
+
+  # Verify that the `value` column is not present
+  expect_true(!("value" %in% colnames(graph$nodes_df)))
+
+  # Expect an error if `node_attr` is any of
+  # `nodes`, `node`, `type`, or `label`
+  expect_error(drop_node_attrs(graph, "nodes"))
+  expect_error(drop_node_attrs(graph, "node"))
+  expect_error(drop_node_attrs(graph, "type"))
+  expect_error(drop_node_attrs(graph, "label"))
+})
+
+test_that("Dropping edge attributes is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 4 nodes to the graph
+  graph <- add_n_nodes(graph, 4)
+
+  # Add 5 edges to the graph
+  graph <-
+    add_edges_w_string(
+      graph, "1->3 2->4 1->4 3->2")
+
+  # Add an edge attribute
+  graph <- set_edge_attrs(graph, "value", 1)
+
+  # Expect an error if the length of `edge_attr` > 1
+  expect_error(
+    drop_edge_attrs(graph, c("value", "rel")))
+
+  # Expect an error if a column to drop does not exist
+  expect_error(
+    drop_edge_attrs(graph, "value_2"))
+
+  # Drop the `value` edge attribute
+  graph <- drop_edge_attrs(graph, "value")
+
+  # Verify that the `value` column is not present
+  expect_true(!("value" %in% colnames(graph$edges_df)))
+
+  # Expect an error if `edge_attr` is any of
+  # `from`, `to`, or `rel`
+  expect_error(drop_edge_attrs(graph, "from"))
+  expect_error(drop_edge_attrs(graph, "to"))
+  expect_error(drop_edge_attrs(graph, "rel"))
+})
