@@ -92,7 +92,7 @@ mutate_edge_attrs <- function(graph,
   column_names_graph <- colnames(edges)
 
   # Stop function if `edge_attr_from` is not one
-  # of the graph's column
+  # of the graph's edge attributes
   if (!any(column_names_graph %in% edge_attr_from)) {
     stop("The edge attribute to mutate is not in the edf.")
   }
