@@ -70,7 +70,7 @@ remove_from_series <- function(graph_series,
     return(graph_series)
   }
 
-  if (class(index) == "numeric" | class(index) == "integer") {
+  if (inherits(index, "numeric") | inherits(index, "integer")) {
     graph_series$graphs[[index]] <- NULL
     return(graph_series)
   }

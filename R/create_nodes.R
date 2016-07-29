@@ -95,7 +95,7 @@ create_nodes <- function(nodes,
   }
 
   # Change logical for labels to empty labels
-  if (class(label) == "logical" &
+  if (inherits(label, "logical") &
       length(label) == 1) {
     if (label) {
       label <- as.character(nodes)

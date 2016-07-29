@@ -71,7 +71,7 @@ render_graph <- function(graph,
                          width = NULL,
                          height = NULL) {
 
-  stopifnot(class(graph) == "dgr_graph")
+  stopifnot(inherits(graph, "dgr_graph"))
 
   if (is.null(output) & !is.null(graph$graph_attrs)) {
     if ("output = visNetwork" %in% graph$graph_attrs) {
