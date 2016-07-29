@@ -53,22 +53,58 @@ test_that("Getting closeness is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 1,
+      directed = TRUE)
 
-  closeness_vals <-
+  # Get closness values with `direction = all`
+  closeness_vals_all <-
     get_closeness(graph)
 
   # Expect a data frame as output
-  expect_is(closeness_vals, "data.frame")
+  expect_is(closeness_vals_all, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(closeness_vals), 2)
+  expect_equal(ncol(closeness_vals_all), 2)
 
   # Expect 10 rows in the df
-  expect_equal(nrow(closeness_vals), 10)
+  expect_equal(nrow(closeness_vals_all), 10)
 
   # Expect node ID values in the first column
-  expect_identical(closeness_vals[,1],
+  expect_identical(closeness_vals_all[,1],
+                   as.character(1:10))
+
+  # Get closness values with `direction = out`
+  closeness_vals_out <-
+    get_closeness(graph, direction = "out")
+
+  # Expect a data frame as output
+  expect_is(closeness_vals_out, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(ncol(closeness_vals_out), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(nrow(closeness_vals_out), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(closeness_vals_out[,1],
+                   as.character(1:10))
+
+  # Get closness values with `direction = in`
+  closeness_vals_in <-
+    get_closeness(graph, direction = "in")
+
+  # Expect a data frame as output
+  expect_is(closeness_vals_in, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(ncol(closeness_vals_in), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(nrow(closeness_vals_in), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(closeness_vals_in[,1],
                    as.character(1:10))
 })
 
@@ -79,6 +115,7 @@ test_that("Getting constraint values is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
+  # Get constraint values for all nodes in the graph
   constraint_vals <-
     get_constraint(graph)
 
@@ -94,4 +131,110 @@ test_that("Getting constraint values is possible", {
   # Expect node ID values in the first column
   expect_identical(constraint_vals[,1],
                    as.character(1:10))
+
+  # Get constraint values for specific nodes
+  constraint_vals_selected <-
+    get_constraint(graph, nodes = 1:5)
+
+  # Expect a data frame as output
+  expect_is(constraint_vals_selected, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(ncol(constraint_vals_selected), 2)
+
+  # Expect 5 rows in the df
+  expect_equal(nrow(constraint_vals_selected), 5)
+
+  # Expect node ID values in the first column
+  expect_identical(constraint_vals_selected[,1],
+                   as.character(1:5))
+
+  # Expect an error if supplying nodes that don't exist
+  expect_error(
+    get_constraint(graph, nodes = 20))
+})
+
+test_that("Getting articulation points is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      30, 50, set_seed = 1)
+
+  # Get articulation points for the graph
+  articulation_points <-
+    get_articulation_points(graph)
+
+  # Expect a character vector as output
+  expect_is(articulation_points, "character")
+
+  # Expect 3 values in the vector
+  expect_equal(length(articulation_points), 3)
+
+  # Expect the node IDs `8`, `22`, and `24` as
+  # articulation points
+  expect_identical(articulation_points,
+                   c("8", "22", "24"))
+})
+
+test_that("Getting connected components is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      30, 50, set_seed = 1)
+
+  # Get connected components for the graph
+  connected_components <-
+    get_connected_cmpts(graph)
+
+  # Expect a data frame as output
+  expect_is(connected_components, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(ncol(connected_components), 2)
+
+  # Expect 30 rows in the df
+  expect_equal(nrow(connected_components), 30)
+
+  # Get connected components for the graph, returned
+  # as a list object
+  connected_components_list <-
+    get_connected_cmpts(graph, return_type = "list")
+
+  # Expect a list object as output
+  expect_is(connected_components_list, "list")
+
+  # Expect a list of length 2
+  expect_equal(length(connected_components_list), 2)
+
+  # Expect 29 node IDs in the first list component
+  expect_equal(length(connected_components_list[[1]]),
+               29)
+
+  # Expect 1 node ID in the second list component
+  expect_equal(length(connected_components_list[[2]]),
+               1)
+})
+
+test_that("Getting stongly connected components is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      5, 10, set_seed = 1,
+      directed = TRUE)
+
+  # Get connected components for the graph
+  s_connected_components <-
+    get_s_connected_cmpts(graph)
+
+  # Expect a data frame as output
+  expect_is(s_connected_components, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(ncol(s_connected_components), 2)
+
+  # Expect 5 rows in the df
+  expect_equal(nrow(s_connected_components), 5)
 })
