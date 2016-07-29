@@ -65,14 +65,14 @@ edge_count <- function(graph,
 
   # If `rel` is a string, get a count of edges for
   # a specific rel
-  if (class(rel) == "character") {
+  if (inherits(rel, "character")) {
     count_of_rel <-
       length(which(graph$edges_df$rel %in% rel))
     return(count_of_rel)
   }
 
   # If `rel` is set to FALSE, get a total count of edges
-  if (all(class(rel) == "logical" &
+  if (all(inherits(rel, "logical") &
           rel == FALSE)) {
     total_edge_count <- nrow(graph$edges_df)
     return(total_edge_count)
@@ -80,7 +80,7 @@ edge_count <- function(graph,
 
   # If `rel` set to TRUE, get a named vector of counts
   # by relationship
-  if (all(class(rel) == "logical" & rel)) {
+  if (all(inherits(rel, "logical") & rel)) {
 
     all_relationships <- unique(graph$edges_df$rel)
 
