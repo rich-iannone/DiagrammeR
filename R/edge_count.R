@@ -74,7 +74,7 @@ edge_count <- function(graph,
   # If `rel` is set to FALSE, get a total count of edges
   if (all(class(rel) == "logical" &
           rel == FALSE)) {
-    total_edge_count <- length(graph$edges_df$rel)
+    total_edge_count <- nrow(graph$edges_df)
     return(total_edge_count)
   }
 
