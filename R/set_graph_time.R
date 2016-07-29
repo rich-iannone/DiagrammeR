@@ -64,7 +64,7 @@ set_graph_time <- function(graph,
   dgr_graph <-
     create_graph(
       nodes_df = graph$nodes_df,
-      edges_df = graph$nodes_df,
+      edges_df = graph$edges_df,
       graph_attrs = graph$graph_attrs,
       node_attrs = graph$node_attrs,
       edge_attrs = graph$edge_attrs,
