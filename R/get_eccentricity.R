@@ -60,7 +60,7 @@ get_eccentricity <- function(graph,
     eccentricity <-
       c(eccentricity, longest_path)
 
-    if (i == length(get_nodes(graph))) {
+    if (i == length(nodes_to_process)) {
       names(eccentricity) <- node_ids
     }
   }
