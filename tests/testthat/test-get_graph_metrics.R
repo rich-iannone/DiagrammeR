@@ -132,8 +132,16 @@ test_that("Getting graph info is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
-  graph_i <-
-    graph_info(graph)
+  # Add a graph name
+  graph <- set_graph_name(graph, "random")
+
+  # Add a graph time
+  graph <-
+    set_graph_time(graph, time = "2015-10-25 15:23:00")
+
+  # Use the `graph_info()` function to create a
+  # data frame with graph metrics
+  graph_i <- graph_info(graph)
 
   # Expect that `graph_i` is a data frame
   expect_is(graph_i, "data.frame")
