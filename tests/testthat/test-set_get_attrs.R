@@ -1,6 +1,6 @@
 context("Setting graph/global attributes")
 
-test_that("setting a graph name can be done", {
+test_that("Setting a graph name can be done", {
 
   library(magrittr)
 
@@ -23,7 +23,7 @@ test_that("setting a graph name can be done", {
   expect_true(graph_name_1$graph_name == "test_that_name_again")
 })
 
-test_that("setting a time for the graph can be done", {
+test_that("Setting a time for the graph can be done", {
 
   # Create an empty graph
   graph <- create_graph()
@@ -65,7 +65,7 @@ test_that("setting a time for the graph can be done", {
   expect_true(!is.null(graph_selection$selection$nodes))
 })
 
-test_that("setting/getting global graph attributes can be done", {
+test_that("Setting/getting global graph attributes can be done", {
 
   # Create a new graph and set some global attributes
   graph <- create_graph() %>%
@@ -89,4 +89,65 @@ test_that("setting/getting global graph attributes can be done", {
   expect_true(get_global_graph_attrs(graph)[1][[1]] == "overlap = true")
   expect_true(get_global_graph_attrs(graph)[2][[1]] == "fontname = Helvetica")
   expect_true(get_global_graph_attrs(graph)[3][[1]] == "color = gray")
+})
+
+test_that("Getting the graph name is possible", {
+
+  # Create a new graph and set a graph name
+  graph <-
+    create_graph() %>%
+    set_graph_name("test_graph")
+
+  # Verify that the graph name returned is a
+  # character vector
+  expect_is(get_graph_name(graph), "character")
+
+  # Expect that the returned vector has a length of 1
+  expect_equal(length(get_graph_name(graph)), 1)
+
+  # Expect that the graph name that was set is returned
+  expect_equal(get_graph_name(graph), "test_graph")
+
+  # Create a new graph and don't set a name
+  graph <- create_graph()
+
+  # Verify that when there is no name set for the
+  # graph, a logical vector is returned
+  expect_is(get_graph_name(graph), "logical")
+
+  # Expect that an NA is returned
+  expect_true(is.na(get_graph_name(graph)))
+})
+
+test_that("Getting the graph time is possible", {
+
+  # Create a graph with a time
+  graph <-
+    create_graph() %>%
+    set_graph_time(time = "2015-10-25 15:23:00")
+
+  # Expect a graph time as POSIXct
+  expect_is(get_graph_time(graph), "POSIXct")
+
+  # Expect that the returned vector has a length of 1
+  expect_equal(length(get_graph_time(graph)), 1)
+
+  # When requesting just the time zone, expect
+  # it to be returned as a character vector
+  expect_is(get_graph_time(graph, get_tz = TRUE),
+            "character")
+
+  # Expect the tz to be `GMT` in this case
+  expect_equal(get_graph_time(graph, get_tz = TRUE),
+               "GMT")
+
+  # Create a graph without a time set
+  graph <- create_graph()
+
+  # Verify that when there is no time set for the
+  # graph, a POSIXct vector is returned
+  expect_is(get_graph_time(graph), "POSIXct")
+
+  # Expect that an NA is returned
+  expect_true(is.na(get_graph_time(graph)))
 })
