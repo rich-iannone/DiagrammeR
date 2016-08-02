@@ -411,3 +411,68 @@ test_that("adding several nodes to a selected node is possible", {
   # Expect that all new nodes have a `type` set
   expect_true(all(get_node_df(graph)[11:20, 2] == "new"))
 })
+
+test_that("adding several edges with a string is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Add edges via a string
+  graph <-
+    add_edges_w_string(
+      graph,
+      edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
+
+  # Expect a total of 10 nodes in the graph
+  expect_equal(node_count(graph), 10)
+
+  # Expect monotonically-increasing node ID values from 1 to 10
+  expect_equal(get_nodes(graph), as.character(seq(1, 10)))
+
+  # Expect a total of 9 edges in the graph
+  expect_equal(edge_count(graph), 9)
+
+  # Expect that the edge relationship has not been set
+  # for any of the edges
+  expect_equal(get_edge_df(graph)[, 3],
+               rep("", 9))
+
+  # Create another empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Add edges via a string and add the rel value
+  # `connected_to` to all new edges
+  graph <-
+    add_edges_w_string(
+      graph,
+      edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10",
+      rel = "connected_to")
+
+  # Expect that the edge relationship `connected_to` is
+  # set for all edges
+  expect_equal(get_edge_df(graph)[, 3],
+               rep("connected_to", 9))
+
+  # Create an empty graph, set as `undirected``
+  graph <- create_graph(directed = FALSE)
+
+  # Add 10 nodes to the empty graph
+  graph <- add_n_nodes(graph, 10)
+
+  # Add edges via a string and add the rel value
+  # `connected_to` to all new edges
+  graph <-
+    add_edges_w_string(
+      graph,
+      edges = "1--2 1--3 2--4 2--5 3--6 3--7 4--8 4--9 5--10",
+      rel = "connected_to")
+
+  # Expect a total of 9 edges in the graph
+  expect_equal(edge_count(graph), 9)
+})
