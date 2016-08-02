@@ -309,3 +309,119 @@ test_that("setting edge attributes is possible", {
               graph_edge_selection$edges_df$to == "1"), 4],
     "5")
 })
+
+test_that("Getting node attributes is possible", {
+
+  # Create a random graph with 4 nodes and 4 edges
+  random_graph <-
+    create_random_graph(
+      n = 4,
+      m = 4,
+      directed = TRUE,
+      fully_connected = TRUE,
+      set_seed = 20)
+
+  # Get node attributes for all nodes with the
+  # `value` attribute
+  all_nodes <-
+    get_node_attrs(random_graph, "value")
+
+  # Expect a numeric vector
+  expect_is(all_nodes, "numeric")
+
+  # Expect the vector to have length 4
+  expect_equal(length(all_nodes), 4)
+
+  # Expect certain names to be in the vector
+  expect_true(all(1:4 %in% names(all_nodes)))
+
+  # Expect certain values to be in the vector
+  expect_equal(all_nodes[[1]], 9.0)
+  expect_equal(all_nodes[[2]], 8.0)
+  expect_equal(all_nodes[[3]], 3.0)
+  expect_equal(all_nodes[[4]], 5.5)
+
+  # Get node attributes for nodes `1` and `3`
+  nodes_1_3 <-
+    get_node_attrs(
+      random_graph,
+      "value",
+      nodes = c(1, 3))
+
+  # Expect the vector to have length 2
+  expect_equal(length(nodes_1_3), 2)
+
+  # Expect certain names to be in the vector
+  expect_true(all(c(1, 3) %in% names(nodes_1_3)))
+
+  # Expect certain values to be in the vector
+  expect_equal(nodes_1_3[[1]], 9.0)
+  expect_equal(nodes_1_3[[2]], 3.0)
+})
+
+test_that("Getting edge attributes is possible", {
+
+  # Create a simple graph where edges have an edge
+  # attribute named `value`
+  graph <-
+    create_graph() %>%
+    add_n_nodes(4) %>%
+    {
+      edges <-
+        create_edges(
+          from = c(1, 2, 1, 4),
+          to = c(2, 3, 4, 3),
+          rel = "rel")
+      add_edge_df(., edges)
+    } %>%
+    set_edge_attrs(
+      "value", 1.6, 1, 2) %>%
+    set_edge_attrs(
+      "value", 4.3, 1, 4) %>%
+    set_edge_attrs(
+      "value", 2.9, 2, 3) %>%
+    set_edge_attrs(
+      "value", 8.4, 4, 3)
+
+  # Get node attributes for all nodes with the
+  # `value` attribute
+  all_edges <-
+    get_edge_attrs(graph, "value")
+
+  # Expect a numeric vector
+  expect_is(all_edges, "numeric")
+
+  # Expect the vector to have length 4
+  expect_equal(length(all_edges), 4)
+
+  # Expect certain names to be in the vector
+  expect_true(
+    all(c("1 -> 2", "2 -> 3", "1 -> 4", "4 -> 3") %in%
+          names(all_edges)))
+
+  # Expect certain values to be in the vector
+  expect_equal(all_edges[[1]], 1.6)
+  expect_equal(all_edges[[2]], 2.9)
+  expect_equal(all_edges[[3]], 4.3)
+  expect_equal(all_edges[[4]], 8.4)
+
+  # Get only edge attribute values for specified
+  # edges using the `from` and `to` arguments
+  some_edges <-
+    get_edge_attrs(
+      graph,
+      "value",
+      c(1, 2), c(2, 3))
+
+  # Expect the vector to have length 2
+  expect_equal(length(some_edges), 2)
+
+  # Expect certain names to be in the vector
+  expect_true(
+    all(c("1 -> 2", "2 -> 3") %in%
+          names(some_edges)))
+
+  # Expect certain values to be in the vector
+  expect_equal(some_edges[[1]], 1.6)
+  expect_equal(some_edges[[2]], 2.9)
+})
