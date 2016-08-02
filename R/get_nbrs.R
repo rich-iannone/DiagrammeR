@@ -30,7 +30,7 @@
 #' # Find all neighbor nodes for nodes `5`, `7`,
 #' # and `15`
 #' random_graph %>% get_nbrs(c(5, 7, 15))
-#' #> [1] "1"  "2"  "6"  "11" "12" "18"
+#' #> [1] "1"  "2"  "6"  "12" "18"
 #'
 #' # Get neighbors for node `11` and add a node
 #' # attribute to color the nodes green, then, color
