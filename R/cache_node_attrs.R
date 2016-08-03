@@ -38,7 +38,7 @@
 #' # Get the mean from all values available in
 #' # the cache
 #' graph %>% get_cache %>% mean
-#' # [1] 4.651246
+#' #> [1] 4.651246
 #' @export cache_node_attrs
 
 cache_node_attrs <- function(graph,
