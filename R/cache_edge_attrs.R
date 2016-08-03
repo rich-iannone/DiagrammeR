@@ -17,6 +17,30 @@
 #' the edge is incoming for filtering the list of
 #' edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
+#' library(magrittr)
+#'
+#' # Set a seed
+#' set.seed(25)
+#'
+#' # Create a graph with 10 nodes and 9 edges
+#' graph <-
+#'   create_graph() %>%
+#'   add_n_nodes(10) %>%
+#'   add_edges_w_string(
+#'     "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10") %>%
+#'   set_edge_attrs(
+#'     "value", rnorm(edge_count(.), 5, 2))
+#'
+#' # Cache all values from the edge attribute `value`
+#' # as a numeric vector
+#' graph <-
+#'   graph %>%
+#'   cache_edge_attrs("value", "numeric")
+#'
+#' # Get the mean from all values available in
+#' # the cache
+#' graph %>% get_cache %>% mean
+#' #> [1] 4.495494
 #' @export cache_edge_attrs
 
 cache_edge_attrs <- function(graph,
