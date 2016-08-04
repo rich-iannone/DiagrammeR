@@ -42,13 +42,13 @@
 #' # that the cached vector is numeric
 #' graph <-
 #'   graph %>%
-#'   cache_node_attrs_ws("value", "numeric")
+#'   cache_edge_attrs_ws("value", "numeric")
 #'
 #' # Get the cached vector and get its
 #' # difference from 5
 #' graph %>% get_cache %>% {x <- .; 5 - x}
-#' #> [1] 3.485575 2.649906 1.095868 2.912769
-#' #> [5] 1.433539
+#' #> [1] 0.4236672 2.0831823 2.3066151
+#' #> [4] 3.0002598 0.8910665
 #' @export cache_edge_attrs_ws
 
 cache_edge_attrs_ws <- function(graph,
