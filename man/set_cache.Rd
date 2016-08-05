@@ -40,5 +40,23 @@ graph <-
 
 # Get the graph's cache
 get_cache(graph)
+#> [1] 0.07142857 0.07692308 0.06666667 0.07142857
+#> [5] 0.08333333 0.05882353 0.08333333 0.07692308
+#> [9] 0.06666667 0.05882353
+
+# Get the difference of betweenness and closeness
+# values for nodes in the graph and store in the
+# graph's cache
+graph <-
+  graph \%>\%
+  set_cache(
+    get_betweenness(.)$betweenness -
+    get_closeness(.)$closeness)
+
+# Get the graph's cache
+get_cache(graph)
+#> [1]  6.561905  5.561172  1.838095  3.947619
+#> [5]  8.073810  1.941176 10.073810  8.780220
+#> [9]  3.400000  1.107843
 }
 
