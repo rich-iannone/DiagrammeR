@@ -33,10 +33,22 @@ add_edges_w_string <- function(graph,
                                edges,
                                rel = NULL) {
 
+  # Remove linebreak characters from `edges`
+  edges_cleaned <-
+    gsub("\n", "", edges)
+
+  # Remove extra spaces within the string
+  edges_cleaned <-
+    gsub("(?<=[\\s])\\s*|^\\s+|\\s+$", "",
+         edges_cleaned, perl = TRUE)
+
+  # Split by single spaces into separate edge
+  # expressions
   edges_split <-
-    unlist(strsplit(edges, " "))
+    unlist(strsplit(edges_cleaned, " "))
 
-
+  # Split the edge expressions in a directed
+  # graph into `from` and `to` vectors
   if (graph$directed) {
     from <-
       sapply(strsplit(edges_split, "->"), "[[", 1)
@@ -45,6 +57,8 @@ add_edges_w_string <- function(graph,
       sapply(strsplit(edges_split, "->"), "[[", 2)
   }
 
+  # Split the edge expressions in an undirected
+  # graph into `from` and `to` vectors
   if (graph$directed == FALSE) {
     from <-
       sapply(strsplit(edges_split, "--"), "[[", 1)
@@ -53,6 +67,8 @@ add_edges_w_string <- function(graph,
       sapply(strsplit(edges_split, "--"), "[[", 2)
   }
 
+  # Create an edge data frame (edf) without
+  # associated `rel` values
   if (is.null(rel)) {
     new_edges <-
       create_edges(
@@ -60,6 +76,8 @@ add_edges_w_string <- function(graph,
         to = to)
   }
 
+  # Create an edge data frame (edf) with
+  # associated `rel` values
   if (!is.null(rel)) {
     new_edges <-
       create_edges(
@@ -68,6 +86,7 @@ add_edges_w_string <- function(graph,
         rel = rel)
   }
 
+  # Add the new edges to the graph
   new_graph <-
     add_edge_df(graph,
                 new_edges)
