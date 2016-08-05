@@ -26,7 +26,8 @@
 #' graph <-
 #'   graph %>%
 #'   add_edges_w_string(
-#'     "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
+#'     "1->2 1->3 2->4 2->5 3->6
+#'      3->7 4->8 4->9 5->10")
 #' @export add_edges_w_string
 
 add_edges_w_string <- function(graph,
@@ -35,7 +36,7 @@ add_edges_w_string <- function(graph,
 
   # Remove linebreak characters from `edges`
   edges_cleaned <-
-    gsub("\n", "", edges)
+    gsub("\n", " ", edges)
 
   # Remove extra spaces within the string
   edges_cleaned <-
