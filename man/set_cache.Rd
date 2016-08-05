@@ -4,14 +4,18 @@
 \alias{set_cache}
 \title{Place a vector in graph's cache}
 \usage{
-set_cache(graph, to_cache)
+set_cache(graph, to_cache, col = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{to_cache}{any vector.}
+\item{to_cache}{any vector or data frame.}
+
+\item{col}{if a data frame is provided in
+\code{to_cache} then a column name from that data
+frame must provided here.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -32,6 +36,9 @@ graph <-
 # to `10` and store in the graph's cache
 graph <-
   graph \%>\%
-  set_cache(get_closeness \%>\% .$closeness)
+  set_cache(get_closeness(.), "closeness")
+
+# Get the graph's cache
+get_cache(graph)
 }
 
