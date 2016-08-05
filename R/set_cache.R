@@ -40,6 +40,11 @@ set_cache <- function(graph,
     }
 
     if (!is.null(col)) {
+
+      if (!(col %in% colnames(to_cache))) {
+        stop("The column name provided doesn't exist in the data frame.")
+      }
+
       # Extract the vector from the data frame
       # and store in the graph's cache
       graph$cache <- to_cache[, which(colnames(to_cache) == col)]
