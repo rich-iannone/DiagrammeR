@@ -1,16 +1,18 @@
 #' Add one or more edges using a text string
 #' @description With a graph object of class
 #' \code{dgr_graph}, add one or more edges to the graph
-#' using a text string. For a directed graph, the
-#' string object should be formatted as a series of
-#' node ID values as \code{[node_ID_1]->[node_ID_2]}
-#' separated by a single space. For undirected graphs,
-#' \code{--} should replace \code{->}.
+#' using a text string.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @param edges a single-length vector with a character
-#' string specifying the edges.
+#' string specifying the edges. For a directed graph,
+#' the string object should be formatted as a series of
+#' node ID values as \code{[node_ID_1]->[node_ID_2]}
+#' separated by a one or more space characters. For
+#' undirected graphs, \code{--} should replace
+#' \code{->}. Linebreaks in the vector won't cause an
+#' error.
 #' @param rel an optional vector specifying the
 #' relationship between the connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
