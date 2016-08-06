@@ -12,7 +12,13 @@ add_edges_w_string(graph, edges, rel = NULL)
 \code{create_graph}.}
 
 \item{edges}{a single-length vector with a character
-string specifying the edges.}
+string specifying the edges. For a directed graph,
+the string object should be formatted as a series of
+node ID values as \code{[node_ID_1]->[node_ID_2]}
+separated by a one or more space characters. For
+undirected graphs, \code{--} should replace
+\code{->}. Linebreaks in the vector won't cause an
+error.}
 
 \item{rel}{an optional vector specifying the
 relationship between the connected nodes.}
@@ -23,11 +29,7 @@ a graph object of class \code{dgr_graph}.
 \description{
 With a graph object of class
 \code{dgr_graph}, add one or more edges to the graph
-using a text string. For a directed graph, the
-string object should be formatted as a series of
-node ID values as \code{[node_ID_1]->[node_ID_2]}
-separated by a single space. For undirected graphs,
-\code{--} should replace \code{->}.
+using a text string.
 }
 \examples{
 library(magrittr)
