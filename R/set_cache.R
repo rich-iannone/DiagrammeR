@@ -1,4 +1,4 @@
-#' Place a vector in graph's cache
+#' Cache a vector in the graph
 #' @description Place any in the cache of a graph
 #' object of class \code{dgr_graph}.
 #' @param graph a graph object of class
