@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_cache.R
 \name{set_cache}
 \alias{set_cache}
-\title{Place a vector in graph's cache}
+\title{Cache a vector in the graph}
 \usage{
 set_cache(graph, to_cache, col = NULL)
 }
