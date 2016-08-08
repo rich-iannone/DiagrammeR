@@ -313,3 +313,44 @@ test_that("subsetting graphs from a temporal series is possible", {
                                tz = series_time_subset$graphs[[1]]$graph_tz) <
                       as.POSIXct("2015-03-26 12:00", tz = "GMT"))))
 })
+
+test_that("Getting a graph from a series is possible", {
+
+# Create three graphs
+graph_1 <-
+  create_graph() %>%
+  add_node("a") %>%
+  add_node("b") %>%
+  add_node("c") %>%
+  add_edge("a", "c") %>%
+  add_edge("a", "b") %>%
+  add_edge("b", "c")
+
+graph_2 <-
+  graph_1 %>%
+  add_node("d") %>%
+  add_edge("d", "c")
+
+graph_3 <-
+  graph_2 %>%
+  add_node("e") %>%
+  add_edge("e", "b")
+
+# Create an empty graph series and add
+# the graphs
+series <-
+  create_series() %>%
+  add_to_series(graph_1, .) %>%
+  add_to_series(graph_2, .) %>%
+  add_to_series(graph_3, .)
+
+# Get the second graph in the series
+extracted_graph <-
+  get_graph_from_series(
+    graph_series = series,
+    graph_no = 2)
+
+# Expect the equivalent object among
+# `extracted_graph` and `graph_2``
+expect_equivalent(extracted_graph, graph_2)
+})
