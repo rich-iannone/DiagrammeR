@@ -353,4 +353,14 @@ extracted_graph <-
 # Expect the equivalent object among
 # `extracted_graph` and `graph_2``
 expect_equivalent(extracted_graph, graph_2)
+
+# Expect an error if extracting a graph from
+# an empty graph series
+expect_error(
+  create_series() %>% get_graph_from_series(1))
+
+# Expect an error if the index for the graph to
+# be extracted is out of range
+expect_error(
+  series %>% get_graph_from_series(4))
 })
