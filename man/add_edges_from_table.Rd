@@ -63,14 +63,15 @@ library(magrittr)
 library(dplyr)
 
 # Create a graph from a CSV file
-graph <- create_graph() \%>\%
-add_edges_from_table(
-  system.file("examples/projects_and_contributors.csv",
-              package = "DiagrammeR"),
-  from_col = "contributor_name",
-  to_col = "project_name",
-  rel_col = "contributor_role",
-  set_rel = "contributes_to")
+graph <-
+  create_graph() \%>\%
+  add_edges_from_table(
+    system.file("examples/projects_and_contributors.csv",
+                package = "DiagrammeR"),
+    from_col = "contributor_name",
+    to_col = "project_name",
+    rel_col = "contributor_role",
+    set_rel = "contributes_to")
 
 # Get a count of nodes in the graph
 node_count(graph)
