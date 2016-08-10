@@ -544,6 +544,45 @@ create_graph <- function(nodes_df = NULL,
       if (exists("attribute")) {
         rm(attribute)
       }
+
+      if ('cluster' %in% colnames(nodes_df)) {
+
+        # Get column number for column with node
+        # attribute `cluster`
+        cluster_colnum <-
+          which(colnames(nodes_df) %in% "cluster")
+
+        # Get list of clusters defined for the nodes
+        cluster_ids <-
+          unique(nodes_df$cluster)[
+            which(
+              unique(nodes_df$cluster) != "")]
+
+        for (i in seq_along(cluster_ids)) {
+
+          regex <-
+            paste0("'",
+                   paste(nodes_df[which(nodes_df[, cluster_colnum] == i ), 1],
+                         collapse = "'.*?\n |'"), "'.*?\n")
+
+          node_block <-
+            str_replace_all(node_block, regex, "")
+
+          replacement <-
+            str_replace(
+              paste0("  cluster_", i, " [label = 'xN\n",
+                     cluster_ids[i],
+                     "'; shape = 'circle';",
+                     " fixedsize = 'true';",
+                     " fontsize = '8pt';",
+                     " peripheries = '2']  \n"), "x",
+              length(
+                nodes_df[which(nodes_df[, cluster_colnum] == i ), 1]))
+
+          node_block <-
+            str_replace(node_block, "^", replacement)
+        }
+      }
     }
 
     if (is.null(nodes_df) & !is.null(edges_df)) {
@@ -722,6 +761,39 @@ create_graph <- function(nodes_df = NULL,
       if (exists("edge_block")) {
         edge_block <- paste(edge_block, collapse = "\n")
       }
+
+      if ('cluster' %in% colnames(nodes_df)) {
+
+
+        # Get column number for column with node
+        # attribute `cluster`
+        cluster_colnum <-
+          which(colnames(nodes_df) %in% "cluster")
+
+        # Get list of clusters defined for the nodes
+        cluster_ids <-
+          which(
+            unique(nodes_df$cluster) != "")
+
+        for (i in seq_along(cluster_ids)) {
+
+          regex <-
+            str_replace(
+              "'x'", "x",
+              paste(nodes_df[which(nodes_df[, cluster_colnum] == i ), 1],
+                    collapse = "'|'"))
+
+          edge_block <-
+            str_replace_all(edge_block, regex, paste0("'cluster_", i, "'"))
+
+          regex <-
+            paste0("('cluster_", i, "'->'cluster_", i, "' \n |",
+                   "'cluster_", i, "'->'cluster_", i, "')")
+
+          edge_block <-
+            str_replace_all(edge_block, regex, "")
+        }
+      }
     }
 
     # Create the graph code from the chosen attributes,
@@ -770,6 +842,8 @@ create_graph <- function(nodes_df = NULL,
            edge_attrs = edge_attrs,
            directed = directed,
            dot_code = dot_code)
+
+    attr(dgr_graph, "class") <- "dgr_graph"
   }
 
   if (generate_dot == FALSE) {
@@ -786,9 +860,9 @@ create_graph <- function(nodes_df = NULL,
            edge_attrs = edge_attrs,
            directed = directed,
            dot_code = NULL)
-  }
 
-  attr(dgr_graph, "class") <- "dgr_graph"
+    attr(dgr_graph, "class") <- "dgr_graph"
+  }
 
   return(dgr_graph)
 }
