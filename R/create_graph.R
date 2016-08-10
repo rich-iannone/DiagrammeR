@@ -355,11 +355,13 @@ create_graph <- function(nodes_df = NULL,
       if (!is.na(column_with_x) & !is.na(column_with_y)) {
 
         pos <-
-          data.frame("pos" =
-                       paste0(nodes_df[,column_with_x],
-                              ",",
-                              nodes_df[,column_with_y],
-                              "!"))
+          data.frame(
+            "pos" =
+              paste0(
+                nodes_df[,column_with_x],
+                ",",
+                nodes_df[,column_with_y],
+                "!"))
 
         nodes_df$pos <- pos$pos
       }
