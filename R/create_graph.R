@@ -112,6 +112,28 @@ create_graph <- function(nodes_df = NULL,
                          graph_tz = NULL,
                          generate_dot = TRUE) {
 
+  # Add default values for `graph_attrs`, `node_attrs`,
+  # and `edge_attrs`
+  if (is.null(graph_attrs)) {
+    graph_attrs <-
+      c("layout = neato", "outputorder = edgesfirst")
+  }
+
+  if (is.null(node_attrs)) {
+    node_attrs <-
+      c("fontname = Helvetica", "fontsize = 10",
+        "shape = circle", "fixedsize = true",
+        "width = 0.5", "style = filled",
+        "fillcolor = aliceblue", "color = gray70",
+        "fontcolor = gray50")
+  }
+
+  if (is.null(edge_attrs)) {
+    edge_attrs <-
+      c("len = 1.5", "color = gray40",
+        "arrowsize = 0.5")
+  }
+
   # Create vector of graph attributes
   graph_attributes <-
     c("bgcolor", "layout", "overlap", "fixedsize",
