@@ -14,7 +14,8 @@ test_that("an empty graph object can be created and such an object is correct", 
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph) == "dgr_graph")
 
-  # Expect that the use of 'is_graph_empty' function will result in TRUE
+  # Expect that the use of 'is_graph_empty' function
+  # will result in TRUE
   expect_true(is_graph_empty(graph))
 
   # Expect that several of the graph components are NULL
@@ -23,9 +24,11 @@ test_that("an empty graph object can be created and such an object is correct", 
   expect_null(graph$graph_tz)
   expect_null(graph$nodes_df)
   expect_null(graph$edges_df)
-  expect_null(graph$graph_attrs)
-  expect_null(graph$node_attrs)
-  expect_null(graph$edge_attrs)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph$graph_attrs))
+  expect_true(!is.null(graph$node_attrs))
+  expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the empty graph is directed by default
   expect_true(graph$directed)
@@ -68,9 +71,12 @@ test_that("a graph object with nodes can be created correctly", {
   expect_null(graph$graph_time)
   expect_null(graph$graph_tz)
   expect_null(graph$edges_df)
-  expect_null(graph$graph_attrs)
-  expect_null(graph$node_attrs)
-  expect_null(graph$edge_attrs)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph$nodes_df))
+  expect_true(!is.null(graph$graph_attrs))
+  expect_true(!is.null(graph$node_attrs))
+  expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the 'nodes_df' component is a data frame
   expect_true(inherits(graph$nodes_df,"data.frame"))
@@ -103,18 +109,19 @@ test_that("a graph object can be created with a just an edge data frame", {
   expect_null(graph$graph_name)
   expect_null(graph$graph_time)
   expect_null(graph$graph_tz)
-  expect_null(graph$graph_attrs)
-  expect_null(graph$node_attrs)
-  expect_null(graph$edge_attrs)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph$nodes_df))
+  expect_true(!is.null(graph$edges_df))
+  expect_true(!is.null(graph$graph_attrs))
+  expect_true(!is.null(graph$node_attrs))
+  expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the 'edges_df' component is a data frame
-  expect_true(inherits(graph$edges_df,"data.frame"))
-
-  # Expect that the 'nodes_df' component is not NULL
-  expect_true(!is.null(graph$nodes_df))
+  expect_true(inherits(graph$edges_df, "data.frame"))
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(inherits(graph$edges_df,"data.frame"))
+  expect_true(inherits(graph$edges_df, "data.frame"))
 
   # Expect that the 'nodes_df' data frame has 3 columns
   expect_true(ncol(graph$nodes_df) == 3)
@@ -161,7 +168,11 @@ test_that("a graph object with nodes and edges can be created correctly", {
   expect_null(graph$graph_name)
   expect_null(graph$graph_time)
   expect_null(graph$graph_tz)
-  expect_null(graph$graph_attrs)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph$graph_attrs))
+  expect_true(!is.null(graph$node_attrs))
+  expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the 'nodes_df' component is a data frame
   expect_true(inherits(graph$nodes_df,"data.frame"))
@@ -201,13 +212,17 @@ test_that("different combinations of inputs can result in a graph", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph_n) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL or not NULL
+  # Expect that several of the graph components are NULL
   expect_null(graph_n$graph_name)
   expect_null(graph_n$graph_time)
   expect_null(graph_n$graph_tz)
-  expect_null(graph_n$graph_attrs)
-  expect_null(graph_n$edge_attrs)
-  expect_false(is.null(graph_n$node_attrs))
+  expect_null(graph_n$nodes_df)
+  expect_null(graph_n$edges_df)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph_n$graph_attrs))
+  expect_true(!is.null(graph_n$node_attrs))
+  expect_true(!is.null(graph_n$edge_attrs))
 
   # Create the graph object with only 'edge_attrs'
   graph_e <- create_graph(edge_attrs = "color = blue")
@@ -215,13 +230,17 @@ test_that("different combinations of inputs can result in a graph", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph_e) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL or not NULL
+  # Expect that several of the graph components are NULL
   expect_null(graph_e$graph_name)
   expect_null(graph_e$graph_time)
   expect_null(graph_e$graph_tz)
-  expect_null(graph_e$graph_attrs)
-  expect_null(graph_e$node_attrs)
-  expect_false(is.null(graph_e$edge_attrs))
+  expect_null(graph_e$nodes_df)
+  expect_null(graph_e$edges_df)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph_e$graph_attrs))
+  expect_true(!is.null(graph_e$node_attrs))
+  expect_true(!is.null(graph_e$edge_attrs))
 
   # Create the graph object with only 'graph_attrs'
   graph_g <- create_graph(graph_attrs = "layout = circo")
@@ -229,13 +248,17 @@ test_that("different combinations of inputs can result in a graph", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph_g) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL or not NULL
+  # Expect that several of the graph components are NULL
   expect_null(graph_g$graph_name)
   expect_null(graph_g$graph_time)
   expect_null(graph_g$graph_tz)
-  expect_null(graph_g$node_attrs)
-  expect_null(graph_g$edge_attrs)
-  expect_false(is.null(graph_g$graph_attrs))
+  expect_null(graph_g$nodes_df)
+  expect_null(graph_g$edges_df)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph_g$graph_attrs))
+  expect_true(!is.null(graph_g$node_attrs))
+  expect_true(!is.null(graph_g$edge_attrs))
 
   # Create the graph object with only 'graph_attrs' and 'edge_attrs'
   graph_ge <- create_graph(graph_attrs = "layout = circo",
@@ -244,13 +267,17 @@ test_that("different combinations of inputs can result in a graph", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph_ge) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL or not NULL
+  # Expect that several of the graph components are NULL
   expect_null(graph_ge$graph_name)
   expect_null(graph_ge$graph_time)
   expect_null(graph_ge$graph_tz)
-  expect_null(graph_ge$node_attrs)
-  expect_false(is.null(graph_ge$edge_attrs))
-  expect_false(is.null(graph_ge$graph_attrs))
+  expect_null(graph_ge$nodes_df)
+  expect_null(graph_ge$edges_df)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph_ge$graph_attrs))
+  expect_true(!is.null(graph_ge$node_attrs))
+  expect_true(!is.null(graph_ge$edge_attrs))
 
   # Create the graph object with only 'graph_attrs' and 'node_attrs'
   graph_gn <- create_graph(graph_attrs = "layout = circo",
@@ -259,13 +286,17 @@ test_that("different combinations of inputs can result in a graph", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph_gn) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL or not NULL
+  # Expect that several of the graph components are NULL
   expect_null(graph_gn$graph_name)
   expect_null(graph_gn$graph_time)
   expect_null(graph_gn$graph_tz)
-  expect_null(graph_gn$edge_attrs)
-  expect_false(is.null(graph_gn$node_attrs))
-  expect_false(is.null(graph_gn$graph_attrs))
+  expect_null(graph_gn$nodes_df)
+  expect_null(graph_gn$edges_df)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph_gn$graph_attrs))
+  expect_true(!is.null(graph_gn$node_attrs))
+  expect_true(!is.null(graph_gn$edge_attrs))
 
   # Create the graph object with only 'node_attrs' and 'edge_attrs'
   graph_ne <- create_graph(node_attrs = "fontname = Helvetica",
@@ -274,11 +305,15 @@ test_that("different combinations of inputs can result in a graph", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph_ne) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL or not NULL
+  # Expect that several of the graph components are NULL
   expect_null(graph_ne$graph_name)
   expect_null(graph_ne$graph_time)
   expect_null(graph_ne$graph_tz)
-  expect_null(graph_ne$graph_attrs)
-  expect_false(is.null(graph_ne$node_attrs))
-  expect_false(is.null(graph_ne$edge_attrs))
+  expect_null(graph_ne$nodes_df)
+  expect_null(graph_ne$edges_df)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(graph_ne$graph_attrs))
+  expect_true(!is.null(graph_ne$node_attrs))
+  expect_true(!is.null(graph_ne$edge_attrs))
 })

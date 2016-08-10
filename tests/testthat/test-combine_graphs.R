@@ -22,7 +22,8 @@ test_that("graphs can be combined", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(combined_graph_1) == "dgr_graph")
 
-  # Expect that names in graph object match a prescribed set of names
+  # Expect that names in graph object match a
+  # prescribed set of names
   expect_true(all(names(combined_graph_1) ==
                     c("graph_name", "graph_time", "graph_tz",
                       "nodes_df", "edges_df", "graph_attrs",
@@ -33,9 +34,11 @@ test_that("graphs can be combined", {
   expect_null(combined_graph_1$graph_name)
   expect_null(combined_graph_1$graph_time)
   expect_null(combined_graph_1$graph_tz)
-  expect_null(combined_graph_1$graph_attrs)
-  expect_null(combined_graph_1$node_attrs)
-  expect_null(combined_graph_1$edge_attrs)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(combined_graph_1$graph_attrs))
+  expect_true(!is.null(combined_graph_1$node_attrs))
+  expect_true(!is.null(combined_graph_1$edge_attrs))
 
   # Expect that the 'is_graph_directed' function will return TRUE
   expect_true(is_graph_directed(combined_graph_1))
@@ -65,9 +68,11 @@ test_that("graphs can be combined", {
   expect_null(combined_graph_2$graph_name)
   expect_null(combined_graph_2$graph_time)
   expect_null(combined_graph_2$graph_tz)
-  expect_null(combined_graph_2$graph_attrs)
-  expect_null(combined_graph_2$node_attrs)
-  expect_null(combined_graph_2$edge_attrs)
+
+  # Expect that several of the graph components are not NULL
+  expect_true(!is.null(combined_graph_2$graph_attrs))
+  expect_true(!is.null(combined_graph_2$node_attrs))
+  expect_true(!is.null(combined_graph_2$edge_attrs))
 
   # Expect that the 'is_graph_directed' function will return TRUE
   expect_true(is_graph_directed(combined_graph_2))

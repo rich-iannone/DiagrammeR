@@ -74,21 +74,21 @@ test_that("Setting/getting global graph attributes can be done", {
     set_global_graph_attrs("edge", "color", "gray")
 
   # Verify that the global attributes have been set
-  expect_true(graph$graph_attrs[1] == "overlap = true")
-  expect_equal(length(graph$graph_attrs), 1)
+  expect_true(graph$graph_attrs[3] == "overlap = true")
+  expect_equal(length(graph$graph_attrs), 3)
 
-  expect_true(graph$node_attrs[1] == "fontname = Helvetica")
-  expect_equal(length(graph$node_attrs), 1)
+  expect_true(graph$node_attrs[10] == "fontname = Helvetica")
+  expect_equal(length(graph$node_attrs), 10)
 
-  expect_true(graph$edge_attrs[1] == "color = gray")
-  expect_equal(length(graph$edge_attrs), 1)
+  expect_true(graph$edge_attrs[4] == "color = gray")
+  expect_equal(length(graph$edge_attrs), 4)
 
   # Expect that getting the global attributes is possible
   expect_equal(length(get_global_graph_attrs(graph)), 3)
 
-  expect_true(get_global_graph_attrs(graph)[1][[1]] == "overlap = true")
-  expect_true(get_global_graph_attrs(graph)[2][[1]] == "fontname = Helvetica")
-  expect_true(get_global_graph_attrs(graph)[3][[1]] == "color = gray")
+  expect_true(get_global_graph_attrs(graph)[1][[1]][3] == "overlap = true")
+  expect_true(get_global_graph_attrs(graph)[2][[1]][10] == "fontname = Helvetica")
+  expect_true(get_global_graph_attrs(graph)[3][[1]][4] == "color = gray")
 })
 
 test_that("Getting the graph name is possible", {

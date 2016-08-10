@@ -61,8 +61,8 @@ test_that("importing a .sif file is possible", {
   # Expect that the 'edges_df' component is a data frame
   expect_true(inherits(sif_graph$edges_df,"data.frame"))
 
-  # Expect that the 'node_attrs' is a vector of length 0
-  expect_equal(length(sif_graph$node_attrs), 0)
+  # Expect that the 'node_attrs' is a vector of length 9
+  expect_equal(length(sif_graph$node_attrs), 9)
 
   # Expect that the graph is a directed graph
   expect_true(sif_graph$directed == TRUE)
@@ -100,8 +100,8 @@ test_that("importing a .gml file is possible", {
   # Expect that the 'edges_df' component is a data frame
   expect_true(inherits(gml_graph$edges_df,"data.frame"))
 
-  # Expect that the 'node_attrs' is a vector of length 0
-  expect_equal(length(gml_graph$node_attrs), 0)
+  # Expect that the 'node_attrs' is a vector of length 9
+  expect_equal(length(gml_graph$node_attrs), 9)
 
   # Expect that the graph is an undirected graph
   expect_true(gml_graph$directed == FALSE)

@@ -9,7 +9,8 @@ test_that("adding a node to a graph is possible", {
   graph <- add_node(graph, node = "a")
   graph <- add_node(graph, node = "b")
 
-  # Expect that names in this graph object match a prescribed set of names
+  # Expect that names in this graph object match a
+  # prescribed set of names
   expect_true(
     all(names(graph) ==
           c("graph_name", "graph_time", "graph_tz",
@@ -20,14 +21,16 @@ test_that("adding a node to a graph is possible", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL
+  # Expect that some of the graph components are NULL
   expect_null(graph$graph_name)
   expect_null(graph$graph_time)
   expect_null(graph$graph_tz)
   expect_null(graph$edges_df)
-  expect_null(graph$graph_attrs)
-  expect_null(graph$node_attrs)
-  expect_null(graph$edge_attrs)
+
+  # Expect that some of the graph components are not NULL
+  expect_true(!is.null(graph$graph_attrs))
+  expect_true(!is.null(graph$node_attrs))
+  expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the 'nodes_df' component is a data frame
   expect_true(inherits(graph$nodes_df,"data.frame"))
@@ -208,13 +211,15 @@ test_that("adding an edge to a graph is possible", {
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph) == "dgr_graph")
 
-  # Expect that several of the graph components are NULL
+  # Expect that some of the graph components are NULL
   expect_null(graph$graph_name)
   expect_null(graph$graph_time)
   expect_null(graph$graph_tz)
-  expect_null(graph$graph_attrs)
-  expect_null(graph$node_attrs)
-  expect_null(graph$edge_attrs)
+
+  # Expect that some of the graph components are not NULL
+  expect_true(!is.null(graph$graph_attrs))
+  expect_true(!is.null(graph$node_attrs))
+  expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the 'nodes_df' component is a data frame
   expect_true(inherits(graph$nodes_df,"data.frame"))
