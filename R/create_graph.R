@@ -198,7 +198,7 @@ create_graph <- function(nodes_df = NULL,
   }
 
   # If nodes and edges not provided, but other
-  # attributes are, create any empty graph with
+  # attributes are, create an empty graph with
   # attributes
   if (all(c(is.null(nodes_df),
             is.null(edges_df)))) {
