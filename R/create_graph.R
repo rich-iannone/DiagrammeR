@@ -503,7 +503,7 @@ create_graph <- function(nodes_df = NULL,
         # Generate a line of node objects when an
         # attribute string exists
         if (exists("attr_string")) {
-          line <- paste0("  '", nodes_df[i, column_with_node_id], "'",
+          line <- paste0("  '", nodes_df[i, 1], "'",
                          " [", attr_string, "] ")
         }
 
@@ -512,13 +512,13 @@ create_graph <- function(nodes_df = NULL,
         if (!exists("attr_string")) {
           line <-
             paste0("  '",
-                   nodes_df[i, column_with_node_id],
+                   nodes_df[i, 1],
                    "'")
         }
         node_block <- c(node_block, line)
       }
 
-      if('rank' %in% colnames(nodes_df)) {
+      if ('rank' %in% colnames(nodes_df)) {
         node_block <-
           c(node_block,
             tapply(node_block,
