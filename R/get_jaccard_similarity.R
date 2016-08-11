@@ -29,7 +29,7 @@
 #' #> 1    5 1.0000000 0.2857143 0.5000000
 #' #> 2    6 0.2857143 1.0000000 0.2857143
 #' #> 3    7 0.5000000 0.2857143 1.0000000
-#' @importFrom igraph similarity
+#' @importFrom igraph similarity V
 #' @export get_jaccard_similarity
 
 get_jaccard_similarity <- function(graph,
