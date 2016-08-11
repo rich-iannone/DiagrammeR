@@ -529,3 +529,50 @@ test_that("Getting a cache is possible", {
   # not present
   expect_true(is.na(get_cache(graph)))
 })
+
+test_that("Setting a cache is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      10, 22, set_seed = 1)
+
+  # Get the closeness values (as a data frame) for
+  # all nodes from `1` to `10`
+  closeness_df <- get_closeness(graph)
+
+  # Set the values in the `closeness_df` column
+  # `closeness` in the graph's cache
+  graph_cache <-
+    graph %>%
+    set_cache(closeness_df, "closeness")
+
+  # Expect that the column `closeness` in the df
+  # is equivalent to the values in the cache
+  expect_equivalent(closeness_df$closeness,
+                    graph_cache$cache)
+
+  # Expect an error if providing a data frame
+  # and not specifying a column to extract as a vector
+  expect_error(
+    set_cache(graph, closeness_df))
+
+  # Expect an error if providing a data frame
+  # and specifying a column that doesn't exist
+  expect_error(
+    set_cache(graph, closeness_df, "nonexistent"))
+
+  # Get the closeness values (as a vector)
+  closeness_vec <- closeness_df$closeness
+
+  # Set the values from the `closeness_vec` vector
+  # in the graph's cache
+  graph_cache_from_vec <-
+    graph %>%
+    set_cache(closeness_vec)
+
+  # Expect that the cache (originating from a vector)
+  # is equivalent to the `closeness_vec` vector
+  expect_equivalent(closeness_vec,
+                    graph_cache_from_vec$cache)
+})
