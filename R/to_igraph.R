@@ -16,8 +16,7 @@
 #' #> [1] "dgr_graph"
 #'
 #' # Convert the DiagrammeR graph to an igraph object
-#' ig_graph <-
-#'   to_igraph(dgr_graph)
+#' ig_graph <- to_igraph(dgr_graph)
 #'
 #' # Get the class of the converted graph, just
 #' # to be certain
