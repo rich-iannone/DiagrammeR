@@ -2,12 +2,12 @@
 % Please edit documentation in R/from_igraph.R
 \name{from_igraph}
 \alias{from_igraph}
-\title{Convert a igraph graph to a DiagrammeR one}
+\title{Convert an igraph graph to a DiagrammeR one}
 \usage{
 from_igraph(igraph)
 }
 \arguments{
-\item{graph}{a igraph graph object.}
+\item{graph}{an igraph graph object.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
