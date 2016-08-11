@@ -1,7 +1,7 @@
-#' Convert a igraph graph to a DiagrammeR one
+#' Convert an igraph graph to a DiagrammeR one
 #' @description Convert an igraph graph to a DiagrammeR
 #' graph object.
-#' @param graph a igraph graph object.
+#' @param graph an igraph graph object.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a DiagrammeR graph object
