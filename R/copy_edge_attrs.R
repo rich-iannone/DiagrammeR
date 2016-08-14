@@ -42,12 +42,15 @@
 #' # Get the graph's internal edf to show that the
 #' # edge attribute had been copied
 #' get_edge_df(graph)
-#' #>   nodes type label value  shape size
-#' #> 1     1          1     2 circle    2
-#' #> 2     2          2   8.5 circle  8.5
-#' #> 3     3          3     4 circle    4
-#' #> 4     4          4   3.5 circle  3.5
-#' #> 5     5          5   6.5 circle  6.5
+#' #>   from to rel color color_2
+#' #> 1    4  1     green   green
+#' #> 2    2  4     green   green
+#' #> 3    4  3     green   green
+#' #> 4    3  5     green   green
+#' #> 5    5  1     green   green
+#' #> 6    4  5     green   green
+#' #> 7    2  1     green   green
+#' #> 8    3  2     green   green
 #' @export copy_edge_attrs
 
 copy_edge_attrs <- function(graph,
