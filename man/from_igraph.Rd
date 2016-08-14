@@ -7,7 +7,7 @@
 from_igraph(igraph)
 }
 \arguments{
-\item{graph}{an igraph graph object.}
+\item{igraph}{an igraph graph object.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
