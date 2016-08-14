@@ -99,6 +99,7 @@
 #'     node_attrs = "fontname = Helvetica",
 #'     edge_attrs = c("color = blue",
 #'                    "arrowsize = 2"))
+#' @importFrom stringr str_replace str_replace_all
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,
@@ -566,10 +567,10 @@ create_graph <- function(nodes_df = NULL,
                          collapse = "'.*?\n |'"), "'.*?\n")
 
           node_block <-
-            str_replace_all(node_block, regex, "")
+            stringr::str_replace_all(node_block, regex, "")
 
           replacement <-
-            str_replace(
+            stringr::str_replace(
               paste0("  cluster_", i, " [label = 'xN\n",
                      cluster_ids[i],
                      "'; shape = 'circle';",
@@ -580,7 +581,7 @@ create_graph <- function(nodes_df = NULL,
                 nodes_df[which(nodes_df[, cluster_colnum] == i ), 1]))
 
           node_block <-
-            str_replace(node_block, "^", replacement)
+            stringr::str_replace(node_block, "^", replacement)
         }
       }
     }
@@ -778,20 +779,20 @@ create_graph <- function(nodes_df = NULL,
         for (i in seq_along(cluster_ids)) {
 
           regex <-
-            str_replace(
+            stringr::str_replace(
               "'x'", "x",
               paste(nodes_df[which(nodes_df[, cluster_colnum] == i ), 1],
                     collapse = "'|'"))
 
           edge_block <-
-            str_replace_all(edge_block, regex, paste0("'cluster_", i, "'"))
+            stringr::str_replace_all(edge_block, regex, paste0("'cluster_", i, "'"))
 
           regex <-
             paste0("('cluster_", i, "'->'cluster_", i, "' \n |",
                    "'cluster_", i, "'->'cluster_", i, "')")
 
           edge_block <-
-            str_replace_all(edge_block, regex, "")
+            stringr::str_replace_all(edge_block, regex, "")
         }
       }
     }
