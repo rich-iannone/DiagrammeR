@@ -74,7 +74,6 @@
 #' #> 3     3              3.85           1
 #' #> 4     4              5.32           0
 #' #> 5     5               3.5           2
-#'
 #' @export join_node_attrs
 
 join_node_attrs <- function(graph,
