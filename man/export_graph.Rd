@@ -14,18 +14,25 @@ export_graph(graph, file_name = NULL, file_type = NULL, width = NULL,
 (including it's extension).}
 
 \item{file_type}{the type of file to be exported.
-Options are: \code{png}, \code{pdf}, \code{svg},
-and \code{ps}.}
+Options for graph files are: \code{png}, \code{pdf},
+\code{svg}, and \code{ps}. Options for graph file
+formats are: \code{gexf}.}
 
 \item{width}{output width in pixels or \code{NULL}
-for default.}
+for default. Only useful for export to image file
+formats \code{png}, \code{pdf}, \code{svg}, and
+\code{ps}.}
 
 \item{height}{output height in pixels or \code{NULL}
-for default.}
+for default. Only useful for export to image file
+formats \code{png}, \code{pdf}, \code{svg}, and
+\code{ps}.}
 }
 \description{
 Export a graph to a variety of file
-formats such as PNG, PDF, SVG, and PostScript.
+formats, including image formats such as PNG, PDF,
+SVG, and PostScript, and graph file formats such
+as GEXF.
 }
 \examples{
 \dontrun{
