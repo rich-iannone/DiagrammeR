@@ -17,14 +17,14 @@
 #' # Convert the igraph graph back to a
 #' # DiagrammeR graph
 #' dgr_graph_new <- from_igraph(ig_graph)
-#' @importFrom igraph list.vertex.attributes list.edge.attributes get.vertex.attribute get.edge.attribute is_directed ends E
+#' @importFrom igraph V E vertex_attr_names edge_attr_names vertex_attr edge_attr is_directed ends
 #' @export from_igraph
 
 from_igraph <- function(igraph) {
 
   # Get vectors of all node and edge attributes
-  node_attrs <- igraph::list.vertex.attributes(igraph)
-  edge_attrs <- igraph::list.edge.attributes(igraph)
+  node_attrs <- igraph::vertex_attr_names(igraph)
+  edge_attrs <- igraph::edge_attr_names(igraph)
 
   # Generate a single-column ndf with node ID values
   nodes_df <-
@@ -36,7 +36,7 @@ from_igraph <- function(igraph) {
       cbind(
         nodes_df,
         data.frame(
-          type = igraph::get.vertex.attribute(igraph, "type"),
+          type = igraph::vertex_attr(igraph, "type"),
           stringsAsFactors = FALSE))
   } else {
     nodes_df <-
@@ -53,7 +53,7 @@ from_igraph <- function(igraph) {
       cbind(
         nodes_df,
         data.frame(
-          label = igraph::get.vertex.attribute(igraph, "label"),
+          label = igraph::vertex_attr(igraph, "label"),
           stringsAsFactors = FALSE))
   } else {
     nodes_df <-
@@ -75,7 +75,7 @@ from_igraph <- function(igraph) {
 
       df_col <-
         data.frame(
-          igraph::get.vertex.attribute(igraph, extra_node_attrs[i]),
+          igraph::vertex_attr(igraph, extra_node_attrs[i]),
           stringsAsFactors = FALSE)
 
       colnames(df_col) <- extra_node_attrs[i]
@@ -98,7 +98,7 @@ from_igraph <- function(igraph) {
       cbind(
         edges_df,
         data.frame(
-          rel = igraph::get.edge.attribute(igraph, "rel"),
+          rel = igraph::edge_attr(igraph, "rel"),
           stringsAsFactors = FALSE))
   } else {
     edges_df <-
@@ -120,7 +120,7 @@ from_igraph <- function(igraph) {
 
       df_col <-
         data.frame(
-          igraph::get.edge.attribute(igraph, extra_edge_attrs[i]),
+          igraph::edge_attr(igraph, extra_edge_attrs[i]),
           stringsAsFactors = FALSE)
 
       colnames(df_col) <- extra_edge_attrs[i]
