@@ -1,6 +1,6 @@
-#' Reverse the graph's edge direction
-#' @description Take a directed graph and reverse the
-#' edge directions.
+#' Reverse the direction of all edges in a graph
+#' @description Using a directed graph as input,
+#' reverse the direction of all edges in that graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
@@ -12,18 +12,23 @@
 #'   create_graph() %>%
 #'   add_balanced_tree(2, 2)
 #'
+#' # Inspect the graph's edges
+#' graph %>% get_edges
+#' #> [1] "1 -> 2" "1 -> 3" "2 -> 4" "2 -> 5" "3 -> 6"
+#' #> [6] "3 -> 7"
+#'
 #' # Reverse the edge directions such that edges
 #' # are directed toward the root of the tree
 #' graph <-
-#'   graph %>% reverse_edge_direction
+#'   graph %>% rev_edge_dir
 #'
-#' # Inspect the graph's edges
+#' # Inspect the graph's edges after their reversal
 #' graph %>% get_edges
 #' #> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2" "6 -> 3"
 #' #> [6] "7 -> 3"
-#' @export reverse_edge_direction
+#' @export rev_edge_dir
 
-reverse_edge_direction <- function(graph) {
+rev_edge_dir <- function(graph) {
 
   # If graph is undirected, stop function
   if (graph$directed == FALSE) {
