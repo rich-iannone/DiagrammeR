@@ -47,7 +47,7 @@ is_graph_connected <- function(graph) {
 
   # if any nodes have degree zero, then
   # the graph is not connected
-  if (any(node_info(graph)[, 4] == 0)){
+  if (any(node_info(graph)[, 4] == 0)) {
     return(FALSE)
   }
 
@@ -76,7 +76,7 @@ is_graph_connected <- function(graph) {
 
     path_to_remove <- c(edge_1, edge_2)
 
-    if (length(path_to_remove == 1)){
+    if (length(path_to_remove == 1)) {
       node_pairs <- node_pairs[-path_to_remove, ]
     }
   }
@@ -129,14 +129,14 @@ is_graph_connected <- function(graph) {
 
       path_to_remove <- c(edge_1, edge_2)
 
-      if (length(path_to_remove == 1)){
+      if (length(path_to_remove == 1)) {
         node_pairs <- node_pairs[-path_to_remove, ]
       }
     }
 
     x = x + 1
 
-    if (x == length(get_nodes(graph))){
+    if (x == length(get_nodes(graph))) {
       break
     }
   }

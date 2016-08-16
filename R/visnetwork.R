@@ -33,21 +33,21 @@
 #' @importFrom visNetwork visNetwork visInteraction visEdges visPhysics visNodes visLayout
 #' @export visnetwork
 
-visnetwork <- function(graph){
+visnetwork <- function(graph) {
 
   # Extract node and edge data frames from the graph object
-  if (!is.null(graph$nodes_df)){
+  if (!is.null(graph$nodes_df)) {
 
     nodes <- graph$nodes_df
   }
 
-  if (!is.null(graph$edges_df)){
+  if (!is.null(graph$edges_df)) {
 
     edges <- graph$edges_df
   }
 
   # Render an empty graph if no nodes or edges exist
-  if (is.null(graph$nodes_df) & is.null(graph$edges_df)){
+  if (is.null(graph$nodes_df) & is.null(graph$edges_df)) {
 
     nodes <- create_nodes(nodes = "")
     nodes <- nodes[,-1]
@@ -57,7 +57,7 @@ visnetwork <- function(graph){
   }
 
   # Remove the 'pos' column, if it exists
-  if ("pos" %in% colnames(nodes)){
+  if ("pos" %in% colnames(nodes)) {
     nodes <- nodes[,-(which(colnames(nodes) %in% "pos"))]
   }
 
@@ -68,7 +68,7 @@ visnetwork <- function(graph){
   colnames(nodes)[which(colnames(nodes) == "tooltip")] <- "title"
   colnames(nodes)[which(colnames(nodes) == "fillcolor")] <- "color"
 
-  if (!is.null(graph$edges_df)){
+  if (!is.null(graph$edges_df)) {
 
     # Modify names of columns in 'edges' for compatibility with
     # visNetwork data frames for edges
@@ -77,30 +77,30 @@ visnetwork <- function(graph){
     colnames(edges)[which(colnames(edges) == "penwidth")] <- "width"
 
     # Obtain 'fontcolor' values if the column exists in 'edges'
-    if ("fontcolor" %in% colnames(edges)){
+    if ("fontcolor" %in% colnames(edges)) {
       fontcolor <- edges[,-(which(colnames(edges) %in% "fontcolor"))]
     }
   }
 
   # Create the visNetwork object
-  if (all(c("x", "y") %in% colnames(nodes)) == FALSE){
+  if (all(c("x", "y") %in% colnames(nodes)) == FALSE) {
 
-    if (is.null(graph$edges_df)){
+    if (is.null(graph$edges_df)) {
 
       vn_obj <- visNetwork(nodes = nodes)
     }
 
-    if (!is.null(graph$edges_df)){
+    if (!is.null(graph$edges_df)) {
 
       vn_obj <- visNetwork(nodes = nodes, edges = edges)
 
-      if (is_graph_directed(graph)){
+      if (is_graph_directed(graph)) {
         vn_obj <- visEdges(graph = vn_obj,
                            arrows = list(to = list(enabled = TRUE,
                                                    scaleFactor = 1)))
       }
 
-      if (is_graph_directed(graph) == FALSE){
+      if (is_graph_directed(graph) == FALSE) {
         vn_obj <- visEdges(graph = vn_obj,
                            arrows = list(to = list(enabled = FALSE,
                                                    scaleFactor = 1)))
@@ -120,12 +120,12 @@ visnetwork <- function(graph){
                         improvedLayout = TRUE)
   }
 
-  if (all(c("x", "y") %in% colnames(nodes))){
+  if (all(c("x", "y") %in% colnames(nodes))) {
 
     # Reverse y values
     nodes$y <- -as.numeric(nodes$y)
 
-    if (is.null(graph$edges_df)){
+    if (is.null(graph$edges_df)) {
 
       vn_obj <- visNetwork(nodes = nodes)
 
@@ -143,10 +143,10 @@ visnetwork <- function(graph){
 
     }
 
-    if (!is.null(graph$edges_df)){
+    if (!is.null(graph$edges_df)) {
 
-      if ("arrow" %in% colnames(edges)){
-        if (all(edges[which(colnames(edges) %in% "arrow")] == FALSE)){
+      if ("arrow" %in% colnames(edges)) {
+        if (all(edges[which(colnames(edges) %in% "arrow")] == FALSE)) {
           arrows_for_edges <- FALSE
         } else {
           arrows_for_edges <- FALSE

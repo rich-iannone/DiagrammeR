@@ -54,15 +54,15 @@ add_balanced_tree <- function(graph,
                               type = NULL,
                               label = TRUE,
                               rel = NULL,
-                              nodes = NULL){
+                              nodes = NULL) {
 
   # Stop if k is too small
-  if (k <= 1)  {
+  if (k <= 1) {
     stop("The value for k must be at least 2.")
   }
 
   # Stop if h is too small
-  if (h <= 1)  {
+  if (h <= 1) {
     stop("The value for h must be at least 2.")
   }
 
@@ -82,15 +82,15 @@ add_balanced_tree <- function(graph,
 
   # If node IDs are not provided, create a
   # monotonically increasing ID value
-  if (is.null(nodes)){
+  if (is.null(nodes)) {
 
-    if (node_count(graph) == 0){
+    if (node_count(graph) == 0) {
       nodes <- seq(1, n_nodes_tree)
     }
 
-    if (node_count(graph) > 0){
+    if (node_count(graph) > 0) {
       if (!is.na(suppressWarnings(
-        any(as.numeric(get_nodes(graph)))))){
+        any(as.numeric(get_nodes(graph)))))) {
 
         numeric_components <-
           suppressWarnings(which(!is.na(as.numeric(
@@ -111,7 +111,7 @@ add_balanced_tree <- function(graph,
       }
 
       if (suppressWarnings(all(is.na(as.numeric(
-        get_nodes(graph)))))){
+        get_nodes(graph)))))) {
         nodes <- seq(1, n_nodes_tree)
       }
     }

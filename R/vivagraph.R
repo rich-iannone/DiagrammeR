@@ -53,20 +53,20 @@ vivagraph <- function(graph = NULL,
                       config = NULL,
                       height = NULL,
                       width = NULL,
-                      elementId = NULL){
+                      elementId = NULL) {
 
-  if (inherits(graph, "dgr_graph")){
+  if (inherits(graph, "dgr_graph")) {
 
     nodes_df <- graph$nodes_df
     edges_df <- graph$edges_df
 
     #  if nodes_df provided then check to make sure there is a column named id
     #  if not then name the first column id
-    if (is.data.frame(nodes_df)){
+    if (is.data.frame(nodes_df)) {
 
-      if (nrow(nodes_df) > 0){
+      if (nrow(nodes_df) > 0) {
 
-        if (!("id" %in% colnames(nodes_df))){
+        if (!("id" %in% colnames(nodes_df))) {
 
           colnames(nodes_df)[1] <- "id"
         }
@@ -74,26 +74,28 @@ vivagraph <- function(graph = NULL,
     }
 
     # Get data frame of node positions if it is provided in graph object
-    if (all(c("x", "y") %in% colnames(nodes_df))){
+    if (all(c("x", "y") %in% colnames(nodes_df))) {
 
       positions <-
-        data.frame(x = nodes_df[, which(colnames(nodes_df) %in% "x")],
-                   y = nodes_df[, which(colnames(nodes_df) %in% "y")])
+        data.frame(
+          x = nodes_df[, which(colnames(nodes_df) %in% "x")],
+          y = nodes_df[, which(colnames(nodes_df) %in% "y")])
     }
 
     # If 'edges_df' provided then check to make sure there is a column named from and to
     # if not then name the first column 'from' and name the second column 'to'
-    if (is.data.frame(edges_df)){
+    if (is.data.frame(edges_df)) {
 
-      if (nrow(edges_df) > 0 && ncol(edges_df) > 1){
+      if (nrow(edges_df) > 0 && ncol(edges_df) > 1) {
 
-        if (!("from" %in% colnames(edges_df)) || !("to" %in% colnames(edges_df))){
+        if (!("from" %in% colnames(edges_df)) ||
+            !("to" %in% colnames(edges_df))) {
 
           colnames(edges_df)[1] <- "from"
           colnames(edges_df)[2] <- "to"
         }
 
-      } else if (ncol(edges_df) > 0 && ncol(edges_df) < 2){
+      } else if (ncol(edges_df) > 0 && ncol(edges_df) < 2) {
         warning("vivagraph expects edges_df to contain at least two columns for source->target",
                 call. = FALSE
         )
@@ -101,12 +103,10 @@ vivagraph <- function(graph = NULL,
     }
 
     # If 'nodes_df' is a vector then make it a data frame with column named 'id'
-    if (is.vector(nodes_df)){
-
+    if (is.vector(nodes_df)) {
       nodes_df <- data.frame(id = nodes_df)
     }
   }
-
 
   x <-
     list(network = list(nodes_df = nodes_df,

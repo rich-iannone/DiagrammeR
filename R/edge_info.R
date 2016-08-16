@@ -40,23 +40,23 @@
 #' #>..   ...  ...              ...
 #' @export edge_info
 
-edge_info <- function(graph){
+edge_info <- function(graph) {
 
-  if ("from" %in% colnames(graph$edges_df)){
+  if ("from" %in% colnames(graph$edges_df)) {
     edge_from <- graph$edges_df$from
   }
 
-  if ("to" %in% colnames(graph$edges_df)){
+  if ("to" %in% colnames(graph$edges_df)) {
     edge_to <- graph$edges_df$to
   }
 
-  if ("rel" %in% colnames(graph$edges_df)){
+  if ("rel" %in% colnames(graph$edges_df)) {
     relationship <- graph$edges_df$rel
   }
 
   # For graphs with no edges, create an 'edge_properties' data frame
   # that doesn't need to consider any edge information
-  if (is.null(graph$edges_df)){
+  if (is.null(graph$edges_df)) {
 
     edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 3))
     colnames(edge_properties) <- c("from", "to", "rel")
@@ -65,12 +65,12 @@ edge_info <- function(graph){
   }
 
   # For graphs with no edges, create an 'edge_properties' data frame
-  if (!is.null(graph$edges_df)){
+  if (!is.null(graph$edges_df)) {
 
     # Create data frame of edge properties
-    for (i in 1:length(edge_from)){
+    for (i in 1:length(edge_from)) {
 
-      if (i == 1){
+      if (i == 1) {
         edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 3))
         colnames(edge_properties) <- c("from", "to", "rel")
       }

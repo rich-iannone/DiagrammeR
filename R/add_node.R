@@ -45,18 +45,18 @@ add_node <- function(graph,
                      label = TRUE,
                      from = NULL,
                      to = NULL,
-                     node = NULL){
+                     node = NULL) {
 
   # If node ID not provided, create a monotonically
   # increasing ID value
-  if (is.null(node)){
+  if (is.null(node)) {
 
-    if (node_count(graph) == 0){
+    if (node_count(graph) == 0) {
       node <- 1
     }
 
-    if (node_count(graph) > 0){
-      if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))){
+    if (node_count(graph) > 0) {
+      if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))) {
 
         numeric_components <-
           suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
@@ -65,7 +65,7 @@ add_node <- function(graph,
           max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
       }
 
-      if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))){
+      if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))) {
         node <- 1
       }
     }
@@ -76,34 +76,34 @@ add_node <- function(graph,
     ifelse(length(node) == 1, TRUE, FALSE)
 
   # Stop function if node not a single value
-  if (node_is_single_value == FALSE){
+  if (node_is_single_value == FALSE) {
     stop("Only a single node can be added.")
   }
 
   # Determine whether node to add is already in graph
-  if (node_is_single_value){
+  if (node_is_single_value) {
     can_add_node_id <-
       ifelse(!node_present(graph = graph, node = node),
              TRUE, FALSE)
   }
 
-  if (can_add_node_id == FALSE){
+  if (can_add_node_id == FALSE) {
     return(graph)
   }
 
   # Modify graph if only `from` values provided
-  if (!is.null(from) & is.null(to)){
+  if (!is.null(from) & is.null(to)) {
 
     from_nodes_available <-
       ifelse(all(from %in% get_nodes(graph)),
              TRUE, FALSE)
 
-    if (from_nodes_available == FALSE){
+    if (from_nodes_available == FALSE) {
 
       stop("The nodes from which edges should be applied to the new node are not available.")
     }
 
-    if (from_nodes_available){
+    if (from_nodes_available) {
 
       combined_nodes <-
         combine_nodes(
@@ -113,7 +113,7 @@ add_node <- function(graph,
             label = label,
             type = ifelse(is.null(type), "", type)))
 
-      if (!is.null(graph$edges_df)){
+      if (!is.null(graph$edges_df)) {
 
         combined_edges <-
           combine_edges(
@@ -136,7 +136,7 @@ add_node <- function(graph,
             graph_tz = graph$graph_tz)
       }
 
-      if (is.null(graph$edges_df)){
+      if (is.null(graph$edges_df)) {
 
         dgr_graph <-
           create_graph(
@@ -160,13 +160,13 @@ add_node <- function(graph,
   }
 
   # Modify graph if only `to` values provided
-  if (is.null(from) & !is.null(to)){
+  if (is.null(from) & !is.null(to)) {
 
     to_nodes_available <-
       ifelse(all(to %in% get_nodes(graph)),
              TRUE, FALSE)
 
-    if (to_nodes_available == FALSE){
+    if (to_nodes_available == FALSE) {
 
       stop("The nodes to which edges should be applied from the new node are not available.")
     }
@@ -179,7 +179,7 @@ add_node <- function(graph,
           label = label,
           type = ifelse(is.null(type), "", type)))
 
-    if (!is.null(graph$edges_df)){
+    if (!is.null(graph$edges_df)) {
 
       combined_edges <-
         combine_edges(
@@ -202,7 +202,7 @@ add_node <- function(graph,
           graph_tz = graph$graph_tz)
     }
 
-    if (is.null(graph$edges_df)){
+    if (is.null(graph$edges_df)) {
 
       dgr_graph <-
         create_graph(
@@ -226,7 +226,7 @@ add_node <- function(graph,
 
   # Modify graph if both `to` and `from`
   # values provided
-  if (!is.null(from) & !is.null(to)){
+  if (!is.null(from) & !is.null(to)) {
 
     from_nodes_available <-
       ifelse(all(from %in% get_nodes(graph)),
@@ -236,15 +236,15 @@ add_node <- function(graph,
       ifelse(all(to %in% get_nodes(graph)),
              TRUE, FALSE)
 
-    if (from_nodes_available == FALSE){
+    if (from_nodes_available == FALSE) {
       stop("The nodes from which edges should be applied to the new node are not available.")
     }
 
-    if (to_nodes_available == FALSE){
+    if (to_nodes_available == FALSE) {
       stop("The nodes to which edges should be applied from the new node are not available.")
     }
 
-    if (from_nodes_available & to_nodes_available){
+    if (from_nodes_available & to_nodes_available) {
 
       combined_nodes <-
         combine_nodes(
@@ -254,7 +254,7 @@ add_node <- function(graph,
             label = label,
             type = ifelse(is.null(type), "", type)))
 
-      if (!is.null(graph$edges_df)){
+      if (!is.null(graph$edges_df)) {
 
         combined_edges <-
           combine_edges(
@@ -267,7 +267,7 @@ add_node <- function(graph,
               to = to))
       }
 
-      if (is.null(graph$edges_df)){
+      if (is.null(graph$edges_df)) {
 
         combined_edges <-
           combine_edges(
@@ -300,9 +300,9 @@ add_node <- function(graph,
 
   # Modify graph if neither `to` nor `from`
   # values provided
-  if (is.null(from) & is.null(to)){
-    if (!is.null(type)){
-      if (!is.null(graph$nodes_df)){
+  if (is.null(from) & is.null(to)) {
+    if (!is.null(type)) {
+      if (!is.null(graph$nodes_df)) {
 
         combined_nodes <-
           combine_nodes(
@@ -319,8 +319,8 @@ add_node <- function(graph,
       }
     }
 
-    if (is.null(type)){
-      if (!is.null(graph$nodes_df)){
+    if (is.null(type)) {
+      if (!is.null(graph$nodes_df)) {
 
         combined_nodes <-
           combine_nodes(

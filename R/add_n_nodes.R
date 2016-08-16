@@ -27,12 +27,12 @@ add_n_nodes <- function(graph,
                         n,
                         set_node_type = NULL) {
 
-  if (node_count(graph) == 0){
+  if (node_count(graph) == 0) {
     node <- 1
   }
 
-  if (node_count(graph) > 0){
-    if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))){
+  if (node_count(graph) > 0) {
+    if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))) {
 
       numeric_components <-
         suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
@@ -41,7 +41,7 @@ add_n_nodes <- function(graph,
         max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
     }
 
-    if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))){
+    if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))) {
       node <- 1
     }
   }

@@ -98,7 +98,7 @@ mutate_node_attrs <- function(graph,
 
   # If node attribute is not numeric, stop function
   if (is.na(suppressWarnings(
-    any(as.numeric(nodes[, col_num_evaluate]))))){
+    any(as.numeric(nodes[, col_num_evaluate]))))) {
     stop("The node attribute to mutate is not numeric.")
   }
 
@@ -122,7 +122,7 @@ mutate_node_attrs <- function(graph,
   mutated_vector <-
     as.character(round(mutated_vector, round_to))
 
-  if (!is.null(node_attr_to)){
+  if (!is.null(node_attr_to)) {
 
     # Stop function if `node_attr_to` is
     # `nodes` or `node`

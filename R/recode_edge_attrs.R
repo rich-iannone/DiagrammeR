@@ -126,7 +126,7 @@ recode_edge_attrs <- function(graph,
   recoded_vector <-
     as.character(vector_to_recode)
 
-  if (!is.null(edge_attr_to)){
+  if (!is.null(edge_attr_to)) {
 
     # Stop function if `edge_attr_to` is
     # `from` or `to`

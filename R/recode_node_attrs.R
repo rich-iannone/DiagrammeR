@@ -141,7 +141,7 @@ recode_node_attrs <- function(graph,
   recoded_vector <-
     as.character(vector_to_recode)
 
-  if (!is.null(node_attr_to)){
+  if (!is.null(node_attr_to)) {
 
     # Stop function if `node_attr_to` is
     # `nodes` or `node`

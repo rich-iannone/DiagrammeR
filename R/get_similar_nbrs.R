@@ -206,7 +206,7 @@ get_similar_nbrs <- function(graph,
 
     # Break if current iteration yields no change in
     # the `nodes` list
-    if (i > 1){
+    if (i > 1) {
       if (identical(nodes[[i]], nodes[[i - 1]])) break
     }
 

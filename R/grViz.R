@@ -24,20 +24,20 @@ grViz <- function(diagram = "",
                   allow_subst = TRUE,
                   options = NULL,
                   width = NULL,
-                  height = NULL){
+                  height = NULL) {
 
   # Check for a connection or file
-  if (inherits(diagram, "connection") || file.exists(diagram)){
+  if (inherits(diagram, "connection") || file.exists(diagram)) {
     diagram <- readLines(diagram, warn = FALSE)
     diagram <- paste0(diagram, collapse = "\n")
   } else {
     # Check for vector with length > 1 and concatenate
-    if (length(diagram) > 1){
+    if (length(diagram) > 1) {
       diagram <- paste0(diagram, collapse = "\n")
     }
   }
 
-  if (allow_subst == TRUE){
+  if (allow_subst == TRUE) {
     diagram <- replace_in_spec(diagram)
   }
 
@@ -92,7 +92,7 @@ grViz <- function(diagram = "",
 #'   )
 #' )))
 #'
-#' server = function(input, output){
+#' server = function(input, output) {
 #'   output$diagram <- renderGrViz({
 #'     grViz(
 #'       input$ace
@@ -106,7 +106,7 @@ grViz <- function(diagram = "",
 #' @export
 grVizOutput <- function(outputId,
                         width = '100%',
-                        height = '400px'){
+                        height = '400px') {
 
   shinyWidgetOutput(outputId,
                     'grViz',

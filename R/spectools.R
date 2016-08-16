@@ -36,10 +36,10 @@
 #' }
 #' @export
 
-replace_in_spec <- function(spec){
+replace_in_spec <- function(spec) {
 
   # Directive for marking subscripted text in a label or tooltip '@_'
-  if (grepl("@_", spec)){
+  if (grepl("@_", spec)) {
 
     spec <- gsub('(label|tooltip)[ ]*=[ ]*\'(.*?)@_\\{(.*?)\\}(.*?)\'',
                  '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUB>\\3</SUB></FONT>\\4>',
@@ -47,7 +47,7 @@ replace_in_spec <- function(spec){
   }
 
   # Directive for marking superscripted text in a label or tooltip '@_'
-  if (grepl("@\\^", spec)){
+  if (grepl("@\\^", spec)) {
 
     spec <- gsub('(label|tooltip)[ ]*=[ ]*\'(.*?)@\\^\\{(.*?)\\}(.*?)\'',
                  '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUP>\\3</SUP></FONT>\\4>',
@@ -55,7 +55,7 @@ replace_in_spec <- function(spec){
   }
 
   # Make a second pass to add subscripts as inline HTML
-  while (grepl('(label|tooltip)[ ]*=[ ]*<(.*?)@_\\{(.+?)\\}(.*?)>', spec)){
+  while (grepl('(label|tooltip)[ ]*=[ ]*<(.*?)@_\\{(.+?)\\}(.*?)>', spec)) {
 
     spec <- gsub('(label|tooltip)[ ]*=[ ]*<(.*?)@_\\{(.*?)\\}(.*?)>',
                  '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUB>\\3</SUB></FONT>\\4>',
@@ -63,7 +63,7 @@ replace_in_spec <- function(spec){
   }
 
   # Make a second pass to add superscripts as inline HTML
-  while (grepl('(label|tooltip)[ ]*=[ ]*<(.*?)@\\^\\{(.+?)\\}(.*?)>', spec)){
+  while (grepl('(label|tooltip)[ ]*=[ ]*<(.*?)@\\^\\{(.+?)\\}(.*?)>', spec)) {
 
     spec <- gsub('(label|tooltip)[ ]*=[ ]*<(.*?)@\\^\\{(.*?)\\}(.*?)>',
                  '\\1 = <\\2<FONT POINT-SIZE=\'8\'><SUP>\\3</SUP></FONT>\\4>',
@@ -71,7 +71,7 @@ replace_in_spec <- function(spec){
   }
 
   # Directive for substitution of arbitrary specification text '@@'
-  if (grepl("@@", spec)){
+  if (grepl("@@", spec)) {
 
     # Extract the spec into several pieces: first being the body,
     # subsequent pieces belonging the replacement references
@@ -87,9 +87,9 @@ replace_in_spec <- function(spec){
            unlist(strsplit(x = spec_references, "\\n")))
 
     # Evaluate the expressions and save into a list object
-    for (i in 1:length(split_references)){
+    for (i in 1:length(split_references)) {
 
-      if (i == 1){
+      if (i == 1) {
         eval_expressions <- list()
       }
 
@@ -99,9 +99,9 @@ replace_in_spec <- function(spec){
 
     # Make replacements to the spec body for each replacement that has
     # no hyphen
-    for (i in 1:length(split_references)){
+    for (i in 1:length(split_references)) {
 
-      while (grepl(paste0("@@", i, "([^-])"), spec_body)){
+      while (grepl(paste0("@@", i, "([^-])"), spec_body)) {
 
         spec_body <- gsub(paste0("@@", i),
                           eval_expressions[[i]][1], spec_body)
@@ -110,14 +110,14 @@ replace_in_spec <- function(spec){
 
     # If the replacement has a hyphen, then obtain the digit(s) immediately
     # following and return the value from that index
-    for (i in 1:length(split_references)){
-      while (grepl(paste0("@@", i, "-", "[0-9]+"), spec_body)){
+    for (i in 1:length(split_references)) {
+      while (grepl(paste0("@@", i, "-", "[0-9]+"), spec_body)) {
         the_index <-
           as.numeric(gsub("^([0-9]+)(.*)", "\\1",
                           strsplit(spec_body,
                                    paste0("@@", i, "-"))[[1]][2]))
 
-        if (the_index > length(eval_expressions[[i]])){
+        if (the_index > length(eval_expressions[[i]])) {
           spec_body <-
             gsub(paste0("@@", i, "-", the_index, "([^0-9])"),
                  paste0(eval_expressions[[i]][length(eval_expressions[[i]])],
@@ -136,7 +136,7 @@ replace_in_spec <- function(spec){
     return(spec_body)
   }
 
-  if (grepl("@@", spec) == FALSE){
+  if (grepl("@@", spec) == FALSE) {
     return(spec)
   }
 }

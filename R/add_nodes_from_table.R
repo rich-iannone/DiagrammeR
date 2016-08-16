@@ -139,11 +139,11 @@ add_nodes_from_table <- function(graph,
   empty_ndf[1:rows_in_csv, 1] <- ""
   csv <- cbind(empty_ndf, csv)
 
-  if (is.null(id_col)){
+  if (is.null(id_col)) {
     if (node_count(graph) == 0) {
       starting_node <- 1
     } else {
-      if (suppressWarnings(any(!(is.na(as.numeric(graph$nodes_df$nodes)))))){
+      if (suppressWarnings(any(!(is.na(as.numeric(graph$nodes_df$nodes)))))) {
         starting_node <-
           suppressWarnings(
             max(

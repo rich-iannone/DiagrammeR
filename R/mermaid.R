@@ -53,7 +53,7 @@
 #' data(mtcars)
 #' connections <- sapply(
 #'  1:ncol(mtcars)
-#'   ,function(i){
+#'   ,function(i) {
 #'      paste0(
 #'         i
 #'       ,"(",colnames(mtcars)[i],")---"
@@ -124,13 +124,14 @@ mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
     diagram <- paste0(diagram, collapse = "\n")
   } else {
     # check for vector with length > 1 and concatenate
-    if (length(diagram) > 1){
+    if (length(diagram) > 1) {
 
       nosep <- grep(x = diagram, pattern = "[;\n]")
 
-      if (length(nosep) < length(diagram)){
-        diagram[-nosep] <- sapply(diagram[-nosep],
-                                  function(c){paste0(c, ";")})
+      if (length(nosep) < length(diagram)) {
+        diagram[-nosep] <-
+          sapply(diagram[-nosep],
+                 function(c) {paste0(c, ";")})
       }
 
       diagram = paste0( diagram, collapse = "" )
@@ -138,9 +139,7 @@ mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
   }
 
   # forward options using x
-  x <- list(
-    diagram = diagram
-  )
+  x <- list(diagram = diagram)
 
   # create widget
   htmlwidgets::createWidget(name = 'DiagrammeR',

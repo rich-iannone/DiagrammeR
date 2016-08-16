@@ -99,14 +99,14 @@ add_n_nodes_ws <- function(graph,
 
     for (i in 1:length(nodes_in_selection)) {
 
-      if (node_count(graph) == 0){
+      if (node_count(graph) == 0) {
         node <- 1
       }
 
-      if (node_count(graph) > 0){
+      if (node_count(graph) > 0) {
         if (!is.na(
           suppressWarnings(
-            any(as.numeric(get_nodes(graph)))))){
+            any(as.numeric(get_nodes(graph)))))) {
 
           numeric_components <-
             suppressWarnings(
@@ -123,7 +123,7 @@ add_n_nodes_ws <- function(graph,
 
         if (suppressWarnings(
           all(
-            is.na(as.numeric(get_nodes(graph)))))){
+            is.na(as.numeric(get_nodes(graph)))))) {
           node <- 1
         }
       }
@@ -160,14 +160,14 @@ add_n_nodes_ws <- function(graph,
 
     for (i in 1:length(nodes_in_selection)) {
 
-      if (node_count(graph) == 0){
+      if (node_count(graph) == 0) {
         node <- 1
       }
 
-      if (node_count(graph) > 0){
+      if (node_count(graph) > 0) {
         if (!is.na(
           suppressWarnings(
-            any(as.numeric(get_nodes(graph)))))){
+            any(as.numeric(get_nodes(graph)))))) {
 
           numeric_components <-
             suppressWarnings(
@@ -184,7 +184,7 @@ add_n_nodes_ws <- function(graph,
 
         if (suppressWarnings(
           all(
-            is.na(as.numeric(get_nodes(graph)))))){
+            is.na(as.numeric(get_nodes(graph)))))) {
           node <- 1
         }
       }

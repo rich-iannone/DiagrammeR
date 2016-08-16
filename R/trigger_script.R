@@ -38,7 +38,7 @@
 #'     "penwidth = 2")
 #'
 #' # If there is no graph available in the series, then, make one!
-#' if (graph_count(graph_series = _SELF_) == 0){
+#' if (graph_count(graph_series = _SELF_) == 0) {
 #'
 #' _SELF_ <-
 #'   add_to_series(graph = create_graph(graph_attrs = graph_attrs,
@@ -56,7 +56,7 @@
 #'
 #' # If it is a new day, create a new graph in the series to populate with data
 #' if (Sys.Date() > as.Date(_SELF_$graphs[[last_graph_in_series]]$graph_time,
-#'                          tz = _SELF_$graphs[[last_graph_in_series]]$graph_tz)){
+#'                          tz = _SELF_$graphs[[last_graph_in_series]]$graph_tz)) {
 #'
 #' _SELF_ <-
 #'   add_to_series(graph = create_graph(graph_attrs = graph_attrs,
@@ -80,7 +80,7 @@
 #' # there is at least one node available in the graph.
 #' # For convenience, the relevant graph is extracted from
 #' # the series, then placed back in the series.
-#' if (!is.na(sample(get_nodes(_SELF_$graphs[[last_graph_in_series]]), 1))){
+#' if (!is.na(sample(get_nodes(_SELF_$graphs[[last_graph_in_series]]), 1))) {
 #'
 #' graph <- _SELF_$graphs[[last_graph_in_series]]
 #'
@@ -119,7 +119,7 @@
 #'
 #' # Call the function 60 times, this will generate 60 random nodes
 #' # with 59 edges
-#' for (i in seq(1, 60)){
+#' for (i in seq(1, 60)) {
 #'
 #'   series_temporal <-
 #'     trigger_script(graph_series = series_temporal,
@@ -145,7 +145,7 @@
 #'
 #' # Call the function 60 times, this will generate 60 random nodes
 #' # with 59 edges
-#' for (i in seq(1, 60)){
+#' for (i in seq(1, 60)) {
 #'
 #'   series_temporal <-
 #'     trigger_script(graph_series = series_temporal,
@@ -160,14 +160,14 @@
 #' @export trigger_script
 
 trigger_script <- function(graph_series,
-                           script = 1){
+                           script = 1) {
 
   # Determine whether the script index provided is within range
   is_script_number_valid <-
     ifelse(script %in% 1:length(graph_series$series_scripts),
            TRUE, FALSE)
 
-  if (is_script_number_valid == FALSE){
+  if (is_script_number_valid == FALSE) {
 
     message("The script number provided doesn't correspond to an available script.")
     return(graph_series)
@@ -180,14 +180,14 @@ trigger_script <- function(graph_series,
           TRUE, FALSE)
 
   # Trigger script that is provided as a path to a file
-  if (is_path_provided == TRUE){
+  if (is_path_provided == TRUE) {
 
     # Determine if the file is present
     does_file_exist <-
       ifelse(file.exists(graph_series$series_scripts[script]),
              TRUE, FALSE)
 
-    if (does_file_exist == FALSE){
+    if (does_file_exist == FALSE) {
 
       message("The script doesn't exist at the path provided.")
       return(graph_series)
@@ -210,7 +210,7 @@ trigger_script <- function(graph_series,
   }
 
   # Trigger script that is a character object in the graph series
-  if (is_path_provided == FALSE){
+  if (is_path_provided == FALSE) {
 
     # Obtain a string corresponding to the graph_series object name
     to_substitute <- deparse(substitute(graph_series))

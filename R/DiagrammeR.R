@@ -54,7 +54,7 @@
 #' data(mtcars)
 #' connections <- sapply(
 #'  1:ncol(mtcars)
-#'   ,function(i){
+#'   ,function(i) {
 #'      paste0(
 #'         i
 #'       ,"(",colnames(mtcars)[i],")---"
@@ -141,7 +141,7 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 #' @export
 DiagrammeROutput <- function(outputId,
                              width = '100%',
-                             height = '400px'){
+                             height = '400px') {
 
   htmlwidgets::shinyWidgetOutput(outputId,
                                  'DiagrammeR',
@@ -158,7 +158,7 @@ DiagrammeROutput <- function(outputId,
 #' @export
 renderDiagrammeR <- function(expr,
                              env = parent.frame(),
-                             quoted = FALSE){
+                             quoted = FALSE) {
 
   if (!quoted) expr <- substitute(expr)
 

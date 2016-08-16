@@ -43,13 +43,13 @@
 set_global_graph_attrs <- function(graph,
                                    type,
                                    attr_for_type,
-                                   value){
+                                   value) {
 
   # Create a statement based on the attribute name
   # and the value
   attr_stmt <- paste(attr_for_type, value, sep = " = ")
 
-  if (type == "graph"){
+  if (type == "graph") {
     dgr_graph <-
       create_graph(
         nodes_df = graph$nodes_df,
@@ -64,7 +64,7 @@ set_global_graph_attrs <- function(graph,
         graph_tz = graph$graph_tz)
   }
 
-  if (type == "node"){
+  if (type == "node") {
     dgr_graph <-
       create_graph(
         nodes_df = graph$nodes_df,
@@ -79,7 +79,7 @@ set_global_graph_attrs <- function(graph,
         graph_tz = graph$graph_tz)
   }
 
-  if (type == "edge"){
+  if (type == "edge") {
     dgr_graph <-
       create_graph(
         nodes_df = graph$nodes_df,

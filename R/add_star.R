@@ -58,10 +58,10 @@ add_star <- function(graph,
                      type = NULL,
                      label = TRUE,
                      rel = NULL,
-                     nodes = NULL){
+                     nodes = NULL) {
 
   # Stop if n is too small
-  if (n <= 3)  {
+  if (n <= 3) {
     stop("The value for n must be at least 4.")
   }
 
@@ -77,15 +77,15 @@ add_star <- function(graph,
 
   # If node IDs are not provided, create a
   # monotonically increasing ID value
-  if (is.null(nodes)){
+  if (is.null(nodes)) {
 
-    if (node_count(graph) == 0){
+    if (node_count(graph) == 0) {
       nodes <- seq(1, n)
     }
 
-    if (node_count(graph) > 0){
+    if (node_count(graph) > 0) {
       if (!is.na(suppressWarnings(
-        any(as.numeric(get_nodes(graph)))))){
+        any(as.numeric(get_nodes(graph)))))) {
 
         numeric_components <-
           suppressWarnings(which(!is.na(as.numeric(
@@ -105,7 +105,7 @@ add_star <- function(graph,
       }
 
       if (suppressWarnings(all(is.na(as.numeric(
-        get_nodes(graph)))))){
+        get_nodes(graph)))))) {
         nodes <- seq(1, n)
       }
     }

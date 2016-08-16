@@ -103,7 +103,7 @@ mutate_edge_attrs <- function(graph,
 
   # If edge attribute is not numeric, stop function
   if (is.na(suppressWarnings(
-    any(as.numeric(edges[,col_num_evaluate]))))){
+    any(as.numeric(edges[,col_num_evaluate]))))) {
     stop("The edge attribute to mutate is not numeric.")
   }
 
@@ -127,7 +127,7 @@ mutate_edge_attrs <- function(graph,
   mutated_vector <-
     as.character(round(mutated_vector, round_to))
 
-  if (!is.null(edge_attr_to)){
+  if (!is.null(edge_attr_to)) {
 
     # Stop function if `edge_attr_to` is
     # `from` or `to`

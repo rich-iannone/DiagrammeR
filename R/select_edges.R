@@ -129,7 +129,7 @@ select_edges <- function(graph,
   graph$selection$nodes <- NULL
 
   # Remove `graph$selection` if empty
-  if (length(graph$selection) == 0){
+  if (length(graph$selection) == 0) {
     graph$selection <- NULL
   }
 
