@@ -68,11 +68,11 @@
 #' #> [1] "3" "6" "3" "7" "3"
 #'
 #' # Reversing the edge directions with the
-#' # `reverse_edge_direction()` function and performing
+#' # `rev_edge_dir()` function and performing
 #' # dfs at the same node as before results in a
 #' # different set of visited nodes
 #' graph %>%
-#'   reverse_edge_direction %>%
+#'   rev_edge_dir %>%
 #'   do_dfs(3, "out")
 #' #> $visited
 #' #> [1] "3" "1"
