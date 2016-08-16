@@ -34,7 +34,7 @@ ui = shinyUI(fluidPage(fluidRow(
   )
 )))
 
-server = function(input, output){
+server = function(input, output) {
   output$diagram <- renderGrViz({
     grViz(
       input$ace

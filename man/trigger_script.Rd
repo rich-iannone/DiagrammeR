@@ -52,7 +52,7 @@ edge_attrs <-
     "penwidth = 2")
 
 # If there is no graph available in the series, then, make one!
-if (graph_count(graph_series = _SELF_) == 0){
+if (graph_count(graph_series = _SELF_) == 0) {
 
 _SELF_ <-
   add_to_series(graph = create_graph(graph_attrs = graph_attrs,
@@ -70,7 +70,7 @@ last_graph_in_series <- graph_count(graph_series = _SELF_)
 
 # If it is a new day, create a new graph in the series to populate with data
 if (Sys.Date() > as.Date(_SELF_$graphs[[last_graph_in_series]]$graph_time,
-                         tz = _SELF_$graphs[[last_graph_in_series]]$graph_tz)){
+                         tz = _SELF_$graphs[[last_graph_in_series]]$graph_tz)) {
 
 _SELF_ <-
   add_to_series(graph = create_graph(graph_attrs = graph_attrs,
@@ -94,7 +94,7 @@ letters <- paste(sample(LETTERS, 5), collapse = "")
 # there is at least one node available in the graph.
 # For convenience, the relevant graph is extracted from
 # the series, then placed back in the series.
-if (!is.na(sample(get_nodes(_SELF_$graphs[[last_graph_in_series]]), 1))){
+if (!is.na(sample(get_nodes(_SELF_$graphs[[last_graph_in_series]]), 1))) {
 
 graph <- _SELF_$graphs[[last_graph_in_series]]
 
@@ -133,7 +133,7 @@ series_temporal <- create_series(series_type = "temporal",
 
 # Call the function 60 times, this will generate 60 random nodes
 # with 59 edges
-for (i in seq(1, 60)){
+for (i in seq(1, 60)) {
 
   series_temporal <-
     trigger_script(graph_series = series_temporal,
@@ -159,7 +159,7 @@ series_temporal <-
 
 # Call the function 60 times, this will generate 60 random nodes
 # with 59 edges
-for (i in seq(1, 60)){
+for (i in seq(1, 60)) {
 
   series_temporal <-
     trigger_script(graph_series = series_temporal,
