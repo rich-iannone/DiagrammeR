@@ -44,7 +44,7 @@ Imports:
     igraph (>= 1.0.0),
     influenceR (>= 0.1.0),
     rstudioapi (>= 0.6),
-    rgexf (>0.15.3),
+    rgexf (>= 0.15.3),
     stringr (>= 1.0.0),
     visNetwork (>= 1.0.0),
     scales (>= 0.4.0)
