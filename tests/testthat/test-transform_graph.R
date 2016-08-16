@@ -45,7 +45,7 @@ test_that("Reversing the graph edges is possible", {
 
   # Change the edge direction for all edges in
   # the graph
-  graph <- reverse_edge_direction(graph)
+  graph <- rev_edge_dir(graph)
 
   # Expect that the `from` nodes in the new graph
   # object are identical to the `to` nodes before
