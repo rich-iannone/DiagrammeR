@@ -120,7 +120,7 @@ mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
 
   # check for a connection or file
   if (inherits(diagram, "connection") || file.exists(diagram)) {
-    diagram <- readLines(diagram, warn = FALSE)
+    diagram <- readLines(diagram, encoding = "UTF-8", warn = FALSE)
     diagram <- paste0(diagram, collapse = "\n")
   } else {
     # check for vector with length > 1 and concatenate
