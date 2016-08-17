@@ -28,7 +28,7 @@ grViz <- function(diagram = "",
 
   # Check for a connection or file
   if (inherits(diagram, "connection") || file.exists(diagram)) {
-    diagram <- readLines(diagram, warn = FALSE)
+    diagram <- readLines(diagram, encoding = "UTF-8", warn = FALSE)
     diagram <- paste0(diagram, collapse = "\n")
   } else {
     # Check for vector with length > 1 and concatenate
