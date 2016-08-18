@@ -2,18 +2,25 @@
 #' @description Make diagrams in R using
 #' \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
-#' @param diagram diagram in mermaid markdown-like language or
-#'  file (as a connection or file name) containing a diagram specification.
-#' If no diagram is provided \code{diagram = ""} then the function will assume that
-#' a diagram will be provided by \code{\link[htmltools]{tags}} and
-#' \code{DiagrammeR} is just being used for dependency injection.
-#' @param ... other arguments and parameters you would like to send to Javascript
-#' @param width the width of the resulting graphic in pixels.
-#' @param height the height of the resulting graphic in pixels.
-#' @return An object of class \code{htmlwidget} that will
-#' intelligently print itself into HTML in a variety of contexts
-#' including the R console, within R Markdown documents,
-#' and within Shiny output bindings.
+#' @param diagram diagram in mermaid markdown-like
+#' language or file (as a connection or file name)
+#' containing a diagram specification. If no diagram
+#' is provided \code{diagram = ""} then the function
+#' will assume that a diagram will be provided by
+#' \code{\link[htmltools]{tags}} and
+#' \code{DiagrammeR} is just being used for dependency
+#' injection.
+#' @param ... other arguments and parameters you would
+#' like to send to Javascript.
+#' @param width the width of the resulting graphic in
+#' pixels.
+#' @param height the height of the resulting graphic in
+#' pixels.
+#' @return An object of class \code{htmlwidget} that
+#' will intelligently print itself into HTML in a
+#' variety of contexts including the R console, within
+#' R Markdown documents, and within Shiny output
+#' bindings.
 #' @examples
 #' \dontrun{
 #' # Create a simple graph running left to right (note
@@ -114,16 +121,22 @@
 #' ")
 #' }
 #' @import htmlwidgets
-#' @export
+#' @export mermaid
 
-mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
+mermaid <- function(diagram = "",
+                    ...,
+                    width = NULL,
+                    height = NULL) {
 
-  # check for a connection or file
-  if (inherits(diagram, "connection") || file.exists(diagram)) {
-    diagram <- readLines(diagram, encoding = "UTF-8", warn = FALSE)
+  # Check for a connection or file
+  if (inherits(diagram, "connection") ||
+      file.exists(diagram)) {
+    diagram <-
+      readLines(
+        diagram, encoding = "UTF-8", warn = FALSE)
     diagram <- paste0(diagram, collapse = "\n")
   } else {
-    # check for vector with length > 1 and concatenate
+    # Check for vector with length > 1 and concatenate
     if (length(diagram) > 1) {
 
       nosep <- grep(x = diagram, pattern = "[;\n]")
@@ -131,20 +144,21 @@ mermaid <- function(diagram = "", ..., width = NULL, height = NULL) {
       if (length(nosep) < length(diagram)) {
         diagram[-nosep] <-
           sapply(diagram[-nosep],
-                 function(c) {paste0(c, ";")})
+                 function(c) { paste0(c, ";") })
       }
 
-      diagram = paste0( diagram, collapse = "" )
+      diagram = paste0(diagram, collapse = "")
     }
   }
 
-  # forward options using x
+  # Forward options using x
   x <- list(diagram = diagram)
 
-  # create widget
-  htmlwidgets::createWidget(name = 'DiagrammeR',
-                            x,
-                            width = width,
-                            height = height,
-                            package = 'DiagrammeR')
+  # Create widget
+  htmlwidgets::createWidget(
+    name = 'DiagrammeR',
+    x,
+    width = width,
+    height = height,
+    package = 'DiagrammeR')
 }
