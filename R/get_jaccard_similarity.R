@@ -87,18 +87,26 @@ get_jaccard_similarity <- function(graph,
           method = "jaccard"))
   }
 
-  # Create df with Jaccard similarity scores
-  j_sim_values_df <-
-    cbind(
-      data.frame(node = get_node_df(graph)$nodes[nodes],
-                 stringsAsFactors = FALSE),
-      j_sim_values)
-
-  # Modify the column names
+  # Create df with Jaccard similarity scores and
+  # modify the column names
   if (is.null(nodes)) {
+
+    j_sim_values_df <-
+      cbind(
+        data.frame(node = get_node_df(graph)$nodes,
+                   stringsAsFactors = FALSE),
+        j_sim_values)
+
     colnames(j_sim_values_df)[-1] <-
       paste0("n_", get_node_df(graph)$nodes)
   } else if (!is.null(nodes)) {
+
+    j_sim_values_df <-
+      cbind(
+        data.frame(node = get_node_df(graph)$nodes[nodes],
+                   stringsAsFactors = FALSE),
+        j_sim_values)
+
     colnames(j_sim_values_df)[-1] <-
       paste0("n_", get_node_df(graph)$nodes[nodes])
   }
