@@ -12,7 +12,7 @@
 #' determining scores for neighboring nodes. With
 #' \code{out} and \code{in}, edge direction for
 #' neighboring nodes will be considered.
-#' @return a data frame with Dice similiarity values
+#' @return a matrix with Dice similiarity values
 #' for each pair of nodes considered.
 #' @examples
 #' library(magrittr)
@@ -25,10 +25,10 @@
 #' # Get the Dice similarity values for
 #' # nodes `5`, `6`, and `7`
 #' get_dice_similarity(graph, 5:7)
-#' #>   node       n_5       n_6       n_7
-#' #> 1    5 1.0000000 0.4444444 0.6666667
-#' #> 2    6 0.4444444 1.0000000 0.4444444
-#' #> 3    7 0.6666667 0.4444444 1.0000000
+#' #>           5         6         7
+#' #> 5 1.0000000 0.4444444 0.6666667
+#' #> 6 0.4444444 1.0000000 0.4444444
+#' #> 7 0.6666667 0.4444444 1.0000000
 #' @importFrom igraph similarity V
 #' @export get_dice_similarity
 
@@ -59,7 +59,7 @@ get_dice_similarity <- function(graph,
   # Get the Dice similarity scores
   if (direction == "all") {
     d_sim_values <-
-      as.data.frame(
+      as.matrix(
         igraph::similarity(
           ig_graph,
           vids = ig_nodes,
@@ -69,7 +69,7 @@ get_dice_similarity <- function(graph,
 
   if (direction == "out") {
     d_sim_values <-
-      as.data.frame(
+      as.matrix(
         igraph::similarity(
           ig_graph,
           vids = ig_nodes,
@@ -79,7 +79,7 @@ get_dice_similarity <- function(graph,
 
   if (direction == "in") {
     d_sim_values <-
-      as.data.frame(
+      as.matrix(
         igraph::similarity(
           ig_graph,
           vids = ig_nodes,
@@ -87,21 +87,15 @@ get_dice_similarity <- function(graph,
           method = "dice"))
   }
 
-  # Create df with Dice similarity scores
-  d_sim_values_df <-
-    cbind(
-      data.frame(node = get_node_df(graph)$nodes[nodes],
-                 stringsAsFactors = FALSE),
-      d_sim_values)
-
-  # Modify the column names
   if (is.null(nodes)) {
-    colnames(d_sim_values_df)[-1] <-
-      paste0("n_", get_node_df(graph)$nodes)
-  } else if (!is.null(nodes)) {
-    colnames(d_sim_values_df)[-1] <-
-      paste0("n_", get_node_df(graph)$nodes[nodes])
+    row.names(d_sim_values) <- graph$nodes_df$nodes
+    colnames(d_sim_values) <- graph$nodes_df$nodes
   }
 
-  return(d_sim_values_df)
+  if (!is.null(nodes)) {
+    row.names(d_sim_values) <- graph$nodes_df$nodes[nodes]
+    colnames(d_sim_values) <- graph$nodes_df$nodes[nodes]
+  }
+
+  return(d_sim_values)
 }
