@@ -12,11 +12,12 @@
 #' determining scores for neighboring nodes. With
 #' \code{out} and \code{in}, edge direction for
 #' neighboring nodes will be considered.
+#' @param round_to the maximum number of decimal places
+#' to retain for the Dice similarity coefficient
+#' scores. The default value is \code{3}.
 #' @return a matrix with Dice similiarity values
 #' for each pair of nodes considered.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -25,16 +26,17 @@
 #' # Get the Dice similarity values for
 #' # nodes `5`, `6`, and `7`
 #' get_dice_similarity(graph, 5:7)
-#' #>           5         6         7
-#' #> 5 1.0000000 0.4444444 0.6666667
-#' #> 6 0.4444444 1.0000000 0.4444444
-#' #> 7 0.6666667 0.4444444 1.0000000
+#' #>       5     6     7
+#' #> 5 1.000 0.444 0.667
+#' #> 6 0.444 1.000 0.444
+#' #> 7 0.667 0.444 1.000
 #' @importFrom igraph similarity V
 #' @export get_dice_similarity
 
 get_dice_similarity <- function(graph,
                                 nodes = NULL,
-                                direction = "all") {
+                                direction = "all",
+                                round_to = 3) {
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
@@ -96,6 +98,9 @@ get_dice_similarity <- function(graph,
     row.names(d_sim_values) <- graph$nodes_df$nodes[nodes]
     colnames(d_sim_values) <- graph$nodes_df$nodes[nodes]
   }
+
+  # Round all values in matrix to set SD
+  d_sim_values <- round(d_sim_values, round_to)
 
   return(d_sim_values)
 }

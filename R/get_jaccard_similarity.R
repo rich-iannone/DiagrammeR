@@ -12,11 +12,12 @@
 #' determining scores for neighboring nodes. With
 #' \code{out} and \code{in}, edge direction for
 #' neighboring nodes will be considered.
+#' @param round_to the maximum number of decimal places
+#' to retain for the Jaccard similarity coefficient
+#' scores. The default value is \code{3}.
 #' @return a matrix with Jaccard similiarity values
 #' for each pair of nodes considered.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -25,16 +26,17 @@
 #' # Get the Jaccard similarity values for
 #' # nodes `5`, `6`, and `7`
 #' get_jaccard_similarity(graph, 5:7)
-#' #>           5         6         7
-#' #> 5 1.0000000 0.2857143 0.5000000
-#' #> 6 0.2857143 1.0000000 0.2857143
-#' #> 7 0.5000000 0.2857143 1.0000000
+#' #>       5     6     7
+#' #> 5 1.000 0.286 0.500
+#' #> 6 0.286 1.000 0.286
+#' #> 7 0.500 0.286 1.000
 #' @importFrom igraph similarity V
 #' @export get_jaccard_similarity
 
 get_jaccard_similarity <- function(graph,
                                    nodes = NULL,
-                                   direction = "all") {
+                                   direction = "all",
+                                   round_to = 3) {
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
@@ -96,6 +98,9 @@ get_jaccard_similarity <- function(graph,
     row.names(j_sim_values) <- graph$nodes_df$nodes[nodes]
     colnames(j_sim_values) <- graph$nodes_df$nodes[nodes]
   }
+
+  # Round all values in matrix to set SD
+  j_sim_values <- round(j_sim_values, round_to)
 
   return(j_sim_values)
 }
