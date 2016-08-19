@@ -19,7 +19,7 @@
 #' attribute and its values.
 #' @param round_to the maximum number of decimal places
 #' to retain for the mutated edge attribute values. The
-#' default value is \code{5}.
+#' default value is \code{3}.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
@@ -71,19 +71,19 @@
 #' # the new edge attribute `penwidth`
 #' get_edge_df(graph)
 #' #>   from to rel value penwidth
-#' #> 1    4  1       4.5  2.50408
-#' #> 2    2  4       4.5  2.50408
-#' #> 3    4  3       4.5  2.50408
-#' #> 4    3  5       4.5  2.50408
-#' #> 5    5  1       4.5  2.50408
-#' #> 6    4  5       4.5  2.50408
+#' #> 1    4  1       4.5    2.504
+#' #> 2    2  4       4.5    2.504
+#' #> 3    4  3       4.5    2.504
+#' #> 4    3  5       4.5    2.504
+#' #> 5    5  1       4.5    2.504
+#' #> 6    4  5       4.5    2.504
 #' @export mutate_edge_attrs
 
 mutate_edge_attrs <- function(graph,
                               edge_attr_from,
                               expression,
                               edge_attr_to = NULL,
-                              round_to = 5) {
+                              round_to = 3) {
 
   # Extract the graph's edf
   edges <- get_edge_df(graph)
