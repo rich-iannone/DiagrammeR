@@ -19,7 +19,7 @@
 #' attribute and its values.
 #' @param round_to the maximum number of decimal places
 #' to retain for the mutated node attribute values. The
-#' default value is \code{5}.
+#' default value is \code{3}.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
@@ -66,19 +66,19 @@
 #' # node attribute values had been mutated and used as
 #' # the new node attribute `width`
 #' get_node_df(graph)
-#' #>   nodes type label value   width
-#' #> 1     1          1     1       1
-#' #> 2     2          2  4.25 2.44692
-#' #> 3     3          3     2 1.69315
-#' #> 4     4          4  1.75 1.55962
-#' #> 5     5          5  3.25 2.17865
+#' #>   nodes type label value width
+#' #> 1     1          1     1     1
+#' #> 2     2          2  4.25 2.447
+#' #> 3     3          3     2 1.693
+#' #> 4     4          4  1.75  1.56
+#' #> 5     5          5  3.25 2.179
 #' @export mutate_node_attrs
 
 mutate_node_attrs <- function(graph,
                               node_attr_from,
                               expression,
                               node_attr_to = NULL,
-                              round_to = 5) {
+                              round_to = 3) {
 
   # Extract the graph's ndf
   nodes <- get_node_df(graph)
