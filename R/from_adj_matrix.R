@@ -38,6 +38,16 @@ from_adj_matrix <- function(x,
                             weighted = FALSE,
                             use_diag = TRUE) {
 
+  # Stop function if x is not a matrix object
+  if (!inherits(x, "matrix")) {
+    stop("The input for this function must be a matrix object.")
+  }
+
+  # Stop function if the matrix is not a square matrix
+  if (ncol(x) != nrow(x)) {
+    stop("The input matrix must be a square matrix.")
+  }
+
   # If FALSE provided for `weighted`, change value to
   # NULL for `graph_from_adjacency_matrix()`
   if (weighted == FALSE) {
