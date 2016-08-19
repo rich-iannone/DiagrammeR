@@ -4,7 +4,8 @@
 \alias{get_jaccard_similarity}
 \title{Get Jaccard similarity coefficient scores}
 \usage{
-get_jaccard_similarity(graph, nodes = NULL, direction = "all")
+get_jaccard_similarity(graph, nodes = NULL, direction = "all",
+  round_to = 3)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -20,9 +21,13 @@ function will ignore edge direction when
 determining scores for neighboring nodes. With
 \code{out} and \code{in}, edge direction for
 neighboring nodes will be considered.}
+
+\item{round_to}{the maximum number of decimal places
+to retain for the Jaccard similarity coefficient
+scores. The default value is \code{3}.}
 }
 \value{
-a data frame with Jaccard similiarity values
+a matrix with Jaccard similiarity values
 for each pair of nodes considered.
 }
 \description{
@@ -30,8 +35,6 @@ Get the Jaccard similiarity coefficient
 scores for one or more nodes in a graph.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(
@@ -40,9 +43,9 @@ graph <-
 # Get the Jaccard similarity values for
 # nodes `5`, `6`, and `7`
 get_jaccard_similarity(graph, 5:7)
-#>   node       n_5       n_6       n_7
-#> 1    5 1.0000000 0.2857143 0.5000000
-#> 2    6 0.2857143 1.0000000 0.2857143
-#> 3    7 0.5000000 0.2857143 1.0000000
+#>       5     6     7
+#> 5 1.000 0.286 0.500
+#> 6 0.286 1.000 0.286
+#> 7 0.500 0.286 1.000
 }
 
