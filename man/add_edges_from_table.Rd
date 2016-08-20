@@ -60,7 +60,6 @@ data frame.
 \examples{
 \dontrun{
 library(magrittr)
-library(dplyr)
 
 # Create a graph from a CSV file
 graph <-
