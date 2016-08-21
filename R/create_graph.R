@@ -236,7 +236,7 @@ create_graph <- function(nodes_df = NULL,
 
     # Force all columns to be of the character class
     for (i in 1:ncol(nodes_df)) {
-      nodes_df[,i] <- as.character(nodes_df[,i])
+      nodes_df[, i] <- as.character(nodes_df[, i])
     }
   }
 
@@ -245,7 +245,7 @@ create_graph <- function(nodes_df = NULL,
 
       # Force all columns to be of the character class
       for (i in 1:ncol(edges_df)) {
-        edges_df[,i] <- as.character(edges_df[,i])
+        edges_df[, i] <- as.character(edges_df[, i])
       }
     }
   }
@@ -359,9 +359,9 @@ create_graph <- function(nodes_df = NULL,
           data.frame(
             "pos" =
               paste0(
-                nodes_df[,column_with_x],
+                nodes_df[, column_with_x],
                 ",",
-                nodes_df[,column_with_y],
+                nodes_df[, column_with_y],
                 "!"))
 
         nodes_df$pos <- pos$pos
@@ -421,14 +421,14 @@ create_graph <- function(nodes_df = NULL,
           # Append alpha for color values that are
           # X11 color names
           if (all(grepl("[a-z]*",
-                        as.character(nodes_df[,color_attr_column_no]))) &
+                        as.character(nodes_df[, color_attr_column_no]))) &
               all(as.character(nodes_df[, color_attr_column_no]) %in%
-                  x11_hex()[,1])) {
+                  x11_hex()[, 1])) {
 
             for (i in 1:nrow(nodes_df)) {
               nodes_df[i, color_attr_column_no] <-
                 paste0(x11_hex()[
-                  which(x11_hex()[,1] %in%
+                  which(x11_hex()[, 1] %in%
                           as.character(nodes_df[i, color_attr_column_no])), 2],
                   formatC(round(as.numeric(nodes_df[i, alpha_column_no]), 0),
                           flag = "0", width = 2))
@@ -438,15 +438,15 @@ create_graph <- function(nodes_df = NULL,
           # Append alpha for color values that
           # are hex color values
           if (all(grepl("#[0-9a-fA-F]{6}$",
-                        as.character(nodes_df[,color_attr_column_no])))) {
+                        as.character(nodes_df[, color_attr_column_no])))) {
 
             for (i in 1:nrow(nodes_df)) {
-              nodes_df[,color_attr_column_no] <-
-                as.character(nodes_df[,color_attr_column_no])
+              nodes_df[, color_attr_column_no] <-
+                as.character(nodes_df[, color_attr_column_no])
 
-              nodes_df[i,color_attr_column_no] <-
-                paste0(nodes_df[i,color_attr_column_no],
-                       round(as.numeric(nodes_df[i,alpha_column_no]),0))
+              nodes_df[i, color_attr_column_no] <-
+                paste0(nodes_df[i, color_attr_column_no],
+                       round(as.numeric(nodes_df[i, alpha_column_no]), 0))
             }
           }
         }
