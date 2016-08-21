@@ -395,20 +395,20 @@ create_graph <- function(nodes_df = NULL,
                         "fontcolor"))]
 
           colnames(nodes_df)[column_with_alpha_assigned] <-
-            paste0("alpha_", name_of_col_attr)
+            paste0("alpha:", name_of_col_attr)
         }
       }
 
       # Determine whether column 'alpha' with
       # color attr exists
-      if (any(grepl("alpha_.*", colnames(nodes_df)))) {
+      if (any(grepl("alpha:.*", colnames(nodes_df)))) {
 
-        alpha_column_no <- grep("alpha_.*", colnames(nodes_df))
+        alpha_column_no <- grep("alpha:.*", colnames(nodes_df))
 
         color_attr_column_name <-
           unlist(strsplit(colnames(nodes_df)[
-            (which(grepl("alpha_.*", colnames(nodes_df))))
-            ], "_"))[-1]
+            (which(grepl("alpha:.*", colnames(nodes_df))))
+            ], ":"))[-1]
 
         color_attr_column_no <-
           which(colnames(nodes_df) %in% color_attr_column_name)
@@ -422,15 +422,15 @@ create_graph <- function(nodes_df = NULL,
           # X11 color names
           if (all(grepl("[a-z]*",
                         as.character(nodes_df[,color_attr_column_no]))) &
-              all(as.character(nodes_df[,color_attr_column_no]) %in%
+              all(as.character(nodes_df[, color_attr_column_no]) %in%
                   x11_hex()[,1])) {
 
             for (i in 1:nrow(nodes_df)) {
-              nodes_df[i,color_attr_column_no] <-
+              nodes_df[i, color_attr_column_no] <-
                 paste0(x11_hex()[
                   which(x11_hex()[,1] %in%
-                          as.character(nodes_df[i,color_attr_column_no])), 2],
-                  formatC(round(as.numeric(nodes_df[i,alpha_column_no]),0),
+                          as.character(nodes_df[i, color_attr_column_no])), 2],
+                  formatC(round(as.numeric(nodes_df[i, alpha_column_no]), 0),
                           flag = "0", width = 2))
             }
           }
