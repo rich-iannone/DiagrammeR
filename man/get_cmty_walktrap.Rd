@@ -10,8 +10,8 @@ get_cmty_walktrap(graph, steps = 4)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{the}{number of steps to take for each of the
-random walks.}
+\item{steps}{the number of steps to take for each
+of the random walks.}
 }
 \value{
 a data frame with group membership
