@@ -22,8 +22,6 @@ a selection and cache that value in the graph for
 later retrieval using \code{get_cache}.
 }
 \examples{
-library(magrittr)
-
 # Create a graph with 10 nodes and 9 edges
 graph <-
   create_graph() \%>\%

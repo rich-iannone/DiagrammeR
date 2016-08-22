@@ -25,8 +25,6 @@ Get the closeness centrality values
 for all nodes in a graph.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

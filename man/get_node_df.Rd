@@ -19,8 +19,6 @@ From a graph, obtain a node data frame
 with all current node attributes.
 }
 \examples{
-library(magrittr)
-
 # Create a graph using several piped functions
 graph <-
   create_graph() \%>\%

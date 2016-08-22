@@ -19,8 +19,6 @@ directed or not and returns a logical value to that
 effect.
 }
 \examples{
-library(magrittr)
-
 # Create an empty graph; by default, new graphs
 # made by `create_graph()` are directed`
 graph <-

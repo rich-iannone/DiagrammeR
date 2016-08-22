@@ -14,8 +14,6 @@ cache_edge_count_ws(graph)
 }
 \value{
 a graph object of class \code{dgr_graph}.
-library(magrittr)
-
 # Create a graph with 10 nodes and 9 edges
 graph <-
   create_graph() %>%

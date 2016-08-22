@@ -27,8 +27,6 @@ edges present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
-library(magrittr)
-
 # Set a seed
 set.seed(25)
 

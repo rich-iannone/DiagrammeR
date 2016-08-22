@@ -35,8 +35,6 @@ traversed to.
 }
 \examples{
 \dontrun{
-library(magrittr)
-
 # Create a graph
 graph <-
 create_graph() \%>\%

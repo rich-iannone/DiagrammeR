@@ -33,8 +33,6 @@ Viewer or output in various formats.
 }
 \examples{
 \dontrun{
-library(magrittr)
-
 # Create three graphs
 graph_1 <-
   create_graph() \%>\%

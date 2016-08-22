@@ -37,8 +37,6 @@ attribute values. Optionally, one can specify a
 replacement value for any unmatched mappings.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

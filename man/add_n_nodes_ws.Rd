@@ -43,8 +43,6 @@ values for all the new nodes and edges created,
 respectively.
 }
 \examples{
-library(magrittr)
-
 # Create an empty graph, add a node to it, select
 # that node, and then add 5 more nodes to the graph
 # with edges from the original node to all of the

@@ -23,8 +23,6 @@ series object for storage of multiple graphs across
 a sequential or temporal one-dimensional array.
 }
 \examples{
-library(magrittr)
-
 # Create three graphs
 graph_1 <-
   create_graph() \%>\%

@@ -21,8 +21,6 @@ With one or more nodes, get the set of
 all neighboring nodes.
 }
 \examples{
-library(magrittr)
-
 # Create a random, directed graph with 18 nodes
 # and 22 edges
 random_graph <-
@@ -49,7 +47,8 @@ random_graph \%>\% get_nbrs(c(5, 7, 15))
 # Get neighbors for node `11` and add a node
 # attribute to color the nodes green, then, color
 # all other nodes light gray
-random_graph \%<>\%
+random_graph <-
+  random_graph \%>\%
   select_nodes_by_id(get_nbrs(., 11)) \%>\%
   set_node_attrs_ws('color', 'green') \%>\%
   invert_selection \%>\%

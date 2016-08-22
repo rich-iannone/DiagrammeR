@@ -32,8 +32,6 @@ From a graph object of class
 attribute values for one or more edges.
 }
 \examples{
-library(magrittr)
-
 # Create a simple graph where edges have an edge
 # attribute named `value`
 graph <-

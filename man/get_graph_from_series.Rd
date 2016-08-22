@@ -18,8 +18,6 @@ Using a graph series object of type
 \code{dgr_graph_1D}, get a graph object.
 }
 \examples{
-library(magrittr)
-
 # Create three graphs
 graph_1 <-
   create_graph() \%>\%

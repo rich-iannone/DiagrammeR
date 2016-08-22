@@ -41,8 +41,6 @@ attribute while retaining the original node
 attribute and its values.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

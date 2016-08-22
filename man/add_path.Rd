@@ -39,8 +39,6 @@ With a graph object of class
 \code{dgr_graph}, add a node path to the graph.
 }
 \examples{
-library(magrittr)
-
 # Create a new graph and add 3 paths of varying
 # lengths
 graph <-

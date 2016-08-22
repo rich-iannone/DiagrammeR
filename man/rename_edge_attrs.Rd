@@ -23,8 +23,6 @@ Within a graph's internal edge data
 frame (edf), rename an existing edge attribute.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

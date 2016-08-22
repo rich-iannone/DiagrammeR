@@ -35,8 +35,6 @@ by edge attribute can limit the set of edges
 traversed to.
 }
 \examples{
-library(magrittr)
-
 # Create a simple graph
 graph <-
  create_graph() \%>\%

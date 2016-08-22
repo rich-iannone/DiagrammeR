@@ -22,8 +22,6 @@ Get the set of all nodes not
 neighboring a single graph node.
 }
 \examples{
-library(magrittr)
-
 # Create a random, directed graph with 18 nodes
 # and 22 edges
 random_graph <-

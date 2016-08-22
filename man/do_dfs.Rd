@@ -29,8 +29,6 @@ the starting point or using the whole graph,
 perform a depth-first search.
 }
 \examples{
-library(magrittr)
-
 # Create a graph containing two balanced trees
 graph <-
   create_graph() \%>\%

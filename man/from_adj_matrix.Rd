@@ -34,8 +34,6 @@ Using an adjacency matrix object,
 generate a graph of class \code{dgr_graph}.
 }
 \examples{
-library(magrittr)
-
 # Create an adjacency matrix
 adj_matrix <-
   sample(0:1, 100,

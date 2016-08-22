@@ -23,8 +23,6 @@ Within a graph's internal node data
 frame (ndf), rename an existing node attribute.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

@@ -33,8 +33,6 @@ monotonically increasing integer values, then
 numeric ranges can be provided for the selection.
 }
 \examples{
-library(magrittr)
-
 # Create a graph with a tree structure that's
 # 3 levels deep (begins with node `1`, branching
 # by 3 nodes at each level); the resulting graph
@@ -51,7 +49,8 @@ graph <-
 
 # Create a graph selection by selecting edges
 # associated with nodes `1` and `2`
-graph \%<>\%
+graph <-
+  graph \%>\%
   select_edges_by_node_id(1:2)
 
 # Get the selection of edges
@@ -60,7 +59,8 @@ graph \%>\% get_selection
 
 # Perform another selection of nodes, with nodes
 # `1`, `2`, and `4`
-graph \%<>\%
+graph <-
+  graph \%>\%
   clear_selection \%>\%
   select_edges_by_node_id(c(1, 2, 4))
 

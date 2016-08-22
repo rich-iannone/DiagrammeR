@@ -22,8 +22,6 @@ With two or more nodes, get the set of
 common neighboring nodes.
 }
 \examples{
-library(magrittr)
-
 # Create a random, directed graph with 18 nodes
 # and 22 edges
 random_graph <-

@@ -18,8 +18,6 @@ Using a directed graph as input,
 reverse the direction of all edges in that graph.
 }
 \examples{
-library(magrittr)
-
 # Create a graph with a directed tree
 graph <-
   create_graph() \%>\%

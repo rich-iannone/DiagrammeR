@@ -18,8 +18,6 @@ Get a minimum spanning tree subgraph
 for a connected graph of class \code{dgr_graph}.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph and obtain Jaccard
 # similarity values for each pair of nodes
 # as a square matrix

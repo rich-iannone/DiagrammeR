@@ -49,8 +49,6 @@ range, then write to the same edge attribute or to
 a new edge attribute column.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

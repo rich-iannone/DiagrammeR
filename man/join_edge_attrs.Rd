@@ -37,8 +37,6 @@ in this function allows for no possibility that
 edges in the graph might be removed after the join.
 }
 \examples{
-library(magrittr)
-
 # Create a simple graph
 graph <-
   create_graph() \%>\%

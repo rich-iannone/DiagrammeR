@@ -23,8 +23,6 @@ the starting point get all nodes connected (i.e.,
 reachable with a traversible path) to that node.
 }
 \examples{
-library(magrittr)
-
 # This graph, created using `create_random_graph()`
 # is almost fully connected but there is an
 # isolated node (`13`) with no edges

@@ -32,8 +32,6 @@ values, then numeric ranges can be used for the
 selection.
 }
 \examples{
-library(magrittr)
-
 # Create a node data frame (ndf)
 nodes <- create_nodes(nodes = 1:10)
 
@@ -45,7 +43,6 @@ graph <- create_graph(nodes_df = nodes)
 graph \%>\%
   select_nodes_by_id(1:5) \%>\%
   get_selection
-#> $nodes
 #> [1] "1" "2" "3" "4" "5"
 }
 

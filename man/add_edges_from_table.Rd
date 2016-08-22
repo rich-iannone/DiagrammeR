@@ -59,8 +59,6 @@ data frame.
 }
 \examples{
 \dontrun{
-library(magrittr)
-
 # Create a graph from a CSV file
 graph <-
   create_graph() \%>\%

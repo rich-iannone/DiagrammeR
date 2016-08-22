@@ -38,8 +38,6 @@ Using a graph object of class
 that have certain degree values.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph with a high amount
 # of connectedness
 random_graph <-

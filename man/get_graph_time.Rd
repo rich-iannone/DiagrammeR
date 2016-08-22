@@ -25,8 +25,6 @@ Set the time and timezone for a graph
 object of class \code{dgr_graph}.
 }
 \examples{
-library(magrittr)
-
 # Create an empty graph and set the graph's time;
 # if nothing is supplied for the `tz` argument,
 # `GMT` is used as the time zone

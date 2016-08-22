@@ -28,8 +28,6 @@ From a graph object of class
 attribute values for one or more nodes.
 }
 \examples{
-library(magrittr)
-
 # With the `create_random_graph()` function, get
 # a simple graph with a node attribute called
 # `value`

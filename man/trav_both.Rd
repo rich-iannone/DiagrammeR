@@ -35,8 +35,6 @@ selection. The current nodes in the selection are
 replaced with those nodes traversed to.
 }
 \examples{
-library(magrittr)
-
 # Create a graph
 graph <-
 create_graph() \%>\%

@@ -29,8 +29,6 @@ each node in the set).
 }
 \examples{
 \dontrun{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(36, 50, set_seed = 1)

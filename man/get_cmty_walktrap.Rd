@@ -23,8 +23,6 @@ algorithm, obtain the group membership values for
 each of the nodes in the graph.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

@@ -30,8 +30,6 @@ values in the graph for later retrieval using
 \code{get_cache}.
 }
 \examples{
-library(magrittr)
-
 # Set a seed
 set.seed(25)
 

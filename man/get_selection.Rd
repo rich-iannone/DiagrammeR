@@ -21,8 +21,6 @@ Get the current selection of nodes or
 edges from a graph object of class \code{dgr_graph}.
 }
 \examples{
-library(magrittr)
-
 # Create a simple graph
 graph <-
   create_graph() \%>\%

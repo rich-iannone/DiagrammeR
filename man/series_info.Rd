@@ -19,8 +19,6 @@ Obtain a data frame with information
 on the graphs within a graph series.
 }
 \examples{
-library(magrittr)
-
 # Create three graphs
 graph_1 <-
   create_graph() \%>\%

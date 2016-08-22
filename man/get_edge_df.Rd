@@ -19,8 +19,6 @@ From a graph, obtain an edge data frame
 with all current edge attributes.
 }
 \examples{
-library(magrittr)
-
 # Create a graph using several piped functions
 graph <-
   create_graph() \%>\%

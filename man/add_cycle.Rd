@@ -39,8 +39,6 @@ With a graph object of class
 \code{dgr_graph}, add a node cycle to the graph.
 }
 \examples{
-library(magrittr)
-
 # Create a new graph and add a cycle of nodes to it
 graph <-
   create_graph() \%>\%

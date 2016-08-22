@@ -45,8 +45,6 @@ threshold values) node attribute to the starting
 node.
 }
 \examples{
-library(magrittr)
-
 # Getting similar neighbors can be done through
 # numerical comparisons; start with creating a
 # random, directed graph with 18 nodes and 22 edges

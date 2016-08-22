@@ -49,8 +49,6 @@ range, then write to the same node attribute or to
 a new node attribute column.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

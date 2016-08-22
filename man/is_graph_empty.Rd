@@ -18,8 +18,6 @@ Provides a logical value on whether the
 graph is empty (i.e., contains no nodes).
 }
 \examples{
-library(magrittr)
-
 # Create an empty graph
 graph <- create_graph()
 

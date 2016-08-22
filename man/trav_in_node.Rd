@@ -35,8 +35,6 @@ a selection of nodes. An optional filter by node
 attribute can limit the set of nodes traversed to.
 }
 \examples{
-library(magrittr)
-
 # Create a simple graph
 graph <-
  create_graph() \%>\%

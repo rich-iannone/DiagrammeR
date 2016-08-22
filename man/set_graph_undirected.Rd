@@ -18,8 +18,6 @@ Take a graph which is directed and
 convert it to an undirected graph.
 }
 \examples{
-library(magrittr)
-
 # Create a graph with a directed tree
 graph <-
   create_graph() \%>\%

@@ -35,8 +35,6 @@ package.}
 Export a graph to CSV files.
 }
 \examples{
-library(magrittr)
-
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(

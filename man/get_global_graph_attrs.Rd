@@ -20,8 +20,6 @@ Get the presently set global attributes
 for a graph object of class \code{dgr_graph}.
 }
 \examples{
-library(magrittr)
-
 # Create a new graph and set some global attributes
 graph <-
   create_graph() \%>\%

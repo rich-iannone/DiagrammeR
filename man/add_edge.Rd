@@ -30,8 +30,6 @@ With a graph object of class
 graph.
 }
 \examples{
-library(magrittr)
-
 # Create a graph with two nodes
 graph <-
   create_graph() \%>\%

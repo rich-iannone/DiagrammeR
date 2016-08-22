@@ -22,8 +22,6 @@ degree frequency. The bin width is set to 1 and
 zero-value degrees are omitted from the output.
 }
 \examples{
-library(magrittr)
-
 # Create a random, directed graph with 18 nodes
 # and 22 edges
 random_graph <-

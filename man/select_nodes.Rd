@@ -41,8 +41,6 @@ Select nodes from a graph object of
 class \code{dgr_graph}.
 }
 \examples{
-library(magrittr)
-
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
@@ -60,19 +58,18 @@ edges <-
 
 # Create a graph with the ndf and edf
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
 # Explicitly select nodes `a` and `c`
 graph <-
   graph \%>\%
-  select_nodes(
-    nodes = c("a", "c"))
+  select_nodes(nodes = c("a", "c"))
 
 # Verify that the node selection has been made
 # using the `get_selection()` function
 get_selection(graph)
-#> $nodes
 #> [1] "a" "c"
 
 # Select nodes based on the node `type`
@@ -80,15 +77,12 @@ get_selection(graph)
 graph <-
   graph \%>\%
   clear_selection \%>\%
-  select_nodes(
-    node_attr = "type",
-    search = "Z")
+  select_nodes(node_attr = "type", search = "Z")
 
 # Verify that an node selection has been made, and
 # recall that the `c` and `d` nodes are of the
 # `Z` type
 get_selection(graph)
-#> $nodes
 #> [1] "c" "d"
 
 # Select edges based on the node value attribute
@@ -97,15 +91,12 @@ get_selection(graph)
 graph <-
   graph \%>\%
   clear_selection \%>\%
-  select_nodes(
-    node_attr = "value",
-    search = ">3.0")
+  select_nodes(node_attr = "value", search = ">3.0")
 
 # Verify that the correct node selection has been
 # made; in this case, nodes `a` and `c` have values
 # for `value` greater than 3.0
 get_selection(graph)
-#> $nodes
 #> [1] "a" "c"
 }
 

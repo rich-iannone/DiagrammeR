@@ -39,8 +39,6 @@ different graph formats and create a graph object.
 }
 \examples{
 \dontrun{
-library(magrittr)
-
 # Import a GraphML graph file
 graphml_graph <-
   import_graph(

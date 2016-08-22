@@ -32,8 +32,6 @@ With a graph object of class
 using a text string.
 }
 \examples{
-library(magrittr)
-
 # Create a graph with 10 nodes
 graph <-
   create_graph() \%>\%

@@ -37,8 +37,6 @@ graphs' index positions in the graph series or
 through selection via graphs' date-time attributes.
 }
 \examples{
-library(magrittr)
-
 # Create three graphs
 graph_time_1 <-
   create_graph(

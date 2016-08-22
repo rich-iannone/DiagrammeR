@@ -49,7 +49,6 @@ data frame.
 }
 \examples{
 \dontrun{
-library(magrittr)
 library(dplyr)
 
 # Specify a path to a CSV file

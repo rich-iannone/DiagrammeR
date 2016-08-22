@@ -37,8 +37,6 @@ Obtain a list of all possible paths
 from a given node within a directed graph
 }
 \examples{
-library(magrittr)
-
 # Create a simple graph
 graph <-
   create_graph() \%>\%

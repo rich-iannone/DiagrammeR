@@ -27,8 +27,6 @@ attribute and create a distinct edge attribute
 within the edf with a different attribute name.
 }
 \examples{
-library(magrittr)
-
 # Create a random graph
 graph <-
   create_random_graph(

@@ -44,8 +44,6 @@ With a graph object of class
 \code{dgr_graph}, add a node prism to the graph.
 }
 \examples{
-library(magrittr)
-
 # Create a new graph and add a prism
 graph <-
   create_graph() \%>\%
