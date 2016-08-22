@@ -34,7 +34,8 @@
 #'
 #' # Create a graph selection by selecting edges
 #' # associated with nodes `1` and `2`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   select_edges_by_node_id(1:2)
 #'
 #' # Get the selection of edges
@@ -43,7 +44,8 @@
 #'
 #' # Perform another selection of nodes, with nodes
 #' # `1`, `2`, and `4`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   clear_selection %>%
 #'   select_edges_by_node_id(c(1, 2, 4))
 #'

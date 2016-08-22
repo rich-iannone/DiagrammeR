@@ -47,7 +47,8 @@
 #'
 #' # Remove the `type` value entirely from
 #' # node `1`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   node_type(1, "delete")
 #'
 #' # Check that node `1` no longer has a
@@ -57,7 +58,8 @@
 #' #> [1] FALSE
 #'
 #' # Add the `type` value "b" to node `1`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   node_type(1, "add", "b")
 #'
 #' # Read the node `type` for node `1`
@@ -67,7 +69,8 @@
 #'
 #' # Perform an in-place update of the `type`
 #' # value for node `1` ("b" to "a")
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   node_type(1, "update", "a")
 #'
 #' # Read the node `type` for node `1` to ensure

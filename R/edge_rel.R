@@ -53,7 +53,8 @@
 #'
 #' # Remove the `rel` value entirely from
 #' # edge `1` -> `2`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   edge_rel(1, 2, "delete")
 #'
 #' # Check that the edge `1` -> `2` no longer
@@ -63,7 +64,8 @@
 #' #> [1] FALSE
 #'
 #' # Add the `rel` value `rel_b`` to edge `1` -> `2`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   edge_rel(1, 2, "add", "rel_b")
 #'
 #' # Read the edge `rel` for edge `1` -> `2`
@@ -73,7 +75,8 @@
 #'
 #' # Perform an in-place update of the `rel`
 #' # value for edge `1` -> `2` (`rel_b`` to `rel_a``)
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   edge_rel(1, 2, "update", "rel_a")
 #'
 #' # Read the edge `rel` for edge `1` -> `2`

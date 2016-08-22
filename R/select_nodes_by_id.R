@@ -28,7 +28,6 @@
 #' graph %>%
 #'   select_nodes_by_id(1:5) %>%
 #'   get_selection
-#' #> $nodes
 #' #> [1] "1" "2" "3" "4" "5"
 #' @export select_nodes_by_id
 

@@ -18,10 +18,9 @@
 #' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph with a tree structure that's
-#' # 4 levels deep (begins with node `1`, branching
-#' # by 3 nodes at each level); the resulting graph
-#' # contains 40 nodes, numbered `1` through `40`
+#' # Create a graph containing 10 nodes,
+#' # numbered `1` through `10`, and 4 different node
+#' # types (`A`, `B`, `C`, and `D`)
 #' graph <-
 #'   create_graph(graph_attrs = 'layout = twopi') %>%
 #'   add_node("A") %>% select_nodes %>%
@@ -38,43 +37,40 @@
 #' # in the neighborhood of node `1`, where the
 #' # neighborhood is limited by nodes that are 1
 #' # connection away from node `1`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   select_nodes_in_neighborhood(
-#'     node = 1,
-#'     distance = 1)
+#'     node = 1, distance = 1)
 #'
 #' # Get the selection of nodes
 #' graph %>% get_selection
-#' #> $nodes
 #' #> [1] "1" "2" "3" "4"
 #'
 #' # Perform another selection of nodes, this time
 #' # with a neighborhood spanning 2 nodes from node `1`
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   clear_selection %>%
 #'   select_nodes_in_neighborhood(
-#'     node = 1,
-#'     distance = 2)
+#'     node = 1, distance = 2)
 #'
 #' # Get the selection of nodes
 #' graph %>% get_selection
-#' #> $nodes
-#' #> [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
-#' #> [10] "10" "11" "12" "13"
+#' #> [1] "1" "2" "3" "4" "5" "6" "7"
 #'
 #' # Perform a final selection of nodes, using
-#' # `distance = 3`, this effectively selects all 40
+#' # `distance = 3`, this effectively selects all 10
 #' # nodes in this graph
-#' graph %<>%
+#' graph <-
+#'   graph %>%
 #'   clear_selection %>%
 #'   select_nodes_in_neighborhood(
-#'     node = 1,
-#'     distance = 3)
+#'     node = 1, distance = 3)
 #'
-#' # Get a count of the nodes selected to verify
-#' # that all 40 nodes have indeed been selected
-#' graph %>% get_selection %>% unlist %>% length
-#' #> [1] 40
+#' # Get the selection of nodes
+#' graph %>% get_selection
+#' #> [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+#' #> [10] "10"
 #' @export select_nodes_in_neighborhood
 
 select_nodes_in_neighborhood <- function(graph,

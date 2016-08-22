@@ -14,7 +14,9 @@
 #' graph <- create_graph()
 #'
 #' # Add three nodes to the graph
-#' graph %<>% add_n_nodes(3)
+#' graph <-
+#'   graph %>%
+#'   add_n_nodes(3)
 #'
 #' # Add two edges to the graph
 #' graph %<>%
@@ -22,16 +24,13 @@
 #'   add_edge(2, 3)
 #'
 #' # Select the last edge added
-#' graph %<>% select_last_edge
+#' graph <-
+#'   graph %>%
+#'   select_last_edge
 #'
 #' # Get the current selection
 #' graph %>% get_selection
-#' #> $edges
-#' #> $edges$from
-#' #> [1] "2"
-#' #>
-#' #> $edges$to
-#' #> [1] "3"
+#' #> [1] "2 -> 3"
 #' @export select_last_edge
 
 select_last_edge <- function(graph) {

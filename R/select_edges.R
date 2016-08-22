@@ -45,45 +45,32 @@
 #'
 #' # Create a graph with the ndf and edf
 #' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges)
+#'   create_graph(
+#'     nodes_df = nodes,
+#'     edges_df = edges)
 #'
 #' # Explicitly select the edge `a` -> `d`
 #' graph <-
 #'   graph %>%
-#'   select_edges(
-#'     from = "a",
-#'     to = "d")
+#'   select_edges(from = "a", to = "d")
 #'
 #' # Verify that an edge selection has been made
 #' # using the `get_selection()` function
 #' get_selection(graph)
-#' #> $edges
-#' #> $edges$from
-#' #> [1] "b"
-#' #>
-#' #> $edges$to
-#' #> [1] "c"
+#' #> [1] "a -> d"
 #'
 #' # Select edges based on the relationship label
 #' # being `Z`
 #' graph <-
 #'   graph %>%
 #'   clear_selection %>%
-#'   select_edges(
-#'     edge_attr = "rel",
-#'     search = "Z")
+#'   select_edges(edge_attr = "rel", search = "Z")
 #'
 #' # Verify that an edge selection has been made, and
 #' # recall that the `b` -> `c` edge uniquely has the
 #' # `Z` relationship label
 #' get_selection(graph)
-#' #> $edges
-#' #> $edges$from
-#' #> [1] "b"
-#' #>
-#' #> $edges$to
-#' #> [1] "c"
+#' #> [1] "b -> c"
 #'
 #' # Select edges based on the edge value attribute
 #' # being greater than 3.0 (first clearing the current
@@ -91,21 +78,14 @@
 #' graph <-
 #'   graph %>%
 #'   clear_selection %>%
-#'   select_edges(
-#'     edge_attr = "value",
-#'     search = ">3.0")
+#'   select_edges(edge_attr = "value", search = ">3.0")
 #'
 #' # Verify that the correct edge selection has been
 #' # made; in this case, edges `a` -> `d` and
 #' # `c` -> `a` have values for `value` greater than
 #' # 3.0
 #' get_selection(graph)
-#' #> $edges
-#' #> $edges$from
-#' #> [1] "a" "c"
-#' #>
-#' #> $edges$to
-#' #> [1] "d" "a"
+#' #> [1] "a -> d" "c -> a"
 #' @export select_edges
 
 select_edges <- function(graph,
