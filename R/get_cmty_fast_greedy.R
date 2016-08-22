@@ -35,7 +35,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(get_cmty_fast_greedy(.))
-#' @importFrom igraph cluster_fast_greedy
+#' @importFrom igraph cluster_fast_greedy membership
 #' @export get_cmty_fast_greedy
 
 get_cmty_fast_greedy <- function(graph) {
@@ -51,8 +51,8 @@ get_cmty_fast_greedy <- function(graph) {
   # Create df with node memberships
   cmty_fast_greedy_df <-
     data.frame(
-      node = names(membership(cmty_fast_greedy_obj)),
-      f_g_group = as.vector(membership(cmty_fast_greedy_obj)),
+      node = names(igraph::membership(cmty_fast_greedy_obj)),
+      f_g_group = as.vector(igraph::membership(cmty_fast_greedy_obj)),
       stringsAsFactors = FALSE)
 
   return(cmty_fast_greedy_df)

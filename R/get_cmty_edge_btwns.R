@@ -36,7 +36,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(get_cmty_edge_btwns(.))
-#' @importFrom igraph cluster_edge_betweenness
+#' @importFrom igraph cluster_edge_betweenness membership
 #' @export get_cmty_edge_btwns
 
 get_cmty_edge_btwns <- function(graph) {
@@ -52,8 +52,8 @@ get_cmty_edge_btwns <- function(graph) {
   # Create df with node memberships
   cmty_edge_btwns_df <-
     data.frame(
-      node = names(membership(cmty_edge_btwns_obj)),
-      edge_btwns_group = as.vector(membership(cmty_edge_btwns_obj)),
+      node = names(igraph::membership(cmty_edge_btwns_obj)),
+      edge_btwns_group = as.vector(igraph::membership(cmty_edge_btwns_obj)),
       stringsAsFactors = FALSE)
 
   return(cmty_edge_btwns_df)

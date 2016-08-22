@@ -4,8 +4,8 @@
 #' each of the nodes in the graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param the number of steps to take for each of the
-#' random walks.
+#' @param steps the number of steps to take for each
+#' of the random walks.
 #' @return a data frame with group membership
 #' assignments for each of the nodes.
 #' @examples
@@ -37,7 +37,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(get_cmty_walktrap(.))
-#' @importFrom igraph cluster_walktrap
+#' @importFrom igraph cluster_walktrap membership
 #' @export get_cmty_walktrap
 
 get_cmty_walktrap <- function(graph,
@@ -54,8 +54,8 @@ get_cmty_walktrap <- function(graph,
   # Create df with node memberships
   cmty_walktrap_df <-
     data.frame(
-      node = names(membership(cmty_walktrap_obj)),
-      walktrap_group = as.vector(membership(cmty_walktrap_obj)),
+      node = names(igraph::membership(cmty_walktrap_obj)),
+      walktrap_group = as.vector(igraph::membership(cmty_walktrap_obj)),
       stringsAsFactors = FALSE)
 
   return(cmty_walktrap_df)

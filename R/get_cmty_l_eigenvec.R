@@ -37,7 +37,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(get_cmty_l_eigenvec(.))
-#' @importFrom igraph cluster_leading_eigen
+#' @importFrom igraph cluster_leading_eigen membership
 #' @export get_cmty_l_eigenvec
 
 get_cmty_l_eigenvec <- function(graph) {
@@ -53,8 +53,8 @@ get_cmty_l_eigenvec <- function(graph) {
   # Create df with node memberships
   cmty_l_eigenvec_df <-
     data.frame(
-      node = names(membership(cmty_l_eigenvec_obj)),
-      l_eigenvec_group = as.vector(membership(cmty_l_eigenvec_obj)),
+      node = names(igraph::membership(cmty_l_eigenvec_obj)),
+      l_eigenvec_group = as.vector(igraph::membership(cmty_l_eigenvec_obj)),
       stringsAsFactors = FALSE)
 
   return(cmty_l_eigenvec_df)

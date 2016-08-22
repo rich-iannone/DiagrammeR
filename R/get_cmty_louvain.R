@@ -36,7 +36,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(get_cmty_louvain(.))
-#' @importFrom igraph cluster_louvain
+#' @importFrom igraph cluster_louvain membership
 #' @export get_cmty_louvain
 
 get_cmty_louvain <- function(graph) {
@@ -52,8 +52,8 @@ get_cmty_louvain <- function(graph) {
   # Create df with node memberships
   cmty_louvain_df <-
     data.frame(
-      node = names(membership(cmty_louvain_obj)),
-      louvain_group = as.vector(membership(cmty_louvain_obj)),
+      node = names(igraph::membership(cmty_louvain_obj)),
+      louvain_group = as.vector(igraph::membership(cmty_louvain_obj)),
       stringsAsFactors = FALSE)
 
   return(cmty_louvain_df)
