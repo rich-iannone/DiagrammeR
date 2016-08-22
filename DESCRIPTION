@@ -43,9 +43,10 @@ Imports:
     htmlwidgets (>= 0.6),
     igraph (>= 1.0.0),
     influenceR (>= 0.1.0),
+    magrittr (>= 1.5),
     rstudioapi (>= 0.6),
     rgexf (>= 0.15.3),
-    stringr (>= 1.0.0),
+    stringr (>= 1.1.0),
     visNetwork (>= 1.0.0),
     scales (>= 0.4.0)
 URL: https://github.com/rich-iannone/DiagrammeR
@@ -53,7 +54,6 @@ BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Suggests:
     DiagrammeRsvg,
     knitr,
-    magrittr,
     rsvg,
     testthat
 RoxygenNote: 5.0.1
