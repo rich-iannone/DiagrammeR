@@ -25,8 +25,6 @@
 #' \code{rel} attribute to all newly created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create an empty graph, add a node to it, select
 #' # that node, and then add 5 more nodes to the graph
 #' # with edges from the original node to all of the

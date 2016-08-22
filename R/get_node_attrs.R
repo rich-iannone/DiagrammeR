@@ -13,8 +13,6 @@
 #' @return a named vector of node attribute values for
 #' the attribute given by \code{node_attr} by node ID.
 #' @examples
-#' library(magrittr)
-#'
 #' # With the `create_random_graph()` function, get
 #' # a simple graph with a node attribute called
 #' # `value`

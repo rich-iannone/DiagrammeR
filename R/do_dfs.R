@@ -14,8 +14,6 @@
 #' direction.
 #' @return a list object containing dfs information.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a graph containing two balanced trees
 #' graph <-
 #'   create_graph() %>%

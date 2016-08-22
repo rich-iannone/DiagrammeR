@@ -5,8 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a graph with a directed tree
 #' graph <-
 #'   create_graph() %>%

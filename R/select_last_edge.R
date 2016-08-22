@@ -10,8 +10,6 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create an empty graph
 #' graph <- create_graph()
 #'

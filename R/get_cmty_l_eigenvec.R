@@ -8,8 +8,6 @@
 #' @return a data frame with group membership
 #' assignments for each of the nodes.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(

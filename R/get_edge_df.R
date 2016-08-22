@@ -6,8 +6,6 @@
 #' \code{create_graph}.
 #' @return an edge data frame.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a graph using several piped functions
 #' graph <-
 #'   create_graph() %>%

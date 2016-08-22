@@ -10,8 +10,6 @@
 #' frame must provided here.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(

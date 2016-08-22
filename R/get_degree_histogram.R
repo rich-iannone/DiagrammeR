@@ -9,8 +9,6 @@
 #' bin width equal to 1) where the degree values
 #' serve as names.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random, directed graph with 18 nodes
 #' # and 22 edges
 #' random_graph <-

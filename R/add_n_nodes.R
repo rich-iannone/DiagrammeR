@@ -10,8 +10,6 @@
 #' \code{type} attribute to all newly created nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create an empty graph and add 5 nodes to it; these
 #' # nodes will be given ID values from 1 to 5
 #' graph <-

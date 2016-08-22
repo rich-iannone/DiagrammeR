@@ -18,8 +18,6 @@
 #' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a graph with a tree structure that's
 #' # 3 levels deep (begins with node `1`, branching
 #' # by 3 nodes at each level); the resulting graph

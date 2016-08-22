@@ -22,8 +22,6 @@
 #' selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random graph with a high amount
 #' # of connectedness
 #' random_graph <-

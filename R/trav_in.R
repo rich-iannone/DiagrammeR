@@ -20,8 +20,6 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
-#' library(magrittr)
-#'
 #' # Create a graph
 #' graph <-
 #' create_graph() %>%

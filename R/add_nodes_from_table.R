@@ -26,7 +26,6 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
-#' library(magrittr)
 #' library(dplyr)
 #'
 #' # Specify a path to a CSV file

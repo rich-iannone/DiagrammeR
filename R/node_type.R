@@ -23,8 +23,6 @@
 #' definition.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(

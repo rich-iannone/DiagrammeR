@@ -21,8 +21,6 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
-#' library(magrittr)
-#'
 #' # Import a GraphML graph file
 #' graphml_graph <-
 #'   import_graph(

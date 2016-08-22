@@ -5,8 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a vector of node IDs.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(

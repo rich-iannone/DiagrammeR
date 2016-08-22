@@ -17,8 +17,6 @@
 #' the height of the resulting graphic in pixels.
 #' @examples
 #' \dontrun{
-#' library(magrittr)
-#'
 #' # Create three graphs
 #' graph_1 <-
 #'   create_graph() %>%

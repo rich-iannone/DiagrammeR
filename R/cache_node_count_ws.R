@@ -9,8 +9,6 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a graph with 10 nodes and 9 edges
 #' graph <-
 #'   create_graph() %>%

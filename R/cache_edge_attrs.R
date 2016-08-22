@@ -17,8 +17,6 @@
 #' the edge is incoming for filtering the list of
 #' edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
-#' library(magrittr)
-#'
 #' # Set a seed
 #' set.seed(25)
 #'

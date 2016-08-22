@@ -6,8 +6,6 @@
 #' @return a numeric vector representing a count of
 #' graphs in a graph series object.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create three graphs
 #' graph_1 <-
 #'   create_graph() %>%

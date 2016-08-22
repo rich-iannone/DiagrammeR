@@ -16,8 +16,6 @@
 #' @return a named vector of edge attribute values for
 #' the attribute given by \code{edge_attr} by edge.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a simple graph where edges have an edge
 #' # attribute named `value`
 #' graph <-

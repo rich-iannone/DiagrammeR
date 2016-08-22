@@ -18,8 +18,6 @@
 #' calculations.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create an adjacency matrix
 #' adj_matrix <-
 #'   sample(0:1, 100,

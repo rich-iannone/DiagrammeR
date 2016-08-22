@@ -19,8 +19,6 @@
 #' to match those required by the Spark GraphFrames
 #' package.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(

@@ -6,8 +6,6 @@
 #' @return a logical value.
 #' @examples
 #' \dontrun{
-#' library(magrittr)
-#'
 #' # This graph, created using `create_random_graph()`
 #' # is almost fully connected but there is an
 #' # isolated node with no edges

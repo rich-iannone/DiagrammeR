@@ -14,8 +14,6 @@
 #' filtering the list of nodes present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Set a seed
 #' set.seed(25)
 #'

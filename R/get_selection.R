@@ -6,8 +6,6 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%

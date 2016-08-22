@@ -17,8 +17,6 @@
 #' relationship between the connected nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a graph with 10 nodes
 #' graph <-
 #'   create_graph() %>%

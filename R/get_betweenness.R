@@ -6,8 +6,6 @@
 #' @return a data frame with betweenness scores for
 #' each of the nodes.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(

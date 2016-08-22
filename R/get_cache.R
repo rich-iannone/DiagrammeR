@@ -6,8 +6,6 @@
 #' \code{create_graph}.
 #' @return a vector.
 #' @examples
-#' library(magrittr)
-#'
 #' # Set a seed
 #' set.seed(22)
 #'

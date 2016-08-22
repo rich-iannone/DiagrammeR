@@ -6,8 +6,6 @@
 #' @return a data frame containing information on the
 #' graphs within the supplied graph series.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create three graphs
 #' graph_1 <-
 #'   create_graph() %>%

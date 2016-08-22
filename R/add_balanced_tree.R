@@ -22,8 +22,6 @@
 #' monotonically increasing integers.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a new graph and add 3 different types of
 #' # balanced trees of height 2 (branching twice) and
 #' # different branching ratios

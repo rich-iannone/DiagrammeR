@@ -20,8 +20,6 @@
 #' string matching.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a graph
 #' graph <-
 #' create_graph() %>%

@@ -6,8 +6,6 @@
 #' @param graph_no the index of the graph in the graph
 #' series.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create three graphs
 #' graph_1 <-
 #'   create_graph() %>%

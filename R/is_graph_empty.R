@@ -5,8 +5,6 @@
 #' \code{dgr_graph}.
 #' @return a logical value.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create an empty graph
 #' graph <- create_graph()
 #'

@@ -23,8 +23,6 @@
 #' is considered the first node in this series.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a new graph and add 3 stars of varying
 #' # numbers of nodes
 #' graph <-

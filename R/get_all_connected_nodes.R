@@ -9,8 +9,6 @@
 #' node ID value.
 #' @return a vector of node ID values.
 #' @examples
-#' library(magrittr)
-#'
 #' # This graph, created using `create_random_graph()`
 #' # is almost fully connected but there is an
 #' # isolated node (`13`) with no edges

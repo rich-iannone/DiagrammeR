@@ -15,8 +15,6 @@
 #' specify which of the valid paths to return when
 #' filtering by distance.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%

@@ -8,8 +8,6 @@
 #' node ID value.
 #' @return a vector of node ID values.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a random, directed graph with 18 nodes
 #' # and 22 edges
 #' random_graph <-

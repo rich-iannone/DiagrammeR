@@ -21,8 +21,6 @@
 #' @return a graph series object of type
 #' \code{dgr_graph_1D}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create three graphs
 #' graph_time_1 <-
 #'   create_graph(

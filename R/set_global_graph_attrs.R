@@ -17,8 +17,6 @@
 #' argument.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a new graph and set some global attributes
 #' graph <- create_graph() %>%
 #'   set_global_graph_attrs(

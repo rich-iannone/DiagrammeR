@@ -34,8 +34,6 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
-#' library(magrittr)
-#'
 #' # Create a graph from a CSV file
 #' graph <-
 #'   create_graph() %>%

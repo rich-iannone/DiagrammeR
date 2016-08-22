@@ -20,7 +20,6 @@
 #' \code{ps}.
 #' @examples
 #' \dontrun{
-#' library(magrittr)
 #' library(DiagrammeRsvg)
 #'
 #' # Create a node data frame (ndf)

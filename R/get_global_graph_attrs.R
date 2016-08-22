@@ -7,8 +7,6 @@
 #' @return a list object containing global attributes
 #' for a graph.
 #' @examples
-#' library(magrittr)
-#'
 #' # Create a new graph and set some global attributes
 #' graph <-
 #'   create_graph() %>%
