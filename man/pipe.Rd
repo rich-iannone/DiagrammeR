@@ -2,7 +2,7 @@
 % Please edit documentation in R/pipe.R
 \name{\%>\%}
 \alias{\%>\%}
-\title{Pipe graphics}
+\title{The magrittr pipe}
 \description{
 DiagrammeR uses the pipe function,
 \code{\%>\%} to turn function composition into a
