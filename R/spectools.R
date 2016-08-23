@@ -83,7 +83,7 @@ replace_in_spec <- function(spec) {
 
     # Split the references into a vector of R statements
     split_references <-
-      gsub("\\[[0-9*]\\]:[ ]?", "",
+      gsub("\\[[0-9]+\\]:[ ]?", "",
            unlist(strsplit(x = spec_references, "\\n")))
 
     # Evaluate the expressions and save into a list object
@@ -101,10 +101,10 @@ replace_in_spec <- function(spec) {
     # no hyphen
     for (i in 1:length(split_references)) {
 
-      while (grepl(paste0("@@", i, "([^-])"), spec_body)) {
+      while (grepl(paste0("@@", i, "([^-0-9])"), spec_body)) {
 
-        spec_body <- gsub(paste0("@@", i),
-                          eval_expressions[[i]][1], spec_body)
+        spec_body <- gsub(paste0("'@@", i, "'"),
+                          paste0("'", eval_expressions[[i]][1], "'"), spec_body)
       }
     }
 
