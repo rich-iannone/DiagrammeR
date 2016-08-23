@@ -66,6 +66,8 @@ graph <-
     "walktrap_group", "fillcolor", 90) \%>\%
   colorize_node_attrs(
     "walktrap_group", "color") \%>\%
-  set_node_attrs("fontcolor", "white")
+  set_node_attrs("fontcolor", "white") \%>\%
+  set_global_graph_attrs(
+    "graph", "layout", "circo")
 }
 
