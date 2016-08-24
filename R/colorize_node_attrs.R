@@ -1,10 +1,7 @@
 #' Apply colors based on node attribute values
 #' @description Within a graph's internal node data
-#' frame (ndf), mutate numeric node attribute values
-#' using an expression. Optionally, one can specify a
-#' different node attribute name and create a new node
-#' attribute while retaining the original node
-#' attribute and its values.
+#' frame (ndf), use a categorical node attribute to
+#' generate a new node attribute with color values.
 #' @param graph a graph object of class
 #' @param node_attr_from the name of the node attribute
 #' column from which color values will be based.
@@ -14,7 +11,6 @@
 #' apply to the generated colors. Should be in
 #' the range of \code{0} (completely transparent) to
 #' \code{100} (completely opaque).
-#' single value will apply
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
