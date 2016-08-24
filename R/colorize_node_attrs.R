@@ -88,12 +88,13 @@ colorize_node_attrs <- function(graph,
 
   # Get a data frame of recodings
   viridis_df <-
-    data.frame(to_recode = names(table(nodes_df[,col_to_recode_no])),
-               colors = gsub("..$", "", viridis(num_recodings)),
-               stringsAsFactors = FALSE)
+    data.frame(
+      to_recode = names(table(nodes_df[, col_to_recode_no])),
+      colors = gsub("..$", "", viridis(num_recodings)),
+      stringsAsFactors = FALSE)
 
   # Recode rows in the new node attribute
-  for (i in seq_along(names(table(nodes_df[,col_to_recode_no])))) {
+  for (i in seq_along(names(table(nodes_df[, col_to_recode_no])))) {
 
     recode_rows <-
       which(nodes_df[, col_to_recode_no] %in%
