@@ -18,8 +18,7 @@ attribute to which the color values will be applied.}
 \item{alpha}{an optional alpha transparency value to
 apply to the generated colors. Should be in
 the range of \code{0} (completely transparent) to
-\code{100} (completely opaque).
-single value will apply}
+\code{100} (completely opaque).}
 }
 \value{
 a graph object of class
@@ -27,11 +26,8 @@ a graph object of class
 }
 \description{
 Within a graph's internal node data
-frame (ndf), mutate numeric node attribute values
-using an expression. Optionally, one can specify a
-different node attribute name and create a new node
-attribute while retaining the original node
-attribute and its values.
+frame (ndf), use a categorical node attribute to
+generate a new node attribute with color values.
 }
 \examples{
 # Create a random graph of 50 nodes and 85 edges
