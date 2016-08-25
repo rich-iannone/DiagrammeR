@@ -64,12 +64,12 @@ get_node_attrs(graph, "walktrap_group") \%>\%
 # communities by applying colors using the
 # `colorize_node_attrs()` function; specifically,
 # set different `fillcolor` values with an alpha
-# value of 80 and apply opaque colors to the node
+# value of 90 and apply opaque colors to the node
 # border (with the `color` node attribute)
 graph <-
   graph \%>\%
   colorize_node_attrs(
-    "walktrap_group", "fillcolor", 90) \%>\%
+    "walktrap_group", "fillcolor", alpha = 90) \%>\%
   colorize_node_attrs(
     "walktrap_group", "color") \%>\%
   set_node_attrs("fontcolor", "white") \%>\%
