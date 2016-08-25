@@ -191,6 +191,7 @@ create_graph <- function(nodes_df = NULL,
            edge_attrs = NULL,
            directed = ifelse(directed,
                              TRUE, FALSE),
+           last_node = 0,
            dot_code = dot_code)
 
     attr(dgr_graph, "class") <- "dgr_graph"
@@ -222,6 +223,7 @@ create_graph <- function(nodes_df = NULL,
            edge_attrs = edge_attrs,
            directed = ifelse(directed,
                              TRUE, FALSE),
+           last_node = 0,
            dot_code = dot_code)
 
     attr(dgr_graph, "class") <- "dgr_graph"
@@ -240,7 +242,7 @@ create_graph <- function(nodes_df = NULL,
     }
   }
 
-  if (inherits(edges_df,"data.frame")) {
+  if (inherits(edges_df, "data.frame")) {
     if (ncol(edges_df) > 2) {
 
       # Force all columns to be of the character class
@@ -842,6 +844,7 @@ create_graph <- function(nodes_df = NULL,
            node_attrs = node_attrs,
            edge_attrs = edge_attrs,
            directed = directed,
+           last_node = nrow(nodes_df),
            dot_code = dot_code)
 
     attr(dgr_graph, "class") <- "dgr_graph"
@@ -860,6 +863,7 @@ create_graph <- function(nodes_df = NULL,
            node_attrs = node_attrs,
            edge_attrs = edge_attrs,
            directed = directed,
+           last_node = nrow(nodes_df),
            dot_code = NULL)
 
     attr(dgr_graph, "class") <- "dgr_graph"
