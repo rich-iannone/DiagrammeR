@@ -4,7 +4,8 @@
 \alias{colorize_node_attrs}
 \title{Apply colors based on node attribute values}
 \usage{
-colorize_node_attrs(graph, node_attr_from, node_attr_to, alpha = NULL)
+colorize_node_attrs(graph, node_attr_from, node_attr_to, cut_points = NULL,
+  alpha = NULL, default_color = "#D9D9D9")
 }
 \arguments{
 \item{graph}{a graph object of class}
@@ -15,10 +16,19 @@ column from which color values will be based.}
 \item{node_attr_to}{the name of the new node
 attribute to which the color values will be applied.}
 
+\item{cut_points}{an optional vector of numerical
+breaks for bucketizing continuous numerical values
+available in a node attribute column.}
+
 \item{alpha}{an optional alpha transparency value to
 apply to the generated colors. Should be in
 the range of \code{0} (completely transparent) to
 \code{100} (completely opaque).}
+
+\item{default_color}{a hexadecimal color value to
+use for instances when the values do not fall into
+the bucket ranges specified in the \code{cut_points}
+vector.}
 }
 \value{
 a graph object of class
