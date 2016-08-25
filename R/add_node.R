@@ -47,6 +47,10 @@ add_node <- function(graph,
                      to = NULL,
                      node = NULL) {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # If node ID not provided, create a monotonically
   # increasing ID value
   if (is.null(node)) {
@@ -122,6 +126,7 @@ add_node <- function(graph,
               from = from,
               to = rep(node, length(from))))
 
+        # Create a revised graph
         dgr_graph <-
           create_graph(
             nodes_df = combined_nodes,
@@ -138,6 +143,7 @@ add_node <- function(graph,
 
       if (is.null(graph$edges_df)) {
 
+        # Create a revised graph
         dgr_graph <-
           create_graph(
             nodes_df = combined_nodes,
@@ -154,7 +160,9 @@ add_node <- function(graph,
             graph_tz = graph$graph_tz)
       }
 
-      # Return the revised graph
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created + 1
+
       return(dgr_graph)
     }
   }
@@ -188,6 +196,7 @@ add_node <- function(graph,
             from = rep(node, length(to)),
             to = to))
 
+      # Create a revised graph
       dgr_graph <-
         create_graph(
           nodes_df = combined_nodes,
@@ -204,6 +213,7 @@ add_node <- function(graph,
 
     if (is.null(graph$edges_df)) {
 
+      # Create a revised graph
       dgr_graph <-
         create_graph(
           nodes_df = combined_nodes,
@@ -220,7 +230,9 @@ add_node <- function(graph,
           graph_tz = graph$graph_tz)
     }
 
-    # Return the revised graph
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created + 1
+
     return(dgr_graph)
   }
 
@@ -279,7 +291,7 @@ add_node <- function(graph,
               to = to))
       }
 
-      # Create the revised graph object
+      # Create a revised graph and return that graph
       dgr_graph <-
         create_graph(
           nodes_df = combined_nodes,
@@ -293,7 +305,9 @@ add_node <- function(graph,
           graph_time = graph$graph_time,
           graph_tz = graph$graph_tz)
 
-      # Create a revised graph and return that graph
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created + 1
+
       return(dgr_graph)
     }
   }
@@ -348,6 +362,9 @@ add_node <- function(graph,
         graph_name = graph$graph_name,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created + 1
 
     return(dgr_graph)
   }

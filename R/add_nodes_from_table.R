@@ -119,8 +119,11 @@ add_nodes_from_table <- function(graph,
                                  type_col = NULL,
                                  label_col = NULL) {
 
-  if (inherits(table, "character")) {
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
 
+  if (inherits(table, "character")) {
     # Load in CSV file
     csv <- read.csv(table, stringsAsFactors = FALSE)
   } else if (inherits(table, "data.frame")) {
@@ -234,6 +237,9 @@ add_nodes_from_table <- function(graph,
 
   # Add as a node data frame to the graph
   graph <- add_node_df(graph, csv)
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created + rows_in_csv
 
   return(graph)
 }

@@ -64,6 +64,10 @@ add_prism <- function(graph,
     }
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # If node IDs are not provided, create a
   # monotonically increasing ID value
   if (is.null(nodes)) {
@@ -123,6 +127,9 @@ add_prism <- function(graph,
 
   graph <-
     add_edge_df(graph, prism_edges)
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created + nrow(prism_nodes)
 
   return(graph)
 }

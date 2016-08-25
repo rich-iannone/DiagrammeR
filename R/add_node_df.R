@@ -72,6 +72,10 @@ add_node_df <- function(graph,
     stop("One or more of the nodes specified are already in the graph.")
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # If the `nodes_df` component of the graph is not
   # NULL, combine the incoming node data frame with the
   # existing node definitions in the graph object
@@ -94,6 +98,10 @@ add_node_df <- function(graph,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
 
+    # Update the `last_node` counter
+    graph$last_node <-
+      nodes_created + nrow(node_df)
+
     return(dgr_graph)
   }
 
@@ -113,6 +121,10 @@ add_node_df <- function(graph,
         graph_name = graph$graph_name,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
+
+    # Update the `last_node` counter
+    graph$last_node <-
+      nodes_created + nrow(node_df)
 
     return(dgr_graph)
   }

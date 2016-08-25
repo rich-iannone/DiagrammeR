@@ -87,6 +87,10 @@ add_n_nodes_ws <- function(graph,
     direction <- "to"
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Get a vector of nodes available in the
   # graph's selection
   nodes_in_selection <- graph$selection$nodes
@@ -223,6 +227,9 @@ add_n_nodes_ws <- function(graph,
 
   # Retain the currently selected nodes
   graph$selection$nodes <- nodes_in_selection
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created + n
 
   return(graph)
 }

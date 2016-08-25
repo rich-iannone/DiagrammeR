@@ -25,11 +25,15 @@ add_n_nodes <- function(graph,
                         n,
                         set_node_type = NULL) {
 
-  if (node_count(graph) == 0) {
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
+  if (nodes_created == 0) {
     node <- 1
   }
 
-  if (node_count(graph) > 0) {
+  if (nodes_created > 0) {
     if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))) {
 
       numeric_components <-
@@ -55,8 +59,10 @@ add_n_nodes <- function(graph,
                    label = FALSE)
   }
 
-  graph <-
-    add_node_df(graph, new_nodes)
+  graph <- add_node_df(graph, new_nodes)
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created + n
 
   return(graph)
 }
