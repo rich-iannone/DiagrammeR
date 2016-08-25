@@ -55,7 +55,9 @@
 colorize_node_attrs <- function(graph,
                                 node_attr_from,
                                 node_attr_to,
-                                alpha = NULL) {
+                                cut_points = NULL,
+                                alpha = NULL,
+                                default_color = "#D9D9D9") {
 
   # Extract ndf from graph
   nodes_df <- graph$nodes_df
@@ -66,50 +68,80 @@ colorize_node_attrs <- function(graph,
     which(colnames(nodes_df) %in% node_attr_from)
 
   # Get the number of recoded values
-  num_recodings <-
-    nrow(unique(nodes_df[col_to_recode_no]))
+  if (is.null(cut_points)) {
+    num_recodings <-
+      nrow(unique(nodes_df[col_to_recode_no]))
+  } else if (!is.null(cut_points)) {
+    num_recodings <- length(cut_points) - 1
+  }
 
   # Create a data frame which initial values
   new_node_attr_col <-
     data.frame(
-      node_attr_to = rep(viridis(1), nrow(nodes_df)),
+      node_attr_to = rep(default_color, nrow(nodes_df)),
       stringsAsFactors = FALSE)
 
   # Get the column number for the new node attribute
   to_node_attr_colnum <- ncol(nodes_df) + 1
 
   # Bind the current ndf with the new column
-  nodes_df <-
-    cbind(nodes_df, new_node_attr_col)
+  nodes_df <- cbind(nodes_df, new_node_attr_col)
 
   # Rename the new column with the target node attr name
   colnames(nodes_df)[to_node_attr_colnum] <-
     node_attr_to
 
   # Get a data frame of recodings
-  viridis_df <-
-    data.frame(
-      to_recode = names(table(nodes_df[, col_to_recode_no])),
-      colors = gsub("..$", "", viridis(num_recodings)),
-      stringsAsFactors = FALSE)
+  if (is.null(cut_points)) {
+    viridis_df <-
+      data.frame(
+        to_recode = names(table(nodes_df[, col_to_recode_no])),
+        colors = gsub("..$", "", viridis(num_recodings)),
+        stringsAsFactors = FALSE)
 
-  # Recode rows in the new node attribute
-  for (i in seq_along(names(table(nodes_df[, col_to_recode_no])))) {
+    # Recode rows in the new node attribute
+    for (i in seq_along(names(table(nodes_df[, col_to_recode_no])))) {
 
-    recode_rows <-
-      which(nodes_df[, col_to_recode_no] %in%
-              viridis_df[i, 1])
+      recode_rows <-
+        which(nodes_df[, col_to_recode_no] %in%
+                viridis_df[i, 1])
 
-    if (is.null(alpha)) {
-      nodes_df[recode_rows, to_node_attr_colnum] <-
-        gsub("..$", "", viridis(num_recodings)[i])
-    } else if (!is.null(alpha)) {
-      if (alpha < 100) {
-        nodes_df[recode_rows, to_node_attr_colnum] <-
-          gsub("..$", alpha, viridis(num_recodings)[i])
-      } else if (alpha == 100) {
+      if (is.null(alpha)) {
         nodes_df[recode_rows, to_node_attr_colnum] <-
           gsub("..$", "", viridis(num_recodings)[i])
+      } else if (!is.null(alpha)) {
+        if (alpha < 100) {
+          nodes_df[recode_rows, to_node_attr_colnum] <-
+            gsub("..$", alpha, viridis(num_recodings)[i])
+        } else if (alpha == 100) {
+          nodes_df[recode_rows, to_node_attr_colnum] <-
+            gsub("..$", "", viridis(num_recodings)[i])
+        }
+      }
+    }
+  }
+
+  # Recode according to provided cut points
+  if (!is.null(cut_points)) {
+    for (i in 1:(length(cut_points) - 1)) {
+      recode_rows <-
+        which(
+          as.numeric(nodes_df[,col_to_recode_no]) >=
+            cut_points[i] &
+            as.numeric(nodes_df[,col_to_recode_no]) <
+            cut_points[i + 1])
+
+      nodes_df[recode_rows, to_node_attr_colnum] <-
+        gsub("..$", "", viridis(num_recodings)[i])
+    }
+
+    if (!is.null(alpha)) {
+      if (alpha < 100) {
+        nodes_df[, to_node_attr_colnum] <-
+          gsub("..$", alpha,nodes_df[, to_node_attr_colnum])
+      } else if (alpha == 100) {
+        nodes_df[, to_node_attr_colnum] <-
+          gsub("..$", "", nodes_df[, to_node_attr_colnum])
       }
     }
   }
