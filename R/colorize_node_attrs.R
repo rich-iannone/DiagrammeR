@@ -7,10 +7,17 @@
 #' column from which color values will be based.
 #' @param node_attr_to the name of the new node
 #' attribute to which the color values will be applied.
+#' @param cut_points an optional vector of numerical
+#' breaks for bucketizing continuous numerical values
+#' available in a node attribute column.
 #' @param alpha an optional alpha transparency value to
 #' apply to the generated colors. Should be in
 #' the range of \code{0} (completely transparent) to
 #' \code{100} (completely opaque).
+#' @param default_color a hexadecimal color value to
+#' use for instances when the values do not fall into
+#' the bucket ranges specified in the \code{cut_points}
+#' vector.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
