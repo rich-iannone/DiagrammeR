@@ -1,4 +1,4 @@
-context("data.table and dplyr integration.")
+context("data.table and dplyr integration")
 
 test_that("combine_edges",{
   edges_1 <-
@@ -72,5 +72,5 @@ test_that("create_graph",{
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
             "node_attrs", "edge_attrs", "directed",
-            "dot_code")))
+            "last_node", "dot_code")))
 })

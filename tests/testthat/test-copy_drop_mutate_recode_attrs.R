@@ -1,4 +1,4 @@
-context("Copying, dropping, mutating and recoding attrs.")
+context("Copying, dropping, mutating and recoding attrs")
 
 test_that("Copying node attributes is possible", {
 

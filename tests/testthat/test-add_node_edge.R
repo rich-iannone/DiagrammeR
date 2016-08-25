@@ -16,7 +16,7 @@ test_that("adding a node to a graph is possible", {
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
             "node_attrs", "edge_attrs", "directed",
-            "dot_code")))
+            "last_node", "dot_code")))
 
   # Expect a graph object of class 'dgr_graph'
   expect_true(class(graph) == "dgr_graph")
@@ -50,16 +50,15 @@ test_that("adding a node to a graph is possible", {
   # Expect that the graph won't change states
   expect_equal(graph, graph_2)
 
-  # Expect a specific message when more than a single node is specified
+  # Expect a specific message when more than a single
+  # node is specified
   expect_error(
-    add_node(graph, node = c("y", "z"))
-  )
+    add_node(graph, node = c("y", "z")))
 
-  # Expect that attempting to add more than a single node will return an
-  # unchanged graph
+  # Expect that attempting to add more than a single
+  # node will return an unchanged graph
   expect_error(
-    add_node(graph, node = c("y", "z"))
-  )
+    add_node(graph, node = c("y", "z")))
 
   # Add a node with attributes to the graph
   graph_3 <-
@@ -71,22 +70,26 @@ test_that("adding a node to a graph is possible", {
   # Expect that there will be 3 nodes in the graph
   expect_equal(node_count(graph_3), 3)
 
-  # Expect that the "type" value will be present for the node
-  # in the new graph
-  expect_equal(node_type(graph_3, node = "c"), "fresh")
+  # Expect that the "type" value will be present for
+  # the node in the new graph
+  expect_equal(
+    node_type(graph_3, node = "c"), "fresh")
 
-  # Expect that the other nodes in the graph will still have
-  # unassigned "type" values
+  # Expect that the other nodes in the graph will
+  # still have unassigned `type` values
   expect_true(is.na(node_type(graph_3, node = "a")))
   expect_true(is.na(node_type(graph_3, node = "b")))
 
   # Create a graph with a single, unlabeled node
   graph_unlabeled <- create_graph()
-  graph_unlabeled <- add_node(graph = graph_unlabeled,
-                              node = "a", label = FALSE)
+  graph_unlabeled <-
+    add_node(
+      graph = graph_unlabeled,
+      node = "a", label = FALSE)
 
   # Expect that the graph will have one unlabeled node
-  expect_true(node_info(graph = graph_unlabeled)$label == "")
+  expect_true(
+    node_info(graph = graph_unlabeled)$label == "")
 
   # Add a node to the graph that is joined from another
   graph_from <-
@@ -104,15 +107,15 @@ test_that("adding a node to a graph is possible", {
   # Expect that the edge from "c" to "d" is in the graph
   expect_true(edge_present(graph_from, from = "c", to = "d"))
 
-  # Expect that the node label is the same as the ID, since the
-  # default value for the 'label' argument is TRUE
+  # Expect that the node label is the same as the ID,
+  # since the default value for `label` is TRUE
   expect_true(
     node_info(graph_from)[which(node_info(graph_from)$node == "d"),]$node ==
       node_info(graph_from)[which(node_info(graph_from)$node == "d"),]$label
   )
 
-  # Expect that for node "d", the 'type' is not set since the
-  # default value for the 'type' argument is NULL
+  # Expect that for node "d", the 'type' is not set
+  # since the default value for `type` is NULL
   expect_true(is.na(node_type(graph_from, node = "d")))
 
   # Add a node to the graph that is joined to another
@@ -131,8 +134,8 @@ test_that("adding a node to a graph is possible", {
   # Expect that the edge from "d" to "c" is in the graph
   expect_true(edge_present(graph_to, from = "d", to = "c"))
 
-  # Expect that the node label is the same as the ID, since the
-  # default value for the 'label' argument is TRUE
+  # Expect that the node label is the same as the ID,
+  # since the default value for `label` is TRUE
   expect_true(
     node_info(graph_to)[
       which(node_info(graph_to)$node == "d"),]$node ==
@@ -140,11 +143,12 @@ test_that("adding a node to a graph is possible", {
         which(node_info(graph_to)$node == "d"),]$label
   )
 
-  # Expect that for node "d", the 'type' is not set since the
-  # default value for the 'type' argument is NULL
+  # Expect that for node "d", the 'type' is not set
+  # since the default value for `type` is NULL
   expect_true(is.na(node_type(graph_to, node = "d")))
 
-  # Add a node to the graph that is joined from another and to another
+  # Add a node to the graph that is joined from
+  # another and to another
   graph_to_from <-
     add_node(
       graph_3,
@@ -159,23 +163,25 @@ test_that("adding a node to a graph is possible", {
   expect_true(node_present(graph_to_from, "d"))
 
   # Expect that the edge from "a" to "d" is in the graph
-  expect_true(edge_present(graph_to_from, from = "a", to = "d"))
+  expect_true(
+    edge_present(graph_to_from, from = "a", to = "d"))
 
   # Expect that the edge from "d" to "b" is in the graph
-  expect_true(edge_present(graph_to_from, from = "d", to = "b"))
+  expect_true(
+    edge_present(graph_to_from, from = "d", to = "b"))
 
-  # Expect that the node label is the same as the ID, since the
-  # default value for the 'label' argument is TRUE
+  # Expect that the node label is the same as the ID,
+  # since the default value for `label` is TRUE
   expect_true(
     node_info(graph_to_from)[
       which(node_info(graph_to_from)$node == "d"),]$node ==
       node_info(graph_to_from)[
-        which(node_info(graph_to_from)$node == "d"),]$label
-  )
+        which(node_info(graph_to_from)$node == "d"),]$label)
 
-  # Expect that for node "d", the 'type' is not set since the
-  # default value for the 'type' argument is NULL
-  expect_true(is.na(node_type(graph_to_from, node = "d")))
+  # Expect that for node "d", the `type` is not set
+  # since the default value for `type` is NULL
+  expect_true(
+    is.na(node_type(graph_to_from, node = "d")))
 
   # Create an empty graph
   graph <- create_graph()
@@ -183,8 +189,9 @@ test_that("adding a node to a graph is possible", {
   # Add a node
   graph <- add_node(graph, node = "a")
 
-  # Add another node, connecting with only a value provided for 'from' but
-  # where the reference node is not in the graph
+  # Add another node, connecting with only a value
+  # provided for 'from' but where the reference node
+  # is not in the graph
   expect_error(add_node(graph, node = "b", from = "c"))
 })
 
@@ -198,17 +205,20 @@ test_that("adding an edge to a graph is possible", {
   graph <- add_node(graph, node = "b")
 
   # Add an edge
-  graph <- add_edge(graph, from = "a", to = "b", rel = "to_get")
+  graph <-
+    add_edge(
+      graph, from = "a", to = "b", rel = "to_get")
 
-  # Expect that names in this graph object match a prescribed set of names
+  # Expect that names in this graph object match a
+  # prescribed set of names
   expect_true(
     all(names(graph) ==
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
             "node_attrs", "edge_attrs", "directed",
-            "dot_code")))
+            "last_node", "dot_code")))
 
-  # Expect a graph object of class 'dgr_graph'
+  # Expect a graph object of class `dgr_graph`
   expect_true(class(graph) == "dgr_graph")
 
   # Expect that some of the graph components are NULL
@@ -258,9 +268,10 @@ test_that("adding several nodes to a graph at once is possible", {
   expect_equal(node_count(graph), 10)
 
   # Expect monotonically-increasing node ID values from 1 to 10
-  expect_equal(get_nodes(graph),
-               c("1", "2", "3", "4", "5",
-                 "6", "7", "8", "9", "10"))
+  expect_equal(
+    get_nodes(graph),
+    c("1", "2", "3", "4", "5",
+      "6", "7", "8", "9", "10"))
 
   # Expect that no `type` values have been set
   expect_equal(get_node_df(graph)[, 2],
@@ -272,7 +283,8 @@ test_that("adding several nodes to a graph at once is possible", {
 
   # Create a graph with 10 nodes of a specified type
   graph <- create_graph()
-  graph <- add_n_nodes(graph, 10, set_node_type = "test_node")
+  graph <-
+    add_n_nodes(graph, 10, set_node_type = "test_node")
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(node_count(graph), 10)
@@ -434,8 +446,10 @@ test_that("adding several edges with a string is possible", {
   # Expect a total of 10 nodes in the graph
   expect_equal(node_count(graph), 10)
 
-  # Expect monotonically-increasing node ID values from 1 to 10
-  expect_equal(get_nodes(graph), as.character(seq(1, 10)))
+  # Expect monotonically-increasing node ID values
+  # from 1 to 10
+  expect_equal(get_nodes(graph),
+               as.character(seq(1, 10)))
 
   # Expect a total of 9 edges in the graph
   expect_equal(edge_count(graph), 9)
