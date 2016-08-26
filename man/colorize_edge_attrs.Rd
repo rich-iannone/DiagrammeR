@@ -45,7 +45,7 @@ graph <-
   create_random_graph(
     50, 85, set_seed = 1) \%>\%
   set_edge_attrs(
-    "weight", rnorm(edge_count(graph), 5, 2))
+    "weight", rnorm(edge_count(.), 5, 2))
 
 # We can bucketize values in the edge `weight`
 # attribute using `cut_points` and, by doing so,
