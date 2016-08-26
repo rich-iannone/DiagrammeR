@@ -67,6 +67,10 @@ add_edges_from_table <- function(graph,
                                  rename_attrs = NULL,
                                  rel_col = NULL) {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   if (inherits(table, "character")) {
     # Load in CSV file
     csv <- read.csv(table, stringsAsFactors = FALSE)
@@ -196,6 +200,9 @@ add_edges_from_table <- function(graph,
 
     # Add edge data frame to the graph
     graph <- add_edge_df(graph, edges)
+
+    # Update the `last_node` counter
+    graph$last_node <- nodes_created
 
     return(graph)
   }
@@ -350,6 +357,9 @@ add_edges_from_table <- function(graph,
 
     graph <- clear_selection(graph = graph)
   }
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created
 
   return(graph)
 }

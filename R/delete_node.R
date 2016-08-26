@@ -37,6 +37,10 @@ delete_node <- function(graph,
     stop("The specified node is not available in the graph.")
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # If single node in graph create an empty graph, retaining
   # all global attributes
   if (nrow(graph$nodes) == 1) {
@@ -53,6 +57,9 @@ delete_node <- function(graph,
         graph_name = graph$graph_name,
         graph_tz = graph$graph_tz,
         graph_time = graph$graph_time)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
 
     return(dgr_graph)
   }
@@ -91,6 +98,9 @@ delete_node <- function(graph,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
 
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created
+
       return(dgr_graph)
     }
 
@@ -113,6 +123,9 @@ delete_node <- function(graph,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
+
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created
 
       return(dgr_graph)
     }
@@ -137,6 +150,9 @@ delete_node <- function(graph,
         graph_tz = graph$graph_tz,
         graph_time = graph$graph_time)
 
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
+
     return(dgr_graph)
   }
 
@@ -159,6 +175,9 @@ delete_node <- function(graph,
         graph_name = graph$graph_name,
         graph_tz = graph$graph_tz,
         graph_time = graph$graph_time)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
 
     return(dgr_graph)
   }

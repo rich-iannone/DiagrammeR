@@ -78,6 +78,10 @@ mutate_node_attrs <- function(graph,
                               node_attr_to = NULL,
                               round_to = 3) {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Extract the graph's ndf
   nodes <- get_node_df(graph)
 
@@ -157,15 +161,19 @@ mutate_node_attrs <- function(graph,
 
   # Create a new graph object
   dgr_graph <-
-    create_graph(nodes_df = nodes,
-                 edges_df = graph$edges_df,
-                 graph_attrs = graph$graph_attrs,
-                 node_attrs = graph$node_attrs,
-                 edge_attrs = graph$edge_attrs,
-                 directed = graph$directed,
-                 graph_name = graph$graph_name,
-                 graph_time = graph$graph_time,
-                 graph_tz = graph$graph_tz)
+    create_graph(
+      nodes_df = nodes,
+      edges_df = graph$edges_df,
+      graph_attrs = graph$graph_attrs,
+      node_attrs = graph$node_attrs,
+      edge_attrs = graph$edge_attrs,
+      directed = graph$directed,
+      graph_name = graph$graph_name,
+      graph_time = graph$graph_time,
+      graph_tz = graph$graph_tz)
+
+  # Update the `last_node` counter
+  dgr_graph$last_node <- nodes_created
 
   return(dgr_graph)
 }

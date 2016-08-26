@@ -113,6 +113,10 @@ colorize_node_attrs <- function(graph,
                                 alpha = NULL,
                                 default_color = "#D9D9D9") {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Extract ndf from graph
   nodes_df <- graph$nodes_df
 
@@ -212,6 +216,9 @@ colorize_node_attrs <- function(graph,
       graph_name = graph$graph_name,
       graph_tz = graph$graph_tz,
       graph_time = graph$graph_time)
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created
 
   return(graph)
 }

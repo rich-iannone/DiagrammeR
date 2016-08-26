@@ -19,6 +19,10 @@ set_node_attrs_ws <- function(graph,
   nodes_df <- graph$nodes_df
   nodes <- graph$selection$nodes
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   if (node_attr %in% colnames(nodes_df)) {
 
     nodes_df[which(nodes_df$nodes %in% nodes),
@@ -57,6 +61,9 @@ set_node_attrs_ws <- function(graph,
 
   # Retain the node selection in the graph
   dgr_graph$selection <- graph$selection
+
+  # Update the `last_node` counter
+  dgr_graph$last_node <- nodes_created
 
   return(dgr_graph)
 }

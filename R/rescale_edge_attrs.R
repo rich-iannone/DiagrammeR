@@ -102,6 +102,10 @@ rescale_edge_attrs <- function(graph,
                                from_lower_bound = NULL,
                                from_upper_bound = NULL) {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Extract the graph's edf
   edges <- get_edge_df(graph)
 
@@ -174,6 +178,9 @@ rescale_edge_attrs <- function(graph,
       x = graph,
       edge_attr = edge_attr_to,
       values = edges_attr_vector_rescaled)
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created
 
   return(graph)
 }

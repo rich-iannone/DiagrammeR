@@ -16,6 +16,10 @@ delete_edges_ws <- function(graph) {
     return(graph)
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Get vectors of the nodes in edges to be deleted
   from_delete <- graph$selection$edges$from
   to_delete <- graph$selection$edges$to
@@ -50,6 +54,9 @@ delete_edges_ws <- function(graph) {
 
   # Remove all edges in selection
   graph$selection$edges <- NULL
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created
 
   return(graph)
 }

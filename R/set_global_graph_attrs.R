@@ -43,6 +43,10 @@ set_global_graph_attrs <- function(graph,
                                    attr_for_type,
                                    value) {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Create a statement based on the attribute name
   # and the value
   attr_stmt <- paste(attr_for_type, value, sep = " = ")
@@ -60,6 +64,9 @@ set_global_graph_attrs <- function(graph,
         graph_name = graph$graph_name,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
   }
 
   if (type == "node") {
@@ -75,6 +82,9 @@ set_global_graph_attrs <- function(graph,
         graph_name = graph$graph_name,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
   }
 
   if (type == "edge") {
@@ -90,6 +100,9 @@ set_global_graph_attrs <- function(graph,
         graph_name = graph$graph_name,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
   }
 
   return(dgr_graph)

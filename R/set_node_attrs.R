@@ -74,6 +74,10 @@ set_node_attrs <- function(x,
   if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     nodes_df <- x$nodes_df
+
+    # Get the number of nodes ever created for
+    # this graph
+    nodes_created <- x$last_node
   }
 
   if (inherits(x, "data.frame")) {
@@ -161,6 +165,9 @@ set_node_attrs <- function(x,
     # Retain the node selection if one was
     # available initially
     dgr_graph$selection <- x$selection
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
 
     return(dgr_graph)
   }

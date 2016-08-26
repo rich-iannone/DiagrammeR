@@ -19,6 +19,10 @@ set_edge_attrs_ws <- function(graph,
   from <- graph$selection$edges$from
   to <- graph$selection$edges$to
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   if (edge_attr %in% colnames(edges_df)) {
     if (is.null(from) & !is.null(to)) {
       edges_df[which(edges_df$to %in% to),
@@ -83,6 +87,9 @@ set_edge_attrs_ws <- function(graph,
 
   # Retain the edge selection in the graph
   dgr_graph$selection <- graph$selection
+
+  # Update the `last_node` counter
+  dgr_graph$last_node <- nodes_created
 
   return(dgr_graph)
 }

@@ -67,6 +67,10 @@ delete_edge <- function(graph,
     stop("The nodes specified are not both present in the graph.")
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Edge removal case for directed graphs
   if (nodes_available_in_graph &
       is_graph_directed(graph)) {
@@ -94,6 +98,9 @@ delete_edge <- function(graph,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
+
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created
     }
   }
 
@@ -124,6 +131,9 @@ delete_edge <- function(graph,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
+
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created
     }
 
     if (any(graph$edges_df$from == to &
@@ -149,6 +159,9 @@ delete_edge <- function(graph,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
+
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created
     }
   }
 

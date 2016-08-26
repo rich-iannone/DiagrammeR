@@ -62,6 +62,10 @@ add_edge <- function(graph,
     }
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # If `graph$edges_df` is NULL then use
   # `create_edges()` to add an edge
   if (is.null(graph$edges_df)) {
@@ -84,6 +88,9 @@ add_edge <- function(graph,
           graph_name = graph$graph_name,
           graph_time = graph$graph_time,
           graph_tz = graph$graph_tz)
+
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created
     }
 
     # If a relationship is not defined, use a simpler
@@ -103,6 +110,9 @@ add_edge <- function(graph,
           graph_name = graph$graph_name,
           graph_time = graph$graph_time,
           graph_tz = graph$graph_tz)
+
+      # Update the `last_node` counter
+      dgr_graph$last_node <- nodes_created
 
       return(dgr_graph)
     }
@@ -150,6 +160,9 @@ add_edge <- function(graph,
         graph_name = graph$graph_name,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
 
     return(dgr_graph)
   }

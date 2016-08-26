@@ -67,11 +67,16 @@ create_subgraph_ws <- function(graph) {
     selection_nodes <- graph$selection$nodes
 
     selection_nodes_df <-
-      graph$nodes_df[which(graph$nodes_df$nodes %in% selection_nodes),]
+      graph$nodes_df[
+        which(graph$nodes_df$nodes %in%
+                selection_nodes), ]
 
     selection_edges_df <-
-      graph$edges_df[which(graph$edges_df$from %in% selection_nodes &
-                             graph$edges_df$to %in% selection_nodes),]
+      graph$edges_df[
+        which(graph$edges_df$from %in%
+                selection_nodes &
+                graph$edges_df$to %in%
+                selection_nodes), ]
   }
 
   # Filter the edges in the graph
@@ -81,13 +86,17 @@ create_subgraph_ws <- function(graph) {
     selection_to <- graph$selection$edges$to
 
     selection_edges_df <-
-      graph$edges_df[which(graph$edges_df$from %in% selection_from &
-                             graph$edges_df$to %in% selection_to),]
+      graph$edges_df[
+        which(graph$edges_df$from %in%
+                selection_from &
+                graph$edges_df$to %in%
+                selection_to), ]
 
     selection_nodes_df <-
-      graph$nodes_df[which(graph$nodes_df$nodes %in%
-                             unique(c(selection_edges_df$from,
-                                      selection_edges_df$to))),]
+      graph$nodes_df[
+        which(graph$nodes_df$nodes %in%
+                unique(c(selection_edges_df$from,
+                         selection_edges_df$to))), ]
   }
 
   # Create a subgraph

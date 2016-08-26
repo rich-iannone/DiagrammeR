@@ -16,6 +16,10 @@ delete_nodes_ws <- function(graph) {
     return(graph)
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Get a vector of the nodes to be deleted
   nodes_to_delete <- graph$selection$nodes
 
@@ -30,6 +34,9 @@ delete_nodes_ws <- function(graph) {
 
   # Remove all nodes in selection
   graph$selection$nodes <- NULL
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created
 
   return(graph)
 }

@@ -34,6 +34,10 @@ add_edges_w_string <- function(graph,
                                edges,
                                rel = NULL) {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Remove linebreak characters from `edges`
   edges_cleaned <-
     gsub("\n", " ", edges)
@@ -89,8 +93,10 @@ add_edges_w_string <- function(graph,
 
   # Add the new edges to the graph
   new_graph <-
-    add_edge_df(graph,
-                new_edges)
+    add_edge_df(graph, new_edges)
+
+  # Update the `last_node` counter
+  new_graph$last_node <- nodes_created
 
   return(new_graph)
 }

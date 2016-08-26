@@ -45,6 +45,10 @@ add_edge_df <- function(graph,
     stop("Edges cannot be added to an empty graph.")
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Ensure that the nodes in the edge data frame
   # specified are in the graph object
   all_nodes_in_graph <-
@@ -77,6 +81,9 @@ add_edge_df <- function(graph,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
 
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
+
     return(dgr_graph)
   }
 
@@ -96,6 +103,9 @@ add_edge_df <- function(graph,
         graph_name = graph$graph_name,
         graph_time = graph$graph_time,
         graph_tz = graph$graph_tz)
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
 
     return(dgr_graph)
   }

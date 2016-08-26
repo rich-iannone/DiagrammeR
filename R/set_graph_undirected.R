@@ -26,17 +26,25 @@ set_graph_undirected <- function(graph) {
     stop("The graph is already undirected.")
   }
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   # Convert graph to an undirected graph
   dgr_graph <-
-    create_graph(nodes_df = graph$nodes_df,
-                 edges_df = graph$edges_df,
-                 graph_attrs = graph$graph_attrs,
-                 node_attrs = graph$node_attrs,
-                 edge_attrs = graph$edge_attrs,
-                 directed = FALSE,
-                 graph_name = graph$graph_name,
-                 graph_time = graph$graph_time,
-                 graph_tz = graph$graph_tz)
+    create_graph(
+      nodes_df = graph$nodes_df,
+      edges_df = graph$edges_df,
+      graph_attrs = graph$graph_attrs,
+      node_attrs = graph$node_attrs,
+      edge_attrs = graph$edge_attrs,
+      directed = FALSE,
+      graph_name = graph$graph_name,
+      graph_time = graph$graph_time,
+      graph_tz = graph$graph_tz)
+
+  # Update the `last_node` counter
+  dgr_graph$last_node <- nodes_created
 
   return(dgr_graph)
 }

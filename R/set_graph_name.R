@@ -17,6 +17,10 @@
 set_graph_name <- function(graph,
                            name) {
 
+  # Get the number of nodes ever created for
+  # this graph
+  nodes_created <- graph$last_node
+
   name <- as.character(name)
 
   dgr_graph <-
@@ -35,6 +39,9 @@ set_graph_name <- function(graph,
   if (!is.null(graph$selection)) {
     dgr_graph$selection <- graph$selection
   }
+
+  # Update the `last_node` counter
+  dgr_graph$last_node <- nodes_created
 
   return(dgr_graph)
 }

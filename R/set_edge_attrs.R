@@ -104,6 +104,10 @@ set_edge_attrs <- function(x,
   if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     edges_df <- x$edges_df
+
+    # Get the number of nodes ever created for
+    # this graph
+    nodes_created <- x$last_node
   }
 
   if (inherits(x, "data.frame")) {
@@ -197,6 +201,9 @@ set_edge_attrs <- function(x,
 
     # Retain the edge selection
     dgr_graph$selection <- x$selection
+
+    # Update the `last_node` counter
+    dgr_graph$last_node <- nodes_created
 
     return(dgr_graph)
   }
