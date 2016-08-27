@@ -9,7 +9,7 @@
 #' be unioned with the graph suppled as \code{x}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph with a cycle
+#' # Create a graph with a cycle with 6 nodes
 #' graph_cycle <-
 #'  create_graph() %>%
 #'    add_cycle(n = 6)
@@ -22,6 +22,10 @@
 #' # Combine the two graphs in a union operation
 #' combined_graph <-
 #'   combine_graphs(graph_cycle, graph_random)
+#'
+#' # Get the number of nodes in the combined graph
+#' node_count(combined_graph)
+#' #> 14
 #' @importFrom dplyr inner_join rename select
 #' @export combine_graphs
 
