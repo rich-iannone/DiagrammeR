@@ -1,71 +1,96 @@
 #' Combine two graphs into a single graph
 #' @description Combine two graphs in order to make a
-#' new graph, merging nodes and edges in the process.
-#' The use of an optional data frame allows for new
-#' edges to be formed across the combined graphs.
+#' new graph.
 #' @param x a \code{DiagrammeR} graph object to which
-#' another graph will be joined. This graph should be
-#' considered the host graph as the resulting graph
-#' will retain only the attributes of this graph.
+#' another graph will be unioned. This graph should be
+#' considered the graph from which global graph
+#' attributes will be inherited in the resulting graph.
 #' @param y a \code{DiagrammeR} graph object that is to
-#' be joined with the graph suppled as \code{x}.
-#' @param edges_df an optional edge data frame that
-#' allows for connections between nodes across the
-#' graphs to be combined.
+#' be unioned with the graph suppled as \code{x}.
 #' @return a graph object of class \code{dgr_graph}.
+#' @importFrom dplyr inner_join rename select
 #' @export combine_graphs
 
 combine_graphs <- function(x,
-                           y,
-                           edges_df = NULL) {
+                           y) {
 
-  if (any(get_nodes(x) %in% get_nodes(y))) {
-    stop("Cannot combine graphs with common node ID values")
+  # Get the number of nodes ever created for
+  # graph `x`
+  nodes_created <- x$last_node
+
+  # Get the node data frame for graph `x`
+  x_nodes_df <- get_node_df(x)
+
+  # Get the node data frame for graph `y`
+  y_nodes_df <- get_node_df(y)
+
+  # Is label a copy of node IDs in graph `y`?
+  if (all(y_nodes_df$nodes == y_nodes_df$label)) {
+    y_label_node <- TRUE
+  } else {
+    y_label_node <- FALSE
   }
 
-  combined_nodes <- combine_nodes(x$nodes_df,
-                                  y$nodes_df)
+  # Add a new node attribute `new_node_id`
+  y_nodes_df$new_node_id <-
+    seq(nodes_created + 1,
+        nodes_created + nrow(y_nodes_df))
 
-  if (!is.null(edges_df)) {
+  # Get the edge data frame for graph `x`
+  x_edges_df <- get_edge_df(x)
 
-    # Stop function if edge data frame doesn't fulfill
-    # certain conditions
-    if (!(all(unique(c(edges_df$from, edges_df$to)) %in%
-              c(get_nodes(x), get_nodes(y))))) {
-      stop("Not all nodes in this edge data frame exist in the 2 graphs.")
-    }
+  # Get the edge data frame for graph `y`
+  y_edges_df <- get_edge_df(y)
 
-    for (i in 1:nrow(edges_df)) {
-      if (edges_df$from[i] %in% get_nodes(x)) {
-        if ((edges_df$to[i] %in% get_nodes(y)) == FALSE) {
-          stop("Edges supplied in this edge data frame must be across graphs.")
-        }
-      }
+  y_edges_df <-
+    dplyr::inner_join(
+      y_edges_df,
+      y_nodes_df,
+      by = c("from" = "nodes")) %>%
+    dplyr::rename(from_new = new_node_id) %>%
+    dplyr::select(-type, -label)
 
-      if (edges_df$from[i] %in% get_nodes(y)) {
-        if ((edges_df$to[i] %in% get_nodes(x)) == FALSE) {
-          stop("Edges supplied in this edge data frame must be across graphs.")
-        }
-      }
+  y_edges_df <-
+    dplyr::inner_join(
+      y_edges_df,
+      y_nodes_df,
+      by = c("to" = "nodes")) %>%
+    dplyr::rename(to_new = new_node_id) %>%
+    dplyr::select(-type, -label)
 
-      if (edges_df$from[i] == edges_df$to[i]) {
-        stop("Edges supplied in this edge data frame cannot contain loops.")
-      }
-    }
+  # Copy new node IDs to `from` and `to` edge attrs
+  y_edges_df$from <- y_edges_df$from_new
+  y_edges_df$to <- y_edges_df$to_new
 
-    combined_edges <-
-      combine_edges(
-        x$edges_df,
-        y$edges_df,
-        edges_df)
+  # Remove last two columns from `y_edges_df`
+  y_edges_df <-
+    y_edges_df[, -c(ncol(y_edges_df),
+                    ncol(y_edges_df) - 1)]
+
+  # Copy new node IDs to `nodes` node attr
+  y_nodes_df$nodes <- y_nodes_df$new_node_id
+
+  # Remove the last column from `y_nodes_df`
+  y_nodes_df <-
+    y_nodes_df[, -ncol(y_nodes_df)]
+
+  # If label is a copy of node ID in graph `y`,
+  # rewrite labels to match new node ID values
+  if (y_label_node) {
+    y_nodes_df$label <- y_nodes_df$nodes
   }
 
-  if (is.null(edges_df)) {
-    combined_edges <-
-      combine_edges(
-        x$edges_df,
-        y$edges_df)
-  }
+  # Combine the node data frames for both graphs
+  combined_nodes <-
+    combine_nodes(
+      x_nodes_df,
+      y_nodes_df)
+
+  # Combine the edge data frames for both graphs
+  combined_edges <-
+    combine_edges(
+      x_edges_df,
+      y_edges_df)
 
   if (is.null(x$dot_code)) {
 
