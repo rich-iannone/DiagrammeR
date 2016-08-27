@@ -14,6 +14,12 @@
 combine_graphs <- function(x,
                            y) {
 
+  # Assign NULL to certain variables used as df
+  # column names
+  new_node_id <- NULL
+  type <- NULL
+  label <- NULL
+
   # Get the number of nodes ever created for
   # graph `x`
   nodes_created <- x$last_node
