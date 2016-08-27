@@ -4,28 +4,22 @@
 \alias{combine_graphs}
 \title{Combine two graphs into a single graph}
 \usage{
-combine_graphs(x, y, edges_df = NULL)
+combine_graphs(x, y)
 }
 \arguments{
 \item{x}{a \code{DiagrammeR} graph object to which
-another graph will be joined. This graph should be
-considered the host graph as the resulting graph
-will retain only the attributes of this graph.}
+another graph will be unioned. This graph should be
+considered the graph from which global graph
+attributes will be inherited in the resulting graph.}
 
 \item{y}{a \code{DiagrammeR} graph object that is to
-be joined with the graph suppled as \code{x}.}
-
-\item{edges_df}{an optional edge data frame that
-allows for connections between nodes across the
-graphs to be combined.}
+be unioned with the graph suppled as \code{x}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
 Combine two graphs in order to make a
-new graph, merging nodes and edges in the process.
-The use of an optional data frame allows for new
-edges to be formed across the combined graphs.
+new graph.
 }
 
