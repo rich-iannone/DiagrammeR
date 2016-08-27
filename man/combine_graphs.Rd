@@ -22,4 +22,19 @@ a graph object of class \code{dgr_graph}.
 Combine two graphs in order to make a
 new graph.
 }
+\examples{
+# Create a graph with a cycle
+graph_cycle <-
+ create_graph() \%>\%
+   add_cycle(n = 6)
+
+# Create a random graph with 8 nodes, 15 edges
+graph_random <-
+  create_random_graph(
+    8, 15, set_seed = 1)
+
+# Combine the two graphs in a union operation
+combined_graph <-
+  combine_graphs(graph_cycle, graph_random)
+}
 
