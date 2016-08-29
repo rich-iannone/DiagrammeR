@@ -26,17 +26,17 @@
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
-#'     type = c("A", "A", "Z", "Z"),
+#'     nodes = 1:4,
+#'     type = c("a", "a", "z", "z"),
 #'     label = TRUE,
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"),
-#'     rel = c("A", "Z", "A"))
+#'     from = c(1, 2, 3),
+#'     to = c(4, 3, 1),
+#'     rel = c("a", "z", "a"))
 #'
 #' # Create a graph with the ndf and edf
 #' graph <-
@@ -44,28 +44,28 @@
 #'     nodes_df = nodes,
 #'     edges_df = edges)
 #'
-#' # Explicitly select nodes `a` and `c`
+#' # Explicitly select nodes `1` and `3`
 #' graph <-
 #'   graph %>%
-#'   select_nodes(nodes = c("a", "c"))
+#'   select_nodes(nodes = c(1, 3))
 #'
 #' # Verify that the node selection has been made
 #' # using the `get_selection()` function
 #' get_selection(graph)
-#' #> [1] "a" "c"
+#' #> [1] "1" "3"
 #'
 #' # Select nodes based on the node `type`
-#' # being `Z`
+#' # being `z`
 #' graph <-
 #'   graph %>%
 #'   clear_selection %>%
-#'   select_nodes(node_attr = "type", search = "Z")
+#'   select_nodes(node_attr = "type", search = "z")
 #'
 #' # Verify that an node selection has been made, and
-#' # recall that the `c` and `d` nodes are of the
-#' # `Z` type
+#' # recall that the `3` and `4` nodes are of the
+#' # `z` type
 #' get_selection(graph)
-#' #> [1] "c" "d"
+#' #> [1] "3" "4"
 #'
 #' # Select edges based on the node value attribute
 #' # being greater than 3.0 (first clearing the current
@@ -76,10 +76,10 @@
 #'   select_nodes(node_attr = "value", search = ">3.0")
 #'
 #' # Verify that the correct node selection has been
-#' # made; in this case, nodes `a` and `c` have values
+#' # made; in this case, nodes `1` and `3` have values
 #' # for `value` greater than 3.0
 #' get_selection(graph)
-#' #> [1] "a" "c"
+#' #> [1] "1" "3"
 #' @export select_nodes
 
 select_nodes <- function(graph,

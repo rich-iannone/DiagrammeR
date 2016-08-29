@@ -11,37 +11,38 @@
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
-#'     type = "letter")
+#'     nodes = 1:4,
+#'     type = "standard")
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"),
+#'     from = c(1, 2, 3),
+#'     to = c(4, 3, 1),
 #'     rel = "leading_to")
 #'
 #' # Create a graph
 #' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges)
+#'   create_graph(
+#'     nodes_df = nodes,
+#'     edges_df = edges)
 #'
-#' # Select nodes `a` and `c`
+#' # Select nodes with ID values `1` and `3`
 #' graph <-
 #'   select_nodes(
 #'     graph = graph,
-#'     nodes = c("a", "c"))
+#'     nodes = c(1, 3))
 #'
 #' # Verify that a node selection has been made
 #' get_selection(graph)
-#' #> [1] "a" "c"
+#' #> [1] "1" "3"
 #'
 #' # Invert the selection
 #' graph <- invert_selection(graph = graph)
 #'
 #' # Verify that the node selection has been changed
 #' get_selection(graph)
-#' #> [1] "b" "d"
+#' #> [1] "2" "4"
 #' @export invert_selection
 
 invert_selection <- function(graph) {

@@ -20,27 +20,30 @@
 #' the height of the resulting graphic in pixels.
 #' @examples
 #' \dontrun{
+#' # Set a seed
+#' set.seed(24)
+#'
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
-#'     nodes = LETTERS,
+#'     nodes = 1:26,
 #'     label = TRUE,
-#'     type = "letter",
+#'     type = "basic",
 #'     shape = sample(c("circle", "square"),
-#'                    length(LETTERS),
+#'                    length(1:26),
 #'                    replace = TRUE),
 #'     fillcolor = sample(c("aqua", "orange",
 #'                          "pink", "lightgreen",
 #'                          "black", "yellow"),
-#'                        length(LETTERS),
+#'                        length(1:26),
 #'                        replace = TRUE))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
-#'     from = sample(LETTERS, replace = TRUE),
-#'     to = sample(LETTERS, replace = TRUE),
-#'     rel = "letter_to_letter")
+#'     from = sample(1:26, replace = TRUE),
+#'     to = sample(1:26, replace = TRUE),
+#'     rel = "to_node")
 #'
 #' # Create a graph object using the ndf and edf, and,
 #' # add a few attributes for the graph appearance

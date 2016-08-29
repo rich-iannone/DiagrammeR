@@ -30,17 +30,17 @@
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
-#'     type = "letter",
+#'     nodes = 1:4,
+#'     type = "basic",
 #'     label = TRUE,
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"),
-#'     rel = c("A", "Z", "A"),
+#'     from = c(1, 2, 3),
+#'     to = c(4, 3, 1),
+#'     rel = c("a", "z", "a"),
 #'     value = c(6.4, 2.9, 5.0))
 #'
 #' # Create a graph with the ndf and edf
@@ -49,28 +49,28 @@
 #'     nodes_df = nodes,
 #'     edges_df = edges)
 #'
-#' # Explicitly select the edge `a` -> `d`
+#' # Explicitly select the edge `1` -> `4`
 #' graph <-
 #'   graph %>%
-#'   select_edges(from = "a", to = "d")
+#'   select_edges(from = 1, to = 4)
 #'
 #' # Verify that an edge selection has been made
 #' # using the `get_selection()` function
 #' get_selection(graph)
-#' #> [1] "a -> d"
+#' #> [1] "1 -> 4"
 #'
 #' # Select edges based on the relationship label
 #' # being `Z`
 #' graph <-
 #'   graph %>%
 #'   clear_selection %>%
-#'   select_edges(edge_attr = "rel", search = "Z")
+#'   select_edges(edge_attr = "rel", search = "z")
 #'
 #' # Verify that an edge selection has been made, and
-#' # recall that the `b` -> `c` edge uniquely has the
-#' # `Z` relationship label
+#' # recall that the `2` -> `3` edge uniquely has the
+#' # `z` relationship label
 #' get_selection(graph)
-#' #> [1] "b -> c"
+#' #> [1] "2 -> 3"
 #'
 #' # Select edges based on the edge value attribute
 #' # being greater than 3.0 (first clearing the current
@@ -81,11 +81,11 @@
 #'   select_edges(edge_attr = "value", search = ">3.0")
 #'
 #' # Verify that the correct edge selection has been
-#' # made; in this case, edges `a` -> `d` and
-#' # `c` -> `a` have values for `value` greater than
+#' # made; in this case, edges `1` -> `4` and
+#' # `3` -> `1` have values for `value` greater than
 #' # 3.0
 #' get_selection(graph)
-#' #> [1] "a -> d" "c -> a"
+#' #> [1] "1 -> 4" "3 -> 1"
 #' @export select_edges
 
 select_edges <- function(graph,

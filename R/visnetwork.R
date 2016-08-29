@@ -4,29 +4,33 @@
 #' \code{create_graph} function.
 #' @examples
 #' \dontrun{
-#' # Create a node data frame
+#' # Create a node data frame (ndf)
 #' nodes <-
-#'   create_nodes(nodes = c("a", "b", "c", "d", "e", "f"),
-#'                label = TRUE,
-#'                fillcolor = c("lightgrey", "red", "orange", "pink",
-#'                          "aqua", "yellow"),
-#'                shape = "circle",
-#'                value = c(2, 1, 0.5, 1, 1.8, 1),
-#'                type = c("1", "1", "1", "2", "2", "2"),
-#'                x = c(1, 2, 3, 4, 5, 6),
-#'                y = c(-2, -1, 0, 6, 4, 1))
+#'   create_nodes(
+#'     nodes = 1:6,
+#'     label = TRUE,
+#'     fillcolor = c("lightgrey", "red", "orange",
+#'                   "pink", "aqua", "yellow"),
+#'     shape = "circle",
+#'     value = c(2, 1, 0.5, 1, 1.8, 1),
+#'     type = c("1", "1", "1", "2", "2", "2"),
+#'     x = c(1, 2, 3, 4, 5, 6),
+#'     y = c(-2, -1, 0, 6, 4, 1))
 #'
-#' # Create an edge data frame
+#' # Create an edge data frame (edf)
 #' edges <-
-#'   create_edges(from = c("a", "b", "c", "d", "f", "e"),
-#'                to = c("d", "c", "a", "c", "a", "d"),
-#'                color = c("green", "green", "grey", "grey",
-#'                          "blue", "blue"),
-#'                rel = "leading_to")
+#'   create_edges(
+#'     from = c(1, 2, 3, 4, 6, 5),
+#'     to = c(4, 3, 1, 3, 1, 4),
+#'     color = c("green", "green", "grey",
+#'               "grey", "blue", "blue"),
+#'     rel = "leading_to")
 #'
 #' # Create a graph object
-#' graph <- create_graph(nodes_df = nodes,
-#'                       edges_df = edges)
+#' graph <-
+#'   create_graph(
+#'     nodes_df = nodes,
+#'     edges_df = edges)
 #'
 #' visnetwork(graph)
 #' }

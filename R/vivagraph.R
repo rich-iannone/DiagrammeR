@@ -15,35 +15,35 @@
 #' @param elementId \code{string} with a valid CSS \code{id}.
 #' @examples
 #' \dontrun{
-#' # Create a graph using the \code{create_nodes}, \code{create_edges},
-#' # and \code{create_graph} functions
+#' # Create a node data frame (ndf)
 #' nodes <-
-#'   create_nodes(nodes = LETTERS,
-#'                type = "letter",
-#'                shape = sample(c("circle", "rectangle"),
-#'                               length(LETTERS),
-#'                               replace = TRUE),
-#'                fillcolor = sample(c("aqua", "gray80",
-#'                                     "pink", "lightgreen",
-#'                                     "azure", "yellow"),
-#'                                   length(LETTERS),
-#'                                   replace = TRUE))
+#'   create_nodes(
+#'     nodes = 1:6,
+#'     label = TRUE,
+#'     fillcolor = c("lightgrey", "red", "orange",
+#'                   "pink", "aqua", "yellow"),
+#'     shape = "circle",
+#'     value = c(2, 1, 0.5, 1, 1.8, 1),
+#'     type = c("1", "1", "1", "2", "2", "2"),
+#'     x = c(1, 2, 3, 4, 5, 6),
+#'     y = c(-2, -1, 0, 6, 4, 1))
 #'
+#' # Create an edge data frame (edf)
 #' edges <-
-#'   create_edges(from = sample(LETTERS, replace = TRUE),
-#'                to = sample(LETTERS, replace = TRUE),
-#'                rel = "letter_to_letter")
+#'   create_edges(
+#'     from = c(1, 2, 3, 4, 6, 5),
+#'     to = c(4, 3, 1, 3, 1, 4),
+#'     color = c("green", "green", "grey",
+#'               "grey", "blue", "blue"),
+#'     rel = "leading_to")
 #'
+#' # Create a graph object
 #' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges,
-#'                graph_attrs = "layout = neato",
-#'                node_attrs = c("fontname = Helvetica",
-#'                               "style = filled"),
-#'                edge_attrs = c("color = gray20",
-#'                               "arrowsize = 0.5"))
+#'   create_graph(
+#'     nodes_df = nodes,
+#'     edges_df = edges)
 #'
-#' vivagraph(graph = graph)
+#' vivagraph(graph)
 #' }
 #' @export vivagraph
 
@@ -60,8 +60,9 @@ vivagraph <- function(graph = NULL,
     nodes_df <- graph$nodes_df
     edges_df <- graph$edges_df
 
-    #  if nodes_df provided then check to make sure there is a column named id
-    #  if not then name the first column id
+    # If nodes_df provided then check to make sure
+    # there is a column named id if not then name the
+    # first column id
     if (is.data.frame(nodes_df)) {
 
       if (nrow(nodes_df) > 0) {
@@ -73,7 +74,8 @@ vivagraph <- function(graph = NULL,
       }
     }
 
-    # Get data frame of node positions if it is provided in graph object
+    # Get data frame of node positions if it is
+    # provided in graph object
     if (all(c("x", "y") %in% colnames(nodes_df))) {
 
       positions <-
@@ -82,8 +84,10 @@ vivagraph <- function(graph = NULL,
           y = nodes_df[, which(colnames(nodes_df) %in% "y")])
     }
 
-    # If 'edges_df' provided then check to make sure there is a column named from and to
-    # if not then name the first column 'from' and name the second column 'to'
+    # If 'edges_df' provided then check to make sure
+    # there is a column named from and to if not
+    # then name the first column 'from' and name the
+    # second column 'to'
     if (is.data.frame(edges_df)) {
 
       if (nrow(edges_df) > 0 && ncol(edges_df) > 1) {
@@ -102,7 +106,8 @@ vivagraph <- function(graph = NULL,
       }
     }
 
-    # If 'nodes_df' is a vector then make it a data frame with column named 'id'
+    # If 'nodes_df' is a vector then make it a
+    # data frame with column named 'id'
     if (is.vector(nodes_df)) {
       nodes_df <- data.frame(id = nodes_df)
     }
@@ -116,10 +121,11 @@ vivagraph <- function(graph = NULL,
          config = config)
 
   # Create widget
-  htmlwidgets::createWidget(name = "vivagraph",
-                            x = x,
-                            width = width,
-                            height = height,
-                            package = "DiagrammeR",
-                            elementId = elementId)
+  htmlwidgets::createWidget(
+    name = "vivagraph",
+    x = x,
+    width = width,
+    height = height,
+    package = "DiagrammeR",
+    elementId = elementId)
 }

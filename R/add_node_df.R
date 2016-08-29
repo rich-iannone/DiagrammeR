@@ -16,46 +16,46 @@
 #' # Create a node data frame
 #' nodes <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
-#'     type = "letter",
+#'     nodes = 1:4,
+#'     type = "basic",
 #'     color = c("red", "green", "grey", "blue"),
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Add the node data frame to the graph object to
 #' # create a graph with nodes
 #' graph <-
-#'   add_node_df(graph = graph, node_df = nodes)
+#'   add_node_df(graph, nodes)
 #'
 #' get_node_df(graph)
-#' #>   nodes   type label color value
-#' #> 1     a letter     a   red   3.5
-#' #> 2     b letter     b green   2.6
-#' #> 3     c letter     c  grey   9.4
-#' #> 4     d letter     d  blue   2.7
+#' #>   nodes  type label color value
+#' #> 1     1 basic     a   red   3.5
+#' #> 2     2 basic     b green   2.6
+#' #> 3     3 basic     c  grey   9.4
+#' #> 4     4 basic     d  blue   2.7
 #'
 #' # Create another node data frame
 #' nodes_2 <-
 #'   create_nodes(
-#'     nodes = c("e", "f", "g", "h"),
-#'     type = "letter",
+#'     nodes = 5:8,
+#'     type = "basic",
 #'     color = c("white", "brown", "aqua", "pink"),
 #'     value = c(1.6, 6.4, 0.8, 4.2))
 #'
 #' # Add the second node data frame to the graph object
 #' # to add more nodes with attributes to the graph
 #' graph <-
-#'   add_node_df(graph = graph, node_df = nodes_2)
+#'   add_node_df(graph, nodes_2)
 #'
 #' get_node_df(graph)
-#' #>   nodes   type label color value
-#' #> 1     a letter     a   red   3.5
-#' #> 2     b letter     b green   2.6
-#' #> 3     c letter     c  grey   9.4
-#' #> 4     d letter     d  blue   2.7
-#' #> 5     e letter     e white   1.6
-#' #> 6     f letter     f brown   6.4
-#' #> 7     g letter     g  aqua   0.8
-#' #> 8     h letter     h  pink   4.2
+#' #>   nodes  type label color value
+#' #> 1     1 basic     a   red   3.5
+#' #> 2     2 basic     b green   2.6
+#' #> 3     3 basic     c  grey   9.4
+#' #> 4     4 basic     d  blue   2.7
+#' #> 5     5 basic     e white   1.6
+#' #> 6     6 basic     f brown   6.4
+#' #> 7     7 basic     g  aqua   0.8
+#' #> 8     8 basic     h  pink   4.2
 #' @export add_node_df
 
 add_node_df <- function(graph,

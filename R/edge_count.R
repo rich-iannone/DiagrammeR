@@ -14,21 +14,24 @@
 #' edge relationship types.
 #' @return a numeric vector of single length.
 #' @examples
+#' # Set a seed
+#' set.seed(24)
+#'
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
-#'     nodes = LETTERS,
+#'     nodes = 1:26,
 #'     label = TRUE,
-#'     type = c(rep("a_to_g", 7),
-#'              rep("h_to_p", 9),
-#'              rep("q_to_x", 8),
-#'              rep("y_and_z", 2)))
+#'     type = c(rep("a", 7),
+#'              rep("b", 9),
+#'              rep("c", 8),
+#'              rep("d", 2)))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
-#'     from = sample(LETTERS, replace = TRUE),
-#'     to = sample(LETTERS, replace = TRUE),
+#'     from = sample(1:26, replace = TRUE),
+#'     to = sample(1:26, replace = TRUE),
 #'     rel = c(rep("rel_a", 7),
 #'             rep("rel_b", 9),
 #'             rep("rel_c", 8),

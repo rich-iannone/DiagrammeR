@@ -17,16 +17,16 @@
 #' # Create a node data frame (ndf)
 #' nodes <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
-#'     type = "letter",
+#'     nodes = 1:4,
+#'     type = "basic",
 #'     label = TRUE,
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
 #'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"),
+#'     from = c(1, 2, 3),
+#'     to = c(4, 3, 1),
 #'     rel = "leading_to")
 #'
 #' # Create a graph
@@ -35,23 +35,23 @@
 #'     nodes_df = nodes,
 #'     edges_df = edges)
 #'
-#' # Set attribute `color = "green"` for nodes `a`
-#' # and `c` using the graph object
+#' # Set attribute `color = "green"` for nodes `1`
+#' # and `3` using the graph object
 #' graph <-
 #'   set_node_attrs(
 #'     x = graph,
 #'     node_attr = "color",
 #'     values = "green",
-#'     nodes = c("a", "c"))
+#'     nodes = c(1, 3))
 #'
-#' # Set attribute `color = "green"`` for nodes `a`
-#' # and `c` using the node data frame
+#' # Set attribute `color = "green"`` for nodes `1`
+#' # and `3` using the node data frame
 #' nodes <-
 #'   set_node_attrs(
 #'     x = nodes,
 #'     node_attr = "color",
 #'     values = "green",
-#'     nodes = c("a", "c"))
+#'     nodes = c(1, 3))
 #'
 #' # Set attribute `color = "blue"` for all nodes
 #' # the node data frame

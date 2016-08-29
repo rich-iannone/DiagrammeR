@@ -11,7 +11,7 @@
 #' # Create a node data frame (ndf)
 #' nodes_1 <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
+#'     nodes = 1:4,
 #'     label = FALSE,
 #'     type = "lower",
 #'     style = "filled",
@@ -20,10 +20,18 @@
 #'               "rectangle", "rectangle"),
 #'     data = c(3.5, 2.6, 9.4, 2.7))
 #'
+#' # View the `nodes_1` ndf
+#' nodes_1
+#' #>   nodes  type label  style color     shape data
+#' #> 1     1 lower       filled  aqua    circle  3.5
+#' #> 2     2 lower       filled  aqua    circle  2.6
+#' #> 3     3 lower       filled  aqua rectangle  9.4
+#' #> 4     4 lower       filled  aqua rectangle  2.7
+#'
 #' # Create another ndf
 #' nodes_2 <-
 #'   create_nodes(
-#'     nodes = c("e", "f", "g", "h"),
+#'     nodes = 5:8,
 #'     label = FALSE,
 #'     type = "upper",
 #'     style = "filled",
@@ -31,9 +39,29 @@
 #'     shape = "triangle",
 #'     data = c(0.5, 3.9, 3.7, 8.2))
 #'
+#' # View the `nodes_2` ndf
+#' nodes_2
+#' #>   nodes  type label  style color    shape data
+#' #> 1     5 upper       filled   red triangle  0.5
+#' #> 2     6 upper       filled   red triangle  3.9
+#' #> 3     7 upper       filled   red triangle  3.7
+#' #> 4     8 upper       filled   red triangle  8.2
+#'
 #' # Combine the two node data frames
 #' all_nodes <-
 #'   combine_nodes(nodes_1, nodes_2)
+#'
+#' # View the combined node data frame
+#' all_nodes
+#' #>   nodes  type label  style color     shape data
+#' #> 1     1 lower       filled  aqua    circle  3.5
+#' #> 2     2 lower       filled  aqua    circle  2.6
+#' #> 3     3 lower       filled  aqua rectangle  9.4
+#' #> 4     4 lower       filled  aqua rectangle  2.7
+#' #> 5     5 upper       filled   red  triangle  0.5
+#' #> 6     6 upper       filled   red  triangle  3.9
+#' #> 7     7 upper       filled   red  triangle  3.7
+#' #> 8     8 upper       filled   red  triangle  8.2
 #' }
 #' @export combine_nodes
 

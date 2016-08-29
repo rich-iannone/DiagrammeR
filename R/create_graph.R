@@ -46,19 +46,26 @@
 #' # 1. create a node data frame (ndf) using the
 #' #    `create_nodes()` function
 #' nodes <-
-#'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"))
+#'   create_nodes(nodes = 1:4)
 #'
 #' # 2. create the graph object with `create_graph()`
 #' #    and pass in the ndf to `nodes_df`
 #' graph <- create_graph(nodes_df = nodes)
+#'
+#' # Get information on the graph's nodes
+#' node_info(graph)
+#' #>   node label type deg indeg outdeg loops
+#' #> 1    1     1        0     0      0     0
+#' #> 2    2     2        0     0      0     0
+#' #> 3    3     3        0     0      0     0
+#' #> 4    4     4        0     0      0     0
 #'
 #' # You can create a similar graph with just nodes but
 #' # also provide a range of attributes for the nodes
 #' # (e.g., types, labels, arbitrary 'values')
 #' nodes <-
 #'   create_nodes(
-#'     nodes = c("a", "b", "c", "d"),
+#'     nodes = 1:4,
 #'     label = TRUE,
 #'     type = c("type_1", "type_1",
 #'              "type_5", "type_2"),
@@ -67,6 +74,15 @@
 #'     values = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' graph <- create_graph(nodes_df = nodes)
+#'
+#' # Get information on the graph's internal node
+#' # data frame (ndf)
+#' get_node_df(graph)
+#' #>   nodes   type label     shape values
+#' #> 1     1 type_1     1    circle    3.5
+#' #> 2     2 type_1     2    circle    2.6
+#' #> 3     3 type_5     3 rectangle    9.4
+#' #> 4     4 type_2     4 rectangle    2.7
 #'
 #' # A graph can also be created by just specifying the
 #' # edges between nodes (in this case the unique set
@@ -79,8 +95,8 @@
 #' #    `create_edges()` function:
 #' edges <-
 #'   create_edges(
-#'     from = c("a", "b", "c"),
-#'     to = c("d", "c", "a"),
+#'     from = c(1, 2, 3),
+#'     to = c(4, 3, 1),
 #'     rel = "leading_to",
 #'     values = c(7.3, 2.6, 8.3))
 #'
@@ -88,10 +104,18 @@
 #' #    and pass in the edf to `edges_df`
 #' graph <- create_graph(edges_df = edges)
 #'
-#' # You can create a graph with both nodes and nodes
-#' # defined, and, also add in some default attributes
+#' # Get information on the graph's internal edge
+#' # data frame (edf)
+#' get_edge_df(graph)
+#' #>   from to        rel values
+#' #> 1    1  4 leading_to    7.3
+#' #> 2    2  3 leading_to    2.6
+#' #> 3    3  1 leading_to    8.3
+#'
+#' # You can create a graph with both nodes and edges
+#' # defined, and, add in some default attributes
 #' # to be applied to all the nodes (`node_attrs`) and
-#' # edges (`edge_attrs`) in this initial graph
+#' # edges (`edge_attrs`)
 #' graph <-
 #'   create_graph(
 #'     nodes_df = nodes,
@@ -99,6 +123,13 @@
 #'     node_attrs = "fontname = Helvetica",
 #'     edge_attrs = c("color = blue",
 #'                    "arrowsize = 2"))
+#'
+#' # For this new graph, get counts of nodes and edges
+#' node_count(graph)
+#' #> [1] 4
+#'
+#' edge_count(graph)
+#' #> [1] 3
 #' @importFrom stringr str_replace str_replace_all
 #' @export create_graph
 
