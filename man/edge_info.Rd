@@ -18,22 +18,28 @@ Obtain a data frame with detailed information on edges and
 their interrelationships within a graph.
 }
 \examples{
+# Set a seed
+set.seed(24)
+
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
-    nodes = LETTERS,
+    nodes = 1:26,
     label = TRUE,
-    type = c(rep("a_to_g", 7),
-             rep("h_to_p", 9),
-             rep("q_to_x", 8),
-             rep("y_and_z",2)))
+    type = c(rep("a", 7),
+             rep("b", 9),
+             rep("c", 8),
+             rep("d", 2)))
 
 # Create an edge data frame (edf)
 edges <-
   create_edges(
-    from = sample(LETTERS, replace = TRUE),
-    to = sample(LETTERS, replace = TRUE),
-    rel = "letter_to_letter")
+    from = sample(1:26, replace = TRUE),
+    to = sample(1:26, replace = TRUE),
+    rel = c(rep("rel_a", 7),
+            rep("rel_b", 9),
+            rep("rel_c", 8),
+            rep("rel_d", 2)))
 
 # Create a graph using the ndf and edf
 graph <-
@@ -41,15 +47,15 @@ graph <-
     nodes_df = nodes,
     edges_df = edges)
 
-# Get a data frame with information on the edges
-# of the graph
+# Get a data frame with information about
+# the graph's edges
 edge_info(graph)
-#>    from   to              rel
-#> 1     A    Z letter_to_letter
-#> 2     H    U letter_to_letter
-#> 3     W    O letter_to_letter
-#> 4     U    K letter_to_letter
-#> 5     I    V letter_to_letter
-#>..   ...  ...              ...
+#>    from to   rel
+#> 1     8  2 rel_a
+#> 2     6 16 rel_a
+#> 3    19 17 rel_a
+#> 4    14  2 rel_a
+#> 5    18  9 rel_a
+#>..   ... ..   ...
 }
 

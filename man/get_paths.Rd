@@ -40,7 +40,7 @@ from a given node within a directed graph
 # Create a simple graph
 graph <-
   create_graph() \%>\%
-  add_node_df(create_nodes(1:8)) \%>\%
+  add_n_nodes(8) \%>\%
   add_edge(1, 2) \%>\%
   add_edge(1, 3) \%>\%
   add_edge(3, 4) \%>\%
@@ -51,7 +51,7 @@ graph <-
   add_edge(4, 8)
 
 # Get a list of all paths outward from node `1`
-get_paths(graph, from = "1")
+get_paths(graph, from = 1)
 #> [[1]]
 #> [1] "1" "3" "5"
 #>
@@ -65,18 +65,12 @@ get_paths(graph, from = "1")
 #> [1] "1" "3" "4" "8"
 
 # Get a list of all paths leading to node `6`
-get_paths(graph, to = "6")
+get_paths(graph, to = 6)
 #> [[1]]
-#> [1] "4" "6"
-#>
-#> [[2]]
-#> [1] "3" "4" "6"
-#>
-#> [[3]]
 #> [1] "1" "3" "4" "6"
 
 # Get a list of all paths from `1` to `5`
-get_paths(graph, from = "1", to = "5")
+get_paths(graph, from = 1, to = 5)
 #> [[1]]
 #> [1] "1" "3" "5"
 #>
@@ -85,7 +79,7 @@ get_paths(graph, from = "1", to = "5")
 
 # Get a list of all paths from `1` up to a distance
 # of 2 node traversals
-get_paths(graph, from = "1", distance = 2)
+get_paths(graph, from = 1, distance = 2)
 #> [[1]]
 #> [1] "1" "3" "5"
 #>
@@ -98,8 +92,8 @@ get_paths(graph, from = "1", distance = 2)
 # Get a list of the shortest paths from `1` to `5`
 get_paths(
   graph,
-  from = "1",
-  to = "5",
+  from = 1,
+  to = 5,
   shortest_path = TRUE)
 #> [[1]]
 #> [1] "1" "3" "5"
@@ -107,8 +101,8 @@ get_paths(
 # Get a list of the longest paths from `1` to `5`
 get_paths(
   graph,
-  from = "1",
-  to = "5",
+  from = 1,
+  to = 5,
   longest_path = TRUE)
 #> [[1]]
 #> [1] "1" "2" "7" "5"

@@ -22,15 +22,15 @@ within a graph object.
 # Create a simple graph
 nodes <-
   create_nodes(
-    nodes = c("a", "b", "c", "d"),
-    type = "letter",
+    nodes = 1:4,
+    type = "basic",
     label = TRUE,
     value = c(3.5, 2.6, 9.4, 2.7))
 
 edges <-
   create_edges(
-    from = c("a", "b", "c"),
-    to = c("d", "c", "a"),
+    from = c(1, 2, 3),
+    to = c(4, 3, 1),
     rel = "leading_to")
 
 graph <-
@@ -38,15 +38,15 @@ graph <-
     nodes_df = nodes,
     edges_df = edges)
 
-# Select nodes "a" and "c"
+# Select nodes with IDs `1` and `3`
 graph <-
   select_nodes(
     graph = graph,
-    nodes = c("a", "c"))
+    nodes = c(1, 3))
 
 # Verify that a node selection has been made
 get_selection(graph)
-#> [1] "a" "c"
+#> [1] "1" "3"
 
 # Clear the selection with `clear_selection()`
 graph <- clear_selection(graph = graph)

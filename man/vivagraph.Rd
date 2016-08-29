@@ -33,35 +33,35 @@ Render a graph object with the VivaGraphJS library.
 }
 \examples{
 \dontrun{
-# Create a graph using the \\code{create_nodes}, \\code{create_edges},
-# and \\code{create_graph} functions
+# Create a node data frame (ndf)
 nodes <-
-  create_nodes(nodes = LETTERS,
-               type = "letter",
-               shape = sample(c("circle", "rectangle"),
-                              length(LETTERS),
-                              replace = TRUE),
-               fillcolor = sample(c("aqua", "gray80",
-                                    "pink", "lightgreen",
-                                    "azure", "yellow"),
-                                  length(LETTERS),
-                                  replace = TRUE))
+  create_nodes(
+    nodes = 1:6,
+    label = TRUE,
+    fillcolor = c("lightgrey", "red", "orange",
+                  "pink", "aqua", "yellow"),
+    shape = "circle",
+    value = c(2, 1, 0.5, 1, 1.8, 1),
+    type = c("1", "1", "1", "2", "2", "2"),
+    x = c(1, 2, 3, 4, 5, 6),
+    y = c(-2, -1, 0, 6, 4, 1))
 
+# Create an edge data frame (edf)
 edges <-
-  create_edges(from = sample(LETTERS, replace = TRUE),
-               to = sample(LETTERS, replace = TRUE),
-               rel = "letter_to_letter")
+  create_edges(
+    from = c(1, 2, 3, 4, 6, 5),
+    to = c(4, 3, 1, 3, 1, 4),
+    color = c("green", "green", "grey",
+              "grey", "blue", "blue"),
+    rel = "leading_to")
 
+# Create a graph object
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges,
-               graph_attrs = "layout = neato",
-               node_attrs = c("fontname = Helvetica",
-                              "style = filled"),
-               edge_attrs = c("color = gray20",
-                              "arrowsize = 0.5"))
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
-vivagraph(graph = graph)
+vivagraph(graph)
 }
 }
 

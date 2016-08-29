@@ -27,7 +27,7 @@ to that graph.
 # Create a graph with nodes and no edges
 nodes <-
   create_nodes(
-    nodes = c("a", "b", "c", "d"),
+    nodes = 1:4,
     type = "letter",
     color = c("red", "green", "grey", "blue"),
     value = c(3.5, 2.6, 9.4, 2.7))
@@ -37,8 +37,8 @@ graph <- create_graph(nodes_df = nodes)
 # Create an edge data frame
 edges <-
   create_edges(
-    from = c("a", "b", "c"),
-    to = c("d", "c", "a"),
+    from = c(1, 2, 3),
+    to = c(4, 3, 1),
     rel = "leading_to")
 
 # Add the edge data frame to the graph object to create a
@@ -49,6 +49,6 @@ graph <-
     edge_df = edges)
 
 get_edges(graph, return_type = "vector")
-#> [1] "a -> d" "b -> c" "c -> a"
+#> [1] "1 -> 4" "2 -> 3" "3 -> 1"
 }
 

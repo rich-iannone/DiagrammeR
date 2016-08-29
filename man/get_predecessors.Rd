@@ -22,16 +22,18 @@ nodes that have a
 connection to the given node.
 }
 \examples{
+# Set a seed
+set.seed(24)
+
 # Create a node data frame (ndf)
 nodes <-
-  create_nodes(
-    nodes = LETTERS)
+  create_nodes(nodes = 1:26)
 
 # Create an edge data frame (edf)
 edges <-
   create_edges(
-    from = sample(LETTERS, replace = TRUE),
-    to = sample(LETTERS, replace = TRUE))
+    from = sample(1:26, replace = TRUE),
+    to = sample(1:26, replace = TRUE))
 
 # From the ndf and edf, create a graph object
 graph <-
@@ -39,12 +41,12 @@ graph <-
     nodes_df = nodes,
     edges_df = edges)
 
-# Get predecessors for node `Z` in the graph
-get_predecessors(graph, node = "Z")
-#> [1] "A" "R" "R"
+# Get predecessors for node `26` in the graph
+get_predecessors(graph, node = 26)
+#> [1] "18"
 
 # If there are no predecessors, NA is returned
-get_predecessors(graph, node = "A")
+get_predecessors(graph, node = "1")
 #> [1] NA
 }
 

@@ -34,24 +34,26 @@ ID values returned.
 \examples{
 # Before getting node ID values, create a
 # simple graph
+# Create a node data frame (ndf)
 nodes <-
   create_nodes(
-    nodes = c("a", "b", "c", "d"),
+    nodes = 1:4,
     type = "letter",
     color = c("red", "green", "grey", "blue"),
     value = c(3.5, 2.6, 9.4, 2.7))
 
+# Create a graph
 graph <-
   create_graph(nodes_df = nodes)
 
 # Get a vector of all nodes in a graph
 get_nodes(graph)
-#> [1] "a" "b" "c" "d"
+#> [1] "1" "2" "3" "4"
 
 # Get a vector of node ID values from a node
 # data frame
 get_nodes(nodes)
-#> [1] "a" "b" "c" "d"
+#> [1] 1 2 3 4
 
 # Get a vector of node ID values using a numeric
 # comparison (i.e., all nodes with 'value' attribute
@@ -60,7 +62,7 @@ get_nodes(
   graph,
   node_attr = "value",
   match = "> 3")
-#> [1] "a" "c"
+#> [1] "1" "3"
 
 # Get a vector of node ID values using a match
 # pattern (i.e., all nodes with 'color' attribute
@@ -69,6 +71,6 @@ get_nodes(
   graph,
   node_attr = "color",
   match = "green")
-#> [1] "b"
+#> [1] "2"
 }
 

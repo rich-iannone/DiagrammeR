@@ -24,36 +24,46 @@ From a graph object of class
 is present.
 }
 \examples{
-# Create a node data frame
+# Set a seed
+set.seed(24)
+
+# Create a node data frame (ndf)
 nodes <-
   create_nodes(
-    nodes = LETTERS,
+    nodes = 1:26,
     label = TRUE,
-    type = "letter")
+    type = c(rep("a", 7),
+             rep("b", 9),
+             rep("c", 8),
+             rep("d", 2)))
 
-# Create an edge data frame
+# Create an edge data frame (edf)
 edges <-
   create_edges(
-    from = sample(LETTERS, replace = TRUE),
-    to = sample(LETTERS, replace = TRUE),
-    rel = "letter_to_letter")
+    from = sample(1:26, replace = TRUE),
+    to = sample(1:26, replace = TRUE),
+    rel = c(rep("rel_a", 7),
+            rep("rel_b", 9),
+            rep("rel_c", 8),
+            rep("rel_d", 2)))
 
-# Create a graph
+# Create a graph using the ndf and edf
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
-# Verify that node with ID `a` is not in graph
-node_present(graph, "a")
+# Verify that node with ID `34` is not in graph
+node_present(graph, 34)
 #> FALSE
 
-# Is node with ID `A` in the graph?
-node_present(graph, "A")
+# Is node with ID 5 in the graph?
+node_present(graph, 5)
 #> TRUE
 
-# Are all node ID values from the LETTERS vector
+# Are all node ID values from `1` to `26`
 # in the graph?
-all(sapply(LETTERS,
+all(sapply(1:26,
       function(x) node_present(graph, x)))
 #> TRUE
 }

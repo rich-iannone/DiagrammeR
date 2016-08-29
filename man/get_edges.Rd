@@ -45,7 +45,7 @@ set of edges returned.
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
-    nodes = c("a", "b", "c", "d"),
+    nodes = 1:4,
     type = "letter",
     color = c("red", "green", "grey", "blue"),
     value = c(3.5, 2.6, 9.4, 2.7))
@@ -53,8 +53,8 @@ nodes <-
 # Create an edge data frame (edf)
 edges <-
   create_edges(
-    from = c("a", "b", "c"),
-    to = c("d", "c", "a"),
+    from = c(1, 2, 3),
+    to = c(4, 3, 1),
     rel = "leading_to",
     color = c("pink", "blue", "red"),
     value = c(3.9, 2.5, 7.3))
@@ -66,24 +66,24 @@ graph <-
     edges_df = edges)
 
 # Get all edges within a graph, returned as a list
-get_edges(graph)
-#> [[1]]
-#> [1] "a" "b" "c"
-#>
-#> [[2]]
-#> [1] "d" "c" "a"
+get_edges(graph, return_type = "vector")
+#> [1] "1 -> 4" "2 -> 3" "3 -> 1"
 
 # Get all edges within a graph, returned as a
 # data frame
 get_edges(graph, return_type = "df")
 #>   from to
-#> 1    a  d
-#> 2    b  c
-#> 3    c  a
+#> 1    1  4
+#> 2    2  3
+#> 3    3  1
 
 # Get all edges within a graph, returned as a vector
-get_edges(graph, return_type = "vector")
-#> [1] "a -> d" "b -> c" "c -> a"
+get_edges(graph, return_type = "list")
+#> [[1]]
+#> [1] "1" "2" "3"
+#>
+#> [[2]]
+#> [1] "4" "3" "1"
 
 # Get a vector of edges using a numeric
 # comparison (i.e., all edges with a `value`
@@ -93,7 +93,7 @@ get_edges(
   edge_attr = "value",
   match = "> 3",
   return_type = "vector")
-#> [1] "a -> d" "c -> a"
+#> [1] "1 -> 4" "3 -> 1"
 
 # Get a vector of edges using a match
 get_edges(
@@ -101,6 +101,6 @@ get_edges(
   edge_attr = "color",
   match = "pink",
   return_type = "vector")
-#> [1] "a -> d"
+#> [1] "1 -> 4"
 }
 

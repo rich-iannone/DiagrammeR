@@ -24,28 +24,24 @@ object.
 # Create a simple graph
 nodes <-
   create_nodes(
-    nodes = c("a", "b", "c", "d",
-              "e", "f", "g", "h"),
-    value = c(3.5, 2.6, 9.4, 2.7,
-              5.2, 2.1, 4.8, 8.5))
+    nodes = 1:6,
+    value = c(3.5, 2.6, 9.4, 2.7, 5.2, 2.1))
 
 edges <-
   create_edges(
-    from = c("a", "b", "c", "g", "e",
-             "e", "h", "f", "a", "c"),
-    to = c("d", "c", "a", "c", "h",
-           "b", "d", "e", "f", "d"))
+    from = c(1, 2, 4, 5, 2, 6),
+    to = c(2, 4, 1, 3, 5, 5))
 
 graph <-
   create_graph(nodes_df = nodes,
                edges_df = edges)
 
 get_nodes(graph)
-#> [1] "a" "b" "c" "d" "e" "f" "g" "h"
+#> [1] "1" "2" "3" "4" "5" "6"
 
 get_edges(graph, return_type = "vector")
-#> [1] "a -> d" "b -> c" "c -> a" "g -> c" "e -> h"
-#> [6] "e -> b" "h -> d" "f -> e" "a -> f" "c -> d"
+#> [1] "1 -> 2" "2 -> 4" "4 -> 1" "5 -> 3" "2 -> 5"
+#> [6] "6 -> 5"
 
 # Create a selection of nodes
 graph <-
@@ -60,10 +56,10 @@ subgraph <-
 
 # Check the nodes available in the subgraph
 get_nodes(subgraph)
-#> [1] "a" "c" "e" "g" "h"
+#> [1] "1" "3" "5"
 
 # Check the edges available in the subgraph
 get_edges(subgraph, return_type = "vector")
-#> [1] "c -> a" "g -> c" "e -> h"
+#> [1] "5 -> 3"
 }
 

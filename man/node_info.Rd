@@ -20,37 +20,44 @@ information on nodes and their interrelationships
 within a graph.
 }
 \examples{
+# Set a seed
+set.seed(24)
+
 # Create a node data frame (ndf)
 nodes <-
   create_nodes(
-    nodes = LETTERS,
+    nodes = 1:26,
     label = TRUE,
-    type = c(rep("a_to_g", 7),
-             rep("h_to_p", 9),
-             rep("q_to_x", 8),
-             rep("y_and_z",2)))
+    type = c(rep("a", 7),
+             rep("b", 9),
+             rep("c", 8),
+             rep("d", 2)))
 
 # Create an edge data frame (edf)
 edges <-
   create_edges(
-    from = sample(LETTERS, replace = TRUE),
-    to = sample(LETTERS, replace = TRUE),
-    rel = "letter_to_letter")
+    from = sample(1:26, replace = TRUE),
+    to = sample(1:26, replace = TRUE),
+    rel = c(rep("rel_a", 7),
+            rep("rel_b", 9),
+            rep("rel_c", 8),
+            rep("rel_d", 2)))
 
-# Create a graph
+# Create a graph using the ndf and edf
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
 # Get information on the graph's nodes
 node_info(graph)
-#>    node label    type deg indeg outdeg loops
-#> 1     A     A  a_to_g   1     0      1     0
-#> 2     B     B  a_to_g   1     0      1     0
-#> 3     C     C  a_to_g   3     2      1     0
-#> 4     D     D  a_to_g   1     1      0     0
-#> 5     E     E  a_to_g   1     0      1     0
-#> 6     F     F  a_to_g   2     1      1     0
-#>..   ...   ...     ... ...   ...    ...   ...
+#>    node label type deg indeg outdeg loops
+#> 1     1     1    a   0     0      0     0
+#> 2    10    10    b   4     3      1     0
+#> 3    11    11    b   1     1      0     0
+#> 4    12    12    b   0     0      0     0
+#> 5    13    13    b   2     2      0     0
+#> 6    14    14    b   2     0      2     0
+#>..   ...   ...  ... ...   ...    ...   ...
 }
 
