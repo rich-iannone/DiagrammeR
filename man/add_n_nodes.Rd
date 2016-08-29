@@ -4,7 +4,7 @@
 \alias{add_n_nodes}
 \title{Add one or several unconnected nodes to the graph}
 \usage{
-add_n_nodes(graph, n, set_node_type = NULL)
+add_n_nodes(graph, n, type = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -13,7 +13,7 @@ add_n_nodes(graph, n, set_node_type = NULL)
 
 \item{n}{the number of new nodes to add to the graph.}
 
-\item{set_node_type}{an optional string to apply a
+\item{type}{an optional string to apply a
 \code{type} attribute to all newly created nodes.}
 }
 \value{
