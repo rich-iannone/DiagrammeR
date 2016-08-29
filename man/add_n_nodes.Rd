@@ -25,8 +25,8 @@ class \code{dgr_graph}. Optionally, set node
 \code{type} values for the new nodes.
 }
 \examples{
-# Create an empty graph and add 5 nodes to it; these
-# nodes will be given ID values from 1 to 5
+# Create an empty graph and add 5 nodes; these
+# nodes will be assigned ID values from `1` to `5`
 graph <-
   create_graph() \%>\%
   add_n_nodes(5)
