@@ -6,7 +6,7 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @param n the number of new nodes to add to the graph.
-#' @param set_node_type an optional string to apply a
+#' @param type an optional string to apply a
 #' \code{type} attribute to all newly created nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
@@ -23,7 +23,7 @@
 
 add_n_nodes <- function(graph,
                         n,
-                        set_node_type = NULL) {
+                        type = NULL) {
 
   # Get the number of nodes ever created for
   # this graph
@@ -48,11 +48,11 @@ add_n_nodes <- function(graph,
     }
   }
 
-  if (!is.null(set_node_type)) {
+  if (!is.null(type)) {
     new_nodes <-
       create_nodes(nodes = seq(node, node + n - 1, 1),
                    label = FALSE,
-                   type = set_node_type)
+                   type = type)
   } else {
     new_nodes <-
       create_nodes(nodes = seq(node, node + n - 1, 1),

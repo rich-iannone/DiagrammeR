@@ -19,9 +19,9 @@
 #' edges from existing nodes to the new nodes. The
 #' \code{to} option will create new edges directed
 #' toward the existing nodes.
-#' @param set_node_type an optional string to apply a
+#' @param type an optional string to apply a
 #' \code{type} attribute to all newly created nodes.
-#' @param set_edge_rel an optional string to apply a
+#' @param rel an optional string to apply a
 #' \code{rel} attribute to all newly created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
@@ -65,8 +65,8 @@
 add_n_nodes_ws <- function(graph,
                            n,
                            direction = NULL,
-                           set_node_type = NULL,
-                           set_edge_rel = NULL) {
+                           type = NULL,
+                           rel = NULL) {
 
   # If no node selection is available, return
   # the graph unchanged
@@ -130,23 +130,23 @@ add_n_nodes_ws <- function(graph,
         }
       }
 
-      if (!is.null(set_node_type)) {
+      if (!is.null(type)) {
         new_nodes <-
           create_nodes(
             nodes = seq(node, node + n - 1, 1),
-            type = set_node_type)
+            type = type)
       } else {
         new_nodes <-
           create_nodes(
             nodes = seq(node, node + n - 1, 1))
       }
 
-      if (!is.null(set_edge_rel)) {
+      if (!is.null(rel)) {
         new_edges <-
           create_edges(
             from = rep(nodes_in_selection[i], n),
             to = seq(node, node + n - 1, 1),
-            rel = set_edge_rel)
+            rel = rel)
       } else {
         new_edges <-
           create_edges(
@@ -191,23 +191,23 @@ add_n_nodes_ws <- function(graph,
         }
       }
 
-      if (!is.null(set_node_type)) {
+      if (!is.null(type)) {
         new_nodes <-
           create_nodes(
             nodes = seq(node, node + n - 1, 1),
-            type = set_node_type)
+            type = type)
       } else {
         new_nodes <-
           create_nodes(
             nodes = seq(node, node + n - 1, 1))
       }
 
-      if (!is.null(set_edge_rel)) {
+      if (!is.null(rel)) {
         new_edges <-
           create_edges(
             from = seq(node, node + n - 1, 1),
             to = rep(nodes_in_selection[i], n),
-            rel = set_edge_rel)
+            rel = rel)
       } else {
         new_edges <-
           create_edges(
