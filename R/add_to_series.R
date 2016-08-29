@@ -12,22 +12,19 @@
 #' # Create three graphs
 #' graph_1 <-
 #'   create_graph() %>%
-#'   add_node("a") %>%
-#'   add_node("b") %>%
-#'   add_node("c") %>%
-#'   add_edge("a", "c") %>%
-#'   add_edge("a", "b") %>%
-#'   add_edge("b", "c")
+#'   add_n_nodes(3) %>%
+#'   add_edges_w_string(
+#'     "1->3 1->2 2->3")
 #'
 #' graph_2 <-
 #'   graph_1 %>%
-#'   add_node("d") %>%
-#'   add_edge("d", "c")
+#'   add_node() %>%
+#'   add_edge(4, 3)
 #'
 #' graph_3 <-
 #'   graph_2 %>%
-#'   add_node("e") %>%
-#'   add_edge("e", "b")
+#'   add_node() %>%
+#'   add_edge(5, 2)
 #'
 #' # Create an empty graph series and add
 #' # the graphs
