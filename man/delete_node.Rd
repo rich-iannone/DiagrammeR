@@ -27,10 +27,10 @@ specifying its node ID.
 graph <- create_graph()
 
 # Add two nodes
-graph <- add_node(graph, node = "a")
-graph <- add_node(graph, node = "b")
+graph <- add_node(graph)
+graph <- add_node(graph)
 
 # Delete a node
-graph <- delete_node(graph, node = "a")
+graph <- delete_node(graph, node = 1)
 }
 

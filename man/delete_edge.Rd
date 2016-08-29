@@ -31,21 +31,21 @@ edge direction.
 graph <- create_graph()
 
 # Add two nodes
-graph <- add_node(graph, node = "a")
-graph <- add_node(graph, node = "b")
+graph <- add_node(graph)
+graph <- add_node(graph)
 
 # Add an edge
 graph <-
   add_edge(
     graph = graph,
-    from = "a",
-    to = "b")
+    from = 1,
+    to = 2)
 
 # Delete the edge
 graph <-
   delete_edge(
     graph = graph,
-    from = "a",
-    to = "b")
+    from = 1,
+    to = 2)
 }
 
