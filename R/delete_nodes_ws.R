@@ -6,6 +6,27 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' # Create a graph
+#' graph <-
+#'   create_graph() %>%
+#'   add_n_nodes(3) %>%
+#'   add_edges_w_string(
+#'     "1->3 1->2 2->3")
+#'
+#' # Select node with ID `1`
+#' graph <-
+#'   graph %>%
+#'   select_nodes_by_id(1)
+#'
+#' # Delete node in selection (and any attached edges)
+#' graph <-
+#'   graph %>%
+#'   delete_nodes_ws
+#'
+#' # Get a count of nodes in the graph
+#' node_count(graph)
+#' #> [1] 2
 #' @export delete_nodes_ws
 
 delete_nodes_ws <- function(graph) {
