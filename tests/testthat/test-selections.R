@@ -6,20 +6,23 @@ test_that("selecting a node in a graph is possible", {
 
   # Create a simple graph
   nodes <-
-    create_nodes(nodes = c("a", "b", "c", "d"),
-                 type = "letter",
-                 label = TRUE,
-                 value = c(3.5, 2.6, 9.4, 2.7))
+    create_nodes(
+      nodes = c("a", "b", "c", "d"),
+      type = "letter",
+      label = TRUE,
+      value = c(3.5, 2.6, 9.4, 2.7))
 
   edges <-
-    create_edges(from = c("a", "b", "c"),
-                 to = c("d", "c", "a"),
-                 rel = "leading_to",
-                 width = c(1, 2, 3))
+    create_edges(
+      from = c("a", "b", "c"),
+      to = c("d", "c", "a"),
+      rel = "leading_to",
+      width = c(1, 2, 3))
 
   graph <-
-    create_graph(nodes_df = nodes,
-                 edges_df = edges)
+    create_graph(
+      nodes_df = nodes,
+      edges_df = edges)
 
   # Select nodes "a" and "c"
   graph_a_c <- select_nodes(graph = graph, nodes = c("a", "c"))
@@ -187,26 +190,30 @@ test_that("selecting an edge in a graph is possible", {
 
   # Create a simple graph
   nodes <-
-    create_nodes(nodes = c("a", "b", "c", "d"),
-                 type = "letter",
-                 label = TRUE,
-                 value = c(3.5, 2.6, 9.4, 2.7))
+    create_nodes(
+      nodes = c("a", "b", "c", "d"),
+      type = "letter",
+      label = TRUE,
+      value = c(3.5, 2.6, 9.4, 2.7))
 
   edges <-
-    create_edges(from = c("a", "b", "c"),
-                 to = c("d", "c", "a"),
-                 rel = "leading_to",
-                 width = c(1, 2, 3))
+    create_edges(
+      from = c("a", "b", "c"),
+      to = c("d", "c", "a"),
+      rel = "leading_to",
+      width = c(1, 2, 3))
 
   graph <-
-    create_graph(nodes_df = nodes,
-                 edges_df = edges)
+    create_graph(
+      nodes_df = nodes,
+      edges_df = edges)
 
   # Select nodes "a" -> "d" and "b" -> "c"
   graph_ad_bc <-
-    select_edges(graph = graph,
-                 from = c("a", "b"),
-                 to = c("d", "c"))
+    select_edges(
+      graph = graph,
+      from = c("a", "b"),
+      to = c("d", "c"))
 
   # Expect that a selection object is available
   expect_true(!is.null(graph_ad_bc$selection))
@@ -411,37 +418,18 @@ test_that("selecting edges via node IDs is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node(node = "A") %>% add_node(node = "B") %>%
-    add_node(node = "C") %>% add_node(node = "D") %>%
-    add_node(node = "E") %>% add_node(node = "F") %>%
-    add_node(node = "1") %>% add_node(node = "2") %>%
-    add_node(node = "3") %>% add_node(node = "4") %>%
-    add_node(node = "5") %>% add_node(node = "6") %>%
-    add_node(node = "7") %>% add_node(node = "8") %>%
-    add_edge("A", "1") %>%
-    add_edge("B", "2") %>%
-    add_edge("B", "3") %>%
-    add_edge("B", "4") %>%
-    add_edge("C", "A") %>%
-    add_edge("1", "D") %>%
-    add_edge("E", "A") %>%
-    add_edge("2", "4") %>%
-    add_edge("1", "5") %>%
-    add_edge("1", "F") %>%
-    add_edge("E", "6") %>%
-    add_edge("4", "6") %>%
-    add_edge("5", "7") %>%
-    add_edge("6", "7") %>%
-    add_edge("3", "8")
+    add_path(8)
 
-  # Select all edges associated with nodes with ID `C`, `A`, and `E`
-  graph <- select_edges_by_node_id(graph, nodes = c("C", "A", "E"))
+  # Select all edges associated with nodes with
+  # ID `3` and `4`
+  graph <-
+    select_edges_by_node_id(graph, nodes = c(3, 4))
 
   # Expect that certain edges with be available in the selection
   expect_true(all(graph$selection$edges$from %in%
-                    c("A", "C", "E", "E")))
+                    c("3", "4", "2")))
   expect_true(all(graph$selection$edges$to %in%
-                    c("1", "A", "A", "6")))
+                    c("4", "5", "3")))
 })
 
 test_that("selecting nodes in a neighborhood is possible", {
@@ -449,85 +437,66 @@ test_that("selecting nodes in a neighborhood is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node(node = "A") %>% add_node(node = "B") %>%
-    add_node(node = "C") %>% add_node(node = "D") %>%
-    add_node(node = "E") %>% add_node(node = "F") %>%
-    add_node(node = "1") %>% add_node(node = "2") %>%
-    add_node(node = "3") %>% add_node(node = "4") %>%
-    add_node(node = "5") %>% add_node(node = "6") %>%
-    add_node(node = "7") %>% add_node(node = "8") %>%
-    add_edge("A", "1") %>%
-    add_edge("B", "2") %>%
-    add_edge("B", "3") %>%
-    add_edge("B", "4") %>%
-    add_edge("C", "A") %>%
-    add_edge("1", "D") %>%
-    add_edge("E", "A") %>%
-    add_edge("2", "4") %>%
-    add_edge("1", "5") %>%
-    add_edge("1", "F") %>%
-    add_edge("E", "6") %>%
-    add_edge("4", "6") %>%
-    add_edge("5", "7") %>%
-    add_edge("6", "7") %>%
-    add_edge("3", "8")
+    add_path(12)
 
-  # Create a selection of nodes centered around node "U" and
-  # including those nodes a depth of 2 edges away
+  # Create a selection of nodes centered around
+  # node `6` and including those nodes a depth of 2
+  # edges away
   graph_sel_1_dist_2 <-
     select_nodes_in_neighborhood(
       graph = graph,
-      node = "1",
+      node = 6,
       distance = 2)
 
   # Expect that specific nodes are part of a selection
-  # object in 'nodes'
-  expect_true(all(graph_sel_1_dist_2$selection$nodes ==
-                    c("1", "D", "5", "F", "A", "7",
-                      "C", "E")))
+  # object in `nodes`
+  expect_true(
+    all(graph_sel_1_dist_2$selection$nodes ==
+          c("6", "7", "5", "8", "4")))
 
   # Create a selection of nodes centered around node "U" and
   # including those nodes a distance of 4 nodes away
   graph_sel_1_sel_4_dist_2 <-
     select_nodes_in_neighborhood(
       graph = graph_sel_1_dist_2,
-      node = "4",
+      node = 4,
       distance = 2)
 
   # Expect that specific nodes are part of a selection
   # object in 'nodes'
-  expect_true(all(graph_sel_1_sel_4_dist_2$selection$nodes ==
-                    c("1", "D", "5", "F", "A", "7", "C",
-                      "E", "4", "6", "B", "2", "3")))
+  expect_true(
+    all(graph_sel_1_sel_4_dist_2$selection$nodes ==
+          c("6", "7", "5", "8", "4", "3", "2")))
 
   # Create a selection of nodes centered around node "A" and
   # including those nodes a distance of 3 nodes away
   graph_sel_1_sel_4_dist_2_sel_A_dist_3 <-
     select_nodes_in_neighborhood(
       graph = graph_sel_1_sel_4_dist_2,
-      node = "A",
+      node = 1,
       distance = 3,
       set_op = "intersect")
 
   # Expect that specific nodes are part of a selection
   # object in 'nodes'
-  expect_true(all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
-                    c("1", "D", "5", "F", "A", "7",
-                      "C", "E", "4", "6")))
+  expect_true(
+    all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
+          c("4", "3", "2")))
 
   # Create a selection of nodes centered around node "7" and
   # including those nodes a distance of 2 nodes away
   graph_sel_1_sel_4_dist_2_sel_A_dist_3 <-
     select_nodes_in_neighborhood(
       graph = graph_sel_1_sel_4_dist_2,
-      node = "7",
+      node = 7,
       distance = 2,
       set_op = "difference")
 
   # Expect that specific nodes are part of a selection
   # object in 'nodes'
-  expect_true(all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
-                    c("D", "F", "A", "C", "B", "2", "3")))
+  expect_true(
+    all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
+          c("4", "3", "2")))
 })
 
 test_that("getting a selection is possible", {
@@ -535,110 +504,81 @@ test_that("getting a selection is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node(node = "A") %>% add_node(node = "B") %>%
-    add_node(node = "C") %>% add_node(node = "D") %>%
-    add_node(node = "E") %>% add_node(node = "F") %>%
-    add_node(node = "1") %>% add_node(node = "2") %>%
-    add_node(node = "3") %>% add_node(node = "4") %>%
-    add_node(node = "5") %>% add_node(node = "6") %>%
-    add_node(node = "7") %>% add_node(node = "8") %>%
-    add_edge("A", "1") %>%
-    add_edge("B", "2") %>%
-    add_edge("B", "3") %>%
-    add_edge("B", "4") %>%
-    add_edge("C", "A") %>%
-    add_edge("1", "D") %>%
-    add_edge("E", "A") %>%
-    add_edge("2", "4") %>%
-    add_edge("1", "5") %>%
-    add_edge("1", "F") %>%
-    add_edge("E", "6") %>%
-    add_edge("4", "6") %>%
-    add_edge("5", "7") %>%
-    add_edge("6", "7") %>%
-    add_edge("3", "8")
+    add_path(12)
 
   # Select all nodes in graph and get selection
   graph_node_selection_1 <-
-    graph %>% select_nodes() %>% get_selection()
+    graph %>%
+    select_nodes() %>%
+    get_selection()
 
   # Expect that specific nodes are returned
-  expect_true(all(graph_node_selection_1 ==
-                    c("A", "B", "C", "D", "E", "F", "1",
-                      "2", "3", "4", "5", "6", "7", "8")))
+  expect_true(
+    all(graph_node_selection_1 ==
+          c("1", "2", "3", "4", "5", "6",
+            "7", "8", "9", "10", "11", "12")))
 
   # Select all edges in graph and get selection
   graph_edge_selection_1 <-
-    graph %>% select_edges() %>% get_selection()
+    graph %>%
+    select_edges() %>%
+    get_selection()
 
   # Expect that specific nodes are returned
-  expect_true(all(graph_edge_selection_1 ==
-                    c("A -> 1", "B -> 2", "B -> 3",
-                      "B -> 4", "C -> A", "1 -> D",
-                      "E -> A", "2 -> 4", "1 -> 5",
-                      "1 -> F", "E -> 6", "4 -> 6",
-                      "5 -> 7", "6 -> 7", "3 -> 8")))
+  expect_true(
+    all(graph_edge_selection_1 ==
+          c("1 -> 2", "2 -> 3", "3 -> 4", "4 -> 5",
+            "5 -> 6", "6 -> 7", "7 -> 8", "8 -> 9",
+            "9 -> 10", "10 -> 11", "11 -> 12")))
 
 })
 
 test_that("inverting a selection is possible", {
 
   # Create a graph
+  # Create a graph
   graph <-
     create_graph() %>%
-    add_node(node = "A") %>% add_node(node = "B") %>%
-    add_node(node = "C") %>% add_node(node = "D") %>%
-    add_node(node = "E") %>% add_node(node = "F") %>%
-    add_node(node = "1") %>% add_node(node = "2") %>%
-    add_node(node = "3") %>% add_node(node = "4") %>%
-    add_node(node = "5") %>% add_node(node = "6") %>%
-    add_node(node = "7") %>% add_node(node = "8") %>%
-    add_edge("A", "1") %>%
-    add_edge("B", "2") %>%
-    add_edge("B", "3") %>%
-    add_edge("B", "4") %>%
-    add_edge("C", "A") %>%
-    add_edge("1", "D") %>%
-    add_edge("E", "A") %>%
-    add_edge("2", "4") %>%
-    add_edge("1", "5") %>%
-    add_edge("1", "F") %>%
-    add_edge("E", "6") %>%
-    add_edge("4", "6") %>%
-    add_edge("5", "7") %>%
-    add_edge("6", "7") %>%
-    add_edge("3", "8")
+    add_path(12)
 
   # Select nodes "1" and "2" in the graph
   graph_select_1_2 <-
-    graph %>% select_nodes(nodes = "1") %>%
+    graph %>%
+    select_nodes(nodes = "1") %>%
     select_nodes(nodes = "2")
 
   # Invert the selection so that every other node is selected
   graph_select_1_2_inverted <-
-    graph_select_1_2 %>% invert_selection()
+    graph_select_1_2 %>%
+    invert_selection()
 
   # Expect that all nodes except "1" and "2" are in selection
-  expect_true(all(graph_select_1_2_inverted$selection$nodes %in%
-                    c("A", "B", "C", "D", "E", "F",
-                      "3","4", "5", "6", "7", "8")))
+  expect_true(
+    all(graph_select_1_2_inverted$selection$nodes %in%
+          c("3", "4", "5", "6", "7", "8",
+            "9", "10", "11", "12")))
 
-  # Select edges "1" -> "5" and "4" -> "6" in the graph
+  # Select edges `1` -> `5` and `4` -> `6` in the graph
   graph_select_edges_1_5__4_6 <-
-    graph %>% select_edges(from = "1", to = "5") %>%
+    graph %>%
+    select_edges(from = "1", to = "5") %>%
     select_edges(from = "4", to = "6")
 
   # Invert the selection so that every other edge is selected
   graph_select_edges_1_5__4_6_inverted <-
-    graph_select_edges_1_5__4_6 %>% invert_selection()
+    graph_select_edges_1_5__4_6 %>%
+    invert_selection()
 
   # Expect that every other edge is now in the selection
-  expect_true(all(graph_select_edges_1_5__4_6_inverted$selection$edges$from %in%
-                    c("A", "B", "B", "B", "C", "1", "E",
-                      "2", "1", "E", "5", "6", "3")))
-  expect_true(all(graph_select_edges_1_5__4_6_inverted$selection$edges$to %in%
-                    c("1", "2", "3", "4", "A", "D", "A",
-                      "4", "F", "6", "7", "7", "8")))
+  expect_true(
+    all(graph_select_edges_1_5__4_6_inverted$selection$edges$from %in%
+          c("1", "2", "3", "4", "5", "6", "7", "8",
+            "9", "10", "11")))
+
+  expect_true(
+    all(graph_select_edges_1_5__4_6_inverted$selection$edges$to %in%
+          c("2", "3", "4", "5", "6", "7", "8",
+            "9", "10", "11", "12")))
 
   # Expect an error if inverting selection that doesn't exist
   expect_error(invert_selection(graph))
@@ -655,11 +595,13 @@ test_that("getting/clearing a selection is possible", {
 
   # Select all nodes in the graph
   graph_select_all_nodes <-
-    graph %>% select_nodes()
+    graph %>%
+    select_nodes
 
   # Get the selection and expect both nodes to be present
-  expect_true(all(c("1", "2") %in%
-                    get_selection(graph_select_all_nodes)))
+  expect_true(
+    all(c("1", "2") %in%
+          get_selection(graph_select_all_nodes)))
 
   # Clear the selection
   graph_select_all_nodes_cleared <-
@@ -670,5 +612,6 @@ test_that("getting/clearing a selection is possible", {
 
   # Expect an NA value returned when getting a selection that
   # is not present
-  expect_true(is.na(get_selection(graph_select_all_nodes_cleared)))
+  expect_true(
+    is.na(get_selection(graph_select_all_nodes_cleared)))
 })

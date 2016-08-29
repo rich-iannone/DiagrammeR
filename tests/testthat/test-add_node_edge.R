@@ -6,8 +6,8 @@ test_that("adding a node to a graph is possible", {
   graph <- create_graph()
 
   # Add two nodes to the graph
-  graph <- add_node(graph, node = "a")
-  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph)
+  graph <- add_node(graph)
 
   # Expect that names in this graph object match a
   # prescribed set of names
@@ -33,7 +33,7 @@ test_that("adding a node to a graph is possible", {
   expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the 'nodes_df' component is a data frame
-  expect_true(inherits(graph$nodes_df,"data.frame"))
+  expect_true(inherits(graph$nodes_df, "data.frame"))
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
@@ -44,28 +44,9 @@ test_that("adding a node to a graph is possible", {
   # Expect that the 'nodes_df' data frame has 2 rows
   expect_true(nrow(graph$nodes_df) == 2)
 
-  # Add a node that already exists in the graph
-  graph_2 <- add_node(graph, node = "a")
-
-  # Expect that the graph won't change states
-  expect_equal(graph, graph_2)
-
-  # Expect a specific message when more than a single
-  # node is specified
-  expect_error(
-    add_node(graph, node = c("y", "z")))
-
-  # Expect that attempting to add more than a single
-  # node will return an unchanged graph
-  expect_error(
-    add_node(graph, node = c("y", "z")))
-
   # Add a node with attributes to the graph
   graph_3 <-
-    add_node(
-      graph,
-      node = "c",
-      type = "fresh")
+    add_node(graph, type = "fresh")
 
   # Expect that there will be 3 nodes in the graph
   expect_equal(node_count(graph_3), 3)
@@ -73,19 +54,18 @@ test_that("adding a node to a graph is possible", {
   # Expect that the "type" value will be present for
   # the node in the new graph
   expect_equal(
-    node_type(graph_3, node = "c"), "fresh")
+    node_type(graph_3, node = 3), "fresh")
 
   # Expect that the other nodes in the graph will
   # still have unassigned `type` values
-  expect_true(is.na(node_type(graph_3, node = "a")))
-  expect_true(is.na(node_type(graph_3, node = "b")))
+  expect_true(is.na(node_type(graph_3, node = 1)))
+  expect_true(is.na(node_type(graph_3, node = 2)))
 
   # Create a graph with a single, unlabeled node
   graph_unlabeled <- create_graph()
+
   graph_unlabeled <-
-    add_node(
-      graph = graph_unlabeled,
-      node = "a", label = FALSE)
+    add_node(graph_unlabeled, label = FALSE)
 
   # Expect that the graph will have one unlabeled node
   expect_true(
@@ -93,106 +73,96 @@ test_that("adding a node to a graph is possible", {
 
   # Add a node to the graph that is joined from another
   graph_from <-
-    add_node(
-      graph_3,
-      node = "d",
-      from = "c")
+    add_node(graph_3, from = 3)
 
-  # Expect that 'edges_df' is not NULL
+  # Expect that `edges_df` is not NULL
   expect_true(!is.null(graph_from$edges_df))
 
   # Expect that the new node is available in the graph
-  expect_true(node_present(graph_from, "d"))
+  expect_true(node_present(graph_from, 4))
 
-  # Expect that the edge from "c" to "d" is in the graph
-  expect_true(edge_present(graph_from, from = "c", to = "d"))
+  # Expect that the edge from `3` to `4` is in the graph
+  expect_true(edge_present(graph_from, from = 3, to = 4))
 
   # Expect that the node label is the same as the ID,
   # since the default value for `label` is TRUE
   expect_true(
-    node_info(graph_from)[which(node_info(graph_from)$node == "d"),]$node ==
-      node_info(graph_from)[which(node_info(graph_from)$node == "d"),]$label
+    node_info(graph_from)[which(node_info(graph_from)$node == 4),]$node ==
+      node_info(graph_from)[which(node_info(graph_from)$node == 4),]$label
   )
 
-  # Expect that for node "d", the 'type' is not set
+  # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is NULL
-  expect_true(is.na(node_type(graph_from, node = "d")))
+  expect_true(is.na(node_type(graph_from, node = 4)))
 
   # Add a node to the graph that is joined to another
   graph_to <-
-    add_node(
-      graph_3,
-      node = "d",
-      to = "c")
+    add_node(graph_3, to = 3)
 
-  # Expect that 'edges_df' is not NULL
+  # Expect that `edges_df` is not NULL
   expect_true(!is.null(graph_to$edges_df))
 
   # Expect that the new node is available in the graph
-  expect_true(node_present(graph_to, "d"))
+  expect_true(node_present(graph_to, 4))
 
-  # Expect that the edge from "d" to "c" is in the graph
-  expect_true(edge_present(graph_to, from = "d", to = "c"))
+  # Expect that the edge from `4` to `3` is in the graph
+  expect_true(edge_present(graph_to, from = 4, to = 3))
 
   # Expect that the node label is the same as the ID,
   # since the default value for `label` is TRUE
   expect_true(
     node_info(graph_to)[
-      which(node_info(graph_to)$node == "d"),]$node ==
+      which(node_info(graph_to)$node == 4),]$node ==
       node_info(graph_to)[
-        which(node_info(graph_to)$node == "d"),]$label
+        which(node_info(graph_to)$node == 4),]$label
   )
 
-  # Expect that for node "d", the 'type' is not set
+  # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is NULL
-  expect_true(is.na(node_type(graph_to, node = "d")))
+  expect_true(is.na(node_type(graph_to, node = 4)))
 
   # Add a node to the graph that is joined from
   # another and to another
   graph_to_from <-
-    add_node(
-      graph_3,
-      node = "d",
-      from = "a",
-      to = "b")
+    add_node(graph_3, from = 1, to = 2)
 
-  # Expect that 'edges_df' is not NULL
+  # Expect that `edges_df` is not NULL
   expect_true(!is.null(graph_to_from$edges_df))
 
   # Expect that the new node is available in the graph
-  expect_true(node_present(graph_to_from, "d"))
+  expect_true(node_present(graph_to_from, 4))
 
-  # Expect that the edge from "a" to "d" is in the graph
+  # Expect that the edge from `1` to `4` is in the graph
   expect_true(
-    edge_present(graph_to_from, from = "a", to = "d"))
+    edge_present(graph_to_from, from = 1, to = 4))
 
-  # Expect that the edge from "d" to "b" is in the graph
+  # Expect that the edge from `4` to `2` is in the graph
   expect_true(
-    edge_present(graph_to_from, from = "d", to = "b"))
+    edge_present(graph_to_from, from = 4, to = 2))
 
   # Expect that the node label is the same as the ID,
   # since the default value for `label` is TRUE
   expect_true(
     node_info(graph_to_from)[
-      which(node_info(graph_to_from)$node == "d"),]$node ==
+      which(node_info(graph_to_from)$node == 4),]$node ==
       node_info(graph_to_from)[
-        which(node_info(graph_to_from)$node == "d"),]$label)
+        which(node_info(graph_to_from)$node == 4),]$label)
 
-  # Expect that for node "d", the `type` is not set
+  # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is NULL
   expect_true(
-    is.na(node_type(graph_to_from, node = "d")))
+    is.na(node_type(graph_to_from, node = 4)))
 
   # Create an empty graph
   graph <- create_graph()
 
   # Add a node
-  graph <- add_node(graph, node = "a")
+  graph <- add_node(graph)
 
   # Add another node, connecting with only a value
-  # provided for 'from' but where the reference node
+  # provided as `from` but where the referenced node
   # is not in the graph
-  expect_error(add_node(graph, node = "b", from = "c"))
+  expect_error(add_node(graph, from = 3))
 })
 
 test_that("adding an edge to a graph is possible", {
@@ -201,13 +171,12 @@ test_that("adding an edge to a graph is possible", {
   graph <- create_graph()
 
   # Add two nodes
-  graph <- add_node(graph, node = "a")
-  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph)
+  graph <- add_node(graph)
 
   # Add an edge
   graph <-
-    add_edge(
-      graph, from = "a", to = "b", rel = "to_get")
+    add_edge(graph, from = 1, to = 2, rel = "to_get")
 
   # Expect that names in this graph object match a
   # prescribed set of names
@@ -231,28 +200,28 @@ test_that("adding an edge to a graph is possible", {
   expect_true(!is.null(graph$node_attrs))
   expect_true(!is.null(graph$edge_attrs))
 
-  # Expect that the 'nodes_df' component is a data frame
-  expect_true(inherits(graph$nodes_df,"data.frame"))
+  # Expect that the `nodes_df` component is a data frame
+  expect_true(inherits(graph$nodes_df, "data.frame"))
 
-  # Expect that the 'edges_df' component is a data frame
-  expect_true(inherits(graph$edges_df,"data.frame"))
+  # Expect that the `edges_df` component is a data frame
+  expect_true(inherits(graph$edges_df, "data.frame"))
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
 
-  # Expect that the 'nodes_df' data frame has 3 columns
+  # Expect that the `nodes_df` data frame has 3 columns
   expect_true(ncol(graph$edges_df) == 3)
 
-  # Expect that the 'nodes_df' data frame has 1 row
+  # Expect that the `nodes_df` data frame has 1 row
   expect_true(nrow(graph$edges_df) == 1)
 
   # Expect a message when adding an existing edge to the graph
-  expect_error(add_edge(graph, from = "a", to = "b"))
+  expect_error(add_edge(graph, from = 1, to = 2))
 
   # Expect an error when attempting to add more than 1 edge
-  expect_error(add_edge(graph, from = c("a", "b"), to = "b"))
+  expect_error(add_edge(graph, from = c(1, 2), to = 2))
 
-  # Expect an error when calling 'add_edge' on an empty graph
+  # Expect an error when calling `add_edge()` on an empty graph
   expect_error(add_edge(graph = create_graph()))
 })
 
@@ -309,8 +278,8 @@ test_that("adding several nodes from a selected node is possible", {
   # Add 10 nodes to the empty graph
   graph <- add_n_nodes(graph, 10)
 
-  # Select the node with ID of '5'
-  graph <- select_nodes(graph, nodes = "5")
+  # Select the node with ID of `5`
+  graph <- select_nodes(graph, nodes = 5)
 
   # Add 10 nodes as successors to the selected node
   graph <- add_n_nodes_ws(graph, 10, "from")
@@ -324,13 +293,13 @@ test_that("adding several nodes from a selected node is possible", {
   # Expect a total of 10 edges in the graph
   expect_equal(edge_count(graph), 10)
 
-  # Expect that node IDs where edges are 'from' belong
-  # to the node with ID of '5'
+  # Expect that node IDs where edges are `from` belong
+  # to the node with ID of `5`
   expect_equal(get_edge_df(graph)[, 1],
                rep("5", 10))
 
-  # Expect that node IDs where edges are 'to' increase
-  # from '11' to '20'
+  # Expect that node IDs where edges are `to` increase
+  # from `11` to `20`
   expect_equal(get_edge_df(graph)[, 2],
                as.character(seq(11, 20)))
 
@@ -345,8 +314,8 @@ test_that("adding several nodes from a selected node is possible", {
   # Add 10 nodes to the empty graph
   graph <- add_n_nodes(graph, 10)
 
-  # Select the node with ID of '5'
-  graph <- select_nodes(graph, nodes = "5")
+  # Select the node with ID of `5`
+  graph <- select_nodes(graph, nodes = 5)
 
   # Add 10 nodes as successors to the selected node,
   # this time with a node `type` and edge `rel` set for
@@ -373,8 +342,8 @@ test_that("adding several nodes to a selected node is possible", {
   # Add 10 nodes to the empty graph
   graph <- add_n_nodes(graph, 10)
 
-  # Select the node with ID of '5'
-  graph <- select_nodes(graph, nodes = "5")
+  # Select the node with ID of `5`
+  graph <- select_nodes(graph, nodes = 5)
 
   # Add 10 nodes as predecessors to the selected node
   graph <- add_n_nodes_ws(graph, 10, "to")
@@ -388,13 +357,13 @@ test_that("adding several nodes to a selected node is possible", {
   # Expect a total of 10 edges in the graph
   expect_equal(edge_count(graph), 10)
 
-  # Expect that node IDs where edges are 'to' belong
-  # to the node with ID of '5'
+  # Expect that node IDs where edges are `to` belong
+  # to the node with ID of `5`
   expect_equal(get_edge_df(graph)[, 2],
                rep("5", 10))
 
-  # Expect that node IDs where edges are 'from' increase
-  # from '11' to '20'
+  # Expect that node IDs where edges are `from` increase
+  # from `11` to `20`
   expect_equal(get_edge_df(graph)[, 1],
                as.character(seq(11, 20)))
 
@@ -409,8 +378,8 @@ test_that("adding several nodes to a selected node is possible", {
   # Add 10 nodes to the empty graph
   graph <- add_n_nodes(graph, 10)
 
-  # Select the node with ID of '5'
-  graph <- select_nodes(graph, nodes = "5")
+  # Select the node with ID of `5`
+  graph <- select_nodes(graph, nodes = 5)
 
   # Add 10 nodes as predecessors to the selected node,
   # this time with a node `type` and edge `rel` set for

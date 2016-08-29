@@ -6,8 +6,8 @@ test_that("Copying node attributes is possible", {
   graph <- create_graph()
 
   # Add two nodes to the graph
-  graph <- add_node(graph, node = "a")
-  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph)
+  graph <- add_node(graph)
 
   # Add a node attribute
   graph <- set_node_attrs(graph, "value", 1)
@@ -110,8 +110,8 @@ test_that("Dropping node attributes is possible", {
   graph <- create_graph()
 
   # Add two nodes to the graph
-  graph <- add_node(graph, node = "a")
-  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph)
+  graph <- add_node(graph)
 
   # Add a node attribute
   graph <- set_node_attrs(graph, "value", 1)
@@ -181,8 +181,8 @@ test_that("Mutating node attributes is possible", {
   graph <- create_graph()
 
   # Add two nodes to the graph
-  graph <- add_node(graph, node = "a")
-  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph)
+  graph <- add_node(graph)
 
   # Add node attributes
   graph <- set_node_attrs(graph, "value", 1)
@@ -324,8 +324,8 @@ test_that("Recoding node attributes is possible", {
   graph <- create_graph()
 
   # Add two nodes to the graph
-  graph <- add_node(graph, node = "a")
-  graph <- add_node(graph, node = "b")
+  graph <- add_node(graph)
+  graph <- add_node(graph)
 
   # Add node attributes
   graph <- set_node_attrs(graph, "value", 1)
