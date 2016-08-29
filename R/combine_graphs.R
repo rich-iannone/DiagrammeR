@@ -25,7 +25,14 @@
 #'
 #' # Get the number of nodes in the combined graph
 #' node_count(combined_graph)
-#' #> 14
+#' #> [1] 14
+#'
+#' # The `combine_graphs()` function will renumber
+#' # node ID values in graph `y` during the union;
+#' # this ensures that node ID values are unique
+#' get_nodes(combined_graph)
+#' #> [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
+#' #> [10] "10" "11" "12" "13" "14"
 #' @importFrom dplyr inner_join rename select
 #' @export combine_graphs
 
