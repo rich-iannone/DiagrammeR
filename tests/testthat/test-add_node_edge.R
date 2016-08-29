@@ -253,12 +253,13 @@ test_that("adding several nodes to a graph at once is possible", {
   # Create a graph with 10 nodes of a specified type
   graph <- create_graph()
   graph <-
-    add_n_nodes(graph, 10, set_node_type = "test_node")
+    add_n_nodes(graph, 10, type = "test_node")
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(node_count(graph), 10)
 
-  # Expect monotonically-increasing node ID values from 1 to 10
+  # Expect monotonically-increasing node ID values
+  # from `1` to `10`
   expect_equal(get_nodes(graph), as.character(seq(1, 10)))
 
   # Expect that a `type` value have been set for all nodes
@@ -324,8 +325,8 @@ test_that("adding several nodes from a selected node is possible", {
     add_n_nodes_ws(
       graph, 10,
       direction = "from",
-      set_node_type = "new",
-      set_edge_rel = "related")
+      type = "new",
+      rel = "related")
 
   # Expect that all edges have a `rel` set
   expect_true(all(get_edge_df(graph)[, 3] == "related"))
@@ -351,8 +352,10 @@ test_that("adding several nodes to a selected node is possible", {
   # Expect a total of 20 nodes in the graph
   expect_equal(node_count(graph), 20)
 
-  # Expect monotonically-increasing node ID values from 1 to 20
-  expect_equal(get_nodes(graph), as.character(seq(1, 20)))
+  # Expect monotonically-increasing node ID values
+  # from `1` to `20`
+  expect_equal(
+    get_nodes(graph), as.character(seq(1, 20)))
 
   # Expect a total of 10 edges in the graph
   expect_equal(edge_count(graph), 10)
@@ -362,8 +365,8 @@ test_that("adding several nodes to a selected node is possible", {
   expect_equal(get_edge_df(graph)[, 2],
                rep("5", 10))
 
-  # Expect that node IDs where edges are `from` increase
-  # from `11` to `20`
+  # Expect that node IDs where edges are `from`
+  # increase from `11` to `20`
   expect_equal(get_edge_df(graph)[, 1],
                as.character(seq(11, 20)))
 
@@ -388,8 +391,8 @@ test_that("adding several nodes to a selected node is possible", {
     add_n_nodes_ws(
       graph, 10,
       direction = "to",
-      set_node_type = "new",
-      set_edge_rel = "related")
+      type = "new",
+      rel = "related")
 
   # Expect that all edges have a `rel` set
   expect_true(all(get_edge_df(graph)[, 3] == "related"))
