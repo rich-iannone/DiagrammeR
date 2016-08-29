@@ -34,19 +34,24 @@ With a graph object of class
 to extant nodes within the graph.
 }
 \examples{
-# Create an empty graph
-graph <- create_graph()
+# Create an empty graph and add 2 nodes
+graph <-
+  create_graph() \%>\%
+  add_node \%>\%
+  add_node
 
-# Add two nodes
-graph <- add_node(graph)
-graph <- add_node(graph)
+# Get a count of nodes in the graph
+node_count(graph)
+#> [1] 2
 
+# The nodes added were given ID values `1` and `2`
 get_nodes(graph)
 #> [1] "1" "2"
 
-# Add a node with 'type' defined
-graph <- add_node(graph, type = "person")
+# Add a node with a `type` value defined
+graph <- add_node(graph, "person")
 
+# View the graph's internal node data frame (ndf)
 get_node_df(graph)
 #>   nodes   type label
 #> 1     1            1
