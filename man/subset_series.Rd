@@ -43,36 +43,27 @@ graph_time_1 <-
     graph_name = "graph_with_time_1",
     graph_time = "2015-03-25 03:00",
     graph_tz = "GMT") \%>\%
-  add_node("a") \%>\%
-  add_node("b") \%>\%
-  add_node("c") \%>\%
-  add_edge("a", "c") \%>\%
-  add_edge("a", "b") \%>\%
-  add_edge("b", "c")
+  add_n_nodes(3) \%>\%
+  add_edges_w_string(
+    "1->3 1->2 2->3")
 
 graph_time_2 <-
   create_graph(
     graph_name = "graph_with_time_2",
     graph_time = "2015-03-26 03:00",
     graph_tz = "GMT") \%>\%
-  add_node("d") \%>\%
-  add_node("e") \%>\%
-  add_node("f") \%>\%
-  add_edge("d", "f") \%>\%
-  add_edge("d", "e") \%>\%
-  add_edge("e", "f")
+  add_n_nodes(3) \%>\%
+  add_edges_w_string(
+    "1->3 1->2 2->3")
 
 graph_time_3 <-
   create_graph(
     graph_name = "graph_with_time_3",
     graph_time = "2015-03-27 15:00",
     graph_tz = "GMT") \%>\%
-  add_node("x") \%>\%
-  add_node("y") \%>\%
-  add_node("z") \%>\%
-  add_edge("x", "z") \%>\%
-  add_edge("x", "y") \%>\%
-  add_edge("y", "z")
+  add_n_nodes(3) \%>\%
+  add_edges_w_string(
+    "1->3 1->2 2->3")
 
 # Create an empty graph series and add
 # the graphs

@@ -39,12 +39,12 @@ numeric ranges can be provided for the selection.
 # contains 13 nodes, numbered `1` through `13`
 graph <-
   create_graph(graph_attrs = 'layout = twopi') \%>\%
-  add_node("A") \%>\%
+  add_node("a") \%>\%
   select_nodes \%>\%
-  add_n_nodes_ws(3, "from", "B") \%>\%
+  add_n_nodes_ws(3, "from", "b") \%>\%
   clear_selection \%>\%
-  select_nodes("type", "B") \%>\%
-  add_n_nodes_ws(3, "from", "C") \%>\%
+  select_nodes("type", "b") \%>\%
+  add_n_nodes_ws(3, "from", "c") \%>\%
   clear_selection
 
 # Create a graph selection by selecting edges
