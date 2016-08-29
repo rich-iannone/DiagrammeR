@@ -15,9 +15,6 @@
 #' from which edges will be directed to the new node.
 #' @param to an optional vector containing node IDs to
 #' which edges will be directed from the new node.
-#' @param node an optional node ID for the newly
-#' connected node. If no value is provided, a node ID
-#' will assigned as a monotonically increasing integer.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph
@@ -44,56 +41,14 @@ add_node <- function(graph,
                      type = NULL,
                      label = TRUE,
                      from = NULL,
-                     to = NULL,
-                     node = NULL) {
+                     to = NULL) {
 
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
 
-  # If node ID not provided, create a monotonically
-  # increasing ID value
-  if (is.null(node)) {
-
-    if (node_count(graph) == 0) {
-      node <- 1
-    }
-
-    if (node_count(graph) > 0) {
-      if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))) {
-
-        numeric_components <-
-          suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
-
-        node <-
-          max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
-      }
-
-      if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))) {
-        node <- 1
-      }
-    }
-  }
-
-  # Verify that 'node' is given as a single value
-  node_is_single_value <-
-    ifelse(length(node) == 1, TRUE, FALSE)
-
-  # Stop function if node not a single value
-  if (node_is_single_value == FALSE) {
-    stop("Only a single node can be added.")
-  }
-
-  # Determine whether node to add is already in graph
-  if (node_is_single_value) {
-    can_add_node_id <-
-      ifelse(!node_present(graph = graph, node = node),
-             TRUE, FALSE)
-  }
-
-  if (can_add_node_id == FALSE) {
-    return(graph)
-  }
+  # Get the node ID for the node to be added
+  node <- nodes_created + 1
 
   # Modify graph if only `from` values provided
   if (!is.null(from) & is.null(to)) {
@@ -103,7 +58,6 @@ add_node <- function(graph,
              TRUE, FALSE)
 
     if (from_nodes_available == FALSE) {
-
       stop("The nodes from which edges should be applied to the new node are not available.")
     }
 
@@ -175,7 +129,6 @@ add_node <- function(graph,
              TRUE, FALSE)
 
     if (to_nodes_available == FALSE) {
-
       stop("The nodes to which edges should be applied from the new node are not available.")
     }
 
