@@ -16,10 +16,6 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node tree.
-#' @param nodes an optional vector of node IDs of
-#' length \code{n} for the newly created nodes. If
-#' nothing is provided, node IDs will assigned as
-#' monotonically increasing integers.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add 3 different types of
@@ -35,14 +31,11 @@
 #' node_info(graph)
 #' #>    node label       type deg indeg outdeg loops
 #' #> 1     1     1     binary   2     0      2     0
-#' #> 2     8     8   tertiary   3     0      3     0
-#' #> 3    21    21 quaternary   4     0      4     0
-#' #> 4     2     2     binary   3     1      2     0
-#' #> 5     3     3     binary   3     1      2     0
-#' #> 6     9     9   tertiary   4     1      3     0
-#' #> 7    10    10   tertiary   4     1      3     0
-#' #> 8    11    11   tertiary   4     1      3     0
-#' #> 9    22    22 quaternary   5     1      4     0
+#' #> 2    10    10   tertiary   4     1      3     0
+#' #> 3    11    11   tertiary   4     1      3     0
+#' #> 4    12    12   tertiary   1     1      0     0
+#' #> 5    13    13   tertiary   1     1      0     0
+#' #> 6    14    14   tertiary   1     1      0     0
 #' #> ..   ..    .. ..........  ..    ..     ..    ..
 #' @export add_balanced_tree
 
@@ -51,8 +44,7 @@ add_balanced_tree <- function(graph,
                               h,
                               type = NULL,
                               label = TRUE,
-                              rel = NULL,
-                              nodes = NULL) {
+                              rel = NULL) {
 
   # Stop if k is too small
   if (k <= 1) {
@@ -68,56 +60,13 @@ add_balanced_tree <- function(graph,
   n_nodes_tree <-
     (k^(h + 1) - 1) / (k - 1)
 
-  if (!is.null(nodes)) {
-    if (length(nodes) != n_nodes_tree) {
-      stop("The number of node IDs supplied is not equal to number of nodes in the tree.")
-    }
-
-    if (any(get_nodes(graph) %in% nodes)) {
-      stop("At least one of the node IDs is already present in the graph.")
-    }
-  }
-
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
 
-  # If node IDs are not provided, create a
-  # monotonically increasing ID value
-  if (is.null(nodes)) {
-
-    if (node_count(graph) == 0) {
-      nodes <- seq(1, n_nodes_tree)
-    }
-
-    if (node_count(graph) > 0) {
-      if (!is.na(suppressWarnings(
-        any(as.numeric(get_nodes(graph)))))) {
-
-        numeric_components <-
-          suppressWarnings(which(!is.na(as.numeric(
-            get_nodes(graph)))))
-
-        nodes <-
-          seq(max(
-            as.integer(
-              as.numeric(
-                get_nodes(graph)[
-                  numeric_components]))) + 1,
-            max(
-              as.integer(
-                as.numeric(
-                  get_nodes(graph)[
-                    numeric_components]))) +
-              n_nodes_tree)
-      }
-
-      if (suppressWarnings(all(is.na(as.numeric(
-        get_nodes(graph)))))) {
-        nodes <- seq(1, n_nodes_tree)
-      }
-    }
-  }
+  nodes <-
+    seq(nodes_created + 1,
+        nodes_created + n_nodes_tree)
 
   tree_nodes <-
     create_nodes(
@@ -138,8 +87,7 @@ add_balanced_tree <- function(graph,
       to = seq(nodes[2], nodes[length(nodes)]),
       rel = rel)
 
-  graph <-
-    add_edge_df(graph, tree_edges)
+  graph <- add_edge_df(graph, tree_edges)
 
   # Update the `last_node` counter
   graph$last_node <- nodes_created + nrow(tree_nodes)

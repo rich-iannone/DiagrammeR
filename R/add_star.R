@@ -16,11 +16,6 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node star.
-#' @param nodes an optional vector of node IDs of
-#' length \code{n} for the newly created nodes. If
-#' nothing is provided, node IDs will assigned as
-#' monotonically increasing integers. The center node
-#' is considered the first node in this series.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add 3 stars of varying
@@ -63,55 +58,13 @@ add_star <- function(graph,
     stop("The value for n must be at least 4.")
   }
 
-  if (!is.null(nodes)) {
-    if (length(nodes) != n) {
-      stop("The number of node IDs supplied is not equal to n.")
-    }
-
-    if (any(get_nodes(graph) %in% nodes)) {
-      stop("At least one of the node IDs is already present in the graph.")
-    }
-  }
-
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
 
-  # If node IDs are not provided, create a
-  # monotonically increasing ID value
-  if (is.null(nodes)) {
-
-    if (node_count(graph) == 0) {
-      nodes <- seq(1, n)
-    }
-
-    if (node_count(graph) > 0) {
-      if (!is.na(suppressWarnings(
-        any(as.numeric(get_nodes(graph)))))) {
-
-        numeric_components <-
-          suppressWarnings(which(!is.na(as.numeric(
-            get_nodes(graph)))))
-
-        nodes <-
-          seq(max(
-            as.integer(
-              as.numeric(
-                get_nodes(graph)[
-                  numeric_components]))) + 1,
-            max(
-              as.integer(
-                as.numeric(
-                  get_nodes(graph)[
-                    numeric_components]))) + n)
-      }
-
-      if (suppressWarnings(all(is.na(as.numeric(
-        get_nodes(graph)))))) {
-        nodes <- seq(1, n)
-      }
-    }
-  }
+  nodes <-
+    seq(nodes_created + 1,
+        nodes_created + n)
 
   star_nodes <-
     create_nodes(
@@ -119,8 +72,7 @@ add_star <- function(graph,
       type = type,
       label = label)
 
-  graph <-
-    add_node_df(graph, star_nodes)
+  graph <- add_node_df(graph, star_nodes)
 
   star_edges <-
     create_edges(
@@ -128,8 +80,7 @@ add_star <- function(graph,
       to = nodes[2:length(nodes)],
       rel = rel)
 
-  graph <-
-    add_edge_df(graph, star_edges)
+  graph <- add_edge_df(graph, star_edges)
 
   # Update the `last_node` counter
   graph$last_node <- nodes_created + nrow(star_nodes)

@@ -20,10 +20,6 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node prism.
-#' @param nodes an optional vector of node IDs of
-#' length \code{n} for the newly created nodes. If
-#' nothing is provided, node IDs will assigned as
-#' monotonically increasing integers.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add a prism
@@ -68,41 +64,8 @@ add_prism <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
-  # If node IDs are not provided, create a
-  # monotonically increasing ID value
-  if (is.null(nodes)) {
-
-    if (node_count(graph) == 0) {
-      nodes <- seq(1, 2 * n)
-    }
-
-    if (node_count(graph) > 0) {
-      if (!is.na(suppressWarnings(
-        any(as.numeric(get_nodes(graph)))))) {
-
-        numeric_components <-
-          suppressWarnings(which(!is.na(as.numeric(
-            get_nodes(graph)))))
-
-        nodes <-
-          seq(max(
-            as.integer(
-              as.numeric(
-                get_nodes(graph)[
-                  numeric_components]))) + 1,
-            max(
-              as.integer(
-                as.numeric(
-                  get_nodes(graph)[
-                    numeric_components]))) + (2 * n))
-      }
-
-      if (suppressWarnings(all(is.na(as.numeric(
-        get_nodes(graph)))))) {
-        nodes <- seq(1, 2 * n)
-      }
-    }
-  }
+  nodes <- seq(nodes_created + 1,
+               nodes_created + (2 * n))
 
   prism_nodes <-
     create_nodes(
@@ -110,8 +73,7 @@ add_prism <- function(graph,
       type = type,
       label = label)
 
-  graph <-
-    add_node_df(graph, prism_nodes)
+  graph <- add_node_df(graph, prism_nodes)
 
   prism_edges <-
     create_edges(
@@ -125,8 +87,7 @@ add_prism <- function(graph,
              nodes[1:(length(nodes)/2)] + n),
       rel = rel)
 
-  graph <-
-    add_edge_df(graph, prism_edges)
+  graph <- add_edge_df(graph, prism_edges)
 
   # Update the `last_node` counter
   graph$last_node <- nodes_created + nrow(prism_nodes)
