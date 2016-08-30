@@ -4,8 +4,7 @@
 \alias{add_balanced_tree}
 \title{Add a balanced tree of nodes to the graph}
 \usage{
-add_balanced_tree(graph, k, h, type = NULL, label = TRUE, rel = NULL,
-  nodes = NULL)
+add_balanced_tree(graph, k, h, type = NULL, label = TRUE, rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -28,11 +27,6 @@ nodes, or, a boolean value where setting to
 \item{rel}{an optional string for providing a
 relationship label to all new edges created in the
 node tree.}
-
-\item{nodes}{an optional vector of node IDs of
-length \code{n} for the newly created nodes. If
-nothing is provided, node IDs will assigned as
-monotonically increasing integers.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -55,14 +49,11 @@ graph <-
 node_info(graph)
 #>    node label       type deg indeg outdeg loops
 #> 1     1     1     binary   2     0      2     0
-#> 2     8     8   tertiary   3     0      3     0
-#> 3    21    21 quaternary   4     0      4     0
-#> 4     2     2     binary   3     1      2     0
-#> 5     3     3     binary   3     1      2     0
-#> 6     9     9   tertiary   4     1      3     0
-#> 7    10    10   tertiary   4     1      3     0
-#> 8    11    11   tertiary   4     1      3     0
-#> 9    22    22 quaternary   5     1      4     0
+#> 2    10    10   tertiary   4     1      3     0
+#> 3    11    11   tertiary   4     1      3     0
+#> 4    12    12   tertiary   1     1      0     0
+#> 5    13    13   tertiary   1     1      0     0
+#> 6    14    14   tertiary   1     1      0     0
 #> ..   ..    .. ..........  ..    ..     ..    ..
 }
 

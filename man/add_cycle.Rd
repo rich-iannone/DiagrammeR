@@ -4,7 +4,7 @@
 \alias{add_cycle}
 \title{Add a cycle of nodes to the graph}
 \usage{
-add_cycle(graph, n, type = NULL, label = TRUE, rel = NULL, nodes = NULL)
+add_cycle(graph, n, type = NULL, label = TRUE, rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -25,11 +25,6 @@ nodes, or, a boolean value where setting to
 \item{rel}{an optional string for providing a
 relationship label to all new edges created in the
 node cycle.}
-
-\item{nodes}{an optional vector of node IDs of
-length \code{n} for the newly created nodes. If
-nothing is provided, node IDs will assigned as
-monotonically increasing integers.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
