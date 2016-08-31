@@ -236,39 +236,38 @@ test_that("adding several nodes to a graph at once is possible", {
   # Expect that 10 nodes were added to the empty graph
   expect_equal(node_count(graph), 10)
 
-  # Expect monotonically-increasing node ID values from 1 to 10
+  # Expect monotonically-increasing node ID values
+  # from 1 to 10
   expect_equal(
-    get_nodes(graph),
-    c("1", "2", "3", "4", "5",
-      "6", "7", "8", "9", "10"))
+    get_nodes(graph), c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
 
   # Expect that no `type` values have been set
   expect_equal(get_node_df(graph)[, 2],
                rep("", 10))
 
-  # Expect that no `label` values have been set
+  # Expect that `label` values have been set
   expect_equal(get_node_df(graph)[, 3],
-               rep("", 10))
+               as.character(seq(1, 10)))
 
   # Create a graph with 10 nodes of a specified type
   graph <- create_graph()
-  graph <-
-    add_n_nodes(graph, 10, type = "test_node")
+  graph <- add_n_nodes(graph, 10, type = "test_node")
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(node_count(graph), 10)
 
   # Expect monotonically-increasing node ID values
   # from `1` to `10`
-  expect_equal(get_nodes(graph), as.character(seq(1, 10)))
+  expect_equal(get_nodes(graph), seq(1, 10))
 
-  # Expect that a `type` value have been set for all nodes
+  # Expect that a `type` value have been set
+  # for all nodes
   expect_equal(get_node_df(graph)[, 2],
                rep("test_node", 10))
 
-  # Expect that no `label` values have been set
+  # Expect that `label` values have been set
   expect_equal(get_node_df(graph)[, 3],
-               rep("", 10))
+               as.character(seq(1, 10)))
 })
 
 test_that("adding several nodes from a selected node is possible", {
@@ -288,8 +287,9 @@ test_that("adding several nodes from a selected node is possible", {
   # Expect a total of 20 nodes in the graph
   expect_equal(node_count(graph), 20)
 
-  # Expect monotonically-increasing node ID values from 1 to 20
-  expect_equal(get_nodes(graph), as.character(seq(1, 20)))
+  # Expect monotonically-increasing node ID
+  # values from `1` to `20`
+  expect_equal(get_nodes(graph), seq(1, 20))
 
   # Expect a total of 10 edges in the graph
   expect_equal(edge_count(graph), 10)
@@ -297,12 +297,11 @@ test_that("adding several nodes from a selected node is possible", {
   # Expect that node IDs where edges are `from` belong
   # to the node with ID of `5`
   expect_equal(get_edge_df(graph)[, 1],
-               rep("5", 10))
+               rep(5, 10))
 
   # Expect that node IDs where edges are `to` increase
   # from `11` to `20`
-  expect_equal(get_edge_df(graph)[, 2],
-               as.character(seq(11, 20)))
+  expect_equal(get_edge_df(graph)[, 2], seq(11, 20))
 
   # Expect that the edge relationship has not been set
   # for any of the edges
@@ -354,26 +353,22 @@ test_that("adding several nodes to a selected node is possible", {
 
   # Expect monotonically-increasing node ID values
   # from `1` to `20`
-  expect_equal(
-    get_nodes(graph), as.character(seq(1, 20)))
+  expect_equal(get_nodes(graph), seq(1, 20))
 
   # Expect a total of 10 edges in the graph
   expect_equal(edge_count(graph), 10)
 
   # Expect that node IDs where edges are `to` belong
   # to the node with ID of `5`
-  expect_equal(get_edge_df(graph)[, 2],
-               rep("5", 10))
+  expect_equal(get_edge_df(graph)[, 2], rep(5, 10))
 
   # Expect that node IDs where edges are `from`
   # increase from `11` to `20`
-  expect_equal(get_edge_df(graph)[, 1],
-               as.character(seq(11, 20)))
+  expect_equal(get_edge_df(graph)[, 1], seq(11, 20))
 
   # Expect that the edge relationship has not been set
   # for any of the edges
-  expect_equal(get_edge_df(graph)[, 3],
-               rep("", 10))
+  expect_equal(get_edge_df(graph)[, 3], rep("", 10))
 
   # Create another empty graph
   graph <- create_graph()
@@ -420,8 +415,7 @@ test_that("adding several edges with a string is possible", {
 
   # Expect monotonically-increasing node ID values
   # from 1 to 10
-  expect_equal(get_nodes(graph),
-               as.character(seq(1, 10)))
+  expect_equal(get_nodes(graph), seq(1, 10))
 
   # Expect a total of 9 edges in the graph
   expect_equal(edge_count(graph), 9)

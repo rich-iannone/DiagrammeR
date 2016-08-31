@@ -4,24 +4,26 @@ test_that("a correct node data frame is generated", {
 
   # Create 'nodes_1' node data frame
   nodes_1 <-
-    create_nodes(nodes = c("a", "b", "c", "d"),
-                 label = FALSE,
-                 type = "lower",
-                 style = "filled",
-                 color = "aqua",
-                 shape = c("circle", "circle",
-                           "rectangle", "rectangle"),
-                 data = c(3.5, 2.6, 9.4, 2.7))
+    create_nodes(
+      nodes = 1:4,
+      label = FALSE,
+      type = "lower",
+      style = "filled",
+      color = "aqua",
+      shape = c("circle", "circle",
+                "rectangle", "rectangle"),
+      data = c(3.5, 2.6, 9.4, 2.7))
 
   # Create 'nodes_2' node data frame
   nodes_2 <-
-    create_nodes(nodes = c("e", "f", "g", "h"),
-                 label = FALSE,
-                 type = "upper",
-                 style = "filled",
-                 color = "red",
-                 shape = "triangle",
-                 data = c(0.5, 3.9, 3.7, 8.2))
+    create_nodes(
+      nodes = 5:8,
+      label = FALSE,
+      type = "upper",
+      style = "filled",
+      color = "red",
+      shape = "triangle",
+      data = c(0.5, 3.9, 3.7, 8.2))
 
   # Expect that each of the node data frames has 4 rows
   expect_equal(nrow(nodes_1), 4L)
@@ -46,7 +48,7 @@ test_that("a correct node data frame is generated", {
   # Create a node data frame using a vector with length > 1 and
   # length < length(from | to)
   nodes_var_1 <-
-    create_nodes(nodes = c("a", "a", "b", "c"),
+    create_nodes(nodes = 1:4,
                  color = c("green", "green"))
 
   # Expect that a data frame is generated
@@ -62,7 +64,7 @@ test_that("a correct node data frame is generated", {
   # Create a node data frame using a vector with
   # length > length(from | to)
   nodes_var_2 <-
-    create_nodes(nodes = c("a", "a", "b", "c"),
+    create_nodes(nodes = c(1, 1, 2, 3),
                  color = c("green", "green",
                            "green", "green",
                            "green", "green"))
@@ -83,24 +85,26 @@ test_that("node data frames can be successfully combined", {
 
   # Create 'nodes_1' node data frame
   nodes_1 <-
-    create_nodes(nodes = c("a", "b", "c", "d"),
-                 label = FALSE,
-                 type = "lower",
-                 style = "filled",
-                 color = "aqua",
-                 shape = c("circle", "circle",
-                           "rectangle", "rectangle"),
-                 data = c(3.5, 2.6, 9.4, 2.7))
+    create_nodes(
+      nodes = 1:4,
+      label = FALSE,
+      type = "lower",
+      style = "filled",
+      color = "aqua",
+      shape = c("circle", "circle",
+                "rectangle", "rectangle"),
+      data = c(3.5, 2.6, 9.4, 2.7))
 
   # Create 'nodes_2' node data frame
   nodes_2 <-
-    create_nodes(nodes = c("e", "f", "g", "h"),
-                 label = FALSE,
-                 type = "upper",
-                 style = "filled",
-                 color = "red",
-                 shape = "triangle",
-                 data = c(0.5, 3.9, 3.7, 8.2))
+    create_nodes(
+      nodes = 5:8,
+      label = FALSE,
+      type = "upper",
+      style = "filled",
+      color = "red",
+      shape = "triangle",
+      data = c(0.5, 3.9, 3.7, 8.2))
 
   # Combine the 2 node data frames
   all_nodes <- combine_nodes(nodes_1, nodes_2)

@@ -50,10 +50,10 @@ test_that("Reversing the graph edges is possible", {
   # Expect that the `from` nodes in the new graph
   # object are identical to the `to` nodes before
   # reversing the edge direction
-  expect_identical(graph$edges_df$from, to_nodes)
+  expect_equal(graph$edges_df$from, to_nodes)
 
   # Expect that the `to` nodes in the new graph
   # object are identical to the `from` nodes before
   # reversing the edge direction
-  expect_identical(graph$edges_df$to, from_nodes)
+  expect_equal(graph$edges_df$to, from_nodes)
 })

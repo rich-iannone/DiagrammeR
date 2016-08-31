@@ -39,7 +39,9 @@ test_that("simple traversals are possible", {
   # Traverse from node `1` to `2`, then, traverse nodes
   # in both directions
   graph <-
-    graph %>% trav_out %>% trav_both
+    graph %>%
+    trav_out %>%
+    trav_both
 
   # Expect that nodes `1` and `3` are in the
   # current selection

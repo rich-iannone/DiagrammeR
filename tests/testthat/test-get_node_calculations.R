@@ -177,7 +177,7 @@ test_that("Getting articulation points is possible", {
                    c("8", "22", "24"))
 })
 
-test_that("Getting connected components is possible", {
+test_that("Getting weakly connected components is possible", {
 
   # Create a random graph
   graph <-
@@ -186,7 +186,7 @@ test_that("Getting connected components is possible", {
 
   # Get connected components for the graph
   connected_components <-
-    get_connected_cmpts(graph)
+    get_w_connected_cmpts(graph)
 
   # Expect a data frame as output
   expect_is(connected_components, "data.frame")
@@ -196,28 +196,9 @@ test_that("Getting connected components is possible", {
 
   # Expect 30 rows in the df
   expect_equal(nrow(connected_components), 30)
-
-  # Get connected components for the graph, returned
-  # as a list object
-  connected_components_list <-
-    get_connected_cmpts(graph, return_type = "list")
-
-  # Expect a list object as output
-  expect_is(connected_components_list, "list")
-
-  # Expect a list of length 2
-  expect_equal(length(connected_components_list), 2)
-
-  # Expect 29 node IDs in the first list component
-  expect_equal(length(connected_components_list[[1]]),
-               29)
-
-  # Expect 1 node ID in the second list component
-  expect_equal(length(connected_components_list[[2]]),
-               1)
 })
 
-test_that("Getting stongly connected components is possible", {
+test_that("Getting strongly connected components is possible", {
 
   # Create a random graph
   graph <-

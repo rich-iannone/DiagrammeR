@@ -68,14 +68,12 @@ test_that("a random graph can be made to various specifications", {
   # Expect the node attribute 'value' to sum to 44
   expect_equal(
     sum(as.numeric(get_node_df(random_graph_10_15_seed_set)[,4])),
-    44
-  )
+    44)
 
   # Expect the last edge in the graph's edge list to be "1" -> "8"
   expect_equal(
     get_edges(random_graph_10_15_seed_set, return_type = "vector")[15],
-    "1 -> 8"
-  )
+    "1 -> 8")
 
   # Create a random, directed graph with 10 nodes and 15 edges and no
   # node labels
@@ -85,43 +83,5 @@ test_that("a random graph can be made to various specifications", {
   # Expect that labels are not present
   expect_true(
     all(get_node_df(random_graph_10_15_directed_no_labels)$label ==
-          "")
-  )
-
-  # Create a directed, random graph with a supplied set of node IDs
-  random_graph_10_15_directed_letters <-
-    create_random_graph(10, 15,
-                        directed = TRUE,
-                        node_id = LETTERS)
-
-  # Expect 10 nodes in graph
-  expect_equal(node_count(random_graph_10_15_directed_letters), 10)
-
-  # Expect 15 edges in graph
-  expect_equal(edge_count(random_graph_10_15_directed_letters), 15)
-
-  # Expect the graph is directed
-  expect_true(is_graph_directed(random_graph_10_15_directed_letters))
-
-  # Expect that all nodes have IDs from 1 to 10
-  expect_true(all(get_nodes(random_graph_10_15_directed_letters) == LETTERS[1:10]))
-
-  # Expect an error when creating a random graph that has more
-  # edges that can be accommodated
-  expect_error(
-    create_random_graph(10, 50)
-  )
-
-  # Expect an error when creating a random graph with supplied node ID
-  # values but those supplied values are not unique
-  expect_error(
-    create_random_graph(4, 4, node_id = c("A", "B", "B", "C"))
-  )
-
-  # Expect an error when creating a random graph with supplied node ID
-  # values but number of those supplied values is less than the number of
-  # nodes requested
-  expect_error(
-    create_random_graph(4, 4, node_id = c("A", "B"))
-  )
+          ""))
 })
