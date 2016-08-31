@@ -12,11 +12,6 @@
 #' @param display_labels display node labels.
 #' @param set_seed supplying a value sets a random seed
 #' of the \code{Mersenne-Twister} implementation.
-#' @param node_id an optional vector of unique node ID
-#' values to apply to the randomized graph. The length
-#' of the vector should ideally correspond to the value
-#' supplied in \code{n}; vectors longer than the length
-#' of \code{n} will be truncated.
 #' @examples
 #' # Create a random, directed graph with 50 nodes
 #' # and 75 edges
@@ -41,15 +36,6 @@
 #'     n = 15,
 #'     m = 34,
 #'     set_seed = 50)
-#'
-#' # Create a directed, random graph with a supplied
-#' # set of node IDs
-#' random_directed_graph_letters <-
-#'   create_random_graph(
-#'     n = 10,
-#'     m = 20,
-#'     directed = TRUE,
-#'     node_id = LETTERS)
 #' @export create_random_graph
 
 create_random_graph <- function(n,
@@ -57,8 +43,7 @@ create_random_graph <- function(n,
                                 directed = FALSE,
                                 fully_connected = FALSE,
                                 display_labels = TRUE,
-                                set_seed = NULL,
-                                node_id = NULL) {
+                                set_seed = NULL) {
 
   if (!is.null(set_seed)) {
     set.seed(set_seed, kind = "Mersenne-Twister")
@@ -72,43 +57,18 @@ create_random_graph <- function(n,
                 ")"))
   }
 
-  if (!is.null(node_id)) {
-    # Stop function if all node ID values are not unique
-    if (anyDuplicated(node_id) != 0) {
-      stop("The supplied node IDs are not unique.")
-    }
-
-    # Stop function if insufficient node IDs
-    # values are provided
-    if (length(node_id) < n) {
-      stop("Not enough node ID values were provided.")
-    }
-
-    graph <-
-      create_graph(
-        nodes_df =
-          create_nodes(
-            nodes = node_id[1:n],
-            label = ifelse(display_labels,
-                           TRUE, FALSE),
-            value = sample(seq(0.5, 10, 0.5),
-                           n, replace = TRUE)),
-        directed = ifelse(directed,
-                          TRUE, FALSE))
-  } else {
-
-    graph <-
-      create_graph(
-        nodes_df =
-          create_nodes(
-            nodes = 1:n,
-            label = ifelse(display_labels,
-                           TRUE, FALSE),
-            value = sample(seq(0.5, 10, 0.5),
-                           n, replace = TRUE)),
-        directed = ifelse(directed,
-                          TRUE, FALSE))
-  }
+  # Create the graph
+  graph <-
+    create_graph(
+      nodes_df =
+        create_nodes(
+          nodes = 1:n,
+          label = ifelse(display_labels,
+                         TRUE, FALSE),
+          value = sample(seq(0.5, 10, 0.5),
+                         n, replace = TRUE)),
+      directed = ifelse(directed,
+                        TRUE, FALSE))
 
   if (m > 0) {
     for (i in 1:m) {
@@ -164,6 +124,12 @@ create_random_graph <- function(n,
       } else { break }
     }
   }
+
+  graph$edges_df[, 1] <-
+    as.numeric(graph$edges_df[, 1])
+
+  graph$edges_df[, 2] <-
+    as.numeric(graph$edges_df[, 2])
 
   return(graph)
 }

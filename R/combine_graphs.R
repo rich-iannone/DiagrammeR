@@ -31,9 +31,8 @@
 #' # node ID values in graph `y` during the union;
 #' # this ensures that node ID values are unique
 #' get_nodes(combined_graph)
-#' #> [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
-#' #> [10] "10" "11" "12" "13" "14"
-#' @importFrom dplyr inner_join rename select
+#' #> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14
+#' @importFrom dplyr inner_join rename select bind_rows ends_with
 #' @export combine_graphs
 
 combine_graphs <- function(x,
@@ -93,10 +92,19 @@ combine_graphs <- function(x,
   y_edges_df$from <- y_edges_df$from_new
   y_edges_df$to <- y_edges_df$to_new
 
-  # Remove last two columns from `y_edges_df`
+  # Remove columns ending with `.x`
   y_edges_df <-
-    y_edges_df[, -c(ncol(y_edges_df),
-                    ncol(y_edges_df) - 1)]
+    dplyr::select(y_edges_df,
+                  -dplyr::ends_with(".x"))
+
+  # Remove columns ending with `_new`
+  y_edges_df <-
+    dplyr::select(y_edges_df,
+                  -dplyr::ends_with("_new"))
+
+  # Rename column names with `.y` suffixes
+  colnames(y_edges_df) <-
+    gsub(".y", "", colnames(y_edges_df))
 
   # Copy new node IDs to `nodes` node attr
   y_nodes_df$nodes <- y_nodes_df$new_node_id
@@ -108,18 +116,18 @@ combine_graphs <- function(x,
   # If label is a copy of node ID in graph `y`,
   # rewrite labels to match new node ID values
   if (y_label_node) {
-    y_nodes_df$label <- y_nodes_df$nodes
+    y_nodes_df$label <- as.character(y_nodes_df$nodes)
   }
 
   # Combine the node data frames for both graphs
   combined_nodes <-
-    combine_nodes(
+    dplyr::bind_rows(
       x_nodes_df,
       y_nodes_df)
 
   # Combine the edge data frames for both graphs
   combined_edges <-
-    combine_edges(
+    dplyr::bind_rows(
       x_edges_df,
       y_edges_df)
 

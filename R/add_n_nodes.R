@@ -8,6 +8,10 @@
 #' @param n the number of new nodes to add to the graph.
 #' @param type an optional string to apply a
 #' \code{type} attribute to all newly created nodes.
+#' @param label a character object for supplying an
+#' optional label to the node. Setting to \code{TRUE}
+#' ascribes the node ID to the label. Setting to
+#' \code{FALSE} yields a blank label.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and add 5 nodes; these
@@ -18,45 +22,33 @@
 #'
 #' # Get the graph's nodes
 #' graph %>% get_nodes
-#' #> [1] "1" "2" "3" "4" "5"
+#' #> [1] 1 2 3 4 5
 #' @export add_n_nodes
 
 add_n_nodes <- function(graph,
                         n,
-                        type = NULL) {
+                        type = NULL,
+                        label = TRUE) {
 
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
 
-  if (nodes_created == 0) {
-    node <- 1
-  }
-
-  if (nodes_created > 0) {
-    if (!is.na(suppressWarnings(any(as.numeric(get_nodes(graph)))))) {
-
-      numeric_components <-
-        suppressWarnings(which(!is.na(as.numeric(get_nodes(graph)))))
-
-      node <-
-        max(as.integer(as.numeric(get_nodes(graph)[numeric_components]))) + 1
-    }
-
-    if (suppressWarnings(all(is.na(as.numeric(get_nodes(graph)))))) {
-      node <- 1
-    }
-  }
-
   if (!is.null(type)) {
     new_nodes <-
-      create_nodes(nodes = seq(node, node + n - 1, 1),
-                   label = FALSE,
-                   type = type)
+      create_nodes(
+        nodes = seq(nodes_created + 1,
+                    nodes_created + n,
+                    1),
+        label = label,
+        type = type)
   } else {
     new_nodes <-
-      create_nodes(nodes = seq(node, node + n - 1, 1),
-                   label = FALSE)
+      create_nodes(
+        nodes = seq(nodes_created + 1,
+                    nodes_created + n,
+                    1),
+        label = label)
   }
 
   graph <- add_node_df(graph, new_nodes)

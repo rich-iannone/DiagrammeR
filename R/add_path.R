@@ -29,19 +29,19 @@
 #' node_info(graph)
 #' #>    node label      type deg indeg outdeg loops
 #' #> 1     1     1 four_path   1     0      1     0
-#' #> 2     5     5 five_path   1     0      1     0
-#' #> 3    10    10  six_path   1     0      1     0
-#' #> 4     2     2 four_path   2     1      1     0
-#' #> 5     3     3 four_path   2     1      1     0
+#' #> 2     2     2 four_path   2     1      1     0
+#' #> 3     3     3 four_path   2     1      1     0
+#' #> 4     4     4 four_path   1     1      0     0
+#' #> 5     5     5 five_path   1     0      1     0
 #' #> 6     6     6 five_path   2     1      1     0
 #' #> 7     7     7 five_path   2     1      1     0
 #' #> 8     8     8 five_path   2     1      1     0
-#' #> 9    11    11  six_path   2     1      1     0
-#' #> 10   12    12  six_path   2     1      1     0
-#' #> 11   13    13  six_path   2     1      1     0
-#' #> 12   14    14  six_path   2     1      1     0
-#' #> 13    4     4 four_path   1     1      0     0
-#' #> 14    9     9 five_path   1     1      0     0
+#' #> 9     9     9 five_path   1     1      0     0
+#' #> 10   10    10  six_path   1     0      1     0
+#' #> 11   11    11  six_path   2     1      1     0
+#' #> 12   12    12  six_path   2     1      1     0
+#' #> 13   13    13  six_path   2     1      1     0
+#' #> 14   14    14  six_path   2     1      1     0
 #' #> 15   15    15  six_path   1     1      0     0
 #' @export add_path
 
@@ -60,29 +60,37 @@ add_path <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
-  nodes <-
-    seq(nodes_created + 1,
-        nodes_created + n)
+  # Get the sequence of nodes required
+  nodes <- seq(1, n)
 
+  # Create a node data frame for the path graph
   path_nodes <-
     create_nodes(
       nodes = nodes,
       type = type,
       label = label)
 
-  graph <-
-    add_node_df(graph, path_nodes)
-
+  # Create an edge data frame for the path graph
   path_edges <-
     create_edges(
       from = nodes[1:length(nodes) - 1],
       to = nodes[2:length(nodes)],
       rel = rel)
 
-  graph <- add_edge_df(graph, path_edges)
+  # Create the path graph
+  path_graph <- create_graph(path_nodes, path_edges)
 
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created + nrow(path_nodes)
+  # If the input graph is not empty, combine graphs
+  # using the `combine_graphs()` function
+  if (!is_graph_empty(graph)) {
 
-  return(graph)
+    graph <- combine_graphs(graph, path_graph)
+
+    # Update the `last_node` counter
+    graph$last_node <- nodes_created + nrow(path_nodes)
+
+    return(graph)
+  } else {
+    return(path_graph)
+  }
 }

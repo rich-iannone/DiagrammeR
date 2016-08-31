@@ -63,11 +63,6 @@ create_edges <- function(from,
   # `to` are not equal
   stopifnot(length(from) == length(to))
 
-  # Ensure that `from` and `to` vectors are classed
-  # as character
-  from <- as.character(from)
-  to <- as.character(to)
-
   # if `rel` is NULL, create empty character vector;
   # class as character otherwise
   if (is.null(rel)) {

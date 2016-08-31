@@ -149,12 +149,15 @@ combine_nodes <- function(...) {
       colnames(df_new)[i] <- colnames(df1)[i]
 
       if (i == length(colnames(df1))) {
-        for (j in 1:ncol(df_new)) {
+        for (j in 2:ncol(df_new)) {
           df_new[,j] <- as.character(df_new[,j])
         }
       }
     }
   }
+
+  df_new[, 1] <-
+    as.integer(df_new[, 1])
 
   return(df_new)
 }

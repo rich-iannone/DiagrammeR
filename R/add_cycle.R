@@ -48,29 +48,37 @@ add_cycle <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
-  nodes <-
-    seq(nodes_created + 1,
-        nodes_created + n)
+  # Get the sequence of nodes required
+  nodes <- seq(1, n)
 
+  # Create a node data frame for the tree graph
   cycle_nodes <-
     create_nodes(
       nodes = nodes,
       type = type,
       label = label)
 
-  graph <-
-    add_node_df(graph, cycle_nodes)
-
+  # Create an edge data frame for the cycle graph
   cycle_edges <-
     create_edges(
       from = nodes,
       to = c(nodes[2:length(nodes)], nodes[1]),
       rel = rel)
 
-  graph <- add_edge_df(graph, cycle_edges)
+  # Create the cycle graph
+  cycle_graph <- create_graph(cycle_nodes, cycle_edges)
 
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created + nrow(cycle_nodes)
+  # If the input graph is not empty, combine graphs
+  # using the `combine_graphs()` function
+  if (!is_graph_empty(graph)) {
 
-  return(graph)
+    graph <- combine_graphs(graph, cycle_graph)
+
+    # Update the `last_node` counter
+    graph$last_node <- nodes_created + nrow(cycle_nodes)
+
+    return(graph)
+  } else {
+    return(cycle_graph)
+  }
 }

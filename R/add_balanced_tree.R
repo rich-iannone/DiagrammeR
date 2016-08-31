@@ -31,12 +31,12 @@
 #' node_info(graph)
 #' #>    node label       type deg indeg outdeg loops
 #' #> 1     1     1     binary   2     0      2     0
-#' #> 2    10    10   tertiary   4     1      3     0
-#' #> 3    11    11   tertiary   4     1      3     0
-#' #> 4    12    12   tertiary   1     1      0     0
-#' #> 5    13    13   tertiary   1     1      0     0
-#' #> 6    14    14   tertiary   1     1      0     0
-#' #> ..   ..    .. ..........  ..    ..     ..    ..
+#' #> 2     2     2     binary   3     1      2     0
+#' #> 3     3     3     binary   3     1      2     0
+#' #> 4     4     4     binary   1     1      0     0
+#' #> 5     5     5     binary   1     1      0     0
+#' #> 6     6     6     binary   1     1      0     0
+#' #> ..   ..    ..        ...  ..    ..     ..    ..
 #' @export add_balanced_tree
 
 add_balanced_tree <- function(graph,
@@ -64,19 +64,17 @@ add_balanced_tree <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
-  nodes <-
-    seq(nodes_created + 1,
-        nodes_created + n_nodes_tree)
+  # Get the sequence of nodes required
+  nodes <- seq(1, n_nodes_tree)
 
+  # Create a node data frame for the tree graph
   tree_nodes <-
     create_nodes(
-      nodes = nodes,
+      nodes = seq(1:n_nodes_tree),
       type = type,
       label = label)
 
-  graph <-
-    add_node_df(graph, tree_nodes)
-
+  # Create an edge data frame for the tree graph
   tree_edges <-
     create_edges(
       from = sort(
@@ -87,10 +85,20 @@ add_balanced_tree <- function(graph,
       to = seq(nodes[2], nodes[length(nodes)]),
       rel = rel)
 
-  graph <- add_edge_df(graph, tree_edges)
+  # Create the tree graph
+  tree_graph <- create_graph(tree_nodes, tree_edges)
 
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created + nrow(tree_nodes)
+  # If the input graph is not empty, combine graphs
+  # using the `combine_graphs()` function
+  if (!is_graph_empty(graph)) {
 
-  return(graph)
+    graph <- combine_graphs(graph, tree_graph)
+
+    # Update the `last_node` counter
+    graph$last_node <- nodes_created + nrow(tree_nodes)
+
+    return(graph)
+  } else {
+    return(tree_graph)
+  }
 }

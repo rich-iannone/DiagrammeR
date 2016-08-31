@@ -212,13 +212,20 @@ get_edges <- function(x,
   if (return_type == "df") {
 
     edges_list <- vector(mode = "list")
-    edges_list[[1]] <- edges_list[[2]] <- vector(mode = "character")
+    edges_list[[1]] <- edges_list[[2]] <-
+      vector(mode = "character")
 
     edges_list[[1]] <- c(edges_list[[1]], from)
     edges_list[[2]] <- c(edges_list[[2]], to)
 
-    edges_df <- as.data.frame(edges_list, stringsAsFactors = FALSE)
+    edges_df <-
+      as.data.frame(edges_list,
+                    stringsAsFactors = FALSE)
+
     colnames(edges_df) <- c("from", "to")
+
+    edges_df[,1] <- as.integer(edges_df[,1])
+    edges_df[,2] <- as.integer(edges_df[,2])
 
     return(edges_df)
   }

@@ -42,39 +42,28 @@ add_prism <- function(graph,
                       n,
                       type = NULL,
                       label = TRUE,
-                      rel = NULL,
-                      nodes = NULL) {
+                      rel = NULL) {
 
   # Stop if n is too small
   if (n <= 2)  {
     stop("The value for n must be at least 3.")
   }
 
-  if (!is.null(nodes)) {
-    if (length(nodes) != 2 * n) {
-      stop("The number of node IDs supplied is not equal to n.")
-    }
-
-    if (any(get_nodes(graph) %in% nodes)) {
-      stop("At least one of the node IDs is already present in the graph.")
-    }
-  }
-
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
 
-  nodes <- seq(nodes_created + 1,
-               nodes_created + (2 * n))
+  # Get the sequence of nodes required
+  nodes <- seq(1, 2 * n)
 
+  # Create a node data frame for the prism graph
   prism_nodes <-
     create_nodes(
       nodes = nodes,
       type = type,
       label = label)
 
-  graph <- add_node_df(graph, prism_nodes)
-
+  # Create an edge data frame for the prism graph
   prism_edges <-
     create_edges(
       from = c(nodes[1:(length(nodes)/2)],
@@ -87,10 +76,20 @@ add_prism <- function(graph,
              nodes[1:(length(nodes)/2)] + n),
       rel = rel)
 
-  graph <- add_edge_df(graph, prism_edges)
+  # Create the prism graph
+  prism_graph <- create_graph(prism_nodes, prism_edges)
 
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created + nrow(prism_nodes)
+  # If the input graph is not empty, combine graphs
+  # using the `combine_graphs()` function
+  if (!is_graph_empty(graph)) {
 
-  return(graph)
+    graph <- combine_graphs(graph, prism_graph)
+
+    # Update the `last_node` counter
+    graph$last_node <- nodes_created + nrow(prism_nodes)
+
+    return(graph)
+  } else {
+    return(prism_graph)
+  }
 }

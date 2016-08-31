@@ -30,15 +30,15 @@
 #' node_info(graph)
 #' #>    node label      type deg indeg outdeg loops
 #' #> 1     1     1 four_star   3     0      3     0
-#' #> 2     5     5 five_star   4     0      4     0
-#' #> 3    10    10  six_star   5     0      5     0
-#' #> 4     2     2 four_star   1     1      0     0
-#' #> 5     3     3 four_star   1     1      0     0
-#' #> 6     4     4 four_star   1     1      0     0
-#' #> 7     6     6 five_star   1     1      0     0
-#' #> 8     7     7 five_star   1     1      0     0
-#' #> 9     8     8 five_star   1     1      0     0
-#' #> 10    9     9 five_star   1     1      0     0
+#' #> 2     2     2 four_star   1     1      0     0
+#' #> 3     3     3 four_star   1     1      0     0
+#' #> 4     4     4 four_star   1     1      0     0
+#' #> 5     5     5 five_star   4     0      4     0
+#' #> 6     6     6 five_star   1     1      0     0
+#' #> 7     7     7 five_star   1     1      0     0
+#' #> 8     8     8 five_star   1     1      0     0
+#' #> 9     9     9 five_star   1     1      0     0
+#' #> 10   10    10  six_star   5     0      5     0
 #' #> 11   11    11  six_star   1     1      0     0
 #' #> 12   12    12  six_star   1     1      0     0
 #' #> 13   13    13  six_star   1     1      0     0
@@ -50,8 +50,7 @@ add_star <- function(graph,
                      n,
                      type = NULL,
                      label = TRUE,
-                     rel = NULL,
-                     nodes = NULL) {
+                     rel = NULL) {
 
   # Stop if n is too small
   if (n <= 3) {
@@ -62,28 +61,37 @@ add_star <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
-  nodes <-
-    seq(nodes_created + 1,
-        nodes_created + n)
+  # Get the sequence of nodes required
+  nodes <- seq(1, n)
 
+  # Create a node data frame for the star graph
   star_nodes <-
     create_nodes(
       nodes = nodes,
       type = type,
       label = label)
 
-  graph <- add_node_df(graph, star_nodes)
-
+  # Create an edge data frame for the star graph
   star_edges <-
     create_edges(
       from = rep(nodes[1], n - 1),
       to = nodes[2:length(nodes)],
       rel = rel)
 
-  graph <- add_edge_df(graph, star_edges)
+  # Create the star graph
+  star_graph <- create_graph(star_nodes, star_edges)
 
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created + nrow(star_nodes)
+  # If the input graph is not empty, combine graphs
+  # using the `combine_graphs()` function
+  if (!is_graph_empty(graph)) {
 
-  return(graph)
+    graph <- combine_graphs(graph, star_graph)
+
+    # Update the `last_node` counter
+    graph$last_node <- nodes_created + nrow(star_nodes)
+
+    return(graph)
+  } else {
+    return(star_graph)
+  }
 }
