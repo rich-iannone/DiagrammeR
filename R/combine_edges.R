@@ -8,25 +8,39 @@
 #' contain edge IDs and associated attributes.
 #' @return a combined edge data frame.
 #' @examples
-#' # Combine two edge data frames
+#' # Create an edge data frame
 #' edges_1 <-
 #'   create_edges(
-#'     from = c("a", "a", "b", "c"),
-#'     to = c("b", "d", "d", "a"),
+#'     from = c(1, 1, 2, 3),
+#'     to = c(2, 4, 4, 1),
 #'     rel = "requires",
 #'     color = "green",
 #'     data = c(2.7, 8.9, 2.6, 0.6))
 #'
+#' # Create a second edge data frame
 #' edges_2 <-
 #'   create_edges(
-#'     from = c("e", "g", "h", "h"),
-#'     to = c("g", "h", "f", "e"),
+#'     from = c(5, 7, 8, 8),
+#'     to = c(7, 8, 6, 5),
 #'     rel = "receives",
 #'     arrowhead = "dot",
 #'     color = "red")
 #'
+#' # Combine the two edge data frames
 #' all_edges <-
 #'   combine_edges(edges_1, edges_2)
+#'
+#' # View the combined edge data frame
+#' all_edges
+#' #>   from to      rel color data arrowhead
+#' #> 1    1  2 requires green  2.7
+#' #> 2    1  4 requires green  8.9
+#' #> 3    2  4 requires green  2.6
+#' #> 4    3  1 requires green  0.6
+#' #> 5    5  7 receives   red            dot
+#' #> 6    7  8 receives   red            dot
+#' #> 7    8  6 receives   red            dot
+#' #> 8    8  5 receives   red            dot
 #' @export combine_edges
 
 combine_edges <- function(...) {

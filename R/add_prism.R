@@ -22,20 +22,27 @@
 #' node prism.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a new graph and add a prism
+#' # Create a new graph and add 2 prisms
 #' graph <-
 #'   create_graph() %>%
-#'   add_prism(3, "prism")
+#'   add_prism(3, "prism", "a") %>%
+#'   add_prism(3, "prism", "b")
 #'
 #' # Get node information from this graph
 #' node_info(graph)
-#' #>   node label  type deg indeg outdeg loops
-#' #> 1    1     1 prism   3     1      2     0
-#' #> 2    2     2 prism   3     1      2     0
-#' #> 3    3     3 prism   3     1      2     0
-#' #> 4    4     4 prism   3     2      1     0
-#' #> 5    5     5 prism   3     2      1     0
-#' #> 6    6     6 prism   3     2      1     0
+#' #>    node label  type deg indeg outdeg loops
+#' #> 1     1     a prism   3     1      2     0
+#' #> 2     2     a prism   3     1      2     0
+#' #> 3     3     a prism   3     1      2     0
+#' #> 4     4     a prism   3     2      1     0
+#' #> 5     5     a prism   3     2      1     0
+#' #> 6     6     a prism   3     2      1     0
+#' #> 7     7     b prism   3     1      2     0
+#' #> 8     8     b prism   3     1      2     0
+#' #> 9     9     b prism   3     1      2     0
+#' #> 10   10     b prism   3     2      1     0
+#' #> 11   11     b prism   3     2      1     0
+#' #> 12   12     b prism   3     2      1     0
 #' @export add_prism
 
 add_prism <- function(graph,

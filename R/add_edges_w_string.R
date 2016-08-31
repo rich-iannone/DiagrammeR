@@ -28,6 +28,19 @@
 #'   add_edges_w_string(
 #'     "1->2 1->3 2->4 2->5 3->6
 #'      3->7 4->8 4->9 5->10")
+#'
+#' # Show the graph's internal edge data frame
+#' get_edge_df(graph)
+#' #>   from to rel
+#' #> 1    1  2
+#' #> 2    1  3
+#' #> 3    2  4
+#' #> 4    2  5
+#' #> 5    3  6
+#' #> 6    3  7
+#' #> 7    4  8
+#' #> 8    4  9
+#' #> 9    5 10
 #' @export add_edges_w_string
 
 add_edges_w_string <- function(graph,

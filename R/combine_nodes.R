@@ -28,7 +28,7 @@
 #' #> 3     3 lower       filled  aqua rectangle  9.4
 #' #> 4     4 lower       filled  aqua rectangle  2.7
 #'
-#' # Create another ndf
+#' # Create another node data frame
 #' nodes_2 <-
 #'   create_nodes(
 #'     nodes = 5:8,

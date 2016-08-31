@@ -27,7 +27,6 @@
 #'
 #' graph <-
 #'   from_adj_matrix(adj_matrix)
-#'
 #' @importFrom igraph graph_from_adjacency_matrix
 #' @export from_adj_matrix
 
