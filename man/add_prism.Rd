@@ -4,7 +4,7 @@
 \alias{add_prism}
 \title{Add a prism of nodes to the graph}
 \usage{
-add_prism(graph, n, type = NULL, label = TRUE, rel = NULL, nodes = NULL)
+add_prism(graph, n, type = NULL, label = TRUE, rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class

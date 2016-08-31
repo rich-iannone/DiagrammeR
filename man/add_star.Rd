@@ -4,7 +4,7 @@
 \alias{add_star}
 \title{Add a star of nodes to the graph}
 \usage{
-add_star(graph, n, type = NULL, label = TRUE, rel = NULL, nodes = NULL)
+add_star(graph, n, type = NULL, label = TRUE, rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -47,15 +47,15 @@ graph <-
 node_info(graph)
 #>    node label      type deg indeg outdeg loops
 #> 1     1     1 four_star   3     0      3     0
-#> 2     5     5 five_star   4     0      4     0
-#> 3    10    10  six_star   5     0      5     0
-#> 4     2     2 four_star   1     1      0     0
-#> 5     3     3 four_star   1     1      0     0
-#> 6     4     4 four_star   1     1      0     0
-#> 7     6     6 five_star   1     1      0     0
-#> 8     7     7 five_star   1     1      0     0
-#> 9     8     8 five_star   1     1      0     0
-#> 10    9     9 five_star   1     1      0     0
+#> 2     2     2 four_star   1     1      0     0
+#> 3     3     3 four_star   1     1      0     0
+#> 4     4     4 four_star   1     1      0     0
+#> 5     5     5 five_star   4     0      4     0
+#> 6     6     6 five_star   1     1      0     0
+#> 7     7     7 five_star   1     1      0     0
+#> 8     8     8 five_star   1     1      0     0
+#> 9     9     9 five_star   1     1      0     0
+#> 10   10    10  six_star   5     0      5     0
 #> 11   11    11  six_star   1     1      0     0
 #> 12   12    12  six_star   1     1      0     0
 #> 13   13    13  six_star   1     1      0     0

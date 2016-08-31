@@ -49,11 +49,11 @@ graph <-
 node_info(graph)
 #>    node label       type deg indeg outdeg loops
 #> 1     1     1     binary   2     0      2     0
-#> 2    10    10   tertiary   4     1      3     0
-#> 3    11    11   tertiary   4     1      3     0
-#> 4    12    12   tertiary   1     1      0     0
-#> 5    13    13   tertiary   1     1      0     0
-#> 6    14    14   tertiary   1     1      0     0
-#> ..   ..    .. ..........  ..    ..     ..    ..
+#> 2     2     2     binary   3     1      2     0
+#> 3     3     3     binary   3     1      2     0
+#> 4     4     4     binary   1     1      0     0
+#> 5     5     5     binary   1     1      0     0
+#> 6     6     6     binary   1     1      0     0
+#> ..   ..    ..        ...  ..    ..     ..    ..
 }
 

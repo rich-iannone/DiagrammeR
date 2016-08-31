@@ -5,7 +5,8 @@
 \title{Add a multiple of new nodes with edges to or from
 one or more selected nodes}
 \usage{
-add_n_nodes_ws(graph, n, direction = NULL, type = NULL, rel = NULL)
+add_n_nodes_ws(graph, n, direction = NULL, type = NULL, label = TRUE,
+  rel = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -22,6 +23,11 @@ toward the existing nodes.}
 
 \item{type}{an optional string to apply a
 \code{type} attribute to all newly created nodes.}
+
+\item{label}{a character object for supplying an
+optional label to the node. Setting to \code{TRUE}
+ascribes the node ID to the label. Setting to
+\code{FALSE} yields a blank label.}
 
 \item{rel}{an optional string to apply a
 \code{rel} attribute to all newly created edges.}
@@ -54,7 +60,7 @@ graph <-
 
 # Get the graph's nodes
 graph \%>\% get_nodes
-#> [1] "1" "2" "3" "4" "5" "6"
+#> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
 graph \%>\% get_edges
@@ -72,7 +78,7 @@ graph <-
 
 # Get the graph's nodes
 graph \%>\% get_nodes
-#> [1] "1" "2" "3" "4" "5" "6"
+#> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
 graph \%>\% get_edges
