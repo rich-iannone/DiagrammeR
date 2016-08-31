@@ -7,7 +7,7 @@ test_that("getting node IDs from various objects is possible", {
   # Create a node data frame
   nodes <-
     create_nodes(
-      nodes = LETTERS,
+      nodes = 1:26,
       label = TRUE,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
@@ -17,8 +17,8 @@ test_that("getting node IDs from various objects is possible", {
   # Create an edge data frame
   edges <-
     create_edges(
-      from = sample(LETTERS, replace = TRUE),
-      to = sample(LETTERS, replace = TRUE),
+      from = sample(1:26, replace = TRUE),
+      to = sample(1:26, replace = TRUE),
       label = "edge",
       relationship = "letter_to_letter")
 
@@ -35,15 +35,15 @@ test_that("getting node IDs from various objects is possible", {
   # Get information on the graph's nodes
   gotten_nodes <- get_nodes(graph)
 
-  # Expect a character vector object
-  expect_is(gotten_nodes, "character")
+  # Expect a `integer`` vector object
+  expect_is(gotten_nodes, "integer")
 
-  # Expect that the character vector object
+  # Expect that the integer vector object
   # has no names
   expect_null(names(gotten_nodes))
 
-  # Expect a vector that has all LETTERS
-  expect_true(all(LETTERS == gotten_nodes))
+  # Expect a vector that is sequence from `1` to `26`
+  expect_true(all(1:26 == gotten_nodes))
 
   # Expect that the same node IDs will be returned
   # from the graph object, the node data frame, and
@@ -63,7 +63,10 @@ test_that("getting node IDs from various objects is possible", {
 
   # Expect that the nodes from the graph and from the
   # extracted node df are the same
-  expect_true(all(get_nodes(node_df_from_graph) == get_nodes(graph)))
+  expect_true(
+    all(
+      get_nodes(node_df_from_graph) ==
+        get_nodes(graph)))
 
   # Expect that using `get_node_df()` on a graph with
   # no nodes will return `NA`
@@ -124,7 +127,8 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Get the 'outgoing' and 'incoming' node ID values
   # in a data frame object
-  gotten_edges_df <- get_edges(graph, return_type = "df")
+  gotten_edges_df <-
+    get_edges(graph, return_type = "df")
 
   # Expect a data frame object
   expect_is(gotten_edges_df, "data.frame")
@@ -158,15 +162,19 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Expect that the edges from the graph and from the
   # extracted edge df are the same
-  expect_true(all(get_edges(edge_df_from_graph, return_type = "vector") ==
-                    get_edges(edge_df_from_graph, return_type = "vector")))
+  expect_true(
+    all(
+      get_edges(
+        edge_df_from_graph, return_type = "vector") ==
+        get_edges(
+          edge_df_from_graph, return_type = "vector")))
 
   # Expect that using `get_edge_df()` on a graph
   # with no edges will return `NA`
   expect_true(
     is.na(
       get_edge_df(
-        create_graph(nodes_df = create_nodes("a")))))
+        create_graph(nodes_df = create_nodes(1)))))
 })
 
 test_that("getting edge information from an edge data frame is possible", {
@@ -190,7 +198,8 @@ test_that("getting edge information from an edge data frame is possible", {
 
   # Expect that the ' -> ' substring is in
   # each vector component
-  expect_true(all(grepl(" -> ", edges_vector_from_edf)))
+  expect_true(all(grepl(" -> ",
+                        edges_vector_from_edf)))
 
   # Get edges from the edge data frame as a
   # returned list object
@@ -228,7 +237,7 @@ test_that("getting edge information from an edge data frame is possible", {
 
 test_that("getting edge information from a graph with no edges is possible ", {
 
-  nodes <- create_nodes(nodes = c("a", "b"))
+  nodes <- create_nodes(nodes = 1:2)
 
   graph_no_edges <- create_graph(nodes_df = nodes)
 
@@ -236,23 +245,24 @@ test_that("getting edge information from a graph with no edges is possible ", {
   edges_vector_from_graph_no_edges <-
     get_edges(graph_no_edges, return_type = "vector")
 
-  # Expect a vector object of class 'logical'
-  expect_is(edges_vector_from_graph_no_edges, "logical")
+  # Expect a vector object of class `logical`
+  expect_is(
+    edges_vector_from_graph_no_edges, "logical")
 
-  # Expect that an NA is returned
+  # Expect that an `NA` is returned
   expect_true(is.na(edges_vector_from_graph_no_edges))
 
   # Get edges from an edgeless graph returned as a list
   edges_list_from_graph_no_edges <-
     get_edges(graph_no_edges, return_type = "list")
 
-  # Expect that an NA is returned
+  # Expect that an `NA` is returned
   expect_true(is.na(edges_list_from_graph_no_edges))
 
   # Get edges from an edgeless graph returned as a data frame
   edges_df_from_graph_no_edges <-
     get_edges(graph_no_edges, return_type = "df")
 
-  # Expect that an NA is returned
+  # Expect that an `NA` is returned
   expect_true(is.na(edges_df_from_graph_no_edges))
 })
