@@ -40,7 +40,8 @@ graph <-
   set_node_attrs(
     "value", rnorm(node_count(.), 5, 2)) \%>\%
   add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
+    "1->2 1->3 2->4 2->5 3->6
+     3->7 4->8 4->9 5->10")
 
 # Select all nodes where the node attribute `value`
 # is less than 5

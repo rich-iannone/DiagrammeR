@@ -43,6 +43,5 @@ adj_matrix <-
 
 graph <-
   from_adj_matrix(adj_matrix)
-
 }
 

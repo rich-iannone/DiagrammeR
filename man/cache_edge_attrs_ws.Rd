@@ -38,7 +38,8 @@ graph <-
   create_graph() \%>\%
   add_n_nodes(10) \%>\%
   add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10") \%>\%
+    "1->2 1->3 2->4 2->5 3->6
+     3->7 4->8 4->9 5->10") \%>\%
   set_edge_attrs(
     "value", rnorm(edge_count(.), 5, 2))
 

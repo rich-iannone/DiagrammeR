@@ -37,8 +37,7 @@ nodes <-
 
 # Add the node data frame to the graph object to
 # create a graph with nodes
-graph <-
-  add_node_df(graph, nodes)
+graph <- add_node_df(graph, nodes)
 
 get_node_df(graph)
 #>   nodes  type label color value
@@ -57,8 +56,7 @@ nodes_2 <-
 
 # Add the second node data frame to the graph object
 # to add more nodes with attributes to the graph
-graph <-
-  add_node_df(graph, nodes_2)
+graph <- add_node_df(graph, nodes_2)
 
 get_node_df(graph)
 #>   nodes  type label color value

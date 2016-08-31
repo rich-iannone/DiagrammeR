@@ -46,7 +46,7 @@ node_count(graph)
 
 # The nodes added were given ID values `1` and `2`
 get_nodes(graph)
-#> [1] "1" "2"
+#> [1] 1 2
 
 # Add a node with a `type` value defined
 graph <- add_node(graph, "person")

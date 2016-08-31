@@ -36,14 +36,13 @@ With a graph object of class
 \code{dgr_graph}, add a balanced tree to the graph.
 }
 \examples{
-# Create a new graph and add 3 different types of
+# Create a new graph and add 2 different types of
 # balanced trees of height 2 (branching twice) and
 # different branching ratios
 graph <-
   create_graph() \%>\%
   add_balanced_tree(2, 2, "binary") \%>\%
-  add_balanced_tree(3, 2, "tertiary") \%>\%
-  add_balanced_tree(4, 2, "quaternary")
+  add_balanced_tree(3, 2, "tertiary")
 
 # Get node information from this graph
 node_info(graph)

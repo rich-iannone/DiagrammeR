@@ -67,10 +67,9 @@ graph_1 <-
 # View the graph's internal node data frame (ndf)
 # with `get_node_df()` and dplyr's `as.tbl()`
 graph_1 \%>\% get_node_df \%>\% as.tbl
-#> Source: local data frame [171 x 7]
-#>
+#> # A tibble: 171 x 7
 #>    nodes  type label iso_4217_code curr_number
-#>    (chr) (chr) (chr)         (chr)       (chr)
+#>    <int> <chr> <chr>         <chr>       <chr>
 #> 1      1                       AED         784
 #> 2      2                       AFN         971
 #> 3      3                       ALL           8
@@ -81,9 +80,8 @@ graph_1 \%>\% get_node_df \%>\% as.tbl
 #> 8      8                       AUD          36
 #> 9      9                       AWG         533
 #> 10    10                       AZN         944
-#> ..   ...   ...   ...           ...         ...
-#> Variables not shown: exponent (chr)
-#>   currency_name (chr)
+#> # ... with 161 more rows, and 2 more variables:
+#> #   exponent <chr>, currency_name <chr>
 
 # If you would like to assign any of the table's
 # columns as `type` or `label` attributes, this can
@@ -99,14 +97,14 @@ graph_2 <-
 
 # View the first 3 lines of the graph's internal ndf
 graph_2 \%>\% get_node_df \%>\% head(3) \%>\% as.tbl
-#> Source: local data frame [3 x 6]
-#>
-#>   nodes     type label curr_number exponent
-#>   (chr)    (chr) (chr)       (chr)    (chr)
-#> 1     1 currency   AED         784        2
-#> 2     2 currency   AFN         971        2
-#> 3     3 currency   ALL           8        2
-#> Variables not shown: currency_name (chr)
+#> # A tibble: 3 x 7
+#>   nodes     type label iso_4217_code curr_number
+#> * <int>    <chr> <chr>         <chr>       <chr>
+#> 1     1 currency   AED           AED         784
+#> 2     2 currency   AFN           AFN         971
+#> 3     3 currency   ALL           ALL           8
+#> # ... with 2 more variables: exponent <chr>,
+#> #   currency_name <chr>
 
 # Suppose you would like to not include certain
 # columns from the table in the resulting graph; you
@@ -121,14 +119,13 @@ graph_3 <-
     drop_cols = "exponent")
 
 graph_3 \%>\% get_node_df \%>\% head(3) \%>\% as.tbl
-#> Source: local data frame [3 x 5]
-#>
-#>   nodes     type label curr_number
-#>   (chr)    (chr) (chr)       (chr)
-#> 1     1 currency   AED         784
-#> 2     2 currency   AFN         971
-#> 3     3 currency   ALL           8
-#> Variables not shown: currency_name (chr)
+#> # A tibble: 3 x 6
+#>   nodes     type label iso_4217_code curr_number
+#> * <int>    <chr> <chr>         <chr>       <chr>
+#> 1     1 currency   AED           AED         784
+#> 2     2 currency   AFN           AFN         971
+#> 3     3 currency   ALL           ALL           8
+#> # ... with 1 more variables: currency_name <chr>
 }
 }
 

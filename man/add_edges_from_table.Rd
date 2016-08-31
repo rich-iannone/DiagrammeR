@@ -70,13 +70,10 @@ graph <-
     rel_col = "contributor_role",
     set_rel = "contributes_to")
 
-# Get a count of nodes in the graph
-node_count(graph)
-#> [1] 13
-
-# Get a count of edges in the graph
-edge_count(graph)
-#> [1] 13
+# Get a summary of the new graph
+graph_info(graph)
+#>   name  n  e      dens min_deg max_deg avg_deg time tz
+#> 1      13 13 0.1666667       1       7       2
 }
 }
 
