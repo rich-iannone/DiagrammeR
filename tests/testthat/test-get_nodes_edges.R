@@ -230,8 +230,8 @@ test_that("getting edge information from an edge data frame is possible", {
 
   # Expect columns of class `integer` and that there
   # are 26 rows in `gotten_edges_df`
-  expect_is(edges_df_from_edf[,1], "integer")
-  expect_is(edges_df_from_edf[,2], "integer")
+  expect_is(edges_df_from_edf[, 1], "integer")
+  expect_is(edges_df_from_edf[, 2], "integer")
   expect_true(nrow(edges_df_from_edf) == 2)
 })
 

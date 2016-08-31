@@ -1,19 +1,21 @@
 context("data.table and dplyr integration")
 
 test_that("combine_edges",{
+
+  # Create `edges_1` edge data frame
   edges_1 <-
     create_edges(
-      from = c("a", "a", "b", "c"),
-      to = c("b", "d", "d", "a"),
+      from = c(1, 1, 2, 3),
+      to = c(2, 4, 4, 1),
       rel = "requires",
       color = "green",
       data = c(2.7, 8.9, 2.6, 0.6))
 
-  # Create 'edges_2' edge data frame
+  # Create `edges_2` edge data frame
   edges_2 <-
     create_edges(
-      from = c("e", "g", "h", "h"),
-      to = c("g", "h", "f", "e"),
+      from = c(5, 7, 8, 8),
+      to = c(7, 8, 6, 5),
       rel = "receives",
       arrowhead = "dot",
       color = "red")
@@ -31,15 +33,15 @@ test_that("combine_edges",{
   all_edges <- combine_edges(edges_1, edges_2)
 
   # Expect that a data frame is generated
-  expect_true(inherits(all_edges, "data.frame"))
+  expect_is(all_edges, "data.frame")
 
   # Expect that the combined edge data frame
   # has 8 rows
-  expect_equal(nrow(all_edges), 8L)
+  expect_equal(nrow(all_edges), 8)
 
   # Expect that the combined edge data frame
   # has 6 columns
-  expect_equal(ncol(all_edges), 6L)
+  expect_equal(ncol(all_edges), 6)
 })
 
 test_that("create_graph",{
@@ -47,7 +49,7 @@ test_that("create_graph",{
   # Create a node data frame
   nodes <-
     create_nodes(
-      nodes = c("a", "b", "c", "d"),
+      nodes = 1:4,
       label = FALSE,
       type = "lower",
       style = "filled",
