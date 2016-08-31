@@ -17,3 +17,6 @@
 # Output files
 *.txt
 *.tif
+
+# .DS_Store
+.DS_Store
