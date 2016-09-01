@@ -43,21 +43,13 @@ get_non_nbrs <- function(graph,
       setdiff(get_nodes(graph), node),
       node_nbrs)
 
-  # Determine whether the node ID values are entirely
-  # numeric
-  node_id_numeric <-
-    ifelse(
-      suppressWarnings(
-        any(is.na(as.numeric(node_non_nbrs)))),
-      FALSE, TRUE)
+  # Get a unique set of node ID values
+  node_non_nbrs <- sort(unique(node_non_nbrs))
 
-  # If the node ID values are numeric, then apply a
-  # numeric sort and reclass as a `character` type
-  if (node_id_numeric) {
-    node_non_nbrs <-
-      as.character(sort(as.numeric(node_non_nbrs)))
+  # If there are no non-neighbors, then return `NA`
+  if (length(node_non_nbrs) == 0) {
+    return(NA)
+  } else {
+    return(node_non_nbrs)
   }
-
-  # Return the neighbor node ID values
-  return(node_non_nbrs)
 }
