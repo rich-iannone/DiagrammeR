@@ -30,7 +30,7 @@ graph_info <- function(graph) {
 
   colnames(graph_metrics) <-
     c("name", "n", "e", "dens",
-      "min_deg", "max_deg",
+      "mn_deg", "mx_deg",
       "avg_deg", "time", "tz")
 
   # Get the number of nodes
@@ -40,7 +40,7 @@ graph_info <- function(graph) {
   n_edges <- edge_count(graph)
 
   # Get the graph density
-  density <- n_edges / ((n_nodes * (n_nodes - 1))/2)
+  density <- round(n_edges / ((n_nodes * (n_nodes - 1))/2), 4)
 
   # Get a table of node degree values
   degree_table <-
