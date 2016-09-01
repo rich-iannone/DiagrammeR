@@ -18,8 +18,7 @@ a vector of node ID values.
 }
 \description{
 Provides a vector of node IDs for all
-nodes that have a
-connection from the given node.
+nodes that have a connection from the given node.
 }
 \examples{
 # Set a seed
@@ -44,7 +43,7 @@ graph <-
 get_successors(graph, node = 4)
 #> [1] 2 9
 
-# If there are no successors, NA is returned
+# If there are no successors, `NA` is returned
 get_successors(graph, node = 1)
 #> [1] NA
 }

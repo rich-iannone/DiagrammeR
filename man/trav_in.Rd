@@ -37,7 +37,7 @@ traversed to.
 \dontrun{
 # Create a graph
 graph <-
-create_graph() \%>\%
+  create_graph() \%>\%
   add_n_nodes(4) \%>\%
   add_edge(1, 2) \%>\%
   add_edge(2, 3) \%>\%
@@ -49,12 +49,14 @@ create_graph() \%>\%
 graph <-
   graph \%>\%
   select_nodes_by_id(4) \%>\%
-  trav_in \%>\% trav_in \%>\% trav_in
+  trav_in \%>\%
+  trav_in \%>\%
+  trav_in
 
 # Verify that the selection has been made by using
 # the `get_selection()` function
 get_selection(graph)
-#> [1] "1"
+#> [1] 1
 
 # Modify the graph by adding `type` values for
 # each of the nodes
@@ -79,7 +81,7 @@ graph \%>\%
   select_nodes_by_id(4) \%>\%
   trav_in("type", "z") \%>\%
   get_selection
-#> [1] "4"
+#> [1] 4
 
 # Setting the condition to traverse only to nodes
 # where the type is `a` will result in a traversal
@@ -87,17 +89,17 @@ graph \%>\%
   select_nodes_by_id(4) \%>\%
   trav_in("type", "a") \%>\%
   get_selection
-#> [1] "3"
+#> [1] 3
 
 # We can also set traversal conditions to satisfy
 # numeric comparisons... the graph will be first
 # modified
 graph <-
   graph \%>\%
-  set_node_attrs(1, "value", 3.4) \%>\%
-  set_node_attrs(2, "value", 6.7) \%>\%
-  set_node_attrs(3, "value", 9.1) \%>\%
-  set_node_attrs(4, "value", 5.5)
+  set_node_attrs("value", 3.4, 1) \%>\%
+  set_node_attrs("value", 6.7, 2) \%>\%
+  set_node_attrs("value", 9.1, 3) \%>\%
+  set_node_attrs("value", 5.5, 4)
 
 # Traverse from nodes `4` to `1`, setting the
 # condition that each node traversed to must have
@@ -111,7 +113,7 @@ graph \%>\%
   trav_in("value", ">5.0") \%>\%
   trav_in("value", ">5.0") \%>\%
   get_selection
-#> [1] "2"
+#> [1] 2
 }
 }
 

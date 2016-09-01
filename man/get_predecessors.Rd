@@ -18,8 +18,7 @@ a vector of node ID values.
 }
 \description{
 Provides a vector of node IDs for all
-nodes that have a
-connection to the given node.
+nodes that have a connection to the given node.
 }
 \examples{
 # Set a seed
@@ -44,7 +43,7 @@ graph <-
 get_predecessors(graph, node = 26)
 #> [1] 18
 
-# If there are no predecessors, NA is returned
+# If there are no predecessors, `NA` is returned
 get_predecessors(graph, node = 1)
 #> [1] NA
 }
