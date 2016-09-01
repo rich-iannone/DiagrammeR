@@ -5,24 +5,26 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
+#' @return a vector with the current selection of nodes
+#' or edges.
 #' @examples
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
 #'   add_node_df(create_nodes(1:6)) %>%
-#'   add_edge("1", "2") %>%
-#'   add_edge("1", "3") %>%
-#'   add_edge("3", "4") %>%
-#'   add_edge("4", "5") %>%
-#'   add_edge("4", "6")
+#'   add_edge(1, 2) %>%
+#'   add_edge(1, 3) %>%
+#'   add_edge(3, 4) %>%
+#'   add_edge(4, 5) %>%
+#'   add_edge(4, 6)
 #'
 #' # Select node `4`, then select all nodes a
 #' # distance of 1 away from node `4`, and finally
 #' # return the selection of nodes as a vector object
 #' graph %>%
-#'   select_nodes(nodes = "4") %>%
+#'   select_nodes(nodes = 4) %>%
 #'   select_nodes_in_neighborhood(
-#'     node = "4", distance = 1) %>%
+#'     node = 4, distance = 1) %>%
 #'   get_selection
 #' #> [1] "4" "5" "6" "3"
 #'
@@ -32,8 +34,6 @@
 #'   select_edges_by_node_id(4) %>%
 #'   get_selection
 #' #> [1] "4 -> 5" "4 -> 6" "3 -> 4"
-#' @return a vector with the current selection of nodes
-#' or edges.
 #' @export get_selection
 
 get_selection <- function(graph) {
@@ -43,12 +43,12 @@ get_selection <- function(graph) {
     return(NA)
   }
 
-  if (names(graph$selection) == 'nodes') {
+  if (names(graph$selection) == "nodes") {
     selection <- graph$selection[[1]]
     return(selection)
   }
 
-  if (names(graph$selection) == 'edges') {
+  if (names(graph$selection) == "edges") {
     selection_from <- graph$selection[[1]][[1]]
     selection_to <- graph$selection[[1]][[2]]
 

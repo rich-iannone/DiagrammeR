@@ -88,7 +88,7 @@
 #'     node_attr = 'value',
 #'     tol_abs = c(10, 10)) %>%
 #'     length
-#' #> [1] 17
+#' #> [1] 16
 #' @export get_similar_nbrs
 
 get_similar_nbrs <- function(graph,
