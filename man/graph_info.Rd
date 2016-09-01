@@ -30,8 +30,8 @@ power_grid <-
 
 # Display a data frame with graph information
 graph_info(power_grid)
-#>     name    n    e         dens min_deg max_deg avg_deg time tz
-#> 1 p_grid 4941 6594 0.0005403027       1      19       3
+#>     name    n    e  dens mn_deg mx_deg avg_deg time tz
+#> 1 p_grid 4941 6594 5e-04      1     19       3
 }
 }
 

@@ -43,10 +43,10 @@ graph <-
 
 # Get sucessors for node `4` in the graph
 get_successors(graph, node = 4)
-#> [1] "2" "9"
+#> [1] 2 9
 
 # If there are no successors, NA is returned
-get_successors(graph, node = "1")
+get_successors(graph, node = 1)
 #> [1] NA
 }
 

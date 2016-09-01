@@ -44,7 +44,7 @@ graph <-
 # Get the graph's internal node data frame (ndf)
 graph \%>\% get_node_df
 #>   nodes type label value  color
-#> 1     1    a        25.3 grey80
+#> 1     1    a     1  25.3 grey80
 #> 2     2    b     2    10 grey70
 #> 3     3    b     3    10 grey70
 #> 4     4    b     4    10 grey70

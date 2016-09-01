@@ -37,9 +37,7 @@ random_graph <-
     'graph', 'overlap', 'false')
 
 # Find all non-neighbors of node `5`
-random_graph \%>\%
-  get_non_nbrs(5)
-#>  [1] "3"  "4"  "6"  "7"  "8"  "9"  "10" "11" "13"
-#> [12] "14" "15" "16" "17"
+random_graph \%>\% get_non_nbrs(5)
+#> [1]  3  4  6  7  8  9 10 11 13 14 15 16 17
 }
 

@@ -43,7 +43,7 @@ random_graph <-
 # attribute as a named vector
 random_graph \%>\%
   get_node_attrs("value")
-#> 1   2   3   4
+#>   1   2   3   4
 #> 9.0 8.0 3.0 5.5
 
 # To only return node attribute values for specified
