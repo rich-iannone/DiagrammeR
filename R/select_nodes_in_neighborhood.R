@@ -74,12 +74,36 @@ select_nodes_in_neighborhood <- function(graph,
   for (i in 1:distance) {
     if (i == 1) {
 
-      nodes[[i]] <-
-        vector(mode = "character")
+      nodes[[i]] <- vector(mode = "integer")
 
       nodes[[i]] <-
         c(node,
-          as.character(
+          get_edges(
+            graph,
+            return_type = "df")[
+              which(
+                get_edges(
+                  graph,
+                  return_type = "df")[, 1] ==
+                  node), 2],
+          get_edges(
+            graph,
+            return_type = "df")[
+              which(
+                get_edges(
+                  graph,
+                  return_type = "df")[, 2] ==
+                  node), 1])
+    }
+
+    if (i > 1) {
+      for (j in 1:length(nodes[[i - 1]])) {
+        if (j == 1) {
+          nodes[[i]] <- vector(mode = "integer")
+        }
+
+        nodes[[i]] <-
+          c(nodes[[i]],
             get_edges(
               graph,
               return_type = "df")[
@@ -87,8 +111,7 @@ select_nodes_in_neighborhood <- function(graph,
                   get_edges(
                     graph,
                     return_type = "df")[, 1] ==
-                    node), 2]),
-          as.character(
+                    nodes[[i - 1]][j]), 2],
             get_edges(
               graph,
               return_type = "df")[
@@ -96,35 +119,7 @@ select_nodes_in_neighborhood <- function(graph,
                   get_edges(
                     graph,
                     return_type = "df")[, 2] ==
-                    node), 1]))
-    }
-
-    if (i > 1) {
-      for (j in 1:length(nodes[[i - 1]])) {
-        if (j == 1) {
-          nodes[[i]] <- vector(mode = "character")
-        }
-
-        nodes[[i]] <-
-          c(nodes[[i]],
-            as.character(
-              get_edges(
-                graph,
-                return_type = "df")[
-                  which(
-                    get_edges(
-                      graph,
-                      return_type = "df")[, 1] ==
-                      nodes[[i - 1]][j]), 2]),
-            as.character(
-              get_edges(
-                graph,
-                return_type = "df")[
-                  which(
-                    get_edges(
-                      graph,
-                      return_type = "df")[, 2] ==
-                      nodes[[i - 1]][j]), 1]))
+                    nodes[[i - 1]][j]), 1])
       }
     }
   }
@@ -140,7 +135,7 @@ select_nodes_in_neighborhood <- function(graph,
       nodes_prev_selection <- graph$selection$nodes
     }
   } else {
-    nodes_prev_selection <- vector(mode = "character")
+    nodes_prev_selection <- vector(mode = "integer")
   }
 
   # Incorporate selected nodes into graph's selection

@@ -28,7 +28,7 @@
 #' graph %>%
 #'   select_nodes_by_id(1:5) %>%
 #'   get_selection
-#' #> [1] "1" "2" "3" "4" "5"
+#' #> [1] 1 2 3 4 5
 #' @export select_nodes_by_id
 
 select_nodes_by_id <- function(graph,
@@ -37,10 +37,6 @@ select_nodes_by_id <- function(graph,
 
   # Get a vector of node ID values from the graph
   nodes_in_graph <- graph$nodes_df$nodes
-
-  # Ensure that the `nodes` vector is classed
-  # as character
-  nodes <- as.character(nodes)
 
   if (any(!(nodes %in% nodes_in_graph))) {
     stop("One of more of the nodes specified are not available in the graph.")
@@ -53,7 +49,7 @@ select_nodes_by_id <- function(graph,
       nodes_prev_selection <- graph$selection$nodes
     }
   } else {
-    nodes_prev_selection <- vector(mode = "character")
+    nodes_prev_selection <- vector(mode = "integer")
   }
 
   # Incorporate selected nodes into graph's
