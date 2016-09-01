@@ -65,21 +65,16 @@ get_nodes <- function(x,
   if (inherits(x, "dgr_graph")) {
 
     if (is_graph_empty(x)) {
-
       node_ID <- NA
 
       return(node_ID)
-
     } else {
-
       nodes_df <- x$nodes_df
     }
   }
 
   if (inherits(x, "data.frame")) {
-
     if (colnames(x)[1] == "nodes") {
-
       nodes_df <- x
     }
   }
