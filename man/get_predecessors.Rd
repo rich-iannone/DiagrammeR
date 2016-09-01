@@ -26,8 +26,7 @@ connection to the given node.
 set.seed(24)
 
 # Create a node data frame (ndf)
-nodes <-
-  create_nodes(nodes = 1:26)
+nodes <- create_nodes(1:26)
 
 # Create an edge data frame (edf)
 edges <-

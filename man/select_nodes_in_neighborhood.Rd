@@ -34,20 +34,10 @@ of nodes connected a specified distance from an
 initial node.
 }
 \examples{
-# Create a graph containing 10 nodes,
-# numbered `1` through `10`, and 4 different node
-# types (`A`, `B`, `C`, and `D`)
+# Create a graph containing a balanced tree
 graph <-
-  create_graph(graph_attrs = 'layout = twopi') \%>\%
-  add_node("A") \%>\% select_nodes \%>\%
-  add_n_nodes_ws(3, "from", "B") \%>\%
-  clear_selection \%>\%
-  select_nodes("type", "B") \%>\%
-  add_n_nodes_ws(3, "from", "C") \%>\%
-  clear_selection \%>\%
-  select_nodes("type", "C") \%>\%
-  add_n_nodes_ws(3, "from", "D") \%>\%
-  clear_selection
+  create_graph() \%>\%
+  add_balanced_tree(2, 3)
 
 # Create a graph selection by selecting nodes
 # in the neighborhood of node `1`, where the
@@ -60,7 +50,7 @@ graph <-
 
 # Get the selection of nodes
 graph \%>\% get_selection
-#> [1] "1" "2" "3" "4"
+#> [1] 1 2 3
 
 # Perform another selection of nodes, this time
 # with a neighborhood spanning 2 nodes from node `1`
@@ -72,10 +62,10 @@ graph <-
 
 # Get the selection of nodes
 graph \%>\% get_selection
-#> [1] "1" "2" "3" "4" "5" "6" "7"
+#> [1] 1 2 3 4 5 6 7
 
 # Perform a final selection of nodes, using
-# `distance = 3`, this effectively selects all 10
+# `distance = 3`, this effectively selects all
 # nodes in this graph
 graph <-
   graph \%>\%
@@ -85,7 +75,6 @@ graph <-
 
 # Get the selection of nodes
 graph \%>\% get_selection
-#> [1] "1"  "2"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
-#> [10] "10"
+#> [1] 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
 }
 

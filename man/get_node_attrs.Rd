@@ -41,8 +41,7 @@ random_graph <-
 
 # Get all of the values from the `value` node
 # attribute as a named vector
-random_graph \%>\%
-  get_node_attrs("value")
+random_graph \%>\% get_node_attrs("value")
 #>   1   2   3   4
 #> 9.0 8.0 3.0 5.5
 

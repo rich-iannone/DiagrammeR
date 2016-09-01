@@ -43,6 +43,6 @@ graph <- create_graph(nodes_df = nodes)
 graph \%>\%
   select_nodes_by_id(1:5) \%>\%
   get_selection
-#> [1] "1" "2" "3" "4" "5"
+#> [1] 1 2 3 4 5
 }
 

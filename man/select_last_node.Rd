@@ -37,6 +37,6 @@ graph <-
 
 # Get the current selection
 graph \%>\% get_selection
-#> [1] "3"
+#> [1] 3
 }
 

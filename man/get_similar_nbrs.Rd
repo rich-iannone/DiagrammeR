@@ -54,11 +54,7 @@ random_graph <-
     m = 22,
     directed = TRUE,
     fully_connected = TRUE,
-    set_seed = 20) \%>\%
-  set_global_graph_attrs(
-    'graph', 'layout', 'sfdp') \%>\%
-  set_global_graph_attrs(
-    'graph', 'overlap', 'false')
+    set_seed = 20)
 
 # This graph cannot be shown in this help page
 # but you may be interested in displaying it with
@@ -74,7 +70,7 @@ random_graph \%>\% render_graph
 random_graph \%>\%
   get_similar_nbrs(
     node = 8,
-    node_attr = 'value')
+    node_attr = "value")
 #> [1] NA
 
 # There are no nodes neighboring `8` that have a
@@ -91,9 +87,9 @@ random_graph \%>\%
 random_graph \%>\%
   get_similar_nbrs(
     node = 8,
-    node_attr = 'value',
+    node_attr = "value",
     tol_abs = c(3, 3))
-#> [1] "3"  "9"  "10" "13" "17" "18"
+#> [1]  3  9 10 13 17 18
 
 # That resulted in a fairly large set of 7
 # neigboring nodes; For sake of example, setting the
@@ -102,7 +98,7 @@ random_graph \%>\%
 random_graph \%>\%
   get_similar_nbrs(
     node = 8,
-    node_attr = 'value',
+    node_attr = "value",
     tol_abs = c(10, 10)) \%>\%
     length
 #> [1] 16
