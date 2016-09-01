@@ -40,7 +40,7 @@
 #' #> [1] 1 2 3 4
 #'
 #' # Get a vector of node ID values using a numeric
-#' # comparison (i.e., all nodes with 'value' attribute
+#' # comparison (i.e., all nodes with `value` attribute
 #' # greater than 3)
 #' get_nodes(
 #'   graph,
@@ -49,8 +49,8 @@
 #' #> [1] 1 3
 #'
 #' # Get a vector of node ID values using a match
-#' # pattern (i.e., all nodes with 'color' attribute
-#' # of "green")
+#' # pattern (i.e., all nodes with `color` attribute
+#' # of `green`)
 #' get_nodes(
 #'   graph,
 #'   node_attr = "color",
