@@ -33,6 +33,17 @@
 #' edge_info(graph)
 #' #>   from to    rel
 #' #> 1    1  2 to_get
+#'
+#' # Add another node and edge to the graph
+#' graph <-
+#'   graph %>%
+#'   add_node %>%
+#'   add_edge(3, 2, "to_get")
+#'
+#' # Verify that the edge has been created by
+#' # getting a count of graph edges
+#' edge_count(graph)
+#' #> [1] 2
 #' @export add_edge
 
 add_edge <- function(graph,

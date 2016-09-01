@@ -1,8 +1,7 @@
 #' Get node IDs for predecessor nodes to the specified
 #' node
 #' @description Provides a vector of node IDs for all
-#' nodes that have a
-#' connection to the given node.
+#' nodes that have a connection to the given node.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param node a node ID for the selected node.
@@ -30,7 +29,7 @@
 #' get_predecessors(graph, node = 26)
 #' #> [1] 18
 #'
-#' # If there are no predecessors, NA is returned
+#' # If there are no predecessors, `NA` is returned
 #' get_predecessors(graph, node = 1)
 #' #> [1] NA
 #' @export get_predecessors

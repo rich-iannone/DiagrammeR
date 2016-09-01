@@ -1,8 +1,7 @@
 #' Get node IDs for successor nodes to the specified
 #' node
 #' @description Provides a vector of node IDs for all
-#' nodes that have a
-#' connection from the given node.
+#' nodes that have a connection from the given node.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param node a node ID for the selected node.
@@ -30,7 +29,7 @@
 #' get_successors(graph, node = 4)
 #' #> [1] 2 9
 #'
-#' # If there are no successors, NA is returned
+#' # If there are no successors, `NA` is returned
 #' get_successors(graph, node = 1)
 #' #> [1] NA
 #' @export get_successors
