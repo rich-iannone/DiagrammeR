@@ -15,11 +15,7 @@
 #'     m = 22,
 #'     directed = TRUE,
 #'     fully_connected = TRUE,
-#'     set_seed = 20) %>%
-#'   set_global_graph_attrs(
-#'     'graph', 'layout', 'sfdp') %>%
-#'   set_global_graph_attrs(
-#'     'graph', 'overlap', 'false')
+#'     set_seed = 20)
 #'
 #' # Find all neighbor nodes for node `5`
 #' random_graph %>% get_nbrs(5)

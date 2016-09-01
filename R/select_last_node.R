@@ -24,7 +24,7 @@
 #'
 #' # Get the current selection
 #' graph %>% get_selection
-#' #> [1] "3"
+#' #> [1] 3
 #' @export select_last_node
 
 select_last_node <- function(graph) {
@@ -36,5 +36,6 @@ select_last_node <- function(graph) {
   nodes <- graph$nodes_df$nodes
   last_node <- nodes[length(nodes)]
   graph$selection$nodes <- last_node
+
   return(graph)
 }

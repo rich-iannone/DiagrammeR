@@ -35,14 +35,14 @@
 #'
 #' # Verify that a node selection has been made
 #' get_selection(graph)
-#' #> [1] "1" "3"
+#' #> [1] 1 3
 #'
 #' # Invert the selection
 #' graph <- invert_selection(graph = graph)
 #'
 #' # Verify that the node selection has been changed
 #' get_selection(graph)
-#' #> [1] "2" "4"
+#' #> [1] 2 4
 #' @export invert_selection
 
 invert_selection <- function(graph) {
