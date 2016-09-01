@@ -200,7 +200,7 @@ select_nodes <- function(graph,
       nodes_prev_selection <- graph$selection$nodes
     }
   } else {
-    nodes_prev_selection <- vector(mode = "character")
+    nodes_prev_selection <- vector(mode = "integer")
   }
 
   # Incorporate the selected nodes into the
