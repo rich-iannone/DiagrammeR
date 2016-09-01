@@ -45,7 +45,7 @@ get_selection <- function(graph) {
 
   if (names(graph$selection) == "nodes") {
     selection <- graph$selection[[1]]
-    return(selection)
+    return(sort(selection))
   }
 
   if (names(graph$selection) == "edges") {
