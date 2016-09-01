@@ -110,11 +110,10 @@ test_that("Getting graph periphery is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
-  graph_periphery <-
-    get_periphery(graph)
+  graph_periphery <- get_periphery(graph)
 
-  # Expect that `graph_periphery` is a character vector
-  expect_is(graph_periphery, "character")
+  # Expect that `graph_periphery` is an integer vector
+  expect_is(graph_periphery, "integer")
 
   # Expect that `graph_periphery` has length 2 in
   # this case
@@ -122,7 +121,7 @@ test_that("Getting graph periphery is possible", {
 
   # Expect certain values for the
   # `graph_periphery` object
-  expect_identical(graph_periphery, c("1", "10"))
+  expect_equal(graph_periphery, c(1, 10))
 })
 
 test_that("Getting graph info is possible", {

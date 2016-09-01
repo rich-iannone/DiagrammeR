@@ -96,7 +96,7 @@ test_that("Getting similar neighbors of a node is possible", {
     is.na(get_similar_nbrs(
       random_graph,
       node = 8,
-      node_attr = 'value')))
+      node_attr = "value")))
 
   # Expect several nodes to be matched when using
   # an absolute tolerance range
@@ -104,9 +104,9 @@ test_that("Getting similar neighbors of a node is possible", {
     get_similar_nbrs(
       random_graph,
       node = 8,
-      node_attr = 'value',
+      node_attr = "value",
       tol_abs = c(3, 3)),
-    c("3", "9", "10", "13", "17", "18"))
+    c(3, 9, 10, 13, 17, 18))
 
   # Expect all nodes to be matched, except the
   # starting node when using a very high absolute
@@ -115,11 +115,10 @@ test_that("Getting similar neighbors of a node is possible", {
     get_similar_nbrs(
       random_graph,
       node = 8,
-      node_attr = 'value',
+      node_attr = "value",
       tol_abs = c(10, 10)),
-    c("1", "2", "3", "4", "5", "6",
-      "9", "10", "11", "12", "13",
-      "14", "15", "16", "17", "18"))
+    c(1, 2, 3, 4, 5, 6, 9, 10, 11,
+      12, 13, 14, 15, 16, 17, 18))
 
   # Expect certain nodes to be matched, when using
   # tolerance specified as a low and high percentage
@@ -127,7 +126,7 @@ test_that("Getting similar neighbors of a node is possible", {
     get_similar_nbrs(
       random_graph,
       node = 3,
-      node_attr = 'value',
+      node_attr = "value",
       tol_pct = c(75, 75)),
-    c("8", "9", "10", "17", "18"))
+    c(8, 9, 10, 17, 18))
 })

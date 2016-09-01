@@ -121,8 +121,7 @@ test_that("simple traversals are possible", {
 
   # Expect an error if attempting to perform a node
   # traversal without any selection of nodes
-  graph <-
-    graph %>% clear_selection()
+  graph <- graph %>% clear_selection
 
   expect_error(graph %>% trav_in)
   expect_error(graph %>% trav_out)
@@ -219,7 +218,7 @@ test_that("selective traversals with `trav_out()` are possible", {
 
   # Expect that node `1` is the current selection (since
   # no traversal had occurred)
-  expect_equal(get_selection(graph), "1")
+  expect_equal(get_selection(graph), 1)
 
   # Starting at node `3`, traverse to node `4` using a
   # match on a character field
@@ -241,7 +240,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     trav_out(node_attr = "shape", match = "triangle")
 
   # Expect that node `4` is the current selection
-  expect_equal(get_selection(graph), "3")
+  expect_equal(get_selection(graph), 3)
 })
 
 test_that("selective traversals with `trav_in()` are possible", {
@@ -283,7 +282,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     select_nodes_by_id(4) %>%
     trav_in(node_attr = "data_value", match = "==10")
 
-  # Expect that node `2` is the current selection
+  # Expect that node `3` is the current selection
   expect_equal(get_selection(graph), "3")
 
   # Starting at node `4`, traverse to node `3`, using a
@@ -330,7 +329,7 @@ test_that("selective traversals with `trav_in()` are possible", {
 
   # Expect that node `4` is the current selection
   # (since no traversal had occurred)
-  expect_equal(get_selection(graph), "4")
+  expect_equal(get_selection(graph), 4)
 
   # Starting at node `2`, traverse to node `1` using
   # a match on a character field
@@ -354,7 +353,7 @@ test_that("selective traversals with `trav_in()` are possible", {
 
   # Expect that node `2` is the current selection
   # (since no traversal had occurred)
-  expect_equal(get_selection(graph), "2")
+  expect_equal(get_selection(graph), 2)
 })
 
 test_that("selective traversals with `trav_out_edge()` are possible", {
@@ -447,7 +446,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
 
   # Expect that node `1` is the current selection
   # (since no traversal had occurred)
-  expect_equal(get_selection(graph), "1")
+  expect_equal(get_selection(graph), 1)
 
   # Starting at node `1`, traverse to edge between
   # nodes `1` and `2` using a match on a character field
@@ -472,7 +471,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
 
   # Expect that node `1` is the current selection
   # (since no traversal had occurred)
-  expect_equal(get_selection(graph), "1")
+  expect_equal(get_selection(graph), 1)
 })
 
 test_that("selective traversals with `trav_in_edge()` are possible", {
@@ -565,7 +564,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
 
   # Expect that node `4` is the current selection
   # (since no traversal had occurred)
-  expect_equal(get_selection(graph), "4")
+  expect_equal(get_selection(graph), 4)
 
   # Starting at node `4`, traverse to edge between
   # nodes `3` and `4` using a match on a
@@ -591,7 +590,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
 
   # Expect that node `4` is the current selection
   # (since no traversal had occurred)
-  expect_equal(get_selection(graph), "4")
+  expect_equal(get_selection(graph), 4)
 })
 
 test_that("selective traversals with `trav_in_node()` are possible", {
@@ -956,5 +955,5 @@ test_that("selective traversals with `trav_both()` are possible", {
     trav_both(node_attr = "shape", match = "circle")
 
   # Expect that the node `3` is the current selection
-  expect_equal(get_selection(graph), "2")
+  expect_equal(get_selection(graph), 2)
 })
