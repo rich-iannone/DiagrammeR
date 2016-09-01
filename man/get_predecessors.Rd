@@ -43,10 +43,10 @@ graph <-
 
 # Get predecessors for node `26` in the graph
 get_predecessors(graph, node = 26)
-#> [1] "18"
+#> [1] 18
 
 # If there are no predecessors, NA is returned
-get_predecessors(graph, node = "1")
+get_predecessors(graph, node = 1)
 #> [1] NA
 }
 
