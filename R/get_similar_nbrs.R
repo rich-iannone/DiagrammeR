@@ -203,7 +203,6 @@ get_similar_nbrs <- function(graph,
     if (i > 1) {
       if (identical(nodes[[i]], nodes[[i - 1]])) break
     }
-
     i <- i + 1
   }
 
@@ -212,32 +211,10 @@ get_similar_nbrs <- function(graph,
   matching_nodes <-
     setdiff(nodes[length(nodes)][[1]], node)
 
-  # If there are no matching nodes, assign NA to
-  # `matching_nodes`
+  # If there are no matching nodes return `NA`
   if (length(matching_nodes) == 0) {
-    matching_nodes <- NA
+    return(NA)
+  } else {
+    return(sort(matching_nodes))
   }
-
-  # If `matching_nodes` has node ID values, determine
-  # if the node ID values are numeric and, if so, apply
-  # a numeric sort
-  if (all(!is.na(matching_nodes))) {
-
-    # Determine whether the node ID values are entirely
-    # numeric
-    node_id_numeric <-
-      ifelse(
-        suppressWarnings(
-          any(is.na(as.numeric(matching_nodes)))),
-        FALSE, TRUE)
-
-    # If the node ID values are numeric, then apply a
-    # numeric sort and reclass as a `character` type
-    if (node_id_numeric) {
-      matching_nodes <-
-        as.character(sort(as.numeric(matching_nodes)))
-    }
-  }
-
-  return(matching_nodes)
 }
