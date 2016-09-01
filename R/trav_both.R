@@ -40,7 +40,7 @@
 #' # Verify that the selection has been made by using
 #' # the `get_selection()` function
 #' get_selection(graph)
-#' #> [1] "3" "1"
+#' #> [1] 1 3
 #'
 #' # Modify the graph by adding `type` values for
 #' # nodes `1` and `3`
@@ -67,16 +67,28 @@
 #'   select_nodes_by_id(2) %>%
 #'   trav_both("type", "a") %>%
 #'   get_selection
-#' #> [1] "1"
+#' #> [1] 1
 #'
 #' # We can also set traversal conditions to satisfy
 #' # numeric comparisons... the graph will be first
 #' # modified
 #' graph <-
 #'   graph %>%
-#'   set_node_attrs(1, "value", 3.4) %>%
-#'   set_node_attrs(2, "value", 6.7) %>%
-#'   set_node_attrs(3, "value", 9.1)
+#'   set_node_attrs("value", 3.4, 1) %>%
+#'   set_node_attrs("value", 6.7, 2) %>%
+#'   set_node_attrs("value", 9.1, 3)
+#'
+#' # Traverse from nodes `2` to `1` and `3`,
+#' # setting the condition that each node traversed
+#' # to must have a `value` greater than 5.0
+#' # (although a traversal to both nodes is
+#' # intended, the traversal does not reach node
+#' # `1` since its value is not greater than 5.0)
+#' graph %>%
+#'   select_nodes_by_id(2) %>%
+#'   trav_both("value", ">5.0") %>%
+#'   get_selection
+#' #> [1] 3
 #' @export trav_both
 
 trav_both <- function(graph,
