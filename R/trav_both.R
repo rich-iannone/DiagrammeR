@@ -93,7 +93,7 @@ trav_both <- function(graph,
   # Get all paths leading outward from node in selection
   for (i in 1:length(selected_nodes)) {
     if (i == 1) {
-      successors <- vector(mode = "character")
+      successors <- vector(mode = "integer")
     }
 
     if (!is.na(
@@ -112,7 +112,7 @@ trav_both <- function(graph,
   # Get all paths leading inward from node in selection
   for (i in 1:length(selected_nodes)) {
     if (i == 1) {
-      predecessors <- vector(mode = "character")
+      predecessors <- vector(mode = "integer")
     }
 
     if (!is.na(
@@ -167,7 +167,7 @@ trav_both <- function(graph,
       for (i in 1:length(succ_pred)) {
 
         if (i == 1) {
-          to_nodes <- vector(mode = "character")
+          to_nodes <- vector(mode = "integer")
           column_number <-
             which(colnames(graph$nodes_df) %in%
                     node_attr)
@@ -229,7 +229,7 @@ trav_both <- function(graph,
       for (i in 1:length(succ_pred)) {
 
         if (i == 1) {
-          to_nodes <- vector(mode = "character")
+          to_nodes <- vector(mode = "integer")
 
           column_number <-
             which(colnames(graph$nodes_df) %in%
@@ -251,7 +251,7 @@ trav_both <- function(graph,
 
   # Update node selection in graph
   if (length(succ_pred) > 0) {
-    graph$selection$nodes <- succ_pred
+    graph$selection$nodes <- as.integer(succ_pred)
     return(graph)
   } else {
     return(graph)

@@ -113,12 +113,12 @@ trav_out <- function(graph,
 
   # Get all paths leading outward from node in selection
   for (i in 1:length(selected_nodes)) {
-    if (i == 1) successors <- vector(mode = "character")
+    if (i == 1) successors <- vector(mode = "integer")
 
     if (!is.na(get_successors(graph, selected_nodes[i])[1])) {
       successors <-
         c(successors,
-          get_successors(graph = graph, selected_nodes[i]))
+          get_successors(graph, selected_nodes[i]))
     }
 
     if (i == length(selected_nodes)) {
@@ -147,7 +147,7 @@ trav_out <- function(graph,
       for (i in 1:length(successors)) {
 
         if (i == 1) {
-          to_nodes <- vector(mode = "character")
+          to_nodes <- vector(mode = "integer")
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
@@ -199,7 +199,7 @@ trav_out <- function(graph,
       for (i in 1:length(successors)) {
 
         if (i == 1) {
-          to_nodes <- vector(mode = "character")
+          to_nodes <- vector(mode = "integer")
           column_number <- which(colnames(graph$nodes_df) %in% node_attr)
         }
 
@@ -216,7 +216,7 @@ trav_out <- function(graph,
 
   # Update node selection in graph
   if (length(successors) > 0) {
-    graph$selection$nodes <- successors
+    graph$selection$nodes <- as.integer(successors)
     return(graph)
   } else {
     return(graph)

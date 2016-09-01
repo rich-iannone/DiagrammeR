@@ -220,7 +220,7 @@ trav_in <- function(graph,
 
   # Update node selection in graph
   if (length(predecessors) > 0) {
-    graph$selection$nodes <- predecessors
+    graph$selection$nodes <- as.integer(predecessors)
     return(graph)
   } else {
     return(graph)
