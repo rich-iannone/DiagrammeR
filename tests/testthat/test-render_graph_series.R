@@ -5,22 +5,22 @@ test_that("rendering a graph is indeed possible", {
   # Create a node data frame
   nodes <-
     create_nodes(
-      nodes = LETTERS,
+      nodes = 1:26,
       type = "letter",
       shape = sample(c("circle", "rectangle"),
-                     length(LETTERS),
+                     length(1:26),
                      replace = TRUE),
       fillcolor = sample(c("aqua", "gray80",
                            "pink", "lightgreen",
                            "azure", "yellow"),
-                         length(LETTERS),
+                         length(1:26),
                          replace = TRUE))
 
   # Create an edge data frame
   edges <-
     create_edges(
-      from = sample(LETTERS, replace = TRUE),
-      to = sample(LETTERS, replace = TRUE),
+      from = sample(1:26, replace = TRUE),
+      to = sample(1:26, replace = TRUE),
       relationship = "letter_to_letter")
 
   # Create the graph object using the node and
@@ -36,11 +36,11 @@ test_that("rendering a graph is indeed possible", {
                      "arrowsize = 0.5"))
 
   # Render the graph object and create a
-  # 'grViz'/'htmlwidget' object
+  # `grViz`/`htmlwidget` object
   rendered_graph <- render_graph(graph)
 
-  # Expect that the 'rendered_graph' object inherits
-  # from 'grViz' & 'htmlwidget'
+  # Expect that the `rendered_graph` object inherits
+  # from `grViz` & `htmlwidget`
   expect_is(rendered_graph, c("grViz", "htmlwidget"))
 })
 
@@ -49,22 +49,22 @@ test_that("exporting Graphviz DOT code is indeed possible", {
   # Create a node data frame
   nodes <-
     create_nodes(
-      nodes = LETTERS,
+      nodes = 1:26,
       type = "letter",
       shape = sample(c("circle", "rectangle"),
-                     length(LETTERS),
+                     length(1:26),
                      replace = TRUE),
       fillcolor = sample(c("aqua", "gray80",
                            "pink", "lightgreen",
                            "azure", "yellow"),
-                         length(LETTERS),
+                         length(1:26),
                          replace = TRUE))
 
   # Create an edge data frame
   edges <-
     create_edges(
-      from = sample(LETTERS, replace = TRUE),
-      to = sample(LETTERS, replace = TRUE),
+      from = sample(1:26, replace = TRUE),
+      to = sample(1:26, replace = TRUE),
       relationship = "letter_to_letter")
 
   # Create the graph object using the node and
@@ -90,30 +90,29 @@ test_that("exporting Graphviz DOT code is indeed possible", {
 
 test_that("rendering a graph from a series is also possible", {
 
-  library(magrittr)
-
   # Create a set of graphs for a graph series
   graph_1 <-
     create_graph() %>%
-    add_node("a") %>%
-    add_node("b") %>%
-    add_node("c") %>%
-    add_edge("a", "c") %>%
-    add_edge("a", "b") %>%
-    add_edge("b", "c")
+    add_node(1) %>%
+    add_node(2) %>%
+    add_node(3) %>%
+    add_edge(1, 3) %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3)
 
   graph_2 <-
     graph_1 %>%
-    add_node("d") %>%
-    add_edge("d", "c")
+    add_node(4) %>%
+    add_edge(4, 3)
 
   graph_3 <-
     graph_2 %>%
-    add_node("e") %>%
-    add_edge("e", "b")
+    add_node(5) %>%
+    add_edge(5, 2)
 
   # Create an empty graph series
-  series <- create_series(series_type = "sequential")
+  series <-
+    create_series(series_type = "sequential")
 
   # Add graphs to the graph series
   series <- graph_1 %>% add_to_series(series)
