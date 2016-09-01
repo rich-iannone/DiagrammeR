@@ -146,6 +146,15 @@ add_edge <- function(graph,
                        to = to))
     }
 
+    # Ensure that the `from` and `to` columns are
+    # classed as `integer`
+    combined_edges[, 1] <-
+      as.integer(combined_edges[, 1])
+
+    combined_edges[, 2] <-
+      as.integer(combined_edges[, 2])
+
+
     # Use the `combined_edges` object in either case to
     # create an updated graph
     dgr_graph <-
