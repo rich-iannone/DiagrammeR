@@ -47,7 +47,7 @@ get_eccentricity <- function(graph,
   for (i in 1:length(nodes_to_process)) {
 
     if (i == 1) {
-      eccentricity <- vector(mode = 'numeric')
+      eccentricity <- vector(mode = 'integer')
     }
 
     longest_path <-
