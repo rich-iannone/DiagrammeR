@@ -26,8 +26,11 @@ get_periphery <- function(graph) {
   # Return the node IDs for all nodes where the
   # eccentricity is equal to the graph diameter
   # (i.e., maximum eccentricity)
-  return(names(
-    eccentricity[
-      which(eccentricity %in%
-              max(eccentricity))]))
+  nodes <-
+    as.integer(names(
+      eccentricity[
+        which(eccentricity %in%
+                max(eccentricity))]))
+
+  return(nodes)
 }
