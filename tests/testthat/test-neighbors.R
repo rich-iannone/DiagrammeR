@@ -17,8 +17,7 @@ test_that("Getting all neighbors of one or more nodes is possible", {
 
   # Expect that nodes `1`, `2`, `12`, and `18` are
   # the neighbors of node `5`
-  expect_identical(all_nbrs_5,
-                   c("1", "2", "12", "18"))
+  expect_identical(all_nbrs_5, c(1, 2, 12, 18))
 
   # Find all neighbor nodes for nodes `5`, `7`,
   # and `15`
@@ -29,7 +28,7 @@ test_that("Getting all neighbors of one or more nodes is possible", {
   # and `18` are the neighbors of nodes `5`,
   # `7`, and `15`
   expect_identical(all_nbrs_5_7_15,
-                   c("1", "2", "6", "12", "18"))
+                   c(1, 2, 6, 12, 18))
 })
 
 test_that("Getting non-neighbors of a node is possible", {
@@ -46,16 +45,12 @@ test_that("Getting non-neighbors of a node is possible", {
 
   # Find all non-neighbors of node `5`
   non_nbrs_5 <- get_non_nbrs(random_graph, 5)
-  #>  [1] "3"  "4"  "6"  "7"  "8"  "9"  "10" "11" "13"
-  #> [12] "14" "15" "16" "17"
-
 
   # Expect certain nodes that are are non-neighbors
   # of node `5`
-  expect_identical(non_nbrs_5,
-                   c("3", "4", "6", "7", "8", "9",
-                     "10", "11", "13", "14", "15",
-                     "16", "17"))
+  expect_equal(
+    non_nbrs_5,
+    c(3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17))
 })
 
 

@@ -155,6 +155,6 @@ test_that("Getting graph info is possible", {
   # Expect that `graph_i` has certain column names
   expect_identical(
     colnames(graph_i),
-    c("name", "n", "e", "dens", "min_deg",
-      "max_deg", "avg_deg", "time", "tz"))
+    c("name", "n", "e", "dens", "mn_deg",
+      "mx_deg", "avg_deg", "time", "tz"))
 })
