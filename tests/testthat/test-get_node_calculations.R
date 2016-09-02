@@ -165,16 +165,16 @@ test_that("Getting articulation points is possible", {
   articulation_points <-
     get_articulation_points(graph)
 
-  # Expect a character vector as output
-  expect_is(articulation_points, "character")
+  # Expect an integer vector as output
+  expect_is(articulation_points, "integer")
 
   # Expect 3 values in the vector
   expect_equal(length(articulation_points), 3)
 
   # Expect the node IDs `8`, `22`, and `24` as
   # articulation points
-  expect_identical(articulation_points,
-                   c("8", "22", "24"))
+  expect_equal(
+    articulation_points, c(8, 22, 24))
 })
 
 test_that("Getting weakly connected components is possible", {

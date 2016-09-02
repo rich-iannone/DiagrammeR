@@ -72,8 +72,8 @@ test_that("Getting common neighbors of 2 or more nodes is possible", {
 
   # Expect a common neighbor node of `1` for nodes
   # `9` and  `17`
-  expect_identical(get_common_nbrs(random_graph, c(9, 17)),
-                   "1")
+  expect_equal(
+    get_common_nbrs(random_graph, c(9, 17)), 1)
 })
 
 
