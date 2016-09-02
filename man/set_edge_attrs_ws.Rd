@@ -24,4 +24,30 @@ From a graph object of class
 \code{dgr_graph} or an edge data frame, set edge
 attribute properties for one or more edges
 }
+\examples{
+# Create a simple graph
+graph <-
+  create_graph() \%>\%
+  add_path(6)
+
+# Select specific edges from the graph and
+# apply the edge attribute `color = blue` to
+# those selected edges
+graph <-
+  graph \%>\%
+  select_nodes_by_id(2:4) \%>\%
+  trav_out_edge \%>\%
+  set_edge_attrs_ws("color", "blue")
+
+# Show the internal edge data frame to verify
+# that the edge attribute has been set for
+# specific edges
+get_edge_df(graph)
+#>   from to rel color
+#> 1    1  2
+#> 2    2  3      blue
+#> 3    3  4      blue
+#> 4    4  5      blue
+#> 5    5  6
+}
 

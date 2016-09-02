@@ -25,4 +25,31 @@ From a graph object of class
 attribute properties for nodes present in a node
 selection.
 }
+\examples{
+# Create a simple graph
+graph <-
+  create_graph() \%>\%
+  add_path(6)
+
+# Select specific nodes from the graph and
+# apply the node attribute `color = blue` to
+# those selected nodes
+graph <-
+  graph \%>\%
+  select_nodes_by_id(1:4) \%>\%
+  trav_out \%>\%
+  set_node_attrs_ws("color", "blue")
+
+# Show the internal node data frame to verify
+# that the node attribute has been set for
+# specific node
+get_node_df(graph)
+#>   nodes type label color
+#> 1     1          1
+#> 2     2          2  blue
+#> 3     3          3  blue
+#> 4     4          4  blue
+#> 5     5          5  blue
+#> 6     6          6
+}
 
