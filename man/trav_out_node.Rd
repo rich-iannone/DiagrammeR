@@ -54,6 +54,6 @@ graph <-
 # Verify that the selection of node `1` has been
 # made by using the `get_selection()` function
 get_selection(graph)
-#> [1] "1"
+#> [1] 1
 }
 

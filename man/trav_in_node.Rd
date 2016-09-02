@@ -53,6 +53,6 @@ graph <-
 # Verify that the selection of node `2` has been
 # made by using the `get_selection()` function
 get_selection(graph)
-#> [1] "2"
+#> [1] 2
 }
 
