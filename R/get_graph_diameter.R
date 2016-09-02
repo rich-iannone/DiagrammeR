@@ -6,8 +6,8 @@
 #' @return the graph diameter as a single-length
 #' vector.
 #' @examples
-#' # Get the graph diameter for a randomly-created
-#' # graph
+#' # Get the graph diameter for a
+#' # randomly-created graph
 #' get_graph_diameter(
 #'   create_random_graph(
 #'     5, 7,

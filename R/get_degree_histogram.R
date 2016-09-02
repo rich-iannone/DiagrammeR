@@ -17,13 +17,9 @@
 #'     m = 22,
 #'     directed = TRUE,
 #'     fully_connected = TRUE,
-#'     set_seed = 20) %>%
-#'   set_global_graph_attrs(
-#'     'graph', 'layout', 'sfdp') %>%
-#'   set_global_graph_attrs(
-#'     'graph', 'overlap', 'false')
+#'     set_seed = 20)
 #'
-#' # Get degree histogram data for the `random_graph`
+#' # Get degree histogram data for `random_graph`
 #' random_graph %>% get_degree_histogram
 #' #> 1 2 3 4 5
 #' #> 4 6 3 4 1

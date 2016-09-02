@@ -12,7 +12,8 @@
 #'   create_random_graph(
 #'     5, 6, set_seed = 3) %>%
 #'     set_edge_attrs("value", 3) %>%
-#'     mutate_edge_attrs("value", "2 * .", "penwidth")
+#'     mutate_edge_attrs(
+#'       "value", "2 * .", "penwidth")
 #'
 #' # Get the graph's internal edf to show which
 #' # edge attributes are available
@@ -30,8 +31,8 @@
 #'   graph %>%
 #'   drop_edge_attrs("value")
 #'
-#' # Get the graph's internal edf to show that the
-#' # edge attribute had been removed
+#' # Get the graph's internal edf to show that
+#' # the edge attribute had been removed
 #' get_edge_df(graph)
 #' #>   from to rel penwidth
 #' #> 1    4  1            6

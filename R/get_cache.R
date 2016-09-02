@@ -26,7 +26,8 @@
 #'
 #' # Return the cached vector
 #' graph %>% get_cache
-#' #> [1] 6.975722 12.970367 10.015652 8.585629 7.582081
+#' #> [1] 6.975722 12.970367 10.015652
+#' #> [4] 8.585629 7.582081
 #' @export get_cache
 
 get_cache <- function(graph) {

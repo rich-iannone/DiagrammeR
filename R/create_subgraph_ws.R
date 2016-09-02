@@ -19,15 +19,16 @@
 #'     to = c(2, 4, 1, 3, 5, 5))
 #'
 #' graph <-
-#'   create_graph(nodes_df = nodes,
-#'                edges_df = edges)
+#'   create_graph(
+#'     nodes_df = nodes,
+#'     edges_df = edges)
 #'
 #' get_nodes(graph)
-#' #> [1] "1" "2" "3" "4" "5" "6"
+#' #> [1] 1 2 3 4 5 6
 #'
 #' get_edges(graph, return_type = "vector")
-#' #> [1] "1 -> 2" "2 -> 4" "4 -> 1" "5 -> 3" "2 -> 5"
-#' #> [6] "6 -> 5"
+#' #> [1] "1 -> 2" "2 -> 4" "4 -> 1"
+#' #> [4] "5 -> 3" "2 -> 5" "6 -> 5"
 #'
 #' # Create a selection of nodes
 #' graph <-
@@ -37,12 +38,11 @@
 #'     search = "> 3")
 #'
 #' # Create a subgraph based on the selection
-#' subgraph <-
-#'   create_subgraph_ws(graph)
+#' subgraph <- create_subgraph_ws(graph)
 #'
 #' # Check the nodes available in the subgraph
 #' get_nodes(subgraph)
-#' #> [1] "1" "3" "5"
+#' #> [1] 1 3 5
 #'
 #' # Check the edges available in the subgraph
 #' get_edges(subgraph, return_type = "vector")
