@@ -15,7 +15,7 @@
 #' # those nodes that if any were to be removed, the
 #' # graph would become disconnected)
 #' get_articulation_points(graph)
-#' #> [1] "8"  "22" "24"
+#' #> [1]  8 22 24
 #'
 #' # For the articulation points, change the node
 #' # shape to a circle
