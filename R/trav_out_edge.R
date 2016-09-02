@@ -44,7 +44,7 @@
 #' # Verify that the selection has been made by using
 #' # the `get_selection()` function
 #' get_selection(graph)
-#' #> [1] "4"
+#' #> [1] 4
 #' @export trav_out_edge
 
 trav_out_edge <- function(graph,
@@ -106,8 +106,8 @@ trav_out_edge <- function(graph,
       for (i in 1:length(from_nodes)) {
 
         if (i == 1) {
-          nodes_to <- vector(mode = "character")
-          nodes_from <- vector(mode = "character")
+          nodes_to <- vector(mode = "integer")
+          nodes_from <- vector(mode = "integer")
 
           column_number <-
             which(colnames(graph$edges_df) %in%
@@ -186,8 +186,8 @@ trav_out_edge <- function(graph,
       for (i in 1:length(from_nodes)) {
 
         if (i == 1) {
-          nodes_to <- vector(mode = "character")
-          nodes_from <- vector(mode = "character")
+          nodes_to <- vector(mode = "integer")
+          nodes_from <- vector(mode = "integer")
           column_number <-
             which(colnames(graph$edges_df) %in%
                     edge_attr)
@@ -207,8 +207,8 @@ trav_out_edge <- function(graph,
       }
     }
 
-    from_nodes <- nodes_from
-    to_nodes <- nodes_to
+    from_nodes <- as.integer(nodes_from)
+    to_nodes <- as.integer(nodes_to)
   }
 
   # if no `from` or `to` nodes returned, then there
@@ -223,8 +223,8 @@ trav_out_edge <- function(graph,
   graph$selection$nodes <- NULL
 
   # Update edge selection in graph
-  graph$selection$edges$from <- from_nodes
-  graph$selection$edges$to <- to_nodes
+  graph$selection$edges$from <- as.integer(from_nodes)
+  graph$selection$edges$to <- as.integer(to_nodes)
 
   return(graph)
 }

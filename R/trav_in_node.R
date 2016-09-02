@@ -38,7 +38,7 @@
 #' # Verify that the selection of node `2` has been
 #' # made by using the `get_selection()` function
 #' get_selection(graph)
-#' #> [1] "2"
+#' #> [1] 2
 #' @export trav_in_node
 
 trav_in_node <- function(graph,
@@ -68,7 +68,7 @@ trav_in_node <- function(graph,
     if (logical_expression) {
       for (i in 1:length(landing_nodes)) {
         if (i == 1) {
-          to_nodes <- vector(mode = "character")
+          to_nodes <- vector(mode = "integer")
 
           column_number <-
             which(colnames(graph$nodes_df) %in%
@@ -135,7 +135,7 @@ trav_in_node <- function(graph,
       for (i in 1:length(landing_nodes)) {
 
         if (i == 1) {
-          to_nodes <- vector(mode = "character")
+          to_nodes <- vector(mode = "integer")
           column_number <-
             which(colnames(graph$nodes_df) %in%
                     node_attr)
@@ -152,7 +152,7 @@ trav_in_node <- function(graph,
       }
     }
 
-    landing_nodes <- to_nodes
+    landing_nodes <- as.integer(to_nodes)
   }
 
   # If there are no valid traversals, return the same
@@ -165,7 +165,7 @@ trav_in_node <- function(graph,
   graph$selection$edges <- NULL
 
   # Update node selection in graph
-  graph$selection$nodes <- landing_nodes
+  graph$selection$nodes <- as.integer(landing_nodes)
 
   return(graph)
 }
