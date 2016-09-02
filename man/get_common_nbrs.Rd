@@ -30,21 +30,16 @@ random_graph <-
     m = 22,
     directed = TRUE,
     fully_connected = TRUE,
-    set_seed = 20) \%>\%
-  set_global_graph_attrs(
-    'graph', 'layout', 'sfdp') \%>\%
-  set_global_graph_attrs(
-    'graph', 'overlap', 'false')
+    set_seed = 20)
 
-# Find all common neighbor nodes for nodes `5`
-# and `7` (there are no common neighbors)
-random_graph \%>\%
-  get_common_nbrs(c(5, 7))
+# Find all common neighbor nodes for nodes
+# `5` and `7` (there are no common neighbors)
+random_graph \%>\% get_common_nbrs(c(5, 7))
 #> [1] NA
 
-# Find all neighbor nodes for nodes `9` and  `17`
-random_graph \%>\%
-  get_common_nbrs(c(9, 17))
-#> [1] "1"
+# Find all neighbor nodes for nodes `9`
+# and  `17`
+random_graph \%>\% get_common_nbrs(c(9, 17))
+#> [1] 1
 }
 

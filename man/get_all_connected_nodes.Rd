@@ -39,10 +39,8 @@ graph_1 \%>\% get_all_connected_nodes(13)
 # Any other node in `graph_1` will provide a vector
 # of all the nodes other than `13`
 graph_1 \%>\% get_all_connected_nodes(2)
-#> [1] "1"  "3"  "4"  "5"  "6"  "7"  "8"  "9"
-#> [9] "10" "11" "12" "14" "15" "16" "17" "18"
-#> [17] "19" "20" "21" "22" "23" "24" "25" "26"
-#> [25] "27" "28" "29" "30"
+#>  [1]  1  3  4  5  6  7  8  9 10 11 12 14 15 16 17
+#> [16] 18 19 20 21 22 23 24 25 26 27 28 29 30
 
 # The following graph is fully connected
 graph_2 <-
@@ -63,14 +61,12 @@ graph_2 <-
 # In `graph_2`, node `1` is in the larger of the two
 # connected components
 graph_2 \%>\% get_all_connected_nodes(1)
-#> [1] "3"  "4"  "5"  "6"  "7"  "8"  "9"  "11"
-#> [9] "14" "16" "18" "19" "21" "22" "23" "25"
-#> [17] "26" "28" "30" "32" "33" "34" "35" "36"
+#>  [1]  3  4  5  6  7  8  9 11 14 16 18 19 21 22 23
+#> [16] 25 26 28 30 32 33 34 35 36
 
 # Also in `graph_2`, node `2` is in the smaller of
 # the two connected components
 graph_2 \%>\% get_all_connected_nodes(2)
-#> [1] "10" "12" "13" "15" "17" "20" "24" "27"
-#> [9] "29" "31"
+#> [1] 10 12 13 15 17 20 24 27 29 31
 }
 

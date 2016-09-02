@@ -47,9 +47,10 @@ graph <-
 # representing the graph edges (with `from` and `to`
 # columns), and, a set of numeric values
 df <-
-  data.frame(from = c(1, 1, 2, 2, 3),
-             to = c(2, 3, 4, 5, 5),
-             values = rnorm(5, 5))
+  data.frame(
+    from = c(1, 1, 2, 2, 3),
+    to = c(2, 3, 4, 5, 5),
+    values = rnorm(5, 5))
 
 # Join the values in the data frame to the
 # graph's edges; this works as a left join using

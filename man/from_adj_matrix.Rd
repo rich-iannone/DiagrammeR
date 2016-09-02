@@ -41,7 +41,6 @@ adj_matrix <-
          prob = c(0.9,0.1)) \%>\%
   matrix(nc = 10)
 
-graph <-
-  from_adj_matrix(adj_matrix)
+graph <- from_adj_matrix(adj_matrix)
 }
 

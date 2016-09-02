@@ -41,7 +41,8 @@ graph <-
     "value", 10.0) \%>\%
   clear_selection
 
-# Get the graph's internal node data frame (ndf)
+# Get the graph's internal node
+# data frame (ndf)
 graph \%>\% get_node_df
 #>   nodes type label value  color
 #> 1     1    a     1  25.3 grey80

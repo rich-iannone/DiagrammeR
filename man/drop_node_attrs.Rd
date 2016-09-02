@@ -26,8 +26,8 @@ graph <-
   create_random_graph(
     5, 10, set_seed = 3)
 
-# Get the graph's internal ndf to show which
-# node attributes are available
+# Get the graph's internal ndf to show
+# which node attributes are available
 get_node_df(graph)
 #>   nodes type label value
 #> 1     1          1     2
@@ -41,8 +41,8 @@ graph <-
   graph \%>\%
   drop_node_attrs("value")
 
-# Get the graph's internal ndf to show that the
-# node attribute had been removed
+# Get the graph's internal ndf to show that
+# the node attribute had been removed
 get_node_df(graph)
 #>   nodes type label
 #> 1     1          1
