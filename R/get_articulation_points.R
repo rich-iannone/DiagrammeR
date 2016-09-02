@@ -39,5 +39,5 @@ get_articulation_points <- function(graph) {
   articulation_points <-
     igraph::as_ids(articulation_points)
 
-  return(articulation_points)
+  return(sort(as.integer(articulation_points)))
 }

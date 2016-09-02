@@ -50,33 +50,9 @@ get_common_nbrs <- function(graph,
     common_nbrs <- intersect(common_nbrs, i)
   }
 
-  # If there are no intersecting nodes, assign NA to
-  # `common_nbrs`
   if (length(common_nbrs) == 0) {
-    common_nbrs <- NA
+    return(NA)
+  } else {
+    return(sort(as.integer(common_nbrs)))
   }
-
-  # If `common_nbrs` has node ID values, determine
-  # if the node ID values are numeric and, if so, apply
-  # a numeric sort
-  if (all(!is.na(common_nbrs))) {
-
-    # Determine whether the node ID values are entirely
-    # numeric
-    node_id_numeric <-
-      ifelse(
-        suppressWarnings(
-          any(is.na(as.numeric(common_nbrs)))),
-        FALSE, TRUE)
-
-    # If the node ID values are numeric, then apply a
-    # numeric sort and reclass as a `character` type
-    if (node_id_numeric) {
-      common_nbrs <-
-        as.character(sort(as.numeric(common_nbrs)))
-    }
-  }
-
-  # Return the common neighbor node ID values
-  return(common_nbrs)
 }

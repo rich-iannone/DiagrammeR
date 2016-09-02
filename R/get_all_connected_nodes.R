@@ -118,23 +118,7 @@ get_all_connected_nodes <- function(graph,
 
   # Remove the starting node from the `connected`
   # vector to get the neighbors of the starting node
-  connected <-
-    setdiff(connected, node)
+  connected <- setdiff(connected, node)
 
-  # Determine if the node ID values in the
-  # `connected` vector are numeric
-  node_id_numeric <-
-    ifelse(
-      suppressWarnings(
-        any(is.na(as.numeric(connected)))),
-      FALSE, TRUE)
-
-  # If the node ID values are numeric, then apply a
-  # numeric sort and reclass as a `character` type
-  if (node_id_numeric) {
-    connected <-
-      as.character(sort(as.numeric(connected)))
-  }
-
-  return(connected)
+  return(sort(as.integer(connected)))
 }
