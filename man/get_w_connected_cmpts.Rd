@@ -22,7 +22,6 @@ sets of nodes with traversable paths to and from
 each node in the set).
 }
 \examples{
-\dontrun{
 # Create a random graph
 graph <-
   create_random_graph(36, 50, set_seed = 1)
@@ -59,6 +58,5 @@ get_connected_cmpts(graph)
 #> 9          1   11
 #> 10         1   14
 #> ..         ..  ..
-}
 }
 
