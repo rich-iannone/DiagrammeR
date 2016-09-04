@@ -32,7 +32,7 @@
 #' #> [1] FALSE
 #'
 #' # Get the graph's connected components
-#' get_connected_cmpts(graph)
+#' get_w_connected_cmpts(graph)
 #' #>    component node
 #' #> 1          1    1
 #' #> 2          1    3
