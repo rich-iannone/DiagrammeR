@@ -59,9 +59,10 @@ get_w_connected_cmpts <- function(graph) {
 
   # Create the output data frame
   components_df <-
-    data.frame(node = as.integer(names(components$membership)),
-               wc_component = components$membership,
-               stringsAsFactors = FALSE)
+    data.frame(
+      node = as.integer(names(components$membership)),
+      wc_component = components$membership,
+      stringsAsFactors = FALSE)
 
   return(components_df)
 }
