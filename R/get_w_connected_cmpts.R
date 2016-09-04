@@ -9,7 +9,6 @@
 #' @return a data frame with nodes and their membership
 #' in different weakly connected components.
 #' @examples
-#' \dontrun{
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(36, 50, set_seed = 1)
@@ -46,7 +45,6 @@
 #' #> 9          1   11
 #' #> 10         1   14
 #' #> ..         ..  ..
-#' }
 #' @importFrom igraph components
 #' @export get_w_connected_cmpts
 
