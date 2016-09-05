@@ -253,12 +253,12 @@ test_that("removing graphs from a series is possible", {
   # Expect that the first created graph is
   # not in the series
   expect_false(
-    series_removed_1$graphs[[1]]$dot_code == graph_1$dot_code)
+    node_count(series_removed_1$graphs[[1]]) == node_count(graph_1))
 
   # Expect that `graph_1` in the series is
   # equivalent to the `graph_2` object
   expect_true(
-    series_removed_1$graphs[[1]]$dot_code == graph_2$dot_code)
+    node_count(series_removed_1$graphs[[1]]) == node_count(graph_2))
 
   # Remove the first graph from the series using
   # the `first` character vector
@@ -270,12 +270,12 @@ test_that("removing graphs from a series is possible", {
   # Expect that the first created graph is
   # not in the series
   expect_false(
-    series_removed_2$graphs[[1]]$dot_code == graph_1$dot_code)
+    node_count(series_removed_2$graphs[[1]]) == node_count(graph_1))
 
   # Expect that graph 1 in the series is
   # equivalent to the `graph_2` object
   expect_true(
-    series_removed_2$graphs[[1]]$dot_code == graph_2$dot_code)
+    node_count(series_removed_2$graphs[[1]]) == node_count(graph_2))
 })
 
 test_that("subsetting graphs from a temporal series is possible", {
@@ -351,8 +351,8 @@ test_that("subsetting graphs from a temporal series is possible", {
   # Expect that this subset graph is the same
   # as `graph_time_2`
   expect_true(
-    series_sequence_subset$graphs[[1]]$dot_code ==
-      graph_time_2$dot_code)
+    node_count(series_sequence_subset$graphs[[1]]) ==
+      node_count(graph_time_2))
 
   # Subset graph series by date-time
   series_time_subset <-

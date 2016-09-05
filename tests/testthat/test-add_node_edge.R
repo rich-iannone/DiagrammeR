@@ -16,32 +16,32 @@ test_that("adding a node to a graph is possible", {
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
             "node_attrs", "edge_attrs", "directed",
-            "last_node", "dot_code")))
+            "last_node")))
 
-  # Expect a graph object of class 'dgr_graph'
-  expect_true(class(graph) == "dgr_graph")
+  # Expect a graph object of class `dgr_graph`
+  expect_is(graph, "dgr_graph")
 
-  # Expect that some of the graph components are NULL
+  # Expect that some of the graph components are `NULL`
   expect_null(graph$graph_name)
   expect_null(graph$graph_time)
   expect_null(graph$graph_tz)
   expect_null(graph$edges_df)
 
-  # Expect that some of the graph components are not NULL
+  # Expect that some of the graph components are not `NULL`
   expect_true(!is.null(graph$graph_attrs))
   expect_true(!is.null(graph$node_attrs))
   expect_true(!is.null(graph$edge_attrs))
 
-  # Expect that the 'nodes_df' component is a data frame
-  expect_true(inherits(graph$nodes_df, "data.frame"))
+  # Expect that the `nodes_df` component is a data frame
+  expect_is(graph$nodes_df, "data.frame")
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
 
-  # Expect that the 'nodes_df' data frame has 3 columns
+  # Expect that the `nodes_df` data frame has 3 columns
   expect_true(ncol(graph$nodes_df) == 3)
 
-  # Expect that the 'nodes_df' data frame has 2 rows
+  # Expect that the `nodes_df` data frame has 2 rows
   expect_true(nrow(graph$nodes_df) == 2)
 
   # Add a node with attributes to the graph
@@ -92,14 +92,14 @@ test_that("adding a node to a graph is possible", {
   )
 
   # Expect that for node `4`, the `type` is not set
-  # since the default value for `type` is NULL
+  # since the default value for `type` is `NULL`
   expect_true(is.na(node_type(graph_from, node = 4)))
 
   # Add a node to the graph that is joined to another
   graph_to <-
     add_node(graph_3, to = 3)
 
-  # Expect that `edges_df` is not NULL
+  # Expect that `edges_df` is not `NULL`
   expect_true(!is.null(graph_to$edges_df))
 
   # Expect that the new node is available in the graph
@@ -118,7 +118,7 @@ test_that("adding a node to a graph is possible", {
   )
 
   # Expect that for node `4`, the `type` is not set
-  # since the default value for `type` is NULL
+  # since the default value for `type` is `NULL`
   expect_true(is.na(node_type(graph_to, node = 4)))
 
   # Add a node to the graph that is joined from
@@ -126,7 +126,7 @@ test_that("adding a node to a graph is possible", {
   graph_to_from <-
     add_node(graph_3, from = 1, to = 2)
 
-  # Expect that `edges_df` is not NULL
+  # Expect that `edges_df` is not `NULL`
   expect_true(!is.null(graph_to_from$edges_df))
 
   # Expect that the new node is available in the graph
@@ -149,7 +149,7 @@ test_that("adding a node to a graph is possible", {
         which(node_info(graph_to_from)$node == 4),]$label)
 
   # Expect that for node `4`, the `type` is not set
-  # since the default value for `type` is NULL
+  # since the default value for `type` is `NULL`
   expect_true(
     is.na(node_type(graph_to_from, node = 4)))
 
@@ -185,10 +185,10 @@ test_that("adding an edge to a graph is possible", {
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
             "node_attrs", "edge_attrs", "directed",
-            "last_node", "dot_code")))
+            "last_node")))
 
   # Expect a graph object of class `dgr_graph`
-  expect_true(class(graph) == "dgr_graph")
+  expect_is(graph, "dgr_graph")
 
   # Expect that some of the graph components are NULL
   expect_null(graph$graph_name)
@@ -201,10 +201,10 @@ test_that("adding an edge to a graph is possible", {
   expect_true(!is.null(graph$edge_attrs))
 
   # Expect that the `nodes_df` component is a data frame
-  expect_true(inherits(graph$nodes_df, "data.frame"))
+  expect_is(graph$nodes_df, "data.frame")
 
   # Expect that the `edges_df` component is a data frame
-  expect_true(inherits(graph$edges_df, "data.frame"))
+  expect_is(graph$edges_df, "data.frame")
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)

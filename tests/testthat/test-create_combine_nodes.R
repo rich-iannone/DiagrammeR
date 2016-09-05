@@ -42,8 +42,8 @@ test_that("a correct node data frame is generated", {
   expect_true(all(nodes_2$color == rep("red", 4)))
 
   # Expect that the numeric 'data' values are numeric
-  expect_true(class(nodes_1$data) == "numeric")
-  expect_true(class(nodes_2$data) == "numeric")
+  expect_is(nodes_1$data, "numeric")
+  expect_is(nodes_2$data, "numeric")
 
   # Create a node data frame using a vector with length > 1 and
   # length < length(from | to)

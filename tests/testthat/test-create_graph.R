@@ -12,9 +12,9 @@ test_that("an empty graph object can be created and such an object is correct", 
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
             "node_attrs", "edge_attrs", "directed",
-            "last_node", "dot_code")))
+            "last_node")))
 
-  # Expect a graph object of class 'dgr_graph'
+  # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
 
   # Expect that the use of `is_graph_empty()` function
@@ -41,11 +41,6 @@ test_that("an empty graph object can be created and such an object is correct", 
   # Expect that the `is_graph_directed()` function
   # will return `TRUE`
   expect_true(is_graph_directed(graph))
-
-  # Expect that the Graphviz DOT code for an
-  # empty graph is essentially an empty
-  # Graphviz diagram
-  expect_match(graph$dot_code, "digraph \\{\n\n\\}")
 })
 
 test_that("a graph object with nodes can be created correctly", {
@@ -72,7 +67,7 @@ test_that("a graph object with nodes can be created correctly", {
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
             "node_attrs", "edge_attrs", "directed",
-            "last_node", "dot_code")))
+            "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -211,12 +206,12 @@ test_that("a graph object with nodes and edges can be created correctly", {
 
   # Expect that the `node_attrs` component is a
   # character vector of length 1
-  expect_true(class(graph$node_attrs) == "character")
+  expect_is(graph$node_attrs, "character")
   expect_equal(length(graph$node_attrs), 1)
 
   # Expect that the `edge_attrs` component is a
   # character vector of length 2
-  expect_true(class(graph$edge_attrs) == "character")
+  expect_is(graph$edge_attrs, "character")
   expect_equal(length(graph$edge_attrs), 2)
 
   # Expect that the graph is a directed graph
