@@ -1,16 +1,14 @@
-#' Render the graph or output in various formats
-#' @description Using a \code{dgr_graph} object, either
-#' render graph in the Viewer or output in various
-#' formats.
+#' Render the graph in various formats
+#' @description Using a \code{dgr_graph} object,
+#' render the graph in the RStudio Viewer.
 #' @param graph a \code{dgr_graph} object, created
 #' using the \code{create_graph} function.
 #' @param output a string specifying the output type;
 #' \code{graph} (the default) renders the graph using
 #' the \code{grViz} function, \code{vivagraph}
 #' renders the graph using the \code{vivagraph}
-#' function, \code{visNetwork} renders the graph using
-#' the \code{visnetwork} function, and \code{DOT}
-#' outputs DOT code for the graph.
+#' function, and \code{visNetwork} renders the graph
+#' using the \code{visnetwork} function.
 #' @param layout a string specifying a layout type for
 #' a \code{vivagraph} rendering of the graph, either
 #' \code{forceDirected} or \code{constant}.
@@ -95,28 +93,17 @@ render_graph <- function(graph,
     output <- "graph"
   }
 
-  if (output == "DOT") {
-    return(graph$dot_code)
-  }
+  if (output == "graph") {
 
-  if (output == "graph" &
-      is.null(graph$dot_code)) {
+    dot_code <- generate_dot(graph)
 
-    graph <-
-      create_graph(
-        nodes_df = graph$nodes_df,
-        edges_df = graph$edges_df,
-        graph_attrs = graph$graph_attrs,
-        node_attrs = graph$node_attrs,
-        edge_attrs = graph$edge_attrs,
-        directed = graph$directed,
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz,
-        generate_dot = TRUE)
-  }
+    grViz(
+      diagram = dot_code,
+      engine = layout,
+      width = width,
+      height = height)
 
-  if (output == "vivagraph") {
+  } else if (output == "vivagraph") {
 
     layout <-
       ifelse(is.null(layout) &
@@ -132,13 +119,5 @@ render_graph <- function(graph,
   } else if (output == "visNetwork") {
 
     visnetwork(graph)
-
-  } else if (output == "graph") {
-
-    grViz(
-      diagram = graph$dot_code,
-      engine = layout,
-      width = width,
-      height = height)
   }
 }

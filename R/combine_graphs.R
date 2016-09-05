@@ -131,42 +131,21 @@ combine_graphs <- function(x,
       x_edges_df,
       y_edges_df)
 
-  if (is.null(x$dot_code)) {
+  dgr_graph <-
+    create_graph(
+      nodes_df = combined_nodes,
+      edges_df = combined_edges,
+      graph_attrs = x$graph_attrs,
+      node_attrs = x$node_attrs,
+      edge_attrs = x$edge_attrs,
+      directed = ifelse(
+        is_graph_directed(x) == FALSE ||
+          is_graph_directed(y) == FALSE,
+        FALSE, TRUE),
+      graph_name = x$graph_name,
+      graph_time = x$graph_time,
+      graph_tz = x$graph_tz)
 
-    dgr_graph <-
-      create_graph(
-        nodes_df = combined_nodes,
-        edges_df = combined_edges,
-        graph_attrs = x$graph_attrs,
-        node_attrs = x$node_attrs,
-        edge_attrs = x$edge_attrs,
-        directed = ifelse(
-          is_graph_directed(x) == FALSE ||
-            is_graph_directed(y) == FALSE,
-          FALSE, TRUE),
-        graph_name = x$graph_name,
-        graph_time = x$graph_time,
-        graph_tz = x$graph_tz,
-        generate_dot = FALSE)
-  }
-
-  if (!is.null(x$dot_code)) {
-
-    dgr_graph <-
-      create_graph(
-        nodes_df = combined_nodes,
-        edges_df = combined_edges,
-        graph_attrs = x$graph_attrs,
-        node_attrs = x$node_attrs,
-        edge_attrs = x$edge_attrs,
-        directed = ifelse(
-          is_graph_directed(x) == FALSE ||
-            is_graph_directed(y) == FALSE,
-          FALSE, TRUE),
-        graph_name = x$graph_name,
-        graph_time = x$graph_time,
-        graph_tz = x$graph_tz)
-  }
 
   return(dgr_graph)
 }

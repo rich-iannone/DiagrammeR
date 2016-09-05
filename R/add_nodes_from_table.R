@@ -128,32 +128,21 @@ add_nodes_from_table <- function(graph,
     csv <- table
   }
 
-  # Get numbers of rows in the CSV
+  # Get number of rows in the CSV
   rows_in_csv <- nrow(csv)
 
   # Create an empty ndf and column bind
   # with the CSV data
   empty_ndf <-
     create_nodes(nodes = 1:rows_in_csv, label = FALSE)
-  empty_ndf[1:rows_in_csv, 1] <- ""
+
   csv <- cbind(empty_ndf, csv)
 
-  if (is.null(id_col)) {
-    if (node_count(graph) == 0) {
-      starting_node <- 1
-    } else {
-      if (suppressWarnings(any(!(is.na(as.numeric(graph$nodes_df$nodes)))))) {
-        starting_node <-
-          suppressWarnings(
-            max(
-              as.numeric(
-                graph$nodes_df[
-                  which(!is.na(
-                    as.numeric(graph$nodes_df$nodes))),
-                  1])) + 1)
-      } else {
-        starting_node <- 1
-      }
+  # Optionally set the `id` attribute from a
+  # specified column in the CSV
+  if (!is.null(id_col)) {
+    if (any(colnames(csv) == id_col)) {
+      csv[, 1] <- as.integer(csv[, which(colnames(csv) == id_col)])
     }
   }
 
@@ -183,11 +172,6 @@ add_nodes_from_table <- function(graph,
     csv <- csv[,columns_retained]
   }
 
-  # Add column of ID values to `csv` object
-  if (is.null(id_col)) {
-    csv$nodes <-
-      starting_node:(rows_in_csv + starting_node - 1)
-  }
 
   # If values for `rename_attrs` provided, rename all
   # of the CSV columns by those replacement values
@@ -218,13 +202,7 @@ add_nodes_from_table <- function(graph,
     }
   }
 
-  # Optionally set the `id` attribute from a
-  # specified column in the CSV
-  if (!is.null(id_col)) {
-    if (any(colnames(csv) == id_col)) {
-      colnames(csv)[which(colnames(csv) == id_col)] <- "nodes"
-    }
-  }
+
 
   # Optionally set the `type` attribute with a single
   # value repeated down

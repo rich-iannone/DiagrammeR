@@ -95,10 +95,13 @@ export_graph <- function(graph,
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
     }
 
+    # Generate DOT code
+    dot_code <- generate_dot(graph)
+
     # Produce a PNG file in the working directory
     rsvg::rsvg_png(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
@@ -112,10 +115,13 @@ export_graph <- function(graph,
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
     }
 
+    # Generate DOT code
+    dot_code <- generate_dot(graph)
+
     # Produce a PDF file in the working directory
     rsvg::rsvg_pdf(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
@@ -129,10 +135,13 @@ export_graph <- function(graph,
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
     }
 
+    # Generate DOT code
+    dot_code <- generate_dot(graph)
+
     # Produce an SVG file in the working directory
     rsvg::rsvg_svg(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
@@ -146,10 +155,13 @@ export_graph <- function(graph,
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
     }
 
+    # Generate DOT code
+    dot_code <- generate_dot(graph)
+
     # Produce a PS file in the working directory
     rsvg::rsvg_ps(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(graph$dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)

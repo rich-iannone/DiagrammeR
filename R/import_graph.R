@@ -144,13 +144,7 @@ import_graph <- function(graph_file,
         edges_df = edges,
         graph_name = graph_name,
         graph_time = graph_time,
-        graph_tz = graph_tz,
-        node_attrs = c("shape = circle",
-                       "width = 10",
-                       "style = filled",
-                       "color = black"),
-        graph_attrs = "layout = neato",
-        generate_dot = FALSE)
+        graph_tz = graph_tz)
 
     # Return the graph
     return(the_graph)
@@ -192,13 +186,7 @@ import_graph <- function(graph_file,
         edges_df = edges,
         graph_name = graph_name,
         graph_time = graph_time,
-        graph_tz = graph_tz,
-        node_attrs = c("shape = circle",
-                       "width = 10",
-                       "style = filled",
-                       "color = black"),
-        graph_attrs = "layout = neato",
-        generate_dot = FALSE)
+        graph_tz = graph_tz)
 
     # Return the graph
     return(the_graph)
@@ -310,13 +298,7 @@ import_graph <- function(graph_file,
         edges_df = all_edges,
         graph_name = graph_name,
         graph_time = graph_time,
-        graph_tz = graph_tz,
-        node_attrs = c("shape = circle",
-                       "width = 10",
-                       "style = filled",
-                       "color = black"),
-        graph_attrs = "layout = neato",
-        generate_dot = FALSE)
+        graph_tz = graph_tz)
 
     # Return the graph
     return(the_graph)
@@ -427,8 +409,7 @@ import_graph <- function(graph_file,
         nodes_df = all_nodes,
         edges_df = all_edges,
         directed = ifelse(graph_directed == "1",
-                          TRUE, FALSE),
-        generate_dot = FALSE)
+                          TRUE, FALSE))
 
     # Return the graph
     return(the_graph)
@@ -487,8 +468,7 @@ import_graph <- function(graph_file,
     the_graph <-
       create_graph(
         nodes_df = nodes_df,
-        edges_df = edges_df,
-        generate_dot = FALSE)
+        edges_df = edges_df)
 
     # Return the graph
     return(the_graph)

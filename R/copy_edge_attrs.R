@@ -49,6 +49,7 @@
 #' #> 6    4  5     green   green
 #' #> 7    2  1     green   green
 #' #> 8    3  2     green   green
+#' @importFrom dplyr bind_cols
 #' @export copy_edge_attrs
 
 copy_edge_attrs <- function(graph,
@@ -86,16 +87,25 @@ copy_edge_attrs <- function(graph,
   col_num_copy_from <-
     which(colnames(edges) %in% edge_attr_from)
 
-  # Copy the column through a `cbind()`
-  edges <- cbind(edges, edges[,col_num_copy_from])
+  # Copy the column using `bind_cols()`
+  edges <-
+    dplyr::bind_cols(
+      edges,
+      as.data.frame(edges[, col_num_copy_from],
+                    stringsAsFactors = FALSE))
 
   # Set the column name for the copied attr
   colnames(edges)[ncol(edges)] <- edge_attr_to
 
+  # Ensure that the new column is of the
+  # `character` class
+  edges[, ncol(edges)] <-
+    as.character(edges[, ncol(edges)])
+
   # Create a new graph object
   dgr_graph <-
     create_graph(
-      nodes_df = graph$nodess_df,
+      nodes_df = graph$nodes_df,
       edges_df = edges,
       graph_attrs = graph$graph_attrs,
       node_attrs = graph$node_attrs,
