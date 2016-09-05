@@ -12,7 +12,7 @@ get_degree_histogram(graph)
 \code{create_graph}.}
 }
 \value{
-a named vector of degree frequencies (with
+a named vector of degree counts (with
 bin width equal to 1) where the degree values
 serve as names.
 }
@@ -34,7 +34,7 @@ random_graph <-
 
 # Get degree histogram data for `random_graph`
 random_graph \%>\% get_degree_histogram
-#> 1 2 3 4 5
-#> 4 6 3 4 1
+#> 0 1 2 3 4 5
+#> 1 3 7 2 4 1
 }
 
