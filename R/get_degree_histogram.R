@@ -5,7 +5,7 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @return a named vector of degree frequencies (with
+#' @return a named vector of degree counts (with
 #' bin width equal to 1) where the degree values
 #' serve as names.
 #' @examples
@@ -21,11 +21,26 @@
 #'
 #' # Get degree histogram data for `random_graph`
 #' random_graph %>% get_degree_histogram
-#' #> 1 2 3 4 5
-#' #> 4 6 3 4 1
+#' #> 0 1 2 3 4 5
+#' #> 1 3 7 2 4 1
+#' @importFrom igraph degree_distribution
 #' @export get_degree_histogram
 
 get_degree_histogram <- function(graph) {
 
-  return(table(node_info(graph)[,4]))
+  # Convert the graph to an igraph object
+  ig_graph <- to_igraph(graph)
+
+  # Get the degree distribution for the graph
+  # and multiply by the total number of nodes to
+  # resolve counts of nodes by degree
+  deg_hist <-
+    degree_distribution(ig_graph) *
+    node_count(graph)
+
+  # Transform to a named vector where the names are
+  # the number of degrees
+  names(deg_hist) <- seq(0, length(deg_hist) - 1)
+
+  return(deg_hist)
 }
