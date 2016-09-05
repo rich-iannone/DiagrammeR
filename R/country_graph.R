@@ -104,16 +104,14 @@ country_graph <- function(iso_a2 = NULL,
       dgr_graph <-
         create_graph(
           nodes_df = nodes,
-          edges_df = edges,
-          generate_dot = FALSE)
+          edges_df = edges)
     }
 
     if (k > 1) {
       graph_2 <-
         create_graph(
           nodes_df = nodes,
-          edges_df = edges,
-          generate_dot = FALSE)
+          edges_df = edges)
 
       dgr_graph <-
         combine_graphs(
