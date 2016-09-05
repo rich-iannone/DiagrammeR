@@ -2,7 +2,7 @@
 % Please edit documentation in R/render_graph.R
 \name{render_graph}
 \alias{render_graph}
-\title{Render the graph or output in various formats}
+\title{Render the graph in various formats}
 \usage{
 render_graph(graph, output = NULL, layout = NULL, width = NULL,
   height = NULL)
@@ -15,9 +15,8 @@ using the \code{create_graph} function.}
 \code{graph} (the default) renders the graph using
 the \code{grViz} function, \code{vivagraph}
 renders the graph using the \code{vivagraph}
-function, \code{visNetwork} renders the graph using
-the \code{visnetwork} function, and \code{DOT}
-outputs DOT code for the graph.}
+function, and \code{visNetwork} renders the graph
+using the \code{visnetwork} function.}
 
 \item{layout}{a string specifying a layout type for
 a \code{vivagraph} rendering of the graph, either
@@ -30,9 +29,8 @@ the width of the resulting graphic in pixels.}
 the height of the resulting graphic in pixels.}
 }
 \description{
-Using a \code{dgr_graph} object, either
-render graph in the Viewer or output in various
-formats.
+Using a \code{dgr_graph} object,
+render the graph in the RStudio Viewer.
 }
 \examples{
 \dontrun{

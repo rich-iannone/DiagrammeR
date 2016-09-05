@@ -6,8 +6,7 @@
 \usage{
 create_graph(nodes_df = NULL, edges_df = NULL, graph_attrs = NULL,
   node_attrs = NULL, edge_attrs = NULL, directed = TRUE,
-  graph_name = NULL, graph_time = NULL, graph_tz = NULL,
-  generate_dot = TRUE)
+  graph_name = NULL, graph_time = NULL, graph_tz = NULL)
 }
 \arguments{
 \item{nodes_df}{an optional data frame containing,
@@ -50,9 +49,6 @@ of the type \code{temporal}).}
 string supplied as a value to \code{graph_time}. If
 no time zone is provided then it will be set to
 \code{GMT}.}
-
-\item{generate_dot}{an option to generate Graphviz
-DOT code and place into the graph object.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
