@@ -11,17 +11,20 @@ test_that("Getting degree distribution is possible", {
     get_degree_histogram(graph)
 
   # Expect that `degree_dist` inherits from `table`
-  expect_is(degree_dist, "table")
+  expect_is(degree_dist, "numeric")
 
   # Expect certain names for the `degree_dist` object
-  expect_identical(names(degree_dist),
-                   c("3", "4", "5", "6"))
+  expect_identical(
+    names(degree_dist),
+    c("0", "1", "2", "3", "4", "5", "6"))
 
   # Expect certain values in the `degree_dist` object
-  expect_equal(degree_dist[[1]], 2)
-  expect_equal(degree_dist[[2]], 4)
-  expect_equal(degree_dist[[3]], 2)
+  expect_equal(degree_dist[[1]], 0)
+  expect_equal(degree_dist[[2]], 0)
+  expect_equal(degree_dist[[3]], 0)
   expect_equal(degree_dist[[4]], 2)
+  expect_equal(degree_dist[[5]], 4)
+  expect_equal(degree_dist[[6]], 2)
 })
 
 test_that("Getting graph diameter is possible", {
@@ -66,7 +69,7 @@ test_that("Getting graph eccentricity is possible", {
 
   # Get the eccentricity for select nodes
   graph_eccen_nodes <-
-    get_eccentricity(graph, nodes = c("1", "2", "3"))
+    get_eccentricity(graph, nodes = c(1, 2, 3))
 
   # Expect that `graph_eccen_nodes` is a numeric vector
   expect_is(graph_eccen_nodes, "numeric")
@@ -79,7 +82,7 @@ test_that("Getting graph eccentricity is possible", {
   # as a data frame
   graph_eccen_nodes_df <-
     get_eccentricity(
-      graph, nodes = c("1", "2", "3"),
+      graph, nodes = c(1, 2, 3),
       return_type = "df")
 
   # Expect that `graph_eccen_nodes_df` is a data frame
@@ -100,7 +103,7 @@ test_that("Getting graph eccentricity is possible", {
 
   # Expect an error if providing nodes that do
   # not exist in the graph
-  expect_error(get_eccentricity(graph, nodes = "11"))
+  expect_error(get_eccentricity(graph, nodes = 11))
 })
 
 test_that("Getting graph periphery is possible", {
