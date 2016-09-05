@@ -10,7 +10,7 @@ test_that("Getting degree distribution is possible", {
   degree_dist <-
     get_degree_histogram(graph)
 
-  # Expect that `degree_dist` inherits from `table`
+  # Expect that `degree_dist` inherits from `numeric`
   expect_is(degree_dist, "numeric")
 
   # Expect certain names for the `degree_dist` object
