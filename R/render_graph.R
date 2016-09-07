@@ -12,6 +12,8 @@
 #' @param layout a string specifying a layout type for
 #' a \code{vivagraph} rendering of the graph, either
 #' \code{forceDirected} or \code{constant}.
+#' @param title an optional title for a graph when
+#' using \code{output = "graph"}.
 #' @param width an optional parameter for specifying
 #' the width of the resulting graphic in pixels.
 #' @param height an optional parameter for specifying
@@ -69,6 +71,7 @@
 render_graph <- function(graph,
                          output = NULL,
                          layout = NULL,
+                         title = NULL,
                          width = NULL,
                          height = NULL) {
 
@@ -94,6 +97,25 @@ render_graph <- function(graph,
   }
 
   if (output == "graph") {
+
+    if (!is.null(title)) {
+
+      graph <-
+        set_global_graph_attrs(
+          graph, "graph", "label", paste0("'", title, "'"))
+
+      graph <-
+        set_global_graph_attrs(
+          graph, "graph", "labelloc", "t")
+
+      graph <-
+        set_global_graph_attrs(
+          graph, "graph", "labeljust", "c")
+
+      graph <-
+        set_global_graph_attrs(
+          graph, "graph", "fontname", "Helvetica")
+      }
 
     dot_code <- generate_dot(graph)
 
