@@ -4,8 +4,8 @@
 \alias{render_graph}
 \title{Render the graph in various formats}
 \usage{
-render_graph(graph, output = NULL, layout = NULL, width = NULL,
-  height = NULL)
+render_graph(graph, output = NULL, layout = NULL, title = NULL,
+  width = NULL, height = NULL)
 }
 \arguments{
 \item{graph}{a \code{dgr_graph} object, created
@@ -21,6 +21,9 @@ using the \code{visnetwork} function.}
 \item{layout}{a string specifying a layout type for
 a \code{vivagraph} rendering of the graph, either
 \code{forceDirected} or \code{constant}.}
+
+\item{title}{an optional title for a graph when
+using \code{output = "graph"}.}
 
 \item{width}{an optional parameter for specifying
 the width of the resulting graphic in pixels.}
