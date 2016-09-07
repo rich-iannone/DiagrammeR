@@ -115,7 +115,8 @@ test_that("Getting constraint values is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
-  # Get constraint values for all nodes in the graph
+  # Get constraint values for all
+  # nodes in the graph
   constraint_vals <-
     get_constraint(graph)
 

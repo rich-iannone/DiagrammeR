@@ -130,8 +130,7 @@ test_that("nodes and edges can be deleted from a graph via a selection", {
 
   # Expect nodes `1` and `2` to be present
   expect_true(
-    all(c("1", "2") %in%
-          get_nodes(graph_node_deletion)))
+    all(c(1, 2) %in% get_nodes(graph_node_deletion)))
 
   # Expect the graph to be unchanged if there is
   # no node selection
@@ -142,16 +141,14 @@ test_that("nodes and edges can be deleted from a graph via a selection", {
   expect_equal(node_count(graph), 4)
 
   # Expect nodes `1`, `2`, `3`, and `4` to be present
-  expect_true(
-    all(c("1", "2", "3", "4") %in% get_nodes(graph)))
+  expect_true(all(1:4 %in% get_nodes(graph)))
 
   # Select 2 edges
   graph <- select_edges(graph, from = 1, to = 2)
   graph <- select_edges(graph, from = 1, to = 3)
 
   # Delete the edges specified in the selection
-  graph_edge_deletion <-
-    delete_edges_ws(graph)
+  graph_edge_deletion <- delete_edges_ws(graph)
 
   # Expect an edge count of 1
   expect_equal(edge_count(graph_edge_deletion), 1)

@@ -16,15 +16,17 @@ test_that("a random graph can be made to various specifications", {
   expect_true(is_graph_directed(random_graph_10_15_directed))
 
   # Expect that all nodes have IDs from 1 to 10
-  expect_true(all(get_nodes(random_graph_10_15_directed) == as.character(1:10)))
+  expect_true(
+    all(get_nodes(random_graph_10_15_directed) == 1:10))
 
-  # Expect that labels are present are match node IDs from 1 to 10
+  # Expect that labels are present are match node
+  # IDs from `1` to `10`
   expect_true(
     all(get_node_df(random_graph_10_15_directed)$nodes ==
-          get_node_df(random_graph_10_15_directed)$label)
-  )
+          get_node_df(random_graph_10_15_directed)$label))
 
-  # Create a random, undirected graph with 10 nodes and 15 edges
+  # Create a random, undirected graph with 10
+  # nodes and 15 edges
   random_graph_10_15 <- create_random_graph(10, 15)
 
   # Expect 10 nodes in graph
@@ -37,22 +39,28 @@ test_that("a random graph can be made to various specifications", {
   expect_false(is_graph_directed(random_graph_10_15))
 
   # Expect that all nodes have IDs from 1 to 10
-  expect_true(all(get_nodes(random_graph_10_15) %in% as.character(1:10)))
+  expect_true(
+    all(get_nodes(random_graph_10_15) %in% 1:10))
 
   # Create a random, undirected graph that's fully connected
   random_graph_10_15_fully_connected <-
-    create_random_graph(10, 15, fully_connected = TRUE)
+    create_random_graph(
+      10, 15, fully_connected = TRUE)
 
   # Expect no loops in the fully connected graph
-  expect_true(all(node_info(random_graph_10_15_fully_connected)$loops == 0))
+  expect_true(
+    all(node_info(random_graph_10_15_fully_connected)$loops == 0))
 
   # Expect 10 nodes in graph
-  expect_equal(node_count(random_graph_10_15_fully_connected), 10)
+  expect_equal(
+    node_count(random_graph_10_15_fully_connected), 10)
 
   # Expect the graph is directed
-  expect_false(is_graph_directed(random_graph_10_15_fully_connected))
+  expect_false(
+    is_graph_directed(random_graph_10_15_fully_connected))
 
-  # Create a directed graph with a seed set so that it's reproducible
+  # Create a directed graph with a seed set so
+  # that it's reproducible
   random_graph_10_15_seed_set <-
     create_random_graph(10, 15, set_seed = 50)
 
@@ -65,23 +73,30 @@ test_that("a random graph can be made to various specifications", {
   # Expect the graph is not directed
   expect_false(is_graph_directed(random_graph_10_15_seed_set))
 
-  # Expect the node attribute 'value' to sum to 44
+  # Expect the node attribute `value` to sum to 44
   expect_equal(
     sum(as.numeric(get_node_df(random_graph_10_15_seed_set)[,4])),
     44)
 
-  # Expect the last edge in the graph's edge list to be "1" -> "8"
+  # Expect the last edge in the graph's edge list to
+  # be `1` -> `8`
   expect_equal(
-    get_edges(random_graph_10_15_seed_set, return_type = "vector")[15],
+    get_edges(
+      random_graph_10_15_seed_set,
+      return_type = "vector")[15],
     "1 -> 8")
 
-  # Create a random, directed graph with 10 nodes and 15 edges and no
-  # node labels
+  # Create a random, directed graph with 10 nodes
+  # and 15 edges and no node labels
   random_graph_10_15_directed_no_labels <-
-    create_random_graph(10, 15, directed = TRUE, display_labels = FALSE)
+    create_random_graph(
+      10, 15,
+      directed = TRUE,
+      display_labels = FALSE)
 
   # Expect that labels are not present
   expect_true(
-    all(get_node_df(random_graph_10_15_directed_no_labels)$label ==
-          ""))
+    all(get_node_df(
+      random_graph_10_15_directed_no_labels)$label ==
+        ""))
 })
