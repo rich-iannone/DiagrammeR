@@ -115,6 +115,10 @@ render_graph <- function(graph,
       graph <-
         set_global_graph_attrs(
           graph, "graph", "fontname", "Helvetica")
+
+      graph <-
+        set_global_graph_attrs(
+          graph, "graph", "fontcolor", "gray30")
       }
 
     dot_code <- generate_dot(graph)
