@@ -2,25 +2,33 @@ context("Setting graph/global attributes")
 
 test_that("Setting a graph name can be done", {
 
-  library(magrittr)
-
+  # Create an empty graph
   graph <- create_graph()
 
   # Set a graph name
-  graph_name <- set_graph_name(graph, "test_that_name")
+  graph_name <-
+    graph %>%
+    set_graph_name("test_that_name")
 
   # Expect that the name was set
   expect_true(graph_name$graph_name == "test_that_name")
 
-  # Add a nodes/edges and then a node selection to the original graph
-  graph_1 <- graph %>% add_node(1) %>% add_node(2) %>%
-    add_edge(1, 2) %>% select_nodes(nodes = 1)
+  # Add 2 nodes and an edge and then
+  # select a node
+  graph_1 <-
+    graph %>%
+    add_node %>%
+    add_node %>%
+    add_edge(1, 2) %>%
+    select_nodes_by_id(1)
 
   # Set a graph name
-  graph_name_1 <- set_graph_name(graph_1, "test_that_name_again")
+  graph_name_1 <-
+    set_graph_name(graph_1, "test_that_name_again")
 
   # Expect that the name was set
-  expect_true(graph_name_1$graph_name == "test_that_name_again")
+  expect_true(
+    graph_name_1$graph_name == "test_that_name_again")
 })
 
 test_that("Setting a time for the graph can be done", {
@@ -31,19 +39,19 @@ test_that("Setting a time for the graph can be done", {
   # Provide the new graph with a timestamp (`tz` not supplied so
   # `GMT` is used as the time zone)
   graph_1 <-
-    set_graph_time(graph,
-                   time = "2015-10-25 15:23:00")
+    set_graph_time(
+      graph, time = "2015-10-25 15:23:00")
 
   # Expect that the time value was passed in properly
   expect_true(graph_1$graph_time == "2015-10-25 15:23:00")
 
-  # Expect that the time zone is set to "GMT"
+  # Expect that the time zone is set to `GMT`
   expect_true(graph_1$graph_tz == "GMT")
 
   # Update tz when a timestamp is already present
   graph_2 <-
-    set_graph_time(graph_1,
-                   tz = "America/Los_Angeles")
+    set_graph_time(
+      graph_1, tz = "America/Los_Angeles")
 
   # Expect that the time zone has been changed
   expect_true(graph_2$graph_tz == "America/Los_Angeles")
@@ -51,13 +59,14 @@ test_that("Setting a time for the graph can be done", {
   # Expect an error when setting a time zone that is
   # not in `OlsonNames()`
   expect_error(
-    set_graph_time(graph_2,
-                   tz = "Moon/Moon")
-  )
+    set_graph_time(
+      graph_2, tz = "Moon/Moon"))
 
   # Create a graph with a node and a node selection
   graph_selection <-
-    create_graph() %>% add_node("A") %>% select_nodes() %>%
+    create_graph() %>%
+    add_node %>%
+    select_nodes %>%
     set_graph_time("2015-10-25 15:23:00")
 
   # Expect that the selection is retained after setting
@@ -68,7 +77,8 @@ test_that("Setting a time for the graph can be done", {
 test_that("Setting/getting global graph attributes can be done", {
 
   # Create a new graph and set some global attributes
-  graph <- create_graph() %>%
+  graph <-
+    create_graph() %>%
     set_global_graph_attrs("graph", "overlap", "true") %>%
     set_global_graph_attrs("node", "fontname", "Helvetica") %>%
     set_global_graph_attrs("edge", "color", "gray")
