@@ -26,12 +26,12 @@
 #'
 #' graph_2 <-
 #'   graph_1 %>%
-#'   add_node() %>%
+#'   add_node %>%
 #'   add_edge(4, 3)
 #'
 #' graph_3 <-
 #'   graph_2 %>%
-#'   add_node() %>%
+#'   add_node %>%
 #'   add_edge(5, 2)
 #'
 #' # Create an empty graph series and add
