@@ -34,7 +34,8 @@ With a graph object of class
 to extant nodes within the graph.
 }
 \examples{
-# Create an empty graph and add 2 nodes
+# Create an empty graph and add 2 nodes by using
+# the `add_node()` function twice
 graph <-
   create_graph() \%>\%
   add_node \%>\%
