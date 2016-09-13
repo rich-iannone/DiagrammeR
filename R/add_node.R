@@ -17,7 +17,8 @@
 #' which edges will be directed from the new node.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create an empty graph and add 2 nodes
+#' # Create an empty graph and add 2 nodes by using
+#' # the `add_node()` function twice
 #' graph <-
 #'   create_graph() %>%
 #'   add_node %>%
