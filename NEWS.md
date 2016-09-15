@@ -1,3 +1,6 @@
+# DiagrammeR 0.8
+
+
 # DiagrammeR 0.7
 
 * Renamed functions `graphviz_graph` and `graphviz_render` to `create_graph` and `render_graph`, respectively
