@@ -115,7 +115,7 @@ create_node_df <- function(n,
   if (length(extras) > 0) {
     nodes_df <-
       data.frame(
-        nodes = 1:n,
+        id = 1:n,
         type = type,
         label = label,
         extras,
@@ -123,7 +123,7 @@ create_node_df <- function(n,
   } else {
     nodes_df <-
       data.frame(
-        nodes = 1:n,
+        id = 1:n,
         type = type,
         label = label,
         stringsAsFactors = FALSE)
