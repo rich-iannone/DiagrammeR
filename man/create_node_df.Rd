@@ -30,31 +30,46 @@ or, added to a graph object.
 \examples{
 # Create a node data frame (ndf) where the labels
 # are equivalent to the node ID values (this is not
-# recommended)
-nodes <-
+# recommended); the `label` and `type` node
+# attributes will always be a `character` class
+# whereas `id` will always be an `integer`
+node_df <-
   create_node_df(
     n = 4,
     type = c("a", "a", "b", "b"),
     label = TRUE)
 
-# Create an ndf with distinct labels
-nodes <-
+# Display the node data frame (it's a tibble)
+# A tibble: 4 × 3
+#>      id  type label
+#>   <int> <chr> <chr>
+#> 1     1     a     1
+#> 2     2     a     2
+#> 3     3     b     3
+#> 4     4     b     4
+
+# Create an ndf with distinct labels and
+# additional node attributes (where their classes
+# will be inferred from the input vectors)
+node_df <-
   create_node_df(
     n = 4,
     type = "a",
-    label = TRUE),
+    label = c(2384, 3942, 8362, 2194),
     style = "filled",
     color = "aqua",
     shape = c("circle", "circle",
               "rectangle", "rectangle"),
     value = c(3.5, 2.6, 9.4, 2.7))
 
-# Display the `nodes` ndf
-nodes
-#>   nodes type label  style color     shape value
-#> 1     1    a     1 filled  aqua    circle   3.5
-#> 2     2    a     2 filled  aqua    circle   2.6
-#> 3     3    a     3 filled  aqua rectangle   9.4
-#> 4     4    a     4 filled  aqua rectangle   2.7
+# Display the node data frame
+node_df
+#> # A tibble: 4 × 7
+#>      id  type label  style color     shape value
+#>   <int> <chr> <chr>  <chr> <chr>     <chr> <dbl>
+#> 1     1     a  2384 filled  aqua    circle   3.5
+#> 2     2     a  3942 filled  aqua    circle   2.6
+#> 3     3     a  8362 filled  aqua rectangle   9.4
+#> 4     4     a  2194 filled  aqua rectangle   2.7
 }
 
