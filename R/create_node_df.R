@@ -24,7 +24,8 @@
 #'     label = TRUE)
 #'
 #' # Display the node data frame (it's a tibble)
-#' # A tibble: 4 × 3
+#' node_df
+#' #> # A tibble: 4 × 3
 #' #>      id  type label
 #' #>   <int> <chr> <chr>
 #' #> 1     1     a     1
