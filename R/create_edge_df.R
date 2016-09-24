@@ -26,7 +26,7 @@
 #' # Render the graph to make it viewable in
 #' # the Viewer pane
 #' render_graph(
-#'   create_graph(edges_df = edges),
+#'   create_graph(edges_df = edge_df),
 #'   output = "visNetwork")
 #'
 #' # Create an edge data frame with several
@@ -48,13 +48,17 @@
 #' @export create_edge_df
 
 create_edge_df <- function(from,
-                         to,
-                         rel = NULL,
-                         ...) {
+                           to,
+                           rel = NULL,
+                           ...) {
 
   # Stop function if vector lengths for `from` and
   # `to` are not equal
   stopifnot(length(from) == length(to))
+
+  # Ensure that `from` and `to` vector are integers
+  from <- as.integer(from)
+  to <- as.integer(to)
 
   # if `rel` is NULL, create empty character vector;
   # class as character otherwise
