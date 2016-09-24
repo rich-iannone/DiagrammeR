@@ -32,10 +32,11 @@
 #' #> 2     2     3     a
 #' #> 3     3     1     a
 #'
-#' # Render the graph to make it viewable in
-#' # the Viewer pane
+#' # Use the edge data frame to create a graph;
+#' # then, make visible in the Viewer pane
 #' render_graph(
-#'   create_graph(edges_df = edge_df),
+#'   create_graph(
+#'     edges_df = edge_df),
 #'   output = "visNetwork")
 #'
 #' # Create an edf with additional edge
@@ -52,13 +53,12 @@
 #'
 #' # Display the edge data frame
 #' edge_df
-#' #> # A tibble: 4 × 7
-#' #>      id  type label  style color     shape value
-#' #>   <int> <chr> <chr>  <chr> <chr>     <chr> <dbl>
-#' #> 1     1     a  2384 filled  aqua    circle   3.5
-#' #> 2     2     a  3942 filled  aqua    circle   2.6
-#' #> 3     3     a  8362 filled  aqua rectangle   9.4
-#' #> 4     4     a  2194 filled  aqua rectangle   2.7
+#' #> # A tibble: 3 × 6
+#' #>    from    to   rel length color width
+#' #>   <int> <int> <chr>  <dbl> <chr> <dbl>
+#' #> 1     1     4     a     50 green     1
+#' #> 2     2     3     a    100 green     5
+#' #> 3     3     1     a    250 green     2
 #' @export create_edge_df
 
 create_edge_df <- function(from,
