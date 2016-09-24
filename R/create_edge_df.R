@@ -127,6 +127,10 @@ create_edge_df <- function(from,
         extras[[i]] <- extras[[i]][1:length(from)]
       }
     }
+
+    extras <-
+      as_tibble(
+        as.data.frame(extras, stringsAsFactors = FALSE))
   }
 
   if (inherits(extras, "tbl_df")) {
