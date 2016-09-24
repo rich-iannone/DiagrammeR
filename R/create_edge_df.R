@@ -38,8 +38,9 @@
 #'   create_graph(edges_df = edge_df),
 #'   output = "visNetwork")
 #'
-#' # Create an edge data frame with several
-#' # additional parameters
+#' # Create an edf with additional edge
+#' # attributes (where their classes will be
+#' # inferred from the input vectors)
 #' edge_df <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
@@ -49,11 +50,15 @@
 #'     color = "green",
 #'     width = c(1, 5, 2))
 #'
-#' # Render the graph to make it viewable in
-#' # the Viewer pane
-#' render_graph(
-#'   create_graph(edges_df = edges),
-#'   output = "visNetwork")
+#' # Display the edge data frame
+#' edge_df
+#' #> # A tibble: 4 × 7
+#' #>      id  type label  style color     shape value
+#' #>   <int> <chr> <chr>  <chr> <chr>     <chr> <dbl>
+#' #> 1     1     a  2384 filled  aqua    circle   3.5
+#' #> 2     2     a  3942 filled  aqua    circle   2.6
+#' #> 3     3     a  8362 filled  aqua rectangle   9.4
+#' #> 4     4     a  2194 filled  aqua rectangle   2.7
 #' @export create_edge_df
 
 create_edge_df <- function(from,
