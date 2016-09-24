@@ -23,6 +23,15 @@
 #'     to = c(4, 3, 1),
 #'     rel = "a")
 #'
+#' # Display the edge data frame (it's a tibble)
+#' edge_df
+#' #> # A tibble: 3 × 3
+#' #>    from    to   rel
+#' #>   <int> <int> <chr>
+#' #> 1     1     4     a
+#' #> 2     2     3     a
+#' #> 3     3     1     a
+#'
 #' # Render the graph to make it viewable in
 #' # the Viewer pane
 #' render_graph(
