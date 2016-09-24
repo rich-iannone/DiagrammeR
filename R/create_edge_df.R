@@ -23,13 +23,6 @@
 #'     to = c(4, 3, 1),
 #'     rel = "a")
 #'
-#' # Display the edge data frame (it's a tibble)
-#' edge_df
-#' #>   from to rel
-#' #> 1    1  4   a
-#' #> 2    2  3   a
-#' #> 3    3  1   a
-#'
 #' # Render the graph to make it viewable in
 #' # the Viewer pane
 #' render_graph(
@@ -38,8 +31,8 @@
 #'
 #' # Create an edge data frame with several
 #' # additional parameters
-#' edges <-
-#'   create_edges(
+#' edge_df <-
+#'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
 #'     rel = "a",
@@ -52,9 +45,9 @@
 #' render_graph(
 #'   create_graph(edges_df = edges),
 #'   output = "visNetwork")
-#' @export create_edges
+#' @export create_edge_df
 
-create_edges <- function(from,
+create_edge_df <- function(from,
                          to,
                          rel = NULL,
                          ...) {
