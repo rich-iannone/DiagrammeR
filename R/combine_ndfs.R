@@ -4,6 +4,7 @@
 #' @param ... two or more node data frames, which
 #' contain node IDs and associated attributes.
 #' @return a combined node data frame.
+#' @importFrom dplyr bind_rows
 #' @export combine_ndfs
 
 combine_ndfs <- function(...) {
