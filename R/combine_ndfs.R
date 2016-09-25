@@ -22,14 +22,16 @@ combine_ndfs <- function(...) {
       df2 <- ndfs[l + 1][[1]]
     }
 
-    ndf_new <-
-      dplyr::bind_rows(df1, df2)
+    # Bind rows from df1 and df2
+    ndf_new <- dplyr::bind_rows(df1, df2)
 
     if (l == length(ndfs)) {
       break
     }
   }
 
+  # Create montonically-increasing integer id
+  # values for new table based on input order
   ndf_new[, 1] <- as.integer(1:nrow(ndf_new))
 
   return(ndf_new)
