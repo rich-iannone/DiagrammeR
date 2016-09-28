@@ -23,15 +23,13 @@
 #'     type = c("a", "a", "b", "b"),
 #'     label = TRUE)
 #'
-#' # Display the node data frame (it's a tibble)
+#' # Display the node data frame
 #' node_df
-#' #> # A tibble: 4 × 3
-#' #>      id  type label
-#' #>   <int> <chr> <chr>
-#' #> 1     1     a     1
-#' #> 2     2     a     2
-#' #> 3     3     b     3
-#' #> 4     4     b     4
+#' #>   id type label
+#' #> 1  1    a     1
+#' #> 2  2    a     2
+#' #> 3  3    b     3
+#' #> 4  4    b     4
 #'
 #' # Create an ndf with distinct labels and
 #' # additional node attributes (where their classes
@@ -49,14 +47,12 @@
 #'
 #' # Display the node data frame
 #' node_df
-#' #> # A tibble: 4 × 7
-#' #>      id  type label  style color     shape value
-#' #>   <int> <chr> <chr>  <chr> <chr>     <chr> <dbl>
-#' #> 1     1     a  2384 filled  aqua    circle   3.5
-#' #> 2     2     a  3942 filled  aqua    circle   2.6
-#' #> 3     3     a  8362 filled  aqua rectangle   9.4
-#' #> 4     4     a  2194 filled  aqua rectangle   2.7
-#' @import tibble
+#' #>   id type label  style color     shape value
+#' #> 1  1    a  2384 filled  aqua    circle   3.5
+#' #> 2  2    a  3942 filled  aqua    circle   2.6
+#' #> 3  3    a  8362 filled  aqua rectangle   9.4
+#' #> 4  4    a  2194 filled  aqua rectangle   2.7
+#' @importFrom dplyr bind_cols
 #' @export create_node_df
 
 create_node_df <- function(n,
@@ -118,9 +114,10 @@ create_node_df <- function(n,
       }
     }
 
+    # Create a data frame from the `extras` list
     extras <-
-      as_tibble(
-        as.data.frame(extras, stringsAsFactors = FALSE))
+        as.data.frame(
+          extras, stringsAsFactors = FALSE)
   }
 
   # Interpret node label values
@@ -138,21 +135,23 @@ create_node_df <- function(n,
     }
   }
 
-  if (inherits(extras, "tbl_df")) {
+  if (inherits(extras, "data.frame")) {
     nodes_df <-
       dplyr::bind_cols(
-        tibble::tibble(
+        data.frame(
           id = 1:n,
           type = type,
-          label = label),
+          label = label,
+          stringsAsFactors = FALSE),
         extras)
 
   } else {
     nodes_df <-
-      tibble::tibble(
+      data.frame(
         id = 1:n,
         type = type,
-        label = label)
+        label = label,
+        stringsAsFactors = FALSE)
   }
 
   return(nodes_df)
