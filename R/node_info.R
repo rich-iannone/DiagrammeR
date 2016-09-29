@@ -216,10 +216,15 @@ node_info <- function(graph) {
       node_properties[i, 7] <- loops
     }
 
+    # Ensure that the `id` column is an integer
     node_properties <-
-      node_properties[order(node_properties[,1]), ]
+      dplyr::mutate(
+        node_properties, id = as.integer(id))
 
-    rownames(node_properties) <- NULL
+    # Arrange the table by `id` ascending
+    node_properties <-
+      dplyr::arrange(
+        node_properties, id)
 
     return(node_properties)
   }
