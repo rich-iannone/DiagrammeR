@@ -34,7 +34,7 @@ test_that("a subgraph can be created and such an object is correct", {
 
   # Expect that only those nodes with a value >3 are in the subgraph
   expect_true(
-    all(c(1, 3, 5, 7, 8) %in% get_nodes(subgraph)))
+    all(c(1, 3, 5, 7, 8) %in% get_node_ids(subgraph)))
 
   # Expect only certain edges to be present in the subgraph
   expect_true(

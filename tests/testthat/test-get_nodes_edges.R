@@ -33,7 +33,7 @@ test_that("getting node IDs from various objects is possible", {
                      "shape = circle"))
 
   # Get information on the graph's nodes
-  gotten_nodes <- get_nodes(graph)
+  gotten_nodes <- get_node_ids(graph)
 
   # Expect a `integer`` vector object
   expect_is(gotten_nodes, "integer")
@@ -48,13 +48,13 @@ test_that("getting node IDs from various objects is possible", {
   # Expect that the same node IDs will be returned
   # from the graph object, the node data frame, and
   # the edge data frame
-  expect_equal(get_nodes(graph), get_nodes(nodes))
+  expect_equal(get_node_ids(graph), get_node_ids(nodes))
 
   # Expect that the number of nodes obtain from the
   # entire graph will be greater than the nodes
   # associated with edges (since there will be free
   # nodes with no edges)
-  expect_gt(length(get_nodes(graph)),
+  expect_gt(length(get_node_ids(graph)),
             length(unique(c(graph$edges_df$from,
                             graph$edges_df$to))))
 
@@ -65,8 +65,8 @@ test_that("getting node IDs from various objects is possible", {
   # extracted node df are the same
   expect_true(
     all(
-      get_nodes(node_df_from_graph) ==
-        get_nodes(graph)))
+      get_node_ids(node_df_from_graph) ==
+        get_node_ids(graph)))
 
   # Expect that using `get_node_df()` on a graph with
   # no nodes will return `NA`

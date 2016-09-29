@@ -239,7 +239,7 @@ test_that("adding several nodes to a graph at once is possible", {
   # Expect monotonically-increasing node ID values
   # from 1 to 10
   expect_equal(
-    get_nodes(graph), c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+    get_node_ids(graph), c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
 
   # Expect that no `type` values have been set
   expect_equal(get_node_df(graph)[, 2],
@@ -258,7 +258,7 @@ test_that("adding several nodes to a graph at once is possible", {
 
   # Expect monotonically-increasing node ID values
   # from `1` to `10`
-  expect_equal(get_nodes(graph), seq(1, 10))
+  expect_equal(get_node_ids(graph), seq(1, 10))
 
   # Expect that a `type` value have been set
   # for all nodes
@@ -289,7 +289,7 @@ test_that("adding several nodes from a selected node is possible", {
 
   # Expect monotonically-increasing node ID
   # values from `1` to `20`
-  expect_equal(get_nodes(graph), seq(1, 20))
+  expect_equal(get_node_ids(graph), seq(1, 20))
 
   # Expect a total of 10 edges in the graph
   expect_equal(edge_count(graph), 10)
@@ -353,7 +353,7 @@ test_that("adding several nodes to a selected node is possible", {
 
   # Expect monotonically-increasing node ID values
   # from `1` to `20`
-  expect_equal(get_nodes(graph), seq(1, 20))
+  expect_equal(get_node_ids(graph), seq(1, 20))
 
   # Expect a total of 10 edges in the graph
   expect_equal(edge_count(graph), 10)
@@ -415,7 +415,7 @@ test_that("adding several edges with a string is possible", {
 
   # Expect monotonically-increasing node ID values
   # from 1 to 10
-  expect_equal(get_nodes(graph), seq(1, 10))
+  expect_equal(get_node_ids(graph), seq(1, 10))
 
   # Expect a total of 9 edges in the graph
   expect_equal(edge_count(graph), 9)

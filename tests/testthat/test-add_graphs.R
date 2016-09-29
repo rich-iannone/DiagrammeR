@@ -17,7 +17,7 @@ test_that("Adding a balanced tree is possible", {
   expect_equal(edge_count(graph), 39)
 
   # Expect node ID values from 1 to 40
-  expect_identical(get_nodes(graph), 1:40)
+  expect_identical(get_node_ids(graph), 1:40)
 
   # Expect label values from 1 to 40
   expect_identical(graph$nodes_df$label,
@@ -51,7 +51,7 @@ test_that("Adding a balanced tree is possible", {
   expect_equal(edge_count(graph), 45)
 
   # Expect node ID values from 1 to 47
-  expect_identical(get_nodes(graph), 1:47)
+  expect_identical(get_node_ids(graph), 1:47)
 
   # Expect label values from 1 to 47
   expect_equal(graph$nodes_df$label,
@@ -82,7 +82,7 @@ test_that("Adding a cycle is possible", {
   expect_equal(edge_count(graph), 3)
 
   # Expect node ID values from 1 to 3
-  expect_identical(get_nodes(graph), 1:3)
+  expect_identical(get_node_ids(graph), 1:3)
 
   # Expect label values from 1 to 3
   expect_identical(graph$nodes_df$label,
@@ -109,7 +109,7 @@ test_that("Adding a cycle is possible", {
   expect_equal(edge_count(graph), 6)
 
   # Expect node ID values from 1 to 6
-  expect_identical(get_nodes(graph), 1:6)
+  expect_identical(get_node_ids(graph), 1:6)
 
   # Expect label values from 1 to 6
   expect_identical(graph$nodes_df$label,
@@ -140,7 +140,7 @@ test_that("Adding a path is possible", {
   expect_equal(edge_count(graph), 2)
 
   # Expect node ID values from 1 to 3
-  expect_identical(get_nodes(graph), 1:3)
+  expect_identical(get_node_ids(graph), 1:3)
 
   # Expect label values from 1 to 3
   expect_identical(graph$nodes_df$label,
@@ -167,7 +167,7 @@ test_that("Adding a path is possible", {
   expect_equal(edge_count(graph), 4)
 
   # Expect node ID values from 1 to 6
-  expect_identical(get_nodes(graph), 1:6)
+  expect_identical(get_node_ids(graph), 1:6)
 
   # Expect label values from 1 to 6
   expect_identical(graph$nodes_df$label,
@@ -198,7 +198,7 @@ test_that("Adding a prism is possible", {
   expect_equal(edge_count(graph), 9)
 
   # Expect node ID values from 1 to 6
-  expect_identical(get_nodes(graph), 1:6)
+  expect_identical(get_node_ids(graph), 1:6)
 
   # Expect label values from 1 to 6
   expect_identical(graph$nodes_df$label,
@@ -253,7 +253,7 @@ test_that("Adding a star is possible", {
   expect_equal(edge_count(graph), 3)
 
   # Expect node ID values from 1 to 4
-  expect_identical(get_nodes(graph), 1:4)
+  expect_identical(get_node_ids(graph), 1:4)
 
   # Expect label values from 1 to 4
   expect_identical(graph$nodes_df$label,
@@ -280,7 +280,7 @@ test_that("Adding a star is possible", {
   expect_equal(edge_count(graph), 6)
 
   # Expect node ID values from 1 to 8
-  expect_identical(get_nodes(graph), 1:8)
+  expect_identical(get_node_ids(graph), 1:8)
 
   # Expect label values from 1 to 8
   expect_identical(graph$nodes_df$label,

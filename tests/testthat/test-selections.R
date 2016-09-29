@@ -207,7 +207,7 @@ test_that("selecting a node in a graph is possible", {
   # Expect that the node selected is the last
   # in the ndf
   expect_true(
-    get_nodes(graph_last_node)[length(get_nodes(graph_last_node))] ==
+    get_node_ids(graph_last_node)[length(get_node_ids(graph_last_node))] ==
       get_selection(graph_last_node))
 
   # Expect an error if trying to select the last node

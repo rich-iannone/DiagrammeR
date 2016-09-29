@@ -17,7 +17,7 @@ test_that("nodes and edges can be deleted from a graph", {
   graph <- add_edge(graph, 3, 4, "received_from")
 
   # Get the graph's nodes
-  graph_nodes <- get_nodes(graph)
+  graph_nodes <- get_node_ids(graph)
 
   # Get the graph's edges
   graph_edges <- get_edges(graph, return_type = "list")
@@ -26,7 +26,7 @@ test_that("nodes and edges can be deleted from a graph", {
   graph <- delete_node(graph, node = 4)
 
   # Get the graph's nodes after calling `delete_node()`
-  graph_nodes_delete_node <- get_nodes(graph)
+  graph_nodes_delete_node <- get_node_ids(graph)
 
   # Get the graph's edges after calling `delete_node()`
   graph_edges_delete_node <-
@@ -130,7 +130,7 @@ test_that("nodes and edges can be deleted from a graph via a selection", {
 
   # Expect nodes `1` and `2` to be present
   expect_true(
-    all(c(1, 2) %in% get_nodes(graph_node_deletion)))
+    all(c(1, 2) %in% get_node_ids(graph_node_deletion)))
 
   # Expect the graph to be unchanged if there is
   # no node selection
@@ -141,7 +141,7 @@ test_that("nodes and edges can be deleted from a graph via a selection", {
   expect_equal(node_count(graph), 4)
 
   # Expect nodes `1`, `2`, `3`, and `4` to be present
-  expect_true(all(1:4 %in% get_nodes(graph)))
+  expect_true(all(1:4 %in% get_node_ids(graph)))
 
   # Select 2 edges
   graph <- select_edges(graph, from = 1, to = 2)

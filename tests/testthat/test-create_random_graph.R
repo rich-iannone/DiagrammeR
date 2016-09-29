@@ -17,7 +17,7 @@ test_that("a random graph can be made to various specifications", {
 
   # Expect that all nodes have IDs from 1 to 10
   expect_true(
-    all(get_nodes(random_graph_10_15_directed) == 1:10))
+    all(get_node_ids(random_graph_10_15_directed) == 1:10))
 
   # Expect that labels are present are match node
   # IDs from `1` to `10`
@@ -40,7 +40,7 @@ test_that("a random graph can be made to various specifications", {
 
   # Expect that all nodes have IDs from 1 to 10
   expect_true(
-    all(get_nodes(random_graph_10_15) %in% 1:10))
+    all(get_node_ids(random_graph_10_15) %in% 1:10))
 
   # Create a random, undirected graph that's fully connected
   random_graph_10_15_fully_connected <-
