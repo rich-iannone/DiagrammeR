@@ -133,25 +133,28 @@ create_edge_df <- function(from,
       }
     }
 
+    # Create a data frame from the `extras` list
     extras <-
-      as_tibble(
-        as.data.frame(extras, stringsAsFactors = FALSE))
+        as.data.frame(
+          extras, stringsAsFactors = FALSE)
   }
 
-  if (inherits(extras, "tbl_df")) {
+  if (inherits(extras, "data.frame")) {
     edges_df <-
       dplyr::bind_cols(
-        tibble::tibble(
+        data.frame(
           from = from,
           to = to,
-          rel = rel),
+          rel = rel,
+          stringsAsFactors = FALSE),
         extras)
   } else {
     edges_df <-
-      tibble::tibble(
+      data.frame(
         from = from,
         to = to,
-        rel = rel)
+        rel = rel,
+        stringsAsFactors = FALSE)
   }
 
   return(edges_df)
