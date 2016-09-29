@@ -31,18 +31,18 @@
 #' graph <- create_graph(nodes_df = nodes)
 #'
 #' # Get a vector of all nodes in a graph
-#' get_nodes(graph)
+#' get_node_ids(graph)
 #' #> [1] 1 2 3 4
 #'
 #' # Get a vector of node ID values from a node
 #' # data frame
-#' get_nodes(nodes)
+#' get_node_ids(nodes)
 #' #> [1] 1 2 3 4
 #'
 #' # Get a vector of node ID values using a numeric
 #' # comparison (i.e., all nodes with `value` attribute
 #' # greater than 3)
-#' get_nodes(
+#' get_node_ids(
 #'   graph,
 #'   node_attr = "value",
 #'   match = "> 3")
@@ -51,16 +51,16 @@
 #' # Get a vector of node ID values using a match
 #' # pattern (i.e., all nodes with `color` attribute
 #' # of `green`)
-#' get_nodes(
+#' get_node_ids(
 #'   graph,
 #'   node_attr = "color",
 #'   match = "green")
 #' #> [1] 2
-#' @export get_nodes
+#' @export get_node_ids
 
-get_nodes <- function(x,
-                      node_attr = NULL,
-                      match = NULL) {
+get_node_ids <- function(x,
+                         node_attr = NULL,
+                         match = NULL) {
 
   if (inherits(x, "dgr_graph")) {
 
@@ -90,7 +90,7 @@ get_nodes <- function(x,
   }
 
   if (is.null(node_attr)) {
-    nodes <- nodes_df$nodes
+    nodes <- nodes_df[, 1]
   }
 
   if (!is.null(node_attr)) {
