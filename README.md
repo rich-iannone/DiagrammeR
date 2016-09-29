@@ -240,9 +240,9 @@ Kim is now a contributor to the **stringbuildeR** project and has made 15 new co
 ```r
 graph %<>%
   add_edge(
-    get_nodes(.,
+    get_node_ids(.,
       "name", "Kim"),
-    get_nodes(.,
+    get_node_ids(.,
       "project", "stringbuildeR"),
     "contributor") %>%
   select_last_edge %>%
