@@ -45,8 +45,8 @@ test_that("getting info about a graph's nodes is possible", {
   expect_true(nrow(info_nodes) == 26)
 
   # Expect that certain columns will be classed
-  # as `character`
-  expect_is(info_nodes$node, "character")
+  # as `integer` or `character`
+  expect_is(info_nodes$id, "integer")
   expect_is(info_nodes$label, "character")
   expect_is(info_nodes$type, "character")
 
@@ -83,14 +83,8 @@ test_that("getting info about a graph's nodes is possible", {
   # Get information on nodes from the empty graph
   info_nodes_empty_graph <- node_info(graph)
 
-  # Expect a data frame object
-  expect_is(info_nodes_empty_graph, "data.frame")
-
-  # Expect that the data frame has 7 columns
-  expect_true(ncol(info_nodes_empty_graph) == 7)
-
-  # Expect that the data frame has 4 rows
-  expect_true(nrow(info_nodes_empty_graph) == 0)
+  # Expect a NULL value
+  expect_null(info_nodes_empty_graph)
 })
 
 test_that("getting info about a graph's edges is possible", {
