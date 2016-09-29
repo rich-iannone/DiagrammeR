@@ -37,7 +37,7 @@ graph <-
   add_n_nodes(5)
 
 # Get the graph's nodes
-graph \%>\% get_nodes
+graph \%>\% get_node_ids
 #> [1] 1 2 3 4 5
 }
 

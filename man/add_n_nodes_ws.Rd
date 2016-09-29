@@ -59,7 +59,7 @@ graph <-
   add_n_nodes_ws(5, "from")
 
 # Get the graph's nodes
-graph \%>\% get_nodes
+graph \%>\% get_node_ids
 #> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
@@ -77,7 +77,7 @@ graph <-
   add_n_nodes_ws(5, "to")
 
 # Get the graph's nodes
-graph \%>\% get_nodes
+graph \%>\% get_node_ids
 #> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
