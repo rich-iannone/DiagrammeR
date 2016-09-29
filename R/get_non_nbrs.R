@@ -34,7 +34,7 @@ get_non_nbrs <- function(graph,
   # Get all non-neighbors to the `node`
   node_non_nbrs <-
     setdiff(
-      setdiff(get_nodes(graph), node),
+      setdiff(get_node_ids(graph), node),
       node_nbrs)
 
   # Get a unique set of node ID values

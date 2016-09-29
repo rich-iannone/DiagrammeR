@@ -29,7 +29,7 @@
 #' #> [1] 2
 #'
 #' # The nodes added were given ID values `1` and `2`
-#' get_nodes(graph)
+#' get_node_ids(graph)
 #' #> [1] 1 2
 #'
 #' # Add a node with a `type` value defined
@@ -60,7 +60,7 @@ add_node <- function(graph,
   if (!is.null(from) & is.null(to)) {
 
     from_nodes_available <-
-      ifelse(all(from %in% get_nodes(graph)),
+      ifelse(all(from %in% get_node_ids(graph)),
              TRUE, FALSE)
 
     if (from_nodes_available == FALSE) {
@@ -131,7 +131,7 @@ add_node <- function(graph,
   if (is.null(from) & !is.null(to)) {
 
     to_nodes_available <-
-      ifelse(all(to %in% get_nodes(graph)),
+      ifelse(all(to %in% get_node_ids(graph)),
              TRUE, FALSE)
 
     if (to_nodes_available == FALSE) {
@@ -200,11 +200,11 @@ add_node <- function(graph,
   if (!is.null(from) & !is.null(to)) {
 
     from_nodes_available <-
-      ifelse(all(from %in% get_nodes(graph)),
+      ifelse(all(from %in% get_node_ids(graph)),
              TRUE, FALSE)
 
     to_nodes_available <-
-      ifelse(all(to %in% get_nodes(graph)),
+      ifelse(all(to %in% get_node_ids(graph)),
              TRUE, FALSE)
 
     if (from_nodes_available == FALSE) {

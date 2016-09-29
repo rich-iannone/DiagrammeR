@@ -58,7 +58,7 @@ invert_selection <- function(graph) {
     selection_nodes <- graph$selection$nodes
 
     graph$selection$nodes <-
-      get_nodes(graph)[which(!(get_nodes(graph) %in%
+      get_node_ids(graph)[which(!(get_node_ids(graph) %in%
                                  selection_nodes))]
   }
 

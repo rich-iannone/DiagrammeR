@@ -88,7 +88,7 @@ do_dfs <- function(graph,
     if (is.null(node)) {
 
       # Get all nodes available in the graph
-      graph_nodes <- get_nodes(graph)
+      graph_nodes <- get_node_ids(graph)
 
       # Initialize the `search_path` and `visited` vectors
       search_path <- vector(mode = "character")
@@ -190,7 +190,7 @@ do_dfs <- function(graph,
     if (is.null(node)) {
 
       # Get all nodes available in the graph
-      graph_nodes <- get_nodes(graph)
+      graph_nodes <- get_node_ids(graph)
 
       # Initialize the `search_path` vector
       search_path <- vector(mode = "character")

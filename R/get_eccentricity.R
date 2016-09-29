@@ -28,7 +28,7 @@ get_eccentricity <- function(graph,
                              return_type = "vector") {
 
   if (is.null(nodes)) {
-    nodes_to_process <- get_nodes(graph)
+    nodes_to_process <- get_node_ids(graph)
     node_ids <- nodes_to_process
   }
 
@@ -36,7 +36,7 @@ get_eccentricity <- function(graph,
 
     # Stop function if nodes provided are not all
     # in the graph
-    if (any(!(as.character(nodes) %in% get_nodes(graph)))) {
+    if (any(!(as.character(nodes) %in% get_node_ids(graph)))) {
       stop('Not all nodes specified are present in the graph.')
     }
 
@@ -55,7 +55,7 @@ get_eccentricity <- function(graph,
         lengths(
           get_paths(
             graph,
-            from = get_nodes(graph)[i],
+            from = get_node_ids(graph)[i],
             longest_path = TRUE))) - 1
 
     eccentricity <-

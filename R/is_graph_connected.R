@@ -50,7 +50,7 @@ is_graph_connected <- function(graph) {
   }
 
   node_pairs <-
-    as.data.frame(t(utils::combn(get_nodes(graph), 2)),
+    as.data.frame(t(utils::combn(get_node_ids(graph), 2)),
                   stringsAsFactors = FALSE)
   graph_edges <-
     get_edges(graph, return_type = "df")
@@ -134,7 +134,7 @@ is_graph_connected <- function(graph) {
 
     x = x + 1
 
-    if (x == length(get_nodes(graph))) {
+    if (x == length(get_node_ids(graph))) {
       break
     }
   }

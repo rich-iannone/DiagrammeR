@@ -71,7 +71,7 @@ node_present <- function(graph,
   if (node_is_single_value) {
 
     node_is_present <-
-      ifelse(node %in% get_nodes(graph), TRUE, FALSE)
+      ifelse(node %in% get_node_ids(graph), TRUE, FALSE)
 
     return(node_is_present)
   }

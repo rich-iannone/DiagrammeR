@@ -86,9 +86,9 @@ node_count <- function(graph,
   # by type
   if (all(inherits(type, "logical") & type == TRUE)) {
 
-    for (i in 1:length(get_nodes(graph))) {
+    for (i in 1:length(get_node_ids(graph))) {
       if (i == 1) {
-        all_nodes <- get_nodes(graph)
+        all_nodes <- get_node_ids(graph)
         all_types <- vector(mode = "character")
       }
 

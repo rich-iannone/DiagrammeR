@@ -75,7 +75,7 @@ edge_present <- function(graph,
   if (from_is_single_value & to_is_single_value) {
     nodes_available_in_graph <-
       ifelse(all(c(from, to) %in%
-                   get_nodes(graph)), TRUE, FALSE)
+                   get_node_ids(graph)), TRUE, FALSE)
   }
 
   # Stop function if both nodes not present in graph

@@ -30,7 +30,7 @@
 #' # The `combine_graphs()` function will renumber
 #' # node ID values in graph `y` during the union;
 #' # this ensures that node ID values are unique
-#' get_nodes(combined_graph)
+#' get_node_ids(combined_graph)
 #' #> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14
 #' @importFrom dplyr inner_join rename select bind_rows ends_with
 #' @export combine_graphs

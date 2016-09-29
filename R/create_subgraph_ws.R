@@ -23,7 +23,7 @@
 #'     nodes_df = nodes,
 #'     edges_df = edges)
 #'
-#' get_nodes(graph)
+#' get_node_ids(graph)
 #' #> [1] 1 2 3 4 5 6
 #'
 #' get_edges(graph, return_type = "vector")
@@ -41,7 +41,7 @@
 #' subgraph <- create_subgraph_ws(graph)
 #'
 #' # Check the nodes available in the subgraph
-#' get_nodes(subgraph)
+#' get_node_ids(subgraph)
 #' #> [1] 1 3 5
 #'
 #' # Check the edges available in the subgraph

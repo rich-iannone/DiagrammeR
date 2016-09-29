@@ -63,7 +63,7 @@ get_all_connected_nodes <- function(graph,
   nodes <- list()
 
   # Get a vector of all nodes in the graph
-  graph_nodes <- get_nodes(graph)
+  graph_nodes <- get_node_ids(graph)
 
   # place starting node in the `connected` vector
   connected <- node

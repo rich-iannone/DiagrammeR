@@ -52,8 +52,8 @@ add_edge_df <- function(graph,
   # Ensure that the nodes in the edge data frame
   # specified are in the graph object
   all_nodes_in_graph <-
-    all(edge_df$from %in% get_nodes(graph)) &
-    all(edge_df$to %in% get_nodes(graph))
+    all(edge_df$from %in% get_node_ids(graph)) &
+    all(edge_df$to %in% get_node_ids(graph))
 
   # If not all the nodes specified in the edge data
   # frame are in the graph, stop the function

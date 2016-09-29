@@ -61,7 +61,7 @@ get_constraint <- function(graph,
   if (!is.null(nodes)) {
 
     if (!all(as.character(nodes) %in%
-             get_nodes(graph))) {
+             get_node_ids(graph))) {
       stop("One or more nodes provided not in graph.")
     }
 

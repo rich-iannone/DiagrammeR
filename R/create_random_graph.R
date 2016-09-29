@@ -78,11 +78,11 @@ create_random_graph <- function(n,
         edge_placed <- FALSE
 
         node_a <-
-          sample(get_nodes(graph), 1)
+          sample(get_node_ids(graph), 1)
 
         node_b <-
           sample(
-            get_nodes(graph)[-which(get_nodes(graph) %in% node_a)], 1)
+            get_node_ids(graph)[-which(get_node_ids(graph) %in% node_a)], 1)
 
         edge_in_graph <-
           edge_present(
@@ -115,7 +115,7 @@ create_random_graph <- function(n,
           node_info(graph)[which(node_info(graph)$degree == 0), 1]
 
         connected_nodes <-
-          setdiff(get_nodes(graph), unconnected_nodes)
+          setdiff(get_node_ids(graph), unconnected_nodes)
 
         graph <-
           add_edge(graph,

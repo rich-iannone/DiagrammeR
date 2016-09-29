@@ -33,7 +33,7 @@ delete_node <- function(graph,
   }
 
   # Stop function if node is not in the graph
-  if (!(node %in% get_nodes(graph))) {
+  if (!(node %in% get_node_ids(graph))) {
     stop("The specified node is not available in the graph.")
   }
 

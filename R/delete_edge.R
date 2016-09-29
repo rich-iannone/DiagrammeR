@@ -58,7 +58,7 @@ delete_edge <- function(graph,
       to_is_single_value) {
     nodes_available_in_graph <-
       ifelse(all(c(from, to) %in%
-                   get_nodes(graph)),
+                   get_node_ids(graph)),
              TRUE, FALSE)
   }
 
