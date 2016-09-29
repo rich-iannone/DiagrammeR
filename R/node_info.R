@@ -56,19 +56,15 @@ node_info <- function(graph) {
     return(NULL)
   }
 
-  if ("to" %in% colnames(graph$edges_df)) {
-    edge_to <- graph$edges_df$to
-  }
+  # Get vectors of nodes in edges and
+  # node `type` values
+  edge_from <- graph$edges_df[, 1]
+  edge_to <- graph$edges_df[, 2]
+  type <- graph$nodes_df[, 3]
 
-  if ("type" %in% colnames(graph$nodes_df)) {
-    type <- graph$nodes_df$type
-  }
-
-  # Get vector of all node IDs
-  all_nodes <- get_nodes(graph)
-
-  # Get vector of all labels
-  labels <- graph$nodes_df$label
+  # Get vector of all node IDs and all labels
+  all_nodes <- graph$nodes_df[, 1]
+  labels <- graph$nodes_df[, 2]
 
   # For graphs with no edges, create a
   # `node_properties` data frame that doesn't
@@ -78,26 +74,24 @@ node_info <- function(graph) {
     node_properties <-
       as.data.frame(
         mat.or.vec(nr = length(all_nodes),
-                   nc = 7))
+                   nc = 7),
+        stringsAsFactors = FALSE)
 
     colnames(node_properties) <-
-      c("node", "label", "type", "deg",
+      c("id", "type", "label", "deg",
         "indeg", "outdeg", "loops")
 
-    node_properties[, 1] <- all_nodes
-    node_properties[, 2] <- labels
+    node_properties[, 1] <- graph$nodes_df[, 1]
+    node_properties[, 2] <- graph$nodes_df[, 2]
+    node_properties[, 3] <- graph$nodes_df[, 3]
 
-    if (exists("type")) {
-      node_properties[, 3] <- type
-    } else {
-      node_properties[, 3] <-
-        rep(NA, length(all_nodes))
-    }
+    # Ensure that the `id` column is an integer
+    node_properties <-
+      mutate(node_properties, id = as.integer(id))
 
-    node_properties[, 4] <- rep(0, length(all_nodes))
-    node_properties[, 5] <- rep(0, length(all_nodes))
-    node_properties[, 6] <- rep(0, length(all_nodes))
-    node_properties[, 7] <- rep(0, length(all_nodes))
+    # Arrange the table by `id` ascending
+    node_properties <-
+      arrange(node_properties, id)
 
     return(node_properties)
   }
@@ -106,13 +100,15 @@ node_info <- function(graph) {
 
     # Get vector of the top-level nodes
     top_nodes <-
-      unique(edge_from[which(!(edge_from %in%
-                                 edge_to))])
+      unique(
+        edge_from[which(!(edge_from %in%
+                            edge_to))])
 
     # Get vector of the bottom-level nodes
     bottom_nodes <-
-      unique(edge_to[which(!(edge_to %in%
-                               edge_from))])
+      unique(
+        edge_to[which(!(edge_to %in%
+                          edge_from))])
 
     # Get vector of all nodes neither at the top nor
     # the bottom level
@@ -127,14 +123,15 @@ node_info <- function(graph) {
 
     # Create data frame of node properties
     for (i in 1:length(ordered_nodes)) {
-
       if (i == 1) {
         node_properties <-
-          as.data.frame(mat.or.vec(nr = 0,
-                                   nc = 7))
+          as.data.frame(
+            mat.or.vec(nr = 0,
+                       nc = 7),
+            stringsAsFactors = FALSE)
 
         colnames(node_properties) <-
-          c("node", "label", "type", "deg",
+          c("id", "type", "label", "deg",
             "indeg", "outdeg", "loops")
       }
 
@@ -191,8 +188,7 @@ node_info <- function(graph) {
         sum(graph$edges_df$from == graph$edges_df$to &
               graph$edges_df$to == ordered_nodes[i])
 
-      # Collect information into the `node_properties`
-      # data frame
+      # Collect information into `node_properties`
       node_properties[i, 1] <-
         ordered_nodes[i]
 
