@@ -51,21 +51,9 @@
 
 node_info <- function(graph) {
 
-  # If graph is empty, return an empty data frame
+  # If graph is empty, return NULL
   if (is_graph_empty(graph)) {
-
-    node_properties <-
-      as.data.frame(mat.or.vec(nr = 0, nc = 7))
-
-    colnames(node_properties) <-
-      c("node", "label", "type", "deg",
-        "indeg", "outdeg", "loops")
-
-    return(node_properties)
-  }
-
-  if ("from" %in% colnames(graph$edges_df)) {
-    edge_from <- graph$edges_df$from
+    return(NULL)
   }
 
   if ("to" %in% colnames(graph$edges_df)) {
