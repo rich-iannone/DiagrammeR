@@ -52,7 +52,7 @@ add_n_nodes <- function(graph,
     new_nodes[, 1] + nodes_created
 
   if (label == TRUE) {
-    new_nodes[, 3] <- new_nodes[, 1]
+    new_nodes[, 3] <- as.character(new_nodes[, 1])
   }
 
   graph$nodes_df <-
