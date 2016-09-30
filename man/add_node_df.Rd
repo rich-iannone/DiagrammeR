@@ -13,7 +13,7 @@ add_node_df(graph, node_df)
 \code{create_graph}.}
 
 \item{node_df}{a node data frame that is created
-using \code{create_nodes}.}
+using \code{create_node_df}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -29,8 +29,8 @@ graph <- create_graph()
 
 # Create a node data frame
 nodes <-
-  create_nodes(
-    nodes = 1:4,
+  create_node_df(
+    n = 4,
     type = "basic",
     color = c("red", "green", "grey", "blue"),
     value = c(3.5, 2.6, 9.4, 2.7))
@@ -40,16 +40,16 @@ nodes <-
 graph <- add_node_df(graph, nodes)
 
 get_node_df(graph)
-#>   nodes  type label color value
-#> 1     1 basic     a   red   3.5
-#> 2     2 basic     b green   2.6
-#> 3     3 basic     c  grey   9.4
-#> 4     4 basic     d  blue   2.7
+#>   id  type label color value
+#> 1  1 basic         red   3.5
+#> 2  2 basic       green   2.6
+#> 3  3 basic        grey   9.4
+#> 4  4 basic        blue   2.7
 
 # Create another node data frame
 nodes_2 <-
-  create_nodes(
-    nodes = 5:8,
+  create_node_df(
+    n = 4,
     type = "basic",
     color = c("white", "brown", "aqua", "pink"),
     value = c(1.6, 6.4, 0.8, 4.2))
@@ -59,14 +59,14 @@ nodes_2 <-
 graph <- add_node_df(graph, nodes_2)
 
 get_node_df(graph)
-#>   nodes  type label color value
-#> 1     1 basic     a   red   3.5
-#> 2     2 basic     b green   2.6
-#> 3     3 basic     c  grey   9.4
-#> 4     4 basic     d  blue   2.7
-#> 5     5 basic     e white   1.6
-#> 6     6 basic     f brown   6.4
-#> 7     7 basic     g  aqua   0.8
-#> 8     8 basic     h  pink   4.2
+#>   id  type label color value
+#> 1  1 basic         red   3.5
+#> 2  2 basic       green   2.6
+#> 3  3 basic        grey   9.4
+#> 4  4 basic        blue   2.7
+#> 5  5 basic       white   1.6
+#> 6  6 basic       brown   6.4
+#> 7  7 basic        aqua   0.8
+#> 8  8 basic        pink   4.2
 }
 
