@@ -61,8 +61,8 @@ create_random_graph <- function(n,
   graph <-
     create_graph(
       nodes_df =
-        create_nodes(
-          nodes = 1:n,
+        create_node_df(
+          n = n,
           label = ifelse(display_labels,
                          TRUE, FALSE),
           value = sample(seq(0.5, 10, 0.5),
