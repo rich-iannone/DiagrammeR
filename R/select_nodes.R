@@ -115,7 +115,7 @@ select_nodes <- function(graph,
 
   if (is.null(node_attr)) {
 
-    nodes_selected <- nodes_df$nodes
+    nodes_selected <- nodes_df[, 1]
 
     if (!is.null(nodes)) {
       if (any(!(nodes %in% nodes_selected))) {
@@ -133,7 +133,7 @@ select_nodes <- function(graph,
         stop("One of more of the nodes specified are not available in the graph.")
       }
 
-      nodes_df <- nodes_df[which(nodes_df$nodes %in% nodes),]
+      nodes_df <- nodes_df[which(nodes_df[, 1] %in% nodes),]
     }
 
     # Determine the column number for which the value
