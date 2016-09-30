@@ -245,14 +245,11 @@ create_graph <- function(nodes_df = NULL,
 
   } else if (!is.null(nodes_df)) {
 
-    stopifnot("nodes" %in% colnames(nodes_df))
-
     # Force all columns except the `nodes` column
     # to be of the character class
     for (i in 2:ncol(nodes_df)) {
       nodes_df[, i] <- as.character(nodes_df[, i])
     }
-
 
     if (inherits(edges_df, "data.frame")) {
       if (ncol(edges_df) > 2) {
