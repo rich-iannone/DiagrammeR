@@ -23,12 +23,13 @@ object.
 \examples{
 # Create a simple graph
 nodes <-
-  create_nodes(
-    nodes = 1:6,
-    value = c(3.5, 2.6, 9.4, 2.7, 5.2, 2.1))
+  create_node_df(
+    n = 6,
+    value = c(3.5, 2.6, 9.4,
+              2.7, 5.2, 2.1))
 
 edges <-
-  create_edges(
+  create_edge_df(
     from = c(1, 2, 4, 5, 2, 6),
     to = c(2, 4, 1, 3, 5, 5))
 

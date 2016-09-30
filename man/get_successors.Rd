@@ -25,11 +25,11 @@ nodes that have a connection from the given node.
 set.seed(24)
 
 # Create a node data frame (ndf)
-nodes <- create_nodes(1:26)
+nodes <- create_node_df(26)
 
 # Create an edge data frame (edf)
 edges <-
-  create_edges(
+  create_edge_df(
     from = sample(1:26, replace = TRUE),
     to = sample(1:26, replace = TRUE))
 

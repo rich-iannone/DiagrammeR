@@ -33,8 +33,8 @@ set.seed(24)
 
 # Create a node data frame (ndf)
 nodes <-
-  create_nodes(
-    nodes = 1:26,
+  create_node_df(
+    n = 26,
     label = TRUE,
     type = c(rep("a", 7),
              rep("b", 9),
@@ -43,7 +43,7 @@ nodes <-
 
 # Create an edge data frame (edf)
 edges <-
-  create_edges(
+  create_edge_df(
     from = sample(1:26, replace = TRUE),
     to = sample(1:26, replace = TRUE),
     rel = c(rep("rel_a", 7),
@@ -61,8 +61,8 @@ graph <-
 edge_count(graph, rel = FALSE)
 #> [1] 26
 
-# Get a count of edges that have the relationship
-# `rel_a`
+# Get a count of edges that have the
+# relationship of `rel_a`
 edge_count(graph, rel = "rel_a")
 #> [1] 7
 
