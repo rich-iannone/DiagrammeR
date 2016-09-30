@@ -97,7 +97,7 @@ node_type <- function(graph,
   }
 
   if (node_is_in_graph) {
-    node_row <- which(graph$nodes_df$nodes == node)
+    node_row <- which(graph$nodes_df[, 1] == node)
 
     type_set <-
       ifelse(graph$nodes_df$type[node_row] == "",
