@@ -28,13 +28,13 @@
 #' @examples
 #' # Create a node data frame (ndf)
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:5,
+#'   create_node_df(
+#'     n = 5,
 #'     type = c("a", "b", "c", "a", "c"))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
-#'   create_edges(
+#'   create_edge_df(
 #'     from = c(1, 3, 5, 2, 4),
 #'     to = c(2, 2, 4, 4, 3),
 #'     rel = c("rel_a", "rel_b",
@@ -47,8 +47,7 @@
 #'                edges_df = edges)
 #'
 #' # Read the edge `rel` for edge `1` -> `2`
-#' graph %>%
-#'   edge_rel(1, 2)
+#' graph %>% edge_rel(1, 2)
 #' #> [1] "rel_a"
 #'
 #' # Remove the `rel` value entirely from
@@ -59,8 +58,7 @@
 #'
 #' # Check that the edge `1` -> `2` no longer
 #' # has a `rel` assignment
-#' graph %>%
-#'   edge_rel(1, 2, "check")
+#' graph %>% edge_rel(1, 2, "check")
 #' #> [1] FALSE
 #'
 #' # Add the `rel` value `rel_b`` to edge `1` -> `2`
@@ -69,8 +67,7 @@
 #'   edge_rel(1, 2, "add", "rel_b")
 #'
 #' # Read the edge `rel` for edge `1` -> `2`
-#' graph %>%
-#'   edge_rel(1, 2)
+#' graph %>% edge_rel(1, 2)
 #' #> [1] "rel_b"
 #'
 #' # Perform an in-place update of the `rel`
@@ -81,8 +78,7 @@
 #'
 #' # Read the edge `rel` for edge `1` -> `2`
 #' # to ensure that the change was made
-#' graph %>%
-#'   edge_rel(1, 2)
+#' graph %>% edge_rel(1, 2)
 #' #> [1] "rel a"
 #' @export edge_rel
 
@@ -108,8 +104,8 @@ edge_rel <- function(graph,
   if (edge_is_in_graph) {
 
     edge_row <-
-      which(graph$edges_df$from == from &
-              graph$edges_df$to == to)
+      which(graph$edges_df[, 1] == from &
+              graph$edges_df[, 2] == to)
 
     relationship_set <-
       ifelse(is.null(graph$edges_df$rel[edge_row]) ||
