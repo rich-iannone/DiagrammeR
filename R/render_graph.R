@@ -25,9 +25,8 @@
 #'
 #' # Create a node data frame (ndf)
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:26,
-#'     label = TRUE,
+#'   create_node_df(
+#'     n = 26,
 #'     type = "basic",
 #'     shape = sample(c("circle", "square"),
 #'                    length(1:26),
@@ -40,7 +39,7 @@
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
-#'   create_edges(
+#'   create_edge_df(
 #'     from = sample(1:26, replace = TRUE),
 #'     to = sample(1:26, replace = TRUE),
 #'     rel = "to_node")
@@ -143,7 +142,6 @@ render_graph <- function(graph,
       width = NULL)
 
   } else if (output == "visNetwork") {
-
     visnetwork(graph)
   }
 }
