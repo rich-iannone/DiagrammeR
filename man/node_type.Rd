@@ -41,24 +41,24 @@ definition for that node.
 \examples{
 # Create a node data frame (ndf)
 nodes <-
-  create_nodes(
-    nodes = 1:5,
+  create_node_df(
+    n = 5,
     type = c("a", "b", "c", "a", "c"))
 
 # Create an edge data frame (edf)
 edges <-
-  create_edges(
+  create_edge_df(
     from = c(1, 3, 5, 2, 4),
     to = c(2, 2, 4, 4, 3))
 
 # Create a graph
 graph <-
-  create_graph(nodes_df = nodes,
-               edges_df = edges)
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges)
 
 # Read the node `type` for node `1`
-graph \%>\%
-  node_type(1)
+graph \%>\% node_type(1)
 #> [1] "a"
 
 # Remove the `type` value entirely from
@@ -69,8 +69,7 @@ graph <-
 
 # Check that node `1` no longer has a
 # `type` assignment
-graph \%>\%
-  node_type(1, "check")
+graph \%>\% node_type(1, "check")
 #> [1] FALSE
 
 # Add the `type` value "b" to node `1`
@@ -79,8 +78,7 @@ graph <-
   node_type(1, "add", "b")
 
 # Read the node `type` for node `1`
-graph \%>\%
-  node_type(1)
+graph \%>\% node_type(1)
 #> [1] "b"
 
 # Perform an in-place update of the `type`
@@ -91,8 +89,7 @@ graph <-
 
 # Read the node `type` for node `1` to ensure
 # that the change was made
-graph \%>\%
-  node_type(1)
+graph \%>\% node_type(1)
 #> [1] "a"
 }
 
