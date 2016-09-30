@@ -21,15 +21,15 @@
 #' @examples
 #' # Create a node data frame (ndf)
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:4,
+#'   create_node_df(
+#'     n = 4,
 #'     type = c("a", "a", "z", "z"),
 #'     label = TRUE,
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
-#'   create_edges(
+#'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
 #'     rel = c("rel_a", "rel_z", "rel_a"))

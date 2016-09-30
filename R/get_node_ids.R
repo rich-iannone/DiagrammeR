@@ -21,8 +21,8 @@
 #' # simple graph
 #' # Create a node data frame (ndf)
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:4,
+#'   create_node_df(
+#'     n = 4,
 #'     type = "letter",
 #'     color = c("red", "green", "grey", "blue"),
 #'     value = c(3.5, 2.6, 9.4, 2.7))
