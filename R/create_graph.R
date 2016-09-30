@@ -42,9 +42,8 @@
 #' # A graph can be created with nodes and
 #' # without edges; this is usually done in 2 steps:
 #' # 1. create a node data frame (ndf) using the
-#' #    `create_nodes()` function
-#' nodes <-
-#'   create_nodes(nodes = 1:4)
+#' #    `create_node_df()` function
+#' nodes <- create_node_df(n = 4)
 #'
 #' # 2. create the graph object with `create_graph()`
 #' #    and pass in the ndf to `nodes_df`
@@ -52,18 +51,18 @@
 #'
 #' # Get information on the graph's nodes
 #' node_info(graph)
-#' #>   node label type deg indeg outdeg loops
-#' #> 1    1     1        0     0      0     0
-#' #> 2    2     2        0     0      0     0
-#' #> 3    3     3        0     0      0     0
-#' #> 4    4     4        0     0      0     0
+#' #>   id type label deg indeg outdeg loops
+#' #> 1  1              0     0      0     0
+#' #> 2  2              0     0      0     0
+#' #> 3  3              0     0      0     0
+#' #> 4  4              0     0      0     0
 #'
 #' # You can create a similar graph with just nodes but
 #' # also provide a range of attributes for the nodes
 #' # (e.g., types, labels, arbitrary 'values')
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:4,
+#'   create_node_df(
+#'     n = 4,
 #'     label = TRUE,
 #'     type = c("type_1", "type_1",
 #'              "type_5", "type_2"),
@@ -76,11 +75,11 @@
 #' # Get information on the graph's internal node
 #' # data frame (ndf)
 #' get_node_df(graph)
-#' #>   nodes   type label     shape values
-#' #> 1     1 type_1     1    circle    3.5
-#' #> 2     2 type_1     2    circle    2.6
-#' #> 3     3 type_5     3 rectangle    9.4
-#' #> 4     4 type_2     4 rectangle    2.7
+#' #>   id   type label     shape values
+#' #> 1  1 type_1     1    circle    3.5
+#' #> 2  2 type_1     2    circle    2.6
+#' #> 3  3 type_5     3 rectangle    9.4
+#' #> 4  4 type_2     4 rectangle    2.7
 #'
 #' # A graph can also be created by just specifying the
 #' # edges between nodes (in this case the unique set
@@ -90,9 +89,9 @@
 #' # with different function--although edge attributes
 #' # can specified); this is usually done in 2 steps:
 #' # 1. create an edge data frame (edf) using the
-#' #    `create_edges()` function:
+#' #    `create_edge_df()` function:
 #' edges <-
-#'   create_edges(
+#'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
 #'     rel = "leading_to",
