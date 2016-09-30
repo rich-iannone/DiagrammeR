@@ -16,15 +16,15 @@
 #' @examples
 #' # Create a node data frame (ndf)
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:4,
+#'   create_node_df(
+#'     n = 4,
 #'     type = "basic",
 #'     label = TRUE,
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Create an edge data frame (edf)
 #' edges <-
-#'   create_edges(
+#'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
 #'     rel = "leading_to")
@@ -35,8 +35,8 @@
 #'     nodes_df = nodes,
 #'     edges_df = edges)
 #'
-#' # Set attribute `color = "green"` for nodes `1`
-#' # and `3` using the graph object
+#' # Set attribute `color = "green"` for
+#' # nodes `1` and `3` using the graph object
 #' graph <-
 #'   set_node_attrs(
 #'     x = graph,
@@ -44,8 +44,16 @@
 #'     values = "green",
 #'     nodes = c(1, 3))
 #'
-#' # Set attribute `color = "green"`` for nodes `1`
-#' # and `3` using the node data frame
+#' # View the graph's node data frame
+#' get_node_df(graph)
+#' #>   id  type label value color
+#' #> 1  1 basic     1   3.5 green
+#' #> 2  2 basic     2   2.6
+#' #> 3  3 basic     3   9.4 green
+#' #> 4  4 basic     4   2.7
+#'
+#' # Set attribute `color = "green"` for
+#' # nodes `1` and `3` using the node data frame
 #' nodes <-
 #'   set_node_attrs(
 #'     x = nodes,
@@ -53,13 +61,29 @@
 #'     values = "green",
 #'     nodes = c(1, 3))
 #'
-#' # Set attribute `color = "blue"` for all nodes
-#' # the node data frame
+#' # Display the `nodes` ndf
+#' nodes
+#' #>   id  type label value color
+#' #> 1  1 basic     1   3.5 green
+#' #> 2  2 basic     2   2.6
+#' #> 3  3 basic     3   9.4 green
+#' #> 4  4 basic     4   2.7
+#'
+#' # Set attribute `color = "blue"` for
+#' # all nodes in the node data frame
 #' nodes <-
 #'   set_node_attrs(
 #'     x = nodes,
 #'     node_attr = "color",
 #'     values = "blue")
+#'
+#' # Display the `nodes` ndf
+#' nodes
+#' #>   id  type label value color
+#' #> 1  1 basic     1   3.5  blue
+#' #> 2  2 basic     2   2.6  blue
+#' #> 3  3 basic     3   9.4  blue
+#' #> 4  4 basic     4   2.7  blue
 #' @export set_node_attrs
 
 set_node_attrs <- function(x,
@@ -67,7 +91,7 @@ set_node_attrs <- function(x,
                            values,
                            nodes = NULL) {
 
-  if (node_attr == "nodes") {
+  if (node_attr == "id") {
     stop("You cannot change the node ID.")
   }
 
@@ -81,7 +105,7 @@ set_node_attrs <- function(x,
   }
 
   if (inherits(x, "data.frame")) {
-    if ("nodes" %in% colnames(x)) {
+    if ("id" %in% colnames(x)) {
       object_type <- "node_df"
       nodes_df <- x
     }
@@ -98,7 +122,7 @@ set_node_attrs <- function(x,
         nodes_df[, which(colnames(nodes_df) %in%
                            node_attr)] <- values
       } else {
-        nodes_df[which(nodes_df$nodes %in% nodes),
+        nodes_df[which(nodes_df[, 1] %in% nodes),
                  which(colnames(nodes_df) %in%
                          node_attr)] <- values
       }
@@ -117,7 +141,7 @@ set_node_attrs <- function(x,
         nodes_df[, ncol(nodes_df)] <- values
       } else {
         nodes_df[
-          which(nodes_df$nodes %in%
+          which(nodes_df[, 1] %in%
                   nodes), ncol(nodes_df)] <- values
       }
     }
@@ -148,28 +172,18 @@ set_node_attrs <- function(x,
 
   if (object_type == "dgr_graph") {
 
-    # Create new graph object
-    dgr_graph <-
-      create_graph(
-        nodes_df = nodes_df,
-        edges_df = x$edges_df,
-        graph_attrs = x$graph_attrs,
-        node_attrs = x$node_attrs,
-        edge_attrs = x$edge_attrs,
-        directed = ifelse(is_graph_directed(x),
-                          TRUE, FALSE),
-        graph_name = x$graph_name,
-        graph_time = x$graph_time,
-        graph_tz = x$graph_tz)
+    # Replace the graph's ndf with the
+    # revised version
+    graph$nodes_df <- nodes_df
 
     # Retain the node selection if one was
     # available initially
-    dgr_graph$selection <- x$selection
+    graph$selection <- x$selection
 
     # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
+    graph$last_node <- nodes_created
 
-    return(dgr_graph)
+    return(graph)
   }
 
   if (object_type == "node_df") {
