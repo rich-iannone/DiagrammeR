@@ -30,17 +30,17 @@ graph <-
 # in the graph through the multi-level optimization
 # of modularity algorithm
 get_cmty_louvain(graph)
-#>    node louvain_group
-#> 1     1             1
-#> 2     2             3
-#> 3     3             3
-#> 4     4             2
-#> 5     5             1
-#> 6     6             2
-#> 7     7             2
-#> 8     8             1
-#> 9     9             2
-#> 10   10             3
+#>    id louvain_group
+#> 1   1             1
+#> 2   2             3
+#> 3   3             3
+#> 4   4             2
+#> 5   5             1
+#> 6   6             2
+#> 7   7             2
+#> 8   8             1
+#> 9   9             2
+#> 10 10             3
 
 # Add the group membership values to the graph
 # as a node attribute

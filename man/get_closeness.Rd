@@ -32,25 +32,23 @@ graph <-
 
 # Get closeness values for all nodes in the graph
 get_closeness(graph)
-#>    node  closeness
-#> 1     1 0.07142857
-#> 2     2 0.07692308
-#> 3     3 0.06666667
-#> 4     4 0.07142857
-#> 5     5 0.08333333
-#> 6     6 0.05882353
-#> 7     7 0.08333333
-#> 8     8 0.07692308
-#> 9     9 0.06666667
-#> 10   10 0.05882353
+#>    id  closeness
+#> 1   1 0.07142857
+#> 2   2 0.07692308
+#> 3   3 0.06666667
+#> 4   4 0.07142857
+#> 5   5 0.08333333
+#> 6   6 0.05882353
+#> 7   7 0.08333333
+#> 8   8 0.07692308
+#> 9   9 0.06666667
+#> 10 10 0.05882353
 
 # Add the closeness values to the graph
 # as a node attribute
 graph <-
   graph \%>\%
   join_node_attrs(
-    get_closeness(.),
-    by_graph = "nodes",
-    by_df = "node")
+    get_closeness(.))
 }
 

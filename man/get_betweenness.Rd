@@ -43,8 +43,6 @@ get_betweenness(graph)
 graph <-
   graph \%>\%
   join_node_attrs(
-    get_betweenness(.),
-    by_graph = "nodes",
-    by_df = "node")
+    get_betweenness(.))
 }
 

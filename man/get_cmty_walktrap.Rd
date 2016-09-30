@@ -32,17 +32,17 @@ graph <-
 # in the graph through the Walktrap community
 # finding algorithm
 get_cmty_walktrap(graph)
-#>    node walktrap_group
-#> 1     1              1
-#> 2     2              1
-#> 3     3              1
-#> 4     4              2
-#> 5     5              1
-#> 6     6              2
-#> 7     7              1
-#> 8     8              1
-#> 9     9              2
-#> 10   10              1
+#>    id walktrap_group
+#> 1   1              1
+#> 2   2              1
+#> 3   3              1
+#> 4   4              2
+#> 5   5              1
+#> 6   6              2
+#> 7   7              1
+#> 8   8              1
+#> 9   9              2
+#> 10 10              1
 
 # Add the group membership values to the graph
 # as a node attribute
