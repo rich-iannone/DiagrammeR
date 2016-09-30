@@ -12,8 +12,8 @@
 #' @examples
 #' # Create a graph with nodes and no edges
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:4,
+#'   create_node_df(
+#'     n = 4,
 #'     type = "letter",
 #'     color = c("red", "green", "grey", "blue"),
 #'     value = c(3.5, 2.6, 9.4, 2.7))
@@ -22,7 +22,7 @@
 #'
 #' # Create an edge data frame
 #' edges <-
-#'   create_edges(
+#'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
 #'     rel = "leading_to")
