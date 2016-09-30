@@ -60,17 +60,13 @@ edge_info <- function(graph) {
     relationship <- graph$edges_df$rel
   }
 
-  # For graphs with no edges, create an 'edge_properties' data frame
-  # that doesn't need to consider any edge information
+  # For graphs with no edges, return NULL
   if (is.null(graph$edges_df)) {
-
-    edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 3))
-    colnames(edge_properties) <- c("from", "to", "rel")
-
-    return(edge_properties)
+    return(NULL)
   }
 
-  # For graphs with no edges, create an 'edge_properties' data frame
+  # For graphs with no edges, create an
+  # `edge_properties` data frame
   if (!is.null(graph$edges_df)) {
 
     # Create data frame of edge properties
