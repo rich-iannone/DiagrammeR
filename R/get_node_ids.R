@@ -74,7 +74,7 @@ get_node_ids <- function(x,
   }
 
   if (inherits(x, "data.frame")) {
-    if (colnames(x)[1] == "nodes") {
+    if (colnames(x)[1] == "id") {
       nodes_df <- x
     }
   }
