@@ -38,7 +38,7 @@ add_n_nodes <- function(graph,
   if (!is.null(type)) {
     new_nodes <-
       create_node_df(
-        nodes = n,
+        n = n,
         label = label,
         type = type)
   } else {
