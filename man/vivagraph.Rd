@@ -35,8 +35,8 @@ Render a graph object with the VivaGraphJS library.
 \dontrun{
 # Create a node data frame (ndf)
 nodes <-
-  create_nodes(
-    nodes = 1:6,
+  create_node_df(
+    n = 6,
     label = TRUE,
     fillcolor = c("lightgrey", "red", "orange",
                   "pink", "aqua", "yellow"),
@@ -48,7 +48,7 @@ nodes <-
 
 # Create an edge data frame (edf)
 edges <-
-  create_edges(
+  create_edge_df(
     from = c(1, 2, 3, 4, 6, 5),
     to = c(4, 3, 1, 3, 1, 4),
     color = c("green", "green", "grey",

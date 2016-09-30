@@ -23,13 +23,13 @@ versa.
 \examples{
 # Create a node data frame (ndf)
 nodes <-
-  create_nodes(
-    nodes = 1:4,
+  create_node_df(
+    n = 4,
     type = "standard")
 
 # Create an edge data frame (edf)
 edges <-
-  create_edges(
+  create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
     rel = "leading_to")
