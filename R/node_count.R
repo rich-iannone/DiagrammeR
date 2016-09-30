@@ -72,13 +72,13 @@ node_count <- function(graph,
   # count of nodes for a that specific type
   if (inherits(type, "character")) {
     count_of_type <-
-      length(which(graph$nodes_df$type %in% type))
+      length(which(graph$nodes_df[, 2] %in% type))
     return(count_of_type)
   }
 
   # If type is FALSE, get a total count of nodes
   if (all(inherits(type, "logical") & type == FALSE)) {
-    total_node_count <- length(graph$nodes_df$nodes)
+    total_node_count <- length(graph$nodes_df[, 1])
     return(total_node_count)
   }
 
@@ -112,7 +112,7 @@ node_count <- function(graph,
       total_node_count <-
         c(total_node_count,
           nrow(graph$nodes_df[
-            which(graph$nodes_df$type ==
+            which(graph$nodes_df[, 2] ==
                     all_types[i]),]))
 
       if (i == length(all_types)) {
