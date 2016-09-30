@@ -28,7 +28,7 @@ from_igraph <- function(igraph) {
 
   # Generate a single-column ndf with node ID values
   nodes_df <-
-    data.frame(nodes = as.character(igraph::V(igraph)))
+    data.frame(id = as.character(igraph::V(igraph)))
 
   # If the `type` attr exists, add that to the ndf
   if ("type" %in% node_attrs) {

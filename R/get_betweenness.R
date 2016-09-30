@@ -30,9 +30,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
-#'     get_betweenness(.),
-#'     by_graph = "nodes",
-#'     by_df = "node")
+#'     get_betweenness(.))
 #' @importFrom influenceR betweenness
 #' @export get_betweenness
 
@@ -48,7 +46,7 @@ get_betweenness <- function(graph) {
 
   # Create df with betweenness scores
   betweenness_scores_df <-
-    data.frame(node = names(betweenness_scores),
+    data.frame(id = names(betweenness_scores),
                betweenness = betweenness_scores,
                stringsAsFactors = FALSE)
 

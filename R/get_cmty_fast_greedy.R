@@ -16,17 +16,17 @@
 #' # in the graph through the greedy optimization
 #' # of modularity algorithm
 #' get_cmty_fast_greedy(graph)
-#' #>    node f_g_group
-#' #> 1     1         1
-#' #> 2     2         2
-#' #> 3     3         2
-#' #> 4     4         1
-#' #> 5     5         1
-#' #> 6     6         1
-#' #> 7     7         1
-#' #> 8     8         1
-#' #> 9     9         1
-#' #> 10   10         2
+#' #>    id f_g_group
+#' #> 1   1         1
+#' #> 2   2         2
+#' #> 3   3         2
+#' #> 4   4         1
+#' #> 5   5         1
+#' #> 6   6         1
+#' #> 7   7         1
+#' #> 8   8         1
+#' #> 9   9         1
+#' #> 10 10         2
 #'
 #' # Add the group membership values to the graph
 #' # as a node attribute
@@ -49,7 +49,7 @@ get_cmty_fast_greedy <- function(graph) {
   # Create df with node memberships
   cmty_fast_greedy_df <-
     data.frame(
-      node = names(igraph::membership(cmty_fast_greedy_obj)),
+      id = names(igraph::membership(cmty_fast_greedy_obj)),
       f_g_group = as.vector(igraph::membership(cmty_fast_greedy_obj)),
       stringsAsFactors = FALSE)
 

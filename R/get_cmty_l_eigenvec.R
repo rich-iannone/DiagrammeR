@@ -18,17 +18,17 @@
 #' # non-negative eigenvector of the modularity matrix
 #' # of the graph
 #' get_cmty_l_eigenvec(graph)
-#' #>    node l_eigenvec_group
-#' #> 1     1                1
-#' #> 2     2                1
-#' #> 3     3                1
-#' #> 4     4                2
-#' #> 5     5                1
-#' #> 6     6                2
-#' #> 7     7                2
-#' #> 8     8                2
-#' #> 9     9                2
-#' #> 10   10                1
+#' #>    id l_eigenvec_group
+#' #> 1   1                1
+#' #> 2   2                1
+#' #> 3   3                1
+#' #> 4   4                2
+#' #> 5   5                1
+#' #> 6   6                2
+#' #> 7   7                2
+#' #> 8   8                2
+#' #> 9   9                2
+#' #> 10 10                1
 #'
 #' # Add the group membership values to the graph
 #' # as a node attribute
@@ -51,7 +51,7 @@ get_cmty_l_eigenvec <- function(graph) {
   # Create df with node memberships
   cmty_l_eigenvec_df <-
     data.frame(
-      node = names(igraph::membership(cmty_l_eigenvec_obj)),
+      id = names(igraph::membership(cmty_l_eigenvec_obj)),
       l_eigenvec_group = as.vector(igraph::membership(cmty_l_eigenvec_obj)),
       stringsAsFactors = FALSE)
 

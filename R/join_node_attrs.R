@@ -33,7 +33,7 @@
 #'
 #' df <-
 #'   data.frame(
-#'     nodes = 1:6,
+#'     id = 1:6,
 #'     values = round(rnorm(6, 5), 2))
 #'
 #' # Join the values in the data frame to the
@@ -46,12 +46,12 @@
 #' # Get the graph's internal ndf to show that the
 #' # join has been made
 #' get_node_df(graph)
-#' #>   nodes type label values
-#' #> 1     1              4.79
-#' #> 2     2              3.96
-#' #> 3     3              3.85
-#' #> 4     4              5.32
-#' #> 5     5               3.5
+#' #>   id type label values
+#' #> 1  1          1   4.79
+#' #> 2  2          2   3.96
+#' #> 3  3          3   3.85
+#' #> 4  4          4   5.32
+#' #> 5  5          5    3.5
 #'
 #' # Get betweenness values for each node and
 #' # add them as a node attribute (Note the
@@ -66,12 +66,12 @@
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
 #' get_node_df(graph)
-#' #>   nodes type label values betweenness
-#' #> 1     1              4.79           2
-#' #> 2     2              3.96           7
-#' #> 3     3              3.85           1
-#' #> 4     4              5.32           0
-#' #> 5     5               3.5           2
+#' #>   id type label values betweenness
+#' #> 1  1          1   4.79           2
+#' #> 2  2          2   3.96           7
+#' #> 3  3          3   3.85           1
+#' #> 4  4          4   5.32           0
+#' #> 5  5          5    3.5           2
 #' @export join_node_attrs
 
 join_node_attrs <- function(graph,
@@ -103,12 +103,12 @@ join_node_attrs <- function(graph,
   if (is.null(by_graph) & is.null(by_df)) {
 
     # Perform a left join on the `nodes` data frame
-    if ("node" %in% colnames(df)) {
+    if ("id" %in% colnames(df)) {
       nodes <-
         merge(nodes, df,
               all.x = TRUE,
-              by.x = "nodes",
-              by.y = "node")
+              by.x = "id",
+              by.y = "id")
     } else {
 
       # Perform a left join on the `nodes` data frame

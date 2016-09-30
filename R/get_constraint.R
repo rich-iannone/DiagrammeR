@@ -19,24 +19,24 @@
 #' # Get the constaint scores for all nodes in
 #' # the graph
 #' get_constraint(graph)
-#' #>    node constraint
-#' #> 1     1  0.3536111
-#' #> 2     2  0.4172222
-#' #> 3     3  0.4933333
-#' #> 4     4  0.4528472
-#' #> 5     5  0.3711188
-#' #> 6     6  0.4583333
-#' #> 7     7  0.3735494
-#' #> 8     8  0.3072222
-#' #> 9     9  0.4479167
-#' #> 10   10  0.4447222
+#' #>    id constraint
+#' #> 1   1  0.3536111
+#' #> 2   2  0.4172222
+#' #> 3   3  0.4933333
+#' #> 4   4  0.4528472
+#' #> 5   5  0.3711188
+#' #> 6   6  0.4583333
+#' #> 7   7  0.3735494
+#' #> 8   8  0.3072222
+#' #> 9   9  0.4479167
+#' #> 10 10  0.4447222
 #'
 #' # Get the constaint scores for only nodes
 #' # `5` and `7`
 #' get_constraint(graph, c(5, 7))
-#' #>    node constraint
-#' #> 5     5  0.3711188
-#' #> 7     7  0.3735494
+#' #>   id constraint
+#' #> 1  5  0.3711188
+#' #> 2  7  0.3735494
 #' @importFrom influenceR constraint
 #' @export get_constraint
 
@@ -52,7 +52,7 @@ get_constraint <- function(graph,
 
   # Create df with betweenness scores
   constraint_scores_df <-
-    data.frame(node = names(constraint_scores),
+    data.frame(id = names(constraint_scores),
                constraint = constraint_scores,
                stringsAsFactors = FALSE)
 
