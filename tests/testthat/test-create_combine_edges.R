@@ -4,7 +4,7 @@ test_that("a correct edge data frame is generated", {
 
   # Create `edges_1` edge data frame
   edges_1 <-
-    create_edges(
+    create_edge_df(
       from = c(1, 1, 2, 3),
       to = c(2, 4, 4, 1),
       rel = "requires",

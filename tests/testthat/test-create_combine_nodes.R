@@ -4,8 +4,8 @@ test_that("a correct node data frame is generated", {
 
   # Create 'nodes_1' node data frame
   nodes_1 <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",
@@ -16,8 +16,8 @@ test_that("a correct node data frame is generated", {
 
   # Create 'nodes_2' node data frame
   nodes_2 <-
-    create_nodes(
-      nodes = 5:8,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "upper",
       style = "filled",
@@ -26,12 +26,12 @@ test_that("a correct node data frame is generated", {
       data = c(0.5, 3.9, 3.7, 8.2))
 
   # Expect that each of the node data frames has 4 rows
-  expect_equal(nrow(nodes_1), 4L)
-  expect_equal(nrow(nodes_2), 4L)
+  expect_equal(nrow(nodes_1), 4)
+  expect_equal(nrow(nodes_2), 4)
 
   # Expect that each of the node data frames has 7 columns
-  expect_equal(ncol(nodes_1), 7L)
-  expect_equal(ncol(nodes_2), 7L)
+  expect_equal(ncol(nodes_1), 7)
+  expect_equal(ncol(nodes_2), 7)
 
   # Expect that 'label = FALSE' produces blank label columns
   expect_true(all(nodes_1$label == rep("", 4)))
@@ -41,21 +41,22 @@ test_that("a correct node data frame is generated", {
   expect_true(all(nodes_1$type == rep("lower", 4)))
   expect_true(all(nodes_2$color == rep("red", 4)))
 
-  # Expect that the numeric 'data' values are numeric
+  # Expect that the numeric `data` values are numeric
   expect_is(nodes_1$data, "numeric")
   expect_is(nodes_2$data, "numeric")
 
   # Create a node data frame using a vector with length > 1 and
   # length < length(from | to)
   nodes_var_1 <-
-    create_nodes(nodes = 1:4,
-                 color = c("green", "green"))
+    create_node_df(
+      n = 4,
+      color = c("green", "green"))
 
   # Expect that a data frame is generated
   expect_is(nodes_var_1, "data.frame")
 
   # Expect that the data frame has 4 rows
-  expect_equal(nrow(nodes_var_1), 4L)
+  expect_equal(nrow(nodes_var_1), 4)
 
   # Expect that the 'color' attribute is only written twice and not
   # repeated down
@@ -64,29 +65,31 @@ test_that("a correct node data frame is generated", {
   # Create a node data frame using a vector with
   # length > length(from | to)
   nodes_var_2 <-
-    create_nodes(nodes = c(1, 1, 2, 3),
-                 color = c("green", "green",
-                           "green", "green",
-                           "green", "green"))
+    create_node_df(
+      n = 4,
+      color = c("green", "green",
+                "green", "green",
+                "green", "green"))
 
   # Expect that a data frame is generated
   expect_is(nodes_var_2, "data.frame")
 
   # Expect that the data frame has 4 rows
-  expect_equal(nrow(nodes_var_2), 4L)
+  expect_equal(nrow(nodes_var_2), 4)
 
-  # Expect that the 'color' attribute is trimmed to correct number
-  # of rows
-  expect_equal(nodes_var_2$color, c("green", "green", "green", "green"))
-
+  # Expect that the `color` attribute is trimmed to
+  # the correct number of rows
+  expect_equal(
+    nodes_var_2$color,
+    c("green", "green", "green", "green"))
 })
 
 test_that("node data frames can be successfully combined", {
 
-  # Create 'nodes_1' node data frame
+  # Create `nodes_1` node data frame
   nodes_1 <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",
@@ -97,8 +100,8 @@ test_that("node data frames can be successfully combined", {
 
   # Create 'nodes_2' node data frame
   nodes_2 <-
-    create_nodes(
-      nodes = 5:8,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "upper",
       style = "filled",
@@ -110,10 +113,10 @@ test_that("node data frames can be successfully combined", {
   all_nodes <- combine_nodes(nodes_1, nodes_2)
 
   # Expect that the combined node data frame has 8 rows
-  expect_equal(nrow(all_nodes), 8L)
+  expect_equal(nrow(all_nodes), 8)
 
   # Expect that the combined node data frame has 7 columns
-  expect_equal(ncol(all_nodes), 7L)
+  expect_equal(ncol(all_nodes), 7)
 
   # Expect that the 'label' columns has spaces for labels
   expect_true(all(all_nodes$label == rep("", 8)))

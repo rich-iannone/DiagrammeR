@@ -88,16 +88,14 @@ test_that("adding a node to a graph is possible", {
   # since the default value for `label` is TRUE
   expect_true(
     node_info(graph_from)[which(node_info(graph_from)$id == 4),]$id ==
-      node_info(graph_from)[which(node_info(graph_from)$id == 4),]$label
-  )
+      node_info(graph_from)[which(node_info(graph_from)$id == 4),]$label)
 
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is `NULL`
   expect_true(is.na(node_type(graph_from, node = 4)))
 
   # Add a node to the graph that is joined to another
-  graph_to <-
-    add_node(graph_3, to = 3)
+  graph_to <- add_node(graph_3, to = 3)
 
   # Expect that `edges_df` is not `NULL`
   expect_true(!is.null(graph_to$edges_df))
@@ -114,8 +112,7 @@ test_that("adding a node to a graph is possible", {
     node_info(graph_to)[
       which(node_info(graph_to)$id == 4),]$id ==
       node_info(graph_to)[
-        which(node_info(graph_to)$id == 4),]$label
-  )
+        which(node_info(graph_to)$id == 4),]$label)
 
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is `NULL`
