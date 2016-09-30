@@ -36,7 +36,7 @@ select_nodes_by_id <- function(graph,
                                set_op = "union") {
 
   # Get a vector of node ID values from the graph
-  nodes_in_graph <- graph$nodes_df$nodes
+  nodes_in_graph <- graph$nodes_df[, 1]
 
   if (any(!(nodes %in% nodes_in_graph))) {
     stop("One of more of the nodes specified are not available in the graph.")
