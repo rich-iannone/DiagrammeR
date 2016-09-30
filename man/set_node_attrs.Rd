@@ -32,15 +32,15 @@ attribute properties for one or more nodes.
 \examples{
 # Create a node data frame (ndf)
 nodes <-
-  create_nodes(
-    nodes = 1:4,
+  create_node_df(
+    n = 4,
     type = "basic",
     label = TRUE,
     value = c(3.5, 2.6, 9.4, 2.7))
 
 # Create an edge data frame (edf)
 edges <-
-  create_edges(
+  create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
     rel = "leading_to")
@@ -51,8 +51,8 @@ graph <-
     nodes_df = nodes,
     edges_df = edges)
 
-# Set attribute `color = "green"` for nodes `1`
-# and `3` using the graph object
+# Set attribute `color = "green"` for
+# nodes `1` and `3` using the graph object
 graph <-
   set_node_attrs(
     x = graph,
@@ -60,8 +60,16 @@ graph <-
     values = "green",
     nodes = c(1, 3))
 
-# Set attribute `color = "green"`` for nodes `1`
-# and `3` using the node data frame
+# View the graph's node data frame
+get_node_df(graph)
+#>   id  type label value color
+#> 1  1 basic     1   3.5 green
+#> 2  2 basic     2   2.6
+#> 3  3 basic     3   9.4 green
+#> 4  4 basic     4   2.7
+
+# Set attribute `color = "green"` for
+# nodes `1` and `3` using the node data frame
 nodes <-
   set_node_attrs(
     x = nodes,
@@ -69,12 +77,28 @@ nodes <-
     values = "green",
     nodes = c(1, 3))
 
-# Set attribute `color = "blue"` for all nodes
-# the node data frame
+# Display the `nodes` ndf
+nodes
+#>   id  type label value color
+#> 1  1 basic     1   3.5 green
+#> 2  2 basic     2   2.6
+#> 3  3 basic     3   9.4 green
+#> 4  4 basic     4   2.7
+
+# Set attribute `color = "blue"` for
+# all nodes in the node data frame
 nodes <-
   set_node_attrs(
     x = nodes,
     node_attr = "color",
     values = "blue")
+
+# Display the `nodes` ndf
+nodes
+#>   id  type label value color
+#> 1  1 basic     1   3.5  blue
+#> 2  2 basic     2   2.6  blue
+#> 3  3 basic     3   9.4  blue
+#> 4  4 basic     4   2.7  blue
 }
 

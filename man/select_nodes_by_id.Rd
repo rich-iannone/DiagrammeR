@@ -33,7 +33,7 @@ selection.
 }
 \examples{
 # Create a node data frame (ndf)
-nodes <- create_nodes(nodes = 1:10)
+nodes <- create_node_df(10)
 
 # Create a graph
 graph <- create_graph(nodes_df = nodes)
