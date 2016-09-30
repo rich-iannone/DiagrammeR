@@ -6,15 +6,17 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a simple graph
 #' nodes <-
-#'   create_nodes(
-#'     nodes = 1:6,
-#'     value = c(3.5, 2.6, 9.4, 2.7, 5.2, 2.1))
+#'   create_node_df(
+#'     n = 6,
+#'     value = c(3.5, 2.6, 9.4,
+#'               2.7, 5.2, 2.1))
 #'
 #' edges <-
-#'   create_edges(
+#'   create_edge_df(
 #'     from = c(1, 2, 4, 5, 2, 6),
 #'     to = c(2, 4, 1, 3, 5, 5))
 #'
@@ -47,7 +49,6 @@
 #' # Check the edges available in the subgraph
 #' get_edges(subgraph, return_type = "vector")
 #' #> [1] "5 -> 3"
-#' @return a graph object of class \code{dgr_graph}.
 #' @export create_subgraph_ws
 
 create_subgraph_ws <- function(graph) {
@@ -64,50 +65,40 @@ create_subgraph_ws <- function(graph) {
 
     selection_nodes_df <-
       graph$nodes_df[
-        which(graph$nodes_df$nodes %in%
+        which(graph$nodes_df[, 1] %in%
                 selection_nodes), ]
 
     selection_edges_df <-
       graph$edges_df[
-        which(graph$edges_df$from %in%
+        which(graph$edges_df[, 1] %in%
                 selection_nodes &
-                graph$edges_df$to %in%
+                graph$edges_df[, 2] %in%
                 selection_nodes), ]
   }
 
   # Filter the edges in the graph
   if (!is.null(graph$selection$edges)) {
 
-    selection_from <- graph$selection$edges$from
-    selection_to <- graph$selection$edges$to
+    selection_from <- graph$selection$edges[, 1]
+    selection_to <- graph$selection$edges[, 2]
 
     selection_edges_df <-
       graph$edges_df[
-        which(graph$edges_df$from %in%
+        which(graph$edges_df[, 1] %in%
                 selection_from &
-                graph$edges_df$to %in%
+                graph$edges_df[, 2] %in%
                 selection_to), ]
 
     selection_nodes_df <-
       graph$nodes_df[
-        which(graph$nodes_df$nodes %in%
-                unique(c(selection_edges_df$from,
-                         selection_edges_df$to))), ]
+        which(graph$nodes_df[, 1] %in%
+                unique(c(selection_edges_df[, 1],
+                         selection_edges_df[, 2]))), ]
   }
 
   # Create a subgraph
-  subgraph <-
-    create_graph(
-      nodes_df = selection_nodes_df,
-      edges_df = selection_edges_df,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = graph$directed,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  graph$nodes_df <- selection_nodes_df
+  graph$edges_df <- selection_edges_df
 
-  # Return the subgraph
-  return(subgraph)
+  return(graph)
 }
