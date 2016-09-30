@@ -23,6 +23,7 @@
 #' # Get the graph's nodes
 #' graph %>% get_node_ids
 #' #> [1] 1 2 3 4 5
+#' @importFrom dplyr bind_rows
 #' @export add_n_nodes
 
 add_n_nodes <- function(graph,
@@ -36,22 +37,26 @@ add_n_nodes <- function(graph,
 
   if (!is.null(type)) {
     new_nodes <-
-      create_nodes(
-        nodes = seq(nodes_created + 1,
-                    nodes_created + n,
-                    1),
+      create_node_df(
+        nodes = n,
         label = label,
         type = type)
   } else {
     new_nodes <-
-      create_nodes(
-        nodes = seq(nodes_created + 1,
-                    nodes_created + n,
-                    1),
+      create_node_df(
+        n = n,
         label = label)
   }
 
-  graph <- add_node_df(graph, new_nodes)
+  new_nodes[, 1] <-
+    new_nodes[, 1] + nodes_created
+
+  if (label == TRUE) {
+    new_nodes[, 3] <- new_nodes[, 1]
+  }
+
+  graph$nodes_df <-
+    dplyr::bind_rows(graph$nodes_df, new_nodes)
 
   # Update the `last_node` counter
   graph$last_node <- nodes_created + n
