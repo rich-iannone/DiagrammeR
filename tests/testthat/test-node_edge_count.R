@@ -6,8 +6,8 @@ test_that("getting a node count for a graph is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:26,
+    create_node_df(
+      n = 26,
       label = TRUE,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
@@ -16,7 +16,7 @@ test_that("getting a node count for a graph is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
       label = "edge",
@@ -58,8 +58,8 @@ test_that("getting an edge count for a graph is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:26,
+    create_node_df(
+      n = 26,
       label = TRUE,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
@@ -68,7 +68,7 @@ test_that("getting an edge count for a graph is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
       label = "edge",
@@ -104,9 +104,10 @@ test_that("getting an edge count for a graph is possible", {
 
   # Create an edge data frame
   edges_missing_rels <-
-    create_edges(from = c(1, 1),
-                 to = c(2, 3),
-                 rel = c("rel", ""))
+    create_edge_df(
+      from = c(1, 1),
+      to = c(2, 3),
+      rel = c("rel", ""))
 
   graph_edges_missing_rels <-
     create_graph(edges_df = edges_missing_rels)

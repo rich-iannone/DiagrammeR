@@ -3,11 +3,10 @@ context("Combining two graph objects into a single graph object")
 test_that("graphs can be combined", {
 
   # Create two simple graphs
-  nodes_1 <-
-    create_nodes(nodes = 1:10)
+  nodes_1 <- create_node_df(10)
 
   edges_1 <-
-    create_edges(
+    create_edge_df(
       from = 1:9,
       to = 2:10)
 
@@ -16,13 +15,12 @@ test_that("graphs can be combined", {
       nodes_df = nodes_1,
       edges_df = edges_1)
 
-  nodes_2 <-
-    create_nodes(nodes = 11:20)
+  nodes_2 <- create_node_df(10)
 
   edges_2 <-
-    create_edges(
-      from = 11:19,
-      to = 12:20)
+    create_edge_df(
+      from = 1:9,
+      to = 2:10)
 
   graph_2 <-
     create_graph(

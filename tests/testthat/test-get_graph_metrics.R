@@ -34,8 +34,7 @@ test_that("Getting graph diameter is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
-  graph_diam <-
-    get_graph_diameter(graph)
+  graph_diam <- get_graph_diameter(graph)
 
   # Expect that `graph_diam` is a numeric vector
   expect_is(graph_diam, "numeric")
@@ -54,8 +53,7 @@ test_that("Getting graph eccentricity is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
-  graph_eccen <-
-    get_eccentricity(graph)
+  graph_eccen <- get_eccentricity(graph)
 
   # Expect that `graph_eccen` is a numeric vector
   expect_is(graph_eccen, "numeric")
@@ -99,7 +97,7 @@ test_that("Getting graph eccentricity is possible", {
   # certain column names
   expect_identical(
     colnames(graph_eccen_nodes_df),
-    c("node", "eccentricity"))
+    c("id", "eccentricity"))
 
   # Expect an error if providing nodes that do
   # not exist in the graph

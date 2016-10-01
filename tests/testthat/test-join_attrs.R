@@ -16,7 +16,7 @@ test_that("joining a data frame to an ndf is possible", {
   # be a join column
   df <-
     data.frame(
-      nodes = 1:6,
+      id = 1:6,
       values = round(rnorm(6, 5), 2))
 
   # Perform the join operation
@@ -25,7 +25,7 @@ test_that("joining a data frame to an ndf is possible", {
 
   # Expect that 4 columns exists in the graph's
   # node data frame
-  expect_equal(ncol(graph$nodes_df), 4L)
+  expect_equal(ncol(graph$nodes_df), 4)
 
   # Expect a column named `values` in the graph's
   # node data frame
@@ -73,8 +73,7 @@ test_that("joining a data frame to an edf is possible", {
                values = rnorm(5, 5))
 
   # Perform the join operation
-  graph <-
-    graph %>% join_edge_attrs(df)
+  graph <- graph %>% join_edge_attrs(df)
 
   # Expect that 4 columns exists in the graph's
   # edge data frame

@@ -47,8 +47,8 @@ test_that("a graph object with nodes can be created correctly", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",
@@ -104,7 +104,7 @@ test_that("a graph object can be created with a just an edge data frame", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(4, 3, 1),
       rel = "leading_to")
@@ -154,8 +154,8 @@ test_that("a graph object with nodes and edges can be created correctly", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",
@@ -166,7 +166,7 @@ test_that("a graph object with nodes and edges can be created correctly", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(4, 3, 1),
       rel = "leading_to")

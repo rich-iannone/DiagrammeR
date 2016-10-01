@@ -4,8 +4,8 @@ test_that("rendering a graph is indeed possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:26,
+    create_node_df(
+      n = 26,
       type = "letter",
       shape = sample(c("circle", "rectangle"),
                      length(1:26),
@@ -18,7 +18,7 @@ test_that("rendering a graph is indeed possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
       relationship = "letter_to_letter")
@@ -48,8 +48,8 @@ test_that("exporting Graphviz DOT code is indeed possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:26,
+    create_node_df(
+      n = 26,
       type = "letter",
       shape = sample(c("circle", "rectangle"),
                      length(1:26),
@@ -62,7 +62,7 @@ test_that("exporting Graphviz DOT code is indeed possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
       relationship = "letter_to_letter")

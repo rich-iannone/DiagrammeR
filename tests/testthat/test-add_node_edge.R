@@ -61,9 +61,10 @@ test_that("adding a node to a graph is possible", {
   expect_true(is.na(node_type(graph_3, node = 1)))
   expect_true(is.na(node_type(graph_3, node = 2)))
 
-  # Create a graph with a single, unlabeled node
+  # Create an empty graph
   graph_unlabeled <- create_graph()
 
+  # Add a single, unlabeled node to the graph
   graph_unlabeled <-
     add_node(graph_unlabeled, label = FALSE)
 
@@ -72,8 +73,7 @@ test_that("adding a node to a graph is possible", {
     node_info(graph = graph_unlabeled)$label == "")
 
   # Add a node to the graph that is joined from another
-  graph_from <-
-    add_node(graph_3, from = 3)
+  graph_from <- add_node(graph_3, from = 3)
 
   # Expect that `edges_df` is not NULL
   expect_true(!is.null(graph_from$edges_df))

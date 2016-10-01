@@ -7,8 +7,8 @@ test_that("adding a node df to a graph is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       type = "letter",
       color = c("red", "green", "grey", "blue"),
       value = c(3.5, 2.6, 9.4, 2.7))
@@ -20,8 +20,8 @@ test_that("adding a node df to a graph is possible", {
 
   # Create another node data frame
   nodes_2 <-
-    create_nodes(
-      nodes = 5:8,
+    create_node_df(
+      n = 4,
       type = "letter",
       color = c("white", "brown", "aqua", "pink"),
       value = c(1.6, 6.4, 0.8, 4.2))
@@ -62,22 +62,17 @@ test_that("adding a node df to a graph is possible", {
   # Expect that the `nodes_df` data frame has 5 columns
   expect_true(ncol(graph_2$nodes_df) == 5)
   expect_true(ncol(graph_3$nodes_df) == 5)
-
-  # Expect an error if adding a node data frame that
-  # contains one or more nodes already in the graph
-  expect_error(
-    add_node_df(
-      graph = graph_3, node_df = create_nodes(3)))
 })
 
 test_that("adding an edge df to a graph is possible", {
 
+  # Create an empty graph
   graph <- create_graph()
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       type = "letter",
       color = c("red", "green", "grey", "blue"),
       value = c(3.5, 2.6, 9.4, 2.7))
@@ -88,8 +83,8 @@ test_that("adding an edge df to a graph is possible", {
 
   # Create another node data frame
   nodes_2 <-
-    create_nodes(
-      nodes = 5:8,
+    create_node_df(
+      n = 4,
       type = "letter",
       color = c("white", "brown", "aqua", "pink"),
       value = c(1.6, 6.4, 0.8, 4.2))
@@ -101,7 +96,7 @@ test_that("adding an edge df to a graph is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(4, 3, 1),
       rel = "leading_to")
@@ -116,7 +111,7 @@ test_that("adding an edge df to a graph is possible", {
   # graph will result in an error
   expect_error(
     add_edge_df(
-      graph = create_graph(create_nodes(1)),
+      graph = create_graph(create_node_df(1)),
       edge_df = edges))
 
   # Add the edge data frame to the graph
@@ -140,7 +135,7 @@ test_that("adding an edge df to a graph is possible", {
   graph_3 <-
     add_edge_df(
       graph = graph_3,
-      edge_df = create_edges(2, 4))
+      edge_df = create_edge_df(2, 4))
 
   # Expect that the `edges_df` data frame has 4 rows
   expect_true(nrow(graph_3$edges_df) == 4)

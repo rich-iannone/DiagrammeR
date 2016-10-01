@@ -4,7 +4,7 @@ test_that("combine_edges",{
 
   # Create `edges_1` edge data frame
   edges_1 <-
-    create_edges(
+    create_edge_df(
       from = c(1, 1, 2, 3),
       to = c(2, 4, 4, 1),
       rel = "requires",
@@ -13,7 +13,7 @@ test_that("combine_edges",{
 
   # Create `edges_2` edge data frame
   edges_2 <-
-    create_edges(
+    create_edge_df(
       from = c(5, 7, 8, 8),
       to = c(7, 8, 6, 5),
       rel = "receives",
@@ -48,8 +48,8 @@ test_that("create_graph",{
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",

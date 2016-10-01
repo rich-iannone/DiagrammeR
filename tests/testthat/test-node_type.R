@@ -4,8 +4,8 @@ test_that("a specified node type can be read from graph objects", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = c(1, 2, 3, 4),
+    create_node_df(
+      n = 4,
       type = c("first", "second", "third", "fourth"))
 
   # Create the graph object using the node data frame
@@ -110,8 +110,8 @@ test_that("a specified node type can be read from graph objects", {
   # a type value available and the other has no
   # type assigned
   nodes <-
-    create_nodes(
-      nodes = c(1, 2),
+    create_node_df(
+      n = 2,
       type = c("a_type", ""))
 
   # Create the graph object using the node data frame

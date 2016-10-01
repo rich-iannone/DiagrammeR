@@ -6,8 +6,8 @@ test_that("getting a node's predecessors/successors is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:26,
+    create_node_df(
+      n = 26,
       label = TRUE,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
@@ -16,7 +16,7 @@ test_that("getting a node's predecessors/successors is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = sample(1:26, replace = FALSE),
       to = sample(1:26, replace = FALSE),
       label = "edge",

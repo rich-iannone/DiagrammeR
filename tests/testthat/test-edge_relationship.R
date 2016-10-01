@@ -4,8 +4,8 @@ test_that("a specified edge relationship can be read from graph objects", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",
@@ -16,7 +16,7 @@ test_that("a specified edge relationship can be read from graph objects", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(4, 3, 1),
       rel = "leading_to")
@@ -109,8 +109,8 @@ test_that("removing an edge relationship is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",
@@ -121,7 +121,7 @@ test_that("removing an edge relationship is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(4, 3, 1),
       rel = "leading_to")
@@ -236,8 +236,8 @@ test_that("edge relationships can be set for edges in graph objects", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       label = FALSE,
       type = "lower",
       style = "filled",
@@ -249,7 +249,7 @@ test_that("edge relationships can be set for edges in graph objects", {
   # Create an edge data frame with no edge
   # relationships set
   edges_no_rel <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(4, 3, 1))
 
@@ -368,13 +368,12 @@ test_that("edge relationships can be set for edges in graph objects", {
       action = "check"))
 
   # Create a node data frame
-  nodes <-
-    create_nodes(nodes = 1:3)
+  nodes <- create_node_df(3)
 
   # Create an edge data frame with edge relationships
   # set as empty values
   edges_rel_empty <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(2, 3, 1),
       rel = c(""))

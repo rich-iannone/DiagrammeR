@@ -126,7 +126,8 @@ test_that("Caching edge attributes is possible", {
   graph <-
     graph %>%
     cache_edge_attrs(
-      "value", "character", from = c(1, 1), to = c(2, 3))
+      "value", "character",
+      from = c(1, 1), to = c(2, 3))
 
   # Expect a vector of length 2 in the graph's `$cache`
   expect_equal(length(graph$cache), 2)
