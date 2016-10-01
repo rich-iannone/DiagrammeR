@@ -109,29 +109,40 @@ add_n_nodes_ws <- function(graph,
 
       if (!is.null(type)) {
         new_nodes <-
-          create_nodes(
-            nodes = seq(nodes_created + 1,
-                        nodes_created + n),
+          create_node_df(
+            n = n,
             type = type,
             label = label)
+
+        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
+
+        if (label == TRUE) {
+          new_nodes[, 3] <- as.character(new_nodes[, 1])
+        }
+
       } else {
         new_nodes <-
-          create_nodes(
-            nodes = seq(nodes_created + 1,
-                        nodes_created + n),
+          create_node_df(
+            n = n,
             label = label)
+
+        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
+
+        if (label == TRUE) {
+          new_nodes[, 3] <- as.character(new_nodes[, 1])
+        }
       }
 
       if (!is.null(rel)) {
         new_edges <-
-          create_edges(
+          create_edge_df(
             from = rep(nodes_in_selection[i], n),
             to = seq(nodes_created + 1,
                      nodes_created + n),
             rel = rel)
       } else {
         new_edges <-
-          create_edges(
+          create_edge_df(
             from = rep(nodes_in_selection[i], n),
             to = seq(nodes_created + 1,
                      nodes_created + n))
@@ -152,17 +163,28 @@ add_n_nodes_ws <- function(graph,
 
       if (!is.null(type)) {
         new_nodes <-
-          create_nodes(
-            nodes = seq(nodes_created + 1,
-                        nodes_created + n),
+          create_node_df(
+            n = n,
             type = type,
             label = label)
+
+        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
+
+        if (label == TRUE) {
+          new_nodes[, 3] <- as.character(new_nodes[, 1])
+        }
+
       } else {
         new_nodes <-
-          create_nodes(
-            nodes = seq(nodes_created + 1,
-                        nodes_created + n),
+          create_node_df(
+            n = n,
             label = label)
+
+        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
+
+        if (label == TRUE) {
+          new_nodes[, 3] <- as.character(new_nodes[, 1])
+        }
       }
 
       if (!is.null(rel)) {
@@ -179,6 +201,9 @@ add_n_nodes_ws <- function(graph,
                        nodes_created + n),
             to = rep(nodes_in_selection[i], n))
       }
+
+      new_edges[, 1] <- as.integer(new_edges[, 1])
+      new_edges[, 2] <- as.integer(new_edges[, 2])
 
       nodes_created <- nodes_created + n
     }
