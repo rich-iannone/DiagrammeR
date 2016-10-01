@@ -55,7 +55,7 @@ combine_graphs <- function(x,
   y_nodes_df <- get_node_df(y)
 
   # Is label a copy of node IDs in graph `y`?
-  if (all(y_nodes_df$nodes == y_nodes_df$label)) {
+  if (all(y_nodes_df[, 1] == y_nodes_df[, 2])) {
     y_label_node <- TRUE
   } else {
     y_label_node <- FALSE
@@ -76,7 +76,7 @@ combine_graphs <- function(x,
     dplyr::inner_join(
       y_edges_df,
       y_nodes_df,
-      by = c("from" = "nodes")) %>%
+      by = c("from" = "id")) %>%
     dplyr::rename(from_new = new_node_id) %>%
     dplyr::select(-type, -label)
 
@@ -84,7 +84,7 @@ combine_graphs <- function(x,
     dplyr::inner_join(
       y_edges_df,
       y_nodes_df,
-      by = c("to" = "nodes")) %>%
+      by = c("to" = "id")) %>%
     dplyr::rename(to_new = new_node_id) %>%
     dplyr::select(-type, -label)
 
@@ -107,7 +107,7 @@ combine_graphs <- function(x,
     gsub(".y", "", colnames(y_edges_df))
 
   # Copy new node IDs to `nodes` node attr
-  y_nodes_df$nodes <- y_nodes_df$new_node_id
+  y_nodes_df$id <- y_nodes_df$new_node_id
 
   # Remove the last column from `y_nodes_df`
   y_nodes_df <-
@@ -116,7 +116,7 @@ combine_graphs <- function(x,
   # If label is a copy of node ID in graph `y`,
   # rewrite labels to match new node ID values
   if (y_label_node) {
-    y_nodes_df$label <- as.character(y_nodes_df$nodes)
+    y_nodes_df[, 2] <- as.character(y_nodes_df[, 1])
   }
 
   # Combine the node data frames for both graphs
@@ -145,7 +145,6 @@ combine_graphs <- function(x,
       graph_name = x$graph_name,
       graph_time = x$graph_time,
       graph_tz = x$graph_tz)
-
 
   return(dgr_graph)
 }
