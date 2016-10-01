@@ -89,7 +89,7 @@ add_edges_w_string <- function(graph,
   # associated `rel` values
   if (is.null(rel)) {
     new_edges <-
-      create_edges(
+      create_edge_df(
         from = from,
         to = to)
   }
@@ -98,15 +98,14 @@ add_edges_w_string <- function(graph,
   # associated `rel` values
   if (!is.null(rel)) {
     new_edges <-
-      create_edges(
+      create_edge_df(
         from = from,
         to = to,
         rel = rel)
   }
 
   # Add the new edges to the graph
-  new_graph <-
-    add_edge_df(graph, new_edges)
+  new_graph <- add_edge_df(graph, new_edges)
 
   # Update the `last_node` counter
   new_graph$last_node <- nodes_created
