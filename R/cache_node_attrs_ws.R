@@ -59,14 +59,14 @@ cache_node_attrs_ws <- function(graph,
   }
 
   nodes_df <-
-    get_node_df(graph)[which(get_node_df(graph)[,1]
-                             %in% graph$selection$nodes),]
+    get_node_df(graph)[which(get_node_df(graph)[, 1]
+                             %in% graph$selection$nodes), ]
 
   if (any(node_attr %in%
           colnames(nodes_df)[-1])) {
 
     nodes_attr_vector <-
-      nodes_df[,which(colnames(nodes_df) %in%
+      nodes_df[, which(colnames(nodes_df) %in%
                         node_attr)]
 
     if (!is.null(mode)) {
