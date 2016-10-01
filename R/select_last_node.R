@@ -33,9 +33,13 @@ select_last_node <- function(graph) {
     stop("The graph is empty so no selections can be made.")
   }
 
-  nodes <- graph$nodes_df$nodes
+  nodes <- graph$nodes_df[, 1]
   last_node <- nodes[length(nodes)]
   graph$selection$nodes <- last_node
+
+  if (!is.null(graph$selection$edges)) {
+    graph$selection$edges <- NULL
+  }
 
   return(graph)
 }

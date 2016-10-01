@@ -43,10 +43,12 @@ select_last_edge <- function(graph) {
     stop("The graph has no edges so no selections can be made.")
   }
 
-  from <- graph$edges_df$from
-  to <- graph$edges_df$to
+  from <- graph$edges_df[, 1]
+  to <- graph$edges_df[, 2]
+
   last_from <- from[length(from)]
   last_to <- to[length(to)]
+
   graph$selection$edges$from <- last_from
   graph$selection$edges$to <- last_to
 
