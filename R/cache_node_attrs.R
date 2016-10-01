@@ -51,21 +51,25 @@ cache_node_attrs <- function(graph,
     nodes_df <- nodes_df
   } else {
     nodes_df <-
-      nodes_df[which(nodes_df$nodes %in% nodes),]
+      nodes_df[which(nodes_df[, 1] %in% nodes),]
   }
 
   if (any(node_attr %in%
           colnames(nodes_df)[-1])) {
+
     nodes_attr_vector <-
-      nodes_df[,which(colnames(nodes_df) %in% node_attr)]
+      nodes_df[, which(colnames(nodes_df) %in% node_attr)]
+
     if (!is.null(mode)) {
       if (mode == "numeric") {
+
         nodes_attr_vector <-
           as.numeric(nodes_attr_vector)
 
         nodes_attr_vector <-
           nodes_attr_vector[which(!is.na(nodes_attr_vector))]
       }
+
       if (mode == "character") {
         nodes_attr_vector <- as.character(nodes_attr_vector)
       }
