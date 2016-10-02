@@ -6,8 +6,8 @@ test_that("getting node IDs from various objects is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:26,
+    create_node_df(
+      n = 26,
       label = TRUE,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
@@ -16,7 +16,7 @@ test_that("getting node IDs from various objects is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
       label = "edge",
@@ -80,8 +80,8 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = 1:26,
+    create_node_df(
+      n = 26,
       label = TRUE,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
@@ -90,7 +90,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
       label = "edge",
