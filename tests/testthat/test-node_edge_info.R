@@ -6,19 +6,19 @@ test_that("getting info about a graph's nodes is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = LETTERS,
-      label = TRUE,
+    create_node_df(
+      n = 26,
+      label = LETTERS,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
                rep("q_to_x", 8),
-               rep("y_and_z",2)))
+               rep("y_and_z", 2)))
 
   # Create an edge data frame
   edges <-
-    create_edges(
-      from = sample(LETTERS, replace = TRUE),
-      to = sample(LETTERS, replace = TRUE),
+    create_edge_df(
+      from = sample(1:26, replace = TRUE),
+      to = sample(1:26, replace = TRUE),
       label = "edge",
       rel = "letter_to_letter")
 
@@ -93,9 +93,9 @@ test_that("getting info about a graph's edges is possible", {
 
   # Create a node data frame
   nodes <-
-    create_nodes(
-      nodes = LETTERS,
-      label = TRUE,
+    create_node_df(
+      n = 26,
+      label = LETTERS,
       type = c(rep("a_to_g", 7),
                rep("h_to_p", 9),
                rep("q_to_x", 8),
@@ -103,9 +103,9 @@ test_that("getting info about a graph's edges is possible", {
 
   # Create an edge data frame
   edges <-
-    create_edges(
-      from = sample(LETTERS, replace = TRUE),
-      to = sample(LETTERS, replace = TRUE),
+    create_edge_df(
+      from = sample(1:26, replace = TRUE),
+      to = sample(1:26, replace = TRUE),
       label = "edge",
       rel = "letter_to_letter")
 
@@ -133,8 +133,8 @@ test_that("getting info about a graph's edges is possible", {
 
   # Expect that all columns will be classed
   # as `character`
-  expect_is(info_edges$from, "character")
-  expect_is(info_edges$to, "character")
+  expect_is(info_edges$from, "numeric")
+  expect_is(info_edges$to, "numeric")
   expect_is(info_edges$rel, "character")
 
   # Create a graph with 4 nodes but no edges
@@ -148,11 +148,5 @@ test_that("getting info about a graph's edges is possible", {
   info_graph_no_edges <- edge_info(graph)
 
   # Expect a data frame object
-  expect_is(info_graph_no_edges, "data.frame")
-
-  # Expect that the data frame has 3 columns
-  expect_true(ncol(info_graph_no_edges) == 3)
-
-  # Expect that the data frame has no rows
-  expect_true(nrow(info_graph_no_edges) == 0)
+  expect_null(info_graph_no_edges)
 })
