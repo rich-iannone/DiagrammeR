@@ -174,16 +174,12 @@ set_node_attrs <- function(x,
 
     # Replace the graph's ndf with the
     # revised version
-    graph$nodes_df <- nodes_df
-
-    # Retain the node selection if one was
-    # available initially
-    graph$selection <- x$selection
+    x$nodes_df <- nodes_df
 
     # Update the `last_node` counter
-    graph$last_node <- nodes_created
+    x$last_node <- nodes_created
 
-    return(graph)
+    return(x)
   }
 
   if (object_type == "node_df") {
