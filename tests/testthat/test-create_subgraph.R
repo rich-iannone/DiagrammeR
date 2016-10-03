@@ -4,13 +4,13 @@ test_that("a subgraph can be created and such an object is correct", {
 
   # Create a simple graph
   nodes <-
-    create_nodes(
-      nodes = 1:8,
+    create_node_df(
+      n = 8,
       value = c(3.5, 2.6, 9.4, 2.7,
                 5.2, 2.1, 4.8, 8.5))
 
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3, 7, 5,
                5, 8, 6, 1, 3),
       to = c(4, 3, 1, 3, 8,
@@ -24,7 +24,7 @@ test_that("a subgraph can be created and such an object is correct", {
   # Create a selection of nodes, stored within the
   # graph object
   graph <-
-    select_nodes(
+    select_nodes(s
       graph,
       node_attr = "value",
       search = "> 3")

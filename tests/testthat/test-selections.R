@@ -241,14 +241,14 @@ test_that("selecting an edge in a graph is possible", {
 
   # Create a simple graph
   nodes <-
-    create_nodes(
-      nodes = 1:4,
+    create_node_df(
+      n = 4,
       type = "letter",
       label = TRUE,
       value = c(3.5, 2.6, 9.4, 2.7))
 
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 2, 3),
       to = c(4, 3, 1),
       rel = "leading_to",
@@ -476,7 +476,7 @@ test_that("selecting an edge in a graph is possible", {
   expect_error(
     select_edges(
       graph = create_graph(
-        create_nodes(nodes = 1))))
+        create_node_df(1))))
 
   # Expect an error if specifying more than
   # one attribute
