@@ -26,16 +26,16 @@
 #'
 #' # Get node information from this graph
 #' node_info(graph)
-#' #>   node label      type deg indeg outdeg loops
-#' #> 1    1     1 four_path   1     0      1     0
-#' #> 2    2     2 four_path   2     1      1     0
-#' #> 3    3     3 four_path   2     1      1     0
-#' #> 4    4     4 four_path   1     1      0     0
-#' #> 5    5     5 five_path   1     0      1     0
-#' #> 6    6     6 five_path   2     1      1     0
-#' #> 7    7     7 five_path   2     1      1     0
-#' #> 8    8     8 five_path   2     1      1     0
-#' #> 9    9     9 five_path   1     1      0     0
+#' #>   id      type label deg indeg outdeg loops
+#' #> 1  1 four_path     1   1     0      1     0
+#' #> 2  2 four_path     2   2     1      1     0
+#' #> 3  3 four_path     3   2     1      1     0
+#' #> 4  4 four_path     4   1     1      0     0
+#' #> 5  5 five_path     1   1     0      1     0
+#' #> 6  6 five_path     2   2     1      1     0
+#' #> 7  7 five_path     3   2     1      1     0
+#' #> 8  8 five_path     4   2     1      1     0
+#' #> 9  9 five_path     5   1     1      0     0
 #' @export add_path
 
 add_path <- function(graph,
@@ -58,14 +58,14 @@ add_path <- function(graph,
 
   # Create a node data frame for the path graph
   path_nodes <-
-    create_nodes(
-      nodes = nodes,
+    create_node_df(
+      n = n,
       type = type,
       label = label)
 
   # Create an edge data frame for the path graph
   path_edges <-
-    create_edges(
+    create_edge_df(
       from = nodes[1:length(nodes) - 1],
       to = nodes[2:length(nodes)],
       rel = rel)

@@ -30,19 +30,19 @@
 #'
 #' # Get node information from this graph
 #' node_info(graph)
-#' #>    node label  type deg indeg outdeg loops
-#' #> 1     1     a prism   3     1      2     0
-#' #> 2     2     a prism   3     1      2     0
-#' #> 3     3     a prism   3     1      2     0
-#' #> 4     4     a prism   3     2      1     0
-#' #> 5     5     a prism   3     2      1     0
-#' #> 6     6     a prism   3     2      1     0
-#' #> 7     7     b prism   3     1      2     0
-#' #> 8     8     b prism   3     1      2     0
-#' #> 9     9     b prism   3     1      2     0
-#' #> 10   10     b prism   3     2      1     0
-#' #> 11   11     b prism   3     2      1     0
-#' #> 12   12     b prism   3     2      1     0
+#' #>    id  type label deg indeg outdeg loops
+#' #> 1   1 prism     a   3     1      2     0
+#' #> 2   2 prism     a   3     1      2     0
+#' #> 3   3 prism     a   3     1      2     0
+#' #> 4   4 prism     a   3     2      1     0
+#' #> 5   5 prism     a   3     2      1     0
+#' #> 6   6 prism     a   3     2      1     0
+#' #> 7   7 prism     b   3     1      2     0
+#' #> 8   8 prism     b   3     1      2     0
+#' #> 9   9 prism     b   3     1      2     0
+#' #> 10 10 prism     b   3     2      1     0
+#' #> 11 11 prism     b   3     2      1     0
+#' #> 12 12 prism     b   3     2      1     0
 #' @export add_prism
 
 add_prism <- function(graph,
@@ -65,14 +65,14 @@ add_prism <- function(graph,
 
   # Create a node data frame for the prism graph
   prism_nodes <-
-    create_nodes(
-      nodes = nodes,
+    create_node_df(
+      n = length(nodes),
       type = type,
       label = label)
 
   # Create an edge data frame for the prism graph
   prism_edges <-
-    create_edges(
+    create_edge_df(
       from = c(nodes[1:(length(nodes)/2)],
                nodes[((length(nodes)/2) + 1):length(nodes)],
                nodes[1:(length(nodes)/2)]),

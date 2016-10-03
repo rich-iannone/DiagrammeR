@@ -28,14 +28,14 @@
 #'
 #' # Get node information from this graph
 #' node_info(graph)
-#' #>    node label       type deg indeg outdeg loops
-#' #> 1     1     1     binary   2     0      2     0
-#' #> 2     2     2     binary   3     1      2     0
-#' #> 3     3     3     binary   3     1      2     0
-#' #> 4     4     4     binary   1     1      0     0
-#' #> 5     5     5     binary   1     1      0     0
-#' #> 6     6     6     binary   1     1      0     0
-#' #> ..   ..    ..        ...  ..    ..     ..    ..
+#' #>    id     type label deg indeg outdeg loops
+#' #> 1   1   binary     1   2     0      2     0
+#' #> 2   2   binary     2   3     1      2     0
+#' #> 3   3   binary     3   3     1      2     0
+#' #> 4   4   binary     4   1     1      0     0
+#' #> 5   5   binary     5   1     1      0     0
+#' #> 6   6   binary     6   1     1      0     0
+#' #> .. ..      ...    ..  ..    ..     ..    ..
 #' @export add_balanced_tree
 
 add_balanced_tree <- function(graph,
@@ -68,14 +68,14 @@ add_balanced_tree <- function(graph,
 
   # Create a node data frame for the tree graph
   tree_nodes <-
-    create_nodes(
-      nodes = seq(1:n_nodes_tree),
+    create_node_df(
+      n = n_nodes_tree,
       type = type,
       label = label)
 
   # Create an edge data frame for the tree graph
   tree_edges <-
-    create_edges(
+    create_edge_df(
       from = sort(
         rep(seq(nodes[1],
                 nodes[length(

@@ -24,13 +24,13 @@
 #'
 #' # Get node information from this graph
 #' node_info(graph)
-#' #>   node label type deg indeg outdeg loops
-#' #> 1    1     1        2     1      1     0
-#' #> 2    2     2        2     1      1     0
-#' #> 3    3     3        2     1      1     0
-#' #> 4    4     4        2     1      1     0
-#' #> 5    5     5        2     1      1     0
-#' #> 6    6     6        2     1      1     0
+#' #>   id type label deg indeg outdeg loops
+#' #> 1  1          1   2     1      1     0
+#' #> 2  2          2   2     1      1     0
+#' #> 3  3          3   2     1      1     0
+#' #> 4  4          4   2     1      1     0
+#' #> 5  5          5   2     1      1     0
+#' #> 6  6          6   2     1      1     0
 #' @export add_cycle
 
 add_cycle <- function(graph,
@@ -53,14 +53,14 @@ add_cycle <- function(graph,
 
   # Create a node data frame for the tree graph
   cycle_nodes <-
-    create_nodes(
-      nodes = nodes,
+    create_node_df(
+      n = n,
       type = type,
       label = label)
 
   # Create an edge data frame for the cycle graph
   cycle_edges <-
-    create_edges(
+    create_edge_df(
       from = nodes,
       to = c(nodes[2:length(nodes)], nodes[1]),
       rel = rel)
