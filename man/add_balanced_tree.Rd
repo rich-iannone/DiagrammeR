@@ -46,13 +46,13 @@ graph <-
 
 # Get node information from this graph
 node_info(graph)
-#>    node label       type deg indeg outdeg loops
-#> 1     1     1     binary   2     0      2     0
-#> 2     2     2     binary   3     1      2     0
-#> 3     3     3     binary   3     1      2     0
-#> 4     4     4     binary   1     1      0     0
-#> 5     5     5     binary   1     1      0     0
-#> 6     6     6     binary   1     1      0     0
-#> ..   ..    ..        ...  ..    ..     ..    ..
+#>    id     type label deg indeg outdeg loops
+#> 1   1   binary     1   2     0      2     0
+#> 2   2   binary     2   3     1      2     0
+#> 3   3   binary     3   3     1      2     0
+#> 4   4   binary     4   1     1      0     0
+#> 5   5   binary     5   1     1      0     0
+#> 6   6   binary     6   1     1      0     0
+#> .. ..      ...    ..  ..    ..     ..    ..
 }
 
