@@ -24,7 +24,7 @@ test_that("a subgraph can be created and such an object is correct", {
   # Create a selection of nodes, stored within the
   # graph object
   graph <-
-    select_nodes(s
+    select_nodes(
       graph,
       node_attr = "value",
       search = "> 3")
