@@ -59,7 +59,7 @@ get_node_attrs <- function(x,
   }
 
   if (is.null(nodes)) {
-    nodes <- nodes_df$nodes
+    nodes <- nodes_df[, 1]
   }
 
   if (!is.null(nodes)) {
