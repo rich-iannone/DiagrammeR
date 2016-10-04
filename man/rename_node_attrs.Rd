@@ -7,7 +7,9 @@
 rename_node_attrs(graph, node_attr_from, node_attr_to)
 }
 \arguments{
-\item{graph}{a graph object of class}
+\item{graph}{a graph object of class
+\code{dgr_graph} that is created using
+\code{create_graph}.}
 
 \item{node_attr_from}{the name of the node attribute
 that will be renamed.}
@@ -32,12 +34,12 @@ graph <-
 # Get the graph's internal ndf to show which
 # node attributes are available
 get_node_df(graph)
-#>   nodes type label value  shape
-#> 1     1          1     2 circle
-#> 2     2          2   8.5 circle
-#> 3     3          3     4 circle
-#> 4     4          4   3.5 circle
-#> 5     5          5   6.5 circle
+#>   id type label value  shape
+#> 1  1          1     2 circle
+#> 2  2          2   8.5 circle
+#> 3  3          3     4 circle
+#> 4  4          4   3.5 circle
+#> 5  5          5   6.5 circle
 
 # Rename the `value` node attribute as `weight`
 graph <-
@@ -47,11 +49,11 @@ graph <-
 # Get the graph's internal ndf to show that the
 # node attribute had been renamed
 get_node_df(graph)
-#>   nodes type label weight  shape
-#> 1     1          1      2 circle
-#> 2     2          2    8.5 circle
-#> 3     3          3      4 circle
-#> 4     4          4    3.5 circle
-#> 5     5          5    6.5 circle
+#>   id type label weight  shape
+#> 1  1          1      2 circle
+#> 2  2          2    8.5 circle
+#> 3  3          3      4 circle
+#> 4  4          4    3.5 circle
+#> 5  5          5    6.5 circle
 }
 
