@@ -80,21 +80,11 @@ rename_node_attrs <- function(graph,
     which(colnames(nodes) %in%
             node_attr_from)] <- node_attr_to
 
-  # Create a new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = nodes,
-      edges_df = graph$edges_df,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = graph$directed,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  # Modify the graph's ndf
+  graph$nodes_df <- nodes
 
   # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
+  graph$last_node <- nodes_created
 
-  return(dgr_graph)
+  return(graph)
 }
