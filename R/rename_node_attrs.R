@@ -2,6 +2,8 @@
 #' @description Within a graph's internal node data
 #' frame (ndf), rename an existing node attribute.
 #' @param graph a graph object of class
+#' \code{dgr_graph} that is created using
+#' \code{create_graph}.
 #' @param node_attr_from the name of the node attribute
 #' that will be renamed.
 #' @param node_attr_to the new name of the node
