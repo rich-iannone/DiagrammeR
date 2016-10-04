@@ -116,7 +116,7 @@ combine_graphs <- function(x,
   # If label is a copy of node ID in graph `y`,
   # rewrite labels to match new node ID values
   if (y_label_node) {
-    y_nodes_df[, 2] <- as.character(y_nodes_df[, 1])
+    y_nodes_df[, 3] <- as.character(y_nodes_df[, 1])
   }
 
   # Combine the node data frames for both graphs
