@@ -51,7 +51,7 @@ set_node_attrs_ws <- function(graph,
 
   if (node_attr %in% colnames(nodes_df)) {
 
-    nodes_df[which(nodes_df$nodes %in% nodes),
+    nodes_df[which(nodes_df[, 1] %in% nodes),
              which(colnames(nodes_df) %in%
                      node_attr)] <- value
   }
@@ -62,12 +62,12 @@ set_node_attrs_ws <- function(graph,
       cbind(nodes_df, rep("", nrow(nodes_df)))
 
     nodes_df[, ncol(nodes_df)] <-
-      as.character(nodes_df[,ncol(nodes_df)])
+      as.character(nodes_df[, ncol(nodes_df)])
 
     colnames(nodes_df)[ncol(nodes_df)] <- node_attr
 
     nodes_df[
-      which(nodes_df$nodes %in%
+      which(nodes_df[, 1] %in%
               nodes), ncol(nodes_df)] <- value
   }
 
