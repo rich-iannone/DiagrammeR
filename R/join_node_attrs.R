@@ -4,6 +4,8 @@
 #' in this function allows for no possibility that
 #' nodes in the graph might be removed after the join.
 #' @param graph a graph object of class
+#' \code{dgr_graph} that is created using
+#' \code{create_graph}.
 #' @param df the data frame to use for joining.
 #' @param by_graph optional specification of the column
 #' in the graph's internal node data frame for the left
@@ -136,8 +138,8 @@ join_node_attrs <- function(graph,
 
   # Replace string <NA> values with empty strings
   for (i in 1:length(col_numbers)) {
-    nodes[,col_numbers[i]][
-      is.na(nodes[,col_numbers[i]])] <- ""
+    nodes[, col_numbers[i]][
+      is.na(nodes[, col_numbers[i]])] <- ""
   }
 
   # Create a new graph object
