@@ -37,6 +37,11 @@
 get_predecessors <- function(graph,
                              node) {
 
+  # If the graph contains no edges, return NA
+  if (is.null(graph$edges_df)) {
+    return(NA)
+  }
+
   # Determine whether the graph has any nodes
   graph_is_not_empty <- !is_graph_empty(graph)
 
