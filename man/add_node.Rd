@@ -54,9 +54,9 @@ graph <- add_node(graph, "person")
 
 # View the graph's internal node data frame (ndf)
 get_node_df(graph)
-#>   nodes   type label
-#> 1     1            1
-#> 2     2            2
-#> 3     3 person     3
+#>   id   type label
+#> 1  1            1
+#> 2  2            2
+#> 3  3 person     3
 }
 
