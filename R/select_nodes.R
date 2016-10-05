@@ -129,7 +129,7 @@ select_nodes <- function(graph,
 
     # Filter nodes_df by node ID values in `nodes`
     if (!is.null(nodes)) {
-      if (any(!(nodes %in% nodes_df$nodes))) {
+      if (any(!(nodes %in% nodes_df[, 1]))) {
         stop("One of more of the nodes specified are not available in the graph.")
       }
 
@@ -156,25 +156,25 @@ select_nodes <- function(graph,
 
         if (grepl("^>.*", search)) {
           rows_where_true_le <-
-            which(nodes_df[,column_number] >
+            which(nodes_df[, column_number] >
                     as.numeric(gsub(">(.*)", "\\1", search)))
         }
 
         if (grepl("^<.*", search)) {
           rows_where_true_le <-
-            which(nodes_df[,column_number] <
+            which(nodes_df[, column_number] <
                     as.numeric(gsub("<(.*)", "\\1", search)))
         }
 
         if (grepl("^==.*", search)) {
           rows_where_true_le <-
-            which(nodes_df[,column_number] ==
+            which(nodes_df[, column_number] ==
                     as.numeric(gsub("==(.*)", "\\1", search)))
         }
 
         if (grepl("^!=.*", search)) {
           rows_where_true_le <-
-            which(nodes_df[,column_number] !=
+            which(nodes_df[, column_number] !=
                     as.numeric(gsub("!=(.*)", "\\1", search)))
         }
 
@@ -186,7 +186,9 @@ select_nodes <- function(graph,
       if (logical_expression == FALSE) {
 
         rows_where_true_regex <-
-          which(grepl(search, as.character(nodes_df[,column_number])))
+          which(
+            grepl(
+              search, as.character(nodes_df[, column_number])))
 
         nodes_selected <- nodes_df[rows_where_true_regex, 1]
       }

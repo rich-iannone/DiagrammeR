@@ -45,9 +45,6 @@ set_node_attrs_ws <- function(graph,
   nodes_df <- graph$nodes_df
   nodes <- graph$selection$nodes
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
 
   if (node_attr %in% colnames(nodes_df)) {
 
@@ -71,25 +68,7 @@ set_node_attrs_ws <- function(graph,
               nodes), ncol(nodes_df)] <- value
   }
 
-  # Create new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = nodes_df,
-      edges_df = graph$edges_df,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = ifelse(is_graph_directed(graph),
-                        TRUE, FALSE),
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  graph$nodes_df <- nodes_df
 
-  # Retain the node selection in the graph
-  dgr_graph$selection <- graph$selection
-
-  # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
-
-  return(dgr_graph)
+  return(graph)
 }

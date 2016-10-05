@@ -41,24 +41,16 @@
 #'   create_graph() %>%
 #'   add_nodes_from_table(path_to_csv)
 #'
-#' # View the graph's internal node data frame (ndf)
-#' # with `get_node_df()` and dplyr's `as.tbl()`
-#' graph_1 %>% get_node_df %>% as.tbl
-#' #> # A tibble: 171 x 7
-#' #>    nodes  type label iso_4217_code curr_number
-#' #>    <int> <chr> <chr>         <chr>       <chr>
-#' #> 1      1                       AED         784
-#' #> 2      2                       AFN         971
-#' #> 3      3                       ALL           8
-#' #> 4      4                       AMD          51
-#' #> 5      5                       ANG         532
-#' #> 6      6                       AOA         973
-#' #> 7      7                       ARS          32
-#' #> 8      8                       AUD          36
-#' #> 9      9                       AWG         533
-#' #> 10    10                       AZN         944
-#' #> # ... with 161 more rows, and 2 more variables:
-#' #> #   exponent <chr>, currency_name <chr>
+#' # View part of the graph's internal node data
+#' # frame (ndf) using `get_node_df()`
+#' graph_1 %>% get_node_df %>% .[, 1:5] %>% head
+#' #>   id type label iso_4217_code curr_number
+#' #> 1  1                      AED         784
+#' #> 2  2                      AFN         971
+#' #> 3  3                      ALL           8
+#' #> 4  4                      AMD          51
+#' #> 5  5                      ANG         532
+#' #> 6  6                      AOA         973
 #'
 #' # If you would like to assign any of the table's
 #' # columns as `type` or `label` attributes, this can
@@ -72,16 +64,15 @@
 #'     set_type = "currency",
 #'     label_col = "iso_4217_code")
 #'
-#' # View the first 3 lines of the graph's internal ndf
-#' graph_2 %>% get_node_df %>% head(3) %>% as.tbl
-#' #> # A tibble: 3 x 7
-#' #>   nodes     type label iso_4217_code curr_number
-#' #> * <int>    <chr> <chr>         <chr>       <chr>
-#' #> 1     1 currency   AED           AED         784
-#' #> 2     2 currency   AFN           AFN         971
-#' #> 3     3 currency   ALL           ALL           8
-#' #> # ... with 2 more variables: exponent <chr>,
-#' #> #   currency_name <chr>
+#' # View part of the graph's internal ndf
+#' graph_2 %>% get_node_df %>% .[, 1:5] %>% head
+#' #>   id     type label iso_4217_code curr_number
+#' #> 1  1 currency   AED           AED         784
+#' #> 2  2 currency   AFN           AFN         971
+#' #> 3  3 currency   ALL           ALL           8
+#' #> 4  4 currency   AMD           AMD          51
+#' #> 5  5 currency   ANG           ANG         532
+#' #> 6  6 currency   AOA           AOA         973
 #'
 #' # Suppose you would like to not include certain
 #' # columns from the table in the resulting graph; you
@@ -95,14 +86,9 @@
 #'     label_col = "iso_4217_code",
 #'     drop_cols = "exponent")
 #'
-#' graph_3 %>% get_node_df %>% head(3) %>% as.tbl
-#' #> # A tibble: 3 x 6
-#' #>   nodes     type label iso_4217_code curr_number
-#' #> * <int>    <chr> <chr>         <chr>       <chr>
-#' #> 1     1 currency   AED           AED         784
-#' #> 2     2 currency   AFN           AFN         971
-#' #> 3     3 currency   ALL           ALL           8
-#' #> # ... with 1 more variables: currency_name <chr>
+#' graph_3 %>% get_node_df %>% colnames
+#' #> [1] "id"  type"  "label"  "iso_4217_code"
+#' #> [5] "curr_number" "currency_name"
 #' }
 #' @export add_nodes_from_table
 
@@ -134,7 +120,7 @@ add_nodes_from_table <- function(graph,
   # Create an empty ndf and column bind
   # with the CSV data
   empty_ndf <-
-    create_nodes(nodes = 1:rows_in_csv, label = FALSE)
+    create_node_df(n = rows_in_csv, label = FALSE)
 
   csv <- cbind(empty_ndf, csv)
 
@@ -159,7 +145,7 @@ add_nodes_from_table <- function(graph,
     columns_retained <-
       which(colnames(csv) %in% select_cols)
 
-    csv <- csv[,columns_retained]
+    csv <- csv[, columns_retained]
   }
 
   # If values for `drop_cols` provided, filter the CSV
@@ -169,7 +155,7 @@ add_nodes_from_table <- function(graph,
     columns_retained <-
       which(!(colnames(csv) %in% drop_cols))
 
-    csv <- csv[,columns_retained]
+    csv <- csv[, columns_retained]
   }
 
 
@@ -190,7 +176,7 @@ add_nodes_from_table <- function(graph,
   # the `label` column)
   if (!is.null(label_col)) {
     if (any(colnames(csv) == label_col)) {
-      csv$label <- csv[,which(colnames(csv) == label_col)]
+      csv$label <- csv[, which(colnames(csv) == label_col)]
     }
   }
 
@@ -201,8 +187,6 @@ add_nodes_from_table <- function(graph,
       colnames(csv)[which(colnames(csv) == type_col)] <- "type"
     }
   }
-
-
 
   # Optionally set the `type` attribute with a single
   # value repeated down

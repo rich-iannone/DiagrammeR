@@ -37,10 +37,10 @@
 #'
 #' # View the graph's internal node data frame (ndf)
 #' get_node_df(graph)
-#' #>   nodes   type label
-#' #> 1     1            1
-#' #> 2     2            2
-#' #> 3     3 person     3
+#' #>   id   type label
+#' #> 1  1            1
+#' #> 2  2            2
+#' #> 3  3 person     3
 #' @export add_node
 
 add_node <- function(graph,
@@ -69,13 +69,20 @@ add_node <- function(graph,
 
     if (from_nodes_available) {
 
+      new_node <-
+        create_node_df(
+          n = 1,
+          label = label,
+          type = ifelse(is.null(type), "", type))
+
+      new_node[1, 1] <- node
+
+      if (label == TRUE) {
+        new_node[1, 3] <- new_node[1, 1]
+      }
+
       combined_nodes <-
-        combine_nodes(
-          graph$nodes_df,
-          create_nodes(
-            nodes = node,
-            label = label,
-            type = ifelse(is.null(type), "", type)))
+        combine_nodes(graph$nodes_df, new_node)
 
       if (!is.null(graph$edges_df)) {
 
@@ -141,8 +148,8 @@ add_node <- function(graph,
     combined_nodes <-
       combine_nodes(
         graph$nodes_df,
-        create_nodes(
-          nodes = node,
+        create_node_df(
+          n = 1,
           label = label,
           type = ifelse(is.null(type), "", type)))
 
@@ -151,7 +158,7 @@ add_node <- function(graph,
       combined_edges <-
         combine_edges(
           graph$edges_df,
-          create_edges(
+          create_edge_df(
             from = rep(node, length(to)),
             to = to))
 
@@ -176,7 +183,7 @@ add_node <- function(graph,
       dgr_graph <-
         create_graph(
           nodes_df = combined_nodes,
-          edges_df = create_edges(
+          edges_df = create_edge_df(
             from = rep(node, length(to)),
             to = to),
           graph_attrs = graph$graph_attrs,
@@ -220,8 +227,8 @@ add_node <- function(graph,
       combined_nodes <-
         combine_nodes(
           graph$nodes_df,
-          create_nodes(
-            nodes = node,
+          create_node_df(
+            n = 1,
             label = label,
             type = ifelse(is.null(type), "", type)))
 
@@ -230,10 +237,10 @@ add_node <- function(graph,
         combined_edges <-
           combine_edges(
             graph$edges_df,
-            create_edges(
+            create_edge_df(
               from = from,
               to = rep(node, length(from))),
-            create_edges(
+            create_edge_df(
               from = rep(node, length(to)),
               to = to))
       }
@@ -242,10 +249,10 @@ add_node <- function(graph,
 
         combined_edges <-
           combine_edges(
-            create_edges(
+            create_edge_df(
               from = from,
               to = rep(node, length(from))),
-            create_edges(
+            create_edge_df(
               from = rep(node, length(to)),
               to = to))
       }
@@ -277,16 +284,26 @@ add_node <- function(graph,
     if (!is.null(type)) {
       if (!is.null(graph$nodes_df)) {
 
+        new_node <-
+          create_node_df(
+            n = 1,
+            label = label,
+            type = type)
+
+        new_node[1, 1] <- node
+
+        if (label == TRUE) {
+          new_node[1, 3] <- new_node[1, 1]
+        }
+
         combined_nodes <-
-          combine_nodes(
-            graph$nodes_df,
-            create_nodes(nodes = node,
-                         label = label,
-                         type = type))
+          combine_nodes(graph$nodes_df, new_node)
+
       } else {
+
         combined_nodes <-
-          create_nodes(
-            nodes = node,
+          create_node_df(
+            n = 1,
             label = label,
             type = type)
       }
@@ -295,15 +312,24 @@ add_node <- function(graph,
     if (is.null(type)) {
       if (!is.null(graph$nodes_df)) {
 
+        new_node <-
+          create_node_df(
+            n = 1,
+            label = label)
+
+        new_node[1, 1] <- node
+
+        if (label == TRUE) {
+          new_node[1, 3] <- new_node[1, 1]
+        }
+
         combined_nodes <-
-          combine_nodes(
-            graph$nodes_df,
-            create_nodes(nodes = node,
-                         label = label))
+          combine_nodes(graph$nodes_df, new_node)
+
       } else {
         combined_nodes <-
-          create_nodes(
-            nodes = node,
+          create_node_df(
+            n = 1,
             label = label)
       }
     }
