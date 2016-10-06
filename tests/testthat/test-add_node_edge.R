@@ -120,8 +120,7 @@ test_that("adding a node to a graph is possible", {
 
   # Add a node to the graph that is joined from
   # another and to another
-  graph_to_from <-
-    add_node(graph_3, from = 1, to = 2)
+  graph_to_from <- add_node(graph_3, from = 1, to = 2)
 
   # Expect that `edges_df` is not `NULL`
   expect_true(!is.null(graph_to_from$edges_df))
