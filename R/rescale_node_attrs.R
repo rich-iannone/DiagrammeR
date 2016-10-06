@@ -39,12 +39,12 @@
 #' # Get the graph's internal ndf to show which
 #' # node attributes are available
 #' get_node_df(graph)
-#' #>   nodes type label value
-#' #> 1     1          1     2
-#' #> 2     2          2   8.5
-#' #> 3     3          3     4
-#' #> 4     4          4   3.5
-#' #> 5     5          5   6.5
+#' #>   id type label value
+#' #> 1  1          1     2
+#' #> 2  2          2   8.5
+#' #> 3  3          3     4
+#' #> 4  4          4   3.5
+#' #> 5  5          5   6.5
 #'
 #' # Rescale the `value` node attribute, so that
 #' # its values are rescaled between 0 and 1
@@ -55,12 +55,12 @@
 #' # Get the graph's internal ndf to show that the
 #' # node attribute values had been rescaled
 #' get_node_df(graph)
-#' #>   nodes type label value
-#' #> 1     1          1     0
-#' #> 2     2          2     1
-#' #> 3     3          3 0.308
-#' #> 4     4          4 0.231
-#' #> 5     5          5 0.692
+#' #>   id type label value
+#' #> 1  1          1 0.000
+#' #> 2  2          2 1.000
+#' #> 3  3          3 0.308
+#' #> 4  4          4 0.231
+#' #> 5  5          5 0.692
 #'
 #' # Scale the values in the `value` node attribute
 #' # to different shades of gray for the `fillcolor`
@@ -76,12 +76,12 @@
 #' # that scaled grayscale colors are now available in
 #' # the `fillcolor` and `fontcolor` node attributes
 #' get_node_df(graph)
-#' #>   nodes type label value fillcolor fontcolor
-#' #> 1     1          1     0   #CCCCCC   #0D0D0D
-#' #> 2     2          2     1   #333333   #F2F2F2
-#' #> 3     3          3 0.308   #999999   #4B4B4B
-#' #> 4     4          4 0.231   #A6A6A6   #3B3B3B
-#' #> 5     5          5 0.692   #5E5E5E   #A4A4A4
+#' #>   id type label value fillcolor fontcolor
+#' #> 1  1          1 0.000   #CCCCCC   #0D0D0D
+#' #> 2  2          2 1.000   #333333   #F2F2F2
+#' #> 3  3          3 0.308   #999999   #4B4B4B
+#' #> 4  4          4 0.231   #A6A6A6   #3B3B3B
+#' #> 5  5          5 0.692   #5E5E5E   #A4A4A4
 #' @export rescale_node_attrs
 
 rescale_node_attrs <- function(graph,
