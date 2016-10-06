@@ -231,13 +231,20 @@ add_node <- function(graph,
 
     if (from_nodes_available & to_nodes_available) {
 
+      new_node <-
+        create_node_df(
+          n = 1,
+          label = label,
+          type = ifelse(is.null(type), "", type))
+
+      new_node[1, 1] <- node
+
+      if (label == TRUE) {
+        new_node[1, 3] <- new_node[1, 1]
+      }
+
       combined_nodes <-
-        combine_nodes(
-          graph$nodes_df,
-          create_node_df(
-            n = 1,
-            label = label,
-            type = ifelse(is.null(type), "", type)))
+        combine_nodes(graph$nodes_df, new_node)
 
       if (!is.null(graph$edges_df)) {
 

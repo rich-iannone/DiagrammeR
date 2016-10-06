@@ -72,17 +72,22 @@ delete_node <- function(graph,
 
       # Create a revised node data frame
       revised_nodes_df <-
-        graph$nodes_df[-which(graph$nodes_df$nodes == node),]
+        graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
 
       # Create a revised edge data frame
-      if (nrow(graph$edges_df[-which((graph$edges_df$from == node) |
-                                     (graph$edges_df$to == node)),]) == 0) {
-        revised_edges_df <-
-          graph$edges_df
+      if (nrow(
+        graph$edges_df[
+          -which((graph$edges_df$from == node) |
+                 (graph$edges_df$to == node)), ]) == 0) {
+
+        revised_edges_df <- graph$edges_df
+
       } else {
+
         revised_edges_df <-
-          graph$edges_df[-which((graph$edges_df$from == node) |
-                                  (graph$edges_df$to == node)),]
+          graph$edges_df[
+            -which((graph$edges_df$from == node) |
+                     (graph$edges_df$to == node)), ]
       }
 
       # Create a revised graph and return that graph
@@ -109,7 +114,7 @@ delete_node <- function(graph,
 
       # Create a revised node data frame
       revised_nodes_df <-
-        graph$nodes_df[-which(graph$nodes_df$nodes == node),]
+        graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
 
       # Create a revised graph and return that graph
       dgr_graph <-
@@ -135,7 +140,7 @@ delete_node <- function(graph,
 
     # Create a revised node data frame
     revised_nodes_df <-
-      graph$nodes_df[-which(graph$nodes_df$nodes == node),]
+      graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
 
     # Create a revised graph and return that graph
     dgr_graph <-
@@ -161,7 +166,7 @@ delete_node <- function(graph,
 
     # Create a revised node data frame
     revised_nodes_df <-
-      graph$nodes_df[-which(graph$nodes_df$nodes == node),]
+      graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
 
     # Create a revised graph and return that graph
     dgr_graph <-
