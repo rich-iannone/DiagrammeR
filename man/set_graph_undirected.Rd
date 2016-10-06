@@ -24,8 +24,7 @@ graph <-
   add_balanced_tree(2, 2)
 
 # Convert this graph from directed to undirected
-graph <-
-  graph \%>\% set_graph_undirected
+graph <- graph \%>\% set_graph_undirected
 
 # Perform a check on whether graph is directed
 graph \%>\% is_graph_directed

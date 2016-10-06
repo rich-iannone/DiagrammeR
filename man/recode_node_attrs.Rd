@@ -49,12 +49,12 @@ graph <-
 # Get the graph's internal ndf to show which
 # node attributes are available
 get_node_df(graph)
-#>   nodes type label value     shape
-#> 1     1          1     2    circle
-#> 2     2          2   8.5   hexagon
-#> 3     3          3     4 rectangle
-#> 4     4          4   3.5 rectangle
-#> 5     5          5   6.5    circle
+#>   id type label value     shape
+#> 1  1          1     2    circle
+#> 2  2          2   8.5   hexagon
+#> 3  3          3     4 rectangle
+#> 4  4          4   3.5 rectangle
+#> 5  5          5   6.5    circle
 
 # Recode the `shape` node attribute, so that
 # `circle` is recoded to `square` and that
@@ -69,12 +69,12 @@ graph <-
 # Get the graph's internal ndf to show that the
 # node attribute values had been recoded
 get_node_df(graph)
-#>   nodes type label value    shape
-#> 1     1          1     2   square
-#> 2     2          2   8.5  hexagon
-#> 3     3          3     4 triangle
-#> 4     4          4   3.5 triangle
-#> 5     5          5   6.5   square
+#>   id type label value    shape
+#> 1  1          1     2   square
+#> 2  2          2   8.5  hexagon
+#> 3  3          3     4 triangle
+#> 4  4          4   3.5 triangle
+#> 5  5          5   6.5   square
 
 # Create a new node attribute, called `color`,
 # that is based on a recoding of `shape`; here,
@@ -90,11 +90,11 @@ graph <-
 
 # Get the graph's internal ndf to see the change
 get_node_df(graph)
-#>   nodes type label value    shape color
-#> 1     1          1     2   square   red
-#> 2     2          2   8.5  hexagon green
-#> 3     3          3     4 triangle green
-#> 4     4          4   3.5 triangle green
-#> 5     5          5   6.5   square   red
+#>   id type label value    shape color
+#> 1  1          1     2   square   red
+#> 2  2          2   8.5  hexagon green
+#> 3  3          3     4 triangle green
+#> 4  4          4   3.5 triangle green
+#> 5  5          5   6.5   square   red
 }
 
