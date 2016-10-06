@@ -51,6 +51,10 @@
 
 node_info <- function(graph) {
 
+  # Set `id` initially as NULL to bind it as
+  # a global variable
+  id <- NULL
+
   # If graph is empty, return NULL
   if (is_graph_empty(graph)) {
     return(NULL)
