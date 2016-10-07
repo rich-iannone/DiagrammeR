@@ -24,7 +24,6 @@
 #' by \code{n} dimensions containing values to apply
 #' as edge weights.
 #' @return a graph object of class \code{dgr_graph}.
-#' @importFrom igraph graph_from_adjacency_matrix
 #' @export add_full_graph
 
 add_full_graph <- function(graph,
