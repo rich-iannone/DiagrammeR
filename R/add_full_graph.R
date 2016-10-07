@@ -30,6 +30,7 @@
 add_full_graph <- function(graph,
                            n,
                            type = NULL,
+                           label = TRUE,
                            rel = NULL,
                            edge_wt_matrix = NULL,
                            keep_loops = FALSE) {
