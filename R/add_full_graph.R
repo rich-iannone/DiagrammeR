@@ -12,6 +12,11 @@
 #' connected graph.
 #' @param type an optional string that describes the
 #' entity type for the nodes to be added.
+#' @param label either a vector object of length
+#' \code{n} that provides optional labels for the new
+#' nodes, or, a boolean value where setting to
+#' \code{TRUE} ascribes node IDs to the label and
+#' \code{FALSE} or \code{NULL} yields a blank label.
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' connected graph.
