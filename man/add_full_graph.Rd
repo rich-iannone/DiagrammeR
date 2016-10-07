@@ -4,8 +4,8 @@
 \alias{add_full_graph}
 \title{Add a fully connected graph}
 \usage{
-add_full_graph(graph, n, type = NULL, rel = NULL, edge_wt_matrix = NULL,
-  keep_loops = FALSE)
+add_full_graph(graph, n, type = NULL, label = TRUE, rel = NULL,
+  edge_wt_matrix = NULL, keep_loops = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -17,6 +17,12 @@ connected graph.}
 
 \item{type}{an optional string that describes the
 entity type for the nodes to be added.}
+
+\item{label}{either a vector object of length
+\code{n} that provides optional labels for the new
+nodes, or, a boolean value where setting to
+\code{TRUE} ascribes node IDs to the label and
+\code{FALSE} or \code{NULL} yields a blank label.}
 
 \item{rel}{an optional string for providing a
 relationship label to all new edges created in the
