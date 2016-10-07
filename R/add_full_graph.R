@@ -42,6 +42,8 @@ add_full_graph <- function(graph,
   # Create initial adjacency matrix based
   adj_matrix <- matrix(1, nc = n, nr = n)
 
+  # Remove loops by making the diagonal of the
+  # adjacency matrix all 0
   if (keep_loops == FALSE) {
     adj_matrix <-
       adj_matrix -
@@ -50,9 +52,13 @@ add_full_graph <- function(graph,
 
   if (is_graph_directed(graph)) {
 
+    # Create a new directed graph based on the
+    # adjacency matrix `adj_matrix`
     new_graph <-
       from_adj_matrix(adj_matrix, mode = "directed")
 
+    # If a matrix of edge weights provided, apply those
+    # to each of the edges in a row-major fashion
     if (!is.null(edge_wt_matrix)) {
 
       new_graph <-
@@ -63,9 +69,14 @@ add_full_graph <- function(graph,
             which(as.numeric(adj_matrix) == 1)])
     }
   } else if (is_graph_directed == FALSE) {
-    new_graph <-
-      from_adj_matrix(adj_matrix, mode = "undirected")
 
+    new_graph <-
+      from_adj_matrix(adj_matrix,
+                      mode = "undirected")
+
+    # If a matrix of edge weights provided, apply those
+    # from the bottom triangle to each of the edges in a
+    # row-major fashion
     if (!is.null(edge_wt_matrix)) {
 
       new_graph <-
@@ -73,8 +84,27 @@ add_full_graph <- function(graph,
           new_graph,
           edge_attr = "weight",
           values = edge_wt_matrix[
-            lower.tri(edge_wt_matrix, diag = FALSE)])
+            lower.tri(
+              edge_wt_matrix,
+              diag = ifelse(keep_loops == FALSE,
+                            FALSE, TRUE))])
     }
+  }
+
+  # Add label values to nodes
+  if (label == TRUE) {
+    new_graph$nodes_df[, 3] <- new_graph$nodes_df[, 1]
+  } else if (!is.null(label) &
+             label != FALSE) {
+    if (length(label) == nrow(new_graph)) {
+      new_graph$nodes_df[, 3] <- label
+    }
+  }
+
+  # Add type value to all new nodes
+  if (!is.null(type) &
+      length(type) == 1) {
+    new_graph$nodes_df[, 2] <- type
   }
 
   # If the input graph is not empty, combine graphs
