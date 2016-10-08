@@ -18,6 +18,7 @@
 #' # DiagrammeR graph
 #' dgr_graph_new <- from_igraph(ig_graph)
 #' @importFrom igraph V E vertex_attr_names edge_attr_names vertex_attr edge_attr is_directed ends
+#' @importFrom dplyr arrange
 #' @export from_igraph
 
 from_igraph <- function(igraph) {
