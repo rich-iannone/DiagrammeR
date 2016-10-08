@@ -100,6 +100,22 @@ add_full_graph <- function(graph,
     }
   }
 
+  if (label == TRUE | is.null(label)) {
+    if (!is.null(edge_wt_matrix)) {
+
+      if (!is.null(colnames(edge_wt_matrix))) {
+        ewm_names <- colnames(edge_wt_matrix)
+      }
+      if (!is.null(rownames(edge_wt_matrix))) {
+        ewm_names <- rownames(edge_wt_matrix)
+      }
+
+      if (length(ewm_names) == n) {
+        new_graph$nodes_df[, 3] <- ewm_names
+      }
+    }
+  }
+
   # Add type value to all new nodes
   if (!is.null(type) &
       length(type) == 1) {
