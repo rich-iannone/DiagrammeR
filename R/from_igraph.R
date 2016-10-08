@@ -134,6 +134,10 @@ from_igraph <- function(igraph) {
   # Ensure that the `id` column is classed as an integer
   nodes_df$id <- as.integer(nodes_df$id)
 
+  # Ensure that the ndf is sorted ascending by node ID
+  nodes_df <-
+    dplyr::arrange(nodes_df, id)
+
   # Create a DiagrammeR graph object
   dgr_graph <-
     create_graph(
