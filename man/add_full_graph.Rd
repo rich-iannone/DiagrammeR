@@ -30,7 +30,9 @@ connected graph.}
 
 \item{edge_wt_matrix}{an optional matrix of \code{n}
 by \code{n} dimensions containing values to apply
-as edge weights.}
+as edge weights. If the matrix has row names or
+column names and \code{label = TRUE}, those row or
+column names will be used as node label values.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
