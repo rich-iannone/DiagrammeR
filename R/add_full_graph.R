@@ -93,35 +93,52 @@ add_full_graph <- function(graph,
   }
 
   # Add label values to nodes
-  if (label == TRUE) {
-    new_graph$nodes_df[, 3] <- new_graph$nodes_df[, 1]
-  } else if (!is.null(label) &
-             label != FALSE) {
-    if (length(label) == nrow(new_graph)) {
+  if (length(label) == 1) {
+    if (label == TRUE) {
+      new_graph$nodes_df[, 3] <- new_graph$nodes_df[, 1]
+    }
+  }
+
+  if (length(label) == 1) {
+    if (label == FALSE) {
+      new_graph$nodes_df[, 3] <- new_graph$nodes_df[, 1]
+    }
+  }
+
+  if (length(label) > 1) {
+    if (length(label) == n) {
       new_graph$nodes_df[, 3] <- label
     }
   }
 
-  if (label == TRUE | is.null(label)) {
-    if (!is.null(edge_wt_matrix)) {
+  if (length(label) == 1) {
+    if (label == TRUE) {
+      if (!is.null(edge_wt_matrix)) {
 
-      if (!is.null(colnames(edge_wt_matrix))) {
-        ewm_names <- colnames(edge_wt_matrix)
-      }
-      if (!is.null(rownames(edge_wt_matrix))) {
-        ewm_names <- rownames(edge_wt_matrix)
-      }
+        if (!is.null(colnames(edge_wt_matrix))) {
+          ewm_names <- colnames(edge_wt_matrix)
+        }
+        if (!is.null(rownames(edge_wt_matrix))) {
+          ewm_names <- rownames(edge_wt_matrix)
+        }
 
-      if (length(ewm_names) == n) {
-        new_graph$nodes_df[, 3] <- ewm_names
+        if (length(ewm_names) == n) {
+          new_graph$nodes_df[, 3] <- ewm_names
+        }
       }
     }
   }
 
-  # Add type value to all new nodes
+  # Add `type` values to all new nodes
   if (!is.null(type) &
       length(type) == 1) {
     new_graph$nodes_df[, 2] <- type
+  }
+
+  # Add `rel` values to all new edges
+  if (!is.null(rel) &
+      length(rel) == 1) {
+    new_graph$edges_df[, 3] <- rel
   }
 
   # If the input graph is not empty, combine graphs
