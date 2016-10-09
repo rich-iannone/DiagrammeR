@@ -60,6 +60,10 @@ create_node_df <- function(n,
                            label = NULL,
                            ...) {
 
+  if (!inherits(n, "numeric") | length(n) != 1) {
+    stop("The value supplied for n must be a single integer.")
+  }
+
   if (is.null(type)) {
     type <- as.character(rep("", n))
   }
