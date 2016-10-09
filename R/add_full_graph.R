@@ -167,7 +167,9 @@ add_full_graph <- function(graph,
           values = as.numeric(edge_wt_matrix)[
             which(as.numeric(adj_matrix) == 1)])
     }
-  } else if (is_graph_directed == FALSE) {
+  }
+
+  if (is_graph_directed(graph) == FALSE) {
 
     new_graph <-
       from_adj_matrix(adj_matrix,
