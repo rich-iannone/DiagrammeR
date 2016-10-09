@@ -45,4 +45,103 @@ directed, the added graph will have edges to and from
 each pair of nodes. In the undirected case, a single
 edge will link each pair of nodes.
 }
+\examples{
+# Create a new graph object and add a directed and
+# fully connected graph with 3 nodes and edges to
+# and from all pairs of nodes; with the option
+# `keep_loops = TRUE` nodes will also have edges
+# from and to themselves
+graph <-
+  create_graph() \%>\%
+  add_full_graph(
+    n = 3, keep_loops = TRUE)
+
+# Get node information from this graph
+node_info(graph)
+#>   id type label deg indeg outdeg loops
+#> 1  1          1   6     3      3     1
+#> 2  2          2   6     3      3     1
+#> 3  3          3   6     3      3     1
+
+# Using `keep_loops = FALSE` (the default)
+# will remove the loops
+create_graph() \%>\%
+  add_full_graph(3) \%>\%
+  node_info
+#>   id type label deg indeg outdeg loops
+#> 1  1          1   4     2      2     0
+#> 2  2          2   4     2      2     0
+#> 3  3          3   4     2      2     0
+
+# Values can be set for the node `label`,
+# node `type`, and edge `rel`
+graph <-
+  create_graph() \%>\%
+  add_full_graph(
+    n = 3,
+    type = "connected",
+    label = c("1st", "2nd", "3rd"),
+    rel = "connected_to")
+
+# Show the graph's node data frame (ndf)
+graph \%>\% get_node_df
+#>   id      type label
+#> 1  1 connected   1st
+#> 2  2 connected   2nd
+#> 3  3 connected   3rd
+
+# Show the graph's edge data frame (edf)
+graph \%>\% get_edge_df
+#>   from to          rel
+#> 1    1  2 connected_to
+#> 2    1  3 connected_to
+#> 3    2  1 connected_to
+#> 4    2  3 connected_to
+#> 5    3  1 connected_to
+#> 6    3  2 connected_to
+
+# Create a fully-connected and directed
+# graph with 3 nodes, and, where a matrix
+# provides edge weights; first, create the
+# matrix (with row names to be used as
+# node labels)
+set.seed(23)
+
+edge_wt_matrix <-
+  rnorm(100, 5, 2) \%>\%
+  sample(9, FALSE) \%>\%
+  round(2) \%>\%
+  matrix(
+    nc = 3, nr = 3,
+    dimnames = list(c("a", "b", "c")))
+
+# Create the fully-connected graph (without
+# loops however)
+graph <-
+  create_graph() \%>\%
+  add_full_graph(
+    n = 3,
+    type = "weighted",
+    label = TRUE,
+    rel = "related_to",
+    edge_wt_matrix = edge_wt_matrix,
+    keep_loops = FALSE)
+
+# Show the graph's node data frame (ndf)
+graph \%>\% get_node_df
+#>   id     type label
+#> 1  1 weighted     a
+#> 2  2 weighted     b
+#> 3  3 weighted     c
+
+# Show the graph's edge data frame (edf)
+graph \%>\% get_edge_df
+#>   from to        rel weight
+#> 1    1  2 related_to    3.3
+#> 2    1  3 related_to   5.02
+#> 3    2  1 related_to   4.13
+#> 4    2  3 related_to   6.49
+#> 5    3  1 related_to   6.03
+#> 6    3  2 related_to   5.55
+}
 
