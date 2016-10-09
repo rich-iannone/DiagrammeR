@@ -124,6 +124,24 @@
 #' #> 4    2  3 related_to   6.49
 #' #> 5    3  1 related_to   6.03
 #' #> 6    3  2 related_to   5.55
+#'
+#' # An undirected graph can also use a
+#' # matrix with edge weights, but only
+#' # the lower triangle of that matrix
+#' # will be used
+#' create_graph(directed = FALSE) %>%
+#'   add_full_graph(
+#'     n = 3,
+#'     type = "weighted",
+#'     label = TRUE,
+#'     rel = "related_to",
+#'     edge_wt_matrix = edge_wt_matrix,
+#'     keep_loops = FALSE) %>%
+#'   get_edge_df
+#' #>   from to        rel weight
+#' #> 1    1  2 related_to    3.3
+#' #> 2    1  3 related_to   5.02
+#' #> 3    2  3 related_to   6.49
 #' @export add_full_graph
 
 add_full_graph <- function(graph,
