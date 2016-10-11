@@ -85,17 +85,17 @@ graph <-
 # provides a node attribute `value` which has values
 # in the range of 0 to 10.
 get_node_df(graph)
-#>    nodes type label value
-#> 1      1          1     3
-#> 2      2          2     4
-#> 3      3          3     6
-#> 4      4          4   9.5
-#> 5      5          5   2.5
-#> 6      6          6     9
-#> 7      7          7   9.5
-#> 8      8          8     7
-#> 9      9          9   6.5
-#> 10    10         10     1
+#>    id type label value
+#> 1   1          1     3
+#> 2   2          2     4
+#> 3   3          3     6
+#> 4   4          4   9.5
+#> 5   5          5   2.5
+#> 6   6          6     9
+#> 7   7          7   9.5
+#> 8   8          8     7
+#> 9   9          9   6.5
+#> 10 10         10     1
 
 # We can bucketize values in `value` using
 # `cut_points` and assign colors to each of the
@@ -111,16 +111,16 @@ graph <-
 # with distinct colors (the `#D9D9D9` color is
 # the default `gray85` color)
 get_node_df(graph)
-#>    nodes type label value fillcolor
-#> 1      1          1     3   #31688E
-#> 2      2          2     4   #31688E
-#> 3      3          3     6   #35B779
-#> 4      4          4   9.5   #D9D9D9
-#> 5      5          5   2.5   #440154
-#> 6      6          6     9   #D9D9D9
-#> 7      7          7   9.5   #D9D9D9
-#> 8      8          8     7   #FDE725
-#> 9      9          9   6.5   #35B779
-#> 10    10         10     1   #440154
+#>    id type label value fillcolor
+#> 1   1          1     3   #31688E
+#> 2   2          2     4   #31688E
+#> 3   3          3     6   #35B779
+#> 4   4          4   9.5   #D9D9D9
+#> 5   5          5   2.5   #440154
+#> 6   6          6     9   #D9D9D9
+#> 7   7          7   9.5   #D9D9D9
+#> 8   8          8     7   #FDE725
+#> 9   9          9   6.5   #35B779
+#> 10 10         10     1   #440154
 }
 

@@ -23,7 +23,7 @@ columns.
 \examples{
 # Create an edge data frame
 edges_1 <-
-  create_edges(
+  create_edge_df(
     from = c(1, 1, 2, 3),
     to = c(2, 4, 4, 1),
     rel = "requires",
@@ -32,7 +32,7 @@ edges_1 <-
 
 # Create a second edge data frame
 edges_2 <-
-  create_edges(
+  create_edge_df(
     from = c(5, 7, 8, 8),
     to = c(7, 8, 6, 5),
     rel = "receives",
