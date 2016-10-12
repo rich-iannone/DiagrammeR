@@ -60,8 +60,12 @@ create_node_df <- function(n,
                            label = NULL,
                            ...) {
 
-  if (!(inherits(n, "numeric") | inherits(n, "integer")) | length(n) != 1) {
-    stop("The value supplied for n must be a single integer.")
+  if (!(inherits(n, "numeric") | inherits(n, "integer"))) {
+    stop("The value supplied for n must be numeric.")
+  }
+
+  if (length(n) > 1) {
+    stop("The value supplied for n must be a single numeric value.")
   }
 
   if (is.null(type)) {
