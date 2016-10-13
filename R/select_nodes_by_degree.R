@@ -96,7 +96,7 @@ select_nodes_by_degree <- function(graph,
   }
 
   nodes_df <- graph$nodes_df
-  nodes_selected <- nodes_df$nodes
+  nodes_selected <- nodes_df[, 1]
 
   if (grepl("^>[0-9].*", degree_values)) {
 
