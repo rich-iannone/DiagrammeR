@@ -33,6 +33,11 @@ by \code{n} dimensions containing values to apply
 as edge weights. If the matrix has row names or
 column names and \code{label = TRUE}, those row or
 column names will be used as node label values.}
+
+\item{keep_loops}{an option to simplify the fully
+connected graph by removing loops (edges from and
+to the same node). The default value is
+\code{FALSE}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
