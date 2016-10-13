@@ -25,6 +25,10 @@
 #' as edge weights. If the matrix has row names or
 #' column names and \code{label = TRUE}, those row or
 #' column names will be used as node label values.
+#' @param keep_loops an option to simplify the fully
+#' connected graph by removing loops (edges from and
+#' to the same node). The default value is
+#' \code{FALSE}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph object and add a directed and
