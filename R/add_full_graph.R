@@ -161,7 +161,7 @@ add_full_graph <- function(graph,
   nodes_created <- graph$last_node
 
   # Create initial adjacency matrix based
-  adj_matrix <- matrix(1, nc = n, nr = n)
+  adj_matrix <- matrix(1, nrow = n, ncol = n)
 
   # Remove loops by making the diagonal of the
   # adjacency matrix all 0
