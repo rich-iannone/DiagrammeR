@@ -23,6 +23,9 @@
 
 from_igraph <- function(igraph) {
 
+  # Initialize `id` as NULL to bind variable
+  id <- NULL
+
   # Get vectors of all node and edge attributes
   node_attrs <- igraph::vertex_attr_names(igraph)
   edge_attrs <- igraph::edge_attr_names(igraph)
