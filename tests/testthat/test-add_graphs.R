@@ -394,4 +394,245 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     unique(get_edge_df(graph)[, 3]),
     "connected_to")
+
+  # Create a fully-connected and directed
+  # graph with 3 nodes, and, where a matrix
+  # provides edge weights; first,
+
+  # create a to be used for edge weights
+  # matrix (with row names to be used as
+  # node labels)
+  set.seed(23)
+
+  edge_wt_matrix_rownames <-
+    rnorm(100, 5, 2) %>%
+    sample(9, FALSE) %>%
+    round(2) %>%
+    matrix(
+      nc = 3, nr = 3,
+      dimnames = list(c("a", "b", "c")))
+
+  # Create a fully-connected graph without
+  # loops and use the matrix to provide
+  # values for the edge `weight` attribute
+  graph <-
+    create_graph() %>%
+    add_full_graph(
+      n = 3,
+      type = "weighted",
+      label = TRUE,
+      rel = "related_to",
+      edge_wt_matrix = edge_wt_matrix_rownames,
+      keep_loops = FALSE)
+
+  # Expect 3 nodes to have been created
+  expect_equal(node_count(graph), 3)
+
+  # Expect 6 edges to have been created
+  expect_equal(edge_count(graph), 6)
+
+  # Expect that there are no loops in the graph
+  expect_equal(
+    length(
+      which(
+        get_edge_df(graph)[, 1] ==
+          get_edge_df(graph)[, 2])),
+    0)
+
+  # Expect that the `type` node attr
+  # has the value `connected` for all
+  # nodes created
+  expect_equal(
+    unique(get_node_df(graph)[, 2]),
+    "weighted")
+
+  # Expect that the `label` values
+  # assigned to the nodes are the same
+  # as the matrix rownames
+  expect_equal(
+    get_node_df(graph)[, 3],
+    rownames(edge_wt_matrix_rownames))
+
+  # Expect that the `label` edge attr
+  # has the value `connected_to` for
+  # all edges created
+  expect_equal(
+    unique(get_edge_df(graph)[, 3]),
+    "related_to")
+
+  # Expect certain values for the
+  # edge weight attribute
+  expect_equal(
+    get_edge_df(graph)[, 4],
+    c("3.3", "5.02", "4.13",
+      "6.49", "6.03", "5.55"))
+
+  # Create a fully-connected but undirected
+  # graph without loops and use the matrix
+  # to provide values for the edge `weight`
+  # attribute; in this case, the lower
+  # triangle of the matrix will be used
+  graph <-
+    create_graph(directed = FALSE) %>%
+    add_full_graph(
+      n = 3,
+      type = "weighted",
+      label = TRUE,
+      rel = "related_to",
+      edge_wt_matrix = edge_wt_matrix_rownames,
+      keep_loops = FALSE)
+
+  # Expect 3 nodes to have been created
+  expect_equal(node_count(graph), 3)
+
+  # Expect 3 edges to have been created
+  expect_equal(edge_count(graph), 3)
+
+  # Expect that there are no loops in the graph
+  expect_equal(
+    length(
+      which(
+        get_edge_df(graph)[, 1] ==
+          get_edge_df(graph)[, 2])),
+    0)
+
+  # Expect that the `type` node attr
+  # has the value `connected` for all
+  # nodes created
+  expect_equal(
+    unique(get_node_df(graph)[, 2]),
+    "weighted")
+
+  # Expect that the `label` values
+  # assigned to the nodes are the same
+  # as the matrix rownames
+  expect_equal(
+    get_node_df(graph)[, 3],
+    rownames(edge_wt_matrix_rownames))
+
+  # Expect that the `label` edge attr
+  # has the value `connected_to` for
+  # all edges created
+  expect_equal(
+    unique(get_edge_df(graph)[, 3]),
+    "related_to")
+
+  # Expect certain values for the
+  # edge weight attribute
+  expect_equal(
+    get_edge_df(graph)[, 4],
+    c("3.3", "5.02", "6.49"))
+
+  # Create a fully-connected graph with
+  # loop preserved and use the matrix to
+  # provide values for the edge `weight`
+  # attribute
+  graph <-
+    create_graph() %>%
+    add_full_graph(
+      n = 3,
+      type = "weighted",
+      label = TRUE,
+      rel = "related_to",
+      edge_wt_matrix = edge_wt_matrix_rownames,
+      keep_loops = TRUE)
+
+  # Expect 3 nodes to have been created
+  expect_equal(node_count(graph), 3)
+
+  # Expect 9 edges to have been created
+  expect_equal(edge_count(graph), 9)
+
+  # Expect that there are 3 loops in the graph
+  expect_equal(
+    length(
+      which(
+        get_edge_df(graph)[, 1] ==
+          get_edge_df(graph)[, 2])),
+    3)
+
+  # Expect that the `type` node attr
+  # has the value `connected` for all
+  # nodes created
+  expect_equal(
+    unique(get_node_df(graph)[, 2]),
+    "weighted")
+
+  # Expect that the `label` values
+  # assigned to the nodes are the same
+  # as the matrix rownames
+  expect_equal(
+    get_node_df(graph)[, 3],
+    rownames(edge_wt_matrix_rownames))
+
+  # Expect that the `label` edge attr
+  # has the value `connected_to` for
+  # all edges created
+  expect_equal(
+    unique(get_edge_df(graph)[, 3]),
+    "related_to")
+
+  # Expect certain values for the
+  # edge weight attribute
+  expect_equal(
+    get_edge_df(graph)[, 4],
+    c("8.66", "3.3", "5.02", "4.13",
+      "6.83", "6.49", "6.03", "5.55",
+      "3.8"))
+
+  # Create a fully-connected and undirected
+  # graph with loops preserved; use the
+  # matrix to provide values for the edge
+  # `weight` attribute
+  graph <-
+    create_graph(directed = FALSE) %>%
+    add_full_graph(
+      n = 3,
+      type = "weighted",
+      label = TRUE,
+      rel = "related_to",
+      edge_wt_matrix = edge_wt_matrix_rownames,
+      keep_loops = TRUE)
+
+  # Expect 3 nodes to have been created
+  expect_equal(node_count(graph), 3)
+
+  # Expect 9 edges to have been created
+  expect_equal(edge_count(graph), 6)
+
+  # Expect that there are 3 loops in the graph
+  expect_equal(
+    length(
+      which(
+        get_edge_df(graph)[, 1] ==
+          get_edge_df(graph)[, 2])),
+    3)
+
+  # Expect that the `type` node attr
+  # has the value `connected` for all
+  # nodes created
+  expect_equal(
+    unique(get_node_df(graph)[, 2]),
+    "weighted")
+
+  # Expect that the `label` values
+  # assigned to the nodes are the same
+  # as the matrix rownames
+  expect_equal(
+    get_node_df(graph)[, 3],
+    rownames(edge_wt_matrix_rownames))
+
+  # Expect that the `label` edge attr
+  # has the value `connected_to` for
+  # all edges created
+  expect_equal(
+    unique(get_edge_df(graph)[, 3]),
+    "related_to")
+
+  # Expect certain values for the
+  # edge weight attribute
+  expect_equal(
+    get_edge_df(graph)[, 4],
+    c("8.66", "3.3", "5.02",
+      "6.83", "6.49", "3.8"))
 })
