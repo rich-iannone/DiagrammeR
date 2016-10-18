@@ -85,52 +85,35 @@ add_edge <- function(graph,
     # the `create_edges()` call
     if (!is.null(rel)) {
 
-      dgr_graph <-
-        create_graph(
-          nodes_df = graph$nodes_df,
-          edges_df = create_edges(from = from,
-                                  to = to,
-                                  rel = rel),
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
-          directed = ifelse(is_graph_directed(graph),
-                            TRUE, FALSE),
-          graph_name = graph$graph_name,
-          graph_time = graph$graph_time,
-          graph_tz = graph$graph_tz)
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created
+      edf <-
+        create_edge_df(
+          from = from,
+          to = to,
+          rel = rel)
     }
 
     # If a relationship is not defined, use a simpler
     # `create_edges()` call
     if (is.null(rel)) {
 
-      dgr_graph <-
-        create_graph(
-          nodes_df = graph$nodes_df,
-          edges_df = create_edges(from = from,
-                                  to = to),
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
-          directed = ifelse(is_graph_directed(graph),
-                            TRUE, FALSE),
-          graph_name = graph$graph_name,
-          graph_time = graph$graph_time,
-          graph_tz = graph$graph_tz)
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created
-
-      return(dgr_graph)
+      edf <-
+        create_edge_df(
+          from = from,
+          to = to,
+          rel = rel)
     }
+
+    # Add the edge data frame to the graph
+    graph$edges_df <- edf
+
+    # Update the `last_node` counter
+    graph$last_node <- nodes_created
+
+    return(graph)
   }
 
   # If `graph$edges_df` is not NULL then use both
-  # `combine_edges()` and `create_edges()` to
+  # `combine_edges()` and `create_edge_df()` to
   # add an edge
   if (!is.null(graph$edges_df)) {
 
@@ -141,9 +124,10 @@ add_edge <- function(graph,
       combined_edges <-
         combine_edges(
           graph$edges_df,
-          create_edges(from = from,
-                       to = to,
-                       rel = rel))
+          create_edge_df(
+            from = from,
+            to = to,
+            rel = rel))
     }
 
     # If a relationship is not defined, use a simpler
@@ -153,8 +137,9 @@ add_edge <- function(graph,
       combined_edges <-
         combine_edges(
           graph$edges_df,
-          create_edges(from = from,
-                       to = to))
+          create_edge_df(
+            from = from,
+            to = to))
     }
 
     # Ensure that the `from` and `to` columns are
@@ -165,27 +150,16 @@ add_edge <- function(graph,
     combined_edges[, 2] <-
       as.integer(combined_edges[, 2])
 
+    # Use the `combined_edges` object as a
+    # replacement for the graph's internal
+    # edge data frame
 
-    # Use the `combined_edges` object in either case to
-    # create an updated graph
-    dgr_graph <-
-      create_graph(
-        nodes_df = graph$nodes_df,
-        edges_df = combined_edges,
-        graph_attrs = graph$graph_attrs,
-        node_attrs = graph$node_attrs,
-        edge_attrs = graph$edge_attrs,
-        directed = ifelse(is_graph_directed(graph),
-                          TRUE, FALSE),
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz)
+    # Add the edge data frame to the graph
+    graph$edges_df <- combined_edges
 
     # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
+    graph$last_node <- nodes_created
 
-    return(dgr_graph)
+    return(graph)
   }
-
-  return(dgr_graph)
 }
