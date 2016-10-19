@@ -4,7 +4,7 @@
 \alias{add_edges_w_string}
 \title{Add one or more edges using a text string}
 \usage{
-add_edges_w_string(graph, edges, rel = NULL)
+add_edges_w_string(graph, edges, rel = NULL, use_label = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -22,6 +22,12 @@ error.}
 
 \item{rel}{an optional vector specifying the
 relationship between the connected nodes.}
+
+\item{use_label}{an option to use node \code{label}
+values in the \code{edges} string to define node
+connections. Note that this is only possible if all
+nodes have distinct \code{label} values set and
+none exist as an empty string.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -32,17 +38,20 @@ With a graph object of class
 using a text string.
 }
 \examples{
-# Create a graph with 10 nodes
+# Create a graph with 4 nodes
 graph <-
   create_graph() \%>\%
-  add_n_nodes(10)
+  add_node(label = "one") \%>\%
+  add_node(label = "two") \%>\%
+  add_node(label = "three") \%>\%
+  add_node(label = "four")
 
-# Add edges between nodes using a character string
+# Add edges between nodes using a
+# character string with node ID values
 graph <-
   graph \%>\%
   add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->6
-     3->7 4->8 4->9 5->10")
+    "1->2 1->3 2->4 2->3")
 
 # Show the graph's internal edge data frame
 get_edge_df(graph)
@@ -50,11 +59,6 @@ get_edge_df(graph)
 #> 1    1  2
 #> 2    1  3
 #> 3    2  4
-#> 4    2  5
-#> 5    3  6
-#> 6    3  7
-#> 7    4  8
-#> 8    4  9
-#> 9    5 10
+#> 4    2  3
 }
 
