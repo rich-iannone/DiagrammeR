@@ -223,7 +223,8 @@ add_full_graph <- function(graph,
 
   if (length(label) == 1) {
     if (label == FALSE) {
-      new_graph$nodes_df[, 3] <- new_graph$nodes_df[, 1]
+      new_graph$nodes_df[, 3] <-
+        as.character(new_graph$nodes_df[, 1])
     }
   }
 
