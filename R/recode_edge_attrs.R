@@ -6,10 +6,11 @@
 #' @param graph a graph object of class
 #' @param edge_attr_from the name of the edge attribute
 #' column from which values will be recoded.
-#' @param ... named vectors with values to be recoded.
-#' The first component should have the value to replace
-#' and the second should have the replacement value (in
-#' the form \code{[to_replace] = [replacement], ...}).
+#' @param ... single-length character vectors with
+#' the recoding instructions. The first component should
+#' have the value to replace and the second should have
+#' the replacement value (in the form
+#' \code{"[to_replace] -> [replacement]", ...}).
 #' @param otherwise an optional single value for
 #' recoding any unmatched values.
 #' @param edge_attr_to an optional name of a new edge
@@ -47,8 +48,8 @@
 #'   graph %>%
 #'   recode_edge_attrs(
 #'     "rel",
-#'     "a" = 1.0,
-#'     "b" = 1.5,
+#'     "a -> 1.0",
+#'     "b -> 1.5",
 #'     otherwise = 0.5,
 #'     edge_attr_to = "penwidth")
 #'
@@ -57,12 +58,13 @@
 #' # copied into a new node attribute
 #' get_edge_df(graph)
 #' #>   from to rel penwidth
-#' #> 1    3  2   a        1
+#' #> 1    3  2   a      1.0
 #' #> 2    1  2   b      1.5
-#' #> 3    4  3   a        1
+#' #> 3    4  3   a      1.0
 #' #> 4    1  4   c      0.5
 #' #> 5    1  3   b      1.5
 #' #> 6    2  4   d      0.5
+#' @importFrom stringr str_split
 #' @export recode_edge_attrs
 
 recode_edge_attrs <- function(graph,
@@ -94,21 +96,30 @@ recode_edge_attrs <- function(graph,
   col_num_recode <-
     which(colnames(edges) %in% edge_attr_from)
 
+  # Get the column class for the edge attr to recode
+  edge_attr_class <- class(edges[, col_num_recode])
+
   # Extract the vector to recode from the `edges` df
-  vector_to_recode <-
-    edges[, col_num_recode]
+  vector_to_recode <- edges[, col_num_recode]
 
-  # Get all sets of recoding indices
-  for (i in 1:length(replacements)) {
-    if (i == 1) indices <- replacements
-    indices[i][[1]] <-
-      which(vector_to_recode %in% names(replacements[i]))
-  }
+  # Initialize the `indices_stack` vector
+  indices_stack <- vector("numeric")
 
-  # Recode each set of indices
+  # Parse the recoding pairs
   for (i in 1:length(replacements)) {
-    vector_to_recode[indices[i][[1]]] <-
-      replacements[i][1]
+
+    pairing <-
+      trimws(unlist(stringr::str_split(replacements[[i]], "->")))
+
+    if (edge_attr_class == "numeric") {
+      pairing <- as.numeric(pairing)
+    }
+
+    indices <- which(vector_to_recode %in% pairing[1])
+
+    vector_to_recode[setdiff(indices, indices_stack)] <- pairing[2]
+
+    indices_stack <- c(indices_stack, indices)
   }
 
   # If a value is supplied for `otherwise`, apply
@@ -116,7 +127,7 @@ recode_edge_attrs <- function(graph,
   if (!is.null(otherwise)) {
 
     otherwise_indices <-
-      which(!(1:nrow(edges) %in% unlist(indices)))
+      which(!(1:nrow(edges) %in% indices_stack))
 
     if (length(otherwise_indices) > 0) {
       vector_to_recode[otherwise_indices] <-
@@ -124,9 +135,8 @@ recode_edge_attrs <- function(graph,
     }
   }
 
-  # Coerce the recoded vector to a character vector
-  recoded_vector <-
-    as.character(vector_to_recode)
+  # Rename the `vector_to_recode` object
+  recoded_vector <- vector_to_recode
 
   if (!is.null(edge_attr_to)) {
 
@@ -163,21 +173,12 @@ recode_edge_attrs <- function(graph,
     edges[, col_num_recode] <- recoded_vector
   }
 
-  # Create a new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = graph$nodes_df,
-      edges_df = edges,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = graph$directed,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  # Replace the `edges_df` object in the graph
+  # with the `edges` object
+  graph$edges_df <- edges
 
   # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
+  graph$last_node <- nodes_created
 
-  return(dgr_graph)
+  return(graph)
 }
