@@ -98,6 +98,7 @@ create_node_df <- function(n,
   extras <- list(...)
 
   if (length(extras) > 0) {
+
     for (i in 1:length(extras)) {
 
       # Expand vectors with single values to fill to
