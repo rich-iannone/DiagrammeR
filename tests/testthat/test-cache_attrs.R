@@ -221,6 +221,11 @@ test_that("Caching edge attrs (w/ selection) is possible", {
     set_edge_attrs(
       "value", rnorm(edge_count(.), 5, 2))
 
+  # Expect an error if no edge selection is available
+  expect_error(
+    graph %>%
+      cache_edge_attrs_ws("value", "numeric"))
+
   # Select all nodes where the edge attribute `value`
   # is less than 5
   graph <-
