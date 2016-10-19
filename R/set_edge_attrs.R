@@ -104,10 +104,6 @@ set_edge_attrs <- function(x,
   if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     edges_df <- x$edges_df
-
-    # Get the number of nodes ever created for
-    # this graph
-    nodes_created <- x$last_node
   }
 
   if (inherits(x, "data.frame")) {
@@ -122,47 +118,43 @@ set_edge_attrs <- function(x,
     stop("The length of values provided must either be 1 or that of the number of rows in the edf.")
   }
 
+  # Get the indices for the edge data frame
+  # that require modification
+  if (is.null(from) & !is.null(to)) {
+    indices <-
+      which(edges_df$to %in% to)
+  } else if (!is.null(from) & is.null(to)) {
+    indices <-
+      which(edges_df$from %in% from)
+  } else if (is.null(from) & is.null(to)) {
+    indices <- 1:nrow(edges_df)
+  } else {
+    indices <-
+      which((edges_df$from %in% from) &
+              (edges_df$to %in% to))
+  }
+
+  # Apply single value to all target edges
   if (length(values) == 1) {
+
     if (edge_attr %in% colnames(edges_df)) {
-      if (is.null(from) & !is.null(to)) {
-        edges_df[which(edges_df$to %in% to),
-                 which(colnames(edges_df) %in%
-                         edge_attr)] <- values
-      } else if (!is.null(from) & is.null(to)) {
-        edges_df[which(edges_df$from %in% from),
-                 which(colnames(edges_df) %in%
-                         edge_attr)] <- values
-      } else if (is.null(from) & is.null(to)) {
-        edges_df[, which(colnames(edges_df) %in%
-                           edge_attr)] <- values
-      } else {
-        edges_df[which((edges_df$from %in% from) &
-                         (edges_df$to %in% to)),
-                 which(colnames(edges_df) %in%
-                         edge_attr)] <- values
-      }
+
+      edges_df[indices,
+               which(colnames(edges_df) %in%
+                       edge_attr)] <- values
     }
 
     if (!(edge_attr %in% colnames(edges_df))) {
-      edges_df <-
-        cbind(edges_df, rep("", nrow(edges_df)))
-      edges_df[, ncol(edges_df)] <-
-        as.character(edges_df[, ncol(edges_df)])
-      colnames(edges_df)[ncol(edges_df)] <- edge_attr
 
-      if (is.null(from) & !is.null(to)) {
-        edges_df[which(edges_df$to %in% to),
-                 ncol(edges_df)] <- values
-      } else if (!is.null(from) & is.null(to)) {
-        edges_df[which(edges_df$from %in% from),
-                 ncol(edges_df)] <- values
-      } else if (is.null(from) & is.null(to)) {
-        edges_df[, ncol(edges_df)] <- values
-      } else {
-        edges_df[which((edges_df$from %in% from) &
-                         (edges_df$to %in% to)),
-                 ncol(edges_df)] <- values
-      }
+      # Add a new column and map the edge attribute
+      # value to each of the indices in `edges_df`
+      edges_df <-
+        dplyr::mutate(
+          edges_df,
+          new_attr__ = ifelse(as.numeric(row.names(edges_df)) %in%
+                                indices, values, NA))
+
+      colnames(edges_df)[ncol(edges_df)] <- edge_attr
     }
   }
 
@@ -176,36 +168,22 @@ set_edge_attrs <- function(x,
     if (!(edge_attr %in% colnames(edges_df))) {
       edges_df <-
         cbind(edges_df, rep("", nrow(edges_df)))
+
       edges_df[, ncol(edges_df)] <-
-        as.character(edges_df[,ncol(edges_df)])
+        edges_df[, ncol(edges_df)]
+
       colnames(edges_df)[ncol(edges_df)] <- edge_attr
+
       edges_df[, ncol(edges_df)] <- values
     }
   }
 
   if (object_type == "dgr_graph") {
 
-    # Create new graph object
-    dgr_graph <-
-      create_graph(
-        nodes_df = x$nodes_df,
-        edges_df = edges_df,
-        graph_attrs = x$graph_attrs,
-        node_attrs = x$node_attrs,
-        edge_attrs = x$edge_attrs,
-        directed = ifelse(is_graph_directed(x),
-                          TRUE, FALSE),
-        graph_name = x$graph_name,
-        graph_time = x$graph_time,
-        graph_tz = x$graph_tz)
+    # Update the graph object
+    x$edges_df = edges_df
 
-    # Retain the edge selection
-    dgr_graph$selection <- x$selection
-
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
-
-    return(dgr_graph)
+    return(x)
   }
 
   if (object_type == "edge_df") {

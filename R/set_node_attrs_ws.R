@@ -30,45 +30,29 @@
 #' # specific node
 #' get_node_df(graph)
 #' #>   id type label color
-#' #> 1  1          1
+#' #> 1  1          1  <NA>
 #' #> 2  2          2  blue
 #' #> 3  3          3  blue
 #' #> 4  4          4  blue
 #' #> 5  5          5  blue
-#' #> 6  6          6
+#' #> 6  6          6  <NA>
 #' @export set_node_attrs_ws
 
 set_node_attrs_ws <- function(graph,
                               node_attr,
                               value) {
 
-  nodes_df <- graph$nodes_df
+  # Get vector of node ID values
   nodes <- graph$selection$nodes
 
-
-  if (node_attr %in% colnames(nodes_df)) {
-
-    nodes_df[which(nodes_df[, 1] %in% nodes),
-             which(colnames(nodes_df) %in%
-                     node_attr)] <- value
-  }
-
-  if (!(node_attr %in% colnames(nodes_df))) {
-
-    nodes_df <-
-      cbind(nodes_df, rep("", nrow(nodes_df)))
-
-    nodes_df[, ncol(nodes_df)] <-
-      as.character(nodes_df[, ncol(nodes_df)])
-
-    colnames(nodes_df)[ncol(nodes_df)] <- node_attr
-
-    nodes_df[
-      which(nodes_df[, 1] %in%
-              nodes), ncol(nodes_df)] <- value
-  }
-
-  graph$nodes_df <- nodes_df
+  # Call the `set_node_attrs()` function
+  # and update the graph
+  graph <-
+    set_node_attrs(
+      x = graph,
+      node_attr = node_attr,
+      values = value,
+      nodes = nodes)
 
   return(graph)
 }
