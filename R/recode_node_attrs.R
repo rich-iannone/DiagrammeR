@@ -6,10 +6,11 @@
 #' @param graph a graph object of class
 #' @param node_attr_from the name of the node attribute
 #' column from which values will be recoded.
-#' @param ... named vectors with values to be recoded.
-#' The first component should have the value to replace
-#' and the second should have the replacement value (in
-#' the form \code{[to_replace] = [replacement], ...}).
+#' @param ... single-length character vectors with
+#' the recoding instructions. The first component should
+#' have the value to replace and the second should have
+#' the replacement value (in the form
+#' \code{"[to_replace] -> [replacement]", ...}).
 #' @param otherwise an optional single value for
 #' recoding any unmatched values.
 #' @param node_attr_to an optional name of a new node
@@ -32,9 +33,9 @@
 #' # node attributes are available
 #' get_node_df(graph)
 #' #>   id type label value     shape
-#' #> 1  1          1     2    circle
+#' #> 1  1          1   2.0    circle
 #' #> 2  2          2   8.5   hexagon
-#' #> 3  3          3     4 rectangle
+#' #> 3  3          3   4.0 rectangle
 #' #> 4  4          4   3.5 rectangle
 #' #> 5  5          5   6.5    circle
 #'
@@ -45,16 +46,16 @@
 #'   graph %>%
 #'   recode_node_attrs(
 #'     "shape",
-#'     "circle" = "square",
-#'     "rectangle" = "triangle")
+#'     "circle -> square",
+#'     "rectangle -> triangle")
 #'
 #' # Get the graph's internal ndf to show that the
 #' # node attribute values had been recoded
 #' get_node_df(graph)
 #' #>   id type label value    shape
-#' #> 1  1          1     2   square
+#' #> 1  1          1   2.0   square
 #' #> 2  2          2   8.5  hexagon
-#' #> 3  3          3     4 triangle
+#' #> 3  3          3   4.0 triangle
 #' #> 4  4          4   3.5 triangle
 #' #> 5  5          5   6.5   square
 #'
@@ -66,18 +67,39 @@
 #'   graph %>%
 #'   recode_node_attrs(
 #'     "shape",
-#'     "square" = "red",
+#'     "square -> red",
 #'     otherwise = "green",
 #'     node_attr_to = "color")
 #'
 #' # Get the graph's internal ndf to see the change
 #' get_node_df(graph)
 #' #>   id type label value    shape color
-#' #> 1  1          1     2   square   red
+#' #> 1  1          1   2.0   square   red
 #' #> 2  2          2   8.5  hexagon green
-#' #> 3  3          3     4 triangle green
+#' #> 3  3          3   4.0 triangle green
 #' #> 4  4          4   3.5 triangle green
 #' #> 5  5          5   6.5   square   red
+#'
+#' # Numeric values can be recoded as well;
+#' # here, perform several recodings for
+#' # values of the `value` node attribute
+#' graph <-
+#'   graph %>%
+#'   recode_node_attrs(
+#'     "value",
+#'     "2.0 -> 9.5",
+#'     "4.0 -> 10.5",
+#'     otherwise = 5.0)
+#'
+#' # Look at the graph's internal ndf
+#' get_node_df(graph)
+#' #>   id type label value    shape color
+#' #> 1  1          1   9.5   square   red
+#' #> 2  2          2   5.0  hexagon green
+#' #> 3  3          3  10.5 triangle green
+#' #> 4  4          4   5.0 triangle green
+#' #> 5  5          5   5.0   square   red
+#' @importFrom stringr str_split
 #' @export recode_node_attrs
 
 recode_node_attrs <- function(graph,
@@ -109,21 +131,30 @@ recode_node_attrs <- function(graph,
   col_num_recode <-
     which(colnames(nodes) %in% node_attr_from)
 
+  # Get the column class for the node attr to recode
+  node_attr_class <- class(nodes[, col_num_recode])
+
   # Extract the vector to recode from the `nodes` df
-  vector_to_recode <-
-    nodes[, col_num_recode]
+  vector_to_recode <- nodes[, col_num_recode]
 
-  # Get all sets of recoding indices
-  for (i in 1:length(replacements)) {
-    if (i == 1) indices <- replacements
-    indices[i][[1]] <-
-      which(vector_to_recode %in% names(replacements[i]))
-  }
+  # Initialize the `indices_stack` vector
+  indices_stack <- vector("numeric")
 
-  # Recode each set of indices
+  # Parse the recoding pairs
   for (i in 1:length(replacements)) {
-    vector_to_recode[indices[i][[1]]] <-
-      replacements[i][1]
+
+    pairing <-
+      trimws(unlist(stringr::str_split(replacements[[i]], "->")))
+
+    if (node_attr_class == "numeric") {
+      pairing <- as.numeric(pairing)
+    }
+
+    indices <- which(vector_to_recode %in% pairing[1])
+
+    vector_to_recode[setdiff(indices, indices_stack)] <- pairing[2]
+
+    indices_stack <- c(indices_stack, indices)
   }
 
   # If a value is supplied for `otherwise`, apply
@@ -131,7 +162,7 @@ recode_node_attrs <- function(graph,
   if (!is.null(otherwise)) {
 
     otherwise_indices <-
-      which(!(1:nrow(nodes) %in% unlist(indices)))
+      which(!(1:nrow(nodes) %in% indices_stack))
 
     if (length(otherwise_indices) > 0) {
       vector_to_recode[otherwise_indices] <-
@@ -139,15 +170,14 @@ recode_node_attrs <- function(graph,
     }
   }
 
-  # Coerce the recoded vector to a character vector
-  recoded_vector <-
-    as.character(vector_to_recode)
+  # Rename the `vector_to_recode` object
+  recoded_vector <- vector_to_recode
 
   if (!is.null(node_attr_to)) {
 
     # Stop function if `node_attr_to` is
-    # `nodes` or `node`
-    if (any(c("nodes", "node") %in% node_attr_to)) {
+    # `id` or `nodes`
+    if (any(c("id", "nodes") %in% node_attr_to)) {
       stop("You cannot use those names.")
     }
 
@@ -178,21 +208,12 @@ recode_node_attrs <- function(graph,
     nodes[, col_num_recode] <- recoded_vector
   }
 
-  # Create a new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = nodes,
-      edges_df = graph$edges_df,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = graph$directed,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  # Replace the `nodes_df` object in the graph
+  # with the `nodes` object
+  graph$nodes_df <- nodes
 
   # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
+  graph$last_node <- nodes_created
 
-  return(dgr_graph)
+  return(graph)
 }
