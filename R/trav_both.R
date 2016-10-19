@@ -248,13 +248,19 @@ trav_both <- function(graph,
                     node_attr)
         }
 
-        if (match ==
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    succ_pred[i]),
-              column_number]) {
+        if (!is.na(get_node_df(graph)[
+          which(get_node_df(graph)[,1] %in%
+                succ_pred[i]),
+          column_number])) {
 
-          to_nodes <- c(to_nodes, succ_pred[i])
+          if (match ==
+              get_node_df(graph)[
+                which(get_node_df(graph)[,1] %in%
+                      succ_pred[i]),
+                column_number]) {
+
+            to_nodes <- c(to_nodes, succ_pred[i])
+          }
         }
       }
     }
