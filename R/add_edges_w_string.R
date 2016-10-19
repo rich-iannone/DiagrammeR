@@ -15,19 +15,27 @@
 #' error.
 #' @param rel an optional vector specifying the
 #' relationship between the connected nodes.
+#' @param use_label an option to use node \code{label}
+#' values in the \code{edges} string to define node
+#' connections. Note that this is only possible if all
+#' nodes have distinct \code{label} values set and
+#' none exist as an empty string.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph with 10 nodes
+#' # Create a graph with 4 nodes
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(10)
+#'   add_node(label = "one") %>%
+#'   add_node(label = "two") %>%
+#'   add_node(label = "three") %>%
+#'   add_node(label = "four")
 #'
-#' # Add edges between nodes using a character string
+#' # Add edges between nodes using a
+#' # character string with node ID values
 #' graph <-
 #'   graph %>%
 #'   add_edges_w_string(
-#'     "1->2 1->3 2->4 2->5 3->6
-#'      3->7 4->8 4->9 5->10")
+#'     "1->2 1->3 2->4 2->3")
 #'
 #' # Show the graph's internal edge data frame
 #' get_edge_df(graph)
@@ -35,21 +43,13 @@
 #' #> 1    1  2
 #' #> 2    1  3
 #' #> 3    2  4
-#' #> 4    2  5
-#' #> 5    3  6
-#' #> 6    3  7
-#' #> 7    4  8
-#' #> 8    4  9
-#' #> 9    5 10
+#' #> 4    2  3
 #' @export add_edges_w_string
 
 add_edges_w_string <- function(graph,
                                edges,
-                               rel = NULL) {
-
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
+                               rel = NULL,
+                               use_label = FALSE) {
 
   # Remove linebreak characters from `edges`
   edges_cleaned <-
@@ -85,6 +85,48 @@ add_edges_w_string <- function(graph,
       sapply(strsplit(edges_split, "--"), "[[", 2)
   }
 
+  # If `use_label` is set to TRUE, treat values in
+  # list as labels; need to map to node ID values
+  if (use_label) {
+
+    # Node labels must be unique
+    if (length(unique(graph$nodes_df$label)) !=
+        node_count(graph)) {
+      stop("You cannot use labels to form edges because they are not distinct")
+    }
+
+    # No node labels can be empty
+    if (any(graph$nodes_df$label == "")) {
+      stop("You cannot use labels to form edges if there are empty strings for labels")
+    }
+
+    # Create the `from_id` and `to_id` vectors
+    from_id <- vector("integer")
+    to_id <- vector("integer")
+
+    # Get an ordered vector of node ID values
+    # as `from` nodes
+    for (i in 1:length(from)) {
+      from_id <-
+        c(from_id,
+          graph$nodes_df[
+            which(graph$nodes_df$label %in% from[i]), 1])
+    }
+
+    # Get an ordered vector of node ID values
+    # as `to` nodes
+    for (i in 1:length(to)) {
+      to_id <-
+        c(to_id,
+          graph$nodes_df[
+            which(graph$nodes_df$label %in% to[i]), 1])
+    }
+
+    # Reassign these nodes back to `from` and `to`
+    from <- from_id
+    to <- to_id
+  }
+
   # Create an edge data frame (edf) without
   # associated `rel` values
   if (is.null(rel)) {
@@ -106,9 +148,6 @@ add_edges_w_string <- function(graph,
 
   # Add the new edges to the graph
   new_graph <- add_edge_df(graph, new_edges)
-
-  # Update the `last_node` counter
-  new_graph$last_node <- nodes_created
 
   return(new_graph)
 }
