@@ -244,20 +244,18 @@ create_graph <- function(nodes_df = NULL,
 
   } else if (!is.null(nodes_df)) {
 
-    # Force all columns except the `nodes` column
+    # Force the `type` and `label` columns
     # to be of the character class
-    for (i in 2:ncol(nodes_df)) {
+    for (i in 2:3) {
       nodes_df[, i] <- as.character(nodes_df[, i])
     }
 
     if (inherits(edges_df, "data.frame")) {
+
       if (ncol(edges_df) > 2) {
 
-        # Force all columns except the `from` and `to`
-        # columns to be of the character class
-        for (i in 3:ncol(edges_df)) {
-          edges_df[, i] <- as.character(edges_df[, i])
-        }
+        # Force the rel column to be of the character class
+        edges_df[, 3] <- as.character(edges_df[, 3])
       }
     }
 
