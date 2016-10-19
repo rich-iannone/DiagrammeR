@@ -45,11 +45,11 @@ graph <-
 # specific node
 get_node_df(graph)
 #>   id type label color
-#> 1  1          1
+#> 1  1          1  <NA>
 #> 2  2          2  blue
 #> 3  3          3  blue
 #> 4  4          4  blue
 #> 5  5          5  blue
-#> 6  6          6
+#> 6  6          6  <NA>
 }
 

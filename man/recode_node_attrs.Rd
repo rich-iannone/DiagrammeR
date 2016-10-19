@@ -13,10 +13,11 @@ recode_node_attrs(graph, node_attr_from, ..., otherwise = NULL,
 \item{node_attr_from}{the name of the node attribute
 column from which values will be recoded.}
 
-\item{...}{named vectors with values to be recoded.
-The first component should have the value to replace
-and the second should have the replacement value (in
-the form \code{[to_replace] = [replacement], ...}).}
+\item{...}{single-length character vectors with
+the recoding instructions. The first component should
+have the value to replace and the second should have
+the replacement value (in the form
+\code{"[to_replace] -> [replacement]", ...}).}
 
 \item{otherwise}{an optional single value for
 recoding any unmatched values.}
@@ -50,9 +51,9 @@ graph <-
 # node attributes are available
 get_node_df(graph)
 #>   id type label value     shape
-#> 1  1          1     2    circle
+#> 1  1          1   2.0    circle
 #> 2  2          2   8.5   hexagon
-#> 3  3          3     4 rectangle
+#> 3  3          3   4.0 rectangle
 #> 4  4          4   3.5 rectangle
 #> 5  5          5   6.5    circle
 
@@ -63,16 +64,16 @@ graph <-
   graph \%>\%
   recode_node_attrs(
     "shape",
-    "circle" = "square",
-    "rectangle" = "triangle")
+    "circle -> square",
+    "rectangle -> triangle")
 
 # Get the graph's internal ndf to show that the
 # node attribute values had been recoded
 get_node_df(graph)
 #>   id type label value    shape
-#> 1  1          1     2   square
+#> 1  1          1   2.0   square
 #> 2  2          2   8.5  hexagon
-#> 3  3          3     4 triangle
+#> 3  3          3   4.0 triangle
 #> 4  4          4   3.5 triangle
 #> 5  5          5   6.5   square
 
@@ -84,17 +85,37 @@ graph <-
   graph \%>\%
   recode_node_attrs(
     "shape",
-    "square" = "red",
+    "square -> red",
     otherwise = "green",
     node_attr_to = "color")
 
 # Get the graph's internal ndf to see the change
 get_node_df(graph)
 #>   id type label value    shape color
-#> 1  1          1     2   square   red
+#> 1  1          1   2.0   square   red
 #> 2  2          2   8.5  hexagon green
-#> 3  3          3     4 triangle green
+#> 3  3          3   4.0 triangle green
 #> 4  4          4   3.5 triangle green
 #> 5  5          5   6.5   square   red
+
+# Numeric values can be recoded as well;
+# here, perform several recodings for
+# values of the `value` node attribute
+graph <-
+  graph \%>\%
+  recode_node_attrs(
+    "value",
+    "2.0 -> 9.5",
+    "4.0 -> 10.5",
+    otherwise = 5.0)
+
+# Look at the graph's internal ndf
+get_node_df(graph)
+#>   id type label value    shape color
+#> 1  1          1   9.5   square   red
+#> 2  2          2   5.0  hexagon green
+#> 3  3          3  10.5 triangle green
+#> 4  4          4   5.0 triangle green
+#> 5  5          5   5.0   square   red
 }
 

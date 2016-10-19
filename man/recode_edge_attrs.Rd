@@ -13,10 +13,11 @@ recode_edge_attrs(graph, edge_attr_from, ..., otherwise = NULL,
 \item{edge_attr_from}{the name of the edge attribute
 column from which values will be recoded.}
 
-\item{...}{named vectors with values to be recoded.
-The first component should have the value to replace
-and the second should have the replacement value (in
-the form \code{[to_replace] = [replacement], ...}).}
+\item{...}{single-length character vectors with
+the recoding instructions. The first component should
+have the value to replace and the second should have
+the replacement value (in the form
+\code{"[to_replace] -> [replacement]", ...}).}
 
 \item{otherwise}{an optional single value for
 recoding any unmatched values.}
@@ -65,8 +66,8 @@ graph <-
   graph \%>\%
   recode_edge_attrs(
     "rel",
-    "a" = 1.0,
-    "b" = 1.5,
+    "a -> 1.0",
+    "b -> 1.5",
     otherwise = 0.5,
     edge_attr_to = "penwidth")
 
@@ -75,9 +76,9 @@ graph <-
 # copied into a new node attribute
 get_edge_df(graph)
 #>   from to rel penwidth
-#> 1    3  2   a        1
+#> 1    3  2   a      1.0
 #> 2    1  2   b      1.5
-#> 3    4  3   a        1
+#> 3    4  3   a      1.0
 #> 4    1  4   c      0.5
 #> 5    1  3   b      1.5
 #> 6    2  4   d      0.5

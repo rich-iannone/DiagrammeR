@@ -44,10 +44,10 @@ graph <-
 # specific edges
 get_edge_df(graph)
 #>   from to rel color
-#> 1    1  2
+#> 1    1  2      <NA>
 #> 2    2  3      blue
 #> 3    3  4      blue
 #> 4    4  5      blue
-#> 5    5  6
+#> 5    5  6      <NA>
 }
 
