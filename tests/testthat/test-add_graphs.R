@@ -464,8 +464,8 @@ test_that("Adding a full graph is possible", {
   # edge weight attribute
   expect_equal(
     get_edge_df(graph)[, 4],
-    c("3.3", "5.02", "4.13",
-      "6.49", "6.03", "5.55"))
+    c(3.3, 5.02, 4.13,
+      6.49, 6.03, 5.55))
 
   # Create a fully-connected but undirected
   # graph without loops and use the matrix
@@ -521,7 +521,7 @@ test_that("Adding a full graph is possible", {
   # edge weight attribute
   expect_equal(
     get_edge_df(graph)[, 4],
-    c("3.3", "5.02", "6.49"))
+    c(3.3, 5.02, 6.49))
 
   # Create a fully-connected graph with
   # loop preserved and use the matrix to
@@ -576,9 +576,8 @@ test_that("Adding a full graph is possible", {
   # edge weight attribute
   expect_equal(
     get_edge_df(graph)[, 4],
-    c("8.66", "3.3", "5.02", "4.13",
-      "6.83", "6.49", "6.03", "5.55",
-      "3.8"))
+    c(8.66, 3.3, 5.02, 4.13, 6.83,
+      6.49, 6.03, 5.55, 3.8))
 
   # Create a fully-connected and undirected
   # graph with loops preserved; use the
@@ -633,6 +632,5 @@ test_that("Adding a full graph is possible", {
   # edge weight attribute
   expect_equal(
     get_edge_df(graph)[, 4],
-    c("8.66", "3.3", "5.02",
-      "6.83", "6.49", "3.8"))
+    c(8.66, 3.3, 5.02, 6.83, 6.49, 3.8))
 })
