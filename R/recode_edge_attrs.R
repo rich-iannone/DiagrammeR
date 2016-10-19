@@ -162,7 +162,9 @@ recode_edge_attrs <- function(graph,
       # Edge attribute does not exist and values be
       # part of a new edge attribute
       edges <-
-        cbind(edges, data.frame(recoded_vector))
+        cbind(edges,
+              data.frame(recoded_vector,
+                         stringsAsFactors = FALSE))
 
       # Set the column name for the copied attr
       colnames(edges)[ncol(edges)] <- edge_attr_to

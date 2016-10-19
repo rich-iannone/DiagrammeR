@@ -197,7 +197,9 @@ recode_node_attrs <- function(graph,
       # Node attribute does not exist and values be
       # part of a new node attribute
       nodes <-
-        cbind(nodes, data.frame(recoded_vector))
+        cbind(nodes,
+              data.frame(recoded_vector,
+                         stringsAsFactors = FALSE))
 
       # Set the column name for the copied attr
       colnames(nodes)[ncol(nodes)] <- node_attr_to
