@@ -32,13 +32,31 @@
 #'
 #' # Add edges between nodes using a
 #' # character string with node ID values
-#' graph <-
+#' graph_node_id <-
 #'   graph %>%
 #'   add_edges_w_string(
 #'     "1->2 1->3 2->4 2->3")
 #'
 #' # Show the graph's internal edge data frame
-#' get_edge_df(graph)
+#' get_edge_df(graph_node_id)
+#' #>   from to rel
+#' #> 1    1  2
+#' #> 2    1  3
+#' #> 3    2  4
+#' #> 4    2  3
+#'
+#' # Add edges between nodes using a
+#' # character string with node label values
+#' # and setting `use_label = TRUE`
+#' graph_node_label <-
+#'   graph %>%
+#'   add_edges_w_string(
+#'     "one->two one->three
+#'      two->four two->three",
+#'     use_label = TRUE)
+#'
+#' # Show the graph's internal edge data frame
+#' get_edge_df(graph_node_label)
 #' #>   from to rel
 #' #> 1    1  2
 #' #> 2    1  3
