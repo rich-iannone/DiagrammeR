@@ -65,48 +65,34 @@ add_edge_df <- function(graph,
   # NULL, combine the incoming edge data frame with the
   # existing edge definitions in the graph object
   if (!is.null(graph$edges_df)) {
-    combined_edges <-
-      combine_edges(graph$edges_df, edge_df)
 
-    dgr_graph <-
-      create_graph(
-        nodes_df = graph$nodes_df,
-        edges_df = combined_edges,
-        graph_attrs = graph$graph_attrs,
-        node_attrs = graph$node_attrs,
-        edge_attrs = graph$edge_attrs,
-        directed = ifelse(is_graph_directed(graph),
-                          TRUE, FALSE),
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz)
+    combined_edges <-
+      combine_edges(
+        graph$edges_df,
+        edge_df)
+
+    # Replace the graph's internal edge
+    # data frame with the `combined_edges`
+    # edge data frame
+    graph$edges_df <- combined_edges
 
     # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
+    graph$last_node <- nodes_created
 
-    return(dgr_graph)
+    return(graph)
   }
 
   # If the `edges_df` component of the graph is NULL,
   # insert the edge data frame into the graph object
   if (is.null(graph$edges_df)) {
 
-    dgr_graph <-
-      create_graph(
-        nodes_df = graph$nodes_df,
-        edges_df = edge_df,
-        graph_attrs = graph$graph_attrs,
-        node_attrs = graph$node_attrs,
-        edge_attrs = graph$edge_attrs,
-        directed = ifelse(is_graph_directed(graph),
-                          TRUE, FALSE),
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz)
+    # Add the `edge_df` edge data
+    # frame to the graph
+    graph$edges_df <- edge_df
 
     # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
+    graph$last_node <- nodes_created
 
-    return(dgr_graph)
+    return(graph)
   }
 }
