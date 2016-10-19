@@ -43,6 +43,7 @@
 #' #> 3     3          3     4 circle    4
 #' #> 4     4          4   3.5 circle  3.5
 #' #> 5     5          5   6.5 circle  6.5
+#' @importFrom dplyr bind_cols
 #' @export copy_node_attrs
 
 copy_node_attrs <- function(graph,
@@ -80,8 +81,12 @@ copy_node_attrs <- function(graph,
   col_num_copy_from <-
     which(colnames(nodes) %in% node_attr_from)
 
-  # Copy the column through a `cbind()`
-  nodes <- cbind(nodes, nodes[,col_num_copy_from])
+  # Copy the column using `bind_cols()`
+  nodes <-
+    dplyr::bind_cols(
+      nodes,
+      as.data.frame(nodes[, col_num_copy_from],
+                    stringsAsFactors = FALSE))
 
   # Set the column name for the copied attr
   colnames(nodes)[ncol(nodes)] <- node_attr_to
