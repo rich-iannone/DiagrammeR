@@ -97,11 +97,6 @@ copy_edge_attrs <- function(graph,
   # Set the column name for the copied attr
   colnames(edges)[ncol(edges)] <- edge_attr_to
 
-  # Ensure that the new column is of the
-  # `character` class
-  edges[, ncol(edges)] <-
-    as.character(edges[, ncol(edges)])
-
   # Create a new graph object
   dgr_graph <-
     create_graph(
