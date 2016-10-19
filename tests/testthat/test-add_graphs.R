@@ -596,7 +596,7 @@ test_that("Adding a full graph is possible", {
   # Expect 3 nodes to have been created
   expect_equal(node_count(graph), 3)
 
-  # Expect 9 edges to have been created
+  # Expect 6 edges to have been created
   expect_equal(edge_count(graph), 6)
 
   # Expect that there are 3 loops in the graph
@@ -633,4 +633,76 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     get_edge_df(graph)[, 4],
     c(8.66, 3.3, 5.02, 6.83, 6.49, 3.8))
+
+  # Create a fully-connected and undirected
+  # graph with loops preserved; use the
+  # matrix to provide values for the edge
+  # `weight` attribute, however, do not add
+  # labels to this graph
+  graph <-
+    create_graph(directed = FALSE) %>%
+    add_full_graph(
+      n = 3,
+      type = "weighted",
+      label = FALSE,
+      rel = "related_to",
+      edge_wt_matrix = edge_wt_matrix_rownames,
+      keep_loops = TRUE)
+
+  # Expect 3 nodes to have been created
+  expect_equal(node_count(graph), 3)
+
+  # Expect 6 edges to have been created
+  expect_equal(edge_count(graph), 6)
+
+  # Expect that there are 3 loops in the graph
+  expect_equal(
+    length(
+      which(
+        get_edge_df(graph)[, 1] ==
+          get_edge_df(graph)[, 2])),
+    3)
+
+  # Expect that the `type` node attr
+  # has the value `connected` for all
+  # nodes created
+  expect_equal(
+    unique(get_node_df(graph)[, 2]),
+    "weighted")
+
+  # Expect that the `label` values
+  # assigned to the nodes are simply
+  # character representations of the
+  # node ID values
+  expect_equal(
+    get_node_df(graph)[, 3],
+    c("1", "2", "3"))
+
+  # Expect that the `label` edge attr
+  # has the value `connected_to` for
+  # all edges created
+  expect_equal(
+    unique(get_edge_df(graph)[, 3]),
+    "related_to")
+
+  # Expect certain values for the
+  # edge weight attribute
+  expect_equal(
+    get_edge_df(graph)[, 4],
+    c(8.66, 3.3, 5.02, 6.83, 6.49, 3.8))
+
+  # Create a graph with a cycle then
+  # and add a full graph
+  # with 3 nodes to it; discard loops
+  graph <-
+    create_graph() %>%
+    add_cycle(5) %>%
+    add_full_graph(
+      n = 8, keep_loops = FALSE)
+
+  # Expect 13 nodes to have been created
+  expect_equal(node_count(graph), 13)
+
+  # Expect 6 edges to have been created
+  expect_equal(edge_count(graph), 61)
 })
