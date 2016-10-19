@@ -19,6 +19,30 @@ generate_dot <- function(graph) {
   edge_attrs <- graph$edge_attrs
   directed <- graph$directed
 
+  # Replace NA values with empty strings in `nodes_df`
+  if (!is.null(nodes_df)) {
+    if (ncol(nodes_df) >= 4) {
+      for (i in 4:ncol(nodes_df)) {
+        nodes_df[, i] <-
+          ifelse(is.na(nodes_df[, i]), "", nodes_df[, i])
+        nodes_df[, i] <-
+          as.character(nodes_df[, i])
+      }
+    }
+  }
+
+  # Replace NA values with empty strings in `edges_df`
+  if (!is.null(edges_df)) {
+    if (ncol(edges_df) >= 4) {
+      for (i in 4:ncol(edges_df)) {
+        edges_df[, i] <-
+          ifelse(is.na(edges_df[, i]), "", edges_df[, i])
+        edges_df[, i] <-
+          as.character(edges_df[, i])
+      }
+    }
+  }
+
   # Create vector of graph attributes
   graph_attributes <-
     c("bgcolor", "layout", "overlap", "fixedsize",
@@ -50,7 +74,6 @@ generate_dot <- function(graph) {
       "tailclip", "tailhref", "taillabel", "tailport",
       "tailtarget", "tailtooltip", "tailURL", "target",
       "tooltip", "weight")
-
 
   if (all(c(is.null(nodes_df),
             is.null(edges_df)))) {
@@ -275,7 +298,9 @@ generate_dot <- function(graph) {
         }
 
         if (length(other_columns_with_node_attributes) > 0) {
+
           for (j in other_columns_with_node_attributes) {
+
             if (j == other_columns_with_node_attributes[1]) {
               attr_string <- vector(mode = "character", length = 0)
             }
@@ -486,18 +511,25 @@ generate_dot <- function(graph) {
       # Construct the `edge_block` character object
       if (exists("from_column") &
           exists("to_column")) {
+
         if (length(from_column) == 1 &
             length(from_column) == 1) {
+
           for (i in 1:nrow(edges_df)) {
+
             if (i == 1) {
               edge_block <-
                 vector(mode = "character", length = 0)
             }
+
             if (length(other_columns_with_edge_attributes) > 0) {
+
               for (j in other_columns_with_edge_attributes) {
+
                 if (j == other_columns_with_edge_attributes[1]) {
                   attr_string <- vector(mode = "character", length = 0)
                 }
+
                 # Create the edge attributes for labels
                 # and tooltips when provided
                 if (all(colnames(edges_df)[j] %in%
