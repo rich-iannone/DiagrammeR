@@ -125,9 +125,8 @@ mutate_edge_attrs <- function(graph,
   mutated_vector <-
     eval(parse(text = parsed_expression))
 
-  # Round and coerce the mutated vector
-  mutated_vector <-
-    as.character(round(mutated_vector, round_to))
+  # Round the mutated vector
+  mutated_vector <- round(mutated_vector, round_to)
 
   if (!is.null(edge_attr_to)) {
 

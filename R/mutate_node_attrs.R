@@ -120,15 +120,14 @@ mutate_node_attrs <- function(graph,
   mutated_vector <-
     eval(parse(text = parsed_expression))
 
-  # Round and coerce the mutated vector
-  mutated_vector <-
-    as.character(round(mutated_vector, round_to))
+  # Round the mutated vector
+  mutated_vector <- round(mutated_vector, round_to)
 
   if (!is.null(node_attr_to)) {
 
     # Stop function if `node_attr_to` is
-    # `nodes` or `node`
-    if (any(c("nodes", "node") %in% node_attr_to)) {
+    # `id` or `nodes`
+    if (any(c("id", "nodes") %in% node_attr_to)) {
       stop("You cannot use those names.")
     }
 
