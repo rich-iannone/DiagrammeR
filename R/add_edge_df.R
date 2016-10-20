@@ -67,7 +67,7 @@ add_edge_df <- function(graph,
   if (!is.null(graph$edges_df)) {
 
     combined_edges <-
-      combine_edges(
+      combine_edfs(
         graph$edges_df,
         edge_df)
 

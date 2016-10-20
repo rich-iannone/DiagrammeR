@@ -161,7 +161,7 @@ add_edge <- function(graph,
     if (!is.null(rel)) {
 
       combined_edges <-
-        combine_edges(
+        combine_edfs(
           graph$edges_df,
           create_edge_df(
             from = from,
@@ -174,7 +174,7 @@ add_edge <- function(graph,
     if (is.null(rel)) {
 
       combined_edges <-
-        combine_edges(
+        combine_edfs(
           graph$edges_df,
           create_edge_df(
             from = from,

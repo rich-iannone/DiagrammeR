@@ -81,7 +81,7 @@ country_graph <- function(iso_a2 = NULL,
             image = "https://raw.githubusercontent.com/rich-iannone/DiagrammeR/master/inst/examples/NFFFFFF-0.png"))
 
       edges <-
-        combine_edges(
+        combine_edfs(
           edges,
           create_edges(
             from = paste0(countries[k],

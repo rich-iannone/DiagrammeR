@@ -87,7 +87,7 @@ add_node <- function(graph,
       if (!is.null(graph$edges_df)) {
 
         combined_edges <-
-          combine_edges(
+          combine_edfs(
             graph$edges_df,
             create_edges(
               from = from,
@@ -163,7 +163,7 @@ add_node <- function(graph,
     if (!is.null(graph$edges_df)) {
 
       combined_edges <-
-        combine_edges(
+        combine_edfs(
           graph$edges_df,
           create_edge_df(
             from = rep(node, length(to)),
@@ -249,7 +249,7 @@ add_node <- function(graph,
       if (!is.null(graph$edges_df)) {
 
         combined_edges <-
-          combine_edges(
+          combine_edfs(
             graph$edges_df,
             create_edge_df(
               from = from,
@@ -262,7 +262,7 @@ add_node <- function(graph,
       if (is.null(graph$edges_df)) {
 
         combined_edges <-
-          combine_edges(
+          combine_edfs(
             create_edge_df(
               from = from,
               to = rep(node, length(from))),
