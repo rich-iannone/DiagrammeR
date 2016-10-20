@@ -27,10 +27,10 @@ test_that("combine_edges",{
     c("data.table", "tbl_df", class(edges_2))
 
   # Combine the 2 edge data frames
-  expect_warning(combine_edges(edges_1, edges_2),
+  expect_warning(combine_edfs(edges_1, edges_2),
                  regexp = NA)
 
-  all_edges <- combine_edges(edges_1, edges_2)
+  all_edges <- combine_edfs(edges_1, edges_2)
 
   # Expect that a data frame is generated
   expect_is(all_edges, "data.frame")

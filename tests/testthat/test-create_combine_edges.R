@@ -98,7 +98,7 @@ test_that("two edge data frames can be successfully combined", {
       color = "red")
 
   # Combine the 2 edge data frames
-  all_edges <- combine_edges(edges_1, edges_2)
+  all_edges <- combine_edfs(edges_1, edges_2)
 
   # Expect that a data frame is generated
   expect_is(all_edges, "data.frame")
@@ -140,7 +140,7 @@ test_that("three edge data frames can be successfully combined", {
       color = "red")
 
   # Combine the 3 edge data frames
-  all_edges <- combine_edges(edges_1, edges_2, edges_3)
+  all_edges <- combine_edfs(edges_1, edges_2, edges_3)
 
   # Expect that a data frame is generated
   expect_is(all_edges, "data.frame")
