@@ -108,10 +108,6 @@ recode_node_attrs <- function(graph,
                               otherwise = NULL,
                               node_attr_to = NULL) {
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Get list object from named vectors
   replacements <- list(...)
 
@@ -213,9 +209,6 @@ recode_node_attrs <- function(graph,
   # Replace the `nodes_df` object in the graph
   # with the `nodes` object
   graph$nodes_df <- nodes
-
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created
 
   return(graph)
 }

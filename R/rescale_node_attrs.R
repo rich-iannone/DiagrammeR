@@ -92,10 +92,6 @@ rescale_node_attrs <- function(graph,
                                from_lower_bound = NULL,
                                from_upper_bound = NULL) {
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Extract the graph's ndf
   nodes <- get_node_df(graph)
 
@@ -168,9 +164,6 @@ rescale_node_attrs <- function(graph,
       x = graph,
       node_attr = node_attr_to,
       values = nodes_attr_vector_rescaled)
-
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created
 
   return(graph)
 }

@@ -83,10 +83,6 @@ mutate_edge_attrs <- function(graph,
                               edge_attr_to = NULL,
                               round_to = 3) {
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Extract the graph's edf
   edges <- get_edge_df(graph)
 
@@ -162,21 +158,8 @@ mutate_edge_attrs <- function(graph,
     edges[, col_num_evaluate] <- mutated_vector
   }
 
-  # Create a new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = graph$nodes_df,
-      edges_df = edges,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = graph$directed,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  # Update the graph
+  graph$edges_df <- edges
 
-  # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
-
-  return(dgr_graph)
+  return(graph)
 }
