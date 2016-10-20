@@ -4,7 +4,7 @@
 \alias{add_edges_w_string}
 \title{Add one or more edges using a text string}
 \usage{
-add_edges_w_string(graph, edges, rel = NULL, use_label = FALSE)
+add_edges_w_string(graph, edges, rel = NULL, use_labels = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -23,7 +23,7 @@ error.}
 \item{rel}{an optional vector specifying the
 relationship between the connected nodes.}
 
-\item{use_label}{an option to use node \code{label}
+\item{use_labels}{an option to use node \code{label}
 values in the \code{edges} string to define node
 connections. Note that this is only possible if all
 nodes have distinct \code{label} values set and
@@ -48,13 +48,34 @@ graph <-
 
 # Add edges between nodes using a
 # character string with node ID values
-graph <-
+graph_node_id <-
   graph \%>\%
   add_edges_w_string(
     "1->2 1->3 2->4 2->3")
 
 # Show the graph's internal edge data frame
-get_edge_df(graph)
+get_edge_df(graph_node_id)
+#>   from to rel
+#> 1    1  2
+#> 2    1  3
+#> 3    2  4
+#> 4    2  3
+
+# Add edges between nodes using a
+# character string with node label values
+# and setting `use_labels = TRUE`; note
+# that all nodes must have unique `label`
+# values to use this option
+graph_node_label <-
+  graph \%>\%
+  add_edges_w_string(
+    "one->two one->three
+     two->four two->three",
+    use_labels = TRUE)
+
+# Show the graph's internal edge data frame
+# (it's the same as before)
+get_edge_df(graph_node_label)
 #>   from to rel
 #> 1    1  2
 #> 2    1  3
