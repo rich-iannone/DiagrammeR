@@ -40,10 +40,10 @@ frame (edf), use a categorical edge attribute to
 generate a new edge attribute with color values.
 }
 \examples{
-# Create a random graph of 50 nodes and 85 edges
+# Create a random graph of 10 nodes and 10 edges
 graph <-
   create_random_graph(
-    50, 85, set_seed = 1) \%>\%
+    10, 10, set_seed = 1) \%>\%
   set_edge_attrs(
     "weight", rnorm(edge_count(.), 5, 2))
 
@@ -61,16 +61,16 @@ graph <-
 # Now there will be a `color` edge attribute
 # with distinct colors
 get_edge_df(graph)
-#>    from to rel           weight   color
-#> 1    24 44     4.58523851279607 #21908C
-#> 2    22 12     4.21438414111603 #21908C
-#> 3     4  6     4.36001426290299 #21908C
-#> 4    16 27     4.44177339404688 #21908C
-#> 5    34 20     5.98837666253565 #21908C
-#> 6    46 15     4.64533903546079 #21908C
-#> 7    23 17     3.98808507577148 #3B528B
-#> 8    33 13     7.68607765034082 #5DC863
-#> 9    24 39     4.57084118290626 #21908C
-#> 10    5 44     4.64088693991323 #21908C
+#>    from to rel   weight   color
+#> 1     3  2     4.910133 #21908C
+#> 2     7  4     4.967619 #21908C
+#> 3     8  5     6.887672 #5DC863
+#> 4     8 10     6.642442 #5DC863
+#> 5     4  8     6.187803 #5DC863
+#> 6    10  2     6.837955 #5DC863
+#> 7     7  2     6.564273 #5DC863
+#> 8     3  5     5.149130 #21908C
+#> 9     1  5     1.021297 #440154
+#> 10    9  4     6.239651 #5DC863
 }
 
