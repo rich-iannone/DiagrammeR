@@ -108,7 +108,7 @@ add_edges_w_string <- function(graph,
 
   # If `use_label` is set to TRUE, treat values in
   # list as labels; need to map to node ID values
-  if (use_label) {
+  if (use_labels) {
     from_to_node_id <-
       translate_to_node_id(
         graph = graph,
@@ -116,7 +116,7 @@ add_edges_w_string <- function(graph,
         to = to)
 
     from <- from_to_node_id$from
-    to = from_to_node_id$to
+    to <- from_to_node_id$to
   }
 
   # Create an edge data frame (edf) without
