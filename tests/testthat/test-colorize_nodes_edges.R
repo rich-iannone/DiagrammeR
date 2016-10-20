@@ -51,13 +51,13 @@ test_that("Adding color based on node attributes is possible", {
     set_global_graph_attrs(
       "graph", "layout", "circo")
 
-  # Expect that the `fillcolor` column has
+  # Expect that the `color` column has
   # been created in the node data frame
   expect_true(
     "color" %in% colnames(graph$nodes_df))
 
   # Expect that there are as many different
-  # colors in the `fillcolor` column as there
+  # colors in the `color` column as there
   # are walktrap communities
   expect_equal(
     length(unique(graph$nodes_df$walktrap_group)),
@@ -100,4 +100,81 @@ test_that("Adding color based on node attributes is possible", {
   # column is a properly-formed hexadecimal color
   # code
   expect_match(graph$nodes_df$fillcolor, "#[0-9A-F]{6}")
+})
+
+test_that("Adding color based on edge attributes is possible", {
+
+  # Create a random graph of 10 nodes and 10 edges;
+  # add the `weight` and `rel` edge attrs
+  graph <-
+    create_random_graph(
+      10, 10, set_seed = 1) %>%
+    set_edge_attrs(
+      "weight", rnorm(edge_count(.), 5, 2)) %>%
+    set_edge_attrs(
+      "rel", c("A", "A", "B", "B", "D",
+               "A", "B", "C", "D", "A"))
+
+  # Use the `colorize_edge_attrs()` function
+  # to set different `color` values
+  graph <-
+    graph %>%
+    colorize_edge_attrs(
+      "rel", "color") %>%
+    colorize_edge_attrs(
+      "rel", "fontcolor", alpha = 90)
+
+  # Expect that the `color` and `fontcolor`
+  # columns have been created in the edf
+  expect_true(
+    "color" %in% colnames(graph$edges_df))
+
+  expect_true(
+    "fontcolor" %in% colnames(graph$edges_df))
+
+  # Expect that there are as many different
+  # colors in the `color` and `fontcolor`
+  # columns as there are distinct `rel` values
+  expect_equal(
+    length(unique(graph$edges_df$rel)),
+    length(unique(graph$edges_df$color)))
+
+  expect_equal(
+    length(unique(graph$edges_df$rel)),
+    length(unique(graph$edges_df$fontcolor)))
+
+  # Expect that each value in the `color`
+  # column is a properly-formed hexadecimal color
+  # code
+  expect_match(graph$edges_df$color, "#[0-9A-F]{6}")
+
+  # Expect that each value in the `fontcolor`
+  # column is a properly-formed hexadecimal
+  # color code with alpha value as suffix
+  expect_match(graph$edges_df$fontcolor, "#[0-9A-F]{6}[0-9]{2}")
+
+  # Bucketize values in `weight` using `cut_points`
+  # and assign colors to each of the bucketed ranges
+  # (for values not part of any bucket, a gray color
+  # is assigned by default)
+  graph <-
+    graph %>%
+    colorize_edge_attrs(
+      "weight", "labelfontcolor",
+      cut_points = c(0, 2, 4, 6, 8, 10))
+
+  # Expect that the `labelfontcolor` column has
+  # been created in the edge data frame
+  expect_true(
+    "labelfontcolor" %in% colnames(graph$edges_df))
+
+  # Expect that there are 3 colors in the
+  # `labelfontcolor` column
+  expect_equal(
+    length(unique(graph$edges_df$labelfontcolor)), 3)
+
+  # Expect that each value in the `labelfontcolor`
+  # column is a properly-formed hexadecimal color
+  # code
+  expect_match(graph$edges_df$labelfontcolor, "#[0-9A-F]{6}")
 })
