@@ -12,12 +12,20 @@
 #' @param rel an optional string specifying the
 #' relationship between the
 #' connected nodes.
+#' @param use_labels an option to use node \code{label}
+#' values in \code{from} and \code{to} for defining
+#' node connections. Note that this is only possible
+#' if all nodes have distinct \code{label} values set
+#' and none exist as an empty string.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph with two nodes
+#' # Create a graph with 4 nodes
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(2)
+#'   add_node(label = "one") %>%
+#'   add_node(label = "two") %>%
+#'   add_node(label = "three") %>%
+#'   add_node(label = "four")
 #'
 #' # Add an edge between those nodes and attach a
 #' # relationship to the edge
@@ -26,30 +34,48 @@
 #'    graph,
 #'    from = 1,
 #'    to = 2,
-#'    rel = "to_get")
+#'    rel = "A")
 #'
 #' # Use the `edge_info()` function to verify that
 #' # the edge has been created
 #' edge_info(graph)
-#' #>   from to    rel
-#' #> 1    1  2 to_get
+#' #>   from to rel
+#' #> 1    1  2   A
 #'
 #' # Add another node and edge to the graph
 #' graph <-
 #'   graph %>%
-#'   add_node %>%
-#'   add_edge(3, 2, "to_get")
+#'   add_edge(3, 2, "A")
 #'
 #' # Verify that the edge has been created by
 #' # getting a count of graph edges
 #' edge_count(graph)
 #' #> [1] 2
+#'
+#' # Add edges by specifying node `label` values
+#' # and setting `use_labels = TRUE`; note
+#' # that all nodes must have unique `label`
+#' # values to use this option
+#' graph <-
+#'   graph %>%
+#'   add_edge(
+#'     "three", "four", "L",
+#'     use_labels = TRUE) %>%
+#'   add_edge(
+#'     "four", "one", "L",
+#'     use_labels = TRUE)
+#'
+#' # Use the `get_edges()` function to verify
+#' # that the edges were added
+#' get_edges(graph)
+#' #> [1] "1 -> 2" "3 -> 2" "3 -> 4" "4 -> 1"
 #' @export add_edge
 
 add_edge <- function(graph,
                      from,
                      to,
-                     rel = NULL) {
+                     rel = NULL,
+                     use_labels = FALSE) {
 
   if (is_graph_empty(graph)) {
     stop("Edges cannot be added to an empty graph.")
@@ -57,6 +83,19 @@ add_edge <- function(graph,
 
   if (length(from) > 1 | length(to) > 1) {
     stop("Only one edge can be specified.")
+  }
+
+  # If `use_label` is set to TRUE, treat values in
+  # list as labels; need to map to node ID values
+  if (use_labels) {
+    from_to_node_id <-
+      translate_to_node_id(
+        graph = graph,
+        from = from,
+        to = to)
+
+    from <- from_to_node_id$from
+    to <- from_to_node_id$to
   }
 
   # If an edge between nodes is requested and that
