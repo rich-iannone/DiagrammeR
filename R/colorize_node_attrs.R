@@ -204,21 +204,8 @@ colorize_node_attrs <- function(graph,
     }
   }
 
-  # Create the graph
-  graph <-
-    create_graph(
-      nodes_df = nodes_df,
-      edges_df = graph$edges_df,
-      directed = graph$directed,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      graph_name = graph$graph_name,
-      graph_tz = graph$graph_tz,
-      graph_time = graph$graph_time)
-
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created
+  # Modify the graph
+  graph$nodes_df <- nodes_df
 
   return(graph)
 }
