@@ -178,7 +178,7 @@ test_that("the walktrap algorithm is functional", {
   expect_is(walktrap, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(walktrap), 2)
+  expect_equal(ncol(walktrap), 3)
 
   # Expect specific column names in this data frame
   expect_equal(
