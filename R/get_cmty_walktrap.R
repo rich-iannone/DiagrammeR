@@ -52,7 +52,7 @@ get_cmty_walktrap <- function(graph,
   # Create df with node memberships
   cmty_walktrap_df <-
     data.frame(
-      id = names(igraph::membership(cmty_walktrap_obj)),
+      id = as.integer(names(igraph::membership(cmty_walktrap_obj))),
       walktrap_group = as.vector(igraph::membership(cmty_walktrap_obj)),
       stringsAsFactors = FALSE)
 

@@ -51,7 +51,7 @@ get_cmty_l_eigenvec <- function(graph) {
   # Create df with node memberships
   cmty_l_eigenvec_df <-
     data.frame(
-      id = names(igraph::membership(cmty_l_eigenvec_obj)),
+      id = as.integer(names(igraph::membership(cmty_l_eigenvec_obj))),
       l_eigenvec_group = as.vector(igraph::membership(cmty_l_eigenvec_obj)),
       stringsAsFactors = FALSE)
 
