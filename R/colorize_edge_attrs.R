@@ -83,7 +83,7 @@ colorize_edge_attrs <- function(graph,
     num_recodings <- length(cut_points) - 1
   }
 
-  # Create a data frame which initial values
+  # Create a data frame with initial values
   new_edge_attr_col <-
     data.frame(
       edge_attr_to = rep(default_color, nrow(edges_df)),
@@ -146,10 +146,10 @@ colorize_edge_attrs <- function(graph,
     if (!is.null(alpha)) {
       if (alpha < 100) {
         edges_df[, to_edge_attr_colnum] <-
-          gsub("..$", alpha,edges_df[, to_edge_attr_colnum])
+          gsub("$", alpha, edges_df[, to_edge_attr_colnum])
       } else if (alpha == 100) {
         edges_df[, to_edge_attr_colnum] <-
-          gsub("..$", "", edges_df[, to_edge_attr_colnum])
+          gsub("$", "", edges_df[, to_edge_attr_colnum])
       }
     }
   }

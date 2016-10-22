@@ -147,7 +147,7 @@ colorize_node_attrs <- function(graph,
     num_recodings <- length(cut_points) - 1
   }
 
-  # Create a data frame which initial values
+  # Create a data frame with initial values
   new_node_attr_col <-
     data.frame(
       node_attr_to = rep(default_color, nrow(nodes_df)),
@@ -196,6 +196,7 @@ colorize_node_attrs <- function(graph,
   # Recode according to provided cut points
   if (!is.null(cut_points)) {
     for (i in 1:(length(cut_points) - 1)) {
+
       recode_rows <-
         which(
           as.numeric(nodes_df[,col_to_recode_no]) >=
@@ -210,10 +211,10 @@ colorize_node_attrs <- function(graph,
     if (!is.null(alpha)) {
       if (alpha < 100) {
         nodes_df[, to_node_attr_colnum] <-
-          gsub("..$", alpha,nodes_df[, to_node_attr_colnum])
+          gsub("$", alpha, nodes_df[, to_node_attr_colnum])
       } else if (alpha == 100) {
         nodes_df[, to_node_attr_colnum] <-
-          gsub("..$", "", nodes_df[, to_node_attr_colnum])
+          gsub("$", "", nodes_df[, to_node_attr_colnum])
       }
     }
   }
