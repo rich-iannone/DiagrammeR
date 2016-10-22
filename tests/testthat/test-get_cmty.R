@@ -178,7 +178,7 @@ test_that("the walktrap algorithm is functional", {
   expect_is(walktrap, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(walktrap), 3)
+  expect_equal(ncol(walktrap), 2)
 
   # Expect specific column names in this data frame
   expect_equal(
@@ -194,7 +194,7 @@ test_that("the walktrap algorithm is functional", {
   # identified with labels `1` and `2`
   expect_equal(
     sort(unique(walktrap$walktrap_group)),
-    c(1, 2, 3))
+    c(1, 2))
 
   # Expect the first column to be integer
   expect_is(
