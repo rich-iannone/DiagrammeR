@@ -120,7 +120,7 @@ add_nodes_from_table <- function(graph,
   # Create an empty ndf and column bind
   # with the CSV data
   empty_ndf <-
-    create_node_df(n = rows_in_csv, label = FALSE)
+    create_node_df(n = rows_in_csv)
 
   csv <- cbind(empty_ndf, csv)
 

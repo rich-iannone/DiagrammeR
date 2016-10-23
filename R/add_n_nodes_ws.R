@@ -152,7 +152,7 @@ add_n_nodes_ws <- function(graph,
       new_nodes[, 1] <- new_nodes[, 1] + nodes_created
 
       new_edges <-
-        create_edges(
+        create_edge_df(
           from = seq(nodes_created + 1,
                      nodes_created + n),
           to = rep(nodes_in_selection[i], n),

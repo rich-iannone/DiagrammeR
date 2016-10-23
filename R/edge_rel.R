@@ -109,7 +109,7 @@ edge_rel <- function(graph,
 
     relationship_set <-
       ifelse(is.null(graph$edges_df$rel[edge_row]) ||
-               graph$edges_df$rel[edge_row] == "",
+               is.na(graph$edges_df$rel[edge_row]),
              FALSE, TRUE)
 
     # Remove relationship if a relationship is set
@@ -118,7 +118,7 @@ edge_rel <- function(graph,
         return(graph)
       }
       if (relationship_set) {
-        graph$edges_df$rel[edge_row] <- ""
+        graph$edges_df$rel[edge_row] <- as.character(NA)
         return(graph)
       }
     }

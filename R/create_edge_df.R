@@ -70,10 +70,10 @@ create_edge_df <- function(from,
   from <- as.integer(from)
   to <- as.integer(to)
 
-  # if `rel` is NULL, create empty character vector;
-  # class as character otherwise
+  # if `rel` is NULL, create character vector with
+  # NA values; class as character otherwise
   if (is.null(rel)) {
-    rel <- as.character(rep("", length(from)))
+    rel <- rep(as.character(NA), length(from))
   } else {
     rel <- as.character(rel)
   }
@@ -90,7 +90,9 @@ create_edge_df <- function(from,
     if (length(rel) > 1 &
         length(rel) < length(from)) {
       rel <-
-        c(rel, rep("", (length(from) - length(rel))))
+        c(rel,
+          rep(as.character(NA),
+              (length(from) - length(rel))))
     }
 
     # Trim vectors with number of values exceeding
@@ -118,8 +120,9 @@ create_edge_df <- function(from,
           length(extras[[i]]) < length(from)) {
         extras[[i]] <-
           c(extras[[i]],
-            rep("", (length(from) -
-                       length(extras[[i]]))))
+            rep(as.character(NA),
+                (length(from) -
+                   length(extras[[i]]))))
       }
 
       # Trim vectors with number of values exceeding
@@ -131,8 +134,8 @@ create_edge_df <- function(from,
 
     # Create a data frame from the `extras` list
     extras <-
-        as.data.frame(
-          extras, stringsAsFactors = FALSE)
+      as.data.frame(
+        extras, stringsAsFactors = FALSE)
   }
 
   if (inherits(extras, "data.frame")) {

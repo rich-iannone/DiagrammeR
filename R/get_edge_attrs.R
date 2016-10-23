@@ -23,7 +23,7 @@
 #'   add_n_nodes(4) %>%
 #'   {
 #'     edges <-
-#'       create_edges(
+#'       create_edge_df(
 #'         from = c(1, 2, 1, 4),
 #'         to = c(2, 3, 4, 3),
 #'         rel = "rel")

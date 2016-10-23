@@ -95,8 +95,8 @@ test_that("a random graph can be made to various specifications", {
       display_labels = FALSE)
 
   # Expect that labels are not present
-  expect_true(
-    all(get_node_df(
-      random_graph_10_15_directed_no_labels)$label ==
-        ""))
+  expect_equal(
+    get_node_df(
+      random_graph_10_15_directed_no_labels)$label,
+        rep(as.character(NA), 10))
 })

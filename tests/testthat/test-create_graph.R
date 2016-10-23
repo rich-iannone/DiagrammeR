@@ -49,7 +49,6 @@ test_that("a graph object with nodes can be created correctly", {
   nodes <-
     create_node_df(
       n = 4,
-      label = FALSE,
       type = "lower",
       style = "filled",
       color = "aqua",
@@ -156,7 +155,6 @@ test_that("a graph object with nodes and edges can be created correctly", {
   nodes <-
     create_node_df(
       n = 4,
-      label = FALSE,
       type = "lower",
       style = "filled",
       color = "aqua",

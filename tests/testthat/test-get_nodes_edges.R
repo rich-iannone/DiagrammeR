@@ -181,7 +181,7 @@ test_that("getting edge information from an edge data frame is possible", {
 
   # Create a simple edge data frame
   edges <-
-    create_edges(
+    create_edge_df(
       from = c(1, 1),
       to = c(2, 3))
 

@@ -50,7 +50,6 @@ test_that("create_graph",{
   nodes <-
     create_node_df(
       n = 4,
-      label = FALSE,
       type = "lower",
       style = "filled",
       color = "aqua",

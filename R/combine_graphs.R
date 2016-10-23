@@ -55,7 +55,8 @@ combine_graphs <- function(x,
   y_nodes_df <- get_node_df(y)
 
   # Is label a copy of node IDs in graph `y`?
-  if (all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3])) {
+  if (all(as.character(y_nodes_df[, 1]) == y_nodes_df[, 3]) &
+      !any(is.na(y_nodes_df[, 3]))) {
     y_label_node <- TRUE
   } else {
     y_label_node <- FALSE
@@ -131,7 +132,9 @@ combine_graphs <- function(x,
       x_edges_df,
       y_edges_df)
 
-  dgr_graph <-
+  # Create a graph object and inherit attributes
+  # from the first graph provided (`x`)
+  graph <-
     create_graph(
       nodes_df = combined_nodes,
       edges_df = combined_edges,
@@ -146,5 +149,5 @@ combine_graphs <- function(x,
       graph_time = x$graph_time,
       graph_tz = x$graph_tz)
 
-  return(dgr_graph)
+  return(graph)
 }

@@ -13,7 +13,7 @@ test_that("a correct edge data frame is generated", {
 
   # Create `edges_2` edge data frame
   edges_2 <-
-    create_edges(
+    create_edge_df(
       from = c(5, 7, 8, 8),
       to = c(7, 8, 6, 5),
       rel = "receives",
@@ -35,7 +35,7 @@ test_that("a correct edge data frame is generated", {
   # Create an edge data frame using a vector with
   # length > 1 and length < length(from | to)
   edges_var_1 <-
-    create_edges(
+    create_edge_df(
       from = c(1, 1, 2, 3),
       to = c(2, 4, 4, 1),
       rel = "requires",
@@ -51,12 +51,12 @@ test_that("a correct edge data frame is generated", {
   # Expect that the `color` attribute is only
   # written twice and not repeated down
   expect_equal(
-    edges_var_1$color, c("green", "green", "", ""))
+    edges_var_1$color, c("green", "green", NA, NA))
 
   # Create an edge data frame using a vector with
   # length > length(from | to)
   edges_var_2 <-
-    create_edges(
+    create_edge_df(
       from = c(1, 1, 2, 3),
       to = c(2, 4, 4, 1),
       rel = "requires",
@@ -81,7 +81,7 @@ test_that("two edge data frames can be successfully combined", {
 
   # Create `edges_1` edge data frame
   edges_1 <-
-    create_edges(
+    create_edge_df(
       from = c(1, 1, 2, 3),
       to = c(2, 4, 4, 1),
       rel = "requires",
@@ -90,7 +90,7 @@ test_that("two edge data frames can be successfully combined", {
 
   # Create `edges_2` edge data frame
   edges_2 <-
-    create_edges(
+    create_edge_df(
       from = c(5, 7, 8, 8),
       to = c(7, 8, 6, 5),
       rel = "receives",
@@ -114,7 +114,7 @@ test_that("three edge data frames can be successfully combined", {
 
   # Create `edges_1` edge data frame
   edges_1 <-
-    create_edges(
+    create_edge_df(
       from = c(1, 1),
       to = c(2, 4),
       rel = "requires",
@@ -123,7 +123,7 @@ test_that("three edge data frames can be successfully combined", {
 
   # Create `edges_2` edge data frame
   edges_2 <-
-    create_edges(
+    create_edge_df(
       from = c(2, 3),
       to = c(4, 1),
       rel = "requires",
@@ -132,7 +132,7 @@ test_that("three edge data frames can be successfully combined", {
 
   # Create `edges_3` edge data frame
   edges_3 <-
-    create_edges(
+    create_edge_df(
       from = c(5, 7, 8, 8),
       to = c(7, 8, 6, 5),
       rel = "receives",

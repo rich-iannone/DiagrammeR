@@ -6,7 +6,7 @@ test_that("a correct node data frame is generated", {
   nodes_1 <-
     create_node_df(
       n = 4,
-      label = FALSE,
+      label = NULL,
       type = "lower",
       style = "filled",
       color = "aqua",
@@ -18,7 +18,7 @@ test_that("a correct node data frame is generated", {
   nodes_2 <-
     create_node_df(
       n = 4,
-      label = FALSE,
+      label = NULL,
       type = "upper",
       style = "filled",
       color = "red",
@@ -33,9 +33,9 @@ test_that("a correct node data frame is generated", {
   expect_equal(ncol(nodes_1), 7)
   expect_equal(ncol(nodes_2), 7)
 
-  # Expect that 'label = FALSE' produces blank label columns
-  expect_true(all(nodes_1$label == rep("", 4)))
-  expect_true(all(nodes_2$label == rep("", 4)))
+  # Expect that 'label = NULL' produces blank label columns
+  expect_equal(nodes_1$label, rep(as.character(NA), 4))
+  expect_equal(nodes_2$label, rep(as.character(NA), 4))
 
   # Expect that a single value repeats across rows
   expect_true(all(nodes_1$type == rep("lower", 4)))
@@ -107,7 +107,7 @@ test_that("node data frames can be successfully combined", {
   nodes_1 <-
     create_node_df(
       n = 4,
-      label = FALSE,
+      label = NULL,
       type = "lower",
       style = "filled",
       color = "aqua",
@@ -119,7 +119,7 @@ test_that("node data frames can be successfully combined", {
   nodes_2 <-
     create_node_df(
       n = 4,
-      label = FALSE,
+      label = NULL,
       type = "upper",
       style = "filled",
       color = "red",
@@ -136,15 +136,15 @@ test_that("node data frames can be successfully combined", {
   expect_equal(ncol(all_nodes), 7)
 
   # Expect that the 'label' columns has spaces for labels
-  expect_true(all(all_nodes$label == rep("", 8)))
+  expect_equal(all_nodes$label, rep(as.character(NA), 8))
 
   # Expect that the rows combined correctly
   expect_true(all(c(nodes_1[,1], nodes_2[,1]) ==
                     all_nodes[,1]))
   expect_true(all(c(nodes_1[,2], nodes_2[,2]) ==
                     all_nodes[,2]))
-  expect_true(all(c(nodes_1[,3], nodes_2[,3]) ==
-                    all_nodes[,3]))
+  expect_equal(c(nodes_1[,3], nodes_2[,3]),
+                    all_nodes[,3])
   expect_true(all(c(nodes_1[,4], nodes_2[,4]) ==
                     all_nodes[,4]))
   expect_true(all(c(nodes_1[,5], nodes_2[,5]) ==

@@ -117,7 +117,7 @@ add_edge <- function(graph,
   }
 
   # If `graph$edges_df` is NULL then use
-  # `create_edges()` to add an edge
+  # `create_edge_df()` to add an edge
   if (is.null(graph$edges_df)) {
 
     edf <-

@@ -402,7 +402,7 @@ test_that("adding several edges with a string is possible", {
   # Expect that the edge relationship has not been set
   # for any of the edges
   expect_equal(get_edge_df(graph)[, 3],
-               rep("", 9))
+               rep(as.character(NA), 9))
 
   # Create another empty graph
   graph <- create_graph()
