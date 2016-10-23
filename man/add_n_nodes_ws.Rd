@@ -5,7 +5,7 @@
 \title{Add a multiple of new nodes with edges to or from
 one or more selected nodes}
 \usage{
-add_n_nodes_ws(graph, n, direction = NULL, type = NULL, label = TRUE,
+add_n_nodes_ws(graph, n, direction = NULL, type = NULL, label = NULL,
   rel = NULL)
 }
 \arguments{
@@ -21,13 +21,11 @@ edges from existing nodes to the new nodes. The
 \code{to} option will create new edges directed
 toward the existing nodes.}
 
-\item{type}{an optional string to apply a
-\code{type} attribute to all newly created nodes.}
+\item{type}{an optional character vector that
+provides group identifiers for the nodes to be added.}
 
-\item{label}{a character object for supplying an
-optional label to the node. Setting to \code{TRUE}
-ascribes the node ID to the label. Setting to
-\code{FALSE} yields a blank label.}
+\item{label}{an optional character object that
+describes the nodes to be added.}
 
 \item{rel}{an optional string to apply a
 \code{rel} attribute to all newly created edges.}
