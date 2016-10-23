@@ -19,12 +19,10 @@
 #' edges from existing nodes to the new nodes. The
 #' \code{to} option will create new edges directed
 #' toward the existing nodes.
-#' @param type an optional string to apply a
-#' \code{type} attribute to all newly created nodes.
-#' @param label a character object for supplying an
-#' optional label to the node. Setting to \code{TRUE}
-#' ascribes the node ID to the label. Setting to
-#' \code{FALSE} yields a blank label.
+#' @param type an optional character vector that
+#' provides group identifiers for the nodes to be added.
+#' @param label an optional character object that
+#' describes the nodes to be added.
 #' @param rel an optional string to apply a
 #' \code{rel} attribute to all newly created edges.
 #' @return a graph object of class \code{dgr_graph}.
@@ -71,7 +69,7 @@ add_n_nodes_ws <- function(graph,
                            n,
                            direction = NULL,
                            type = NULL,
-                           label = TRUE,
+                           label = NULL,
                            rel = NULL) {
 
   # If no node selection is available, return
@@ -93,6 +91,18 @@ add_n_nodes_ws <- function(graph,
     direction <- "to"
   }
 
+  if (is.null(type)) {
+    type <- as.character(NA)
+  }
+
+  if (is.null(label)) {
+    label <- as.character(NA)
+  }
+
+  if (is.null(rel)) {
+    rel <- as.character(NA)
+  }
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
@@ -107,51 +117,23 @@ add_n_nodes_ws <- function(graph,
 
     for (i in 1:length(nodes_in_selection)) {
 
-      if (!is.null(type)) {
-        new_nodes <-
-          create_node_df(
-            n = n,
-            type = type,
-            label = label)
+      new_nodes <-
+        create_node_df(
+          n = n,
+          type = type,
+          label = label)
 
-        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
+      new_nodes[, 1] <- new_nodes[, 1] + nodes_created
 
-        if (label == TRUE) {
-          new_nodes[, 3] <- as.character(new_nodes[, 1])
-        }
-
-      } else {
-        new_nodes <-
-          create_node_df(
-            n = n,
-            label = label)
-
-        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
-
-        if (label == TRUE) {
-          new_nodes[, 3] <- as.character(new_nodes[, 1])
-        }
-      }
-
-      if (!is.null(rel)) {
-        new_edges <-
-          create_edge_df(
-            from = rep(nodes_in_selection[i], n),
-            to = seq(nodes_created + 1,
-                     nodes_created + n),
-            rel = rel)
-      } else {
-        new_edges <-
-          create_edge_df(
-            from = rep(nodes_in_selection[i], n),
-            to = seq(nodes_created + 1,
-                     nodes_created + n))
-      }
+      new_edges <-
+        create_edge_df(
+          from = rep(nodes_in_selection[i], n),
+          to = seq(nodes_created + 1,
+                   nodes_created + n),
+          rel = rel)
 
       new_edges[, 1] <- as.integer(new_edges[, 1])
       new_edges[, 2] <- as.integer(new_edges[, 2])
-
-      nodes_created <- nodes_created + n
     }
   }
 
@@ -161,51 +143,23 @@ add_n_nodes_ws <- function(graph,
 
     for (i in 1:length(nodes_in_selection)) {
 
-      if (!is.null(type)) {
-        new_nodes <-
-          create_node_df(
-            n = n,
-            type = type,
-            label = label)
+      new_nodes <-
+        create_node_df(
+          n = n,
+          type = type,
+          label = label)
 
-        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
+      new_nodes[, 1] <- new_nodes[, 1] + nodes_created
 
-        if (label == TRUE) {
-          new_nodes[, 3] <- as.character(new_nodes[, 1])
-        }
-
-      } else {
-        new_nodes <-
-          create_node_df(
-            n = n,
-            label = label)
-
-        new_nodes[, 1] <- new_nodes[, 1] + nodes_created
-
-        if (label == TRUE) {
-          new_nodes[, 3] <- as.character(new_nodes[, 1])
-        }
-      }
-
-      if (!is.null(rel)) {
-        new_edges <-
-          create_edges(
-            from = seq(nodes_created + 1,
-                       nodes_created + n),
-            to = rep(nodes_in_selection[i], n),
-            rel = rel)
-      } else {
-        new_edges <-
-          create_edges(
-            from = seq(nodes_created + 1,
-                       nodes_created + n),
-            to = rep(nodes_in_selection[i], n))
-      }
+      new_edges <-
+        create_edges(
+          from = seq(nodes_created + 1,
+                     nodes_created + n),
+          to = rep(nodes_in_selection[i], n),
+          rel = rel)
 
       new_edges[, 1] <- as.integer(new_edges[, 1])
       new_edges[, 2] <- as.integer(new_edges[, 2])
-
-      nodes_created <- nodes_created + n
     }
   }
 
@@ -220,25 +174,12 @@ add_n_nodes_ws <- function(graph,
     combined_edges <- new_edges
   }
 
-  # Create new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = combined_nodes,
-      edges_df = combined_edges,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = ifelse(is_graph_directed(graph),
-                        TRUE, FALSE),
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  # Modify the graph object
+  graph$nodes_df <- combined_nodes
+  graph$edges_df <- combined_edges
+  graph$directed <- ifelse(is_graph_directed(graph),
+                           TRUE, FALSE)
+  graph$last_node <- graph$last_node + n
 
-  # Retain the currently selected nodes
-  dgr_graph$selection$nodes <- nodes_in_selection
-
-  # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
-
-  return(dgr_graph)
+  return(graph)
 }

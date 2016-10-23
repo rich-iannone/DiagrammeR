@@ -6,12 +6,10 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @param n the number of new nodes to add to the graph.
-#' @param type an optional string to apply a
-#' \code{type} attribute to all newly created nodes.
-#' @param label a character object for supplying an
-#' optional label to the node. Setting to \code{TRUE}
-#' ascribes the node ID to the label. Setting to
-#' \code{FALSE} yields a blank label.
+#' @param type an optional character vector that
+#' provides group identifiers for the nodes to be added.
+#' @param label an optional character object that
+#' describes the nodes to be added.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and add 5 nodes; these
@@ -29,37 +27,30 @@
 add_n_nodes <- function(graph,
                         n,
                         type = NULL,
-                        label = TRUE) {
+                        label = NULL) {
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
-  if (!is.null(type)) {
-    new_nodes <-
-      create_node_df(
-        n = n,
-        label = label,
-        type = type)
-  } else {
-    new_nodes <-
-      create_node_df(
-        n = n,
-        label = label)
+  if (is.null(type)) {
+    type <- as.character(NA)
   }
 
-  new_nodes[, 1] <-
-    new_nodes[, 1] + nodes_created
-
-  if (label == TRUE) {
-    new_nodes[, 3] <- as.character(new_nodes[, 1])
+  if (is.null(label)) {
+    label <- as.character(NA)
   }
+
+  # Create a ndf of the correct length
+  new_nodes <-
+    create_node_df(
+      n = n,
+      type = type,
+      label = label)
+
+  new_nodes[, 1] <- new_nodes[, 1] + graph$last_node
 
   graph$nodes_df <-
     dplyr::bind_rows(graph$nodes_df, new_nodes)
 
   # Update the `last_node` counter
-  graph$last_node <- nodes_created + n
+  graph$last_node <- graph$last_node + n
 
   return(graph)
 }

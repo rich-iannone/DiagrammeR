@@ -85,6 +85,10 @@ add_edge <- function(graph,
     stop("Only one edge can be specified.")
   }
 
+  if (is.null(rel)) {
+    rel <- as.character(NA)
+  }
+
   # If `use_label` is set to TRUE, treat values in
   # list as labels; need to map to node ID values
   if (use_labels) {
@@ -112,41 +116,18 @@ add_edge <- function(graph,
     }
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # If `graph$edges_df` is NULL then use
   # `create_edges()` to add an edge
   if (is.null(graph$edges_df)) {
 
-    # If a relationship is defined, add that in
-    # the `create_edges()` call
-    if (!is.null(rel)) {
-
-      edf <-
-        create_edge_df(
-          from = from,
-          to = to,
-          rel = rel)
-    }
-
-    # If a relationship is not defined, use a simpler
-    # `create_edges()` call
-    if (is.null(rel)) {
-
-      edf <-
-        create_edge_df(
-          from = from,
-          to = to,
-          rel = rel)
-    }
+    edf <-
+      create_edge_df(
+        from = from,
+        to = to,
+        rel = rel)
 
     # Add the edge data frame to the graph
     graph$edges_df <- edf
-
-    # Update the `last_node` counter
-    graph$last_node <- nodes_created
 
     return(graph)
   }
@@ -156,30 +137,13 @@ add_edge <- function(graph,
   # add an edge
   if (!is.null(graph$edges_df)) {
 
-    # If a relationship is defined, add that in the
-    # `create_edges()` call
-    if (!is.null(rel)) {
-
-      combined_edges <-
-        combine_edfs(
-          graph$edges_df,
-          create_edge_df(
-            from = from,
-            to = to,
-            rel = rel))
-    }
-
-    # If a relationship is not defined, use a simpler
-    # `create_edges()` call
-    if (is.null(rel)) {
-
-      combined_edges <-
-        combine_edfs(
-          graph$edges_df,
-          create_edge_df(
-            from = from,
-            to = to))
-    }
+    combined_edges <-
+      combine_edfs(
+        graph$edges_df,
+        create_edge_df(
+          from = from,
+          to = to,
+          rel = rel))
 
     # Ensure that the `from` and `to` columns are
     # classed as `integer`
@@ -192,12 +156,7 @@ add_edge <- function(graph,
     # Use the `combined_edges` object as a
     # replacement for the graph's internal
     # edge data frame
-
-    # Add the edge data frame to the graph
     graph$edges_df <- combined_edges
-
-    # Update the `last_node` counter
-    graph$last_node <- nodes_created
 
     return(graph)
   }

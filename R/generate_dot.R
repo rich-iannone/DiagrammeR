@@ -309,21 +309,21 @@ generate_dot <- function(graph) {
             # and tooltips when provided
             if (all(colnames(nodes_df)[j] %in%
                     c("label", "tooltip"),
-                    nodes_df[i, j] == '')) {
+                    is.na(nodes_df[i, j]))) {
               attribute <- NULL
             } else if (all(colnames(nodes_df)[j] %in%
                            c("label", "tooltip"),
-                           nodes_df[i, j] != '')) {
+                           !is.na(nodes_df[i, j]))) {
               attribute <-
                 paste0(colnames(nodes_df)[j],
                        " = ", "'", nodes_df[i, j], "'")
             } else if (all(!(colnames(nodes_df)[j] %in%
                              c("label", "tooltip")),
-                           nodes_df[i, j] == '')) {
+                           is.na(nodes_df[i, j]))) {
               attribute <- NULL
             } else if (all(!(colnames(nodes_df)[j] %in%
                              c("label", "tooltip")),
-                           nodes_df[i, j] != '')) {
+                           !is.na(nodes_df[i, j]))) {
               attribute <-
                 paste0(colnames(nodes_df)[j],
                        " = ", "'", nodes_df[i, j], "'")
@@ -537,7 +537,7 @@ generate_dot <- function(graph) {
                           "label", "labeltooltip",
                           "taillabel", "tailtooltip",
                           "tooltip"),
-                        edges_df[i, j] == '')) {
+                        is.na(edges_df[i, j]))) {
                   attribute <- NULL
                 } else if (all(colnames(edges_df)[j] %in%
                                c("edgetooltip", "headtooltip",
@@ -554,7 +554,7 @@ generate_dot <- function(graph) {
                                    "label", "labeltooltip",
                                    "taillabel", "tailtooltip",
                                    "tooltip")),
-                               edges_df[i, j] == '')) {
+                               is.na(edges_df[i, j]))) {
 
                   attribute <- NULL
                 } else if (all(!(colnames(edges_df)[j] %in%

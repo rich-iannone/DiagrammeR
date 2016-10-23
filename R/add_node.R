@@ -5,12 +5,10 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param type an optional string that describes the
-#' entity type for the node to be added.
-#' @param label a character object for supplying an
-#' optional label to the node. Setting to \code{TRUE}
-#' ascribes the node ID to the label. Setting to
-#' \code{FALSE} yields a blank label.
+#' @param type an optional character object that
+#' acts as a group identifier for the node to be added.
+#' @param label an optional character object that
+#' describes the node.
 #' @param from an optional vector containing node IDs
 #' from which edges will be directed to the new node.
 #' @param to an optional vector containing node IDs to
@@ -38,23 +36,65 @@
 #' # View the graph's internal node data frame (ndf)
 #' get_node_df(graph)
 #' #>   id   type label
-#' #> 1  1            1
-#' #> 2  2            2
-#' #> 3  3 person     3
+#' #> 1  1   <NA>  <NA>
+#' #> 2  2   <NA>  <NA>
+#' #> 3  3 person  <NA>
 #' @export add_node
 
 add_node <- function(graph,
                      type = NULL,
-                     label = TRUE,
+                     label = NULL,
                      from = NULL,
                      to = NULL) {
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Get the node ID for the node to be added
-  node <- nodes_created + 1
+  node <- graph$last_node + 1
+
+  if (is.null(type)) {
+    type <- as.character(NA)
+  }
+
+  if (is.null(label)) {
+    label <- as.character(NA)
+  }
+
+  # Modify graph if neither `to` nor `from`
+  # values provided
+  if (is.null(from) & is.null(to)) {
+
+    if (is.null(graph$nodes_df)) {
+
+      new_node <-
+        create_node_df(
+          n = 1,
+          label = as.character(label),
+          type = as.character(type))
+
+      graph$nodes_df <- new_node
+      graph$last_node <- graph$last_node + 1
+
+      return(graph)
+
+    } else if (!is.null(graph$nodes_df)) {
+
+      new_node <-
+        create_node_df(
+          n = 1,
+          label = as.character(label),
+          type = as.character(type))
+
+      new_node[1, 1] <- node
+
+      combined_nodes <-
+        combine_ndfs(graph$nodes_df, new_node)
+
+      graph$nodes_df <- combined_nodes
+      graph$last_node <- graph$last_node + 1
+
+      return(graph)
+    }
+  }
+
 
   # Modify graph if only `from` values provided
   if (!is.null(from) & is.null(to)) {
@@ -72,17 +112,28 @@ add_node <- function(graph,
       new_node <-
         create_node_df(
           n = 1,
-          label = label,
-          type = ifelse(is.null(type), "", type))
+          label = as.character(label),
+          type = as.character(type))
 
       new_node[1, 1] <- node
 
-      if (label == TRUE) {
-        new_node[1, 3] <- new_node[1, 1]
-      }
-
       combined_nodes <-
-        combine_nodes(graph$nodes_df, new_node)
+        combine_ndfs(graph$nodes_df, new_node)
+
+      if (is.null(graph$edges_df)) {
+
+        edges <-
+          create_edges(
+            from = from,
+            to = rep(node, length(from)))
+
+        # Create a revised graph
+        graph$nodes_df <- combined_nodes
+        graph$edges_df <- edges
+        graph$last_node <- graph$last_node + 1
+
+        return(graph)
+      }
 
       if (!is.null(graph$edges_df)) {
 
@@ -94,43 +145,12 @@ add_node <- function(graph,
               to = rep(node, length(from))))
 
         # Create a revised graph
-        dgr_graph <-
-          create_graph(
-            nodes_df = combined_nodes,
-            edges_df = combined_edges,
-            graph_attrs = graph$graph_attrs,
-            node_attrs = graph$node_attrs,
-            edge_attrs = graph$edge_attrs,
-            directed = ifelse(is_graph_directed(graph),
-                              TRUE, FALSE),
-            graph_name = graph$graph_name,
-            graph_time = graph$graph_time,
-            graph_tz = graph$graph_tz)
+        graph$nodes_df <- combined_nodes
+        graph$edges_df <- combined_edges
+        graph$last_node <- graph$last_node + 1
+
+        return(graph)
       }
-
-      if (is.null(graph$edges_df)) {
-
-        # Create a revised graph
-        dgr_graph <-
-          create_graph(
-            nodes_df = combined_nodes,
-            edges_df = create_edges(
-              from = from,
-              to = rep(node, length(from))),
-            graph_attrs = graph$graph_attrs,
-            node_attrs = graph$node_attrs,
-            edge_attrs = graph$edge_attrs,
-            directed = ifelse(is_graph_directed(graph),
-                              TRUE, FALSE),
-            graph_name = graph$graph_name,
-            graph_time = graph$graph_time,
-            graph_tz = graph$graph_tz)
-      }
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created + 1
-
-      return(dgr_graph)
     }
   }
 
@@ -148,17 +168,13 @@ add_node <- function(graph,
     new_node <-
       create_node_df(
         n = 1,
-        label = label,
-        type = ifelse(is.null(type), "", type))
+        label = as.character(label),
+        type = as.character(type))
 
     new_node[1, 1] <- node
 
-    if (label == TRUE) {
-      new_node[1, 3] <- new_node[1, 1]
-    }
-
     combined_nodes <-
-      combine_nodes(graph$nodes_df, new_node)
+      combine_ndfs(graph$nodes_df, new_node)
 
     if (!is.null(graph$edges_df)) {
 
@@ -170,43 +186,27 @@ add_node <- function(graph,
             to = to))
 
       # Create a revised graph
-      dgr_graph <-
-        create_graph(
-          nodes_df = combined_nodes,
-          edges_df = combined_edges,
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
-          directed = ifelse(is_graph_directed(graph),
-                            TRUE, FALSE),
-          graph_name = graph$graph_name,
-          graph_time = graph$graph_time,
-          graph_tz = graph$graph_tz)
+      graph$nodes_df <- combined_nodes
+      graph$edges_df <- combined_edges
+      graph$last_node <- graph$last_node + 1
+
+      return(graph)
     }
 
     if (is.null(graph$edges_df)) {
 
+      edges <-
+        create_edge_df(
+          from = rep(node, length(to)),
+          to = to)
+
       # Create a revised graph
-      dgr_graph <-
-        create_graph(
-          nodes_df = combined_nodes,
-          edges_df = create_edge_df(
-            from = rep(node, length(to)),
-            to = to),
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
-          directed = ifelse(is_graph_directed(graph),
-                            TRUE, FALSE),
-          graph_name = graph$graph_name,
-          graph_time = graph$graph_time,
-          graph_tz = graph$graph_tz)
+      graph$nodes_df <- combined_nodes
+      graph$edges_df <- edges
+      graph$last_node <- graph$last_node + 1
+
+      return(graph)
     }
-
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created + 1
-
-    return(dgr_graph)
   }
 
   # Modify graph if both `to` and `from`
@@ -234,17 +234,13 @@ add_node <- function(graph,
       new_node <-
         create_node_df(
           n = 1,
-          label = label,
-          type = ifelse(is.null(type), "", type))
+          label = as.character(label),
+          type = as.character(type))
 
       new_node[1, 1] <- node
 
-      if (label == TRUE) {
-        new_node[1, 3] <- new_node[1, 1]
-      }
-
       combined_nodes <-
-        combine_nodes(graph$nodes_df, new_node)
+        combine_ndfs(graph$nodes_df, new_node)
 
       if (!is.null(graph$edges_df)) {
 
@@ -272,99 +268,11 @@ add_node <- function(graph,
       }
 
       # Create a revised graph and return that graph
-      dgr_graph <-
-        create_graph(
-          nodes_df = combined_nodes,
-          edges_df = combined_edges,
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
-          directed = ifelse(is_graph_directed(graph),
-                            TRUE, FALSE),
-          graph_name = graph$graph_name,
-          graph_time = graph$graph_time,
-          graph_tz = graph$graph_tz)
+      graph$nodes_df <- combined_nodes
+      graph$edges_df <- combined_edges
+      graph$last_node <- graph$last_node + 1
 
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created + 1
-
-      return(dgr_graph)
+      return(graph)
     }
-  }
-
-  # Modify graph if neither `to` nor `from`
-  # values provided
-  if (is.null(from) & is.null(to)) {
-    if (!is.null(type)) {
-      if (!is.null(graph$nodes_df)) {
-
-        new_node <-
-          create_node_df(
-            n = 1,
-            label = label,
-            type = type)
-
-        new_node[1, 1] <- node
-
-        if (label == TRUE) {
-          new_node[1, 3] <- new_node[1, 1]
-        }
-
-        combined_nodes <-
-          combine_nodes(graph$nodes_df, new_node)
-
-      } else {
-
-        combined_nodes <-
-          create_node_df(
-            n = 1,
-            label = label,
-            type = type)
-      }
-    }
-
-    if (is.null(type)) {
-      if (!is.null(graph$nodes_df)) {
-
-        new_node <-
-          create_node_df(
-            n = 1,
-            label = label)
-
-        new_node[1, 1] <- node
-
-        if (label == TRUE) {
-          new_node[1, 3] <- new_node[1, 1]
-        }
-
-        combined_nodes <-
-          combine_nodes(graph$nodes_df, new_node)
-
-      } else {
-        combined_nodes <-
-          create_node_df(
-            n = 1,
-            label = label)
-      }
-    }
-
-    # Create a revised graph and return that graph
-    dgr_graph <-
-      create_graph(
-        nodes_df = combined_nodes,
-        edges_df = graph$edges_df,
-        graph_attrs = graph$graph_attrs,
-        node_attrs = graph$node_attrs,
-        edge_attrs = graph$edge_attrs,
-        directed = ifelse(is_graph_directed(graph),
-                          TRUE, FALSE),
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz)
-
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created + 1
-
-    return(dgr_graph)
   }
 }

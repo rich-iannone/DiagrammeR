@@ -97,8 +97,19 @@ node_type <- function(graph,
     node_row <- which(graph$nodes_df[, 1] == node)
 
     type_set <-
-      ifelse(graph$nodes_df$type[node_row] == "",
+      ifelse(is.na(graph$nodes_df$type[node_row]),
              FALSE, TRUE)
+
+    # Return the value of an existing node `type`
+    if (action == "read") {
+      if (type_set == FALSE) {
+        return(NA)
+      }
+      if (type_set) {
+        type_value <- graph$nodes_df$type[node_row]
+        return(type_value)
+      }
+    }
 
     # Remove type if a `type` value is set
     if (action %in% c("delete", "remove", "drop")) {
@@ -107,7 +118,7 @@ node_type <- function(graph,
       }
 
       if (type_set) {
-        graph$nodes_df$type[node_row] <- ""
+        graph$nodes_df$type[node_row] <- as.character(NA)
         return(graph)
       }
     }
@@ -132,17 +143,6 @@ node_type <- function(graph,
       if (type_set & !is.null(value)) {
         graph$nodes_df$type[node_row] <- value
         return(graph)
-      }
-    }
-
-    # Return the value of an existing node `type`
-    if (action == "read") {
-      if (type_set == FALSE) {
-        return(NA)
-      }
-      if (type_set) {
-        type_value <- graph$nodes_df$type[node_row]
-        return(type_value)
       }
     }
 
