@@ -82,6 +82,23 @@ test_that("a correct node data frame is generated", {
   expect_equal(
     nodes_var_2$color,
     c("green", "green", "green", "green"))
+
+  # Expect an error if not supplying an integer
+  expect_error(create_node_df(n = "a"))
+
+  # Expect an error if supplying 2 values for `n`
+  expect_error(create_node_df(n = c(1, 2)))
+
+  # Create a node data frame using a vector with
+  # `type` having length > n
+  nodes_var_3 <-
+    create_node_df(
+      n = 4,
+      type = c("a", "a", "b", "a", "c"))
+
+  # Expect the `type` values to be the first four
+  expect_equal(
+    nodes_var_3$type, c("a", "a", "b", "a"))
 })
 
 test_that("node data frames can be successfully combined", {

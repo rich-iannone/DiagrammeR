@@ -71,14 +71,14 @@ test_that("a specified node type can be read from graph objects", {
 
   # Expect that the type value in all three cases will
   # be blank for node `4`
-  expect_equal(
-    graph_delete_type_from_d$nodes_df$type[4], "")
+  expect_true(
+    is.na(graph_delete_type_from_d$nodes_df$type[4]))
 
-  expect_equal(
-    graph_remove_type_from_d$nodes_df$type[4], "")
+  expect_true(
+    is.na(graph_remove_type_from_d$nodes_df$type[4]))
 
-  expect_equal(
-    graph_drop_type_from_d$nodes_df$type[4], "")
+  expect_true(
+    is.na(graph_drop_type_from_d$nodes_df$type[4]))
 
   # Add back the type assigned to node `4` using two
   # different keywords ("add" and "create")
@@ -112,7 +112,7 @@ test_that("a specified node type can be read from graph objects", {
   nodes <-
     create_node_df(
       n = 2,
-      type = c("a_type", ""))
+      type = c("a_type", NA))
 
   # Create the graph object using the node data frame
   graph <- create_graph(nodes_df = nodes)

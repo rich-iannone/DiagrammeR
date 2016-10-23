@@ -45,8 +45,7 @@ test_that("adding a node to a graph is possible", {
   expect_true(nrow(graph$nodes_df) == 2)
 
   # Add a node with attributes to the graph
-  graph_3 <-
-    add_node(graph, type = "fresh")
+  graph_3 <- add_node(graph, type = "fresh")
 
   # Expect that there will be 3 nodes in the graph
   expect_equal(node_count(graph_3), 3)
@@ -65,12 +64,11 @@ test_that("adding a node to a graph is possible", {
   graph_unlabeled <- create_graph()
 
   # Add a single, unlabeled node to the graph
-  graph_unlabeled <-
-    add_node(graph_unlabeled, label = FALSE)
+  graph_unlabeled <- add_node(graph_unlabeled)
 
   # Expect that the graph will have one unlabeled node
   expect_true(
-    node_info(graph = graph_unlabeled)$label == "")
+    is.na(graph_unlabeled$nodes_df$label))
 
   # Add a node to the graph that is joined from another
   graph_from <- add_node(graph_3, from = 3)
@@ -84,11 +82,9 @@ test_that("adding a node to a graph is possible", {
   # Expect that the edge from `3` to `4` is in the graph
   expect_true(edge_present(graph_from, from = 3, to = 4))
 
-  # Expect that the node label is the same as the ID,
-  # since the default value for `label` is TRUE
+  # Expect that the node label is NA for node `4`
   expect_true(
-    node_info(graph_from)[which(node_info(graph_from)$id == 4),]$id ==
-      node_info(graph_from)[which(node_info(graph_from)$id == 4),]$label)
+    is.na(graph_from$nodes_df$label[4]))
 
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is `NULL`
@@ -106,13 +102,8 @@ test_that("adding a node to a graph is possible", {
   # Expect that the edge from `4` to `3` is in the graph
   expect_true(edge_present(graph_to, from = 4, to = 3))
 
-  # Expect that the node label is the same as the ID,
-  # since the default value for `label` is TRUE
-  expect_true(
-    node_info(graph_to)[
-      which(node_info(graph_to)$id == 4),]$id ==
-      node_info(graph_to)[
-        which(node_info(graph_to)$id == 4),]$label)
+  # Expect that the node label for all nodes is NA
+  expect_true(all(is.na(graph_to$nodes_df$label)))
 
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is `NULL`
@@ -136,18 +127,9 @@ test_that("adding a node to a graph is possible", {
   expect_true(
     edge_present(graph_to_from, from = 4, to = 2))
 
-  # Expect that the node label is the same as the ID,
-  # since the default value for `label` is TRUE
-  expect_true(
-    node_info(graph_to_from)[
-      which(node_info(graph_to_from)$id == 4),]$id ==
-      node_info(graph_to_from)[
-        which(node_info(graph_to_from)$id == 4),]$label)
-
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is `NULL`
-  expect_true(
-    is.na(node_type(graph_to_from, node = 4)))
+  expect_true(is.na(node_type(graph_to_from, node = 4)))
 
   # Create an empty graph
   graph <- create_graph()
@@ -239,11 +221,11 @@ test_that("adding several nodes to a graph at once is possible", {
 
   # Expect that no `type` values have been set
   expect_equal(get_node_df(graph)[, 2],
-               rep("", 10))
+               rep(as.character(NA), 10))
 
-  # Expect that `label` values have been set
+  # Expect that no `label` values have been set
   expect_equal(get_node_df(graph)[, 3],
-               as.character(seq(1, 10)))
+               rep(as.character(NA), 10))
 
   # Create a graph with 10 nodes of a specified type
   graph <- create_graph()
@@ -261,9 +243,9 @@ test_that("adding several nodes to a graph at once is possible", {
   expect_equal(get_node_df(graph)[, 2],
                rep("test_node", 10))
 
-  # Expect that `label` values have been set
+  # Expect that `label` values have not been set
   expect_equal(get_node_df(graph)[, 3],
-               as.character(seq(1, 10)))
+               rep(as.character(NA), 10))
 })
 
 test_that("adding several nodes from a selected node is possible", {
@@ -302,7 +284,7 @@ test_that("adding several nodes from a selected node is possible", {
   # Expect that the edge relationship has not been set
   # for any of the edges
   expect_equal(get_edge_df(graph)[, 3],
-               rep("", 10))
+               rep(as.character(NA), 10))
 
   # Create another empty graph
   graph <- create_graph()
@@ -364,7 +346,8 @@ test_that("adding several nodes to a selected node is possible", {
 
   # Expect that the edge relationship has not been set
   # for any of the edges
-  expect_equal(get_edge_df(graph)[, 3], rep("", 10))
+  expect_equal(get_edge_df(graph)[, 3],
+               rep(as.character(NA), 10))
 
   # Create another empty graph
   graph <- create_graph()

@@ -131,8 +131,7 @@ test_that("rendering a graph from a series is also possible", {
   expect_error(
     render_graph_from_series(
       graph_series = series,
-      graph_no = 4)
-  )
+      graph_no = 4))
 
   # Expect that each of the graphs is different
   expect_true(
