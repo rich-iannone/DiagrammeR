@@ -27,8 +27,8 @@ that graph.
 # Create an empty graph
 graph <- create_graph()
 
-# Create a node data frame
-nodes <-
+# Create a node data frame (ndf)
+ndf <-
   create_node_df(
     n = 4,
     type = "basic",
@@ -37,17 +37,17 @@ nodes <-
 
 # Add the node data frame to the graph object to
 # create a graph with nodes
-graph <- add_node_df(graph, nodes)
+graph <- add_node_df(graph, ndf)
 
 get_node_df(graph)
 #>   id  type label color value
-#> 1  1 basic         red   3.5
-#> 2  2 basic       green   2.6
-#> 3  3 basic        grey   9.4
-#> 4  4 basic        blue   2.7
+#> 1  1 basic  <NA>   red   3.5
+#> 2  2 basic  <NA> green   2.6
+#> 3  3 basic  <NA>  grey   9.4
+#> 4  4 basic  <NA>  blue   2.7
 
 # Create another node data frame
-nodes_2 <-
+ndf_2 <-
   create_node_df(
     n = 4,
     type = "basic",
@@ -56,17 +56,19 @@ nodes_2 <-
 
 # Add the second node data frame to the graph object
 # to add more nodes with attributes to the graph
-graph <- add_node_df(graph, nodes_2)
+graph <- add_node_df(graph, ndf_2)
 
+# View the graph's internal node data frame using
+# the `get_node_df()` function
 get_node_df(graph)
 #>   id  type label color value
-#> 1  1 basic         red   3.5
-#> 2  2 basic       green   2.6
-#> 3  3 basic        grey   9.4
-#> 4  4 basic        blue   2.7
-#> 5  5 basic       white   1.6
-#> 6  6 basic       brown   6.4
-#> 7  7 basic        aqua   0.8
-#> 8  8 basic        pink   4.2
+#> 1  1 basic  <NA>   red   3.5
+#> 2  2 basic  <NA> green   2.6
+#> 3  3 basic  <NA>  grey   9.4
+#> 4  4 basic  <NA>  blue   2.7
+#> 5  5 basic  <NA> white   1.6
+#> 6  6 basic  <NA> brown   6.4
+#> 7  7 basic  <NA>  aqua   0.8
+#> 8  8 basic  <NA>  pink   4.2
 }
 

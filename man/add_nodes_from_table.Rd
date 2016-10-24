@@ -68,12 +68,12 @@ graph_1 <-
 # frame (ndf) using `get_node_df()`
 graph_1 \%>\% get_node_df \%>\% .[, 1:5] \%>\% head
 #>   id type label iso_4217_code curr_number
-#> 1  1                      AED         784
-#> 2  2                      AFN         971
-#> 3  3                      ALL           8
-#> 4  4                      AMD          51
-#> 5  5                      ANG         532
-#> 6  6                      AOA         973
+#> 1  1 <NA>  <NA>           AED         784
+#> 2  2 <NA>  <NA>           AFN         971
+#> 3  3 <NA>  <NA>           ALL           8
+#> 4  4 <NA>  <NA>           AMD          51
+#> 5  5 <NA>  <NA>           ANG         532
+#> 6  6 <NA>  <NA>           AOA         973
 
 # If you would like to assign any of the table's
 # columns as `type` or `label` attributes, this can

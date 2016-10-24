@@ -55,11 +55,11 @@ graph_node_id <-
 
 # Show the graph's internal edge data frame
 get_edge_df(graph_node_id)
-#>   from to rel
-#> 1    1  2
-#> 2    1  3
-#> 3    2  4
-#> 4    2  3
+#>   from to  rel
+#> 1    1  2 <NA>
+#> 2    1  3 <NA>
+#> 3    2  4 <NA>
+#> 4    2  3 <NA>
 
 # Add edges between nodes using a
 # character string with node label values
@@ -76,10 +76,10 @@ graph_node_label <-
 # Show the graph's internal edge data frame
 # (it's the same as before)
 get_edge_df(graph_node_label)
-#>   from to rel
-#> 1    1  2
-#> 2    1  3
-#> 3    2  4
-#> 4    2  3
+#>   from to  rel
+#> 1    1  2 <NA>
+#> 2    1  3 <NA>
+#> 3    2  4 <NA>
+#> 4    2  3 <NA>
 }
 
