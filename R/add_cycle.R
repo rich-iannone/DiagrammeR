@@ -25,12 +25,12 @@
 #' # Get node information from this graph
 #' node_info(graph)
 #' #>   id type label deg indeg outdeg loops
-#' #> 1  1          1   2     1      1     0
-#' #> 2  2          2   2     1      1     0
-#' #> 3  3          3   2     1      1     0
-#' #> 4  4          4   2     1      1     0
-#' #> 5  5          5   2     1      1     0
-#' #> 6  6          6   2     1      1     0
+#' #> 1  1 <NA>     1   2     1      1     0
+#' #> 2  2 <NA>     2   2     1      1     0
+#' #> 3  3 <NA>     3   2     1      1     0
+#' #> 4  4 <NA>     4   2     1      1     0
+#' #> 5  5 <NA>     5   2     1      1     0
+#' #> 6  6 <NA>     6   2     1      1     0
 #' @export add_cycle
 
 add_cycle <- function(graph,

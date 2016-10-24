@@ -10,18 +10,19 @@
 #' using \code{create_edges}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph with nodes and no edges
-#' nodes <-
+#' # Create a node data frame (ndf)
+#' ndf <-
 #'   create_node_df(
 #'     n = 4,
 #'     type = "letter",
 #'     color = c("red", "green", "grey", "blue"),
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
-#' graph <- create_graph(nodes_df = nodes)
+#' # Create a graph with nodes and no edges
+#' graph <- create_graph(nodes_df = ndf)
 #'
-#' # Create an edge data frame
-#' edges <-
+#' # Create an edge data frame (edf)
+#' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
@@ -30,9 +31,8 @@
 #' # Add the edge data frame to the graph object to create a
 #' # graph with both nodes and edges
 #' graph <-
-#'   add_edge_df(
-#'     graph = graph,
-#'     edge_df = edges)
+#'   graph %>%
+#'   add_edge_df(edf)
 #'
 #' get_edges(graph, return_type = "vector")
 #' #> [1] "1 -> 4" "2 -> 3" "3 -> 1"
