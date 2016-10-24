@@ -90,13 +90,13 @@ get_dice_similarity <- function(graph,
   }
 
   if (is.null(nodes)) {
-    row.names(d_sim_values) <- graph$nodes_df$nodes
-    colnames(d_sim_values) <- graph$nodes_df$nodes
+    row.names(d_sim_values) <- graph$nodes_df$id
+    colnames(d_sim_values) <- graph$nodes_df$id
   }
 
   if (!is.null(nodes)) {
-    row.names(d_sim_values) <- graph$nodes_df$nodes[nodes]
-    colnames(d_sim_values) <- graph$nodes_df$nodes[nodes]
+    row.names(d_sim_values) <- graph$nodes_df$id[nodes]
+    colnames(d_sim_values) <- graph$nodes_df$id[nodes]
   }
 
   # Round all values in matrix to set SD
