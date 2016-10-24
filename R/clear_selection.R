@@ -6,24 +6,26 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a simple graph
-#' nodes <-
+#' # Create a node data frame (ndf)
+#' ndf <-
 #'   create_node_df(
 #'     n = 4,
 #'     type = "basic",
 #'     label = TRUE,
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
-#' edges <-
+#' # Create an edge data frame (edf)
+#' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
 #'     rel = "leading_to")
 #'
+#' # Create a graph with nodes and edges
 #' graph <-
 #'   create_graph(
-#'     nodes_df = nodes,
-#'     edges_df = edges)
+#'     nodes_df = ndf,
+#'     edges_df = edf)
 #'
 #' # Select nodes with IDs `1` and `3`
 #' graph <-
@@ -36,7 +38,7 @@
 #' #> [1] 1 3
 #'
 #' # Clear the selection with `clear_selection()`
-#' graph <- clear_selection(graph = graph)
+#' graph <- clear_selection(graph)
 #'
 #' # Verify that the node selection has been cleared
 #' get_selection(graph)

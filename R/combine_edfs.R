@@ -8,8 +8,8 @@
 #' contain edge IDs and associated attributes.
 #' @return a combined edge data frame.
 #' @examples
-#' # Create an edge data frame
-#' edges_1 <-
+#' # Create an edge data frame (edf)
+#' edf_1 <-
 #'   create_edge_df(
 #'     from = c(1, 1, 2, 3),
 #'     to = c(2, 4, 4, 1),
@@ -18,7 +18,7 @@
 #'     data = c(2.7, 8.9, 2.6, 0.6))
 #'
 #' # Create a second edge data frame
-#' edges_2 <-
+#' edf_2 <-
 #'   create_edge_df(
 #'     from = c(5, 7, 8, 8),
 #'     to = c(7, 8, 6, 5),
@@ -28,7 +28,7 @@
 #'
 #' # Combine the two edge data frames
 #' all_edges <-
-#'   combine_edfs(edges_1, edges_2)
+#'   combine_edfs(edf_1, edf_2)
 #'
 #' # View the combined edge data frame
 #' all_edges
