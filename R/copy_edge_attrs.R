@@ -21,15 +21,15 @@
 #' # Get the graph's internal edf to show which
 #' # edge attributes are available
 #' get_edge_df(graph)
-#' #>   from to rel color
-#' #> 1    4  1     green
-#' #> 2    2  4     green
-#' #> 3    4  3     green
-#' #> 4    3  5     green
-#' #> 5    5  1     green
-#' #> 6    4  5     green
-#' #> 7    2  1     green
-#' #> 8    3  2     green
+#' #>   from to  rel color
+#' #> 1    4  1 <NA> green
+#' #> 2    2  4 <NA> green
+#' #> 3    4  3 <NA> green
+#' #> 4    3  5 <NA> green
+#' #> 5    5  1 <NA> green
+#' #> 6    4  5 <NA> green
+#' #> 7    2  1 <NA> green
+#' #> 8    3  2 <NA> green
 #'
 #' # Make a copy the `color` edge attribute as
 #' # the `color_2` edge attribute
@@ -40,15 +40,15 @@
 #' # Get the graph's internal edf to show that the
 #' # edge attribute had been copied
 #' get_edge_df(graph)
-#' #>   from to rel color color_2
-#' #> 1    4  1     green   green
-#' #> 2    2  4     green   green
-#' #> 3    4  3     green   green
-#' #> 4    3  5     green   green
-#' #> 5    5  1     green   green
-#' #> 6    4  5     green   green
-#' #> 7    2  1     green   green
-#' #> 8    3  2     green   green
+#' #>   from to  rel color color_2
+#' #> 1    4  1 <NA> green   green
+#' #> 2    2  4 <NA> green   green
+#' #> 3    4  3 <NA> green   green
+#' #> 4    3  5 <NA> green   green
+#' #> 5    5  1 <NA> green   green
+#' #> 6    4  5 <NA> green   green
+#' #> 7    2  1 <NA> green   green
+#' #> 8    3  2 <NA> green   green
 #' @importFrom dplyr bind_cols
 #' @export copy_edge_attrs
 

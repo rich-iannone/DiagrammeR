@@ -52,10 +52,10 @@
 #' # Get information on the graph's nodes
 #' node_info(graph)
 #' #>   id type label deg indeg outdeg loops
-#' #> 1  1              0     0      0     0
-#' #> 2  2              0     0      0     0
-#' #> 3  3              0     0      0     0
-#' #> 4  4              0     0      0     0
+#' #> 1  1 <NA>  <NA>   0     0      0     0
+#' #> 2  2 <NA>  <NA>   0     0      0     0
+#' #> 3  3 <NA>  <NA>   0     0      0     0
+#' #> 4  4 <NA>  <NA>   0     0      0     0
 #'
 #' # You can create a similar graph with just nodes but
 #' # also provide a range of attributes for the nodes

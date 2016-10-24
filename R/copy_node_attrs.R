@@ -21,12 +21,12 @@
 #' # Get the graph's internal ndf to show which
 #' # node attributes are available
 #' get_node_df(graph)
-#' #>   nodes type label value  shape
-#' #> 1     1          1     2 circle
-#' #> 2     2          2   8.5 circle
-#' #> 3     3          3     4 circle
-#' #> 4     4          4   3.5 circle
-#' #> 5     5          5   6.5 circle
+#' #>   id type label value  shape
+#' #> 1  1 <NA>     1   2.0 circle
+#' #> 2  2 <NA>     2   8.5 circle
+#' #> 3  3 <NA>     3   4.0 circle
+#' #> 4  4 <NA>     4   3.5 circle
+#' #> 5  5 <NA>     5   6.5 circle
 #'
 #' # Make a copy the `value` node attribute as
 #' # the `width` node attribute
@@ -37,12 +37,12 @@
 #' # Get the graph's internal ndf to show that the
 #' # node attribute had been copied
 #' get_node_df(graph)
-#' #>   nodes type label value  shape size
-#' #> 1     1          1     2 circle    2
-#' #> 2     2          2   8.5 circle  8.5
-#' #> 3     3          3     4 circle    4
-#' #> 4     4          4   3.5 circle  3.5
-#' #> 5     5          5   6.5 circle  6.5
+#' #>   id type label value  shape size
+#' #> 1  1 <NA>     1   2.0 circle  2.0
+#' #> 2  2 <NA>     2   8.5 circle  8.5
+#' #> 3  3 <NA>     3   4.0 circle  4.0
+#' #> 4  4 <NA>     4   3.5 circle  3.5
+#' #> 5  5 <NA>     5   6.5 circle  6.5
 #' @importFrom dplyr bind_cols
 #' @export copy_node_attrs
 
