@@ -40,13 +40,13 @@ definition for that node.
 }
 \examples{
 # Create a node data frame (ndf)
-nodes <-
+ndf <-
   create_node_df(
     n = 5,
     type = c("a", "b", "c", "a", "c"))
 
 # Create an edge data frame (edf)
-edges <-
+edf <-
   create_edge_df(
     from = c(1, 3, 5, 2, 4),
     to = c(2, 2, 4, 4, 3))
@@ -54,8 +54,8 @@ edges <-
 # Create a graph
 graph <-
   create_graph(
-    nodes_df = nodes,
-    edges_df = edges)
+    nodes_df = ndf,
+    edges_df = edf)
 
 # Read the node `type` for node `1`
 graph \%>\% node_type(1)

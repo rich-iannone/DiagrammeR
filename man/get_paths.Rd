@@ -53,41 +53,41 @@ graph <-
 # Get a list of all paths outward from node `1`
 get_paths(graph, from = 1)
 #> [[1]]
-#> [1] "1" "3" "5"
+#> [1] 1 3 5
 #>
 #> [[2]]
-#> [1] "1" "2" "7" "5"
+#> [1] 1 2 7 5
 #>
 #> [[3]]
-#> [1] "1" "3" "4" "6"
+#> [1] 1 3 4 6
 #>
 #> [[4]]
-#> [1] "1" "3" "4" "8"
+#> [1] 1 3 4 8
 
 # Get a list of all paths leading to node `6`
 get_paths(graph, to = 6)
 #> [[1]]
-#> [1] "1" "3" "4" "6"
+#> [1] 1 3 4 6
 
 # Get a list of all paths from `1` to `5`
 get_paths(graph, from = 1, to = 5)
 #> [[1]]
-#> [1] "1" "3" "5"
+#> [1] 1 3 5
 #>
 #> [[2]]
-#> [1] "1" "2" "7" "5"
+#> [1] 1 2 7 5
 
 # Get a list of all paths from `1` up to a distance
 # of 2 node traversals
 get_paths(graph, from = 1, distance = 2)
 #> [[1]]
-#> [1] "1" "3" "5"
+#> [1] 1 3 5
 #>
 #> [[2]]
-#> [1] "1" "2" "7"
+#> [1] 1 2 7
 #>
 #> [[3]]
-#> [1] "1" "3" "4"
+#> [1] 1 3 4
 
 # Get a list of the shortest paths from `1` to `5`
 get_paths(
@@ -96,7 +96,7 @@ get_paths(
   to = 5,
   shortest_path = TRUE)
 #> [[1]]
-#> [1] "1" "3" "5"
+#> [1] 1 3 5
 
 # Get a list of the longest paths from `1` to `5`
 get_paths(
@@ -105,6 +105,6 @@ get_paths(
   to = 5,
   longest_path = TRUE)
 #> [[1]]
-#> [1] "1" "2" "7" "5"
+#> [1] 1 2 7 5
 }
 

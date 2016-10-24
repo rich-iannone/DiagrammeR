@@ -50,13 +50,13 @@ graph <-
 # Get the graph's internal edf to show which
 # edge attributes are available
 get_edge_df(graph)
-#>   from to rel value
-#> 1    4  1         3
-#> 2    2  4         3
-#> 3    4  3         3
-#> 4    3  5         3
-#> 5    5  1         3
-#> 6    4  5         3
+#>   from to  rel value
+#> 1    4  1 <NA>     3
+#> 2    2  4 <NA>     3
+#> 3    4  3 <NA>     3
+#> 4    3  5 <NA>     3
+#> 5    5  1 <NA>     3
+#> 6    4  5 <NA>     3
 
 # Mutate the `value` edge attribute, multiplying
 # each value by 1.5
@@ -67,13 +67,13 @@ graph <-
 # Get the graph's internal edf to show that the
 # edge attribute values had been mutated
 get_edge_df(graph)
-#>   from to rel value
-#> 1    4  1       4.5
-#> 2    2  4       4.5
-#> 3    4  3       4.5
-#> 4    3  5       4.5
-#> 5    5  1       4.5
-#> 6    4  5       4.5
+#>   from to  rel value
+#> 1    4  1 <NA>   4.5
+#> 2    2  4 <NA>   4.5
+#> 3    4  3 <NA>   4.5
+#> 4    3  5 <NA>   4.5
+#> 5    5  1 <NA>   4.5
+#> 6    4  5 <NA>   4.5
 
 # Create a new edge attribute, called `penwidth`,
 # that is the log of values in `value` plus 1
@@ -86,12 +86,12 @@ graph <-
 # edge attribute values had been mutated and used as
 # the new edge attribute `penwidth`
 get_edge_df(graph)
-#>   from to rel value penwidth
-#> 1    4  1       4.5    2.504
-#> 2    2  4       4.5    2.504
-#> 3    4  3       4.5    2.504
-#> 4    3  5       4.5    2.504
-#> 5    5  1       4.5    2.504
-#> 6    4  5       4.5    2.504
+#>   from to  rel value penwidth
+#> 1    4  1 <NA>   4.5    2.504
+#> 2    2  4 <NA>   4.5    2.504
+#> 3    4  3 <NA>   4.5    2.504
+#> 4    3  5 <NA>   4.5    2.504
+#> 5    5  1 <NA>   4.5    2.504
+#> 6    4  5 <NA>   4.5    2.504
 }
 

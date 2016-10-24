@@ -29,12 +29,12 @@ graph <-
 # Get the graph's internal ndf to show
 # which node attributes are available
 get_node_df(graph)
-#>   nodes type label value
-#> 1     1          1     2
-#> 2     2          2   8.5
-#> 3     3          3     4
-#> 4     4          4   3.5
-#> 5     5          5   6.5
+#>   id type label value
+#> 1  1 <NA>     1   2.0
+#> 2  2 <NA>     2   8.5
+#> 3  3 <NA>     3   4.0
+#> 4  4 <NA>     4   3.5
+#> 5  5 <NA>     5   6.5
 
 # Drop the `value` node attribute
 graph <-
@@ -42,13 +42,13 @@ graph <-
   drop_node_attrs("value")
 
 # Get the graph's internal ndf to show that
-# the node attribute had been removed
+# the node attribute `value` had been removed
 get_node_df(graph)
-#>   nodes type label
-#> 1     1          1
-#> 2     2          2
-#> 3     3          3
-#> 4     4          4
-#> 5     5          5
+#>   id type label
+#> 1  1 <NA>     1
+#> 2  2 <NA>     2
+#> 3  3 <NA>     3
+#> 4  4 <NA>     4
+#> 5  5 <NA>     5
 }
 

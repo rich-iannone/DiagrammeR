@@ -35,11 +35,11 @@ graph <-
 # node attributes are available
 get_node_df(graph)
 #>   id type label value  shape
-#> 1  1          1     2 circle
-#> 2  2          2   8.5 circle
-#> 3  3          3     4 circle
-#> 4  4          4   3.5 circle
-#> 5  5          5   6.5 circle
+#> 1  1 <NA>     1   2.0 circle
+#> 2  2 <NA>     2   8.5 circle
+#> 3  3 <NA>     3   4.0 circle
+#> 4  4 <NA>     4   3.5 circle
+#> 5  5 <NA>     5   6.5 circle
 
 # Rename the `value` node attribute as `weight`
 graph <-
@@ -50,10 +50,10 @@ graph <-
 # node attribute had been renamed
 get_node_df(graph)
 #>   id type label weight  shape
-#> 1  1          1      2 circle
-#> 2  2          2    8.5 circle
-#> 3  3          3      4 circle
-#> 4  4          4    3.5 circle
-#> 5  5          5    6.5 circle
+#> 1  1 <NA>     1    2.0 circle
+#> 2  2 <NA>     2    8.5 circle
+#> 3  3 <NA>     3    4.0 circle
+#> 4  4 <NA>     4    3.5 circle
+#> 5  5 <NA>     5    6.5 circle
 }
 

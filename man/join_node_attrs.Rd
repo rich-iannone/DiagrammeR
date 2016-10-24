@@ -65,11 +65,11 @@ graph <-
 # join has been made
 get_node_df(graph)
 #>   id type label values
-#> 1  1          1   4.79
-#> 2  2          2   3.96
-#> 3  3          3   3.85
-#> 4  4          4   5.32
-#> 5  5          5    3.5
+#> 1  1 <NA>  <NA>   4.79
+#> 2  2 <NA>  <NA>   3.96
+#> 3  3 <NA>  <NA>   3.85
+#> 4  4 <NA>  <NA>   5.32
+#> 5  5 <NA>  <NA>    3.5
 
 # Get betweenness values for each node and
 # add them as a node attribute (Note the

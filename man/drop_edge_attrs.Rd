@@ -32,13 +32,13 @@ graph <-
 # Get the graph's internal edf to show which
 # edge attributes are available
 get_edge_df(graph)
-#>   from to rel value penwidth
-#> 1    4  1         3        6
-#> 2    2  4         3        6
-#> 3    4  3         3        6
-#> 4    3  5         3        6
-#> 5    5  1         3        6
-#> 6    4  5         3        6
+#>   from to  rel value penwidth
+#> 1    4  1 <NA>     3        6
+#> 2    2  4 <NA>     3        6
+#> 3    4  3 <NA>     3        6
+#> 4    3  5 <NA>     3        6
+#> 5    5  1 <NA>     3        6
+#> 6    4  5 <NA>     3        6
 
 # Drop the `value` edge attribute
 graph <-
@@ -46,14 +46,14 @@ graph <-
   drop_edge_attrs("value")
 
 # Get the graph's internal edf to show that
-# the edge attribute had been removed
+# the edge attribute `value` had been removed
 get_edge_df(graph)
-#>   from to rel penwidth
-#> 1    4  1            6
-#> 2    2  4            6
-#> 3    4  3            6
-#> 4    3  5            6
-#> 5    5  1            6
-#> 6    4  5            6
+#>   from to  rel penwidth
+#> 1    4  1 <NA>        6
+#> 2    2  4 <NA>        6
+#> 3    4  3 <NA>        6
+#> 4    3  5 <NA>        6
+#> 5    5  1 <NA>        6
+#> 6    4  5 <NA>        6
 }
 
