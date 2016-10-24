@@ -90,13 +90,13 @@ get_jaccard_similarity <- function(graph,
   }
 
   if (is.null(nodes)) {
-    row.names(j_sim_values) <- graph$nodes_df$nodes
-    colnames(j_sim_values) <- graph$nodes_df$nodes
+    row.names(j_sim_values) <- graph$nodes_df$id
+    colnames(j_sim_values) <- graph$nodes_df$id
   }
 
   if (!is.null(nodes)) {
-    row.names(j_sim_values) <- graph$nodes_df$nodes[nodes]
-    colnames(j_sim_values) <- graph$nodes_df$nodes[nodes]
+    row.names(j_sim_values) <- graph$nodes_df$id[nodes]
+    colnames(j_sim_values) <- graph$nodes_df$id[nodes]
   }
 
   # Round all values in matrix to set SD
