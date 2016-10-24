@@ -72,23 +72,22 @@ graph <-
     "walktrap_group", "fillcolor", alpha = 90) \%>\%
   colorize_node_attrs(
     "walktrap_group", "color") \%>\%
-  set_node_attrs("fontcolor", "white") \%>\%
   set_global_graph_attrs(
     "graph", "layout", "circo")
 
-# Show part of the graph's node data frame
+# Show the graph's internal node data frame
 get_node_df(graph)
-#>    id  value walktrap_group fillcolor   color
-#> 1   1    3.0              2 #31688E90 #31688E
-#> 2   2    4.0              3 #35B77990 #35B779
-#> 3   3    6.0              2 #31688E90 #31688E
-#> 4   4    9.5              1 #44015490 #440154
-#> 5   5    2.5              2 #31688E90 #31688E
-#> 6   6    9.0              4 #FDE72590 #FDE725
-#> 7   7    9.5              1 #44015490 #440154
-#> 8   8    7.0              3 #35B77990 #35B779
-#> 9   9    6.5              1 #44015490 #440154
-#> 10 10    1.0              3 #35B77990 #35B779
+#>    id type label value walktrap_group fillcolor   color
+#> 1   1 <NA>     1   3.0              2 #31688E90 #31688E
+#> 2   2 <NA>     2   4.0              3 #35B77990 #35B779
+#> 3   3 <NA>     3   6.0              2 #31688E90 #31688E
+#> 4   4 <NA>     4   9.5              1 #44015490 #440154
+#> 5   5 <NA>     5   2.5              2 #31688E90 #31688E
+#> 6   6 <NA>     6   9.0              4 #FDE72590 #FDE725
+#> 7   7 <NA>     7   9.5              1 #44015490 #440154
+#> 8   8 <NA>     8   7.0              3 #35B77990 #35B779
+#> 9   9 <NA>     9   6.5              1 #44015490 #440154
+#> 10 10 <NA>    10   1.0              3 #35B77990 #35B779
 
 # Create a random graph of 10 nodes and 22 edges
 graph <-
@@ -100,16 +99,16 @@ graph <-
 # in the range of 0 to 10.
 get_node_df(graph)
 #>    id type label value
-#> 1   1          1   3.0
-#> 2   2          2   4.0
-#> 3   3          3   6.0
-#> 4   4          4   9.5
-#> 5   5          5   2.5
-#> 6   6          6   9.0
-#> 7   7          7   9.5
-#> 8   8          8   7.0
-#> 9   9          9   6.5
-#> 10 10         10   1.0
+#> 1   1 <NA>     1   3.0
+#> 2   2 <NA>     2   4.0
+#> 3   3 <NA>     3   6.0
+#> 4   4 <NA>     4   9.5
+#> 5   5 <NA>     5   2.5
+#> 6   6 <NA>     6   9.0
+#> 7   7 <NA>     7   9.5
+#> 8   8 <NA>     8   7.0
+#> 9   9 <NA>     9   6.5
+#> 10 10 <NA>    10   1.0
 
 # We can bucketize values in `value` using
 # `cut_points` and assign colors to each of the
@@ -126,15 +125,15 @@ graph <-
 # the default `gray85` color)
 get_node_df(graph)
 #>    id type label value fillcolor
-#> 1   1          1   3.0   #31688E
-#> 2   2          2   4.0   #31688E
-#> 3   3          3   6.0   #35B779
-#> 4   4          4   9.5   #D9D9D9
-#> 5   5          5   2.5   #440154
-#> 6   6          6   9.0   #D9D9D9
-#> 7   7          7   9.5   #D9D9D9
-#> 8   8          8   7.0   #FDE725
-#> 9   9          9   6.5   #35B779
-#> 10 10         10   1.0   #440154
+#> 1   1 <NA>     1   3.0   #31688E
+#> 2   2 <NA>     2   4.0   #31688E
+#> 3   3 <NA>     3   6.0   #35B779
+#> 4   4 <NA>     4   9.5   #D9D9D9
+#> 5   5 <NA>     5   2.5   #440154
+#> 6   6 <NA>     6   9.0   #D9D9D9
+#> 7   7 <NA>     7   9.5   #D9D9D9
+#> 8   8 <NA>     8   7.0   #FDE725
+#> 9   9 <NA>     9   6.5   #35B779
+#> 10 10 <NA>    10   1.0   #440154
 }
 
