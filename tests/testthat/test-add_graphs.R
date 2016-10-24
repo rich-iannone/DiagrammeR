@@ -315,18 +315,14 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    3)
+          get_edge_df(graph)[, 2])), 3)
 
   # Expect node ID values from 1 to 3
   expect_identical(get_node_ids(graph), 1:3)
 
-  # Expect label values from 1 to 3
-  # expect_identical(graph$nodes_df$label,
-  #                  as.character(1:3))
-
-  # Expect type values to be unset
-  expect_equal(unique(graph$nodes_df[, 2]), "")
+  # Expect type values to be character NA values
+  expect_equal(unique(graph$nodes_df[, 2]),
+               as.character(NA))
 
   # Create a graph and add a full graph
   # with 3 nodes to it; discard loops
@@ -346,8 +342,7 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    0)
+          get_edge_df(graph)[, 2])), 0)
 
   # Create a graph, add a full graph
   # (with no loops), set values for the
@@ -371,8 +366,7 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    0)
+          get_edge_df(graph)[, 2])), 0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -436,8 +430,7 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    0)
+          get_edge_df(graph)[, 2])), 0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -493,8 +486,7 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    0)
+          get_edge_df(graph)[, 2])), 0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -548,8 +540,7 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    3)
+          get_edge_df(graph)[, 2])), 3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -604,8 +595,7 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    3)
+          get_edge_df(graph)[, 2])), 3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -644,7 +634,7 @@ test_that("Adding a full graph is possible", {
     add_full_graph(
       n = 3,
       type = "weighted",
-      label = FALSE,
+      label = NULL,
       rel = "related_to",
       edge_wt_matrix = edge_wt_matrix_rownames,
       keep_loops = TRUE)
@@ -670,15 +660,13 @@ test_that("Adding a full graph is possible", {
     unique(get_node_df(graph)[, 2]),
     "weighted")
 
-  # Expect that the `label` values
-  # assigned to the nodes are simply
-  # character representations of the
-  # node ID values
+  # Expect that the `label` values are
+  # character NA values
   expect_equal(
     get_node_df(graph)[, 3],
-    c("1", "2", "3"))
+    rep(as.character(NA), 3))
 
-  # Expect that the `label` edge attr
+  # Expect that the `rel` edge attr
   # has the value `connected_to` for
   # all edges created
   expect_equal(
@@ -696,7 +684,7 @@ test_that("Adding a full graph is possible", {
   # with 3 nodes to it; discard loops
   graph <-
     create_graph() %>%
-    add_cycle(5) %>%
+    add_cycle(5, "cycle") %>%
     add_full_graph(
       n = 8, keep_loops = FALSE)
 
