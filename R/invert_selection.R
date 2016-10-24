@@ -9,13 +9,13 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
-#' nodes <-
+#' ndf <-
 #'   create_node_df(
 #'     n = 4,
 #'     type = "standard")
 #'
 #' # Create an edge data frame (edf)
-#' edges <-
+#' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
@@ -24,8 +24,8 @@
 #' # Create a graph
 #' graph <-
 #'   create_graph(
-#'     nodes_df = nodes,
-#'     edges_df = edges)
+#'     nodes_df = ndf,
+#'     edges_df = edf)
 #'
 #' # Select nodes with ID values `1` and `3`
 #' graph <-
@@ -38,7 +38,7 @@
 #' #> [1] 1 3
 #'
 #' # Invert the selection
-#' graph <- invert_selection(graph = graph)
+#' graph <- invert_selection(graph)
 #'
 #' # Verify that the node selection has been changed
 #' get_selection(graph)

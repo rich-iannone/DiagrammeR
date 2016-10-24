@@ -31,12 +31,12 @@
 #' # Get the graph's internal ndf to show which
 #' # node attributes are available
 #' get_node_df(graph)
-#' #>   nodes type label value
-#' #> 1     1          1     2
-#' #> 2     2          2   8.5
-#' #> 3     3          3     4
-#' #> 4     4          4   3.5
-#' #> 5     5          5   6.5
+#' #>   id type label value
+#' #> 1  1 <NA>     1   2.0
+#' #> 2  2 <NA>     2   8.5
+#' #> 3  3 <NA>     3   4.0
+#' #> 4  4 <NA>     4   3.5
+#' #> 5  5 <NA>     5   6.5
 #'
 #' # Mutate the `value` node attribute, dividing each
 #' # value by 2
@@ -47,12 +47,12 @@
 #' # Get the graph's internal ndf to show that the
 #' # node attribute values had been mutated
 #' get_node_df(graph)
-#' #>   nodes type label value
-#' #> 1     1          1     1
-#' #> 2     2          2  4.25
-#' #> 3     3          3     2
-#' #> 4     4          4  1.75
-#' #> 5     5          5  3.25
+#' #>   id type label value
+#' #> 1  1 <NA>     1  1.00
+#' #> 2  2 <NA>     2  4.25
+#' #> 3  3 <NA>     3  2.00
+#' #> 4  4 <NA>     4  1.75
+#' #> 5  5 <NA>     5  3.25
 #'
 #' # Create a new node attribute, called `width`,
 #' # that is the log of values in `value` plus 1
@@ -64,12 +64,12 @@
 #' # node attribute values had been mutated and used as
 #' # the new node attribute `width`
 #' get_node_df(graph)
-#' #>   nodes type label value width
-#' #> 1     1          1     1     1
-#' #> 2     2          2  4.25 2.447
-#' #> 3     3          3     2 1.693
-#' #> 4     4          4  1.75  1.56
-#' #> 5     5          5  3.25 2.179
+#' #>   id type label value width
+#' #> 1  1 <NA>     1  1.00 1.000
+#' #> 2  2 <NA>     2  4.25 2.447
+#' #> 3  3 <NA>     3  2.00 1.693
+#' #> 4  4 <NA>     4  1.75 1.560
+#' #> 5  5 <NA>     5  3.25 2.179
 #' @export mutate_node_attrs
 
 mutate_node_attrs <- function(graph,

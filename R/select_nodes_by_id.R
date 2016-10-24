@@ -18,10 +18,10 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
-#' nodes <- create_node_df(10)
+#' ndf <- create_node_df(10)
 #'
 #' # Create a graph
-#' graph <- create_graph(nodes_df = nodes)
+#' graph <- create_graph(nodes_df = ndf)
 #'
 #' # Select nodes `1` to `5` and show that
 #' # selection of nodes with `get_selection()`

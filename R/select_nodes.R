@@ -24,7 +24,7 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
-#' nodes <-
+#' ndf <-
 #'   create_node_df(
 #'     n = 4,
 #'     type = c("a", "a", "z", "z"),
@@ -32,7 +32,7 @@
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Create an edge data frame (edf)
-#' edges <-
+#' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
@@ -41,8 +41,8 @@
 #' # Create a graph with the ndf and edf
 #' graph <-
 #'   create_graph(
-#'     nodes_df = nodes,
-#'     edges_df = edges)
+#'     nodes_df = ndf,
+#'     edges_df = edf)
 #'
 #' # Explicitly select nodes `1` and `3`
 #' graph <-

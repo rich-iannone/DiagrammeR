@@ -11,10 +11,10 @@
 #' set.seed(24)
 #'
 #' # Create a node data frame (ndf)
-#' nodes <- create_node_df(26)
+#' ndf <- create_node_df(26)
 #'
 #' # Create an edge data frame (edf)
-#' edges <-
+#' edf <-
 #'   create_edge_df(
 #'     from = sample(1:26, replace = TRUE),
 #'     to = sample(1:26, replace = TRUE))
@@ -22,14 +22,14 @@
 #' # From the ndf and edf, create a graph object
 #' graph <-
 #'   create_graph(
-#'     nodes_df = nodes,
-#'     edges_df = edges)
+#'     nodes_df = ndf,
+#'     edges_df = edf)
 #'
 #' # Get sucessors for node `4` in the graph
 #' get_successors(graph, node = 4)
 #' #> [1] 2 9
 #'
-#' # If there are no successors, `NA` is returned
+#' # If there are no successors, NA is returned
 #' get_successors(graph, node = 1)
 #' #> [1] NA
 #' @export get_successors

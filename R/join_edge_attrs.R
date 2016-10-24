@@ -46,12 +46,12 @@
 #' # Get the graph's internal edf to show that the
 #' # join has been made
 #' get_edge_df(graph)
-#' #>   from to rel           values
-#' #> 1    1  2     7.13009924330664
-#' #> 2    1  3     4.91228554626235
-#' #> 3    2  4     3.53310530960626
-#' #> 4    2  5      5.6516614809259
-#' #> 5    3  5     5.87955663602654
+#' #>   from to  rel           values
+#' #> 1    1  2 <NA> 4.29005356907819
+#' #> 2    1  3 <NA> 5.61072635348905
+#' #> 3    2  4 <NA> 4.06590236835575
+#' #> 4    2  5 <NA>  3.7463665997609
+#' #> 5    3  5 <NA> 5.29144623551746
 #' @export join_edge_attrs
 
 join_edge_attrs <- function(graph,

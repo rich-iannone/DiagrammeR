@@ -24,7 +24,7 @@
 #' set.seed(24)
 #'
 #' # Create a node data frame (ndf)
-#' nodes <-
+#' ndf <-
 #'   create_node_df(
 #'     n = 26,
 #'     type = "basic",
@@ -38,7 +38,7 @@
 #'                        replace = TRUE))
 #'
 #' # Create an edge data frame (edf)
-#' edges <-
+#' edf <-
 #'   create_edge_df(
 #'     from = sample(1:26, replace = TRUE),
 #'     to = sample(1:26, replace = TRUE),
@@ -48,8 +48,8 @@
 #' # add a few attributes for the graph appearance
 #' graph <-
 #'   create_graph(
-#'     nodes_df = nodes,
-#'     edges_df = edges,
+#'     nodes_df = ndf,
+#'     edges_df = edf,
 #'     graph_attrs = "layout = twopi",
 #'     node_attrs = c("fontname = Helvetica",
 #'                    "style = filled"),

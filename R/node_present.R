@@ -14,7 +14,7 @@
 #' set.seed(24)
 #'
 #' # Create a node data frame (ndf)
-#' nodes <-
+#' ndf <-
 #'   create_node_df(
 #'     n = 26,
 #'     label = TRUE,
@@ -24,7 +24,7 @@
 #'              rep("d", 2)))
 #'
 #' # Create an edge data frame (edf)
-#' edges <-
+#' edf <-
 #'   create_edge_df(
 #'     from = sample(1:26, replace = TRUE),
 #'     to = sample(1:26, replace = TRUE),
@@ -36,8 +36,8 @@
 #' # Create a graph using the ndf and edf
 #' graph <-
 #'   create_graph(
-#'     nodes_df = nodes,
-#'     edges_df = edges)
+#'     nodes_df = ndf,
+#'     edges_df = edf)
 #'
 #' # Verify that node with ID `34` is not in graph
 #' node_present(graph, 34)

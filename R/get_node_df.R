@@ -22,22 +22,18 @@
 #'   invert_selection %>%
 #'   set_node_attrs_ws(
 #'     "color", "grey80") %>%
-#'   clear_selection %>%
-#'   select_nodes("value", "<15") %>%
-#'   set_node_attrs_ws(
-#'     "value", 10.0) %>%
 #'   clear_selection
 #'
 #' # Get the graph's internal node
 #' # data frame (ndf)
 #' graph %>% get_node_df
-#' #>   nodes type label value  color
-#' #> 1     1    a     1  25.3 grey80
-#' #> 2     2    b     2    10 grey70
-#' #> 3     3    b     3    10 grey70
-#' #> 4     4    b     4    10 grey70
-#' #> 5     5    b     5    10 grey80
-#' #> 6     6    b     6    10 grey80
+#' #>   id type label value  color
+#' #> 1  1    a  <NA>  25.3 grey80
+#' #> 2  2    b  <NA>    NA grey70
+#' #> 3  3    b  <NA>    NA grey70
+#' #> 4  4    b  <NA>    NA grey70
+#' #> 5  5    b  <NA>    NA grey80
+#' #> 6  6    b  <NA>    NA grey80
 #' @export get_node_df
 
 get_node_df <- function(graph) {

@@ -19,15 +19,15 @@
 #' # Get the graph's internal edf to show which
 #' # edge attributes are available
 #' get_edge_df(graph)
-#' #>   from to rel color
-#' #> 1    4  1     green
-#' #> 2    2  4     green
-#' #> 3    4  3     green
-#' #> 4    3  5     green
-#' #> 5    5  1     green
-#' #> 6    4  5     green
-#' #> 7    2  1     green
-#' #> 8    3  2     green
+#' #>   from to  rel color
+#' #> 1    4  1 <NA> green
+#' #> 2    2  4 <NA> green
+#' #> 3    4  3 <NA> green
+#' #> 4    3  5 <NA> green
+#' #> 5    5  1 <NA> green
+#' #> 6    4  5 <NA> green
+#' #> 7    2  1 <NA> green
+#' #> 8    3  2 <NA> green
 #'
 #' # Rename the `value` node attribute as `weight`
 #' graph <-
@@ -37,15 +37,15 @@
 #' # Get the graph's internal edf to show that the
 #' # edge attribute had been renamed
 #' get_edge_df(graph)
-#' #>   from to rel labelfontcolor
-#' #> 1    4  1              green
-#' #> 2    2  4              green
-#' #> 3    4  3              green
-#' #> 4    3  5              green
-#' #> 5    5  1              green
-#' #> 6    4  5              green
-#' #> 7    2  1              green
-#' #> 8    3  2              green
+#' #>   from to  rel labelfontcolor
+#' #> 1    4  1 <NA>          green
+#' #> 2    2  4 <NA>          green
+#' #> 3    4  3 <NA>          green
+#' #> 4    3  5 <NA>          green
+#' #> 5    5  1 <NA>          green
+#' #> 6    4  5 <NA>          green
+#' #> 7    2  1 <NA>          green
+#' #> 8    3  2 <NA>          green
 #' @export rename_edge_attrs
 
 rename_edge_attrs <- function(graph,
