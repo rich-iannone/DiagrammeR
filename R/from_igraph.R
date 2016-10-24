@@ -47,7 +47,7 @@ from_igraph <- function(igraph) {
       cbind(
         nodes_df,
         data.frame(
-          type = rep("", nrow(nodes_df)),
+          type = rep(as.character(NA), nrow(nodes_df)),
           stringsAsFactors = FALSE))
   }
 
@@ -64,7 +64,7 @@ from_igraph <- function(igraph) {
       cbind(
         nodes_df,
         data.frame(
-          label = rep("", nrow(nodes_df)),
+          label = rep(as.character(NA), nrow(nodes_df)),
           stringsAsFactors = FALSE))
   }
 
@@ -109,7 +109,7 @@ from_igraph <- function(igraph) {
       cbind(
         edges_df,
         data.frame(
-          rel = rep("", nrow(edges_df)),
+          rel = rep(as.character(NA), nrow(edges_df)),
           stringsAsFactors = FALSE))
   }
 
