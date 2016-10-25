@@ -137,5 +137,5 @@ join_node_attrs <- function(graph,
   graph$nodes_df <- nodes
   graph$last_node <- nodes_created
 
-  return(dgr_graph)
+  return(graph)
 }
