@@ -169,7 +169,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out(node_attr = "data_value", match = "==10")
+    trav_out("data_value == 10")
 
   # Expect that node `2` is the current selection
   expect_equal(get_selection(graph), 2)
@@ -180,7 +180,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out(node_attr = "data_value", match = "<15")
+    trav_out("data_value < 15")
 
   # Expect that node `2` is the current selection
   expect_equal(get_selection(graph), 2)
@@ -191,7 +191,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out(node_attr = "data_value", match = ">5")
+    trav_out("data_value > 5")
 
   # Expect that node `2` is the current selection
   expect_equal(get_selection(graph), 2)
@@ -202,7 +202,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out(node_attr = "data_value", match = "!=5")
+    trav_out("data_value != 5")
 
   # Expect that node `2` is the current selection
   expect_equal(get_selection(graph), 2)
@@ -214,7 +214,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out(node_attr = "data_value", match = "!=10")
+    trav_out("data_value != 10")
 
   # Expect that node `1` is the current selection (since
   # no traversal had occurred)
@@ -226,7 +226,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_out(node_attr = "shape", match = "square")
+    trav_out("shape == 'square'")
 
   # Expect that node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -237,7 +237,7 @@ test_that("selective traversals with `trav_out()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_out(node_attr = "shape", match = "triangle")
+    trav_out("shape == 'triangle'")
 
   # Expect that node `4` is the current selection
   expect_equal(get_selection(graph), 3)
@@ -280,7 +280,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in(node_attr = "data_value", match = "==10")
+    trav_in("data_value == 10")
 
   # Expect that node `3` is the current selection
   expect_equal(get_selection(graph), 3)
@@ -291,7 +291,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in(node_attr = "data_value", match = "<15")
+    trav_in("data_value < 15")
 
   # Expect that node `3` is the current selection
   expect_equal(get_selection(graph), 3)
@@ -302,7 +302,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in(node_attr = "data_value", match = ">5")
+    trav_in("data_value > 5")
 
   # Expect that node `3` is the current selection
   expect_equal(get_selection(graph), 3)
@@ -313,7 +313,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in(node_attr = "data_value", match = "!=5")
+    trav_in("data_value != 5")
 
   # Expect that node `3` is the current selection
   expect_equal(get_selection(graph), 3)
@@ -325,7 +325,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in(node_attr = "data_value", match = "!=10")
+    trav_in("data_value != 10")
 
   # Expect that node `4` is the current selection
   # (since no traversal had occurred)
@@ -337,7 +337,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(2) %>%
-    trav_in(node_attr = "shape", match = "triangle")
+    trav_in("shape == 'triangle'")
 
   # Expect that node `1` is the current selection
   expect_equal(get_selection(graph), 1)
@@ -349,7 +349,7 @@ test_that("selective traversals with `trav_in()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(2) %>%
-    trav_in(node_attr = "shape", match = "square")
+    trav_in("shape == 'square'")
 
   # Expect that node `2` is the current selection
   # (since no traversal had occurred)
@@ -393,7 +393,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out_edge(edge_attr = "data_value", match = "==5")
+    trav_out_edge("data_value == 5")
 
   # Expect that the edge `1` -> `2` is the
   # current selection
@@ -405,7 +405,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out_edge(edge_attr = "data_value", match = "<10")
+    trav_out_edge("data_value < 10")
 
   # Expect that the edge `1` -> `2` is the
   # current selection
@@ -417,7 +417,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out_edge(edge_attr = "data_value", match = ">2")
+    trav_out_edge("data_value > 2")
 
   # Expect that the edge `1` -> `2` is the
   # current selection
@@ -429,7 +429,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out_edge(edge_attr = "data_value", match = "!=1")
+    trav_out_edge("data_value != 1")
 
   # Expect that the edge `1` -> `2` is the
   # current selection
@@ -442,7 +442,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out_edge(edge_attr = "data_value", match = "!=5")
+    trav_out_edge("data_value != 5")
 
   # Expect that node `1` is the current selection
   # (since no traversal had occurred)
@@ -454,7 +454,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out_edge(edge_attr = "rel", match = "related_to")
+    trav_out_edge("rel == 'related_to'")
 
   # Expect that the edge `1` -> `2` is the
   # current selection
@@ -467,7 +467,7 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(1) %>%
-    trav_out_edge(edge_attr = "rel", match = "belongs_with")
+    trav_out_edge("rel == 'belongs_with'")
 
   # Expect that node `1` is the current selection
   # (since no traversal had occurred)
@@ -511,7 +511,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in_edge(edge_attr = "data_value", match = "==5")
+    trav_in_edge("data_value == 5")
 
   # Expect that the edge `3` -> `4` is the
   # current selection
@@ -523,7 +523,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in_edge(edge_attr = "data_value", match = "<10")
+    trav_in_edge("data_value < 10")
 
   # Expect that the edge `3` -> `4` is the
   # current selection
@@ -535,7 +535,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in_edge(edge_attr = "data_value", match = ">2")
+    trav_in_edge("data_value > 2")
 
   # Expect that the edge `3` -> `4` is the
   # current selection
@@ -547,7 +547,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in_edge(edge_attr = "data_value", match = "!=1")
+    trav_in_edge("data_value != 1")
 
   # Expect that the edge `3` -> `4` is the
   # current selection
@@ -560,7 +560,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in_edge(edge_attr = "data_value", match = "!=5")
+    trav_in_edge("data_value != 5")
 
   # Expect that node `4` is the current selection
   # (since no traversal had occurred)
@@ -573,7 +573,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in_edge(edge_attr = "rel", match = "related_to")
+    trav_in_edge("rel == 'related_to'")
 
   # Expect that the edge `3` -> `4` is the
   # current selection
@@ -586,7 +586,7 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(4) %>%
-    trav_in_edge(edge_attr = "rel", match = "belongs_with")
+    trav_in_edge("rel == 'belongs_with'")
 
   # Expect that node `4` is the current selection
   # (since no traversal had occurred)
@@ -630,7 +630,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 3, to = 4) %>%
-    trav_in_node(node_attr = "data_value", match = "==5")
+    trav_in_node("data_value == 5")
 
   # Expect that the node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -641,7 +641,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 3, to = 4) %>%
-    trav_in_node(node_attr = "data_value", match = "<10")
+    trav_in_node("data_value < 10")
 
   # Expect that the node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -652,7 +652,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 3, to = 4) %>%
-    trav_in_node(node_attr = "data_value", match = ">1")
+    trav_in_node("data_value > 1")
 
   # Expect that the node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -663,7 +663,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 3, to = 4) %>%
-    trav_in_node(node_attr = "data_value", match = "!=1")
+    trav_in_node("data_value != 1")
 
   # Expect that the node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -675,7 +675,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 3, to = 4) %>%
-    trav_in_node(node_attr = "data_value", match = "!=5")
+    trav_in_node("data_value != 5")
 
   # Expect that the edge `3` -> `4` is the current
   # selection (since no traversal had occurred)
@@ -688,7 +688,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 3, to = 4) %>%
-    trav_in_node(node_attr = "shape", match = "square")
+    trav_in_node("shape == 'square'")
 
   # Expect that the node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -700,7 +700,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 3, to = 4) %>%
-    trav_in_node(node_attr = "shape", match = "triangle")
+    trav_in_node("shape == 'triangle'")
 
   # Expect that the edge `3` -> `4` is the current
   # selection (since no traversal had occurred)
@@ -744,7 +744,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 1, to = 2) %>%
-    trav_out_node(node_attr = "data_value", match = "==5")
+    trav_out_node("data_value == 5")
 
   # Expect that the node `1` is the current selection
   expect_equal(get_selection(graph), 1)
@@ -755,7 +755,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 1, to = 2) %>%
-    trav_out_node(node_attr = "data_value", match = "<10")
+    trav_out_node("data_value < 10")
 
   # Expect that the node `1` is the current selection
   expect_equal(get_selection(graph), 1)
@@ -766,7 +766,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 1, to = 2) %>%
-    trav_out_node(node_attr = "data_value", match = ">1")
+    trav_out_node("data_value > 1")
 
   # Expect that the node `1` is the current selection
   expect_equal(get_selection(graph), 1)
@@ -777,7 +777,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 1, to = 2) %>%
-    trav_out_node(node_attr = "data_value", match = "!=1")
+    trav_out_node("data_value != 1")
 
   # Expect that the node `1` is the current selection
   expect_equal(get_selection(graph), 1)
@@ -789,7 +789,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 1, to = 2) %>%
-    trav_out_node(node_attr = "data_value", match = "!=5")
+    trav_out_node("data_value != 5")
 
   # Expect that the edge `1` -> `2` is the current
   # selection (since no traversal had occurred)
@@ -801,7 +801,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 1, to = 2) %>%
-    trav_out_node(node_attr = "shape", match = "triangle")
+    trav_out_node("shape == 'triangle'")
 
   # Expect that the node `1` is the current selection
   expect_equal(get_selection(graph), 1)
@@ -813,7 +813,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     clear_selection %>%
     select_edges(from = 1, to = 2) %>%
-    trav_out_node(node_attr = "shape", match = "circle")
+    trav_out_node("shape == 'circle'")
 
   # Expect that the edge `1` -> `2` is the current
   # selection (since no traversal had occurred)
@@ -857,7 +857,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_both(node_attr = "data_value", match = "==10")
+    trav_both("data_value == 10")
 
   # Expect that node `2` is in the current selection
   expect_equal(get_selection(graph), 2)
@@ -868,7 +868,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_both(node_attr = "data_value", match = "<15")
+    trav_both("data_value < 15")
 
   # Expect that nodes `2` and `4` are in the
   # current selection
@@ -880,7 +880,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_both(node_attr = "data_value", match = ">5")
+    trav_both("data_value > 5")
 
   # Expect that node `2` is in the current selection
   expect_equal(get_selection(graph), 2)
@@ -891,7 +891,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_both(node_attr = "data_value", match = "!=5")
+    trav_both("data_value != 5")
 
   # Expect that node `2` is in the current selection
   expect_equal(get_selection(graph), 2)
@@ -903,7 +903,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_both(node_attr = "data_value", match = "!=10")
+    trav_both("data_value != 10")
 
   # Expect that the node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -914,7 +914,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_both(node_attr = "type", match = "circle")
+    trav_both("type == 'circle'")
 
   # Expect that nodes `2` and `4` are in the
   # current selection
@@ -927,7 +927,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(3) %>%
-    trav_both(node_attr = "shape", match = "square")
+    trav_both("shape == 'square'")
 
   # Expect that the node `4` is the current selection
   expect_equal(get_selection(graph), 4)
@@ -938,7 +938,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(2) %>%
-    trav_both(node_attr = "shape", match = "triangle")
+    trav_both("shape == 'triangle'")
 
   # Expect that the node `1` is the current selection
   expect_equal(get_selection(graph), 1)
@@ -949,7 +949,7 @@ test_that("selective traversals with `trav_both()` are possible", {
     graph %>%
     clear_selection %>%
     select_nodes_by_id(2) %>%
-    trav_both(node_attr = "shape", match = "circle")
+    trav_both("shape == 'circle'")
 
   # Expect that the node `2` is the current selection
   expect_equal(get_selection(graph), 2)
