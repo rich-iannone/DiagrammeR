@@ -4,11 +4,11 @@
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
 [![codecov.io](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master) 
 
-With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. You can either use **Markdown**-like text to describe and render a diagram, or, use a collection of functions to create graph objects. The output can be viewed in the **RStudio** Viewer, incorporated in **R Markdown**, or integrated in **shiny** web apps.
+With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. You can either use **Markdown**-like text to describe and render a diagram, or, use a collection of functions to create graph objects. The output can be viewed in the **RStudio** Viewer, incorporated in **R Markdown**, or integrated into **shiny** web apps.
 
 <img src="inst/img/simple-graph.png">
 
-It's possible to make the above graph diagram using using **Graphviz** **DOT** code (as text within the **DiagrammeR** `grViz()` function) or through a combination of **DiagrammeR** functions strung together with the **magrittr** `%>%` pipe. 
+It's possible to make the above graph diagram using **Graphviz** **DOT** code (as text within the **DiagrammeR** `grViz()` function) or through a combination of **DiagrammeR** functions strung together with the **magrittr** `%>%` pipe. 
 
 So, with **Graphviz**:
 
@@ -254,7 +254,7 @@ graph %>% render_graph
 
 <img src="inst/img/graph_example_2.png">
 
-Get all email addresses to contributors (but not maintainers) of the **randomizer** and **supercalc88** projects:
+Get all email addresses for contributors (but not maintainers) of the **randomizer** and **supercalc88** projects:
 ```r
 graph %>% 
   select_nodes("project", "randomizer") %>%
