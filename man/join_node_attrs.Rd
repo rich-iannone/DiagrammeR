@@ -50,8 +50,8 @@ set.seed(25)
 
 df <-
   data.frame(
-    id = 1:6,
-    values = round(rnorm(6, 5), 2))
+    values = round(rnorm(6, 5), 2),
+    id = 1:6)
 
 # Join the values in the data frame to the
 # graph's nodes; this works as a left join using
