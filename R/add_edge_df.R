@@ -49,15 +49,10 @@ add_edge_df <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
-  # Ensure that the nodes in the edge data frame
-  # specified are in the graph object
-  all_nodes_in_graph <-
-    all(edge_df$from %in% get_node_ids(graph)) &
-    all(edge_df$to %in% get_node_ids(graph))
-
   # If not all the nodes specified in the edge data
   # frame are in the graph, stop the function
-  if (all_nodes_in_graph == FALSE) {
+  if (all(unique(c(edge_df$from, edge_df$to)) %in%
+          get_node_ids(graph)) == FALSE) {
     stop("Not all nodes specified in the edge data frame are in the graph.")
   }
 
