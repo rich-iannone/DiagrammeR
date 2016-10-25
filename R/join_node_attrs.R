@@ -136,27 +136,9 @@ join_node_attrs <- function(graph,
   col_numbers <-
     which(colnames(nodes) %in% new_col_names)
 
-  # Replace string <NA> values with empty strings
-  for (i in 1:length(col_numbers)) {
-    nodes[, col_numbers[i]][
-      is.na(nodes[, col_numbers[i]])] <- ""
-  }
-
-  # Create a new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = nodes,
-      edges_df = graph$edges_df,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = graph$directed,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
-
-  # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
+  # Modify the graph object
+  graph$nodes_df <- nodes
+  graph$last_node <- nodes_created
 
   return(dgr_graph)
 }
