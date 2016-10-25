@@ -32,10 +32,6 @@ rev_edge_dir <- function(graph) {
     stop("The input graph must be a directed graph.")
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Get the graph nodes in the `from` and `to` columns
   # of the edf
   from <- get_edges(graph, return_type = "df")[, 1]
@@ -48,21 +44,8 @@ rev_edge_dir <- function(graph) {
   edges$from <- to
   edges$to <- from
 
-  # Create a new graph object, using the `edges` edf
-  dgr_graph <-
-    create_graph(
-      nodes_df = graph$nodes_df,
-      edges_df = edges,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = TRUE,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
+  # Modify the graph object
+  graph$edges_df <- edges
 
-  # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
-
-  return(dgr_graph)
+  return(graph)
 }
