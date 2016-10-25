@@ -204,24 +204,6 @@ add_edges_from_table <- function(graph,
     return(graph)
   }
 
-  # Verify that all values in `from_col` in the table are
-  # available in the graph
-  if (!(all(
-    csv[,which(colnames(csv) == from_col)] %in%
-    get_node_df(graph)[,
-                       which(colnames(get_node_df(graph)) == from_mapping)]))) {
-    stop(paste0("The `from` values in the table don't all match the requested",
-                "node attribute value in the graph."))
-  }
-
-  # Verify that all values in `to_col` in the table are
-  # available in the graph
-  if (!(all(csv[,which(colnames(csv) == to_col)] %in%
-            get_node_df(graph)[,which(colnames(get_node_df(graph)) == to_mapping)]))) {
-    stop(paste0("The `to` values in the table don't all match the requested",
-                "node attribute values in the graph."))
-  }
-
   # If values for `select_cols` provided, filter the
   # table columns by those named columns
   if (!is.null(select_cols)) {
@@ -232,7 +214,7 @@ add_edges_from_table <- function(graph,
       stop("None of the values specified for selecting columns are available.")
     }
     columns_retained <- which(colnames(csv) %in% select_cols)
-    csv <- csv[,columns_retained]
+    csv <- csv[, columns_retained]
   }
 
   # If values for `drop_cols` provided, filter the
@@ -240,7 +222,7 @@ add_edges_from_table <- function(graph,
   if (is.null(select_cols) & !is.null(drop_cols)) {
     columns_retained <-
       which(!(colnames(csv) %in% drop_cols))
-    csv <- csv[,columns_retained]
+    csv <- csv[, columns_retained]
   }
 
   # If values for `rename_attrs` provided, rename the
