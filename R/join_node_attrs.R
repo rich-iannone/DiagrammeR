@@ -34,8 +34,8 @@
 #'
 #' df <-
 #'   data.frame(
-#'     id = 1:6,
-#'     values = round(rnorm(6, 5), 2))
+#'     values = round(rnorm(6, 5), 2),
+#'     id = 1:6)
 #'
 #' # Join the values in the data frame to the
 #' # graph's nodes; this works as a left join using
@@ -71,6 +71,7 @@
 #' #> 3  3 <NA>  <NA>   3.85           1
 #' #> 4  4 <NA>  <NA>   5.32           0
 #' #> 5  5 <NA>  <NA>   3.50           2
+#' @importFrom dplyr select everything
 #' @export join_node_attrs
 
 join_node_attrs <- function(graph,
@@ -132,6 +133,11 @@ join_node_attrs <- function(graph,
   # Get the column numbers for the new columns
   col_numbers <-
     which(colnames(nodes) %in% new_col_names)
+
+  # Ensure that the column ordering is correct
+  nodes <-
+    nodes %>%
+    dplyr::select(id, type, label, dplyr::everything())
 
   # Modify the graph object
   graph$nodes_df <- nodes
