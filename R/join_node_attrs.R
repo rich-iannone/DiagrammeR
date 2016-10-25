@@ -20,8 +20,7 @@
 #' ndf and in \code{df} with identical names.
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a simple graph
 #' graph <-
@@ -41,9 +40,8 @@
 #' # Join the values in the data frame to the
 #' # graph's nodes; this works as a left join using
 #' # identically-named columns in the graph and the df
-#' # (in this case `nodes` is common to both)
-#' graph <-
-#'   graph %>% join_node_attrs(df)
+#' # (in this case the `id` column is common to both)
+#' graph <- graph %>% join_node_attrs(df)
 #'
 #' # Get the graph's internal ndf to show that the
 #' # join has been made
@@ -57,9 +55,8 @@
 #'
 #' # Get betweenness values for each node and
 #' # add them as a node attribute (Note the
-#' # column names `nodes` and `node` in the
-#' # different tables still result in a
-#' # natural join)
+#' # common column name `id` in the different
+#' # tables results in a natural join)
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
@@ -69,11 +66,11 @@
 #' # this join has been made
 #' get_node_df(graph)
 #' #>   id type label values betweenness
-#' #> 1  1          1   4.79           2
-#' #> 2  2          2   3.96           7
-#' #> 3  3          3   3.85           1
-#' #> 4  4          4   5.32           0
-#' #> 5  5          5    3.5           2
+#' #> 1  1 <NA>  <NA>   4.79           2
+#' #> 2  2 <NA>  <NA>   3.96           7
+#' #> 3  3 <NA>  <NA>   3.85           1
+#' #> 4  4 <NA>  <NA>   5.32           0
+#' #> 5  5 <NA>  <NA>   3.50           2
 #' @export join_node_attrs
 
 join_node_attrs <- function(graph,
