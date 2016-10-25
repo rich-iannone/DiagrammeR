@@ -30,6 +30,8 @@
 #' # Create a data frame with node ID values
 #' # representing the graph edges (with `from` and `to`
 #' # columns), and, a set of numeric values
+#' set.seed(25)
+#'
 #' df <-
 #'   data.frame(
 #'     from = c(1, 1, 2, 2, 3),
@@ -40,18 +42,17 @@
 #' # graph's edges; this works as a left join using
 #' # identically-named columns in the graph and the df
 #' # (in this case `from` and `to` are common to both)
-#' graph <-
-#'   graph %>% join_edge_attrs(df)
+#' graph <- graph %>% join_edge_attrs(df)
 #'
 #' # Get the graph's internal edf to show that the
 #' # join has been made
 #' get_edge_df(graph)
-#' #>   from to  rel           values
-#' #> 1    1  2 <NA> 4.29005356907819
-#' #> 2    1  3 <NA> 5.61072635348905
-#' #> 3    2  4 <NA> 4.06590236835575
-#' #> 4    2  5 <NA>  3.7463665997609
-#' #> 5    3  5 <NA> 5.29144623551746
+#' #>   from to  rel   values
+#' #> 1    1  2 <NA> 4.788166
+#' #> 2    1  3 <NA> 3.958409
+#' #> 3    2  4 <NA> 3.846692
+#' #> 4    2  5 <NA> 5.321531
+#' #> 5    3  5 <NA> 3.499870
 #' @export join_edge_attrs
 
 join_edge_attrs <- function(graph,
@@ -66,10 +67,6 @@ join_edge_attrs <- function(graph,
   if (!is.null(by_graph) & is.null(by_df)) {
     stop("Both column specifications must be provided.")
   }
-
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
 
   # Extract the graph's edf
   edges <- get_edge_df(graph)
@@ -101,26 +98,8 @@ join_edge_attrs <- function(graph,
   col_numbers <-
     which(colnames(edges) %in% new_col_names)
 
-  # Replace string <NA> values with empty strings
-  for (i in 1:length(col_numbers)) {
-    edges[,col_numbers[i]][is.na(edges[,col_numbers[i]])] <- ""
-  }
+  # Modify the graph object
+  graph$edges_df <- edges
 
-  # Create a new graph object
-  dgr_graph <-
-    create_graph(
-      nodes_df = graph$nodes_df,
-      edges_df = edges,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
-      directed = graph$directed,
-      graph_name = graph$graph_name,
-      graph_time = graph$graph_time,
-      graph_tz = graph$graph_tz)
-
-  # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
-
-  return(dgr_graph)
+  return(graph)
 }
