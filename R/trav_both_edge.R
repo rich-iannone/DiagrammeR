@@ -58,7 +58,7 @@
 #' # nodes traversed to
 #' graph %>%
 #'   select_nodes_by_id(3) %>%
-#'   trav_both_edge_v2 %>%
+#'   trav_both_edge %>%
 #'   get_selection
 #' #> [1] "1 -> 3" "3 -> 5"
 #'
@@ -67,7 +67,7 @@
 #' # NA values for the `rel` edge attribute
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both_edge_v2(
+#'   trav_both_edge(
 #'     conditions = "is.na(rel)") %>%
 #'   get_selection
 #' #> [1] "1 -> 2"
@@ -78,7 +78,7 @@
 #' # the `rel` edge attribute
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both_edge_v2(
+#'   trav_both_edge(
 #'     conditions = "values > 6.5") %>%
 #'   get_selection
 #' #> [1] "2 -> 5"
@@ -89,7 +89,7 @@
 #' # edge attribute
 #' graph %>%
 #'   select_nodes_by_id(5) %>%
-#'   trav_both_edge_v2(
+#'   trav_both_edge(
 #'     conditions = "rel == 'C'") %>%
 #'   get_selection
 #' #> [1] "2 -> 5"
@@ -100,7 +100,7 @@
 #' # the `rel` edge attribute
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both_edge_v2(
+#'   trav_both_edge(
 #'     conditions = "rel %in% c('B', 'C')") %>%
 #'   get_selection
 #' #> [1] "2 -> 4" "2 -> 5"
@@ -111,7 +111,7 @@
 #' # creates a set of `AND` conditions)
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both_edge_v2(
+#'   trav_both_edge(
 #'     conditions = c(
 #'       "rel %in% c('B', 'C')",
 #'       "values > 4.0")) %>%
@@ -124,7 +124,7 @@
 #' # `|` to create a set of `OR` conditions)
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both_edge_v2(
+#'   trav_both_edge(
 #'     conditions = c(
 #'       "rel %in% c('B', 'C') | values > 4.0")) %>%
 #'   get_selection
@@ -135,15 +135,15 @@
 #' # a filtering condition
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both_edge_v2(
+#'   trav_both_edge(
 #'     conditions = "grepl('B|C', rel)") %>%
 #'   get_selection
 #' #> [1] "2 -> 4" "2 -> 5"
 #' @importFrom dplyr filter filter_
-#' @export trav_both_edge_v2
+#' @export trav_both_edge
 
-trav_both_edge_v2 <- function(graph,
-                              conditions = NULL) {
+trav_both_edge <- function(graph,
+                           conditions = NULL) {
 
   if (is.null(graph$selection$nodes)) {
     stop("There is no selection of nodes available.")
