@@ -1,174 +1,197 @@
-#' Traverse from one or more selected edges toward
-#' adjacent outward nodes
+#' Traverse from one or more selected edges onto
+#' adjacent, outward nodes
 #' @description From a graph object of class
-#' \code{dgr_graph} move to adjacent nodes from a
-#' selection of one or more selected edges where the
-#' edges are outward edges to those nodes. This creates
-#' a selection of nodes. An optional filter by node
-#' attribute can limit the set of nodes traversed to.
+#' \code{dgr_graph} with an active selection of
+#' edges move opposite to the edge direction to
+#' connected nodes, replacing the current edge selection
+#' with the selection with those nodes traversed to. An
+#' optional filter by node attribute can limit the set
+#' of nodes traversed to.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param node_attr an optional character vector of
-#' node attribute values for filtering the node ID
+#' @param edge_attr an optional character vector of
+#' edge attribute values for filtering the node ID
 #' values returned.
-#' @param match an option to provide a logical
-#' expression with a comparison operator (\code{>},
-#' \code{<}, \code{==}, or \code{!=}) followed by a
-#' number for numerical filtering, or, a character
-#' string for filtering the edges returned through
-#' string matching.
+#' @param conditions an option to use filtering
+#' conditions for the traversal.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
+#' library(dplyr)
+#'
+#' # Set a seed
+#' set.seed(23)
+#'
 #' # Create a simple graph
 #' graph <-
-#'  create_graph() %>%
-#'  add_n_nodes(2) %>%
-#'  add_edge(1, 2)
+#'   create_graph() %>%
+#'   add_n_nodes(
+#'     2, type = "a",
+#'     label = c("asd", "iekd")) %>%
+#'   add_n_nodes(
+#'     3, type = "b",
+#'     label = c("idj", "edl", "ohd")) %>%
+#'   add_edges_w_string(
+#'     "1->2 1->3 2->4 2->5 3->5",
+#'     rel = c(NA, "A", "B", "C", "D"))
 #'
-#' # Traverse from node `1` to the outward edge and
-#' # immediately back to `1` by:
-#' # (1) moving from node `1` to edge `1` -> `2`
-#' # (2) moving from edge `1` -> `2` to node `1`
+#' # Create a data frame with node ID values
+#' # representing the graph edges (with `from`
+#' # and `to` columns), and, a set of numeric values
+#' df_edges <-
+#'   data.frame(
+#'     from = c(1, 1, 2, 2, 3),
+#'     to = c(2, 3, 4, 5, 5),
+#'     values = round(rnorm(5, 5), 2))
+#'
+#' # Create a data frame with node ID values
+#' # representing the graph nodes (with the `id`
+#' # columns), and, a set of numeric values
+#' df_nodes <-
+#'   data.frame(
+#'     id = 1:5,
+#'     values = round(rnorm(5, 7), 2))
+#'
+#' # Join the data frame to the graph's internal
+#' # edge data frame (edf)
 #' graph <-
 #'   graph %>%
-#'   select_nodes_by_id(1) %>%
-#'   trav_out_edge %>%
-#'   trav_out_node
+#'   join_edge_attrs(df_edges) %>%
+#'   join_node_attrs(df_nodes)
 #'
-#' # Verify that the selection of node `1` has been
-#' # made by using the `get_selection()` function
-#' get_selection(graph)
+#' get_node_df(graph)
+#' #>   id type label values
+#' #> 1  1    a   asd   8.11
+#' #> 2  2    a  iekd   6.72
+#' #> 3  3    b   idj   8.02
+#' #> 4  4    b   edl   7.05
+#' #> 5  5    b   ohd   8.58
+#'
+#' get_edge_df(graph)
+#' #>   from to  rel values
+#' #> 1    1  2 <NA>   5.19
+#' #> 2    1  3    A   4.57
+#' #> 3    2  4    B   5.91
+#' #> 4    2  5    C   6.79
+#' #> 5    3  5    D      6
+#'
+#' # Perform a simple traversal from the
+#' # edge `1` -> `3` to the attached node
+#' # in the direction of the edge; here, no
+#' # conditions are placed on the nodes
+#' # traversed to
+#' graph %>%
+#'   select_edges(from = 1, to = 3) %>%
+#'   trav_out_node %>%
+#'   get_selection
 #' #> [1] 1
+#'
+#' # Traverse from edges `2` -> `5` and
+#' # `3` -> `5` to the attached node along
+#' # the direction of the edge; here, the
+#' # traversals lead to different nodes
+#' graph %>%
+#'   select_edges(from = 2, to = 5) %>%
+#'   select_edges(from = 3, to = 5) %>%
+#'   trav_out_node %>%
+#'   get_selection
+#' #> [1] 2 3
+#'
+#' # Traverse from the edge `1` -> `3`
+#' # to the attached node where the edge
+#' # is outgoing, this time filtering
+#' # numeric values greater than `7.0` for
+#' # the `values` node attribute
+#' graph %>%
+#'   select_edges(from = 1, to = 3) %>%
+#'   trav_out_node(
+#'     conditions = "values > 7.0") %>%
+#'   get_selection
+#' #> [1] 1
+#'
+#' # Traverse from the edge `1` -> `3`
+#' # to the attached node where the edge
+#' # is outgoing, this time filtering
+#' # numeric values less than `7.0` for
+#' # the `values` node attribute (the
+#' # condition is not met so the original
+#' # selection of edge `1` -> `3` remains)
+#' graph %>%
+#'   select_edges(from = 1, to = 3) %>%
+#'   trav_out_node(
+#'     conditions = "values < 7.0") %>%
+#'   get_selection
+#' #> [1] "1 -> 3"
+#'
+#' # Traverse from the edge `1` -> `2` to
+#' # the node `2` using multiple conditions
+#' # with a single-length vector (here, using
+#' # a `|` to create a set of `OR` conditions)
+#' graph %>%
+#'   select_edges(from = 1, to = 2) %>%
+#'   trav_out_node(
+#'     conditions = "grepl('.*d$', label) | values < 6.0") %>%
+#'   get_selection
+#' #> [1] 1
+#' @importFrom dplyr filter filter_
 #' @export trav_out_node
 
 trav_out_node <- function(graph,
-                          node_attr = NULL,
-                          match = NULL) {
+                          conditions = NULL) {
 
-  if (is.null(graph$selection$edges)) {
-    stop("There is no selection of edges available.")
+  if (is.null(graph$selection$edges$from) |
+      is.null(graph$selection$edges$to)) {
+    stop("There is no selection of nodes available.")
   }
 
-  # Create a selection of nodes using the
-  # edge selection
-  landing_nodes <- unique(graph$selection$edges$from)
+  # Get the selection of nodes as the starting
+  # nodes for the traversal
+  starting_edge_from <- graph$selection$edges$from
+  starting_edge_to <- graph$selection$edges$to
 
-  # If a match term provided, filter using a
-  # logical expression or a regex match
-  if (!is.null(match)) {
+  # Get the graph's node data frame
+  ndf <- graph$nodes_df
 
-    if (grepl("^>.*", match) |
-        grepl("^<.*", match) |
-        grepl("^==.*", match) |
-        grepl("^!=.*", match)) {
-      logical_expression <- TRUE } else {
-        logical_expression <- FALSE
-      }
+  # 1 -> 3
+  # Find all nodes that are connected to the
+  # starting nodes via incoming edges
+  valid_nodes <-
+    ndf %>%
+    dplyr::filter(id %in% starting_edge_from)
 
-    if (logical_expression) {
-
-      for (i in 1:length(landing_nodes)) {
-
-        if (i == 1) {
-          to_nodes <- vector(mode = "integer")
-
-          column_number <-
-            which(colnames(graph$nodes_df) %in%
-                    node_attr)
-        }
-
-        if (grepl("^>.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    landing_nodes[i]),
-              column_number]) >
-            as.numeric(gsub(">(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, landing_nodes[i])
-          }
-        }
-
-        if (grepl("^<.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    landing_nodes[i]),
-              column_number]) <
-            as.numeric(gsub("<(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, landing_nodes[i])
-          }
-        }
-
-        if (grepl("^==.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    landing_nodes[i]),
-              column_number]) ==
-            as.numeric(gsub("==(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, landing_nodes[i])
-          }
-        }
-
-        if (grepl("^!=.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    landing_nodes[i]),
-              column_number]) !=
-            as.numeric(gsub("!=(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, landing_nodes[i])
-          }
-        }
-      }
-    }
-
-    # Filter using a `match` value
-    if (logical_expression == FALSE) {
-
-      if (is.numeric(match)) {
-        match <- as.character(match)
-      }
-
-      for (i in 1:length(landing_nodes)) {
-
-        if (i == 1) {
-          to_nodes <- vector(mode = "integer")
-          column_number <-
-            which(colnames(graph$nodes_df) %in%
-                    node_attr)
-        }
-
-        if (match ==
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    landing_nodes[i]),
-              column_number]) {
-
-          to_nodes <- c(to_nodes, landing_nodes[i])
-        }
-      }
-    }
-
-    landing_nodes <- to_nodes
+  # If no rows returned, then there are no
+  # valid traversals, so return the same graph
+  # object without modifying the selection
+  if (nrow(valid_nodes) == 0) {
+    return(graph)
   }
 
-  # If there are no valid traversals, return the same
-  # graph object without modifying the node selection
-  if (length(landing_nodes) == 0) {
+  # If traversal conditions are provided then
+  # pass in those conditions and filter the
+  # data frame of `valid_nodes`
+  if (!is.null(conditions)) {
+    for (i in 1:length(conditions)) {
+
+      valid_nodes <-
+        valid_nodes %>%
+        dplyr::filter_(conditions[i])
+    }
+  }
+
+  # If no rows returned, then there are no
+  # valid traversals, so return the same graph
+  # object without modifying the selection
+  if (nrow(valid_nodes) == 0) {
     return(graph)
   }
 
   # Remove the edge selection in graph
+  graph$selection$edges$from <- NULL
+  graph$selection$edges$to <- NULL
   graph$selection$edges <- NULL
 
-  # Update node selection in graph
-  graph$selection$nodes <- as.integer(landing_nodes)
+  # Update the node selection in graph
+  graph$selection$nodes <- valid_nodes$id
 
   return(graph)
 }

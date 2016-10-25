@@ -1,277 +1,219 @@
-#' Traverse from one or more selected nodes to
-#' predecessors and successors, irrespective of edges,
-#' creating a new node selection
+#' Traverse from one or more selected nodes onto
+#' neighboring nodes
 #' @description From a graph object of class
-#' \code{dgr_graph} move toward both predecessor and
-#' successor nodes from one or more nodes present in a
-#' selection. The current nodes in the selection are
-#' replaced with those nodes traversed to.
+#' \code{dgr_graph} move from one or more nodes
+#' present in a selection to other nodes that are
+#' connected by edges, replacing the current nodes in
+#' the selection with those nodes traversed to. An
+#' optional filter by node attribute can limit the set
+#' of nodes traversed to.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param node_attr an optional character vector of
-#' node attribute values for filtering the node ID
+#' @param edge_attr an optional character vector of
+#' edge attribute values for filtering the node ID
 #' values returned.
-#' @param match an option to provide a logical
-#' expression with a comparison operator (\code{>},
-#' \code{<}, \code{==}, or \code{!=}) followed by a
-#' number for numerical filtering, or, a character
-#' string for filtering the edges returned through
-#' string matching.
+#' @param conditions an option to use filtering
+#' conditions for the traversal.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph
-#' graph <-
-#' create_graph() %>%
-#'   add_n_nodes(3) %>%
-#'   add_edge(1, 2) %>%
-#'   add_edge(2, 3)
+#' library(dplyr)
 #'
-#' # Starting at node `2`, traverse to nodes `1` and
-#' # `2` with `trav_both()` (where the traversal leads
-#' # to any connected nodes, regardless of edge
-#' # direction); store the traversed locations as a
-#' # selection in the graph object
+#' # Set a seed
+#' set.seed(23)
+#'
+#' # Create a simple graph
+#' graph <-
+#'   create_graph() %>%
+#'   add_n_nodes(
+#'     2, type = "a",
+#'     label = c("asd", "iekd")) %>%
+#'   add_n_nodes(
+#'     3, type = "b",
+#'     label = c("idj", "edl", "ohd")) %>%
+#'   add_edges_w_string(
+#'     "1->2 1->3 2->4 2->5 3->5",
+#'     rel = c(NA, "A", "B", "C", "D"))
+#'
+#' # Create a data frame with node ID values
+#' # representing the graph edges (with `from`
+#' # and `to` columns), and, a set of numeric values
+#' df_edges <-
+#'   data.frame(
+#'     from = c(1, 1, 2, 2, 3),
+#'     to = c(2, 3, 4, 5, 5),
+#'     values = round(rnorm(5, 5), 2))
+#'
+#' # Create a data frame with node ID values
+#' # representing the graph nodes (with the `id`
+#' # columns), and, a set of numeric values
+#' df_nodes <-
+#'   data.frame(
+#'     id = 1:5,
+#'     values = round(rnorm(5, 7), 2))
+#'
+#' # Join the data frame to the graph's internal
+#' # edge data frame (edf)
 #' graph <-
 #'   graph %>%
-#'   select_nodes_by_id(2) %>%
-#'   trav_both
+#'   join_edge_attrs(df_edges) %>%
+#'   join_node_attrs(df_nodes)
 #'
-#' # Verify that the selection has been made by using
-#' # the `get_selection()` function
-#' get_selection(graph)
-#' #> [1] 1 3
+#' get_node_df(graph)
+#' #>   id type label values
+#' #> 1  1    a   asd   8.11
+#' #> 2  2    a  iekd   6.72
+#' #> 3  3    b   idj   8.02
+#' #> 4  4    b   edl   7.05
+#' #> 5  5    b   ohd   8.58
 #'
-#' # Modify the graph by adding `type` values for
-#' # nodes `1` and `3`
-#' graph <-
-#'   graph %>%
-#'   clear_selection %>%
-#'   select_nodes_by_id(1) %>%
-#'   set_node_attrs_ws(
-#'     node_attr = "type", value = "a") %>%
-#'   clear_selection %>%
+#' get_edge_df(graph)
+#' #>   from to  rel values
+#' #> 1    1  2 <NA>   5.19
+#' #> 2    1  3    A   4.57
+#' #> 3    2  4    B   5.91
+#' #> 4    2  5    C   6.79
+#' #> 5    3  5    D      6
+#'
+#' # Perform a simple traversal from node `3`
+#' # to adjacent nodes with no conditions on
+#' # the nodes traversed to
+#' graph %>%
 #'   select_nodes_by_id(3) %>%
-#'   set_node_attrs_ws(
-#'     node_attr = "type", value = "z") %>%
-#'   clear_selection
+#'   trav_both %>%
+#'   get_selection
+#' #> [1] 1 5
 #'
-#' # When traversing from node `2` to both `1` and `3`,
-#' # you can set a condition that determines whether
-#' # such traversal is permitted; in this case the
-#' # condition is to traverse only to nodes where
-#' # the type value is set to `a` (since node `3` has
-#' # its `type` set to `z`, so, a traversal to `1`
-#' # proceeds but there will be no traversal to `3`)
+#' # Traverse from node `2` to any adjacent
+#' # nodes, filtering to those nodes that have
+#' # numeric values less than `8.0` for
+#' # the `values` node attribute
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both("type", "a") %>%
+#'   trav_both(
+#'     conditions = "values < 8.0") %>%
+#'   get_selection
+#' #> [1] 4
+#'
+#' # Traverse from node `5` to any adjacent
+#' # nodes, filtering to those nodes that
+#' # have a `type` attribute of `b`
+#' graph %>%
+#'   select_nodes_by_id(5) %>%
+#'   trav_both(
+#'     conditions = "type == 'b'") %>%
+#'   get_selection
+#' #> [1] 3
+#'
+#' # Traverse from node `2` to any adjacent
+#' # nodes, filtering to those nodes that
+#' # have a degree of `1`
+#' graph %>%
+#'   {
+#'   node_degrees <-
+#'     node_info(.) %>%
+#'     dplyr::select(id, deg)
+#'   join_node_attrs(., node_degrees)
+#'   } %>%
+#'   select_nodes_by_id(2) %>%
+#'   trav_both(
+#'     conditions = "deg == 1") %>%
 #'   get_selection
 #' #> [1] 1
 #'
-#' # We can also set traversal conditions to satisfy
-#' # numeric comparisons... the graph will be first
-#' # modified
-#' graph <-
-#'   graph %>%
-#'   set_node_attrs("value", 3.4, 1) %>%
-#'   set_node_attrs("value", 6.7, 2) %>%
-#'   set_node_attrs("value", 9.1, 3)
-#'
-#' # Traverse from nodes `2` to `1` and `3`,
-#' # setting the condition that each node traversed
-#' # to must have a `value` greater than 5.0
-#' # (although a traversal to both nodes is
-#' # intended, the traversal does not reach node
-#' # `1` since its value is not greater than 5.0)
+#' # Traverse from node `2` to any adjacent
+#' # nodes, and use multiple conditions for the
+#' # traversal (using a vector in `conditions`
+#' # creates a set of `AND` conditions)
 #' graph %>%
 #'   select_nodes_by_id(2) %>%
-#'   trav_both("value", ">5.0") %>%
+#'   trav_both(
+#'     conditions = c(
+#'       "type == 'a'",
+#'       "values > 8.0")) %>%
 #'   get_selection
-#' #> [1] 3
+#' #> [1] 1
+#'
+#' # Traverse from node `2` to any adjacent
+#' # nodes, and use multiple conditions with
+#' # a single-length vector (here, using a
+#' # `|` to create a set of `OR` conditions)
+#' graph %>%
+#'   select_nodes_by_id(2) %>%
+#'   trav_both(
+#'     conditions = c(
+#'       "type == 'a' | values > 8.0")) %>%
+#'   get_selection
+#' #> [1] 1 5
+#'
+#' # Traverse from node `2` to any adjacent
+#' # nodes, and use a regular expression as
+#' # a filtering condition
+#' graph %>%
+#'   select_nodes_by_id(2) %>%
+#'   trav_both(
+#'     conditions = "grepl('..d', label)") %>%
+#'   get_selection
+#' #> [1] 1 5
+#' @importFrom dplyr filter_ inner_join rename
+#' @importFrom tibble as_tibble
 #' @export trav_both
 
 trav_both <- function(graph,
-                      node_attr = NULL,
-                      match = NULL) {
+                      conditions = NULL) {
 
   if (is.null(graph$selection$nodes)) {
     stop("There is no selection of nodes available.")
   }
 
-  # Get the current selection of nodes
-  selected_nodes <- get_selection(graph)
+  # Get the selection of nodes as the starting
+  # nodes for the traversal
+  starting_nodes <- graph$selection$nodes
 
-  # Get all paths leading outward from node in selection
-  for (i in 1:length(selected_nodes)) {
-    if (i == 1) {
-      successors <- vector(mode = "integer")
-    }
+  # Get the graph's edge data frame
+  edf <- graph$edges_df
 
-    if (!is.na(
-      get_successors(graph, selected_nodes[i])[1])) {
-      successors <-
-        c(successors,
-          get_successors(graph = graph,
-                         selected_nodes[i]))
-    }
+  # Get the graph's node data frame
+  ndf <- graph$nodes_df
 
-    if (i == length(selected_nodes)) {
-      successors <- unique(successors)
-    }
-  }
+  # Find all nodes that are connected to the
+  # starting nodes via outgoing edges
+  valid_nodes <-
+    graph %>%
+    get_nbrs(., starting_nodes) %>%
+    as.integer %>%
+    tibble::as_tibble(.) %>%
+    dplyr::rename(id = value) %>%
+    dplyr::inner_join(ndf, by = "id")
 
-  # Get all paths leading inward from node in selection
-  for (i in 1:length(selected_nodes)) {
-    if (i == 1) {
-      predecessors <- vector(mode = "integer")
-    }
-
-    if (!is.na(
-      get_predecessors(graph,
-                       selected_nodes[i])[1])) {
-      predecessors <-
-        c(predecessors,
-          get_predecessors(graph = graph,
-                           selected_nodes[i]))
-    }
-
-    if (i == length(selected_nodes)) {
-      predecessors <- unique(predecessors)
-    }
-  }
-
-  # If no successors and no predecessors returned then
-  # there are no paths outward, so return the same
-  # graph object without modifying the node selection
-  if (length(successors) == 0 &
-      length(predecessors) == 0) {
+  # If no rows returned, then there are no
+  # valid traversals, so return the same graph
+  # object without modifying the selection
+  if (nrow(valid_nodes) == 0) {
     return(graph)
   }
 
-  if (length(successors) == 0) {
-    succ_pred <- predecessors
-  }
+  # If traversal conditions are provided then
+  # pass in those conditions and filter the
+  # data frame of `valid_nodes`
+  if (!is.null(conditions)) {
+    for (i in 1:length(conditions)) {
 
-  if (length(predecessors) == 0) {
-    succ_pred <- successors
-  }
-
-  if (length(successors) != 0 &
-      length(predecessors) != 0) {
-    succ_pred <- unique(c(successors, predecessors))
-  }
-
-  # If a `match` term provided, filter using a logical
-  # expression or a regex match
-  if (!is.null(match)) {
-
-    if (grepl("^>.*", match) |
-        grepl("^<.*", match) |
-        grepl("^==.*", match) |
-        grepl("^!=.*", match)) {
-      logical_expression <- TRUE } else {
-        logical_expression <- FALSE
-      }
-
-    if (logical_expression) {
-
-      for (i in 1:length(succ_pred)) {
-
-        if (i == 1) {
-          to_nodes <- vector(mode = "integer")
-          column_number <-
-            which(colnames(graph$nodes_df) %in%
-                    node_attr)
-        }
-
-        if (grepl("^>.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    succ_pred[i]), column_number]) >
-            as.numeric(gsub(">(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, succ_pred[i])
-          }
-        }
-
-        if (grepl("^<.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    succ_pred[i]), column_number]) <
-            as.numeric(gsub("<(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, succ_pred[i])
-          }
-        }
-
-        if (grepl("^==.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    succ_pred[i]), column_number]) ==
-            as.numeric(gsub("==(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, succ_pred[i])
-          }
-        }
-
-        if (grepl("^!=.*", match)) {
-          if (as.numeric(
-            get_node_df(graph)[
-              which(get_node_df(graph)[,1] %in%
-                    succ_pred[i]), column_number]) !=
-            as.numeric(gsub("!=(.*)", "\\1", match))) {
-
-            to_nodes <- c(to_nodes, succ_pred[i])
-          }
-        }
-      }
+      valid_nodes <-
+        valid_nodes %>%
+        dplyr::filter_(conditions[i])
     }
-
-    # Filter using a `match` value
-    if (logical_expression == FALSE) {
-
-      if (is.numeric(match)) {
-        match <- as.character(match)
-      }
-
-      for (i in 1:length(succ_pred)) {
-
-        if (i == 1) {
-          to_nodes <- vector(mode = "integer")
-
-          column_number <-
-            which(colnames(graph$nodes_df) %in%
-                    node_attr)
-        }
-
-        if (!is.na(get_node_df(graph)[
-          which(get_node_df(graph)[,1] %in%
-                succ_pred[i]),
-          column_number])) {
-
-          if (match ==
-              get_node_df(graph)[
-                which(get_node_df(graph)[,1] %in%
-                      succ_pred[i]),
-                column_number]) {
-
-            to_nodes <- c(to_nodes, succ_pred[i])
-          }
-        }
-      }
-    }
-    succ_pred <- to_nodes
   }
 
-  # Update node selection in graph
-  if (length(succ_pred) > 0) {
-    graph$selection$nodes <- as.integer(succ_pred)
-    return(graph)
-  } else {
+  # If no rows returned, then there are no
+  # valid traversals, so return the same graph
+  # object without modifying the selection
+  if (nrow(valid_nodes) == 0) {
     return(graph)
   }
+
+  # Update the node selection in graph
+  graph$selection$nodes <- valid_nodes$id
+
+  return(graph)
 }
