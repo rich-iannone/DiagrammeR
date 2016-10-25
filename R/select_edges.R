@@ -258,8 +258,8 @@ select_edges <- function(graph,
               "\\3", edges_combined))
 
   # Create selection of edges
-  graph$selection$edges$from <- from_combined
-  graph$selection$edges$to <- to_combined
+  graph$selection$edges$from <- as.integer(from_combined)
+  graph$selection$edges$to <- as.integer(to_combined)
 
   return(graph)
 }
