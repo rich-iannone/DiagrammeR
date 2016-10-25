@@ -46,6 +46,8 @@ graph <-
 # Create a data frame with node ID values
 # representing the graph edges (with `from` and `to`
 # columns), and, a set of numeric values
+set.seed(25)
+
 df <-
   data.frame(
     from = c(1, 1, 2, 2, 3),
@@ -56,17 +58,16 @@ df <-
 # graph's edges; this works as a left join using
 # identically-named columns in the graph and the df
 # (in this case `from` and `to` are common to both)
-graph <-
-  graph \%>\% join_edge_attrs(df)
+graph <- graph \%>\% join_edge_attrs(df)
 
 # Get the graph's internal edf to show that the
 # join has been made
 get_edge_df(graph)
-#>   from to  rel           values
-#> 1    1  2 <NA> 4.29005356907819
-#> 2    1  3 <NA> 5.61072635348905
-#> 3    2  4 <NA> 4.06590236835575
-#> 4    2  5 <NA>  3.7463665997609
-#> 5    3  5 <NA> 5.29144623551746
+#>   from to  rel   values
+#> 1    1  2 <NA> 4.788166
+#> 2    1  3 <NA> 3.958409
+#> 3    2  4 <NA> 3.846692
+#> 4    2  5 <NA> 5.321531
+#> 5    3  5 <NA> 3.499870
 }
 
