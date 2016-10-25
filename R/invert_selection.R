@@ -97,8 +97,8 @@ invert_selection <- function(graph) {
            gsub("(.*)(->|--)(.*)", "\\3",
                 inverted_edges))
 
-    graph$selection$edges$from <- inverted_from
-    graph$selection$edges$to <- inverted_to
+    graph$selection$edges$from <- as.integer(inverted_from)
+    graph$selection$edges$to <- as.integer(inverted_to)
   }
 
   # Return the graph
