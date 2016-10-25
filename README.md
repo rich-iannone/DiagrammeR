@@ -215,7 +215,7 @@ graph %>%
   trav_in_edge %>%
   cache_edge_attrs_ws("commits", "numeric") %>%
   trav_in_node %>%
-  trav_in_edge("commits", max(get_cache(.))) %>%
+  trav_in_edge(paste("commits ==", max(get_cache(.)))) %>%
   trav_out_node %>%
   cache_node_attrs_ws("name") %>%
   get_cache
@@ -229,7 +229,7 @@ graph %>%
   trav_in_edge %>%
   cache_edge_attrs_ws("commits", "numeric") %>%
   trav_in_node %>%
-  trav_in_edge("commits", min(get_cache(.))) %>%
+  trav_in_edge(paste("commits ==", min(get_cache(.)))) %>%
   trav_out_node %>%
   cache_node_attrs_ws("email") %>%
   get_cache
@@ -259,7 +259,7 @@ Get all email addresses to contributors (but not maintainers) of the **randomize
 graph %>% 
   select_nodes("project", "randomizer") %>%
   select_nodes("project", "supercalc") %>%
-  trav_in_edge("rel", "contributor") %>%
+  trav_in_edge("rel == 'contributor'") %>%
   trav_out_node %>%
   cache_node_attrs_ws("email", "character") %>%
   get_cache %>% 
@@ -277,7 +277,7 @@ graph %>%
   trav_in %>%
   cache_node_attrs_ws("follower_count", "numeric") %>%
   select_nodes("project", "randomizer") %>%
-  trav_in("follower_count", max(get_cache(.))) %>%
+  trav_in(paste("follower_count ==", max(get_cache(.)))) %>%
   cache_node_attrs_ws("name") %>%
   get_cache
 #> [1] "Kim"
