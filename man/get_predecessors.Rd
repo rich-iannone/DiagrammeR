@@ -28,7 +28,7 @@ set.seed(24)
 ndf <- create_node_df(26)
 
 # Create an edge data frame (edf)
-edfedf <-
+edf <-
   create_edge_df(
     from = sample(1:26, replace = TRUE),
     to = sample(1:26, replace = TRUE))
