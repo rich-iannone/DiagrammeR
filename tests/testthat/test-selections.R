@@ -510,9 +510,9 @@ test_that("selecting edges via node IDs is possible", {
   # Expect that certain edges with be available
   # in the selection
   expect_true(all(graph$selection$edges$from %in%
-                    c("3", "4", "2")))
+                    c(3, 4, 2)))
   expect_true(all(graph$selection$edges$to %in%
-                    c("4", "5", "3")))
+                    c(4, 5, 3)))
 })
 
 test_that("selecting nodes in a neighborhood is possible", {
@@ -535,7 +535,7 @@ test_that("selecting nodes in a neighborhood is possible", {
   # object in `nodes`
   expect_true(
     all(graph_sel_1_dist_2$selection$nodes ==
-          c("6", "7", "5", "8", "4")))
+          c(6, 7, 5, 8, 4)))
 
   # Create a selection of nodes centered around node
   # `4` and including those nodes a distance of 4
@@ -550,7 +550,7 @@ test_that("selecting nodes in a neighborhood is possible", {
   # object in `nodes`
   expect_true(
     all(graph_sel_1_sel_4_dist_2$selection$nodes ==
-          c("6", "7", "5", "8", "4", "3", "2")))
+          c(6, 7, 5, 8, 4, 3, 2)))
 
   # Create a selection of nodes centered around node
   # `1` and including those nodes a distance of
@@ -566,7 +566,7 @@ test_that("selecting nodes in a neighborhood is possible", {
   # object in `nodes`
   expect_true(
     all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
-          c("4", "3", "2")))
+          c(4, 3, 2)))
 
   # Create a selection of nodes centered around node
   # `7` and including those nodes a distance of 2
@@ -582,7 +582,7 @@ test_that("selecting nodes in a neighborhood is possible", {
   # object in `nodes`
   expect_true(
     all(graph_sel_1_sel_4_dist_2_sel_A_dist_3$selection$nodes ==
-          c("4", "3", "2")))
+          c(4, 3, 2)))
 })
 
 test_that("getting a selection is possible", {
@@ -601,8 +601,7 @@ test_that("getting a selection is possible", {
   # Expect that specific nodes are returned
   expect_true(
     all(graph_node_selection_1 ==
-          c("1", "2", "3", "4", "5", "6",
-            "7", "8", "9", "10", "11", "12")))
+          c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)))
 
   # Select all edges in graph and get selection
   graph_edge_selection_1 <-
@@ -620,7 +619,6 @@ test_that("getting a selection is possible", {
 
 test_that("inverting a selection is possible", {
 
-  # Create a graph
   # Create a graph
   graph <-
     create_graph() %>%
@@ -644,31 +642,29 @@ test_that("inverting a selection is possible", {
     all(graph_select_1_2_inverted$selection$nodes %in%
           3:12))
 
-  # Select edges `1` -> `5` and `4` -> `6` in the graph
-  graph_select_edges_1_5__4_6 <-
+  # Select edges `1` -> `2` and `2` -> `3` in the graph
+  graph_select_edges_1_2__2_3 <-
     graph %>%
-    select_edges(from = "1", to = "5") %>%
-    select_edges(from = "4", to = "6")
+    select_edges(from = 1, to = 2) %>%
+    select_edges(from = 2, to = 3)
 
   # Invert the selection so that every other edge
   # is selected
-  graph_select_edges_1_5__4_6_inverted <-
-    graph_select_edges_1_5__4_6 %>%
+  graph_select_edges_1_2__2_3_inverted <-
+    graph_select_edges_1_2__2_3 %>%
     invert_selection()
 
   # Expect that every other edge is now in
   # the selection
   expect_true(
     all(
-      graph_select_edges_1_5__4_6_inverted$selection$edges$from %in%
-        c("1", "2", "3", "4", "5", "6", "7", "8",
-          "9", "10", "11")))
+      graph_select_edges_1_2__2_3_inverted$selection$edges$from %in%
+        c(3, 4, 5, 6, 7, 8, 9, 10, 11)))
 
   expect_true(
     all(
-      graph_select_edges_1_5__4_6_inverted$selection$edges$to %in%
-        c("2", "3", "4", "5", "6", "7", "8",
-          "9", "10", "11", "12")))
+      graph_select_edges_1_2__2_3_inverted$selection$edges$to %in%
+        c(4, 5, 6, 7, 8, 9, 10, 11, 12)))
 
   # Expect an error if inverting selection that
   # doesn't exist
@@ -692,7 +688,7 @@ test_that("getting/clearing a selection is possible", {
   # Get the selection and expect both nodes to
   # be present
   expect_true(
-    all(c("1", "2") %in%
+    all(c(1, 2) %in%
           get_selection(graph_select_all_nodes)))
 
   # Clear the selection
