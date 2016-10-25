@@ -5,23 +5,19 @@
 \title{Traverse from one or more selected nodes onto
 adjacent, inward edges}
 \usage{
-trav_in_edge(graph, edge_attr = NULL, match = NULL)
+trav_in_edge(graph, conditions = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
+\item{conditions}{an option to use filtering
+conditions for the traversal.}
+
 \item{edge_attr}{an optional character vector of
 edge attribute values for filtering the node ID
 values returned.}
-
-\item{match}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a character
-string for filtering the edges returned through
-string matching.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -35,30 +31,141 @@ by edge attribute can limit the set of edges
 traversed to.
 }
 \examples{
+# Set a seed
+set.seed(23)
+
 # Create a simple graph
 graph <-
- create_graph() \%>\%
- add_n_nodes(4) \%>\%
- add_edge(1, 2) \%>\%
- add_edge(2, 3) \%>\%
- add_edge(3, 4)
+  create_graph() \%>\%
+  add_n_nodes(
+    2, type = "a",
+    label = c("asd", "iekd")) \%>\%
+  add_n_nodes(
+    3, type = "b",
+    label = c("idj", "edl", "ohd")) \%>\%
+  add_edges_w_string(
+    "1->2 1->3 2->4 2->5 3->5",
+    rel = c(NA, "A", "B", "C", "D"))
 
-# Traverse from nodes `4` to to `1` by, in an
-# alternating manner, moving from nodes onto edges,
-# from edges onto nodes
-graph <-
-  graph \%>\%
-  select_nodes_by_id(4) \%>\%
-  trav_in_edge \%>\%
-  trav_out_node \%>\%
-  trav_in_edge \%>\%
-  trav_out_node \%>\%
-  trav_in_edge \%>\%
-  trav_out_node
+# Create a data frame with node ID values
+# representing the graph edges (with `from`
+# and `to` columns), and, a set of numeric values
+df <-
+  data.frame(
+    from = c(1, 1, 2, 2, 3),
+    to = c(2, 3, 4, 5, 5),
+    values = round(rnorm(5, 5), 2))
 
-# Verify that the selection has been made by using
-# the `get_selection()` function
-get_selection(graph)
-#> [1] 1
+# Join the data frame to the graph's internal
+# edge data frame (edf)
+graph <- graph \%>\% join_edge_attrs(df)
+
+get_edge_df(graph)
+#>   from to  rel values
+#> 1    1  2 <NA>   5.19
+#> 2    1  3    A   4.57
+#> 3    2  4    B   5.91
+#> 4    2  5    C   6.79
+#> 5    3  5    D      6
+
+# Perform a simple traversal from nodes to
+# inbound edges with no conditions on the
+# nodes traversed to
+graph \%>\%
+  select_nodes_by_id(2) \%>\%
+  trav_in_edge \%>\%
+  get_selection
+#> [1] "1 -> 2"
+
+# Traverse from node `2` to any inbound
+# edges, filtering to those edges that have
+# NA values for the `rel` edge attribute
+graph \%>\%
+  select_nodes_by_id(2) \%>\%
+  trav_in_edge(
+    conditions = "is.na(rel)") \%>\%
+  get_selection
+#> [1] "1 -> 2"
+
+# Traverse from node `2` to any inbound
+# edges, filtering to those edges that do
+# not have NA values for the `rel` edge
+# attribute (since there are no allowed
+# traversals, the selection of node `2`
+# is retained)
+graph \%>\%
+  select_nodes_by_id(2) \%>\%
+  trav_in_edge(
+    conditions = "!is.na(rel)") \%>\%
+  get_selection
+#> [1] 2
+
+# Traverse from node `5` to any inbound
+# edges, filtering to those edges that have
+# numeric values greater than `6.5` for
+# the `rel` edge attribute
+graph \%>\%
+  select_nodes_by_id(5) \%>\%
+  trav_in_edge(
+    conditions = "values > 6.5") \%>\%
+  get_selection
+#> [1] "2 -> 5"
+
+# Traverse from node `5` to any inbound
+# edges, filtering to those edges that
+# have values equal to `D` for the `rel`
+# edge attribute
+graph \%>\%
+  select_nodes_by_id(5) \%>\%
+  trav_in_edge(
+    conditions = "rel == 'D'") \%>\%
+  get_selection
+#> [1] "3 -> 5"
+
+# Traverse from node `5` to any inbound
+# edges, filtering to those edges that
+# have values in the set `C` and `D` for
+# the `rel` edge attribute
+graph \%>\%
+  select_nodes_by_id(5) \%>\%
+  trav_in_edge(
+    conditions = "rel \%in\% c('C', 'D')") \%>\%
+  get_selection
+#> [1] "2 -> 5" "3 -> 5"
+
+# Traverse from node `5` to any inbound
+# edges, and use multiple conditions for the
+# traversal (using a vector in `conditions`
+# creates a set of `AND` conditions)
+graph \%>\%
+  select_nodes_by_id(5) \%>\%
+  trav_in_edge(
+    conditions = c(
+      "rel \%in\% c('C', 'D')",
+      "values > 6.5")) \%>\%
+  get_selection
+#> [1] "2 -> 5"
+
+# Traverse from node `5` to any inbound
+# edges, and use multiple conditions with
+# a single-length vector (here, using a
+# `|` to create a set of `OR` conditions)
+graph \%>\%
+  select_nodes_by_id(5) \%>\%
+  trav_in_edge(
+    conditions = c(
+      "rel \%in\% c('D', 'E') | values > 6.5")) \%>\%
+  get_selection
+#> [1] "2 -> 5" "3 -> 5"
+
+# Traverse from node `5` to any inbound
+# edges, and use a regular expression as
+# a filtering condition
+graph \%>\%
+  select_nodes_by_id(5) \%>\%
+  trav_in_edge(
+    conditions = "grepl('C|D', rel)") \%>\%
+  get_selection
+#> [1] "2 -> 5" "3 -> 5"
 }
 

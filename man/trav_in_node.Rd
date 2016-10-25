@@ -2,57 +2,151 @@
 % Please edit documentation in R/trav_in_node.R
 \name{trav_in_node}
 \alias{trav_in_node}
-\title{Traverse from one or more selected edges toward
-adjacent inward nodes}
+\title{Traverse from one or more selected edges onto
+adjacent, inward nodes}
 \usage{
-trav_in_node(graph, node_attr = NULL, match = NULL)
+trav_in_node(graph, conditions = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{node_attr}{an optional character vector of
-node attribute values for filtering the node ID
-values returned.}
+\item{conditions}{an option to use filtering
+conditions for the traversal.}
 
-\item{match}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a character
-string for filtering the edges returned through
-string matching.}
+\item{edge_attr}{an optional character vector of
+edge attribute values for filtering the node ID
+values returned.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class
-\code{dgr_graph} move to adjacent nodes from a
-selection of one or more selected edges where the
-edges are inward edges to those nodes. This creates
-a selection of nodes. An optional filter by node
-attribute can limit the set of nodes traversed to.
+\code{dgr_graph} move along inward edges from one
+or more nodes present in a selection to other
+connected nodes, replacing the current nodes in
+the selection with those nodes traversed to. An
+optional filter by node attribute can limit the set
+of nodes traversed to.
 }
 \examples{
+library(dplyr)
+
+# Set a seed
+set.seed(23)
+
 # Create a simple graph
 graph <-
- create_graph() \%>\%
- add_n_nodes(2) \%>\%
- add_edge(1, 2)
+  create_graph() \%>\%
+  add_n_nodes(
+    2, type = "a",
+    label = c("asd", "iekd")) \%>\%
+  add_n_nodes(
+    3, type = "b",
+    label = c("idj", "edl", "ohd")) \%>\%
+  add_edges_w_string(
+    "1->2 1->3 2->4 2->5 3->5",
+    rel = c(NA, "A", "B", "C", "D"))
 
-# Traverse from nodes `1` to to `2` by:
-# (1) moving from node `1` to edge `1` -> `2`
-# (2) moving from edge `1` -> `2` to node `2`
+# Create a data frame with node ID values
+# representing the graph edges (with `from`
+# and `to` columns), and, a set of numeric values
+df_edges <-
+  data.frame(
+    from = c(1, 1, 2, 2, 3),
+    to = c(2, 3, 4, 5, 5),
+    values = round(rnorm(5, 5), 2))
+
+# Create a data frame with node ID values
+# representing the graph nodes (with the `id`
+# columns), and, a set of numeric values
+df_nodes <-
+  data.frame(
+    id = 1:5,
+    values = round(rnorm(5, 7), 2))
+
+# Join the data frame to the graph's internal
+# edge data frame (edf)
 graph <-
   graph \%>\%
-  select_nodes_by_id(1) \%>\%
-  trav_out_edge \%>\%
-  trav_in_node
+  join_edge_attrs(df_edges) \%>\%
+  join_node_attrs(df_nodes)
 
-# Verify that the selection of node `2` has been
-# made by using the `get_selection()` function
-get_selection(graph)
+get_node_df(graph)
+#>   id type label values
+#> 1  1    a   asd   8.11
+#> 2  2    a  iekd   6.72
+#> 3  3    b   idj   8.02
+#> 4  4    b   edl   7.05
+#> 5  5    b   ohd   8.58
+
+get_edge_df(graph)
+#>   from to  rel values
+#> 1    1  2 <NA>   5.19
+#> 2    1  3    A   4.57
+#> 3    2  4    B   5.91
+#> 4    2  5    C   6.79
+#> 5    3  5    D      6
+
+# Perform a simple traversal from the
+# edge `1` -> `3` to the attached node
+# in the direction of the edge; here, no
+# conditions are placed on the nodes
+# traversed to
+graph \%>\%
+  select_edges(from = 1, to = 3) \%>\%
+  trav_in_node \%>\%
+  get_selection
+#> [1] 3
+
+# Traverse from edges `2` -> `5` and
+# `3` -> `5` to the attached node along
+# the direction of the edge; both
+# traversals lead to the same node
+graph \%>\%
+  select_edges(from = 2, to = 5) \%>\%
+  select_edges(from = 3, to = 5) \%>\%
+  trav_in_node \%>\%
+  get_selection
+#> [1] 5
+
+# Traverse from the edge `1` -> `3`
+# to the attached node where the edge
+# is incoming, this time filtering
+# numeric values greater than `7.0` for
+# the `values` node attribute
+graph \%>\%
+  select_edges(from = 1, to = 3) \%>\%
+  trav_in_node(
+    conditions = "values > 7.0") \%>\%
+  get_selection
+#> [1] 3
+
+# Traverse from the edge `1` -> `3`
+# to the attached node where the edge
+# is incoming, this time filtering
+# numeric values less than `7.0` for
+# the `values` node attribute (the
+# condition is not met so the original
+# selection of edge `1` -> `3` remains)
+graph \%>\%
+  select_edges(from = 1, to = 3) \%>\%
+  trav_in_node(
+    conditions = "values < 7.0") \%>\%
+  get_selection
+#> [1] "1 -> 3"
+
+# Traverse from the edge `1` -> `2` to
+# the node `2` using multiple conditions
+# with a single-length vector (here, using
+# a `|` to create a set of `OR` conditions)
+graph \%>\%
+  select_edges(from = 1, to = 2) \%>\%
+  trav_in_node(
+    conditions = "grepl('.*d$', label) | values < 6.0") \%>\%
+  get_selection
 #> [1] 2
 }
 

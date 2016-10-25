@@ -2,118 +2,173 @@
 % Please edit documentation in R/trav_out.R
 \name{trav_out}
 \alias{trav_out}
-\title{Traverse outward from a selected node, skipping over
-edges, and creating a new node selection}
+\title{Traverse from one or more selected nodes onto
+adjacent, outward nodes}
 \usage{
-trav_out(graph, node_attr = NULL, match = NULL)
+trav_out(graph, conditions = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
-\item{node_attr}{an optional character vector of
-node attribute values for filtering the node ID
-values returned.}
+\item{conditions}{an option to use filtering
+conditions for the traversal.}
 
-\item{match}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a character
-string for filtering the edges returned through
-string matching.}
+\item{edge_attr}{an optional character vector of
+edge attribute values for filtering the node ID
+values returned.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class
-\code{dgr_graph} move outward from one or more nodes
-present in a selection to other nodes, replacing
-the current nodes in the selection with those nodes
-traversed to.
+\code{dgr_graph} move along outward edges from one
+or more nodes present in a selection to other
+connected nodes, replacing the current nodes in
+the selection with those nodes traversed to. An
+optional filter by node attribute can limit the set
+of nodes traversed to.
 }
 \examples{
-\dontrun{
-# Create a graph
+library(dplyr)
+
+# Set a seed
+set.seed(23)
+
+# Create a simple graph
 graph <-
   create_graph() \%>\%
-  add_n_nodes(4) \%>\%
-  add_edge(1, 2) \%>\%
-  add_edge(2, 3) \%>\%
-  add_edge(3, 4)
+  add_n_nodes(
+    2, type = "a",
+    label = c("asd", "iekd")) \%>\%
+  add_n_nodes(
+    3, type = "b",
+    label = c("idj", "edl", "ohd")) \%>\%
+  add_edges_w_string(
+    "1->2 1->3 2->4 2->5 3->5",
+    rel = c(NA, "A", "B", "C", "D"))
 
-# Starting at node `1`, traverse to node `4`,
-# storing the traversed location as a selection in
-# the graph object
+# Create a data frame with node ID values
+# representing the graph edges (with `from`
+# and `to` columns), and, a set of numeric values
+df_edges <-
+  data.frame(
+    from = c(1, 1, 2, 2, 3),
+    to = c(2, 3, 4, 5, 5),
+    values = round(rnorm(5, 5), 2))
+
+# Create a data frame with node ID values
+# representing the graph nodes (with the `id`
+# columns), and, a set of numeric values
+df_nodes <-
+  data.frame(
+    id = 1:5,
+    values = round(rnorm(5, 7), 2))
+
+# Join the data frame to the graph's internal
+# edge data frame (edf)
 graph <-
   graph \%>\%
-  select_nodes_by_id(1) \%>\%
-  trav_out \%>\%
-  trav_out \%>\%
-  trav_out
+  join_edge_attrs(df_edges) \%>\%
+  join_node_attrs(df_nodes)
 
-# Verify that the selection has been made by using
-# the `get_selection()` function
-get_selection(graph)
-#> [1] 4
+get_node_df(graph)
+#>   id type label values
+#> 1  1    a   asd   8.11
+#> 2  2    a  iekd   6.72
+#> 3  3    b   idj   8.02
+#> 4  4    b   edl   7.05
+#> 5  5    b   ohd   8.58
 
-# Modify the graph by adding `type` values for
-# each of the nodes (recall that node `4` is now
-# selected since the traversal ended at that node)
-graph <-
-  graph \%>\%
-  set_node_attrs_ws(
-    node_attr = "type", value = "z") \%>\%
-  clear_selection \%>\%
-  select_nodes_by_id(1:3) \%>\%
-  set_node_attrs_ws(
-    node_attr = "type", value = "a") \%>\%
-  clear_selection
+get_edge_df(graph)
+#>   from to  rel values
+#> 1    1  2 <NA>   5.19
+#> 2    1  3    A   4.57
+#> 3    2  4    B   5.91
+#> 4    2  5    C   6.79
+#> 5    3  5    D      6
 
-# When traversing outward from node `3` to `4`,
-# you can set a condition that determines whether
-# such traversal is permitted; in this case the
-# condition is to traverse only to nodes where
-# the type value is set to `a` (but node `4` has
-# its `type` set to `z`, so, no traversal)
+# Perform a simple traversal from node `3`
+# to outward adjacent nodes with no conditions
+# on the nodes traversed to
 graph \%>\%
   select_nodes_by_id(3) \%>\%
-  trav_out("type", "a") \%>\%
+  trav_out \%>\%
+  get_selection
+#> [1] 5
+
+# Traverse from node `1` to outbound
+# nodes, filtering to those nodes that have
+# numeric values greater than `7.0` for
+# the `values` node attribute
+graph \%>\%
+  select_nodes_by_id(1) \%>\%
+  trav_out(
+    conditions = "values > 7.0") \%>\%
   get_selection
 #> [1] 3
 
-# Setting the condition to traverse only to nodes
-# where the type is `z` will result in a traversal
+# Traverse from node `1` to any outbound
+# nodes, filtering to those nodes that
+# have a `type` attribute of `b`
 graph \%>\%
-  select_nodes_by_id(3) \%>\%
-  trav_out("type", "z") \%>\%
+  select_nodes_by_id(1) \%>\%
+  trav_out(
+    conditions = "type == 'b'") \%>\%
+  get_selection
+#> [1] 3
+
+# Traverse from node `2` to any outbound
+# nodes, filtering to those nodes that
+# have a degree of `1`
+graph \%>\%
+  {
+  node_degrees <-
+    node_info(.) \%>\%
+    dplyr::select(id, deg)
+  join_node_attrs(., node_degrees)
+  } \%>\%
+  select_nodes_by_id(2) \%>\%
+  trav_out(
+    conditions = "deg == 1") \%>\%
   get_selection
 #> [1] 4
 
-# We can also set traversal conditions to satisfy
-# numeric comparisons... the graph will be first
-# modified
-graph <-
-  graph \%>\%
-  set_node_attrs("value", 3.4, 1) \%>\%
-  set_node_attrs("value", 6.7, 2) \%>\%
-  set_node_attrs("value", 9.1, 3) \%>\%
-  set_node_attrs("value", 2.5, 4)
-
-# Traverse from nodes `1` to `4`, setting the
-# condition that each node traversed to must have
-# a `value` greater than 3.0 (although 3 separate
-# traversals are intended, the last traversal does
-# not reach node `4` since its value is not
-# greater than 3.0)
+# Traverse from node `2` to any outbound
+# nodes, and use multiple conditions for the
+# traversal (using a vector in `conditions`
+# creates a set of `AND` conditions)
 graph \%>\%
-  select_nodes_by_id(1) \%>\%
-  trav_out("value", ">3.0") \%>\%
-  trav_out("value", ">3.0") \%>\%
-  trav_out("value", ">3.0") \%>\%
+  select_nodes_by_id(2) \%>\%
+  trav_out(
+    conditions = c(
+      "type == 'a'",
+      "values > 8.0")) \%>\%
   get_selection
-#> [1] 3
-}
+#> [1] 2
+
+# Traverse from node `2` to any outbound
+# nodes, and use multiple conditions with
+# a single-length vector (here, using a
+# `|` to create a set of `OR` conditions)
+graph \%>\%
+  select_nodes_by_id(2) \%>\%
+  trav_out(
+    conditions = c(
+      "type == 'b' | values > 8.0")) \%>\%
+  get_selection
+#> [1] 4 5
+
+# Traverse from node `2` to any outbound
+# nodes, and use a regular expression as
+# a filtering condition
+graph \%>\%
+  select_nodes_by_id(2) \%>\%
+  trav_out(
+    conditions = "grepl('..d', label)") \%>\%
+  get_selection
+#> [1] 5
 }
 
