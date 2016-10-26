@@ -39,11 +39,7 @@ select_nodes_by_id <- function(graph,
   nodes_in_graph <- graph$nodes_df[, 1]
 
   # Remove any edge selection present in the graph
-  if (!is.null$selection) {
-    if (!is.null$selection$edges) {
-      graph$selection$edges$from <- NULL
-      graph$selection$edges$to <- NULL
-    }
+  if (!is.null(graph$selection$edges)) {
     graph$selection$edges <- NULL
   }
 
