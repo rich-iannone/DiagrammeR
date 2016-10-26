@@ -72,7 +72,7 @@ create_subgraph_ws <- function(graph) {
 
     edf <-
       graph$edges_df %>%
-      dplyr::filter(from %in% selection | to %in% selection)
+      dplyr::filter(from %in% selection & to %in% selection)
   }
 
   # Filter the edges in the graph
