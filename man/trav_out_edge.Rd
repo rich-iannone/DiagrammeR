@@ -5,7 +5,7 @@
 \title{Traverse from one or more selected nodes onto
 adjacent, outward edges}
 \usage{
-trav_out_edge(graph, conditions = NULL)
+trav_out_edge(graph, conditions = NULL, copy_attrs_from = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph}
@@ -13,6 +13,12 @@ that is created using \code{create_graph}.}
 
 \item{conditions}{an option to use filtering
 conditions for the traversal.}
+
+\item{copy_attrs_from}{providing a node attribute
+name will copy those node attribute values to the
+traversed edges. If the edge attribute already exists,
+the values will be merged to the traversed edges;
+otherwise, a new edge attribute will be created.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -54,6 +60,14 @@ df <-
 # Join the data frame to the graph's internal
 # edge data frame (edf)
 graph <- graph \%>\% join_edge_attrs(df)
+
+get_node_df(graph)
+#>   id type label
+#> 1  1    a   asd
+#> 2  2    a  iekd
+#> 3  3    b   idj
+#> 4  4    b   edl
+#> 5  5    b   ohd
 
 get_edge_df(graph)
 #>   from to  rel values
