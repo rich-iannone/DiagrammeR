@@ -64,7 +64,7 @@ create_subgraph_ws <- function(graph) {
   selection <- get_selection(graph)
 
   # Filter the nodes in the graph
-  if (inherits(selection, "integer")) {
+  if (inherits(selection, "numeric")) {
 
     ndf <-
       graph$nodes_df %>%
