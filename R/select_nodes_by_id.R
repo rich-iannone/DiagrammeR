@@ -38,6 +38,15 @@ select_nodes_by_id <- function(graph,
   # Get a vector of node ID values from the graph
   nodes_in_graph <- graph$nodes_df[, 1]
 
+  # Remove any edge selection present in the graph
+  if (!is.null$selection) {
+    if (!is.null$selection$edges) {
+      graph$selection$edges$from <- NULL
+      graph$selection$edges$to <- NULL
+    }
+    graph$selection$edges <- NULL
+  }
+
   if (any(!(nodes %in% nodes_in_graph))) {
     stop("One of more of the nodes specified are not available in the graph.")
   }
