@@ -49,6 +49,8 @@
 #' # Check the edges available in the subgraph
 #' get_edges(subgraph, return_type = "vector")
 #' #> [1] "5 -> 3"
+#' @importFrom dplyr filter semi_join
+#' @importFrom stringr str_split
 #' @export create_subgraph_ws
 
 create_subgraph_ws <- function(graph) {
@@ -58,47 +60,49 @@ create_subgraph_ws <- function(graph) {
     stop("The graph does not contain an active selection")
   }
 
+  # Get the active selection
+  selection <- get_selection(graph)
+
   # Filter the nodes in the graph
-  if (!is.null(graph$selection$nodes)) {
+  if (inherits(selection, "integer")) {
 
-    selection_nodes <- graph$selection$nodes
+    ndf <-
+      graph$nodes_df %>%
+      dplyr::filter(id %in% selection)
 
-    selection_nodes_df <-
-      graph$nodes_df[
-        which(graph$nodes_df[, 1] %in%
-                selection_nodes), ]
-
-    selection_edges_df <-
-      graph$edges_df[
-        which(graph$edges_df[, 1] %in%
-                selection_nodes &
-                graph$edges_df[, 2] %in%
-                selection_nodes), ]
+    edf <-
+      graph$edges_df %>%
+      dplyr::filter(from %in% selection | to %in% selection)
   }
 
   # Filter the edges in the graph
-  if (!is.null(graph$selection$edges)) {
+  if (inherits(selection, "character")) {
 
-    selection_from <- graph$selection$edges[, 1]
-    selection_to <- graph$selection$edges[, 2]
+    selection_from <-
+      stringr::str_split(selection, " -> ") %>%
+      sapply("[[", 1) %>%
+      as.integer
 
-    selection_edges_df <-
-      graph$edges_df[
-        which(graph$edges_df[, 1] %in%
-                selection_from &
-                graph$edges_df[, 2] %in%
-                selection_to), ]
+    selection_to <-
+      stringr::str_split(selection, " -> ") %>%
+      sapply("[[", 2) %>%
+      as.integer
 
-    selection_nodes_df <-
-      graph$nodes_df[
-        which(graph$nodes_df[, 1] %in%
-                unique(c(selection_edges_df[, 1],
-                         selection_edges_df[, 2]))), ]
+    selection_df <-
+      data.frame(from = selection_from, to = selection_to)
+
+    edf <-
+      graph$edges_df %>%
+      dplyr::semi_join(selection_df, by = c("from", "to"))
+
+    ndf <-
+      graph$nodes_df %>%
+      dplyr::filter(id %in% unique(c(edf$from, edf$to)))
   }
 
   # Create a subgraph
-  graph$nodes_df <- selection_nodes_df
-  graph$edges_df <- selection_edges_df
+  graph$nodes_df <- ndf
+  graph$edges_df <- edf
 
   return(graph)
 }
