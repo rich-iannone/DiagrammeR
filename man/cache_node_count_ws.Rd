@@ -20,6 +20,20 @@ From a graph object of class
 \code{dgr_graph}, get a count of nodes available in
 a selection and cache that value in the graph for
 later retrieval using \code{get_cache}.
+
+Selections of nodes can be performed using
+the following \code{select_...} functions:
+\code{select_nodes()},
+\code{select_last_node()},
+\code{select_nodes_by_degree()},
+\code{select_nodes_by_id()}, or
+\code{select_nodes_in_neighborhood()}.
+Selections of nodes can also be performed using
+the following traversal functions:
+(\code{trav_...}):
+\code{trav_out()}, \code{trav_in()},
+\code{trav_both()}, \code{trav_in_node()},
+\code{trav_out_node()}.
 }
 \examples{
 # Create a graph with 10 nodes and 9 edges

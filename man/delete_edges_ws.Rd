@@ -18,6 +18,16 @@ a graph object of class \code{dgr_graph}.
 In a graph object of class
 \code{dgr_graph}, delete all edges present in a
 selection.
+
+Selections of edges can be performed using
+the following \code{select_...} functions:
+\code{select_edges()},
+\code{select_last_edge()}, or
+\code{select_edges_by_node_id()}.
+Selections of edges can also be performed using
+the following traversal functions:
+\code{trav_out_edge()}, \code{trav_in_edge()},
+or \code{trav_both_edge()}.
 }
 \examples{
 # Create a graph

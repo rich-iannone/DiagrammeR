@@ -44,6 +44,20 @@ alredy in the graph (using \code{direction = "to"}).
 Optionally, set node \code{type} and edge \code{rel}
 values for all the new nodes and edges created,
 respectively.
+
+Selections of nodes can be performed using
+the following \code{select_...} functions:
+\code{select_nodes()},
+\code{select_last_node()},
+\code{select_nodes_by_degree()},
+\code{select_nodes_by_id()}, or
+\code{select_nodes_in_neighborhood()}.
+Selections of nodes can also be performed using
+the following traversal functions:
+(\code{trav_...}):
+\code{trav_out()}, \code{trav_in()},
+\code{trav_both()}, \code{trav_in_node()},
+\code{trav_out_node()}.
 }
 \examples{
 # Create an empty graph, add a node to it, select
