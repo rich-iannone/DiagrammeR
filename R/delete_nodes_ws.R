@@ -2,6 +2,20 @@
 #' @description In a graph object of class
 #' \code{dgr_graph}, delete all nodes present in a
 #' selection.
+#'
+#' Selections of nodes can be performed using
+#' the following \code{select_...} functions:
+#' \code{select_nodes()},
+#' \code{select_last_node()},
+#' \code{select_nodes_by_degree()},
+#' \code{select_nodes_by_id()}, or
+#' \code{select_nodes_in_neighborhood()}.
+#' Selections of nodes can also be performed using
+#' the following traversal functions:
+#' (\code{trav_...}):
+#' \code{trav_out()}, \code{trav_in()},
+#' \code{trav_both()}, \code{trav_in_node()},
+#' \code{trav_out_node()}.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.

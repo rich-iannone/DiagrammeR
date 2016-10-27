@@ -5,6 +5,16 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
+#'
+#' Selections of edges can be performed using
+#' the following \code{select_...} functions:
+#' \code{select_edges()},
+#' \code{select_last_edge()}, or
+#' \code{select_edges_by_node_id()}.
+#' Selections of edges can also be performed using
+#' the following traversal functions:
+#' \code{trav_out_edge()}, \code{trav_in_edge()},
+#' or \code{trav_both_edge()}.
 #' @param edge_attr the name of the attribute to set.
 #' @param value the value to be set for the chosen
 #' attribute for the edges in the current selection.
