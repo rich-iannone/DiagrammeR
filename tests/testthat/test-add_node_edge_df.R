@@ -107,13 +107,6 @@ test_that("adding an edge df to a graph is possible", {
       graph = create_graph(),
       edge_df = edges))
 
-  # Adding an edge df with edges between nodes not in the
-  # graph will result in an error
-  expect_error(
-    add_edge_df(
-      graph = create_graph(create_node_df(1)),
-      edge_df = edges))
-
   # Add the edge data frame to the graph
   graph_3 <-
     add_edge_df(graph = graph_3, edge_df = edges)
