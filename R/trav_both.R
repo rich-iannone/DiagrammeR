@@ -162,6 +162,9 @@ trav_both <- function(graph,
     stop("There is no selection of nodes available.")
   }
 
+  # Bind variable
+  value <- NULL
+
   # Get the selection of nodes as the starting
   # nodes for the traversal
   starting_nodes <- graph$selection$nodes
@@ -176,9 +179,11 @@ trav_both <- function(graph,
   # starting nodes via outgoing edges
   valid_nodes <-
     graph %>%
-    get_nbrs(., starting_nodes) %>%
-    as.integer %>%
-    tibble::as_tibble(.) %>%
+    get_nbrs(starting_nodes) %>%
+    as.integer
+
+  valid_nodes <-
+    tibble::as.tibble(valid_nodes) %>%
     dplyr::rename(id = value) %>%
     dplyr::inner_join(ndf, by = "id")
 

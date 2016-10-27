@@ -96,6 +96,9 @@ set_node_attrs <- function(x,
     stop("You cannot change the node ID.")
   }
 
+  # Bind variable
+  id <- NULL
+
   if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     nodes_df <- x$nodes_df

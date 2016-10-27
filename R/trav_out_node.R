@@ -140,6 +140,9 @@ trav_out_node <- function(graph,
     stop("There is no selection of nodes available.")
   }
 
+  # Add binding
+  id <- NULL
+
   # Get the selection of nodes as the starting
   # nodes for the traversal
   starting_edge_from <- graph$selection$edges$from

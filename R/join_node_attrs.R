@@ -87,6 +87,9 @@ join_node_attrs <- function(graph,
     stop("Both column specifications must be provided.")
   }
 
+  # Create bindings for specific variables
+  id <- type <- label <- NULL
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node

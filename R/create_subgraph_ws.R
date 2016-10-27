@@ -75,6 +75,9 @@ create_subgraph_ws <- function(graph) {
     stop("The graph does not contain an active selection")
   }
 
+  # Create bindings for specific variables
+  id <- from <- to <- NULL
+
   # Get the active selection
   selection <- get_selection(graph)
 
