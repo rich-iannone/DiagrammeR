@@ -181,8 +181,10 @@ trav_in <- function(graph,
     edf %>%
     dplyr::filter(to != from) %>%
     dplyr::filter(to %in% starting_nodes) %>%
-    dplyr::select(from) %>%
-    tibble::as_tibble(.) %>%
+    dplyr::select(from)
+
+  valid_nodes <-
+    tibble::as_tibble(valid_nodes) %>%
     dplyr::rename(id = from) %>%
     dplyr::inner_join(ndf, by = "id")
 
