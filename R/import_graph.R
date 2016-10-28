@@ -469,10 +469,10 @@ import_graph <- function(graph_file,
         from_label = from,
         to_label = to,
         rel = rel) %>%
-      dplyr::right_join(nodes_df, c("from_label" = "label")) %>%
+      dplyr::right_join(ndf, c("from_label" = "label")) %>%
       dplyr::select(id, to_label, rel) %>%
       dplyr::rename(from = id) %>%
-      dplyr::right_join(nodes_df, c("to_label" = "label")) %>%
+      dplyr::right_join(ndf, c("to_label" = "label")) %>%
       dplyr::select(from, id, rel) %>%
       dplyr::rename(to = id) %>%
       as.data.frame(stringsAsFactors = FALSE)
