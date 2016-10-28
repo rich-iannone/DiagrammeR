@@ -53,7 +53,7 @@
 #' get_selection(graph)
 #' #> "2 -> 3" "1 -> 4" "3 -> 2" "4 -> 1"
 #' @importFrom dplyr filter_ bind_rows
-#' @import tibble
+#' @importFrom tibble as_tibble
 #' @export select_rev_edges_ws
 
 select_rev_edges_ws <- function(graph,
