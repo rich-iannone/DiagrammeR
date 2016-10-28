@@ -118,7 +118,7 @@ import_graph <- function(graph_file,
 
     # Create an edge data frame
     edges <-
-      create_edges(
+      create_edge_df(
         from = sapply(
           strsplit(
             edges_document[first_line:length(edges_document)],
@@ -160,7 +160,7 @@ import_graph <- function(graph_file,
 
     # Create an edge data frame
     edges <-
-      create_edges(
+      create_edge_df(
         from = sapply(
           strsplit(
             mtx_document[first_line:length(mtx_document)],
@@ -287,7 +287,7 @@ import_graph <- function(graph_file,
 
     # Create all edges for graph
     all_edges <-
-      create_edges(
+      create_edge_df(
         from = edges_from,
         to = edges_to)
 
@@ -396,8 +396,9 @@ import_graph <- function(graph_file,
 
     # Create all edges for graph
     all_edges <-
-      create_edges(from = edges_from,
-                   to = edges_to)
+      create_edge_df(
+        from = edges_from,
+        to = edges_to)
 
     if (exists("edge_value")) {
       all_edges$data_value <- edge_value
@@ -459,7 +460,7 @@ import_graph <- function(graph_file,
 
     # Create an edge data frame
     edges_df <-
-      create_edges(
+      create_edge_df(
         from = from,
         to = to,
         rel = rel)

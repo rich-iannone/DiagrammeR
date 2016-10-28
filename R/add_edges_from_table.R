@@ -190,7 +190,7 @@ add_edges_from_table <- function(graph,
 
     # Create an edge data frame
     edges <-
-      create_edges(
+      create_edge_df(
         from = csv[, which(colnames(csv) %in% from_col)],
         to = csv[, which(colnames(csv) %in% to_col)]
       )

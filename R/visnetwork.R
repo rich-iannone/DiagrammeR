@@ -53,10 +53,10 @@ visnetwork <- function(graph) {
   # Render an empty graph if no nodes or edges exist
   if (is.null(graph$nodes_df) & is.null(graph$edges_df)) {
 
-    nodes <- create_nodes(nodes = "")
+    nodes <- create_node_df(nodes = 1)
     nodes <- nodes[,-1]
 
-    edges <- create_edges(from = "", to = "")
+    edges <- create_edge_df(from = 1, to = 1)
     edges <- edges[,-1]
   }
 

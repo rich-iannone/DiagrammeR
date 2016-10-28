@@ -7,7 +7,7 @@
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
 #' @param edge_df an edge data frame that is created
-#' using \code{create_edges}.
+#' using \code{create_edge_df}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
