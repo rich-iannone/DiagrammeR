@@ -13,7 +13,7 @@ add_edge_df(graph, edge_df)
 \code{create_graph}.}
 
 \item{edge_df}{an edge data frame that is created
-using \code{create_edges}.}
+using \code{create_edge_df}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
