@@ -52,6 +52,8 @@
 #' # Get the current selection of edges
 #' get_selection(graph)
 #' #> "2 -> 3" "1 -> 4" "3 -> 2" "4 -> 1"
+#' @importFrom dplyr filter_ bind_rows
+#' @import tibble
 #' @export select_rev_edges_ws
 
 select_rev_edges_ws <- function(graph,
@@ -86,7 +88,7 @@ select_rev_edges_ws <- function(graph,
               edges_to[i],
               " & to == ",
               edges_from[i])) %>%
-          bind_rows(reverse_edges)
+          dplyr::bind_rows(reverse_edges)
       }
       reverse_edges
     }
@@ -107,11 +109,11 @@ select_rev_edges_ws <- function(graph,
                 edges_from[i],
                 " & to == ",
                 edges_to[i])) %>%
-            bind_rows(edges)
+            dplyr::bind_rows(edges)
         }
         edges
       } %>%
-      bind_rows(reverse_edges)
+      dplyr::bind_rows(reverse_edges)
   } else {
     edges <- reverse_edges
   }
