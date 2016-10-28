@@ -65,6 +65,8 @@
 #' }
 #' @importFrom stringr str_extract str_detect str_split str_count
 #' str_replace_all str_extract_all
+#' @importFrom tibble tibble
+#' @importFrom dplyr right_join select rename
 #' @export import_graph
 
 import_graph <- function(graph_file,
@@ -439,16 +441,19 @@ import_graph <- function(graph_file,
     nodes <- unique(nodes)
 
     # Create a node data frame
-    nodes_df <- create_nodes(nodes = nodes)
+    ndf <-
+      create_node_df(
+        n = length(nodes),
+        label = nodes)
 
     # Determine which lines have single nodes
     if (any(!str_detect(sif_document, "\\t"))) {
-
       single_nodes <- which(!str_detect(sif_document, "\\t"))
     }
 
     # Initialize vectors for an edge data frame
-    from <- to <- rel <- vector(mode = "character")
+    from <- to <- vector(mode = "integer")
+    rel <- vector(mode = "character")
 
     # Obtain complete vectors for the edge data frame
     for (i in which(str_count(sif_document, "\\t") > 1)) {
@@ -459,17 +464,24 @@ import_graph <- function(graph_file,
     }
 
     # Create an edge data frame
-    edges_df <-
-      create_edge_df(
-        from = from,
-        to = to,
-        rel = rel)
+    edf <-
+      tibble::tibble(
+        from_label = from,
+        to_label = to,
+        rel = rel) %>%
+      dplyr::right_join(nodes_df, c("from_label" = "label")) %>%
+      dplyr::select(id, to_label, rel) %>%
+      dplyr::rename(from = id) %>%
+      dplyr::right_join(nodes_df, c("to_label" = "label")) %>%
+      dplyr::select(from, id, rel) %>%
+      dplyr::rename(to = id) %>%
+      as.data.frame(stringsAsFactors = FALSE)
 
     # Create a graph object
     the_graph <-
       create_graph(
-        nodes_df = nodes_df,
-        edges_df = edges_df)
+        nodes_df = ndf,
+        edges_df = edf)
 
     # Return the graph
     return(the_graph)
