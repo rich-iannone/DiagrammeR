@@ -68,9 +68,6 @@ select_rev_edges_ws <- function(graph,
   edges_from <- graph$selection$edges$from
   edges_to <- graph$selection$edges$to
 
-  # Extract the graph's internal ndf
-  ndf <- graph$nodes_df
-
   # Extract the graph's internal edf
   edf <- graph$edges_df
 
