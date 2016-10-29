@@ -439,4 +439,30 @@ test_that("adding several edges with a string is possible", {
 
   # Expect a total of 9 edges in the graph
   expect_equal(edge_count(graph), 9)
+
+  # Create a graph with 4 nodes and 4 distinct labels
+  graph <-
+    create_graph() %>%
+    add_node(label = "one") %>%
+    add_node(label = "two") %>%
+    add_node(label = "three") %>%
+    add_node(label = "four")
+
+  # Add edges between nodes using a
+  # character string with node label values
+  # and setting `use_labels = TRUE`
+  graph_node_label <-
+    graph %>%
+    add_edges_w_string(
+      "one->two one->three
+       two->four two->three",
+      use_labels = TRUE)
+
+  # Expect a total of 4 edges in the graph
+  expect_equal(edge_count(graph_node_label), 4)
+
+  # Expect certain edges to be in the graph
+  expect_equal(
+    get_edges(graph_node_label),
+    c("1 -> 2", "1 -> 3", "2 -> 4", "2 -> 3"))
 })
