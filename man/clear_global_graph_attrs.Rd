@@ -27,5 +27,10 @@ graph <- create_graph() \%>\%
 
 # Clear all global attributes that have been set
 graph <- clear_global_graph_attrs(graph)
+
+# Look at the present global graph attributes;
+# since there are none, NA is returned
+get_global_graph_attrs_v2(graph)
+#> [1] NA
 }
 
