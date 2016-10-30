@@ -22,5 +22,9 @@
 
 get_global_graph_attrs_v2 <- function(graph) {
 
-  return(graph$global_attrs)
+  if (nrow(graph$global_attrs) == 0) {
+    return(NA)
+  } else if (nrow(graph$global_attrs) > 0) {
+    return(graph$global_attrs)
+  }
 }
