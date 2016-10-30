@@ -14,13 +14,19 @@
 #'
 #' # Clear all global attributes that have been set
 #' graph <- clear_global_graph_attrs(graph)
+#'
+#' # Look at the present global graph attributes;
+#' # since there are none, NA is returned
+#' get_global_graph_attrs_v2(graph)
+#' #> [1] NA
 #' @export clear_global_graph_attrs
 
 clear_global_graph_attrs <- function(graph) {
 
   # Clear the global graph attributes data frame
   # by removing all rows from it
-  graph$global_attrs <- graph$global_attrs[-(1:(nrow(graph$global_attrs))), ]
+  graph$global_attrs <-
+    graph$global_attrs[-(1:(nrow(graph$global_attrs))), ]
 
   return(graph)
 }
