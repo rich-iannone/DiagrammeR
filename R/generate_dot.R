@@ -15,6 +15,7 @@ generate_dot <- function(graph) {
   nodes_df <- graph$nodes_df
   edges_df <- graph$edges_df
   directed <- graph$directed
+  global_attrs <- graph$global_attrs
 
   if ("graph" %in% global_attrs$attr_type) {
     graph_attrs <-
