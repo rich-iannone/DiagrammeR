@@ -34,6 +34,10 @@
 #' string supplied as a value to \code{graph_time}. If
 #' no time zone is provided then it will be set to
 #' \code{GMT}.
+#' @param attr_theme The theme (i.e., collection of
+#' \code{graph}, \code{node}, and \code{edge} global
+#' graph attributes) to use for this graph. The default
+#' theme is called \code{default}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph
@@ -138,7 +142,43 @@ create_graph <- function(nodes_df = NULL,
                          directed = TRUE,
                          graph_name = NULL,
                          graph_time = NULL,
-                         graph_tz = NULL) {
+                         graph_tz = NULL,
+                         attr_theme = "default") {
+
+  # Create an empty table for global graph attributes
+  global_attrs <-
+    tibble::tibble(
+      attr = as.character(NA),
+      value = as.character(NA),
+      attr_type = as.character(NA)) %>%
+    as.data.frame(stringsAsFactors = FALSE) %>%
+    .[-1, ]
+
+  # If `attr_theme` is `default` then populate the
+  # `global_attrs` data frame with global graph attrs
+  if (attr_theme == "default") {
+
+    global_attrs <-
+      tibble::tibble(
+        attr = as.character(
+          c("layout", "outputorder", "fontname", "fontsize",
+            "shape", "fixedsize", "width", "style",
+            "fillcolor", "color", "fontcolor",
+            "len", "color", "arrowsize")
+        ),
+        value = as.character(
+          c("neato", "edgesfirst", "Helvetica", "10",
+            "circle", "true", "0.5", "filled",
+            "aliceblue", "gray70", "gray50",
+            "1.5", "gray40", "0.5")
+        ),
+        attr_type = as.character(
+          c(rep("graph", 2),
+            rep("node", 9),
+            rep("edge", 3))
+        )) %>%
+      as.data.frame(stringsAsFactors = FALSE)
+  }
 
   # Add default values for `graph_attrs`, `node_attrs`,
   # and `edge_attrs`
@@ -193,16 +233,6 @@ create_graph <- function(nodes_df = NULL,
       "tailclip", "tailhref", "taillabel", "tailport",
       "tailtarget", "tailtooltip", "tailURL", "target",
       "tooltip", "weight")
-
-  # Create an empty data frame for global
-  # graph attributes
-  global_attrs <-
-    tibble::tibble(
-      attr = as.character(NA),
-      value = as.character(NA),
-      attr_type = as.character(NA)) %>%
-    as.data.frame(stringsAsFactors = FALSE) %>%
-    .[-1, ]
 
   # If nodes, edges, and attributes not provided,
   # create an empty graph
