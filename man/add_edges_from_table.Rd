@@ -6,7 +6,7 @@
 \usage{
 add_edges_from_table(graph, table, from_col, from_mapping = NULL, to_col,
   to_mapping = NULL, set_rel = NULL, select_cols = NULL,
-  drop_cols = NULL, rename_attrs = NULL, rel_col = NULL)
+  drop_cols = NULL, rel_col = NULL, create_new_nodes = TRUE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -42,9 +42,6 @@ imported as edge attributes.}
 
 \item{drop_cols}{an optional character vector for
 dropping columns from the incoming data.}
-
-\item{rename_attrs}{an optional character vector for
-renaming edge attributes.}
 
 \item{rel_col}{an option to apply a column of data
 in the table as \code{rel} attribute values.}
