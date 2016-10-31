@@ -127,6 +127,7 @@
 #'
 #' edge_count(graph)
 #' #> [1] 3
+#' @importFrom tibble tibble
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,
@@ -193,6 +194,16 @@ create_graph <- function(nodes_df = NULL,
       "tailtarget", "tailtooltip", "tailURL", "target",
       "tooltip", "weight")
 
+  # Create an empty data frame for global
+  # graph attributes
+  global_attrs <-
+    tibble::tibble(
+      attr = as.character(NA),
+      value = as.character(NA),
+      attr_type = as.character(NA)) %>%
+    as.data.frame(stringsAsFactors = FALSE) %>%
+    .[-1, ]
+
   # If nodes, edges, and attributes not provided,
   # create an empty graph
   if (all(c(is.null(nodes_df), is.null(edges_df),
@@ -209,6 +220,7 @@ create_graph <- function(nodes_df = NULL,
            graph_attrs = NULL,
            node_attrs = NULL,
            edge_attrs = NULL,
+           global_attrs = global_attrs,
            directed = ifelse(directed,
                              TRUE, FALSE),
            last_node = 0)
@@ -234,6 +246,7 @@ create_graph <- function(nodes_df = NULL,
            graph_attrs = graph_attrs,
            node_attrs = node_attrs,
            edge_attrs = edge_attrs,
+           global_attrs = global_attrs,
            directed = ifelse(directed,
                              TRUE, FALSE),
            last_node = 0)
@@ -269,6 +282,7 @@ create_graph <- function(nodes_df = NULL,
            graph_attrs = graph_attrs,
            node_attrs = node_attrs,
            edge_attrs = edge_attrs,
+           global_attrs = global_attrs,
            directed = directed,
            last_node = nrow(nodes_df))
 
@@ -321,6 +335,7 @@ create_graph <- function(nodes_df = NULL,
            graph_attrs = graph_attrs,
            node_attrs = node_attrs,
            edge_attrs = edge_attrs,
+           global_attrs = global_attrs,
            directed = directed,
            last_node = nrow(nodes_df))
 
