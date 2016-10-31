@@ -3,7 +3,7 @@ context("Rendering a graph object")
 test_that("rendering a graph is indeed possible", {
 
   # Create a node data frame
-  nodes <-
+  ndf <-
     create_node_df(
       n = 26,
       type = "letter",
@@ -17,7 +17,7 @@ test_that("rendering a graph is indeed possible", {
                          replace = TRUE))
 
   # Create an edge data frame
-  edges <-
+  edf <-
     create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
@@ -27,13 +27,8 @@ test_that("rendering a graph is indeed possible", {
   # edge data frames
   graph <-
     create_graph(
-      nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = twopi",
-      node_attrs = c("fontname = Helvetica",
-                     "style = filled"),
-      edge_attrs = c("color = gray20",
-                     "arrowsize = 0.5"))
+      nodes_df = ndf,
+      edges_df = edf)
 
   # Render the graph object and create a
   # `grViz`/`htmlwidget` object
