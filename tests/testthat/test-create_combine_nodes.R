@@ -141,16 +141,16 @@ test_that("node data frames can be successfully combined", {
   # Expect that the rows combined correctly
   expect_true(all(all_nodes[, 1] ==
                     c(1, 2, 3, 4, 5, 6, 7, 8)))
-  expect_true(all(c(nodes_1[,2], nodes_2[,2]) ==
-                    all_nodes[,2]))
-  expect_equal(c(nodes_1[,3], nodes_2[,3]),
-                    all_nodes[,3])
-  expect_true(all(c(nodes_1[,4], nodes_2[,4]) ==
-                    all_nodes[,4]))
-  expect_true(all(c(nodes_1[,5], nodes_2[,5]) ==
-                    all_nodes[,5]))
-  expect_true(all(c(nodes_1[,6], nodes_2[,6]) ==
-                    all_nodes[,6]))
-  expect_true(all(c(nodes_1[,7], nodes_2[,7]) ==
-                    all_nodes[,7]))
+  expect_true(all(c(ndf_1[, 2], ndf_2[, 2]) ==
+                    all_nodes[, 2]))
+  expect_equal(c(ndf_1[, 3], ndf_2[, 3]),
+                    all_nodes[, 3])
+  expect_true(all(c(ndf_1[, 4], ndf_2[, 4]) ==
+                    all_nodes[, 4]))
+  expect_true(all(c(ndf_1[, 5], ndf_2[, 5]) ==
+                    all_nodes[, 5]))
+  expect_true(all(c(ndf_1[, 6], ndf_2[, 6]) ==
+                    all_nodes[, 6]))
+  expect_true(all(c(ndf_1[, 7], ndf_2[, 7]) ==
+                    all_nodes[, 7]))
 })
