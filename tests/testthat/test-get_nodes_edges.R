@@ -69,7 +69,7 @@ test_that("getting node IDs from various objects is possible", {
         get_node_ids(graph)))
 
   # Expect that using `get_node_df()` on a graph with
-  # no nodes will return `NA`
+  # no nodes will return NA
   expect_true(is.na(get_node_df(create_graph())))
 })
 
@@ -170,7 +170,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
           edge_df_from_graph, return_type = "vector")))
 
   # Expect that using `get_edge_df()` on a graph
-  # with no edges will return `NA`
+  # with no edges will return NA
   expect_true(
     is.na(
       get_edge_df(
