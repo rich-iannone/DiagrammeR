@@ -14,10 +14,37 @@ generate_dot <- function(graph) {
   # Extract objects from the graph objecct
   nodes_df <- graph$nodes_df
   edges_df <- graph$edges_df
-  graph_attrs <- graph$graph_attrs
-  node_attrs <- graph$node_attrs
-  edge_attrs <- graph$edge_attrs
   directed <- graph$directed
+
+  if ("graph" %in% global_attrs$attr_type) {
+    graph_attrs <-
+      global_attrs %>%
+      filter(attr_type == "graph") %>%
+      mutate(string = paste(attr, "=", value)) %>%
+      .[[4]]
+  } else {
+    graph_attrs <- NA
+  }
+
+  if ("node" %in% global_attrs$attr_type) {
+    node_attrs <-
+      global_attrs %>%
+      filter(attr_type == "node") %>%
+      mutate(string = paste(attr, "=", value)) %>%
+      .[[4]]
+  } else {
+    node_attrs <- NA
+  }
+
+  if ("edge" %in% global_attrs$attr_type) {
+    edge_attrs <-
+      global_attrs %>%
+      filter(attr_type == "edge") %>%
+      mutate(string = paste(attr, "=", value)) %>%
+      .[[4]]
+  } else {
+    node_attrs <- NA
+  }
 
   # Replace NA values with empty strings in `nodes_df`
   if (!is.null(nodes_df)) {
@@ -92,30 +119,36 @@ generate_dot <- function(graph) {
 
     # Create the default attributes statement
     # for graph attributes
-    if (!is.null(graph_attrs)) {
-      graph_attr_stmt <-
-        paste0("graph [",
-               paste(graph_attrs,
-                     collapse = ",\n       "),
-               "]\n")
+    if (length(graph_attrs) != 1) {
+      if (!(any(is.na(graph_attrs)))) {
+        graph_attr_stmt <-
+          paste0("graph [",
+                 paste(graph_attrs,
+                       collapse = ",\n       "),
+                 "]\n")
+      }
     }
 
     # Create the default attributes statement
     # for node attributes
-    if (!is.null(node_attrs)) {
-      node_attr_stmt <-
-        paste0("node [", paste(node_attrs,
-                               collapse = ",\n     "),
-               "]\n")
+    if (length(node_attrs) != 1) {
+      if (!(any(is.na(node_attrs)))) {
+        node_attr_stmt <-
+          paste0("node [", paste(node_attrs,
+                                 collapse = ",\n     "),
+                 "]\n")
+      }
     }
 
     # Create the default attributes statement
     # for edge attributes
-    if (!is.null(edge_attrs)) {
-      edge_attr_stmt <-
-        paste0("edge [", paste(edge_attrs,
-                               collapse = ",\n     "),
-               "]\n")
+    if (length(edge_attrs) != 1) {
+      if (!(any(is.na(edge_attrs)))) {
+        edge_attr_stmt <-
+          paste0("edge [", paste(edge_attrs,
+                                 collapse = ",\n     "),
+                 "]\n")
+      }
     }
 
     # Combine default attributes into a single block
