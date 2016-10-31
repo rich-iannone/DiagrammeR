@@ -56,7 +56,7 @@ graph <-
 # attributes for the graph
 get_global_graph_attrs_v2(graph)
 #>       attr value attr_type
-#> 1  overlap  true     graph
-#> 2 penwidth     3      edge
+#> 1 penwidth     3      edge
+#> 2  overlap  true     graph
 }
 
