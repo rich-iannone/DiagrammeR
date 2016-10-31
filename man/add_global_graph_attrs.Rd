@@ -45,10 +45,27 @@ get_global_graph_attrs_v2(graph)
 #> 1 overlap  true     graph
 
 # Add to this set with by using the
-# `add_global_graph_attrs()` function
+# `add_global_graph_attrs()` function and then
+# view the collection of attributes
 graph <-
   graph \%>\%
   add_global_graph_attrs(
     "penwidth", 12, "node")
+
+get_global_graph_attrs_v2(graph)
+#>       attr value attr_type
+#> 1  overlap  true     graph
+#> 2 penwidth    12      node
+
+# When adding an attribute where `attr`
+# and `attr_type` exists, the value provided
+# will serve as an update
+graph \%>\%
+  add_global_graph_attrs(
+    "penwidth", 15, "node") \%>\%
+  get_global_graph_attrs_v2()
+#>       attr value attr_type
+#> 1  overlap  true     graph
+#> 2 penwidth    15      node
 }
 
