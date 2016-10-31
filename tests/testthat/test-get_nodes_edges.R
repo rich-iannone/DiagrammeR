@@ -237,9 +237,11 @@ test_that("getting edge information from an edge data frame is possible", {
 
 test_that("getting edge information from a graph with no edges is possible ", {
 
-  nodes <- create_nodes(nodes = 1:2)
+  # Create a node data frame with 2 nodes
+  ndf <- create_node_df(2)
 
-  graph_no_edges <- create_graph(nodes_df = nodes)
+  # Create a graph with 2 nodes but no edges
+  graph_no_edges <- create_graph(nodes_df = ndf)
 
   # Get edges from an edgeless graph returned as a vector
   edges_vector_from_graph_no_edges <-
@@ -249,20 +251,20 @@ test_that("getting edge information from a graph with no edges is possible ", {
   expect_is(
     edges_vector_from_graph_no_edges, "logical")
 
-  # Expect that an `NA` is returned
+  # Expect that an NA is returned
   expect_true(is.na(edges_vector_from_graph_no_edges))
 
   # Get edges from an edgeless graph returned as a list
   edges_list_from_graph_no_edges <-
     get_edges(graph_no_edges, return_type = "list")
 
-  # Expect that an `NA` is returned
+  # Expect that an NA is returned
   expect_true(is.na(edges_list_from_graph_no_edges))
 
   # Get edges from an edgeless graph returned as a data frame
   edges_df_from_graph_no_edges <-
     get_edges(graph_no_edges, return_type = "df")
 
-  # Expect that an `NA` is returned
+  # Expect that an NA is returned
   expect_true(is.na(edges_df_from_graph_no_edges))
 })
