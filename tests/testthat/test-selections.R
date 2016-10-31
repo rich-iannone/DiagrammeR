@@ -234,7 +234,7 @@ test_that("selecting a node in a graph is possible", {
   # edge from a graph with no edges
   expect_error(
     select_last_edge(
-      create_graph(nodes_df = create_nodes(1))))
+      create_graph(nodes_df = create_node_df(1))))
 })
 
 test_that("selecting an edge in a graph is possible", {
