@@ -103,8 +103,8 @@ test_that("a correct node data frame is generated", {
 
 test_that("node data frames can be successfully combined", {
 
-  # Create `nodes_1` node data frame
-  nodes_1 <-
+  # Create `ndf_1` node data frame
+  ndf_1 <-
     create_node_df(
       n = 4,
       label = NULL,
@@ -116,7 +116,7 @@ test_that("node data frames can be successfully combined", {
       data = c(3.5, 2.6, 9.4, 2.7))
 
   # Create 'nodes_2' node data frame
-  nodes_2 <-
+  ndf_2 <-
     create_node_df(
       n = 4,
       label = NULL,
@@ -127,7 +127,7 @@ test_that("node data frames can be successfully combined", {
       data = c(0.5, 3.9, 3.7, 8.2))
 
   # Combine the 2 node data frames
-  all_nodes <- combine_nodes(nodes_1, nodes_2)
+  all_nodes <- combine_ndfs(ndf_1, ndf_2)
 
   # Expect that the combined node data frame has 8 rows
   expect_equal(nrow(all_nodes), 8)
@@ -139,8 +139,8 @@ test_that("node data frames can be successfully combined", {
   expect_equal(all_nodes$label, rep(as.character(NA), 8))
 
   # Expect that the rows combined correctly
-  expect_true(all(c(nodes_1[,1], nodes_2[,1]) ==
-                    all_nodes[,1]))
+  expect_true(all(all_nodes[, 1] ==
+                    c(1, 2, 3, 4, 5, 6, 7, 8)))
   expect_true(all(c(nodes_1[,2], nodes_2[,2]) ==
                     all_nodes[,2]))
   expect_equal(c(nodes_1[,3], nodes_2[,3]),
