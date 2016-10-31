@@ -174,7 +174,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   expect_true(
     is.na(
       get_edge_df(
-        create_graph(nodes_df = create_nodes(1)))))
+        create_graph(nodes_df = create_node_df(1)))))
 })
 
 test_that("getting edge information from an edge data frame is possible", {
