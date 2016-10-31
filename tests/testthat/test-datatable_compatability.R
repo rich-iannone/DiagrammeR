@@ -72,6 +72,6 @@ test_that("create_graph",{
     all(names(graph) ==
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
-            "node_attrs", "edge_attrs", "directed",
-            "last_node")))
+            "node_attrs", "edge_attrs", "global_attrs",
+            "directed", "last_node")))
 })

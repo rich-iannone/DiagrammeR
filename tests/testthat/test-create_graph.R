@@ -11,8 +11,8 @@ test_that("an empty graph object can be created and such an object is correct", 
     all(names(graph) ==
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
-            "node_attrs", "edge_attrs", "directed",
-            "last_node")))
+            "node_attrs", "edge_attrs", "global_attrs",
+            "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -65,8 +65,8 @@ test_that("a graph object with nodes can be created correctly", {
     all(names(graph) ==
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
-            "node_attrs", "edge_attrs", "directed",
-            "last_node")))
+            "node_attrs", "edge_attrs", "global_attrs",
+            "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")

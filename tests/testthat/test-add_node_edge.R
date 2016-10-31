@@ -15,19 +15,19 @@ test_that("adding a node to a graph is possible", {
     all(names(graph) ==
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
-            "node_attrs", "edge_attrs", "directed",
-            "last_node")))
+            "node_attrs", "edge_attrs", "global_attrs",
+            "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
 
-  # Expect that some of the graph components are `NULL`
+  # Expect that some of the graph components are NULL
   expect_null(graph$graph_name)
   expect_null(graph$graph_time)
   expect_null(graph$graph_tz)
   expect_null(graph$edges_df)
 
-  # Expect that some of the graph components are not `NULL`
+  # Expect that some of the graph components are not NULL
   expect_true(!is.null(graph$graph_attrs))
   expect_true(!is.null(graph$node_attrs))
   expect_true(!is.null(graph$edge_attrs))
@@ -87,13 +87,13 @@ test_that("adding a node to a graph is possible", {
     is.na(graph_from$nodes_df$label[4]))
 
   # Expect that for node `4`, the `type` is not set
-  # since the default value for `type` is `NULL`
+  # since the default value for `type` is NULL
   expect_true(is.na(node_type(graph_from, node = 4)))
 
   # Add a node to the graph that is joined to another
   graph_to <- add_node(graph_3, to = 3)
 
-  # Expect that `edges_df` is not `NULL`
+  # Expect that `edges_df` is not NULL
   expect_true(!is.null(graph_to$edges_df))
 
   # Expect that the new node is available in the graph
@@ -106,14 +106,14 @@ test_that("adding a node to a graph is possible", {
   expect_true(all(is.na(graph_to$nodes_df$label)))
 
   # Expect that for node `4`, the `type` is not set
-  # since the default value for `type` is `NULL`
+  # since the default value for `type` is NULL
   expect_true(is.na(node_type(graph_to, node = 4)))
 
   # Add a node to the graph that is joined from
   # another and to another
   graph_to_from <- add_node(graph_3, from = 1, to = 2)
 
-  # Expect that `edges_df` is not `NULL`
+  # Expect that `edges_df` is not NULL
   expect_true(!is.null(graph_to_from$edges_df))
 
   # Expect that the new node is available in the graph
@@ -128,7 +128,7 @@ test_that("adding a node to a graph is possible", {
     edge_present(graph_to_from, from = 4, to = 2))
 
   # Expect that for node `4`, the `type` is not set
-  # since the default value for `type` is `NULL`
+  # since the default value for `type` is NULL
   expect_true(is.na(node_type(graph_to_from, node = 4)))
 
   # Create an empty graph
@@ -162,8 +162,8 @@ test_that("adding an edge to a graph is possible", {
     all(names(graph) ==
           c("graph_name", "graph_time", "graph_tz",
             "nodes_df", "edges_df", "graph_attrs",
-            "node_attrs", "edge_attrs", "directed",
-            "last_node")))
+            "node_attrs", "edge_attrs", "global_attrs",
+            "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
