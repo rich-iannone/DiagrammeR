@@ -32,6 +32,11 @@
 #' # Create a graph from a CSV file
 #' graph <-
 #'   create_graph() %>%
+#'   add_nodes_from_table(
+#'     system.file("examples/currencies.csv",
+#'               package = "DiagrammeR"))
+#'
+#' graph <-
 #'   add_edges_from_table(
 #'     system.file("examples/projects_and_contributors.csv",
 #'                 package = "DiagrammeR"),
@@ -88,20 +93,10 @@ add_edges_from_table <- function(graph,
     stop("The value specified in `to_col` is not in the table.")
   }
 
-  # Verify that value for `from_mapping` is in the
+  # Verify that value for `ndf_mapping` is in the
   # graph's ndf
-  if (!is.null(from_mapping)) {
-    if (!(from_mapping %in% colnames(get_node_df(graph)))) {
-      stop("The value specified in `from_mapping` is not in the graph.")
-    }
-  }
-
-  # Verify that value for `to_mapping` is in the
-  # graph's ndf
-  if (!is.null(to_mapping)) {
-    if (!(to_mapping %in% colnames(get_node_df(graph)))) {
-      stop("The value specified in `to_mapping` is not in the graph.")
-    }
+  if (!(ndf_mapping %in% colnames(get_node_df(graph)))) {
+    stop("The value specified in `ndf_mapping` is not in the graph.")
   }
 
   # If values for `select_cols` are provided, filter
@@ -140,36 +135,6 @@ add_edges_from_table <- function(graph,
     }
   }
 
-  if (is.null(from_mapping) & is.null(to_mapping)) {
-
-    # Get the unique set of nodes to add to the graph
-    ndf <-
-      create_node_df(
-        n = length(unique(
-          c(csv[, which(colnames(csv) %in% from_col)],
-            csv[, which(colnames(csv) %in% to_col)]))),
-        nodes = unique(
-          c(csv[, which(colnames(csv) %in% from_col)],
-            csv[, which(colnames(csv) %in% to_col)])))
-
-    # Add node data frame to the graph
-    graph <- add_node_df(graph, nodes)
-
-    # Create an edge data frame
-    edges <-
-      create_edge_df(
-        from = csv[, which(colnames(csv) %in% from_col)],
-        to = csv[, which(colnames(csv) %in% to_col)])
-
-    # Add edge data frame to the graph
-    graph <- add_edge_df(graph, edges)
-
-    # Update the `last_node` counter
-    graph$last_node <- nodes_created
-
-    return(graph)
-  }
-
   # If values for `select_cols` provided, filter the
   # table columns by those named columns
   if (!is.null(select_cols)) {
@@ -195,12 +160,9 @@ add_edges_from_table <- function(graph,
   from_col_value <- which(colnames(csv) == from_col)
   to_col_value <- which(colnames(csv) == to_col)
 
-  # Get relevant column numbers from the graph's ndf
-  from_mapping_value <-
-    which(colnames(get_node_df(graph)) == from_mapping)
-
-  to_mapping_value <-
-    which(colnames(get_node_df(graph)) == to_mapping)
+  # Get relevant column number from the graph's ndf
+  ndf_mapping_value <-
+    which(colnames(get_node_df(graph)) == ndf_mapping)
 
   # Create edges
   for (i in 1:rows_in_csv) {
@@ -209,11 +171,11 @@ add_edges_from_table <- function(graph,
         graph = graph,
         from = get_node_df(graph)[
           which(get_node_df(graph)[
-            ,from_mapping_value] ==
+            , ndf_mapping_value] ==
               csv[i, from_col_value]), 1],
         to = get_node_df(graph)[
           which(get_node_df(graph)[
-            ,to_mapping_value] ==
+            , ndf_mapping_value] ==
               csv[i, to_col_value]), 1])
   }
 
