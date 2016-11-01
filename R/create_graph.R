@@ -157,38 +157,6 @@ create_graph <- function(nodes_df = NULL,
       as.data.frame(stringsAsFactors = FALSE)
   }
 
-  # Create vector of graph attributes
-  graph_attributes <-
-    c("bgcolor", "layout", "overlap", "fixedsize",
-      "mindist", "nodesep", "outputorder", "ranksep",
-      "rankdir", "stylesheet")
-
-  # Create vector of node attributes
-  node_attributes <-
-    c("color", "distortion", "fillcolor",
-      "fixedsize", "fontcolor", "fontname", "fontsize",
-      "group", "height", "label", "labelloc", "margin",
-      "orientation", "penwidth", "peripheries", "pos",
-      "shape", "sides", "skew", "style", "tooltip",
-      "width", "img", "icon")
-
-  # Create vector of edge attributes
-  edge_attributes <-
-    c("arrowhead", "arrowsize", "arrowtail", "color",
-      "constraint", "decorate", "dir", "edgeURL",
-      "edgehref", "edgetarget", "edgetooltip",
-      "fontcolor", "fontname", "fontsize", "headclip",
-      "headhref", "headlabel", "headport", "headtarget",
-      "headtooltip", "headURL", "href", "id", "label",
-      "labelangle", "labeldistance", "labelfloat",
-      "labelfontcolor", "labelfontname", "labelfontsize",
-      "labelhref", "labelURL", "labeltarget",
-      "labeltooltip", "layer", "lhead", "ltail", "minlen",
-      "penwidth", "samehead", "sametail", "style",
-      "tailclip", "tailhref", "taillabel", "tailport",
-      "tailtarget", "tailtooltip", "tailURL", "target",
-      "tooltip", "weight")
-
   if (all(c(is.null(nodes_df), is.null(edges_df)))) {
 
     # If neither an ndf nor both ndf & edf provided,
