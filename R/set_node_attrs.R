@@ -165,7 +165,8 @@ set_node_attrs <- function(x,
 
     if (!(node_attr %in% colnames(nodes_df))) {
       nodes_df <-
-        cbind(nodes_df, rep("", nrow(nodes_df)))
+        cbind(nodes_df,
+              rep(as.character(NA), nrow(nodes_df)))
 
       nodes_df[, ncol(nodes_df)] <-
         nodes_df[, ncol(nodes_df)]
