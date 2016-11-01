@@ -6,104 +6,49 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param type the specific type of global graph
-#' attribute to set. The type is specified with
-#' \code{graph}, \code{node}, or \code{edge}.
-#' @param attr_for_type the name of the attribute to
+#' @param attr the name of the attribute to
 #' set for the \code{type} of global attribute
 #' specified.
 #' @param value the value to be set for the chosen
 #' attribute specified in the \code{attr_for_type}
 #' argument.
+#' @param attr_type the specific type of global graph
+#' attribute to set. The type is specified with
+#' \code{graph}, \code{node}, or \code{edge}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and set some global attributes
 #' graph <- create_graph() %>%
 #'   set_global_graph_attrs(
-#'     "graph", "overlap", "true") %>%
-#'   set_global_graph_attrs(
-#'     "node", "fontname", "Helvetica") %>%
-#'   set_global_graph_attrs(
-#'     "edge", "color", "gray")
+#'     "overlap", "true", "graph")
 #'
 #' # Verify that the global attributes have been set
 #' get_global_graph_attrs(graph)
-#' #> $graph_attrs
-#' #> [1] "overlap = true"
-#' #>
-#' #> $node_attrs
-#' #> [1] "fontname = Helvetica"
-#' #>
-#' #> $edge_attrs
-#' #> [1] "color = gray"
+#' #>      attr value attr_type
+#' #> 1 overlap  true     graph
+#' @importFrom tibble tibble
 #' @export set_global_graph_attrs
 
 set_global_graph_attrs <- function(graph,
-                                   type,
-                                   attr_for_type,
-                                   value) {
+                                   attr,
+                                   value,
+                                   attr_type) {
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
-  # Create a statement based on the attribute name
-  # and the value
-  attr_stmt <- paste(attr_for_type, value, sep = " = ")
-
-  if (type == "graph") {
-    dgr_graph <-
-      create_graph(
-        nodes_df = graph$nodes_df,
-        edges_df = graph$edges_df,
-        graph_attrs = c(graph$graph_attrs, attr_stmt),
-        node_attrs = graph$node_attrs,
-        edge_attrs = graph$edge_attrs,
-        directed = ifelse(is_graph_directed(graph),
-                          TRUE, FALSE),
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz)
-
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
+  # Coerce any logical value for `value` to a
+  # lowercase character value
+  if (inherits(value, "logical") & value %in% c(TRUE, FALSE)) {
+    value <- tolower(as.character(value))
   }
 
-  if (type == "node") {
-    dgr_graph <-
-      create_graph(
-        nodes_df = graph$nodes_df,
-        edges_df = graph$edges_df,
-        graph_attrs = graph$graph_attrs,
-        node_attrs = c(graph$node_attrs, attr_stmt),
-        edge_attrs = graph$edge_attrs,
-        directed = ifelse(is_graph_directed(graph),
-                          TRUE, FALSE),
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz)
+  # Create a table for the attributes
+  global_attrs <-
+    tibble::tibble(
+      attr = as.character(attr),
+      value = as.character(value),
+      attr_type = as.character(attr_type)) %>%
+    as.data.frame(stringsAsFactors = FALSE)
 
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
-  }
+  graph$global_attrs <- global_attrs
 
-  if (type == "edge") {
-    dgr_graph <-
-      create_graph(
-        nodes_df = graph$nodes_df,
-        edges_df = graph$edges_df,
-        graph_attrs = graph$graph_attrs,
-        node_attrs = graph$node_attrs,
-        edge_attrs =c(graph$edge_attrs, attr_stmt),
-        directed = ifelse(is_graph_directed(graph),
-                          TRUE, FALSE),
-        graph_name = graph$graph_name,
-        graph_time = graph$graph_time,
-        graph_tz = graph$graph_tz)
-
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
-  }
-
-  return(dgr_graph)
+  return(graph)
 }

@@ -4,34 +4,27 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @return a list object containing global attributes
-#' for a graph.
+#' @return a data frame containing global attributes
+#' for the graph.
 #' @examples
 #' # Create a new graph and set some global attributes
 #' graph <-
 #'   create_graph() %>%
 #'   set_global_graph_attrs(
-#'     "graph", "overlap", "true") %>%
-#'   set_global_graph_attrs(
-#'     "node", "fontname", "Helvetica") %>%
-#'   set_global_graph_attrs(
-#'     "edge", "color", "gray")
+#'     "overlap", "true", "graph")
 #'
-#' # Verify that the global attributes have been set
+#' # View the graph's set of global attributes
+#' # as a data frame
 #' get_global_graph_attrs(graph)
-#' #> $graph_attrs
-#' #> [1] "overlap = true"
-#' #>
-#' #> $node_attrs
-#' #> [1] "fontname = Helvetica"
-#' #>
-#' #> $edge_attrs
-#' #> [1] "color = gray"
+#' #>      attr value attr_type
+#' #> 1 overlap  true     graph
 #' @export get_global_graph_attrs
 
 get_global_graph_attrs <- function(graph) {
 
-  return(list(graph_attrs = graph$graph_attrs,
-              node_attrs = graph$node_attrs,
-              edge_attrs = graph$edge_attrs))
+  if (nrow(graph$global_attrs) == 0) {
+    return(NA)
+  } else if (nrow(graph$global_attrs) > 0) {
+    return(graph$global_attrs)
+  }
 }
