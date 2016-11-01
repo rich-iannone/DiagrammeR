@@ -60,6 +60,9 @@ add_global_graph_attrs <- function(graph,
                                    value,
                                    attr_type) {
 
+  # Assign NULL to several objects
+  value.x <- value.y <- NULL
+
   # Coerce any logical value for `value` to a
   # lowercase character value
   if (inherits(value, "logical") &
