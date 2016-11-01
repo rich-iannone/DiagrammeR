@@ -25,11 +25,7 @@ test_that("a specified edge relationship can be read from graph objects", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = dot",
-      node_attrs = "fontname = Helvetica",
-      edge_attrs = c("color = blue",
-                     "arrowsize = 2"))
+      edges_df = edges)
 
   # Expect that using a `read` action for an edge
   # relationship for an edge that doesn't exist
@@ -64,11 +60,7 @@ test_that("a specified edge relationship can be read from graph objects", {
   graph_no_rel <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges_no_rel,
-      graph_attrs = "layout = dot",
-      node_attrs = "fontname = Helvetica",
-      edge_attrs = c("color = blue",
-                     "arrowsize = 2"))
+      edges_df = edges_no_rel)
 
   # Expect an NA value to be returned when reading
   # an unset relationship for an edge
@@ -129,11 +121,7 @@ test_that("removing an edge relationship is possible", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = dot",
-      node_attrs = "fontname = Helvetica",
-      edge_attrs = c("color = blue",
-                     "arrowsize = 2"))
+      edges_df = edges)
 
   # Remove the edge relationship across the `1` -> `4`
   # edge using the `delete` action
@@ -255,11 +243,7 @@ test_that("edge relationships can be set for edges in graph objects", {
   graph_no_rel <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges_no_rel,
-      graph_attrs = "layout = dot",
-      node_attrs = "fontname = Helvetica",
-      edge_attrs = c("color = blue",
-                     "arrowsize = 2"))
+      edges_df = edges_no_rel)
 
   # Create an edge relationship label across
   # the `1` -> `4` edge
@@ -385,7 +369,7 @@ test_that("edge relationships can be set for edges in graph objects", {
   expect_equal(
     edge_count(graph_rel_empty), 3)
 
-  # Get relationship values to be returned as `NA`
+  # Get relationship values to be returned as NA
   # for all 3 edges
   expect_equal(
     edge_rel(

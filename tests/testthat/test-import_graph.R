@@ -21,11 +21,6 @@ test_that("importing a .graphml file is possible", {
   # Expect that the `edges_df` component is a data frame
   expect_is(graphml_graph$edges_df, "data.frame")
 
-  # Expect that the `node_attrs` component is a
-  # character vector of length 1
-  expect_is(graphml_graph$node_attrs, "character")
-  expect_equal(length(graphml_graph$node_attrs), 9)
-
   # Expect that the graph is a directed graph
   expect_true(graphml_graph$directed == TRUE)
 
@@ -63,9 +58,6 @@ test_that("importing a .sif file is possible", {
   # Expect that the `edges_df` component is a data frame
   expect_is(sif_graph$edges_df, "data.frame")
 
-  # Expect that the `node_attrs` is a vector of length 9
-  expect_equal(length(sif_graph$node_attrs), 9)
-
   # Expect that the graph is a directed graph
   expect_true(sif_graph$directed == TRUE)
 
@@ -102,9 +94,6 @@ test_that("importing a .gml file is possible", {
 
   # Expect that the `edges_df` component is a data frame
   expect_is(gml_graph$edges_df, "data.frame")
-
-  # Expect that the `node_attrs` is a vector of length 9
-  expect_equal(length(gml_graph$node_attrs), 9)
 
   # Expect that the graph is an undirected graph
   expect_true(gml_graph$directed == FALSE)

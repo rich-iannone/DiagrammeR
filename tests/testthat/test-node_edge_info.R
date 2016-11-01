@@ -27,10 +27,7 @@ test_that("getting info about a graph's nodes is possible", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = neato",
-      node_attrs = c("fontname = Helvetica",
-                     "shape = circle"))
+      edges_df = edges)
 
   # Get information on the graph's nodes
   info_nodes <- node_info(graph)
@@ -114,10 +111,7 @@ test_that("getting info about a graph's edges is possible", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = neato",
-      node_attrs = c("fontname = Helvetica",
-                     "shape = circle"))
+      edges_df = edges)
 
   # Get information on the graph's edges
   info_edges <- edge_info(graph)

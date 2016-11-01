@@ -26,15 +26,12 @@ test_that("getting a node count for a graph is possible", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = neato",
-      node_attrs = c("fontname = Helvetica",
-                     "shape = circle"))
+      edges_df = edges)
 
   # Obtain a count of nodes by type
   count_of_nodes <- node_count(graph, type = TRUE)
 
-  # Expect that the 'count_of_nodes' object is a named vector
+  # Expect that the `count_of_nodes` object is a named vector
   expect_true(!is.null(names(count_of_nodes)))
   expect_true(
     all(names(count_of_nodes) ==
@@ -46,7 +43,7 @@ test_that("getting a node count for a graph is possible", {
   total_count_of_nodes <-
     node_count(graph, type = FALSE)
 
-  # Expect that the 'total_count_of_nodes' object
+  # Expect that the `total_count_of_nodes` object
   # is a named vector
   expect_is(total_count_of_nodes, "integer")
   expect_equal(total_count_of_nodes, 26)
@@ -78,15 +75,12 @@ test_that("getting an edge count for a graph is possible", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = neato",
-      node_attrs = c("fontname = Helvetica",
-                     "shape = circle"))
+      edges_df = edges)
 
   # Obtain a count of nodes by relationship
   count_of_edges <- edge_count(graph, rel = TRUE)
 
-  # Expect that the 'count_of_edges' object is a
+  # Expect that the `count_of_edges` object is a
   # named vector
   expect_true(!is.null(names(count_of_edges)))
 
@@ -94,62 +88,15 @@ test_that("getting an edge count for a graph is possible", {
   total_count_of_edges <-
     edge_count(graph, rel = FALSE)
 
-  # Expect that the 'total_count_of_edges' object is
+  # Expect that the `total_count_of_edges` object is
   # a named vector
   expect_is(total_count_of_edges, "integer")
   expect_equal(total_count_of_edges, 26)
-
-  # Create a graph object where some edge relationship
-  # values are missing
-
-  # Create an edge data frame
-  edges_missing_rels <-
-    create_edge_df(
-      from = c(1, 1),
-      to = c(2, 3),
-      rel = c("rel", ""))
-
-  graph_edges_missing_rels <-
-    create_graph(edges_df = edges_missing_rels)
-
-  # Expect that the count of edges here will be 2
-  expect_equal(
-    edge_count(graph = graph_edges_missing_rels,
-               rel = FALSE), 2)
-
-  # Expect that the names in the named vector
-  # returned will be '<no rel>' and 'rel'
-  expect_equal(
-    names(edge_count(graph = graph_edges_missing_rels,
-                     rel = TRUE)),
-    c("<no rel>", "rel"))
-
-  # Expect that the values for the named vector
-  # returned will be 1 in both cases
-  expect_equal(
-    edge_count(graph = graph_edges_missing_rels,
-               rel = TRUE)[[1]], 1)
-
-  expect_equal(
-    edge_count(graph = graph_edges_missing_rels,
-               rel = TRUE)[[2]], 1)
-
-  # Expect that requesting the count of edges with no
-  # relationship value set will return a value of 1
-  expect_equal(
-    edge_count(graph = graph_edges_missing_rels,
-               rel = ""), 1)
-
-  # Expect that requesting the count of edges with a
-  # relationship value set to 'rel' will return a value
-  # of 1 in a named vector
-  expect_equal(
-    edge_count(graph = graph_edges_missing_rels,
-               rel = "rel")[[1]], 1)
 })
 
 test_that("getting a node/edge count for an empty graph is possible", {
 
+  # Create an empty graph
   empty_graph <- create_graph()
 
   # Expect that a node count of an empty graph

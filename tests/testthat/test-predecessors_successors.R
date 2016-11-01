@@ -27,10 +27,7 @@ test_that("getting a node's predecessors/successors is possible", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = neato",
-      node_attrs = c("fontname = Helvetica",
-                     "shape = circle"))
+      edges_df = edges)
 
   # Tests for `get_predecessors()`
   expect_is(

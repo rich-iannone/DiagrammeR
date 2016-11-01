@@ -60,19 +60,14 @@ test_that("exporting Graphviz DOT code is indeed possible", {
     create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
-      relationship = "letter_to_letter")
+      rel = "letter_to_letter")
 
   # Create the graph object using the node and
   # edge data frames
   graph <-
     create_graph(
       nodes_df = ndf,
-      edges_df = edf,
-      graph_attrs = "layout = twopi",
-      node_attrs = c("fontname = Helvetica",
-                     "style = filled"),
-      edge_attrs = c("color = gray20",
-                     "arrowsize = 0.5"))
+      edges_df = edf)
 
   # Output the DOT code as a character object
   graph_dot_output <-

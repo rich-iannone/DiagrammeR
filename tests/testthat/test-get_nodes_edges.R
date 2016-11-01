@@ -27,15 +27,12 @@ test_that("getting node IDs from various objects is possible", {
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = neato",
-      node_attrs = c("fontname = Helvetica",
-                     "shape = circle"))
+      edges_df = edges)
 
   # Get information on the graph's nodes
   gotten_nodes <- get_node_ids(graph)
 
-  # Expect a `integer`` vector object
+  # Expect an `integer` vector object
   expect_is(gotten_nodes, "integer")
 
   # Expect that the integer vector object
@@ -93,18 +90,15 @@ test_that("getting node IDs associated within a graph's edges is possible", {
     create_edge_df(
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
-      label = "edge",
-      relationship = "letter_to_letter")
+      rel = "letter_to_letter",
+      label = "edge")
 
   # Create the graph object using the node and
   # edge data frames
   graph <-
     create_graph(
       nodes_df = nodes,
-      edges_df = edges,
-      graph_attrs = "layout = neato",
-      node_attrs = c("fontname = Helvetica",
-                     "shape = circle"))
+      edges_df = edges)
 
   # Get the 'outgoing' and 'incoming' node ID values
   # in a list object

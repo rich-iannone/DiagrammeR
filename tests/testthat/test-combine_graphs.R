@@ -39,8 +39,7 @@ test_that("graphs can be combined", {
   expect_true(
     all(names(combined_graph_1) ==
           c("graph_name", "graph_time", "graph_tz",
-            "nodes_df", "edges_df", "graph_attrs",
-            "node_attrs", "edge_attrs", "global_attrs",
+            "nodes_df", "edges_df", "global_attrs",
             "directed", "last_node")))
 
   # Expect that several of the graph
@@ -49,11 +48,9 @@ test_that("graphs can be combined", {
   expect_null(combined_graph_1$graph_time)
   expect_null(combined_graph_1$graph_tz)
 
-  # Expect that several of the graph components
-  # are not NULL
-  expect_true(!is.null(combined_graph_1$graph_attrs))
-  expect_true(!is.null(combined_graph_1$node_attrs))
-  expect_true(!is.null(combined_graph_1$edge_attrs))
+  # Expect that the `global_attrs` graph component
+  # is not NULL
+  expect_true(!is.null(combined_graph_1$global_attrs))
 
   # Expect that the `is_graph_directed()` function
   # will return TRUE
