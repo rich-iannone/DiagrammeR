@@ -1,4 +1,4 @@
-#' Clear any global graph attributes that are set v2
+#' Clear any global graph attributes that are set
 #' @description Clear any currently set global graph
 #' attributes for a graph object of class
 #' \code{dgr_graph}).
@@ -9,7 +9,7 @@
 #' @examples
 #' # Create a new graph and set some global attributes
 #' graph <- create_graph() %>%
-#'   set_global_graph_attrs_v2(
+#'   set_global_graph_attrs(
 #'     "overlap", "true", "graph")
 #'
 #' # Clear all global attributes that have been set
@@ -17,7 +17,7 @@
 #'
 #' # Look at the present global graph attributes;
 #' # since there are none, NA is returned
-#' get_global_graph_attrs_v2(graph)
+#' get_global_graph_attrs(graph)
 #' #> [1] NA
 #' @export clear_global_graph_attrs
 

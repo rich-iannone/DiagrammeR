@@ -20,11 +20,11 @@
 #' # Create a new graph and set some global attributes
 #' graph <-
 #'   create_graph() %>%
-#'   set_global_graph_attrs_v2(
+#'   set_global_graph_attrs(
 #'     "overlap", "true", "graph")
 #'
 #' # Verify that the global attributes have been set
-#' get_global_graph_attrs_v2(graph)
+#' get_global_graph_attrs(graph)
 #' #>      attr value attr_type
 #' #> 1 overlap  true     graph
 #'
@@ -36,7 +36,7 @@
 #'   add_global_graph_attrs(
 #'     "penwidth", 12, "node")
 #'
-#' get_global_graph_attrs_v2(graph)
+#' get_global_graph_attrs(graph)
 #' #>       attr value attr_type
 #' #> 1  overlap  true     graph
 #' #> 2 penwidth    12      node
@@ -47,7 +47,7 @@
 #' graph %>%
 #'   add_global_graph_attrs(
 #'     "penwidth", 15, "node") %>%
-#'   get_global_graph_attrs_v2()
+#'   get_global_graph_attrs()
 #' #>       attr value attr_type
 #' #> 1  overlap  true     graph
 #' #> 2 penwidth    15      node

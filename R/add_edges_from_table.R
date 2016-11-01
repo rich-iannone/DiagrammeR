@@ -27,8 +27,6 @@
 #' imported as edge attributes.
 #' @param drop_cols an optional character vector for
 #' dropping columns from the incoming data.
-#' @param rename_attrs an optional character vector for
-#' renaming edge attributes.
 #' @param rel_col an option to apply a column of data
 #' in the table as \code{rel} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
@@ -61,8 +59,8 @@ add_edges_from_table <- function(graph,
                                  set_rel = NULL,
                                  select_cols = NULL,
                                  drop_cols = NULL,
-                                 rename_attrs = NULL,
-                                 rel_col = NULL) {
+                                 rel_col = NULL,
+                                 create_new_nodes = TRUE) {
 
   # Get the number of nodes ever created for
   # this graph
@@ -110,77 +108,58 @@ add_edges_from_table <- function(graph,
     }
   }
 
+  # If values for `select_cols` are provided, filter
+  # the CSV columns by those named columns
+  if (!is.null(select_cols)) {
+
+    # If none of the specified values in `select_cols`
+    # are in the CSV, stop the function
+    if (all(select_cols %in% colnames(csv)) == FALSE) {
+      stop("None of the values specified for selecting columns are available.")
+    }
+
+    columns_retained <-
+      which(colnames(csv) %in% select_cols)
+
+    csv <- csv[, columns_retained]
+  }
+
+  # If values for `drop_cols` provided, filter the CSV
+  # columns by those named columns
+  if (is.null(select_cols) & !is.null(drop_cols)) {
+
+    columns_retained <-
+      which(!(colnames(csv) %in% drop_cols))
+
+    csv <- csv[, columns_retained]
+  }
+
+  # Optionally set the `rel` attribute from a
+  # specified column in the CSV (this copies into
+  # the `rel` column)
+  if (!is.null(rel_col)) {
+    if (any(colnames(csv) == rel_col)) {
+
+      csv$rel <- csv[, which(colnames(csv) == rel_col)]
+    }
+  }
+
   if (is.null(from_mapping) & is.null(to_mapping)) {
 
-    if (node_count(graph) == 0) {
-      starting_node <- 1
-    } else {
-      if (suppressWarnings(
-        any(!(is.na(
-          as.numeric(graph$nodes_df$nodes)))))) {
-        starting_node <-
-          suppressWarnings(
-            max(
-              as.numeric(
-                graph$nodes_df[
-                  which(!is.na(
-                    as.numeric(graph$nodes_df$nodes))),
-                  1])) + 1)
-      } else {
-        starting_node <- 1
-      }
-    }
+    unique_nodes <-
 
-    # If values for `select_cols` are provided, filter
-    # the CSV columns by those named columns
-    if (!is.null(select_cols)) {
 
-      # If none of the specified values in `select_cols`
-      # are in the CSV, stop the function
-      if (all(select_cols %in% colnames(csv)) == FALSE) {
-        stop("None of the values specified for selecting columns are available.")
-      }
+    ndf <-
+      tibble::tibble(id = 1:5)
 
-      columns_retained <-
-        which(colnames(csv) %in% select_cols)
 
-      csv <- csv[,columns_retained]
-    }
-
-    # If values for `drop_cols` provided, filter the CSV
-    # columns by those named columns
-    if (is.null(select_cols) & !is.null(drop_cols)) {
-
-      columns_retained <-
-        which(!(colnames(csv) %in% drop_cols))
-
-      csv <- csv[,columns_retained]
-    }
-
-    # If values for `rename_attrs` provided, rename all
-    # of the CSV columns by those replacement values
-    # (number of new names should match number of columns
-    # even after selecting or dropping columns)
-    if (!is.null(rename_attrs)) {
-      if (length(rename_attrs) != length(colnames(csv))) {
-        stop(paste0("The number of values specified for column name changes ",
-                    "does not match the number of columns available"))
-      }
-      colnames(csv) <- rename_attrs
-    }
-
-    # Optionally set the `rel` attribute from a
-    # specified column in the CSV (this copies into
-    # the `rel` column)
-    if (!is.null(rel_col)) {
-      if (any(colnames(csv) == rel_col)) {
-        csv$rel <- csv[,which(colnames(csv) == rel_col)]
-      }
-    }
 
     # Get the unique set of nodes to add to the graph
-    nodes <-
-      create_nodes(
+    ndf <-
+      create_node_df(
+        n = length(unique(
+          c(csv[, which(colnames(csv) %in% from_col)],
+            csv[, which(colnames(csv) %in% to_col)]))),
         nodes = unique(
           c(csv[, which(colnames(csv) %in% from_col)],
             csv[, which(colnames(csv) %in% to_col)])))
@@ -192,8 +171,7 @@ add_edges_from_table <- function(graph,
     edges <-
       create_edge_df(
         from = csv[, which(colnames(csv) %in% from_col)],
-        to = csv[, which(colnames(csv) %in% to_col)]
-      )
+        to = csv[, which(colnames(csv) %in% to_col)])
 
     # Add edge data frame to the graph
     graph <- add_edge_df(graph, edges)
@@ -223,17 +201,6 @@ add_edges_from_table <- function(graph,
     columns_retained <-
       which(!(colnames(csv) %in% drop_cols))
     csv <- csv[, columns_retained]
-  }
-
-  # If values for `rename_attrs` provided, rename the
-  # table columns by those replacement values
-  if (!is.null(rename_attrs)) {
-    if (length(rename_attrs) !=
-        length(colnames(csv))) {
-      stop(paste0("The number of values specified for column name changes ",
-                  "does not match the number of columns available"))
-    }
-    colnames(csv) <- rename_attrs
   }
 
   # Get relevant column numbers from the table

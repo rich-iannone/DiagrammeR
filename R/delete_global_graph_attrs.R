@@ -25,7 +25,7 @@
 #'     "penwidth", 3, "edge")
 #'
 #' # View the graph's global attributes
-#' get_global_graph_attrs_v2(graph)
+#' get_global_graph_attrs(graph)
 #' #>       attr value attr_type
 #' #> 1  overlap  true     graph
 #' #> 2 penwidth     3      node
@@ -39,7 +39,7 @@
 #'
 #' # View the remaining set of global
 #' # attributes for the graph
-#' get_global_graph_attrs_v2(graph)
+#' get_global_graph_attrs(graph)
 #' #>       attr value attr_type
 #' #> 1 penwidth     3      edge
 #' #> 2  overlap  true     graph
