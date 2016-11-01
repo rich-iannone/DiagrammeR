@@ -128,7 +128,7 @@ create_graph <- function(nodes_df = NULL,
       attr = as.character(NA),
       value = as.character(NA),
       attr_type = as.character(NA)) %>%
-    as.data.frame(stringsAsFactors = FALSE) %>%
+    as.data.frame(stringsAsFactors = FALSE)
 
   global_attrs <- global_attrs[-1, ]
 
