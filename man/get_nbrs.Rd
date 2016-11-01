@@ -21,8 +21,8 @@ With one or more nodes, get the set of
 all neighboring nodes.
 }
 \examples{
-# Create a random, directed graph with 18 nodes
-# and 22 edges
+# Create a random, directed graph with 18
+# nodes and 22 edges
 random_graph <-
   create_random_graph(
     n = 18,
@@ -35,12 +35,12 @@ random_graph <-
 random_graph \%>\% get_nbrs(5)
 #> [1]  1  2 12 18
 
-# Find all neighbor nodes for nodes `5`, `7`,
-# and `15`
+# Find all neighbor nodes for nodes `5`,
+# `7`, and `15`
 random_graph \%>\% get_nbrs(c(5, 7, 15))
 #> [1]  1  2  6 12 18
 
-# Color node `11` with purple, get it's
+# Color node `11` with purple, get its
 # neighbors and color those nodes green
 random_graph <-
   random_graph \%>\%
@@ -49,9 +49,6 @@ random_graph <-
   clear_selection \%>\%
   select_nodes_by_id(get_nbrs(., 11)) \%>\%
   set_node_attrs_ws("color", "green")
-
-# Render the graph to see the change
-random_graph \%>\% render_graph
 
 # A node with no neighbors with return `NA`
 create_graph() \%>\%

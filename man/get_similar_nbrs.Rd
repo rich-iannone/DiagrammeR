@@ -56,11 +56,6 @@ random_graph <-
     fully_connected = TRUE,
     set_seed = 20)
 
-# This graph cannot be shown in this help page
-# but you may be interested in displaying it with
-# `render_graph()`
-random_graph \%>\% render_graph
-
 # The `create_random_graph()` function randomly
 # assigns numerical values to all nodes (as the
 # `value` attribute) from 0 to 10 and to 1 decimal
