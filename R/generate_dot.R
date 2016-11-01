@@ -11,6 +11,9 @@
 
 generate_dot <- function(graph) {
 
+  # Assign NULL to several objects
+  attr_type <- attr <- value <- NULL
+
   # Extract objects from the graph objecct
   nodes_df <- graph$nodes_df
   edges_df <- graph$edges_df
@@ -21,8 +24,10 @@ generate_dot <- function(graph) {
     graph_attrs <-
       global_attrs %>%
       filter(attr_type == "graph") %>%
-      mutate(string = paste(attr, "=", value)) %>%
-      .[[4]]
+      mutate(string = paste(attr, "=", value))
+
+    graph_attrs <- graph_attrs[[4]]
+
   } else {
     graph_attrs <- NA
   }
@@ -31,8 +36,10 @@ generate_dot <- function(graph) {
     node_attrs <-
       global_attrs %>%
       filter(attr_type == "node") %>%
-      mutate(string = paste(attr, "=", value)) %>%
-      .[[4]]
+      mutate(string = paste(attr, "=", value))
+
+    node_attrs <- node_attrs[[4]]
+
   } else {
     node_attrs <- NA
   }
@@ -41,10 +48,12 @@ generate_dot <- function(graph) {
     edge_attrs <-
       global_attrs %>%
       filter(attr_type == "edge") %>%
-      mutate(string = paste(attr, "=", value)) %>%
-      .[[4]]
+      mutate(string = paste(attr, "=", value))
+
+    edge_attrs <- edge_attrs[[4]]
+
   } else {
-    node_attrs <- NA
+    edge_attrs <- NA
   }
 
   # Replace NA values with empty strings in `nodes_df`
@@ -389,7 +398,7 @@ generate_dot <- function(graph) {
         node_block <- c(node_block, line)
       }
 
-      if ('rank' %in% colnames(nodes_df)) {
+      if ("rank" %in% colnames(nodes_df)) {
         node_block <-
           c(node_block,
             tapply(node_block,
@@ -640,8 +649,7 @@ generate_dot <- function(graph) {
         edge_block <- paste(edge_block, collapse = "\n")
       }
 
-      if ('cluster' %in% colnames(nodes_df)) {
-
+      if ("cluster" %in% colnames(nodes_df)) {
 
         # Get column number for column with node
         # attribute `cluster`
