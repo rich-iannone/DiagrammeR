@@ -129,7 +129,8 @@ create_graph <- function(nodes_df = NULL,
       value = as.character(NA),
       attr_type = as.character(NA)) %>%
     as.data.frame(stringsAsFactors = FALSE) %>%
-    .[-1, ]
+
+  global_attrs <- global_attrs[-1, ]
 
   # If `attr_theme` is `default` then populate the
   # `global_attrs` data frame with global graph attrs
