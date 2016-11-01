@@ -9,15 +9,12 @@
 #' frame object.
 #' @param from_col the name of the table column from
 #' which edges originate.
-#' @param from_mapping a single character value for
-#' the mapping of a column in the external table
-#' (supplied as \code{from_col}) to a column in the
-#' graph's internal node data frame (ndf).
 #' @param to_col the name of the table column to
 #' which edges terminate.
-#' @param to_mapping a single character value for
-#' the mapping of a column in the external table
-#' (supplied as \code{to_col}) to a column in the
+#' @param ndf_mapping a single character value for
+#' the mapping of the \code{from} and \code{to} columns
+#' in the external table (supplied as \code{from_col}
+#' and \code{to_col}, respectively) to a column in the
 #' graph's internal node data frame (ndf).
 #' @param set_rel an optional string to apply a
 #' \code{rel} attribute to all edges created from the
@@ -48,19 +45,18 @@
 #' #>   name  n  e      dens min_deg max_deg avg_deg time tz
 #' #> 1      13 13 0.1666667       1       7       2
 #' }
+#' @importFrom utils read.csv
 #' @export add_edges_from_table
 
 add_edges_from_table <- function(graph,
                                  table,
                                  from_col,
-                                 from_mapping = NULL,
                                  to_col,
-                                 to_mapping = NULL,
+                                 ndf_mapping,
                                  set_rel = NULL,
                                  select_cols = NULL,
                                  drop_cols = NULL,
-                                 rel_col = NULL,
-                                 create_new_nodes = TRUE) {
+                                 rel_col = NULL) {
 
   # Get the number of nodes ever created for
   # this graph
@@ -145,14 +141,6 @@ add_edges_from_table <- function(graph,
   }
 
   if (is.null(from_mapping) & is.null(to_mapping)) {
-
-    unique_nodes <-
-
-
-    ndf <-
-      tibble::tibble(id = 1:5)
-
-
 
     # Get the unique set of nodes to add to the graph
     ndf <-
