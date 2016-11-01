@@ -46,13 +46,6 @@ edge_df
 #> 2    2  3   a
 #> 3    3  1   a
 
-# Use the edge data frame to create a graph;
-# then, make visible in the Viewer pane
-render_graph(
-  create_graph(
-    edges_df = edge_df),
-  output = "visNetwork")
-
 # Create an edf with additional edge
 # attributes (where their classes will be
 # inferred from the input vectors)
