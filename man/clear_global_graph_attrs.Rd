@@ -2,7 +2,7 @@
 % Please edit documentation in R/clear_global_graph_attrs.R
 \name{clear_global_graph_attrs}
 \alias{clear_global_graph_attrs}
-\title{Clear any global graph attributes that are set v2}
+\title{Clear any global graph attributes that are set}
 \usage{
 clear_global_graph_attrs(graph)
 }
@@ -22,7 +22,7 @@ attributes for a graph object of class
 \examples{
 # Create a new graph and set some global attributes
 graph <- create_graph() \%>\%
-  set_global_graph_attrs_v2(
+  set_global_graph_attrs(
     "overlap", "true", "graph")
 
 # Clear all global attributes that have been set
@@ -30,7 +30,7 @@ graph <- clear_global_graph_attrs(graph)
 
 # Look at the present global graph attributes;
 # since there are none, NA is returned
-get_global_graph_attrs_v2(graph)
+get_global_graph_attrs(graph)
 #> [1] NA
 }
 

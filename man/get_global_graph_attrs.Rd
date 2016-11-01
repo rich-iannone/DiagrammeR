@@ -12,8 +12,8 @@ get_global_graph_attrs(graph)
 \code{create_graph}.}
 }
 \value{
-a list object containing global attributes
-for a graph.
+a data frame containing global attributes
+for the graph.
 }
 \description{
 Get the presently set global attributes
@@ -24,21 +24,12 @@ for a graph object of class \code{dgr_graph}.
 graph <-
   create_graph() \%>\%
   set_global_graph_attrs(
-    "graph", "overlap", "true") \%>\%
-  set_global_graph_attrs(
-    "node", "fontname", "Helvetica") \%>\%
-  set_global_graph_attrs(
-    "edge", "color", "gray")
+    "overlap", "true", "graph")
 
-# Verify that the global attributes have been set
+# View the graph's set of global attributes
+# as a data frame
 get_global_graph_attrs(graph)
-#> $graph_attrs
-#> [1] "overlap = true"
-#>
-#> $node_attrs
-#> [1] "fontname = Helvetica"
-#>
-#> $edge_attrs
-#> [1] "color = gray"
+#>      attr value attr_type
+#> 1 overlap  true     graph
 }
 
