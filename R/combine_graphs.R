@@ -138,9 +138,6 @@ combine_graphs <- function(x,
     create_graph(
       nodes_df = combined_nodes,
       edges_df = combined_edges,
-      graph_attrs = x$graph_attrs,
-      node_attrs = x$node_attrs,
-      edge_attrs = x$edge_attrs,
       directed = ifelse(
         is_graph_directed(x) == FALSE ||
           is_graph_directed(y) == FALSE,
@@ -148,6 +145,8 @@ combine_graphs <- function(x,
       graph_name = x$graph_name,
       graph_time = x$graph_time,
       graph_tz = x$graph_tz)
+
+  graph$global_attrs <- x$global_attrs
 
   return(graph)
 }

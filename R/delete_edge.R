@@ -92,15 +92,15 @@ delete_edge <- function(graph,
           nodes_df = graph$nodes_df,
           edges_df = revised_edges_df,
           directed = graph$directed,
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
 
       # Update the `last_node` counter
       dgr_graph$last_node <- nodes_created
+
+      # Update the `global_attrs` df
+      dgr_graph$global_attrs <- graph$global_attrs
     }
   }
 
@@ -125,15 +125,15 @@ delete_edge <- function(graph,
           nodes_df = graph$nodes_df,
           edges_df = revised_edges_df,
           directed = graph$directed,
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
 
       # Update the `last_node` counter
       dgr_graph$last_node <- nodes_created
+
+      # Update the `global_attrs` df
+      dgr_graph$global_attrs <- graph$global_attrs
     }
 
     if (any(graph$edges_df$from == to &
@@ -153,15 +153,15 @@ delete_edge <- function(graph,
           nodes_df = graph$nodes_df,
           edges_df = revised_edges_df,
           directed = graph$directed,
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
 
       # Update the `last_node` counter
       dgr_graph$last_node <- nodes_created
+
+      # Update the `global_attrs` df
+      dgr_graph$global_attrs <- graph$global_attrs
     }
   }
 

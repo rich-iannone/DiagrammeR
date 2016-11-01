@@ -69,9 +69,6 @@ set_graph_time <- function(graph,
     create_graph(
       nodes_df = graph$nodes_df,
       edges_df = graph$edges_df,
-      graph_attrs = graph$graph_attrs,
-      node_attrs = graph$node_attrs,
-      edge_attrs = graph$edge_attrs,
       directed = ifelse(is_graph_directed(graph),
                         TRUE, FALSE),
       graph_name = graph$graph_name,
@@ -86,6 +83,8 @@ set_graph_time <- function(graph,
   # Update the `last_node` counter
   dgr_graph$last_node <- nodes_created
 
+  # Update the `global_attrs` df
+  dgr_graph$global_attrs <- graph$global_attrs
 
   return(dgr_graph)
 }
