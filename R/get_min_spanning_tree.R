@@ -33,9 +33,6 @@
 #'   set_edge_attrs("fontname", "Helvetica") %>%
 #'   set_edge_attrs("color", "gray85") %>%
 #'   rescale_edge_attrs("weight", 0.5, 4.0, "penwidth")
-#'
-#' # Render the graph to display in the RStudio Viewer
-#' render_graph(min_spanning_tree_graph)
 #' @importFrom igraph mst
 #' @export get_min_spanning_tree
 
