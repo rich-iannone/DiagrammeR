@@ -76,7 +76,7 @@ import_graph <- function(graph_file,
                          graph_tz = NULL) {
 
   # Assign NULL to several objects
-  id <- to_label <- from_label <_  NULL
+  id <- to_label <- from_label <-  NULL
 
   # Stop function if file doesn't exist
   if (file.exists(graph_file) == FALSE) {
