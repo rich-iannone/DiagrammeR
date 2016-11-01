@@ -90,6 +90,7 @@
 #' #> [1] "id"  type"  "label"  "iso_4217_code"
 #' #> [5] "curr_number" "currency_name"
 #' }
+#' @importFrom utils read.csv
 #' @export add_nodes_from_table
 
 add_nodes_from_table <- function(graph,
