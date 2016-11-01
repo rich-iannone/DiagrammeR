@@ -38,7 +38,7 @@ numeric ranges can be provided for the selection.
 # by 3 nodes at each level); the resulting graph
 # contains 13 nodes, numbered `1` through `13`
 graph <-
-  create_graph(graph_attrs = 'layout = twopi') \%>\%
+  create_graph() \%>\%
   add_node("a") \%>\%
   select_nodes \%>\%
   add_n_nodes_ws(3, "from", "b") \%>\%
