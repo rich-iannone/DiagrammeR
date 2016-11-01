@@ -12,15 +12,6 @@
 #' \code{to}) where node IDs are provided. Additional
 #' columns (named as Graphviz edge attributes) can be
 #' included with values for the named edge attribute.
-#' @param graph_attrs an optional vector of graph
-#' attribute statements that can serve as defaults
-#' for the graph.
-#' @param node_attrs an optional vector of node
-#' attribute statements that can serve as defaults for
-#' nodes.
-#' @param edge_attrs an optional vector of edge
-#' attribute statements that can serve as defaults for
-#' edges.
 #' @param directed with \code{TRUE} (the default) or
 #' \code{FALSE}, either directed or undirected edge
 #' operations will be generated, respectively.
@@ -40,18 +31,20 @@
 #' theme is called \code{default}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create an empty graph
+#' # With `create_graph()` we can simply create an
+#' # empty graph (and add in nodes and edges later,
+#' # with other functions)
 #' graph <- create_graph()
 #'
 #' # A graph can be created with nodes and
 #' # without edges; this is usually done in 2 steps:
 #' # 1. create a node data frame (ndf) using the
 #' #    `create_node_df()` function
-#' nodes <- create_node_df(n = 4)
+#' ndf <- create_node_df(n = 4)
 #'
 #' # 2. create the graph object with `create_graph()`
 #' #    and pass in the ndf to `nodes_df`
-#' graph <- create_graph(nodes_df = nodes)
+#' graph <- create_graph(nodes_df = ndf)
 #'
 #' # Get information on the graph's nodes
 #' node_info(graph)
@@ -64,7 +57,7 @@
 #' # You can create a similar graph with just nodes but
 #' # also provide a range of attributes for the nodes
 #' # (e.g., types, labels, arbitrary 'values')
-#' nodes <-
+#' ndf <-
 #'   create_node_df(
 #'     n = 4,
 #'     label = TRUE,
@@ -74,7 +67,7 @@
 #'               "rectangle", "rectangle"),
 #'     values = c(3.5, 2.6, 9.4, 2.7))
 #'
-#' graph <- create_graph(nodes_df = nodes)
+#' graph <- create_graph(nodes_df = ndf)
 #'
 #' # Get information on the graph's internal node
 #' # data frame (ndf)
@@ -85,16 +78,10 @@
 #' #> 3  3 type_5     3 rectangle    9.4
 #' #> 4  4 type_2     4 rectangle    2.7
 #'
-#' # A graph can also be created by just specifying the
-#' # edges between nodes (in this case the unique set
-#' # of nodes will be created added along with their
-#' # connections but there is no possibility to add
-#' # node attributes this way--they can be added later
-#' # with different function--although edge attributes
-#' # can specified); this is usually done in 2 steps:
-#' # 1. create an edge data frame (edf) using the
-#' #    `create_edge_df()` function:
-#' edges <-
+#' # A graph can also be created by specifying both
+#' # the nodes and edges; create an edge data frame
+#' # (edf) using the `create_edge_df()` function:
+#' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
@@ -102,8 +89,11 @@
 #'     values = c(7.3, 2.6, 8.3))
 #'
 #' # 2. create the graph object with `create_graph()`
-#' #    and pass in the edf to `edges_df`
-#' graph <- create_graph(edges_df = edges)
+#' #    and pass in the ndf and edf
+#' graph <-
+#'   create_graph(
+#'     nodes_df = ndf,
+#'     edges_df = edf)
 #'
 #' # Get information on the graph's internal edge
 #' # data frame (edf)
@@ -113,32 +103,19 @@
 #' #> 2    2  3 leading_to    2.6
 #' #> 3    3  1 leading_to    8.3
 #'
-#' # You can create a graph with both nodes and edges
-#' # defined, and, add in some default attributes
-#' # to be applied to all the nodes (`node_attrs`) and
-#' # edges (`edge_attrs`)
-#' graph <-
-#'   create_graph(
-#'     nodes_df = nodes,
-#'     edges_df = edges,
-#'     node_attrs = "fontname = Helvetica",
-#'     edge_attrs = c("color = blue",
-#'                    "arrowsize = 2"))
-#'
-#' # For this new graph, get counts of nodes and edges
-#' node_count(graph)
-#' #> [1] 4
-#'
-#' edge_count(graph)
-#' #> [1] 3
+#' # Get information on the graph's internal node
+#' # data frame (ndf)
+#' get_node_df(graph)
+#' #>   id   type label     shape values
+#' #> 1  1 type_1     1    circle    3.5
+#' #> 2  2 type_1     2    circle    2.6
+#' #> 3  3 type_5     3 rectangle    9.4
+#' #> 4  4 type_2     4 rectangle    2.7
 #' @importFrom tibble tibble
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,
                          edges_df = NULL,
-                         graph_attrs = NULL,
-                         node_attrs = NULL,
-                         edge_attrs = NULL,
                          directed = TRUE,
                          graph_name = NULL,
                          graph_time = NULL,
@@ -180,28 +157,6 @@ create_graph <- function(nodes_df = NULL,
       as.data.frame(stringsAsFactors = FALSE)
   }
 
-  # Add default values for `graph_attrs`, `node_attrs`,
-  # and `edge_attrs`
-  if (is.null(graph_attrs)) {
-    graph_attrs <-
-      c("layout = neato", "outputorder = edgesfirst")
-  }
-
-  if (is.null(node_attrs)) {
-    node_attrs <-
-      c("fontname = Helvetica", "fontsize = 10",
-        "shape = circle", "fixedsize = true",
-        "width = 0.5", "style = filled",
-        "fillcolor = aliceblue", "color = gray70",
-        "fontcolor = gray50")
-  }
-
-  if (is.null(edge_attrs)) {
-    edge_attrs <-
-      c("len = 1.5", "color = gray40",
-        "arrowsize = 0.5")
-  }
-
   # Create vector of graph attributes
   graph_attributes <-
     c("bgcolor", "layout", "overlap", "fixedsize",
@@ -234,11 +189,10 @@ create_graph <- function(nodes_df = NULL,
       "tailtarget", "tailtooltip", "tailURL", "target",
       "tooltip", "weight")
 
-  # If nodes, edges, and attributes not provided,
-  # create an empty graph
-  if (all(c(is.null(nodes_df), is.null(edges_df),
-            is.null(graph_attrs), is.null(node_attrs),
-            is.null(edge_attrs)))) {
+  if (all(c(is.null(nodes_df), is.null(edges_df)))) {
+
+    # If neither an ndf nor both ndf & edf provided,
+    # create an empty graph
 
     # Create the `dgr_graph` list object
     dgr_graph <-
@@ -247,9 +201,6 @@ create_graph <- function(nodes_df = NULL,
            graph_tz = graph_tz,
            nodes_df = NULL,
            edges_df = NULL,
-           graph_attrs = NULL,
-           node_attrs = NULL,
-           edge_attrs = NULL,
            global_attrs = global_attrs,
            directed = ifelse(directed,
                              TRUE, FALSE),
@@ -259,33 +210,37 @@ create_graph <- function(nodes_df = NULL,
 
     return(dgr_graph)
 
-  } else if (all(c(is.null(nodes_df),
-                   is.null(edges_df)))) {
+  } else if (!is.null(nodes_df) & is.null(edges_df)) {
 
-    # If nodes and edges not provided, but other
-    # attributes are, create an empty graph with
-    # attributes
+    # If only an ndf is provided, create a graph
+    # just containing nodes
+
+    # Force the `type` and `label` columns
+    # to be of the character class
+    for (i in 2:3) {
+      nodes_df[, i] <- as.character(nodes_df[, i])
+    }
 
     # Create the `dgr_graph` list object
     dgr_graph <-
       list(graph_name = graph_name,
            graph_time = graph_time,
            graph_tz = graph_tz,
-           nodes_df = NULL,
+           nodes_df = nodes_df,
            edges_df = NULL,
-           graph_attrs = graph_attrs,
-           node_attrs = node_attrs,
-           edge_attrs = edge_attrs,
            global_attrs = global_attrs,
            directed = ifelse(directed,
                              TRUE, FALSE),
-           last_node = 0)
+           last_node = nrow(nodes_df))
 
     attr(dgr_graph, "class") <- "dgr_graph"
 
     return(dgr_graph)
 
-  } else if (!is.null(nodes_df)) {
+  } else if (!is.null(nodes_df) & !is.null(edges_df)) {
+
+    # If an ndf and edf both provided, create a graph
+    # initially populated with both nodes and edges
 
     # Force the `type` and `label` columns
     # to be of the character class
@@ -294,7 +249,6 @@ create_graph <- function(nodes_df = NULL,
     }
 
     if (inherits(edges_df, "data.frame")) {
-
       if (ncol(edges_df) > 2) {
 
         # Force the rel column to be of the character class
@@ -309,62 +263,6 @@ create_graph <- function(nodes_df = NULL,
            graph_tz = graph_tz,
            nodes_df = nodes_df,
            edges_df = edges_df,
-           graph_attrs = graph_attrs,
-           node_attrs = node_attrs,
-           edge_attrs = edge_attrs,
-           global_attrs = global_attrs,
-           directed = directed,
-           last_node = nrow(nodes_df))
-
-    attr(dgr_graph, "class") <- "dgr_graph"
-
-    return(dgr_graph)
-
-  } else if (is.null(nodes_df) & !is.null(edges_df)) {
-
-    from_to_columns <-
-      ifelse(any(c("from", "to") %in%
-                   colnames(edges_df)), TRUE, FALSE)
-
-    # Determine which columns in the `edges_df` df
-    # contains edge attributes
-    other_columns_with_edge_attributes <-
-      which(colnames(edges_df) %in% edge_attributes)
-
-    # Determine whether the complementary set of
-    # columns is present
-    if (from_to_columns) {
-      both_from_to_columns <-
-        all(c(any(c("from") %in%
-                    colnames(edges_df))),
-            any(c("to") %in%
-                  colnames(edges_df)))
-    }
-
-    if (exists("both_from_to_columns")) {
-      if (both_from_to_columns) {
-        from_column <-
-          which(colnames(edges_df) %in% c("from"))[1]
-        to_column <-
-          which(colnames(edges_df) %in% c("to"))[1]
-      }
-    }
-
-    nodes_df <-
-      create_nodes(
-        nodes = unique(c(edges_df$from,
-                         edges_df$to)))
-
-    # Create the `dgr_graph` list object
-    dgr_graph <-
-      list(graph_name = graph_name,
-           graph_time = graph_time,
-           graph_tz = graph_tz,
-           nodes_df = nodes_df,
-           edges_df = edges_df,
-           graph_attrs = graph_attrs,
-           node_attrs = node_attrs,
-           edge_attrs = edge_attrs,
            global_attrs = global_attrs,
            directed = directed,
            last_node = nrow(nodes_df))
