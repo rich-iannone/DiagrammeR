@@ -52,6 +52,9 @@ delete_edges_ws <- function(graph) {
   # this graph
   nodes_created <- graph$last_node
 
+  # Get the data frame of global graph attributes
+  global_attrs <- graph$global_attrs
+
   # Get vectors of the nodes in edges to be deleted
   from_delete <- graph$selection$edges$from
   to_delete <- graph$selection$edges$to
@@ -75,9 +78,6 @@ delete_edges_ws <- function(graph) {
           nodes_df = graph$nodes_df,
           edges_df = NULL,
           directed = graph$directed,
-          graph_attrs = graph$graph_attrs,
-          node_attrs = graph$node_attrs,
-          edge_attrs = graph$edge_attrs,
           graph_name = graph$graph_name,
           graph_tz = graph$graph_tz,
           graph_time = graph$graph_time)
@@ -89,6 +89,9 @@ delete_edges_ws <- function(graph) {
 
   # Update the `last_node` counter
   graph$last_node <- nodes_created
+
+  # Update the `global_attrs` df
+  graph$global_attrs <- global_attrs
 
   return(graph)
 }
