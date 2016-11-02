@@ -69,6 +69,9 @@ add_edges_from_table <- function(graph,
                                  drop_cols = NULL,
                                  rel_col = NULL) {
 
+  # Bind variables to workspace
+  rel <- id <- from <- to <- NULL
+
   # Determine whether the table is a file connection
   # to a CSV file or a data frame
   if (inherits(table, "character")) {
