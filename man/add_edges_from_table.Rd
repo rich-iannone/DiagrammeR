@@ -51,26 +51,29 @@ data frame.
 }
 \examples{
 \dontrun{
-# Create a graph from a CSV file
+# Create an empty graph and then add
+# nodes to it from a CSV file; in this case
+# we are using the `currencies` CSV file
+# that's available in the package
 graph <-
   create_graph() \%>\%
   add_nodes_from_table(
     system.file("examples/currencies.csv",
-              package = "DiagrammeR"))
+                package = "DiagrammeR"))
 
+# Now we want to add edges to the graph
+# using a similar CSV file that contains
+# exchange rates between several currencies;
+# the common attribute is the ISO-4217
+# currency code
 graph <-
   add_edges_from_table(
-    system.file("examples/projects_and_contributors.csv",
-                package = "DiagrammeR"),
-    from_col = "contributor_name",
-    to_col = "project_name",
-    rel_col = "contributor_role",
-    set_rel = "contributes_to")
-
-# Get a summary of the new graph
-graph_info(graph)
-#>   name  n  e      dens min_deg max_deg avg_deg time tz
-#> 1      13 13 0.1666667       1       7       2
+    graph,
+    table = system.file("examples/usd_exchange_rates.csv",
+                        package = "DiagrammeR"),
+    from_col = "from_currency",
+    to_col = "to_currency",
+    ndf_mapping = "iso_4217_code")
 }
 }
 
