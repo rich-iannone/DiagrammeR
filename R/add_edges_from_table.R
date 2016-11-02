@@ -167,14 +167,15 @@ add_edges_from_table <- function(graph,
                      by = stats::setNames(ndf_mapping, to_col)) %>%
     dplyr::select_(.dots = csv_colnames) %>%
     dplyr::rename(to = id) %>%
-    dplyr::mutate(to = as.integer(to))
+    dplyr::mutate(to = as.integer(to)) %>%
+    select(to)
 
   # Combine the `from` and `to` columns together along
   # with a new `rel` column (filled with NAs) and additional
   # columns from the CSV
   edf <-
     col_from %>%
-    dplyr::bind_cols(col_to %>% dplyr::select(., to))
+    dplyr::bind_cols(col_to)
 
   # Add in a `rel` column (filled with NAs) if it's not
   # already in the table
