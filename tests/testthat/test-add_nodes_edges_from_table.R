@@ -31,3 +31,39 @@ test_that("adding nodes from a table to a graph is possible", {
     c("id", "type", "label", "iso_4217_code",
       "curr_number", "exponent", "currency_name"))
 })
+
+test_that("adding edges from a table to a graph is possible", {
+
+  # Specify paths to CSV files
+  path_to_csv_nodes <-
+    system.file("examples/currencies.csv",
+                package = "DiagrammeR")
+
+  path_to_csv_edges <-
+    system.file("examples/usd_exchange_rates.csv",
+                package = "DiagrammeR")
+
+  # Add nodes directly from the CSV file, calling the
+  # `add_nodes_from_table()` function with default
+  # options
+  graph <-
+    create_graph() %>%
+    add_nodes_from_table(path_to_csv_nodes)
+
+  graph <-
+    graph %>%
+    add_edges_from_table(
+      path_to_csv_edges,
+      from_col = "from_currency",
+      to_col = "to_currency",
+      ndf_mapping = "iso_4217_code")
+
+  # Expect that the graph has a certain number of edges
+  expect_equal(edge_count(graph), 157)
+
+  # Expect certain columns to exist in the graph's
+  # edge data frame
+  expect_equal(
+    colnames(graph$edges_df),
+    c("from", "to", "rel", "cost_unit"))
+})
