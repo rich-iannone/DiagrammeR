@@ -9,16 +9,17 @@
 #' \dontrun{
 #' # Import a GraphML graph file available in the
 #' # DiagrammeR package
-#' power_grid <-
-#'   import_graph(
-#'     system.file("extdata", "power_grid.graphml",
-#'                 package = "DiagrammeR"),
-#'     graph_name = "p_grid")
+#' karate_club <-
+#'   system.file(
+#'     "extdata", "karate.gml",
+#'     package = "DiagrammeR") %>%
+#'   import_graph() %>%
+#'   set_graph_name("karate")
 #'
 #' # Display a data frame with graph information
-#' graph_info(power_grid)
-#' #>     name    n    e  dens mn_deg mx_deg avg_deg time tz
-#' #> 1 p_grid 4941 6594 5e-04      1     19       3
+#' graph_info(karate_club)
+#' #>     name  n  e  dens mn_deg mx_deg avg_deg time   tz
+#' #> 1 karate 34 78 0.139      1     17       5 <NA> <NA>
 #' }
 #' @export graph_info
 
