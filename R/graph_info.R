@@ -40,7 +40,8 @@ graph_info <- function(graph) {
   n_edges <- edge_count(graph)
 
   # Get the graph density
-  density <- round(n_edges / ((n_nodes * (n_nodes - 1))/2), 4)
+  density <-
+    round(n_edges / ((n_nodes * (n_nodes - 1))/2), 4)
 
   # Get a table of node degree values
   degree_table <-
@@ -58,21 +59,21 @@ graph_info <- function(graph) {
 
   # Add graph name to the data frame
   if (is.null(graph$graph_name)) {
-    graph_metrics[1, 1] <- ""
+    graph_metrics[1, 1] <- as.character(NA)
   } else {
     graph_metrics[1, 1] <- graph$graph_name
   }
 
   # Add graph time to the data frame
   if (is.null(graph$graph_time)) {
-    graph_metrics[1, 8] <- ""
+    graph_metrics[1, 8] <- as.character(NA)
   } else {
     graph_metrics[1, 8] <- graph$graph_time
   }
 
   # Add graph time zone (tz) to the data frame
   if (is.null(graph$graph_tz)) {
-    graph_metrics[1, 9] <- ""
+    graph_metrics[1, 9] <- as.character(NA)
   } else {
     graph_metrics[1, 9] <- graph$graph_tz
   }
