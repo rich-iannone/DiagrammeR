@@ -60,6 +60,13 @@ rename_node_attrs <- function(graph,
     stop("You cannot use that name for `node_attr_to`.")
   }
 
+  # Stop function if `node_attr_from` is `id`, `label`
+  # or `type`
+  if (any(c("id", "label", "type") %in%
+          node_attr_from)) {
+    stop("You cannot use that name for `node_attr_from`.")
+  }
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
