@@ -2,9 +2,11 @@ context("Adding nodes and/or edges to an existing graph object")
 
 test_that("adding nodes from a table to a graph is possible", {
 
+  library(tibble)
+
   # Create a data frame for graph nodes
   node_table <-
-    tribble(
+    tibble::tribble(
       ~iso_4217_code, ~curr_number, ~exponent,
       "AED", 784,  2,
       "AFN", 971,  2,
@@ -176,8 +178,12 @@ test_that("adding nodes from a table to a graph is possible", {
       "XUA", 965, NA,
       "YER", 886,  2,
       "ZAR", 710,  2,
-      "ZMW", 967,  2) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      "ZMW", 967,  2)
+
+  # Convert to a data frame
+  node_table <-
+    as.data.frame(node_table, stringsAsFactors = FALSE)
+
   # Add nodes directly from the CSV file, calling the
   # `add_nodes_from_table()` function with default
   # options
@@ -207,7 +213,7 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Create a data frame for graph edges
   edge_table <-
-    tribble(
+    tibble::tribble(
       ~from_currency, ~to_currency, ~cost_unit,
       "USD","ADF", 0.1672,
       "USD","ADP", 0.00659,
@@ -404,8 +410,11 @@ test_that("adding edges from a table to a graph is possible", {
       "USD","ZAR", 0.07329,
       "USD","ZMK", 0.0001932,
       "USD","ZMW", 0.1037,
-      "USD","ZWD", 0.002679) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+      "USD","ZWD", 0.002679)
+
+  # Convert to a data frame
+  edge_table <-
+    as.data.frame(edge_table, stringsAsFactors = FALSE)
 
   # Add nodes directly from the CSV file, calling the
   # `add_nodes_from_table()` function with default
