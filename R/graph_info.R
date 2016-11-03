@@ -11,7 +11,7 @@
 #' # DiagrammeR package
 #' power_grid <-
 #'   import_graph(
-#'     system.file("examples/power_grid.graphml",
+#'     system.file("extdata", "power_grid.graphml",
 #'                 package = "DiagrammeR"),
 #'     graph_name = "p_grid")
 #'

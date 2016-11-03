@@ -4,7 +4,7 @@ test_that("importing a .graphml file is possible", {
 
   graphml_graph <-
     import_graph(
-      system.file("examples/power_grid.graphml",
+      system.file("extdata", "power_grid.graphml",
                   package = "DiagrammeR"))
 
   # Expect a graph object of class `dgr_graph`
@@ -41,7 +41,7 @@ test_that("importing a .sif file is possible", {
 
   sif_graph <-
     import_graph(
-      graph_file = system.file("examples/Human_Interactome.sif",
+      graph_file = system.file("extdata", "Human_Interactome.sif",
                                package = "DiagrammeR"))
 
   # Expect a graph object of class `dgr_graph`
@@ -78,7 +78,7 @@ test_that("importing a .gml file is possible", {
 
   gml_graph <-
     import_graph(
-      graph_file = system.file("examples/karate.gml",
+      graph_file = system.file("extdata", "karate.gml",
                                package = "DiagrammeR"))
 
   # Expect a graph object of class `dgr_graph`

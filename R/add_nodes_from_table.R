@@ -30,7 +30,7 @@
 #'
 #' # Specify a path to a CSV file
 #' path_to_csv <-
-#'   system.file("examples/currencies.csv",
+#'   system.file("extdata", "currencies.csv",
 #'               package = "DiagrammeR")
 #'
 #' # To add nodes from a CSV file, call the

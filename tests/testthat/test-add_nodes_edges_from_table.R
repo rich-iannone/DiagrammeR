@@ -4,7 +4,7 @@ test_that("adding nodes from a table to a graph is possible", {
 
   # Specify a path to a CSV file
   path_to_csv <-
-    system.file("examples/currencies.csv",
+    system.file("extdata", "currencies.csv",
                 package = "DiagrammeR")
 
   # Add nodes directly from the CSV file, calling the
@@ -36,11 +36,11 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Specify paths to CSV files
   path_to_csv_nodes <-
-    system.file("examples/currencies.csv",
+    system.file("extdata", "currencies.csv",
                 package = "DiagrammeR")
 
   path_to_csv_edges <-
-    system.file("examples/usd_exchange_rates.csv",
+    system.file("extdata", "usd_exchange_rates.csv",
                 package = "DiagrammeR")
 
   # Add nodes directly from the CSV file, calling the
