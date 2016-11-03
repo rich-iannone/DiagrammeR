@@ -56,4 +56,11 @@ test_that("Reversing the graph edges is possible", {
   # object are identical to the `from` nodes before
   # reversing the edge direction
   expect_equal(graph$edges_df$to, from_nodes)
+
+  # Expect an error if reversing edge direction
+  # in an undirected graph
+  expect_error(
+    create_random_graph(
+      5, 5, directed = FALSE) %>%
+      rev_edge_dir())
 })
