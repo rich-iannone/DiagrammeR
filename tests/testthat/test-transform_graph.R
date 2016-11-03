@@ -27,6 +27,13 @@ test_that("Changing to undirected mode is possible", {
 
   # Expect the the graph is undirected
   expect_true(graph$directed)
+
+  # Expect an error if making a graph that's
+  # already undirected an undirected graph
+  expect_error(
+    create_random_graph(
+      5, 5, directed = FALSE) %>%
+      set_graph_undirected())
 })
 
 test_that("Reversing the graph edges is possible", {
