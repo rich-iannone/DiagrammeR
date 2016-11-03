@@ -66,6 +66,13 @@ rename_edge_attrs <- function(graph,
     stop("You cannot use that name for `edge_attr_to`.")
   }
 
+  # Stop function if `edge_attr_from` is `from`, `to`
+  # or `rel`
+  if (any(c("from", "to", "rel") %in%
+          edge_attr_from)) {
+    stop("You cannot use that name for `edge_attr_from`.")
+  }
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
