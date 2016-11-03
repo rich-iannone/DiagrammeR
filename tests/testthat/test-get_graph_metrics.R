@@ -157,4 +157,36 @@ test_that("Getting graph info is possible", {
     colnames(graph_i),
     c("name", "n", "e", "dens", "mn_deg",
       "mx_deg", "avg_deg", "time", "tz"))
+
+  # Create another random graph
+  graph <-
+    create_random_graph(
+      8, 10, set_seed = 1)
+
+  # Get a data frame with graph information
+  graph_i <- graph_info(graph)
+
+  # Expect NA values for the `name`, `time` and
+  # `tz` columns
+  expect_true(is.na(graph_i$name))
+  expect_true(is.na(graph_i$time))
+  expect_true(is.na(graph_i$tz))
+})
+
+test_that("Checking whether the graph is connected is possible", {
+
+  # Create a random graph
+  graph_connected <-
+    create_random_graph(
+      10, 22, set_seed = 1)
+
+  # Test that the graph is indeed connected
+  expect_true(is_graph_connected(graph_connected))
+
+  graph_not_connected <-
+    create_random_graph(
+      10, 8, set_seed = 1)
+
+  # Test that the graph is indeed connected
+  expect_false(is_graph_connected(graph_not_connected))
 })
