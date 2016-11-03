@@ -1,4 +1,4 @@
-context("Copying, dropping, mutating and recoding attrs")
+context("Copying, dropping, mutating, renaming, and recoding attrs")
 
 test_that("Copying node attributes is possible", {
 
@@ -173,6 +173,110 @@ test_that("Dropping edge attributes is possible", {
   expect_error(drop_edge_attrs(graph, "from"))
   expect_error(drop_edge_attrs(graph, "to"))
   expect_error(drop_edge_attrs(graph, "rel"))
+})
+
+test_that("Renaming node attributes is possible", {
+
+  # Create a random graph with extra node attrs
+  graph <-
+    create_random_graph(
+      5, 10, set_seed = 3) %>%
+    set_node_attrs("shape", "circle")
+
+  # Rename the `shape` attribute as `color`
+  graph <- rename_node_attrs(graph, "shape", "color")
+
+  # Expect that the `color` node attr is in the
+  # graph's node data frame
+  expect_true("color" %in% colnames(graph$nodes_df))
+
+  # Expect that the `shape` node attr is not in the
+  # graph's node data frame
+  expect_false("shape" %in% colnames(graph$nodes_df))
+
+  # Expect an error if trying to rename a node
+  # attribute that doesn't exist in the graph
+  expect_error(
+    rename_node_attrs(graph, "perhipheries", "shape"))
+
+  # Expect an error if `node_attr_from` and
+  # `node_attr_to` are identical
+  expect_error(
+    rename_node_attrs(graph, "color", "color"))
+
+  # Expect an error if `node_attr_to` is `id`
+  expect_error(
+    rename_node_attrs(graph, "color", "id"))
+
+  # Expect an error if `node_attr_to` is any of
+  # the existing node attrs
+  expect_error(
+    rename_node_attrs(graph, "value", "color"))
+
+  # Expect an error if `node_attr_from` is any of
+  # `id`, `type`, or `label`
+  expect_error(
+    rename_node_attrs(graph, "id", "node_id"))
+
+  expect_error(
+    rename_node_attrs(graph, "type", "type_2"))
+
+  expect_error(
+    rename_node_attrs(graph, "label", "label_2"))
+})
+
+test_that("Renaming edge attributes is possible", {
+
+  # Create a random graph with extra edge attrs
+  graph <-
+    create_random_graph(
+      5, 10, set_seed = 3) %>%
+    set_edge_attrs("penwidth", 5) %>%
+    set_edge_attrs("arrowhead", "dot")
+
+  # Rename the `penwidth` attribute as `width`
+  graph <- rename_edge_attrs(graph, "penwidth", "width")
+
+  # Expect that the `width` node attr is in the
+  # graph's edge data frame
+  expect_true("width" %in% colnames(graph$edges_df))
+
+  # Expect that the `penwidth` node attr is not in the
+  # graph's node data frame
+  expect_false("penwidth" %in% colnames(graph$edges_df))
+
+  # Expect an error if trying to rename an edge
+  # attribute that doesn't exist in the graph
+  expect_error(
+    rename_edge_attrs(graph, "perhipheries", "shape"))
+
+  # Expect an error if `edge_attr_from` and
+  # `edge_attr_to` are identical
+  expect_error(
+    rename_edge_attrs(graph, "width", "width"))
+
+  # Expect an error if `node_attr_to` is `from` or `to`
+  expect_error(
+    rename_edge_attrs(graph, "width", "from"))
+
+  expect_error(
+    rename_edge_attrs(graph, "width", "to"))
+
+  # Expect an error if `edge_attr_to` is any of
+  # the existing edge attrs
+  expect_error(
+    rename_edge_attrs(graph, "width", "arrowhead"))
+
+  # Expect an error if `edge_attr_from` is any of
+  # `from`, `to`, or `rel`
+  expect_error(
+    rename_edge_attrs(graph, "from", "from_2"))
+
+  expect_error(
+    rename_edge_attrs(graph, "to", "to_2"))
+
+  expect_error(
+    rename_edge_attrs(graph, "rel", "rel_2"))
 })
 
 test_that("Mutating node attributes is possible", {
