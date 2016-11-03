@@ -52,10 +52,9 @@ rename_node_attrs <- function(graph,
     stop("You cannot rename using the same name.")
   }
 
-  # Stop function if `node_attr_to` is `nodes`, `node`,
-  # or any other column name in the graph's node
-  # data frame
-  if (any(unique(c("nodes", "node",
+  # Stop function if `node_attr_to` is `id` or any
+  # other column name in the graph's node data frame
+  if (any(unique(c("id",
                    colnames(get_node_df(graph)))) %in%
           node_attr_to)) {
     stop("You cannot use that name for `node_attr_to`.")
