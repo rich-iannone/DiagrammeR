@@ -58,7 +58,7 @@ data frame.
 graph <-
   create_graph() \%>\%
   add_nodes_from_table(
-    system.file("examples/currencies.csv",
+    system.file("extdata", "currencies.csv",
                 package = "DiagrammeR"))
 
 # Now we want to add edges to the graph
@@ -69,7 +69,7 @@ graph <-
 graph <-
   add_edges_from_table(
     graph,
-    table = system.file("examples/usd_exchange_rates.csv",
+    table = system.file("extdata", "usd_exchange_rates.csv",
                         package = "DiagrammeR"),
     from_col = "from_currency",
     to_col = "to_currency",
