@@ -113,19 +113,19 @@ graph <-
     "graph", "output", "visNetwork") %>%
   add_nodes_from_table(
     system.file(
-      "examples/contributors.csv",
+      "extdata", "contributors.csv",
       package = "DiagrammeR"),
     set_type = "person",
     label_col = "name") %>%
   add_nodes_from_table(
     system.file(
-      "examples/projects.csv",
+      "extdata", "projects.csv",
       package = "DiagrammeR"),
     set_type = "project",
     label_col = "project") %>%
   add_edges_from_table(
     system.file(
-      "examples/projects_and_contributors.csv",
+      "extdata", "projects_and_contributors.csv",
       package = "DiagrammeR"),
     from_col = "contributor_name",
     from_mapping = "name",
