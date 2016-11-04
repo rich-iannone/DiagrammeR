@@ -134,3 +134,93 @@ test_that("Getting the graph time is possible", {
   # Expect that an NA is returned
   expect_true(is.na(get_graph_time(graph)))
 })
+
+test_that("Setting global graph attrs is possible", {
+
+  # Create an empty graph with no global graph
+  # parameters
+  graph <- create_graph(attr_theme = FALSE)
+
+  # Set 3 global graph attrs
+  graph <-
+    graph %>%
+    set_global_graph_attrs(
+      c("overlap", "color", "penwidth"),
+      c("true", "red", "5"),
+      c("graph", "node", "edge"))
+
+  # Expect 3 rows and three columns in the
+  # `global_attrs` data frame
+  expect_equal(nrow(graph$global_attrs), 3)
+  expect_equal(ncol(graph$global_attrs), 3)
+
+  # Expect certain column names to be present
+  # in the `global_attrs` data frame
+  expect_equal(
+    colnames(graph$global_attrs),
+    c("attr", "value", "attr_type"))
+
+  # Expect certain values to be present
+  # in the `attr` column
+  expect_equal(
+    graph$global_attrs$attr,
+    c("overlap", "color", "penwidth"))
+
+  # Expect certain values to be present
+  # in the `value` column
+  expect_equal(
+    graph$global_attrs$value,
+    c("true", "red", "5"))
+
+  # Expect certain values to be present
+  # in the `attr_type` column
+  expect_equal(
+    graph$global_attrs$attr_type,
+    c("graph", "node", "edge"))
+
+  # Create another empty graph with no
+  # global graph parameters
+  graph <- create_graph(attr_theme = FALSE)
+
+  # Set a single global graph attr
+  graph <-
+    graph %>%
+    set_global_graph_attrs(
+      "overlap", TRUE, "graph")
+
+  # Expect 1 row and three columns in the
+  # `global_attrs` data frame
+  expect_equal(nrow(graph$global_attrs), 1)
+  expect_equal(ncol(graph$global_attrs), 3)
+
+  # Expect that the `TRUE` logical value
+  # was coerced to character `true`
+  expect_equal(
+    graph$global_attrs$value, "true")
+})
+
+test_that("Getting global graph attrs is possible", {
+
+  # Create an empty graph with no global graph
+  # parameters
+  graph <- create_graph(attr_theme = FALSE)
+
+  # Set 3 global graph attrs
+  graph <-
+    graph %>%
+    set_global_graph_attrs(
+      c("overlap", "color", "penwidth"),
+      c("true", "red", "5"),
+      c("graph", "node", "edge"))
+
+  # Get a data frame with the attributes
+  # using `get_global_graph_attrs()`
+  global_graph_attrs <-
+    get_global_graph_attrs(graph)
+
+  # Expect that the data frame returned
+  # by the function is equivalent to the
+  # data frame stored in the graph object
+  expect_equal(
+    graph$global_attrs, global_graph_attrs)
+})
