@@ -262,3 +262,35 @@ test_that("getting edge information from a graph with no edges is possible ", {
   # Expect that an NA is returned
   expect_true(is.na(edges_df_from_graph_no_edges))
 })
+
+test_that("getting connected nodes is possible", {
+
+  # Create a graph with many weakly
+  # connected components
+  graph <-
+    create_random_graph(
+      30, 30, set_seed = 1)
+
+  connect_node_1 <-
+    get_all_connected_nodes(graph, 1)
+
+  # Expect certain node IDs to be returned
+  expect_equal(
+    connect_node_1,
+    c(3, 4, 5, 6, 8, 10, 11, 12, 14, 15, 16, 17,
+      19, 20, 21, 22, 23, 24, 25, 26, 27, 29))
+
+  # Expect that the node ID provided won't be
+  # returned in the set of node ID values
+  expect_false(1 %in% connect_node_1)
+
+  # Expect an NA value if there are no connected
+  # nodes to the provided node
+  expect_true(
+    is.na(get_all_connected_nodes(graph, 2)))
+
+  # Expect an error if providing a node ID that
+  # doesn't exist in the graph
+  expect_error(
+    get_all_connected_nodes(graph, 35))
+})
