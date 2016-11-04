@@ -317,3 +317,20 @@ test_that("Deleting global graph attrs is possible", {
     nrow(graph$global_attrs) -
       nrow(graph_del_2$global_attrs), 2)
 })
+
+test_that("Clearing global graph attrs is possible", {
+
+  # Create an empty graph with the default global
+  # graph attributes
+  graph <- create_graph()
+
+  # Remove all global graph attributes
+  graph_clear_all_attrs <-
+    graph %>%
+    clear_global_graph_attrs()
+
+  # Expect an empty data frame for
+  # global graph attribute
+  expect_equal(
+    nrow(graph_clear_all_attrs$global_attrs), 0)
+})
