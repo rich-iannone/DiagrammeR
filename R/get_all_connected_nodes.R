@@ -54,71 +54,47 @@
 #' # the two connected components
 #' graph_2 %>% get_all_connected_nodes(2)
 #' #> [1] 10 12 13 15 17 20 24 27 29 31
+#' @importFrom dplyr filter
 #' @export get_all_connected_nodes
 
 get_all_connected_nodes <- function(graph,
                                     node) {
 
-  # Create an empty list object
-  nodes <- list()
-
-  # Get a vector of all nodes in the graph
-  graph_nodes <- get_node_ids(graph)
-
-  # place starting node in the `connected` vector
-  connected <- node
-
-  # Initialize `i`
-  i <- 1
-
-  repeat {
-
-    # From the starting node get all adjacent nodes
-    # that are not in the `connected` vector
-    connected <-
-      unique(
-        c(connected,
-          intersect(
-            unique(c(
-              get_edges(
-                graph,
-                return_type = "df")[
-                  which(get_edges(
-                    graph,
-                    return_type = "df")[, 1] %in%
-                      connected), 2],
-              get_edges(
-                graph,
-                return_type = "df")[
-                  which(get_edges(
-                    graph,
-                    return_type = "df")[, 2] %in%
-                      connected), 1])),
-            graph_nodes)))
-
-    # Place connected nodes in `nodes` list
-    nodes[[i]] <- connected
-
-    # If there is only the starting node in the
-    # `connected` vector on the first pass, return NA
-    if (i == 1 & length(connected) == 1) {
-      if (connected == node) {
-        return(NA)
-      }
-    }
-
-    # Break if current iteration yields no change in
-    # the `nodes` list
-    if (i > 1) {
-      if (identical(nodes[[i]], nodes[[i - 1]])) break
-    }
-
-    i <- i + 1
+  # Verify that the node ID provided is in the graph
+  if (!(node %in% get_node_ids(graph))) {
+    stop("The node ID provided is not in the graph")
   }
 
-  # Remove the starting node from the `connected`
-  # vector to get the neighbors of the starting node
-  connected <- setdiff(connected, node)
+  # Get a data frame of the weakly-connected
+  # components for the entire graph
+  wc_components_df <- get_w_connected_cmpts(graph)
 
-  return(sort(as.integer(connected)))
+  # Get single-row data frame with the node's
+  # `id` and `wc_component` grouping
+  wc_component <-
+    wc_components_df %>%
+    dplyr::filter(id == node)
+
+  # Extract the `wc_component` grouping as
+  # a single-length vector
+  wc_component_val <- wc_component$wc_component
+
+  # Filter the table of weakly-connected
+  # components for the nodes in the `wc_component`
+  # grouping (and removing the original node as well)
+  connected_nodes <-
+    wc_components_df %>%
+    dplyr::filter(id != node) %>%
+    dplyr::filter(wc_component == wc_component_val)
+
+  # If the resulting df has rows, get the node ID
+  # values from each of the rows; otherwise, return NA
+  if (nrow(connected_nodes) > 0) {
+    connected_nodes <-
+      connected_nodes$id
+  } else {
+    connected_nodes <- NA
+  }
+
+  return(connected_nodes)
 }
