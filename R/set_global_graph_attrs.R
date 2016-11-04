@@ -34,10 +34,20 @@ set_global_graph_attrs <- function(graph,
                                    value,
                                    attr_type) {
 
+  # Ensure that the lengths of vectors for `attr`,
+  # `value`, and `attr_type` are equivalent
+  if ((length(attr) != length(value)) |
+      (length(value) != length(attr_type)) |
+      (length(attr) != length(attr_type))) {
+    stop("Vector lengths for `attr`, `value`, and `attr_type` must be equal.")
+  }
+
   # Coerce any logical value for `value` to a
   # lowercase character value
-  if (inherits(value, "logical") & value %in% c(TRUE, FALSE)) {
-    value <- tolower(as.character(value))
+  if (length(value) == 1) {
+    if (inherits(value, "logical") & value %in% c(TRUE, FALSE)) {
+      value <- tolower(as.character(value))
+    }
   }
 
   # Create a table for the attributes

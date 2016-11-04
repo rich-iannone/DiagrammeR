@@ -65,9 +65,11 @@ add_global_graph_attrs <- function(graph,
 
   # Coerce any logical value for `value` to a
   # lowercase character value
-  if (inherits(value, "logical") &
-      value %in% c(TRUE, FALSE)) {
-    value <- tolower(as.character(value))
+  if (length(value) == 1) {
+    if (inherits(value, "logical") &
+        value %in% c(TRUE, FALSE)) {
+      value <- tolower(as.character(value))
+    }
   }
 
   # Create a table for the attributes
