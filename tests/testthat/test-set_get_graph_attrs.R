@@ -224,3 +224,96 @@ test_that("Getting global graph attrs is possible", {
   expect_equal(
     graph$global_attrs, global_graph_attrs)
 })
+
+test_that("Adding global graph attrs is possible", {
+
+  # Create an empty graph with the default global
+  # graph attributes
+  graph <- create_graph()
+
+  # Add 2 global graph attrs
+  graph_add_2 <-
+    graph %>%
+    add_global_graph_attrs(
+      c("overlap", "penwidth"),
+      c("true", "5"),
+      c("graph", "edge"))
+
+  # Expect that the new graph object has 2 more
+  # global graph attributes than the original
+  expect_equal(
+    nrow(graph_add_2$global_attrs) -
+      nrow(graph$global_attrs), 2)
+
+  # Expect that the new graph attributes are
+  # the last 2 rows in the `global_attrs` df
+  expect_equal(
+    tail(graph_add_2$global_attrs, 2)[, 1],
+    c("overlap", "penwidth"))
+
+  expect_equal(
+    tail(graph_add_2$global_attrs, 2)[, 2],
+    c("true", "5"))
+
+  expect_equal(
+    tail(graph_add_2$global_attrs, 2)[, 3],
+    c("graph", "edge"))
+
+  # Add 1 global graph attribute
+  graph_add_1 <-
+    graph %>%
+    add_global_graph_attrs(
+      "overlap", TRUE, "graph")
+
+  # Expect that the new graph object has 1 more
+  # global graph attribute than the original
+  expect_equal(
+    nrow(graph_add_1$global_attrs) -
+      nrow(graph$global_attrs), 1)
+
+  # Expect that the new graph attribute is
+  # in the last row in the `global_attrs` df
+  expect_equal(
+    tail(graph_add_1$global_attrs, 1)[, 1],
+    "overlap")
+
+  expect_equal(
+    tail(graph_add_1$global_attrs, 1)[, 2],
+    "true")
+
+  expect_equal(
+    tail(graph_add_1$global_attrs, 1)[, 3],
+    "graph")
+})
+
+test_that("Deleting global graph attrs is possible", {
+
+  # Create an empty graph with the default global
+  # graph attributes
+  graph <- create_graph()
+
+  # Remove a single global graph attr
+  graph_del_1 <-
+    graph %>%
+    delete_global_graph_attrs(
+      "layout", "graph")
+
+  # Expect that the new graph object has 1 less
+  # global graph attribute than the original
+  expect_equal(
+    nrow(graph$global_attrs) -
+      nrow(graph_del_1$global_attrs), 1)
+
+  # Remove 2 global graph attributes
+  graph_del_2 <-
+    graph %>%
+    delete_global_graph_attrs(
+      c("layout", "outputorder"),
+      c("graph", "graph"))
+
+  # Expect that the new graph object has 2 less
+  # global graph attributes than the original
+  expect_equal(
+    nrow(graph$global_attrs) -
+      nrow(graph_del_2$global_attrs), 2)
+})
