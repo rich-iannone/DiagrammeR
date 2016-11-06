@@ -45,10 +45,10 @@
 #' # the common attribute is the ISO-4217
 #' # currency code
 #' graph <-
+#'   graph %>%
 #'   add_edges_from_table(
-#'     graph,
-#'     table = system.file("extdata", "usd_exchange_rates.csv",
-#'                         package = "DiagrammeR"),
+#'     system.file("extdata", "usd_exchange_rates.csv",
+#'                 package = "DiagrammeR"),
 #'     from_col = "from_currency",
 #'     to_col = "to_currency",
 #'     ndf_mapping = "iso_4217_code")
