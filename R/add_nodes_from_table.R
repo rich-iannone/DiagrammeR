@@ -17,8 +17,6 @@
 #' dropping columns from the incoming data.
 #' @param rename_attrs an optional character for
 #' renaming node attributes.
-#' @param id_col an option to apply a column of data in
-#' the table as node ID values.
 #' @param type_col an option to apply a column of data
 #' in the table as \code{type} attribute values.
 #' @param label_col an option to apply a column of data
@@ -99,7 +97,6 @@ add_nodes_from_table <- function(graph,
                                  select_cols = NULL,
                                  drop_cols = NULL,
                                  rename_attrs = NULL,
-                                 id_col = NULL,
                                  type_col = NULL,
                                  label_col = NULL) {
 
@@ -124,14 +121,6 @@ add_nodes_from_table <- function(graph,
     create_node_df(n = rows_in_csv)
 
   csv <- cbind(empty_ndf, csv)
-
-  # Optionally set the `id` attribute from a
-  # specified column in the CSV
-  if (!is.null(id_col)) {
-    if (any(colnames(csv) == id_col)) {
-      csv[, 1] <- as.integer(csv[, which(colnames(csv) == id_col)])
-    }
-  }
 
   # If values for `select_cols` are provided, filter
   # the CSV columns by those named columns
