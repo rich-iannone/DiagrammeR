@@ -73,8 +73,8 @@ graph_2 <-
   create_graph() \%>\%
   add_nodes_from_table(
     path_to_csv,
-    set_type = "currency",
-    label_col = "iso_4217_code")
+    label_col = "iso_4217_code",
+    set_type = "currency")
 
 # View part of the graph's internal ndf
 graph_2 \%>\% get_node_df \%>\% .[, 1:5] \%>\% head
@@ -94,8 +94,8 @@ graph_3 <-
   create_graph() \%>\%
   add_nodes_from_table(
     path_to_csv,
-    set_type = "currency",
     label_col = "iso_4217_code",
+    set_type = "currency",
     drop_cols = c("exponent", "currency_name"))
 
 # Show the node attribute names for the graph
