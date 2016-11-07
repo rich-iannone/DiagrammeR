@@ -115,62 +115,48 @@ add_nodes_from_table <- function(graph,
 
   # Create an empty ndf and bind those columns
   # with the table data
-  csv <-
+  ndf <-
     create_node_df(n = rows_in_csv) %>%
     dplyr::bind_cols(., csv)
 
-  # If values for `select_cols` are provided, filter
-  # the CSV columns by those named columns
-  if (!is.null(select_cols)) {
-
-    # If none of the specified values in `select_cols`
-    # are in the CSV, stop the function
-    if (all(select_cols %in% colnames(csv)) == FALSE) {
-      stop("None of the values specified for selecting columns are available.")
-    }
-
-    columns_retained <-
-      which(colnames(csv) %in% select_cols)
-
-    csv <- csv[, columns_retained]
-  }
-
-  # If values for `drop_cols` provided, filter the CSV
+  # If values for `drop_cols` provided, filter the ndf
   # columns by those named columns
-  if (is.null(select_cols) & !is.null(drop_cols)) {
+  if (!is.null(drop_cols)) {
 
     columns_retained <-
-      which(!(colnames(csv) %in% drop_cols))
+      which(!(colnames(ndf) %in% drop_cols))
 
-    csv <- csv[, columns_retained]
+    ndf <- ndf[, columns_retained]
   }
 
   # Optionally set the `label` attribute from a
   # specified column in the CSV (this copies data into
   # the `label` column)
   if (!is.null(label_col)) {
-    if (any(colnames(csv) == label_col)) {
-      csv$label <-
-        as.character(csv[, which(colnames(csv) == label_col)])
+    if (any(colnames(ndf) == label_col)) {
+      ndf$label <-
+        as.character(ndf[, which(colnames(ndf) == label_col)])
     }
   }
 
   # Optionally set the `type` attribute from a
   # specified column in the CSV
   if (!is.null(type_col)) {
-    if (any(colnames(csv) == type_col)) {
-      colnames(csv)[which(colnames(csv) == type_col)] <- "type"
+    if (any(colnames(ndf) == type_col)) {
+      colnames(ndf)[which(colnames(ndf) == type_col)] <- "type"
     }
   }
 
   # Optionally set the `type` attribute with a single
   # value repeated down
-  if (!is.null(set_type)) {
-    csv$type <- set_type
+  if (is.null(type_col) & !is.null(set_type)) {
+    ndf <-
+      ndf %>%
+      dplyr::mutate(type = as.character(set_type))
   }
 
   # Add as a node data frame to the graph
-  graph <- add_node_df(graph, csv)
+  graph <- add_node_df(graph, ndf)
 
   # Update the `last_node` counter
   graph$last_node <- nodes_created + rows_in_csv
