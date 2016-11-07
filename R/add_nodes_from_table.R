@@ -15,8 +15,6 @@
 #' imported as node attributes.
 #' @param drop_cols an optional character vector for
 #' dropping columns from the incoming data.
-#' @param rename_attrs an optional character for
-#' renaming node attributes.
 #' @param type_col an option to apply a column of data
 #' in the table as \code{type} attribute values.
 #' @param label_col an option to apply a column of data
@@ -89,6 +87,7 @@
 #' #> [5] "curr_number" "currency_name"
 #' }
 #' @importFrom utils read.csv
+#' @importFrom dplyr bind_cols
 #' @export add_nodes_from_table
 
 add_nodes_from_table <- function(graph,
@@ -96,7 +95,6 @@ add_nodes_from_table <- function(graph,
                                  set_type = NULL,
                                  select_cols = NULL,
                                  drop_cols = NULL,
-                                 rename_attrs = NULL,
                                  type_col = NULL,
                                  label_col = NULL) {
 
