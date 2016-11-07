@@ -115,9 +115,8 @@ add_nodes_from_table <- function(graph,
 
   # Create an empty ndf and bind those columns
   # with the table data
-  ndf <-
-    create_node_df(n = rows_in_csv) %>%
-    dplyr::bind_cols(., csv)
+  empty_ndf <- create_node_df(n = rows_in_csv)
+  ndf <- dplyr::bind_cols(empty_ndf, csv)
 
   # If values for `drop_cols` provided, filter the ndf
   # columns by those named columns
