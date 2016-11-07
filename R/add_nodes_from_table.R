@@ -95,6 +95,9 @@ add_nodes_from_table <- function(graph,
                                  set_type = NULL,
                                  drop_cols = NULL) {
 
+  # Bind variable to workspace
+  type <- NULL
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
