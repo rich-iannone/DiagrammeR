@@ -7,18 +7,15 @@
 #' \code{create_graph}.
 #' @param table either a path to a CSV file, or, a data
 #' frame object.
+#' @param label_col an option to apply a column of data
+#' in the table as \code{label} attribute values.
+#' @param type_col an option to apply a column of data
+#' in the table as \code{type} attribute values.
 #' @param set_type an optional string to apply a
 #' \code{type} attribute to all nodes created from the
 #' table records.
-#' @param select_cols an optional character vector for
-#' specifying which columns in the table that should be
-#' imported as node attributes.
 #' @param drop_cols an optional character vector for
 #' dropping columns from the incoming data.
-#' @param type_col an option to apply a column of data
-#' in the table as \code{type} attribute values.
-#' @param label_col an option to apply a column of data
-#' in the table as \code{label} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -93,11 +90,10 @@
 
 add_nodes_from_table <- function(graph,
                                  table,
-                                 set_type = NULL,
-                                 select_cols = NULL,
-                                 drop_cols = NULL,
+                                 label_col = NULL,
                                  type_col = NULL,
-                                 label_col = NULL) {
+                                 set_type = NULL,
+                                 drop_cols = NULL) {
 
   # Get the number of nodes ever created for
   # this graph
