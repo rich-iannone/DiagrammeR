@@ -141,7 +141,7 @@ add_nodes_from_table <- function(graph,
   if (!is.null(type_col)) {
     ndf <-
       ndf %>%
-      mutate_(type = type_col) %>%
+      mutate_(type = as.character(type_col)) %>%
       select_(paste0("-", type_col))
   }
 
