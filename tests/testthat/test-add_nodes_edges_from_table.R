@@ -184,29 +184,93 @@ test_that("adding nodes from a table to a graph is possible", {
   node_table <-
     as.data.frame(node_table, stringsAsFactors = FALSE)
 
-  # Add nodes directly from the CSV file, calling the
+  # Add nodes directly from the df, calling the
   # `add_nodes_from_table()` function with default
   # options
-  graph_1_csv <-
+  graph_1_df <-
     create_graph() %>%
     add_nodes_from_table(node_table)
 
   # Expect that the graph has a non-NULL ndf but a
   # NULL edf
-  expect_true(!is.null(graph_1_csv$nodes_df))
-  expect_true(is.null(graph_1_csv$edges_df))
+  expect_true(!is.null(graph_1_df$nodes_df))
+  expect_true(is.null(graph_1_df$edges_df))
 
   # Expect that the graph has the same number of nodes
   # as there are rows in the CSV
   expect_equal(
-    nrow(node_table), node_count(graph_1_csv))
+    nrow(node_table), node_count(graph_1_df))
 
   # Expect certain columns to exist in the graph's
   # node data frame
   expect_equal(
-    colnames(graph_1_csv$nodes_df),
+    colnames(graph_1_df$nodes_df),
     c("id", "type", "label", "iso_4217_code",
       "curr_number", "exponent"))
+
+  # Add nodes from the df, but this time apply the
+  # `curr_number` column to the graph's `label` attribute
+  graph_2_df <-
+    create_graph() %>%
+    add_nodes_from_table(
+      node_table, label_col = "curr_number")
+
+  # Expect that there aren't any NA values in the
+  # graph's `label` column
+  expect_true(
+    all(!is.na(graph_2_df$nodes_df[, 3])))
+
+  # Expect that the values in the `label` are
+  # of the character class
+  expect_true(
+    is.character(graph_2_df$nodes_df[, 3]))
+
+  # Add nodes from the df; also apply a static value
+  # for `type` as `currency`
+  graph_3_df <-
+    create_graph() %>%
+    add_nodes_from_table(
+      node_table,
+      set_type = "currency",
+      label_col = "curr_number")
+
+  # Expect that all values set for the `type`
+  # attribute are `currency`
+  expect_true(
+    all(graph_3_df$nodes_df[, 2] == "currency"))
+
+  # Add nodes from the df; drop some of the
+  # incoming columns
+  graph_4_df <-
+    create_graph() %>%
+    add_nodes_from_table(
+      path_to_csv,
+      set_type = "currency",
+      label_col = "curr_number",
+      drop_cols = c("exponent", "currency_name"))
+
+  # Expect that the node attributes `exponent`
+  # and `currency_name` do not appear in the graph's
+  # internal node data frame
+  expect_true(
+    !all(c("exponent", "currency_name") %in%
+           colnames(graph_4_df$nodes_df)))
+
+  # Add nodes from the df; assign a table column
+  # to the `type` atttribute
+  graph_5_df <-
+    create_graph() %>%
+    add_nodes_from_table(
+      path_to_csv,
+      set_type = "currency",
+      label_col = "curr_number",
+      type_col = "exponent")
+
+  # Expect that all values set for the `type`
+  # attribute are have certain values (including NA)
+  expect_true(
+    all(graph_5_df$nodes_df[, 2] %in%
+          c("0", "1", "2", "3", "4", NA)))
 })
 
 test_that("adding edges from a table to a graph is possible", {
