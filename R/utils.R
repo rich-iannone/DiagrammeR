@@ -44,3 +44,39 @@ translate_to_node_id <- function(graph, from, to) {
 
   return(id_from_to)
 }
+
+# Function to determine whether a node or edge
+# attribute has values that are all non-NA and
+# are unique
+is_attr_unique_and_non_na <- function(graph,
+                                      which_graph_df,
+                                      attr) {
+
+  if (which_graph_df == "ndf") {
+    df <- graph$nodes_df
+  } else if (which_graph_df == "edf") {
+    df <- graph$edges_df
+  } else {
+    stop("The `which_graph_df` argument must be either `ndf` or `edf`.")
+  }
+
+  if (!(attr %in% colnames(df))) {
+    stop("The `attr`` provided is not available.")
+  }
+
+  # Are all values not NA?
+  all_is_not_na <-
+    df %>% select_(attr) %>%
+    is.na %>% magrittr::not() %>% all()
+
+  # Are all values distinct?
+  all_values_distinct <-
+    df %>% select_(attr) %>% distinct() %>%nrow() ==
+    nrow(df)
+
+  if (all_is_no_na & all_values_distinct) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+}
