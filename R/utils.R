@@ -61,7 +61,7 @@ is_attr_unique_and_non_na <- function(graph,
   }
 
   if (!(attr %in% colnames(df))) {
-    stop("The `attr`` provided is not available.")
+    stop("The `attr` provided is not available.")
   }
 
   # Are all values not NA?
@@ -74,7 +74,7 @@ is_attr_unique_and_non_na <- function(graph,
     df %>% select_(attr) %>% distinct() %>%nrow() ==
     nrow(df)
 
-  if (all_is_no_na & all_values_distinct) {
+  if (all_is_not_na & all_values_distinct) {
     return(TRUE)
   } else {
     return(FALSE)
