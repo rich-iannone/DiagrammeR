@@ -85,7 +85,7 @@
 #' #> [5] "curr_number"
 #' }
 #' @importFrom utils read.csv
-#' @importFrom dplyr bind_cols
+#' @importFrom dplyr bind_cols mutate mutate_ select_
 #' @export add_nodes_from_table
 
 add_nodes_from_table <- function(graph,
