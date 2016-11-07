@@ -244,7 +244,7 @@ test_that("adding nodes from a table to a graph is possible", {
   graph_4_df <-
     create_graph() %>%
     add_nodes_from_table(
-      path_to_csv,
+      node_table,
       set_type = "currency",
       label_col = "curr_number",
       drop_cols = c("exponent", "currency_name"))
@@ -261,7 +261,7 @@ test_that("adding nodes from a table to a graph is possible", {
   graph_5_df <-
     create_graph() %>%
     add_nodes_from_table(
-      path_to_csv,
+      node_table,
       set_type = "currency",
       label_col = "curr_number",
       type_col = "exponent")
