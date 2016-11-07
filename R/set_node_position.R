@@ -12,6 +12,7 @@
 #' @param x the x coordinate to set for the node.
 #' @param y the y coordinate to set for the node.
 #' @return a graph object of class \code{dgr_graph}.
+#' @importFrom dplyr case_when
 #' @export set_node_position
 
 set_node_position <- function(graph,
@@ -53,7 +54,7 @@ set_node_position <- function(graph,
   # a vectorized `if` statement across all nodes for
   # the `x` node attribute
   x_attr_new <-
-    case_when(
+    dplyr::case_when(
       ndf$id == node ~ x,
       TRUE ~ as.numeric(ndf$x))
 
