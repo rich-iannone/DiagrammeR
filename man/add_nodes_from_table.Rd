@@ -5,7 +5,7 @@
 \title{Add nodes and attributes to graph from a table}
 \usage{
 add_nodes_from_table(graph, table, set_type = NULL, select_cols = NULL,
-  drop_cols = NULL, rename_attrs = NULL, id_col = NULL, type_col = NULL,
+  drop_cols = NULL, rename_attrs = NULL, type_col = NULL,
   label_col = NULL)
 }
 \arguments{
@@ -29,9 +29,6 @@ dropping columns from the incoming data.}
 
 \item{rename_attrs}{an optional character for
 renaming node attributes.}
-
-\item{id_col}{an option to apply a column of data in
-the table as node ID values.}
 
 \item{type_col}{an option to apply a column of data
 in the table as \code{type} attribute values.}
