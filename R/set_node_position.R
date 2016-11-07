@@ -11,12 +11,20 @@
 #' should be applied.
 #' @param x the x coordinate to set for the node.
 #' @param y the y coordinate to set for the node.
+#' @param use_labels an option to use a node
+#' \code{label} value in \code{node}. Note that this
+#' is only possible if all nodes have distinct
+#' \code{label} values set and none exist as an NA
+#' value.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a simple graph with a path of 4 nodes
+#' # Create a simple graph with 4 nodes
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(4, "four_path")
+#'   add_node(label = "one") %>%
+#'   add_node(label = "two") %>%
+#'   add_node(label = "three") %>%
+#'   add_node(label = "four")
 #'
 #' # Add position information to each of
 #' # the graph's nodes
@@ -36,11 +44,11 @@
 #' # attributes are available and set to
 #' # the values provided
 #' get_node_df(graph)
-#' #>   id      type label x y
-#' #> 1  1 four_path     1 1 1
-#' #> 2  2 four_path     2 2 2
-#' #> 3  3 four_path     3 3 3
-#' #> 4  4 four_path     4 4 4
+#' #>   id type label x y
+#' #> 1  1 <NA>   one 1 1
+#' #> 2  2 <NA>   two 2 2
+#' #> 3  3 <NA> three 3 3
+#' #> 4  4 <NA>  four 4 4
 #'
 #' # The same function can modify the data
 #' # in the `x` and `y` attributes
@@ -55,19 +63,45 @@
 #'   set_node_position(
 #'     node = 4, x = 4, y = 1)
 #'
+#' # View the graph's node data frame
 #' get_node_df(graph)
-#' #>   id      type label x y
-#' #> 1  1 four_path     1 1 4
-#' #> 2  2 four_path     2 3 3
-#' #> 3  3 four_path     3 3 2
-#' #> 4  4 four_path     4 4 1
+#' #>   id type label x y
+#' #> 1  1 <NA>   one 1 4
+#' #> 2  2 <NA>   two 3 3
+#' #> 3  3 <NA> three 3 2
+#' #> 4  4 <NA>  four 4 1
+#'
+#' # Position changes can also be made by
+#' # supplying a node `label` value (and setting
+#' # `use_labels` to TRUE). For this to work,
+#' # all `label` values in the graph's ndf must
+#' # be unique and non-NA
+#' graph <-
+#'   graph %>%
+#'   set_node_position(
+#'     node = "one",
+#'     x = 1, y = 1,
+#'     use_labels = TRUE) %>%
+#'   set_node_position(
+#'     node = "two",
+#'     x = 2, y = 2,
+#'     use_labels = TRUE)
+#'
+#' # View the graph's node data frame
+#' get_node_df(graph)
+#' #>   id type label x y
+#' #> 1  1 <NA>   one 1 1
+#' #> 2  2 <NA>   two 2 2
+#' #> 3  3 <NA> three 3 2
+#' #> 4  4 <NA>  four 4 1
 #' @importFrom dplyr case_when mutate coalesce
 #' @export set_node_position
 
 set_node_position <- function(graph,
                               node,
                               x,
-                              y) {
+                              y,
+                              use_labels = FALSE) {
 
   # Get the graph's node data frame as an object; stop
   # function if this doesn't exist
@@ -79,8 +113,10 @@ set_node_position <- function(graph,
 
   # Stop function if the node ID provided doesn't
   # exist in the graph
-  if (!(node %in% graph$nodes_df[, 1])) {
-    stop("The node ID provided doesn't exist in the graph.")
+  if (use_labels == FALSE) {
+    if (!(node %in% graph$nodes_df[, 1])) {
+      stop("The node ID provided doesn't exist in the graph.")
+    }
   }
 
   # If the `x` node attribute doesn't exist, create
@@ -99,25 +135,55 @@ set_node_position <- function(graph,
       dplyr::mutate(y = as.numeric(NA))
   }
 
-  # Use a `case_when` statement to selectively perform
-  # a vectorized `if` statement across all nodes for
-  # the `x` node attribute
-  x_attr_new <-
-    dplyr::case_when(
-      ndf$id == node ~ x,
-      TRUE ~ as.numeric(ndf$x))
+  if (use_labels == TRUE) {
+
+    # Ensure that the label column contains unique,
+    # non-NA values
+    unique_labels_available <-
+      is_attr_unique_and_non_na(
+        graph = graph,
+        which_graph_df = "ndf",
+        attr = "label")
+
+    # Stop function if `label` doesn't contain
+    # unique, non-NA values
+    if (unique_labels_available == FALSE) {
+      stop("The `label` attribute in the graph's ndf must contain unique, non-NA values.")
+    }
+
+    # Use `case_when` statements to selectively perform
+    # a vectorized `if` statement across all nodes for
+    # the `x` and `y` node attribute
+    x_attr_new <-
+      dplyr::case_when(
+        ndf$label == node ~ x,
+        TRUE ~ as.numeric(ndf$x))
+
+    y_attr_new <-
+      dplyr::case_when(
+        ndf$label == node ~ y,
+        TRUE ~ as.numeric(ndf$y))
+  }
+
+  if (use_labels == FALSE) {
+
+    # Use `case_when` statements to selectively perform
+    # a vectorized `if` statement across all nodes for
+    # the `x` and `y` node attribute
+    x_attr_new <-
+      dplyr::case_when(
+        ndf$id == node ~ x,
+        TRUE ~ as.numeric(ndf$x))
+
+    y_attr_new <-
+      dplyr::case_when(
+        ndf$id == node ~ y,
+        TRUE ~ as.numeric(ndf$y))
+  }
 
   # Replace the `x` column to the ndf with a
   # coalesced version of the column contents
   ndf$x <- dplyr::coalesce(x_attr_new, ndf$x)
-
-  # Use a `case_when` statement to selectively perform
-  # a vectorized `if` statement across all nodes for
-  # the `y` node attribute
-  y_attr_new <-
-    dplyr::case_when(
-      ndf$id == node ~ y,
-      TRUE ~ as.numeric(ndf$y))
 
   # Replace the `y` column to the ndf with a
   # coalesced version of the column contents
