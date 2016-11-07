@@ -6,12 +6,61 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param a single-length vector containing a
+#' @param node a single-length vector containing a
 #' node ID value for which position information
 #' should be applied.
 #' @param x the x coordinate to set for the node.
 #' @param y the y coordinate to set for the node.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' # Create a simple graph with a path of 4 nodes
+#' graph <-
+#'   create_graph() %>%
+#'   add_path(4, "four_path")
+#'
+#' # Add position information to each of
+#' # the graph's nodes
+#' graph <-
+#'   graph %>%
+#'   set_node_position(
+#'     node = 1, x = 1, y = 1) %>%
+#'   set_node_position(
+#'     node = 2, x = 2, y = 2) %>%
+#'   set_node_position(
+#'     node = 3, x = 3, y = 3) %>%
+#'   set_node_position(
+#'     node = 4, x = 4, y = 4)
+#'
+#' # View the graph's node data frame to
+#' # verify that the `x` and `y` node
+#' # attributes are available and set to
+#' # the values provided
+#' get_node_df(graph)
+#' #>   id      type label x y
+#' #> 1  1 four_path     1 1 1
+#' #> 2  2 four_path     2 2 2
+#' #> 3  3 four_path     3 3 3
+#' #> 4  4 four_path     4 4 4
+#'
+#' # The same function can modify the data
+#' # in the `x` and `y` attributes
+#' graph <-
+#'   graph %>%
+#'   set_node_position(
+#'     node = 1, x = 1, y = 4) %>%
+#'   set_node_position(
+#'     node = 2, x = 3, y = 3) %>%
+#'   set_node_position(
+#'     node = 3, x = 3, y = 2) %>%
+#'   set_node_position(
+#'     node = 4, x = 4, y = 1)
+#'
+#' get_node_df(graph)
+#' #>   id      type label x y
+#' #> 1  1 four_path     1 1 4
+#' #> 2  2 four_path     2 3 3
+#' #> 3  3 four_path     3 3 2
+#' #> 4  4 four_path     4 4 1
 #' @importFrom dplyr case_when mutate coalesce
 #' @export set_node_position
 
