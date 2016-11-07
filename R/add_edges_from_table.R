@@ -16,13 +16,13 @@
 #' in the external table (supplied as \code{from_col}
 #' and \code{to_col}, respectively) to a column in the
 #' graph's internal node data frame (ndf).
+#' @param rel_col an option to apply a column of data
+#' in the table as \code{rel} attribute values.
 #' @param set_rel an optional string to apply a
 #' \code{rel} attribute to all edges created from the
 #' table records.
 #' @param drop_cols an optional character vector for
 #' dropping columns from the incoming data.
-#' @param rel_col an option to apply a column of data
-#' in the table as \code{rel} attribute values.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -61,9 +61,9 @@ add_edges_from_table <- function(graph,
                                  from_col,
                                  to_col,
                                  ndf_mapping,
+                                 rel_col = NULL,
                                  set_rel = NULL,
-                                 drop_cols = NULL,
-                                 rel_col = NULL) {
+                                 drop_cols = NULL) {
 
   # Bind variables to workspace
   rel <- id <- from <- to <- NULL
