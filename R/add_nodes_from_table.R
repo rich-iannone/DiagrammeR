@@ -139,9 +139,10 @@ add_nodes_from_table <- function(graph,
   # Optionally set the `type` attribute from a
   # specified column in the CSV
   if (!is.null(type_col)) {
-    if (any(colnames(ndf) == type_col)) {
-      colnames(ndf)[which(colnames(ndf) == type_col)] <- "type"
-    }
+    ndf <-
+      ndf %>%
+      mutate_(type = type_col) %>%
+      select_(paste0("-", type_col))
   }
 
   # Optionally set the `type` attribute with a single
