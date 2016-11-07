@@ -4,7 +4,7 @@
 \alias{set_node_position}
 \title{Apply a layout position to a single node}
 \usage{
-set_node_position(graph, node, x, y)
+set_node_position(graph, node, x, y, use_labels = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -18,6 +18,12 @@ should be applied.}
 \item{x}{the x coordinate to set for the node.}
 
 \item{y}{the y coordinate to set for the node.}
+
+\item{use_labels}{an option to use a node
+\code{label} value in \code{node}. Note that this
+is only possible if all nodes have distinct
+\code{label} values set and none exist as an NA
+value.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -29,10 +35,13 @@ and \code{y} attrs for the node ID supplied in
 \code{node}.
 }
 \examples{
-# Create a simple graph with a path of 4 nodes
+# Create a simple graph with 4 nodes
 graph <-
   create_graph() \%>\%
-  add_path(4, "four_path")
+  add_node(label = "one") \%>\%
+  add_node(label = "two") \%>\%
+  add_node(label = "three") \%>\%
+  add_node(label = "four")
 
 # Add position information to each of
 # the graph's nodes
@@ -52,11 +61,11 @@ graph <-
 # attributes are available and set to
 # the values provided
 get_node_df(graph)
-#>   id      type label x y
-#> 1  1 four_path     1 1 1
-#> 2  2 four_path     2 2 2
-#> 3  3 four_path     3 3 3
-#> 4  4 four_path     4 4 4
+#>   id type label x y
+#> 1  1 <NA>   one 1 1
+#> 2  2 <NA>   two 2 2
+#> 3  3 <NA> three 3 3
+#> 4  4 <NA>  four 4 4
 
 # The same function can modify the data
 # in the `x` and `y` attributes
@@ -71,11 +80,36 @@ graph <-
   set_node_position(
     node = 4, x = 4, y = 1)
 
+# View the graph's node data frame
 get_node_df(graph)
-#>   id      type label x y
-#> 1  1 four_path     1 1 4
-#> 2  2 four_path     2 3 3
-#> 3  3 four_path     3 3 2
-#> 4  4 four_path     4 4 1
+#>   id type label x y
+#> 1  1 <NA>   one 1 4
+#> 2  2 <NA>   two 3 3
+#> 3  3 <NA> three 3 2
+#> 4  4 <NA>  four 4 1
+
+# Position changes can also be made by
+# supplying a node `label` value (and setting
+# `use_labels` to TRUE). For this to work,
+# all `label` values in the graph's ndf must
+# be unique and non-NA
+graph <-
+  graph \%>\%
+  set_node_position(
+    node = "one",
+    x = 1, y = 1,
+    use_labels = TRUE) \%>\%
+  set_node_position(
+    node = "two",
+    x = 2, y = 2,
+    use_labels = TRUE)
+
+# View the graph's node data frame
+get_node_df(graph)
+#>   id type label x y
+#> 1  1 <NA>   one 1 1
+#> 2  2 <NA>   two 2 2
+#> 3  3 <NA> three 3 2
+#> 4  4 <NA>  four 4 1
 }
 
