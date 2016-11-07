@@ -1,14 +1,18 @@
 #' Apply a layout position to a single node
 #' @description Apply position information for a
 #' single node. This is done by setting the \code{x}
-#' and \code{y} attrs for the node ID supplied in
-#' \code{node}.
+#' and \code{y} attrs for a node \code{id} or node
+#' \code{label} supplied in \code{node}. When
+#' rendering the graph, nodes with attribute values
+#' set for \code{x} and \code{y} will be fixed to
+#' those positions on the graph canvas.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param node a single-length vector containing a
-#' node ID value for which position information
-#' should be applied.
+#' @param node a single-length vector containing
+#' either a node ID value (integer) or a node label
+#' (character) for which position information should
+#' be applied.
 #' @param x the x coordinate to set for the node.
 #' @param y the y coordinate to set for the node.
 #' @param use_labels an option to use a node
