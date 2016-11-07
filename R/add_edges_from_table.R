@@ -19,9 +19,6 @@
 #' @param set_rel an optional string to apply a
 #' \code{rel} attribute to all edges created from the
 #' table records.
-#' @param select_cols an optional character vector for
-#' specifying which columns in the table that should be
-#' imported as edge attributes.
 #' @param drop_cols an optional character vector for
 #' dropping columns from the incoming data.
 #' @param rel_col an option to apply a column of data
@@ -65,7 +62,6 @@ add_edges_from_table <- function(graph,
                                  to_col,
                                  ndf_mapping,
                                  set_rel = NULL,
-                                 select_cols = NULL,
                                  drop_cols = NULL,
                                  rel_col = NULL) {
 
@@ -98,25 +94,9 @@ add_edges_from_table <- function(graph,
     stop("The value specified in `ndf_mapping` is not in the graph.")
   }
 
-  # If values for `select_cols` are provided, filter
-  # the CSV columns by those named columns
-  if (!is.null(select_cols)) {
-
-    # If none of the specified values in `select_cols`
-    # are in the CSV, stop the function
-    if (all(select_cols %in% colnames(csv)) == FALSE) {
-      stop("None of the values specified for selecting columns are available.")
-    }
-
-    columns_retained <-
-      which(colnames(csv) %in% select_cols)
-
-    csv <- csv[, columns_retained]
-  }
-
   # If values for `drop_cols` provided, filter the CSV
   # columns by those named columns
-  if (is.null(select_cols) & !is.null(drop_cols)) {
+  if (!is.null(drop_cols)) {
 
     columns_retained <-
       which(!(colnames(csv) %in% drop_cols))
