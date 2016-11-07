@@ -145,19 +145,6 @@ add_nodes_from_table <- function(graph,
     csv <- csv[, columns_retained]
   }
 
-
-  # If values for `rename_attrs` provided, rename all
-  # of the CSV columns by those replacement values
-  # (number of new names should match number of columns
-  # even after selecting or dropping columns)
-  if (!is.null(rename_attrs)) {
-    if (length(rename_attrs) != length(colnames(csv))) {
-      stop(paste0("The number of values specified for column name changes ",
-                  "does not match the number of columns available"))
-    }
-    colnames(csv) <- rename_attrs
-  }
-
   # Optionally set the `label` attribute from a
   # specified column in the CSV (this copies data into
   # the `label` column)
