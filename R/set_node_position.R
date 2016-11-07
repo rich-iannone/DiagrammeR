@@ -12,7 +12,7 @@
 #' @param x the x coordinate to set for the node.
 #' @param y the y coordinate to set for the node.
 #' @return a graph object of class \code{dgr_graph}.
-#' @importFrom dplyr case_when
+#' @importFrom dplyr case_when mutate coalesce
 #' @export set_node_position
 
 set_node_position <- function(graph,
@@ -39,7 +39,7 @@ set_node_position <- function(graph,
   if (!("x" %in% colnames(ndf))) {
     ndf <-
       ndf %>%
-      mutate(x = as.numeric(NA))
+      dplyr::mutate(x = as.numeric(NA))
   }
 
   # If the `y` node attribute doesn't exist, create
@@ -47,7 +47,7 @@ set_node_position <- function(graph,
   if (!("y" %in% colnames(ndf))) {
     ndf <-
       ndf %>%
-      mutate(y = as.numeric(NA))
+      dplyr::mutate(y = as.numeric(NA))
   }
 
   # Use a `case_when` statement to selectively perform
@@ -60,19 +60,19 @@ set_node_position <- function(graph,
 
   # Replace the `x` column to the ndf with a
   # coalesced version of the column contents
-  ndf$x <- coalesce(x_attr_new, ndf$x)
+  ndf$x <- dplyr::coalesce(x_attr_new, ndf$x)
 
   # Use a `case_when` statement to selectively perform
   # a vectorized `if` statement across all nodes for
   # the `y` node attribute
   y_attr_new <-
-    case_when(
+    dplyr::case_when(
       ndf$id == node ~ y,
       TRUE ~ as.numeric(ndf$y))
 
   # Replace the `y` column to the ndf with a
   # coalesced version of the column contents
-  ndf$y <- coalesce(y_attr_new, ndf$y)
+  ndf$y <- dplyr::coalesce(y_attr_new, ndf$y)
 
   # Replace the graph's node data frame with `ndf`
   graph$nodes_df <- ndf
