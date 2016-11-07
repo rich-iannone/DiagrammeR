@@ -150,7 +150,8 @@ add_nodes_from_table <- function(graph,
   # the `label` column)
   if (!is.null(label_col)) {
     if (any(colnames(csv) == label_col)) {
-      csv$label <- csv[, which(colnames(csv) == label_col)]
+      csv$label <-
+        as.character(csv[, which(colnames(csv) == label_col)])
     }
   }
 
