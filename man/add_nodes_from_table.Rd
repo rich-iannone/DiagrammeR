@@ -100,11 +100,12 @@ graph_3 <-
     path_to_csv,
     set_type = "currency",
     label_col = "iso_4217_code",
-    drop_cols = "exponent")
+    drop_cols = c("exponent", "currency_name"))
 
+# Show the node attribute names for the graph
 graph_3 \%>\% get_node_df \%>\% colnames
 #> [1] "id"  type"  "label"  "iso_4217_code"
-#> [5] "curr_number" "currency_name"
+#> [5] "curr_number"
 }
 }
 
