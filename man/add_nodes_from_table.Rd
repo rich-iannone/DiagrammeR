@@ -4,8 +4,8 @@
 \alias{add_nodes_from_table}
 \title{Add nodes and attributes to graph from a table}
 \usage{
-add_nodes_from_table(graph, table, set_type = NULL, select_cols = NULL,
-  drop_cols = NULL, type_col = NULL, label_col = NULL)
+add_nodes_from_table(graph, table, label_col = NULL, type_col = NULL,
+  set_type = NULL, drop_cols = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -15,22 +15,18 @@ add_nodes_from_table(graph, table, set_type = NULL, select_cols = NULL,
 \item{table}{either a path to a CSV file, or, a data
 frame object.}
 
-\item{set_type}{an optional string to apply a
-\code{type} attribute to all nodes created from the
-table records.}
-
-\item{select_cols}{an optional character vector for
-specifying which columns in the table that should be
-imported as node attributes.}
-
-\item{drop_cols}{an optional character vector for
-dropping columns from the incoming data.}
+\item{label_col}{an option to apply a column of data
+in the table as \code{label} attribute values.}
 
 \item{type_col}{an option to apply a column of data
 in the table as \code{type} attribute values.}
 
-\item{label_col}{an option to apply a column of data
-in the table as \code{label} attribute values.}
+\item{set_type}{an optional string to apply a
+\code{type} attribute to all nodes created from the
+table records.}
+
+\item{drop_cols}{an optional character vector for
+dropping columns from the incoming data.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

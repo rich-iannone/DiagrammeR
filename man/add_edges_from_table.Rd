@@ -5,7 +5,7 @@
 \title{Add edges and attributes to graph from a table}
 \usage{
 add_edges_from_table(graph, table, from_col, to_col, ndf_mapping,
-  set_rel = NULL, drop_cols = NULL, rel_col = NULL)
+  rel_col = NULL, set_rel = NULL, drop_cols = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -27,15 +27,15 @@ in the external table (supplied as \code{from_col}
 and \code{to_col}, respectively) to a column in the
 graph's internal node data frame (ndf).}
 
+\item{rel_col}{an option to apply a column of data
+in the table as \code{rel} attribute values.}
+
 \item{set_rel}{an optional string to apply a
 \code{rel} attribute to all edges created from the
 table records.}
 
 \item{drop_cols}{an optional character vector for
 dropping columns from the incoming data.}
-
-\item{rel_col}{an option to apply a column of data
-in the table as \code{rel} attribute values.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
