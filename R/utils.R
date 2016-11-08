@@ -48,6 +48,8 @@ translate_to_node_id <- function(graph, from, to) {
 # Function to determine whether a node or edge
 # attribute has values that are all non-NA and
 # are unique
+#' @importFrom dplyr select_ distinct
+#' @importFrom magrittr not
 is_attr_unique_and_non_na <- function(graph,
                                       which_graph_df,
                                       attr) {
@@ -66,12 +68,12 @@ is_attr_unique_and_non_na <- function(graph,
 
   # Are all values not NA?
   all_is_not_na <-
-    df %>% select_(attr) %>%
+    df %>% dplyr::select_(attr) %>%
     is.na %>% magrittr::not() %>% all()
 
   # Are all values distinct?
   all_values_distinct <-
-    df %>% select_(attr) %>% distinct() %>%nrow() ==
+    df %>% dplyr::select_(attr) %>% dplyr::distinct() %>% nrow() ==
     nrow(df)
 
   if (all_is_not_na & all_values_distinct) {
