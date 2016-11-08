@@ -89,7 +89,7 @@
 #' @importFrom utils read.csv
 #' @importFrom stats setNames
 #' @importFrom tibble as_tibble
-#' @importFrom dplyr left_join select_ rename mutate bind_cols everything
+#' @importFrom dplyr left_join select select_ rename mutate bind_cols everything
 #' @export add_edges_from_table
 
 add_edges_from_table <- function(graph,
@@ -184,7 +184,7 @@ add_edges_from_table <- function(graph,
     dplyr::select_(.dots = csv_colnames) %>%
     dplyr::rename(to = id) %>%
     dplyr::mutate(to = as.integer(to)) %>%
-    select(to)
+    dplyr::select(to)
 
   # Combine the `from` and `to` columns together along
   # with a new `rel` column (filled with NAs) and additional
