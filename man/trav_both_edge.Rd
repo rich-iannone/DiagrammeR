@@ -5,7 +5,7 @@
 \title{Traverse from one or more selected nodes onto
 adjacent edges}
 \usage{
-trav_both_edge(graph, conditions = NULL)
+trav_both_edge(graph, conditions = NULL, copy_attrs_from = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph}
@@ -13,6 +13,12 @@ that is created using \code{create_graph}.}
 
 \item{conditions}{an option to use filtering
 conditions for the traversal.}
+
+\item{copy_attrs_from}{providing a node attribute
+name will copy those node attribute values to the
+traversed edges. If the edge attribute already exists,
+the values will be merged to the traversed edges;
+otherwise, a new edge attribute will be created.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
