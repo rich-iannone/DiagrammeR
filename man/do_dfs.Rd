@@ -2,7 +2,7 @@
 % Please edit documentation in R/do_dfs.R
 \name{do_dfs}
 \alias{do_dfs}
-\title{Perform a depth-first search}
+\title{Perform the depth-first search (dfs) algorithm}
 \usage{
 do_dfs(graph, node = NULL, direction = "all")
 }
@@ -12,21 +12,31 @@ do_dfs(graph, node = NULL, direction = "all")
 \code{create_graph}.}
 
 \item{node}{an optional node ID value to specify
-a single starting point for the dfs.}
+a single starting point for the dfs. If not
+provided, a random node from the graph will be
+chosen.}
 
-\item{direction}{using \code{all} (the default), the
-dfs will ignore edge direction while traversing
-through the graph. With \code{out}, traversals
-between adjacent nodes will respect the edge
-direction.}
+\item{direction}{using \code{all} (the default),
+the dfs will ignore edge direction while
+traversing through the graph. With \code{out},
+traversals between adjacent nodes will respect
+the edge direction.}
 }
 \value{
-a list object containing dfs information.
+a vector containing node ID values for
+nodes visited during the depth-first search. The
+order of the node IDs corresponds to the order
+visited.
 }
 \description{
-With either a single node serving as
-the starting point or using the whole graph,
-perform a depth-first search.
+With a chosen or random node
+serving as the starting point, perform a
+depth-first search of the whole graph and return
+the node ID values visited. The dfs algorithm
+differs from breadth-first search (bfs) in that
+dfs will follow tree branches as far as possible
+until terminating at leaf node (bfs traverses
+branches one level at a time).
 }
 \examples{
 # Create a graph containing two balanced trees
@@ -35,62 +45,32 @@ graph <-
   add_balanced_tree(2, 2) \%>\%
   add_balanced_tree(3, 2)
 
-# Perform a depth-first search of the smaller tree,
-# beginning at the root node `1`
-dfs_info <-
-  graph \%>\% do_dfs(1)
+# Perform a depth-first search of the graph,
+# beginning at the root node `1` (the default
+# `direction = "all"` doesn't take edge
+# direction into account)
+graph \%>\% do_dfs(1)
+#> [1]  1  2  4  5  3  6  7  8  9 12 13 14 10
+#> [14] 15 16 17 11 18 19 20
 
-# The do_dfs function creates a list with
-# information on the nodes visited (in the order
-# visited) and the complete search path
-dfs_info
-#> $visited
-#> [1] "1" "2" "4" "5" "3" "6" "7"
-#>
-#> $search_path
-#>  [1] "1" "2" "4" "2" "5" "2" "1" "3" "6" "3" "7"
-#> [12] "3" "1"
-
-# The dfs can be done on the entire graph, where
-# random nodes are chosen as starting points until
-# the entire graph has been traversed; here, dfs
-# started at one tree and finished on the other
-graph \%>\% do_dfs
-#> $visited
-#>  [1] "3"  "1"  "2"  "4"  "5"  "6"  "7"  "11"
-#>  [9] "8"  "9"  "12" "13" "14" "10" "15" "16"
-#> [17] "17" "18" "19" "20"
-#>
-#> $search_path
-#>  [1] "3"  "1"  "2"  "4"  "2"  "5"  "2"  "1"
-#>  [9] "3"  "6"  "3"  "7"  "3"  "11" "8"  "9"
-#> [17] "12" "9"  "13" "9"  "14" "9"  "8"  "10"
-#> [25] "15" "10" "16" "10" "17" "10" "8"  "11"
-#> [33] "18" "11" "19" "11" "20" "11"
+# If not specifying a starting node, the function
+# will begin the search from a random node
+graph \%>\% do_dfs()
+#> [1]  14  9  8 10 15 16 17 11 18 19 20 12 13
+#> [14]  1  2  4  5  3  6  7
 
 # It's also possible to perform dfs while
 # taking into account edge direction; using
-# `direction = out` causes the dfs routine to
-# visit nodes along outward edges
-graph \%>\%
-  do_dfs(3, "out")
-#> $visited
-#> [1] "3" "6" "7"
-#>
-#> $search_path
-#> [1] "3" "6" "3" "7" "3"
+# `direction = "in"` causes the dfs routine to
+# visit nodes along inward edges
+graph \%>\% do_dfs(1, "in")
+#> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13
+#> [14] 14 15 16 17 18 19 20
 
-# Reversing the edge directions with the
-# `rev_edge_dir()` function and performing
-# dfs at the same node as before results in a
-# different set of visited nodes
-graph \%>\%
-  rev_edge_dir \%>\%
-  do_dfs(3, "out")
-#> $visited
-#> [1] "3" "1"
-#>
-#> $search_path
-#> [1] "3" "1" "3"
+# Using `direction = "out"` results in the dfs
+# moving along solely outward edges
+graph \%>\% do_dfs(1, "out")
+#> [1]  1  2  4  5  3  6  7  8  9 12 13 14 10
+#> [14] 15 16 17 11 18 19 20
 }
 
