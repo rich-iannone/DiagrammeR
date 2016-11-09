@@ -38,26 +38,17 @@ test_that("the dice similarity algorithm is functional", {
   expect_equal(nrow(dice_in), 3)
 
   # Expect all columns to be numeric
-  expect_true(
-    inherits(dice_all[, 1], "numeric"))
-  expect_true(
-    inherits(dice_all[, 2], "numeric"))
-  expect_true(
-    inherits(dice_all[, 3], "numeric"))
+  expect_true(inherits(dice_all[, 1], "numeric"))
+  expect_true(inherits(dice_all[, 2], "numeric"))
+  expect_true(inherits(dice_all[, 3], "numeric"))
 
-  expect_true(
-    inherits(dice_out[, 1], "numeric"))
-  expect_true(
-    inherits(dice_out[, 2], "numeric"))
-  expect_true(
-    inherits(dice_out[, 3], "numeric"))
+  expect_true(inherits(dice_out[, 1], "numeric"))
+  expect_true(inherits(dice_out[, 2], "numeric"))
+  expect_true(inherits(dice_out[, 3], "numeric"))
 
-  expect_true(
-    inherits(dice_in[, 1], "numeric"))
-  expect_true(
-    inherits(dice_in[, 2], "numeric"))
-  expect_true(
-    inherits(dice_in[, 3], "numeric"))
+  expect_true(inherits(dice_in[, 1], "numeric"))
+  expect_true(inherits(dice_in[, 2], "numeric"))
+  expect_true(inherits(dice_in[, 3], "numeric"))
 
   # Expect specific column names in this data frame
   expect_equal(
