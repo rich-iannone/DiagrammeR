@@ -210,7 +210,6 @@ trav_both_edge <- function(graph,
       x_col <- which(grepl("\\.x$", colnames(edges)))
       y_col <- which(grepl("\\.y$", colnames(edges)))
 
-
       # Coalesce the 2 generated columns and create a
       # single-column data frame
       value_col <-
