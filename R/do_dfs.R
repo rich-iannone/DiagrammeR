@@ -78,7 +78,7 @@ do_dfs <- function(graph,
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  # Perform the depth first search algorithm in
+  # Perform the depth-first search algorithm in
   # the direction requested
   if (direction == "all") {
     dfs_result <-
