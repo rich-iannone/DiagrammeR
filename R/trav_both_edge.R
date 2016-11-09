@@ -10,6 +10,11 @@
 #' that is created using \code{create_graph}.
 #' @param conditions an option to use filtering
 #' conditions for the traversal.
+#' @param copy_attrs_from providing a node attribute
+#' name will copy those node attribute values to the
+#' traversed edges. If the edge attribute already exists,
+#' the values will be merged to the traversed edges;
+#' otherwise, a new edge attribute will be created.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -135,11 +140,13 @@
 #'     conditions = "grepl('B|C', rel)") %>%
 #'   get_selection
 #' #> [1] "2 -> 4" "2 -> 5"
-#' @importFrom dplyr filter filter_
+#' @importFrom dplyr filter filter_ select select_ full_join rename everything coalesce bind_cols
+#' @importFrom tibble as_tibble
 #' @export trav_both_edge
 
 trav_both_edge <- function(graph,
-                           conditions = NULL) {
+                           conditions = NULL,
+                           copy_attrs_from = NULL) {
 
   if (is.null(graph$selection$nodes)) {
     stop("There is no selection of nodes available.")
@@ -155,6 +162,9 @@ trav_both_edge <- function(graph,
   # Get the graph's edge data frame
   edf <- graph$edges_df
 
+  # Get the graph's node data frame
+  ndf <- graph$nodes_df
+
   # Find all edges that lead away from the
   # starting nodes and remove edges that
   # are loops
@@ -169,6 +179,94 @@ trav_both_edge <- function(graph,
   # object without modifying the selection
   if (nrow(valid_edges) == 0) {
     return(graph)
+  }
+
+  # If the option is taken to copy node attribute
+  # values to the traversed edges, perform the join
+  # operation
+  if (!is.null(copy_attrs_from)) {
+
+    # If node attribute doesn't exist in the edf,
+    # perform a full join
+    if (!(copy_attrs_from %in% colnames(edf))) {
+
+      edges <-
+        ndf %>%
+        dplyr::filter(id == starting_nodes) %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::full_join(edf, c("id" = "from")) %>%
+        dplyr::rename(from = id)
+
+      edges <-
+        ndf %>%
+        dplyr::filter(id == starting_nodes) %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::full_join(edges, c("id" = "to")) %>%
+        dplyr::rename(to = id) %>%
+        dplyr::select(from, to, rel, dplyr::everything())
+    }
+
+    # If node attribute exists as a column in the edf
+    if (copy_attrs_from %in% colnames(edf)) {
+
+      # Perform the first join
+      edges <-
+        ndf %>%
+        dplyr::filter(id == starting_nodes) %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::full_join(edf, c("id" = "from")) %>%
+        dplyr::rename(from = id)
+
+      # Coalesce the 2 generated columns
+      value_col <-
+        dplyr::coalesce(edges$value.x, edges$value.y) %>%
+        tibble::as_tibble()
+
+      # Bind the `value_col` to the `edges` df
+      edges <-
+        edges %>%
+        dplyr::bind_cols(value_col)
+
+      # Remove column numbers that end with ".x" or ".y"
+      edges <-
+        edges[-which(grepl("\\.x$", colnames(edges)))]
+
+      edges <-
+        edges[-which(grepl("\\.y$", colnames(edges)))]
+
+      # Perform the second join
+      edges <-
+        ndf %>%
+        dplyr::filter(id == starting_nodes) %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::full_join(edges, c("id" = "to")) %>%
+        dplyr::rename(to = id)
+
+      # Coalesce the 2 generated columns
+      value_col <-
+        dplyr::coalesce(edges$value.x, edges$value.y) %>%
+        tibble::as_tibble()
+
+      # Bind the `value_col` to the `edges` df
+      edges <-
+        edges %>%
+        dplyr::bind_cols(value_col)
+
+      # Remove column numbers that end with ".x" or ".y"
+      edges <-
+        edges[-which(grepl("\\.x$", colnames(edges)))]
+
+      edges <-
+        edges[-which(grepl("\\.y$", colnames(edges)))]
+
+      # Reorder columns
+      edges <-
+        edges %>%
+        dplyr::select(from, to, rel, dplyr::everything())
+    }
+
+    # Update the graph's internal node data frame
+    graph$edges_df <- edges
   }
 
   # If traversal conditions are provided then
