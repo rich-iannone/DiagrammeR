@@ -221,11 +221,9 @@ trav_both_edge <- function(graph,
       colnames(value_col)[1] <- copy_attrs_from
 
       # Remove column numbers that end with ".x" or ".y"
-      edges <-
-        edges[-which(grepl("\\.x$", colnames(edges)))]
+      edges <- edges[-which(grepl("\\.x$", colnames(edges)))]
 
-      edges <-
-        edges[-which(grepl("\\.y$", colnames(edges)))]
+      edges <-edges[-which(grepl("\\.y$", colnames(edges)))]
 
       # Bind the `value_col` df to the `edges` df
       edges <- dplyr::bind_cols(edges, value_col)
@@ -242,9 +240,13 @@ trav_both_edge <- function(graph,
         dplyr::full_join(edf, c("id" = "from")) %>%
         dplyr::rename(from = id)
 
+      # Get the column numbers for the new columns
+      x_col <- which(grepl("\\.x$", colnames(edges)))
+      y_col <- which(grepl("\\.y$", colnames(edges)))
+
       # Coalesce the 2 generated columns
       value_col <-
-        dplyr::coalesce(edges$value.x, edges$value.y) %>%
+        dplyr::coalesce(edges[, x_col], edges[, y_col]) %>%
         tibble::as_tibble()
 
       # Bind the `value_col` to the `edges` df
@@ -253,11 +255,12 @@ trav_both_edge <- function(graph,
         dplyr::bind_cols(value_col)
 
       # Remove column numbers that end with ".x" or ".y"
-      edges <-
-        edges[-which(grepl("\\.x$", colnames(edges)))]
+      edges <- edges[-which(grepl("\\.x$", colnames(edges)))]
+      edges <- edges[-which(grepl("\\.y$", colnames(edges)))]
 
-      edges <-
-        edges[-which(grepl("\\.y$", colnames(edges)))]
+      # Rename the last column
+      colnames(edges)[which(colnames(edges) == "value")] <-
+        copy_attrs_from
 
       # Perform the second join
       edges <-
@@ -267,9 +270,13 @@ trav_both_edge <- function(graph,
         dplyr::full_join(edges, c("id" = "to")) %>%
         dplyr::rename(to = id)
 
+      # Get the column numbers for the new columns
+      x_col <- which(grepl("\\.x$", colnames(edges)))
+      y_col <- which(grepl("\\.y$", colnames(edges)))
+
       # Coalesce the 2 generated columns
       value_col <-
-        dplyr::coalesce(edges$value.x, edges$value.y) %>%
+        dplyr::coalesce(edges[, x_col], edges[, y_col]) %>%
         tibble::as_tibble()
 
       # Bind the `value_col` to the `edges` df
@@ -278,11 +285,12 @@ trav_both_edge <- function(graph,
         dplyr::bind_cols(value_col)
 
       # Remove column numbers that end with ".x" or ".y"
-      edges <-
-        edges[-which(grepl("\\.x$", colnames(edges)))]
+      edges <- edges[-which(grepl("\\.x$", colnames(edges)))]
+      edges <- edges[-which(grepl("\\.y$", colnames(edges)))]
 
-      edges <-
-        edges[-which(grepl("\\.y$", colnames(edges)))]
+      # Rename the last column
+      colnames(edges)[which(colnames(edges) == "value")] <-
+        copy_attrs_from
 
       # Reorder columns
       edges <-
