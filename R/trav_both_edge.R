@@ -204,6 +204,31 @@ trav_both_edge <- function(graph,
         dplyr::full_join(edges, c("id" = "to")) %>%
         dplyr::rename(to = id) %>%
         dplyr::select(from, to, rel, dplyr::everything())
+
+      # Get the column numbers for the `.x`
+      # and `.y` columns
+      x_col <- which(grepl("\\.x$", colnames(edges)))
+      y_col <- which(grepl("\\.y$", colnames(edges)))
+
+
+      # Coalesce the 2 generated columns and create a
+      # single-column data frame
+      value_col <-
+        dplyr::coalesce(edges[, x_col], edges[, y_col]) %>%
+        as.data.frame(stringsAsFactors = FALSE)
+
+      # Rename the column
+      colnames(value_col)[1] <- copy_attrs_from
+
+      # Remove column numbers that end with ".x" or ".y"
+      edges <-
+        edges[-which(grepl("\\.x$", colnames(edges)))]
+
+      edges <-
+        edges[-which(grepl("\\.y$", colnames(edges)))]
+
+      # Bind the `value_col` df to the `edges` df
+      edges <- dplyr::bind_cols(edges, value_col)
     }
 
     # If node attribute exists as a column in the edf
