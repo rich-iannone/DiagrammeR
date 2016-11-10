@@ -49,8 +49,7 @@ get_jaccard_similarity <- function(graph,
 
     # Stop function if nodes provided not in
     # the graph
-    if (!all(as.character(nodes) %in%
-             get_node_ids(graph))) {
+    if (!all(nodes %in% get_node_ids(graph))) {
       stop("One or more nodes provided not in graph.")
     }
 
