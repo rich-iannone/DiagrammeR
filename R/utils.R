@@ -171,3 +171,55 @@ graph_contains_edge_selection <- function(graph) {
 
   return(TRUE)
 }
+
+# Function to check whether a graph contains a valid edge selection
+graph_contains_edge_selection <- function(graph) {
+
+  # Check if graph contains any selection
+  if (is.null(graph$selection)) {
+    return(FALSE)
+  }
+
+  # Check if graph contains an edge selection
+  if (is.null(graph$selection$edges)) {
+    return(FALSE)
+  }
+
+  # Check if graph contains `from` and `to` vectors
+  if (is.null(graph$selection$edges$from) |
+      is.null(graph$selection$edges$to)) {
+    return(FALSE)
+  }
+
+  # Check if the `from` and `to` vectors have length > 0,
+  # and are of equal length
+  if (length(graph$selection$edges$from) == 0 |
+      length(graph$selection$edges$to) == 0 |
+      length(graph$selection$edges$from) !=
+      length(graph$selection$edges$to)) {
+    return(FALSE)
+  }
+
+  return(TRUE)
+}
+
+# Function to check whether a graph contains a valid node selection
+graph_contains_node_selection <- function(graph) {
+
+  # Check if graph contains any selection
+  if (is.null(graph$selection)) {
+    return(FALSE)
+  }
+
+  # Check if graph contains a node selection
+  if (is.null(graph$selection$nodes)) {
+    return(FALSE)
+  }
+
+  # Check if the `nodes` vector has length > 0
+  if (length(graph$selection$nodes) == 0) {
+    return(FALSE)
+  }
+
+  return(TRUE)
+}
