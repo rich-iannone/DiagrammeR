@@ -81,6 +81,24 @@ generate_dot <- function(graph) {
     }
   }
 
+  # If `display` column in `nodes_df`, modify label
+  # column for this render
+  if ("display" %in% colnames(nodes_df)) {
+
+    display_col <- which(colnames(nodes_df) == "display")
+    label_col <- which(colnames(nodes_df) == "label")
+
+    for (i in 1:nrow(nodes_df)) {
+      if (nodes_df[i, display_col] != "") {
+        nodes_df[i, label_col] <-
+          nodes_df[
+            i, which(colnames(nodes_df) == nodes_df[i, display_col])]
+      } else {
+        nodes_df[i, label_col] <- ""
+      }
+    }
+  }
+
   # Create vector of graph attributes
   graph_attributes <-
     c("bgcolor", "layout", "overlap", "fixedsize",
