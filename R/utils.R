@@ -83,6 +83,36 @@ is_attr_unique_and_non_na <- function(graph,
   }
 }
 
+# Function to check whether a graph object is valid
+graph_object_valid <- function(graph) {
+
+  # Check the object class for `dgr_graph`
+  if (!inherits(graph, "dgr_graph")) {
+    return(FALSE)
+  }
+
+  # Check for all component names to be present
+  if (!all(c("graph_name", "graph_time", "graph_tz",
+             "nodes_df", "edges_df", "global_attrs",
+             "directed", "last_node") %in%
+           names(graph))) {
+    return(FALSE)
+  }
+
+  # Check for specific graph classes
+  if (any(
+    inherits(graph$global_attrs, "data.frame") == FALSE,
+    inherits(graph$directed, "logical") == FALSE,
+    inherits(graph$last_node, "numeric") == FALSE,
+    inherits(graph$global_attrs$attr, "character") == FALSE,
+    inherits(graph$global_attrs$value, "character") == FALSE,
+    inherits(graph$global_attrs$attr_type, "character") == FALSE)) {
+    return(FALSE)
+  }
+
+  return(TRUE)
+}
+
 # Function to check whether a graph contains any nodes
 graph_contains_nodes <- function(graph) {
 
@@ -96,7 +126,6 @@ graph_contains_nodes <- function(graph) {
 
   return(TRUE)
 }
-
 
 # Function to check whether a graph contains any edges
 graph_contains_edges <- function(graph) {
