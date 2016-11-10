@@ -493,6 +493,11 @@ test_that("selecting an edge in a graph is possible", {
       graph = graph,
       edge_attr = "fontname",
       search = "a"))
+
+  # Expect an error if selecting edges from a
+  # graph that doesn't contain edges
+  expect_error(
+    create_graph() %>% add_n_nodes(2) %>% select_edges())
 })
 
 test_that("selecting edges via node IDs is possible", {
