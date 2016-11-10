@@ -82,3 +82,32 @@ is_attr_unique_and_non_na <- function(graph,
     return(FALSE)
   }
 }
+
+# Function to whether a graph contains any nodes
+graph_contains_nodes <- function(graph) {
+
+  if (is.null(graph$nodes_df)) {
+    return(FALSE)
+  }
+
+  if (node_count(graph) == 0) {
+    return(FALSE)
+  }
+
+  return(TRUE)
+}
+
+
+# Function to whether a graph contains any edges
+graph_contains_edges <- function(graph) {
+
+  if (is.null(graph$edges_df)) {
+    return(FALSE)
+  }
+
+  if (edge_count(graph) == 0) {
+    return(FALSE)
+  }
+
+  return(TRUE)
+}
