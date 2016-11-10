@@ -103,6 +103,10 @@ select_edges <- function(graph,
     stop("The graph has no edges so no selections can be made.")
   }
 
+  if (edge_count(graph) == 0) {
+    stop("The graph has no edges so no selections can be made.")
+  }
+
   # Remove any selection of nodes
   graph$selection$nodes <- NULL
 
