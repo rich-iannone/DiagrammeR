@@ -8,10 +8,6 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
-#' @param node a single-length vector containing
-#' either a node ID value (integer) or a node label
-#' (character) for which position information should
-#' be applied.
 #' @param dx a single numeric value specifying the
 #' amount that selected nodes (with non-\code{NA}
 #' values for the \code{x} and \code{y} attributes)
