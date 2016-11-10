@@ -22,7 +22,6 @@ graph_object_valid <- function(graph) {
   if (any(
     inherits(graph$global_attrs, "data.frame") == FALSE,
     inherits(graph$directed, "logical") == FALSE,
-    inherits(graph$last_node, "numeric") == FALSE,
     inherits(graph$global_attrs$attr, "character") == FALSE,
     inherits(graph$global_attrs$value, "character") == FALSE,
     inherits(graph$global_attrs$attr_type, "character") == FALSE)) {
