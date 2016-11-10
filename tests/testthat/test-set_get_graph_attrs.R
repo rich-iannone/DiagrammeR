@@ -197,6 +197,15 @@ test_that("Setting global graph attrs is possible", {
   # was coerced to character `true`
   expect_equal(
     graph$global_attrs$value, "true")
+
+  # Expect an error if setting global graph
+  # attributes with unequal vector lengths
+  expect_error(
+    graph %>%
+      set_global_graph_attrs(
+        c("overlap", "color"),
+        c("true", "red", "5"),
+        c("graph", "node", "edge")))
 })
 
 test_that("Getting global graph attrs is possible", {
@@ -204,6 +213,11 @@ test_that("Getting global graph attrs is possible", {
   # Create an empty graph with no global graph
   # parameters
   graph <- create_graph(attr_theme = FALSE)
+
+  # Expect an NA value if getting global graph
+  # attributes where there are none set
+  expect_true(
+    is.na(get_global_graph_attrs(graph)))
 
   # Set 3 global graph attrs
   graph <-
@@ -316,6 +330,13 @@ test_that("Deleting global graph attrs is possible", {
   expect_equal(
     nrow(graph$global_attrs) -
       nrow(graph_del_2$global_attrs), 2)
+
+  # Expect an error if deleting with an invalid
+  # `attr_type` (using `nodes` instead of `node`)
+  expect_error(
+    graph %>%
+      delete_global_graph_attrs(
+        "layout", "nodes"))
 })
 
 test_that("Clearing global graph attrs is possible", {
