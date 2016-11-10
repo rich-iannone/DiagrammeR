@@ -15,11 +15,21 @@ set_node_attr_to_display(graph, nodes = NULL, attr = NULL,
 \item{nodes}{a length vector containing one or
 several node ID values (as integers) for which
 node attributes are set for display in the
-rendered graph.}
+rendered graph. If \code{NULL}, all nodes from
+the graph are assigned the \code{display} value
+given as \code{attr}.}
 
 \item{attr}{the name of the attribute to
 set for the \code{type} of global attribute
-specified.}
+specified. If set to \code{NULL}, then \code{NA}
+values will be assigned to the \code{display}
+for the chosen nodes.}
+
+\item{default}{the name of an attribute to
+set for all other graph nodes not included
+in \code{nodes}. This value only gets used if
+the \code{display} node attribute is not in
+the graph's internal node data frame.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -77,7 +87,7 @@ graph \%>\%
     nodes = c(1, 5), attr = "id") \%>\%
   get_node_df()
 #>   id type label display value
-#> 1  1 <NA>     1   value   6.0
+#> 1  1 <NA>     1      id   6.0
 #> 2  2 <NA>     2   value   2.5
 #> 3  3 <NA>     3   value   3.5
 #> 4  4 <NA>     4   label   7.5
