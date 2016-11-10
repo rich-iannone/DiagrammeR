@@ -22,11 +22,6 @@ amount that selected nodes (with non-\code{NA}
 values for the \code{x} and \code{y} attributes)
 will be moved in the y direction. A positive
 value will move nodes up, negative down.}
-
-\item{node}{a single-length vector containing
-either a node ID value (integer) or a node label
-(character) for which position information should
-be applied.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
