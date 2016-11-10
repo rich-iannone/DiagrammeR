@@ -6,6 +6,7 @@
 #' \code{create_graph}.
 #' @return a character vector of length 1 containing
 #' Graphviz DOT code.
+#' @importFrom dplyr filter mutate
 #' @importFrom stringr str_replace str_replace_all
 #' @export generate_dot
 
@@ -23,8 +24,8 @@ generate_dot <- function(graph) {
   if ("graph" %in% global_attrs$attr_type) {
     graph_attrs <-
       global_attrs %>%
-      filter(attr_type == "graph") %>%
-      mutate(string = paste(attr, "=", value))
+      dplyr::filter(attr_type == "graph") %>%
+      dplyr::mutate(string = paste(attr, "=", value))
 
     graph_attrs <- graph_attrs[[4]]
 
@@ -35,8 +36,8 @@ generate_dot <- function(graph) {
   if ("node" %in% global_attrs$attr_type) {
     node_attrs <-
       global_attrs %>%
-      filter(attr_type == "node") %>%
-      mutate(string = paste(attr, "=", value))
+      dplyr::filter(attr_type == "node") %>%
+      dplyr::mutate(string = paste(attr, "=", value))
 
     node_attrs <- node_attrs[[4]]
 
@@ -47,8 +48,8 @@ generate_dot <- function(graph) {
   if ("edge" %in% global_attrs$attr_type) {
     edge_attrs <-
       global_attrs %>%
-      filter(attr_type == "edge") %>%
-      mutate(string = paste(attr, "=", value))
+      dplyr::filter(attr_type == "edge") %>%
+      dplyr::mutate(string = paste(attr, "=", value))
 
     edge_attrs <- edge_attrs[[4]]
 
