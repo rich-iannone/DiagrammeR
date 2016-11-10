@@ -135,6 +135,7 @@
 trav_in_node <- function(graph,
                          conditions = NULL) {
 
+  # Stop function if there are no edges in the selection
   if (is.null(graph$selection$edges$from) |
       is.null(graph$selection$edges$to)) {
     stop("There is no selection of edges available.")
