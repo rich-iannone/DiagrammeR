@@ -1,5 +1,32 @@
 context("Get graph metrics")
 
+test_that("Getting a degree histogram is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      10, 22, set_seed = 1)
+
+  degree_histogram <-
+    get_degree_histogram(graph)
+
+  # Expect that `degree_histogram` inherits from `numeric`
+  expect_is(degree_histogram, "numeric")
+
+  # Expect certain names for the `degree_histogram` object
+  expect_identical(
+    names(degree_histogram),
+    c("0", "1", "2", "3", "4", "5", "6"))
+
+  # Expect certain values in the `degree_histogram` object
+  expect_equal(degree_histogram[[1]], 0)
+  expect_equal(degree_histogram[[2]], 0)
+  expect_equal(degree_histogram[[3]], 0)
+  expect_equal(degree_histogram[[4]], 2)
+  expect_equal(degree_histogram[[5]], 4)
+  expect_equal(degree_histogram[[6]], 2)
+})
+
 test_that("Getting degree distribution is possible", {
 
   # Create a random graph
@@ -8,7 +35,7 @@ test_that("Getting degree distribution is possible", {
       10, 22, set_seed = 1)
 
   degree_dist <-
-    get_degree_histogram(graph)
+    get_degree_distribution(graph)
 
   # Expect that `degree_dist` inherits from `numeric`
   expect_is(degree_dist, "numeric")
@@ -18,13 +45,13 @@ test_that("Getting degree distribution is possible", {
     names(degree_dist),
     c("0", "1", "2", "3", "4", "5", "6"))
 
-  # Expect certain values in the `degree_dist` object
+  # Expect certain values in the `degree_histogram` object
   expect_equal(degree_dist[[1]], 0)
   expect_equal(degree_dist[[2]], 0)
   expect_equal(degree_dist[[3]], 0)
-  expect_equal(degree_dist[[4]], 2)
-  expect_equal(degree_dist[[5]], 4)
-  expect_equal(degree_dist[[6]], 2)
+  expect_equal(degree_dist[[4]], 0.2)
+  expect_equal(degree_dist[[5]], 0.4)
+  expect_equal(degree_dist[[6]], 0.2)
 })
 
 test_that("Getting graph diameter is possible", {
