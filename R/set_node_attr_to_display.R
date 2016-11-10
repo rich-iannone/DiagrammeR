@@ -18,10 +18,19 @@
 #' @param nodes a length vector containing one or
 #' several node ID values (as integers) for which
 #' node attributes are set for display in the
-#' rendered graph.
+#' rendered graph. If \code{NULL}, all nodes from
+#' the graph are assigned the \code{display} value
+#' given as \code{attr}.
 #' @param attr the name of the attribute to
 #' set for the \code{type} of global attribute
-#' specified.
+#' specified. If set to \code{NULL}, then \code{NA}
+#' values will be assigned to the \code{display}
+#' for the chosen nodes.
+#' @param default the name of an attribute to
+#' set for all other graph nodes not included
+#' in \code{nodes}. This value only gets used if
+#' the \code{display} node attribute is not in
+#' the graph's internal node data frame.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph
@@ -61,12 +70,12 @@
 #'     nodes = c(1, 5), attr = "id") %>%
 #'   get_node_df()
 #' #>   id type label display value
-#' #> 1  1 <NA>     1   value   6.0
+#' #> 1  1 <NA>     1      id   6.0
 #' #> 2  2 <NA>     2   value   2.5
 #' #> 3  3 <NA>     3   value   3.5
 #' #> 4  4 <NA>     4   label   7.5
 #' #> 5  5 <NA>     5      id   8.5
-#' @importFrom dplyr mutate left_join coalesce bind_cols select everything
+#' @importFrom dplyr mutate left_join coalesce bind_cols select everything case_when
 #' @importFrom tibble tibble
 #' @export set_node_attr_to_display
 
@@ -75,12 +84,21 @@ set_node_attr_to_display <- function(graph,
                                      attr = NULL,
                                      default = "label") {
 
+  # Add bindings for variables
+  id <- type <- label <- display <- type <- NULL
+
   # Get the graph's node data frame as an object; stop
   # function if this doesn't exist
   if (is.null(graph$nodes_df)) {
     stop("This graph does not contain any nodes.")
   } else {
     ndf <- graph$nodes_df
+  }
+
+  # If `nodes` is NULL, assume that all nodes to
+  # be assigned a `display` value
+  if (is.null(nodes)) {
+    nodes <- get_node_ids(graph)
   }
 
   # Stop function if any of the node ID values
@@ -91,8 +109,10 @@ set_node_attr_to_display <- function(graph,
 
   # Stop function if the node attribute supplied as
   # `attr` does not exist in the ndf
-  if (!(attr %in% colnames(ndf))) {
-    stop("The node attribute given in `attr` in not in the graph's ndf.")
+  if (!is.null(attr)) {
+    if (!(attr %in% colnames(ndf))) {
+      stop("The node attribute given in `attr` in not in the graph's ndf.")
+    }
   }
 
   # If the `display` node attribute doesn't exist,
@@ -105,10 +125,18 @@ set_node_attr_to_display <- function(graph,
 
   # Create a tibble with the node ID values and the
   # requested node attribute to display
-  attr_to_display <-
-    tibble::tibble(
-      id = as.integer(nodes),
-      display = as.character(attr))
+  if (!is.null(attr)) {
+    attr_to_display <-
+      tibble::tibble(
+        id = as.integer(nodes),
+        display = as.character(attr))
+
+  } else if (is.null(attr)) {
+    attr_to_display <-
+      tibble::tibble(
+        id = as.integer(nodes),
+        display = as.character("is_na"))
+  }
 
   # Join the `attr_to_display` table with the `ndf`
   ndf <-
@@ -122,9 +150,20 @@ set_node_attr_to_display <- function(graph,
 
   # Coalesce the 2 generated columns and create a
   # single-column data frame
-  display_col <-
-    dplyr::coalesce(ndf[, x_col], ndf[, y_col]) %>%
-    as.data.frame(stringsAsFactors = FALSE)
+  if (!is.null(attr)) {
+    display_col <-
+      dplyr::coalesce(ndf[, y_col], ndf[, x_col]) %>%
+      as.data.frame(stringsAsFactors = FALSE)
+  } else if (is.null(attr)) {
+    display_col <-
+      dplyr::coalesce(ndf[, y_col], ndf[, x_col])
+
+    display_col <-
+      dplyr::case_when(
+        display_col == "is_na" ~ as.character(NA),
+        TRUE ~ display_col) %>%
+      as.data.frame(stringsAsFactors = FALSE)
+  }
 
   # Rename the column
   colnames(display_col)[1] <- "display"
