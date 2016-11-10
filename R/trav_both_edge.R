@@ -153,7 +153,7 @@ trav_both_edge <- function(graph,
   }
 
   # Add bindings for variables
-  from <- to <- NULL
+  from <- to <- id <- rel <- NULL
 
   # Get the selection of nodes as the starting
   # nodes for the traversal

@@ -90,8 +90,8 @@ nudge_node_positions_ws <- function(graph,
                                     dx,
                                     dy) {
 
-  # Bind variables to workspace
-  nodes <- x <- y <- NULL
+  # Add bindings for variables
+  nodes <- x <- y <- id <- NULL
 
   # Get the graph's node data frame as an object; stop
   # function if this doesn't exist
