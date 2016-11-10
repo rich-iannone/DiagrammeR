@@ -59,9 +59,10 @@
 select_rev_edges_ws <- function(graph,
                                 add_to_selection = TRUE) {
 
-  # Stop function if there are no edges in the graph
-  if (edge_count(graph) == 0) {
-    stop("The graph has no edges so no selections can be made.")
+  # Stop function if there are no edges in the selection
+  if (is.null(graph$selection$edges$from) |
+      is.null(graph$selection$edges$to)) {
+    stop("There is no selection of edges available.")
   }
 
   # Extract the selection of edges
