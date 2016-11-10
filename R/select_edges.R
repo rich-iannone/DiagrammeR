@@ -63,7 +63,7 @@
 #' # being `z`
 #' graph <-
 #'   graph %>%
-#'   clear_selection %>%
+#'   clear_selection() %>%
 #'   select_edges(edge_attr = "rel", search = "z")
 #'
 #' # Verify that an edge selection has been made, and
@@ -77,7 +77,7 @@
 #' # selection of edges)
 #' graph <-
 #'   graph %>%
-#'   clear_selection %>%
+#'   clear_selection() %>%
 #'   select_edges(edge_attr = "value", search = ">3.0")
 #'
 #' # Verify that the correct edge selection has been
