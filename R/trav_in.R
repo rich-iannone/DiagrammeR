@@ -156,7 +156,7 @@
 #' @export trav_in
 
 trav_in <- function(graph,
-                       conditions = NULL) {
+                    conditions = NULL) {
 
   if (is.null(graph$selection$nodes)) {
     stop("There is no selection of nodes available.")
