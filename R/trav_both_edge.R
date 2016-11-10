@@ -221,7 +221,6 @@ trav_both_edge <- function(graph,
 
       # Remove column numbers that end with ".x" or ".y"
       edges <- edges[-which(grepl("\\.x$", colnames(edges)))]
-
       edges <-edges[-which(grepl("\\.y$", colnames(edges)))]
 
       # Bind the `value_col` df to the `edges` df
@@ -306,7 +305,6 @@ trav_both_edge <- function(graph,
   # data frame of `valid_edges`
   if (!is.null(conditions)) {
     for (i in 1:length(conditions)) {
-
       valid_edges <-
         valid_edges %>%
         dplyr::filter_(conditions[i])
