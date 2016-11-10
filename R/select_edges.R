@@ -95,16 +95,19 @@ select_edges <- function(graph,
                          from = NULL,
                          to = NULL) {
 
-  if (is_graph_empty(graph)) {
-    stop("The graph is empty so no selections can be made.")
+  # Validation: graph itself is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
   }
 
-  if (is.null(graph$edges_df)) {
-    stop("The graph has no edges so no selections can be made.")
+  # Validation: graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no selections can be made.")
   }
 
-  if (edge_count(graph) == 0) {
-    stop("The graph has no edges so no selections can be made.")
+  # Validation: graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no selections can be made.")
   }
 
   # Remove any selection of nodes
