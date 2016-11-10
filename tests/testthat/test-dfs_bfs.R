@@ -71,6 +71,14 @@ test_that("the dfs algorithm is functional", {
     dfs_out,
     c(1, 2, 5, 3, 9, 15, 13, 4,
       6, 10, 12, 7, 8, 11, 14))
+
+  # Expect an error if performing dfs without
+  # a node data frame in the graph
+  expect_error(create_graph() %>% do_dfs())
+
+  # Expect an error if an invalid `direction`
+  # value provided
+  expect_error(graph %>% do_dfs(direction = "any"))
 })
 
 test_that("the bfs algorithm is functional", {
@@ -144,4 +152,12 @@ test_that("the bfs algorithm is functional", {
     bfs_out,
     c(1, 2, 5, 3, 6, 9, 13, 15,
       4, 10, 12, 7, 8, 11, 14))
+
+  # Expect an error if performing bfs without
+  # a node data frame in the graph
+  expect_error(create_graph() %>% do_bfs())
+
+  # Expect an error if an invalid `direction`
+  # value provided
+  expect_error(graph %>% do_bfs(direction = "any"))
 })
