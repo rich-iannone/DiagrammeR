@@ -1,0 +1,147 @@
+#' Set the node attribute values to be rendered
+#' @description Set a node attribute type to display
+#' as node text when calling the \code{render_graph()}
+#' function. This allows for display of different types
+#' of node attribute values on a per-node basis.
+#' Without setting the \code{display} attribute,
+#' rendering a graph will default to printing text
+#' from the \code{label} attribute on nodes. Setting
+#' the \code{display} node attribute with this function
+#' for the first time (i.e., the \code{display} column
+#' doesn't exist in the graph's internal node data frame)
+#' will insert the \code{attr} value for all nodes
+#' specified in \code{nodes} and a default value
+#' (\code{default}) for all remaining nodes.
+#' @param graph a graph object of class
+#' \code{dgr_graph} that is created using
+#' \code{create_graph}.
+#' @param nodes a length vector containing one or
+#' several node ID values (as integers) for which
+#' node attributes are set for display in the
+#' rendered graph.
+#' @param attr the name of the attribute to
+#' set for the \code{type} of global attribute
+#' specified.
+#' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' # Create a random graph
+#' graph <-
+#'   create_random_graph(
+#'     5, 5, set_seed = 23)
+#'
+#' # For node ID values of `1` to `3`, choose
+#' # to display the node `value` attribute (for
+#' # the other nodes, display nothing)
+#' graph <-
+#'   graph %>%
+#'   set_node_attr_to_display(
+#'     nodes = 1:3, attr = "value", default = NA)
+#'
+#' # Show the graph's node data frame; the
+#' # `display` node attribute will show for
+#' # each row, which node attribute value to
+#' # display when the graph is rendered
+#' get_node_df(graph)
+#' #>   id type label display value
+#' #> 1  1 <NA>     1   value   6.0
+#' #> 2  2 <NA>     2   value   2.5
+#' #> 3  3 <NA>     3   value   3.5
+#' #> 4  4 <NA>     4    <NA>   7.5
+#' #> 5  5 <NA>     5    <NA>   8.5
+#'
+#' # This function can be called multiple
+#' # times on a graph; after the first time
+#' # (i.e., creation of the `display`
+#' # attribute), the `default` value won't
+#' # be used
+#' graph %>%
+#'   set_node_attr_to_display(
+#'     nodes = 4, attr = "label") %>%
+#'   set_node_attr_to_display(
+#'     nodes = c(1, 5), attr = "id") %>%
+#'   get_node_df()
+#' #>   id type label display value
+#' #> 1  1 <NA>     1   value   6.0
+#' #> 2  2 <NA>     2   value   2.5
+#' #> 3  3 <NA>     3   value   3.5
+#' #> 4  4 <NA>     4   label   7.5
+#' #> 5  5 <NA>     5      id   8.5
+#' @importFrom dplyr mutate left_join coalesce bind_cols select everything
+#' @importFrom tibble tibble
+#' @export set_node_attr_to_display
+
+set_node_attr_to_display <- function(graph,
+                                     nodes = NULL,
+                                     attr = NULL,
+                                     default = "label") {
+
+  # Get the graph's node data frame as an object; stop
+  # function if this doesn't exist
+  if (is.null(graph$nodes_df)) {
+    stop("This graph does not contain any nodes.")
+  } else {
+    ndf <- graph$nodes_df
+  }
+
+  # Stop function if any of the node ID values
+  # provided in `nodes` do not exist in the graph
+  if (!any(nodes %in% ndf$id)) {
+    stop("One or more node ID values in `nodes` are not present in the graph.")
+  }
+
+  # Stop function if the node attribute supplied as
+  # `attr` does not exist in the ndf
+  if (!(attr %in% colnames(ndf))) {
+    stop("The node attribute given in `attr` in not in the graph's ndf.")
+  }
+
+  # If the `display` node attribute doesn't exist,
+  # create that column and fill with the default value
+  if (!("display" %in% colnames(ndf))) {
+    ndf <-
+      ndf %>%
+      dplyr::mutate(display = as.character(default))
+  }
+
+  # Create a tibble with the node ID values and the
+  # requested node attribute to display
+  attr_to_display <-
+    tibble::tibble(
+      id = as.integer(nodes),
+      display = as.character(attr))
+
+  # Join the `attr_to_display` table with the `ndf`
+  ndf <-
+    ndf %>%
+    dplyr::left_join(attr_to_display, by = "id")
+
+  # Get the column numbers for the `.x`
+  # and `.y` columns
+  x_col <- which(grepl("\\.x$", colnames(ndf)))
+  y_col <- which(grepl("\\.y$", colnames(ndf)))
+
+  # Coalesce the 2 generated columns and create a
+  # single-column data frame
+  display_col <-
+    dplyr::coalesce(ndf[, x_col], ndf[, y_col]) %>%
+    as.data.frame(stringsAsFactors = FALSE)
+
+  # Rename the column
+  colnames(display_col)[1] <- "display"
+
+  # Remove column numbers that end with ".x" or ".y"
+  ndf <- ndf[-which(grepl("\\.x$", colnames(ndf)))]
+  ndf <- ndf[-which(grepl("\\.y$", colnames(ndf)))]
+
+  # Bind the `display_col` df to the `ndf` df and
+  # modify the ordering of the columns
+  ndf <-
+    dplyr::bind_cols(ndf, display_col) %>%
+    dplyr::select(
+      id, type, label, display, dplyr::everything())
+
+  # Replace the graph's node data frame with `ndf`
+  graph$nodes_df <- ndf
+
+  return(graph)
+}
