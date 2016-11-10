@@ -29,6 +29,9 @@ test_that("Getting all neighbors of one or more nodes is possible", {
   # `7`, and `15`
   expect_identical(all_nbrs_5_7_15,
                    c(1, 2, 6, 12, 18))
+
+  # Expect an NA value if there are no neighbors
+  expect_true(is.na(get_nbrs(random_graph, 7)))
 })
 
 test_that("Getting non-neighbors of a node is possible", {
@@ -51,8 +54,11 @@ test_that("Getting non-neighbors of a node is possible", {
   expect_equal(
     non_nbrs_5,
     c(3, 4, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17))
-})
 
+  # Expect an NA value if there are no non-neighbors
+  expect_true(
+    is.na(create_graph() %>% add_node %>% get_non_nbrs(1)))
+})
 
 test_that("Getting common neighbors of 2 or more nodes is possible", {
 
@@ -75,7 +81,6 @@ test_that("Getting common neighbors of 2 or more nodes is possible", {
   expect_equal(
     get_common_nbrs(random_graph, c(9, 17)), 1)
 })
-
 
 test_that("Getting similar neighbors of a node is possible", {
 
