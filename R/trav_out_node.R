@@ -137,7 +137,7 @@ trav_out_node <- function(graph,
 
   if (is.null(graph$selection$edges$from) |
       is.null(graph$selection$edges$to)) {
-    stop("There is no selection of nodes available.")
+    stop("There is no selection of edges available.")
   }
 
   # Add binding
