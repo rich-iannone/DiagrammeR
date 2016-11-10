@@ -99,7 +99,7 @@ select_edges <- function(graph,
     stop("The graph is empty so no selections can be made.")
   }
 
-  if (edge_count(graph) == 0) {
+  if (edge_count(graph) == 0 | is.null(graph$edges_df)) {
     stop("The graph has no edges so no selections can be made.")
   }
 
