@@ -178,7 +178,7 @@ trav_both <- function(graph,
     stop("There is no selection of nodes, so, no traversal can occur.")
   }
 
-  # Bind variable
+  # Create bindings for specific variables
   value <- NULL
 
   # Get the selection of nodes as the starting

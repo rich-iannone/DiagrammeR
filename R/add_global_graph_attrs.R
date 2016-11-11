@@ -65,7 +65,7 @@ add_global_graph_attrs <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  # Assign NULL to several objects
+  # Create bindings for specific variables
   value.x <- value.y <- NULL
 
   # Coerce any logical value for `value` to a

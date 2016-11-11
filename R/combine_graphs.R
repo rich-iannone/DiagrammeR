@@ -48,8 +48,7 @@ combine_graphs <- function(x,
     stop("The graph object `y` is not valid.")
   }
 
-  # Assign NULL to certain variables used as df
-  # column names
+  # Create bindings for specific variables
   new_node_id <- type <- label <- NULL
 
   # Get the number of nodes ever created for

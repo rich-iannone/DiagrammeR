@@ -17,7 +17,7 @@ generate_dot <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # Assign NULL to several objects
+  # Create bindings for specific variables
   attr_type <- attr <- value <- NULL
 
   # Extract objects from the graph objecct

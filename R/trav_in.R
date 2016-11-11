@@ -178,7 +178,7 @@ trav_in <- function(graph,
     stop("There is no selection of nodes, so, no traversal can occur.")
   }
 
-  # Add bindings for variables
+  # Create bindings for specific variables
   from <- to <- NULL
 
   # Get the selection of nodes as the starting

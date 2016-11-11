@@ -101,7 +101,7 @@ nudge_node_positions_ws <- function(graph,
     stop("There is no selection of nodes available.")
   }
 
-  # Add bindings for variables
+  # Create bindings for specific variables
   nodes <- x <- y <- id <- NULL
 
   # Get the graph's node data frame as an object; stop

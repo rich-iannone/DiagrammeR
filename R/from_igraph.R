@@ -23,7 +23,7 @@
 
 from_igraph <- function(igraph) {
 
-  # Initialize `id` as NULL to bind variable
+  # Create bindings for specific variables
   id <- NULL
 
   # Get vectors of all node and edge attributes

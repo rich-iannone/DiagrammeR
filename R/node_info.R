@@ -56,8 +56,7 @@ node_info <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # Set `id` initially as NULL to bind it as
-  # a global variable
+  # Create bindings for specific variables
   id <- NULL
 
   # If graph is empty, return NULL

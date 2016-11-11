@@ -155,7 +155,7 @@ trav_in_node <- function(graph,
     stop("There is no selection of edges, so, no traversal can occur.")
   }
 
-  # Bind variable
+  # Create bindings for specific variables
   id <- NULL
 
   # Get the selection of nodes as the starting

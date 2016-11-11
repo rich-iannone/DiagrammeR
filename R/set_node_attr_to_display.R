@@ -94,7 +94,7 @@ set_node_attr_to_display <- function(graph,
     stop("The graph contains no nodes, so, no selections can be made.")
   }
 
-  # Add bindings for variables
+  # Create bindings for specific variables
   id <- type <- label <- display <- type <- NULL
 
   # Get the graph's node data frame as an object; stop

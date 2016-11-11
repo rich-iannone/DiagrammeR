@@ -168,7 +168,7 @@ trav_both_edge <- function(graph,
     stop("There is no selection of nodes, so, no traversal can occur.")
   }
 
-  # Add bindings for variables
+  # Create bindings for specific variables
   from <- to <- id <- rel <- NULL
 
   # Get the selection of nodes as the starting

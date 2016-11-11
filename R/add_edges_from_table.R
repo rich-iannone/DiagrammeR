@@ -111,7 +111,7 @@ add_edges_from_table <- function(graph,
     stop("The graph contains no nodes, so, edges cannot be added.")
   }
 
-  # Bind variables to workspace
+  # Create bindings for specific variables
   rel <- id <- from <- to <- NULL
 
   # Determine whether the table is a file connection

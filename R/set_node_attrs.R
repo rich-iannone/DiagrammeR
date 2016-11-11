@@ -92,7 +92,7 @@ set_node_attrs <- function(x,
                            values,
                            nodes = NULL) {
 
-  # Bind variable
+  # Create bindings for specific variables
   id <- NULL
 
   # Stop function if `node_attr` is `id`

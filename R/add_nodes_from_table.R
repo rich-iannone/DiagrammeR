@@ -100,7 +100,7 @@ add_nodes_from_table <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  # Bind variable to workspace
+  # Create bindings for specific variables
   type <- NULL
 
   # Get the number of nodes ever created for
