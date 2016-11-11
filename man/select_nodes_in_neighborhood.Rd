@@ -49,19 +49,19 @@ graph <-
     node = 1, distance = 1)
 
 # Get the selection of nodes
-graph \%>\% get_selection
+graph \%>\% get_selection()
 #> [1] 1 2 3
 
 # Perform another selection of nodes, this time
 # with a neighborhood spanning 2 nodes from node `1`
 graph <-
   graph \%>\%
-  clear_selection \%>\%
+  clear_selection() \%>\%
   select_nodes_in_neighborhood(
     node = 1, distance = 2)
 
 # Get the selection of nodes
-graph \%>\% get_selection
+graph \%>\% get_selection()
 #> [1] 1 2 3 4 5 6 7
 
 # Perform a final selection of nodes, using
@@ -69,7 +69,7 @@ graph \%>\% get_selection
 # nodes in this graph
 graph <-
   graph \%>\%
-  clear_selection \%>\%
+  clear_selection() \%>\%
   select_nodes_in_neighborhood(
     node = 1, distance = 3)
 

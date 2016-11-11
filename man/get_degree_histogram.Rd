@@ -33,7 +33,7 @@ random_graph <-
     set_seed = 20)
 
 # Get degree histogram data for `random_graph`
-random_graph \%>\% get_degree_histogram
+random_graph \%>\% get_degree_histogram()
 #> 0 1 2 3 4 5
 #> 1 3 7 2 4 1
 }

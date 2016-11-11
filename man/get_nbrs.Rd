@@ -46,13 +46,13 @@ random_graph <-
   random_graph \%>\%
   select_nodes_by_id(11) \%>\%
   set_node_attrs_ws("color", "purple") \%>\%
-  clear_selection \%>\%
+  clear_selection() \%>\%
   select_nodes_by_id(get_nbrs(., 11)) \%>\%
   set_node_attrs_ws("color", "green")
 
 # A node with no neighbors with return `NA`
 create_graph() \%>\%
-  add_node \%>\%
+  add_node() \%>\%
   get_nbrs(1)
 #> [1] NA
 }

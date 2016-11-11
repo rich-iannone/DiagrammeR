@@ -38,7 +38,7 @@ graph <-
   clear_selection
 
 # Get the graph's internal edge data frame (edf)
-graph \%>\% get_edge_df
+graph \%>\% get_edge_df()
 #>   from to rel color
 #> 1    1  2   b  blue
 #> 2    1  3   a green

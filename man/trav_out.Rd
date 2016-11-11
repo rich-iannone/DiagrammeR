@@ -90,8 +90,8 @@ get_edge_df(graph)
 # on the nodes traversed to
 graph \%>\%
   select_nodes_by_id(3) \%>\%
-  trav_out \%>\%
-  get_selection
+  trav_out() \%>\%
+  get_selection()
 #> [1] 5
 
 # Traverse from node `1` to outbound
@@ -102,7 +102,7 @@ graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out(
     conditions = "values > 7.0") \%>\%
-  get_selection
+  get_selection()
 #> [1] 3
 
 # Traverse from node `1` to any outbound
@@ -112,7 +112,7 @@ graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out(
     conditions = "type == 'b'") \%>\%
-  get_selection
+  get_selection()
 #> [1] 3
 
 # Traverse from node `2` to any outbound
@@ -128,7 +128,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_out(
     conditions = "deg == 1") \%>\%
-  get_selection
+  get_selection()
 #> [1] 4
 
 # Traverse from node `2` to any outbound
@@ -141,7 +141,7 @@ graph \%>\%
     conditions = c(
       "type == 'a'",
       "values > 8.0")) \%>\%
-  get_selection
+  get_selection()
 #> [1] 2
 
 # Traverse from node `2` to any outbound
@@ -153,7 +153,7 @@ graph \%>\%
   trav_out(
     conditions = c(
       "type == 'b' | values > 8.0")) \%>\%
-  get_selection
+  get_selection()
 #> [1] 4 5
 
 # Traverse from node `2` to any outbound
@@ -163,7 +163,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_out(
     conditions = "grepl('..d', label)") \%>\%
-  get_selection
+  get_selection()
 #> [1] 5
 }
 

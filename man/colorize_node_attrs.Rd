@@ -56,8 +56,8 @@ graph <-
 
 # Inspect the number of distinct communities
 get_node_attrs(graph, "walktrap_group") \%>\%
-  unique \%>\%
-  sort
+  unique() \%>\%
+  sort()
 #> [1] 1 2 3 4
 
 # Visually distinguish the nodes in the different
@@ -71,9 +71,7 @@ graph <-
   colorize_node_attrs(
     "walktrap_group", "fillcolor", alpha = 90) \%>\%
   colorize_node_attrs(
-    "walktrap_group", "color") \%>\%
-  set_global_graph_attrs(
-    "graph", "layout", "circo")
+    "walktrap_group", "color")
 
 # Show the graph's internal node data frame
 get_node_df(graph)

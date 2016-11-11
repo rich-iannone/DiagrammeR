@@ -36,8 +36,8 @@ to extant nodes within the graph.
 # the `add_node()` function twice
 graph <-
   create_graph() \%>\%
-  add_node \%>\%
-  add_node
+  add_node() \%>\%
+  add_node()
 
 # Get a count of nodes in the graph
 node_count(graph)

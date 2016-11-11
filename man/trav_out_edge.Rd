@@ -82,8 +82,8 @@ get_edge_df(graph)
 # nodes traversed to
 graph \%>\%
   select_nodes_by_id(1) \%>\%
-  trav_out_edge \%>\%
-  get_selection
+  trav_out_edge() \%>\%
+  get_selection()
 #> [1] "1 -> 2" "1 -> 3"
 
 # Traverse from node `1` to any outbound
@@ -93,7 +93,7 @@ graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out_edge(
     conditions = "is.na(rel)") \%>\%
-  get_selection
+  get_selection()
 #> [1] "1 -> 2"
 
 # Traverse from node `1` to any outbound
@@ -104,7 +104,7 @@ graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out_edge(
     conditions = "values > 5.0") \%>\%
-  get_selection
+  get_selection()
 #> [1] "1 -> 2"
 
 # Traverse from node `1` to any outbound
@@ -115,7 +115,7 @@ graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out_edge(
     conditions = "rel == 'A'") \%>\%
-  get_selection
+  get_selection()
 #> [1] "1 -> 3"
 
 # Traverse from node `2` to any outbound
@@ -126,7 +126,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_out_edge(
     conditions = "rel \%in\% c('B', 'C')") \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 4" "2 -> 5"
 
 # Traverse from node `2` to any outbound
@@ -139,7 +139,7 @@ graph \%>\%
     conditions = c(
       "rel \%in\% c('B', 'C')",
       "values > 6.0")) \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 5"
 
 # Traverse from node `2` to any outbound
@@ -151,7 +151,7 @@ graph \%>\%
   trav_out_edge(
     conditions = c(
       "rel \%in\% c('B', 'C') | values > 6.0")) \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 4" "2 -> 5"
 
 # Traverse from node `2` to any outbound
@@ -161,7 +161,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_out_edge(
     conditions = "grepl('B|C', rel)") \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 4" "2 -> 5"
 }
 

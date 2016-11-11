@@ -76,7 +76,7 @@ get_selection(graph)
 # being `z`
 graph <-
   graph \%>\%
-  clear_selection \%>\%
+  clear_selection() \%>\%
   select_nodes(node_attr = "type", search = "z")
 
 # Verify that an node selection has been made, and
@@ -90,7 +90,7 @@ get_selection(graph)
 # selection of nodes)
 graph <-
   graph \%>\%
-  clear_selection \%>\%
+  clear_selection() \%>\%
   select_nodes(node_attr = "value", search = ">3.0")
 
 # Verify that the correct node selection has been

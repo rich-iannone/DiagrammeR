@@ -51,7 +51,7 @@ graph <-
 
 # Get the mean from all values available in
 # the cache
-graph \%>\% get_cache \%>\% mean
+graph \%>\% get_cache() \%>\% mean()
 #> [1] 4.651246
 }
 

@@ -33,7 +33,7 @@ random_graph <-
     set_seed = 20)
 
 # Get degree distribution data for `random_graph`
-random_graph \%>\% get_degree_distribution
+random_graph \%>\% get_degree_distribution()
 #> 0          1          2          3
 #> 0.05555556 0.16666667 0.38888889 0.11111111
 #> 4          5

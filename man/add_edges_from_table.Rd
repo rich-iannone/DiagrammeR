@@ -73,7 +73,7 @@ graph_1 <-
 
 # View part of the graph's internal edge data
 # frame (edf) using `get_edge_df()`
-graph_1 \%>\% get_edge_df \%>\% head
+graph_1 \%>\% get_edge_df() \%>\% head()
 #>   from to  rel cost_unit
 #> 1  148  1 <NA>  0.272300
 #> 2  148  2 <NA>  0.015210
@@ -98,7 +98,7 @@ graph_2 <-
 
 # View part of the graph's internal edge data
 # frame (edf) using `get_edge_df()`
-graph_2 \%>\% get_edge_df \%>\% head
+graph_2 \%>\% get_edge_df() \%>\% head()
 #>   from to      rel cost_unit
 #> 1  148  1 from_usd  0.272300
 #> 2  148  2 from_usd  0.015210

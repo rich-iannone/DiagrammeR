@@ -38,7 +38,7 @@ graph <-
   cache_node_attrs("value", "numeric")
 
 # Return the cached vector
-graph \%>\% get_cache
+graph \%>\% get_cache()
 #> [1] 6.975722 12.970367 10.015652
 #> [4] 8.585629 7.582081
 }

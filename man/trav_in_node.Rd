@@ -92,8 +92,8 @@ get_edge_df(graph)
 # traversed to
 graph \%>\%
   select_edges(from = 1, to = 3) \%>\%
-  trav_in_node \%>\%
-  get_selection
+  trav_in_node() \%>\%
+  get_selection()
 #> [1] 3
 
 # Traverse from edges `2` -> `5` and
@@ -103,8 +103,8 @@ graph \%>\%
 graph \%>\%
   select_edges(from = 2, to = 5) \%>\%
   select_edges(from = 3, to = 5) \%>\%
-  trav_in_node \%>\%
-  get_selection
+  trav_in_node() \%>\%
+  get_selection()
 #> [1] 5
 
 # Traverse from the edge `1` -> `3`
@@ -116,7 +116,7 @@ graph \%>\%
   select_edges(from = 1, to = 3) \%>\%
   trav_in_node(
     conditions = "values > 7.0") \%>\%
-  get_selection
+  get_selection()
 #> [1] 3
 
 # Traverse from the edge `1` -> `3`
@@ -130,7 +130,7 @@ graph \%>\%
   select_edges(from = 1, to = 3) \%>\%
   trav_in_node(
     conditions = "values < 7.0") \%>\%
-  get_selection
+  get_selection()
 #> [1] "1 -> 3"
 
 # Traverse from the edge `1` -> `2` to
@@ -141,7 +141,7 @@ graph \%>\%
   select_edges(from = 1, to = 2) \%>\%
   trav_in_node(
     conditions = "grepl('.*d$', label) | values < 6.0") \%>\%
-  get_selection
+  get_selection()
 #> [1] 2
 }
 

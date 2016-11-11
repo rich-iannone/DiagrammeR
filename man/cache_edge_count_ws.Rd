@@ -26,10 +26,10 @@ graph <-
 graph <-
   graph %>%
   select_edges_by_node_id(2) %>%
-  cache_edge_count_ws
+  cache_edge_count_ws()
 
 # Get the number of edges stored in the cache
-graph %>% get_cache
+graph %>% get_cache()
 #> [1] 3
 }
 \description{

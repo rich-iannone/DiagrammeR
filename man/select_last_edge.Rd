@@ -39,10 +39,10 @@ graph \%<>\%
 # Select the last edge added
 graph <-
   graph \%>\%
-  select_last_edge
+  select_last_edge()
 
 # Get the current selection
-graph \%>\% get_selection
+graph \%>\% get_selection()
 #> [1] "2 -> 3"
 }
 

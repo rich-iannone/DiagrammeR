@@ -71,11 +71,11 @@ graph <-
   add_n_nodes_ws(5, "from")
 
 # Get the graph's nodes
-graph \%>\% get_node_ids
+graph \%>\% get_node_ids()
 #> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
-graph \%>\% get_edges
+graph \%>\% get_edges()
 #> "1 -> 2" "1 -> 3" "1 -> 4" "1 -> 5" "1 -> 6"
 
 # Create an empty graph, add a node to it, select
@@ -89,11 +89,11 @@ graph <-
   add_n_nodes_ws(5, "to")
 
 # Get the graph's nodes
-graph \%>\% get_node_ids
+graph \%>\% get_node_ids()
 #> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
-graph \%>\% get_edges
+graph \%>\% get_edges()
 #> "2 -> 1" "3 -> 1" "4 -> 1" "5 -> 1" "6 -> 1"
 }
 

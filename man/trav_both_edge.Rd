@@ -75,7 +75,7 @@ get_edge_df(graph)
 graph \%>\%
   select_nodes_by_id(3) \%>\%
   trav_both_edge \%>\%
-  get_selection
+  get_selection()
 #> [1] "1 -> 3" "3 -> 5"
 
 # Traverse from node `2` to any adjacent
@@ -85,7 +85,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_both_edge(
     conditions = "is.na(rel)") \%>\%
-  get_selection
+  get_selection()
 #> [1] "1 -> 2"
 
 # Traverse from node `2` to any adjacent
@@ -96,7 +96,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_both_edge(
     conditions = "values > 6.5") \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 5"
 
 # Traverse from node `5` to any adjacent
@@ -107,7 +107,7 @@ graph \%>\%
   select_nodes_by_id(5) \%>\%
   trav_both_edge(
     conditions = "rel == 'C'") \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 5"
 
 # Traverse from node `2` to any adjacent
@@ -118,7 +118,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_both_edge(
     conditions = "rel \%in\% c('B', 'C')") \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 4" "2 -> 5"
 
 # Traverse from node `2` to any adjacent
@@ -131,7 +131,7 @@ graph \%>\%
     conditions = c(
       "rel \%in\% c('B', 'C')",
       "values > 4.0")) \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 4" "2 -> 5"
 
 # Traverse from node `2` to any adjacent
@@ -143,7 +143,7 @@ graph \%>\%
   trav_both_edge(
     conditions = c(
       "rel \%in\% c('B', 'C') | values > 4.0")) \%>\%
-  get_selection
+  get_selection()
 #> [1] "1 -> 2" "2 -> 4" "2 -> 5"
 
 # Traverse from node `2` to any adjacent
@@ -153,7 +153,7 @@ graph \%>\%
   select_nodes_by_id(2) \%>\%
   trav_both_edge(
     conditions = "grepl('B|C', rel)") \%>\%
-  get_selection
+  get_selection()
 #> [1] "2 -> 4" "2 -> 5"
 }
 

@@ -40,12 +40,12 @@ numeric ranges can be provided for the selection.
 graph <-
   create_graph() \%>\%
   add_node("a") \%>\%
-  select_nodes \%>\%
+  select_nodes() \%>\%
   add_n_nodes_ws(3, "from", "b") \%>\%
-  clear_selection \%>\%
+  clear_selection() \%>\%
   select_nodes("type", "b") \%>\%
   add_n_nodes_ws(3, "from", "c") \%>\%
-  clear_selection
+  clear_selection()
 
 # Create a graph selection by selecting edges
 # associated with nodes `1` and `2`
@@ -54,14 +54,14 @@ graph <-
   select_edges_by_node_id(1:2)
 
 # Get the selection of edges
-graph \%>\% get_selection
+graph \%>\% get_selection()
 #> "1 -> 2" "1 -> 3" "1 -> 4"
 
 # Perform another selection of nodes, with nodes
 # `1`, `2`, and `4`
 graph <-
   graph \%>\%
-  clear_selection \%>\%
+  clear_selection() \%>\%
   select_edges_by_node_id(c(1, 2, 4))
 
 # Get the selection of edges

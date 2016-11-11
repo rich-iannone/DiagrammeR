@@ -31,8 +31,8 @@ is_graph_directed(graph)
 # Use the `set_graph_undirected()` function and
 # check again whether the graph is directed
 graph \%>\%
-  set_graph_undirected \%>\%
-  is_graph_directed
+  set_graph_undirected() \%>\%
+  is_graph_directed()
 #> [1] FALSE
 }
 

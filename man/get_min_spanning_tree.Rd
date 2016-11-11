@@ -41,7 +41,7 @@ graph <-
 # the lowest similarity values possible
 min_spanning_tree_graph <-
   graph \%>\%
-  get_min_spanning_tree \%>\%
+  get_min_spanning_tree() \%>\%
   copy_edge_attrs("weight", "label") \%>\%
   set_edge_attrs("fontname", "Helvetica") \%>\%
   set_edge_attrs("color", "gray85") \%>\%

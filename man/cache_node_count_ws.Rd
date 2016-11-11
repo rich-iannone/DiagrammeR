@@ -51,7 +51,7 @@ graph <-
   cache_node_count_ws()
 
 # Get the number of nodes stored in the cache
-graph \%>\% get_cache
+graph \%>\% get_cache()
 #> [1] 4
 }
 

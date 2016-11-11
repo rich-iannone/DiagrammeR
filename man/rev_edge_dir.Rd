@@ -24,7 +24,7 @@ graph <-
   add_balanced_tree(2, 2)
 
 # Inspect the graph's edges
-graph \%>\% get_edges
+graph \%>\% get_edges()
 #> [1] "1 -> 2" "1 -> 3" "2 -> 4" "2 -> 5" "3 -> 6"
 #> [6] "3 -> 7"
 
@@ -33,7 +33,7 @@ graph \%>\% get_edges
 graph <- graph \%>\% rev_edge_dir
 
 # Inspect the graph's edges after their reversal
-graph \%>\% get_edges
+graph \%>\% get_edges()
 #> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2" "6 -> 3"
 #> [6] "7 -> 3"
 }

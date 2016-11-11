@@ -45,24 +45,20 @@ random_graph <-
     n = 35, m = 125,
     fully_connected = TRUE,
     directed = TRUE,
-    set_seed = 25) \%>\%
-  set_global_graph_attrs(
-    "graph", "layout", "neato") \%>\%
-  set_global_graph_attrs(
-    "graph", "overlap", "false")
+    set_seed = 25)
 
 # Report which nodes have a total degree (indegree
 # + outdegree) of exactly 9
 random_graph \%>\%
   select_nodes_by_degree("both", "==9") \%>\%
-  get_selection
+  get_selection()
 #> [1]  4  8 11 18 20 24 31
 
 # Report which nodes have a total degree greater
 # than or equal to 9
 random_graph \%>\%
   select_nodes_by_degree("both", ">=9") \%>\%
-  get_selection
+  get_selection()
 #> [1]  4  5  7  8  9 11 18 20 24 31 32
 
 # Combine two calls of `select_nodes_by_degree()`
@@ -73,7 +69,7 @@ random_graph \%>\%
 random_graph \%>\%
   select_nodes_by_degree("both", "<3") \%>\%
   select_nodes_by_degree("both", ">10") \%>\%
-  get_selection
+  get_selection()
 #> [1] 16  5  7
 
 # Combine two calls of `select_nodes_by_degree()`
@@ -84,7 +80,7 @@ random_graph \%>\%
 random_graph \%>\%
   select_nodes_by_degree("both", ">=3") \%>\%
   select_nodes_by_degree("both", "<=10", "intersect") \%>\%
-  get_selection
+  get_selection()
 #>  [1]  1  2  3  4  6  8  9 10 11 12 13 14 15 17 18
 #> [16] 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33
 #> [31] 34 35
@@ -98,7 +94,7 @@ random_graph_2 <-
   set_node_attrs_ws("color", "red")
 
 # Get the selection of nodes
-random_graph_2 \%>\% get_selection
+random_graph_2 \%>\% get_selection()
 #> [1] 4 6
 }
 
