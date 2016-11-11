@@ -4,7 +4,7 @@
 \alias{set_node_attr_to_display}
 \title{Set the node attribute values to be rendered}
 \usage{
-set_node_attr_to_display(graph, nodes = NULL, attr = NULL,
+set_node_attr_to_display(graph, attr = NULL, nodes = NULL,
   default = "label")
 }
 \arguments{
@@ -12,18 +12,18 @@ set_node_attr_to_display(graph, nodes = NULL, attr = NULL,
 \code{dgr_graph} that is created using
 \code{create_graph}.}
 
+\item{attr}{the name of the attribute to
+set for the \code{type} of global attribute
+specified. If set to \code{NULL}, then \code{NA}
+values will be assigned to the \code{display}
+for the chosen nodes.}
+
 \item{nodes}{a length vector containing one or
 several node ID values (as integers) for which
 node attributes are set for display in the
 rendered graph. If \code{NULL}, all nodes from
 the graph are assigned the \code{display} value
 given as \code{attr}.}
-
-\item{attr}{the name of the attribute to
-set for the \code{type} of global attribute
-specified. If set to \code{NULL}, then \code{NA}
-values will be assigned to the \code{display}
-for the chosen nodes.}
 
 \item{default}{the name of an attribute to
 set for all other graph nodes not included
