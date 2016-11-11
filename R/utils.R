@@ -5,11 +5,6 @@
 # Function to check whether a graph object is valid
 graph_object_valid <- function(graph) {
 
-  # Check the object class for `dgr_graph`
-  if (!inherits(graph, "dgr_graph")) {
-    return(FALSE)
-  }
-
   # Check for all component names to be present
   if (!all(c("graph_name", "graph_time", "graph_tz",
              "nodes_df", "edges_df", "global_attrs",
@@ -73,37 +68,6 @@ graph_contains_edge_selection <- function(graph) {
   }
 
   # Check if graph contains `from` and `to` integer vectors
-  if (is.null(graph$selection$edges$from) |
-      is.null(graph$selection$edges$to)) {
-    return(FALSE)
-  }
-
-  # Check if the `from` and `to` vectors have length > 0,
-  # and are of equal length
-  if (length(graph$selection$edges$from) == 0 |
-      length(graph$selection$edges$to) == 0 |
-      length(graph$selection$edges$from) !=
-      length(graph$selection$edges$to)) {
-    return(FALSE)
-  }
-
-  return(TRUE)
-}
-
-# Function to check whether a graph contains a valid edge selection
-graph_contains_edge_selection <- function(graph) {
-
-  # Check if graph contains any selection
-  if (is.null(graph$selection)) {
-    return(FALSE)
-  }
-
-  # Check if graph contains an edge selection
-  if (is.null(graph$selection$edges)) {
-    return(FALSE)
-  }
-
-  # Check if graph contains `from` and `to` vectors
   if (is.null(graph$selection$edges$from) |
       is.null(graph$selection$edges$to)) {
     return(FALSE)
