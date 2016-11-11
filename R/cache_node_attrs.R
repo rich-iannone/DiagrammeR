@@ -35,7 +35,7 @@
 #'
 #' # Get the mean from all values available in
 #' # the cache
-#' graph %>% get_cache %>% mean
+#' graph %>% get_cache() %>% mean()
 #' #> [1] 4.651246
 #' @export cache_node_attrs
 
@@ -44,7 +44,12 @@ cache_node_attrs <- function(graph,
                              mode = NULL,
                              nodes = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
+  # Get internal node data frame as an object
   nodes_df <- graph$nodes_df
 
   if (is.null(nodes)) {

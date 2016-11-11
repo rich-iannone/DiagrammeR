@@ -19,7 +19,7 @@
 #'   add_n_nodes(5)
 #'
 #' # Get the graph's nodes
-#' graph %>% get_node_ids
+#' graph %>% get_node_ids()
 #' #> [1] 1 2 3 4 5
 #' @importFrom dplyr bind_rows
 #' @export add_n_nodes
@@ -28,6 +28,11 @@ add_n_nodes <- function(graph,
                         n,
                         type = NULL,
                         label = NULL) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   if (is.null(type)) {
     type <- as.character(NA)

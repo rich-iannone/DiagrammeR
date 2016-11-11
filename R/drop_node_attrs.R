@@ -41,6 +41,11 @@
 drop_node_attrs <- function(graph,
                             node_attr) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop function if length of `node_attr` is
   # greater than one
   if (length(node_attr) > 1) {

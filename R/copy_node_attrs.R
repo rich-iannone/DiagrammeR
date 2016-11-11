@@ -50,6 +50,11 @@ copy_node_attrs <- function(graph,
                             node_attr_from,
                             node_attr_to) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop function if `node_attr_from` and
   # `node_attr_to` are identical
   if (node_attr_from == node_attr_to) {

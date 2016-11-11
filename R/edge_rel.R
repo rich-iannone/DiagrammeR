@@ -88,6 +88,11 @@ edge_rel <- function(graph,
                      action = "read",
                      value = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Determine if edge is present within the graph
   edge_is_in_graph <-
     edge_present(

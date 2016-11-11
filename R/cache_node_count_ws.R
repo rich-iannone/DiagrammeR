@@ -38,21 +38,25 @@
 #'   cache_node_count_ws()
 #'
 #' # Get the number of nodes stored in the cache
-#' graph %>% get_cache
+#' graph %>% get_cache()
 #' #> [1] 4
 #' @export cache_node_count_ws
 
 cache_node_count_ws <- function(graph) {
 
-  # If no node selection is available, return the
-  # graph unchanged
-  if (is.null(graph$selection$nodes)) {
-    return(graph)
-  } else {
-    # Cache numeric vector of single length
-    # in the graph
-    graph$cache <- length(graph$selection$nodes)
-
-    return(graph)
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
   }
+
+  # Validation: Graph object has valid node selection
+  if (graph_contains_node_selection(graph) == FALSE) {
+    stop("There is no selection of nodes available.")
+  }
+
+  # Cache numeric vector of single length
+  # in the graph
+  graph$cache <- length(graph$selection$nodes)
+
+  return(graph)
 }

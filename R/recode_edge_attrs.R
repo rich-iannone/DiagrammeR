@@ -73,6 +73,16 @@ recode_edge_attrs <- function(graph,
                               otherwise = NULL,
                               edge_attr_to = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edges can be recoded.")
+  }
+
   # Get list object from named vectors
   replacements <- list(...)
 

@@ -96,6 +96,11 @@ get_paths <- function(graph,
                       longest_path = FALSE,
                       distance = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   reverse_paths <- FALSE
 
   if (is.null(from) & !is.null(to)) {

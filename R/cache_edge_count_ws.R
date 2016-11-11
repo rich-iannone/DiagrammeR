@@ -30,23 +30,28 @@
 #' graph <-
 #'   graph %>%
 #'   select_edges_by_node_id(2) %>%
-#'   cache_edge_count_ws
+#'   cache_edge_count_ws()
 #'
 #' # Get the number of edges stored in the cache
-#' graph %>% get_cache
+#' graph %>% get_cache()
 #' #> [1] 3
 #' @export cache_edge_count_ws
 
 cache_edge_count_ws <- function(graph) {
 
-  # If no edge selection is available, return the
-  # graph unchanged
-  if (is.null(graph$selection$edges)) {
-    return(graph)
-  } else {
-    # Cache numeric vector of single length
-    # in the graph
-    graph$cache <- length(graph$selection$edges$from)
-    return(graph)
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
   }
+
+  # Validation: Graph object has valid edge selection
+  if (graph_contains_edge_selection(graph) == FALSE) {
+    stop("There is no selection of edges available.")
+  }
+
+  # Cache numeric vector of single length
+  # in the graph
+  graph$cache <- length(graph$selection$edges$from)
+
+  return(graph)
 }

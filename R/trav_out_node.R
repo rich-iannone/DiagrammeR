@@ -78,8 +78,8 @@
 #' # traversed to
 #' graph %>%
 #'   select_edges(from = 1, to = 3) %>%
-#'   trav_out_node %>%
-#'   get_selection
+#'   trav_out_node() %>%
+#'   get_selection()
 #' #> [1] 1
 #'
 #' # Traverse from edges `2` -> `5` and
@@ -89,8 +89,8 @@
 #' graph %>%
 #'   select_edges(from = 2, to = 5) %>%
 #'   select_edges(from = 3, to = 5) %>%
-#'   trav_out_node %>%
-#'   get_selection
+#'   trav_out_node() %>%
+#'   get_selection()
 #' #> [1] 2 3
 #'
 #' # Traverse from the edge `1` -> `3`
@@ -102,7 +102,7 @@
 #'   select_edges(from = 1, to = 3) %>%
 #'   trav_out_node(
 #'     conditions = "values > 7.0") %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 1
 #'
 #' # Traverse from the edge `1` -> `3`
@@ -116,7 +116,7 @@
 #'   select_edges(from = 1, to = 3) %>%
 #'   trav_out_node(
 #'     conditions = "values < 7.0") %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] "1 -> 3"
 #'
 #' # Traverse from the edge `1` -> `2` to
@@ -127,7 +127,7 @@
 #'   select_edges(from = 1, to = 2) %>%
 #'   trav_out_node(
 #'     conditions = "grepl('.*d$', label) | values < 6.0") %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 1
 #' @importFrom dplyr filter filter_
 #' @export trav_out_node
@@ -135,10 +135,24 @@
 trav_out_node <- function(graph,
                           conditions = NULL) {
 
-  # Stop function if there are no edges in the selection
-  if (is.null(graph$selection$edges$from) |
-      is.null(graph$selection$edges$to)) {
-    stop("There is no selection of edges available.")
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no traversal can occur.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no traversal can occur.")
+  }
+
+  # Validation: Graph object has valid edge selection
+  if (graph_contains_edge_selection(graph) == FALSE) {
+    stop("There is no selection of edges, so, no traversal can occur.")
   }
 
   # Add binding

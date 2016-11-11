@@ -12,6 +12,11 @@
 
 generate_dot <- function(graph) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Assign NULL to several objects
   attr_type <- attr <- value <- NULL
 

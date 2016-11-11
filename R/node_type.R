@@ -82,6 +82,10 @@ node_type <- function(graph,
                       action = "read",
                       value = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Determine if node is present within the graph
   node_is_in_graph <-

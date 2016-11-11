@@ -52,7 +52,7 @@
 #'
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
-#' graph_1 %>% get_edge_df %>% head
+#' graph_1 %>% get_edge_df() %>% head()
 #' #>   from to  rel cost_unit
 #' #> 1  148  1 <NA>  0.272300
 #' #> 2  148  2 <NA>  0.015210
@@ -77,7 +77,7 @@
 #'
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
-#' graph_2 %>% get_edge_df %>% head
+#' graph_2 %>% get_edge_df() %>% head()
 #' #>   from to      rel cost_unit
 #' #> 1  148  1 from_usd  0.272300
 #' #> 2  148  2 from_usd  0.015210
@@ -100,6 +100,16 @@ add_edges_from_table <- function(graph,
                                  rel_col = NULL,
                                  set_rel = NULL,
                                  drop_cols = NULL) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, edges cannot be added.")
+  }
 
   # Bind variables to workspace
   rel <- id <- from <- to <- NULL

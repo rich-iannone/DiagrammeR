@@ -33,11 +33,16 @@
 
 to_igraph <- function(graph) {
 
-igraph_graph <-
-  igraph::graph_from_data_frame(
-    d = graph$edges,
-    directed = graph$directed,
-    vertices = graph$nodes)
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
-return(igraph_graph)
+  igraph_graph <-
+    igraph::graph_from_data_frame(
+      d = graph$edges,
+      directed = graph$directed,
+      vertices = graph$nodes)
+
+  return(igraph_graph)
 }

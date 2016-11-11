@@ -38,7 +38,7 @@
 #'
 #' # Get the mean from all values available in
 #' # the cache
-#' graph %>% get_cache %>% mean
+#' graph %>% get_cache() %>% mean()
 #' #> [1] 4.62536
 #' @export cache_edge_attrs
 
@@ -48,27 +48,33 @@ cache_edge_attrs <- function(graph,
                              from = NULL,
                              to = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Extract the graph's edge data frame
   edges_df <- graph$edges_df
 
   if (is.null(from) & !is.null(to)) {
     edges_df <-
-      edges_df[which(edges_df$to %in% to),]
+      edges_df[which(edges_df$to %in% to), ]
   } else if (!is.null(from) & is.null(to)) {
     edges_df <-
-      edges_df[which(edges_df$from %in% from),]
+      edges_df[which(edges_df$from %in% from), ]
   } else if (is.null(from) & is.null(to)) {
     edges_df <- edges_df
   } else {
     edges_df <-
       edges_df[which((edges_df$from %in% from) &
-                       (edges_df$to %in% to)),]
+                       (edges_df$to %in% to)), ]
   }
 
   if (any(edge_attr %in%
           colnames(edges_df)[-c(1:2)])) {
 
     edges_attr_vector <-
-      edges_df[,which(colnames(edges_df) %in%
+      edges_df[, which(colnames(edges_df) %in%
                         edge_attr)]
 
     if (!is.null(mode)) {

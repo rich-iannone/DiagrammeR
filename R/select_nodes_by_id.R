@@ -27,13 +27,23 @@
 #' # selection of nodes with `get_selection()`
 #' graph %>%
 #'   select_nodes_by_id(1:5) %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 1 2 3 4 5
 #' @export select_nodes_by_id
 
 select_nodes_by_id <- function(graph,
                                nodes,
                                set_op = "union") {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no selections can be made.")
+  }
 
   # Get a vector of node ID values from the graph
   nodes_in_graph <- graph$nodes_df[, 1]

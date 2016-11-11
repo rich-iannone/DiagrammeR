@@ -60,6 +60,11 @@ join_edge_attrs <- function(graph,
                             by_graph = NULL,
                             by_df = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   if (is.null(by_graph) & !is.null(by_df)) {
     stop("Both column specifications must be provided.")
   }

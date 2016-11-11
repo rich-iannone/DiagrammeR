@@ -38,11 +38,19 @@
 combine_graphs <- function(x,
                            y) {
 
+  # Validation: Graph object `x` is valid
+  if (graph_object_valid(x) == FALSE) {
+    stop("The graph object `x` is not valid.")
+  }
+
+  # Validation: Graph object `y` is valid
+  if (graph_object_valid(y) == FALSE) {
+    stop("The graph object `y` is not valid.")
+  }
+
   # Assign NULL to certain variables used as df
   # column names
-  new_node_id <- NULL
-  type <- NULL
-  label <- NULL
+  new_node_id <- type <- label <- NULL
 
   # Get the number of nodes ever created for
   # graph `x`

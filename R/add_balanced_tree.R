@@ -45,6 +45,11 @@ add_balanced_tree <- function(graph,
                               label = TRUE,
                               rel = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop if k is too small
   if (k <= 1) {
     stop("The value for k must be at least 2.")

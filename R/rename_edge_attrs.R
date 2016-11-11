@@ -52,6 +52,16 @@ rename_edge_attrs <- function(graph,
                               edge_attr_from,
                               edge_attr_to) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edge attributes can be renamed.")
+  }
+
   # Stop function if `edge_attr_from` and
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {

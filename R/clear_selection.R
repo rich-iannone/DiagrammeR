@@ -47,11 +47,15 @@
 
 clear_selection <- function(graph) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Clear the selection in the graph, if it exists
   if (!is.null(graph$selection)) {
     graph$selection <- NULL
   }
 
-  # Return the graph
   return(graph)
 }

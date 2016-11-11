@@ -86,6 +86,21 @@ nudge_node_positions_ws <- function(graph,
                                     dx,
                                     dy) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no nodes can be moved.")
+  }
+
+  # Validation: Graph object has valid node selection
+  if (graph_contains_node_selection(graph) == FALSE) {
+    stop("There is no selection of nodes available.")
+  }
+
   # Add bindings for variables
   nodes <- x <- y <- id <- NULL
 

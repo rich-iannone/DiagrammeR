@@ -20,13 +20,18 @@
 #'     set_seed = 20)
 #'
 #' # Get degree histogram data for `random_graph`
-#' random_graph %>% get_degree_histogram
+#' random_graph %>% get_degree_histogram()
 #' #> 0 1 2 3 4 5
 #' #> 1 3 7 2 4 1
 #' @importFrom igraph degree_distribution
 #' @export get_degree_histogram
 
 get_degree_histogram <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

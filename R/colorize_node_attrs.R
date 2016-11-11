@@ -37,8 +37,8 @@
 #'
 #' # Inspect the number of distinct communities
 #' get_node_attrs(graph, "walktrap_group") %>%
-#'   unique %>%
-#'   sort
+#'   unique() %>%
+#'   sort()
 #' #> [1] 1 2 3 4
 #'
 #' # Visually distinguish the nodes in the different
@@ -52,9 +52,7 @@
 #'   colorize_node_attrs(
 #'     "walktrap_group", "fillcolor", alpha = 90) %>%
 #'   colorize_node_attrs(
-#'     "walktrap_group", "color") %>%
-#'   set_global_graph_attrs(
-#'     "graph", "layout", "circo")
+#'     "walktrap_group", "color")
 #'
 #' # Show the graph's internal node data frame
 #' get_node_df(graph)
@@ -125,6 +123,11 @@ colorize_node_attrs <- function(graph,
                                 cut_points = NULL,
                                 alpha = NULL,
                                 default_color = "#D9D9D9") {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Get the number of nodes ever created for
   # this graph

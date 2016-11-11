@@ -38,6 +38,11 @@ get_jaccard_similarity <- function(graph,
                                    direction = "all",
                                    round_to = 3) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 

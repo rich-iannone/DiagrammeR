@@ -29,8 +29,14 @@
 
 select_last_node <- function(graph) {
 
-  if (is_graph_empty(graph)) {
-    stop("The graph is empty so no selections can be made.")
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no node can be selected.")
   }
 
   nodes <- graph$nodes_df[, 1]

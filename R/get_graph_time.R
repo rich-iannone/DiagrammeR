@@ -20,7 +20,7 @@
 #'
 #' # Get the graph's time as a POSIXct-formatted object
 #' # using `get_graph_time()`
-#' graph %>% get_graph_time
+#' graph %>% get_graph_time()
 #' #> [1] "2015-10-25 15:23:00 GMT"
 #'
 #' # Get the graph's time as a character object
@@ -36,6 +36,11 @@
 get_graph_time <- function(graph,
                            as_posixct = TRUE,
                            get_tz = FALSE) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # If the graph has a time and time zone,
   # assign those to the `time` and `tz` objects

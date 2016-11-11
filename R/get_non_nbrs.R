@@ -26,6 +26,11 @@
 get_non_nbrs <- function(graph,
                          node) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Get predecessors and successors for the `node`
   node_nbrs <-
     c(get_predecessors(graph, node = node),

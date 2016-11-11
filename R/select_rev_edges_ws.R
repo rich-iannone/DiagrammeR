@@ -59,9 +59,18 @@
 select_rev_edges_ws <- function(graph,
                                 add_to_selection = TRUE) {
 
-  # Stop function if there are no edges in the selection
-  if (is.null(graph$selection$edges$from) |
-      is.null(graph$selection$edges$to)) {
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no selections can be made.")
+  }
+
+  # Validation: Graph object has valid edge selection
+  if (graph_contains_edge_selection(graph) == FALSE) {
     stop("There is no selection of edges available.")
   }
 

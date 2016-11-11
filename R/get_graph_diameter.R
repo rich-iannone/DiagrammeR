@@ -18,5 +18,10 @@
 
 get_graph_diameter <- function(graph) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   return(max(get_eccentricity(graph)))
 }

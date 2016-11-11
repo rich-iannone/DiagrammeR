@@ -92,6 +92,16 @@ rescale_node_attrs <- function(graph,
                                from_lower_bound = NULL,
                                from_upper_bound = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no node attributes can be rescaled.")
+  }
+
   # Extract the graph's ndf
   nodes <- get_node_df(graph)
 

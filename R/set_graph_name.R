@@ -17,10 +17,17 @@
 set_graph_name <- function(graph,
                            name) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
 
+  # Ensure that the name provided is classed
+  # as `character`
   name <- as.character(name)
 
   dgr_graph <-

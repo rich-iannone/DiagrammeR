@@ -88,6 +88,11 @@ get_similar_nbrs <- function(graph,
                              tol_abs = NULL,
                              tol_pct = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Get value to match on
   match <-
     get_node_df(graph)[

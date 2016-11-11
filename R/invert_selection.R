@@ -47,6 +47,11 @@
 
 invert_selection <- function(graph) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop function if the graph does not contain
   # a selection
   if (is.null(graph$selection)) {

@@ -28,7 +28,7 @@
 #' # the lowest similarity values possible
 #' min_spanning_tree_graph <-
 #'   graph %>%
-#'   get_min_spanning_tree %>%
+#'   get_min_spanning_tree() %>%
 #'   copy_edge_attrs("weight", "label") %>%
 #'   set_edge_attrs("fontname", "Helvetica") %>%
 #'   set_edge_attrs("color", "gray85") %>%
@@ -37,6 +37,11 @@
 #' @export get_min_spanning_tree
 
 get_min_spanning_tree <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Transform the graph to an igraph object
   igraph <- to_igraph(graph)

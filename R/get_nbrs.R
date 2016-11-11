@@ -32,19 +32,24 @@
 #'   random_graph %>%
 #'   select_nodes_by_id(11) %>%
 #'   set_node_attrs_ws("color", "purple") %>%
-#'   clear_selection %>%
+#'   clear_selection() %>%
 #'   select_nodes_by_id(get_nbrs(., 11)) %>%
 #'   set_node_attrs_ws("color", "green")
 #'
 #' # A node with no neighbors with return `NA`
 #' create_graph() %>%
-#'   add_node %>%
+#'   add_node() %>%
 #'   get_nbrs(1)
 #' #> [1] NA
 #' @export get_nbrs
 
 get_nbrs <- function(graph,
                      nodes) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Get predecessors and successors for all nodes
   # in `nodes`
@@ -61,7 +66,7 @@ get_nbrs <- function(graph,
   # Get a unique set of node ID values
   node_nbrs <- sort(unique(node_nbrs))
 
-  # If there are no neighbors, then return `NA`
+  # If there are no neighbors, then return NA
   if (length(node_nbrs) == 0) {
     return(NA)
   } else {

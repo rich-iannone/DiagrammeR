@@ -74,7 +74,10 @@ render_graph <- function(graph,
                          width = NULL,
                          height = NULL) {
 
-  stopifnot(inherits(graph, "dgr_graph"))
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   if (is.null(output) & !is.null(graph$graph_attrs)) {
     if ("output = visNetwork" %in% graph$graph_attrs) {

@@ -37,6 +37,11 @@
 get_successors <- function(graph,
                            node) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # If the graph contains no edges, return NA
   if (is.null(graph$edges_df)) {
     return(NA)

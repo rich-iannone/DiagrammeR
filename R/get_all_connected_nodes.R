@@ -60,6 +60,11 @@
 get_all_connected_nodes <- function(graph,
                                     node) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Bind variable to workspace
   id <- NULL
 

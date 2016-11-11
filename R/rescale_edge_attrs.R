@@ -102,6 +102,16 @@ rescale_edge_attrs <- function(graph,
                                from_lower_bound = NULL,
                                from_upper_bound = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edge attributes can be rescaled.")
+  }
+
   # Extract the graph's edf
   edges <- get_edge_df(graph)
 

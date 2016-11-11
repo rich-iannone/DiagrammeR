@@ -25,12 +25,17 @@
 #'   cache_node_attrs("value", "numeric")
 #'
 #' # Return the cached vector
-#' graph %>% get_cache
+#' graph %>% get_cache()
 #' #> [1] 6.975722 12.970367 10.015652
 #' #> [4] 8.585629 7.582081
 #' @export get_cache
 
 get_cache <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # If there is no cached vector available, return NA
   if (is.null(graph$cache)) {

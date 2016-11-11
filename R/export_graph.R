@@ -63,6 +63,11 @@ export_graph <- function(graph,
                          width = NULL,
                          height = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # If no `file_name` or `file_type` provided, default to
   # writing a PDF with a unique `file_name` value based
   # on user's current date/time

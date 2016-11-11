@@ -55,7 +55,7 @@
 #'
 #' # Get the cached vector and get its
 #' # difference from 5
-#' graph %>% get_cache %>% {x <- .; 5 - x}
+#' graph %>% get_cache() %>% {x <- .; 5 - x}
 #' #> [1] 0.4236672 2.0831823 2.3066151
 #' #> [4] 3.0002598 0.8910665
 #' @export cache_edge_attrs_ws
@@ -64,9 +64,16 @@ cache_edge_attrs_ws <- function(graph,
                                 edge_attr,
                                 mode = NULL) {
 
-  if (is.null(graph$selection$edges)) {
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph object has valid edge selection
+  if (graph_contains_edge_selection(graph) == FALSE) {
     stop("There is no selection of edges available.")
   }
+
 
   edges_df <-
     get_edge_df(graph)[which(get_edge_df(graph)[,1]

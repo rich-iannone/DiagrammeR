@@ -23,6 +23,16 @@
 delete_node <- function(graph,
                         node) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no node can be deleted.")
+  }
+
   # Verify that `node` is given as a single value
   node_is_single_value <-
     ifelse(length(node) == 1, TRUE, FALSE)

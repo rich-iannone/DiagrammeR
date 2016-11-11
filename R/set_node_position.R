@@ -107,13 +107,18 @@ set_node_position <- function(graph,
                               y,
                               use_labels = FALSE) {
 
-  # Get the graph's node data frame as an object; stop
-  # function if this doesn't exist
-  if (is.null(graph$nodes_df)) {
-    stop("This graph does not contain any nodes.")
-  } else {
-    ndf <- graph$nodes_df
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
   }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no node attributes can be set.")
+  }
+
+  # Get the graph's node data frame
+  ndf <- graph$nodes_df
 
   # Stop function if the node ID provided doesn't
   # exist in the graph

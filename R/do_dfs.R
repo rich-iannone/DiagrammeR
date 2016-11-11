@@ -64,10 +64,14 @@ do_dfs <- function(graph,
                    node = NULL,
                    direction = "all") {
 
-  # Stop function if there is no node data frame
-  # in the graph
-  if (is.null(graph$nodes_df)) {
-    stop("This graph does not contain any nodes.")
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes.")
   }
 
   # If no node provided, choose a random node

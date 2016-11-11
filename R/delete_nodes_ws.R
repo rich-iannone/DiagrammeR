@@ -45,10 +45,19 @@
 
 delete_nodes_ws <- function(graph) {
 
-  # If no node selection is available, return
-  # the graph unchanged
-  if (is.null(graph$selection$nodes)) {
-    return(graph)
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no nodes can be deleted.")
+  }
+
+  # Validation: Graph object has valid node selection
+  if (graph_contains_node_selection(graph) == FALSE) {
+    stop("There is no selection of nodes available.")
   }
 
   # Get the number of nodes ever created for

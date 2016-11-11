@@ -83,6 +83,11 @@ mutate_edge_attrs <- function(graph,
                               edge_attr_to = NULL,
                               round_to = 3) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Extract the graph's edf
   edges <- get_edge_df(graph)
 

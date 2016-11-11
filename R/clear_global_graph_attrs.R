@@ -23,6 +23,11 @@
 
 clear_global_graph_attrs <- function(graph) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Clear the global graph attributes data frame
   # by removing all rows from it
   graph$global_attrs <-

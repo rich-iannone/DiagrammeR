@@ -56,6 +56,21 @@ set_node_attrs_ws <- function(graph,
                               node_attr,
                               value) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no node attributes can be set.")
+  }
+
+  # Validation: Graph object has valid node selection
+  if (graph_contains_node_selection(graph) == FALSE) {
+    stop("There is no selection of nodes available.")
+  }
+
   # Get vector of node ID values
   nodes <- graph$selection$nodes
 

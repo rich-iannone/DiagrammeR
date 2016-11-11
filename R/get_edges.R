@@ -93,7 +93,7 @@ get_edges <- function(x,
                       match = NULL,
                       return_type = "vector") {
 
-  if (class(x) == "dgr_graph") {
+  if (inherits(x, "dgr_graph")) {
 
     if (is_graph_empty(x) | is.null(x$edges_df)) {
 

@@ -51,6 +51,11 @@ delete_global_graph_attrs <- function(graph,
                                       attr,
                                       attr_type) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop function if `attr_type` is not a valid
   # attribute type
   if (!any(attr_type %in% c("graph", "node", "edge"))) {

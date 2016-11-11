@@ -108,6 +108,16 @@ recode_node_attrs <- function(graph,
                               otherwise = NULL,
                               node_attr_to = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no nodes can be recoded.")
+  }
+
   # Get list object from named vectors
   replacements <- list(...)
 

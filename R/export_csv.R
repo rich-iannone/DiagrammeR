@@ -42,7 +42,7 @@
 #'
 #' # Create separate `nodes.csv` and `edges.csv`
 #' # files in the working directory
-#' graph %>% export_csv
+#' graph %>% export_csv()
 #' @importFrom utils write.csv
 #' @export export_csv
 
@@ -51,6 +51,11 @@ export_csv <- function(graph,
                        edf_name = "edges.csv",
                        output_path = getwd(),
                        colnames_type = NULL) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   nodes_df <- get_node_df(graph)
   edges_df <- get_edge_df(graph)

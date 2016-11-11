@@ -63,6 +63,11 @@ colorize_edge_attrs <- function(graph,
                                 alpha = NULL,
                                 default_color = "#D9D9D9") {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
@@ -155,7 +160,7 @@ colorize_edge_attrs <- function(graph,
   }
 
   # Modify the graph
-  graph$edges_df = edges_df
+  graph$edges_df <- edges_df
 
   return(graph)
 }

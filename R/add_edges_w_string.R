@@ -72,6 +72,16 @@ add_edges_w_string <- function(graph,
                                rel = NULL,
                                use_labels = FALSE) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, edges cannot be added.")
+  }
+
   # Remove linebreak characters from `edges`
   edges_cleaned <-
     gsub("\n", " ", edges)

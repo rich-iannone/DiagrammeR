@@ -38,6 +38,21 @@ delete_edge <- function(graph,
                         from,
                         to) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no selections can be made.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no selections can be made.")
+  }
+
   # Verify that each of the values for `from` and
   # `to` are given as single values
   from_is_single_value <-

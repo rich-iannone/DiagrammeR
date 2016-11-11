@@ -41,8 +41,14 @@
 add_edge_df <- function(graph,
                         edge_df) {
 
-  if (is_graph_empty(graph)) {
-    stop("Edges cannot be added to an empty graph.")
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, edges cannot be added.")
   }
 
   # Get the number of nodes ever created for

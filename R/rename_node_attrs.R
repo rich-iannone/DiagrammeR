@@ -46,6 +46,16 @@ rename_node_attrs <- function(graph,
                               node_attr_from,
                               node_attr_to) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no node attributes can be renamed.")
+  }
+
   # Stop function if `node_attr_from` and
   # `node_attr_to` are identical
   if (node_attr_from == node_attr_to) {

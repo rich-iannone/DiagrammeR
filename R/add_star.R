@@ -45,6 +45,11 @@ add_star <- function(graph,
                      label = TRUE,
                      rel = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop if n is too small
   if (n <= 3) {
     stop("The value for n must be at least 4.")

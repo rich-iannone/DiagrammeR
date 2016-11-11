@@ -57,6 +57,11 @@ edge_present <- function(graph,
                          from,
                          to) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Verify that each of the values for `from` and
   # `to` are given as a single value
   from_is_single_value <-

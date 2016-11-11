@@ -47,6 +47,11 @@ set_cache <- function(graph,
                       to_cache,
                       col = NULL) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   if (inherits(to_cache, c("numeric", "character"))) {
     # Store the vector in the graph's cache
     graph$cache <- to_cache

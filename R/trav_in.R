@@ -76,8 +76,8 @@
 #' # on the nodes traversed to
 #' graph %>%
 #'   select_nodes_by_id(4) %>%
-#'   trav_in %>%
-#'   get_selection
+#'   trav_in() %>%
+#'   get_selection()
 #' #> [1] 2
 #'
 #' # Traverse from node `5` to inbound-facing
@@ -88,7 +88,7 @@
 #'   select_nodes_by_id(4) %>%
 #'   trav_in(
 #'     conditions = "values > 5.0") %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 2
 #'
 #' # Traverse from node `5` to any inbound
@@ -98,7 +98,7 @@
 #'   select_nodes_by_id(5) %>%
 #'   trav_in(
 #'     conditions = "type == 'b'") %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 3
 #'
 #' # Traverse from node `5` to any inbound
@@ -114,7 +114,7 @@
 #'   select_nodes_by_id(5) %>%
 #'   trav_in(
 #'     conditions = "deg == 2") %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 3
 #'
 #' # Traverse from node `5` to any inbound
@@ -127,7 +127,7 @@
 #'     conditions = c(
 #'       "type == 'a'",
 #'       "values > 6.0")) %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 2
 #'
 #' # Traverse from node `5` to any inbound
@@ -139,7 +139,7 @@
 #'   trav_in(
 #'     conditions = c(
 #'       "type == 'b' | values > 6.0")) %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 2 3
 #'
 #' # Traverse from node `5` to any inbound
@@ -149,7 +149,7 @@
 #'   select_nodes_by_id(2) %>%
 #'   trav_in(
 #'     conditions = "grepl('^i...', label)") %>%
-#'   get_selection
+#'   get_selection()
 #' #> [1] 2
 #' @importFrom dplyr filter filter_ select inner_join rename
 #' @importFrom tibble as_tibble
@@ -158,8 +158,24 @@
 trav_in <- function(graph,
                     conditions = NULL) {
 
-  if (is.null(graph$selection$nodes)) {
-    stop("There is no selection of nodes available.")
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no traversal can occur.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no traversal can occur.")
+  }
+
+  # Validation: Graph object has valid node selection
+  if (graph_contains_node_selection(graph) == FALSE) {
+    stop("There is no selection of nodes, so, no traversal can occur.")
   }
 
   # Add bindings for variables

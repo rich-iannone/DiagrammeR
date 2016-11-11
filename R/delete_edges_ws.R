@@ -33,7 +33,7 @@
 #' # Delete edges in selection
 #' graph <-
 #'   graph %>%
-#'   delete_edges_ws
+#'   delete_edges_ws()
 #'
 #' # Get a count of edges in the graph
 #' edge_count(graph)
@@ -41,6 +41,26 @@
 #' @export delete_edges_ws
 
 delete_edges_ws <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no edges can be deleted.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edges can be deleted.")
+  }
+
+  # Validation: Graph object has valid edge selection
+  if (graph_contains_edge_selection(graph) == FALSE) {
+    stop("There is no selection of edges available.")
+  }
 
   # If no edge selection is available, return the
   # graph unchanged

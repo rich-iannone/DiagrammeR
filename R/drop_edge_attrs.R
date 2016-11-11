@@ -46,6 +46,11 @@
 drop_edge_attrs <- function(graph,
                             edge_attr) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop function if length of `edge_attr` is
   # greater than one
   if (length(edge_attr) > 1) {

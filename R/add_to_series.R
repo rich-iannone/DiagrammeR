@@ -18,12 +18,12 @@
 #'
 #' graph_2 <-
 #'   graph_1 %>%
-#'   add_node %>%
+#'   add_node() %>%
 #'   add_edge(4, 3)
 #'
 #' graph_3 <-
 #'   graph_2 %>%
-#'   add_node %>%
+#'   add_node() %>%
 #'   add_edge(5, 2)
 #'
 #' # Create an empty graph series and add
@@ -41,6 +41,11 @@
 
 add_to_series <- function(graph,
                           graph_series) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Get the series type
   series_type <- graph_series$series_type

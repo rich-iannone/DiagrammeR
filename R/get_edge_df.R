@@ -25,7 +25,7 @@
 #'   clear_selection
 #'
 #' # Get the graph's internal edge data frame (edf)
-#' graph %>% get_edge_df
+#' graph %>% get_edge_df()
 #' #>   from to rel color
 #' #> 1    1  2   b  blue
 #' #> 2    1  3   a green
@@ -35,6 +35,11 @@
 #' @export get_edge_df
 
 get_edge_df <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   if (is.null(graph$edges_df)) {
     return(NA)

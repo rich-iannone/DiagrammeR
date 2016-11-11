@@ -58,7 +58,7 @@
 #'     set_type = "currency")
 #'
 #' # View part of the graph's internal ndf
-#' graph_2 %>% get_node_df %>% .[, 1:5] %>% head
+#' graph_2 %>% get_node_df() %>% .[, 1:5] %>% head()
 #' #>   id     type label iso_4217_code curr_number
 #' #> 1  1 currency   AED           AED         784
 #' #> 2  2 currency   AFN           AFN         971
@@ -80,7 +80,7 @@
 #'     drop_cols = c("exponent", "currency_name"))
 #'
 #' # Show the node attribute names for the graph
-#' graph_3 %>% get_node_df %>% colnames
+#' graph_3 %>% get_node_df() %>% colnames()
 #' #> [1] "id"  type"  "label"  "iso_4217_code"
 #' #> [5] "curr_number"
 #' }
@@ -94,6 +94,11 @@ add_nodes_from_table <- function(graph,
                                  type_col = NULL,
                                  set_type = NULL,
                                  drop_cols = NULL) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Bind variable to workspace
   type <- NULL

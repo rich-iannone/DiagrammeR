@@ -11,14 +11,19 @@
 #'   add_balanced_tree(2, 2)
 #'
 #' # Convert this graph from directed to undirected
-#' graph <- graph %>% set_graph_undirected
+#' graph <- graph %>% set_graph_undirected()
 #'
 #' # Perform a check on whether graph is directed
-#' graph %>% is_graph_directed
+#' graph %>% is_graph_directed()
 #' #> [1] FALSE
 #' @export set_graph_undirected
 
 set_graph_undirected <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # If graph is already undirected, stop function
   if (graph$directed == FALSE) {

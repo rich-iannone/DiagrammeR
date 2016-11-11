@@ -26,21 +26,23 @@
 #' # Select the last edge added
 #' graph <-
 #'   graph %>%
-#'   select_last_edge
+#'   select_last_edge()
 #'
 #' # Get the current selection
-#' graph %>% get_selection
+#' graph %>% get_selection()
 #' #> [1] "2 -> 3"
 #' @export select_last_edge
 
 select_last_edge <- function(graph) {
 
-  if (is_graph_empty(graph)) {
-    stop("The graph is empty so no selections can be made.")
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
   }
 
-  if (edge_count(graph) == 0) {
-    stop("The graph has no edges so no selections can be made.")
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edge can be selected.")
   }
 
   from <- graph$edges_df[, 1]

@@ -25,12 +25,12 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_node("a") %>%
-#'   select_nodes %>%
+#'   select_nodes() %>%
 #'   add_n_nodes_ws(3, "from", "b") %>%
-#'   clear_selection %>%
+#'   clear_selection() %>%
 #'   select_nodes("type", "b") %>%
 #'   add_n_nodes_ws(3, "from", "c") %>%
-#'   clear_selection
+#'   clear_selection()
 #'
 #' # Create a graph selection by selecting edges
 #' # associated with nodes `1` and `2`
@@ -39,14 +39,14 @@
 #'   select_edges_by_node_id(1:2)
 #'
 #' # Get the selection of edges
-#' graph %>% get_selection
+#' graph %>% get_selection()
 #' #> "1 -> 2" "1 -> 3" "1 -> 4"
 #'
 #' # Perform another selection of nodes, with nodes
 #' # `1`, `2`, and `4`
 #' graph <-
 #'   graph %>%
-#'   clear_selection %>%
+#'   clear_selection() %>%
 #'   select_edges_by_node_id(c(1, 2, 4))
 #'
 #' # Get the selection of edges
@@ -69,6 +69,16 @@
 select_edges_by_node_id <- function(graph,
                                     nodes,
                                     set_op = "union") {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edges can be selected.")
+  }
 
   # Extract the edge data frame from the graph
   edge_df <- get_edge_df(graph)

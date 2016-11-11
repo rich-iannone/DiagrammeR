@@ -78,6 +78,11 @@ mutate_node_attrs <- function(graph,
                               node_attr_to = NULL,
                               round_to = 3) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Extract the graph's ndf
   nodes <- get_node_df(graph)
 

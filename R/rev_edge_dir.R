@@ -11,7 +11,7 @@
 #'   add_balanced_tree(2, 2)
 #'
 #' # Inspect the graph's edges
-#' graph %>% get_edges
+#' graph %>% get_edges()
 #' #> [1] "1 -> 2" "1 -> 3" "2 -> 4" "2 -> 5" "3 -> 6"
 #' #> [6] "3 -> 7"
 #'
@@ -20,12 +20,22 @@
 #' graph <- graph %>% rev_edge_dir
 #'
 #' # Inspect the graph's edges after their reversal
-#' graph %>% get_edges
+#' graph %>% get_edges()
 #' #> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2" "6 -> 3"
 #' #> [6] "7 -> 3"
 #' @export rev_edge_dir
 
 rev_edge_dir <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edges can be reversed.")
+  }
 
   # If graph is undirected, stop function
   if (graph$directed == FALSE) {

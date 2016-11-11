@@ -63,6 +63,11 @@
 node_count <- function(graph,
                        type = FALSE) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # If graph is empty, return 0
   if (is_graph_empty(graph)) {
     return(0)

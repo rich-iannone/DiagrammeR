@@ -56,6 +56,11 @@ copy_edge_attrs <- function(graph,
                             edge_attr_from,
                             edge_attr_to) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Stop function if `edge_attr_from` and
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {

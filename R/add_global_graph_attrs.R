@@ -60,6 +60,11 @@ add_global_graph_attrs <- function(graph,
                                    value,
                                    attr_type) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Assign NULL to several objects
   value.x <- value.y <- NULL
 

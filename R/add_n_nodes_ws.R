@@ -52,11 +52,11 @@
 #'   add_n_nodes_ws(5, "from")
 #'
 #' # Get the graph's nodes
-#' graph %>% get_node_ids
+#' graph %>% get_node_ids()
 #' #> [1] 1 2 3 4 5 6
 #'
 #' # Get the graph's edges
-#' graph %>% get_edges
+#' graph %>% get_edges()
 #' #> "1 -> 2" "1 -> 3" "1 -> 4" "1 -> 5" "1 -> 6"
 #'
 #' # Create an empty graph, add a node to it, select
@@ -70,11 +70,11 @@
 #'   add_n_nodes_ws(5, "to")
 #'
 #' # Get the graph's nodes
-#' graph %>% get_node_ids
+#' graph %>% get_node_ids()
 #' #> [1] 1 2 3 4 5 6
 #'
 #' # Get the graph's edges
-#' graph %>% get_edges
+#' graph %>% get_edges()
 #' #> "2 -> 1" "3 -> 1" "4 -> 1" "5 -> 1" "6 -> 1"
 #' @importFrom dplyr bind_rows
 #' @export add_n_nodes_ws
@@ -85,6 +85,11 @@ add_n_nodes_ws <- function(graph,
                            type = NULL,
                            label = NULL,
                            rel = NULL) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # If no node selection is available, return
   # the graph unchanged

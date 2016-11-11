@@ -19,8 +19,8 @@
 #' # the `add_node()` function twice
 #' graph <-
 #'   create_graph() %>%
-#'   add_node %>%
-#'   add_node
+#'   add_node() %>%
+#'   add_node()
 #'
 #' # Get a count of nodes in the graph
 #' node_count(graph)
@@ -46,6 +46,11 @@ add_node <- function(graph,
                      label = NULL,
                      from = NULL,
                      to = NULL) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Get the node ID for the node to be added
   node <- graph$last_node + 1

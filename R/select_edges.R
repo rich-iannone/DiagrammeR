@@ -95,17 +95,17 @@ select_edges <- function(graph,
                          from = NULL,
                          to = NULL) {
 
-  # Validation: graph itself is valid
+  # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
   }
 
-  # Validation: graph contains nodes
+  # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
     stop("The graph contains no nodes, so, no selections can be made.")
   }
 
-  # Validation: graph contains edges
+  # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
     stop("The graph contains no edges, so, no selections can be made.")
   }

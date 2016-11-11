@@ -34,6 +34,11 @@ set_global_graph_attrs <- function(graph,
                                    value,
                                    attr_type) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Ensure that the lengths of vectors for `attr`,
   # `value`, and `attr_type` are equivalent
   if ((length(attr) != length(value)) |

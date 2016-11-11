@@ -27,6 +27,11 @@ get_eccentricity <- function(graph,
                              nodes = NULL,
                              return_type = "vector") {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   if (is.null(nodes)) {
     nodes_to_process <- get_node_ids(graph)
     node_ids <- nodes_to_process

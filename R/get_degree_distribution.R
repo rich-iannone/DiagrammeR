@@ -20,7 +20,7 @@
 #'     set_seed = 20)
 #'
 #' # Get degree distribution data for `random_graph`
-#' random_graph %>% get_degree_distribution
+#' random_graph %>% get_degree_distribution()
 #' #> 0          1          2          3
 #' #> 0.05555556 0.16666667 0.38888889 0.11111111
 #' #> 4          5
@@ -29,6 +29,11 @@
 #' @export get_degree_distribution
 
 get_degree_distribution <- function(graph) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)

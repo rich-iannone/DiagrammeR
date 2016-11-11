@@ -50,6 +50,21 @@ set_edge_attrs_ws <- function(graph,
                               edge_attr,
                               value) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, no edges attributes can be set.")
+  }
+
+  # Validation: Graph object has valid edge selection
+  if (graph_contains_edge_selection(graph) == FALSE) {
+    stop("There is no selection of edges available.")
+  }
+
   # Get vectors of node ID values for the
   # `from` and `to` nodes
   from <- graph$selection$edges$from

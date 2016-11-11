@@ -32,6 +32,11 @@
 get_common_nbrs <- function(graph,
                             nodes) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Get predecessors and successors for all nodes
   # in `nodes`
   for (i in 1:length(nodes)) {

@@ -25,6 +25,11 @@
 
 graph_info <- function(graph) {
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
   # Create an empty data frame
   graph_metrics <-
     as.data.frame(mat.or.vec(nr = 0, nc = 9))

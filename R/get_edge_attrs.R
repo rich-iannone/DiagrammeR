@@ -65,7 +65,7 @@ get_edge_attrs <- function(x,
     }
   }
 
-  if (class(x) == "dgr_graph") {
+  if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"
     edges_df <- x$edges_df
   }

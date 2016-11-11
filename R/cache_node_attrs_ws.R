@@ -59,7 +59,7 @@
 #'
 #' # Get the cached vector and get its
 #' # difference from 5
-#' graph %>% get_cache %>% {x <- .; 5 - x}
+#' graph %>% get_cache() %>% {x <- .; 5 - x}
 #' #> [1] 0.4236672 2.0831823 2.3066151 3.0002598
 #' #> [5] 0.8910665 0.1157822
 #' @export cache_node_attrs_ws
@@ -68,7 +68,13 @@ cache_node_attrs_ws <- function(graph,
                                 node_attr,
                                 mode = NULL) {
 
-  if (is.null(graph$selection$nodes)) {
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph object has valid node selection
+  if (graph_contains_node_selection(graph) == FALSE) {
     stop("There is no selection of nodes available.")
   }
 

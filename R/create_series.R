@@ -50,6 +50,13 @@ create_series <- function(graph = NULL,
                           series_type = "sequential",
                           series_scripts = NULL) {
 
+  # Validation: Graph object is valid
+  if (!is.null(graph))  {
+    if (graph_object_valid(graph) == FALSE) {
+      stop("The graph object is not valid.")
+    }
+  }
+
   # Initialize an empty graph series object
   graph_series <-
     list(graphs = NULL,
