@@ -294,15 +294,12 @@ test_that("Caching a count of nodes is possible", {
   # is 4
   expect_equal(graph$cache, 4)
 
-  # Cache a count of nodes where there is no selection
-  # of nodes in the graph
-  graph_2 <-
+  # Expect an error when caching a count of nodes where
+  # there is no selection of nodes in the graph
+  expect_error(
     graph %>%
-    clear_selection %>%
-    cache_node_count_ws()
-
-  # Expect no change in the graph$cache
-  expect_equivalent(graph$cache, graph_2$cache)
+      clear_selection() %>%
+      cache_node_count_ws())
 })
 
 test_that("Caching a count of edges is possible", {
@@ -324,15 +321,12 @@ test_that("Caching a count of edges is possible", {
   # is 3
   expect_equal(graph$cache, 3)
 
-  # Cache a count of edges where there is no selection
-  # of edges in the graph
-  graph_2 <-
+  # Expect an error when caching a count of edges where
+  # there is no selection of edges in the graph
+  expect_error(
     graph %>%
-    clear_selection %>%
-    cache_edge_count_ws()
-
-  # Expect no change in the graph$cache
-  expect_equivalent(graph$cache, graph_2$cache)
+      clear_selection %>%
+      cache_edge_count_ws())
 })
 
 test_that("Caching node attrs (w/ selection) is possible", {
@@ -480,15 +474,12 @@ test_that("Caching a count of nodes is possible", {
   # is 4
   expect_equal(graph$cache, 4)
 
-  # Cache a count of nodes where there is no selection
-  # of nodes in the graph
-  graph_2 <-
+  # Expect an error when cachine a count of nodes where
+  # there is no selection of nodes in the graph
+  expect_error(
     graph %>%
-    clear_selection %>%
-    cache_node_count_ws()
-
-  # Expect no change in the graph$cache
-  expect_equivalent(graph$cache, graph_2$cache)
+      clear_selection() %>%
+      cache_node_count_ws())
 })
 
 test_that("Getting a cache is possible", {
@@ -581,6 +572,7 @@ test_that("Setting a cache is possible", {
 
   # Expect that the cache (originating from a vector)
   # is equivalent to the `closeness_vec` vector
-  expect_equivalent(closeness_vec,
-                    graph_cache_from_vec$cache)
+  expect_equivalent(
+    closeness_vec,
+    graph_cache_from_vec$cache)
 })
