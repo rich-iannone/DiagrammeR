@@ -196,3 +196,25 @@ translate_to_node_id <- function(graph, from, to) {
 
   return(id_from_to)
 }
+
+
+###
+# Graph logging functions
+###
+
+# Function to get the time of the graph function in
+# the user's locale
+graph_function_sys_time <- function() {
+  return(Sys.time())
+}
+
+# Function to get the time difference from the start
+# of the function (relies on a call of the
+# `graph_function_sys_time()` function) to the time
+# of invoking this function
+graph_function_duration <- function(start_time) {
+  end_time <- Sys.time()
+  time_diff_s <- (end_time - start_time)[[1]]
+  return(time_diff_s)
+}
+
