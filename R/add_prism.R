@@ -95,12 +95,12 @@ add_prism <- function(graph,
   # using the `combine_graphs()` function
   if (!is_graph_empty(graph)) {
 
-    graph <- combine_graphs(graph, prism_graph)
+    combined_graph <- combine_graphs(graph, prism_graph)
 
     # Update the `last_node` counter
-    graph$last_node <- nodes_created + nrow(prism_nodes)
+    combined_graph$last_node <- nodes_created + nrow(prism_nodes)
 
-    return(graph)
+    return(combined_graph)
   } else {
     return(prism_graph)
   }

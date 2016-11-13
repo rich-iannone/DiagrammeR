@@ -83,12 +83,12 @@ add_star <- function(graph,
   # using the `combine_graphs()` function
   if (!is_graph_empty(graph)) {
 
-    graph <- combine_graphs(graph, star_graph)
+    combined_graph <- combine_graphs(graph, star_graph)
 
     # Update the `last_node` counter
-    graph$last_node <- nodes_created + nrow(star_nodes)
+    combined_graph$last_node <- nodes_created + nrow(star_nodes)
 
-    return(graph)
+    return(combined_graph)
   } else {
     return(star_graph)
   }

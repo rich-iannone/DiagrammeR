@@ -273,12 +273,12 @@ add_full_graph <- function(graph,
   # using the `combine_graphs()` function
   if (!is_graph_empty(graph)) {
 
-    graph <- combine_graphs(graph, new_graph)
+    combined_graph <- combine_graphs(graph, new_graph)
 
     # Update the `last_node` counter
-    graph$last_node <- nodes_created + n
+    combined_graph$last_node <- nodes_created + n
 
-    return(graph)
+    return(combined_graph)
   } else {
     return(new_graph)
   }

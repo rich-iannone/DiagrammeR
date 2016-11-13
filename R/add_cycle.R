@@ -77,12 +77,12 @@ add_cycle <- function(graph,
   # using the `combine_graphs()` function
   if (!is_graph_empty(graph)) {
 
-    graph <- combine_graphs(graph, cycle_graph)
+    combined_graph <- combine_graphs(graph, cycle_graph)
 
     # Update the `last_node` counter
-    graph$last_node <- nodes_created + nrow(cycle_nodes)
+    combined_graph$last_node <- nodes_created + nrow(cycle_nodes)
 
-    return(graph)
+    return(combined_graph)
   } else {
     return(cycle_graph)
   }
