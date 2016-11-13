@@ -6,20 +6,22 @@
 graph_object_valid <- function(graph) {
 
   # Check for all component names to be present
-  if (!all(c("graph_name", "graph_time", "graph_tz",
-             "nodes_df", "edges_df", "global_attrs",
-             "directed", "last_node") %in%
+  if (!all(c("graph_info", "nodes_df", "edges_df",
+             "global_attrs", "directed", "last_node") %in%
            names(graph))) {
     return(FALSE)
   }
 
   # Check for specific graph classes
   if (any(
+    inherits(graph$graph_info, "data.frame") == FALSE,
+    inherits(graph$nodes_df, "data.frame") == FALSE,
+    inherits(graph$edges_df, "data.frame") == FALSE,
     inherits(graph$global_attrs, "data.frame") == FALSE,
-    inherits(graph$directed, "logical") == FALSE,
     inherits(graph$global_attrs$attr, "character") == FALSE,
     inherits(graph$global_attrs$value, "character") == FALSE,
-    inherits(graph$global_attrs$attr_type, "character") == FALSE)) {
+    inherits(graph$global_attrs$attr_type, "character") == FALSE,
+    inherits(graph$directed, "logical") == FALSE)) {
     return(FALSE)
   }
 
@@ -28,10 +30,6 @@ graph_object_valid <- function(graph) {
 
 # Function to check whether a graph contains any nodes
 graph_contains_nodes <- function(graph) {
-
-  if (is.null(graph$nodes_df)) {
-    return(FALSE)
-  }
 
   if (node_count(graph) == 0) {
     return(FALSE)
@@ -42,10 +40,6 @@ graph_contains_nodes <- function(graph) {
 
 # Function to check whether a graph contains any edges
 graph_contains_edges <- function(graph) {
-
-  if (is.null(graph$edges_df)) {
-    return(FALSE)
-  }
 
   if (edge_count(graph) == 0) {
     return(FALSE)
