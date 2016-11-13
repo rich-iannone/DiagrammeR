@@ -14,6 +14,8 @@ test_that("the dfs algorithm is functional", {
   # direction into account)
   dfs_all <- graph %>% do_dfs(1)
 
+  dfs_all
+
   # Expect that an integer vector is returned
   expect_is(dfs_all, "integer")
 
@@ -24,8 +26,7 @@ test_that("the dfs algorithm is functional", {
   # Expect that certain values are returned
   expect_equal(
     dfs_all,
-    c(1, 2, 5, 3, 9, 10, 12, 13,
-      4, 6, 15, 14, 7, 8, 11))
+    c(1, 5, 2, 12, 7, 9, 10, 13, 3, 4, 6, 14, 15, 8, 11))
 
   # If not specifying a starting node, the function
   # will begin the search from a random node
@@ -52,8 +53,7 @@ test_that("the dfs algorithm is functional", {
   # Expect that certain values are returned
   expect_equal(
     dfs_in,
-    c(1, 2, 12, 10, 13, 3, 5, 15,
-      9, 14, 4, 6, 7, 8, 11))
+    c(1, 2, 12, 10, 13, 3, 15, 14, 4, 5, 6, 7, 8, 9, 11))
 
   # Using `direction = "out"` results in the dfs
   # moving along solely outward edges
@@ -69,8 +69,7 @@ test_that("the dfs algorithm is functional", {
   # Expect that certain values are returned
   expect_equal(
     dfs_out,
-    c(1, 2, 5, 3, 9, 15, 13, 4,
-      6, 10, 12, 7, 8, 11, 14))
+    c(1, 5, 6, 2, 3, 13, 4, 10, 12, 7, 9, 14, 8, 11, 15))
 
   # Expect an error if performing dfs without
   # a node data frame in the graph
@@ -105,8 +104,7 @@ test_that("the bfs algorithm is functional", {
   # Expect that certain values are returned
   expect_equal(
     bfs_all,
-    c(1, 2, 5, 12, 14, 3, 6, 9,
-      10, 13, 15, 4, 7, 8, 11))
+    c(1, 5, 2, 6, 13, 12, 14, 3, 4, 10, 15, 7, 9, 8, 11))
 
   # If not specifying a starting node, the function
   # will begin the search from a random node
@@ -133,8 +131,7 @@ test_that("the bfs algorithm is functional", {
   # Expect that certain values are returned
   expect_equal(
     bfs_in,
-    c(1, 2, 12, 14, 10, 13, 3,
-      15, 5, 9, 4, 6, 7, 8, 11))
+    c(1, 2, 12, 14, 10, 13, 3, 15, 4, 5, 6, 7, 8, 9, 11))
 
   # Using `direction = "out"` results in the bfs
   # moving along solely outward edges
@@ -150,8 +147,7 @@ test_that("the bfs algorithm is functional", {
   # Expect that certain values are returned
   expect_equal(
     bfs_out,
-    c(1, 2, 5, 3, 6, 9, 13, 15,
-      4, 10, 12, 7, 8, 11, 14))
+    c(1, 5, 6, 2, 3, 13, 4, 10, 14, 12, 7, 9, 8, 11, 15))
 
   # Expect an error if performing bfs without
   # a node data frame in the graph

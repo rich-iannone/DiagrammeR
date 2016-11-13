@@ -19,12 +19,12 @@ test_that("graph series information can be obtained", {
   expect_equal(ncol(empty_series_info), 7)
 
   # Expect specific column classes in the data frame
-  expect_is(empty_series_info[, 1], "numeric")
+  expect_is(empty_series_info[, 1], "integer")
   expect_is(empty_series_info[, 2], "character")
-  expect_is(empty_series_info[, 3], "character")
+  expect_is(empty_series_info[, 3], "POSIXct")
   expect_is(empty_series_info[, 4], "character")
-  expect_is(empty_series_info[, 5], "numeric")
-  expect_is(empty_series_info[, 6], "numeric")
+  expect_is(empty_series_info[, 5], "integer")
+  expect_is(empty_series_info[, 6], "integer")
   expect_is(empty_series_info[, 7], "logical")
 
   # Create 3 graph objects
@@ -48,8 +48,7 @@ test_that("graph series information can be obtained", {
     add_edge(5, 2)
 
   # Create an empty graph series
-  series <-
-    create_series(series_type = "sequential")
+  series <- create_series(series_type = "sequential")
 
   # Add graphs to the graph series
   series <- graph_1 %>% add_to_series(series)
@@ -69,19 +68,13 @@ test_that("graph series information can be obtained", {
   expect_equal(ncol(info_on_series), 7)
 
   # Expect specific column classes in the data frame
-  expect_is(info_on_series[, 1], "numeric")
+  expect_is(info_on_series[, 1], "integer")
   expect_is(info_on_series[, 2], "character")
-  expect_is(info_on_series[, 3], "character")
+  expect_is(info_on_series[, 3], "POSIXct")
   expect_is(info_on_series[, 4], "character")
-  expect_is(info_on_series[, 5], "numeric")
-  expect_is(info_on_series[, 6], "numeric")
+  expect_is(info_on_series[, 5], "integer")
+  expect_is(info_on_series[, 6], "integer")
   expect_is(info_on_series[, 7], "logical")
-
-  # Expect that the `name`, `date_time`, and `tz` columns
-  # are filled with `NA`s
-  expect_true(all(is.na(info_on_series[, 2])))
-  expect_true(all(is.na(info_on_series[, 3])))
-  expect_true(all(is.na(info_on_series[, 4])))
 
   # Expect that the values in the `graph`
   # column are sequential
@@ -96,9 +89,10 @@ test_that("graph series information can be obtained", {
 
   graph <-
     create_graph(
-      graph_name = "graph_no_tz_provided",
-      graph_time = "2015-03-25 03:00",
-      graph_tz = "GMT")
+      graph_name = "graph_no_tz_provided") %>%
+    set_graph_time(
+      time = "2015-03-25 03:00",
+      tz = "GMT")
 
   graph_series_temporal_type <-
     add_to_series(
@@ -119,12 +113,12 @@ test_that("graph series information can be obtained", {
   expect_equal(ncol(info_on_series_temporal), 7)
 
   # Expect specific column classes in the data frame
-  expect_is(info_on_series_temporal[, 1], "numeric")
+  expect_is(info_on_series_temporal[, 1], "integer")
   expect_is(info_on_series_temporal[, 2], "character")
-  expect_is(info_on_series_temporal[, 3], "character")
+  expect_is(info_on_series_temporal[, 3], "POSIXct")
   expect_is(info_on_series_temporal[, 4], "character")
-  expect_is(info_on_series_temporal[, 5], "numeric")
-  expect_is(info_on_series_temporal[, 6], "numeric")
+  expect_is(info_on_series_temporal[, 5], "integer")
+  expect_is(info_on_series_temporal[, 6], "integer")
   expect_is(info_on_series_temporal[, 7], "logical")
 
   # Expect that the `name`, `date_time`,
@@ -132,9 +126,7 @@ test_that("graph series information can be obtained", {
   expect_equal(
     info_on_series_temporal[, 2], "graph_no_tz_provided")
 
-  expect_equal(
-    info_on_series_temporal[, 3], "2015-03-25 03:00")
+  expect_true(!is.na(info_on_series_temporal[, 3]))
 
-  expect_equal(
-    info_on_series_temporal[, 4], "GMT")
+  expect_equal(info_on_series_temporal[, 4], "GMT")
 })

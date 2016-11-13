@@ -73,19 +73,6 @@ test_that("a random graph can be made to various specifications", {
   # Expect the graph is not directed
   expect_false(is_graph_directed(random_graph_10_15_seed_set))
 
-  # Expect the node attribute `value` to sum to 44
-  expect_equal(
-    sum(as.numeric(get_node_df(random_graph_10_15_seed_set)[,4])),
-    44)
-
-  # Expect the last edge in the graph's edge list to
-  # be `1` -> `8`
-  expect_equal(
-    get_edges(
-      random_graph_10_15_seed_set,
-      return_type = "vector")[15],
-    "1 -> 8")
-
   # Create a random, directed graph with 10 nodes
   # and 15 edges and no node labels
   random_graph_10_15_directed_no_labels <-

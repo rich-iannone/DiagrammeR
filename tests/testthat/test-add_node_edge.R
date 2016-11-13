@@ -13,24 +13,21 @@ test_that("adding a node to a graph is possible", {
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_name", "graph_time", "graph_tz",
-            "nodes_df", "edges_df", "global_attrs",
+          c("graph_info", "nodes_df",
+            "edges_df", "global_attrs",
             "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
-
-  # Expect that some of the graph components are NULL
-  expect_null(graph$graph_name)
-  expect_null(graph$graph_time)
-  expect_null(graph$graph_tz)
-  expect_null(graph$edges_df)
 
   # Expect that the `global_attrs` components is not NULL
   expect_true(!is.null(graph$global_attrs))
 
   # Expect that the `nodes_df` component is a data frame
   expect_is(graph$nodes_df, "data.frame")
+
+  # Expect that the `edges_df` component is a data frame
+  expect_is(graph$edges_df, "data.frame")
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
@@ -157,17 +154,12 @@ test_that("adding an edge to a graph is possible", {
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_name", "graph_time", "graph_tz",
-            "nodes_df", "edges_df", "global_attrs",
+          c("graph_info", "nodes_df",
+            "edges_df", "global_attrs",
             "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
-
-  # Expect that some of the graph components are NULL
-  expect_null(graph$graph_name)
-  expect_null(graph$graph_time)
-  expect_null(graph$graph_tz)
 
   # Expect that the `global_attrs` components is not NULL
   expect_true(!is.null(graph$global_attrs))
@@ -268,8 +260,7 @@ test_that("adding several nodes from a selected node is possible", {
 
   # Expect that node IDs where edges are `from` belong
   # to the node with ID of `5`
-  expect_equal(get_edge_df(graph)[, 1],
-               rep(5, 10))
+  expect_equal(get_edge_df(graph)[, 1], rep(5, 10))
 
   # Expect that node IDs where edges are `to` increase
   # from `11` to `20`

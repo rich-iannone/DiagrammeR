@@ -191,11 +191,6 @@ test_that("adding nodes from a table to a graph is possible", {
     create_graph() %>%
     add_nodes_from_table(node_table)
 
-  # Expect that the graph has a non-NULL ndf but a
-  # NULL edf
-  expect_true(!is.null(graph_1_df$nodes_df))
-  expect_true(is.null(graph_1_df$edges_df))
-
   # Expect that the graph has the same number of nodes
   # as there are rows in the CSV
   expect_equal(

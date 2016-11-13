@@ -270,10 +270,10 @@ test_that("Getting node attributes is possible", {
   expect_true(all(1:4 %in% names(all_nodes)))
 
   # Expect certain values to be in the vector
-  expect_equal(all_nodes[[1]], 9.0)
-  expect_equal(all_nodes[[2]], 8.0)
-  expect_equal(all_nodes[[3]], 3.0)
-  expect_equal(all_nodes[[4]], 5.5)
+  expect_equal(all_nodes[[1]], 3.5)
+  expect_equal(all_nodes[[2]], 4.0)
+  expect_equal(all_nodes[[3]], 7.5)
+  expect_equal(all_nodes[[4]], 8.0)
 
   # Get node attributes for nodes `1` and `3`
   nodes_1_3 <-
@@ -289,8 +289,8 @@ test_that("Getting node attributes is possible", {
   expect_true(all(c(1, 3) %in% names(nodes_1_3)))
 
   # Expect certain values to be in the vector
-  expect_equal(nodes_1_3[[1]], 9.0)
-  expect_equal(nodes_1_3[[2]], 3.0)
+  expect_equal(nodes_1_3[[1]], 3.5)
+  expect_equal(nodes_1_3[[2]], 7.5)
 })
 
 test_that("Getting edge attributes is possible", {

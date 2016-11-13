@@ -194,13 +194,11 @@ test_that("the walktrap algorithm is functional", {
   # identified with labels `1` and `2`
   expect_equal(
     sort(unique(walktrap$walktrap_group)),
-    c(1, 2))
+    c(1, 2, 3))
 
   # Expect the first column to be integer
-  expect_is(
-    walktrap$id, "integer")
+  expect_is(walktrap$id, "integer")
 
   # Expect the second column to be numeric
-  expect_is(
-    walktrap$walktrap_group, "numeric")
+  expect_is(walktrap$walktrap_group, "numeric")
 })

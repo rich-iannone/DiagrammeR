@@ -650,8 +650,7 @@ test_that("Adding a full graph is possible", {
     length(
       which(
         get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])),
-    3)
+          get_edge_df(graph)[, 2])), 3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all

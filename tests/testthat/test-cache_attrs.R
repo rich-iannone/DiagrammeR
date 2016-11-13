@@ -173,8 +173,8 @@ test_that("Caching node attrs (w/ selection) is possible", {
     graph %>%
     cache_node_attrs_ws("value", "numeric")
 
-  # Expect a vector of length 6 in the graph's `$cache`
-  expect_equal(length(graph$cache), 6)
+  # Expect a vector of length 7 in the graph's `$cache`
+  expect_equal(length(graph$cache), 7)
 
   # Expect the vector to be `numeric`
   expect_is(graph$cache, "numeric")
@@ -183,7 +183,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   # attribute values for certain nodes in the graph's
   # internal ndf (after coercing to numeric)
   expect_equivalent(
-    as.numeric(graph$nodes_df$value)[c(1, 2, 3, 5, 6, 10)],
+    as.numeric(graph$nodes_df$value)[c(1, 2, 6, 7, 8, 9, 10)],
     graph$cache)
 
   # Cache available values from the node attribute
@@ -193,8 +193,8 @@ test_that("Caching node attrs (w/ selection) is possible", {
     graph %>%
     cache_node_attrs_ws("value", "character")
 
-  # Expect a vector of length 6 in the graph's `$cache`
-  expect_equal(length(graph$cache), 6)
+  # Expect a vector of length 7 in the graph's `$cache`
+  expect_equal(length(graph$cache), 7)
 
   # Expect the vector to be `character`
   expect_is(graph$cache, "character")
@@ -203,7 +203,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   # attribute values for certain nodes in the graph's
   # internal ndf
   expect_equivalent(
-    as.character(graph$nodes_df$value[c(1, 2, 3, 5, 6, 10)]),
+    as.character(graph$nodes_df$value[c(1, 2, 6, 7, 8, 9, 10)]),
     graph$cache)
 })
 
@@ -241,8 +241,8 @@ test_that("Caching edge attrs (w/ selection) is possible", {
     graph %>%
     cache_edge_attrs_ws("value", "numeric")
 
-  # Expect a vector of length 5 in the graph's `$cache`
-  expect_equal(length(graph$cache), 5)
+  # Expect a vector of length 6 in the graph's `$cache`
+  expect_equal(length(graph$cache), 6)
 
   # Expect the vector to be `numeric`
   expect_is(graph$cache, "numeric")
@@ -251,7 +251,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # attribute values for certain edges in the graph's
   # internal edf (after coercing to numeric)
   expect_equivalent(
-    as.numeric(graph$edges_df$value)[c(1, 2, 3, 5, 6)],
+    as.numeric(graph$edges_df$value)[c(1, 2, 6, 7, 8, 9)],
     graph$cache)
 
   # Cache available values from the edge attribute
@@ -261,8 +261,8 @@ test_that("Caching edge attrs (w/ selection) is possible", {
     graph %>%
     cache_edge_attrs_ws("value", "character")
 
-  # Expect a vector of length 5 in the graph's `$cache`
-  expect_equal(length(graph$cache), 5)
+  # Expect a vector of length 6 in the graph's `$cache`
+  expect_equal(length(graph$cache), 6)
 
   # Expect the vector to be `character`
   expect_is(graph$cache, "character")
@@ -271,7 +271,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # attribute values for certain nodes in the graph's
   # internal ndf
   expect_equivalent(
-    as.character(graph$edges_df$value[c(1, 2, 3, 5, 6)]),
+    as.character(graph$edges_df$value[c(1, 2, 6, 7, 8, 9)]),
     graph$cache)
 })
 
@@ -358,8 +358,8 @@ test_that("Caching node attrs (w/ selection) is possible", {
     graph %>%
     cache_node_attrs_ws("value", "numeric")
 
-  # Expect a vector of length 6 in the graph's `$cache`
-  expect_equal(length(graph$cache), 6)
+  # Expect a vector of length 7 in the graph's `$cache`
+  expect_equal(length(graph$cache), 7)
 
   # Expect the vector to be `numeric`
   expect_is(graph$cache, "numeric")
@@ -368,7 +368,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   # attribute values for certain nodes in the graph's
   # internal ndf (after coercing to numeric)
   expect_equivalent(
-    as.numeric(graph$nodes_df$value)[c(1, 2, 3, 5, 6, 10)],
+    as.numeric(graph$nodes_df$value)[c(1, 2, 6, 7, 8, 9, 10)],
     graph$cache)
 
   # Cache available values from the node attribute
@@ -378,8 +378,8 @@ test_that("Caching node attrs (w/ selection) is possible", {
     graph %>%
     cache_node_attrs_ws("value", "character")
 
-  # Expect a vector of length 6 in the graph's `$cache`
-  expect_equal(length(graph$cache), 6)
+  # Expect a vector of length 7 in the graph's `$cache`
+  expect_equal(length(graph$cache), 7)
 
   # Expect the vector to be `character`
   expect_is(graph$cache, "character")
@@ -388,7 +388,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   # attribute values for certain nodes in the graph's
   # internal ndf
   expect_equivalent(
-    as.character(graph$nodes_df$value[c(1, 2, 3, 5, 6, 10)]),
+    as.character(graph$nodes_df$value[c(1, 2, 6, 7, 8, 9, 10)]),
     graph$cache)
 })
 
@@ -421,8 +421,8 @@ test_that("Caching edge attrs (w/ selection) is possible", {
     graph %>%
     cache_edge_attrs_ws("value", "numeric")
 
-  # Expect a vector of length 5 in the graph's `$cache`
-  expect_equal(length(graph$cache), 5)
+  # Expect a vector of length 6 in the graph's `$cache`
+  expect_equal(length(graph$cache), 6)
 
   # Expect the vector to be `numeric`
   expect_is(graph$cache, "numeric")
@@ -431,7 +431,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # attribute values for certain edges in the graph's
   # internal edf (after coercing to numeric)
   expect_equivalent(
-    as.numeric(graph$edges_df$value)[c(1, 2, 3, 5, 6)],
+    as.numeric(graph$edges_df$value)[c(1, 2, 6, 7, 8, 9)],
     graph$cache)
 
   # Cache available values from the edge attribute
@@ -441,8 +441,8 @@ test_that("Caching edge attrs (w/ selection) is possible", {
     graph %>%
     cache_edge_attrs_ws("value", "character")
 
-  # Expect a vector of length 5 in the graph's `$cache`
-  expect_equal(length(graph$cache), 5)
+  # Expect a vector of length 6 in the graph's `$cache`
+  expect_equal(length(graph$cache), 6)
 
   # Expect the vector to be `character`
   expect_is(graph$cache, "character")
@@ -451,7 +451,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # attribute values for certain nodes in the graph's
   # internal ndf
   expect_equivalent(
-    as.character(graph$edges_df$value[c(1, 2, 3, 5, 6)]),
+    as.character(graph$edges_df$value[c(1, 2, 6, 7, 8, 9)]),
     graph$cache)
 })
 
@@ -548,8 +548,8 @@ test_that("Setting a cache is possible", {
 
   # Expect that the column `closeness` in the df
   # is equivalent to the values in the cache
-  expect_equivalent(closeness_df$closeness,
-                    graph_cache$cache)
+  expect_equivalent(
+    closeness_df$closeness, graph_cache$cache)
 
   # Expect an error if providing a data frame
   # and not specifying a column to extract as a vector

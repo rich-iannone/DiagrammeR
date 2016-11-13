@@ -18,7 +18,7 @@ test_that("rescaling node attributes in a graph is possible", {
   # available in the graph's ndf
   expect_equal(
     graph_r_value_0_1$nodes_df$value,
-    c(0.000, 1.000, 0.308, 0.231, 0.692))
+    c(0.5, 1.0, 0.0, 0.0, 0.0))
 
   # Scale the values in the `value` node attribute
   # to different shades of gray for the `fillcolor`
@@ -40,11 +40,11 @@ test_that("rescaling node attributes in a graph is possible", {
   # available in the graph's ndf
   expect_equal(
     graph_r_value_fill_font_color$nodes_df$fillcolor,
-    c("#CCCCCC", "#333333", "#999999", "#A6A6A6", "#5E5E5E"))
+    c("#7B7B7B", "#333333", "#CCCCCC", "#CCCCCC", "#CCCCCC"))
 
   expect_equal(
     graph_r_value_fill_font_color$nodes_df$fontcolor,
-    c("#0D0D0D", "#F2F2F2", "#4B4B4B", "#3B3B3B", "#A4A4A4"))
+    c("#767676", "#F2F2F2", "#0D0D0D", "#0D0D0D", "#0D0D0D"))
 
   # Expect an error if using supplying a node attribute
   # that doesn't exist (`values` instead of `value`)
@@ -71,7 +71,7 @@ test_that("rescaling edge attributes in a graph is possible", {
   # available in the graph's edf
   expect_equal(
     graph_r_value_0_1$edges_df$weight,
-    c(0.000, 0.240, 0.848, 1.000, 0.815, 0.525, 0.584))
+    c(0.408, 0.208, 0.218, 1.000, 0.701, 0.312, 0.000))
 
   # Scale the values in the `weight` edge attribute
   # to different shades of gray for the `fillcolor`
@@ -93,13 +93,13 @@ test_that("rescaling edge attributes in a graph is possible", {
   # available in the graph's ndf
   expect_equal(
     graph_r_value_fill_font_color$edges_df$fillcolor,
-    c("#CCCCCC", "#A4A4A4", "#484848", "#333333", "#4C4C4C",
-      "#777777", "#6E6E6E"))
+    c("#898989", "#A9A9A9", "#A8A8A8", "#333333", "#5D5D5D",
+      "#999999", "#CCCCCC"))
 
   expect_equal(
     graph_r_value_fill_font_color$edges_df$fontcolor,
-    c("#0D0D0D", "#3D3D3D", "#CBCBCB", "#F2F2F2", "#C2C2C2",
-      "#7C7C7C", "#898989"))
+    c("#616161", "#363636", "#383838", "#F2F2F2", "#A6A6A6",
+      "#4C4C4C", "#0D0D0D"))
 
   # Expect an error if using supplying a node attribute
   # that doesn't exist (`weights` instead of `weight`)

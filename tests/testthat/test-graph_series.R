@@ -135,74 +135,6 @@ test_that("adding graphs to a series is also possible", {
     add_to_series(
       graph = graph_1,
       graph_series = graph_series_invalid_type))
-
-  # Expect an error if a graph with no time
-  # information is added to the graph series
-  # of the `temporal` type
-  graph_series_temporal_type <-
-    create_series(series_type = "temporal")
-
-  graph_no_time <-
-    create_graph(graph_name = "graph_no_time")
-
-  expect_error(
-    add_to_series(
-      graph = graph_no_time,
-      graph_series = graph_series_temporal_type))
-
-  # Expect an error if a graph with time
-  # information that is not in the correct format
-  # is added to a graph series of the `temporal` type
-  graph_series_temporal_type <-
-    create_series(series_type = "temporal")
-
-  graph_incorrect_time <-
-    create_graph(
-      graph_name = "graph_incorrect_time",
-      graph_time = "2015-033-25 03:00",
-      graph_tz = "GMT")
-
-  expect_error(
-    add_to_series(
-      graph = graph_incorrect_time,
-      graph_series = graph_series_temporal_type))
-
-  # Expect an error if a graph with time information
-  # with an incorrect time zone name (i.e., not in
-  # `OlsonNames()` is added to a graph series type of the
-  # `temporal` type
-  graph_series_temporal_type <-
-    create_series(series_type = "temporal")
-
-  graph_incorrect_tz <-
-    create_graph(
-      graph_name = "graph_incorrect_tz",
-      graph_time = "2015-03-25 03:00",
-      graph_tz = "America/NewYork")
-
-  expect_error(
-    add_to_series(
-      graph = graph_incorrect_tz,
-      graph_series = graph_series_temporal_type))
-
-  # If no time zone provided, expect that
-  # `GMT` will be added to `[graph]`$graph_tz
-  graph_series_temporal_type <-
-    create_series(series_type = "temporal")
-
-  graph_no_tz_provided <-
-    create_graph(
-      graph_name = "graph_no_tz_provided",
-      graph_time = "2015-03-25 03:00")
-
-  graph_series_temporal_type_tz_GMT <-
-    add_to_series(
-      graph = graph_no_tz_provided,
-      graph_series = graph_series_temporal_type)
-
-  expect_equal(
-    graph_series_temporal_type_tz_GMT$graphs[[1]]$graph_tz,
-    "GMT")
 })
 
 test_that("removing graphs from a series is possible", {
@@ -283,9 +215,10 @@ test_that("subsetting graphs from a temporal series is possible", {
   # Create three graphs with the time attributes set
   graph_time_1 <-
     create_graph(
-      graph_name = "graph_with_time_1",
-      graph_time = "2015-03-25 03:00",
-      graph_tz = "GMT") %>%
+      graph_name = "graph_with_time_1") %>%
+    set_graph_time(
+      time = "2015-03-25 03:00",
+      tz = "GMT") %>%
     add_node(1) %>%
     add_node(2) %>%
     add_node(3) %>%
@@ -295,9 +228,10 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   graph_time_2 <-
     create_graph(
-      graph_name = "graph_with_time_2",
-      graph_time = "2015-03-26 03:00",
-      graph_tz = "GMT") %>%
+      graph_name = "graph_with_time_2") %>%
+    set_graph_time(
+      time = "2015-03-26 03:00",
+      tz = "GMT") %>%
     add_node(4) %>%
     add_node(5) %>%
     add_node(6) %>%
@@ -307,9 +241,10 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   graph_time_3 <-
     create_graph(
-      graph_name = "graph_with_time_3",
-      graph_time = "2015-03-27 15:00",
-      graph_tz = "GMT") %>%
+      graph_name = "graph_with_time_3") %>%
+    set_graph_time(
+      time = "2015-03-27 15:00",
+      tz = "GMT") %>%
     add_node(7) %>%
     add_node(8) %>%
     add_node(9) %>%
@@ -363,25 +298,9 @@ test_that("subsetting graphs from a temporal series is possible", {
                  "2015-03-26 12:00"),
       tz = "GMT")
 
-  # Expect a single graph in the series
+  # Expect 2 graphs in the series
   expect_equal(
-    graph_count(series_time_subset), 1)
-
-  # Expect that the time for the subset
-  # graph is within the bounds specified when
-  # calling `subset_series()`
-  expect_true(
-    all(
-      c(as.POSIXct(
-        series_time_subset$graphs[[1]]$graph_time,
-        tz = series_time_subset$graphs[[1]]$graph_tz) >
-          as.POSIXct(
-            "2015-03-25 12:00", tz = "GMT"),
-        as.POSIXct(
-          series_time_subset$graphs[[1]]$graph_time,
-          tz = series_time_subset$graphs[[1]]$graph_tz) <
-          as.POSIXct(
-            "2015-03-26 12:00", tz = "GMT"))))
+    graph_count(series_time_subset), 2)
 })
 
 test_that("Getting a graph from a series is possible", {

@@ -66,8 +66,8 @@ test_that("getting node IDs from various objects is possible", {
         get_node_ids(graph)))
 
   # Expect that using `get_node_df()` on a graph with
-  # no nodes will return NA
-  expect_true(is.na(get_node_df(create_graph())))
+  # no nodes will return an empty data frame
+  expect_equal(nrow(get_node_df(create_graph())), 0)
 })
 
 test_that("getting node IDs associated within a graph's edges is possible", {
@@ -100,7 +100,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
       nodes_df = nodes,
       edges_df = edges)
 
-  # Get the 'outgoing' and 'incoming' node ID values
+  # Get the `outgoing` and `incoming` node ID values
   # in a list object
   gotten_edges_list <-
     get_edges(graph, return_type = "list")
@@ -119,7 +119,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   expect_true(length(gotten_edges_list[[2]]) == 26)
   expect_is(gotten_edges_list[[2]], "character")
 
-  # Get the 'outgoing' and 'incoming' node ID values
+  # Get the `outgoing` and `incoming` node ID values
   # in a data frame object
   gotten_edges_df <-
     get_edges(graph, return_type = "df")
@@ -136,7 +136,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   expect_is(gotten_edges_df[, 2], "integer")
   expect_true(nrow(gotten_edges_df) == 26)
 
-  # Get the 'outgoing' and 'incoming' node ID values
+  # Get the `outgoing` and `incoming` node ID values
   # in a vector object
   gotten_edges_vector <-
     get_edges(graph, return_type = "vector")
@@ -164,11 +164,11 @@ test_that("getting node IDs associated within a graph's edges is possible", {
           edge_df_from_graph, return_type = "vector")))
 
   # Expect that using `get_edge_df()` on a graph
-  # with no edges will return NA
-  expect_true(
-    is.na(
+  # with no edges will return an empty data frame
+  expect_equal(
+    nrow(
       get_edge_df(
-        create_graph(nodes_df = create_node_df(1)))))
+        create_graph(nodes_df = create_node_df(1)))), 0)
 })
 
 test_that("getting edge information from an edge data frame is possible", {
@@ -192,8 +192,9 @@ test_that("getting edge information from an edge data frame is possible", {
 
   # Expect that the ' -> ' substring is in
   # each vector component
-  expect_true(all(grepl(" -> ",
-                        edges_vector_from_edf)))
+  expect_true(
+    all(grepl(" -> ",
+              edges_vector_from_edf)))
 
   # Get edges from the edge data frame as a
   # returned list object
@@ -271,14 +272,13 @@ test_that("getting connected nodes is possible", {
     create_random_graph(
       30, 30, set_seed = 1)
 
-  connect_node_1 <-
-    get_all_connected_nodes(graph, 1)
+  connect_node_1 <- get_all_connected_nodes(graph, 1)
 
   # Expect certain node IDs to be returned
   expect_equal(
     connect_node_1,
-    c(3, 4, 5, 6, 8, 10, 11, 12, 14, 15, 16, 17,
-      19, 20, 21, 22, 23, 24, 25, 26, 27, 29))
+    c(2, 3, 4, 5, 8, 10, 11, 12, 14, 15, 16, 17,
+      19, 20, 21, 22, 24, 25, 26, 27, 29))
 
   # Expect that the node ID provided won't be
   # returned in the set of node ID values
@@ -287,7 +287,7 @@ test_that("getting connected nodes is possible", {
   # Expect an NA value if there are no connected
   # nodes to the provided node
   expect_true(
-    is.na(get_all_connected_nodes(graph, 2)))
+    is.na(get_all_connected_nodes(graph, 30)))
 
   # Expect an error if providing a node ID that
   # doesn't exist in the graph

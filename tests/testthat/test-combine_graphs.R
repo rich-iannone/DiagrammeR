@@ -38,15 +38,9 @@ test_that("graphs can be combined", {
   # prescribed set of names
   expect_true(
     all(names(combined_graph_1) ==
-          c("graph_name", "graph_time", "graph_tz",
-            "nodes_df", "edges_df", "global_attrs",
+          c("graph_info", "nodes_df",
+            "edges_df", "global_attrs",
             "directed", "last_node")))
-
-  # Expect that several of the graph
-  # components are NULL
-  expect_null(combined_graph_1$graph_name)
-  expect_null(combined_graph_1$graph_time)
-  expect_null(combined_graph_1$graph_tz)
 
   # Expect that the `global_attrs` graph component
   # is not NULL

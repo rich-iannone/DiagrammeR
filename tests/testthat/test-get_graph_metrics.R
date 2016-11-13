@@ -7,8 +7,7 @@ test_that("Getting a degree histogram is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
-  degree_histogram <-
-    get_degree_histogram(graph)
+  degree_histogram <- get_degree_histogram(graph)
 
   # Expect that `degree_histogram` inherits from `numeric`
   expect_is(degree_histogram, "numeric")
@@ -16,15 +15,16 @@ test_that("Getting a degree histogram is possible", {
   # Expect certain names for the `degree_histogram` object
   expect_identical(
     names(degree_histogram),
-    c("0", "1", "2", "3", "4", "5", "6"))
+    c("0", "1", "2", "3", "4", "5", "6", "7"))
 
   # Expect certain values in the `degree_histogram` object
   expect_equal(degree_histogram[[1]], 0)
   expect_equal(degree_histogram[[2]], 0)
-  expect_equal(degree_histogram[[3]], 0)
+  expect_equal(degree_histogram[[3]], 1)
   expect_equal(degree_histogram[[4]], 2)
-  expect_equal(degree_histogram[[5]], 4)
-  expect_equal(degree_histogram[[6]], 2)
+  expect_equal(degree_histogram[[5]], 2)
+  expect_equal(degree_histogram[[6]], 3)
+  expect_equal(degree_histogram[[7]], 1)
 })
 
 test_that("Getting degree distribution is possible", {
@@ -34,8 +34,7 @@ test_that("Getting degree distribution is possible", {
     create_random_graph(
       10, 22, set_seed = 1)
 
-  degree_dist <-
-    get_degree_distribution(graph)
+  degree_dist <- get_degree_distribution(graph)
 
   # Expect that `degree_dist` inherits from `numeric`
   expect_is(degree_dist, "numeric")
@@ -43,15 +42,16 @@ test_that("Getting degree distribution is possible", {
   # Expect certain names for the `degree_dist` object
   expect_identical(
     names(degree_dist),
-    c("0", "1", "2", "3", "4", "5", "6"))
+    c("0", "1", "2", "3", "4", "5", "6", "7"))
 
   # Expect certain values in the `degree_histogram` object
   expect_equal(degree_dist[[1]], 0)
   expect_equal(degree_dist[[2]], 0)
-  expect_equal(degree_dist[[3]], 0)
+  expect_equal(degree_dist[[3]], 0.1)
   expect_equal(degree_dist[[4]], 0.2)
-  expect_equal(degree_dist[[5]], 0.4)
-  expect_equal(degree_dist[[6]], 0.2)
+  expect_equal(degree_dist[[5]], 0.2)
+  expect_equal(degree_dist[[6]], 0.3)
+  expect_equal(degree_dist[[7]], 0.1)
 })
 
 test_that("Getting graph diameter is possible", {
@@ -143,13 +143,13 @@ test_that("Getting graph periphery is possible", {
   # Expect that `graph_periphery` is an integer vector
   expect_is(graph_periphery, "integer")
 
-  # Expect that `graph_periphery` has length 2 in
+  # Expect that `graph_periphery` has length 1 in
   # this case
-  expect_equal(length(graph_periphery), 2)
+  expect_equal(length(graph_periphery), 1)
 
   # Expect certain values for the
   # `graph_periphery` object
-  expect_equal(graph_periphery, c(1, 10))
+  expect_equal(graph_periphery, 10)
 })
 
 test_that("Getting graph info is possible", {
@@ -184,20 +184,6 @@ test_that("Getting graph info is possible", {
     colnames(graph_i),
     c("name", "n", "e", "dens", "mn_deg",
       "mx_deg", "avg_deg", "time", "tz"))
-
-  # Create another random graph
-  graph <-
-    create_random_graph(
-      8, 10, set_seed = 1)
-
-  # Get a data frame with graph information
-  graph_i <- graph_info(graph)
-
-  # Expect NA values for the `name`, `time` and
-  # `tz` columns
-  expect_true(is.na(graph_i$name))
-  expect_true(is.na(graph_i$time))
-  expect_true(is.na(graph_i$tz))
 })
 
 test_that("Checking whether the graph is connected is possible", {

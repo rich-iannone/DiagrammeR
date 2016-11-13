@@ -9,24 +9,24 @@ test_that("an empty graph object can be created and such an object is correct", 
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_name", "graph_time", "graph_tz",
-            "nodes_df", "edges_df", "global_attrs",
+          c("graph_info", "nodes_df",
+            "edges_df", "global_attrs",
             "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
 
+  # Expect that the `nodes_df` component is
+  # a data frame
+  expect_is(graph$nodes_df, "data.frame")
+
+  # Expect that the `edges_df` component is
+  # a data frame
+  expect_is(graph$edges_df ,"data.frame")
+
   # Expect that the use of `is_graph_empty()` function
   # will result in TRUE
   expect_true(is_graph_empty(graph))
-
-  # Expect that several of the graph components
-  # are NULL
-  expect_null(graph$graph_name)
-  expect_null(graph$graph_time)
-  expect_null(graph$graph_tz)
-  expect_null(graph$nodes_df)
-  expect_null(graph$edges_df)
 
   # Expect that the `global_attrs` component is not NULL
   expect_true(!is.null(graph$global_attrs))
@@ -59,19 +59,12 @@ test_that("a graph object with nodes can be created correctly", {
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_name", "graph_time", "graph_tz",
-            "nodes_df", "edges_df", "global_attrs",
+          c("graph_info", "nodes_df",
+            "edges_df", "global_attrs",
             "directed", "last_node")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
-
-  # Expect that several of the graph components
-  # are NULL
-  expect_null(graph$graph_name)
-  expect_null(graph$graph_time)
-  expect_null(graph$graph_tz)
-  expect_null(graph$edges_df)
 
   # Expect that several of the graph components
   # are not NULL
@@ -81,6 +74,10 @@ test_that("a graph object with nodes can be created correctly", {
   # Expect that the `nodes_df` component is
   # a data frame
   expect_is(graph$nodes_df, "data.frame")
+
+  # Expect that the `edges_df` component is
+  # a data frame
+  expect_is(graph$edges_df ,"data.frame")
 
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
@@ -119,14 +116,16 @@ test_that("a graph object with nodes and edges can be created correctly", {
       nodes_df = nodes,
       edges_df = edges)
 
+  # Expect that names in this graph object match a
+  # prescribed set of names
+  expect_true(
+    all(names(graph) ==
+          c("graph_info", "nodes_df",
+            "edges_df", "global_attrs",
+            "directed", "last_node")))
+
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
-
-  # Expect that several of the graph components
-  # are NULL
-  expect_null(graph$graph_name)
-  expect_null(graph$graph_time)
-  expect_null(graph$graph_tz)
 
   # Expect that the `global_attrs` component is not NULL
   expect_true(!is.null(graph$global_attrs))
