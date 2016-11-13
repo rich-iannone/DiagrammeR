@@ -8,16 +8,6 @@
 #' file), and \code{mtx} (MatrixMarket format). If not
 #' supplied, the function will infer the type by its
 #' file extension.
-#' @param graph_name an optional string for labeling
-#' the graph object.
-#' @param graph_time a date or date-time string
-#' (required for insertion of graph into a graph series
-#' of the type \code{temporal}).
-#' @param graph_tz an optional value for the time zone
-#' (\code{tz})
-#' corresponding to the date or date-time string
-#' supplied as a value to \code{graph_time}. If no time
-#' zone is provided then it will be set to \code{GMT}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -70,10 +60,7 @@
 #' @export import_graph
 
 import_graph <- function(graph_file,
-                         file_type = NULL,
-                         graph_name = NULL,
-                         graph_time = NULL,
-                         graph_tz = NULL) {
+                         file_type = NULL) {
 
   # Assign NULL to several objects
   id <- to_label <- from_label <-  NULL
@@ -146,10 +133,7 @@ import_graph <- function(graph_file,
     the_graph <-
       create_graph(
         nodes_df = nodes,
-        edges_df = edges,
-        graph_name = graph_name,
-        graph_time = graph_time,
-        graph_tz = graph_tz)
+        edges_df = edges)
 
     # Return the graph
     return(the_graph)
@@ -188,10 +172,7 @@ import_graph <- function(graph_file,
     the_graph <-
       create_graph(
         nodes_df = nodes,
-        edges_df = edges,
-        graph_name = graph_name,
-        graph_time = graph_time,
-        graph_tz = graph_tz)
+        edges_df = edges)
 
     # Return the graph
     return(the_graph)
@@ -300,10 +281,7 @@ import_graph <- function(graph_file,
     the_graph <-
       create_graph(
         nodes_df = all_nodes,
-        edges_df = all_edges,
-        graph_name = graph_name,
-        graph_time = graph_time,
-        graph_tz = graph_tz)
+        edges_df = all_edges)
 
     # Return the graph
     return(the_graph)
