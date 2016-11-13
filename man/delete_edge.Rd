@@ -47,5 +47,29 @@ graph <-
     graph = graph,
     from = 1,
     to = 2)
+
+# Get the count of edges in the graph
+edge_count(graph)
+#> [1] 0
+
+# Create an undirected graph with
+# 2 nodes and an edge
+graph_undirected <-
+  create_graph(directed = FALSE) \%>\%
+  add_n_nodes(2) \%>\%
+  add_edge(1, 2)
+
+# Delete the edge; order of node ID
+# values provided in `from` and `to`
+# don't matter for the undirected case
+graph_undirected \%>\%
+  delete_edge(2, 1) \%>\%
+  edge_count()
+#> [1] 0
+
+graph_undirected \%>\%
+  delete_edge(1, 2) \%>\%
+  edge_count()
+#> [1] 0
 }
 

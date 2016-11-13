@@ -5,8 +5,7 @@
 \title{Create a graph object}
 \usage{
 create_graph(nodes_df = NULL, edges_df = NULL, directed = TRUE,
-  graph_name = NULL, graph_time = NULL, graph_tz = NULL,
-  attr_theme = "default")
+  graph_name = NULL, attr_theme = "default")
 }
 \arguments{
 \item{nodes_df}{an optional data frame containing,
@@ -27,16 +26,6 @@ operations will be generated, respectively.}
 
 \item{graph_name}{an optional string for labeling
 the graph object.}
-
-\item{graph_time}{a date or date-time string
-(required for insertion of graph into a graph series
-of the type \code{temporal}).}
-
-\item{graph_tz}{an optional value for the time zone
-(\code{tz}) corresponding to the date or date-time
-string supplied as a value to \code{graph_time}. If
-no time zone is provided then it will be set to
-\code{GMT}.}
 
 \item{attr_theme}{The theme (i.e., collection of
 \code{graph}, \code{node}, and \code{edge} global

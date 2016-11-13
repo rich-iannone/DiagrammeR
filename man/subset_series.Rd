@@ -40,30 +40,24 @@ through selection via graphs' date-time attributes.
 # Create three graphs
 graph_time_1 <-
   create_graph(
-    graph_name = "graph_with_time_1",
-    graph_time = "2015-03-25 03:00",
-    graph_tz = "GMT") \%>\%
-  add_n_nodes(3) \%>\%
-  add_edges_w_string(
-    "1->3 1->2 2->3")
+    graph_name = "graph_with_time_1") \%>\%
+  set_graph_time(
+    time = "2015-03-25 03:00",
+    tz = "GMT")
 
 graph_time_2 <-
   create_graph(
-    graph_name = "graph_with_time_2",
-    graph_time = "2015-03-26 03:00",
-    graph_tz = "GMT") \%>\%
-  add_n_nodes(3) \%>\%
-  add_edges_w_string(
-    "1->3 1->2 2->3")
+    graph_name = "graph_with_time_2") \%>\%
+  set_graph_time(
+    time = "2015-03-26 03:00",
+    tz = "GMT")
 
 graph_time_3 <-
   create_graph(
-    graph_name = "graph_with_time_3",
-    graph_time = "2015-03-27 15:00",
-    graph_tz = "GMT") \%>\%
-  add_n_nodes(3) \%>\%
-  add_edges_w_string(
-    "1->3 1->2 2->3")
+    graph_name = "graph_with_time_3") \%>\%
+  set_graph_time(
+    time = "2015-03-27 15:00",
+    tz = "GMT")
 
 # Create an empty graph series and add
 # the graphs
@@ -93,6 +87,6 @@ series_time_subset <-
     tz = "GMT")
 
 graph_count(series_time_subset)
-#> [1] 1
+#> [1] 2
 }
 

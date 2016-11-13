@@ -34,7 +34,7 @@ the following traversal functions:
 \code{trav_out_node()}.
 }
 \examples{
-# Create a graph
+# Create a graph with 3 nodes
 graph <-
   create_graph() \%>\%
   add_n_nodes(3) \%>\%
@@ -46,10 +46,11 @@ graph <-
   graph \%>\%
   select_nodes_by_id(1)
 
-# Delete node in selection (and any attached edges)
+# Delete node in selection (this
+# also deletes any attached edges)
 graph <-
   graph \%>\%
-  delete_nodes_ws
+  delete_nodes_ws()
 
 # Get a count of nodes in the graph
 node_count(graph)

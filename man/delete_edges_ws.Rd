@@ -37,8 +37,8 @@ graph <-
   add_edges_w_string(
     "1->3 1->2 2->3")
 
-# Select edges attached to node with ID `3` (these
-# are `1` -> `3` and `2` -> `3`)
+# Select edges attached to node with ID `3`
+# (these are `1` -> `3` and `2` -> `3`)
 graph <-
   graph \%>\%
   select_edges_by_node_id(3)

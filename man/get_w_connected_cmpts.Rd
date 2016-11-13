@@ -22,41 +22,26 @@ sets of nodes with traversable paths to and from
 each node in the set).
 }
 \examples{
-# Create a random graph
+# Create a graph with 2 cycles
 graph <-
-  create_random_graph(36, 50, set_seed = 1)
+  create_graph() \%>\%
+  add_cycle(4) \%>\%
+  add_cycle(3)
 
 # Check if the graph is connected
 is_graph_connected(graph)
-#> [1] TRUE
-
-# Modify the graph so that it becomes disconnected
-# (with two clusters of nodes)
-graph <-
-  graph \%>\%
-  delete_edge(10, 36) \%>\%
-  delete_edge(25, 27) \%>\%
-  delete_edge(28, 29) \%>\%
-  delete_edge(4, 29) \%>\%
-  delete_edge(24, 32)
-
-# Verify that the graph is disconnected
-is_graph_connected(graph)
 #> [1] FALSE
 
-# Get the graph's connected components
+# Get the graph's weakly-connected
+# components
 get_w_connected_cmpts(graph)
-#>    id wc_component
-#> 1   1            1
-#> 2   2            1
-#> 3   3            1
-#> 4   4            1
-#> 5   5            1
-#> 6   6            1
-#> 7   7            1
-#> 8   8            1
-#> 9   9            1
-#> 10 10            1
-#> .. ..           ..
+#>   id wc_component
+#> 1  1            1
+#> 2  2            1
+#> 3  3            1
+#> 4  4            1
+#> 5  5            2
+#> 6  6            2
+#> 7  7            2
 }
 

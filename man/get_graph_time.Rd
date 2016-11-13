@@ -4,18 +4,12 @@
 \alias{get_graph_time}
 \title{Get the graph date-time or timezone}
 \usage{
-get_graph_time(graph, as_posixct = TRUE, get_tz = FALSE)
+get_graph_time(graph)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph} that is created using
 \code{create_graph}.}
-
-\item{as_posixct}{an option to return the graph time
-as POSIXct.}
-
-\item{get_tz}{an option to just return the graph's
-time zone.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -33,18 +27,9 @@ graph <-
     set_graph_time(
       time = "2015-10-25 15:23:00")
 
-# Get the graph's time as a POSIXct-formatted object
-# using `get_graph_time()`
+# Get the graph's time as a POSIXct
+# object using `get_graph_time()`
 graph \%>\% get_graph_time()
 #> [1] "2015-10-25 15:23:00 GMT"
-
-# Get the graph's time as a character object
-graph \%>\% get_graph_time(as_posixct = FALSE)
-#> [1] "2015-10-25 15:23:00"
-
-# Get just the time zone associated with the
-# graph time
-graph \%>\% get_graph_time(get_tz = TRUE)
-#> [1] "GMT"
 }
 
