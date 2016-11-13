@@ -21,7 +21,7 @@
 #' \code{create_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph
+#' # Create a graph with 3 nodes
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(3) %>%
@@ -33,10 +33,11 @@
 #'   graph %>%
 #'   select_nodes_by_id(1)
 #'
-#' # Delete node in selection (and any attached edges)
+#' # Delete node in selection (this
+#' # also deletes any attached edges)
 #' graph <-
 #'   graph %>%
-#'   delete_nodes_ws
+#'   delete_nodes_ws()
 #'
 #' # Get a count of nodes in the graph
 #' node_count(graph)
@@ -60,10 +61,6 @@ delete_nodes_ws <- function(graph) {
     stop("There is no selection of nodes available.")
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Get a vector of the nodes to be deleted
   nodes_to_delete <- graph$selection$nodes
 
@@ -78,9 +75,6 @@ delete_nodes_ws <- function(graph) {
 
   # Remove all nodes in selection
   graph$selection$nodes <- NULL
-
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created
 
   return(graph)
 }

@@ -73,10 +73,10 @@ add_to_series <- function(graph,
   # is provided
   if (series_type == "temporal") {
     is_time_provided <-
-      ifelse(!is.null(graph$graph_time), TRUE, FALSE)
+      ifelse(!is.na(graph$graph_info$graph_time[1]), TRUE, FALSE)
 
     is_tz_provided <-
-      ifelse(!is.null(graph$graph_tz), TRUE, FALSE)
+      ifelse(!is.na(graph$graph_info$graph_tz[1]), TRUE, FALSE)
 
     # Stop function if no time information available in
     # a graph to be added to a graph series of the
@@ -88,21 +88,21 @@ add_to_series <- function(graph,
       # If time zone not provided, automatically
       # provide the `GMT` time zone
       if (is_tz_provided == FALSE) {
-        graph$graph_tz <- "GMT"
+        graph$graph_info$graph_tz[1] <- "GMT"
       }
 
       is_time_in_correct_format <-
         ifelse(
           grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-                graph$graph_time) |
+                graph$graph_info$graph_time) |
             grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$",
-                  graph$graph_time) |
+                  graph$graph_info$graph_time) |
             grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$",
-                  graph$graph_time),
+                  graph$graph_info$graph_time),
           TRUE, FALSE)
 
       is_tz_in_correct_format <-
-        ifelse(graph$graph_tz %in% OlsonNames(),
+        ifelse(graph$graph_info$graph_tz %in% OlsonNames(),
                TRUE, FALSE)
 
       if (is_time_in_correct_format == FALSE) {

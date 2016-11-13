@@ -30,73 +30,28 @@ graph_info <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # Create an empty data frame
-  graph_metrics <-
-    as.data.frame(mat.or.vec(nr = 0, nc = 9))
-
-  colnames(graph_metrics) <-
-    c("name", "n", "e", "dens",
-      "mn_deg", "mx_deg",
-      "avg_deg", "time", "tz")
-
-  # Get the number of nodes
-  n_nodes <- node_count(graph)
-
-  # Get the number of edges
-  n_edges <- edge_count(graph)
-
   # Get the graph density
   density <-
-    round(n_edges / ((n_nodes * (n_nodes - 1))/2), 4)
+    round(node_count(graph) / ((node_count(graph) * (node_count(graph) - 1))/2), 4)
 
   # Get a table of node degree values
   degree_table <-
     table(c(graph$edges_df$from,
             graph$edges_df$to))
 
-  # Get the minimum degree
-  min_deg <- min(degree_table)
+  # Create a data frame with the graph metrics
+  graph_info_df <-
+    data.frame(
+      name = as.character(graph$graph_info$graph_name),
+      n = as.integer(node_count(graph)),
+      e = as.integer(edge_count(graph)),
+      dens = as.numeric(density),
+      mn_deg = as.integer(min(degree_table)),
+      mx_deg = as.integer(max(degree_table)),
+      avg_deg = as.numeric(round(mean(degree_table))),
+      time = graph$graph_info$graph_time,
+      tz = as.character(graph$graph_info$graph_tz),
+      stringsAsFactors = FALSE)
 
-  # Get the maximum degree
-  max_deg <- max(degree_table)
-
-  # Get the average degree (rounded)
-  avg_deg <- round(mean(degree_table))
-
-  # Add graph name to the data frame
-  if (is.null(graph$graph_name)) {
-    graph_metrics[1, 1] <- as.character(NA)
-  } else {
-    graph_metrics[1, 1] <- graph$graph_name
-  }
-
-  # Add graph time to the data frame
-  if (is.null(graph$graph_time)) {
-    graph_metrics[1, 8] <- as.character(NA)
-  } else {
-    graph_metrics[1, 8] <- graph$graph_time
-  }
-
-  # Add graph time zone (tz) to the data frame
-  if (is.null(graph$graph_tz)) {
-    graph_metrics[1, 9] <- as.character(NA)
-  } else {
-    graph_metrics[1, 9] <- graph$graph_tz
-  }
-
-  # Add count of nodes to the data frame
-  graph_metrics[1, 2] <- n_nodes
-
-  # Add count of edges to the data frame
-  graph_metrics[1, 3] <- n_edges
-
-  # Add density calculation to the data frame
-  graph_metrics[1, 4] <- density
-
-  # Add degree data to the data frame
-  graph_metrics[1, 5] <- min_deg
-  graph_metrics[1, 6] <- max_deg
-  graph_metrics[1, 7] <- avg_deg
-
-  return(graph_metrics)
+  return(graph_info_df)
 }

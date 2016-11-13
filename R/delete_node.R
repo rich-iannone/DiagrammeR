@@ -9,15 +9,26 @@
 #' from the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create an empty graph
-#' graph <- create_graph()
+#' # Create a graph with 5 nodes and
+#' # edges between each in a path
+#' graph <-
+#'   create_graph() %>%
+#'   add_path(5)
 #'
-#' # Add two nodes
-#' graph <- add_node(graph)
-#' graph <- add_node(graph)
+#' # Delete node with ID `3`
+#' graph <- delete_node(graph, node = 3)
 #'
-#' # Delete a node
-#' graph <- delete_node(graph, node = 1)
+#' # Verify that the node with ID `3`
+#' # is no longer in the graph
+#' get_node_ids(graph)
+#' #> [1] 1 2 4 5
+#'
+#' # Also note that edges are removed
+#' # since there were edges between the
+#' # removed node to and from other nodes
+#' get_edges(graph)
+#' #> [1] "1 -> 2" "4 -> 5"
+#' @importFrom dplyr filter
 #' @export delete_node
 
 delete_node <- function(graph,
@@ -47,153 +58,30 @@ delete_node <- function(graph,
     stop("The specified node is not available in the graph.")
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
+  # Get the graph's node data frame
+  ndf <- graph$nodes_df
 
-  # If single node in graph create an empty graph, retaining
-  # all global attributes
-  if (nrow(graph$nodes) == 1) {
+  # Get the graph's edge data frame
+  edf <- graph$edges_df
 
-    # Create a revised graph and return that graph
-    dgr_graph <-
-      create_graph(
-        nodes_df = NULL,
-        edges_df = NULL,
-        directed = graph$directed,
-        graph_name = graph$graph_name,
-        graph_tz = graph$graph_tz,
-        graph_time = graph$graph_time)
+  # Remove node from `ndf`
+  ndf <-
+    ndf %>%
+    dplyr::filter(id != node)
 
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
+  # Remove any edges connected to `node`
+  # in the `edf`
+  edf <-
+    edf %>%
+    dplyr::filter(!(from == node | to == node))
 
-    # Update the `global_attrs` df
-    dgr_graph$global_attrs <- graph$global_attrs
+  # Reset the row names in the ndf and the edf
+  row.names(ndf) <- NULL
+  row.names(edf) <- NULL
 
-    return(dgr_graph)
-  }
+  # Update the graph's node and edge data frames
+  graph$nodes_df <- ndf
+  graph$edges_df <- edf
 
-  if (!is.null(graph$edges_df)) {
-
-    # If number of edges in graph is greater than one
-    if (!is.null(graph$edges_df) &
-        nrow(graph$edges_df > 1)) {
-
-      # Create a revised node data frame
-      revised_nodes_df <-
-        graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
-
-      # Create a revised edge data frame
-      if (nrow(
-        graph$edges_df[
-          -which((graph$edges_df$from == node) |
-                 (graph$edges_df$to == node)), ]) == 0) {
-
-        revised_edges_df <- graph$edges_df
-
-      } else {
-
-        revised_edges_df <-
-          graph$edges_df[
-            -which((graph$edges_df$from == node) |
-                     (graph$edges_df$to == node)), ]
-      }
-
-      # Create a revised graph and return that graph
-      dgr_graph <-
-        create_graph(
-          nodes_df = revised_nodes_df,
-          edges_df = revised_edges_df,
-          directed = graph$directed,
-          graph_name = graph$graph_name,
-          graph_tz = graph$graph_tz,
-          graph_time = graph$graph_time)
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created
-
-      # Update the `global_attrs` df
-      dgr_graph$global_attrs <- graph$global_attrs
-
-      return(dgr_graph)
-    }
-
-    if (!is.null(graph$edges_df) &
-        nrow(graph$edges_df <= 1)) {
-
-      # Create a revised node data frame
-      revised_nodes_df <-
-        graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
-
-      # Create a revised graph and return that graph
-      dgr_graph <-
-        create_graph(
-          nodes_df = revised_nodes_df,
-          edges_df = NULL,
-          directed = graph$directed,
-          graph_name = graph$graph_name,
-          graph_tz = graph$graph_tz,
-          graph_time = graph$graph_time)
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created
-
-      # Update the `global_attrs` df
-      dgr_graph$global_attrs <- graph$global_attrs
-
-      return(dgr_graph)
-    }
-  }
-
-  if (is.null(graph$edges_df)) {
-
-    # Create a revised node data frame
-    revised_nodes_df <-
-      graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
-
-    # Create a revised graph and return that graph
-    dgr_graph <-
-      create_graph(
-        nodes_df = revised_nodes_df,
-        edges_df = NULL,
-        directed = graph$directed,
-        graph_name = graph$graph_name,
-        graph_tz = graph$graph_tz,
-        graph_time = graph$graph_time)
-
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
-
-    # Update the `global_attrs` df
-    dgr_graph$global_attrs <- graph$global_attrs
-
-    return(dgr_graph)
-  }
-
-  if (!is.null(graph$edges_df) &
-      nrow(graph$edges_df <= 1)) {
-
-    # Create a revised node data frame
-    revised_nodes_df <-
-      graph$nodes_df[-which(graph$nodes_df[, 1] == node), ]
-
-    # Create a revised graph and return that graph
-    dgr_graph <-
-      create_graph(
-        nodes_df = revised_nodes_df,
-        edges_df = NULL,
-        directed = graph$directed,
-        graph_name = graph$graph_name,
-        graph_tz = graph$graph_tz,
-        graph_time = graph$graph_time)
-
-    # Update the `last_node` counter
-    dgr_graph$last_node <- nodes_created
-
-    # Update the `global_attrs` df
-    dgr_graph$global_attrs <- graph$global_attrs
-
-    return(dgr_graph)
-  }
+  return(graph)
 }

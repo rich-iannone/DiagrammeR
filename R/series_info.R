@@ -44,74 +44,53 @@ series_info <- function(graph_series) {
   graphs_in_series <-
     graph_count(graph_series)
 
-  series_properties <-
-    as.data.frame(
-      mat.or.vec(nr = graphs_in_series, nc = 7))
-
-  colnames(series_properties) <-
-    c("graph", "name", "date_time", "tz",
-      "nodes", "edges", "directed")
-
-  series_properties[,1] <-
-    as.numeric(series_properties[,1])
-
-  series_properties[,2] <-
-    as.character(series_properties[,2])
-
-  series_properties[,3] <-
-    as.character(series_properties[,3])
-
-  series_properties[,4] <-
-    as.character(series_properties[,4])
-
-  series_properties[,5] <-
-    as.numeric(series_properties[,5])
-
-  series_properties[,6] <-
-    as.numeric(series_properties[,6])
-
-  series_properties[,7] <-
-    as.logical(series_properties[,7])
+  series_info_df <-
+    data.frame(
+      graph = as.integer(NA),
+      name = as.character(NA),
+      date_time = Sys.time(),
+      tz = as.character(NA),
+      nodes = as.integer(NA),
+      edges = as.integer(NA),
+      directed = as.logical(NA),
+      stringsAsFactors = FALSE)[-1, ]
 
   if (graphs_in_series == 0) {
-    return(series_properties)
+    return(series_info_df)
   }
 
   for (i in 1:graphs_in_series) {
-    series_properties[i, 1] <- i
 
-    if (!is.null(graph_series$graphs[[i]]$graph_name)) {
-      series_properties[i, 2] <-
-        graph_series$graphs[[i]]$graph_name
-    } else {
-      series_properties[i, 2] <- NA
-    }
+    # Add a graph index number
+    series_info_df[i, 1] <- i
 
-    if (!is.null(graph_series$graphs[[i]]$graph_time)) {
-      series_properties[i, 3] <-
-        graph_series$graphs[[i]]$graph_time
-    } else {
-      series_properties[i, 3] <- NA
-    }
+    # Add the graph name
+    series_info_df[i, 2] <-
+      graph_series$graphs[[i]]$graph_info$graph_name
 
-    if (!is.null(graph_series$graphs[[i]]$graph_tz)) {
-      series_properties[i, 4] <-
-        graph_series$graphs[[i]]$graph_tz
-    } else {
-      series_properties[i, 4] <- NA
-    }
+    # Add the graph time
+    series_info_df[i, 3] <-
+      as.POSIXct(
+        graph_series$graphs[[i]]$graph_info$graph_time,
+        tz = graph_series$graphs[[i]]$graph_info$graph_tz,
+        origin = "1970-01-01")
 
-    series_properties[i, 5] <-
-      ifelse(!is.null(nrow(graph_series$graphs[[i]]$nodes_df)),
-             nrow(graph_series$graphs[[i]]$nodes_df), 0)
+    # Add the graph time zone
+    series_info_df[i, 4] <-
+      graph_series$graphs[[i]]$graph_info$graph_tz
 
-    series_properties[i, 6] <-
-      ifelse(!is.null(nrow(graph_series$graphs[[i]]$edges_df)),
-             nrow(graph_series$graphs[[i]]$edges_df), 0)
+    # Add the count of nodes in the graph
+    series_info_df[i, 5] <-
+      nrow(graph_series$graphs[[i]]$nodes_df)
 
-    series_properties[i, 7] <-
+    # Add the count of nodes in the graph
+    series_info_df[i, 6] <-
+      nrow(graph_series$graphs[[i]]$edges_df)
+
+    # Add TRUE/FALSE value on whether graph is directed
+    series_info_df[i, 7] <-
       is_graph_directed(graph_series$graphs[[i]])
   }
 
-  return(series_properties)
+  return(series_info_df)
 }

@@ -83,8 +83,7 @@ node_count <- function(graph,
 
   # If type is FALSE, get a total count of nodes
   if (all(inherits(type, "logical") & type == FALSE)) {
-    total_node_count <- length(graph$nodes_df[, 1])
-    return(total_node_count)
+    return(nrow(graph$nodes_df))
   }
 
   # If type set to TRUE, get a named vector of counts

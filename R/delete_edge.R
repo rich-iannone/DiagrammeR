@@ -32,6 +32,31 @@
 #'     graph = graph,
 #'     from = 1,
 #'     to = 2)
+#'
+#' # Get the count of edges in the graph
+#' edge_count(graph)
+#' #> [1] 0
+#'
+#' # Create an undirected graph with
+#' # 2 nodes and an edge
+#' graph_undirected <-
+#'   create_graph(directed = FALSE) %>%
+#'   add_n_nodes(2) %>%
+#'   add_edge(1, 2)
+#'
+#' # Delete the edge; order of node ID
+#' # values provided in `from` and `to`
+#' # don't matter for the undirected case
+#' graph_undirected %>%
+#'   delete_edge(2, 1) %>%
+#'   edge_count()
+#' #> [1] 0
+#'
+#' graph_undirected %>%
+#'   delete_edge(1, 2) %>%
+#'   edge_count()
+#' #> [1] 0
+#' @importFrom dplyr filter
 #' @export delete_edge
 
 delete_edge <- function(graph,
@@ -64,15 +89,19 @@ delete_edge <- function(graph,
   # Stop function if either node is not a single value
   if (from_is_single_value == FALSE |
       to_is_single_value == FALSE) {
-    stop("Only single nodes for 'from' and 'to' should be specified.")
+    stop("Only single nodes for `from` and `to` should be specified.")
   }
+
+  # Change variable names
+  from_id <- from
+  to_id <- to
 
   # Determine whether the pair of nodes provided
   # are in the graph
   if (from_is_single_value &
       to_is_single_value) {
     nodes_available_in_graph <-
-      ifelse(all(c(from, to) %in%
+      ifelse(all(c(from_id, to_id) %in%
                    get_node_ids(graph)),
              TRUE, FALSE)
   }
@@ -82,103 +111,55 @@ delete_edge <- function(graph,
     stop("The nodes specified are not both present in the graph.")
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
+  # Extract the graph's edge data frame
+  edf <- graph$edges_df
 
   # Edge removal case for directed graphs
-  if (nodes_available_in_graph &
-      is_graph_directed(graph)) {
+  if (is_graph_directed(graph)) {
 
-    if (any(graph$edges_df$from == from &
-            graph$edges_df$to == to)) {
-
-      row_id_edge_removal <-
-        which(graph$edges_df$from == from &
-                graph$edges_df$to == to)
-
-      revised_edges_df <-
-        graph$edges_df[-row_id_edge_removal,]
-
-      row.names(revised_edges_df) <- NULL
-
-      dgr_graph <-
-        create_graph(
-          nodes_df = graph$nodes_df,
-          edges_df = revised_edges_df,
-          directed = graph$directed,
-          graph_name = graph$graph_name,
-          graph_tz = graph$graph_tz,
-          graph_time = graph$graph_time)
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created
-
-      # Update the `global_attrs` df
-      dgr_graph$global_attrs <- graph$global_attrs
+    # Stop function if the edge provided is not
+    # in the edge data frame
+    if (edf %>%
+        dplyr::filter(from == from_id & to == to_id) %>%
+        nrow == 0) {
+      stop("The edge provided is not in the graph.")
     }
+
+    # Filter out relevant rows from `edf`
+    edf <-
+      edf %>%
+      dplyr::filter(!(from == from_id & to == to_id))
+
+    # Reset the row names in the edf
+    row.names(edf) <- NULL
+
+    # Update the graph's edge data frame
+    graph$edges_df <- edf
   }
 
   # Edge removal case for undirected graphs
-  if (nodes_available_in_graph &
-      is_graph_directed(graph) == FALSE) {
+  if (is_graph_directed(graph) == FALSE) {
 
-    if (any(graph$edges_df$from == from &
-            graph$edges_df$to == to)) {
-
-      row_id_edge_removal <-
-        which(graph$edges_df$from == from &
-                graph$edges_df$to == to)
-
-      revised_edges_df <-
-        graph$edges_df[-row_id_edge_removal,]
-
-      row.names(revised_edges_df) <- NULL
-
-      dgr_graph <-
-        create_graph(
-          nodes_df = graph$nodes_df,
-          edges_df = revised_edges_df,
-          directed = graph$directed,
-          graph_name = graph$graph_name,
-          graph_tz = graph$graph_tz,
-          graph_time = graph$graph_time)
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created
-
-      # Update the `global_attrs` df
-      dgr_graph$global_attrs <- graph$global_attrs
+    # Stop function if the edge provided is not
+    # in the edge data frame
+    if (edf %>%
+        dplyr::filter((from == from_id & to == to_id) |
+                      (from == to_id & to == from_id)) %>%
+        nrow == 0) {
+      stop("The edge provided is not in the graph.")
     }
 
-    if (any(graph$edges_df$from == to &
-            graph$edges_df$to == from)) {
+    # Filter out relevant rows from `edf`
+    edf <-
+      edf %>%
+      dplyr::filter(!((from == from_id & to == to_id) |
+                        (from == to_id & to == from_id)))
 
-      row_id_edge_removal <-
-        which(graph$edges_df$from == to &
-                graph$edges_df$to == from)
+    row.names(edf) <- NULL
 
-      revised_edges_df <-
-        graph$edges_df[-row_id_edge_removal,]
-
-      row.names(revised_edges_df) <- NULL
-
-      dgr_graph <-
-        create_graph(
-          nodes_df = graph$nodes_df,
-          edges_df = revised_edges_df,
-          directed = graph$directed,
-          graph_name = graph$graph_name,
-          graph_tz = graph$graph_tz,
-          graph_time = graph$graph_time)
-
-      # Update the `last_node` counter
-      dgr_graph$last_node <- nodes_created
-
-      # Update the `global_attrs` df
-      dgr_graph$global_attrs <- graph$global_attrs
-    }
+    # Update the graph's edge data frame
+    graph$edges_df <- edf
   }
 
-  return(dgr_graph)
+  return(graph)
 }

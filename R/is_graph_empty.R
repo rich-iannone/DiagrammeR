@@ -29,9 +29,11 @@ is_graph_empty <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # Determine if graph is empty by checking for
-  # a NULL value at `graph$nodes_df`
-  graph_is_empty <- is.null(graph$nodes_df)
-
-  return(graph_is_empty)
+  # Determine if graph is empty by checking the
+  # number of rows in `graph$nodes_df`
+  if (nrow(graph$nodes_df) == 0) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
 }

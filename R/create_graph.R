@@ -17,14 +17,6 @@
 #' operations will be generated, respectively.
 #' @param graph_name an optional string for labeling
 #' the graph object.
-#' @param graph_time a date or date-time string
-#' (required for insertion of graph into a graph series
-#' of the type \code{temporal}).
-#' @param graph_tz an optional value for the time zone
-#' (\code{tz}) corresponding to the date or date-time
-#' string supplied as a value to \code{graph_time}. If
-#' no time zone is provided then it will be set to
-#' \code{GMT}.
 #' @param attr_theme The theme (i.e., collection of
 #' \code{graph}, \code{node}, and \code{edge} global
 #' graph attributes) to use for this graph. The default
@@ -111,33 +103,60 @@
 #' #> 2  2 type_1     2    circle    2.6
 #' #> 3  3 type_5     3 rectangle    9.4
 #' #> 4  4 type_2     4 rectangle    2.7
-#' @importFrom tibble tibble
+#' @importFrom dplyr bind_rows
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,
                          edges_df = NULL,
                          directed = TRUE,
                          graph_name = NULL,
-                         graph_time = NULL,
-                         graph_tz = NULL,
                          attr_theme = "default") {
+
+  ## DF: `graph_info`
+
+  # Generate a random 8-character, alphanumeric
+  # string to use as a graph ID
+  graph_id <-
+    replicate(
+      8, sample(c(LETTERS, letters, 0:9), 1)) %>%
+    paste(collapse = "")
+
+  # Get the time of graph creation
+  graph_time <- Sys.time()
+
+  # Get the locale's time zone
+  graph_tz <- Sys.timezone()
+
+  # Create the `graph_info` data frame
+  graph_info <-
+    data.frame(
+      graph_id = as.character(graph_id),
+      graph_name = as.character(paste0("graph_", graph_id)),
+      graph_time = graph_time,
+      graph_tz = graph_tz,
+      stringsAsFactors = FALSE)
+
+  # Insert a user-defined `graph_name` if supplied
+  if (!is.null(graph_name)) {
+    graph_info[1, 2] <- as.character(graph_name)
+  }
+
+  ## DF: `global_attrs`
 
   # Create an empty table for global graph attributes
   global_attrs <-
-    tibble::tibble(
+    data.frame(
       attr = as.character(NA),
       value = as.character(NA),
-      attr_type = as.character(NA)) %>%
-    as.data.frame(stringsAsFactors = FALSE)
-
-  global_attrs <- global_attrs[-1, ]
+      attr_type = as.character(NA),
+      stringsAsFactors = FALSE)[-1, ]
 
   # If `attr_theme` is `default` then populate the
   # `global_attrs` data frame with global graph attrs
   if (attr_theme == "default") {
 
     global_attrs <-
-      tibble::tibble(
+      data.frame(
         attr = as.character(
           c("layout", "outputorder", "fontname", "fontsize",
             "shape", "fixedsize", "width", "style",
@@ -153,31 +172,49 @@ create_graph <- function(nodes_df = NULL,
         attr_type = as.character(
           c(rep("graph", 2),
             rep("node", 9),
-            rep("edge", 3))
-        )) %>%
-      as.data.frame(stringsAsFactors = FALSE)
+            rep("edge", 3))),
+        stringsAsFactors = FALSE)
   }
+
+  ## DF: `nodes_df`
+
+  # Create an empty node data frame (`ndf`)
+  ndf <-
+    data.frame(
+      id = as.integer(NA),
+      type = as.character(NA),
+      label = as.character(NA),
+      stringsAsFactors = FALSE)[-1, ]
+
+  ## DF: `edges_df`
+
+  # Create an empty edge data frame (`edf`)
+  edf <-
+    data.frame(
+      from = as.integer(NA),
+      to = as.integer(NA),
+      rel = as.character(NA),
+      stringsAsFactors = FALSE)[-1, ]
+
+  ## Empty Graph
+
+  # Initialize a graph object
+  graph <-
+    list(graph_info = graph_info,
+         nodes_df = ndf,
+         edges_df = edf,
+         global_attrs = global_attrs,
+         directed = ifelse(directed,
+                           TRUE, FALSE),
+         last_node = 0)
+
+  attr(graph, "class") <- "dgr_graph"
 
   if (all(c(is.null(nodes_df), is.null(edges_df)))) {
 
     # If neither an ndf nor both ndf & edf provided,
-    # create an empty graph
-
-    # Create the `dgr_graph` list object
-    dgr_graph <-
-      list(graph_name = graph_name,
-           graph_time = graph_time,
-           graph_tz = graph_tz,
-           nodes_df = NULL,
-           edges_df = NULL,
-           global_attrs = global_attrs,
-           directed = ifelse(directed,
-                             TRUE, FALSE),
-           last_node = 0)
-
-    attr(dgr_graph, "class") <- "dgr_graph"
-
-    return(dgr_graph)
+    # return the initialized graph with no nodes or edges
+    return(graph)
 
   } else if (!is.null(nodes_df) & is.null(edges_df)) {
 
@@ -190,21 +227,14 @@ create_graph <- function(nodes_df = NULL,
       nodes_df[, i] <- as.character(nodes_df[, i])
     }
 
-    # Create the `dgr_graph` list object
-    dgr_graph <-
-      list(graph_name = graph_name,
-           graph_time = graph_time,
-           graph_tz = graph_tz,
-           nodes_df = nodes_df,
-           edges_df = NULL,
-           global_attrs = global_attrs,
-           directed = ifelse(directed,
-                             TRUE, FALSE),
-           last_node = nrow(nodes_df))
+    # Bind the nodes to the `nodes_df` df in the graph
+    graph$nodes_df <-
+      dplyr::bind_rows(graph$nodes_df, nodes_df)
 
-    attr(dgr_graph, "class") <- "dgr_graph"
+    # Modify the `last_node` vector
+    graph$last_node <- nrow(nodes_df)
 
-    return(dgr_graph)
+    return(graph)
 
   } else if (!is.null(nodes_df) & !is.null(edges_df)) {
 
@@ -217,6 +247,14 @@ create_graph <- function(nodes_df = NULL,
       nodes_df[, i] <- as.character(nodes_df[, i])
     }
 
+    # Bind the nodes to the `nodes_df` df in the graph
+    graph$nodes_df <-
+      dplyr::bind_rows(graph$nodes_df, nodes_df)
+
+    # Modify the `last_node` vector
+    graph$last_node <- nrow(nodes_df)
+
+    # Ensure that the edf has the correct classes
     if (inherits(edges_df, "data.frame")) {
       if (ncol(edges_df) > 2) {
 
@@ -225,19 +263,10 @@ create_graph <- function(nodes_df = NULL,
       }
     }
 
-    # Create the `dgr_graph` list object
-    dgr_graph <-
-      list(graph_name = graph_name,
-           graph_time = graph_time,
-           graph_tz = graph_tz,
-           nodes_df = nodes_df,
-           edges_df = edges_df,
-           global_attrs = global_attrs,
-           directed = directed,
-           last_node = nrow(nodes_df))
+    # Bind the edges to the `edges_df` df in the graph
+    graph$edges_df <-
+      dplyr::bind_rows(graph$edges_df, edges_df)
 
-    attr(dgr_graph, "class") <- "dgr_graph"
-
-    return(dgr_graph)
+    return(graph)
   }
 }

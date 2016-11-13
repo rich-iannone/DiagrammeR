@@ -42,11 +42,6 @@ set_graph_time <- function(graph,
     stop("The graph object is not valid.")
   }
 
-
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   if (is.null(time) & is.null(tz)) {
     time <- format(Sys.time(), "%Y-%m-%d %H:%M:%S")
     tz <- Sys.timezone()
@@ -71,26 +66,9 @@ set_graph_time <- function(graph,
     tz <- "GMT"
   }
 
-  dgr_graph <-
-    create_graph(
-      nodes_df = graph$nodes_df,
-      edges_df = graph$edges_df,
-      directed = ifelse(is_graph_directed(graph),
-                        TRUE, FALSE),
-      graph_name = graph$graph_name,
-      graph_time = ifelse(!is.null(time),
-                          time, graph$graph_time),
-      graph_tz = tz)
+  # Modify the graph's time and time zone attributes
+  graph$graph_info$graph_time[1] <- time
+  graph$graph_info$graph_tz[1] <- tz
 
-  if (!is.null(graph$selection)) {
-    dgr_graph$selection <- graph$selection
-  }
-
-  # Update the `last_node` counter
-  dgr_graph$last_node <- nodes_created
-
-  # Update the `global_attrs` df
-  dgr_graph$global_attrs <- graph$global_attrs
-
-  return(dgr_graph)
+  return(graph)
 }

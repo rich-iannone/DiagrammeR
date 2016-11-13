@@ -102,13 +102,15 @@ combine_graphs <- function(x,
 
   # Remove columns ending with `.x`
   y_edges_df <-
-    dplyr::select(y_edges_df,
-                  -dplyr::ends_with(".x"))
+    dplyr::select(
+      y_edges_df,
+      -dplyr::ends_with(".x"))
 
   # Remove columns ending with `_new`
   y_edges_df <-
-    dplyr::select(y_edges_df,
-                  -dplyr::ends_with("_new"))
+    dplyr::select(
+      y_edges_df,
+      -dplyr::ends_with("_new"))
 
   # Rename column names with `.y` suffixes
   colnames(y_edges_df) <-
@@ -129,31 +131,22 @@ combine_graphs <- function(x,
 
   # Combine the node data frames for both graphs
   combined_nodes <-
-    dplyr::bind_rows(
-      x_nodes_df,
-      y_nodes_df)
+    dplyr::bind_rows(x_nodes_df, y_nodes_df)
 
   # Combine the edge data frames for both graphs
   combined_edges <-
-    dplyr::bind_rows(
-      x_edges_df,
-      y_edges_df)
+    dplyr::bind_rows(x_edges_df, y_edges_df)
 
-  # Create a graph object and inherit attributes
+  # Modify the graph object and inherit attributes
   # from the first graph provided (`x`)
-  graph <-
-    create_graph(
-      nodes_df = combined_nodes,
-      edges_df = combined_edges,
-      directed = ifelse(
-        is_graph_directed(x) == FALSE ||
-          is_graph_directed(y) == FALSE,
-        FALSE, TRUE),
-      graph_name = x$graph_name,
-      graph_time = x$graph_time,
-      graph_tz = x$graph_tz)
+  x$nodes_df <- combined_nodes
+  x$edges_df <- combined_edges
+  x$directed <-
+    ifelse(
+      is_graph_directed(x) == FALSE ||
+        is_graph_directed(y) == FALSE,
+      FALSE, TRUE)
+  x$last_node <- nrow(combined_nodes)
 
-  graph$global_attrs <- x$global_attrs
-
-  return(graph)
+  return(x)
 }

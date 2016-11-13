@@ -32,7 +32,9 @@ from_igraph <- function(igraph) {
 
   # Generate a single-column ndf with node ID values
   nodes_df <-
-    data.frame(id = as.character(igraph::V(igraph)))
+    data.frame(
+      id = as.integer(igraph::V(igraph)),
+      stringsAsFactors = FALSE)
 
   # If the `type` attr exists, add that to the ndf
   if ("type" %in% node_attrs) {
@@ -91,10 +93,10 @@ from_igraph <- function(igraph) {
 
   # Generate a 2 column edf with `to` and `from` values
   edges_df <-
-    as.data.frame(igraph::ends(igraph, igraph::E(igraph)),
-                  stringsAsFactors = FALSE)
-
-  colnames(edges_df) <- c("from", "to")
+    data.frame(
+      from = as.integer(igraph::ends(igraph, igraph::E(igraph))[, 1]),
+      to = as.integer(igraph::ends(igraph, igraph::E(igraph))[, 2]),
+      stringsAsFactors = FALSE)
 
   # If the `rel` attr exists, add that to the edf
   if ("rel" %in% edge_attrs) {
@@ -114,8 +116,7 @@ from_igraph <- function(igraph) {
   }
 
   # Determine if there are any extra edge attrs
-  extra_edge_attrs <-
-    setdiff(edge_attrs, "rel")
+  extra_edge_attrs <- setdiff(edge_attrs, "rel")
 
   # If there are extra edge attrs, add to the edf
   if (length(extra_edge_attrs) > 0) {
@@ -129,24 +130,19 @@ from_igraph <- function(igraph) {
 
       colnames(df_col) <- extra_edge_attrs[i]
 
-      edges_df <-
-        cbind(edges_df, df_col)
+      edges_df <- cbind(edges_df, df_col)
     }
   }
 
-  # Ensure that the `id` column is classed as an integer
-  nodes_df$id <- as.integer(nodes_df$id)
-
   # Ensure that the ndf is sorted ascending by node ID
-  nodes_df <-
-    dplyr::arrange(nodes_df, id)
+  nodes_df <- dplyr::arrange(nodes_df, id)
 
   # Create a DiagrammeR graph object
-  dgr_graph <-
+  graph <-
     create_graph(
       nodes_df = nodes_df,
       edges_df = edges_df,
       directed = igraph::is_directed(igraph))
 
-  return(dgr_graph)
+  return(graph)
 }

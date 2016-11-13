@@ -95,11 +95,9 @@ get_edges <- function(x,
 
   if (inherits(x, "dgr_graph")) {
 
-    if (is_graph_empty(x) | is.null(x$edges_df)) {
+    if (is_graph_empty(x) | nrow(x$edges_df) == 0) {
 
-      edges <- NA
-
-      return(edges)
+      return(NA)
 
     } else {
 

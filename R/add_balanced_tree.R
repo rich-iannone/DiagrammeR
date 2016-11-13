@@ -92,17 +92,8 @@ add_balanced_tree <- function(graph,
   # Create the tree graph
   tree_graph <- create_graph(tree_nodes, tree_edges)
 
-  # If the input graph is not empty, combine graphs
-  # using the `combine_graphs()` function
-  if (!is_graph_empty(graph)) {
+  # Combine the graphs
+  combined_graph <- combine_graphs(graph, tree_graph)
 
-    graph <- combine_graphs(graph, tree_graph)
-
-    # Update the `last_node` counter
-    graph$last_node <- nodes_created + nrow(tree_nodes)
-
-    return(graph)
-  } else {
-    return(tree_graph)
-  }
+  return(combined_graph)
 }

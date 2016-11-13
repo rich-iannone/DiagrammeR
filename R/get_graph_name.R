@@ -26,13 +26,5 @@ get_graph_name <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  if (is.null(graph$graph_name)) {
-    graph_name <- NA
-  }
-
-  if (!is.null(graph$graph_name)) {
-    graph_name <- graph$graph_name
-  }
-
-  return(graph_name)
+  return(graph$graph_info$graph_name)
 }

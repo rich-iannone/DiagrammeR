@@ -65,9 +65,9 @@ edge_info <- function(graph) {
     relationship <- graph$edges_df$rel
   }
 
-  # For graphs with no edges, return NULL
-  if (is.null(graph$edges_df)) {
-    return(NULL)
+  # For graphs with no edges, return NA
+  if (nrow(graph$edges_df) == 0) {
+    return(NA)
   }
 
   # For graphs with no edges, create an

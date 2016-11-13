@@ -24,8 +24,8 @@
 #'   add_edges_w_string(
 #'     "1->3 1->2 2->3")
 #'
-#' # Select edges attached to node with ID `3` (these
-#' # are `1` -> `3` and `2` -> `3`)
+#' # Select edges attached to node with ID `3`
+#' # (these are `1` -> `3` and `2` -> `3`)
 #' graph <-
 #'   graph %>%
 #'   select_edges_by_node_id(3)
@@ -68,13 +68,6 @@ delete_edges_ws <- function(graph) {
     return(graph)
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
-  # Get the data frame of global graph attributes
-  global_attrs <- graph$global_attrs
-
   # Get vectors of the nodes in edges to be deleted
   from_delete <- graph$selection$edges$from
   to_delete <- graph$selection$edges$to
@@ -88,30 +81,8 @@ delete_edges_ws <- function(graph) {
         to = to_delete[i])
   }
 
-  # If the graph's edf has no rows, ensure that it
-  # is set to NULL
-  if (!is.null(graph$edges_df)) {
-    if (nrow(graph$edges_df) == 0) {
-
-      graph <-
-        create_graph(
-          nodes_df = graph$nodes_df,
-          edges_df = NULL,
-          directed = graph$directed,
-          graph_name = graph$graph_name,
-          graph_tz = graph$graph_tz,
-          graph_time = graph$graph_time)
-    }
-  }
-
   # Remove all edges in selection
   graph$selection$edges <- NULL
-
-  # Update the `last_node` counter
-  graph$last_node <- nodes_created
-
-  # Update the `global_attrs` df
-  graph$global_attrs <- global_attrs
 
   return(graph)
 }
