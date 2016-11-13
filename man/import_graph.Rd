@@ -4,8 +4,7 @@
 \alias{import_graph}
 \title{Import a graph from various graph formats}
 \usage{
-import_graph(graph_file, file_type = NULL, graph_name = NULL,
-  graph_time = NULL, graph_tz = NULL)
+import_graph(graph_file, file_type = NULL)
 }
 \arguments{
 \item{graph_file}{a connection to a graph file.}
@@ -16,19 +15,6 @@ Options are: \code{graphml} (GraphML), \code{gml}
 file), and \code{mtx} (MatrixMarket format). If not
 supplied, the function will infer the type by its
 file extension.}
-
-\item{graph_name}{an optional string for labeling
-the graph object.}
-
-\item{graph_time}{a date or date-time string
-(required for insertion of graph into a graph series
-of the type \code{temporal}).}
-
-\item{graph_tz}{an optional value for the time zone
-(\code{tz})
-corresponding to the date or date-time string
-supplied as a value to \code{graph_time}. If no time
-zone is provided then it will be set to \code{GMT}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
