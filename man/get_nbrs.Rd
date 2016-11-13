@@ -21,39 +21,29 @@ With one or more nodes, get the set of
 all neighboring nodes.
 }
 \examples{
-# Create a random, directed graph with 18
-# nodes and 22 edges
-random_graph <-
-  create_random_graph(
-    n = 18,
-    m = 22,
-    directed = TRUE,
-    fully_connected = TRUE,
-    set_seed = 20)
+# Create a simple, directed graph with 5
+# nodes and 4 edges
+graph <-
+  create_graph() \%>\%
+  add_path(5)
 
-# Find all neighbor nodes for node `5`
-random_graph \%>\% get_nbrs(5)
-#> [1]  1  2 12 18
+# Find all neighbor nodes for node `2`
+graph \%>\% get_nbrs(2)
+#> [1] 1 3
 
-# Find all neighbor nodes for nodes `5`,
-# `7`, and `15`
-random_graph \%>\% get_nbrs(c(5, 7, 15))
-#> [1]  1  2  6 12 18
+# Find all neighbor nodes for nodes `1`
+# and `5`
+graph \%>\% get_nbrs(c(1, 5))
+#> [1] 2 4
 
-# Color node `11` with purple, get its
+# Color node `3` with purple, get its
 # neighbors and color those nodes green
-random_graph <-
-  random_graph \%>\%
-  select_nodes_by_id(11) \%>\%
+graph <-
+  graph \%>\%
+  select_nodes_by_id(3) \%>\%
   set_node_attrs_ws("color", "purple") \%>\%
   clear_selection() \%>\%
-  select_nodes_by_id(get_nbrs(., 11)) \%>\%
+  select_nodes_by_id(get_nbrs(., 3)) \%>\%
   set_node_attrs_ws("color", "green")
-
-# A node with no neighbors with return `NA`
-create_graph() \%>\%
-  add_node() \%>\%
-  get_nbrs(1)
-#> [1] NA
 }
 
