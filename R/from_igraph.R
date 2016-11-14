@@ -23,6 +23,9 @@
 
 from_igraph <- function(igraph) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   # Create bindings for specific variables
   id <- NULL
 

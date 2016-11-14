@@ -38,6 +38,9 @@
 combine_graphs <- function(x,
                            y) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   # Validation: Graph object `x` is valid
   if (graph_object_valid(x) == FALSE) {
     stop("The graph object `x` is not valid.")

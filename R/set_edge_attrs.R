@@ -91,6 +91,9 @@ set_edge_attrs <- function(x,
                            from = NULL,
                            to = NULL) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   if (edge_attr == "from" | edge_attr == "to") {
     stop("You cannot alter values associated with node IDs.")
   }

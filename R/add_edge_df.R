@@ -28,18 +28,23 @@
 #'     to = c(4, 3, 1),
 #'     rel = "leading_to")
 #'
-#' # Add the edge data frame to the graph object to create a
-#' # graph with both nodes and edges
+#' # Add the edge data frame to the graph object to
+#' # create a graph with both nodes and edges
 #' graph <-
 #'   graph %>%
 #'   add_edge_df(edf)
 #'
+#' # Get the graph's edges to verify that the edge
+#' # data frame had been added
 #' get_edges(graph, return_type = "vector")
 #' #> [1] "1 -> 4" "2 -> 3" "3 -> 1"
 #' @export add_edge_df
 
 add_edge_df <- function(graph,
                         edge_df) {
+
+  # Get the time of function start
+  time_function_start <- Sys.time()
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -80,6 +85,16 @@ add_edge_df <- function(graph,
     # Update the `last_node` counter
     graph$last_node <- nodes_created
 
+    graph$graph_log <-
+      add_action_to_log(
+        graph_log = graph$graph_log,
+        version_id = nrow(graph$graph_log) + 1,
+        function_used = "add_edge_df",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
+
     return(graph)
   }
 
@@ -93,6 +108,16 @@ add_edge_df <- function(graph,
 
     # Update the `last_node` counter
     graph$last_node <- nodes_created
+
+    graph$graph_log <-
+      add_action_to_log(
+        graph_log = graph$graph_log,
+        version_id = nrow(graph$graph_log) + 1,
+        function_used = "add_edge_df",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
 
     return(graph)
   }

@@ -114,18 +114,18 @@ create_graph <- function(nodes_df = NULL,
 
   ## DF: `graph_info`
 
+  # Get the time of graph creation
+  graph_time <- Sys.time()
+
+  # Get the locale's time zone
+  graph_tz <- Sys.timezone()
+
   # Generate a random 8-character, alphanumeric
   # string to use as a graph ID
   graph_id <-
     replicate(
       8, sample(c(LETTERS, letters, 0:9), 1)) %>%
     paste(collapse = "")
-
-  # Get the time of graph creation
-  graph_time <- Sys.time()
-
-  # Get the locale's time zone
-  graph_tz <- Sys.timezone()
 
   # Create the `graph_info` data frame
   graph_info <-
@@ -202,13 +202,11 @@ create_graph <- function(nodes_df = NULL,
   graph_log <-
     data.frame(
       version_id = as.integer(NA),
+      function_used = as.character(NA),
+      time_modified = graph_time,
+      duration = as.numeric(NA),
       nodes = as.integer(NA),
       edges = as.integer(NA),
-      time_produced = graph_time,
-      function_used = as.character(NA),
-      function_success = as.logical(NA),
-      time_of_call = graph_time,
-      duration_of_call = as.numeric(NA),
       stringsAsFactors = FALSE)[-1, ]
 
   ## Empty Graph
@@ -227,6 +225,20 @@ create_graph <- function(nodes_df = NULL,
   attr(graph, "class") <- "dgr_graph"
 
   if (all(c(is.null(nodes_df), is.null(edges_df)))) {
+
+    # Update the `graph_log` df with an action
+    graph_log <-
+      add_action_to_log(
+        graph_log = graph_log,
+        version_id = 1,
+        function_used = "create_graph",
+        time_modified = graph_time,
+        duration = graph_function_duration(graph_time),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
+
+    # Add the `graph_log` df to the graph object
+    graph$graph_log <- graph_log
 
     # If neither an ndf nor both ndf & edf provided,
     # return the initialized graph with no nodes or edges
@@ -249,6 +261,20 @@ create_graph <- function(nodes_df = NULL,
 
     # Modify the `last_node` vector
     graph$last_node <- nrow(nodes_df)
+
+    # Update the `graph_log` df with an action
+    graph_log <-
+      add_action_to_log(
+        graph_log = graph_log,
+        version_id = 1,
+        function_used = "create_graph",
+        time_modified = graph_time,
+        duration = graph_function_duration(graph_time),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
+
+    # Add the `graph_log` df to the graph object
+    graph$graph_log <- graph_log
 
     return(graph)
 
@@ -282,6 +308,20 @@ create_graph <- function(nodes_df = NULL,
     # Bind the edges to the `edges_df` df in the graph
     graph$edges_df <-
       dplyr::bind_rows(graph$edges_df, edges_df)
+
+    # Update the `graph_log` df with an action
+    graph_log <-
+      add_action_to_log(
+        graph_log = graph_log,
+        version_id = 1,
+        function_used = "create_graph",
+        time_modified = graph_time,
+        duration = graph_function_duration(graph_time),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
+
+    # Add the `graph_log` df to the graph object
+    graph$graph_log <- graph_log
 
     return(graph)
   }

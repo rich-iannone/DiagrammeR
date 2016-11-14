@@ -34,6 +34,9 @@ from_adj_matrix <- function(x,
                             weighted = FALSE,
                             use_diag = TRUE) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   # Stop function if x is not a matrix object
   if (!inherits(x, "matrix")) {
     stop("The input for this function must be a matrix object.")

@@ -158,6 +158,9 @@
 trav_both <- function(graph,
                       conditions = NULL) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")

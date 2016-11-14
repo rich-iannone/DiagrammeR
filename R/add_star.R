@@ -45,6 +45,9 @@ add_star <- function(graph,
                      label = TRUE,
                      rel = NULL) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
@@ -58,6 +61,12 @@ add_star <- function(graph,
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
+
+  # Get the graph's log
+  graph_log <- graph$graph_log
+
+  # Get the graph's info
+  graph_info <- graph$graph_info
 
   # Get the sequence of nodes required
   nodes <- seq(1, n)
@@ -88,8 +97,37 @@ add_star <- function(graph,
     # Update the `last_node` counter
     combined_graph$last_node <- nodes_created + nrow(star_nodes)
 
+    # Update the `graph_log` df with an action
+    graph_log <-
+      add_action_to_log(
+        graph_log = graph_log,
+        version_id = nrow(graph_log) + 1,
+        function_used = "add_balanced_tree",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(combined_graph$nodes_df),
+        edges = nrow(combined_graph$edges_df))
+
+    combined_graph$graph_log <- graph_log
+    combined_graph$graph_info <- graph_info
+
     return(combined_graph)
   } else {
+
+    # Update the `graph_log` df with an action
+    graph_log <-
+      add_action_to_log(
+        graph_log = graph_log,
+        version_id = nrow(graph_log) + 1,
+        function_used = "add_balanced_tree",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(star_graph$nodes_df),
+        edges = nrow(star_graph$edges_df))
+
+    star_graph$graph_log <- graph_log
+    star_graph$graph_info <- graph_info
+
     return(star_graph)
   }
 }

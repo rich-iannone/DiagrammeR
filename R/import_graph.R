@@ -62,6 +62,9 @@
 import_graph <- function(graph_file,
                          file_type = NULL) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   # Assign NULL to several objects
   id <- to_label <- from_label <-  NULL
 
