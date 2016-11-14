@@ -27,7 +27,7 @@ graph <-
     5, 6, set_seed = 3) \%>\%
     set_edge_attrs("value", 3) \%>\%
     mutate_edge_attrs(
-      "value", "2 * .", "penwidth")
+      "value", "2 * ~", "penwidth")
 
 # Get the graph's internal edf to show which
 # edge attributes are available
