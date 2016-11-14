@@ -196,6 +196,21 @@ create_graph <- function(nodes_df = NULL,
       rel = as.character(NA),
       stringsAsFactors = FALSE)[-1, ]
 
+  ## DF: `graph_log`
+
+  # Create an empty `graph_log` data frame
+  graph_log <-
+    data.frame(
+      version_id = as.integer(NA),
+      nodes = as.integer(NA),
+      edges = as.integer(NA),
+      time_produced = graph_time,
+      function_used = as.character(NA),
+      function_success = as.logical(NA),
+      time_of_call = graph_time,
+      duration_of_call = as.numeric(NA),
+      stringsAsFactors = FALSE)[-1, ]
+
   ## Empty Graph
 
   # Initialize a graph object
@@ -206,7 +221,8 @@ create_graph <- function(nodes_df = NULL,
          global_attrs = global_attrs,
          directed = ifelse(directed,
                            TRUE, FALSE),
-         last_node = 0)
+         last_node = 0,
+         graph_log = graph_log)
 
   attr(graph, "class") <- "dgr_graph"
 
