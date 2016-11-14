@@ -60,5 +60,16 @@ rev_edge_dir <- function(graph) {
   # Modify the graph object
   graph$edges_df <- edges
 
+  # Update the `graph_log` df with an action
+  graph$graph_log <-
+    add_action_to_log(
+      graph_log = graph$graph_log,
+      version_id = nrow(graph$graph_log) + 1,
+      function_used = "rev_edge_dir",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df))
+
   return(graph)
 }

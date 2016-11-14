@@ -188,6 +188,17 @@ set_node_attrs <- function(x,
     # revised version
     x$nodes_df <- nodes_df
 
+    # Update the `graph_log` df with an action
+    x$graph_log <-
+      add_action_to_log(
+        graph_log = x$graph_log,
+        version_id = nrow(x$graph_log) + 1,
+        function_used = "set_node_attrs",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(x$nodes_df),
+        edges = nrow(x$edges_df))
+
     return(x)
   }
 
