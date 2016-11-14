@@ -15,7 +15,7 @@ test_that("adding a node to a graph is possible", {
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node")))
+            "directed", "last_node", "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -156,7 +156,7 @@ test_that("adding an edge to a graph is possible", {
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node")))
+            "directed", "last_node", "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")

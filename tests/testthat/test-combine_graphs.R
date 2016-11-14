@@ -40,7 +40,7 @@ test_that("graphs can be combined", {
     all(names(combined_graph_1) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node")))
+            "directed", "last_node", "graph_log")))
 
   # Expect that the `global_attrs` graph component
   # is not NULL
