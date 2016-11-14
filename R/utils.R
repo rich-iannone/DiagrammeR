@@ -223,9 +223,9 @@ add_action_to_log <- function(graph_log,
                               nodes,
                               edges) {
 
-  # Ensure that `time_of_call` inherits from POSIXct
-  if (inherits(time_of_call, "POSIXct") == FALSE) {
-    stop("The `time_of_call` value must inherit from POSIXct.")
+  # Ensure that `time_modified` inherits from POSIXct
+  if (inherits(time_modified, "POSIXct") == FALSE) {
+    stop("The `time_modified` value must inherit from POSIXct.")
   }
 
   # Create a log line
