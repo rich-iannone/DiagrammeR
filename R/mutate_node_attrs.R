@@ -1,82 +1,108 @@
 #' Mutate a set of node attribute values
 #' @description Within a graph's internal node data
 #' frame (ndf), mutate numeric node attribute values
-#' using an expression. Optionally, one can specify a
-#' different node attribute name and create a new node
-#' attribute while retaining the original node
-#' attribute and its values.
-#' @param graph a graph object of class
+#' using one or more expressions. Optionally, one can
+#' specify a different node attribute name and create
+#' a new node attribute while retaining the original
+#' node attribute and its values.
+#' @param graph a graph object of class \code{dgr_graph}.
 #' @param node_attr_from the name of the node attribute
-#' column from which values will be mutated.
-#' @param expression an expression for the mutation of
-#' all node attribute values specified by
-#' \code{node_attr_from}. It is to be supplied as a
-#' string where a \code{.} represents the node
-#' attribute values.
+#' column from which values will be mutated. An
+#' \code{NA} value can be provided here if node
+#' attribute names are used in \code{expressions}
+#' statements. Note that if \code{NA} is used, a value
+#' must be provided for \code{node_attr_to}.
+#' @param expressions one or more expressions for
+#' mutation of all node attribute values specified by
+#' \code{node_attr_from}. To reference the node
+#' attribute given in \code{node_attr_from}, use the
+#' \code{~} character. Otherwise, all node attributes
+#' can be referenced by using the names of those node
+#' attributes directly in the expressions. Expressions
+#' are evaluated in the order provided.
 #' @param node_attr_to an optionally supplied name of
 #' a new node attribute to which the mutated values
 #' will be applied. This will retain the original node
-#' attribute and its values.
-#' @param round_to the maximum number of decimal places
-#' to retain for the mutated node attribute values. The
-#' default value is \code{3}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#' attribute(s) and its values. If \code{NA} is used
+#' with \code{node_attr_from}, a value must be provided
+#' here (since mutated values must be placed
+#' somewhere).
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a graph with 3 nodes
 #' graph <-
-#'   create_random_graph(
-#'     5, 10, set_seed = 3)
+#'   create_graph() %>%
+#'   add_path(3) %>%
+#'   set_node_attrs(
+#'     "width", c(3.4, 2.3, 7.2))
 #'
 #' # Get the graph's internal ndf to show which
 #' # node attributes are available
 #' get_node_df(graph)
-#' #>   id type label value
-#' #> 1  1 <NA>     1   2.0
-#' #> 2  2 <NA>     2   8.5
-#' #> 3  3 <NA>     3   4.0
-#' #> 4  4 <NA>     4   3.5
-#' #> 5  5 <NA>     5   6.5
+#' #>   id type label width
+#' #> 1  1 <NA>     1   3.4
+#' #> 2  2 <NA>     2   2.3
+#' #> 3  3 <NA>     3   7.2
 #'
-#' # Mutate the `value` node attribute, dividing each
-#' # value by 2
+#' # Mutate the `width` node attribute, dividing
+#' # each value by 2
 #' graph <-
 #'   graph %>%
-#'   mutate_node_attrs("value", ". / 2")
+#'   mutate_node_attrs("width", "~ / 2")
 #'
 #' # Get the graph's internal ndf to show that the
-#' # node attribute values had been mutated
+#' # node attribute `width` had its values changed
 #' get_node_df(graph)
-#' #>   id type label value
-#' #> 1  1 <NA>     1  1.00
-#' #> 2  2 <NA>     2  4.25
-#' #> 3  3 <NA>     3  2.00
-#' #> 4  4 <NA>     4  1.75
-#' #> 5  5 <NA>     5  3.25
+#' #>   id type label width
+#' #> 1  1 <NA>     1  1.70
+#' #> 2  2 <NA>     2  1.15
+#' #> 3  3 <NA>     3  3.60
 #'
-#' # Create a new node attribute, called `width`,
-#' # that is the log of values in `value` plus 1
+#' # Create a new node attribute, called `length`,
+#' # that is the log of values in `width` plus 2
+#' # (and round all values to 2 decimal places)
 #' graph <-
 #'   graph %>%
-#'   mutate_node_attrs("value", "log(.) + 1", "width")
+#'   mutate_node_attrs(
+#'     "width", "round(log(~) + 2, 2)", "length")
 #'
-#' # Get the graph's internal ndf to show that the
-#' # node attribute values had been mutated and used as
-#' # the new node attribute `width`
+#' # Get the graph's internal ndf to show that
+#' # the node attribute values had been mutated
+#' # and used as the new node attribute `length`
 #' get_node_df(graph)
-#' #>   id type label value width
-#' #> 1  1 <NA>     1  1.00 1.000
-#' #> 2  2 <NA>     2  4.25 2.447
-#' #> 3  3 <NA>     3  2.00 1.693
-#' #> 4  4 <NA>     4  1.75 1.560
-#' #> 5  5 <NA>     5  3.25 2.179
+#' #>   id type label width length
+#' #> 1  1 <NA>     1  1.70   2.53
+#' #> 2  2 <NA>     2  1.15   2.14
+#' #> 3  3 <NA>     3  3.60   3.28
+#'
+#' # Create a new node attribute called `area`,
+#' # which is the product of the `width` and
+#' # `length` attributes; note that we can provide
+#' # NA to `node_attr_from` since we are naming
+#' # at least one of the node attributes in the
+#' # `expressions` vector (and providing a new
+#' # node attribute name: `area`)
+#' graph <-
+#'   graph %>%
+#'   mutate_node_attrs(
+#'     NA, "width * length", "area")
+#'
+#' # Get the graph's internal ndf to show that
+#' # the node attribute values had been multiplied
+#' # together, creating a new node attribute `area`
+#' get_node_df(graph)
+#' #>   id type label width length   area
+#' #> 1  1 <NA>     1  1.70   2.53  4.301
+#' #> 2  2 <NA>     2  1.15   2.14  2.461
+#' #> 3  3 <NA>     3  3.60   3.28 11.808
+#' @importFrom stringr str_replace_all str_detect
+#' @importFrom dplyr mutate_
 #' @export mutate_node_attrs
 
 mutate_node_attrs <- function(graph,
                               node_attr_from,
-                              expression,
-                              node_attr_to = NULL,
-                              round_to = 3) {
+                              expressions,
+                              node_attr_to = NULL) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -84,83 +110,70 @@ mutate_node_attrs <- function(graph,
   }
 
   # Extract the graph's ndf
-  nodes <- get_node_df(graph)
+  ndf <- get_node_df(graph)
 
   # Get column names from the graph's ndf
-  column_names_graph <- colnames(nodes)
+  column_names_graph <- colnames(ndf)
 
   # Stop function if `node_attr_from` is not one
   # of the graph's node attributes
-  if (!any(column_names_graph %in% node_attr_from)) {
-    stop("The node attribute to mutate is not in the ndf.")
+  if (!is.na(node_attr_from)) {
+    if (!any(column_names_graph %in% node_attr_from)) {
+      stop("The node attribute to mutate is not in the ndf.")
+    }
   }
 
-  # Get the column number for the node attr to copy
-  col_num_evaluate <-
-    which(colnames(nodes) %in% node_attr_from)
-
-  # If node attribute is not numeric, stop function
-  if (is.na(suppressWarnings(
-    any(as.numeric(nodes[, col_num_evaluate]))))) {
-    stop("The node attribute to mutate is not numeric.")
+  # Replace `~` with node attribute undergoing mutation
+  if (!is.na(node_attr_from)) {
+    expressions <-
+      stringr::str_replace_all(
+        expressions, "~", node_attr_from)
   }
 
-  # Extract the vector to evaluate from the `nodes` df
-  vector_to_eval <-
-    as.numeric(nodes[, col_num_evaluate])
+  # Stop function if NA provided for `node_attr_from` but
+  # no value provided for `node_attr_to`
+  if (is.na(node_attr_from)) {
+    if (is.null(node_attr_to)) {
+      stop("If NA provided for `node_attr_from`, a value must be provided for `node_attr_to`.")
+    }
+  }
 
-  parsed_expression <-
-    gsub("([^0-9])(\\.)([^0-9])",
-         "\\1vector_to_eval\\3", expression)
-
-  parsed_expression <-
-    gsub("(^\\.|\\.$)",
-         "vector_to_eval", parsed_expression)
-
-  # Evaluate the parsed expression
-  mutated_vector <-
-    eval(parse(text = parsed_expression))
-
-  # Round the mutated vector
-  mutated_vector <- round(mutated_vector, round_to)
+  # If NA provided for `node_attr_from`, ensure that at
+  # least one node attribute value exists in each of the
+  # provided expressions
+  if (is.na(node_attr_from)) {
+    for (i in 1:length(expressions)) {
+      if (all(
+        stringr::str_detect(
+          expressions[i],
+          column_names_graph[-1]) == FALSE)) {
+        stop("At least one node attribute should exist in `expressions`.")
+      }
+    }
+  }
 
   if (!is.null(node_attr_to)) {
 
-    # Stop function if `node_attr_to` is
-    # `id` or `nodes`
-    if (any(c("id", "nodes") %in% node_attr_to)) {
-      stop("You cannot use those names.")
+    # Stop function if `node_attr_to` is `id`
+    if (node_attr_to == "id") {
+      stop("You cannot `id` as the value for `node_attr_to`.")
     }
 
-    if (any(column_names_graph %in% node_attr_to)) {
-
-      # Node attribute exists and values will be
-      # overwritten in this case
-      col_num_write_to <-
-        which(column_names_graph %in% node_attr_to)
-
-      nodes[,col_num_write_to] <-
-        mutated_vector
-    }
-
-    if (!any(column_names_graph %in% node_attr_to)) {
-
-      # Node attribute does not exist and values be
-      # part of a new node attribute
-      nodes <-
-        cbind(nodes, data.frame(mutated_vector))
-
-      # Set the column name for the copied attr
-      colnames(nodes)[ncol(nodes)] <- node_attr_to
+    for (i in 1:length(expressions)) {
+      ndf <-
+        ndf %>%
+        dplyr::mutate_(.dots = setNames(list(expressions[i]), node_attr_to))
     }
   } else {
-    # The node attribute values will be overwritten
-    # by the mutated value (no new node attrs)
-    nodes[, col_num_evaluate] <- mutated_vector
+    for (i in 1:length(expressions)) {
+      ndf <-
+        ndf %>%
+        dplyr::mutate_(.dots = setNames(list(expressions[i]), node_attr_from))
+    }
   }
 
-  # Update the graph object
-  graph$nodes_df <- nodes
+  # Update the graph
+  graph$nodes_df <- ndf
 
   return(graph)
 }
