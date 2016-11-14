@@ -216,10 +216,12 @@ graph_function_duration <- function(start_time) {
 # Function to add log line for a graph `action`
 #' @importFrom dplyr bind_rows
 add_action_to_log <- function(graph_log,
-                              function_name,
-                              was_successful,
-                              time_of_call,
-                              duration_of_call) {
+                              version_id,
+                              function_used,
+                              time_modified,
+                              duration,
+                              nodes,
+                              edges) {
 
   # Ensure that `time_of_call` inherits from POSIXct
   if (inherits(time_of_call, "POSIXct") == FALSE) {
@@ -229,13 +231,15 @@ add_action_to_log <- function(graph_log,
   # Create a log line
   graph_log_line <-
     data.frame(
-      function_used = as.character(function_name),
-      function_success = as.logical(was_successful),
-      time_of_call = time_of_call,
-      duration_of_call = as.numeric(duration_of_call),
+      version_id = as.integer(version_id),
+      function_used = as.character(function_used),
+      time_modified = time_modified,
+      duration = as.numeric(duration),
+      nodes = as.integer(nodes),
+      edges = as.integer(edges),
       stringsAsFactors = FALSE)
 
-  # Append the log line to `graph$graph_log`
+  # Append the log line to `graph_log`
   graph_log <-
     dplyr::bind_rows(graph_log, graph_log_line)
 
