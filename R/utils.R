@@ -21,7 +21,8 @@ graph_object_valid <- function(graph) {
     inherits(graph$global_attrs$attr, "character") == FALSE,
     inherits(graph$global_attrs$value, "character") == FALSE,
     inherits(graph$global_attrs$attr_type, "character") == FALSE,
-    inherits(graph$directed, "logical") == FALSE)) {
+    inherits(graph$directed, "logical") == FALSE,
+    inherits(graph$graph_log, "data.frame") == FALSE)) {
     return(FALSE)
   }
 
@@ -239,3 +240,4 @@ add_action_to_log <- function(graph_log,
     dplyr::bind_rows(graph_log, graph_log_line)
 
   return(graph_log)
+}
