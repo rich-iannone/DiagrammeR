@@ -61,17 +61,11 @@ edf <-
     to = sample(1:26, replace = TRUE),
     rel = "to_node")
 
-# Create a graph object using the ndf and edf, and,
-# add a few attributes for the graph appearance
+# Create a graph object using the ndf and edf
 graph <-
   create_graph(
     nodes_df = ndf,
-    edges_df = edf,
-    graph_attrs = "layout = twopi",
-    node_attrs = c("fontname = Helvetica",
-                   "style = filled"),
-    edge_attrs = c("color = gray20",
-                   "arrowsize = 0.5"))
+    edges_df = edf)
 
 # Render the graph using Graphviz
 render_graph(graph)
