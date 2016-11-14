@@ -42,12 +42,14 @@ edf <-
     to = c(4, 3, 1),
     rel = "leading_to")
 
-# Add the edge data frame to the graph object to create a
-# graph with both nodes and edges
+# Add the edge data frame to the graph object to
+# create a graph with both nodes and edges
 graph <-
   graph \%>\%
   add_edge_df(edf)
 
+# Get the graph's edges to verify that the edge
+# data frame had been added
 get_edges(graph, return_type = "vector")
 #> [1] "1 -> 4" "2 -> 3" "3 -> 1"
 }
