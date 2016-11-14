@@ -36,7 +36,7 @@
 #' graph <-
 #'   graph %>%
 #'   select_nodes_by_id(1:4) %>%
-#'   trav_out %>%
+#'   trav_out() %>%
 #'   set_node_attrs_ws("color", "blue")
 #'
 #' # Show the internal node data frame to verify

@@ -31,7 +31,7 @@
 #' graph <-
 #'   graph %>%
 #'   select_nodes_by_id(2:4) %>%
-#'   trav_out_edge %>%
+#'   trav_out_edge() %>%
 #'   set_edge_attrs_ws("color", "blue")
 #'
 #' # Show the internal edge data frame to verify
