@@ -9,8 +9,7 @@ add_nodes_from_table(graph, table, label_col = NULL, type_col = NULL,
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{table}{either a path to a CSV file, or, a data
 frame object.}

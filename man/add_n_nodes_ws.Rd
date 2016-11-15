@@ -10,8 +10,7 @@ add_n_nodes_ws(graph, n, direction = NULL, type = NULL, label = NULL,
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{n}{the number of new nodes to attach as
 successor nodes to the nodes in the selection.}

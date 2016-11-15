@@ -7,7 +7,8 @@
 join_edge_attrs(graph, df, by_graph = NULL, by_df = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{df}{the data frame to use for joining.
 \code{dgr_graph} that is created using

@@ -9,8 +9,7 @@ get_similar_nbrs(graph, node, node_attr, tol_abs = NULL, tol_pct = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node}{a single-length vector containing a
 node ID value.}

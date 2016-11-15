@@ -8,7 +8,8 @@ recode_node_attrs(graph, node_attr_from, ..., otherwise = NULL,
   node_attr_to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{node_attr_from}{the name of the node attribute
 column from which values will be recoded.}

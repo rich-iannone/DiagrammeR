@@ -8,8 +8,7 @@ rename_node_attrs(graph, node_attr_from, node_attr_to)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node_attr_from}{the name of the node attribute
 that will be renamed.}

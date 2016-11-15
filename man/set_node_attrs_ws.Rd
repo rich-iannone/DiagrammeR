@@ -8,8 +8,7 @@ set_node_attrs_ws(graph, node_attr, value)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node_attr}{the name of the attribute to set.}
 

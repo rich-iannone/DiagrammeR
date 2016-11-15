@@ -8,8 +8,7 @@ select_edges_by_node_id(graph, nodes, set_op = "union")
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{nodes}{a vector of node IDs for the selection
 of nodes present in the graph.}

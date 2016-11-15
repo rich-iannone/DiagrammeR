@@ -9,8 +9,7 @@ add_node_df(graph, node_df)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node_df}{a node data frame that is created
 using \code{create_node_df}.}

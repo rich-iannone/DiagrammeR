@@ -8,8 +8,7 @@ get_edges(x, edge_attr = NULL, match = NULL, return_type = "vector")
 }
 \arguments{
 \item{x}{either a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph} or an edge data frame.}
+\code{dgr_graph} or an edge data frame.}
 
 \item{edge_attr}{an optional character vector of
 edge attribute values for filtering the edges

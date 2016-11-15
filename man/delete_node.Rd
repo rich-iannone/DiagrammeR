@@ -8,8 +8,7 @@ delete_node(graph, node)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node}{a node ID for the node to be deleted
 from the graph.}

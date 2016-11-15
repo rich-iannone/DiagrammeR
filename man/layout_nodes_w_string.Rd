@@ -9,8 +9,7 @@ layout_nodes_w_string(graph, layout, nodes, sort = NULL, width = 8,
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{layout}{a layout character string that
 provides a schematic for the layout. This

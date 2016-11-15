@@ -8,8 +8,7 @@ get_nbrs(graph, nodes)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{nodes}{a vector of node ID values.}
 }

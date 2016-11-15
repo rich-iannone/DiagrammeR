@@ -8,8 +8,8 @@ render_graph(graph, output = NULL, layout = NULL, title = NULL,
   width = NULL, height = NULL)
 }
 \arguments{
-\item{graph}{a \code{dgr_graph} object, created
-using the \code{create_graph} function.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{output}{a string specifying the output type;
 \code{graph} (the default) renders the graph using

@@ -9,8 +9,7 @@ add_full_graph(graph, n, type = NULL, label = TRUE, rel = NULL,
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{n}{the number of nodes comprising the fully
 connected graph.}

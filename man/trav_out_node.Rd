@@ -8,8 +8,8 @@ adjacent, outward nodes}
 trav_out_node(graph, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}
-that is created using \code{create_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{conditions}{an option to use filtering
 conditions for the traversal.}

@@ -8,8 +8,7 @@ get_s_connected_cmpts(graph)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 }
 \value{
 a data frame with nodes and their membership

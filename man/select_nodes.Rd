@@ -9,8 +9,7 @@ select_nodes(graph, node_attr = NULL, search = NULL, set_op = "union",
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node_attr}{an optional character vector of
 node attribute values for filtering the node ID

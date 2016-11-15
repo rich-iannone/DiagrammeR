@@ -7,7 +7,8 @@
 copy_node_attrs(graph, node_attr_from, node_attr_to)
 }
 \arguments{
-\item{graph}{a graph object of class}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{node_attr_from}{the name of the node attribute
 column from which values will be copied.}

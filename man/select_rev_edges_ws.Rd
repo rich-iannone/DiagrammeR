@@ -8,8 +8,7 @@ select_rev_edges_ws(graph, add_to_selection = TRUE)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{add_to_selection}{an option to either add the
 reverse edges to the active selection of edges (the

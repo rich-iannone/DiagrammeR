@@ -7,7 +7,8 @@
 mutate_edge_attrs(graph, edge_attr_from, expressions, edge_attr_to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{edge_attr_from}{the name of the edge attribute
 column from which values will be mutated. An

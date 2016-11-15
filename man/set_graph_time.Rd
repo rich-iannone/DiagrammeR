@@ -8,8 +8,7 @@ set_graph_time(graph, time = NULL, tz = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{time}{the date-time to set for the graph.}
 

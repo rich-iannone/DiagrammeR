@@ -9,8 +9,7 @@ node_present(graph, node)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node}{a value that may or may not match a node
 ID in the graph.}

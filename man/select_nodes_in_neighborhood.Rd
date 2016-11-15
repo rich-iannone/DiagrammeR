@@ -9,8 +9,7 @@ select_nodes_in_neighborhood(graph, node, distance, set_op = "union")
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node}{the node from which the traversal
 will originate.}

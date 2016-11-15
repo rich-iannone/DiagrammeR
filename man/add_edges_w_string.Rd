@@ -8,8 +8,7 @@ add_edges_w_string(graph, edges, rel = NULL, use_labels = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{edges}{a single-length vector with a character
 string specifying the edges. For a directed graph,

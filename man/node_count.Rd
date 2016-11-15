@@ -8,8 +8,7 @@ node_count(graph, type = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{type}{either a logical value, where
 \code{TRUE} provides a named vector of node count by

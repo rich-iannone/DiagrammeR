@@ -8,8 +8,7 @@ get_node_ids(x, node_attr = NULL, match = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph} or a node data frame.}
+\code{dgr_graph} or a node data frame.}
 
 \item{node_attr}{an optional character vector of
 node attribute values for filtering the node ID

@@ -9,8 +9,7 @@ edge_present(graph, from, to)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{from}{a node ID from which the edge to be
 queried is outgoing.}

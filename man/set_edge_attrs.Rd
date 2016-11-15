@@ -8,8 +8,7 @@ set_edge_attrs(x, edge_attr, values, from = NULL, to = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}, or an edge data frame.}
+\code{dgr_graph} or an edge data frame.}
 
 \item{edge_attr}{the name of the attribute to set.}
 

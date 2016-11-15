@@ -8,8 +8,7 @@ set_graph_name(graph, name)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{name}{the name to set for the graph.}
 }

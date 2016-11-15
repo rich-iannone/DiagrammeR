@@ -7,7 +7,8 @@
 drop_edge_attrs(graph, edge_attr)
 }
 \arguments{
-\item{graph}{a graph object of class}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{edge_attr}{the name of the edge attribute
 column to drop.}

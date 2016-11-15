@@ -8,7 +8,8 @@ export_graph(graph, file_name = NULL, file_type = NULL, width = NULL,
   height = NULL)
 }
 \arguments{
-\item{graph}{a graph object.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{file_name}{the name of the exported file
 (including it's extension).}

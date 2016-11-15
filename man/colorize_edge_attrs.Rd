@@ -5,10 +5,12 @@
 \title{Apply colors based on edge attribute values}
 \usage{
 colorize_edge_attrs(graph, edge_attr_from, edge_attr_to, cut_points = NULL,
-  alpha = NULL, default_color = "#D9D9D9")
+  palette = "Spectral", alpha = NULL, reverse_palette = FALSE,
+  default_color = "#D9D9D9")
 }
 \arguments{
-\item{graph}{a graph object of class}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{edge_attr_from}{the name of the edge attribute
 column from which color values will be based.}
@@ -20,10 +22,21 @@ attribute to which the color values will be applied.}
 breaks for bucketizing continuous numerical values
 available in a edge attribute column.}
 
+\item{palette}{can either be: (1) a palette name from
+the RColorBrewer package (e.g., \code{Greens},
+\code{OrRd}, \code{RdYlGn}), (2) \code{viridis}, which
+indicates use of the \code{viridis} color scale from
+the package of the same name, or (3) a vector of
+hexadecimal color names.}
+
 \item{alpha}{an optional alpha transparency value to
 apply to the generated colors. Should be in
 the range of \code{0} (completely transparent) to
 \code{100} (completely opaque).}
+
+\item{reverse_palette}{an option to reverse the order
+of colors in the chosen palette. The default is
+\code{FALSE}.}
 
 \item{default_color}{a hexadecimal color value to
 use for instances when the values do not fall into
@@ -40,12 +53,12 @@ frame (edf), use a categorical edge attribute to
 generate a new edge attribute with color values.
 }
 \examples{
-# Create a random graph of 10 nodes and 10 edges
+# Create a graph with 5 nodes and 4 edges
 graph <-
-  create_random_graph(
-    10, 10, set_seed = 1) \%>\%
+  create_graph() \%>\%
+  add_path(5) \%>\%
   set_edge_attrs(
-    "weight", rnorm(edge_count(.), 5, 2))
+    "weight", c(3.7, 6.3, 9.2, 1.6))
 
 # We can bucketize values in the edge `weight`
 # attribute using `cut_points` and, by doing so,
@@ -61,16 +74,10 @@ graph <-
 # Now there will be a `color` edge attribute
 # with distinct colors
 get_edge_df(graph)
-#>    from to  rel   weight   color
-#> 1     3  2 <NA> 4.910133 #21908C
-#> 2     7  4 <NA> 4.967619 #21908C
-#> 3     8  5 <NA> 6.887672 #5DC863
-#> 4     8 10 <NA> 6.642442 #5DC863
-#> 5     4  8 <NA> 6.187803 #5DC863
-#> 6    10  2 <NA> 6.837955 #5DC863
-#> 7     7  2 <NA> 6.564273 #5DC863
-#> 8     3  5 <NA> 5.149130 #21908C
-#> 9     1  5 <NA> 1.021297 #440154
-#> 10    9  4 <NA> 6.239651 #5DC863
+#>   from to  rel weight   color
+#> 1    1  2 <NA>    3.7 #FDAE61
+#> 2    2  3 <NA>    6.3 #ABDDA4
+#> 3    3  4 <NA>    9.2 #2B83BA
+#> 4    4  5 <NA>    1.6 #D7191C
 }
 

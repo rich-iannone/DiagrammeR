@@ -9,8 +9,7 @@ select_nodes_by_degree(graph, degree_type, degree_values, set_op = "union")
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{degree_type}{the type of degree, either:
 \code{in} for the indegree, \code{out} for the

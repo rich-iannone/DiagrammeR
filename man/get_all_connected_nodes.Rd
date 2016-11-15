@@ -8,8 +8,7 @@ get_all_connected_nodes(graph, node)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node}{a single-length vector containing a
 node ID value.}

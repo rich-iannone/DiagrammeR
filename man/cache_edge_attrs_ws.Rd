@@ -9,8 +9,7 @@ cache_edge_attrs_ws(graph, edge_attr, mode = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{edge_attr}{the edge attribute from which to
 obtain values.}

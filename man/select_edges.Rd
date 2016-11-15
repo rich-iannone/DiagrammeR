@@ -9,8 +9,7 @@ select_edges(graph, edge_attr = NULL, search = NULL, set_op = "union",
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{edge_attr}{an optional character vector of
 edge attribute values for filtering the edges

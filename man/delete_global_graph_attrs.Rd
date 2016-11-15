@@ -9,8 +9,7 @@ delete_global_graph_attrs(graph, attr, attr_type)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{attr}{the name of the attribute to
 delete for the \code{type} of global attribute

@@ -8,18 +8,7 @@ set_edge_attrs_ws(graph, edge_attr, value)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.
-
-Selections of edges can be performed using
-the following \code{select_...} functions:
-\code{select_edges()},
-\code{select_last_edge()}, or
-\code{select_edges_by_node_id()}.
-Selections of edges can also be performed using
-the following traversal functions:
-\code{trav_out_edge()}, \code{trav_in_edge()},
-or \code{trav_both_edge()}.}
+\code{dgr_graph}.}
 
 \item{edge_attr}{the name of the attribute to set.}
 
@@ -32,7 +21,17 @@ a graph object of class \code{dgr_graph}.
 \description{
 From a graph object of class
 \code{dgr_graph} or an edge data frame, set edge
-attribute properties for one or more edges
+attribute properties for one or more edges.
+
+Selections of edges can be performed using
+the following \code{select_...} functions:
+\code{select_edges()},
+\code{select_last_edge()}, or
+\code{select_edges_by_node_id()}.
+Selections of edges can also be performed using
+the following traversal functions:
+\code{trav_out_edge()}, \code{trav_in_edge()},
+or \code{trav_both_edge()}.
 }
 \examples{
 # Create a simple graph

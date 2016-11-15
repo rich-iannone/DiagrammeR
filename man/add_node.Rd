@@ -8,8 +8,7 @@ add_node(graph, type = NULL, label = NULL, from = NULL, to = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{type}{an optional character object that
 acts as a group identifier for the node to be added.}

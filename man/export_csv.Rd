@@ -8,7 +8,8 @@ export_csv(graph, ndf_name = "nodes.csv", edf_name = "edges.csv",
   output_path = getwd(), colnames_type = NULL)
 }
 \arguments{
-\item{graph}{a graph object.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{ndf_name}{the name to provide to the CSV file
 containing node information. By default this CSV

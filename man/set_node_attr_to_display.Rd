@@ -9,8 +9,7 @@ set_node_attr_to_display(graph, attr = NULL, nodes = NULL,
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{attr}{the name of the attribute to
 set for the \code{type} of global attribute

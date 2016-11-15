@@ -8,8 +8,7 @@ set_node_attrs(x, node_attr, values, nodes = NULL)
 }
 \arguments{
 \item{x}{either a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}, or a node data frame.}
+\code{dgr_graph} or a node data frame.}
 
 \item{node_attr}{the name of the attribute to set.}
 

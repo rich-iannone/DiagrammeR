@@ -7,7 +7,8 @@
 drop_node_attrs(graph, node_attr)
 }
 \arguments{
-\item{graph}{a graph object of class}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{node_attr}{the name of the node attribute
 column to drop.}

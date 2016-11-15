@@ -9,8 +9,7 @@ node_type(graph, node, action = "read", value = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node}{a node ID corresponding to the node to
 be selected.}

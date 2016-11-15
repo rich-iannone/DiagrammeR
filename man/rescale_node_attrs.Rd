@@ -10,8 +10,7 @@ rescale_node_attrs(graph, node_attr_from, to_lower_bound = 0,
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node_attr_from}{the node attribute containing
 numeric data that is to be rescaled to new numeric

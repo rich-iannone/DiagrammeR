@@ -8,8 +8,7 @@ set_node_position(graph, node, x, y, use_labels = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\code{dgr_graph}.}
 
 \item{node}{a single-length vector containing
 either a node ID value (integer) or a node label

@@ -7,7 +7,8 @@
 mutate_node_attrs(graph, node_attr_from, expressions, node_attr_to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class \code{dgr_graph}.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{node_attr_from}{the name of the node attribute
 column from which values will be mutated. An
