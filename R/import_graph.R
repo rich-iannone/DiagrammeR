@@ -125,12 +125,19 @@ import_graph <- function(graph_file,
 
     # Create a node data frame
     nodes <-
-      create_nodes(
-        nodes = unique(
+      tibble::tibble(
+        id = as.integer(unique(
           unlist(
             strsplit(
               edges_document[first_line:length(edges_document)],
-              " "))))
+              " ")))),
+        type = as.character(NA),
+        label = as.integer(unique(
+          unlist(
+            strsplit(
+              edges_document[first_line:length(edges_document)],
+              " "))))) %>%
+      as.data.frame(stringsAsFactors = FALSE)
 
     # Create the graph
     the_graph <-
@@ -164,12 +171,19 @@ import_graph <- function(graph_file,
 
     # Create a node data frame
     nodes <-
-      create_nodes(
-        nodes = unique(
+      tibble::tibble(
+        id = as.integer(unique(
           unlist(
             strsplit(
               mtx_document[first_line:length(mtx_document)],
-              " "))))
+              " ")))),
+        type = as.character(NA),
+        label = as.integer(unique(
+          unlist(
+            strsplit(
+              mtx_document[first_line:length(mtx_document)],
+              " "))))) %>%
+      as.data.frame(stringsAsFactors = FALSE)
 
     # Create the graph
     the_graph <-
@@ -248,8 +262,11 @@ import_graph <- function(graph_file,
 
     # Create all nodes for graph
     all_nodes <-
-      cbind(create_nodes(nodes = nodes_ids),
-            data.frame(node_attributes))
+      cbind(
+        tibble::tibble(
+          id = as.integer(nodes_ids),
+          type = as.character(NA)),
+        data.frame(node_attributes))
 
     # Determine all edge values for the graph
     for (i in 1:length(xml_edges[[1]])) {
@@ -312,11 +329,12 @@ import_graph <- function(graph_file,
 
     # Get all node ID values
     node_id <-
-      str_replace_all(
-        str_extract_all(
-          node_defs,
-          "id [a-z0-9_]*"),
-        "id ", "")
+      as.integer(
+        str_replace_all(
+          str_extract_all(
+            node_defs,
+            "id [a-z0-9_]*"),
+          "id ", ""))
 
     # Get all node label values, if they exist
     if (any(str_detect(node_defs, "label"))) {
@@ -337,18 +355,20 @@ import_graph <- function(graph_file,
         "edge[ ]*?\\[.*?\\]"))
 
     edges_from <-
-      str_replace_all(
-        str_extract_all(
-          edge_defs,
-          "source [a-z0-9_]*"),
-        "source ", "")
+      as.integer(
+        str_replace_all(
+          str_extract_all(
+            edge_defs,
+            "source [a-z0-9_]*"),
+          "source ", ""))
 
     edges_to <-
-      str_replace_all(
-        str_extract_all(
-          edge_defs,
-          "target [a-z0-9_]*"),
-        "target ", "")
+      as.integer(
+        str_replace_all(
+          str_extract_all(
+            edge_defs,
+            "target [a-z0-9_]*"),
+          "target ", ""))
 
 
     if (any(str_detect(edge_defs, "label"))) {
@@ -373,8 +393,11 @@ import_graph <- function(graph_file,
 
     # Create all nodes for graph
     all_nodes <-
-      create_nodes(nodes = node_id,
-                   label = FALSE)
+      tibble::tibble(
+        id = node_id,
+        type = as.character(NA),
+        label = as.character(NA)) %>%
+      as.data.frame(stringsAsFactors = FALSE)
 
     if (exists("node_label")) {
       all_nodes$label <- node_label
