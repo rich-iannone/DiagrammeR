@@ -19,8 +19,7 @@
 #' \code{trav_both()}, \code{trav_in_node()},
 #' \code{trav_out_node()}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 10 nodes and 9 edges

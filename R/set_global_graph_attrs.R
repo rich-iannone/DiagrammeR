@@ -4,8 +4,7 @@
 #' or \code{edge_attrs} for a graph object of class
 #' \code{dgr_graph}).
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param attr the name of the attribute to
 #' set for the \code{type} of global attribute
 #' specified.

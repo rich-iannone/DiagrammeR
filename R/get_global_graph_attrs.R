@@ -2,8 +2,7 @@
 #' @description Get the presently set global attributes
 #' for a graph object of class \code{dgr_graph}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @return a data frame containing global attributes
 #' for the graph.
 #' @examples

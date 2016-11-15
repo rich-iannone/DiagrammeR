@@ -7,8 +7,8 @@
 #' the selection with those nodes traversed to. An
 #' optional filter by node attribute can limit the set
 #' of nodes traversed to.
-#' @param graph a graph object of class \code{dgr_graph}
-#' that is created using \code{create_graph}.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param conditions an option to use filtering
 #' conditions for the traversal.
 #' @return a graph object of class \code{dgr_graph}.

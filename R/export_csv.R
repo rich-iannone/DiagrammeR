@@ -1,6 +1,7 @@
 #' Export a graph to CSV files
 #' @description Export a graph to CSV files.
-#' @param graph a graph object.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param ndf_name the name to provide to the CSV file
 #' containing node information. By default this CSV
 #' will be called \code{nodes.csv}.

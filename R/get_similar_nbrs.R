@@ -7,8 +7,7 @@
 #' threshold values) node attribute to the starting
 #' node.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node a single-length vector containing a
 #' node ID value.
 #' @param node_attr the name of the node attribute

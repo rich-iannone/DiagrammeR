@@ -2,8 +2,7 @@
 #' @description With a graph object of class
 #' \code{dgr_graph}, add a node star to the graph.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param n the number of nodes comprising the star.
 #' The first node will be the center of the star.
 #' @param type an optional string that describes the
@@ -119,7 +118,7 @@ add_star <- function(graph,
       add_action_to_log(
         graph_log = graph_log,
         version_id = nrow(graph_log) + 1,
-        function_used = "add_balanced_tree",
+        function_used = "add_star",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(star_graph$nodes_df),

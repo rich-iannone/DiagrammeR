@@ -9,8 +9,7 @@
 #' of \code{2 -> 1}, or, incorporate those edges in the
 #' active selection of edges.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param add_to_selection an option to either add the
 #' reverse edges to the active selection of edges (the
 #' default case, as \code{TRUE}) or switch the active

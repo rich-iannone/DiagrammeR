@@ -4,8 +4,7 @@
 #' \code{dgr_graph} add edges from an edge data frame
 #' to that graph.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param edge_df an edge data frame that is created
 #' using \code{create_edge_df}.
 #' @return a graph object of class \code{dgr_graph}.

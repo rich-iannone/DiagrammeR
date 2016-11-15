@@ -2,8 +2,7 @@
 #' @description Place any in the cache of a graph
 #' object of class \code{dgr_graph}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param to_cache any vector or data frame.
 #' @param col if a data frame is provided in
 #' \code{to_cache} then a column name from that data

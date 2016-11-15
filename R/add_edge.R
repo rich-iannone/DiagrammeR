@@ -3,8 +3,7 @@
 #' \code{dgr_graph}, add an edge to nodes within the
 #' graph.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param from the outgoing node from which the edge
 #' is connected.
 #' @param to the incoming nodes to which each edge

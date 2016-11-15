@@ -4,8 +4,7 @@
 #' \code{dgr_graph}, create a selection of nodes
 #' that have certain degree values.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param degree_type the type of degree, either:
 #' \code{in} for the indegree, \code{out} for the
 #' outdegree, and \code{both} or \code{degree} for the

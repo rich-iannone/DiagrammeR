@@ -5,8 +5,7 @@
 #' range, then write to the same node attribute or to
 #' a new node attribute column.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node_attr_from the node attribute containing
 #' numeric data that is to be rescaled to new numeric
 #' or color values.

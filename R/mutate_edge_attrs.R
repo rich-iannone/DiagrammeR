@@ -5,7 +5,8 @@
 #' specify a different edge attribute name and create
 #' a new edge attribute while retaining the original
 #' edge attribute and its values.
-#' @param graph a graph object of class \code{dgr_graph}.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param edge_attr_from the name of the edge attribute
 #' column from which values will be mutated. An
 #' \code{NA} value can be provided here if edge

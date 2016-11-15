@@ -5,7 +5,8 @@
 #' specify a different node attribute name and create
 #' a new node attribute while retaining the original
 #' node attribute and its values.
-#' @param graph a graph object of class \code{dgr_graph}.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param node_attr_from the name of the node attribute
 #' column from which values will be mutated. An
 #' \code{NA} value can be provided here if node

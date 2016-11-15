@@ -2,8 +2,7 @@
 #' @description With two or more nodes, get the set of
 #' common neighboring nodes.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param nodes a vector of node ID values of length
 #' at least 2.
 #' @return a vector of node ID values.

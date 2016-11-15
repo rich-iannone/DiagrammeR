@@ -2,8 +2,7 @@
 #' @description With a graph object of class
 #' \code{dgr_graph}, add a node prism to the graph.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param n the number of nodes describing the shape
 #' of the prism. For example, the triangonal prism has
 #' \code{n} equal to 3 and it is composed of 6 nodes
@@ -131,7 +130,7 @@ add_prism <- function(graph,
       add_action_to_log(
         graph_log = graph_log,
         version_id = nrow(graph_log) + 1,
-        function_used = "add_balanced_tree",
+        function_used = "add_prism",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(prism_graph$nodes_df),

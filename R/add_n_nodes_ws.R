@@ -25,8 +25,7 @@
 #' \code{trav_both()}, \code{trav_in_node()},
 #' \code{trav_out_node()}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param n the number of new nodes to attach as
 #' successor nodes to the nodes in the selection.
 #' @param direction using \code{from} will create new

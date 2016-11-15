@@ -4,6 +4,7 @@
 #' attribute and create a distinct node attribute
 #' within the ndf with a different attribute name.
 #' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param node_attr_from the name of the node attribute
 #' column from which values will be copied.
 #' @param node_attr_to the name of the new node

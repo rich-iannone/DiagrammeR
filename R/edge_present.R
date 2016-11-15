@@ -5,8 +5,7 @@
 #' (defined by a pair of node IDs extant in the graph)
 #' is present.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param from a node ID from which the edge to be
 #' queried is outgoing.
 #' @param to a node ID to which the edge to be queried

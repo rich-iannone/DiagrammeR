@@ -7,8 +7,7 @@
 #' set for \code{x} and \code{y} will be fixed to
 #' those positions on the graph canvas.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node a single-length vector containing
 #' either a node ID value (integer) or a node label
 #' (character) for which position information should

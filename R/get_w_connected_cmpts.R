@@ -4,8 +4,7 @@
 #' sets of nodes with traversable paths to and from
 #' each node in the set).
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @return a data frame with nodes and their membership
 #' in different weakly connected components.
 #' @examples

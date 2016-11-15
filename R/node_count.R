@@ -3,8 +3,7 @@
 #' \code{dgr_graph}, get a count of nodes in the graph
 #' and optionally obtain a count of nodes by their type.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param type either a logical value, where
 #' \code{TRUE} provides a named vector of node count by
 #' type and \code{FALSE} (the default) provides a total

@@ -3,8 +3,7 @@
 #' the starting point get all nodes connected (i.e.,
 #' reachable with a traversible path) to that node.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node a single-length vector containing a
 #' node ID value.
 #' @return a vector of node ID values.

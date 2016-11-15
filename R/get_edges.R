@@ -4,8 +4,7 @@
 #' An optional filter by edge attribute can limit the
 #' set of edges returned.
 #' @param x either a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph} or an edge data frame.
+#' \code{dgr_graph} or an edge data frame.
 #' @param edge_attr an optional character vector of
 #' edge attribute values for filtering the edges
 #' returned.

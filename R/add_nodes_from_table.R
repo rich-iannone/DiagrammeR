@@ -3,8 +3,7 @@
 #' existing graph object from data in a CSV file or a
 #' data frame.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param table either a path to a CSV file, or, a data
 #' frame object.
 #' @param label_col an option to apply a column of data

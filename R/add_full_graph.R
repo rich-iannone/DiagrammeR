@@ -6,8 +6,7 @@
 #' each pair of nodes. In the undirected case, a single
 #' edge will link each pair of nodes.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param n the number of nodes comprising the fully
 #' connected graph.
 #' @param type an optional string that describes the

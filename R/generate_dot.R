@@ -2,8 +2,7 @@
 #' @description Generates Graphviz DOT code as an R
 #' character object using DiagrammeR graph object.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @return a character vector of length 1 containing
 #' Graphviz DOT code.
 #' @importFrom dplyr filter mutate

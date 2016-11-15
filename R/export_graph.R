@@ -3,7 +3,8 @@
 #' formats, including image formats such as PNG, PDF,
 #' SVG, and PostScript, and graph file formats such
 #' as GEXF.
-#' @param graph a graph object.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param file_name the name of the exported file
 #' (including it's extension).
 #' @param file_type the type of file to be exported.

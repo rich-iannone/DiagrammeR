@@ -2,6 +2,7 @@
 #' @description Within a graph's internal NDF, remove
 #' an existing node attribute.
 #' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param node_attr the name of the node attribute
 #' column to drop.
 #' @return a graph object of class

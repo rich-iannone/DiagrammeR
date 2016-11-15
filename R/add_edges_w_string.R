@@ -3,8 +3,7 @@
 #' \code{dgr_graph}, add one or more edges to the graph
 #' using a text string.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param edges a single-length vector with a character
 #' string specifying the edges. For a directed graph,
 #' the string object should be formatted as a series of

@@ -2,8 +2,7 @@
 #' @description Set the time and timezone for a graph
 #' object of class \code{dgr_graph}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param time the date-time to set for the graph.
 #' @param tz the timezone to set for the graph.
 #' @examples

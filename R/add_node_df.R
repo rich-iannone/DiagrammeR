@@ -4,8 +4,7 @@
 #' \code{dgr_graph} add nodes from a node data frame to
 #' that graph.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node_df a node data frame that is created
 #' using \code{create_node_df}.
 #' @return a graph object of class \code{dgr_graph}.

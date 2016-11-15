@@ -2,8 +2,7 @@
 #' @description From a graph, obtain a node data frame
 #' with all current node attributes.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @return a node data frame.
 #' @examples
 #' # Create a graph using several piped functions

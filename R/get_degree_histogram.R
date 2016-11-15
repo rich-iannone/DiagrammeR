@@ -3,8 +3,7 @@
 #' degree frequency. The bin width is set to 1 and
 #' zero-value degrees are omitted from the output.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @return a named vector of degree counts (with
 #' bin width equal to 1) where the degree values
 #' serve as names.

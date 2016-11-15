@@ -6,8 +6,7 @@
 #' (i.e., \code{NA} values for the \code{x} or
 #' \code{y} node attributes) will be ignored.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param dx a single numeric value specifying the
 #' amount that selected nodes (with non-\code{NA}
 #' values for the \code{x} and \code{y} attributes)

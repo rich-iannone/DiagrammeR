@@ -5,8 +5,7 @@
 #' range, then write to the same edge attribute or to
 #' a new edge attribute column.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param edge_attr_from the edge attribute containing
 #' numeric data that is to be rescaled to new numeric
 #' or color values.

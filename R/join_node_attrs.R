@@ -4,8 +4,7 @@
 #' in this function allows for no possibility that
 #' nodes in the graph might be removed after the join.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param df the data frame to use for joining.
 #' @param by_graph optional specification of the column
 #' in the graph's internal node data frame for the left

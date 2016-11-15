@@ -6,8 +6,7 @@
 #' of the graph's edge data frame. In practice, this
 #' will typically be the last edge created.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph

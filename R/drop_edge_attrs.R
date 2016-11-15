@@ -2,6 +2,7 @@
 #' @description Within a graph's internal edge data
 #' frame (edf), remove an existing edge attribute.
 #' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param edge_attr the name of the edge attribute
 #' column to drop.
 #' @return a graph object of class

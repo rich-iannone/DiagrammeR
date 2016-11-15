@@ -1,8 +1,8 @@
 #' Render the graph in various formats
 #' @description Using a \code{dgr_graph} object,
 #' render the graph in the RStudio Viewer.
-#' @param graph a \code{dgr_graph} object, created
-#' using the \code{create_graph} function.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param output a string specifying the output type;
 #' \code{graph} (the default) renders the graph using
 #' the \code{grViz} function, \code{vivagraph}

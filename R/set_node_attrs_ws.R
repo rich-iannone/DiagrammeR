@@ -18,8 +18,7 @@
 #' \code{trav_both()}, \code{trav_in_node()},
 #' \code{trav_out_node()}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node_attr the name of the attribute to set.
 #' @param value the value to be set for the chosen
 #' attribute for the nodes in the current selection.

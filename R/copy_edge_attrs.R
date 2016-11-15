@@ -4,6 +4,7 @@
 #' attribute and create a distinct edge attribute
 #' within the edf with a different attribute name.
 #' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param edge_attr_from the name of the edge attribute
 #' column from which values will be copied.
 #' @param edge_attr_to the name of the new edge

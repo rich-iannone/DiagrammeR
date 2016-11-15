@@ -5,8 +5,7 @@
 #' the node ID) and perform operations on the type
 #' definition for that node.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node a node ID corresponding to the node to
 #' be selected.
 #' @param action the operation to perform on the node's

@@ -20,8 +20,7 @@
 #' \code{trav_both()}, \code{trav_in_node()},
 #' \code{trav_out_node()}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node_attr the node attribute from which to
 #' obtain values.
 #' @param mode a option to recast the returned vector

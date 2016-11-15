@@ -2,8 +2,7 @@
 #' @description Select edges from a graph object of
 #' class \code{dgr_graph}.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param edge_attr an optional character vector of
 #' edge attribute values for filtering the edges
 #' returned.

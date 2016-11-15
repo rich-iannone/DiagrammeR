@@ -4,6 +4,7 @@
 #' attribute values. Optionally, one can specify a
 #' replacement value for any unmatched mappings.
 #' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param node_attr_from the name of the node attribute
 #' column from which values will be recoded.
 #' @param ... single-length character vectors with

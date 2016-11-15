@@ -6,8 +6,7 @@
 #' monotonically increasing integer values, then
 #' numeric ranges can be provided for the selection.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param nodes a vector of node IDs for the selection
 #' of nodes present in the graph.
 #' @param set_op the set operation to perform upon

@@ -3,8 +3,7 @@
 #' \code{dgr_graph}, add a new node of a specified type
 #' to extant nodes within the graph.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param type an optional character object that
 #' acts as a group identifier for the node to be added.
 #' @param label an optional character object that

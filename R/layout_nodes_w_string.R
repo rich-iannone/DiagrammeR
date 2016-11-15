@@ -4,8 +4,7 @@
 #' is available to apply sorting to each of the
 #' groups.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param layout a layout character string that
 #' provides a schematic for the layout. This
 #' consists of a rectangular collection of

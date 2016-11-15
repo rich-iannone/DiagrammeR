@@ -3,8 +3,7 @@
 #' \code{dgr_graph} or a node data frame, set node
 #' attribute properties for one or more nodes.
 #' @param x either a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}, or a node data frame.
+#' \code{dgr_graph} or a node data frame.
 #' @param node_attr the name of the attribute to set.
 #' @param values the values to be set for the chosen
 #' attribute for the chosen nodes.

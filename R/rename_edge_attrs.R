@@ -2,8 +2,7 @@
 #' @description Within a graph's internal edge data
 #' frame (edf), rename an existing edge attribute.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param edge_attr_from the name of the edge attribute
 #' that will be renamed.
 #' @param edge_attr_to the new name of the edge

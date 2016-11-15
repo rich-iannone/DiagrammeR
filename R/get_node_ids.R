@@ -4,8 +4,7 @@
 #' filter by node attribute can limit the set of node
 #' ID values returned.
 #' @param x either a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph} or a node data frame.
+#' \code{dgr_graph} or a node data frame.
 #' @param node_attr an optional character vector of
 #' node attribute values for filtering the node ID
 #' values returned.

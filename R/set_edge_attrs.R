@@ -3,8 +3,7 @@
 #' \code{dgr_graph} or an edge data frame, set edge
 #' attribute properties for one or more edges
 #' @param x either a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}, or an edge data frame.
+#' \code{dgr_graph} or an edge data frame.
 #' @param edge_attr the name of the attribute to set.
 #' @param values the values to be set for the chosen
 #' attribute for the chosen edges.
@@ -192,7 +191,7 @@ set_edge_attrs <- function(x,
       add_action_to_log(
         graph_log = x$graph_log,
         version_id = nrow(x$graph_log) + 1,
-        function_used = "select_nodes_by_id",
+        function_used = "set_edge_attrs",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(x$nodes_df),

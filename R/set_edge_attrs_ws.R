@@ -1,10 +1,7 @@
 #' Set edge attributes with an edge selection
 #' @description From a graph object of class
 #' \code{dgr_graph} or an edge data frame, set edge
-#' attribute properties for one or more edges
-#' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' attribute properties for one or more edges.
 #'
 #' Selections of edges can be performed using
 #' the following \code{select_...} functions:
@@ -15,6 +12,8 @@
 #' the following traversal functions:
 #' \code{trav_out_edge()}, \code{trav_in_edge()},
 #' or \code{trav_both_edge()}.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param edge_attr the name of the attribute to set.
 #' @param value the value to be set for the chosen
 #' attribute for the edges in the current selection.

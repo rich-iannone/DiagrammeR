@@ -6,8 +6,8 @@
 #' creating a selection of edges. An optional filter
 #' by edge attribute can limit the set of edges
 #' traversed to.
-#' @param graph a graph object of class \code{dgr_graph}
-#' that is created using \code{create_graph}.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param conditions an option to use filtering
 #' conditions for the traversal.
 #' @param copy_attrs_from providing a node attribute

@@ -4,8 +4,7 @@
 #' of nodes connected a specified distance from an
 #' initial node.
 #' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' \code{dgr_graph}.
 #' @param node the node from which the traversal
 #' will originate.
 #' @param distance the maximum number of steps from
