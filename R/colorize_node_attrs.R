@@ -3,6 +3,7 @@
 #' frame (ndf), use a categorical node attribute to
 #' generate a new node attribute with color values.
 #' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param node_attr_from the name of the node attribute
 #' column from which color values will be based.
 #' @param node_attr_to the name of the new node
@@ -10,10 +11,19 @@
 #' @param cut_points an optional vector of numerical
 #' breaks for bucketizing continuous numerical values
 #' available in a node attribute column.
+#' @param palette can either be: (1) a palette name from
+#' the RColorBrewer package (e.g., \code{Greens},
+#' \code{OrRd}, \code{RdYlGn}), (2) \code{viridis}, which
+#' indicates use of the \code{viridis} color scale from
+#' the package of the same name, or (3) a vector of
+#' hexadecimal color names.
 #' @param alpha an optional alpha transparency value to
 #' apply to the generated colors. Should be in
 #' the range of \code{0} (completely transparent) to
 #' \code{100} (completely opaque).
+#' @param reverse_palette an option to reverse the order
+#' of colors in the chosen palette. The default is
+#' \code{FALSE}.
 #' @param default_color a hexadecimal color value to
 #' use for instances when the values do not fall into
 #' the bucket ranges specified in the \code{cut_points}
@@ -21,10 +31,14 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' # Create a random graph of 10 nodes and 10 edges
+#' # Create a graph with 8 nodes and 7 edges
 #' graph <-
-#'   create_random_graph(
-#'     10, 10, set_seed = 1)
+#'   create_graph() %>%
+#'   add_path(8) %>%
+#'   set_node_attrs(
+#'     "weight",
+#'     c(8.2, 3.7, 6.3, 9.2,
+#'       1.6, 2.5, 7.2, 5.4))
 #'
 #' # Find group membership values for all nodes
 #' # in the graph through the Walktrap community
@@ -39,7 +53,7 @@
 #' get_node_attrs(graph, "walktrap_group") %>%
 #'   unique() %>%
 #'   sort()
-#' #> [1] 1 2 3 4
+#' #> [1] 1 2 3
 #'
 #' # Visually distinguish the nodes in the different
 #' # communities by applying colors using the
@@ -56,72 +70,58 @@
 #'
 #' # Show the graph's internal node data frame
 #' get_node_df(graph)
-#' #>    id type label value walktrap_group fillcolor   color
-#' #> 1   1 <NA>     1   3.0              2 #31688E90 #31688E
-#' #> 2   2 <NA>     2   4.0              3 #35B77990 #35B779
-#' #> 3   3 <NA>     3   6.0              2 #31688E90 #31688E
-#' #> 4   4 <NA>     4   9.5              1 #44015490 #440154
-#' #> 5   5 <NA>     5   2.5              2 #31688E90 #31688E
-#' #> 6   6 <NA>     6   9.0              4 #FDE72590 #FDE725
-#' #> 7   7 <NA>     7   9.5              1 #44015490 #440154
-#' #> 8   8 <NA>     8   7.0              3 #35B77990 #35B779
-#' #> 9   9 <NA>     9   6.5              1 #44015490 #440154
-#' #> 10 10 <NA>    10   1.0              3 #35B77990 #35B779
+#' #>   id type label weight walktrap_group fillcolor   color
+#' #> 1  1 <NA>     1    8.2              1 #FC8D5990 #FC8D59
+#' #> 2  2 <NA>     2    3.7              1 #FC8D5990 #FC8D59
+#' #> 3  3 <NA>     3    6.3              1 #FC8D5990 #FC8D59
+#' #> 4  4 <NA>     4    9.2              3 #99D59490 #99D594
+#' #> 5  5 <NA>     5    1.6              3 #99D59490 #99D594
+#' #> 6  6 <NA>     6    2.5              2 #FFFFBF90 #FFFFBF
+#' #> 7  7 <NA>     7    7.2              2 #FFFFBF90 #FFFFBF
+#' #> 8  8 <NA>     8    5.4              2 #FFFFBF90 #FFFFBF
 #'
-#' # Create a random graph of 10 nodes and 22 edges
+#' # Create a graph with 8 nodes and 7 edges
 #' graph <-
-#'   create_random_graph(
-#'     10, 22, set_seed = 1)
+#'   create_graph() %>%
+#'   add_path(8) %>%
+#'   set_node_attrs(
+#'     "weight",
+#'     c(8.2, 3.7, 6.3, 9.2,
+#'       1.6, 2.5, 7.2, 5.4))
 #'
-#' # The `create_random_graph()` function automatically
-#' # provides a node attribute `value` which has values
-#' # in the range of 0 to 10.
-#' get_node_df(graph)
-#' #>    id type label value
-#' #> 1   1 <NA>     1   3.0
-#' #> 2   2 <NA>     2   4.0
-#' #> 3   3 <NA>     3   6.0
-#' #> 4   4 <NA>     4   9.5
-#' #> 5   5 <NA>     5   2.5
-#' #> 6   6 <NA>     6   9.0
-#' #> 7   7 <NA>     7   9.5
-#' #> 8   8 <NA>     8   7.0
-#' #> 9   9 <NA>     9   6.5
-#' #> 10 10 <NA>    10   1.0
-#'
-#' # We can bucketize values in `value` using
+#' # We can bucketize values in `weight` using
 #' # `cut_points` and assign colors to each of the
 #' # bucketed ranges (for values not part of any
 #' # bucket, a gray color is assigned by default)
 #' graph <-
 #'   graph %>%
 #'   colorize_node_attrs(
-#'     "value", "fillcolor",
+#'     "weight", "fillcolor",
 #'     cut_points = c(1, 3, 5, 7, 9))
 #'
 #' # Now there will be a `fillcolor` node attribute
 #' # with distinct colors (the `#D9D9D9` color is
 #' # the default `gray85` color)
 #' get_node_df(graph)
-#' #>    id type label value fillcolor
-#' #> 1   1 <NA>     1   3.0   #31688E
-#' #> 2   2 <NA>     2   4.0   #31688E
-#' #> 3   3 <NA>     3   6.0   #35B779
-#' #> 4   4 <NA>     4   9.5   #D9D9D9
-#' #> 5   5 <NA>     5   2.5   #440154
-#' #> 6   6 <NA>     6   9.0   #D9D9D9
-#' #> 7   7 <NA>     7   9.5   #D9D9D9
-#' #> 8   8 <NA>     8   7.0   #FDE725
-#' #> 9   9 <NA>     9   6.5   #35B779
-#' #> 10 10 <NA>    10   1.0   #440154
-#' @import viridis
+#' #>   id type label weight fillcolor
+#' #> 1  1 <NA>     1    8.2   #2B83BA
+#' #> 2  2 <NA>     2    3.7   #FDAE61
+#' #> 3  3 <NA>     3    6.3   #ABDDA4
+#' #> 4  4 <NA>     4    9.2   #D9D9D9
+#' #> 5  5 <NA>     5    1.6   #D7191C
+#' #> 6  6 <NA>     6    2.5   #D7191C
+#' #> 7  7 <NA>     7    7.2   #2B83BA
+#' #> 8  8 <NA>     8    5.4   #ABDDA4
+#' @import viridis RColorBrewer
 #' @export colorize_node_attrs
 
 colorize_node_attrs <- function(graph,
                                 node_attr_from,
                                 node_attr_to,
                                 cut_points = NULL,
+                                palette = "Spectral",
                                 alpha = NULL,
+                                reverse_palette = FALSE,
                                 default_color = "#D9D9D9") {
 
   # Get the time of function start
@@ -152,6 +152,38 @@ colorize_node_attrs <- function(graph,
     num_recodings <- length(cut_points) - 1
   }
 
+  # If the number of recodings lower than any Color
+  # Brewer palette, shift palette to `viridis`
+  if ((num_recodings < 3 | num_recodings > 10) & palette %in%
+      c(row.names(RColorBrewer::brewer.pal.info))) {
+    palette <- "viridis"
+  }
+
+  # or any of the RColorBrewer palettes
+  if (length(palette) == 1) {
+    if (!(palette %in%
+          c(row.names(RColorBrewer::brewer.pal.info),
+            "viridis"))) {
+      stop("The color palette is not an RColorBrewer or viridis palette.")
+    }
+  }
+
+  # Obtain a color palette
+  if (length(palette) == 1) {
+    if (palette %in%
+        row.names(RColorBrewer::brewer.pal.info)) {
+      color_palette <- RColorBrewer::brewer.pal(num_recodings, palette)
+    } else if (palette == "viridis") {
+      color_palette <- viridis::viridis(num_recodings)
+      color_palette <- gsub("..$", "", color_palette)
+    }
+  }
+
+  # Reverse color palette if `reverse_palette = TRUE``
+  if (reverse_palette == TRUE) {
+    color_palette <- rev(color_palette)
+  }
+
   # Create a data frame with initial values
   new_node_attr_col <-
     data.frame(
@@ -165,15 +197,15 @@ colorize_node_attrs <- function(graph,
   nodes_df <- cbind(nodes_df, new_node_attr_col)
 
   # Rename the new column with the target node attr name
-  colnames(nodes_df)[to_node_attr_colnum] <-
-    node_attr_to
+  colnames(nodes_df)[to_node_attr_colnum] <- node_attr_to
 
   # Get a data frame of recodings
   if (is.null(cut_points)) {
-    viridis_df <-
+
+    recode_df <-
       data.frame(
         to_recode = names(table(nodes_df[, col_to_recode_no])),
-        colors = gsub("..$", "", viridis(num_recodings)),
+        colors = color_palette,
         stringsAsFactors = FALSE)
 
     # Recode rows in the new node attribute
@@ -181,18 +213,18 @@ colorize_node_attrs <- function(graph,
 
       recode_rows <-
         which(nodes_df[, col_to_recode_no] %in%
-                viridis_df[i, 1])
+                recode_df[i, 1])
 
       if (is.null(alpha)) {
         nodes_df[recode_rows, to_node_attr_colnum] <-
-          gsub("..$", "", viridis(num_recodings)[i])
+          color_palette[i]
       } else if (!is.null(alpha)) {
         if (alpha < 100) {
           nodes_df[recode_rows, to_node_attr_colnum] <-
-            gsub("..$", alpha, viridis(num_recodings)[i])
+            gsub("$", alpha, color_palette[i])
         } else if (alpha == 100) {
           nodes_df[recode_rows, to_node_attr_colnum] <-
-            gsub("..$", "", viridis(num_recodings)[i])
+            gsub("$", "", color_palette[i])
         }
       }
     }
@@ -201,16 +233,15 @@ colorize_node_attrs <- function(graph,
   # Recode according to provided cut points
   if (!is.null(cut_points)) {
     for (i in 1:(length(cut_points) - 1)) {
-
       recode_rows <-
         which(
-          as.numeric(nodes_df[,col_to_recode_no]) >=
+          as.numeric(nodes_df[, col_to_recode_no]) >=
             cut_points[i] &
-            as.numeric(nodes_df[,col_to_recode_no]) <
+            as.numeric(nodes_df[, col_to_recode_no]) <
             cut_points[i + 1])
 
       nodes_df[recode_rows, to_node_attr_colnum] <-
-        gsub("..$", "", viridis(num_recodings)[i])
+        color_palette[i]
     }
 
     if (!is.null(alpha)) {

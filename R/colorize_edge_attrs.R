@@ -3,6 +3,7 @@
 #' frame (edf), use a categorical edge attribute to
 #' generate a new edge attribute with color values.
 #' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param edge_attr_from the name of the edge attribute
 #' column from which color values will be based.
 #' @param edge_attr_to the name of the new edge
@@ -10,10 +11,19 @@
 #' @param cut_points an optional vector of numerical
 #' breaks for bucketizing continuous numerical values
 #' available in a edge attribute column.
+#' @param palette can either be: (1) a palette name from
+#' the RColorBrewer package (e.g., \code{Greens},
+#' \code{OrRd}, \code{RdYlGn}), (2) \code{viridis}, which
+#' indicates use of the \code{viridis} color scale from
+#' the package of the same name, or (3) a vector of
+#' hexadecimal color names.
 #' @param alpha an optional alpha transparency value to
 #' apply to the generated colors. Should be in
 #' the range of \code{0} (completely transparent) to
 #' \code{100} (completely opaque).
+#' @param reverse_palette an option to reverse the order
+#' of colors in the chosen palette. The default is
+#' \code{FALSE}.
 #' @param default_color a hexadecimal color value to
 #' use for instances when the values do not fall into
 #' the bucket ranges specified in the \code{cut_points}
@@ -21,12 +31,12 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' # Create a random graph of 10 nodes and 10 edges
+#' # Create a graph with 5 nodes and 4 edges
 #' graph <-
-#'   create_random_graph(
-#'     10, 10, set_seed = 1) %>%
+#'   create_graph() %>%
+#'   add_path(5) %>%
 #'   set_edge_attrs(
-#'     "weight", rnorm(edge_count(.), 5, 2))
+#'     "weight", c(3.7, 6.3, 9.2, 1.6))
 #'
 #' # We can bucketize values in the edge `weight`
 #' # attribute using `cut_points` and, by doing so,
@@ -42,25 +52,21 @@
 #' # Now there will be a `color` edge attribute
 #' # with distinct colors
 #' get_edge_df(graph)
-#' #>    from to  rel   weight   color
-#' #> 1     3  2 <NA> 4.910133 #21908C
-#' #> 2     7  4 <NA> 4.967619 #21908C
-#' #> 3     8  5 <NA> 6.887672 #5DC863
-#' #> 4     8 10 <NA> 6.642442 #5DC863
-#' #> 5     4  8 <NA> 6.187803 #5DC863
-#' #> 6    10  2 <NA> 6.837955 #5DC863
-#' #> 7     7  2 <NA> 6.564273 #5DC863
-#' #> 8     3  5 <NA> 5.149130 #21908C
-#' #> 9     1  5 <NA> 1.021297 #440154
-#' #> 10    9  4 <NA> 6.239651 #5DC863
-#' @import viridis
+#' #>   from to  rel weight   color
+#' #> 1    1  2 <NA>    3.7 #FDAE61
+#' #> 2    2  3 <NA>    6.3 #ABDDA4
+#' #> 3    3  4 <NA>    9.2 #2B83BA
+#' #> 4    4  5 <NA>    1.6 #D7191C
+#' @import viridis RColorBrewer
 #' @export colorize_edge_attrs
 
 colorize_edge_attrs <- function(graph,
                                 edge_attr_from,
                                 edge_attr_to,
                                 cut_points = NULL,
+                                palette = "Spectral",
                                 alpha = NULL,
+                                reverse_palette = FALSE,
                                 default_color = "#D9D9D9") {
 
   # Get the time of function start
@@ -91,6 +97,39 @@ colorize_edge_attrs <- function(graph,
     num_recodings <- length(cut_points) - 1
   }
 
+  # If the number of recodings lower than any Color
+  # Brewer palette, shift palette to `viridis`
+  if ((num_recodings < 3 | num_recodings > 10) & palette %in%
+      c(row.names(RColorBrewer::brewer.pal.info))) {
+    palette <- "viridis"
+  }
+
+  # Stop function if color palette is not `viridis`
+  # or any of the RColorBrewer palettes
+  if (length(palette) == 1) {
+    if (!(palette %in%
+          c(row.names(RColorBrewer::brewer.pal.info),
+            "viridis"))) {
+      stop("The color palette is not an RColorBrewer or viridis palette.")
+    }
+  }
+
+  # Obtain a color palette
+  if (length(palette) == 1) {
+    if (palette %in%
+        row.names(RColorBrewer::brewer.pal.info)) {
+      color_palette <- RColorBrewer::brewer.pal(num_recodings, palette)
+    } else if (palette == "viridis") {
+      color_palette <- viridis::viridis(num_recodings)
+      color_palette <- gsub("..$", "", color_palette)
+    }
+  }
+
+  # Reverse color palette if `reverse_palette = TRUE``
+  if (reverse_palette == TRUE) {
+    color_palette <- rev(color_palette)
+  }
+
   # Create a data frame with initial values
   new_edge_attr_col <-
     data.frame(
@@ -104,15 +143,15 @@ colorize_edge_attrs <- function(graph,
   edges_df <- cbind(edges_df, new_edge_attr_col)
 
   # Rename the new column with the target edge attr name
-  colnames(edges_df)[to_edge_attr_colnum] <-
-    edge_attr_to
+  colnames(edges_df)[to_edge_attr_colnum] <- edge_attr_to
 
   # Get a data frame of recodings
   if (is.null(cut_points)) {
-    viridis_df <-
+
+    recode_df <-
       data.frame(
         to_recode = names(table(edges_df[, col_to_recode_no])),
-        colors = gsub("..$", "", viridis(num_recodings)),
+        colors = color_palette,
         stringsAsFactors = FALSE)
 
     # Recode rows in the new edge attribute
@@ -120,18 +159,18 @@ colorize_edge_attrs <- function(graph,
 
       recode_rows <-
         which(edges_df[, col_to_recode_no] %in%
-                viridis_df[i, 1])
+                recode_df[i, 1])
 
       if (is.null(alpha)) {
         edges_df[recode_rows, to_edge_attr_colnum] <-
-          gsub("..$", "", viridis(num_recodings)[i])
+          color_palette[i]
       } else if (!is.null(alpha)) {
         if (alpha < 100) {
           edges_df[recode_rows, to_edge_attr_colnum] <-
-            gsub("..$", alpha, viridis(num_recodings)[i])
+            gsub("$", alpha, color_palette[i])
         } else if (alpha == 100) {
           edges_df[recode_rows, to_edge_attr_colnum] <-
-            gsub("..$", "", viridis(num_recodings)[i])
+            gsub("$", "", color_palette[i])
         }
       }
     }
@@ -148,7 +187,7 @@ colorize_edge_attrs <- function(graph,
             cut_points[i + 1])
 
       edges_df[recode_rows, to_edge_attr_colnum] <-
-        gsub("..$", "", viridis(num_recodings)[i])
+        color_palette[i]
     }
 
     if (!is.null(alpha)) {
