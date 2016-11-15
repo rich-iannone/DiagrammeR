@@ -121,18 +121,6 @@ nudge_node_positions_ws <- function(graph,
     stop("There are no `x` and `y` attribute values to modify.")
   }
 
-  # Get the current selection of nodes if a selection
-  # of nodes is available; otherwise, stop function
-  if (!is.null(graph$selection)) {
-    if (!is.null(graph$selection$nodes)) {
-      nodes <- graph$selection$nodes
-    } else {
-      stop("There is no active selection of nodes")
-    }
-  } else {
-    stop("There is no active selection of nodes")
-  }
-
   # Determine which of the nodes selected have position
   # information set (i.e., not NA)
   ndf_filtered <-
