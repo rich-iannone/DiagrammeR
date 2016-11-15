@@ -10,11 +10,6 @@ test_that("importing a .graphml file is possible", {
   # Expect a graph object of class `dgr_graph`
   expect_is(graphml_graph, "dgr_graph")
 
-  # Expect that several of the graph components are `NULL`
-  expect_null(graphml_graph$graph_name)
-  expect_null(graphml_graph$graph_time)
-  expect_null(graphml_graph$graph_tz)
-
   # Expect that the `nodes_df` component is a data frame
   expect_is(graphml_graph$nodes_df, "data.frame")
 
@@ -24,8 +19,8 @@ test_that("importing a .graphml file is possible", {
   # Expect that the graph is a directed graph
   expect_true(graphml_graph$directed == TRUE)
 
-  # Expect that the `nodes_df` data frame has 10 columns
-  expect_true(ncol(graphml_graph$nodes_df) == 10)
+  # Expect that the `nodes_df` data frame has 9 columns
+  expect_true(ncol(graphml_graph$nodes_df) == 9)
 
   # Expect that the `nodes_df` data frame has 4941 rows
   expect_true(nrow(graphml_graph$nodes_df) == 4941)
