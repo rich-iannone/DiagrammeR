@@ -111,13 +111,13 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   # Expect that the list is of length 2
   expect_true(length(gotten_edges_list) == 2)
 
-  # Expect character vectors of length 26
+  # Expect integer vectors of length 26
   # in `gotten_edges_list`
   expect_true(length(gotten_edges_list[[1]]) == 26)
-  expect_is(gotten_edges_list[[1]], "character")
+  expect_is(gotten_edges_list[[1]], "integer")
 
   expect_true(length(gotten_edges_list[[2]]) == 26)
-  expect_is(gotten_edges_list[[2]], "character")
+  expect_is(gotten_edges_list[[2]], "integer")
 
   # Get the `outgoing` and `incoming` node ID values
   # in a data frame object
@@ -130,7 +130,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   # Expect that the data frame has 2 columns
   expect_true(ncol(gotten_edges_df) == 2)
 
-  # Expect columns of class `character` and that there
+  # Expect columns of class `integer` and that there
   # are 26 rows in `gotten_edges_df`
   expect_is(gotten_edges_df[, 1], "integer")
   expect_is(gotten_edges_df[, 2], "integer")
@@ -204,13 +204,13 @@ test_that("getting edge information from an edge data frame is possible", {
   # Expect that the list is of length 2
   expect_true(length(edges_list_from_edf) == 2)
 
-  # Expect character vectors of length 26 in
+  # Expect integer vectors of length 26 in
   # `gotten_edges_list`
   expect_true(length(edges_list_from_edf[[1]]) == 2)
-  expect_is(edges_list_from_edf[[1]], "character")
+  expect_is(edges_list_from_edf[[1]], "integer")
 
   expect_true(length(edges_list_from_edf[[2]]) == 2)
-  expect_is(edges_list_from_edf[[2]], "character")
+  expect_is(edges_list_from_edf[[2]], "integer")
 
   # Get edges from the edge data frame as a
   # returned data frame object

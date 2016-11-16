@@ -72,7 +72,6 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(get_eccentricity(invalid_graph))
   expect_error(get_edge_attrs(invalid_graph))
   expect_error(get_edge_df(invalid_graph))
-  expect_error(get_edges(invalid_graph))
   expect_error(get_global_graph_attrs(invalid_graph))
   expect_error(get_graph_diameter(invalid_graph))
   expect_error(get_graph_name(invalid_graph))
