@@ -47,10 +47,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Select nodes where `value` > 3
   graph_val_gt_3 <-
-    select_nodes(
-      graph = graph,
-      node_attr = "value",
-      search = ">3")
+    graph %>%
+    select_nodes("value > 3")
 
   # Expect that nodes `1` and `3` are part of a
   # selection object in `nodes`
@@ -60,10 +58,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Select nodes where `value` < 3
   graph_val_lt_3 <-
-    select_nodes(
-      graph = graph,
-      node_attr = "value",
-      search = "<3")
+    graph %>%
+    select_nodes("value < 3")
 
   # Expect that nodes `2` and `4` are part of a
   # selection object in `nodes`
@@ -72,10 +68,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Select nodes where `value` == 2.7
   graph_val_eq_2_7 <-
-    select_nodes(
-      graph = graph,
-      node_attr = "value",
-      search = "==2.7")
+    graph %>%
+    select_nodes("value == 2.7")
 
   # Expect that node `4` is part of a selection
   # object in `nodes`
@@ -84,10 +78,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Select nodes where `value` != 2.7
   graph_val_neq_2_7 <-
-    select_nodes(
-      graph = graph,
-      node_attr = "value",
-      search = "!=2.7")
+    graph %>%
+    select_nodes("value != 2.7")
 
   # Expect that nodes `1`, `2`, and `3` are part of
   # a selection object in `nodes`
@@ -97,10 +89,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Select nodes where `type` is `letter`
   graph_val_letter <-
-    select_nodes(
-      graph = graph,
-      node_attr = "type",
-      search = "let")
+    graph %>%
+    select_nodes("type == 'let'")
 
   # Expect that nodes `1`, `2`, `3`, and `4` are
   # part of a selection object in `nodes`
@@ -112,11 +102,8 @@ test_that("selecting a node in a graph is possible", {
   # Select nodes where `type` is `letter` and filter
   # to nodes `1` and `2`
   graph_val_letter_a_b <-
-    select_nodes(
-      graph = graph,
-      nodes = 1:2,
-      node_attr = "type",
-      search = "let")
+    graph %>%
+    select_nodes("type == 'let'", nodes = 1:2)
 
   # Expect that nodes `1` and `2` are part of a
   # selection object in `nodes`
@@ -126,7 +113,8 @@ test_that("selecting a node in a graph is possible", {
 
   # Create a union of selections in a magrittr pipeline
   graph_sel_union_a_b_c_d <-
-    graph %>% select_nodes(nodes = c(1, 2)) %>%
+    graph %>%
+    select_nodes(nodes = c(1, 2)) %>%
     select_nodes(nodes = c(3, 4))
 
   # Expect that all 4 nodes are part of a selection
@@ -171,35 +159,12 @@ test_that("selecting a node in a graph is possible", {
       graph = create_graph(),
       nodes = 3))
 
-  # Expect an error if specifying more than
-  # one attribute
-  expect_error(
-    select_nodes(
-      graph = graph,
-      node_attr = c("label", "value"),
-      search = 1))
-
-  # Expect an error if specifying an attribute that
-  # doesn't exist
-  expect_error(
-    select_nodes(
-      graph = graph,
-      node_attr = "fontname",
-      search = 1))
-
   # Expect an error if specifying a node that
   # doesn't exist
   expect_error(
     select_nodes(
       graph = graph,
       nodes = 5))
-
-  expect_error(
-    select_nodes(
-      graph = graph,
-      nodes = 5,
-      node_attr = "value",
-      search = ">0"))
 
   # Select the last node in a graph
   graph_last_node <- select_last_node(graph)
@@ -688,7 +653,7 @@ test_that("getting/clearing a selection is possible", {
   # Select all nodes in the graph
   graph_select_all_nodes <-
     graph %>%
-    select_nodes
+    select_nodes()
 
   # Get the selection and expect both nodes to
   # be present
