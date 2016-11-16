@@ -5,150 +5,91 @@
 #' ID values returned.
 #' @param x either a graph object of class
 #' \code{dgr_graph} or a node data frame.
-#' @param node_attr an optional character vector of
-#' node attribute values for filtering the node ID
-#' values returned.
-#' @param match an option to provide a logical
-#' expression with a comparison operator (\code{>},
-#' \code{<}, \code{==}, or \code{!=}) followed by a
-#' number for numerical filtering, or, a character
-#' string for filtering the edges returned through
-#' string matching.
+#' @param conditions an option to use filtering
+#' conditions for the retrieval of nodes.
 #' @return a vector of node ID values.
 #' @examples
-#' # Before getting node ID values, create a
-#' # simple graph
 #' # Create a node data frame (ndf)
-#' nodes <-
+#' ndf <-
 #'   create_node_df(
 #'     n = 4,
 #'     type = "letter",
-#'     color = c("red", "green", "grey", "blue"),
+#'     color = c("red", "green",
+#'               "blue", "blue"),
 #'     value = c(3.5, 2.6, 9.4, 2.7))
 #'
 #' # Create a graph
-#' graph <- create_graph(nodes_df = nodes)
+#' graph <- create_graph(nodes_df = ndf)
 #'
 #' # Get a vector of all nodes in a graph
 #' get_node_ids(graph)
 #' #> [1] 1 2 3 4
 #'
-#' # Get a vector of node ID values from a node
-#' # data frame
-#' get_node_ids(nodes)
+#' # Get a vector of node ID values from a
+#' # node data frame
+#' get_node_ids(ndf)
 #' #> [1] 1 2 3 4
 #'
-#' # Get a vector of node ID values using a numeric
-#' # comparison (i.e., all nodes with `value` attribute
-#' # greater than 3)
+#' # Get a vector of node ID values using a
+#' # numeric comparison (i.e., all nodes with
+#' # `value` attribute greater than 3)
 #' get_node_ids(
 #'   graph,
-#'   node_attr = "value",
-#'   match = "> 3")
+#'   conditions = "value > 3")
 #' #> [1] 1 3
 #'
-#' # Get a vector of node ID values using a match
-#' # pattern (i.e., all nodes with `color` attribute
-#' # of `green`)
+#' # Get a vector of node ID values using
+#' # a match pattern (i.e., all nodes with
+#' # `color` attribute of `green`)
 #' get_node_ids(
 #'   graph,
-#'   node_attr = "color",
-#'   match = "green")
+#'   conditions = "color == 'green'")
 #' #> [1] 2
+#'
+#' # Use multiple conditions to return nodes
+#' # with the desired attribute values
+#' get_node_ids(
+#'   graph,
+#'   conditions = c("color == 'blue'",
+#'                  "value > 5"))
+#' #> [1] 3
+#' @importFrom dplyr filter_ select_
 #' @export get_node_ids
 
 get_node_ids <- function(x,
-                         node_attr = NULL,
-                         match = NULL) {
+                         conditions = NULL) {
 
   if (inherits(x, "dgr_graph")) {
-
     if (is_graph_empty(x)) {
-      node_ID <- NA
-
-      return(node_ID)
+      return(NA)
     } else {
       nodes_df <- x$nodes_df
     }
   }
 
   if (inherits(x, "data.frame")) {
-    if (colnames(x)[1] == "id") {
+    if (colnames(x)[1] == "id" &
+        colnames(x)[2] == "type" &
+        colnames(x)[3] == "label") {
       nodes_df <- x
     }
   }
 
-  if (!is.null(node_attr)) {
-    if (length(node_attr) > 1) {
-      stop("Only one node attribute can be specified.")
-    }
-
-    if (!(node_attr %in% colnames(nodes_df)[-1])) {
-      stop("The specified attribute is not available.")
-    }
-  }
-
-  if (is.null(node_attr)) {
-    nodes <- nodes_df[, 1]
-  }
-
-  if (!is.null(node_attr)) {
-
-    column_number <-
-      which(colnames(nodes_df) %in% node_attr)
-
-    # Filter using a logical expression
-    if (!is.null(match)) {
-
-      if (grepl("^>.*", match) | grepl("^<.*", match) |
-          grepl("^==.*", match) | grepl("^!=.*", match)) {
-        logical_expression <- TRUE } else {
-          logical_expression <- FALSE
-        }
-
-      if (logical_expression) {
-
-        if (grepl("^>.*", match)) {
-          rows_where_true_le <-
-            which(nodes_df[,column_number] >
-                    as.numeric(gsub(">(.*)", "\\1", match)))
-        }
-
-        if (grepl("^<.*", match)) {
-          rows_where_true_le <-
-            which(nodes_df[,column_number] <
-                    as.numeric(gsub("<(.*)", "\\1", match)))
-        }
-
-        if (grepl("^==.*", match)) {
-          rows_where_true_le <-
-            which(nodes_df[,column_number] ==
-                    as.numeric(gsub("==(.*)", "\\1", match)))
-        }
-
-        if (grepl("^!=.*", match)) {
-          rows_where_true_le <-
-            which(nodes_df[,column_number] !=
-                    as.numeric(gsub("!=(.*)", "\\1", match)))
-        }
-
-        nodes <- nodes_df[rows_where_true_le, 1]
-      }
-    }
-
-    # Filter using a `match` value
-    if (logical_expression == FALSE) {
-
-      if (is.numeric(match)) {
-        match <- as.character(match)
-      }
-
-      rows_where_true_match <-
-        which(match == as.character(nodes_df[,column_number]))
-
-      nodes <- nodes_df[rows_where_true_match, 1]
+  # If conditions are provided then
+  # pass in those conditions and filter the
+  # data frame of `nodes_df`
+  if (!is.null(conditions)) {
+    for (i in 1:length(conditions)) {
+      nodes_df <-
+        nodes_df %>%
+        dplyr::filter_(conditions[i])
     }
   }
 
-  return(nodes)
+  # If no nodes remain then return NA
+  if (nrow(nodes_df) == 0) {
+    return(NA)
+  }
+
+  return(nodes_df$id)
 }
