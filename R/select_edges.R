@@ -3,15 +3,8 @@
 #' class \code{dgr_graph}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param edge_attr an optional character vector of
-#' edge attribute values for filtering the edges
-#' returned.
-#' @param search an option to provide a logical
-#' expression with a comparison operator (\code{>},
-#' \code{<}, \code{==}, or \code{!=}) followed by a
-#' number for numerical filtering, or, a regular
-#' expression for filtering the nodes returned through
-#' string matching.
+#' @param conditions an option to use filtering
+#' conditions for the retrieval of nodes.
 #' @param set_op the set operation to perform upon
 #' consecutive selections of graph nodes. This can
 #' either be as a \code{union} (the default), as an
