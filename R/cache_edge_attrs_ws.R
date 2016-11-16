@@ -41,9 +41,7 @@
 #' # is less than 5
 #' graph <-
 #'   graph %>%
-#'   select_edges(
-#'     edge_attr = "value",
-#'     search = "<5.0")
+#'   select_edges("value < 5.0")
 #'
 #' # Cache available values from the edge attribute
 #' # `value` from the edges that are selected; ensure
@@ -55,8 +53,8 @@
 #' # Get the cached vector and get its
 #' # difference from 5
 #' graph %>% get_cache() %>% {x <- .; 5 - x}
-#' #> [1] 0.4236672 2.0831823 2.3066151
-#' #> [4] 3.0002598 0.8910665
+#' #> [1] 3.0002598 0.8910665 0.1157822
+#' #> [4] 2.6499060 1.0958678
 #' @export cache_edge_attrs_ws
 
 cache_edge_attrs_ws <- function(graph,
