@@ -11,6 +11,9 @@ select_edges(graph, conditions = NULL, set_op = "union", from = NULL,
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
+\item{conditions}{an option to use filtering
+conditions for the retrieval of nodes.}
+
 \item{set_op}{the set operation to perform upon
 consecutive selections of graph nodes. This can
 either be as a \code{union} (the default), as an
@@ -25,17 +28,6 @@ edges present in the graph.}
 \item{to}{an optional vector of node IDs to which
 the edge is incoming for filtering the list of
 edges present in the graph.}
-
-\item{edge_attr}{an optional character vector of
-edge attribute values for filtering the edges
-returned.}
-
-\item{search}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a regular
-expression for filtering the nodes returned through
-string matching.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
