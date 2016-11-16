@@ -51,7 +51,8 @@
 #' # Explicitly select the edge `1` -> `4`
 #' graph <-
 #'   graph %>%
-#'   select_edges(from = 1, to = 4)
+#'   select_edges(
+#'     from = 1, to = 4)
 #'
 #' # Verify that an edge selection has been made
 #' # using the `get_selection()` function
@@ -63,7 +64,8 @@
 #' graph <-
 #'   graph %>%
 #'   clear_selection() %>%
-#'   select_edges(edge_attr = "rel", search = "z")
+#'   select_edges(
+#'     conditions = "rel == 'z'")
 #'
 #' # Verify that an edge selection has been made, and
 #' # recall that the `2` -> `3` edge uniquely has the
@@ -77,7 +79,8 @@
 #' graph <-
 #'   graph %>%
 #'   clear_selection() %>%
-#'   select_edges(edge_attr = "value", search = ">3.0")
+#'   select_edges(
+#'     conditions = "value > 3.0")
 #'
 #' # Verify that the correct edge selection has been
 #' # made; in this case, edges `1` -> `4` and
@@ -85,11 +88,11 @@
 #' # 3.0
 #' get_selection(graph)
 #' #> [1] "1 -> 4" "3 -> 1"
+#' @importFrom dplyr filter_ filter select
 #' @export select_edges
 
 select_edges <- function(graph,
-                         edge_attr = NULL,
-                         search = NULL,
+                         conditions = NULL,
                          set_op = "union",
                          from = NULL,
                          to = NULL) {
@@ -123,108 +126,55 @@ select_edges <- function(graph,
   # Extract the graph's internal edf
   edges_df <- graph$edges_df
 
-  if (!is.null(edge_attr)) {
-    if (length(edge_attr) > 1) {
-      stop("Only one edge attribute can be specified.")
-    }
-
-    if (!(edge_attr %in% colnames(edges_df)[-(1:2)])) {
-      stop("The specified attribute is not available.")
-    }
-  }
-
-  if (is.null(edge_attr)) {
-    if (is.null(from) & !is.null(to)) {
-      if (any(!(to %in% edges_df$to))) {
-        stop("One of more of the incoming nodes specified are not part of an edge.")
-      }
-
-      edges_selected <-
-        get_edges(edges_df[which(edges_df$to %in% to),],
-                  return_type = "vector")
-
-    } else if (!is.null(from) & is.null(to)) {
-      if (any(!(from %in% edges_df$from))) {
-        stop("One of more of the outgoing nodes specified are not part of an edge.")
-      }
-
-      edges_selected <-
-        get_edges(edges_df[which(edges_df$from %in% from),],
-                  return_type = "vector")
-    } else if (is.null(from) & is.null(to)) {
-      edges_selected <-
-        get_edges(edges_df, return_type = "vector")
-    } else {
-      edges_selected <-
-        get_edges(
-          edges_df[which((edges_df$from %in% from) &
-                           (edges_df$to %in% to)),],
-          return_type = "vector")
+  # If conditions are provided then
+  # pass in those conditions and filter the
+  # data frame of `edges_df`
+  if (!is.null(conditions)) {
+    for (i in 1:length(conditions)) {
+      edges_df <-
+        edges_df %>%
+        dplyr::filter_(conditions[i])
     }
   }
 
-  if (!is.null(edge_attr)) {
-
-    column_number <-
-      which(colnames(edges_df) %in% edge_attr)
-
-    # If a search term provided, filter using a logical expression
-    # or a regex match
-    if (!is.null(search)) {
-      if (grepl("^>.*", search) | grepl("^<.*", search) |
-          grepl("^==.*", search) | grepl("^!=.*", search)) {
-        logical_expression <- TRUE } else {
-          logical_expression <- FALSE
-        }
-
-      # Filter using a logical expression
-      if (logical_expression) {
-        if (grepl("^>.*", search)) {
-          rows_where_true_le <-
-            which(as.numeric(edges_df[,column_number]) >
-                    as.numeric(gsub(">(.*)", "\\1", search)))
-        }
-
-        if (grepl("^<.*", search)) {
-          rows_where_true_le <-
-            which(as.numeric(edges_df[,column_number]) <
-                    as.numeric(gsub("<(.*)", "\\1", search)))
-        }
-
-        if (grepl("^==.*", search)) {
-          rows_where_true_le <-
-            which(as.numeric(edges_df[,column_number]) ==
-                    as.numeric(gsub("==(.*)", "\\1", search)))
-        }
-
-        if (grepl("^!=.*", search)) {
-          rows_where_true_le <-
-            which(as.numeric(edges_df[,column_number]) !=
-                    as.numeric(gsub("!=(.*)", "\\1", search)))
-        }
-
-        edges_selected <-
-          get_edges(edges_df[rows_where_true_le, ],
-                    return_type = "vector")
-      }
-
-      # Filter using a `search` value as a
-      # regular expression
-      if (logical_expression == FALSE) {
-
-        rows_where_true_regex <-
-          which(
-            grepl(search,
-                  as.character(
-                    edges_df[,column_number])))
-
-        edges_selected <-
-          get_edges(
-            edges_df[rows_where_true_regex, ],
-            return_type = "vector")
-      }
+  # If a `from` vector provided, filter the edf
+  # to get those edges where the specified node IDs
+  # are present
+  if (!is.null(from)) {
+    if (any(!(from %in% edges_df$from))) {
+      stop("One of more of the nodes specified as `from` not part of an edge.")
     }
+
+    from_val <- from
+
+    edges_df <-
+      edges_df %>%
+      dplyr::filter(from %in% from_val)
   }
+
+  # If a `to` vector provided, filter the edf
+  # to get those edges where the specified node IDs
+  # are present
+  if (!is.null(to)) {
+    if (any(!(to %in% edges_df$to))) {
+      stop("One of more of the nodes specified as `to` are not part of an edge.")
+    }
+
+    to_val <- to
+
+    edges_df <-
+      edges_df %>%
+      dplyr::filter(to %in% to_val)
+  }
+
+  # Select only the `to` and `from` columns
+  edges_selected <-
+    edges_df %>%
+    dplyr::select(from, to)
+
+  # Create a character vector representing edges
+  edges_selected <-
+    paste(edges_df$from, "->", edges_df$to)
 
   # Obtain vectors of node IDs associated with edges
   # already present
