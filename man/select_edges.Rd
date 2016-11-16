@@ -4,23 +4,12 @@
 \alias{select_edges}
 \title{Select edges in a graph}
 \usage{
-select_edges(graph, edge_attr = NULL, search = NULL, set_op = "union",
-  from = NULL, to = NULL)
+select_edges(graph, conditions = NULL, set_op = "union", from = NULL,
+  to = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
-
-\item{edge_attr}{an optional character vector of
-edge attribute values for filtering the edges
-returned.}
-
-\item{search}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a regular
-expression for filtering the nodes returned through
-string matching.}
 
 \item{set_op}{the set operation to perform upon
 consecutive selections of graph nodes. This can
@@ -36,6 +25,17 @@ edges present in the graph.}
 \item{to}{an optional vector of node IDs to which
 the edge is incoming for filtering the list of
 edges present in the graph.}
+
+\item{edge_attr}{an optional character vector of
+edge attribute values for filtering the edges
+returned.}
+
+\item{search}{an option to provide a logical
+expression with a comparison operator (\code{>},
+\code{<}, \code{==}, or \code{!=}) followed by a
+number for numerical filtering, or, a regular
+expression for filtering the nodes returned through
+string matching.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -70,7 +70,8 @@ graph <-
 # Explicitly select the edge `1` -> `4`
 graph <-
   graph \%>\%
-  select_edges(from = 1, to = 4)
+  select_edges(
+    from = 1, to = 4)
 
 # Verify that an edge selection has been made
 # using the `get_selection()` function
@@ -82,7 +83,8 @@ get_selection(graph)
 graph <-
   graph \%>\%
   clear_selection() \%>\%
-  select_edges(edge_attr = "rel", search = "z")
+  select_edges(
+    conditions = "rel == 'z'")
 
 # Verify that an edge selection has been made, and
 # recall that the `2` -> `3` edge uniquely has the
@@ -96,7 +98,8 @@ get_selection(graph)
 graph <-
   graph \%>\%
   clear_selection() \%>\%
-  select_edges(edge_attr = "value", search = ">3.0")
+  select_edges(
+    conditions = "value > 3.0")
 
 # Verify that the correct edge selection has been
 # made; in this case, edges `1` -> `4` and
