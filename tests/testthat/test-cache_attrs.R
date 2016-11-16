@@ -228,9 +228,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # is less than 5
   graph <-
     graph %>%
-    select_edges(
-      edge_attr = "value",
-      search = "<5.0")
+    select_edges("value < 5.0")
 
   # Cache available values from the edge attribute
   # `value` from the edges that are selected; ensure
@@ -406,9 +404,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # is less than 5
   graph <-
     graph %>%
-    select_edges(
-      edge_attr = "value",
-      search = "<5.0")
+    select_edges("value < 5.0")
 
   # Cache available values from the edge attribute
   # `value` from the edges that are selected; ensure

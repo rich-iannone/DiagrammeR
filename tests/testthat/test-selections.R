@@ -262,10 +262,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Select edges where `width` > 2
   graph_width_gt_2 <-
-    select_edges(
-      graph = graph,
-      edge_attr = "width",
-      search = ">2")
+    graph %>%
+    select_edges("width > 2")
 
   # Expect that node `3` is part of a selection
   # object in 'edges/from'
@@ -277,10 +275,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Select nodes where `width` < 3
   graph_width_lt_3 <-
-    select_edges(
-      graph = graph,
-      edge_attr = "width",
-      search = "<3")
+    graph %>%
+    select_edges("width < 3")
 
   # Expect that nodes `1` and `2` are part of a
   # selection object in 'edges/from'
@@ -296,10 +292,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Select nodes where `width` == 2
   graph_width_eq_2 <-
-    select_edges(
-      graph = graph,
-      edge_attr = "width",
-      search = "== 2")
+    graph %>%
+    select_edges("width == 2")
 
   # Expect that node `2` is part of a selection
   # object in 'edges/from'
@@ -313,10 +307,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Select nodes where `width` != 2
   graph_width_neq_2 <-
-    select_edges(
-      graph = graph,
-      edge_attr = "width",
-      search = "!=2")
+    graph %>%
+    select_edges("width != 2")
 
   # Expect that nodes `1` and `3` are part of a
   # selection object in 'edges/from'
@@ -328,10 +320,8 @@ test_that("selecting an edge in a graph is possible", {
 
   # Select nodes where `rel` is `leading_to`
   graph_val_leading_to <-
-    select_edges(
-      graph = graph,
-      edge_attr = "rel",
-      search = "leading")
+    graph %>%
+    select_edges("rel == 'leading_to'")
 
   # Expect that nodes `1`, `2`, and `3` are part of a
   # selection object in 'edges/from'
@@ -442,22 +432,6 @@ test_that("selecting an edge in a graph is possible", {
     select_edges(
       graph = create_graph(
         create_node_df(1))))
-
-  # Expect an error if specifying more than
-  # one attribute
-  expect_error(
-    select_edges(
-      graph = graph,
-      edge_attr = c("rel", "width"),
-      search = 1))
-
-  # Expect an error if specifying an attribute
-  # that doesn't exist
-  expect_error(
-    select_edges(
-      graph = graph,
-      edge_attr = "fontname",
-      search = "a"))
 
   # Expect an error if selecting edges from a
   # graph that doesn't contain edges
