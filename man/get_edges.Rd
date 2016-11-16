@@ -4,22 +4,14 @@
 \alias{get_edges}
 \title{Get node IDs associated with edges}
 \usage{
-get_edges(x, edge_attr = NULL, match = NULL, return_type = "vector")
+get_edges(x, conditions = NULL, return_type = "vector")
 }
 \arguments{
 \item{x}{either a graph object of class
 \code{dgr_graph} or an edge data frame.}
 
-\item{edge_attr}{an optional character vector of
-edge attribute values for filtering the edges
-returned.}
-
-\item{match}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a character
-string for filtering the edges returned through
-string matching.}
+\item{conditions}{an option to use filtering
+conditions for the retrieval of edges.}
 
 \item{return_type}{using \code{vector} (the
 default), a vector of character objects
@@ -42,7 +34,7 @@ set of edges returned.
 }
 \examples{
 # Create a node data frame (ndf)
-nodes <-
+ndf <-
   create_node_df(
     n = 4,
     type = "letter",
@@ -50,19 +42,19 @@ nodes <-
     value = c(3.5, 2.6, 9.4, 2.7))
 
 # Create an edge data frame (edf)
-edges <-
+edf <-
   create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
     rel = "leading_to",
-    color = c("pink", "blue", "red"),
+    color = c("pink", "blue", "blue"),
     value = c(3.9, 2.5, 7.3))
 
 # Create a graph
 graph <-
   create_graph(
-    nodes_df = nodes,
-    edges_df = edges)
+    nodes_df = ndf,
+    edges_df = edf)
 
 # Get all edges within a graph, returned as a list
 get_edges(graph, return_type = "vector")
@@ -76,30 +68,37 @@ get_edges(graph, return_type = "df")
 #> 2    2  3
 #> 3    3  1
 
-# Get all edges within a graph, returned as a vector
+# Get all edges returned as a list
 get_edges(graph, return_type = "list")
 #> [[1]]
-#> [1] "1" "2" "3"
+#> [1] 1 2 3
 #>
 #> [[2]]
-#> [1] "4" "3" "1"
+#> [1] 4 3 1
 
 # Get a vector of edges using a numeric
 # comparison (i.e., all edges with a `value`
 # attribute greater than 3)
 get_edges(
   graph,
-  edge_attr = "value",
-  match = "> 3",
+  conditions = "value > 3",
   return_type = "vector")
 #> [1] "1 -> 4" "3 -> 1"
 
 # Get a vector of edges using a match
 get_edges(
   graph,
-  edge_attr = "color",
-  match = "pink",
+  conditions = "color == 'pink'",
   return_type = "vector")
 #> [1] "1 -> 4"
+
+# Use multiple conditions to return edges
+# with the desired attribute values
+get_edges(
+  graph,
+  conditions = c("color == 'blue'",
+                 "value > 3"),
+  return_type = "vector")
+#> [1] "3 -> 1"
 }
 
