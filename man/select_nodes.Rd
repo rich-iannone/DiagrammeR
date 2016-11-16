@@ -4,23 +4,14 @@
 \alias{select_nodes}
 \title{Select nodes in a graph}
 \usage{
-select_nodes(graph, node_attr = NULL, search = NULL, set_op = "union",
-  nodes = NULL)
+select_nodes(graph, conditions = NULL, set_op = "union", nodes = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{node_attr}{an optional character vector of
-node attribute values for filtering the node ID
-values returned.}
-
-\item{search}{an option to provide a logical
-expression with a comparison operator (\code{>},
-\code{<}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering, or, a regular
-expression for filtering the nodes returned through
-string matching.}
+\item{conditions}{an option to use filtering
+conditions for the retrieval of nodes.}
 
 \item{set_op}{the set operation to perform upon
 consecutive selections of graph nodes. This can
@@ -76,7 +67,8 @@ get_selection(graph)
 graph <-
   graph \%>\%
   clear_selection() \%>\%
-  select_nodes(node_attr = "type", search = "z")
+  select_nodes(
+    conditions = "type == 'z'")
 
 # Verify that an node selection has been made, and
 # recall that the `3` and `4` nodes are of the
@@ -90,7 +82,8 @@ get_selection(graph)
 graph <-
   graph \%>\%
   clear_selection() \%>\%
-  select_nodes(node_attr = "value", search = ">3.0")
+  select_nodes(
+    conditions = "value > 3.0")
 
 # Verify that the correct node selection has been
 # made; in this case, nodes `1` and `3` have values
