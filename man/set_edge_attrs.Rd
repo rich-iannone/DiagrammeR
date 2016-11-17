@@ -35,8 +35,8 @@ attribute properties for one or more edges
 }
 \examples{
 # Create a simple graph
-nodes <-
-  ndf(
+ndf <-
+  create_node_df(
     n = 4,
     type = "basic",
     label = TRUE,
