@@ -18,8 +18,8 @@
 #' what type of object was supplied to \code{x}.
 #' @examples
 #' # Create a simple graph
-#' nodes <-
-#'   ndf(
+#' ndf <-
+#'   create_node_df(
 #'     n = 4,
 #'     type = "basic",
 #'     label = TRUE,
