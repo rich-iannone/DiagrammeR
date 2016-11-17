@@ -34,14 +34,14 @@ any of the traversal functions (\code{trav_...}).
 }
 \examples{
 # Create a node data frame (ndf)
-nodes <-
+ndf <-
   create_node_df(
     n = 6,
     value = c(3.5, 2.6, 9.4,
               2.7, 5.2, 2.1))
 
 # Create an edge data frame (edf)
-edges <-
+edf <-
   create_edge_df(
     from = c(1, 2, 4, 5, 2, 6),
     to = c(2, 4, 1, 3, 5, 5))
@@ -49,16 +49,14 @@ edges <-
 # Create a graph
 graph <-
   create_graph(
-    nodes_df = nodes,
-    edges_df = edges)
+    nodes_df = ndf,
+    edges_df = edf)
 
 # Create a selection of nodes, this selects
 # nodes `1`, `3`, and `5`
 graph <-
-  select_nodes(
-    graph = graph,
-    node_attr = "value",
-    search = "> 3")
+  graph \%>\%
+  select_nodes("value > 3")
 
 # Create a subgraph based on the selection
 subgraph <- create_subgraph_ws(graph)

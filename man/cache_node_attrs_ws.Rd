@@ -60,9 +60,7 @@ graph <-
 # is less than 5
 graph <-
   graph \%>\%
-  select_nodes(
-    node_attr = "value",
-    search = "<5.0")
+  select_nodes("value < 5.0")
 
 # Cache available values from the node attribute
 # `value` from the nodes that are selected; ensure
@@ -74,7 +72,7 @@ graph <-
 # Get the cached vector and get its
 # difference from 5
 graph \%>\% get_cache() \%>\% {x <- .; 5 - x}
-#> [1] 0.4236672 2.0831823 2.3066151 3.0002598
-#> [5] 0.8910665 0.1157822
+#> [1] 3.0002598 0.8910665 0.1157822 3.4855753
+#> [5] 2.6499060 1.0958678 2.9127686
 }
 

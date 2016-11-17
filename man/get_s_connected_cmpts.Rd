@@ -19,6 +19,8 @@ Determine which nodes in a graph belong
 to different strongly connected components.
 }
 \examples{
+set.seed(23)
+
 # Create a graph with a random connection
 # between 2 different cycles
 graph <-
@@ -26,9 +28,9 @@ graph <-
   add_cycle(3, "cycle_1") \%>\%
   add_cycle(4, "cycle_2") \%>\%
   add_edge(
-    from = get_node_ids(., "type", "cycle_1") \%>\%
+    from = get_node_ids(., "type == 'cycle_1'") \%>\%
       sample(1),
-    to = get_node_ids(., "type", "cycle_2") \%>\%
+    to = get_node_ids(., "type == 'cycle_2'") \%>\%
       sample(1))
 
 # Get the strongly connected components as a

@@ -30,7 +30,7 @@ attribute properties for one or more nodes.
 }
 \examples{
 # Create a node data frame (ndf)
-nodes <-
+ndf <-
   create_node_df(
     n = 4,
     type = "basic",
@@ -38,7 +38,7 @@ nodes <-
     value = c(3.5, 2.6, 9.4, 2.7))
 
 # Create an edge data frame (edf)
-edges <-
+edf <-
   create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
@@ -47,8 +47,8 @@ edges <-
 # Create a graph
 graph <-
   create_graph(
-    nodes_df = nodes,
-    edges_df = edges)
+    nodes_df = ndf,
+    edges_df = edf)
 
 # Set attribute `color = "green"` for
 # nodes `1` and `3` using the graph object
@@ -71,7 +71,7 @@ get_node_df(graph)
 # nodes `1` and `3` using the node data frame
 nodes <-
   set_node_attrs(
-    x = nodes,
+    x = ndf,
     node_attr = "color",
     values = "green",
     nodes = c(1, 3))
@@ -88,7 +88,7 @@ nodes
 # all nodes in the node data frame
 nodes <-
   set_node_attrs(
-    x = nodes,
+    x = ndf,
     node_attr = "color",
     values = "blue")
 

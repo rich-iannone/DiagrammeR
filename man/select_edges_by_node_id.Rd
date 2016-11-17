@@ -42,7 +42,7 @@ graph <-
   select_nodes() \%>\%
   add_n_nodes_ws(3, "from", "b") \%>\%
   clear_selection() \%>\%
-  select_nodes("type", "b") \%>\%
+  select_nodes("type == 'b'") \%>\%
   add_n_nodes_ws(3, "from", "c") \%>\%
   clear_selection()
 

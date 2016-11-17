@@ -36,13 +36,13 @@ attribute properties for one or more edges
 \examples{
 # Create a simple graph
 nodes <-
-  create_node_df(
+  ndf(
     n = 4,
     type = "basic",
     label = TRUE,
     value = c(3.5, 2.6, 9.4, 2.7))
 
-edges <-
+edf <-
   create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
@@ -50,8 +50,8 @@ edges <-
 
 graph <-
   create_graph(
-    nodes_df = nodes,
-    edges_df = edges)
+    nodes_df = ndf,
+    edges_df = edf)
 
 # Set attribute `color = "green"` for edges
 # `1` -> `4` and `3` -> `1` using the graph object
@@ -68,7 +68,7 @@ graph <-
 # data frame
 edges <-
   set_edge_attrs(
-    x = edges,
+    x = edf,
     edge_attr = "color",
     values = "green",
     from = c(1, 3),

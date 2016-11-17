@@ -37,7 +37,7 @@ Export a graph to CSV files.
 }
 \examples{
 # Create a node data frame (ndf)
-nodes <-
+ndf <-
   create_node_df(
     n = 4,
     type = c("a", "a", "z", "z"),
@@ -45,7 +45,7 @@ nodes <-
     value = c(3.5, 2.6, 9.4, 2.7))
 
 # Create an edge data frame (edf)
-edges <-
+edf <-
   create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
@@ -54,8 +54,8 @@ edges <-
 # Create a graph with the ndf and edf
 graph <-
   create_graph(
-    nodes_df = nodes,
-    edges_df = edges)
+    nodes_df = ndf,
+    edges_df = edf)
 
 # Create separate `nodes.csv` and `edges.csv`
 # files in the working directory

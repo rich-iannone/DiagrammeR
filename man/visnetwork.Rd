@@ -16,7 +16,7 @@ Render a graph object with the visNetwork R package.
 \examples{
 \dontrun{
 # Create a node data frame (ndf)
-nodes <-
+ndf <-
   create_node_df(
     n = 6,
     label = TRUE,
@@ -29,7 +29,7 @@ nodes <-
     y = c(-2, -1, 0, 6, 4, 1))
 
 # Create an edge data frame (edf)
-edges <-
+edf <-
   create_edge_df(
     from = c(1, 2, 3, 4, 6, 5),
     to = c(4, 3, 1, 3, 1, 4),
@@ -40,8 +40,8 @@ edges <-
 # Create a graph object
 graph <-
   create_graph(
-    nodes_df = nodes,
-    edges_df = edges)
+    nodes_df = ndf,
+    edges_df = edf)
 
 visnetwork(graph)
 }
