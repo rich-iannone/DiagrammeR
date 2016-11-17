@@ -41,8 +41,8 @@
 #'     node = 4, x = 4, y = 4)
 #'
 #' # Select all of the graph's nodes using the
-#' # `select_nodes()` function (and only specifying
-#' # the graph object)
+#' # `select_nodes()` function (and only
+#' # specifying the graph object)
 #' graph <- select_nodes(graph)
 #'
 #' # Move the selected nodes (all the nodes,
@@ -67,7 +67,7 @@
 #' graph <-
 #'   graph %>%
 #'   clear_selection() %>%
-#'   select_nodes("type", "b") %>%
+#'   select_nodes("type == 'b'") %>%
 #'   nudge_node_positions_ws(
 #'     dx = 0, dy = 2)
 #'
