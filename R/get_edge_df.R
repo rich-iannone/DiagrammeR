@@ -40,15 +40,5 @@ get_edge_df <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  if (is.null(graph$edges_df)) {
-    return(NA)
-  } else {
-
-    edge_df <- graph$edges_df
-
-    edge_df[, 1] <- as.integer(edge_df[, 1])
-    edge_df[, 2] <- as.integer(edge_df[, 2])
-
-    return(edge_df)
-  }
+  return(graph$edges_df)
 }
