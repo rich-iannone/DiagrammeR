@@ -37,13 +37,15 @@ test_that("adding a node df to a graph is possible", {
     all(names(graph_2) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   expect_true(
     all(names(graph_3) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   # Expect graph objects of class `dgr_graph`
   expect_is(graph_2, "dgr_graph")
@@ -115,11 +117,11 @@ test_that("adding an edge df to a graph is possible", {
   # Expect that the `edges_df` component is a data frame
   expect_is(graph_3$edges_df, "data.frame")
 
-  # Expect that the `edges_df` data frame has 6 rows
+  # Expect that the `edges_df` data frame has 3 rows
   expect_true(nrow(graph_3$edges_df) == 3)
 
-  # Expect that the `edges_df` data frame has 3 columns
-  expect_true(ncol(graph_3$edges_df) == 3)
+  # Expect that the `edges_df` data frame has 4 columns
+  expect_true(ncol(graph_3$edges_df) == 4)
 
   # Add another edge to a graph that already has some
   # edges defined

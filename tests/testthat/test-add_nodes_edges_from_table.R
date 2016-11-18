@@ -679,7 +679,7 @@ test_that("adding edges from a table to a graph is possible", {
   # edge data frame
   expect_equal(
     colnames(graph_nodes_edges$edges_df),
-    c("from", "to", "rel", "cost_unit"))
+    c("id", "from", "to", "rel", "cost_unit"))
 
   # Expect an error if value for `from_col` is
   # not in the table

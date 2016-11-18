@@ -73,7 +73,7 @@ test_that("getting node IDs from various objects is possible", {
 test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Set a seed to make results reproducible
-  set.seed(26)
+  set.seed(23)
 
   # Create a node data frame
   nodes <-
@@ -153,15 +153,6 @@ test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Get the edge df from the graph using `get_edge_df()`
   edge_df_from_graph <- get_edge_df(graph)
-
-  # Expect that the edges from the graph and from the
-  # extracted edge df are the same
-  expect_true(
-    all(
-      get_edges(
-        edge_df_from_graph, return_type = "vector") ==
-        get_edges(
-          edge_df_from_graph, return_type = "vector")))
 
   # Expect that using `get_edge_df()` on a graph
   # with no edges will return an empty data frame
@@ -270,15 +261,14 @@ test_that("getting connected nodes is possible", {
   # connected components
   graph <-
     create_random_graph(
-      30, 30, set_seed = 1)
+      10, 10, set_seed = 23)
 
   connect_node_1 <- get_all_connected_nodes(graph, 1)
 
   # Expect certain node IDs to be returned
   expect_equal(
     connect_node_1,
-    c(2, 3, 4, 5, 8, 10, 11, 12, 14, 15, 16, 17,
-      19, 20, 21, 22, 24, 25, 26, 27, 29))
+    c(2, 3, 5, 6, 7, 9, 10))
 
   # Expect that the node ID provided won't be
   # returned in the set of node ID values
@@ -287,7 +277,7 @@ test_that("getting connected nodes is possible", {
   # Expect an NA value if there are no connected
   # nodes to the provided node
   expect_true(
-    is.na(get_all_connected_nodes(graph, 30)))
+    is.na(get_all_connected_nodes(graph, 4)))
 
   # Expect an error if providing a node ID that
   # doesn't exist in the graph

@@ -211,7 +211,7 @@ test_that("Adding color based on edge attributes is possible", {
   # Expect that there are 3 colors in the
   # `labelfontcolor` column
   expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 4)
+    length(unique(graph$edges_df$labelfontcolor)), 3)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -238,10 +238,10 @@ test_that("Adding color based on edge attributes is possible", {
       cut_points = c(0, 2, 4, 6, 8, 10),
       alpha = 90)
 
-  # Expect that there are 4 colors in the
+  # Expect that there are 3 colors in the
   # `labelfontcolor` column
   expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 4)
+    length(unique(graph$edges_df$labelfontcolor)), 3)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -269,10 +269,10 @@ test_that("Adding color based on edge attributes is possible", {
       cut_points = c(0, 2, 4, 6, 8, 10),
       alpha = 100)
 
-  # Expect that there are 4 colors in the
+  # Expect that there are 3 colors in the
   # `labelfontcolor` column
   expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 4)
+    length(unique(graph$edges_df$labelfontcolor)), 3)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color

@@ -119,16 +119,16 @@ test_that("getting info about a graph's edges is possible", {
   # Expect a data frame object
   expect_is(info_edges, "data.frame")
 
-  # Expect that the data frame has 3 columns
-  expect_true(ncol(info_edges) == 3)
+  # Expect that the data frame has 4 columns
+  expect_true(ncol(info_edges) == 4)
 
   # Expect that the data frame has 26 rows
   expect_true(nrow(info_edges) == 26)
 
   # Expect that all columns will be classed
   # as `character`
-  expect_is(info_edges$from, "numeric")
-  expect_is(info_edges$to, "numeric")
+  expect_is(info_edges$from, "integer")
+  expect_is(info_edges$to, "integer")
   expect_is(info_edges$rel, "character")
 
   # Create a graph with 4 nodes but no edges

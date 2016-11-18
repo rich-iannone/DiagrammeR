@@ -5,8 +5,7 @@ test_that("rescaling node attributes in a graph is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      5, 10, set_seed = 3,
-      directed = TRUE)
+      5, 10, set_seed = 23)
 
   # Rescale the `value` node attribute, so that
   # its values are rescaled between 0 and 1
@@ -18,7 +17,7 @@ test_that("rescaling node attributes in a graph is possible", {
   # available in the graph's ndf
   expect_equal(
     graph_r_value_0_1$nodes_df$value,
-    c(0.5, 1.0, 0.0, 0.0, 0.0))
+    c(0.583, 0.000, 0.167, 0.833, 1.000))
 
   # Scale the values in the `value` node attribute
   # to different shades of gray for the `fillcolor`
@@ -40,11 +39,11 @@ test_that("rescaling node attributes in a graph is possible", {
   # available in the graph's ndf
   expect_equal(
     graph_r_value_fill_font_color$nodes_df$fillcolor,
-    c("#7B7B7B", "#333333", "#CCCCCC", "#CCCCCC", "#CCCCCC"))
+    c("#6E6E6E", "#CCCCCC", "#B0B0B0", "#4A4A4A", "#333333"))
 
   expect_equal(
     graph_r_value_fill_font_color$nodes_df$fontcolor,
-    c("#767676", "#F2F2F2", "#0D0D0D", "#0D0D0D", "#0D0D0D"))
+    c("#898989", "#0D0D0D", "#2E2E2E", "#C7C7C7", "#F2F2F2"))
 
   # Expect an error if using supplying a node attribute
   # that doesn't exist (`values` instead of `value`)
@@ -56,8 +55,7 @@ test_that("rescaling edge attributes in a graph is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      5, 7, set_seed = 3,
-      directed = TRUE) %>%
+      5, 7, set_seed = 23) %>%
     set_edge_attrs(
       "weight", rnorm(edge_count(.), 5))
 
@@ -71,7 +69,7 @@ test_that("rescaling edge attributes in a graph is possible", {
   # available in the graph's edf
   expect_equal(
     graph_r_value_0_1$edges_df$weight,
-    c(0.408, 0.208, 0.218, 1.000, 0.701, 0.312, 0.000))
+    c(0.845, 0.100, 0.546, 1.000, 0.000, 0.898, 0.410))
 
   # Scale the values in the `weight` edge attribute
   # to different shades of gray for the `fillcolor`
@@ -93,13 +91,13 @@ test_that("rescaling edge attributes in a graph is possible", {
   # available in the graph's ndf
   expect_equal(
     graph_r_value_fill_font_color$edges_df$fillcolor,
-    c("#898989", "#A9A9A9", "#A8A8A8", "#333333", "#5D5D5D",
-      "#999999", "#CCCCCC"))
+    c("#484848", "#BBBBBB", "#747474", "#333333",
+      "#CCCCCC", "#414141", "#898989"))
 
   expect_equal(
     graph_r_value_fill_font_color$edges_df$fontcolor,
-    c("#616161", "#363636", "#383838", "#F2F2F2", "#A6A6A6",
-      "#4C4C4C", "#0D0D0D"))
+    c("#CACACA", "#212121", "#818181", "#F2F2F2",
+      "#0D0D0D", "#D7D7D7", "#616161"))
 
   # Expect an error if using supplying a node attribute
   # that doesn't exist (`weights` instead of `weight`)

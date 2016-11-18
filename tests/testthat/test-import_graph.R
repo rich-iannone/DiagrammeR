@@ -25,8 +25,8 @@ test_that("importing a .graphml file is possible", {
   # Expect that the `nodes_df` data frame has 4941 rows
   expect_true(nrow(graphml_graph$nodes_df) == 4941)
 
-  # Expect that the `edges_df` data frame has 3 columns
-  expect_true(ncol(graphml_graph$edges_df) == 3)
+  # Expect that the `edges_df` data frame has 4 columns
+  expect_true(ncol(graphml_graph$edges_df) == 4)
 
   # Expect that the `edges_df` data frame has 6594 rows
   expect_true(nrow(graphml_graph$edges_df) == 6594)
@@ -62,8 +62,8 @@ test_that("importing a .sif file is possible", {
   # Expect that the `nodes_df` data frame has 8347 rows
   expect_true(nrow(sif_graph$nodes_df) == 8347)
 
-  # Expect that the `edges_df` data frame has 3 columns
-  expect_true(ncol(sif_graph$edges_df) == 3)
+  # Expect that the `edges_df` data frame has 4 columns
+  expect_true(ncol(sif_graph$edges_df) == 4)
 
   # Expect that the `edges_df` data frame has 59207 rows
   expect_true(nrow(sif_graph$edges_df) == 59207)

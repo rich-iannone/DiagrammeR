@@ -314,14 +314,14 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 3)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 3)
 
   # Expect node ID values from 1 to 3
   expect_identical(get_node_ids(graph), 1:3)
 
   # Expect type values to be character NA values
-  expect_equal(unique(graph$nodes_df[, 2]),
+  expect_equal(unique(graph$nodes_df$type),
                as.character(NA))
 
   # Create a graph and add a full graph
@@ -341,8 +341,8 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 0)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 0)
 
   # Create a graph, add a full graph
   # (with no loops), set values for the
@@ -365,8 +365,8 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 0)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -379,21 +379,20 @@ test_that("Adding a full graph is possible", {
   # assigned to the nodes are in the
   # graph's internal node data frame
   expect_equal(
-    get_node_df(graph)[, 3],
+    graph$nodes_df$label,
     c("1st", "2nd", "3rd"))
 
   # Expect that the `label` edge attr
   # has the value `connected_to` for
   # all edges created
   expect_equal(
-    unique(get_edge_df(graph)[, 3]),
+    unique(graph$edges_df$rel),
     "connected_to")
 
   # Create a fully-connected and directed
   # graph with 3 nodes, and, where a matrix
-  # provides edge weights; first,
-
-  # create a to be used for edge weights
+  # provides edge weights; first, create a
+  # matrix to be used for edge weights
   # matrix (with row names to be used as
   # node labels)
   set.seed(23)
@@ -429,8 +428,8 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 0)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
@@ -443,20 +442,20 @@ test_that("Adding a full graph is possible", {
   # assigned to the nodes are the same
   # as the matrix rownames
   expect_equal(
-    get_node_df(graph)[, 3],
+    graph$nodes_df$label,
     rownames(edge_wt_matrix_rownames))
 
-  # Expect that the `label` edge attr
+  # Expect that the `rel` edge attr
   # has the value `connected_to` for
   # all edges created
   expect_equal(
-    unique(get_edge_df(graph)[, 3]),
+    unique(graph$edges_df$rel),
     "related_to")
 
   # Expect certain values for the
   # edge weight attribute
   expect_equal(
-    get_edge_df(graph)[, 4],
+    graph$edges_df$weight,
     c(3.3, 5.02, 4.13,
       6.49, 6.03, 5.55))
 
@@ -485,34 +484,34 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 0)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 0)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
   # nodes created
   expect_equal(
-    unique(get_node_df(graph)[, 2]),
+    unique(graph$nodes_df$type),
     "weighted")
 
   # Expect that the `label` values
   # assigned to the nodes are the same
   # as the matrix rownames
   expect_equal(
-    get_node_df(graph)[, 3],
+    graph$nodes_df$label,
     rownames(edge_wt_matrix_rownames))
 
-  # Expect that the `label` edge attr
+  # Expect that the `rel` edge attr
   # has the value `connected_to` for
   # all edges created
   expect_equal(
-    unique(get_edge_df(graph)[, 3]),
+    unique(graph$edges_df$rel),
     "related_to")
 
   # Expect certain values for the
   # edge weight attribute
   expect_equal(
-    get_edge_df(graph)[, 4],
+    graph$edges_df$weight,
     c(3.3, 5.02, 6.49))
 
   # Create a fully-connected graph with
@@ -539,34 +538,34 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 3)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
   # nodes created
   expect_equal(
-    unique(get_node_df(graph)[, 2]),
+    unique(graph$nodes_df$type),
     "weighted")
 
   # Expect that the `label` values
   # assigned to the nodes are the same
   # as the matrix rownames
   expect_equal(
-    get_node_df(graph)[, 3],
+    graph$nodes_df$label,
     rownames(edge_wt_matrix_rownames))
 
-  # Expect that the `label` edge attr
+  # Expect that the `rel` edge attr
   # has the value `connected_to` for
   # all edges created
   expect_equal(
-    unique(get_edge_df(graph)[, 3]),
+    unique(graph$edges_df$rel),
     "related_to")
 
   # Expect certain values for the
   # edge weight attribute
   expect_equal(
-    get_edge_df(graph)[, 4],
+    graph$edges_df$weight,
     c(8.66, 3.3, 5.02, 4.13, 6.83,
       6.49, 6.03, 5.55, 3.8))
 
@@ -594,34 +593,34 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 3)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
   # nodes created
   expect_equal(
-    unique(get_node_df(graph)[, 2]),
+    unique(graph$nodes_df$type),
     "weighted")
 
   # Expect that the `label` values
   # assigned to the nodes are the same
   # as the matrix rownames
   expect_equal(
-    get_node_df(graph)[, 3],
+    graph$nodes_df$label,
     rownames(edge_wt_matrix_rownames))
 
-  # Expect that the `label` edge attr
+  # Expect that the `rel` edge attr
   # has the value `connected_to` for
   # all edges created
   expect_equal(
-    unique(get_edge_df(graph)[, 3]),
+    unique(graph$edges_df$rel),
     "related_to")
 
   # Expect certain values for the
   # edge weight attribute
   expect_equal(
-    get_edge_df(graph)[, 4],
+    graph$edges_df$weight,
     c(8.66, 3.3, 5.02, 6.83, 6.49, 3.8))
 
   # Create a fully-connected and undirected
@@ -649,33 +648,33 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     length(
       which(
-        get_edge_df(graph)[, 1] ==
-          get_edge_df(graph)[, 2])), 3)
+        graph$edges_df$from ==
+          graph$edges_df$to)), 3)
 
   # Expect that the `type` node attr
   # has the value `connected` for all
   # nodes created
   expect_equal(
-    unique(get_node_df(graph)[, 2]),
+    unique(graph$nodes_df$type),
     "weighted")
 
   # Expect that the `label` values are
   # character NA values
   expect_equal(
-    get_node_df(graph)[, 3],
+    graph$nodes_df$label,
     rep(as.character(NA), 3))
 
   # Expect that the `rel` edge attr
   # has the value `connected_to` for
   # all edges created
   expect_equal(
-    unique(get_edge_df(graph)[, 3]),
+    unique(graph$edges_df$rel),
     "related_to")
 
   # Expect certain values for the
   # edge weight attribute
   expect_equal(
-    get_edge_df(graph)[, 4],
+    graph$edges_df$weight,
     c(8.66, 3.3, 5.02, 6.83, 6.49, 3.8))
 
   # Create a graph with a cycle then

@@ -169,7 +169,7 @@ test_that("setting edge attributes is possible", {
   expect_equal(
     graph_set_a_1$edges_df[
       which(graph_set_a_1$edges_df$from == 1 &
-              graph_set_a_1$edges_df$to == 2), 4], 5)
+              graph_set_a_1$edges_df$to == 2), 5], 5)
 
   # Get edge attribute for edge `1` -> `2`
   graph_set_a_1_edge_attr <-
@@ -242,7 +242,7 @@ test_that("setting edge attributes is possible", {
   expect_equal(
     graph_edge_selection$edges_df[
       which(graph_edge_selection$edges_df$from == 1 &
-              graph_edge_selection$edges_df$to == 2), 4], 5)
+              graph_edge_selection$edges_df$to == 2), 5], 5)
 })
 
 test_that("Getting node attributes is possible", {
@@ -250,11 +250,8 @@ test_that("Getting node attributes is possible", {
   # Create a random graph with 4 nodes and 4 edges
   random_graph <-
     create_random_graph(
-      n = 4,
-      m = 4,
-      directed = TRUE,
-      fully_connected = TRUE,
-      set_seed = 20)
+      n = 4, m = 4,
+      set_seed = 23)
 
   # Get node attributes for all nodes with the
   # `value` attribute
@@ -270,10 +267,10 @@ test_that("Getting node attributes is possible", {
   expect_true(all(1:4 %in% names(all_nodes)))
 
   # Expect certain values to be in the vector
-  expect_equal(all_nodes[[1]], 3.5)
-  expect_equal(all_nodes[[2]], 4.0)
-  expect_equal(all_nodes[[3]], 7.5)
-  expect_equal(all_nodes[[4]], 8.0)
+  expect_equal(all_nodes[[1]], 6.0)
+  expect_equal(all_nodes[[2]], 2.5)
+  expect_equal(all_nodes[[3]], 3.5)
+  expect_equal(all_nodes[[4]], 7.5)
 
   # Get node attributes for nodes `1` and `3`
   nodes_1_3 <-
@@ -289,8 +286,8 @@ test_that("Getting node attributes is possible", {
   expect_true(all(c(1, 3) %in% names(nodes_1_3)))
 
   # Expect certain values to be in the vector
-  expect_equal(nodes_1_3[[1]], 3.5)
-  expect_equal(nodes_1_3[[2]], 7.5)
+  expect_equal(nodes_1_3[[1]], 6.0)
+  expect_equal(nodes_1_3[[2]], 3.5)
 })
 
 test_that("Getting edge attributes is possible", {

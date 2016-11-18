@@ -28,9 +28,9 @@ test_that("a correct edge data frame is generated", {
   expect_equal(nrow(edges_1), 4)
   expect_equal(nrow(edges_2), 4)
 
-  # Expect that each of the edfs has 5 columns
-  expect_equal(ncol(edges_1), 5)
-  expect_equal(ncol(edges_2), 5)
+  # Expect that each of the edfs has 6 columns
+  expect_equal(ncol(edges_1), 6)
+  expect_equal(ncol(edges_2), 6)
 
   # Create an edge data frame using a vector with
   # length > 1 and length < length(from | to)
@@ -106,8 +106,8 @@ test_that("two edge data frames can be successfully combined", {
   # Expect that the combined edf has 8 rows
   expect_equal(nrow(all_edges), 8)
 
-  # Expect that the combined edf has 6 columns
-  expect_equal(ncol(all_edges), 6)
+  # Expect that the combined edf has 7 columns
+  expect_equal(ncol(all_edges), 7)
 })
 
 test_that("three edge data frames can be successfully combined", {
@@ -148,6 +148,6 @@ test_that("three edge data frames can be successfully combined", {
   # Expect that the combined edf has 8 rows
   expect_equal(nrow(all_edges), 8)
 
-  # Expect that the combined edf has 6 columns
-  expect_equal(ncol(all_edges), 6)
+  # Expect that the combined edf has 7 columns
+  expect_equal(ncol(all_edges), 7)
 })

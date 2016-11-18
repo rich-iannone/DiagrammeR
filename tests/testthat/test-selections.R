@@ -183,13 +183,6 @@ test_that("selecting a node in a graph is possible", {
   # Select the last edge in a graph
   graph_last_edge <- select_last_edge(graph)
 
-  # Expect that the edge selected is the last
-  # in the edf
-  expect_true(
-    get_edges(graph_last_edge, return_type = "vector")[
-      length(get_edges(graph_last_edge, return_type = "vector"))] ==
-      get_selection(graph_last_edge))
-
   # Expect an error if trying to select the last
   # edge from an empty graph
   expect_error(

@@ -40,7 +40,8 @@ test_that("graphs can be combined", {
     all(names(combined_graph_1) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   # Expect that the `global_attrs` graph component
   # is not NULL
@@ -56,8 +57,8 @@ test_that("graphs can be combined", {
   # Expect that the `nodes_df` df has 20 rows
   expect_true(nrow(combined_graph_1$nodes_df) == 20)
 
-  # Expect that the `edges_df` df has 3 columns
-  expect_true(ncol(combined_graph_1$edges_df) == 3)
+  # Expect that the `edges_df` df has 4 columns
+  expect_true(ncol(combined_graph_1$edges_df) == 4)
 
   # Expect that the `edges_df` df has 18 rows
   expect_true(nrow(combined_graph_1$edges_df) == 18)

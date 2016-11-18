@@ -164,11 +164,8 @@ test_that("Getting articulation points is possible", {
   # Expect an integer vector as output
   expect_is(articulation_points, "integer")
 
-  # Expect 3 values in the vector
-  expect_equal(length(articulation_points), 1)
-
-  # Expect the node ID `24` is the articulation point
-  expect_equal(articulation_points, 24)
+  # Expect 4 values in the vector
+  expect_equal(length(articulation_points), 4)
 })
 
 test_that("Getting weakly connected components is possible", {

@@ -5,7 +5,7 @@ test_that("Getting a degree histogram is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   degree_histogram <- get_degree_histogram(graph)
 
@@ -21,10 +21,10 @@ test_that("Getting a degree histogram is possible", {
   expect_equal(degree_histogram[[1]], 0)
   expect_equal(degree_histogram[[2]], 0)
   expect_equal(degree_histogram[[3]], 1)
-  expect_equal(degree_histogram[[4]], 2)
-  expect_equal(degree_histogram[[5]], 2)
-  expect_equal(degree_histogram[[6]], 3)
-  expect_equal(degree_histogram[[7]], 1)
+  expect_equal(degree_histogram[[4]], 1)
+  expect_equal(degree_histogram[[5]], 3)
+  expect_equal(degree_histogram[[6]], 4)
+  expect_equal(degree_histogram[[7]], 0)
 })
 
 test_that("Getting degree distribution is possible", {
@@ -32,7 +32,7 @@ test_that("Getting degree distribution is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   degree_dist <- get_degree_distribution(graph)
 
@@ -48,10 +48,10 @@ test_that("Getting degree distribution is possible", {
   expect_equal(degree_dist[[1]], 0)
   expect_equal(degree_dist[[2]], 0)
   expect_equal(degree_dist[[3]], 0.1)
-  expect_equal(degree_dist[[4]], 0.2)
-  expect_equal(degree_dist[[5]], 0.2)
-  expect_equal(degree_dist[[6]], 0.3)
-  expect_equal(degree_dist[[7]], 0.1)
+  expect_equal(degree_dist[[4]], 0.1)
+  expect_equal(degree_dist[[5]], 0.3)
+  expect_equal(degree_dist[[6]], 0.4)
+  expect_equal(degree_dist[[7]], 0)
 })
 
 test_that("Getting graph diameter is possible", {
@@ -59,7 +59,7 @@ test_that("Getting graph diameter is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   graph_diam <- get_graph_diameter(graph)
 
@@ -70,7 +70,7 @@ test_that("Getting graph diameter is possible", {
   expect_equal(length(graph_diam), 1)
 
   # Expect that `graph_diam` has the value 8
-  expect_equal(graph_diam, 8)
+  expect_equal(graph_diam, 4)
 })
 
 test_that("Getting graph eccentricity is possible", {
@@ -78,7 +78,7 @@ test_that("Getting graph eccentricity is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   graph_eccen <- get_eccentricity(graph)
 
@@ -136,20 +136,20 @@ test_that("Getting graph periphery is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   graph_periphery <- get_periphery(graph)
 
   # Expect that `graph_periphery` is an integer vector
   expect_is(graph_periphery, "integer")
 
-  # Expect that `graph_periphery` has length 1 in
+  # Expect that `graph_periphery` has length 3 in
   # this case
-  expect_equal(length(graph_periphery), 1)
+  expect_equal(length(graph_periphery), 3)
 
   # Expect certain values for the
   # `graph_periphery` object
-  expect_equal(graph_periphery, 10)
+  expect_equal(graph_periphery, c(1, 2, 4))
 })
 
 test_that("Getting graph info is possible", {
@@ -157,7 +157,7 @@ test_that("Getting graph info is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   # Add a graph name
   graph <- set_graph_name(graph, "random")
@@ -191,7 +191,7 @@ test_that("Checking whether the graph is connected is possible", {
   # Create a random graph
   graph_connected <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   # Test that the graph is indeed connected
   expect_true(is_graph_connected(graph_connected))

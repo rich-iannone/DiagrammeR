@@ -40,8 +40,8 @@ test_that("combine_edges",{
   expect_equal(nrow(all_edges), 8)
 
   # Expect that the combined edge data frame
-  # has 6 columns
-  expect_equal(ncol(all_edges), 6)
+  # has 7 columns
+  expect_equal(ncol(all_edges), 7)
 })
 
 test_that("create_graph",{
@@ -72,5 +72,6 @@ test_that("create_graph",{
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 })

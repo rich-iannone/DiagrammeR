@@ -11,7 +11,8 @@ test_that("an empty graph object can be created and such an object is correct", 
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -61,7 +62,8 @@ test_that("a graph object with nodes can be created correctly", {
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -122,7 +124,8 @@ test_that("a graph object with nodes and edges can be created correctly", {
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -147,8 +150,8 @@ test_that("a graph object with nodes and edges can be created correctly", {
   # Expect that the `nodes_df` df has 4 rows
   expect_true(nrow(graph$nodes_df) == 4)
 
-  # Expect that the `edges_df` df has 3 columns
-  expect_true(ncol(graph$edges_df) == 3)
+  # Expect that the `edges_df` df has 4 columns
+  expect_true(ncol(graph$edges_df) == 4)
 
   # Expect that the `edges_df` df has 3 rows
   expect_true(nrow(graph$edges_df) == 3)

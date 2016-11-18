@@ -75,9 +75,9 @@ test_that("joining a data frame to an edf is possible", {
   # Perform the join operation
   graph <- graph %>% join_edge_attrs(df)
 
-  # Expect that 4 columns exists in the graph's
+  # Expect that 5 columns exists in the graph's
   # edge data frame
-  expect_equal(ncol(graph$edges_df), 4L)
+  expect_equal(ncol(graph$edges_df), 5)
 
   # Expect a column named `values` in the graph's
   # edge data frame

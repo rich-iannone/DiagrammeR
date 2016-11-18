@@ -5,7 +5,7 @@ test_that("the edge betweeness algorithm is functional", {
   # Create a random, directed graph with 10 nodes and 15 edges
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   # Get the edge betweenness for the graph
   edge_betweeness <- get_cmty_edge_btwns(graph)
@@ -26,11 +26,10 @@ test_that("the edge betweeness algorithm is functional", {
   expect_equal(
     nrow(edge_betweeness), node_count(graph))
 
-  # For this analysis expect two different groups
-  # identified with labels `1` and `2`
+  # For this analysis expect 5 different groups
   expect_equal(
     sort(unique(edge_betweeness$edge_btwns_group)),
-    c(1, 2))
+    c(1, 2, 3, 4, 5))
 
   # Expect the first column to be integer
   expect_is(
@@ -46,7 +45,7 @@ test_that("the fast-greedy algorithm is functional", {
   # Create a random, directed graph with 10 nodes and 15 edges
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   # Get the edge betweenness for the graph
   fast_greedy <- get_cmty_fast_greedy(graph)
@@ -87,7 +86,7 @@ test_that("the leading eigenvector algorithm is functional", {
   # Create a random, directed graph with 10 nodes and 15 edges
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   # Get the edge betweenness for the graph
   l_eigenvec <- get_cmty_l_eigenvec(graph)
@@ -128,7 +127,7 @@ test_that("the Louvain algorithm is functional", {
   # Create a random, directed graph with 10 nodes and 15 edges
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   # Get the edge betweenness for the graph
   louvain <- get_cmty_louvain(graph)
@@ -153,7 +152,7 @@ test_that("the Louvain algorithm is functional", {
   # identified with labels `1` and `2`
   expect_equal(
     sort(unique(louvain$louvain_group)),
-    c(1, 2, 3))
+    c(1, 2))
 
   # Expect the first column to be integer
   expect_is(
@@ -169,7 +168,7 @@ test_that("the walktrap algorithm is functional", {
   # Create a random, directed graph with 10 nodes and 15 edges
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      10, 22, set_seed = 23)
 
   # Get the edge betweenness for the graph
   walktrap <- get_cmty_walktrap(graph)
@@ -194,7 +193,7 @@ test_that("the walktrap algorithm is functional", {
   # identified with labels `1` and `2`
   expect_equal(
     sort(unique(walktrap$walktrap_group)),
-    c(1, 2, 3))
+    c(1, 2))
 
   # Expect the first column to be integer
   expect_is(walktrap$id, "integer")

@@ -15,7 +15,8 @@ test_that("adding a node to a graph is possible", {
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -156,7 +157,8 @@ test_that("adding an edge to a graph is possible", {
     all(names(graph) ==
           c("graph_info", "nodes_df",
             "edges_df", "global_attrs",
-            "directed", "last_node", "graph_log")))
+            "directed", "last_node",
+            "last_edge", "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -173,8 +175,8 @@ test_that("adding an edge to a graph is possible", {
   # Expect that the graph is a directed graph
   expect_true(graph$directed == TRUE)
 
-  # Expect that the `nodes_df` data frame has 3 columns
-  expect_true(ncol(graph$edges_df) == 3)
+  # Expect that the `nodes_df` data frame has 4 columns
+  expect_true(ncol(graph$edges_df) == 4)
 
   # Expect that the `nodes_df` data frame has 1 row
   expect_true(nrow(graph$edges_df) == 1)
@@ -260,15 +262,15 @@ test_that("adding several nodes from a selected node is possible", {
 
   # Expect that node IDs where edges are `from` belong
   # to the node with ID of `5`
-  expect_equal(get_edge_df(graph)[, 1], rep(5, 10))
+  expect_equal(graph$edges_df$from, rep(5, 10))
 
   # Expect that node IDs where edges are `to` increase
   # from `11` to `20`
-  expect_equal(get_edge_df(graph)[, 2], seq(11, 20))
+  expect_equal(graph$edges_df$to, seq(11, 20))
 
   # Expect that the edge relationship has not been set
   # for any of the edges
-  expect_equal(get_edge_df(graph)[, 3],
+  expect_equal(graph$edges_df$rel,
                rep(as.character(NA), 10))
 
   # Create another empty graph
@@ -291,7 +293,7 @@ test_that("adding several nodes from a selected node is possible", {
       rel = "related")
 
   # Expect that all edges have a `rel` set
-  expect_true(all(get_edge_df(graph)[, 3] == "related"))
+  expect_true(all(graph$edges_df$rel == "related"))
 
   # Expect that all new nodes have a `type` set
   expect_true(all(get_node_df(graph)[11:20, 2] == "new"))
@@ -323,15 +325,15 @@ test_that("adding several nodes to a selected node is possible", {
 
   # Expect that node IDs where edges are `to` belong
   # to the node with ID of `5`
-  expect_equal(get_edge_df(graph)[, 2], rep(5, 10))
+  expect_equal(graph$edges_df$to, rep(5, 10))
 
   # Expect that node IDs where edges are `from`
   # increase from `11` to `20`
-  expect_equal(get_edge_df(graph)[, 1], seq(11, 20))
+  expect_equal(graph$edges_df$from, seq(11, 20))
 
   # Expect that the edge relationship has not been set
   # for any of the edges
-  expect_equal(get_edge_df(graph)[, 3],
+  expect_equal(graph$edges_df$rel,
                rep(as.character(NA), 10))
 
   # Create another empty graph
@@ -354,10 +356,10 @@ test_that("adding several nodes to a selected node is possible", {
       rel = "related")
 
   # Expect that all edges have a `rel` set
-  expect_true(all(get_edge_df(graph)[, 3] == "related"))
+  expect_true(all(graph$edges_df$rel == "related"))
 
   # Expect that all new nodes have a `type` set
-  expect_true(all(get_node_df(graph)[11:20, 2] == "new"))
+  expect_true(all(graph$nodes_df$type[11:20] == "new"))
 })
 
 test_that("adding several edges with a string is possible", {
@@ -386,7 +388,7 @@ test_that("adding several edges with a string is possible", {
 
   # Expect that the edge relationship has not been set
   # for any of the edges
-  expect_equal(get_edge_df(graph)[, 3],
+  expect_equal(graph$edges_df$rel,
                rep(as.character(NA), 9))
 
   # Create another empty graph
@@ -405,7 +407,7 @@ test_that("adding several edges with a string is possible", {
 
   # Expect that the edge relationship `connected_to` is
   # set for all edges
-  expect_equal(get_edge_df(graph)[, 3],
+  expect_equal(graph$edges_df$rel,
                rep("connected_to", 9))
 
   # Create an empty graph, set as `undirected``
