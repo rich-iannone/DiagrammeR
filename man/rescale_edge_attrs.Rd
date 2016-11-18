@@ -51,7 +51,7 @@ a new edge attribute column.
 # Create a random graph
 graph <-
   create_random_graph(
-    5, 7, set_seed = 3,
+    5, 7, set_seed = 23,
     directed = TRUE) \%>\%
   set_edge_attrs(
     "weight", rnorm(edge_count(.), 5))
@@ -59,14 +59,14 @@ graph <-
 # Get the graph's internal edf to show which
 # edge attributes are available
 get_edge_df(graph)
-#>   from to  rel   weight
-#> 1    4  1 <NA> 2.838539
-#> 2    2  4 <NA> 3.679787
-#> 3    4  3 <NA> 5.810409
-#> 4    3  5 <NA> 6.341665
-#> 5    5  1 <NA> 5.692552
-#> 6    4  5 <NA> 4.676824
-#> 7    2  1 <NA> 4.882690
+#>   id from to  rel   weight
+#> 1  1    2  3 <NA> 5.218288
+#> 2  2    3  5 <NA> 3.953465
+#> 3  3    3  4 <NA> 4.711311
+#> 4  4    2  4 <NA> 5.481550
+#> 5  5    2  5 <NA> 3.783624
+#> 6  6    4  5 <NA> 5.308137
+#> 7  7    1  4 <NA> 4.479822
 
 # Rescale the `weight` edge attribute, so that
 # its values are rescaled between 0 and 1
@@ -77,14 +77,14 @@ graph <-
 # Get the graph's internal edf to show that the
 # edge attribute values had been rescaled
 get_edge_df(graph)
-#>   from to  rel weight
-#> 1    4  1 <NA>  0.000
-#> 2    2  4 <NA>  0.240
-#> 3    4  3 <NA>  0.848
-#> 4    3  5 <NA>  1.000
-#> 5    5  1 <NA>  0.815
-#> 6    4  5 <NA>  0.525
-#> 7    2  1 <NA>  0.584
+#>   id from to  rel weight
+#> 1  1    2  3 <NA>  0.845
+#> 2  2    3  5 <NA>  0.100
+#> 3  3    3  4 <NA>  0.546
+#> 4  4    2  4 <NA>  1.000
+#> 5  5    2  5 <NA>  0.000
+#> 6  6    4  5 <NA>  0.898
+#> 7  7    1  4 <NA>  0.410
 
 # Scale the values in the `weight` edge attribute
 # to different shades of gray for the `color` edge
@@ -102,13 +102,13 @@ graph <-
 # `color` and scaled numerical values are in the
 # `penwidth` edge attribute
 get_edge_df(graph)
-#>   from to  rel weight   color penwidth
-#> 1    4  1 <NA>  0.000 #CCCCCC    0.500
-#> 2    2  4 <NA>  0.240 #A4A4A4    1.100
-#> 3    4  3 <NA>  0.848 #484848    2.620
-#> 4    3  5 <NA>  1.000 #333333    3.000
-#> 5    5  1 <NA>  0.815 #4C4C4C    2.537
-#> 6    4  5 <NA>  0.525 #777777    1.812
-#> 7    2  1 <NA>  0.584 #6E6E6E    1.960
+#>   id from to  rel weight   color penwidth
+#> 1  1    2  3 <NA>  0.845 #484848    2.612
+#> 2  2    3  5 <NA>  0.100 #BBBBBB    0.750
+#> 3  3    3  4 <NA>  0.546 #747474    1.865
+#> 4  4    2  4 <NA>  1.000 #333333    3.000
+#> 5  5    2  5 <NA>  0.000 #CCCCCC    0.500
+#> 6  6    4  5 <NA>  0.898 #414141    2.745
+#> 7  7    1  4 <NA>  0.410 #898989    1.525
 }
 

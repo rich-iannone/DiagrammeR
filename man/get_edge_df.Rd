@@ -34,15 +34,15 @@ graph <-
     "color", "blue") \%>\%
   set_edge_attrs_ws(
     "rel", "b") \%>\%
-  clear_selection
+  clear_selection()
 
 # Get the graph's internal edge data frame (edf)
 graph \%>\% get_edge_df()
-#>   from to rel color
-#> 1    1  2   b  blue
-#> 2    1  3   a green
-#> 3    1  4   a green
-#> 4    1  5   a green
-#> 5    1  6   b  blue
+#>   id from to rel color
+#> 1  1    1  2   b  blue
+#> 2  2    1  3   a green
+#> 3  3    1  4   a green
+#> 4  4    1  5   a green
+#> 5  5    1  6   b  blue
 }
 

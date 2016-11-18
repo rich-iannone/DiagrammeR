@@ -108,10 +108,10 @@ graph <-
 # Get information on the graph's internal edge
 # data frame (edf)
 get_edge_df(graph)
-#>   from to        rel values
-#> 1    1  4 leading_to    7.3
-#> 2    2  3 leading_to    2.6
-#> 3    3  1 leading_to    8.3
+#>   id from to        rel values
+#> 1  1    1  4 leading_to    7.3
+#> 2  2    2  3 leading_to    2.6
+#> 3  3    3  1 leading_to    8.3
 
 # Get information on the graph's internal node
 # data frame (ndf)

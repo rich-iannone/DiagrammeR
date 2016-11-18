@@ -62,12 +62,12 @@ df <-
 graph <- graph \%>\% join_edge_attrs(df)
 
 get_edge_df(graph)
-#>   from to  rel values
-#> 1    1  2 <NA>   5.19
-#> 2    1  3    A   4.57
-#> 3    2  4    B   5.91
-#> 4    2  5    C   6.79
-#> 5    3  5    D      6
+#>   id from to  rel values
+#> 1  1    1  2 <NA>   6.00
+#> 2  2    1  3    A   6.11
+#> 3  3    2  4    B   4.72
+#> 4  4    2  5    C   6.02
+#> 5  5    3  5    D   5.05
 
 # Perform a simple traversal from nodes to
 # inbound edges with no conditions on the
@@ -103,12 +103,12 @@ graph \%>\%
 
 # Traverse from node `5` to any inbound
 # edges, filtering to those edges that have
-# numeric values greater than `6.5` for
+# numeric values greater than `5.5` for
 # the `rel` edge attribute
 graph \%>\%
   select_nodes_by_id(5) \%>\%
   trav_in_edge(
-    conditions = "values > 6.5") \%>\%
+    conditions = "values > 5.5") \%>\%
   get_selection()
 #> [1] "2 -> 5"
 
@@ -143,7 +143,7 @@ graph \%>\%
   trav_in_edge(
     conditions = c(
       "rel \%in\% c('C', 'D')",
-      "values > 6.5")) \%>\%
+      "values > 5.5")) \%>\%
   get_selection()
 #> [1] "2 -> 5"
 
@@ -155,7 +155,7 @@ graph \%>\%
   select_nodes_by_id(5) \%>\%
   trav_in_edge(
     conditions = c(
-      "rel \%in\% c('D', 'E') | values > 6.5")) \%>\%
+      "rel \%in\% c('D', 'E') | values > 5.5")) \%>\%
   get_selection()
 #> [1] "2 -> 5" "3 -> 5"
 

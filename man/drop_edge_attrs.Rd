@@ -25,7 +25,7 @@ frame (edf), remove an existing edge attribute.
 # Create a random graph
 graph <-
   create_random_graph(
-    5, 6, set_seed = 3) \%>\%
+    5, 6, set_seed = 23) \%>\%
     set_edge_attrs("value", 3) \%>\%
     mutate_edge_attrs(
       "value", "2 * ~", "penwidth")
@@ -33,13 +33,13 @@ graph <-
 # Get the graph's internal edf to show which
 # edge attributes are available
 get_edge_df(graph)
-#>   from to  rel value penwidth
-#> 1    4  1 <NA>     3        6
-#> 2    2  4 <NA>     3        6
-#> 3    4  3 <NA>     3        6
-#> 4    3  5 <NA>     3        6
-#> 5    5  1 <NA>     3        6
-#> 6    4  5 <NA>     3        6
+#>   id from to  rel value penwidth
+#> 1  1    2  3 <NA>     3        6
+#> 2  2    3  5 <NA>     3        6
+#> 3  3    3  4 <NA>     3        6
+#> 4  4    2  4 <NA>     3        6
+#> 5  5    2  5 <NA>     3        6
+#> 6  6    4  5 <NA>     3        6
 
 # Drop the `value` edge attribute
 graph <-
@@ -49,12 +49,12 @@ graph <-
 # Get the graph's internal edf to show that
 # the edge attribute `value` had been removed
 get_edge_df(graph)
-#>   from to  rel penwidth
-#> 1    4  1 <NA>        6
-#> 2    2  4 <NA>        6
-#> 3    4  3 <NA>        6
-#> 4    3  5 <NA>        6
-#> 5    5  1 <NA>        6
-#> 6    4  5 <NA>        6
+#>   id from to  rel penwidth
+#> 1  1    2  3 <NA>        6
+#> 2  2    3  5 <NA>        6
+#> 3  3    3  4 <NA>        6
+#> 4  4    2  4 <NA>        6
+#> 5  5    2  5 <NA>        6
+#> 6  6    4  5 <NA>        6
 }
 

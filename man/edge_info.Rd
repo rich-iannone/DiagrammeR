@@ -20,9 +20,6 @@ detailed information on edges and
 their interrelationships within a graph.
 }
 \examples{
-# Set a seed
-set.seed(24)
-
 # Create a node data frame (ndf)
 ndf <-
   create_node_df(
@@ -46,10 +43,10 @@ graph <-
 # Get a data frame with information about
 # the graph's edges
 edge_info(graph)
-#>   from to rel
-#> 1    1  2   X
-#> 2    3  2   Y
-#> 3    3  1   Y
-#> 4    4  3   Z
+#>   id from to rel
+#> 1  1    1  2   X
+#> 2  2    3  2   Y
+#> 3  3    3  1   Y
+#> 4  4    4  3   Z
 }
 

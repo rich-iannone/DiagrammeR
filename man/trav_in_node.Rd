@@ -71,19 +71,19 @@ graph <-
 
 get_node_df(graph)
 #>   id type label values
-#> 1  1    a   asd   8.11
-#> 2  2    a  iekd   6.72
-#> 3  3    b   idj   8.02
-#> 4  4    b   edl   7.05
-#> 5  5    b   ohd   8.58
+#> 1  1    a   asd   8.58
+#> 2  2    a  iekd   7.22
+#> 3  3    b   idj   5.95
+#> 4  4    b   edl   6.71
+#> 5  5    b   ohd   7.48
 
 get_edge_df(graph)
-#>   from to  rel values
-#> 1    1  2 <NA>   5.19
-#> 2    1  3    A   4.57
-#> 3    2  4    B   5.91
-#> 4    2  5    C   6.79
-#> 5    3  5    D      6
+#>   id from to  rel values
+#> 1  1    1  2 <NA>   6.00
+#> 2  2    1  3    A   6.11
+#> 3  3    2  4    B   4.72
+#> 4  4    2  5    C   6.02
+#> 5  5    3  5    D   5.05
 
 # Perform a simple traversal from the
 # edge `1` -> `3` to the attached node
@@ -110,26 +110,26 @@ graph \%>\%
 # Traverse from the edge `1` -> `3`
 # to the attached node where the edge
 # is incoming, this time filtering
-# numeric values greater than `7.0` for
+# numeric values greater than `5.0` for
 # the `values` node attribute
 graph \%>\%
   select_edges(from = 1, to = 3) \%>\%
   trav_in_node(
-    conditions = "values > 7.0") \%>\%
+    conditions = "values > 5.0") \%>\%
   get_selection()
 #> [1] 3
 
 # Traverse from the edge `1` -> `3`
 # to the attached node where the edge
 # is incoming, this time filtering
-# numeric values less than `7.0` for
+# numeric values less than `5.0` for
 # the `values` node attribute (the
 # condition is not met so the original
 # selection of edge `1` -> `3` remains)
 graph \%>\%
   select_edges(from = 1, to = 3) \%>\%
   trav_in_node(
-    conditions = "values < 7.0") \%>\%
+    conditions = "values < 5.0") \%>\%
   get_selection()
 #> [1] "1 -> 3"
 
