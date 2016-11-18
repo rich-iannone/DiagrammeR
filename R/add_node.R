@@ -69,61 +69,33 @@ add_node <- function(graph,
   # values provided
   if (is.null(from) & is.null(to)) {
 
-    if (is.null(graph$nodes_df)) {
+    new_node <-
+      create_node_df(
+        n = 1,
+        label = as.character(label),
+        type = as.character(type))
 
-      new_node <-
-        create_node_df(
-          n = 1,
-          label = as.character(label),
-          type = as.character(type))
+    new_node[1, 1] <- node
 
-      graph$nodes_df <- new_node
-      graph$last_node <- graph$last_node + 1
+    combined_nodes <-
+      combine_ndfs(graph$nodes_df, new_node)
 
-      # Update the `graph_log` df with an action
-      graph$graph_log <-
-        add_action_to_log(
-          graph_log = graph$graph_log,
-          version_id = nrow(graph$graph_log) + 1,
-          function_used = "add_node",
-          time_modified = time_function_start,
-          duration = graph_function_duration(time_function_start),
-          nodes = nrow(graph$nodes_df),
-          edges = nrow(graph$edges_df))
+    graph$nodes_df <- combined_nodes
+    graph$last_node <- graph$last_node + 1
 
-      return(graph)
+    # Update the `graph_log` df with an action
+    graph$graph_log <-
+      add_action_to_log(
+        graph_log = graph$graph_log,
+        version_id = nrow(graph$graph_log) + 1,
+        function_used = "add_node",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
 
-    } else if (!is.null(graph$nodes_df)) {
-
-      new_node <-
-        create_node_df(
-          n = 1,
-          label = as.character(label),
-          type = as.character(type))
-
-      new_node[1, 1] <- node
-
-      combined_nodes <-
-        combine_ndfs(graph$nodes_df, new_node)
-
-      graph$nodes_df <- combined_nodes
-      graph$last_node <- graph$last_node + 1
-
-      # Update the `graph_log` df with an action
-      graph$graph_log <-
-        add_action_to_log(
-          graph_log = graph$graph_log,
-          version_id = nrow(graph$graph_log) + 1,
-          function_used = "add_node",
-          time_modified = time_function_start,
-          duration = graph_function_duration(time_function_start),
-          nodes = nrow(graph$nodes_df),
-          edges = nrow(graph$edges_df))
-
-      return(graph)
-    }
+    return(graph)
   }
-
 
   # Modify graph if only `from` values provided
   if (!is.null(from) & is.null(to)) {
@@ -146,62 +118,35 @@ add_node <- function(graph,
 
       new_node[1, 1] <- node
 
+      # Combine the new nodes with those in the graph
       combined_nodes <-
         combine_ndfs(graph$nodes_df, new_node)
 
-      if (is.null(graph$edges_df)) {
-
-        edges <-
+      # Combine the new edges with those in the graph
+      combined_edges <-
+        combine_edfs(
+          graph$edges_df,
           create_edge_df(
             from = from,
-            to = rep(node, length(from)))
+            to = rep(node, length(from))))
 
-        # Create a revised graph
-        graph$nodes_df <- combined_nodes
-        graph$edges_df <- edges
-        graph$last_node <- graph$last_node + 1
+      # Create a revised graph
+      graph$nodes_df <- combined_nodes
+      graph$edges_df <- combined_edges
+      graph$last_node <- graph$last_node + 1
 
-        # Update the `graph_log` df with an action
-        graph$graph_log <-
-          add_action_to_log(
-            graph_log = graph$graph_log,
-            version_id = nrow(graph$graph_log) + 1,
-            function_used = "add_node",
-            time_modified = time_function_start,
-            duration = graph_function_duration(time_function_start),
-            nodes = nrow(graph$nodes_df),
-            edges = nrow(graph$edges_df))
+      # Update the `graph_log` df with an action
+      graph$graph_log <-
+        add_action_to_log(
+          graph_log = graph$graph_log,
+          version_id = nrow(graph$graph_log) + 1,
+          function_used = "add_node",
+          time_modified = time_function_start,
+          duration = graph_function_duration(time_function_start),
+          nodes = nrow(graph$nodes_df),
+          edges = nrow(graph$edges_df))
 
-        return(graph)
-      }
-
-      if (!is.null(graph$edges_df)) {
-
-        combined_edges <-
-          combine_edfs(
-            graph$edges_df,
-            create_edge_df(
-              from = from,
-              to = rep(node, length(from))))
-
-        # Create a revised graph
-        graph$nodes_df <- combined_nodes
-        graph$edges_df <- combined_edges
-        graph$last_node <- graph$last_node + 1
-
-        # Update the `graph_log` df with an action
-        graph$graph_log <-
-          add_action_to_log(
-            graph_log = graph$graph_log,
-            version_id = nrow(graph$graph_log) + 1,
-            function_used = "add_node",
-            time_modified = time_function_start,
-            duration = graph_function_duration(time_function_start),
-            nodes = nrow(graph$nodes_df),
-            edges = nrow(graph$edges_df))
-
-        return(graph)
-      }
+      return(graph)
     }
   }
 
@@ -227,59 +172,30 @@ add_node <- function(graph,
     combined_nodes <-
       combine_ndfs(graph$nodes_df, new_node)
 
-    if (!is.null(graph$edges_df)) {
-
-      combined_edges <-
-        combine_edfs(
-          graph$edges_df,
-          create_edge_df(
-            from = rep(node, length(to)),
-            to = to))
-
-      # Create a revised graph
-      graph$nodes_df <- combined_nodes
-      graph$edges_df <- combined_edges
-      graph$last_node <- graph$last_node + 1
-
-      # Update the `graph_log` df with an action
-      graph$graph_log <-
-        add_action_to_log(
-          graph_log = graph$graph_log,
-          version_id = nrow(graph$graph_log) + 1,
-          function_used = "add_node",
-          time_modified = time_function_start,
-          duration = graph_function_duration(time_function_start),
-          nodes = nrow(graph$nodes_df),
-          edges = nrow(graph$edges_df))
-
-      return(graph)
-    }
-
-    if (is.null(graph$edges_df)) {
-
-      edges <-
+    combined_edges <-
+      combine_edfs(
+        graph$edges_df,
         create_edge_df(
           from = rep(node, length(to)),
-          to = to)
+          to = to))
 
-      # Create a revised graph
-      graph$nodes_df <- combined_nodes
-      graph$edges_df <- edges
-      graph$last_node <- graph$last_node + 1
+    # Create a revised graph
+    graph$nodes_df <- combined_nodes
+    graph$edges_df <- combined_edges
+    graph$last_node <- graph$last_node + 1
 
-      # Update the `graph_log` df with an action
-      graph$graph_log <-
-        add_action_to_log(
-          graph_log = graph$graph_log,
-          version_id = nrow(graph$graph_log) + 1,
-          function_used = "add_node",
-          time_modified = time_function_start,
-          duration = graph_function_duration(time_function_start),
-          nodes = nrow(graph$nodes_df),
-          edges = nrow(graph$edges_df))
+    # Update the `graph_log` df with an action
+    graph$graph_log <-
+      add_action_to_log(
+        graph_log = graph$graph_log,
+        version_id = nrow(graph$graph_log) + 1,
+        function_used = "add_node",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
 
-      return(graph)
-    }
+    return(graph)
   }
 
   # Modify graph if both `to` and `from` values provided
@@ -311,33 +227,20 @@ add_node <- function(graph,
 
       new_node[1, 1] <- node
 
+      # Combine the new nodes with those in the graph
       combined_nodes <-
         combine_ndfs(graph$nodes_df, new_node)
 
-      if (!is.null(graph$edges_df)) {
-
-        combined_edges <-
-          combine_edfs(
-            graph$edges_df,
-            create_edge_df(
-              from = from,
-              to = rep(node, length(from))),
-            create_edge_df(
-              from = rep(node, length(to)),
-              to = to))
-      }
-
-      if (is.null(graph$edges_df)) {
-
-        combined_edges <-
-          combine_edfs(
-            create_edge_df(
-              from = from,
-              to = rep(node, length(from))),
-            create_edge_df(
-              from = rep(node, length(to)),
-              to = to))
-      }
+      # Combine the new edges with those in the graph
+      combined_edges <-
+        combine_edfs(
+          graph$edges_df,
+          create_edge_df(
+            from = from,
+            to = rep(node, length(from))),
+          create_edge_df(
+            from = rep(node, length(to)),
+            to = to))
 
       # Create a revised graph and return that graph
       graph$nodes_df <- combined_nodes

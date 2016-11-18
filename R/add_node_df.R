@@ -73,60 +73,32 @@ add_node_df <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
-  # If the `nodes_df` component of the graph is not
-  # NULL, combine the incoming node data frame with the
+  # Combine the incoming node data frame with the
   # existing node definitions in the graph object
-  if (!is.null(graph$nodes_df)) {
+  node_df[, 1] <-
+    as.integer(nodes_created + seq(1:nrow(node_df)))
 
-    node_df[, 1] <-
-      as.integer(nodes_created + seq(1:nrow(node_df)))
+  node_df[, 2] <- as.character(node_df[, 2])
+  node_df[, 3] <- as.character(node_df[, 3])
 
-    node_df[, 2] <- as.character(node_df[, 2])
-    node_df[, 3] <- as.character(node_df[, 3])
+  graph$nodes_df <-
+    dplyr::bind_rows(
+      graph$nodes_df, node_df)
 
-    graph$nodes_df <-
-      dplyr::bind_rows(
-        graph$nodes_df, node_df)
+  # Update the `last_node` counter
+  graph$last_node <-
+    nodes_created + nrow(node_df)
 
-    # Update the `last_node` counter
-    graph$last_node <-
-      nodes_created + nrow(node_df)
+  # Update the `graph_log` df with an action
+  graph$graph_log <-
+    add_action_to_log(
+      graph_log = graph$graph_log,
+      version_id = nrow(graph$graph_log) + 1,
+      function_used = "add_node_df",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df))
 
-    # Update the `graph_log` df with an action
-    graph$graph_log <-
-      add_action_to_log(
-        graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
-        function_used = "add_node_df",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
-
-    return(graph)
-  }
-
-  # If the `nodes_df` component of the graph is NULL,
-  # insert the node data frame into the graph object
-  if (is.null(graph$nodes_df)) {
-
-    # Add the node data frame to the graph
-    graph$nodes_df <- node_df
-
-    # Update the `last_node` counter
-    graph$last_node <- nrow(node_df)
-
-    # Update the `graph_log` df with an action
-    graph$graph_log <-
-      add_action_to_log(
-        graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
-        function_used = "add_node_df",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
-
-    return(graph)
-  }
+  return(graph)
 }
