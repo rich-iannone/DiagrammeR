@@ -46,6 +46,8 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(delete_global_graph_attrs(invalid_graph))
   expect_error(delete_node(invalid_graph))
   expect_error(delete_nodes_ws(invalid_graph))
+  expect_error(do_bfs(invalid_graph))
+  expect_error(do_dfs(invalid_graph))
   expect_error(drop_edge_attrs(invalid_graph))
   expect_error(drop_node_attrs(invalid_graph))
   expect_error(edge_count(invalid_graph))
