@@ -14,6 +14,7 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(add_balanced_tree(invalid_graph))
   expect_error(add_cycle(invalid_graph))
   expect_error(add_edge(invalid_graph))
+  expect_error(add_edge_df(invalid_graph))
   expect_error(add_edges_from_table(invalid_graph))
   expect_error(add_edges_w_string(invalid_graph))
   expect_error(add_full_graph(invalid_graph))
