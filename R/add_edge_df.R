@@ -55,9 +55,9 @@ add_edge_df <- function(graph,
     stop("The graph contains no nodes, so, edges cannot be added.")
   }
 
-  # Get the number of nodes ever created for
+  # Get the number of edges ever created for
   # this graph
-  nodes_created <- graph$last_node
+  edges_created <- graph$last_edge
 
   # If not all the nodes specified in the edge data
   # frame are in the graph, stop the function
@@ -66,58 +66,31 @@ add_edge_df <- function(graph,
   #   stop("Not all nodes specified in the edge data frame are in the graph.")
   # }
 
-  # If the `edges_df` component of the graph is not
-  # NULL, combine the incoming edge data frame with the
-  # existing edge definitions in the graph object
-  if (!is.null(graph$edges_df)) {
+  # Combine the incoming edge data frame
+  # with those in the graph
+  combined_edges <-
+    combine_edfs(
+      graph$edges_df,
+      edge_df)
 
-    combined_edges <-
-      combine_edfs(
-        graph$edges_df,
-        edge_df)
+  # Replace the graph's internal edge
+  # data frame with the `combined_edges`
+  # edge data frame
+  graph$edges_df <- combined_edges
 
-    # Replace the graph's internal edge
-    # data frame with the `combined_edges`
-    # edge data frame
-    graph$edges_df <- combined_edges
+  # Update the `last_edge` counter
+  graph$last_edge <- edges_created + nrow(combined_edges)
 
-    # Update the `last_node` counter
-    graph$last_node <- nodes_created
+  # Update the `graph_log` df with an action
+  graph$graph_log <-
+    add_action_to_log(
+      graph_log = graph$graph_log,
+      version_id = nrow(graph$graph_log) + 1,
+      function_used = "add_edge_df",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df))
 
-    graph$graph_log <-
-      add_action_to_log(
-        graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
-        function_used = "add_edge_df",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
-
-    return(graph)
-  }
-
-  # If the `edges_df` component of the graph is NULL,
-  # insert the edge data frame into the graph object
-  if (is.null(graph$edges_df)) {
-
-    # Add the `edge_df` edge data
-    # frame to the graph
-    graph$edges_df <- edge_df
-
-    # Update the `last_node` counter
-    graph$last_node <- nodes_created
-
-    graph$graph_log <-
-      add_action_to_log(
-        graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
-        function_used = "add_edge_df",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
-
-    return(graph)
-  }
+  return(graph)
 }
