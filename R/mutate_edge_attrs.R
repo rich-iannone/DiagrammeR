@@ -40,10 +40,10 @@
 #' # Get the graph's internal edf to show which
 #' # edge attributes are available
 #' get_edge_df(graph)
-#' #>   from to  rel width
-#' #> 1    1  2 <NA>   3.4
-#' #> 2    2  3 <NA>   2.3
-#' #> 3    3  4 <NA>   7.2
+#' #>   id from to  rel width
+#' #> 1  1    1  2 <NA>   3.4
+#' #> 2  2    2  3 <NA>   2.3
+#' #> 3  3    3  4 <NA>   7.2
 #'
 #' # Mutate the `width` edge attribute, dividing
 #' # each value by 2
@@ -54,10 +54,10 @@
 #' # Get the graph's internal edf to show that the
 #' # edge attribute `width` had its values changed
 #' get_edge_df(graph)
-#' #>   from to  rel width
-#' #> 1    1  2 <NA>  1.70
-#' #> 2    2  3 <NA>  1.15
-#' #> 3    3  4 <NA>  3.60
+#' #>   id from to  rel width
+#' #> 1  1    1  2 <NA>  1.70
+#' #> 2  2    2  3 <NA>  1.15
+#' #> 3  3    3  4 <NA>  3.60
 #'
 #' # Create a new edge attribute, called `length`,
 #' # that is the log of values in `width` plus 2
@@ -71,10 +71,10 @@
 #' # the edge attribute values had been mutated
 #' # and used as the new edge attribute `length`
 #' get_edge_df(graph)
-#' #>   from to  rel width length
-#' #> 1    1  2 <NA>  1.70   2.53
-#' #> 2    2  3 <NA>  1.15   2.14
-#' #> 3    3  4 <NA>  3.60   3.28
+#' #>   id from to  rel width length
+#' #> 1  1    1  2 <NA>  1.70   2.53
+#' #> 2  2    2  3 <NA>  1.15   2.14
+#' #> 3  3    3  4 <NA>  3.60   3.28
 #'
 #' # Create a new edge attribute called `area`,
 #' # which is the product of the `width` and
@@ -92,10 +92,10 @@
 #' # the edge attribute values had been multiplied
 #' # together, creating a new edge attribute `area`
 #' get_edge_df(graph)
-#' #>   from to  rel width length   area
-#' #> 1    1  2 <NA>  1.70   2.53  4.301
-#' #> 2    2  3 <NA>  1.15   2.14  2.461
-#' #> 3    3  4 <NA>  3.60   3.28 11.808
+#' #>   id from to  rel width length   area
+#' #> 1  1    1  2 <NA>  1.70   2.53  4.301
+#' #> 2  2    2  3 <NA>  1.15   2.14  2.461
+#' #> 3  3    3  4 <NA>  3.60   3.28 11.808
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom dplyr mutate_
 #' @export mutate_edge_attrs

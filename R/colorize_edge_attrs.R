@@ -52,11 +52,11 @@
 #' # Now there will be a `color` edge attribute
 #' # with distinct colors
 #' get_edge_df(graph)
-#' #>   from to  rel weight   color
-#' #> 1    1  2 <NA>    3.7 #FDAE61
-#' #> 2    2  3 <NA>    6.3 #ABDDA4
-#' #> 3    3  4 <NA>    9.2 #2B83BA
-#' #> 4    4  5 <NA>    1.6 #D7191C
+#' #>   id from to  rel weight   color
+#' #> 1  1    1  2 <NA>    3.7 #FDAE61
+#' #> 2  2    2  3 <NA>    6.3 #ABDDA4
+#' #> 3  3    3  4 <NA>    9.2 #2B83BA
+#' #> 4  4    4  5 <NA>    1.6 #D7191C
 #' @import viridis RColorBrewer
 #' @export colorize_edge_attrs
 

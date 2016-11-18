@@ -38,8 +38,8 @@
 #' # Use the `edge_info()` function to verify that
 #' # the edge has been created
 #' edge_info(graph)
-#' #>   from to rel
-#' #> 1    1  2   A
+#' #>   id from to rel
+#' #> 1  1    1  2   A
 #'
 #' # Add another node and edge to the graph
 #' graph <-

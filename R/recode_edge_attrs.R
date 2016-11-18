@@ -24,7 +24,7 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     4, 6, set_seed = 3) %>%
+#'     4, 6, set_seed = 23) %>%
 #'   set_edge_attrs(
 #'     "rel",
 #'     c("a", "b", "a",
@@ -33,13 +33,13 @@
 #' # Get the graph's internal edf to show which
 #' # edge attributes are available
 #' get_edge_df(graph)
-#' #>   from to rel
-#' #> 1    3  2   a
-#' #> 2    1  2   b
-#' #> 3    4  3   a
-#' #> 4    1  4   c
-#' #> 5    1  3   b
-#' #> 6    2  4   d
+#' #>   id from to rel
+#' #> 1  1    2  4   a
+#' #> 2  2    1  4   b
+#' #> 3  3    2  3   a
+#' #> 4  4    3  4   c
+#' #> 5  5    1  3   b
+#' #> 6  6    1  2   d
 #'
 #' # Recode the `rel` node attribute, creating a
 #' # new edge attribute called `penwidth`; here,
@@ -58,13 +58,13 @@
 #' # node attribute values had been recoded and
 #' # copied into a new node attribute
 #' get_edge_df(graph)
-#' #>   from to rel penwidth
-#' #> 1    3  2   a      1.0
-#' #> 2    1  2   b      1.5
-#' #> 3    4  3   a      1.0
-#' #> 4    1  4   c      0.5
-#' #> 5    1  3   b      1.5
-#' #> 6    2  4   d      0.5
+#' #>   id from to rel penwidth
+#' #> 1  1    2  4   a      1.0
+#' #> 2  2    1  4   b      1.5
+#' #> 3  3    2  3   a      1.0
+#' #> 4  4    3  4   c      0.5
+#' #> 5  5    1  3   b      1.5
+#' #> 6  6    1  2   d      0.5
 #' @importFrom stringr str_split
 #' @export recode_edge_attrs
 

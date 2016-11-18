@@ -56,11 +56,11 @@
 #'
 #' get_edge_df(graph)
 #' #>   id from to  rel values
-#' #> 1  1    1  2 <NA>   3.83
-#' #> 2  2    1  3    A   4.47
-#' #> 3  3    2  4    B   5.00
-#' #> 4  4    2  5    C   4.49
-#' #> 5  5    3  5    D   6.24
+#' #> 1  1    1  2 <NA>   6.00
+#' #> 2  2    1  3    A   6.11
+#' #> 3  3    2  4    B   4.72
+#' #> 4  4    2  5    C   6.02
+#' #> 5  5    3  5    D   5.05
 #'
 #' # Perform a simple traversal from nodes to
 #' # outbound edges with no conditions on the
@@ -90,7 +90,7 @@
 #'   trav_out_edge(
 #'     conditions = "values > 5.0") %>%
 #'   get_selection()
-#' #> [1] "1 -> 2"
+#' #> [1] "3 -> 5"
 #'
 #' # Traverse from node `1` to any outbound
 #' # edges, filtering to those edges that
@@ -125,7 +125,7 @@
 #'       "rel %in% c('B', 'C')",
 #'       "values >= 5.0")) %>%
 #'   get_selection()
-#' #> [1] "2 -> 4"
+#' #> [1] "2 -> 5"
 #'
 #' # Traverse from node `2` to any outbound
 #' # edges, and use multiple conditions with

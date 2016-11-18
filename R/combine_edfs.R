@@ -32,15 +32,16 @@
 #'
 #' # View the combined edge data frame
 #' all_edges
-#' #>   from to      rel color data arrowhead
-#' #> 1    1  2 requires green  2.7      <NA>
-#' #> 2    1  4 requires green  8.9      <NA>
-#' #> 3    2  4 requires green  2.6      <NA>
-#' #> 4    3  1 requires green  0.6      <NA>
-#' #> 5    5  7 receives   red   NA       dot
-#' #> 6    7  8 receives   red   NA       dot
-#' #> 7    8  6 receives   red   NA       dot
-#' #> 8    8  5 receives   red   NA       dot
+#' #>   id from to      rel color data arrowhead
+#' #> 1  1    1  2 requires green  2.7      <NA>
+#' #> 2  2    1  4 requires green  8.9      <NA>
+#' #> 3  3    2  4 requires green  2.6      <NA>
+#' #> 4  4    3  1 requires green  0.6      <NA>
+#' #> 5  5    5  7 receives   red   NA       dot
+#' #> 6  6    7  8 receives   red   NA       dot
+#' #> 7  7    8  6 receives   red   NA       dot
+#' #> 8  8    8  5 receives   red   NA       dot
+#' @importFrom dplyr bind_rows
 #' @export combine_edfs
 
 combine_edfs <- function(...) {
@@ -64,6 +65,10 @@ combine_edfs <- function(...) {
       break
     }
   }
+
+  edf_new <-
+    edf_new %>%
+    mutate(id = as.integer(1:nrow(edf_new)))
 
   return(edf_new)
 }
