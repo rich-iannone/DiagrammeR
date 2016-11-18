@@ -144,3 +144,42 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(trav_out_edge(invalid_graph))
   expect_error(trav_out_node(invalid_graph))
 })
+
+test_that("Using an empty graph with trigger an error", {
+
+  # Create an empty graph
+  empty_graph <- create_graph()
+
+  # Expect errors with all functions that check
+  # for an empty graph
+  expect_error(add_edge(empty_graph))
+  expect_error(add_edge_df(empty_graph))
+  expect_error(add_edges_from_table(empty_graph))
+  expect_error(add_edges_w_string(empty_graph))
+  expect_error(delete_edge(empty_graph))
+  expect_error(delete_edges_ws(empty_graph))
+  expect_error(delete_node(empty_graph))
+  expect_error(delete_nodes_ws(empty_graph))
+  expect_error(do_bfs(empty_graph))
+  expect_error(do_dfs(empty_graph))
+  expect_error(nudge_node_positions_ws(empty_graph))
+  expect_error(recode_node_attrs(empty_graph))
+  expect_error(rename_node_attrs(empty_graph))
+  expect_error(rescale_node_attrs(empty_graph))
+  expect_error(select_edges(empty_graph))
+  expect_error(select_last_node(empty_graph))
+  expect_error(select_nodes(empty_graph))
+  expect_error(select_nodes_by_degree(empty_graph))
+  expect_error(select_nodes_by_id(empty_graph))
+  expect_error(select_nodes_in_neighborhood(empty_graph))
+  expect_error(set_node_attrs(empty_graph))
+  expect_error(set_node_position(empty_graph))
+  expect_error(trav_both(empty_graph))
+  expect_error(trav_both_edge(empty_graph))
+  expect_error(trav_in(empty_graph))
+  expect_error(trav_in_edge(empty_graph))
+  expect_error(trav_in_node(empty_graph))
+  expect_error(trav_out(empty_graph))
+  expect_error(trav_out_edge(empty_graph))
+  expect_error(trav_out_node(empty_graph))
+})
