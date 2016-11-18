@@ -6,17 +6,17 @@
 #' @return an igraph object.
 #' @examples
 #' # Create a DiagrammeR graph object
-#' dgr_graph <-
+#' graph <-
 #'   create_random_graph(
 #'     36, 50, set_seed = 1)
 #'
-#' # Confirm that `dgr_graph` is a DiagrammeR graph
+#' # Confirm that `graph` is a DiagrammeR graph
 #' # by getting the object's class
-#' class(dgr_graph)
+#' class(graph)
 #' #> [1] "dgr_graph"
 #'
 #' # Convert the DiagrammeR graph to an igraph object
-#' ig_graph <- to_igraph(dgr_graph)
+#' ig_graph <- to_igraph(graph)
 #'
 #' # Get the class of the converted graph, just
 #' # to be certain
@@ -29,6 +29,7 @@
 #' #> + attr: name (v/c), type (v/c), label
 #' #> | (v/c), value (v/c), rel (e/c)
 #' @importFrom igraph graph_from_data_frame
+#' @importFrom dplyr select_
 #' @export to_igraph
 
 to_igraph <- function(graph) {
@@ -38,11 +39,20 @@ to_igraph <- function(graph) {
     stop("The graph object is not valid.")
   }
 
+  # Extract the graph's node data frame
+  ndf <- graph$nodes_df
+
+  # Extract the graph's edge data frame and
+  # exclude the `id` column
+  edf <-
+    graph$edges_df %>%
+    dplyr::select_("-id")
+
   igraph_graph <-
     igraph::graph_from_data_frame(
-      d = graph$edges,
+      d = edf,
       directed = graph$directed,
-      vertices = graph$nodes)
+      vertices = ndf)
 
   return(igraph_graph)
 }

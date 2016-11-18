@@ -7,19 +7,15 @@
 #' node ID value.
 #' @return a vector of node ID values.
 #' @examples
-#' # Create a random, directed graph with 18 nodes
-#' # and 22 edges
-#' random_graph <-
-#'   create_random_graph(
-#'     n = 18,
-#'     m = 22,
-#'     directed = TRUE,
-#'     fully_connected = TRUE,
-#'     set_seed = 20)
+#' # Create a simple, directed graph with 5
+#' # nodes and 4 edges
+#' graph <-
+#'   create_graph() %>%
+#'   add_path(5)
 #'
-#' # Find all non-neighbors of node `5`
-#' random_graph %>% get_non_nbrs(5)
-#' #> [1]  3  4  6  7  8  9 10 11 13 14 15 16 17
+#' # Find all non-neighbors of node `2`
+#' graph %>% get_non_nbrs(2)
+#' #> [1] 4 5
 #' @export get_non_nbrs
 
 get_non_nbrs <- function(graph,

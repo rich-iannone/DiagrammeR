@@ -184,7 +184,7 @@ trav_in_edge <- function(graph,
   }
 
   # Create bindings for specific variables
-  from <- to <- id <- rel <- NULL
+  from <- to <- id <- id.y <- rel <- NULL
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
@@ -244,8 +244,8 @@ trav_in_edge <- function(graph,
         dplyr::filter(id == starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
         dplyr::full_join(edf, c("id" = "to")) %>%
-        dplyr::rename(to = id) %>%
-        dplyr::select(from, to, rel, dplyr::everything())
+        dplyr::rename(to = id.y) %>%
+        dplyr::select(id, from, to, rel, dplyr::everything())
     }
 
     # If node attribute exists as a column in the edf
@@ -256,7 +256,7 @@ trav_in_edge <- function(graph,
         dplyr::filter(id == starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
         dplyr::full_join(edf, c("id" = "to")) %>%
-        dplyr::rename(to = id)
+        dplyr::rename(to = id.y)
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
@@ -282,7 +282,7 @@ trav_in_edge <- function(graph,
       # Reorder columns
       edges <-
         edges %>%
-        dplyr::select(from, to, rel, dplyr::everything())
+        dplyr::select(id, from, to, rel, dplyr::everything())
     }
 
     # Update the graph's internal node data frame

@@ -52,13 +52,13 @@
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
 #' graph_1 %>% get_edge_df() %>% head()
-#' #>   from to  rel cost_unit
-#' #> 1  148  1 <NA>  0.272300
-#' #> 2  148  2 <NA>  0.015210
-#' #> 3  148  3 <NA>  0.008055
-#' #> 4  148  4 <NA>  0.002107
-#' #> 5  148  5 <NA>  0.565000
-#' #> 6  148  6 <NA>  0.006058
+#' #>   id from to  rel cost_unit
+#' #> 1  1  148  1 <NA>  0.272300
+#' #> 2  2  148  2 <NA>  0.015210
+#' #> 3  3  148  3 <NA>  0.008055
+#' #> 4  4  148  4 <NA>  0.002107
+#' #> 5  5  148  5 <NA>  0.565000
+#' #> 6  6  148  6 <NA>  0.006058
 #'
 #' # If you would like to assign any of the table's
 #' # columns as `rel` attribute, this can done with
@@ -77,13 +77,13 @@
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
 #' graph_2 %>% get_edge_df() %>% head()
-#' #>   from to      rel cost_unit
-#' #> 1  148  1 from_usd  0.272300
-#' #> 2  148  2 from_usd  0.015210
-#' #> 3  148  3 from_usd  0.008055
-#' #> 4  148  4 from_usd  0.002107
-#' #> 5  148  5 from_usd  0.565000
-#' #> 6  148  6 from_usd  0.006058
+#' #>   id from to      rel cost_unit
+#' #> 1  1  148  1 from_usd  0.272300
+#' #> 2  2  148  2 from_usd  0.015210
+#' #> 3  3  148  3 from_usd  0.008055
+#' #> 4  4  148  4 from_usd  0.002107
+#' #> 5  5  148  5 from_usd  0.565000
+#' #> 6  6  148  6 from_usd  0.006058
 #' }
 #' @importFrom utils read.csv
 #' @importFrom stats setNames
@@ -225,6 +225,12 @@ add_edges_from_table <- function(graph,
   edf <- edf[which(!is.na(edf$from) & !is.na(edf$to)), ]
   rownames(edf) <- NULL
 
+  # Add in an `id` column
+  edf <-
+    dplyr::bind_cols(
+      data.frame(id = as.integer(1:nrow(edf))),
+      edf)
+
   # Optionally set the `rel` attribute with a single
   # value repeated down
   if (is.null(rel_col) & !is.null(set_rel)) {
@@ -239,6 +245,9 @@ add_edges_from_table <- function(graph,
   } else {
     graph$edges_df <- dplyr::bind_rows(graph$edges_df, edf)
   }
+
+  # Update the `last_edge` value in the graph
+  graph$last_edge <- nrow(graph$edges_df)
 
   graph$graph_log <-
     add_action_to_log(

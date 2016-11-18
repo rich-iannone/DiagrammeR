@@ -10,18 +10,15 @@
 #' @examples
 #' # Create a random, directed graph with 18 nodes
 #' # and 22 edges
-#' random_graph <-
+#' graph <-
 #'   create_random_graph(
-#'     n = 18,
-#'     m = 22,
-#'     directed = TRUE,
-#'     fully_connected = TRUE,
-#'     set_seed = 20)
+#'     n = 18, m = 22,
+#'     set_seed = 23)
 #'
 #' # Get degree histogram data for `random_graph`
-#' random_graph %>% get_degree_histogram()
-#' #> 0 1 2 3 4 5
-#' #> 1 3 7 2 4 1
+#' graph %>% get_degree_histogram()
+#' #> 0 1 2 3 4
+#' #> 1 4 4 4 5
 #' @importFrom igraph degree_distribution
 #' @export get_degree_histogram
 

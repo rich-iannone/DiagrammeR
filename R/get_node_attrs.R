@@ -16,26 +16,23 @@
 #' # With the `create_random_graph()` function, get
 #' # a simple graph with a node attribute called
 #' # `value`
-#' random_graph <-
+#' graph <-
 #'   create_random_graph(
-#'     n = 4,
-#'     m = 4,
-#'     directed = TRUE,
-#'     fully_connected = TRUE,
-#'     set_seed = 20)
+#'     n = 4, m = 4,
+#'     set_seed = 23)
 #'
 #' # Get all of the values from the `value` node
 #' # attribute as a named vector
-#' random_graph %>% get_node_attrs("value")
+#' graph %>% get_node_attrs("value")
 #' #>   1   2   3   4
-#' #> 9.0 8.0 3.0 5.5
+#' #> 6.0 2.5 3.5 7.5
 #'
 #' # To only return node attribute values for specified
 #' # nodes, use the `nodes` argument
-#' random_graph %>%
+#' graph %>%
 #'   get_node_attrs("value", nodes = c(1, 3))
-#' #> 1 3
-#' #> 9 3
+#' #>   1   3
+#' #> 6.0 3.5
 #' @export get_node_attrs
 
 get_node_attrs <- function(x,

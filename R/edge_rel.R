@@ -42,8 +42,9 @@
 #'
 #' # Create a graph
 #' graph <-
-#'   create_graph(nodes_df = ndf,
-#'                edges_df = edf)
+#'   create_graph(
+#'     nodes_df = ndf,
+#'     edges_df = edf)
 #'
 #' # Read the edge `rel` for edge `1` -> `2`
 #' graph %>% edge_rel(1, 2)
@@ -111,8 +112,8 @@ edge_rel <- function(graph,
   if (edge_is_in_graph) {
 
     edge_row <-
-      which(graph$edges_df[, 1] == from &
-              graph$edges_df[, 2] == to)
+      which(graph$edges_df$from == from &
+              graph$edges_df$to == to)
 
     relationship_set <-
       ifelse(is.null(graph$edges_df$rel[edge_row]) ||

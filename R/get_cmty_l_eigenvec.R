@@ -45,6 +45,9 @@ get_cmty_l_eigenvec <- function(graph) {
     stop("The graph object is not valid.")
   }
 
+  # If graph is directed, transform to undirected
+  graph <- set_graph_undirected(graph)
+
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 

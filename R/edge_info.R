@@ -13,22 +13,16 @@
 #' # Create a node data frame (ndf)
 #' ndf <-
 #'   create_node_df(
-#'     n = 26,
+#'     n = 4,
 #'     label = TRUE,
-#'     type = c(rep("a", 7),
-#'              rep("b", 9),
-#'              rep("c", 8),
-#'              rep("d", 2)))
+#'     type = c("A", "A", "B", "C"))
 #'
 #' # Create an edge data frame (edf)
 #' edf <-
 #'   create_edge_df(
-#'     from = sample(1:26, replace = TRUE),
-#'     to = sample(1:26, replace = TRUE),
-#'     rel = c(rep("rel_a", 7),
-#'             rep("rel_b", 9),
-#'             rep("rel_c", 8),
-#'             rep("rel_d", 2)))
+#'     from = c(1, 3, 3, 4),
+#'     to = c(2, 2, 1, 3),
+#'     rel = c("X", "Y", "Y", "Z"))
 #'
 #' # Create a graph using the ndf and edf
 #' graph <-
@@ -39,13 +33,12 @@
 #' # Get a data frame with information about
 #' # the graph's edges
 #' edge_info(graph)
-#' #>    from to   rel
-#' #> 1     8  2 rel_a
-#' #> 2     6 16 rel_a
-#' #> 3    19 17 rel_a
-#' #> 4    14  2 rel_a
-#' #> 5    18  9 rel_a
-#' #>..   ... ..   ...
+#' #>   from to rel
+#' #> 1    1  2   X
+#' #> 2    3  2   Y
+#' #> 3    3  1   Y
+#' #> 4    4  3   Z
+#' @importFrom dplyr select_
 #' @export edge_info
 
 edge_info <- function(graph) {
@@ -55,47 +48,16 @@ edge_info <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  if ("from" %in% colnames(graph$edges_df)) {
-    edge_from <- graph$edges_df$from
-  }
-
-  if ("to" %in% colnames(graph$edges_df)) {
-    edge_to <- graph$edges_df$to
-  }
-
-  if ("rel" %in% colnames(graph$edges_df)) {
-    relationship <- graph$edges_df$rel
-  }
-
   # For graphs with no edges, return NA
   if (nrow(graph$edges_df) == 0) {
     return(NA)
   }
 
-  # For graphs with no edges, create an
-  # `edge_properties` data frame
-  if (!is.null(graph$edges_df)) {
+  # Extract only the first 4 columns of the
+  # edge data frame
+  edf <-
+    graph$edges_df %>%
+    dplyr::select_("id", "from", "to", "rel")
 
-    # Create data frame of edge properties
-    for (i in 1:length(edge_from)) {
-
-      if (i == 1) {
-        edge_properties <- as.data.frame(mat.or.vec(nr = 0, nc = 3))
-        colnames(edge_properties) <- c("from", "to", "rel")
-      }
-
-      # Collect information into the 'edge_properties' data frame
-      edge_properties[i, 1] <- edge_from[i]
-
-      edge_properties[i, 2] <- edge_to[i]
-
-      edge_properties[i, 3] <-
-        ifelse(exists("relationship"),
-               relationship[which((edge_from %in% edge_from[i]) &
-                           (edge_to %in% edge_to[i]))],
-               rep(NA, length(edge_from)))
-    }
-
-    return(edge_properties)
-  }
+  return(edf)
 }

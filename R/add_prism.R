@@ -67,6 +67,10 @@ add_prism <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
+  # Get the number of edges ever created for
+  # this graph
+  edges_created <- graph$last_edge
+
   # Get the graph's log
   graph_log <- graph$graph_log
 
@@ -107,6 +111,9 @@ add_prism <- function(graph,
 
     # Update the `last_node` counter
     combined_graph$last_node <- nodes_created + nrow(prism_nodes)
+
+    # Update the `last_edge` counter
+    combined_graph$last_edge <- edges_created + nrow(prism_edges)
 
     # Update the `graph_log` df with an action
     graph_log <-

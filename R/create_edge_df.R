@@ -17,23 +17,23 @@
 #' @examples
 #' # Create a simple edge data frame (edf) and
 #' # view the results
-#' edge_df <-
+#' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
 #'     rel = "a")
 #'
 #' # Display the edge data frame
-#' edge_df
-#' #>   from to rel
-#' #> 1    1  4   a
-#' #> 2    2  3   a
-#' #> 3    3  1   a
+#' edf
+#' #>   id from to rel
+#' #> 1  1    1  4   a
+#' #> 2  2    2  3   a
+#' #> 3  3    3  1   a
 #'
 #' # Create an edf with additional edge
 #' # attributes (where their classes will be
 #' # inferred from the input vectors)
-#' edge_df <-
+#' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
 #'     to = c(4, 3, 1),
@@ -43,11 +43,11 @@
 #'     width = c(1, 5, 2))
 #'
 #' # Display the edge data frame
-#' edge_df
-#' #>   from to rel length color width
-#' #> 1    1  4   a     50 green     1
-#' #> 2    2  3   a    100 green     5
-#' #> 3    3  1   a    250 green     2
+#' edf
+#' #>   id from to rel length color width
+#' #> 1  1    1  4   a     50 green     1
+#' #> 2  2    2  3   a    100 green     5
+#' #> 3  3    3  1   a    250 green     2
 #' @export create_edge_df
 
 create_edge_df <- function(from,
@@ -58,6 +58,9 @@ create_edge_df <- function(from,
   # Stop function if vector lengths for `from` and
   # `to` are not equal
   stopifnot(length(from) == length(to))
+
+  # Get the number of edges to be created
+  n <- length(from)
 
   # Ensure that `from` and `to` vector are integers
   from <- as.integer(from)
@@ -135,6 +138,7 @@ create_edge_df <- function(from,
     edges_df <-
       dplyr::bind_cols(
         data.frame(
+          id = 1:n,
           from = from,
           to = to,
           rel = rel,
@@ -143,6 +147,7 @@ create_edge_df <- function(from,
   } else {
     edges_df <-
       data.frame(
+        id = 1:n,
         from = from,
         to = to,
         rel = rel,

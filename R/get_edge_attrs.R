@@ -124,12 +124,12 @@ get_edge_attrs <- function(x,
         which(edges_df[
           , which(colnames(edges_df) ==
                     "from_to")] %in% edges),
-        1],
+        2],
         edges_df[
           which(edges_df[
             , which(colnames(edges_df) ==
                       "from_to")] %in% edges),
-          2], sep = " -> ")
+          3], sep = " -> ")
 
     # If the values are numeric, coerce to numeric
     edge_attr_vals_numeric <-

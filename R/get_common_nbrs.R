@@ -7,25 +7,20 @@
 #' at least 2.
 #' @return a vector of node ID values.
 #' @examples
-#' # Create a random, directed graph with 18 nodes
-#' # and 22 edges
-#' random_graph <-
-#'   create_random_graph(
-#'     n = 18,
-#'     m = 22,
-#'     directed = TRUE,
-#'     fully_connected = TRUE,
-#'     set_seed = 20)
+#' # Create a directed graph with 5 nodes
+#' graph <-
+#'   create_graph() %>%
+#'   add_path(5)
 #'
 #' # Find all common neighbor nodes for nodes
-#' # `5` and `7` (there are no common neighbors)
-#' random_graph %>% get_common_nbrs(c(5, 7))
+#' # `1` and `2` (there are no common neighbors)
+#' graph %>% get_common_nbrs(c(1, 2))
 #' #> [1] NA
 #'
-#' # Find all neighbor nodes for nodes `9`
-#' # and  `17`
-#' random_graph %>% get_common_nbrs(c(9, 17))
-#' #> [1] 1
+#' # Find all common neighbor nodes for nodes
+#' # `1` and `3`
+#' graph %>% get_common_nbrs(c(1, 3))
+#' #> [1] 2
 #' @export get_common_nbrs
 
 get_common_nbrs <- function(graph,

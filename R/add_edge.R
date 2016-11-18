@@ -68,6 +68,7 @@
 #' # that the edges were added
 #' get_edges(graph)
 #' #> [1] "1 -> 2" "3 -> 2" "3 -> 4" "4 -> 1"
+#' @importFrom dplyr bind_rows
 #' @export add_edge
 
 add_edge <- function(graph,
@@ -124,57 +125,26 @@ add_edge <- function(graph,
     }
   }
 
-  # If `graph$edges_df` is NULL then use
-  # `create_edge_df()` to add an edge
-  if (is.null(graph$edges_df)) {
-
-    edf <-
-      create_edge_df(
-        from = from,
-        to = to,
-        rel = rel)
-
-    # Add the edge data frame to the graph
-    graph$edges_df <- edf
-
-    graph$graph_log <-
-      add_action_to_log(
-        graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
-        function_used = "add_edge",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
-
-    return(graph)
-  }
-
-  # If `graph$edges_df` is not NULL then use both
-  # `combine_edges()` and `create_edge_df()` to
-  # add an edge
+  # Use both `bind_rows()` to add an edge
   if (!is.null(graph$edges_df)) {
 
     combined_edges <-
-      combine_edfs(
+      dplyr::bind_rows(
         graph$edges_df,
-        create_edge_df(
-          from = from,
-          to = to,
-          rel = rel))
-
-    # Ensure that the `from` and `to` columns are
-    # classed as `integer`
-    combined_edges[, 1] <-
-      as.integer(combined_edges[, 1])
-
-    combined_edges[, 2] <-
-      as.integer(combined_edges[, 2])
+        data.frame(
+          id = as.integer(graph$last_edge + 1),
+          from = as.integer(from),
+          to = as.integer(to),
+          rel = as.character(rel),
+          stringsAsFactors = FALSE))
 
     # Use the `combined_edges` object as a
     # replacement for the graph's internal
     # edge data frame
     graph$edges_df <- combined_edges
+
+    # Modify the `last_edge` vector
+    graph$last_edge <- as.integer(graph$last_edge + 1)
 
     # Update the `graph_log` df with an action
     graph$graph_log <-

@@ -8,7 +8,7 @@
 #' to each node within the graph.
 #' @examples
 #' # Set a seed
-#' set.seed(24)
+#' set.seed(23)
 #'
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -40,11 +40,11 @@
 #' node_info(graph)
 #' #>    id type label deg indeg outdeg loops
 #' #> 1   1    a     1   0     0      0     0
-#' #> 2   2    a     2   5     4      1     0
-#' #> 3   3    a     3   1     0      1     0
+#' #> 2   2    a     2   0     0      0     0
+#' #> 3   3    a     3   2     2      0     0
 #' #> 4   4    a     4   3     1      2     0
-#' #> 5   5    a     5   0     0      0     0
-#' #> 6   6    a     6   5     2      3     0
+#' #> 5   5    a     5   1     1      0     0
+#' #> 6   6    a     6   1     0      1     0
 #' #>.. ...  ...   ... ...   ...    ...   ...
 #' @importFrom dplyr mutate arrange
 #' @export node_info
@@ -66,13 +66,13 @@ node_info <- function(graph) {
 
   # Get vectors of nodes in edges and
   # node `type` values
-  edge_from <- graph$edges_df[, 1]
-  edge_to <- graph$edges_df[, 2]
-  type <- graph$nodes_df[, 3]
+  edge_from <- graph$edges_df$from
+  edge_to <- graph$edges_df$to
+  type <- graph$nodes_df$type
 
   # Get vector of all node IDs and all labels
-  all_nodes <- graph$nodes_df[, 1]
-  labels <- graph$nodes_df[, 2]
+  all_nodes <- graph$nodes_df$id
+  labels <- graph$nodes_df$label
 
   # For graphs with no edges, create a
   # `node_properties` data frame that doesn't
@@ -201,18 +201,18 @@ node_info <- function(graph) {
         ordered_nodes[i]
 
       node_properties[i, 2] <-
+        ifelse(exists("type"),
+               type[which(all_nodes %in%
+                            ordered_nodes[i])],
+               rep(NA, length(ordered_nodes)))
+
+      node_properties[i, 3] <-
         ifelse(!is.null(
           labels[which(all_nodes %in%
                          ordered_nodes[i])]),
           labels[which(all_nodes %in%
                          ordered_nodes[i])],
           NA)
-
-      node_properties[i, 3] <-
-        ifelse(exists("type"),
-               type[which(all_nodes %in%
-                            ordered_nodes[i])],
-               rep(NA, length(ordered_nodes)))
 
       node_properties[i, 4] <- degree
       node_properties[i, 5] <- indegree

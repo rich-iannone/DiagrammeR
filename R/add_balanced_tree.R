@@ -25,16 +25,14 @@
 #'   add_balanced_tree(2, 2, "binary") %>%
 #'   add_balanced_tree(3, 2, "tertiary")
 #'
-#' # Get node information from this graph
-#' node_info(graph)
+#' # Get some node information from this graph
+#' node_info(graph) %>% head(5)
 #' #>    id     type label deg indeg outdeg loops
 #' #> 1   1   binary     1   2     0      2     0
 #' #> 2   2   binary     2   3     1      2     0
 #' #> 3   3   binary     3   3     1      2     0
 #' #> 4   4   binary     4   1     1      0     0
 #' #> 5   5   binary     5   1     1      0     0
-#' #> 6   6   binary     6   1     1      0     0
-#' #> .. ..      ...    ..  ..    ..     ..    ..
 #' @export add_balanced_tree
 
 add_balanced_tree <- function(graph,
@@ -69,6 +67,10 @@ add_balanced_tree <- function(graph,
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
+
+  # Get the number of edges ever created for
+  # this graph
+  edges_created <- graph$last_edge
 
   # Get the graph's log
   graph_log <- graph$graph_log
@@ -109,6 +111,9 @@ add_balanced_tree <- function(graph,
 
     # Update the `last_node` counter
     combined_graph$last_node <- nodes_created + nrow(tree_nodes)
+
+    # Update the `last_edge` counter
+    combined_graph$last_edge <- edges_created + nrow(tree_edges)
 
     # Update the `graph_log` df with an action
     graph_log <-

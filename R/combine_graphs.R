@@ -58,6 +58,10 @@ combine_graphs <- function(x,
   # graph `x`
   nodes_created <- x$last_node
 
+  # Get the number of edges ever created for
+  # graph `x`
+  edges_created <- x$last_edge
+
   # Get the node data frame for graph `x`
   x_nodes_df <- get_node_df(x)
 
@@ -144,12 +148,14 @@ combine_graphs <- function(x,
   # from the first graph provided (`x`)
   x$nodes_df <- combined_nodes
   x$edges_df <- combined_edges
+  x$edges_df$id <- as.integer(1:nrow(x$edges_df))
   x$directed <-
     ifelse(
       is_graph_directed(x) == FALSE ||
         is_graph_directed(y) == FALSE,
       FALSE, TRUE)
   x$last_node <- nrow(combined_nodes)
+  x$last_edge <- nrow(combined_edges)
 
   # Update the `graph_log` df with an action
   x$graph_log <-

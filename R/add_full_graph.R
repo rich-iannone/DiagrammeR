@@ -76,13 +76,13 @@
 #'
 #' # Show the graph's edge data frame (edf)
 #' graph %>% get_edge_df()
-#' #>   from to          rel
-#' #> 1    1  2 connected_to
-#' #> 2    1  3 connected_to
-#' #> 3    2  1 connected_to
-#' #> 4    2  3 connected_to
-#' #> 5    3  1 connected_to
-#' #> 6    3  2 connected_to
+#' #>   id from to          rel
+#' #> 1  1    1  2 connected_to
+#' #> 2  2    1  3 connected_to
+#' #> 3  3    2  1 connected_to
+#' #> 4  4    2  3 connected_to
+#' #> 5  5    3  1 connected_to
+#' #> 6  6    3  2 connected_to
 #'
 #' # Create a fully-connected and directed
 #' # graph with 3 nodes, and, where a matrix
@@ -120,13 +120,13 @@
 #'
 #' # Show the graph's edge data frame (edf)
 #' graph %>% get_edge_df()
-#' #>   from to        rel weight
-#' #> 1    1  2 related_to   3.30
-#' #> 2    1  3 related_to   5.02
-#' #> 3    2  1 related_to   4.13
-#' #> 4    2  3 related_to   6.49
-#' #> 5    3  1 related_to   6.03
-#' #> 6    3  2 related_to   5.55
+#' #>   id from to        rel weight
+#' #> 1  1    1  2 related_to   3.30
+#' #> 2  2    1  3 related_to   5.02
+#' #> 3  3    2  1 related_to   4.13
+#' #> 4  4    2  3 related_to   6.49
+#' #> 5  5    3  1 related_to   6.03
+#' #> 6  6    3  2 related_to   5.55
 #'
 #' # An undirected graph can also use a
 #' # matrix with edge weights, but only
@@ -141,10 +141,10 @@
 #'     edge_wt_matrix = edge_wt_matrix,
 #'     keep_loops = FALSE) %>%
 #'   get_edge_df()
-#' #>   from to        rel weight
-#' #> 1    1  2 related_to   3.30
-#' #> 2    1  3 related_to   5.02
-#' #> 3    2  3 related_to   6.49
+#' #>   id from to        rel weight
+#' #> 1  1    1  2 related_to   3.30
+#' #> 2  2    1  3 related_to   5.02
+#' #> 3  3    2  3 related_to   6.49
 #' @export add_full_graph
 
 add_full_graph <- function(graph,
@@ -166,6 +166,10 @@ add_full_graph <- function(graph,
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
+
+  # Get the number of edges ever created for
+  # this graph
+  edges_created <- graph$last_edge
 
   # Get the graph's log
   graph_log <- graph$graph_log
@@ -274,7 +278,7 @@ add_full_graph <- function(graph,
   # Add `rel` values to all new edges
   if (!is.null(rel) &
       length(rel) == 1) {
-    new_graph$edges_df[, 3] <- rel
+    new_graph$edges_df[, 4] <- rel
   }
 
   # If the input graph is not empty, combine graphs

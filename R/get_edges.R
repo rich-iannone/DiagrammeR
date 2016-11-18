@@ -97,12 +97,13 @@ get_edges <- function(x,
   }
 
   if (inherits(x, "data.frame")) {
-    if (colnames(x)[1] == "from" &
-        colnames(x)[2] == "to" &
-        colnames(x)[3] == "rel") {
+    if (colnames(x)[1] == "id" &
+        colnames(x)[2] == "from" &
+        colnames(x)[3] == "to" &
+        colnames(x)[4] == "rel") {
       edges_df <- x
     } else {
-      stop("The supplied object is not a node data frame.")
+      stop("The supplied object is not an edge data frame.")
     }
   }
 

@@ -91,8 +91,8 @@ edge_present <- function(graph,
   # the graph
   if (nodes_available_in_graph) {
     edge_is_in_graph <-
-      ifelse(any(graph$edges_df[, 1] == from &
-                   graph$edges_df[, 2] == to),
+      ifelse(any(graph$edges_df$from == from &
+                   graph$edges_df$to == to),
              TRUE, FALSE)
 
     return(edge_is_in_graph)

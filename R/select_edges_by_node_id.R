@@ -88,12 +88,12 @@ select_edges_by_node_id <- function(graph,
   from <-
     edge_df[
       unique(c(which(edge_df$from %in% nodes),
-               which(edge_df$to %in% nodes))),][,1]
+               which(edge_df$to %in% nodes))),][, 2]
 
   to <-
     edge_df[
       unique(c(which(edge_df$from %in% nodes),
-               which(edge_df$to %in% nodes))),][,2]
+               which(edge_df$to %in% nodes))),][, 3]
 
   # Create selection of edges
   graph$selection$edges$from <- from

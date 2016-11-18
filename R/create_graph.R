@@ -191,6 +191,7 @@ create_graph <- function(nodes_df = NULL,
   # Create an empty edge data frame (`edf`)
   edf <-
     data.frame(
+      id = as.integer(NA),
       from = as.integer(NA),
       to = as.integer(NA),
       rel = as.character(NA),
@@ -220,6 +221,7 @@ create_graph <- function(nodes_df = NULL,
          directed = ifelse(directed,
                            TRUE, FALSE),
          last_node = 0,
+         last_edge = 0,
          graph_log = graph_log)
 
   attr(graph, "class") <- "dgr_graph"
@@ -301,13 +303,16 @@ create_graph <- function(nodes_df = NULL,
       if (ncol(edges_df) > 2) {
 
         # Force the rel column to be of the character class
-        edges_df[, 3] <- as.character(edges_df[, 3])
+        edges_df$rel <- as.character(edges_df$rel)
       }
     }
 
     # Bind the edges to the `edges_df` df in the graph
     graph$edges_df <-
       dplyr::bind_rows(graph$edges_df, edges_df)
+
+    # Modify the `last_edge` vector
+    graph$last_edge <- nrow(edges_df)
 
     # Update the `graph_log` df with an action
     graph_log <-

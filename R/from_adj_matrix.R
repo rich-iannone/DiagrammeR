@@ -25,6 +25,7 @@
 #'          prob = c(0.9,0.1)) %>%
 #'   matrix(nc = 10)
 #'
+#' # Create a graph from the adjacency matrix
 #' graph <- from_adj_matrix(adj_matrix)
 #' @importFrom igraph graph_from_adjacency_matrix
 #' @export from_adj_matrix
@@ -76,6 +77,11 @@ from_adj_matrix <- function(x,
 
   # Generate the graph object from an igraph graph
   graph <- from_igraph(igraph)
+
+  # Add edge ID values to `graph`
+  if (nrow(graph$edges_df) > 0) {
+    graph$edges_df$id <- as.integer(1:nrow(graph$edges_df))
+  }
 
   return(graph)
 }

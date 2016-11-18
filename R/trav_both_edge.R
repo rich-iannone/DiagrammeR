@@ -172,7 +172,7 @@ trav_both_edge <- function(graph,
   }
 
   # Create bindings for specific variables
-  from <- to <- id <- rel <- NULL
+  from <- to <- id <- id.y <- rel <- NULL
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
@@ -221,8 +221,8 @@ trav_both_edge <- function(graph,
         dplyr::filter(id == starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
         dplyr::full_join(edges, c("id" = "to")) %>%
-        dplyr::rename(to = id) %>%
-        dplyr::select(from, to, rel, dplyr::everything())
+        dplyr::rename(to = id.y) %>%
+        dplyr::select(id, from, to, rel, dplyr::everything())
 
       # Get the column numbers for the `.x`
       # and `.y` columns
@@ -255,7 +255,7 @@ trav_both_edge <- function(graph,
         dplyr::filter(id == starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
         dplyr::full_join(edf, c("id" = "from")) %>%
-        dplyr::rename(from = id)
+        dplyr::rename(from = id.y)
 
       # Get the column numbers for the new columns
       x_col <- which(grepl("\\.x$", colnames(edges)))
@@ -312,7 +312,7 @@ trav_both_edge <- function(graph,
       # Reorder columns
       edges <-
         edges %>%
-        dplyr::select(from, to, rel, dplyr::everything())
+        dplyr::select(id, from, to, rel, dplyr::everything())
     }
 
     # Update the graph's internal node data frame

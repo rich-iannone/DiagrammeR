@@ -10,10 +10,9 @@
 #' # randomly-created graph
 #' get_graph_diameter(
 #'   create_random_graph(
-#'     5, 7,
-#'     fully_connected = TRUE,
-#'     set_seed = 20))
-#' #> [1] 4
+#'     n = 5, m = 7,
+#'     set_seed = 23))
+#' #> [1] 3
 #' @export get_graph_diameter
 
 get_graph_diameter <- function(graph) {
