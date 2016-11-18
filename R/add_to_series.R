@@ -50,74 +50,14 @@ add_to_series <- function(graph,
   # Get the series type
   series_type <- graph_series$series_type
 
-  # Stop function if graph is not valid
-  if (class(graph) != "dgr_graph") {
-    stop("The supplied graph object is not valid.")
-  }
-
   # Stop function if graph series type is not valid
   if (!(series_type %in%
         c("sequential", "temporal"))) {
     stop("The graph series type is neither 'sequential' nor 'temporal'")
   }
 
-  # If graph series type is `sequential`, add graph
-  # to series
-  if (series_type == "sequential") {
-    graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
-    return(graph_series)
-  }
+  # Add graph to series
+  graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
 
-  # For a graph series with a temporal type, determine
-  # if `graph_time` and, optionally, a `graph_tz` value
-  # is provided
-  if (series_type == "temporal") {
-    is_time_provided <-
-      ifelse(!is.na(graph$graph_info$graph_time[1]), TRUE, FALSE)
-
-    is_tz_provided <-
-      ifelse(!is.na(graph$graph_info$graph_tz[1]), TRUE, FALSE)
-
-    # Stop function if no time information available in
-    # a graph to be added to a graph series of the
-    # `temporal` type
-    if (is_time_provided == FALSE) {
-      stop("No time information is provided in this graph object.")
-    } else {
-
-      # If time zone not provided, automatically
-      # provide the `GMT` time zone
-      if (is_tz_provided == FALSE) {
-        graph$graph_info$graph_tz[1] <- "GMT"
-      }
-
-      is_time_in_correct_format <-
-        ifelse(
-          grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
-                graph$graph_info$graph_time) |
-            grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}$",
-                  graph$graph_info$graph_time) |
-            grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$",
-                  graph$graph_info$graph_time),
-          TRUE, FALSE)
-
-      is_tz_in_correct_format <-
-        ifelse(graph$graph_info$graph_tz %in% OlsonNames(),
-               TRUE, FALSE)
-
-      if (is_time_in_correct_format == FALSE) {
-        stop("The time provided in this graph object is not in the correct format.")
-      }
-
-      if (is_tz_in_correct_format == FALSE) {
-        stop("The time zone provided in this graph object is not in the correct format.")
-      }
-
-      if (is_time_in_correct_format &
-          is_tz_in_correct_format) {
-        graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
-        return(graph_series)
-      }
-    }
-  }
+  return(graph_series)
 }
