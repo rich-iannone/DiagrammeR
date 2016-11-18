@@ -59,8 +59,9 @@ edf <-
 
 # Create a graph
 graph <-
-  create_graph(nodes_df = ndf,
-               edges_df = edf)
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf)
 
 # Read the edge `rel` for edge `1` -> `2`
 graph \%>\% edge_rel(1, 2)

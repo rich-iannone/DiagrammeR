@@ -47,13 +47,10 @@ node.
 # Getting similar neighbors can be done through
 # numerical comparisons; start with creating a
 # random, directed graph with 18 nodes and 22 edges
-random_graph <-
+graph <-
   create_random_graph(
-    n = 18,
-    m = 22,
-    directed = TRUE,
-    fully_connected = TRUE,
-    set_seed = 20)
+    n = 18, m = 22,
+    set_seed = 23)
 
 # The `create_random_graph()` function randomly
 # assigns numerical values to all nodes (as the
@@ -61,16 +58,13 @@ random_graph <-
 # place. By starting with node (`8`), we can test
 # whether any nodes adjacent and beyond are
 # numerically equivalent in `value`
-random_graph \%>\%
+graph \%>\%
   get_similar_nbrs(
     node = 8,
     node_attr = "value")
-#> [1] NA
+#> [1] 7 10
 
-# There are no nodes neighboring `8` that have a
-# `value` node attribute equal to `1.0` as node does
-#
-# We can, however, set a tolerance for ascribing
+# We can also set a tolerance for ascribing
 # similarly by using either the `tol_abs` or
 # `tol_pct` arguments (the first applies absolute
 # lower and upper bounds from the value in the
@@ -78,23 +72,23 @@ random_graph \%>\%
 # difference to do the same); try setting `tol_abs`
 # with a fairly large range to determine if several
 # nodes can be selected
-random_graph \%>\%
+graph \%>\%
   get_similar_nbrs(
     node = 8,
     node_attr = "value",
     tol_abs = c(3, 3))
-#> [1]  3  9 10 13 17 18
+#> [1]  7  9 10 11 12
 
-# That resulted in a fairly large set of 7
+# That resulted in a fairly large set of 5
 # neigboring nodes; For sake of example, setting the
 # range to be very large will effectively return all
 # nodes in the graph except for the starting node
-random_graph \%>\%
+graph \%>\%
   get_similar_nbrs(
     node = 8,
     node_attr = "value",
     tol_abs = c(10, 10)) \%>\%
-    length
-#> [1] 16
+    length()
+#> [1] 13
 }
 

@@ -64,11 +64,11 @@ graph <- graph \%>\% join_edge_attrs(df)
 # Get the graph's internal edf to show that the
 # join has been made
 get_edge_df(graph)
-#>   from to  rel   values
-#> 1    1  2 <NA> 4.788166
-#> 2    1  3 <NA> 3.958409
-#> 3    2  4 <NA> 3.846692
-#> 4    2  5 <NA> 5.321531
-#> 5    3  5 <NA> 3.499870
+#>   id from to  rel   values
+#> 1  1    1  2 <NA> 4.788166
+#> 2  2    1  3 <NA> 3.958409
+#> 3  3    2  4 <NA> 3.846692
+#> 4  4    2  5 <NA> 5.321531
+#> 5  5    3  5 <NA> 3.499870
 }
 

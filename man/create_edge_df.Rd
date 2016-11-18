@@ -33,23 +33,23 @@ or, added to a graph object.
 \examples{
 # Create a simple edge data frame (edf) and
 # view the results
-edge_df <-
+edf <-
   create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
     rel = "a")
 
 # Display the edge data frame
-edge_df
-#>   from to rel
-#> 1    1  4   a
-#> 2    2  3   a
-#> 3    3  1   a
+edf
+#>   id from to rel
+#> 1  1    1  4   a
+#> 2  2    2  3   a
+#> 3  3    3  1   a
 
 # Create an edf with additional edge
 # attributes (where their classes will be
 # inferred from the input vectors)
-edge_df <-
+edf <-
   create_edge_df(
     from = c(1, 2, 3),
     to = c(4, 3, 1),
@@ -59,10 +59,10 @@ edge_df <-
     width = c(1, 5, 2))
 
 # Display the edge data frame
-edge_df
-#>   from to rel length color width
-#> 1    1  4   a     50 green     1
-#> 2    2  3   a    100 green     5
-#> 3    3  1   a    250 green     2
+edf
+#>   id from to rel length color width
+#> 1  1    1  4   a     50 green     1
+#> 2  2    2  3   a    100 green     5
+#> 3  3    3  1   a    250 green     2
 }
 

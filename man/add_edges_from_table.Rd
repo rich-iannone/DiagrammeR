@@ -73,13 +73,13 @@ graph_1 <-
 # View part of the graph's internal edge data
 # frame (edf) using `get_edge_df()`
 graph_1 \%>\% get_edge_df() \%>\% head()
-#>   from to  rel cost_unit
-#> 1  148  1 <NA>  0.272300
-#> 2  148  2 <NA>  0.015210
-#> 3  148  3 <NA>  0.008055
-#> 4  148  4 <NA>  0.002107
-#> 5  148  5 <NA>  0.565000
-#> 6  148  6 <NA>  0.006058
+#>   id from to  rel cost_unit
+#> 1  1  148  1 <NA>  0.272300
+#> 2  2  148  2 <NA>  0.015210
+#> 3  3  148  3 <NA>  0.008055
+#> 4  4  148  4 <NA>  0.002107
+#> 5  5  148  5 <NA>  0.565000
+#> 6  6  148  6 <NA>  0.006058
 
 # If you would like to assign any of the table's
 # columns as `rel` attribute, this can done with
@@ -98,13 +98,13 @@ graph_2 <-
 # View part of the graph's internal edge data
 # frame (edf) using `get_edge_df()`
 graph_2 \%>\% get_edge_df() \%>\% head()
-#>   from to      rel cost_unit
-#> 1  148  1 from_usd  0.272300
-#> 2  148  2 from_usd  0.015210
-#> 3  148  3 from_usd  0.008055
-#> 4  148  4 from_usd  0.002107
-#> 5  148  5 from_usd  0.565000
-#> 6  148  6 from_usd  0.006058
+#>   id from to      rel cost_unit
+#> 1  1  148  1 from_usd  0.272300
+#> 2  2  148  2 from_usd  0.015210
+#> 3  3  148  3 from_usd  0.008055
+#> 4  4  148  4 from_usd  0.002107
+#> 5  5  148  5 from_usd  0.565000
+#> 6  6  148  6 from_usd  0.006058
 }
 }
 

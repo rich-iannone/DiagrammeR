@@ -26,22 +26,16 @@ set.seed(24)
 # Create a node data frame (ndf)
 ndf <-
   create_node_df(
-    n = 26,
+    n = 4,
     label = TRUE,
-    type = c(rep("a", 7),
-             rep("b", 9),
-             rep("c", 8),
-             rep("d", 2)))
+    type = c("A", "A", "B", "C"))
 
 # Create an edge data frame (edf)
 edf <-
   create_edge_df(
-    from = sample(1:26, replace = TRUE),
-    to = sample(1:26, replace = TRUE),
-    rel = c(rep("rel_a", 7),
-            rep("rel_b", 9),
-            rep("rel_c", 8),
-            rep("rel_d", 2)))
+    from = c(1, 3, 3, 4),
+    to = c(2, 2, 1, 3),
+    rel = c("X", "Y", "Y", "Z"))
 
 # Create a graph using the ndf and edf
 graph <-
@@ -52,12 +46,10 @@ graph <-
 # Get a data frame with information about
 # the graph's edges
 edge_info(graph)
-#>    from to   rel
-#> 1     8  2 rel_a
-#> 2     6 16 rel_a
-#> 3    19 17 rel_a
-#> 4    14  2 rel_a
-#> 5    18  9 rel_a
-#>..   ... ..   ...
+#>   from to rel
+#> 1    1  2   X
+#> 2    3  2   Y
+#> 3    3  1   Y
+#> 4    4  3   Z
 }
 

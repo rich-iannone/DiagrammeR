@@ -19,17 +19,17 @@ an igraph graph object.
 }
 \examples{
 # Create a DiagrammeR graph object
-dgr_graph <-
+graph <-
   create_random_graph(
     36, 50, set_seed = 1)
 
-# Confirm that `dgr_graph` is a DiagrammeR graph
+# Confirm that `graph` is a DiagrammeR graph
 # by getting the object's class
-class(dgr_graph)
+class(graph)
 #> [1] "dgr_graph"
 
 # Convert the DiagrammeR graph to an igraph object
-ig_graph <- to_igraph(dgr_graph)
+ig_graph <- to_igraph(graph)
 
 # Get the class of the converted graph, just
 # to be certain

@@ -4,8 +4,8 @@
 \alias{create_random_graph}
 \title{Create a randomized graph}
 \usage{
-create_random_graph(n, m, directed = FALSE, fully_connected = FALSE,
-  display_labels = TRUE, set_seed = NULL)
+create_random_graph(n, m, directed = TRUE, display_labels = TRUE,
+  set_seed = NULL)
 }
 \arguments{
 \item{n}{the number of nodes to use in the
@@ -16,9 +16,6 @@ random graph.}
 
 \item{directed}{an option for whether the random
 graph should be undirected (default) or directed.}
-
-\item{fully_connected}{should the graph be fully
-connected (i.e., no free nodes).}
 
 \item{display_labels}{display node labels.}
 
@@ -35,23 +32,6 @@ with randomized edge assignments.
 random_graph_directed <-
   create_random_graph(
     n = 50,
-    m = 75,
-    directed = TRUE)
-
-# Create a random, undirected graph that's
-# fully connected
-random_graph_undirected <-
-  create_random_graph(
-    n = 30,
-    m = 30,
-    fully_connected = TRUE)
-
-# Create a directed graph with a seed set so that
-# it's reproducible
-directed_graph <-
-  create_random_graph(
-    n = 15,
-    m = 34,
-    set_seed = 50)
+    m = 75)
 }
 

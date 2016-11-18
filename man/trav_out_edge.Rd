@@ -70,12 +70,12 @@ get_node_df(graph)
 #> 5  5    b   ohd
 
 get_edge_df(graph)
-#>   from to  rel values
-#> 1    1  2 <NA>   5.19
-#> 2    1  3    A   4.57
-#> 3    2  4    B   5.91
-#> 4    2  5    C   6.79
-#> 5    3  5    D      6
+#>   id from to  rel values
+#> 1  1    1  2 <NA>   3.83
+#> 2  2    1  3    A   4.47
+#> 3  3    2  4    B   5.00
+#> 4  4    2  5    C   4.49
+#> 5  5    3  5    D   6.24
 
 # Perform a simple traversal from nodes to
 # outbound edges with no conditions on the
@@ -96,12 +96,12 @@ graph \%>\%
   get_selection()
 #> [1] "1 -> 2"
 
-# Traverse from node `1` to any outbound
+# Traverse from node `3` to any outbound
 # edges, filtering to those edges that have
 # numeric values greater than `5.0` for
 # the `rel` edge attribute
 graph \%>\%
-  select_nodes_by_id(1) \%>\%
+  select_nodes_by_id(3) \%>\%
   trav_out_edge(
     conditions = "values > 5.0") \%>\%
   get_selection()
@@ -138,9 +138,9 @@ graph \%>\%
   trav_out_edge(
     conditions = c(
       "rel \%in\% c('B', 'C')",
-      "values > 6.0")) \%>\%
+      "values >= 5.0")) \%>\%
   get_selection()
-#> [1] "2 -> 5"
+#> [1] "2 -> 4"
 
 # Traverse from node `2` to any outbound
 # edges, and use multiple conditions with

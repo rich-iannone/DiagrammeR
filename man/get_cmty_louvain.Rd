@@ -24,23 +24,23 @@ the graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 1)
+    10, 22, set_seed = 23)
 
 # Get the group membership values for all nodes
 # in the graph through the multi-level optimization
 # of modularity algorithm
 get_cmty_louvain(graph)
 #>    id louvain_group
-#> 1   1             1
-#> 2   2             3
-#> 3   3             3
+#> 1   1             2
+#> 2   2             1
+#> 3   3             1
 #> 4   4             2
-#> 5   5             1
+#> 5   5             2
 #> 6   6             2
-#> 7   7             2
-#> 8   8             1
-#> 9   9             2
-#> 10 10             3
+#> 7   7             1
+#> 8   8             2
+#> 9   9             1
+#> 10 10             2
 
 # Add the group membership values to the graph
 # as a node attribute

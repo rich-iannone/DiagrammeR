@@ -23,7 +23,7 @@ values for each of the nodes in the graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 1)
+    10, 22, set_seed = 23)
 
 # Get the group membership values for all nodes
 # in the graph through the greedy optimization
@@ -36,10 +36,10 @@ get_cmty_fast_greedy(graph)
 #> 4   4         1
 #> 5   5         1
 #> 6   6         1
-#> 7   7         1
+#> 7   7         2
 #> 8   8         1
-#> 9   9         1
-#> 10 10         2
+#> 9   9         2
+#> 10 10         1
 
 # Add the group membership values to the graph
 # as a node attribute
