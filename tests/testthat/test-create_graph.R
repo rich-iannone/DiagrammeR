@@ -9,10 +9,11 @@ test_that("an empty graph object can be created and such an object is correct", 
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_info", "nodes_df",
-            "edges_df", "global_attrs",
-            "directed", "last_node",
-            "last_edge", "graph_log")))
+          c("graph_info", "nodes_df", "edges_df",
+            "global_attrs", "directed",
+            "last_node", "last_edge",
+            "node_selection", "edge_selection",
+            "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -60,10 +61,11 @@ test_that("a graph object with nodes can be created correctly", {
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_info", "nodes_df",
-            "edges_df", "global_attrs",
-            "directed", "last_node",
-            "last_edge", "graph_log")))
+          c("graph_info", "nodes_df", "edges_df",
+            "global_attrs", "directed",
+            "last_node", "last_edge",
+            "node_selection", "edge_selection",
+            "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")
@@ -122,10 +124,11 @@ test_that("a graph object with nodes and edges can be created correctly", {
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_info", "nodes_df",
-            "edges_df", "global_attrs",
-            "directed", "last_node",
-            "last_edge", "graph_log")))
+          c("graph_info", "nodes_df", "edges_df",
+            "global_attrs", "directed",
+            "last_node", "last_edge",
+            "node_selection", "edge_selection",
+            "graph_log")))
 
   # Expect a graph object of class `dgr_graph`
   expect_is(graph, "dgr_graph")

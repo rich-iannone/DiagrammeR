@@ -70,8 +70,9 @@ test_that("create_graph",{
   # prescribed set of names
   expect_true(
     all(names(graph) ==
-          c("graph_info", "nodes_df",
-            "edges_df", "global_attrs",
-            "directed", "last_node",
-            "last_edge", "graph_log")))
+          c("graph_info", "nodes_df", "edges_df",
+            "global_attrs", "directed",
+            "last_node", "last_edge",
+            "node_selection", "edge_selection",
+            "graph_log")))
 })
