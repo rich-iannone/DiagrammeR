@@ -106,6 +106,83 @@ graph_contains_node_selection <- function(graph) {
   return(TRUE)
 }
 
+
+# Function to replace the `node_selection` df with
+# different node ID values
+#' @importFrom tibble tibble as_tibble
+#' @importFrom dplyr bind_rows
+replace_graph_node_selection <- function(graph, replacement) {
+
+  # Get the graph's `node_selection` df
+  node_selection <- graph$node_selection
+
+  # Remove objects in `graph$node_selection`
+  node_selection <-
+    node_selection %>%
+    tibble::as_tibble() %>%
+    .[-seq(1, nrow(node_selection)), ] %>%
+    as.data.frame(stringsAsFactors = FALSE)
+
+  # Add replacement to `graph$node_selection`
+  node_selection <-
+    node_selection %>%
+    dplyr::bind_rows(tibble::tibble(node = replacement))
+
+  return(node_selection)
+}
+
+# Function to replace the `edge_selection` df with
+# different node ID values
+#' @importFrom tibble tibble as_tibble
+#' @importFrom dplyr bind_rows
+replace_graph_edge_selection <- function(graph, edge_id, from_node, to_node) {
+
+  # Get the graph's `edge_selection` df
+  edge_selection <- graph$edge_selection
+
+  # Remove objects in `graph$edge_selection`
+  edge_selection <-
+    edge_selection %>%
+    tibble::as_tibble() %>%
+    .[-seq(1, nrow(edge_selection)), ] %>%
+    as.data.frame(stringsAsFactors = FALSE)
+
+  # Add replacement to `graph$edge_selection`
+  edge_selection <-
+    edge_selection %>%
+    dplyr::bind_rows(
+      tibble::tibble(
+        edge = edge_id,
+        from = from_node,
+        to = to_node))
+
+  return(edge_selection)
+}
+
+create_empty_nsdf <- function() {
+
+  # Create empty `nsdf`
+  nsdf <-
+    tibble::tibble(
+      node = as.integer(NA))[-1, ] %>%
+    as.data.frame(stringsAsFactors = FALSE)
+
+  return(nsdf)
+}
+
+create_empty_esdf <- function() {
+
+  # Create empty `esdf`
+  esdf <-
+    tibble::tibble(
+      edge = as.integer(NA),
+      from = as.integer(NA),
+      to = as.integer(NA))[-1, ] %>%
+    as.data.frame(stringsAsFactors = FALSE)
+
+  return(esdf)
+}
+
 # Function to determine whether a node or edge
 # attribute has values that are all non-NA and
 # are unique
