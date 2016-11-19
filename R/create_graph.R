@@ -104,6 +104,7 @@
 #' #> 3  3 type_5     3 rectangle    9.4
 #' #> 4  4 type_2     4 rectangle    2.7
 #' @importFrom dplyr bind_rows
+#' @importFrom tibble tibble
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,
@@ -197,6 +198,23 @@ create_graph <- function(nodes_df = NULL,
       rel = as.character(NA),
       stringsAsFactors = FALSE)[-1, ]
 
+  ## DF: `node_selection`
+
+  # Create an empty node selection data frame (`nsdf`)
+  nsdf <-
+    tibble::tibble(
+      node = as.integer(NA))[-1, ] %>%
+    as.data.frame(stringsAsFactors = FALSE)
+
+  ## DF: `edge_selection`
+
+  # Create an empty edge selection data frame (`esdf`)
+  esdf <-
+    tibble::tibble(
+      from = as.integer(NA),
+      to = as.integer(NA))[-1, ] %>%
+    as.data.frame(stringsAsFactors = FALSE)
+
   ## DF: `graph_log`
 
   # Create an empty `graph_log` data frame
@@ -222,6 +240,8 @@ create_graph <- function(nodes_df = NULL,
                            TRUE, FALSE),
          last_node = 0,
          last_edge = 0,
+         node_selection = nsdf,
+         edge_selection = esdf,
          graph_log = graph_log)
 
   attr(graph, "class") <- "dgr_graph"
