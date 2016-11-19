@@ -7,7 +7,10 @@ graph_object_valid <- function(graph) {
 
   # Check for all component names to be present
   if (!all(c("graph_info", "nodes_df", "edges_df",
-             "global_attrs", "directed", "last_node") %in%
+             "global_attrs", "directed",
+             "last_node", "last_edge",
+             "node_selection", "edge_selection",
+             "graph_log") %in%
            names(graph))) {
     return(FALSE)
   }
@@ -22,6 +25,8 @@ graph_object_valid <- function(graph) {
     inherits(graph$global_attrs$value, "character") == FALSE,
     inherits(graph$global_attrs$attr_type, "character") == FALSE,
     inherits(graph$directed, "logical") == FALSE,
+    inherits(graph$node_selection, "data.frame") == FALSE,
+    inherits(graph$edge_selection, "data.frame") == FALSE,
     inherits(graph$graph_log, "data.frame") == FALSE)) {
     return(FALSE)
   }
