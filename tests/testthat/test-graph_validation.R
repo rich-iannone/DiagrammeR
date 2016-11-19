@@ -185,3 +185,32 @@ test_that("Using an empty graph with trigger an error", {
   expect_error(trav_out_edge(empty_graph))
   expect_error(trav_out_node(empty_graph))
 })
+
+test_that("Using an graph with no edges with trigger an error", {
+
+  # Create a graph with nodes but no edges
+  graph_no_edges <-
+    create_graph() %>%
+    add_n_nodes(5)
+
+  # Expect errors with all functions that check
+  # for an empty graph
+  expect_error(delete_edge(graph_no_edges))
+  expect_error(delete_edges_ws(graph_no_edges))
+  expect_error(recode_edge_attrs(graph_no_edges))
+  expect_error(rename_edge_attrs(graph_no_edges))
+  expect_error(rescale_edge_attrs(graph_no_edges))
+  expect_error(rev_edge_dir(graph_no_edges))
+  expect_error(select_edges(graph_no_edges))
+  expect_error(select_edges_by_node_id(graph_no_edges))
+  expect_error(select_last_edge(graph_no_edges))
+  expect_error(select_rev_edges_ws(graph_no_edges))
+  expect_error(trav_both(graph_no_edges))
+  expect_error(trav_both_edge(graph_no_edges))
+  expect_error(trav_in(graph_no_edges))
+  expect_error(trav_in_edge(graph_no_edges))
+  expect_error(trav_in_node(graph_no_edges))
+  expect_error(trav_out(graph_no_edges))
+  expect_error(trav_out_edge(graph_no_edges))
+  expect_error(trav_out_node(graph_no_edges))
+})
