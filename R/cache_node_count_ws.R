@@ -22,13 +22,10 @@
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a graph with 10 nodes and 9 edges
+#' # Create a graph with 5 nodes and 4 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(10) %>%
-#'   add_edges_w_string(
-#'     "1->2 1->3 2->4 2->5 3->6
-#'      3->7 4->8 4->9 5->10")
+#'   add_path(5)
 #'
 #' # Cache a count of nodes after creating a selection
 #' graph <-
@@ -58,7 +55,7 @@ cache_node_count_ws <- function(graph) {
 
   # Cache numeric vector of single length
   # in the graph
-  graph$cache <- length(graph$selection$nodes)
+  graph$cache <- nrow(graph$node_selection)
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

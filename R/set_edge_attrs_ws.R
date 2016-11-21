@@ -68,8 +68,8 @@ set_edge_attrs_ws <- function(graph,
 
   # Get vectors of node ID values for the
   # `from` and `to` nodes
-  from <- graph$selection$edges$from
-  to <- graph$selection$edges$to
+  from <- graph$edge_selection$from
+  to <- graph$edge_selection$to
 
   # Call the `set_edge_attrs()` function
   # and update the graph

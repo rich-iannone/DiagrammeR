@@ -61,7 +61,7 @@
 #'   select_nodes_by_id(3) %>%
 #'   trav_both_edge %>%
 #'   get_selection()
-#' #> [1] "1 -> 3" "3 -> 5"
+#' #> [1] 2 5
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, filtering to those edges that have
@@ -71,7 +71,7 @@
 #'   trav_both_edge(
 #'     conditions = "is.na(rel)") %>%
 #'   get_selection()
-#' #> [1] "1 -> 2"
+#' #> [1] 1
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, filtering to those edges that have
@@ -93,7 +93,7 @@
 #'   trav_both_edge(
 #'     conditions = "rel == 'C'") %>%
 #'   get_selection()
-#' #> [1] "2 -> 5"
+#' #> [1] 4
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, filtering to those edges that
@@ -104,7 +104,7 @@
 #'   trav_both_edge(
 #'     conditions = "rel %in% c('B', 'C')") %>%
 #'   get_selection()
-#' #> [1] "2 -> 4" "2 -> 5"
+#' #> [1] 3 4
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use multiple conditions for the
@@ -117,7 +117,7 @@
 #'       "rel %in% c('B', 'C')",
 #'       "values > 4.0")) %>%
 #'   get_selection()
-#' #> [1] "2 -> 4" "2 -> 5"
+#' #> [1] 3 4
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use multiple conditions with
@@ -129,7 +129,7 @@
 #'     conditions = c(
 #'       "rel %in% c('B', 'C') | values > 4.0")) %>%
 #'   get_selection()
-#' #> [1] "1 -> 2" "2 -> 4" "2 -> 5"
+#' #> [1] 1 3 4
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use a regular expression as
@@ -139,7 +139,7 @@
 #'   trav_both_edge(
 #'     conditions = "grepl('B|C', rel)") %>%
 #'   get_selection()
-#' #> [1] "2 -> 4" "2 -> 5"
+#' #> [1] 3 4
 #' @importFrom dplyr filter filter_ select select_ full_join rename everything coalesce bind_cols
 #' @importFrom tibble as_tibble
 #' @export trav_both_edge
@@ -176,7 +176,7 @@ trav_both_edge <- function(graph,
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
-  starting_nodes <- graph$selection$nodes
+  starting_nodes <- graph$node_selection$node
 
   # Get the graph's edge data frame
   edf <- graph$edges_df
@@ -337,12 +337,17 @@ trav_both_edge <- function(graph,
     return(graph)
   }
 
-  # Remove the node selection in graph
-  graph$selection$nodes <- NULL
+  # Add the edge information to the active selection
+  # of edges in `graph$edge_selection`
+  graph$edge_selection <-
+    replace_graph_edge_selection(
+      graph = graph,
+      edge_id = valid_edges$id,
+      from_node = valid_edges$from,
+      to_node = valid_edges$to)
 
-  # Update edge selection in graph
-  graph$selection$edges$from <- valid_edges$from
-  graph$selection$edges$to <- valid_edges$to
+  # Replace `graph$node_selection` with an empty df
+  graph$node_selection <- create_empty_nsdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

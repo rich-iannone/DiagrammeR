@@ -47,7 +47,7 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(1) %>%
-#'   select_last_node %>%
+#'   select_last_node() %>%
 #'   add_n_nodes_ws(5, "from")
 #'
 #' # Get the graph's nodes
@@ -93,10 +93,14 @@ add_n_nodes_ws <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  # If no node selection is available, return
-  # the graph unchanged
-  if (is.null(graph$selection$nodes)) {
-    return(graph)
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes and existing nodes are required.")
+  }
+
+  # Validation: Graph object has valid node selection
+  if (graph_contains_node_selection(graph) == FALSE) {
+    stop("There is no selection of nodes, so, no new nodes can be added.")
   }
 
   # If the graph is directed and there is no value
@@ -130,7 +134,7 @@ add_n_nodes_ws <- function(graph,
 
   # Get a vector of nodes available in the
   # graph's selection
-  nodes_in_selection <- graph$selection$nodes
+  nodes_in_selection <- graph$node_selection$node
 
   # Case where nodes are added with edges from the
   # selected nodes

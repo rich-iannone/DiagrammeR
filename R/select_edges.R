@@ -50,7 +50,7 @@
 #' # Verify that an edge selection has been made
 #' # using the `get_selection()` function
 #' get_selection(graph)
-#' #> [1] "1 -> 4"
+#' #> [1] 1
 #'
 #' # Select edges based on the relationship label
 #' # being `z`
@@ -64,7 +64,7 @@
 #' # recall that the `2` -> `3` edge uniquely has the
 #' # `z` relationship label
 #' get_selection(graph)
-#' #> [1] "2 -> 3"
+#' #> [1] 2
 #'
 #' # Select edges based on the edge value attribute
 #' # being greater than 3.0 (first clearing the current
@@ -77,11 +77,10 @@
 #'
 #' # Verify that the correct edge selection has been
 #' # made; in this case, edges `1` -> `4` and
-#' # `3` -> `1` have values for `value` greater than
-#' # 3.0
+#' # `3` -> `1` have values for `value` > 3.0
 #' get_selection(graph)
-#' #> [1] "1 -> 4" "3 -> 1"
-#' @importFrom dplyr filter_ filter select
+#' #> [1] 1 3
+#' @importFrom dplyr filter_ filter select rename
 #' @export select_edges
 
 select_edges <- function(graph,
@@ -108,13 +107,8 @@ select_edges <- function(graph,
     stop("The graph contains no edges, so, no selections can be made.")
   }
 
-  # Remove any selection of nodes
-  graph$selection$nodes <- NULL
-
-  # Remove `graph$selection` if empty
-  if (length(graph$selection) == 0) {
-    graph$selection <- NULL
-  }
+  # Create bindings for specific variables
+  id <- NULL
 
   # Extract the graph's internal edf
   edges_df <- graph$edges_df
@@ -160,31 +154,18 @@ select_edges <- function(graph,
       dplyr::filter(to %in% to_val)
   }
 
-  # Select only the `to` and `from` columns
+  # Select only the `id`, `to`, and `from` columns
   edges_selected <-
     edges_df %>%
-    dplyr::select(from, to)
+    dplyr::select(id, from, to) %>%
+    dplyr::rename(edge = id)
 
-  # Create a character vector representing edges
-  edges_selected <-
-    paste(edges_df$from, "->", edges_df$to)
+  # Create an integer vector representing edges
+  edges_selected <- edges_selected$edge
 
-  # Obtain vectors of node IDs associated with edges
+  # Obtain vector with node ID selection of nodes
   # already present
-  if (!is.null(graph$selection)) {
-    if (!is.null(graph$selection$edges)) {
-      from_prev_selection <- graph$selection$edges$from
-      to_prev_selection <- graph$selection$edges$to
-
-      edges_prev_selection <-
-        sapply(1:length(from_prev_selection),
-               function(x) paste(from_prev_selection[x],
-                                 "->",
-                                 to_prev_selection[x]))
-    }
-  } else {
-    edges_prev_selection <- vector(mode = "character")
-  }
+  edges_prev_selection <- graph$edge_selection$edge
 
   # Incorporate the selected edges into the
   # graph's selection
@@ -199,19 +180,19 @@ select_edges <- function(graph,
       setdiff(edges_prev_selection, edges_selected)
   }
 
-  from_combined <-
-    gsub("\\s", "",
-         gsub("(.*)(->|--)(.*)",
-              "\\1", edges_combined))
+  # Filter `edges_df` to provide the correct esdf
+  edges_combined <-
+    graph$edges_df %>%
+    dplyr::filter(id %in% edges_combined) %>%
+    dplyr::select(id, from, to) %>%
+    dplyr::rename(edge = id)
 
-  to_combined <-
-    gsub("\\s", "",
-         gsub("(.*)(->|--)(.*)",
-              "\\3", edges_combined))
+  # Add the edge ID values to the active selection
+  # of nodes in `graph$node_selection`
+  graph$edge_selection <- edges_combined
 
-  # Create selection of edges
-  graph$selection$edges$from <- as.integer(from_combined)
-  graph$selection$edges$to <- as.integer(to_combined)
+  # Replace `graph$node_selection` with an empty df
+  graph$node_selection <- create_empty_nsdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

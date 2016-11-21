@@ -97,6 +97,7 @@ select_nodes_by_degree <- function(graph,
   }
 
   nodes_df <- graph$nodes_df
+
   nodes_selected <- nodes_df[, 1]
 
   if (grepl("^>[0-9].*", degree_values)) {
@@ -309,15 +310,9 @@ select_nodes_by_degree <- function(graph,
     return(graph)
   }
 
-  # Obtain vector of node IDs selection of nodes
+  # Obtain vector with node ID selection of nodes
   # already present
-  if (!is.null(graph$selection)) {
-    if (!is.null(graph$selection$nodes)) {
-      nodes_prev_selection <- graph$selection$nodes
-    }
-  } else {
-    nodes_prev_selection <- vector(mode = "integer")
-  }
+  nodes_prev_selection <- graph$node_selection$node
 
   # Incorporate selected nodes into graph's
   # selection section
@@ -332,8 +327,15 @@ select_nodes_by_degree <- function(graph,
       setdiff(nodes_prev_selection, nodes_selected)
   }
 
-  # Update the selection of nodes
-  graph$selection$nodes <- nodes_combined
+  # Add the node ID values to the active selection
+  # of nodes in `graph$node_selection`
+  graph$node_selection <-
+    replace_graph_node_selection(
+      graph = graph,
+      replacement = nodes_combined)
+
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

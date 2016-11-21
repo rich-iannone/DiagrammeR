@@ -211,6 +211,7 @@ create_graph <- function(nodes_df = NULL,
   # Create an empty edge selection data frame (`esdf`)
   esdf <-
     tibble::tibble(
+      edge = as.integer(NA),
       from = as.integer(NA),
       to = as.integer(NA))[-1, ] %>%
     as.data.frame(stringsAsFactors = FALSE)

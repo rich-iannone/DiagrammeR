@@ -42,30 +42,44 @@ get_selection <- function(graph) {
     stop("The graph object is not valid.")
   }
 
+  # Determine which type of selection is available
+  if (nrow(graph$node_selection) > 0) {
+    selection_type <- "node"
+  } else if (nrow(graph$edge_selection) > 0) {
+    selection_type <- "edge"
+  } else {
+    selection_type <- NA
+  }
+
   # If there is no selection available, return NA
-  if (is.null(graph$selection)) {
+  if (is.na(selection_type)) {
     return(NA)
   }
 
-  if (names(graph$selection) == "nodes") {
-    selection <- graph$selection[[1]]
-    return(sort(selection))
+  # For a selection of nodes, return a vector of node
+  # ID values
+  if (selection_type == "node") {
+    return(as.integer(sort(graph$node_selection$node)))
   }
 
-  if (names(graph$selection) == "edges") {
-    selection_from <- graph$selection[[1]][[1]]
-    selection_to <- graph$selection[[1]][[2]]
-
-    if (is_graph_directed(graph)) {
-      selection <-
-        paste(selection_from, selection_to, sep = " -> ")
-    }
-
-    if (is_graph_directed(graph) == FALSE) {
-      selection <-
-        paste(selection_from, selection_to, sep = " - ")
-    }
-
-    return(selection)
+  # For a selection of edges, return a vector of edge
+  # ID values
+  if (selection_type == "edge") {
+    return(as.integer(sort(graph$edge_selection$edge)))
   }
+
+  # if (names(graph$selection) == "edge") {
+  #   selection_from <- graph$selection[[1]][[1]]
+  #   selection_to <- graph$selection[[1]][[2]]
+  #
+  #   if (is_graph_directed(graph)) {
+  #     selection <-
+  #       paste(selection_from, selection_to, sep = " -> ")
+  #   }
+  #
+  #   if (is_graph_directed(graph) == FALSE) {
+  #     selection <-
+  #       paste(selection_from, selection_to, sep = " - ")
+  #   }
+  # }
 }

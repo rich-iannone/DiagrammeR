@@ -13,8 +13,6 @@
 #' conditions for the traversal.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(dplyr)
-#'
 #' # Set a seed
 #' set.seed(23)
 #'
@@ -170,7 +168,7 @@ trav_both <- function(graph,
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
-  starting_nodes <- graph$selection$nodes
+  starting_nodes <- graph$node_selection$node
 
   # Get the graph's edge data frame
   edf <- graph$edges_df
@@ -216,8 +214,15 @@ trav_both <- function(graph,
     return(graph)
   }
 
-  # Update the node selection in graph
-  graph$selection$nodes <- valid_nodes$id
+  # Add the node ID values to the active selection
+  # of nodes in `graph$node_selection`
+  graph$node_selection <-
+    replace_graph_node_selection(
+      graph = graph,
+      replacement = valid_nodes$id)
+
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

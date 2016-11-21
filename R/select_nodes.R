@@ -134,15 +134,9 @@ select_nodes <- function(graph,
     nodes_selected <- intersect(nodes, nodes_selected)
   }
 
-  # Obtain vector of node IDs selection of nodes
+  # Obtain vector with node ID selection of nodes
   # already present
-  if (!is.null(graph$selection)) {
-    if (!is.null(graph$selection$nodes)) {
-      nodes_prev_selection <- graph$selection$nodes
-    }
-  } else {
-    nodes_prev_selection <- vector(mode = "integer")
-  }
+  nodes_prev_selection <- graph$node_selection$node
 
   # Incorporate the selected nodes into the
   # graph's selection
@@ -155,8 +149,14 @@ select_nodes <- function(graph,
   }
 
   # Add the node ID values to the active selection
-  # of nodes
-  graph$selection$nodes <- nodes_combined
+  # of nodes in `graph$node_selection`
+  graph$node_selection <-
+    replace_graph_node_selection(
+      graph = graph,
+      replacement = nodes_combined)
+
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

@@ -48,20 +48,17 @@
 #' # Create a subgraph based on the selection
 #' subgraph <- create_subgraph_ws(graph)
 #'
-#' # Verify that the nodes in the subgraph's
-#' # internal node data frame match the
-#' # selection in the `graph` object
-#' all(
-#'   get_node_ids(subgraph) ==
-#'   get_selection(graph))
-#' #> [1] TRUE
+#' # Display the graph's node data frame
+#' get_node_df(subgraph)
+#' #>   id type label value
+#' #> 1  1 <NA>  <NA>   3.5
+#' #> 2  3 <NA>  <NA>   9.4
+#' #> 3  5 <NA>  <NA>   5.2
 #'
-#' # Check the edges available in the subgraph,
-#' # there are usually fewer edges and the
-#' # remaining edges have node IDs in the set
-#' # of those used in the selection of nodes
-#' get_edges(subgraph, return_type = "vector")
-#' #> [1] "5 -> 3"
+#' # Display the graph's edge data frame
+#' get_edge_df(subgraph)
+#' #>   id from to  rel
+#' #> 1  4    5  3 <NA>
 #' @importFrom dplyr filter semi_join
 #' @importFrom stringr str_split
 #' @export create_subgraph_ws
@@ -76,19 +73,20 @@ create_subgraph_ws <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # Stop function if the graph does not contain a selection
-  if (is.null(graph$selection)) {
-    stop("The graph does not contain an active selection")
+  # Validation: Graph object has valid selection of
+  # nodes or edges
+  if (!(graph_contains_node_selection(graph) |
+      graph_contains_edge_selection(graph))) {
+    stop("There is no selection of nodes or edges available.")
   }
 
   # Create bindings for specific variables
   id <- from <- to <- NULL
 
-  # Get the active selection
-  selection <- get_selection(graph)
-
   # Filter the nodes in the graph
-  if (inherits(selection, c("numeric", "integer"))) {
+  if (graph_contains_node_selection(graph)) {
+
+    selection <- graph$node_selection$node
 
     ndf <-
       graph$nodes_df %>%
@@ -104,17 +102,10 @@ create_subgraph_ws <- function(graph) {
   }
 
   # Filter the edges in the graph
-  if (inherits(selection, "character")) {
+  if (graph_contains_edge_selection(graph)) {
 
-    selection_from <-
-      stringr::str_split(selection, " -> ") %>%
-      sapply("[[", 1) %>%
-      as.integer
-
-    selection_to <-
-      stringr::str_split(selection, " -> ") %>%
-      sapply("[[", 2) %>%
-      as.integer
+    selection_from <- graph$edge_selection$from
+    selection_to <- graph$edge_selection$to
 
     selection_df <-
       data.frame(from = selection_from, to = selection_to)

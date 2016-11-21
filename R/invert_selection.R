@@ -42,6 +42,7 @@
 #' # Verify that the node selection has been changed
 #' get_selection(graph)
 #' #> [1] 2 4
+#' @importFrom dplyr filter select
 #' @export invert_selection
 
 invert_selection <- function(graph) {
@@ -54,58 +55,62 @@ invert_selection <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # Stop function if the graph does not contain
-  # a selection
-  if (is.null(graph$selection)) {
-    stop("The graph does not contain an active selection")
+  # Validation: Graph object has valid selection of
+  # nodes or edges
+  if (!(graph_contains_node_selection(graph) |
+        graph_contains_edge_selection(graph))) {
+    stop("There is no selection of nodes or edges available.")
   }
 
-  # Invert the nodes in the selection
-  if (!is.null(graph$selection$nodes)) {
-    selection_nodes <- graph$selection$nodes
+  # Create bindings for specific variables
+  id <- from <- to <- NULL
 
-    graph$selection$nodes <-
-      get_node_ids(graph)[which(!(get_node_ids(graph) %in%
-                                 selection_nodes))]
+  # Invert the nodes in the selection
+  if (nrow(graph$node_selection) > 0) {
+
+    selection_nodes <- graph$node_selection$node
+
+    ndf <- graph$nodes_df
+
+    inverted_nodes <-
+      ndf %>%
+      dplyr::filter(!(id %in% selection_nodes)) %>%
+      dplyr::select(id)
+
+    # Add the node ID values to the active selection
+    # of nodes in `graph$node_selection`
+    graph$node_selection <-
+      replace_graph_node_selection(
+        graph = graph,
+        replacement = inverted_nodes$id)
+
+    # Replace `graph$edge_selection` with an empty df
+    graph$edge_selection <- create_empty_esdf()
   }
 
   # Invert the edges in the selection
-  if (!is.null(graph$selection$edges)) {
+  if (nrow(graph$edge_selection) > 0) {
 
-    selection_from <- graph$selection$edges$from
-    selection_to <- graph$selection$edges$to
+    selection_edges <- graph$edge_selection$edge
 
-    edges_selection <-
-      sapply(1:length(selection_from),
-             function(x) paste(selection_from[x],
-                               "->",
-                               selection_to[x]))
-
-    graph_from <- graph$edges_df$from
-    graph_to <- graph$edges_df$to
-
-    edges_graph <-
-      sapply(1:length(graph_from),
-             function(x) paste(graph_from[x],
-                               "->",
-                               graph_to[x]))
+    edf <- graph$edges_df
 
     inverted_edges <-
-      edges_graph[which(!(edges_graph %in%
-                            edges_selection))]
+      edf %>%
+      dplyr::filter(!(id %in% selection_edges)) %>%
+      dplyr::select(id, from, to)
 
-    inverted_from <-
-      gsub("\\s", "",
-           gsub("(.*)(->|--)(.*)", "\\1",
-                inverted_edges))
+    # Add the node ID values to the active selection
+    # of nodes in `graph$node_selection`
+    graph$edge_selection <-
+      replace_graph_edge_selection(
+        graph = graph,
+        edge_id = inverted_edges$id,
+        from_node = inverted_edges$from,
+        to_node = inverted_edges$to)
 
-    inverted_to <-
-      gsub("\\s", "",
-           gsub("(.*)(->|--)(.*)", "\\3",
-                inverted_edges))
-
-    graph$selection$edges$from <- as.integer(inverted_from)
-    graph$selection$edges$to <- as.integer(inverted_to)
+    # Replace `graph$node_selection` with an empty df
+    graph$node_selection <- create_empty_nsdf()
   }
 
   # Update the `graph_log` df with an action

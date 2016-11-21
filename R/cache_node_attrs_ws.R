@@ -29,23 +29,30 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
-#' set.seed(25)
+#' set.seed(23)
 #'
-#' # Create a graph with 10 nodes and 9 edges
+#' # Create a graph with 6 nodes and 5 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(10) %>%
+#'   add_path(6) %>%
 #'   set_node_attrs(
-#'     "value", rnorm(node_count(.), 5, 2)) %>%
-#'   add_edges_w_string(
-#'     "1->2 1->3 2->4 2->5 3->6
-#'      3->7 4->8 4->9 5->10")
+#'     "value", rnorm(node_count(.), 5, 2))
 #'
 #' # Select all nodes where the node attribute `value`
 #' # is less than 5
 #' graph <-
 #'   graph %>%
 #'   select_nodes("value < 5.0")
+#'
+#' # Show the graph's node data frame
+#' graph %>% get_node_df
+#' #>   id type label    value
+#' #> 1  1 <NA>     1 5.090874
+#' #> 2  2 <NA>     2 8.151559
+#' #> 3  3 <NA>     3 5.436577
+#' #> 4  4 <NA>     4 2.906929
+#' #> 5  5 <NA>     5 4.422623
+#' #> 6  6 <NA>     6 5.963101
 #'
 #' # Cache available values from the node attribute
 #' # `value` from the nodes that are selected; ensure
@@ -57,8 +64,8 @@
 #' # Get the cached vector and get its
 #' # difference from 5
 #' graph %>% get_cache() %>% {x <- .; 5 - x}
-#' #> [1] 3.0002598 0.8910665 0.1157822 3.4855753
-#' #> [5] 2.6499060 1.0958678 2.9127686
+#' #> [1] 2.0930707 0.5773773
+#' @importFrom dplyr filter select_ rename_ mutate
 #' @export cache_node_attrs_ws
 
 cache_node_attrs_ws <- function(graph,
@@ -78,45 +85,57 @@ cache_node_attrs_ws <- function(graph,
     stop("There is no selection of nodes available.")
   }
 
-  nodes_df <-
-    get_node_df(graph)[which(get_node_df(graph)[, 1]
-                             %in% graph$selection$nodes), ]
+  # Extract the graph's internal ndf
+  nodes_df <- graph$nodes_df
 
-  if (any(node_attr %in%
-          colnames(nodes_df)[-1])) {
+  # Create bindings for specific variables
+  id <- to_cache <- NULL
 
-    nodes_attr_vector <-
-      nodes_df[, which(colnames(nodes_df) %in%
-                        node_attr)]
+  # Stop function if value for `node_attr` is not
+  # a valid node attribute
+  if (!(node_attr %in% colnames(nodes_df)[-1])) {
+    stop("The value provided in `node_attr` is not a valid node attribute.")
+  }
 
-    if (!is.null(mode)) {
-      if (mode == "numeric") {
-        nodes_attr_vector <-
-          as.numeric(nodes_attr_vector)
+  # Get the selection of node ID values
+  node_ids <- graph$node_selection$node
 
-        nodes_attr_vector <-
-          nodes_attr_vector[which(!is.na(nodes_attr_vector))]
-      }
-      if (mode == "character") {
-        nodes_attr_vector <- as.character(nodes_attr_vector)
-      }
+  # Get the values to cache in a data frame
+  nodes_cache <-
+    nodes_df %>%
+    dplyr::filter(id %in% node_ids) %>%
+    dplyr::select_(node_attr) %>%
+    dplyr::rename_(.dots = setNames(node_attr, "to_cache"))
+
+  # If `numeric` or `character` supplied in `mode`,
+  # coerce the values to cache accordingly
+  if (!is.null(mode)) {
+    if (mode == "numeric") {
+      nodes_cache <-
+        nodes_cache %>%
+        dplyr::mutate(to_cache = as.numeric(to_cache))
     }
 
-    # Cache vector of node attributes
-    # in the graph
-    graph$cache <- nodes_attr_vector
-
-    # Update the `graph_log` df with an action
-    graph$graph_log <-
-      add_action_to_log(
-        graph_log = graph$graph_log,
-        version_id = nrow(graph$graph_log) + 1,
-        function_used = "cache_node_attrs_ws",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
-
-    return(graph)
+    if (mode == "character") {
+      nodes_cache <-
+        nodes_cache %>%
+        dplyr::mutate(to_cache = as.character(to_cache))
+    }
   }
+
+  # Cache vector of node attributes in the graph
+  graph$cache <- nodes_cache[,1]
+
+  # Update the `graph_log` df with an action
+  graph$graph_log <-
+    add_action_to_log(
+      graph_log = graph$graph_log,
+      version_id = nrow(graph$graph_log) + 1,
+      function_used = "cache_node_attrs_ws",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df))
+
+  return(graph)
 }

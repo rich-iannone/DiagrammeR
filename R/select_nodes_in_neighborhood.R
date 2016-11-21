@@ -140,15 +140,15 @@ select_nodes_in_neighborhood <- function(graph,
   # nodes as neighbors
   nodes_selected <- unique(unlist(nodes))
 
-  # Obtain vector of node IDs selection of nodes
-  # already present
-  if (!is.null(graph$selection)) {
-    if (!is.null(graph$selection$nodes)) {
-      nodes_prev_selection <- graph$selection$nodes
-    }
-  } else {
-    nodes_prev_selection <- vector(mode = "integer")
+  # If no node ID values in `nodes_selected` return
+  # the graph without a changed node selection
+  if (length(nodes_selected) == 0) {
+    return(graph)
   }
+
+  # Obtain vector with node ID selection of nodes
+  # already present
+  nodes_prev_selection <- graph$node_selection$node
 
   # Incorporate selected nodes into graph's selection
   if (set_op == "union") {
@@ -162,8 +162,15 @@ select_nodes_in_neighborhood <- function(graph,
       setdiff(nodes_prev_selection, nodes_selected)
   }
 
-  # Update the selection of nodes
-  graph$selection$nodes <- nodes_combined
+  # Add the node ID values to the active selection
+  # of nodes in `graph$node_selection`
+  graph$node_selection <-
+    replace_graph_node_selection(
+      graph = graph,
+      replacement = nodes_combined)
+
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

@@ -41,13 +41,24 @@ select_last_node <- function(graph) {
     stop("The graph contains no nodes, so, no node can be selected.")
   }
 
-  nodes <- graph$nodes_df[, 1]
-  last_node <- nodes[length(nodes)]
-  graph$selection$nodes <- last_node
+  # Create bindings for specific variables
+  id <- NULL
 
-  if (!is.null(graph$selection$edges)) {
-    graph$selection$edges <- NULL
-  }
+  # Extract the graph's internal ndf
+  nodes_df <- graph$nodes_df
+
+  # Get the last node created
+  last_node <-
+    nodes_df[nrow(nodes_df), ] %>%
+    dplyr::select(id) %>%
+    dplyr::rename(node = id)
+
+  # Set the node ID value as the active selection
+  # of nodes in `graph$node_selection`
+  graph$node_selection <- last_node
+
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

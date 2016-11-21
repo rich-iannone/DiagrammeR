@@ -64,15 +64,9 @@ delete_edges_ws <- function(graph) {
     stop("There is no selection of edges available.")
   }
 
-  # If no edge selection is available, return the
-  # graph unchanged
-  if (is.null(graph$selection$edges)) {
-    return(graph)
-  }
-
   # Get vectors of the nodes in edges to be deleted
-  from_delete <- graph$selection$edges$from
-  to_delete <- graph$selection$edges$to
+  from_delete <- graph$edge_selection$from
+  to_delete <- graph$edge_selection$to
 
   # Delete all edges in selection
   for (i in 1:length(from_delete)) {
@@ -83,8 +77,26 @@ delete_edges_ws <- function(graph) {
         to = to_delete[i])
   }
 
-  # Remove all edges in selection
-  graph$selection$edges <- NULL
+  # Replace `graph$node_selection` with an empty df
+  graph$node_selection <- create_empty_nsdf()
+
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
+
+  # Remove any `delete_edge` records from the graph log
+  graph$graph_log <-
+    graph$graph_log[-((nrow(graph$graph_log) - (i-1)):nrow(graph$graph_log)), ]
+
+  # Update the `graph_log` df with an action
+  graph$graph_log <-
+    add_action_to_log(
+      graph_log = graph$graph_log,
+      version_id = nrow(graph$graph_log) + 1,
+      function_used = "delete_edges_ws",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df))
 
   return(graph)
 }

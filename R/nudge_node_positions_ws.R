@@ -122,7 +122,7 @@ nudge_node_positions_ws <- function(graph,
   }
 
   # Get the current selection of nodes
-  nodes <- graph$selection$nodes
+  nodes <- graph$node_selection$node
 
   # Determine which of the nodes selected have position
   # information set (i.e., not NA)

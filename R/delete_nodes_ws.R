@@ -64,7 +64,7 @@ delete_nodes_ws <- function(graph) {
   }
 
   # Get a vector of the nodes to be deleted
-  nodes_to_delete <- graph$selection$nodes
+  nodes_to_delete <- graph$node_selection$node
 
   # Delete all nodes in `nodes_to_delete`
   for (i in 1:length(nodes_to_delete)) {
@@ -75,8 +75,15 @@ delete_nodes_ws <- function(graph) {
         node = nodes_to_delete[i])
   }
 
-  # Remove all nodes in selection
-  graph$selection$nodes <- NULL
+  # Replace `graph$node_selection` with an empty df
+  graph$node_selection <- create_empty_nsdf()
+
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
+
+  # Remove any `delete_node` records from the graph log
+  graph$graph_log <-
+    graph$graph_log[-((nrow(graph$graph_log) - (i-1)):nrow(graph$graph_log)), ]
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

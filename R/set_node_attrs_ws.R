@@ -74,7 +74,7 @@ set_node_attrs_ws <- function(graph,
   }
 
   # Get vector of node ID values
-  nodes <- graph$selection$nodes
+  nodes <- graph$node_selection$node
 
   # Call the `set_node_attrs()` function
   # and update the graph

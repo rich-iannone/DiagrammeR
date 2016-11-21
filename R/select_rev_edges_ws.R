@@ -50,8 +50,8 @@
 #'
 #' # Get the current selection of edges
 #' get_selection(graph)
-#' #> "2 -> 3" "1 -> 4" "3 -> 2" "4 -> 1"
-#' @importFrom dplyr filter_ bind_rows
+#' #> [1] 1 2 3 4
+#' @importFrom dplyr filter_ bind_rows select rename arrange
 #' @importFrom tibble as_tibble
 #' @export select_rev_edges_ws
 
@@ -76,9 +76,12 @@ select_rev_edges_ws <- function(graph,
     stop("There is no selection of edges available.")
   }
 
+  # Create bindings for specific variables
+  id <- from <- to <- edge <- NULL
+
   # Extract the selection of edges
-  edges_from <- graph$selection$edges$from
-  edges_to <- graph$selection$edges$to
+  edges_from <- graph$edge_selection$from
+  edges_to <- graph$edge_selection$to
 
   # Extract the graph's internal edf
   edf <- graph$edges_df
@@ -127,11 +130,19 @@ select_rev_edges_ws <- function(graph,
     edges <- reverse_edges
   }
 
-  # Create a new selection of edges
-  if (nrow(edges) > 0) {
-    graph$selection$edges$from <- as.integer(edges$from)
-    graph$selection$edges$to <- as.integer(edges$to)
-  }
+  # Modify `edges` to create a correct esdf
+  edges <-
+    edges %>%
+    dplyr::select(id, from, to) %>%
+    dplyr::rename(edge = id) %>%
+    dplyr::arrange(edge)
+
+  # Add the edge ID values to the active selection
+  # of edges in `graph$edge_selection`
+  graph$edge_selection <- edges
+
+  # Replace `graph$node_selection` with an empty df
+  graph$node_selection <- create_empty_nsdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

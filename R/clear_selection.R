@@ -54,10 +54,9 @@ clear_selection <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # Clear the selection in the graph, if it exists
-  if (!is.null(graph$selection)) {
-    graph$selection <- NULL
-  }
+  # Clear the selection of nodes and edges in the graph
+  graph$node_selection <- create_empty_nsdf()
+  graph$edge_selection <- create_empty_esdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

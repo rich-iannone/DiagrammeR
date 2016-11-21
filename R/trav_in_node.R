@@ -13,8 +13,6 @@
 #' conditions for the traversal.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' library(dplyr)
-#'
 #' # Set a seed
 #' set.seed(23)
 #'
@@ -117,7 +115,7 @@
 #'   trav_in_node(
 #'     conditions = "values < 5.0") %>%
 #'   get_selection()
-#' #> [1] "1 -> 3"
+#' #> [1] 2
 #'
 #' # Traverse from the edge `1` -> `2` to
 #' # the node `2` using multiple conditions
@@ -163,13 +161,12 @@ trav_in_node <- function(graph,
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
-  starting_edge_from <- graph$selection$edges$from
-  starting_edge_to <- graph$selection$edges$to
+  starting_edge_from <- graph$edge_selection$from
+  starting_edge_to <- graph$edge_selection$to
 
   # Get the graph's node data frame
   ndf <- graph$nodes_df
 
-  # 1 -> 3
   # Find all nodes that are connected to the
   # starting nodes via incoming edges
   valid_nodes <-
@@ -202,13 +199,15 @@ trav_in_node <- function(graph,
     return(graph)
   }
 
-  # Remove the edge selection in graph
-  graph$selection$edges$from <- NULL
-  graph$selection$edges$to <- NULL
-  graph$selection$edges <- NULL
+  # Add the node ID values to the active selection
+  # of nodes in `graph$node_selection`
+  graph$node_selection <-
+    replace_graph_node_selection(
+      graph = graph,
+      replacement = valid_nodes$id)
 
-  # Update the node selection in graph
-  graph$selection$nodes <- valid_nodes$id
+  # Replace `graph$edge_selection` with an empty df
+  graph$edge_selection <- create_empty_esdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

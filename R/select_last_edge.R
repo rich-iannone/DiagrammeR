@@ -29,7 +29,8 @@
 #'
 #' # Get the current selection
 #' graph %>% get_selection()
-#' #> [1] "2 -> 3"
+#' #> [1] 2
+#' @importFrom dplyr select rename
 #' @export select_last_edge
 
 select_last_edge <- function(graph) {
@@ -47,18 +48,24 @@ select_last_edge <- function(graph) {
     stop("The graph contains no edges, so, no edge can be selected.")
   }
 
-  from <- graph$edges_df[, 1]
-  to <- graph$edges_df[, 2]
+  # Create bindings for specific variables
+  id <- from <- to <- NULL
 
-  last_from <- from[length(from)]
-  last_to <- to[length(to)]
+  # Extract the graph's internal edf
+  edges_df <- graph$edges_df
 
-  graph$selection$edges$from <- last_from
-  graph$selection$edges$to <- last_to
+  # Get the last edge created
+  last_edge <-
+    edges_df[nrow(edges_df), ] %>%
+    dplyr::select(id, from, to) %>%
+    dplyr::rename(edge = id)
 
-  if (!is.null(graph$selection$nodes)) {
-    graph$selection$nodes <- NULL
-  }
+  # Set the edge ID value as the active selection
+  # of edges in `graph$edge_selection`
+  graph$edge_selection <- last_edge
+
+  # Replace `graph$node_selection` with an empty df
+  graph$node_selection <- create_empty_nsdf()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
