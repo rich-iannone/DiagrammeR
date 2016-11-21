@@ -125,7 +125,7 @@ add_edge <- function(graph,
     }
   }
 
-  # Use both `bind_rows()` to add an edge
+  # Use `bind_rows()` to add an edge
   if (!is.null(graph$edges_df)) {
 
     combined_edges <-
