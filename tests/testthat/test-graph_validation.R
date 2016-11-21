@@ -158,6 +158,7 @@ test_that("Using an empty graph with trigger an error", {
   expect_error(add_edge_df(empty_graph))
   expect_error(add_edges_from_table(empty_graph))
   expect_error(add_edges_w_string(empty_graph))
+  expect_error(add_n_nodes_ws(empty_graph))
   expect_error(delete_edge(empty_graph))
   expect_error(delete_edges_ws(empty_graph))
   expect_error(delete_node(empty_graph))
