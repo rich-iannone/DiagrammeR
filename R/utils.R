@@ -89,8 +89,10 @@ replace_graph_node_selection <- function(graph, replacement) {
   # Remove objects in `graph$node_selection`
   node_selection <-
     node_selection %>%
-    tibble::as_tibble() %>%
-    .[-seq(1, nrow(node_selection)), ] %>%
+    tibble::as_tibble()
+
+  node_selection <-
+    node_selection[-seq(1, nrow(node_selection)), 1] %>%
     as.data.frame(stringsAsFactors = FALSE)
 
   # Add replacement to `graph$node_selection`
@@ -115,8 +117,10 @@ replace_graph_edge_selection <- function(graph, edge_id, from_node, to_node) {
   # Remove objects in `graph$edge_selection`
   edge_selection <-
     edge_selection %>%
-    tibble::as_tibble() %>%
-    .[-seq(1, nrow(edge_selection)), ] %>%
+    tibble::as_tibble()
+
+  edge_selection <-
+    edge_selection[-seq(1, nrow(edge_selection)), 1] %>%
     as.data.frame(stringsAsFactors = FALSE)
 
   # Add replacement to `graph$edge_selection`
