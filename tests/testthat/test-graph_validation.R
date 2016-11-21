@@ -9,6 +9,9 @@ test_that("Using an invalid graph with trigger an error", {
   graph$nodes_df <- NULL
   invalid_graph <- graph
 
+  # Create a valid graph
+  valid_graph <- create_graph()
+
   # Expect errors with all functions that perform
   # graph validation
   expect_error(add_balanced_tree(invalid_graph))
@@ -145,6 +148,9 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(trav_out(invalid_graph))
   expect_error(trav_out_edge(invalid_graph))
   expect_error(trav_out_node(invalid_graph))
+
+  expect_error(combine_graphs(x = invalid_graph, y = valid_graph))
+  expect_error(combine_graphs(x = valid_graph, y = invalid_graph))
 })
 
 test_that("Using an empty graph with trigger an error", {
