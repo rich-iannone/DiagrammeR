@@ -191,6 +191,32 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect an error when calling `add_edge()` on an empty graph
   expect_error(add_edge(graph = create_graph()))
+
+  # Create a graph with 4 nodes and labels for each
+  graph_2 <-
+    create_graph() %>%
+    add_node(label = "one") %>%
+    add_node(label = "two") %>%
+    add_node(label = "three") %>%
+    add_node(label = "four")
+
+  # Add two edges to the graph using the node
+  # `label` values (specifying `use_labels == TRUE`)
+  graph_2 <-
+    graph_2 %>%
+    add_edge(
+      "three", "four", "L",
+      use_labels = TRUE) %>%
+    add_edge(
+      "four", "one", "L",
+      use_labels = TRUE)
+
+  # Expect that 2 edges are available in the graph
+  expect_equal(edge_count(graph_2), 2)
+
+  # Expect that the edges in the graph are:
+  # `3 -> 4` and `4 -> 1`
+  expect_true(all(c("3 -> 4", "4 -> 1") %in% get_edges(graph_2)))
 })
 
 test_that("adding several nodes to a graph at once is possible", {
