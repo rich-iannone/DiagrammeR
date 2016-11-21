@@ -203,6 +203,18 @@ test_that("Caching node attrs (w/ selection) is possible", {
   expect_equivalent(
     as.character(graph$nodes_df$value[c(1, 2, 6, 7, 8, 9, 10)]),
     graph$cache)
+
+  # Expect an error if the value provided in `node_attr`
+  # is not a valid node attribute
+  expect_error(
+    create_graph() %>%
+      add_n_nodes(10) %>%
+      set_node_attrs(
+        "value", rnorm(node_count(.), 5, 2)) %>%
+      add_edges_w_string(
+        "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10") %>%
+      select_nodes("value < 5.0") %>%
+      cache_node_attrs_ws("value_2", "numeric"))
 })
 
 test_that("Caching edge attrs (w/ selection) is possible", {
