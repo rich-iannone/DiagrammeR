@@ -61,19 +61,16 @@ graph <-
 # Create a subgraph based on the selection
 subgraph <- create_subgraph_ws(graph)
 
-# Verify that the nodes in the subgraph's
-# internal node data frame match the
-# selection in the `graph` object
-all(
-  get_node_ids(subgraph) ==
-  get_selection(graph))
-#> [1] TRUE
+# Display the graph's node data frame
+get_node_df(subgraph)
+#>   id type label value
+#> 1  1 <NA>  <NA>   3.5
+#> 2  3 <NA>  <NA>   9.4
+#> 3  5 <NA>  <NA>   5.2
 
-# Check the edges available in the subgraph,
-# there are usually fewer edges and the
-# remaining edges have node IDs in the set
-# of those used in the selection of nodes
-get_edges(subgraph, return_type = "vector")
-#> [1] "5 -> 3"
+# Display the graph's edge data frame
+get_edge_df(subgraph)
+#>   id from to  rel
+#> 1  4    5  3 <NA>
 }
 

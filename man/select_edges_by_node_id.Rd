@@ -32,19 +32,10 @@ monotonically increasing integer values, then
 numeric ranges can be provided for the selection.
 }
 \examples{
-# Create a graph with a tree structure that's
-# 3 levels deep (begins with node `1`, branching
-# by 3 nodes at each level); the resulting graph
-# contains 13 nodes, numbered `1` through `13`
+# Create a graph with 5 nodes
 graph <-
   create_graph() \%>\%
-  add_node("a") \%>\%
-  select_nodes() \%>\%
-  add_n_nodes_ws(3, "from", "b") \%>\%
-  clear_selection() \%>\%
-  select_nodes("type == 'b'") \%>\%
-  add_n_nodes_ws(3, "from", "c") \%>\%
-  clear_selection()
+  add_path(5)
 
 # Create a graph selection by selecting edges
 # associated with nodes `1` and `2`
@@ -54,7 +45,7 @@ graph <-
 
 # Get the selection of edges
 graph \%>\% get_selection()
-#> "1 -> 2" "1 -> 3" "1 -> 4"
+#> [1] 1 2
 
 # Perform another selection of nodes, with nodes
 # `1`, `2`, and `4`
@@ -65,8 +56,7 @@ graph <-
 
 # Get the selection of edges
 graph \%>\% get_selection
-#> [1] "1 -> 2" "1 -> 3" "1 -> 4" "4 -> 5"
-#> [5] "4 -> 6" "4 -> 7"
+#> [1] 1 2 3 4
 
 # Get a fraction of the edges selected over all
 # the edges in the graph

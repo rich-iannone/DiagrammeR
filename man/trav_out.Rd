@@ -27,8 +27,6 @@ optional filter by node attribute can limit the set
 of nodes traversed to.
 }
 \examples{
-library(dplyr)
-
 # Set a seed
 set.seed(23)
 

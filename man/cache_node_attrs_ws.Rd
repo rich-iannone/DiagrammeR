@@ -44,23 +44,30 @@ the following traversal functions:
 }
 \examples{
 # Set a seed
-set.seed(25)
+set.seed(23)
 
-# Create a graph with 10 nodes and 9 edges
+# Create a graph with 6 nodes and 5 edges
 graph <-
   create_graph() \%>\%
-  add_n_nodes(10) \%>\%
+  add_path(6) \%>\%
   set_node_attrs(
-    "value", rnorm(node_count(.), 5, 2)) \%>\%
-  add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->6
-     3->7 4->8 4->9 5->10")
+    "value", rnorm(node_count(.), 5, 2))
 
 # Select all nodes where the node attribute `value`
 # is less than 5
 graph <-
   graph \%>\%
   select_nodes("value < 5.0")
+
+# Show the graph's node data frame
+graph \%>\% get_node_df
+#>   id type label    value
+#> 1  1 <NA>     1 5.090874
+#> 2  2 <NA>     2 8.151559
+#> 3  3 <NA>     3 5.436577
+#> 4  4 <NA>     4 2.906929
+#> 5  5 <NA>     5 4.422623
+#> 6  6 <NA>     6 5.963101
 
 # Cache available values from the node attribute
 # `value` from the nodes that are selected; ensure
@@ -72,7 +79,6 @@ graph <-
 # Get the cached vector and get its
 # difference from 5
 graph \%>\% get_cache() \%>\% {x <- .; 5 - x}
-#> [1] 3.0002598 0.8910665 0.1157822 3.4855753
-#> [5] 2.6499060 1.0958678 2.9127686
+#> [1] 2.0930707 0.5773773
 }
 

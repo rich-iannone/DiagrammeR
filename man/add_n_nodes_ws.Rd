@@ -66,7 +66,7 @@ the following traversal functions:
 graph <-
   create_graph() \%>\%
   add_n_nodes(1) \%>\%
-  select_last_node \%>\%
+  select_last_node() \%>\%
   add_n_nodes_ws(5, "from")
 
 # Get the graph's nodes

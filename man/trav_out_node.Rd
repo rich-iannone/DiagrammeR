@@ -27,8 +27,6 @@ optional filter by node attribute can limit the set
 of nodes traversed to.
 }
 \examples{
-library(dplyr)
-
 # Set a seed
 set.seed(23)
 
@@ -131,7 +129,7 @@ graph \%>\%
   trav_out_node(
     conditions = "values < 7.0") \%>\%
   get_selection()
-#> [1] "1 -> 3"
+#> [1] 2
 
 # Traverse from the edge `1` -> `2` to
 # the node `2` using multiple conditions

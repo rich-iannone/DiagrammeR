@@ -84,7 +84,7 @@ graph \%>\%
   select_nodes_by_id(1) \%>\%
   trav_out_edge() \%>\%
   get_selection()
-#> [1] "1 -> 2" "1 -> 3"
+#> [1] 1 2
 
 # Traverse from node `1` to any outbound
 # edges, filtering to those edges that have
@@ -94,7 +94,7 @@ graph \%>\%
   trav_out_edge(
     conditions = "is.na(rel)") \%>\%
   get_selection()
-#> [1] "1 -> 2"
+#> [1] 1
 
 # Traverse from node `3` to any outbound
 # edges, filtering to those edges that have
@@ -105,7 +105,7 @@ graph \%>\%
   trav_out_edge(
     conditions = "values > 5.0") \%>\%
   get_selection()
-#> [1] "3 -> 5"
+#> [1] 5
 
 # Traverse from node `1` to any outbound
 # edges, filtering to those edges that
@@ -116,7 +116,7 @@ graph \%>\%
   trav_out_edge(
     conditions = "rel == 'A'") \%>\%
   get_selection()
-#> [1] "1 -> 3"
+#> [1] 2
 
 # Traverse from node `2` to any outbound
 # edges, filtering to those edges that
@@ -127,7 +127,7 @@ graph \%>\%
   trav_out_edge(
     conditions = "rel \%in\% c('B', 'C')") \%>\%
   get_selection()
-#> [1] "2 -> 4" "2 -> 5"
+#> [1] 3 4
 
 # Traverse from node `2` to any outbound
 # edges, and use multiple conditions for the
@@ -140,7 +140,7 @@ graph \%>\%
       "rel \%in\% c('B', 'C')",
       "values >= 5.0")) \%>\%
   get_selection()
-#> [1] "2 -> 5"
+#> [1] 4
 
 # Traverse from node `2` to any outbound
 # edges, and use multiple conditions with
@@ -152,7 +152,7 @@ graph \%>\%
     conditions = c(
       "rel \%in\% c('B', 'C') | values > 6.0")) \%>\%
   get_selection()
-#> [1] "2 -> 4" "2 -> 5"
+#> [1] 3 4
 
 # Traverse from node `2` to any outbound
 # edges, and use a regular expression as
@@ -162,6 +162,6 @@ graph \%>\%
   trav_out_edge(
     conditions = "grepl('B|C', rel)") \%>\%
   get_selection()
-#> [1] "2 -> 4" "2 -> 5"
+#> [1] 3 4
 }
 

@@ -64,6 +64,6 @@ graph <-
 
 # Get the current selection of edges
 get_selection(graph)
-#> "2 -> 3" "1 -> 4" "3 -> 2" "4 -> 1"
+#> [1] 1 2 3 4
 }
 

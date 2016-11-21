@@ -42,6 +42,6 @@ graph <-
 
 # Get the current selection
 graph \%>\% get_selection()
-#> [1] "2 -> 3"
+#> [1] 2
 }
 

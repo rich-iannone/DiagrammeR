@@ -13,13 +13,10 @@ cache_edge_count_ws(graph)
 }
 \value{
 a graph object of class \code{dgr_graph}.
-# Create a graph with 10 nodes and 9 edges
+# Create a graph with 5 nodes and 4 edges
 graph <-
   create_graph() %>%
-  add_n_nodes(10) %>%
-  add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->6
-    3->7 4->8 4->9 5->10")
+  add_path(5)
 
 # Cache a count of edges after creating a selection
 graph <-
@@ -29,7 +26,7 @@ graph <-
 
 # Get the number of edges stored in the cache
 graph %>% get_cache()
-#> [1] 3
+#> [1] 4
 }
 \description{
 From a graph object of class

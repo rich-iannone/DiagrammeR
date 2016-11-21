@@ -40,27 +40,34 @@ or \code{trav_both_edge()}.
 }
 \examples{
 # Set a seed
-set.seed(25)
+set.seed(23)
 
-# Create a graph with 10 nodes and 9 edges
+# Create a graph with 6 nodes and 5 edges
 graph <-
   create_graph() \%>\%
-  add_n_nodes(10) \%>\%
-  add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->6
-     3->7 4->8 4->9 5->10") \%>\%
+  add_path(6) \%>\%
   set_edge_attrs(
     "value", rnorm(edge_count(.), 5, 2))
 
-# Select all edges where the edge attribute `value`
-# is less than 5
+# Select all edges where the edge attribute
+# `value` is less than 5
 graph <-
   graph \%>\%
   select_edges("value < 5.0")
 
-# Cache available values from the edge attribute
-# `value` from the edges that are selected; ensure
-# that the cached vector is numeric
+# Show the graph's edge data frame
+graph \%>\% get_edge_df
+#>   id from to  rel    value
+#> 1  1    1  2 <NA> 5.090874
+#> 2  2    2  3 <NA> 8.151559
+#> 3  3    3  4 <NA> 5.436577
+#> 4  4    4  5 <NA> 2.906929
+#> 5  5    5  6 <NA> 4.422623
+
+# Cache available values from the edge
+# attribute `value` from the edges that
+# are selected; ensure that the cached
+# vector is numeric
 graph <-
   graph \%>\%
   cache_edge_attrs_ws("value", "numeric")
@@ -68,7 +75,6 @@ graph <-
 # Get the cached vector and get its
 # difference from 5
 graph \%>\% get_cache() \%>\% {x <- .; 5 - x}
-#> [1] 3.0002598 0.8910665 0.1157822
-#> [4] 2.6499060 1.0958678
+#> [1] 2.0930707 0.5773773
 }
 
