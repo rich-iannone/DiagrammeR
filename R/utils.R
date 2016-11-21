@@ -57,53 +57,23 @@ graph_contains_edges <- function(graph) {
 # Function to check whether a graph contains a valid edge selection
 graph_contains_edge_selection <- function(graph) {
 
-  # Check if graph contains any selection
-  if (is.null(graph$selection)) {
+  # Check if graph contains an edge selection
+  if (nrow(graph$edge_selection) > 0) {
+    return(TRUE)
+  } else {
     return(FALSE)
   }
-
-  # Check if graph contains edge selection
-  if (is.null(graph$selection$edges)) {
-    return(FALSE)
-  }
-
-  # Check if graph contains `from` and `to` integer vectors
-  if (is.null(graph$selection$edges$from) |
-      is.null(graph$selection$edges$to)) {
-    return(FALSE)
-  }
-
-  # Check if the `from` and `to` vectors have length > 0,
-  # and are of equal length
-  if (length(graph$selection$edges$from) == 0 |
-      length(graph$selection$edges$to) == 0 |
-      length(graph$selection$edges$from) !=
-      length(graph$selection$edges$to)) {
-    return(FALSE)
-  }
-
-  return(TRUE)
 }
 
 # Function to check whether a graph contains a valid node selection
 graph_contains_node_selection <- function(graph) {
 
-  # Check if graph contains any selection
-  if (is.null(graph$selection)) {
-    return(FALSE)
-  }
-
   # Check if graph contains a node selection
-  if (is.null(graph$selection$nodes)) {
+  if (nrow(graph$node_selection) > 0) {
+    return(TRUE)
+  } else {
     return(FALSE)
   }
-
-  # Check if the `nodes` vector has length > 0
-  if (length(graph$selection$nodes) == 0) {
-    return(FALSE)
-  }
-
-  return(TRUE)
 }
 
 
@@ -126,7 +96,9 @@ replace_graph_node_selection <- function(graph, replacement) {
   # Add replacement to `graph$node_selection`
   node_selection <-
     node_selection %>%
-    dplyr::bind_rows(tibble::tibble(node = replacement))
+    dplyr::bind_rows(
+      tibble::tibble(
+        node = as.integer(replacement)))
 
   return(node_selection)
 }
@@ -152,9 +124,9 @@ replace_graph_edge_selection <- function(graph, edge_id, from_node, to_node) {
     edge_selection %>%
     dplyr::bind_rows(
       tibble::tibble(
-        edge = edge_id,
-        from = from_node,
-        to = to_node))
+        edge = as.integer(edge_id),
+        from = as.integer(from_node),
+        to = as.integer(to_node)))
 
   return(edge_selection)
 }
