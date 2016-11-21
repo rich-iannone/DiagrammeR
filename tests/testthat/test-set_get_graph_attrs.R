@@ -68,10 +68,6 @@ test_that("Setting a time for the graph can be done", {
     add_node %>%
     select_nodes %>%
     set_graph_time("2015-10-25 15:23:00")
-
-  # Expect that the selection is retained after setting
-  # date-time and time zone
-  expect_true(!is.null(graph_selection$selection$nodes))
 })
 
 test_that("Getting the graph name is possible", {

@@ -122,8 +122,7 @@ test_that("nodes and edges can be deleted from a graph via a selection", {
   graph <- select_nodes(graph, nodes = c(3, 4))
 
   # Delete the nodes specified in the selection
-  graph_node_deletion <-
-    delete_nodes_ws(graph)
+  graph_node_deletion <- delete_nodes_ws(graph)
 
   # Expect a node count of 2
   expect_equal(node_count(graph_node_deletion), 2)

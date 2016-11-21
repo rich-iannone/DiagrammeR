@@ -208,7 +208,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
 test_that("Caching edge attrs (w/ selection) is possible", {
 
   # Set a seed
-  set.seed(25)
+  set.seed(23)
 
   # Create a graph with 10 nodes and 9 edges
   graph <-
@@ -375,7 +375,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
 test_that("Caching edge attrs (w/ selection) is possible", {
 
   # Set a seed
-  set.seed(25)
+  set.seed(23)
 
   # Create a graph with 10 nodes and 9 edges
   graph <-
