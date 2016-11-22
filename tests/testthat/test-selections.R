@@ -674,3 +674,30 @@ test_that("selecting reverse edges with an edge selection is possible", {
       clear_selection() %>%
       select_rev_edges_ws())
 })
+
+test_that("selecting nodes by node degree is possible", {
+
+  # Create a graph
+  graph <-
+    create_random_graph(
+      n = 35, m = 125,
+      set_seed = 23)
+
+  # Expect specific nodes when making a selection
+  # of nodes which have a total degree (indegree
+  # + outdegree) of exactly 9
+  expect_equal(
+    graph %>%
+      select_nodes_by_degree("deg == 9") %>%
+      get_selection(),
+    c(2, 9, 10, 14, 17, 19, 31, 33))
+
+  # Expect specific nodes when making a selection
+  # of nodes which have a total degree greater
+  # than or equal to 9
+  expect_equal(
+    graph %>%
+      select_nodes_by_degree("deg >= 9") %>%
+      get_selection(),
+    c(2, 6, 9, 10, 14, 17, 19, 22, 25, 29, 31, 33))
+})
