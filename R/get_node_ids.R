@@ -53,7 +53,7 @@
 #'   conditions = c("color == 'blue'",
 #'                  "value > 5"))
 #' #> [1] 3
-#' @importFrom dplyr filter_ select_
+#' @importFrom dplyr filter_
 #' @export get_node_ids
 
 get_node_ids <- function(x,
