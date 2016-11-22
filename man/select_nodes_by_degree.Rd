@@ -5,21 +5,20 @@
 \title{Select nodes in the graph based on their degree
 values}
 \usage{
-select_nodes_by_degree(graph, degree_type, degree_values, set_op = "union")
+select_nodes_by_degree(graph, expressions, set_op = "union")
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{degree_type}{the type of degree, either:
-\code{in} for the indegree, \code{out} for the
-outdegree, and \code{both} or \code{degree} for the
-total degree (i.e., indegree + outdegree).}
-
-\item{degree_values}{a logical expression with a
-comparison operator (\code{>}, \code{>=}, \code{<},
-\code{<=}, \code{==}, or \code{!=}) followed by a
-number for numerical filtering.}
+\item{expressions}{one or more expressions for
+filtering of nodes by degree values. Use a
+combination of a degree type (\code{deg} for
+total degree, \code{indeg} for indegree, and
+\code{outdeg} for outdegree) with a comparison
+operator and values for comparison (e.g., use
+\code{"deg >= 2"} to select nodes with a degree
+greater than or equal to 2).}
 
 \item{set_op}{the set operation to perform upon
 consecutive selections of graph nodes. This can
@@ -47,25 +46,25 @@ graph <-
 # Report which nodes have a total degree (indegree
 # + outdegree) of exactly 9
 graph \%>\%
-  select_nodes_by_degree("both", "==9") \%>\%
+  select_nodes_by_degree("deg == 9") \%>\%
   get_selection()
 #> [1]  2  9 10 14 17 19 31 33
 
 # Report which nodes have a total degree greater
 # than or equal to 9
 graph \%>\%
-  select_nodes_by_degree("both", ">=9") \%>\%
+  select_nodes_by_degree("deg >= 9") \%>\%
   get_selection()
 #> [1]  2  6  9 10 14 17 19 22 25 29 31 33
 
 # Combine two calls of `select_nodes_by_degree()`
-# to get those nodes with total degree less than 3
-# and total degree greater than 10 (by default,
-# those `select...()` functions `union` the sets of
-# nodes selected)
+# to get those nodes with total degree less than
+# 3 and total degree greater than 10 (by default,
+# those `select...()` functions `union` the sets
+# of nodes selected)
 graph \%>\%
-  select_nodes_by_degree("both", "<3") \%>\%
-  select_nodes_by_degree("both", ">10") \%>\%
+  select_nodes_by_degree("deg < 3") \%>\%
+  select_nodes_by_degree("deg > 10") \%>\%
   get_selection()
 #> [1]  6 16 22
 
@@ -75,18 +74,19 @@ graph \%>\%
 # key here is to `intersect` the sets of nodes
 # selected in the second call)
 graph \%>\%
-  select_nodes_by_degree("both", ">=3") \%>\%
-  select_nodes_by_degree("both", "<=10", "intersect") \%>\%
+  select_nodes_by_degree("deg >= 3") \%>\%
+  select_nodes_by_degree("deg <= 10", "intersect") \%>\%
   get_selection()
-#>  [1]  1  2  3  4  5  7  8  9 10 11 12 13 14 15 17 18
-#> [17] 19 20 21 23 24 25 26 27 28 29 30 31 32 33 34 35
+#>  [1]  1  2  3  4  5  7  8  9 10 11 12 13 14
+#> [14] 15 17 18 19 20 21 23 24 25 26 27 28 29
+#> [28] 30 31 32 33 34 35
 
 # Select all nodes with an indegree greater than 5,
 # then, apply a node attribute to those selected nodes
 # (coloring the selected nodes red)
 graph_2 <-
   graph \%>\%
-  select_nodes_by_degree("in", ">5") \%>\%
+  select_nodes_by_degree("indeg > 5") \%>\%
   set_node_attrs_ws("color", "red")
 
 # Get the selection of nodes
