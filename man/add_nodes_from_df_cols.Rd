@@ -4,7 +4,8 @@
 \alias{add_nodes_from_df_cols}
 \title{Add nodes from distinct values in data frame columns}
 \usage{
-add_nodes_from_df_cols(graph, df, columns, type = NULL)
+add_nodes_from_df_cols(graph, df, columns, type = NULL,
+  keep_duplicates = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -22,6 +23,13 @@ the nodes added to the graph.}
 \item{type}{an optional, single-length character
 vector that provides a group identifier for the
 nodes to be added to the graph.}
+
+\item{keep_duplicates}{an option to exclude
+incoming nodes where the any labels (i.e.,
+values found in columns of the specified
+\code{df}) match label values available in the
+graph's nodes. By default, this is set to
+\code{FALSE}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -67,5 +75,33 @@ graph \%>\% get_node_df()
 #> 4  4 <NA>     p
 #> 5  5 <NA>     q
 #> 6  6 <NA>     x
+
+# Add new nodes from columns 3 and 4;
+# We can specify the columns by their
+# numbers as well
+graph <-
+  graph \%>\%
+  add_nodes_from_df_cols(
+    df = df,
+    columns = 3:4)
+
+# Show the graph's node data frame; note
+# that a node didn't get made with
+# `label == "1"` since that was already
+# in the graph (this behavior can be
+# changed with `keep_duplicates = TRUE`)
+graph \%>\% get_node_df()
+#>    id type label
+#> 1   1 <NA>     1
+#> 2   2 <NA>     2
+#> 3   3 <NA>     f
+#> 4   4 <NA>     p
+#> 5   5 <NA>     q
+#> 6   6 <NA>     x
+#> 7   7 <NA>     5
+#> 8   8 <NA>     3
+#> 9   9 <NA>     a
+#> 10 10 <NA>     v
+#> 11 11 <NA>     h
 }
 
