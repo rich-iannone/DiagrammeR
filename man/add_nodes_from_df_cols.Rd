@@ -38,24 +38,34 @@ the specified columns.
 # Create a simple graph
 graph <-
   create_graph() \%>\%
-  add_cycle(5)
+  add_path(2)
 
 # Create a data frame from which several
 # columns have values designated as graph nodes
 df <-
   data.frame(
-    col_1 = c("f", "y", "q", "p", "p"),
-    col_2 = c("q", "x", "u", "e", "q"),
-    col_3 = c(1, 5, 3, 5, 6),
-    col_4 = c("a", "v", "h", "l", "s"),
+    col_1 = c("f", "p", "q"),
+    col_2 = c("q", "x", "f"),
+    col_3 = c(1, 5, 3),
+    col_4 = c("a", "v", "h"),
     stringsAsFactors = FALSE)
 
 # Add nodes from columns `col_1` and `col_2`
 # from the data frame to the graph object
 graph <-
+  graph \%>\%
   add_nodes_from_df_cols(
     df = df,
     columns = c("col_1", "col_2"))
 
+# Show the graph's node data frame
+graph \%>\% get_node_df()
+#>   id type label
+#> 1  1 <NA>     1
+#> 2  2 <NA>     2
+#> 3  3 <NA>     f
+#> 4  4 <NA>     p
+#> 5  5 <NA>     q
+#> 6  6 <NA>     x
 }
 
