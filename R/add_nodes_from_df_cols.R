@@ -17,6 +17,12 @@
 #' @param type an optional, single-length character
 #' vector that provides a group identifier for the
 #' nodes to be added to the graph.
+#' @param keep_duplicates an option to exclude
+#' incoming nodes where the any labels (i.e.,
+#' values found in columns of the specified
+#' \code{df}) match label values available in the
+#' graph's nodes. By default, this is set to
+#' \code{FALSE}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a simple graph
@@ -51,13 +57,42 @@
 #' #> 4  4 <NA>     p
 #' #> 5  5 <NA>     q
 #' #> 6  6 <NA>     x
+#'
+#' # Add new nodes from columns 3 and 4;
+#' # We can specify the columns by their
+#' # numbers as well
+#' graph <-
+#'   graph %>%
+#'   add_nodes_from_df_cols(
+#'     df = df,
+#'     columns = 3:4)
+#'
+#' # Show the graph's node data frame; note
+#' # that a node didn't get made with
+#' # `label == "1"` since that was already
+#' # in the graph (this behavior can be
+#' # changed with `keep_duplicates = TRUE`)
+#' graph %>% get_node_df()
+#' #>    id type label
+#' #> 1   1 <NA>     1
+#' #> 2   2 <NA>     2
+#' #> 3   3 <NA>     f
+#' #> 4   4 <NA>     p
+#' #> 5   5 <NA>     q
+#' #> 6   6 <NA>     x
+#' #> 7   7 <NA>     5
+#' #> 8   8 <NA>     3
+#' #> 9   9 <NA>     a
+#' #> 10 10 <NA>     v
+#' #> 11 11 <NA>     h
 #' @importFrom dplyr bind_rows
 #' @export add_nodes_from_df_cols
 
 add_nodes_from_df_cols <- function(graph,
                                    df,
                                    columns,
-                                   type = NULL) {
+                                   type = NULL,
+                                   keep_duplicates = FALSE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -104,6 +139,13 @@ add_nodes_from_df_cols <- function(graph,
   # Get the unique set of nodes
   nodes <- unique(nodes)
 
+  # If `keep_duplicates` is set to FALSE, exclude
+  # duplicate labels from being added to the graph
+  if (keep_duplicates == FALSE) {
+    existing_labels <- graph$nodes_df$label
+    nodes <- setdiff(nodes, existing_labels)
+  }
+
   # Get the number of nodes
   n <- length(nodes)
 
@@ -121,8 +163,11 @@ add_nodes_from_df_cols <- function(graph,
         label = nodes)
   }
 
+  # Renumber the node ID values based on the
+  # last node in the graph
   new_nodes[, 1] <- new_nodes[, 1] + graph$last_node
 
+  # Add `new_nodes` ndf to the graph
   graph$nodes_df <-
     dplyr::bind_rows(graph$nodes_df, new_nodes)
 
