@@ -303,3 +303,35 @@ add_action_to_log <- function(graph_log,
 
   return(graph_log)
 }
+
+# Function to save the graph as an RDS file within
+# a subdirectory in the working directory
+save_graph_as_rds <- function(graph) {
+
+  # Construct a file name for the RDS
+  rds_filename <-
+    paste0(
+      graph$graph_info$graph_id, "_",
+      formatC(
+        graph$graph_log$version_id[nrow(graph$graph_log)],
+        width = 6, format = "d", flag = "0"), "_",
+      round(
+        as.integer(
+          graph$graph_log$time_modified[nrow(graph$graph_log)]), 4),
+      ".rds")
+
+  # Construct the subdirectory name for the RDS-based
+  # graph backups
+  rds_dir_name <-
+    paste0("backup_", graph$graph_info$graph_id)
+
+  # If directory doesn't exist, create the directory
+  # inside of the working directory
+  if (!dir.exists(rds_dir_name)) {
+    dir.create(rds_dir_name)
+  }
+
+  # Save the graph as an RDS file in the subdirectory
+  saveRDS(graph, file = paste0(rds_dir_name, "/", rds_filename))
+}
+
