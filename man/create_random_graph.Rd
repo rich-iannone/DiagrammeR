@@ -5,7 +5,7 @@
 \title{Create a randomized graph}
 \usage{
 create_random_graph(n, m, directed = TRUE, display_labels = TRUE,
-  set_seed = NULL)
+  set_seed = NULL, write_backups = FALSE)
 }
 \arguments{
 \item{n}{the number of nodes to use in the
@@ -21,6 +21,13 @@ graph should be undirected (default) or directed.}
 
 \item{set_seed}{supplying a value sets a random seed
 of the \code{Mersenne-Twister} implementation.}
+
+\item{write_backups}{an option to write incremental
+backups of changing graph states to disk. If
+\code{TRUE}, a subdirectory of the working directory
+will be used to store \code{RDS} files. The
+default value is \code{FALSE} so one has to opt in
+to use this functionality.}
 }
 \description{
 Create a graph of up to \code{n} nodes
