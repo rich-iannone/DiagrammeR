@@ -111,7 +111,8 @@ create_graph <- function(nodes_df = NULL,
                          edges_df = NULL,
                          directed = TRUE,
                          graph_name = NULL,
-                         attr_theme = "default") {
+                         attr_theme = "default",
+                         write_backups = FALSE) {
 
   ## DF: `graph_info`
 
@@ -135,6 +136,7 @@ create_graph <- function(nodes_df = NULL,
       graph_name = as.character(paste0("graph_", graph_id)),
       graph_time = graph_time,
       graph_tz = graph_tz,
+      write_backups = as.logical(write_backups),
       stringsAsFactors = FALSE)
 
   # Insert a user-defined `graph_name` if supplied
