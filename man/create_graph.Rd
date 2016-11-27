@@ -36,7 +36,7 @@ theme is called \code{default}.}
 backups of changing graph states to disk. If
 \code{TRUE}, a subdirectory of the working directory
 will be used to store \code{RDS} files. The
-default value is \code{TRUE} so one has to opt in
+default value is \code{FALSE} so one has to opt in
 to use this functionality.}
 }
 \value{
