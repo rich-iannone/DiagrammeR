@@ -26,7 +26,8 @@ create_random_graph <- function(n,
                                 m,
                                 directed = TRUE,
                                 display_labels = TRUE,
-                                set_seed = NULL) {
+                                set_seed = NULL,
+                                write_backups = FALSE) {
 
   # Create bindings for specific variables
   V1 <- V2 <- NULL
@@ -73,7 +74,8 @@ create_random_graph <- function(n,
     create_graph(
       nodes_df = ndf,
       edges_df = edf,
-      directed = ifelse(directed, TRUE, FALSE))
+      directed = ifelse(directed, TRUE, FALSE),
+      write_backups = write_backups)
 
   # Modify the `function_used` in the `graph_log` df
   graph$graph_log$function_used[1] <- "create_random_graph"
