@@ -5,7 +5,7 @@
 \title{Create a graph object}
 \usage{
 create_graph(nodes_df = NULL, edges_df = NULL, directed = TRUE,
-  graph_name = NULL, attr_theme = "default")
+  graph_name = NULL, attr_theme = "default", write_backups = FALSE)
 }
 \arguments{
 \item{nodes_df}{an optional data frame containing,
@@ -27,10 +27,17 @@ operations will be generated, respectively.}
 \item{graph_name}{an optional string for labeling
 the graph object.}
 
-\item{attr_theme}{The theme (i.e., collection of
+\item{attr_theme}{the theme (i.e., collection of
 \code{graph}, \code{node}, and \code{edge} global
 graph attributes) to use for this graph. The default
 theme is called \code{default}.}
+
+\item{write_backups}{an option to write incremental
+backups of changing graph states to disk. If
+\code{TRUE}, a subdirectory of the working directory
+will be used to store \code{RDS} files. The
+default value is \code{TRUE} so one has to opt in
+to use this functionality.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
