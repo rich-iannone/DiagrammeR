@@ -111,6 +111,11 @@ add_cycle <- function(graph,
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
+    # Write graph backup if the option is set
+    if (combined_graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = combined_graph)
+    }
+
     return(combined_graph)
   } else {
 
@@ -127,6 +132,11 @@ add_cycle <- function(graph,
 
     cycle_graph$graph_log <- graph_log
     cycle_graph$graph_info <- graph_info
+
+    # Write graph backup if the option is set
+    if (cycle_graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = cycle_graph)
+    }
 
     return(cycle_graph)
   }

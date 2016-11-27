@@ -94,6 +94,11 @@ add_node <- function(graph,
         nodes = nrow(graph$nodes_df),
         edges = nrow(graph$edges_df))
 
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
+
     return(graph)
   }
 
@@ -146,6 +151,11 @@ add_node <- function(graph,
           nodes = nrow(graph$nodes_df),
           edges = nrow(graph$edges_df))
 
+      # Write graph backup if the option is set
+      if (graph$graph_info$write_backups) {
+        save_graph_as_rds(graph = graph)
+      }
+
       return(graph)
     }
   }
@@ -194,6 +204,11 @@ add_node <- function(graph,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(graph$nodes_df),
         edges = nrow(graph$edges_df))
+
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
 
     return(graph)
   }
@@ -257,6 +272,11 @@ add_node <- function(graph,
           duration = graph_function_duration(time_function_start),
           nodes = nrow(graph$nodes_df),
           edges = nrow(graph$edges_df))
+
+      # Write graph backup if the option is set
+      if (graph$graph_info$write_backups) {
+        save_graph_as_rds(graph = graph)
+      }
 
       return(graph)
     }

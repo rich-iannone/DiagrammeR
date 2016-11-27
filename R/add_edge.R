@@ -157,6 +157,11 @@ add_edge <- function(graph,
         nodes = nrow(graph$nodes_df),
         edges = nrow(graph$edges_df))
 
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
+
     return(graph)
   }
 }

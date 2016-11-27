@@ -129,6 +129,11 @@ add_balanced_tree <- function(graph,
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
+    # Write graph backup if the option is set
+    if (combined_graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = combined_graph)
+    }
+
     return(combined_graph)
   } else {
 
@@ -145,6 +150,11 @@ add_balanced_tree <- function(graph,
 
     tree_graph$graph_log <- graph_log
     tree_graph$graph_info <- graph_info
+
+    # Write graph backup if the option is set
+    if (tree_graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = tree_graph)
+    }
 
     return(tree_graph)
   }

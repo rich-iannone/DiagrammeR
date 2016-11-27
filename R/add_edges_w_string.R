@@ -163,5 +163,10 @@ add_edges_w_string <- function(graph,
       nodes = nrow(new_graph$nodes_df),
       edges = nrow(new_graph$edges_df))
 
+  # Write graph backup if the option is set
+  if (new_graph$graph_info$write_backups) {
+    save_graph_as_rds(graph = new_graph)
+  }
+
   return(new_graph)
 }

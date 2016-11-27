@@ -168,5 +168,10 @@ combine_graphs <- function(x,
       nodes = nrow(x$nodes_df),
       edges = nrow(x$edges_df))
 
+  # Write graph backup if the option is set
+  if (x$graph_info$write_backups) {
+    save_graph_as_rds(graph = x)
+  }
+
   return(x)
 }
