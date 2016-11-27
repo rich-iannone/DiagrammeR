@@ -255,6 +255,8 @@ create_graph <- function(nodes_df = NULL,
 
   attr(graph, "class") <- "dgr_graph"
 
+  # If neither an ndf nor both ndf & edf provided,
+  # create an initialized graph with no nodes or edges
   if (all(c(is.null(nodes_df), is.null(edges_df)))) {
 
     # Update the `graph_log` df with an action
@@ -270,6 +272,11 @@ create_graph <- function(nodes_df = NULL,
 
     # Add the `graph_log` df to the graph object
     graph$graph_log <- graph_log
+
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
 
     # If neither an ndf nor both ndf & edf provided,
     # return the initialized graph with no nodes or edges
@@ -306,6 +313,11 @@ create_graph <- function(nodes_df = NULL,
 
     # Add the `graph_log` df to the graph object
     graph$graph_log <- graph_log
+
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
 
     return(graph)
 
@@ -356,6 +368,11 @@ create_graph <- function(nodes_df = NULL,
 
     # Add the `graph_log` df to the graph object
     graph$graph_log <- graph_log
+
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
 
     return(graph)
   }
