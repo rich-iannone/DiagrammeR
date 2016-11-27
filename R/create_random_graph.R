@@ -10,6 +10,12 @@
 #' @param display_labels display node labels.
 #' @param set_seed supplying a value sets a random seed
 #' of the \code{Mersenne-Twister} implementation.
+#' @param write_backups an option to write incremental
+#' backups of changing graph states to disk. If
+#' \code{TRUE}, a subdirectory of the working directory
+#' will be used to store \code{RDS} files. The
+#' default value is \code{FALSE} so one has to opt in
+#' to use this functionality.
 #' @examples
 #' # Create a random, directed graph with 50 nodes
 #' # and 75 edges
