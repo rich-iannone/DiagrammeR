@@ -17,10 +17,16 @@
 #' operations will be generated, respectively.
 #' @param graph_name an optional string for labeling
 #' the graph object.
-#' @param attr_theme The theme (i.e., collection of
+#' @param attr_theme the theme (i.e., collection of
 #' \code{graph}, \code{node}, and \code{edge} global
 #' graph attributes) to use for this graph. The default
 #' theme is called \code{default}.
+#' @param write_backups an option to write incremental
+#' backups of changing graph states to disk. If
+#' \code{TRUE}, a subdirectory of the working directory
+#' will be used to store \code{RDS} files. The
+#' default value is \code{TRUE} so one has to opt in
+#' to use this functionality.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # With `create_graph()` we can simply create an
