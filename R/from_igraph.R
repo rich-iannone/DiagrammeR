@@ -2,6 +2,12 @@
 #' @description Convert an igraph graph to a DiagrammeR
 #' graph object.
 #' @param igraph an igraph graph object.
+#' @param write_backups an option to write incremental
+#' backups of changing graph states to disk. If
+#' \code{TRUE}, a subdirectory of the working directory
+#' will be used to store \code{RDS} files. The
+#' default value is \code{FALSE} so one has to opt in
+#' to use this functionality.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a DiagrammeR graph object
@@ -21,7 +27,8 @@
 #' @importFrom dplyr arrange
 #' @export from_igraph
 
-from_igraph <- function(igraph) {
+from_igraph <- function(igraph,
+                        write_backups = FALSE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -145,7 +152,8 @@ from_igraph <- function(igraph) {
     create_graph(
       nodes_df = nodes_df,
       edges_df = edges_df,
-      directed = igraph::is_directed(igraph))
+      directed = igraph::is_directed(igraph),
+      write_backups = write_backups)
 
   return(graph)
 }

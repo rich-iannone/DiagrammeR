@@ -16,6 +16,12 @@
 #' \code{FALSE} then the diagonal values will be
 #' replaced with zero values before inclusion in any
 #' calculations.
+#' @param write_backups an option to write incremental
+#' backups of changing graph states to disk. If
+#' \code{TRUE}, a subdirectory of the working directory
+#' will be used to store \code{RDS} files. The
+#' default value is \code{FALSE} so one has to opt in
+#' to use this functionality.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an adjacency matrix
@@ -33,7 +39,8 @@
 from_adj_matrix <- function(x,
                             mode = "undirected",
                             weighted = FALSE,
-                            use_diag = TRUE) {
+                            use_diag = TRUE,
+                            write_backups = FALSE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -76,7 +83,7 @@ from_adj_matrix <- function(x,
   }
 
   # Generate the graph object from an igraph graph
-  graph <- from_igraph(igraph)
+  graph <- from_igraph(igraph, write_backups = write_backups)
 
   # Add edge ID values to `graph`
   if (nrow(graph$edges_df) > 0) {
