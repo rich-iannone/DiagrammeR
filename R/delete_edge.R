@@ -1,14 +1,17 @@
 #' Delete an edge from an existing graph object
 #' @description From a graph object of class
 #' \code{dgr_graph}, delete an existing edge by
-#' specifying a pair of node IDs corresponding to the
-#' edge direction.
+#' specifying either: (1) a pair of node IDs
+#' corresponding to the edge (keeping into
+#' consideration the direction of the edge in
+#' a directed graph), or (2) an edge ID.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param from a node ID from which the edge to be
 #' removed is outgoing.
 #' @param to a node ID to which the edge to be removed
 #' is incoming.
+#' @param id an edge ID of an edge to be removed.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph
@@ -59,8 +62,9 @@
 #' @export delete_edge
 
 delete_edge <- function(graph,
-                        from,
-                        to) {
+                        from = NULL,
+                        to = NULL,
+                        id = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -80,23 +84,40 @@ delete_edge <- function(graph,
     stop("The graph contains no edges, so, no selections can be made.")
   }
 
-  # Verify that each of the values for `from` and
-  # `to` are given as single values
-  from_is_single_value <-
-    ifelse(length(from) == 1, TRUE, FALSE)
+  # If a value is supplied for `id`, determine which
+  # node ID values the edge ID references
+  if (!is.null(id)) {
 
-  to_is_single_value <-
-    ifelse(length(to) == 1, TRUE, FALSE)
+    # Stop function if the edge ID value supplied is
+    # not in the graph's edf
+    if (!(id %in% graph$edges_df$id)) {
+      stop("The edge specified is not present in the graph.")
+    }
 
-  # Stop function if either node is not a single value
-  if (from_is_single_value == FALSE |
-      to_is_single_value == FALSE) {
-    stop("Only single nodes for `from` and `to` should be specified.")
+    # Get the node ID values for the edge ID
+    from_id <- graph$edges_df[which(graph$edges_df$id == id)[1], 2]
+    to_id <- graph$edges_df[which(graph$edges_df$id == id)[1], 3]
+
+  } else if (is.null(id)) {
+
+    # Verify that each of the values for `from` and
+    # `to` are given as single values
+    from_is_single_value <-
+      ifelse(length(from) == 1, TRUE, FALSE)
+
+    to_is_single_value <-
+      ifelse(length(to) == 1, TRUE, FALSE)
+
+    # Stop function if either node is not a single value
+    if (from_is_single_value == FALSE |
+        to_is_single_value == FALSE) {
+      stop("Single-length vectors for `from` and `to` should be specified.")
+    }
+
+    # Change variable names
+    from_id <- from
+    to_id <- to
   }
-
-  # Change variable names
-  from_id <- from
-  to_id <- to
 
   # Determine whether the pair of nodes provided
   # are in the graph
