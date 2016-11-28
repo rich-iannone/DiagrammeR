@@ -4,7 +4,7 @@
 \alias{delete_edge}
 \title{Delete an edge from an existing graph object}
 \usage{
-delete_edge(graph, from, to)
+delete_edge(graph, from = NULL, to = NULL, id = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -15,6 +15,8 @@ removed is outgoing.}
 
 \item{to}{a node ID to which the edge to be removed
 is incoming.}
+
+\item{id}{an edge ID of an edge to be removed.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -22,8 +24,10 @@ a graph object of class \code{dgr_graph}.
 \description{
 From a graph object of class
 \code{dgr_graph}, delete an existing edge by
-specifying a pair of node IDs corresponding to the
-edge direction.
+specifying either: (1) a pair of node IDs
+corresponding to the edge (keeping into
+consideration the direction of the edge in
+a directed graph), or (2) an edge ID.
 }
 \examples{
 # Create an empty graph
