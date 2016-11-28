@@ -4,7 +4,8 @@
 \alias{from_adj_matrix}
 \title{Create a graph using an adjacency matrix}
 \usage{
-from_adj_matrix(x, mode = "undirected", weighted = FALSE, use_diag = TRUE)
+from_adj_matrix(x, mode = "undirected", weighted = FALSE, use_diag = TRUE,
+  write_backups = FALSE)
 }
 \arguments{
 \item{x}{a square \code{matrix} object serving as
@@ -25,6 +26,13 @@ then the diagonal values will be included as is. If
 \code{FALSE} then the diagonal values will be
 replaced with zero values before inclusion in any
 calculations.}
+
+\item{write_backups}{an option to write incremental
+backups of changing graph states to disk. If
+\code{TRUE}, a subdirectory of the working directory
+will be used to store \code{RDS} files. The
+default value is \code{FALSE} so one has to opt in
+to use this functionality.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
