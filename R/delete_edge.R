@@ -58,6 +58,14 @@
 #'   delete_edge(1, 2) %>%
 #'   edge_count()
 #' #> [1] 0
+#'
+#' # The undirected graph has a single
+#' # edge with ID `1`; it can be
+#' # deleted by specifying `id`
+#' graph_undirected %>%
+#'   delete_edge(id = 1) %>%
+#'   edge_count()
+#' #> [1] 0
 #' @importFrom dplyr filter
 #' @export delete_edge
 
@@ -121,13 +129,10 @@ delete_edge <- function(graph,
 
   # Determine whether the pair of nodes provided
   # are in the graph
-  if (from_is_single_value &
-      to_is_single_value) {
-    nodes_available_in_graph <-
-      ifelse(all(c(from_id, to_id) %in%
-                   get_node_ids(graph)),
-             TRUE, FALSE)
-  }
+  nodes_available_in_graph <-
+    ifelse(
+      all(c(from_id, to_id) %in%
+            get_node_ids(graph)), TRUE, FALSE)
 
   # Stop function if both nodes not present in graph
   if (nodes_available_in_graph == FALSE) {
