@@ -74,5 +74,13 @@ graph_undirected \%>\%
   delete_edge(1, 2) \%>\%
   edge_count()
 #> [1] 0
+
+# The undirected graph has a single
+# edge with ID `1`; it can be
+# deleted by specifying `id`
+graph_undirected \%>\%
+  delete_edge(id = 1) \%>\%
+  edge_count()
+#> [1] 0
 }
 
