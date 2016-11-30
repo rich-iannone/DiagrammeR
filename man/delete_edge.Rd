@@ -11,10 +11,12 @@ delete_edge(graph, from = NULL, to = NULL, id = NULL)
 \code{dgr_graph}.}
 
 \item{from}{a node ID from which the edge to be
-removed is outgoing.}
+removed is outgoing. If an edge ID is provided to
+\code{id}, then this argument is ignored.}
 
 \item{to}{a node ID to which the edge to be removed
-is incoming.}
+is incoming. If an edge ID is provided to
+\code{id}, then this argument is ignored.}
 
 \item{id}{an edge ID of an edge to be removed.}
 }
