@@ -11,10 +11,10 @@ select_edges_by_node_id(graph, nodes, set_op = "union")
 \code{dgr_graph}.}
 
 \item{nodes}{a vector of node IDs for the selection
-of nodes present in the graph.}
+of edges present in the graph.}
 
 \item{set_op}{the set operation to perform upon
-consecutive selections of graph nodes. This can
+consecutive selections of graph edges This can
 either be as a \code{union} (the default), as an
 intersection of selections with \code{intersect},
 or, as a \code{difference} on the previous
@@ -45,7 +45,7 @@ graph <-
 graph \%>\% get_selection()
 #> [1] 1 2
 
-# Perform another selection of nodes, with nodes
+# Perform another selection of edges, with nodes
 # `1`, `2`, and `4`
 graph <-
   graph \%>\%
