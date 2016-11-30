@@ -30,7 +30,7 @@
 #' graph %>% get_selection()
 #' #> [1] 1 2
 #'
-#' # Perform another selection of nodes, with nodes
+#' # Perform another selection of edges, with nodes
 #' # `1`, `2`, and `4`
 #' graph <-
 #'   graph %>%
