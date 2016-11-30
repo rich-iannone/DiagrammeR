@@ -2,9 +2,7 @@
 #' @description Select edges in a graph object of class
 #' \code{dgr_graph} using node ID values. All edges
 #' associated with the provided nodes will be included
-#' in the selection. If nodes have IDs that are
-#' monotonically increasing integer values, then
-#' numeric ranges can be provided for the selection.
+#' in the selection.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param nodes a vector of node IDs for the selection
