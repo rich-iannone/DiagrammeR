@@ -8,9 +8,11 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param from a node ID from which the edge to be
-#' removed is outgoing.
+#' removed is outgoing. If an edge ID is provided to
+#' \code{id}, then this argument is ignored.
 #' @param to a node ID to which the edge to be removed
-#' is incoming.
+#' is incoming. If an edge ID is provided to
+#' \code{id}, then this argument is ignored.
 #' @param id an edge ID of an edge to be removed.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
