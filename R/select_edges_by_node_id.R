@@ -6,9 +6,9 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param nodes a vector of node IDs for the selection
-#' of nodes present in the graph.
+#' of edges present in the graph.
 #' @param set_op the set operation to perform upon
-#' consecutive selections of graph nodes. This can
+#' consecutive selections of graph edges This can
 #' either be as a \code{union} (the default), as an
 #' intersection of selections with \code{intersect},
 #' or, as a \code{difference} on the previous
