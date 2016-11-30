@@ -89,7 +89,7 @@ select_edges_by_node_id <- function(graph,
   # Create an integer vector representing edges
   edges_selected <- edges_selected$id
 
-  # Obtain vector with node ID selection of nodes
+  # Obtain vector with node ID selection of edges
   # already present
   edges_prev_selection <- graph$edge_selection$edge
 
