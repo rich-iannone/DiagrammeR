@@ -5,7 +5,8 @@
 \title{Traverse from one or more selected edges onto
 adjacent, inward nodes}
 \usage{
-trav_in_node(graph, conditions = NULL)
+trav_in_node(graph, conditions = NULL, copy_attrs_from = NULL,
+  agg = "sum")
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -13,6 +14,21 @@ trav_in_node(graph, conditions = NULL)
 
 \item{conditions}{an option to use filtering
 conditions for the traversal.}
+
+\item{copy_attrs_from}{providing an edge attribute
+name will copy those edge attribute values to the
+traversed nodes If the edge attribute already exists,
+the values will be merged to the traversed nodes;
+otherwise, a new node attribute will be created.}
+
+\item{agg}{if an edge attribute is provided
+to \code{copy_attrs_from}, then an aggregation
+function is required since there may be cases where
+multiple edge attribute values will be passed onto
+the traversed node. To pass only a single value, the
+following aggregation functions can be used:
+\code{sum}, \code{min}, \code{max}, \code{mean}, or
+\code{median}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -141,5 +157,58 @@ graph \%>\%
     conditions = "grepl('.*d$', label) | values < 6.0") \%>\%
   get_selection()
 #> [1] 2
+
+# Create another simple graph to demonstrate
+# copying of edge attribute values to traversed
+# nodes
+graph <-
+  create_graph() \%>\%
+  add_node() \%>\%
+  select_nodes() \%>\%
+  add_n_nodes_ws(2, "to") \%>\%
+  clear_selection() \%>\%
+  select_nodes_by_id(2) \%>\%
+  set_node_attrs_ws("value", 8) \%>\%
+  clear_selection() \%>\%
+  select_edges_by_edge_id(1) \%>\%
+  set_edge_attrs_ws("value", 5) \%>\%
+  clear_selection() \%>\%
+  select_edges_by_edge_id(2) \%>\%
+  set_edge_attrs_ws("value", 5) \%>\%
+  clear_selection() \%>\%
+  select_edges()
+
+# Show the graph's internal edge data frame
+graph \%>\% get_edge_df()
+#>   id from to  rel value
+#> 1  1    2  1 <NA>     5
+#> 2  2    3  1 <NA>     5
+
+# Show the graph's internal node data frame
+graph \%>\% get_node_df()
+#>   id type label value
+#> 1  1 <NA>  <NA>    NA
+#> 2  2 <NA>  <NA>     8
+#> 3  3 <NA>  <NA>    NA
+
+# Perform a traversal from the edges to
+# the central node (`1`) while also applying
+# the edge attribute `value` to the node (in
+# this case summing the `value` of 5 from
+# both edges before adding as a node attribute)
+graph <-
+  graph \%>\%
+  trav_in_node(
+    copy_attrs_from = "value",
+    agg = "sum")
+
+# Show the graph's internal node data frame
+# after this change
+graph \%>\% get_node_df()
+#>   id type label value
+#> 1  1 <NA>  <NA>    10
+#> 2  2 <NA>  <NA>     8
+#> 3  3 <NA>  <NA>    NA
+graph \%>\% get_edge_df
 }
 
