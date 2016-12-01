@@ -213,33 +213,28 @@ trav_out_node <- function(graph,
   # Create bindings for specific variables
   id <- NULL
 
-  # Get the selection of nodes as the starting
-  # nodes for the traversal
-  starting_edge_from <- graph$edge_selection$from
-  starting_edge_to <- graph$edge_selection$to
+  # Get the selection of edges
+  starting_edges <- graph$edge_selection
 
   # Get the graph's node data frame
   ndf <- graph$nodes_df
 
-  # Find all nodes that are connected to the
-  # starting nodes via incoming edges
-  valid_nodes <-
-    ndf %>%
-    dplyr::filter(id %in% starting_edge_from)
+  # Get the graph's edge data frame
+  edf <- graph$edges_df
 
-  # If no rows returned, then there are no
-  # valid traversals, so return the same graph
-  # object without modifying the selection
-  if (nrow(valid_nodes) == 0) {
-    return(graph)
-  }
+  # Find all nodes that are connected to the
+  # starting edges
+  valid_nodes <-
+    starting_edges %>%
+    dplyr::select(from) %>%
+    dplyr::distinct() %>%
+    dplyr::left_join(ndf, by = c("from" = "id"))
 
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
   if (!is.null(conditions)) {
     for (i in 1:length(conditions)) {
-
       valid_nodes <-
         valid_nodes %>%
         dplyr::filter_(conditions[i])
@@ -251,6 +246,59 @@ trav_out_node <- function(graph,
   # object without modifying the selection
   if (nrow(valid_nodes) == 0) {
     return(graph)
+  }
+
+  # If the option is taken to copy edge attribute
+  # values to the traversed nodes, perform the join
+  # operation
+  if (!is.null(copy_attrs_from)) {
+
+    nodes <-
+      starting_edges %>%
+      dplyr::semi_join(valid_nodes, by = "from") %>%
+      dplyr::left_join(edf, by = c("edge" = "id")) %>%
+      dplyr::select_("from.y", copy_attrs_from) %>%
+      dplyr::rename(id = from.y) %>%
+      dplyr::group_by(id) %>%
+      dplyr::summarize_(.dots = setNames(
+        list(as.formula(paste0("~", agg, "(", copy_attrs_from, ")"))), copy_attrs_from)) %>%
+      dplyr::right_join(ndf, by = "id") %>%
+      dplyr::select(id, type, label, dplyr::everything()) %>%
+      as.data.frame(stringsAsFactors = FALSE)
+
+
+    # If edge attribute exists as a column in the ndf
+    if (copy_attrs_from %in% colnames(ndf)) {
+
+      # Get column numbers that end with ".x" or ".y"
+      split_var_x_col <-
+        which(grepl("\\.x$", colnames(nodes)))
+
+      split_var_y_col <-
+        which(grepl("\\.y$", colnames(nodes)))
+
+      # Selectively merge in values to the existing
+      # edge attribute column
+      for (i in 1:nrow(nodes)) {
+        if (!is.na(nodes[i, split_var_x_col])) {
+          nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
+        }
+      }
+
+      # Rename the ".y" column
+      colnames(nodes)[split_var_y_col] <- copy_attrs_from
+
+      # Drop the ".x" column
+      nodes <- nodes[-split_var_x_col]
+
+      # Reorder columns
+      nodes <-
+        nodes %>%
+        dplyr::select(id, type, label, dplyr::everything())
+    }
+
+    # Update the graph's internal node data frame
+    graph$nodes_df <- nodes
   }
 
   # Add the node ID values to the active selection
