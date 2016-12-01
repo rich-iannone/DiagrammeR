@@ -227,11 +227,7 @@ trav_in_node <- function(graph,
   # Create bindings for specific variables
   id <- type <- label <- to.y <- NULL
 
-  # Get the selection of nodes as the starting
-  # nodes for the traversal
-  # starting_edge_from <- graph$edge_selection$from
-  # starting_edge_to <- graph$edge_selection$to
-
+  # Get the selection of edges
   starting_edges <- graph$edge_selection
 
   # Get the graph's node data frame
