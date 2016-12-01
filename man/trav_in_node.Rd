@@ -209,6 +209,5 @@ graph \%>\% get_node_df()
 #> 1  1 <NA>  <NA>    10
 #> 2  2 <NA>  <NA>     8
 #> 3  3 <NA>  <NA>    NA
-graph \%>\% get_edge_df
 }
 
