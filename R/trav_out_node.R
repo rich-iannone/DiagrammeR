@@ -266,7 +266,6 @@ trav_out_node <- function(graph,
       dplyr::select(id, type, label, dplyr::everything()) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
-
     # If edge attribute exists as a column in the ndf
     if (copy_attrs_from %in% colnames(ndf)) {
 
