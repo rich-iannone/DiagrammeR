@@ -319,7 +319,7 @@ trav_out_node <- function(graph,
   graph$node_selection <-
     replace_graph_node_selection(
       graph = graph,
-      replacement = valid_nodes$id)
+      replacement = valid_nodes$from)
 
   # Replace `graph$edge_selection` with an empty df
   graph$edge_selection <- create_empty_esdf()
