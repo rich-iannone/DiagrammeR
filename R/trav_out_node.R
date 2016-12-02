@@ -11,6 +11,19 @@
 #' \code{dgr_graph}.
 #' @param conditions an option to use filtering
 #' conditions for the traversal.
+#' @param copy_attrs_from providing an edge attribute
+#' name will copy those edge attribute values to the
+#' traversed nodes. If the edge attribute already exists,
+#' the values will be merged to the traversed nodes;
+#' otherwise, a new node attribute will be created.
+#' @param agg if an edge attribute is provided
+#' to \code{copy_attrs_from}, then an aggregation
+#' function is required since there may be cases where
+#' multiple edge attribute values will be passed onto
+#' the traversed node(s). To pass only a single value,
+#' the following aggregation functions can be used:
+#' \code{sum}, \code{min}, \code{max}, \code{mean}, or
+#' \code{median}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -262,7 +275,7 @@ trav_out_node <- function(graph,
       dplyr::rename(id = from.y) %>%
       dplyr::group_by(id) %>%
       dplyr::summarize_(.dots = setNames(
-        list(as.formula(paste0("~", agg, "(", copy_attrs_from, ")"))), copy_attrs_from)) %>%
+        list(stats::as.formula(paste0("~", agg, "(", copy_attrs_from, ")"))), copy_attrs_from)) %>%
       dplyr::right_join(ndf, by = "id") %>%
       dplyr::select(id, type, label, dplyr::everything()) %>%
       as.data.frame(stringsAsFactors = FALSE)
