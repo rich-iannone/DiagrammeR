@@ -17,7 +17,7 @@ conditions for the traversal.}
 
 \item{copy_attrs_from}{providing an edge attribute
 name will copy those edge attribute values to the
-traversed nodes If the edge attribute already exists,
+traversed nodes. If the edge attribute already exists,
 the values will be merged to the traversed nodes;
 otherwise, a new node attribute will be created.}
 
@@ -25,8 +25,8 @@ otherwise, a new node attribute will be created.}
 to \code{copy_attrs_from}, then an aggregation
 function is required since there may be cases where
 multiple edge attribute values will be passed onto
-the traversed node. To pass only a single value, the
-following aggregation functions can be used:
+the traversed node(s). To pass only a single value,
+the following aggregation functions can be used:
 \code{sum}, \code{min}, \code{max}, \code{mean}, or
 \code{median}.}
 }
