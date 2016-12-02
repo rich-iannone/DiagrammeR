@@ -192,6 +192,7 @@
 #' #> 1  1 <NA>  <NA>    10
 #' #> 2  2 <NA>  <NA>     8
 #' #> 3  3 <NA>  <NA>    NA
+#' @importFrom stats as.formula
 #' @importFrom dplyr filter filter_ distinct left_join right_join semi_join select select_ rename group_by summarize_ everything
 #' @export trav_in_node
 
