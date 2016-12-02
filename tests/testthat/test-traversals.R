@@ -742,7 +742,6 @@ test_that("selective traversals with `trav_out_node()` are possible", {
   # with a match expression (==)
   graph <-
     graph %>%
-    clear_selection() %>%
     select_edges(from = 1, to = 2) %>%
     trav_out_node("data_value == 5")
 
