@@ -148,13 +148,58 @@
 #'     conditions = "grepl('B|C', rel)") %>%
 #'   get_selection()
 #' #> [1] 3 4
-#' @importFrom dplyr filter filter_ select select_ full_join rename everything coalesce bind_cols
+#'
+#' # Create another simple graph to demonstrate
+#' # copying of node attribute values to traversed
+#' # edges
+#' graph <-
+#'   create_graph() %>%
+#'   add_path(4) %>%
+#'   select_nodes_by_id(2:3) %>%
+#'   set_node_attrs_ws("value", 5)
+#'
+#' # Show the graph's internal edge data frame
+#' graph %>% get_edge_df()
+#' #>   id from to  rel
+#' #> 1  1    1  2 <NA>
+#' #> 2  2    2  3 <NA>
+#' #> 3  3    3  4 <NA>
+#'
+#' # Show the graph's internal node data frame
+#' graph %>% get_node_df()
+#' #>   id type label value
+#' #> 1  1 <NA>     1    NA
+#' #> 2  2 <NA>     2     5
+#' #> 3  3 <NA>     3     5
+#' #> 4  4 <NA>     4    NA
+#'
+#' # Perform a traversal from the nodes to
+#' # the adjacent edges while also applying
+#' # the node attribute `value` to the edges (in
+#' # this case summing the `value` of 5 from
+#' # all contributing nodes adding as an edge
+#' # attribute)
+#' graph <-
+#'   graph %>%
+#'   trav_both_edge(
+#'     copy_attrs_from = "value",
+#'     agg = "sum")
+#'
+#' # Show the graph's internal edge data frame
+#' # after this change
+#' graph %>% get_edge_df()
+#' #>   id from to  rel value
+#' #> 1  1    1  2 <NA>     5
+#' #> 2  2    2  3 <NA>    10
+#' #> 3  3    3  4 <NA>     5
+#' @importFrom dplyr filter filter_ select select_ left_join right_join rename bind_rows group_by summarize_at vars matches funs
 #' @importFrom tibble as_tibble
 #' @export trav_both_edge
 
 trav_both_edge <- function(graph,
                            conditions = NULL,
-                           copy_attrs_from = NULL) {
+                           copy_attrs_from = NULL,
+                           agg = "sum") {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -201,132 +246,6 @@ trav_both_edge <- function(graph,
                     to %in% starting_nodes) %>%
     dplyr::filter(to != from)
 
-  # If no rows returned, then there are no
-  # valid traversals, so return the same graph
-  # object without modifying the selection
-  if (nrow(valid_edges) == 0) {
-    return(graph)
-  }
-
-  # If the option is taken to copy node attribute
-  # values to the traversed edges, perform the join
-  # operation
-  if (!is.null(copy_attrs_from)) {
-
-    # If node attribute doesn't exist in the edf,
-    # perform a full join
-    if (!(copy_attrs_from %in% colnames(edf))) {
-
-      edges <-
-        ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
-        dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edf, c("id" = "from")) %>%
-        dplyr::rename(from = id)
-
-      edges <-
-        ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
-        dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edges, c("id" = "to")) %>%
-        dplyr::rename(to = id.y) %>%
-        dplyr::select(id, from, to, rel, dplyr::everything())
-
-      # Get the column numbers for the `.x`
-      # and `.y` columns
-      x_col <- which(grepl("\\.x$", colnames(edges)))
-      y_col <- which(grepl("\\.y$", colnames(edges)))
-
-      # Coalesce the 2 generated columns and create a
-      # single-column data frame
-      value_col <-
-        dplyr::coalesce(edges[, x_col], edges[, y_col]) %>%
-        as.data.frame(stringsAsFactors = FALSE)
-
-      # Rename the column
-      colnames(value_col)[1] <- copy_attrs_from
-
-      # Remove column numbers that end with ".x" or ".y"
-      edges <- edges[-which(grepl("\\.x$", colnames(edges)))]
-      edges <-edges[-which(grepl("\\.y$", colnames(edges)))]
-
-      # Bind the `value_col` df to the `edges` df
-      edges <- dplyr::bind_cols(edges, value_col)
-    }
-
-    # If node attribute exists as a column in the edf
-    if (copy_attrs_from %in% colnames(edf)) {
-
-      # Perform the first join
-      edges <-
-        ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
-        dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edf, c("id" = "from")) %>%
-        dplyr::rename(from = id.y)
-
-      # Get the column numbers for the new columns
-      x_col <- which(grepl("\\.x$", colnames(edges)))
-      y_col <- which(grepl("\\.y$", colnames(edges)))
-
-      # Coalesce the 2 generated columns
-      value_col <-
-        dplyr::coalesce(edges[, x_col], edges[, y_col]) %>%
-        tibble::as_tibble()
-
-      # Bind the `value_col` to the `edges` df
-      edges <-
-        edges %>%
-        dplyr::bind_cols(value_col)
-
-      # Remove column numbers that end with ".x" or ".y"
-      edges <- edges[-which(grepl("\\.x$", colnames(edges)))]
-      edges <- edges[-which(grepl("\\.y$", colnames(edges)))]
-
-      # Rename the last column
-      colnames(edges)[which(colnames(edges) == "value")] <-
-        copy_attrs_from
-
-      # Perform the second join
-      edges <-
-        ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
-        dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edges, c("id" = "to")) %>%
-        dplyr::rename(to = id)
-
-      # Get the column numbers for the new columns
-      x_col <- which(grepl("\\.x$", colnames(edges)))
-      y_col <- which(grepl("\\.y$", colnames(edges)))
-
-      # Coalesce the 2 generated columns
-      value_col <-
-        dplyr::coalesce(edges[, x_col], edges[, y_col]) %>%
-        tibble::as_tibble()
-
-      # Bind the `value_col` to the `edges` df
-      edges <-
-        edges %>%
-        dplyr::bind_cols(value_col)
-
-      # Remove column numbers that end with ".x" or ".y"
-      edges <- edges[-which(grepl("\\.x$", colnames(edges)))]
-      edges <- edges[-which(grepl("\\.y$", colnames(edges)))]
-
-      # Rename the last column
-      colnames(edges)[which(colnames(edges) == "value")] <-
-        copy_attrs_from
-
-      # Reorder columns
-      edges <-
-        edges %>%
-        dplyr::select(id, from, to, rel, dplyr::everything())
-    }
-
-    # Update the graph's internal node data frame
-    graph$edges_df <- edges
-  }
-
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_edges`
@@ -343,6 +262,78 @@ trav_both_edge <- function(graph,
   # object without modifying the selection
   if (nrow(valid_edges) == 0) {
     return(graph)
+  }
+
+  # If the option is taken to copy node attribute
+  # values to the traversed edges, perform the join
+  # operation
+  if (!is.null(copy_attrs_from)) {
+
+    from_join <-
+      ndf %>%
+      dplyr::select_("id", copy_attrs_from) %>%
+      dplyr::filter(id %in% starting_nodes) %>%
+      dplyr::right_join(
+        valid_edges %>%
+          dplyr::select(-rel) %>%
+          dplyr::rename(e_id = id),
+        by = c("id" = "from")) %>%
+      dplyr::select_("e_id", copy_attrs_from)
+
+    to_join <-
+      ndf %>%
+      dplyr::select_("id", copy_attrs_from) %>%
+      dplyr::filter(id %in% starting_nodes) %>%
+      dplyr::right_join(
+        valid_edges %>%
+          dplyr::select(-rel) %>%
+          dplyr::rename(e_id = id),
+        by = c("id" = "to")) %>%
+      dplyr::select_("e_id", copy_attrs_from)
+
+    edges <-
+      dplyr::bind_rows(
+        from_join, to_join) %>%
+      dplyr::left_join(edf, by = c("e_id" = "id")) %>%
+      dplyr::rename(id = e_id) %>%
+      dplyr::group_by(id)
+
+
+    if (agg == "sum") {
+      summarization <-
+        edges %>%
+        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
+                            dplyr::funs(sum(value, na.rm = TRUE)))
+    } else if (agg == "min") {
+      summarization <-
+        edges %>%
+        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
+                            dplyr::funs(min(value, na.rm = TRUE)))
+    } else if (agg == "max") {
+      summarization <-
+        edges %>%
+        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
+                            dplyr::funs(max(value, na.rm = TRUE)))
+    } else if (agg == "mean") {
+      summarization <-
+        edges %>%
+        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
+                            dplyr::funs(mean(value, na.rm = TRUE)))
+    } else if (agg == "median") {
+      summarization <-
+        edges %>%
+        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
+                            dplyr::funs(median(value, na.rm = TRUE)))
+    }
+
+    edges <-
+      summarization %>%
+      dplyr::right_join(edf, by = "id") %>%
+      dplyr::select(id, from, to, rel, everything()) %>%
+      as.data.frame(stringsAsFractions = FALSE)
+
+    # Update the graph's internal node data frame
+    graph$edges_df <- edges
   }
 
   # Add the edge information to the active selection
