@@ -5,7 +5,8 @@
 \title{Traverse from one or more selected nodes onto
 adjacent edges}
 \usage{
-trav_both_edge(graph, conditions = NULL, copy_attrs_from = NULL)
+trav_both_edge(graph, conditions = NULL, copy_attrs_from = NULL,
+  agg = "sum")
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -19,6 +20,15 @@ name will copy those node attribute values to the
 traversed edges. If the edge attribute already exists,
 the values will be merged to the traversed edges;
 otherwise, a new edge attribute will be created.}
+
+\item{agg}{if a node attribute is provided
+to \code{copy_attrs_from}, then an aggregation
+function is required since there may be cases where
+multiple node attribute values will be passed onto
+the traversed edge(s). To pass only a single value,
+the following aggregation functions can be used:
+\code{sum}, \code{min}, \code{max}, \code{mean}, or
+\code{median}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -155,5 +165,49 @@ graph \%>\%
     conditions = "grepl('B|C', rel)") \%>\%
   get_selection()
 #> [1] 3 4
+
+# Create another simple graph to demonstrate
+# copying of node attribute values to traversed
+# edges
+graph <-
+  create_graph() \%>\%
+  add_path(4) \%>\%
+  select_nodes_by_id(2:3) \%>\%
+  set_node_attrs_ws("value", 5)
+
+# Show the graph's internal edge data frame
+graph \%>\% get_edge_df()
+#>   id from to  rel
+#> 1  1    1  2 <NA>
+#> 2  2    2  3 <NA>
+#> 3  3    3  4 <NA>
+
+# Show the graph's internal node data frame
+graph \%>\% get_node_df()
+#>   id type label value
+#> 1  1 <NA>     1    NA
+#> 2  2 <NA>     2     5
+#> 3  3 <NA>     3     5
+#> 4  4 <NA>     4    NA
+
+# Perform a traversal from the nodes to
+# the adjacent edges while also applying
+# the node attribute `value` to the edges (in
+# this case summing the `value` of 5 from
+# all contributing nodes adding as an edge
+# attribute)
+graph <-
+  graph \%>\%
+  trav_both_edge(
+    copy_attrs_from = "value",
+    agg = "sum")
+
+# Show the graph's internal edge data frame
+# after this change
+graph \%>\% get_edge_df()
+#>   id from to  rel value
+#> 1  1    1  2 <NA>     5
+#> 2  2    2  3 <NA>    10
+#> 3  3    3  4 <NA>     5
 }
 
