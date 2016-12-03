@@ -15,6 +15,14 @@
 #' traversed edges. If the edge attribute already exists,
 #' the values will be merged to the traversed edges;
 #' otherwise, a new edge attribute will be created.
+#' @param agg if a node attribute is provided
+#' to \code{copy_attrs_from}, then an aggregation
+#' function is required since there may be cases where
+#' multiple node attribute values will be passed onto
+#' the traversed edge(s). To pass only a single value,
+#' the following aggregation functions can be used:
+#' \code{sum}, \code{min}, \code{max}, \code{mean}, or
+#' \code{median}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
