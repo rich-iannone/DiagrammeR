@@ -226,7 +226,7 @@ trav_both_edge <- function(graph,
   }
 
   # Create bindings for specific variables
-  from <- to <- id <- id.y <- rel <- NULL
+  from <- to <- id <- id.y <- rel <- e_id <- NULL
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
@@ -270,40 +270,176 @@ trav_both_edge <- function(graph,
   # operation
   if (!is.null(copy_attrs_from)) {
 
-    from_join <-
-      ndf %>%
-      dplyr::select_("id", copy_attrs_from) %>%
-      dplyr::filter(id %in% starting_nodes) %>%
-      dplyr::right_join(
-        valid_edges %>%
-          dplyr::select(-rel) %>%
-          dplyr::rename(e_id = id),
-        by = c("id" = "from")) %>%
-      dplyr::select_("e_id", copy_attrs_from)
+    if (!(copy_attrs_from %in% colnames(edf))) {
 
-    to_join <-
-      ndf %>%
-      dplyr::select_("id", copy_attrs_from) %>%
-      dplyr::filter(id %in% starting_nodes) %>%
-      dplyr::right_join(
-        valid_edges %>%
-          dplyr::select(-rel) %>%
-          dplyr::rename(e_id = id),
-        by = c("id" = "to")) %>%
-      dplyr::select_("e_id", copy_attrs_from)
+      from_join <-
+        ndf %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
+        dplyr::right_join(
+          valid_edges %>%
+            dplyr::select(-rel) %>%
+            dplyr::rename(e_id = id),
+          by = c("id" = "from")) %>%
+        dplyr::select_("e_id", copy_attrs_from)
 
-    edges <-
-      dplyr::bind_rows(
-        from_join, to_join) %>%
-      dplyr::left_join(edf, by = c("e_id" = "id")) %>%
-      dplyr::rename(id = e_id) %>%
-      dplyr::group_by(id) %>%
-      dplyr::summarize_(.dots = setNames(
-        list(stats::as.formula(
-          paste0("~", agg, "(", copy_attrs_from, " , na.rm = TRUE)"))), copy_attrs_from)) %>%
-      dplyr::right_join(edf, by = "id") %>%
-      dplyr::select(id, from, to, rel, everything()) %>%
-      as.data.frame(stringsAsFractions = FALSE)
+      to_join <-
+        ndf %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
+        dplyr::right_join(
+          valid_edges %>%
+            dplyr::select(-rel) %>%
+            dplyr::rename(e_id = id),
+          by = c("id" = "to")) %>%
+        dplyr::select_("e_id", copy_attrs_from)
+
+      edges <-
+        dplyr::bind_rows(
+          from_join, to_join) %>%
+        dplyr::left_join(edf, by = c("e_id" = "id")) %>%
+        dplyr::rename(id = e_id) %>%
+        dplyr::group_by(id) %>%
+        dplyr::summarize_(.dots = setNames(
+          list(stats::as.formula(
+            paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))), copy_attrs_from)) %>%
+        dplyr::right_join(edf, by = "id") %>%
+        dplyr::select(id, from, to, rel, everything()) %>%
+        as.data.frame(stringsAsFractions = FALSE)
+    }
+
+    if (copy_attrs_from %in% colnames(edf)) {
+
+      from_join <-
+        ndf %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
+        dplyr::right_join(
+          valid_edges %>%
+            dplyr::select(-rel) %>%
+            dplyr::rename(e_id = id),
+          by = c("id" = "from"))
+
+      # Get column numbers that end with ".x" or ".y"
+      split_var_x_col <-
+        which(grepl("\\.x$", colnames(from_join)))
+
+      split_var_y_col <-
+        which(grepl("\\.y$", colnames(from_join)))
+
+      # Selectively merge in values to the existing
+      # edge attribute column
+      for (i in 1:nrow(from_join)) {
+        if (!is.na(from_join[i, split_var_x_col])) {
+          from_join[i, split_var_y_col] <- from_join[i, split_var_x_col]
+        }
+      }
+
+      # Rename the ".y" column
+      colnames(from_join)[split_var_y_col] <- copy_attrs_from
+
+      # Drop the ".x" column
+      from_join <-
+        from_join %>%
+        dplyr::select_("e_id", copy_attrs_from)
+
+      to_join <-
+        ndf %>%
+        dplyr::select_("id", copy_attrs_from) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
+        dplyr::right_join(
+          valid_edges %>%
+            dplyr::select(-rel) %>%
+            dplyr::rename(e_id = id),
+          by = c("id" = "to"))
+
+      # Get column numbers that end with ".x" or ".y"
+      split_var_x_col <-
+        which(grepl("\\.x$", colnames(to_join)))
+
+      split_var_y_col <-
+        which(grepl("\\.y$", colnames(to_join)))
+
+      # Selectively merge in values to the existing
+      # edge attribute column
+      for (i in 1:nrow(to_join)) {
+        if (!is.na(to_join[i, split_var_x_col])) {
+          to_join[i, split_var_y_col] <- to_join[i, split_var_x_col]
+        }
+      }
+
+      # Rename the ".y" column
+      colnames(to_join)[split_var_y_col] <- copy_attrs_from
+
+      # Drop the ".x" column
+      to_join <-
+        to_join %>%
+        dplyr::select_("e_id", copy_attrs_from)
+
+      edges <-
+        dplyr::bind_rows(
+          from_join, to_join) %>%
+        dplyr::left_join(edf, by = c("e_id" = "id"))
+
+      # Get column numbers that end with ".x" or ".y"
+      split_var_x_col <-
+        which(grepl("\\.x$", colnames(edges)))
+
+      split_var_y_col <-
+        which(grepl("\\.y$", colnames(edges)))
+
+      # Selectively merge in values to the existing
+      # edge attribute column
+      for (i in 1:nrow(edges)) {
+        if (!is.na(edges[i, split_var_x_col])) {
+          edges[i, split_var_y_col] <- edges[i, split_var_x_col]
+        }
+      }
+
+      # Rename the ".y" column
+      colnames(edges)[split_var_y_col] <- copy_attrs_from
+
+      # Drop the ".x" column
+      edges <- edges[-split_var_x_col]
+
+      joined_edges <-
+        edges %>%
+        dplyr::arrange(e_id) %>%
+        dplyr::rename(id = e_id) %>%
+        dplyr::group_by(id) %>%
+        dplyr::summarize_(.dots = setNames(
+          list(stats::as.formula(
+            paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))), copy_attrs_from)) %>%
+        dplyr::ungroup() %>%
+        dplyr::right_join(edf, by = "id")
+
+      # Get column numbers that end with ".x" or ".y"
+      split_var_x_col <-
+        which(grepl("\\.x$", colnames(joined_edges)))
+
+      split_var_y_col <-
+        which(grepl("\\.y$", colnames(joined_edges)))
+
+      # Selectively merge in values to the existing
+      # edge attribute column
+      for (i in 1:nrow(joined_edges)) {
+        if (!is.na(joined_edges[i, split_var_x_col])) {
+          joined_edges[i, split_var_y_col] <- joined_edges[i, split_var_x_col]
+        }
+      }
+
+      # Rename the ".y" column
+      colnames(joined_edges)[split_var_y_col] <- copy_attrs_from
+
+      # Drop the ".x" column
+      joined_edges <- joined_edges[-split_var_x_col]
+
+      edges <-
+        joined_edges %>%
+        dplyr::select(id, from, to, rel, everything()) %>%
+        dplyr::arrange(id) %>%
+        as.data.frame(stringsAsFractions = FALSE)
+    }
 
     # Update the graph's internal node data frame
     graph$edges_df <- edges
