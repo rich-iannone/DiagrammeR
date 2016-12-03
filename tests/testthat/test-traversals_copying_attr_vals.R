@@ -237,10 +237,10 @@ test_that("copying values with `trav_both_edge()` works", {
 
   # Select node ID `3`, traverse to in/out edges,
   # copy `data` value from ndf (3.5) to edges traversed to
-  # graph_1 <-
-  #   graph_1 %>%
-  #   select_nodes_by_id(3) %>%
-  #   trav_both_edge(copy_attrs_from = "data")
+  graph_1 <-
+    graph_1 %>%
+    select_nodes_by_id(3) %>%
+    trav_both_edge(copy_attrs_from = "data")
 
   # Expect that there are 5 columns in the edf
   expect_equal(ncol(graph_1$edges_df), 5)
@@ -255,8 +255,8 @@ test_that("copying values with `trav_both_edge()` works", {
   # edge data frame
   expect_equal(
     graph_1$edges_df$data,
-    c(3.78, 5.31, NA, 4.48, 4.56, NA, NA,
-      4.40, NA, NA, NA, NA, NA, NA, NA))
+    c(NA, NA, NA, NA, NA, NA, 3.50, 3.50,
+      NA, NA, 3.78, 8.81, 4.48, 4.56, 7.90))
 
   #
   # Test where there are no common column names
@@ -305,6 +305,6 @@ test_that("copying values with `trav_both_edge()` works", {
   # edge data frame
   expect_equal(
     graph_2$edges_df$data,
-    c(3.5, 3.5, 3.5, 3.5, NA, NA,
-      NA, NA, NA, NA, NA, NA, NA, NA, NA))
+    c(NA, 3.5, NA, NA, NA, NA, NA, 3.5, 3.5,
+      3.5, NA, NA, NA, NA, NA))
 })
