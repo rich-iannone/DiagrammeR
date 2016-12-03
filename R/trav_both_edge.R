@@ -192,7 +192,8 @@
 #' #> 1  1    1  2 <NA>     5
 #' #> 2  2    2  3 <NA>    10
 #' #> 3  3    3  4 <NA>     5
-#' @importFrom dplyr filter filter_ select select_ left_join right_join rename bind_rows group_by summarize_at vars matches funs
+#' @importFrom stats median
+#' @importFrom dplyr filter filter_ select select_ left_join right_join rename bind_rows group_by summarize_
 #' @importFrom tibble as_tibble
 #' @export trav_both_edge
 
@@ -296,38 +297,10 @@ trav_both_edge <- function(graph,
         from_join, to_join) %>%
       dplyr::left_join(edf, by = c("e_id" = "id")) %>%
       dplyr::rename(id = e_id) %>%
-      dplyr::group_by(id)
-
-
-    if (agg == "sum") {
-      summarization <-
-        edges %>%
-        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
-                            dplyr::funs(sum(value, na.rm = TRUE)))
-    } else if (agg == "min") {
-      summarization <-
-        edges %>%
-        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
-                            dplyr::funs(min(value, na.rm = TRUE)))
-    } else if (agg == "max") {
-      summarization <-
-        edges %>%
-        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
-                            dplyr::funs(max(value, na.rm = TRUE)))
-    } else if (agg == "mean") {
-      summarization <-
-        edges %>%
-        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
-                            dplyr::funs(mean(value, na.rm = TRUE)))
-    } else if (agg == "median") {
-      summarization <-
-        edges %>%
-        dplyr::summarize_at(dplyr::vars(dplyr::matches(copy_attrs_from)),
-                            dplyr::funs(median(value, na.rm = TRUE)))
-    }
-
-    edges <-
-      summarization %>%
+      dplyr::group_by(id) %>%
+      dplyr::summarize_(.dots = setNames(
+        list(stats::as.formula(
+          paste0("~", agg, "(", copy_attrs_from, " , na.rm = TRUE)"))), copy_attrs_from)) %>%
       dplyr::right_join(edf, by = "id") %>%
       dplyr::select(id, from, to, rel, everything()) %>%
       as.data.frame(stringsAsFractions = FALSE)
