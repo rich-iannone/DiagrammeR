@@ -275,7 +275,9 @@ trav_out_node <- function(graph,
       dplyr::rename(id = from.y) %>%
       dplyr::group_by(id) %>%
       dplyr::summarize_(.dots = setNames(
-        list(stats::as.formula(paste0("~", agg, "(", copy_attrs_from, ")"))), copy_attrs_from)) %>%
+        list(stats::as.formula(
+          paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
+        copy_attrs_from)) %>%
       dplyr::right_join(ndf, by = "id") %>%
       dplyr::select(id, type, label, dplyr::everything()) %>%
       as.data.frame(stringsAsFactors = FALSE)
