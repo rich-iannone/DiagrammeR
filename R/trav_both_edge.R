@@ -302,7 +302,8 @@ trav_both_edge <- function(graph,
         dplyr::group_by(id) %>%
         dplyr::summarize_(.dots = setNames(
           list(stats::as.formula(
-            paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))), copy_attrs_from)) %>%
+            paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
+          copy_attrs_from)) %>%
         dplyr::right_join(edf, by = "id") %>%
         dplyr::select(id, from, to, rel, everything()) %>%
         as.data.frame(stringsAsFractions = FALSE)
