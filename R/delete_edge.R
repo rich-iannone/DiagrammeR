@@ -13,7 +13,7 @@
 #' @param to a node ID to which the edge to be removed
 #' is incoming. If an edge ID is provided to
 #' \code{id}, then this argument is ignored.
-#' @param id an edge ID of an edge to be removed.
+#' @param id an edge ID of the edge to be removed.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph
