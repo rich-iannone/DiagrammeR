@@ -18,7 +18,7 @@ removed is outgoing. If an edge ID is provided to
 is incoming. If an edge ID is provided to
 \code{id}, then this argument is ignored.}
 
-\item{id}{an edge ID of an edge to be removed.}
+\item{id}{an edge ID of the edge to be removed.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
