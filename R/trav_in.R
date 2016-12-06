@@ -11,6 +11,18 @@
 #' \code{dgr_graph}.
 #' @param conditions an option to use filtering
 #' conditions for the traversal.
+#' @param copy_attrs_from providing a node attribute
+#' name will copy those node attribute values to the
+#' traversed nodes. Any values extant on the nodes
+#' traversed to will be replaced.
+#' @param agg if a node attribute is provided
+#' to \code{copy_attrs_from}, then an aggregation
+#' function is required since there may be cases where
+#' multiple edge attribute values will be passed onto
+#' the traversed node(s). To pass only a single value,
+#' the following aggregation functions can be used:
+#' \code{sum}, \code{min}, \code{max}, \code{mean}, or
+#' \code{median}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -154,7 +166,9 @@
 #' @export trav_in
 
 trav_in <- function(graph,
-                    conditions = NULL) {
+                    conditions = NULL,
+                    copy_attrs_from = NULL,
+                    agg = "sum") {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -198,7 +212,8 @@ trav_in <- function(graph,
     edf %>%
     dplyr::filter(to != from) %>%
     dplyr::filter(to %in% starting_nodes) %>%
-    dplyr::select(from)
+    dplyr::select(from) %>%
+    dplyr::distinct()
 
   valid_nodes <-
     tibble::as_tibble(valid_nodes) %>%
@@ -222,6 +237,51 @@ trav_in <- function(graph,
         valid_nodes %>%
         dplyr::filter_(conditions[i])
     }
+  }
+
+  # If the option is taken to copy node attribute
+  # values to the traversed nodes, perform the join
+  # operations
+  if (!is.null(copy_attrs_from)) {
+
+    nodes <-
+      graph$node_selection %>%
+      dplyr::left_join(ndf, by = c("node" = "id")) %>%
+      dplyr::left_join(edf %>% select(from, to), by = c("node" = "to")) %>%
+      dplyr::select_("from", copy_attrs_from) %>%
+      dplyr::group_by(from) %>%
+      dplyr::summarize_(.dots = setNames(
+        list(stats::as.formula(
+          paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
+        copy_attrs_from)) %>%
+      dplyr::right_join(ndf, by = c("from" = "id")) %>%
+      dplyr::rename(id = from) %>%
+      dplyr::select(id, type, label, dplyr::everything()) %>%
+      as.data.frame(stringsAsFactors = FALSE)
+
+    # Get column numbers that end with ".x" or ".y"
+    split_var_x_col <-
+      which(grepl("\\.x$", colnames(nodes)))
+
+    split_var_y_col <-
+      which(grepl("\\.y$", colnames(nodes)))
+
+    # Selectively merge in values to the existing
+    # edge attribute column
+    for (i in 1:nrow(nodes)) {
+      if (!is.na(nodes[i, split_var_x_col])) {
+        nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
+      }
+    }
+
+    # Rename the ".y" column
+    colnames(nodes)[split_var_y_col] <- copy_attrs_from
+
+    # Drop the ".x" column
+    nodes <- nodes[-split_var_x_col]
+
+    # Update the graph's internal node data frame
+    graph$nodes_df <- nodes
   }
 
   # If no rows returned, then there are no
