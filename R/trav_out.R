@@ -149,7 +149,7 @@
 #'     conditions = "grepl('..d', label)") %>%
 #'   get_selection()
 #' #> [1] 5
-#' @importFrom dplyr filter filter_ select inner_join rename
+#' @importFrom dplyr filter filter_ select inner_join rename distinct
 #' @importFrom tibble as_tibble
 #' @export trav_out
 
@@ -198,7 +198,8 @@ trav_out <- function(graph,
     edf %>%
     dplyr::filter(to != from) %>%
     dplyr::filter(from %in% starting_nodes) %>%
-    dplyr::select(to)
+    dplyr::select(to) %>%
+    dplyr::distinct()
 
   valid_nodes <-
     tibble::as_tibble(valid_nodes) %>%
@@ -217,7 +218,6 @@ trav_out <- function(graph,
   # data frame of `valid_nodes`
   if (!is.null(conditions)) {
     for (i in 1:length(conditions)) {
-
       valid_nodes <-
         valid_nodes %>%
         dplyr::filter_(conditions[i])
