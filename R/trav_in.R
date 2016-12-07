@@ -232,7 +232,6 @@ trav_in <- function(graph,
   # data frame of `valid_nodes`
   if (!is.null(conditions)) {
     for (i in 1:length(conditions)) {
-
       valid_nodes <-
         valid_nodes %>%
         dplyr::filter_(conditions[i])
@@ -245,9 +244,10 @@ trav_in <- function(graph,
   if (!is.null(copy_attrs_from)) {
 
     nodes <-
-      graph$node_selection %>%
-      dplyr::left_join(ndf, by = c("node" = "id")) %>%
-      dplyr::left_join(edf %>% select(from, to), by = c("node" = "to")) %>%
+      valid_nodes %>%
+      select(id) %>%
+      dplyr::left_join(ndf, by = "id") %>%
+      dplyr::left_join(edf %>% select(from, to), by = c("id" = "to")) %>%
       dplyr::select_("from", copy_attrs_from) %>%
       dplyr::group_by(from) %>%
       dplyr::summarize_(.dots = setNames(

@@ -245,9 +245,10 @@ trav_out <- function(graph,
   if (!is.null(copy_attrs_from)) {
 
     nodes <-
-      graph$node_selection %>%
-      dplyr::left_join(ndf, by = c("node" = "id")) %>%
-      dplyr::left_join(edf %>% select(from, to), by = c("node" = "from")) %>%
+      valid_nodes %>%
+      select(id) %>%
+      dplyr::left_join(ndf, by = "id") %>%
+      dplyr::left_join(edf %>% select(from, to), by = c("id" = "from")) %>%
       dplyr::select_("to", copy_attrs_from) %>%
       dplyr::group_by(to) %>%
       dplyr::summarize_(.dots = setNames(
