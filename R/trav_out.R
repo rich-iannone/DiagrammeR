@@ -246,17 +246,16 @@ trav_out <- function(graph,
 
     nodes <-
       valid_nodes %>%
-      select(id) %>%
-      dplyr::left_join(ndf, by = "id") %>%
-      dplyr::left_join(edf %>% select(from, to), by = c("id" = "from")) %>%
-      dplyr::select_("to", copy_attrs_from) %>%
-      dplyr::group_by(to) %>%
+      dplyr::select(id) %>%
+      dplyr::inner_join(edf %>% select(from, to), by = c("id" = "to")) %>%
+      dplyr::inner_join(ndf %>% select_("id", copy_attrs_from), by = c("from" = "id")) %>%
+      dplyr::select_("id", copy_attrs_from) %>%
+      dplyr::group_by(id) %>%
       dplyr::summarize_(.dots = setNames(
         list(stats::as.formula(
           paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
         copy_attrs_from)) %>%
-      dplyr::right_join(ndf, by = c("to" = "id")) %>%
-      dplyr::rename(id = to) %>%
+      dplyr::right_join(ndf, by = "id") %>%
       dplyr::select(id, type, label, dplyr::everything()) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
