@@ -177,5 +177,50 @@ graph \%>\%
     conditions = "grepl('..d', label)") \%>\%
   get_selection()
 #> [1] 5
+
+# Create another simple graph to demonstrate
+# copying of node attribute values to traversed
+# nodes
+graph <-
+  create_graph() \%>\%
+  add_node() \%>\%
+  select_nodes() \%>\%
+  add_n_nodes_ws(2, "to") \%>\%
+  clear_selection() \%>\%
+  select_nodes_by_id(2:3) \%>\%
+  set_node_attrs_ws("value", 5)
+
+# Show the graph's internal node data frame
+graph \%>\% get_node_df()
+#>   id type label value
+#> 1  1 <NA>  <NA>    NA
+#> 2  2 <NA>  <NA>     5
+#> 3  3 <NA>  <NA>     5
+
+# Show the graph's internal edge data frame
+graph \%>\% get_edge_df()
+#>   id from to  rel
+#> 1  1    2  1 <NA>
+#> 2  2    3  1 <NA>
+
+# Perform a traversal from the outer nodes
+# (`2` and `3`) to the central node (`1`) while
+# also applying the node attribute `value` to
+# node `1` (summing the `value` of 5 from
+# both nodes before applying the value to the
+# target node)
+graph <-
+  graph \%>\%
+  trav_out(
+    copy_attrs_from = "value",
+    agg = "sum")
+
+# Show the graph's internal node data frame
+# after this change
+graph \%>\% get_node_df()
+#>   id type label value
+#> 1  1 <NA>  <NA>    10
+#> 2  2 <NA>  <NA>     5
+#> 3  3 <NA>  <NA>     5
 }
 
