@@ -240,7 +240,7 @@ trav_out <- function(graph,
   }
 
   # Create bindings for specific variables
-  from <- to <- NULL
+  id <- from <- to <- type <- label <- NULL
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
