@@ -4,7 +4,8 @@
 \alias{get_edges}
 \title{Get node IDs associated with edges}
 \usage{
-get_edges(x, conditions = NULL, return_type = "vector")
+get_edges(x, conditions = NULL, return_type = "vector",
+  return_values = "id")
 }
 \arguments{
 \item{x}{either a graph object of class
@@ -21,6 +22,11 @@ contains vectors of outgoing and incoming node IDs
 associated with edges. With \code{df}, a data frame
 containing outgoing and incoming node IDs associated
 with edges.}
+
+\item{return_values}{using \code{id} (the default)
+results in node ID values returned in the edge
+definitions. With \code{label}, the node labels will
+instead be used to define edges.}
 }
 \value{
 a list, data frame, or a vector object,
@@ -37,6 +43,7 @@ set of edges returned.
 ndf <-
   create_node_df(
     n = 4,
+    label = c("one", "two", "three", "four"),
     type = "letter",
     color = c("red", "green", "grey", "blue"),
     value = c(3.5, 2.6, 9.4, 2.7))
@@ -100,5 +107,15 @@ get_edges(
                  "value > 3"),
   return_type = "vector")
 #> [1] "3 -> 1"
+
+# Use `return_values = "label"` to return
+# the labels of the connected nodes
+get_edges(
+  graph,
+  conditions = c("color == 'blue'",
+                 "value > 3"),
+  return_type = "vector",
+  return_values = "label")
+#> [1] "three -> one"
 }
 
