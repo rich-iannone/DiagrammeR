@@ -145,7 +145,56 @@
 #'     conditions = "grepl('..d', label)") %>%
 #'   get_selection()
 #' #> [1] 1 5
-#' @importFrom dplyr filter_ inner_join right_join rename distinct select select_ union group_by summarize_ everything
+#'
+#' # Create another simple graph to demonstrate
+#' # copying of node attribute values to traversed
+#' # nodes
+#' graph <-
+#'   create_graph() %>%
+#'   add_path(5) %>%
+#'   select_nodes_by_id(c(2, 4)) %>%
+#'   set_node_attrs_ws("value", 5)
+#'
+#' # Show the graph's internal node data frame
+#' graph %>% get_node_df()
+#' #>   id type label value
+#' #> 1  1 <NA>     1    NA
+#' #> 2  2 <NA>     2     5
+#' #> 3  3 <NA>     3    NA
+#' #> 4  4 <NA>     4     5
+#' #> 5  5 <NA>     5    NA
+#'
+#' # Show the graph's internal edge data frame
+#' graph %>% get_edge_df()
+#' #>   id from to  rel
+#' #> 1  1    1  2 <NA>
+#' #> 2  2    2  3 <NA>
+#' #> 3  3    3  4 <NA>
+#' #> 4  4    4  5 <NA>
+#'
+#' # Perform a traversal from the inner nodes
+#' # (`2` and `4`) to their adjacent nodes (`1`,
+#' # `3`, and `5`) while also applying the node
+#' # attribute `value` to target nodes; node `3`
+#' # will obtain a `value` of 10 since a traversal
+#' # to `3` will occur from `2` and `4` (and
+#' # multiple values passed will be summed)
+#' graph <-
+#'   graph %>%
+#'   trav_both(
+#'     copy_attrs_from = "value",
+#'     agg = "sum")
+#'
+#' # Show the graph's internal node data frame
+#' # after this change
+#' graph %>% get_node_df()
+#' #>   id type label value
+#' #> 1  1 <NA>     1     5
+#' #> 2  2 <NA>     2     5
+#' #> 3  3 <NA>     3    10
+#' #> 4  4 <NA>     4     5
+#' #> 5  5 <NA>     5     5
+#' @importFrom dplyr filter_ inner_join right_join rename distinct select select_ union_all group_by summarize_ everything
 #' @importFrom tibble as_tibble
 #' @export trav_both
 
