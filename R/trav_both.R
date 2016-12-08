@@ -242,7 +242,7 @@ trav_both <- function(graph,
 
     nodes <-
       from_join %>%
-      dplyr::union(to_join) %>%
+      dplyr::union_all(to_join) %>%
       dplyr::group_by(id) %>%
       dplyr::summarize_(.dots = setNames(
         list(stats::as.formula(
