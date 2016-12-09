@@ -45,14 +45,14 @@
 #' #> [1] 1 3
 #'
 #' # Get a vector of edge ID values using
-#' # a match pattern (i.e., all nodes with
+#' # a match pattern (i.e., all edges with
 #' # `color` attribute of `pink`)
 #' get_edge_ids(
 #'   graph,
 #'   conditions = "color == 'pink'")
 #' #> [1] 1
 #'
-#' # Use multiple conditions to return nodes
+#' # Use multiple conditions to return edges
 #' # with the desired attribute values
 #' get_edge_ids(
 #'   graph,
