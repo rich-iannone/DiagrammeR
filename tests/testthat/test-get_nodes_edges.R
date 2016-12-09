@@ -284,3 +284,74 @@ test_that("getting connected nodes is possible", {
   expect_error(
     get_all_connected_nodes(graph, 35))
 })
+
+test_that("getting edge IDs from graph objects is possible", {
+
+# Create a node data frame (ndf)
+ndf <-
+  create_node_df(
+    n = 4,
+    type = "letter",
+    color = c("red", "green", "grey", "blue"),
+    value = c(3.5, 2.6, 9.4, 2.7))
+
+# Create an edge data frame (edf)
+edf <-
+  create_edge_df(
+    from = c(1, 2, 3),
+    to = c(4, 3, 1),
+    rel = "leading_to",
+    color = c("pink", "blue", "blue"),
+    value = c(3.9, 2.5, 7.3))
+
+# Create a graph
+graph <-
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf)
+
+# Expect a vector of all edge IDs in the graph
+expect_equal(get_edge_ids(graph), c(1, 2, 3))
+
+# Using a numeric comparison (i.e., all edges
+# with `value` attribute greater than 3),
+# expect edges `1` and `3`
+expect_equal(
+  get_edge_ids(
+    graph,
+    conditions = "value > 3"),
+  c(1, 3))
+
+# Using an equality for a character object,
+# (i.e., all nodes with `color` attribute of
+# `pink`), expect edge `1`
+expect_equal(
+  get_edge_ids(
+    graph,
+    conditions = "color == 'pink'"),
+  1)
+
+# Expect that multiple conditions will work
+# to return edges with the desired attribute
+# values (in this case, edge `3`)
+expect_equal(
+  get_edge_ids(
+    graph,
+    conditions = c("color == 'blue'",
+                   "value > 5")),
+  3)
+
+# Expect NA if no edges are matched after
+# providing unmatched conditions
+expect_true(
+  is.na(
+    get_edge_ids(
+      graph,
+      conditions = "color == 'red'")))
+
+# Expect NA if there are no edges in the graph
+expect_true(
+  is.na(
+    get_edge_ids(
+      create_graph())))
+})
