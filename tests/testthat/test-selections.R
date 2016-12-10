@@ -429,6 +429,26 @@ test_that("selecting edges via node IDs is possible", {
                     c(4, 5, 3)))
 })
 
+test_that("selecting edges via edge IDs is possible", {
+
+  # Create a graph with 5 nodes
+  graph <-
+    create_graph() %>%
+    add_path(5)
+
+  # Create a graph selection by selecting edges
+  # associated the edge IDs `1` and `2`
+  graph <-
+    graph %>%
+    select_edges_by_edge_id(1:2)
+
+  # Expect edges with IDs `1` and `2` in the
+  # selection of edges
+  expect_equal(
+    graph %>%
+      get_selection(), c(1, 2))
+})
+
 test_that("selecting nodes in a neighborhood is possible", {
 
   # Create a graph
