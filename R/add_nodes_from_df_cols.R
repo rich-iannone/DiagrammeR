@@ -154,30 +154,34 @@ add_nodes_from_df_cols <- function(graph,
   # Get the number of nodes
   n <- length(nodes)
 
-  # Create a ndf of the correct length
-  if (is.null(type)) {
-    new_nodes <-
-      create_node_df(
-        n = n,
-        label = nodes)
-  } else {
-    new_nodes <-
-      create_node_df(
-        n = n,
-        type = type,
-        label = nodes)
+  # If there are any unique labels, create an ndf
+  # of the correct length
+  if (n > 0) {
+
+    if (is.null(type)) {
+      new_nodes <-
+        create_node_df(
+          n = n,
+          label = nodes)
+    } else {
+      new_nodes <-
+        create_node_df(
+          n = n,
+          type = type,
+          label = nodes)
+    }
+
+    # Renumber the node ID values based on the
+    # last node in the graph
+    new_nodes[, 1] <- new_nodes[, 1] + graph$last_node
+
+    # Add `new_nodes` ndf to the graph
+    graph$nodes_df <-
+      dplyr::bind_rows(graph$nodes_df, new_nodes)
+
+    # Update the `last_node` counter
+    graph$last_node <- graph$last_node + n
   }
-
-  # Renumber the node ID values based on the
-  # last node in the graph
-  new_nodes[, 1] <- new_nodes[, 1] + graph$last_node
-
-  # Add `new_nodes` ndf to the graph
-  graph$nodes_df <-
-    dplyr::bind_rows(graph$nodes_df, new_nodes)
-
-  # Update the `last_node` counter
-  graph$last_node <- graph$last_node + n
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
