@@ -130,10 +130,15 @@ add_nodes_from_df_cols <- function(graph,
   # Create an empty `nodes` vector
   nodes <- vector(mode = "character")
 
-  # Obtain a vector of values from each column
-  for (i in 1:ncol(df)) {
-    nodes <-
-      c(nodes, as.character(df[, i]))
+  if (inherits(df, "data.frame")) {
+
+    # Obtain a vector of values from each column
+    for (i in 1:ncol(df)) {
+      nodes <-
+        c(nodes, as.character(df[, i]))
+    }
+  } else {
+    nodes <- as.character(df)
   }
 
   # Get the unique set of nodes
