@@ -2,7 +2,7 @@ Package: DiagrammeR
 Type: Package
 Title: Create Graph Diagrams and Flowcharts Using R
 Version: 0.8.5
-Date: 2016-12-04
+Date: 2016-12-11
 Authors@R: c(
       person(
         "Knut", "Sveidqvist"
@@ -41,18 +41,18 @@ Description: Create graph diagrams and flowcharts using R.
 License: MIT + file LICENSE
 Imports:
     dplyr (>= 0.5.0),
-    htmlwidgets (>= 0.6),
+    htmlwidgets (>= 0.8),
     igraph (>= 1.0.1),
     influenceR (>= 0.1.0),
     magrittr (>= 1.5),
     RColorBrewer (>= 1.1-2),
     rstudioapi (>= 0.6),
     rgexf (>= 0.15.3),
+    scales (>= 0.4.1),
     stringr (>= 1.1.0),
     tibble (>= 1.2),
     viridis (>= 0.3.4),
-    visNetwork (>= 1.0.1),
-    scales (>= 0.4.0)
+    visNetwork (>= 1.0.2)
 URL: https://github.com/rich-iannone/DiagrammeR
 BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Suggests:
