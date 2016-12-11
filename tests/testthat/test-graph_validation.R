@@ -26,6 +26,7 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(add_n_nodes_ws(invalid_graph))
   expect_error(add_node(invalid_graph))
   expect_error(add_node_df(invalid_graph))
+  expect_error(add_nodes_from_df_cols(invalid_graph))
   expect_error(add_nodes_from_table(invalid_graph))
   expect_error(add_path(invalid_graph))
   expect_error(add_prism(invalid_graph))
