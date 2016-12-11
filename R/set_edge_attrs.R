@@ -93,13 +93,13 @@ set_edge_attrs <- function(x,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  if (edge_attr == "from" | edge_attr == "to") {
-    stop("You cannot alter values associated with node IDs.")
+  if (edge_attr %in% c("id", "from", "to")) {
+    stop("You cannot alter edge ID values or attributes associated with node IDs.")
   }
 
   if (!is.null(from) & !is.null(to)) {
     if (length(from) != length(to)) {
-      stop("The number of nodes 'from' and 'to' must be the same.")
+      stop("The number of values specified in `from` and `to` must be the same.")
     }
   }
 
