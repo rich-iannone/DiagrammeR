@@ -308,3 +308,131 @@ test_that("copying values with `trav_both_edge()` works", {
     c(NA, 3.5, NA, NA, NA, NA, NA, 3.5, 3.5,
       3.5, NA, NA, NA, NA, NA))
 })
+
+test_that("copying values with `trav_both()` works", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_path(5) %>%
+    select_nodes_by_id(c(2, 4)) %>%
+    set_node_attrs_ws("value", 5)
+
+  # Expect that specific values will be copied
+  # from selected nodes and passed to adjacent nodes
+  expect_equal(
+    graph %>%
+      trav_both(
+        copy_attrs_from = "value",
+        agg = "sum") %>%
+      get_node_attrs("value") %>% as.numeric(),
+    c(5, 5, 10, 5, 5))
+})
+
+test_that("copying values with `trav_in()` works", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node() %>%
+    select_nodes() %>%
+    add_n_nodes_ws(2, "from") %>%
+    clear_selection() %>%
+    select_nodes_by_id(2:3) %>%
+    set_node_attrs_ws("value", 5)
+
+  # Expect that specific values will be copied
+  # from selected nodes and passed to adjacent nodes
+  expect_equal(
+    graph %>%
+      trav_in(
+        copy_attrs_from = "value",
+        agg = "sum") %>%
+      get_node_attrs("value") %>% as.numeric(),
+    c(10, 5, 5))
+})
+
+test_that("copying values with `trav_out()` works", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node() %>%
+    select_nodes() %>%
+    add_n_nodes_ws(2, "to") %>%
+    clear_selection() %>%
+    select_nodes_by_id(2:3) %>%
+    set_node_attrs_ws("value", 5)
+
+  # Expect that specific values will be copied
+  # from selected nodes and passed to adjacent nodes
+  expect_equal(
+    graph %>%
+      trav_out(
+        copy_attrs_from = "value",
+        agg = "sum") %>%
+      get_node_attrs("value") %>% as.numeric(),
+    c(10, 5, 5))
+})
+
+test_that("copying values with `trav_out_node()` works", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node() %>%
+    select_nodes() %>%
+    add_n_nodes_ws(2, "from") %>%
+    clear_selection() %>%
+    select_nodes_by_id(2) %>%
+    set_node_attrs_ws("value", 8) %>%
+    clear_selection() %>%
+    select_edges_by_edge_id(1) %>%
+    set_edge_attrs_ws("value", 5) %>%
+    clear_selection() %>%
+    select_edges_by_edge_id(2) %>%
+    set_edge_attrs_ws("value", 5) %>%
+    clear_selection() %>%
+    select_edges()
+
+  # Expect that specific values will be copied
+  # from selected nodes and passed to adjacent nodes
+  expect_equal(
+    graph %>%
+      trav_out_node(
+        copy_attrs_from = "value",
+        agg = "sum") %>%
+      get_node_attrs("value") %>% as.numeric(),
+    c(10, 8, NA))
+})
+
+test_that("copying values with `trav_in_node()` works", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node() %>%
+    select_nodes() %>%
+    add_n_nodes_ws(2, "to") %>%
+    clear_selection() %>%
+    select_nodes_by_id(2) %>%
+    set_node_attrs_ws("value", 8) %>%
+    clear_selection() %>%
+    select_edges_by_edge_id(1) %>%
+    set_edge_attrs_ws("value", 5) %>%
+    clear_selection() %>%
+    select_edges_by_edge_id(2) %>%
+    set_edge_attrs_ws("value", 5) %>%
+    clear_selection() %>%
+    select_edges()
+
+  # Expect that specific values will be copied
+  # from selected nodes and passed to adjacent nodes
+  expect_equal(
+    graph %>%
+      trav_in_node(
+        copy_attrs_from = "value",
+        agg = "sum") %>%
+      get_node_attrs("value") %>% as.numeric(),
+    c(10, 8, NA))
+})
