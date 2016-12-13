@@ -953,3 +953,61 @@ test_that("selective traversals with `trav_both()` are possible", {
   # Expect that the node `2` is the current selection
   expect_equal(get_selection(graph), 2)
 })
+
+test_that("selective traversals with `trav_both_edge()` are possible", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_edge(1, 2) %>%
+    add_edge(2, 3) %>%
+    add_edge(3, 4) %>%
+    select_nodes() %>%
+    set_node_attrs_ws("type", "circle") %>%
+    clear_selection() %>%
+    select_nodes_by_id(c(2, 3)) %>%
+    set_node_attrs_ws("data_value", 10) %>%
+    clear_selection() %>%
+    select_nodes_by_id(4) %>%
+    set_node_attrs_ws("shape", "square") %>%
+    set_node_attrs_ws("data_value", 5) %>%
+    clear_selection() %>%
+    select_nodes_by_id(1) %>%
+    set_node_attrs_ws("shape", "triangle") %>%
+    set_node_attrs_ws("data_value", 5) %>%
+    clear_selection() %>%
+    select_edges() %>%
+    set_edge_attrs_ws("data_value", c(1, 2, 3)) %>%
+    set_edge_attrs_ws("rel", "related_to") %>%
+    clear_selection()
+
+  # Starting at node `3`, traverse to edges `3` -> `4`
+  # and `2` -> `3` with a match expression (==)
+  graph <-
+    graph %>%
+    clear_selection %>%
+    select_nodes_by_id(3) %>%
+    trav_both_edge("data_value == 2")
+
+  # Expect that edge `2` is in the current selection
+  expect_equal(get_selection(graph), 2)
+
+  # Expect an error if the graph has no selection of nodes
+  expect_error(
+    graph %>%
+      clear_selection %>%
+      trav_both_edge("data_value == 2"))
+
+  # Return the same graph if a traversal with conditions
+  # does not result in a traversal
+  expect_equal(
+    graph %>%
+      clear_selection %>%
+      select_nodes_by_id(3) %>%
+      trav_both_edge("data_value == 6") %>%
+      get_selection(), 3)
+})
