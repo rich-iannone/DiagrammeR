@@ -25,16 +25,16 @@ graph <-
 
 # Inspect the graph's edges
 graph \%>\% get_edges()
-#> [1] "1 -> 2" "1 -> 3" "2 -> 4" "2 -> 5" "3 -> 6"
-#> [6] "3 -> 7"
+#> [1] "1 -> 2" "1 -> 3" "2 -> 4" "2 -> 5"
+#> [5] "3 -> 6" "3 -> 7"
 
 # Reverse the edge directions such that edges
 # are directed toward the root of the tree
-graph <- graph \%>\% rev_edge_dir
+graph <- graph \%>\% rev_edge_dir()
 
 # Inspect the graph's edges after their reversal
 graph \%>\% get_edges()
-#> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2" "6 -> 3"
-#> [6] "7 -> 3"
+#> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2"
+#> [5] "6 -> 3" "7 -> 3"
 }
 
