@@ -71,3 +71,39 @@ test_that("Reversing the graph edges is possible", {
       5, 5, directed = FALSE) %>%
       rev_edge_dir())
 })
+
+test_that("Creating a complement graph is possible", {
+
+  # Create a simple graph with a single cycle
+  graph <-
+    create_graph() %>%
+    add_cycle(4)
+
+  # Create the complement of the graph
+  graph_c <- create_complement_graph(graph)
+
+  # Expect 8 edges in the complement graph
+  expect_equal(
+    graph_c %>%
+      get_edge_df() %>%
+      nrow(), 8)
+
+  # Expect that there are no loops in the
+  # complement graph
+  expect_equal(
+    graph_c %>%
+      get_edge_df() %>%
+      filter(from == to) %>%
+      nrow(), 0)
+
+  # Create the complement of the original graph
+  # with loops created
+  graph_cl <-
+    create_complement_graph(graph, loops = TRUE)
+
+  # Expect 12 edges in this complement graph
+  expect_equal(
+    graph_cl %>%
+      get_edge_df() %>%
+      nrow(), 12)
+})
