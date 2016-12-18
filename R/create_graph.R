@@ -190,12 +190,11 @@ create_graph <- function(nodes_df = NULL,
     }
   } else if (is.null(attr_theme)) {
     global_attrs <-
-      tibble::tibble(
+      data.frame(
         attr = as.character(NA),
         value = as.character(NA),
-        attr_type = as.character(NA)) %>%
-      .[-1, ] %>%
-      as.data.frame(stringsAsFactors = FALSE)
+        attr_type = as.character(NA),
+        stringsAsFactors = FALSE)[-1, ]
   }
 
   ## DF: `nodes_df`
