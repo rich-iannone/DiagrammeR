@@ -30,7 +30,9 @@ the graph object.}
 \item{attr_theme}{the theme (i.e., collection of
 \code{graph}, \code{node}, and \code{edge} global
 graph attributes) to use for this graph. The default
-theme is called \code{default}.}
+theme is called \code{default}. If this is set to
+\code{NULL} then no global graph attributes will
+be applied to the graph upon creation.}
 
 \item{write_backups}{an option to write incremental
 backups of changing graph states to disk. If
