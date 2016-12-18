@@ -135,8 +135,8 @@ generate_dot <- function(graph) {
       "tailtarget", "tailtooltip", "tailURL", "target",
       "tooltip", "weight")
 
-  if (all(c(is.null(nodes_df),
-            is.null(edges_df)))) {
+  if (nrow(nodes_df) == 0 &
+      nrow(edges_df) == 0) {
 
     # Create DOT code with nothing in graph
     dot_code <-
@@ -243,7 +243,7 @@ generate_dot <- function(graph) {
     # Create the DOT node block
     #
 
-    if (!is.null(nodes_df)) {
+    if (nrow(nodes_df) > 0) {
 
       # Determine whether positional (x,y)
       # data is included
@@ -492,7 +492,7 @@ generate_dot <- function(graph) {
     # Create the DOT edge block
     #
 
-    if (!is.null(edges_df)) {
+    if (nrow(edges_df) > 0) {
 
       # Determine whether `from` or `to` columns are
       # in `edges_df`
