@@ -162,27 +162,38 @@ create_graph <- function(nodes_df = NULL,
 
   # If `attr_theme` is `default` then populate the
   # `global_attrs` data frame with global graph attrs
-  if (attr_theme == "default") {
-
+  if (inherits(attr_theme, "character")) {
+    if (attr_theme == "default") {
+      global_attrs <-
+        data.frame(
+          attr = as.character(
+            c("layout", "outputorder", "fontname", "fontsize",
+              "shape", "fixedsize", "width", "style",
+              "fillcolor", "color", "fontcolor",
+              "len", "color", "arrowsize")
+          ),
+          value = as.character(
+            c("neato", "edgesfirst", "Helvetica", "10",
+              "circle", "true", "0.5", "filled",
+              "aliceblue", "gray70", "gray50",
+              "1.5", "gray40", "0.5")
+          ),
+          attr_type = as.character(
+            c(rep("graph", 2),
+              rep("node", 9),
+              rep("edge", 3))),
+          stringsAsFactors = FALSE)
+    } else {
+      stop("The value for `attr_theme` doesn't refer to any available theme.")
+    }
+  } else if (is.null(attr_theme)) {
     global_attrs <-
-      data.frame(
-        attr = as.character(
-          c("layout", "outputorder", "fontname", "fontsize",
-            "shape", "fixedsize", "width", "style",
-            "fillcolor", "color", "fontcolor",
-            "len", "color", "arrowsize")
-        ),
-        value = as.character(
-          c("neato", "edgesfirst", "Helvetica", "10",
-            "circle", "true", "0.5", "filled",
-            "aliceblue", "gray70", "gray50",
-            "1.5", "gray40", "0.5")
-        ),
-        attr_type = as.character(
-          c(rep("graph", 2),
-            rep("node", 9),
-            rep("edge", 3))),
-        stringsAsFactors = FALSE)
+      tibble::tibble(
+        attr = as.character(NA),
+        value = as.character(NA),
+        attr_type = as.character(NA)) %>%
+      .[-1, ] %>%
+      as.data.frame(stringsAsFactors = FALSE)
   }
 
   ## DF: `nodes_df`
