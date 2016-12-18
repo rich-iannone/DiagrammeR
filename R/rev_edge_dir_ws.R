@@ -57,7 +57,7 @@ rev_edge_dir_ws <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- NULL
+  id <- from <- to <- . <- NULL
 
   # Get the graph nodes in the `from` and `to` columns
   # of the edf
