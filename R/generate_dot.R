@@ -29,7 +29,7 @@ generate_dot <- function(graph) {
     graph_attrs <-
       global_attrs %>%
       dplyr::filter(attr_type == "graph") %>%
-      dplyr::mutate(string = paste(attr, "=", value))
+      dplyr::mutate(string = paste0(attr, " = '", value, "'"))
 
     graph_attrs <- graph_attrs[[4]]
 
@@ -41,7 +41,7 @@ generate_dot <- function(graph) {
     node_attrs <-
       global_attrs %>%
       dplyr::filter(attr_type == "node") %>%
-      dplyr::mutate(string = paste(attr, "=", value))
+      dplyr::mutate(string = paste0(attr, " = '", value, "'"))
 
     node_attrs <- node_attrs[[4]]
 
@@ -53,7 +53,7 @@ generate_dot <- function(graph) {
     edge_attrs <-
       global_attrs %>%
       dplyr::filter(attr_type == "edge") %>%
-      dplyr::mutate(string = paste(attr, "=", value))
+      dplyr::mutate(string = paste0(attr, " = '", value, "'"))
 
     edge_attrs <- edge_attrs[[4]]
 
