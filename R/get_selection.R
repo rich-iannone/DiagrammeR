@@ -67,19 +67,4 @@ get_selection <- function(graph) {
   if (selection_type == "edge") {
     return(as.integer(sort(graph$edge_selection$edge)))
   }
-
-  # if (names(graph$selection) == "edge") {
-  #   selection_from <- graph$selection[[1]][[1]]
-  #   selection_to <- graph$selection[[1]][[2]]
-  #
-  #   if (is_graph_directed(graph)) {
-  #     selection <-
-  #       paste(selection_from, selection_to, sep = " -> ")
-  #   }
-  #
-  #   if (is_graph_directed(graph) == FALSE) {
-  #     selection <-
-  #       paste(selection_from, selection_to, sep = " - ")
-  #   }
-  # }
 }
