@@ -87,21 +87,8 @@ get_edge_attrs <- function(x,
     edge_names <-
       paste(edges_df$from, edges_df$to, sep = " -> ")
 
-    # If the values are numeric, coerce to numeric
-    edge_attr_vals_numeric <-
-      ifelse(
-        suppressWarnings(
-          any(is.na(as.numeric(edge_attr_vals)))),
-        FALSE, TRUE)
-
-    if (edge_attr_vals_numeric == TRUE) {
-      edge_attr_vals <- as.numeric(edge_attr_vals)
-      names(edge_attr_vals) <- edge_names
-    }
-
-    if (edge_attr_vals_numeric == FALSE) {
-      names(edge_attr_vals) <- edge_names
-    }
+    # Assign edge names
+    names(edge_attr_vals) <- edge_names
   }
 
   if (!is.null(from) & !is.null(to)) {
@@ -131,21 +118,9 @@ get_edge_attrs <- function(x,
                       "from_to")] %in% edges),
           3], sep = " -> ")
 
-    # If the values are numeric, coerce to numeric
-    edge_attr_vals_numeric <-
-      ifelse(
-        suppressWarnings(
-          any(is.na(as.numeric(edge_attr_vals)))),
-        FALSE, TRUE)
+    # Assign edge names
+    names(edge_attr_vals) <- edge_names
 
-    if (edge_attr_vals_numeric == TRUE) {
-      edge_attr_vals <- as.numeric(edge_attr_vals)
-      names(edge_attr_vals) <- edge_names
-    }
-
-    if (edge_attr_vals_numeric == FALSE) {
-      names(edge_attr_vals) <- edge_names
-    }
   }
 
   return(edge_attr_vals)
