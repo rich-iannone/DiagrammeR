@@ -56,7 +56,7 @@
 #'
 #' # Get the graph's edges
 #' graph %>% get_edges()
-#' #> "1 -> 2" "1 -> 3" "1 -> 4" "1 -> 5" "1 -> 6"
+#' #> "1->2" "1->3" "1->4" "1->5" "1->6"
 #'
 #' # Create an empty graph, add a node to it, select
 #' # that node, and then add 5 more nodes to the graph
@@ -74,7 +74,7 @@
 #'
 #' # Get the graph's edges
 #' graph %>% get_edges()
-#' #> "2 -> 1" "3 -> 1" "4 -> 1" "5 -> 1" "6 -> 1"
+#' #> "2->1" "3->1" "4->1" "5->1" "6->1"
 #' @importFrom dplyr bind_rows
 #' @export add_n_nodes_ws
 

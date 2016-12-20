@@ -48,7 +48,7 @@
 #'
 #' # Get all edges within a graph, returned as a list
 #' get_edges(graph, return_type = "vector")
-#' #> [1] "1 -> 4" "2 -> 3" "3 -> 1"
+#' #> [1] "1->4" "2->3" "3->1"
 #'
 #' # Get all edges within a graph, returned as a
 #' # data frame
@@ -73,14 +73,14 @@
 #'   graph,
 #'   conditions = "value > 3",
 #'   return_type = "vector")
-#' #> [1] "1 -> 4" "3 -> 1"
+#' #> [1] "1->4" "3->1"
 #'
 #' # Get a vector of edges using a match
 #' get_edges(
 #'   graph,
 #'   conditions = "color == 'pink'",
 #'   return_type = "vector")
-#' #> [1] "1 -> 4"
+#' #> [1] "1->4"
 #'
 #' # Use multiple conditions to return edges
 #' # with the desired attribute values
@@ -89,7 +89,7 @@
 #'   conditions = c("color == 'blue'",
 #'                  "value > 3"),
 #'   return_type = "vector")
-#' #> [1] "3 -> 1"
+#' #> [1] "3->1"
 #'
 #' # Use `return_values = "label"` to return
 #' # the labels of the connected nodes
@@ -99,7 +99,7 @@
 #'                  "value > 3"),
 #'   return_type = "vector",
 #'   return_values = "label")
-#' #> [1] "three -> one"
+#' #> [1] "three->one"
 #' @importFrom dplyr filter_ select_ left_join rename
 #' @export get_edges
 

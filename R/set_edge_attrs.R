@@ -37,7 +37,7 @@
 #'     edges_df = edf)
 #'
 #' # Set attribute `color = "green"` for edges
-#' # `1` -> `4` and `3` -> `1` using the graph object
+#' # `1`->`4` and `3`->`1` using the graph object
 #' graph <-
 #'   set_edge_attrs(
 #'     x = graph,
@@ -47,7 +47,7 @@
 #'     to = c(4, 1))
 #'
 #' # Set attribute `color = "green"` for edges
-#' # `1` -> `4` and `3` -> `1` using the edge
+#' # `1`->`4` and `3`->`1` using the edge
 #' # data frame
 #' edges <-
 #'   set_edge_attrs(

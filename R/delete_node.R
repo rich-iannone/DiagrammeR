@@ -26,7 +26,7 @@
 #' # since there were edges between the
 #' # removed node to and from other nodes
 #' get_edges(graph)
-#' #> [1] "1 -> 2" "4 -> 5"
+#' #> [1] "1->2" "4->5"
 #' @importFrom dplyr filter
 #' @export delete_node
 

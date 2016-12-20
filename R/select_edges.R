@@ -41,7 +41,7 @@
 #'     nodes_df = ndf,
 #'     edges_df = edf)
 #'
-#' # Explicitly select the edge `1` -> `4`
+#' # Explicitly select the edge `1`->`4`
 #' graph <-
 #'   graph %>%
 #'   select_edges(
@@ -61,7 +61,7 @@
 #'     conditions = "rel == 'z'")
 #'
 #' # Verify that an edge selection has been made, and
-#' # recall that the `2` -> `3` edge uniquely has the
+#' # recall that the `2`->`3` edge uniquely has the
 #' # `z` relationship label
 #' get_selection(graph)
 #' #> [1] 2
@@ -76,8 +76,8 @@
 #'     conditions = "value > 3.0")
 #'
 #' # Verify that the correct edge selection has been
-#' # made; in this case, edges `1` -> `4` and
-#' # `3` -> `1` have values for `value` > 3.0
+#' # made; in this case, edges `1`->`4` and
+#' # `3`->`1` have values for `value` > 3.0
 #' get_selection(graph)
 #' #> [1] 1 3
 #' @importFrom dplyr filter_ filter select rename

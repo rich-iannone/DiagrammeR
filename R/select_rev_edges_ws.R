@@ -3,10 +3,10 @@
 #' a graph object of class \code{dgr_graph}, select any
 #' of the available reverse edges between the nodes
 #' common to the selected edges. For instance, if an
-#' active selection has the edge \code{1 -> 2} but
-#' there is also an (unselected) edge \code{2 -> 1},
+#' active selection has the edge \code{1- 2} but
+#' there is also an (unselected) edge \code{2->1},
 #' then this function can either switch to the selection
-#' of \code{2 -> 1}, or, incorporate those edges in the
+#' of \code{2->1}, or, incorporate those edges in the
 #' active selection of edges.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
@@ -35,15 +35,15 @@
 #'     nodes_df = ndf,
 #'     edges_df = edf)
 #'
-#' # Explicitly select the edges `1` -> `4`
-#' # and `2` -> `3`
+#' # Explicitly select the edges `1`->`4`
+#' # and `2`->`3`
 #' graph <-
 #'   graph %>%
 #'   select_edges(from = 1, to = 4) %>%
 #'   select_edges(from = 2, to = 3)
 #'
 #' # Add to the selection the reverse edge
-#' # (`4` -> `1`)
+#' # (`4`->`1`)
 #' graph <-
 #'   graph %>%
 #'   select_rev_edges_ws()

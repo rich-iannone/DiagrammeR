@@ -40,14 +40,14 @@
 #'
 #' # Get the values for the `value` edge attribute
 #' graph %>% get_edge_attrs(edge_attr = "value")
-#' #> 1 -> 2 2 -> 3 1 -> 4 4 -> 3
-#' #>    1.6    2.9    4.3    8.4
+#' #> 1->2 2->3 1->4 4->3
+#' #>  1.6  2.9  4.3  8.4
 #'
 #' # To only return edge attribute values for specified
 #' # edges, use the `from` and `to` arguments
 #' graph %>% get_edge_attrs("value", c(1, 2), c(2, 3))
-#' #> 1 -> 2 2 -> 3
-#' #>    1.6    2.9
+#' #> 1->2 2->3
+#' #>  1.6  2.9
 #' @export get_edge_attrs
 
 get_edge_attrs <- function(x,
@@ -85,7 +85,7 @@ get_edge_attrs <- function(x,
 
     # Extract the edge names
     edge_names <-
-      paste(edges_df$from, edges_df$to, sep = " -> ")
+      paste(edges_df$from, edges_df$to, sep = "->")
 
     # Assign edge names
     names(edge_attr_vals) <- edge_names
@@ -116,11 +116,10 @@ get_edge_attrs <- function(x,
           which(edges_df[
             , which(colnames(edges_df) ==
                       "from_to")] %in% edges),
-          3], sep = " -> ")
+          3], sep = "->")
 
     # Assign edge names
     names(edge_attr_vals) <- edge_names
-
   }
 
   return(edge_attr_vals)
