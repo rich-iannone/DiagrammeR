@@ -186,10 +186,10 @@ get_edges <- function(x,
 
     if (return_values == "id") {
       edges_vector <-
-        paste(edges_df$from, "->", edges_df$to)
+        paste0(edges_df$from, "->", edges_df$to)
     } else if (return_values == "label") {
       edges_vector <-
-        paste(edges_df$from_label_, "->", edges_df$to_label_)
+        paste0(edges_df$from_label_, "->", edges_df$to_label_)
     }
 
     return(edges_vector)
