@@ -156,7 +156,7 @@ test_that("setting edge attributes is possible", {
     create_graph() %>%
     add_path(8)
 
-  # Set edge attribute for edge `1` -> `2`
+  # Set edge attribute for edge `1`->`2`
   graph_set_a_1 <-
     set_edge_attrs(
       graph,
@@ -165,13 +165,13 @@ test_that("setting edge attributes is possible", {
       edge_attr = "value",
       values = 5)
 
-  # Expect that edge `1` -> `2` has edge attr set for `value`
+  # Expect that edge `1`->`2` has edge attr set for `value`
   expect_equal(
     graph_set_a_1$edges_df[
       which(graph_set_a_1$edges_df$from == 1 &
               graph_set_a_1$edges_df$to == 2), 5], 5)
 
-  # Get edge attribute for edge `1` -> `2`
+  # Get edge attribute for edge `1`->`2`
   graph_set_a_1_edge_attr <-
     get_cache(
       cache_edge_attrs(
@@ -180,10 +180,10 @@ test_that("setting edge attributes is possible", {
         from = 1,
         to = 2))
 
-  # Expect that edge `1` -> `2` has edge attr set for `value`
+  # Expect that edge `1`->`2` has edge attr set for `value`
   expect_equal(graph_set_a_1_edge_attr, 5)
 
-  # Set attribute for named edge `1` -> `2` with a different value
+  # Set attribute for named edge `1`->`2` with a different value
   graph_set_a_1 <-
     set_edge_attrs(
       graph_set_a_1,
@@ -192,7 +192,7 @@ test_that("setting edge attributes is possible", {
       edge_attr = "value",
       values = 8)
 
-  # Expect that edge `1` -> `2` has edge attr set for `value`
+  # Expect that edge `1`->`2` has edge attr set for `value`
   expect_equal(
     get_cache(
       cache_edge_attrs(
@@ -201,17 +201,17 @@ test_that("setting edge attributes is possible", {
         from = 1,
         to = 2)), 8)
 
-  # Select edge `1` -> `2`
+  # Select edge `1`->`2`
   graph_select_a_1 <- select_edges(graph, from = 1, to = 2)
 
-  # Set attribute for selected edge `1` -> `2`
+  # Set attribute for selected edge `1`->`2`
   graph_select_a_1 <-
     set_edge_attrs_ws(
       graph_select_a_1,
       edge_attr = "value",
       value = 5)
 
-  # Expect that edge `1` -> `2` has edge attr set for `value`
+  # Expect that edge `1`->`2` has edge attr set for `value`
   expect_equal(
     get_cache(
       cache_edge_attrs(
@@ -230,7 +230,7 @@ test_that("setting edge attributes is possible", {
   # Expect that all edges have the attribute set
   expect_true(all(graph_set_all$edges_df$value == 5))
 
-  # Select edge `1` -> `2` and apply an edge attribute using that
+  # Select edge `1`->`2` and apply an edge attribute using that
   # edge selection
   graph_edge_selection <-
     graph %>%
@@ -238,7 +238,7 @@ test_that("setting edge attributes is possible", {
     set_edge_attrs_ws(
       edge_attr = "value", value = 5)
 
-  # Expect that edge `1` -> `2` has edge attr set for `value`
+  # Expect that edge `1`->`2` has edge attr set for `value`
   expect_equal(
     graph_edge_selection$edges_df[
       which(graph_edge_selection$edges_df$from == 1 &
@@ -326,7 +326,7 @@ test_that("Getting edge attributes is possible", {
 
   # Expect certain names to be in the vector
   expect_true(
-    all(c("1 -> 2", "2 -> 3", "1 -> 4", "4 -> 3") %in%
+    all(c("1->2", "2->3", "1->4", "4->3") %in%
           names(all_edges)))
 
   # Expect certain values to be in the vector
@@ -348,7 +348,7 @@ test_that("Getting edge attributes is possible", {
 
   # Expect certain names to be in the vector
   expect_true(
-    all(c("1 -> 2", "2 -> 3") %in%
+    all(c("1->2", "2->3") %in%
           names(some_edges)))
 
   # Expect certain values to be in the vector

@@ -215,8 +215,8 @@ test_that("adding an edge to a graph is possible", {
   expect_equal(edge_count(graph_2), 2)
 
   # Expect that the edges in the graph are:
-  # `3 -> 4` and `4 -> 1`
-  expect_true(all(c("3 -> 4", "4 -> 1") %in% get_edges(graph_2)))
+  # `3->4` and `4->1`
+  expect_true(all(c("3->4", "4->1") %in% get_edges(graph_2)))
 })
 
 test_that("adding several nodes to a graph at once is possible", {
@@ -479,5 +479,5 @@ test_that("adding several edges with a string is possible", {
   # Expect certain edges to be in the graph
   expect_equal(
     get_edges(graph_node_label),
-    c("1 -> 2", "1 -> 3", "2 -> 4", "2 -> 3"))
+    c("1->2", "1->3", "2->4", "2->3"))
 })

@@ -213,7 +213,7 @@ test_that("selecting an edge in a graph is possible", {
       nodes_df = nodes,
       edges_df = edges)
 
-  # Select nodes `1` -> `4` and `2` -> `3`
+  # Select nodes `1`->`4` and `2`->`3`
   graph_ad_bc <-
     select_edges(
       graph = graph,
@@ -360,7 +360,7 @@ test_that("selecting an edge in a graph is possible", {
       graph,
       from = 1)
 
-  # Expect that only the edge `1` -> `4` is selected
+  # Expect that only the edge `1`->`4` is selected
   expect_true(graph_from_a$edge_selection$from == 1)
   expect_true(graph_from_a$edge_selection$to == 4)
 
@@ -377,7 +377,7 @@ test_that("selecting an edge in a graph is possible", {
       graph,
       to = 3)
 
-  # Expect that only the edge `2` -> `3` is selected
+  # Expect that only the edge `2`->`3` is selected
   expect_true(graph_to_c$edge_selection$from == 2)
   expect_true(graph_to_c$edge_selection$to == 3)
 
@@ -574,7 +574,7 @@ test_that("inverting a selection is possible", {
     all(graph_select_1_2_inverted$node_selection$node %in%
           3:12))
 
-  # Select edges `1` -> `2` and `2` -> `3` in the graph
+  # Select edges `1`->`2` and `2`->`3` in the graph
   graph_select_edges_1_2__2_3 <-
     graph %>%
     select_edges(from = 1, to = 2) %>%
@@ -658,8 +658,8 @@ test_that("selecting reverse edges with an edge selection is possible", {
       nodes_df = ndf,
       edges_df = edf)
 
-  # Explicitly select the edges `1` -> `4`
-  # and `2` -> `3`
+  # Explicitly select the edges `1`->`4`
+  # and `2`->`3`
   graph <-
     graph %>%
     select_edges(from = 1, to = 4) %>%

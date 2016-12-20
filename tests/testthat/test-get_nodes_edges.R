@@ -147,9 +147,9 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   # Expect that the vector object is of length 26
   expect_true(length(gotten_edges_vector) == 26)
 
-  # Expect that the ' -> ' substring is in
+  # Expect that the '->' substring is in
   # each vector component
-  expect_true(all(grepl(" -> ", gotten_edges_vector)))
+  expect_true(all(grepl("->", gotten_edges_vector)))
 
   # Get the edge df from the graph using `get_edge_df()`
   edge_df_from_graph <- get_edge_df(graph)
@@ -184,8 +184,7 @@ test_that("getting edge information from an edge data frame is possible", {
   # Expect that the ' -> ' substring is in
   # each vector component
   expect_true(
-    all(grepl(" -> ",
-              edges_vector_from_edf)))
+    all(grepl("->", edges_vector_from_edf)))
 
   # Get edges from the edge data frame as a
   # returned list object

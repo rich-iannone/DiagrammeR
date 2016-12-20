@@ -123,7 +123,7 @@ test_that("removing an edge relationship is possible", {
       nodes_df = nodes,
       edges_df = edges)
 
-  # Remove the edge relationship across the `1` -> `4`
+  # Remove the edge relationship across the `1`->`4`
   # edge using the `delete` action
   graph_ad_remove_1 <-
     edge_rel(
@@ -132,7 +132,7 @@ test_that("removing an edge relationship is possible", {
       to = 4,
       action = "delete")
 
-  # Remove the edge relationship across the `1` -> `4`
+  # Remove the edge relationship across the `1`->`4`
   # edge using the `remove` action
   graph_ad_remove_2 <-
     edge_rel(
@@ -141,7 +141,7 @@ test_that("removing an edge relationship is possible", {
       to = 4,
       action = "remove")
 
-  # Remove the edge relationship across the `1` -> `4`
+  # Remove the edge relationship across the `1`->`4`
   # edge using the `drop` action
   graph_ad_remove_3 <-
     edge_rel(
@@ -156,7 +156,7 @@ test_that("removing an edge relationship is possible", {
   expect_equal(graph_ad_remove_2, graph_ad_remove_3)
   expect_equal(graph_ad_remove_1, graph_ad_remove_3)
 
-  # Expect that a relationship across the `1` -> `4`
+  # Expect that a relationship across the `1`->`4`
   # edge won't be present in all 3 instances (using
   # both `read` and `check` actions)
   expect_true(
@@ -205,7 +205,7 @@ test_that("removing an edge relationship is possible", {
       action = "check"))
 
   # Attempt to remove an edge relationship across the
-  # `1` -> `4` edge where the relationship had already
+  # `1`->`4` edge where the relationship had already
   # been removed; the expectation is that nothing will
   # occur and the graph will be returned unchanged
   expect_equal(
@@ -246,7 +246,7 @@ test_that("edge relationships can be set for edges in graph objects", {
       edges_df = edges_no_rel)
 
   # Create an edge relationship label across
-  # the `1` -> `4` edge
+  # the `1`->`4` edge
   graph_ad_rel <-
     edge_rel(
       graph_no_rel,
@@ -256,7 +256,7 @@ test_that("edge relationships can be set for edges in graph objects", {
       value = "new_rel")
 
   # Attempt to add an edge relationship across the
-  # `1` -> `4` edge where a relationship already
+  # `1`->`4` edge where a relationship already
   # exists; the expectation is that nothing will occur
   # and the graph will be returned unchanged (update
   # must be used to make a change to an extant
@@ -271,7 +271,7 @@ test_that("edge relationships can be set for edges in graph objects", {
       value = "newer_rel"))
 
   # Expect a TRUE value to be returned when
-  # inspecting the `1` -> `4` edge `check` action
+  # inspecting the `1`->`4` edge `check` action
   # but `FALSE` for the other edges
   expect_true(
     edge_rel(
@@ -295,7 +295,7 @@ test_that("edge relationships can be set for edges in graph objects", {
       action = "check"))
 
   # Expect the edge relationship value returned when
-  # inspecting the `1` -> `4` edge with the
+  # inspecting the `1`->`4` edge with the
   # `read` action
   expect_equal(
     edge_rel(
@@ -316,7 +316,7 @@ test_that("edge relationships can be set for edges in graph objects", {
       value = "newer_rel")
 
   # Expect that the new relationship value is
-  # returned when inspecting the `1` -> `4` edge
+  # returned when inspecting the `1`->`4` edge
   # with the `read` action
   expect_equal(
     edge_rel(
@@ -340,7 +340,7 @@ test_that("edge relationships can be set for edges in graph objects", {
   expect_equal(graph_no_rel, graph_no_rel_update)
 
   # Expect that no edge relationship is present across
-  # the `1` -> `4` edge
+  # the `1`->`4` edge
   expect_false(
     edge_rel(
       graph_no_rel_update,

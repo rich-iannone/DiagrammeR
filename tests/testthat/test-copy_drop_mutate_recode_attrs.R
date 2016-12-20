@@ -422,12 +422,12 @@ test_that("Recoding node attributes is possible", {
   # of the graph's columns
   expect_error(
     recode_node_attrs(
-      graph, "value_2", "1 -> 2"))
+      graph, "value_2", "1->2"))
 
   # Recode the `value` node attribute
   graph <-
     recode_node_attrs(
-      graph, "value", "1 -> 2")
+      graph, "value", "1->2")
 
   # Expect each value in `value` to be 2
   expect_equal(graph$nodes_df$value, c(2, 2))
@@ -436,7 +436,7 @@ test_that("Recoding node attributes is possible", {
   # also copy recoded values into `value_2`
   graph <-
     recode_node_attrs(
-      graph, "value", "2 -> 4",
+      graph, "value", "2->4",
       node_attr_to = "value_2")
 
   # Verify that the new column has been made
@@ -448,19 +448,19 @@ test_that("Recoding node attributes is possible", {
   # Expect an error if `node_attr_to` is `id` or `node`
   expect_error(
     recode_node_attrs(
-      graph, "value", "2 -> 4",
+      graph, "value", "2->4",
       node_attr_to = "id"))
 
   expect_error(
     recode_node_attrs(
-      graph, "value", "2 -> 4",
+      graph, "value", "2->4",
       node_attr_to = "nodes"))
 
   # Recode the `value` node attribute and
   # copy and overwrite recoded values into `value_2`
   graph <-
     recode_node_attrs(
-      graph, "value", "2 -> 8",
+      graph, "value", "2->8",
       node_attr_to = "value_2")
 
   # Expect each value in `value_2` to be 8
@@ -485,7 +485,7 @@ test_that("Recoding node attributes is possible", {
   # `otherwise` argument
   graph <-
     recode_node_attrs(
-      graph, "value", "1 -> 2", otherwise = 4)
+      graph, "value", "1->2", otherwise = 4)
 
   # Expect values in `value` to be 2, 2, 4, 4
   expect_equal(graph$nodes_df$value,
@@ -495,7 +495,7 @@ test_that("Recoding node attributes is possible", {
   # also copy recoded values into `value_2`
   graph <-
     recode_node_attrs(
-      graph, "value", "2 -> 4",
+      graph, "value", "2->4",
       otherwise = 8, node_attr_to = "value_2")
 
   # Expect values in `value_2` to be 4, 4, 8, 8
@@ -506,7 +506,7 @@ test_that("Recoding node attributes is possible", {
   # copy and overwrite recoded values into `value_2`
   graph <-
     recode_node_attrs(
-      graph, "value", "2 -> 8",
+      graph, "value", "2->8",
       otherwise = 16, node_attr_to = "value_2")
 
   # Expect values in `value_2` to be 8, 8, 16, 16
@@ -594,12 +594,12 @@ test_that("Recoding edge attributes is possible", {
   # of the graph's columns
   expect_error(
     recode_edge_attrs(
-      graph, "value_2", "1 -> 2"))
+      graph, "value_2", "1->2"))
 
   # Recode the `value` edge attribute
   graph <-
     recode_edge_attrs(
-      graph, "value", "1 -> 2")
+      graph, "value", "1->2")
 
   # Expect values in `value` to be 2, 2, 2, 3
   expect_equal(graph$edges_df$value,
@@ -609,7 +609,7 @@ test_that("Recoding edge attributes is possible", {
   # also copy recoded values into `value_2`
   graph <-
     recode_edge_attrs(
-      graph, "value", "2 -> 4",
+      graph, "value", "2->4",
       edge_attr_to = "value_2")
 
   # Verify that the new column has been made
@@ -622,19 +622,19 @@ test_that("Recoding edge attributes is possible", {
   # Expect an error if `edge_attr_to` is `from` or `to`
   expect_error(
     recode_edge_attrs(
-      graph, "value", "2 -> 4",
+      graph, "value", "2->4",
       edge_attr_to = "from"))
 
   expect_error(
     recode_edge_attrs(
-      graph, "value", "2 -> 4",
+      graph, "value", "2->4",
       edge_attr_to = "to"))
 
   # Recode the `value` edge attribute and
   # copy and overwrite recoded values into `value_2`
   graph <-
     recode_edge_attrs(
-      graph, "value", "2 -> 8",
+      graph, "value", "2->8",
       edge_attr_to = "value_2")
 
   # Expect certain values in `value_2`
@@ -645,7 +645,7 @@ test_that("Recoding edge attributes is possible", {
   # `otherwise` argument
   graph <-
     recode_edge_attrs(
-      graph, "value", "2 -> 4", otherwise = 8)
+      graph, "value", "2->4", otherwise = 8)
 
   # Expect certain values in `value`
   expect_equal(graph$edges_df$value,
@@ -655,7 +655,7 @@ test_that("Recoding edge attributes is possible", {
   # also copy recoded values into `value_3`
   graph <-
     recode_edge_attrs(
-      graph, "value", "4 -> 8",
+      graph, "value", "4->8",
       otherwise = 16, edge_attr_to = "value_3")
 
   # Expect certain values in `value_3`
@@ -666,7 +666,7 @@ test_that("Recoding edge attributes is possible", {
   # copy and overwrite recoded values into `value_3`
   graph <-
     recode_edge_attrs(
-      graph, "value", "4 -> 12",
+      graph, "value", "4->12",
       otherwise = 16, edge_attr_to = "value_3")
 
   # Expect certain values in `value_3`
@@ -676,7 +676,7 @@ test_that("Recoding edge attributes is possible", {
   # Recode the `color` edge attribute
   graph <-
     recode_edge_attrs(
-      graph, "color", "red -> gray")
+      graph, "color", "red->gray")
 
   # Expect certain values in `color`
   expect_equal(graph$edges_df$color,
