@@ -141,7 +141,7 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 #' @export
 DiagrammeROutput <- function(outputId,
                              width = '100%',
-                             height = '400px') {
+                             height = 'auto') {
 
   htmlwidgets::shinyWidgetOutput(outputId,
                                  'DiagrammeR',
