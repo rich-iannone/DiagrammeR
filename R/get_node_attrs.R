@@ -72,18 +72,5 @@ get_node_attrs <- function(x,
   # Add names to each of the values
   names(node_attr_vals) <- nodes
 
-  # Determine whether `node_attr_vals` values
-  # are numeric
-  node_attr_vals_numeric <-
-    ifelse(
-      suppressWarnings(
-        any(is.na(as.numeric(node_attr_vals)))),
-      FALSE, TRUE)
-
-  if (node_attr_vals_numeric == TRUE) {
-    node_attr_vals <- as.numeric(node_attr_vals)
-    names(node_attr_vals) <- nodes
-  }
-
   return(node_attr_vals)
 }
