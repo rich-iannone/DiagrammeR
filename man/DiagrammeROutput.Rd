@@ -4,7 +4,7 @@
 \alias{DiagrammeROutput}
 \title{Widget output function for use in Shiny}
 \usage{
-DiagrammeROutput(outputId, width = "100\%", height = "400px")
+DiagrammeROutput(outputId, width = "100\%", height = "auto")
 }
 \arguments{
 \item{outputId}{output variable to read from}

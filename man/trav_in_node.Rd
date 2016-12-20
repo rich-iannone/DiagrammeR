@@ -100,7 +100,7 @@ get_edge_df(graph)
 #> 5  5    3  5    D   5.05
 
 # Perform a simple traversal from the
-# edge `1` -> `3` to the attached node
+# edge `1`->`3` to the attached node
 # in the direction of the edge; here, no
 # conditions are placed on the nodes
 # traversed to
@@ -110,8 +110,8 @@ graph \%>\%
   get_selection()
 #> [1] 3
 
-# Traverse from edges `2` -> `5` and
-# `3` -> `5` to the attached node along
+# Traverse from edges `2`->`5` and
+# `3`->`5` to the attached node along
 # the direction of the edge; both
 # traversals lead to the same node
 graph \%>\%
@@ -121,7 +121,7 @@ graph \%>\%
   get_selection()
 #> [1] 5
 
-# Traverse from the edge `1` -> `3`
+# Traverse from the edge `1`->`3`
 # to the attached node where the edge
 # is incoming, this time filtering
 # numeric values greater than `5.0` for
@@ -133,7 +133,7 @@ graph \%>\%
   get_selection()
 #> [1] 3
 
-# Traverse from the edge `1` -> `3`
+# Traverse from the edge `1`->`3`
 # to the attached node where the edge
 # is incoming, this time filtering
 # numeric values less than `5.0` for
@@ -147,7 +147,7 @@ graph \%>\%
   get_selection()
 #> [1] 2
 
-# Traverse from the edge `1` -> `2` to
+# Traverse from the edge `1`->`2` to
 # the node `2` using multiple conditions
 # with a single-length vector (here, using
 # a `|` to create a set of `OR` conditions)

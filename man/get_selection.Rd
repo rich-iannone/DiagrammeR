@@ -45,6 +45,6 @@ graph \%>\%
 graph \%>\%
   select_edges_by_node_id(4) \%>\%
   get_selection()
-#> [1] "4 -> 5" "4 -> 6" "3 -> 4"
+#> [1] 3 4 5
 }
 

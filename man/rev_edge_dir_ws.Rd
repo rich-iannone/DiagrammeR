@@ -26,8 +26,8 @@ graph <-
 
 # Inspect the graph's edges
 get_edges(graph)
-#> [1] "1 -> 2" "1 -> 3" "2 -> 4" "2 -> 5"
-#> [5] "3 -> 6" "3 -> 7"
+#> [1] "1->2" "1->3" "2->4" "2->5"
+#> [5] "3->6" "3->7"
 
 # Select all edges associated with
 # nodes `1` and `2`
@@ -39,7 +39,7 @@ graph <- graph \%>\% rev_edge_dir_ws()
 
 # Inspect the graph's edges after their reversal
 graph \%>\% get_edges()
-#> [1] "2 -> 1" "3 -> 1" "4 -> 2" "5 -> 2"
-#> [5] "3 -> 6" "3 -> 7"
+#> [1] "2->1" "3->1" "4->2" "5->2"
+#> [5] "3->6" "3->7"
 }
 

@@ -84,6 +84,6 @@ graph <-
 # Use the `get_edges()` function to verify
 # that the edges were added
 get_edges(graph)
-#> [1] "1 -> 2" "3 -> 2" "3 -> 4" "4 -> 1"
+#> [1] "1->2" "3->2" "3->4" "4->1"
 }
 

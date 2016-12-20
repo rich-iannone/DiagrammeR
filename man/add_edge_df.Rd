@@ -50,6 +50,6 @@ graph <-
 # Get the graph's edges to verify that the edge
 # data frame had been added
 get_edges(graph, return_type = "vector")
-#> [1] "1 -> 4" "2 -> 3" "3 -> 1"
+#> [1] "1->4" "2->3" "3->1"
 }
 

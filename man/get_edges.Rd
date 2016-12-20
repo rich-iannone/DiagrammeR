@@ -65,7 +65,7 @@ graph <-
 
 # Get all edges within a graph, returned as a list
 get_edges(graph, return_type = "vector")
-#> [1] "1 -> 4" "2 -> 3" "3 -> 1"
+#> [1] "1->4" "2->3" "3->1"
 
 # Get all edges within a graph, returned as a
 # data frame
@@ -90,14 +90,14 @@ get_edges(
   graph,
   conditions = "value > 3",
   return_type = "vector")
-#> [1] "1 -> 4" "3 -> 1"
+#> [1] "1->4" "3->1"
 
 # Get a vector of edges using a match
 get_edges(
   graph,
   conditions = "color == 'pink'",
   return_type = "vector")
-#> [1] "1 -> 4"
+#> [1] "1->4"
 
 # Use multiple conditions to return edges
 # with the desired attribute values
@@ -106,7 +106,7 @@ get_edges(
   conditions = c("color == 'blue'",
                  "value > 3"),
   return_type = "vector")
-#> [1] "3 -> 1"
+#> [1] "3->1"
 
 # Use `return_values = "label"` to return
 # the labels of the connected nodes
@@ -116,6 +116,6 @@ get_edges(
                  "value > 3"),
   return_type = "vector",
   return_values = "label")
-#> [1] "three -> one"
+#> [1] "three->one"
 }
 

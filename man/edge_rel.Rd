@@ -63,37 +63,37 @@ graph <-
     nodes_df = ndf,
     edges_df = edf)
 
-# Read the edge `rel` for edge `1` -> `2`
+# Read the edge `rel` for edge `1`->`2`
 graph \%>\% edge_rel(1, 2)
 #> [1] "rel_a"
 
 # Remove the `rel` value entirely from
-# edge `1` -> `2`
+# edge `1`->`2`
 graph <-
   graph \%>\%
   edge_rel(1, 2, "delete")
 
-# Check that the edge `1` -> `2` no longer
+# Check that the edge `1`->`2` no longer
 # has a `rel` assignment
 graph \%>\% edge_rel(1, 2, "check")
 #> [1] FALSE
 
-# Add the `rel` value `rel_b`` to edge `1` -> `2`
+# Add the `rel` value `rel_b`` to edge `1`->`2`
 graph <-
   graph \%>\%
   edge_rel(1, 2, "add", "rel_b")
 
-# Read the edge `rel` for edge `1` -> `2`
+# Read the edge `rel` for edge `1`->`2`
 graph \%>\% edge_rel(1, 2)
 #> [1] "rel_b"
 
 # Perform an in-place update of the `rel`
-# value for edge `1` -> `2` (`rel_b`` to `rel_a``)
+# value for edge `1`->`2` (`rel_b`` to `rel_a``)
 graph <-
   graph \%>\%
   edge_rel(1, 2, "update", "rel_a")
 
-# Read the edge `rel` for edge `1` -> `2`
+# Read the edge `rel` for edge `1`->`2`
 # to ensure that the change was made
 graph \%>\% edge_rel(1, 2)
 #> [1] "rel a"
