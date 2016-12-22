@@ -4,11 +4,15 @@
 
 * Just as nodes do, edges now have edge ID values (they can be obtained using `get_edge_ids()` and they can be used directly in the `select_edges_by_edge_id()` function)
 
+* When created, a graph object automatically generates a graph ID and graph name (which can be modified using `set_graph_name()`)
+
 * So long as node `label` values are unique, they may now be used to compose edges using the `add_edge()` function with `use_labels = TRUE`
 
 * Quickly and flexibly add color to nodes and edges using the `colorize_node_attrs()` and `colorize_edge_attrs()` functions
 
-* Added functions to selectively modify existing node and edge attributes (e.g., `copy_node_attrs()`, `mutate_edge_attrs()`, `recode_node_attrs()`, etc.); new node and edges attributes can also be added via a data frame using the `join_node_attrs()` and `join_edge_attrs()` functions
+* Added functions to selectively modify existing node and edge attributes: `copy_[node/edge]_attrs()`, `drop_[node/edge]_attrs()`, `mutate_[node/edge]_attrs()`, `recode_[node/edge]_attrs()`, `rename_[node/edge]_attrs()`, and `rescale_[node/edge]_attrs()`.
+
+* New node and edge attributes can now be easily added to a graph via a data frame using the `join_node_attrs()` and `join_edge_attrs()` functions
 
 * Several graph generators are available for quickly adding graph primitives to a graph object (`add_balanced_tree()`, `add_cycle()`, `add_full_graph()`, `add_path()`, `add_prism()`, and `add_star()`)
 
@@ -16,7 +20,7 @@
 
 * Multiple conditions can be specified for all traversal types, plus, they are much easier to write
 
-* With a selection of edges one can now transform that selection to that of the selected edges' reverse edges (where available); the option is there to add the reverse edges to the edge selection or to simply replace the current selection
+* With a selection of edges one can now use `select_rev_edges_ws()` to transform that selection to that of the selected edges' reverse edges (where available); the option is there to add the reverse edges to the edge selection or to simply replace the current selection
 
 * Caching attributes for later use has been made simpler with a collection of `cache_...()` functions (or, set the cache explicitly using `set_cache()`); get the graph's cache using the `get_cache()` function
 
@@ -36,6 +40,12 @@
 
 * Groups of nodes that are weakly or strongly connected components can be determined using the `get_w_connected_cmpts()` and `get_s_connected_cmpts()` functions
 
+* Get articulation points (i.e., nodes that, when removed, disconnect the graph) with the `get_articulation_points()` function
+
+* Obtain centrality measures for graph nodes using the `get_closeness()` and `get_betweenness()` functions
+
+* Get the minimum-spanning tree subgraph from a graph with weighted edges using the `get_min_spanning_tree()` function
+
 * The edge direction may be reversed for an entire graph (`rev_edge_dir()`) or for part of a graph using an edge selection (`rev_edge_dir_ws()`)  
 
 * Depth-first search and breadth-first search algorithms are available in the `do_dfs()` and `do_bfs()` functions
@@ -48,7 +58,7 @@
 
 * Rewrote many graph functions (e.g. traversals) so that they are faster for very large graphs
 
-* A log of all graph functions that directly modify the graph is now part of the graph object
+* A log of all graph functions that directly modify the graph is now part of the graph object (`graph$graph_log`)
 
 * Added functionality to automatically generate graph backups at every graph modification; this is in the form of RDS files deposited in a subdirectory (name is based on the graph ID) of the working directory; the option (`write_backups`, set to `FALSE` by default) is available in all functions that initialize a graph object (`create_graph()`, `create_random_graph()`, `from_igraph()`, `from_adj_matrix()`)
 
