@@ -48,7 +48,7 @@
 
 * Rewrote many graph functions (e.g. traversals) so that they are faster for very large graphs
 
-* A log of all graph functions that directly modify the graph are logged in the graph object itself
+* A log of all graph functions that directly modify the graph is now part of the graph object
 
 * Added functionality to automatically generate graph backups at every graph modification; this is in the form of RDS files deposited in a subdirectory (name is based on the graph ID) of the working directory; the option (`write_backups`, set to `FALSE` by default) is available in all functions that initialize a graph object (`create_graph()`, `create_random_graph()`, `from_igraph()`, `from_adj_matrix()`)
 
