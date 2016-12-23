@@ -68,20 +68,31 @@ create_random_graph <- function(n,
 
   # Randomly choose `m` rows from all possible edges and
   # create an edge data frame
-  edf <-
-    dplyr::sample_n(possible_edges, m, replace = FALSE) %>%
-    dplyr::mutate(id = 1:n()) %>%
-    dplyr::mutate(rel = as.character(NA)) %>%
-    dplyr::select_("id", "from", "to", "rel") %>%
-    as.data.frame(stringsAsFactors = FALSE)
+  if (m > 0) {
+    edf <-
+      dplyr::sample_n(possible_edges, m, replace = FALSE) %>%
+      dplyr::mutate(id = 1:n()) %>%
+      dplyr::mutate(rel = as.character(NA)) %>%
+      dplyr::select_("id", "from", "to", "rel") %>%
+      as.data.frame(stringsAsFactors = FALSE)
 
-  # Create the graph
-  graph <-
-    create_graph(
-      nodes_df = ndf,
-      edges_df = edf,
-      directed = ifelse(directed, TRUE, FALSE),
-      write_backups = write_backups)
+    # Create the graph
+    graph <-
+      create_graph(
+        nodes_df = ndf,
+        edges_df = edf,
+        directed = ifelse(directed, TRUE, FALSE),
+        write_backups = write_backups)
+
+  } else {
+
+    # Create the graph
+    graph <-
+      create_graph(
+        nodes_df = ndf,
+        directed = ifelse(directed, TRUE, FALSE),
+        write_backups = write_backups)
+  }
 
   # Modify the `function_used` in the `graph_log` df
   graph$graph_log$function_used[1] <- "create_random_graph"
