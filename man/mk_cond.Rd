@@ -2,7 +2,7 @@
 % Please edit documentation in R/mk_cond.R
 \name{mk_cond}
 \alias{mk_cond}
-\title{Helper for making conditions for some `select_` function}
+\title{Helper for making conditions for some functions}
 \usage{
 mk_cond(...)
 }
@@ -21,8 +21,10 @@ argument.
 }
 \description{
 Create one or multiple conditions for
-certain \code{select_...} functions that have a
-\code{conditions} argument.
+all traversal functions (\code{trav_...}) and
+certain selection functions (\code{select_nodes()} and
+\code{select_edges()}). This helper could be invoked
+for these functions' \code{conditions} argument.
 }
 \examples{
 # Create a node data frame (ndf)
