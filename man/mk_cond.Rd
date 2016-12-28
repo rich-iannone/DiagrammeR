@@ -80,6 +80,22 @@ graph_2 <-
 get_selection(graph_2)
 #> [1] 2
 
+# We can mix condition strings and conditions made
+# with the `mk_cond()` helper function
+# being `z` and the `value` being < 5.0
+graph_2b <-
+  graph \%>\%
+  select_edges(
+    conditions =
+    c("rel == 'z'",
+      mk_cond("value", "<", 5.0)))
+
+# This selection will be the same as that previous;
+# note that conditions collected as a vector with
+# `c()` are AND conditions
+get_selection(graph_2) == get_selection(graph_2b)
+#> [1] TRUE
+
 # Because we are not specifying conditions as
 # single strings, we can use objects from the
 # workspace (or function calls) to compose the
