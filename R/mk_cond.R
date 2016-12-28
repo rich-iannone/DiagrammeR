@@ -1,7 +1,9 @@
-#' Helper for making conditions for some `select_` function
+#' Helper for making conditions for some functions
 #' @description Create one or multiple conditions for
-#' certain \code{select_...} functions that have a
-#' \code{conditions} argument.
+#' all traversal functions (\code{trav_...}) and
+#' certain selection functions (\code{select_nodes()} and
+#' \code{select_edges()}). This helper could be invoked
+#' for these functions' \code{conditions} argument.
 #' @param ... sets of 3 elements for each condition. Each
 #' set of three elements is the: (1) node or edge attribute
 #' name (character value), (2) the conditional operator
@@ -164,9 +166,3 @@ mk_cond <- function(...) {
 
   return(condition)
 }
-
-five <- 5
-
-mk_cond("value", "==", five)
-
-
