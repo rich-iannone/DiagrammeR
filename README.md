@@ -186,7 +186,7 @@ How would we find out who committed the most to the **supercalc** project? This 
 
 - traverse to the inward edges [`trav_in_edge()`]
 - cache the `commits` values found in these selected edges [`cache_edge_attrs_ws()`]
-- this is the complicated part but it's good: (1) use `select_edges()`; (2) compose the edge selection condition with the `mk_cond()` helper, where the edge has a `commits` value equal to the largest value in the cache; (3) use the `intersect` set operation to restrict the selection to those edges already selected
+- this is the complicated part but it's good: (1) use `select_edges()`; (2) compose the edge selection condition with the `mk_cond()` helper, where the edge has a `commits` value equal to the largest value in the cache; (3) use the `intersect` set operation to restrict the selection to those edges already selected by the `trav_in_edge()` traversal function
 - get a new cache of `commits` values (should only be a single value in this case)
 - we want the person responsible for these commits; traverse to that node from the edge selection [`trav_out_node()`]
 - cache the `name` values found in these selected nodes [`cache_node_attrs_ws()`]
