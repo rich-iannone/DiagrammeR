@@ -97,6 +97,7 @@ This functionality makes it possible to generate a network graph with data avail
 <img src="inst/img/graph_functions_6.png">
 <img src="inst/img/graph_functions_7.png">
 <img src="inst/img/graph_functions_8.png">
+<img src="inst/img/graph_functions_9.png">
 
 ## Network Graph Example
 
