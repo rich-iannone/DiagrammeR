@@ -18,7 +18,9 @@
 
 * All traversal functions can now migrate numeric node or edge attribute values to the traversed edges (e.g., `trav_out_edge()`, `trav_in_node()`) by providing an attribute name to `copy_attrs_from`; for those traversal functions where nodes or edges may receive multiple values, one can specify an aggregation type in their `agg` argument (e.g,. `trav_in_node()`, `trav_both_edge()`)
 
-* Multiple conditions can be specified for all traversal types, plus, they are much easier to write
+* Multiple conditions can be specified for all traversal types and for the `select_nodes()` and `select_edges()` functions, plus, they are much easier to write
+
+* Added the `mk_cond()` helper function for creating conditions for any of the traversal functions (`trav_...()`), and, the `select_nodes()` and `select_edges()` functions; this helper allows for easier composition of selection/traversal conditions using variables and/or function calls
 
 * With a selection of edges one can now use `select_rev_edges_ws()` to transform that selection to that of the selected edges' reverse edges (where available); the option is there to add the reverse edges to the edge selection or to simply replace the current selection
 
