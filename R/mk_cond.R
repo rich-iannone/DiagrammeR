@@ -133,7 +133,7 @@ mk_cond <- function(...) {
   }
 
   if (!inherits(condition_parts[[2]], "character") |
-      !(trimws(condition_parts[[2]]) %in% c("==", ">", "<", ">=", "<=", "!="))) {
+      !(trimws(condition_parts[[2]]) %in% c("==", ">", "<", ">=", "<=", "!=", "%in%"))) {
     stop("The second of the three elements must conditional operator.")
   }
 
@@ -164,7 +164,7 @@ mk_cond <- function(...) {
     for (i in 1:index) {
       if (!inherits(condition_parts[[((3 * 2:200) + (2:200 - 1) - 1)[i]]], "character") |
           !(trimws(condition_parts[[((3 * 2:200) + (2:200 - 1) - 1)[i]]]) %in%
-            c("==", ">", "<", ">=", "<=", "!="))) {
+            c("==", ">", "<", ">=", "<=", "!=", "%in%"))) {
         stop("The second of the three elements must conditional operator.")
       }
     }
