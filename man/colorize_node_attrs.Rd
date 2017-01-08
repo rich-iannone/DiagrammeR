@@ -86,21 +86,23 @@ get_node_attrs(graph, "walktrap_group") \%>\%
 graph <-
   graph \%>\%
   colorize_node_attrs(
-    "walktrap_group", "fillcolor", alpha = 90) \%>\%
+    "walktrap_group", "fillcolor",
+    palette = "Greens", alpha = 90) \%>\%
   colorize_node_attrs(
-    "walktrap_group", "color")
+    "walktrap_group", "color",
+    palette = "viridis", alpha = 80)
 
 # Show the graph's internal node data frame
 get_node_df(graph)
-#>   id type label weight walktrap_group fillcolor   color
-#> 1  1 <NA>     1    8.2              1 #FC8D5990 #FC8D59
-#> 2  2 <NA>     2    3.7              1 #FC8D5990 #FC8D59
-#> 3  3 <NA>     3    6.3              1 #FC8D5990 #FC8D59
-#> 4  4 <NA>     4    9.2              3 #99D59490 #99D594
-#> 5  5 <NA>     5    1.6              3 #99D59490 #99D594
-#> 6  6 <NA>     6    2.5              2 #FFFFBF90 #FFFFBF
-#> 7  7 <NA>     7    7.2              2 #FFFFBF90 #FFFFBF
-#> 8  8 <NA>     8    5.4              2 #FFFFBF90 #FFFFBF
+#>   id type label weight walktrap_group fillcolor     color
+#> 1  1 <NA>     1    8.2              1 #E5F5E090 #44015480
+#> 2  2 <NA>     2    3.7              1 #E5F5E090 #44015480
+#> 3  3 <NA>     3    6.3              1 #E5F5E090 #44015480
+#> 4  4 <NA>     4    9.2              3 #31A35490 #FDE72580
+#> 5  5 <NA>     5    1.6              3 #31A35490 #FDE72580
+#> 6  6 <NA>     6    2.5              2 #A1D99B90 #21908C80
+#> 7  7 <NA>     7    7.2              2 #A1D99B90 #21908C80
+#> 8  8 <NA>     8    5.4              2 #A1D99B90 #21908C80
 
 # Create a graph with 8 nodes and 7 edges
 graph <-
