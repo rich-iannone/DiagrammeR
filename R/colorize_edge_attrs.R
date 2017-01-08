@@ -47,15 +47,17 @@
 #'   graph %>%
 #'   colorize_edge_attrs(
 #'     "weight", "color",
+#'     palette = "RdYlGn",
 #'     cut_points = c(0, 2, 4, 6, 8, 10))
 #'
 #' # Now there will be a `color` edge attribute
-#' # with distinct colors
+#' # with distinct colors (from the RColorBrewer
+#' # Red-Yellow-Green palette)
 #' get_edge_df(graph)
 #' #>   id from to  rel weight   color
 #' #> 1  1    1  2 <NA>    3.7 #FDAE61
-#' #> 2  2    2  3 <NA>    6.3 #ABDDA4
-#' #> 3  3    3  4 <NA>    9.2 #2B83BA
+#' #> 2  2    2  3 <NA>    6.3 #A6D96A
+#' #> 3  3    3  4 <NA>    9.2 #1A9641
 #' #> 4  4    4  5 <NA>    1.6 #D7191C
 #' @import viridis RColorBrewer
 #' @export colorize_edge_attrs
