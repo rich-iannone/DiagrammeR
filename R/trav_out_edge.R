@@ -31,7 +31,11 @@
 #'     label = c("idj", "edl", "ohd")) %>%
 #'   add_edges_w_string(
 #'     "1->2 1->3 2->4 2->5 3->5",
-#'     rel = c(NA, "A", "B", "C", "D"))
+#'     rel = c(NA, "A", "B", "C", "D")) %>%
+#'    set_node_attrs(
+#'     node_attr = "values",
+#'     values = c(2.3, 4.7, 9.4,
+#'                8.3, 6.3))
 #'
 #' # Create a data frame with node ID values
 #' # representing the graph edges (with `from`
@@ -47,12 +51,12 @@
 #' graph <- graph %>% join_edge_attrs(df)
 #'
 #' get_node_df(graph)
-#' #>   id type label
-#' #> 1  1    a   asd
-#' #> 2  2    a  iekd
-#' #> 3  3    b   idj
-#' #> 4  4    b   edl
-#' #> 5  5    b   ohd
+#' #>   id type label values
+#' #> 1  1    a   asd    2.3
+#' #> 2  2    a  iekd    4.7
+#' #> 3  3    b   idj    9.4
+#' #> 4  4    b   edl    8.3
+#' #> 5  5    b   ohd    6.3
 #'
 #' get_edge_df(graph)
 #' #>   id from to  rel values
