@@ -251,7 +251,8 @@ trav_out_edge <- function(graph,
         dplyr::filter(id == starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
         dplyr::full_join(edf, c("id" = "from")) %>%
-        dplyr::rename(from = id.y)
+        dplyr::rename(from = id) %>%
+        dplyr::rename(id = id.y)
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
