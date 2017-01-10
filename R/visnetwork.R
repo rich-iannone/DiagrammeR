@@ -112,8 +112,7 @@ visnetwork <- function(graph) {
     }
 
     vn_obj <- visPhysics(graph = vn_obj,
-                         solver = "forceAtlas2Based",
-                         forceAtlas2Based = list(gravitationalConstant = -10))
+                         solver = "barnesHut")
 
     vn_obj <- visPhysics(graph = vn_obj,
                          stabilization = list(enabled = TRUE,
