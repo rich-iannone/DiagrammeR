@@ -51,6 +51,7 @@ Imports:
     scales (>= 0.4.1),
     stringr (>= 1.1.0),
     tibble (>= 1.2),
+    tidyr (>= 0.6.1),
     viridis (>= 0.3.4),
     visNetwork (>= 1.0.2)
 URL: https://github.com/rich-iannone/DiagrammeR
