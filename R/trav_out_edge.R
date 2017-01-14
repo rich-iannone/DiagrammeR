@@ -32,7 +32,7 @@
 #'   add_edges_w_string(
 #'     "1->2 1->3 2->4 2->5 3->5",
 #'     rel = c(NA, "A", "B", "C", "D")) %>%
-#'    set_node_attrs(
+#'   set_node_attrs(
 #'     node_attr = "values",
 #'     values = c(2.3, 4.7, 9.4,
 #'                8.3, 6.3))
