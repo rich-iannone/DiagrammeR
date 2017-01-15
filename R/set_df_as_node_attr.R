@@ -34,7 +34,7 @@
 #' # Create a simple data frame to add as
 #' # a node attribute
 #' df <-
-#'   data_frame(
+#'   tibble(
 #'     a = c("one", "two", "three"),
 #'     b = c(1, 2, 3))
 #'
@@ -47,6 +47,7 @@
 #'     df = df)
 #' @importFrom tidyr nest
 #' @importFrom dplyr everything bind_rows
+#' @importFrom tibble tibble as_tibble
 #' @export set_df_as_node_attr
 
 set_df_as_node_attr <- function(graph,
