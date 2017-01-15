@@ -34,7 +34,7 @@
 #' # Create a simple data frame to add as
 #' # a node attribute
 #' df <-
-#'   tibble(
+#'   data.frame(
 #'     a = c("one", "two", "three"),
 #'     b = c(1, 2, 3))
 #'
