@@ -49,7 +49,7 @@ graph <-
 # Create a simple data frame to add as
 # a node attribute
 df <-
-  data_frame(
+  tibble(
     a = c("one", "two", "three"),
     b = c(1, 2, 3))
 
