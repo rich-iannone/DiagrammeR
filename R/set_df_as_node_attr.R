@@ -1,13 +1,17 @@
 #' Set a data frame as a node attribute
 #' @description From a graph object of class
 #' \code{dgr_graph}, bind a data frame as a node
-#' attribute property for one given graph node.
+#' attribute property for one given graph node. The
+#' data frames are stored in list columns within
+#' a \code{df_tbl} object. A \code{df_id} value is
+#' generated and serves as a pointer to the table
+#' row that contains the ingested data frame.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param node the node ID to which the data frame
 #' will be bound as an attribute.
 #' @param df the data frame to be bound to the
-#' node.
+#' node as an attribute.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
