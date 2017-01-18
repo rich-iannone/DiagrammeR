@@ -1,7 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .bowerrc
-NEWS.md
-.*csv$
 .*sublime.*
 ^\.travis\.yml$
