@@ -4,7 +4,7 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param conditions an option to use filtering
-#' conditions for the retrieval of nodes.
+#' conditions for the retrieval of edges.
 #' @param set_op the set operation to perform upon
 #' consecutive selections of graph nodes. This can
 #' either be as a \code{union} (the default), as an
