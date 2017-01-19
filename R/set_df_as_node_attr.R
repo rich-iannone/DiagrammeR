@@ -115,12 +115,12 @@ set_df_as_node_attr <- function(graph,
     graph$df_storage <- df_storage
   }
 
-  # Set the `_data_frame_` node attribute using the
+  # Set the `df_id` node attribute using the
   # `set_node_attrs()` function
   graph <-
     set_node_attrs(
       x = graph,
-      node_attr = "_data_frame_",
+      node_attr = "df_id",
       values = df_id,
       nodes = node)
 
