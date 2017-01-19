@@ -50,7 +50,7 @@
 #'     node = 1,
 #'     df = df)
 #' @importFrom tidyr nest
-#' @importFrom dplyr everything bind_rows
+#' @importFrom dplyr everything bind_rows mutate
 #' @importFrom tibble tibble as_tibble
 #' @export set_df_as_node_attr
 
