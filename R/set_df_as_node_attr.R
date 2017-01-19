@@ -91,17 +91,19 @@ set_df_as_node_attr <- function(graph,
       df_id = as.character(NA),
       df_data = as.character(NA),
       stringsAsFactors = FALSE)[-1, ] %>%
-    as_tibble()
+    tibble::as_tibble()
 
   # Generate a random 8-character, alphanumeric
-  # string to use as a data frame ID (`df_id``)
+  # string to use as a data frame ID (`df_id`)
   df_id <-
     replicate(
       8, sample(c(LETTERS, letters, 0:9), 1)) %>%
     paste(collapse = "")
 
   # Generate row with table
-  df_row <- tibble(df_id = df_id) %>% mutate(df_data = df_nested)
+  df_row <-
+    tibble::tibble(df_id = df_id) %>%
+    dplyr::mutate(df_data = df_nested)
 
   # Bind the new row with `df_id` and `df_data` to `df_storage`
   df_storage <- suppressWarnings(rbind(df_storage, df_row))
