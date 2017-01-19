@@ -12,7 +12,7 @@ select_edges(graph, conditions = NULL, set_op = "union", from = NULL,
 \code{dgr_graph}.}
 
 \item{conditions}{an option to use filtering
-conditions for the retrieval of nodes.}
+conditions for the retrieval of edges.}
 
 \item{set_op}{the set operation to perform upon
 consecutive selections of graph nodes. This can
