@@ -44,6 +44,7 @@ Imports:
     igraph (>= 1.0.1),
     influenceR (>= 0.1.0),
     magrittr (>= 1.5),
+    purrr (>=0.2.2),
     RColorBrewer (>= 1.1-2),
     rstudioapi (>= 0.6),
     rgexf (>= 0.15.3),
