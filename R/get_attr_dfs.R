@@ -42,8 +42,8 @@
 #'     nodes_df = ndf,
 #'     edges_df = edf)
 #'
-#' # Create 2 simple data frames to add as
-#' # node attributes
+#' # Create 3 simple data frames to add as
+#' # attributes to nodes/edges
 #' df_1 <-
 #'   data.frame(
 #'     a = c("one", "two"),
@@ -56,8 +56,15 @@
 #'     b = c(3, 4),
 #'     stringsAsFactors = FALSE)
 #'
-#' # Bind the data frame as a node attribute
-#' # of nodes `1` and `4`
+#' df_for_edges <-
+#'   data.frame(
+#'     c = c("five", "six"),
+#'     d = c(5, 6),
+#'     stringsAsFactors = FALSE)
+#'
+#' # Bind data frames as node attributes
+#' # for nodes `1` and `4`; bind a data
+#' # frame as an edge attribute as well
 #' graph <-
 #'   graph %>%
 #'   set_df_as_node_attr(
@@ -65,7 +72,10 @@
 #'     df = df_1) %>%
 #'   set_df_as_node_attr(
 #'     node = 4,
-#'     df = df_2)
+#'     df = df_2) %>%
+#'   set_df_as_edge_attr(
+#'     edge = 1,
+#'     df = df_for_edges)
 #'
 #' # Get a single tibble by specifying the
 #' # nodes from which there are data frames
