@@ -59,8 +59,8 @@ graph <-
     nodes_df = ndf,
     edges_df = edf)
 
-# Create 2 simple data frames to add as
-# node attributes
+# Create 3 simple data frames to add as
+# attributes to nodes/edges
 df_1 <-
   data.frame(
     a = c("one", "two"),
@@ -73,8 +73,15 @@ df_2 <-
     b = c(3, 4),
     stringsAsFactors = FALSE)
 
-# Bind the data frame as a node attribute
-# of nodes `1` and `4`
+df_for_edges <-
+  data.frame(
+    c = c("five", "six"),
+    d = c(5, 6),
+    stringsAsFactors = FALSE)
+
+# Bind data frames as node attributes
+# for nodes `1` and `4`; bind a data
+# frame as an edge attribute as well
 graph <-
   graph \%>\%
   set_df_as_node_attr(
@@ -82,15 +89,17 @@ graph <-
     df = df_1) \%>\%
   set_df_as_node_attr(
     node = 4,
-    df = df_2)
+    df = df_2) \%>\%
+  set_df_as_edge_attr(
+    edge = 1,
+    df = df_for_edges)
 
 # Get a single tibble by specifying the
 # nodes from which there are data frames
 # bound as node attributes
 get_attr_dfs(
   graph,
-  node_id = c(1, 4),
-  return_format = "single_tbl")
+  node_id = c(1, 4))
 #> # A tibble: 4 × 5
 #>   node_id  type label     a     b
 #>     <int> <chr> <chr> <chr> <dbl>
@@ -99,5 +108,33 @@ get_attr_dfs(
 #> 3       4 basic     4 three     3
 #> 4       4 basic     4  four     4
 
+# You can also get data frames that are
+# associated with edges by using the
+# same function
+get_attr_dfs(
+  graph,
+  edge_id = 1)
+#> # A tibble: 2 × 6
+#>   edge_id        rel  from    to     c     d
+#>     <int>      <chr> <int> <int> <chr> <dbl>
+#> 1       1 leading_to     1     4  five     5
+#> 2       1 leading_to     1     4   six     6
+
+# It's also possible to collect data
+# frames associated with both nodes and
+# edges
+get_attr_dfs(
+  graph,
+  node_id = 4,
+  edge_id = 1)
+#> # A tibble: 4 × 11
+#>   node_id edge_id  type label        rel  from    to
+#>     <int>   <int> <chr> <chr>      <chr> <int> <int>
+#> 1       4      NA basic     4       <NA>    NA    NA
+#> 2       4      NA basic     4       <NA>    NA    NA
+#> 3      NA       1  <NA>  <NA> leading_to     1     4
+#> 4      NA       1  <NA>  <NA> leading_to     1     4
+#> ... with 4 more variables: a <chr>, b <dbl>,
+#>   c <chr>, d <dbl>
 }
 
