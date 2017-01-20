@@ -2,7 +2,6 @@ Package: DiagrammeR
 Type: Package
 Title: Create Graph Diagrams and Flowcharts Using R
 Version: 0.9.0
-Date: 2016-12-20
 Authors@R: c(
       person(
         "Knut", "Sveidqvist"
