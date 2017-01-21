@@ -138,6 +138,9 @@ get_attr_dfs <- function(graph,
     stop("The graph contains no nodes, so, a df cannot be added.")
   }
 
+  # Create bindings for specific variables
+  id <- from <- to <- type <- rel <- label <- df_data <- NULL
+
   # Collect data frames that are attributes of graph nodes
   if (!is.null(node_id)) {
 
