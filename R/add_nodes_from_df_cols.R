@@ -85,7 +85,7 @@
 #' #> 9   9 <NA>     a
 #' #> 10 10 <NA>     v
 #' #> 11 11 <NA>     h
-#' @importFrom dplyr bind_rows distinct
+#' @importFrom dplyr bind_rows distinct select
 #' @importFrom stringr str_split
 #' @importFrom tidyr drop_na
 #' @importFrom tibble as_tibble
