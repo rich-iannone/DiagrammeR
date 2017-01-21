@@ -129,44 +129,25 @@ add_nodes_from_df_cols <- function(graph,
   }
 
   # Isolate the relevant columns in the data frame
-  df <- df[, columns]
+  df <- tibble::as_tibble(df) %>% dplyr::select(columns)
 
   # Create an empty `nodes` vector
   nodes <- vector(mode = "character")
 
-  if (inherits(df, "tbl_df")) {
-
-    # Obtain a vector of values from each column
-    # in the tibble object
-    for (i in 1:ncol(df)) {
-      nodes <-
-        c(nodes,
-          df[, i] %>%
-            purrr::flatten_chr() %>%
-            trimws() %>%
-            stringr::str_split(" ") %>%
-            purrr::flatten_chr() %>%
-            tibble::as_tibble() %>%
-            tidyr::drop_na() %>%
-            dplyr::distinct() %>%
-            purrr::flatten_chr())
-    }
-  } else if (!inherits(df, "tbl_df")) {
-
-    # Obtain a vector of values from each column
-    # in the data frame object
-    for (i in 1:ncol(df)) {
-      nodes <-
-        c(nodes,
-          df[, i] %>%
-            trimws() %>%
-            stringr::str_split(" ") %>%
-            purrr::flatten_chr() %>%
-            tibble::as_tibble() %>%
-            tidyr::drop_na() %>%
-            dplyr::distinct() %>%
-            purrr::flatten_chr())
-    }
+  # Obtain a vector of values from each column
+  # in the tibble object
+  for (i in 1:ncol(df)) {
+    nodes <-
+      c(nodes,
+        df[, i] %>%
+          purrr::flatten_chr() %>%
+          trimws() %>%
+          stringr::str_split(" ") %>%
+          purrr::flatten_chr() %>%
+          tibble::as_tibble() %>%
+          tidyr::drop_na() %>%
+          dplyr::distinct() %>%
+          purrr::flatten_chr())
   }
 
   # Get the unique set of nodes
