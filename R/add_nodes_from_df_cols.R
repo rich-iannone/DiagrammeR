@@ -25,10 +25,8 @@
 #' \code{FALSE}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a simple graph
-#' graph <-
-#'   create_graph() %>%
-#'   add_path(2)
+#' # Create an empty graph
+#' graph <- create_graph()
 #'
 #' # Create a data frame from which several
 #' # columns have values designated as graph nodes
@@ -48,15 +46,15 @@
 #'     df = df,
 #'     columns = c("col_1", "col_2"))
 #'
-#' # Show the graph's node data frame
+#' # Show the graph's node data frame; duplicate
+#' # labels are prevented with `keep_duplicates =
+#' # FALSE`)
 #' graph %>% get_node_df()
 #' #>   id type label
-#' #> 1  1 <NA>     1
-#' #> 2  2 <NA>     2
-#' #> 3  3 <NA>     f
-#' #> 4  4 <NA>     p
-#' #> 5  5 <NA>     q
-#' #> 6  6 <NA>     x
+#' #> 1  1 <NA>     f
+#' #> 2  2 <NA>     p
+#' #> 3  3 <NA>     q
+#' #> 4  4 <NA>     x
 #'
 #' # Add new nodes from columns 3 and 4;
 #' # We can specify the columns by their
@@ -68,24 +66,18 @@
 #'     columns = 3:4)
 #'
 #' # Show the graph's node data frame; note
-#' # that a node didn't get made with
-#' # `label == "1"` since that was already
-#' # in the graph (this behavior can be
-#' # changed with `keep_duplicates = TRUE`)
+#' # that a nodes didn't get made with columns
+#' # that are not character class columns
 #' graph %>% get_node_df()
-#' #>    id type label
-#' #> 1   1 <NA>     1
-#' #> 2   2 <NA>     2
-#' #> 3   3 <NA>     f
-#' #> 4   4 <NA>     p
-#' #> 5   5 <NA>     q
-#' #> 6   6 <NA>     x
-#' #> 7   7 <NA>     5
-#' #> 8   8 <NA>     3
-#' #> 9   9 <NA>     a
-#' #> 10 10 <NA>     v
-#' #> 11 11 <NA>     h
-#' @importFrom dplyr bind_rows distinct select
+#' #>   id type label
+#' #> 1  1 <NA>     f
+#' #> 2  2 <NA>     p
+#' #> 3  3 <NA>     q
+#' #> 4  4 <NA>     x
+#' #> 5  5 <NA>     a
+#' #> 6  6 <NA>     v
+#' #> 7  7 <NA>     h
+#' @importFrom dplyr bind_rows distinct select select_if
 #' @importFrom stringr str_split
 #' @importFrom tidyr drop_na
 #' @importFrom tibble as_tibble
