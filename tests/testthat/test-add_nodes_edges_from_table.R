@@ -754,7 +754,7 @@ graph <-
 expect_equal(
   graph %>% get_node_df() %>% .$label,
   c("1", "2", "f", "p", "q", "x",
-    "5", "3", "a", "v", "h"))
+    "a", "v", "h"))
 
 # Add column 4's values as labels/nodes again
 graph <-
@@ -767,7 +767,7 @@ graph <-
 expect_equal(
   graph %>% get_node_df() %>% .$label,
   c("1", "2", "f", "p", "q", "x",
-    "5", "3", "a", "v", "h"))
+    "a", "v", "h"))
 
 # Add column 4's values as labels/nodes except with
 # the `keep_duplicates` argument set to TRUE
@@ -782,10 +782,9 @@ graph <-
 expect_equal(
   graph %>% get_node_df() %>% .$label,
   c("1", "2", "f", "p", "q", "x",
-    "5", "3", "a", "v", "h",
-    "a", "v", "h"))
+    "a", "v", "h", "a", "v", "h"))
 
-# Add column 3's values as labels/nodes with
+# Add column 4's values as labels/nodes with
 # the `keep_duplicates = TRUE` and a `type` value
 # of `new`
 graph <-
@@ -800,13 +799,13 @@ graph <-
 expect_equal(
   graph %>% get_node_df() %>% .$label,
   c("1", "2", "f", "p", "q", "x",
-    "5", "3", "a", "v", "h",
-    "a", "v", "h", "a", "v", "h"))
+    "a", "v", "h", "a", "v", "h",
+    "a", "v", "h"))
 
 # Expect the `type` value of `new` to appear
 # for the last three nodes (others are not set)
 expect_equal(
   graph %>% get_node_df() %>% .$type,
-  c(rep(as.character(NA), 14),
+  c(rep(as.character(NA), 12),
     rep("new", 3)))
 })
