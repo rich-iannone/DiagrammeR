@@ -128,8 +128,12 @@ add_nodes_from_df_cols <- function(graph,
     }
   }
 
-  # Isolate the relevant columns in the data frame
-  df <- tibble::as_tibble(df) %>% dplyr::select(columns)
+  # Isolate the relevant columns in the data frame;
+  # Exclude any columns that are not character class
+  df <-
+    tibble::as_tibble(df) %>%
+    dplyr::select(columns) %>%
+    dplyr::select_if(is.character)
 
   # Create an empty `nodes` vector
   nodes <- vector(mode = "character")
