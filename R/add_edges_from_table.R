@@ -88,7 +88,8 @@
 #' @importFrom utils read.csv
 #' @importFrom stats setNames
 #' @importFrom tibble as_tibble
-#' @importFrom dplyr left_join select select_ rename mutate bind_cols everything
+#' @importFrom dplyr left_join select select_ rename mutate mutate_ bind_cols everything
+#' @importFrom tidyr unnest_ drop_na_
 #' @export add_edges_from_table
 
 add_edges_from_table <- function(graph,
@@ -145,10 +146,8 @@ add_edges_from_table <- function(graph,
   # If values for `drop_cols` provided, filter the CSV
   # columns by those named columns
   if (!is.null(drop_cols)) {
-
     columns_retained <-
       which(!(colnames(csv) %in% drop_cols))
-
     csv <- csv[, columns_retained]
   }
 
@@ -178,6 +177,16 @@ add_edges_from_table <- function(graph,
   } else {
     csv_colnames[1] <- "id"
   }
+
+  # Expand the df to capture several space-delimited
+  # values in the `to` column; drop NA values in the
+  # `to_col` and the `from_col` columns
+  csv <-
+    csv %>%
+    dplyr::mutate_(.dots = setNames(paste0("strsplit(", to_col, ", \" \")"), to_col)) %>%
+    tidyr::unnest_(to_col) %>%
+    tidyr::drop_na_(to_col) %>%
+    tidyr::drop_na_(from_col)
 
   # Get the `from` col
   col_from <-
