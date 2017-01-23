@@ -202,6 +202,7 @@ add_edges_from_table <- function(graph,
     tibble::as_tibble(csv) %>%
     dplyr::left_join(ndf,
                      by = stats::setNames(ndf_mapping, to_col)) %>%
+    dplyr::distinct() %>%
     dplyr::select_(.dots = csv_colnames) %>%
     dplyr::rename(to = id) %>%
     dplyr::mutate(to = as.integer(to)) %>%
