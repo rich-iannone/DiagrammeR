@@ -207,7 +207,7 @@
 #' #> 2  2 <NA>  <NA>     5
 #' #> 3  3 <NA>  <NA>     5
 #' @importFrom stats as.formula
-#' @importFrom dplyr filter_ inner_join right_join rename distinct select select_ group_by summarize_ everything
+#' @importFrom dplyr filter_ inner_join right_join rename distinct select select_ group_by ungroup summarize_ everything
 #' @importFrom tibble as_tibble
 #' @export trav_out
 
@@ -298,7 +298,7 @@ trav_out <- function(graph,
 
     # If the values to be copied are numeric,
     # perform aggregation on the values
-    if (is.numeric(nodes[, 2])) {
+    if (nodes[, 2] %>% unlist() %>% is.numeric()) {
       nodes <-
         nodes %>%
         dplyr::group_by(id) %>%
@@ -306,7 +306,7 @@ trav_out <- function(graph,
           list(stats::as.formula(
             paste0("~", agg, "(", copy_attrs_from, ", na.rm = TRUE)"))),
           copy_attrs_from)) %>%
-        ungroup()
+        dplyr::ungroup()
     }
 
     nodes <-
