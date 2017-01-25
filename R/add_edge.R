@@ -16,6 +16,9 @@
 #' node connections. Note that this is only possible
 #' if all nodes have distinct \code{label} values set
 #' and none exist as an empty string.
+#' @param allow_multiple_edges an option to allow or
+#' disallow the possibility of creating an edge with an
+#' edge definition already extant in the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 4 nodes
@@ -75,7 +78,8 @@ add_edge <- function(graph,
                      from,
                      to,
                      rel = NULL,
-                     use_labels = FALSE) {
+                     use_labels = FALSE,
+                     allow_multiple_edges = TRUE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -112,16 +116,19 @@ add_edge <- function(graph,
   }
 
   # If an edge between nodes is requested and that
-  # edge exists, stop function
-  if (all(
-    !is.na(get_edges(graph,
-                     return_type = "vector")))) {
-    if (any(
-      get_edges(
-        graph, return_type = "list")[[1]] == from &
-      get_edges(
-        graph, return_type = "list")[[2]] == to)) {
-      stop("This edge already exists.")
+  # edge exists, stop function if `allow_multiple_edges`
+  # is FALSE
+  if (allow_multiple_edges == FALSE) {
+    if (all(
+      !is.na(get_edges(graph,
+                       return_type = "vector")))) {
+      if (any(
+        get_edges(
+          graph, return_type = "list")[[1]] == from &
+        get_edges(
+          graph, return_type = "list")[[2]] == to)) {
+        stop("This edge already exists.")
+      }
     }
   }
 
