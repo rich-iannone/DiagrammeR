@@ -49,8 +49,8 @@
 #' graph <-
 #'   graph %>%
 #'   select_edges() %>%
-#'   add_backward_edges_ws("b") %>%
-#'   add_backward_edges_ws("c") %>%
+#'   add_reverse_edges_ws("b") %>%
+#'   add_reverse_edges_ws("c") %>%
 #'   clear_selection()
 #'
 #' # Get the graph's edge data frame
@@ -60,9 +60,9 @@
 #' #> 2  2    2  1   b
 #' #> 3  3    2  1   c
 #' @importFrom dplyr select
-#' @export add_backward_edges_ws
+#' @export add_reverse_edges_ws
 
-add_backward_edges_ws <- function(graph,
+add_reverse_edges_ws <- function(graph,
                                   rel = NULL) {
 
   # Get the time of function start
