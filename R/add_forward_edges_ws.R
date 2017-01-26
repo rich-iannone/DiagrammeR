@@ -81,12 +81,7 @@ add_forward_edges_ws <- function(graph,
     stop("There is no selection of edges, so, no new edges can be added.")
   }
 
-  # If the graph is undirected, set the direction
-  # to `to`
-  if (is_graph_directed(graph) == FALSE) {
-    direction <- "to"
-  }
-
+  # If no value(s) provided for `rel`, set to NA
   if (is.null(rel)) {
     rel <- as.character(NA)
   }
