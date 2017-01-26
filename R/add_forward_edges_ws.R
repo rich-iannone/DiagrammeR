@@ -92,10 +92,11 @@ add_forward_edges_ws <- function(graph,
     graph$edge_selection %>%
     dplyr::select(from, to)
 
-  # Case where nodes are added with edges to the
-  # selected nodes
+  # Add new edges to the graph for every edge
+  # in the graph's active selection
   for (i in 1:nrow(edges_in_selection)) {
 
+    # Create a graph edge
     graph <-
       add_edge(
         graph = graph,
@@ -103,6 +104,7 @@ add_forward_edges_ws <- function(graph,
         to = edges_in_selection[i, 2],
         rel = rel)
 
+    # Redact the signing of the action to the log
     graph$graph_log <-
       graph$graph_log[-nrow(graph$graph_log), ]
   }
