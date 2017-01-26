@@ -3,6 +3,7 @@
 export("%>%")
 export(DiagrammeR)
 export(DiagrammeROutput)
+export(add_backward_edges_ws)
 export(add_balanced_tree)
 export(add_cycle)
 export(add_edge)
