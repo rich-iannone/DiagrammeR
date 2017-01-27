@@ -129,6 +129,20 @@
 #' #>   edge_id        rel from to    c d
 #' #> 1       1 leading_to    1  4 five 5
 #' #> 2       1 leading_to    1  4  six 6
+#'
+#' # If we'd want a tibble with a list column
+#' # (containing the tibble data for each
+#' # node or edge): `return_format = "list_col"`
+#' get_attr_dfs(
+#'   graph,
+#'   node_id = 1,
+#'   edge_id = 1,
+#'   return_format = "list_col")
+#' #> # A tibble: 2 × 3
+#' #>   node_id edge_id    df_data
+#' #>     <int>   <int>     <list>
+#' #> 1       1      NA <list [1]>
+#' #> 2      NA       1 <list [1]>
 #' @importFrom dplyr filter select starts_with everything inner_join rename mutate
 #' @importFrom tibble as_tibble
 #' @export get_attr_dfs
