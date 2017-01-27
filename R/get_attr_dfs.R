@@ -238,6 +238,12 @@ get_attr_dfs <- function(graph,
   }
 
   if (exists("df_nodes") & exists("df_edges")) {
+    if (return_format == "list_col") {
+      return(dplyr::bind_rows(
+        df_storage_rows_nodes, df_storage_rows_edges) %>%
+          dplyr::select(node_id, edge_id, df_data))
+    }
+
     df <-
       dplyr::bind_rows(df_nodes, df_edges) %>%
       dplyr::select(node_id, edge_id, type, label,
@@ -245,11 +251,21 @@ get_attr_dfs <- function(graph,
   }
 
   if (exists("df_nodes") & !exists("df_edges")) {
+
+    if (return_format == "list_col") {
+      return(df_storage_rows_nodes)
+    }
+
     df <- df_nodes %>%
       dplyr::select(node_id, type, label, dplyr::everything())
   }
 
   if (!exists("df_nodes") & exists("df_edges")) {
+
+    if (return_format == "list_col") {
+      return(df_storage_rows_edges)
+    }
+
     df <- df_edges %>%
       dplyr::select(edge_id, rel, from, to, dplyr::everything())
   }
