@@ -119,6 +119,16 @@
 #' #> 4      NA       1  <NA>  <NA> leading_to     1     4
 #' #> ... with 4 more variables: a <chr>, b <dbl>,
 #' #>   c <chr>, d <dbl>
+#'
+#' # If a data frame is desired instead,
+#' # set `return_format = "single_df"`
+#' get_attr_dfs(
+#'   graph,
+#'   edge_id = 1,
+#'   return_format = "single_df")
+#' #>   edge_id        rel from to    c d
+#' #> 1       1 leading_to    1  4 five 5
+#' #> 2       1 leading_to    1  4  six 6
 #' @importFrom dplyr filter select starts_with everything inner_join rename mutate
 #' @importFrom tibble as_tibble
 #' @export get_attr_dfs
@@ -231,7 +241,7 @@ get_attr_dfs <- function(graph,
     df <-
       dplyr::bind_rows(df_nodes, df_edges) %>%
       dplyr::select(node_id, edge_id, type, label,
-             rel, from, to, dplyr::everything())
+                    rel, from, to, dplyr::everything())
   }
 
   if (exists("df_nodes") & !exists("df_edges")) {
@@ -246,6 +256,10 @@ get_attr_dfs <- function(graph,
 
   if (!exists("df_nodes") & !exists("df_edges")) {
     df <- NA
+  }
+
+  if (return_format == "single_df") {
+    df <- as.data.frame(df, stringsAsFactors = FALSE)
   }
 
   return(df)
