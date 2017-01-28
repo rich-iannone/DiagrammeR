@@ -3,7 +3,8 @@
 #' \code{dgr_graph}, bind a data frame as an edge
 #' attribute property for one given graph edge. The
 #' data frames are stored in list columns within
-#' a \code{df_tbl} object. A \code{df_id} value is
+#' a \code{df_tbl} object, itself residing within
+#' the graph object. A \code{df_id} value is
 #' generated and serves as a pointer to the table
 #' row that contains the ingested data frame.
 #' @param graph a graph object of class
