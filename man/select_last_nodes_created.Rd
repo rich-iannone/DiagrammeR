@@ -29,8 +29,9 @@ graph <-
     add_n_nodes(
       2, "b", label = c("b_1", "b_2"))
 
-# Select the last nodes created
-# (2 nodes from the last function call)
+# Select the last nodes created (2 nodes
+# from the last function call) and then
+# set their color to be `red`
 graph <-
   graph \%>\%
   select_last_nodes_created() \%>\%
