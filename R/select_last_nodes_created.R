@@ -1,6 +1,8 @@
 #' Select the last nodes created in a graph
 #' @description Select the last nodes that were created
-#' in a graph object of class \code{dgr_graph}.
+#' in a graph object of class \code{dgr_graph}. This
+#' function should ideally be used just after creating
+#' the nodes to be selected.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
