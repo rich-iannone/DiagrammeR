@@ -35,6 +35,7 @@
 #' #> 4  4    b   b_2   red
 #' @importFrom dplyr select
 #' @importFrom magrittr is_in
+#' @importFrom utils tail
 #' @export select_last_nodes_created
 
 select_last_nodes_created <- function(graph) {

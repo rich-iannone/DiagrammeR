@@ -39,6 +39,7 @@
 #' #> 9  9    6 10   b   red
 #' @importFrom dplyr select
 #' @importFrom magrittr is_in
+#' @importFrom utils tail
 #' @export select_last_edges_created
 
 select_last_edges_created <- function(graph) {
