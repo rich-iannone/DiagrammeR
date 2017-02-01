@@ -83,6 +83,9 @@ add_reverse_edges_ws <- function(graph,
     stop("There is no selection of edges, so, no new edges can be added.")
   }
 
+  # Create bindings for specific variables
+  from <- to <- NULL
+
   # If no value(s) provided for `rel`, set to NA
   if (is.null(rel)) {
     rel <- as.character(NA)
