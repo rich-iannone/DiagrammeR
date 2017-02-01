@@ -49,7 +49,7 @@ select_last_nodes_created <- function(graph) {
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node can be selected.")
+    stop("The graph contains no nodes, so, no nodes can be selected.")
   }
 
   # Create bindings for specific variables
