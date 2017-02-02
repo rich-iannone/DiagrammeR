@@ -89,4 +89,3 @@ series_time_subset <-
 graph_count(series_time_subset)
 #> [1] 2
 }
-

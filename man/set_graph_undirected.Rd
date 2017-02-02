@@ -30,4 +30,3 @@ graph <- graph \%>\% set_graph_undirected()
 graph \%>\% is_graph_directed()
 #> [1] FALSE
 }
-

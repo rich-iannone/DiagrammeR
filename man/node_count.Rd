@@ -72,4 +72,3 @@ node_count(graph, type = "a")
 node_count(graph, type = c("a", "c"))
 #> [1] 15
 }
-

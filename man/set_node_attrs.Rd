@@ -100,4 +100,3 @@ nodes
 #> 3  3 basic     3   9.4  blue
 #> 4  4 basic     4   2.7  blue
 }
-

@@ -51,4 +51,3 @@ get_edge_df(graph)
 #> 8  8    6  9   b   red
 #> 9  9    6 10   b   red
 }
-

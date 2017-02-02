@@ -47,4 +47,3 @@ get_predecessors(graph, node = 26)
 get_predecessors(graph, node = 1)
 #> [1] NA
 }
-

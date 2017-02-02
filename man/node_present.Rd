@@ -66,4 +66,3 @@ all(sapply(1:26,
       function(x) node_present(graph, x)))
 #> TRUE
 }
-

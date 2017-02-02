@@ -68,4 +68,3 @@ gml_graph \%>\% edge_count
 #> [1] 78
 }
 }
-

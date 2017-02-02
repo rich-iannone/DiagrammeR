@@ -69,4 +69,3 @@ node_df
 #> 3  3    a  8362 filled  aqua rectangle   9.4
 #> 4  4    a  2194 filled  aqua rectangle   2.7
 }
-

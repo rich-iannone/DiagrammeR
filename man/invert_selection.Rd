@@ -56,4 +56,3 @@ graph <- invert_selection(graph)
 get_selection(graph)
 #> [1] 2 4
 }
-

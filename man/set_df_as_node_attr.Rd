@@ -65,4 +65,3 @@ graph <-
     node = 1,
     df = df)
 }
-

@@ -87,4 +87,3 @@ get_node_df(graph)
 #> 4  4 <NA>  <NA>   5.32           0
 #> 5  5 <NA>  <NA>   3.50           2
 }
-

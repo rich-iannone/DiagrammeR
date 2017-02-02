@@ -166,4 +166,3 @@ create_graph(directed = FALSE) \%>\%
 #> 2  2    1  3 related_to   5.02
 #> 3  3    2  3 related_to   6.49
 }
-

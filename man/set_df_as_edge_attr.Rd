@@ -66,4 +66,3 @@ graph <-
     edge = 1,
     df = df)
 }
-

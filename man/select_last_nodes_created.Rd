@@ -47,4 +47,3 @@ get_node_df(graph)
 #> 3  3    b   b_1   red
 #> 4  4    b   b_2   red
 }
-

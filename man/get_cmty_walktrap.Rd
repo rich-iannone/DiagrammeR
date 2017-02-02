@@ -50,4 +50,3 @@ graph <-
   graph \%>\%
   join_node_attrs(get_cmty_walktrap(.))
 }
-

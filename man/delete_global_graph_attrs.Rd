@@ -58,4 +58,3 @@ get_global_graph_attrs(graph)
 #> 1 penwidth     3      edge
 #> 2  overlap  true     graph
 }
-

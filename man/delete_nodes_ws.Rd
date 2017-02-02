@@ -55,4 +55,3 @@ graph <-
 node_count(graph)
 #> [1] 2
 }
-

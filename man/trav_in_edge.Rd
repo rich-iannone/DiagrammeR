@@ -169,4 +169,3 @@ graph \%>\%
   get_selection()
 #> [1] 4 5
 }
-

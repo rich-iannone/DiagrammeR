@@ -47,4 +47,3 @@ graph \%>\% get_node_df()
 #> 5  5    b  <NA>    NA grey80
 #> 6  6    b  <NA>    NA grey80
 }
-

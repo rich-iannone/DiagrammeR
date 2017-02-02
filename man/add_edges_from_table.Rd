@@ -107,4 +107,3 @@ graph_2 \%>\% get_edge_df() \%>\% head()
 #> 6  6  148  6 from_usd  0.006058
 }
 }
-

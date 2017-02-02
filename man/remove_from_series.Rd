@@ -62,4 +62,3 @@ series_info(series)
 #> 1     1 <NA>      <NA> <NA>     3     3     TRUE
 #> 2     2 <NA>      <NA> <NA>     5     5     TRUE
 }
-

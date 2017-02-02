@@ -50,4 +50,3 @@ graph <-
 graph \%>\% get_cache()
 #> [1] 4
 }
-

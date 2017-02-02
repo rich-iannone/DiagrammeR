@@ -45,4 +45,3 @@ get_s_connected_cmpts(graph)
 #> 6  6            2
 #> 7  7            2
 }
-

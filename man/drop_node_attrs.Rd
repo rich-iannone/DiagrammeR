@@ -52,4 +52,3 @@ get_node_df(graph)
 #> 4  4 <NA>     4
 #> 5  5 <NA>     5
 }
-

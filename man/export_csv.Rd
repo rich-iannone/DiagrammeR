@@ -61,4 +61,3 @@ graph <-
 # files in the working directory
 graph \%>\% export_csv()
 }
-

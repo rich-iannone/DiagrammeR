@@ -47,4 +47,3 @@ get_successors(graph, node = 4)
 get_successors(graph, node = 1)
 #> [1] NA
 }
-

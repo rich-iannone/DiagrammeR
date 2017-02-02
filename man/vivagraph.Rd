@@ -64,4 +64,3 @@ graph <-
 vivagraph(graph)
 }
 }
-

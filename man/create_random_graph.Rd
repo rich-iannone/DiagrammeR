@@ -41,4 +41,3 @@ random_graph_directed <-
     n = 50,
     m = 75)
 }
-

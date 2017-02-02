@@ -103,4 +103,3 @@ graph_3 \%>\% get_node_df() \%>\% colnames()
 #> [5] "curr_number"
 }
 }
-

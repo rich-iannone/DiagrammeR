@@ -42,4 +42,3 @@ get_node_ids(graph)
 get_edges(graph)
 #> [1] "1->2" "4->5"
 }
-

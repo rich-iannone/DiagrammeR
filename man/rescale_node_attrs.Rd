@@ -101,4 +101,3 @@ get_node_df(graph)
 #> 4  4 <NA>     4 0.231   #A6A6A6   #3B3B3B
 #> 5  5 <NA>     5 0.692   #5E5E5E   #A4A4A4
 }
-

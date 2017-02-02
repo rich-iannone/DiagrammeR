@@ -96,4 +96,3 @@ graph \%>\% get_node_df()
 #> 6  6 <NA>     v
 #> 7  7 <NA>     h
 }
-

@@ -45,4 +45,3 @@ graph <-
   join_node_attrs(
     get_betweenness(.))
 }
-

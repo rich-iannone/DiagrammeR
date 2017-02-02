@@ -30,4 +30,3 @@ graph <- set_graph_name(graph, "the_name")
 get_graph_name(graph)
 #> [1] "the_name"
 }
-

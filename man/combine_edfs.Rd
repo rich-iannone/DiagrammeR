@@ -55,4 +55,3 @@ all_edges
 #> 7  7    8  6 receives   red   NA       dot
 #> 8  8    8  5 receives   red   NA       dot
 }
-

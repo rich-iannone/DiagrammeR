@@ -31,4 +31,3 @@ graph <-
 graph \%>\% get_non_nbrs(2)
 #> [1] 4 5
 }
-

@@ -47,4 +47,3 @@ min_spanning_tree_graph <-
   set_edge_attrs("color", "gray85") \%>\%
   rescale_edge_attrs("weight", 0.5, 4.0, "penwidth")
 }
-

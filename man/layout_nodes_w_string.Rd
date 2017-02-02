@@ -118,4 +118,3 @@ get_node_df(graph)
 #> 6  6    c     f 8 0
 #> 7  7    c     g 8 2
 }
-

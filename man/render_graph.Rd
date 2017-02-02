@@ -77,4 +77,3 @@ render_graph(graph, output = "vivagraph")
 render_graph(graph, output = "visNetwork")
 }
 }
-

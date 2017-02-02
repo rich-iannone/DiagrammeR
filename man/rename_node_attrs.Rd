@@ -55,4 +55,3 @@ get_node_df(graph)
 #> 4  4 <NA>     4    3.5 circle
 #> 5  5 <NA>     5    6.5 circle
 }
-

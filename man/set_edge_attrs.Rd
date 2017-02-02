@@ -100,4 +100,3 @@ graph <-
     values = "black",
     to = 1)
 }
-

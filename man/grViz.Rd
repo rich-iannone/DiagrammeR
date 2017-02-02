@@ -41,4 +41,3 @@ Make diagrams in R using
 with infrastructure provided by
 \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
-

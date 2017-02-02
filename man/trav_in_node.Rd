@@ -210,4 +210,3 @@ graph \%>\% get_node_df()
 #> 2  2 <NA>  <NA>     8
 #> 3  3 <NA>  <NA>    NA
 }
-

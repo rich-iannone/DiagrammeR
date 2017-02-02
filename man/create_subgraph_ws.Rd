@@ -73,4 +73,3 @@ get_edge_df(subgraph)
 #>   id from to  rel
 #> 1  4    5  3 <NA>
 }
-

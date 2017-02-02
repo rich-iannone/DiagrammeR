@@ -13,4 +13,3 @@ image_icon(icon_name)
 Create a data frame with image icons
 and their web addresses.
 }
-

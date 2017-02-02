@@ -52,4 +52,3 @@ adj_matrix <-
 # Create a graph from the adjacency matrix
 graph <- from_adj_matrix(adj_matrix)
 }
-

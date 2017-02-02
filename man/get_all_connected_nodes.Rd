@@ -58,4 +58,3 @@ graph_2 \%>\% get_all_connected_nodes(1)
 graph_2 \%>\% get_all_connected_nodes(8)
 #> [1]  7  9 10
 }
-

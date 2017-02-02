@@ -20,4 +20,3 @@ Widget render function for use in Shiny
 \seealso{
 \code{\link{grVizOutput}} for an example in Shiny
 }
-

@@ -42,4 +42,3 @@ summary(ig_graph)
 #> + attr: name (v/c), type (v/c), label
 #> | (v/c), value (v/c), rel (e/c)
 }
-

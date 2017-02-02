@@ -27,4 +27,3 @@ get_graph_diameter(
     set_seed = 23))
 #> [1] 3
 }
-

@@ -68,4 +68,3 @@ get_node_ids(
                  "value > 5"))
 #> [1] 3
 }
-

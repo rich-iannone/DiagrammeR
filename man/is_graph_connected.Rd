@@ -52,4 +52,3 @@ graph_3 \%>\% is_graph_connected()
 #> [1] FALSE
 }
 }
-

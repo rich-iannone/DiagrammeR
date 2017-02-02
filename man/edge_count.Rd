@@ -70,4 +70,3 @@ edge_count(graph, rel = "rel_a")
 edge_count(graph, rel = c("rel_a", "rel_b"))
 #> [1] 16
 }
-

@@ -118,4 +118,3 @@ get_edges(
   return_values = "label")
 #> [1] "three->one"
 }
-

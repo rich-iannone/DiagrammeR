@@ -52,4 +52,3 @@ node_info(graph) \%>\% head(5)
 #> 4   4   binary     4   1     1      0     0
 #> 5   5   binary     5   1     1      0     0
 }
-

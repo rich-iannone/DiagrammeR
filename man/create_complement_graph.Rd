@@ -50,4 +50,3 @@ graph_c \%>\% get_edge_df()
 #> 7  7    4  3 <NA>
 #> 8  8    4  2 <NA>
 }
-

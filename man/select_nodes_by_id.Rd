@@ -44,4 +44,3 @@ graph \%>\%
   get_selection()
 #> [1] 1 2 3 4 5
 }
-

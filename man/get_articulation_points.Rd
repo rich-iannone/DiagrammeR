@@ -38,4 +38,3 @@ graph <-
     get_articulation_points(.)) \%>\%
   set_node_attrs_ws("shape", "circle")
 }
-

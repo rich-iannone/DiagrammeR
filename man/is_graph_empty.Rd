@@ -34,4 +34,3 @@ graph <-
 is_graph_empty(graph)
 #> [1] FALSE
 }
-

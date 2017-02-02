@@ -32,4 +32,3 @@ graph <- clear_global_graph_attrs(graph)
 get_global_graph_attrs(graph)
 #> [1] NA
 }
-

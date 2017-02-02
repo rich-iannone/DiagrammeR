@@ -115,4 +115,3 @@ get_node_df(graph)
 #> 3  3 <NA> three 3 2
 #> 4  4 <NA>  four 4 1
 }
-

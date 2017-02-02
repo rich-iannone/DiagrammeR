@@ -36,4 +36,3 @@ graph \%>\% get_common_nbrs(c(1, 2))
 graph \%>\% get_common_nbrs(c(1, 3))
 #> [1] 2
 }
-

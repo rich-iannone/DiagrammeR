@@ -18,4 +18,3 @@ coerced to a string and have \code{px} appended.}
 \description{
 Widget output function for use in Shiny
 }
-

@@ -99,4 +99,3 @@ graph <-
 get_selection(graph)
 #> [1] 1 3
 }
-

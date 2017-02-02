@@ -58,4 +58,3 @@ get_edge_df(graph)
 #> 4  4    4  5 <NA>  blue
 #> 5  5    5  6 <NA>  <NA>
 }
-

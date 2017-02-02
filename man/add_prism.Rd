@@ -60,4 +60,3 @@ node_info(graph)
 #> 11 11 prism     b   3     2      1     0
 #> 12 12 prism     b   3     2      1     0
 }
-

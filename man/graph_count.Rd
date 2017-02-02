@@ -48,4 +48,3 @@ series <-
 graph_count(series)
 #> [1] 3
 }
-

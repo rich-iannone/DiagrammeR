@@ -53,4 +53,3 @@ node_info(graph)
 #> 8  8 five_path     4   2     1      1     0
 #> 9  9 five_path     5   1     1      0     0
 }
-

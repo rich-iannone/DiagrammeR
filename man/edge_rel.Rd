@@ -98,4 +98,3 @@ graph <-
 graph \%>\% edge_rel(1, 2)
 #> [1] "rel a"
 }
-

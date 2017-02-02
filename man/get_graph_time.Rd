@@ -31,4 +31,3 @@ graph <-
 graph \%>\% get_graph_time()
 #> [1] "2015-10-25 15:23:00 GMT"
 }
-

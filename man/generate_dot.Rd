@@ -18,4 +18,3 @@ Graphviz DOT code.
 Generates Graphviz DOT code as an R
 character object using DiagrammeR graph object.
 }
-

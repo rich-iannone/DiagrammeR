@@ -131,4 +131,3 @@ get_node_df(graph)
 #> 3  3 type_5     3 rectangle    9.4
 #> 4  4 type_2     4 rectangle    2.7
 }
-

@@ -91,4 +91,3 @@ graph <-
 graph \%>\% node_type(1)
 #> [1] "a"
 }
-

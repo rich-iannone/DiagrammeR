@@ -168,4 +168,3 @@ graph \%>\%
   get_selection()
 #> [1] 3 4
 }
-

@@ -81,4 +81,3 @@ get_edge_df(graph_node_label)
 #> 3  3    2  4 <NA>
 #> 4  4    2  3 <NA>
 }
-

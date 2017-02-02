@@ -66,4 +66,3 @@ graph <-
 get_selection(graph)
 #> [1] 1 2 3 4
 }
-

@@ -49,4 +49,3 @@ extracted_graph <-
     graph_series = series,
     graph_no = 2)
 }
-

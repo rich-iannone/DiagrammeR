@@ -48,4 +48,3 @@ node_df_combined
 #> 5  5    b     U   0.4
 #> 6  6    c     A   3.4
 }
-

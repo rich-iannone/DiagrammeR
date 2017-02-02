@@ -64,4 +64,3 @@ render_graph_from_series(
   graph_no = 2)
 }
 }
-

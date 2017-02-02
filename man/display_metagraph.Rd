@@ -57,4 +57,3 @@ property_graph <-
 # graph model for a property graph
 display_metagraph(property_graph)
 }
-

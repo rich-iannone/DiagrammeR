@@ -56,4 +56,3 @@ graph <- clear_selection(graph)
 get_selection(graph)
 #> [1] NA
 }
-

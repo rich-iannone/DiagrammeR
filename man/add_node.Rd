@@ -56,4 +56,3 @@ get_node_df(graph)
 #> 2  2   <NA>  <NA>
 #> 3  3 person  <NA>
 }
-

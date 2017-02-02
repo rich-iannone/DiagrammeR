@@ -94,4 +94,3 @@ get_node_df(graph)
 #> 3  3    b three 8 5
 #> 4  4    b  four 9 6
 }
-

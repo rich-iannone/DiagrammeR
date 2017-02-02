@@ -46,4 +46,3 @@ graph <-
 visnetwork(graph)
 }
 }
-

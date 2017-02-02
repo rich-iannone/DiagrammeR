@@ -45,4 +45,3 @@ graph <-
   select_nodes_by_id(get_nbrs(., 3)) \%>\%
   set_node_attrs_ws("color", "green")
 }
-

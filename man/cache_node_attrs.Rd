@@ -54,4 +54,3 @@ graph <-
 graph \%>\% get_cache() \%>\% mean()
 #> [1] 4.651246
 }
-

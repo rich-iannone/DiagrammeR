@@ -65,4 +65,3 @@ get_node_df(graph)
 #> 5  5 <NA>     5  blue
 #> 6  6 <NA>     6  <NA>
 }
-

@@ -52,4 +52,3 @@ graph <-
 get_edges(graph, return_type = "vector")
 #> [1] "1->4" "2->3" "3->1"
 }
-

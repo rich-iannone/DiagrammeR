@@ -45,4 +45,3 @@ graph \%>\% get_edge_df()
 #> 4  4    1  5   a green
 #> 5  5    1  6   b  blue
 }
-

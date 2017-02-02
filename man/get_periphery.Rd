@@ -30,4 +30,3 @@ get_periphery(
 #> [1] 13
 }
 }
-

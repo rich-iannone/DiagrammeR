@@ -49,4 +49,3 @@ edge_info(graph)
 #> 3  3    3  1   Y
 #> 4  4    4  3   Z
 }
-

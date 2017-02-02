@@ -24,4 +24,3 @@ referenced from the graph
 series object in order to migrate the state of one
 or more contained graphs.
 }
-

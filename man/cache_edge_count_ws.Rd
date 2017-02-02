@@ -44,4 +44,3 @@ the following traversal functions:
 \code{trav_out_edge()}, \code{trav_in_edge()},
 or \code{trav_both_edge()}.
 }
-

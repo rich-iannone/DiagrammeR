@@ -38,4 +38,3 @@ ig_graph <- to_igraph(dgr_graph_orig)
 # DiagrammeR graph
 dgr_graph_new <- from_igraph(ig_graph)
 }
-

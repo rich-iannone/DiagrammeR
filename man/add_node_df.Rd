@@ -70,4 +70,3 @@ get_node_df(graph)
 #> 7  7 basic  <NA>  aqua   0.8
 #> 8  8 basic  <NA>  pink   4.2
 }
-

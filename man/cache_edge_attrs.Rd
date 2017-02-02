@@ -57,4 +57,3 @@ From a graph object of class
 one or more edges and cache those values in the
 graph for later retrieval using \code{get_cache}.
 }
-

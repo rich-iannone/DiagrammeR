@@ -56,4 +56,3 @@ the graph is property graph (i.e., all nodes have
 an assigned \code{type} value and all edges have
 an assigned \code{rel} value).
 }
-

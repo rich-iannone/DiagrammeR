@@ -46,4 +46,3 @@ graph_2 <-
     tz = "America/Los_Angeles")
 }
 }
-

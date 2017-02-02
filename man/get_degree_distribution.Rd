@@ -35,4 +35,3 @@ graph \%>\% get_degree_distribution()
 #> 4
 #> 0.27777778
 }
-

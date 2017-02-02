@@ -123,4 +123,3 @@ graph_3 <-
 get_selection(graph_3)
 #> [1] 3
 }
-

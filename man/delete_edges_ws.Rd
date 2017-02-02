@@ -51,4 +51,3 @@ graph <-
 edge_count(graph)
 #> [1] 1
 }
-

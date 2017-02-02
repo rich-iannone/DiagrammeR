@@ -137,4 +137,3 @@ get_node_df(graph)
 #> 7  7 <NA>     7    7.2   #2B83BA
 #> 8  8 <NA>     8    5.4   #ABDDA4
 }
-

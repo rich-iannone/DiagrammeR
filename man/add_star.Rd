@@ -54,4 +54,3 @@ node_info(graph)
 #> 8  8 five_star     4   1     1      0     0
 #> 9  9 five_star     5   1     1      0     0
 }
-
