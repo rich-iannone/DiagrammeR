@@ -1,4 +1,4 @@
-#' Add new edges in the opposite direction of a
+#' Add new edges in the opposite directions of a
 #' selection of edges
 #' @description Add edges in the opposite direction
 #' of one or more edges available as an edge selection
