@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_reverse_edges_ws.R
 \name{add_reverse_edges_ws}
 \alias{add_reverse_edges_ws}
-\title{Add new edges in the opposite direction of a
+\title{Add new edges in the opposite directions of a
 selection of edges}
 \usage{
 add_reverse_edges_ws(graph, rel = NULL)
