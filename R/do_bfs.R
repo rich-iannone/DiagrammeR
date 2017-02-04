@@ -1,4 +1,4 @@
-#' Perform the breadth-first search (bfs) algorithm
+#' Use the breadth-first search (bfs) algorithm
 #' @description With a chosen or random node
 #' serving as the starting point, perform a
 #' breadth-first search of the whole graph and return

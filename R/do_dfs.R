@@ -1,4 +1,4 @@
-#' Perform the depth-first search (dfs) algorithm
+#' Use the depth-first search (dfs) algorithm
 #' @description With a chosen or random node
 #' serving as the starting point, perform a
 #' depth-first search of the whole graph and return
