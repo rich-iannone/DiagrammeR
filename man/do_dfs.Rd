@@ -2,7 +2,7 @@
 % Please edit documentation in R/do_dfs.R
 \name{do_dfs}
 \alias{do_dfs}
-\title{Perform the depth-first search (dfs) algorithm}
+\title{Use the depth-first search (dfs) algorithm}
 \usage{
 do_dfs(graph, node = NULL, direction = "all")
 }

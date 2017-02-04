@@ -2,7 +2,7 @@
 % Please edit documentation in R/do_bfs.R
 \name{do_bfs}
 \alias{do_bfs}
-\title{Perform the breadth-first search (bfs) algorithm}
+\title{Use the breadth-first search (bfs) algorithm}
 \usage{
 do_bfs(graph, node = NULL, direction = "all")
 }
