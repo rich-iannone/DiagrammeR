@@ -1,4 +1,4 @@
-#' Select the last nodes created in a graph
+#' Select the last set of nodes created in a graph
 #' @description Select the last nodes that were created
 #' in a graph object of class \code{dgr_graph}. This
 #' function should ideally be used just after creating
