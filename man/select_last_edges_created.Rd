@@ -2,7 +2,7 @@
 % Please edit documentation in R/select_last_edges_created.R
 \name{select_last_edges_created}
 \alias{select_last_edges_created}
-\title{Select the last edges created in a graph}
+\title{Select the last set of edges created in a graph}
 \usage{
 select_last_edges_created(graph)
 }

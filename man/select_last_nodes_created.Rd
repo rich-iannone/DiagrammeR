@@ -2,7 +2,7 @@
 % Please edit documentation in R/select_last_nodes_created.R
 \name{select_last_nodes_created}
 \alias{select_last_nodes_created}
-\title{Select the last nodes created in a graph}
+\title{Select the last set of nodes created in a graph}
 \usage{
 select_last_nodes_created(graph)
 }
