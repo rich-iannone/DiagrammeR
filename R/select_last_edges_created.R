@@ -70,7 +70,8 @@ select_last_edges_created <- function(graph) {
         "add_forward_edges_ws", "add_reverse_edges_ws",
         "add_edges_from_table", "add_full_graph",
         "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star")) == FALSE) {
+        "add_path", "add_prism", "add_star",
+        "create_random_graph")) == FALSE) {
     stop("The previous graph transformation function did not add edges to the graph.")
   }
 

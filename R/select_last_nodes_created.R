@@ -65,7 +65,8 @@ select_last_nodes_created <- function(graph) {
       c("add_node", "add_n_nodes", "add_n_nodes_ws", "add_node_df",
         "add_nodes_from_df_cols", "add_nodes_from_table",
         "add_full_graph", "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star")) == FALSE) {
+        "add_path", "add_prism", "add_star",
+        "create_random_graph")) == FALSE) {
     stop("The previous graph transformation function did not add nodes to the graph.")
   }
 
