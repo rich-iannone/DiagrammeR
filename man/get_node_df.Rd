@@ -22,7 +22,7 @@ with all current node attributes.
 graph <-
   create_graph() \%>\%
   add_n_nodes(1, "a") \%>\%
-  select_last_node \%>\%
+  select_last_nodes_created() \%>\%
   add_n_nodes_ws(5, "from", "b") \%>\%
   select_nodes_by_id(1) \%>\%
   set_node_attrs_ws(
@@ -34,11 +34,11 @@ graph <-
   invert_selection() \%>\%
   set_node_attrs_ws(
     "color", "grey80") \%>\%
-  clear_selection
+  clear_selection()
 
 # Get the graph's internal node
 # data frame (ndf)
-graph \%>\% get_node_df()
+get_node_df(graph)
 #>   id type label value  color
 #> 1  1    a  <NA>  25.3 grey80
 #> 2  2    b  <NA>    NA grey70

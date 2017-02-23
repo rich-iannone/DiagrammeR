@@ -27,7 +27,7 @@ selection.
 Selections of nodes can be performed using
 the following \code{select_...} functions:
 \code{select_nodes()},
-\code{select_last_node()},
+\code{select_last_nodes_created()},
 \code{select_nodes_by_degree()},
 \code{select_nodes_by_id()}, or
 \code{select_nodes_in_neighborhood()}.
