@@ -161,34 +161,6 @@ test_that("selecting a node in a graph is possible", {
     select_nodes(
       graph = graph,
       nodes = 5))
-
-  # Select the last node in a graph
-  graph_last_node <- select_last_node(graph)
-
-  # Expect that the node selected is the last
-  # in the ndf
-  expect_true(
-    get_node_ids(graph_last_node)[length(get_node_ids(graph_last_node))] ==
-      get_selection(graph_last_node))
-
-  # Expect an error if trying to select the last node
-  # from an empty graph
-  expect_error(
-    select_last_node(create_graph()))
-
-  # Select the last edge in a graph
-  graph_last_edge <- select_last_edge(graph)
-
-  # Expect an error if trying to select the last
-  # edge from an empty graph
-  expect_error(
-    select_last_edge(create_graph()))
-
-  # Expect an error if trying to select the last
-  # edge from a graph with no edges
-  expect_error(
-    select_last_edge(
-      create_graph(nodes_df = create_node_df(1))))
 })
 
 test_that("selecting an edge in a graph is possible", {
