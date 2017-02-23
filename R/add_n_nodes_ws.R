@@ -14,7 +14,7 @@
 #' Selections of nodes can be performed using
 #' the following \code{select_...} functions:
 #' \code{select_nodes()},
-#' \code{select_last_node()},
+#' \code{select_last_nodes_created()},
 #' \code{select_nodes_by_degree()},
 #' \code{select_nodes_by_id()}, or
 #' \code{select_nodes_in_neighborhood()}.
@@ -47,11 +47,11 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(1) %>%
-#'   select_last_node() %>%
+#'   select_last_nodes_created() %>%
 #'   add_n_nodes_ws(5, "from")
 #'
 #' # Get the graph's nodes
-#' graph %>% get_node_ids()
+#' get_node_ids(graph)
 #' #> [1] 1 2 3 4 5 6
 #'
 #' # Get the graph's edges
@@ -65,15 +65,15 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(1) %>%
-#'   select_last_node %>%
+#'   select_last_nodes_created() %>%
 #'   add_n_nodes_ws(5, "to")
 #'
 #' # Get the graph's nodes
-#' graph %>% get_node_ids()
+#' get_node_ids(graph)
 #' #> [1] 1 2 3 4 5 6
 #'
 #' # Get the graph's edges
-#' graph %>% get_edges()
+#' get_edges(graph)
 #' #> "2->1" "3->1" "4->1" "5->1" "6->1"
 #' @importFrom dplyr bind_rows
 #' @export add_n_nodes_ws

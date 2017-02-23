@@ -9,7 +9,7 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(1, "a") %>%
-#'   select_last_node %>%
+#'   select_last_nodes_created() %>%
 #'   add_n_nodes_ws(5, "from", "b") %>%
 #'   select_edges_by_node_id(3:5) %>%
 #'   set_edge_attrs_ws(
@@ -24,7 +24,7 @@
 #'   clear_selection()
 #'
 #' # Get the graph's internal edge data frame (edf)
-#' graph %>% get_edge_df()
+#' get_edge_df(graph)
 #' #>   id from to rel color
 #' #> 1  1    1  2   b  blue
 #' #> 2  2    1  3   a green
