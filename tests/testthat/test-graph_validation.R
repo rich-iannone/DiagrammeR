@@ -123,8 +123,6 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(rev_edge_dir(invalid_graph))
   expect_error(select_edges(invalid_graph))
   expect_error(select_edges_by_node_id(invalid_graph))
-  expect_error(select_last_edge(invalid_graph))
-  expect_error(select_last_node(invalid_graph))
   expect_error(select_nodes(invalid_graph))
   expect_error(select_nodes_by_degree(invalid_graph))
   expect_error(select_nodes_by_id(invalid_graph))
