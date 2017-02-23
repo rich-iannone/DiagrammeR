@@ -54,7 +54,7 @@ select_last_nodes_created <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- nodes <- NULL
+  id <- nodes <- function_used <- NULL
 
   # Is the last function used on the graph
   # an 'addition of nodes' function?
@@ -66,7 +66,8 @@ select_last_nodes_created <- function(graph) {
         "add_nodes_from_df_cols", "add_nodes_from_table",
         "add_full_graph", "add_balanced_tree", "add_cycle",
         "add_path", "add_prism", "add_star",
-        "create_random_graph")) == FALSE) {
+        "create_random_graph", "from_igraph",
+        "from_adj_matrix")) == FALSE) {
     stop("The previous graph transformation function did not add nodes to the graph.")
   }
 
