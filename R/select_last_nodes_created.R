@@ -59,38 +59,84 @@ select_last_nodes_created <- function(graph) {
   # Is the last function used on the graph
   # an 'addition of nodes' function?
   if (
-    graph$graph_log %>% select(function_used) %>%
-    tail(1) %>% .$function_used %>%
+    graph$graph_log %>%
+    dplyr::select(function_used) %>%
+    tail(1) %>%
+    .$function_used %>%
     magrittr::is_in(
-      c("add_node", "add_n_nodes", "add_n_nodes_ws", "add_node_df",
-        "add_nodes_from_df_cols", "add_nodes_from_table",
-        "add_full_graph", "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star",
-        "create_random_graph", "from_igraph",
-        "from_adj_matrix")) == FALSE) {
+      c("add_node", "add_n_nodes", "add_n_nodes_ws",
+        "add_node_df", "add_nodes_from_df_cols",
+        "add_nodes_from_table", "add_full_graph",
+        "add_balanced_tree", "add_cycle",
+        "add_path", "add_prism", "add_star")) == FALSE &
+    (graph$graph_log %>%
+     dplyr::select(function_used) %>%
+     tail(1) %>%
+     .$function_used %>%
+     magrittr::is_in(
+       c("create_graph", "create_random_graph",
+         "from_igraph", "from_adj_matrix",
+         "import_graph")) &
+     graph$graph_log %>%
+     dplyr::select(nodes) %>%
+     tail(1) %>%
+     .$nodes > 0) == FALSE
+  )
+  {
     stop("The previous graph transformation function did not add nodes to the graph.")
   }
 
-  # Get the difference in nodes between the
-  # most recent function and the one previous
-  last <-
+  if (
     graph$graph_log %>%
-    dplyr::select(nodes) %>%
-    tail(2) %>% .$nodes %>% .[2]
+    dplyr::select(function_used) %>%
+    tail(1) %>%
+    .$function_used %>%
+    magrittr::is_in(
+      c("add_node", "add_n_nodes", "add_n_nodes_ws",
+        "add_node_df", "add_nodes_from_df_cols",
+        "add_nodes_from_table", "add_full_graph",
+        "add_balanced_tree", "add_cycle",
+        "add_path", "add_prism", "add_star") == TRUE)) {
 
-  second_last <-
-    graph$graph_log %>%
-    dplyr::select(nodes) %>%
-    tail(2) %>% .$nodes %>% .[1]
+    # Get the difference in nodes between the
+    # most recent function and the one previous
+    last <-
+      graph$graph_log %>%
+      dplyr::select(nodes) %>%
+      tail(2) %>% .$nodes %>% .[2]
 
-  difference_nodes <- last - second_last
+    second_last <-
+      graph$graph_log %>%
+      dplyr::select(nodes) %>%
+      tail(2) %>% .$nodes %>% .[1]
 
-  # Get ID values for last n nodes created
-  node_id_values <-
-    graph$nodes_df %>%
-    dplyr::select(id) %>%
-    tail(difference_nodes) %>%
-    .$id
+    difference_nodes <- last - second_last
+
+    # Get ID values for last n nodes created
+    node_id_values <-
+      graph$nodes_df %>%
+      dplyr::select(id) %>%
+      tail(difference_nodes) %>%
+      .$id
+
+  } else if (graph$graph_log %>%
+             dplyr::select(function_used) %>%
+             tail(1) %>%
+             .$function_used %>%
+             magrittr::is_in(
+               c("create_graph", "create_random_graph",
+                 "from_igraph", "from_adj_matrix",
+                 "import_graph")) &
+             graph$graph_log %>%
+             dplyr::select(nodes) %>%
+             tail(1) %>%
+             .$nodes > 0) {
+
+    node_id_values <-
+      graph$nodes_df %>%
+      dplyr::select(id) %>%
+      .$id
+  }
 
   # Apply the selection of nodes to the graph
   graph <-
