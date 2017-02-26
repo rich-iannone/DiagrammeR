@@ -58,45 +58,91 @@ select_last_edges_created <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- nodes <- NULL
+  id <- nodes <- edges <- function_used <- NULL
 
   # Is the last function used on the graph
-  # an 'addition of nodes' function?
+  # an 'addition of edges' function?
   if (
-    graph$graph_log %>% select(function_used) %>%
-    tail(1) %>% .$function_used %>%
+    graph$graph_log %>%
+    dplyr::select(function_used) %>%
+    tail(1) %>%
+    .$function_used %>%
     magrittr::is_in(
       c("add_edge", "add_edges_w_string", "add_edge_df",
         "add_forward_edges_ws", "add_reverse_edges_ws",
         "add_edges_from_table", "add_full_graph",
         "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star",
-        "create_random_graph")) == FALSE) {
+        "add_path", "add_prism", "add_star")) == FALSE &
+    (graph$graph_log %>%
+     dplyr::select(function_used) %>%
+     tail(1) %>%
+     .$function_used %>%
+     magrittr::is_in(
+       c("create_graph", "create_random_graph",
+         "from_igraph", "from_adj_matrix",
+         "import_graph")) &
+     graph$graph_log %>%
+     dplyr::select(edges) %>%
+     tail(1) %>%
+     .$edges > 0) == FALSE
+  )
+  {
     stop("The previous graph transformation function did not add edges to the graph.")
   }
 
-  # Get the difference in edges between the
-  # most recent function and the one previous
-  last <-
+  if (
     graph$graph_log %>%
-    dplyr::select(edges) %>%
-    tail(2) %>% .$edges %>% .[2]
+    dplyr::select(function_used) %>%
+    tail(1) %>%
+    .$function_used %>%
+    magrittr::is_in(
+      c("add_edge", "add_edges_w_string", "add_edge_df",
+        "add_forward_edges_ws", "add_reverse_edges_ws",
+        "add_edges_from_table", "add_full_graph",
+        "add_balanced_tree", "add_cycle",
+        "add_path", "add_prism", "add_star") == TRUE)) {
 
-  second_last <-
-    graph$graph_log %>%
-    dplyr::select(edges) %>%
-    tail(2) %>% .$edges %>% .[1]
+    # Get the difference in edges between the
+    # most recent function and the one previous
+    last <-
+      graph$graph_log %>%
+      dplyr::select(edges) %>%
+      tail(2) %>% .$edges %>% .[2]
 
-  difference_edges <- last - second_last
+    second_last <-
+      graph$graph_log %>%
+      dplyr::select(edges) %>%
+      tail(2) %>% .$edges %>% .[1]
 
-  # Get ID values for last n edges created
-  edge_id_values <-
-    graph$edges_df %>%
-    dplyr::select(id) %>%
-    tail(difference_edges) %>%
-    .$id
+    difference_edges <- last - second_last
 
-  # Apply the selection of nodes to the graph
+    # Get ID values for last n edges created
+    edge_id_values <-
+      graph$edges_df %>%
+      dplyr::select(id) %>%
+      tail(difference_edges) %>%
+      .$id
+
+  } else if (graph$graph_log %>%
+             dplyr::select(function_used) %>%
+             tail(1) %>%
+             .$function_used %>%
+             magrittr::is_in(
+               c("create_graph", "create_random_graph",
+                 "from_igraph", "from_adj_matrix",
+                 "import_graph")) &
+             graph$graph_log %>%
+             dplyr::select(edges) %>%
+             tail(1) %>%
+             .$edges > 0) {
+
+    edge_id_values <-
+      graph$edges_df %>%
+      dplyr::select(id) %>%
+      .$id
+  }
+
+  # Apply the selection of edges to the graph
   graph <-
     select_edges_by_edge_id(
       graph = graph,
