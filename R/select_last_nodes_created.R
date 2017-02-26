@@ -96,7 +96,7 @@ select_last_nodes_created <- function(graph) {
         "add_node_df", "add_nodes_from_df_cols",
         "add_nodes_from_table", "add_full_graph",
         "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star") == TRUE)) {
+        "add_path", "add_prism", "add_star")) == TRUE) {
 
     # Get the difference in nodes between the
     # most recent function and the one previous
