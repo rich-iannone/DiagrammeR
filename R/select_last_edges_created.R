@@ -100,7 +100,7 @@ select_last_edges_created <- function(graph) {
         "add_forward_edges_ws", "add_reverse_edges_ws",
         "add_edges_from_table", "add_full_graph",
         "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star") == TRUE)) {
+        "add_path", "add_prism", "add_star")) == TRUE) {
 
     # Get the difference in edges between the
     # most recent function and the one previous
