@@ -123,7 +123,7 @@ set_node_attr_to_display <- function(graph,
   # `attr` does not exist in the ndf
   if (!is.null(attr)) {
     if (!(attr %in% colnames(ndf))) {
-      stop("The node attribute given in `attr` in not in the graph's ndf.")
+      stop("The node attribute given in `attr` is not in the graph's ndf.")
     }
   }
 
