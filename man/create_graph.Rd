@@ -11,14 +11,14 @@ create_graph(nodes_df = NULL, edges_df = NULL, directed = TRUE,
 \item{nodes_df}{an optional data frame containing,
 at minimum, a column (called \code{nodes}) which
 contains node IDs for the graph. Additional
-columns (named as Graphviz node attributes) can be
-included with values for the named node attribute.}
+columns (node attributes) can be included with
+values for the named node attribute.}
 
 \item{edges_df}{an optional data frame containing,
 at minimum, two columns (called \code{from} and
 \code{to}) where node IDs are provided. Additional
-columns (named as Graphviz edge attributes) can be
-included with values for the named edge attribute.}
+columns (edge attributes) can be included with
+values for the named edge attribute.}
 
 \item{directed}{with \code{TRUE} (the default) or
 \code{FALSE}, either directed or undirected edge
