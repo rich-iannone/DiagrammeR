@@ -4,16 +4,16 @@
 \alias{trav_reverse_edge}
 \title{Select any reverse edges from a selection of edges}
 \usage{
-trav_reverse_edge(graph, add_to_selection = TRUE)
+trav_reverse_edge(graph, add_to_selection = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
 \item{add_to_selection}{an option to either add the
-reverse edges to the active selection of edges (the
-default case, as \code{TRUE}) or switch the active
-entirely to those reverse edges (\code{FALSE}).}
+reverse edges to the active selection of edges or
+switch the active entirely to those reverse edges
+(\code{FALSE}, the default case).}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -56,13 +56,17 @@ graph <-
   select_edges(from = 1, to = 4) \%>\%
   select_edges(from = 2, to = 3)
 
-# Add to the selection the reverse edge
-# (`4`->`1`)
+# Get the inital edge selection
+get_selection(graph)
+#> [1] 1 3
+
+# Traverse to the to the reverse edges
+# (edges `2`: `4`->`1` and `4`:`3`->`2`)
 graph <-
   graph \%>\%
   trav_reverse_edge()
 
 # Get the current selection of edges
 get_selection(graph)
-#> [1] 1 2 3 4
+#> [1] 2 4
 }
