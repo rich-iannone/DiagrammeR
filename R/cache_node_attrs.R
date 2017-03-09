@@ -7,6 +7,7 @@
 #' \code{dgr_graph}.
 #' @param node_attr the node attribute from which to
 #' obtain values.
+#' @param name an optional name for the cached vector.
 #' @param mode a option to recast the returned vector
 #' of node attribute value as \code{numeric} or
 #' \code{character}.
@@ -15,7 +16,7 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
-#' set.seed(25)
+#' set.seed(23)
 #'
 #' # Create a graph with 10 nodes and 9 edges
 #' graph <-
@@ -31,16 +32,21 @@
 #' # as a numeric vector
 #' graph <-
 #'   graph %>%
-#'   cache_node_attrs("value", "numeric")
+#'   cache_node_attrs(
+#'     node_attr = "value",
+#'     name = "node_value")
 #'
 #' # Get the mean from all values available in
 #' # the cache
-#' graph %>% get_cache() %>% mean()
-#' #> [1] 4.651246
+#' graph %>%
+#'   get_cache(name = "node_value") %>%
+#'   mean()
+#' #> [1] 5.157112
 #' @export cache_node_attrs
 
 cache_node_attrs <- function(graph,
                              node_attr,
+                             name = NULL,
                              mode = NULL,
                              nodes = NULL) {
 
@@ -84,8 +90,19 @@ cache_node_attrs <- function(graph,
     }
   }
 
-  # Cache vector of node attributes in the graph
-  graph$cache <- nodes_attr_vector
+  # Cache vector of edge attributes in the
+  # graph's `cache` list object
+  if (!is.null(name)) {
+    graph$cache[[name]] <- nodes_attr_vector
+  } else {
+    if (length(graph$cache) == 0) {
+      graph$cache[[1]] <- nodes_attr_vector
+      names(graph$cache) <- 1
+    } else {
+      graph$cache[[(length(graph$cache) + 1)]] <-
+        nodes_attr_vector
+    }
+  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

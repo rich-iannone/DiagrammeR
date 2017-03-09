@@ -3,6 +3,9 @@
 #' of class \code{dgr_graph}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
+#' @param name the name of the object to extract from
+#' the cache. If none supplied, the most recent object
+#' added to the cache will be returned.
 #' @return a vector.
 #' @examples
 #' # Set a seed
@@ -29,7 +32,8 @@
 #' #> [4] 8.585629 7.582081
 #' @export get_cache
 
-get_cache <- function(graph) {
+get_cache <- function(graph,
+                      name = NULL) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -37,9 +41,13 @@ get_cache <- function(graph) {
   }
 
   # If there is no cached vector available, return NA
-  if (is.null(graph$cache)) {
+  if (length(graph$cache) == 0) {
     return(NA)
   }
 
-  return(graph$cache)
+  if (is.null(name)) {
+    return(graph$cache[[length(graph$cache)]])
+  } else {
+    return(graph$cache[[name]])
+  }
 }

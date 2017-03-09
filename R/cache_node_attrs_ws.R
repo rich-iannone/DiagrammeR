@@ -23,6 +23,7 @@
 #' \code{dgr_graph}.
 #' @param node_attr the node attribute from which to
 #' obtain values.
+#' @param name an optional name for the cached vector.
 #' @param mode a option to recast the returned vector
 #' of node attribute value as \code{numeric} or
 #' \code{character}.
@@ -45,7 +46,8 @@
 #'   select_nodes("value < 5.0")
 #'
 #' # Show the graph's node data frame
-#' graph %>% get_node_df
+#' graph %>%
+#'   get_node_df()
 #' #>   id type label    value
 #' #> 1  1 <NA>     1 5.090874
 #' #> 2  2 <NA>     2 8.151559
@@ -59,17 +61,20 @@
 #' # that the cached vector is numeric
 #' graph <-
 #'   graph %>%
-#'   cache_node_attrs_ws("value", "numeric")
+#'   cache_node_attrs_ws(
+#'     node_attr = "value",
+#'     name = "node_value")
 #'
-#' # Get the cached vector and get its
-#' # difference from 5
-#' graph %>% get_cache() %>% {x <- .; 5 - x}
-#' #> [1] 2.0930707 0.5773773
+#' # Get the cached vector with `get_cache()`
+#' graph %>%
+#'   get_cache(name = "node_value")
+#' #> [1] 2.906929 4.422623
 #' @importFrom dplyr filter select_ rename_ mutate
 #' @export cache_node_attrs_ws
 
 cache_node_attrs_ws <- function(graph,
                                 node_attr,
+                                name = NULL,
                                 mode = NULL) {
 
   # Get the time of function start
@@ -123,8 +128,19 @@ cache_node_attrs_ws <- function(graph,
     }
   }
 
-  # Cache vector of node attributes in the graph
-  graph$cache <- nodes_cache[,1]
+  # Cache vector of edge attributes in the
+  # graph's `cache` list object
+  if (!is.null(name)) {
+    graph$cache[[name]] <- nodes_cache[, 1]
+  } else {
+    if (length(graph$cache) == 0) {
+      graph$cache[[1]] <- nodes_cache[, 1]
+      names(graph$cache) <- 1
+    } else {
+      graph$cache[[(length(graph$cache) + 1)]] <-
+        nodes_cache[, 1]
+    }
+  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

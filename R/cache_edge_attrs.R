@@ -7,6 +7,7 @@
 #' \code{dgr_graph}.
 #' @param edge_attr the edge attribute from which to
 #' obtain values.
+#' @param name an optional name for the cached vector.
 #' @param mode a option to recast the returned vector
 #' of edge attribute value as \code{numeric} or
 #' \code{character}.
@@ -17,8 +18,9 @@
 #' the edge is incoming for filtering the list of
 #' edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
 #' # Set a seed
-#' set.seed(25)
+#' set.seed(23)
 #'
 #' # Create a graph with 10 nodes and 9 edges
 #' graph <-
@@ -34,16 +36,21 @@
 #' # as a numeric vector
 #' graph <-
 #'   graph %>%
-#'   cache_edge_attrs("value", "numeric")
+#'   cache_edge_attrs(
+#'     edge_attr = "value",
+#'     name = "edge_value")
 #'
 #' # Get the mean from all values available in
 #' # the cache
-#' graph %>% get_cache() %>% mean()
-#' #> [1] 4.62536
+#' graph %>%
+#'   get_cache(name = "edge_value") %>%
+#'   mean()
+#' #> [1] 5.744332
 #' @export cache_edge_attrs
 
 cache_edge_attrs <- function(graph,
                              edge_attr,
+                             name = NULL,
                              mode = NULL,
                              from = NULL,
                              to = NULL) {
@@ -74,11 +81,11 @@ cache_edge_attrs <- function(graph,
   }
 
   if (any(edge_attr %in%
-          colnames(edges_df)[-c(1:2)])) {
+          colnames(edges_df)[-c(1:3)])) {
 
     edges_attr_vector <-
       edges_df[, which(colnames(edges_df) %in%
-                        edge_attr)]
+                         edge_attr)]
 
     if (!is.null(mode)) {
       if (mode == "numeric") {
@@ -95,8 +102,19 @@ cache_edge_attrs <- function(graph,
     }
   }
 
-  # Cache vector of edge attributes in the graph
-  graph$cache <- edges_attr_vector
+  # Cache vector of edge attributes in the
+  # graph's `cache` list object
+  if (!is.null(name)) {
+    graph$cache[[name]] <- edges_attr_vector
+  } else {
+    if (length(graph$cache) == 0) {
+      graph$cache[[1]] <- edges_attr_vector
+      names(graph$cache) <- 1
+    } else {
+      graph$cache[[(length(graph$cache) + 1)]] <-
+        edges_attr_vector
+    }
+  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

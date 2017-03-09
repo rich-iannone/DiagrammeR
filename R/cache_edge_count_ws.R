@@ -16,6 +16,7 @@
 #' or \code{trav_both_edge()}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
+#' @param name an optional name for the cached vector.
 #' @return a graph object of class \code{dgr_graph}.
 #' # Create a graph with 5 nodes and 4 edges
 #' graph <-
@@ -26,14 +27,16 @@
 #' graph <-
 #'   graph %>%
 #'   select_edges_by_node_id(2) %>%
-#'   cache_edge_count_ws()
+#'   cache_edge_count_ws(name = "edge_count")
 #'
 #' # Get the number of edges stored in the cache
-#' graph %>% get_cache()
-#' #> [1] 4
+#' graph %>%
+#'   get_cache(name = "edge_count")
+#' #> [1] 2
 #' @export cache_edge_count_ws
 
-cache_edge_count_ws <- function(graph) {
+cache_edge_count_ws <- function(graph,
+                                name = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -48,9 +51,19 @@ cache_edge_count_ws <- function(graph) {
     stop("There is no selection of edges available.")
   }
 
-  # Cache numeric vector of single length
-  # in the graph
-  graph$cache <- nrow(graph$edge_selection)
+  # Cache vector of edge attributes in the
+  # graph's `cache` list object
+  if (!is.null(name)) {
+    graph$cache[[name]] <- nrow(graph$edge_selection)
+  } else {
+    if (length(graph$cache) == 0) {
+      graph$cache[[1]] <- nrow(graph$edge_selection)
+      names(graph$cache) <- 1
+    } else {
+      graph$cache[[(length(graph$cache) + 1)]] <-
+        nrow(graph$edge_selection)
+    }
+  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
