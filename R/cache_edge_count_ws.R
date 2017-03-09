@@ -18,6 +18,7 @@
 #' \code{dgr_graph}.
 #' @param name an optional name for the cached vector.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
 #' # Create a graph with 5 nodes and 4 edges
 #' graph <-
 #'   create_graph() %>%
