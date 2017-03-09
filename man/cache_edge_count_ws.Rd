@@ -5,11 +5,13 @@
 \title{Cache a count of edges (available in a
 selection) in the graph}
 \usage{
-cache_edge_count_ws(graph)
+cache_edge_count_ws(graph, name = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{name}{an optional name for the cached vector.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -22,11 +24,12 @@ graph <-
 graph <-
   graph %>%
   select_edges_by_node_id(2) %>%
-  cache_edge_count_ws()
+  cache_edge_count_ws(name = "edge_count")
 
 # Get the number of edges stored in the cache
-graph %>% get_cache()
-#> [1] 4
+graph %>%
+  get_cache(name = "edge_count")
+#> [1] 2
 }
 \description{
 From a graph object of class

@@ -4,7 +4,7 @@
 \alias{cache_node_attrs}
 \title{Cache node attributes in the graph}
 \usage{
-cache_node_attrs(graph, node_attr, mode = NULL, nodes = NULL)
+cache_node_attrs(graph, node_attr, name = NULL, mode = NULL, nodes = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -12,6 +12,8 @@ cache_node_attrs(graph, node_attr, mode = NULL, nodes = NULL)
 
 \item{node_attr}{the node attribute from which to
 obtain values.}
+
+\item{name}{an optional name for the cached vector.}
 
 \item{mode}{a option to recast the returned vector
 of node attribute value as \code{numeric} or
@@ -31,7 +33,7 @@ graph for later retrieval using \code{get_cache}.
 }
 \examples{
 # Set a seed
-set.seed(25)
+set.seed(23)
 
 # Create a graph with 10 nodes and 9 edges
 graph <-
@@ -47,10 +49,14 @@ graph <-
 # as a numeric vector
 graph <-
   graph \%>\%
-  cache_node_attrs("value", "numeric")
+  cache_node_attrs(
+    node_attr = "value",
+    name = "node_value")
 
 # Get the mean from all values available in
 # the cache
-graph \%>\% get_cache() \%>\% mean()
-#> [1] 4.651246
+graph \%>\%
+  get_cache(name = "node_value") \%>\%
+  mean()
+#> [1] 5.157112
 }

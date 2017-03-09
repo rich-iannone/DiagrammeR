@@ -5,7 +5,7 @@
 \title{Cache edge attributes (based on a selection of
 edges) in the graph}
 \usage{
-cache_edge_attrs_ws(graph, edge_attr, mode = NULL)
+cache_edge_attrs_ws(graph, edge_attr, name = NULL, mode = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -14,12 +14,54 @@ cache_edge_attrs_ws(graph, edge_attr, mode = NULL)
 \item{edge_attr}{the edge attribute from which to
 obtain values.}
 
+\item{name}{an optional name for the cached vector.}
+
 \item{mode}{a option to recast the returned vector
 of edge attribute value as \code{numeric} or
 \code{character}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
+# Set a seed
+set.seed(23)
+
+# Create a graph with 6 nodes and 5 edges
+graph <-
+  create_graph() %>%
+  add_path(6) %>%
+  set_edge_attrs(
+    "value", rnorm(edge_count(.), 5, 2))
+
+# Select all edges where the edge attribute
+# `value` is less than 5
+graph <-
+  graph %>%
+  select_edges("value < 5.0")
+
+# Show the graph's edge data frame
+graph %>%
+  get_edge_df()
+#>   id from to  rel    value
+#> 1  1    1  2 <NA> 4.595777
+#> 2  2    2  3 <NA> 5.355001
+#> 3  3    3  4 <NA> 7.615295
+#> 4  4    4  5 <NA> 2.314129
+#> 5  5    5  6 <NA> 6.722166
+
+# Cache available values from the edge
+# attribute `value` from the edges that
+# are selected; ensure that the cached
+# vector is numeric
+graph <-
+  graph %>%
+  cache_edge_attrs_ws(
+    edge_attr = "value",
+    name = "edge_value")
+
+# Get the cached vector with `get_cache()`
+graph %>%
+  get_cache(name = "edge_value")
+#> [1] 4.595777 2.314129
 }
 \description{
 From a graph object of class
@@ -37,43 +79,4 @@ Selections of edges can also be performed using
 the following traversal functions:
 \code{trav_out_edge()}, \code{trav_in_edge()},
 or \code{trav_both_edge()}.
-}
-\examples{
-# Set a seed
-set.seed(23)
-
-# Create a graph with 6 nodes and 5 edges
-graph <-
-  create_graph() \%>\%
-  add_path(6) \%>\%
-  set_edge_attrs(
-    "value", rnorm(edge_count(.), 5, 2))
-
-# Select all edges where the edge attribute
-# `value` is less than 5
-graph <-
-  graph \%>\%
-  select_edges("value < 5.0")
-
-# Show the graph's edge data frame
-graph \%>\% get_edge_df
-#>   id from to  rel    value
-#> 1  1    1  2 <NA> 5.090874
-#> 2  2    2  3 <NA> 8.151559
-#> 3  3    3  4 <NA> 5.436577
-#> 4  4    4  5 <NA> 2.906929
-#> 5  5    5  6 <NA> 4.422623
-
-# Cache available values from the edge
-# attribute `value` from the edges that
-# are selected; ensure that the cached
-# vector is numeric
-graph <-
-  graph \%>\%
-  cache_edge_attrs_ws("value", "numeric")
-
-# Get the cached vector and get its
-# difference from 5
-graph \%>\% get_cache() \%>\% {x <- .; 5 - x}
-#> [1] 2.0930707 0.5773773
 }

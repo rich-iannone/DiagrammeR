@@ -4,7 +4,8 @@
 \alias{cache_edge_attrs}
 \title{Cache edge attributes in the graph}
 \usage{
-cache_edge_attrs(graph, edge_attr, mode = NULL, from = NULL, to = NULL)
+cache_edge_attrs(graph, edge_attr, name = NULL, mode = NULL, from = NULL,
+  to = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -12,6 +13,8 @@ cache_edge_attrs(graph, edge_attr, mode = NULL, from = NULL, to = NULL)
 
 \item{edge_attr}{the edge attribute from which to
 obtain values.}
+
+\item{name}{an optional name for the cached vector.}
 
 \item{mode}{a option to recast the returned vector
 of edge attribute value as \code{numeric} or
@@ -27,33 +30,39 @@ edges present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
-# Set a seed
-set.seed(25)
-
-# Create a graph with 10 nodes and 9 edges
-graph <-
-  create_graph() %>%
-  add_n_nodes(10) %>%
-  add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->6 3->7
-     4->8 4->9 5->10") %>%
-  set_edge_attrs(
-    "value", rnorm(edge_count(.), 5, 2))
-
-# Cache all values from the edge attribute `value`
-# as a numeric vector
-graph <-
-  graph %>%
-  cache_edge_attrs("value", "numeric")
-
-# Get the mean from all values available in
-# the cache
-graph %>% get_cache() %>% mean()
-#> [1] 4.62536
 }
 \description{
 From a graph object of class
 \code{dgr_graph}, get edge attribute properties for
 one or more edges and cache those values in the
 graph for later retrieval using \code{get_cache}.
+}
+\examples{
+# Set a seed
+set.seed(23)
+
+# Create a graph with 10 nodes and 9 edges
+graph <-
+  create_graph() \%>\%
+  add_n_nodes(10) \%>\%
+  add_edges_w_string(
+    "1->2 1->3 2->4 2->5 3->6 3->7
+     4->8 4->9 5->10") \%>\%
+  set_edge_attrs(
+    "value", rnorm(edge_count(.), 5, 2))
+
+# Cache all values from the edge attribute `value`
+# as a numeric vector
+graph <-
+  graph \%>\%
+  cache_edge_attrs(
+    edge_attr = "value",
+    name = "edge_value")
+
+# Get the mean from all values available in
+# the cache
+graph \%>\%
+  get_cache(name = "edge_value") \%>\%
+  mean()
+#> [1] 5.744332
 }

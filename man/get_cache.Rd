@@ -4,11 +4,15 @@
 \alias{get_cache}
 \title{Get a cached vector from a graph object}
 \usage{
-get_cache(graph)
+get_cache(graph, name = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{name}{the name of the object to extract from
+the cache. If none supplied, the most recent object
+added to the cache will be returned.}
 }
 \value{
 a vector.

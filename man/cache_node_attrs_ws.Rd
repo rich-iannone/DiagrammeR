@@ -5,7 +5,7 @@
 \title{Cache node attributes (based on a selection of
 nodes) in the graph}
 \usage{
-cache_node_attrs_ws(graph, node_attr, mode = NULL)
+cache_node_attrs_ws(graph, node_attr, name = NULL, mode = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -13,6 +13,8 @@ cache_node_attrs_ws(graph, node_attr, mode = NULL)
 
 \item{node_attr}{the node attribute from which to
 obtain values.}
+
+\item{name}{an optional name for the cached vector.}
 
 \item{mode}{a option to recast the returned vector
 of node attribute value as \code{numeric} or
@@ -60,7 +62,8 @@ graph <-
   select_nodes("value < 5.0")
 
 # Show the graph's node data frame
-graph \%>\% get_node_df
+graph \%>\%
+  get_node_df()
 #>   id type label    value
 #> 1  1 <NA>     1 5.090874
 #> 2  2 <NA>     2 8.151559
@@ -74,10 +77,12 @@ graph \%>\% get_node_df
 # that the cached vector is numeric
 graph <-
   graph \%>\%
-  cache_node_attrs_ws("value", "numeric")
+  cache_node_attrs_ws(
+    node_attr = "value",
+    name = "node_value")
 
-# Get the cached vector and get its
-# difference from 5
-graph \%>\% get_cache() \%>\% {x <- .; 5 - x}
-#> [1] 2.0930707 0.5773773
+# Get the cached vector with `get_cache()`
+graph \%>\%
+  get_cache(name = "node_value")
+#> [1] 2.906929 4.422623
 }

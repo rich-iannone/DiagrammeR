@@ -5,11 +5,13 @@
 \title{Cache a count of nodes (available in a selection)
 in the graph}
 \usage{
-cache_node_count_ws(graph)
+cache_node_count_ws(graph, name = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{name}{an optional name for the cached vector.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -44,9 +46,10 @@ graph <-
 graph <-
   graph \%>\%
   select_nodes_by_id(2:5) \%>\%
-  cache_node_count_ws()
+  cache_node_count_ws(name = "node_count")
 
 # Get the number of nodes stored in the cache
-graph \%>\% get_cache()
+graph \%>\%
+  get_cache(name = "node_count")
 #> [1] 4
 }
