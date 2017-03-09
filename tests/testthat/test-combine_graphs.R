@@ -42,7 +42,7 @@ test_that("graphs can be combined", {
             "global_attrs", "directed",
             "last_node", "last_edge",
             "node_selection", "edge_selection",
-            "graph_log")))
+            "cache", "graph_log")))
 
   # Expect that the `global_attrs` graph component
   # is not NULL

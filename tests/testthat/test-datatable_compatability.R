@@ -74,5 +74,5 @@ test_that("create_graph",{
             "global_attrs", "directed",
             "last_node", "last_edge",
             "node_selection", "edge_selection",
-            "graph_log")))
+            "cache", "graph_log")))
 })
