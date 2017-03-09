@@ -11,9 +11,9 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param add_to_selection an option to either add the
-#' reverse edges to the active selection of edges (the
-#' default case, as \code{TRUE}) or switch the active
-#' entirely to those reverse edges (\code{FALSE}).
+#' reverse edges to the active selection of edges or
+#' switch the active entirely to those reverse edges
+#' (\code{FALSE}, the default case).
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -42,21 +42,25 @@
 #'   select_edges(from = 1, to = 4) %>%
 #'   select_edges(from = 2, to = 3)
 #'
-#' # Add to the selection the reverse edge
-#' # (`4`->`1`)
+#' # Get the inital edge selection
+#' get_selection(graph)
+#' #> [1] 1 3
+#'
+#' # Traverse to the to the reverse edges
+#' # (edges `2`: `4`->`1` and `4`:`3`->`2`)
 #' graph <-
 #'   graph %>%
 #'   trav_reverse_edge()
 #'
 #' # Get the current selection of edges
 #' get_selection(graph)
-#' #> [1] 1 2 3 4
+#' #> [1] 2 4
 #' @importFrom dplyr filter_ bind_rows select rename arrange
 #' @importFrom tibble as_tibble
 #' @export trav_reverse_edge
 
 trav_reverse_edge <- function(graph,
-                              add_to_selection = TRUE) {
+                              add_to_selection = FALSE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
