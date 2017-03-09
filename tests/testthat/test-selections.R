@@ -609,64 +609,6 @@ test_that("getting/clearing a selection is possible", {
       get_selection(graph_select_all_nodes_cleared)))
 })
 
-test_that("selecting reverse edges with an edge selection is possible", {
-
-  # Create a node data frame (ndf)
-  ndf <-
-    create_node_df(
-      n = 4,
-      type = "basic",
-      label = TRUE)
-
-  # Create an edge data frame (edf)
-  edf <-
-    create_edge_df(
-      from = c(1, 4, 2, 3, 3),
-      to =   c(4, 1, 3, 2, 1))
-
-  # Create a graph with the ndf and edf
-  graph <-
-    create_graph(
-      nodes_df = ndf,
-      edges_df = edf)
-
-  # Explicitly select the edges `1`->`4`
-  # and `2`->`3`
-  graph <-
-    graph %>%
-    select_edges(from = 1, to = 4) %>%
-    select_edges(from = 2, to = 3)
-
-  # Add to the selection the reverse edges
-  graph_add_selection <-
-    graph %>%
-    select_rev_edges_ws()
-
-  # Expect certain edges to be available
-  # in the selection
-  expect_equal(
-    get_selection(graph_add_selection),
-    c(1, 2, 3, 4))
-
-  # Flip the selection to the reverse edge
-  graph_flip_selection <-
-    graph %>%
-    select_rev_edges_ws(add_to_selection = FALSE)
-
-  # Expect certain edges to be available
-  # in the selection
-  expect_equal(
-    get_selection(graph_flip_selection),
-    c(2, 4))
-
-  # Expect an error if there is no active edge
-  # selection in the graph
-  expect_error(
-    graph %>%
-      clear_selection() %>%
-      select_rev_edges_ws())
-})
-
 test_that("selecting nodes by node degree is possible", {
 
   # Create a graph
