@@ -10,7 +10,7 @@ graph_object_valid <- function(graph) {
              "global_attrs", "directed",
              "last_node", "last_edge",
              "node_selection", "edge_selection",
-             "graph_log") %in%
+             "cache", "graph_log") %in%
            names(graph))) {
     return(FALSE)
   }
@@ -27,6 +27,7 @@ graph_object_valid <- function(graph) {
     inherits(graph$directed, "logical") == FALSE,
     inherits(graph$node_selection, "data.frame") == FALSE,
     inherits(graph$edge_selection, "data.frame") == FALSE,
+    inherits(graph$cache, "list") == FALSE,
     inherits(graph$graph_log, "data.frame") == FALSE)) {
     return(FALSE)
   }
