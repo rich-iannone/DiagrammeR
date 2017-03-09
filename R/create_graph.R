@@ -249,6 +249,11 @@ create_graph <- function(nodes_df = NULL,
       edges = as.integer(NA),
       stringsAsFactors = FALSE)[-1, ]
 
+  ## list: `cache`
+
+  # Create an empty `cache` list object
+  cache <- list()
+
   ## Empty Graph
 
   # Initialize a graph object
@@ -263,6 +268,7 @@ create_graph <- function(nodes_df = NULL,
          last_edge = 0,
          node_selection = nsdf,
          edge_selection = esdf,
+         cache = cache,
          graph_log = graph_log)
 
   attr(graph, "class") <- "dgr_graph"
