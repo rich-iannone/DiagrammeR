@@ -46,17 +46,17 @@
 #' # (`4`->`1`)
 #' graph <-
 #'   graph %>%
-#'   select_rev_edges_ws()
+#'   trav_reverse_edge()
 #'
 #' # Get the current selection of edges
 #' get_selection(graph)
 #' #> [1] 1 2 3 4
 #' @importFrom dplyr filter_ bind_rows select rename arrange
 #' @importFrom tibble as_tibble
-#' @export select_rev_edges_ws
+#' @export trav_reverse_edge
 
-select_rev_edges_ws <- function(graph,
-                                add_to_selection = TRUE) {
+trav_reverse_edge <- function(graph,
+                              add_to_selection = TRUE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -149,7 +149,7 @@ select_rev_edges_ws <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "select_rev_edges_ws",
+      function_used = "trav_reverse_edge",
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
