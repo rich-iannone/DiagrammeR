@@ -13,7 +13,7 @@
 #' @return a logical value.
 #' @examples
 #' # Set a seed
-#' set.seed(24)
+#' set.seed(23)
 #'
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -47,8 +47,8 @@
 #' #> FALSE
 #'
 #' # Verify that there is an edge between nodes
-#' # `18` and `26`
-#' edge_present(graph, from = 18, to = 26)
+#' # `9` and `5`
+#' edge_present(graph, from = 9, to = 5)
 #' #> TRUE
 #' @export edge_present
 
