@@ -28,21 +28,21 @@ for all nodes in a graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 1)
+    10, 22, set_seed = 23)
 
 # Get closeness values for all nodes in the graph
 get_closeness(graph)
 #>    id  closeness
 #> 1   1 0.07142857
-#> 2   2 0.07692308
-#> 3   3 0.06666667
-#> 4   4 0.07142857
-#> 5   5 0.08333333
-#> 6   6 0.05882353
-#> 7   7 0.08333333
-#> 8   8 0.07692308
-#> 9   9 0.06666667
-#> 10 10 0.05882353
+#> 2   2 0.07142857
+#> 3   3 0.07142857
+#> 4   4 0.06250000
+#> 5   5 0.07692308
+#> 6   6 0.09090909
+#> 7   7 0.06666667
+#> 8   8 0.05882353
+#> 9   9 0.07692308
+#> 10 10 0.07692308
 
 # Add the closeness values to the graph
 # as a node attribute
@@ -50,4 +50,18 @@ graph <-
   graph \%>\%
   join_node_attrs(
     get_closeness(.))
+
+# Display the graph's node data frame
+get_node_df(graph)
+#>    id type label value  closeness
+#> 1   1 <NA>     1   6.0 0.07142857
+#> 2   2 <NA>     2   2.5 0.07142857
+#> 3   3 <NA>     3   3.5 0.07142857
+#> 4   4 <NA>     4   7.5 0.06250000
+#> 5   5 <NA>     5   8.5 0.07692308
+#> 6   6 <NA>     6   4.5 0.09090909
+#> 7   7 <NA>     7  10.0 0.06666667
+#> 8   8 <NA>     8  10.0 0.05882353
+#> 9   9 <NA>     9   8.5 0.07692308
+#> 10 10 <NA>    10  10.0 0.07692308
 }

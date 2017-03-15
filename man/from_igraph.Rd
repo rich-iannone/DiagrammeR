@@ -27,7 +27,7 @@ graph object.
 # Create a DiagrammeR graph object
 dgr_graph_orig <-
   create_random_graph(
-    36, 50, set_seed = 1,
+    36, 50, set_seed = 23,
     directed = TRUE)
 
 # Convert the DiagrammeR graph to an
@@ -37,4 +37,9 @@ ig_graph <- to_igraph(dgr_graph_orig)
 # Convert the igraph graph back to a
 # DiagrammeR graph
 dgr_graph_new <- from_igraph(ig_graph)
+
+# Get some graph information
+graph_info(dgr_graph_new)[, 1:6]
+            name  n  e   dens mn_deg mx_deg
+1 graph_eUrgZI3e 36 50 0.0571      1      6
 }

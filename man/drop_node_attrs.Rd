@@ -25,17 +25,17 @@ an existing node attribute.
 # Create a random graph
 graph <-
   create_random_graph(
-    5, 10, set_seed = 3)
+    5, 10, set_seed = 23)
 
 # Get the graph's internal ndf to show
 # which node attributes are available
 get_node_df(graph)
 #>   id type label value
-#> 1  1 <NA>     1   2.0
-#> 2  2 <NA>     2   8.5
-#> 3  3 <NA>     3   4.0
-#> 4  4 <NA>     4   3.5
-#> 5  5 <NA>     5   6.5
+#> 1  1 <NA>     1   6.0
+#> 2  2 <NA>     2   2.5
+#> 3  3 <NA>     3   3.5
+#> 4  4 <NA>     4   7.5
+#> 5  5 <NA>     5   8.5
 
 # Drop the `value` node attribute
 graph <-
