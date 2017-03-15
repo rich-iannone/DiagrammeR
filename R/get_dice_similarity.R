@@ -21,15 +21,15 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 1)
+#'     10, 22, set_seed = 23)
 #'
 #' # Get the Dice similarity values for
 #' # nodes `5`, `6`, and `7`
 #' get_dice_similarity(graph, 5:7)
 #' #>       5     6     7
-#' #> 5 1.000 0.444 0.667
-#' #> 6 0.444 1.000 0.444
-#' #> 7 0.667 0.444 1.000
+#' #> 5 1.000 0.500 0.444
+#' #> 6 0.500 1.000 0.545
+#' #> 7 0.444 0.545 1.000
 #' @importFrom igraph similarity V
 #' @export get_dice_similarity
 

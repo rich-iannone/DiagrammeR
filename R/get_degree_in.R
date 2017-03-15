@@ -38,6 +38,7 @@
 #'   join_node_attrs(
 #'     get_degree_in(.))
 #'
+#' # Display the graph's node data frame
 #' get_node_df(graph)
 #' #>    id type label value indegree
 #' #> 1   1 <NA>     1   6.0        0

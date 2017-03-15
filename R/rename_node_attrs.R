@@ -12,18 +12,18 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     5, 10, set_seed = 3) %>%
+#'     5, 10, set_seed = 23) %>%
 #'   set_node_attrs("shape", "circle")
 #'
 #' # Get the graph's internal ndf to show which
 #' # node attributes are available
 #' get_node_df(graph)
 #' #>   id type label value  shape
-#' #> 1  1 <NA>     1   2.0 circle
-#' #> 2  2 <NA>     2   8.5 circle
-#' #> 3  3 <NA>     3   4.0 circle
-#' #> 4  4 <NA>     4   3.5 circle
-#' #> 5  5 <NA>     5   6.5 circle
+#' #> 1  1 <NA>     1   6.0 circle
+#' #> 2  2 <NA>     2   2.5 circle
+#' #> 3  3 <NA>     3   3.5 circle
+#' #> 4  4 <NA>     4   7.5 circle
+#' #> 5  5 <NA>     5   8.5 circle
 #'
 #' # Rename the `value` node attribute as `weight`
 #' graph <-
@@ -34,11 +34,11 @@
 #' # node attribute had been renamed
 #' get_node_df(graph)
 #' #>   id type label weight  shape
-#' #> 1  1 <NA>     1    2.0 circle
-#' #> 2  2 <NA>     2    8.5 circle
-#' #> 3  3 <NA>     3    4.0 circle
-#' #> 4  4 <NA>     4    3.5 circle
-#' #> 5  5 <NA>     5    6.5 circle
+#' #> 1  1 <NA>     1    6.0 circle
+#' #> 2  2 <NA>     2    2.5 circle
+#' #> 3  3 <NA>     3    3.5 circle
+#' #> 4  4 <NA>     4    7.5 circle
+#' #> 5  5 <NA>     5    8.5 circle
 #' @export rename_node_attrs
 
 rename_node_attrs <- function(graph,

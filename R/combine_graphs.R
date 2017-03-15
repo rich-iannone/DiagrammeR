@@ -17,11 +17,13 @@
 #' # Create a random graph with 8 nodes, 15 edges
 #' graph_random <-
 #'   create_random_graph(
-#'     8, 15, set_seed = 1)
+#'     8, 15, set_seed = 23)
 #'
 #' # Combine the two graphs in a union operation
 #' combined_graph <-
-#'   combine_graphs(graph_cycle, graph_random)
+#'   combine_graphs(
+#'     graph_cycle,
+#'     graph_random)
 #'
 #' # Get the number of nodes in the combined graph
 #' node_count(combined_graph)

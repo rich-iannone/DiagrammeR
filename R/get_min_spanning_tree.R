@@ -10,8 +10,8 @@
 #' # as a square matrix
 #' j_sim_matrix <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 1) %>%
-#'   get_jaccard_similarity
+#'     10, 22, set_seed = 23) %>%
+#'   get_jaccard_similarity()
 #'
 #' # Create a weighted, undirected graph from the
 #' # resultant matrix (effectively treating that
@@ -32,7 +32,8 @@
 #'   copy_edge_attrs("weight", "label") %>%
 #'   set_edge_attrs("fontname", "Helvetica") %>%
 #'   set_edge_attrs("color", "gray85") %>%
-#'   rescale_edge_attrs("weight", 0.5, 4.0, "penwidth")
+#'   rescale_edge_attrs(
+#'     "weight", 0.5, 4.0, "penwidth")
 #' @importFrom igraph mst
 #' @export get_min_spanning_tree
 

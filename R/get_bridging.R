@@ -10,22 +10,43 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 1)
+#'     10, 22, set_seed = 23)
 #'
 #' # Get the bridging scores for nodes
 #' # in the graph
 #' get_bridging(graph)
 #' #>    id    bridging
 #' #> 1   1 0.006944444
-#' #> 2   2 0.006296296
-#' #> 3   3 0.006018519
-#' #> 4   4 0.006944444
+#' #> 2   2 0.005555556
+#' #> 3   3 0.006481481
+#' #> 4   4 0.006790123
 #' #> 5   5 0.005555556
-#' #> 6   6 0.006790123
-#' #> 7   7 0.006790123
-#' #> 8   8 0.006666667
-#' #> 9   9 0.005555556
-#' #> 10 10 0.006790123
+#' #> 6   6 0.008201058
+#' #> 7   7 0.006481481
+#' #> 8   8 0.010185185
+#' #> 9   9 0.005925926
+#' #> 10 10 0.005925926
+#'
+#' # Add the bridging scores to the graph
+#' # as a node attribute
+#' graph <-
+#'   graph %>%
+#'   join_node_attrs(
+#'     get_bridging(.))
+#'
+#' # Display the graph's node data frame
+#' get_node_df(graph)
+#'    id type label value    bridging
+#' 1   1 <NA>     1   6.0 0.006944444
+#' 2   2 <NA>     2   2.5 0.005555556
+#' 3   3 <NA>     3   3.5 0.006481481
+#' 4   4 <NA>     4   7.5 0.006790123
+#' 5   5 <NA>     5   8.5 0.005555556
+#' 6   6 <NA>     6   4.5 0.008201058
+#' 7   7 <NA>     7  10.0 0.006481481
+#' 8   8 <NA>     8  10.0 0.010185185
+#' 9   9 <NA>     9   8.5 0.005925926
+#' 10 10 <NA>    10  10.0 0.005925926
 #' @importFrom influenceR bridging
 #' @export get_bridging
 

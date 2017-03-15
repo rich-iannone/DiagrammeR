@@ -10,7 +10,7 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 1)
+#'     10, 22, set_seed = 23)
 #'
 #' # Get the group membership values for all nodes
 #' # in the graph through calculation of the leading
@@ -19,21 +19,36 @@
 #' get_cmty_edge_btwns(graph)
 #' #>    id edge_btwns_group
 #' #> 1   1                1
-#' #> 2   2                1
-#' #> 3   3                1
-#' #> 4   4                2
+#' #> 2   2                2
+#' #> 3   3                3
+#' #> 4   4                4
 #' #> 5   5                1
-#' #> 6   6                2
-#' #> 7   7                1
+#' #> 6   6                3
+#' #> 7   7                5
 #' #> 8   8                1
 #' #> 9   9                2
-#' #> 10 10                1
+#' #> 10 10                4
 #'
 #' # Add the group membership values to the graph
 #' # as a node attribute
 #' graph <-
 #'   graph %>%
-#'   join_node_attrs(get_cmty_edge_btwns(.))
+#'   join_node_attrs(
+#'     get_cmty_edge_btwns(.))
+#'
+#' # Display the graph's node data frame
+#' get_node_df(graph)
+#'    id type label value edge_btwns_group
+#' 1   1 <NA>     1   6.0                1
+#' 2   2 <NA>     2   2.5                2
+#' 3   3 <NA>     3   3.5                3
+#' 4   4 <NA>     4   7.5                4
+#' 5   5 <NA>     5   8.5                1
+#' 6   6 <NA>     6   4.5                3
+#' 7   7 <NA>     7  10.0                5
+#' 8   8 <NA>     8  10.0                1
+#' 9   9 <NA>     9   8.5                2
+#' 10 10 <NA>    10  10.0                4
 #' @importFrom igraph cluster_edge_betweenness membership
 #' @export get_cmty_edge_btwns
 

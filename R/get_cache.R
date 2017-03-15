@@ -9,7 +9,7 @@
 #' @return a vector.
 #' @examples
 #' # Set a seed
-#' set.seed(22)
+#' set.seed(23)
 #'
 #' # Create a graph with 5 nodes and 5 edges
 #' graph <-
@@ -28,8 +28,8 @@
 #'
 #' # Return the cached vector
 #' graph %>% get_cache()
-#' #> [1] 6.975722 12.970367 10.015652
-#' #> [4] 8.585629 7.582081
+#' #> [1] 9.993210 10.214981  7.443827
+#' #> [4] 10.038411  8.090874
 #' @export get_cache
 
 get_cache <- function(graph,
