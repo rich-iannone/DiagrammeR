@@ -65,6 +65,9 @@ add_star <- function(graph,
   # this graph
   edges_created <- graph$last_edge
 
+  # Get the graph's global attributes
+  global_attrs <- graph$global_attrs
+
   # Get the graph's log
   graph_log <- graph$graph_log
 
@@ -114,6 +117,7 @@ add_star <- function(graph,
         nodes = nrow(combined_graph$nodes_df),
         edges = nrow(combined_graph$edges_df))
 
+    combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
@@ -136,6 +140,7 @@ add_star <- function(graph,
         nodes = nrow(star_graph$nodes_df),
         edges = nrow(star_graph$edges_df))
 
+    star_graph$global_attrs <- global_attrs
     star_graph$graph_log <- graph_log
     star_graph$graph_info <- graph_info
 

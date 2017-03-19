@@ -59,6 +59,9 @@ add_cycle <- function(graph,
   # this graph
   edges_created <- graph$last_edge
 
+  # Get the graph's global attributes
+  global_attrs <- graph$global_attrs
+
   # Get the graph's log
   graph_log <- graph$graph_log
 
@@ -108,6 +111,7 @@ add_cycle <- function(graph,
         nodes = nrow(combined_graph$nodes_df),
         edges = nrow(combined_graph$edges_df))
 
+    combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
@@ -130,6 +134,7 @@ add_cycle <- function(graph,
         nodes = nrow(cycle_graph$nodes_df),
         edges = nrow(cycle_graph$edges_df))
 
+    cycle_graph$global_attrs <- global_attrs
     cycle_graph$graph_log <- graph_log
     cycle_graph$graph_info <- graph_info
 

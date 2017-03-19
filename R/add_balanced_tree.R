@@ -72,6 +72,9 @@ add_balanced_tree <- function(graph,
   # this graph
   edges_created <- graph$last_edge
 
+  # Get the graph's global attributes
+  global_attrs <- graph$global_attrs
+
   # Get the graph's log
   graph_log <- graph$graph_log
 
@@ -126,6 +129,7 @@ add_balanced_tree <- function(graph,
         nodes = nrow(combined_graph$nodes_df),
         edges = nrow(combined_graph$edges_df))
 
+    combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
@@ -148,6 +152,7 @@ add_balanced_tree <- function(graph,
         nodes = nrow(tree_graph$nodes_df),
         edges = nrow(tree_graph$edges_df))
 
+    tree_graph$global_attrs <- global_attrs
     tree_graph$graph_log <- graph_log
     tree_graph$graph_info <- graph_info
 

@@ -71,6 +71,9 @@ add_prism <- function(graph,
   # this graph
   edges_created <- graph$last_edge
 
+  # Get the graph's global attributes
+  global_attrs <- graph$global_attrs
+
   # Get the graph's log
   graph_log <- graph$graph_log
 
@@ -126,6 +129,7 @@ add_prism <- function(graph,
         nodes = nrow(combined_graph$nodes_df),
         edges = nrow(combined_graph$edges_df))
 
+    combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
@@ -148,6 +152,7 @@ add_prism <- function(graph,
         nodes = nrow(prism_graph$nodes_df),
         edges = nrow(prism_graph$edges_df))
 
+    prism_graph$global_attrs <- global_attrs
     prism_graph$graph_log <- graph_log
     prism_graph$graph_info <- graph_info
 

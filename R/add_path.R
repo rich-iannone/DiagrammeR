@@ -64,6 +64,9 @@ add_path <- function(graph,
   # this graph
   edges_created <- graph$last_edge
 
+  # Get the graph's global attributes
+  global_attrs <- graph$global_attrs
+
   # Get the graph's log
   graph_log <- graph$graph_log
 
@@ -113,6 +116,7 @@ add_path <- function(graph,
         nodes = nrow(combined_graph$nodes_df),
         edges = nrow(combined_graph$edges_df))
 
+    combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
@@ -122,6 +126,7 @@ add_path <- function(graph,
     }
 
     return(combined_graph)
+
   } else {
 
     # Update the `graph_log` df with an action
@@ -135,6 +140,7 @@ add_path <- function(graph,
         nodes = nrow(path_graph$nodes_df),
         edges = nrow(path_graph$edges_df))
 
+    path_graph$global_attrs <- global_attrs
     path_graph$graph_log <- graph_log
     path_graph$graph_info <- graph_info
 
