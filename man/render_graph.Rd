@@ -4,8 +4,8 @@
 \alias{render_graph}
 \title{Render the graph in various formats}
 \usage{
-render_graph(graph, output = NULL, layout = NULL, title = NULL,
-  width = NULL, height = NULL)
+render_graph(graph, output = NULL, title = NULL, width = NULL,
+  height = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -13,14 +13,8 @@ render_graph(graph, output = NULL, layout = NULL, title = NULL,
 
 \item{output}{a string specifying the output type;
 \code{graph} (the default) renders the graph using
-the \code{grViz} function, \code{vivagraph}
-renders the graph using the \code{vivagraph}
-function, and \code{visNetwork} renders the graph
-using the \code{visnetwork} function.}
-
-\item{layout}{a string specifying a layout type for
-a \code{vivagraph} rendering of the graph, either
-\code{forceDirected} or \code{constant}.}
+the \code{grViz} function and \code{visNetwork}
+renders the graph using the \code{visnetwork} function.}
 
 \item{title}{an optional title for a graph when
 using \code{output = "graph"}.}
@@ -38,7 +32,7 @@ render the graph in the RStudio Viewer.
 \examples{
 \dontrun{
 # Set a seed
-set.seed(24)
+set.seed(23)
 
 # Create a node data frame (ndf)
 ndf <-
@@ -69,9 +63,6 @@ graph <-
 
 # Render the graph using Graphviz
 render_graph(graph)
-
-# Render the graph using VivaGraph
-render_graph(graph, output = "vivagraph")
 
 # Render the graph using visNetwork
 render_graph(graph, output = "visNetwork")
