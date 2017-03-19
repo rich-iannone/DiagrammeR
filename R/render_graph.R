@@ -73,23 +73,8 @@ render_graph <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  if (is.null(output) & !is.null(graph$graph_attrs)) {
-    if ("output = visNetwork" %in% graph$graph_attrs) {
-      output <- "visNetwork"
-    }
-    if ("output = vivagraph" %in% graph$graph_attrs) {
-      output <- "vivagraph"
-    }
-    if ("output = graph" %in% graph$graph_attrs) {
-      output <- "graph"
-    }
-    if ("output = Graphviz" %in% graph$graph_attrs) {
-      output <- "graph"
-    }
-  }
-
   if (is.null(output)) {
-    output <- "graph"
+      output <- "graph"
   }
 
   if (output == "graph") {
@@ -97,24 +82,24 @@ render_graph <- function(graph,
     if (!is.null(title)) {
 
       graph <-
-        set_global_graph_attrs(
-          graph, "graph", "label", paste0("'", title, "'"))
+        add_global_graph_attrs(
+          graph, "label", title, "graph")
 
       graph <-
-        set_global_graph_attrs(
-          graph, "graph", "labelloc", "t")
+        add_global_graph_attrs(
+          graph, "labelloc", "t", "graph")
 
       graph <-
-        set_global_graph_attrs(
-          graph, "graph", "labeljust", "c")
+        add_global_graph_attrs(
+          graph, "labeljust", "c", "graph")
 
       graph <-
-        set_global_graph_attrs(
-          graph, "graph", "fontname", "Helvetica")
+        add_global_graph_attrs(
+          graph, "fontname", "Helvetica", "graph")
 
       graph <-
-        set_global_graph_attrs(
-          graph, "graph", "fontcolor", "gray30")
+        add_global_graph_attrs(
+          graph, "fontcolor", "gray30", "graph")
       }
 
     dot_code <- generate_dot(graph)
