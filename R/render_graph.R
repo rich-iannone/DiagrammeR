@@ -5,13 +5,8 @@
 #' \code{dgr_graph}.
 #' @param output a string specifying the output type;
 #' \code{graph} (the default) renders the graph using
-#' the \code{grViz} function, \code{vivagraph}
-#' renders the graph using the \code{vivagraph}
-#' function, and \code{visNetwork} renders the graph
-#' using the \code{visnetwork} function.
-#' @param layout a string specifying a layout type for
-#' a \code{vivagraph} rendering of the graph, either
-#' \code{forceDirected} or \code{constant}.
+#' the \code{grViz} function and \code{visNetwork}
+#' renders the graph using the \code{visnetwork} function.
 #' @param title an optional title for a graph when
 #' using \code{output = "graph"}.
 #' @param width an optional parameter for specifying
@@ -21,7 +16,7 @@
 #' @examples
 #' \dontrun{
 #' # Set a seed
-#' set.seed(24)
+#' set.seed(23)
 #'
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -53,9 +48,6 @@
 #' # Render the graph using Graphviz
 #' render_graph(graph)
 #'
-#' # Render the graph using VivaGraph
-#' render_graph(graph, output = "vivagraph")
-#'
 #' # Render the graph using visNetwork
 #' render_graph(graph, output = "visNetwork")
 #' }
@@ -63,7 +55,6 @@
 
 render_graph <- function(graph,
                          output = NULL,
-                         layout = NULL,
                          title = NULL,
                          width = NULL,
                          height = NULL) {
@@ -74,7 +65,7 @@ render_graph <- function(graph,
   }
 
   if (is.null(output)) {
-      output <- "graph"
+    output <- "graph"
   }
 
   if (output == "graph") {
@@ -100,30 +91,22 @@ render_graph <- function(graph,
       graph <-
         add_global_graph_attrs(
           graph, "fontcolor", "gray30", "graph")
-      }
+    }
 
     dot_code <- generate_dot(graph)
 
-    grViz(
-      diagram = dot_code,
-      engine = layout,
-      width = width,
-      height = height)
+    grVizObject <-
+      grViz(
+        diagram = dot_code,
+        engine = layout,
+        width = width,
+        height = height)
 
-  } else if (output == "vivagraph") {
-
-    layout <-
-      ifelse(is.null(layout) &
-               node_count(graph) < 1000,
-             "forceDirected", "constant")
-
-    vivagraph(
-      graph = graph,
-      layout = layout,
-      height = NULL,
-      width = NULL)
+    grVizObject
 
   } else if (output == "visNetwork") {
+
     visnetwork(graph)
+
   }
 }
