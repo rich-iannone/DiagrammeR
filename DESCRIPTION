@@ -24,11 +24,6 @@ Authors@R: c(
         , comment = "viz.js library in htmlwidgets/lib, http://github.com/mdaines/viz.js/"
       ),
       person(
-        "Andrei", "Kashcha"
-        , role = c("aut", "cph")
-        , comment = "vivagraphjs library in htmlwidgets/lib, https://github.com/anvaka/VivaGraphJS"
-      ),
-      person(
         "Richard", "Iannone"
         , role = c("aut", "cre")
         , comment = "R interface"
@@ -40,6 +35,7 @@ Description: Graph and network visualization using tabular data.
 License: MIT + file LICENSE
 Imports:
     dplyr (>= 0.5.0),
+    htmltools (>= 0.3.5),
     htmlwidgets (>= 0.8),
     igraph (>= 1.0.1),
     influenceR (>= 0.1.0),
