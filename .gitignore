@@ -25,3 +25,6 @@ Session.vim
 
 # .DS_Store
 .DS_Store
+
+# HTTR
+.httr-oauth
