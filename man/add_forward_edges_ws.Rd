@@ -66,7 +66,7 @@ graph <-
   clear_selection()
 
 # Get the graph's edge data frame
-graph \%>\% get_edge_df()
+get_edge_df(graph)
 #>   id from to rel
 #> 1  1    1  2   a
 #> 2  2    1  2   b
