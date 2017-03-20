@@ -268,16 +268,16 @@ graph %>%
 
 ## Installation
 
-**DiagrammeR** is used in an **R** environment. If you don't have an **R** installation, it can be obtained from the [**Comprehensive R Archive Network (CRAN)**](https://cran.r-project.org/). It is recommended that [**RStudio**](http://www.rstudio.com/products/RStudio/) be used as the **R** IDE to take advantage of its rendering capabilities and the code-coloring support for **Graphviz** and **mermaid** diagrams.
+**DiagrammeR** is used in an **R** environment. If you don't have an **R** installation, it can be obtained from the [**Comprehensive R Archive Network (CRAN)**](https://cran.r-project.org/).
 
-You can install the development (v0.9.0) version of **DiagrammeR** from **GitHub** using the **devtools** package.
+You can install the development (v0.9.1) version of **DiagrammeR** from **GitHub** using the **devtools** package.
 
 ```r
-devtools::install_github('rich-iannone/DiagrammeR')
+devtools::install_github("rich-iannone/DiagrammeR")
 ```
 
 Or, get it from **CRAN**.
 
 ```r
-install.packages('DiagrammeR')
+install.packages("DiagrammeR")
 ```
