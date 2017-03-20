@@ -13,31 +13,22 @@ It's possible to make the above graph diagram using a combination of **Diagramme
 ```r
 library(DiagrammeR)
 
-create_random_graph(140, 100, set_seed = 23) %>%
-  join_node_attrs(get_w_connected_cmpts(.)) %>%
-  select_nodes_by_id(get_articulation_points(.)) %>%
-  set_node_attrs_ws("peripheries", 2) %>%
-  set_node_attrs_ws("width", 0.65) %>%
-  set_node_attrs_ws("height", 0.65) %>%
-  set_node_attrs_ws("penwidth", 3) %>%
-  clear_selection() %>%
-  add_global_graph_attrs(
-    attr =
-      c("color",  "penwidth", "width", "height"),
-    value =
-      c("gray80", "3",        "0.5",   "0.5"),
-    attr_type =
-      c("edge",   "edge",     "node",  "node")) %>%
+create_random_graph(
+  n = 140, m = 100,
+  directed = FALSE,
+  set_seed = 23) %>%
+  join_node_attrs(get_s_connected_cmpts(.)) %>%
+  join_node_attrs(get_degree_total(.)) %>%
   colorize_node_attrs(
-    node_attr_from = "wc_component",
+    node_attr_from = "sc_component",
     node_attr_to = "fillcolor",
     alpha = 80) %>%
-  set_node_attr_to_display() %>%
-  select_nodes_by_degree("deg >= 3") %>%
-  trav_both_edge() %>%
-  set_edge_attrs_ws("penwidth", 4) %>%
-  set_edge_attrs_ws("color", "gray60") %>%
+  rescale_node_attrs("total_degree", 0.2, 1.5, "height") %>%
+  select_nodes_by_id(get_articulation_points(.)) %>%
+  set_node_attrs_ws("peripheries", 2) %>%
+  set_node_attrs_ws("penwidth", 3) %>%
   clear_selection() %>%
+  set_node_attr_to_display() %>%
   render_graph()
 ```
 
