@@ -3,7 +3,7 @@
 #' a graph object of class \code{dgr_graph}, select any
 #' of the available reverse edges between the nodes
 #' common to the selected edges. For instance, if an
-#' active selection has the edge \code{1- 2} but
+#' active selection has the edge \code{1->2} but
 #' there is also an (unselected) edge \code{2->1},
 #' then this function can either switch to the selection
 #' of \code{2->1}, or, incorporate those edges in the
