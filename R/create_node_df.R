@@ -1,5 +1,5 @@
 #' Create a node data frame
-#' @description Combine several named vectors for nodes
+#' @description Combine several vectors for nodes
 #' and their attributes into a data frame, which can be
 #' combined with other similarly-generated data frames,
 #' or, added to a graph object.
@@ -8,7 +8,7 @@
 #' @param type an optional \code{type} for each
 #' node.
 #' @param label an optional \code{label} for each node.
-#' @param ... one or more named vectors for associated
+#' @param ... one or more vectors for associated node
 #' attributes.
 #' @return a node data frame (ndf).
 #' @examples
