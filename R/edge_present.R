@@ -1,5 +1,4 @@
-#' Determine whether a specified edge is present in an
-#' existing graph object
+#' Determine whether a specified edge is present
 #' @description From a graph object of class
 #' \code{dgr_graph}, determine whether a directed edge
 #' (defined by a pair of node IDs extant in the graph)

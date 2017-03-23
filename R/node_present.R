@@ -1,5 +1,4 @@
-#' Determine whether a specified node is present in an
-#' existing graph object
+#' Determine whether a specified node is present
 #' @description From a graph object of class
 #' \code{dgr_graph}, determine whether a specified node
 #' is present.
