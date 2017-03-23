@@ -10,9 +10,7 @@ join_edge_attrs(graph, df, by_graph = NULL, by_df = NULL)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{df}{the data frame to use for joining.
-\code{dgr_graph} that is created using
-\code{create_graph}.}
+\item{df}{the data frame to use for joining.}
 
 \item{by_graph}{optional specification of the column
 in the graph's internal edge data frame for the left

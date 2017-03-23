@@ -16,9 +16,9 @@ in different weakly connected components.
 }
 \description{
 Determine which nodes in a graph belong
-to different connected components (i.e., distinct
-sets of nodes with traversable paths to and from
-each node in the set).
+to different weakly connected components (i.e.,
+distinct sets of nodes with traversable paths to and
+from each node in the set).
 }
 \examples{
 # Create a graph with 2 cycles
