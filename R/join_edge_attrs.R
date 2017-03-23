@@ -6,8 +6,6 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param df the data frame to use for joining.
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
 #' @param by_graph optional specification of the column
 #' in the graph's internal edge data frame for the left
 #' join. If both \code{by_graph} and \code{by_df} are

@@ -1,8 +1,8 @@
 #' Get all nodes associated with connected components
 #' @description Determine which nodes in a graph belong
-#' to different connected components (i.e., distinct
-#' sets of nodes with traversable paths to and from
-#' each node in the set).
+#' to different weakly connected components (i.e.,
+#' distinct sets of nodes with traversable paths to and
+#' from each node in the set).
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a data frame with nodes and their membership
