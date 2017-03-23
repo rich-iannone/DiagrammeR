@@ -2,8 +2,7 @@
 % Please edit documentation in R/edge_present.R
 \name{edge_present}
 \alias{edge_present}
-\title{Determine whether a specified edge is present in an
-existing graph object}
+\title{Determine whether a specified edge is present}
 \usage{
 edge_present(graph, from, to)
 }

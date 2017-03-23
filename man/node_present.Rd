@@ -2,8 +2,7 @@
 % Please edit documentation in R/node_present.R
 \name{node_present}
 \alias{node_present}
-\title{Determine whether a specified node is present in an
-existing graph object}
+\title{Determine whether a specified node is present}
 \usage{
 node_present(graph, node)
 }
