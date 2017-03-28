@@ -129,10 +129,10 @@ generate_dot <- function(graph) {
   node_attributes <-
     c("color", "distortion", "fillcolor",
       "fixedsize", "fontcolor", "fontname", "fontsize",
-      "group", "height", "label", "labelloc", "margin",
-      "orientation", "penwidth", "peripheries", "pos",
-      "shape", "sides", "skew", "style", "tooltip",
-      "width", "img", "icon")
+      "gradientangle", "group", "height", "label",
+      "labelloc", "margin", "orientation", "penwidth",
+      "peripheries", "pos", "shape", "sides", "skew",
+      "style", "tooltip", "width", "img", "icon")
 
   # Create vector of edge attributes
   edge_attributes <-
