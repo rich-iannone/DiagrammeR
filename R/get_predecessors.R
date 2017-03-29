@@ -8,7 +8,7 @@
 #' @return a vector of node ID values.
 #' @examples
 #' # Set a seed
-#' set.seed(24)
+#' set.seed(23)
 #'
 #' # Create a node data frame (ndf)
 #' ndf <- create_node_df(26)
@@ -25,12 +25,12 @@
 #'     nodes_df = ndf,
 #'     edges_df = edf)
 #'
-#' # Get predecessors for node `26` in the graph
-#' get_predecessors(graph, node = 26)
-#' #> [1] 18
+#' # Get predecessors for node `23` in the graph
+#' get_predecessors(graph, node = 23)
+#' #> [1] 6
 #'
 #' # If there are no predecessors, `NA` is returned
-#' get_predecessors(graph, node = 1)
+#' get_predecessors(graph, node = 26)
 #' #> [1] NA
 #' @export get_predecessors
 
