@@ -1,10 +1,10 @@
 #' Traverse from one or more selected edges onto
 #' adjacent, inward nodes
 #' @description From a graph object of class
-#' \code{dgr_graph} move along inward edges from one
-#' or more nodes present in a selection to other
-#' connected nodes, replacing the current nodes in
-#' the selection with those nodes traversed to. An
+#' \code{dgr_graph} with an active selection of edges 
+#' move with the edge direction to connected nodes, 
+#' replacing the current edges in the selection with 
+#' those nodes traversed to. An
 #' optional filter by node attribute can limit the set
 #' of nodes traversed to.
 #' @param graph a graph object of class
