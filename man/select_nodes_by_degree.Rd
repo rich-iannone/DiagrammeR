@@ -14,8 +14,8 @@ select_nodes_by_degree(graph, expressions, set_op = "union")
 \item{expressions}{one or more expressions for
 filtering of nodes by degree values. Use a
 combination of a degree type (\code{deg} for
-total degree, \code{indeg} for indegree, and
-\code{outdeg} for outdegree) with a comparison
+total degree, \code{indeg} for in-degree, and
+\code{outdeg} for out-degree) with a comparison
 operator and values for comparison (e.g., use
 \code{"deg >= 2"} to select nodes with a degree
 greater than or equal to 2).}
@@ -43,8 +43,8 @@ graph <-
     n = 35, m = 125,
     set_seed = 23)
 
-# Report which nodes have a total degree (indegree
-# + outdegree) of exactly 9
+# Report which nodes have a total degree (in-degree
+# + out-degree) of exactly 9
 graph \%>\%
   select_nodes_by_degree("deg == 9") \%>\%
   get_selection()
@@ -81,7 +81,7 @@ graph \%>\%
 #> [14] 15 17 18 19 20 21 23 24 25 26 27 28 29
 #> [28] 30 31 32 33 34 35
 
-# Select all nodes with an indegree greater than 5,
+# Select all nodes with an in-degree greater than 5,
 # then, apply a node attribute to those selected nodes
 # (coloring the selected nodes red)
 graph_2 <-

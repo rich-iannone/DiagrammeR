@@ -21,7 +21,7 @@ or, as a \code{difference} on the previous
 selection, if it exists.}
 
 \item{nodes}{an optional vector of node IDs for
-filtering list of nodes present in the graph.}
+filtering the list of nodes present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
