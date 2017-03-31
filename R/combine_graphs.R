@@ -6,7 +6,7 @@
 #' considered the graph from which global graph
 #' attributes will be inherited in the resulting graph.
 #' @param y a \code{DiagrammeR} graph object that is to
-#' be unioned with the graph suppled as \code{x}.
+#' be unioned with the graph supplied as \code{x}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with a cycle with 6 nodes
