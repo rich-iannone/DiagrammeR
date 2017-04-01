@@ -4,9 +4,9 @@
 #' \code{dgr_graph} with an active selection of
 #' edges move opposite to the edge direction to
 #' connected nodes, replacing the current edge selection
-#' with those nodes traversed to. An
-#' optional filter by node attribute can limit the set
-#' of nodes traversed to.
+#' with those nodes traversed to. An optional filter by
+#' node attribute can limit the set of nodes traversed
+#' to.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param conditions an option to use filtering
