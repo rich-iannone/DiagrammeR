@@ -12,7 +12,7 @@
 #' or, as a \code{difference} on the previous
 #' selection, if it exists.
 #' @param nodes an optional vector of node IDs for
-#' filtering list of nodes present in the graph.
+#' filtering the list of nodes present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
