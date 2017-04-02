@@ -13,6 +13,8 @@
 #'     n = 5, m = 7,
 #'     set_seed = 23))
 #' #> [1] 3
+#' @importFrom dplyr group_by summarize ungroup
+#' @importFrom purrr flatten_dbl
 #' @export get_graph_diameter
 
 get_graph_diameter <- function(graph) {
@@ -22,5 +24,17 @@ get_graph_diameter <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  return(max(get_eccentricity(graph)))
+  # Get the graph diameter by obtaining the
+  # maximum eccentricity for all nodes in
+  # the graph
+  graph_diameter <-
+    graph %>%
+    get_eccentricity() %>%
+    dplyr::group_by() %>%
+    dplyr::summarize(max_eccentricity = max(eccentricity)) %>%
+    dplyr::ungroup() %>%
+    purrr::flatten_dbl() %>%
+    as.integer()
+
+  return(graph_diameter)
 }

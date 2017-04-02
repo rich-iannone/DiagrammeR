@@ -13,6 +13,8 @@
 #'     15, 24,
 #'     set_seed = 23))
 #' #> [1] 2
+#' @importFrom dplyr filter select
+#' @importFrom purrr flatten_chr
 #' @export get_periphery
 
 get_periphery <- function(graph) {
@@ -25,14 +27,15 @@ get_periphery <- function(graph) {
   # Get the eccentricity for each of the graph's nodes
   eccentricity <- get_eccentricity(graph)
 
-  # Return the node IDs for all nodes where the
+  # Get the node ID values for all nodes where the
   # eccentricity is equal to the graph diameter
   # (i.e., maximum eccentricity)
-  nodes <-
-    as.integer(names(
-      eccentricity[
-        which(eccentricity %in%
-                max(eccentricity))]))
+  periphery_nodes <-
+    eccentricity %>%
+    dplyr::filter(eccentricity == get_graph_diameter(graph)) %>%
+    dplyr::select(id) %>%
+    purrr::flatten_chr() %>%
+    as.integer()
 
-  return(nodes)
+  return(periphery_nodes)
 }
