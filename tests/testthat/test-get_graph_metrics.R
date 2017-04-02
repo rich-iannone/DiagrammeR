@@ -63,13 +63,13 @@ test_that("Getting graph diameter is possible", {
 
   graph_diam <- get_graph_diameter(graph)
 
-  # Expect that `graph_diam` is a numeric vector
-  expect_is(graph_diam, "numeric")
+  # Expect that `graph_diam` is an integer vector
+  expect_is(graph_diam, "integer")
 
   # Expect that `graph_diam` is of length 1
   expect_equal(length(graph_diam), 1)
 
-  # Expect that `graph_diam` has the value 8
+  # Expect that `graph_diam` has the value 4
   expect_equal(graph_diam, 4)
 })
 
@@ -82,53 +82,21 @@ test_that("Getting graph eccentricity is possible", {
 
   graph_eccen <- get_eccentricity(graph)
 
-  # Expect that `graph_eccen` is a numeric vector
-  expect_is(graph_eccen, "numeric")
+  # Expect that `graph_eccen` is a data frame
+  expect_is(graph_eccen, "data.frame")
 
-  # Expect that `graph_eccen` has length 10 in
+  # Expect that `graph_eccen` has 10 rows
   # this case
-  expect_equal(length(graph_eccen), 10)
+  expect_equal(nrow(graph_eccen), 10)
 
-  # Expect certain names for the `graph_eccen` object
-  expect_equal(names(graph_eccen), as.character(1:10))
+  # Expect certain column names for the `graph_eccen` object
+  expect_equal(colnames(graph_eccen), c("id", "eccentricity"))
 
-  # Get the eccentricity for select nodes
-  graph_eccen_nodes <-
-    get_eccentricity(graph, nodes = c(1, 2, 3))
+  # Expect that `eccentricity` column is numeric
+  expect_is(graph_eccen$eccentricity, "numeric")
 
-  # Expect that `graph_eccen_nodes` is a numeric vector
-  expect_is(graph_eccen_nodes, "numeric")
-
-  # Expect that `graph_eccen_nodes` has length 3 in
-  # this case
-  expect_equal(length(graph_eccen_nodes), 3)
-
-  # Get the eccentricity for select nodes but return
-  # as a data frame
-  graph_eccen_nodes_df <-
-    get_eccentricity(
-      graph, nodes = c(1, 2, 3),
-      return_type = "df")
-
-  # Expect that `graph_eccen_nodes_df` is a data frame
-  expect_is(graph_eccen_nodes_df, "data.frame")
-
-  # Expect that `graph_eccen_nodes_df` has 2 columns
-  expect_equal(ncol(graph_eccen_nodes_df), 2)
-
-  # Expect that `graph_eccen_nodes_df` has 3
-  # rows in this case
-  expect_equal(nrow(graph_eccen_nodes_df), 3)
-
-  # Expect that `graph_eccen_nodes_df` has
-  # certain column names
-  expect_identical(
-    colnames(graph_eccen_nodes_df),
-    c("id", "eccentricity"))
-
-  # Expect an error if providing nodes that do
-  # not exist in the graph
-  expect_error(get_eccentricity(graph, nodes = 11))
+  # Expect that `id` column has integer values
+  expect_is(graph_eccen$id, "integer")
 })
 
 test_that("Getting graph periphery is possible", {
