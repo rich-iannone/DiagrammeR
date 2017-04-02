@@ -4,36 +4,30 @@
 \alias{get_eccentricity}
 \title{Get node eccentricities}
 \usage{
-get_eccentricity(graph, nodes = NULL, return_type = "vector")
+get_eccentricity(graph)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
-
-\item{nodes}{an optional vector of node IDs for
-filtering the list of nodes present in the graph.}
-
-\item{return_type}{using \code{vector} (the default)
-will provide a named vector of eccentricity values
-(the node IDs serve as names). With \code{df},
-a data frame containing node IDs and eccentricity
-values is provided.}
 }
 \value{
-a either a named vector or a data frame
-containing eccentricity values by node, depending
-on the value supplied to \code{return_type}.
+a data frame containing eccentricity values
+by node ID value.
 }
 \description{
-Get a named vector or data frame with
-node eccentricity values.
+Get a data frame with node
+eccentricity values.
 }
 \examples{
-# Get the eccentricities for all nodes in
-# a randomly-created graph
+# Get the eccentricities for all nodes
+# in a randomly-created graph
 get_eccentricity(
   graph = create_random_graph(
-            15, 20, set_seed = 23))
-#> 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
-#> 2  4  3  0  2  3  1  2  0  0  1  1  0  1  0
+            5, 7, set_seed = 23))
+#>   id eccentricity
+#> 1  1            2
+#> 2  2            3
+#> 3  3            2
+#> 4  4            1
+#> 5  5            0
 }
