@@ -59,7 +59,7 @@ get_eccentricity <- function(graph) {
   # and eccentrity values
   eccentricity <-
     data.frame(
-      id = names(eccentricity),
+      id = names(eccentricity) %>% as.integer(),
       eccentricity = eccentricity,
       stringsAsFactors = FALSE)
 
