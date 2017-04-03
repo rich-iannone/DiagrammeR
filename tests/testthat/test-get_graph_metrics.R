@@ -7,24 +7,38 @@ test_that("Getting a degree histogram is possible", {
     create_random_graph(
       10, 22, set_seed = 23)
 
-  degree_histogram <- get_degree_histogram(graph)
+  # Get the degree histogram for total degree
+  degree_hist_all <- get_degree_histogram(graph, mode = "all")
 
-  # Expect that `degree_histogram` inherits from `numeric`
-  expect_is(degree_histogram, "numeric")
+  # Expect that `degree_hist_all` inherits from `data.frame`
+  expect_is(degree_hist_all, "data.frame")
 
-  # Expect certain names for the `degree_histogram` object
+  # Expect certain column names for the `degree_hist_all` object
   expect_identical(
-    names(degree_histogram),
-    c("0", "1", "2", "3", "4", "5", "6", "7"))
+    colnames(degree_hist_all),
+    c("degree", "total_degree_hist"))
 
-  # Expect certain values in the `degree_histogram` object
-  expect_equal(degree_histogram[[1]], 0)
-  expect_equal(degree_histogram[[2]], 0)
-  expect_equal(degree_histogram[[3]], 1)
-  expect_equal(degree_histogram[[4]], 1)
-  expect_equal(degree_histogram[[5]], 3)
-  expect_equal(degree_histogram[[6]], 4)
-  expect_equal(degree_histogram[[7]], 0)
+  # Get the degree histogram for in-degree
+  degree_hist_in <- get_degree_histogram(graph, mode = "in")
+
+  # Expect that `degree_hist_in` inherits from `data.frame`
+  expect_is(degree_hist_in, "data.frame")
+
+  # Expect certain column names for the `degree_hist_in` object
+  expect_identical(
+    colnames(degree_hist_in),
+    c("degree", "indegree_hist"))
+
+  # Get the degree histogram for out-degree
+  degree_hist_out <- get_degree_histogram(graph, mode = "out")
+
+  # Expect that `degree_hist_out` inherits from `data.frame`
+  expect_is(degree_hist_out, "data.frame")
+
+  # Expect certain column names for the `degree_hist_out` object
+  expect_identical(
+    colnames(degree_hist_out),
+    c("degree", "outdegree_hist"))
 })
 
 test_that("Getting degree distribution is possible", {
@@ -34,24 +48,38 @@ test_that("Getting degree distribution is possible", {
     create_random_graph(
       10, 22, set_seed = 23)
 
-  degree_dist <- get_degree_distribution(graph)
+  # Get the degree distribution for total degree
+  degree_dist_all <- get_degree_distribution(graph, mode = "all")
 
-  # Expect that `degree_dist` inherits from `numeric`
-  expect_is(degree_dist, "numeric")
+  # Expect that `degree_dist_all` inherits from `data.frame`
+  expect_is(degree_dist_all, "data.frame")
 
-  # Expect certain names for the `degree_dist` object
+  # Expect certain column names for the `degree_dist_all` object
   expect_identical(
-    names(degree_dist),
-    c("0", "1", "2", "3", "4", "5", "6", "7"))
+    colnames(degree_dist_all),
+    c("degree", "total_degree_dist"))
 
-  # Expect certain values in the `degree_histogram` object
-  expect_equal(degree_dist[[1]], 0)
-  expect_equal(degree_dist[[2]], 0)
-  expect_equal(degree_dist[[3]], 0.1)
-  expect_equal(degree_dist[[4]], 0.1)
-  expect_equal(degree_dist[[5]], 0.3)
-  expect_equal(degree_dist[[6]], 0.4)
-  expect_equal(degree_dist[[7]], 0)
+  # Get the degree distribution for in-degree
+  degree_dist_in <- get_degree_distribution(graph, mode = "in")
+
+  # Expect that `degree_dist_in` inherits from `data.frame`
+  expect_is(degree_dist_in, "data.frame")
+
+  # Expect certain column names for the `degree_dist_in` object
+  expect_identical(
+    colnames(degree_dist_in),
+    c("degree", "indegree_dist"))
+
+  # Get the degree distribution for out-degree
+  degree_dist_out <- get_degree_distribution(graph, mode = "out")
+
+  # Expect that `degree_dist_out` inherits from `data.frame`
+  expect_is(degree_dist_out, "data.frame")
+
+  # Expect certain column names for the `degree_dist_out` object
+  expect_identical(
+    colnames(degree_dist_out),
+    c("degree", "outdegree_dist"))
 })
 
 test_that("Getting graph diameter is possible", {
