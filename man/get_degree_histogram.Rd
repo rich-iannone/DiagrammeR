@@ -4,16 +4,20 @@
 \alias{get_degree_histogram}
 \title{Get histogram data for a graph's degree frequency}
 \usage{
-get_degree_histogram(graph)
+get_degree_histogram(graph, mode = "total")
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{direction}{using \code{total} (the default),
+degree considered for each node will be the total
+degree. With \code{in} and \code{out} the degree
+used will be the in-degree and out-degree,
+respectively.}
 }
 \value{
-a named vector of degree counts (with
-bin width equal to 1) where the degree values
-serve as names.
+a data frame with degree counts.
 }
 \description{
 Get histogram data for a graph's
@@ -28,8 +32,14 @@ graph <-
     n = 18, m = 22,
     set_seed = 23)
 
-# Get degree histogram data for `random_graph`
-graph \%>\% get_degree_histogram()
-#> 0 1 2 3 4
-#> 1 4 4 4 5
+# Get degree histogram data for the
+# `random_graph` (reporting on total degree)
+graph \%>\%
+  get_degree_histogram(mode = "total")
+#>   degree total_degree_hist
+#> 1      0                 1
+#> 2      1                 4
+#> 3      2                 4
+#> 4      3                 4
+#> 5      4                 5
 }

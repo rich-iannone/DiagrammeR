@@ -2,36 +2,45 @@
 % Please edit documentation in R/get_degree_distribution.R
 \name{get_degree_distribution}
 \alias{get_degree_distribution}
-\title{Get degree distribution data for a graph}
+\title{Get total degree distribution data for a graph}
 \usage{
-get_degree_distribution(graph)
+get_degree_distribution(graph, mode = "total")
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{direction}{using \code{total} (the default),
+degree considered for each node will be the total
+degree. With \code{in} and \code{out} the degree
+used will be the in-degree and out-degree,
+respectively.}
 }
 \value{
-a named vector of degree frequencies
-where the degree values serve as names.
+a data frame with degree frequencies.
 }
 \description{
 Get degree distribution data for
 a graph. Graph degree is represented as a
-frequency of degree values over all nodes in
-the graph.
+frequency of total degree values over all nodes
+in the graph.
 }
 \examples{
-# Create a random, directed graph with 18 nodes
-# and 22 edges
+# Create a random, directed graph with
+# 18 nodes and 22 edges
 graph <-
   create_random_graph(
     n = 18, m = 22,
     set_seed = 23)
 
-# Get degree distribution data for `random_graph`
-graph \%>\% get_degree_distribution()
-#> 0          1          2          3
-#> 0.05555556 0.22222222 0.22222222 0.22222222
-#> 4
-#> 0.27777778
+# Get the total degree distribution for
+# the `random_graph` graph
+graph \%>\%
+  get_degree_distribution(mode = "total")
+#>   degree total_degree_dist
+#> 1      0        0.05555556
+#> 2      1        0.22222222
+#> 3      2        0.22222222
+#> 4      3        0.22222222
+#> 5      4        0.27777778
 }
