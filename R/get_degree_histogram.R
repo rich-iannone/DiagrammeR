@@ -4,9 +4,12 @@
 #' zero-value degrees are omitted from the output.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @return a named vector of degree counts (with
-#' bin width equal to 1) where the degree values
-#' serve as names.
+#' @param direction using \code{total} (the default),
+#' degree considered for each node will be the total
+#' degree. With \code{in} and \code{out} the degree
+#' used will be the in-degree and out-degree,
+#' respectively.
+#' @return a data frame with degree counts.
 #' @examples
 #' # Create a random, directed graph with 18 nodes
 #' # and 22 edges
@@ -16,13 +19,19 @@
 #'     set_seed = 23)
 #'
 #' # Get degree histogram data for `random_graph`
-#' graph %>% get_degree_histogram()
-#' #> 0 1 2 3 4
-#' #> 1 4 4 4 5
-#' @importFrom igraph degree_distribution
+#' graph %>%
+#'   get_degree_histogram()
+#' #>   degree total_degree_hist
+#' #> 1      0                 1
+#' #> 2      1                 4
+#' #> 3      2                 4
+#' #> 4      3                 4
+#' #> 5      4                 5
+#' @importFrom dplyr mutate select
 #' @export get_degree_histogram
 
-get_degree_histogram <- function(graph) {
+get_degree_histogram <- function(graph,
+                                 mode = "total") {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -32,16 +41,32 @@ get_degree_histogram <- function(graph) {
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  # Get the degree distribution for the graph
-  # and multiply by the total number of nodes to
-  # resolve counts of nodes by degree
-  deg_hist <-
-    degree_distribution(ig_graph) *
-    node_count(graph)
+  # Get the total degree histogram for the graph
+  if (mode %in% c("all", "total", "both")) {
 
-  # Transform to a named vector where the names are
-  # the number of degrees
-  names(deg_hist) <- seq(0, length(deg_hist) - 1)
+    deg_hist_df <-
+      get_degree_distribution(graph) %>%
+      dplyr::mutate(total_degree_hist = total_degree_dist * node_count(graph)) %>%
+      dplyr::select(degree, total_degree_hist)
+  }
 
-  return(deg_hist)
+  # Get the total in-degree distribution for the graph
+  if (mode == "in") {
+
+    deg_hist_df <-
+      get_degree_distribution(graph, mode = "in") %>%
+      dplyr::mutate(indegree_hist = indegree_dist * node_count(graph)) %>%
+      dplyr::select(degree, indegree_hist)
+  }
+
+  # Get the total out-degree distribution for the graph
+  if (mode == "out") {
+
+     deg_hist_df <-
+      get_degree_distribution(graph, mode = "out") %>%
+      dplyr::mutate(outdegree_hist = outdegree_dist * node_count(graph)) %>%
+      dplyr::select(degree, outdegree_hist)
+  }
+
+  return(deg_hist_df)
 }
