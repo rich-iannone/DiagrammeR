@@ -18,9 +18,10 @@
 #'     n = 18, m = 22,
 #'     set_seed = 23)
 #'
-#' # Get degree histogram data for `random_graph`
+#' # Get degree histogram data for the
+#' # `random_graph` (reporting on total degree)
 #' graph %>%
-#'   get_degree_histogram()
+#'   get_degree_histogram(mode = "total")
 #' #>   degree total_degree_hist
 #' #> 1      0                 1
 #' #> 2      1                 4
@@ -36,6 +37,11 @@ get_degree_histogram <- function(graph,
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, a degree histogram cannot be produced.")
   }
 
   # Convert the graph to an igraph object

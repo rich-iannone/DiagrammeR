@@ -22,7 +22,7 @@
 #' # Get the total degree distribution for
 #' # the `random_graph` graph
 #' graph %>%
-#'   get_degree_distribution()
+#'   get_degree_distribution(mode = "total")
 #' #>   degree total_degree_dist
 #' #> 1      0        0.05555556
 #' #> 2      1        0.22222222
@@ -38,6 +38,11 @@ get_degree_distribution <- function(graph,
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, a degree distribution data frame cannot be produced.")
   }
 
   # Convert the graph to an igraph object
