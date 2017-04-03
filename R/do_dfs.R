@@ -15,10 +15,10 @@
 #' provided, a random node from the graph will be
 #' chosen.
 #' @param direction using \code{all} (the default),
-#' the dfs will ignore edge direction while
-#' traversing through the graph. With \code{out},
-#' traversals between adjacent nodes will respect
-#' the edge direction.
+#' the bfs will ignore edge direction while
+#' traversing through the graph. With \code{out} and
+#' \code{in}, traversals between adjacent nodes will
+#' respect the edge direction.
 #' @return a vector containing node ID values for
 #' nodes visited during the depth-first search. The
 #' order of the node IDs corresponds to the order

@@ -16,9 +16,9 @@
 #' chosen.
 #' @param direction using \code{all} (the default),
 #' the bfs will ignore edge direction while
-#' traversing through the graph. With \code{out},
-#' traversals between adjacent nodes will respect
-#' the edge direction.
+#' traversing through the graph. With \code{out} and
+#' \code{in}, traversals between adjacent nodes will
+#' respect the edge direction.
 #' @return a vector containing node ID values for
 #' nodes visited during the breadth-first search. The
 #' order of the node IDs corresponds to the order
