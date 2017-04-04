@@ -4,7 +4,7 @@
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
 [![codecov.io](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master) 
 
-With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. A collection of functions are available for working specifically with graph objects. The output can be viewed in the **RStudio** Viewer, incorporated in **RMarkdown**, integrated into **Shiny** web apps, converted into other graph formats, or exported as image, PDF, or SVG files.
+With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. A collection of functions are available for working specifically with graph objects. The output can be incorporated in **RMarkdown** documents, integrated into **Shiny** web apps, converted into other graph formats, or exported as image, PDF, or SVG files.
 
 <img src="inst/img/simple_graph.png">
 
