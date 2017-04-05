@@ -93,8 +93,10 @@ render_graph <- function(graph,
           graph, "fontcolor", "gray30", "graph")
     }
 
+    # Generate DOT code
     dot_code <- generate_dot(graph)
 
+    # Generate a `grViz` object
     grVizObject <-
       grViz(
         diagram = dot_code,
@@ -107,6 +109,5 @@ render_graph <- function(graph,
   } else if (output == "visNetwork") {
 
     visnetwork(graph)
-
   }
 }
