@@ -8,8 +8,7 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph and add a cycle and then
-#' # a tree
-#' # in 2 separate function calls
+#' # a tree in 2 separate function calls
 #' graph <-
 #'   create_graph() %>%
 #'     add_cycle(3, rel = "a") %>%
