@@ -97,7 +97,6 @@
 #' get_attr_dfs(
 #'   graph,
 #'   edge_id = 1)
-#' #> # A tibble: 2 × 6
 #' #>   edge_id        rel  from    to     c     d
 #' #>     <int>      <chr> <int> <int> <chr> <dbl>
 #' #> 1       1 leading_to     1     4  five     5
@@ -110,7 +109,6 @@
 #'   graph,
 #'   node_id = 4,
 #'   edge_id = 1)
-#' #> # A tibble: 4 × 11
 #' #>   node_id edge_id  type label        rel  from    to
 #' #>     <int>   <int> <chr> <chr>      <chr> <int> <int>
 #' #> 1       4      NA basic     4       <NA>    NA    NA
@@ -138,7 +136,6 @@
 #'   node_id = 1,
 #'   edge_id = 1,
 #'   return_format = "list_col")
-#' #> # A tibble: 2 × 3
 #' #>   node_id edge_id    df_data
 #' #>     <int>   <int>     <list>
 #' #> 1       1      NA <list [1]>
