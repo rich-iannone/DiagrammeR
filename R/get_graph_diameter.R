@@ -24,6 +24,9 @@ get_graph_diameter <- function(graph) {
     stop("The graph object is not valid.")
   }
 
+  # Create bindings for specific variables
+  eccentricity <- NULL
+
   # Get the graph diameter by obtaining the
   # maximum eccentricity for all nodes in
   # the graph

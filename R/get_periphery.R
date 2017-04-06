@@ -24,6 +24,9 @@ get_periphery <- function(graph) {
     stop("The graph object is not valid.")
   }
 
+  # Create bindings for specific variables
+  id <- NULL
+
   # Get the eccentricity for each of the graph's nodes
   eccentricity <- get_eccentricity(graph)
 
