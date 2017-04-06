@@ -100,7 +100,6 @@ render_graph <- function(graph,
     grVizObject <-
       grViz(
         diagram = dot_code,
-        engine = layout,
         width = width,
         height = height)
 
