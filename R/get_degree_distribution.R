@@ -5,7 +5,7 @@
 #' in the graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param direction using \code{total} (the default),
+#' @param mode using \code{total} (the default),
 #' degree considered for each node will be the total
 #' degree. With \code{in} and \code{out} the degree
 #' used will be the in-degree and out-degree,
