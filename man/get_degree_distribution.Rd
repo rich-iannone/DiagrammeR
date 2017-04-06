@@ -10,7 +10,7 @@ get_degree_distribution(graph, mode = "total")
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{direction}{using \code{total} (the default),
+\item{mode}{using \code{total} (the default),
 degree considered for each node will be the total
 degree. With \code{in} and \code{out} the degree
 used will be the in-degree and out-degree,
