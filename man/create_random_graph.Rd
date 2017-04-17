@@ -4,8 +4,8 @@
 \alias{create_random_graph}
 \title{Create a randomized graph}
 \usage{
-create_random_graph(n, m, directed = TRUE, display_labels = TRUE,
-  set_seed = NULL, write_backups = FALSE)
+create_random_graph(n, m, directed = TRUE, graph_name = NULL,
+  display_labels = TRUE, set_seed = NULL, write_backups = FALSE)
 }
 \arguments{
 \item{n}{the number of nodes to use in the
@@ -16,6 +16,9 @@ random graph.}
 
 \item{directed}{an option for whether the random
 graph should be undirected (default) or directed.}
+
+\item{graph_name}{an optional string for labeling
+the graph object.}
 
 \item{display_labels}{display node labels.}
 
