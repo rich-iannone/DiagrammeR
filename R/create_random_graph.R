@@ -7,6 +7,8 @@
 #' random graph.
 #' @param directed an option for whether the random
 #' graph should be undirected (default) or directed.
+#' @param graph_name an optional string for labeling
+#' the graph object.
 #' @param display_labels display node labels.
 #' @param set_seed supplying a value sets a random seed
 #' of the \code{Mersenne-Twister} implementation.
@@ -31,6 +33,7 @@
 create_random_graph <- function(n,
                                 m,
                                 directed = TRUE,
+                                graph_name = NULL,
                                 display_labels = TRUE,
                                 set_seed = NULL,
                                 write_backups = FALSE) {
@@ -82,6 +85,7 @@ create_random_graph <- function(n,
         nodes_df = ndf,
         edges_df = edf,
         directed = ifelse(directed, TRUE, FALSE),
+        graph_name = graph_name,
         write_backups = write_backups)
 
   } else {
@@ -91,6 +95,7 @@ create_random_graph <- function(n,
       create_graph(
         nodes_df = ndf,
         directed = ifelse(directed, TRUE, FALSE),
+        graph_name = graph_name,
         write_backups = write_backups)
   }
 
