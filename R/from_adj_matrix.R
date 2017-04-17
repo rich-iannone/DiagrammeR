@@ -16,6 +16,8 @@
 #' \code{FALSE} then the diagonal values will be
 #' replaced with zero values before inclusion in any
 #' calculations.
+#' @param graph_name an optional string for labeling
+#' the graph object.
 #' @param write_backups an option to write incremental
 #' backups of changing graph states to disk. If
 #' \code{TRUE}, a subdirectory of the working directory
@@ -40,6 +42,7 @@ from_adj_matrix <- function(x,
                             mode = "undirected",
                             weighted = FALSE,
                             use_diag = TRUE,
+                            graph_name = NULL,
                             write_backups = FALSE) {
 
   # Get the time of function start
@@ -83,7 +86,11 @@ from_adj_matrix <- function(x,
   }
 
   # Generate the graph object from an igraph graph
-  graph <- from_igraph(igraph, write_backups = write_backups)
+  graph <-
+    from_igraph(
+      igraph,
+      graph_name = graph_name,
+      write_backups = write_backups)
 
   # Add edge ID values to `graph`
   if (nrow(graph$edges_df) > 0) {

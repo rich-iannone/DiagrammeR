@@ -2,6 +2,8 @@
 #' @description Convert an igraph graph to a DiagrammeR
 #' graph object.
 #' @param igraph an igraph graph object.
+#' @param graph_name an optional string for labeling
+#' the graph object.
 #' @param write_backups an option to write incremental
 #' backups of changing graph states to disk. If
 #' \code{TRUE}, a subdirectory of the working directory
@@ -33,6 +35,7 @@
 #' @export from_igraph
 
 from_igraph <- function(igraph,
+                        graph_name = NULL,
                         write_backups = FALSE) {
 
   # Get the time of function start
@@ -158,6 +161,7 @@ from_igraph <- function(igraph,
       nodes_df = nodes_df,
       edges_df = edges_df,
       directed = igraph::is_directed(igraph),
+      graph_name = graph_name,
       write_backups = write_backups)
 
   return(graph)
