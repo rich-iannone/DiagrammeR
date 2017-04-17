@@ -5,7 +5,7 @@
 \title{Create a graph using an adjacency matrix}
 \usage{
 from_adj_matrix(x, mode = "undirected", weighted = FALSE, use_diag = TRUE,
-  write_backups = FALSE)
+  graph_name = NULL, write_backups = FALSE)
 }
 \arguments{
 \item{x}{a square \code{matrix} object serving as
@@ -26,6 +26,9 @@ then the diagonal values will be included as is. If
 \code{FALSE} then the diagonal values will be
 replaced with zero values before inclusion in any
 calculations.}
+
+\item{graph_name}{an optional string for labeling
+the graph object.}
 
 \item{write_backups}{an option to write incremental
 backups of changing graph states to disk. If

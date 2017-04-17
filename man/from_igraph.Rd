@@ -4,10 +4,13 @@
 \alias{from_igraph}
 \title{Convert an igraph graph to a DiagrammeR one}
 \usage{
-from_igraph(igraph, write_backups = FALSE)
+from_igraph(igraph, graph_name = NULL, write_backups = FALSE)
 }
 \arguments{
 \item{igraph}{an igraph graph object.}
+
+\item{graph_name}{an optional string for labeling
+the graph object.}
 
 \item{write_backups}{an option to write incremental
 backups of changing graph states to disk. If
