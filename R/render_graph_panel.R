@@ -31,10 +31,6 @@
 
 render_graph_panel <- function(...) {
 
-  # Specify the number of columns
-  ncols <- 3
-  nrows <- 1
-
   # Collect graphs into a single list object
   graphs <- list(...)
 
