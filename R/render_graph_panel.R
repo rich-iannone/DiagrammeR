@@ -190,5 +190,3 @@ render_graph_panel <- function(...) {
 
   render_graph(combo_graph)
 }
-
-render_graph_panel(graph_1, graph_2, graph_3)
