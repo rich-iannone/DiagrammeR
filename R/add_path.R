@@ -14,6 +14,8 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node path.
+#' @param ... optional node attributes supplied as
+#' named vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add 2 paths of varying
@@ -35,13 +37,16 @@
 #' #> 7  7 five_path     3   2     1      1     0
 #' #> 8  8 five_path     4   2     1      1     0
 #' #> 9  9 five_path     5   1     1      0     0
+#' @importFrom dplyr select bind_cols
+#' @importFrom tibble as_tibble
 #' @export add_path
 
 add_path <- function(graph,
                      n,
                      type = NULL,
                      label = TRUE,
-                     rel = NULL) {
+                     rel = NULL,
+                     ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -76,12 +81,42 @@ add_path <- function(graph,
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
+  # Collect extra vectors of data as `extras`
+  extras <- list(...)
+
+  if (length(extras) > 0) {
+
+    extras_tbl <- tibble::as_tibble(extras)
+
+    if (nrow(extras_tbl) < n) {
+
+      extras$index__ <- 1:n
+
+      extras_tbl <-
+        tibble::as_tibble(extras) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(extras_tbl)) {
+      extras_tbl <-
+        extras_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
   # Create a node data frame for the path graph
   path_nodes <-
     create_node_df(
       n = n,
       type = type,
       label = label)
+
+  if (exists("extras_tbl")) {
+
+    path_nodes <-
+      path_nodes %>%
+      dplyr::bind_cols(extras_tbl)
+  }
 
   # Create an edge data frame for the path graph
   path_edges <-
@@ -110,7 +145,7 @@ add_path <- function(graph,
       add_action_to_log(
         graph_log = graph_log,
         version_id = nrow(graph_log) + 1,
-        function_used = "add_balanced_tree",
+        function_used = "add_path",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
