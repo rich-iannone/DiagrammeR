@@ -28,6 +28,8 @@
 #' connected graph by removing loops (edges from and
 #' to the same node). The default value is
 #' \code{FALSE}.
+#' @param ... optional node attributes supplied as
+#' named vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph object and add a directed and
@@ -153,7 +155,8 @@ add_full_graph <- function(graph,
                            label = TRUE,
                            rel = NULL,
                            edge_wt_matrix = NULL,
-                           keep_loops = FALSE) {
+                           keep_loops = FALSE,
+                           ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -189,6 +192,29 @@ add_full_graph <- function(graph,
     adj_matrix <-
       adj_matrix -
       diag(1, nrow = nrow(adj_matrix), ncol = ncol(adj_matrix))
+  }
+
+  # Collect extra vectors of data as `extras`
+  extras <- list(...)
+
+  if (length(extras) > 0) {
+
+    extras_tbl <- tibble::as_tibble(extras)
+
+    if (nrow(extras_tbl) < n) {
+
+      extras$index__ <- 1:n
+
+      extras_tbl <-
+        tibble::as_tibble(extras) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(extras_tbl)) {
+      extras_tbl <-
+        extras_tbl %>%
+        dplyr::select(-id)
+    }
   }
 
   if (is_graph_directed(graph)) {
@@ -282,6 +308,14 @@ add_full_graph <- function(graph,
   if (!is.null(rel) &
       length(rel) == 1) {
     new_graph$edges_df[, 4] <- rel
+  }
+
+  # Add extra columns if available
+  if (exists("extras_tbl")) {
+
+    new_graph <-
+      new_graph %>%
+      dplyr::bind_cols(extras_tbl)
   }
 
   # If the input graph is not empty, combine graphs

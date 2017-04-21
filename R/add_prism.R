@@ -19,6 +19,8 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node prism.
+#' @param ... optional node attributes supplied as
+#' named vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add 2 prisms
@@ -42,13 +44,16 @@
 #' #> 10 10 prism     b   3     2      1     0
 #' #> 11 11 prism     b   3     2      1     0
 #' #> 12 12 prism     b   3     2      1     0
+#' @importFrom dplyr select bind_cols
+#' @importFrom tibble as_tibble
 #' @export add_prism
 
 add_prism <- function(graph,
                       n,
                       type = NULL,
                       label = TRUE,
-                      rel = NULL) {
+                      rel = NULL,
+                      ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -83,12 +88,43 @@ add_prism <- function(graph,
   # Get the sequence of nodes required
   nodes <- seq(1, 2 * n)
 
+  # Collect extra vectors of data as `extras`
+  extras <- list(...)
+
+  if (length(extras) > 0) {
+
+    extras_tbl <- tibble::as_tibble(extras)
+
+    if (nrow(extras_tbl) < length(nodes)) {
+
+      extras$index__ <- 1:length(nodes)
+
+      extras_tbl <-
+        tibble::as_tibble(extras) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(extras_tbl)) {
+      extras_tbl <-
+        extras_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
   # Create a node data frame for the prism graph
   prism_nodes <-
     create_node_df(
       n = length(nodes),
       type = type,
       label = label)
+
+  # Add extra columns if available
+  if (exists("extras_tbl")) {
+
+    prism_nodes <-
+      prism_nodes %>%
+      dplyr::bind_cols(extras_tbl)
+  }
 
   # Create an edge data frame for the prism graph
   prism_edges <-

@@ -14,6 +14,8 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node cycle.
+#' @param ... optional node attributes supplied as
+#' named vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add a cycle of nodes to it
@@ -30,13 +32,16 @@
 #' #> 4  4 <NA>     4   2     1      1     0
 #' #> 5  5 <NA>     5   2     1      1     0
 #' #> 6  6 <NA>     6   2     1      1     0
+#' @importFrom dplyr select bind_cols
+#' @importFrom tibble as_tibble
 #' @export add_cycle
 
 add_cycle <- function(graph,
                       n,
                       type = NULL,
                       label = TRUE,
-                      rel = NULL) {
+                      rel = NULL,
+                      ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -71,12 +76,43 @@ add_cycle <- function(graph,
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
+  # Collect extra vectors of data as `extras`
+  extras <- list(...)
+
+  if (length(extras) > 0) {
+
+    extras_tbl <- tibble::as_tibble(extras)
+
+    if (nrow(extras_tbl) < n) {
+
+      extras$index__ <- 1:n
+
+      extras_tbl <-
+        tibble::as_tibble(extras) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(extras_tbl)) {
+      extras_tbl <-
+        extras_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
   # Create a node data frame for the tree graph
   cycle_nodes <-
     create_node_df(
       n = n,
       type = type,
       label = label)
+
+  # Add extra columns if available
+  if (exists("extras_tbl")) {
+
+    cycle_nodes <-
+      cycle_nodes %>%
+      dplyr::bind_cols(extras_tbl)
+  }
 
   # Create an edge data frame for the cycle graph
   cycle_edges <-
