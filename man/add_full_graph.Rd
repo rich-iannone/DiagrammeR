@@ -5,7 +5,7 @@
 \title{Add a fully connected graph}
 \usage{
 add_full_graph(graph, n, type = NULL, label = TRUE, rel = NULL,
-  edge_wt_matrix = NULL, keep_loops = FALSE)
+  edge_wt_matrix = NULL, keep_loops = FALSE, ...)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -37,6 +37,9 @@ column names will be used as node label values.}
 connected graph by removing loops (edges from and
 to the same node). The default value is
 \code{FALSE}.}
+
+\item{...}{optional node attributes supplied as
+named vectors.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

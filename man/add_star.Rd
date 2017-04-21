@@ -4,7 +4,7 @@
 \alias{add_star}
 \title{Add a star of nodes to the graph}
 \usage{
-add_star(graph, n, type = NULL, label = TRUE, rel = NULL)
+add_star(graph, n, type = NULL, label = TRUE, rel = NULL, ...)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -25,6 +25,9 @@ nodes, or, a boolean value where setting to
 \item{rel}{an optional string for providing a
 relationship label to all new edges created in the
 node star.}
+
+\item{...}{optional node attributes supplied as
+named vectors.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

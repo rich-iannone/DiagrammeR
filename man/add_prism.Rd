@@ -4,7 +4,7 @@
 \alias{add_prism}
 \title{Add a prism of nodes to the graph}
 \usage{
-add_prism(graph, n, type = NULL, label = TRUE, rel = NULL)
+add_prism(graph, n, type = NULL, label = TRUE, rel = NULL, ...)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -29,6 +29,9 @@ nodes, or, a boolean value where setting to
 \item{rel}{an optional string for providing a
 relationship label to all new edges created in the
 node prism.}
+
+\item{...}{optional node attributes supplied as
+named vectors.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
