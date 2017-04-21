@@ -123,7 +123,7 @@ add_prism <- function(graph,
       add_action_to_log(
         graph_log = graph_log,
         version_id = nrow(graph_log) + 1,
-        function_used = "add_balanced_tree",
+        function_used = "add_prism",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
