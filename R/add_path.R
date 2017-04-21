@@ -111,6 +111,7 @@ add_path <- function(graph,
       type = type,
       label = label)
 
+  # Add extra columns if available
   if (exists("extras_tbl")) {
 
     path_nodes <-
