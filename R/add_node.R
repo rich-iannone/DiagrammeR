@@ -12,6 +12,8 @@
 #' from which edges will be directed to the new node.
 #' @param to an optional vector containing node IDs to
 #' which edges will be directed from the new node.
+#' @param ... one or more optional, single value vectors
+#' for supplying node attributes to the new node.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and add 2 nodes by using
@@ -38,13 +40,16 @@
 #' #> 1  1   <NA>  <NA>
 #' #> 2  2   <NA>  <NA>
 #' #> 3  3 person  <NA>
+#' @importFrom dplyr select bind_cols
+#' @importFrom tibble as_tibble
 #' @export add_node
 
 add_node <- function(graph,
                      type = NULL,
                      label = NULL,
                      from = NULL,
-                     to = NULL) {
+                     to = NULL,
+                     ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -65,6 +70,15 @@ add_node <- function(graph,
     label <- as.character(NA)
   }
 
+  # Collect extra vectors of data as `extras`
+  extras <- list(...)
+
+  if (length(extras) > 0) {
+    if (nrow(tibble::as_tibble(extras)) == 1) {
+      extras_tbl <- tibble::as_tibble(extras)
+    }
+  }
+
   # Modify graph if neither `to` nor `from`
   # values provided
   if (is.null(from) & is.null(to)) {
@@ -74,6 +88,14 @@ add_node <- function(graph,
         n = 1,
         label = as.character(label),
         type = as.character(type))
+
+    # Add extra columns if available
+    if (exists("extras_tbl")) {
+
+      new_node <-
+        new_node %>%
+        dplyr::bind_cols(extras_tbl)
+    }
 
     new_node[1, 1] <- node
 
@@ -120,6 +142,14 @@ add_node <- function(graph,
           n = 1,
           label = as.character(label),
           type = as.character(type))
+
+      # Add extra columns if available
+      if (exists("extras_tbl")) {
+
+        new_node <-
+          new_node %>%
+          dplyr::bind_cols(extras_tbl)
+      }
 
       new_node[1, 1] <- node
 
@@ -176,6 +206,14 @@ add_node <- function(graph,
         n = 1,
         label = as.character(label),
         type = as.character(type))
+
+    # Add extra columns if available
+    if (exists("extras_tbl")) {
+
+      new_node <-
+        new_node %>%
+        dplyr::bind_cols(extras_tbl)
+    }
 
     new_node[1, 1] <- node
 
@@ -239,6 +277,14 @@ add_node <- function(graph,
           n = 1,
           label = as.character(label),
           type = as.character(type))
+
+      # Add extra columns if available
+      if (exists("extras_tbl")) {
+
+        new_node <-
+          new_node %>%
+          dplyr::bind_cols(extras_tbl)
+      }
 
       new_node[1, 1] <- node
 
