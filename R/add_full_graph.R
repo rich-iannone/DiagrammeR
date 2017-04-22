@@ -29,7 +29,7 @@
 #' to the same node). The default value is
 #' \code{FALSE}.
 #' @param ... optional node attributes supplied as
-#' named vectors.
+#' vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph object and add a directed and

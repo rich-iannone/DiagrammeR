@@ -20,7 +20,7 @@
 #' relationship label to all new edges created in the
 #' node prism.
 #' @param ... optional node attributes supplied as
-#' named vectors.
+#' vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add 2 prisms
