@@ -9,6 +9,8 @@
 #' provides group identifiers for the nodes to be added.
 #' @param label an optional character object that
 #' describes the nodes to be added.
+#' @param ... optional node attributes supplied as
+#' vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and add 5 nodes; these
@@ -20,13 +22,15 @@
 #' # Get the graph's nodes
 #' graph %>% get_node_ids()
 #' #> [1] 1 2 3 4 5
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr select bind_cols bind_rows
+#' @importFrom tibble as_tibble
 #' @export add_n_nodes
 
 add_n_nodes <- function(graph,
                         n,
                         type = NULL,
-                        label = NULL) {
+                        label = NULL,
+                        ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -44,12 +48,43 @@ add_n_nodes <- function(graph,
     label <- as.character(NA)
   }
 
+  # Collect extra vectors of data as `extras`
+  extras <- list(...)
+
+  if (length(extras) > 0) {
+
+    extras_tbl <- tibble::as_tibble(extras)
+
+    if (nrow(extras_tbl) < n) {
+
+      extras$index__ <- 1:n
+
+      extras_tbl <-
+        tibble::as_tibble(extras) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(extras_tbl)) {
+      extras_tbl <-
+        extras_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
   # Create a ndf of the correct length
   new_nodes <-
     create_node_df(
       n = n,
       type = type,
       label = label)
+
+  # Add extra columns if available
+  if (exists("extras_tbl")) {
+
+    new_nodes <-
+      new_nodes %>%
+      dplyr::bind_cols(extras_tbl)
+  }
 
   new_nodes[, 1] <- new_nodes[, 1] + graph$last_node
 
