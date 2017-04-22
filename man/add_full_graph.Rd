@@ -39,7 +39,7 @@ to the same node). The default value is
 \code{FALSE}.}
 
 \item{...}{optional node attributes supplied as
-named vectors.}
+vectors.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

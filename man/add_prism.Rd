@@ -31,7 +31,7 @@ relationship label to all new edges created in the
 node prism.}
 
 \item{...}{optional node attributes supplied as
-named vectors.}
+vectors.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
