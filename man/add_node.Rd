@@ -4,7 +4,7 @@
 \alias{add_node}
 \title{Add a node to an existing graph object}
 \usage{
-add_node(graph, type = NULL, label = NULL, from = NULL, to = NULL)
+add_node(graph, type = NULL, label = NULL, from = NULL, to = NULL, ...)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -21,6 +21,9 @@ from which edges will be directed to the new node.}
 
 \item{to}{an optional vector containing node IDs to
 which edges will be directed from the new node.}
+
+\item{...}{one or more optional, single value vectors
+for supplying node attributes to the new node.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
