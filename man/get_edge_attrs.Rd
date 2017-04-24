@@ -4,12 +4,11 @@
 \alias{get_edge_attrs}
 \title{Get edge attribute values}
 \usage{
-get_edge_attrs(x, edge_attr, from = NULL, to = NULL)
+get_edge_attrs(graph, edge_attr, from = NULL, to = NULL)
 }
 \arguments{
-\item{x}{either a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}, or an edge data frame.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{edge_attr}{the name of the attribute for which
 to get values.}
@@ -28,8 +27,8 @@ the attribute given by \code{edge_attr} by edge.
 }
 \description{
 From a graph object of class
-\code{dgr_graph} or an edge data frame, get edge
-attribute values for one or more edges.
+\code{dgr_graph}, get edge attribute values for one
+or more edges.
 }
 \examples{
 # Create a simple graph where edges have an edge
@@ -61,7 +60,11 @@ graph \%>\% get_edge_attrs(edge_attr = "value")
 
 # To only return edge attribute values for specified
 # edges, use the `from` and `to` arguments
-graph \%>\% get_edge_attrs("value", c(1, 2), c(2, 3))
+graph \%>\%
+  get_edge_attrs(
+    edge_attr = "value",
+    from = c(1, 2),
+    to = c(2, 3))
 #> 1->2 2->3
 #>  1.6  2.9
 }

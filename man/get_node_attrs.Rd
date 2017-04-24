@@ -4,12 +4,11 @@
 \alias{get_node_attrs}
 \title{Get node attribute values}
 \usage{
-get_node_attrs(x, node_attr, nodes = NULL)
+get_node_attrs(graph, node_attr, nodes = NULL)
 }
 \arguments{
-\item{x}{either a graph object of class
-\code{dgr_graph} that is created using
-\code{create_graph}, or a node data frame.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{node_attr}{the name of the attribute for which
 to get values.}
@@ -24,8 +23,8 @@ the attribute given by \code{node_attr} by node ID.
 }
 \description{
 From a graph object of class
-\code{dgr_graph} or a node data frame, get node
-attribute values for one or more nodes.
+\code{dgr_graph}, get node attribute values for
+one or more nodes.
 }
 \examples{
 # With the `create_random_graph()` function, get
