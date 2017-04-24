@@ -1,10 +1,9 @@
 #' Get edge attribute values
 #' @description From a graph object of class
-#' \code{dgr_graph} or an edge data frame, get edge
-#' attribute values for one or more edges.
-#' @param x either a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}, or an edge data frame.
+#' \code{dgr_graph}, get edge attribute values for one
+#' or more edges.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param edge_attr the name of the attribute for which
 #' to get values.
 #' @param from an optional vector of node IDs from
@@ -45,15 +44,24 @@
 #'
 #' # To only return edge attribute values for specified
 #' # edges, use the `from` and `to` arguments
-#' graph %>% get_edge_attrs("value", c(1, 2), c(2, 3))
+#' graph %>%
+#'   get_edge_attrs(
+#'     edge_attr = "value",
+#'     from = c(1, 2),
+#'     to = c(2, 3))
 #' #> 1->2 2->3
 #' #>  1.6  2.9
 #' @export get_edge_attrs
 
-get_edge_attrs <- function(x,
+get_edge_attrs <- function(graph,
                            edge_attr,
                            from = NULL,
                            to = NULL) {
+
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
 
   if (edge_attr == "from" | edge_attr == "to") {
     stop("This is not an edge attribute.")
@@ -65,27 +73,19 @@ get_edge_attrs <- function(x,
     }
   }
 
-  if (inherits(x, "dgr_graph")) {
-    object_type <- "dgr_graph"
-    edges_df <- x$edges_df
-  }
-
-  if (inherits(x, "data.frame")) {
-    if (all(c("from", "to") %in% colnames(x))) {
-      object_type <- "edge_df"
-      edges_df <- x
-    }
-  }
+  # Extract the edge data frame (ndf)
+  # from the graph
+  edf <- graph$edges_df
 
   if (is.null(from) | is.null(to)) {
 
     # Extract the edge attribute values
     edge_attr_vals <-
-      edges_df[, which(colnames(edges_df) == edge_attr)]
+      edf[, which(colnames(edf) == edge_attr)]
 
     # Extract the edge names
     edge_names <-
-      paste(edges_df$from, edges_df$to, sep = "->")
+      paste(edf$from, edf$to, sep = "->")
 
     # Assign edge names
     names(edge_attr_vals) <- edge_names
@@ -93,28 +93,28 @@ get_edge_attrs <- function(x,
 
   if (!is.null(from) & !is.null(to)) {
 
-    edges_df$from_to <-
-      paste(edges_df$from, edges_df$to, sep = "^^")
+    edf$from_to <-
+      paste(edf$from, edf$to, sep = "^^")
     edges <- paste(from, to, sep = "^^")
 
     # Extract the edge attribute values
     edge_attr_vals <-
-      edges_df[
-        which(edges_df[
-          , which(colnames(edges_df) ==
+      edf[
+        which(edf[
+          , which(colnames(edf) ==
                     "from_to")] %in% edges),
-        which(colnames(edges_df) == edge_attr)]
+        which(colnames(edf) == edge_attr)]
 
     # Extract the edge names
     edge_names <-
-      paste(edges_df[
-        which(edges_df[
-          , which(colnames(edges_df) ==
+      paste(edf[
+        which(edf[
+          , which(colnames(edf) ==
                     "from_to")] %in% edges),
         2],
-        edges_df[
-          which(edges_df[
-            , which(colnames(edges_df) ==
+        edf[
+          which(edf[
+            , which(colnames(edf) ==
                       "from_to")] %in% edges),
           3], sep = "->")
 

@@ -1,10 +1,9 @@
 #' Get node attribute values
 #' @description From a graph object of class
-#' \code{dgr_graph} or a node data frame, get node
-#' attribute values for one or more nodes.
-#' @param x either a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}, or a node data frame.
+#' \code{dgr_graph}, get node attribute values for
+#' one or more nodes.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param nodes an optional vector of node IDs for
 #' filtering list of nodes present in the graph or
 #' node data frame.
@@ -35,28 +34,25 @@
 #' #> 6.0 3.5
 #' @export get_node_attrs
 
-get_node_attrs <- function(x,
+get_node_attrs <- function(graph,
                            node_attr,
                            nodes = NULL) {
 
-  if (node_attr == "nodes") {
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+    stop("The graph object is not valid.")
+  }
+
+  if (node_attr %in% c("id", "nodes")) {
     stop("This is not a node attribute.")
   }
 
-  if (class(x) == "dgr_graph") {
-    object_type <- "dgr_graph"
-    nodes_df <- x$nodes_df
-  }
-
-  if (inherits(x, "data.frame")) {
-    if ("nodes" %in% colnames(x)) {
-      object_type <- "node_df"
-      nodes_df <- x
-    }
-  }
+  # Extract the node data frame (ndf)
+  # from the graph
+  ndf <- graph$nodes_df
 
   if (is.null(nodes)) {
-    nodes <- nodes_df[, 1]
+    nodes <- ndf[, 1]
   }
 
   if (!is.null(nodes)) {
@@ -65,9 +61,9 @@ get_node_attrs <- function(x,
 
   # Extract the node attribute values
   node_attr_vals <-
-    nodes_df[
-      which(nodes_df[, 1] %in% nodes),
-      which(colnames(nodes_df) == node_attr)]
+    ndf[
+      which(ndf[, 1] %in% nodes),
+      which(colnames(ndf) == node_attr)]
 
   # Add names to each of the values
   names(node_attr_vals) <- nodes
