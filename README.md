@@ -149,9 +149,9 @@ graph %>%
 
 Another way to express the same selection of nodes is to use the `mk_cond()` (i.e., 'make condition') helper function to compose the selection conditions. It uses sets of 3 elements for each condition:
 
-  (1) the node or edge attribute name (character value)
-  (2) the conditional operator (character value)
-  (3) the value for the node or edge attribute
+    (1) the node or edge attribute name (character value)
+    (2) the conditional operator (character value)
+    (3) the value for the node or edge attribute
   
 A linking `&` or `|` between groups of these three elements is used to specify `AND`s or `OR`s. The `mk_cond()` helper is also useful for supplying variables to a condition for a number of `select_...()` and all `trav_...()` functions.
 
@@ -185,9 +185,9 @@ How would we find out who committed the most to the **supercalc** project? This 
 - cache the `commits` values found in these selected edges [`cache_edge_attrs_ws()`]
 - this is the complicated part but it's good: 
 
-  (1) use `select_edges()`
-  (2) compose the edge selection condition with the `mk_cond()` helper, where the edge has a `commits` value equal to the largest value in the cache
-  (3) use the `intersect` set operation to restrict the selection to those edges already selected by the `trav_in_edge()` traversal function
+    (1) use `select_edges()`
+    (2) compose the edge selection condition with the `mk_cond()` helper, where the edge has a `commits` value equal to the largest value in the cache
+    (3) use the `intersect` set operation to restrict the selection to those edges already selected by the `trav_in_edge()` traversal function
 
 - we want the person responsible for these commits; traverse to that node from the edge selection [`trav_out_node()`]
 - get the `name` value found in this single, selected nodes [`get_node_attrs_ws()`]
