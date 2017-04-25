@@ -83,7 +83,7 @@ get_edge_attrs_ws <- function(graph,
       which(colnames(edf) == edge_attr)]
 
   # Add names to each of the values
-  names(node_attr_vals) <- nodes
+  names(edge_attr_vals) <- edges
 
   # Extract the edge names
   edge_names <-
