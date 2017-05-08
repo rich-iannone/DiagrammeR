@@ -55,7 +55,7 @@ The example graph file `repository.dgr` is available in the `extdata/example_gra
 ```r
 library(DiagrammeR)
 
-# Create the main graph
+# Load in a the small repository graph
 graph <-
   open_graph(
     system.file(
