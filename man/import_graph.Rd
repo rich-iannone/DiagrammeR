@@ -46,8 +46,9 @@ different graph formats and create a graph object.
 # Import a GraphML graph file
 graphml_graph <-
   import_graph(
-    system.file("extdata", "power_grid.graphml",
-                package = "DiagrammeR"))
+    system.file(
+      "extdata/power_grid.graphml",
+      package = "DiagrammeR"))
 
 # Get a count of the graph's nodes
 graphml_graph \%>\% node_count
@@ -60,8 +61,9 @@ graphml_graph \%>\% edge_count
 # Import an SIF graph file
 sif_graph <-
   import_graph(
-    system.file("extdata", "Human_Interactome.sif",
-                package = "DiagrammeR"))
+    system.file(
+      "extdata/Human_Interactome.sif",
+      package = "DiagrammeR"))
 
 # Get a count of the graph's nodes
 sif_graph \%>\% node_count
@@ -74,8 +76,9 @@ sif_graph \%>\% edge_count
 # Import a GML graph file
 gml_graph <-
   import_graph(
-    system.file("extdata", "karate.gml",
-                package = "DiagrammeR"))
+    system.file(
+      "extdata/karate.gml",
+      package = "DiagrammeR"))
 
 # Get a count of the graph's nodes
 gml_graph \%>\% node_count
