@@ -48,41 +48,25 @@ This functionality makes it possible to generate a network graph with data avail
 
 ## Network Graph Example
 
-Let's create a property graph by combining CSV data that pertains to contributors to three software projects. The CSV files (`contributors.csv`, `projects.csv`, and `projects_and_contributors.csv`) are available in the **DiagrammeR** package. Together they provide the properties `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` to the `person` nodes; `project`, `start_date`, `stars`, and `language` to the `project` nodes; and the `contributor_role` and `commits` properties to the edges.
+Let's create a property graph that pertains to contributors to three software projects. This graph has nodes representing people and projects. The attributes `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` are specific to the `person` nodes while the `project`, `start_date`, `stars`, and `language` attributes apply to the `project` nodes. The edges represent the relationships between the people and the project.
+
+The example graph file `repository.dgr` is available in the `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package (Currently, only for the Github version). We can load it into memory by using the `open_graph()` function, using `system.file()` to provide the location of the file within the package.
 
 ```r
 library(DiagrammeR)
 
 # Create the main graph
 graph <-
-  create_graph() %>%
-  set_graph_name("software_projects") %>%
-  add_nodes_from_table(
+  open_graph(
     system.file(
-      "extdata", "contributors.csv",
-      package = "DiagrammeR"),
-    set_type = "person",
-    label_col = "name") %>%
-  add_nodes_from_table(
-    system.file(
-      "extdata", "projects.csv",
-      package = "DiagrammeR"),
-    set_type = "project",
-    label_col = "project") %>%
-  add_edges_from_table(
-    system.file(
-      "extdata", "projects_and_contributors.csv",
-      package = "DiagrammeR"),
-    from_col = "contributor_name",
-    to_col = "project_name",
-    ndf_mapping = "label",
-    rel_col = "contributor_role")
+      "extdata/example_graphs_dgr/repository.dgr",
+      package = "DiagrammeR"))
 ```
 
 We can always view the property graph with the `render_graph()` function.
 
 ```r
-render_graph(graph, output = "visNetwork")
+render_graph(graph, layout = "kk")
 ```
 
 <img src="inst/img/graph_example_1.png">
@@ -181,16 +165,11 @@ graph %>%
 
 How would we find out who committed the most to the **supercalc** project? This is an extension of the previous problem and there are actually a few ways to do this. We start the same way (at the project node, using `select_nodes()`), then:
 
-- traverse to the inward edges [`trav_in_edge()`]
-- cache the `commits` values found in these selected edges [`cache_edge_attrs_ws()`]
-- this is the complicated part but it's good: 
-
-      (1) use `select_edges()`
-      (2) compose the edge selection condition with the `mk_cond()` helper, where the edge has a `commits` value equal to the largest value in the cache
-      (3) use the `intersect` set operation to restrict the selection to those edges already selected by the `trav_in_edge()` traversal function
-
-- we want the person responsible for these commits; traverse to that node from the edge selection [`trav_out_node()`]
-- get the `name` value found in this single, selected nodes [`get_node_attrs_ws()`]
+- traverse to the inward edges (with `trav_in_edge()`)
+- cache the `commits` values found in these selected edges (with `cache_edge_attrs_ws()`)
+- use `select_edges()` and compose the edge selection condition with the `mk_cond()` helper, where the edge has a `commits` value equal to the largest value in the cache; then, use the `intersect` set operation to restrict the selection to those edges already selected by the `trav_in_edge()` traversal function
+- we want the person responsible for these commits; traverse to that node from the edge selection with `trav_out_node()`
+- get the `name` value found in this single, selected node with the `get_node_attrs_ws()` function
 
 ```r
 graph %>% 
@@ -251,7 +230,7 @@ graph <-
     value = 15) %>%
   clear_selection()
 
-render_graph(graph, output = "visNetwork")
+render_graph(graph, layout = "kk")
 ```
 
 <img src="inst/img/graph_example_2.png">
@@ -276,6 +255,7 @@ graph %>%
 ```
 
 Which people have committed to more than one project? This is a matter of node degree. We know that people have edges outward and projects and edges inward. Thus, anybody having an outdegree (number of edges outward) greater than `1` has committed to more than one project. Globally, select nodes with that condition using `select_nodes_by_degree("outdeg > 1")`. Once getting the `name` attribute values from that node selection, we can provide a sorted character vector of names.
+
 ```r
 graph %>%
   select_nodes_by_degree(
