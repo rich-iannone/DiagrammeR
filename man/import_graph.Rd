@@ -4,7 +4,8 @@
 \alias{import_graph}
 \title{Import a graph from various graph formats}
 \usage{
-import_graph(graph_file, file_type = NULL)
+import_graph(graph_file, file_type = NULL, edges_extra_attr_names = NULL,
+  edges_extra_attr_coltypes = NULL)
 }
 \arguments{
 \item{graph_file}{a connection to a graph file.}
@@ -15,6 +16,23 @@ Options are: \code{graphml} (GraphML), \code{gml}
 file), and \code{mtx} (MatrixMarket format). If not
 supplied, the function will infer the type by its
 file extension.}
+
+\item{edges_extra_attr_names}{for \code{edges} files,
+a vector of attribute names beyond the \code{from}
+and \code{to} data columns can be provided in the
+order they appear in the input data file.}
+
+\item{edges_extra_attr_coltypes}{for \code{edges}
+files, this is a string of column types for any
+attribute columns provided for
+\code{edges_extra_attr_names}. This string
+representation is where each character represents
+each of the extra columns of data and the mappings
+are: \code{c} -> character, \code{i} -> integer,
+\code{n} -> number, \code{d} -> double,
+\code{l} -> logical, \code{D} -> date, \code{T} ->
+date time, \code{t} -> time, \code{?} -> guess,
+or \code{_/-}, which skips the column.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
