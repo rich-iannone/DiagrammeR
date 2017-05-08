@@ -50,7 +50,7 @@ This functionality makes it possible to generate a network graph with data avail
 
 Let's create a property graph that pertains to contributors to three software projects. This graph has nodes representing people and projects. The attributes `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` are specific to the `person` nodes while the `project`, `start_date`, `stars`, and `language` attributes apply to the `project` nodes. The edges represent the relationships between the people and the project.
 
-The example graph file `repository.dgr` is available in the `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package (Currently, only for the Github version). We can load it into memory by using the `open_graph()` function, using `system.file()` to provide the location of the file within the package.
+The example graph file `repository.dgr` is available in the `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package (currently, only for the Github version). We can load it into memory by using the `open_graph()` function, using `system.file()` to provide the location of the file within the package.
 
 ```r
 library(DiagrammeR)
