@@ -42,6 +42,7 @@ Imports:
     magrittr (>= 1.5),
     purrr (>= 0.2.2),
     RColorBrewer (>= 1.1-2),
+    readr (>= 1.1.0),
     rstudioapi (>= 0.6),
     rgexf (>= 0.15.3),
     scales (>= 0.4.1),
