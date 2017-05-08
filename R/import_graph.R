@@ -8,6 +8,21 @@
 #' file), and \code{mtx} (MatrixMarket format). If not
 #' supplied, the function will infer the type by its
 #' file extension.
+#' @param edges_extra_attr_names for \code{edges} files,
+#' a vector of attribute names beyond the \code{from}
+#' and \code{to} data columns can be provided in the
+#' order they appear in the input data file.
+#' @param edges_extra_attr_coltypes for \code{edges}
+#' files, this is a string of column types for any
+#' attribute columns provided for
+#' \code{edges_extra_attr_names}. This string
+#' representation is where each character represents
+#' each of the extra columns of data and the mappings
+#' are: \code{c} -> character, \code{i} -> integer,
+#' \code{n} -> number, \code{d} -> double,
+#' \code{l} -> logical, \code{D} -> date, \code{T} ->
+#' date time, \code{t} -> time, \code{?} -> guess,
+#' or \code{_/-}, which skips the column.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -53,14 +68,18 @@
 #' gml_graph %>% edge_count
 #' #> [1] 78
 #' }
+#' @importFrom dplyr right_join select rename mutate everything bind_rows arrange distinct
+#' @importFrom purrr flatten_int
 #' @importFrom stringr str_extract str_detect str_split str_count
 #' str_replace_all str_extract_all
-#' @importFrom tibble tibble
-#' @importFrom dplyr right_join select rename
+#' @importFrom tibble tibble as_tibble
+#' @importFrom readr read_delim
 #' @export import_graph
 
 import_graph <- function(graph_file,
-                         file_type = NULL) {
+                         file_type = NULL,
+                         edges_extra_attr_names = NULL,
+                         edges_extra_attr_coltypes = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -106,37 +125,58 @@ import_graph <- function(graph_file,
   if (file_type == "edges") {
 
     # Read in the .edges document as a vector object
-    edges_document <- readLines(graph_file)
+    edges_document <- readLines(graph_file, 10)
 
     # Determine which line the data fields begin
     first_line <- grep("^[^%].*", edges_document)[1]
 
+    # Determine the number of lines to skip
+    lines_to_skip <- first_line - 1
+
+    # Set default attribute names and column types
+    # for an `edges` file
+    attr_names <- c("from", "to")
+    attr_coltypes <- c("i", "i")
+
+    if (!is.null(edges_extra_attr_names)) {
+      attr_names <- c(attr_names, edges_extra_attr_names)
+    }
+
+    if (!is.null(edges_extra_attr_coltypes)) {
+      attr_coltypes <- paste(c(attr_coltypes, edges_extra_attr_coltypes), collapse = "")
+    }
+
     # Create an edge data frame
     edges <-
-      create_edge_df(
-        from = sapply(
-          strsplit(
-            edges_document[first_line:length(edges_document)],
-            " "), "[[", 1),
-        to = sapply(
-          strsplit(
-            edges_document[first_line:length(edges_document)],
-            " "), "[[", 2))
+      readr::read_delim(
+        file = graph_file,
+        delim = " ",
+        skip = lines_to_skip,
+        col_names = attr_names,
+        col_types = attr_coltypes,
+        progress = FALSE) %>%
+      dplyr::mutate(id = 1:nrow(.)) %>%
+      dplyr::mutate(rel = as.character(NA)) %>%
+      dplyr::select(id, from, to, rel, dplyr::everything()) %>%
+      as.data.frame(stringsAsFactors = FALSE)
 
     # Create a node data frame
     nodes <-
-      tibble::tibble(
-        id = as.integer(unique(
-          unlist(
-            strsplit(
-              edges_document[first_line:length(edges_document)],
-              " ")))),
-        type = as.character(NA),
-        label = as.integer(unique(
-          unlist(
-            strsplit(
-              edges_document[first_line:length(edges_document)],
-              " "))))) %>%
+      dplyr::bind_rows(
+        tibble::tibble(
+          id = edges %>%
+            tibble::as_tibble() %>%
+            dplyr::select(from) %>%
+            purrr::flatten_int()),
+        tibble::tibble(
+          id = edges %>%
+            tibble::as_tibble() %>%
+            dplyr::select(to) %>%
+            purrr::flatten_int())) %>%
+      dplyr::distinct() %>%
+      dplyr::arrange(id) %>%
+      dplyr::mutate(type = as.character(NA)) %>%
+      dplyr::mutate(label = as.character(id)) %>%
       as.data.frame(stringsAsFactors = FALSE)
 
     # Create the graph
