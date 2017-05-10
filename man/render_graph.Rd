@@ -54,10 +54,9 @@ create_graph() \%>\%
   set_node_attr_to_display() \%>\%
   render_graph(layout = "tree")
 
-# Create a circle graph with hundreds of
-# nodes and edges
+# Create a circle graph with
 create_random_graph(
-  n = 50, m = 75,
+  n = 55, m = 75,
   set_seed = 23) \%>\%
 render_graph(layout = "circle")
 
