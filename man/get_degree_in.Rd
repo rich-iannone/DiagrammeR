@@ -11,7 +11,7 @@ get_degree_in(graph, normalized = FALSE)
 \code{dgr_graph}.}
 
 \item{normalized}{set as \code{FALSE} (the default),
-the the indegree will be provided for each of
+the indegree will be provided for each of
 the nodes (as a count of edges to each node). When set
 as \code{TRUE}, then the result for each node will be
 divided by the total number of nodes in the graph minus 1.}

@@ -11,7 +11,7 @@ get_degree_total(graph, normalized = FALSE)
 \code{dgr_graph}.}
 
 \item{normalized}{set as \code{FALSE} (the default),
-the the total degree will be provided for each of
+the total degree will be provided for each of
 the nodes (as a count of edges to and from each
 node). When set as \code{TRUE}, then the result for
 each node will be divided by the total number of nodes

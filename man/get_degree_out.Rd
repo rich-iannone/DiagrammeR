@@ -11,7 +11,7 @@ get_degree_out(graph, normalized = FALSE)
 \code{dgr_graph}.}
 
 \item{normalized}{set as \code{FALSE} (the default),
-the the outdegree will be provided for each of
+the outdegree will be provided for each of
 the nodes (as a count of edges outgoing from each node).
 When set as \code{TRUE}, then the result for each node
 will be divided by the total number of nodes in the
