@@ -123,8 +123,8 @@ render_graph <- function(graph,
             igraph::layout_in_circle() %>%
             tibble::as_tibble() %>%
             dplyr::rename(x = V1, y = V2) %>%
-            dplyr::mutate(x = x * (((node_count(graph) + (0.5 * node_count(graph)))) / node_count(graph))) %>%
-            dplyr::mutate(y = y * (((node_count(graph) + (0.5 * node_count(graph)))) / node_count(graph)))
+            dplyr::mutate(x = x * (((node_count(graph) + (0.25 * node_count(graph)))) / node_count(graph))) %>%
+            dplyr::mutate(y = y * (((node_count(graph) + (0.25 * node_count(graph)))) / node_count(graph)))
         }
 
         if (layout == "tree") {
