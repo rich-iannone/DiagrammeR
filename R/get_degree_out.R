@@ -4,7 +4,7 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param normalized set as \code{FALSE} (the default),
-#' the the outdegree will be provided for each of
+#' the outdegree will be provided for each of
 #' the nodes (as a count of edges outgoing from each node).
 #' When set as \code{TRUE}, then the result for each node
 #' will be divided by the total number of nodes in the
