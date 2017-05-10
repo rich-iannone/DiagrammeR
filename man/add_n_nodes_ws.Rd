@@ -39,7 +39,7 @@ class \code{dgr_graph}. New graph edges will all
 move either from the nodes in the selection toward
 the newly created nodes (with the option
 \code{direction = "from"}), or to the selected nodes
-alredy in the graph (using \code{direction = "to"}).
+already in the graph (using \code{direction = "to"}).
 Optionally, set node \code{type} and edge \code{rel}
 values for all the new nodes and edges created,
 respectively.
