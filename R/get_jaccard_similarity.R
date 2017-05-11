@@ -1,5 +1,5 @@
 #' Get Jaccard similarity coefficient scores
-#' @description Get the Jaccard similiarity coefficient
+#' @description Get the Jaccard similarity coefficient
 #' scores for one or more nodes in a graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
@@ -15,7 +15,7 @@
 #' @param round_to the maximum number of decimal places
 #' to retain for the Jaccard similarity coefficient
 #' scores. The default value is \code{3}.
-#' @return a matrix with Jaccard similiarity values
+#' @return a matrix with Jaccard similarity values
 #' for each pair of nodes considered.
 #' @examples
 #' # Create a random graph

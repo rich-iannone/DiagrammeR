@@ -1,5 +1,5 @@
 #' Drop a node attribute column
-#' @description Within a graph's internal NDF, remove
+#' @description Within a graph's internal ndf, remove
 #' an existing node attribute.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.

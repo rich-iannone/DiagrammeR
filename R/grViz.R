@@ -10,7 +10,7 @@
 #' \code{circo}, or \code{twopi}. For more information
 #' see \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.
 #' @param allow_subst a boolean that enables/disables
-#' subsitution functionality.
+#' substitution functionality.
 #' @param options parameters supplied to the
 #' htmlwidgets framework.
 #' @param width an optional parameter for specifying

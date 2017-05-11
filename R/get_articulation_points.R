@@ -19,7 +19,7 @@
 #' #> [1]  9 10 12 19 22 26 30
 #'
 #' # For the articulation points, change the node
-#' # shape to a `circle``
+#' # shape to a `circle`
 #' graph <-
 #'   graph %>%
 #'   select_nodes_by_id(

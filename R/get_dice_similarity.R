@@ -1,10 +1,10 @@
 #' Get Dice similarity coefficient scores
-#' @description Get the Dice similiarity coefficient
+#' @description Get the Dice similarity coefficient
 #' scores for one or more nodes in a graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param nodes an optional vector of node IDs to
-#' consider for Dice similarity scores. If notsupplied,
+#' consider for Dice similarity scores. If not supplied,
 #' then similarity scores will be provided for every
 #' pair of nodes in the graph.
 #' @param direction using \code{all} (the default), the
@@ -15,7 +15,7 @@
 #' @param round_to the maximum number of decimal places
 #' to retain for the Dice similarity coefficient
 #' scores. The default value is \code{3}.
-#' @return a matrix with Dice similiarity values
+#' @return a matrix with Dice similarity values
 #' for each pair of nodes considered.
 #' @examples
 #' # Create a random graph
