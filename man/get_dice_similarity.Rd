@@ -11,7 +11,7 @@ get_dice_similarity(graph, nodes = NULL, direction = "all", round_to = 3)
 \code{dgr_graph}.}
 
 \item{nodes}{an optional vector of node IDs to
-consider for Dice similarity scores. If notsupplied,
+consider for Dice similarity scores. If not supplied,
 then similarity scores will be provided for every
 pair of nodes in the graph.}
 
@@ -26,11 +26,11 @@ to retain for the Dice similarity coefficient
 scores. The default value is \code{3}.}
 }
 \value{
-a matrix with Dice similiarity values
+a matrix with Dice similarity values
 for each pair of nodes considered.
 }
 \description{
-Get the Dice similiarity coefficient
+Get the Dice similarity coefficient
 scores for one or more nodes in a graph.
 }
 \examples{

@@ -27,11 +27,11 @@ to retain for the Jaccard similarity coefficient
 scores. The default value is \code{3}.}
 }
 \value{
-a matrix with Jaccard similiarity values
+a matrix with Jaccard similarity values
 for each pair of nodes considered.
 }
 \description{
-Get the Jaccard similiarity coefficient
+Get the Jaccard similarity coefficient
 scores for one or more nodes in a graph.
 }
 \examples{

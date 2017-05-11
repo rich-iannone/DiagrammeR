@@ -17,7 +17,7 @@ can be \code{dot} (default), \code{neato},
 see \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.}
 
 \item{allow_subst}{a boolean that enables/disables
-subsitution functionality.}
+substitution functionality.}
 
 \item{options}{parameters supplied to the
 htmlwidgets framework.}

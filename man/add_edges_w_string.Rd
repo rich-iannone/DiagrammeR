@@ -16,7 +16,7 @@ the string object should be formatted as a series of
 node ID values as \code{[node_ID_1]->[node_ID_2]}
 separated by a one or more space characters. For
 undirected graphs, \code{--} should replace
-\code{->}. Linebreaks in the vector won't cause an
+\code{->}. Line breaks in the vector won't cause an
 error.}
 
 \item{rel}{an optional vector specifying the

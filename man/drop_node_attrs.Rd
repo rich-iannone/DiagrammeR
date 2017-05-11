@@ -18,7 +18,7 @@ a graph object of class
 \code{dgr_graph}.
 }
 \description{
-Within a graph's internal NDF, remove
+Within a graph's internal ndf, remove
 an existing node attribute.
 }
 \examples{

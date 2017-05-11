@@ -4,8 +4,8 @@
 \alias{export_graph}
 \title{Export a graph to various file formats}
 \usage{
-export_graph(graph, file_name = NULL, file_type = NULL, width = NULL,
-  height = NULL)
+export_graph(graph, file_name = NULL, file_type = NULL, title = NULL,
+  width = NULL, height = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -18,6 +18,8 @@ export_graph(graph, file_name = NULL, file_type = NULL, width = NULL,
 Options for graph files are: \code{png}, \code{pdf},
 \code{svg}, and \code{ps}. Options for graph file
 formats are: \code{gexf}.}
+
+\item{title}{an optional title for the output graph.}
 
 \item{width}{output width in pixels or \code{NULL}
 for default. Only useful for export to image file
@@ -61,7 +63,10 @@ graph <-
     edges_df = edf)
 
 # Create a PDF file for the graph (`graph.pdf`)
-graph \%>\% export_graph("graph.pdf")
+graph \%>\%
+  export_graph(
+    file_name = "graph.pdf",
+    title = "Simple Graph")
 
 # Create a PNG file for the graph (`mypng`)
 graph \%>\%
