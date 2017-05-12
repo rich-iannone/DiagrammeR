@@ -78,9 +78,10 @@ get_constraint <- function(graph,
 
   # Create df with betweenness scores
   constraint_scores_df <-
-    data.frame(id = names(constraint_scores),
-               constraint = constraint_scores,
-               stringsAsFactors = FALSE)
+    data.frame(
+      id = names(constraint_scores),
+      constraint = constraint_scores,
+      stringsAsFactors = FALSE)
 
   # If vector of node IDs provided in `nodes` then
   # subset the output data frame

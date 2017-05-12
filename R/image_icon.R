@@ -522,8 +522,9 @@ image_icon <- function(icon_name) {
       paste0(stub, icon_names, extension)
 
     fa_icons <-
-      as.data.frame(cbind(icon_names, web_address),
-                    stringsAsFactors = FALSE)
+      as.data.frame(
+        cbind(icon_names, web_address),
+        stringsAsFactors = FALSE)
 
     icon_address <-
       fa_icons[which(fa_icons[,1] == icon_name), 2]

@@ -86,9 +86,10 @@ get_degree_out <- function(graph,
 
   # Create df with outdegree scores
   outdegree_values_df <-
-    data.frame(id = names(outdegree_values),
-               outdegree = outdegree_values,
-               stringsAsFactors = FALSE)
+    data.frame(
+      id = names(outdegree_values),
+      outdegree = outdegree_values,
+      stringsAsFactors = FALSE)
 
   return(outdegree_values_df)
 }

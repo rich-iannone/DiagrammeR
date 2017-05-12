@@ -66,9 +66,10 @@ get_bridging <- function(graph) {
 
   # Create df with betweenness scores
   bridging_scores_df <-
-    data.frame(id = names(bridging_scores),
-               bridging = bridging_scores,
-               stringsAsFactors = FALSE)
+    data.frame(
+      id = names(bridging_scores),
+      bridging = bridging_scores,
+      stringsAsFactors = FALSE)
 
   return(bridging_scores_df)
 }

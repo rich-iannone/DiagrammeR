@@ -65,9 +65,10 @@ get_betweenness <- function(graph) {
 
   # Create df with betweenness scores
   betweenness_scores_df <-
-    data.frame(id = names(betweenness_scores),
-               betweenness = betweenness_scores,
-               stringsAsFactors = FALSE)
+    data.frame(
+      id = names(betweenness_scores),
+      betweenness = betweenness_scores,
+      stringsAsFactors = FALSE)
 
   return(betweenness_scores_df)
 }
