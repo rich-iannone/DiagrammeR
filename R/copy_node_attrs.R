@@ -90,8 +90,9 @@ copy_node_attrs <- function(graph,
   nodes <-
     dplyr::bind_cols(
       nodes,
-      as.data.frame(nodes[, col_num_copy_from],
-                    stringsAsFactors = FALSE))
+      as.data.frame(
+        nodes[, col_num_copy_from],
+        stringsAsFactors = FALSE))
 
   # Set the column name for the copied attr
   colnames(nodes)[ncol(nodes)] <- node_attr_to

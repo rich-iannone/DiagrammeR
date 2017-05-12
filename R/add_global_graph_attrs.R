@@ -95,9 +95,9 @@ add_global_graph_attrs <- function(graph,
   # on the `attr` and `attr_type` columns
   global_attrs_joined <-
     global_attrs_available %>%
-    dplyr::full_join(global_attrs_to_add,
-                     by = c("attr",
-                            "attr_type")) %>%
+    dplyr::full_join(
+      global_attrs_to_add,
+      by = c("attr", "attr_type")) %>%
     dplyr::transmute(
       attr, attr_type,
       value = dplyr::coalesce(value.y, value.x)) %>%

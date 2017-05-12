@@ -96,8 +96,9 @@ copy_edge_attrs <- function(graph,
   edges <-
     dplyr::bind_cols(
       edges,
-      as.data.frame(edges[, col_num_copy_from],
-                    stringsAsFactors = FALSE))
+      as.data.frame(
+        edges[, col_num_copy_from],
+        stringsAsFactors = FALSE))
 
   # Set the column name for the copied attr
   colnames(edges)[ncol(edges)] <- edge_attr_to
