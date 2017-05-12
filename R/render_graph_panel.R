@@ -27,6 +27,11 @@
 #' render_graph_panel(
 #'   graph_1, graph_2, graph_3)
 #' }
+#' @importFrom dplyr filter rename select mutate bind_cols
+#' @importFrom igraph layout_nicely
+#' @importFrom purrr flatten_dbl
+#' @importFrom scales rescale
+#' @importFrom tibble as_tibble
 #' @export render_graph_panel
 
 render_graph_panel <- function(...) {
@@ -37,15 +42,18 @@ render_graph_panel <- function(...) {
   # Get the number of columns for the panel
   ncols <- length(graphs)
 
+  # Set the number of rows for the panel
+  nrows <- 1
+
   for (i in 1:length(graphs)) {
     if (i == 1) coords <- list()
 
     coords[[i]] <-
       graphs[[i]] %>%
       to_igraph() %>%
-      layout_nicely() %>%
-      as_tibble() %>%
-      rename(x = V1, y = V2)
+      igraph::layout_nicely() %>%
+      tibble::as_tibble() %>%
+      dplyr::rename(x = V1, y = V2)
   }
 
   for (i in 1:length(coords)) {
@@ -56,17 +64,18 @@ render_graph_panel <- function(...) {
 
     span_x <-
       c(span_x,
-        max(coords[[i]] %>% select(x) %>% flatten_dbl()) -
-          min(coords[[i]] %>% select(x) %>% flatten_dbl()))
+        max(coords[[i]] %>% dplyr::select(x) %>% purrr::flatten_dbl()) -
+          min(coords[[i]] %>% dplyr::select(x) %>% purrr::flatten_dbl()))
 
     span_y <-
       c(span_y,
-        max(coords[[i]] %>% select(y) %>% flatten_dbl()) -
-          min(coords[[i]] %>% select(y) %>% flatten_dbl()))
+        max(coords[[i]] %>% dplyr::select(y) %>% purrr::flatten_dbl()) -
+          min(coords[[i]] %>% dplyr::select(y) %>% purrr::flatten_dbl()))
   }
 
   # Get the plot area size for each graph
   plot_area_size <- c(max(span_x), max(span_y))
+
   max_square <-
     ceiling(max(plot_area_size)) +
     (.15 * (max(plot_area_size)))
@@ -78,14 +87,14 @@ render_graph_panel <- function(...) {
     xy_coords[[i]] <-
       graphs[[i]] %>%
       to_igraph() %>%
-      layout_nicely() %>%
-      as_tibble() %>%
-      rename(x = V1, y = V2) %>%
-      mutate(x = scales::rescale(
+      igraph::layout_nicely() %>%
+      tibble::as_tibble() %>%
+      dplyr::rename(x = V1, y = V2) %>%
+      dplyr::mutate(x = scales::rescale(
         x,
         to = c(max_square / 2 - ((max(x) - min(x)) / 2),
                max_square / 2 + ((max(x) - min(x)) / 2)))) %>% # center x
-      mutate(y = scales::rescale(
+      dplyr::mutate(y = scales::rescale(
         y,
         to = c(max_square / 2 - ((max(y) - min(y)) / 2),
                max_square / 2 + ((max(y) - min(y)) / 2)))) # center y
@@ -146,10 +155,9 @@ render_graph_panel <- function(...) {
 
     graphs[[i]]$nodes_df <-
       graphs[[i]]$nodes_df %>%
-      bind_cols(xy_coords[[i]]) %>%
-      mutate(x = x + (max_square * (i - 1)))
+      dplyr::bind_cols(xy_coords[[i]]) %>%
+      dplyr::mutate(x = x + (max_square * (i - 1)))
   }
-
 
   # Combine graphs into one
   for (i in 1:(length(graphs) - 1)) {
@@ -179,10 +187,10 @@ render_graph_panel <- function(...) {
     invert_selection() %>%
     set_node_attrs_ws(
       node_attr = "width", value = get_global_graph_attrs(.) %>%
-        filter(attr == "width") %>% .$value) %>%
+        dplyr::filter(attr == "width") %>% .$value) %>%
     set_node_attrs_ws(
       node_attr = "height", value = get_global_graph_attrs(.) %>%
-        filter(attr == "width") %>% .$value)
+        dplyr::filter(attr == "width") %>% .$value)
 
   render_graph(combo_graph)
 }
