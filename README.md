@@ -4,7 +4,7 @@
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
 [![codecov.io](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master) 
 
-With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. A collection of functions are available for working specifically with graph objects. The output can be incorporated in **RMarkdown** documents, integrated into **Shiny** web apps, converted into other graph formats, or exported as image, PDF, or SVG files.
+With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. A collection of functions are available for working specifically with graph objects. The output can be incorporated in **RMarkdown** documents, integrated into **Shiny** web apps, converted into other graph formats, or exported as **PNG**, **PDF**, or **SVG** files.
 
 <img src="inst/img/simple_graph.png">
 
@@ -14,7 +14,8 @@ It's possible to make the above graph diagram using a combination of **Diagramme
 library(DiagrammeR)
 
 create_random_graph(
-  n = 140, m = 100,
+  n = 140,
+  m = 100,
   directed = FALSE,
   set_seed = 23) %>%
   join_node_attrs(get_s_connected_cmpts(.)) %>%
@@ -50,7 +51,7 @@ This functionality makes it possible to generate a network graph with data avail
 
 Let's create a property graph that pertains to contributors to three software projects. This graph has nodes representing people and projects. The attributes `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` are specific to the `person` nodes while the `project`, `start_date`, `stars`, and `language` attributes apply to the `project` nodes. The edges represent the relationships between the people and the project.
 
-The example graph file `repository.dgr` is available in the `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package (currently, only for the Github version). We can load it into memory by using the `open_graph()` function, using `system.file()` to provide the location of the file within the package.
+The example graph file `repository.dgr` is available in the `extdata/example_graphs_dgr/` directory in the **DiagrammeR** package (currently, only for the **Github** version). We can load it into memory by using the `open_graph()` function, with `system.file()` to provide the location of the file within the package.
 
 ```r
 library(DiagrammeR)
