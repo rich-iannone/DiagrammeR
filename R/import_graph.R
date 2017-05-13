@@ -2,12 +2,16 @@
 #' @description Import a variety of graphs from
 #' different graph formats and create a graph object.
 #' @param graph_file a connection to a graph file.
+#' When provided as a path to a file, it will read the
+#' file from disk. Files starting with \code{http://},
+#' \code{https://}, \code{ftp://}, or \code{ftps://}
+#' will be automatically downloaded.
 #' @param file_type the type of file to be imported.
 #' Options are: \code{graphml} (GraphML), \code{gml}
 #' (GML), \code{sif} (SIF), \code{edges} (a .edges
 #' file), and \code{mtx} (MatrixMarket format). If not
-#' supplied, the function will infer the type by its
-#' file extension.
+#' supplied, the type of graph file will be inferred by
+#' its file extension.
 #' @param edges_extra_attr_names for \code{edges} files,
 #' a vector of attribute names beyond the \code{from}
 #' and \code{to} data columns can be provided in the
@@ -72,11 +76,13 @@
 #' #> [1] 78
 #' }
 #' @importFrom dplyr right_join select rename mutate everything bind_rows arrange distinct
+#' @importFrom downloader download
 #' @importFrom purrr flatten_int
 #' @importFrom stringr str_extract str_detect str_split str_count
 #' str_replace_all str_extract_all
 #' @importFrom tibble tibble as_tibble
 #' @importFrom readr read_delim
+#' @importFrom utils unzip
 #' @export import_graph
 
 import_graph <- function(graph_file,
@@ -90,17 +96,43 @@ import_graph <- function(graph_file,
   # Assign NULL to several objects
   id <- to_label <- from_label <-  NULL
 
-  # Stop function if file doesn't exist
-  if (file.exists(graph_file) == FALSE) {
-    stop("The file as specified doesn't exist.")
-  }
-
   # Stop function if `file_type` specified is not part
   # of the group that can be imported
   if (!is.null(file_type)) {
     if (!(tolower(file_type) %in%
           c("graphml", "gml", "sif", "edges", "mtx"))) {
       stop("The file type as specified cannot be imported.")
+    }
+  }
+
+  # Stop function if file doesn't exist
+  if (grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file) == FALSE) {
+    if (file.exists(graph_file) == FALSE) {
+      stop("The file as specified doesn't exist.")
+    }
+  }
+
+  if (grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file)) {
+
+    dest_file <-
+      unlist(strsplit(graph_file, "/"))[
+        length(unlist(strsplit(graph_file, "/")))]
+
+    # Download the file
+    downloader::download(graph_file, destfile = dest_file)
+
+    # Extract the file and get the filename of the extracted file
+    if (gsub(".*\\.([a-zA-Z]*?)", "\\1", graph_file) == "zip") {
+
+      # Extract from the .zip archive
+      utils::unzip(zipfile = dest_file)
+
+      # Get the file name
+      base_name <- strsplit(dest_file, split = "\\.") %>% unlist() %>% .[[1]]
+
+      graph_file <-
+        list.files(pattern = paste0(base_name, ".*"))[
+        !grepl(".*\\.zip$", list.files(pattern = paste0(base_name, ".*")))][1]
     }
   }
 
