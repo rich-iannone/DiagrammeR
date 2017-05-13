@@ -42,7 +42,7 @@
 #'   agg = "mean",
 #'   conditions = "value < 5.0")
 #' #> [1] 5.333333
-#' @importFrom dplyr group_by summarize_ filter_ select filter
+#' @importFrom dplyr group_by summarize_ filter_ select filter ungroup
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl flatten_int
 #' @export get_agg_degree_total
@@ -100,6 +100,7 @@ get_agg_degree_total <- function(graph,
     dplyr::group_by() %>%
     dplyr::summarize_(stats::as.formula(
       paste0("~", agg, "(total_degree, na.rm = TRUE)"))) %>%
+    dplyr::ungroup() %>%
     purrr::flatten_dbl()
 
   return(total_degree_agg)
