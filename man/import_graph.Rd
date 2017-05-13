@@ -8,14 +8,18 @@ import_graph(graph_file, file_type = NULL, edges_extra_attr_names = NULL,
   edges_extra_attr_coltypes = NULL)
 }
 \arguments{
-\item{graph_file}{a connection to a graph file.}
+\item{graph_file}{a connection to a graph file.
+When provided as a path to a file, it will read the
+file from disk. Files starting with \code{http://},
+\code{https://}, \code{ftp://}, or \code{ftps://}
+will be automatically downloaded.}
 
 \item{file_type}{the type of file to be imported.
 Options are: \code{graphml} (GraphML), \code{gml}
 (GML), \code{sif} (SIF), \code{edges} (a .edges
 file), and \code{mtx} (MatrixMarket format). If not
-supplied, the function will infer the type by its
-file extension.}
+supplied, the type of graph file will be inferred by
+its file extension.}
 
 \item{edges_extra_attr_names}{for \code{edges} files,
 a vector of attribute names beyond the \code{from}
