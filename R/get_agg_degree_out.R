@@ -100,6 +100,7 @@ get_agg_degree_out <- function(graph,
     dplyr::group_by() %>%
     dplyr::summarize_(stats::as.formula(
       paste0("~", agg, "(outdegree, na.rm = TRUE)"))) %>%
+    dplyr::ungroup() %>%
     purrr::flatten_dbl()
 
   return(outdegree_agg)
