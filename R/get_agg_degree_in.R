@@ -42,7 +42,7 @@
 #'   agg = "mean",
 #'   conditions = "value > 5.0")
 #' #> [1] 2.428571
-#' @importFrom dplyr group_by summarize_ filter_ select filter
+#' @importFrom dplyr group_by summarize_ filter_ select filter ungroup
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl flatten_int
 #' @export get_agg_degree_in
