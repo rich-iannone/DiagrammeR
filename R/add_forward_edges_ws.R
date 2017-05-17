@@ -1,4 +1,4 @@
-#' Add new edges with identical defintions as with a
+#' Add new edges with identical definitions as with a
 #' selection of edges
 #' @description Add edges in the same direction
 #' of one or more edges available as an edge selection
