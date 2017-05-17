@@ -3,47 +3,78 @@
 #' objects, render theses graph in a single panel.
 #' @param ... 2 or more graph objects of class
 #' \code{dgr_graph}.
+#' @param ncols the number of columns in the graph
+#' layout.
+#' @param nrows the number of rows in the graph
+#' layout.
 #' @examples
 #' \dontrun{
-#' # Create 3 random graphs with increasing
-#' # numbers of edges
+#' # Create 4 random graphs with 25 nodes and
+#' # increasing numbers of edges
 #' graph_1 <-
 #'   create_random_graph(
-#'     n = 25, m = 10,
-#'     set_seed = 23)
+#'     n = 25, m = 15, set_seed = 23)
 #'
 #' graph_2 <-
 #'   create_random_graph(
-#'     n = 25, m = 25,
-#'     set_seed = 23)
+#'     n = 25, m = 25, set_seed = 23)
 #'
 #' graph_3 <-
 #'   create_random_graph(
-#'     n = 25, m = 35,
-#'     set_seed = 23)
+#'     n = 25, m = 35, set_seed = 23)
 #'
-#' # Render all three graphs in the
-#' # order specified
-#' render_graph_panel(
-#'   graph_1, graph_2, graph_3)
+#' graph_4 <-
+#'   create_random_graph(
+#'     n = 25, m = 45, set_seed = 23)
+#'
+#' # Create a function to apply the
+#' # PageRank algorithm to the graph
+#' # and then color nodes by their
+#' # PageRank values
+#' pagerank_color <- function(x) {
+#'   x %>%
+#'   join_node_attrs(get_pagerank(.)) %>%
+#'   rescale_node_attrs(
+#'     node_attr_from = "pagerank",
+#'     to_lower_bound = "steelblue",
+#'     to_upper_bound = "red",
+#'     node_attr_to = "fillcolor",
+#'     from_lower_bound = 0,
+#'     from_upper_bound = 1)
 #' }
-#' @importFrom dplyr filter rename select mutate bind_cols
+#'
+#' # Render all four graphs in the
+#' # order specified while applying
+#' # the `pagerank_color` function
+#' render_graph_panel(
+#'   graph_1 %>% pagerank_color,
+#'   graph_2 %>% pagerank_color,
+#'   graph_3 %>% pagerank_color,
+#'   graph_4 %>% pagerank_color,
+#'   ncols = 2,
+#'   nrows = 2)
+#' }
+#' @importFrom dplyr filter rename select mutate bind_cols bind_rows
 #' @importFrom igraph layout_nicely
 #' @importFrom purrr flatten_dbl
 #' @importFrom scales rescale
 #' @importFrom tibble as_tibble
 #' @export render_graph_panel
 
-render_graph_panel <- function(...) {
+render_graph_panel <- function(...,
+                               ncols,
+                               nrows) {
 
   # Collect graphs into a single list object
   graphs <- list(...)
 
-  # Get the number of columns for the panel
-  ncols <- length(graphs)
-
-  # Set the number of rows for the panel
-  nrows <- 1
+  # # Set the number of columns for the panel if
+  # # `ncols` is not provided
+  # ncols <- (length(graphs) / 2) %>% floor()
+  #
+  # # Set the number of columns for the panel if
+  # # `nrows` is not provided
+  # nrows <- (length(graphs) / 2) %>% ceiling()
 
   for (i in 1:length(graphs)) {
     if (i == 1) coords <- list()
@@ -76,12 +107,13 @@ render_graph_panel <- function(...) {
   # Get the plot area size for each graph
   plot_area_size <- c(max(span_x), max(span_y))
 
+  # Get the maximum size of the plot square
   max_square <-
     ceiling(max(plot_area_size)) +
     (.15 * (max(plot_area_size)))
 
+  # Get a list of coordinates for each graph's nodes
   for (i in 1:length(graphs)) {
-
     if (i == 1) xy_coords <- list()
 
     xy_coords[[i]] <-
@@ -90,17 +122,24 @@ render_graph_panel <- function(...) {
       igraph::layout_nicely() %>%
       tibble::as_tibble() %>%
       dplyr::rename(x = V1, y = V2) %>%
-      dplyr::mutate(x = scales::rescale(
-        x,
-        to = c(max_square / 2 - ((max(x) - min(x)) / 2),
-               max_square / 2 + ((max(x) - min(x)) / 2)))) %>% # center x
-      dplyr::mutate(y = scales::rescale(
-        y,
-        to = c(max_square / 2 - ((max(y) - min(y)) / 2),
-               max_square / 2 + ((max(y) - min(y)) / 2)))) # center y
+      dplyr::mutate(
+        x = scales::rescale(
+          x,
+          to = c(
+            max_square / 2 - ((max(x) - min(x)) / 2),
+            max_square / 2 + ((max(x) - min(x)) / 2)))) %>% # center x
+      dplyr::mutate(
+        y = scales::rescale(
+          y,
+          to =
+            c(max_square / 2 - ((max(y) - min(y)) / 2),
+              max_square / 2 + ((max(y) - min(y)) / 2)))) # center y
   }
 
-  # Create graph for grid areas
+  #
+  # Create the outer box for the graph panels
+  #
+
   grid <-
     create_graph() %>%
     add_global_graph_attrs(attr = "shape", value = "plaintext", attr_type = "node") %>%
@@ -119,8 +158,11 @@ render_graph_panel <- function(...) {
     set_edge_attrs_ws(edge_attr = "arrowhead", value = "none") %>%
     clear_selection()
 
+  #
   # Create a grid for the graph panels
-  for (i in 1:ncols) {
+  #
+
+  for (i in 1:(ncols - 1)) {
 
     grid <-
       grid %>%
@@ -131,7 +173,7 @@ render_graph_panel <- function(...) {
       set_node_attrs_ws(node_attr = "label", value = " ") %>%
       set_node_attrs_ws(node_attr = "shape", value = "plaintext") %>%
       set_node_attrs_ws(node_attr = "x", value = i * max_square)  %>%
-      set_node_attrs_ws(node_attr = "y", value = max_square) %>%
+      set_node_attrs_ws(node_attr = "y", value = max_square * nrows) %>%
       clear_selection() %>%
       add_node(
         1,
@@ -150,13 +192,78 @@ render_graph_panel <- function(...) {
       clear_selection()
   }
 
+  for (i in 1:(nrows - 1)) {
+
+    grid <-
+      grid %>%
+      add_node(
+        1,
+        type = paste0("plot_sep_line_h_left_", i)) %>%
+      select_last_nodes_created() %>%
+      set_node_attrs_ws(node_attr = "label", value = " ") %>%
+      set_node_attrs_ws(node_attr = "shape", value = "plaintext") %>%
+      set_node_attrs_ws(node_attr = "x", value = 0)  %>%
+      set_node_attrs_ws(node_attr = "y", value = i * max_square) %>%
+      clear_selection() %>%
+      add_node(
+        1,
+        type = paste0("plot_sep_line_h_right_", i)) %>%
+      select_last_nodes_created() %>%
+      set_node_attrs_ws(node_attr = "label", value = " ") %>%
+      set_node_attrs_ws(node_attr = "shape", value = "plaintext") %>%
+      set_node_attrs_ws(node_attr = "x", value = max_square * ncols) %>%
+      set_node_attrs_ws(node_attr = "y", value = i * max_square) %>%
+      clear_selection() %>%
+      add_edge(
+        from = get_node_ids(., conditions = paste0("type == 'plot_sep_line_h_left_", i, "'")),
+        to = get_node_ids(., conditions = paste0("type == 'plot_sep_line_h_right_", i, "'"))) %>%
+      select_last_edges_created() %>%
+      set_edge_attrs_ws(edge_attr = "arrowhead", value = "none") %>%
+      clear_selection()
+  }
+
+  #
+  # Get layout matrix for graphs
+  #
+
+  vector_for_matrix <-
+    1:length(graphs) %>%
+    tibble::as_tibble() %>%
+    dplyr::bind_rows(
+      tibble::as_tibble(
+        rep(
+          as.numeric(NA),
+          (nrows * ncols) - length(graphs)))) %>%
+    purrr::flatten_dbl()
+
+  layout_matrix <-
+    matrix(
+      nrow = nrows, ncol = ncols,
+      data = vector_for_matrix,
+      byrow = TRUE)
+
   # Translate node positions for each graph
   for (i in 1:length(graphs)) {
+
+    for (j in 1:nrow(layout_matrix)) {
+      if (i %in% layout_matrix[j, ]) {
+        row_ <- j
+        break
+      }
+    }
+
+    for (k in 1:ncol(layout_matrix)) {
+      if (i %in% layout_matrix[, k]) {
+        col_ <- k
+        break
+      }
+    }
 
     graphs[[i]]$nodes_df <-
       graphs[[i]]$nodes_df %>%
       dplyr::bind_cols(xy_coords[[i]]) %>%
-      dplyr::mutate(x = x + (max_square * (i - 1)))
+      dplyr::mutate(x = x + (max_square * (col_ - 1))) %>%
+      dplyr::mutate(y = y - (max_square * (row_ - nrows)))
   }
 
   # Combine graphs into one
