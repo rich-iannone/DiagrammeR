@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_forward_edges_ws.R
 \name{add_forward_edges_ws}
 \alias{add_forward_edges_ws}
-\title{Add new edges with identical defintions as with a
+\title{Add new edges with identical definitions as with a
 selection of edges}
 \usage{
 add_forward_edges_ws(graph, rel = NULL)
