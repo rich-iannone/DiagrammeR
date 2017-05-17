@@ -4,11 +4,17 @@
 \alias{render_graph_panel}
 \title{Render several graphs in a single panel}
 \usage{
-render_graph_panel(...)
+render_graph_panel(..., ncols, nrows)
 }
 \arguments{
 \item{...}{2 or more graph objects of class
 \code{dgr_graph}.}
+
+\item{ncols}{the number of columns in the graph
+layout.}
+
+\item{nrows}{the number of rows in the graph
+layout.}
 }
 \description{
 Using 2 or more \code{dgr_graph}
@@ -16,26 +22,49 @@ objects, render theses graph in a single panel.
 }
 \examples{
 \dontrun{
-# Create 3 random graphs with increasing
-# numbers of edges
+# Create 4 random graphs with 25 nodes and
+# increasing numbers of edges
 graph_1 <-
   create_random_graph(
-    n = 25, m = 10,
-    set_seed = 23)
+    n = 25, m = 15, set_seed = 23)
 
 graph_2 <-
   create_random_graph(
-    n = 25, m = 25,
-    set_seed = 23)
+    n = 25, m = 25, set_seed = 23)
 
 graph_3 <-
   create_random_graph(
-    n = 25, m = 35,
-    set_seed = 23)
+    n = 25, m = 35, set_seed = 23)
 
-# Render all three graphs in the
-# order specified
+graph_4 <-
+  create_random_graph(
+    n = 25, m = 45, set_seed = 23)
+
+# Create a function to apply the
+# PageRank algorithm to the graph
+# and then color nodes by their
+# PageRank values
+pagerank_color <- function(x) {
+  x \%>\%
+  join_node_attrs(get_pagerank(.)) \%>\%
+  rescale_node_attrs(
+    node_attr_from = "pagerank",
+    to_lower_bound = "steelblue",
+    to_upper_bound = "red",
+    node_attr_to = "fillcolor",
+    from_lower_bound = 0,
+    from_upper_bound = 1)
+}
+
+# Render all four graphs in the
+# order specified while applying
+# the `pagerank_color` function
 render_graph_panel(
-  graph_1, graph_2, graph_3)
+  graph_1 \%>\% pagerank_color,
+  graph_2 \%>\% pagerank_color,
+  graph_3 \%>\% pagerank_color,
+  graph_4 \%>\% pagerank_color,
+  ncols = 2,
+  nrows = 2)
 }
 }
