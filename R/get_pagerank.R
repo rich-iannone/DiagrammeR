@@ -40,7 +40,7 @@
 #'     node_attr_from = "pagerank",
 #'     node_attr_to = "fillcolor",
 #'     palette = "RdYlGn") %>%
-#'  render_graph(layout = "circle")
+#'   render_graph(layout = "circle")
 #' @importFrom igraph page_rank
 #' @export get_pagerank
 
