@@ -143,7 +143,7 @@ render_graph_panel <- function(...,
   }
 
   #
-  # Create the outer box for the graph panels
+  # Create a grid for the graph panels
   #
 
   grid <-
@@ -151,25 +151,6 @@ render_graph_panel <- function(...,
     add_global_graph_attrs(attr = "shape", value = "plaintext", attr_type = "node") %>%
     add_global_graph_attrs(attr = "width", value = 0.001, attr_type = "node") %>%
     add_global_graph_attrs(attr = "height", value = 0.001, attr_type = "node")
-  #   add_node(type = "plot_areas", location = "top-left") %>%
-  #   add_node(type = "plot_areas", location = "bottom-left") %>%
-  #   add_node(type = "plot_areas", location = "bottom-right") %>%
-  #   add_node(type = "plot_areas", location = "top-right") %>%
-  #   set_node_position(node = 1, x = 0, y = 0) %>%
-  #   set_node_position(node = 2, x = 0, y = max_square * nrows) %>%
-  #   set_node_position(node = 3, x = max_square * ncols, y = max_square * nrows) %>%
-  #   set_node_position(node = 4, x = max_square * ncols, y = 0) %>%
-  #   select_nodes() %>%
-  #   set_node_attrs_ws(node_attr = "label", value = " ") %>%
-  #   set_node_attrs_ws(node_attr = "shape", value = "plaintext") %>%
-  #   add_edges_w_string(edges = "1->2 2->3 3->4 4->1") %>%
-  #   select_edges() %>%
-  #   set_edge_attrs_ws(edge_attr = "arrowhead", value = "none") %>%
-  #   clear_selection()
-
-  #
-  # Create a grid for the graph panels
-  #
 
   for (i in 1:(ncols + 1)) {
 
