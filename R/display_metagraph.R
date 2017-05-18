@@ -17,6 +17,7 @@
 #' condition of being a property graph, otherwise
 #' the function yields an error.
 #' @examples
+#' \dontrun{
 #' # Create a randomized property graph with 1000
 #' # nodes and 1350 edges
 #' property_graph <-
@@ -45,6 +46,7 @@
 #' # Display this graph's metagraph, or, underlying
 #' # graph model for a property graph
 #' display_metagraph(property_graph)
+#' }
 #' @importFrom dplyr select distinct inner_join rename mutate
 #' @export display_metagraph
 
