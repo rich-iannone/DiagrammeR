@@ -48,6 +48,9 @@ add_n_nodes <- function(graph,
     label <- as.character(NA)
   }
 
+  # Create bindings for specific variables
+  id <- index__ <- NULL
+
   # Collect extra vectors of data as `extras`
   extras <- list(...)
 

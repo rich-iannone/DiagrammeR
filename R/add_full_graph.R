@@ -166,6 +166,9 @@ add_full_graph <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Create bindings for specific variables
+  id <- index__ <- NULL
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
