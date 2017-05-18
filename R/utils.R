@@ -77,7 +77,6 @@ graph_contains_node_selection <- function(graph) {
   }
 }
 
-
 # Function to replace the `node_selection` df with
 # different node ID values
 #' @importFrom tibble tibble as_tibble
@@ -198,11 +197,9 @@ is_attr_unique_and_non_na <- function(graph,
   }
 }
 
-
 ###
 # Graph transformation functions
 ###
-
 
 # Function to take a graph object and labels for `from`
 # and `to` values, and, translate the `from`/`to` label
@@ -334,5 +331,45 @@ save_graph_as_rds <- function(graph) {
 
   # Save the graph as an RDS file in the subdirectory
   saveRDS(graph, file = paste0(rds_dir_name, "/", rds_filename))
+}
+
+###
+# Aesthetic attribute functions
+###
+
+# Function to get the ideal contrasting text color
+# (black or white) given the fillcolor of a node
+contrasting_text_color <- function(background_color) {
+
+  if (background_color == "#000000") {
+    contrasting_color <- "#FFFFFF"
+  } else if (background_color == "#FFFFFF") {
+    contrasting_color <- "#000000"
+  } else {
+
+    rgb_colors <-
+      ((grDevices::col2rgb(background_color) %>% as.numeric()) / 255)^2.2
+
+    luminance <-
+      (0.2126 * rgb_colors[1]) +
+      (0.7152 * rgb_colors[2]) +
+      (0.0722 * rgb_colors[3])
+
+    saturation <- (max(rgb_colors) - min(rgb_colors)) / max(rgb_colors)
+
+    if (saturation > 0.3 & saturation < 0.5) {
+      if (luminance > 0.5) {
+        contrasting_color <- "#000000"
+      }
+    } else if (saturation <= 0.3){
+      if (luminance > 0.5) {
+        contrasting_color <- "#222222"
+      }
+    } else {
+      contrasting_color <- "#FFFFFF"
+    }
+  }
+
+  return(contrasting_color)
 }
 
