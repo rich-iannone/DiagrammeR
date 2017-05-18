@@ -39,45 +39,6 @@ test_that("rendering a graph is indeed possible", {
   expect_is(rendered_graph, c("grViz", "htmlwidget"))
 })
 
-test_that("exporting Graphviz DOT code is indeed possible", {
-
-  # Create a node data frame
-  ndf <-
-    create_node_df(
-      n = 26,
-      type = "letter",
-      shape = sample(c("circle", "rectangle"),
-                     length(1:26),
-                     replace = TRUE),
-      fillcolor = sample(c("aqua", "gray80",
-                           "pink", "lightgreen",
-                           "azure", "yellow"),
-                         length(1:26),
-                         replace = TRUE))
-
-  # Create an edge data frame
-  edf <-
-    create_edge_df(
-      from = sample(1:26, replace = TRUE),
-      to = sample(1:26, replace = TRUE),
-      rel = "letter_to_letter")
-
-  # Create the graph object using the node and
-  # edge data frames
-  graph <-
-    create_graph(
-      nodes_df = ndf,
-      edges_df = edf)
-
-  # Output the DOT code as a character object
-  graph_dot_output <-
-    render_graph(graph, output = "DOT")
-
-  # Expect that the DOT code exported is the same
-  # as that contained in the graph object
-  expect_equal(graph_dot_output, graph$dot_code)
-})
-
 test_that("rendering a graph from a series is also possible", {
 
   # Create a set of graphs for a graph series
