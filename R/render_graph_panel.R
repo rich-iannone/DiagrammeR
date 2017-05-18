@@ -7,6 +7,8 @@
 #' layout.
 #' @param nrows the number of rows in the graph
 #' layout.
+#' @param titles an optional vector of titles for
+#' each of the graphs displayed.
 #' @examples
 #' \dontrun{
 #' # Create 4 random graphs with 25 nodes and
@@ -63,7 +65,8 @@
 
 render_graph_panel <- function(...,
                                ncols,
-                               nrows) {
+                               nrows,
+                               titles = NULL) {
 
   # Collect graphs into a single list object
   graphs <- list(...)
@@ -140,11 +143,11 @@ render_graph_panel <- function(...,
   # Create the outer box for the graph panels
   #
 
-  # grid <-
-  #   create_graph() %>%
-  #   add_global_graph_attrs(attr = "shape", value = "plaintext", attr_type = "node") %>%
-  #   add_global_graph_attrs(attr = "width", value = 0.001, attr_type = "node") %>%
-  #   add_global_graph_attrs(attr = "height", value = 0.001, attr_type = "node") %>%
+  grid <-
+    create_graph() %>%
+    add_global_graph_attrs(attr = "shape", value = "plaintext", attr_type = "node") %>%
+    add_global_graph_attrs(attr = "width", value = 0.001, attr_type = "node") %>%
+    add_global_graph_attrs(attr = "height", value = 0.001, attr_type = "node")
   #   add_node(type = "plot_areas", location = "top-left") %>%
   #   add_node(type = "plot_areas", location = "bottom-left") %>%
   #   add_node(type = "plot_areas", location = "bottom-right") %>%
@@ -269,6 +272,40 @@ render_graph_panel <- function(...,
       dplyr::mutate(y = y - (max_square * (row_ - nrows)))
   }
 
+
+  # Add graph titles to each graph panel
+  if (!is.null(titles)) {
+
+    graph_titles <-
+      create_graph()
+
+    for (i in 1:length(graphs)) {
+
+      for (j in 1:nrow(layout_matrix)) {
+        if (i %in% layout_matrix[j, ]) {
+          row_ <- j
+          break
+        }
+      }
+
+      for (k in 1:ncol(layout_matrix)) {
+        if (i %in% layout_matrix[, k]) {
+          col_ <- k
+          break
+        }
+      }
+
+      graph_titles <-
+        graph_titles %>%
+        add_node(
+          label = titles[i],
+          type = "title",
+          shape = "plaintext",
+          x = (max_square * (col_ - 1)) + (0.5 * max_square),
+          y = (nrows * max_square) - ((row_ - 1) * max_square))
+    }
+  }
+
   # Combine graphs into one
   for (i in 1:(length(graphs) - 1)) {
 
@@ -289,6 +326,16 @@ render_graph_panel <- function(...,
     }
   }
 
+  if (!is.null(titles)) {
+    combo_graph <-
+      combine_graphs(combo_graph, graph_titles) %>%
+      select_nodes(conditions = "type == 'title'") %>%
+      set_node_attrs_ws(node_attr = "shape", value = "rectangle") %>%
+      set_node_attrs_ws(node_attr = "fontsize", value = 16) %>%
+      set_node_attrs_ws(node_attr = "labeljust", value = "r") %>%
+      clear_selection()
+  }
+
   combo_graph <-
     combine_graphs(combo_graph, grid) %>%
     select_nodes(conditions = "grepl('plot_', type)") %>%
@@ -300,7 +347,8 @@ render_graph_panel <- function(...,
         dplyr::filter(attr == "width") %>% .$value) %>%
     set_node_attrs_ws(
       node_attr = "height", value = get_global_graph_attrs(.) %>%
-        dplyr::filter(attr == "width") %>% .$value)
+        dplyr::filter(attr == "width") %>% .$value) %>%
+    clear_selection()
 
   render_graph(combo_graph)
 }
