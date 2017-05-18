@@ -341,33 +341,22 @@ save_graph_as_rds <- function(graph) {
 # (black or white) given the fillcolor of a node
 contrasting_text_color <- function(background_color) {
 
-  if (background_color == "#000000") {
-    contrasting_color <- "#FFFFFF"
-  } else if (background_color == "#FFFFFF") {
-    contrasting_color <- "#000000"
-  } else {
+  rgb_colors <-
+    ((grDevices::col2rgb(background_color) %>% as.numeric()) / 255)^2.2
 
-    rgb_colors <-
-      ((grDevices::col2rgb(background_color) %>% as.numeric()) / 255)^2.2
+  luminance <-
+    (0.2126 * rgb_colors[1]) +
+    (0.7152 * rgb_colors[2]) +
+    (0.0722 * rgb_colors[3])
 
-    luminance <-
-      (0.2126 * rgb_colors[1]) +
-      (0.7152 * rgb_colors[2]) +
-      (0.0722 * rgb_colors[3])
+  saturation <- (max(rgb_colors) - min(rgb_colors) + 0.00001) / (max(rgb_colors) + 0.00001)
 
-    saturation <- (max(rgb_colors) - min(rgb_colors)) / max(rgb_colors)
-
-    if (saturation > 0.3 & saturation < 0.5) {
-      if (luminance > 0.5) {
-        contrasting_color <- "#000000"
-      }
-    } else if (saturation <= 0.3){
-      if (luminance > 0.5) {
-        contrasting_color <- "#222222"
-      }
-    } else {
-      contrasting_color <- "#FFFFFF"
+  if (saturation < 0.35) {
+    if (luminance > 0.5) {
+      contrasting_color <- "#000000"
     }
+  } else {
+    contrasting_color <- "#FFFFFF"
   }
 
   return(contrasting_color)
