@@ -49,10 +49,10 @@
 #'   add_balanced_tree(2, 3) %>%
 #'   render_graph(graph, output = "visNetwork")
 #' }
-#' @importFrom dplyr select rename mutate
+#' @importFrom dplyr select rename mutate filter coalesce left_join
 #' @importFrom igraph layout_in_circle layout_with_sugiyama layout_with_kk layout_with_fr layout_nicely
 #' @importFrom tibble as_tibble
-#' @importFrom purrr map
+#' @importFrom purrr map flatten_chr
 #' @export render_graph
 
 render_graph <- function(graph,
@@ -95,6 +95,37 @@ render_graph <- function(graph,
           graph, "fontcolor", "gray30", "graph")
     }
 
+    # If no fillcolor provided, use default; if no default available,
+    # use white
+    if (!("fillcolor" %in% colnames(graph$nodes_df))) {
+      if ("fillcolor" %in% graph$global_attrs$attr) {
+
+      graph$nodes_df$fillcolor <-
+        graph$global_attrs %>%
+        dplyr::filter(attr == "fillcolor" & attr_type == "node") %>%
+        dplyr::select(value) %>%
+        purrr::flatten_chr()
+      } else {
+        graph$nodes_df$fillcolor <- "white"
+      }
+    }
+
+    # Translate X11 colors to hexadecimal colors
+    if ("fillcolor" %in% colnames(graph$nodes_df)) {
+
+      graph$nodes_df <-
+        graph$nodes_df %>%
+        dplyr::left_join(
+          x11_hex() %>%
+            tibble::as_tibble() %>%
+            dplyr::mutate(hex = toupper(hex)),
+          by = c("fillcolor" = "x11_name")) %>%
+        dplyr::mutate(new_fillcolor = dplyr::coalesce(hex, fillcolor)) %>%
+        dplyr::select(-fillcolor, -hex) %>%
+        dplyr::rename(fillcolor = new_fillcolor)
+    }
+
+
     # Use adaptive font coloring for nodes that have a fill color
     if (!("fontcolor" %in% colnames(graph$nodes_df)) &
         "fillcolor" %in% colnames(graph$nodes_df)) {
@@ -103,7 +134,6 @@ render_graph <- function(graph,
         graph$nodes_df$fillcolor %>%
         purrr::map(contrasting_text_color) %>% unlist()
     }
-
 
     if (!is.null(layout)) {
       if (layout %in% c("circle", "tree", "kk", "fr", "nicely")) {
