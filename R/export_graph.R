@@ -11,6 +11,7 @@
 #' Options for graph files are: \code{png}, \code{pdf},
 #' \code{svg}, and \code{ps}. Options for graph file
 #' formats are: \code{gexf}.
+#' @param title an optional title for the output graph.
 #' @param width output width in pixels or \code{NULL}
 #' for default. Only useful for export to image file
 #' formats \code{png}, \code{pdf}, \code{svg}, and
@@ -45,7 +46,10 @@
 #'     edges_df = edf)
 #'
 #' # Create a PDF file for the graph (`graph.pdf`)
-#' graph %>% export_graph("graph.pdf")
+#' graph %>%
+#'   export_graph(
+#'     file_name = "graph.pdf",
+#'     title = "Simple Graph")
 #'
 #' # Create a PNG file for the graph (`mypng`)
 #' graph %>%
@@ -61,6 +65,7 @@
 export_graph <- function(graph,
                          file_name = NULL,
                          file_type = NULL,
+                         title = NULL,
                          width = NULL,
                          height = NULL) {
 
@@ -101,6 +106,29 @@ export_graph <- function(graph,
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
     }
 
+    if (!is.null(title)) {
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "label", title, "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labelloc", "t", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labeljust", "c", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontname", "Helvetica", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontcolor", "gray30", "graph")
+    }
+
     # Generate DOT code
     dot_code <- generate_dot(graph)
 
@@ -119,6 +147,29 @@ export_graph <- function(graph,
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
+    }
+
+    if (!is.null(title)) {
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "label", title, "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labelloc", "t", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labeljust", "c", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontname", "Helvetica", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontcolor", "gray30", "graph")
     }
 
     # Generate DOT code
@@ -141,6 +192,29 @@ export_graph <- function(graph,
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
     }
 
+    if (!is.null(title)) {
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "label", title, "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labelloc", "t", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labeljust", "c", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontname", "Helvetica", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontcolor", "gray30", "graph")
+    }
+
     # Generate DOT code
     dot_code <- generate_dot(graph)
 
@@ -159,6 +233,29 @@ export_graph <- function(graph,
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
       stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
+    }
+
+    if (!is.null(title)) {
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "label", title, "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labelloc", "t", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "labeljust", "c", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontname", "Helvetica", "graph")
+
+      graph <-
+        add_global_graph_attrs(
+          graph, "fontcolor", "gray30", "graph")
     }
 
     # Generate DOT code
