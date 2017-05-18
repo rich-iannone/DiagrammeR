@@ -52,6 +52,7 @@
 #' @importFrom dplyr select rename mutate
 #' @importFrom igraph layout_in_circle layout_with_sugiyama layout_with_kk layout_with_fr layout_nicely
 #' @importFrom tibble as_tibble
+#' @importFrom purrr map
 #' @export render_graph
 
 render_graph <- function(graph,
@@ -93,6 +94,16 @@ render_graph <- function(graph,
         add_global_graph_attrs(
           graph, "fontcolor", "gray30", "graph")
     }
+
+    # Use adaptive font coloring for nodes that have a fill color
+    if (!("fontcolor" %in% colnames(graph$nodes_df)) &
+        "fillcolor" %in% colnames(graph$nodes_df)) {
+
+      graph$nodes_df$fontcolor <-
+        graph$nodes_df$fillcolor %>%
+        purrr::map(contrasting_text_color) %>% unlist()
+    }
+
 
     if (!is.null(layout)) {
       if (layout %in% c("circle", "tree", "kk", "fr", "nicely")) {
