@@ -40,8 +40,8 @@ With a graph object of class
 # lengths
 graph <-
   create_graph() \%>\%
-  add_path(4, "four_path") \%>\%
-  add_path(5, "five_path")
+  add_path(4, type = "four_path") \%>\%
+  add_path(5, type = "five_path")
 
 # Get node information from this graph
 node_info(graph)

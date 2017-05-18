@@ -28,6 +28,7 @@ verified by using the \code{is_property_graph()}
 function.
 }
 \examples{
+\dontrun{
 # Create a randomized property graph with 1000
 # nodes and 1350 edges
 property_graph <-
@@ -56,4 +57,5 @@ property_graph <-
 # Display this graph's metagraph, or, underlying
 # graph model for a property graph
 display_metagraph(property_graph)
+}
 }

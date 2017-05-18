@@ -47,13 +47,13 @@ get_pagerank(graph)
 #> 9   9 0.16945368
 #> 10 10 0.27675311
 
-# Colorize nodes according to their PageRank
-# scores and render graph with a circle layout
-graph \%>\%
+# Colorize nodes according to their
+# PageRank scores
+graph <-
+  graph \%>\%
   join_node_attrs(get_pagerank(.)) \%>\%
   colorize_node_attrs(
     node_attr_from = "pagerank",
     node_attr_to = "fillcolor",
-    palette = "RdYlGn") \%>\%
-  render_graph(layout = "circle")
+    palette = "RdYlGn")
 }
