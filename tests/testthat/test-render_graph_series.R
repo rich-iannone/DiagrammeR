@@ -10,9 +10,9 @@ test_that("rendering a graph is indeed possible", {
       shape = sample(c("circle", "rectangle"),
                      length(1:26),
                      replace = TRUE),
-      fillcolor = sample(c("aqua", "gray80",
-                           "pink", "lightgreen",
-                           "azure", "yellow"),
+      fillcolor = sample(c("steelblue", "gray80",
+                           "#FFC0CB", "green",
+                           "azure", NA),
                          length(1:26),
                          replace = TRUE))
 
