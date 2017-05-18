@@ -71,6 +71,9 @@ render_graph_panel <- function(...,
   # Collect graphs into a single list object
   graphs <- list(...)
 
+  # Create bindings for specific variables
+  V1 <- V2 <- x <- y <- NULL
+
   # # Set the number of columns for the panel if
   # # `ncols` is not provided
   # ncols <- (length(graphs) / 2) %>% floor()
