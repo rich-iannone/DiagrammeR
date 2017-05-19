@@ -67,6 +67,9 @@ render_graph <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Create bindings for specific variables
+  V1 <- V2 <- x <- y <- NULL
+
   if (is.null(output)) {
     output <- "graph"
   }

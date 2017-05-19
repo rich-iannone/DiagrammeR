@@ -56,6 +56,9 @@ get_agg_degree_in <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Create binding for variable
+  id <- NULL
+
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
   if (!is.null(conditions)) {

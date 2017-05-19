@@ -69,6 +69,9 @@ get_edge_attrs_ws <- function(graph,
     stop("There is no selection of edges available.")
   }
 
+  # Create bindings for specific variables
+  id <- from <- to <- NULL
+
   # Extract the edge data frame (ndf)
   # from the graph
   edf <- graph$edges_df
