@@ -74,14 +74,33 @@ render_graph_panel <- function(...,
   # Create bindings for specific variables
   V1 <- V2 <- x <- y <- NULL
 
-  # # Set the number of columns for the panel if
-  # # `ncols` is not provided
-  # ncols <- (length(graphs) / 2) %>% floor()
-  #
-  # # Set the number of columns for the panel if
-  # # `nrows` is not provided
-  # nrows <- (length(graphs) / 2) %>% ceiling()
+  # Set the number of columns for the panel if
+  # `ncols` is not provided
+  ncols <- (length(graphs) / 2) %>% ceiling()
 
+  # Set the number of columns for the panel if
+  # `nrows` is not provided
+  nrows <- (length(graphs) / 2) %>% ceiling()
+
+  # Remove rows to determine whether less could be used
+  for (i in nrows:1) {
+
+    if (i * ncols > length(graphs)) {
+      nrows <- i
+    }
+
+    if (i * ncols == length(graphs)) {
+      nrows <- i
+      break
+    }
+
+    if (i * ncols < length(graphs)) {
+      nrows <- i + 1
+      break
+    }
+  }
+
+  # Get list of coordinates for each of the graphs
   for (i in 1:length(graphs)) {
     if (i == 1) coords <- list()
 
