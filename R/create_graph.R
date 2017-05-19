@@ -171,18 +171,19 @@ create_graph <- function(nodes_df = NULL,
           attr = as.character(
             c("layout", "outputorder", "fontname", "fontsize",
               "shape", "fixedsize", "width", "style",
-              "fillcolor", "color", "fontcolor",
+              "fillcolor", "color", "fontcolor", "bgcolor",
               "len", "color", "arrowsize")
           ),
           value = as.character(
             c("neato", "edgesfirst", "Helvetica", "10",
               "circle", "true", "0.5", "filled",
-              "aliceblue", "gray70", "gray50",
+              "aliceblue", "gray70", "gray50", "white",
               "1.5", "gray40", "0.5")
           ),
           attr_type = as.character(
             c(rep("graph", 2),
               rep("node", 9),
+              "graph",
               rep("edge", 3))),
           stringsAsFactors = FALSE)
     } else {
