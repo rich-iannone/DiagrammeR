@@ -110,7 +110,7 @@ display_metagraph <- function(graph) {
   metagraph <-
     metagraph %>%
     colorize_node_attrs(
-      "type", "fillcolor", alpha = 80) %>%
+      "type", "fillcolor") %>%
     copy_edge_attrs("rel", "label") %>%
     add_global_graph_attrs(
       "fontname", "Helvetica", "edge") %>%
@@ -119,7 +119,7 @@ display_metagraph <- function(graph) {
     add_global_graph_attrs(
       "fontsize", 10, "edge") %>%
     colorize_edge_attrs(
-      "rel", "color", palette = "OrRd", alpha = 60) %>%
+      "rel", "color") %>%
     add_global_graph_attrs(
       "fontsize", 6, "edge") %>%
     add_global_graph_attrs(
