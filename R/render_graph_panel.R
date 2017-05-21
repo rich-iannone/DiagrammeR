@@ -3,10 +3,10 @@
 #' objects, render theses graph in a single panel.
 #' @param ... 2 or more graph objects of class
 #' \code{dgr_graph}.
-#' @param ncols the number of columns in the graph
-#' layout.
-#' @param nrows the number of rows in the graph
-#' layout.
+#' @param ncols an option to provide the number
+#' of columns in the graph layout.
+#' @param nrows an option to provide the number
+#' of rows in the graph layout.
 #' @param titles an optional vector of titles for
 #' each of the graphs displayed.
 #' @examples
@@ -64,8 +64,8 @@
 #' @export render_graph_panel
 
 render_graph_panel <- function(...,
-                               ncols,
-                               nrows,
+                               ncols = NULL,
+                               nrows = NULL,
                                titles = NULL) {
 
   # Collect graphs into a single list object
@@ -74,29 +74,32 @@ render_graph_panel <- function(...,
   # Create bindings for specific variables
   V1 <- V2 <- x <- y <- NULL
 
-  # Set the number of columns for the panel if
-  # `ncols` is not provided
-  ncols <- (length(graphs) / 2) %>% ceiling()
+  # Set the number of columns and rows for the
+  # panel if either `nrows` or `ncols` is not provided
+  if (is.null(ncols) | is.null(nrows)) {
 
-  # Set the number of columns for the panel if
-  # `nrows` is not provided
-  nrows <- (length(graphs) / 2) %>% ceiling()
+    # Set the number of columns for the panel
+    ncols <- (length(graphs) / 2) %>% ceiling()
 
-  # Remove rows to determine whether less could be used
-  for (i in nrows:1) {
+    # Set the number of rows for the panel
+    nrows <- (length(graphs) / 2) %>% ceiling()
 
-    if (i * ncols > length(graphs)) {
-      nrows <- i
-    }
+    # Remove rows to determine whether less could be used
+    for (i in nrows:1) {
 
-    if (i * ncols == length(graphs)) {
-      nrows <- i
-      break
-    }
+      if (i * ncols > length(graphs)) {
+        nrows <- i
+      }
 
-    if (i * ncols < length(graphs)) {
-      nrows <- i + 1
-      break
+      if (i * ncols == length(graphs)) {
+        nrows <- i
+        break
+      }
+
+      if (i * ncols < length(graphs)) {
+        nrows <- i + 1
+        break
+      }
     }
   }
 
