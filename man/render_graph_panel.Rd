@@ -4,17 +4,17 @@
 \alias{render_graph_panel}
 \title{Render several graphs in a single panel}
 \usage{
-render_graph_panel(..., ncols, nrows, titles = NULL)
+render_graph_panel(..., ncols = NULL, nrows = NULL, titles = NULL)
 }
 \arguments{
 \item{...}{2 or more graph objects of class
 \code{dgr_graph}.}
 
-\item{ncols}{the number of columns in the graph
-layout.}
+\item{ncols}{an option to provide the number
+of columns in the graph layout.}
 
-\item{nrows}{the number of rows in the graph
-layout.}
+\item{nrows}{an option to provide the number
+of rows in the graph layout.}
 
 \item{titles}{an optional vector of titles for
 each of the graphs displayed.}
