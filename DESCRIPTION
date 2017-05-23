@@ -36,7 +36,7 @@ License: MIT + file LICENSE
 Imports:
     dplyr (>= 0.5.0),
     downloader (>= 0.4),
-    grDevices (>= 3.3.2),
+    grDevices (>= 3.4.0),
     htmltools (>= 0.3.6),
     htmlwidgets (>= 0.8),
     igraph (>= 1.0.1),
@@ -49,7 +49,7 @@ Imports:
     rgexf (>= 0.15.3),
     scales (>= 0.4.1),
     stringr (>= 1.2.0),
-    tibble (>= 1.3.0),
+    tibble (>= 1.3.1),
     tidyr (>= 0.6.1),
     viridis (>= 0.4.0),
     visNetwork (>= 1.0.3)
