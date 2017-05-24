@@ -34,7 +34,7 @@
 #' graph_node_id <-
 #'   graph %>%
 #'   add_edges_w_string(
-#'     "1->2 1->3 2->4 2->3")
+#'     edges = "1->2 1->3 2->4 2->3")
 #'
 #' # Show the graph's internal edge data frame
 #' get_edge_df(graph_node_id)
@@ -52,8 +52,9 @@
 #' graph_node_label <-
 #'   graph %>%
 #'   add_edges_w_string(
-#'     "one->two one->three
-#'      two->four two->three",
+#'     edges =
+#'       "one->two one->three
+#'        two->four two->three",
 #'     use_labels = TRUE)
 #'
 #' # Show the graph's internal edge data frame

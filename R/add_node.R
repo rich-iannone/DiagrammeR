@@ -32,7 +32,8 @@
 #' #> [1] 1 2
 #'
 #' # Add a node with a `type` value defined
-#' graph <- add_node(graph, "person")
+#' graph <-
+#'   add_node(graph, type = "person")
 #'
 #' # View the graph's internal node data frame (ndf)
 #' get_node_df(graph)

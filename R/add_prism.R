@@ -26,8 +26,14 @@
 #' # Create a new graph and add 2 prisms
 #' graph <-
 #'   create_graph() %>%
-#'   add_prism(3, "prism", "a") %>%
-#'   add_prism(3, "prism", "b")
+#'   add_prism(
+#'     n = 3,
+#'     type = "prism",
+#'     label = "a") %>%
+#'   add_prism(
+#'     n = 3,
+#'     type = "prism",
+#'     label = "b")
 #'
 #' # Get node information from this graph
 #' node_info(graph)

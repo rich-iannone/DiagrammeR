@@ -70,14 +70,16 @@
 #'     rel = "connected_to")
 #'
 #' # Show the graph's node data frame (ndf)
-#' graph %>% get_node_df()
+#' graph %>%
+#'   get_node_df()
 #' #>   id      type label
 #' #> 1  1 connected   1st
 #' #> 2  2 connected   2nd
 #' #> 3  3 connected   3rd
 #'
 #' # Show the graph's edge data frame (edf)
-#' graph %>% get_edge_df()
+#' graph %>%
+#'   get_edge_df()
 #' #>   id from to          rel
 #' #> 1  1    1  2 connected_to
 #' #> 2  2    1  3 connected_to
@@ -98,7 +100,8 @@
 #'   sample(9, FALSE) %>%
 #'   round(2) %>%
 #'   matrix(
-#'     nc = 3, nr = 3,
+#'     nc = 3,
+#'     nr = 3,
 #'     dimnames = list(c("a", "b", "c")))
 #'
 #' # Create the fully-connected graph (without
@@ -114,14 +117,16 @@
 #'     keep_loops = FALSE)
 #'
 #' # Show the graph's node data frame (ndf)
-#' graph %>% get_node_df
+#' graph %>%
+#'   get_node_df()
 #' #>   id     type label
 #' #> 1  1 weighted     a
 #' #> 2  2 weighted     b
 #' #> 3  3 weighted     c
 #'
 #' # Show the graph's edge data frame (edf)
-#' graph %>% get_edge_df()
+#' graph %>%
+#'   get_edge_df()
 #' #>   id from to        rel weight
 #' #> 1  1    1  2 related_to   3.30
 #' #> 2  2    1  3 related_to   5.02

@@ -22,8 +22,9 @@
 #'
 #' # Specify a path to a CSV file
 #' path_to_csv <-
-#'   system.file("extdata", "currencies.csv",
-#'               package = "DiagrammeR")
+#'   system.file(
+#'     "extdata", "currencies.csv",
+#'     package = "DiagrammeR")
 #'
 #' # To add nodes from a CSV file, call the
 #' # `add_nodes_from_table()` function; new node ID
@@ -31,11 +32,14 @@
 #' # increasing values from 1
 #' graph_1 <-
 #'   create_graph() %>%
-#'   add_nodes_from_table(path_to_csv)
+#'   add_nodes_from_table(table = path_to_csv)
 #'
 #' # View part of the graph's internal node data
 #' # frame (ndf) using `get_node_df()`
-#' graph_1 %>% get_node_df %>% .[, 1:5] %>% head
+#' graph_1 %>%
+#'   get_node_df() %>%
+#'   .[, 1:5] %>%
+#'   head()
 #' #>   id type label iso_4217_code curr_number
 #' #> 1  1 <NA>  <NA>           AED         784
 #' #> 2  2 <NA>  <NA>           AFN         971
@@ -57,7 +61,10 @@
 #'     set_type = "currency")
 #'
 #' # View part of the graph's internal ndf
-#' graph_2 %>% get_node_df() %>% .[, 1:5] %>% head()
+#' graph_2 %>%
+#'   get_node_df() %>%
+#'   .[, 1:5] %>%
+#'   head()
 #' #>   id     type label iso_4217_code curr_number
 #' #> 1  1 currency   AED           AED         784
 #' #> 2  2 currency   AFN           AFN         971
@@ -79,7 +86,9 @@
 #'     drop_cols = c("exponent", "currency_name"))
 #'
 #' # Show the node attribute names for the graph
-#' graph_3 %>% get_node_df() %>% colnames()
+#' graph_3 %>%
+#'   get_node_df() %>%
+#'   colnames()
 #' #> [1] "id"  type"  "label"  "iso_4217_code"
 #' #> [5] "curr_number"
 #' }

@@ -21,7 +21,7 @@
 #' # Create a new graph and add a cycle of nodes to it
 #' graph <-
 #'   create_graph() %>%
-#'   add_cycle(6)
+#'   add_cycle(n = 6)
 #'
 #' # Get node information from this graph
 #' node_info(graph)
