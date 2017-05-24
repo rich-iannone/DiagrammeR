@@ -66,7 +66,10 @@ edge_info(graph)
 # Add another node and edge to the graph
 graph <-
   graph \%>\%
-  add_edge(3, 2, "A")
+  add_edge(
+    from = 3,
+    to = 2,
+    rel = "A")
 
 # Verify that the edge has been created by
 # getting a count of graph edges
@@ -80,10 +83,14 @@ edge_count(graph)
 graph <-
   graph \%>\%
   add_edge(
-    "three", "four", "L",
+    from = "three",
+    to = "four",
+    rel = "L",
     use_labels = TRUE) \%>\%
   add_edge(
-    "four", "one", "L",
+    from = "four",
+    to = "one",
+    rel = "L",
     use_labels = TRUE)
 
 # Use the `get_edges()` function to verify
