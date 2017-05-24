@@ -13,15 +13,18 @@
 #' @param to a node ID to which the edge to be removed
 #' is incoming. If an edge ID is provided to
 #' \code{id}, then this argument is ignored.
+#' @param use_labels an option to use node \code{label}
+#' values in \code{from} and \code{to} for defining
+#' node connections. Note that this is only possible
+#' if all nodes have distinct \code{label} values set
+#' and none exist as an empty string.
 #' @param id an edge ID of the edge to be removed.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create an empty graph
-#' graph <- create_graph()
-#'
-#' # Add two nodes
-#' graph <- add_node(graph)
-#' graph <- add_node(graph)
+#' # Create a graph with 2 nodes
+#' graph <-
+#'   create_graph() %>%
+#'   add_n_nodes(n = 2)
 #'
 #' # Add an edge
 #' graph <-
@@ -45,19 +48,19 @@
 #' # 2 nodes and an edge
 #' graph_undirected <-
 #'   create_graph(directed = FALSE) %>%
-#'   add_n_nodes(2) %>%
-#'   add_edge(1, 2)
+#'   add_n_nodes(n = 2) %>%
+#'   add_edge(from = 1, to = 2)
 #'
-#' # Delete the edge; order of node ID
+#' # Delete the edge; the order of node ID
 #' # values provided in `from` and `to`
 #' # don't matter for the undirected case
 #' graph_undirected %>%
-#'   delete_edge(2, 1) %>%
+#'   delete_edge(from = 2, to = 1) %>%
 #'   edge_count()
 #' #> [1] 0
 #'
 #' graph_undirected %>%
-#'   delete_edge(1, 2) %>%
+#'   delete_edge(from = 1, to = 2) %>%
 #'   edge_count()
 #' #> [1] 0
 #'
@@ -68,12 +71,37 @@
 #'   delete_edge(id = 1) %>%
 #'   edge_count()
 #' #> [1] 0
+#'
+#' # Create a directed graph with
+#' # 2 labeled nodes and an edge
+#' graph_labeled_nodes <-
+#'   create_graph() %>%
+#'   add_n_nodes(
+#'     n = 2,
+#'     label = c("one", "two")) %>%
+#'   add_edge(
+#'     from = "one",
+#'     to = "two",
+#'     use_labels = TRUE)
+#'
+#' # Delete the edge using the node
+#' # labels in `from` and `to`; this
+#' # is analogous to creating the
+#' # edge using node labels
+#' graph_labeled_nodes %>%
+#'   delete_edge(
+#'     from = "one",
+#'     to = "two",
+#'     use_labels = TRUE) %>%
+#'   edge_count()
+#' #> [1] 0
 #' @importFrom dplyr filter
 #' @export delete_edge
 
 delete_edge <- function(graph,
                         from = NULL,
                         to = NULL,
+                        use_labels = FALSE,
                         id = NULL) {
 
   # Get the time of function start
@@ -124,9 +152,20 @@ delete_edge <- function(graph,
       stop("Single-length vectors for `from` and `to` should be specified.")
     }
 
-    # Change variable names
-    from_id <- from
-    to_id <- to
+    if (use_labels) {
+      from_to_node_id <-
+        translate_to_node_id(
+          graph = graph,
+          from = from,
+          to = to)
+
+      from_id <- from_to_node_id$from
+      to_id <- from_to_node_id$to
+    } else {
+
+      from_id <- from
+      to_id <- to
+    }
   }
 
   # Determine whether the pair of nodes provided
