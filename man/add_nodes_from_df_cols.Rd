@@ -67,7 +67,8 @@ graph <-
 # Show the graph's node data frame; duplicate
 # labels are prevented with `keep_duplicates =
 # FALSE`)
-graph \%>\% get_node_df()
+graph \%>\%
+  get_node_df()
 #>   id type label
 #> 1  1 <NA>     f
 #> 2  2 <NA>     p
@@ -86,7 +87,8 @@ graph <-
 # Show the graph's node data frame; note
 # that a nodes didn't get made with columns
 # that are not character class columns
-graph \%>\% get_node_df()
+graph \%>\%
+  get_node_df()
 #>   id type label
 #> 1  1 <NA>     f
 #> 2  2 <NA>     p

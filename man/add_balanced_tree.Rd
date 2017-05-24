@@ -40,15 +40,22 @@ With a graph object of class
 # different branching ratios
 graph <-
   create_graph() \%>\%
-  add_balanced_tree(2, 2, "binary") \%>\%
-  add_balanced_tree(3, 2, "tertiary")
+  add_balanced_tree(
+    k = 2,
+    h = 2,
+    type = "binary") \%>\%
+  add_balanced_tree(
+    k = 3,
+    h = 2,
+    type = "tertiary")
 
 # Get some node information from this graph
-node_info(graph) \%>\% head(5)
-#>    id     type label deg indeg outdeg loops
-#> 1   1   binary     1   2     0      2     0
-#> 2   2   binary     2   3     1      2     0
-#> 3   3   binary     3   3     1      2     0
-#> 4   4   binary     4   1     1      0     0
-#> 5   5   binary     5   1     1      0     0
+node_info(graph) \%>\%
+  head(5)
+#>   id   type label deg indeg outdeg loops
+#> 1  1 binary     1   2     0      2     0
+#> 2  2 binary     2   3     1      2     0
+#> 3  3 binary     3   3     1      2     0
+#> 4  4 binary     4   1     1      0     0
+#> 5  5 binary     5   1     1      0     0
 }

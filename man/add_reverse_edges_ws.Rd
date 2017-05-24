@@ -50,10 +50,13 @@ graph <-
     type = "type_a",
     label = c("a_1", "a_2")) \%>\%
   add_edge(
-    from = 1, to = 2, rel = "a")
+    from = 1,
+    to = 2,
+    rel = "a")
 
 # Get the graph's edges
-graph \%>\% get_edge_ids()
+graph \%>\%
+  get_edge_ids()
 #> [1] 1
 
 # Select the edge and create 2 additional edges
@@ -63,8 +66,8 @@ graph \%>\% get_edge_ids()
 graph <-
   graph \%>\%
   select_edges() \%>\%
-  add_reverse_edges_ws("b") \%>\%
-  add_reverse_edges_ws("c") \%>\%
+  add_reverse_edges_ws(rel = "b") \%>\%
+  add_reverse_edges_ws(rel = "c") \%>\%
   clear_selection()
 
 # Get the graph's edge data frame

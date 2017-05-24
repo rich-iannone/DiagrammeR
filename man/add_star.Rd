@@ -37,12 +37,12 @@ With a graph object of class
 \code{dgr_graph}, add a node star to the graph.
 }
 \examples{
-# Create a new graph and add 2 stars of varying
-# numbers of nodes
+# Create a new graph and add 2 stars of
+# varying numbers of nodes
 graph <-
   create_graph() \%>\%
-  add_star(4, "four_star") \%>\%
-  add_star(5, "five_star")
+  add_star(n = 4, type = "four_star") \%>\%
+  add_star(n = 5, type = "five_star")
 
 # Get node information from this graph
 node_info(graph)

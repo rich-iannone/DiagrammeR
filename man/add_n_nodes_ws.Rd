@@ -65,16 +65,19 @@ the following traversal functions:
 # new nodes
 graph <-
   create_graph() \%>\%
-  add_n_nodes(1) \%>\%
+  add_n_nodes(n = 1) \%>\%
   select_last_nodes_created() \%>\%
-  add_n_nodes_ws(5, "from")
+  add_n_nodes_ws(
+    n = 5,
+    direction = "from")
 
 # Get the graph's nodes
 get_node_ids(graph)
 #> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
-graph \%>\% get_edges()
+graph \%>\%
+  get_edges()
 #> "1->2" "1->3" "1->4" "1->5" "1->6"
 
 # Create an empty graph, add a node to it, select
@@ -83,9 +86,11 @@ graph \%>\% get_edges()
 # the new nodes
 graph <-
   create_graph() \%>\%
-  add_n_nodes(1) \%>\%
+  add_n_nodes(n = 1) \%>\%
   select_last_nodes_created() \%>\%
-  add_n_nodes_ws(5, "to")
+  add_n_nodes_ws(
+    n = 5,
+    direction = "to")
 
 # Get the graph's nodes
 get_node_ids(graph)
