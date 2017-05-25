@@ -21,12 +21,14 @@
 #' # Create a graph with 10 nodes and 9 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(10) %>%
+#'   add_n_nodes(n = 10) %>%
 #'   set_node_attrs(
-#'     "value", rnorm(node_count(.), 5, 2)) %>%
+#'     node_attr = "value",
+#'     values = rnorm(node_count(.), 5, 2)) %>%
 #'   add_edges_w_string(
-#'     "1->2 1->3 2->4 2->5 3->6
-#'      3->7 4->8 4->9 5->10")
+#'     edges =
+#'       "1->2 1->3 2->4 2->5 3->6
+#'        3->7 4->8 4->9 5->10")
 #'
 #' # Cache all values from the node attribute `value`
 #' # as a numeric vector

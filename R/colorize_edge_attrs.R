@@ -34,9 +34,10 @@
 #' # Create a graph with 5 nodes and 4 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(5) %>%
+#'   add_path(n = 5) %>%
 #'   set_edge_attrs(
-#'     "weight", c(3.7, 6.3, 9.2, 1.6))
+#'     edge_attr = "weight",
+#'     values = c(3.7, 6.3, 9.2, 1.6))
 #'
 #' # We can bucketize values in the edge `weight`
 #' # attribute using `cut_points` and, by doing so,
@@ -46,9 +47,10 @@
 #' graph <-
 #'   graph %>%
 #'   colorize_edge_attrs(
-#'     "weight", "color",
-#'     palette = "RdYlGn",
-#'     cut_points = c(0, 2, 4, 6, 8, 10))
+#'     edge_attr_from = "weight",
+#'     edge_attr_to = "color",
+#'     cut_points = c(0, 2, 4, 6, 8, 10),
+#'     palette = "RdYlGn")
 #'
 #' # Now there will be a `color` edge attribute
 #' # with distinct colors (from the RColorBrewer

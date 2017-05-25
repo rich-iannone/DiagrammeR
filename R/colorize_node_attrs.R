@@ -36,9 +36,9 @@
 #'   create_graph() %>%
 #'   add_path(8) %>%
 #'   set_node_attrs(
-#'     "weight",
-#'     c(8.2, 3.7, 6.3, 9.2,
-#'       1.6, 2.5, 7.2, 5.4))
+#'     node_attr = "weight",
+#'     values = c(8.2, 3.7, 6.3, 9.2,
+#'                1.6, 2.5, 7.2, 5.4))
 #'
 #' # Find group membership values for all nodes
 #' # in the graph through the Walktrap community
@@ -47,10 +47,12 @@
 #' # with the `join_node_attrs()` function
 #' graph <-
 #'   graph %>%
-#'   join_node_attrs(get_cmty_walktrap(.))
+#'   join_node_attrs(df = get_cmty_walktrap(.))
 #'
 #' # Inspect the number of distinct communities
-#' get_node_attrs(graph, "walktrap_group") %>%
+#' get_node_attrs(
+#'   graph,
+#'   node_attr = "walktrap_group") %>%
 #'   unique() %>%
 #'   sort()
 #' #> [1] 1 2 3
@@ -64,11 +66,15 @@
 #' graph <-
 #'   graph %>%
 #'   colorize_node_attrs(
-#'     "walktrap_group", "fillcolor",
-#'     palette = "Greens", alpha = 90) %>%
+#'     node_attr_from = "walktrap_group",
+#'     node_attr_to = "fillcolor",
+#'     palette = "Greens",
+#'     alpha = 90) %>%
 #'   colorize_node_attrs(
-#'     "walktrap_group", "color",
-#'     palette = "viridis", alpha = 80)
+#'     node_attr_from = "walktrap_group",
+#'     node_attr_to = "color",
+#'     palette = "viridis",
+#'     alpha = 80)
 #'
 #' # Show the graph's internal node data frame
 #' get_node_df(graph)
@@ -85,11 +91,11 @@
 #' # Create a graph with 8 nodes and 7 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(8) %>%
+#'   add_path(n = 8) %>%
 #'   set_node_attrs(
-#'     "weight",
-#'     c(8.2, 3.7, 6.3, 9.2,
-#'       1.6, 2.5, 7.2, 5.4))
+#'     node_attr = "weight",
+#'     values = c(8.2, 3.7, 6.3, 9.2,
+#'                1.6, 2.5, 7.2, 5.4))
 #'
 #' # We can bucketize values in `weight` using
 #' # `cut_points` and assign colors to each of the
@@ -98,7 +104,8 @@
 #' graph <-
 #'   graph %>%
 #'   colorize_node_attrs(
-#'     "weight", "fillcolor",
+#'     node_attr_from = "weight",
+#'     node_attr_to = "fillcolor",
 #'     cut_points = c(1, 3, 5, 7, 9))
 #'
 #' # Now there will be a `fillcolor` node attribute

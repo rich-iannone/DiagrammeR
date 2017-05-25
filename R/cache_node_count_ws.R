@@ -26,12 +26,12 @@
 #' # Create a graph with 5 nodes and 4 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(5)
+#'   add_path(n = 5)
 #'
 #' # Cache a count of nodes after creating a selection
 #' graph <-
 #'   graph %>%
-#'   select_nodes_by_id(2:5) %>%
+#'   select_nodes_by_id(nodes = 2:5) %>%
 #'   cache_node_count_ws(name = "node_count")
 #'
 #' # Get the number of nodes stored in the cache
