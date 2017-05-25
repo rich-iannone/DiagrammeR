@@ -24,7 +24,9 @@
 #' # Combined the node data frames using the
 #' # `combine_ndfs()` function
 #' node_df_combined <-
-#'   combine_ndfs(node_df_1, node_df_2)
+#'   combine_ndfs(
+#'     node_df_1,
+#'     node_df_2)
 #'
 #' # Inspect the combined node data frame
 #' node_df_combined

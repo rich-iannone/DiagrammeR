@@ -16,7 +16,8 @@
 #' # Create a random graph
 #' random_graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 23)
+#'     n = 10, m = 22,
+#'     set_seed = 23)
 #'
 #' # Get the mean total degree value from all
 #' # nodes in the graph

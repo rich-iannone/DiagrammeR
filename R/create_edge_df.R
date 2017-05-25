@@ -31,8 +31,8 @@
 #' #> 3  3    3  1   a
 #'
 #' # Create an edf with additional edge
-#' # attributes (where their classes will be
-#' # inferred from the input vectors)
+#' # attributes (where their classes will
+#' # be inferred from the input vectors)
 #' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),

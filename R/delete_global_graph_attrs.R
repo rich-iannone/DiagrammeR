@@ -17,11 +17,17 @@
 #' graph <-
 #'   create_graph() %>%
 #'   add_global_graph_attrs(
-#'     "overlap", "true", "graph") %>%
+#'     attr = "overlap",
+#'     value = "true",
+#'     attr_type = "graph") %>%
 #'   add_global_graph_attrs(
-#'     "penwidth", 3, "node") %>%
+#'     attr = "penwidth",
+#'     value = 3,
+#'     attr_type = "node") %>%
 #'   add_global_graph_attrs(
-#'     "penwidth", 3, "edge")
+#'     attr = "penwidth",
+#'     value = 3,
+#'     attr_type = "edge")
 #'
 #' # View the graph's global attributes
 #' get_global_graph_attrs(graph)
@@ -34,7 +40,9 @@
 #' # nodes using `delete_global_graph_attrs()`
 #' graph <-
 #'   graph %>%
-#'   delete_global_graph_attrs("penwidth", "node")
+#'   delete_global_graph_attrs(
+#'     attr = "penwidth",
+#'     attr_type = "node")
 #'
 #' # View the remaining set of global
 #' # attributes for the graph

@@ -9,8 +9,11 @@
 #' # shape a `square`
 #' graph <-
 #'   create_random_graph(
-#'     30, 50, set_seed = 23) %>%
-#'   set_node_attrs("shape", "square")
+#'     n = 30, m = 50,
+#'     set_seed = 23) %>%
+#'   set_node_attrs(
+#'     node_attr = "shape",
+#'     values = "square")
 #'
 #' # Get the articulation points in the graph (i.e.,
 #' # those nodes that if any were to be removed, the
@@ -23,8 +26,10 @@
 #' graph <-
 #'   graph %>%
 #'   select_nodes_by_id(
-#'     get_articulation_points(.)) %>%
-#'   set_node_attrs_ws("shape", "circle")
+#'     nodes = get_articulation_points(.)) %>%
+#'   set_node_attrs_ws(
+#'     node_attr = "shape",
+#'     value = "circle")
 #' @importFrom igraph articulation_points as_ids
 #' @export get_articulation_points
 

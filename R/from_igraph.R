@@ -15,7 +15,8 @@
 #' # Create a DiagrammeR graph object
 #' dgr_graph_orig <-
 #'   create_random_graph(
-#'     36, 50, set_seed = 23,
+#'     n = 36, m = 50,
+#'     set_seed = 23,
 #'     directed = TRUE)
 #'
 #' # Convert the DiagrammeR graph to an

@@ -21,27 +21,57 @@
 #' # Create a randomized property graph with 1000
 #' # nodes and 1350 edges
 #' property_graph <-
-#'   create_random_graph(1000, 1350, set_seed = 23) %>%
-#'   select_nodes_by_degree("deg >= 3") %>%
-#'   set_node_attrs_ws("type", "a") %>%
+#'   create_random_graph(
+#'     n = 1000, m = 1350,
+#'     set_seed = 23) %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg >= 3") %>%
+#'   set_node_attrs_ws(
+#'     node_attr = "type",
+#'     value = "a") %>%
 #'   clear_selection() %>%
-#'   select_nodes_by_degree("deg < 3") %>%
-#'   set_node_attrs_ws("type", "b") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg < 3") %>%
+#'   set_node_attrs_ws(
+#'     node_attr = "type",
+#'     value = "b") %>%
 #'   clear_selection() %>%
-#'   select_nodes_by_degree("deg == 0") %>%
-#'   set_node_attrs_ws("type", "c") %>%
-#'   set_node_attr_to_display("type") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg == 0") %>%
+#'   set_node_attrs_ws(
+#'     node_attr = "type",
+#'     value = "c") %>%
+#'   set_node_attr_to_display(
+#'     attr = "type") %>%
 #'   select_edges_by_node_id(
-#'     get_node_ids(.) %>%
-#'       sample(size = 0.15 * length(.) %>%floor())) %>%
-#'   set_edge_attrs_ws("rel", "r_1") %>%
+#'     nodes =
+#'       get_node_ids(.) %>%
+#'       sample(
+#'         size = 0.15 * length(.) %>%
+#'           floor())) %>%
+#'   set_edge_attrs_ws(
+#'     edge_attr = "rel",
+#'     value = "r_1") %>%
 #'   invert_selection() %>%
-#'   set_edge_attrs_ws("rel", "r_2") %>%
+#'   set_edge_attrs_ws(
+#'     edge_attr = "rel",
+#'     value = "r_2") %>%
 #'   clear_selection() %>%
-#'   copy_edge_attrs("rel", "label") %>%
-#'   add_global_graph_attrs("fontname", "Helvetica", "edge") %>%
-#'   add_global_graph_attrs("fontcolor", "gray50", "edge") %>%
-#'   add_global_graph_attrs("fontsize", 10, "edge")
+#'   copy_edge_attrs(
+#'     edge_attr_from = "rel",
+#'     edge_attr_to = "label") %>%
+#'   add_global_graph_attrs(
+#'     attr = "fontname",
+#'     value = "Helvetica",
+#'     attr_type = "edge") %>%
+#'   add_global_graph_attrs(
+#'     attr = "fontcolor",
+#'     value = "gray50",
+#'     attr_type = "edge") %>%
+#'   add_global_graph_attrs(
+#'     attr = "fontsize",
+#'     value = 10,
+#'     attr_type = "edge")
 #'
 #' # Display this graph's metagraph, or, underlying
 #' # graph model for a property graph

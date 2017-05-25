@@ -12,10 +12,11 @@
 #' # Create a simple graph with a single cycle
 #' graph <-
 #'   create_graph() %>%
-#'   add_cycle(4)
+#'   add_cycle(n = 4)
 #'
 #' # Get the graph's edge data frame
-#' graph %>% get_edge_df()
+#' graph %>%
+#'   get_edge_df()
 #' #>   id from to  rel
 #' #> 1  1    1  2 <NA>
 #' #> 2  2    2  3 <NA>
@@ -25,8 +26,10 @@
 #' # Create the complement of the graph
 #' graph_c <- create_complement_graph(graph)
 #'
-#' # Get the new graph's edge data frame
-#' graph_c %>% get_edge_df()
+#' # Get the edge data frame for the
+#' # complement graph
+#' graph_c %>%
+#'   get_edge_df()
 #' #>   id from to  rel
 #' #> 1  1    1  4 <NA>
 #' #> 2  2    1  3 <NA>

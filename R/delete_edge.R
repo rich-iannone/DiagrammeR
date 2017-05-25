@@ -49,18 +49,24 @@
 #' graph_undirected <-
 #'   create_graph(directed = FALSE) %>%
 #'   add_n_nodes(n = 2) %>%
-#'   add_edge(from = 1, to = 2)
+#'   add_edge(
+#'     from = 1,
+#'     to = 2)
 #'
 #' # Delete the edge; the order of node ID
 #' # values provided in `from` and `to`
 #' # don't matter for the undirected case
 #' graph_undirected %>%
-#'   delete_edge(from = 2, to = 1) %>%
+#'   delete_edge(
+#'     from = 2,
+#'     to = 1) %>%
 #'   edge_count()
 #' #> [1] 0
 #'
 #' graph_undirected %>%
-#'   delete_edge(from = 1, to = 2) %>%
+#'   delete_edge(
+#'     from = 1,
+#'     to = 2) %>%
 #'   edge_count()
 #' #> [1] 0
 #'

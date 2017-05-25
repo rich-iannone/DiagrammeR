@@ -13,17 +13,20 @@
 #' # isolated node (`8`) with no edges
 #' graph_1 <-
 #'   create_random_graph(
-#'     30, 40, set_seed = 23)
+#'     n = 30, m = 40,
+#'     set_seed = 23)
 #'
 #' # There won't be any connected nodes to `8`
 #' # so when specifying this node with
 #' # `get_all_connected_nodes()` we get NA back
-#' graph_1 %>% get_all_connected_nodes(8)
+#' graph_1 %>%
+#'   get_all_connected_nodes(node = 8)
 #' #> [1] NA
 #'
 #' # Any other node in `graph_1` will provide a vector
 #' # of all the nodes other than `8`
-#' graph_1 %>% get_all_connected_nodes(1)
+#' graph_1 %>%
+#'   get_all_connected_nodes(node = 1)
 #' #>  [1]  2  3  4  5  6  7  9 10 11 12 13 14 15 16 17
 #' #> [16] 18 19 20 21 22 23 24 25 26 27 28 29 30
 #'
@@ -31,19 +34,19 @@
 #' # (i.e., the graph has two connected components)
 #' graph_2 <-
 #'   create_graph() %>%
-#'   add_path(6) %>%
-#'   add_path(4)
+#'   add_path(n = 6) %>%
+#'   add_path(n = 4)
 #'
 #' # In `graph_2`, node `1` is in the larger of the two
 #' # connected components
 #' graph_2 %>%
-#'   get_all_connected_nodes(1)
+#'   get_all_connected_nodes(node = 1)
 #' #> [1] 2 3 4 5 6
 #'
 #' # Also in `graph_2`, node `8` is in the smaller of
 #' # the two connected components
 #' graph_2 %>%
-#'   get_all_connected_nodes(8)
+#'   get_all_connected_nodes(node = 8)
 #' #> [1]  7  9 10
 #' @importFrom dplyr filter
 #' @export get_all_connected_nodes
