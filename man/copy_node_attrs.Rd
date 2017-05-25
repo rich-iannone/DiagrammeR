@@ -31,8 +31,11 @@ within the ndf with a different attribute name.
 # Create a random graph
 graph <-
   create_random_graph(
-    5, 10, set_seed = 23) \%>\%
-  set_node_attrs("shape", "circle")
+    n = 5, m = 10,
+    set_seed = 23) \%>\%
+  set_node_attrs(
+    node_attr = "shape",
+    values = "circle")
 
 # Get the graph's internal ndf to show which
 # node attributes are available
@@ -48,7 +51,9 @@ get_node_df(graph)
 # the `width` node attribute
 graph <-
   graph \%>\%
-  copy_node_attrs("value", "size")
+  copy_node_attrs(
+    node_attr_from = "value",
+    node_attr_to = "size")
 
 # Get the graph's internal ndf to show that the
 # node attribute had been copied

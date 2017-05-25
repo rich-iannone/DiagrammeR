@@ -70,8 +70,8 @@ graph \%>\%
 
 # Create a PNG file for the graph (`mypng`)
 graph \%>\%
-export_graph(
-  file_name = "mypng",
-  file_type = "PNG")
+  export_graph(
+    file_name = "mypng",
+    file_type = "PNG")
 }
 }

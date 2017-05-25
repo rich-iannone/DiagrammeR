@@ -43,7 +43,8 @@ all nodes in the graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 23)
+    n = 10, m = 22,
+    set_seed = 23)
 
 # Get the alpha centrality scores for nodes
 # in the graph

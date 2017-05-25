@@ -71,30 +71,51 @@ graph \%>\% edge_rel(1, 2)
 # edge `1`->`2`
 graph <-
   graph \%>\%
-  edge_rel(1, 2, "delete")
+  edge_rel(
+    from = 1,
+    to = 2,
+    action = "delete")
 
 # Check that the edge `1`->`2` no longer
 # has a `rel` assignment
-graph \%>\% edge_rel(1, 2, "check")
+graph \%>\%
+  edge_rel(
+    from = 1,
+    to = 2,
+    action = "check")
 #> [1] FALSE
 
 # Add the `rel` value `rel_b`` to edge `1`->`2`
 graph <-
   graph \%>\%
-  edge_rel(1, 2, "add", "rel_b")
+  edge_rel(
+    from = 1,
+    to = 2,
+    action = "add",
+    value = "rel_b")
 
 # Read the edge `rel` for edge `1`->`2`
-graph \%>\% edge_rel(1, 2)
+graph \%>\%
+  edge_rel(
+    from = 1,
+    to = 2)
 #> [1] "rel_b"
 
 # Perform an in-place update of the `rel`
 # value for edge `1`->`2` (`rel_b`` to `rel_a``)
 graph <-
   graph \%>\%
-  edge_rel(1, 2, "update", "rel_a")
+  edge_rel(
+    from = 1,
+    to = 2,
+    action = "update",
+    value = "rel_a")
 
 # Read the edge `rel` for edge `1`->`2`
 # to ensure that the change was made
-graph \%>\% edge_rel(1, 2)
+graph \%>\%
+  edge_rel(
+    from = 1,
+    to = 2)
 #> [1] "rel a"
 }

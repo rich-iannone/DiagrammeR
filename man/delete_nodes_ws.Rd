@@ -36,14 +36,14 @@ the following traversal functions:
 # Create a graph with 3 nodes
 graph <-
   create_graph() \%>\%
-  add_n_nodes(3) \%>\%
+  add_n_nodesn = (3) \%>\%
   add_edges_w_string(
-    "1->3 1->2 2->3")
+    edges = "1->3 1->2 2->3")
 
 # Select node with ID `1`
 graph <-
   graph \%>\%
-  select_nodes_by_id(1)
+  select_nodes_by_id(nodes = 1)
 
 # Delete node in selection (this
 # also deletes any attached edges)

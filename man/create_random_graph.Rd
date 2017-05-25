@@ -41,6 +41,5 @@ with randomized edge assignments.
 # and 75 edges
 random_graph_directed <-
   create_random_graph(
-    n = 50,
-    m = 75)
+    n = 50, m = 75)
 }

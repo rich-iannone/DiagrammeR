@@ -26,7 +26,7 @@ specifying its node ID.
 # edges between each in a path
 graph <-
   create_graph() \%>\%
-  add_path(5)
+  add_path(n = 5)
 
 # Delete node with ID `3`
 graph <- delete_node(graph, node = 3)

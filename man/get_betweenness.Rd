@@ -22,7 +22,8 @@ for all nodes in a graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 23)
+    n = 10, m = 22,
+    set_seed = 23)
 
 # Get the betweenness scores for nodes in the graph
 get_betweenness(graph)
@@ -43,7 +44,7 @@ get_betweenness(graph)
 graph <-
   graph \%>\%
   join_node_attrs(
-    get_betweenness(.))
+    df = get_betweenness(.))
 
 # Display the graph's node data frame
 get_node_df(graph)

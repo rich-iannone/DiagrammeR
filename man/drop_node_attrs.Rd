@@ -25,7 +25,8 @@ an existing node attribute.
 # Create a random graph
 graph <-
   create_random_graph(
-    5, 10, set_seed = 23)
+    n = 5, m = 10,
+    set_seed = 23)
 
 # Get the graph's internal ndf to show
 # which node attributes are available
@@ -40,7 +41,7 @@ get_node_df(graph)
 # Drop the `value` node attribute
 graph <-
   graph \%>\%
-  drop_node_attrs("value")
+  drop_node_attrs(node_attr = "value")
 
 # Get the graph's internal ndf to show that
 # the node attribute `value` had been removed

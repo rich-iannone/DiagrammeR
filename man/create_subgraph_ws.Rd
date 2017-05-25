@@ -56,7 +56,8 @@ graph <-
 # nodes `1`, `3`, and `5`
 graph <-
   graph \%>\%
-  select_nodes("value > 3")
+  select_nodes(
+    conditions = "value > 3")
 
 # Create a subgraph based on the selection
 subgraph <- create_subgraph_ws(graph)
