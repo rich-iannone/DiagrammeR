@@ -20,9 +20,12 @@ attributes for a graph object of class
 }
 \examples{
 # Create a new graph and set some global attributes
-graph <- create_graph() \%>\%
+graph <-
+  create_graph() \%>\%
   set_global_graph_attrs(
-    "overlap", "true", "graph")
+    attr = "overlap",
+    value = "true",
+    attr_type = "graph")
 
 # Clear all global attributes that have been set
 graph <- clear_global_graph_attrs(graph)

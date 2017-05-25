@@ -51,15 +51,17 @@ set.seed(23)
 # Create a graph with 6 nodes and 5 edges
 graph <-
   create_graph() \%>\%
-  add_path(6) \%>\%
+  add_path(n = 6) \%>\%
   set_node_attrs(
-    "value", rnorm(node_count(.), 5, 2))
+    node_attr = "value",
+    values = rnorm(node_count(.), 5, 2))
 
-# Select all nodes where the node attribute `value`
-# is less than 5
+# Select all nodes where the node
+# attribute `value` is less than 5
 graph <-
   graph \%>\%
-  select_nodes("value < 5.0")
+  select_nodes(
+    conditions = "value < 5.0")
 
 # Show the graph's node data frame
 graph \%>\%
@@ -73,8 +75,8 @@ graph \%>\%
 #> 6  6 <NA>     6 5.963101
 
 # Cache available values from the node attribute
-# `value` from the nodes that are selected; ensure
-# that the cached vector is numeric
+# `value` from the nodes that are selected;
+# ensure that the cached vector is numeric
 graph <-
   graph \%>\%
   cache_node_attrs_ws(

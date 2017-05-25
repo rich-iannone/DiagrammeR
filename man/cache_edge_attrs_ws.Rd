@@ -28,15 +28,17 @@ set.seed(23)
 # Create a graph with 6 nodes and 5 edges
 graph <-
   create_graph() %>%
-  add_path(6) %>%
+  add_path(n = 6) %>%
   set_edge_attrs(
-    "value", rnorm(edge_count(.), 5, 2))
+    edge_attr = "value",
+    values = rnorm(edge_count(.), 5, 2))
 
 # Select all edges where the edge attribute
 # `value` is less than 5
 graph <-
   graph %>%
-  select_edges("value < 5.0")
+  select_edges(
+    conditions = "value < 5.0")
 
 # Show the graph's edge data frame
 graph %>%

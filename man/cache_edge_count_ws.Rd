@@ -36,12 +36,12 @@ or \code{trav_both_edge()}.
 # Create a graph with 5 nodes and 4 edges
 graph <-
   create_graph() \%>\%
-  add_path(5)
+  add_path(n = 5)
 
 # Cache a count of edges after creating a selection
 graph <-
   graph \%>\%
-  select_edges_by_node_id(2) \%>\%
+  select_edges_by_node_id(nodes = 2) \%>\%
   cache_edge_count_ws(name = "edge_count")
 
 # Get the number of edges stored in the cache
