@@ -36,7 +36,7 @@ the following traversal functions:
 # Create a graph with 3 nodes
 graph <-
   create_graph() \%>\%
-  add_n_nodes = (n = 3) \%>\%
+  add_n_nodes(n = 3) \%>\%
   add_edges_w_string(
     edges = "1->3 1->2 2->3")
 
