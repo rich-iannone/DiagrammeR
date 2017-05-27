@@ -14,9 +14,11 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 23)
+#'     n = 10, m = 22,
+#'     set_seed = 23)
 #'
-#' # Get closeness values for all nodes in the graph
+#' # Get closeness values for all nodes
+#' # in the graph
 #' get_closeness(graph)
 #' #>    id  closeness
 #' #> 1   1 0.07142857
@@ -35,7 +37,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
-#'     get_closeness(.))
+#'     df = get_closeness(.))
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)

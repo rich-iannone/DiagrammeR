@@ -14,10 +14,11 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 23)
+#'     n = 10, m = 22,
+#'     set_seed = 23)
 #'
-#' # Get the constaint scores for all nodes in
-#' # the graph
+#' # Get the constaint scores for all
+#' # nodes in the graph
 #' get_constraint(graph)
 #' #>    id constraint
 #' #> 1   1  0.2986111
@@ -33,7 +34,7 @@
 #'
 #' # Get the constaint scores for only nodes
 #' # `5` and `7`
-#' get_constraint(graph, c(5, 7))
+#' get_constraint(graph, nodes = c(5, 7))
 #' #>   id constraint
 #' #> 1  5        0.5
 #' #> 2  7        1.0
@@ -43,7 +44,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
-#'     get_constraint(.))
+#'     df = get_constraint(.))
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)

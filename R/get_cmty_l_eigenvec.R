@@ -11,12 +11,13 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 23)
+#'     n = 10, m = 22,
+#'     set_seed = 23)
 #'
-#' # Get the group membership values for all nodes
-#' # in the graph through calculation of the leading
-#' # non-negative eigenvector of the modularity matrix
-#' # of the graph
+#' # Get the group membership values for all
+#' # nodes in the graph through calculation of
+#' # the leading non-negative eigenvector of the
+#' # modularity matrix of the graph
 #' get_cmty_l_eigenvec(graph)
 #' #>    id l_eigenvec_group
 #' #> 1   1                1
@@ -30,12 +31,12 @@
 #' #> 9   9                2
 #' #> 10 10                1
 #'
-#' # Add the group membership values to the graph
-#' # as a node attribute
+#' # Add the group membership values to the
+#' # graph as a node attribute
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
-#'     get_cmty_l_eigenvec(.))
+#'     df = get_cmty_l_eigenvec(.))
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)

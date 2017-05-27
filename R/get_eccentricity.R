@@ -6,17 +6,27 @@
 #' @return a data frame containing eccentricity values
 #' by node ID value.
 #' @examples
-#' # Get the eccentricities for all nodes
-#' # in a randomly-created graph
-#' get_eccentricity(
-#'   graph = create_random_graph(
-#'             5, 7, set_seed = 23))
-#' #>   id eccentricity
-#' #> 1  1            2
-#' #> 2  2            3
-#' #> 3  3            2
-#' #> 4  4            1
-#' #> 5  5            0
+#' # Create a random graph
+#' graph <-
+#'   create_random_graph(
+#'     n = 10, m = 22,
+#'     set_seed = 23)
+#'
+#' # Get the eccentricity values for all
+#' # nodes in the graph
+#' graph %>%
+#'   get_eccentricity()
+#' #>    id eccentricity
+#' #> 1   1            4
+#' #> 2   2            4
+#' #> 3   3            3
+#' #> 4   4            4
+#' #> 5   5            3
+#' #> 6   6            2
+#' #> 7   7            2
+#' #> 8   8            0
+#' #> 9   9            1
+#' #> 10 10            0
 #' @export get_eccentricity
 
 get_eccentricity <- function(graph) {

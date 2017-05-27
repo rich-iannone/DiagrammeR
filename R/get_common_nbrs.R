@@ -10,16 +10,19 @@
 #' # Create a directed graph with 5 nodes
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(5)
+#'   add_path(n = 5)
 #'
-#' # Find all common neighbor nodes for nodes
-#' # `1` and `2` (there are no common neighbors)
-#' graph %>% get_common_nbrs(c(1, 2))
+#' # Find all common neighbor nodes
+#' # for nodes `1` and `2` (there are no
+#' # common neighbors amongst them)
+#' graph %>%
+#'   get_common_nbrs(nodes = c(1, 2))
 #' #> [1] NA
 #'
-#' # Find all common neighbor nodes for nodes
-#' # `1` and `3`
-#' graph %>% get_common_nbrs(c(1, 3))
+#' # Find all common neighbor nodes for
+#' # nodes `1` and `3`
+#' graph %>%
+#'   get_common_nbrs(nodes = c(1, 3))
 #' #> [1] 2
 #' @export get_common_nbrs
 

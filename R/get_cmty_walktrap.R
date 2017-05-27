@@ -12,11 +12,12 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 23)
+#'     n = 10, m = 22,
+#'     set_seed = 23)
 #'
-#' # Get the group membership values for all nodes
-#' # in the graph through the Walktrap community
-#' # finding algorithm
+#' # Get the group membership values for
+#' # all nodes in the graph through the
+#' # Walktrap community finding algorithm
 #' get_cmty_walktrap(graph)
 #' #>    id walktrap_group
 #' #> 1   1              1
@@ -30,12 +31,12 @@
 #' #> 9   9              2
 #' #> 10 10              1
 #'
-#' # Add the group membership values to the graph
-#' # as a node attribute
+#' # Add the group membership values to the
+#' # graph as a node attribute
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
-#'     get_cmty_walktrap(.))
+#'     df = get_cmty_walktrap(.))
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
