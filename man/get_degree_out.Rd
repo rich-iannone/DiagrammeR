@@ -29,7 +29,8 @@ nodes in a graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 23)
+    n = 10, m = 22,
+    set_seed = 23)
 
 # Get the outdegree values for all nodes
 # in the graph
@@ -51,7 +52,7 @@ get_degree_out(graph)
 graph <-
   graph \%>\%
   join_node_attrs(
-    get_degree_out(.))
+    df = get_degree_out(.))
 
 # Display the graph's node data frame
 get_node_df(graph)

@@ -24,11 +24,13 @@ the graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 23)
+    n = 10, m = 22,
+    set_seed = 23)
 
-# Get the group membership values for all nodes
-# in the graph through the multi-level optimization
-# of modularity algorithm
+# Get the group membership values for
+# all nodes in the graph through the
+# multi-level optimization of modularity
+# algorithm
 get_cmty_louvain(graph)
 #>    id louvain_group
 #> 1   1             2
@@ -42,12 +44,12 @@ get_cmty_louvain(graph)
 #> 9   9             1
 #> 10 10             2
 
-# Add the group membership values to the graph
-# as a node attribute
+# Add the group membership values to the
+# graph as a node attribute
 graph <-
   graph \%>\%
   join_node_attrs(
-    get_cmty_louvain(.))
+    df = get_cmty_louvain(.))
 
 # Display the graph's node data frame
 get_node_df(graph)

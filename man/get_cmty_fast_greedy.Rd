@@ -23,11 +23,12 @@ values for each of the nodes in the graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 23)
+    n = 10, m = 22,
+    set_seed = 23)
 
-# Get the group membership values for all nodes
-# in the graph through the greedy optimization
-# of modularity algorithm
+# Get the group membership values for all
+# nodes in the graph through the greedy
+# optimization of modularity algorithm
 get_cmty_fast_greedy(graph)
 #>    id f_g_group
 #> 1   1         1
@@ -41,12 +42,12 @@ get_cmty_fast_greedy(graph)
 #> 9   9         2
 #> 10 10         1
 
-# Add the group membership values to the graph
-# as a node attribute
+# Add the group membership values to the
+# graph as a node attribute
 graph <-
   graph \%>\%
   join_node_attrs(
-    get_cmty_fast_greedy(.))
+    df = get_cmty_fast_greedy(.))
 
 # Display the graph's node data frame
 get_node_df(graph)
