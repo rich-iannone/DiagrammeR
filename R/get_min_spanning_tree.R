@@ -5,13 +5,17 @@
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a random graph and obtain Jaccard
-#' # similarity values for each pair of nodes
-#' # as a square matrix
-#' j_sim_matrix <-
+#' # Create a random graph
+#' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 23) %>%
-#'   get_jaccard_similarity()
+#'     n = 10, m = 22,
+#'     set_seed = 23)
+#'
+#' # Obtain Jaccard similarity values for each
+#' # pair of nodes as a square matrix
+#' j_sim_matrix <-
+#'   graph %>%
+#'     get_jaccard_similarity()
 #'
 #' # Create a weighted, undirected graph from the
 #' # resultant matrix (effectively treating that
@@ -29,11 +33,20 @@
 #' min_spanning_tree_graph <-
 #'   graph %>%
 #'   get_min_spanning_tree() %>%
-#'   copy_edge_attrs("weight", "label") %>%
-#'   set_edge_attrs("fontname", "Helvetica") %>%
-#'   set_edge_attrs("color", "gray85") %>%
+#'   copy_edge_attrs(
+#'     edge_attr_from = "weight",
+#'     edge_attr_to = "label") %>%
+#'   set_edge_attrs(
+#'     edge_attr = "fontname",
+#'     values = "Helvetica") %>%
+#'   set_edge_attrs(
+#'     edge_attr = "color",
+#'     values = "gray85") %>%
 #'   rescale_edge_attrs(
-#'     "weight", 0.5, 4.0, "penwidth")
+#'     edge_attr_from = "weight",
+#'     to_lower_bound = 0.5,
+#'     to_upper_bound = 4.0,
+#'     edge_attr_to = "penwidth")
 #' @importFrom igraph mst
 #' @export get_min_spanning_tree
 

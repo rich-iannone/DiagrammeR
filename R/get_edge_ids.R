@@ -56,8 +56,9 @@
 #' # with the desired attribute values
 #' get_edge_ids(
 #'   graph,
-#'   conditions = c("color == 'blue'",
-#'                  "value > 5"))
+#'   conditions =
+#'     c("color == 'blue'",
+#'       "value > 5"))
 #' #> [1] 3
 #' @importFrom dplyr filter_
 #' @export get_edge_ids
