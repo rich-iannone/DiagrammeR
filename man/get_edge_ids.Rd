@@ -70,7 +70,8 @@ get_edge_ids(
 # with the desired attribute values
 get_edge_ids(
   graph,
-  conditions = c("color == 'blue'",
-                 "value > 5"))
+  conditions =
+    c("color == 'blue'",
+      "value > 5"))
 #> [1] 3
 }

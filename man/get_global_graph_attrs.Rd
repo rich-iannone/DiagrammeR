@@ -23,7 +23,9 @@ for a graph object of class \code{dgr_graph}.
 graph <-
   create_graph() \%>\%
   set_global_graph_attrs(
-    "overlap", "true", "graph")
+    attr = "overlap",
+    value = "true",
+    attr_type = "graph")
 
 # View the graph's set of global attributes
 # as a data frame

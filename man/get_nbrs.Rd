@@ -24,24 +24,31 @@ all neighboring nodes.
 # nodes and 4 edges
 graph <-
   create_graph() \%>\%
-  add_path(5)
+  add_path(n = 5)
 
 # Find all neighbor nodes for node `2`
-graph \%>\% get_nbrs(2)
+graph \%>\%
+  get_nbrs(nodes = 2)
 #> [1] 1 3
 
 # Find all neighbor nodes for nodes `1`
 # and `5`
-graph \%>\% get_nbrs(c(1, 5))
+graph \%>\%
+  get_nbrs(nodes = c(1, 5))
 #> [1] 2 4
 
 # Color node `3` with purple, get its
 # neighbors and color those nodes green
 graph <-
   graph \%>\%
-  select_nodes_by_id(3) \%>\%
-  set_node_attrs_ws("color", "purple") \%>\%
+  select_nodes_by_id(nodes = 3) \%>\%
+  set_node_attrs_ws(
+    node_attr = "color",
+    value = "purple") \%>\%
   clear_selection() \%>\%
-  select_nodes_by_id(get_nbrs(., 3)) \%>\%
-  set_node_attrs_ws("color", "green")
+  select_nodes_by_id(
+    nodes = get_nbrs(., 3)) \%>\%
+  set_node_attrs_ws(
+    node_attr = "color",
+    value = "green")
 }
