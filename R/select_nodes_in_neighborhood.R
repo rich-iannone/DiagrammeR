@@ -20,7 +20,7 @@
 #' # Create a graph containing a balanced tree
 #' graph <-
 #'   create_graph() %>%
-#'   add_balanced_tree(2, 3)
+#'   add_balanced_tree(k = 2, h = 2)
 #'
 #' # Create a graph selection by selecting nodes
 #' # in the neighborhood of node `1`, where the
@@ -29,10 +29,12 @@
 #' graph <-
 #'   graph %>%
 #'   select_nodes_in_neighborhood(
-#'     node = 1, distance = 1)
+#'     node = 1,
+#'     distance = 1)
 #'
 #' # Get the selection of nodes
-#' graph %>% get_selection()
+#' graph %>%
+#'   get_selection()
 #' #> [1] 1 2 3
 #'
 #' # Perform another selection of nodes, this time
@@ -41,24 +43,13 @@
 #'   graph %>%
 #'   clear_selection() %>%
 #'   select_nodes_in_neighborhood(
-#'     node = 1, distance = 2)
+#'     node = 1,
+#'     distance = 2)
 #'
 #' # Get the selection of nodes
-#' graph %>% get_selection()
+#' graph %>%
+#'   get_selection()
 #' #> [1] 1 2 3 4 5 6 7
-#'
-#' # Perform a final selection of nodes, using
-#' # `distance = 3`, this effectively selects all
-#' # nodes in this graph
-#' graph <-
-#'   graph %>%
-#'   clear_selection() %>%
-#'   select_nodes_in_neighborhood(
-#'     node = 1, distance = 3)
-#'
-#' # Get the selection of nodes
-#' graph %>% get_selection
-#' #> [1] 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
 #' @export select_nodes_in_neighborhood
 
 select_nodes_in_neighborhood <- function(graph,

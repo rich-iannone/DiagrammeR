@@ -11,8 +11,12 @@
 #' # a tree in 2 separate function calls
 #' graph <-
 #'   create_graph() %>%
-#'     add_cycle(3, rel = "a") %>%
-#'     add_balanced_tree(2, 2, rel = "b")
+#'   add_cycle(
+#'     n = 3,
+#'     rel = "a") %>%
+#'   add_balanced_tree(
+#'     k = 2, h = 2,
+#'     rel = "b")
 #'
 #' # Select the last edges created (all edges
 #' # from the tree) and then set their edge
@@ -20,7 +24,9 @@
 #' graph <-
 #'   graph %>%
 #'   select_last_edges_created() %>%
-#'   set_edge_attrs_ws("color", "red") %>%
+#'   set_edge_attrs_ws(
+#'     edge_attr = "color",
+#'     value = "red") %>%
 #'   clear_selection()
 #'
 #' # Display the graph's internal edge

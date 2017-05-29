@@ -31,14 +31,16 @@
 #' # Report which nodes have a total degree (in-degree
 #' # + out-degree) of exactly 9
 #' graph %>%
-#'   select_nodes_by_degree("deg == 9") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg == 9") %>%
 #'   get_selection()
 #' #> [1]  2  9 10 14 17 19 31 33
 #'
 #' # Report which nodes have a total degree greater
 #' # than or equal to 9
 #' graph %>%
-#'   select_nodes_by_degree("deg >= 9") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg >= 9") %>%
 #'   get_selection()
 #' #> [1]  2  6  9 10 14 17 19 22 25 29 31 33
 #'
@@ -48,8 +50,10 @@
 #' # those `select...()` functions `union` the sets
 #' # of nodes selected)
 #' graph %>%
-#'   select_nodes_by_degree("deg < 3") %>%
-#'   select_nodes_by_degree("deg > 10") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg < 3") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg > 10") %>%
 #'   get_selection()
 #' #> [1]  6 16 22
 #'
@@ -59,8 +63,11 @@
 #' # key here is to `intersect` the sets of nodes
 #' # selected in the second call)
 #' graph %>%
-#'   select_nodes_by_degree("deg >= 3") %>%
-#'   select_nodes_by_degree("deg <= 10", "intersect") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg >= 3") %>%
+#'   select_nodes_by_degree(
+#'     expressions = "deg <= 10",
+#'     set_op = "intersect") %>%
 #'   get_selection()
 #' #>  [1]  1  2  3  4  5  7  8  9 10 11 12 13 14
 #' #> [14] 15 17 18 19 20 21 23 24 25 26 27 28 29
@@ -71,11 +78,15 @@
 #' # (coloring the selected nodes red)
 #' graph_2 <-
 #'   graph %>%
-#'   select_nodes_by_degree("indeg > 5") %>%
-#'   set_node_attrs_ws("color", "red")
+#'   select_nodes_by_degree(
+#'     expressions = "indeg > 5") %>%
+#'   set_node_attrs_ws(
+#'     node_attr = "color",
+#'     value = "red")
 #'
 #' # Get the selection of nodes
-#' graph_2 %>% get_selection()
+#' graph_2 %>%
+#'   get_selection()
 #' #> [1] 14 22 23 25 27 29 31 33 34
 #' @importFrom dplyr select filter_
 #' @export select_nodes_by_degree
