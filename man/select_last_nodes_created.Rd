@@ -24,10 +24,14 @@ the nodes to be selected.
 # in 2 separate function calls
 graph <-
   create_graph() \%>\%
-    add_n_nodes(
-      2, "a", label = c("a_1", "a_2")) \%>\%
-    add_n_nodes(
-      2, "b", label = c("b_1", "b_2"))
+  add_n_nodes(
+    n = 2,
+    type = "a",
+    label = c("a_1", "a_2")) \%>\%
+  add_n_nodes(
+    n = 2,
+    type = "b",
+    label = c("b_1", "b_2"))
 
 # Select the last nodes created (2 nodes
 # from the last function call) and then
@@ -35,7 +39,9 @@ graph <-
 graph <-
   graph \%>\%
   select_last_nodes_created() \%>\%
-  set_node_attrs_ws("color", "red") \%>\%
+  set_node_attrs_ws(
+    node_attr = "color",
+    value = "red") \%>\%
   clear_selection()
 
 # Display the graph's internal node

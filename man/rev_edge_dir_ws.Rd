@@ -22,7 +22,7 @@ selected edges in input graph.
 # Create a graph with a directed tree
 graph <-
   create_graph() \%>\%
-  add_balanced_tree(2, 2)
+  add_balanced_tree(k = 2, h = 2)
 
 # Inspect the graph's edges
 get_edges(graph)
@@ -31,14 +31,20 @@ get_edges(graph)
 
 # Select all edges associated with
 # nodes `1` and `2`
-graph <- select_edges_by_node_id(graph, 1:2)
+graph <-
+  select_edges_by_node_id(
+    graph,
+    nodes = 1:2)
 
 # Reverse the edge directions of the edges
 # associated with nodes `1` and `2`
-graph <- graph \%>\% rev_edge_dir_ws()
+graph <-
+  graph \%>\%
+  rev_edge_dir_ws()
 
 # Inspect the graph's edges after their reversal
-graph \%>\% get_edges()
+graph \%>\%
+  get_edges()
 #> [1] "2->1" "3->1" "4->2" "5->2"
 #> [5] "3->6" "3->7"
 }

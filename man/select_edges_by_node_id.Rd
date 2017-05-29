@@ -33,16 +33,18 @@ in the selection.
 # Create a graph with 5 nodes
 graph <-
   create_graph() \%>\%
-  add_path(5)
+  add_path(n = 5)
 
 # Create a graph selection by selecting edges
 # associated with nodes `1` and `2`
 graph <-
   graph \%>\%
-  select_edges_by_node_id(1:2)
+  select_edges_by_node_id(
+    nodes = 1:2)
 
 # Get the selection of edges
-graph \%>\% get_selection()
+graph \%>\%
+  get_selection()
 #> [1] 1 2
 
 # Perform another selection of edges, with nodes
@@ -50,10 +52,12 @@ graph \%>\% get_selection()
 graph <-
   graph \%>\%
   clear_selection() \%>\%
-  select_edges_by_node_id(c(1, 2, 4))
+  select_edges_by_node_id(
+    nodes = c(1, 2, 4))
 
 # Get the selection of edges
-graph \%>\% get_selection
+graph \%>\%
+  get_selection()
 #> [1] 1 2 3 4
 
 # Get a fraction of the edges selected over all
