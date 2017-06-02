@@ -9,7 +9,9 @@
 #' graph <- create_graph()
 #'
 #' # Provide the new graph with a name
-#' graph <- set_graph_name(graph, "example_name")
+#' graph <-
+#'   graph %>%
+#'   set_graph_name(name = "example_name")
 #' @return a graph object of class \code{dgr_graph}.
 #' @export set_graph_name
 

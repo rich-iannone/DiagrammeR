@@ -34,13 +34,17 @@
 #' graph <-
 #'   graph %>%
 #'   set_node_position(
-#'     node = 1, x = 1, y = 1) %>%
+#'     node = 1,
+#'     x = 1, y = 1) %>%
 #'   set_node_position(
-#'     node = 2, x = 2, y = 2) %>%
+#'     node = 2,
+#'     x = 2, y = 2) %>%
 #'   set_node_position(
-#'     node = 3, x = 3, y = 3) %>%
+#'     node = 3,
+#'     x = 3, y = 3) %>%
 #'   set_node_position(
-#'     node = 4, x = 4, y = 4)
+#'     node = 4,
+#'     x = 4, y = 4)
 #'
 #' # View the graph's node data frame to
 #' # verify that the `x` and `y` node
@@ -58,13 +62,17 @@
 #' graph <-
 #'   graph %>%
 #'   set_node_position(
-#'     node = 1, x = 1, y = 4) %>%
+#'     node = 1,
+#'     x = 1, y = 4) %>%
 #'   set_node_position(
-#'     node = 2, x = 3, y = 3) %>%
+#'     node = 2,
+#'     x = 3, y = 3) %>%
 #'   set_node_position(
-#'     node = 3, x = 3, y = 2) %>%
+#'     node = 3,
+#'     x = 3, y = 2) %>%
 #'   set_node_position(
-#'     node = 4, x = 4, y = 1)
+#'     node = 4,
+#'     x = 4, y = 1)
 #'
 #' # View the graph's node data frame
 #' get_node_df(graph)

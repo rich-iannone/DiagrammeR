@@ -27,16 +27,18 @@
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(6)
+#'   add_path(n = 6)
 #'
 #' # Select specific nodes from the graph and
 #' # apply the node attribute `color = blue` to
 #' # those selected nodes
 #' graph <-
 #'   graph %>%
-#'   select_nodes_by_id(1:4) %>%
+#'   select_nodes_by_id(nodes = 1:4) %>%
 #'   trav_out() %>%
-#'   set_node_attrs_ws("color", "blue")
+#'   set_node_attrs_ws(
+#'     node_attr = "color",
+#'     value = "blue")
 #'
 #' # Show the internal node data frame to verify
 #' # that the node attribute has been set for
