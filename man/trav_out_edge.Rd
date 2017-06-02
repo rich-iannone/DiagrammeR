@@ -39,13 +39,15 @@ set.seed(23)
 graph <-
   create_graph() \%>\%
   add_n_nodes(
-    2, type = "a",
+    n = 2,
+    type = "a",
     label = c("asd", "iekd")) \%>\%
   add_n_nodes(
-    3, type = "b",
+    n = 3,
+    type = "b",
     label = c("idj", "edl", "ohd")) \%>\%
   add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->5",
+    edges = "1->2 1->3 2->4 2->5 3->5",
     rel = c(NA, "A", "B", "C", "D")) \%>\%
   set_node_attrs(
     node_attr = "values",
@@ -63,7 +65,9 @@ df <-
 
 # Join the data frame to the graph's internal
 # edge data frame (edf)
-graph <- graph \%>\% join_edge_attrs(df)
+graph <-
+  graph \%>\%
+  join_edge_attrs(df)
 
 get_node_df(graph)
 #>   id type label values
@@ -85,7 +89,7 @@ get_edge_df(graph)
 # outbound edges with no conditions on the
 # nodes traversed to
 graph \%>\%
-  select_nodes_by_id(1) \%>\%
+  select_nodes_by_id(nodes = 1) \%>\%
   trav_out_edge() \%>\%
   get_selection()
 #> [1] 1 2
@@ -94,7 +98,7 @@ graph \%>\%
 # edges, filtering to those edges that have
 # NA values for the `rel` edge attribute
 graph \%>\%
-  select_nodes_by_id(1) \%>\%
+  select_nodes_by_id(nodes = 1) \%>\%
   trav_out_edge(
     conditions = "is.na(rel)") \%>\%
   get_selection()
@@ -105,7 +109,7 @@ graph \%>\%
 # numeric values greater than `5.0` for
 # the `rel` edge attribute
 graph \%>\%
-  select_nodes_by_id(3) \%>\%
+  select_nodes_by_id(nodes = 3) \%>\%
   trav_out_edge(
     conditions = "values > 5.0") \%>\%
   get_selection()
@@ -116,7 +120,7 @@ graph \%>\%
 # have values equal to `A` for the `rel`
 # edge attribute
 graph \%>\%
-  select_nodes_by_id(1) \%>\%
+  select_nodes_by_id(nodes = 1) \%>\%
   trav_out_edge(
     conditions = "rel == 'A'") \%>\%
   get_selection()
@@ -127,7 +131,7 @@ graph \%>\%
 # have values in the set `B` and `C` for
 # the `rel` edge attribute
 graph \%>\%
-  select_nodes_by_id(2) \%>\%
+  select_nodes_by_id(nodes = 2) \%>\%
   trav_out_edge(
     conditions = "rel \%in\% c('B', 'C')") \%>\%
   get_selection()
@@ -138,7 +142,7 @@ graph \%>\%
 # traversal (using a vector in `conditions`
 # creates a set of `AND` conditions)
 graph \%>\%
-  select_nodes_by_id(2) \%>\%
+  select_nodes_by_id(nodes = 2) \%>\%
   trav_out_edge(
     conditions = c(
       "rel \%in\% c('B', 'C')",
@@ -151,7 +155,7 @@ graph \%>\%
 # a single-length vector (here, using a
 # `|` to create a set of `OR` conditions)
 graph \%>\%
-  select_nodes_by_id(2) \%>\%
+  select_nodes_by_id(nodes = 2) \%>\%
   trav_out_edge(
     conditions = c(
       "rel \%in\% c('B', 'C') | values > 6.0")) \%>\%
@@ -162,7 +166,7 @@ graph \%>\%
 # edges, and use a regular expression as
 # a filtering condition
 graph \%>\%
-  select_nodes_by_id(2) \%>\%
+  select_nodes_by_id(nodes = 2) \%>\%
   trav_out_edge(
     conditions = "grepl('B|C', rel)") \%>\%
   get_selection()

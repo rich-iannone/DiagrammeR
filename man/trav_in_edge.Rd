@@ -39,13 +39,15 @@ set.seed(23)
 graph <-
   create_graph() \%>\%
   add_n_nodes(
-    2, type = "a",
+    n = 2,
+    type = "a",
     label = c("asd", "iekd")) \%>\%
   add_n_nodes(
-    3, type = "b",
+    n = 3,
+    type = "b",
     label = c("idj", "edl", "ohd")) \%>\%
   add_edges_w_string(
-    "1->2 1->3 2->4 2->5 3->5",
+    edges = "1->2 1->3 2->4 2->5 3->5",
     rel = c(NA, "A", "B", "C", "D"))
 
 # Create a data frame with node ID values
@@ -59,7 +61,9 @@ df <-
 
 # Join the data frame to the graph's internal
 # edge data frame (edf)
-graph <- graph \%>\% join_edge_attrs(df)
+graph <-
+  graph \%>\%
+  join_edge_attrs(df = df)
 
 get_edge_df(graph)
 #>   id from to  rel values
@@ -73,7 +77,7 @@ get_edge_df(graph)
 # inbound edges with no conditions on the
 # nodes traversed to
 graph \%>\%
-  select_nodes_by_id(2) \%>\%
+  select_nodes_by_id(nodes = 2) \%>\%
   trav_in_edge() \%>\%
   get_selection()
 #> [1] 1
@@ -82,7 +86,7 @@ graph \%>\%
 # edges, filtering to those edges that have
 # NA values for the `rel` edge attribute
 graph \%>\%
-  select_nodes_by_id(2) \%>\%
+  select_nodes_by_id(nodes = 2) \%>\%
   trav_in_edge(
     conditions = "is.na(rel)") \%>\%
   get_selection()
@@ -95,7 +99,7 @@ graph \%>\%
 # traversals, the selection of node `2`
 # is retained)
 graph \%>\%
-  select_nodes_by_id(2) \%>\%
+  select_nodes_by_id(nodes = 2) \%>\%
   trav_in_edge(
     conditions = "!is.na(rel)") \%>\%
   get_selection()
@@ -106,7 +110,7 @@ graph \%>\%
 # numeric values greater than `5.5` for
 # the `rel` edge attribute
 graph \%>\%
-  select_nodes_by_id(5) \%>\%
+  select_nodes_by_id(nodes = 5) \%>\%
   trav_in_edge(
     conditions = "values > 5.5") \%>\%
   get_selection()
@@ -117,7 +121,7 @@ graph \%>\%
 # have values equal to `D` for the `rel`
 # edge attribute
 graph \%>\%
-  select_nodes_by_id(5) \%>\%
+  select_nodes_by_id(nodes = 5) \%>\%
   trav_in_edge(
     conditions = "rel == 'D'") \%>\%
   get_selection()
@@ -128,7 +132,7 @@ graph \%>\%
 # have values in the set `C` and `D` for
 # the `rel` edge attribute
 graph \%>\%
-  select_nodes_by_id(5) \%>\%
+  select_nodes_by_id(nodes = 5) \%>\%
   trav_in_edge(
     conditions = "rel \%in\% c('C', 'D')") \%>\%
   get_selection()
@@ -139,7 +143,7 @@ graph \%>\%
 # traversal (using a vector in `conditions`
 # creates a set of `AND` conditions)
 graph \%>\%
-  select_nodes_by_id(5) \%>\%
+  select_nodes_by_id(nodes = 5) \%>\%
   trav_in_edge(
     conditions = c(
       "rel \%in\% c('C', 'D')",
@@ -152,7 +156,7 @@ graph \%>\%
 # a single-length vector (here, using a
 # `|` to create a set of `OR` conditions)
 graph \%>\%
-  select_nodes_by_id(5) \%>\%
+  select_nodes_by_id(nodes = 5) \%>\%
   trav_in_edge(
     conditions = c(
       "rel \%in\% c('D', 'E') | values > 5.5")) \%>\%
@@ -163,7 +167,7 @@ graph \%>\%
 # edges, and use a regular expression as
 # a filtering condition
 graph \%>\%
-  select_nodes_by_id(5) \%>\%
+  select_nodes_by_id(nodes = 5) \%>\%
   trav_in_edge(
     conditions = "grepl('C|D', rel)") \%>\%
   get_selection()
