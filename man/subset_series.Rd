@@ -63,9 +63,15 @@ graph_time_3 <-
 # the graphs
 series_temporal <-
   create_series(series_type = "temporal") \%>\%
-  add_to_series(graph_time_1, .) \%>\%
-  add_to_series(graph_time_2, .) \%>\%
-  add_to_series(graph_time_3, .)
+  add_to_series(
+    graph = graph_time_1,
+    graph_series = .) \%>\%
+  add_to_series(
+    graph = graph_time_2,
+    graph_series = .) \%>\%
+  add_to_series(
+    graph = graph_time_3,
+    graph_series = .)
 
 # Subset graph series by sequence
 series_sequence_subset <-
@@ -74,6 +80,7 @@ series_sequence_subset <-
     by = "number",
     values = 2)
 
+# Get a count of graphs in the series
 graph_count(series_sequence_subset)
 #> [1] 1
 
@@ -86,6 +93,7 @@ series_time_subset <-
                "2015-03-26 12:00"),
     tz = "GMT")
 
+# Get a count of graphs in the series
 graph_count(series_time_subset)
 #> [1] 2
 }

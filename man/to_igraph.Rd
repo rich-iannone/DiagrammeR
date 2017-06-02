@@ -21,7 +21,8 @@ an igraph graph object.
 # Create a DiagrammeR graph object
 graph <-
   create_random_graph(
-    36, 50, set_seed = 23)
+    n = 36, m = 50,
+    set_seed = 23)
 
 # Confirm that `graph` is a DiagrammeR graph
 # by getting the object's class

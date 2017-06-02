@@ -35,7 +35,9 @@ or \code{edge_attrs} for a graph object of class
 # Create a new graph and set some global attributes
 graph <- create_graph() \%>\%
   set_global_graph_attrs(
-    "overlap", "true", "graph")
+    attr = "overlap",
+    value = "true",
+    attr_type = "graph")
 
 # Verify that the global attributes have been set
 get_global_graph_attrs(graph)

@@ -29,8 +29,8 @@ graph <- create_graph()
 # Provide the new graph with a timestamp (if `tz`
 # is not supplied, `GMT` is used as the time zone)
 graph_1 <-
+  graph \%>\%
   set_graph_time(
-    graph,
     time = "2015-10-25 15:23:00")
 
 # Provide the new graph with a timestamp that is
@@ -41,8 +41,8 @@ graph_2 <- set_graph_time(graph)
 # The time zone can be updated when a timestamp
 # is present
 graph_2 <-
+  graph_2 \%>\%
   set_graph_time(
-    graph_2,
     tz = "America/Los_Angeles")
 }
 }
