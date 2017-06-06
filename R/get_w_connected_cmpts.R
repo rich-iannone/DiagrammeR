@@ -11,8 +11,8 @@
 #' # Create a graph with 2 cycles
 #' graph <-
 #'   create_graph() %>%
-#'   add_cycle(4) %>%
-#'   add_cycle(3)
+#'   add_cycle(n = 4) %>%
+#'   add_cycle(n = 3)
 #'
 #' # Check if the graph is connected
 #' is_graph_connected(graph)

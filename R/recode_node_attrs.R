@@ -24,11 +24,14 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     5, 10, set_seed = 23) %>%
+#'     n = 5, m = 10,
+#'     set_seed = 23) %>%
 #'   set_node_attrs(
-#'     "shape",
-#'     c("circle", "hexagon", "rectangle",
-#'       "rectangle", "circle"))
+#'     node_attr = "shape",
+#'     values =
+#'       c("circle", "hexagon",
+#'         "rectangle", "rectangle",
+#'         "circle"))
 #'
 #' # Get the graph's internal ndf to show which
 #' # node attributes are available
@@ -46,7 +49,7 @@
 #' graph <-
 #'   graph %>%
 #'   recode_node_attrs(
-#'     "shape",
+#'     node_attr_from = "shape",
 #'     "circle -> square",
 #'     "rectangle -> triangle")
 #'
@@ -67,7 +70,7 @@
 #' graph <-
 #'   graph %>%
 #'   recode_node_attrs(
-#'     "shape",
+#'     node_attr_from = "shape",
 #'     "square -> red",
 #'     otherwise = "green",
 #'     node_attr_to = "color")
@@ -87,7 +90,7 @@
 #' graph <-
 #'   graph %>%
 #'   recode_node_attrs(
-#'     "value",
+#'     node_attr_from = "value",
 #'     "6.0 -> 9.5",
 #'     "3.5 -> 10.5",
 #'     otherwise = 5.0)

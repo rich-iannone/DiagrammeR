@@ -22,14 +22,17 @@
 #'
 #' # Get all of the values from the `value` node
 #' # attribute as a named vector
-#' graph %>% get_node_attrs("value")
+#' graph %>%
+#'   get_node_attrs(node_attr = "value")
 #' #>   1   2   3   4
 #' #> 6.0 2.5 3.5 7.5
 #'
 #' # To only return node attribute values for specified
 #' # nodes, use the `nodes` argument
 #' graph %>%
-#'   get_node_attrs("value", nodes = c(1, 3))
+#'   get_node_attrs(
+#'     node_attr = "value",
+#'     nodes = c(1, 3))
 #' #>   1   3
 #' #> 6.0 3.5
 #' @export get_node_attrs

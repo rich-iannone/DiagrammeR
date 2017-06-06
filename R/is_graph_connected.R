@@ -12,7 +12,8 @@
 #' # with no edges
 #' graph_1 <-
 #'   create_random_graph(
-#'     30, 40, set_seed = 23)
+#'     n = 30, m = 40,
+#'     set_seed = 23)
 #'
 #' graph_1 %>%
 #'   is_graph_connected()
@@ -21,7 +22,8 @@
 #' # The following graph is fully connected
 #' graph_2 <-
 #'   create_random_graph(
-#'     30, 50, set_seed = 23)
+#'     n = 30, m = 50,
+#'     set_seed = 23)
 #'
 #' graph_2 %>%
 #'   is_graph_connected()
@@ -34,7 +36,7 @@
 #' # articulation point
 #' graph_2 %>%
 #'   delete_node(
-#'     get_articulation_points(.)[1]) %>%
+#'     node = get_articulation_points(.)[1]) %>%
 #'   is_graph_connected()
 #' #> [1] FALSE
 #' }

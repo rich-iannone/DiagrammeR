@@ -48,7 +48,7 @@
 #' graph <-
 #'   graph %>%
 #'   recode_edge_attrs(
-#'     "rel",
+#'     edge_attr_from = "rel",
 #'     "a -> 1.0",
 #'     "b -> 1.5",
 #'     otherwise = 0.5,

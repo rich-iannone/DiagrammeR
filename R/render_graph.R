@@ -21,19 +21,19 @@
 #' \dontrun{
 #' # Render a graph that's a balanced tree
 #' create_graph() %>%
-#'   add_balanced_tree(2, 3) %>%
+#'   add_balanced_tree(k = 2, h = 3) %>%
 #'   render_graph()
 #'
 #' # Use the `tree` layout for better node
 #' # placement in this hierarchical graph
 #' create_graph() %>%
-#'   add_balanced_tree(2, 3) %>%
+#'   add_balanced_tree(k = 2, h = 3) %>%
 #'   render_graph(layout = "tree")
 #'
 #' # Plot the same tree graph but don't
 #' # show the node ID values
 #' create_graph() %>%
-#'   add_balanced_tree(2, 3) %>%
+#'   add_balanced_tree(k = 2, h = 3) %>%
 #'   set_node_attr_to_display() %>%
 #'   render_graph(layout = "tree")
 #'
@@ -46,7 +46,7 @@
 #' # Render the graph using the `visNetwork`
 #' # output option
 #' create_graph() %>%
-#'   add_balanced_tree(2, 3) %>%
+#'   add_balanced_tree(k = 2, h = 3) %>%
 #'   render_graph(graph, output = "visNetwork")
 #' }
 #' @importFrom dplyr select rename mutate filter coalesce left_join

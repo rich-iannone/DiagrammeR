@@ -21,11 +21,12 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     10, 22, set_seed = 23)
+#'     n = 10, m = 22,
+#'     set_seed = 23)
 #'
 #' # Get the Jaccard similarity values for
 #' # nodes `5`, `6`, and `7`
-#' get_jaccard_similarity(graph, 5:7)
+#' get_jaccard_similarity(graph, nodes = 5:7)
 #' #>       5     6     7
 #' #> 5 1.000 0.333 0.286
 #' #> 6 0.333 1.000 0.375

@@ -23,8 +23,9 @@
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(5) %>%
-#'   add_edges_w_string("1->2 1->3 2->4 2->5 3->5")
+#'   add_n_nodes(n = 5) %>%
+#'   add_edges_w_string(
+#'     edges = "1->2 1->3 2->4 2->5 3->5")
 #'
 #' # Create a data frame with node ID values
 #' # representing the graph edges (with `from` and `to`
@@ -41,7 +42,9 @@
 #' # graph's edges; this works as a left join using
 #' # identically-named columns in the graph and the df
 #' # (in this case `from` and `to` are common to both)
-#' graph <- graph %>% join_edge_attrs(df)
+#' graph <-
+#'   graph %>%
+#'   join_edge_attrs(df)
 #'
 #' # Get the graph's internal edf to show that the
 #' # join has been made

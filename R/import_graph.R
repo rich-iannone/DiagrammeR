@@ -38,11 +38,13 @@
 #'       package = "DiagrammeR"))
 #'
 #' # Get a count of the graph's nodes
-#' graphml_graph %>% node_count
+#' graphml_graph %>%
+#'   node_count()
 #' #> [1] 4941
 #'
 #' # Get a count of the graph's edges
-#' graphml_graph %>% edge_count
+#' graphml_graph %>%
+#'   edge_count()
 #' #> [1] 6594
 #'
 #' # Import an SIF graph file
@@ -53,11 +55,13 @@
 #'       package = "DiagrammeR"))
 #'
 #' # Get a count of the graph's nodes
-#' sif_graph %>% node_count
+#' sif_graph %>%
+#'   node_count()
 #' #> [1] 8347
 #'
 #' # Get a count of the graph's edges
-#' sif_graph %>% edge_count
+#' sif_graph %>%
+#'   edge_count()
 #' #> [1] 61263
 #'
 #' # Import a GML graph file
@@ -68,11 +72,13 @@
 #'       package = "DiagrammeR"))
 #'
 #' # Get a count of the graph's nodes
-#' gml_graph %>% node_count
+#' gml_graph %>%
+#'   node_count()
 #' #> [1] 34
 #'
 #' # Get a count of the graph's edges
-#' gml_graph %>% edge_count
+#' gml_graph %>%
+#'   edge_count()
 #' #> [1] 78
 #' }
 #' @importFrom dplyr right_join select rename mutate everything bind_rows arrange distinct

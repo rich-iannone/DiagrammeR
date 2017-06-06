@@ -33,9 +33,10 @@
 #' # Create a graph with 3 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(4) %>%
+#'   add_path(n = 4) %>%
 #'   set_edge_attrs(
-#'     "width", c(3.4, 2.3, 7.2))
+#'     edge_attr = "width",
+#'     values = c(3.4, 2.3, 7.2))
 #'
 #' # Get the graph's internal edf to show which
 #' # edge attributes are available
@@ -49,7 +50,9 @@
 #' # each value by 2
 #' graph <-
 #'   graph %>%
-#'   mutate_edge_attrs("width", "~ / 2")
+#'   mutate_edge_attrs(
+#'     edge_attr_from = "width",
+#'     expressions = "~ / 2")
 #'
 #' # Get the graph's internal edf to show that the
 #' # edge attribute `width` had its values changed
@@ -65,7 +68,9 @@
 #' graph <-
 #'   graph %>%
 #'   mutate_edge_attrs(
-#'     "width", "round(log(~) + 2, 2)", "length")
+#'     edge_attr_from = "width",
+#'     expressions = "round(log(~) + 2, 2)",
+#'     edge_attr_to = "length")
 #'
 #' # Get the graph's internal edf to show that
 #' # the edge attribute values had been mutated
@@ -86,7 +91,9 @@
 #' graph <-
 #'   graph %>%
 #'   mutate_edge_attrs(
-#'     NA, "width * length", "area")
+#'     edge_attr_from = NA,
+#'     conditions = "width * length",
+#'     edge_attr_to = "area")
 #'
 #' # Get the graph's internal edf to show that
 #' # the edge attribute values had been multiplied

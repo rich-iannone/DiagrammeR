@@ -20,12 +20,12 @@
 #' # Select nodes with ID values `1` and `3`
 #' graph <-
 #'   graph %>%
-#'   select_nodes_by_id(c(1, 3))
+#'   select_nodes_by_id(nodes = c(1, 3))
 #'
 #' # Return the node attribute values for the nodes
 #' # in the active selection
 #' graph %>%
-#'   get_node_attrs_ws("value")
+#'   get_node_attrs_ws(node_attr = "value")
 #' #>   1   3
 #' #> 6.0 3.5
 #' @export get_node_attrs_ws

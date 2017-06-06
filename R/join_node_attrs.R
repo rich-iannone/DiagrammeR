@@ -24,8 +24,9 @@
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(5) %>%
-#'   add_edges_w_string("1->2 1->3 2->4 2->5 3->5")
+#'   add_n_nodes(n = 5) %>%
+#'   add_edges_w_string(
+#'     edges = "1->2 1->3 2->4 2->5 3->5")
 #'
 #' # Create a data frame with node ID values and a
 #' # set of numeric values
@@ -40,7 +41,9 @@
 #' # graph's nodes; this works as a left join using
 #' # identically-named columns in the graph and the df
 #' # (in this case the `id` column is common to both)
-#' graph <- graph %>% join_node_attrs(df)
+#' graph <-
+#'   graph %>%
+#'   join_node_attrs(df)
 #'
 #' # Get the graph's internal ndf to show that the
 #' # join has been made
@@ -59,7 +62,7 @@
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
-#'     get_betweenness(.))
+#'     df = get_betweenness(graph = .))
 #'
 #' # Get the graph's internal ndf to show that
 #' # this join has been made

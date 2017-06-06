@@ -21,15 +21,15 @@
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(8) %>%
-#'   add_edge(1, 2) %>%
-#'   add_edge(1, 3) %>%
-#'   add_edge(3, 4) %>%
-#'   add_edge(3, 5) %>%
-#'   add_edge(4, 6) %>%
-#'   add_edge(2, 7) %>%
-#'   add_edge(7, 5) %>%
-#'   add_edge(4, 8)
+#'   add_n_nodes(n = 8) %>%
+#'   add_edge(from = 1, to = 2) %>%
+#'   add_edge(from = 1, to = 3) %>%
+#'   add_edge(from = 3, to = 4) %>%
+#'   add_edge(from = 3, to = 5) %>%
+#'   add_edge(from = 4, to = 6) %>%
+#'   add_edge(from = 2, to = 7) %>%
+#'   add_edge(from = 7, to = 5) %>%
+#'   add_edge(from = 4, to = 8)
 #'
 #' # Get a list of all paths outward from node `1`
 #' get_paths(graph, from = 1)
