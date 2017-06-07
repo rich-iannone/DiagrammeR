@@ -107,7 +107,7 @@ add_nodes_from_df_cols <- function(graph,
     # Verify that the none of the values provided
     # are greater than the number of df columns
     if (max(columns) > ncol(df)) {
-      stop("One or more of the column numbers exceeds the number of columns in the `df`.")
+      stop("One or more of the column numbers exceeds the number of columns in `df`.")
     }
   }
 
