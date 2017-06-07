@@ -26,7 +26,7 @@ and optionally obtain a count of nodes by their type.
 }
 \examples{
 # Set a seed
-set.seed(24)
+set.seed(23)
 
 # Create a node data frame (ndf)
 ndf <-
@@ -56,7 +56,7 @@ graph <-
 
 # Get counts of nodes grouped by the
 # `type` attribute
-node_count(graph, type = TRUE) # the default
+node_count(graph, type = TRUE)
 #> a b c d
 #> 7 9 8 2
 
@@ -64,11 +64,11 @@ node_count(graph, type = TRUE) # the default
 node_count(graph, type = FALSE)
 #> [1] 26
 
-# Get a count of nodes of one or more
-# specified types
+# Get a count of nodes of a specified type
 node_count(graph, type = "a")
 #> [1] 7
 
+# Get a count of nodes of 2 different types
 node_count(graph, type = c("a", "c"))
 #> [1] 15
 }

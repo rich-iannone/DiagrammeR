@@ -37,6 +37,9 @@ in this function allows for no possibility that
 nodes in the graph might be removed after the join.
 }
 \examples{
+# Set a seed
+set.seed(23)
+
 # Create a simple graph
 graph <-
   create_graph() \%>\%
@@ -46,8 +49,6 @@ graph <-
 
 # Create a data frame with node ID values and a
 # set of numeric values
-set.seed(23)
-
 df <-
   data.frame(
     values = round(rnorm(6, 5), 2),
@@ -65,11 +66,11 @@ graph <-
 # join has been made
 get_node_df(graph)
 #>   id type label values
-#> 1  1 <NA>  <NA>   5.19
-#> 2  2 <NA>  <NA>   4.57
-#> 3  3 <NA>  <NA>   5.91
-#> 4  4 <NA>  <NA>   6.79
-#> 5  5 <NA>  <NA>   6.00
+#> 1  1 <NA>  <NA>   6.00
+#> 2  2 <NA>  <NA>   6.11
+#> 3  3 <NA>  <NA>   4.72
+#> 4  4 <NA>  <NA>   6.02
+#> 5  5 <NA>  <NA>   5.05
 
 # Get betweenness values for each node and
 # add them as a node attribute (Note the
@@ -83,9 +84,9 @@ graph <-
 # this join has been made
 get_node_df(graph)
 #>   id type label values betweenness
-#> 1  1 <NA>  <NA>   4.79           2
-#> 2  2 <NA>  <NA>   3.96           7
-#> 3  3 <NA>  <NA>   3.85           1
-#> 4  4 <NA>  <NA>   5.32           0
-#> 5  5 <NA>  <NA>   3.50           2
+#> 1  1 <NA>  <NA>   6.00           2
+#> 2  2 <NA>  <NA>   6.11           7
+#> 3  3 <NA>  <NA>   4.72           1
+#> 4  4 <NA>  <NA>   6.02           0
+#> 5  5 <NA>  <NA>   5.05           2
 }

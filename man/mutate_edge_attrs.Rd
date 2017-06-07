@@ -108,7 +108,7 @@ graph <-
   graph \%>\%
   mutate_edge_attrs(
     edge_attr_from = NA,
-    conditions = "width * length",
+    expressions = "width * length",
     edge_attr_to = "area")
 
 # Get the graph's internal edf to show that

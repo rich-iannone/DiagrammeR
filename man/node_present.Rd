@@ -23,7 +23,7 @@ is present.
 }
 \examples{
 # Set a seed
-set.seed(24)
+set.seed(23)
 
 # Create a node data frame (ndf)
 ndf <-
