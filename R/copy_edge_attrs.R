@@ -73,7 +73,7 @@ copy_edge_attrs <- function(graph,
   # Stop function if `edge_attr_from` and
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {
-    stop("You cannot use make a copy with the same name.")
+    stop("You cannot make a copy with the same name.")
   }
 
   # Stop function if `edge_attr_to` is `from` or `to`

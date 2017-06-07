@@ -59,7 +59,7 @@ add_star <- function(graph,
 
   # Stop if n is too small
   if (n <= 3) {
-    stop("The value for n must be at least 4.")
+    stop("The value for `n` must be at least 4.")
   }
 
   # Create bindings for specific variables

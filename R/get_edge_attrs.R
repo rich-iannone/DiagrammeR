@@ -80,7 +80,7 @@ get_edge_attrs <- function(graph,
 
   if (!is.null(from) & !is.null(to)) {
     if (length(from) != length(to)) {
-      stop("The number of nodes 'from' and 'to' must be the same.")
+      stop("The number of nodes in `from` and `to` must be the same.")
     }
   }
 

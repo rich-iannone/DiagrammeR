@@ -64,7 +64,7 @@ get_all_connected_nodes <- function(graph,
 
   # Verify that the node ID provided is in the graph
   if (!(node %in% get_node_ids(graph))) {
-    stop("The node ID provided is not in the graph")
+    stop("The node ID provided is not in the graph.")
   }
 
   # Get a data frame of the weakly-connected

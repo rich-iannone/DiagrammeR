@@ -59,12 +59,12 @@ add_balanced_tree <- function(graph,
 
   # Stop if k is too small
   if (k <= 1) {
-    stop("The value for k must be at least 2.")
+    stop("The value for `k` must be at least 2.")
   }
 
   # Stop if h is too small
   if (h <= 1) {
-    stop("The value for h must be at least 2.")
+    stop("The value for `h` must be at least 2.")
   }
 
   # Determine the number of nodes in the balanced tree

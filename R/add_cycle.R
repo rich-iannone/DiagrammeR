@@ -53,7 +53,7 @@ add_cycle <- function(graph,
 
   # Stop if n is too small
   if (n <= 2)  {
-    stop("The value for n must be at least 3.")
+    stop("The value for `n` must be at least 3.")
   }
 
   # Create bindings for specific variables

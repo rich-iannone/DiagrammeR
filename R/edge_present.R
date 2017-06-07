@@ -70,7 +70,7 @@ edge_present <- function(graph,
   # Stop function if either node is not a single value
   if (from_is_single_value == FALSE |
       to_is_single_value == FALSE) {
-    stop("Only single nodes for 'from' and 'to' should be specified.")
+    stop("Only single nodes for `from` and `to` should be specified.")
   }
 
   # Determine whether pair of nodes provided are in

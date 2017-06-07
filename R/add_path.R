@@ -58,7 +58,7 @@ add_path <- function(graph,
 
   # Stop if n is too small
   if (n <= 1)  {
-    stop("The value for n must be at least 2.")
+    stop("The value for `n` must be at least 2.")
   }
 
   # Create bindings for specific variables

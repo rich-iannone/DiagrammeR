@@ -128,7 +128,7 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
   } else if( grepl( x = type, pattern = "[g,G]?[r,R]?.*[v,V][i].*" )  ) {
     grViz( diagram, ... )
   } else {
-    stop("The type should be 'mermaid' or 'grViz'.")
+    stop("The type should be `mermaid` or `grViz`.")
   }
 }
 

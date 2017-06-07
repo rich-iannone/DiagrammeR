@@ -66,7 +66,7 @@ node_present <- function(graph,
 
   # Stop function if node not a single value
   if (node_is_single_value == FALSE) {
-    stop("Only a single node can be queried using 'node_present'")
+    stop("Only a single node can be queried using `node_present()`.")
   }
 
   # Determine whether the value corresponds to a

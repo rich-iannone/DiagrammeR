@@ -53,7 +53,7 @@ add_to_series <- function(graph,
   # Stop function if graph series type is not valid
   if (!(series_type %in%
         c("sequential", "temporal"))) {
-    stop("The graph series type is neither 'sequential' nor 'temporal'")
+    stop("The graph series type is neither of the `sequential` nor `temporal` types.")
   }
 
   # Add graph to series
