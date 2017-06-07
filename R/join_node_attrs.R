@@ -30,7 +30,7 @@
 #'
 #' # Create a data frame with node ID values and a
 #' # set of numeric values
-#' set.seed(25)
+#' set.seed(23)
 #'
 #' df <-
 #'   data.frame(
@@ -49,11 +49,11 @@
 #' # join has been made
 #' get_node_df(graph)
 #' #>   id type label values
-#' #> 1  1 <NA>  <NA>   4.79
-#' #> 2  2 <NA>  <NA>   3.96
-#' #> 3  3 <NA>  <NA>   3.85
-#' #> 4  4 <NA>  <NA>   5.32
-#' #> 5  5 <NA>  <NA>    3.5
+#' #> 1  1 <NA>  <NA>   5.19
+#' #> 2  2 <NA>  <NA>   4.57
+#' #> 3  3 <NA>  <NA>   5.91
+#' #> 4  4 <NA>  <NA>   6.79
+#' #> 5  5 <NA>  <NA>   6.00
 #'
 #' # Get betweenness values for each node and
 #' # add them as a node attribute (Note the
@@ -61,8 +61,7 @@
 #' # tables results in a natural join)
 #' graph <-
 #'   graph %>%
-#'   join_node_attrs(
-#'     df = get_betweenness(graph = .))
+#'   join_node_attrs(get_betweenness(.))
 #'
 #' # Get the graph's internal ndf to show that
 #' # this join has been made

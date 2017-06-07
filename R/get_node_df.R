@@ -17,16 +17,16 @@
 #'   select_nodes_by_id(nodes = 1) %>%
 #'   set_node_attrs_ws(
 #'     node_attr = "value",
-#'     values = 25.3) %>%
+#'     value = 25.3) %>%
 #'   clear_selection() %>%
 #'   select_nodes_by_id(nodes = 2:4) %>%
 #'   set_node_attrs_ws(
 #'     node_attr = "color",
-#'     values = "grey70") %>%
+#'     value = "grey70") %>%
 #'   invert_selection() %>%
 #'   set_node_attrs_ws(
 #'     node_attr = "color",
-#'     values = "grey80") %>%
+#'     value = "grey80") %>%
 #'   clear_selection()
 #'
 #' # Get the graph's internal node

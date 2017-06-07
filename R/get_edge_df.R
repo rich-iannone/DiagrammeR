@@ -19,17 +19,17 @@
 #'   select_edges_by_node_id(nodes = 3:5) %>%
 #'   set_edge_attrs_ws(
 #'     edge_attr = "color",
-#'     values = "green") %>%
+#'     value = "green") %>%
 #'   set_edge_attrs_ws(
 #'     edge_attr = "rel",
-#'     values = "a") %>%
+#'     value = "a") %>%
 #'   invert_selection %>%
 #'   set_edge_attrs_ws(
 #'     edge_attr = "color",
-#'     values = "blue") %>%
+#'     value = "blue") %>%
 #'   set_edge_attrs_ws(
 #'     edge_attr = "rel",
-#'     values = "b") %>%
+#'     value = "b") %>%
 #'   clear_selection()
 #'
 #' # Get the graph's internal edge data frame (edf)
