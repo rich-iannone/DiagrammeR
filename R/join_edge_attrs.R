@@ -20,6 +20,9 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
+#' # Set a seed
+#' set.seed(23)
+#'
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
@@ -30,8 +33,6 @@
 #' # Create a data frame with node ID values
 #' # representing the graph edges (with `from` and `to`
 #' # columns), and, a set of numeric values
-#' set.seed(25)
-#'
 #' df <-
 #'   data.frame(
 #'     from = c(1, 1, 2, 2, 3),
@@ -50,11 +51,11 @@
 #' # join has been made
 #' get_edge_df(graph)
 #' #>   id from to  rel   values
-#' #> 1  1    1  2 <NA> 4.788166
-#' #> 2  2    1  3 <NA> 3.958409
-#' #> 3  3    2  4 <NA> 3.846692
-#' #> 4  4    2  5 <NA> 5.321531
-#' #> 5  5    3  5 <NA> 3.499870
+#' #> 1  1    1  2 <NA> 5.996605
+#' #> 2  2    1  3 <NA> 6.107490
+#' #> 3  3    2  4 <NA> 4.721914
+#' #> 4  4    2  5 <NA> 6.019205
+#' #> 5  5    3  5 <NA> 5.045437
 #' @importFrom dplyr select everything
 #' @export join_edge_attrs
 
