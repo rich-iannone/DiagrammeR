@@ -28,7 +28,7 @@ is_graph_empty(graph)
 # Create a non-empty graph
 graph <-
   create_graph() \%>\%
-  add_n_nodes(3)
+  add_n_nodes(n = 3)
 
 # Determine whether this graph is empty
 is_graph_empty(graph)

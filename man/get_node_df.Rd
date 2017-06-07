@@ -21,19 +21,25 @@ with all current node attributes.
 # Create a graph using several piped functions
 graph <-
   create_graph() \%>\%
-  add_n_nodes(1, "a") \%>\%
+  add_n_nodes(n = 1, type = "a") \%>\%
   select_last_nodes_created() \%>\%
-  add_n_nodes_ws(5, "from", "b") \%>\%
-  select_nodes_by_id(1) \%>\%
+  add_n_nodes_ws(
+    n = 5,
+    direction = "from",
+    type = "b") \%>\%
+  select_nodes_by_id(nodes = 1) \%>\%
   set_node_attrs_ws(
-    "value", 25.3) \%>\%
+    node_attr = "value",
+    value = 25.3) \%>\%
   clear_selection() \%>\%
-  select_nodes_by_id(2:4) \%>\%
+  select_nodes_by_id(nodes = 2:4) \%>\%
   set_node_attrs_ws(
-    "color", "grey70") \%>\%
+    node_attr = "color",
+    value = "grey70") \%>\%
   invert_selection() \%>\%
   set_node_attrs_ws(
-    "color", "grey80") \%>\%
+    node_attr = "color",
+    value = "grey80") \%>\%
   clear_selection()
 
 # Get the graph's internal node

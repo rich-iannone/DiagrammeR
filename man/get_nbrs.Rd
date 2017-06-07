@@ -47,7 +47,9 @@ graph <-
     value = "purple") \%>\%
   clear_selection() \%>\%
   select_nodes_by_id(
-    nodes = get_nbrs(., 3)) \%>\%
+    nodes = get_nbrs(
+      graph = .,
+      nodes = 3)) \%>\%
   set_node_attrs_ws(
     node_attr = "color",
     value = "green")

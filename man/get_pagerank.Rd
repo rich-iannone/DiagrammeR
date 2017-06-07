@@ -30,7 +30,8 @@ all nodes in the graph.
 # Create a random graph
 graph <-
   create_random_graph(
-    10, 22, set_seed = 23)
+    n = 10, m = 22,
+    set_seed = 23)
 
 # Get the alpha centrality scores for nodes
 # in the graph
@@ -51,7 +52,8 @@ get_pagerank(graph)
 # PageRank scores
 graph <-
   graph \%>\%
-  join_node_attrs(get_pagerank(.)) \%>\%
+  join_node_attrs(
+    df = get_pagerank(graph = .)) \%>\%
   colorize_node_attrs(
     node_attr_from = "pagerank",
     node_attr_to = "fillcolor",

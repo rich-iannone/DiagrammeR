@@ -49,9 +49,10 @@ node attribute and its values.
 # Create a graph with 3 nodes
 graph <-
   create_graph() \%>\%
-  add_path(3) \%>\%
+  add_path(n = 3) \%>\%
   set_node_attrs(
-    "width", c(3.4, 2.3, 7.2))
+    node_attr = "width",
+    values = c(3.4, 2.3, 7.2))
 
 # Get the graph's internal ndf to show which
 # node attributes are available
@@ -65,7 +66,9 @@ get_node_df(graph)
 # each value by 2
 graph <-
   graph \%>\%
-  mutate_node_attrs("width", "~ / 2")
+  mutate_node_attrs(
+    node_attr_from = "width",
+    expressions = "~ / 2")
 
 # Get the graph's internal ndf to show that the
 # node attribute `width` had its values changed
@@ -81,7 +84,9 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   mutate_node_attrs(
-    "width", "round(log(~) + 2, 2)", "length")
+    node_attr_from = "width",
+    expressions = "round(log(~) + 2, 2)",
+    node_attr_to = "length")
 
 # Get the graph's internal ndf to show that
 # the node attribute values had been mutated
@@ -102,7 +107,9 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   mutate_node_attrs(
-    NA, "width * length", "area")
+    node_attr_from = NA,
+    expressions = "width * length",
+    node_attr_to = "area")
 
 # Get the graph's internal ndf to show that
 # the node attribute values had been multiplied

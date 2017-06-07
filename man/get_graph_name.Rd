@@ -24,7 +24,10 @@ Get the name of a graph object of class
 graph <- create_graph()
 
 # Provide the new graph with a name
-graph <- set_graph_name(graph, "the_name")
+graph <-
+  set_graph_name(
+    graph,
+    name = "the_name")
 
 # Get the graph's name
 get_graph_name(graph)

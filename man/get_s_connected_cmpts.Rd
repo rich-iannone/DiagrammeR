@@ -25,8 +25,8 @@ set.seed(23)
 # between 2 different cycles
 graph <-
   create_graph() \%>\%
-  add_cycle(3, "cycle_1") \%>\%
-  add_cycle(4, "cycle_2") \%>\%
+  add_cycle(n = 3, type = "cycle_1") \%>\%
+  add_cycle(n = 4, type = "cycle_2") \%>\%
   add_edge(
     from = get_node_ids(., "type == 'cycle_1'") \%>\%
       sample(1),

@@ -23,12 +23,12 @@ edges from a graph object of class \code{dgr_graph}.
 # Create a simple graph
 graph <-
   create_graph() \%>\%
-  add_n_nodes(6) \%>\%
-  add_edge(1, 2) \%>\%
-  add_edge(1, 3) \%>\%
-  add_edge(3, 4) \%>\%
-  add_edge(4, 5) \%>\%
-  add_edge(4, 6)
+  add_n_nodes(n = 6) \%>\%
+  add_edge(from = 1, to = 2) \%>\%
+  add_edge(from = 1, to = 3) \%>\%
+  add_edge(from = 3, to = 4) \%>\%
+  add_edge(from = 4, to = 5) \%>\%
+  add_edge(from = 4, to = 6)
 
 # Select node `4`, then select all nodes a
 # distance of 1 away from node `4`, and finally
@@ -43,7 +43,7 @@ graph \%>\%
 # Select edges associated with node `4` and return
 # the selection of edges
 graph \%>\%
-  select_edges_by_node_id(4) \%>\%
+  select_edges_by_node_id(nodes = 4) \%>\%
   get_selection()
 #> [1] 3 4 5
 }

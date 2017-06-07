@@ -21,19 +21,28 @@ with all current edge attributes.
 # Create a graph using several piped functions
 graph <-
   create_graph() \%>\%
-  add_n_nodes(1, "a") \%>\%
+  add_n_nodes(
+    n = 1,
+    type = "a") \%>\%
   select_last_nodes_created() \%>\%
-  add_n_nodes_ws(5, "from", "b") \%>\%
-  select_edges_by_node_id(3:5) \%>\%
+  add_n_nodes_ws(
+    n = 5,
+    direction = "from",
+    type = "b") \%>\%
+  select_edges_by_node_id(nodes = 3:5) \%>\%
   set_edge_attrs_ws(
-    "color", "green") \%>\%
+    edge_attr = "color",
+    value = "green") \%>\%
   set_edge_attrs_ws(
-    "rel", "a") \%>\%
+    edge_attr = "rel",
+    value = "a") \%>\%
   invert_selection \%>\%
   set_edge_attrs_ws(
-    "color", "blue") \%>\%
+    edge_attr = "color",
+    value = "blue") \%>\%
   set_edge_attrs_ws(
-    "rel", "b") \%>\%
+    edge_attr = "rel",
+    value = "b") \%>\%
   clear_selection()
 
 # Get the graph's internal edge data frame (edf)

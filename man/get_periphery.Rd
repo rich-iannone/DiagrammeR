@@ -21,9 +21,9 @@ in the graph).
 \examples{
 # Get the nodes that are in the graph periphery
 # of a randomly-created graph
-get_periphery(
-  create_random_graph(
-    15, 24,
-    set_seed = 23))
+create_random_graph(
+    n = 15, m = 24,
+    set_seed = 23) \%>\%
+  get_periphery()
 #> [1] 2
 }
