@@ -76,7 +76,9 @@
 #'
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
-#' graph_2 %>% get_edge_df() %>% head()
+#' graph_2 %>%
+#'   get_edge_df() %>%
+#'   head()
 #' #>   id from to      rel cost_unit
 #' #> 1  1  148  1 from_usd  0.272300
 #' #> 2  2  148  2 from_usd  0.015210
