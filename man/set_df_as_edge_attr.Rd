@@ -56,7 +56,8 @@ graph <-
 df <-
   data.frame(
     a = c("one", "two", "three"),
-    b = c(1, 2, 3))
+    b = c(1, 2, 3),
+    stringsAsFactors = FALSE)
 
 # Bind the data frame as an edge attribute
 # to the edge with ID `1`

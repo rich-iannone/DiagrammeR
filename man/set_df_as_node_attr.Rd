@@ -55,7 +55,8 @@ graph <-
 df <-
   data.frame(
     a = c("one", "two", "three"),
-    b = c(1, 2, 3))
+    b = c(1, 2, 3),
+    stringsAsFactors = FALSE)
 
 # Bind the data frame as a node attribute
 # of node `1`
@@ -64,4 +65,20 @@ graph <-
     graph = graph,
     node = 1,
     df = df)
+
+# Create another data frame to add as
+# a node attribute
+df_2 <-
+  data.frame(
+    c = c("four", "five", "six"),
+    d = c(4, 5, 6),
+    stringsAsFactors = FALSE)
+
+# Bind the data frame as a node attribute
+# of node `2`
+graph <-
+  set_df_as_node_attr(
+    graph = graph,
+    node = 2,
+    df = df_2)
 }

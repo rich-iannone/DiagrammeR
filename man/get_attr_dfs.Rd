@@ -21,12 +21,9 @@ which data frames are bound as edge attrs.}
 return the results of several data frames. These
 can either be: (1) \code{single_tbl} (a tibble
 object resulting from a `bind_rows` operation of
-multiple data frames), (2) \code{single_df}
+multiple data frames), and (2) \code{single_df}
 (a single data frame which all of the data frame
-data), (3) \code{list_tbl} (a list object with a
-tibble object present in each list component),
-and (4) \code{list_col} (a tibble with a column
-of tibble objects).}
+data).}
 }
 \value{
 either a tibble, a data frame, or a list.
@@ -100,13 +97,13 @@ graph <-
 get_attr_dfs(
   graph,
   node_id = c(1, 4))
-#> # A tibble: 4 × 5
-#>   node_id  type label     a     b
-#>     <int> <chr> <chr> <chr> <dbl>
-#> 1       1 basic     1   one     1
-#> 2       1 basic     1   two     2
-#> 3       4 basic     4 three     3
-#> 4       4 basic     4  four     4
+#> # A tibble: 4 x 6
+#>   node_edge__    id  type label     a     b
+#>         <chr> <int> <chr> <chr> <chr> <dbl>
+#> 1        node     1 basic     1   one     1
+#> 2        node     1 basic     1   two     2
+#> 3        node     4 basic     4 three     3
+#> 4        node     4 basic     4  four     4
 
 # You can also get data frames that are
 # associated with edges by using the
@@ -114,26 +111,27 @@ get_attr_dfs(
 get_attr_dfs(
   graph,
   edge_id = 1)
-#>   edge_id        rel  from    to     c     d
-#>     <int>      <chr> <int> <int> <chr> <dbl>
-#> 1       1 leading_to     1     4  five     5
-#> 2       1 leading_to     1     4   six     6
+#> # A tibble: 2 x 7
+#>   node_edge__    id        rel  from    to     c     d
+#>         <chr> <int>      <chr> <int> <int> <chr> <dbl>
+#> 1        edge     1 leading_to     1     4  five     5
+#> 2        edge     1 leading_to     1     4   six     6
 
-# It's also possible to collect data
-# frames associated with both nodes and
-# edges
+# It's also possible to collect data frames
+# associated with both nodes and edges
 get_attr_dfs(
   graph,
   node_id = 4,
   edge_id = 1)
-#>   node_id edge_id  type label        rel  from    to
-#>     <int>   <int> <chr> <chr>      <chr> <int> <int>
-#> 1       4      NA basic     4       <NA>    NA    NA
-#> 2       4      NA basic     4       <NA>    NA    NA
-#> 3      NA       1  <NA>  <NA> leading_to     1     4
-#> 4      NA       1  <NA>  <NA> leading_to     1     4
-#> ... with 4 more variables: a <chr>, b <dbl>,
-#>   c <chr>, d <dbl>
+#> # A tibble: 4 x 11
+#>   node_edge__    id  type label        rel  from    to
+#>         <chr> <int> <chr> <chr>      <chr> <int> <int>
+#> 1        node     4 basic     4       <NA>    NA    NA
+#> 2        node     4 basic     4       <NA>    NA    NA
+#> 3        edge     1  <NA>  <NA> leading_to     1     4
+#> 4        edge     1  <NA>  <NA> leading_to     1     4
+#> # ... with 4 more variables: a <chr>, b <dbl>, c <chr>,
+#> #   d <dbl>
 
 # If a data frame is desired instead,
 # set `return_format = "single_df"`
@@ -141,20 +139,7 @@ get_attr_dfs(
   graph,
   edge_id = 1,
   return_format = "single_df")
-#>   edge_id        rel from to    c d
-#> 1       1 leading_to    1  4 five 5
-#> 2       1 leading_to    1  4  six 6
-
-# If we'd want a tibble with a list column
-# (containing the tibble data for each
-# node or edge): `return_format = "list_col"`
-get_attr_dfs(
-  graph,
-  node_id = 1,
-  edge_id = 1,
-  return_format = "list_col")
-#>   node_id edge_id    df_data
-#>     <int>   <int>     <list>
-#> 1       1      NA <list [1]>
-#> 2      NA       1 <list [1]>
+#>   node_edge__ id        rel from to    c d
+#> 1        edge  1 leading_to    1  4 five 5
+#> 2        edge  1 leading_to    1  4  six 6
 }
