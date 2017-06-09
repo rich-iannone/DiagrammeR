@@ -41,7 +41,8 @@
 #' df <-
 #'   data.frame(
 #'     a = c("one", "two", "three"),
-#'     b = c(1, 2, 3))
+#'     b = c(1, 2, 3),
+#'     stringsAsFactors = FALSE)
 #'
 #' # Bind the data frame as an edge attribute
 #' # to the edge with ID `1`
@@ -50,9 +51,9 @@
 #'     graph = graph,
 #'     edge = 1,
 #'     df = df)
-#' @importFrom tidyr nest
-#' @importFrom dplyr everything bind_rows mutate
+#' @importFrom dplyr filter everything mutate select bind_rows
 #' @importFrom tibble tibble as_tibble
+#' @importFrom purrr flatten_chr
 #' @export set_df_as_edge_attr
 
 set_df_as_edge_attr <- function(graph,
@@ -83,16 +84,11 @@ set_df_as_edge_attr <- function(graph,
     stop("The value given for `edge` does not correspond to an edge ID.")
   }
 
-  # Create nested data frame using `df` in a list column
-  df_nested <- tidyr::nest(df, dplyr::everything())
-
-  # Create the `df_storage` tibble
-  df_storage <-
-    data.frame(
-      df_id = as.character(NA),
-      df_data = as.character(NA),
-      stringsAsFactors = FALSE)[-1, ] %>%
-    tibble::as_tibble()
+  # Generate an empty `df_storage` list if not present
+  # TODO: put this in `create_graph()`
+  if (is.null(graph$df_storage)) {
+    graph$df_storage <- list()
+  }
 
   # Generate a random 8-character, alphanumeric
   # string to use as a data frame ID (`df_id`)
@@ -101,22 +97,35 @@ set_df_as_edge_attr <- function(graph,
       8, sample(c(LETTERS, letters, 0:9), 1)) %>%
     paste(collapse = "")
 
-  # Generate row with table
-  df_row <-
-    tibble::tibble(df_id = df_id) %>%
-    dplyr::mutate(df_data = df_nested)
+  # Mutate the incoming data frame to contain
+  # identifying information
+  df <-
+    df %>%
+    dplyr::mutate(
+      df_id__ = df_id,
+      node_edge__ = "edge",
+      id__ = edge) %>%
+    dplyr::select(df_id__, node_edge__, id__, everything()) %>%
+    tibble::as_tibble()
 
-  # Bind the new row with `df_id` and `df_data` to `df_storage`
-  df_storage <- suppressWarnings(rbind(df_storage, df_row))
+  # If there is an existing data frame attributed
+  # to the edge, remove it
+  if (dplyr::bind_rows(graph$df_storage) %>%
+      dplyr::filter(node_edge__ == "edge") %>%
+      dplyr::filter(id__ == edge) %>%
+      nrow() > 0) {
+    df_object_old <-
+      (dplyr::bind_rows(graph$df_storage) %>%
+         dplyr::filter(node_edge__ == "edge") %>%
+         dplyr::filter(id__ == edge) %>%
+         dplyr::select(df_id__) %>%
+         purrr::flatten_chr())[1]
 
-  # Bind the `df_storage` tibble to an existing `df_storage` object
-  # if it exists in the graph
-  if (!is.null(graph$df_storage)) {
-    graph$df_storage <-
-      dplyr::bind_rows(graph$df_storage, df_storage)
-  } else {
-    graph$df_storage <- df_storage
+    graph$df_storage[[`df_object_old`]] <- NULL
   }
+
+  # Bind the data frame to `df_storage` list component
+  graph$df_storage[[`df_id`]] <- df
 
   # Set the `df_id` edge attribute using the
   # `set_edge_attrs()` function
