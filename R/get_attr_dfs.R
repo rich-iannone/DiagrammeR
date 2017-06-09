@@ -13,12 +13,9 @@
 #' return the results of several data frames. These
 #' can either be: (1) \code{single_tbl} (a tibble
 #' object resulting from a `bind_rows` operation of
-#' multiple data frames), (2) \code{single_df}
+#' multiple data frames), and (2) \code{single_df}
 #' (a single data frame which all of the data frame
-#' data), (3) \code{list_tbl} (a list object with a
-#' tibble object present in each list component),
-#' and (4) \code{list_col} (a tibble with a column
-#' of tibble objects).
+#' data).
 #' @return either a tibble, a data frame, or a list.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -83,13 +80,13 @@
 #' get_attr_dfs(
 #'   graph,
 #'   node_id = c(1, 4))
-#' #> # A tibble: 4 × 5
-#' #>   node_id  type label     a     b
-#' #>     <int> <chr> <chr> <chr> <dbl>
-#' #> 1       1 basic     1   one     1
-#' #> 2       1 basic     1   two     2
-#' #> 3       4 basic     4 three     3
-#' #> 4       4 basic     4  four     4
+#' #> # A tibble: 4 x 6
+#' #>   node_edge__    id  type label     a     b
+#' #>         <chr> <int> <chr> <chr> <chr> <dbl>
+#' #> 1        node     1 basic     1   one     1
+#' #> 2        node     1 basic     1   two     2
+#' #> 3        node     4 basic     4 three     3
+#' #> 4        node     4 basic     4  four     4
 #'
 #' # You can also get data frames that are
 #' # associated with edges by using the
@@ -97,26 +94,27 @@
 #' get_attr_dfs(
 #'   graph,
 #'   edge_id = 1)
-#' #>   edge_id        rel  from    to     c     d
-#' #>     <int>      <chr> <int> <int> <chr> <dbl>
-#' #> 1       1 leading_to     1     4  five     5
-#' #> 2       1 leading_to     1     4   six     6
+#' #> # A tibble: 2 x 7
+#' #>   node_edge__    id        rel  from    to     c     d
+#' #>         <chr> <int>      <chr> <int> <int> <chr> <dbl>
+#' #> 1        edge     1 leading_to     1     4  five     5
+#' #> 2        edge     1 leading_to     1     4   six     6
 #'
-#' # It's also possible to collect data
-#' # frames associated with both nodes and
-#' # edges
+#' # It's also possible to collect data frames
+#' # associated with both nodes and edges
 #' get_attr_dfs(
 #'   graph,
 #'   node_id = 4,
 #'   edge_id = 1)
-#' #>   node_id edge_id  type label        rel  from    to
-#' #>     <int>   <int> <chr> <chr>      <chr> <int> <int>
-#' #> 1       4      NA basic     4       <NA>    NA    NA
-#' #> 2       4      NA basic     4       <NA>    NA    NA
-#' #> 3      NA       1  <NA>  <NA> leading_to     1     4
-#' #> 4      NA       1  <NA>  <NA> leading_to     1     4
-#' #> ... with 4 more variables: a <chr>, b <dbl>,
-#' #>   c <chr>, d <dbl>
+#' #> # A tibble: 4 x 11
+#' #>   node_edge__    id  type label        rel  from    to
+#' #>         <chr> <int> <chr> <chr>      <chr> <int> <int>
+#' #> 1        node     4 basic     4       <NA>    NA    NA
+#' #> 2        node     4 basic     4       <NA>    NA    NA
+#' #> 3        edge     1  <NA>  <NA> leading_to     1     4
+#' #> 4        edge     1  <NA>  <NA> leading_to     1     4
+#' #> # ... with 4 more variables: a <chr>, b <dbl>, c <chr>,
+#' #> #   d <dbl>
 #'
 #' # If a data frame is desired instead,
 #' # set `return_format = "single_df"`
@@ -124,24 +122,12 @@
 #'   graph,
 #'   edge_id = 1,
 #'   return_format = "single_df")
-#' #>   edge_id        rel from to    c d
-#' #> 1       1 leading_to    1  4 five 5
-#' #> 2       1 leading_to    1  4  six 6
-#'
-#' # If we'd want a tibble with a list column
-#' # (containing the tibble data for each
-#' # node or edge): `return_format = "list_col"`
-#' get_attr_dfs(
-#'   graph,
-#'   node_id = 1,
-#'   edge_id = 1,
-#'   return_format = "list_col")
-#' #>   node_id edge_id    df_data
-#' #>     <int>   <int>     <list>
-#' #> 1       1      NA <list [1]>
-#' #> 2      NA       1 <list [1]>
-#' @importFrom dplyr filter select starts_with everything inner_join rename mutate
-#' @importFrom tibble as_tibble
+#' #>   node_edge__ id        rel from to    c d
+#' #> 1        edge  1 leading_to    1  4 five 5
+#' #> 2        edge  1 leading_to    1  4  six 6
+#' @importFrom dplyr filter select bind_rows filter starts_with everything left_join
+#' @importFrom tibble as_tibble tibble
+#' @importFrom purrr flatten_chr
 #' @export get_attr_dfs
 
 get_attr_dfs <- function(graph,
@@ -160,7 +146,7 @@ get_attr_dfs <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- type <- rel <- label <- df_data <- NULL
+  id <- from <- to <- type <- rel <- label <- NULL
 
   # Collect data frames that are attributes of graph nodes
   if (!is.null(node_id)) {
@@ -170,38 +156,28 @@ get_attr_dfs <- function(graph,
       graph$nodes_df %>%
       dplyr::filter(id %in% node_id) %>%
       dplyr::select(id, type, label, dplyr::starts_with("df_id")) %>%
-      tibble::as_tibble()
+      tibble::as_tibble() %>%
+      dplyr::select(df_id) %>%
+      purrr::flatten_chr()
 
-    # Get the appropriate rows of stored data frames
-    df_storage_rows_nodes <-
-      df_ids_nodes %>%
-      dplyr::inner_join(graph$df_storage, by = "df_id") %>%
-      dplyr::rename(node_id = id) %>%
-      dplyr::select(node_id, df_data)
+    if (any(df_ids_nodes %in% (graph$df_storage %>% names()))) {
 
-    # Combine multiple data frames together
-    for (i in 1:length(df_storage_rows_nodes$df_data)) {
-      if (i == 1) {
-        df_nodes <-
-          df_storage_rows_nodes$df_data[[i]][[1]] %>%
-          dplyr::mutate(node_id = df_storage_rows_nodes$node_id[i])
-      }
-
-      if (i > 1) {
-        df_nodes <-
-          bind_rows(
-            df_nodes, df_storage_rows_nodes$df_data[[i]][[1]] %>%
-              dplyr::mutate(node_id = df_storage_rows_nodes$node_id[i]))
-      }
-
-      if (i == length(df_storage_rows_nodes$df_data)) {
-        df_nodes <-
-          df_nodes %>%
-          dplyr::inner_join(df_ids_nodes %>%
-                              dplyr::select(id, type, label),
-                            by = c("node_id" = "id")) %>%
-          dplyr::select(node_id, type, label, dplyr::everything())
-      }
+      df_tbl_nodes <-
+        df_ids_nodes %>%
+        purrr::map_df(
+          function(x){
+            if (x %in% (graph$df_storage %>% names())) {
+              graph$df_storage[[x]] %>%
+                dplyr::left_join(
+                  graph$nodes_df %>%
+                    dplyr::select(id, type, label, df_id),
+                  by = c("df_id__" = "df_id")) %>%
+                dplyr::select(-df_id__) %>%
+                dplyr::select(-id__) %>%
+                dplyr::select(node_edge__, id, type, label, everything())
+            } else {
+              tibble::tibble()
+            }})
     }
   }
 
@@ -213,75 +189,53 @@ get_attr_dfs <- function(graph,
       graph$edges_df %>%
       dplyr::filter(id %in% edge_id) %>%
       dplyr::select(id, from, to, rel, dplyr::starts_with("df_id")) %>%
-      tibble::as_tibble()
+      tibble::as_tibble() %>%
+      dplyr::select(df_id) %>%
+      purrr::flatten_chr()
 
-    # Get the appropriate rows of stored data frames
-    df_storage_rows_edges <-
-      df_ids_edges %>%
-      dplyr::inner_join(graph$df_storage, by = "df_id") %>%
-      dplyr::rename(edge_id = id) %>%
-      dplyr::select(edge_id, df_data)
+    if (any(df_ids_edges %in% (graph$df_storage %>% names()))) {
 
-    # Combine multiple data frames together
-    for (i in 1:length(df_storage_rows_edges$df_data)) {
-      if (i == 1) {
-        df_edges <-
-          df_storage_rows_edges$df_data[[i]][[1]] %>%
-          dplyr::mutate(edge_id = df_storage_rows_edges$edge_id[i])
-      }
-
-      if (i > 1) {
-        df_edges <-
-          bind_rows(
-            df_edges, df_storage_rows_edges$df_data[[i]][[1]] %>%
-              dplyr::mutate(edge_id = df_storage_rows_edges$edge_id[i]))
-      }
-
-      if (i == length(df_storage_rows_edges$df_data)) {
-        df_edges <-
-          df_edges %>%
-          dplyr::inner_join(df_ids_edges %>%
-                              dplyr::select(id, rel, from, to),
-                            by = c("edge_id" = "id")) %>%
-          dplyr::select(edge_id, rel, from, to, dplyr::everything())
-      }
+      df_tbl_edges <-
+        df_ids_edges %>%
+        purrr::map_df(
+          function(x){
+            if (x %in% (graph$df_storage %>% names())) {
+              graph$df_storage[[x]] %>%
+                dplyr::left_join(
+                  graph$edges_df %>%
+                    dplyr::select(id, from, to, rel, df_id),
+                  by = c("df_id__" = "df_id")) %>%
+                dplyr::select(-df_id__) %>%
+                dplyr::select(-id__) %>%
+                dplyr::select(node_edge__, id, from, to, rel, everything())
+            } else {
+              tibble::tibble()
+            }})
     }
   }
 
-  if (exists("df_nodes") & exists("df_edges")) {
-    if (return_format == "list_col") {
-      return(dplyr::bind_rows(
-        df_storage_rows_nodes, df_storage_rows_edges) %>%
-          dplyr::select(node_id, edge_id, df_data))
-    }
+  if (exists("df_tbl_nodes") & exists("df_tbl_edges")) {
 
     df <-
-      dplyr::bind_rows(df_nodes, df_edges) %>%
-      dplyr::select(node_id, edge_id, type, label,
-                    rel, from, to, dplyr::everything())
+      dplyr::bind_rows(df_tbl_nodes, df_tbl_edges) %>%
+      dplyr::select(
+        node_edge__, id, type, label,
+        rel, from, to, dplyr::everything())
   }
 
-  if (exists("df_nodes") & !exists("df_edges")) {
+  if (exists("df_tbl_nodes") & !exists("df_tbl_edges")) {
 
-    if (return_format == "list_col") {
-      return(df_storage_rows_nodes)
-    }
-
-    df <- df_nodes %>%
-      dplyr::select(node_id, type, label, dplyr::everything())
+    df <- df_tbl_nodes %>%
+      dplyr::select(node_edge__, id, type, label, dplyr::everything())
   }
 
-  if (!exists("df_nodes") & exists("df_edges")) {
+  if (!exists("df_tbl_nodes") & exists("df_tbl_edges")) {
 
-    if (return_format == "list_col") {
-      return(df_storage_rows_edges)
-    }
-
-    df <- df_edges %>%
-      dplyr::select(edge_id, rel, from, to, dplyr::everything())
+    df <- df_tbl_edges %>%
+      dplyr::select(node_edge__, id, rel, from, to, dplyr::everything())
   }
 
-  if (!exists("df_nodes") & !exists("df_edges")) {
+  if (!exists("df_tbl_nodes") & !exists("df_tbl_edges")) {
     df <- NA
   }
 
