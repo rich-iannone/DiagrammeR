@@ -54,10 +54,10 @@ grViz <- function(diagram = "",
 
   # Forward options using x
   x <- list(
-    diagram = diagram
-    , config = list(
-      engine = engine
-      , options = options
+    diagram = diagram,
+    config = list(
+      engine = engine,
+      options = options
     )
   )
 
