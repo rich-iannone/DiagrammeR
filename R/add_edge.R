@@ -18,7 +18,8 @@
 #' and none exist as an empty string.
 #' @param allow_multiple_edges an option to allow or
 #' disallow the possibility of creating an edge with an
-#' edge definition already extant in the graph.
+#' edge definition already extant in the graph. This
+#' is set to \code{TRUE} by default.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 4 nodes
