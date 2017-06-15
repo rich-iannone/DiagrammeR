@@ -4,8 +4,7 @@
 \alias{delete_edge}
 \title{Delete an edge from an existing graph object}
 \usage{
-delete_edge(graph, from = NULL, to = NULL, use_labels = FALSE,
-  id = NULL)
+delete_edge(graph, from = NULL, to = NULL, id = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -13,14 +12,20 @@ delete_edge(graph, from = NULL, to = NULL, use_labels = FALSE,
 
 \item{from}{a node ID from which the edge to be
 removed is outgoing. If an edge ID is provided to
-\code{id}, then this argument is ignored.}
+\code{id}, then this argument is ignored. There
+is the option to use a node \code{label}
+value here (and this must correspondingly also be
+done for the \code{to} argument) for defining
+node connections. Note that this is only possible
+if all nodes have distinct \code{label} values set
+and none exist as an empty string.}
 
 \item{to}{a node ID to which the edge to be removed
 is incoming. If an edge ID is provided to
-\code{id}, then this argument is ignored.}
-
-\item{use_labels}{an option to use node \code{label}
-values in \code{from} and \code{to} for defining
+\code{id}, then this argument is ignored. There
+is the option to use a node \code{label}
+value here (and this must correspondingly also be
+for the \code{from} argument) for defining
 node connections. Note that this is only possible
 if all nodes have distinct \code{label} values set
 and none exist as an empty string.}
@@ -96,8 +101,8 @@ graph_undirected \%>\%
   edge_count()
 #> [1] 0
 
-# Create a directed graph with
-# 2 labeled nodes and an edge
+# Create a directed graph with 2
+# labeled nodes and an edge
 graph_labeled_nodes <-
   create_graph() \%>\%
   add_n_nodes(
@@ -115,8 +120,7 @@ graph_labeled_nodes <-
 graph_labeled_nodes \%>\%
   delete_edge(
     from = "one",
-    to = "two",
-    use_labels = TRUE) \%>\%
+    to = "two") \%>\%
   edge_count()
 #> [1] 0
 }
