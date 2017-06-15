@@ -110,8 +110,7 @@ graph_labeled_nodes <-
     label = c("one", "two")) \%>\%
   add_edge(
     from = "one",
-    to = "two",
-    use_labels = TRUE)
+    to = "two")
 
 # Delete the edge using the node
 # labels in `from` and `to`; this

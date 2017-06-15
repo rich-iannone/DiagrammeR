@@ -4,28 +4,33 @@
 \alias{add_edge}
 \title{Add an edge between nodes in a graph object}
 \usage{
-add_edge(graph, from, to, rel = NULL, use_labels = FALSE,
-  allow_multiple_edges = TRUE)
+add_edge(graph, from, to, rel = NULL, allow_multiple_edges = TRUE)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
 \item{from}{the outgoing node from which the edge
-is connected.}
+is connected. There is the option to use a node
+\code{label} value here (and this must
+correspondingly also be done for the \code{to}
+argument) for defining node connections. Note that
+this is only possible if all nodes have distinct
+\code{label} values set and none exist as an empty
+string.}
 
 \item{to}{the incoming nodes to which each edge
-is connected.}
+is connected. There is the option to use a node
+\code{label} value here (and this must
+correspondingly also be done for the \code{from}
+argument) for defining node connections. Note that
+this is only possible if all nodes have distinct
+\code{label} values set and none exist as an empty
+string.}
 
 \item{rel}{an optional string specifying the
 relationship between the
 connected nodes.}
-
-\item{use_labels}{an option to use node \code{label}
-values in \code{from} and \code{to} for defining
-node connections. Note that this is only possible
-if all nodes have distinct \code{label} values set
-and none exist as an empty string.}
 
 \item{allow_multiple_edges}{an option to allow or
 disallow the possibility of creating an edge with an
@@ -77,22 +82,19 @@ graph <-
 edge_count(graph)
 #> [1] 2
 
-# Add edges by specifying node `label` values
-# and setting `use_labels = TRUE`; note
-# that all nodes must have unique `label`
-# values to use this option
+# Add edges by specifying node `label`
+# values; note that all nodes must have
+# unique `label` values to use this option
 graph <-
   graph \%>\%
   add_edge(
     from = "three",
     to = "four",
-    rel = "L",
-    use_labels = TRUE) \%>\%
+    rel = "L") \%>\%
   add_edge(
     from = "four",
     to = "one",
-    rel = "L",
-    use_labels = TRUE)
+    rel = "L")
 
 # Use the `get_edges()` function to verify
 # that the edges were added
