@@ -49,10 +49,10 @@
 #' # order specified while applying
 #' # the `pagerank_color` function
 #' render_graph_panel(
-#'   graph_1 %>% pagerank_color,
-#'   graph_2 %>% pagerank_color,
-#'   graph_3 %>% pagerank_color,
-#'   graph_4 %>% pagerank_color,
+#'   graph_1 %>% pagerank_color(),
+#'   graph_2 %>% pagerank_color(),
+#'   graph_3 %>% pagerank_color(),
+#'   graph_4 %>% pagerank_color(),
 #'   ncols = 2,
 #'   nrows = 2)
 #' }
