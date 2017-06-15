@@ -25,8 +25,7 @@ simple_property_graph <-
   add_edge(
     from = "first",
     to = "second",
-    rel = "rel_1",
-    use_labels = TRUE)
+    rel = "rel_1")
 
 # This is a property graph but confirm
 # that this is TRUE by using the
@@ -49,6 +48,7 @@ is_property_graph()
 # An empty graph will return FALSE
 create_graph() %>%
   is_property_graph()
+#> [1] FALSE
 }
 \description{
 Provides a logical value on whether
