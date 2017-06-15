@@ -204,15 +204,13 @@ test_that("adding an edge to a graph is possible", {
     add_node(label = "four")
 
   # Add two edges to the graph using the node
-  # `label` values (specifying `use_labels == TRUE`)
+  # `label` values
   graph_2 <-
     graph_2 %>%
     add_edge(
-      "three", "four", "L",
-      use_labels = TRUE) %>%
+      "three", "four", "L") %>%
     add_edge(
-      "four", "one", "L",
-      use_labels = TRUE)
+      "four", "one", "L")
 
   # Expect that 2 edges are available in the graph
   expect_equal(edge_count(graph_2), 2)
