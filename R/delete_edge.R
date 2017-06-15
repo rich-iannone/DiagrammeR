@@ -9,12 +9,19 @@
 #' \code{dgr_graph}.
 #' @param from a node ID from which the edge to be
 #' removed is outgoing. If an edge ID is provided to
-#' \code{id}, then this argument is ignored.
+#' \code{id}, then this argument is ignored. There
+#' is the option to use a node \code{label}
+#' value here (and this must correspondingly also be
+#' done for the \code{to} argument) for defining
+#' node connections. Note that this is only possible
+#' if all nodes have distinct \code{label} values set
+#' and none exist as an empty string.
 #' @param to a node ID to which the edge to be removed
 #' is incoming. If an edge ID is provided to
-#' \code{id}, then this argument is ignored.
-#' @param use_labels an option to use node \code{label}
-#' values in \code{from} and \code{to} for defining
+#' \code{id}, then this argument is ignored. There
+#' is the option to use a node \code{label}
+#' value here (and this must correspondingly also be
+#' for the \code{from} argument) for defining
 #' node connections. Note that this is only possible
 #' if all nodes have distinct \code{label} values set
 #' and none exist as an empty string.
@@ -78,8 +85,8 @@
 #'   edge_count()
 #' #> [1] 0
 #'
-#' # Create a directed graph with
-#' # 2 labeled nodes and an edge
+#' # Create a directed graph with 2
+#' # labeled nodes and an edge
 #' graph_labeled_nodes <-
 #'   create_graph() %>%
 #'   add_n_nodes(
@@ -97,17 +104,15 @@
 #' graph_labeled_nodes %>%
 #'   delete_edge(
 #'     from = "one",
-#'     to = "two",
-#'     use_labels = TRUE) %>%
+#'     to = "two") %>%
 #'   edge_count()
 #' #> [1] 0
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter select
 #' @export delete_edge
 
 delete_edge <- function(graph,
                         from = NULL,
                         to = NULL,
-                        use_labels = FALSE,
                         id = NULL) {
 
   # Get the time of function start
@@ -158,7 +163,39 @@ delete_edge <- function(graph,
       stop("Single-length vectors for `from` and `to` should be specified.")
     }
 
-    if (use_labels) {
+    # If `from` and `to` values provided as character
+    # values, assume that these values refer to node
+    # `label` attr values
+    if (is.character(from) & is.character(to)) {
+
+      # Stop function if the label for `from` exists in the graph
+      if (!(from %in% graph$nodes_df$label)) {
+        stop("The value provided in `from` does not exist as a node `label` value.")
+      }
+
+      # Stop function if the label for `from` is distinct in the graph
+      if (graph$nodes_df %>%
+          dplyr::select(label) %>%
+          dplyr::filter(label == from) %>%
+          nrow() > 1) {
+        stop("The node `label` provided in `from` is not distinct in the graph.")
+      }
+
+      # Stop function if the label for `to` exists in the graph
+      if (!(to %in% graph$nodes_df$label)) {
+        stop("The value provided in `to` does not exist as a node `label` value.")
+      }
+
+      # Stop function if the label for `to` is distinct in the graph
+      if (graph$nodes_df %>%
+          dplyr::select(label) %>%
+          dplyr::filter(label == to) %>%
+          nrow() > 1) {
+        stop("The node `label` provided in `to` is not distinct in the graph.")
+      }
+
+      # Use the `translate_to_node_id()` helper function to map
+      # node `label` values to node `id` values
       from_to_node_id <-
         translate_to_node_id(
           graph = graph,
