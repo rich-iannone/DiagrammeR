@@ -5,17 +5,24 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param from the outgoing node from which the edge
-#' is connected.
+#' is connected. There is the option to use a node
+#' \code{label} value here (and this must
+#' correspondingly also be done for the \code{to}
+#' argument) for defining node connections. Note that
+#' this is only possible if all nodes have distinct
+#' \code{label} values set and none exist as an empty
+#' string.
 #' @param to the incoming nodes to which each edge
-#' is connected.
+#' is connected. There is the option to use a node
+#' \code{label} value here (and this must
+#' correspondingly also be done for the \code{from}
+#' argument) for defining node connections. Note that
+#' this is only possible if all nodes have distinct
+#' \code{label} values set and none exist as an empty
+#' string.
 #' @param rel an optional string specifying the
 #' relationship between the
 #' connected nodes.
-#' @param use_labels an option to use node \code{label}
-#' values in \code{from} and \code{to} for defining
-#' node connections. Note that this is only possible
-#' if all nodes have distinct \code{label} values set
-#' and none exist as an empty string.
 #' @param allow_multiple_edges an option to allow or
 #' disallow the possibility of creating an edge with an
 #' edge definition already extant in the graph. This
@@ -58,35 +65,31 @@
 #' edge_count(graph)
 #' #> [1] 2
 #'
-#' # Add edges by specifying node `label` values
-#' # and setting `use_labels = TRUE`; note
-#' # that all nodes must have unique `label`
-#' # values to use this option
+#' # Add edges by specifying node `label`
+#' # values; note that all nodes must have
+#' # unique `label` values to use this option
 #' graph <-
 #'   graph %>%
 #'   add_edge(
 #'     from = "three",
 #'     to = "four",
-#'     rel = "L",
-#'     use_labels = TRUE) %>%
+#'     rel = "L") %>%
 #'   add_edge(
 #'     from = "four",
 #'     to = "one",
-#'     rel = "L",
-#'     use_labels = TRUE)
+#'     rel = "L")
 #'
 #' # Use the `get_edges()` function to verify
 #' # that the edges were added
 #' get_edges(graph)
 #' #> [1] "1->2" "3->2" "3->4" "4->1"
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr bind_rows select filter
 #' @export add_edge
 
 add_edge <- function(graph,
                      from,
                      to,
                      rel = NULL,
-                     use_labels = FALSE,
                      allow_multiple_edges = TRUE) {
 
   # Get the time of function start
@@ -110,9 +113,39 @@ add_edge <- function(graph,
     rel <- as.character(NA)
   }
 
-  # If `use_label` is set to TRUE, treat values in
-  # list as labels; need to map to node ID values
-  if (use_labels) {
+  # If `from` and `to` values provided as character
+  # values, assume that these values refer to node
+  # `label` attr values
+  if (is.character(from) & is.character(to)) {
+
+    # Stop function if the label for `from` exists in the graph
+    if (!(from %in% graph$nodes_df$label)) {
+      stop("The value provided in `from` does not exist as a node `label` value.")
+    }
+
+    # Stop function if the label for `from` is distinct in the graph
+    if (graph$nodes_df %>%
+        dplyr::select(label) %>%
+        dplyr::filter(label == from) %>%
+        nrow() > 1) {
+      stop("The node `label` provided in `from` is not distinct in the graph.")
+    }
+
+    # Stop function if the label for `to` exists in the graph
+    if (!(to %in% graph$nodes_df$label)) {
+      stop("The value provided in `to` does not exist as a node `label` value.")
+    }
+
+    # Stop function if the label for `to` is distinct in the graph
+    if (graph$nodes_df %>%
+        dplyr::select(label) %>%
+        dplyr::filter(label == to) %>%
+        nrow() > 1) {
+      stop("The node `label` provided in `to` is not distinct in the graph.")
+    }
+
+    # Use the `translate_to_node_id()` helper function to map
+    # node `label` values to node `id` values
     from_to_node_id <-
       translate_to_node_id(
         graph = graph,
