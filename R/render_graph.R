@@ -115,6 +115,18 @@ render_graph <- function(graph,
       }
     }
 
+    # If fillcolor is available and there are NA values,
+    # replace NAs with default color if available
+    if (nrow(graph$nodes_df) > 0) {
+      if ("fillcolor" %in% colnames(graph$nodes_df)) {
+        if ("fillcolor" %in% graph$global_attrs$attr) {
+
+            graph$nodes_df$fillcolor[which(is.na(graph$nodes_df$fillcolor))] <-
+              graph$global_attrs[which(graph$global_attrs$attr == "fillcolor"), 2]
+        }
+      }
+    }
+
     # Translate X11 colors to hexadecimal colors
     if ("fillcolor" %in% colnames(graph$nodes_df)) {
 
