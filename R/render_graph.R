@@ -100,16 +100,18 @@ render_graph <- function(graph,
 
     # If no fillcolor provided, use default; if no default available,
     # use white
-    if (!("fillcolor" %in% colnames(graph$nodes_df))) {
-      if ("fillcolor" %in% graph$global_attrs$attr) {
+    if (nrow(graph$nodes_df) > 0) {
+      if (!("fillcolor" %in% colnames(graph$nodes_df))) {
+        if ("fillcolor" %in% graph$global_attrs$attr) {
 
-      graph$nodes_df$fillcolor <-
-        graph$global_attrs %>%
-        dplyr::filter(attr == "fillcolor" & attr_type == "node") %>%
-        dplyr::select(value) %>%
-        purrr::flatten_chr()
-      } else {
-        graph$nodes_df$fillcolor <- "white"
+          graph$nodes_df$fillcolor <-
+            graph$global_attrs %>%
+            dplyr::filter(attr == "fillcolor" & attr_type == "node") %>%
+            dplyr::select(value) %>%
+            purrr::flatten_chr()
+        } else {
+          graph$nodes_df$fillcolor <- "white"
+        }
       }
     }
 
