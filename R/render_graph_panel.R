@@ -54,7 +54,9 @@
 #'   graph_3 %>% pagerank_color(),
 #'   graph_4 %>% pagerank_color(),
 #'   ncols = 2,
-#'   nrows = 2)
+#'   nrows = 2,
+#'   titles = c("one", "two",
+#'              "three", "four"))
 #' }
 #' @importFrom dplyr filter rename select mutate bind_cols bind_rows
 #' @importFrom igraph layout_nicely
@@ -283,7 +285,10 @@ render_graph_panel <- function(...,
   if (!is.null(titles)) {
 
     graph_titles <-
-      create_graph()
+      create_graph() %>%
+      add_global_graph_attrs(attr = "shape", value = "plaintext", attr_type = "node") %>%
+      add_global_graph_attrs(attr = "width", value = 0.001, attr_type = "node") %>%
+      add_global_graph_attrs(attr = "height", value = 0.001, attr_type = "node")
 
     for (i in 1:length(graphs)) {
 
@@ -307,6 +312,8 @@ render_graph_panel <- function(...,
           label = titles[i],
           type = "title",
           shape = "plaintext",
+          fillcolor = "white",
+          color = "white",
           x = (max_square * (col_ - 1)) + (0.5 * max_square),
           y = (nrows * max_square) - ((row_ - 1) * max_square))
     }
