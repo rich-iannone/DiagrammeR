@@ -32,7 +32,8 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     5, 10, set_seed = 23,
+#'     n = 5, m = 10,
+#'     set_seed = 23,
 #'     directed = TRUE)
 #'
 #' # Get the graph's internal ndf to show which
@@ -49,7 +50,8 @@
 #' # its values are rescaled between 0 and 1
 #' graph <-
 #'   graph %>%
-#'   rescale_node_attrs("value")
+#'   rescale_node_attrs(
+#'     node_attr_from = "value")
 #'
 #' # Get the graph's internal ndf to show that the
 #' # node attribute values had been rescaled
@@ -67,9 +69,15 @@
 #' graph <-
 #'   graph %>%
 #'   rescale_node_attrs(
-#'     "value", "gray80", "gray20", "fillcolor") %>%
+#'     node_attr_from = "value",
+#'     to_lower_bound = "gray80",
+#'     to_upper_bound = "gray20",
+#'     node_attr_to = "fillcolor") %>%
 #'   rescale_node_attrs(
-#'     "value", "gray5", "gray95", "fontcolor")
+#'     node_attr_from = "value",
+#'     to_lower_bound = "gray5",
+#'     to_upper_bound = "gray95",
+#'     node_attr_to = "fontcolor")
 #'
 #' # Get the graph's internal ndf once more to show
 #' # that scaled grayscale colors are now available in
