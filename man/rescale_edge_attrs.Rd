@@ -51,10 +51,12 @@ a new edge attribute column.
 # Create a random graph
 graph <-
   create_random_graph(
-    5, 7, set_seed = 23,
+    n = 5, m = 7,
+    set_seed = 23,
     directed = TRUE) \%>\%
   set_edge_attrs(
-    "weight", rnorm(edge_count(.), 5))
+    edge_attr = "weight",
+    values = rnorm(edge_count(.), 5))
 
 # Get the graph's internal edf to show which
 # edge attributes are available
@@ -72,7 +74,8 @@ get_edge_df(graph)
 # its values are rescaled between 0 and 1
 graph <-
   graph \%>\%
-  rescale_edge_attrs("weight")
+  rescale_edge_attrs(
+    edge_attr_from = "weight")
 
 # Get the graph's internal edf to show that the
 # edge attribute values had been rescaled
@@ -93,9 +96,15 @@ get_edge_df(graph)
 graph <-
   graph \%>\%
   rescale_edge_attrs(
-    "weight", "gray80", "gray20", "color") \%>\%
+    edge_attr_from = "weight",
+    to_lower_bound = "gray80",
+    to_upper_bound = "gray20",
+    edge_attr_to = "color") \%>\%
   rescale_edge_attrs(
-    "weight", 0.5, 3, "penwidth")
+    edge_attr_from = "weight",
+    to_lower_bound = 0.5,
+    to_upper_bound = 3,
+    edge_attr_to = "penwidth")
 
 # Get the graph's internal edf once more to show
 # that scaled grayscale colors are now available in
