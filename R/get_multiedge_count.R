@@ -33,7 +33,7 @@
 #' # edge definition) in the graph
 #' get_multiedge_count(graph)
 #' #> [1] 3
-#' @importFrom dplyr distinct
+#' @importFrom dplyr distinct select
 #' @export get_multiedge_count
 
 get_multiedge_count <- function(graph) {
@@ -52,8 +52,12 @@ get_multiedge_count <- function(graph) {
   # regardless of which definitions these
   # edges have
   multiedge_count <-
-    (graph$edges_df %>% nrow()) -
-    (graph$edges_df %>% select(from, to) %>% distinct() %>% nrow())
+    (graph$edges_df %>%
+       nrow()) -
+    (graph$edges_df %>%
+       select(from, to) %>%
+       distinct() %>%
+       nrow())
 
   return(multiedge_count)
 }
