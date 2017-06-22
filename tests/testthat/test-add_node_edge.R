@@ -183,12 +183,6 @@ test_that("adding an edge to a graph is possible", {
   # Expect that the `nodes_df` data frame has 1 row
   expect_true(nrow(graph$edges_df) == 1)
 
-  # Expect a message when adding an existing edge to the graph,
-  # and, `allow_multiple_edges == FALSE`
-  expect_error(
-    add_edge(graph, from = 1, to = 2,
-             allow_multiple_edges = FALSE))
-
   # Expect an error when attempting to add more than 1 edge
   expect_error(add_edge(graph, from = c(1, 2), to = 2))
 
