@@ -70,8 +70,9 @@ select_last_nodes_created <- function(graph) {
     tail(1) %>%
     .$function_used %>%
     magrittr::is_in(
-      c("add_node", "add_n_nodes", "add_n_nodes_ws",
-        "add_node_df", "add_nodes_from_df_cols",
+      c("add_node", "add_n_nodes", "add_n_node_clones",
+        "add_n_nodes_ws", "add_node_df",
+        "add_nodes_from_df_cols",
         "add_nodes_from_table", "add_full_graph",
         "add_balanced_tree", "add_cycle",
         "add_path", "add_prism", "add_star")) == FALSE &

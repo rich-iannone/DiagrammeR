@@ -73,8 +73,9 @@ select_last_edges_created <- function(graph) {
     tail(1) %>%
     .$function_used %>%
     magrittr::is_in(
-      c("add_edge", "add_edges_w_string", "add_edge_df",
-        "add_forward_edges_ws", "add_reverse_edges_ws",
+      c("add_edge", "add_edge_clone", "add_edges_w_string",
+        "add_edge_df", "add_forward_edges_ws",
+        "add_reverse_edges_ws",
         "add_edges_from_table", "add_full_graph",
         "add_balanced_tree", "add_cycle",
         "add_path", "add_prism", "add_star")) == FALSE &
