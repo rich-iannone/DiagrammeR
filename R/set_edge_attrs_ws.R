@@ -68,25 +68,31 @@ set_edge_attrs_ws <- function(graph,
     stop("There is no selection of edges available.")
   }
 
-  # Get vectors of node ID values for the
-  # `from` and `to` nodes
-  from <- graph$edge_selection$from
-  to <- graph$edge_selection$to
+  # Get vectors of edge ID values for the
+  # edge selection
+  edge_ids <- graph$edge_selection$edge
 
-  # Call the `set_edge_attrs()` function
-  # and update the graph
-  graph <-
-    set_edge_attrs(
-      x = graph,
-      edge_attr = edge_attr,
-      values = value,
-      from = from,
-      to = to)
+  # Update the graph's internal edf
+  if (edge_attr %in% colnames(graph$edges_df)) {
+
+    graph$edges_df[
+      which(graph$edges_df[, 1] %in% edge_ids),
+      which(colnames(graph$edges_df) %in% edge_attr)] <- value
+
+  } else {
+    graph$edges_df <-
+      graph$edges_df %>%
+      dplyr::mutate(edge_attr__ = dplyr::case_when(
+        id %in% edge_ids ~ value))
+
+    colnames(graph$edges_df)[length(colnames(graph$edges_df))] <-
+      edge_attr
+  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
-    graph$graph_log[-nrow(graph$graph_log),] %>%
     add_action_to_log(
+      graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
       function_used = "set_edge_attrs_ws",
       time_modified = time_function_start,
