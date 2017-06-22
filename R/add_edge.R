@@ -23,10 +23,8 @@
 #' @param rel an optional string specifying the
 #' relationship between the
 #' connected nodes.
-#' @param allow_multiple_edges an option to allow or
-#' disallow the possibility of creating an edge with an
-#' edge definition already extant in the graph. This
-#' is set to \code{TRUE} by default.
+#' @param ... optional edge attributes supplied as
+#' vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 4 nodes
@@ -90,7 +88,7 @@ add_edge <- function(graph,
                      from,
                      to,
                      rel = NULL,
-                     allow_multiple_edges = TRUE) {
+                     ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -109,8 +107,25 @@ add_edge <- function(graph,
     stop("Only one edge can be specified.")
   }
 
+  # Create bindings for specific variables
+  version_id <- label <- NULL
+
+  # Get the value for the latest `version_id` for
+  # graph (in the `graph_log`)
+  current_graph_log_version_id <-
+    graph$graph_log$version_id %>%
+    max()
+
   if (is.null(rel)) {
     rel <- as.character(NA)
+  }
+
+  # Collect extra vectors of data as `extras`
+  extras <- list(...)
+
+  # Collect extra vectors of data as `extras_tbl`
+  if (length(extras) > 0) {
+    extras_tbl <- as_tibble(extras)
   }
 
   # If `from` and `to` values provided as character
@@ -156,23 +171,6 @@ add_edge <- function(graph,
     to <- from_to_node_id$to
   }
 
-  # If an edge between nodes is requested and that
-  # edge exists, stop function if `allow_multiple_edges`
-  # is FALSE
-  if (allow_multiple_edges == FALSE) {
-    if (all(
-      !is.na(get_edges(graph,
-                       return_type = "vector")))) {
-      if (any(
-        get_edges(
-          graph, return_type = "list")[[1]] == from &
-        get_edges(
-          graph, return_type = "list")[[2]] == to)) {
-        stop("This edge already exists.")
-      }
-    }
-  }
-
   # Use `bind_rows()` to add an edge
   if (!is.null(graph$edges_df)) {
 
@@ -191,8 +189,38 @@ add_edge <- function(graph,
     # edge data frame
     graph$edges_df <- combined_edges
 
+    if (exists("extras_tbl")) {
+
+      # If extra edge attributes available, add
+      # those to the new edge
+      graph <-
+        graph %>%
+        select_edges_by_edge_id(
+          graph$edges_df$id %>% max())
+
+      # Iteratively set edge attribute values for
+      # the new edge in the graph
+      for (i in 1:ncol(extras_tbl)) {
+        graph <-
+          graph %>%
+          set_edge_attrs_ws(
+            edge_attr = colnames(extras_tbl)[i],
+            value = extras_tbl[1, i][[1]])
+      }
+
+      # Clear the graph's active selection
+      graph <-
+        graph %>%
+        clear_selection()
+    }
+
     # Modify the `last_edge` vector
     graph$last_edge <- as.integer(graph$last_edge + 1)
+
+    # Remove extra items from the `graph_log`
+    graph$graph_log <-
+      graph$graph_log %>%
+      dplyr::filter(version_id <= current_graph_log_version_id)
 
     # Update the `graph_log` df with an action
     graph$graph_log <-
