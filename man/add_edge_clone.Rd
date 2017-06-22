@@ -52,29 +52,25 @@ graph \%>\%
 #> 1  1    1  2   a steelblue
 #> 2  2    2  3   a steelblue
 
-# Create a new node and, with
-# that new node, create an edge
-# between it and node `1` while
-# reusing the edge attributes of
-# edge `1` -> `2`
+# Create a new node (`3`) and then
+# create an edge between it and
+# node `1` while reusing the edge
+# attributes of edge `1` -> `2`
+# (edge ID `1`)
 graph <-
   graph \%>\%
   add_node() \%>\%
-  select_last_nodes_created() \%>\%
   add_edge_clone(
-    edge = get_last_edge_created(.),
-    from = get_last_node_created(.),
-    to = 1)
+    edge = 1,
+    from = 3,
+      to = 1)
 
 # Display the graph's internal
 # edge data frame
 graph \%>\%
   get_edge_df()
-#>   id type label value
-#> 1  1    a     d    10
-#> 2  2    b     g    20
-#> 3  3    c     r    30
-#> 4  4    a     x    10
-#> 5  5    a     y    10
-#> 6  6    a     z    10
+#>   id from to rel     color
+#> 1  1    1  2   a steelblue
+#> 2  2    2  3   a steelblue
+#> 3  3    3  1   a steelblue
 }
