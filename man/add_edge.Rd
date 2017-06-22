@@ -4,7 +4,7 @@
 \alias{add_edge}
 \title{Add an edge between nodes in a graph object}
 \usage{
-add_edge(graph, from, to, rel = NULL, allow_multiple_edges = TRUE)
+add_edge(graph, from, to, rel = NULL, ...)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -32,10 +32,8 @@ string.}
 relationship between the
 connected nodes.}
 
-\item{allow_multiple_edges}{an option to allow or
-disallow the possibility of creating an edge with an
-edge definition already extant in the graph. This
-is set to \code{TRUE} by default.}
+\item{...}{optional edge attributes supplied as
+vectors.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
