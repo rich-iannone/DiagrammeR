@@ -1,6 +1,6 @@
 #' Add one or several clones of an existing node to the graph
 #' @description Add n new nodes to a graph object of
-#' class \code{dgr_graph} which are clones of node already
+#' class \code{dgr_graph} which are clones of a node already
 #' in the graph. All node attributes are preserved except for
 #' the node \code{label} attribute (to maintain the
 #' uniqueness of non-\code{NA} node label values). A vector
@@ -42,7 +42,7 @@
 #' # NULL yields NA values)
 #' graph <-
 #'   graph %>%
-#'   add_node_clones(
+#'   add_n_node_clones(
 #'     n = 3,
 #'     node = 1,
 #'     label = c("x", "y", "z"))
@@ -60,12 +60,12 @@
 #' #> 5  5    a     y    10
 #' #> 6  6    a     z    10
 #' @importFrom dplyr filter select
-#' @export add_node_clones
+#' @export add_n_node_clones
 
-add_node_clones <- function(graph,
-                            n,
-                            node,
-                            label = NULL) {
+add_n_node_clones <- function(graph,
+                              n,
+                              node,
+                              label = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
