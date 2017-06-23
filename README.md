@@ -4,7 +4,7 @@
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
 [![codecov.io](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master) 
 
-With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. A collection of functions are available for working specifically with graph objects. The output can be incorporated in **RMarkdown** documents, integrated into **Shiny** web apps, converted into other graph formats, or exported as **PNG**, **PDF**, or **SVG** files.
+With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. A collection of functions is available for working specifically with graph objects. The output can be incorporated into **RMarkdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as **PNG**, **PDF**, or **SVG** files.
 
 <img src="inst/img/simple_graph.png">
 
@@ -14,22 +14,40 @@ It's possible to make the above graph diagram using a combination of **Diagramme
 library(DiagrammeR)
 
 create_random_graph(
-  n = 140,
-  m = 100,
+  n = 140, m = 100,
   directed = FALSE,
   set_seed = 23) %>%
-  join_node_attrs(get_s_connected_cmpts(.)) %>%
-  join_node_attrs(get_degree_total(.)) %>%
+  join_node_attrs(
+    df = get_s_connected_cmpts(.)
+    ) %>%
+  join_node_attrs(
+    df = get_degree_total(.)
+    ) %>%
   colorize_node_attrs(
     node_attr_from = "sc_component",
     node_attr_to = "fillcolor",
-    alpha = 80) %>%
-  rescale_node_attrs("total_degree", 0.2, 1.5, "height") %>%
-  select_nodes_by_id(get_articulation_points(.)) %>%
-  set_node_attrs_ws("peripheries", 2) %>%
-  set_node_attrs_ws("penwidth", 3) %>%
+    alpha = 80
+    ) %>%
+  rescale_node_attrs(
+    node_attr_from = "total_degree",
+    to_lower_bound = 0.2,
+    to_upper_bound = 1.5,
+      node_attr_to = "height") %>%
+  select_nodes_by_id(
+    nodes = get_articulation_points(.)
+    ) %>%
+  set_node_attrs_ws(
+    node_attr = "peripheries",
+    value = 2
+    ) %>%
+  set_node_attrs_ws(
+    node_attr = "penwidth",
+    value = 3
+    ) %>%
   clear_selection() %>%
-  set_node_attr_to_display() %>%
+  set_node_attr_to_display(
+    attr = NULL
+  ) %>%
   render_graph()
 ```
 
