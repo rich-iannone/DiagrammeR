@@ -39,8 +39,7 @@
 #' #> 2  2    a   a_2  <NA>
 #' #> 3  3    b   b_1   red
 #' #> 4  4    b   b_2   red
-#' @importFrom dplyr select
-#' @importFrom magrittr is_in
+#' @importFrom dplyr mutate filter select pull
 #' @importFrom utils tail
 #' @export select_last_nodes_created
 
@@ -59,112 +58,75 @@ select_last_nodes_created <- function(graph) {
     stop("The graph contains no nodes, so, no nodes can be selected.")
   }
 
-  # Create bindings for specific variables
-  id <- nodes <- function_used <- NULL
-
-  # Is the last function used on the graph
-  # an 'addition of nodes' function?
-  if (
+  graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::select(function_used) %>%
-    tail(1) %>%
-    .$function_used %>%
-    magrittr::is_in(
-      c("add_node", "add_n_nodes", "add_n_node_clones",
-        "add_n_nodes_ws", "add_node_df",
-        "add_nodes_from_df_cols",
-        "add_nodes_from_table", "add_full_graph",
-        "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star")) == FALSE &
-    (graph$graph_log %>%
-     dplyr::select(function_used) %>%
-     tail(1) %>%
-     .$function_used %>%
-     magrittr::is_in(
-       c("create_graph", "create_random_graph",
-         "from_igraph", "from_adj_matrix",
-         "import_graph")) &
-     graph$graph_log %>%
-     dplyr::select(nodes) %>%
-     tail(1) %>%
-     .$nodes > 0) == FALSE
-  )
-  {
-    stop("The previous graph transformation function did not add nodes to the graph.")
-  }
+    dplyr::mutate(step_created_nodes = if_else(
+      function_used %in% node_creation_functions(), 1, 0)) %>%
+    dplyr::mutate(step_deleted_nodes = if_else(
+      function_used %in% node_deletion_functions(), 1, 0)) %>%
+    dplyr::mutate(step_init_with_nodes = if_else(
+      function_used %in% graph_init_functions() &
+        nodes > 0, 1, 0)) %>%
+    dplyr::filter(
+      step_created_nodes == 1 | step_deleted_nodes == 1 | step_init_with_nodes) %>%
+    dplyr::select(-version_id, -time_modified, -duration)
 
-  if (
-    graph$graph_log %>%
-    dplyr::select(function_used) %>%
-    tail(1) %>%
-    .$function_used %>%
-    magrittr::is_in(
-      c("add_node", "add_n_nodes", "add_n_nodes_ws",
-        "add_node_df", "add_nodes_from_df_cols",
-        "add_nodes_from_table", "add_full_graph",
-        "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star")) == TRUE) {
+  if (nrow(graph_transform_steps) > 0) {
 
-    # Get the difference in nodes between the
-    # most recent function and the one previous
-    last <-
-      graph$graph_log %>%
-      dplyr::select(nodes) %>%
-      tail(2) %>% .$nodes %>% .[2]
-
-    second_last <-
-      graph$graph_log %>%
-      dplyr::select(nodes) %>%
-      tail(2) %>% .$nodes %>% .[1]
-
-    difference_nodes <- last - second_last
-
-    # Get ID values for last n nodes created
-    node_id_values <-
-      graph$nodes_df %>%
-      dplyr::select(id) %>%
-      tail(difference_nodes) %>%
-      .$id
-
-  } else if (graph$graph_log %>%
-             dplyr::select(function_used) %>%
-             tail(1) %>%
-             .$function_used %>%
-             magrittr::is_in(
-               c("create_graph", "create_random_graph",
-                 "from_igraph", "from_adj_matrix",
-                 "import_graph")) &
-             graph$graph_log %>%
+    if (graph_transform_steps %>%
+        tail(1) %>%
+        dplyr::pull(step_deleted_nodes) == 1) {
+      stop("The previous graph transformation function resulted in a removal of nodes.")
+    } else {
+      if (nrow(graph_transform_steps) > 1) {
+        number_of_nodes_created <-
+          (graph_transform_steps %>%
              dplyr::select(nodes) %>%
-             tail(1) %>%
-             .$nodes > 0) {
+             tail(2) %>%
+             dplyr::pull(nodes))[2] -
+          (graph_transform_steps %>%
+             dplyr::select(nodes) %>%
+             tail(2) %>%
+             dplyr::pull(nodes))[1]
+      } else {
+        number_of_nodes_created <-
+          graph_transform_steps %>%
+          dplyr::pull(nodes)
+      }
+    }
 
     node_id_values <-
       graph$nodes_df %>%
       dplyr::select(id) %>%
-      .$id
+      tail(number_of_nodes_created) %>%
+      dplyr::pull(id)
+  } else {
+    node_id_values <- NA
   }
 
-  # Apply the selection of nodes to the graph
-  graph <-
-    select_nodes(
-      graph = graph,
-      nodes = node_id_values)
+  if (!is.na(node_id_values)) {
 
-  # Update the `graph_log` df with an action
-  graph$graph_log <-
-    graph$graph_log[-nrow(graph$graph_log),] %>%
-    add_action_to_log(
-      version_id = nrow(graph$graph_log) + 1,
-      function_used = "select_last_nodes_created",
-      time_modified = time_function_start,
-      duration = graph_function_duration(time_function_start),
-      nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+    # Apply the selection of nodes to the graph
+    graph <-
+      select_nodes(
+        graph = graph,
+        nodes = node_id_values)
 
-  # Write graph backup if the option is set
-  if (graph$graph_info$write_backups) {
-    save_graph_as_rds(graph = graph)
+    # Update the `graph_log` df with an action
+    graph$graph_log <-
+      graph$graph_log[-nrow(graph$graph_log),] %>%
+      add_action_to_log(
+        version_id = nrow(graph$graph_log) + 1,
+        function_used = "select_last_nodes_created",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
+
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
   }
 
   return(graph)

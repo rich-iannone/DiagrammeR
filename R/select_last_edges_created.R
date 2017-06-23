@@ -42,8 +42,7 @@
 #' #> 7  7    5  8   b   red
 #' #> 8  8    6  9   b   red
 #' #> 9  9    6 10   b   red
-#' @importFrom dplyr select
-#' @importFrom magrittr is_in
+#' @importFrom dplyr mutate filter select pull
 #' @importFrom utils tail
 #' @export select_last_edges_created
 
@@ -65,109 +64,75 @@ select_last_edges_created <- function(graph) {
   # Create bindings for specific variables
   id <- nodes <- edges <- function_used <- NULL
 
-  # Is the last function used on the graph
-  # an 'addition of edges' function?
-  if (
+  graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::select(function_used) %>%
-    tail(1) %>%
-    .$function_used %>%
-    magrittr::is_in(
-      c("add_edge", "add_edge_clone", "add_edges_w_string",
-        "add_edge_df", "add_forward_edges_ws",
-        "add_reverse_edges_ws",
-        "add_edges_from_table", "add_full_graph",
-        "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star")) == FALSE &
-    (graph$graph_log %>%
-     dplyr::select(function_used) %>%
-     tail(1) %>%
-     .$function_used %>%
-     magrittr::is_in(
-       c("create_graph", "create_random_graph",
-         "from_igraph", "from_adj_matrix",
-         "import_graph")) &
-     graph$graph_log %>%
-     dplyr::select(edges) %>%
-     tail(1) %>%
-     .$edges > 0) == FALSE
-  )
-  {
-    stop("The previous graph transformation function did not add edges to the graph.")
-  }
+    dplyr::mutate(step_created_edges = if_else(
+      function_used %in% edge_creation_functions(), 1, 0)) %>%
+    dplyr::mutate(step_deleted_edges = if_else(
+      function_used %in% edge_deletion_functions(), 1, 0)) %>%
+    dplyr::mutate(step_init_with_edges = if_else(
+      function_used %in% graph_init_functions() &
+        edges > 0, 1, 0)) %>%
+    dplyr::filter(
+      step_created_edges == 1 | step_deleted_edges == 1 | step_init_with_edges) %>%
+    dplyr::select(-version_id, -time_modified, -duration)
 
-  if (
-    graph$graph_log %>%
-    dplyr::select(function_used) %>%
-    tail(1) %>%
-    .$function_used %>%
-    magrittr::is_in(
-      c("add_edge", "add_edges_w_string", "add_edge_df",
-        "add_forward_edges_ws", "add_reverse_edges_ws",
-        "add_edges_from_table", "add_full_graph",
-        "add_balanced_tree", "add_cycle",
-        "add_path", "add_prism", "add_star")) == TRUE) {
+  if (nrow(graph_transform_steps) > 0) {
 
-    # Get the difference in edges between the
-    # most recent function and the one previous
-    last <-
-      graph$graph_log %>%
-      dplyr::select(edges) %>%
-      tail(2) %>% .$edges %>% .[2]
-
-    second_last <-
-      graph$graph_log %>%
-      dplyr::select(edges) %>%
-      tail(2) %>% .$edges %>% .[1]
-
-    difference_edges <- last - second_last
-
-    # Get ID values for last n edges created
-    edge_id_values <-
-      graph$edges_df %>%
-      dplyr::select(id) %>%
-      tail(difference_edges) %>%
-      .$id
-
-  } else if (graph$graph_log %>%
-             dplyr::select(function_used) %>%
-             tail(1) %>%
-             .$function_used %>%
-             magrittr::is_in(
-               c("create_graph", "create_random_graph",
-                 "from_igraph", "from_adj_matrix",
-                 "import_graph")) &
-             graph$graph_log %>%
+    if (graph_transform_steps %>%
+        tail(1) %>%
+        dplyr::pull(step_deleted_edges) == 1) {
+      stop("The previous graph transformation function resulted in a removal of edges.")
+    } else {
+      if (nrow(graph_transform_steps) > 1) {
+        number_of_edges_created <-
+          (graph_transform_steps %>%
              dplyr::select(edges) %>%
-             tail(1) %>%
-             .$edges > 0) {
+             tail(2) %>%
+             dplyr::pull(edges))[2] -
+          (graph_transform_steps %>%
+             dplyr::select(edges) %>%
+             tail(2) %>%
+             dplyr::pull(edges))[1]
+      } else {
+        number_of_edges_created <-
+          graph_transform_steps %>%
+          dplyr::pull(edges)
+      }
+    }
 
     edge_id_values <-
       graph$edges_df %>%
       dplyr::select(id) %>%
-      .$id
+      tail(number_of_edges_created) %>%
+      dplyr::pull(id)
+  } else {
+    edge_id_values <- NA
   }
 
-  # Apply the selection of edges to the graph
-  graph <-
-    select_edges_by_edge_id(
-      graph = graph,
-      edges = edge_id_values)
+  if (!is.na(node_id_values)) {
 
-  # Update the `graph_log` df with an action
-  graph$graph_log <-
-    graph$graph_log[-nrow(graph$graph_log),] %>%
-    add_action_to_log(
-      version_id = nrow(graph$graph_log) + 1,
-      function_used = "select_last_edges_created",
-      time_modified = time_function_start,
-      duration = graph_function_duration(time_function_start),
-      nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+    # Apply the selection of edges to the graph
+    graph <-
+      select_edges_by_edge_id(
+        graph = graph,
+        edges = edge_id_values)
 
-  # Write graph backup if the option is set
-  if (graph$graph_info$write_backups) {
-    save_graph_as_rds(graph = graph)
+    # Update the `graph_log` df with an action
+    graph$graph_log <-
+      graph$graph_log[-nrow(graph$graph_log),] %>%
+      add_action_to_log(
+        version_id = nrow(graph$graph_log) + 1,
+        function_used = "select_last_edges_created",
+        time_modified = time_function_start,
+        duration = graph_function_duration(time_function_start),
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
+
+    # Write graph backup if the option is set
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
+    }
   }
 
   return(graph)
