@@ -65,7 +65,7 @@ set_cache <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  if (inherits(to_cache, c("numeric", "character"))) {
+  if (inherits(to_cache, c("numeric", "integer", "character"))) {
 
     # Cache vector in the graph's `cache` list object
     if (!is.null(name)) {
