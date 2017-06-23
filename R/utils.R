@@ -342,14 +342,17 @@ save_graph_as_rds <- function(graph) {
 contrasting_text_color <- function(background_color) {
 
   rgb_colors <-
-    ((grDevices::col2rgb(background_color) %>% as.numeric()) / 255)^2.2
+    ((grDevices::col2rgb(background_color) %>%
+        as.numeric()) / 255)^2.2
 
   luminance <-
     (0.2126 * rgb_colors[1]) +
     (0.7152 * rgb_colors[2]) +
     (0.0722 * rgb_colors[3])
 
-  saturation <- (max(rgb_colors) - min(rgb_colors) + 0.00001) / (max(rgb_colors) + 0.00001)
+  saturation <-
+    (max(rgb_colors) - min(rgb_colors) + 0.00001) /
+    (max(rgb_colors) + 0.00001)
 
   if (saturation < 0.35) {
     if (luminance > 0.5) {
@@ -360,5 +363,59 @@ contrasting_text_color <- function(background_color) {
   }
 
   return(contrasting_color)
+}
+
+###
+# Functions that produce useful vectors
+###
+
+# Function that yields vector of node
+# creation function names
+node_creation_functions <- function() {
+
+  c("add_node", "add_n_nodes", "add_n_node_clones",
+    "add_n_nodes_ws", "add_node_df",
+    "add_nodes_from_df_cols",
+    "add_nodes_from_table", "add_full_graph",
+    "add_balanced_tree", "add_cycle",
+    "add_path", "add_prism", "add_star")
+}
+
+# Function that yields vector of node
+# deletion function names
+node_deletion_functions <- function() {
+
+  c("create_subgraph_ws", "create_complement_graph",
+    "delete_node", "delete_nodes_ws")
+}
+
+# Function that yields vector of edge
+# creation function names
+edge_creation_functions <- function() {
+
+  c("add_edge", "add_edge_clone", "add_edges_w_string",
+    "add_edge_df", "add_forward_edges_ws",
+    "add_reverse_edges_ws",
+    "add_edges_from_table", "add_full_graph",
+    "add_balanced_tree", "add_cycle",
+    "add_path", "add_prism", "add_star")
+}
+
+# Function that yields vector of edge
+# deletion function names
+edge_deletion_functions <- function() {
+
+  c("delete_edge", "delete_edges_ws",
+    "create_subgraph_ws", "create_complement_graph",
+    "delete_node", "delete_nodes_ws")
+}
+
+# Function that yields vector of graph
+# initializing function names
+graph_init_functions <- function() {
+
+  c("create_graph", "create_random_graph",
+    "from_igraph", "from_adj_matrix",
+    "import_graph")
 }
 
