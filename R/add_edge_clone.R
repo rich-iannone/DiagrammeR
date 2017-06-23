@@ -79,7 +79,7 @@ add_edge_clone <- function(graph,
   }
 
   # Stop function if edge is not a single numerical value
-  if (length(edge) > 1 | !inherits(edge, "numeric")) {
+  if (length(edge) > 1 | inherits(edge, "character") | inherits(edge, "logical")) {
     stop("The value for `edge` must be a single, numeric value.")
   }
 
