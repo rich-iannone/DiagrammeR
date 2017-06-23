@@ -26,7 +26,7 @@
 #' graph %>%
 #'   get_last_nodes_created()
 #' #> [1] 3 4
-#' @importFrom dplyr mutate filter select pull
+#' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
 #' @export get_last_nodes_created
 
@@ -44,11 +44,11 @@ get_last_nodes_created <- function(graph) {
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_nodes = if_else(
+    dplyr::mutate(step_created_nodes = dplyr::if_else(
       function_used %in% node_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_nodes = if_else(
+    dplyr::mutate(step_deleted_nodes = dplyr::if_else(
       function_used %in% node_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_nodes = if_else(
+    dplyr::mutate(step_init_with_nodes = dplyr::if_else(
       function_used %in% graph_init_functions() &
         nodes > 0, 1, 0)) %>%
     dplyr::filter(

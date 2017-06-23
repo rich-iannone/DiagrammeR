@@ -42,7 +42,7 @@
 #' #> 7  7    5  8   b   red
 #' #> 8  8    6  9   b   red
 #' #> 9  9    6 10   b   red
-#' @importFrom dplyr mutate filter select pull
+#' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
 #' @export select_last_edges_created
 
@@ -61,16 +61,13 @@ select_last_edges_created <- function(graph) {
     stop("The graph contains no edges, so, no edges can be selected.")
   }
 
-  # Create bindings for specific variables
-  id <- nodes <- edges <- function_used <- NULL
-
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_edges = if_else(
+    dplyr::mutate(step_created_edges = dplyr::if_else(
       function_used %in% edge_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_edges = if_else(
+    dplyr::mutate(step_deleted_edges = dplyr::if_else(
       function_used %in% edge_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_edges = if_else(
+    dplyr::mutate(step_init_with_edges = dplyr::if_else(
       function_used %in% graph_init_functions() &
         edges > 0, 1, 0)) %>%
     dplyr::filter(
@@ -110,7 +107,7 @@ select_last_edges_created <- function(graph) {
     edge_id_values <- NA
   }
 
-  if (!is.na(node_id_values)) {
+  if (!any(is.na(edge_id_values))) {
 
     # Apply the selection of edges to the graph
     graph <-

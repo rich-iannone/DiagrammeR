@@ -39,7 +39,7 @@
 #' #> 2  2    a   a_2  <NA>
 #' #> 3  3    b   b_1   red
 #' #> 4  4    b   b_2   red
-#' @importFrom dplyr mutate filter select pull
+#' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
 #' @export select_last_nodes_created
 
@@ -60,11 +60,11 @@ select_last_nodes_created <- function(graph) {
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_nodes = if_else(
+    dplyr::mutate(step_created_nodes = dplyr::if_else(
       function_used %in% node_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_nodes = if_else(
+    dplyr::mutate(step_deleted_nodes = dplyr::if_else(
       function_used %in% node_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_nodes = if_else(
+    dplyr::mutate(step_init_with_nodes = dplyr::if_else(
       function_used %in% graph_init_functions() &
         nodes > 0, 1, 0)) %>%
     dplyr::filter(
@@ -104,7 +104,7 @@ select_last_nodes_created <- function(graph) {
     node_id_values <- NA
   }
 
-  if (!is.na(node_id_values)) {
+  if (!any(is.na(node_id_values))) {
 
     # Apply the selection of nodes to the graph
     graph <-

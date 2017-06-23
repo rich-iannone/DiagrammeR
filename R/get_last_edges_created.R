@@ -23,7 +23,7 @@
 #' graph %>%
 #'   get_last_edges_created()
 #' #> [1] 4 5 6 7 8 9
-#' @importFrom dplyr mutate filter select pull
+#' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
 #' @export get_last_edges_created
 
@@ -41,11 +41,11 @@ get_last_edges_created <- function(graph) {
 
   graph_transform_steps <-
     graph$graph_log %>%
-    dplyr::mutate(step_created_edges = if_else(
+    dplyr::mutate(step_created_edges = dplyr::if_else(
       function_used %in% edge_creation_functions(), 1, 0)) %>%
-    dplyr::mutate(step_deleted_edges = if_else(
+    dplyr::mutate(step_deleted_edges = dplyr::if_else(
       function_used %in% edge_deletion_functions(), 1, 0)) %>%
-    dplyr::mutate(step_init_with_edges = if_else(
+    dplyr::mutate(step_init_with_edges = dplyr::if_else(
       function_used %in% graph_init_functions() &
         edges > 0, 1, 0)) %>%
     dplyr::filter(
