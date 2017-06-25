@@ -259,6 +259,48 @@ test_that("adding several nodes to a graph at once is possible", {
                rep(as.character(NA), 10))
 })
 
+test_that("adding several nodes to a graph at once (with extra attrs) is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add 10 nodes to the empty graph
+  graph <-
+    add_n_nodes(
+      graph,
+      n = 10,
+      value = 1:10,
+      color = "steelblue")
+
+  # Expect that 10 nodes were added to the empty graph
+  expect_equal(node_count(graph), 10)
+
+  # Expect monotonically-increasing node ID values
+  # from 1 to 10
+  expect_equal(
+    get_node_ids(graph), c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+  # Expect that no `type` values have been set
+  expect_equal(get_node_df(graph)[, 2],
+               rep(as.character(NA), 10))
+
+  # Expect that no `label` values have been set
+  expect_equal(get_node_df(graph)[, 3],
+               rep(as.character(NA), 10))
+
+  # Expect monotonically-increasing values for
+  # the `value` node attribute
+  expect_equal(
+    get_node_df(graph)[, 4],
+    c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
+
+  # Expect that the `color` node attr is set
+  # to `steelblue` for all nodes in the graph
+  expect_equal(
+    get_node_df(graph)[, 5],
+    rep("steelblue", 10))
+})
+
 test_that("adding several nodes from a selected node is possible", {
 
   # Create an empty graph
