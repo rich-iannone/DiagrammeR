@@ -4,8 +4,7 @@ test_that("Getting a degree histogram is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      10, 22, set_seed = 23)
+    create_random_graph(10, 22, set_seed = 23)
 
   # Get the degree histogram for total degree
   degree_hist_all <- get_degree_histogram(graph, mode = "all")
@@ -45,8 +44,7 @@ test_that("Getting degree distribution is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      10, 22, set_seed = 23)
+    create_random_graph(10, 22, set_seed = 23)
 
   # Get the degree distribution for total degree
   degree_dist_all <- get_degree_distribution(graph, mode = "all")
@@ -86,8 +84,7 @@ test_that("Getting graph diameter is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      10, 22, set_seed = 23)
+    create_random_graph(10, 22, set_seed = 23)
 
   graph_diam <- get_graph_diameter(graph)
 
@@ -105,8 +102,7 @@ test_that("Getting graph eccentricity is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      10, 22, set_seed = 23)
+    create_random_graph(10, 22, set_seed = 23)
 
   graph_eccen <- get_eccentricity(graph)
 
@@ -131,8 +127,7 @@ test_that("Getting graph periphery is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      10, 22, set_seed = 23)
+    create_random_graph(10, 22, set_seed = 23)
 
   graph_periphery <- get_periphery(graph)
 
