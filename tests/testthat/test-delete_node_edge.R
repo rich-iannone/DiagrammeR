@@ -157,7 +157,7 @@ test_that("nodes and edges can be deleted from a graph via a selection", {
   # Expect edge `3`->`4` to be present
   expect_true(
     "3->4" %in% get_edges(graph_edge_deletion,
-                            return_type = "vector"))
+                          return_type = "vector"))
 
   # Expect an error if trying to delete an edge where
   # there is no edge selection

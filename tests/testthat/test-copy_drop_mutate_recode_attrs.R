@@ -707,9 +707,10 @@ test_that("Recoding edge attributes is possible", {
       edge_attr_to = "color_2")
 
   # Expect certain values in `color_2`
-  expect_equal(graph$edges_df$color_2,
-               c("yellow", "yellow",
-                 "blue", "yellow"))
+  expect_equal(
+    graph$edges_df$color_2,
+    c("yellow", "yellow",
+      "blue", "yellow"))
 
   # Recode the `color` node attribute and overwrite
   # results in `color_2`

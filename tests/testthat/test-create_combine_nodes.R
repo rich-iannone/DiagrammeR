@@ -1,7 +1,6 @@
 context("Creating and combining node data frames")
 
 test_that("a correct node data frame is generated", {
-
   # Create 'nodes_1' node data frame
   nodes_1 <-
     create_node_df(
@@ -12,7 +11,8 @@ test_that("a correct node data frame is generated", {
       color = "aqua",
       shape = c("circle", "circle",
                 "rectangle", "rectangle"),
-      data = c(3.5, 2.6, 9.4, 2.7))
+      data = c(3.5, 2.6, 9.4, 2.7)
+    )
 
   # Create 'nodes_2' node data frame
   nodes_2 <-
@@ -23,7 +23,8 @@ test_that("a correct node data frame is generated", {
       style = "filled",
       color = "red",
       shape = "triangle",
-      data = c(0.5, 3.9, 3.7, 8.2))
+      data = c(0.5, 3.9, 3.7, 8.2)
+    )
 
   # Expect that each of the node data frames has 4 rows
   expect_equal(nrow(nodes_1), 4)
@@ -48,9 +49,8 @@ test_that("a correct node data frame is generated", {
   # Create a node data frame using a vector with length > 1 and
   # length < length(from | to)
   nodes_var_1 <-
-    create_node_df(
-      n = 4,
-      color = c("green", "green"))
+    create_node_df(n = 4,
+                   color = c("green", "green"))
 
   # Expect that a data frame is generated
   expect_is(nodes_var_1, "data.frame")
@@ -69,7 +69,8 @@ test_that("a correct node data frame is generated", {
       n = 4,
       color = c("green", "green",
                 "green", "green",
-                "green", "green"))
+                "green", "green")
+    )
 
   # Expect that a data frame is generated
   expect_is(nodes_var_2, "data.frame")
@@ -79,9 +80,8 @@ test_that("a correct node data frame is generated", {
 
   # Expect that the `color` attribute is trimmed to
   # the correct number of rows
-  expect_equal(
-    nodes_var_2$color,
-    c("green", "green", "green", "green"))
+  expect_equal(nodes_var_2$color,
+               c("green", "green", "green", "green"))
 
   # Expect an error if not supplying an integer
   expect_error(create_node_df(n = "a"))
@@ -92,17 +92,14 @@ test_that("a correct node data frame is generated", {
   # Create a node data frame using a vector with
   # `type` having length > n
   nodes_var_3 <-
-    create_node_df(
-      n = 4,
-      type = c("a", "a", "b", "a", "c"))
+    create_node_df(n = 4,
+                   type = c("a", "a", "b", "a", "c"))
 
   # Expect the `type` values to be the first four
-  expect_equal(
-    nodes_var_3$type, c("a", "a", "b", "a"))
+  expect_equal(nodes_var_3$type, c("a", "a", "b", "a"))
 })
 
 test_that("node data frames can be successfully combined", {
-
   # Create `ndf_1` node data frame
   ndf_1 <-
     create_node_df(
@@ -113,7 +110,8 @@ test_that("node data frames can be successfully combined", {
       color = "aqua",
       shape = c("circle", "circle",
                 "rectangle", "rectangle"),
-      data = c(3.5, 2.6, 9.4, 2.7))
+      data = c(3.5, 2.6, 9.4, 2.7)
+    )
 
   # Create 'nodes_2' node data frame
   ndf_2 <-
@@ -124,7 +122,8 @@ test_that("node data frames can be successfully combined", {
       style = "filled",
       color = "red",
       shape = "triangle",
-      data = c(0.5, 3.9, 3.7, 8.2))
+      data = c(0.5, 3.9, 3.7, 8.2)
+    )
 
   # Combine the 2 node data frames
   all_nodes <- combine_ndfs(ndf_1, ndf_2)
@@ -144,7 +143,7 @@ test_that("node data frames can be successfully combined", {
   expect_true(all(c(ndf_1[, 2], ndf_2[, 2]) ==
                     all_nodes[, 2]))
   expect_equal(c(ndf_1[, 3], ndf_2[, 3]),
-                    all_nodes[, 3])
+               all_nodes[, 3])
   expect_true(all(c(ndf_1[, 4], ndf_2[, 4]) ==
                     all_nodes[, 4]))
   expect_true(all(c(ndf_1[, 5], ndf_2[, 5]) ==

@@ -1,7 +1,6 @@
 context("data.table and dplyr integration")
 
-test_that("combine_edges",{
-
+test_that("combine_edges", {
   # Create `edges_1` edge data frame
   edges_1 <-
     create_edge_df(
@@ -9,7 +8,8 @@ test_that("combine_edges",{
       to = c(2, 4, 4, 1),
       rel = "requires",
       color = "green",
-      data = c(2.7, 8.9, 2.6, 0.6))
+      data = c(2.7, 8.9, 2.6, 0.6)
+    )
 
   # Create `edges_2` edge data frame
   edges_2 <-
@@ -18,7 +18,8 @@ test_that("combine_edges",{
       to = c(7, 8, 6, 5),
       rel = "receives",
       arrowhead = "dot",
-      color = "red")
+      color = "red"
+    )
 
   class(edges_1) <-
     c("data.table", "tbl_df", class(edges_1))
@@ -44,8 +45,7 @@ test_that("combine_edges",{
   expect_equal(ncol(all_edges), 7)
 })
 
-test_that("create_graph",{
-
+test_that("create_graph", {
   # Create a node data frame
   nodes <-
     create_node_df(
@@ -55,7 +55,8 @@ test_that("create_graph",{
       color = "aqua",
       shape = c("circle", "circle",
                 "rectangle", "rectangle"),
-      data = c(3.5, 2.6, 9.4, 2.7))
+      data = c(3.5, 2.6, 9.4, 2.7)
+    )
 
   class(nodes) <-
     c("data.table", "tbl_df", class(nodes))
@@ -68,11 +69,20 @@ test_that("create_graph",{
 
   # Expect that names in this graph object match a
   # prescribed set of names
-  expect_true(
-    all(names(graph) ==
-          c("graph_info", "nodes_df", "edges_df",
-            "global_attrs", "directed",
-            "last_node", "last_edge",
-            "node_selection", "edge_selection",
-            "cache", "graph_log")))
+  expect_true(all(
+    names(graph) ==
+      c(
+        "graph_info",
+        "nodes_df",
+        "edges_df",
+        "global_attrs",
+        "directed",
+        "last_node",
+        "last_edge",
+        "node_selection",
+        "edge_selection",
+        "cache",
+        "graph_log"
+      )
+  ))
 })

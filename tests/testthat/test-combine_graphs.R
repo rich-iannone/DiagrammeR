@@ -1,31 +1,26 @@
 context("Combining two graph objects into a single graph object")
 
 test_that("graphs can be combined", {
-
   # Create two simple graphs
   nodes_1 <- create_node_df(10)
 
   edges_1 <-
-    create_edge_df(
-      from = 1:9,
-      to = 2:10)
+    create_edge_df(from = 1:9,
+                   to = 2:10)
 
   graph_1 <-
-    create_graph(
-      nodes_df = nodes_1,
-      edges_df = edges_1)
+    create_graph(nodes_df = nodes_1,
+                 edges_df = edges_1)
 
   nodes_2 <- create_node_df(10)
 
   edges_2 <-
-    create_edge_df(
-      from = 1:9,
-      to = 2:10)
+    create_edge_df(from = 1:9,
+                   to = 2:10)
 
   graph_2 <-
-    create_graph(
-      nodes_df = nodes_2,
-      edges_df = edges_2)
+    create_graph(nodes_df = nodes_2,
+                 edges_df = edges_2)
 
   # Combine the two graphs
   combined_graph_1 <-
@@ -36,13 +31,22 @@ test_that("graphs can be combined", {
 
   # Expect that names in graph object match a
   # prescribed set of names
-  expect_true(
-    all(names(combined_graph_1) ==
-          c("graph_info", "nodes_df", "edges_df",
-            "global_attrs", "directed",
-            "last_node", "last_edge",
-            "node_selection", "edge_selection",
-            "cache", "graph_log")))
+  expect_true(all(
+    names(combined_graph_1) ==
+      c(
+        "graph_info",
+        "nodes_df",
+        "edges_df",
+        "global_attrs",
+        "directed",
+        "last_node",
+        "last_edge",
+        "node_selection",
+        "edge_selection",
+        "cache",
+        "graph_log"
+      )
+  ))
 
   # Expect that the `global_attrs` graph component
   # is not NULL
