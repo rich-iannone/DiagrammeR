@@ -419,19 +419,128 @@ graph_init_functions <- function() {
     "import_graph")
 }
 
-# Function that yields vector of function
-# names for getting node properties from
+# Function that to create a list of data frames
+# for functions that get node properties using
 # whole-graph methods
 value_per_node_functions <- function() {
 
-  c("get_alpha_centrality", "get_authority_centrality",
-    "get_betweenness", "get_bridging",
-    "get_closeness", "get_cmty_edge_btwns",
-    "get_cmty_fast_greedy", "get_cmty_l_eigenvec",
-    "get_cmty_louvain", "get_cmty_walktrap",
-    "get_constraint", "get_degree_distribution",
-    "get_degree_histogram", "get_degree_in", "get_degree_out",
-    "get_degree_total", "get_eccentricity",
-    "get_eigen_centrality", "get_pagerank",
-    "get_s_connected_cmpts", "get_w_connected_cmpts")
+  list(
+    "get_alpha_centrality" =
+      data.frame(
+        arg = c("alpha", "exo", "weights_attr", "tol"),
+        value_type = c("numeric", "numeric", "character", "numeric"),
+        stringsAsFactors = FALSE
+      ),
+    "get_authority_centrality" =
+      data.frame(
+        arg = "weights_attr",
+        value_type = "character",
+        stringsAsFactors = FALSE
+      ),
+    "get_betweenness" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_bridging" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_closeness" =
+      data.frame(
+        arg = "direction",
+        value_type = "character",
+        stringsAsFactors = FALSE
+      ),
+    "get_cmty_edge_btwns" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_cmty_fast_greedy" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_cmty_l_eigenvec" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_cmty_louvain" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_cmty_walktrap" =
+      data.frame(
+        arg = "steps",
+        value_type = "numeric",
+        stringsAsFactors = FALSE
+      ),
+    "get_constraint" =
+      data.frame(
+        arg = "nodes",
+        value_type = "numeric",
+        stringsAsFactors = FALSE
+      ),
+    "get_degree_distribution" =
+      data.frame(
+        arg = "mode",
+        value_type = "character",
+        stringsAsFactors = FALSE
+      ),
+    "get_degree_histogram" =
+      data.frame(
+        arg = "mode",
+        value_type = "character",
+        stringsAsFactors = FALSE
+      ),
+    "get_degree_in" =
+      data.frame(
+        arg = "normalized",
+        value_type = "logical",
+        stringsAsFactors = FALSE
+      ),
+    "get_degree_out" =
+      data.frame(
+        arg = "normalized",
+        value_type = "logical",
+        stringsAsFactors = FALSE
+      ),
+    "get_degree_total" =
+      data.frame(
+        arg = "normalized",
+        value_type = "logical",
+        stringsAsFactors = FALSE
+      ),
+    "get_eccentricity" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_eigen_centrality" =
+      data.frame(
+        arg = "weights_attr",
+        value_type = "character",
+        stringsAsFactors = FALSE
+      ),
+    "get_pagerank" =
+      data.frame(
+        arg = c("directed", "damping"),
+        value_type = c("logical", "numeric"),
+        stringsAsFactors = FALSE
+      ),
+    "get_s_connected_cmpts" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      ),
+    "get_w_connected_cmpts" =
+      data.frame(
+        arg = NULL,
+        value_type = NULL
+      )
+  )
 }
