@@ -419,3 +419,19 @@ graph_init_functions <- function() {
     "import_graph")
 }
 
+# Function that yields vector of function
+# names for getting node properties from
+# whole-graph methods
+value_per_node_functions <- function() {
+
+  c("get_alpha_centrality", "get_authority_centrality",
+    "get_betweenness", "get_bridging",
+    "get_closeness", "get_cmty_edge_btwns",
+    "get_cmty_fast_greedy", "get_cmty_l_eigenvec",
+    "get_cmty_louvain", "get_cmty_walktrap",
+    "get_constraint", "get_degree_distribution",
+    "get_degree_histogram", "get_degree_in", "get_degree_out",
+    "get_degree_total", "get_eccentricity",
+    "get_eigen_centrality", "get_pagerank",
+    "get_s_connected_cmpts", "get_w_connected_cmpts")
+}
