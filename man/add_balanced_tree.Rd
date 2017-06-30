@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_balanced_tree.R
 \name{add_balanced_tree}
 \alias{add_balanced_tree}
-\title{Add a balanced tree of nodes to the graph}
+\title{Add a balanced tree to the graph}
 \usage{
 add_balanced_tree(graph, k, h, type = NULL, label = TRUE, rel = NULL)
 }
