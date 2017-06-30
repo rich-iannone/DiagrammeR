@@ -1,4 +1,4 @@
-#' Add a balanced tree of nodes to the graph
+#' Add a balanced tree to the graph
 #' @description With a graph object of class
 #' \code{dgr_graph}, add a balanced tree to the graph.
 #' @param graph a graph object of class
