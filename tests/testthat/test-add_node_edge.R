@@ -23,6 +23,7 @@ test_that("adding a node to a graph is possible", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))
@@ -172,6 +173,7 @@ test_that("adding an edge to a graph is possible", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))
