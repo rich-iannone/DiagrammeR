@@ -19,6 +19,7 @@ test_that("an empty graph object can be created and such an object is correct", 
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))
@@ -80,6 +81,7 @@ test_that("a graph object with nodes can be created correctly", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))
@@ -150,6 +152,7 @@ test_that("a graph object with nodes and edges can be created correctly", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))

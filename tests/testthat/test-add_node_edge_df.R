@@ -47,6 +47,7 @@ test_that("adding a node df to a graph is possible", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))
@@ -64,6 +65,7 @@ test_that("adding a node df to a graph is possible", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))

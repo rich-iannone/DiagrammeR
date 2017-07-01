@@ -82,6 +82,7 @@ test_that("create_graph", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))

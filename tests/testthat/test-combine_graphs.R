@@ -44,6 +44,7 @@ test_that("graphs can be combined", {
         "node_selection",
         "edge_selection",
         "cache",
+        "graph_actions",
         "graph_log"
       )
   ))
