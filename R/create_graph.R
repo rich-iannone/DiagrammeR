@@ -237,6 +237,16 @@ create_graph <- function(nodes_df = NULL,
       to = as.integer(NA))[-1, ] %>%
     as.data.frame(stringsAsFactors = FALSE)
 
+  ## DF: `graph_actions`
+
+  # Create an empty `graph_actions` data frame
+  graph_actions <-
+    data.frame(
+      action_id = as.integer(NA),
+      action_name = as.character(NA),
+      expression = as.character(NA),
+      stringsAsFactors = FALSE)[-1, ]
+
   ## DF: `graph_log`
 
   # Create an empty `graph_log` data frame
@@ -270,6 +280,7 @@ create_graph <- function(nodes_df = NULL,
          node_selection = nsdf,
          edge_selection = esdf,
          cache = cache,
+         graph_actions = graph_actions,
          graph_log = graph_log)
 
   attr(graph, "class") <- "dgr_graph"
