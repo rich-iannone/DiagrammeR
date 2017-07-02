@@ -4,7 +4,7 @@
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
 [![codecov.io](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master) 
 
-With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. A collection of functions is available for working specifically with graph objects. The output can be incorporated into **RMarkdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as **PNG**, **PDF**, or **SVG** files.
+With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into **RMarkdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as **PNG**, **PDF**, or **SVG** files.
 
 <img src="inst/img/simple_graph.png">
 
@@ -47,11 +47,11 @@ create_random_graph(
   clear_selection() %>%
   set_node_attr_to_display(
     attr = NULL
-  ) %>%
+    ) %>%
   render_graph()
 ```
 
-**DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, perform scaling of attribute values with data values, and many other useful things.
+**DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things.
 
 This functionality makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and specify styling attributes to differentiate nodes and edges by size, color, shape, opacity, length, and more. Here are some of the available graph functions:
 
