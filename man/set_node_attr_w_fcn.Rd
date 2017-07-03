@@ -87,25 +87,60 @@ graph_2 \%>\%
 #> 9   9 <NA>     9   8.5                 162
 #> 10 10 <NA>    10  10.0                 462
 
+# The new column name can be provided
 graph_3 <-
   graph \%>\%
   set_node_attr_w_fcn(
-    fcn = "get_s_connected_cmpts",
-    column_name = "scc")
+    fcn = "get_pagerank",
+    column_name = "pagerank")
 
 # Inspect the graph's internal
 # node data frame
 graph_3 \%>\%
   get_node_df()
-#>    id type label value scc
-#> 1   1 <NA>     1   6.0   4
-#> 2   2 <NA>     2   2.5   2
-#> 3   3 <NA>     3   3.5   3
-#> 4   4 <NA>     4   7.5   1
-#> 5   5 <NA>     5   8.5   6
-#> 6   6 <NA>     6   4.5   7
-#> 7   7 <NA>     7  10.0   5
-#> 8   8 <NA>     8  10.0  10
-#> 9   9 <NA>     9   8.5   8
-#> 10 10 <NA>    10  10.0   9
+#>    id type label value   pagerank
+#> 1   1 <NA>     1   6.0 0.04608804
+#> 2   2 <NA>     2   2.5 0.04608804
+#> 3   3 <NA>     3   3.5 0.05392301
+#> 4   4 <NA>     4   7.5 0.04608804
+#> 5   5 <NA>     5   8.5 0.07677500
+#> 6   6 <NA>     6   4.5 0.11684759
+#> 7   7 <NA>     7  10.0 0.07899491
+#> 8   8 <NA>     8  10.0 0.08898857
+#> 9   9 <NA>     9   8.5 0.16945368
+#> 10 10 <NA>    10  10.0 0.27675311
+
+# If `graph_3` is modified by
+# adding a new node then the column
+# `pagerank` will have stale data; we
+# can run the function again and re-use
+# the existing column name to provide
+# updated values
+graph_3 <-
+  graph_3 \%>\%
+  add_node(
+    from = 1,
+    to = 3,
+    label = 11,
+    value = 5.5) \%>\%
+  set_node_attr_w_fcn(
+    fcn = "get_pagerank",
+    column_name = "pagerank")
+
+# Inspect the graph's internal
+# node data frame
+graph_3 \%>\%
+  get_node_df()
+#>    id type label value   pagerank
+#> 1   1 <NA>     1   6.0 0.03943470
+#> 2   2 <NA>     2   2.5 0.03943470
+#> 3   3 <NA>     3   3.5 0.08535641
+#> 4   4 <NA>     4   7.5 0.03943470
+#> 5   5 <NA>     5   8.5 0.06401567
+#> 6   6 <NA>     6   4.5 0.10870274
+#> 7   7 <NA>     7  10.0 0.07702682
+#> 8   8 <NA>     8  10.0 0.07693771
+#> 9   9 <NA>     9   8.5 0.16659482
+#> 10 10 <NA>    10  10.0 0.25692313
+#> 11 11 <NA>    11   5.5 0.04613860
 }
