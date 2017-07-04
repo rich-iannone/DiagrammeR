@@ -5,9 +5,23 @@
 #' using one of several whole-graph functions.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param fcn the name of the function to use.
+#' @param node_attr_fcn the name of the function to
+#' use for creating a column of node attribute values.
+#' Valid functions are: \code{get_alpha_centrality},
+#' \code{get_authority_centrality},
+#' \code{get_betweenness}, \code{get_bridging},
+#' \code{get_closeness}, \code{get_cmty_edge_btwns},
+#' \code{get_cmty_fast_greedy}, \code{get_cmty_l_eigenvec},
+#' \code{get_cmty_louvain}, \code{get_cmty_walktrap},
+#' \code{get_constraint}, \code{get_degree_distribution},
+#' \code{get_degree_histogram}, \code{get_degree_in},
+#' \code{get_degree_out}, \code{get_degree_total},
+#' \code{get_eccentricity}, \code{get_eigen_centrality},
+#' \code{get_pagerank}, \code{get_s_connected_cmpts},
+#' and \code{get_w_connected_cmpts}.
 #' @param ... arguments and values to pass to
-#' the named function in \code{fcn}, if necessary.
+#' the named function in \code{node_attr_fcn}, if
+#' necessary.
 #' @param column_name an option to supply a column
 #' name for the new node attribute column. If
 #' \code{NULL} then the column name supplied by the
