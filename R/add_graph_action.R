@@ -28,14 +28,44 @@ add_graph_action <- function(graph,
   # Create a character expression for the
   # function to evaluate at every graph
   # transformation step
-  char_expr <-
-    paste0(
-      fcn,
-      "(graph = graph, ",
-      paste(fcn_args %>% names(),
-            "=", paste(fcn_args %>% unname()),
-            collapse = ", "),
-      ")")
+  if (length(fcn_args) == 0) {
+    char_expr <-
+      paste0(
+        fcn,
+        "(graph = graph)")
+
+  } else {
+
+    arg_names <- vector(mode = "character")
+    arg_values <- vector(mode = "character")
+
+    for (i in 1:length(fcn_args)) {
+
+      arg_names <-
+        c(arg_names,
+          (fcn_args %>% names())[i])
+
+      arg_value_class <-
+        (fcn_args %>% unname())[[i]] %>% class()
+
+      if (arg_value_class == "character") {
+        arg_values <-
+          c(arg_values,
+            (fcn_args %>% unname())[[i]] %>% paste0("'", ., "'"))
+      } else {
+        arg_values <-
+          c(arg_values,
+            (fcn_args %>% unname())[[i]])
+      }
+    }
+
+    char_expr <-
+      paste0(
+        fcn,
+        "(graph = graph, ",
+        paste(arg_names, "=", arg_values, collapse = ", "),
+        ")")
+  }
 
   # Create a data frame row with the new graph action
   new_graph_action <-
