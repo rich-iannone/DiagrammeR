@@ -131,7 +131,7 @@
 #' @export set_node_attr_w_fcn
 
 set_node_attr_w_fcn <- function(graph,
-                                fcn,
+                                node_attr_fcn,
                                 ...,
                                 column_name = NULL) {
 
@@ -141,7 +141,10 @@ set_node_attr_w_fcn <- function(graph,
   # Create bindings for specific variables
   id <- NULL
 
-  if (!(fcn %in% (value_per_node_functions() %>% names()))) {
+  value_per_node_fcn_names <-
+    value_per_node_functions() %>% names()
+
+  if (!any(value_per_node_fcn_names %in% node_attr_fcn)) {
     stop("The function name must be one that produces values for every graph node.")
   }
 
@@ -156,7 +159,7 @@ set_node_attr_w_fcn <- function(graph,
       eval(
         parse(
           text = paste0(
-            fcn,
+            node_attr_fcn,
             "(graph, ",
             paste(names(extras),
                   "=",
@@ -174,7 +177,7 @@ set_node_attr_w_fcn <- function(graph,
         eval(
           parse(
             text = paste0(
-              fcn,
+              node_attr_fcn,
               "(graph)"))) %>%
           dplyr::mutate(id = as.integer(id)),
         by = "id")
