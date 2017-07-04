@@ -185,6 +185,9 @@ rescale_node_attrs <- function(graph,
       node_attr = node_attr_to,
       values = nodes_attr_vector_rescaled)
 
+  # Remove last action from the `graph_log`
+  graph$graph_log <- graph$graph_log[1:(nrow(graph$graph_log) - 1), ]
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
