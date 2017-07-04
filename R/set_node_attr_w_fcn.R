@@ -42,7 +42,7 @@
 #' graph_1 <-
 #'   graph %>%
 #'   set_node_attr_w_fcn(
-#'     fcn = "get_betweenness")
+#'     node_attr_fcn = "get_betweenness")
 #'
 #' # Inspect the graph's internal
 #' # node data frame
@@ -65,7 +65,7 @@
 #' graph_2 <-
 #'   graph %>%
 #'   set_node_attr_w_fcn(
-#'     fcn = "get_alpha_centrality",
+#'     node_attr_fcn = "get_alpha_centrality",
 #'     alpha = 2,
 #'     exo = 2)
 #'
@@ -89,7 +89,7 @@
 #' graph_3 <-
 #'   graph %>%
 #'   set_node_attr_w_fcn(
-#'     fcn = "get_pagerank",
+#'     node_attr_fcn = "get_pagerank",
 #'     column_name = "pagerank")
 #'
 #' # Inspect the graph's internal
@@ -122,7 +122,7 @@
 #'     label = 11,
 #'     value = 5.5) %>%
 #'   set_node_attr_w_fcn(
-#'     fcn = "get_pagerank",
+#'     node_attr_fcn = "get_pagerank",
 #'     column_name = "pagerank")
 #'
 #' # Inspect the graph's internal
