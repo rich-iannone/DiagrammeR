@@ -81,10 +81,6 @@ colorize_edge_attrs <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Extract edf from graph
   edges_df <- graph$edges_df
 
@@ -213,7 +209,7 @@ colorize_edge_attrs <- function(graph,
   graph <-
     set_edge_attrs(
       x = graph,
-      edge_attr = node_attr_to,
+      edge_attr = edge_attr_to,
       values = edges_attr_vector_colorized)
 
   # Remove last action from the `graph_log`
