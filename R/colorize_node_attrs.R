@@ -141,10 +141,6 @@ colorize_node_attrs <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  # Get the number of nodes ever created for
-  # this graph
-  nodes_created <- graph$last_node
-
   # Extract ndf from graph
   nodes_df <- graph$nodes_df
 
@@ -188,7 +184,7 @@ colorize_node_attrs <- function(graph,
     }
   }
 
-  # Reverse color palette if `reverse_palette = TRUE``
+  # Reverse color palette if `reverse_palette = TRUE`
   if (reverse_palette == TRUE) {
     color_palette <- rev(color_palette)
   }
@@ -264,8 +260,19 @@ colorize_node_attrs <- function(graph,
     }
   }
 
-  # Modify the graph
-  graph$nodes_df <- nodes_df
+  # Get the finalized column of values
+  nodes_attr_vector_colorized <- nodes_df[, ncol(nodes_df)]
+
+  # Set the node attribute values for nodes specified
+  # in selection
+  graph <-
+    set_node_attrs(
+      x = graph,
+      node_attr = node_attr_to,
+      values = nodes_attr_vector_colorized)
+
+  # Remove last action from the `graph_log`
+  graph$graph_log <- graph$graph_log[1:(nrow(graph$graph_log) - 1), ]
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

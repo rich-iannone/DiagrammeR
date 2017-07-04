@@ -205,8 +205,19 @@ colorize_edge_attrs <- function(graph,
     }
   }
 
-  # Modify the graph
-  graph$edges_df <- edges_df
+  # Get the finalized column of values
+  edges_attr_vector_colorized <- edges_df[, ncol(edges_df)]
+
+  # Set the edge attribute values for nodes specified
+  # in selection
+  graph <-
+    set_edge_attrs(
+      x = graph,
+      edge_attr = node_attr_to,
+      values = edges_attr_vector_colorized)
+
+  # Remove last action from the `graph_log`
+  graph$graph_log <- graph$graph_log[1:(nrow(graph$graph_log) - 1), ]
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
