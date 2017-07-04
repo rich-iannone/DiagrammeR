@@ -1,6 +1,7 @@
 context("Colorizing based on node and edge attrs")
 
 test_that("Adding color based on node attributes is possible", {
+
   # Create a random graph of 50 nodes and 85 edges
   graph <-
     create_random_graph(50, 85, set_seed = 23)
@@ -138,13 +139,17 @@ test_that("Adding color based on edge attributes is possible", {
   # to set different `color` values
   graph <-
     graph %>%
-    colorize_edge_attrs("rel", "color") %>%
-    colorize_edge_attrs("rel", "fontcolor", alpha = 90)
+    colorize_edge_attrs(
+      edge_attr_from = "rel",
+      edge_attr_to = "color") %>%
+    colorize_edge_attrs(
+      edge_attr_from = "rel",
+      edge_attr_to = "fontcolor",
+      alpha = 90)
 
   # Expect that the `color` and `fontcolor`
   # columns have been created in the edf
   expect_true("color" %in% colnames(graph$edges_df))
-
   expect_true("fontcolor" %in% colnames(graph$edges_df))
 
   # Expect that there are as many different
