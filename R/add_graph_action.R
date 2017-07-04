@@ -26,7 +26,8 @@ add_graph_action <- function(graph,
   fcn_args <- list(...)
 
   # Create a character expression for the
-  # function to evaulate at every graph change
+  # function to evaluate at every graph
+  # transformation step
   char_expr <-
     paste0(
       fcn,
