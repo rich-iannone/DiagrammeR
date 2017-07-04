@@ -34,7 +34,7 @@
 #' # Create a graph with 8 nodes and 7 edges
 #' graph <-
 #'   create_graph() %>%
-#'   add_path(8) %>%
+#'   add_path(n = 8) %>%
 #'   set_node_attrs(
 #'     node_attr = "weight",
 #'     values = c(8.2, 3.7, 6.3, 9.2,
