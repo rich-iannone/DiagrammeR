@@ -70,8 +70,8 @@ add_graph_action <- function(graph,
   # Create a data frame row with the new graph action
   new_graph_action <-
     data.frame(
-      action_id = ifelse(nrow(graph$graph_actions) == 0, 1,
-                         max(graph$graph_actions$action_id) + 1),
+      action_index = ifelse(nrow(graph$graph_actions) == 0, 1,
+                            max(graph$graph_actions$action_index) + 1),
       action_name = ifelse(!is.null(action_name), action_name,
                            as.character(NA)),
       expression = char_expr,

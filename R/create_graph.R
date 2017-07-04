@@ -242,7 +242,7 @@ create_graph <- function(nodes_df = NULL,
   # Create an empty `graph_actions` data frame
   graph_actions <-
     data.frame(
-      action_id = as.integer(NA),
+      action_index = as.integer(NA),
       action_name = as.character(NA),
       expression = as.character(NA),
       stringsAsFactors = FALSE)[-1, ]
