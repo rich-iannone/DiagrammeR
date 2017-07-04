@@ -4,16 +4,30 @@
 \alias{set_node_attr_w_fcn}
 \title{Set node attribute values with a graph function}
 \usage{
-set_node_attr_w_fcn(graph, fcn, ..., column_name = NULL)
+set_node_attr_w_fcn(graph, node_attr_fcn, ..., column_name = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{fcn}{the name of the function to use.}
+\item{node_attr_fcn}{the name of the function to
+use for creating a column of node attribute values.
+Valid functions are: \code{get_alpha_centrality},
+\code{get_authority_centrality},
+\code{get_betweenness}, \code{get_bridging},
+\code{get_closeness}, \code{get_cmty_edge_btwns},
+\code{get_cmty_fast_greedy}, \code{get_cmty_l_eigenvec},
+\code{get_cmty_louvain}, \code{get_cmty_walktrap},
+\code{get_constraint}, \code{get_degree_distribution},
+\code{get_degree_histogram}, \code{get_degree_in},
+\code{get_degree_out}, \code{get_degree_total},
+\code{get_eccentricity}, \code{get_eigen_centrality},
+\code{get_pagerank}, \code{get_s_connected_cmpts},
+and \code{get_w_connected_cmpts}.}
 
 \item{...}{arguments and values to pass to
-the named function in \code{fcn}, if necessary.}
+the named function in \code{node_attr_fcn}, if
+necessary.}
 
 \item{column_name}{an option to supply a column
 name for the new node attribute column. If
@@ -44,7 +58,7 @@ graph <-
 graph_1 <-
   graph \%>\%
   set_node_attr_w_fcn(
-    fcn = "get_betweenness")
+    node_attr_fcn = "get_betweenness")
 
 # Inspect the graph's internal
 # node data frame
@@ -67,7 +81,7 @@ graph_1 \%>\%
 graph_2 <-
   graph \%>\%
   set_node_attr_w_fcn(
-    fcn = "get_alpha_centrality",
+    node_attr_fcn = "get_alpha_centrality",
     alpha = 2,
     exo = 2)
 
@@ -91,7 +105,7 @@ graph_2 \%>\%
 graph_3 <-
   graph \%>\%
   set_node_attr_w_fcn(
-    fcn = "get_pagerank",
+    node_attr_fcn = "get_pagerank",
     column_name = "pagerank")
 
 # Inspect the graph's internal
@@ -124,7 +138,7 @@ graph_3 <-
     label = 11,
     value = 5.5) \%>\%
   set_node_attr_w_fcn(
-    fcn = "get_pagerank",
+    node_attr_fcn = "get_pagerank",
     column_name = "pagerank")
 
 # Inspect the graph's internal
