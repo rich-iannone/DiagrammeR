@@ -6,8 +6,12 @@
 #' and result in no change to the input graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param indices a vector that provides the new ordering
-#' of graph actions.
+#' @param indices a numeric vector that provides the new
+#' ordering of graph actions. This vector can be the same
+#' length as the number of graph actions, or, of shorter
+#' length. In the latter case, the ordering places the
+#' given items first and the remaining actions will
+#' follow.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph
