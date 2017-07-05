@@ -94,6 +94,7 @@ add_graph_action <- function(graph,
       }
     }
 
+    # Create a character-based expression
     char_expr <-
       paste0(
         fcn,
