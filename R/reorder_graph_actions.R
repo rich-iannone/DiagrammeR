@@ -57,9 +57,10 @@
 #' # correct and that the `get_pagerank`
 #' # action should be the 1st action
 #' # and `pagerank_to_width` should go
-#' # in 2nd place; to fix, use the function
-#' # `reorder_graph_actions()` and
-#' # specify the reordering
+#' # in 2nd place; to fix this, use the
+#' # function `reorder_graph_actions()`
+#' # and specify the reordering with a
+#' # numeric vector
 #' graph <-
 #'   graph %>%
 #'   reorder_graph_actions(
