@@ -10,22 +10,23 @@ reorder_graph_actions(graph, indices)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{indices}{a numeric vector that provides the new
-ordering of graph actions. This vector can be the same
-length as the number of graph actions, or, of shorter
-length. In the latter case, the ordering places the
-given items first and the remaining actions will
-follow.}
+\item{indices}{a numeric vector that provides
+the new ordering of graph actions. This vector
+can be the same length as the number of graph
+actions, or, of shorter length. In the latter
+case, the ordering places the given items first
+and the remaining actions will follow.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Execute the graph actions stored in the
-graph through the use of the \code{add_graph_action()}
-function. These actions will be invoked in order and
-any errors encountered will trigger a warning message
-and result in no change to the input graph.
+Execute the graph actions stored in
+the graph through the use of the
+\code{add_graph_action()} function. These actions
+will be invoked in order and any errors
+encountered will trigger a warning message and
+result in no change to the input graph.
 }
 \examples{
 # Create a random graph
@@ -42,7 +43,7 @@ graph <-
     fcn = "rescale_node_attrs",
     node_attr_from = "pagerank",
     node_attr_to = "width",
-    action_name = "pagerank_to_width") \%>\%
+    action_name = "pgrnk_to_width") \%>\%
   add_graph_action(
     fcn = "set_node_attr_w_fcn",
     node_attr_fcn = "get_pagerank",
@@ -52,26 +53,26 @@ graph <-
     fcn = "colorize_node_attrs",
     node_attr_from = "width",
     node_attr_to = "fillcolor",
-    action_name = "pagerank_fillcolor")
+    action_name = "pgrnk_fillcolor")
 
 # View the graph actions for the graph
-# object by using the `get_graph_actions()`
-# function
+# object by using the function called
+# `get_graph_actions()`
 graph \%>\%
   get_graph_actions()
 #> # A tibble: 3 x 3
-#>   action_index        action_name
-#>          <dbl>              <chr>
-#> 1            1  pagerank_to_width
-#> 2            2       get_pagerank
-#> 3            3 pagerank_fillcolor
+#>   action_index     action_name
+#>          <dbl>           <chr>
+#> 1            1  pgrnk_to_width
+#> 2            2    get_pagerank
+#> 3            3 pgrnk_fillcolor
 #> # ... with 1 more variables:
 #> #   expression <chr>
 
 # We note that the order isn't
 # correct and that the `get_pagerank`
 # action should be the 1st action
-# and `pagerank_to_width` should go
+# and `pgrnk_to_width` should go
 # in 2nd place; to fix this, use the
 # function `reorder_graph_actions()`
 # and specify the reordering with a
@@ -87,11 +88,11 @@ graph <-
 graph \%>\%
   get_graph_actions()
 #> # A tibble: 3 x 3
-#>   action_index        action_name
-#>          <int>              <chr>
-#> 1            1       get_pagerank
-#> 2            2  pagerank_to_width
-#> 3            3 pagerank_fillcolor
+#>   action_index     action_name
+#>          <int>           <chr>
+#> 1            1    get_pagerank
+#> 2            2  pgrnk_to_width
+#> 3            3 pgrnk_fillcolor
 #> # ... with 1 more variables:
 #> #   expression <chr>
 }
