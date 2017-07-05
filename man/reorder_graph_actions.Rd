@@ -10,8 +10,12 @@ reorder_graph_actions(graph, indices)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{indices}{a vector that provides the new ordering
-of graph actions.}
+\item{indices}{a numeric vector that provides the new
+ordering of graph actions. This vector can be the same
+length as the number of graph actions, or, of shorter
+length. In the latter case, the ordering places the
+given items first and the remaining actions will
+follow.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -67,9 +71,10 @@ graph \%>\%
 # correct and that the `get_pagerank`
 # action should be the 1st action
 # and `pagerank_to_width` should go
-# in 2nd place; to fix, use the function
-# `reorder_graph_actions()` and
-# specify the reordering
+# in 2nd place; to fix this, use the
+# function `reorder_graph_actions()`
+# and specify the reordering with a
+# numeric vector
 graph <-
   graph \%>\%
   reorder_graph_actions(

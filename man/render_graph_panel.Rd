@@ -4,7 +4,8 @@
 \alias{render_graph_panel}
 \title{Render several graphs in a single panel}
 \usage{
-render_graph_panel(..., ncols = NULL, nrows = NULL, titles = NULL)
+render_graph_panel(..., ncols = NULL, nrows = NULL, title = NULL,
+  panel_titles = NULL)
 }
 \arguments{
 \item{...}{2 or more graph objects of class
@@ -16,8 +17,8 @@ of columns in the graph layout.}
 \item{nrows}{an option to provide the number
 of rows in the graph layout.}
 
-\item{titles}{an optional vector of titles for
-each of the graphs displayed.}
+\item{panel_titles}{an optional vector of titles
+for each of the graph panels displayed.}
 }
 \description{
 Using 2 or more \code{dgr_graph}
@@ -69,7 +70,9 @@ render_graph_panel(
   graph_4 \%>\% pagerank_color(),
   ncols = 2,
   nrows = 2,
-  titles = c("one", "two",
-             "three", "four"))
+  title = "Four Graphs",
+  panel_titles =
+    c("one", "two",
+      "three", "four"))
 }
 }
