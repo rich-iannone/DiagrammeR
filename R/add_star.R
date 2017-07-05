@@ -183,6 +183,13 @@ add_star <- function(graph,
     star_graph$graph_log <- graph_log
     star_graph$graph_info <- graph_info
 
+    # Perform graph actions, if any are available
+    if (nrow(graph$graph_actions) > 0) {
+      graph <-
+        graph %>%
+        trigger_graph_actions()
+    }
+
     # Write graph backup if the option is set
     if (star_graph$graph_info$write_backups) {
       save_graph_as_rds(graph = star_graph)
