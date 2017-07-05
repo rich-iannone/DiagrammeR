@@ -1,9 +1,14 @@
 #' Trigger the execution of a series of graph actions
-#' @description Execute the graph actions stored in the
-#' graph through the use of the \code{add_graph_action()}
-#' function. These actions will be invoked in order and
-#' any errors encountered will trigger a warning message
-#' and result in no change to the input graph.
+#' @description Execute the graph actions stored in
+#' the graph through the use of the
+#' \code{add_graph_action()} function. These actions
+#' will be invoked in order and any errors
+#' encountered will trigger a warning message and
+#' result in no change to the input graph. Normally,
+#' graph actions are automatically triggered at
+#' every transformation step but this function allows
+#' for the manual triggering of graph actions after
+#' setting them, for example.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
@@ -11,8 +16,10 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'     n = 10, m = 22,
-#'     set_seed = 23)
+#'     n = 5, m = 10,
+#'     set_seed = 23) %>%
+#'   drop_node_attrs(
+#'     node_attr = "value")
 #'
 #' # Add a graph action that sets a node
 #' # attr column with a function; this
@@ -38,7 +45,7 @@
 #'     fcn = "rescale_node_attrs",
 #'     node_attr_from = "pagerank",
 #'     node_attr_to = "width",
-#'     action_name = "pagerank_to_width")
+#'     action_name = "pgrnk_to_width")
 #'
 #' # Add a third and final graph action
 #' # (to be executed last) that creates
@@ -51,7 +58,7 @@
 #'     fcn = "colorize_node_attrs",
 #'     node_attr_from = "width",
 #'     node_attr_to = "fillcolor",
-#'     action_name = "pagerank_fillcolor")
+#'     action_name = "pgrnk_fillcolor")
 #'
 #' # View the graph actions for the graph
 #' # object by using the `get_graph_actions()`
@@ -59,11 +66,11 @@
 #' graph %>%
 #'   get_graph_actions()
 #' #> # A tibble: 3 x 3
-#' #>   action_index        action_name
-#' #>          <dbl>              <chr>
-#' #> 1            1       get_pagerank
-#' #> 2            2  pagerank_to_width
-#' #> 3            3 pagerank_fillcolor
+#' #>   action_index     action_name
+#' #>          <dbl>           <chr>
+#' #> 1            1    get_pagerank
+#' #> 2            2  pgrnk_to_width
+#' #> 3            3 pgrnk_fillcolor
 #' #> # ... with 1 more variables:
 #' #> #   expression <chr>
 #'
@@ -80,17 +87,12 @@
 #' # `fillcolor` columns are present
 #' graph %>%
 #'   get_node_df()
-#' #>    id type label value   pagerank width fillcolor
-#' #> 1   1 <NA>     1   6.0 0.04608804 0.000   #D53E4F
-#' #> 2   2 <NA>     2   2.5 0.04608804 0.000   #D53E4F
-#' #> 3   3 <NA>     3   3.5 0.05392301 0.034   #F46D43
-#' #> 4   4 <NA>     4   7.5 0.04608804 0.000   #D53E4F
-#' #> 5   5 <NA>     5   8.5 0.07677500 0.133   #FDAE61
-#' #> 6   6 <NA>     6   4.5 0.11684759 0.307   #ABDDA4
-#' #> 7   7 <NA>     7  10.0 0.07899491 0.143   #FEE08B
-#' #> 8   8 <NA>     8  10.0 0.08898857 0.186   #E6F598
-#' #> 9   9 <NA>     9   8.5 0.16945368 0.535   #66C2A5
-#' #> 10 10 <NA>    10  10.0 0.27675311 1.000   #3288BD
+#' #>   id type label   pagerank width fillcolor
+#' #> 1  1 <NA>     1 0.09912752 0.000   #D7191C
+#' #> 2  2 <NA>     2 0.12019212 0.069   #FDAE61
+#' #> 3  3 <NA>     3 0.15424655 0.179   #FFFFBF
+#' #> 4  4 <NA>     4 0.21980134 0.392   #ABDDA4
+#' #> 5  5 <NA>     5 0.40663247 1.000   #2B83BA
 #' @importFrom dplyr filter pull
 #' @export trigger_graph_actions
 
