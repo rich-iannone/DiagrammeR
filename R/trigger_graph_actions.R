@@ -7,6 +7,89 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
+#' @examples
+#' # Create a random graph
+#' graph <-
+#'   create_random_graph(
+#'     n = 10, m = 22,
+#'     set_seed = 23)
+#'
+#' # Add a graph action that sets a node
+#' # attr column with a function; this
+#' # uses the `get_pagerank()` function
+#' # to provide PageRank values in the
+#' # `pagerank` column
+#' graph <-
+#'   graph %>%
+#'   add_graph_action(
+#'     fcn = "set_node_attr_w_fcn",
+#'     node_attr_fcn = "get_pagerank",
+#'     column_name = "pagerank",
+#'     action_name = "get_pagerank")
+#'
+#' # Add a second graph action (to be
+#' # executed after the first one) that
+#' # rescales values in the `pagerank`
+#' # column between 0 and 1, and, puts
+#' # these values in the `width` column
+#' graph <-
+#'   graph %>%
+#'   add_graph_action(
+#'     fcn = "rescale_node_attrs",
+#'     node_attr_from = "pagerank",
+#'     node_attr_to = "width",
+#'     action_name = "pagerank_to_width")
+#'
+#' # Add a third and final graph action
+#' # (to be executed last) that creates
+#' # color values in the `fillcolor` column,
+#' # based on the numeric values from the
+#' # `width` column
+#' graph <-
+#'   graph %>%
+#'   add_graph_action(
+#'     fcn = "colorize_node_attrs",
+#'     node_attr_from = "width",
+#'     node_attr_to = "fillcolor",
+#'     action_name = "pagerank_fillcolor")
+#'
+#' # View the graph actions for the graph
+#' # object by using the `get_graph_actions()`
+#' # function
+#' graph %>%
+#'   get_graph_actions()
+#' #> # A tibble: 3 x 3
+#' #>   action_index        action_name
+#' #>          <dbl>              <chr>
+#' #> 1            1       get_pagerank
+#' #> 2            2  pagerank_to_width
+#' #> 3            3 pagerank_fillcolor
+#  #> ... with 1 more variables: expression <chr>
+
+#' # Manually trigger to invocation of
+#' # the graph actions using the
+#' # `trigger_graph_actions()` function
+#' graph <-
+#'   graph %>%
+#'   trigger_graph_actions()
+#'
+#' # Examine the graph's internal node
+#' # data frame (ndf) to verify that
+#' # the `pagerank`, `width`, and
+#' # `fillcolor` columns are present
+#' graph %>%
+#'   get_node_df()
+#' #>    id type label value   pagerank width fillcolor
+#' #> 1   1 <NA>     1   6.0 0.04608804 0.000   #D53E4F
+#' #> 2   2 <NA>     2   2.5 0.04608804 0.000   #D53E4F
+#' #> 3   3 <NA>     3   3.5 0.05392301 0.034   #F46D43
+#' #> 4   4 <NA>     4   7.5 0.04608804 0.000   #D53E4F
+#' #> 5   5 <NA>     5   8.5 0.07677500 0.133   #FDAE61
+#' #> 6   6 <NA>     6   4.5 0.11684759 0.307   #ABDDA4
+#' #> 7   7 <NA>     7  10.0 0.07899491 0.143   #FEE08B
+#' #> 8   8 <NA>     8  10.0 0.08898857 0.186   #E6F598
+#' #> 9   9 <NA>     9   8.5 0.16945368 0.535   #66C2A5
+#' #> 10 10 <NA>    10  10.0 0.27675311 1.000   #3288BD
 #' @importFrom dplyr filter pull
 #' @export trigger_graph_actions
 
