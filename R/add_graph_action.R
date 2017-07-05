@@ -43,7 +43,8 @@
 #' #>   action_index action_name
 #' #>          <dbl>       <chr>
 #' #> 1            1   get_btwns
-#' #> # ... with 1 more variables: expression <chr>
+#' #> # ... with 1 more variables:
+#' #> #   expression <chr>
 #' @importFrom dplyr bind_rows
 #' @export add_graph_action
 

@@ -51,7 +51,8 @@
 #' #> 1            1  pagerank_to_width
 #' #> 2            2       get_pagerank
 #' #> 3            3 pagerank_fillcolor
-#' #> # ... with 1 more variables: expression <chr>
+#' #> # ... with 1 more variables:
+#' #> #   expression <chr>
 #'
 #' # We note that the order isn't
 #' # correct and that the `get_pagerank`
@@ -77,7 +78,8 @@
 #' #> 1            1       get_pagerank
 #' #> 2            2  pagerank_to_width
 #' #> 3            3 pagerank_fillcolor
-#' #> # ... with 1 more variables: expression <chr>
+#' #> # ... with 1 more variables:
+#' #> #   expression <chr>
 #' @importFrom dplyr mutate row_number pull
 #' @export reorder_graph_actions
 
@@ -126,6 +128,8 @@ reorder_graph_actions <- function(graph,
     .[revised_indices, ] %>%
     dplyr::mutate(action_index = row_number())
 
+  # Replace `graph$graph_actions` with the
+  # revised version
   graph$graph_actions <- revised_graph_actions
 
   # Update the `graph_log` df with an action
