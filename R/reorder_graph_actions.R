@@ -84,6 +84,9 @@
 reorder_graph_actions <- function(graph,
                                   indices) {
 
+  # Get the time of function start
+  time_function_start <- Sys.time()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
@@ -124,6 +127,22 @@ reorder_graph_actions <- function(graph,
     dplyr::mutate(action_index = row_number())
 
   graph$graph_actions <- revised_graph_actions
+
+  # Update the `graph_log` df with an action
+  graph$graph_log <-
+    add_action_to_log(
+      graph_log = graph$graph_log,
+      version_id = nrow(graph$graph_log) + 1,
+      function_used = "reorder_graph_actions",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df))
+
+  # Write graph backup if the option is set
+  if (graph$graph_info$write_backups) {
+    save_graph_as_rds(graph = graph)
+  }
 
   return(graph)
 }
