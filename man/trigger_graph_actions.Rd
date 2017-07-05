@@ -77,6 +77,9 @@ graph \%>\%
 #> 1            1       get_pagerank
 #> 2            2  pagerank_to_width
 #> 3            3 pagerank_fillcolor
+#> # ... with 1 more variables:
+#> #   expression <chr>
+
 # Manually trigger to invocation of
 # the graph actions using the
 # `trigger_graph_actions()` function
