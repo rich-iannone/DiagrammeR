@@ -152,9 +152,6 @@ add_n_node_clones <- function(graph,
     graph %>%
     clear_selection()
 
-  # Update the `last_node` counter
-  graph$last_node <- graph$last_node + n
-
   # Remove extra items from the `graph_log`
   graph$graph_log <-
     graph$graph_log %>%
