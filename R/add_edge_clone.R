@@ -152,9 +152,6 @@ add_edge_clone <- function(graph,
     graph %>%
     clear_selection()
 
-  # # Update the `last_edge` counter
-  # graph$last_edge <- graph$last_edge + 1
-
   # Remove extra items from the `graph_log`
   graph$graph_log <-
     graph$graph_log %>%
