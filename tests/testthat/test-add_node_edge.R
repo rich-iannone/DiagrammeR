@@ -706,3 +706,85 @@ test_that("adding several edges with a string is possible", {
     get_edges(graph_node_label),
     c("1->2", "1->3", "2->4", "2->3"))
 })
+
+test_that("adding node clones is possible", {
+
+  # Create a graph with a path of
+  # nodes having non-NA `label`, `type`,
+  # and `value` node attributes
+  graph <-
+    create_graph() %>%
+    add_path(
+      n = 3,
+      label = c("d", "g", "r"),
+      type = c("a", "b", "c"),
+      value = c(10, 20, 30))
+
+  # Create 3 clones of node `1`
+  # and assign new node label
+  # values
+  graph_1 <-
+    graph %>%
+    add_n_node_clones(
+      n = 3,
+      node = 1,
+      label = c("x", "y", "z"))
+
+  # Get the graph's node data frame
+  ndf_1 <-
+    graph_1 %>%
+    get_node_df()
+
+  # Expect that the last three nodes
+  # will be have the same `type` value
+  # as node `1`
+  expect_equal(
+    unique(ndf_1[c(1, 4:6), 2]), "a")
+
+  # Expect that the last three nodes
+  # will be have the same values for
+  # the `value` attribute as node `1`
+  expect_equal(
+    unique(ndf_1[c(1, 4:6), 4]), 10)
+
+  # Expect that the new nodes will
+  # have `label` values that were
+  # specified in the function call
+  expect_equal(
+    ndf_1[4:6, 3], c("x", "y", "z"))
+
+  # Create 3 clones of node `1`
+  # and don't assign `label` values
+  # (have them as NA values)
+  graph_2 <-
+    graph %>%
+    add_n_node_clones(
+      n = 3,
+      node = 1,
+      label = NULL)
+
+  # Get the graph's node data frame
+  ndf_2 <-
+    graph_2 %>%
+    get_node_df()
+
+  # Expect that the last three nodes
+  # will be have the same `type` value
+  # as node `1`
+  expect_equal(
+    unique(ndf_2[c(1, 4:6), 2]), "a")
+
+  # Expect that the last three nodes
+  # will be have the same values for
+  # the `value` attribute as node `1`
+  expect_equal(
+    unique(ndf_2[c(1, 4:6), 4]), 10)
+
+  # Expect that the new nodes will
+  # have NA `label` values
+  expect_equal(
+    ndf_2[4:6, 3],
+    rep(as.character(NA), 3))
+})
+
+
