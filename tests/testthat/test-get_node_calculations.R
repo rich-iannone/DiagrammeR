@@ -210,3 +210,117 @@ test_that("Getting strongly connected components is possible", {
   # Expect 5 rows in the df
   expect_equal(nrow(s_connected_components), 5)
 })
+
+test_that("Getting aggregated indegree values is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 23)
+
+  # Expect a certain value for the
+  # mean indegree value from all
+  # nodes in the graph
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "mean"),
+    2.2)
+
+  # Expect a certain value for the
+  # minimum indegree value from all
+  # nodes in the graph
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "min"),
+    0)
+
+  # Expect a certain value for the
+  # maximum indegree value from all
+  # nodes in the graph
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "max"),
+    5)
+
+  # Expect a certain value for the
+  # maximum indegree value from all
+  # nodes in the graph
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "median"),
+    2.5)
+
+  # Expect a certain value for the sum
+  # of indegree values from all
+  # nodes in the graph
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "sum"),
+    22)
+
+  # Expect a certain value for the
+  # mean indegree value from all
+  # nodes in the graph (considering
+  # only nodes with `value > 5.0`)
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "mean",
+      conditions = "value > 5.0"),
+    2.428571,
+    tolerance = 0.002)
+
+  # Expect a certain value for the
+  # minimum indegree value from all
+  # nodes in the graph (considering
+  # only nodes with `value > 5.0`)
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "min",
+      conditions = "value > 5.0"),
+    0,
+    tolerance = 0.002)
+
+  # Expect a certain value for the
+  # maximum indegree value from all
+  # nodes in the graph (considering
+  # only nodes with `value > 5.0`)
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "max",
+      conditions = "value > 5.0"),
+    5,
+    tolerance = 0.002)
+
+  # Expect a certain value for the
+  # maximum indegree value from all
+  # nodes in the graph (considering
+  # only nodes with `value > 5.0`)
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "median",
+      conditions = "value > 5.0"),
+    3,
+    tolerance = 0.002)
+
+  # Expect a certain value for the sum
+  # of indegree values from all
+  # nodes in the graph (considering
+  # only nodes with `value > 5.0`)
+  expect_equal(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "sum",
+      conditions = "value > 5.0"),
+    17,
+    tolerance = 0.002)
+})
