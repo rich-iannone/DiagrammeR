@@ -787,4 +787,61 @@ test_that("adding node clones is possible", {
     rep(as.character(NA), 3))
 })
 
+test_that("adding edge clones is possible", {
 
+  # Create a graph with a path of
+  # 2 nodes; supply a common `rel`
+  # edge attribute for all edges
+  # in this path and then add a
+  # `color` edge attribute
+  graph <-
+    create_graph() %>%
+    add_path(
+      n = 2,
+      rel = "a") %>%
+    select_last_edges_created() %>%
+    set_edge_attrs(
+      edge_attr = "color",
+      values = "steelblue") %>%
+    clear_selection() %>%
+    add_node()
+
+  # Create an edge clone (new edge
+  # with attributes from edge `1`)
+  graph_1 <-
+    graph %>%
+    add_edge_clone(
+      edge = 1,
+      from = 3,
+        to = 1)
+
+  # Get the graph's edge data frame
+  edf_1 <-
+    graph_1 %>%
+    get_edge_df()
+
+  # Expect 2 edges in the edf
+  expect_equal(
+    nrow(edf_1), 2)
+
+  # Expect that the new edge has
+  # definition `3` -> `1`
+  expect_equal(
+    c(edf_1[2, 2], edf_1[2, 3]),
+    c(3, 1))
+
+  # Expect that the new edge has
+  # edge ID `2`
+  expect_equal(
+    edf_1[2, 1], 2)
+
+  # Expect that both edges will be have
+  # the same `rel` values
+  expect_equal(
+    unique(edf_1[, 4]), "a")
+
+  # Expect that both edges will be have
+  # the same `color` values
+  expect_equal(
+    unique(edf_1[, 5]), "steelblue")
+})
