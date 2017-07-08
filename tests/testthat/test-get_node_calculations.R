@@ -5,22 +5,33 @@ test_that("Getting betweenness is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      n = 10, m = 22,
+      set_seed = 1)
 
   betweenness_vals <- get_betweenness(graph)
 
   # Expect a data frame as output
-  expect_is(betweenness_vals, "data.frame")
+  expect_is(
+    betweenness_vals, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(betweenness_vals), 2)
+  expect_equal(
+    ncol(betweenness_vals), 2)
 
   # Expect 10 rows in the df
-  expect_equal(nrow(betweenness_vals), 10)
+  expect_equal(
+    nrow(betweenness_vals), 10)
 
   # Expect node ID values in the first column
-  expect_identical(betweenness_vals[, 1],
-                   as.character(1:10))
+  expect_identical(
+    betweenness_vals[, 1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    betweenness_vals[, 2],
+    "numeric")
 })
 
 test_that("Getting bridging is possible", {
@@ -28,22 +39,33 @@ test_that("Getting bridging is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      n = 10, m = 22,
+      set_seed = 1)
 
   bridging_vals <- get_bridging(graph)
 
   # Expect a data frame as output
-  expect_is(bridging_vals, "data.frame")
+  expect_is(
+    bridging_vals, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(bridging_vals), 2)
+  expect_equal(
+    ncol(bridging_vals), 2)
 
   # Expect 10 rows in the df
-  expect_equal(nrow(bridging_vals), 10)
+  expect_equal(
+    nrow(bridging_vals), 10)
 
   # Expect node ID values in the first column
-  expect_identical(bridging_vals[,1],
-                   as.character(1:10))
+  expect_identical(
+    bridging_vals[,1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    bridging_vals[, 2],
+    "numeric")
 })
 
 test_that("Getting closeness is possible", {
@@ -51,58 +73,87 @@ test_that("Getting closeness is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1,
+      n = 10, m = 22,
+      set_seed = 1,
       directed = TRUE)
 
   # Get closness values with `direction = all`
   closeness_vals_all <- get_closeness(graph)
 
   # Expect a data frame as output
-  expect_is(closeness_vals_all, "data.frame")
+  expect_is(
+    closeness_vals_all, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(closeness_vals_all), 2)
+  expect_equal(
+    ncol(closeness_vals_all), 2)
 
   # Expect 10 rows in the df
-  expect_equal(nrow(closeness_vals_all), 10)
+  expect_equal(
+    nrow(closeness_vals_all), 10)
 
   # Expect node ID values in the first column
-  expect_identical(closeness_vals_all[,1],
-                   as.character(1:10))
+  expect_identical(
+    closeness_vals_all[,1],
+    as.character(1:10))
 
   # Get closness values with `direction = out`
   closeness_vals_out <-
-    get_closeness(graph, direction = "out")
+    get_closeness(
+      graph,
+      direction = "out")
 
   # Expect a data frame as output
-  expect_is(closeness_vals_out, "data.frame")
+  expect_is(
+    closeness_vals_out, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(closeness_vals_out), 2)
+  expect_equal(
+    ncol(closeness_vals_out), 2)
 
   # Expect 10 rows in the df
-  expect_equal(nrow(closeness_vals_out), 10)
+  expect_equal(
+    nrow(closeness_vals_out), 10)
 
   # Expect node ID values in the first column
-  expect_identical(closeness_vals_out[, 1],
-                   as.character(1:10))
+  expect_identical(
+    closeness_vals_out[, 1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    closeness_vals_out[, 2],
+    "numeric")
 
   # Get closness values with `direction = in`
   closeness_vals_in <-
-    get_closeness(graph, direction = "in")
+    get_closeness(
+      graph,
+      direction = "in")
 
   # Expect a data frame as output
-  expect_is(closeness_vals_in, "data.frame")
+  expect_is(
+    closeness_vals_in, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(closeness_vals_in), 2)
+  expect_equal(
+    ncol(closeness_vals_in), 2)
 
   # Expect 10 rows in the df
-  expect_equal(nrow(closeness_vals_in), 10)
+  expect_equal(
+    nrow(closeness_vals_in), 10)
 
   # Expect node ID values in the first column
-  expect_identical(closeness_vals_in[, 1],
-                   as.character(1:10))
+  expect_identical(
+    closeness_vals_in[, 1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    closeness_vals_in[, 2],
+    "numeric")
 })
 
 test_that("Getting constraint values is possible", {
@@ -110,45 +161,70 @@ test_that("Getting constraint values is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      n = 10, m = 22,
+      set_seed = 1)
 
   # Get constraint values for all
   # nodes in the graph
   constraint_vals <- get_constraint(graph)
 
   # Expect a data frame as output
-  expect_is(constraint_vals, "data.frame")
+  expect_is(
+    constraint_vals, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(constraint_vals), 2)
+  expect_equal(
+    ncol(constraint_vals), 2)
 
   # Expect 10 rows in the df
-  expect_equal(nrow(constraint_vals), 10)
+  expect_equal(
+    nrow(constraint_vals), 10)
 
   # Expect node ID values in the first column
-  expect_identical(constraint_vals[, 1],
-                   as.character(1:10))
+  expect_identical(
+    constraint_vals[, 1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    constraint_vals[, 2],
+    "numeric")
 
   # Get constraint values for specific nodes
   constraint_vals_selected <-
-    get_constraint(graph, nodes = 1:5)
+    get_constraint(
+      graph,
+      nodes = 1:5)
 
   # Expect a data frame as output
-  expect_is(constraint_vals_selected, "data.frame")
+  expect_is(
+    constraint_vals_selected, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(constraint_vals_selected), 2)
+  expect_equal(
+    ncol(constraint_vals_selected), 2)
 
   # Expect 5 rows in the df
-  expect_equal(nrow(constraint_vals_selected), 5)
+  expect_equal(
+    nrow(constraint_vals_selected), 5)
 
   # Expect node ID values in the first column
-  expect_identical(constraint_vals_selected[, 1],
-                   as.character(1:5))
+  expect_identical(
+    constraint_vals_selected[, 1],
+    as.character(1:5))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    constraint_vals_selected[, 2],
+    "numeric")
 
   # Expect an error if supplying nodes that don't exist
   expect_error(
-    get_constraint(graph, nodes = 20))
+    get_constraint(
+      graph,
+      nodes = 20))
 })
 
 test_that("Getting articulation points is possible", {
@@ -156,16 +232,20 @@ test_that("Getting articulation points is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      30, 50, set_seed = 1)
+      n = 30, m = 50,
+      set_seed = 1)
 
   # Get articulation points for the graph
-  articulation_points <- get_articulation_points(graph)
+  articulation_points <-
+    get_articulation_points(graph)
 
   # Expect an integer vector as output
-  expect_is(articulation_points, "integer")
+  expect_is(
+    articulation_points, "integer")
 
   # Expect 4 values in the vector
-  expect_equal(length(articulation_points), 4)
+  expect_equal(
+    length(articulation_points), 4)
 })
 
 test_that("Getting weakly connected components is possible", {
@@ -173,20 +253,30 @@ test_that("Getting weakly connected components is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      30, 50, set_seed = 1)
+      n = 30, m = 50,
+      set_seed = 1)
 
   # Get connected components for the graph
   connected_components <-
     get_w_connected_cmpts(graph)
 
   # Expect a data frame as output
-  expect_is(connected_components, "data.frame")
+  expect_is(
+    connected_components, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(connected_components), 2)
+  expect_equal(
+    ncol(connected_components), 2)
 
   # Expect 30 rows in the df
-  expect_equal(nrow(connected_components), 30)
+  expect_equal(
+    nrow(connected_components), 30)
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    connected_components[, 2],
+    "numeric")
 })
 
 test_that("Getting strongly connected components is possible", {
@@ -194,7 +284,8 @@ test_that("Getting strongly connected components is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      5, 10, set_seed = 1,
+      n = 5, m = 10,
+      set_seed = 1,
       directed = TRUE)
 
   # Get connected components for the graph
@@ -202,125 +293,20 @@ test_that("Getting strongly connected components is possible", {
     get_s_connected_cmpts(graph)
 
   # Expect a data frame as output
-  expect_is(s_connected_components, "data.frame")
+  expect_is(
+    s_connected_components, "data.frame")
 
   # Expect 2 columns in the df
-  expect_equal(ncol(s_connected_components), 2)
+  expect_equal(
+    ncol(s_connected_components), 2)
 
   # Expect 5 rows in the df
-  expect_equal(nrow(s_connected_components), 5)
-})
-
-test_that("Getting aggregated indegree values is possible", {
-
-  # Create a random graph
-  graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 23)
-
-  # Expect a certain value for the
-  # mean indegree value from all
-  # nodes in the graph
   expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "mean"),
-    2.2)
+    nrow(s_connected_components), 5)
 
-  # Expect a certain value for the
-  # minimum indegree value from all
-  # nodes in the graph
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "min"),
-    0)
-
-  # Expect a certain value for the
-  # maximum indegree value from all
-  # nodes in the graph
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "max"),
-    5)
-
-  # Expect a certain value for the
-  # maximum indegree value from all
-  # nodes in the graph
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "median"),
-    2.5)
-
-  # Expect a certain value for the sum
-  # of indegree values from all
-  # nodes in the graph
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "sum"),
-    22)
-
-  # Expect a certain value for the
-  # mean indegree value from all
-  # nodes in the graph (considering
-  # only nodes with `value > 5.0`)
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "mean",
-      conditions = "value > 5.0"),
-    2.428571,
-    tolerance = 0.002)
-
-  # Expect a certain value for the
-  # minimum indegree value from all
-  # nodes in the graph (considering
-  # only nodes with `value > 5.0`)
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "min",
-      conditions = "value > 5.0"),
-    0,
-    tolerance = 0.002)
-
-  # Expect a certain value for the
-  # maximum indegree value from all
-  # nodes in the graph (considering
-  # only nodes with `value > 5.0`)
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "max",
-      conditions = "value > 5.0"),
-    5,
-    tolerance = 0.002)
-
-  # Expect a certain value for the
-  # maximum indegree value from all
-  # nodes in the graph (considering
-  # only nodes with `value > 5.0`)
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "median",
-      conditions = "value > 5.0"),
-    3,
-    tolerance = 0.002)
-
-  # Expect a certain value for the sum
-  # of indegree values from all
-  # nodes in the graph (considering
-  # only nodes with `value > 5.0`)
-  expect_equal(
-    get_agg_degree_in(
-      graph = graph,
-      agg = "sum",
-      conditions = "value > 5.0"),
-    17,
-    tolerance = 0.002)
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    s_connected_components[, 2],
+    "numeric")
 })
