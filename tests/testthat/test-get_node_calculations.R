@@ -156,6 +156,93 @@ test_that("Getting closeness is possible", {
     "numeric")
 })
 
+test_that("Getting authority centrality is possible", {
+
+  set.seed(23)
+
+  # Create a random graph
+  graph_1 <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 1)
+
+  graph_2 <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 1) %>%
+    select_edges() %>%
+    set_edge_attrs_ws(
+      edge_attr = "weight",
+      value = rnorm(n = 22, mean = 3, sd = 0.5)) %>%
+    clear_selection()
+
+  auth_central_vals <-
+    get_authority_centrality(graph = graph_1)
+
+  auth_central_vals_weight_1 <-
+    get_authority_centrality(graph = graph_2, weights_attr = "weight")
+
+  auth_central_vals_weight_2 <-
+    get_authority_centrality(graph = graph_2)
+
+  # Expect a data frame as output for all
+  expect_is(
+    auth_central_vals, "data.frame")
+
+  expect_is(
+    auth_central_vals_weight_1, "data.frame")
+
+  expect_is(
+    auth_central_vals_weight_2, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(auth_central_vals), 2)
+
+  expect_equal(
+    ncol(auth_central_vals_weight_1), 2)
+
+  expect_equal(
+    ncol(auth_central_vals_weight_2), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(auth_central_vals), 10)
+
+  expect_equal(
+    nrow(auth_central_vals_weight_1), 10)
+
+  expect_equal(
+    nrow(auth_central_vals_weight_2), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    auth_central_vals[, 1],
+    as.character(1:10))
+
+  expect_identical(
+    auth_central_vals_weight_1[, 1],
+    as.character(1:10))
+
+  expect_identical(
+    auth_central_vals_weight_1[, 1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    auth_central_vals[, 2],
+    "numeric")
+
+  expect_is(
+    auth_central_vals_weight_1[, 2],
+    "numeric")
+
+  expect_is(
+    auth_central_vals_weight_2[, 2],
+    "numeric")
+})
+
 test_that("Getting constraint values is possible", {
 
   # Create a random graph
