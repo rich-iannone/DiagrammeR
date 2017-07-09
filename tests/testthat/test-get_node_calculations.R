@@ -352,6 +352,42 @@ test_that("Getting constraint values is possible", {
       nodes = 20))
 })
 
+test_that("Getting PageRank values is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 1)
+
+  # Get constraint values for all
+  # nodes in the graph
+  pagerank_vals <- get_pagerank(graph)
+
+  # Expect a data frame as output
+  expect_is(
+    pagerank_vals, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(pagerank_vals), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(pagerank_vals), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    pagerank_vals[, 1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    pagerank_vals[, 2],
+    "numeric")
+})
+
 test_that("Getting articulation points is possible", {
 
   # Create a random graph
