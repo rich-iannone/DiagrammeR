@@ -1,6 +1,7 @@
 context("Adding node and/or edge data frames to an existing graph object")
 
 test_that("adding a node df to a graph is possible", {
+
   # Create an empty graph
   graph <- create_graph()
 
@@ -10,13 +11,14 @@ test_that("adding a node df to a graph is possible", {
       n = 4,
       type = "letter",
       color = c("red", "green", "grey", "blue"),
-      value = c(3.5, 2.6, 9.4, 2.7)
-    )
+      value = c(3.5, 2.6, 9.4, 2.7))
 
   # Add the node data frame to the graph object to
   # create a graph with nodes
   graph_2 <-
-    add_node_df(graph = graph, node_df = nodes)
+    add_node_df(
+      graph = graph,
+      node_df = nodes)
 
   # Create another node data frame
   nodes_2 <-
@@ -24,51 +26,50 @@ test_that("adding a node df to a graph is possible", {
       n = 4,
       type = "letter",
       color = c("white", "brown", "aqua", "pink"),
-      value = c(1.6, 6.4, 0.8, 4.2)
-    )
+      value = c(1.6, 6.4, 0.8, 4.2))
 
   # Add the second node data frame to the graph object
   # to add more nodes with attributes to the graph
   graph_3 <-
-    add_node_df(graph = graph_2, node_df = nodes_2)
+    add_node_df(
+      graph = graph_2,
+      node_df = nodes_2)
 
   # Expect that names in these graph objects match a
   # prescribed set of names
-  expect_true(all(
-    names(graph_2) ==
-      c(
-        "graph_info",
-        "nodes_df",
-        "edges_df",
-        "global_attrs",
-        "directed",
-        "last_node",
-        "last_edge",
-        "node_selection",
-        "edge_selection",
-        "cache",
-        "graph_actions",
-        "graph_log"
-      )
-  ))
+  expect_true(
+    all(
+      names(graph_2) ==
+        c(
+          "graph_info",
+          "nodes_df",
+          "edges_df",
+          "global_attrs",
+          "directed",
+          "last_node",
+          "last_edge",
+          "node_selection",
+          "edge_selection",
+          "cache",
+          "graph_actions",
+          "graph_log")))
 
-  expect_true(all(
-    names(graph_3) ==
-      c(
-        "graph_info",
-        "nodes_df",
-        "edges_df",
-        "global_attrs",
-        "directed",
-        "last_node",
-        "last_edge",
-        "node_selection",
-        "edge_selection",
-        "cache",
-        "graph_actions",
-        "graph_log"
-      )
-  ))
+  expect_true(
+    all(
+      names(graph_3) ==
+        c(
+          "graph_info",
+          "nodes_df",
+          "edges_df",
+          "global_attrs",
+          "directed",
+          "last_node",
+          "last_edge",
+          "node_selection",
+          "edge_selection",
+          "cache",
+          "graph_actions",
+          "graph_log")))
 
   # Expect graph objects of class `dgr_graph`
   expect_is(graph_2, "dgr_graph")
@@ -88,6 +89,7 @@ test_that("adding a node df to a graph is possible", {
 })
 
 test_that("adding an edge df to a graph is possible", {
+
   # Create an empty graph
   graph <- create_graph()
 
@@ -97,12 +99,14 @@ test_that("adding an edge df to a graph is possible", {
       n = 4,
       type = "letter",
       color = c("red", "green", "grey", "blue"),
-      value = c(3.5, 2.6, 9.4, 2.7)
-    )
+      value = c(3.5, 2.6, 9.4, 2.7))
 
   # Add the node data frame to the graph object to create a
   # graph with nodes
-  graph_2 <- add_node_df(graph = graph, node_df = nodes)
+  graph_2 <-
+    add_node_df(
+      graph = graph,
+      node_df = nodes)
 
   # Create another node data frame
   nodes_2 <-
@@ -110,46 +114,58 @@ test_that("adding an edge df to a graph is possible", {
       n = 4,
       type = "letter",
       color = c("white", "brown", "aqua", "pink"),
-      value = c(1.6, 6.4, 0.8, 4.2)
-    )
+      value = c(1.6, 6.4, 0.8, 4.2))
 
   # Add the second node data frame to the graph object to
   # add more nodes with attributes to the graph
   graph_3 <-
-    add_node_df(graph = graph_2, node_df = nodes_2)
+    add_node_df(
+      graph = graph_2,
+      node_df = nodes_2)
 
   # Create an edge data frame
   edges <-
-    create_edge_df(from = c(1, 2, 3),
-                   to = c(4, 3, 1),
-                   rel = "leading_to")
+    create_edge_df(
+      from = c(1, 2, 3),
+      to = c(4, 3, 1),
+      rel = "leading_to")
 
   # Adding an edge df to an empty graph results in an error
-  expect_error(add_edge_df(graph = create_graph(),
-                           edge_df = edges))
+  expect_error(
+    add_edge_df(
+      graph = create_graph(),
+      edge_df = edges))
 
   # Add the edge data frame to the graph
   graph_3 <-
-    add_edge_df(graph = graph_3, edge_df = edges)
+    add_edge_df(
+      graph = graph_3,
+      edge_df = edges)
 
   # Expect a graph object of class `dgr_graph`
-  expect_is(graph_3, "dgr_graph")
+  expect_is(
+    graph_3, "dgr_graph")
 
   # Expect that the `edges_df` component is a data frame
-  expect_is(graph_3$edges_df, "data.frame")
+  expect_is(
+    graph_3$edges_df, "data.frame")
 
   # Expect that the `edges_df` data frame has 3 rows
-  expect_true(nrow(graph_3$edges_df) == 3)
+  expect_true(
+    nrow(graph_3$edges_df) == 3)
 
   # Expect that the `edges_df` data frame has 4 columns
-  expect_true(ncol(graph_3$edges_df) == 4)
+  expect_true(
+    ncol(graph_3$edges_df) == 4)
 
   # Add another edge to a graph that already has some
   # edges defined
   graph_3 <-
-    add_edge_df(graph = graph_3,
-                edge_df = create_edge_df(2, 4))
+    add_edge_df(
+      graph = graph_3,
+      edge_df = create_edge_df(from = 2, to = 4))
 
   # Expect that the `edges_df` data frame has 4 rows
-  expect_true(nrow(graph_3$edges_df) == 4)
+  expect_true(
+    nrow(graph_3$edges_df) == 4)
 })
