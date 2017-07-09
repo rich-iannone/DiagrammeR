@@ -24,7 +24,7 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(add_full_graph(invalid_graph))
   expect_error(add_forward_edges_ws(invalid_graph))
   expect_error(add_global_graph_attrs(invalid_graph))
-  expect_error(add_graph_actions(invalid_graph))
+  expect_error(add_graph_action(invalid_graph))
   expect_error(add_n_node_clones(invalid_graph))
   expect_error(add_n_nodes(invalid_graph))
   expect_error(add_n_nodes_ws(invalid_graph))
