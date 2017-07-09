@@ -156,6 +156,41 @@ test_that("Getting closeness is possible", {
     "numeric")
 })
 
+test_that("Getting alpha centrality is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 1)
+
+  alpha_central_vals <-
+    get_alpha_centrality(graph)
+
+  # Expect a data frame as output
+  expect_is(
+    alpha_central_vals, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(alpha_central_vals), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(alpha_central_vals), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    alpha_central_vals[,1],
+    as.character(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    alpha_central_vals[, 2],
+    "numeric")
+})
+
 test_that("Getting authority centrality is possible", {
 
   set.seed(23)
@@ -177,10 +212,13 @@ test_that("Getting authority centrality is possible", {
     clear_selection()
 
   auth_central_vals <-
-    get_authority_centrality(graph = graph_1)
+    get_authority_centrality(
+      graph = graph_1)
 
   auth_central_vals_weight_1 <-
-    get_authority_centrality(graph = graph_2, weights_attr = "weight")
+    get_authority_centrality(
+      graph = graph_2,
+      weights_attr = "weight")
 
   auth_central_vals_weight_2 <-
     get_authority_centrality(graph = graph_2)
