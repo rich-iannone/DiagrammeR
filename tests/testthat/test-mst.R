@@ -1,13 +1,14 @@
 context("Obtaining the minimum spanning tree of a graph")
 
-test_that("the mst algorithm is functional", {
+test_that("the MST algorithm is functional", {
 
   # Create a random graph and obtain Jaccard
   # similarity values for each pair of nodes
   # as a square matrix
   j_sim_matrix <-
     create_random_graph(
-      10, 22, set_seed = 1) %>%
+      n = 10, m = 22,
+      set_seed = 1) %>%
     get_jaccard_similarity()
 
   # Create a weighted, undirected graph from the
@@ -32,5 +33,6 @@ test_that("the mst algorithm is functional", {
     all(node_info(min_spanning_tree_graph)$loops == 0))
 
   # Expect that all nodes are connected
-  expect_true(is_graph_connected(min_spanning_tree_graph))
+  expect_true(
+    is_graph_connected(min_spanning_tree_graph))
 })

@@ -3,7 +3,7 @@ context("Edge presence")
 test_that("a specified edge can be queried for presence in a graph", {
 
   # Create a simple graph
-  nodes <- create_node_df(4)
+  nodes <- create_node_df(n = 4)
 
   edges <-
     create_edge_df(
