@@ -1,6 +1,7 @@
 context("Creating a random graph")
 
 test_that("a random graph can be made to various specifications", {
+
   # Create a random, directed graph with 10 nodes and 15 edges
   random_graph_10_15_directed <-
     create_random_graph(
@@ -28,8 +29,7 @@ test_that("a random graph can be made to various specifications", {
   expect_true(
     all(
       get_node_df(random_graph_10_15_directed)$nodes ==
-        get_node_df(random_graph_10_15_directed)$label
-    ))
+        get_node_df(random_graph_10_15_directed)$label))
 
   # Create a random, undirected graph with 10
   # nodes and 15 edges
@@ -58,7 +58,7 @@ test_that("a random graph can be made to various specifications", {
   random_graph_10_15_seed_set <-
     create_random_graph(
       n = 10, m = 15,
-      set_seed = 50)
+      set_seed = 23)
 
   # Expect 10 nodes in graph
   expect_equal(
