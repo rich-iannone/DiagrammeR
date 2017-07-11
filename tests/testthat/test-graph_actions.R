@@ -169,3 +169,77 @@ test_that("actions within a graph object can be reordered", {
     names_of_graph_actions_after_reordering,
     names_of_graph_actions_before_reordering[c(2, 3, 1)])
 })
+
+test_that("graph actions can be triggered to modify the graph", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 5, m = 10,
+      set_seed = 23) %>%
+    drop_node_attrs(
+      node_attr = "value")
+
+  # Add three graph actions to:
+  #  - add PageRank values
+  #  - rescale PageRank values
+  #  - create a `fillcolor` attr
+  # ...then, manually trigger the
+  # actions to perform evaluation
+  graph <-
+    graph %>%
+    add_graph_action(
+      fcn = "set_node_attr_w_fcn",
+      node_attr_fcn = "get_pagerank",
+      column_name = "pagerank",
+      action_name = "get_pagerank") %>%
+    add_graph_action(
+      fcn = "rescale_node_attrs",
+      node_attr_from = "pagerank",
+      node_attr_to = "width",
+      action_name = "pgrnk_to_width") %>%
+    add_graph_action(
+      fcn = "colorize_node_attrs",
+      node_attr_from = "width",
+      node_attr_to = "fillcolor",
+      action_name = "pgrnk_fillcolor") %>%
+    trigger_graph_actions()
+
+  # Expect certain columns to be available
+  # in the graph's internal node data frame
+  expect_equal(
+    colnames(graph$nodes_df),
+    c("id", "type", "label",
+      "pagerank", "width", "fillcolor"))
+
+  # Expect the `pagerank` column to have
+  # numeric values less than 1
+  expect_is(
+    graph$nodes_df$pagerank, "numeric")
+
+  expect_true(
+    all(graph$nodes_df$pagerank <= 1))
+
+  # Expect the `width` column to have
+  # numeric values less than 1
+  expect_is(
+    graph$nodes_df$width, "numeric")
+
+  expect_true(
+    all(graph$nodes_df$width <= 1))
+
+  # Expect the `fillcolor` column to have
+  # character values with color codes
+  expect_is(
+    graph$nodes_df$fillcolor, "character")
+
+  expect_true(
+    all(grepl("#[A-F0-9]*", graph$nodes_df$fillcolor)))
+
+  # Expect a warning if using the
+  # `trigger_graph_actions()` function
+  # when there are no graph actions
+  expect_warning(
+    create_graph() %>%
+      trigger_graph_actions())
+})
