@@ -21,16 +21,25 @@ test_that("a correct edge data frame is generated", {
       color = "red")
 
   # Expect that data frames are generated
-  expect_is(edges_1, "data.frame")
-  expect_is(edges_2, "data.frame")
+  expect_is(
+    edges_1, "data.frame")
+
+  expect_is(
+    edges_2, "data.frame")
 
   # Expect that each of the edfs has 4 rows
-  expect_equal(nrow(edges_1), 4)
-  expect_equal(nrow(edges_2), 4)
+  expect_equal(
+    nrow(edges_1), 4)
+
+  expect_equal(
+    nrow(edges_2), 4)
 
   # Expect that each of the edfs has 6 columns
-  expect_equal(ncol(edges_1), 6)
-  expect_equal(ncol(edges_2), 6)
+  expect_equal(
+    ncol(edges_1), 6)
+
+  expect_equal(
+    ncol(edges_2), 6)
 
   # Create an edge data frame using a vector with
   # length > 1 and length < length(from | to)
@@ -43,10 +52,12 @@ test_that("a correct edge data frame is generated", {
       data = c(2.7, 8.9, 2.6, 0.6))
 
   # Expect that a data frame is generated
-  expect_is(edges_var_1, "data.frame")
+  expect_is(
+    edges_var_1, "data.frame")
 
   # Expect that the data frame has 4 rows
-  expect_equal(nrow(edges_var_1), 4)
+  expect_equal(
+    nrow(edges_var_1), 4)
 
   # Expect that the `color` attribute is only
   # written twice and not repeated down
@@ -66,10 +77,12 @@ test_that("a correct edge data frame is generated", {
       data = c(2.7, 8.9, 2.6, 0.6))
 
   # Expect that a data frame is generated
-  expect_is(edges_var_2, "data.frame")
+  expect_is(
+    edges_var_2, "data.frame")
 
   # Expect that the data frame has 4 rows
-  expect_equal(nrow(edges_var_2), 4)
+  expect_equal(
+    nrow(edges_var_2), 4)
 
   # Expect that the 'color' attribute is repeated down
   expect_equal(
@@ -98,16 +111,20 @@ test_that("two edge data frames can be successfully combined", {
       color = "red")
 
   # Combine the 2 edge data frames
-  all_edges <- combine_edfs(edges_1, edges_2)
+  all_edges <-
+    combine_edfs(edges_1, edges_2)
 
   # Expect that a data frame is generated
-  expect_is(all_edges, "data.frame")
+  expect_is(
+    all_edges, "data.frame")
 
   # Expect that the combined edf has 8 rows
-  expect_equal(nrow(all_edges), 8)
+  expect_equal(
+    nrow(all_edges), 8)
 
   # Expect that the combined edf has 7 columns
-  expect_equal(ncol(all_edges), 7)
+  expect_equal(
+    ncol(all_edges), 7)
 })
 
 test_that("three edge data frames can be successfully combined", {
@@ -140,14 +157,19 @@ test_that("three edge data frames can be successfully combined", {
       color = "red")
 
   # Combine the 3 edge data frames
-  all_edges <- combine_edfs(edges_1, edges_2, edges_3)
+  all_edges <-
+    combine_edfs(
+      edges_1, edges_2, edges_3)
 
   # Expect that a data frame is generated
-  expect_is(all_edges, "data.frame")
+  expect_is(
+    all_edges, "data.frame")
 
   # Expect that the combined edf has 8 rows
-  expect_equal(nrow(all_edges), 8)
+  expect_equal(
+    nrow(all_edges), 8)
 
   # Expect that the combined edf has 7 columns
-  expect_equal(ncol(all_edges), 7)
+  expect_equal(
+    ncol(all_edges), 7)
 })

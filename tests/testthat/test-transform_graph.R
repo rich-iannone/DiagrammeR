@@ -8,6 +8,8 @@ test_that("Converting to igraph is possible", {
       n = 10, m = 22,
       set_seed = 23)
 
+  # Create an igraph object from a
+  # DiagrammeR graph object
   igraph_graph <- to_igraph(graph)
 
   # Expect that the new object is an igraph object
@@ -20,20 +22,23 @@ test_that("Changing to undirected mode is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1,
+      n = 10, m = 22,
+      set_seed = 23,
       directed = TRUE)
 
   undirected_graph <-
     set_graph_undirected(graph)
 
   # Expect the the graph is undirected
-  expect_true(graph$directed)
+  expect_true(
+    graph$directed)
 
   # Expect an error if making a graph that's
   # already undirected an undirected graph
   expect_error(
     create_random_graph(
-      5, 5, directed = FALSE) %>%
+      n = 5, m = 5,
+      directed = FALSE) %>%
       set_graph_undirected())
 })
 
@@ -42,7 +47,8 @@ test_that("Reversing the graph edges is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1,
+      n = 10, m = 22,
+      set_seed = 23,
       directed = TRUE)
 
   # Get a vector of `from` nodes
@@ -58,18 +64,21 @@ test_that("Reversing the graph edges is possible", {
   # Expect that the `from` nodes in the new graph
   # object are identical to the `to` nodes before
   # reversing the edge direction
-  expect_equal(graph$edges_df$from, to_nodes)
+  expect_equal(
+    graph$edges_df$from, to_nodes)
 
   # Expect that the `to` nodes in the new graph
   # object are identical to the `from` nodes before
   # reversing the edge direction
-  expect_equal(graph$edges_df$to, from_nodes)
+  expect_equal(
+    graph$edges_df$to, from_nodes)
 
   # Expect an error if reversing edge direction
   # in an undirected graph
   expect_error(
     create_random_graph(
-      5, 5, directed = FALSE) %>%
+      n = 5, m = 5,
+      directed = FALSE) %>%
       rev_edge_dir())
 })
 
@@ -78,7 +87,7 @@ test_that("Creating a complement graph is possible", {
   # Create a simple graph with a single cycle
   graph <-
     create_graph() %>%
-    add_cycle(4)
+    add_cycle(n = 4)
 
   # Create the complement of the graph
   graph_c <- create_complement_graph(graph)
@@ -100,7 +109,9 @@ test_that("Creating a complement graph is possible", {
   # Create the complement of the original graph
   # with loops created
   graph_cl <-
-    create_complement_graph(graph, loops = TRUE)
+    create_complement_graph(
+      graph = graph,
+      loops = TRUE)
 
   # Expect 12 edges in this complement graph
   expect_equal(
