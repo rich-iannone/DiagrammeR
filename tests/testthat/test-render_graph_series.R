@@ -36,7 +36,8 @@ test_that("rendering a graph is indeed possible", {
 
   # Expect that the `rendered_graph` object inherits
   # from `grViz` & `htmlwidget`
-  expect_is(rendered_graph, c("grViz", "htmlwidget"))
+  expect_is(
+    rendered_graph, c("grViz", "htmlwidget"))
 })
 
 test_that("rendering a graph from a series is also possible", {
@@ -44,31 +45,49 @@ test_that("rendering a graph from a series is also possible", {
   # Create a set of graphs for a graph series
   graph_1 <-
     create_graph() %>%
-    add_node(1) %>%
-    add_node(2) %>%
-    add_node(3) %>%
-    add_edge(1, 3) %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3)
+    add_node(type = 1) %>%
+    add_node(type = 2) %>%
+    add_node(type = 3) %>%
+    add_edge(
+      from = 1,
+      to = 3) %>%
+    add_edge(
+      from = 1,
+      to = 2) %>%
+    add_edge(
+      from = 2,
+      to = 3)
 
   graph_2 <-
     graph_1 %>%
-    add_node(4) %>%
-    add_edge(4, 3)
+    add_node(type = 4) %>%
+    add_edge(
+      from = 4,
+      to = 3)
 
   graph_3 <-
     graph_2 %>%
-    add_node(5) %>%
-    add_edge(5, 2)
+    add_node(type = 5) %>%
+    add_edge(
+      from = 5,
+      to = 2)
 
   # Create an empty graph series
   series <-
     create_series(series_type = "sequential")
 
   # Add graphs to the graph series
-  series <- graph_1 %>% add_to_series(series)
-  series <- graph_2 %>% add_to_series(series)
-  series <- graph_3 %>% add_to_series(series)
+  series <-
+    graph_1 %>%
+    add_to_series(graph_series = series)
+
+  series <-
+    graph_2 %>%
+    add_to_series(graph_series = series)
+
+  series <-
+    graph_3 %>%
+    add_to_series(graph_series = series)
 
   # View the second graph from the graph series in
   # the RStudio Viewer

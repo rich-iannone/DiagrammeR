@@ -5,13 +5,14 @@ test_that("Converting to igraph is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 1)
+      n = 10, m = 22,
+      set_seed = 23)
 
-  igraph_graph <-
-    to_igraph(graph)
+  igraph_graph <- to_igraph(graph)
 
   # Expect that the new object is an igraph object
-  expect_is(igraph_graph, "igraph")
+  expect_is(
+    igraph_graph, "igraph")
 })
 
 test_that("Changing to undirected mode is possible", {
