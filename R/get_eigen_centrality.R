@@ -49,7 +49,7 @@ get_eigen_centrality <- function(graph,
 
     if (inherits(weights_attr, "character")) {
       # Stop function if the edge attribute does not exist
-      if (weights_attr %in% colnames(graph$edges_df)) {
+      if (!(weights_attr %in% colnames(graph$edges_df))) {
         stop("The edge attribute to be used as weights does not exist in the graph.")
       }
 
