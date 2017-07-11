@@ -239,7 +239,7 @@ test_that("graph actions can be triggered to modify the graph", {
   # Expect a warning if using the
   # `trigger_graph_actions()` function
   # when there are no graph actions
-  expect_warning(
+  expect_message(
     create_graph() %>%
       trigger_graph_actions())
 })
