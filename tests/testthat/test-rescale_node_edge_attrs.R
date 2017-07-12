@@ -5,13 +5,14 @@ test_that("rescaling node attributes in a graph is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      5, 10, set_seed = 23)
+      n = 5, m = 10,
+      set_seed = 23)
 
   # Rescale the `value` node attribute, so that
   # its values are rescaled between 0 and 1
   graph_r_value_0_1 <-
     graph %>%
-    rescale_node_attrs("value")
+    rescale_node_attrs(node_attr_from = "value")
 
   # Expect that certain (rescaled) values are now
   # available in the graph's ndf
@@ -25,15 +26,22 @@ test_that("rescaling node attributes in a graph is possible", {
   graph_r_value_fill_font_color <-
     graph %>%
     rescale_node_attrs(
-      "value", "gray80", "gray20", "fillcolor") %>%
+      node_attr_from = "value",
+      to_lower_bound = "gray80",
+      to_upper_bound = "gray20",
+      node_attr_to = "fillcolor") %>%
     rescale_node_attrs(
-      "value", "gray5", "gray95", "fontcolor")
+      node_attr_from = "value",
+      to_lower_bound = "gray5",
+      to_upper_bound = "gray95",
+      node_attr_to = "fontcolor")
 
   # Expect that the `fillcolor` and `fontcolor` node
   # attribute columns are now available
   expect_true(
-    all(c("fillcolor", "fontcolor") %in%
-          colnames(graph_r_value_fill_font_color$nodes_df)))
+    all(
+      c("fillcolor", "fontcolor") %in%
+        colnames(graph_r_value_fill_font_color$nodes_df)))
 
   # Expect that certain (rescaled) values are now
   # available in the graph's ndf
@@ -47,7 +55,8 @@ test_that("rescaling node attributes in a graph is possible", {
 
   # Expect an error if using supplying a node attribute
   # that doesn't exist (`values` instead of `value`)
-  expect_error(graph %>% rescale_node_attrs("values"))
+  expect_error(
+    graph %>% rescale_node_attrs("values"))
 })
 
 test_that("rescaling edge attributes in a graph is possible", {
@@ -55,15 +64,17 @@ test_that("rescaling edge attributes in a graph is possible", {
   # Create a random graph
   graph <-
     create_random_graph(
-      5, 7, set_seed = 23) %>%
+      n = 5, m = 7,
+      set_seed = 23) %>%
     set_edge_attrs(
-      "weight", rnorm(edge_count(.), 5))
+      edge_attr = "weight",
+      values = rnorm(edge_count(.), 5))
 
   # Rescale the `weight` edge attribute, so that
   # its values are rescaled between 0 and 1
   graph_r_value_0_1 <-
     graph %>%
-    rescale_edge_attrs("weight")
+    rescale_edge_attrs(edge_attr_from = "weight")
 
   # Expect that certain (rescaled) values are now
   # available in the graph's edf
@@ -77,15 +88,22 @@ test_that("rescaling edge attributes in a graph is possible", {
   graph_r_value_fill_font_color <-
     graph %>%
     rescale_edge_attrs(
-      "weight", "gray80", "gray20", "fillcolor") %>%
+      edge_attr_from = "weight",
+      to_lower_bound = "gray80",
+      to_upper_bound = "gray20",
+      edge_attr_to = "fillcolor") %>%
     rescale_edge_attrs(
-      "weight", "gray5", "gray95", "fontcolor")
+      edge_attr_from = "weight",
+      to_lower_bound = "gray5",
+      to_upper_bound = "gray95",
+      edge_attr_to = "fontcolor")
 
   # Expect that the `fillcolor` and `fontcolor` node
   # attribute columns are now available
   expect_true(
-    all(c("fillcolor", "fontcolor") %in%
-          colnames(graph_r_value_fill_font_color$edges_df)))
+    all(
+      c("fillcolor", "fontcolor") %in%
+        colnames(graph_r_value_fill_font_color$edges_df)))
 
   # Expect that certain (rescaled) values are now
   # available in the graph's ndf
@@ -101,5 +119,7 @@ test_that("rescaling edge attributes in a graph is possible", {
 
   # Expect an error if using supplying a node attribute
   # that doesn't exist (`weights` instead of `weight`)
-  expect_error(graph %>% rescale_edges_attrs("weights"))
+  expect_error(
+    graph %>%
+      rescale_edge_attrs(edge_attr_from = "weights"))
 })

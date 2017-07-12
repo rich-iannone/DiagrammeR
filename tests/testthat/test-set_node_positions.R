@@ -114,12 +114,11 @@ test_that("altering several nodes' positions is possible", {
   expect_equal(
     graph_1$nodes_df$y, c(1, 2, 3, 4))
 
-
   # Now select nodes that have `type == "b"`
   # and move them in the `y` direction 2 units
   graph_2 <-
     graph %>%
-    select_nodes("type == 'b'") %>%
+    select_nodes(conditions = "type == 'b'") %>%
     set_node_position(
       node = 1, x = 1, y = 1) %>%
     set_node_position(

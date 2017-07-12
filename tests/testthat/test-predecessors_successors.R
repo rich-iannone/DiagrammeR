@@ -31,15 +31,23 @@ test_that("getting a node's predecessors/successors is possible", {
 
   # Tests for `get_predecessors()`
   expect_is(
-    get_predecessors(graph, node = 26), "integer")
+    get_predecessors(
+      graph = graph,
+      node = 26), "integer")
 
   expect_equal(
-    get_predecessors(graph, node = 26), 1)
+    get_predecessors(
+      graph = graph,
+      node = 26), 1)
 
   # Tests for `get_successors()`
   expect_is(
-    get_successors(graph, node = 1), "integer")
+    get_successors(
+      graph = graph,
+      node = 1), "integer")
 
   expect_equal(
-    get_successors(graph, node = 1), 26)
+    get_successors(
+      graph = graph,
+      node = 1), 26)
 })
