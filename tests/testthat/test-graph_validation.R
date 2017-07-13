@@ -103,6 +103,7 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(get_eigen_centrality(invalid_graph))
   expect_error(get_global_graph_attrs(invalid_graph))
   expect_error(get_graph_diameter(invalid_graph))
+  expect_error(get_graph_actions(invalid_graph))
   expect_error(get_graph_log(invalid_graph))
   expect_error(get_graph_name(invalid_graph))
   expect_error(get_graph_time(invalid_graph))
