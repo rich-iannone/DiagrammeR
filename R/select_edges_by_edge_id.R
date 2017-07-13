@@ -68,11 +68,6 @@ select_edges_by_edge_id <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no selections can be made.")
-  }
-
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
     stop("The graph contains no edges, so, no edges can be selected.")
