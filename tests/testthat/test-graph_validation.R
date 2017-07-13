@@ -255,7 +255,7 @@ test_that("Using an graph with no edges with trigger an error", {
   expect_error(delete_edges_ws(graph_no_edges))
   expect_error(get_edge_count_w_multiedge(graph_no_edges))
   expect_error(get_last_edges_created(graph_no_edges))
-  expect_error(get_multiedge_count(empty_graph))
+  expect_error(get_multiedge_count(graph_no_edges))
   expect_error(recode_edge_attrs(graph_no_edges))
   expect_error(rename_edge_attrs(graph_no_edges))
   expect_error(rescale_edge_attrs(graph_no_edges))
