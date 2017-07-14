@@ -10,22 +10,33 @@ test_that("Getting all neighbors of one or more nodes is possible", {
       set_seed = 23)
 
   # Find all neighbor nodes for node `5`
-  all_nbrs_5 <- get_nbrs(random_graph, 5)
+  all_nbrs_5 <-
+    get_nbrs(
+      graph = random_graph,
+      nodes = 5)
 
   # Expect certain nodes as neighbors
-  expect_identical(all_nbrs_5, 4)
+  expect_identical(
+    all_nbrs_5, 4)
 
   # Find all neighbor nodes for nodes `5`, `7`,
   # and `15`
   all_nbrs_5_7_15 <-
-    get_nbrs(random_graph, c(5, 7, 15))
+    get_nbrs(
+      graph = random_graph,
+      nodes = c(5, 7, 15))
 
   # Expect certain nodes as neighbors
-  expect_identical(all_nbrs_5_7_15,
-                   c(4, 8, 9, 16, 18))
+  expect_identical(
+    all_nbrs_5_7_15,
+    c(4, 8, 9, 16, 18))
 
   # Expect an NA value if there are no neighbors
-  expect_true(is.na(get_nbrs(random_graph, 6)))
+  expect_true(
+    is.na(
+      get_nbrs(
+        graph = random_graph,
+        nodes = 6)))
 })
 
 test_that("Getting non-neighbors of a node is possible", {
@@ -38,7 +49,10 @@ test_that("Getting non-neighbors of a node is possible", {
       set_seed = 23)
 
   # Find all non-neighbors of node `5`
-  non_nbrs_5 <- get_non_nbrs(random_graph, 5)
+  non_nbrs_5 <-
+    get_non_nbrs(
+      graph = random_graph,
+      node = 5)
 
   # Expect certain nodes that are are non-neighbors
   # of node `5`
@@ -58,12 +72,18 @@ test_that("Getting common neighbors of 2 or more nodes is possible", {
 
   # Expect NA when finding all common neighbor nodes
   # for nodes `5` and `7` (there are no common neighbors)
-  expect_true(is.na(get_common_nbrs(random_graph, c(5, 7))))
+  expect_true(
+    is.na(
+      get_common_nbrs(
+        graph = random_graph,
+        nodes = c(5, 7))))
 
   # Expect a common neighbor node of `13` for nodes
   # `4` and  `17`
   expect_equal(
-    get_common_nbrs(random_graph, c(4, 17)), 13)
+    get_common_nbrs(
+      graph = random_graph,
+      nodes = c(4, 17)), 13)
 })
 
 test_that("Getting similar neighbors of a node is possible", {
@@ -79,16 +99,17 @@ test_that("Getting similar neighbors of a node is possible", {
   # node `2` and beyond since the immediately adjacent
   # are not numerically equivalent in `value`
   expect_true(
-    is.na(get_similar_nbrs(
-      random_graph,
-      node = 2,
-      node_attr = "value")))
+    is.na(
+      get_similar_nbrs(
+        graph = random_graph,
+        node = 2,
+        node_attr = "value")))
 
   # Expect several nodes to be matched when using
   # an absolute tolerance range
   expect_identical(
     get_similar_nbrs(
-      random_graph,
+      graph = random_graph,
       node = 8,
       node_attr = "value",
       tol_abs = c(3, 3)),
@@ -99,7 +120,7 @@ test_that("Getting similar neighbors of a node is possible", {
   # tolerance range
   expect_identical(
     get_similar_nbrs(
-      random_graph,
+      graph = random_graph,
       node = 8,
       node_attr = "value",
       tol_abs = c(10, 10)),
@@ -110,7 +131,7 @@ test_that("Getting similar neighbors of a node is possible", {
   # tolerance specified as a low and high percentage
   expect_identical(
     get_similar_nbrs(
-      random_graph,
+      graph = random_graph,
       node = 3,
       node_attr = "value",
       tol_pct = c(75, 75)),

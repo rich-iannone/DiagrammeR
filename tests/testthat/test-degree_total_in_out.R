@@ -5,20 +5,24 @@ test_that("a degree data frame can be generated", {
   # Create a random graph
   graph <-
     create_random_graph(
-      10, 22, set_seed = 23)
+      n = 10, m = 22,
+      set_seed = 23)
 
   # Get the total degree values for all nodes
   # in the graph
   total_degree_df <- get_degree_total(graph)
 
   # Expect that the output is a data frame
-  expect_is(total_degree_df, "data.frame")
+  expect_is(
+    total_degree_df, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(total_degree_df), 2)
+  expect_equal(
+    ncol(total_degree_df), 2)
 
   # Expect 10 rows in the data frame
-  expect_equal(nrow(total_degree_df), 10)
+  expect_equal(
+    nrow(total_degree_df), 10)
 
   # Expect certain column names for the df
   expect_identical(
@@ -33,16 +37,21 @@ test_that("a degree data frame can be generated", {
   # Get the total degree values for all nodes
   # in the graph as normalized values
   total_degree_df_norm <-
-    get_degree_total(graph, normalized = TRUE)
+    get_degree_total(
+      graph = graph,
+      normalized = TRUE)
 
   # Expect that the output is a data frame
-  expect_is(total_degree_df_norm, "data.frame")
+  expect_is(
+    total_degree_df_norm, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(total_degree_df_norm), 2)
+  expect_equal(
+    ncol(total_degree_df_norm), 2)
 
   # Expect 10 rows in the data frame
-  expect_equal(nrow(total_degree_df_norm), 10)
+  expect_equal(
+    nrow(total_degree_df_norm), 10)
 
   # Expect certain column names for the df
   expect_identical(
@@ -61,13 +70,16 @@ test_that("a degree data frame can be generated", {
   in_degree_df <- get_degree_in(graph)
 
   # Expect that the output is a data frame
-  expect_is(in_degree_df, "data.frame")
+  expect_is(
+    in_degree_df, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(in_degree_df), 2)
+  expect_equal(
+    ncol(in_degree_df), 2)
 
   # Expect 10 rows in the data frame
-  expect_equal(nrow(in_degree_df), 10)
+  expect_equal(
+    nrow(in_degree_df), 10)
 
   # Expect certain column names for the df
   expect_identical(
@@ -82,16 +94,21 @@ test_that("a degree data frame can be generated", {
   # Get the total degree values for all nodes
   # in the graph as normalized values
   in_degree_df_norm <-
-    get_degree_in(graph, normalized = TRUE)
+    get_degree_in(
+      graph = graph,
+      normalized = TRUE)
 
   # Expect that the output is a data frame
-  expect_is(in_degree_df_norm, "data.frame")
+  expect_is(
+    in_degree_df_norm, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(in_degree_df_norm), 2)
+  expect_equal(
+    ncol(in_degree_df_norm), 2)
 
   # Expect 10 rows in the data frame
-  expect_equal(nrow(in_degree_df_norm), 10)
+  expect_equal(
+    nrow(in_degree_df_norm), 10)
 
   # Expect certain column names for the df
   expect_identical(
@@ -111,13 +128,16 @@ test_that("a degree data frame can be generated", {
   out_degree_df <- get_degree_out(graph)
 
   # Expect that the output is a data frame
-  expect_is(out_degree_df, "data.frame")
+  expect_is(
+    out_degree_df, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(out_degree_df), 2)
+  expect_equal(
+    ncol(out_degree_df), 2)
 
   # Expect 10 rows in the data frame
-  expect_equal(nrow(out_degree_df), 10)
+  expect_equal(
+    nrow(out_degree_df), 10)
 
   # Expect certain column names for the df
   expect_identical(
@@ -132,16 +152,21 @@ test_that("a degree data frame can be generated", {
   # Get the total degree values for all nodes
   # in the graph as normalized values
   out_degree_df_norm <-
-    get_degree_out(graph, normalized = TRUE)
+    get_degree_out(
+      graph = graph,
+      normalized = TRUE)
 
   # Expect that the output is a data frame
-  expect_is(out_degree_df_norm, "data.frame")
+  expect_is(
+    out_degree_df_norm, "data.frame")
 
   # Expect 2 columns in the data frame
-  expect_equal(ncol(out_degree_df_norm), 2)
+  expect_equal(
+    ncol(out_degree_df_norm), 2)
 
   # Expect 10 rows in the data frame
-  expect_equal(nrow(out_degree_df_norm), 10)
+  expect_equal(
+    nrow(out_degree_df_norm), 10)
 
   # Expect certain column names for the df
   expect_identical(

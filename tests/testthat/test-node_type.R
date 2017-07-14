@@ -48,26 +48,30 @@ test_that("a specified node type can be read from graph objects", {
   # Expect an error if the node ID provided doesn't
   # match a node in the graph
   expect_error(
-    node_type(graph = graph,
-              node = 5,
-              action = "read"))
+    node_type(
+      graph = graph,
+      node = 5,
+      action = "read"))
 
   # Remove a type assigned to node `4` using three
   # different keywords ("delete", "remove", and "drop")
   graph_delete_type_from_d <-
-    node_type(graph = graph,
-              node = 4,
-              action = "delete")
+    node_type(
+      graph = graph,
+      node = 4,
+      action = "delete")
 
   graph_remove_type_from_d <-
-    node_type(graph = graph,
-              node = 4,
-              action = "remove")
+    node_type(
+      graph = graph,
+      node = 4,
+      action = "remove")
 
   graph_drop_type_from_d <-
-    node_type(graph = graph,
-              node = 4,
-              action = "drop")
+    node_type(
+      graph = graph,
+      node = 4,
+      action = "drop")
 
   # Expect that the type value in all three cases will
   # be blank for node `4`
@@ -143,7 +147,8 @@ test_that("a specified node type can be read from graph objects", {
 
   # Expect that the graph returned is exactly the
   # same as the input graph
-  expect_equal(graph, graph_attempt_remove_type_b)
+  expect_equal(
+    graph, graph_attempt_remove_type_b)
 
   # Attempt to add a type value for a node where a
   # type value is already set
@@ -157,7 +162,8 @@ test_that("a specified node type can be read from graph objects", {
   # Expect that the graph returned is exactly the same
   # as the input graph and no change was made to the
   # type value of node `1`
-  expect_equal(graph, graph_attempt_add_type_a)
+  expect_equal(
+    graph, graph_attempt_add_type_a)
 
   # Update the type value for a node where a type
   # value is already set
@@ -186,5 +192,6 @@ test_that("a specified node type can be read from graph objects", {
   # Expect that the graph returned is exactly the
   # same as the input graph since there is no type
   # value for node `2` to update
-  expect_equal(graph, graph_attempt_update_type_b)
+  expect_equal(
+    graph, graph_attempt_update_type_b)
 })
