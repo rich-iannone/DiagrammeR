@@ -51,6 +51,25 @@ test_that("getting or selecting the last edges created is possible", {
   expect_identical(
     get_edge_df(graph_e)[which(get_edge_df(graph_e)$rel == "b"), 1],
     last_edges_created)
+
+  # Delete an edge from the graph
+  graph_edge_deleted <-
+    graph %>%
+    delete_edge(id = 10)
+
+  # Expect an error when attempting to
+  # get the last edges created after
+  # having just deleted an edge
+  expect_error(
+    graph_edge_deleted %>%
+      get_last_edges_created())
+
+  # Expect an error when attempting to
+  # select the last edges created after
+  # having just deleted an edge
+  expect_error(
+    graph_edge_deleted %>%
+      select_last_edges_created())
 })
 
 test_that("getting or selecting the last nodes created is possible", {
@@ -104,4 +123,23 @@ test_that("getting or selecting the last nodes created is possible", {
   expect_identical(
     get_node_df(graph_n)[which(get_node_df(graph_n)$type == "tree"), 1],
     last_nodes_created)
+
+  # Delete a node from the graph
+  graph_node_deleted <-
+    graph %>%
+    delete_node(node = 10)
+
+  # Expect an error when attempting to
+  # get the last nodes created after
+  # having just deleted a node
+  expect_error(
+    graph_node_deleted %>%
+      get_last_nodes_created())
+
+  # Expect an error when attempting to
+  # select the last nodes created after
+  # having just deleted a node
+  expect_error(
+    graph_node_deleted %>%
+      select_last_nodes_created())
 })
