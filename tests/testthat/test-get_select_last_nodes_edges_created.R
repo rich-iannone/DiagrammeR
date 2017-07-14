@@ -55,7 +55,7 @@ test_that("getting or selecting the last edges created is possible", {
   # Delete an edge from the graph
   graph_edge_deleted <-
     graph %>%
-    delete_edge(id = 10)
+    delete_edge(id = 5)
 
   # Expect an error when attempting to
   # get the last edges created after
