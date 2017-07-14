@@ -22,14 +22,14 @@ test_that("getting node IDs from various objects is possible", {
       label = "edge",
       relationship = "letter_to_letter")
 
-  # Create the graph object using the node and
-  # edge data frames
+  # Create the graph object using
+  # the node and edge data frames
   graph <-
     create_graph(
       nodes_df = nodes,
       edges_df = edges)
 
-  # Get information on the graph's nodes
+  # Get the graph's node ID values
   gotten_nodes <- get_node_ids(graph)
 
   # Expect an `integer` vector object
@@ -41,20 +41,22 @@ test_that("getting node IDs from various objects is possible", {
   expect_null(
     names(gotten_nodes))
 
-  # Expect a vector that is sequence from `1` to `26`
+  # Expect a vector that is sequence
+  # from `1` to `26`
   expect_true(
     all(1:26 == gotten_nodes))
 
-  # Expect that the same node IDs will be returned
-  # from the graph object, the node data frame, and
-  # the edge data frame
+  # Expect that the same node IDs will
+  # be returned from the graph object,
+  # the node data frame, and the edf
   expect_equal(
     get_node_ids(graph),
     get_node_ids(nodes))
 
-  # Expect that the number of nodes obtain from the
-  # entire graph will be greater than the nodes
-  # associated with edges (since there will be free
+  # Expect that the number of nodes
+  # obtained from the entire graph will
+  # be greater than the nodes associated
+  # with edges (since there will be free
   # nodes with no edges)
   expect_gt(
     length(get_node_ids(graph)),
@@ -75,6 +77,26 @@ test_that("getting node IDs from various objects is possible", {
   # no nodes will return an empty data frame
   expect_equal(
     nrow(get_node_df(create_graph())), 0)
+
+  # Get the graph's node ID values with
+  # a condition attached
+  gotten_nodes_w_condition <-
+    graph %>%
+    get_node_ids(
+      conditions = "type == 'h_to_p'")
+
+  # Expect an `integer` vector object
+  expect_is(
+    gotten_nodes_w_condition, "integer")
+
+  # Expect that the integer vector object
+  # has no names
+  expect_null(
+    names(gotten_nodes_w_condition))
+
+  # Expect a vector that is sequence from `1` to `26`
+  expect_true(
+    all(8:16 == gotten_nodes_w_condition))
 })
 
 test_that("getting node IDs associated within a graph's edges is possible", {
@@ -100,15 +122,15 @@ test_that("getting node IDs associated within a graph's edges is possible", {
       rel = "letter_to_letter",
       label = "edge")
 
-  # Create the graph object using the node and
-  # edge data frames
+  # Create the graph object using
+  # the node and edge data frames
   graph <-
     create_graph(
       nodes_df = nodes,
       edges_df = edges)
 
-  # Get the `outgoing` and `incoming` node ID values
-  # in a list object
+  # Get the `outgoing` and `incoming`
+  # node ID values in a list object
   gotten_edges_list <-
     get_edges(graph, return_type = "list")
 
@@ -261,9 +283,14 @@ test_that("getting edge information from an edge data frame is possible", {
 
   # Expect columns of class `integer` and that there
   # are 26 rows in `gotten_edges_df`
-  expect_is(edges_df_from_edf[, 1], "integer")
-  expect_is(edges_df_from_edf[, 2], "integer")
-  expect_true(nrow(edges_df_from_edf) == 2)
+  expect_is(
+    edges_df_from_edf[, 1], "integer")
+
+  expect_is(
+    edges_df_from_edf[, 2], "integer")
+
+  expect_true(
+    nrow(edges_df_from_edf) == 2)
 })
 
 test_that("getting edge information from a graph with no edges is possible ", {
@@ -286,7 +313,8 @@ test_that("getting edge information from a graph with no edges is possible ", {
     edges_vector_from_graph_no_edges, "logical")
 
   # Expect that an NA is returned
-  expect_true(is.na(edges_vector_from_graph_no_edges))
+  expect_true(
+    is.na(edges_vector_from_graph_no_edges))
 
   # Get edges from an edgeless graph returned as a list
   edges_list_from_graph_no_edges <-
@@ -379,8 +407,7 @@ expect_equal(
 expect_equal(
   get_edge_ids(
     graph,
-    conditions = "value > 3"),
-  c(1, 3))
+    conditions = "value > 3"), c(1, 3))
 
 # Using an equality for a character object,
 # (i.e., all nodes with `color` attribute of
@@ -388,8 +415,7 @@ expect_equal(
 expect_equal(
   get_edge_ids(
     graph = graph,
-    conditions = "color == 'pink'"),
-  1)
+    conditions = "color == 'pink'"), 1)
 
 # Expect that multiple conditions will work
 # to return edges with the desired attribute
@@ -398,8 +424,7 @@ expect_equal(
   get_edge_ids(
     graph,
     conditions = c("color == 'blue'",
-                   "value > 5")),
-  3)
+                   "value > 5")), 3)
 
 # Expect NA if no edges are matched after
 # providing unmatched conditions
