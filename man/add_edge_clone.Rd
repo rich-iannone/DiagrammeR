@@ -42,7 +42,7 @@ graph <-
   select_last_edges_created() \%>\%
   set_edge_attrs(
     edge_attr = "color",
-    value = "steelblue") \%>\%
+    values = "steelblue") \%>\%
   clear_selection()
 
 # Display the graph's internal

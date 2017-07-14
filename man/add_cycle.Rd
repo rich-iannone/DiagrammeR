@@ -50,4 +50,45 @@ node_info(graph)
 #> 4  4 <NA>     4   2     1      1     0
 #> 5  5 <NA>     5   2     1      1     0
 #> 6  6 <NA>     6   2     1      1     0
+
+# Attributes can be specified in extra
+# arguments and these are applied in order;
+# Usually these attributes are applied to
+# nodes (e.g., `type` is a node attribute)
+# but the `rel` attribute will apply to the
+# edges
+graph_w_attrs <-
+  create_graph() \%>\%
+  add_cycle(
+    n = 6,
+    label = c("one", "two",
+              "three", "four",
+              "five", "six"),
+    type = c("a", "a",
+             "b", "b",
+             "c", "c"),
+    value = c(1.2, 8.4,
+              3.4, 5.2,
+              6.1, 2.6),
+    rel = "cycle")
+
+# Get the graph's node data frame
+get_node_df(graph_w_attrs)
+#>   id type label value
+#> 1  1    a   one   1.2
+#> 2  2    a   two   8.4
+#> 3  3    b three   3.4
+#> 4  4    b  four   5.2
+#> 5  5    c  five   6.1
+#> 6  6    c   six   2.6
+
+# Get the graph's edge data frame
+get_edge_df(graph_w_attrs)
+#>   id from to   rel
+#> 1  1    1  2 cycle
+#> 2  2    2  3 cycle
+#> 3  3    3  4 cycle
+#> 4  4    4  5 cycle
+#> 5  5    5  6 cycle
+#> 6  6    6  1 cycle
 }
