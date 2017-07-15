@@ -50,6 +50,50 @@
 #' #> 10 10 prism     b   3     2      1     0
 #' #> 11 11 prism     b   3     2      1     0
 #' #> 12 12 prism     b   3     2      1     0
+#'
+#' # Attributes can be specified in extra
+#' # arguments and these are applied in order;
+#' # Usually these attributes are applied to
+#' # nodes (e.g., `type` is a node attribute)
+#' # but the `rel` attribute will apply to the
+#' # edges
+#' graph_w_attrs <-
+#'   create_graph() %>%
+#'   add_prism(
+#'     n = 3,
+#'     label = c("one", "two",
+#'               "three", "four",
+#'               "five", "six"),
+#'     type = c("a", "a",
+#'              "b", "b",
+#'              "c", "c"),
+#'     value = c(1.2, 8.4,
+#'               3.4, 5.2,
+#'               6.1, 2.6),
+#'     rel = "prism")
+#'
+#' # Get the graph's node data frame
+#' get_node_df(graph_w_attrs)
+#' #>   id type label value
+#' #> 1  1    a   one   1.2
+#' #> 2  2    a   two   8.4
+#' #> 3  3    b three   3.4
+#' #> 4  4    b  four   5.2
+#' #> 5  5    c  five   6.1
+#' #> 6  6    c   six   2.6
+#'
+#' # Get the graph's edge data frame
+#' get_edge_df(graph_w_attrs)
+#' #>   id from to   rel
+#' #> 1  1    1  2 prism
+#' #> 2  2    2  3 prism
+#' #> 3  3    3  1 prism
+#' #> 4  4    4  5 prism
+#' #> 5  5    5  6 prism
+#' #> 6  6    6  4 prism
+#' #> 7  7    1  4 prism
+#' #> 8  8    2  5 prism
+#' #> 9  9    3  6 prism
 #' @importFrom dplyr select bind_cols
 #' @importFrom tibble as_tibble
 #' @export add_prism

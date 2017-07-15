@@ -23,8 +23,12 @@
 #' # varying numbers of nodes
 #' graph <-
 #'   create_graph() %>%
-#'   add_star(n = 4, type = "four_star") %>%
-#'   add_star(n = 5, type = "five_star")
+#'   add_star(
+#'     n = 4,
+#'     type = "four_star") %>%
+#'   add_star(
+#'     n = 5,
+#'     type = "five_star")
 #'
 #' # Get node information from this graph
 #' node_info(graph)
@@ -38,6 +42,46 @@
 #' #> 7  7 five_star     3   1     1      0     0
 #' #> 8  8 five_star     4   1     1      0     0
 #' #> 9  9 five_star     5   1     1      0     0
+#'
+#' # Attributes can be specified in extra
+#' # arguments and these are applied in order;
+#' # Usually these attributes are applied to
+#' # nodes (e.g., `type` is a node attribute)
+#' # but the `rel` attribute will apply to the
+#' # edges
+#' graph_w_attrs <-
+#'   create_graph() %>%
+#'   add_star(
+#'     n = 6,
+#'     label = c("one", "two",
+#'               "three", "four",
+#'               "five", "six"),
+#'     type = c("a", "a",
+#'              "b", "b",
+#'              "c", "c"),
+#'     value = c(1.2, 8.4,
+#'               3.4, 5.2,
+#'               6.1, 2.6),
+#'     rel = "star")
+#'
+#' # Get the graph's node data frame
+#' get_node_df(graph_w_attrs)
+#' #>   id type label value
+#' #> 1  1    a   one   1.2
+#' #> 2  2    a   two   8.4
+#' #> 3  3    b three   3.4
+#' #> 4  4    b  four   5.2
+#' #> 5  5    c  five   6.1
+#' #> 6  6    c   six   2.6
+#'
+#' # Get the graph's edge data frame
+#' get_edge_df(graph_w_attrs)
+#' #>   id from to  rel
+#' #> 1  1    1  2 star
+#' #> 2  2    1  3 star
+#' #> 3  3    1  4 star
+#' #> 4  4    1  5 star
+#' #> 5  5    1  6 star
 #' @importFrom dplyr select bind_cols
 #' @importFrom tibble as_tibble
 #' @export add_star
