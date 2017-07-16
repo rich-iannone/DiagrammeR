@@ -175,6 +175,69 @@ test_that("Adding a cycle is possible", {
   expect_identical(
     unique(graph$edges_df$rel),
     c("z", "y"))
+
+  # Create a graph with a cycle that
+  # has different types of  node and edge
+  # attributes included
+  graph_2 <-
+    create_graph() %>%
+    add_cycle(
+      n = 6,
+      label = c("one", "two",
+                "three", "four",
+                "five", "six"),
+      type = c("a", "a",
+               "b", "b",
+               "c", "c"),
+      value = c(1.2, 8.4,
+                3.4, 5.2,
+                6.1, 2.6),
+      rel = c("cycle_a", "cycle_a",
+              "cycle_b", "cycle_b",
+              "cycle_c", "cycle_c"))
+
+  # Get the graph's node data frame
+  ndf <- get_node_df(graph_2)
+
+  # Get the graph's edge data frame
+  edf <- get_edge_df(graph_2)
+
+  # Expect that 6 nodes are now in the graph
+  expect_equal(
+    node_count(graph_2), 6)
+
+  # Expect 6 edges are now in the graph
+  expect_equal(
+    edge_count(graph_2), 6)
+
+  # Expect node ID values from 1 to 6
+  expect_identical(
+    ndf$id, 1:6)
+
+  # Expect specific node `label` values
+  expect_identical(
+    ndf$label,
+    c("one", "two",
+      "three", "four",
+      "five", "six"))
+
+  # Expect specific node `type` values
+  expect_identical(
+    ndf$type,
+    c("a", "a", "b",
+      "b", "c", "c"))
+
+  # Expect specific node `value` values
+  expect_identical(
+    ndf$value,
+    c(1.2, 8.4, 3.4, 5.2, 6.1, 2.6))
+
+  # Expect specific edge `rel` values
+  expect_identical(
+    edf$rel,
+    c("cycle_a", "cycle_a",
+      "cycle_b", "cycle_b",
+      "cycle_c", "cycle_c"))
 })
 
 test_that("Adding a path is possible", {
