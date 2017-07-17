@@ -188,3 +188,35 @@ test_that("counting the number of edges with the same definition is possible", {
   expect_equal(
     edges_where_multiple_occur, 2)
 })
+
+test_that("counting the number of multiple edges between a specific node pair is possible", {
+
+  # Create a node data frame (ndf)
+  ndf <-
+    create_node_df(
+      n = 5,
+      label = TRUE)
+
+  # Create an edge data frame (edf)
+  edf <-
+    create_edge_df(
+      from = c(1, 4, 4, 3, 5, 1, 3, 4),
+      to = c(4, 1, 1, 2, 2, 2, 2, 1))
+
+  # Create a graph with the ndf and edf
+  graph <-
+    create_graph(
+      nodes_df = ndf,
+      edges_df = edf)
+
+  # Get the total number of multiple
+  # edges (those edges that share an
+  # edge definition) in the graph
+  global_multiple_edges_count <-
+    get_multiedge_count(graph)
+
+  # Expect that there are 3 edges that
+  # serve as multiple edges
+  expect_equal(
+    global_multiple_edges_count, 3)
+})
