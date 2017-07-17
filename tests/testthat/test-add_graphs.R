@@ -177,7 +177,7 @@ test_that("Adding a cycle is possible", {
     c("z", "y"))
 
   # Create a graph with a cycle that
-  # has different types of  node and edge
+  # has different types of node and edge
   # attributes included
   graph_2 <-
     create_graph() %>%
@@ -488,10 +488,73 @@ test_that("Adding a star is possible", {
     unique(graph$nodes_df$type),
     c("a", "b"))
 
-  # Expect rel values to be either `a` or `b`
+  # Expect rel values to be either `z` or `y`
   expect_identical(
     unique(graph$edges_df$rel),
     c("z", "y"))
+
+  # Create a graph with a star that
+  # has different types of node and edge
+  # attributes included
+  graph_2 <-
+    create_graph() %>%
+    add_star(
+      n = 6,
+      label = c("one", "two",
+                "three", "four",
+                "five", "six"),
+      type = c("a", "a",
+               "b", "b",
+               "c", "c"),
+      value = c(1.2, 8.4,
+                3.4, 5.2,
+                6.1, 2.6),
+      rel = c("star_a", "star_b",
+              "star_c", "star_d",
+              "star_e"))
+
+  # Get the graph's node data frame
+  ndf <- get_node_df(graph_2)
+
+  # Get the graph's edge data frame
+  edf <- get_edge_df(graph_2)
+
+  # Expect that 6 nodes are now in the graph
+  expect_equal(
+    node_count(graph_2), 6)
+
+  # Expect 5 edges are now in the graph
+  expect_equal(
+    edge_count(graph_2), 5)
+
+  # Expect node ID values from 1 to 6
+  expect_identical(
+    ndf$id, 1:6)
+
+  # Expect specific node `label` values
+  expect_identical(
+    ndf$label,
+    c("one", "two",
+      "three", "four",
+      "five", "six"))
+
+  # Expect specific node `type` values
+  expect_identical(
+    ndf$type,
+    c("a", "a", "b",
+      "b", "c", "c"))
+
+  # Expect specific node `value` values
+  expect_identical(
+    ndf$value,
+    c(1.2, 8.4, 3.4, 5.2, 6.1, 2.6))
+
+  # Expect specific edge `rel` values
+  expect_identical(
+    edf$rel,
+    c("star_a", "star_b",
+      "star_c", "star_d",
+      "star_e"))
 })
 
 test_that("Adding a full graph is possible", {
