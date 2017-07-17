@@ -12,8 +12,7 @@ test_that("Adding a balanced tree is possible", {
       k = 3,
       h = 3,
       type = "a",
-      rel = "z"
-    )
+      rel = "z")
 
   # Expect 40 nodes to have been created
   expect_equal(
@@ -251,8 +250,7 @@ test_that("Adding a path is possible", {
       graph = graph,
       n = 3,
       type = "a",
-      rel = "z",
-      value = c(1.5, 2.5, 3.5))
+      rel = "z")
 
   # Expect 3 nodes to have been created
   expect_equal(
@@ -279,11 +277,6 @@ test_that("Adding a path is possible", {
   expect_equal(
     unique(graph$edges_df$rel), "z")
 
-  # Expect 3 different values for the `value` node attr
-  expect_equal(
-    graph$nodes_df$value,
-    c(1.5, 2.5, 3.5))
-
   # Expect an error if n is <2
   expect_error(
     add_path(
@@ -292,46 +285,68 @@ test_that("Adding a path is possible", {
       type = "a",
       rel = "z"))
 
-  # Add another path
-  graph <-
+  # Create a graph with a path that
+  # has different types of node and edge
+  # attributes included
+  graph_2 <-
+    create_graph() %>%
     add_path(
-      graph = graph,
-      n = 3,
-      type = "b",
-      rel = "y")
+      n = 6,
+      label = c("one", "two",
+                "three", "four",
+                "five", "six"),
+      type = c("a", "a",
+               "a", "b",
+               "b", "b"),
+      value = c(1.2, 8.4,
+                3.4, 5.2,
+                6.1, 2.6),
+      rel = c("path_a", "path_b",
+              "path_c", "path_d",
+              "path_e"))
+
+  # Get the graph's node data frame
+  ndf <- get_node_df(graph_2)
+
+  # Get the graph's edge data frame
+  edf <- get_edge_df(graph_2)
 
   # Expect that 6 nodes are now in the graph
   expect_equal(
-    node_count(graph), 6)
+    node_count(graph_2), 6)
 
-  # Expect 4 edges are now in the graph
+  # Expect 5 edges are now in the graph
   expect_equal(
-    edge_count(graph), 4)
+    edge_count(graph_2), 5)
 
   # Expect node ID values from 1 to 6
   expect_identical(
-    get_node_ids(graph), 1:6)
+    ndf$id, 1:6)
 
-  # Expect label values from 1 to 6
+  # Expect specific node `label` values
   expect_identical(
-    graph$nodes_df$label,
-    as.character(1:6))
+    ndf$label,
+    c("one", "two",
+      "three", "four",
+      "five", "six"))
 
-  # Expect that the `value` node attr values
-  # for the new nodes added are all NA
-  expect_equal(
-    graph$nodes_df$value,
-    c(1.5, 2.5, 3.5, NA, NA, NA))
-
-  # Expect type values to be either `a` or `b`
+  # Expect specific node `type` values
   expect_identical(
-    unique(graph$nodes_df$type),
-    c("a", "b"))
+    ndf$type,
+    c("a", "a", "a",
+      "b", "b", "b"))
 
-  # Expect rel values to be either `a` or `b`
+  # Expect specific node `value` values
   expect_identical(
-    unique(graph$edges_df$rel),
-    c("z", "y"))
+    ndf$value,
+    c(1.2, 8.4, 3.4, 5.2, 6.1, 2.6))
+
+  # Expect specific edge `rel` values
+  expect_identical(
+    edf$rel,
+    c("path_a", "path_b",
+      "path_c", "path_d",
+      "path_e"))
 })
 
 test_that("Adding a prism is possible", {
