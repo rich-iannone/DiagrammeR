@@ -57,7 +57,7 @@ test_that("Adding a balanced tree is possible", {
       type = "a",
       rel = "z"))
 
-  # Add another balanced tree
+  # Add another balanced tree to the graph
   graph <-
     add_balanced_tree(
       graph = graph,
@@ -140,7 +140,7 @@ test_that("Adding a cycle is possible", {
       type = "a",
       rel = "z"))
 
-  # Add another cycle
+  # Add another cycle to the graph
   graph <-
     add_cycle(
       graph = graph,
@@ -285,6 +285,41 @@ test_that("Adding a path is possible", {
       type = "a",
       rel = "z"))
 
+  # Add another path to the graph
+  graph <-
+    add_path(
+      graph = graph,
+      n = 3,
+      type = "b",
+      rel = "y")
+
+  # Expect that 6 nodes are now in the graph
+  expect_equal(
+    node_count(graph), 6)
+
+  # Expect 6 edges are now in the graph
+  expect_equal(
+    edge_count(graph), 4)
+
+  # Expect node ID values from 1 to 6
+  expect_identical(
+    get_node_ids(graph), 1:6)
+
+  # Expect label values from 1 to 6
+  expect_identical(
+    graph$nodes_df$label,
+    as.character(1:6))
+
+  # Expect type values to be either `a` or `b`
+  expect_identical(
+    unique(graph$nodes_df$type),
+    c("a", "b"))
+
+  # Expect rel values to be either `a` or `b`
+  expect_identical(
+    unique(graph$edges_df$rel),
+    c("z", "y"))
+
   # Create a graph with a path that
   # has different types of node and edge
   # attributes included
@@ -395,7 +430,7 @@ test_that("Adding a prism is possible", {
       type = "a",
       rel = "z"))
 
-  # Add another prism
+  # Add another prism to the graph
   graph <-
     add_prism(
       graph = graph,
@@ -540,7 +575,7 @@ test_that("Adding a star is possible", {
       type = "a",
       rel = "z"))
 
-  # Add another star
+  # Add another star to the graph
   graph <-
     add_star(
       graph = graph,
