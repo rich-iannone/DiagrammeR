@@ -234,11 +234,11 @@ get_paths <- function(graph,
     }
   }
 
-  # If only `from`` but not the `to`` node specified,
+  # If only `from` but not the `to` node specified,
   # get paths that consider the filtering criteria
   if (!is.null(from) & is.null(to)) {
 
-    # Filter the `path_lengths`` vector
+    # Filter the `path_lengths` vector
     # by the chosen criteria
     if (shortest_path == TRUE &
         longest_path == FALSE) {
@@ -338,10 +338,10 @@ get_paths <- function(graph,
              function(x) which(paths[[x]] %in% to))
 
     # Apply list indices as names for the
-    # `paths_lengths`` vector
+    # `paths_lengths` vector
     names(path_lengths) <- paths_with_end_node
 
-    # Filter the `path_lengths`` vector by the
+    # Filter the `path_lengths` vector by the
     # chosen criteria
     if (shortest_path == TRUE &
         longest_path == FALSE) {
@@ -371,9 +371,9 @@ get_paths <- function(graph,
 
     paths <- paths[path_lengths]
 
-    # Modify 'paths' list of vectors such that nodes
+    # Modify `paths` list of vectors such that nodes
     # at the beginning and end of each vector are the
-    # `from`` and `to`` nodes
+    # `from` and `to` nodes
     for (i in 1:length(paths)) {
       paths[[i]] <-
         paths[[i]][1:which(paths[[i]] == to)]

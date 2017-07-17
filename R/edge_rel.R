@@ -68,7 +68,7 @@
 #'     action = "check")
 #' #> [1] FALSE
 #'
-#' # Add the `rel` value `rel_b`` to edge `1`->`2`
+#' # Add the `rel` value `rel_b` to edge `1`->`2`
 #' graph <-
 #'   graph %>%
 #'   edge_rel(
@@ -85,7 +85,7 @@
 #' #> [1] "rel_b"
 #'
 #' # Perform an in-place update of the `rel`
-#' # value for edge `1`->`2` (`rel_b`` to `rel_a``)
+#' # value for edge `1`->`2` (`rel_b` to `rel_a`)
 #' graph <-
 #'   graph %>%
 #'   edge_rel(
@@ -108,9 +108,6 @@ edge_rel <- function(graph,
                      to,
                      action = "read",
                      value = NULL) {
-
-  # Get the time of function start
-  time_function_start <- Sys.time()
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

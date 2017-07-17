@@ -48,7 +48,7 @@ trigger_script <- function(graph_series,
     }
 
     # Obtain a string corresponding to the
-    # `graph_series`` object name
+    # `graph_series` object name
     to_substitute <- deparse(substitute(graph_series))
 
     # Obtain script character vector from supplied
@@ -58,7 +58,7 @@ trigger_script <- function(graph_series,
         readLines(con = graph_series$series_scripts[script]),
         collapse = "\n")
 
-    # Replace instances of '_SELF_' with the name of
+    # Replace instances of `_SELF_` with the name of
     # the graph series object
     substituted_script <- gsub("_SELF_", to_substitute,
                                the_script)
@@ -81,7 +81,7 @@ trigger_script <- function(graph_series,
     # Obtain script character vector from graph series
     the_script <- graph_series$series_scripts[script]
 
-    # Replace instances of '_SELF_' with the name
+    # Replace instances of `_SELF_` with the name
     # of the graph series object
     substituted_script <-
       gsub("_SELF_", to_substitute,

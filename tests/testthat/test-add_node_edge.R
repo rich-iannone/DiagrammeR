@@ -659,7 +659,7 @@ test_that("adding several edges with a string is possible", {
     graph$edges_df$rel,
     rep("connected_to", 9))
 
-  # Create an empty graph, set as `undirected``
+  # Create an empty graph, set as `undirected`
   graph <- create_graph(directed = FALSE)
 
   # Add 10 nodes to the empty graph

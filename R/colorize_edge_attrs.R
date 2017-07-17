@@ -125,7 +125,7 @@ colorize_edge_attrs <- function(graph,
     }
   }
 
-  # Reverse color palette if `reverse_palette = TRUE``
+  # Reverse color palette if `reverse_palette = TRUE`
   if (reverse_palette == TRUE) {
     color_palette <- rev(color_palette)
   }
