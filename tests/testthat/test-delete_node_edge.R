@@ -251,3 +251,85 @@ test_that("nodes and edges can be deleted from a graph via a selection", {
         x = graph,
         return_type = "vector")))
 })
+
+test_that("edges can be deleted from a graph using node label values", {
+
+  # Create a directed graph with 2
+  # labeled nodes and an edge
+  graph_labeled_nodes <-
+    create_graph() %>%
+    add_n_nodes(
+      n = 2,
+      label = c("one", "two")) %>%
+    add_edge(
+      from = "one",
+      to = "two")
+
+  # Delete the single graph edge by
+  # specifying the node label names
+  graph_deleted_edge <-
+    graph_labeled_nodes %>%
+    delete_edge(
+      from = "one",
+      to = "two")
+
+  # Expect a node count of 2
+  expect_equal(
+    node_count(graph_deleted_edge), 2)
+
+  # Expect an edge count of 0
+  expect_equal(
+    edge_count(graph_deleted_edge), 0)
+
+  # Expect an error when specifying a node
+  # label that does not exist
+  expect_error(
+    graph_labeled_nodes %>%
+      delete_edge(
+        from = "zero",
+        to = "two"))
+
+  expect_error(
+    graph_labeled_nodes %>%
+      delete_edge(
+        from = "one",
+        to = "three"))
+
+  # Create a directed graph with 3
+  # labeled nodes (with indistinct labels)
+  # and 1 edge
+  graph_labeled_nodes_not_distinct_labels_1 <-
+    create_graph() %>%
+    add_path(
+      n = 2,
+      label = c("one", "two")) %>%
+    add_node(
+      label = "one")
+
+  # Expect an error when trying to delete
+  # an edge using non-distinct node labels
+  expect_error(
+    graph_labeled_nodes_not_distinct_labels_1 %>%
+      delete_edge(
+        from = "one",
+        to = "two"))
+
+  # Create another directed graph with 3
+  # labeled nodes (with indistinct labels)
+  # and 1 edge
+  graph_labeled_nodes_not_distinct_labels_2 <-
+    create_graph() %>%
+    add_path(
+      n = 2,
+      label = c("one", "two")) %>%
+    add_node(
+      label = "two")
+
+  # Expect an error when trying to delete
+  # an edge using non-distinct node labels
+  expect_error(
+    graph_labeled_nodes_not_distinct_labels_2 %>%
+      delete_edge(
+        from = "one",
+        to = "two"))
+})
