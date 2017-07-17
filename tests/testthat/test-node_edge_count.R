@@ -154,3 +154,37 @@ test_that("getting a node/edge count for an empty graph is possible", {
       graph = empty_graph,
       rel = "rel"), 0)
 })
+
+test_that("counting the number of edges with the same definition is possible", {
+
+  # Create a node data frame (ndf)
+  ndf <-
+    create_node_df(
+      n = 5,
+      label = TRUE)
+
+  # Create an edge data frame (edf)
+  edf <-
+    create_edge_df(
+      from = c(1, 4, 4, 3, 5, 1, 3, 4),
+        to = c(4, 1, 1, 2, 2, 2, 2, 1))
+
+  # Create a graph with the ndf and edf
+  graph <-
+    create_graph(
+      nodes_df = ndf,
+      edges_df = edf)
+
+  # Get the total number of edge
+  # definitions (e.g., `4` -> `1`) where
+  # there are multiple edges (i.e.,
+  # distinct edges with separate edge
+  # ID values)
+  edges_where_multiple_occur <-
+    get_edge_count_w_multiedge(graph)
+
+  # Expect that there are 2 such
+  # edge definitions
+  expect_equal(
+    edges_where_multiple_occur, 2)
+})
