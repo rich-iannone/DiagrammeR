@@ -175,7 +175,7 @@ delete_edge <- function(graph,
         stop("The value provided in `from` does not exist as a node `label` value.")
       }
 
-      # Stop function if the label for `from` is distinct in the graph
+      # Stop function if the label for `from` is not distinct in the graph
       if (graph$nodes_df %>%
           dplyr::select(label) %>%
           dplyr::filter(label == from) %>%
@@ -188,7 +188,7 @@ delete_edge <- function(graph,
         stop("The value provided in `to` does not exist as a node `label` value.")
       }
 
-      # Stop function if the label for `to` is distinct in the graph
+      # Stop function if the label for `to` is not distinct in the graph
       if (graph$nodes_df %>%
           dplyr::select(label) %>%
           dplyr::filter(label == to) %>%
