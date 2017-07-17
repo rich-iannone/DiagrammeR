@@ -55,8 +55,8 @@ get_multiedge_count <- function(graph) {
     (graph$edges_df %>%
        nrow()) -
     (graph$edges_df %>%
-       select(from, to) %>%
-       distinct() %>%
+       dplyr::select(from, to) %>%
+       dplyr::distinct() %>%
        nrow())
 
   return(multiedge_count)
