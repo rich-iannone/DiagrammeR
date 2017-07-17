@@ -226,6 +226,7 @@ test_that("Using an empty graph with trigger an error", {
   expect_error(select_nodes_by_id(empty_graph))
   expect_error(select_nodes_in_neighborhood(empty_graph))
   expect_error(set_df_as_node_attr(empty_graph))
+  expect_error(set_node_attr_to_display(empty_graph))
   expect_error(set_node_attrs(empty_graph))
   expect_error(set_node_attrs_ws(empty_graph))
   expect_error(set_node_position(empty_graph))
