@@ -8,23 +8,28 @@ test_that("Setting a graph name can be done", {
   # Set a graph name
   graph_name <-
     graph %>%
-    set_graph_name("test_that_name")
+    set_graph_name(name = "test_that_name")
 
   # Expect that the name was set
-  expect_true(graph_name$graph_info$graph_name == "test_that_name")
+  expect_true(
+    graph_name$graph_info$graph_name == "test_that_name")
 
   # Add 2 nodes and an edge and then
   # select a node
   graph_1 <-
     graph %>%
-    add_node %>%
-    add_node %>%
-    add_edge(1, 2) %>%
-    select_nodes_by_id(1)
+    add_node() %>%
+    add_node() %>%
+    add_edge(
+      from = 1,
+      to = 2) %>%
+    select_nodes_by_id(nodes = 1)
 
   # Set a graph name
   graph_name_1 <-
-    set_graph_name(graph_1, "test_that_name_again")
+    set_graph_name(
+      graph = graph_1,
+      name = "test_that_name_again")
 
   # Expect that the name was set
   expect_true(
@@ -40,33 +45,39 @@ test_that("Setting a time for the graph can be done", {
   # `GMT` is used as the time zone)
   graph_1 <-
     set_graph_time(
-      graph, time = "2015-10-25 15:23:00")
+      graph = graph,
+      time = "2015-10-25 15:23:00")
 
   # Expect that the time value was passed in properly
-  expect_true(graph_1$graph_info$graph_time == "2015-10-25 15:23:00")
+  expect_true(
+    graph_1$graph_info$graph_time == "2015-10-25 15:23:00")
 
   # Expect that the time zone is set to `GMT`
-  expect_true(graph_1$graph_info$graph_tz == "GMT")
+  expect_true(
+    graph_1$graph_info$graph_tz == "GMT")
 
   # Update tz when a timestamp is already present
   graph_2 <-
     set_graph_time(
-      graph_1, tz = "America/Los_Angeles")
+      graph = graph_1,
+      tz = "America/Los_Angeles")
 
   # Expect that the time zone has been changed
-  expect_true(graph_2$graph_info$graph_tz == "America/Los_Angeles")
+  expect_true(
+    graph_2$graph_info$graph_tz == "America/Los_Angeles")
 
   # Expect an error when setting a time zone that is
   # not in `OlsonNames()`
   expect_error(
     set_graph_time(
-      graph_2, tz = "Moon/Moon"))
+      graph = graph_2,
+      tz = "Moon/Moon"))
 
   # Create a graph with a node and a node selection
   graph_selection <-
     create_graph() %>%
-    add_node %>%
-    select_nodes %>%
+    add_node() %>%
+    select_nodes() %>%
     set_graph_time("2015-10-25 15:23:00")
 })
 
@@ -75,17 +86,20 @@ test_that("Getting the graph name is possible", {
   # Create a new graph and set a graph name
   graph <-
     create_graph() %>%
-    set_graph_name("test_graph")
+    set_graph_name(name = "test_graph")
 
   # Verify that the graph name returned is a
   # character vector
-  expect_is(get_graph_name(graph), "character")
+  expect_is(
+    get_graph_name(graph), "character")
 
   # Expect that the returned vector has a length of 1
-  expect_equal(length(get_graph_name(graph)), 1)
+  expect_equal(
+    length(get_graph_name(graph)), 1)
 
   # Expect that the graph name that was set is returned
-  expect_equal(get_graph_name(graph), "test_graph")
+  expect_equal(
+    get_graph_name(graph), "test_graph")
 })
 
 test_that("Getting the graph time is possible", {
@@ -93,19 +107,23 @@ test_that("Getting the graph time is possible", {
   # Create a graph with a time
   graph <-
     create_graph() %>%
-    set_graph_time(time = "2015-10-25 15:23:00")
+    set_graph_time(
+      time = "2015-10-25 15:23:00")
 
   # Expect a graph time as POSIXct
-  expect_is(get_graph_time(graph), "POSIXct")
+  expect_is(
+    get_graph_time(graph), "POSIXct")
 
   # Expect that the returned vector has a length of 1
-  expect_equal(length(get_graph_time(graph)), 1)
+  expect_equal(
+    length(get_graph_time(graph)), 1)
 
   # Create a graph without a time set
   graph <- create_graph()
 
   # Verify that a POSIXct time is returned
-  expect_is(get_graph_time(graph), "POSIXct")
+  expect_is(
+    get_graph_time(graph), "POSIXct")
 })
 
 test_that("Setting global graph attrs is possible", {
@@ -118,14 +136,17 @@ test_that("Setting global graph attrs is possible", {
   graph <-
     graph %>%
     set_global_graph_attrs(
-      c("overlap", "color", "penwidth"),
-      c("true", "red", "5"),
-      c("graph", "node", "edge"))
+      attr = c("overlap", "color", "penwidth"),
+      value = c("true", "red", "5"),
+      attr_type = c("graph", "node", "edge"))
 
   # Expect 3 rows and three columns in the
   # `global_attrs` data frame
-  expect_equal(nrow(graph$global_attrs), 3)
-  expect_equal(ncol(graph$global_attrs), 3)
+  expect_equal(
+    nrow(graph$global_attrs), 3)
+
+  expect_equal(
+    ncol(graph$global_attrs), 3)
 
   # Expect certain column names to be present
   # in the `global_attrs` data frame
@@ -159,12 +180,17 @@ test_that("Setting global graph attrs is possible", {
   graph <-
     graph %>%
     set_global_graph_attrs(
-      "overlap", TRUE, "graph")
+      attr = "overlap",
+      value = TRUE,
+      attr_type = "graph")
 
   # Expect 1 row and three columns in the
   # `global_attrs` data frame
-  expect_equal(nrow(graph$global_attrs), 1)
-  expect_equal(ncol(graph$global_attrs), 3)
+  expect_equal(
+    nrow(graph$global_attrs), 1)
+
+  expect_equal(
+    ncol(graph$global_attrs), 3)
 
   # Expect that the `TRUE` logical value
   # was coerced to character `true`
@@ -176,9 +202,9 @@ test_that("Setting global graph attrs is possible", {
   expect_error(
     graph %>%
       set_global_graph_attrs(
-        c("overlap", "color"),
-        c("true", "red", "5"),
-        c("graph", "node", "edge")))
+        attr = c("overlap", "color"),
+        value = c("true", "red", "5"),
+        attr_type = c("graph", "node", "edge")))
 })
 
 test_that("Getting global graph attrs is possible", {
@@ -196,9 +222,9 @@ test_that("Getting global graph attrs is possible", {
   graph <-
     graph %>%
     set_global_graph_attrs(
-      c("overlap", "color", "penwidth"),
-      c("true", "red", "5"),
-      c("graph", "node", "edge"))
+      attr = c("overlap", "color", "penwidth"),
+      value = c("true", "red", "5"),
+      attr_type = c("graph", "node", "edge"))
 
   # Get a data frame with the attributes
   # using `get_global_graph_attrs()`
@@ -222,9 +248,9 @@ test_that("Adding global graph attrs is possible", {
   graph_add_2 <-
     graph %>%
     add_global_graph_attrs(
-      c("overlap", "penwidth"),
-      c("true", "5"),
-      c("graph", "edge"))
+      attr = c("overlap", "penwidth"),
+      value = c("true", "5"),
+      attr_type = c("graph", "edge"))
 
   # Expect that the new graph object has 2 more
   # global graph attributes than the original
@@ -250,7 +276,9 @@ test_that("Adding global graph attrs is possible", {
   graph_add_1 <-
     graph %>%
     add_global_graph_attrs(
-      "overlap", TRUE, "graph")
+      attr = "overlap",
+      value = TRUE,
+      attr_type = "graph")
 
   # Expect that the new graph object has 1 more
   # global graph attribute than the original
@@ -283,7 +311,8 @@ test_that("Deleting global graph attrs is possible", {
   graph_del_1 <-
     graph %>%
     delete_global_graph_attrs(
-      "layout", "graph")
+      attr = "layout",
+      attr_type = "graph")
 
   # Expect that the new graph object has 1 less
   # global graph attribute than the original
@@ -295,8 +324,8 @@ test_that("Deleting global graph attrs is possible", {
   graph_del_2 <-
     graph %>%
     delete_global_graph_attrs(
-      c("layout", "outputorder"),
-      c("graph", "graph"))
+      attr = c("layout", "outputorder"),
+      attr_type = c("graph", "graph"))
 
   # Expect that the new graph object has 2 less
   # global graph attributes than the original
@@ -309,7 +338,8 @@ test_that("Deleting global graph attrs is possible", {
   expect_error(
     graph %>%
       delete_global_graph_attrs(
-        "layout", "nodes"))
+        attr = "layout",
+        attr_type = "nodes"))
 })
 
 test_that("Clearing global graph attrs is possible", {
