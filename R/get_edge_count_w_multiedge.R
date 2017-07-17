@@ -55,13 +55,13 @@ get_edge_count_w_multiedge <- function(graph) {
   # edges have
   multiedge_distinct_edge_def_count <-
     graph$edges_df %>%
-    select(from, to) %>%
-    mutate(edge_from_to = paste0(from, "_", to)) %>%
-    select(edge_from_to) %>%
-    group_by(edge_from_to) %>%
-    summarize(n = n()) %>%
-    ungroup() %>%
-    filter(n > 1) %>%
+    dplyr::select(from, to) %>%
+    dplyr::mutate(edge_from_to = paste0(from, "_", to)) %>%
+    dplyr::select(edge_from_to) %>%
+    dplyr::group_by(edge_from_to) %>%
+    dplyr::summarize(n = n()) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(n > 1) %>%
     nrow()
 
   return(multiedge_distinct_edge_def_count)
