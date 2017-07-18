@@ -246,18 +246,27 @@ print.dgr_graph <- function(x) {
     edge_count_str <- ""
   }
 
-  # Generate a string describing the density of
-  # the graph
-  density_str <-
-    paste0(
-      "density: ", graph_info(x)$dens)
-
   # Generate the header string for printing
-  header_str <-
-    paste0(
-      "DiagrammeR Graph // ", node_count_str,
-      " / ", edge_count_str,
-      " / ", density_str)
+  if (edge_count > 0) {
+
+    # Generate a string describing the density of
+    # the graph
+    density_str <-
+      paste0(
+        "density: ", graph_info(x)$dens)
+
+    header_str <-
+      paste0(
+        "DiagrammeR Graph // ", node_count_str,
+        " / ", edge_count_str,
+        " / ", density_str)
+
+  } else if (edge_count == 0) {
+
+    header_str <-
+      paste0(
+        "DiagrammeR Graph // ", node_count_str)
+  }
 
   # Generate the subheader string for printing
   sub_header_str <-
