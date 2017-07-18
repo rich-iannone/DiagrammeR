@@ -432,6 +432,39 @@ print.dgr_graph <- function(x) {
       graph_actions_str)
 
   #
+  # Create string of the recent graph history
+  #
+
+  number_of_actions_logged <- nrow(x$graph_log)
+
+  tail_actions_logged <-
+    x$graph_log %>%
+    utils::tail(3)
+
+  number_of_actions_in_tail <-
+    nrow(tail_actions_logged)
+
+  if (number_of_actions_in_tail == number_of_actions_logged) {
+    last_actions_performed_str <-
+      paste(tail_actions_logged$function_used, collapse = "() -> ") %>%
+      paste0(., "()")
+  } else if (number_of_actions_in_tail < number_of_actions_logged) {
+    last_actions_performed_str <-
+      paste0(
+        "<", number_of_actions_logged - number_of_actions_in_tail, " actions> -> ",
+        paste(
+          tail_actions_logged$function_used, collapse = "() -> ") %>%
+          paste0(., "()"))
+  }
+
+  graph_history_detail_str <-
+    paste0(
+      "  GRAPH HISTORY / ",
+      last_actions_performed_str)
+
+
+
+  #
   # Assemble the complete statement for printing
   #
 
@@ -447,7 +480,8 @@ print.dgr_graph <- function(x) {
       selection_detail_str, "\n",
       cache_detail_str, "\n",
       global_attrs_detail_str, "\n",
-      graph_actions_detail_str)
+      graph_actions_detail_str, "\n",
+      graph_history_detail_str)
 
   cat(complete_stmt)
 }
