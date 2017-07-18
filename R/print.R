@@ -451,7 +451,9 @@ print.dgr_graph <- function(x) {
   } else if (number_of_actions_in_tail < number_of_actions_logged) {
     last_actions_performed_str <-
       paste0(
-        "<", number_of_actions_logged - number_of_actions_in_tail, " actions> -> ",
+        "<", number_of_actions_logged - number_of_actions_in_tail, " action",
+        ifelse((number_of_actions_logged - number_of_actions_in_tail) > 1, "s", ""),
+        "> -> ",
         paste(
           tail_actions_logged$function_used, collapse = "() -> ") %>%
           paste0(., "()"))
