@@ -462,12 +462,7 @@ print.dgr_graph <- function(x) {
       "  GRAPH HISTORY / ",
       last_actions_performed_str)
 
-
-
-  #
-  # Assemble the complete statement for printing
-  #
-
+  # Generate the complete statement for printing
   complete_stmt <-
     paste0(
       header_str, "\n",
