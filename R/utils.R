@@ -12,6 +12,7 @@ graph_object_valid <- function(graph) {
              "node_selection", "edge_selection",
              "cache", "graph_log") %in%
            names(graph))) {
+
     return(FALSE)
   }
 
@@ -29,6 +30,7 @@ graph_object_valid <- function(graph) {
     inherits(graph$edge_selection, "data.frame") == FALSE,
     inherits(graph$cache, "list") == FALSE,
     inherits(graph$graph_log, "data.frame") == FALSE)) {
+
     return(FALSE)
   }
 
@@ -40,9 +42,9 @@ graph_contains_nodes <- function(graph) {
 
   if (node_count(graph) == 0) {
     return(FALSE)
+  } else {
+    return(TRUE)
   }
-
-  return(TRUE)
 }
 
 # Function to check whether a graph contains any edges
@@ -50,9 +52,9 @@ graph_contains_edges <- function(graph) {
 
   if (edge_count(graph) == 0) {
     return(FALSE)
+  } else {
+    return(TRUE)
   }
-
-  return(TRUE)
 }
 
 # Function to check whether a graph contains a valid edge selection
@@ -81,7 +83,8 @@ graph_contains_node_selection <- function(graph) {
 # different node ID values
 #' @importFrom tibble tibble as_tibble
 #' @importFrom dplyr bind_rows
-replace_graph_node_selection <- function(graph, replacement) {
+replace_graph_node_selection <- function(graph,
+                                         replacement) {
 
   # Get the graph's `node_selection` df
   node_selection <- graph$node_selection
@@ -96,20 +99,20 @@ replace_graph_node_selection <- function(graph, replacement) {
     as.data.frame(stringsAsFactors = FALSE)
 
   # Add replacement to `graph$node_selection`
-  node_selection <-
-    node_selection %>%
+  node_selection %>%
     dplyr::bind_rows(
       tibble::tibble(
         node = as.integer(replacement)))
-
-  return(node_selection)
 }
 
 # Function to replace the `edge_selection` df with
 # different node ID values
 #' @importFrom tibble tibble as_tibble
 #' @importFrom dplyr bind_rows
-replace_graph_edge_selection <- function(graph, edge_id, from_node, to_node) {
+replace_graph_edge_selection <- function(graph,
+                                         edge_id,
+                                         from_node,
+                                         to_node) {
 
   # Get the graph's `edge_selection` df
   edge_selection <- graph$edge_selection
@@ -124,39 +127,30 @@ replace_graph_edge_selection <- function(graph, edge_id, from_node, to_node) {
     as.data.frame(stringsAsFactors = FALSE)
 
   # Add replacement to `graph$edge_selection`
-  edge_selection <-
-    edge_selection %>%
+  edge_selection %>%
     dplyr::bind_rows(
       tibble::tibble(
         edge = as.integer(edge_id),
         from = as.integer(from_node),
         to = as.integer(to_node)))
-
-  return(edge_selection)
 }
 
 create_empty_nsdf <- function() {
 
   # Create empty `nsdf`
-  nsdf <-
-    tibble::tibble(
-      node = as.integer(NA))[-1, ] %>%
+  tibble::tibble(
+    node = as.integer(NA))[-1, ] %>%
     as.data.frame(stringsAsFactors = FALSE)
-
-  return(nsdf)
 }
 
 create_empty_esdf <- function() {
 
   # Create empty `esdf`
-  esdf <-
-    tibble::tibble(
-      edge = as.integer(NA),
-      from = as.integer(NA),
-      to = as.integer(NA))[-1, ] %>%
+  tibble::tibble(
+    edge = as.integer(NA),
+    from = as.integer(NA),
+    to = as.integer(NA))[-1, ] %>%
     as.data.frame(stringsAsFactors = FALSE)
-
-  return(esdf)
 }
 
 # Function to determine whether a node or edge
@@ -243,9 +237,7 @@ translate_to_node_id <- function(graph, from, to) {
   from <- from_id
   to <- to_id
 
-  id_from_to <- list(from = from_id, to = to_id)
-
-  return(id_from_to)
+  list(from = from_id, to = to_id)
 }
 
 
@@ -296,10 +288,7 @@ add_action_to_log <- function(graph_log,
       stringsAsFactors = FALSE)
 
   # Append the log line to `graph_log`
-  graph_log <-
-    dplyr::bind_rows(graph_log, graph_log_line)
-
-  return(graph_log)
+  dplyr::bind_rows(graph_log, graph_log_line)
 }
 
 # Function to save the graph as an RDS file within
@@ -362,7 +351,7 @@ contrasting_text_color <- function(background_color) {
     contrasting_color <- "#FFFFFF"
   }
 
-  return(contrasting_color)
+  contrasting_color
 }
 
 ###
