@@ -634,5 +634,31 @@ remove_linked_dfs <- function(graph) {
       graph$df_storage %>% unname()
   }
 
+  # Remove the `df_id` column from the
+  # graph's ndf if there are no referenced
+  # data frames within (i.e., all NA)
+  if ("df_id" %in% colnames(graph$nodes_df)) {
+
+    if (all(is.na(graph$nodes_df$df_id))) {
+
+      graph$nodes_df <-
+        graph$nodes_df %>%
+        dplyr::select(-df_id)
+    }
+  }
+
+  # Remove the `df_id` column from the
+  # graph's edf if there are no referenced
+  # data frames within (i.e., all NA)
+  if ("df_id" %in% colnames(graph$edges_df)) {
+
+    if (all(is.na(graph$edges_df$df_id))) {
+
+      graph$edges_df <-
+        graph$edges_df %>%
+        dplyr::select(-df_id)
+    }
+  }
+
   graph
 }
