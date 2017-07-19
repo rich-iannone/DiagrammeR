@@ -419,16 +419,20 @@ print.dgr_graph <- function(x) {
     }
   }
 
-  stored_dfs_detail_str <-
-    paste0(
-      "  STORED DFs / ",
-      df_count,
-      ifelse(
-        df_count > 0,
-        paste0(
-          ": ", dfs_w_nodes,
-          " with nodes & ", dfs_w_edges,
-          " with edges)"), ""))
+  if (df_count > 0) {
+    stored_dfs_detail_str <-
+      paste0(
+        "  STORED DFs / ",
+        df_count,
+        ": ", dfs_w_nodes,
+        " with nodes & ",
+        dfs_w_edges,
+        " with edges")
+  } else {
+    stored_dfs_detail_str <-
+      paste0(
+        "  STORED DFs / <none>")
+  }
 
   #
   # Create string for global attributes
