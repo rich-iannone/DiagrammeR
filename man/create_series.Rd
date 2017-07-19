@@ -5,7 +5,7 @@
 \title{Create a graph series object}
 \usage{
 create_series(graph = NULL, series_name = NULL,
-  series_type = "sequential", series_scripts = NULL)
+  series_type = "sequential")
 }
 \arguments{
 \item{graph}{a graph object to add to the new
@@ -18,9 +18,6 @@ the series.}
 (the default) or a \code{temporal} type (which
 requires date-time strings and time zone codes
 to be supplied).}
-
-\item{series_scripts}{a vector of R scripts or paths
-to R scripts.}
 }
 \value{
 a graph series object of type
