@@ -83,7 +83,12 @@ delete_nodes_ws <- function(graph) {
 
   # Remove any `delete_node` records from the graph log
   graph$graph_log <-
-    graph$graph_log[-((nrow(graph$graph_log) - (i-1)):nrow(graph$graph_log)), ]
+    graph$graph_log[-((nrow(graph$graph_log) - (i - 1)):nrow(graph$graph_log)), ]
+
+  # Scavenge any invalid, linked data frames
+  graph <-
+    graph %>%
+    remove_linked_dfs()
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

@@ -75,6 +75,11 @@ create_complement_graph <- function(graph,
   # Manually update the graph's edge counter
   graph$last_edge <- nrow(edf_new) %>% as.integer()
 
+  # Scavenge any invalid, linked data frames
+  graph <-
+    graph %>%
+    remove_linked_dfs()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(

@@ -88,6 +88,11 @@ delete_node <- function(graph,
   graph$nodes_df <- ndf
   graph$edges_df <- edf
 
+  # Scavenge any invalid, linked data frames
+  graph <-
+    graph %>%
+    remove_linked_dfs()
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
