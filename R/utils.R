@@ -544,3 +544,95 @@ value_per_node_functions <- function() {
       )
   )
 }
+
+
+# Function to determine the `df_id` values
+# for a graph's internal ndf or edf
+#' @importFrom dplyr select filter pull
+get_df_ids <- function(graph_df) {
+
+  if (nrow(graph_df > 0)) {
+
+    if ("df_id" %in% colnames(graph_df)) {
+
+      graph_df %>%
+        dplyr::select(df_id) %>%
+        dplyr::filter(!is.na(df_id)) %>%
+        dplyr::pull(df_id)
+    } else {
+      as.character(NA)
+    }
+
+  } else {
+    as.character(NA)
+  }
+}
+
+
+# Function to scavenge the graph$df_storage
+# list and remove any linked data frames if
+# the associated nodes or edges no longer exist
+#' @importFrom dplyr bind_rows filter select distinct pull
+remove_linked_dfs <- function(graph) {
+
+  ndf_df_ids <-
+    graph %>%
+    get_node_df() %>%
+    get_df_ids()
+
+  edf_df_ids <-
+    graph %>%
+    get_edge_df() %>%
+    get_df_ids()
+
+  # Determine if any of the stored
+  # data frames are not available in
+  # the graph's internal node data frame
+  ndf_df_id_to_remove <-
+    graph$df_storage %>%
+    dplyr::bind_rows() %>%
+    dplyr::filter(node_edge__ == "node") %>%
+    dplyr::select(df_id__) %>%
+    dplyr::distinct() %>%
+    dplyr::pull(df_id__) %>%
+    setdiff(ndf_df_ids)
+
+  if (length(ndf_df_id_to_remove) > 0) {
+
+    for (i in 1:length(ndf_df_id_to_remove)) {
+
+      graph$df_storage[ndf_df_id_to_remove[i]] <- NULL
+    }
+  }
+
+  # Determine if any of the stored
+  # data frames are not available in
+  # the graph's internal edge data frame
+  edf_df_id_to_remove <-
+    graph$df_storage %>%
+    dplyr::bind_rows() %>%
+    dplyr::filter(node_edge__ == "edge") %>%
+    dplyr::select(df_id__) %>%
+    dplyr::distinct() %>%
+    dplyr::pull(df_id__) %>%
+    setdiff(edf_df_ids)
+
+
+  # If any stored data frames are associated
+  # with edges
+  if (length(edf_df_id_to_remove) > 0) {
+
+    for (i in 1:length(edf_df_id_to_remove)) {
+
+      graph$df_storage[edf_df_id_to_remove[i]] <- NULL
+    }
+  }
+
+  # Check the type of list that remains
+  if (length(graph$df_storage) == 0) {
+    graph$df_storage <-
+      graph$df_storage %>% unname()
+  }
+
+  graph
+}
