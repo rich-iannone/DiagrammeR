@@ -564,6 +564,10 @@ get_df_ids <- function(graph_df) {
 #' @importFrom dplyr bind_rows filter select distinct pull
 remove_linked_dfs <- function(graph) {
 
+  if (is.null(graph$df_storage)) {
+    return(graph)
+  }
+
   ndf_df_ids <-
     graph %>%
     get_node_df() %>%
@@ -577,43 +581,50 @@ remove_linked_dfs <- function(graph) {
   # Determine if any of the stored
   # data frames are not available in
   # the graph's internal node data frame
-  ndf_df_id_to_remove <-
-    graph$df_storage %>%
-    dplyr::bind_rows() %>%
-    dplyr::filter(node_edge__ == "node") %>%
-    dplyr::select(df_id__) %>%
-    dplyr::distinct() %>%
-    dplyr::pull(df_id__) %>%
-    setdiff(ndf_df_ids)
+  if (length(graph$df_storage) > 0) {
 
-  if (length(ndf_df_id_to_remove) > 0) {
+    ndf_df_id_to_remove <-
+      graph$df_storage %>%
+      dplyr::bind_rows() %>%
+      dplyr::filter(node_edge__ == "node") %>%
+      dplyr::select(df_id__) %>%
+      dplyr::distinct() %>%
+      dplyr::pull(df_id__) %>%
+      setdiff(ndf_df_ids)
 
-    for (i in 1:length(ndf_df_id_to_remove)) {
+    # If any stored data frames are associated
+    # with edges that no longer exist, remove them
+    if (length(ndf_df_id_to_remove) > 0) {
 
-      graph$df_storage[ndf_df_id_to_remove[i]] <- NULL
+      for (i in 1:length(ndf_df_id_to_remove)) {
+
+        graph$df_storage[ndf_df_id_to_remove[i]] <- NULL
+      }
     }
   }
 
   # Determine if any of the stored
   # data frames are not available in
   # the graph's internal edge data frame
-  edf_df_id_to_remove <-
-    graph$df_storage %>%
-    dplyr::bind_rows() %>%
-    dplyr::filter(node_edge__ == "edge") %>%
-    dplyr::select(df_id__) %>%
-    dplyr::distinct() %>%
-    dplyr::pull(df_id__) %>%
-    setdiff(edf_df_ids)
+  if (length(graph$df_storage) > 0) {
+    edf_df_id_to_remove <-
+      graph$df_storage %>%
+      dplyr::bind_rows() %>%
+      dplyr::filter(node_edge__ == "edge") %>%
+      dplyr::select(df_id__) %>%
+      dplyr::distinct() %>%
+      dplyr::pull(df_id__) %>%
+      setdiff(edf_df_ids)
 
 
-  # If any stored data frames are associated
-  # with edges
-  if (length(edf_df_id_to_remove) > 0) {
+    # If any stored data frames are associated
+    # with edges that no longer exist, remove them
+    if (length(edf_df_id_to_remove) > 0) {
 
-    for (i in 1:length(edf_df_id_to_remove)) {
+      for (i in 1:length(edf_df_id_to_remove)) {
 
-      graph$df_storage[edf_df_id_to_remove[i]] <- NULL
+        graph$df_storage[edf_df_id_to_remove[i]] <- NULL
+      }
     }
   }
 
