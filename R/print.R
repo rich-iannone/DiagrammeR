@@ -384,6 +384,53 @@ print.dgr_graph <- function(x) {
       cache_str)
 
   #
+  # Create string for the dfs stored in the graph
+  #
+
+  # Get a count of all dfs stored in the graph
+  if (is.null(x$df_storage)) {
+
+    df_count <- 0
+
+  } else {
+
+    df_count <- length(x$df_storage)
+
+    if (any(!is.na(get_df_ids(graph_df = x$nodes_df)))) {
+
+      dfs_w_nodes <-
+        get_df_ids(graph_df = x$nodes_df) %>%
+        length()
+
+    } else {
+
+      dfs_w_nodes <- 0
+    }
+
+    if (any(!is.na(get_df_ids(graph_df = x$edges_df)))) {
+
+      dfs_w_edges <-
+        get_df_ids(graph_df = x$edges_df) %>%
+        length()
+
+    } else {
+
+      dfs_w_edges <- 0
+    }
+  }
+
+  stored_dfs_detail_str <-
+    paste0(
+      "  STORED DFs / ",
+      df_count,
+      ifelse(
+        df_count > 0,
+        paste0(
+          ": ", dfs_w_nodes,
+          " with nodes & ", dfs_w_edges,
+          " with edges)"), ""))
+
+  #
   # Create string for global attributes
   #
 
@@ -476,6 +523,7 @@ print.dgr_graph <- function(x) {
       edge_detail_str_2, "\n",
       selection_detail_str, "\n",
       cache_detail_str, "\n",
+      stored_dfs_detail_str, "\n",
       global_attrs_detail_str, "\n",
       graph_actions_detail_str, "\n",
       graph_history_detail_str)
