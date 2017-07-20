@@ -175,6 +175,6 @@ add_balanced_tree <- function(graph,
       save_graph_as_rds(graph = tree_graph)
     }
 
-    return(tree_graph)
+    tree_graph
   }
 }

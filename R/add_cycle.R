@@ -230,6 +230,6 @@ add_cycle <- function(graph,
       save_graph_as_rds(graph = cycle_graph)
     }
 
-    return(cycle_graph)
+    cycle_graph
   }
 }
