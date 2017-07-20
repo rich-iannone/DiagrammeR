@@ -85,6 +85,12 @@ add_edges_w_string <- function(graph,
     stop("The graph contains no nodes, so, edges cannot be added.")
   }
 
+  # Get the value for the latest `version_id` for
+  # graph (in the `graph_log`)
+  current_graph_log_version_id <-
+    graph$graph_log$version_id %>%
+    max()
+
   # Remove linebreak characters from `edges`
   edges_cleaned <-
     gsub("\n", " ", edges)
@@ -152,17 +158,27 @@ add_edges_w_string <- function(graph,
   }
 
   # Add the new edges to the graph
-  new_graph <- add_edge_df(graph, new_edges)
+  graph <- add_edge_df(graph, new_edges)
 
-  new_graph$graph_log <-
+  # Clear the graph's active selection
+  graph <-
+    graph %>%
+    clear_selection()
+
+  # Remove extra items from the `graph_log`
+  graph$graph_log <-
+    graph$graph_log %>%
+    dplyr::filter(version_id <= current_graph_log_version_id)
+
+  graph$graph_log <-
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
       function_used = "add_edges_w_string",
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
-      nodes = nrow(new_graph$nodes_df),
-      edges = nrow(new_graph$edges_df))
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df))
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {
@@ -172,9 +188,9 @@ add_edges_w_string <- function(graph,
   }
 
   # Write graph backup if the option is set
-  if (new_graph$graph_info$write_backups) {
-    save_graph_as_rds(graph = new_graph)
+  if (graph$graph_info$write_backups) {
+    save_graph_as_rds(graph = graph)
   }
 
-  return(new_graph)
+  graph
 }
