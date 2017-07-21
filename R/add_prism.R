@@ -138,6 +138,10 @@ add_prism <- function(graph,
   # Get the graph's info
   graph_info <- graph$graph_info
 
+  # Get the graph's state of being directed
+  # or undirected
+  graph_directed <- graph$directed
+
   # Get the sequence of nodes required
   nodes <- seq(1, 2 * n)
 
@@ -193,7 +197,11 @@ add_prism <- function(graph,
       rel = rel)
 
   # Create the prism graph
-  prism_graph <- create_graph(prism_nodes, prism_edges)
+  prism_graph <-
+    create_graph(
+      directed = graph_directed,
+      nodes_df = prism_nodes,
+      edges_df = prism_edges)
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function

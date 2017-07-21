@@ -88,6 +88,10 @@ add_balanced_tree <- function(graph,
   # Get the graph's info
   graph_info <- graph$graph_info
 
+  # Get the graph's state of being directed
+  # or undirected
+  graph_directed <- graph$directed
+
   # Get the sequence of nodes required
   nodes <- seq(1, n_nodes_tree)
 
@@ -110,7 +114,11 @@ add_balanced_tree <- function(graph,
       rel = rel)
 
   # Create the tree graph
-  tree_graph <- create_graph(tree_nodes, tree_edges)
+  tree_graph <-
+    create_graph(
+      directed = graph_directed,
+      nodes_df = tree_nodes,
+      edges_df = tree_edges)
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function

@@ -126,6 +126,10 @@ add_star <- function(graph,
   # Get the graph's info
   graph_info <- graph$graph_info
 
+  # Get the graph's state of being directed
+  # or undirected
+  graph_directed <- graph$directed
+
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
@@ -175,7 +179,11 @@ add_star <- function(graph,
       rel = rel)
 
   # Create the star graph
-  star_graph <- create_graph(star_nodes, star_edges)
+  star_graph <-
+    create_graph(
+      directed = graph_directed,
+      nodes_df = star_nodes,
+      edges_df = star_edges)
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function

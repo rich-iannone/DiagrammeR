@@ -117,6 +117,10 @@ add_cycle <- function(graph,
   # Get the graph's info
   graph_info <- graph$graph_info
 
+  # Get the graph's state of being directed
+  # or undirected
+  graph_directed <- graph$directed
+
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
@@ -143,7 +147,7 @@ add_cycle <- function(graph,
     }
   }
 
-  # Create a node data frame for the tree graph
+  # Create a node data frame for the cycle graph
   cycle_nodes <-
     create_node_df(
       n = n,
@@ -166,7 +170,11 @@ add_cycle <- function(graph,
       rel = rel)
 
   # Create the cycle graph
-  cycle_graph <- create_graph(cycle_nodes, cycle_edges)
+  cycle_graph <-
+    create_graph(
+      directed = graph_directed,
+      nodes_df = cycle_nodes,
+      edges_df = cycle_edges)
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function

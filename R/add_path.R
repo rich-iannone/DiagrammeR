@@ -126,6 +126,10 @@ add_path <- function(graph,
   # Get the graph's info
   graph_info <- graph$graph_info
 
+  # Get the graph's state of being directed
+  # or undirected
+  graph_directed <- graph$directed
+
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
@@ -175,7 +179,11 @@ add_path <- function(graph,
       rel = rel)
 
   # Create the path graph
-  path_graph <- create_graph(path_nodes, path_edges)
+  path_graph <-
+    create_graph(
+      directed = graph_directed,
+      nodes_df = path_nodes,
+      edges_df = path_edges)
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
