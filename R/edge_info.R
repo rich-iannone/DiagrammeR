@@ -52,9 +52,6 @@ edge_info <- function(graph) {
 
   # Extract only the first 4 columns of the
   # edge data frame
-  edf <-
-    graph$edges_df %>%
+  graph$edges_df %>%
     dplyr::select_("id", "from", "to", "rel")
-
-  return(edf)
 }

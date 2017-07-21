@@ -204,5 +204,5 @@ rescale_node_attrs <- function(graph,
     save_graph_as_rds(graph = graph)
   }
 
-  return(graph)
+  graph
 }

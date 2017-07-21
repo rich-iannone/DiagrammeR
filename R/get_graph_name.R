@@ -28,5 +28,5 @@ get_graph_name <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  return(graph$graph_info$graph_name)
+  graph$graph_info$graph_name
 }

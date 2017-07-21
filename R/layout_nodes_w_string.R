@@ -256,5 +256,5 @@ layout_nodes_w_string <- function(graph,
     save_graph_as_rds(graph = graph)
   }
 
-  return(graph)
+  graph
 }

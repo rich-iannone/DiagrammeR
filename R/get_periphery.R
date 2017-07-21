@@ -40,5 +40,5 @@ get_periphery <- function(graph) {
     purrr::flatten_chr() %>%
     as.integer()
 
-  return(periphery_nodes)
+  periphery_nodes
 }

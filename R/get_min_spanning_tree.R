@@ -64,7 +64,5 @@ get_min_spanning_tree <- function(graph) {
   igraph_mst <- mst(igraph)
 
   # Generate the graph object from an igraph graph
-  graph <- from_igraph(igraph_mst)
-
-  return(graph)
+  from_igraph(igraph_mst)
 }

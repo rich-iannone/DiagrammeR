@@ -165,5 +165,5 @@ from_igraph <- function(igraph,
       graph_name = graph_name,
       write_backups = write_backups)
 
-  return(graph)
+  graph
 }

@@ -163,5 +163,5 @@ create_node_df <- function(n,
         stringsAsFactors = FALSE)
   }
 
-  return(nodes_df)
+  nodes_df
 }

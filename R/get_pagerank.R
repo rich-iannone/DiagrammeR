@@ -67,11 +67,8 @@ get_pagerank <- function(graph,
       damping = damping)$vector
 
   # Create df with the PageRank values
-  pagerank_values_df <-
-    data.frame(
-      id = names(pagerank_values),
-      pagerank = pagerank_values,
-      stringsAsFactors = FALSE)
-
-  return(pagerank_values_df)
+  data.frame(
+    id = names(pagerank_values),
+    pagerank = pagerank_values,
+    stringsAsFactors = FALSE)
 }

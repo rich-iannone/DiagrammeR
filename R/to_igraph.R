@@ -49,11 +49,8 @@ to_igraph <- function(graph) {
     graph$edges_df %>%
     dplyr::select_("-id")
 
-  igraph_graph <-
-    igraph::graph_from_data_frame(
-      d = edf,
-      directed = graph$directed,
-      vertices = ndf)
-
-  return(igraph_graph)
+  igraph::graph_from_data_frame(
+    d = edf,
+    directed = graph$directed,
+    vertices = ndf)
 }

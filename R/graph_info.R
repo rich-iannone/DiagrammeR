@@ -40,18 +40,15 @@ graph_info <- function(graph) {
             graph$edges_df$to))
 
   # Create a data frame with the graph metrics
-  graph_info_df <-
-    data.frame(
-      name = as.character(graph$graph_info$graph_name),
-      n = as.integer(node_count(graph)),
-      e = as.integer(edge_count(graph)),
-      dens = as.numeric(density),
-      mn_deg = as.integer(min(degree_table)),
-      mx_deg = as.integer(max(degree_table)),
-      avg_deg = as.numeric(round(mean(degree_table))),
-      time = graph$graph_info$graph_time,
-      tz = as.character(graph$graph_info$graph_tz),
-      stringsAsFactors = FALSE)
-
-  return(graph_info_df)
+  data.frame(
+    name = as.character(graph$graph_info$graph_name),
+    n = as.integer(node_count(graph)),
+    e = as.integer(edge_count(graph)),
+    dens = as.numeric(density),
+    mn_deg = as.integer(min(degree_table)),
+    mx_deg = as.integer(max(degree_table)),
+    avg_deg = as.numeric(round(mean(degree_table))),
+    time = graph$graph_info$graph_time,
+    tz = as.character(graph$graph_info$graph_tz),
+    stringsAsFactors = FALSE)
 }

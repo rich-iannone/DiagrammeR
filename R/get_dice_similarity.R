@@ -105,7 +105,5 @@ get_dice_similarity <- function(graph,
   }
 
   # Round all values in matrix to set SD
-  d_sim_values <- round(d_sim_values, round_to)
-
-  return(d_sim_values)
+  round(d_sim_values, round_to)
 }

@@ -91,5 +91,5 @@ get_node_ids <- function(x,
     return(NA)
   }
 
-  return(nodes_df$id)
+  nodes_df$id
 }

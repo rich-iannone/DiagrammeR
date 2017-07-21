@@ -65,11 +65,8 @@ get_betweenness <- function(graph) {
     influenceR::betweenness(ig_graph)
 
   # Create df with betweenness scores
-  betweenness_scores_df <-
-    data.frame(
-      id = names(betweenness_scores),
-      betweenness = betweenness_scores,
-      stringsAsFactors = FALSE)
-
-  return(betweenness_scores_df)
+  data.frame(
+    id = names(betweenness_scores),
+    betweenness = betweenness_scores,
+    stringsAsFactors = FALSE)
 }

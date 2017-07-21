@@ -48,7 +48,7 @@ get_authority_centrality <- function(graph,
 
     if (inherits(weights_attr, "character")) {
 
-       # Stop function if the edge attribute does not exist
+      # Stop function if the edge attribute does not exist
       if (!(weights_attr %in% colnames(graph$edges_df))) {
         stop("The edge attribute to be used as weights does not exist in the graph.")
       }
@@ -70,11 +70,8 @@ get_authority_centrality <- function(graph,
       weights = weights_attr)
 
   # Create df with authority centrality values
-  authority_centrality_values_df <-
-    data.frame(
-      id = names(authority_centrality_values$vector),
-      authority_centrality = unname(authority_centrality_values$vector),
-      stringsAsFactors = FALSE)
-
-  return(authority_centrality_values_df)
+  data.frame(
+    id = names(authority_centrality_values$vector),
+    authority_centrality = unname(authority_centrality_values$vector),
+    stringsAsFactors = FALSE)
 }

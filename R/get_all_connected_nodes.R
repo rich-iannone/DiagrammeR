@@ -98,5 +98,5 @@ get_all_connected_nodes <- function(graph,
     connected_nodes <- NA
   }
 
-  return(connected_nodes)
+  connected_nodes
 }

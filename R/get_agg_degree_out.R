@@ -107,5 +107,5 @@ get_agg_degree_out <- function(graph,
     dplyr::ungroup() %>%
     purrr::flatten_dbl()
 
-  return(outdegree_agg)
+  outdegree_agg
 }

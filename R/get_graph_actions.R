@@ -48,5 +48,6 @@ get_graph_actions <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  graph$graph_actions %>% tibble::as_tibble()
+  graph$graph_actions %>%
+    tibble::as_tibble()
 }

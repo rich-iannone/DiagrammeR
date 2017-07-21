@@ -59,5 +59,5 @@ add_to_series <- function(graph,
   # Add graph to series
   graph_series$graphs[[length(graph_series$graphs) + 1]] <- graph
 
-  return(graph_series)
+  graph_series
 }

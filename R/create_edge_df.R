@@ -154,5 +154,5 @@ create_edge_df <- function(from,
         stringsAsFactors = FALSE)
   }
 
-  return(edges_df)
+  edges_df
 }

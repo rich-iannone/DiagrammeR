@@ -101,5 +101,5 @@ create_random_graph <- function(n,
   # Modify the `function_used` in the `graph_log` df
   graph$graph_log$function_used[1] <- "create_random_graph"
 
-  return(graph)
+  graph
 }

@@ -191,5 +191,5 @@ visnetwork <- function(graph) {
     }
   }
 
-  return (vn_obj)
+  vn_obj
 }

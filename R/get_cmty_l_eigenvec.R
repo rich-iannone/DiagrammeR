@@ -73,11 +73,8 @@ get_cmty_l_eigenvec <- function(graph) {
     igraph::cluster_leading_eigen(ig_graph)
 
   # Create df with node memberships
-  cmty_l_eigenvec_df <-
-    data.frame(
-      id = as.integer(names(igraph::membership(cmty_l_eigenvec_obj))),
-      l_eigenvec_group = as.vector(igraph::membership(cmty_l_eigenvec_obj)),
-      stringsAsFactors = FALSE)
-
-  return(cmty_l_eigenvec_df)
+  data.frame(
+    id = as.integer(names(igraph::membership(cmty_l_eigenvec_obj))),
+    l_eigenvec_group = as.vector(igraph::membership(cmty_l_eigenvec_obj)),
+    stringsAsFactors = FALSE)
 }

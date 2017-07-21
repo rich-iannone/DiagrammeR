@@ -49,11 +49,8 @@ get_s_connected_cmpts <- function(graph) {
     igraph::components(ig_graph, mode = "strong")
 
   # Create the output data frame
-  components_df <-
-    data.frame(
-      id = as.integer(names(components$membership)),
-      sc_component = components$membership,
-      stringsAsFactors = FALSE)
-
-  return(components_df)
+  data.frame(
+    id = as.integer(names(components$membership)),
+    sc_component = components$membership,
+    stringsAsFactors = FALSE)
 }

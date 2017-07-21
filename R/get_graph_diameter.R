@@ -41,5 +41,5 @@ get_graph_diameter <- function(graph) {
     purrr::flatten_dbl() %>%
     as.integer()
 
-  return(graph_diameter)
+  graph_diameter
 }

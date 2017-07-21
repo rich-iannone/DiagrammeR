@@ -49,5 +49,5 @@ get_edge_df <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  return(graph$edges_df)
+  graph$edges_df
 }

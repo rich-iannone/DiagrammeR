@@ -176,5 +176,5 @@ trigger_graph_actions <- function(graph) {
     }
   }
 
-  return(graph)
+  graph
 }

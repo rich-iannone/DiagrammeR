@@ -66,5 +66,5 @@ combine_ndfs <- function(...) {
   # values for new table based on input order
   ndf_new[, 1] <- as.integer(1:nrow(ndf_new))
 
-  return(ndf_new)
+  ndf_new
 }

@@ -174,5 +174,5 @@ select_nodes_by_degree <- function(graph,
     save_graph_as_rds(graph = graph)
   }
 
-  return(graph)
+  graph
 }

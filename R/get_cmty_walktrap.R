@@ -71,11 +71,8 @@ get_cmty_walktrap <- function(graph,
     igraph::cluster_walktrap(ig_graph, steps = steps)
 
   # Create df with node memberships
-  cmty_walktrap_df <-
-    data.frame(
-      id = as.integer(names(igraph::membership(cmty_walktrap_obj))),
-      walktrap_group = as.vector(igraph::membership(cmty_walktrap_obj)),
-      stringsAsFactors = FALSE)
-
-  return(cmty_walktrap_df)
+  data.frame(
+    id = as.integer(names(igraph::membership(cmty_walktrap_obj))),
+    walktrap_group = as.vector(igraph::membership(cmty_walktrap_obj)),
+    stringsAsFactors = FALSE)
 }

@@ -88,5 +88,5 @@ set_graph_time <- function(graph,
     save_graph_as_rds(graph = graph)
   }
 
-  return(graph)
+  graph
 }

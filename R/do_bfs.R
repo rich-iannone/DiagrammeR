@@ -111,7 +111,5 @@ do_bfs <- function(graph,
   }
 
   # Get the nodes visited during the bfs
-  bfs_nodes <- as.integer(as.numeric(bfs_result$order))
-
-  return(bfs_nodes)
+  as.integer(as.numeric(bfs_result$order))
 }

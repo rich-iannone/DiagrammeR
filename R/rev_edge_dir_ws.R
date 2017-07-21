@@ -105,5 +105,5 @@ rev_edge_dir_ws <- function(graph) {
     save_graph_as_rds(graph = graph)
   }
 
-  return(graph)
+  graph
 }

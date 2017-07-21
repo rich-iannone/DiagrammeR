@@ -111,7 +111,5 @@ do_dfs <- function(graph,
   }
 
   # Get the nodes visited during the dfs
-  dfs_nodes <- as.integer(as.numeric(dfs_result$order))
-
-  return(dfs_nodes)
+  as.integer(as.numeric(dfs_result$order))
 }

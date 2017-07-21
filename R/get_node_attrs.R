@@ -71,5 +71,5 @@ get_node_attrs <- function(graph,
   # Add names to each of the values
   names(node_attr_vals) <- nodes
 
-  return(node_attr_vals)
+  node_attr_vals
 }

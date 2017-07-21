@@ -108,5 +108,5 @@ get_edge_attrs_ws <- function(graph,
   # Assign edge names
   names(edge_attr_vals) <- edge_names
 
-  return(edge_attr_vals)
+  edge_attr_vals
 }

@@ -129,6 +129,5 @@ invert_selection <- function(graph) {
     save_graph_as_rds(graph = graph)
   }
 
-  # Return the graph
-  return(graph)
+  graph
 }

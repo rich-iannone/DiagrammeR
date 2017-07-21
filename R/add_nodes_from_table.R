@@ -201,5 +201,5 @@ add_nodes_from_table <- function(graph,
     save_graph_as_rds(graph = graph)
   }
 
-  return(graph)
+  graph
 }

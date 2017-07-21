@@ -8,7 +8,9 @@
 #' # Create a graph using several piped functions
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(n = 1, type = "a") %>%
+#'   add_n_nodes(
+#'     n = 1,
+#'     type = "a") %>%
 #'   select_last_nodes_created() %>%
 #'   add_n_nodes_ws(
 #'     n = 5,

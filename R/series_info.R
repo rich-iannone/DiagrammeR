@@ -98,5 +98,5 @@ series_info <- function(graph_series) {
       is_graph_directed(graph_series$graphs[[i]])
   }
 
-  return(series_info_df)
+  series_info_df
 }

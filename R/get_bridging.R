@@ -66,11 +66,8 @@ get_bridging <- function(graph) {
   bridging_scores <- influenceR::bridging(ig_graph)
 
   # Create df with betweenness scores
-  bridging_scores_df <-
-    data.frame(
-      id = names(bridging_scores),
-      bridging = bridging_scores,
-      stringsAsFactors = FALSE)
-
-  return(bridging_scores_df)
+  data.frame(
+    id = names(bridging_scores),
+    bridging = bridging_scores,
+    stringsAsFactors = FALSE)
 }

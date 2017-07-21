@@ -85,5 +85,5 @@ get_last_edges_created <- function(graph) {
     edge_id_values <- NA
   }
 
-  return(edge_id_values)
+  edge_id_values
 }

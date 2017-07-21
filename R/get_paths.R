@@ -387,5 +387,5 @@ get_paths <- function(graph,
     }
   }
 
-  return(paths)
+  paths
 }

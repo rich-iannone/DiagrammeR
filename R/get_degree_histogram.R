@@ -79,5 +79,5 @@ get_degree_histogram <- function(graph,
       dplyr::select(degree, outdegree_hist)
   }
 
-  return(deg_hist_df)
+  deg_hist_df
 }

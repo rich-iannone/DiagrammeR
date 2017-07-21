@@ -708,5 +708,5 @@ generate_dot <- function(graph) {
     dot_code <- gsub(" \\[\\] ", "", dot_code)
   }
 
-  return(dot_code)
+  dot_code
 }

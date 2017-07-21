@@ -70,11 +70,8 @@ get_eigen_centrality <- function(graph,
       weights = weights_attr)
 
   # Create df with eigen centrality values
-  eigen_centrality_values_df <-
-    data.frame(
-      id = names(eigen_centrality_values$vector),
-      eigen_centrality = unname(eigen_centrality_values$vector),
-      stringsAsFactors = FALSE)
-
-  return(eigen_centrality_values_df)
+  data.frame(
+    id = names(eigen_centrality_values$vector),
+    eigen_centrality = unname(eigen_centrality_values$vector),
+    stringsAsFactors = FALSE)
 }

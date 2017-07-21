@@ -69,11 +69,8 @@ get_cmty_edge_btwns <- function(graph) {
     igraph::cluster_edge_betweenness(ig_graph)
 
   # Create df with node memberships
-  cmty_edge_btwns_df <-
-    data.frame(
-      id = as.integer(names(igraph::membership(cmty_edge_btwns_obj))),
-      edge_btwns_group = as.vector(igraph::membership(cmty_edge_btwns_obj)),
-      stringsAsFactors = FALSE)
-
-  return(cmty_edge_btwns_df)
+  data.frame(
+    id = as.integer(names(igraph::membership(cmty_edge_btwns_obj))),
+    edge_btwns_group = as.vector(igraph::membership(cmty_edge_btwns_obj)),
+    stringsAsFactors = FALSE)
 }

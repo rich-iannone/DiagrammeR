@@ -243,5 +243,5 @@ get_attr_dfs <- function(graph,
     df <- as.data.frame(df, stringsAsFactors = FALSE)
   }
 
-  return(df)
+  df
 }

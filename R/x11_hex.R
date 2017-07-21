@@ -306,11 +306,7 @@ x11_hex <- function() {
     '#cdba96', '#8b7e66', '#ffffff', '#f5f5f5', '#ffff00',
     '#ffff00', '#eeee00', '#cdcd00', '#8b8b00', '#9acd32')
 
-  x11_hex_values <-
-    data.frame(
-      x11_name, hex,
-      stringsAsFactors = FALSE)
-
-  return(x11_hex_values)
-
+  data.frame(
+    x11_name, hex,
+    stringsAsFactors = FALSE)
 }

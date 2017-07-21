@@ -32,7 +32,5 @@ is_graph_directed <- function(graph) {
 
   # Determine if graph is directed by getting the
   # value at `graph$directed`
-  graph_is_directed <- graph$directed
-
-  return(graph_is_directed)
+  graph$directed
 }

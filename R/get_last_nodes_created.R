@@ -88,5 +88,5 @@ get_last_nodes_created <- function(graph) {
     node_id_values <- NA
   }
 
-  return(node_id_values)
+  node_id_values
 }

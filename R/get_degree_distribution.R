@@ -84,5 +84,5 @@ get_degree_distribution <- function(graph,
         stringsAsFactors = FALSE)
   }
 
-  return(deg_dist_df)
+  deg_dist_df
 }

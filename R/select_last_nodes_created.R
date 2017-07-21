@@ -129,5 +129,5 @@ select_last_nodes_created <- function(graph) {
     }
   }
 
-  return(graph)
+  graph
 }

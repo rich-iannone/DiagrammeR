@@ -126,5 +126,5 @@ set_cache <- function(graph,
   }
 
   # Store the vector in the graph's cache
-  return(graph)
+  graph
 }

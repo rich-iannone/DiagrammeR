@@ -97,5 +97,5 @@ from_adj_matrix <- function(x,
     graph$edges_df$id <- as.integer(1:nrow(graph$edges_df))
   }
 
-  return(graph)
+  graph
 }

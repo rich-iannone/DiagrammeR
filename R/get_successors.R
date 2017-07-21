@@ -11,7 +11,7 @@
 #' set.seed(23)
 #'
 #' # Create a node data frame (ndf)
-#' ndf <- create_node_df(26)
+#' ndf <- create_node_df(n = 26)
 #'
 #' # Create an edge data frame (edf)
 #' edf <-

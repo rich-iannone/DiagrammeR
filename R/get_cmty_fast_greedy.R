@@ -71,11 +71,8 @@ get_cmty_fast_greedy <- function(graph) {
     igraph::cluster_fast_greedy(ig_graph)
 
   # Create df with node memberships
-  cmty_fast_greedy_df <-
-    data.frame(
-      id = as.integer(names(igraph::membership(cmty_fast_greedy_obj))),
-      f_g_group = as.vector(igraph::membership(cmty_fast_greedy_obj)),
-      stringsAsFactors = FALSE)
-
-  return(cmty_fast_greedy_df)
+  data.frame(
+    id = as.integer(names(igraph::membership(cmty_fast_greedy_obj))),
+    f_g_group = as.vector(igraph::membership(cmty_fast_greedy_obj)),
+    stringsAsFactors = FALSE)
 }

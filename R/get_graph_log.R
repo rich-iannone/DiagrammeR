@@ -40,5 +40,6 @@ get_graph_log <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  graph$graph_log %>% tibble::as_tibble()
+  graph$graph_log %>%
+    tibble::as_tibble()
 }

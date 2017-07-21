@@ -195,6 +195,13 @@ add_cycle <- function(graph,
     combined_graph$graph_log <- graph_log
     combined_graph$graph_info <- graph_info
 
+    # Perform graph actions, if any are available
+    if (nrow(combined_graph$graph_actions) > 0) {
+      combined_graph <-
+        combined_graph %>%
+        trigger_graph_actions()
+    }
+
     # Write graph backup if the option is set
     if (combined_graph$graph_info$write_backups) {
       save_graph_as_rds(graph = combined_graph)
@@ -219,9 +226,9 @@ add_cycle <- function(graph,
     cycle_graph$graph_info <- graph_info
 
     # Perform graph actions, if any are available
-    if (nrow(graph$graph_actions) > 0) {
-      graph <-
-        graph %>%
+    if (nrow(cycle_graph$graph_actions) > 0) {
+      cycle_graph <-
+        cycle_graph %>%
         trigger_graph_actions()
     }
 
@@ -230,6 +237,6 @@ add_cycle <- function(graph,
       save_graph_as_rds(graph = cycle_graph)
     }
 
-    cycle_graph
+    return(cycle_graph)
   }
 }

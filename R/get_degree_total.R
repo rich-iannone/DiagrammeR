@@ -86,11 +86,8 @@ get_degree_total <- function(graph,
   }
 
   # Create df with total degree scores
-  total_degree_values_df <-
-    data.frame(
-      id = names(total_degree_values),
-      total_degree = total_degree_values,
-      stringsAsFactors = FALSE)
-
-  return(total_degree_values_df)
+  data.frame(
+    id = names(total_degree_values),
+    total_degree = total_degree_values,
+    stringsAsFactors = FALSE)
 }

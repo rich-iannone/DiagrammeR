@@ -105,7 +105,5 @@ get_jaccard_similarity <- function(graph,
   }
 
   # Round all values in matrix to set SD
-  j_sim_values <- round(j_sim_values, round_to)
-
-  return(j_sim_values)
+  round(j_sim_values, round_to)
 }

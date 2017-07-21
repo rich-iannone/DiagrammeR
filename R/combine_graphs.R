@@ -175,5 +175,5 @@ combine_graphs <- function(x,
     save_graph_as_rds(graph = x)
   }
 
-  return(x)
+  x
 }

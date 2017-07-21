@@ -178,7 +178,5 @@ mk_cond <- function(...) {
   }
 
   # Collapse all parts into a valid expression
-  condition <- paste(condition_parts, collapse = " ")
-
-  return(condition)
+  paste(condition_parts, collapse = " ")
 }

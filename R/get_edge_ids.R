@@ -91,5 +91,5 @@ get_edge_ids <- function(graph,
     return(NA)
   }
 
-  return(edges_df$id)
+  edges_df$id
 }

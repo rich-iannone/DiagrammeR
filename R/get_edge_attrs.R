@@ -19,7 +19,7 @@
 #' # attribute named `value`
 #' graph <-
 #'   create_graph() %>%
-#'   add_n_nodes(4) %>%
+#'   add_n_nodes(n = 4) %>%
 #'   {
 #'     edges <-
 #'       create_edge_df(
@@ -133,5 +133,5 @@ get_edge_attrs <- function(graph,
     names(edge_attr_vals) <- edge_names
   }
 
-  return(edge_attr_vals)
+  edge_attr_vals
 }

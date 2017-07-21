@@ -27,5 +27,5 @@ get_graph_time <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  return(graph$graph_info$graph_time)
+  graph$graph_info$graph_time
 }

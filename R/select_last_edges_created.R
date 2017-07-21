@@ -132,5 +132,5 @@ select_last_edges_created <- function(graph) {
     }
   }
 
-  return(graph)
+  graph
 }

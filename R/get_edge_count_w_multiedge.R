@@ -64,5 +64,5 @@ get_edge_count_w_multiedge <- function(graph) {
     dplyr::filter(n > 1) %>%
     nrow()
 
-  return(multiedge_distinct_edge_def_count)
+  multiedge_distinct_edge_def_count
 }

@@ -47,11 +47,8 @@ get_w_connected_cmpts <- function(graph) {
     igraph::components(ig_graph, "weak")
 
   # Create the output data frame
-  components_df <-
-    data.frame(
-      id = as.integer(names(components$membership)),
-      wc_component = components$membership,
-      stringsAsFactors = FALSE)
-
-  return(components_df)
+  data.frame(
+    id = as.integer(names(components$membership)),
+    wc_component = components$membership,
+    stringsAsFactors = FALSE)
 }

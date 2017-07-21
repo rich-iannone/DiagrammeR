@@ -70,5 +70,5 @@ combine_edfs <- function(...) {
     edf_new %>%
     mutate(id = as.integer(1:nrow(edf_new)))
 
-  return(edf_new)
+  edf_new
 }

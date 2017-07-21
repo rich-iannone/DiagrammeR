@@ -140,5 +140,5 @@ select_edges_by_node_id <- function(graph,
     save_graph_as_rds(graph = graph)
   }
 
-  return(graph)
+  graph
 }

@@ -101,5 +101,5 @@ get_constraint <- function(graph,
     rownames(constraint_scores_df) <- NULL
   }
 
-  return(constraint_scores_df)
+  constraint_scores_df
 }

@@ -52,8 +52,5 @@ get_graph_from_series <- function(graph_series,
   }
 
   # Extract the specified graph from the series
-  graph <- graph_series$graphs[[graph_no]]
-
-  # Return the graph object
-  return(graph)
+  graph_series$graphs[[graph_no]]
 }
