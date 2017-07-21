@@ -31,7 +31,8 @@ graph_cycle <-
 # Create a random graph with 8 nodes, 15 edges
 graph_random <-
   create_random_graph(
-    8, 15, set_seed = 23)
+    n = 8, m = 15,
+    set_seed = 23)
 
 # Combine the two graphs in a union operation
 combined_graph <-

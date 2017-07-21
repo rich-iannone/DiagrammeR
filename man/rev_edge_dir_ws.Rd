@@ -22,7 +22,8 @@ selected edges in input graph.
 # Create a graph with a directed tree
 graph <-
   create_graph() \%>\%
-  add_balanced_tree(k = 2, h = 2)
+  add_balanced_tree(
+    k = 2, h = 2)
 
 # Inspect the graph's edges
 get_edges(graph)
