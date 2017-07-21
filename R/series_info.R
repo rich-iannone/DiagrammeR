@@ -16,12 +16,16 @@
 #' graph_2 <-
 #'   graph_1 %>%
 #'   add_node() %>%
-#'   add_edge(from = 4, to = 3)
+#'   add_edge(
+#'     from = 4,
+#'     to = 3)
 #'
 #' graph_3 <-
 #'   graph_2 %>%
 #'   add_node() %>%
-#'   add_edge(from = 5, to = 2)
+#'   add_edge(
+#'     from = 5,
+#'     to = 2)
 #'
 #' # Create an empty graph series and add
 #' # the graphs

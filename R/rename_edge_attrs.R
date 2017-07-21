@@ -12,8 +12,8 @@
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
-#'   n = 5, m = 8,
-#'   set_seed = 23) %>%
+#'     n = 5, m = 8,
+#'     set_seed = 23) %>%
 #'   set_edge_attrs(
 #'     edge_attr = "color",
 #'     values = "green")
