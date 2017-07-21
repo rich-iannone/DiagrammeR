@@ -326,7 +326,7 @@ print.dgr_graph <- function(x) {
 
       selection_all <-
         ifelse(
-          node_selection_count == nrow(x$nodes_df),
+          selection_count == nrow(x$nodes_df),
           TRUE, FALSE)
     }
 
@@ -339,7 +339,7 @@ print.dgr_graph <- function(x) {
 
       selection_all <-
         ifelse(
-          edge_selection_count == nrow(x$edges_df),
+          selection_count == nrow(x$edges_df),
           TRUE, FALSE)
     }
 
