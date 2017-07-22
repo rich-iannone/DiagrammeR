@@ -200,6 +200,13 @@ print.dgr_graph <- function(x) {
     directed_undirected <- "undirected"
   }
 
+  # Determine if the graph is weighted
+  if (is_graph_weighted(x)) {
+    weighted_graph_status <- TRUE
+  } else if (is_graph_weighted(x) == FALSE) {
+    weighted_graph_status <- FALSE
+  }
+
   # Determine if the graph is a property graph
   if (is_property_graph(x)) {
     property_graph_status <- TRUE
@@ -274,8 +281,9 @@ print.dgr_graph <- function(x) {
       "  -- ",
       directed_undirected,
       ifelse(connected_graph_status, " / connected", " / disconnected"),
+      ifelse(weighted_graph_status, " / weighted", ""),
       ifelse(property_graph_status, " / property graph", ""),
-      ifelse(simple_graph_status, " / simple graph", ""))
+      ifelse(simple_graph_status, " / simple", ""))
 
   #
   # Create strings for node-specific information
