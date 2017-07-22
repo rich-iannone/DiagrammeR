@@ -43,4 +43,17 @@ graph_cycle <-
 # is a DAG
 is_graph_dag(graph_cycle)
 #> [1] FALSE
+
+# Create an undirected graph
+# containing a balanced tree
+graph_tree_undirected <-
+  create_graph(
+    directed = FALSE) \%>\%
+  add_balanced_tree(
+    k = 2, h = 2)
+
+# Determine whether this graph
+# is a DAG
+is_graph_dag(graph_tree_undirected)
+#> [1] FALSE
 }
