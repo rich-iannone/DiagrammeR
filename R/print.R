@@ -207,6 +207,13 @@ print.dgr_graph <- function(x) {
     weighted_graph_status <- FALSE
   }
 
+  # Determine if the graph is a DAG
+  if (is_graph_dag(x)) {
+    dag_graph_status <- TRUE
+  } else if (is_graph_dag(x) == FALSE) {
+    dag_graph_status <- FALSE
+  }
+
   # Determine if the graph is a property graph
   if (is_property_graph(x)) {
     property_graph_status <- TRUE
