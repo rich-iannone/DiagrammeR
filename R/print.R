@@ -283,14 +283,25 @@ print.dgr_graph <- function(x) {
   }
 
   # Generate the subheader string for printing
-  sub_header_str <-
-    paste0(
-      "  -- ",
-      directed_undirected,
-      ifelse(connected_graph_status, " / connected", " / disconnected"),
-      ifelse(weighted_graph_status, " / weighted", ""),
-      ifelse(property_graph_status, " / property graph", ""),
-      ifelse(simple_graph_status, " / simple", ""))
+  if (is_graph_empty(x)) {
+
+    sub_header_str <-
+      paste0(
+        "  -- empty graph",
+        " (mode: ", directed_undirected, ")")
+
+  } else {
+
+    sub_header_str <-
+      paste0(
+        "  -- ",
+        directed_undirected,
+        ifelse(connected_graph_status, " / connected", " / disconnected"),
+        ifelse(weighted_graph_status, " / weighted", ""),
+        ifelse(dag_graph_status, " / DAG", ""),
+        ifelse(property_graph_status, " / property graph", ""),
+        ifelse(simple_graph_status, " / simple", ""))
+  }
 
   #
   # Create strings for node-specific information
