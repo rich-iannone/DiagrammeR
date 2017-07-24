@@ -34,6 +34,7 @@ Maintainer: Richard Iannone <riannone@me.com>
 Description: Graph and network visualization using tabular data.
 License: MIT + file LICENSE
 Imports:
+    CePa (>= 0.5),
     dplyr (>= 0.7.0),
     downloader (>= 0.4),
     grDevices (>= 3.4.0),
