@@ -53,6 +53,7 @@
 #' #> 9   9 <NA>     9   8.5  3.000000
 #' #> 10 10 <NA>    10  10.0  3.000000
 #' @importFrom CePa radiality
+#' @importFrom igraph shortest.paths
 #' @export get_radiality
 
 get_radiality <- function(graph,
