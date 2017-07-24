@@ -53,9 +53,9 @@ is_graph_dag <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # If the graph contains no edges, it
+  # If the graph contains no nodes, it
   # cannot be a DAG
-  if (nrow(graph$edges_df) == 0) {
+  if (nrow(graph$nodes_df) == 0) {
     return(FALSE)
   }
 
