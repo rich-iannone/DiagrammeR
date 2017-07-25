@@ -52,8 +52,7 @@
 #' #> 8   8 <NA>     8  10.0  2.555556
 #' #> 9   9 <NA>     9   8.5  3.000000
 #' #> 10 10 <NA>    10  10.0  3.000000
-#' @importFrom igraph distances
-#' @importFrom igraph diameter
+#' @importFrom igraph distances diameter
 #' @export get_radiality
 
 get_radiality <- function(graph,
