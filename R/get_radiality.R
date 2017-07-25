@@ -52,7 +52,7 @@
 #' #> 8   8 <NA>     8  10.0  2.555556
 #' #> 9   9 <NA>     9   8.5  3.000000
 #' #> 10 10 <NA>    10  10.0  3.000000
-#' @importFrom igraph shortest.paths
+#' @importFrom igraph distances
 #' @importFrom igraph diameter
 #' @export get_radiality
 
@@ -73,7 +73,7 @@ get_radiality <- function(graph,
   # Get a matrix of shortest paths between all
   # pairs of nodes in the graph
   sp_matrix <-
-    igraph::shortest.paths(
+    igraph::distances(
       graph = ig_graph,
       mode = direction,
       weights = NA)
