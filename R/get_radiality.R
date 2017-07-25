@@ -64,6 +64,13 @@ get_radiality <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Ensure that values provided for the
+  # `direction` argument are from the
+  # valid options
+  if (!(direction %in% c("all", "in", "out"))) {
+    stop("Valid options for `direction` are `all`, `in`, or `out`.")
+  }
+
   # Get the number of nodes in the graph
   n_nodes <- node_count(graph)
 

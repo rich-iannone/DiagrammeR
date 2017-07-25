@@ -44,6 +44,13 @@ get_jaccard_similarity <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Ensure that values provided for the
+  # `direction` argument are from the
+  # valid options
+  if (!(direction %in% c("all", "in", "out"))) {
+    stop("Valid options for `direction` are `all`, `in`, or `out`.")
+  }
+
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
