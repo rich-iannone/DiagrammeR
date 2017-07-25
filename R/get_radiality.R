@@ -52,8 +52,8 @@
 #' #> 8   8 <NA>     8  10.0  2.555556
 #' #> 9   9 <NA>     9   8.5  3.000000
 #' #> 10 10 <NA>    10  10.0  3.000000
-#' @importFrom CePa radiality
 #' @importFrom igraph shortest.paths
+#' @importFrom igraph diameter
 #' @export get_radiality
 
 get_radiality <- function(graph,
@@ -64,25 +64,40 @@ get_radiality <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Get the number of nodes in the graph
+  n_nodes <- node_count(graph)
+
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  # Get the radiality scores for each of the
-  # graph's nodes
-  if (direction == "all") {
-    radiality_values <-
-      CePa::radiality(ig_graph, mode = "all")
-  }
+  # Get a matrix of shortest paths between all
+  # pairs of nodes in the graph
+  sp_matrix <-
+    igraph::shortest.paths(
+      graph = ig_graph,
+      mode = direction,
+      weights = NA)
 
-  if (direction == "out") {
-    radiality_values <-
-      CePa::radiality(ig_graph, mode = "out")
-  }
+  # Get the graph diameter
+  diam <-
+    igraph::diameter(
+      graph = ig_graph,
+      directed = ifelse(direction == "all", FALSE, TRUE))
 
-  if (direction == "in") {
-    radiality_values <-
-      CePa::radiality(ig_graph, mode = "in")
-  }
+  # Get the radiality values for all
+  # nodes in the graph
+  radiality_values <-
+    apply(
+      X = sp_matrix,
+      MARGIN = 1,
+      FUN = function(x) {
+        if (all(x == Inf)) {
+          return(0)
+        }
+        else {
+          return(sum(diam + 1 - x[x != Inf])/(n_nodes - 1))
+        }
+      })
 
   # Create df with radiality scores
   data.frame(
