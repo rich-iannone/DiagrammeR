@@ -17,8 +17,11 @@ This function will provide a summary
 of the graph.
 }
 \examples{
-# Create a graph
-graph <- create_graph()
+# Create a random graph
+graph <-
+  create_random_graph(
+    n = 10, m = 22,
+    set_seed = 23)
 
 # Get a summary of the graph
 graph
