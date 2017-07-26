@@ -5,8 +5,11 @@
 #' @return The graph object (invisibly).
 #' @method print dgr_graph
 #' @examples
-#' # Create a graph
-#' graph <- create_graph()
+#' # Create a random graph
+#' graph <-
+#'   create_random_graph(
+#'     n = 10, m = 22,
+#'     set_seed = 23)
 #'
 #' # Get a summary of the graph
 #' graph
@@ -14,6 +17,18 @@
 #' @export print.dgr_graph
 
 print.dgr_graph <- function(x) {
+
+  # Get the console width
+  console_width <- getOption("width")
+
+  # Create vector of information labels
+  info_labels <-
+    c("get_node_df" = " (i)-> `get_node_df()`",
+      "get_edge_df" = " (i)-> `get_edge_df()`",
+      "get_selection" = " (i)-> `get_selection()`",
+      "get_cache" = " (i)-> `get_cache()",
+      "get_attr_dfs" = " (i)-> `get_attr_dfs()`",
+      "get_global_graph_attrs" = " (i)-> `get_global_graph_attrs()`")
 
   # Get a count of all nodes in the graph
   node_count <- x %>% node_count()
@@ -375,8 +390,7 @@ print.dgr_graph <- function(x) {
         selection_type,
         ifelse(selection_count > 1, "s", ""),
         " selected",
-        ifelse(selection_all, " (ALL)", "")
-      )
+        ifelse(selection_all, " (ALL)", ""))
   }
 
   selection_detail_str <-
@@ -406,7 +420,7 @@ print.dgr_graph <- function(x) {
 
   cache_detail_str <-
     paste0(
-      "  CACHES / ",
+      "  CACHE / ",
       cache_str)
 
   #
@@ -459,6 +473,7 @@ print.dgr_graph <- function(x) {
       paste0(
         "  STORED DFs / <none>")
   }
+
 
   #
   # Create string for global attributes
@@ -538,8 +553,110 @@ print.dgr_graph <- function(x) {
 
   graph_history_detail_str <-
     paste0(
-      "  GRAPH HISTORY / ",
+      "  GRAPH LOG / ",
       last_actions_performed_str)
+
+  node_detail_str_1_length <- nchar(node_detail_str_1)
+  edge_detail_str_1_length <- nchar(edge_detail_str_1)
+  selection_detail_str_length <- nchar(selection_detail_str)
+  cache_detail_str_length <- nchar(cache_detail_str)
+  stored_dfs_detail_str_length <- nchar(stored_dfs_detail_str)
+  global_attrs_detail_str_length <- nchar(global_attrs_detail_str)
+
+  if (console_width - node_detail_str_1_length >= 5) {
+
+    node_detail_str_1 <-
+      node_detail_str_1 %>%
+      paste0(
+        .,
+        paste(
+          rep(" ",
+              (console_width -
+                 node_detail_str_1_length -
+                 nchar(info_labels["get_node_df"])[[1]])),
+          collapse = ""),
+        info_labels["get_node_df"])
+  }
+
+  if (console_width - edge_detail_str_1_length >= 5) {
+
+    edge_detail_str_1 <-
+      edge_detail_str_1 %>%
+      paste0(
+        .,
+        paste(
+          rep(" ",
+              (console_width -
+                 edge_detail_str_1_length -
+                 nchar(info_labels["get_edge_df"])[[1]])),
+          collapse = ""),
+        info_labels["get_edge_df"])
+  }
+
+  if (console_width - selection_detail_str_length >= 5 &
+      !is.na(get_selection(x))[1]) {
+
+    selection_detail_str <-
+      selection_detail_str %>%
+      paste0(
+        .,
+        paste(
+          rep(" ",
+              (console_width -
+                 selection_detail_str_length -
+                 nchar(info_labels["get_selection"])[[1]])),
+          collapse = ""),
+        info_labels["get_selection"])
+  }
+
+  if (console_width - cache_detail_str_length >= 5 &
+      !is.na(get_cache(x))[1]) {
+
+    cache_detail_str <-
+      cache_detail_str %>%
+      paste0(
+        .,
+        paste(
+          rep(" ",
+              (console_width -
+                 cache_detail_str_length -
+                 nchar(info_labels["get_cache"])[[1]])),
+          collapse = ""),
+        info_labels["get_cache"])
+  }
+
+  if (console_width - stored_dfs_detail_str_length >= 5 &
+      !is.na(get_df_ids(graph_df = x$nodes_df))[1]) {
+
+    stored_dfs_detail_str <-
+      stored_dfs_detail_str %>%
+      paste0(
+        .,
+        paste(
+          rep(" ",
+              (console_width -
+                 stored_dfs_detail_str_length -
+                 nchar(info_labels["get_attr_dfs"])[[1]])),
+          collapse = ""),
+        info_labels["get_attr_dfs"])
+  }
+
+  if (console_width - global_attrs_detail_str_length >= 5 &
+      nrow(get_global_graph_attrs(x)) != 0) {
+
+    global_attrs_detail_str <-
+      global_attrs_detail_str %>%
+      paste0(
+        .,
+        paste(
+          rep(" ",
+              (console_width -
+                 global_attrs_detail_str_length -
+                 nchar(info_labels["get_global_graph_attrs"])[[1]])),
+          collapse = ""),
+        info_labels["get_global_graph_attrs"])
+  }
+
 
   # Generate the complete statement for printing
   complete_stmt <-
