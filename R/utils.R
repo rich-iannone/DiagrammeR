@@ -540,7 +540,7 @@ value_per_node_functions <- function() {
 #' @importFrom dplyr select filter pull
 get_df_ids <- function(graph_df) {
 
-  if (nrow(graph_df > 0)) {
+  if (nrow(graph_df) > 0) {
 
     if ("df_id" %in% colnames(graph_df)) {
 
@@ -549,11 +549,11 @@ get_df_ids <- function(graph_df) {
         dplyr::filter(!is.na(df_id)) %>%
         dplyr::pull(df_id)
     } else {
-      as.character(NA)
+      return(as.character(NA))
     }
 
-  } else {
-    as.character(NA)
+  } else if (nrow(graph_df) == 0) {
+    return(as.character(NA))
   }
 }
 
