@@ -5,6 +5,7 @@
 #' @return The graph object (invisibly).
 #' @method print dgr_graph
 #' @examples
+#' \dontrun{
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -13,6 +14,7 @@
 #'
 #' # Get a summary of the graph
 #' graph
+#' }
 #' @export
 #' @export print.dgr_graph
 
@@ -570,10 +572,11 @@ print.dgr_graph <- function(x) {
       paste0(
         .,
         paste(
-          rep(" ",
-              (console_width -
-                 node_detail_str_1_length -
-                 nchar(info_labels["get_node_df"])[[1]])),
+          rep(
+            x = " ",
+            times = (console_width -
+                       node_detail_str_1_length -
+                       nchar(info_labels["get_node_df"])[[1]])),
           collapse = ""),
         info_labels["get_node_df"])
   }
@@ -585,10 +588,11 @@ print.dgr_graph <- function(x) {
       paste0(
         .,
         paste(
-          rep(" ",
-              (console_width -
-                 edge_detail_str_1_length -
-                 nchar(info_labels["get_edge_df"])[[1]])),
+          rep(
+            x = " ",
+            times = (console_width -
+                       edge_detail_str_1_length -
+                       nchar(info_labels["get_edge_df"])[[1]])),
           collapse = ""),
         info_labels["get_edge_df"])
   }
@@ -601,10 +605,11 @@ print.dgr_graph <- function(x) {
       paste0(
         .,
         paste(
-          rep(" ",
-              (console_width -
-                 selection_detail_str_length -
-                 nchar(info_labels["get_selection"])[[1]])),
+          rep(
+            x = " ",
+            times = (console_width -
+                       selection_detail_str_length -
+                       nchar(info_labels["get_selection"])[[1]])),
           collapse = ""),
         info_labels["get_selection"])
   }
@@ -617,10 +622,11 @@ print.dgr_graph <- function(x) {
       paste0(
         .,
         paste(
-          rep(" ",
-              (console_width -
-                 cache_detail_str_length -
-                 nchar(info_labels["get_cache"])[[1]])),
+          rep(
+            x = " ",
+            times = (console_width -
+                       cache_detail_str_length -
+                       nchar(info_labels["get_cache"])[[1]])),
           collapse = ""),
         info_labels["get_cache"])
   }
@@ -633,10 +639,11 @@ print.dgr_graph <- function(x) {
       paste0(
         .,
         paste(
-          rep(" ",
-              (console_width -
-                 stored_dfs_detail_str_length -
-                 nchar(info_labels["get_attr_dfs"])[[1]])),
+          rep(
+            x = " ",
+            times = (console_width -
+                       stored_dfs_detail_str_length -
+                       nchar(info_labels["get_attr_dfs"])[[1]])),
           collapse = ""),
         info_labels["get_attr_dfs"])
   }
@@ -649,14 +656,14 @@ print.dgr_graph <- function(x) {
       paste0(
         .,
         paste(
-          rep(" ",
-              (console_width -
-                 global_attrs_detail_str_length -
-                 nchar(info_labels["get_global_graph_attrs"])[[1]])),
+          rep(
+            x = " ",
+            times = (console_width -
+                       global_attrs_detail_str_length -
+                       nchar(info_labels["get_global_graph_attrs"])[[1]])),
           collapse = ""),
         info_labels["get_global_graph_attrs"])
   }
-
 
   # Generate the complete statement for printing
   complete_stmt <-
