@@ -17,6 +17,7 @@ This function will provide a summary
 of the graph.
 }
 \examples{
+\dontrun{
 # Create a random graph
 graph <-
   create_random_graph(
@@ -25,4 +26,5 @@ graph <-
 
 # Get a summary of the graph
 graph
+}
 }
