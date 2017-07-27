@@ -146,14 +146,13 @@ render_graph <- function(graph,
         dplyr::rename(fillcolor = new_fillcolor)
     }
 
-
     # Use adaptive font coloring for nodes that have a fill color
     if (!("fontcolor" %in% colnames(graph$nodes_df)) &
         "fillcolor" %in% colnames(graph$nodes_df)) {
 
       graph$nodes_df$fontcolor <-
         graph$nodes_df$fillcolor %>%
-        purrr::map(contrasting_text_color) %>% unlist()
+        purrr::map(.f = contrasting_text_color) %>% unlist()
     }
 
     if (!is.null(layout)) {
