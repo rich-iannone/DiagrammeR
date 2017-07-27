@@ -53,10 +53,10 @@
 #'     k = 2, h = 3) %>%
 #'   render_graph(graph, output = "visNetwork")
 #' }
-#' @importFrom dplyr select rename mutate filter coalesce left_join
+#' @importFrom dplyr select rename mutate filter coalesce left_join pull
 #' @importFrom igraph layout_in_circle layout_with_sugiyama layout_with_kk layout_with_fr layout_nicely
 #' @importFrom tibble as_tibble
-#' @importFrom purrr map flatten_chr
+#' @importFrom purrr flatten_chr
 #' @export render_graph
 
 render_graph <- function(graph,
@@ -152,7 +152,9 @@ render_graph <- function(graph,
 
       graph$nodes_df$fontcolor <-
         graph$nodes_df$fillcolor %>%
-        purrr::map(.f = contrasting_text_color) %>% unlist()
+        tibble::as_data_frame() %>%
+        dplyr::mutate(value_x = contrasting_text_color(background_color = value)) %>%
+        dplyr::pull(value_x)
     }
 
     if (!is.null(layout)) {
