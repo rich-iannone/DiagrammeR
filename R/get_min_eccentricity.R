@@ -1,4 +1,4 @@
-#' Get graph radius
+#' Get the minimum graph eccentricity
 #' @description Get the radius of a graph, which is
 #' the smallest eccentricity in the graph. The graph
 #' eccentricity of a node is its shortest path from
@@ -19,20 +19,20 @@
 #'   add_cycle(n = 5)
 #'
 #' # Determine the graph's radius
-#' get_radius(graph)
+#' get_min_eccentricity(graph)
 #' #> [1] 2
 #'
 #' # Create a full graph and then
 #' # get the radius for that
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
-#'   get_radius()
+#'   get_min_eccentricity()
 #' #> [1] 1
 #' @importFrom igraph radius
-#' @export get_radius
+#' @export get_min_eccentricity
 
-get_radius <- function(graph,
-                       direction = "all") {
+get_min_eccentricity <- function(graph,
+                                 direction = "all") {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
