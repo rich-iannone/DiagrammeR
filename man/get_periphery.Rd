@@ -25,5 +25,5 @@ create_random_graph(
     n = 15, m = 24,
     set_seed = 23) \%>\%
   get_periphery()
-#> [1] 2
+#> [1] 3 6
 }
