@@ -6,19 +6,21 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a single numeric value representing the
-#' diameter of the graph.
+#' maximum eccentricity of the graph.
 #' @examples
 #' # Create a cycle graph
 #' graph <-
 #'   create_graph() %>%
 #'   add_cycle(n = 5)
 #'
-#' # Determine the graph's diameter
+#' # Determine the graph's maximum
+#' # eccentricity
 #' get_max_eccentricity(graph)
-#' #> [1] 2
+#' #> [1] 4
 #'
 #' # Create a full graph and then
-#' # get the diameter for that
+#' # get the maximum eccentricity
+#' # value for that
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   get_max_eccentricity()
@@ -41,6 +43,6 @@ get_max_eccentricity <- function(graph) {
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  # Get the diameter of the graph
+  # Get the maximum eccentricity of the graph
   igraph::diameter(ig_graph)
 }

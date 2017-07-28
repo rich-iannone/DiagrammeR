@@ -11,19 +11,21 @@
 #' paths will be from a node whereas with \code{in},
 #' measurements of paths will be to a node.
 #' @return a single numeric value representing the
-#' radius of the graph.
+#' minimum eccentricity of the graph.
 #' @examples
 #' # Create a cycle graph
 #' graph <-
 #'   create_graph() %>%
 #'   add_cycle(n = 5)
 #'
-#' # Determine the graph's radius
+#' # Determine the graph's minimum
+#' # eccentricity
 #' get_min_eccentricity(graph)
 #' #> [1] 2
 #'
 #' # Create a full graph and then
-#' # get the radius for that
+#' # get the minimum eccentricity
+#' # value for that
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   get_min_eccentricity()
@@ -54,6 +56,6 @@ get_min_eccentricity <- function(graph,
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 
-  # Get the radius of the graph
+  # Get the minimum eccentricity of the graph
   igraph::radius(ig_graph, mode = direction)
 }
