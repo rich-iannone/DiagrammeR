@@ -12,7 +12,7 @@
 #'     n = 15, m = 24,
 #'     set_seed = 23) %>%
 #'   get_periphery()
-#' #> [1] 2
+#' #> [1] 3 6
 #' @importFrom dplyr filter pull
 #' @export get_periphery
 
