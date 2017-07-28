@@ -128,7 +128,7 @@ test_that("Getting maximum eccentricity is possible", {
 
   # Expect that `max_eccen` has the value 4
   expect_equal(
-    max_eccen, 4)
+    max_eccen, 3)
 })
 
 test_that("Getting minimum eccentricity is possible", {
@@ -203,12 +203,12 @@ test_that("Getting graph periphery is possible", {
   # Expect that `graph_periphery` has length 3 in
   # this case
   expect_equal(
-    length(graph_periphery), 3)
+    length(graph_periphery), 2)
 
   # Expect certain values for the
   # `graph_periphery` object
   expect_equal(
-    graph_periphery, c(1, 2, 4))
+    graph_periphery, c(3, 5))
 })
 
 test_that("Getting graph info is possible", {
