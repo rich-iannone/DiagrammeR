@@ -12,7 +12,7 @@ get_max_eccentricity(graph)
 }
 \value{
 a single numeric value representing the
-diameter of the graph.
+maximum eccentricity of the graph.
 }
 \description{
 Get the diameter of a graph, which is
@@ -26,12 +26,14 @@ graph <-
   create_graph() \%>\%
   add_cycle(n = 5)
 
-# Determine the graph's diameter
+# Determine the graph's maximum
+# eccentricity
 get_max_eccentricity(graph)
-#> [1] 2
+#> [1] 4
 
 # Create a full graph and then
-# get the diameter for that
+# get the maximum eccentricity
+# value for that
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   get_max_eccentricity()

@@ -18,7 +18,7 @@ measurements of paths will be to a node.}
 }
 \value{
 a single numeric value representing the
-radius of the graph.
+minimum eccentricity of the graph.
 }
 \description{
 Get the radius of a graph, which is
@@ -32,12 +32,14 @@ graph <-
   create_graph() \%>\%
   add_cycle(n = 5)
 
-# Determine the graph's radius
+# Determine the graph's minimum
+# eccentricity
 get_min_eccentricity(graph)
 #> [1] 2
 
 # Create a full graph and then
-# get the radius for that
+# get the minimum eccentricity
+# value for that
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   get_min_eccentricity()
