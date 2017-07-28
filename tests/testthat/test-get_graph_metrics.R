@@ -108,7 +108,7 @@ test_that("Getting degree distribution is possible", {
     c("degree", "outdegree_dist"))
 })
 
-test_that("Getting graph diameter is possible", {
+test_that("Getting maximum eccentricity is possible", {
 
   # Create a random graph
   graph <-
@@ -116,19 +116,42 @@ test_that("Getting graph diameter is possible", {
       n = 10, m = 22,
       set_seed = 23)
 
-  graph_diam <- get_graph_diameter(graph)
+  max_eccen <- get_max_eccentricity(graph)
 
-  # Expect that `graph_diam` is an integer vector
+  # Expect that `max_eccen` is a numeric vector
   expect_is(
-    graph_diam, "integer")
+    max_eccen, "numeric")
 
-  # Expect that `graph_diam` is of length 1
+  # Expect that `max_eccen` is of length 1
   expect_equal(
-    length(graph_diam), 1)
+    length(max_eccen), 1)
 
-  # Expect that `graph_diam` has the value 4
+  # Expect that `max_eccen` has the value 4
   expect_equal(
-    graph_diam, 4)
+    max_eccen, 4)
+})
+
+test_that("Getting minimum eccentricity is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 23)
+
+  min_eccen <- get_min_eccentricity(graph)
+
+  # Expect that `min_eccen` is a numeric vector
+  expect_is(
+    min_eccen, "numeric")
+
+  # Expect that `min_eccen` is of length 1
+  expect_equal(
+    length(min_eccen), 1)
+
+  # Expect that `min_eccen` has the value 4
+  expect_equal(
+    min_eccen, 2)
 })
 
 test_that("Getting graph eccentricity is possible", {
