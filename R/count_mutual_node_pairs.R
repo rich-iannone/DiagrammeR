@@ -13,7 +13,7 @@
 #'
 #' # Get a count of mutally-connected
 #' # node pairs
-#' count_mutual_nodes(graph)
+#' count_mutual_node_pairs(graph)
 #' #> [1] 0
 #'
 #' # Create a full graph and then
@@ -21,12 +21,12 @@
 #' # node pairs
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
-#'   count_mutual_nodes()
+#'   count_mutual_node_pairs()
 #' #> [1] 45
 #' @importFrom igraph dyad_census
-#' @export count_mutual_nodes
+#' @export count_mutual_node_pairs
 
-count_mutual_nodes <- function(graph) {
+count_mutual_node_pairs <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

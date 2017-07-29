@@ -13,7 +13,7 @@
 #'
 #' # Get a count of asymmetrically-
 #' # connected node pairs
-#' count_asymmetric_nodes(graph)
+#' count_asymmetric_node_pairs(graph)
 #' #> [1] 5
 #'
 #' # Create a full graph and then
@@ -21,12 +21,12 @@
 #' # connected node pairs
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
-#'   count_asymmetric_nodes()
+#'   count_asymmetric_node_pairs()
 #' #> [1] 0
 #' @importFrom igraph dyad_census
-#' @export count_asymmetric_nodes
+#' @export count_asymmetric_node_pairs
 
-count_asymmetric_nodes <- function(graph) {
+count_asymmetric_node_pairs <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
