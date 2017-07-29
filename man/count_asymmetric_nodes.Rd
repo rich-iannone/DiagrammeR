@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_asymmetric_nodes.R
 \name{count_asymmetric_nodes}
 \alias{count_asymmetric_nodes}
-\title{Get the number asymmetrically-connected node pairs}
+\title{Get the number of asymmetrically-connected node pairs}
 \usage{
 count_asymmetric_nodes(graph)
 }
@@ -12,11 +12,11 @@ count_asymmetric_nodes(graph)
 }
 \value{
 a single numeric value representing the
-mean distance of the graph.
+number of asymmetrically-connected node pairs.
 }
 \description{
-Get the number mutally-connected
-node pairs. This works for directed graphs.
+Get the number of asymmetrically-
+connected node pairs. This works for directed graphs.
 }
 \examples{
 # Create a cycle graph

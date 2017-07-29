@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_mutal_nodes.R
 \name{count_mutual_nodes}
 \alias{count_mutual_nodes}
-\title{Get the number mutally-connected node pairs}
+\title{Get the number of mutally-connected node pairs}
 \usage{
 count_mutual_nodes(graph)
 }
@@ -12,10 +12,10 @@ count_mutual_nodes(graph)
 }
 \value{
 a single numeric value representing the
-mean distance of the graph.
+number of mutually-connected node pairs.
 }
 \description{
-Get the number mutally-connected
+Get the number of mutally-connected
 node pairs. This works for directed graphs.
 }
 \examples{
