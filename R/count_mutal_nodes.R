@@ -17,7 +17,8 @@
 #' #> [1] 0
 #'
 #' # Create a full graph and then
-#' # get the mean distance value
+#' # count the mutally-connected
+#' # node pairs
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   count_mutual_nodes()
