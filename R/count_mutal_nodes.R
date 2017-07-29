@@ -1,10 +1,10 @@
-#' Get the number mutally-connected node pairs
-#' @description Get the number mutally-connected
+#' Get the number of mutally-connected node pairs
+#' @description Get the number of mutally-connected
 #' node pairs. This works for directed graphs.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a single numeric value representing the
-#' mean distance of the graph.
+#' number of mutually-connected node pairs.
 #' @examples
 #' # Create a cycle graph
 #' graph <-
