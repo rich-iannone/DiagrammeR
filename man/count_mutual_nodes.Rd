@@ -24,14 +24,16 @@ graph <-
   create_graph() \%>\%
   add_cycle(n = 5)
 
-# Determine the mean distance
-get_mean_distance(graph)
-#> [1] 2.5
+# Get a count of mutally-connected
+# node pairs
+count_mutual_nodes(graph)
+#> [1] 0
 
 # Create a full graph and then
-# get the mean distance value
+# count the mutally-connected
+# node pairs
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
-  get_mean_distance()
-#> [1] 1
+  count_mutual_nodes()
+#> [1] 45
 }
