@@ -26,14 +26,14 @@ graph <-
 
 # Get a count of asymmetrically-
 # connected node pairs
-count_mutual_nodes(graph)
-#> [1] 0
+count_asymmetric_nodes(graph)
+#> [1] 5
 
 # Create a full graph and then
 # count the asymmetrically-
 # connected node pairs
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
-  count_mutual_nodes()
-#> [1] 45
+  count_asymmetric_nodes()
+#> [1] 0
 }
