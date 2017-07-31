@@ -8,8 +8,8 @@
 #' \code{dgr_graph}.
 #' @return a logical value.
 #' @examples
-#' # Create graph where the edges have a
-#' # `weight` attribute
+#' # Create a graph where the edges have
+#' # a `weight` attribute
 #' graph <-
 #'   create_graph() %>%
 #'   add_cycle(n = 5) %>%
