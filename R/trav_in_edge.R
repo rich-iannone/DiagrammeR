@@ -35,17 +35,18 @@
 #'     edges = "1->2 1->3 2->4 2->5 3->5",
 #'     rel = c(NA, "A", "B", "C", "D"))
 #'
-#' # Create a data frame with node ID values
-#' # representing the graph edges (with `from`
-#' # and `to` columns), and, a set of numeric values
+#' # Create a data frame with node ID
+#' # values representing the graph edges
+#' # (with `from` and `to` columns), and,
+#' # a set of numeric values
 #' df <-
 #'   data.frame(
 #'     from = c(1, 1, 2, 2, 3),
 #'     to = c(2, 3, 4, 5, 5),
 #'     values = round(rnorm(5, 5), 2))
 #'
-#' # Join the data frame to the graph's internal
-#' # edge data frame (edf)
+#' # Join the data frame to the graph's
+#' # internal edge data frame (edf)
 #' graph <-
 #'   graph %>%
 #'   join_edge_attrs(df = df)
@@ -58,18 +59,20 @@
 #' #> 4  4    2  5    C   6.02
 #' #> 5  5    3  5    D   5.05
 #'
-#' # Perform a simple traversal from nodes to
-#' # inbound edges with no conditions on the
-#' # nodes traversed to
+#' # Perform a simple traversal from
+#' # nodes to inbound edges with no
+#' # conditions on the nodes
+#' # traversed to
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_in_edge() %>%
 #'   get_selection()
 #' #> [1] 1
 #'
-#' # Traverse from node `2` to any inbound
-#' # edges, filtering to those edges that have
-#' # NA values for the `rel` edge attribute
+#' # Traverse from node `2` to any
+#' # inbound edges, filtering to
+#' # those edges that have NA values
+#' # for the `rel` edge attribute
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_in_edge(
@@ -77,12 +80,13 @@
 #'   get_selection()
 #' #> [1] 1
 #'
-#' # Traverse from node `2` to any inbound
-#' # edges, filtering to those edges that do
-#' # not have NA values for the `rel` edge
-#' # attribute (since there are no allowed
-#' # traversals, the selection of node `2`
-#' # is retained)
+#' # Traverse from node `2` to any
+#' # inbound edges, filtering to those
+#' # edges that do not have NA values
+#' # for the `rel` edge attribute
+#' # (since there are no allowed
+#' # traversals, the selection of node
+#' # `2` is retained)
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_in_edge(
@@ -90,10 +94,11 @@
 #'   get_selection()
 #' #> [1] 2
 #'
-#' # Traverse from node `5` to any inbound
-#' # edges, filtering to those edges that have
-#' # numeric values greater than `5.5` for
-#' # the `rel` edge attribute
+#' # Traverse from node `5` to any
+#' # inbound edges, filtering to those
+#' # edges that have numeric values
+#' # greater than `5.5` for the `rel`
+#' # edge attribute
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_in_edge(
@@ -101,10 +106,10 @@
 #'   get_selection()
 #' #> [1] 4
 #'
-#' # Traverse from node `5` to any inbound
-#' # edges, filtering to those edges that
-#' # have values equal to `D` for the `rel`
-#' # edge attribute
+#' # Traverse from node `5` to any
+#' # inbound edges, filtering to those
+#' # edges that have values equal to
+#' # `D` for the `rel` edge attribute
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_in_edge(
@@ -112,10 +117,11 @@
 #'   get_selection()
 #' #> [1] 5
 #'
-#' # Traverse from node `5` to any inbound
-#' # edges, filtering to those edges that
-#' # have values in the set `C` and `D` for
-#' # the `rel` edge attribute
+#' # Traverse from node `5` to any
+#' # inbound edges, filtering to those
+#' # edges that have values in the set
+#' # `C` and `D` for the `rel` edge
+#' # attribute
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_in_edge(
@@ -123,9 +129,10 @@
 #'   get_selection()
 #' #> [1] 4 5
 #'
-#' # Traverse from node `5` to any inbound
-#' # edges, and use multiple conditions for the
-#' # traversal (using a vector in `conditions`
+#' # Traverse from node `5` to any
+#' # inbound edges, and use multiple
+#' # conditions for the traversal
+#' # (using a vector in `conditions`
 #' # creates a set of `AND` conditions)
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
@@ -136,10 +143,11 @@
 #'   get_selection()
 #' #> [1] 4
 #'
-#' # Traverse from node `5` to any inbound
-#' # edges, and use multiple conditions with
-#' # a single-length vector (here, using a
-#' # `|` to create a set of `OR` conditions)
+#' # Traverse from node `5` to any
+#' # inbound edges, and use multiple
+#' # conditions with a single-length
+#' # vector (here, using a `|` to create
+#' # a set of `OR` conditions)
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_in_edge(
@@ -148,15 +156,52 @@
 #'   get_selection()
 #' #> [1] 4 5
 #'
-#' # Traverse from node `5` to any inbound
-#' # edges, and use a regular expression as
-#' # a filtering condition
+#' # Traverse from node `5` to any
+#' # inbound edges, and use a regular
+#' # expression as a filtering condition
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_in_edge(
 #'     conditions = "grepl('C|D', rel)") %>%
 #'   get_selection()
 #' #> [1] 4 5
+#'
+#' # Show the graph's internal ndf
+#' graph %>%
+#'   get_node_df()
+#' #>   id type label value
+#' #> 1  1 <NA>  <NA>    NA
+#' #> 2  2 <NA>  <NA>     5
+#' #> 3  3 <NA>  <NA>     5
+#'
+#' # Show the graph's internal edf
+#' graph %>%
+#'   get_edge_df()
+#' #>   id from to  rel
+#' #> 1  1    2  1 <NA>
+#' #> 2  2    3  1 <NA>
+#'
+#' # Perform a traversal from all
+#' # nodes to their incoming edges and,
+#' # while doing so, copy the `label`
+#' # node attribute to any of the nodes'
+#' # incoming edges
+#' graph <-
+#'   graph %>%
+#'   select_nodes() %>%
+#'   trav_in_edge(
+#'     copy_attrs_from = "label")
+#'
+#' # Show the graph's internal edge
+#' # data frame after this change
+#' graph %>%
+#'   get_edge_df()
+#' #>   id from to  rel label values
+#' #> 1  1    1  2 <NA>  iekd   6.00
+#' #> 2  2    1  3    A   idj   6.11
+#' #> 3  3    2  4    B   edl   4.72
+#' #> 4  4    2  5    C   ohd   6.02
+#' #> 5  5    3  5    D   ohd   5.05
 #' @importFrom dplyr filter filter_ select select_ full_join rename everything
 #' @export trav_in_edge
 
@@ -245,10 +290,11 @@ trav_in_edge <- function(graph,
 
       edges <-
         ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edf, c("id" = "to")) %>%
-        dplyr::rename(to = id.y) %>%
+        dplyr::right_join(edf, c("id" = "to")) %>%
+        dplyr::rename(to = id) %>%
+        dplyr::rename(id = id.y) %>%
         dplyr::select(id, from, to, rel, dplyr::everything())
     }
 
@@ -257,9 +303,9 @@ trav_in_edge <- function(graph,
 
       edges <-
         ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edf, c("id" = "to")) %>%
+        dplyr::right_join(edf, c("id" = "to")) %>%
         dplyr::rename(to = id.y)
 
       # Get column numbers that end with ".x" or ".y"

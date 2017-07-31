@@ -156,6 +156,27 @@
 #'     conditions = "grepl('B|C', rel)") %>%
 #'   get_selection()
 #' #> [1] 3 4
+#'
+#' # Perform a traversal from all nodes to
+#' # their outgoing edges and, while doing
+#' # so, copy the `label` node attribute
+#' # to any of the nodes' incoming edges
+#' graph <-
+#'   graph %>%
+#'   select_nodes() %>%
+#'   trav_out_edge(
+#'     copy_attrs_from = "label")
+#'
+#' # Show the graph's internal edge
+#' # data frame after this change
+#' graph %>%
+#'   get_edge_df()
+#' #>   id from to  rel label values
+#' #> 1  1    1  2 <NA>   asd   6.00
+#' #> 2  1    2  3    A   asd   6.11
+#' #> 3  2    3  4    B  iekd   4.72
+#' #> 4  2    4  5    C  iekd   6.02
+#' #> 5  3    5  5    D   idj   5.05
 #' @importFrom dplyr filter filter_ select select_ full_join rename everything
 #' @export trav_out_edge
 
@@ -244,9 +265,9 @@ trav_out_edge <- function(graph,
 
       edges <-
         ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edf, c("id" = "from")) %>%
+        dplyr::right_join(edf, c("id" = "from")) %>%
         dplyr::rename(from = id.y) %>%
         dplyr::select(id, from, to, rel, dplyr::everything())
     }
@@ -256,9 +277,9 @@ trav_out_edge <- function(graph,
 
       edges <-
         ndf %>%
-        dplyr::filter(id == starting_nodes) %>%
+        dplyr::filter(id %in% starting_nodes) %>%
         dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::full_join(edf, c("id" = "from")) %>%
+        dplyr::right_join(edf, c("id" = "from")) %>%
         dplyr::rename(from = id) %>%
         dplyr::rename(id = id.y)
 
