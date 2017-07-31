@@ -21,8 +21,8 @@ have a edge \code{weight} attribute with
 numerical values assigned for all edges.
 }
 \examples{
-# Create graph where the edges have a
-# `weight` attribute
+# Create a graph where the edges have
+# a `weight` attribute
 graph <-
   create_graph() \%>\%
   add_cycle(n = 5) \%>\%
