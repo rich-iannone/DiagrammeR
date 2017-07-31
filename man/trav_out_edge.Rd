@@ -171,4 +171,25 @@ graph \%>\%
     conditions = "grepl('B|C', rel)") \%>\%
   get_selection()
 #> [1] 3 4
+
+# Perform a traversal from all nodes to
+# their outgoing edges and, while doing
+# so, copy the `label` node attribute
+# to any of the nodes' incoming edges
+graph <-
+  graph \%>\%
+  select_nodes() \%>\%
+  trav_out_edge(
+    copy_attrs_from = "label")
+
+# Show the graph's internal edge
+# data frame after this change
+graph \%>\%
+  get_edge_df()
+#>   id from to  rel label values
+#> 1  1    1  2 <NA>   asd   6.00
+#> 2  1    2  3    A   asd   6.11
+#> 3  2    3  4    B  iekd   4.72
+#> 4  2    4  5    C  iekd   6.02
+#> 5  3    5  5    D   idj   5.05
 }
