@@ -74,3 +74,35 @@ test_that("Identifying the graph as a property graph is possible", {
   expect_false(
     is_property_graph(not_a_property_graph))
 })
+
+test_that("Identifying the graph as a DAG is possible", {
+
+  # Create a graph with 2 nodes (with `type`
+  # values) and a single edge (with a `rel`)
+  non_dag <-
+    create_graph() %>%
+    add_cycle(n = 5) %>%
+    add_n_nodes(n = 2)
+
+  # Expect that this graph not be classified
+  # as a directed acyclic graph (DAG)
+  expect_false(
+    is_graph_dag(non_dag))
+
+  # Create a graph with a balanced tree and
+  # several isolated nodes; this is a DAG
+  a_dag <-
+    create_graph() %>%
+    add_balanced_tree(k = 3, h = 2) %>%
+    add_n_nodes(n = 2)
+
+  # Expect that this graph is classified
+  # as a directed acyclic graph (DAG)
+  expect_true(
+    is_graph_dag(a_dag))
+
+  # If a graph contains no nodes, then
+  # that graph is not a DAG
+  expect_false(
+    is_graph_dag(create_graph()))
+})
