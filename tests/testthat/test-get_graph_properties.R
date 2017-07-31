@@ -106,3 +106,74 @@ test_that("Identifying the graph as a DAG is possible", {
   expect_false(
     is_graph_dag(create_graph()))
 })
+
+test_that("Identifying the graph as weighted is possible", {
+
+  # Create a graph where the edges
+  # have a `weight` attribute
+  graph_weighted <-
+    create_graph() %>%
+    add_cycle(n = 5) %>%
+    select_edges() %>%
+    set_edge_attrs_ws(
+      edge_attr = "weight",
+      value = c(3, 5, 2, 9, 6)) %>%
+    clear_selection()
+
+  # Expect that this graph is classified
+  # as a weighted graph
+  expect_true(
+    is_graph_weighted(graph_weighted))
+
+  # Create a graph where the edges
+  # have a `weight` attribute, but
+  # there are some NA values in the
+  # `weight` column
+  graph_weights_incomplete <-
+    create_graph() %>%
+    add_cycle(n = 5) %>%
+    select_edges() %>%
+    set_edge_attrs_ws(
+      edge_attr = "weight",
+      value = c(3, 5, as.numeric(NA), 9, as.numeric(NA))) %>%
+    clear_selection()
+
+  # Expect that this graph won't be
+  # classified as a weighted graph since
+  # we need a complete set of values
+  # assigned to the edges
+  expect_false(
+    is_graph_weighted(graph_weights_incomplete))
+
+  # Create a graph where the edges
+  # have a `weight` attribute, but
+  # there the values contained therein
+  # are of the `character` class
+  graph_weights_chr <-
+    create_graph() %>%
+    add_cycle(n = 5) %>%
+    select_edges() %>%
+    set_edge_attrs_ws(
+      edge_attr = "weight",
+      value = as.character(c(3, 5, 2, 9, 6))) %>%
+    clear_selection()
+
+  # Expect that this graph won't be
+  # classified as a weighted graph since
+  # we the `weight` values to be either
+  # as `numeric` or as `integer`
+  expect_false(
+    is_graph_weighted(graph_weights_chr))
+
+  # Expect that an empty graph will
+  # return FALSE
+  expect_false(
+    is_graph_weighted(create_graph()))
+
+  # Expect that a graph with no edges
+  # will return FALSE
+  expect_false(
+    is_graph_weighted(
+      create_graph() %>%
+        add_n_nodes(n = 5)))
+})
