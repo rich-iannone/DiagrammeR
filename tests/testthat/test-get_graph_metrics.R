@@ -275,3 +275,32 @@ test_that("Checking whether the graph is connected is possible", {
   expect_false(
     is_graph_connected(graph_not_connected))
 })
+
+test_that("Getting graph adhesion is possible", {
+
+  # Create a cycle graph
+  graph_cycle <-
+    create_graph() %>%
+    add_cycle(n = 5)
+
+  # Create a full graph
+  graph_full <-
+    create_graph() %>%
+    add_full_graph(n = 8)
+
+  # Create an empty graph
+  graph_empty <-
+    create_graph()
+
+  # Expect specific adhesion values for
+  # the two non-empty graphs
+  expect_equal(
+    get_adhesion(graph_cycle), 1)
+
+  expect_equal(
+    get_adhesion(graph_full), 7)
+
+  # Expect NA for the empty graph
+  expect_equal(
+    get_adhesion(graph_empty), as.numeric(NA))
+})
