@@ -317,6 +317,41 @@ test_that("Getting alpha centrality is possible", {
     "numeric")
 })
 
+test_that("Getting leverage centrality is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 1)
+
+  leverage_central_vals <-
+    get_leverage_centrality(graph)
+
+  # Expect a data frame as output
+  expect_is(
+    leverage_central_vals, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(leverage_central_vals), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(leverage_central_vals), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    leverage_central_vals[,1],
+    as.integer(1:10))
+
+  # Expect numerical values in the
+  # second column
+  expect_is(
+    leverage_central_vals[, 2],
+    "numeric")
+})
+
 test_that("Getting authority centrality is possible", {
 
   set.seed(23)
