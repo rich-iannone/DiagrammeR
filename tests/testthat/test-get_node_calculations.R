@@ -156,6 +156,41 @@ test_that("Getting closeness is possible", {
     "numeric")
 })
 
+test_that("Getting closeness vitality is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 1,
+      directed = TRUE)
+
+  # Get closness vitality values
+  closeness_vitality_vals <- get_closeness_vitality(graph)
+
+  # Expect a data frame as output
+  expect_is(
+    closeness_vitality_vals, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(closeness_vitality_vals), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(closeness_vitality_vals), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    closeness_vitality_vals[, 1],
+    as.integer(1:10))
+
+  # Expect numeric values in the second column
+  expect_is(
+    closeness_vitality_vals[, 2],
+    "numeric")
+})
+
 test_that("Getting alpha centrality is possible", {
 
   # Create a random graph
