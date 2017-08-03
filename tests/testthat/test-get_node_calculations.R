@@ -156,6 +156,97 @@ test_that("Getting closeness is possible", {
     "numeric")
 })
 
+test_that("Getting coreness values is possible", {
+
+  # Create a random graph
+  graph <-
+    create_random_graph(
+      n = 10, m = 22,
+      set_seed = 1,
+      directed = TRUE)
+
+  # Get coreness values in all directions
+  coreness_vals_all <- get_coreness(graph)
+
+  # Expect a data frame as output
+  expect_is(
+    coreness_vals_all, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(coreness_vals_all), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(coreness_vals_all), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    coreness_vals_all[, 1],
+    as.integer(1:10))
+
+  # Expect numeric values in the second column
+  expect_is(
+    coreness_vals_all[, 2],
+    "numeric")
+
+  # Get coreness values in the `in` direction
+  coreness_vals_in <-
+    get_coreness(
+      graph = graph,
+      direction = "in")
+
+  # Expect a data frame as output
+  expect_is(
+    coreness_vals_in, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(coreness_vals_in), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(coreness_vals_in), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    coreness_vals_in[, 1],
+    as.integer(1:10))
+
+  # Expect numeric values in the second column
+  expect_is(
+    coreness_vals_in[, 2],
+    "numeric")
+
+  # Get coreness values in the `out` direction
+  coreness_vals_out <-
+    get_coreness(
+      graph = graph,
+      direction = "out")
+
+  # Expect a data frame as output
+  expect_is(
+    coreness_vals_out, "data.frame")
+
+  # Expect 2 columns in the df
+  expect_equal(
+    ncol(coreness_vals_out), 2)
+
+  # Expect 10 rows in the df
+  expect_equal(
+    nrow(coreness_vals_out), 10)
+
+  # Expect node ID values in the first column
+  expect_identical(
+    coreness_vals_out[, 1],
+    as.integer(1:10))
+
+  # Expect numeric values in the second column
+  expect_is(
+    coreness_vals_out[, 2],
+    "numeric")
+})
+
 test_that("Getting closeness vitality is possible", {
 
   # Create a random graph
