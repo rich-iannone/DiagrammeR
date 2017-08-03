@@ -92,7 +92,7 @@ get_coreness <- function(graph,
 
   # Create df with coreness values
   data.frame(
-    id = names(coreness_values),
+    id = names(coreness_values) %>% as.integer(),
     coreness = coreness_values,
     stringsAsFactors = FALSE)
 }
