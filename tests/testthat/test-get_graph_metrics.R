@@ -304,3 +304,32 @@ test_that("Getting graph adhesion is possible", {
   expect_equal(
     get_adhesion(graph_empty), as.numeric(NA))
 })
+
+test_that("Getting a count of graph automorphisms is possible", {
+
+# Create a cycle graph
+graph_cycle <-
+  create_graph() %>%
+  add_cycle(n = 5)
+
+# Create a full graph
+graph_full <-
+  create_graph() %>%
+  add_full_graph(n = 8)
+
+# Create an empty graph
+graph_empty <-
+  create_graph()
+
+# Expect specific automorphism counts
+# for the two non-empty graphs
+expect_equal(
+  count_automorphisms(graph_cycle), 10)
+
+expect_equal(
+  count_automorphisms(graph_full), 40320)
+
+# Expect NA for the empty graph
+expect_equal(
+  count_automorphisms(graph_empty), as.numeric(NA))
+})
