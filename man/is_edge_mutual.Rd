@@ -10,7 +10,7 @@ is_edge_mutual(graph, edge)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{edge}{an edge ID value.}
+\item{edge}{a numeric edge ID value.}
 }
 \value{
 a logical value.
