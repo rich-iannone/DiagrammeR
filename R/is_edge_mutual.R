@@ -4,7 +4,7 @@
 #' same node pair.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param edge an edge ID value.
+#' @param edge a numeric edge ID value.
 #' @return a logical value.
 #' @importFrom dplyr filter pull
 #' @export is_edge_mutual
@@ -22,8 +22,26 @@ is_edge_mutual <- function(graph,
     stop("The graph contains no edges, so, no edges can be selected.")
   }
 
+  # Stop function if more than one value
+  # provided for `edge`
+  if (length(edge) > 1) {
+    stop("Only a single should be provided for `edge`.")
+  }
+
+  # Stop function if the value provided
+  # in `edge` is not numeric
+  if (!is.numeric(edge)) {
+    stop("The value provided for `edge` should be numeric.")
+  }
+
   # Obtain the graph's edf
   edf <- graph$edges_df
+
+  # Stop function if the edge ID provided
+  # is not a valid edge ID
+  if (!(edge %in% edf$id)) {
+    stop("The provided edge ID is not present in the graph.")
+  }
 
   # Obtain the edge definition
   from <-
