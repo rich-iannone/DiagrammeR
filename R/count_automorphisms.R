@@ -38,8 +38,11 @@ count_automorphisms <- function(graph) {
     return(as.numeric(NA))
   }
 
+  # Convert the graph to an undirected graph
+  graph_undirected <- set_graph_undirected(graph)
+
   # Convert the graph to an igraph object
-  ig_graph <- to_igraph(graph)
+  ig_graph <- to_igraph(graph_undirected)
 
   # Get the number of automorphisms in
   # the graph
