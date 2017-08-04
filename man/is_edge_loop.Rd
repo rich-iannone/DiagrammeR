@@ -43,10 +43,10 @@ graph \%>\%
 #> 4  4    1  1 <NA>
 #> 5  5    3  3 <NA>
 
-# Determine if edge `1` is
+# Determine if edge `4` is
 # a loop edge
 graph \%>\%
-  is_edge_loop(edge = 1)
+  is_edge_loop(edge = 4)
 #> [1] TRUE
 
 # Determine if edge `2` is
