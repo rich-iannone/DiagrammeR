@@ -334,6 +334,35 @@ test_that("Getting graph girth is possible", {
     get_girth(graph_empty), as.numeric(NA))
 })
 
+test_that("Getting the mean distance for a graph is possible", {
+
+  # Create a cycle graph
+  graph_cycle <-
+    create_graph() %>%
+    add_cycle(n = 5)
+
+  # Create a full graph
+  graph_full <-
+    create_graph() %>%
+    add_full_graph(n = 8)
+
+  # Create an empty graph
+  graph_empty <-
+    create_graph()
+
+  # Expect specific mean distance values for
+  # the two non-empty graphs
+  expect_equal(
+    get_mean_distance(graph_cycle), 2.5)
+
+  expect_equal(
+    get_mean_distance(graph_full), 1)
+
+  # Expect NA for the empty graph
+  expect_equal(
+    get_mean_distance(graph_empty), as.numeric(NA))
+})
+
 test_that("Getting a count of graph automorphisms is possible", {
 
   # Create a cycle graph
