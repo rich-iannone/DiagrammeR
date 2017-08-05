@@ -363,6 +363,58 @@ test_that("Getting the mean distance for a graph is possible", {
     get_mean_distance(graph_empty), as.numeric(NA))
 })
 
+test_that("Getting the minimum cut between nodes is possible", {
+
+  # Set a seed
+  set.seed(23)
+
+  # Create a cycle graph
+  graph_cycle <-
+    create_graph() %>%
+    add_cycle(n = 5)
+
+  # Create a cycle graph with a
+  # `capacity` edge attribute
+  graph_capacity <-
+    create_graph() %>%
+    add_cycle(n = 5) %>%
+    select_edges() %>%
+    set_edge_attrs_ws(
+      edge_attr = "capacity",
+      value =
+        rnorm(
+          n = edge_count(.),
+          mean = 5,
+          sd = 1)) %>%
+    clear_selection()
+
+  # Create an empty graph
+  graph_empty <-
+    create_graph()
+
+  # Expect specific minimum cut values
+  # with different pairs of nodes from
+  # the two non-empty graphs
+  expect_equal(
+    get_min_cut_between(
+      graph = graph_cycle,
+      from = 1,
+      to = 2),
+    1)
+
+  expect_equal(
+    get_min_cut_between(
+      graph = graph_capacity,
+      from = 1,
+      to = 2),
+    tolerance = 0.02,
+    expected = 4.479822)
+
+  # Expect NA for the empty graph
+  expect_equal(
+    get_min_cut_between(graph_empty), as.numeric(NA))
+})
+
 test_that("Getting a count of graph automorphisms is possible", {
 
   # Create a cycle graph
