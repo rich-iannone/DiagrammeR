@@ -139,7 +139,10 @@ test_that("Getting minimum eccentricity is possible", {
       n = 10, m = 22,
       set_seed = 23)
 
-  min_eccen <- get_min_eccentricity(graph)
+  min_eccen <-
+    get_min_eccentricity(
+      graph = graph,
+      direction = "all")
 
   # Expect that `min_eccen` is a numeric vector
   expect_is(
@@ -152,6 +155,26 @@ test_that("Getting minimum eccentricity is possible", {
   # Expect that `min_eccen` has the value 4
   expect_equal(
     min_eccen, 2)
+
+  # Expect certain values with different
+  # values provided for `direction`
+  expect_equal(
+    get_min_eccentricity(
+      graph = create_graph() %>% add_cycle(n = 6),
+      direction = "out"),
+    5)
+
+  expect_equal(
+    get_min_eccentricity(
+      graph = create_graph() %>% add_cycle(n = 6),
+      direction = "in"),
+    5)
+
+  # Expect an error if `direction` is not valid
+  expect_error(
+    get_min_eccentricity(
+      graph = graph,
+      direction = "away"))
 })
 
 test_that("Getting graph eccentricity is possible", {
