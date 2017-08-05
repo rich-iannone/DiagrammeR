@@ -25,7 +25,7 @@ test_that("Getting betweenness is possible", {
   # Expect node ID values in the first column
   expect_identical(
     betweenness_vals[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -59,7 +59,7 @@ test_that("Getting bridging is possible", {
   # Expect node ID values in the first column
   expect_identical(
     bridging_vals[,1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -95,7 +95,7 @@ test_that("Getting closeness is possible", {
   # Expect node ID values in the first column
   expect_identical(
     closeness_vals_all[,1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Get closness values with `direction = out`
   closeness_vals_out <-
@@ -118,7 +118,7 @@ test_that("Getting closeness is possible", {
   # Expect node ID values in the first column
   expect_identical(
     closeness_vals_out[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -147,7 +147,7 @@ test_that("Getting closeness is possible", {
   # Expect node ID values in the first column
   expect_identical(
     closeness_vals_in[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -308,7 +308,7 @@ test_that("Getting alpha centrality is possible", {
   # Expect node ID values in the first column
   expect_identical(
     alpha_central_vals[,1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -417,15 +417,15 @@ test_that("Getting authority centrality is possible", {
   # Expect node ID values in the first column
   expect_identical(
     auth_central_vals[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   expect_identical(
     auth_central_vals_weight_1[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   expect_identical(
     auth_central_vals_weight_1[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -507,15 +507,15 @@ test_that("Getting eigenvector centrality is possible", {
   # Expect node ID values in the first column
   expect_identical(
     eigen_central_vals[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   expect_identical(
     eigen_central_vals_weight_1[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   expect_identical(
     eigen_central_vals_weight_1[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -559,7 +559,7 @@ test_that("Getting constraint values is possible", {
   # Expect node ID values in the first column
   expect_identical(
     constraint_vals[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
@@ -588,7 +588,7 @@ test_that("Getting constraint values is possible", {
   # Expect node ID values in the first column
   expect_identical(
     constraint_vals_selected[, 1],
-    as.character(1:5))
+    as.integer(1:5))
 
   # Expect numerical values in the
   # second column
@@ -630,7 +630,7 @@ test_that("Getting PageRank values is possible", {
   # Expect node ID values in the first column
   expect_identical(
     pagerank_vals[, 1],
-    as.character(1:10))
+    as.integer(1:10))
 
   # Expect numerical values in the
   # second column
