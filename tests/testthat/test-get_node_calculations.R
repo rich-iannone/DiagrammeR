@@ -644,37 +644,37 @@ test_that("Getting radiality values is possible", {
     get_radiality(
       graph = graph,
       direction = "all")[, 2] %>% min(),
-    3)
+    2.5)
 
   expect_lte(
     get_radiality(
       graph = graph,
       direction = "all")[, 2] %>% max(),
-    6.2)
+    3.3)
 
   expect_gte(
     get_radiality(
       graph = graph,
       direction = "in")[, 2] %>% min(),
-    0.17)
+    0.4)
 
   expect_lte(
     get_radiality(
       graph = graph,
       direction = "in")[, 2] %>% max(),
-    2.1)
+    2.8)
 
   expect_gte(
     get_radiality(
       graph = graph,
       direction = "out")[, 2] %>% min(),
-    0.17)
+    0.4)
 
   expect_lte(
     get_radiality(
       graph = graph,
       direction = "out")[, 2] %>% max(),
-    1.6)
+    2.5)
 
   # Expect an error if using a `direction`
   # value that isn't valid
@@ -738,7 +738,7 @@ test_that("Getting articulation points is possible", {
 
   # Expect 4 values in the vector
   expect_equal(
-    length(articulation_points), 4)
+    length(articulation_points), 7)
 })
 
 test_that("Getting weakly connected components is possible", {
