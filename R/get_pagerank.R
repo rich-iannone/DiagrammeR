@@ -68,7 +68,9 @@ get_pagerank <- function(graph,
 
   # Create df with the PageRank values
   data.frame(
-    id = names(pagerank_values),
+    id = pagerank_values %>%
+      names() %>%
+      as.integer(),
     pagerank = pagerank_values,
     stringsAsFactors = FALSE)
 }

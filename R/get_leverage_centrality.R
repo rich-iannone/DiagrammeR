@@ -87,7 +87,9 @@ get_leverage_centrality <- function(graph) {
 
   # Create df with leverage centrality values
   data.frame(
-    id = names(degree_vals) %>% as.integer(),
+    id = degree_vals %>%
+      names() %>%
+      as.integer(),
     leverage_centrality = leverage_centrality_values,
     stringsAsFactors = FALSE)
 }

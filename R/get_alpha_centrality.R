@@ -71,7 +71,9 @@ get_alpha_centrality <- function(graph,
 
   # Create df with alpha centrality values
   data.frame(
-    id = names(alpha_centrality_values),
+    id = alpha_centrality_values %>%
+      names() %>%
+      as.integer(),
     alpha_centrality = alpha_centrality_values,
     stringsAsFactors = FALSE)
 }

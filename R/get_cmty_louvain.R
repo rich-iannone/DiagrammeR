@@ -74,7 +74,7 @@ get_cmty_louvain <- function(graph) {
 
   # Create df with node memberships
   data.frame(
-    id = as.integer(names(igraph::membership(cmty_louvain_obj))),
+    id = igraph::membership(cmty_louvain_obj) %>% names() %>% as.integer(),
     louvain_group = as.vector(igraph::membership(cmty_louvain_obj)),
     stringsAsFactors = FALSE)
 }

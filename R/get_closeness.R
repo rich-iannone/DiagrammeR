@@ -92,7 +92,9 @@ get_closeness <- function(graph,
 
   # Create df with betweenness scores
   data.frame(
-    id = names(closeness_values),
+    id = closeness_values %>%
+      names() %>%
+      as.integer(),
     closeness = closeness_values,
     stringsAsFactors = FALSE)
 }

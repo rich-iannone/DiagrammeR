@@ -80,7 +80,7 @@ get_constraint <- function(graph,
   # Create df with betweenness scores
   constraint_scores_df <-
     data.frame(
-      id = names(constraint_scores),
+      id = constraint_scores %>% names() %>% as.integer(),
       constraint = constraint_scores,
       stringsAsFactors = FALSE)
 

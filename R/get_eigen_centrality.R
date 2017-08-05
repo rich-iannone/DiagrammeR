@@ -71,7 +71,9 @@ get_eigen_centrality <- function(graph,
 
   # Create df with eigen centrality values
   data.frame(
-    id = names(eigen_centrality_values$vector),
+    id = eigen_centrality_values$vector %>%
+      names() %>%
+      as.integer(),
     eigen_centrality = unname(eigen_centrality_values$vector),
     stringsAsFactors = FALSE)
 }

@@ -71,7 +71,9 @@ get_authority_centrality <- function(graph,
 
   # Create df with authority centrality values
   data.frame(
-    id = names(authority_centrality_values$vector),
+    id = authority_centrality_values$vector %>%
+      names() %>%
+      as.integer(),
     authority_centrality = unname(authority_centrality_values$vector),
     stringsAsFactors = FALSE)
 }

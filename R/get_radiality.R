@@ -107,7 +107,9 @@ get_radiality <- function(graph,
 
   # Create df with radiality scores
   data.frame(
-    id = names(radiality_values) %>% as.integer(),
+    id = radiality_values %>%
+      names() %>%
+      as.integer(),
     radiality = radiality_values,
     stringsAsFactors = FALSE)
 }

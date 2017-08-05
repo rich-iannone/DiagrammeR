@@ -86,7 +86,9 @@ get_degree_in <- function(graph,
 
   # Create df with indegree scores
   data.frame(
-    id = names(indegree_values),
+    id = indegree_values %>%
+      names() %>%
+      as.integer(),
     indegree = indegree_values,
     stringsAsFactors = FALSE)
 
