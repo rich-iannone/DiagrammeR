@@ -49,7 +49,7 @@ get_node_ids(ndf)
 # `value` attribute greater than 3)
 get_node_ids(
   graph,
-  conditions = "value > 3")
+  conditions = value > 3)
 #> [1] 1 3
 
 # Get a vector of node ID values using
@@ -57,14 +57,15 @@ get_node_ids(
 # `color` attribute of `green`)
 get_node_ids(
   graph,
-  conditions = "color == 'green'")
+  conditions = color == "green")
 #> [1] 2
 
 # Use multiple conditions to return nodes
 # with the desired attribute values
 get_node_ids(
   graph,
-  conditions = c("color == 'blue'",
-                 "value > 5"))
+  conditions =
+    color == "blue" &
+    value > 5)
 #> [1] 3
 }

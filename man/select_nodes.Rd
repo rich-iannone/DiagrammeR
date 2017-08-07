@@ -68,7 +68,7 @@ graph <-
   graph \%>\%
   clear_selection() \%>\%
   select_nodes(
-    conditions = "type == 'z'")
+    conditions = type == "z")
 
 # Verify that an node selection has been made, and
 # recall that the `3` and `4` nodes are of the
@@ -83,7 +83,7 @@ graph <-
   graph \%>\%
   clear_selection() \%>\%
   select_nodes(
-    conditions = "value > 3.0")
+    conditions = value > 3.0)
 
 # Verify that the correct node selection has been
 # made; in this case, nodes `1` and `3` have values

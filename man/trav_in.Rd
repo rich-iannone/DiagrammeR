@@ -83,6 +83,7 @@ graph <-
   join_edge_attrs(df = df_edges) \%>\%
   join_node_attrs(df = df_nodes)
 
+# Show the graph's internal node data frame
 get_node_df(graph)
 #>   id type label values
 #> 1  1    a   asd   8.58
@@ -91,6 +92,7 @@ get_node_df(graph)
 #> 4  4    b   edl   6.71
 #> 5  5    b   ohd   7.48
 
+# Show the graph's internal edge data frame
 get_edge_df(graph)
 #>   id from to  rel values
 #> 1  1    1  2 <NA>   6.00
@@ -115,7 +117,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 4) \%>\%
   trav_in(
-    conditions = "values > 5.0") \%>\%
+    conditions = values > 5.0) \%>\%
   get_selection()
 #> [1] 2
 
@@ -125,7 +127,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 5) \%>\%
   trav_in(
-    conditions = "type == 'b'") \%>\%
+    conditions = type == "b") \%>\%
   get_selection()
 #> [1] 3
 
@@ -136,37 +138,35 @@ graph \%>\%
   {
   node_degrees <-
     node_info(.) \%>\%
-    dplyr::select(id, deg)
+    select(id, deg)
   join_node_attrs(., node_degrees)
   } \%>\%
   select_nodes_by_id(nodes = 5) \%>\%
   trav_in(
-    conditions = "deg == 2") \%>\%
+    conditions = deg == 2) \%>\%
   get_selection()
 #> [1] 3
 
 # Traverse from node `5` to any inbound
 # nodes, and use multiple conditions for the
-# traversal (using a vector in `conditions`
-# creates a set of `AND` conditions)
+# traversal
 graph \%>\%
   select_nodes_by_id(nodes = 5) \%>\%
   trav_in(
-    conditions = c(
-      "type == 'a'",
-      "values > 6.0")) \%>\%
+    conditions =
+      type == "a" &
+      values > 6.0) \%>\%
   get_selection()
 #> [1] 2
 
 # Traverse from node `5` to any inbound
 # nodes, and use multiple conditions with
-# a single-length vector (here, using a
-# `|` to create a set of `OR` conditions)
+# a single-length vector
 graph \%>\%
   select_nodes_by_id(nodes = 5) \%>\%
   trav_in(
-    conditions = c(
-      "type == 'b' | values > 6.0")) \%>\%
+    conditions =
+      type == 'b' | values > 6.0) \%>\%
   get_selection()
 #> [1] 2 3
 
@@ -176,7 +176,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_in(
-    conditions = "grepl('^i...', label)") \%>\%
+    conditions = grepl("^i.*", label)) \%>\%
   get_selection()
 #> [1] 2
 

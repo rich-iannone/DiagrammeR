@@ -67,7 +67,7 @@ graph <-
 df_edges <-
   data.frame(
     from = c(1, 1, 2, 2, 3),
-    to = c(2, 3, 4, 5, 5),
+      to = c(2, 3, 4, 5, 5),
     values = round(rnorm(5, 5), 2))
 
 # Create a data frame with node ID values
@@ -85,6 +85,7 @@ graph <-
   join_edge_attrs(df = df_edges) \%>\%
   join_node_attrs(df = df_nodes)
 
+# Show the graph's internal node data frame
 get_node_df(graph)
 #>   id type label values
 #> 1  1    a   asd   8.58
@@ -93,6 +94,7 @@ get_node_df(graph)
 #> 4  4    b   edl   6.71
 #> 5  5    b   ohd   7.48
 
+# Show the graph's internal edge data frame
 get_edge_df(graph)
 #>   id from to  rel values
 #> 1  1    1  2 <NA>   6.00
@@ -107,7 +109,9 @@ get_edge_df(graph)
 # conditions are placed on the nodes
 # traversed to
 graph \%>\%
-  select_edges(from = 1, to = 3) \%>\%
+  select_edges(
+    from = 1,
+      to = 3) \%>\%
   trav_out_node() \%>\%
   get_selection()
 #> [1] 1
@@ -117,8 +121,12 @@ graph \%>\%
 # the direction of the edge; here, the
 # traversals lead to different nodes
 graph \%>\%
-  select_edges(from = 2, to = 5) \%>\%
-  select_edges(from = 3, to = 5) \%>\%
+  select_edges(
+    from = 2,
+      to = 5) \%>\%
+  select_edges(
+    from = 3,
+      to = 5) \%>\%
   trav_out_node() \%>\%
   get_selection()
 #> [1] 2 3
@@ -129,9 +137,11 @@ graph \%>\%
 # numeric values greater than `7.0` for
 # the `values` node attribute
 graph \%>\%
-  select_edges(from = 1, to = 3) \%>\%
+  select_edges(
+    from = 1,
+      to = 3) \%>\%
   trav_out_node(
-    conditions = "values > 7.0") \%>\%
+    conditions = values > 7.0) \%>\%
   get_selection()
 #> [1] 1
 
@@ -143,20 +153,24 @@ graph \%>\%
 # condition is not met so the original
 # selection of edge `1`->`3` remains)
 graph \%>\%
-  select_edges(from = 1, to = 3) \%>\%
+  select_edges(
+    from = 1,
+      to = 3) \%>\%
   trav_out_node(
-    conditions = "values < 7.0") \%>\%
+    conditions = values < 7.0) \%>\%
   get_selection()
 #> [1] 2
 
-# Traverse from the edge `1`->`2` to
-# the node `2` using multiple conditions
-# with a single-length vector (here, using
-# a `|` to create a set of `OR` conditions)
+# Traverse from the edge `1`->`2`
+# to node `2`, using multiple conditions
 graph \%>\%
-  select_edges(from = 1, to = 2) \%>\%
+  select_edges(
+    from = 1,
+      to = 2) \%>\%
   trav_out_node(
-    conditions = "grepl('.*d$', label) | values < 6.0") \%>\%
+    conditions =
+      grepl(".*d$", label) |
+      values < 6.0) \%>\%
   get_selection()
 #> [1] 1
 

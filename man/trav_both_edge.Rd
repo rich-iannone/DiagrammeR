@@ -75,6 +75,7 @@ graph <-
   graph \%>\%
   join_edge_attrs(df = df)
 
+# Show the graph's internal edge data frame
 get_edge_df(graph)
 #>   id from to  rel values
 #> 1  1    1  2 <NA>   6.00
@@ -98,7 +99,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_both_edge(
-    conditions = "is.na(rel)") \%>\%
+    conditions = is.na(rel)) \%>\%
   get_selection()
 #> [1] 1
 
@@ -109,7 +110,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_both_edge(
-    conditions = "values > 6.5") \%>\%
+    conditions = values > 6.5) \%>\%
   get_selection()
 #> [1] 2
 
@@ -120,7 +121,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 5) \%>\%
   trav_both_edge(
-    conditions = "rel == 'C'") \%>\%
+    conditions = rel == "C") \%>\%
   get_selection()
 #> [1] 4
 
@@ -131,32 +132,31 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_both_edge(
-    conditions = "rel \%in\% c('B', 'C')") \%>\%
+    conditions = rel \%in\% c("B", "C")) \%>\%
   get_selection()
 #> [1] 3 4
 
 # Traverse from node `2` to any adjacent
 # edges, and use multiple conditions for the
-# traversal (using a vector in `conditions`
-# creates a set of `AND` conditions)
+# traversal
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_both_edge(
-    conditions = c(
-      "rel \%in\% c('B', 'C')",
-      "values > 4.0")) \%>\%
+    conditions =
+      rel \%in\% c("B", "C") &
+      values > 4.0) \%>\%
   get_selection()
 #> [1] 3 4
 
 # Traverse from node `2` to any adjacent
 # edges, and use multiple conditions with
-# a single-length vector (here, using a
-# `|` to create a set of `OR` conditions)
+# a single-length vector
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_both_edge(
-    conditions = c(
-      "rel \%in\% c('B', 'C') | values > 4.0")) \%>\%
+    conditions =
+      rel \%in\% c("B", "C") |
+      values > 4.0) \%>\%
   get_selection()
 #> [1] 1 3 4
 
@@ -166,7 +166,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_both_edge(
-    conditions = "grepl('B|C', rel)") \%>\%
+    conditions = grepl("B|C", rel)) \%>\%
   get_selection()
 #> [1] 3 4
 

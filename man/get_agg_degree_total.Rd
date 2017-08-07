@@ -56,6 +56,6 @@ get_agg_degree_total(
 get_agg_degree_total(
   graph = random_graph,
   agg = "mean",
-  conditions = "value < 5.0")
+  conditions = value < 5.0)
 #> [1] 5.333333
 }

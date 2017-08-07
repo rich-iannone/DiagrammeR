@@ -76,7 +76,7 @@ graph <-
   graph \%>\%
   clear_selection() \%>\%
   select_edges(
-    conditions = "rel == 'z'")
+    conditions = rel == "z")
 
 # Verify that an edge selection has been made, and
 # recall that the `2`->`3` edge uniquely has the
@@ -91,7 +91,7 @@ graph <-
   graph \%>\%
   clear_selection() \%>\%
   select_edges(
-    conditions = "value > 3.0")
+    conditions = value > 3.0)
 
 # Verify that the correct edge selection has been
 # made; in this case, edges `1`->`4` and

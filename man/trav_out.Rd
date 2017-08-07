@@ -83,6 +83,7 @@ graph <-
   join_edge_attrs(df = df_edges) \%>\%
   join_node_attrs(df = df_nodes)
 
+# Show the graph's internal node data frame
 get_node_df(graph)
 #>   id type label values
 #> 1  1    a   asd   8.58
@@ -91,6 +92,7 @@ get_node_df(graph)
 #> 4  4    b   edl   6.71
 #> 5  5    b   ohd   7.48
 
+# Show the graph's internal edge data frame
 get_edge_df(graph)
 #>   id from to  rel values
 #> 1  1    1  2 <NA>   6.00
@@ -115,7 +117,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 1) \%>\%
   trav_out(
-    conditions = "values > 7.0") \%>\%
+    conditions = values > 7.0) \%>\%
   get_selection()
 #> [1] 2
 
@@ -125,7 +127,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 1) \%>\%
   trav_out(
-    conditions = "type == 'b'") \%>\%
+    conditions = type == "b") \%>\%
   get_selection()
 #> [1] 3
 
@@ -143,32 +145,31 @@ graph \%>\%
   } \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_out(
-    conditions = "deg == 1") \%>\%
+    conditions = deg == 1) \%>\%
   get_selection()
 #> [1] 4
 
 # Traverse from node `2` to any outbound
-# nodes, and use multiple conditions for the
-# traversal (using a vector in `conditions`
-# creates a set of `AND` conditions)
+# nodes, and use multiple conditions for
+# the traversal
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_out(
-    conditions = c(
-      "type == 'a'",
-      "values > 8.0")) \%>\%
+    conditions =
+      type == "a" &
+      values > 8.0) \%>\%
   get_selection()
 #> [1] 2
 
-# Traverse from node `2` to any outbound
-# nodes, and use multiple conditions with
-# a single-length vector (here, using a
-# `|` to create a set of `OR` conditions)
+# Traverse from node `2` to any
+# outbound nodes, and use multiple
+# conditions with a single-length vector
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_out(
-    conditions = c(
-      "type == 'b' | values > 8.0")) \%>\%
+    conditions =
+      type == "b" |
+      values > 8.0) \%>\%
   get_selection()
 #> [1] 4 5
 
@@ -178,7 +179,7 @@ graph \%>\%
 graph \%>\%
   select_nodes_by_id(nodes = 2) \%>\%
   trav_out(
-    conditions = "grepl('..d', label)") \%>\%
+    conditions = grepl("..d", label)) \%>\%
   get_selection()
 #> [1] 5
 
@@ -225,8 +226,8 @@ graph <-
     copy_attrs_from = "value",
     agg = "sum")
 
-# Show the graph's internal node data frame
-# after this change
+# Show the graph's internal node data
+# frame after this change
 graph \%>\%
   get_node_df()
 #>   id type label value

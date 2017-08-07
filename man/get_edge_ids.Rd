@@ -55,7 +55,7 @@ get_edge_ids(graph)
 # `value` attribute greater than 3)
 get_edge_ids(
   graph,
-  conditions = "value > 3")
+  conditions = value > 3)
 #> [1] 1 3
 
 # Get a vector of edge ID values using
@@ -63,7 +63,7 @@ get_edge_ids(
 # `color` attribute of `pink`)
 get_edge_ids(
   graph,
-  conditions = "color == 'pink'")
+  conditions = color == "pink")
 #> [1] 1
 
 # Use multiple conditions to return edges
@@ -71,7 +71,7 @@ get_edge_ids(
 get_edge_ids(
   graph,
   conditions =
-    c("color == 'blue'",
-      "value > 5"))
+    color == "blue" &
+    value > 5)
 #> [1] 3
 }
