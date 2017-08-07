@@ -464,6 +464,21 @@ test_that("Getting node attributes with a selection is possible", {
 
   expect_equal(
     nodes_1_3[[2]], 3.5)
+
+  # Expect an error if there is no
+  # node selection
+  expect_error(
+    get_node_attrs_ws(
+      graph = graph %>%
+        clear_selection(),
+      node_attr = "value"))
+
+  # Expect an error if referencing
+  # `id` column
+  expect_error(
+    get_node_attrs_ws(
+      graph = graph,
+      node_attr = "id"))
 })
 
 test_that("Getting edge attributes with a selection is possible", {
@@ -531,4 +546,12 @@ test_that("Getting edge attributes with a selection is possible", {
 
   expect_equal(
     edge_attr_values[[2]], 2.9)
+
+  # Expect an error if there is no
+  # edge selection
+  expect_error(
+    get_edge_attrs_ws(
+      graph = graph %>%
+        clear_selection(),
+      edge_attr = "value"))
 })
