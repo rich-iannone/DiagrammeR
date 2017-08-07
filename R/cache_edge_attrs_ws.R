@@ -40,17 +40,17 @@
 #' graph <-
 #'   graph %>%
 #'   select_edges(
-#'     conditions = "value < 5.0")
+#'     conditions = value < 5.0)
 #'
 #' # Show the graph's edge data frame
 #' graph %>%
 #'   get_edge_df()
 #' #>   id from to  rel    value
-#' #> 1  1    1  2 <NA> 4.595777
-#' #> 2  2    2  3 <NA> 5.355001
-#' #> 3  3    3  4 <NA> 7.615295
-#' #> 4  4    4  5 <NA> 2.314129
-#' #> 5  5    5  6 <NA> 6.722166
+#' #> 1  1    1  2 <NA> 5.090874
+#' #> 2  2    2  3 <NA> 8.151559
+#' #> 3  3    3  4 <NA> 5.436577
+#' #> 4  4    4  5 <NA> 2.906929
+#' #> 5  5    5  6 <NA> 4.422623
 #'
 #' # Cache available values from the edge
 #' # attribute `value` from the edges that
@@ -65,7 +65,7 @@
 #' # Get the cached vector with `get_cache()`
 #' graph %>%
 #'   get_cache(name = "edge_value")
-#' #> [1] 4.595777 2.314129
+#' #> [1] 2.906929 4.422623
 #' @importFrom dplyr filter select_ rename_ mutate
 #' @export cache_edge_attrs_ws
 

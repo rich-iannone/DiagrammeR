@@ -35,7 +35,7 @@
 #' # `value` attribute greater than 3)
 #' get_node_ids(
 #'   graph,
-#'   conditions = "value > 3")
+#'   conditions = value > 3)
 #' #> [1] 1 3
 #'
 #' # Get a vector of node ID values using
@@ -43,21 +43,25 @@
 #' # `color` attribute of `green`)
 #' get_node_ids(
 #'   graph,
-#'   conditions = "color == 'green'")
+#'   conditions = color == "green")
 #' #> [1] 2
 #'
 #' # Use multiple conditions to return nodes
 #' # with the desired attribute values
 #' get_node_ids(
 #'   graph,
-#'   conditions = c("color == 'blue'",
-#'                  "value > 5"))
+#'   conditions =
+#'     color == "blue" &
+#'     value > 5)
 #' #> [1] 3
-#' @importFrom dplyr filter_
+#' @importFrom dplyr filter pull
+#' @importFrom rlang enquo UQ
 #' @export get_node_ids
 
 get_node_ids <- function(x,
                          conditions = NULL) {
+
+  conditions <- rlang::enquo(conditions)
 
   if (inherits(x, "dgr_graph")) {
     if (is_graph_empty(x)) {
@@ -78,12 +82,12 @@ get_node_ids <- function(x,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `nodes_df`
-  if (!is.null(conditions)) {
-    for (i in 1:length(conditions)) {
-      nodes_df <-
-        nodes_df %>%
-        dplyr::filter_(conditions[i])
-    }
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+
+    nodes_df <-
+      filter(
+        .data = nodes_df,
+        rlang::UQ(conditions))
   }
 
   # If no nodes remain then return NA
@@ -91,5 +95,6 @@ get_node_ids <- function(x,
     return(NA)
   }
 
-  nodes_df$id
+  nodes_df %>%
+    dplyr::pull(id)
 }

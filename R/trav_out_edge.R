@@ -54,6 +54,7 @@
 #'   graph %>%
 #'   join_edge_attrs(df)
 #'
+#' # Show the graph's internal node data frame
 #' get_node_df(graph)
 #' #>   id type label values
 #' #> 1  1    a   asd    2.3
@@ -62,6 +63,7 @@
 #' #> 4  4    b   edl    8.3
 #' #> 5  5    b   ohd    6.3
 #'
+#' # Show the graph's internal edge data frame
 #' get_edge_df(graph)
 #' #>   id from to  rel values
 #' #> 1  1    1  2 <NA>   6.00
@@ -85,7 +87,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 1) %>%
 #'   trav_out_edge(
-#'     conditions = "is.na(rel)") %>%
+#'     conditions = is.na(rel)) %>%
 #'   get_selection()
 #' #> [1] 1
 #'
@@ -96,7 +98,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 3) %>%
 #'   trav_out_edge(
-#'     conditions = "values > 5.0") %>%
+#'     conditions = values > 5.0) %>%
 #'   get_selection()
 #' #> [1] 5
 #'
@@ -107,7 +109,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 1) %>%
 #'   trav_out_edge(
-#'     conditions = "rel == 'A'") %>%
+#'     conditions = rel == "A") %>%
 #'   get_selection()
 #' #> [1] 2
 #'
@@ -118,32 +120,31 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_out_edge(
-#'     conditions = "rel %in% c('B', 'C')") %>%
+#'     conditions = rel %in% c("B", "C")) %>%
 #'   get_selection()
 #' #> [1] 3 4
 #'
-#' # Traverse from node `2` to any outbound
-#' # edges, and use multiple conditions for the
-#' # traversal (using a vector in `conditions`
-#' # creates a set of `AND` conditions)
+#' # Traverse from node `2` to any
+#' # outbound edges, and use multiple
+#' # conditions for the traversal
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_out_edge(
-#'     conditions = c(
-#'       "rel %in% c('B', 'C')",
-#'       "values >= 5.0")) %>%
+#'     conditions =
+#'       rel %in% c("B", "C") &
+#'       values >= 5.0) %>%
 #'   get_selection()
 #' #> [1] 4
 #'
-#' # Traverse from node `2` to any outbound
-#' # edges, and use multiple conditions with
-#' # a single-length vector (here, using a
-#' # `|` to create a set of `OR` conditions)
+#' # Traverse from node `2` to any
+#' # outbound edges, and use multiple
+#' # conditions
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_out_edge(
-#'     conditions = c(
-#'       "rel %in% c('B', 'C') | values > 6.0")) %>%
+#'     conditions =
+#'       rel %in% c("B", "C") |
+#'       values > 6.0) %>%
 #'   get_selection()
 #' #> [1] 3 4
 #'
@@ -153,7 +154,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_out_edge(
-#'     conditions = "grepl('B|C', rel)") %>%
+#'     conditions = grepl("B|C", rel)) %>%
 #'   get_selection()
 #' #> [1] 3 4
 #'
@@ -177,12 +178,15 @@
 #' #> 3  2    3  4    B  iekd   4.72
 #' #> 4  2    4  5    C  iekd   6.02
 #' #> 5  3    5  5    D   idj   5.05
-#' @importFrom dplyr filter filter_ select select_ full_join rename everything
+#' @importFrom dplyr filter select select_ full_join rename everything
+#' @importFrom rlang enquo UQ
 #' @export trav_out_edge
 
 trav_out_edge <- function(graph,
                           conditions = NULL,
                           copy_attrs_from = NULL) {
+
+  conditions <- rlang::enquo(conditions)
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -238,13 +242,12 @@ trav_out_edge <- function(graph,
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_edges`
-  if (!is.null(conditions)) {
-    for (i in 1:length(conditions)) {
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
 
-      valid_edges <-
-        valid_edges %>%
-        dplyr::filter_(conditions[i])
-    }
+    valid_edges <-
+      filter(
+        .data = valid_edges,
+        rlang::UQ(conditions))
   }
 
   # If no rows returned, then there are no

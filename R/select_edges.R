@@ -58,7 +58,7 @@
 #'   graph %>%
 #'   clear_selection() %>%
 #'   select_edges(
-#'     conditions = "rel == 'z'")
+#'     conditions = rel == "z")
 #'
 #' # Verify that an edge selection has been made, and
 #' # recall that the `2`->`3` edge uniquely has the
@@ -73,14 +73,15 @@
 #'   graph %>%
 #'   clear_selection() %>%
 #'   select_edges(
-#'     conditions = "value > 3.0")
+#'     conditions = value > 3.0)
 #'
 #' # Verify that the correct edge selection has been
 #' # made; in this case, edges `1`->`4` and
 #' # `3`->`1` have values for `value` > 3.0
 #' get_selection(graph)
 #' #> [1] 1 3
-#' @importFrom dplyr filter_ filter select rename
+#' @importFrom dplyr filter select rename
+#' @importFrom rlang enquo UQ
 #' @export select_edges
 
 select_edges <- function(graph,
@@ -88,6 +89,8 @@ select_edges <- function(graph,
                          set_op = "union",
                          from = NULL,
                          to = NULL) {
+
+  conditions <- rlang::enquo(conditions)
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -116,12 +119,12 @@ select_edges <- function(graph,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!is.null(conditions)) {
-    for (i in 1:length(conditions)) {
-      edges_df <-
-        edges_df %>%
-        dplyr::filter_(conditions[i])
-    }
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+
+    edges_df <-
+      filter(
+        .data = edges_df,
+        rlang::UQ(conditions))
   }
 
   # If a `from` vector provided, filter the edf

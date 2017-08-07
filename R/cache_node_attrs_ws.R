@@ -45,7 +45,7 @@
 #' graph <-
 #'   graph %>%
 #'   select_nodes(
-#'     conditions = "value < 5.0")
+#'     conditions = value < 5.0)
 #'
 #' # Show the graph's node data frame
 #' graph %>%

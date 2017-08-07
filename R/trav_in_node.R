@@ -68,6 +68,7 @@
 #'   join_edge_attrs(df = df_edges) %>%
 #'   join_node_attrs(df = df_nodes)
 #'
+#' # Show the graph's internal node data frame
 #' get_node_df(graph)
 #' #>   id type label values
 #' #> 1  1    a   asd   8.58
@@ -76,6 +77,7 @@
 #' #> 4  4    b   edl   6.71
 #' #> 5  5    b   ohd   7.48
 #'
+#' # Show the graph's internal edge data frame
 #' get_edge_df(graph)
 #' #>   id from to  rel values
 #' #> 1  1    1  2 <NA>   6.00
@@ -90,7 +92,9 @@
 #' # conditions are placed on the nodes
 #' # traversed to
 #' graph %>%
-#'   select_edges(from = 1, to = 3) %>%
+#'   select_edges(
+#'     from = 1,
+#'     to = 3) %>%
 #'   trav_in_node() %>%
 #'   get_selection()
 #' #> [1] 3
@@ -100,8 +104,12 @@
 #' # the direction of the edge; both
 #' # traversals lead to the same node
 #' graph %>%
-#'   select_edges(from = 2, to = 5) %>%
-#'   select_edges(from = 3, to = 5) %>%
+#'   select_edges(
+#'     from = 2,
+#'     to = 5) %>%
+#'   select_edges(
+#'     from = 3,
+#'     to = 5) %>%
 #'   trav_in_node() %>%
 #'   get_selection()
 #' #> [1] 5
@@ -112,9 +120,11 @@
 #' # numeric values greater than `5.0` for
 #' # the `values` node attribute
 #' graph %>%
-#'   select_edges(from = 1, to = 3) %>%
+#'   select_edges(
+#'     from = 1,
+#'     to = 3) %>%
 #'   trav_in_node(
-#'     conditions = "values > 5.0") %>%
+#'     conditions = values > 5.0) %>%
 #'   get_selection()
 #' #> [1] 3
 #'
@@ -126,20 +136,23 @@
 #' # condition is not met so the original
 #' # selection of edge `1` -> `3` remains)
 #' graph %>%
-#'   select_edges(from = 1, to = 3) %>%
+#'   select_edges(
+#'     from = 1,
+#'     to = 3) %>%
 #'   trav_in_node(
-#'     conditions = "values < 5.0") %>%
+#'     conditions = values < 5.0) %>%
 #'   get_selection()
 #' #> [1] 2
 #'
 #' # Traverse from the edge `1`->`2` to
 #' # the node `2` using multiple conditions
-#' # with a single-length vector (here, using
-#' # a `|` to create a set of `OR` conditions)
+#' # with a single-length vector
 #' graph %>%
 #'   select_edges(from = 1, to = 2) %>%
 #'   trav_in_node(
-#'     conditions = "grepl('.*d$', label) | values < 6.0") %>%
+#'     conditions =
+#'       grepl(".*d$", label) |
+#'       values < 6.0) %>%
 #'   get_selection()
 #' #> [1] 2
 #'
@@ -206,13 +219,16 @@
 #' #> 2  2 <NA>  <NA>     8
 #' #> 3  3 <NA>  <NA>    NA
 #' @importFrom stats as.formula
-#' @importFrom dplyr filter filter_ distinct left_join right_join semi_join select select_ rename group_by summarize_ everything
+#' @importFrom dplyr filter distinct left_join right_join semi_join select select_ rename group_by summarize_ everything
+#' @importFrom rlang enquo UQ
 #' @export trav_in_node
 
 trav_in_node <- function(graph,
                          conditions = NULL,
                          copy_attrs_from = NULL,
                          agg = "sum") {
+
+  conditions <- rlang::enquo(conditions)
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -260,12 +276,12 @@ trav_in_node <- function(graph,
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
-  if (!is.null(conditions)) {
-    for (i in 1:length(conditions)) {
-      valid_nodes <-
-        valid_nodes %>%
-        dplyr::filter_(conditions[i])
-    }
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+
+    valid_nodes <-
+      filter(
+        .data = valid_nodes,
+        rlang::UQ(conditions))
   }
 
   # If no rows returned, then there are no

@@ -58,6 +58,7 @@
 #'   graph %>%
 #'   join_edge_attrs(df = df)
 #'
+#' # Show the graph's internal edge data frame
 #' get_edge_df(graph)
 #' #>   id from to  rel values
 #' #> 1  1    1  2 <NA>   6.00
@@ -81,7 +82,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both_edge(
-#'     conditions = "is.na(rel)") %>%
+#'     conditions = is.na(rel)) %>%
 #'   get_selection()
 #' #> [1] 1
 #'
@@ -92,7 +93,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both_edge(
-#'     conditions = "values > 6.5") %>%
+#'     conditions = values > 6.5) %>%
 #'   get_selection()
 #' #> [1] 2
 #'
@@ -103,7 +104,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_both_edge(
-#'     conditions = "rel == 'C'") %>%
+#'     conditions = rel == "C") %>%
 #'   get_selection()
 #' #> [1] 4
 #'
@@ -114,32 +115,31 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both_edge(
-#'     conditions = "rel %in% c('B', 'C')") %>%
+#'     conditions = rel %in% c("B", "C")) %>%
 #'   get_selection()
 #' #> [1] 3 4
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use multiple conditions for the
-#' # traversal (using a vector in `conditions`
-#' # creates a set of `AND` conditions)
+#' # traversal
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both_edge(
-#'     conditions = c(
-#'       "rel %in% c('B', 'C')",
-#'       "values > 4.0")) %>%
+#'     conditions =
+#'       rel %in% c("B", "C") &
+#'       values > 4.0) %>%
 #'   get_selection()
 #' #> [1] 3 4
 #'
 #' # Traverse from node `2` to any adjacent
 #' # edges, and use multiple conditions with
-#' # a single-length vector (here, using a
-#' # `|` to create a set of `OR` conditions)
+#' # a single-length vector
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both_edge(
-#'     conditions = c(
-#'       "rel %in% c('B', 'C') | values > 4.0")) %>%
+#'     conditions =
+#'       rel %in% c("B", "C") |
+#'       values > 4.0) %>%
 #'   get_selection()
 #' #> [1] 1 3 4
 #'
@@ -149,7 +149,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both_edge(
-#'     conditions = "grepl('B|C', rel)") %>%
+#'     conditions = grepl("B|C", rel)) %>%
 #'   get_selection()
 #' #> [1] 3 4
 #'
@@ -202,14 +202,17 @@
 #' #> 2  2    2  3 <NA>    10
 #' #> 3  3    3  4 <NA>     5
 #' @importFrom stats median
-#' @importFrom dplyr filter filter_ select select_ left_join right_join rename bind_rows group_by summarize_
+#' @importFrom dplyr filter select select_ left_join right_join rename bind_rows group_by summarize_
 #' @importFrom tibble as_tibble
+#' @importFrom rlang enquo UQ
 #' @export trav_both_edge
 
 trav_both_edge <- function(graph,
                            conditions = NULL,
                            copy_attrs_from = NULL,
                            agg = "sum") {
+
+  conditions <- rlang::enquo(conditions)
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -259,12 +262,12 @@ trav_both_edge <- function(graph,
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_edges`
-  if (!is.null(conditions)) {
-    for (i in 1:length(conditions)) {
-      valid_edges <-
-        valid_edges %>%
-        dplyr::filter_(conditions[i])
-    }
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+
+    valid_edges <-
+      filter(
+        .data = valid_edges,
+        rlang::UQ(conditions))
   }
 
   # If no rows returned, then there are no

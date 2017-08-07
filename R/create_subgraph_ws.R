@@ -1,5 +1,4 @@
-#' Create a subgraph based on a selection of nodes
-#' or edges
+#' Create a subgraph using node/edge selection
 #' @description Create a subgraph based on a
 #' selection of nodes or edges stored in the graph
 #' object. Selections of nodes can be performed using
@@ -24,14 +23,15 @@
 #' ndf <-
 #'   create_node_df(
 #'     n = 6,
-#'     value = c(3.5, 2.6, 9.4,
-#'               2.7, 5.2, 2.1))
+#'     value =
+#'       c(3.5, 2.6, 9.4,
+#'         2.7, 5.2, 2.1))
 #'
 #' # Create an edge data frame (edf)
 #' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 4, 5, 2, 6),
-#'     to = c(2, 4, 1, 3, 5, 5))
+#'       to = c(2, 4, 1, 3, 5, 5))
 #'
 #' # Create a graph
 #' graph <-
@@ -44,7 +44,7 @@
 #' graph <-
 #'   graph %>%
 #'   select_nodes(
-#'     conditions = "value > 3")
+#'     conditions = value > 3)
 #'
 #' # Create a subgraph based on the selection
 #' subgraph <- create_subgraph_ws(graph)

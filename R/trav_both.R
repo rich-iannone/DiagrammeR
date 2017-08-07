@@ -67,6 +67,7 @@
 #'   join_edge_attrs(df = df_edges) %>%
 #'   join_node_attrs(df = df_nodes)
 #'
+#' # Show the graph's internal node data frame
 #' get_node_df(graph)
 #' #>   id type label values
 #' #> 1  1    a   asd   8.58
@@ -75,6 +76,7 @@
 #' #> 4  4    b   edl   6.71
 #' #> 5  5    b   ohd   7.48
 #'
+#' # Show the graph's internal edge data frame
 #' get_edge_df(graph)
 #' #>   id from to  rel values
 #' #> 1  1    1  2 <NA>   6.00
@@ -99,7 +101,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both(
-#'     conditions = "values < 8.0") %>%
+#'     conditions = values < 8.0) %>%
 #'   get_selection()
 #' #> [1] 4 5
 #'
@@ -109,32 +111,30 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_both(
-#'     conditions = "type == 'b'") %>%
+#'     conditions = type == "b") %>%
 #'   get_selection()
 #' #> [1] 3
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use multiple conditions for the
-#' # traversal (using a vector in `conditions`
-#' # creates a set of `AND` conditions)
+#' # traversal
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both(
-#'     conditions = c(
-#'       "type == 'a'",
-#'       "values > 8.0")) %>%
+#'     conditions =
+#'       type == "a" &
+#'       values > 8.0) %>%
 #'   get_selection()
 #' #> [1] 1
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use multiple conditions with
-#' # a single-length vector (here, using a
-#' # `|` to create a set of `OR` conditions)
+#' # a single-length vector
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both(
-#'     conditions = c(
-#'       "type == 'a' | values > 8.0")) %>%
+#'     conditions =
+#'       type == "a" | values > 8.0) %>%
 #'   get_selection()
 #' #> [1] 1
 #'
@@ -144,7 +144,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   trav_both(
-#'     conditions = "grepl('..d', label)") %>%
+#'     conditions = grepl("..d", label)) %>%
 #'   get_selection()
 #' #> [1] 1 5
 #'
@@ -203,12 +203,15 @@
 #' #> 5  5 <NA>     5     5
 #' @importFrom dplyr filter_ inner_join right_join rename distinct select select_ union_all group_by summarize_ everything
 #' @importFrom tibble as_tibble
+#' @importFrom rlang enquo UQ
 #' @export trav_both
 
 trav_both <- function(graph,
                       conditions = NULL,
                       copy_attrs_from = NULL,
                       agg = "sum") {
+
+  conditions <- rlang::enquo(conditions)
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -269,12 +272,12 @@ trav_both <- function(graph,
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
-  if (!is.null(conditions)) {
-    for (i in 1:length(conditions)) {
-      valid_nodes <-
-        valid_nodes %>%
-        dplyr::filter_(conditions[i])
-    }
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+
+    valid_nodes <-
+      filter(
+        .data = valid_nodes,
+        rlang::UQ(conditions))
   }
 
   # If the option is taken to copy node attribute

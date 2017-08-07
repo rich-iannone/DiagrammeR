@@ -52,7 +52,7 @@
 #'   graph %>%
 #'   clear_selection() %>%
 #'   select_nodes(
-#'     conditions = "type == 'z'")
+#'     conditions = type == "z")
 #'
 #' # Verify that an node selection has been made, and
 #' # recall that the `3` and `4` nodes are of the
@@ -67,20 +67,23 @@
 #'   graph %>%
 #'   clear_selection() %>%
 #'   select_nodes(
-#'     conditions = "value > 3.0")
+#'     conditions = value > 3.0)
 #'
 #' # Verify that the correct node selection has been
 #' # made; in this case, nodes `1` and `3` have values
 #' # for `value` greater than 3.0
 #' get_selection(graph)
 #' #> [1] 1 3
-#' @importFrom dplyr filter_
+#' @importFrom dplyr filter pull
+#' @importFrom rlang enquo UQ
 #' @export select_nodes
 
 select_nodes <- function(graph,
                          conditions = NULL,
                          set_op = "union",
                          nodes = NULL) {
+
+  conditions <- rlang::enquo(conditions)
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -117,16 +120,18 @@ select_nodes <- function(graph,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `nodes_df`
-  if (!is.null(conditions)) {
-    for (i in 1:length(conditions)) {
-      nodes_df <-
-        nodes_df %>%
-        dplyr::filter_(conditions[i])
-    }
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+
+    nodes_df <-
+      filter(
+        .data = nodes_df,
+        rlang::UQ(conditions))
   }
 
   # Get the nodes as a vector
-  nodes_selected <- nodes_df$id
+  nodes_selected <-
+    nodes_df %>%
+    dplyr::pull(id)
 
   # If a `nodes` vector provided, get the intersection
   # of that vector with the filtered node IDs

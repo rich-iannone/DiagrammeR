@@ -41,16 +41,19 @@
 #' get_agg_degree_out(
 #'   graph = random_graph,
 #'   agg = "mean",
-#'   conditions = "value < 5.0")
+#'   conditions = value < 5.0)
 #' #> [1] 3.666667
-#' @importFrom dplyr group_by summarize_ filter_ select filter ungroup
+#' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula
-#' @importFrom purrr flatten_dbl flatten_int
+#' @importFrom purrr flatten_dbl
+#' @importFrom rlang enquo UQ
 #' @export get_agg_degree_out
 
 get_agg_degree_out <- function(graph,
                                agg,
                                conditions = NULL) {
+
+  conditions <- rlang::enquo(conditions)
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -62,23 +65,21 @@ get_agg_degree_out <- function(graph,
 
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
-  if (!is.null(conditions)) {
+  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
 
     # Extract the node data frame from the graph
     ndf <- get_node_df(graph)
 
     # Apply filtering conditions to the ndf
-    for (i in 1:length(conditions)) {
-      ndf <-
-        ndf %>%
-        dplyr::filter_(conditions[i])
-    }
+    ndf <-
+      filter(
+        .data = ndf,
+        rlang::UQ(conditions))
 
     # Get a vector of node ID values
     node_ids <-
       ndf %>%
-      select(id) %>%
-      flatten_int()
+      dplyr::pull(id)
   }
 
   # Get a data frame with outdegree values for
