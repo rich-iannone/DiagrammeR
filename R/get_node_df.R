@@ -50,9 +50,5 @@ get_node_df <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  if (is.null(graph$nodes_df)) {
-    return(NA)
-  } else {
-    return(graph$nodes_df)
-  }
+  graph$nodes_df
 }
