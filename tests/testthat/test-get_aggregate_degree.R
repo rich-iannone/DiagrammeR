@@ -61,7 +61,7 @@ test_that("Getting aggregated indegree values is possible", {
     get_agg_degree_in(
       graph = graph,
       agg = "mean",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     2.428571,
     tolerance = 0.002)
 
@@ -73,7 +73,7 @@ test_that("Getting aggregated indegree values is possible", {
     get_agg_degree_in(
       graph = graph,
       agg = "min",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     0,
     tolerance = 0.002)
 
@@ -85,7 +85,7 @@ test_that("Getting aggregated indegree values is possible", {
     get_agg_degree_in(
       graph = graph,
       agg = "max",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     5,
     tolerance = 0.002)
 
@@ -97,7 +97,7 @@ test_that("Getting aggregated indegree values is possible", {
     get_agg_degree_in(
       graph = graph,
       agg = "median",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     3,
     tolerance = 0.002)
 
@@ -109,7 +109,7 @@ test_that("Getting aggregated indegree values is possible", {
     get_agg_degree_in(
       graph = graph,
       agg = "sum",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     17,
     tolerance = 0.002)
 })
@@ -175,7 +175,7 @@ test_that("Getting aggregated outdegree values is possible", {
     get_agg_degree_out(
       graph = graph,
       agg = "mean",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     1.571429,
     tolerance = 0.002)
 
@@ -187,7 +187,7 @@ test_that("Getting aggregated outdegree values is possible", {
     get_agg_degree_out(
       graph = graph,
       agg = "min",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     0,
     tolerance = 0.002)
 
@@ -199,7 +199,7 @@ test_that("Getting aggregated outdegree values is possible", {
     get_agg_degree_out(
       graph = graph,
       agg = "max",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     4,
     tolerance = 0.002)
 
@@ -211,7 +211,7 @@ test_that("Getting aggregated outdegree values is possible", {
     get_agg_degree_out(
       graph = graph,
       agg = "median",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     1,
     tolerance = 0.002)
 
@@ -223,7 +223,7 @@ test_that("Getting aggregated outdegree values is possible", {
     get_agg_degree_out(
       graph = graph,
       agg = "sum",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     11,
     tolerance = 0.002)
 })
@@ -289,7 +289,7 @@ test_that("Getting aggregated total degree values is possible", {
     get_agg_degree_total(
       graph = graph,
       agg = "mean",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     4,
     tolerance = 0.002)
 
@@ -301,7 +301,7 @@ test_that("Getting aggregated total degree values is possible", {
     get_agg_degree_total(
       graph = graph,
       agg = "min",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     2,
     tolerance = 0.002)
 
@@ -313,7 +313,7 @@ test_that("Getting aggregated total degree values is possible", {
     get_agg_degree_total(
       graph = graph,
       agg = "max",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     5,
     tolerance = 0.002)
 
@@ -325,7 +325,7 @@ test_that("Getting aggregated total degree values is possible", {
     get_agg_degree_total(
       graph = graph,
       agg = "median",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     4,
     tolerance = 0.002)
 
@@ -337,7 +337,7 @@ test_that("Getting aggregated total degree values is possible", {
     get_agg_degree_total(
       graph = graph,
       agg = "sum",
-      conditions = "value > 5.0"),
+      conditions = value > 5.0),
     28,
     tolerance = 0.002)
 })

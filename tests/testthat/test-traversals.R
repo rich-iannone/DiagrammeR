@@ -9,9 +9,15 @@ test_that("simple traversals are possible", {
     add_node() %>%
     add_node() %>%
     add_node() %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4)
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4)
 
   # Starting at node `1`, traverse to node `4`, storing
   # the traversed location as a selection in the graph
@@ -24,7 +30,8 @@ test_that("simple traversals are possible", {
     trav_out()
 
   # Expect that node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  expect_equal(
+    get_selection(graph), 4)
 
   # Traverse back to node `1` from node `4`
   graph <-
@@ -34,10 +41,11 @@ test_that("simple traversals are possible", {
     trav_in()
 
   # Expect that node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Traverse from node `1` to `2`, then, traverse nodes
-  # in both directions
+  # Traverse from node `1` to `2`, then,
+  # traverse to nodes in both directions
   graph <-
     graph %>%
     trav_out() %>%
@@ -45,7 +53,8 @@ test_that("simple traversals are possible", {
 
   # Expect that nodes `1` and `3` are in the
   # current selection
-  expect_true(all(c(1, 3) %in% get_selection(graph)))
+  expect_true(
+    all(c(1, 3) %in% get_selection(graph)))
 
   # Traverse by moving from nodes onto edges, then,
   # onto nodes; from `1` to `4`
@@ -61,10 +70,11 @@ test_that("simple traversals are possible", {
     trav_in_node()
 
   # Expect that node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Traverse back to node `1` from node `4`, using the
-  # same types of traversals
+  # Traverse back to node `1` from node `4`,
+  # using the same types of traversals
   graph <-
     graph %>%
     trav_in_edge() %>%
@@ -75,61 +85,91 @@ test_that("simple traversals are possible", {
     trav_out_node()
 
   # Expect that node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
+  expect_equal(
+    get_selection(graph), 1)
 
   # Modify the graph so that it contains a branch
   graph <-
     graph %>%
     clear_selection() %>%
     select_nodes(nodes = 3) %>%
-    add_n_nodes_ws(1, "from") %>%
+    add_n_nodes_ws(
+      n = 1,
+      direction = "from") %>%
     clear_selection() %>%
     select_nodes(nodes = 2) %>%
-    add_n_nodes_ws(2, "from") %>%
+    add_n_nodes_ws(
+      n = 2,
+      direction = "from") %>%
     clear_selection()
 
-  # Traverse nodes from `1` until traverse can no
-  # longer occur
+  # Traverse nodes from `1` until
+  # traversal can no longer occur
   graph <-
     graph %>%
     select_nodes(nodes = 1) %>%
     trav_out()
 
   # Expect that node `2` is the current selection
-  expect_equal(get_selection(graph), 2)
+  expect_equal(
+    get_selection(graph), 2)
 
   # Continue traversal outward by node
-  graph <- graph %>% trav_out
+  graph <-
+    graph %>%
+    trav_out()
 
-  # Expect that nodes `3`, `6`, and `7` are in the
-  # current selection
-  expect_equal(get_selection(graph), c(3, 6, 7))
+  # Expect that nodes `3`, `6`, and `7` are
+  # in the current selection
+  expect_equal(
+    get_selection(graph), c(3, 6, 7))
 
   # Continue traversal outward by node
-  graph <- graph %>% trav_out
+  graph <-
+    graph %>%
+    trav_out()
 
   # Expect that nodes `4` and `5` are in the
   # current selection
-  expect_equal(get_selection(graph), c(4, 5))
+  expect_equal(
+    get_selection(graph), c(4, 5))
 
   # Continue traversal outward, even though at end
-  graph <- graph %>% trav_out
+  graph <-
+    graph %>%
+    trav_out()
 
   # Expect that nodes `4` and `5` are still in the
   # current selection
-  expect_equal(get_selection(graph), c(4, 5))
+  expect_equal(
+    get_selection(graph), c(4, 5))
 
   # Expect an error if attempting to perform a node
   # traversal without any selection of nodes
-  graph <- graph %>% clear_selection
+  graph <-
+    graph %>%
+    clear_selection()
 
-  expect_error(graph %>% trav_in)
-  expect_error(graph %>% trav_out)
-  expect_error(graph %>% trav_both)
-  expect_error(graph %>% trav_in_node)
-  expect_error(graph %>% trav_out_node)
-  expect_error(graph %>% trav_in_edge)
-  expect_error(graph %>% trav_out_edge)
+  expect_error(
+    graph %>% trav_in())
+
+  expect_error(
+    graph %>% trav_out())
+
+  expect_error(
+    graph %>% trav_both())
+
+  expect_error(
+    graph %>% trav_in_node())
+
+  expect_error(
+    graph %>% trav_out_node())
+
+  expect_error(
+    graph %>% trav_in_edge())
+
+  expect_error(
+    graph %>% trav_out_edge())
 })
 
 test_that("selective traversals with `trav_out()` are possible", {
@@ -137,110 +177,154 @@ test_that("selective traversals with `trav_out()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>%
-    add_node %>%
-    add_node %>%
-    add_node %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
-    select_nodes %>%
-    set_node_attrs_ws("type", "circle") %>%
-    clear_selection %>%
-    select_nodes_by_id(c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
-    clear_selection %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
-    clear_selection %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
+    select_nodes() %>%
+    set_node_attrs_ws(
+      node_attr = "type",
+      value = "circle") %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 10) %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
+    clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", 5) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
-    clear_selection
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = 5) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
+    clear_selection()
 
-  # Starting at node `1`, traverse to node `2` with a
-  # match expression (==)
+  # Starting at node `1`, traverse to
+  # node `2` with a match expression (==)
   graph <-
     graph %>%
     clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out("data_value == 10")
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out(
+      conditions = data_value == 10)
 
-  # Expect that node `2` is the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Starting at node `1`, traverse to node `2`, using a
-  # different match expression (<)
+  # Starting at node `1`, traverse to
+  # node `2`, using a different match
+  # expression (<)
   graph <-
     graph %>%
     clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out("data_value < 15")
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out(
+      conditions = data_value < 15)
 
-  # Expect that node `2` is the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Starting at node `1`, traverse to node `2`, using a
-  # different match expression (>)
+  # Starting at node `1`, traverse to
+  # node `2`, using a different match expression (>)
   graph <-
     graph %>%
     clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out("data_value > 5")
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out(
+      conditions = data_value > 5)
 
-  # Expect that node `2` is the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Starting at node `1`, traverse to node `2`, using a
-  # different match expression (!=)
+  # Starting at node `1`, traverse to
+  # node `2`, using a different match expression (!=)
   graph <-
     graph %>%
     clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out("data_value != 5")
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out(
+      conditions = data_value != 5)
 
-  # Expect that node `2` is the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Starting at node `1`, attempt to traverse to node
-  # `2` using a match expression that won't yield
-  # a match
+  # Starting at node `1`, attempt to
+  # traverse to node `2` using a match
+  # expression that won't yield a match
   graph <-
     graph %>%
     clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out("data_value != 10")
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out(
+      conditions = data_value != 10)
 
-  # Expect that node `1` is the current selection (since
-  # no traversal had occurred)
-  expect_equal(get_selection(graph), 1)
+  # Expect that node `1` is the
+  # current selection (since no traversal
+  # had occurred)
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `3`, traverse to node `4` using a
-  # match on a character field
+  # Starting at node `3`, traverse to
+  # node `4` using a match on a character field
   graph <-
     graph %>%
     clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_out("shape == 'square'")
+    select_nodes_by_id(nodes = 3) %>%
+    trav_out(
+      conditions = shape == "square")
 
-  # Expect that node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that node `4` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at node `3`, attempt to traverse to node `4`
-  # using a match expression that won't yield a match
+  # Starting at node `3`, attempt to
+  # traverse to node `4` using a match
+  # expression that won't yield a match
   graph <-
     graph %>%
     clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_out("shape == 'triangle'")
+    select_nodes_by_id(nodes = 3) %>%
+    trav_out(
+      conditions = shape == "triangle")
 
-  # Expect that node `4` is the current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that node `3` is the current selection
+  expect_equal(
+    get_selection(graph), 3)
 })
 
 test_that("selective traversals with `trav_in()` are possible", {
@@ -248,30 +332,50 @@ test_that("selective traversals with `trav_in()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>%
-    add_node %>%
-    add_node %>%
-    add_node %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
-    select_nodes %>%
-    set_node_attrs_ws("type", "circle") %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
+    select_nodes() %>%
+    set_node_attrs_ws(
+      node_attr = "type",
+      value = "circle") %>%
     clear_selection() %>%
-    select_nodes_by_id(c(2, 3)) %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws("data_value", 10) %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", 5) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = 5) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
     clear_selection()
 
   # Starting at node `4`, traverse to node `3` with a
@@ -279,81 +383,106 @@ test_that("selective traversals with `trav_in()` are possible", {
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in("data_value == 10")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in(
+      conditions = data_value == 10)
 
   # Expect that node `3` is the current selection
-  expect_equal(get_selection(graph), 3)
+  expect_equal(
+    get_selection(graph), 3)
 
   # Starting at node `4`, traverse to node `3`, using a
   # different match expression (<)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in("data_value < 15")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in(
+      conditions = data_value < 15)
 
-  # Expect that node `3` is the current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that node `3` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, traverse to node `3`, using a
-  # different match expression (>)
+  # Starting at node `4`, traverse
+  # to node `3`, using a different
+  # match expression (>)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in("data_value > 5")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in(
+      conditions = data_value > 5)
 
-  # Expect that node `3` is the current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that node `3` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, traverse to node `3`, using a
+  # Starting at node `4`, traverse
+  # to node `3`, using a
   # different match expression (!=)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in("data_value != 5")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in(
+      conditions = data_value != 5)
 
-  # Expect that node `3` is the current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that node `3` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, attempt to traverse to
-  # node `3` using a match expression that won't
+  # Starting at node `4`, attempt
+  # to traverse to node `3` using a
+  # match expression that won't
   # yield a match
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in("data_value != 10")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in(
+      conditions = data_value != 10)
 
-  # Expect that node `4` is the current selection
-  # (since no traversal had occurred)
-  expect_equal(get_selection(graph), 4)
+  # Expect that node `4` is the
+  # current selection (since no
+  # traversal had occurred)
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at node `2`, traverse to node `1` using
-  # a match on a character field
+  # Starting at node `2`, traverse
+  # to node `1` using a match on a
+  # character field
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(2) %>%
-    trav_in("shape == 'triangle'")
+    select_nodes_by_id(nodes = 2) %>%
+    trav_in(
+      conditions = shape == "triangle")
 
-  # Expect that node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that node `1` is the
+  # current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `2`, attempt to traverse to
-  # node `1` using a match expression that won't
+  # Starting at node `2`, attempt
+  # to traverse to node `1` using a
+  # match expression that won't
   # yield a match
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(2) %>%
-    trav_in("shape == 'square'")
+    select_nodes_by_id(nodes = 2) %>%
+    trav_in(
+      conditions = shape == "square")
 
-  # Expect that node `2` is the current selection
-  # (since no traversal had occurred)
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is the
+  # current selection (since no
+  # traversal had occurred)
+  expect_equal(
+    get_selection(graph), 2)
 })
 
 test_that("selective traversals with `trav_out_edge()` are possible", {
@@ -365,113 +494,155 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     add_node() %>%
     add_node() %>%
     add_node() %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
     select_nodes() %>%
-    set_node_attrs_ws("type", "circle") %>%
+    set_node_attrs_ws(node_attr = "type", value = "circle") %>%
     clear_selection() %>%
-    select_nodes_by_id(c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 10) %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", 5) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = 5) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
     clear_selection()
 
   # Starting at node `1`, traverse to edge between
   # nodes `1` and `2` with a match expression (==)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out_edge("data_value == 5")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out_edge(
+      conditions = data_value == 5)
 
-  # Expect that the edge `1` -> `2` is the
-  # current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the edge `1` -> `2`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `1`, traverse to edge between
-  # nodes `1` and `2` with a match expression (<)
+  # Starting at node `1`, traverse to
+  # the edge between nodes `1` and `2`
+  # with a match expression (<)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out_edge("data_value < 10")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out_edge(
+      conditions = data_value < 10)
 
-  # Expect that the edge `1` -> `2` is the
-  # current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the edge `1` -> `2` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `1`, traverse to edge between
-  # nodes `1` and `2` with a match expression (>)
+  # Starting at node `1`, traverse to
+  # the edge between nodes `1` and `2`
+  # with a match expression (>)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out_edge("data_value > 2")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out_edge(
+      conditions = data_value > 2)
 
-  # Expect that the edge `1` -> `2` is the
-  # current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the edge `1` -> `2`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `1`, traverse to edge between
-  # nodes `1` and `2` with a match expression (!=)
+  # Starting at node `1`, traverse to
+  # the edge between nodes `1` and `2`
+  # with a match expression (!=)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out_edge("data_value != 1")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out_edge(
+      conditions = data_value != 1)
 
-  # Expect that the edge `1` -> `2` is the
-  # current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the edge `1` -> `2`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `1`, attempt to traverse to edge
-  # between nodes `1` and `2` using a match expression
+  # Starting at node `1`, attempt to
+  # traverse to edge between nodes `1`
+  # and `2` using a match expression
   # that won't yield a match
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out_edge("data_value != 5")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out_edge(
+      conditions = data_value != 5)
 
-  # Expect that node `1` is the current selection
-  # (since no traversal had occurred)
-  expect_equal(get_selection(graph), 1)
+  # Expect that node `1` is the
+  # current selection (since no traversal
+  # had occurred)
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `1`, traverse to edge between
-  # nodes `1` and `2` using a match on a character field
+  # Starting at node `1`, traverse to
+  # the edge between nodes `1` and `2`
+  # using a match on a character field
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out_edge("rel == 'related_to'")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out_edge(
+      conditions = rel == "related_to")
 
-  # Expect that the edge `1` -> `2` is the
-  # current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the edge `1` -> `2`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at node `1`, attempt to traverse to edge
-  # between nodes `1` and `2` using a match expression
+  # Starting at node `1`, attempt to
+  # traverse to the edge between nodes
+  # `1` and `2` using a match expression
   # that won't yield a match
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    trav_out_edge("rel == 'belongs_with'")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    trav_out_edge(
+      conditions = rel == "belongs_with")
 
-  # Expect that node `1` is the current selection
-  # (since no traversal had occurred)
-  expect_equal(get_selection(graph), 1)
+  # Expect that node `1` is the
+  # current selection (since no
+  # traversal had occurred)
+  expect_equal(
+    get_selection(graph), 1)
 })
 
 test_that("selective traversals with `trav_in_edge()` are possible", {
@@ -483,114 +654,158 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     add_node() %>%
     add_node() %>%
     add_node() %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
     select_nodes() %>%
-    set_node_attrs_ws("type", "circle") %>%
-    clear_selection %>%
-    select_nodes_by_id(c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
+    set_node_attrs_ws(
+      node_attr = "type",
+      value = "circle") %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 10) %>%
     clear_selection() %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", 5) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = 5) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
     clear_selection()
 
-  # Starting at node `4`, traverse to edge between
-  # nodes `3` and `4` with a match expression (==)
+  # Starting at node `4`, traverse to
+  # the edge between nodes `3` and `4`
+  # with a match expression (==)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in_edge("data_value == 5")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in_edge(
+      conditions = data_value == 5)
 
-  # Expect that the edge `3` -> `4` is the
-  # current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that the edge `3` -> `4`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, traverse to edge between
-  # nodes `3` and `4` with a match expression (<)
+  # Starting at node `4`, traverse to
+  # the edge between nodes `3` and `4`
+  # with a match expression (<)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in_edge("data_value < 10")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in_edge(
+      conditions = data_value < 10)
 
-  # Expect that the edge `3` -> `4` is the
-  # current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that the edge `3` -> `4`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, traverse to edge between
-  # nodes `3` and `4` with a match expression (>)
+  # Starting at node `4`, traverse to
+  # the edge between nodes `3` and `4`
+  # with a match expression (>)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in_edge("data_value > 2")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in_edge(
+      conditions = data_value > 2)
 
-  # Expect that the edge `3` -> `4` is the
-  # current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that the edge `3` -> `4`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, traverse to edge between
-  # nodes `3` and `4` with a match expression (!=)
+  # Starting at node `4`, traverse to
+  # the edge between nodes `3` and `4`
+  # with a match expression (!=)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in_edge("data_value != 1")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in_edge(
+      conditions = data_value != 1)
 
-  # Expect that the edge `3` -> `4` is the
-  # current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that the edge `3` -> `4`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, attempt to traverse to edge
-  # between nodes `3` and `4` using a match expression
+  # Starting at node `4`, attempt to
+  # traverse to the edge between nodes
+  # `3` and `4` using a match expression
   # that won't yield a match
   graph <-
     graph %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    trav_in_edge("data_value != 5")
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in_edge(
+      conditions = data_value != 5)
 
-  # Expect that node `4` is the current selection
-  # (since no traversal had occurred)
-  expect_equal(get_selection(graph), 4)
+  # Expect that node `4` is the
+  # current selection (since no traversal
+  # had occurred)
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at node `4`, traverse to edge between
-  # nodes `3` and `4` using a match on a
-  # character field
+  # Starting at node `4`, traverse to
+  # the edge between nodes `3` and `4`
+  # using a match on a character field
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(4) %>%
-    trav_in_edge("rel == 'related_to'")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in_edge(
+      conditions = rel == "related_to")
 
-  # Expect that the edge `3` -> `4` is the
-  # current selection
-  expect_equal(get_selection(graph), 3)
+  # Expect that the edge `3` -> `4`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, attempt to traverse to edge
-  # between nodes `3` and `4` using a match expression
+  # Starting at node `4`, attempt to
+  # traverse to edge between nodes `3`
+  # and `4` using a match expression
   # that won't yield a match
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(4) %>%
-    trav_in_edge("rel == 'belongs_with'")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 4) %>%
+    trav_in_edge(
+      conditions = rel == "belongs_with")
 
-  # Expect that node `4` is the current selection
-  # (since no traversal had occurred)
-  expect_equal(get_selection(graph), 4)
+  # Expect that node `4` is the
+  # current selection (since no traversal
+  # had occurred)
+  expect_equal(
+    get_selection(graph), 4)
 })
 
 test_that("selective traversals with `trav_in_node()` are possible", {
@@ -602,109 +817,172 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     add_node() %>%
     add_node() %>%
     add_node() %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
     select_nodes() %>%
-    set_node_attrs_ws("type", "circle") %>%
+    set_node_attrs_ws(
+      node_attr = "type",
+      value = "circle") %>%
     clear_selection() %>%
-    select_nodes_by_id(c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 10) %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", 5) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = 5) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
     clear_selection()
 
-  # Starting at edge `3` -> `4`, traverse to node `4`
-  # with a match expression (==)
+  # Starting at edge `3` -> `4`,
+  # traverse to node `4` with a
+  # match expression (==)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 3, to = 4) %>%
-    trav_in_node("data_value == 5")
+    select_edges(
+      from = 3,
+        to = 4) %>%
+    trav_in_node(
+      conditions = data_value == 5)
 
-  # Expect that the node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that the node `4` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at edge `3` -> `4`, traverse to node `4`
-  # with a match expression (<)
+  # Starting at edge `3` -> `4`,
+  # traverse to node `4` with a match
+  # expression (<)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 3, to = 4) %>%
-    trav_in_node("data_value < 10")
+    select_edges(
+      from = 3,
+        to = 4) %>%
+    trav_in_node(
+      conditions = data_value < 10)
 
-  # Expect that the node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that the node `4` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at edge `3` -> `4`, traverse to node `4`
-  # with a match expression (>)
+  # Starting at edge `3` -> `4`,
+  # traverse to node `4` with a
+  # match expression (>)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 3, to = 4) %>%
-    trav_in_node("data_value > 1")
+    select_edges(
+      from = 3,
+        to = 4) %>%
+    trav_in_node(
+      conditions = data_value > 1)
 
-  # Expect that the node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that the node `4` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at edge `3` -> `4`, traverse to node `4`
-  # with a match expression (!=)
+  # Starting at edge `3` -> `4`,
+  # traverse to node `4` with a
+  # match expression (!=)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 3, to = 4) %>%
-    trav_in_node("data_value != 1")
+    select_edges(
+      from = 3,
+        to = 4) %>%
+    trav_in_node(
+      conditions = data_value != 1)
 
-  # Expect that the node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that the node `4`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at edge `3` -> `4`, attempt to traverse to
-  # node `4` using a match expression that won't
+  # Starting at edge `3` -> `4`,
+  # attempt to traverse to node `4`
+  # using a match expression that won't
   # yield a match
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 3, to = 4) %>%
-    trav_in_node("data_value != 5")
+    select_edges(
+      from = 3,
+        to = 4) %>%
+    trav_in_node(
+      conditions = data_value != 5)
 
-  # Expect that the edge `3` -> `4` is the current
-  # selection (since no traversal had occurred)
-  expect_equal(get_selection(graph), 3)
+  # Expect that the edge `3` -> `4`
+  # is the current selection (since
+  # no traversal had occurred)
+  expect_equal(
+    get_selection(graph), 3)
 
-  # Starting at node `4`, traverse to edge between
-  # nodes `3` and `4` using a match on a
-  # character field
+  # Starting at node `4`, traverse to
+  # edge between nodes `3` and `4` using
+  # a match on a character field
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 3, to = 4) %>%
-    trav_in_node("shape == 'square'")
+    select_edges(
+      from = 3,
+        to = 4) %>%
+    trav_in_node(
+      conditions = shape == "square")
 
-  # Expect that the node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that the node `4` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at edge `3` -> `4`, attempt to traverse
-  # to node `4` using a match on a character field
+  # Starting at edge `3` -> `4`,
+  # attempt to traverse to node `4`
+  # using a match on a character field
   # that won't yield a match
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 3, to = 4) %>%
-    trav_in_node("shape == 'triangle'")
+    select_edges(
+      from = 3,
+      to = 4) %>%
+    trav_in_node(
+      conditions = shape == "triangle")
 
-  # Expect that the edge `3` -> `4` is the current
-  # selection (since no traversal had occurred)
-  expect_equal(get_selection(graph), 3)
+  # Expect that the edge `3` -> `4`
+  # is the current selection (since
+  # no traversal had occurred)
+  expect_equal(
+    get_selection(graph), 3)
 })
 
 test_that("selective traversals with `trav_out_node()` are possible", {
@@ -716,107 +994,171 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     add_node() %>%
     add_node() %>%
     add_node() %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
     select_nodes() %>%
-    set_node_attrs_ws("type", "circle") %>%
+    set_node_attrs_ws(
+      node_attr = "type",
+      value = "circle") %>%
     clear_selection() %>%
-    select_nodes_by_id(c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 10) %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", 5) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = 5) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
     clear_selection()
 
-  # Starting at edge `1` -> `2`, traverse to node `1`
-  # with a match expression (==)
+  # Starting at edge `1` -> `2`,
+  # traverse to node `1` with a
+  # match expression (==)
   graph <-
     graph %>%
-    select_edges(from = 1, to = 2) %>%
-    trav_out_node("data_value == 5")
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    trav_out_node(
+      conditions = data_value == 5)
 
-  # Expect that the node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the node `1` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at edge `1` -> `2`, traverse to node `1`
-  # with a match expression (<)
-  graph <-
-    graph %>%
-    clear_selection() %>%
-    select_edges(from = 1, to = 2) %>%
-    trav_out_node("data_value < 10")
-
-  # Expect that the node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
-
-  # Starting at edge `1` -> `2`, traverse to node `1`
-  # with a match expression (>)
+  # Starting at edge `1` -> `2`,
+  # traverse to node `1` with a
+  # match expression (<)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 1, to = 2) %>%
-    trav_out_node("data_value > 1")
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    trav_out_node(
+      conditions = data_value < 10)
 
-  # Expect that the node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the node `1` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at edge `1` -> `2`, traverse to node `1`
-  # with a match expression (!=)
+  # Starting at edge `1` -> `2`,
+  # traverse to node `1` with a
+  # match expression (>)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 1, to = 2) %>%
-    trav_out_node("data_value != 1")
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    trav_out_node(
+      conditions = data_value > 1)
 
-  # Expect that the node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
+  # Expect that the node `1` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at edge `1` -> `2`, attempt to traverse to
-  # node `1` using a match expression that won't
-  # yield a match
+  # Starting at edge `1` -> `2`,
+  # traverse to node `1` with a
+  # match expression (!=)
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 1, to = 2) %>%
-    trav_out_node("data_value != 5")
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    trav_out_node(
+      conditions = data_value != 1)
 
-  # Expect that the edge `1` -> `2` is the current
-  # selection (since no traversal had occurred)
-  expect_equal(get_selection(graph), 1)
+  # Expect that the node `1` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 1)
 
-  # Starting at edge `1` -> `2`, traverse to node `1`
-  # using a match on a character field
-  graph <-
-    graph %>%
-    clear_selection() %>%
-    select_edges(from = 1, to = 2) %>%
-    trav_out_node("shape == 'triangle'")
-
-  # Expect that the node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
-
-  # Starting at edge `1` -> `2`, attempt to traverse to
-  # node `1` using a match on a character field that
+  # Starting at edge `1` -> `2`,
+  # attempt to traverse to node `1`
+  # using a match expression that
   # won't yield a match
   graph <-
     graph %>%
     clear_selection() %>%
-    select_edges(from = 1, to = 2) %>%
-    trav_out_node("shape == 'circle'")
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    trav_out_node(
+      conditions = data_value != 5)
 
-  # Expect that the edge `1` -> `2` is the current
-  # selection (since no traversal had occurred)
-  expect_equal(get_selection(graph), 1)
+  # Expect that the node `1`
+  # is the current selection (since
+  # no traversal had occurred)
+  expect_equal(
+    get_selection(graph), 1)
+
+  # Starting at edge `1` -> `2`,
+  # traverse to node `1` using a
+  # match on a character field
+  graph <-
+    graph %>%
+    clear_selection() %>%
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    trav_out_node(
+      conditions = shape == "triangle")
+
+  # Expect that the node `1`
+  # is the current selection
+  expect_equal(
+    get_selection(graph), 1)
+
+  # Starting at edge `1` -> `2`,
+  # attempt to traverse to node `1`
+  # using a match on a character field
+  # that won't yield a match
+  graph <-
+    graph %>%
+    clear_selection() %>%
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    trav_out_node(
+      conditions = shape == "circle")
+
+  # Expect that the edge `1` -> `2`
+  # is the current selection (since no
+  # traversal had occurred)
+  expect_equal(
+    get_selection(graph), 1)
 })
 
 test_that("selective traversals with `trav_both()` are possible", {
@@ -824,134 +1166,189 @@ test_that("selective traversals with `trav_both()` are possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>%
-    add_node %>%
-    add_node %>%
-    add_node %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
-    select_nodes %>%
-    set_node_attrs_ws("type", "circle") %>%
-    clear_selection %>%
-    select_nodes_by_id(c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
-    clear_selection %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
-    clear_selection %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
-    clear_selection %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_node() %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
+    select_nodes() %>%
+    set_node_attrs_ws(
+      node_attr = "type",
+      value = "circle") %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 10) %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
+    clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", 5) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
-    clear_selection
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = 5) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
+    clear_selection()
 
-  # Starting at node `3`, traverse to nodes `2` and `4`
-  # with a match expression (==)
+  # Starting at node `3`, traverse
+  # to nodes `2` and `4` with a
+  # match expression (==)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both("data_value == 10")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both(
+      conditions = data_value == 10)
 
-  # Expect that node `2` is in the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is in
+  #@ the current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Starting at node `3`, traverse to nodes `2` and `4`
-  # with a match expression (<)
+  # Starting at node `3`, traverse
+  # to nodes `2` and `4` with a
+  # match expression (<)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both("data_value < 15")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both(
+      conditions = data_value < 15)
 
-  # Expect that nodes `2` and `4` are in the
-  # current selection
-  expect_equal(get_selection(graph), c(2, 4))
+  # Expect that nodes `2` and `4`
+  # are in the current selection
+  expect_equal(
+    get_selection(graph), c(2, 4))
 
-  # Starting at node `3`, traverse to nodes `2` and `4`
-  # with a match expression (>)
+  # Starting at node `3`, traverse
+  # to nodes `2` and `4` with a
+  # match expression (>)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both("data_value > 5")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both(
+      conditions = data_value > 5)
 
-  # Expect that node `2` is in the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is in
+  # the current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Starting at node `3`, traverse to nodes `2` and `4`
-  # with a match expression (!=)
+  # Starting at node `3`, traverse
+  # to nodes `2` and `4` with a
+  # match expression (!=)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both("data_value != 5")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both(
+      conditions = data_value != 5)
 
-  # Expect that node `2` is in the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that node `2` is in
+  # the current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Starting at node `3`, attempt traverse to nodes
-  # `2` and `4` with a match expression that won't
+  # Starting at node `3`, attempt
+  # to traverse to nodes `2` and `4`
+  # with a match expression that won't
   # yield a match in one direction
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both("data_value != 10")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both(
+      conditions = data_value != 10)
 
-  # Expect that the node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that the node `4` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at node `3`, traverse to nodes `2` and `4`
-  # with a character match expression
+  # Starting at node `3`, traverse to
+  # nodes `2` and `4` with a character
+  # match expression
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both("type == 'circle'")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both(
+      conditions = type == "circle")
 
-  # Expect that nodes `2` and `4` are in the
-  # current selection
-  expect_equal(get_selection(graph), c(2, 4))
+  # Expect that nodes `2` and `4`
+  # are in the current selection
+  expect_equal(
+    get_selection(graph), c(2, 4))
 
-  # Starting at node `3`, attempt to traverse to nodes
-  # `2` and `4` with a character match expression that
+  # Starting at node `3`, attempt to
+  # traverse to nodes `2` and `4` with
+  # a character match expression that
   # won't yield a match in one direction
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both("shape == 'square'")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both(
+      conditions = shape == "square")
 
-  # Expect that the node `4` is the current selection
-  expect_equal(get_selection(graph), 4)
+  # Expect that the node `4` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 4)
 
-  # Starting at node `2`, traverse to nodes `1` and `3`
-  # with a character match expression
-  graph <-
-    graph %>%
-    clear_selection %>%
-    select_nodes_by_id(2) %>%
-    trav_both("shape == 'triangle'")
-
-  # Expect that the node `1` is the current selection
-  expect_equal(get_selection(graph), 1)
-
-  # Starting at node `2`, traverse to node `2` with a
+  # Starting at node `2`, traverse
+  # to nodes `1` and `3` with a
   # character match expression
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(2) %>%
-    trav_both("shape == 'circle'")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 2) %>%
+    trav_both(
+      conditions = shape == "triangle")
 
-  # Expect that the node `2` is the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that the node `1` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 1)
+
+  # Starting at node `2`, traverse to
+  # node `2` with a character match expression
+  graph <-
+    graph %>%
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 2) %>%
+    trav_both(
+      conditions = shape == "circle")
+
+  # Expect that the node `2` is
+  # the current selection
+  expect_equal(
+    get_selection(graph), 2)
 })
 
 test_that("selective traversals with `trav_both_edge()` are possible", {
@@ -963,53 +1360,84 @@ test_that("selective traversals with `trav_both_edge()` are possible", {
     add_node() %>%
     add_node() %>%
     add_node() %>%
-    add_edge(1, 2) %>%
-    add_edge(2, 3) %>%
-    add_edge(3, 4) %>%
+    add_edge(
+      from = 1,
+        to = 2) %>%
+    add_edge(
+      from = 2,
+        to = 3) %>%
+    add_edge(
+      from = 3,
+        to = 4) %>%
     select_nodes() %>%
-    set_node_attrs_ws("type", "circle") %>%
+    set_node_attrs_ws(
+      node_attr = "type",
+      value = "circle") %>%
     clear_selection() %>%
-    select_nodes_by_id(c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
+    select_nodes_by_id(nodes = c(2, 3)) %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 10) %>%
     clear_selection() %>%
-    select_nodes_by_id(4) %>%
-    set_node_attrs_ws("shape", "square") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 4) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "square") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
-    select_nodes_by_id(1) %>%
-    set_node_attrs_ws("shape", "triangle") %>%
-    set_node_attrs_ws("data_value", 5) %>%
+    select_nodes_by_id(nodes = 1) %>%
+    set_node_attrs_ws(
+      node_attr = "shape",
+      value = "triangle") %>%
+    set_node_attrs_ws(
+      node_attr = "data_value",
+      value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
-    set_edge_attrs_ws("data_value", c(1, 2, 3)) %>%
-    set_edge_attrs_ws("rel", "related_to") %>%
+    set_edge_attrs_ws(
+      edge_attr = "data_value",
+      value = c(1, 2, 3)) %>%
+    set_edge_attrs_ws(
+      edge_attr = "rel",
+      value = "related_to") %>%
     clear_selection()
 
-  # Starting at node `3`, traverse to edges `3` -> `4`
-  # and `2` -> `3` with a match expression (==)
+  # Starting at node `3`, traverse
+  # to edges `3` -> `4` and `2` -> `3`
+  # with a match expression (==)
   graph <-
     graph %>%
-    clear_selection %>%
-    select_nodes_by_id(3) %>%
-    trav_both_edge("data_value == 2")
+    clear_selection() %>%
+    select_nodes_by_id(nodes = 3) %>%
+    trav_both_edge(
+      conditions = data_value == 2)
 
-  # Expect that edge `2` is in the current selection
-  expect_equal(get_selection(graph), 2)
+  # Expect that edge `2` is in
+  # the current selection
+  expect_equal(
+    get_selection(graph), 2)
 
-  # Expect an error if the graph has no selection of nodes
+  # Expect an error if the graph
+  # has no selection of nodes
   expect_error(
     graph %>%
-      clear_selection %>%
-      trav_both_edge("data_value == 2"))
+      clear_selection() %>%
+      trav_both_edge(
+        conditions = data_value == 2))
 
-  # Return the same graph if a traversal with conditions
-  # does not result in a traversal
+  # Return the same graph if a
+  # traversal with conditions does
+  # not result in a traversal
   expect_equal(
     graph %>%
-      clear_selection %>%
-      select_nodes_by_id(3) %>%
-      trav_both_edge("data_value == 6") %>%
-      get_selection(), 3)
+      clear_selection() %>%
+      select_nodes_by_id(nodes = 3) %>%
+      trav_both_edge(
+        conditions = data_value == 6) %>%
+      get_selection(),
+    3)
 })
 
 test_that("traversing to reverse edges with an edge selection is possible", {
@@ -1025,7 +1453,7 @@ test_that("traversing to reverse edges with an edge selection is possible", {
   edf <-
     create_edge_df(
       from = c(1, 4, 2, 3, 3),
-      to =   c(4, 1, 3, 2, 1))
+        to = c(4, 1, 3, 2, 1))
 
   # Create a graph with the ndf and edf
   graph <-
@@ -1037,13 +1465,18 @@ test_that("traversing to reverse edges with an edge selection is possible", {
   # and `2`->`3`
   graph <-
     graph %>%
-    select_edges(from = 1, to = 4) %>%
-    select_edges(from = 2, to = 3)
+    select_edges(
+      from = 1,
+        to = 4) %>%
+    select_edges(
+      from = 2,
+        to = 3)
 
   # Add to the selection the reverse edges
   graph_add_selection <-
     graph %>%
-    trav_reverse_edge(add_to_selection = TRUE)
+    trav_reverse_edge(
+      add_to_selection = TRUE)
 
   # Expect certain edges to be available
   # in the selection
@@ -1054,7 +1487,8 @@ test_that("traversing to reverse edges with an edge selection is possible", {
   # Flip the selection to the reverse edge
   graph_flip_selection <-
     graph %>%
-    trav_reverse_edge(add_to_selection = FALSE)
+    trav_reverse_edge(
+      add_to_selection = FALSE)
 
   # Expect certain edges to be available
   # in the selection
@@ -1067,5 +1501,6 @@ test_that("traversing to reverse edges with an edge selection is possible", {
   expect_error(
     graph %>%
       clear_selection() %>%
-      trav_reverse_edge(add_to_selection = TRUE))
+      trav_reverse_edge(
+        add_to_selection = TRUE))
 })

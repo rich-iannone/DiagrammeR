@@ -83,7 +83,8 @@ test_that("getting node IDs from various objects is possible", {
   gotten_nodes_w_condition <-
     graph %>%
     get_node_ids(
-      conditions = "type == 'h_to_p'")
+      conditions =
+        type == "h_to_p")
 
   # Expect an `integer` vector object
   expect_is(
@@ -407,7 +408,7 @@ expect_equal(
 expect_equal(
   get_edge_ids(
     graph,
-    conditions = "value > 3"), c(1, 3))
+    conditions = value > 3), c(1, 3))
 
 # Using an equality for a character object,
 # (i.e., all nodes with `color` attribute of
@@ -415,7 +416,8 @@ expect_equal(
 expect_equal(
   get_edge_ids(
     graph = graph,
-    conditions = "color == 'pink'"), 1)
+    conditions = color == "pink"),
+  1)
 
 # Expect that multiple conditions will work
 # to return edges with the desired attribute
@@ -423,8 +425,10 @@ expect_equal(
 expect_equal(
   get_edge_ids(
     graph,
-    conditions = c("color == 'blue'",
-                   "value > 5")), 3)
+    conditions =
+      color == "blue" &
+      value > 5),
+  3)
 
 # Expect NA if no edges are matched after
 # providing unmatched conditions
@@ -432,7 +436,7 @@ expect_true(
   is.na(
     get_edge_ids(
       graph,
-      conditions = "color == 'red'")))
+      conditions = color == "red")))
 
 # Expect NA if there are no edges in the graph
 expect_true(

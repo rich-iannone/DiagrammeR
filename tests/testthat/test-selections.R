@@ -43,7 +43,8 @@ test_that("selecting a node in a graph is possible", {
   # Select nodes where `value` > 3
   graph_val_gt_3 <-
     graph %>%
-    select_nodes("value > 3")
+    select_nodes(
+      conditions = value > 3)
 
   # Expect that nodes `1` and `3` are part of a
   # selection object in `nodes`
@@ -54,7 +55,8 @@ test_that("selecting a node in a graph is possible", {
   # Select nodes where `value` < 3
   graph_val_lt_3 <-
     graph %>%
-    select_nodes("value < 3")
+    select_nodes(
+      conditions = value < 3)
 
   # Expect that nodes `2` and `4` are part of a
   # selection object in `nodes`
@@ -65,7 +67,8 @@ test_that("selecting a node in a graph is possible", {
   # Select nodes where `value` == 2.7
   graph_val_eq_2_7 <-
     graph %>%
-    select_nodes("value == 2.7")
+    select_nodes(
+      conditions = value == 2.7)
 
   # Expect that node `4` is part of a selection
   # object in `nodes`
@@ -75,7 +78,8 @@ test_that("selecting a node in a graph is possible", {
   # Select nodes where `value` != 2.7
   graph_val_neq_2_7 <-
     graph %>%
-    select_nodes("value != 2.7")
+    select_nodes(
+      conditions = value != 2.7)
 
   # Expect that nodes `1`, `2`, and `3` are part of
   # a selection object in `nodes`
@@ -86,7 +90,8 @@ test_that("selecting a node in a graph is possible", {
   # Select nodes where `type` is `letter`
   graph_val_letter <-
     graph %>%
-    select_nodes("type == 'let'")
+    select_nodes(
+      conditions = type == "let")
 
   # Expect that nodes `1`, `2`, `3`, and `4` are
   # part of a selection object in `nodes`
@@ -99,7 +104,9 @@ test_that("selecting a node in a graph is possible", {
   # to nodes `1` and `2`
   graph_val_letter_a_b <-
     graph %>%
-    select_nodes("type == 'let'", nodes = 1:2)
+    select_nodes(
+      conditions = type == "let",
+      nodes = 1:2)
 
   # Expect that nodes `1` and `2` are part of a
   # selection object in `nodes`
@@ -126,7 +133,8 @@ test_that("selecting a node in a graph is possible", {
     graph %>%
     select_nodes(nodes = c(1, 2, 3)) %>%
     select_nodes(
-      nodes = c(2, 3, 4), set_op = "intersect")
+      nodes = c(2, 3, 4),
+      set_op = "intersect")
 
   # Expect that nodes `2` and `3` are part of a
   # selection object in `nodes`
@@ -140,7 +148,8 @@ test_that("selecting a node in a graph is possible", {
     graph %>%
     select_nodes(nodes = 1:3) %>%
     select_nodes(
-      nodes = 2:3, set_op = "difference")
+      nodes = 2:3,
+      set_op = "difference")
 
   # Expect that node `1` is part of a selection
   # object in `nodes`
@@ -205,7 +214,8 @@ test_that("selecting an edge in a graph is possible", {
   # Select edges where `width` > 2
   graph_width_gt_2 <-
     graph %>%
-    select_edges("width > 2")
+    select_edges(
+      conditions = width > 2)
 
   # Expect that node `3` is part of a selection
   # object in 'edges/from'
@@ -218,7 +228,8 @@ test_that("selecting an edge in a graph is possible", {
   # Select nodes where `width` < 3
   graph_width_lt_3 <-
     graph %>%
-    select_edges("width < 3")
+    select_edges(
+      conditions = width < 3)
 
   # Expect that nodes `1` and `2` are part of a
   # selection object in 'edges/from'
@@ -235,7 +246,8 @@ test_that("selecting an edge in a graph is possible", {
   # Select nodes where `width` == 2
   graph_width_eq_2 <-
     graph %>%
-    select_edges("width == 2")
+    select_edges(
+      conditions = width == 2)
 
   # Expect that node `2` is part of a selection
   # object in 'edges/from'
@@ -250,7 +262,8 @@ test_that("selecting an edge in a graph is possible", {
   # Select nodes where `width` != 2
   graph_width_neq_2 <-
     graph %>%
-    select_edges("width != 2")
+    select_edges(
+      conditions = width != 2)
 
   # Expect that nodes `1` and `3` are part of a
   # selection object in 'edges/from'
@@ -263,7 +276,8 @@ test_that("selecting an edge in a graph is possible", {
   # Select nodes where `rel` is `leading_to`
   graph_val_leading_to <-
     graph %>%
-    select_edges("rel == 'leading_to'")
+    select_edges(
+      conditions = rel == "leading_to")
 
   # Expect that nodes `1`, `2`, and `3` are part of a
   # selection object in 'edges/from'
@@ -280,51 +294,68 @@ test_that("selecting an edge in a graph is possible", {
   # Create a union of selections in a magrittr pipeline
   graph_sel_union_ab_bc <-
     graph %>%
-    select_edges(from = 1, to = 4) %>%
-    select_edges(from = 2, to = 3)
+    select_edges(
+      from = 1,
+        to = 4) %>%
+    select_edges(
+      from = 2,
+        to = 3)
 
   # Expect that nodes `1` and `2` are part of a
   # selection object in `edges/from`
-  expect_true(all(graph_sel_union_ab_bc$edge_selection$from == c(1, 2)))
+  expect_true(
+    all(
+      graph_sel_union_ab_bc$edge_selection$from == c(1, 2)))
 
   # Expect that nodes `4` and `3` are part of a
   # selection object in `edges/to`
-  expect_true(all(graph_sel_union_ab_bc$edge_selection$to == c(4, 3)))
+  expect_true(
+    all(
+      graph_sel_union_ab_bc$edge_selection$to == c(4, 3)))
 
   # Create a intersection of selections in a
   # magrittr pipeline
   graph_sel_intersect_bc <-
     graph %>%
-    select_edges(from = c(1, 2), to = c(4, 3)) %>%
     select_edges(
-      from = c(2, 3), to = c(3, 1),
+      from = c(1, 2),
+        to = c(4, 3)) %>%
+    select_edges(
+      from = c(2, 3),
+        to = c(3, 1),
       set_op = "intersect")
 
   # Expect that node `2` is part of a selection
   # object in `edges/from`
-  expect_true(graph_sel_intersect_bc$edge_selection$from == 2)
+  expect_true(
+    graph_sel_intersect_bc$edge_selection$from == 2)
 
   # Expect that node `3` is part of a selection
   # object in `edges/to`
-  expect_true(graph_sel_intersect_bc$edge_selection$to == 3)
+  expect_true(
+    graph_sel_intersect_bc$edge_selection$to == 3)
 
   # Create a selection that is a difference
   # of selections
   graph_sel_edge_difference_ad <-
     graph %>%
     select_edges(
-      from = c(1, 2, 3), to = c(4, 3, 1)) %>%
+      from = c(1, 2, 3),
+        to = c(4, 3, 1)) %>%
     select_edges(
-      from = c(2, 3), to = c(3, 1),
+      from = c(2, 3),
+        to = c(3, 1),
       set_op = "difference")
 
   # Expect that node `1` is part of a selection
   # object in `edges/from`
-  expect_true(graph_sel_edge_difference_ad$edge_selection$from == 1)
+  expect_true(
+    graph_sel_edge_difference_ad$edge_selection$from == 1)
 
   # Expect that node `4` is part of a selection
   # object in `edges/to`
-  expect_true(graph_sel_edge_difference_ad$edge_selection$to == 4)
+  expect_true(
+    graph_sel_edge_difference_ad$edge_selection$to == 4)
 
   # Select edges, specifying only the `from` node
   graph_from_a <-
@@ -333,8 +364,11 @@ test_that("selecting an edge in a graph is possible", {
       from = 1)
 
   # Expect that only the edge `1`->`4` is selected
-  expect_true(graph_from_a$edge_selection$from == 1)
-  expect_true(graph_from_a$edge_selection$to == 4)
+  expect_true(
+    graph_from_a$edge_selection$from == 1)
+
+  expect_true(
+    graph_from_a$edge_selection$to == 4)
 
   # Expect an error if when only specifying the
   # `from` node, that node isn't present in the graph
@@ -350,8 +384,11 @@ test_that("selecting an edge in a graph is possible", {
       to = 3)
 
   # Expect that only the edge `2`->`3` is selected
-  expect_true(graph_to_c$edge_selection$from == 2)
-  expect_true(graph_to_c$edge_selection$to == 3)
+  expect_true(
+    graph_to_c$edge_selection$from == 2)
+
+  expect_true(
+    graph_to_c$edge_selection$to == 3)
 
   # Expect an error if when only specifying the
   # `to` node, that node isn't present in the graph
@@ -378,7 +415,9 @@ test_that("selecting an edge in a graph is possible", {
   # Expect an error if selecting edges from a
   # graph that doesn't contain edges
   expect_error(
-    create_graph() %>% add_n_nodes(2) %>% select_edges())
+    create_graph() %>%
+      add_n_nodes(n = 2) %>%
+      select_edges())
 })
 
 test_that("selecting edges via node IDs is possible", {
@@ -386,19 +425,24 @@ test_that("selecting edges via node IDs is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_path(8)
+    add_path(n = 8)
 
   # Select all edges associated with nodes with
   # ID `3` and `4`
   graph <-
-    select_edges_by_node_id(graph, nodes = c(3, 4))
+    select_edges_by_node_id(
+      graph = graph,
+      nodes = c(3, 4))
 
   # Expect that certain edges with be available
   # in the selection
-  expect_true(all(graph$edge_selection$from %in%
-                    c(3, 4, 2)))
-  expect_true(all(graph$edge_selection$to %in%
-                    c(4, 5, 3)))
+  expect_true(
+    all(graph$edge_selection$from %in%
+          c(3, 4, 2)))
+
+  expect_true(
+    all(graph$edge_selection$to %in%
+          c(4, 5, 3)))
 })
 
 test_that("selecting edges via edge IDs is possible", {
@@ -406,19 +450,20 @@ test_that("selecting edges via edge IDs is possible", {
   # Create a graph with 5 nodes
   graph <-
     create_graph() %>%
-    add_path(5)
+    add_path(n = 5)
 
   # Create a graph selection by selecting edges
   # associated the edge IDs `1` and `2`
   graph <-
     graph %>%
-    select_edges_by_edge_id(1:2)
+    select_edges_by_edge_id(edges = 1:2)
 
   # Expect edges with IDs `1` and `2` in the
   # selection of edges
   expect_equal(
     graph %>%
-      get_selection(), c(1, 2))
+      get_selection(),
+    c(1, 2))
 })
 
 test_that("selecting nodes in a neighborhood is possible", {
@@ -426,7 +471,7 @@ test_that("selecting nodes in a neighborhood is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_path(12)
+    add_path(n = 12)
 
   # Create a selection of nodes centered around
   # node `6` and including those nodes a depth of 2
@@ -496,7 +541,7 @@ test_that("getting a selection is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_path(12)
+    add_path(n = 12)
 
   # Select all nodes in graph and get selection
   graph_node_selection_1 <-
@@ -526,7 +571,7 @@ test_that("inverting a selection is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_path(12)
+    add_path(n = 12)
 
   # Select nodes `1` and `2` in the graph
   graph_select_1_2 <-
@@ -549,8 +594,12 @@ test_that("inverting a selection is possible", {
   # Select edges `1`->`2` and `2`->`3` in the graph
   graph_select_edges_1_2__2_3 <-
     graph %>%
-    select_edges(from = 1, to = 2) %>%
-    select_edges(from = 2, to = 3)
+    select_edges(
+      from = 1,
+        to = 2) %>%
+    select_edges(
+      from = 2,
+        to = 3)
 
   # Invert the selection so that every other edge
   # is selected
@@ -572,7 +621,8 @@ test_that("inverting a selection is possible", {
 
   # Expect an error if inverting selection that
   # doesn't exist
-  expect_error(invert_selection(graph))
+  expect_error(
+    invert_selection(graph))
 })
 
 test_that("getting/clearing a selection is possible", {
@@ -580,9 +630,11 @@ test_that("getting/clearing a selection is possible", {
   # Create a graph
   graph <-
     create_graph() %>%
-    add_node %>%
-    add_node %>%
-    add_edge(1, 2)
+    add_node() %>%
+    add_node() %>%
+    add_edge(
+      from = 1,
+        to = 2)
 
   # Select all nodes in the graph
   graph_select_all_nodes <-

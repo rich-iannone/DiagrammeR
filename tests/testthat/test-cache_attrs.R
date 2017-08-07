@@ -193,7 +193,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   # is less than 5
   graph <-
     graph %>%
-    select_nodes(conditions = "value < 5.0")
+    select_nodes(conditions = value < 5.0)
 
   # Cache available values from the node attribute
   # `value` from the nodes that are selected; ensure
@@ -289,7 +289,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # is less than 5
   graph <-
     graph %>%
-    select_edges(conditions = "value < 5.0")
+    select_edges(conditions = value < 5.0)
 
   # Cache available values from the edge attribute
   # `value` from the edges that are selected; ensure
@@ -403,7 +403,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   # is less than 5
   graph <-
     graph %>%
-    select_nodes(conditions = "value < 5.0")
+    select_nodes(conditions = value < 5.0)
 
   # Cache available values from the node attribute
   # `value` from the nodes that are selected; ensure
@@ -475,7 +475,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   # is less than 5
   graph <-
     graph %>%
-    select_edges(conditions = "value < 5.0")
+    select_edges(conditions = value < 5.0)
 
   # Cache available values from the edge attribute
   # `value` from the edges that are selected; ensure

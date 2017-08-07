@@ -28,7 +28,7 @@ test_that("a subgraph can be created and such an object is correct", {
   # graph object
   graph_ns <-
     graph %>%
-    select_nodes(conditions = "value > 3")
+    select_nodes(conditions = value > 3)
 
   # Create a subgraph based on the selection
   subgraph_ns <- create_subgraph_ws(graph_ns)
@@ -49,7 +49,7 @@ test_that("a subgraph can be created and such an object is correct", {
   # graph object
   graph_es <-
     graph %>%
-    select_edges(conditions = "value > 4")
+    select_edges(conditions = value > 4)
 
   # Create a subgraph based on the selection
   subgraph_es <- create_subgraph_ws(graph_es)
