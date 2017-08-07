@@ -321,6 +321,12 @@ test_that("Getting node attributes is possible", {
 
   expect_equal(
     nodes_1_3[[2]], 3.5)
+
+  # Expect an error if referencing `id`
+  expect_error(
+    get_node_attrs(
+      graph = random_graph,
+      node_attr = "id"))
 })
 
 test_that("Getting edge attributes is possible", {
