@@ -175,6 +175,13 @@ test_that("Getting minimum eccentricity is possible", {
     get_min_eccentricity(
       graph = graph,
       direction = "away"))
+
+  # Expect NA if there aren't any nodes
+  # in the graph
+  expect_equal(
+    get_min_eccentricity(
+      graph = create_graph()),
+    as.numeric(NA))
 })
 
 test_that("Getting graph eccentricity is possible", {
