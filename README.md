@@ -96,7 +96,7 @@ Get the average age of all the contributors. Select all nodes of type `person` (
 
 ```r
 graph %>% 
-  select_nodes(conditions = "type == 'person'") %>%
+  select_nodes(conditions = type == "person") %>%
   get_node_attrs_ws(node_attr = "age") %>%
   mean()
 #> [1] 33.6
@@ -107,18 +107,21 @@ We can get the total number of commits to all projects. We know that all edges c
 ```r
 graph %>% 
   select_edges() %>%
-  get_edge_attrs_ws(edge_attr = "commits") %>%
+  get_edge_attrs_ws(
+    edge_attr = "commits") %>%
   sum()
 #> [1] 5182
 ```
 
-Single out the one known as Josh and get his total number of commits as a maintainer and as a contributor. Start by selecting the Josh node with `select_nodes(conditions = "name == 'Josh'")`. In this graph, we know that all people have an edge to a project and that edge can be of the relationship (`rel`) type of `contributor` or `maintainer`. We can migrate our selection from nodes to outbound edges with `trav_out_edges()` (and we won't provide a condition, just all the outgoing edges from Josh will be selected). Now we have a selection of 2 edges. Get that vector of `commits` values with `get_edge_attrs_ws()` and then calculate the `sum()`. This is the total number of commits.
+Single out the one known as Josh and get his total number of commits as a maintainer and as a contributor. Start by selecting the Josh node with `select_nodes(conditions = name == "Josh")`. In this graph, we know that all people have an edge to a project and that edge can be of the relationship (`rel`) type of `contributor` or `maintainer`. We can migrate our selection from nodes to outbound edges with `trav_out_edges()` (and we won't provide a condition, just all the outgoing edges from Josh will be selected). Now we have a selection of 2 edges. Get that vector of `commits` values with `get_edge_attrs_ws()` and then calculate the `sum()`. This is the total number of commits.
 
 ```r
 graph %>% 
-  select_nodes(conditions = "name == 'Josh'") %>%
+  select_nodes(
+    conditions = name == "Josh") %>%
   trav_out_edge() %>%
-  get_edge_attrs_ws(edge_attr = "commits") %>%
+  get_edge_attrs_ws(
+  edge_attr = "commits") %>%
   sum()
 #> [1] 227
 ```
@@ -127,46 +130,29 @@ Get the total number of commits from Louisa, just from the maintainer role thoug
 
 ```r
 graph %>% 
-  select_nodes(conditions = "name == 'Louisa'") %>%
-  trav_out_edge(conditions = "rel == 'maintainer'") %>%
-  get_edge_attrs_ws("commits") %>%
+  select_nodes(
+    conditions = name == "Louisa") %>%
+  trav_out_edge(
+    conditions = rel == "maintainer") %>%
+  get_edge_attrs_ws(
+    edge_attr = "commits") %>%
   sum()
 #> [1] 236
 ```
 
-How do we do something more complex, like, get the names of people in graph above age 32? First, select all `person` nodes with `select_nodes(conditions = "type == 'person'")`. Then, follow up with another `select_nodes()` call specifying `age > 32`. Importantly, have `set_op = "intersect"` (giving us the intersection of both selections).
+How do we do something more complex, like, get the names of people in graph above age 32? First, select all `person` nodes with `select_nodes(conditions = type == "person")`. Then, follow up with another `select_nodes()` call specifying `age > 32`. Importantly, have `set_op = "intersect"` (giving us the intersection of both selections).
 
 Now that we have the starting selection of nodes we want, we need to get all values of these nodes' `name` attribute as a character vector. We do this with the `get_node_attrs_ws()` function. After getting that vector, sort the names alphabetically with the **R** function `sort()`. Because we get a named vector, we can use `unname()` to not show us the names of each vector component.
 
 ```r
 graph %>% 
-  select_nodes(conditions = "type == 'person'") %>%
   select_nodes(
-    conditions = "age > 32",
+    conditions = type == "person") %>%
+  select_nodes(
+    conditions = age > 32,
     set_op = "intersect") %>%
-  get_node_attrs_ws(node_attr = "name") %>%
-  sort() %>%
-  unname()
-#> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
-```
-
-Another way to express the same selection of nodes is to use the `mk_cond()` (i.e., 'make condition') helper function to compose the selection conditions. It uses sets of 3 elements for each condition:
-
-    (1) the node or edge attribute name (character value)
-    (2) the conditional operator (character value)
-    (3) the value for the node or edge attribute
-  
-A linking `&` or `|` between groups of these three elements is used to specify `AND`s or `OR`s. The `mk_cond()` helper is also useful for supplying variables to a condition for a number of `select_...()` and all `trav_...()` functions.
-
-```r
-graph %>% 
-  select_nodes(
-    conditions =
-      mk_cond(
-        "type", "==", "person",
-        "&",
-        "age",  ">",  32)) %>%
-  get_node_attrs_ws(node_attr = "name") %>%
+  get_node_attrs_ws(
+    node_attr = "name") %>%
   sort() %>%
   unname()
 #> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
@@ -175,65 +161,20 @@ graph %>%
 That **supercalc** project is progressing quite nicely. Let's get the total number of commits from all people to that most interesting project. Start by selecting that project's node and work backwards. Traverse to the edges leading to it with `trav_in_edge()`. Those edges are from committers and they all contain the `commits` attribute with numerical values. Get a vector of `commits` and then get the sum (there are `1676` commits).
 ```r
 graph %>% 
-  select_nodes(conditions = "project == 'supercalc'") %>%
+  select_nodes(
+    conditions = project == "supercalc") %>%
   trav_in_edge() %>%
-  get_edge_attrs_ws("commits") %>%
+  get_edge_attrs_ws(
+    edge_attr = "commits") %>%
   sum()
 #> [1] 1676
-```
-
-How would we find out who committed the most to the **supercalc** project? This is an extension of the previous problem and there are actually a few ways to do this. We start the same way (at the project node, using `select_nodes()`), then:
-
-- traverse to the inward edges (with `trav_in_edge()`)
-- cache the `commits` values found in these selected edges (with `cache_edge_attrs_ws()`)
-- use `select_edges()` and compose the edge selection condition with the `mk_cond()` helper, where the edge has a `commits` value equal to the largest value in the cache; then, use the `intersect` set operation to restrict the selection to those edges already selected by the `trav_in_edge()` traversal function
-- we want the person responsible for these commits; traverse to that node from the edge selection with `trav_out_node()`
-- get the `name` value found in this single, selected node with the `get_node_attrs_ws()` function
-
-```r
-graph %>% 
-  select_nodes(conditions = "project == 'supercalc'") %>%
-  trav_in_edge() %>%
-  cache_edge_attrs_ws(
-    edge_attr = "commits",
-    name = "supercalc_commits") %>%
-  select_edges(
-    conditions = 
-      mk_cond(
-        "commits", "==", get_cache(.) %>% max()),
-    set_op = "intersect") %>%
-  trav_out_node() %>%
-  get_node_attrs_ws(node_attr = "name") %>%
-  unname()
-#> [1] "Sheryl"
-```
-
-What is the email address of the individual that contributed the least to the **randomizer** project?
-
-```r
-graph %>% 
-  select_nodes(conditions = "project == 'randomizer'") %>%
-  trav_in_edge() %>%
-  cache_edge_attrs_ws(
-    edge_attr = "commits",
-    name = "n_commits") %>%
-  trav_in_node() %>%
-  trav_in_edge(
-    conditions = 
-      mk_cond(
-        "commits", "==",
-        get_cache(., name = "n_commits") %>% min())) %>%
-  trav_out_node() %>%
-  get_node_attrs_ws(node_attr = "email") %>%
-  unname()
-#> [1] "the_will@graphymail.com"
 ```
 
 Kim is now a contributor to the **stringbuildeR** project and has made 15 new commits to that project. We can modify the graph to reflect this.
 
 First, add an edge with `add_edge()`. Note that `add_edge()` usually relies on node IDs in `from` and `to` when creating the new edge. This is almost always inconvenient so we can instead use node labels (we know they are unique in this graph) to compose the edge, setting `use_labels = TRUE`.
 
-The `rel` value in `add_edge()` was set to `contributor` -- in a property graph we always have values set for all node `type` and edge `rel` attributes. We will set another attribute for this edge (`commits`) by first selecting the edge (it was the last edge made: use `select_last_edges_created()`), then, use `set_edge_attrs_ws()` and provide the attribute/value pair. Finally, clear the active selections with `clear_selection()`. The graph is now changed, have a look.
+The `rel` value in `add_edge()` was set to `contributor` -- in a property graph we always have values set for all node `type` and edge `rel` attributes. We will set another attribute for this edge (`commits`) by first selecting the edge (it was the last edge made, so we can use `select_last_edges_created()`), then, use `set_edge_attrs_ws()` and provide the attribute/value pair. Finally, clear the active selections with `clear_selection()`. The graph is now changed, have a look.
 
 ```r
 graph <- 
@@ -241,8 +182,7 @@ graph <-
   add_edge(
     from = "Kim",
     to = "stringbuildeR",
-    rel = "contributor",
-    use_labels = TRUE) %>%
+    rel = "contributor") %>%
   select_last_edges_created() %>%
   set_edge_attrs_ws(
     edge_attr = "commits",
@@ -254,17 +194,19 @@ render_graph(graph, layout = "kk")
 
 <img src="inst/img/graph_example_2.png">
 
-Get all email addresses for contributors (but not maintainers) of the **randomizer** and **supercalc88** projects. Multiple `select_nodes()` calls in succession is an `OR` selection of nodes (`project` nodes selected can be `randomizer` or `supercalc`). With `trav_in_edge()` we just want the `contributer` edges/commits. Once on those edges, hop back unconditionally to the people from which the edges originate with `trav_out_node()`. Get the `email` values from those selected individuals as a sorted character vector. 
+Get all email addresses for contributors (but not maintainers) of the **randomizer** and **supercalc88** projects. With `trav_in_edge()` we just want the `contributer` edges/commits. Once on those edges, hop back unconditionally to the people from which the edges originate with `trav_out_node()`. Get the `email` values from those selected individuals as a sorted character vector. 
 
 ```r
 graph %>% 
   select_nodes(
-    conditions = "project == 'randomizer'") %>%
-  select_nodes(
-    conditions = "project == 'supercalc'") %>%
-  trav_in_edge(conditions = "rel == 'contributor'") %>%
+    conditions = 
+      project == "randomizer" | 
+      project == "supercalc") %>%
+  trav_in_edge(
+    conditions = rel == "contributor") %>%
   trav_out_node() %>%
-  get_node_attrs_ws(node_attr = "email") %>%
+  get_node_attrs_ws(
+    node_attr = "email") %>%
   sort() %>%
   unname()
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
