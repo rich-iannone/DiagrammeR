@@ -129,6 +129,13 @@ test_that("Getting maximum eccentricity is possible", {
   # Expect that `max_eccen` has the value 4
   expect_equal(
     max_eccen, 3)
+
+  # Expect NA if there aren't any nodes
+  # in the graph
+  expect_equal(
+    get_max_eccentricity(
+      graph = create_graph()),
+    as.numeric(NA))
 })
 
 test_that("Getting minimum eccentricity is possible", {
