@@ -147,6 +147,7 @@ get_attr_dfs <- function(graph,
 
   # Create bindings for specific variables
   id <- from <- to <- type <- rel <- label <- NULL
+  df_id <- df_id__ <- id__ <- node_edge__ <-  NULL
 
   # Collect data frames that are attributes of graph nodes
   if (!is.null(node_id)) {

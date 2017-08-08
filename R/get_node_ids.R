@@ -61,6 +61,9 @@
 get_node_ids <- function(x,
                          conditions = NULL) {
 
+  # Create binding for a specific variable
+  id <- NULL
+
   conditions <- rlang::enquo(conditions)
 
   if (inherits(x, "dgr_graph")) {

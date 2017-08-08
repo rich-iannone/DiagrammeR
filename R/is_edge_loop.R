@@ -68,6 +68,9 @@ is_edge_loop <- function(graph,
     stop("The value provided for `edge` should be numeric.")
   }
 
+  # Create binding for a specific variable
+  id <- NULL
+
   # Obtain the graph's edf
   edf <- graph$edges_df
 

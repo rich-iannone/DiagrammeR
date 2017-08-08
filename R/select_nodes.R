@@ -106,6 +106,9 @@ select_nodes <- function(graph,
     }
   }
 
+  # Create binding for a specific variable
+  id <- NULL
+
   # Remove any selection of edges
   graph$selection$edges <- NULL
 

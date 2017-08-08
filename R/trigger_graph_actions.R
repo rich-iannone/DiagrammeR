@@ -106,8 +106,10 @@ trigger_graph_actions <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  if (nrow(graph$graph_actions) == 0) {
+  # Create bindings for specific variables
+  action_index <- action_name <- NULL
 
+  if (nrow(graph$graph_actions) == 0) {
     message("There are currently no graph actions.")
   } else {
 

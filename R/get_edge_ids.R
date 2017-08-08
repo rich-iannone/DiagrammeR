@@ -69,6 +69,9 @@ get_edge_ids <- function(graph,
 
   conditions <- rlang::enquo(conditions)
 
+  # Create binding for a specific variable
+  id <- NULL
+
   # If the graph contains no edges, return NA
   if (nrow(graph$edges_df) == 0) {
     return(NA)

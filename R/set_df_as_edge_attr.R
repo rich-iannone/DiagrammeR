@@ -84,6 +84,9 @@ set_df_as_edge_attr <- function(graph,
     stop("The value given for `edge` does not correspond to an edge ID.")
   }
 
+  # Create bindings for specific variables
+  df_id__ <- node_edge__ <- id__ <- NULL
+
   # Generate an empty `df_storage` list if not present
   # TODO: put this in `create_graph()`
   if (is.null(graph$df_storage)) {

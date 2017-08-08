@@ -48,6 +48,9 @@ get_multiedge_count <- function(graph) {
     stop("The graph contains no edges, so, no selections can be made.")
   }
 
+  # Create bindings for specific variables
+  from <- to <- NULL
+
   # Check for the number of multiple edges
   # regardless of which definitions these
   # edges have

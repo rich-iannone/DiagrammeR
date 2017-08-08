@@ -101,6 +101,9 @@ reorder_graph_actions <- function(graph,
     stop("There are no graph actions to reorder.")
   }
 
+  # Create binding for a specific variable
+  action_index <- NULL
+
   # Get the `action_index` values
   # available in `graph$graph_actions`
   available_indices <-

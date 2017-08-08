@@ -42,6 +42,11 @@ get_last_nodes_created <- function(graph) {
     stop("The graph contains no nodes, so, no nodes can be selected.")
   }
 
+  # Create bindings for specific variables
+  function_used <- nodes <- step_created_nodes <- NULL
+  step_deleted_nodes <- step_init_with_nodes <- version_id <- NULL
+  time_modified <- duration <- id <- NULL
+
   graph_transform_steps <-
     graph$graph_log %>%
     dplyr::mutate(step_created_nodes = dplyr::if_else(
