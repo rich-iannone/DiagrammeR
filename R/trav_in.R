@@ -122,7 +122,7 @@
 #'   {
 #'   node_degrees <-
 #'     node_info(.) %>%
-#'     select(id, deg)
+#'     dplyr::select(id, deg)
 #'   join_node_attrs(., node_degrees)
 #'   } %>%
 #'   select_nodes_by_id(nodes = 5) %>%
