@@ -9,6 +9,10 @@ get_min_cut_between(graph, from, to)
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{from}{the node ID for the source node.}
+
+\item{to}{the node ID for the sink or target node.}
 }
 \value{
 a single numeric value representing the
