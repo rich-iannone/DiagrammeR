@@ -15,8 +15,9 @@
 #' @return a named vector of edge attribute values for
 #' the attribute given by \code{edge_attr} by edge.
 #' @examples
-#' # Create a simple graph where edges have an edge
-#' # attribute named `value`
+#' # Create a simple graph where
+#' # edges have an edge attribute
+#' # named `value`
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(n = 4) %>%
@@ -24,8 +25,8 @@
 #'     edges <-
 #'       create_edge_df(
 #'         from = c(1, 2, 1, 4),
-#'         to = c(2, 3, 4, 3),
-#'         rel = "rel")
+#'           to = c(2, 3, 4, 3),
+#'          rel = "rel")
 #'     add_edge_df(
 #'       graph = .,
 #'       edge_df = edges)
@@ -33,35 +34,44 @@
 #'   set_edge_attrs(
 #'     edge_attr = "value",
 #'     values = 1.6,
-#'     from = 1, to = 2) %>%
+#'     from = 1,
+#'       to = 2) %>%
 #'   set_edge_attrs(
 #'     edge_attr = "value",
 #'     values = 4.3,
-#'     from = 1, to = 4) %>%
+#'     from = 1,
+#'       to = 4) %>%
 #'   set_edge_attrs(
 #'     edge_attr = "value",
 #'     values = 2.9,
-#'     from = 2, to = 3) %>%
+#'     from = 2,
+#'       to = 3) %>%
 #'   set_edge_attrs(
 #'     edge_attr = "value",
 #'     values = 8.4,
-#'     from = 4, to = 3)
+#'     from = 4,
+#'       to = 3)
 #'
-#' # Get the values for the `value` edge attribute
+#' # Get the values for the
+#' # `value` edge attribute
 #' graph %>%
-#'   get_edge_attrs(edge_attr = "value")
+#'   get_edge_attrs(
+#'     edge_attr = value)
 #' #> 1->2 2->3 1->4 4->3
 #' #>  1.6  2.9  4.3  8.4
 #'
-#' # To only return edge attribute values for specified
-#' # edges, use the `from` and `to` arguments
+#' # To only return edge attribute
+#' # values for specified edges, use
+#' # the `from` and `to` arguments
 #' graph %>%
 #'   get_edge_attrs(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     from = c(1, 2),
-#'     to = c(2, 3))
+#'       to = c(2, 3))
 #' #> 1->2 2->3
 #' #>  1.6  2.9
+#' @importFrom dplyr mutate filter pull
+#' @importFrom rlang enquo UQ
 #' @export get_edge_attrs
 
 get_edge_attrs <- function(graph,
@@ -74,7 +84,12 @@ get_edge_attrs <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  if (edge_attr == "from" | edge_attr == "to") {
+  edge_attr <- rlang::enquo(edge_attr)
+
+  # Create binding for a specific variable
+  id <- NULL
+
+  if ((rlang::UQ(edge_attr) %>% paste())[2] %in% c("id", "from", "to")) {
     stop("This is not an edge attribute.")
   }
 
@@ -92,7 +107,8 @@ get_edge_attrs <- function(graph,
 
     # Extract the edge attribute values
     edge_attr_vals <-
-      edf[, which(colnames(edf) == edge_attr)]
+      edf %>%
+      dplyr::pull(rlang::UQ(edge_attr))
 
     # Extract the edge names
     edge_names <-
@@ -104,30 +120,25 @@ get_edge_attrs <- function(graph,
 
   if (!is.null(from) & !is.null(to)) {
 
-    edf$from_to <-
-      paste(edf$from, edf$to, sep = "^^")
-    edges <- paste(from, to, sep = "^^")
+    # Get edges as strings for filtering
+    # the `edf` object
+    edges <- paste(from, to, sep = "->")
+
+    # Filter the edf by the supplied
+    # edge definitions
+    edf <-
+      edf %>%
+      dplyr::mutate(from_to = paste(from, to, sep = "->")) %>%
+      dplyr::filter(from_to %in% edges)
 
     # Extract the edge attribute values
     edge_attr_vals <-
-      edf[
-        which(edf[
-          , which(colnames(edf) ==
-                    "from_to")] %in% edges),
-        which(colnames(edf) == edge_attr)]
+      edf %>%
+      dplyr::pull(rlang::UQ(edge_attr))
 
     # Extract the edge names
     edge_names <-
-      paste(edf[
-        which(edf[
-          , which(colnames(edf) ==
-                    "from_to")] %in% edges),
-        2],
-        edf[
-          which(edf[
-            , which(colnames(edf) ==
-                      "from_to")] %in% edges),
-          3], sep = "->")
+      paste(edf$from, edf$to, sep = "->")
 
     # Assign edge names
     names(edge_attr_vals) <- edge_names

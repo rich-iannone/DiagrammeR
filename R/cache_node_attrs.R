@@ -23,7 +23,7 @@
 #'   create_graph() %>%
 #'   add_n_nodes(n = 10) %>%
 #'   set_node_attrs(
-#'     node_attr = "value",
+#'     node_attr = value,
 #'     values = rnorm(node_count(.), 5, 2)) %>%
 #'   add_edges_w_string(
 #'     edges =
@@ -35,7 +35,7 @@
 #' graph <-
 #'   graph %>%
 #'   cache_node_attrs(
-#'     node_attr = "value",
+#'     node_attr = value,
 #'     name = "node_value")
 #'
 #' # Get the mean from all values available in
@@ -43,7 +43,8 @@
 #' graph %>%
 #'   get_cache(name = "node_value") %>%
 #'   mean()
-#' #> [1] 5.157112
+#' #> [1] 5.766209
+#' @importFrom rlang enquo UQ
 #' @export cache_node_attrs
 
 cache_node_attrs <- function(graph,
@@ -54,6 +55,10 @@ cache_node_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr <- rlang::enquo(node_attr)
+
+  node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

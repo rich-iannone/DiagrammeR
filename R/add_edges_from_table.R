@@ -45,13 +45,15 @@
 #'   add_edges_from_table(
 #'     system.file("extdata", "usd_exchange_rates.csv",
 #'                 package = "DiagrammeR"),
-#'     from_col = "from_currency",
-#'     to_col = "to_currency",
-#'     ndf_mapping = "iso_4217_code")
+#'     from_col = from_currency,
+#'     to_col = to_currency,
+#'     ndf_mapping = iso_4217_code)
 #'
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
-#' graph_1 %>% get_edge_df() %>% head()
+#' graph_1 %>%
+#'   get_edge_df() %>%
+#'   head()
 #' #>   id from to  rel cost_unit
 #' #> 1  1  148  1 <NA>  0.272300
 #' #> 2  2  148  2 <NA>  0.015210
@@ -69,9 +71,9 @@
 #'   add_edges_from_table(
 #'     system.file("extdata", "usd_exchange_rates.csv",
 #'                 package = "DiagrammeR"),
-#'     from_col = "from_currency",
-#'     to_col = "to_currency",
-#'     ndf_mapping = "iso_4217_code",
+#'     from_col = from_currency,
+#'     to_col = to_currency,
+#'     ndf_mapping = iso_4217_code,
 #'     set_rel = "from_usd")
 #'
 #' # View part of the graph's internal edge data
@@ -92,6 +94,7 @@
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr left_join select select_ rename mutate mutate_ bind_cols everything distinct
 #' @importFrom tidyr unnest_ drop_na_
+#' @importFrom rlang enquo UQ
 #' @export add_edges_from_table
 
 add_edges_from_table <- function(graph,
@@ -105,6 +108,18 @@ add_edges_from_table <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  from_col <- rlang::enquo(from_col)
+
+  from_col <- (rlang::UQ(from_col) %>% paste())[2]
+
+  to_col <- rlang::enquo(to_col)
+
+  to_col <- (rlang::UQ(to_col) %>% paste())[2]
+
+  ndf_mapping <- rlang::enquo(ndf_mapping)
+
+  ndf_mapping <- (rlang::UQ(ndf_mapping) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

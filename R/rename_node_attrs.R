@@ -15,11 +15,12 @@
 #'     n = 5, m = 10,
 #'     set_seed = 23) %>%
 #'   set_node_attrs(
-#'     node_attr = "shape",
+#'     node_attr = shape,
 #'     values = "circle")
 #'
-#' # Get the graph's internal ndf to show which
-#' # node attributes are available
+#' # Get the graph's internal ndf
+#' # to show which node attributes
+#' # are available
 #' get_node_df(graph)
 #' #>   id type label value  shape
 #' #> 1  1 <NA>     1   6.0 circle
@@ -28,15 +29,17 @@
 #' #> 4  4 <NA>     4   7.5 circle
 #' #> 5  5 <NA>     5   8.5 circle
 #'
-#' # Rename the `value` node attribute as `weight`
+#' # Rename the `value` node
+#' # attribute as `weight`
 #' graph <-
 #'   graph %>%
 #'   rename_node_attrs(
-#'     node_attr_from = "value",
-#'     node_attr_to = "weight")
+#'     node_attr_from = value,
+#'     node_attr_to = weight)
 #'
-#' # Get the graph's internal ndf to show that the
-#' # node attribute had been renamed
+#' # Get the graph's internal
+#' # ndf to show that the node
+#' # attribute had been renamed
 #' get_node_df(graph)
 #' #>   id type label weight  shape
 #' #> 1  1 <NA>     1    6.0 circle
@@ -44,6 +47,7 @@
 #' #> 3  3 <NA>     3    3.5 circle
 #' #> 4  4 <NA>     4    7.5 circle
 #' #> 5  5 <NA>     5    8.5 circle
+#' @importFrom rlang enquo UQ
 #' @export rename_node_attrs
 
 rename_node_attrs <- function(graph,
@@ -52,6 +56,14 @@ rename_node_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr_from <- rlang::enquo(node_attr_from)
+
+  node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
+
+  node_attr_to <- rlang::enquo(node_attr_to)
+
+  node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

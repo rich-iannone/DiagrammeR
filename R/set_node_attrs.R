@@ -39,7 +39,7 @@
 #' graph <-
 #'   set_node_attrs(
 #'     x = graph,
-#'     node_attr = "color",
+#'     node_attr = color,
 #'     values = "green",
 #'     nodes = c(1, 3))
 #'
@@ -56,7 +56,7 @@
 #' nodes <-
 #'   set_node_attrs(
 #'     x = ndf,
-#'     node_attr = "color",
+#'     node_attr = color,
 #'     values = "green",
 #'     nodes = c(1, 3))
 #'
@@ -73,7 +73,7 @@
 #' nodes <-
 #'   set_node_attrs(
 #'     x = ndf,
-#'     node_attr = "color",
+#'     node_attr = color,
 #'     values = "blue")
 #'
 #' # Display the `nodes` ndf
@@ -84,6 +84,7 @@
 #' #> 3  3 basic     3   9.4  blue
 #' #> 4  4 basic     4   2.7  blue
 #' @importFrom dplyr mutate
+#' @importFrom rlang enquo UQ
 #' @export set_node_attrs
 
 set_node_attrs <- function(x,
@@ -94,13 +95,17 @@ set_node_attrs <- function(x,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  node_attr <- rlang::enquo(node_attr)
+
+  node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
+
   # Create bindings for specific variables
   id <- NULL
 
   # Stop function if `node_attr` is `id`
-  if (node_attr == "id") {
-    stop("You cannot use the value `id` for `node_attr`.")
-  }
+  # if (node_attr == "id") {
+  #   stop("You cannot use the value `id` for `node_attr`.")
+  # }
 
   if (inherits(x, "dgr_graph")) {
     object_type <- "dgr_graph"

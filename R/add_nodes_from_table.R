@@ -32,7 +32,8 @@
 #' # increasing values from 1
 #' graph_1 <-
 #'   create_graph() %>%
-#'   add_nodes_from_table(table = path_to_csv)
+#'   add_nodes_from_table(
+#'     table = path_to_csv)
 #'
 #' # View part of the graph's internal node data
 #' # frame (ndf) using `get_node_df()`
@@ -56,8 +57,8 @@
 #' graph_2 <-
 #'   create_graph() %>%
 #'   add_nodes_from_table(
-#'     path_to_csv,
-#'     label_col = "iso_4217_code",
+#'     table = path_to_csv,
+#'     label_col = iso_4217_code,
 #'     set_type = "currency")
 #'
 #' # View part of the graph's internal ndf
@@ -80,8 +81,8 @@
 #' graph_3 <-
 #'   create_graph() %>%
 #'   add_nodes_from_table(
-#'     path_to_csv,
-#'     label_col = "iso_4217_code",
+#'     table = path_to_csv,
+#'     label_col = iso_4217_code,
 #'     set_type = "currency",
 #'     drop_cols = c("exponent", "currency_name"))
 #'
@@ -94,6 +95,7 @@
 #' }
 #' @importFrom utils read.csv
 #' @importFrom dplyr bind_cols mutate mutate_ select_
+#' @importFrom rlang enquo UQ
 #' @export add_nodes_from_table
 
 add_nodes_from_table <- function(graph,
@@ -105,6 +107,22 @@ add_nodes_from_table <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  label_col <- rlang::enquo(label_col)
+
+  label_col <- (rlang::UQ(label_col) %>% paste())[2]
+
+  type_col <- rlang::enquo(type_col)
+
+  type_col <- (rlang::UQ(type_col) %>% paste())[2]
+
+  if (label_col == "NULL") {
+    label_col <- NULL
+  }
+
+  if (type_col == "NULL") {
+    type_col <- NULL
+  }
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

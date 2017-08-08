@@ -32,7 +32,7 @@
 #'   create_graph() %>%
 #'   add_path(n = 6) %>%
 #'   set_edge_attrs(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     values = rnorm(edge_count(.), 5, 2))
 #'
 #' # Select all edges where the edge attribute
@@ -59,7 +59,7 @@
 #' graph <-
 #'   graph %>%
 #'   cache_edge_attrs_ws(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     name = "edge_value")
 #'
 #' # Get the cached vector with `get_cache()`
@@ -67,6 +67,7 @@
 #'   get_cache(name = "edge_value")
 #' #> [1] 2.906929 4.422623
 #' @importFrom dplyr filter select_ rename_ mutate
+#' @importFrom rlang enquo UQ
 #' @export cache_edge_attrs_ws
 
 cache_edge_attrs_ws <- function(graph,
@@ -76,6 +77,10 @@ cache_edge_attrs_ws <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  edge_attr <- rlang::enquo(edge_attr)
+
+  edge_attr <- (rlang::UQ(edge_attr) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

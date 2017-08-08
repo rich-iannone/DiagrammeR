@@ -35,7 +35,7 @@
 #'   create_graph() %>%
 #'   add_path(n = 4) %>%
 #'   set_edge_attrs(
-#'     edge_attr = "width",
+#'     edge_attr = width,
 #'     values = c(3.4, 2.3, 7.2))
 #'
 #' # Get the graph's internal edf to show which
@@ -51,7 +51,7 @@
 #' graph <-
 #'   graph %>%
 #'   mutate_edge_attrs(
-#'     edge_attr_from = "width",
+#'     edge_attr_from = width,
 #'     expressions = "~ / 2")
 #'
 #' # Get the graph's internal edf to show that the
@@ -68,9 +68,9 @@
 #' graph <-
 #'   graph %>%
 #'   mutate_edge_attrs(
-#'     edge_attr_from = "width",
+#'     edge_attr_from = width,
 #'     expressions = "round(log(~) + 2, 2)",
-#'     edge_attr_to = "length")
+#'     edge_attr_to = length)
 #'
 #' # Get the graph's internal edf to show that
 #' # the edge attribute values had been mutated
@@ -93,7 +93,7 @@
 #'   mutate_edge_attrs(
 #'     edge_attr_from = NA,
 #'     expressions = "width * length",
-#'     edge_attr_to = "area")
+#'     edge_attr_to = area)
 #'
 #' # Get the graph's internal edf to show that
 #' # the edge attribute values had been multiplied
@@ -105,6 +105,7 @@
 #' #> 3  3    3  4 <NA>  3.60   3.28 11.808
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom dplyr mutate_
+#' @importFrom rlang enquo UQ
 #' @export mutate_edge_attrs
 
 mutate_edge_attrs <- function(graph,
@@ -114,6 +115,22 @@ mutate_edge_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  edge_attr_from <- rlang::enquo(edge_attr_from)
+
+  edge_attr_from <- (rlang::UQ(edge_attr_from) %>% paste())[2]
+
+  edge_attr_to <- rlang::enquo(edge_attr_to)
+
+  edge_attr_to <- (rlang::UQ(edge_attr_to) %>% paste())[2]
+
+  if (edge_attr_to == "NULL") {
+    edge_attr_to <- NULL
+  }
+
+  if (edge_attr_from == "NA") {
+    edge_attr_from <- as.character(NA)
+  }
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

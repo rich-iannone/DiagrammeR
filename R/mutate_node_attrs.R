@@ -35,7 +35,7 @@
 #'   create_graph() %>%
 #'   add_path(n = 3) %>%
 #'   set_node_attrs(
-#'     node_attr = "width",
+#'     node_attr = width,
 #'     values = c(3.4, 2.3, 7.2))
 #'
 #' # Get the graph's internal ndf to show which
@@ -51,7 +51,7 @@
 #' graph <-
 #'   graph %>%
 #'   mutate_node_attrs(
-#'     node_attr_from = "width",
+#'     node_attr_from = width,
 #'     expressions = "~ / 2")
 #'
 #' # Get the graph's internal ndf to show that the
@@ -68,9 +68,9 @@
 #' graph <-
 #'   graph %>%
 #'   mutate_node_attrs(
-#'     node_attr_from = "width",
+#'     node_attr_from = width,
 #'     expressions = "round(log(~) + 2, 2)",
-#'     node_attr_to = "length")
+#'     node_attr_to = length)
 #'
 #' # Get the graph's internal ndf to show that
 #' # the node attribute values had been mutated
@@ -93,7 +93,7 @@
 #'   mutate_node_attrs(
 #'     node_attr_from = NA,
 #'     expressions = "width * length",
-#'     node_attr_to = "area")
+#'     node_attr_to = area)
 #'
 #' # Get the graph's internal ndf to show that
 #' # the node attribute values had been multiplied
@@ -105,6 +105,7 @@
 #' #> 3  3 <NA>     3  3.60   3.28 11.808
 #' @importFrom stringr str_replace_all str_detect
 #' @importFrom dplyr mutate_
+#' @importFrom rlang enquo UQ
 #' @export mutate_node_attrs
 
 mutate_node_attrs <- function(graph,
@@ -114,6 +115,22 @@ mutate_node_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr_from <- rlang::enquo(node_attr_from)
+
+  node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
+
+  node_attr_to <- rlang::enquo(node_attr_to)
+
+  node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
+
+  if (node_attr_to == "NULL") {
+    node_attr_to <- NULL
+  }
+
+  if (node_attr_from == "NA") {
+    node_attr_from <- as.character(NA)
+  }
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

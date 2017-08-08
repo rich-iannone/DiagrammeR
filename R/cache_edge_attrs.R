@@ -39,7 +39,7 @@
 #' graph <-
 #'   graph %>%
 #'   cache_edge_attrs(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     name = "edge_value")
 #'
 #' # Get the mean from all values available in
@@ -48,6 +48,7 @@
 #'   get_cache(name = "edge_value") %>%
 #'   mean()
 #' #> [1] 5.744332
+#' @importFrom rlang enquo UQ
 #' @export cache_edge_attrs
 
 cache_edge_attrs <- function(graph,
@@ -59,6 +60,10 @@ cache_edge_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  edge_attr <- rlang::enquo(edge_attr)
+
+  edge_attr <- (rlang::UQ(edge_attr) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

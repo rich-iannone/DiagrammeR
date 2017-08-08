@@ -27,7 +27,8 @@
 #' # Drop the `value` node attribute
 #' graph <-
 #'   graph %>%
-#'   drop_node_attrs(node_attr = "value")
+#'   drop_node_attrs(
+#'     node_attr = value)
 #'
 #' # Get the graph's internal ndf to show that
 #' # the node attribute `value` had been removed
@@ -38,6 +39,7 @@
 #' #> 3  3 <NA>     3
 #' #> 4  4 <NA>     4
 #' #> 5  5 <NA>     5
+#' @importFrom rlang enquo UQ
 #' @export drop_node_attrs
 
 drop_node_attrs <- function(graph,
@@ -45,6 +47,10 @@ drop_node_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr <- rlang::enquo(node_attr)
+
+  node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

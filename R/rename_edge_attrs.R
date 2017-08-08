@@ -15,11 +15,12 @@
 #'     n = 5, m = 8,
 #'     set_seed = 23) %>%
 #'   set_edge_attrs(
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "green")
 #'
-#' # Get the graph's internal edf to show which
-#' # edge attributes are available
+#' # Get the graph's internal edf
+#' # to show which edge attributes
+#' # are available
 #' get_edge_df(graph)
 #' #>   id from to  rel color
 #' #> 1  1    2  3 <NA> green
@@ -31,15 +32,17 @@
 #' #> 7  7    1  4 <NA> green
 #' #> 8  8    1  3 <NA> green
 #'
-#' # Rename the `value` node attribute as `weight`
+#' # Rename the `value` node
+#' # attribute as `weight`
 #' graph <-
 #'   graph %>%
 #'   rename_edge_attrs(
-#'     edge_attr_from = "color",
-#'     edge_attr_to = "labelfontcolor")
+#'     edge_attr_from = color,
+#'     edge_attr_to = labelfontcolor)
 #'
-#' # Get the graph's internal edf to show that the
-#' # edge attribute had been renamed
+#' # Get the graph's internal
+#' # edf to show that the edge
+#' # attribute had been renamed
 #' get_edge_df(graph)
 #' #>   id from to  rel labelfontcolor
 #' #> 1  1    2  3 <NA>          green
@@ -50,6 +53,7 @@
 #' #> 6  6    4  5 <NA>          green
 #' #> 7  7    1  4 <NA>          green
 #' #> 8  8    1  3 <NA>          green
+#' @importFrom rlang enquo UQ
 #' @export rename_edge_attrs
 
 rename_edge_attrs <- function(graph,
@@ -58,6 +62,14 @@ rename_edge_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  edge_attr_from <- rlang::enquo(edge_attr_from)
+
+  edge_attr_from <- (rlang::UQ(edge_attr_from) %>% paste())[2]
+
+  edge_attr_to <- rlang::enquo(edge_attr_to)
+
+  edge_attr_to <- (rlang::UQ(edge_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

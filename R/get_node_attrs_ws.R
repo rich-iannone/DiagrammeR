@@ -9,25 +9,31 @@
 #' @return a named vector of node attribute values for
 #' the attribute given by \code{node_attr} by node ID.
 #' @examples
-#' # With the `create_random_graph()` function, get
-#' # a simple graph with a node attribute called
-#' # `value`
+#' # Create a random graph and
+#' # incorporate the node attribute
+#' # called `value`
 #' graph <-
 #'   create_random_graph(
 #'     n = 4, m = 4,
 #'     set_seed = 23)
 #'
-#' # Select nodes with ID values `1` and `3`
+#' # Select nodes with ID values
+#' # `1` and `3`
 #' graph <-
 #'   graph %>%
-#'   select_nodes_by_id(nodes = c(1, 3))
+#'   select_nodes_by_id(
+#'     nodes = c(1, 3))
 #'
-#' # Return the node attribute values for the nodes
-#' # in the active selection
+#' # Get the node attribute values
+#' # for the `value` attribute, limited
+#' # to the current node selection
 #' graph %>%
-#'   get_node_attrs_ws(node_attr = "value")
+#'   get_node_attrs_ws(
+#'     node_attr = value)
 #' #>   1   3
 #' #> 6.0 3.5
+#' @importFrom dplyr filter pull
+#' @importFrom rlang enquo UQ
 #' @export get_node_attrs_ws
 
 get_node_attrs_ws <- function(graph,
@@ -43,7 +49,12 @@ get_node_attrs_ws <- function(graph,
     stop("There is no selection of nodes available.")
   }
 
-  if (node_attr %in% c("id", "nodes")) {
+  node_attr <- rlang::enquo(node_attr)
+
+  # Create binding for a specific variable
+  id <- NULL
+
+  if ((rlang::UQ(node_attr) %>% paste())[2] %in% c("id", "nodes")) {
     stop("This is not a node attribute.")
   }
 
@@ -54,11 +65,16 @@ get_node_attrs_ws <- function(graph,
   # Get the node IDs from the node selection
   nodes <- sort(graph$node_selection$node)
 
+  # Filter the ndf by the supplied
+  # node ID values
+  ndf <-
+    ndf %>%
+    dplyr::filter(id %in% nodes)
+
   # Extract the node attribute values
   node_attr_vals <-
-    ndf[
-      which(ndf[, 1] %in% nodes),
-      which(colnames(ndf) == node_attr)]
+    ndf %>%
+    dplyr::pull(rlang::UQ(node_attr))
 
   # Add names to each of the values
   names(node_attr_vals) <- nodes

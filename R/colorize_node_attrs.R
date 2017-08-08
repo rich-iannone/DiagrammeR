@@ -51,8 +51,8 @@
 #'
 #' # Inspect the number of distinct communities
 #' get_node_attrs(
-#'   graph,
-#'   node_attr = "walktrap_group") %>%
+#'   graph = graph,
+#'   node_attr = walktrap_group) %>%
 #'   unique() %>%
 #'   sort()
 #' #> [1] 1 2 3
@@ -66,13 +66,13 @@
 #' graph <-
 #'   graph %>%
 #'   colorize_node_attrs(
-#'     node_attr_from = "walktrap_group",
-#'     node_attr_to = "fillcolor",
+#'     node_attr_from = walktrap_group,
+#'     node_attr_to = fillcolor,
 #'     palette = "Greens",
 #'     alpha = 90) %>%
 #'   colorize_node_attrs(
-#'     node_attr_from = "walktrap_group",
-#'     node_attr_to = "color",
+#'     node_attr_from = walktrap_group,
+#'     node_attr_to = color,
 #'     palette = "viridis",
 #'     alpha = 80)
 #'
@@ -104,8 +104,8 @@
 #' graph <-
 #'   graph %>%
 #'   colorize_node_attrs(
-#'     node_attr_from = "weight",
-#'     node_attr_to = "fillcolor",
+#'     node_attr_from = weight,
+#'     node_attr_to = fillcolor,
 #'     cut_points = c(1, 3, 5, 7, 9))
 #'
 #' # Now there will be a `fillcolor` node attribute
@@ -122,6 +122,7 @@
 #' #> 7  7 <NA>     7    7.2   #2B83BA
 #' #> 8  8 <NA>     8    5.4   #ABDDA4
 #' @import viridis RColorBrewer
+#' @importFrom rlang enquo UQ
 #' @export colorize_node_attrs
 
 colorize_node_attrs <- function(graph,
@@ -135,6 +136,14 @@ colorize_node_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr_from <- rlang::enquo(node_attr_from)
+
+  node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
+
+  node_attr_to <- rlang::enquo(node_attr_to)
+
+  node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -263,12 +272,14 @@ colorize_node_attrs <- function(graph,
   # Get the finalized column of values
   nodes_attr_vector_colorized <- nodes_df[, ncol(nodes_df)]
 
+  node_attr_to_2 <- rlang::enquo(node_attr_to)
+
   # Set the node attribute values for nodes specified
   # in selection
   graph <-
     set_node_attrs(
       x = graph,
-      node_attr = node_attr_to,
+      node_attr = rlang::UQ(node_attr_to_2),
       values = nodes_attr_vector_colorized)
 
   # Remove last action from the `graph_log`

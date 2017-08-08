@@ -34,10 +34,11 @@
 #' # those selected nodes
 #' graph <-
 #'   graph %>%
-#'   select_nodes_by_id(nodes = 1:4) %>%
+#'   select_nodes_by_id(
+#'     nodes = 1:4) %>%
 #'   trav_out() %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "color",
+#'     node_attr = color,
 #'     value = "blue")
 #'
 #' # Show the internal node data frame to verify
@@ -51,6 +52,7 @@
 #' #> 4  4 <NA>     4  blue
 #' #> 5  5 <NA>     5  blue
 #' #> 6  6 <NA>     6  <NA>
+#' @importFrom rlang enquo UQ
 #' @export set_node_attrs_ws
 
 set_node_attrs_ws <- function(graph,
@@ -59,6 +61,10 @@ set_node_attrs_ws <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr <- rlang::enquo(node_attr)
+
+  node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -78,12 +84,14 @@ set_node_attrs_ws <- function(graph,
   # Get vector of node ID values
   nodes <- graph$node_selection$node
 
+  node_attr_2 <- rlang::enquo(node_attr)
+
   # Call the `set_node_attrs()` function
   # and update the graph
   graph <-
     set_node_attrs(
       x = graph,
-      node_attr = node_attr,
+      node_attr = rlang::UQ(node_attr_2),
       values = value,
       nodes = nodes)
 

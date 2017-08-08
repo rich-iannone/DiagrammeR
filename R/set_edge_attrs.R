@@ -36,52 +36,56 @@
 #'     nodes_df = ndf,
 #'     edges_df = edf)
 #'
-#' # Set attribute `color = "green"` for edges
-#' # `1`->`4` and `3`->`1` using the graph object
+#' # Set attribute `color = "green"`
+#' # for edges `1`->`4` and `3`->`1`
+#' # using the graph object
 #' graph <-
 #'   set_edge_attrs(
 #'     x = graph,
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "green",
 #'     from = c(1, 3),
 #'     to = c(4, 1))
 #'
-#' # Set attribute `color = "green"` for edges
-#' # `1`->`4` and `3`->`1` using the edge
-#' # data frame
+#' # Set attribute `color = "green"`
+#' # for edges `1`->`4` and `3`->`1`
+#' # using the edge data frame
 #' edges <-
 #'   set_edge_attrs(
 #'     x = edf,
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "green",
 #'     from = c(1, 3),
 #'     to = c(4, 1))
 #'
-#' # Set attribute `color = "blue"` for all edges
-#' # in the graph
+#' # Set attribute `color = "blue"`
+#' # for all edges in the graph
 #' graph <-
 #'   set_edge_attrs(
 #'     x = graph,
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "blue")
 #'
-#' # Set attribute `color = "pink"` for all edges in
-#' # graph outbound from node with ID value `1`
+#' # Set attribute `color = "pink"`
+#' # for all edges in graph outbound
+#' # from node with ID value `1`
 #' graph <-
 #'   set_edge_attrs(
 #'     x = graph,
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "pink",
 #'     from = 1)
 #'
-#' # Set attribute `color = "black"` for all edges in
-#' # graph inbound to node with ID `1`
+#' # Set attribute `color = "black"`
+#' # for all edges in graph inbound
+#' # to node with ID `1`
 #' graph <-
 #'   set_edge_attrs(
 #'     x = graph,
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "black",
 #'     to = 1)
+#' @importFrom rlang enquo UQ
 #' @export set_edge_attrs
 
 set_edge_attrs <- function(x,
@@ -92,6 +96,10 @@ set_edge_attrs <- function(x,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  edge_attr <- rlang::enquo(edge_attr)
+
+  edge_attr <- (rlang::UQ(edge_attr) %>% paste())[2]
 
   if (edge_attr %in% c("id", "from", "to")) {
     stop("You cannot alter edge ID values or attributes associated with node IDs.")

@@ -27,7 +27,7 @@
 #'     n = 5, m = 10,
 #'     set_seed = 23) %>%
 #'   set_node_attrs(
-#'     node_attr = "shape",
+#'     node_attr = shape,
 #'     values =
 #'       c("circle", "hexagon",
 #'         "rectangle", "rectangle",
@@ -49,7 +49,7 @@
 #' graph <-
 #'   graph %>%
 #'   recode_node_attrs(
-#'     node_attr_from = "shape",
+#'     node_attr_from = shape,
 #'     "circle -> square",
 #'     "rectangle -> triangle")
 #'
@@ -70,10 +70,10 @@
 #' graph <-
 #'   graph %>%
 #'   recode_node_attrs(
-#'     node_attr_from = "shape",
+#'     node_attr_from = shape,
 #'     "square -> red",
 #'     otherwise = "green",
-#'     node_attr_to = "color")
+#'     node_attr_to = color)
 #'
 #' # Get the graph's internal ndf to see the change
 #' get_node_df(graph)
@@ -90,7 +90,7 @@
 #' graph <-
 #'   graph %>%
 #'   recode_node_attrs(
-#'     node_attr_from = "value",
+#'     node_attr_from = value,
 #'     "6.0 -> 9.5",
 #'     "3.5 -> 10.5",
 #'     otherwise = 5.0)
@@ -104,6 +104,7 @@
 #' #> 4  4 <NA>     4   5.0 triangle green
 #' #> 5  5 <NA>     5   5.0   square   red
 #' @importFrom stringr str_split
+#' @importFrom rlang enquo UQ
 #' @export recode_node_attrs
 
 recode_node_attrs <- function(graph,
@@ -114,6 +115,18 @@ recode_node_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr_from <- rlang::enquo(node_attr_from)
+
+  node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
+
+  node_attr_to <- rlang::enquo(node_attr_to)
+
+  node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
+
+  if (node_attr_to == "NULL") {
+    node_attr_to <- NULL
+  }
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

@@ -31,29 +31,33 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' # Create a graph with 5 nodes and 4 edges
+#' # Create a graph with 5
+#' # nodes and 4 edges
 #' graph <-
 #'   create_graph() %>%
 #'   add_path(n = 5) %>%
 #'   set_edge_attrs(
-#'     edge_attr = "weight",
+#'     edge_attr = weight,
 #'     values = c(3.7, 6.3, 9.2, 1.6))
 #'
-#' # We can bucketize values in the edge `weight`
-#' # attribute using `cut_points` and, by doing so,
-#' # assign colors to each of the bucketed ranges
-#' # (for values not part of any bucket, a gray color
+#' # We can bucketize values in
+#' # the edge `weight` attribute using
+#' # `cut_points` and, by doing so,
+#' # assign colors to each of the
+#' # bucketed ranges (for values not
+#' # part of any bucket, a gray color
 #' # is assigned by default)
 #' graph <-
 #'   graph %>%
 #'   colorize_edge_attrs(
-#'     edge_attr_from = "weight",
-#'     edge_attr_to = "color",
+#'     edge_attr_from = weight,
+#'     edge_attr_to = color,
 #'     cut_points = c(0, 2, 4, 6, 8, 10),
 #'     palette = "RdYlGn")
 #'
-#' # Now there will be a `color` edge attribute
-#' # with distinct colors (from the RColorBrewer
+#' # Now there will be a `color`
+#' # edge attribute with distinct
+#' # colors (from the RColorBrewer
 #' # Red-Yellow-Green palette)
 #' get_edge_df(graph)
 #' #>   id from to  rel weight   color
@@ -62,6 +66,7 @@
 #' #> 3  3    3  4 <NA>    9.2 #1A9641
 #' #> 4  4    4  5 <NA>    1.6 #D7191C
 #' @import viridis RColorBrewer
+#' @importFrom rlang enquo UQ
 #' @export colorize_edge_attrs
 
 colorize_edge_attrs <- function(graph,
@@ -75,6 +80,14 @@ colorize_edge_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  edge_attr_from <- rlang::enquo(edge_attr_from)
+
+  edge_attr_from <- (rlang::UQ(edge_attr_from) %>% paste())[2]
+
+  edge_attr_to <- rlang::enquo(edge_attr_to)
+
+  edge_attr_to <- (rlang::UQ(edge_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -204,12 +217,14 @@ colorize_edge_attrs <- function(graph,
   # Get the finalized column of values
   edges_attr_vector_colorized <- edges_df[, ncol(edges_df)]
 
+  edge_attr_to_2 <- rlang::enquo(edge_attr_to)
+
   # Set the edge attribute values for nodes specified
   # in selection
   graph <-
     set_edge_attrs(
       x = graph,
-      edge_attr = edge_attr_to,
+      edge_attr = rlang::UQ(edge_attr_to_2),
       values = edges_attr_vector_colorized)
 
   # Remove last action from the `graph_log`
