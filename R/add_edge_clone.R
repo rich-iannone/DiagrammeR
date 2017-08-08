@@ -25,7 +25,7 @@
 #'     rel = "a") %>%
 #'   select_last_edges_created() %>%
 #'   set_edge_attrs(
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "steelblue") %>%
 #'   clear_selection()
 #'
@@ -140,11 +140,11 @@ add_edge_clone <- function(graph,
   # Iteratively set edge attribute values for
   # the new edges in the graph
   for (i in 1:ncol(edge_attr_vals)) {
-    graph <-
-      graph %>%
-      set_edge_attrs_ws(
-        edge_attr = colnames(edge_attr_vals)[i],
-        value = edge_attr_vals[1, i])
+
+    graph$edges_df[
+      nrow(graph$edges_df),
+      which(colnames(graph$edges_df) == colnames(edge_attr_vals)[i])] <-
+      edge_attr_vals[[i]]
   }
 
   # Clear the graph's active selection

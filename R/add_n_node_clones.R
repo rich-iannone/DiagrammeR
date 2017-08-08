@@ -135,16 +135,19 @@ add_n_node_clones <- function(graph,
   # new nodes in the graph
   graph <-
     graph %>%
-    select_nodes_by_id(nodes = new_node_ids)
+    select_nodes_by_id(
+      nodes = new_node_ids)
 
   # Iteratively set node attribute values for
   # the new nodes in the graph
   for (i in 1:ncol(node_attr_vals)) {
-    graph <-
-      graph %>%
-      set_node_attrs_ws(
-        node_attr = colnames(node_attr_vals)[i],
-        value = node_attr_vals[1, i])
+    for (j in 1:length(new_node_ids)) {
+
+      graph$nodes_df[
+        which(graph$nodes_df[, 1] == new_node_ids[j]),
+        which(colnames(graph$nodes_df) == colnames(node_attr_vals)[i])] <-
+          node_attr_vals[[i]]
+    }
   }
 
   # Clear the graph's active selection
