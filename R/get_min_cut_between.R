@@ -5,6 +5,8 @@
 #' all paths from the source and sink nodes.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
+#' @param from the node ID for the source node.
+#' @param to the node ID for the sink or target node.
 #' @return a single numeric value representing the
 #' minimum total edge capacity removed to disconnect
 #' the source and sink nodes.
