@@ -114,6 +114,7 @@ set_df_as_edge_attr <- function(graph,
       dplyr::filter(node_edge__ == "edge") %>%
       dplyr::filter(id__ == edge) %>%
       nrow() > 0) {
+
     df_object_old <-
       (dplyr::bind_rows(graph$df_storage) %>%
          dplyr::filter(node_edge__ == "edge") %>%
@@ -121,7 +122,7 @@ set_df_as_edge_attr <- function(graph,
          dplyr::select(df_id__) %>%
          purrr::flatten_chr())[1]
 
-    graph$df_storage[[`df_object_old`]] <- NULL
+    graph$df_storage[[df_object_old]] <- NULL
   }
 
   # Bind the data frame to `df_storage` list component
@@ -134,8 +135,8 @@ set_df_as_edge_attr <- function(graph,
       x = graph,
       edge_attr = "df_id",
       values = df_id,
-      from = (graph %>% get_edges(mk_cond("id", "==", edge), return_type = "list"))[[1]],
-      to = (graph %>% get_edges(mk_cond("id", "==", edge), return_type = "list"))[[2]])
+      from = graph$edges_df[which(graph$edges_df[, 1] == edge), 2],
+      to = graph$edges_df[which(graph$edges_df[, 1] == edge), 3])
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
