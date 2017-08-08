@@ -12,14 +12,6 @@ get_edge_attrs_ws(graph, edge_attr)
 
 \item{edge_attr}{the name of the attribute for which
 to get values.}
-
-\item{from}{an optional vector of node IDs from
-which the edge is outgoing for filtering the list
-of edges.}
-
-\item{to}{an optional vector of node IDs from which
-the edge is incoming for filtering the list of
-edges.}
 }
 \value{
 a named vector of edge attribute values for
