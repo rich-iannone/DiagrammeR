@@ -52,7 +52,7 @@
 #' # Using `keep_loops = FALSE` (the default)
 #' # will remove the loops
 #' create_graph() %>%
-#'   add_full_graph(3) %>%
+#'   add_full_graph(n = 3) %>%
 #'   node_info()
 #' #>   id type label deg indeg outdeg loops
 #' #> 1  1 <NA>     1   4     2      2     0
