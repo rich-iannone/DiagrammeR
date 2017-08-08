@@ -45,6 +45,7 @@ test_that("forward edges can be added given a selection of edges", {
 })
 
 test_that("reverse edges can be added given a selection of edges", {
+
   # Create an empty graph, add 2 nodes to it,
   # and create the edge `1->2`
   graph <-

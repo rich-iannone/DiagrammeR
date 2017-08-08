@@ -1,6 +1,7 @@
 context("Adding nodes and/or edges to an existing graph object")
 
 test_that("adding a node to a graph is possible", {
+
   # Create an empty graph
   graph <- create_graph()
 
@@ -801,7 +802,7 @@ test_that("adding edge clones is possible", {
       rel = "a") %>%
     select_last_edges_created() %>%
     set_edge_attrs(
-      edge_attr = "color",
+      edge_attr = color,
       values = "steelblue") %>%
     clear_selection() %>%
     add_node()

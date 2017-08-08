@@ -227,7 +227,7 @@ test_that("adding nodes from a table to a graph is possible", {
     add_nodes_from_table(
       node_table,
       set_type = "currency",
-      label_col = "curr_number")
+      label_col = curr_number)
 
   # Expect that all values set for the `type`
   # attribute are `currency`
@@ -241,7 +241,7 @@ test_that("adding nodes from a table to a graph is possible", {
     add_nodes_from_table(
       node_table,
       set_type = "currency",
-      label_col = "curr_number",
+      label_col = curr_number,
       drop_cols = c("exponent", "currency_name"))
 
   # Expect that the node attributes `exponent`
@@ -256,10 +256,10 @@ test_that("adding nodes from a table to a graph is possible", {
   graph_5_df <-
     create_graph() %>%
     add_nodes_from_table(
-      node_table,
+      table = node_table,
       set_type = "currency",
-      label_col = "curr_number",
-      type_col = "exponent")
+      label_col = curr_number,
+      type_col = exponent)
 
   # Expect that all values set for the `type`
   # attribute are have certain values (including NA)
@@ -668,9 +668,9 @@ test_that("adding edges from a table to a graph is possible", {
     graph %>%
     add_edges_from_table(
       edge_table,
-      from_col = "from_currency",
-      to_col = "to_currency",
-      ndf_mapping = "iso_4217_code")
+      from_col = from_currency,
+      to_col = to_currency,
+      ndf_mapping = iso_4217_code)
 
   # Expect that the graph has a certain number of edges
   expect_equal(edge_count(graph_nodes_edges), 157)
@@ -687,9 +687,9 @@ test_that("adding edges from a table to a graph is possible", {
     graph %>%
       add_edges_from_table(
         edge_table,
-        from_col = "from",
-        to_col = "to_currency",
-        ndf_mapping = "iso_4217_code"))
+        from_col = from,
+        to_col = to_currency,
+        ndf_mapping = iso_4217_code))
 
   # Expect an error if value for `to_col` is
   # not in the table
@@ -697,9 +697,9 @@ test_that("adding edges from a table to a graph is possible", {
     graph %>%
       add_edges_from_table(
         edge_table,
-        from_col = "from_currency",
-        to_col = "to",
-        ndf_mapping = "iso_4217_code"))
+        from_col = from_currency,
+        to_col = to,
+        ndf_mapping = iso_4217_code))
 
   # Expect an error if value for `ndf_mapping` is
   # not in the table
@@ -707,105 +707,105 @@ test_that("adding edges from a table to a graph is possible", {
     graph %>%
       add_edges_from_table(
         edge_table,
-        from_col = "from_currency",
-        to_col = "to_currency",
-        ndf_mapping = "iso_4217"))
+        from_col = from_currency,
+        to_col = to_currency,
+        ndf_mapping = iso_4217))
 })
 
 test_that("adding nodes from several table columns to a graph is possible", {
 
-# Create a simple graph
-graph <-
-  create_graph() %>%
-  add_path(2)
+  # Create a simple graph
+  graph <-
+    create_graph() %>%
+    add_path(n = 2)
 
-# Create a data frame from which several
-# columns have values designated as graph nodes
-df <-
-  data.frame(
-    col_1 = c("f", "p", "q"),
-    col_2 = c("q", "x", "f"),
-    col_3 = c(1, 5, 3),
-    col_4 = c("a", "v", "h"),
-    stringsAsFactors = FALSE)
+  # Create a data frame from which several
+  # columns have values designated as graph nodes
+  df <-
+    data.frame(
+      col_1 = c("f", "p", "q"),
+      col_2 = c("q", "x", "f"),
+      col_3 = c(1, 5, 3),
+      col_4 = c("a", "v", "h"),
+      stringsAsFactors = FALSE)
 
-# Add nodes from columns `col_1` and `col_2`
-# from the data frame to the graph object
-graph <-
-  graph %>%
-  add_nodes_from_df_cols(
-    df = df,
-    columns = c("col_1", "col_2"))
+  # Add nodes from columns `col_1` and `col_2`
+  # from the data frame to the graph object
+  graph <-
+    graph %>%
+    add_nodes_from_df_cols(
+      df = df,
+      columns = c("col_1", "col_2"))
 
-# Expect a certain sequence of node `label` values
-expect_equal(
-  graph %>% get_node_df() %>% .$label,
-  c("1", "2", "f", "p", "q", "x"))
+  # Expect a certain sequence of node `label` values
+  expect_equal(
+    graph %>% get_node_df() %>% .$label,
+    c("1", "2", "f", "p", "q", "x"))
 
-# Add new nodes from columns 3 and 4; we are here
-# specifying the columns by their numbers
-graph <-
-  graph %>%
-  add_nodes_from_df_cols(
-    df = df,
-    columns = 3:4)
+  # Add new nodes from columns 3 and 4; we are here
+  # specifying the columns by their numbers
+  graph <-
+    graph %>%
+    add_nodes_from_df_cols(
+      df = df,
+      columns = 3:4)
 
-# Expect a certain sequence of node `label` values
-expect_equal(
-  graph %>% get_node_df() %>% .$label,
-  c("1", "2", "f", "p", "q", "x",
-    "a", "v", "h"))
+  # Expect a certain sequence of node `label` values
+  expect_equal(
+    graph %>% get_node_df() %>% .$label,
+    c("1", "2", "f", "p", "q", "x",
+      "a", "v", "h"))
 
-# Add column 4's values as labels/nodes again
-graph <-
-  graph %>%
-  add_nodes_from_df_cols(
-    df = df,
-    columns = 4)
+  # Add column 4's values as labels/nodes again
+  graph <-
+    graph %>%
+    add_nodes_from_df_cols(
+      df = df,
+      columns = 4)
 
-# Expect no change in the graph
-expect_equal(
-  graph %>% get_node_df() %>% .$label,
-  c("1", "2", "f", "p", "q", "x",
-    "a", "v", "h"))
+  # Expect no change in the graph
+  expect_equal(
+    graph %>% get_node_df() %>% .$label,
+    c("1", "2", "f", "p", "q", "x",
+      "a", "v", "h"))
 
-# Add column 4's values as labels/nodes except with
-# the `keep_duplicates` argument set to TRUE
-graph <-
-  graph %>%
-  add_nodes_from_df_cols(
-    df = df,
-    columns = 4,
-    keep_duplicates = TRUE)
+  # Add column 4's values as labels/nodes except with
+  # the `keep_duplicates` argument set to TRUE
+  graph <-
+    graph %>%
+    add_nodes_from_df_cols(
+      df = df,
+      columns = 4,
+      keep_duplicates = TRUE)
 
-# Expect duplicated labels in the graph
-expect_equal(
-  graph %>% get_node_df() %>% .$label,
-  c("1", "2", "f", "p", "q", "x",
-    "a", "v", "h", "a", "v", "h"))
+  # Expect duplicated labels in the graph
+  expect_equal(
+    graph %>% get_node_df() %>% .$label,
+    c("1", "2", "f", "p", "q", "x",
+      "a", "v", "h", "a", "v", "h"))
 
-# Add column 4's values as labels/nodes with
-# the `keep_duplicates = TRUE` and a `type` value
-# of `new`
-graph <-
-  graph %>%
-  add_nodes_from_df_cols(
-    df = df,
-    columns = 4,
-    type = "new",
-    keep_duplicates = TRUE)
+  # Add column 4's values as labels/nodes with
+  # the `keep_duplicates = TRUE` and a `type` value
+  # of `new`
+  graph <-
+    graph %>%
+    add_nodes_from_df_cols(
+      df = df,
+      columns = 4,
+      type = "new",
+      keep_duplicates = TRUE)
 
-# Expect more duplicated labels in the graph
-expect_equal(
-  graph %>% get_node_df() %>% .$label,
-  c("1", "2", "f", "p", "q", "x",
-    "a", "v", "h", "a", "v", "h",
-    "a", "v", "h"))
+  # Expect more duplicated labels in the graph
+  expect_equal(
+    graph %>% get_node_df() %>% .$label,
+    c("1", "2", "f", "p", "q", "x",
+      "a", "v", "h", "a", "v", "h",
+      "a", "v", "h"))
 
-# Expect the `type` value of `new` to appear
-# for the last three nodes (others are not set)
-expect_equal(
-  graph %>% get_node_df() %>% .$type,
-  c(rep(as.character(NA), 12),
-    rep("new", 3)))
+  # Expect the `type` value of `new` to appear
+  # for the last three nodes (others are not set)
+  expect_equal(
+    graph %>% get_node_df() %>% .$type,
+    c(rep(as.character(NA), 12),
+      rep("new", 3)))
 })

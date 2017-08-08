@@ -23,8 +23,8 @@ test_that("Adding color based on node attributes is possible", {
   graph <-
     graph %>%
     colorize_node_attrs(
-      node_attr_from = "walktrap_group",
-      node_attr_to = "fillcolor")
+      node_attr_from = walktrap_group,
+      node_attr_to = fillcolor)
 
   # Expect that the `fillcolor` column has
   # been created in the node data frame
@@ -51,11 +51,11 @@ test_that("Adding color based on node attributes is possible", {
   graph <-
     graph %>%
     colorize_node_attrs(
-      node_attr_from = "walktrap_group",
-      node_attr_to = "color",
+      node_attr_from = walktrap_group,
+      node_attr_to = color,
       alpha = 90) %>%
     set_node_attrs(
-      node_attr = "fontcolor",
+      node_attr = fontcolor,
       values = "white")
 
   # Expect that the `color` column has
@@ -93,8 +93,8 @@ test_that("Adding color based on node attributes is possible", {
   graph <-
     graph %>%
     colorize_node_attrs(
-      node_attr_from = "value",
-      node_attr_to = "fillcolor",
+      node_attr_from = value,
+      node_attr_to = fillcolor,
       cut_points = c(1, 3, 5, 7, 9))
 
   # Expect that the `fillcolor` column has
@@ -123,8 +123,8 @@ test_that("Adding color based on node attributes is possible", {
       n = 10, m = 22,
       set_seed = 1) %>%
     colorize_node_attrs(
-      node_attr_from = "value",
-      node_attr_to = "fillcolor",
+      node_attr_from = value,
+      node_attr_to = fillcolor,
       cut_points = c(1, 3, 5, 7, 9),
       alpha = 90)
 
@@ -149,8 +149,8 @@ test_that("Adding color based on node attributes is possible", {
       n = 10, m = 22,
       set_seed = 1) %>%
     colorize_node_attrs(
-      node_attr_from = "value",
-      node_attr_to = "fillcolor",
+      node_attr_from = value,
+      node_attr_to = fillcolor,
       cut_points = c(1, 3, 5, 7, 9),
       alpha = 100)
 
@@ -170,6 +170,7 @@ test_that("Adding color based on node attributes is possible", {
 })
 
 test_that("Adding color based on edge attributes is possible", {
+
   # Create a random graph of 10 nodes and 10 edges;
   # add the `weight` and `rel` edge attrs
   graph <-
@@ -177,7 +178,7 @@ test_that("Adding color based on edge attributes is possible", {
       n = 10, m = 10,
       set_seed = 1) %>%
     set_edge_attrs(
-      edge_attr = "weight",
+      edge_attr = weight,
       values = rnorm(edge_count(.), 5, 2)) %>%
     set_edge_attrs(
       edge_attr = "rel",
@@ -189,11 +190,11 @@ test_that("Adding color based on edge attributes is possible", {
   graph <-
     graph %>%
     colorize_edge_attrs(
-      edge_attr_from = "rel",
-      edge_attr_to = "color") %>%
+      edge_attr_from = rel,
+      edge_attr_to = color) %>%
     colorize_edge_attrs(
-      edge_attr_from = "rel",
-      edge_attr_to = "fontcolor",
+      edge_attr_from = rel,
+      edge_attr_to = fontcolor,
       alpha = 90)
 
   # Expect that the `color` and `fontcolor`
@@ -236,8 +237,8 @@ test_that("Adding color based on edge attributes is possible", {
   graph <-
     graph %>%
     colorize_edge_attrs(
-      edge_attr_from = "weight",
-      edge_attr_to = "labelfontcolor",
+      edge_attr_from = weight,
+      edge_attr_to = labelfontcolor,
       cut_points = c(0, 2, 4, 6, 8, 10))
 
   # Expect that the `labelfontcolor` column has
@@ -264,10 +265,10 @@ test_that("Adding color based on edge attributes is possible", {
       n = 10, m = 10,
       set_seed = 1) %>%
     set_edge_attrs(
-      edge_attr = "weight",
+      edge_attr = weight,
       values = rnorm(edge_count(.), 5, 2)) %>%
     set_edge_attrs(
-      edge_attr = "rel",
+      edge_attr = rel,
       values = c("A", "A", "B", "B", "D",
                  "A", "B", "C", "D", "A"))
 
@@ -276,8 +277,8 @@ test_that("Adding color based on edge attributes is possible", {
   graph <-
     graph %>%
     colorize_edge_attrs(
-      edge_attr_from = "weight",
-      edge_attr_to = "labelfontcolor",
+      edge_attr_from = weight,
+      edge_attr_to = labelfontcolor,
       cut_points = c(0, 2, 4, 6, 8, 10),
       alpha = 90)
 
@@ -300,10 +301,10 @@ test_that("Adding color based on edge attributes is possible", {
       n = 10, m = 10,
       set_seed = 1) %>%
     set_edge_attrs(
-      edge_attr = "weight",
+      edge_attr = weight,
       values = rnorm(edge_count(.), 5, 2)) %>%
     set_edge_attrs(
-      edge_attr = "rel",
+      edge_attr = rel,
       values = c("A", "A", "B", "B", "D",
                  "A", "B", "C", "D", "A"))
 
@@ -312,8 +313,8 @@ test_that("Adding color based on edge attributes is possible", {
   graph <-
     graph %>%
     colorize_edge_attrs(
-      edge_attr_from = "weight",
-      edge_attr_to = "labelfontcolor",
+      edge_attr_from = weight,
+      edge_attr_to = labelfontcolor,
       cut_points = c(0, 2, 4, 6, 8, 10),
       alpha = 100)
 

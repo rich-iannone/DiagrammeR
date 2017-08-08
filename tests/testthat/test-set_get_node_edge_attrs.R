@@ -12,7 +12,7 @@ test_that("setting node attributes is possible", {
     set_node_attrs(
       x = graph,
       nodes = 1,
-      node_attr = "value",
+      node_attr = value,
       values = 5)
 
   # Expect that node `1` has node attr set for `value`
@@ -26,14 +26,15 @@ test_that("setting node attributes is possible", {
       cache_node_attrs(
         graph = graph_set_a,
         node_attr = "value",
-        nodes = 1)), 5)
+        nodes = 1)),
+    5)
 
   # Set attribute for node `1` with a different value
   graph_set_a <-
     set_node_attrs(
       x = graph,
       nodes = 1,
-      node_attr = "value",
+      node_attr = value,
       values = 8)
 
   # Expect that node `1` has node attr set for `value`
@@ -54,19 +55,20 @@ test_that("setting node attributes is possible", {
   graph_select_a <-
     set_node_attrs_ws(
       graph = graph_select_a,
-      node_attr = "value",
+      node_attr = value,
       value = 5)
 
   # Expect that node `1` has node attr set for `value`
   expect_equal(
     graph_select_a$nodes_df[
-      which(graph_select_a$nodes_df$id == 1), 4], 5)
+      which(graph_select_a$nodes_df$id == 1), 4],
+    5)
 
   # Set attribute for all nodes
   graph_set_all <-
     set_node_attrs(
       x = graph,
-      node_attr = "value",
+      node_attr = value,
       values = 5)
 
   # Expect that all nodes have the attribute set
@@ -79,20 +81,22 @@ test_that("setting node attributes is possible", {
     graph %>%
     select_nodes(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       value = 5)
 
   # Expect that node `1` has node attr set for `value`
   expect_equal(
     graph_node_selection$nodes_df[
-      which(graph_node_selection$nodes_df[, 1] == 1), 4], 5)
+      which(graph_node_selection$nodes_df[, 1] == 1), 4],
+    5)
 
   # Expect that getting the node attribute from a
   # selection works in the same way
   expect_equal(
     get_cache(
       cache_node_attrs_ws(
-        graph_node_selection, node_attr = "value")), 5)
+        graph_node_selection, node_attr = "value")),
+    5)
 
   # Get the node data frame from the graph as a separate object
   graph_node_df <- graph$nodes_df
@@ -102,7 +106,7 @@ test_that("setting node attributes is possible", {
     set_node_attrs(
       x = graph_node_df,
       nodes = 1,
-      node_attr = "value",
+      node_attr = value,
       values = 5)
 
   # Expect that node `1` has node attr set for `value`
@@ -115,7 +119,7 @@ test_that("setting node attributes is possible", {
     set_node_attrs(
       x = graph_node_df_set_a,
       nodes = 1,
-      node_attr = "value",
+      node_attr = value,
       values = 8)
 
   # Expect that node `1` in the ndf has node attr set for `value`
@@ -127,7 +131,7 @@ test_that("setting node attributes is possible", {
   graph_node_df_set_all <-
     set_node_attrs(
       x = graph_node_df,
-      node_attr = "value",
+      node_attr = value,
       values = 5)
 
   # Expect that all nodes in the ndf will have the attribute set
@@ -140,19 +144,19 @@ test_that("setting node attributes is possible", {
     cache_node_attrs_ws(graph))
 
   # Expect an error if the attribute selected is `id`
-  expect_error(
-    set_node_attrs(
-      x = graph,
-      nodes = 1,
-      node_attr = "id",
-      values = "B"))
+  # expect_error(
+  #   set_node_attrs(
+  #     x = graph,
+  #     nodes = 1,
+  #     node_attr = id,
+  #     values = "B"))
 
   # Expect an error if the length of `value` is greater than 1
   expect_error(
     set_node_attrs(
       x = graph,
       nodes = 1,
-      node_attr = "value",
+      node_attr = value,
       values = c(1, 2)))
 })
 
@@ -169,7 +173,7 @@ test_that("setting edge attributes is possible", {
       x = graph,
       from = 1,
       to = 2,
-      edge_attr = "value",
+      edge_attr = value,
       values = 5)
 
   # Expect that edge `1`->`2` has edge attr set for `value`
@@ -197,7 +201,7 @@ test_that("setting edge attributes is possible", {
       x = graph_set_a_1,
       from = 1,
       to = 2,
-      edge_attr = "value",
+      edge_attr = value,
       values = 8)
 
   # Expect that edge `1`->`2` has edge attr set for `value`
@@ -207,7 +211,8 @@ test_that("setting edge attributes is possible", {
         graph = graph_set_a_1,
         edge_attr = "value",
         from = 1,
-        to = 2)), 8)
+        to = 2)),
+    8)
 
   # Select edge `1`->`2`
   graph_select_a_1 <-
@@ -220,7 +225,7 @@ test_that("setting edge attributes is possible", {
   graph_select_a_1 <-
     set_edge_attrs_ws(
       graph = graph_select_a_1,
-      edge_attr = "value",
+      edge_attr = value,
       value = 5)
 
   # Expect that edge `1`->`2` has edge attr set for `value`
@@ -237,7 +242,7 @@ test_that("setting edge attributes is possible", {
   graph_set_all <-
     set_edge_attrs(
       x = graph,
-      edge_attr = "value",
+      edge_attr = value,
       values = 5)
 
   # Expect that all edges have the attribute set
@@ -249,9 +254,12 @@ test_that("setting edge attributes is possible", {
   # edge selection
   graph_edge_selection <-
     graph %>%
-    select_edges(from = 1, to = 2) %>%
+    select_edges(
+      from = 1,
+      to = 2) %>%
     set_edge_attrs_ws(
-      edge_attr = "value", value = 5)
+      edge_attr = value,
+      value = 5)
 
   # Expect that edge `1`->`2` has edge attr set for `value`
   expect_equal(
@@ -273,7 +281,7 @@ test_that("Getting node attributes is possible", {
   all_nodes <-
     get_node_attrs(
       graph = random_graph,
-      node_attr = "value")
+      node_attr = value)
 
   # Expect a numeric vector
   expect_is(
@@ -304,7 +312,7 @@ test_that("Getting node attributes is possible", {
   nodes_1_3 <-
     get_node_attrs(
       graph = random_graph,
-      node_attr = "value",
+      node_attr = value,
       nodes = c(1, 3))
 
   # Expect the vector to have length 2
@@ -326,7 +334,7 @@ test_that("Getting node attributes is possible", {
   expect_error(
     get_node_attrs(
       graph = random_graph,
-      node_attr = "id"))
+      node_attr = id))
 })
 
 test_that("Getting edge attributes is possible", {
@@ -340,39 +348,39 @@ test_that("Getting edge attributes is possible", {
       edges <-
         create_edge_df(
           from = c(1, 2, 1, 4),
-          to = c(2, 3, 4, 3),
-          rel = "rel")
+            to = c(2, 3, 4, 3),
+           rel = "rel")
       add_edge_df(
         graph = .,
         edge_df = edges)
     } %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 1.6,
       from = 1,
-      to = 2) %>%
+        to = 2) %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 4.3,
       from = 1,
-      to = 4) %>%
+        to = 4) %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 2.9,
       from = 2,
-      to = 3) %>%
+        to = 3) %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 8.4,
       from = 4,
-      to = 3)
+        to = 3)
 
   # Get node attributes for all nodes with the
   # `value` attribute
   all_edges <-
     get_edge_attrs(
       graph = graph,
-      edge_attr = "value")
+      edge_attr = value)
 
   # Expect a numeric vector
   expect_is(
@@ -405,9 +413,9 @@ test_that("Getting edge attributes is possible", {
   some_edges <-
     get_edge_attrs(
       graph = graph,
-      edge_attr = "value",
+      edge_attr = value,
       from = c(1, 2),
-      to = c(2, 3))
+        to = c(2, 3))
 
   # Expect the vector to have length 2
   expect_equal(
@@ -429,22 +437,22 @@ test_that("Getting edge attributes is possible", {
   expect_error(
     get_edge_attrs(
       graph = graph,
-      edge_attr = "from"))
+      edge_attr = from))
 
   # Expect an error if referencing `to`
   expect_error(
     get_edge_attrs(
       graph = graph,
-      edge_attr = "to"))
+      edge_attr = to))
 
   # Expect an error if unequal vector lengths
   # provided for `from` and `to`
   expect_error(
     get_edge_attrs(
       graph = graph,
-      edge_attr = "value",
+      edge_attr = value,
       from = c(1, 2),
-      to = 2))
+        to = 2))
 })
 
 test_that("Getting node attributes with a selection is possible", {
@@ -465,7 +473,7 @@ test_that("Getting node attributes with a selection is possible", {
   nodes_1_3 <-
     get_node_attrs_ws(
       graph = graph,
-      node_attr = "value")
+      node_attr = value)
 
   # Expect a numeric vector
   expect_is(
@@ -492,14 +500,14 @@ test_that("Getting node attributes with a selection is possible", {
     get_node_attrs_ws(
       graph = graph %>%
         clear_selection(),
-      node_attr = "value"))
+      node_attr = value))
 
   # Expect an error if referencing
   # `id` column
   expect_error(
     get_node_attrs_ws(
       graph = graph,
-      node_attr = "id"))
+      node_attr = id))
 })
 
 test_that("Getting edge attributes with a selection is possible", {
@@ -522,21 +530,25 @@ test_that("Getting edge attributes with a selection is possible", {
         edge_df = edges)
     } %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 1.6,
-      from = 1, to = 2) %>%
+      from = 1,
+        to = 2) %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 4.3,
-      from = 1, to = 4) %>%
+      from = 1,
+        to = 4) %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 2.9,
-      from = 2, to = 3) %>%
+      from = 2,
+        to = 3) %>%
     set_edge_attrs(
-      edge_attr = "value",
+      edge_attr = value,
       values = 8.4,
-      from = 4, to = 3) %>%
+      from = 4,
+        to = 3) %>%
     select_edges(
       from = c(1, 2),
       to = c(2, 3))
@@ -547,7 +559,7 @@ test_that("Getting edge attributes with a selection is possible", {
   edge_attr_values <-
     graph %>%
     get_edge_attrs_ws(
-      edge_attr = "value")
+      edge_attr = value)
 
   # Expect a numeric vector
   expect_is(
@@ -574,5 +586,5 @@ test_that("Getting edge attributes with a selection is possible", {
     get_edge_attrs_ws(
       graph = graph %>%
         clear_selection(),
-      edge_attr = "value"))
+      edge_attr = value))
 })
