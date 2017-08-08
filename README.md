@@ -18,36 +18,29 @@ create_random_graph(
   directed = FALSE,
   set_seed = 23) %>%
   join_node_attrs(
-    df = get_s_connected_cmpts(.)
-    ) %>%
+    df = get_s_connected_cmpts(.)) %>%
   join_node_attrs(
-    df = get_degree_total(.)
-    ) %>%
+    df = get_degree_total(.)) %>%
   colorize_node_attrs(
-    node_attr_from = "sc_component",
-    node_attr_to = "fillcolor",
-    alpha = 80
-    ) %>%
+    node_attr_from = sc_component,
+    node_attr_to = fillcolor,
+    alpha = 80) %>%
   rescale_node_attrs(
-    node_attr_from = "total_degree",
+    node_attr_from = total_degree,
     to_lower_bound = 0.2,
     to_upper_bound = 1.5,
-      node_attr_to = "height") %>%
+      node_attr_to = height) %>%
   select_nodes_by_id(
-    nodes = get_articulation_points(.)
-    ) %>%
+    nodes = get_articulation_points(.)) %>%
   set_node_attrs_ws(
-    node_attr = "peripheries",
-    value = 2
-    ) %>%
+    node_attr = peripheries,
+    value = 2) %>%
   set_node_attrs_ws(
-    node_attr = "penwidth",
-    value = 3
-    ) %>%
+    node_attr = penwidth,
+    value = 3) %>%
   clear_selection() %>%
   set_node_attr_to_display(
-    attr = NULL
-    ) %>%
+    attr = NULL) %>%
   render_graph()
 ```
 
@@ -96,8 +89,10 @@ Get the average age of all the contributors. Select all nodes of type `person` (
 
 ```r
 graph %>% 
-  select_nodes(conditions = type == "person") %>%
-  get_node_attrs_ws(node_attr = "age") %>%
+  select_nodes(
+    conditions = type == "person") %>%
+  get_node_attrs_ws(
+    node_attr = age) %>%
   mean()
 #> [1] 33.6
 ```
@@ -108,7 +103,7 @@ We can get the total number of commits to all projects. We know that all edges c
 graph %>% 
   select_edges() %>%
   get_edge_attrs_ws(
-    edge_attr = "commits") %>%
+    edge_attr = commits) %>%
   sum()
 #> [1] 5182
 ```
@@ -121,7 +116,7 @@ graph %>%
     conditions = name == "Josh") %>%
   trav_out_edge() %>%
   get_edge_attrs_ws(
-  edge_attr = "commits") %>%
+    edge_attr = commits) %>%
   sum()
 #> [1] 227
 ```
@@ -135,7 +130,7 @@ graph %>%
   trav_out_edge(
     conditions = rel == "maintainer") %>%
   get_edge_attrs_ws(
-    edge_attr = "commits") %>%
+    edge_attr = commits) %>%
   sum()
 #> [1] 236
 ```
@@ -152,7 +147,7 @@ graph %>%
     conditions = age > 32,
     set_op = "intersect") %>%
   get_node_attrs_ws(
-    node_attr = "name") %>%
+    node_attr = name) %>%
   sort() %>%
   unname()
 #> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
@@ -165,7 +160,7 @@ graph %>%
     conditions = project == "supercalc") %>%
   trav_in_edge() %>%
   get_edge_attrs_ws(
-    edge_attr = "commits") %>%
+    edge_attr = commits) %>%
   sum()
 #> [1] 1676
 ```
@@ -185,7 +180,7 @@ graph <-
     rel = "contributor") %>%
   select_last_edges_created() %>%
   set_edge_attrs_ws(
-    edge_attr = "commits",
+    edge_attr = commits,
     value = 15) %>%
   clear_selection()
 
@@ -206,7 +201,7 @@ graph %>%
     conditions = rel == "contributor") %>%
   trav_out_node() %>%
   get_node_attrs_ws(
-    node_attr = "email") %>%
+    node_attr = email) %>%
   sort() %>%
   unname()
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
@@ -221,7 +216,8 @@ Which people have committed to more than one project? This is a matter of node d
 graph %>%
   select_nodes_by_degree(
     expressions = "outdeg > 1") %>%
-  get_node_attrs_ws(node_attr = "name") %>%
+  get_node_attrs_ws(
+    node_attr = name) %>%
   sort() %>%
   unname()
 #> [1] "Josh"   "Kim"    "Louisa"
