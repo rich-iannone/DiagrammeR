@@ -8,20 +8,32 @@
 #' @examples
 #' set.seed(23)
 #'
-#' # Create a graph with a random connection
-#' # between 2 different cycles
+#' # Create a graph with a random
+#' # connection between 2 different
+#' # node cycles
 #' graph <-
 #'   create_graph() %>%
-#'   add_cycle(n = 3, type = "cycle_1") %>%
-#'   add_cycle(n = 4, type = "cycle_2") %>%
+#'   add_cycle(
+#'     n = 3,
+#'     type = "cycle_1") %>%
+#'   add_cycle(
+#'     n = 4,
+#'     type = "cycle_2") %>%
 #'   add_edge(
-#'     from = get_node_ids(., "type == 'cycle_1'") %>%
-#'       sample(1),
-#'     to = get_node_ids(., "type == 'cycle_2'") %>%
-#'       sample(1))
+#'     from =
+#'       get_node_ids(
+#'         x = .,
+#'         conditions = type == "cycle_1") %>%
+#'         sample(size = 1),
+#'     to =
+#'       get_node_ids(
+#'         x = .,
+#'         conditions = type == "cycle_2") %>%
+#'         sample(size = 1))
 #'
-#' # Get the strongly connected components as a
-#' # data frame of nodes and their groupings
+#' # Get the strongly connected
+#' # components as a data frame of
+#' # nodes and their groupings
 #' get_s_connected_cmpts(graph)
 #' #>   id sc_component
 #' #> 1  1            1
