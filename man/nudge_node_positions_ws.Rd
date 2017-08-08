@@ -82,7 +82,8 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   clear_selection() \%>\%
-  select_nodes("type == 'b'") \%>\%
+  select_nodes(
+    conditions = type == "b") \%>\%
   nudge_node_positions_ws(
     dx = 0, dy = 2)
 
