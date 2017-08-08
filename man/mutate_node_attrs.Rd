@@ -51,7 +51,7 @@ graph <-
   create_graph() \%>\%
   add_path(n = 3) \%>\%
   set_node_attrs(
-    node_attr = "width",
+    node_attr = width,
     values = c(3.4, 2.3, 7.2))
 
 # Get the graph's internal ndf to show which
@@ -67,7 +67,7 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   mutate_node_attrs(
-    node_attr_from = "width",
+    node_attr_from = width,
     expressions = "~ / 2")
 
 # Get the graph's internal ndf to show that the
@@ -84,9 +84,9 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   mutate_node_attrs(
-    node_attr_from = "width",
+    node_attr_from = width,
     expressions = "round(log(~) + 2, 2)",
-    node_attr_to = "length")
+    node_attr_to = length)
 
 # Get the graph's internal ndf to show that
 # the node attribute values had been mutated
@@ -109,7 +109,7 @@ graph <-
   mutate_node_attrs(
     node_attr_from = NA,
     expressions = "width * length",
-    node_attr_to = "area")
+    node_attr_to = area)
 
 # Get the graph's internal ndf to show that
 # the node attribute values had been multiplied

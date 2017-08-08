@@ -38,7 +38,7 @@ graph <-
   graph \%>\%
   select_last_edges_created() \%>\%
   set_edge_attrs_ws(
-    edge_attr = "color",
+    edge_attr = color,
     value = "red") \%>\%
   clear_selection()
 

@@ -39,21 +39,24 @@ graph <-
   create_graph() \%>\%
   add_path(n = 6)
 
-# Select specific edges from the graph and
-# apply the edge attribute `color = blue` to
+# Select specific edges from
+# the graph and apply the edge
+# attribute `color = blue` to
 # those selected edges
 graph <-
   graph \%>\%
   select_nodes_by_id(nodes = 2:4) \%>\%
   trav_out_edge() \%>\%
   set_edge_attrs_ws(
-    edge_attr = "color",
+    edge_attr = color,
     value = "blue")
 
-# Show the internal edge data frame to verify
-# that the edge attribute has been set for
-# specific edges
+# Show the internal edge data
+# frame to verify that the
+# edge attribute has been set
+# for specific edges
 get_edge_df(graph)
+#>   id from to  rel color
 #> 1  1    1  2 <NA>  <NA>
 #> 2  2    2  3 <NA>  blue
 #> 3  3    3  4 <NA>  blue

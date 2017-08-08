@@ -55,11 +55,12 @@ graph <-
     set_seed = 23,
     directed = TRUE) \%>\%
   set_edge_attrs(
-    edge_attr = "weight",
+    edge_attr = weight,
     values = rnorm(edge_count(.), 5))
 
-# Get the graph's internal edf to show which
-# edge attributes are available
+# Get the graph's internal edf
+# to show which edge attributes
+# are available
 get_edge_df(graph)
 #>   id from to  rel   weight
 #> 1  1    2  3 <NA> 5.218288
@@ -70,15 +71,17 @@ get_edge_df(graph)
 #> 6  6    4  5 <NA> 5.308137
 #> 7  7    1  4 <NA> 4.479822
 
-# Rescale the `weight` edge attribute, so that
-# its values are rescaled between 0 and 1
+# Rescale the `weight` edge
+# attribute, so that its values
+# are rescaled between 0 and 1
 graph <-
   graph \%>\%
   rescale_edge_attrs(
-    edge_attr_from = "weight")
+    edge_attr_from = weight)
 
-# Get the graph's internal edf to show that the
-# edge attribute values had been rescaled
+# Get the graph's internal edf
+# to show that the edge attribute
+# values had been rescaled
 get_edge_df(graph)
 #>   id from to  rel weight
 #> 1  1    2  3 <NA>  0.845
@@ -89,27 +92,31 @@ get_edge_df(graph)
 #> 6  6    4  5 <NA>  0.898
 #> 7  7    1  4 <NA>  0.410
 
-# Scale the values in the `weight` edge attribute
-# to different shades of gray for the `color` edge
-# attribute and different numerical values for the
+# Scale the values in the `weight`
+# edge attribute to different
+# shades of gray for the `color`
+# edge attribute and different
+# numerical values for the
 # `penwidth` attribute
 graph <-
   graph \%>\%
   rescale_edge_attrs(
-    edge_attr_from = "weight",
+    edge_attr_from = weight,
     to_lower_bound = "gray80",
     to_upper_bound = "gray20",
-    edge_attr_to = "color") \%>\%
+    edge_attr_to = color) \%>\%
   rescale_edge_attrs(
-    edge_attr_from = "weight",
+    edge_attr_from = weight,
     to_lower_bound = 0.5,
     to_upper_bound = 3,
-    edge_attr_to = "penwidth")
+    edge_attr_to = penwidth)
 
-# Get the graph's internal edf once more to show
-# that scaled grayscale colors are now available in
-# `color` and scaled numerical values are in the
-# `penwidth` edge attribute
+# Get the graph's internal edf
+# once more to show that scaled
+# grayscale colors are now available
+# in `color` and scaled numerical
+# values are in the `penwidth`
+# edge attribute
 get_edge_df(graph)
 #>   id from to  rel weight   color penwidth
 #> 1  1    2  3 <NA>  0.845 #484848    2.612

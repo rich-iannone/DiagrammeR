@@ -73,8 +73,8 @@ graph <-
 
 # Inspect the number of distinct communities
 get_node_attrs(
-  graph,
-  node_attr = "walktrap_group") \%>\%
+  graph = graph,
+  node_attr = walktrap_group) \%>\%
   unique() \%>\%
   sort()
 #> [1] 1 2 3
@@ -88,13 +88,13 @@ get_node_attrs(
 graph <-
   graph \%>\%
   colorize_node_attrs(
-    node_attr_from = "walktrap_group",
-    node_attr_to = "fillcolor",
+    node_attr_from = walktrap_group,
+    node_attr_to = fillcolor,
     palette = "Greens",
     alpha = 90) \%>\%
   colorize_node_attrs(
-    node_attr_from = "walktrap_group",
-    node_attr_to = "color",
+    node_attr_from = walktrap_group,
+    node_attr_to = color,
     palette = "viridis",
     alpha = 80)
 
@@ -126,8 +126,8 @@ graph <-
 graph <-
   graph \%>\%
   colorize_node_attrs(
-    node_attr_from = "weight",
-    node_attr_to = "fillcolor",
+    node_attr_from = weight,
+    node_attr_to = fillcolor,
     cut_points = c(1, 3, 5, 7, 9))
 
 # Now there will be a `fillcolor` node attribute

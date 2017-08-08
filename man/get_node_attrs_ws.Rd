@@ -23,23 +23,27 @@ From a graph object of class
 currently active as a selection.
 }
 \examples{
-# With the `create_random_graph()` function, get
-# a simple graph with a node attribute called
-# `value`
+# Create a random graph and
+# incorporate the node attribute
+# called `value`
 graph <-
   create_random_graph(
     n = 4, m = 4,
     set_seed = 23)
 
-# Select nodes with ID values `1` and `3`
+# Select nodes with ID values
+# `1` and `3`
 graph <-
   graph \%>\%
-  select_nodes_by_id(nodes = c(1, 3))
+  select_nodes_by_id(
+    nodes = c(1, 3))
 
-# Return the node attribute values for the nodes
-# in the active selection
+# Get the node attribute values
+# for the `value` attribute, limited
+# to the current node selection
 graph \%>\%
-  get_node_attrs_ws(node_attr = "value")
+  get_node_attrs_ws(
+    node_attr = value)
 #>   1   3
 #> 6.0 3.5
 }

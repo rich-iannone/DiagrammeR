@@ -51,7 +51,7 @@ graph <-
   create_graph() \%>\%
   add_path(n = 4) \%>\%
   set_edge_attrs(
-    edge_attr = "width",
+    edge_attr = width,
     values = c(3.4, 2.3, 7.2))
 
 # Get the graph's internal edf to show which
@@ -67,7 +67,7 @@ get_edge_df(graph)
 graph <-
   graph \%>\%
   mutate_edge_attrs(
-    edge_attr_from = "width",
+    edge_attr_from = width,
     expressions = "~ / 2")
 
 # Get the graph's internal edf to show that the
@@ -84,9 +84,9 @@ get_edge_df(graph)
 graph <-
   graph \%>\%
   mutate_edge_attrs(
-    edge_attr_from = "width",
+    edge_attr_from = width,
     expressions = "round(log(~) + 2, 2)",
-    edge_attr_to = "length")
+    edge_attr_to = length)
 
 # Get the graph's internal edf to show that
 # the edge attribute values had been mutated
@@ -109,7 +109,7 @@ graph <-
   mutate_edge_attrs(
     edge_attr_from = NA,
     expressions = "width * length",
-    edge_attr_to = "area")
+    edge_attr_to = area)
 
 # Get the graph's internal edf to show that
 # the edge attribute values had been multiplied

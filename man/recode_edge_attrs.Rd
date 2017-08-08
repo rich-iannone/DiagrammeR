@@ -44,9 +44,9 @@ graph <-
   create_random_graph(
     4, 6, set_seed = 23) \%>\%
   set_edge_attrs(
-    "rel",
-    c("a", "b", "a",
-      "c", "b", "d"))
+    edge_attr = rel,
+    values = c("a", "b", "a",
+               "c", "b", "d"))
 
 # Get the graph's internal edf to show which
 # edge attributes are available
@@ -66,11 +66,11 @@ get_edge_df(graph)
 graph <-
   graph \%>\%
   recode_edge_attrs(
-    edge_attr_from = "rel",
+    edge_attr_from = rel,
     "a -> 1.0",
     "b -> 1.5",
     otherwise = 0.5,
-    edge_attr_to = "penwidth")
+    edge_attr_to = penwidth)
 
 # Get the graph's internal edf to show that the
 # node attribute values had been recoded and

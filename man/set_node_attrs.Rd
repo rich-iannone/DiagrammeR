@@ -55,7 +55,7 @@ graph <-
 graph <-
   set_node_attrs(
     x = graph,
-    node_attr = "color",
+    node_attr = color,
     values = "green",
     nodes = c(1, 3))
 
@@ -72,7 +72,7 @@ get_node_df(graph)
 nodes <-
   set_node_attrs(
     x = ndf,
-    node_attr = "color",
+    node_attr = color,
     values = "green",
     nodes = c(1, 3))
 
@@ -89,7 +89,7 @@ nodes
 nodes <-
   set_node_attrs(
     x = ndf,
-    node_attr = "color",
+    node_attr = color,
     values = "blue")
 
 # Display the `nodes` ndf

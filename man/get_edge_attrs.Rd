@@ -31,8 +31,9 @@ From a graph object of class
 or more edges.
 }
 \examples{
-# Create a simple graph where edges have an edge
-# attribute named `value`
+# Create a simple graph where
+# edges have an edge attribute
+# named `value`
 graph <-
   create_graph() \%>\%
   add_n_nodes(n = 4) \%>\%
@@ -40,8 +41,8 @@ graph <-
     edges <-
       create_edge_df(
         from = c(1, 2, 1, 4),
-        to = c(2, 3, 4, 3),
-        rel = "rel")
+          to = c(2, 3, 4, 3),
+         rel = "rel")
     add_edge_df(
       graph = .,
       edge_df = edges)
@@ -49,33 +50,40 @@ graph <-
   set_edge_attrs(
     edge_attr = "value",
     values = 1.6,
-    from = 1, to = 2) \%>\%
+    from = 1,
+      to = 2) \%>\%
   set_edge_attrs(
     edge_attr = "value",
     values = 4.3,
-    from = 1, to = 4) \%>\%
+    from = 1,
+      to = 4) \%>\%
   set_edge_attrs(
     edge_attr = "value",
     values = 2.9,
-    from = 2, to = 3) \%>\%
+    from = 2,
+      to = 3) \%>\%
   set_edge_attrs(
     edge_attr = "value",
     values = 8.4,
-    from = 4, to = 3)
+    from = 4,
+      to = 3)
 
-# Get the values for the `value` edge attribute
+# Get the values for the
+# `value` edge attribute
 graph \%>\%
-  get_edge_attrs(edge_attr = "value")
+  get_edge_attrs(
+    edge_attr = value)
 #> 1->2 2->3 1->4 4->3
 #>  1.6  2.9  4.3  8.4
 
-# To only return edge attribute values for specified
-# edges, use the `from` and `to` arguments
+# To only return edge attribute
+# values for specified edges, use
+# the `from` and `to` arguments
 graph \%>\%
   get_edge_attrs(
-    edge_attr = "value",
+    edge_attr = value,
     from = c(1, 2),
-    to = c(2, 3))
+      to = c(2, 3))
 #> 1->2 2->3
 #>  1.6  2.9
 }

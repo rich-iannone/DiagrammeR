@@ -30,11 +30,12 @@ graph <-
     n = 5, m = 8,
     set_seed = 23) \%>\%
   set_edge_attrs(
-    edge_attr = "color",
+    edge_attr = color,
     values = "green")
 
-# Get the graph's internal edf to show which
-# edge attributes are available
+# Get the graph's internal edf
+# to show which edge attributes
+# are available
 get_edge_df(graph)
 #>   id from to  rel color
 #> 1  1    2  3 <NA> green
@@ -46,15 +47,17 @@ get_edge_df(graph)
 #> 7  7    1  4 <NA> green
 #> 8  8    1  3 <NA> green
 
-# Rename the `value` node attribute as `weight`
+# Rename the `value` node
+# attribute as `weight`
 graph <-
   graph \%>\%
   rename_edge_attrs(
-    edge_attr_from = "color",
-    edge_attr_to = "labelfontcolor")
+    edge_attr_from = color,
+    edge_attr_to = labelfontcolor)
 
-# Get the graph's internal edf to show that the
-# edge attribute had been renamed
+# Get the graph's internal
+# edf to show that the edge
+# attribute had been renamed
 get_edge_df(graph)
 #>   id from to  rel labelfontcolor
 #> 1  1    2  3 <NA>          green

@@ -49,10 +49,11 @@ graph <-
 # those selected nodes
 graph <-
   graph \%>\%
-  select_nodes_by_id(nodes = 1:4) \%>\%
+  select_nodes_by_id(
+    nodes = 1:4) \%>\%
   trav_out() \%>\%
   set_node_attrs_ws(
-    node_attr = "color",
+    node_attr = color,
     value = "blue")
 
 # Show the internal node data frame to verify

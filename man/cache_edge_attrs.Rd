@@ -58,7 +58,7 @@ graph <-
 graph <-
   graph \%>\%
   cache_edge_attrs(
-    edge_attr = "value",
+    edge_attr = value,
     name = "edge_value")
 
 # Get the mean from all values available in

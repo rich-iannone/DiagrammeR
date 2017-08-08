@@ -30,11 +30,12 @@ graph <-
     n = 5, m = 10,
     set_seed = 23) \%>\%
   set_node_attrs(
-    node_attr = "shape",
+    node_attr = shape,
     values = "circle")
 
-# Get the graph's internal ndf to show which
-# node attributes are available
+# Get the graph's internal ndf
+# to show which node attributes
+# are available
 get_node_df(graph)
 #>   id type label value  shape
 #> 1  1 <NA>     1   6.0 circle
@@ -43,15 +44,17 @@ get_node_df(graph)
 #> 4  4 <NA>     4   7.5 circle
 #> 5  5 <NA>     5   8.5 circle
 
-# Rename the `value` node attribute as `weight`
+# Rename the `value` node
+# attribute as `weight`
 graph <-
   graph \%>\%
   rename_node_attrs(
-    node_attr_from = "value",
-    node_attr_to = "weight")
+    node_attr_from = value,
+    node_attr_to = weight)
 
-# Get the graph's internal ndf to show that the
-# node attribute had been renamed
+# Get the graph's internal
+# ndf to show that the node
+# attribute had been renamed
 get_node_df(graph)
 #>   id type label weight  shape
 #> 1  1 <NA>     1    6.0 circle

@@ -51,7 +51,8 @@ path_to_csv <-
 # increasing values from 1
 graph_1 <-
   create_graph() \%>\%
-  add_nodes_from_table(table = path_to_csv)
+  add_nodes_from_table(
+    table = path_to_csv)
 
 # View part of the graph's internal node data
 # frame (ndf) using `get_node_df()`
@@ -75,8 +76,8 @@ graph_1 \%>\%
 graph_2 <-
   create_graph() \%>\%
   add_nodes_from_table(
-    path_to_csv,
-    label_col = "iso_4217_code",
+    table = path_to_csv,
+    label_col = iso_4217_code,
     set_type = "currency")
 
 # View part of the graph's internal ndf
@@ -99,8 +100,8 @@ graph_2 \%>\%
 graph_3 <-
   create_graph() \%>\%
   add_nodes_from_table(
-    path_to_csv,
-    label_col = "iso_4217_code",
+    table = path_to_csv,
+    label_col = iso_4217_code,
     set_type = "currency",
     drop_cols = c("exponent", "currency_name"))
 

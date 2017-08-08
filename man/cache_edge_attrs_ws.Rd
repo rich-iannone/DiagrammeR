@@ -30,7 +30,7 @@ graph <-
   create_graph() %>%
   add_path(n = 6) %>%
   set_edge_attrs(
-    edge_attr = "value",
+    edge_attr = value,
     values = rnorm(edge_count(.), 5, 2))
 
 # Select all edges where the edge attribute
@@ -57,7 +57,7 @@ graph %>%
 graph <-
   graph %>%
   cache_edge_attrs_ws(
-    edge_attr = "value",
+    edge_attr = value,
     name = "edge_value")
 
 # Get the cached vector with `get_cache()`

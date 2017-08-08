@@ -53,7 +53,7 @@ graph <-
   create_graph() \%>\%
   add_path(n = 6) \%>\%
   set_node_attrs(
-    node_attr = "value",
+    node_attr = value,
     values = rnorm(node_count(.), 5, 2))
 
 # Select all nodes where the node
@@ -80,7 +80,7 @@ graph \%>\%
 graph <-
   graph \%>\%
   cache_node_attrs_ws(
-    node_attr = "value",
+    node_attr = value,
     name = "node_value")
 
 # Get the cached vector with `get_cache()`

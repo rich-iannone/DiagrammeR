@@ -66,13 +66,15 @@ graph_1 <-
   add_edges_from_table(
     system.file("extdata", "usd_exchange_rates.csv",
                 package = "DiagrammeR"),
-    from_col = "from_currency",
-    to_col = "to_currency",
-    ndf_mapping = "iso_4217_code")
+    from_col = from_currency,
+    to_col = to_currency,
+    ndf_mapping = iso_4217_code)
 
 # View part of the graph's internal edge data
 # frame (edf) using `get_edge_df()`
-graph_1 \%>\% get_edge_df() \%>\% head()
+graph_1 \%>\%
+  get_edge_df() \%>\%
+  head()
 #>   id from to  rel cost_unit
 #> 1  1  148  1 <NA>  0.272300
 #> 2  2  148  2 <NA>  0.015210
@@ -90,9 +92,9 @@ graph_2 <-
   add_edges_from_table(
     system.file("extdata", "usd_exchange_rates.csv",
                 package = "DiagrammeR"),
-    from_col = "from_currency",
-    to_col = "to_currency",
-    ndf_mapping = "iso_4217_code",
+    from_col = from_currency,
+    to_col = to_currency,
+    ndf_mapping = iso_4217_code,
     set_rel = "from_usd")
 
 # View part of the graph's internal edge data

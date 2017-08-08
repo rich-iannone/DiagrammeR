@@ -45,7 +45,7 @@ graph <-
     n = 5, m = 10,
     set_seed = 23) \%>\%
   set_node_attrs(
-    node_attr = "shape",
+    node_attr = shape,
     values =
       c("circle", "hexagon",
         "rectangle", "rectangle",
@@ -67,7 +67,7 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   recode_node_attrs(
-    node_attr_from = "shape",
+    node_attr_from = shape,
     "circle -> square",
     "rectangle -> triangle")
 
@@ -88,10 +88,10 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   recode_node_attrs(
-    node_attr_from = "shape",
+    node_attr_from = shape,
     "square -> red",
     otherwise = "green",
-    node_attr_to = "color")
+    node_attr_to = color)
 
 # Get the graph's internal ndf to see the change
 get_node_df(graph)
@@ -108,7 +108,7 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   recode_node_attrs(
-    node_attr_from = "value",
+    node_attr_from = value,
     "6.0 -> 9.5",
     "3.5 -> 10.5",
     otherwise = 5.0)

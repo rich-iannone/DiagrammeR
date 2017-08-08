@@ -41,7 +41,8 @@ get_node_df(graph)
 # Drop the `value` node attribute
 graph <-
   graph \%>\%
-  drop_node_attrs(node_attr = "value")
+  drop_node_attrs(
+    node_attr = value)
 
 # Get the graph's internal ndf to show that
 # the node attribute `value` had been removed

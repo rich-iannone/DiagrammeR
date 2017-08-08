@@ -27,26 +27,29 @@ From a graph object of class
 one or more nodes.
 }
 \examples{
-# With the `create_random_graph()` function, get
-# a simple graph with a node attribute called
-# `value`
+# Create a random graph and
+# incorporate the node attribute
+# called `value`
 graph <-
   create_random_graph(
     n = 4, m = 4,
     set_seed = 23)
 
-# Get all of the values from the `value` node
-# attribute as a named vector
+# Get all of the values from
+# the `value` node attribute
+# as a named vector
 graph \%>\%
-  get_node_attrs(node_attr = "value")
+  get_node_attrs(
+    node_attr = value)
 #>   1   2   3   4
 #> 6.0 2.5 3.5 7.5
 
-# To only return node attribute values for specified
-# nodes, use the `nodes` argument
+# To only return node attribute
+# values for specified nodes,
+# use the `nodes` argument
 graph \%>\%
   get_node_attrs(
-    node_attr = "value",
+    node_attr = value,
     nodes = c(1, 3))
 #>   1   3
 #> 6.0 3.5

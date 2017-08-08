@@ -41,19 +41,24 @@ graph <-
   add_node() \%>\%
   add_node()
 
-# Get a count of nodes in the graph
+# Get a count of all nodes
+# in the graph
 node_count(graph)
 #> [1] 2
 
-# The nodes added were given ID values `1` and `2`
+# The nodes added were given
+# ID values `1` and `2`
 get_node_ids(graph)
 #> [1] 1 2
 
 # Add a node with a `type` value defined
 graph <-
-  add_node(graph, type = "person")
+  add_node(
+    graph = graph,
+    type = "person")
 
-# View the graph's internal node data frame (ndf)
+# View the graph's internal
+# node data frame (ndf)
 get_node_df(graph)
 #>   id   type label
 #> 1  1   <NA>  <NA>

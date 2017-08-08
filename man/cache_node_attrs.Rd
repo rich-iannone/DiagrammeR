@@ -40,7 +40,7 @@ graph <-
   create_graph() \%>\%
   add_n_nodes(n = 10) \%>\%
   set_node_attrs(
-    node_attr = "value",
+    node_attr = value,
     values = rnorm(node_count(.), 5, 2)) \%>\%
   add_edges_w_string(
     edges =
@@ -52,7 +52,7 @@ graph <-
 graph <-
   graph \%>\%
   cache_node_attrs(
-    node_attr = "value",
+    node_attr = value,
     name = "node_value")
 
 # Get the mean from all values available in
@@ -60,5 +60,5 @@ graph <-
 graph \%>\%
   get_cache(name = "node_value") \%>\%
   mean()
-#> [1] 5.157112
+#> [1] 5.766209
 }

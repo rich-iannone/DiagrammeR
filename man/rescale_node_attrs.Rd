@@ -55,8 +55,9 @@ graph <-
     set_seed = 23,
     directed = TRUE)
 
-# Get the graph's internal ndf to show which
-# node attributes are available
+# Get the graph's internal ndf
+# to show which node attributes
+# are available
 get_node_df(graph)
 #>   id type label value
 #> 1  1 <NA>     1   6.0
@@ -65,15 +66,17 @@ get_node_df(graph)
 #> 4  4 <NA>     4   7.5
 #> 5  5 <NA>     5   8.5
 
-# Rescale the `value` node attribute, so that
-# its values are rescaled between 0 and 1
+# Rescale the `value` node
+# attribute, so that its values
+# are rescaled between 0 and 1
 graph <-
   graph \%>\%
   rescale_node_attrs(
-    node_attr_from = "value")
+    node_attr_from = value)
 
-# Get the graph's internal ndf to show that the
-# node attribute values had been rescaled
+# Get the graph's internal ndf
+# to show that the node attribute
+# values had been rescaled
 get_node_df(graph)
 #>   id type label value
 #> 1  1 <NA>     1 0.583
@@ -82,25 +85,28 @@ get_node_df(graph)
 #> 4  4 <NA>     4 0.833
 #> 5  5 <NA>     5 1.000
 
-# Scale the values in the `value` node attribute
-# to different shades of gray for the `fillcolor`
+# Scale the values in the `value`
+# node attribute to different
+# shades of gray for the `fillcolor`
 # and `fontcolor` node attributes
 graph <-
   graph \%>\%
   rescale_node_attrs(
-    node_attr_from = "value",
+    node_attr_from = value,
     to_lower_bound = "gray80",
     to_upper_bound = "gray20",
-    node_attr_to = "fillcolor") \%>\%
+    node_attr_to = fillcolor) \%>\%
   rescale_node_attrs(
-    node_attr_from = "value",
+    node_attr_from = value,
     to_lower_bound = "gray5",
     to_upper_bound = "gray95",
-    node_attr_to = "fontcolor")
+    node_attr_to = fontcolor)
 
-# Get the graph's internal ndf once more to show
-# that scaled grayscale colors are now available in
-# the `fillcolor` and `fontcolor` node attributes
+# Get the graph's internal ndf
+# once more to show that scaled
+# grayscale colors are now available
+# in the `fillcolor` and `fontcolor`
+# node attributes
 get_node_df(graph)
 #>   id type label value fillcolor fontcolor
 #> 1  1 <NA>     1 0.583   #6E6E6E   #898989
