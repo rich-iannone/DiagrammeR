@@ -27,7 +27,7 @@
 #'   graph %>%
 #'   select_last_nodes_created() %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "color",
+#'     node_attr = color,
 #'     value = "red") %>%
 #'   clear_selection()
 #'
