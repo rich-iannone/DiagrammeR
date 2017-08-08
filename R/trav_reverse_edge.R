@@ -39,8 +39,12 @@
 #' # and `2`->`3`
 #' graph <-
 #'   graph %>%
-#'   select_edges(from = 1, to = 4) %>%
-#'   select_edges(from = 2, to = 3)
+#'   select_edges(
+#'     from = 1,
+#'       to = 4) %>%
+#'   select_edges(
+#'     from = 2,
+#'       to = 3)
 #'
 #' # Get the inital edge selection
 #' get_selection(graph)

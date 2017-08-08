@@ -178,12 +178,12 @@
 #' # Show the graph's internal edf
 #' graph %>%
 #'   get_edge_df()
-#' #>   id from to  rel label values
-#' #> 1  1    1  2 <NA>  iekd   6.00
-#' #> 2  2    1  3    A   idj   6.11
-#' #> 3  3    2  4    B   edl   4.72
-#' #> 4  4    2  5    C   ohd   6.02
-#' #> 5  5    3  5    D   ohd   5.05
+#' #>   id from to  rel values
+#' #> 1  1    1  2 <NA>   6.00
+#' #> 2  2    1  3    A   6.11
+#' #> 3  3    2  4    B   4.72
+#' #> 4  4    2  5    C   6.02
+#' #> 5  5    3  5    D   5.05
 #'
 #' # Perform a traversal from all
 #' # nodes to their incoming edges and,
