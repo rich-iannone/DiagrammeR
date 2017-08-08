@@ -6,12 +6,6 @@
 #' \code{dgr_graph}.
 #' @param edge_attr the name of the attribute for which
 #' to get values.
-#' @param from an optional vector of node IDs from
-#' which the edge is outgoing for filtering the list
-#' of edges.
-#' @param to an optional vector of node IDs from which
-#' the edge is incoming for filtering the list of
-#' edges.
 #' @return a named vector of edge attribute values for
 #' the attribute given by \code{edge_attr} by edge.
 #' @examples
