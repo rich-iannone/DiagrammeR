@@ -33,7 +33,9 @@ test_that("copying values with `trav_out_edge()` works", {
   # ndf and edf have common column names now)
   graph_1 <-
     graph_1 %>%
-    rename_node_attrs("value", "data")
+    rename_node_attrs(
+      node_attr_from = value,
+      node_attr_to = data)
 
   # Select node ID `3`, traverse to out edges and copy
   # `data` value from ndf (3.5) to edges traversed to
@@ -74,7 +76,9 @@ test_that("copying values with `trav_out_edge()` works", {
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->5",
       rel = c(NA, "A", "B", "C", "D")) %>%
-    rename_node_attrs("value", "data")
+    rename_node_attrs(
+      node_attr_from = value,
+      node_attr_to = data)
 
   # Create a data frame with node ID values
   # representing the graph edges (with `from`
@@ -189,7 +193,9 @@ test_that("copying values with `trav_in_edge()` works", {
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->5",
       rel = c(NA, "A", "B", "C", "D")) %>%
-    rename_node_attrs("value", "data")
+    rename_node_attrs(
+      node_attr_from = value,
+      node_attr_to = data)
 
   # Create a data frame with node ID values
   # representing the graph edges (with `from`
@@ -302,7 +308,9 @@ test_that("copying values with `trav_both_edge()` works", {
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->5",
       rel = c(NA, "A", "B", "C", "D")) %>%
-    rename_node_attrs("value", "data")
+    rename_node_attrs(
+      node_attr_from = value,
+      node_attr_to = data)
 
   # Create a data frame with node ID values
   # representing the graph edges (with `from`
@@ -351,7 +359,7 @@ test_that("copying values with `trav_both()` works", {
     add_path(n = 5) %>%
     select_nodes_by_id(nodes = c(2, 4)) %>%
     set_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       value = 5)
 
   # Expect that specific values will be copied
@@ -361,7 +369,7 @@ test_that("copying values with `trav_both()` works", {
       trav_both(
         copy_attrs_from = "value",
         agg = "sum") %>%
-      get_node_attrs("value") %>%
+      get_node_attrs(node_attr = value) %>%
       as.numeric(),
     c(5, 5, 10, 5, 5))
 })
@@ -379,7 +387,7 @@ test_that("copying values with `trav_in()` works", {
     clear_selection() %>%
     select_nodes_by_id(nodes = 2:3) %>%
     set_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       value = 5)
 
   # Expect that specific values will be copied
@@ -389,7 +397,7 @@ test_that("copying values with `trav_in()` works", {
       trav_in(
         copy_attrs_from = "value",
         agg = "sum") %>%
-      get_node_attrs("value") %>%
+      get_node_attrs(node_attr = value) %>%
       as.numeric(),
     c(10, 5, 5))
 })
@@ -407,7 +415,7 @@ test_that("copying values with `trav_out()` works", {
     clear_selection() %>%
     select_nodes_by_id(nodes = 2:3) %>%
     set_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       value = 5)
 
   # Expect that specific values will be copied
@@ -417,7 +425,7 @@ test_that("copying values with `trav_out()` works", {
       trav_out(
         copy_attrs_from = "value",
         agg = "sum") %>%
-      get_node_attrs("value") %>%
+      get_node_attrs(node_attr = value) %>%
       as.numeric(),
     c(10, 5, 5))
 })
@@ -435,17 +443,17 @@ test_that("copying values with `trav_out_node()` works", {
     clear_selection() %>%
     select_nodes_by_id(nodes = 2) %>%
     set_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       value = 8) %>%
     clear_selection() %>%
     select_edges_by_edge_id(edges = 1) %>%
     set_edge_attrs_ws(
-      edge_attr = "value",
+      edge_attr = value,
       value = 5) %>%
     clear_selection() %>%
     select_edges_by_edge_id(edges = 2) %>%
     set_edge_attrs_ws(
-      edge_attr = "value",
+      edge_attr = value,
       value = 5) %>%
     clear_selection() %>%
     select_edges()
@@ -457,7 +465,7 @@ test_that("copying values with `trav_out_node()` works", {
       trav_out_node(
         copy_attrs_from = "value",
         agg = "sum") %>%
-      get_node_attrs("value") %>%
+      get_node_attrs(node_attr = value) %>%
       as.numeric(),
     c(10, 8, NA))
 })
@@ -475,17 +483,17 @@ test_that("copying values with `trav_in_node()` works", {
     clear_selection() %>%
     select_nodes_by_id(nodes = 2) %>%
     set_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       value = 8) %>%
     clear_selection() %>%
     select_edges_by_edge_id(edges = 1) %>%
     set_edge_attrs_ws(
-      edge_attr = "value",
+      edge_attr = value,
       value = 5) %>%
     clear_selection() %>%
     select_edges_by_edge_id(edges = 2) %>%
     set_edge_attrs_ws(
-      edge_attr = "value",
+      edge_attr = value,
       value = 5) %>%
     clear_selection() %>%
     select_edges()
@@ -497,7 +505,7 @@ test_that("copying values with `trav_in_node()` works", {
       trav_in_node(
         copy_attrs_from = "value",
         agg = "sum") %>%
-      get_node_attrs("value") %>%
+      get_node_attrs(node_attr = value) %>%
       as.numeric(),
     c(10, 8, NA))
 })
