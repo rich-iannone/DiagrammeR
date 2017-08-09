@@ -192,36 +192,36 @@ test_that("selective traversals with `trav_out()` are possible", {
         to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
-      node_attr = "type",
+      node_attr = type,
       value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = 5) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
@@ -347,34 +347,36 @@ test_that("selective traversals with `trav_in()` are possible", {
         to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
-      node_attr = "type",
+      node_attr = type,
       value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
-    set_node_attrs_ws("data_value", 10) %>%
+    set_node_attrs_ws(
+      node_attr = data_value,
+      value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = 5) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
@@ -504,35 +506,37 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
       from = 3,
         to = 4) %>%
     select_nodes() %>%
-    set_node_attrs_ws(node_attr = "type", value = "circle") %>%
+    set_node_attrs_ws(
+      node_attr = type,
+      value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = 5) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
@@ -665,36 +669,36 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
         to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
-      node_attr = "type",
+      node_attr = type,
       value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = 5) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
@@ -828,36 +832,36 @@ test_that("selective traversals with `trav_in_node()` are possible", {
         to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
-      node_attr = "type",
+      node_attr = type,
       value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = 5) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
@@ -1005,36 +1009,36 @@ test_that("selective traversals with `trav_out_node()` are possible", {
         to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
-      node_attr = "type",
+      node_attr = type,
       value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = 5) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
@@ -1181,36 +1185,36 @@ test_that("selective traversals with `trav_both()` are possible", {
         to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
-      node_attr = "type",
+      node_attr = type,
       value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = 5) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
@@ -1371,36 +1375,36 @@ test_that("selective traversals with `trav_both_edge()` are possible", {
         to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
-      node_attr = "type",
+      node_attr = type,
       value = "circle") %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = c(2, 3)) %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 10) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 4) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "square") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_nodes_by_id(nodes = 1) %>%
     set_node_attrs_ws(
-      node_attr = "shape",
+      node_attr = shape,
       value = "triangle") %>%
     set_node_attrs_ws(
-      node_attr = "data_value",
+      node_attr = data_value,
       value = 5) %>%
     clear_selection() %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "data_value",
+      edge_attr = data_value,
       value = c(1, 2, 3)) %>%
     set_edge_attrs_ws(
-      edge_attr = "rel",
+      edge_attr = rel,
       value = "related_to") %>%
     clear_selection()
 
