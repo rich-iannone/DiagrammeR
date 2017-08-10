@@ -96,7 +96,6 @@ set_node_attrs <- function(x,
   time_function_start <- Sys.time()
 
   node_attr <- rlang::enquo(node_attr)
-
   node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
 
   # Create bindings for specific variables

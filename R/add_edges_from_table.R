@@ -110,15 +110,12 @@ add_edges_from_table <- function(graph,
   time_function_start <- Sys.time()
 
   from_col <- rlang::enquo(from_col)
-
   from_col <- (rlang::UQ(from_col) %>% paste())[2]
 
   to_col <- rlang::enquo(to_col)
-
   to_col <- (rlang::UQ(to_col) %>% paste())[2]
 
   ndf_mapping <- rlang::enquo(ndf_mapping)
-
   ndf_mapping <- (rlang::UQ(ndf_mapping) %>% paste())[2]
 
   # Validation: Graph object is valid

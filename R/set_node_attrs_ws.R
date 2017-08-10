@@ -63,7 +63,6 @@ set_node_attrs_ws <- function(graph,
   time_function_start <- Sys.time()
 
   node_attr <- rlang::enquo(node_attr)
-
   node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
 
   # Validation: Graph object is valid

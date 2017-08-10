@@ -109,11 +109,9 @@ add_nodes_from_table <- function(graph,
   time_function_start <- Sys.time()
 
   label_col <- rlang::enquo(label_col)
-
   label_col <- (rlang::UQ(label_col) %>% paste())[2]
 
   type_col <- rlang::enquo(type_col)
-
   type_col <- (rlang::UQ(type_col) %>% paste())[2]
 
   if (label_col == "NULL") {

@@ -138,11 +138,9 @@ colorize_node_attrs <- function(graph,
   time_function_start <- Sys.time()
 
   node_attr_from <- rlang::enquo(node_attr_from)
-
   node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
 
   node_attr_to <- rlang::enquo(node_attr_to)
-
   node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid

@@ -58,7 +58,6 @@ set_edge_attrs_ws <- function(graph,
   time_function_start <- Sys.time()
 
   edge_attr <- rlang::enquo(edge_attr)
-
   edge_attr <- (rlang::UQ(edge_attr) %>% paste())[2]
 
   # Validation: Graph object is valid

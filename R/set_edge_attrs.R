@@ -98,7 +98,6 @@ set_edge_attrs <- function(x,
   time_function_start <- Sys.time()
 
   edge_attr <- rlang::enquo(edge_attr)
-
   edge_attr <- (rlang::UQ(edge_attr) %>% paste())[2]
 
   if (edge_attr %in% c("id", "from", "to")) {

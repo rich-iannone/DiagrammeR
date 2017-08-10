@@ -64,11 +64,9 @@ rename_edge_attrs <- function(graph,
   time_function_start <- Sys.time()
 
   edge_attr_from <- rlang::enquo(edge_attr_from)
-
   edge_attr_from <- (rlang::UQ(edge_attr_from) %>% paste())[2]
 
   edge_attr_to <- rlang::enquo(edge_attr_to)
-
   edge_attr_to <- (rlang::UQ(edge_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid
