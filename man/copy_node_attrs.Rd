@@ -34,7 +34,7 @@ graph <-
     n = 5, m = 10,
     set_seed = 23) \%>\%
   set_node_attrs(
-    node_attr = "shape",
+    node_attr = shape,
     values = "circle")
 
 # Get the graph's internal ndf to show which
@@ -52,8 +52,8 @@ get_node_df(graph)
 graph <-
   graph \%>\%
   copy_node_attrs(
-    node_attr_from = "value",
-    node_attr_to = "size")
+    node_attr_from = value,
+    node_attr_to = size)
 
 # Get the graph's internal ndf to show that the
 # node attribute had been copied

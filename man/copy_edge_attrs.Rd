@@ -34,7 +34,7 @@ graph <-
   n = 5, m = 8,
   set_seed = 23) \%>\%
   set_edge_attrs(
-    edge_attr = "color",
+    edge_attr = color,
     values = "green")
 
 # Get the graph's internal edf to show which
@@ -55,8 +55,8 @@ get_edge_df(graph)
 graph <-
   graph \%>\%
   copy_edge_attrs(
-    edge_attr_from = "color",
-    edge_attr_to = "color_2")
+    edge_attr_from = color,
+    edge_attr_to = color_2)
 
 # Get the graph's internal edf to show that the
 # edge attribute had been copied
