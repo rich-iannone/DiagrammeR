@@ -19,7 +19,7 @@
 #'   n = 5, m = 8,
 #'   set_seed = 23) %>%
 #'   set_edge_attrs(
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "green")
 #'
 #' # Get the graph's internal edf to show which
@@ -40,8 +40,8 @@
 #' graph <-
 #'   graph %>%
 #'   copy_edge_attrs(
-#'     edge_attr_from = "color",
-#'     edge_attr_to = "color_2")
+#'     edge_attr_from = color,
+#'     edge_attr_to = color_2)
 #'
 #' # Get the graph's internal edf to show that the
 #' # edge attribute had been copied
@@ -56,6 +56,7 @@
 #' #> 7  7    1  4 <NA> green   green
 #' #> 8  8    1  3 <NA> green   green
 #' @importFrom dplyr bind_cols
+#' @importFrom rlang enquo UQ
 #' @export copy_edge_attrs
 
 copy_edge_attrs <- function(graph,
@@ -64,6 +65,12 @@ copy_edge_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  edge_attr_from <- rlang::enquo(edge_attr_from)
+  edge_attr_from <- (rlang::UQ(edge_attr_from) %>% paste())[2]
+
+  edge_attr_to <- rlang::enquo(edge_attr_to)
+  edge_attr_to <- (rlang::UQ(edge_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

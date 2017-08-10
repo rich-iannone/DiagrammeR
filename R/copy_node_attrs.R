@@ -19,7 +19,7 @@
 #'     n = 5, m = 10,
 #'     set_seed = 23) %>%
 #'   set_node_attrs(
-#'     node_attr = "shape",
+#'     node_attr = shape,
 #'     values = "circle")
 #'
 #' # Get the graph's internal ndf to show which
@@ -37,8 +37,8 @@
 #' graph <-
 #'   graph %>%
 #'   copy_node_attrs(
-#'     node_attr_from = "value",
-#'     node_attr_to = "size")
+#'     node_attr_from = value,
+#'     node_attr_to = size)
 #'
 #' # Get the graph's internal ndf to show that the
 #' # node attribute had been copied
@@ -50,6 +50,7 @@
 #' #> 4  4 <NA>     4   7.5 circle  7.5
 #' #> 5  5 <NA>     5   8.5 circle  8.5
 #' @importFrom dplyr bind_cols
+#' @importFrom rlang enquo UQ
 #' @export copy_node_attrs
 
 copy_node_attrs <- function(graph,
@@ -58,6 +59,12 @@ copy_node_attrs <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  node_attr_from <- rlang::enquo(node_attr_from)
+  node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
+
+  node_attr_to <- rlang::enquo(node_attr_to)
+  node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
