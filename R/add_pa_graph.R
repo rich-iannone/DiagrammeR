@@ -62,8 +62,8 @@ add_pa_graph <- function(graph,
   }
 
   # Stop if n is too small
-  if (n <= 1)  {
-    stop("The value for `n` must be at least 2.")
+  if (n <= 0)  {
+    stop("The value for `n` must be at least 1.")
   }
 
   # Stop if the value for `algo` is not a
