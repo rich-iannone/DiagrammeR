@@ -55,7 +55,7 @@ graph <-
   join_node_attrs(
     df = get_pagerank(graph = .)) \%>\%
   colorize_node_attrs(
-    node_attr_from = "pagerank",
-    node_attr_to = "fillcolor",
+    node_attr_from = pagerank,
+    node_attr_to = fillcolor,
     palette = "RdYlGn")
 }

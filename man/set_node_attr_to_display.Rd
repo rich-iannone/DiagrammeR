@@ -62,7 +62,7 @@ graph <-
   graph \%>\%
   set_node_attr_to_display(
     nodes = 1:3,
-    attr = "value",
+    attr = value,
     default = NA)
 
 # Show the graph's node data frame; the
@@ -85,10 +85,10 @@ get_node_df(graph)
 graph \%>\%
   set_node_attr_to_display(
     nodes = 4,
-    attr = "label") \%>\%
+    attr = label) \%>\%
   set_node_attr_to_display(
     nodes = c(1, 5),
-    attr = "id") \%>\%
+    attr = id) \%>\%
   get_node_df()
 #>   id type label display value
 #> 1  1 <NA>     1      id   6.0

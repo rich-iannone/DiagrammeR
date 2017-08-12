@@ -48,22 +48,22 @@ graph <-
       edge_df = edges)
   } \%>\%
   set_edge_attrs(
-    edge_attr = "value",
+    edge_attr = value,
     values = 1.6,
     from = 1,
       to = 2) \%>\%
   set_edge_attrs(
-    edge_attr = "value",
+    edge_attr = value,
     values = 4.3,
     from = 1,
       to = 4) \%>\%
   set_edge_attrs(
-    edge_attr = "value",
+    edge_attr = value,
     values = 2.9,
     from = 2,
       to = 3) \%>\%
   set_edge_attrs(
-    edge_attr = "value",
+    edge_attr = value,
     values = 8.4,
     from = 4,
       to = 3)

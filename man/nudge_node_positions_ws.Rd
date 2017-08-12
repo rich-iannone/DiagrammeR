@@ -37,10 +37,18 @@ selection that do not have position information
 # Create a simple graph with 4 nodes
 graph <-
   create_graph() \%>\%
-  add_node(type = "a", label = "one") \%>\%
-  add_node(type = "a", label = "two") \%>\%
-  add_node(type = "b", label = "three") \%>\%
-  add_node(type = "b", label = "four")
+  add_node(
+    type = "a",
+    label = "one") \%>\%
+  add_node(
+    type = "a",
+    label = "two") \%>\%
+  add_node(
+    type = "b",
+    label = "three") \%>\%
+  add_node(
+    type = "b",
+    label = "four")
 
 # Add position information to each of
 # the graph's nodes

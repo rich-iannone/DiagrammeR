@@ -68,6 +68,7 @@ render_graph(layout = "circle")
 create_graph() \%>\%
   add_balanced_tree(
     k = 2, h = 3) \%>\%
-  render_graph(graph, output = "visNetwork")
+  render_graph(
+    output = "visNetwork")
 }
 }

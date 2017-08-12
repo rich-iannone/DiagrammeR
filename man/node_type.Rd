@@ -57,18 +57,24 @@ graph <-
     edges_df = edf)
 
 # Read the node `type` for node `1`
-graph \%>\% node_type(1)
+graph \%>\%
+  node_type(node = 1)
 #> [1] "a"
 
 # Remove the `type` value entirely from
 # node `1`
 graph <-
   graph \%>\%
-  node_type(1, "delete")
+  node_type(
+    node = 1,
+    action = "delete")
 
 # Check that node `1` no longer has a
 # `type` assignment
-graph \%>\% node_type(1, "check")
+graph \%>\%
+  node_type(
+    node = 1,
+    action = "check")
 #> [1] FALSE
 
 # Add the `type` value "b" to node `1`
@@ -77,17 +83,22 @@ graph <-
   node_type(1, "add", "b")
 
 # Read the node `type` for node `1`
-graph \%>\% node_type(1)
+graph \%>\%
+  node_type(node = 1)
 #> [1] "b"
 
 # Perform an in-place update of the `type`
 # value for node `1` ("b" to "a")
 graph <-
   graph \%>\%
-  node_type(1, "update", "a")
+  node_type(
+    node = 1,
+    action = "update",
+    value = "a")
 
 # Read the node `type` for node `1` to ensure
 # that the change was made
-graph \%>\% node_type(1)
+graph \%>\%
+  node_type(node = 1)
 #> [1] "a"
 }

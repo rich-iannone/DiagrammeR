@@ -28,17 +28,21 @@ graph_1 <-
   create_graph() \%>\%
   add_n_nodes(n = 3) \%>\%
   add_edges_w_string(
-    "1->3 1->2 2->3")
+    edges = "1->3 1->2 2->3")
 
 graph_2 <-
   graph_1 \%>\%
   add_node() \%>\%
-  add_edge(from = 4, to = 3)
+  add_edge(
+    from = 4,
+    to = 3)
 
 graph_3 <-
   graph_2 \%>\%
   add_node() \%>\%
-  add_edge(from = 5, to = 2)
+  add_edge(
+    from = 5,
+    to = 2)
 
 # Create an empty graph series and add
 # the graphs

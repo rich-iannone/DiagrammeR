@@ -60,7 +60,8 @@ df <-
 # (in this case the `id` column is common to both)
 graph <-
   graph \%>\%
-  join_node_attrs(df)
+  join_node_attrs(
+    df = df)
 
 # Get the graph's internal ndf to show that the
 # join has been made
@@ -78,7 +79,8 @@ get_node_df(graph)
 # tables results in a natural join)
 graph <-
   graph \%>\%
-  join_node_attrs(get_betweenness(.))
+  join_node_attrs(
+    df = get_betweenness(.))
 
 # Get the graph's internal ndf to show that
 # this join has been made

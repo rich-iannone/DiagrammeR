@@ -63,7 +63,8 @@ graph <-
 graph <-
   graph \%>\%
   select_edges(
-    from = 1, to = 4)
+    from = 1,
+    to = 4)
 
 # Verify that an edge selection has been made
 # using the `get_selection()` function

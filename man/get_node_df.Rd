@@ -31,16 +31,16 @@ graph <-
     type = "b") \%>\%
   select_nodes_by_id(nodes = 1) \%>\%
   set_node_attrs_ws(
-    node_attr = "value",
+    node_attr = value,
     value = 25.3) \%>\%
   clear_selection() \%>\%
   select_nodes_by_id(nodes = 2:4) \%>\%
   set_node_attrs_ws(
-    node_attr = "color",
+    node_attr = color,
     value = "grey70") \%>\%
   invert_selection() \%>\%
   set_node_attrs_ws(
-    node_attr = "color",
+    node_attr = color,
     value = "grey80") \%>\%
   clear_selection()
 

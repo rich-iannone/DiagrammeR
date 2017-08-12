@@ -42,7 +42,8 @@ replacement value for any unmatched mappings.
 # Create a random graph
 graph <-
   create_random_graph(
-    4, 6, set_seed = 23) \%>\%
+    n = 4, m = 6,
+    set_seed = 23) \%>\%
   set_edge_attrs(
     edge_attr = rel,
     values = c("a", "b", "a",

@@ -32,7 +32,7 @@ graph <-
     n = 5, m = 10,
     set_seed = 23) \%>\%
   drop_node_attrs(
-    node_attr = "value")
+    node_attr = value)
 
 # Add a graph action that sets a node
 # attr column with a function; this

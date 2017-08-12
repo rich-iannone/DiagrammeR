@@ -31,17 +31,17 @@ graph <-
     type = "b") \%>\%
   select_edges_by_node_id(nodes = 3:5) \%>\%
   set_edge_attrs_ws(
-    edge_attr = "color",
+    edge_attr = color,
     value = "green") \%>\%
   set_edge_attrs_ws(
-    edge_attr = "rel",
+    edge_attr = rel,
     value = "a") \%>\%
   invert_selection \%>\%
   set_edge_attrs_ws(
-    edge_attr = "color",
+    edge_attr = color,
     value = "blue") \%>\%
   set_edge_attrs_ws(
-    edge_attr = "rel",
+    edge_attr = rel,
     value = "b") \%>\%
   clear_selection()
 

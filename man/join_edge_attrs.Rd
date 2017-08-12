@@ -61,7 +61,8 @@ df <-
 # (in this case `from` and `to` are common to both)
 graph <-
   graph \%>\%
-  join_edge_attrs(df)
+  join_edge_attrs(
+    df = df)
 
 # Get the graph's internal edf to show that the
 # join has been made
