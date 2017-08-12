@@ -2,7 +2,7 @@
 #' @description Get the number of automorphisms the
 #' graph contains. An automorphism of a graph is a
 #' form of symmetry in which the graph is mapped onto
-#' itself while preserving edge–node connectivity.
+#' itself while preserving edge-node connectivity.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a single numeric value representing the
