@@ -142,7 +142,7 @@ renderGrViz <- function(expr,
 }
 
 #' Add MathJax-formatted equation text
-#' @param grViz a \code{grViz} htmlwidget.
+#' @param gv a \code{grViz} htmlwidget.
 #' @param include_mathjax \code{logical} to add mathjax JS.
 #' Change to \code{FALSE} if using with \code{RMarkdown} since
 #' MathJax will likely already be added.
@@ -181,5 +181,4 @@ add_mathjax <- function(gv = NULL,
       )
     ))
   }
-
 }
