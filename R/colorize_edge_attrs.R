@@ -65,7 +65,8 @@
 #' #> 2  2    2  3 <NA>    6.3 #A6D96A
 #' #> 3  3    3  4 <NA>    9.2 #1A9641
 #' #> 4  4    4  5 <NA>    1.6 #D7191C
-#' @import viridis RColorBrewer
+#' @import RColorBrewer
+#' @importFrom viridis viridis
 #' @importFrom rlang enquo UQ
 #' @export colorize_edge_attrs
 

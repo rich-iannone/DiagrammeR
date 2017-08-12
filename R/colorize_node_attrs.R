@@ -121,7 +121,8 @@
 #' #> 6  6 <NA>     6    2.5   #D7191C
 #' #> 7  7 <NA>     7    7.2   #2B83BA
 #' #> 8  8 <NA>     8    5.4   #ABDDA4
-#' @import viridis RColorBrewer
+#' @import RColorBrewer
+#' @importFrom viridis viridis
 #' @importFrom rlang enquo UQ
 #' @export colorize_node_attrs
 
