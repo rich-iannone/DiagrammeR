@@ -89,9 +89,14 @@ add_graph_action <- function(graph,
         (fcn_args %>% unname())[[i]] %>% class()
 
       if (arg_value_class == "character") {
+
+        fcn_arg <- (fcn_args %>% unname())[[i]]
+
+        fcn_arg <- paste0("'", fcn_arg, "'")
+
         arg_values <-
-          c(arg_values,
-            (fcn_args %>% unname())[[i]] %>% paste0("'", ., "'"))
+          c(arg_values, fcn_arg)
+
       } else {
         arg_values <-
           c(arg_values,
