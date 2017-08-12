@@ -1,4 +1,4 @@
-#' Add a G(n, p) Erdo-Renyi graph
+#' Add a G(n, p) Erdos-Renyi graph
 #' @description To an existing graph object, add
 #' a graph built according to the Erdos-Renyi
 #' G(n, p) model, which uses a constant probability
