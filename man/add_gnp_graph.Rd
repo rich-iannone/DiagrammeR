@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_gnp_graph.R
 \name{add_gnp_graph}
 \alias{add_gnp_graph}
-\title{Add a G(n, p) Erdo-Renyi graph}
+\title{Add a G(n, p) Erdos-Renyi graph}
 \usage{
 add_gnp_graph(graph, n, p, loops = FALSE)
 }
