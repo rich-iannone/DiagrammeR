@@ -26,8 +26,6 @@
 #' upper bound value for the rescaled values. If not
 #' set, the minimum value from the set will be used.
 #' @return a graph object of class \code{dgr_graph}.
-#' @import scales
-#' @importFrom grDevices colors
 #' @examples
 #' # Create a random graph
 #' graph <-
@@ -108,6 +106,8 @@
 #' #> 6  6    4  5 <NA>  0.898 #414141    2.745
 #' #> 7  7    1  4 <NA>  0.410 #898989    1.525
 #' @importFrom rlang enquo UQ
+#' @importFrom scales rescale cscale seq_gradient_pal
+#' @importFrom grDevices colors
 #' @export rescale_edge_attrs
 
 rescale_edge_attrs <- function(graph,
@@ -167,8 +167,12 @@ rescale_edge_attrs <- function(graph,
       (is.null(from_lower_bound) &
        is.null(from_upper_bound))) {
 
-    from <- range(vector_to_rescale,
-                  na.rm = TRUE, finite = TRUE)
+    from <-
+      range(
+        vector_to_rescale,
+        na.rm = TRUE,
+        finite = TRUE)
+
   } else {
     from <- c(from_lower_bound, from_upper_bound)
   }
@@ -180,7 +184,7 @@ rescale_edge_attrs <- function(graph,
 
     edges_attr_vector_rescaled <-
       round(
-        rescale(
+        scales::rescale(
           x = vector_to_rescale,
           to = c(to_lower_bound,
                  to_upper_bound),
@@ -189,14 +193,15 @@ rescale_edge_attrs <- function(graph,
   }
 
   # Get vector of rescaled, edge attribute color values
-  if ((to_lower_bound %in% colors()) &
-      (to_upper_bound %in% colors())) {
+  if ((to_lower_bound %in% grDevices::colors()) &
+      (to_upper_bound %in% grDevices::colors())) {
 
     edges_attr_vector_rescaled <-
-      cscale(
+      scales::cscale(
         x = vector_to_rescale,
-        palette = seq_gradient_pal(to_lower_bound,
-                                   to_upper_bound))
+        palette = scales::seq_gradient_pal(
+          to_lower_bound,
+          to_upper_bound))
   }
 
   # If a new edge attribute name was not provided,
