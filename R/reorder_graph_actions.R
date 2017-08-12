@@ -124,12 +124,16 @@ reorder_graph_actions <- function(graph,
   revised_indices <-
     c(indices, remaining_indices)
 
+  # Extract the graph actions table from
+  # the graph
+  graph_actions_tbl <-
+    graph %>%
+    get_graph_actions()
+
   # Get a revised data frame with graph actions
   # in the requested order
   revised_graph_actions <-
-    graph %>%
-    get_graph_actions() %>%
-    .[revised_indices, ] %>%
+    graph_actions_tbl[revised_indices, ] %>%
     dplyr::mutate(action_index = row_number())
 
   # Replace `graph$graph_actions` with the

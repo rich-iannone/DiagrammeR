@@ -51,7 +51,8 @@
 #' create_graph() %>%
 #'   add_balanced_tree(
 #'     k = 2, h = 3) %>%
-#'   render_graph(graph, output = "visNetwork")
+#'   render_graph(
+#'     output = "visNetwork")
 #' }
 #' @importFrom dplyr select rename mutate filter coalesce left_join pull
 #' @importFrom igraph layout_in_circle layout_with_sugiyama layout_with_kk layout_with_fr layout_nicely
@@ -193,10 +194,9 @@ render_graph <- function(graph,
 
         if (layout == "tree") {
           coords <-
-            graph %>%
-            to_igraph() %>%
-            layout_with_sugiyama() %>%
-            .[[2]] %>%
+            (graph %>%
+               to_igraph() %>%
+               igraph::layout_with_sugiyama())[[2]] %>%
             as_tibble() %>%
             rename(x = V1, y = V2)
         }

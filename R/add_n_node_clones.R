@@ -108,13 +108,20 @@ add_n_node_clones <- function(graph,
     graph$graph_log$version_id %>%
     max()
 
+  # Get the number of columns in the graph's
+  # internal node data frame
+  n_col_ndf <-
+    graph %>%
+    get_node_df() %>%
+    ncol()
+
   # Extract all of the node attributes
   # (`type` and additional node attrs)
   node_attr_vals <-
     graph %>%
     get_node_df() %>%
     dplyr::filter(id == node) %>%
-    dplyr::select(type, 4:ncol(.))
+    dplyr::select(type, 4:n_col_ndf)
 
   # Create one or more clones of
   # the selected node in the graph
