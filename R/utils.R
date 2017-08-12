@@ -329,7 +329,6 @@ save_graph_as_rds <- function(graph) {
 # Function to get the ideal contrasting text color
 # (black or white) given the fillcolor of a node
 #' @importFrom grDevices col2rgb
-#' @export contrasting_text_color
 contrasting_text_color <- function(background_color) {
 
   rgb_colors <-
