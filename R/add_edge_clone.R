@@ -116,13 +116,20 @@ add_edge_clone <- function(graph,
     graph$graph_log$version_id %>%
     max()
 
+  # Get the number of columns in the graph's
+  # internal edge data frame
+  n_col_edf <-
+    graph %>%
+    get_edge_df() %>%
+    ncol()
+
   # Extract all of the edge attributes
   # (`rel` and additional edge attrs)
   edge_attr_vals <-
     graph %>%
     get_edge_df() %>%
     dplyr::filter(id == edge) %>%
-    dplyr::select(4:ncol(.))
+    dplyr::select(4:n_col_edf)
 
   # Create the requested edge
   graph <-
