@@ -45,7 +45,7 @@
 #'   graph %>%
 #'   set_node_attr_to_display(
 #'     nodes = 1:3,
-#'     attr = "value",
+#'     attr = value,
 #'     default = NA)
 #'
 #' # Show the graph's node data frame; the
@@ -68,10 +68,10 @@
 #' graph %>%
 #'   set_node_attr_to_display(
 #'     nodes = 4,
-#'     attr = "label") %>%
+#'     attr = label) %>%
 #'   set_node_attr_to_display(
 #'     nodes = c(1, 5),
-#'     attr = "id") %>%
+#'     attr = id) %>%
 #'   get_node_df()
 #' #>   id type label display value
 #' #> 1  1 <NA>     1      id   6.0
@@ -81,6 +81,7 @@
 #' #> 5  5 <NA>     5      id   8.5
 #' @importFrom dplyr mutate left_join coalesce bind_cols select everything case_when
 #' @importFrom tibble tibble
+#' @importFrom rlang enquo UQ
 #' @export set_node_attr_to_display
 
 set_node_attr_to_display <- function(graph,
@@ -90,6 +91,13 @@ set_node_attr_to_display <- function(graph,
 
   # Get the time of function start
   time_function_start <- Sys.time()
+
+  attr <- rlang::enquo(attr)
+  attr <- (rlang::UQ(attr) %>% paste())[2]
+
+  if (attr == "NULL") {
+    attr <- NULL
+  }
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

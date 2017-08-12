@@ -20,7 +20,8 @@
 #' # Create a graph containing a balanced tree
 #' graph <-
 #'   create_graph() %>%
-#'   add_balanced_tree(k = 2, h = 2)
+#'   add_balanced_tree(
+#'     k = 2, h = 2)
 #'
 #' # Create a graph selection by selecting nodes
 #' # in the neighborhood of node `1`, where the

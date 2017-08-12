@@ -34,19 +34,19 @@
 #'   graph %>%
 #'   get_min_spanning_tree() %>%
 #'   copy_edge_attrs(
-#'     edge_attr_from = "weight",
-#'     edge_attr_to = "label") %>%
+#'     edge_attr_from = weight,
+#'     edge_attr_to = label) %>%
 #'   set_edge_attrs(
-#'     edge_attr = "fontname",
+#'     edge_attr = fontname,
 #'     values = "Helvetica") %>%
 #'   set_edge_attrs(
-#'     edge_attr = "color",
+#'     edge_attr = color,
 #'     values = "gray85") %>%
 #'   rescale_edge_attrs(
-#'     edge_attr_from = "weight",
+#'     edge_attr_from = weight,
 #'     to_lower_bound = 0.5,
 #'     to_upper_bound = 4.0,
-#'     edge_attr_to = "penwidth")
+#'       edge_attr_to = penwidth)
 #' @importFrom igraph mst
 #' @export get_min_spanning_tree
 

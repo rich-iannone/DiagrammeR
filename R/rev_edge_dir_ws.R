@@ -21,7 +21,7 @@
 #' # nodes `1` and `2`
 #' graph <-
 #'   select_edges_by_node_id(
-#'     graph,
+#'     graph = graph,
 #'     nodes = 1:2)
 #'
 #' # Reverse the edge directions of the edges

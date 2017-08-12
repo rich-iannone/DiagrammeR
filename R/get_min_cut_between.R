@@ -35,7 +35,7 @@
 #'   add_cycle(n = 5) %>%
 #'   select_edges() %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "capacity",
+#'     edge_attr = capacity,
 #'     value =
 #'       rnorm(
 #'         n = edge_count(.),

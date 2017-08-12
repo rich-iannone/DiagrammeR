@@ -41,7 +41,7 @@
 #'   graph %>%
 #'   join_node_attrs(
 #'     df = get_leverage_centrality(.)) %>%
-#'   drop_node_attrs(node_attr = "value")
+#'   drop_node_attrs(node_attr = value)
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)

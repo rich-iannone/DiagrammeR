@@ -15,7 +15,7 @@
 #'   add_cycle(n = 5) %>%
 #'   select_edges() %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "weight",
+#'     edge_attr = weight,
 #'     value = c(3, 5, 2, 9, 6)) %>%
 #'   clear_selection()
 #'

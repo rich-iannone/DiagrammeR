@@ -19,7 +19,9 @@
 #'
 #' # Reverse the edge directions such that edges
 #' # are directed toward the root of the tree
-#' graph <- graph %>% rev_edge_dir()
+#' graph <-
+#'   graph %>%
+#'   rev_edge_dir()
 #'
 #' # Inspect the graph's edges after their reversal
 #' graph %>%

@@ -170,17 +170,17 @@
 #'   clear_selection() %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "value",
+#'     node_attr = value,
 #'     value = 8) %>%
 #'   clear_selection() %>%
 #'   select_edges_by_edge_id(edges = 1) %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     value = 5) %>%
 #'   clear_selection() %>%
 #'   select_edges_by_edge_id(edges = 2) %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     value = 5) %>%
 #'   clear_selection() %>%
 #'   select_edges()

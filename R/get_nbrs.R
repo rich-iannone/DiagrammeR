@@ -29,7 +29,7 @@
 #'   graph %>%
 #'   select_nodes_by_id(nodes = 3) %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "color",
+#'     node_attr = color,
 #'     value = "purple") %>%
 #'   clear_selection() %>%
 #'   select_nodes_by_id(
@@ -37,7 +37,7 @@
 #'       graph = .,
 #'       nodes = 3)) %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "color",
+#'     node_attr = color,
 #'     value = "green")
 #' @export get_nbrs
 
