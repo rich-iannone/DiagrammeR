@@ -172,7 +172,7 @@ graph <-
   add_path(n = 5) \%>\%
   select_nodes_by_id(nodes = c(2, 4)) \%>\%
   set_node_attrs_ws(
-    node_attr = "value",
+    node_attr = value,
     value = 5)
 
 # Show the graph's internal node data frame
