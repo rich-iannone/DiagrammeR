@@ -31,9 +31,7 @@ graph <-
     edge_attr = value,
     values = 3) \%>\%
   mutate_edge_attrs(
-    edge_attr_from = value,
-    expressions = "2 * ~",
-    edge_attr_to = penwidth)
+    penwidth = value * 2)
 
 # Get the graph's internal edf to show which
 # edge attributes are available
