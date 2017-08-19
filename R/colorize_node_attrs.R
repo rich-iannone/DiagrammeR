@@ -36,7 +36,7 @@
 #'   create_graph() %>%
 #'   add_path(n = 8) %>%
 #'   set_node_attrs(
-#'     node_attr = "weight",
+#'     node_attr = weight,
 #'     values = c(8.2, 3.7, 6.3, 9.2,
 #'                1.6, 2.5, 7.2, 5.4))
 #'
@@ -93,7 +93,7 @@
 #'   create_graph() %>%
 #'   add_path(n = 8) %>%
 #'   set_node_attrs(
-#'     node_attr = "weight",
+#'     node_attr = weight,
 #'     values = c(8.2, 3.7, 6.3, 9.2,
 #'                1.6, 2.5, 7.2, 5.4))
 #'
