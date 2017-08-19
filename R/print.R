@@ -1,8 +1,8 @@
 #' Print the graph to the terminal
 #' @description This function will provide a summary
 #' of the graph.
-#' @param x The graph to print.
-#' @return The graph object (invisibly).
+#' @param x a graph object of class
+#' \code{dgr_graph}.
 #' @examples
 #' \dontrun{
 #' # Create a random graph
@@ -14,11 +14,13 @@
 #' # Get a summary of the graph
 #' graph
 #' }
-#' @method print dgr_graph
+#' @keywords internal
 #' @export
-#' @export print.dgr_graph
 
-print.dgr_graph <- function(x) {
+print.dgr_graph <- function(x, ...) {
+
+  args <- list(...)
+  args <- NULL
 
   # Get the console width
   console_width <- getOption("width")
