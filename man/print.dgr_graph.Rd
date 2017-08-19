@@ -4,13 +4,11 @@
 \alias{print.dgr_graph}
 \title{Print the graph to the terminal}
 \usage{
-\method{print}{dgr_graph}(x)
+\method{print}{dgr_graph}(x, ...)
 }
 \arguments{
-\item{x}{The graph to print.}
-}
-\value{
-The graph object (invisibly).
+\item{x}{a graph object of class
+\code{dgr_graph}.}
 }
 \description{
 This function will provide a summary
@@ -28,3 +26,4 @@ graph <-
 graph
 }
 }
+\keyword{internal}
