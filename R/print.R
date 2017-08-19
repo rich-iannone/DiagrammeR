@@ -3,7 +3,6 @@
 #' of the graph.
 #' @param x The graph to print.
 #' @return The graph object (invisibly).
-#' @method print dgr_graph
 #' @examples
 #' \dontrun{
 #' # Create a random graph
@@ -15,6 +14,7 @@
 #' # Get a summary of the graph
 #' graph
 #' }
+#' @method print dgr_graph
 #' @export
 #' @export print.dgr_graph
 
