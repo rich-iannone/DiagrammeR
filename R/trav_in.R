@@ -150,7 +150,7 @@
 #'   select_nodes_by_id(nodes = 5) %>%
 #'   trav_in(
 #'     conditions =
-#'       type == 'b' | values > 6.0) %>%
+#'       type == "b" | values > 6.0) %>%
 #'   get_selection()
 #' #> [1] 2 3
 #'
@@ -177,7 +177,7 @@
 #'   clear_selection() %>%
 #'   select_nodes_by_id(nodes = 2:3) %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "value",
+#'     node_attr = value,
 #'     value = 5)
 #'
 #' # Show the graph's internal node data frame
@@ -204,7 +204,7 @@
 #' graph <-
 #'   graph %>%
 #'   trav_in(
-#'     copy_attrs_from = "value",
+#'     copy_attrs_from = value,
 #'     agg = "sum")
 #'
 #' # Show the graph's internal node data frame
@@ -226,6 +226,13 @@ trav_in <- function(graph,
                     agg = "sum") {
 
   conditions <- rlang::enquo(conditions)
+
+  copy_attrs_from <- rlang::enquo(copy_attrs_from)
+  copy_attrs_from <- (rlang::UQ(copy_attrs_from) %>% paste())[2]
+
+  if (copy_attrs_from == "NULL") {
+    copy_attrs_from <- NULL
+  }
 
   # Get the time of function start
   time_function_start <- Sys.time()

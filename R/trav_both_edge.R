@@ -161,7 +161,7 @@
 #'   add_path(n = 4) %>%
 #'   select_nodes_by_id(nodes = 2:3) %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "value",
+#'     node_attr = value,
 #'     value = 5)
 #'
 #' # Show the graph's internal edge data frame
@@ -190,7 +190,7 @@
 #' graph <-
 #'   graph %>%
 #'   trav_both_edge(
-#'     copy_attrs_from = "value",
+#'     copy_attrs_from = value,
 #'     agg = "sum")
 #'
 #' # Show the graph's internal edge data frame
@@ -213,6 +213,13 @@ trav_both_edge <- function(graph,
                            agg = "sum") {
 
   conditions <- rlang::enquo(conditions)
+
+  copy_attrs_from <- rlang::enquo(copy_attrs_from)
+  copy_attrs_from <- (rlang::UQ(copy_attrs_from) %>% paste())[2]
+
+  if (copy_attrs_from == "NULL") {
+    copy_attrs_from <- NULL
+  }
 
   # Get the time of function start
   time_function_start <- Sys.time()

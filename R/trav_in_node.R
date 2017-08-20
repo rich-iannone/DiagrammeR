@@ -148,7 +148,9 @@
 #' # the node `2` using multiple conditions
 #' # with a single-length vector
 #' graph %>%
-#'   select_edges(from = 1, to = 2) %>%
+#'   select_edges(
+#'     from = 1,
+#'     to = 2) %>%
 #'   trav_in_node(
 #'     conditions =
 #'       grepl(".*d$", label) |
@@ -169,17 +171,17 @@
 #'   clear_selection() %>%
 #'   select_nodes_by_id(nodes = 2) %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "value",
+#'     node_attr = value,
 #'     value = 8) %>%
 #'   clear_selection() %>%
 #'   select_edges_by_edge_id(edges = 1) %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     value = 5) %>%
 #'   clear_selection() %>%
 #'   select_edges_by_edge_id(edges = 2) %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "value",
+#'     edge_attr = value,
 #'     value = 5) %>%
 #'   clear_selection() %>%
 #'   select_edges()
@@ -207,7 +209,7 @@
 #' graph <-
 #'   graph %>%
 #'   trav_in_node(
-#'     copy_attrs_from = "value",
+#'     copy_attrs_from = value,
 #'     agg = "sum")
 #'
 #' # Show the graph's internal node data frame
@@ -229,6 +231,13 @@ trav_in_node <- function(graph,
                          agg = "sum") {
 
   conditions <- rlang::enquo(conditions)
+
+  copy_attrs_from <- rlang::enquo(copy_attrs_from)
+  copy_attrs_from <- (rlang::UQ(copy_attrs_from) %>% paste())[2]
+
+  if (copy_attrs_from == "NULL") {
+    copy_attrs_from <- NULL
+  }
 
   # Get the time of function start
   time_function_start <- Sys.time()

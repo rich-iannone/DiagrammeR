@@ -208,7 +208,7 @@
 #' graph <-
 #'   graph %>%
 #'   trav_out_node(
-#'     copy_attrs_from = "value",
+#'     copy_attrs_from = value,
 #'     agg = "sum")
 #'
 #' # Show the graph's internal node data frame
@@ -230,6 +230,13 @@ trav_out_node <- function(graph,
                           agg = "sum") {
 
   conditions <- rlang::enquo(conditions)
+
+  copy_attrs_from <- rlang::enquo(copy_attrs_from)
+  copy_attrs_from <- (rlang::UQ(copy_attrs_from) %>% paste())[2]
+
+  if (copy_attrs_from == "NULL") {
+    copy_attrs_from <- NULL
+  }
 
   # Get the time of function start
   time_function_start <- Sys.time()

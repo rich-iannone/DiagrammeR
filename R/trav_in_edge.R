@@ -194,7 +194,7 @@
 #'   graph %>%
 #'   select_nodes() %>%
 #'   trav_in_edge(
-#'     copy_attrs_from = "label")
+#'     copy_attrs_from = label)
 #'
 #' # Show the graph's internal edge
 #' # data frame after this change
@@ -215,6 +215,13 @@ trav_in_edge <- function(graph,
                          copy_attrs_from = NULL) {
 
   conditions <- rlang::enquo(conditions)
+
+  copy_attrs_from <- rlang::enquo(copy_attrs_from)
+  copy_attrs_from <- (rlang::UQ(copy_attrs_from) %>% paste())[2]
+
+  if (copy_attrs_from == "NULL") {
+    copy_attrs_from <- NULL
+  }
 
   # Get the time of function start
   time_function_start <- Sys.time()
