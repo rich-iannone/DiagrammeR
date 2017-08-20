@@ -4,3 +4,4 @@
 .*sublime.*
 ^\.travis\.yml$
 ^cran-comments\.md$
+^CONDUCT\.md$
