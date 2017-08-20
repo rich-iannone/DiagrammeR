@@ -5,19 +5,24 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* This is a new release.
-
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
+I have run R CMD check on the 23 downstream dependencies using the latest development build of DiagrammeR (via the `devtools::revdep_check()` function). Here are the dependant packages that contain any errors/warnings/notes:
 
----
+Checked HydeNet            : 1 error  | 0 warnings | 0 notes
+Checked lavaanPlot         : 0 errors | 0 warnings | 1 note 
+Checked markovchain        : 1 error  | 0 warnings | 0 notes
+Checked pMineR             : 0 errors | 1 warning  | 0 notes
+Checked radiant.model      : 0 errors | 1 warning  | 0 notes
+Checked sbfc               : 0 errors | 0 warnings | 1 note 
+Checked sem                : 1 error  | 0 warnings | 0 notes
+Checked simmer.plot        : 0 errors | 1 warning  | 0 notes
+Checked SpaDES             : 0 errors | 0 warnings | 1 note 
+Checked teachingApps       : 0 errors | 1 warning  | 0 notes
+Checked umx                : 2 errors | 0 warnings | 0 notes
+Checked Wmisc              : 1 error  | 1 warning  | 2 notes
+Checked xgboost            : 1 error  | 0 warnings | 0 notes
 
-* I have run R CMD check on the NUMBER downstream dependencies.
-  (Summary at ...). 
-  
-* FAILURE SUMMARY
+Many of the errors are because I do not have the necessary **BioC** packages available on my development system. I have emailed all package maintainers.
 
-* All revdep maintainers were notified of the release on RELEASE DATE.
+All revdep maintainers were emailed about the release on August 20, 2017.
