@@ -3,3 +3,4 @@
 .bowerrc
 .*sublime.*
 ^\.travis\.yml$
+^cran-comments\.md$
