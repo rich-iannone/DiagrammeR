@@ -34,9 +34,27 @@
 #' algorithm places the node IDs into a bag as many
 #' times as their in-degree (plus once more). The
 #' required number of cited nodes are drawn from the
-#' bag with replacement. Multiple edges may be produced
-#' using this method (it is not disallowed).
+#' bag with replacement. Multiple edges may be
+#' produced using this method (it is not disallowed).
 #' @importFrom igraph sample_pa
+#' @examples
+#' # Create an undirected PA
+#' # graph with 100 nodes, adding
+#' # 2 edges at every time step
+#' pa_graph <-
+#'   create_graph(
+#'     directed = FALSE) %>%
+#'   add_pa_graph(
+#'     n = 100,
+#'     m = 1)
+#'
+#' # Get a count of nodes
+#' pa_graph %>% node_count()
+#' #> [1] 100
+#'
+#' # Get a count of edges
+#' pa_graph %>% edge_count()
+#' #> [1] 99
 #' @export add_pa_graph
 
 add_pa_graph <- function(graph,
