@@ -204,7 +204,7 @@ graph \%>\%
 graph <-
   graph \%>\%
   trav_both(
-    copy_attrs_from = "value",
+    copy_attrs_from = value,
     agg = "sum")
 
 # Show the graph's internal node data frame

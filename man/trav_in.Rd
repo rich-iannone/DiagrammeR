@@ -166,7 +166,7 @@ graph \%>\%
   select_nodes_by_id(nodes = 5) \%>\%
   trav_in(
     conditions =
-      type == 'b' | values > 6.0) \%>\%
+      type == "b" | values > 6.0) \%>\%
   get_selection()
 #> [1] 2 3
 
@@ -193,7 +193,7 @@ graph <-
   clear_selection() \%>\%
   select_nodes_by_id(nodes = 2:3) \%>\%
   set_node_attrs_ws(
-    node_attr = "value",
+    node_attr = value,
     value = 5)
 
 # Show the graph's internal node data frame
@@ -220,7 +220,7 @@ graph \%>\%
 graph <-
   graph \%>\%
   trav_in(
-    copy_attrs_from = "value",
+    copy_attrs_from = value,
     agg = "sum")
 
 # Show the graph's internal node data frame

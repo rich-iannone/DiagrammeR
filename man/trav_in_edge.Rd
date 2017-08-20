@@ -209,7 +209,7 @@ graph <-
   graph \%>\%
   select_nodes() \%>\%
   trav_in_edge(
-    copy_attrs_from = "label")
+    copy_attrs_from = label)
 
 # Show the graph's internal edge
 # data frame after this change

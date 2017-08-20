@@ -2,7 +2,7 @@
 % Please edit documentation in R/trav_reverse_edge.R
 \name{trav_reverse_edge}
 \alias{trav_reverse_edge}
-\title{Select any reverse edges from a selection of edges}
+\title{Traverse to any reverse edges}
 \usage{
 trav_reverse_edge(graph, add_to_selection = FALSE)
 }
@@ -10,23 +10,29 @@ trav_reverse_edge(graph, add_to_selection = FALSE)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{add_to_selection}{an option to either add the
-reverse edges to the active selection of edges or
-switch the active entirely to those reverse edges
-(\code{FALSE}, the default case).}
+\item{add_to_selection}{an option to
+either add the reverse edges to the
+active selection of edges (\code{TRUE})
+or switch the active selection entirely
+to those reverse edges (\code{FALSE},
+the default case).}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
-From an active selection of edges in
-a graph object of class \code{dgr_graph}, select any
-of the available reverse edges between the nodes
-common to the selected edges. For instance, if an
-active selection has the edge \code{1->2} but
-there is also an (unselected) edge \code{2->1},
-then this function can either switch to the selection
-of \code{2->1}, or, incorporate those edges in the
+From an active selection
+of edges in a graph object of class
+\code{dgr_graph}, traverse to any
+available reverse edges between the
+nodes common to the selected edges.
+For instance, if an active selection
+has the edge \code{1->2} but there is
+also an (unselected) edge \code{2->1},
+then this function can either switch
+to the selection of \code{2->1}, or,
+incorporate both those edges into the
 active selection of edges.
 }
 \examples{
@@ -43,14 +49,15 @@ edf <-
     from = c(1, 4, 2, 3, 3),
     to =   c(4, 1, 3, 2, 1))
 
-# Create a graph with the ndf and edf
+# Create a graph with the
+# ndf and edf
 graph <-
   create_graph(
     nodes_df = ndf,
     edges_df = edf)
 
-# Explicitly select the edges `1`->`4`
-# and `2`->`3`
+# Explicitly select the edges
+# `1`->`4` and `2`->`3`
 graph <-
   graph \%>\%
   select_edges(
@@ -64,8 +71,9 @@ graph <-
 get_selection(graph)
 #> [1] 1 3
 
-# Traverse to the to the reverse edges
-# (edges `2`: `4`->`1` and `4`:`3`->`2`)
+# Traverse to the reverse edges
+# (edges `2`: `4`->`1` and
+# `4`:`3`->`2`)
 graph <-
   graph \%>\%
   trav_reverse_edge()
