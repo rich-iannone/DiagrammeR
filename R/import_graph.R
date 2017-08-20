@@ -134,7 +134,7 @@ import_graph <- function(graph_file,
       utils::unzip(zipfile = dest_file)
 
       # Get the file name
-      base_name <- strsplit(dest_file, split = "\\.") %>% unlist() %>% .[[1]]
+      base_name <- (strsplit(dest_file, split = "\\.") %>% unlist())[[1]]
 
       graph_file <-
         list.files(pattern = paste0(base_name, ".*"))[
@@ -195,8 +195,13 @@ import_graph <- function(graph_file,
         skip = lines_to_skip,
         col_names = attr_names,
         col_types = attr_coltypes,
-        progress = FALSE) %>%
-      dplyr::mutate(id = 1:nrow(.)) %>%
+        progress = FALSE)
+
+    n_rows <- nrow(edges)
+
+    edges <-
+      edges %>%
+      dplyr::mutate(id = 1:n_rows) %>%
       dplyr::mutate(rel = as.character(NA)) %>%
       dplyr::select(id, from, to, rel, dplyr::everything()) %>%
       as.data.frame(stringsAsFactors = FALSE)
