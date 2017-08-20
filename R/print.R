@@ -542,17 +542,17 @@ print.dgr_graph <- function(x, ...) {
 
   if (number_of_actions_in_tail == number_of_actions_logged) {
     last_actions_performed_str <-
-      paste(tail_actions_logged$function_used, collapse = "() -> ") %>%
-      paste0(., "()")
+      paste0(
+        paste(tail_actions_logged$function_used, collapse = "() -> "), "()")
   } else if (number_of_actions_in_tail < number_of_actions_logged) {
     last_actions_performed_str <-
       paste0(
         "<", number_of_actions_logged - number_of_actions_in_tail, " action",
         ifelse((number_of_actions_logged - number_of_actions_in_tail) > 1, "s", ""),
         "> -> ",
-        paste(
-          tail_actions_logged$function_used, collapse = "() -> ") %>%
-          paste0(., "()"))
+        paste0(
+          paste(
+          tail_actions_logged$function_used, collapse = "() -> "), "()"))
   }
 
   graph_history_detail_str <-
@@ -570,9 +570,8 @@ print.dgr_graph <- function(x, ...) {
   if (console_width - node_detail_str_1_length >= 5) {
 
     node_detail_str_1 <-
-      node_detail_str_1 %>%
       paste0(
-        .,
+        node_detail_str_1,
         paste(
           rep(
             x = " ",
@@ -586,9 +585,8 @@ print.dgr_graph <- function(x, ...) {
   if (console_width - edge_detail_str_1_length >= 5) {
 
     edge_detail_str_1 <-
-      edge_detail_str_1 %>%
       paste0(
-        .,
+        edge_detail_str_1,
         paste(
           rep(
             x = " ",
@@ -603,9 +601,8 @@ print.dgr_graph <- function(x, ...) {
       !is.na(get_selection(x))[1]) {
 
     selection_detail_str <-
-      selection_detail_str %>%
       paste0(
-        .,
+        selection_detail_str,
         paste(
           rep(
             x = " ",
@@ -620,9 +617,8 @@ print.dgr_graph <- function(x, ...) {
       !is.na(get_cache(x))[1]) {
 
     cache_detail_str <-
-      cache_detail_str %>%
       paste0(
-        .,
+        cache_detail_str,
         paste(
           rep(
             x = " ",
@@ -637,9 +633,8 @@ print.dgr_graph <- function(x, ...) {
       !is.na(get_df_ids(graph_df = x$nodes_df))[1]) {
 
     stored_dfs_detail_str <-
-      stored_dfs_detail_str %>%
       paste0(
-        .,
+        stored_dfs_detail_str,
         paste(
           rep(
             x = " ",
@@ -654,9 +649,8 @@ print.dgr_graph <- function(x, ...) {
       nrow(get_global_graph_attrs(x)) != 0) {
 
     global_attrs_detail_str <-
-      global_attrs_detail_str %>%
       paste0(
-        .,
+        global_attrs_detail_str,
         paste(
           rep(
             x = " ",
