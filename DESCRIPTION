@@ -60,6 +60,5 @@ Suggests:
     covr,
     DiagrammeRsvg,
     knitr,
-    rsvg,
     testthat
 RoxygenNote: 6.0.1
