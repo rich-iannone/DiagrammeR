@@ -1,4 +1,30 @@
-# DiagrammeR 0.9
+# DiagrammeR 0.9.1
+
+* Simplified many functions internally
+
+* Added a default print method for graph objects
+
+* Allowed use of bare node or edge attribute names in many functions
+
+* Implemented graph actions as a means to run one or more functions at every graph transformation step; for example, this can be used to automatically update a node attribute such as `betweenness` whenever modifications to the graph are made (e.g., adding nodes, removing edges, etc.) 
+
+* Data frames can be set as node or edge attributes with the `set_df_as_node_attr()` and `set_df_as_edge_attr()` functions; the `get_attr_dfs()` function allows for retrieval of stored data frame data
+
+* Added two new graph-generating functions (`add_gnp_graph()`, `add_pa_graph()`, and `create_complement_graph()`)
+
+* Added functions to clone existing nodes and edges (`add_n_node_clones()` and `add_edge_clone()`)
+
+* Added several `count_*` functions (`count_asymmetric_node_pairs()`, `count_automorphisms()`, etc.)
+
+* Added new functions to obtain graph properties (`get_adhesion()`, `get_girth()`, `get_reciprocity()`, etc.)
+
+* Added several `is_*` functions for graph and edge properties (e.g., `is_edge_loop()`, `is_graph_dag()`, etc.)
+
+* The `mutate_node_attrs()` and `mutate_edge_attrs()` functions now have simpler and more powerful interfaces for mutating node and edge attributes
+
+* Graphs can be easily saved to disk (and read from disk) using the `save_graph()` and `open_graph()` functions
+
+# DiagrammeR 0.9.0
 
 * Modified basic structure of node and edge data frames such that ID values are automatically set as integer values
 
