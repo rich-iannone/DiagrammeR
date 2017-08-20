@@ -59,6 +59,7 @@ BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Suggests:
     covr,
     DiagrammeRsvg,
+    rsvg,
     knitr,
     testthat
 RoxygenNote: 6.0.1
