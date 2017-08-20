@@ -27,12 +27,12 @@ print.dgr_graph <- function(x, ...) {
 
   # Create vector of information labels
   info_labels <-
-    c("get_node_df" = " (i)-> `get_node_df()`",
-      "get_edge_df" = " (i)-> `get_edge_df()`",
-      "get_selection" = " (i)-> `get_selection()`",
-      "get_cache" = " (i)-> `get_cache()",
-      "get_attr_dfs" = " (i)-> `get_attr_dfs()`",
-      "get_global_graph_attrs" = " (i)-> `get_global_graph_attrs()`")
+    c("get_node_df" = " info: `get_node_df()`",
+      "get_edge_df" = " info: `get_edge_df()`",
+      "get_selection" = " info: `get_selection()`",
+      "get_cache" = " info: `get_cache()",
+      "get_attr_dfs" = " info: `get_attr_dfs()`",
+      "get_global_graph_attrs" = " info: `get_global_graph_attrs()`")
 
   # Get a count of all nodes in the graph
   node_count <- x %>% node_count()
