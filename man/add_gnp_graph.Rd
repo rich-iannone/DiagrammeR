@@ -18,11 +18,30 @@ between two arbitrary nodes.}
 
 \item{loops}{a logical value (default is
 \code{FALSE}) that governs whether loops are
-allowed to be created}
+allowed to be created.}
 }
 \description{
 To an existing graph object, add
 a graph built according to the Erdos-Renyi
 G(n, p) model, which uses a constant probability
 when creating edges.
+}
+\examples{
+# Create an undirected GNP
+# graph with 100 nodes using
+# a probability value of 0.05
+gnp_graph <-
+  create_graph(
+    directed = FALSE) \%>\%
+  add_gnp_graph(
+    n = 100,
+    p = 0.05)
+
+# Get a count of nodes
+gnp_graph \%>\% node_count()
+#> [1] 100
+
+# Get a count of edges
+gnp_graph \%>\% edge_count()
+#> [1] 216
 }
