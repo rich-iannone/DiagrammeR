@@ -19,6 +19,7 @@ Get a data frame with node
 eccentricity values.
 }
 \examples{
+\dontrun{
 # Create a random graph
 graph <-
   create_random_graph(
@@ -40,4 +41,5 @@ graph \%>\%
 #> 8   8            0
 #> 9   9            1
 #> 10 10            0
+}
 }
