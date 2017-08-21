@@ -15,16 +15,16 @@
 #' # Get the betweenness scores for nodes in the graph
 #' get_betweenness(graph)
 #' #>    id betweenness
-#' #> 1   1    5.904762
-#' #> 2   2    4.904762
-#' #> 3   3    1.785714
-#' #> 4   4    0.000000
-#' #> 5   5    5.738095
-#' #> 6   6   20.523810
-#' #> 7   7    3.333333
-#' #> 8   8    0.000000
-#' #> 9   9    3.738095
-#' #> 10 10    4.071429
+#' #> 1   1         0.0
+#' #> 2   2         0.0
+#' #> 3   3         1.0
+#' #> 4   4         0.0
+#' #> 5   5         1.5
+#' #> 6   6         7.5
+#' #> 7   7         0.5
+#' #> 8   8         0.0
+#' #> 9   9         1.5
+#' #> 10 10         0.0
 #'
 #' # Add the betweenness values to the graph
 #' # as a node attribute
@@ -36,17 +36,17 @@
 #' # Display the graph's node data frame
 #' get_node_df(graph)
 #' #>    id type label value betweenness
-#' #> 1   1 <NA>     1   6.0    5.904762
-#' #> 2   2 <NA>     2   2.5    4.904762
-#' #> 3   3 <NA>     3   3.5    1.785714
-#' #> 4   4 <NA>     4   7.5    0.000000
-#' #> 5   5 <NA>     5   8.5    5.738095
-#' #> 6   6 <NA>     6   4.5   20.523810
-#' #> 7   7 <NA>     7  10.0    3.333333
-#' #> 8   8 <NA>     8  10.0    0.000000
-#' #> 9   9 <NA>     9   8.5    3.738095
-#' #> 10 10 <NA>    10  10.0    4.071429
-#' @importFrom influenceR betweenness
+#' #> 1   1 <NA>     1   6.0         0.0
+#' #> 2   2 <NA>     2   2.5         0.0
+#' #> 3   3 <NA>     3   3.5         1.0
+#' #> 4   4 <NA>     4   7.5         0.0
+#' #> 5   5 <NA>     5   8.5         1.5
+#' #> 6   6 <NA>     6   4.5         7.5
+#' #> 7   7 <NA>     7  10.0         0.5
+#' #> 8   8 <NA>     8  10.0         0.0
+#' #> 9   9 <NA>     9   8.5         1.5
+#' #> 10 10 <NA>    10  10.0         0.0
+#' @importFrom igraph betweenness
 #' @export get_betweenness
 
 get_betweenness <- function(graph) {
@@ -62,7 +62,10 @@ get_betweenness <- function(graph) {
   # Get the betweenness scores for each of the
   # graph's nodes
   betweenness_scores <-
-    influenceR::betweenness(ig_graph)
+    igraph::betweenness(
+      graph = ig_graph,
+      v = V(ig_graph),
+      directed = graph$directed)
 
   # Create df with betweenness scores
   data.frame(
