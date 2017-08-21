@@ -6,6 +6,7 @@
 #' \code{dgr_graph}.
 #' @return a vector of node IDs.
 #' @examples
+#' \dontrun{
 #' # Get the nodes that are in the graph periphery
 #' # of a randomly-created graph
 #' create_random_graph(
@@ -13,6 +14,7 @@
 #'     set_seed = 23) %>%
 #'   get_periphery()
 #' #> [1] 3 6
+#' }
 #' @importFrom dplyr filter pull
 #' @export get_periphery
 

@@ -6,6 +6,7 @@
 #' @return a data frame containing eccentricity values
 #' by node ID value.
 #' @examples
+#' \dontrun{
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -27,6 +28,7 @@
 #' #> 8   8            0
 #' #> 9   9            1
 #' #> 10 10            0
+#' }
 #' @export get_eccentricity
 
 get_eccentricity <- function(graph) {
