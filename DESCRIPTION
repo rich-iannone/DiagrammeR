@@ -1,7 +1,7 @@
 Package: DiagrammeR
 Type: Package
 Title: Graph/Network Visualization
-Version: 0.9.1
+Version: 0.9.2
 Authors@R: c(
       person(
         "Knut", "Sveidqvist"
