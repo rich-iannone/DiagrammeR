@@ -46,23 +46,6 @@ different graph formats and create a graph object.
 }
 \examples{
 \dontrun{
-# Import an SIF graph file
-sif_graph <-
-  import_graph(
-    system.file(
-      "extdata/Human_Interactome.sif",
-      package = "DiagrammeR"))
-
-# Get a count of the graph's nodes
-sif_graph \%>\%
-  node_count()
-#> [1] 8347
-
-# Get a count of the graph's edges
-sif_graph \%>\%
-  edge_count()
-#> [1] 61263
-
 # Import a GML graph file
 gml_graph <-
   import_graph(
