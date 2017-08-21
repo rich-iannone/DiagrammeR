@@ -15,11 +15,10 @@ file from disk. Files starting with \code{http://},
 will be automatically downloaded.}
 
 \item{file_type}{the type of file to be imported.
-Options are: \code{graphml} (GraphML), \code{gml}
-(GML), \code{sif} (SIF), \code{edges} (a .edges
-file), and \code{mtx} (MatrixMarket format). If not
-supplied, the type of graph file will be inferred by
-its file extension.}
+Options are: \code{gml} (GML), \code{sif} (SIF),
+\code{edges} (a .edges file), and \code{mtx}
+(MatrixMarket format). If not supplied, the type
+of graph file will be inferred by its file extension.}
 
 \item{edges_extra_attr_names}{for \code{edges} files,
 a vector of attribute names beyond the \code{from}
@@ -47,23 +46,6 @@ different graph formats and create a graph object.
 }
 \examples{
 \dontrun{
-# Import a GraphML graph file
-graphml_graph <-
-  import_graph(
-    system.file(
-      "extdata/power_grid.graphml",
-      package = "DiagrammeR"))
-
-# Get a count of the graph's nodes
-graphml_graph \%>\%
-  node_count()
-#> [1] 4941
-
-# Get a count of the graph's edges
-graphml_graph \%>\%
-  edge_count()
-#> [1] 6594
-
 # Import an SIF graph file
 sif_graph <-
   import_graph(

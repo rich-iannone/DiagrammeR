@@ -20,8 +20,8 @@ graph.
 }
 \examples{
 \dontrun{
-# Import a GraphML graph file available in the
-# DiagrammeR package
+# Import a GML graph file available
+# in the DiagrammeR package
 karate_club <-
   system.file(
     "extdata", "karate.gml",
