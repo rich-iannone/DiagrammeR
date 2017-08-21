@@ -46,19 +46,9 @@ create_random_graph(
 
 **DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things.
 
-This functionality makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and specify styling attributes to differentiate nodes and edges by size, color, shape, opacity, length, and more. Here are some of the available graph functions:
+This functionality makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and specify styling attributes to differentiate nodes and edges by size, color, shape, opacity, length, and more. 
 
-<img src="inst/img/graph_functions_1.png">
-<img src="inst/img/graph_functions_2.png">
-<img src="inst/img/graph_functions_3.png">
-<img src="inst/img/graph_functions_4.png">
-<img src="inst/img/graph_functions_5.png">
-<img src="inst/img/graph_functions_6.png">
-<img src="inst/img/graph_functions_7.png">
-<img src="inst/img/graph_functions_8.png">
-<img src="inst/img/graph_functions_9.png">
-
-## Network Graph Example
+## A Network Graph Example
 
 Let's create a property graph that pertains to contributors to three software projects. This graph has nodes representing people and projects. The attributes `name`, `age`, `join_date`,  `email`, `follower_count`, `following_count`, and `starred_count` are specific to the `person` nodes while the `project`, `start_date`, `stars`, and `language` attributes apply to the `project` nodes. The edges represent the relationships between the people and the project.
 
