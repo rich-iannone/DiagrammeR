@@ -228,3 +228,11 @@ Or, get it from **CRAN**.
 ```r
 install.packages("DiagrammeR")
 ```
+
+## Code of Conduct
+
+[Contributor Code of Conduct](https://github.com/rich-iannone/DiagrammeR/blob/master/CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+## License
+
+MIT &copy; Richard Iannone
