@@ -42,7 +42,7 @@ test_that("copying values with `trav_out_edge()` works", {
   graph_1 <-
     graph_1 %>%
     select_nodes_by_id(nodes = 3) %>%
-    trav_out_edge(copy_attrs_from = "data")
+    trav_out_edge(copy_attrs_from = data)
 
   # Expect that there are 5 columns in the edf
   expect_equal(
@@ -99,7 +99,7 @@ test_that("copying values with `trav_out_edge()` works", {
   graph_2 <-
     graph_2 %>%
     select_nodes_by_id(nodes = 3) %>%
-    trav_out_edge(copy_attrs_from = "data")
+    trav_out_edge(copy_attrs_from = data)
 
   # Expect that there are 5 columns in the edf
   expect_equal(
@@ -159,7 +159,7 @@ test_that("copying values with `trav_in_edge()` works", {
   graph_1 <-
     graph_1 %>%
     select_nodes_by_id(nodes = 3) %>%
-    trav_in_edge(copy_attrs_from = "data")
+    trav_in_edge(copy_attrs_from = data)
 
   # Expect that there are 5 columns in the edf
   expect_equal(
@@ -214,7 +214,7 @@ test_that("copying values with `trav_in_edge()` works", {
   graph_2 <-
     graph_2 %>%
     select_nodes_by_id(nodes = 3) %>%
-    trav_in_edge(copy_attrs_from = "data")
+    trav_in_edge(copy_attrs_from = data)
 
   # Expect that there are 5 columns in the edf
   expect_equal(
@@ -267,14 +267,16 @@ test_that("copying values with `trav_both_edge()` works", {
   # ndf and edf have common column names now)
   graph_1 <-
     graph_1 %>%
-    rename_node_attrs("value", "data")
+    rename_node_attrs(
+      node_attr_from = value,
+      node_attr_to = data)
 
   # Select node ID `3`, traverse to in/out edges,
   # copy `data` value from ndf (3.5) to edges traversed to
   graph_1 <-
     graph_1 %>%
     select_nodes_by_id(nodes = 3) %>%
-    trav_both_edge(copy_attrs_from = "data")
+    trav_both_edge(copy_attrs_from = data)
 
   # Expect that there are 5 columns in the edf
   expect_equal(
@@ -331,7 +333,7 @@ test_that("copying values with `trav_both_edge()` works", {
   graph_2 <-
     graph_2 %>%
     select_nodes_by_id(nodes = 3) %>%
-    trav_both_edge(copy_attrs_from = "data")
+    trav_both_edge(copy_attrs_from = data)
 
   # Expect that there are 5 columns in the edf
   expect_equal(
@@ -367,7 +369,7 @@ test_that("copying values with `trav_both()` works", {
   expect_equal(
     graph %>%
       trav_both(
-        copy_attrs_from = "value",
+        copy_attrs_from = value,
         agg = "sum") %>%
       get_node_attrs(node_attr = value) %>%
       as.numeric(),
@@ -395,7 +397,7 @@ test_that("copying values with `trav_in()` works", {
   expect_equal(
     graph %>%
       trav_in(
-        copy_attrs_from = "value",
+        copy_attrs_from = value,
         agg = "sum") %>%
       get_node_attrs(node_attr = value) %>%
       as.numeric(),
@@ -423,7 +425,7 @@ test_that("copying values with `trav_out()` works", {
   expect_equal(
     graph %>%
       trav_out(
-        copy_attrs_from = "value",
+        copy_attrs_from = value,
         agg = "sum") %>%
       get_node_attrs(node_attr = value) %>%
       as.numeric(),
@@ -463,7 +465,7 @@ test_that("copying values with `trav_out_node()` works", {
   expect_equal(
     graph %>%
       trav_out_node(
-        copy_attrs_from = "value",
+        copy_attrs_from = value,
         agg = "sum") %>%
       get_node_attrs(node_attr = value) %>%
       as.numeric(),
@@ -503,7 +505,7 @@ test_that("copying values with `trav_in_node()` works", {
   expect_equal(
     graph %>%
       trav_in_node(
-        copy_attrs_from = "value",
+        copy_attrs_from = value,
         agg = "sum") %>%
       get_node_attrs(node_attr = value) %>%
       as.numeric(),

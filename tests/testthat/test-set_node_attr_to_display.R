@@ -15,7 +15,7 @@ test_that("node attributes can be chosen for display", {
     graph %>%
     set_node_attr_to_display(
       nodes = 1:3,
-      attr = "value",
+      attr = value,
       default = NA)
 
   # Expect `value` for `display` node attribute in
@@ -30,10 +30,10 @@ test_that("node attributes can be chosen for display", {
     graph %>%
     set_node_attr_to_display(
       nodes = 4,
-      attr = "label") %>%
+      attr = label) %>%
     set_node_attr_to_display(
       nodes = c(1, 5),
-      attr = "id")
+      attr = id)
 
   # Expect set values for `display` node attribute
   expect_equal(

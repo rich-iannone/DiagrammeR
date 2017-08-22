@@ -25,7 +25,7 @@ test_that("setting node attributes is possible", {
     get_cache(
       cache_node_attrs(
         graph = graph_set_a,
-        node_attr = "value",
+        node_attr = value,
         nodes = 1)),
     5)
 
@@ -42,7 +42,7 @@ test_that("setting node attributes is possible", {
     get_cache(
       cache_node_attrs(
         graph = graph_set_a,
-        node_attr = "value",
+        node_attr = value,
         nodes = 1)), 8)
 
   # Select node `1`
@@ -95,7 +95,8 @@ test_that("setting node attributes is possible", {
   expect_equal(
     get_cache(
       cache_node_attrs_ws(
-        graph_node_selection, node_attr = "value")),
+        graph_node_selection,
+        node_attr = value)),
     5)
 
   # Get the node data frame from the graph as a separate object
@@ -143,14 +144,6 @@ test_that("setting node attributes is possible", {
   expect_error(
     cache_node_attrs_ws(graph))
 
-  # Expect an error if the attribute selected is `id`
-  # expect_error(
-  #   set_node_attrs(
-  #     x = graph,
-  #     nodes = 1,
-  #     node_attr = id,
-  #     values = "B"))
-
   # Expect an error if the length of `value` is greater than 1
   expect_error(
     set_node_attrs(
@@ -187,7 +180,7 @@ test_that("setting edge attributes is possible", {
     get_cache(
       cache_edge_attrs(
         graph = graph_set_a_1,
-        edge_attr = "value",
+        edge_attr = value,
         from = 1,
         to = 2))
 
@@ -209,7 +202,7 @@ test_that("setting edge attributes is possible", {
     get_cache(
       cache_edge_attrs(
         graph = graph_set_a_1,
-        edge_attr = "value",
+        edge_attr = value,
         from = 1,
         to = 2)),
     8)
@@ -233,7 +226,7 @@ test_that("setting edge attributes is possible", {
     get_cache(
       cache_edge_attrs(
         graph = graph_select_a_1,
-        edge_attr = "value",
+        edge_attr = value,
         from = 1,
         to = 2)),
     5)

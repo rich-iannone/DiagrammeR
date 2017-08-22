@@ -103,7 +103,7 @@ test_that("Getting similar neighbors of a node is possible", {
       get_similar_nbrs(
         graph = random_graph,
         node = 2,
-        node_attr = "value")))
+        node_attr = value)))
 
   # Expect several nodes to be matched when using
   # an absolute tolerance range
@@ -111,7 +111,7 @@ test_that("Getting similar neighbors of a node is possible", {
     get_similar_nbrs(
       graph = random_graph,
       node = 8,
-      node_attr = "value",
+      node_attr = value,
       tol_abs = c(3, 3)),
     c(7, 9, 10, 11, 12))
 
@@ -122,7 +122,7 @@ test_that("Getting similar neighbors of a node is possible", {
     get_similar_nbrs(
       graph = random_graph,
       node = 8,
-      node_attr = "value",
+      node_attr = value,
       tol_abs = c(10, 10)),
     c(2, 3, 4, 5, 7, 9, 10, 11,
       12, 13, 14, 16, 17))
@@ -133,7 +133,7 @@ test_that("Getting similar neighbors of a node is possible", {
     get_similar_nbrs(
       graph = random_graph,
       node = 3,
-      node_attr = "value",
+      node_attr = value,
       tol_pct = c(75, 75)),
     c(14, 16))
 })
