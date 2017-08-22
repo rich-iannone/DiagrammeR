@@ -567,7 +567,14 @@ print.dgr_graph <- function(x, ...) {
   stored_dfs_detail_str_length <- nchar(stored_dfs_detail_str)
   global_attrs_detail_str_length <- nchar(global_attrs_detail_str)
 
-  if (console_width - node_detail_str_1_length >= 5) {
+  info_labels_node_df_length <- nchar(info_labels["get_node_df"])[[1]]
+  info_labels_edge_df_length <- nchar(info_labels["get_edge_df"])[[1]]
+  info_labels_selection_length <- nchar(info_labels["get_selection"])[[1]]
+  info_labels_cache_length <- nchar(info_labels["get_cache"])[[1]]
+  info_labels_attr_dfs_length <- nchar(info_labels["get_attr_dfs"])[[1]]
+  info_labels_global_graph_attrs <- nchar(info_labels["get_global_graph_attrs"])[[1]]
+
+  if (console_width - node_detail_str_1_length - info_labels_node_df_length >= 5) {
 
     node_detail_str_1 <-
       paste0(
@@ -577,12 +584,12 @@ print.dgr_graph <- function(x, ...) {
             x = " ",
             times = (console_width -
                        node_detail_str_1_length -
-                       nchar(info_labels["get_node_df"])[[1]])),
+                       info_labels_node_df_length)),
           collapse = ""),
         info_labels["get_node_df"])
   }
 
-  if (console_width - edge_detail_str_1_length >= 5) {
+  if (console_width - edge_detail_str_1_length - info_labels_edge_df_length >= 5) {
 
     edge_detail_str_1 <-
       paste0(
@@ -597,7 +604,7 @@ print.dgr_graph <- function(x, ...) {
         info_labels["get_edge_df"])
   }
 
-  if (console_width - selection_detail_str_length >= 5 &
+  if (console_width - selection_detail_str_length - info_labels_selection_length >= 5 &
       !is.na(get_selection(x))[1]) {
 
     selection_detail_str <-
@@ -608,12 +615,12 @@ print.dgr_graph <- function(x, ...) {
             x = " ",
             times = (console_width -
                        selection_detail_str_length -
-                       nchar(info_labels["get_selection"])[[1]])),
+                       info_labels_selection_length)),
           collapse = ""),
         info_labels["get_selection"])
   }
 
-  if (console_width - cache_detail_str_length >= 5 &
+  if (console_width - cache_detail_str_length - info_labels_cache_length >= 5 &
       !is.na(get_cache(x))[1]) {
 
     cache_detail_str <-
@@ -624,12 +631,12 @@ print.dgr_graph <- function(x, ...) {
             x = " ",
             times = (console_width -
                        cache_detail_str_length -
-                       nchar(info_labels["get_cache"])[[1]])),
+                       info_labels_cache_length)),
           collapse = ""),
         info_labels["get_cache"])
   }
 
-  if (console_width - stored_dfs_detail_str_length >= 5 &
+  if (console_width - stored_dfs_detail_str_length - info_labels_attr_dfs_length >= 5 &
       !is.na(get_df_ids(graph_df = x$nodes_df))[1]) {
 
     stored_dfs_detail_str <-
@@ -640,12 +647,12 @@ print.dgr_graph <- function(x, ...) {
             x = " ",
             times = (console_width -
                        stored_dfs_detail_str_length -
-                       nchar(info_labels["get_attr_dfs"])[[1]])),
+                       info_labels_attr_dfs_length)),
           collapse = ""),
         info_labels["get_attr_dfs"])
   }
 
-  if (console_width - global_attrs_detail_str_length >= 5 &
+  if (console_width - global_attrs_detail_str_length - info_labels_global_graph_attrs >= 5 &
       nrow(get_global_graph_attrs(x)) != 0) {
 
     global_attrs_detail_str <-
@@ -656,7 +663,7 @@ print.dgr_graph <- function(x, ...) {
             x = " ",
             times = (console_width -
                        global_attrs_detail_str_length -
-                       nchar(info_labels["get_global_graph_attrs"])[[1]])),
+                       info_labels_global_graph_attrs)),
           collapse = ""),
         info_labels["get_global_graph_attrs"])
   }
