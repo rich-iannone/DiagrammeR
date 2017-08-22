@@ -73,6 +73,7 @@
 #'     tol_abs = c(10, 10)) %>%
 #'     length()
 #' #> [1] 13
+#' @importFrom rlang enquo UQ
 #' @export get_similar_nbrs
 
 get_similar_nbrs <- function(graph,
@@ -80,6 +81,9 @@ get_similar_nbrs <- function(graph,
                              node_attr,
                              tol_abs = NULL,
                              tol_pct = NULL) {
+
+  node_attr <- rlang::enquo(node_attr)
+  node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
