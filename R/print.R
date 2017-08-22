@@ -270,7 +270,7 @@ print.dgr_graph <- function(x, ...) {
   if (node_count > 0) {
     if (edge_count > 1) {
       edge_count_str <- paste0(edge_count, " edges")
-    } else if (node_count == 1) {
+    } else if (edge_count == 1) {
       edge_count_str <- paste0(edge_count, " edge")
     } else if (edge_count == 0) {
       edge_count_str <- "no edges"
