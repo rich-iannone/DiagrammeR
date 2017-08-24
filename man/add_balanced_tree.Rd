@@ -10,33 +10,41 @@ add_balanced_tree(graph, k, h, type = NULL, label = TRUE, rel = NULL)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{k}{the branching factor for the tree.}
+\item{k}{the branching factor for
+the tree.}
 
 \item{h}{the height of the tree.}
 
-\item{type}{an optional string that describes the
-entity type for the nodes to be added.}
+\item{type}{an optional string that
+describes the entity type for the
+nodes to be added.}
 
-\item{label}{either a vector object of length
-\code{n} that provides optional labels for the new
-nodes, or, a boolean value where setting to
-\code{TRUE} ascribes node IDs to the label and
-\code{FALSE} yields a blank label.}
+\item{label}{either a vector object
+of length \code{n} that provides
+optional labels for the new nodes, or,
+a boolean value where setting to
+\code{TRUE} ascribes node IDs to the
+label and \code{FALSE} yields a blank
+label.}
 
-\item{rel}{an optional string for providing a
-relationship label to all new edges created in the
-node tree.}
+\item{rel}{an optional string for
+providing a relationship label to all
+new edges created in the node tree.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
 With a graph object of class
-\code{dgr_graph}, add a balanced tree to the graph.
+\code{dgr_graph}, add a balanced tree
+to the graph.
 }
 \examples{
-# Create a new graph and add 2 different types of
-# balanced trees of height 2 (branching twice) and
+# Create a new graph and
+# add 2 different types of
+# balanced trees of height
+# 2 (branching twice) and
 # different branching ratios
 graph <-
   create_graph() \%>\%
@@ -49,7 +57,8 @@ graph <-
     h = 2,
     type = "tertiary")
 
-# Get some node information from this graph
+# Get some node information
+# from this graph
 node_info(graph) \%>\%
   head(5)
 #>   id   type label deg indeg outdeg loops
