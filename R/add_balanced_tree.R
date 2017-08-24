@@ -1,24 +1,32 @@
 #' Add a balanced tree to the graph
 #' @description With a graph object of class
-#' \code{dgr_graph}, add a balanced tree to the graph.
+#' \code{dgr_graph}, add a balanced tree
+#' to the graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param k the branching factor for the tree.
+#' @param k the branching factor for
+#' the tree.
 #' @param h the height of the tree.
-#' @param type an optional string that describes the
-#' entity type for the nodes to be added.
-#' @param label either a vector object of length
-#' \code{n} that provides optional labels for the new
-#' nodes, or, a boolean value where setting to
-#' \code{TRUE} ascribes node IDs to the label and
-#' \code{FALSE} yields a blank label.
-#' @param rel an optional string for providing a
-#' relationship label to all new edges created in the
-#' node tree.
-#' @return a graph object of class \code{dgr_graph}.
+#' @param type an optional string that
+#' describes the entity type for the
+#' nodes to be added.
+#' @param label either a vector object
+#' of length \code{n} that provides
+#' optional labels for the new nodes, or,
+#' a boolean value where setting to
+#' \code{TRUE} ascribes node IDs to the
+#' label and \code{FALSE} yields a blank
+#' label.
+#' @param rel an optional string for
+#' providing a relationship label to all
+#' new edges created in the node tree.
+#' @return a graph object of class
+#' \code{dgr_graph}.
 #' @examples
-#' # Create a new graph and add 2 different types of
-#' # balanced trees of height 2 (branching twice) and
+#' # Create a new graph and
+#' # add 2 different types of
+#' # balanced trees of height
+#' # 2 (branching twice) and
 #' # different branching ratios
 #' graph <-
 #'   create_graph() %>%
@@ -31,7 +39,8 @@
 #'     h = 2,
 #'     type = "tertiary")
 #'
-#' # Get some node information from this graph
+#' # Get some node information
+#' # from this graph
 #' node_info(graph) %>%
 #'   head(5)
 #' #>   id   type label deg indeg outdeg loops
