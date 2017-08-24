@@ -36,35 +36,38 @@ With a graph object of class
 \code{dgr_graph}, add a node path to the graph.
 }
 \examples{
-# Create a new graph and add 2 paths of varying
-# lengths
+# Create a new graph and add
+# 2 paths of varying lengths
 graph <-
   create_graph() \%>\%
   add_path(
     n = 4,
-    type = "four_path") \%>\%
+    type = "path") \%>\%
   add_path(
     n = 5,
-    type = "five_path")
+    type = "path")
 
-# Get node information from this graph
+# Get node information
+# from this graph
 node_info(graph)
-#>   id      type label deg indeg outdeg loops
-#> 1  1 four_path     1   1     0      1     0
-#> 2  2 four_path     2   2     1      1     0
-#> 3  3 four_path     3   2     1      1     0
-#> 4  4 four_path     4   1     1      0     0
-#> 5  5 five_path     1   1     0      1     0
-#> 6  6 five_path     2   2     1      1     0
-#> 7  7 five_path     3   2     1      1     0
-#> 8  8 five_path     4   2     1      1     0
-#> 9  9 five_path     5   1     1      0     0
+#>   id type label deg indeg outdeg loops
+#> 1  1 path     1   1     0      1     0
+#> 2  2 path     2   2     1      1     0
+#> 3  3 path     3   2     1      1     0
+#> 4  4 path     4   1     1      0     0
+#> 5  5 path     5   1     0      1     0
+#> 6  6 path     6   2     1      1     0
+#> 7  7 path     7   2     1      1     0
+#> 8  8 path     8   2     1      1     0
+#> 9  9 path     9   1     1      0     0
 
-# Attributes can be specified in extra
-# arguments and these are applied in order;
-# Usually these attributes are applied to
-# nodes (e.g., `type` is a node attribute)
-# but the `rel` attribute will apply to the
+# Attributes can be specified
+# in extra arguments and these
+# are applied in order; Usually
+# these attributes are applied
+# to nodes (e.g., `type` is a
+# node attribute) but the `rel`
+# attribute will apply to the
 # edges
 graph_w_attrs <-
   create_graph() \%>\%

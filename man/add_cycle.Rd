@@ -36,12 +36,14 @@ With a graph object of class
 \code{dgr_graph}, add a node cycle to the graph.
 }
 \examples{
-# Create a new graph and add a cycle of nodes to it
+# Create a new graph and
+# add a cycle of nodes to it
 graph <-
   create_graph() \%>\%
   add_cycle(n = 6)
 
-# Get node information from this graph
+# Get node information
+# from this graph
 node_info(graph)
 #>   id type label deg indeg outdeg loops
 #> 1  1 <NA>     1   2     1      1     0
@@ -51,11 +53,13 @@ node_info(graph)
 #> 5  5 <NA>     5   2     1      1     0
 #> 6  6 <NA>     6   2     1      1     0
 
-# Attributes can be specified in extra
-# arguments and these are applied in order;
-# Usually these attributes are applied to
-# nodes (e.g., `type` is a node attribute)
-# but the `rel` attribute will apply to the
+# Attributes can be specified
+# in extra arguments and these
+# are applied in order; Usually
+# these attributes are applied
+# to nodes (e.g., `type` is a
+# node attribute) but the `rel`
+# attribute will apply to the
 # edges
 graph_w_attrs <-
   create_graph() \%>\%
