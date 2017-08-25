@@ -1,6 +1,7 @@
-#' Add a grid of nodes to the graph
+#' Add a 2D grid of nodes to the graph
 #' @description With a graph object of class
-#' \code{dgr_graph}, add a grid to the graph.
+#' \code{dgr_graph}, add a two-dimensional
+#' grid to the graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param x the number of nodes in
@@ -29,7 +30,7 @@
 #' # a 3 x 3 grid
 #' graph <-
 #'   create_graph() %>%
-#'   add_grid(
+#'   add_grid_2d(
 #'     x = 3, y = 3,
 #'     type = "grid")
 #'
@@ -57,7 +58,7 @@
 #' # edges
 #' graph_w_attrs <-
 #'   create_graph() %>%
-#'   add_grid(
+#'   add_grid_2d(
 #'     x = 3, y = 2,
 #'     label = c("one", "two",
 #'               "three", "four",
@@ -93,15 +94,15 @@
 #' @importFrom igraph make_lattice
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr select bind_cols pull
-#' @export add_grid
+#' @export add_grid_2d
 
-add_grid <- function(graph,
-                     x,
-                     y,
-                     type = NULL,
-                     label = TRUE,
-                     rel = NULL,
-                     ...) {
+add_grid_2d <- function(graph,
+                        x,
+                        y,
+                        type = NULL,
+                        label = TRUE,
+                        rel = NULL,
+                        ...) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -223,7 +224,7 @@ add_grid <- function(graph,
       add_action_to_log(
         graph_log = graph_log,
         version_id = nrow(graph_log) + 1,
-        function_used = "add_grid",
+        function_used = "add_grid_2d",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
@@ -254,7 +255,7 @@ add_grid <- function(graph,
       add_action_to_log(
         graph_log = graph_log,
         version_id = nrow(graph_log) + 1,
-        function_used = "add_grid",
+        function_used = "add_grid_2d",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(grid_graph$nodes_df),
