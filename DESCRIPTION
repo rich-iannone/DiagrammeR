@@ -37,7 +37,6 @@ License: MIT + file LICENSE
 Imports:
     dplyr (>= 0.7.2),
     downloader (>= 0.4),
-    grDevices (>= 3.4.0),
     htmltools (>= 0.3.6),
     htmlwidgets (>= 0.9),
     igraph (>= 1.1.2),
