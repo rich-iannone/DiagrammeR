@@ -217,7 +217,7 @@ graph %>%
 
 **DiagrammeR** is used in an **R** environment. If you don't have an **R** installation, it can be obtained from the [**Comprehensive R Archive Network (CRAN)**](https://cran.r-project.org/).
 
-You can install the development (v0.9.2) version of **DiagrammeR** from **GitHub** using the **devtools** package.
+You can install the development version of **DiagrammeR** from **GitHub** using the **devtools** package.
 
 ```r
 devtools::install_github("rich-iannone/DiagrammeR")
