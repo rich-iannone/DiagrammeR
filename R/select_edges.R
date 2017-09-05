@@ -17,6 +17,8 @@
 #' @param to an optional vector of node IDs to which
 #' the edge is incoming for filtering the list of
 #' edges present in the graph.
+#' @param edges an optional vector of edge IDs for
+#' filtering the list of edges present in the graph.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -89,7 +91,8 @@ select_edges <- function(graph,
                          conditions = NULL,
                          set_op = "union",
                          from = NULL,
-                         to = NULL) {
+                         to = NULL,
+                         edges = NULL) {
 
   conditions <- rlang::enquo(conditions)
 
@@ -109,6 +112,14 @@ select_edges <- function(graph,
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
     stop("The graph contains no edges, so, no selections can be made.")
+  }
+
+  # Stop function if `edges` refers to edge ID
+  # values that are not in the graph
+  if (!is.null(edges)) {
+    if (!any(edges %in% graph$edges_df$id)) {
+      stop("The values provided in `edges` do not all correspond to edge ID values in the graph.")
+    }
   }
 
   # Create bindings for specific variables
@@ -167,7 +178,13 @@ select_edges <- function(graph,
   # Create an integer vector representing edges
   edges_selected <- edges_selected$edge
 
-  # Obtain vector with node ID selection of nodes
+  # If an `edges` vector provided, get the intersection
+  # of that vector with the filtered edge IDs
+  if (!is.null(edges)) {
+    edges_selected <- intersect(edges, edges_selected)
+  }
+
+  # Obtain vector with edge ID selection of edges
   # already present
   edges_prev_selection <- graph$edge_selection$edge
 
