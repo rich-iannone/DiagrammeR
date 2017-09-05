@@ -141,7 +141,7 @@ mutate_node_attrs_ws <- function(graph,
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node attributes can be set.")
+    stop("The graph contains no nodes, so, no node attributes can undergo mutation.")
   }
 
   # Validation: Graph object has valid node selection
@@ -155,7 +155,9 @@ mutate_node_attrs_ws <- function(graph,
   # Extract the graph's ndf
   ndf <- get_node_df(graph)
 
-  # Stop function if `node_attr_to` is `id`
+  # Stop function if any supplied
+  # expressions mutate columns that
+  # should not be changed
   if ("id" %in% names(exprs)) {
     stop("The variable `id` cannot undergo mutation.")
   }
@@ -165,8 +167,6 @@ mutate_node_attrs_ws <- function(graph,
   unselected_nodes <-
     base::setdiff(get_node_ids(graph), get_selection(graph))
 
-  # Replace nodes not in selection with NA
-  # values
   for (i in 1:length(exprs)) {
 
     # Case where mutation occurs for an
