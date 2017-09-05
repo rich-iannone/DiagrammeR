@@ -1,6 +1,12 @@
 language: r
 
+r:
+  - oldrel
+  - release
+  - devel
+
 warnings_are_errors: false
+
 sudo: required
 
 apt_packages:
