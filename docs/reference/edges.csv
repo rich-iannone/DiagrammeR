@@ -1,0 +1,4 @@
+id,from,to,rel
+1,1,4,rel_a
+2,2,3,rel_z
+3,3,1,rel_a
