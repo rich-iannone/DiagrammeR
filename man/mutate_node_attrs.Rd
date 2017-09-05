@@ -78,6 +78,7 @@ graph <-
 # Get the graph's internal ndf
 # to show that the node attribute
 # values had been mutated
+get_node_df(graph)
 #>   id type label width length
 #> 1  1 <NA>     1  0.70   1.64
 #> 2  2 <NA>     2  0.15   0.10
