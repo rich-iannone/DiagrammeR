@@ -6,3 +6,4 @@
 ^cran-comments\.md$
 ^CONDUCT\.md$
 ^revdep$
+^docs$
