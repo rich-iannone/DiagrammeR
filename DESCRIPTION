@@ -32,7 +32,7 @@ Authors@R: c(
     )
 Maintainer: Richard Iannone <riannone@me.com>
 Description: Graph and network visualization using tabular data.
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.2.0)
 License: MIT + file LICENSE
 Imports:
     dplyr (>= 0.7.2),
