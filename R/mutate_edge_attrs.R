@@ -103,13 +103,20 @@ mutate_edge_attrs <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Validation: Graph contains edges
+  if (graph_contains_edges(graph) == FALSE) {
+    stop("The graph contains no edges, so, no edge attributes can undergo mutation.")
+  }
+
   # Collect expressions
   exprs <- rlang::exprs(...)
 
   # Extract the graph's edf
   edf <- get_edge_df(graph)
 
-  # Stop function if `node_attr_to` is `id`
+  # Stop function if any supplied
+  # expressions mutate columns that
+  # should not be changed
   if ("id" %in% names(exprs) |
       "from" %in% names(exprs) |
       "to" %in% names(exprs)) {

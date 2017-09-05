@@ -103,13 +103,20 @@ mutate_node_attrs <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+    stop("The graph contains no nodes, so, no node attributes can undergo mutation.")
+  }
+
   # Collect expressions
   exprs <- rlang::exprs(...)
 
   # Extract the graph's ndf
   ndf <- get_node_df(graph)
 
-  # Stop function if `node_attr_to` is `id`
+  # Stop function if any supplied
+  # expressions mutate columns that
+  # should not be changed
   if ("id" %in% names(exprs)) {
     stop("The variable `id` cannot undergo mutation.")
   }
