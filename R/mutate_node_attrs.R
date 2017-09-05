@@ -104,7 +104,7 @@ mutate_node_attrs <- function(graph,
   }
 
   # Collect expressions
-  exprs <- exprs(...)
+  exprs <- rlang::exprs(...)
 
   # Extract the graph's ndf
   ndf <- get_node_df(graph)

@@ -104,7 +104,7 @@ mutate_edge_attrs <- function(graph,
   }
 
   # Collect expressions
-  exprs <- exprs(...)
+  exprs <- rlang::exprs(...)
 
   # Extract the graph's edf
   edf <- get_edge_df(graph)
