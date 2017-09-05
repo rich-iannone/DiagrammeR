@@ -5,7 +5,7 @@
 \title{Select edges in a graph}
 \usage{
 select_edges(graph, conditions = NULL, set_op = "union", from = NULL,
-  to = NULL)
+  to = NULL, edges = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -28,6 +28,9 @@ edges present in the graph.}
 \item{to}{an optional vector of node IDs to which
 the edge is incoming for filtering the list of
 edges present in the graph.}
+
+\item{edges}{an optional vector of edge IDs for
+filtering the list of edges present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
