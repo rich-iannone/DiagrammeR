@@ -25,9 +25,9 @@ a graph object of class
 }
 \description{
 Within a graph's internal node
-data frame (ndf), mutate numeric node
-attribute values only for nodes in a selection
-by using one or more expressions.
+data frame (ndf), mutate node attribute
+values only for nodes in a selection by
+using one or more expressions.
 }
 \examples{
 # Create a graph with 3 nodes
