@@ -109,14 +109,6 @@ select_nodes <- function(graph,
   # Create binding for a specific variable
   id <- NULL
 
-  # Remove any selection of edges
-  graph$selection$edges <- NULL
-
-  # Remove `graph$selection` if empty
-  if (length(graph$selection) == 0) {
-    graph$selection <- NULL
-  }
-
   # Extract the graph's internal ndf
   nodes_df <- graph$nodes_df
 
