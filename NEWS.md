@@ -2,7 +2,7 @@
 
 * Added functions to generate 2D and 3D grid graphs (`add_grid_2d()` and `add_grid_3d()`)
 
-* Added `_ws` (with selection) variants of the `mutate_[node/edge]_attrs()` functions for mutating node or edge attributes only those nodes/edges in an active selection
+* Added `_ws` (with selection) variants of the `mutate_[node/edge]_attrs()` functions for mutating node or edge attributes for only those nodes/edges in an active selection
 
 * Incorporated an `edges` argument into the `select_edges()` function in order to further filter the selection of edges to a set of edge ID values
 
