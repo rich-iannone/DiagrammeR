@@ -122,6 +122,9 @@ add_grid_2d <- function(graph,
     stop("The value for `y` must be at least 2.")
   }
 
+  # Create bindings for specific variables
+  index__ <- id <- from <- to <- NULL
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
