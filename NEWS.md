@@ -4,7 +4,7 @@
 
 * Added `_ws` (with selection) variants of the `mutate_[node/edge]_attrs()` functions for mutating node or edge attributes for only those nodes/edges in an active selection
 
-* Incorporated an `edges` argument into the `select_edges()` function in order to further filter the selection of edges to a set of edge ID values
+* Incorporated an `edges` argument into the `select_edges()` function in order to filter the selection of edges to a set of edge ID values
 
 * Reduced the dependency on R to version >= 3.2.0
 
