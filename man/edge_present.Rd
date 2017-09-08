@@ -11,12 +11,14 @@ edge_present(graph, from, to)
 \code{dgr_graph}.}
 
 \item{from}{a node ID from which the edge
-is outgoing. For an undirected graph, the
+is outgoing, or, the label associated with
+the node. For an undirected graph, the
 value in \code{from} can be interchangeable
 with that in \code{to}.}
 
 \item{to}{a node ID to which the edge is
-incoming. For an undirected graph, the
+incoming, or, the label associated with
+the node. For an undirected graph, the
 value in \code{to} can be interchangeable
 with that in \code{from}.}
 }

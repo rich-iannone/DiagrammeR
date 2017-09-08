@@ -10,58 +10,46 @@ node_present(graph, node)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{node}{a value that may or may not match a node
-ID in the graph.}
+\item{node}{either node ID value or a node
+label to test for presence in the graph.}
 }
 \value{
 a logical value.
 }
 \description{
 From a graph object of class
-\code{dgr_graph}, determine whether a specified node
-is present.
+\code{dgr_graph}, determine whether a
+specified node is present.
 }
 \examples{
-# Set a seed
-set.seed(23)
-
-# Create a node data frame (ndf)
-ndf <-
-  create_node_df(
-    n = 26,
-    label = TRUE,
-    type = c(rep("a", 7),
-             rep("b", 9),
-             rep("c", 8),
-             rep("d", 2)))
-
-# Create an edge data frame (edf)
-edf <-
-  create_edge_df(
-    from = sample(1:26, replace = TRUE),
-    to = sample(1:26, replace = TRUE),
-    rel = c(rep("rel_a", 7),
-            rep("rel_b", 9),
-            rep("rel_c", 8),
-            rep("rel_d", 2)))
-
-# Create a graph using the ndf and edf
+# Create a simple graph with
+# a path of four nodes
 graph <-
-  create_graph(
-    nodes_df = ndf,
-    edges_df = edf)
+  create_graph() \%>\%
+  add_path(
+    n = 4,
+    type = "path",
+    label = c("one", "two",
+              "three", "four"))
 
-# Verify that node with ID `34` is not in graph
-node_present(graph, 34)
-#> FALSE
-
-# Is node with ID 5 in the graph?
-node_present(graph, 5)
+# Determine if there is a node
+# with ID `1` in the graph
+node_present(
+  graph = graph,
+  node = 1)
 #> TRUE
 
-# Are all node ID values from `1` to `26`
-# in the graph?
-all(sapply(1:26,
-      function(x) node_present(graph, x)))
+# Determine if there is a node
+# with ID `5` in the graph
+node_present(
+  graph = graph,
+  node = 5)
+#> FALSE
+
+# Determine if there is a node
+# with label `two` in the graph
+node_present(
+  graph = graph,
+  node = "two")
 #> TRUE
 }
