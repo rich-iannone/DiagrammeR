@@ -133,12 +133,14 @@ add_edge <- function(graph,
   # `label` attr values
   if (is.character(from) & is.character(to)) {
 
-    # Stop function if the label for `from` exists in the graph
+    # Stop function if the label for
+    # `from` does not exist in the graph
     if (!(from %in% graph$nodes_df$label)) {
       stop("The value provided in `from` does not exist as a node `label` value.")
     }
 
-    # Stop function if the label for `from` is distinct in the graph
+    # Stop function if the label for
+    # `from` is not distinct in the graph
     if (graph$nodes_df %>%
         dplyr::select(label) %>%
         dplyr::filter(label == from) %>%
@@ -146,12 +148,14 @@ add_edge <- function(graph,
       stop("The node `label` provided in `from` is not distinct in the graph.")
     }
 
-    # Stop function if the label for `to` exists in the graph
+    # Stop function if the label for
+    # `to` does not exist in the graph
     if (!(to %in% graph$nodes_df$label)) {
       stop("The value provided in `to` does not exist as a node `label` value.")
     }
 
-    # Stop function if the label for `to` is distinct in the graph
+    # Stop function if the label for
+    # `to` is not distinct in the graph
     if (graph$nodes_df %>%
         dplyr::select(label) %>%
         dplyr::filter(label == to) %>%
