@@ -2,27 +2,20 @@
 % Please edit documentation in R/node_count.R
 \name{node_count}
 \alias{node_count}
-\title{Get count of all nodes or certain types of nodes}
+\title{Get count of all nodes in the graph}
 \usage{
-node_count(graph, type = FALSE)
+node_count(graph)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
-
-\item{type}{either a logical value, where
-\code{TRUE} provides a named vector of node count by
-type and \code{FALSE} (the default) provides a total
-count, or, a character vector of \code{type} values
-to filter the node count.}
 }
 \value{
 a numeric vector of single length.
 }
 \description{
 From a graph object of class
-\code{dgr_graph}, get a count of nodes in the graph
-and optionally obtain a count of nodes by their type.
+\code{dgr_graph}, get a count of nodes in the graph.
 }
 \examples{
 # Set a seed
@@ -54,21 +47,7 @@ graph <-
     nodes_df = ndf,
     edges_df = edf)
 
-# Get counts of nodes grouped by the
-# `type` attribute
-node_count(graph, type = TRUE)
-#> a b c d
-#> 7 9 8 2
-
-# Get a total count of nodes with no grouping
-node_count(graph, type = FALSE)
-#> [1] 26
-
-# Get a count of nodes of a specified type
-node_count(graph, type = "a")
-#> [1] 7
-
-# Get a count of nodes of 2 different types
-node_count(graph, type = c("a", "c"))
-#> [1] 15
+# Get a count of nodes in the graph
+node_count(graph)
+#> 26
 }
