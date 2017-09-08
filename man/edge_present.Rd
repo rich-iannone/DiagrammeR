@@ -10,58 +10,70 @@ edge_present(graph, from, to)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{from}{a node ID from which the edge to be
-queried is outgoing.}
+\item{from}{a node ID from which the edge
+is outgoing. For an undirected graph, the
+value in \code{from} can be interchangeable
+with that in \code{to}.}
 
-\item{to}{a node ID to which the edge to be queried
-is incoming.}
+\item{to}{a node ID to which the edge is
+incoming. For an undirected graph, the
+value in \code{to} can be interchangeable
+with that in \code{from}.}
 }
 \value{
 a logical value.
 }
 \description{
 From a graph object of class
-\code{dgr_graph}, determine whether a directed edge
-(defined by a pair of node IDs extant in the graph)
-is present.
+\code{dgr_graph}, determine whether an edge
+(defined by a pair of node IDs or node label
+values) is present.
 }
 \examples{
-# Set a seed
-set.seed(23)
-
-# Create a node data frame (ndf)
-ndf <-
-  create_node_df(
-    n = 26,
-    label = TRUE,
-    type = c(rep("a", 7),
-             rep("b", 9),
-             rep("c", 8),
-             rep("d", 2)))
-
-# Create an edge data frame (edf)
-edf <-
-  create_edge_df(
-    from = sample(1:26, replace = TRUE),
-    to = sample(1:26, replace = TRUE),
-    rel = c(rep("rel_a", 7),
-            rep("rel_b", 9),
-            rep("rel_c", 8),
-            rep("rel_d", 2)))
-
-# Create a graph using the ndf and edf
+# Create a simple graph with
+# a path of four nodes
 graph <-
-  create_graph(
-    nodes_df = ndf,
-    edges_df = edf)
+  create_graph() \%>\%
+  add_path(
+    n = 4,
+    type = "path",
+    label = c("one", "two",
+              "three", "four"))
 
-# Is there any edge between nodes with IDs
-# `1` and `2`?
-edge_present(graph, from = 1, to = 2)
+# Determine if there are any edges
+# with the definition `1` -> `2`
+edge_present(
+  graph = graph,
+  from = 1,
+  to = 2)
+#> TRUE
+
+# Determine if there are any edges
+# with the definition `4` -> `5`
+edge_present(
+  graph = graph,
+  from = 4,
+  to = 5)
 #> FALSE
 
-# Verify that there is an edge between nodes
-# `9` and `5`
-edge_present(graph, from = 9, to = 5)
+# Determine whether an edge,
+# defined by its labels as
+# `two` -> `three`, exists in
+# the graph
+edge_present(
+  graph = graph,
+  from = "two",
+  to = "three")
+#> TRUE
+
+# Set the graph as undirected
+# and determine whether an
+# edge between nodes with labels
+# `three` and `two` exists
+graph \%>\%
+  set_graph_undirected() \%>\%
+  edge_present(
+    from = "three",
+    to = "two")
 #> TRUE
 }
