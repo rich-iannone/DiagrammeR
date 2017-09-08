@@ -2,7 +2,20 @@
 #' @description Combine several vectors for edges
 #' and their attributes into a data frame, which can be
 #' combined with other similarly-generated data frames,
-#' or, added to a graph object.
+#' or, added to a graph object. An edge data frame,
+#' or edf, has at least the following columns:
+#'
+#' - \code{id} (of type \code{integer})
+#'
+#' - \code{from} (of type \code{integer})
+#'
+#' - \code{to} (of type \code{integer})
+#'
+#' - \code{rel} (of type \code{character})
+#'
+#' An arbitrary number of additional columns containing
+#' aesthetic or data attributes can be part of the edf,
+#' so long as they follow the aforementioned columns.
 #' @param from a vector of node ID values from which
 #' edges are outbound. The vector length must equal
 #' that of the \code{to} vector.
