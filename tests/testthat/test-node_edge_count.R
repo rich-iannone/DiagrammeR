@@ -28,31 +28,9 @@ test_that("getting a node count for a graph is possible", {
       nodes_df = nodes,
       edges_df = edges)
 
-  # Obtain a count of nodes by type
-  count_of_nodes <-
-    node_count(
-      graph = graph,
-      type = TRUE)
-
-  # Expect that the `count_of_nodes` object is a named vector
-  expect_true(
-    !is.null(names(count_of_nodes)))
-
-  expect_true(
-    all(
-      names(count_of_nodes) ==
-        c("a_to_g", "h_to_p",
-          "q_to_x", "y_and_z")))
-
-  expect_true(
-    all(
-      c(7, 9, 8, 2) %in% count_of_nodes))
-
   # Obtain a total count of nodes
   total_count_of_nodes <-
-    node_count(
-      graph = graph,
-      type = FALSE)
+    node_count(graph)
 
   # Expect that the `total_count_of_nodes` object
   # is a named vector
@@ -126,13 +104,11 @@ test_that("getting a node/edge count for an empty graph is possible", {
   # will return `0`
   expect_equal(
     node_count(
-      graph = empty_graph,
-      type = FALSE), 0)
+      graph = empty_graph), 0)
 
   expect_equal(
     node_count(
-      graph = empty_graph,
-      type = TRUE), 0)
+      graph = empty_graph), 0)
 
   # Expect that an edge count of an empty graph
   # will return `0`
