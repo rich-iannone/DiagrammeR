@@ -51,7 +51,7 @@ get_predecessors <- function(graph,
   graph_is_not_empty <- !is_graph_empty(graph)
 
   # Determine whether `node` is in the graph
-  node_is_in_graph <- node_present(graph, node)
+  node_is_in_graph <- node %in% graph$nodes_df$id
 
   # Obtain the node's predecessors
   if (graph_is_not_empty &
