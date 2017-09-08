@@ -39,13 +39,4 @@ test_that("a specified edge can be queried for presence in a graph", {
       graph = graph,
       from = c(1, 3),
       to = c(2, 4)))
-
-  # Expect an error if either of the nodes ID values
-  # in either the `from` or the `to` lists are not
-  # in the graph
-  expect_error(
-    edge_present(
-      graph = graph,
-      from = 1,
-      to = 5))
 })
