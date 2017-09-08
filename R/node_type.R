@@ -92,87 +92,78 @@ node_type <- function(graph,
                       action = "read",
                       value = NULL) {
 
-  # Get the time of function start
-  time_function_start <- Sys.time()
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
   }
 
-  # Determine if node is present within the graph
-  node_is_in_graph <-
-    node_present(graph = graph, node = node)
-
   # Stop function if node is not present within
   # the graph
-  if (node_is_in_graph == FALSE) {
+  if (node_present(graph = graph, node = node) == FALSE) {
     stop("The specified node is not present in the graph.")
   }
 
-  if (node_is_in_graph) {
-    node_row <- which(graph$nodes_df[, 1] == node)
+  node_row <- which(graph$nodes_df[, 1] == node)
 
-    type_set <-
-      ifelse(is.na(graph$nodes_df$type[node_row]),
-             FALSE, TRUE)
+  type_set <-
+    ifelse(is.na(graph$nodes_df$type[node_row]),
+           FALSE, TRUE)
 
-    # Return the value of an existing node `type`
-    if (action == "read") {
-      if (type_set == FALSE) {
-        return(NA)
-      }
-      if (type_set) {
-        type_value <- graph$nodes_df$type[node_row]
-        return(type_value)
-      }
+  # Return the value of an existing node `type`
+  if (action == "read") {
+    if (type_set == FALSE) {
+      return(NA)
+    }
+    if (type_set) {
+      type_value <- graph$nodes_df$type[node_row]
+      return(type_value)
+    }
+  }
+
+  # Remove type if a `type` value is set
+  if (action %in% c("delete", "remove", "drop")) {
+    if (type_set == FALSE) {
+      return(graph)
     }
 
-    # Remove type if a `type` value is set
-    if (action %in% c("delete", "remove", "drop")) {
-      if (type_set == FALSE) {
-        return(graph)
-      }
+    if (type_set) {
+      graph$nodes_df$type[node_row] <- as.character(NA)
+      return(graph)
+    }
+  }
 
-      if (type_set) {
-        graph$nodes_df$type[node_row] <- as.character(NA)
-        return(graph)
-      }
+  # Add a `type` to a node with no `type`
+  # definition set
+  if (action %in% c("add", "create")) {
+    if (type_set) {
+      return(graph)
+    }
+    if (type_set == FALSE & !is.null(value)) {
+      graph$nodes_df$type[node_row] <- value
+      return(graph)
+    }
+  }
+
+  # Update an existing `type` definition for a node
+  if (action == "update") {
+    if (type_set == FALSE) {
+      return(graph)
+    }
+    if (type_set & !is.null(value)) {
+      graph$nodes_df$type[node_row] <- value
+      return(graph)
+    }
+  }
+
+  # Determine whether a node `type` definition has
+  # been set
+  if (action == "check") {
+    if (type_set == FALSE) {
+      return(FALSE)
     }
 
-    # Add a `type` to a node with no `type`
-    # definition set
-    if (action %in% c("add", "create")) {
-      if (type_set) {
-        return(graph)
-      }
-      if (type_set == FALSE & !is.null(value)) {
-        graph$nodes_df$type[node_row] <- value
-        return(graph)
-      }
-    }
-
-    # Update an existing `type` definition for a node
-    if (action == "update") {
-      if (type_set == FALSE) {
-        return(graph)
-      }
-      if (type_set & !is.null(value)) {
-        graph$nodes_df$type[node_row] <- value
-        return(graph)
-      }
-    }
-
-    # Determine whether a node `type` definition has
-    # been set
-    if (action == "check") {
-      if (type_set == FALSE) {
-        return(FALSE)
-      }
-
-      if (type_set) {
-        return(TRUE)
-      }
+    if (type_set) {
+      return(TRUE)
     }
   }
 }
