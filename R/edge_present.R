@@ -6,11 +6,13 @@
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param from a node ID from which the edge
-#' is outgoing. For an undirected graph, the
+#' is outgoing, or, the label associated with
+#' the node. For an undirected graph, the
 #' value in \code{from} can be interchangeable
 #' with that in \code{to}.
 #' @param to a node ID to which the edge is
-#' incoming. For an undirected graph, the
+#' incoming, or, the label associated with
+#' the node. For an undirected graph, the
 #' value in \code{to} can be interchangeable
 #' with that in \code{from}.
 #' @return a logical value.
@@ -76,6 +78,7 @@ edge_present <- function(graph,
   # `to` are given as a single value
   from_is_single_value <-
     ifelse(length(from) == 1, TRUE, FALSE)
+
   to_is_single_value <-
     ifelse(length(to) == 1, TRUE, FALSE)
 
