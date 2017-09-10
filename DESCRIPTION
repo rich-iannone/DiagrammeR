@@ -1,35 +1,7 @@
 Package: DiagrammeR
-Type: Package
 Title: Graph/Network Visualization
 Version: 0.9.2
-Authors@R: c(
-      person(
-        "Knut", "Sveidqvist"
-        , role = c("aut", "cph")
-        , comment = "mermaid.js library in htmlwidgets/lib, http://github.com/knsv/mermaid/"
-      ),
-      person(
-        "Mike", "Bostock"
-        , role = c("aut", "cph")
-        , comment = "d3.js library in htmlwidgets/lib, http://d3js.org"
-      ),
-      person(
-        "Chris", "Pettitt"
-        , role = c("aut", "cph")
-        , comment = "dagre-d3.js library in htmlwidgets/lib, http://github.com/cpettitt/dagre-d3"
-      ),
-      person(
-        "Mike", "Daines"
-        , role = c("aut", "cph")
-        , comment = "viz.js library in htmlwidgets/lib, http://github.com/mdaines/viz.js/"
-      ),
-      person(
-        "Richard", "Iannone"
-        , role = c("aut", "cre")
-        , comment = "R interface"
-        , email = "riannone@me.com"
-      )
-    )
+Authors@R: person("Rich", "Iannone", email = "riannone@me.com", role = c("aut", "cre"))
 Maintainer: Richard Iannone <riannone@me.com>
 Description: Graph and network visualization using tabular data.
 Depends: R (>= 3.2.0)
@@ -54,12 +26,14 @@ Imports:
     tidyr (>= 0.6.3),
     viridis (>= 0.4.0),
     visNetwork (>= 2.0.1)
-URL: https://github.com/rich-iannone/DiagrammeR
-BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Suggests:
     covr,
     DiagrammeRsvg,
     rsvg,
     knitr,
     testthat
+URL: https://github.com/rich-iannone/DiagrammeR
+BugReports: https://github.com/rich-iannone/DiagrammeR/issues
+Encoding: UTF-8
+LazyData: true
 RoxygenNote: 6.0.1
