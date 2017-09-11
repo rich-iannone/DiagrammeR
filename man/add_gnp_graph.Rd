@@ -4,7 +4,7 @@
 \alias{add_gnp_graph}
 \title{Add a G(n, p) Erdos-Renyi graph}
 \usage{
-add_gnp_graph(graph, n, p, loops = FALSE)
+add_gnp_graph(graph, n, p, loops = FALSE, set_seed = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -19,6 +19,9 @@ between two arbitrary nodes.}
 \item{loops}{a logical value (default is
 \code{FALSE}) that governs whether loops are
 allowed to be created.}
+
+\item{set_seed}{supplying a value sets a random seed
+of the \code{Mersenne-Twister} implementation.}
 }
 \description{
 To an existing graph object, add

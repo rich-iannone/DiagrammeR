@@ -5,7 +5,8 @@
 \title{Add a preferential attachment graph}
 \usage{
 add_pa_graph(graph, n, m = NULL, power = 1, out_dist = NULL,
-  use_total_degree = FALSE, zero_appeal = 1, algo = "psumtree")
+  use_total_degree = FALSE, zero_appeal = 1, algo = "psumtree",
+  set_seed = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -48,6 +49,9 @@ times as their in-degree (plus once more). The
 required number of cited nodes are drawn from the
 bag with replacement. Multiple edges may be
 produced using this method (it is not disallowed).}
+
+\item{set_seed}{supplying a value sets a random seed
+of the \code{Mersenne-Twister} implementation.}
 }
 \description{
 To an existing graph object, add
