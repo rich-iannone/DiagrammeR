@@ -36,7 +36,8 @@
 #' required number of cited nodes are drawn from the
 #' bag with replacement. Multiple edges may be
 #' produced using this method (it is not disallowed).
-#' @importFrom igraph sample_pa
+#' @param set_seed supplying a value sets a random seed
+#' of the \code{Mersenne-Twister} implementation.
 #' @examples
 #' # Create an undirected PA
 #' # graph with 100 nodes, adding
@@ -55,6 +56,7 @@
 #' # Get a count of edges
 #' pa_graph %>% edge_count()
 #' #> [1] 99
+#' @importFrom igraph sample_pa
 #' @export add_pa_graph
 
 add_pa_graph <- function(graph,
@@ -64,12 +66,8 @@ add_pa_graph <- function(graph,
                          out_dist = NULL,
                          use_total_degree = FALSE,
                          zero_appeal = 1,
-                         algo = "psumtree") {
-
-  # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
-  }
+                         algo = "psumtree",
+                         set_seed = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -77,6 +75,11 @@ add_pa_graph <- function(graph,
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
+  }
+
+  # If a seed value is supplied, set a seed
+  if (!is.null(set_seed)) {
+    set.seed(set_seed, kind = "Mersenne-Twister")
   }
 
   # Stop if n is too small

@@ -12,6 +12,8 @@
 #' @param loops a logical value (default is
 #' \code{FALSE}) that governs whether loops are
 #' allowed to be created.
+#' @param set_seed supplying a value sets a random seed
+#' of the \code{Mersenne-Twister} implementation.
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using
@@ -36,12 +38,8 @@
 add_gnp_graph <- function(graph,
                           n,
                           p,
-                          loops = FALSE) {
-
-  # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
-  }
+                          loops = FALSE,
+                          set_seed = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -49,6 +47,11 @@ add_gnp_graph <- function(graph,
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
+  }
+
+  # If a seed value is supplied, set a seed
+  if (!is.null(set_seed)) {
+    set.seed(set_seed, kind = "Mersenne-Twister")
   }
 
   # Stop if n is too small
