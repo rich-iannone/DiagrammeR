@@ -18,36 +18,17 @@ From a graph object of class
 \code{dgr_graph}, get a count of nodes in the graph.
 }
 \examples{
-# Set a seed
-set.seed(23)
-
-# Create a node data frame (ndf)
-ndf <-
-  create_node_df(
-    n = 26,
-    label = TRUE,
-    type = c(rep("a", 7),
-             rep("b", 9),
-             rep("c", 8),
-             rep("d", 2)))
-
-# Create an edge data frame (edf)
-edf <-
-  create_edge_df(
-    from = sample(1:26, replace = TRUE),
-    to = sample(1:26, replace = TRUE),
-    rel = c(rep("rel_a", 7),
-            rep("rel_b", 9),
-            rep("rel_c", 8),
-            rep("rel_d", 2)))
-
-# Create a graph using the ndf and edf
+# Create a graph with a
+# path of nodes and 3
+# unconnected nodes
 graph <-
-  create_graph(
-    nodes_df = ndf,
-    edges_df = edf)
+  create_graph() \%>\%
+  add_path(n = 3) \%>\%
+  add_n_nodes(n = 3)
 
-# Get a count of nodes in the graph
-node_count(graph)
-#> 26
+# Get a count of all nodes
+# in the graph
+graph \%>\%
+  node_count()
+#> [1] 6
 }
