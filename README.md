@@ -13,22 +13,30 @@ It's possible to make the above graph diagram using a combination of **Diagramme
 ```r
 library(DiagrammeR)
 
-create_random_graph(
-  n = 140, m = 100,
-  directed = FALSE,
-  set_seed = 23) %>%
+example_graph <-
+  create_graph(
+    directed = TRUE) %>%
+  add_pa_graph(
+    n = 50,
+    m = 1,
+    set_seed = 23) %>%
+  add_gnp_graph(
+    n = 50,
+    p = 1/100,
+    set_seed = 23) %>%
   join_node_attrs(
-    df = get_s_connected_cmpts(.)) %>%
+    df = get_betweenness(.)) %>%
   join_node_attrs(
     df = get_degree_total(.)) %>%
   colorize_node_attrs(
-    node_attr_from = sc_component,
+    node_attr_from = total_degree,
     node_attr_to = fillcolor,
+    palette = "Greens",
     alpha = 80) %>%
   rescale_node_attrs(
-    node_attr_from = total_degree,
-    to_lower_bound = 0.2,
-    to_upper_bound = 1.5,
+    node_attr_from = betweenness,
+    to_lower_bound = 0.5,
+    to_upper_bound = 1.0,
       node_attr_to = height) %>%
   select_nodes_by_id(
     nodes = get_articulation_points(.)) %>%
@@ -40,8 +48,11 @@ create_random_graph(
     value = 3) %>%
   clear_selection() %>%
   set_node_attr_to_display(
-    attr = NULL) %>%
-  render_graph()
+    attr = NULL)
+    
+render_graph(
+  graph = example_graph,
+  layout = "nicely")
 ```
 
 **DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things.
