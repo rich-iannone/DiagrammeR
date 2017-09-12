@@ -49,15 +49,18 @@ smallworld_graph <-
     directed = FALSE) \%>\%
   add_smallworld_graph(
     dimension = 1,
-    size = 100,
+    size = 50,
     neighborhood = 1,
-    p = 0.05)
+    p = 0.05,
+    set_seed = 23)
 
 # Get a count of nodes
-smallworld_graph \%>\% node_count()
-#> [1] 100
+smallworld_graph \%>\%
+  node_count()
+#> [1] 50
 
 # Get a count of edges
-smallworld_graph \%>\% edge_count()
-#> [1] 216
+smallworld_graph \%>\%
+  edge_count()
+#> [1] 50
 }

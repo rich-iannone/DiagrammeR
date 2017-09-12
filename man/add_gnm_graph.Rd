@@ -45,10 +45,12 @@ gnm_graph <-
     m = 120)
 
 # Get a count of nodes
-gnm_graph \%>\% node_count()
+gnm_graph \%>\%
+  node_count()
 #> [1] 100
 
 # Get a count of edges
-gnm_graph \%>\% edge_count()
+gnm_graph \%>\%
+  edge_count()
 #> [1] 120
 }
