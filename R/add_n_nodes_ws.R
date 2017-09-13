@@ -144,10 +144,10 @@ add_n_nodes_ws <- function(graph,
 
       graph <-
         add_n_nodes(
-        graph = graph,
-        n = n,
-        type = type,
-        label = label)
+          graph = graph,
+          n = n,
+          type = type,
+          label = label)
 
       graph$graph_log <-
         graph$graph_log[-nrow(graph$graph_log), ]
