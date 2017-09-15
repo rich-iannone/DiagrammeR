@@ -415,8 +415,8 @@ graph_init_functions <- function() {
     "import_graph")
 }
 
-# Function that to create a list of data frames
-# for functions that get node properties using
+# Function for creating a list of data frames
+# of functions that get node properties using
 # whole-graph methods
 value_per_node_functions <- function() {
 
