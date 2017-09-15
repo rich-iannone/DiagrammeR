@@ -32,12 +32,15 @@ at each time step (where a node is added).
 }
 \examples{
 # Create a random, growing
-# graph with 100 nodes
+# citation graph with 100
+# nodes, adding an edge after
+# each node addition
 growing_graph <-
   create_graph(
     directed = FALSE) \%>\%
   add_growing_graph(
     n = 100,
+    m = 1,
     citation = TRUE,
     set_seed = 23)
 
