@@ -39,10 +39,10 @@
 #' @export add_growing_graph
 
 add_growing_graph <- function(graph,
-                          n,
-                          m = 1,
-                          citation = FALSE,
-                          set_seed = NULL) {
+                              n,
+                              m = 1,
+                              citation = FALSE,
+                              set_seed = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
