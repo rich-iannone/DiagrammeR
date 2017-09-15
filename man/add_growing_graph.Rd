@@ -36,8 +36,7 @@ at each time step (where a node is added).
 # nodes, adding an edge after
 # each node addition
 growing_graph <-
-  create_graph(
-    directed = FALSE) \%>\%
+  create_graph() \%>\%
   add_growing_graph(
     n = 100,
     m = 1,
