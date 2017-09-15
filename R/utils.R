@@ -364,11 +364,14 @@ contrasting_text_color <- function(background_color) {
 node_creation_functions <- function() {
 
   c("add_node", "add_n_nodes", "add_n_node_clones",
-    "add_n_nodes_ws", "add_node_df",
-    "add_nodes_from_df_cols",
+    "add_node_clones_ws", "add_n_nodes_ws",
+    "add_node_df", "add_nodes_from_df_cols",
     "add_nodes_from_table", "add_full_graph",
     "add_balanced_tree", "add_cycle",
-    "add_path", "add_prism", "add_star")
+    "add_path", "add_prism", "add_star",
+    "add_grid_2d", "add_grid_3d", "add_gnm_graph",
+    "add_gnp_graph", "add_pa_graph",
+    "add_smallworld_graph", "add_growing_graph")
 }
 
 # Function that yields vector of node
@@ -388,7 +391,10 @@ edge_creation_functions <- function() {
     "add_reverse_edges_ws",
     "add_edges_from_table", "add_full_graph",
     "add_balanced_tree", "add_cycle",
-    "add_path", "add_prism", "add_star")
+    "add_path", "add_prism", "add_star",
+    "add_grid_2d", "add_grid_3d", "add_gnm_graph",
+    "add_gnp_graph", "add_pa_graph",
+    "add_smallworld_graph", "add_growing_graph")
 }
 
 # Function that yields vector of edge
