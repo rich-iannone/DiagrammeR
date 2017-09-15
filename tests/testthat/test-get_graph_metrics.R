@@ -237,15 +237,15 @@ test_that("Getting graph periphery is possible", {
   expect_is(
     graph_periphery, "integer")
 
-  # Expect that `graph_periphery` has length 3 in
+  # Expect that `graph_periphery` has length 1 in
   # this case
   expect_equal(
-    length(graph_periphery), 2)
+    length(graph_periphery), 1)
 
   # Expect certain values for the
   # `graph_periphery` object
   expect_equal(
-    graph_periphery, c(3, 5))
+    graph_periphery, 2)
 })
 
 test_that("Getting graph info is possible", {
