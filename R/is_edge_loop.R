@@ -44,7 +44,7 @@
 #' @export is_edge_loop
 
 is_edge_loop <- function(graph,
-                             edge) {
+                         edge) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
