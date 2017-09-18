@@ -25,7 +25,7 @@
 #'
 #' # Get a count of all nodes
 #' # in the graph
-#' node_count(graph)
+#' count_nodes(graph)
 #' #> [1] 2
 #'
 #' # The nodes added were given

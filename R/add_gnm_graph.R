@@ -31,12 +31,12 @@
 #'
 #' # Get a count of nodes
 #' gnm_graph %>%
-#'   node_count()
+#'   count_nodes()
 #' #> [1] 100
 #'
 #' # Get a count of edges
 #' gnm_graph %>%
-#'   edge_count()
+#'   count_edges()
 #' #> [1] 120
 #' @importFrom igraph sample_gnm
 #' @export add_gnm_graph

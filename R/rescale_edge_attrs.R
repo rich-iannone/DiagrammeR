@@ -27,6 +27,9 @@
 #' set, the minimum value from the set will be used.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
+#' # Set a seed
+#' set.seed(23)
+#'
 #' # Create a random graph
 #' graph <-
 #'   create_random_graph(
@@ -35,7 +38,10 @@
 #'     directed = TRUE) %>%
 #'   set_edge_attrs(
 #'     edge_attr = weight,
-#'     values = rnorm(edge_count(.), 5))
+#'     values = rnorm(
+#'       n = count_edges(.),
+#'       mean = 5,
+#'       sd = 1))
 #'
 #' # Get the graph's internal edf
 #' # to show which edge attributes
@@ -56,7 +62,9 @@
 #' graph <-
 #'   graph %>%
 #'   rescale_edge_attrs(
-#'     edge_attr_from = weight)
+#'     edge_attr_from = weight,
+#'     to_lower_bound = 0,
+#'     to_upper_bound = 1)
 #'
 #' # Get the graph's internal edf
 #' # to show that the edge attribute

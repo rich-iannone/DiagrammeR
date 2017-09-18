@@ -38,7 +38,7 @@
 #'     edge_attr = capacity,
 #'     value =
 #'       rnorm(
-#'         n = edge_count(.),
+#'         n = count_edges(.),
 #'         mean = 5,
 #'         sd = 1)) %>%
 #'   clear_selection()

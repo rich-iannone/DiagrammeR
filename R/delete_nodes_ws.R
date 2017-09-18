@@ -39,7 +39,7 @@
 #'   delete_nodes_ws()
 #'
 #' # Get a count of nodes in the graph
-#' node_count(graph)
+#' count_nodes(graph)
 #' #> [1] 2
 #' @export delete_nodes_ws
 

@@ -16,8 +16,11 @@
 #'   create_graph() %>%
 #'   add_n_nodes(n = 5) %>%
 #'   set_node_attrs(
-#'     node_attr = "value",
-#'     values = rnorm(node_count(.), 8, 2)) %>%
+#'     node_attr = value,
+#'     values = rnorm(
+#'       n = count_nodes(.),
+#'       mean = 8,
+#'       sd = 2)) %>%
 #'   add_edges_w_string(
 #'     edges = "1->2 1->3 2->4 2->5 3->2")
 #'
@@ -26,7 +29,7 @@
 #' graph <-
 #'   graph %>%
 #'   cache_node_attrs(
-#'     node_attr = "value",
+#'     node_attr = value,
 #'     mode = "numeric")
 #'
 #' # Return the cached vector

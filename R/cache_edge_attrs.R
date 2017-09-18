@@ -32,7 +32,10 @@
 #'        3->7 4->8 4->9 5->10") %>%
 #'   set_edge_attrs(
 #'     edge_attr = "value",
-#'     values = rnorm(edge_count(.), 5, 2))
+#'     values = rnorm(
+#'       n = count_edges(.),
+#'       mean = 5,
+#'       sd = 2))
 #'
 #' # Cache all values from the edge attribute
 #' # `value` as a numeric vector

@@ -37,12 +37,12 @@
 #'
 #' # Get a count of nodes
 #' smallworld_graph %>%
-#'   node_count()
+#'   count_nodes()
 #' #> [1] 50
 #'
 #' # Get a count of edges
 #' smallworld_graph %>%
-#'   edge_count()
+#'   count_edges()
 #' #> [1] 50
 #' @importFrom igraph sample_smallworld
 #' @export add_smallworld_graph
