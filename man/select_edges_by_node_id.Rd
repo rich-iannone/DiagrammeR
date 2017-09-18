@@ -66,7 +66,7 @@ graph \%>\%
 {
   l <- get_selection(.) \%>\%
     length(.)
-  e <- edge_count(.)
+  e <- count_edges(.)
   l/e
 }
 #> [1] 1

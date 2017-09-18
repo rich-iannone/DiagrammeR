@@ -30,7 +30,7 @@ graph <-
 # Get a count of all nodes
 # in the graph
 graph \%>\%
-  node_count()
+  count_nodes()
 #> [1] 6
 
 # Get a count of all

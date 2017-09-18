@@ -64,7 +64,7 @@ graph <-
     to = 2)
 
 # Get the count of edges in the graph
-edge_count(graph)
+count_edges(graph)
 #> [1] 0
 
 # Create an undirected graph with
@@ -83,14 +83,14 @@ graph_undirected \%>\%
   delete_edge(
     from = 2,
     to = 1) \%>\%
-  edge_count()
+  count_edges()
 #> [1] 0
 
 graph_undirected \%>\%
   delete_edge(
     from = 1,
     to = 2) \%>\%
-  edge_count()
+  count_edges()
 #> [1] 0
 
 # The undirected graph has a single
@@ -98,7 +98,7 @@ graph_undirected \%>\%
 # deleted by specifying `id`
 graph_undirected \%>\%
   delete_edge(id = 1) \%>\%
-  edge_count()
+  count_edges()
 #> [1] 0
 
 # Create a directed graph with 2
@@ -120,6 +120,6 @@ graph_labeled_nodes \%>\%
   delete_edge(
     from = "one",
     to = "two") \%>\%
-  edge_count()
+  count_edges()
 #> [1] 0
 }

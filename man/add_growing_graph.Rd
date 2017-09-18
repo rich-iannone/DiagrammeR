@@ -45,11 +45,11 @@ growing_graph <-
 
 # Get a count of nodes
 growing_graph \%>\%
-  node_count()
+  count_nodes()
 #> [1] 100
 
 # Get a count of edges
 growing_graph \%>\%
-  edge_count()
+  count_edges()
 #> [1] 99
 }

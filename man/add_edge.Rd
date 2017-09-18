@@ -77,7 +77,7 @@ graph <-
 
 # Verify that the edge has been created by
 # getting a count of graph edges
-edge_count(graph)
+count_edges(graph)
 #> [1] 2
 
 # Add edges by specifying node `label`

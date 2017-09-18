@@ -41,7 +41,10 @@ graph <-
   add_n_nodes(n = 10) \%>\%
   set_node_attrs(
     node_attr = value,
-    values = rnorm(node_count(.), 5, 2)) \%>\%
+    values = rnorm(
+      n = count_nodes(.),
+      mean = 5,
+      sd = 2)) \%>\%
   add_edges_w_string(
     edges =
       "1->2 1->3 2->4 2->5 3->6

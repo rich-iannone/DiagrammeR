@@ -54,7 +54,10 @@ graph <-
   add_path(n = 6) \%>\%
   set_node_attrs(
     node_attr = value,
-    values = rnorm(node_count(.), 5, 2))
+    values = rnorm(
+      n = count_nodes(.),
+      mean = 5,
+      sd = 2))
 
 # Select all nodes where the node
 # attribute `value` is less than 5

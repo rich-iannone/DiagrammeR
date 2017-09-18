@@ -41,7 +41,7 @@ combined_graph <-
     graph_random)
 
 # Get the number of nodes in the combined graph
-node_count(combined_graph)
+count_nodes(combined_graph)
 #> [1] 14
 
 # The `combine_graphs()` function will renumber

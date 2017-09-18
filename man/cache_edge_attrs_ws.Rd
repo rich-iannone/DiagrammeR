@@ -31,7 +31,10 @@ graph <-
   add_path(n = 6) %>%
   set_edge_attrs(
     edge_attr = value,
-    values = rnorm(edge_count(.), 5, 2))
+    values = rnorm(
+      n = count_edges(.),
+      mean = 5,
+      sd = 2))
 
 # Select all edges where the edge attribute
 # `value` is less than 5
