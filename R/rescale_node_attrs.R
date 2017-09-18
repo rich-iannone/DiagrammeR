@@ -51,7 +51,9 @@
 #' graph <-
 #'   graph %>%
 #'   rescale_node_attrs(
-#'     node_attr_from = value)
+#'     node_attr_from = value,
+#'     to_lower_bound = 0,
+#'     to_upper_bound = 1)
 #'
 #' # Get the graph's internal ndf
 #' # to show that the node attribute
