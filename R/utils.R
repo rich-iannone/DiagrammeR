@@ -40,7 +40,7 @@ graph_object_valid <- function(graph) {
 # Function to check whether a graph contains any nodes
 graph_contains_nodes <- function(graph) {
 
-  if (node_count(graph) == 0) {
+  if (nrow(graph$nodes_df) == 0) {
     return(FALSE)
   } else {
     return(TRUE)
@@ -50,7 +50,7 @@ graph_contains_nodes <- function(graph) {
 # Function to check whether a graph contains any edges
 graph_contains_edges <- function(graph) {
 
-  if (edge_count(graph) == 0) {
+  if (nrow(graph$edges_df) == 0) {
     return(FALSE)
   } else {
     return(TRUE)
@@ -202,13 +202,13 @@ translate_to_node_id <- function(graph, from, to) {
 
   # Check that node labels are unique
   if (length(unique(graph$nodes_df$label)) !=
-      node_count(graph)) {
-    stop("You cannot use labels to form edges because they are not distinct")
+      count_nodes(graph)) {
+    stop("You cannot use labels to define edges because they are not distinct.")
   }
 
   # No node labels can be empty
   if (any(graph$nodes_df$label == "")) {
-    stop("You cannot use labels to form edges if there are empty strings for labels")
+    stop("You cannot use labels to define edges since there are empty strings for labels.")
   }
 
   # Create the `from_id` and `to_id` vectors

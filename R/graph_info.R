@@ -32,7 +32,7 @@ graph_info <- function(graph) {
 
   # Get the graph density
   density <-
-    round(node_count(graph) / ((node_count(graph) * (node_count(graph) - 1))/2), 4)
+    round(count_nodes(graph) / ((count_nodes(graph) * (count_nodes(graph) - 1))/2), 4)
 
   # Get a table of node degree values
   degree_table <-
@@ -42,8 +42,8 @@ graph_info <- function(graph) {
   # Create a data frame with the graph metrics
   data.frame(
     name = as.character(graph$graph_info$graph_name),
-    n = as.integer(node_count(graph)),
-    e = as.integer(edge_count(graph)),
+    n = as.integer(count_nodes(graph)),
+    e = as.integer(count_edges(graph)),
     dens = as.numeric(density),
     mn_deg = as.integer(min(degree_table)),
     mx_deg = as.integer(max(degree_table)),

@@ -116,7 +116,7 @@ edge_rel <- function(graph,
 
   # Determine if edge is present within the graph
   edge_is_in_graph <-
-    edge_present(
+    is_edge_present(
       graph = graph,
       from = from,
       to = to)

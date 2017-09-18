@@ -35,10 +35,10 @@ print.dgr_graph <- function(x, ...) {
       "get_global_graph_attrs" = " info: `get_global_graph_attrs()`")
 
   # Get a count of all nodes in the graph
-  node_count <- x %>% node_count()
+  node_count <- x %>% count_nodes()
 
   # Get a count of all edges in the graph
-  edge_count <- x %>% edge_count()
+  edge_count <- x %>% count_edges()
 
   # Get the node `type` status
   if (all(is.na(x$nodes_df$type))) {

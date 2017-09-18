@@ -58,7 +58,7 @@ get_degree_histogram <- function(graph,
 
     deg_hist_df <-
       get_degree_distribution(graph) %>%
-      dplyr::mutate(total_degree_hist = total_degree_dist * node_count(graph)) %>%
+      dplyr::mutate(total_degree_hist = total_degree_dist * count_nodes(graph)) %>%
       dplyr::select(degree, total_degree_hist)
   }
 
@@ -67,7 +67,7 @@ get_degree_histogram <- function(graph,
 
     deg_hist_df <-
       get_degree_distribution(graph, mode = "in") %>%
-      dplyr::mutate(indegree_hist = indegree_dist * node_count(graph)) %>%
+      dplyr::mutate(indegree_hist = indegree_dist * count_nodes(graph)) %>%
       dplyr::select(degree, indegree_hist)
   }
 
@@ -76,7 +76,7 @@ get_degree_histogram <- function(graph,
 
      deg_hist_df <-
       get_degree_distribution(graph, mode = "out") %>%
-      dplyr::mutate(outdegree_hist = outdegree_dist * node_count(graph)) %>%
+      dplyr::mutate(outdegree_hist = outdegree_dist * count_nodes(graph)) %>%
       dplyr::select(degree, outdegree_hist)
   }
 

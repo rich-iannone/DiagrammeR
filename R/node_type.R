@@ -99,7 +99,7 @@ node_type <- function(graph,
 
   # Stop function if node is not present within
   # the graph
-  if (node_present(graph = graph, node = node) == FALSE) {
+  if (is_node_present(graph = graph, node = node) == FALSE) {
     stop("The specified node is not present in the graph.")
   }
 

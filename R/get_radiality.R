@@ -71,7 +71,7 @@ get_radiality <- function(graph,
   }
 
   # Get the number of nodes in the graph
-  n_nodes <- node_count(graph)
+  n_nodes <- count_nodes(graph)
 
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
