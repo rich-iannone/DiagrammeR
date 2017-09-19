@@ -4,11 +4,16 @@
 \alias{is_edge_present}
 \title{Determine whether a specified edge is present}
 \usage{
-is_edge_present(graph, from, to)
+is_edge_present(graph, edge = NULL, from = NULL, to = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
+
+\item{edge}{an edge ID value to test for
+presence in the graph. If a single, numeric
+value is provided then values for \code{from}
+or \code{to} needn't be supplied.}
 
 \item{from}{a node ID from which the edge
 is outgoing, or, the label associated with
@@ -42,13 +47,20 @@ graph <-
     label = c("one", "two",
               "three", "four"))
 
+# Find out if edge ID `3`
+# is present in the graph
+is_edge_present(
+  graph = graph,
+  edge = 3)
+#> [1] TRUE
+
 # Determine if there are any edges
 # with the definition `1` -> `2`
 is_edge_present(
   graph = graph,
   from = 1,
   to = 2)
-#> TRUE
+#> [1] TRUE
 
 # Determine if there are any edges
 # with the definition `4` -> `5`
@@ -56,7 +68,7 @@ is_edge_present(
   graph = graph,
   from = 4,
   to = 5)
-#> FALSE
+#> [1] FALSE
 
 # Determine whether an edge,
 # defined by its labels as
@@ -66,7 +78,7 @@ is_edge_present(
   graph = graph,
   from = "two",
   to = "three")
-#> TRUE
+#> [1] TRUE
 
 # Set the graph as undirected
 # and determine whether an
@@ -77,5 +89,5 @@ graph \%>\%
   is_edge_present(
     from = "three",
     to = "two")
-#> TRUE
+#> [1] TRUE
 }

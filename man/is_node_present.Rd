@@ -10,7 +10,7 @@ is_node_present(graph, node)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{node}{either node ID value or a node
+\item{node}{either a node ID value or a node
 label to test for presence in the graph.}
 }
 \value{
@@ -37,19 +37,19 @@ graph <-
 is_node_present(
   graph = graph,
   node = 1)
-#> TRUE
+#> [1] TRUE
 
 # Determine if there is a node
 # with ID `5` in the graph
 is_node_present(
   graph = graph,
   node = 5)
-#> FALSE
+#> [1] FALSE
 
 # Determine if there is a node
 # with label `two` in the graph
 is_node_present(
   graph = graph,
   node = "two")
-#> TRUE
+#> [1] TRUE
 }
