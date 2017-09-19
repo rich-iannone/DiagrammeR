@@ -110,9 +110,10 @@ from_igraph <- function(igraph,
     }
   }
 
-  # Generate a 2 column edf with `to` and `from` values
+  # Generate a 3 column edf with `id`, `to`, and `from` values
   edges_df <-
     data.frame(
+      id = as.integer(igraph::E(igraph)),
       from = as.integer(igraph::ends(igraph, igraph::E(igraph))[, 1]),
       to = as.integer(igraph::ends(igraph, igraph::E(igraph))[, 2]),
       stringsAsFactors = FALSE)
