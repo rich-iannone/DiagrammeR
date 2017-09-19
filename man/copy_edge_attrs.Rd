@@ -28,11 +28,14 @@ attribute and create a distinct edge attribute
 within the edf with a different attribute name.
 }
 \examples{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-  n = 5, m = 8,
-  set_seed = 23) \%>\%
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 5,
+    m = 8,
+    set_seed = 23) \%>\%
   set_edge_attrs(
     edge_attr = color,
     values = "green")
@@ -41,14 +44,14 @@ graph <-
 # edge attributes are available
 get_edge_df(graph)
 #>   id from to  rel color
-#> 1  1    2  3 <NA> green
-#> 2  2    3  5 <NA> green
-#> 3  3    3  4 <NA> green
-#> 4  4    2  4 <NA> green
-#> 5  5    2  5 <NA> green
-#> 6  6    4  5 <NA> green
-#> 7  7    1  4 <NA> green
-#> 8  8    1  3 <NA> green
+#> 1  1    1  3 <NA> green
+#> 2  2    2  1 <NA> green
+#> 3  3    2  5 <NA> green
+#> 4  4    2  3 <NA> green
+#> 5  5    3  2 <NA> green
+#> 6  6    3  5 <NA> green
+#> 7  7    3  4 <NA> green
+#> 8  8    5  3 <NA> green
 
 # Make a copy the `color` edge attribute as
 # the `color_2` edge attribute
@@ -62,12 +65,12 @@ graph <-
 # edge attribute had been copied
 get_edge_df(graph)
 #>   id from to  rel color color_2
-#> 1  1    2  3 <NA> green   green
-#> 2  2    3  5 <NA> green   green
-#> 3  3    3  4 <NA> green   green
-#> 4  4    2  4 <NA> green   green
-#> 5  5    2  5 <NA> green   green
-#> 6  6    4  5 <NA> green   green
-#> 7  7    1  4 <NA> green   green
-#> 8  8    1  3 <NA> green   green
+#> 1  1    1  3 <NA> green   green
+#> 2  2    2  1 <NA> green   green
+#> 3  3    2  5 <NA> green   green
+#> 4  4    2  3 <NA> green   green
+#> 5  5    3  2 <NA> green   green
+#> 6  6    3  5 <NA> green   green
+#> 7  7    3  4 <NA> green   green
+#> 8  8    5  3 <NA> green   green
 }
