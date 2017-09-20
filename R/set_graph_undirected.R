@@ -32,11 +32,6 @@ set_graph_undirected <- function(graph) {
     stop("The graph object is not valid.")
   }
 
-  # If graph is already undirected, stop function
-  if (graph$directed == FALSE) {
-    stop("The graph is already undirected.")
-  }
-
   # Set the `directed` vector to FALSE
   graph$directed <- FALSE
 
