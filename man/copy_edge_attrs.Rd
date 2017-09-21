@@ -40,8 +40,9 @@ graph <-
     edge_attr = color,
     values = "green")
 
-# Get the graph's internal edf to show which
-# edge attributes are available
+# Get the graph's internal
+# edf to show which edge
+# attributes are available
 get_edge_df(graph)
 #>   id from to  rel color
 #> 1  1    1  3 <NA> green
@@ -53,16 +54,18 @@ get_edge_df(graph)
 #> 7  7    3  4 <NA> green
 #> 8  8    5  3 <NA> green
 
-# Make a copy the `color` edge attribute as
-# the `color_2` edge attribute
+# Make a copy the `color`
+# edge attribute as the
+# `color_2` edge attribute
 graph <-
   graph \%>\%
   copy_edge_attrs(
     edge_attr_from = color,
     edge_attr_to = color_2)
 
-# Get the graph's internal edf to show that the
-# edge attribute had been copied
+# Get the graph's internal
+# edf to show that the edge
+# attribute had been copied
 get_edge_df(graph)
 #>   id from to  rel color color_2
 #> 1  1    1  3 <NA> green   green

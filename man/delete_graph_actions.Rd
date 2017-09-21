@@ -18,18 +18,22 @@ a character vector corresponding to
 \code{action_name} values.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
-Delete one or more graph actions
-stored within a graph object of class
-\code{dgr_graph}).
+Delete one or more graph
+actions stored within a graph object
+of class \code{dgr_graph}).
 }
 \examples{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 10, m = 22,
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 5,
+    m = 8,
     set_seed = 23)
 
 # Add three graph actions to the

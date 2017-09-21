@@ -34,17 +34,24 @@ Get the Dice similarity coefficient
 scores for one or more nodes in a graph.
 }
 \examples{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 10, m = 22,
+  create_graph(
+    directed = FALSE) \%>\%
+  add_gnm_graph(
+    n = 10,
+    m = 15,
     set_seed = 23)
 
-# Get the Dice similarity values for
-# nodes `5`, `6`, and `7`
-get_dice_similarity(graph, nodes = 5:7)
+# Get the Dice similarity
+# values for nodes `5`, `6`,
+# and `7`
+get_dice_similarity(
+  graph = graph,
+  nodes = 5:7)
 #>       5     6     7
-#> 5 1.000 0.500 0.444
-#> 6 0.500 1.000 0.545
-#> 7 0.444 0.545 1.000
+#> 5 1.000 0.444 0.571
+#> 6 0.444 1.000 0.500
+#> 7 0.571 0.500 1.000
 }

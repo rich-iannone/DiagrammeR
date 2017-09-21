@@ -35,17 +35,24 @@ Get the Jaccard similarity coefficient
 scores for one or more nodes in a graph.
 }
 \examples{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 10, m = 22,
+  create_graph(
+    directed = FALSE) \%>\%
+  add_gnm_graph(
+    n = 10,
+    m = 15,
     set_seed = 23)
 
-# Get the Jaccard similarity values for
-# nodes `5`, `6`, and `7`
-get_jaccard_similarity(graph, nodes = 5:7)
+# Get the Jaccard similarity
+# values for nodes `5`, `6`,
+# and `7`
+get_jaccard_similarity(
+  graph = graph,
+  nodes = 5:7)
 #>       5     6     7
-#> 5 1.000 0.333 0.286
-#> 6 0.333 1.000 0.375
-#> 7 0.286 0.375 1.000
+#> 5 1.000 0.286 0.400
+#> 6 0.286 1.000 0.333
+#> 7 0.400 0.333 1.000
 }

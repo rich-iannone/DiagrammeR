@@ -25,36 +25,43 @@ Burt's Constraint Index) for one or more nodes in a
 graph.
 }
 \examples{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 10, m = 22,
+  create_graph(
+    directed = FALSE) \%>\%
+  add_gnm_graph(
+    n = 10,
+    m = 15,
     set_seed = 23)
 
 # Get the constaint scores for all
 # nodes in the graph
 get_constraint(graph)
 #>    id constraint
-#> 1   1  0.2986111
-#> 2   2  0.6400000
-#> 3   3  1.2222222
-#> 4   4  0.4197531
-#> 5   5  0.5000000
-#> 6   6  0.3333333
-#> 7   7  1.0000000
-#> 8   8  0.0000000
-#> 9   9  1.0000000
+#> 1   1  0.4686420
+#> 2   2  0.4447222
+#> 3   3  0.7506250
+#> 4   4  0.4009333
+#> 5   5  0.4367361
+#> 6   6  0.3798222
+#> 7   7  0.4686420
+#> 8   8  0.8044444
+#> 9   9  0.6277778
 #> 10 10  0.0000000
 
-# Get the constaint scores for only nodes
-# `5` and `7`
-get_constraint(graph, nodes = c(5, 7))
+# Get the constaint scores
+# for nodes `5` and `7`
+get_constraint(
+  graph = graph,
+  nodes = c(5, 7))
 #>   id constraint
-#> 1  5        0.5
-#> 2  7        1.0
+#> 1  5  0.4367361
+#> 2  7  0.4686420
 
-# Add the constraint scores to the graph
-# as a node attribute
+# Add the constraint scores
+# to the graph as a node
+# attribute
 graph <-
   graph \%>\%
   join_node_attrs(
@@ -62,15 +69,15 @@ graph <-
 
 # Display the graph's node data frame
 get_node_df(graph)
-#>    id type label value constraint
-#> 1   1 <NA>     1   6.0  0.2986111
-#> 2   2 <NA>     2   2.5  0.6400000
-#> 3   3 <NA>     3   3.5  1.2222222
-#> 4   4 <NA>     4   7.5  0.4197531
-#> 5   5 <NA>     5   8.5  0.5000000
-#> 6   6 <NA>     6   4.5  0.3333333
-#> 7   7 <NA>     7  10.0  1.0000000
-#> 8   8 <NA>     8  10.0  0.0000000
-#> 9   9 <NA>     9   8.5  1.0000000
-#> 10 10 <NA>    10  10.0  0.0000000
+#>    id type label constraint
+#> 1   1 <NA>  <NA>  0.4686420
+#> 2   2 <NA>  <NA>  0.4447222
+#> 3   3 <NA>  <NA>  0.7506250
+#> 4   4 <NA>  <NA>  0.4009333
+#> 5   5 <NA>  <NA>  0.4367361
+#> 6   6 <NA>  <NA>  0.3798222
+#> 7   7 <NA>  <NA>  0.4686420
+#> 8   8 <NA>  <NA>  0.8044444
+#> 9   9 <NA>  <NA>  0.6277778
+#> 10 10 <NA>  <NA>  0.0000000
 }

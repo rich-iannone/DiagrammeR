@@ -39,31 +39,37 @@ attribute values. Optionally, one can specify a
 replacement value for any unmatched mappings.
 }
 \examples{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 4, m = 6,
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 4,
+    m = 6,
     set_seed = 23) \%>\%
   set_edge_attrs(
     edge_attr = rel,
     values = c("a", "b", "a",
                "c", "b", "d"))
 
-# Get the graph's internal edf to show which
-# edge attributes are available
+# Get the graph's internal edf
+# to show which edge attributes
+# are available
 get_edge_df(graph)
 #>   id from to rel
-#> 1  1    2  4   a
-#> 2  2    1  4   b
+#> 1  1    1  3   a
+#> 2  2    2  4   b
 #> 3  3    2  3   a
-#> 4  4    3  4   c
-#> 5  5    1  3   b
-#> 6  6    1  2   d
+#> 4  4    3  1   c
+#> 5  5    3  4   b
+#> 6  6    4  3   d
 
-# Recode the `rel` node attribute, creating a
-# new edge attribute called `penwidth`; here,
-# `a` is recoded to `1.0`, `b` maps to `1.5`, and
-# all other values become `0.5`
+# Recode the `rel` node
+# attribute, creating a new edge
+# attribute called `penwidth`;
+# here, `a` is recoded to `1.0`,
+# `b` maps to `1.5`, and all
+# other values become `0.5`
 graph <-
   graph \%>\%
   recode_edge_attrs(
@@ -73,15 +79,17 @@ graph <-
     otherwise = 0.5,
     edge_attr_to = penwidth)
 
-# Get the graph's internal edf to show that the
-# node attribute values had been recoded and
-# copied into a new node attribute
+# Get the graph's internal edf
+# to show that the node
+# attribute values had been
+# recoded and copied into a
+# new node attribute
 get_edge_df(graph)
 #>   id from to rel penwidth
-#> 1  1    2  4   a      1.0
-#> 2  2    1  4   b      1.5
+#> 1  1    1  3   a      1.0
+#> 2  2    2  4   b      1.5
 #> 3  3    2  3   a      1.0
-#> 4  4    3  4   c      0.5
-#> 5  5    1  3   b      1.5
-#> 6  6    1  2   d      0.5
+#> 4  4    3  1   c      0.5
+#> 5  5    3  4   b      1.5
+#> 6  6    4  3   d      0.5
 }

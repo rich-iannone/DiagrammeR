@@ -23,13 +23,17 @@ From a graph object of class
 currently active as a selection.
 }
 \examples{
-# Create a random graph and
-# incorporate the node attribute
-# called `value`
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 4, m = 4,
-    set_seed = 23)
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 4,
+    m = 4,
+    set_seed = 23) \%>\%
+  set_node_attrs(
+    node_attr = value,
+    values = c(2.5, 8.2, 4.2, 2.4))
 
 # Select nodes with ID values
 # `1` and `3`
@@ -45,5 +49,5 @@ graph \%>\%
   get_node_attrs_ws(
     node_attr = value)
 #>   1   3
-#> 6.0 3.5
+#> 2.5 4.2
 }

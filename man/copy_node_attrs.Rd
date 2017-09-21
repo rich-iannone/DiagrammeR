@@ -28,40 +28,52 @@ attribute and create a distinct node attribute
 within the ndf with a different attribute name.
 }
 \examples{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 5, m = 10,
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 5,
+    m = 10,
     set_seed = 23) \%>\%
   set_node_attrs(
     node_attr = shape,
-    values = "circle")
+    values = "circle") \%>\%
+  set_node_attrs(
+    node_attr = value,
+    values = rnorm(
+      n = count_nodes(.),
+      mean = 5,
+      sd = 1) \%>\% round(1))
 
-# Get the graph's internal ndf to show which
-# node attributes are available
+# Get the graph's internal
+# ndf to show which node
+# attributes are available
 get_node_df(graph)
-#>   id type label value  shape
-#> 1  1 <NA>     1   6.0 circle
-#> 2  2 <NA>     2   2.5 circle
-#> 3  3 <NA>     3   3.5 circle
-#> 4  4 <NA>     4   7.5 circle
-#> 5  5 <NA>     5   8.5 circle
+#>   id type label  shape value
+#> 1  1 <NA>  <NA> circle   5.3
+#> 2  2 <NA>  <NA> circle   4.4
+#> 3  3 <NA>  <NA> circle   5.8
+#> 4  4 <NA>  <NA> circle   5.9
+#> 5  5 <NA>  <NA> circle   6.2
 
-# Make a copy the `value` node attribute as
-# the `width` node attribute
+# Make a copy the `value`
+# node attribute as the
+# `width` node attribute
 graph <-
   graph \%>\%
   copy_node_attrs(
     node_attr_from = value,
     node_attr_to = size)
 
-# Get the graph's internal ndf to show that the
-# node attribute had been copied
+# Get the graph's internal
+# ndf to show that the node
+# attribute had been copied
 get_node_df(graph)
-#>   id type label value  shape size
-#> 1  1 <NA>     1   6.0 circle  6.0
-#> 2  2 <NA>     2   2.5 circle  2.5
-#> 3  3 <NA>     3   3.5 circle  3.5
-#> 4  4 <NA>     4   7.5 circle  7.5
-#> 5  5 <NA>     5   8.5 circle  8.5
+#>   id type label  shape value size
+#> 1  1 <NA>  <NA> circle   5.3  5.3
+#> 2  2 <NA>  <NA> circle   4.4  4.4
+#> 3  3 <NA>  <NA> circle   5.8  5.8
+#> 4  4 <NA>  <NA> circle   5.9  5.9
+#> 5  5 <NA>  <NA> circle   6.2  6.2
 }

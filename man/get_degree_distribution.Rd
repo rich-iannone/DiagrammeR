@@ -26,21 +26,25 @@ frequency of total degree values over all nodes
 in the graph.
 }
 \examples{
-# Create a random, directed graph with
-# 18 nodes and 22 edges
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 18, m = 22,
+  create_graph(
+    directed = FALSE) \%>\%
+  add_gnm_graph(
+    n = 10,
+    m = 15,
     set_seed = 23)
 
-# Get the total degree distribution for
-# the `random_graph` graph
+# Get the total degree
+# distribution for the graph
 graph \%>\%
   get_degree_distribution(mode = "total")
 #>   degree total_degree_dist
-#> 1      0        0.05555556
-#> 2      1        0.22222222
-#> 3      2        0.22222222
-#> 4      3        0.22222222
-#> 5      4        0.27777778
+#> 1      0               0.1
+#> 2      1               0.0
+#> 3      2               0.2
+#> 4      3               0.4
+#> 5      4               0.1
+#> 6      5               0.2
 }

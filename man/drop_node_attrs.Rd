@@ -22,35 +22,46 @@ Within a graph's internal ndf, remove
 an existing node attribute.
 }
 \examples{
-# Create a random graph
 graph <-
-  create_random_graph(
-    n = 5, m = 10,
-    set_seed = 23)
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 5,
+    m = 10,
+    set_seed = 23) \%>\%
+ set_node_attrs(
+    node_attr = value,
+    values = rnorm(
+      n = count_nodes(.),
+      mean = 5,
+      sd = 1) \%>\% round(1))
 
-# Get the graph's internal ndf to show
-# which node attributes are available
+# Get the graph's internal
+# ndf to show which node
+# attributes are available
 get_node_df(graph)
 #>   id type label value
-#> 1  1 <NA>     1   6.0
-#> 2  2 <NA>     2   2.5
-#> 3  3 <NA>     3   3.5
-#> 4  4 <NA>     4   7.5
-#> 5  5 <NA>     5   8.5
+#> 1  1 <NA>  <NA>   5.3
+#> 2  2 <NA>  <NA>   4.4
+#> 3  3 <NA>  <NA>   5.8
+#> 4  4 <NA>  <NA>   5.9
+#> 5  5 <NA>  <NA>   6.2
 
-# Drop the `value` node attribute
+# Drop the `value` node
+# attribute
 graph <-
   graph \%>\%
   drop_node_attrs(
     node_attr = value)
 
-# Get the graph's internal ndf to show that
-# the node attribute `value` had been removed
+# Get the graph's internal
+# ndf to show that the node
+# attribute `value` had been
+# removed
 get_node_df(graph)
 #>   id type label
-#> 1  1 <NA>     1
-#> 2  2 <NA>     2
-#> 3  3 <NA>     3
-#> 4  4 <NA>     4
-#> 5  5 <NA>     5
+#> 1  1 <NA>  <NA>
+#> 2  2 <NA>  <NA>
+#> 3  3 <NA>  <NA>
+#> 4  4 <NA>  <NA>
+#> 5  5 <NA>  <NA>
 }

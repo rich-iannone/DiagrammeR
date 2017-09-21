@@ -48,15 +48,14 @@ range, then write to the same edge attribute or to
 a new edge attribute column.
 }
 \examples{
-# Set a seed
-set.seed(23)
-
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 5, m = 7,
-    set_seed = 23,
-    directed = TRUE) \%>\%
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 10,
+    m = 7,
+    set_seed = 23) \%>\%
   set_edge_attrs(
     edge_attr = weight,
     values = rnorm(
@@ -69,13 +68,13 @@ graph <-
 # are available
 get_edge_df(graph)
 #>   id from to  rel   weight
-#> 1  1    2  3 <NA> 5.218288
-#> 2  2    3  5 <NA> 3.953465
-#> 3  3    3  4 <NA> 4.711311
-#> 4  4    2  4 <NA> 5.481550
-#> 5  5    2  5 <NA> 3.783624
-#> 6  6    4  5 <NA> 5.308137
-#> 7  7    1  4 <NA> 4.479822
+#> 1  1    2  8 <NA> 5.045437
+#> 2  2    4  2 <NA> 6.575780
+#> 3  3    4  6 <NA> 5.218288
+#> 4  4    4  9 <NA> 3.953465
+#> 5  5    6  5 <NA> 4.711311
+#> 6  6    6 10 <NA> 5.481550
+#> 7  7   10  9 <NA> 3.783624
 
 # Rescale the `weight` edge
 # attribute, so that its values
@@ -92,13 +91,13 @@ graph <-
 # values had been rescaled
 get_edge_df(graph)
 #>   id from to  rel weight
-#> 1  1    2  3 <NA>  0.845
-#> 2  2    3  5 <NA>  0.100
-#> 3  3    3  4 <NA>  0.546
-#> 4  4    2  4 <NA>  1.000
-#> 5  5    2  5 <NA>  0.000
-#> 6  6    4  5 <NA>  0.898
-#> 7  7    1  4 <NA>  0.410
+#> 1  1    2  8 <NA>  0.452
+#> 2  2    4  2 <NA>  1.000
+#> 3  3    4  6 <NA>  0.514
+#> 4  4    4  9 <NA>  0.061
+#> 5  5    6  5 <NA>  0.332
+#> 6  6    6 10 <NA>  0.608
+#> 7  7   10  9 <NA>  0.000
 
 # Scale the values in the `weight`
 # edge attribute to different
@@ -127,11 +126,11 @@ graph <-
 # edge attribute
 get_edge_df(graph)
 #>   id from to  rel weight   color penwidth
-#> 1  1    2  3 <NA>  0.845 #484848    2.612
-#> 2  2    3  5 <NA>  0.100 #BBBBBB    0.750
-#> 3  3    3  4 <NA>  0.546 #747474    1.865
-#> 4  4    2  4 <NA>  1.000 #333333    3.000
-#> 5  5    2  5 <NA>  0.000 #CCCCCC    0.500
-#> 6  6    4  5 <NA>  0.898 #414141    2.745
-#> 7  7    1  4 <NA>  0.410 #898989    1.525
+#> 1  1    2  8 <NA>  0.452 #838383    1.630
+#> 2  2    4  2 <NA>  1.000 #333333    3.000
+#> 3  3    4  6 <NA>  0.514 #797979    1.785
+#> 4  4    4  9 <NA>  0.061 #C2C2C2    0.652
+#> 5  5    6  5 <NA>  0.332 #959595    1.330
+#> 6  6    6 10 <NA>  0.608 #6B6B6B    2.020
+#> 7  7   10  9 <NA>  0.000 #CCCCCC    0.500
 }

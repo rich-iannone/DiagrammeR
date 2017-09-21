@@ -30,11 +30,14 @@ Get a data frame with node
 eccentricity values.
 }
 \examples{
-\dontrun{
-# Create a random graph
+# Create a random graph using the
+# `add_gnm_graph()` function
 graph <-
-  create_random_graph(
-    n = 10, m = 22,
+  create_graph(
+    directed = FALSE) \%>\%
+  add_gnm_graph(
+    n = 10,
+    m = 15,
     set_seed = 23)
 
 # Get the eccentricity values for
@@ -42,15 +45,14 @@ graph <-
 graph \%>\%
   get_eccentricity()
 #>    id eccentricity
-#> 1   1            4
-#> 2   2            4
+#> 1   1            2
+#> 2   2            3
 #> 3   3            3
-#> 4   4            4
+#> 4   4            2
 #> 5   5            3
 #> 6   6            2
-#> 7   7            2
-#> 8   8            0
-#> 9   9            1
+#> 7   7            3
+#> 8   8            3
+#> 9   9            2
 #> 10 10            0
-}
 }

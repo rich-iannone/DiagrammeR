@@ -29,11 +29,13 @@ function.
 }
 \examples{
 \dontrun{
-# Create a randomized property graph with 1000
-# nodes and 1350 edges
+# Create a randomized property
+# graph with 1000 nodes and 1350 edges
 property_graph <-
-  create_random_graph(
-    n = 1000, m = 1350,
+  create_graph() \%>\%
+  add_gnm_graph(
+    n = 1000,
+    m = 1350,
     set_seed = 23) \%>\%
   select_nodes_by_degree(
     expressions = "deg >= 3") \%>\%
@@ -84,7 +86,8 @@ property_graph <-
     value = 10,
     attr_type = "edge")
 
-# Display this graph's metagraph, or, underlying
+# Display this graph's
+# metagraph, or, the underlying
 # graph model for a property graph
 display_metagraph(property_graph)
 }
