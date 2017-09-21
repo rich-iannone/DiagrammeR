@@ -1,17 +1,21 @@
 #' Drop an edge attribute column
-#' @description Within a graph's internal edge data
-#' frame (edf), remove an existing edge attribute.
+#' @description Within a graph's internal
+#' edge data frame (edf), remove an existing
+#' edge attribute.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param edge_attr the name of the edge attribute
-#' column to drop.
+#' @param edge_attr the name of the edge
+#' attribute column to drop.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 5, m = 6,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 5,
+#'     m = 6,
 #'     set_seed = 23) %>%
 #'   set_edge_attrs(
 #'     edge_attr = value,
@@ -19,33 +23,37 @@
 #'   mutate_edge_attrs(
 #'     penwidth = value * 2)
 #'
-#' # Get the graph's internal edf to show which
-#' # edge attributes are available
+#' # Get the graph's internal
+#' # edf to show which edge
+#' # attributes are available
 #' get_edge_df(graph)
 #' #>   id from to  rel value penwidth
-#' #> 1  1    2  3 <NA>     3        6
-#' #> 2  2    3  5 <NA>     3        6
-#' #> 3  3    3  4 <NA>     3        6
-#' #> 4  4    2  4 <NA>     3        6
-#' #> 5  5    2  5 <NA>     3        6
-#' #> 6  6    4  5 <NA>     3        6
+#' #> 1  1    1  4 <NA>     3        6
+#' #> 2  2    2  3 <NA>     3        6
+#' #> 3  3    2  4 <NA>     3        6
+#' #> 4  4    3  1 <NA>     3        6
+#' #> 5  5    4  1 <NA>     3        6
+#' #> 6  6    5  4 <NA>     3        6
 #'
-#' # Drop the `value` edge attribute
+#' # Drop the `value` edge
+#' # attribute
 #' graph <-
 #'   graph %>%
 #'   drop_edge_attrs(
 #'     edge_attr = value)
 #'
-#' # Get the graph's internal edf to show that
-#' # the edge attribute `value` had been removed
+#' # Get the graph's internal
+#' # edf to show that the edge
+#' # attribute `value` had been
+#' # removed
 #' get_edge_df(graph)
 #' #>   id from to  rel penwidth
-#' #> 1  1    2  3 <NA>        6
-#' #> 2  2    3  5 <NA>        6
-#' #> 3  3    3  4 <NA>        6
-#' #> 4  4    2  4 <NA>        6
-#' #> 5  5    2  5 <NA>        6
-#' #> 6  6    4  5 <NA>        6
+#' #> 1  1    1  4 <NA>        6
+#' #> 2  2    2  3 <NA>        6
+#' #> 3  3    2  4 <NA>        6
+#' #> 4  4    3  1 <NA>        6
+#' #> 5  5    4  1 <NA>        6
+#' #> 6  6    5  4 <NA>        6
 #' @importFrom rlang enquo UQ
 #' @export drop_edge_attrs
 

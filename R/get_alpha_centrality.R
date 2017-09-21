@@ -22,26 +22,51 @@
 #' @return a data frame with alpha centrality scores
 #' for each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 12,
 #'     set_seed = 23)
 #'
 #' # Get the alpha centrality scores for nodes
 #' # in the graph
 #' get_alpha_centrality(graph)
 #' #>    id alpha_centrality
-#' #> 1   1                1
-#' #> 2   2                1
+#' #> 1   1                9
+#' #> 2   2                6
 #' #> 3   3                2
 #' #> 4   4                1
 #' #> 5   5                4
-#' #> 6   6                9
-#' #> 7   7                5
-#' #> 8   8               11
-#' #> 9   9               18
-#' #> 10 10               34
+#' #> 6   6                1
+#' #> 7   7                2
+#' #> 8   8                2
+#' #> 9   9                7
+#' #> 10 10                4
+#'
+#' # Add the alpha centrality
+#' # scores to the graph as a node
+#' # attribute
+#' graph <-
+#'   graph %>%
+#'   join_node_attrs(
+#'     df = get_alpha_centrality(.))
+#'
+#' # Display the graph's node data frame
+#' get_node_df(graph)
+#' #>    id type label alpha_centrality
+#' #> 1   1 <NA>  <NA>                9
+#' #> 2   2 <NA>  <NA>                6
+#' #> 3   3 <NA>  <NA>                2
+#' #> 4   4 <NA>  <NA>                1
+#' #> 5   5 <NA>  <NA>                4
+#' #> 6   6 <NA>  <NA>                1
+#' #> 7   7 <NA>  <NA>                2
+#' #> 8   8 <NA>  <NA>                2
+#' #> 9   9 <NA>  <NA>                7
+#' #> 10 10 <NA>  <NA>                4
 #' @importFrom igraph alpha_centrality
 #' @export get_alpha_centrality
 

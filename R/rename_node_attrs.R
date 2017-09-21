@@ -9,25 +9,34 @@
 #' attribute column identified in \code{node_attr_from}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 5, m = 10,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 5,
+#'     m = 8,
 #'     set_seed = 23) %>%
 #'   set_node_attrs(
 #'     node_attr = shape,
-#'     values = "circle")
+#'     values = "circle") %>%
+#'   set_node_attrs(
+#'     node_attr = value,
+#'     values = rnorm(
+#'       n = count_nodes(.),
+#'       mean = 5,
+#'       sd = 1) %>% round(1))
 #'
 #' # Get the graph's internal ndf
 #' # to show which node attributes
 #' # are available
 #' get_node_df(graph)
-#' #>   id type label value  shape
-#' #> 1  1 <NA>     1   6.0 circle
-#' #> 2  2 <NA>     2   2.5 circle
-#' #> 3  3 <NA>     3   3.5 circle
-#' #> 4  4 <NA>     4   7.5 circle
-#' #> 5  5 <NA>     5   8.5 circle
+#' #>   id type label  shape value
+#' #> 1  1 <NA>  <NA> circle   5.2
+#' #> 2  2 <NA>  <NA> circle   5.3
+#' #> 3  3 <NA>  <NA> circle   4.4
+#' #> 4  4 <NA>  <NA> circle   5.8
+#' #> 5  5 <NA>  <NA> circle   5.9
 #'
 #' # Rename the `value` node
 #' # attribute as `weight`
@@ -41,12 +50,12 @@
 #' # ndf to show that the node
 #' # attribute had been renamed
 #' get_node_df(graph)
-#' #>   id type label weight  shape
-#' #> 1  1 <NA>     1    6.0 circle
-#' #> 2  2 <NA>     2    2.5 circle
-#' #> 3  3 <NA>     3    3.5 circle
-#' #> 4  4 <NA>     4    7.5 circle
-#' #> 5  5 <NA>     5    8.5 circle
+#' #>   id type label  shape weight
+#' #> 1  1 <NA>  <NA> circle    5.2
+#' #> 2  2 <NA>  <NA> circle    5.3
+#' #> 3  3 <NA>  <NA> circle    4.4
+#' #> 4  4 <NA>  <NA> circle    5.8
+#' #> 5  5 <NA>  <NA> circle    5.9
 #' @importFrom rlang enquo UQ
 #' @export rename_node_attrs
 

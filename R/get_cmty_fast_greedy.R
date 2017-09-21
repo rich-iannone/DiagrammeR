@@ -1,33 +1,34 @@
 #' Get community membership by modularity optimization
-#' @description Through the use of greedy optimization
-#' of a modularity score, obtain the group membership
-#' values for each of the nodes in the graph.
+#' @description Through the use of greedy
+#' optimization of a modularity score, obtain
+#' the group membership values for each of the
+#' nodes in the graph. Note that this method
+#' only works on graphs without multiple edges.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a data frame with group membership
 #' assignments for each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a graph with a
+#' # balanced tree
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
-#'     set_seed = 23)
+#'   create_graph() %>%
+#'   add_balanced_tree(
+#'     k = 2,
+#'     h = 2)
 #'
 #' # Get the group membership values for all
 #' # nodes in the graph through the greedy
 #' # optimization of modularity algorithm
 #' get_cmty_fast_greedy(graph)
-#' #>    id f_g_group
-#' #> 1   1         1
-#' #> 2   2         2
-#' #> 3   3         2
-#' #> 4   4         1
-#' #> 5   5         1
-#' #> 6   6         1
-#' #> 7   7         2
-#' #> 8   8         1
-#' #> 9   9         2
-#' #> 10 10         1
+#' #>   id f_g_group
+#' #> 1  1         1
+#' #> 2  2         2
+#' #> 3  3         1
+#' #> 4  4         2
+#' #> 5  5         2
+#' #> 6  6         1
+#' #> 7  7         1
 #'
 #' # Add the group membership values to the
 #' # graph as a node attribute
@@ -38,17 +39,14 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label value f_g_group
-#' #> 1   1 <NA>     1   6.0         1
-#' #> 2   2 <NA>     2   2.5         2
-#' #> 3   3 <NA>     3   3.5         2
-#' #> 4   4 <NA>     4   7.5         1
-#' #> 5   5 <NA>     5   8.5         1
-#' #> 6   6 <NA>     6   4.5         1
-#' #> 7   7 <NA>     7  10.0         2
-#' #> 8   8 <NA>     8  10.0         1
-#' #> 9   9 <NA>     9   8.5         2
-#' #> 10 10 <NA>    10  10.0         1
+#' #>   id type label f_g_group
+#' #> 1  1 <NA>     1         1
+#' #> 2  2 <NA>     2         2
+#' #> 3  3 <NA>     3         1
+#' #> 4  4 <NA>     4         2
+#' #> 5  5 <NA>     5         2
+#' #> 6  6 <NA>     6         1
+#' #> 7  7 <NA>     7         1
 #' @importFrom igraph cluster_fast_greedy membership
 #' @export get_cmty_fast_greedy
 

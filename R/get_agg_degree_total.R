@@ -13,36 +13,45 @@
 #' conditions for the nodes to consider.
 #' @return a vector with an aggregate total degree value.
 #' @examples
-#' # Create a random graph
-#' random_graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
-#'     set_seed = 23)
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
+#' graph <-
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 20,
+#'     m = 35,
+#'     set_seed = 23) %>%
+#'   set_node_attrs(
+#'     node_attr = value,
+#'     values = rnorm(
+#'       n = count_nodes(.),
+#'       mean = 5,
+#'       sd = 1) %>% round(1))
 #'
 #' # Get the mean total degree value from all
 #' # nodes in the graph
 #' get_agg_degree_total(
-#'   graph = random_graph,
+#'   graph = graph,
 #'   agg = "mean")
-#' #> [1] 5.333333
+#' #> [1] 3.5
 #'
 #' # Other aggregation functions can be used
 #' # (`min`, `max`, `median`, `sum`); let's
 #' # get the median in this example
 #' get_agg_degree_total(
-#'   graph = random_graph,
+#'   graph = graph,
 #'   agg = "median")
-#' #> [1] 5
+#' #> [1] 3
 #'
 #' # The aggregation of total degree can occur
 #' # for a subset of the graph nodes and this
 #' # is made possible by specifying `conditions`
 #' # for the nodes
 #' get_agg_degree_total(
-#'   graph = random_graph,
+#'   graph = graph,
 #'   agg = "mean",
 #'   conditions = value < 5.0)
-#' #> [1] 5.333333
+#' #> [1] 4.666667
 #' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl

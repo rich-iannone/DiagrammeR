@@ -1,22 +1,27 @@
 #' Convert graph to an undirected graph
-#' @description Take a graph which is directed and
-#' convert it to an undirected graph.
+#' @description Take a graph which is
+#' directed and convert it to an undirected
+#' graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class
+#' \code{dgr_graph}.
 #' @examples
-#' # Create a graph with a directed tree
+#' # Create a graph with a
+#' # directed tree
 #' graph <-
 #'   create_graph() %>%
 #'   add_balanced_tree(
 #'     k = 2, h = 2)
 #'
-#' # Convert this graph from directed to undirected
+#' # Convert this graph from
+#' # directed to undirected
 #' graph <-
 #'   graph %>%
 #'   set_graph_undirected()
 #'
-#' # Perform a check on whether graph is directed
+#' # Perform a check on whether
+#' # graph is directed
 #' graph %>%
 #'   is_graph_directed()
 #' #> [1] FALSE

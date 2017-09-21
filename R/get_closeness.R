@@ -11,29 +11,32 @@
 #' @return a data frame with closeness values for
 #' each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 12,
 #'     set_seed = 23)
 #'
 #' # Get closeness values for all nodes
 #' # in the graph
 #' get_closeness(graph)
 #' #>    id  closeness
-#' #> 1   1 0.07142857
-#' #> 2   2 0.07142857
-#' #> 3   3 0.07142857
-#' #> 4   4 0.06250000
-#' #> 5   5 0.07692308
-#' #> 6   6 0.09090909
-#' #> 7   7 0.06666667
-#' #> 8   8 0.05882353
-#' #> 9   9 0.07692308
-#' #> 10 10 0.07692308
+#' #> 1   1 0.05263158
+#' #> 2   2 0.06250000
+#' #> 3   3 0.05555556
+#' #> 4   4 0.06666667
+#' #> 5   5 0.06666667
+#' #> 6   6 0.04166667
+#' #> 7   7 0.04347826
+#' #> 8   8 0.05555556
+#' #> 9   9 0.04166667
+#' #> 10 10 0.04545455
 #'
-#' # Add the closeness values to the graph
-#' # as a node attribute
+#' # Add the closeness values to
+#' # the graph as a node attribute
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
@@ -41,17 +44,17 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label value  closeness
-#' #> 1   1 <NA>     1   6.0 0.07142857
-#' #> 2   2 <NA>     2   2.5 0.07142857
-#' #> 3   3 <NA>     3   3.5 0.07142857
-#' #> 4   4 <NA>     4   7.5 0.06250000
-#' #> 5   5 <NA>     5   8.5 0.07692308
-#' #> 6   6 <NA>     6   4.5 0.09090909
-#' #> 7   7 <NA>     7  10.0 0.06666667
-#' #> 8   8 <NA>     8  10.0 0.05882353
-#' #> 9   9 <NA>     9   8.5 0.07692308
-#' #> 10 10 <NA>    10  10.0 0.07692308
+#' #>    id type label  closeness
+#' #> 1   1 <NA>  <NA> 0.05263158
+#' #> 2   2 <NA>  <NA> 0.06250000
+#' #> 3   3 <NA>  <NA> 0.05555556
+#' #> 4   4 <NA>  <NA> 0.06666667
+#' #> 5   5 <NA>  <NA> 0.06666667
+#' #> 6   6 <NA>  <NA> 0.04166667
+#' #> 7   7 <NA>  <NA> 0.04347826
+#' #> 8   8 <NA>  <NA> 0.05555556
+#' #> 9   9 <NA>  <NA> 0.04166667
+#' #> 10 10 <NA>  <NA> 0.04545455
 #' @importFrom igraph closeness
 #' @export get_closeness
 

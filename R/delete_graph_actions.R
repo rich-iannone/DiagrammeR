@@ -1,8 +1,8 @@
 #' Delete one or more graph actions stored
 #' within a graph object
-#' @description Delete one or more graph actions
-#' stored within a graph object of class
-#' \code{dgr_graph}).
+#' @description Delete one or more graph
+#' actions stored within a graph object
+#' of class \code{dgr_graph}).
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param actions either a vector of integer
@@ -10,12 +10,16 @@
 #' (based on \code{action_index} values), or,
 #' a character vector corresponding to
 #' \code{action_name} values.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class
+#' \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 5,
+#'     m = 8,
 #'     set_seed = 23)
 #'
 #' # Add three graph actions to the

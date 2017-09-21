@@ -6,46 +6,52 @@
 #' @return a data frame with betweenness scores for
 #' each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 12,
 #'     set_seed = 23)
 #'
-#' # Get the betweenness scores for nodes in the graph
+#' # Get the betweenness scores
+#' # for nodes in the graph
 #' get_betweenness(graph)
 #' #>    id betweenness
-#' #> 1   1         0.0
-#' #> 2   2         0.0
-#' #> 3   3         1.0
-#' #> 4   4         0.0
-#' #> 5   5         1.5
-#' #> 6   6         7.5
-#' #> 7   7         0.5
-#' #> 8   8         0.0
-#' #> 9   9         1.5
-#' #> 10 10         0.0
+#' #> 1   1           0
+#' #> 2   2           7
+#' #> 3   3           0
+#' #> 4   4           0
+#' #> 5   5           5
+#' #> 6   6           0
+#' #> 7   7           0
+#' #> 8   8           1
+#' #> 9   9           0
+#' #> 10 10           0
 #'
-#' # Add the betweenness values to the graph
+#' # Add the betweenness
+#' # values to the graph
 #' # as a node attribute
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
 #'     df = get_betweenness(.))
 #'
-#' # Display the graph's node data frame
+#' # Display the graph's node
+#' # data frame
 #' get_node_df(graph)
-#' #>    id type label value betweenness
-#' #> 1   1 <NA>     1   6.0         0.0
-#' #> 2   2 <NA>     2   2.5         0.0
-#' #> 3   3 <NA>     3   3.5         1.0
-#' #> 4   4 <NA>     4   7.5         0.0
-#' #> 5   5 <NA>     5   8.5         1.5
-#' #> 6   6 <NA>     6   4.5         7.5
-#' #> 7   7 <NA>     7  10.0         0.5
-#' #> 8   8 <NA>     8  10.0         0.0
-#' #> 9   9 <NA>     9   8.5         1.5
-#' #> 10 10 <NA>    10  10.0         0.0
+#' #>    id type label betweenness
+#' #> 1   1 <NA>  <NA>           0
+#' #> 2   2 <NA>  <NA>           7
+#' #> 3   3 <NA>  <NA>           0
+#' #> 4   4 <NA>  <NA>           0
+#' #> 5   5 <NA>  <NA>           5
+#' #> 6   6 <NA>  <NA>           0
+#' #> 7   7 <NA>  <NA>           0
+#' #> 8   8 <NA>  <NA>           1
+#' #> 9   9 <NA>  <NA>           0
+#' #> 10 10 <NA>  <NA>           0
 #' @importFrom igraph betweenness
 #' @export get_betweenness
 

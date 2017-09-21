@@ -7,11 +7,15 @@
 #' \code{dgr_graph}.
 #' @return a \code{df_tbl} object.
 #' @examples
-#' # Create a random graph and
-#' # remove two nodes from it
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function and
+#' # delete 2 nodes from the graph
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph(
+#'     directed = FALSE) %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23) %>%
 #'   delete_node(node = 5) %>%
 #'   delete_node(node = 7)
@@ -20,12 +24,13 @@
 #' # record of all graph transformations
 #' graph %>%
 #'   get_graph_log()
-#' #> # A tibble: 3 x 6
-#' #>   version_id       function_used
-#' #>        <int>               <chr>
-#' #> 1          1 create_random_graph
-#' #> 2          2         delete_node
-#' #> 3          3         delete_node
+#' #> # A tibble: 4 x 6
+#' #>   version_id function_used
+#' #>        <int>         <chr>
+#' #> 1          1  create_graph
+#' #> 2          2 add_gnm_graph
+#' #> 3          3   delete_node
+#' #> 4          4   delete_node
 #' #> # ... with 4 more variables:
 #' #> #   time_modified <dttm>,
 #' #> #   duration <dbl>, nodes <int>,

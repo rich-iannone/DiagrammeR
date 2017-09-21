@@ -21,10 +21,13 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 5, m = 10,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 5,
+#'     m = 10,
 #'     set_seed = 23) %>%
 #'   set_node_attrs(
 #'     node_attr = shape,
@@ -33,18 +36,20 @@
 #'         "rectangle", "rectangle",
 #'         "circle"))
 #'
-#' # Get the graph's internal ndf to show which
-#' # node attributes are available
+#' # Get the graph's internal ndf
+#' # to show which node
+#' # attributes are available
 #' get_node_df(graph)
-#' #>   id type label value     shape
-#' #> 1  1 <NA>     1   6.0    circle
-#' #> 2  2 <NA>     2   2.5   hexagon
-#' #> 3  3 <NA>     3   3.5 rectangle
-#' #> 4  4 <NA>     4   7.5 rectangle
-#' #> 5  5 <NA>     5   8.5    circle
+#' #>   id type label     shape
+#' #> 1  1 <NA>  <NA>    circle
+#' #> 2  2 <NA>  <NA>   hexagon
+#' #> 3  3 <NA>  <NA> rectangle
+#' #> 4  4 <NA>  <NA> rectangle
+#' #> 5  5 <NA>  <NA>    circle
 #'
-#' # Recode the `shape` node attribute, so that
-#' # `circle` is recoded to `square` and that
+#' # Recode the `shape` node
+#' # attribute, so that `circle`
+#' # is recoded to `square` and that
 #' # `rectangle` becomes `triangle`
 #' graph <-
 #'   graph %>%
@@ -53,20 +58,23 @@
 #'     "circle -> square",
 #'     "rectangle -> triangle")
 #'
-#' # Get the graph's internal ndf to show that the
-#' # node attribute values had been recoded
+#' # Get the graph's internal
+#' # ndf to show that the node
+#' # attribute values had been recoded
 #' get_node_df(graph)
-#' #>   id type label value    shape
-#' #> 1  1 <NA>     1   6.0   square
-#' #> 2  2 <NA>     2   2.5  hexagon
-#' #> 3  3 <NA>     3   3.5 triangle
-#' #> 4  4 <NA>     4   7.5 triangle
-#' #> 5  5 <NA>     5   8.5   square
+#' #>   id type label    shape
+#' #> 1  1 <NA>  <NA>   square
+#' #> 2  2 <NA>  <NA>  hexagon
+#' #> 3  3 <NA>  <NA> triangle
+#' #> 4  4 <NA>  <NA> triangle
+#' #> 5  5 <NA>  <NA>   square
 #'
-#' # Create a new node attribute, called `color`,
-#' # that is based on a recoding of `shape`; here,
-#' # map the square shape to a `red` color and map
-#' # all other shapes to a `green` color
+#' # Create a new node attribute,
+#' # called `color`, that is based
+#' # on a recoding of `shape`; here,
+#' # map the square shape to a `red`
+#' # color and map all other shapes
+#' # to a `green` color
 #' graph <-
 #'   graph %>%
 #'   recode_node_attrs(
@@ -75,34 +83,15 @@
 #'     otherwise = "green",
 #'     node_attr_to = color)
 #'
-#' # Get the graph's internal ndf to see the change
+#' # Get the graph's internal ndf
+#' # to see the change
 #' get_node_df(graph)
-#' #>   id type label value    shape color
-#' #> 1  1 <NA>     1   6.0   square   red
-#' #> 2  2 <NA>     2   2.5  hexagon green
-#' #> 3  3 <NA>     3   3.5 triangle green
-#' #> 4  4 <NA>     4   7.5 triangle green
-#' #> 5  5 <NA>     5   8.5   square   red
-#'
-#' # Numeric values can be recoded as well;
-#' # here, perform several recodings for
-#' # values of the `value` node attribute
-#' graph <-
-#'   graph %>%
-#'   recode_node_attrs(
-#'     node_attr_from = value,
-#'     "6.0 -> 9.5",
-#'     "3.5 -> 10.5",
-#'     otherwise = 5.0)
-#'
-#' # Look at the graph's internal ndf
-#' get_node_df(graph)
-#' #>   id type label value    shape color
-#' #> 1  1 <NA>     1   9.5   square   red
-#' #> 2  2 <NA>     2   5.0  hexagon green
-#' #> 3  3 <NA>     3  10.5 triangle green
-#' #> 4  4 <NA>     4   5.0 triangle green
-#' #> 5  5 <NA>     5   5.0   square   red
+#' #>   id type label    shape color
+#' #> 1  1 <NA>  <NA>   square   red
+#' #> 2  2 <NA>  <NA>  hexagon green
+#' #> 3  3 <NA>  <NA> triangle green
+#' #> 4  4 <NA>  <NA> triangle green
+#' #> 5  5 <NA>  <NA>   square   red
 #' @importFrom stringr str_split
 #' @importFrom rlang enquo UQ
 #' @export recode_node_attrs

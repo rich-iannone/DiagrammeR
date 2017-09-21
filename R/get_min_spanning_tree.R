@@ -5,20 +5,25 @@
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23)
 #'
-#' # Obtain Jaccard similarity values for each
-#' # pair of nodes as a square matrix
+#' # Obtain Jaccard similarity
+#' # values for each pair of
+#' # nodes as a square matrix
 #' j_sim_matrix <-
 #'   graph %>%
 #'     get_jaccard_similarity()
 #'
-#' # Create a weighted, undirected graph from the
-#' # resultant matrix (effectively treating that
+#' # Create a weighted, undirected
+#' # graph from the resultant matrix
+#' # (effectively treating that
 #' # matrix as an adjacency matrix)
 #' graph <-
 #'   j_sim_matrix %>%

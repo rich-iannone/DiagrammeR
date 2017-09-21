@@ -5,10 +5,13 @@
 #' \code{dgr_graph}.
 #' @examples
 #' \dontrun{
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23)
 #'
 #' # Get a summary of the graph

@@ -12,28 +12,32 @@
 #' @return a data frame with radiality centrality
 #' scores for each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23)
 #'
 #' # Get the radiality scores for nodes in the graph
 #' get_radiality(graph)
 #' #>    id radiality
-#' #> 1   1  2.888889
-#' #> 2   2  2.888889
-#' #> 3   3  2.888889
-#' #> 4   4  2.666667
-#' #> 5   5  3.000000
-#' #> 6   6  3.222222
-#' #> 7   7  2.777778
-#' #> 8   8  2.555556
-#' #> 9   9  3.000000
-#' #> 10 10  3.000000
+#' #> 1   1    2.3333
+#' #> 2   2    3.0000
+#' #> 3   3    2.6667
+#' #> 4   4    2.8889
+#' #> 5   5    2.5556
+#' #> 6   6    2.4444
+#' #> 7   7    2.6667
+#' #> 8   8    2.7778
+#' #> 9   9    2.1111
+#' #> 10 10    2.3333
 #'
-#' # Add the radiality values to the graph
-#' # as a node attribute
+#' # Add the radiality values
+#' # to the graph as a node
+#' # attribute
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
@@ -41,17 +45,17 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label value radiality
-#' #> 1   1 <NA>     1   6.0  2.888889
-#' #> 2   2 <NA>     2   2.5  2.888889
-#' #> 3   3 <NA>     3   3.5  2.888889
-#' #> 4   4 <NA>     4   7.5  2.666667
-#' #> 5   5 <NA>     5   8.5  3.000000
-#' #> 6   6 <NA>     6   4.5  3.222222
-#' #> 7   7 <NA>     7  10.0  2.777778
-#' #> 8   8 <NA>     8  10.0  2.555556
-#' #> 9   9 <NA>     9   8.5  3.000000
-#' #> 10 10 <NA>    10  10.0  3.000000
+#' #>    id type label radiality
+#' #> 1   1 <NA>  <NA>    2.3333
+#' #> 2   2 <NA>  <NA>    3.0000
+#' #> 3   3 <NA>  <NA>    2.6667
+#' #> 4   4 <NA>  <NA>    2.8889
+#' #> 5   5 <NA>  <NA>    2.5556
+#' #> 6   6 <NA>  <NA>    2.4444
+#' #> 7   7 <NA>  <NA>    2.6667
+#' #> 8   8 <NA>  <NA>    2.7778
+#' #> 9   9 <NA>  <NA>    2.1111
+#' #> 10 10 <NA>  <NA>    2.3333
 #' @importFrom igraph distances diameter
 #' @export get_radiality
 

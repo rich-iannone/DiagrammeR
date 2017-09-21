@@ -8,31 +8,38 @@
 #' @return a data frame with group membership
 #' assignments for each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph(
+#'     directed = FALSE) %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23)
 #'
-#' # Get the group membership values for all
-#' # nodes in the graph through calculation of
-#' # the leading non-negative eigenvector of the
-#' # modularity matrix of the graph
+#' # Get the group membership
+#' # values for all nodes in the
+#' # graph through calculation of
+#' # the leading non-negative
+#' # eigenvector of the modularity
+#' # matrix of the graph
 #' get_cmty_l_eigenvec(graph)
 #' #>    id l_eigenvec_group
 #' #> 1   1                1
-#' #> 2   2                2
-#' #> 3   3                2
+#' #> 2   2                3
+#' #> 3   3                3
 #' #> 4   4                1
-#' #> 5   5                1
-#' #> 6   6                1
-#' #> 7   7                2
+#' #> 5   5                3
+#' #> 6   6                3
+#' #> 7   7                1
 #' #> 8   8                1
-#' #> 9   9                2
-#' #> 10 10                1
+#' #> 9   9                1
+#' #> 10 10                2
 #'
-#' # Add the group membership values to the
-#' # graph as a node attribute
+#' # Add the group membership
+#' # values to the graph as a node
+#' # attribute
 #' graph <-
 #'   graph %>%
 #'   join_node_attrs(
@@ -40,17 +47,17 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label value l_eigenvec_group
-#' #> 1   1 <NA>     1   6.0                1
-#' #> 2   2 <NA>     2   2.5                2
-#' #> 3   3 <NA>     3   3.5                2
-#' #> 4   4 <NA>     4   7.5                1
-#' #> 5   5 <NA>     5   8.5                1
-#' #> 6   6 <NA>     6   4.5                1
-#' #> 7   7 <NA>     7  10.0                2
-#' #> 8   8 <NA>     8  10.0                1
-#' #> 9   9 <NA>     9   8.5                2
-#' #> 10 10 <NA>    10  10.0                1
+#' #>    id type label l_eigenvec_group
+#' #> 1   1 <NA>  <NA>                1
+#' #> 2   2 <NA>  <NA>                3
+#' #> 3   3 <NA>  <NA>                3
+#' #> 4   4 <NA>  <NA>                1
+#' #> 5   5 <NA>  <NA>                3
+#' #> 6   6 <NA>  <NA>                3
+#' #> 7   7 <NA>  <NA>                1
+#' #> 8   8 <NA>  <NA>                1
+#' #> 9   9 <NA>  <NA>                1
+#' #> 10 10 <NA>  <NA>                2
 #' @importFrom igraph cluster_leading_eigen membership
 #' @export get_cmty_l_eigenvec
 

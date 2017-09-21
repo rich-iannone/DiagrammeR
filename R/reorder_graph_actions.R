@@ -15,10 +15,13 @@
 #' and the remaining actions will follow.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 4,
+#'     m = 4,
 #'     set_seed = 23)
 #'
 #' # Add three graph actions to the

@@ -12,26 +12,29 @@
 #' @return a data frame with PageRank values for
 #' each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23)
 #'
-#' # Get the alpha centrality scores for nodes
-#' # in the graph
+#' # Get the PageRank scores
+#' # for all nodes in the graph
 #' get_pagerank(graph)
-#' #>    id   pagerank
-#' #> 1   1 0.04608804
-#' #> 2   2 0.04608804
-#' #> 3   3 0.05392301
-#' #> 4   4 0.04608804
-#' #> 5   5 0.07677500
-#' #> 6   6 0.11684759
-#' #> 7   7 0.07899491
-#' #> 8   8 0.08898857
-#' #> 9   9 0.16945368
-#' #> 10 10 0.27675311
+#' #>    id pagerank
+#' #> 1   1   0.1302
+#' #> 2   2   0.1037
+#' #> 3   3   0.0450
+#' #> 4   4   0.0450
+#' #> 5   5   0.1501
+#' #> 6   6   0.0578
+#' #> 7   7   0.0871
+#' #> 8   8   0.1780
+#' #> 9   9   0.0744
+#' #> 10 10   0.1287
 #'
 #' # Colorize nodes according to their
 #' # PageRank scores

@@ -32,11 +32,17 @@
 #' the graph's internal node data frame.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 5, m = 5,
-#'     set_seed = 23)
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 4,
+#'     m = 4,
+#'     set_seed = 23) %>%
+#'   set_node_attrs(
+#'     node_attr = value,
+#'     values = c(2.5, 8.2, 4.2, 2.4))
 #'
 #' # For node ID values of `1` to `3`, choose
 #' # to display the node `value` attribute (for
@@ -54,11 +60,10 @@
 #' # display when the graph is rendered
 #' get_node_df(graph)
 #' #>   id type label display value
-#' #> 1  1 <NA>     1   value   6.0
-#' #> 2  2 <NA>     2   value   2.5
-#' #> 3  3 <NA>     3   value   3.5
-#' #> 4  4 <NA>     4    <NA>   7.5
-#' #> 5  5 <NA>     5    <NA>   8.5
+#' #> 1  1 <NA>  <NA>   value   2.5
+#' #> 2  2 <NA>  <NA>   value   8.2
+#' #> 3  3 <NA>  <NA>   value   4.2
+#' #> 4  4 <NA>  <NA>    <NA>   2.4
 #'
 #' # This function can be called multiple
 #' # times on a graph; after the first time
@@ -70,15 +75,14 @@
 #'     nodes = 4,
 #'     attr = label) %>%
 #'   set_node_attr_to_display(
-#'     nodes = c(1, 5),
+#'     nodes = c(1, 3),
 #'     attr = id) %>%
 #'   get_node_df()
 #' #>   id type label display value
-#' #> 1  1 <NA>     1      id   6.0
-#' #> 2  2 <NA>     2   value   2.5
-#' #> 3  3 <NA>     3   value   3.5
-#' #> 4  4 <NA>     4   label   7.5
-#' #> 5  5 <NA>     5      id   8.5
+#' #> 1  1 <NA>  <NA>      id   2.5
+#' #> 2  2 <NA>  <NA>   value   8.2
+#' #> 3  3 <NA>  <NA>      id   4.2
+#' #> 4  4 <NA>  <NA>   label   2.4
 #' @importFrom dplyr mutate left_join coalesce bind_cols select everything case_when
 #' @importFrom tibble tibble
 #' @importFrom rlang enquo UQ

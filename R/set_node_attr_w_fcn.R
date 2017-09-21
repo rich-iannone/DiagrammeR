@@ -30,11 +30,20 @@
 #' @return either a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
-#'     set_seed = 23)
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 22,
+#'     set_seed = 23) %>%
+#'   set_node_attrs(
+#'     node_attr = value,
+#'     values = rnorm(
+#'       n = count_nodes(.),
+#'       mean = 5,
+#'       sd = 1) %>% round(1))
 #'
 #' # Get the betweenness values for
 #' # each of the graph's nodes as a
@@ -49,16 +58,16 @@
 #' graph_1 %>%
 #'   get_node_df()
 #' #>    id type label value betweenness__A
-#' #> 1   1 <NA>     1   6.0       5.904762
-#' #> 2   2 <NA>     2   2.5       4.904762
-#' #> 3   3 <NA>     3   3.5       1.785714
-#' #> 4   4 <NA>     4   7.5       0.000000
-#' #> 5   5 <NA>     5   8.5       5.738095
-#' #> 6   6 <NA>     6   4.5      20.523810
-#' #> 7   7 <NA>     7  10.0       3.333333
-#' #> 8   8 <NA>     8  10.0       0.000000
-#' #> 9   9 <NA>     9   8.5       3.738095
-#' #> 10 10 <NA>    10  10.0       4.071429
+#' #> 1   1 <NA>  <NA>   4.4       9.333333
+#' #> 2   2 <NA>  <NA>   4.6      29.000000
+#' #> 3   3 <NA>  <NA>   5.9      19.166667
+#' #> 4   4 <NA>  <NA>   6.5       2.666667
+#' #> 5   5 <NA>  <NA>   4.1       0.500000
+#' #> 6   6 <NA>  <NA>   3.6      18.000000
+#' #> 7   7 <NA>  <NA>   5.4      12.000000
+#' #> 8   8 <NA>  <NA>   5.8       0.000000
+#' #> 9   9 <NA>  <NA>   4.7      10.333333
+#' #> 10 10 <NA>  <NA>   5.7       0.000000
 #'
 #' # If a specified function takes argument
 #' # values, these can be supplied as well
@@ -74,16 +83,16 @@
 #' graph_2 %>%
 #'   get_node_df()
 #' #>    id type label value alpha_centrality__A
-#' #> 1   1 <NA>     1   6.0                   2
-#' #> 2   2 <NA>     2   2.5                   2
-#' #> 3   3 <NA>     3   3.5                   6
-#' #> 4   4 <NA>     4   7.5                   2
-#' #> 5   5 <NA>     5   8.5                  14
-#' #> 6   6 <NA>     6   4.5                  50
-#' #> 7   7 <NA>     7  10.0                  22
-#' #> 8   8 <NA>     8  10.0                 106
-#' #> 9   9 <NA>     9   8.5                 162
-#' #> 10 10 <NA>    10  10.0                 462
+#' #> 1   1 <NA>  <NA>   4.4           0.0621118
+#' #> 2   2 <NA>  <NA>   4.6          -0.5341615
+#' #> 3   3 <NA>  <NA>   5.9          -0.8157350
+#' #> 4   4 <NA>  <NA>   6.5          -0.6997930
+#' #> 5   5 <NA>  <NA>   4.1           1.0641822
+#' #> 6   6 <NA>  <NA>   3.6          -0.8737060
+#' #> 7   7 <NA>  <NA>   5.4          -0.6832298
+#' #> 8   8 <NA>  <NA>   5.8           0.9316770
+#' #> 9   9 <NA>  <NA>   4.7          -0.4679089
+#' #> 10 10 <NA>  <NA>   5.7           0.3685300
 #'
 #' # The new column name can be provided
 #' graph_3 <-
@@ -96,17 +105,17 @@
 #' # node data frame
 #' graph_3 %>%
 #'   get_node_df()
-#' #>    id type label value   pagerank
-#' #> 1   1 <NA>     1   6.0 0.04608804
-#' #> 2   2 <NA>     2   2.5 0.04608804
-#' #> 3   3 <NA>     3   3.5 0.05392301
-#' #> 4   4 <NA>     4   7.5 0.04608804
-#' #> 5   5 <NA>     5   8.5 0.07677500
-#' #> 6   6 <NA>     6   4.5 0.11684759
-#' #> 7   7 <NA>     7  10.0 0.07899491
-#' #> 8   8 <NA>     8  10.0 0.08898857
-#' #> 9   9 <NA>     9   8.5 0.16945368
-#' #> 10 10 <NA>    10  10.0 0.27675311
+#' #>    id type label value pagerank
+#' #> 1   1 <NA>  <NA>   4.4   0.1416
+#' #> 2   2 <NA>  <NA>   4.6   0.1401
+#' #> 3   3 <NA>  <NA>   5.9   0.1262
+#' #> 4   4 <NA>  <NA>   6.5   0.0637
+#' #> 5   5 <NA>  <NA>   4.1   0.0478
+#' #> 6   6 <NA>  <NA>   3.6   0.1976
+#' #> 7   7 <NA>  <NA>   5.4   0.1318
+#' #> 8   8 <NA>  <NA>   5.8   0.0422
+#' #> 9   9 <NA>  <NA>   4.7   0.0693
+#' #> 10 10 <NA>  <NA>   5.7   0.0398
 #'
 #' # If `graph_3` is modified by
 #' # adding a new node then the column
@@ -119,7 +128,6 @@
 #'   add_node(
 #'     from = 1,
 #'     to = 3,
-#'     label = 11,
 #'     value = 5.5) %>%
 #'   set_node_attr_w_fcn(
 #'     node_attr_fcn = "get_pagerank",
@@ -129,18 +137,18 @@
 #' # node data frame
 #' graph_3 %>%
 #'   get_node_df()
-#' #>    id type label value   pagerank
-#' #> 1   1 <NA>     1   6.0 0.03943470
-#' #> 2   2 <NA>     2   2.5 0.03943470
-#' #> 3   3 <NA>     3   3.5 0.08535641
-#' #> 4   4 <NA>     4   7.5 0.03943470
-#' #> 5   5 <NA>     5   8.5 0.06401567
-#' #> 6   6 <NA>     6   4.5 0.10870274
-#' #> 7   7 <NA>     7  10.0 0.07702682
-#' #> 8   8 <NA>     8  10.0 0.07693771
-#' #> 9   9 <NA>     9   8.5 0.16659482
-#' #> 10 10 <NA>    10  10.0 0.25692313
-#' #> 11 11 <NA>    11   5.5 0.04613860
+#' #>    id type label value pagerank
+#' #> 1   1 <NA>  <NA>   4.4   0.1349
+#' #> 2   2 <NA>  <NA>   4.6   0.1352
+#' #> 3   3 <NA>  <NA>   5.9   0.1585
+#' #> 4   4 <NA>  <NA>   6.5   0.0670
+#' #> 5   5 <NA>  <NA>   4.1   0.0461
+#' #> 6   6 <NA>  <NA>   3.6   0.1300
+#' #> 7   7 <NA>  <NA>   5.4   0.1014
+#' #> 8   8 <NA>  <NA>   5.8   0.0400
+#' #> 9   9 <NA>  <NA>   4.7   0.0685
+#' #> 10 10 <NA>  <NA>   5.7   0.0440
+#' #> 11 11 <NA>  <NA>   5.5   0.0744
 #' @importFrom dplyr inner_join mutate
 #' @export set_node_attr_w_fcn
 

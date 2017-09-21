@@ -13,13 +13,14 @@
 #' \code{dgr_graph}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 5, m = 10,
-#'     set_seed = 23) %>%
-#'   drop_node_attrs(
-#'     node_attr = value)
+#'   create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 5,
+#'     m = 10,
+#'     set_seed = 23)
 #'
 #' # Add a graph action that sets a node
 #' # attr column with a function; this
@@ -87,12 +88,12 @@
 #' # `fillcolor` columns are present
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label   pagerank width fillcolor
-#' #> 1  1 <NA>     1 0.09912752 0.000   #D7191C
-#' #> 2  2 <NA>     2 0.12019212 0.069   #FDAE61
-#' #> 3  3 <NA>     3 0.15424655 0.179   #FFFFBF
-#' #> 4  4 <NA>     4 0.21980134 0.392   #ABDDA4
-#' #> 5  5 <NA>     5 0.40663247 1.000   #2B83BA
+#' #>   id type label pagerank width fillcolor
+#' #> 1  1 <NA>  <NA>   0.2877 0.935   #ABDDA4
+#' #> 2  2 <NA>  <NA>   0.0940 0.000   #D7191C
+#' #> 3  3 <NA>  <NA>   0.3012 1.000   #2B83BA
+#' #> 4  4 <NA>  <NA>   0.1965 0.495   #FFFFBF
+#' #> 5  5 <NA>  <NA>   0.1206 0.128   #FDAE61
 #' @importFrom dplyr filter pull
 #' @export trigger_graph_actions
 

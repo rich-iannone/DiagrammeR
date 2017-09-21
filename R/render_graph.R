@@ -41,9 +41,11 @@
 #'   render_graph(layout = "tree")
 #'
 #' # Create a circle graph with
-#' create_random_graph(
-#'   n = 55, m = 75,
-#'   set_seed = 23) %>%
+#' create_graph() %>%
+#'   add_gnm_graph(
+#'     n = 55,
+#'     m = 75,
+#'     set_seed = 23) %>%
 #' render_graph(layout = "circle")
 #'
 #' # Render the graph using the `visNetwork`

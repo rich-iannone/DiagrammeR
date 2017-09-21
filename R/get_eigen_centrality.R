@@ -11,26 +11,30 @@
 #' @return a data frame with eigen centrality scores
 #' for each of the nodes.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph(
+#'     directed = FALSE) %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23)
 #'
-#' # Get the eigen centrality scores for nodes
-#' # in the graph
+#' # Get the eigen centrality scores
+#' # for nodes in the graph
 #' get_eigen_centrality(graph)
 #' #>    id eigen_centrality
-#' #> 1   1        0.5893005
-#' #> 2   2        0.8160297
-#' #> 3   3        0.6985080
-#' #> 4   4        0.5669045
-#' #> 5   5        0.8129328
-#' #> 6   6        1.0000000
-#' #> 7   7        0.6266077
-#' #> 8   8        0.3372831
-#' #> 9   9        0.8487792
-#' #> 10 10        0.8583592
+#' #> 1   1           0.6640
+#' #> 2   2           0.6767
+#' #> 3   3           0.4988
+#' #> 4   4           0.9541
+#' #> 5   5           0.7908
+#' #> 6   6           1.0000
+#' #> 7   7           0.6391
+#' #> 8   8           0.4524
+#' #> 9   9           0.6702
+#' #> 10 10           0.0000
 #' @importFrom igraph eigen_centrality
 #' @export get_eigen_centrality
 

@@ -8,10 +8,14 @@
 #' \code{dgr_graph}.
 #' @return a \code{df_tbl} object.
 #' @examples
-#' # Create a random graph
+#' # Create a random graph using the
+#' # `add_gnm_graph()` function
 #' graph <-
-#'   create_random_graph(
-#'     n = 10, m = 22,
+#'   create_graph(
+#'     directed = FALSE) %>%
+#'   add_gnm_graph(
+#'     n = 10,
+#'     m = 15,
 #'     set_seed = 23)
 #'
 #' # Add a graph action that sets a node
@@ -37,7 +41,8 @@
 #' #>   action_index action_name
 #' #>          <dbl>       <chr>
 #' #> 1            1   get_btwns
-#' #> # ... with 1 more variables: expression <chr>
+#' #> # ... with 1 more variables:
+#' #> #   expression <chr>
 #' @importFrom tibble as_tibble
 #' @export get_graph_actions
 
