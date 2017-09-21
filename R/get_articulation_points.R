@@ -21,7 +21,7 @@
 #' # in the graph (i.e., those
 #' # nodes that if any were to be
 #' # removed, the graph would
-#' become disconnected)
+#' # become disconnected)
 #' get_articulation_points(graph)
 #' #> [1] 2 4
 #'
