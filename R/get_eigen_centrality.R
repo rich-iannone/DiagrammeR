@@ -78,6 +78,6 @@ get_eigen_centrality <- function(graph,
     id = eigen_centrality_values$vector %>%
       names() %>%
       as.integer(),
-    eigen_centrality = unname(eigen_centrality_values$vector),
+    eigen_centrality = unname(eigen_centrality_values$vector) %>% round(4),
     stringsAsFactors = FALSE)
 }

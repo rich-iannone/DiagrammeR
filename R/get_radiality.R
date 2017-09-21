@@ -114,6 +114,6 @@ get_radiality <- function(graph,
     id = radiality_values %>%
       names() %>%
       as.integer(),
-    radiality = radiality_values,
+    radiality = radiality_values %>% round(4),
     stringsAsFactors = FALSE)
 }

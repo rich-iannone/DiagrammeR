@@ -94,6 +94,6 @@ get_leverage_centrality <- function(graph) {
     id = degree_vals %>%
       names() %>%
       as.integer(),
-    leverage_centrality = leverage_centrality_values,
+    leverage_centrality = leverage_centrality_values %>% round(4),
     stringsAsFactors = FALSE)
 }

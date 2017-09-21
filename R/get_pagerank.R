@@ -74,6 +74,6 @@ get_pagerank <- function(graph,
     id = pagerank_values %>%
       names() %>%
       as.integer(),
-    pagerank = pagerank_values,
+    pagerank = pagerank_values %>% round(4),
     stringsAsFactors = FALSE)
 }
