@@ -11,10 +11,10 @@ set_node_attr_to_display(graph, attr = NULL, nodes = NULL,
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{attr}{the name of the attribute to
-set for the \code{type} of global attribute
-specified. If set to \code{NULL}, then \code{NA}
-values will be assigned to the \code{display}
+\item{attr}{the name of the attribute from
+which label text for the node will be obtained.
+If set to \code{NULL}, then \code{NA} values
+will be assigned to the \code{display} column
 for the chosen nodes.}
 
 \item{nodes}{a length vector containing one or
@@ -61,8 +61,9 @@ graph <-
     node_attr = value,
     values = c(2.5, 8.2, 4.2, 2.4))
 
-# For node ID values of `1` to `3`, choose
-# to display the node `value` attribute (for
+# For node ID values of `1`,
+# `2`, and `3`, choose to display
+# the node `value` attribute (for
 # the other nodes, display nothing)
 graph <-
   graph \%>\%
