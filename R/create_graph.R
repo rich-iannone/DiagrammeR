@@ -173,20 +173,20 @@ create_graph <- function(nodes_df = NULL,
               "shape", "fixedsize", "width", "style",
               "fillcolor", "color", "fontcolor",
               "bgcolor",
-              "fontname", "len", "color", "arrowsize")
+              "fontname", "fontsize", "len", "color", "arrowsize")
           ),
           value = as.character(
             c("neato", "edgesfirst", "Helvetica", "10",
               "circle", "true", "0.5", "filled",
               "aliceblue", "gray70", "gray50",
               "white",
-              "Helvetica", "1.5", "gray40", "0.5")
+              "Helvetica", "8", "1.5", "gray80", "0.5")
           ),
           attr_type = as.character(
             c(rep("graph", 2),
               rep("node", 9),
               "graph",
-              rep("edge", 4))),
+              rep("edge", 5))),
           stringsAsFactors = FALSE)
     } else {
       stop("The value for `attr_theme` doesn't refer to any available theme.")
