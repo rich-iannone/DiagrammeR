@@ -44,8 +44,9 @@
 #'     node_attr = value,
 #'     values = c(2.5, 8.2, 4.2, 2.4))
 #'
-#' # For node ID values of `1` to `3`, choose
-#' # to display the node `value` attribute (for
+#' # For node ID values of `1`,
+#' # `2`, and `3`, choose to display
+#' # the node `value` attribute (for
 #' # the other nodes, display nothing)
 #' graph <-
 #'   graph %>%
