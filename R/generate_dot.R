@@ -109,12 +109,44 @@ generate_dot <- function(graph) {
     label_col <- which(colnames(nodes_df) == "label")
 
     for (i in 1:nrow(nodes_df)) {
-      if (nodes_df[i, display_col] != "") {
-        nodes_df[i, label_col] <-
-          nodes_df[
-            i, which(colnames(nodes_df) == nodes_df[i, display_col])]
+      if (!is.na(nodes_df[i, display_col]) ) {
+        if (nodes_df[i, display_col] != "") {
+
+          nodes_df[i, label_col] <-
+            nodes_df[
+              i, which(colnames(nodes_df) == nodes_df[i, display_col])]
+        }
       } else {
         nodes_df[i, label_col] <- ""
+      }
+    }
+  }
+
+  # If `display` column in `edges_df`, modify label
+  # column for this render
+  if ("display" %in% colnames(edges_df)) {
+
+    display_col <- which(colnames(edges_df) == "display")
+
+    if (!("label" %in% colnames(edges_df))) {
+
+      edges_df <-
+        edges_df %>%
+        mutate(label = as.character(NA))
+    }
+
+    label_col <- which(colnames(edges_df) == "label")
+
+    for (i in 1:nrow(edges_df)) {
+      if (!is.na(edges_df[i, display_col]) ) {
+        if (edges_df[i, display_col] != "") {
+
+        edges_df[i, label_col] <-
+          edges_df[
+            i, which(colnames(edges_df) == edges_df[i, display_col])]
+        }
+      } else {
+        edges_df[i, label_col] <- ""
       }
     }
   }
