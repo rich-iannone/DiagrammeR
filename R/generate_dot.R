@@ -109,13 +109,13 @@ generate_dot <- function(graph) {
     label_col <- which(colnames(nodes_df) == "label")
 
     for (i in 1:nrow(nodes_df)) {
-      if (!is.na(nodes_df[i, display_col]) ) {
-        if (nodes_df[i, display_col] != "") {
 
-          nodes_df[i, label_col] <-
-            nodes_df[
-              i, which(colnames(nodes_df) == nodes_df[i, display_col])]
-        }
+      if (nodes_df[i, display_col] != "") {
+
+        nodes_df[i, label_col] <-
+          nodes_df[
+            i, which(colnames(nodes_df) == nodes_df[i, display_col])]
+
       } else {
         nodes_df[i, label_col] <- ""
       }
