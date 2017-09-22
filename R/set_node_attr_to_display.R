@@ -111,7 +111,7 @@ set_node_attr_to_display <- function(graph,
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no selections can be made.")
+    stop("The graph contains no nodes, so, no node attributes can be set.")
   }
 
   # Create bindings for specific variables
