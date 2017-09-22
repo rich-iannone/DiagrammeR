@@ -14,10 +14,10 @@
 #' (\code{default}) for all remaining nodes.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param attr the name of the attribute to
-#' set for the \code{type} of global attribute
-#' specified. If set to \code{NULL}, then \code{NA}
-#' values will be assigned to the \code{display}
+#' @param attr the name of the attribute from
+#' which label text for the node will be obtained.
+#' If set to \code{NULL}, then \code{NA} values
+#' will be assigned to the \code{display} column
 #' for the chosen nodes.
 #' @param nodes a length vector containing one or
 #' several node ID values (as integers) for which
