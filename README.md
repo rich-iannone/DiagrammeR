@@ -32,7 +32,7 @@ example_graph <-
     node_attr_from = total_degree,
     node_attr_to = fillcolor,
     palette = "Greens",
-    alpha = 80) %>%
+    alpha = 90) %>%
   rescale_node_attrs(
     node_attr_from = betweenness,
     to_lower_bound = 0.5,
