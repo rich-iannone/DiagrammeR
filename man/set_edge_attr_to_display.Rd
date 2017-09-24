@@ -45,7 +45,7 @@ attribute with this function for the first time
 (i.e., the \code{display} column doesn't exist in
 the graph's internal edge data frame) will insert
 the \code{attr} value for all edges specified in
-\code{edes} and a default value (\code{default})
+\code{edges} and a default value (\code{default})
 for all remaining edges.
 }
 \examples{
