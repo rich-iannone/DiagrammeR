@@ -51,4 +51,36 @@ get_edge_df(graph)
 #> 6  6    4  3 <NA>
 #> 7  7    5  3 <NA>
 #> 8  8    5  4 <NA>
+
+# Create an undirected, empty
+# graph; add a path of 3 nodes
+# and two isolated nodes
+graph <-
+  create_graph(
+    directed = FALSE) \%>\%
+  add_path(n = 3) \%>\%
+  add_n_nodes(n = 2)
+
+# Select a node in the path
+# of nodes (node `3`) and
+# the two isolated nodes (`4`
+# and `5`); then, and fully
+# connect these nodes together
+graph <-
+  graph \%>\%
+  select_nodes_by_id(
+    nodes = 3:5) \%>\%
+  fully_connect_nodes_ws()
+
+# Get the graph's edge data
+# frame; in the undirected
+# case, reverse edges aren't
+# added
+get_edge_df(graph)
+#>   id from to  rel
+#> 1  1    1  2 <NA>
+#> 2  2    2  3 <NA>
+#> 3  3    3  4 <NA>
+#> 4  4    3  5 <NA>
+#> 5  5    4  5 <NA>
 }
