@@ -152,26 +152,17 @@ nudge_node_positions_ws <- function(graph,
   # Use `case_when` statements to selectively perform
   # a vectorized `if` statement across all nodes for
   # the `x` and `y` node attribute
-  x_attr_new <-
-    dplyr::case_when(
-      ndf$id == nodes ~ ndf$x + dx,
-      TRUE ~ as.numeric(ndf$x))
+  ndf_new <-
+    ndf %>%
+    dplyr::mutate(x = dplyr::case_when(
+      id %in% as.integer(nodes) ~ x + dx,
+      !(id %in% as.integer(nodes)) ~ x)) %>%
+    dplyr::mutate(y = dplyr::case_when(
+      id %in% nodes ~ y + dy,
+      !(id %in% as.integer(nodes)) ~ y))
 
-  y_attr_new <-
-    dplyr::case_when(
-      ndf$id == nodes ~ ndf$y + dy,
-      TRUE ~ as.numeric(ndf$y))
-
-  # Replace the `x` column to the ndf with a
-  # coalesced version of the column contents
-  ndf$x <- dplyr::coalesce(x_attr_new, ndf$x)
-
-  # Replace the `y` column to the ndf with a
-  # coalesced version of the column contents
-  ndf$y <- dplyr::coalesce(y_attr_new, ndf$y)
-
-  # Replace the graph's node data frame with `ndf`
-  graph$nodes_df <- ndf
+  # Replace the graph's node data frame with `ndf_new`
+  graph$nodes_df <- ndf_new
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
