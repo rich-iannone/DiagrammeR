@@ -15,6 +15,14 @@
 #' name will copy those node attribute values to the
 #' traversed nodes. Any values extant on the nodes
 #' traversed to will be replaced.
+#' @param copy_attrs_as if a node attribute name
+#' is provided in \code{copy_attrs_from}, this option
+#' will allow the copied attribute values to be
+#' written under a different attribute name. If the
+#' attribute name provided in \code{copy_attrs_as}
+#' does not exist in the graph's ndf, the new
+#' node attribute will be created with the chosen
+#' name.
 #' @param agg if a node attribute is provided
 #' to \code{copy_attrs_from}, then an aggregation
 #' function is required since there may be cases where
@@ -209,6 +217,7 @@
 trav_both <- function(graph,
                       conditions = NULL,
                       copy_attrs_from = NULL,
+                      copy_attrs_as = NULL,
                       agg = "sum") {
 
   conditions <- rlang::enquo(conditions)
@@ -218,6 +227,19 @@ trav_both <- function(graph,
 
   if (copy_attrs_from == "NULL") {
     copy_attrs_from <- NULL
+  }
+
+  copy_attrs_as <- rlang::enquo(copy_attrs_as)
+  copy_attrs_as <- (rlang::UQ(copy_attrs_as) %>% paste())[2]
+
+  if (copy_attrs_as == "NULL") {
+    copy_attrs_as <- NULL
+  }
+
+  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+    if (copy_attrs_as == copy_attrs_from) {
+      copy_attrs_as <- NULL
+    }
   }
 
   # Get the time of function start
@@ -282,7 +304,7 @@ trav_both <- function(graph,
   if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
 
     valid_nodes <-
-      filter(
+      dplyr::filter(
         .data = valid_nodes,
         rlang::UQ(conditions))
   }
@@ -295,15 +317,15 @@ trav_both <- function(graph,
     from_join <-
       valid_nodes %>%
       dplyr::select(id) %>%
-      dplyr::inner_join(edf %>% select(from, to), by = c("id" = "from")) %>%
-      dplyr::inner_join(ndf %>% select_("id", copy_attrs_from), by = c("to" = "id")) %>%
+      dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "from")) %>%
+      dplyr::inner_join(ndf %>% dplyr::select_("id", copy_attrs_from), by = c("to" = "id")) %>%
       dplyr::select_("id", copy_attrs_from)
 
     to_join <-
       valid_nodes %>%
       dplyr::select(id) %>%
-      dplyr::inner_join(edf %>% select(from, to), by = c("id" = "to")) %>%
-      dplyr::inner_join(ndf %>% select_("id", copy_attrs_from), by = c("from" = "id")) %>%
+      dplyr::inner_join(edf %>% dplyr::select(from, to), by = c("id" = "to")) %>%
+      dplyr::inner_join(ndf %>% dplyr::select_("id", copy_attrs_from), by = c("from" = "id")) %>%
       dplyr::select_("id", copy_attrs_from)
 
     nodes <-
@@ -325,19 +347,38 @@ trav_both <- function(graph,
     split_var_y_col <-
       which(grepl("\\.y$", colnames(nodes)))
 
-    # Selectively merge in values to the existing
-    # edge attribute column
-    for (i in 1:nrow(nodes)) {
-      if (!is.na(nodes[i, split_var_x_col])) {
-        nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
+    if (is.null(copy_attrs_as)) {
+
+      # Selectively merge in values to the existing
+      # edge attribute column
+      for (i in 1:nrow(nodes)) {
+        if (!is.na(nodes[i, split_var_x_col])) {
+          nodes[i, split_var_y_col] <- nodes[i, split_var_x_col]
+        }
       }
+    }
+
+    if (!is.null(copy_attrs_as)) {
+
+      # Reorder the columns generated
+      nodes <-
+        nodes[, c(c(1:(ncol(nodes) - 2)), split_var_y_col, split_var_x_col)]
     }
 
     # Rename the ".y" column
     colnames(nodes)[split_var_y_col] <- copy_attrs_from
 
-    # Drop the ".x" column
-    nodes <- nodes[-split_var_x_col]
+    if (is.null(copy_attrs_as)) {
+
+      # Drop the ".x" column
+      nodes <- nodes[-split_var_x_col]
+
+    } else {
+
+      # Rename the two columns
+      colnames(nodes)[split_var_x_col] <- copy_attrs_from
+      colnames(nodes)[split_var_y_col] <- copy_attrs_as
+    }
 
     # Update the graph's internal node data frame
     graph$nodes_df <- nodes
