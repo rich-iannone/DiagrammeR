@@ -378,6 +378,7 @@ trav_out <- function(graph,
     }
 
     if (!is.null(copy_attrs_as)) {
+
       # Reorder the columns generated
       nodes <-
         nodes[, c(c(1:(ncol(nodes) - 2)), split_var_y_col, split_var_x_col)]
