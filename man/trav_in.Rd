@@ -5,7 +5,8 @@
 \title{Traverse from one or more selected nodes onto
 adjacent, inward nodes}
 \usage{
-trav_in(graph, conditions = NULL, copy_attrs_from = NULL, agg = "sum")
+trav_in(graph, conditions = NULL, copy_attrs_from = NULL,
+  copy_attrs_as = NULL, agg = "sum")
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -18,6 +19,15 @@ conditions for the traversal.}
 name will copy those node attribute values to the
 traversed nodes. Any values extant on the nodes
 traversed to will be replaced.}
+
+\item{copy_attrs_as}{if a node attribute name
+is provided in \code{copy_attrs_from}, this option
+will allow the copied attribute values to be
+written under a different attribute name. If the
+attribute name provided in \code{copy_attrs_as}
+does not exist in the graph's ndf, the new
+node attribute will be created with the chosen
+name.}
 
 \item{agg}{if a node attribute is provided
 to \code{copy_attrs_from}, then an aggregation
