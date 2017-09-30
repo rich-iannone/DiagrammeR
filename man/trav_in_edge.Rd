@@ -5,7 +5,8 @@
 \title{Traverse from one or more selected nodes onto
 adjacent, inward edges}
 \usage{
-trav_in_edge(graph, conditions = NULL, copy_attrs_from = NULL)
+trav_in_edge(graph, conditions = NULL, copy_attrs_from = NULL,
+  copy_attrs_as = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -19,6 +20,15 @@ name will copy those node attribute values to the
 traversed edges. If the edge attribute already exists,
 the values will be merged to the traversed edges;
 otherwise, a new edge attribute will be created.}
+
+\item{copy_attrs_as}{if a node attribute name
+is provided in \code{copy_attrs_from}, this option
+will allow the copied attribute values to be
+written under a different edge attribute name.
+If the attribute name provided in
+\code{copy_attrs_as} does not exist in the graph's
+edf, the new edge attribute will be created
+with the chosen name.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
