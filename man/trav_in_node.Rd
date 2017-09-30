@@ -6,7 +6,7 @@
 adjacent, inward nodes}
 \usage{
 trav_in_node(graph, conditions = NULL, copy_attrs_from = NULL,
-  agg = "sum")
+  copy_attrs_as = NULL, agg = "sum")
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -20,6 +20,15 @@ name will copy those edge attribute values to the
 traversed nodes. If the edge attribute already exists,
 the values will be merged to the traversed nodes;
 otherwise, a new node attribute will be created.}
+
+\item{copy_attrs_as}{if an edge attribute name
+is provided in \code{copy_attrs_from}, this option
+will allow the copied attribute values to be
+written under a different node attribute name.
+If the attribute name provided in
+\code{copy_attrs_as} does not exist in the graph's
+ndf, the new node attribute will be created
+with the chosen name.}
 
 \item{agg}{if an edge attribute is provided
 to \code{copy_attrs_from}, then an aggregation
