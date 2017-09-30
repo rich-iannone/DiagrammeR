@@ -6,7 +6,7 @@
 adjacent edges}
 \usage{
 trav_both_edge(graph, conditions = NULL, copy_attrs_from = NULL,
-  agg = "sum")
+  copy_attrs_as = NULL, agg = "sum")
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -20,6 +20,15 @@ name will copy those node attribute values to the
 traversed edges. If the edge attribute already exists,
 the values will be merged to the traversed edges;
 otherwise, a new edge attribute will be created.}
+
+\item{copy_attrs_as}{if a node attribute name
+is provided in \code{copy_attrs_from}, this option
+will allow the copied attribute values to be
+written under a different edge attribute name.
+If the attribute name provided in
+\code{copy_attrs_as} does not exist in the graph's
+edf, the new edge attribute will be created
+with the chosen name.}
 
 \item{agg}{if a node attribute is provided
 to \code{copy_attrs_from}, then an aggregation
