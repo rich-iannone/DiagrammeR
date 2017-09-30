@@ -15,6 +15,14 @@
 #' traversed edges. If the edge attribute already exists,
 #' the values will be merged to the traversed edges;
 #' otherwise, a new edge attribute will be created.
+#' @param copy_attrs_as if a node attribute name
+#' is provided in \code{copy_attrs_from}, this option
+#' will allow the copied attribute values to be
+#' written under a different edge attribute name.
+#' If the attribute name provided in
+#' \code{copy_attrs_as} does not exist in the graph's
+#' edf, the new edge attribute will be created
+#' with the chosen name.
 #' @param agg if a node attribute is provided
 #' to \code{copy_attrs_from}, then an aggregation
 #' function is required since there may be cases where
@@ -210,6 +218,7 @@
 trav_both_edge <- function(graph,
                            conditions = NULL,
                            copy_attrs_from = NULL,
+                           copy_attrs_as = NULL,
                            agg = "sum") {
 
   conditions <- rlang::enquo(conditions)
@@ -219,6 +228,19 @@ trav_both_edge <- function(graph,
 
   if (copy_attrs_from == "NULL") {
     copy_attrs_from <- NULL
+  }
+
+  copy_attrs_as <- rlang::enquo(copy_attrs_as)
+  copy_attrs_as <- (rlang::UQ(copy_attrs_as) %>% paste())[2]
+
+  if (copy_attrs_as == "NULL") {
+    copy_attrs_as <- NULL
+  }
+
+  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+    if (copy_attrs_as == copy_attrs_from) {
+      copy_attrs_as <- NULL
+    }
   }
 
   # Get the time of function start
@@ -272,7 +294,7 @@ trav_both_edge <- function(graph,
   if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
 
     valid_edges <-
-      filter(
+      dplyr::filter(
         .data = valid_edges,
         rlang::UQ(conditions))
   }
@@ -313,6 +335,17 @@ trav_both_edge <- function(graph,
           by = c("id" = "to")) %>%
         dplyr::select_("e_id", copy_attrs_from)
 
+      if (!is.null(copy_attrs_as)) {
+
+        if (copy_attrs_as %in% c("id", "from", "to")) {
+          stop("Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
+        }
+
+        colnames(from_join)[2] <-
+          colnames(to_join)[2] <-
+          copy_attrs_from <- copy_attrs_as
+      }
+
       edges <-
         dplyr::bind_rows(
           from_join, to_join) %>%
@@ -333,7 +366,19 @@ trav_both_edge <- function(graph,
       from_join <-
         ndf %>%
         dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::filter(id %in% starting_nodes) %>%
+        dplyr::filter(id %in% starting_nodes)
+
+      if (!is.null(copy_attrs_as)) {
+
+        if (copy_attrs_as %in% c("id", "from", "to")) {
+          stop("Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
+        }
+
+        colnames(from_join)[2] <- copy_attrs_as
+      }
+
+      from_join <-
+        from_join %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
@@ -366,12 +411,25 @@ trav_both_edge <- function(graph,
       to_join <-
         ndf %>%
         dplyr::select_("id", copy_attrs_from) %>%
-        dplyr::filter(id %in% starting_nodes) %>%
+        dplyr::filter(id %in% starting_nodes)
+
+      if (!is.null(copy_attrs_as)) {
+
+        colnames(to_join)[2] <- copy_attrs_as
+      }
+
+      to_join <-
+        to_join %>%
         dplyr::right_join(
           valid_edges %>%
             dplyr::select(-rel) %>%
             dplyr::rename(e_id = id),
           by = c("id" = "to"))
+
+      if (!is.null(copy_attrs_as)) {
+
+        copy_attrs_from <- copy_attrs_as
+      }
 
       # Get column numbers that end with ".x" or ".y"
       split_var_x_col <-
