@@ -15,6 +15,14 @@
 #' traversed edges. If the edge attribute already exists,
 #' the values will be merged to the traversed edges;
 #' otherwise, a new edge attribute will be created.
+#' @param copy_attrs_as if a node attribute name
+#' is provided in \code{copy_attrs_from}, this option
+#' will allow the copied attribute values to be
+#' written under a different edge attribute name.
+#' If the attribute name provided in
+#' \code{copy_attrs_as} does not exist in the graph's
+#' edf, the new edge attribute will be created
+#' with the chosen name.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -212,7 +220,8 @@
 
 trav_in_edge <- function(graph,
                          conditions = NULL,
-                         copy_attrs_from = NULL) {
+                         copy_attrs_from = NULL,
+                         copy_attrs_as = NULL) {
 
   conditions <- rlang::enquo(conditions)
 
@@ -221,6 +230,19 @@ trav_in_edge <- function(graph,
 
   if (copy_attrs_from == "NULL") {
     copy_attrs_from <- NULL
+  }
+
+  copy_attrs_as <- rlang::enquo(copy_attrs_as)
+  copy_attrs_as <- (rlang::UQ(copy_attrs_as) %>% paste())[2]
+
+  if (copy_attrs_as == "NULL") {
+    copy_attrs_as <- NULL
+  }
+
+  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+    if (copy_attrs_as == copy_attrs_from) {
+      copy_attrs_as <- NULL
+    }
   }
 
   # Get the time of function start
@@ -297,14 +319,26 @@ trav_in_edge <- function(graph,
   # operation
   if (!is.null(copy_attrs_from)) {
 
+    ndf_2 <-
+      ndf %>%
+      dplyr::filter(id %in% starting_nodes) %>%
+      dplyr::select_("id", copy_attrs_from)
+
+    if (!is.null(copy_attrs_as)) {
+
+      if (copy_attrs_as %in% c("id", "from", "to")) {
+        stop("Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
+      }
+
+      colnames(ndf_2)[2] <- copy_attrs_from <- copy_attrs_as
+    }
+
     # If node attribute doesn't exist in the edf,
     # perform a full join
     if (!(copy_attrs_from %in% colnames(edf))) {
 
       edges <-
-        ndf %>%
-        dplyr::filter(id %in% starting_nodes) %>%
-        dplyr::select_("id", copy_attrs_from) %>%
+        ndf_2 %>%
         dplyr::right_join(edf, c("id" = "to")) %>%
         dplyr::rename(to = id) %>%
         dplyr::rename(id = id.y) %>%
@@ -315,9 +349,7 @@ trav_in_edge <- function(graph,
     if (copy_attrs_from %in% colnames(edf)) {
 
       edges <-
-        ndf %>%
-        dplyr::filter(id %in% starting_nodes) %>%
-        dplyr::select_("id", copy_attrs_from) %>%
+        ndf_2 %>%
         dplyr::right_join(edf, c("id" = "to")) %>%
         dplyr::rename(to = id.y)
 
