@@ -333,6 +333,15 @@ get_col_selection <- function(col_selection_stmt) {
 
   if (all(stringr::str_detect(
     string = col_selection_stmt,
+    pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$")) & length(col_selection_stmt) == 1) {
+
+    selection_type <- "single_column_name"
+
+    # Get the column names
+    column_selection <- col_selection_stmt
+
+  } else if (all(stringr::str_detect(
+    string = col_selection_stmt,
     pattern = "(.* & ).*")) & length(col_selection_stmt) == 1) {
 
     selection_type <- "column_names"
