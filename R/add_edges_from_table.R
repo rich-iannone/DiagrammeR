@@ -178,6 +178,8 @@ add_edges_from_table <- function(graph,
     stop("The value specified in `from_to_map` is not in the graph.")
   }
 
+  # If values for `drop_cols` provided, filter the CSV
+  # columns by those named columns
   if (!is.null(drop_cols)) {
 
     col_selection <- get_col_selection(col_selection_stmt = drop_cols)
@@ -306,7 +308,7 @@ add_edges_from_table <- function(graph,
   # Add in an `id` column
   edf <-
     dplyr::bind_cols(
-      data.frame(id = as.integer(1:nrow(edf))),
+      data.frame(id = as.integer(1:nrow(edf)) + graph$last_edge),
       edf)
 
   # Optionally set the `rel` attribute with a single
