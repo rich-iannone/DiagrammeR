@@ -239,7 +239,7 @@ add_nodes_from_table <- function(graph,
 
       columns_to_add <- base::setdiff(columns_to_add, colnames(csv)[col_indices])
 
-    } else if (col_selection[["selection_type"]] == "column_names") {
+    } else if (col_selection[["selection_type"]] %in% c("single_column_name", "column_names")) {
 
       columns_to_add <- base::setdiff(columns_to_add, col_selection[["column_selection"]])
 
