@@ -45,7 +45,6 @@ existing graph object from data in a CSV file or a
 data frame.
 }
 \examples{
-\dontrun{
 # Create an empty graph and then
 # add nodes to it from the
 # `currencies` dataset available
@@ -55,11 +54,17 @@ graph <-
   add_nodes_from_table(
     table = currencies)
 
-# Now we want to add edges to the graph
-# using a similar CSV file that contains
-# exchange rates between several currencies;
-# the common attribute is the ISO-4217
-# currency code
+# Now we want to add edges to the
+# graph using an included dataset,
+# `usd_exchange_rates`, which has
+# exchange rates between USD and
+# many other currencies; the key
+# here is that the data in the
+# `from` and `to` columns in the
+# external table maps to graph
+# node data available in the
+# `iso_4217_code` column of the
+# graph's internal node data frame
 graph_1 <-
   graph \%>\%
   add_edges_from_table(
@@ -68,8 +73,8 @@ graph_1 <-
     to_col = to_currency,
     from_to_map = iso_4217_code)
 
-# View part of the graph's internal edge data
-# frame (edf) using `get_edge_df()`
+# View part of the graph's
+# internal edge data frame
 graph_1 \%>\%
   get_edge_df() \%>\%
   head()
@@ -81,22 +86,23 @@ graph_1 \%>\%
 #> 5  5  148  5 <NA>  0.565000
 #> 6  6  148  6 <NA>  0.006058
 
-# If you would like to assign any of the table's
-# columns as `rel` attribute, this can done with
-# the `rel_col` argument; to set a static `rel`
-# attribute for all edges, use `set_rel`
+# If you would like to assign
+# any of the table's columns as the
+# `rel` attribute, this can done
+# with the `rel_col` argument; to
+# set a static `rel` attribute for
+# all edges created, use `set_rel`
 graph_2 <-
   graph \%>\%
   add_edges_from_table(
-    system.file("extdata", "usd_exchange_rates.csv",
-                package = "DiagrammeR"),
+    table = usd_exchange_rates,
     from_col = from_currency,
     to_col = to_currency,
     from_to_map = iso_4217_code,
     set_rel = "from_usd")
 
-# View part of the graph's internal edge data
-# frame (edf) using `get_edge_df()`
+# View part of the graph's internal
+# edge data frame (edf)
 graph_2 \%>\%
   get_edge_df() \%>\%
   head()
@@ -107,5 +113,4 @@ graph_2 \%>\%
 #> 4  4  148  4 from_usd  0.002107
 #> 5  5  148  5 from_usd  0.565000
 #> 6  6  148  6 from_usd  0.006058
-}
 }
