@@ -21,11 +21,19 @@ in the table as \code{label} attribute values.}
 in the table as \code{type} attribute values.}
 
 \item{set_type}{an optional string to apply a
-\code{type} attribute to all nodes created from the
-table records.}
+\code{type} attribute to all nodes created from data
+in the external table.}
 
-\item{drop_cols}{an optional character vector for
-dropping columns from the incoming data.}
+\item{drop_cols}{an optional column selection
+statement for dropping columns from the external
+table before inclusion as attributes in the graph's
+internal node data frame. Several columns can be
+dropped by name using the syntax
+\code{col_1 & col_2 & ...}. Columns can also be
+dropped using a numeric column range with \code{:}
+(e.g., \code{5:8}), or, by using the \code{:}
+between column names to specify the range (e.g.,
+\code{col_5_name:col_8_name}).}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -78,20 +86,20 @@ graph_2 <-
   add_nodes_from_table(
     table = path_to_csv,
     label_col = iso_4217_code,
-    set_type = "currency")
+    set_type = currency)
 
 # View part of the graph's internal ndf
 graph_2 \%>\%
   get_node_df() \%>\%
   .[, 1:5] \%>\%
   head()
-#>   id     type label iso_4217_code curr_number
-#> 1  1 currency   AED           AED         784
-#> 2  2 currency   AFN           AFN         971
-#> 3  3 currency   ALL           ALL           8
-#> 4  4 currency   AMD           AMD          51
-#> 5  5 currency   ANG           ANG         532
-#> 6  6 currency   AOA           AOA         973
+#>   id     type label curr_number exponent
+#> 1  1 currency   AED         784        2
+#> 2  2 currency   AFN         971        2
+#> 3  3 currency   ALL           8        2
+#> 4  4 currency   AMD          51        2
+#> 5  5 currency   ANG         532        2
+#> 6  6 currency   AOA         973        2
 
 # Suppose you would like to not include certain
 # columns from the table in the resulting graph; you
@@ -102,14 +110,13 @@ graph_3 <-
   add_nodes_from_table(
     table = path_to_csv,
     label_col = iso_4217_code,
-    set_type = "currency",
-    drop_cols = c("exponent", "currency_name"))
+    set_type = currency,
+    drop_cols = exponent & currency_name)
 
 # Show the node attribute names for the graph
 graph_3 \%>\%
   get_node_df() \%>\%
   colnames()
-#> [1] "id"  type"  "label"  "iso_4217_code"
-#> [5] "curr_number"
+#> [1] "id"  type"  "label"  "curr_number"
 }
 }
