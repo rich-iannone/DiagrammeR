@@ -661,20 +661,21 @@ test_that("adding edges from a table to a graph is possible", {
   # options
   graph <-
     create_graph() %>%
-    add_nodes_from_table(node_table)
+    add_nodes_from_table(table = node_table)
 
   # Augment the graph by adding edges from a table
   # with the `add_edges_from_table()` function
   graph_nodes_edges <-
     graph %>%
     add_edges_from_table(
-      edge_table,
+      table = edge_table,
       from_col = from_currency,
       to_col = to_currency,
-      ndf_mapping = iso_4217_code)
+      from_to_map = iso_4217_code)
 
   # Expect that the graph has a certain number of edges
-  expect_equal(edge_count(graph_nodes_edges), 157)
+  expect_equal(
+    edge_count(graph_nodes_edges), 157)
 
   # Expect certain columns to exist in the graph's
   # edge data frame
@@ -690,7 +691,7 @@ test_that("adding edges from a table to a graph is possible", {
         edge_table,
         from_col = from,
         to_col = to_currency,
-        ndf_mapping = iso_4217_code))
+        from_to_map = iso_4217_code))
 
   # Expect an error if value for `to_col` is
   # not in the table
@@ -700,9 +701,9 @@ test_that("adding edges from a table to a graph is possible", {
         edge_table,
         from_col = from_currency,
         to_col = to,
-        ndf_mapping = iso_4217_code))
+        from_to_map = iso_4217_code))
 
-  # Expect an error if value for `ndf_mapping` is
+  # Expect an error if value for `from_to_map` is
   # not in the table
   expect_error(
     graph %>%
@@ -710,7 +711,7 @@ test_that("adding edges from a table to a graph is possible", {
         edge_table,
         from_col = from_currency,
         to_col = to_currency,
-        ndf_mapping = iso_4217))
+        from_to_map = iso_4217))
 })
 
 test_that("adding nodes from several table columns to a graph is possible", {
