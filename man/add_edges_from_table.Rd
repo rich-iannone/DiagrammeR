@@ -33,8 +33,16 @@ in the table as \code{rel} attribute values.}
 \code{rel} attribute to all edges created from the
 table records.}
 
-\item{drop_cols}{an optional character vector for
-dropping columns from the incoming data.}
+\item{drop_cols}{an optional column selection
+statement for dropping columns from the external
+table before inclusion as attributes in the graph's
+internal edge data frame. Several columns can be
+dropped by name using the syntax
+\code{col_1 & col_2 & ...}. Columns can also be
+dropped using a numeric column range with \code{:}
+(e.g., \code{5:8}), or, by using the \code{:}
+between column names to specify the range (e.g.,
+\code{col_5_name:col_8_name}).}
 }
 \value{
 a graph object of class \code{dgr_graph}.
