@@ -11,10 +11,18 @@
 #' @param type_col an option to apply a column of data
 #' in the table as \code{type} attribute values.
 #' @param set_type an optional string to apply a
-#' \code{type} attribute to all nodes created from the
-#' table records.
-#' @param drop_cols an optional character vector for
-#' dropping columns from the incoming data.
+#' \code{type} attribute to all nodes created from data
+#' in the external table.
+#' @param drop_cols an optional column selection
+#' statement for dropping columns from the external
+#' table before inclusion as attributes in the graph's
+#' internal node data frame. Several columns can be
+#' dropped by name using the syntax
+#' \code{col_1 & col_2 & ...}. Columns can also be
+#' dropped using a numeric column range with \code{:}
+#' (e.g., \code{5:8}), or, by using the \code{:}
+#' between column names to specify the range (e.g.,
+#' \code{col_5_name:col_8_name}).
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -59,20 +67,20 @@
 #'   add_nodes_from_table(
 #'     table = path_to_csv,
 #'     label_col = iso_4217_code,
-#'     set_type = "currency")
+#'     set_type = currency)
 #'
 #' # View part of the graph's internal ndf
 #' graph_2 %>%
 #'   get_node_df() %>%
 #'   .[, 1:5] %>%
 #'   head()
-#' #>   id     type label iso_4217_code curr_number
-#' #> 1  1 currency   AED           AED         784
-#' #> 2  2 currency   AFN           AFN         971
-#' #> 3  3 currency   ALL           ALL           8
-#' #> 4  4 currency   AMD           AMD          51
-#' #> 5  5 currency   ANG           ANG         532
-#' #> 6  6 currency   AOA           AOA         973
+#' #>   id     type label curr_number exponent
+#' #> 1  1 currency   AED         784        2
+#' #> 2  2 currency   AFN         971        2
+#' #> 3  3 currency   ALL           8        2
+#' #> 4  4 currency   AMD          51        2
+#' #> 5  5 currency   ANG         532        2
+#' #> 6  6 currency   AOA         973        2
 #'
 #' # Suppose you would like to not include certain
 #' # columns from the table in the resulting graph; you
@@ -83,18 +91,17 @@
 #'   add_nodes_from_table(
 #'     table = path_to_csv,
 #'     label_col = iso_4217_code,
-#'     set_type = "currency",
-#'     drop_cols = c("exponent", "currency_name"))
+#'     set_type = currency,
+#'     drop_cols = exponent & currency_name)
 #'
 #' # Show the node attribute names for the graph
 #' graph_3 %>%
 #'   get_node_df() %>%
 #'   colnames()
-#' #> [1] "id"  type"  "label"  "iso_4217_code"
-#' #> [5] "curr_number"
+#' #> [1] "id"  type"  "label"  "curr_number"
 #' }
 #' @importFrom utils read.csv
-#' @importFrom dplyr bind_cols mutate mutate_ select_
+#' @importFrom dplyr bind_cols mutate select
 #' @importFrom rlang enquo UQ
 #' @export add_nodes_from_table
 
@@ -114,6 +121,12 @@ add_nodes_from_table <- function(graph,
   type_col <- rlang::enquo(type_col)
   type_col <- (rlang::UQ(type_col) %>% paste())[2]
 
+  set_type <- rlang::enquo(set_type)
+  set_type <- (rlang::UQ(set_type) %>% paste())[2]
+
+  drop_cols <- rlang::enquo(drop_cols)
+  drop_cols <- (rlang::UQ(drop_cols) %>% paste())[2]
+
   if (label_col == "NULL") {
     label_col <- NULL
   }
@@ -122,22 +135,33 @@ add_nodes_from_table <- function(graph,
     type_col <- NULL
   }
 
+  if (set_type == "NULL") {
+    set_type <- NULL
+  }
+
+  if (drop_cols == "NULL") {
+    drop_cols <- NULL
+  }
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
     stop("The graph object is not valid.")
   }
 
   # Create bindings for specific variables
-  type <- NULL
+  type <- id_external <- NULL
 
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
 
   if (inherits(table, "character")) {
+
     # Load in CSV file
     csv <- read.csv(table, stringsAsFactors = FALSE)
+
   } else if (inherits(table, "data.frame")) {
+
     # Rename `table` object as `csv`
     csv <- table
   }
@@ -147,37 +171,37 @@ add_nodes_from_table <- function(graph,
 
   # Create an empty ndf and bind those columns
   # with the table data
-  empty_ndf <- create_node_df(n = rows_in_csv)
-  ndf <- dplyr::bind_cols(empty_ndf, csv)
-
-  # If values for `drop_cols` provided, filter the ndf
-  # columns by those named columns
-  if (!is.null(drop_cols)) {
-
-    columns_retained <-
-      which(!(colnames(ndf) %in% drop_cols))
-
-    ndf <- ndf[, columns_retained]
-  }
+  ndf <- create_node_df(n = rows_in_csv)
 
   # Optionally set the `label` attribute from a
   # specified column in the CSV (this copies data into
   # the `label` column)
   if (!is.null(label_col)) {
-    if (any(colnames(ndf) == label_col)) {
-      ndf$label <-
-        as.character(ndf[, which(colnames(ndf) == label_col)])
-    }
+
+    colnames(csv)[which(colnames(csv) == label_col)] <- "label"
+
+    ndf$label <- as.character(csv[, which(colnames(csv) == "label")])
   }
 
   # Optionally set the `type` attribute from a
-  # specified column in the CSV
+  # specified column in the CSV (this copies data into
+  # the `type` column)
   if (!is.null(type_col)) {
+
+    colnames(csv)[which(colnames(csv) == type_col)] <- "type"
+
+    ndf$type <- as.character(csv[, which(colnames(csv) == "type")])
+  }
+
+  # If an `id` column exists in the external
+  # table, copy those values in as `id_external`
+  if ("id" %in% colnames(csv)) {
+
+    colnames(csv)[which(colnames(csv) == "id")] <- "id_external"
+
     ndf <-
       ndf %>%
-      dplyr::mutate_(type = type_col) %>%
-      dplyr::mutate(type = as.character(type)) %>%
-      dplyr::select_(paste0("-", type_col))
+      dplyr::mutate(id_external = csv$id_external)
   }
 
   # Optionally set the `type` attribute with a single
@@ -187,6 +211,51 @@ add_nodes_from_table <- function(graph,
       ndf %>%
       dplyr::mutate(type = as.character(set_type))
   }
+
+  # Get the remaining columns from `csv`
+  # to add to the ndf
+  columns_to_add <-
+    base::setdiff(colnames(csv), colnames(ndf))
+
+  # If values for `drop_cols` provided,
+  # further filter the list of column data
+  # to migrate to `ndf`
+  if (!is.null(drop_cols)) {
+
+    col_selection <- get_col_selection(col_selection_stmt = drop_cols)
+
+    if (col_selection[["selection_type"]] == "column_range") {
+      col_index_1 <- which(colnames(csv) == col_selection[["column_selection"]][1])
+      col_index_2 <- which(colnames(csv) == col_selection[["column_selection"]][2])
+
+      col_indices <- col_index_1:col_index_2 %>% sort()
+
+      columns_to_add <- base::setdiff(columns_to_add, colnames(csv)[col_indices])
+
+    } else if (col_selection[["selection_type"]] == "column_index_range") {
+
+      col_indices <- col_selection[["column_selection"]] %>% sort()
+
+      columns_to_add <- base::setdiff(columns_to_add, colnames(csv)[col_indices])
+
+
+    } else if (col_selection[["selection_type"]] == "column_names") {
+
+      columns_to_add <- base::setdiff(columns_to_add, col_selection[["column_selection"]])
+
+    } else if (length(col_selection) == 0) {
+
+      columns_to_add <- columns_to_add
+    }
+  }
+
+  # Move any additional columns from the
+  # external table to `ndf`
+  ndf <-
+    ndf %>%
+    dplyr::bind_cols(
+      csv %>%
+        dplyr::select(columns_to_add))
 
   # Add as a node data frame to the graph
   graph <- add_node_df(graph, ndf)
