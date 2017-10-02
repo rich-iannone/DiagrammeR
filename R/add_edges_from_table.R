@@ -10,7 +10,7 @@
 #' which edges originate.
 #' @param to_col the name of the table column to
 #' which edges terminate.
-#' @param ndf_mapping a single character value for
+#' @param from_to_map a single character value for
 #' the mapping of the \code{from} and \code{to} columns
 #' in the external table (supplied as \code{from_col}
 #' and \code{to_col}, respectively) to a column in the
@@ -25,15 +25,14 @@
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
-#' # Create an empty graph and then add
-#' # nodes to it from a CSV file; in this case
-#' # we are using the `currencies` CSV file
-#' # that's available in the package
+#' # Create an empty graph and then
+#' # add nodes to it from the
+#' # `currencies` dataset available
+#' # in the package
 #' graph <-
 #'   create_graph() %>%
 #'   add_nodes_from_table(
-#'     system.file("extdata", "currencies.csv",
-#'                 package = "DiagrammeR"))
+#'     table = currencies)
 #'
 #' # Now we want to add edges to the graph
 #' # using a similar CSV file that contains
@@ -43,11 +42,10 @@
 #' graph_1 <-
 #'   graph %>%
 #'   add_edges_from_table(
-#'     system.file("extdata", "usd_exchange_rates.csv",
-#'                 package = "DiagrammeR"),
+#'     table = usd_exchange_rates,
 #'     from_col = from_currency,
 #'     to_col = to_currency,
-#'     ndf_mapping = iso_4217_code)
+#'     from_to_map = iso_4217_code)
 #'
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
@@ -69,12 +67,12 @@
 #' graph_2 <-
 #'   graph %>%
 #'   add_edges_from_table(
-#'     system.file("extdata", "usd_exchange_rates.csv",
-#'                 package = "DiagrammeR"),
+#'     table = usd_exchange_rates,
 #'     from_col = from_currency,
 #'     to_col = to_currency,
-#'     ndf_mapping = iso_4217_code,
-#'     set_rel = "from_usd")
+#'     from_to_map = iso_4217_code,
+#'     set_rel = "from_usd",
+#'     drop_cols = cost_unit)
 #'
 #' # View part of the graph's internal edge data
 #' # frame (edf) using `get_edge_df()`
@@ -101,7 +99,7 @@ add_edges_from_table <- function(graph,
                                  table,
                                  from_col,
                                  to_col,
-                                 ndf_mapping,
+                                 from_to_map,
                                  rel_col = NULL,
                                  set_rel = NULL,
                                  drop_cols = NULL) {
@@ -115,8 +113,15 @@ add_edges_from_table <- function(graph,
   to_col <- rlang::enquo(to_col)
   to_col <- (rlang::UQ(to_col) %>% paste())[2]
 
-  ndf_mapping <- rlang::enquo(ndf_mapping)
-  ndf_mapping <- (rlang::UQ(ndf_mapping) %>% paste())[2]
+  from_to_map <- rlang::enquo(from_to_map)
+  from_to_map <- (rlang::UQ(from_to_map) %>% paste())[2]
+
+  drop_cols <- rlang::enquo(drop_cols)
+  drop_cols <- (rlang::UQ(drop_cols) %>% paste())[2]
+
+  if (drop_cols == "NULL") {
+    drop_cols <- NULL
+  }
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -134,9 +139,12 @@ add_edges_from_table <- function(graph,
   # Determine whether the table is a file connection
   # to a CSV file or a data frame
   if (inherits(table, "character")) {
+
     # Load in CSV file
     csv <- utils::read.csv(table, stringsAsFactors = FALSE)
+
   } else if (inherits(table, "data.frame")) {
+
     # Rename `table` object as `csv`
     csv <- table
   }
@@ -151,10 +159,10 @@ add_edges_from_table <- function(graph,
     stop("The value specified in `to_col` is not in the table.")
   }
 
-  # Verify that value for `ndf_mapping` is in the
+  # Verify that value for `from_to_map` is in the
   # graph's ndf
-  if (!(ndf_mapping %in% colnames(get_node_df(graph)))) {
-    stop("The value specified in `ndf_mapping` is not in the graph.")
+  if (!(from_to_map %in% colnames(get_node_df(graph)))) {
+    stop("The value specified in `from_to_map` is not in the graph.")
   }
 
   # If values for `drop_cols` provided, filter the CSV
@@ -168,6 +176,9 @@ add_edges_from_table <- function(graph,
   # Optionally set the `rel` attribute from a
   # specified column in the CSV
   if (!is.null(rel_col)) {
+
+    colnames(csv)[which(colnames(csv) == label_col)] <- "rel"
+
     if (any(colnames(csv) == rel_col)) {
       colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
       csv <- mutate(csv, rel = as.character(rel))
@@ -206,7 +217,7 @@ add_edges_from_table <- function(graph,
   col_from <-
     tibble::as_tibble(csv) %>%
     dplyr::left_join(ndf,
-                     by = stats::setNames(ndf_mapping, from_col)) %>%
+                     by = stats::setNames(from_to_map, from_col)) %>%
     dplyr::select_(.dots = csv_colnames) %>%
     dplyr::rename(from = id) %>%
     dplyr::mutate(from = as.integer(from))
@@ -215,7 +226,7 @@ add_edges_from_table <- function(graph,
   col_to <-
     tibble::as_tibble(csv) %>%
     dplyr::left_join(ndf,
-                     by = stats::setNames(ndf_mapping, to_col)) %>%
+                     by = stats::setNames(from_to_map, to_col)) %>%
     dplyr::distinct() %>%
     dplyr::select_(.dots = csv_colnames) %>%
     dplyr::rename(to = id) %>%
