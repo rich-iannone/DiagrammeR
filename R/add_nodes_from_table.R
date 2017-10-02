@@ -25,26 +25,20 @@
 #' \code{col_5_name:col_8_name}).
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
-#' library(dplyr)
-#'
-#' # Specify a path to a CSV file
-#' path_to_csv <-
-#'   system.file(
-#'     "extdata", "currencies.csv",
-#'     package = "DiagrammeR")
-#'
-#' # To add nodes from a CSV file, call the
-#' # `add_nodes_from_table()` function; new node ID
-#' # values will be created as a monotonically-
-#' # increasing values from 1
+#' # To add nodes from the dataset called
+#' # `currencies` (available as a dataset
+#' # in the package), call the
+#' # `add_nodes_from_table()` function
+#' # after creating an empty graph; new
+#' # node ID values will be created as
+#' # monotonically-increasing values
 #' graph_1 <-
 #'   create_graph() %>%
 #'   add_nodes_from_table(
-#'     table = path_to_csv)
+#'     table = currencies)
 #'
-#' # View part of the graph's internal node data
-#' # frame (ndf) using `get_node_df()`
+#' # View part of the graph's internal
+#' # node data frame (ndf)
 #' graph_1 %>%
 #'   get_node_df() %>%
 #'   .[, 1:5] %>%
@@ -57,15 +51,17 @@
 #' #> 5  5 <NA>  <NA>           ANG         532
 #' #> 6  6 <NA>  <NA>           AOA         973
 #'
-#' # If you would like to assign any of the table's
-#' # columns as `type` or `label` attributes, this can
-#' # be done with the `type_col` and `label_col`
-#' # arguments; to set a static `type` attribute for
-#' # all of the table records, use `set_type`
+#' # If you would like to assign
+#' # any of the table's columns as
+#' # `type` or `label` attributes,
+#' # this can be done with the `type_col`
+#' # and `label_col` arguments; to set
+#' # a static `type` attribute for all
+#' # of the table records, use `set_type`
 #' graph_2 <-
 #'   create_graph() %>%
 #'   add_nodes_from_table(
-#'     table = path_to_csv,
+#'     table = currencies,
 #'     label_col = iso_4217_code,
 #'     set_type = currency)
 #'
@@ -82,24 +78,29 @@
 #' #> 5  5 currency   ANG         532        2
 #' #> 6  6 currency   AOA         973        2
 #'
-#' # Suppose you would like to not include certain
-#' # columns from the table in the resulting graph; you
-#' # can use the `drop_cols` argument to choose which
-#' # columns to not include as attributes in the graph
+#' # Suppose we would like to not
+#' # include certain columns from the
+#' # external table in the resulting
+#' # graph; we can use the `drop_cols`
+#' # argument to choose which columns
+#' # to not include as attributes
 #' graph_3 <-
 #'   create_graph() %>%
 #'   add_nodes_from_table(
-#'     table = path_to_csv,
+#'     table = currencies,
 #'     label_col = iso_4217_code,
 #'     set_type = currency,
 #'     drop_cols = exponent & currency_name)
 #'
-#' # Show the node attribute names for the graph
+#' # Show the node attribute names
+#' # for the graph; note that the
+#' # `exponent` and `currency_name`
+#' # columns are not attributes in the
+#' # graph's ndf
 #' graph_3 %>%
 #'   get_node_df() %>%
 #'   colnames()
 #' #> [1] "id"  type"  "label"  "curr_number"
-#' }
 #' @importFrom utils read.csv
 #' @importFrom dplyr bind_cols mutate select
 #' @importFrom rlang enquo UQ
@@ -237,7 +238,6 @@ add_nodes_from_table <- function(graph,
       col_indices <- col_selection[["column_selection"]] %>% sort()
 
       columns_to_add <- base::setdiff(columns_to_add, colnames(csv)[col_indices])
-
 
     } else if (col_selection[["selection_type"]] == "column_names") {
 
