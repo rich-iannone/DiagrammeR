@@ -323,6 +323,73 @@ save_graph_as_rds <- function(graph) {
 }
 
 ###
+# Selection helper functions
+###
+
+# Function to extract column names from a
+# column selection statement
+#' @importFrom stringr str_detect str_split str_extract
+get_col_selection <- function(col_selection_stmt) {
+
+  if (all(stringr::str_detect(
+    string = col_selection_stmt,
+    pattern = "(.* & ).*")) & length(col_selection_stmt) == 1) {
+
+    selection_type <- "column_names"
+
+    # Get the column names
+    column_selection <-
+      stringr::str_split(
+        string = col_selection_stmt,
+        pattern = " & ") %>%
+      unlist()
+
+  } else if (any(stringr::str_detect(
+    string = col_selection_stmt,
+    pattern = "^[0-9]*?:[0-9]*?$"))) {
+
+    selection_type <- "column_index_range"
+
+    # Get the column indices
+    column_selection <-
+      seq(
+        from = (stringr::str_split(
+          string = col_selection_stmt,
+          pattern = ":") %>%
+                  unlist())[1] %>%
+          as.numeric(),
+        to = (stringr::str_split(
+          string = col_selection_stmt,
+          pattern = ":") %>%
+                unlist())[2] %>%
+          as.numeric())
+
+  } else if (any(
+    stringr::str_detect(
+      string = col_selection_stmt,
+      pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`):([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$"))
+  ) {
+
+    selection_type <- "column_range"
+
+    # Get the first and last column names
+    column_selection <-
+      c(stringr::str_extract(
+        string = col_selection_stmt,
+        pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)"),
+        stringr::str_extract(
+          string = col_selection_stmt,
+          pattern = "([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$"))
+  } else {
+    return(list())
+  }
+
+  list(
+    selection_type = selection_type,
+    column_selection = column_selection)
+}
+
+###
 # Aesthetic attribute functions
 ###
 
