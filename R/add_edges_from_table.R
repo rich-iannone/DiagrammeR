@@ -210,14 +210,6 @@ add_edges_from_table <- function(graph,
     csv <- csv[, columns_retained]
   }
 
-  # If values for `drop_cols` provided, filter the CSV
-  # columns by those named columns
-  if (!is.null(drop_cols)) {
-    columns_retained <-
-      which(!(colnames(csv) %in% drop_cols))
-    csv <- csv[, columns_retained]
-  }
-
   # Optionally set the `rel` attribute from a
   # specified column in the CSV
   if (!is.null(rel_col)) {
@@ -247,16 +239,6 @@ add_edges_from_table <- function(graph,
   } else {
     csv_colnames[1] <- "id"
   }
-
-  # Expand the df to capture several space-delimited
-  # values in the `to` column; drop NA values in the
-  # `to_col` and the `from_col` columns
-  csv <-
-    csv %>%
-    dplyr::mutate_(.dots = setNames(paste0("strsplit(", to_col, ", \" \")"), to_col)) %>%
-    tidyr::unnest_(to_col) %>%
-    tidyr::drop_na_(to_col) %>%
-    tidyr::drop_na_(from_col)
 
   # Get the `from` col
   col_from <-
