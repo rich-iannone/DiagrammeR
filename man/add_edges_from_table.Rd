@@ -4,7 +4,7 @@
 \alias{add_edges_from_table}
 \title{Add edges and attributes to graph from a table}
 \usage{
-add_edges_from_table(graph, table, from_col, to_col, ndf_mapping,
+add_edges_from_table(graph, table, from_col, to_col, from_to_map,
   rel_col = NULL, set_rel = NULL, drop_cols = NULL)
 }
 \arguments{
@@ -20,7 +20,7 @@ which edges originate.}
 \item{to_col}{the name of the table column to
 which edges terminate.}
 
-\item{ndf_mapping}{a single character value for
+\item{from_to_map}{a single character value for
 the mapping of the \code{from} and \code{to} columns
 in the external table (supplied as \code{from_col}
 and \code{to_col}, respectively) to a column in the
@@ -46,15 +46,14 @@ data frame.
 }
 \examples{
 \dontrun{
-# Create an empty graph and then add
-# nodes to it from a CSV file; in this case
-# we are using the `currencies` CSV file
-# that's available in the package
+# Create an empty graph and then
+# add nodes to it from the
+# `currencies` dataset available
+# in the package
 graph <-
   create_graph() \%>\%
   add_nodes_from_table(
-    system.file("extdata", "currencies.csv",
-                package = "DiagrammeR"))
+    table = currencies)
 
 # Now we want to add edges to the graph
 # using a similar CSV file that contains
@@ -64,11 +63,10 @@ graph <-
 graph_1 <-
   graph \%>\%
   add_edges_from_table(
-    system.file("extdata", "usd_exchange_rates.csv",
-                package = "DiagrammeR"),
+    table = usd_exchange_rates,
     from_col = from_currency,
     to_col = to_currency,
-    ndf_mapping = iso_4217_code)
+    from_to_map = iso_4217_code)
 
 # View part of the graph's internal edge data
 # frame (edf) using `get_edge_df()`
@@ -94,7 +92,7 @@ graph_2 <-
                 package = "DiagrammeR"),
     from_col = from_currency,
     to_col = to_currency,
-    ndf_mapping = iso_4217_code,
+    from_to_map = iso_4217_code,
     set_rel = "from_usd")
 
 # View part of the graph's internal edge data
