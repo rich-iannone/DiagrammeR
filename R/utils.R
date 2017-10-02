@@ -374,12 +374,15 @@ get_col_selection <- function(col_selection_stmt) {
 
     # Get the first and last column names
     column_selection <-
-      c(stringr::str_extract(
-        string = col_selection_stmt,
-        pattern = "^([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)"),
-        stringr::str_extract(
+      c(
+        (stringr::str_split(
           string = col_selection_stmt,
-          pattern = "([a-zA-Z_\\.][a-zA-Z0-9_\\.]*?|`.*?`)$"))
+          pattern = ":") %>%
+            unlist())[1],
+        (stringr::str_split(
+          string = col_selection_stmt,
+          pattern = ":") %>%
+            unlist())[2])
   } else {
     return(list())
   }
