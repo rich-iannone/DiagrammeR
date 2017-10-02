@@ -189,7 +189,7 @@ test_that("adding nodes from a table to a graph is possible", {
   # options
   graph_1_df <-
     create_graph() %>%
-    add_nodes_from_table(node_table)
+    add_nodes_from_table(table = node_table)
 
   # Expect that the graph has the same number of nodes
   # as there are rows in the CSV
@@ -208,7 +208,8 @@ test_that("adding nodes from a table to a graph is possible", {
   graph_2_df <-
     create_graph() %>%
     add_nodes_from_table(
-      node_table, label_col = "curr_number")
+      table = node_table,
+      label_col = curr_number)
 
   # Expect that there aren't any NA values in the
   # graph's `label` column
@@ -225,7 +226,7 @@ test_that("adding nodes from a table to a graph is possible", {
   graph_3_df <-
     create_graph() %>%
     add_nodes_from_table(
-      node_table,
+      table = node_table,
       set_type = "currency",
       label_col = curr_number)
 
@@ -239,10 +240,10 @@ test_that("adding nodes from a table to a graph is possible", {
   graph_4_df <-
     create_graph() %>%
     add_nodes_from_table(
-      node_table,
+      table = node_table,
       set_type = "currency",
       label_col = curr_number,
-      drop_cols = c("exponent", "currency_name"))
+      drop_cols = exponent & currency_name)
 
   # Expect that the node attributes `exponent`
   # and `currency_name` do not appear in the graph's
