@@ -20,8 +20,16 @@
 #' @param set_rel an optional string to apply a
 #' \code{rel} attribute to all edges created from the
 #' table records.
-#' @param drop_cols an optional character vector for
-#' dropping columns from the incoming data.
+#' @param drop_cols an optional column selection
+#' statement for dropping columns from the external
+#' table before inclusion as attributes in the graph's
+#' internal edge data frame. Several columns can be
+#' dropped by name using the syntax
+#' \code{col_1 & col_2 & ...}. Columns can also be
+#' dropped using a numeric column range with \code{:}
+#' (e.g., \code{5:8}), or, by using the \code{:}
+#' between column names to specify the range (e.g.,
+#' \code{col_5_name:col_8_name}).
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and then
@@ -168,6 +176,36 @@ add_edges_from_table <- function(graph,
   # graph's ndf
   if (!(from_to_map %in% colnames(get_node_df(graph)))) {
     stop("The value specified in `from_to_map` is not in the graph.")
+  }
+
+  if (!is.null(drop_cols)) {
+
+    col_selection <- get_col_selection(col_selection_stmt = drop_cols)
+
+    if (col_selection[["selection_type"]] == "column_range") {
+      col_index_1 <- which(colnames(csv) == col_selection[["column_selection"]][1])
+      col_index_2 <- which(colnames(csv) == col_selection[["column_selection"]][2])
+
+      col_indices <- col_index_1:col_index_2 %>% sort()
+
+      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
+
+    } else if (col_selection[["selection_type"]] == "column_index_range") {
+
+      col_indices <- col_selection[["column_selection"]] %>% sort()
+
+      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
+
+    } else if (col_selection[["selection_type"]] %in% c("single_column_name", "column_names")) {
+
+      columns_retained <- base::setdiff(colnames(csv), col_selection[["column_selection"]])
+
+    } else if (length(col_selection) == 0) {
+
+      columns_retained <- colnames(csv)
+    }
+
+    csv <- csv[, columns_retained]
   }
 
   # If values for `drop_cols` provided, filter the CSV
