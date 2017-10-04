@@ -3,7 +3,14 @@ Title: Graph/Network Visualization
 Version: 0.9.3
 Authors@R: person("Rich", "Iannone", email = "riannone@me.com", role = c("aut", "cre"))
 Maintainer: Richard Iannone <riannone@me.com>
-Description: Graph and network visualization using tabular data.
+Description: 
+    Build graph/network structures using functions for stepwise addition and
+    deletion of nodes and edges. Work with data available in tables for bulk
+    addition of nodes, edges, and associated metadata. Use graph selections
+    and traversals to apply changes to specific nodes or edges. A wide
+    selection of graph algorithms allow for the analysis of graphs. Visualize
+    as graph diagrams and take advantage of aesthetic properties assigned to
+    graph nodes and edges.
 Depends: R (>= 3.2.0)
 License: MIT + file LICENSE
 Imports:
