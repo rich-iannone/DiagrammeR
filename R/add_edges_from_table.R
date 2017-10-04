@@ -103,8 +103,7 @@
 #' @importFrom utils read.csv
 #' @importFrom stats setNames
 #' @importFrom tibble as_tibble
-#' @importFrom dplyr left_join select select_ rename mutate mutate_ bind_cols everything distinct
-#' @importFrom tidyr unnest_ drop_na_
+#' @importFrom dplyr left_join select rename mutate bind_cols everything
 #' @importFrom rlang enquo UQ
 #' @export add_edges_from_table
 
