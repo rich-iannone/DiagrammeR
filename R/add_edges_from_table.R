@@ -178,38 +178,6 @@ add_edges_from_table <- function(graph,
     stop("The value specified in `from_to_map` is not in the graph.")
   }
 
-  # If values for `drop_cols` provided, filter the CSV
-  # columns by those named columns
-  if (!is.null(drop_cols)) {
-
-    col_selection <- get_col_selection(col_selection_stmt = drop_cols)
-
-    if (col_selection[["selection_type"]] == "column_range") {
-      col_index_1 <- which(colnames(csv) == col_selection[["column_selection"]][1])
-      col_index_2 <- which(colnames(csv) == col_selection[["column_selection"]][2])
-
-      col_indices <- col_index_1:col_index_2 %>% sort()
-
-      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
-
-    } else if (col_selection[["selection_type"]] == "column_index_range") {
-
-      col_indices <- col_selection[["column_selection"]] %>% sort()
-
-      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
-
-    } else if (col_selection[["selection_type"]] %in% c("single_column_name", "column_names")) {
-
-      columns_retained <- base::setdiff(colnames(csv), col_selection[["column_selection"]])
-
-    } else if (length(col_selection) == 0) {
-
-      columns_retained <- colnames(csv)
-    }
-
-    csv <- csv[, columns_retained]
-  }
-
   # Optionally set the `rel` attribute from a
   # specified column in the CSV
   if (!is.null(rel_col)) {
@@ -225,47 +193,39 @@ add_edges_from_table <- function(graph,
   # Extract the ndf from the graph
   ndf <- graph$nodes_df
 
-  # Get the column names from `csv` into a list,
-  # and, add `id` to the list; this list is used
-  # for the standard evaluation version of dplyr's
-  # `select()` (`select_()`)
-  csv_colnames <- list()
-
-  if (length(setdiff(colnames(csv), c(from_col, to_col))) > 0) {
-    for (i in 1:length(setdiff(colnames(csv), c(from_col, to_col)))) {
-      csv_colnames[i] <- setdiff(colnames(csv), c(from_col, to_col))[i]
-    }
-    csv_colnames[(length(setdiff(colnames(csv), c(from_col, to_col))) + 1)] <- "id"
-  } else {
-    csv_colnames[1] <- "id"
-  }
+  csv_data_excluding_from_to <-
+    csv %>%
+    dplyr::select(setdiff(colnames(csv), c(from_col, to_col)))
 
   # Get the `from` col
   col_from <-
     tibble::as_tibble(csv) %>%
-    dplyr::left_join(ndf,
-                     by = stats::setNames(from_to_map, from_col)) %>%
-    dplyr::select_(.dots = csv_colnames) %>%
+    dplyr::select(rlang::UQ(from_col)) %>%
+    dplyr::left_join(
+      ndf %>% select(id, rlang::UQ(from_to_map)),
+      by = stats::setNames(from_to_map, from_col)) %>%
+    dplyr::select(id) %>%
     dplyr::rename(from = id) %>%
     dplyr::mutate(from = as.integer(from))
 
   # Get the `to` col
   col_to <-
     tibble::as_tibble(csv) %>%
-    dplyr::left_join(ndf,
-                     by = stats::setNames(from_to_map, to_col)) %>%
-    dplyr::distinct() %>%
-    dplyr::select_(.dots = csv_colnames) %>%
+    dplyr::select(rlang::UQ(to_col)) %>%
+    dplyr::left_join(
+      ndf %>% select(id, rlang::UQ(from_to_map)),
+      by = stats::setNames(from_to_map, to_col)) %>%
+    dplyr::select(id) %>%
     dplyr::rename(to = id) %>%
-    dplyr::mutate(to = as.integer(to)) %>%
-    dplyr::select(to)
+    dplyr::mutate(to = as.integer(to))
 
   # Combine the `from` and `to` columns together along
   # with a new `rel` column (filled with NAs) and additional
   # columns from the CSV
   edf <-
     col_from %>%
-    dplyr::bind_cols(col_to)
+    dplyr::bind_cols(col_to) %>%
+    dplyr::bind_cols(csv_data_excluding_from_to)
 
   # Add in a `rel` column (filled with NAs) if it's not
   # already in the table
@@ -299,6 +259,38 @@ add_edges_from_table <- function(graph,
     edf <-
       edf %>%
       dplyr::mutate(rel = as.character(set_rel))
+  }
+
+  # If values for `drop_cols` provided, filter the CSV
+  # columns by those named columns
+  if (!is.null(drop_cols)) {
+
+    col_selection <- get_col_selection(col_selection_stmt = drop_cols)
+
+    if (col_selection[["selection_type"]] == "column_range") {
+      col_index_1 <- which(colnames(csv) == col_selection[["column_selection"]][1])
+      col_index_2 <- which(colnames(csv) == col_selection[["column_selection"]][2])
+
+      col_indices <- col_index_1:col_index_2 %>% sort()
+
+      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
+
+    } else if (col_selection[["selection_type"]] == "column_index_range") {
+
+      col_indices <- col_selection[["column_selection"]] %>% sort()
+
+      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
+
+    } else if (col_selection[["selection_type"]] %in% c("single_column_name", "column_names")) {
+
+      columns_retained <- base::setdiff(colnames(csv), col_selection[["column_selection"]])
+
+    } else if (length(col_selection) == 0) {
+
+      columns_retained <- colnames(csv)
+    }
+
+    edf <- edf[, c("id", columns_retained)]
   }
 
   # Add the edf to the graph object
