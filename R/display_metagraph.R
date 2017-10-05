@@ -29,22 +29,22 @@
 #'   select_nodes_by_degree(
 #'     expressions = "deg >= 3") %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "type",
+#'     node_attr = type,
 #'     value = "a") %>%
 #'   clear_selection() %>%
 #'   select_nodes_by_degree(
 #'     expressions = "deg < 3") %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "type",
+#'     node_attr = type,
 #'     value = "b") %>%
 #'   clear_selection() %>%
 #'   select_nodes_by_degree(
 #'     expressions = "deg == 0") %>%
 #'   set_node_attrs_ws(
-#'     node_attr = "type",
+#'     node_attr = type,
 #'     value = "c") %>%
 #'   set_node_attr_to_display(
-#'     attr = "type") %>%
+#'     attr = type) %>%
 #'   select_edges_by_node_id(
 #'     nodes =
 #'       get_node_ids(.) %>%
@@ -52,16 +52,16 @@
 #'         size = 0.15 * length(.) %>%
 #'           floor())) %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "rel",
+#'     edge_attr = rel,
 #'     value = "r_1") %>%
 #'   invert_selection() %>%
 #'   set_edge_attrs_ws(
-#'     edge_attr = "rel",
+#'     edge_attr = rel,
 #'     value = "r_2") %>%
 #'   clear_selection() %>%
 #'   copy_edge_attrs(
-#'     edge_attr_from = "rel",
-#'     edge_attr_to = "label") %>%
+#'     edge_attr_from = rel,
+#'     edge_attr_to = label) %>%
 #'   add_global_graph_attrs(
 #'     attr = "fontname",
 #'     value = "Helvetica",
