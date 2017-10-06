@@ -182,6 +182,14 @@ h_graph <-
     set_seed = 23)
 ```
 
+We can view the graph using `render_graph()`. There are several layouts to choose from as well (e.g., `nicely`, `tree`, `kk`, `fr`, etc.).
+
+```r
+h_graph %>% render_graph(layout = "nicely")
+```
+
+<img src="inst/img/h_graph.png">
+
 ## Using Data from Tables to Generate a Graph
 
 The **DiagrammeR** package contains a few simple datasets that help illustrate how to create a graph with table data. The `node_list_1` and `edge_list_1` datasets are super simple node and edge data frames that can be assembled into a graph. Let's print them side by side to see what we're working with.
