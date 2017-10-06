@@ -99,12 +99,14 @@ Any time we add a node or edge to the graph, we can add node or edge attributes.
 d_graph <-
   c_graph %>%
   add_node(
-    type = “type_a”,
-    color = “steelblue”,
+    type = "type_a",
+    color = "steelblue",
     value = 2.5) %>%
   add_edge(
-    rel = “interacted_with”,
-    color = “gray65”,
+    from = 1,
+    to = 3,
+    rel = "interacted_with",
+    color = "gray65",
     value = 5.7)
 ```
     
@@ -119,14 +121,14 @@ e_graph <-
     conditions = value == 2.5) %>%
   set_node_attrs_ws(
     node_attr = color,
-    value = “steelblue”) %>%
+    value = "steelblue") %>%
   clear_selection()
 ```
 
 We can create a graph object and add graph primitives such as paths, cycles, and trees to it. 
 
 ```r
-e_graph <-
+f_graph <-
   create_graph() %>%
   add_path(n = 3) %>%
   add_cycle(n = 4) %>%
@@ -136,7 +138,7 @@ e_graph <-
 You can add one or more randomly generated graphs to a graph object. Here, let's add a directed GNM graph with 10 nodes and 15 edges (the `set_seed` option makes the random graph reproducible). 
 
 ```r
-f_graph <-
+g_graph <-
   create_graph() %>%
   add_gnm_graph(
     n = 10,
@@ -147,7 +149,7 @@ f_graph <-
 The undirected version of this graph is can be made using:
 
 ```r
-g_graph <-
+h_graph <-
   create_graph(
     directed = FALSE) %>%
   add_gnm_graph(
