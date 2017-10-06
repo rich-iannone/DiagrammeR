@@ -147,6 +147,8 @@ e_graph <-
   clear_selection()
 ```
 
+There are quite a few functions that allow you to select nodes (e.g., `select_nodes()`, `select_nodes_by_id()`, `select_last_nodes_created()`) and edges (e.g., `select_edges()`, `select_edges_by_edge_id()`, `select_last_edges_created()`). With these selections, we can apply changes using functions that end with `..._ws()` (with selection). As seen, node attributes could be set/replaced with `set_node_attrs_ws()` but we can also mutate attributes of selected nodes (`mutate_node_attrs_ws()`), delete selected nodes (`delete_nodes_ws()`), and even create a subgraph with that selection (`create_subgraph_ws()`). Selection of nodes or edges can be inverted (where unselected nodes or edges become the active selection) with `invert_selection()` and any selection can and should be eventually cleared with `clear_selection()`.
+
 We can create a graph object and add graph primitives such as paths, cycles, and trees to it. 
 
 ```r
@@ -180,7 +182,135 @@ h_graph <-
     set_seed = 23)
 ```
 
-## Functions
+## Using Data from Tables to Generate a Graph
+
+The **DiagrammeR** package contains a few simple datasets that help illustrate how to create a graph with table data. The `node_list_1` and `edge_list_1` datasets are super simple node and edge data frames that can be assembled into a graph. Let's print them side by side to see what we're working with.
+
+```r
+node_list_1     edge_list_1
+```
+
+```
+   id label        from to 
+1   1     A     1     1  2 
+2   2     B     2     1  3 
+3   3     C     3     1  4 
+4   4     D     4     1  9 
+5   5     E     5     2  8 
+6   6     F     6     2  7 
+7   7     G     7     2  1 
+8   8     H     8     2 10 
+9   9     I     9     3  1 
+10 10     J     10    3  6 
+                11    3  8
+                12    4  1
+                13    5  7
+                14    6  2
+                15    6  9
+                16    8  1
+                17    9  3
+                18    9 10
+                19   10  1
+```
+
+To get this into a graph, we have to ensure that both the nodes and its attributes (in this case, just a `label`) are added, and, that the edges are added. Furthermore, we must map the `from` and the `to` definitions to the node `id` (in other cases, we may need to map relationships between text labels to the same text attribute stored in the node data frame). We can use three functions to generate a graph containing this data: `create_graph()`, `add_nodes_from_table()`, and `add_edges_from_table()`. Let's show the process in a stepwise fashion (checking the graph's internal ndf and edf) so that we can understand what is actually happening.
+
+```r
+# Create the graph object; it's empty
+i_graph_1 <-
+  create_graph()
+```
+
+```r
+# Add the nodes to the graph
+i_graph_2 <-
+  i_graph_1 %>%
+  add_nodes_from_table(
+    table = node_list_1,
+    label_col = label)
+
+# View the node data frame
+i_graph_2 %>%
+  get_node_df()
+```
+
+```
+   id type label id_external
+1   1 <NA>     A           1
+2   2 <NA>     B           2
+3   3 <NA>     C           3
+4   4 <NA>     D           4
+5   5 <NA>     E           5
+6   6 <NA>     F           6
+7   7 <NA>     G           7
+8   8 <NA>     H           8
+9   9 <NA>     I           9
+10 10 <NA>     J          10
+```
+
+The graph now has 10 nodes (no edges yet). Each node was assigned an auto-incrementing `id`. The incoming `id` was renamed `id_external` so as avoid duplicate column names and also to retain a column for mapping edge definitions. Now, let's add the edges. We need to specify that the `from_col` in the `edge_list_1` table is indeed `from` and that the `to_col` is `to`. The `from_to_map` argument expects a node attribute column that the `from` and `to` columns will map to. In this case it's `id_external`. Note that while `id` also matches perfectly in this mapping, there may be cases where `id` won't match with and `id_external` column (e.g., when there are existing nodes or when the node `id` values in the incoming table are provided in a different order, etc.).
+
+```r
+# Add the edges to the graph
+i_graph_3 <-
+  i_graph_2 %>%
+  add_edges_from_table(
+    table = edge_list_1,
+    from_col = from,
+    to_col = to,
+    from_to_map = id_external)
+
+# View the edge data frame
+i_graph_3 %>%
+  get_edge_df()
+```
+
+```
+   id from to  rel
+1   1    1  2 <NA>
+2   2    1  3 <NA>
+3   3    1  4 <NA>
+4   4    1  9 <NA>
+5   5    2  8 <NA>
+6   6    2  7 <NA>
+7   7    2  1 <NA>
+8   8    2 10 <NA>
+9   9    3  1 <NA>
+10 10    3  6 <NA>
+11 11    3  8 <NA>
+12 12    4  1 <NA>
+13 13    5  7 <NA>
+14 14    6  2 <NA>
+15 15    6  9 <NA>
+16 16    8  1 <NA>
+17 17    9  3 <NA>
+18 18    9 10 <NA>
+19 19   10  1 <NA>
+```
+
+Upon viewing the graph information in the console, we see that we have a graph with 10 nodes and 19 edges.
+
+```r
+i_graph_3
+```
+
+```
+DiagrammeR Graph // 10 nodes / 19 edges / density: 0.2222
+  -- directed / connected / simple
+
+  NODES / type: <unused> / label: 10 vals - complete & unique   info: `get_node_df()`
+    -- 1 additional node attribute (id_external)
+  EDGES / rel: <unused>                                         info: `get_edge_df()`
+    -- no additional edge attributes
+  SELECTION / <none>
+  CACHE / <none>
+  STORED DFs / <none>
+  GLOBAL ATTRS / 17 are set                          info: `get_global_graph_attrs()`
+  GRAPH ACTIONS / <none>
+  GRAPH LOG / <1 action> -> add_node_df() -> add_nodes_from_table() -> add_edges_from_table()
+```
+
+## List of Functions
 
 There are a lot of functions for working with graphs. Below is a listing of all the functions available in the package.
 
