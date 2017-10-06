@@ -93,6 +93,28 @@ c_graph <-
     to = 2)
 ```
 
+Viewing the graph object in the console will provide some basic information about the graph and some pointers on where to get additional information.
+
+```r
+c_graph
+```
+
+```
+DiagrammeR Graph // 3 nodes / 2 edges / density: 1
+  -- directed / connected / DAG / simple
+
+  NODES / type: <unused> / label: <unused>                 info: `get_node_df()`
+    -- no additional node attributes
+  EDGES / rel: <unused>                                    info: `get_edge_df()`
+    -- no additional edge attributes
+  SELECTION / <none>
+  CACHE / <none>
+  STORED DFs / <none>
+  GLOBAL ATTRS / 17 are set                     info: `get_global_graph_attrs()`
+  GRAPH ACTIONS / <none>
+  GRAPH LOG / <3 actions> -> add_edge() -> delete_edge() -> add_node()
+```
+
 Any time we add a node or edge to the graph, we can add node or edge attributes. These can be aesthetic properties (e.g., `color`, `shape`), grouping labels (e.g., `type` and `rel`), or data that is useful for calculations and for display purposes.
 
 ```r
@@ -160,7 +182,7 @@ h_graph <-
 
 ## Functions
 
-There are lots of functions in the package. Below is a listing of all the functions available in the package, categorized by how the interact with the graph.
+There are a lot of functions for working with graphs. Below is a listing of all the functions available in the package.
 
 <img src="inst/img/functions.png">
 
