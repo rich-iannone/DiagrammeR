@@ -306,17 +306,106 @@ i_graph_3
 DiagrammeR Graph // 10 nodes / 19 edges / density: 0.2222
   -- directed / connected / simple
 
-  NODES / type: <unused> / label: 10 vals - complete & unique   info: `get_node_df()`
+  NODES / type: <unused> / label: 10 vals - complete & unique           info: `get_node_df()`
     -- 1 additional node attribute (id_external)
-  EDGES / rel: <unused>                                         info: `get_edge_df()`
+  EDGES / rel: <unused>                                                 info: `get_edge_df()`
     -- no additional edge attributes
   SELECTION / <none>
   CACHE / <none>
   STORED DFs / <none>
-  GLOBAL ATTRS / 17 are set                          info: `get_global_graph_attrs()`
+  GLOBAL ATTRS / 17 are set                                  info: `get_global_graph_attrs()`
   GRAPH ACTIONS / <none>
   GRAPH LOG / <1 action> -> add_node_df() -> add_nodes_from_table() -> add_edges_from_table()
 ```
+
+There are two other similar datasets included (`node_list_2` and `edge_list_2`) that contain extended attribute data.
+
+```r
+node_list_2 %>% colnames()
+```
+
+```
+[1] "id"      "label"   "type"    "value_1" "value_2"
+```
+
+```r
+edge_list_2 %>% colnames()
+```
+
+```
+[1] "from"    "to"      "rel"     "value_1" "value_2"
+```
+
+Because we have unique labels in the `label` column, and categorical labels in the `type` and `rel` columns, we can create a property graph from this data. Like before, we can incorporate the two tables as a graph with `add_nodes_from_table()` and `add_edges_from_table()`. This time, we'll remove the auto-generated `id_external` node attribute with the `drop_node_attrs()` function.
+
+```r
+j_graph <- 
+  create_graph() %>% 
+  add_nodes_from_table(
+    table = node_list_2,
+    label_col = label,
+    type_col = type) %>%
+  add_edges_from_table(
+    table = edge_list_2,
+    from_col = from,
+    to_col = to,
+    from_to_map = id_external,
+    rel_col = rel) %>%
+  drop_node_attrs(
+    node_attr = id_external)
+    
+j_graph
+```
+
+```
+DiagrammeR Graph // 10 nodes / 19 edges / density: 0.2222
+  -- directed / connected / property graph / simple
+
+  NODES / type: 2 vals - complete / label: 10 vals - complete & unique       info: `get_node_df()`
+    -- 2 additional node attributes (value_1, value_2)
+  EDGES / rel: 3 vals - complete                                             info: `get_edge_df()`
+    -- 2 additional edge attributes (value_1, value_2)
+  SELECTION / <none>
+  CACHE / <none>
+  STORED DFs / <none>
+  GLOBAL ATTRS / 17 are set                                       info: `get_global_graph_attrs()`
+  GRAPH ACTIONS / <none>
+  GRAPH LOG / <2 actions> -> add_nodes_from_table() -> add_edges_from_table() -> drop_node_attrs()
+```
+
+Now, because we node/edge metadata (categorical labels and numerical data in `value_1` & `value_2` for both nodes and edges), we can do some interesting things with the graph. First, let's do some mutation with `mutate_node_attrs()` and `mutate_edge_attrs()` and get the sum of `value_1` and `value_2` as `value_3`. Then let's color nodes and edges `forestgreen` if `value_3` is greater than `10` (`red` otherwise). Finally, let's display the values of `value_3` for the nodes when rendering the graph diagram. Here we go!
+
+```r
+k_graph <-
+  j_graph %>%
+  mutate_node_attrs(
+    value_3 = value_1 + value_2) %>%
+  mutate_edge_attrs(
+    value_3 = value_1 + value_2) %>%
+  select_nodes(
+    conditions = value_3 > 10) %>%
+  set_node_attrs_ws(
+    node_attr = fillcolor,
+    value = "forestgreen") %>%
+  invert_selection() %>%
+  set_node_attrs_ws(
+    node_attr = fillcolor,
+    value = "red") %>%
+  select_edges(
+    conditions = value_3 > 10) %>%
+  set_edge_attrs_ws(
+    edge_attr = color,
+    value = "forestgreen") %>%
+  invert_selection() %>%
+  set_edge_attrs_ws(
+    edge_attr = color,
+    value = "red") %>%
+  clear_selection()
+
+k_graph %>% render_graph()
+```
+
+<img src="inst/img/k_graph.png">
 
 ## List of Functions
 
