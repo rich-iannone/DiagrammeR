@@ -23,6 +23,12 @@
 #'   select_nodes_by_id(
 #'     nodes = 3:4) %>%
 #'   delete_loop_edges_ws()
+#'
+#' # Count the number of loop
+#' # edges remaining in the graph
+#' graph %>%
+#'   count_loop_edges()
+#' #> [1] 3
 #' @importFrom dplyr setdiff filter
 #' @importFrom purrr map_df
 #' @export delete_loop_edges_ws
