@@ -183,7 +183,7 @@ generate_dot <- function(graph) {
       "labelangle", "labeldistance", "labelfloat",
       "labelfontcolor", "labelfontname", "labelfontsize",
       "labelhref", "labelURL", "labeltarget",
-      "labeltooltip", "layer", "lhead", "ltail", "minlen",
+      "labeltooltip", "layer", "len", "lhead", "ltail", "minlen",
       "penwidth", "samehead", "sametail", "style",
       "tailclip", "tailhref", "taillabel", "tailport",
       "tailtarget", "tailtooltip", "tailURL", "target",
