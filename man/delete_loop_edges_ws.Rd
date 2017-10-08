@@ -36,4 +36,10 @@ graph <-
   select_nodes_by_id(
     nodes = 3:4) \%>\%
   delete_loop_edges_ws()
+
+# Count the number of loop
+# edges remaining in the graph
+graph \%>\%
+  count_loop_edges()
+#> [1] 3
 }
