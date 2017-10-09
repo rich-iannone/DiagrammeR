@@ -115,7 +115,7 @@ graph_3 <-
 # for the graph; note that the
 # `exponent` and `currency_name`
 # columns are not attributes in the
-# graph's ndf
+# graph's internal node data frame
 graph_3 \%>\%
   get_node_df() \%>\%
   colnames()
