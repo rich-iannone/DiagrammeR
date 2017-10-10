@@ -82,6 +82,8 @@
 #' get_edges(graph)
 #' #> [1] "1->2" "3->2" "3->4" "4->1"
 #' @importFrom dplyr bind_rows select filter
+#' @importFrom tibble as_tibble
+#' @importFrom rlang UQ
 #' @export add_edge
 
 add_edge <- function(graph,
@@ -125,7 +127,7 @@ add_edge <- function(graph,
 
   # Collect extra vectors of data as `extras_tbl`
   if (length(extras) > 0) {
-    extras_tbl <- as_tibble(extras)
+    extras_tbl <- tibble::as_tibble(extras)
   }
 
   # If `from` and `to` values provided as character
@@ -200,7 +202,7 @@ add_edge <- function(graph,
       graph <-
         graph %>%
         select_edges_by_edge_id(
-          graph$edges_df$id %>% max())
+          edges = graph$edges_df$id %>% max())
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
@@ -208,7 +210,7 @@ add_edge <- function(graph,
         graph <-
           graph %>%
           set_edge_attrs_ws(
-            edge_attr = colnames(extras_tbl)[i],
+            edge_attr = rlang::UQ(colnames(extras_tbl)[i]),
             value = extras_tbl[1, i][[1]])
       }
 
