@@ -450,7 +450,8 @@ node_creation_functions <- function() {
     "add_path", "add_prism", "add_star",
     "add_grid_2d", "add_grid_3d", "add_gnm_graph",
     "add_gnp_graph", "add_pa_graph",
-    "add_smallworld_graph", "add_growing_graph")
+    "add_smallworld_graph", "add_growing_graph",
+    "add_islands_graph")
 }
 
 # Function that yields vector of node
@@ -473,7 +474,8 @@ edge_creation_functions <- function() {
     "add_path", "add_prism", "add_star",
     "add_grid_2d", "add_grid_3d", "add_gnm_graph",
     "add_gnp_graph", "add_pa_graph",
-    "add_smallworld_graph", "add_growing_graph")
+    "add_smallworld_graph", "add_growing_graph",
+    "fully_connect_nodes_ws")
 }
 
 # Function that yields vector of edge
@@ -482,7 +484,8 @@ edge_deletion_functions <- function() {
 
   c("delete_edge", "delete_edges_ws",
     "create_subgraph_ws", "create_complement_graph",
-    "delete_node", "delete_nodes_ws")
+    "delete_node", "delete_nodes_ws", "delete_loop_edges_ws",
+    "fully_disconnect_nodes_ws")
 }
 
 # Function that yields vector of graph
