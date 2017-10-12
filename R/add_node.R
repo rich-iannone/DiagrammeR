@@ -120,7 +120,8 @@ add_node <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
+        edges = nrow(graph$edges_df),
+        d_n = 1)
 
     # Write graph backup if the option is set
     if (graph$graph_info$write_backups) {
@@ -185,7 +186,8 @@ add_node <- function(graph,
           time_modified = time_function_start,
           duration = graph_function_duration(time_function_start),
           nodes = nrow(graph$nodes_df),
-          edges = nrow(graph$edges_df))
+          edges = nrow(graph$edges_df),
+          d_n = 1)
 
       # Write graph backup if the option is set
       if (graph$graph_info$write_backups) {
@@ -247,7 +249,8 @@ add_node <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
+        edges = nrow(graph$edges_df),
+        d_n = 1)
 
     # Write graph backup if the option is set
     if (graph$graph_info$write_backups) {
@@ -323,7 +326,8 @@ add_node <- function(graph,
           time_modified = time_function_start,
           duration = graph_function_duration(time_function_start),
           nodes = nrow(graph$nodes_df),
-          edges = nrow(graph$edges_df))
+          edges = nrow(graph$edges_df),
+          d_n = 1)
 
       # Perform graph actions, if any are available
       if (nrow(graph$graph_actions) > 0) {

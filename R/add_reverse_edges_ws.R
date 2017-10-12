@@ -89,6 +89,9 @@ add_reverse_edges_ws <- function(graph,
   # Create bindings for specific variables
   from <- to <- NULL
 
+  # Get the number of edges in the graph
+  edges_graph_1 <- graph %>% count_edges()
+
   # If no value(s) provided for `rel`, set to NA
   if (is.null(rel)) {
     rel <- as.character(NA)
@@ -117,6 +120,13 @@ add_reverse_edges_ws <- function(graph,
       graph$graph_log[-nrow(graph$graph_log), ]
   }
 
+  # Get the updated number of edges in the graph
+  edges_graph_2 <- graph %>% count_edges()
+
+  # Get the number of edges added to
+  # the graph
+  edges_added <- edges_graph_2 - edges_graph_1
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -126,7 +136,8 @@ add_reverse_edges_ws <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_e = edges_added)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

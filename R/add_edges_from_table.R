@@ -292,12 +292,22 @@ add_edges_from_table <- function(graph,
     edf <- edf[, c("id", columns_retained)]
   }
 
+  # Get the number of edges in the graph
+  edges_graph_1 <- graph %>% count_edges()
+
   # Add the edf to the graph object
   if (is.null(graph$edges_df)) {
     graph$edges_df <- edf
   } else {
     graph$edges_df <- dplyr::bind_rows(graph$edges_df, edf)
   }
+
+  # Get the updated number of edges in the graph
+  edges_graph_2 <- graph %>% count_edges()
+
+  # Get the number of edges added to
+  # the graph
+  edges_added <- edges_graph_2 - edges_graph_1
 
   # Update the `last_edge` value in the graph
   graph$last_edge <- nrow(graph$edges_df)
@@ -310,7 +320,8 @@ add_edges_from_table <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_e = edges_added)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

@@ -66,6 +66,9 @@ add_edge_df <- function(graph,
   #   stop("Not all nodes specified in the edge data frame are in the graph.")
   # }
 
+  # Get the number of edges in the graph
+  edges_graph_1 <- graph %>% count_edges()
+
   # Combine the incoming edge data frame
   # with those in the graph
   combined_edges <-
@@ -77,6 +80,13 @@ add_edge_df <- function(graph,
   # data frame with the `combined_edges`
   # edge data frame
   graph$edges_df <- combined_edges
+
+  # Get the updated number of edges in the graph
+  edges_graph_2 <- graph %>% count_edges()
+
+  # Get the number of edges added to
+  # the graph
+  edges_added <- edges_graph_2 - edges_graph_1
 
   # Update the `last_edge` counter
   graph$last_edge <- edges_created + nrow(combined_edges)
@@ -90,7 +100,8 @@ add_edge_df <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_e = edges_added)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

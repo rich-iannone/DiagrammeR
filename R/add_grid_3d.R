@@ -194,6 +194,10 @@ add_grid_3d <- function(graph,
       directed = graph_directed) %>%
     from_igraph()
 
+  n_nodes <- grid %>% node_count()
+
+  n_edges <- grid %>% edge_count()
+
   # Create a node data frame for the grid graph
   grid_nodes <-
     create_node_df(
@@ -248,7 +252,9 @@ add_grid_3d <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -279,7 +285,9 @@ add_grid_3d <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(grid_graph$nodes_df),
-        edges = nrow(grid_graph$edges_df))
+        edges = nrow(grid_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     grid_graph$global_attrs <- global_attrs
     grid_graph$graph_log <- graph_log

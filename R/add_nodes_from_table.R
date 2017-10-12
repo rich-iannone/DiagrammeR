@@ -257,11 +257,25 @@ add_nodes_from_table <- function(graph,
       csv %>%
         dplyr::select(columns_to_add))
 
-  # Add as a node data frame to the graph
+  # Get the number of nodes in the graph
+  nodes_graph_1 <- graph %>% count_nodes()
+
+  # Add node data frame `ndf` to the graph
   graph <- add_node_df(graph, ndf)
 
+  # Redact the signing of the action to the log
+  graph$graph_log <-
+    graph$graph_log[-nrow(graph$graph_log), ]
+
+  # Get the updated number of nodes in the graph
+  nodes_graph_2 <- graph %>% count_nodes()
+
+  # Get the number of nodes added to
+  # the graph
+  nodes_added <- nodes_graph_2 - nodes_graph_1
+
   # Update the `last_node` counter
-  graph$last_node <- nodes_created + rows_in_csv
+  graph$last_node <- nodes_created + nodes_added
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
@@ -272,7 +286,8 @@ add_nodes_from_table <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_n = nodes_added)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

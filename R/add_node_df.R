@@ -75,6 +75,9 @@ add_node_df <- function(graph,
   # this graph
   nodes_created <- graph$last_node
 
+  # Get the number of nodes in the graph
+  nodes_graph_1 <- graph %>% count_nodes()
+
   # Combine the incoming node data frame with the
   # existing node definitions in the graph object
   node_df[, 1] <-
@@ -91,6 +94,13 @@ add_node_df <- function(graph,
   graph$last_node <-
     nodes_created + nrow(node_df)
 
+  # Get the updated number of nodes in the graph
+  nodes_graph_2 <- combined_graph %>% count_nodes()
+
+  # Get the number of nodes added to
+  # the graph
+  nodes_added <- nodes_graph_2 - nodes_graph_1
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -100,7 +110,8 @@ add_node_df <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_n = nodes_added)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

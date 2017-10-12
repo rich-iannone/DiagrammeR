@@ -13,8 +13,10 @@
 #' vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' # Create an empty graph and add 5 nodes; these
-#' # nodes will be assigned ID values from `1` to `5`
+#' # Create an empty graph and
+#' # add 5 nodes; these nodes
+#' # will be assigned ID values
+#' # from `1` to `5`
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(n = 5)
@@ -107,7 +109,8 @@ add_n_nodes <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_n = n)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

@@ -209,7 +209,9 @@ add_path <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n,
+        d_e = n - 1)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -240,7 +242,9 @@ add_path <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(path_graph$nodes_df),
-        edges = nrow(path_graph$edges_df))
+        edges = nrow(path_graph$edges_df),
+        d_n = n,
+        d_e = n - 1)
 
     path_graph$global_attrs <- global_attrs
     path_graph$graph_log <- graph_log

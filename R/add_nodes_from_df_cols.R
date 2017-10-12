@@ -122,6 +122,9 @@ add_nodes_from_df_cols <- function(graph,
     }
   }
 
+  # Get the number of nodes in the graph
+  nodes_graph_1 <- graph %>% count_nodes()
+
   # Isolate the relevant columns in the data frame;
   # Exclude any columns that are not character class
   df <-
@@ -190,6 +193,13 @@ add_nodes_from_df_cols <- function(graph,
     graph$last_node <- graph$last_node + n
   }
 
+  # Get the updated number of nodes in the graph
+  nodes_graph_2 <- graph %>% count_nodes()
+
+  # Get the number of nodes added to
+  # the graph
+  nodes_added <- nodes_graph_2 - nodes_graph_1
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -199,7 +209,8 @@ add_nodes_from_df_cols <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_n = nodes_added)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

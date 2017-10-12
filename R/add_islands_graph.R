@@ -110,7 +110,9 @@ add_islands_graph <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -141,7 +143,9 @@ add_islands_graph <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(sample_islands_igraph$nodes_df),
-        edges = nrow(sample_islands_igraph$edges_df))
+        edges = nrow(sample_islands_igraph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     sample_islands_igraph$global_attrs <- global_attrs
     sample_islands_igraph$graph_log <- graph_log

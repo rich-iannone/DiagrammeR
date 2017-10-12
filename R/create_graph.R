@@ -260,6 +260,8 @@ create_graph <- function(nodes_df = NULL,
       duration = as.numeric(NA),
       nodes = as.integer(NA),
       edges = as.integer(NA),
+      d_n = as.integer(NA),
+      d_e = as.integer(NA),
       stringsAsFactors = FALSE)[-1, ]
 
   ## list: `cache`
@@ -275,8 +277,7 @@ create_graph <- function(nodes_df = NULL,
          nodes_df = ndf,
          edges_df = edf,
          global_attrs = global_attrs,
-         directed = ifelse(directed,
-                           TRUE, FALSE),
+         directed = ifelse(directed, TRUE, FALSE),
          last_node = 0,
          last_edge = 0,
          node_selection = nsdf,
@@ -300,7 +301,9 @@ create_graph <- function(nodes_df = NULL,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
         nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
+        edges = nrow(graph$edges_df),
+        d_n = nrow(graph$nodes_df),
+        d_e = nrow(graph$edges_df))
 
     # Add the `graph_log` df to the graph object
     graph$graph_log <- graph_log
@@ -341,7 +344,9 @@ create_graph <- function(nodes_df = NULL,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
         nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
+        edges = nrow(graph$edges_df),
+        d_n = nrow(graph$nodes_df),
+        d_e = nrow(graph$edges_df))
 
     # Add the `graph_log` df to the graph object
     graph$graph_log <- graph_log
@@ -396,7 +401,9 @@ create_graph <- function(nodes_df = NULL,
         time_modified = graph_time,
         duration = graph_function_duration(graph_time),
         nodes = nrow(graph$nodes_df),
-        edges = nrow(graph$edges_df))
+        edges = nrow(graph$edges_df),
+        d_n = nrow(graph$nodes_df),
+        d_e = nrow(graph$edges_df))
 
     # Add the `graph_log` df to the graph object
     graph$graph_log <- graph_log

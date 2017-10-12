@@ -196,6 +196,10 @@ add_prism <- function(graph,
              nodes[1:(length(nodes)/2)] + n),
       rel = rel)
 
+  n_nodes = nrow(prism_nodes)
+
+  n_edges = nrow(prism_edges)
+
   # Create the prism graph
   prism_graph <-
     create_graph(
@@ -210,10 +214,10 @@ add_prism <- function(graph,
     combined_graph <- combine_graphs(graph, prism_graph)
 
     # Update the `last_node` counter
-    combined_graph$last_node <- nodes_created + nrow(prism_nodes)
+    combined_graph$last_node <- nodes_created + n_nodes
 
     # Update the `last_edge` counter
-    combined_graph$last_edge <- edges_created + nrow(prism_edges)
+    combined_graph$last_edge <- edges_created + n_edges
 
     # Update the `graph_log` df with an action
     graph_log <-
@@ -224,7 +228,9 @@ add_prism <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -254,7 +260,9 @@ add_prism <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(prism_graph$nodes_df),
-        edges = nrow(prism_graph$edges_df))
+        edges = nrow(prism_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     prism_graph$global_attrs <- global_attrs
     prism_graph$graph_log <- graph_log

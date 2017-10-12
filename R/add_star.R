@@ -185,6 +185,10 @@ add_star <- function(graph,
       nodes_df = star_nodes,
       edges_df = star_edges)
 
+  n_nodes = star_graph %>% count_nodes()
+
+  n_edges = star_graph %>% count_edges()
+
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
   if (!is_graph_empty(graph)) {
@@ -192,10 +196,10 @@ add_star <- function(graph,
     combined_graph <- combine_graphs(graph, star_graph)
 
     # Update the `last_node` counter
-    combined_graph$last_node <- nodes_created + nrow(star_nodes)
+    combined_graph$last_node <- nodes_created + n_nodes
 
     # Update the `last_edge` counter
-    combined_graph$last_edge <- edges_created + nrow(star_edges)
+    combined_graph$last_edge <- edges_created + n_edges
 
     # Update the `graph_log` df with an action
     graph_log <-
@@ -206,7 +210,9 @@ add_star <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -236,7 +242,9 @@ add_star <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(star_graph$nodes_df),
-        edges = nrow(star_graph$edges_df))
+        edges = nrow(star_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     star_graph$global_attrs <- global_attrs
     star_graph$graph_log <- graph_log

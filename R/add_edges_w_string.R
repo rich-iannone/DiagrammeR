@@ -160,8 +160,18 @@ add_edges_w_string <- function(graph,
         rel = rel)
   }
 
+  # Get the number of edges in the graph
+  edges_graph_1 <- graph %>% count_edges()
+
   # Add the new edges to the graph
   graph <- add_edge_df(graph, new_edges)
+
+  # Get the updated number of edges in the graph
+  edges_graph_2 <- graph %>% count_edges()
+
+  # Get the number of edges added to
+  # the graph
+  edges_added <- edges_graph_2 - edges_graph_1
 
   # Clear the graph's active selection
   graph <-
@@ -181,7 +191,8 @@ add_edges_w_string <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_e = edges_added)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

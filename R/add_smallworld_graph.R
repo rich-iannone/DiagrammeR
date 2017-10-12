@@ -98,9 +98,9 @@ add_smallworld_graph <- function(graph,
 
   sample_smallworld_graph <- from_igraph(sample_smallworld_igraph)
 
-  n_nodes <- nrow(sample_smallworld_graph$nodes_df)
+  n_nodes <- sample_smallworld_graph %>% count_nodes()
 
-  n_edges <- nrow(sample_smallworld_graph$edges_df)
+  n_edges <- sample_smallworld_graph %>% count_edges()
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
@@ -109,10 +109,10 @@ add_smallworld_graph <- function(graph,
     combined_graph <- combine_graphs(graph, sample_smallworld_graph)
 
     # Update the `last_node` counter
-    combined_graph$last_node <- nodes_created + nrow(n_nodes)
+    combined_graph$last_node <- nodes_created + n_nodes
 
     # Update the `last_edge` counter
-    combined_graph$last_edge <- edges_created + nrow(n_edges)
+    combined_graph$last_edge <- edges_created + n_edges
 
     # Update the `graph_log` df with an action
     graph_log <-
@@ -123,7 +123,9 @@ add_smallworld_graph <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -154,7 +156,9 @@ add_smallworld_graph <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(sample_smallworld_graph$nodes_df),
-        edges = nrow(sample_smallworld_graph$edges_df))
+        edges = nrow(sample_smallworld_graph$edges_df),
+        d_n = n_nodes,
+        d_e = n_edges)
 
     sample_smallworld_graph$global_attrs <- global_attrs
     sample_smallworld_graph$graph_log <- graph_log

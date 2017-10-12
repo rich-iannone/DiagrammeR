@@ -203,7 +203,13 @@ add_full_graph <- function(graph,
   # Get the graph's info
   graph_info <- graph$graph_info
 
-  # Create initial adjacency matrix based
+  # Get the number of nodes in the graph
+  nodes_graph_1 <- graph %>% count_nodes()
+
+  # Get the number of edges in the graph
+  edges_graph_1 <- graph %>% count_edges()
+
+  # Create initial adjacency matrix
   adj_matrix <- matrix(1, nrow = n, ncol = n)
 
   # Remove loops by making the diagonal of the
@@ -347,6 +353,20 @@ add_full_graph <- function(graph,
     # Update the `last_node` counter
     combined_graph$last_node <- nodes_created + n
 
+    # Get the updated number of nodes in the graph
+    nodes_graph_2 <- combined_graph %>% count_nodes()
+
+    # Get the number of nodes added to
+    # the graph
+    nodes_added <- nodes_graph_2 - nodes_graph_1
+
+    # Get the updated number of edges in the graph
+    edges_graph_2 <- combined_graph %>% count_edges()
+
+    # Get the number of edges added to
+    # the graph
+    edges_added <- edges_graph_2 - edges_graph_1
+
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
@@ -356,7 +376,9 @@ add_full_graph <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = nodes_added,
+        d_e = edges_added)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -370,6 +392,20 @@ add_full_graph <- function(graph,
     return(combined_graph)
   } else {
 
+    # Get the updated number of nodes in the graph
+    nodes_graph_2 <- new_graph %>% count_nodes()
+
+    # Get the number of nodes added to
+    # the graph
+    nodes_added <- nodes_graph_2 - nodes_graph_1
+
+    # Get the updated number of edges in the graph
+    edges_graph_2 <- new_graph %>% count_edges()
+
+    # Get the number of edges added to
+    # the graph
+    edges_added <- edges_graph_2 - edges_graph_1
+
     # Update the `graph_log` df with an action
     graph_log <-
       add_action_to_log(
@@ -379,7 +415,9 @@ add_full_graph <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(new_graph$nodes_df),
-        edges = nrow(new_graph$edges_df))
+        edges = nrow(new_graph$edges_df),
+        d_n = nodes_added,
+        d_e = edges_added)
 
     new_graph$global_attrs <- global_attrs
     new_graph$graph_log <- graph_log

@@ -201,7 +201,9 @@ add_cycle <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n,
+        d_e = n)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -231,7 +233,9 @@ add_cycle <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(cycle_graph$nodes_df),
-        edges = nrow(cycle_graph$edges_df))
+        edges = nrow(cycle_graph$edges_df),
+        d_n = n,
+        d_e = n)
 
     cycle_graph$global_attrs <- global_attrs
     cycle_graph$graph_log <- graph_log

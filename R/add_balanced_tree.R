@@ -80,6 +80,9 @@ add_balanced_tree <- function(graph,
   n_nodes_tree <-
     (k^(h + 1) - 1) / (k - 1)
 
+  # Determine the number of edges in the balanced tree
+  n_edges_tree <- n_nodes_tree - 1
+
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node
@@ -151,7 +154,9 @@ add_balanced_tree <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df))
+        edges = nrow(combined_graph$edges_df),
+        d_n = n_nodes_tree,
+        d_e = n_edges_tree)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -174,7 +179,9 @@ add_balanced_tree <- function(graph,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(tree_graph$nodes_df),
-        edges = nrow(tree_graph$edges_df))
+        edges = nrow(tree_graph$edges_df),
+        d_n = n_nodes_tree,
+        d_e = n_edges_tree)
 
     tree_graph$global_attrs <- global_attrs
     tree_graph$graph_log <- graph_log
