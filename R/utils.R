@@ -269,7 +269,9 @@ add_action_to_log <- function(graph_log,
                               time_modified,
                               duration,
                               nodes,
-                              edges) {
+                              edges,
+                              d_n = 0,
+                              d_e = 0) {
 
   # Ensure that `time_modified` inherits from POSIXct
   if (inherits(time_modified, "POSIXct") == FALSE) {
@@ -285,6 +287,8 @@ add_action_to_log <- function(graph_log,
       duration = as.numeric(duration),
       nodes = as.integer(nodes),
       edges = as.integer(edges),
+      d_n = as.integer(d_n),
+      d_e = as.integer(d_e),
       stringsAsFactors = FALSE)
 
   # Append the log line to `graph_log`
