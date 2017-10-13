@@ -1,6 +1,10 @@
 #' Create a complement of a graph
 #' @description Create a complement graph which
 #' contains only edges not present in the input graph.
+#' It's important to nodes that any edge attributes
+#' in the input graph's edges will be lost. Node
+#' attributes will be retained, since they are
+#' not affected by this transformation.
 #' @param graph a graph object of class
 #' \code{dgr_graph} that is created using
 #' \code{create_graph}.
