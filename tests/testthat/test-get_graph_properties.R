@@ -25,7 +25,7 @@ test_that("Getting the graph object log is possible", {
   expect_identical(
     colnames(graph_log),
     c("version_id", "function_used", "time_modified",
-      "duration", "nodes", "edges"))
+      "duration", "nodes", "edges", "d_n", "d_e"))
 
   # Expect 2 rows in this graph log
   expect_equal(
