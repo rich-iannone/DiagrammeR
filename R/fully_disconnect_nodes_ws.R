@@ -55,6 +55,9 @@ fully_disconnect_nodes_ws <- function(graph) {
   # Get the graph's edf
   edf <- graph$edges_df
 
+  # Get the number of edges in the graph
+  edges_graph_1 <- graph %>% count_edges()
+
   # Filter edf such that any edges containing
   # nodes in the node selection are removed
   edf_replacement <-
@@ -66,6 +69,18 @@ fully_disconnect_nodes_ws <- function(graph) {
   # Update the graph's edf
   graph$edges_df <- edf_replacement
 
+  # Scavenge any invalid, linked data frames
+  graph <-
+    graph %>%
+    remove_linked_dfs()
+
+  # Get the updated number of edges in the graph
+  edges_graph_2 <- graph %>% count_edges()
+
+  # Get the number of edges added to
+  # the graph
+  edges_removed <- edges_graph_2 - edges_graph_1
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -75,7 +90,8 @@ fully_disconnect_nodes_ws <- function(graph) {
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_e = edges_removed)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

@@ -63,6 +63,12 @@ delete_node <- function(graph,
     stop("The specified node is not available in the graph.")
   }
 
+  # Get the number of nodes in the graph
+  nodes_graph_1 <- graph %>% count_nodes()
+
+  # Get the number of edges in the graph
+  edges_graph_1 <- graph %>% count_edges()
+
   # Get the graph's node data frame
   ndf <- graph$nodes_df
 
@@ -93,6 +99,20 @@ delete_node <- function(graph,
     graph %>%
     remove_linked_dfs()
 
+  # Get the updated number of nodes in the graph
+  nodes_graph_2 <- graph %>% count_nodes()
+
+  # Get the number of nodes added to
+  # the graph
+  nodes_deleted <- nodes_graph_2 - nodes_graph_1
+
+  # Get the updated number of edges in the graph
+  edges_graph_2 <- graph %>% count_edges()
+
+  # Get the number of edges added to
+  # the graph
+  edges_deleted <- edges_graph_2 - edges_graph_1
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -102,7 +122,9 @@ delete_node <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_n = nodes_deleted,
+      d_e = edges_deleted)
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

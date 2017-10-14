@@ -95,7 +95,7 @@ add_node_df <- function(graph,
     nodes_created + nrow(node_df)
 
   # Get the updated number of nodes in the graph
-  nodes_graph_2 <- combined_graph %>% count_nodes()
+  nodes_graph_2 <- graph %>% count_nodes()
 
   # Get the number of nodes added to
   # the graph

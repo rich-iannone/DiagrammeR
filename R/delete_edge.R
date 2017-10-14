@@ -289,7 +289,8 @@ delete_edge <- function(graph,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),
-      edges = nrow(graph$edges_df))
+      edges = nrow(graph$edges_df),
+      d_e = as.integer(-1))
 
   # Perform graph actions, if any are available
   if (nrow(graph$graph_actions) > 0) {

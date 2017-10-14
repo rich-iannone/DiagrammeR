@@ -75,9 +75,15 @@ combine_graphs <- function(x,
   # graph `x`
   nodes_created <- x$last_node
 
+  # Get the number of nodes in the graph
+  nodes_graph_1 <- x %>% count_nodes()
+
   # Get the number of edges ever created for
   # graph `x`
   edges_created <- x$last_edge
+
+  # Get the number of edges in the graph
+  edges_graph_1 <- x %>% count_edges()
 
   # Get the node data frame for graph `x`
   x_nodes_df <- get_node_df(x)
@@ -174,6 +180,20 @@ combine_graphs <- function(x,
   x$last_node <- nrow(combined_nodes)
   x$last_edge <- nrow(combined_edges)
 
+  # Get the updated number of nodes in the graph
+  nodes_graph_2 <- x %>% count_nodes()
+
+  # Get the number of nodes added to
+  # the graph
+  nodes_added <- nodes_graph_2 - nodes_graph_1
+
+  # Get the updated number of edges in the graph
+  edges_graph_2 <- x %>% count_edges()
+
+  # Get the number of edges added to
+  # the graph
+  edges_added <- edges_graph_2 - edges_graph_1
+
   # Update the `graph_log` df with an action
   x$graph_log <-
     add_action_to_log(
@@ -183,7 +203,9 @@ combine_graphs <- function(x,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(x$nodes_df),
-      edges = nrow(x$edges_df))
+      edges = nrow(x$edges_df),
+      d_n = nodes_added,
+      d_e = edges_added)
 
   # Write graph backup if the option is set
   if (x$graph_info$write_backups) {
