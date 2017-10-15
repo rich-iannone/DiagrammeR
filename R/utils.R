@@ -447,41 +447,44 @@ contrasting_text_color <- function(background_color) {
 # Graphviz graph attribute names
 gv_graph_attributes <- function() {
 
-  c("bgcolor", "layout", "overlap", "fixedsize",
-    "mindist", "nodesep", "outputorder", "ranksep",
-    "rankdir", "stylesheet")
+  c("layout", "bgcolor", "rankdir",
+    "overlap", "outputorder", "fixedsize",
+    "mindist", "nodesep", "ranksep",
+    "stylesheet")
 }
 
 # Function that yields a vector of
 # Graphviz node attribute names
 gv_node_attributes <- function() {
 
-  c("color", "distortion", "fillcolor",
-    "fixedsize", "fontcolor", "fontname", "fontsize",
-    "gradientangle", "group", "height", "label",
-    "labelloc", "margin", "orientation", "penwidth",
-    "peripheries", "pos", "shape", "sides", "skew",
-    "style", "tooltip", "width", "img", "icon")
+  c("shape", "style", "penwidth", "color", "fillcolor",
+    "fontname", "fontsize", "fontcolor",
+    "height", "width", "group", "tooltip",
+    "distortion", "sides", "skew", "peripheries",
+    "gradientangle", "label", "fixedsize",
+    "labelloc", "margin", "orientation", "pos")
 }
 
 # Function that yields a vector of
 # Graphviz edge attribute names
 gv_edge_attributes <- function() {
 
-  c("arrowhead", "arrowsize", "arrowtail", "color",
-    "constraint", "decorate", "dir", "edgeURL",
-    "edgehref", "edgetarget", "edgetooltip",
-    "fontcolor", "fontname", "fontsize", "headclip",
-    "headhref", "headlabel", "headport", "headtarget",
-    "headtooltip", "headURL", "href", "id", "label",
+  c("style", "penwidth", "color", "arrowsize",
+    "arrowhead", "arrowtail",
+    "fontname", "fontsize", "fontcolor", "len", "minlen",
+    "tooltip", "layer",
+    "label", "labelfontname", "labelfontsize", "labelfontcolor",
     "labelangle", "labeldistance", "labelfloat",
-    "labelfontcolor", "labelfontname", "labelfontsize",
-    "labelhref", "labelURL", "labeltarget",
-    "labeltooltip", "layer", "len", "lhead", "ltail", "minlen",
-    "penwidth", "samehead", "sametail", "style",
-    "tailclip", "tailhref", "taillabel", "tailport",
-    "tailtarget", "tailtooltip", "tailURL", "target",
-    "tooltip", "weight")
+    "labeltooltip", "labelhref", "labelURL", "labeltarget",
+    "edgetooltip", "edgehref", "edgeURL", "edgetarget",
+    "headtooltip", "headhref", "headURL", "headtarget",
+    "headclip", "headlabel", "headport",
+    "tailtooltip", "tailhref", "tailURL", "tailtarget",
+    "tailclip",  "taillabel", "tailport",
+    "dir", "target", "id", "weight",
+    "constraint", "decorate",
+    "href", "lhead", "ltail",
+    "samehead", "sametail")
 }
 
 # Function that yields vector of node
