@@ -70,7 +70,7 @@
 #' #> 3  3    3  4 <NA>
 #' #> 4  4    3  5 <NA>
 #' #> 5  5    4  5 <NA>
-#' @importFrom dplyr rename setdiff bind_rows select rename
+#' @importFrom dplyr rename setdiff bind_rows select
 #' @export fully_connect_nodes_ws
 
 fully_connect_nodes_ws <- function(graph) {
@@ -94,7 +94,7 @@ fully_connect_nodes_ws <- function(graph) {
   }
 
   # Create bindings for specific variables
-  from <- to <- NULL
+  from <- to <- V1 <- V2 <- NULL
 
   # Get the number of edges in the graph
   edges_graph_1 <- graph %>% count_edges()
