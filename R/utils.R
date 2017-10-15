@@ -442,6 +442,48 @@ contrasting_text_color <- function(background_color) {
 # Functions that produce useful vectors
 ###
 
+
+# Function that yields a vector of
+# Graphviz graph attribute names
+gv_graph_attributes <- function() {
+
+  c("bgcolor", "layout", "overlap", "fixedsize",
+    "mindist", "nodesep", "outputorder", "ranksep",
+    "rankdir", "stylesheet")
+}
+
+# Function that yields a vector of
+# Graphviz node attribute names
+gv_node_attributes <- function() {
+
+  c("color", "distortion", "fillcolor",
+    "fixedsize", "fontcolor", "fontname", "fontsize",
+    "gradientangle", "group", "height", "label",
+    "labelloc", "margin", "orientation", "penwidth",
+    "peripheries", "pos", "shape", "sides", "skew",
+    "style", "tooltip", "width", "img", "icon")
+}
+
+# Function that yields a vector of
+# Graphviz edge attribute names
+gv_edge_attributes <- function() {
+
+  c("arrowhead", "arrowsize", "arrowtail", "color",
+    "constraint", "decorate", "dir", "edgeURL",
+    "edgehref", "edgetarget", "edgetooltip",
+    "fontcolor", "fontname", "fontsize", "headclip",
+    "headhref", "headlabel", "headport", "headtarget",
+    "headtooltip", "headURL", "href", "id", "label",
+    "labelangle", "labeldistance", "labelfloat",
+    "labelfontcolor", "labelfontname", "labelfontsize",
+    "labelhref", "labelURL", "labeltarget",
+    "labeltooltip", "layer", "len", "lhead", "ltail", "minlen",
+    "penwidth", "samehead", "sametail", "style",
+    "tailclip", "tailhref", "taillabel", "tailport",
+    "tailtarget", "tailtooltip", "tailURL", "target",
+    "tooltip", "weight")
+}
+
 # Function that yields vector of node
 # creation function names
 node_creation_functions <- function() {
