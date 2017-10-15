@@ -158,36 +158,13 @@ generate_dot <- function(graph) {
   }
 
   # Create vector of graph attributes
-  graph_attributes <-
-    c("bgcolor", "layout", "overlap", "fixedsize",
-      "mindist", "nodesep", "outputorder", "ranksep",
-      "rankdir", "stylesheet")
+  graph_attributes <- gv_graph_attributes()
 
   # Create vector of node attributes
-  node_attributes <-
-    c("color", "distortion", "fillcolor",
-      "fixedsize", "fontcolor", "fontname", "fontsize",
-      "gradientangle", "group", "height", "label",
-      "labelloc", "margin", "orientation", "penwidth",
-      "peripheries", "pos", "shape", "sides", "skew",
-      "style", "tooltip", "width", "img", "icon")
+  node_attributes <- gv_node_attributes()
 
   # Create vector of edge attributes
-  edge_attributes <-
-    c("arrowhead", "arrowsize", "arrowtail", "color",
-      "constraint", "decorate", "dir", "edgeURL",
-      "edgehref", "edgetarget", "edgetooltip",
-      "fontcolor", "fontname", "fontsize", "headclip",
-      "headhref", "headlabel", "headport", "headtarget",
-      "headtooltip", "headURL", "href", "id", "label",
-      "labelangle", "labeldistance", "labelfloat",
-      "labelfontcolor", "labelfontname", "labelfontsize",
-      "labelhref", "labelURL", "labeltarget",
-      "labeltooltip", "layer", "len", "lhead", "ltail", "minlen",
-      "penwidth", "samehead", "sametail", "style",
-      "tailclip", "tailhref", "taillabel", "tailport",
-      "tailtarget", "tailtooltip", "tailURL", "target",
-      "tooltip", "weight")
+  edge_attributes <- gv_edge_attributes()
 
   if (nrow(nodes_df) == 0 &
       nrow(edges_df) == 0) {
