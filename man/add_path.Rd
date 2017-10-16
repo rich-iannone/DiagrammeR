@@ -4,7 +4,8 @@
 \alias{add_path}
 \title{Add a path of nodes to the graph}
 \usage{
-add_path(graph, n, type = NULL, label = TRUE, rel = NULL, ...)
+add_path(graph, n, type = NULL, label = TRUE, rel = NULL,
+  node_aes = NULL, edge_aes = NULL, ...)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -25,8 +26,24 @@ nodes, or, a boolean value where setting to
 relationship label to all new edges created in the
 node path.}
 
+\item{node_aes}{an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function \code{node_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{color},
+\code{fillcolor}).}
+
+\item{edge_aes}{an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function \code{edge_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{penwidth},
+\code{color}).}
+
 \item{...}{optional node attributes supplied as
-vectors.}
+one or more named vectors.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
