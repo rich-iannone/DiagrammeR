@@ -459,7 +459,8 @@ gv_node_attributes <- function() {
 
   c("shape", "style", "penwidth", "color", "fillcolor",
     "fontname", "fontsize", "fontcolor",
-    "height", "width", "group", "tooltip",
+    "height", "width", "group",
+    "tooltip", "URL",
     "distortion", "sides", "skew", "peripheries",
     "gradientangle", "label", "fixedsize",
     "labelloc", "margin", "orientation", "pos")
@@ -472,7 +473,7 @@ gv_edge_attributes <- function() {
   c("style", "penwidth", "color", "arrowsize",
     "arrowhead", "arrowtail",
     "fontname", "fontsize", "fontcolor", "len", "minlen",
-    "tooltip", "layer",
+    "tooltip", "URL", "layer",
     "label", "labelfontname", "labelfontsize", "labelfontcolor",
     "labelangle", "labeldistance", "labelfloat",
     "labeltooltip", "labelhref", "labelURL", "labeltarget",
