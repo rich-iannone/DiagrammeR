@@ -14,8 +14,22 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node path.
+#' @param node_aes an optional list of named vectors
+#' comprising node aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted node aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{color},
+#' \code{fillcolor}).
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
 #' @param ... optional node attributes supplied as
-#' vectors.
+#' one or more named vectors.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add
@@ -94,6 +108,8 @@ add_path <- function(graph,
                      type = NULL,
                      label = TRUE,
                      rel = NULL,
+                     node_aes = NULL,
+                     edge_aes = NULL,
                      ...) {
 
   # Get the time of function start
@@ -136,6 +152,48 @@ add_path <- function(graph,
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
+  # Collect aesthetic node attributes table
+  if (!is.null(node_aes)) {
+
+    node_aes_tbl <- tibble::as_tibble(node_aes)
+
+    if (nrow(node_aes_tbl) < n) {
+
+      node_aes$index__ <- 1:n
+
+      node_aes_tbl <-
+        tibble::as_tibble(node_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_aes_tbl)) {
+      node_aes_tbl <-
+        node_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect aesthetic edge attributes table
+  if (!is.null(edge_aes)) {
+
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) < (n - 1)) {
+
+      edge_aes$index__ <- 1:(n - 1)
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
   # Collect extra vectors of data as `extras`
   extras <- list(...)
 
@@ -166,6 +224,14 @@ add_path <- function(graph,
       type = type,
       label = label)
 
+  # Add node aesthetics if available
+  if (exists("node_aes_tbl")) {
+
+    path_nodes <-
+      path_nodes %>%
+      dplyr::bind_cols(node_aes_tbl)
+  }
+
   # Add extra columns if available
   if (exists("extras_tbl")) {
 
@@ -180,6 +246,14 @@ add_path <- function(graph,
       from = nodes[1:length(nodes) - 1],
       to = nodes[2:length(nodes)],
       rel = rel)
+
+  # Add edge aesthetics if available
+  if (exists("edge_aes_tbl")) {
+
+    path_edges <-
+      path_edges %>%
+      dplyr::bind_cols(edge_aes_tbl)
+  }
 
   # Create the path graph
   path_graph <-
