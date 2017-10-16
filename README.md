@@ -373,7 +373,7 @@ DiagrammeR Graph // 10 nodes / 19 edges / density: 0.2222
   GRAPH LOG / <2 actions> -> add_nodes_from_table() -> add_edges_from_table() -> drop_node_attrs()
 ```
 
-Now, because we node/edge metadata (categorical labels and numerical data in `value_1` & `value_2` for both nodes and edges), we can do some interesting things with the graph. First, let's do some mutation with `mutate_node_attrs()` and `mutate_edge_attrs()` and get the sum of `value_1` and `value_2` as `value_3`. Then let's color nodes and edges `forestgreen` if `value_3` is greater than `10` (`red` otherwise). Finally, let's display the values of `value_3` for the nodes when rendering the graph diagram. Here we go!
+Now, because we have node/edge metadata (categorical labels and numerical data in `value_1` & `value_2` for both nodes and edges), we can do some interesting things with the graph. First, let's do some mutation with `mutate_node_attrs()` and `mutate_edge_attrs()` and get the sums of `value_1` and `value_2` as `value_3` (for both the nodes and the edges). Then, let's color the nodes and edges `forestgreen` if `value_3` is greater than `10` (`red` otherwise). Finally, let's display the values of `value_3` for the nodes when rendering the graph diagram. Here we go!
 
 ```r
 k_graph <-
