@@ -6,6 +6,7 @@
 #' @param ... edge data attributes supplied
 #' as one or more named vectors.
 #' @examples
+#' \dontrun{
 #' # Create a new graph and add
 #' # a path with several edge
 #' # data attributes
@@ -27,6 +28,7 @@
 #' #>   id from to  rel hour index
 #' #> 1  1    1  2 <NA>    5     1
 #' #> 2  2    2  3 <NA>    5     2
+#' }
 #' @export edge_data
 
 edge_data <- function(...) {

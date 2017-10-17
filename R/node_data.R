@@ -6,6 +6,7 @@
 #' @param ... node data attributes supplied
 #' as one or more named vectors.
 #' @examples
+#' \dontrun{
 #' # Create a new graph and add
 #' # a path with several node
 #' # data attributes
@@ -28,6 +29,7 @@
 #' #> 1  1 path     1    5     1
 #' #> 2  2 path     2    5     3
 #' #> 3  3 path     3    5     2
+#' }
 #' @export node_data
 
 node_data <- function(...) {
