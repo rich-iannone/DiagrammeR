@@ -79,7 +79,6 @@
 #' #> 2  2 path     2 circle 3 -1
 #' #> 3  3 path     3 circle 2  3
 #' @importFrom purrr map_chr
-#' @importFrom tibble as_tibble
 #' @export node_aes
 
 node_aes <- function(shape = NULL,

@@ -79,7 +79,6 @@
 #' #> 1  1    1  2 <NA>   dot   red
 #' #> 2  2    2  3 <NA>   dot  blue
 #' @importFrom purrr map_chr
-#' @importFrom tibble as_tibble
 #' @export edge_aes
 
 edge_aes <- function(style = NULL,
