@@ -17,6 +17,7 @@ invoked to provide values for the namesake
 in any function where nodes are created.
 }
 \examples{
+\dontrun{
 # Create a new graph and add
 # a path with several node
 # data attributes
@@ -35,8 +36,9 @@ graph <-
 # inserted
 graph \%>\%
   get_node_df()
-#>   id type label  shape x  y
-#> 1  1 path     1 circle 1  4
-#> 2  2 path     2 circle 3 -1
-#> 3  3 path     3 circle 2  3
+#>   id type label hour index
+#> 1  1 path     1    5     1
+#> 2  2 path     2    5     3
+#> 3  3 path     3    5     2
+}
 }

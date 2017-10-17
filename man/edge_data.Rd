@@ -17,6 +17,7 @@ invoked to provide values for the namesake
 in any function where edges are created.
 }
 \examples{
+\dontrun{
 # Create a new graph and add
 # a path with several edge
 # data attributes
@@ -35,8 +36,8 @@ graph <-
 # been inserted
 graph \%>\%
   get_edge_df()
-#>   id type label  shape x  y
-#> 1  1 path     1 circle 1  4
-#> 2  2 path     2 circle 3 -1
-#> 3  3 path     3 circle 2  3
+#>   id from to  rel hour index
+#> 1  1    1  2 <NA>    5     1
+#> 2  2    2  3 <NA>    5     2
+}
 }
