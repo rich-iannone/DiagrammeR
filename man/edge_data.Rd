@@ -7,7 +7,7 @@
 edge_data(...)
 }
 \arguments{
-\item{...}{edge data attributes supplied
+\item{...}{edge data attributes provided
 as one or more named vectors.}
 }
 \description{

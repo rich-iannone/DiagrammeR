@@ -7,7 +7,7 @@
 node_data(...)
 }
 \arguments{
-\item{...}{node data attributes supplied
+\item{...}{node data attributes provided
 as one or more named vectors.}
 }
 \description{
