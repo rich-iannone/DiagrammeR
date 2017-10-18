@@ -3,7 +3,7 @@
 #' invoked to provide values for the namesake
 #' \code{node_data} argument, which is present
 #' in any function where nodes are created.
-#' @param ... node data attributes supplied
+#' @param ... node data attributes provided
 #' as one or more named vectors.
 #' @examples
 #' \dontrun{

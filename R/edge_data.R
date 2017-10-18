@@ -3,7 +3,7 @@
 #' invoked to provide values for the namesake
 #' \code{edge_data} argument, which is present
 #' in any function where edges are created.
-#' @param ... edge data attributes supplied
+#' @param ... edge data attributes provided
 #' as one or more named vectors.
 #' @examples
 #' \dontrun{
