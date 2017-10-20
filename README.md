@@ -49,10 +49,9 @@ example_graph <-
   clear_selection() %>%
   set_node_attr_to_display(
     attr = NULL)
-    
-render_graph(
-  graph = example_graph,
-  layout = "nicely")
+
+example_graph %>%
+  render_graph(layout = "nicely")
 ```
 
 **DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things.
