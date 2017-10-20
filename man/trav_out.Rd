@@ -6,7 +6,7 @@
 adjacent, outward nodes}
 \usage{
 trav_out(graph, conditions = NULL, copy_attrs_from = NULL,
-  copy_attrs_as = NULL, agg = "sum")
+  copy_attrs_as = NULL, agg = "sum", add_to_selection = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -37,6 +37,13 @@ the traversed node(s). To pass only a single value,
 the following aggregation functions can be used:
 \code{sum}, \code{min}, \code{max}, \code{mean}, or
 \code{median}.}
+
+\item{add_to_selection}{an option to
+either add the traversed to nodes
+to the active selection of nodes
+(\code{TRUE}) or switch the active
+selection entirely to those traversed
+to nodes (\code{FALSE}, the default case).}
 }
 \value{
 a graph object of class \code{dgr_graph}.
