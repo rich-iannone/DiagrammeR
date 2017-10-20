@@ -31,6 +31,12 @@
 #' the following aggregation functions can be used:
 #' \code{sum}, \code{min}, \code{max}, \code{mean}, or
 #' \code{median}.
+#' @param add_to_selection an option to
+#' either add the traversed to nodes
+#' to the active selection of nodes
+#' (\code{TRUE}) or switch the active
+#' selection entirely to those traversed
+#' to nodes (\code{FALSE}, the default case).
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -209,7 +215,8 @@
 #' #> 3  3 <NA>     3    10
 #' #> 4  4 <NA>     4     5
 #' #> 5  5 <NA>     5     5
-#' @importFrom dplyr filter_ inner_join right_join rename distinct select select_ union_all group_by summarize_ everything
+#' @importFrom dplyr filter_ inner_join right_join rename group_by
+#' @importFrom dplyr distinct select select_ union_all summarize_ everything
 #' @importFrom tibble as_tibble
 #' @importFrom rlang enquo UQ
 #' @export trav_both
@@ -218,7 +225,8 @@ trav_both <- function(graph,
                       conditions = NULL,
                       copy_attrs_from = NULL,
                       copy_attrs_as = NULL,
-                      agg = "sum") {
+                      agg = "sum",
+                      add_to_selection = FALSE) {
 
   conditions <- rlang::enquo(conditions)
 
@@ -391,12 +399,31 @@ trav_both <- function(graph,
     return(graph)
   }
 
-  # Add the node ID values to the active selection
-  # of nodes in `graph$node_selection`
-  graph$node_selection <-
-    replace_graph_node_selection(
-      graph = graph,
-      replacement = valid_nodes$id)
+  # Obtain vector with node ID selection of nodes
+  # already present
+  nodes_prev_selection <- graph$node_selection$node
+
+  if (add_to_selection) {
+
+    # If TRUE supplied to `add_to_selection` add
+    # the nodes to which we traversed to the
+    # previous selection
+    nodes_combined <- union(nodes_prev_selection, valid_nodes$id)
+
+    graph$node_selection <-
+      replace_graph_node_selection(
+        graph = graph,
+        replacement = nodes_combined)
+
+  } else {
+
+    # Add the node ID values to the active selection
+    # of nodes in `graph$node_selection`
+    graph$node_selection <-
+      replace_graph_node_selection(
+        graph = graph,
+        replacement = valid_nodes$id)
+  }
 
   # Replace `graph$edge_selection` with an empty df
   graph$edge_selection <- create_empty_esdf()
