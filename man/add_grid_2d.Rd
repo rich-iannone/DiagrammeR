@@ -71,6 +71,7 @@ With a graph object of class
 grid to the graph.
 }
 \examples{
+\dontrun{
 # Create a new graph and add
 # a 3 x 3 grid
 graph <-
@@ -136,4 +137,5 @@ get_edge_df(graph_w_attrs)
 #> 5  5    3  6 grid
 #> 6  6    4  5 grid
 #> 7  7    5  6 grid
+}
 }

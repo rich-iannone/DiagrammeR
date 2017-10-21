@@ -73,17 +73,17 @@ graph_1 <-
 # node data frame
 graph_1 \%>\%
   get_node_df()
-#>    id type label value betweenness__A
-#> 1   1 <NA>  <NA>   4.4       9.333333
-#> 2   2 <NA>  <NA>   4.6      29.000000
-#> 3   3 <NA>  <NA>   5.9      19.166667
-#> 4   4 <NA>  <NA>   6.5       2.666667
-#> 5   5 <NA>  <NA>   4.1       0.500000
-#> 6   6 <NA>  <NA>   3.6      18.000000
-#> 7   7 <NA>  <NA>   5.4      12.000000
-#> 8   8 <NA>  <NA>   5.8       0.000000
-#> 9   9 <NA>  <NA>   4.7      10.333333
-#> 10 10 <NA>  <NA>   5.7       0.000000
+#>    id type label betweenness__A
+#> 1   1 <NA>  <NA>       9.333333
+#> 2   2 <NA>  <NA>      29.000000
+#> 3   3 <NA>  <NA>      19.166667
+#> 4   4 <NA>  <NA>       2.666667
+#> 5   5 <NA>  <NA>       0.500000
+#> 6   6 <NA>  <NA>      18.000000
+#> 7   7 <NA>  <NA>      12.000000
+#> 8   8 <NA>  <NA>       0.000000
+#> 9   9 <NA>  <NA>      10.333333
+#> 10 10 <NA>  <NA>       0.000000
 
 # If a specified function takes argument
 # values, these can be supplied as well
@@ -98,17 +98,17 @@ graph_2 <-
 # node data frame
 graph_2 \%>\%
   get_node_df()
-#>    id type label value alpha_centrality__A
-#> 1   1 <NA>  <NA>   4.4           0.0621118
-#> 2   2 <NA>  <NA>   4.6          -0.5341615
-#> 3   3 <NA>  <NA>   5.9          -0.8157350
-#> 4   4 <NA>  <NA>   6.5          -0.6997930
-#> 5   5 <NA>  <NA>   4.1           1.0641822
-#> 6   6 <NA>  <NA>   3.6          -0.8737060
-#> 7   7 <NA>  <NA>   5.4          -0.6832298
-#> 8   8 <NA>  <NA>   5.8           0.9316770
-#> 9   9 <NA>  <NA>   4.7          -0.4679089
-#> 10 10 <NA>  <NA>   5.7           0.3685300
+#>    id type label alpha_centrality__A
+#> 1   1 <NA>  <NA>           0.0621118
+#> 2   2 <NA>  <NA>          -0.5341615
+#> 3   3 <NA>  <NA>          -0.8157350
+#> 4   4 <NA>  <NA>          -0.6997930
+#> 5   5 <NA>  <NA>           1.0641822
+#> 6   6 <NA>  <NA>          -0.8737060
+#> 7   7 <NA>  <NA>          -0.6832298
+#> 8   8 <NA>  <NA>           0.9316770
+#> 9   9 <NA>  <NA>          -0.4679089
+#> 10 10 <NA>  <NA>           0.3685300
 
 # The new column name can be provided
 graph_3 <-
@@ -121,17 +121,17 @@ graph_3 <-
 # node data frame
 graph_3 \%>\%
   get_node_df()
-#>    id type label value pagerank
-#> 1   1 <NA>  <NA>   4.4   0.1416
-#> 2   2 <NA>  <NA>   4.6   0.1401
-#> 3   3 <NA>  <NA>   5.9   0.1262
-#> 4   4 <NA>  <NA>   6.5   0.0637
-#> 5   5 <NA>  <NA>   4.1   0.0478
-#> 6   6 <NA>  <NA>   3.6   0.1976
-#> 7   7 <NA>  <NA>   5.4   0.1318
-#> 8   8 <NA>  <NA>   5.8   0.0422
-#> 9   9 <NA>  <NA>   4.7   0.0693
-#> 10 10 <NA>  <NA>   5.7   0.0398
+#>    id type label pagerank
+#> 1   1 <NA>  <NA>   0.1416
+#> 2   2 <NA>  <NA>   0.1401
+#> 3   3 <NA>  <NA>   0.1262
+#> 4   4 <NA>  <NA>   0.0637
+#> 5   5 <NA>  <NA>   0.0478
+#> 6   6 <NA>  <NA>   0.1976
+#> 7   7 <NA>  <NA>   0.1318
+#> 8   8 <NA>  <NA>   0.0422
+#> 9   9 <NA>  <NA>   0.0693
+#> 10 10 <NA>  <NA>   0.0398
 
 # If `graph_3` is modified by
 # adding a new node then the column
@@ -143,8 +143,7 @@ graph_3 <-
   graph_3 \%>\%
   add_node(
     from = 1,
-    to = 3,
-    value = 5.5) \%>\%
+    to = 3) \%>\%
   set_node_attr_w_fcn(
     node_attr_fcn = "get_pagerank",
     column_name = "pagerank")
@@ -153,16 +152,16 @@ graph_3 <-
 # node data frame
 graph_3 \%>\%
   get_node_df()
-#>    id type label value pagerank
-#> 1   1 <NA>  <NA>   4.4   0.1349
-#> 2   2 <NA>  <NA>   4.6   0.1352
-#> 3   3 <NA>  <NA>   5.9   0.1585
-#> 4   4 <NA>  <NA>   6.5   0.0670
-#> 5   5 <NA>  <NA>   4.1   0.0461
-#> 6   6 <NA>  <NA>   3.6   0.1300
-#> 7   7 <NA>  <NA>   5.4   0.1014
-#> 8   8 <NA>  <NA>   5.8   0.0400
-#> 9   9 <NA>  <NA>   4.7   0.0685
-#> 10 10 <NA>  <NA>   5.7   0.0440
-#> 11 11 <NA>  <NA>   5.5   0.0744
+#>    id type label pagerank
+#> 1   1 <NA>  <NA>   0.1349
+#> 2   2 <NA>  <NA>   0.1352
+#> 3   3 <NA>  <NA>   0.1585
+#> 4   4 <NA>  <NA>   0.0670
+#> 5   5 <NA>  <NA>   0.0461
+#> 6   6 <NA>  <NA>   0.1300
+#> 7   7 <NA>  <NA>   0.1014
+#> 8   8 <NA>  <NA>   0.0400
+#> 9   9 <NA>  <NA>   0.0685
+#> 10 10 <NA>  <NA>   0.0440
+#> 11 11 <NA>  <NA>   0.0744
 }

@@ -48,6 +48,7 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
+#' \dontrun{
 #' # Create a new graph and add
 #' # a 3 x 3 grid
 #' graph <-
@@ -113,6 +114,7 @@
 #' #> 5  5    3  6 grid
 #' #> 6  6    4  5 grid
 #' #> 7  7    5  6 grid
+#' }
 #' @importFrom igraph make_lattice
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr select bind_cols pull

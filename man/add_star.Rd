@@ -63,6 +63,7 @@ With a graph object of class
 \code{dgr_graph}, add a node star to the graph.
 }
 \examples{
+\dontrun{
 # Create a new graph and add 2 stars of
 # varying numbers of nodes
 graph <-
@@ -126,4 +127,5 @@ get_edge_df(graph_w_attrs)
 #> 3  3    1  4 star
 #> 4  4    1  5 star
 #> 5  5    1  6 star
+}
 }
