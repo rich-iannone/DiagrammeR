@@ -5,7 +5,7 @@
 \title{Add a path of nodes to the graph}
 \usage{
 add_path(graph, n, type = NULL, label = TRUE, rel = NULL,
-  node_aes = NULL, edge_aes = NULL, ...)
+  node_aes = NULL, edge_aes = NULL, node_data = NULL, edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -42,8 +42,17 @@ of the accepted edge aesthetic attributes (e.g.,
 \code{shape}, \code{style}, \code{penwidth},
 \code{color}).}
 
-\item{...}{optional node attributes supplied as
-one or more named vectors.}
+\item{node_data}{an optional list of named vectors
+comprising node data attributes. The helper
+function \code{node_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.}
+
+\item{edge_data}{an optional list of named vectors
+comprising edge data attributes. The helper
+function \code{edge_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

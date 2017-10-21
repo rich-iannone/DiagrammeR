@@ -4,7 +4,8 @@
 \alias{add_balanced_tree}
 \title{Add a balanced tree to the graph}
 \usage{
-add_balanced_tree(graph, k, h, type = NULL, label = TRUE, rel = NULL)
+add_balanced_tree(graph, k, h, type = NULL, label = TRUE, rel = NULL,
+  node_aes = NULL, edge_aes = NULL, node_data = NULL, edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -30,6 +31,34 @@ label.}
 \item{rel}{an optional string for
 providing a relationship label to all
 new edges created in the node tree.}
+
+\item{node_aes}{an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function \code{node_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{color},
+\code{fillcolor}).}
+
+\item{edge_aes}{an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function \code{edge_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{penwidth},
+\code{color}).}
+
+\item{node_data}{an optional list of named vectors
+comprising node data attributes. The helper
+function \code{node_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.}
+
+\item{edge_data}{an optional list of named vectors
+comprising edge data attributes. The helper
+function \code{edge_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.}
 }
 \value{
 a graph object of class

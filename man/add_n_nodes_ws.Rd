@@ -6,7 +6,8 @@
 one or more selected nodes}
 \usage{
 add_n_nodes_ws(graph, n, direction = NULL, type = NULL, label = NULL,
-  rel = NULL)
+  rel = NULL, node_aes = NULL, edge_aes = NULL, node_data = NULL,
+  edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -28,6 +29,34 @@ describes the nodes to be added.}
 
 \item{rel}{an optional string to apply a
 \code{rel} attribute to all newly created edges.}
+
+\item{node_aes}{an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function \code{node_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{color},
+\code{fillcolor}).}
+
+\item{edge_aes}{an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function \code{edge_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{penwidth},
+\code{color}).}
+
+\item{node_data}{an optional list of named vectors
+comprising node data attributes. The helper
+function \code{node_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.}
+
+\item{edge_data}{an optional list of named vectors
+comprising edge data attributes. The helper
+function \code{edge_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

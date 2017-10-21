@@ -4,7 +4,8 @@
 \alias{add_n_nodes}
 \title{Add one or several unconnected nodes to the graph}
 \usage{
-add_n_nodes(graph, n, type = NULL, label = NULL, ...)
+add_n_nodes(graph, n, type = NULL, label = NULL, node_aes = NULL,
+  node_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -18,8 +19,19 @@ provides group identifiers for the nodes to be added.}
 \item{label}{an optional character object that
 describes the nodes to be added.}
 
-\item{...}{optional node attributes supplied as
-vectors.}
+\item{node_aes}{an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function \code{node_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{color},
+\code{fillcolor}).}
+
+\item{node_data}{an optional list of named vectors
+comprising node data attributes. The helper
+function \code{node_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

@@ -5,7 +5,8 @@
 \title{Add a fully connected graph}
 \usage{
 add_full_graph(graph, n, type = NULL, label = TRUE, rel = NULL,
-  edge_wt_matrix = NULL, keep_loops = FALSE, ...)
+  edge_wt_matrix = NULL, keep_loops = FALSE, node_aes = NULL,
+  edge_aes = NULL, node_data = NULL, edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -38,8 +39,33 @@ connected graph by removing loops (edges from and
 to the same node). The default value is
 \code{FALSE}.}
 
-\item{...}{optional node attributes supplied as
-vectors.}
+\item{node_aes}{an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function \code{node_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{color},
+\code{fillcolor}).}
+
+\item{edge_aes}{an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function \code{edge_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{penwidth},
+\code{color}).}
+
+\item{node_data}{an optional list of named vectors
+comprising node data attributes. The helper
+function \code{node_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.}
+
+\item{edge_data}{an optional list of named vectors
+comprising edge data attributes. The helper
+function \code{edge_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

@@ -4,7 +4,7 @@
 \alias{add_edge}
 \title{Add an edge between nodes in a graph object}
 \usage{
-add_edge(graph, from, to, rel = NULL, ...)
+add_edge(graph, from, to, rel = NULL, edge_aes = NULL, edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -32,8 +32,19 @@ string.}
 relationship between the
 connected nodes.}
 
-\item{...}{optional edge attributes supplied as
-vectors.}
+\item{edge_aes}{an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function \code{edge_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{penwidth},
+\code{color}).}
+
+\item{edge_data}{an optional list of named vectors
+comprising edge data attributes. The helper
+function \code{edge_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -94,8 +105,33 @@ graph <-
     to = "one",
     rel = "L")
 
-# Use the `get_edges()` function to verify
-# that the edges were added
+# Use the `get_edges()` function
+# to verify that the edges
+# were added
 get_edges(graph)
 #> [1] "1->2" "3->2" "3->4" "4->1"
+
+# Add edge aesthetic and data
+# attributes during edge creation
+graph_2 <-
+  create_graph() \%>\%
+  add_n_nodes(n = 2) \%>\%
+  add_edge(
+    from = 1,
+    to = 2,
+    rel = "M",
+    edge_aes = edge_aes(
+      penwidth = 1.5,
+      color = "blue"),
+    edge_data = edge_data(
+      value = 4.3))
+
+# Use the `get_edges()` function
+# to verify that the attribute
+# values were bound to the
+# newly created edge
+graph_2 \%>\%
+  get_edge_df()
+#>   id from to rel penwidth color value
+#> 1  1    1  2   M      1.5  blue   4.3
 }

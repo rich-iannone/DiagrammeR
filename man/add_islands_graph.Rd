@@ -5,7 +5,8 @@
 \title{Create a random growing graph with m edges between islands}
 \usage{
 add_islands_graph(graph, n_islands, island_size, p, edges_between,
-  set_seed = NULL)
+  set_seed = NULL, node_aes = NULL, edge_aes = NULL, node_data = NULL,
+  edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -25,6 +26,34 @@ between islands.}
 
 \item{set_seed}{supplying a value sets a random seed
 of the \code{Mersenne-Twister} implementation.}
+
+\item{node_aes}{an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function \code{node_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{color},
+\code{fillcolor}).}
+
+\item{edge_aes}{an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function \code{edge_aes()} is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+\code{shape}, \code{style}, \code{penwidth},
+\code{color}).}
+
+\item{node_data}{an optional list of named vectors
+comprising node data attributes. The helper
+function \code{node_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.}
+
+\item{edge_data}{an optional list of named vectors
+comprising edge data attributes. The helper
+function \code{edge_data()} is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.}
 }
 \description{
 To an existing graph object, add
