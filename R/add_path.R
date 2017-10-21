@@ -40,6 +40,7 @@
 #' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
+#' \dontrun{
 #' # Create a new graph and add
 #' # 2 paths of varying lengths
 #' graph <-
@@ -107,6 +108,7 @@
 #' #> 4  4    4  5 path
 #' #> 5  5    5  6 path
 #' #> 6  6    6  1 path
+#' }
 #' @importFrom dplyr select bind_cols
 #' @importFrom tibble as_tibble
 #' @export add_path

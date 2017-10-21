@@ -24,17 +24,16 @@
 #'   add_path(
 #'     n = 3,
 #'     label = c("d", "g", "r"),
-#'     type = c("a", "b", "c"),
-#'     value = c(10, 20, 30))
+#'     type = c("a", "b", "c"))
 #'
 #' # Display the graph's internal
 #' # node data frame
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label value
-#' #> 1  1    a     d    10
-#' #> 2  2    b     g    20
-#' #> 3  3    c     r    30
+#' #>   id type label
+#' #> 1  1    a     d
+#' #> 2  2    b     g
+#' #> 3  3    c     r
 #'
 #' # Create 3 clones of node `1`
 #' # but assign new node label
@@ -52,13 +51,13 @@
 #' # `5`, and `6` are clones of `1`
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label value
-#' #> 1  1    a     d    10
-#' #> 2  2    b     g    20
-#' #> 3  3    c     r    30
-#' #> 4  4    a     x    10
-#' #> 5  5    a     y    10
-#' #> 6  6    a     z    10
+#' #>   id type label
+#' #> 1  1    a     d
+#' #> 2  2    b     g
+#' #> 3  3    c     r
+#' #> 4  4    a     x
+#' #> 5  5    a     y
+#' #> 6  6    a     z
 #' @importFrom dplyr filter select
 #' @export add_n_node_clones
 
@@ -117,11 +116,14 @@ add_n_node_clones <- function(graph,
 
   # Extract all of the node attributes
   # (`type` and additional node attrs)
-  node_attr_vals <-
-    graph %>%
-    get_node_df() %>%
-    dplyr::filter(id == node) %>%
-    dplyr::select(type, 4:n_col_ndf)
+  if (n_col_ndf >= 4) {
+
+    node_attr_vals <-
+      graph %>%
+      get_node_df() %>%
+      dplyr::filter(id == node) %>%
+      dplyr::select(type, 4:n_col_ndf)
+  }
 
   # Create one or more clones of
   # the selected node in the graph
@@ -129,6 +131,7 @@ add_n_node_clones <- function(graph,
     graph %>%
     add_n_nodes(
       n = n,
+      type = get_node_attrs(graph = graph, node_attr = type, nodes = node) %>% as.character(),
       label = label)
 
   # Obtain the node ID values for
@@ -147,13 +150,17 @@ add_n_node_clones <- function(graph,
 
   # Iteratively set node attribute values for
   # the new nodes in the graph
-  for (i in 1:ncol(node_attr_vals)) {
-    for (j in 1:length(new_node_ids)) {
 
-      graph$nodes_df[
-        which(graph$nodes_df[, 1] == new_node_ids[j]),
-        which(colnames(graph$nodes_df) == colnames(node_attr_vals)[i])] <-
+  if (exists("node_attr_vals")) {
+
+    for (i in 1:ncol(node_attr_vals)) {
+      for (j in 1:length(new_node_ids)) {
+
+        graph$nodes_df[
+          which(graph$nodes_df[, 1] == new_node_ids[j]),
+          which(colnames(graph$nodes_df) == colnames(node_attr_vals)[i])] <-
           node_attr_vals[[i]]
+      }
     }
   }
 

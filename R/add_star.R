@@ -41,6 +41,7 @@
 #' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
+#' \dontrun{
 #' # Create a new graph and add 2 stars of
 #' # varying numbers of nodes
 #' graph <-
@@ -104,6 +105,7 @@
 #' #> 3  3    1  4 star
 #' #> 4  4    1  5 star
 #' #> 5  5    1  6 star
+#' }
 #' @importFrom dplyr select bind_cols
 #' @importFrom tibble as_tibble
 #' @export add_star

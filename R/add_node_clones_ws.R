@@ -27,6 +27,7 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
+#' \dontrun{
 #' # Create a graph with a path of
 #' # nodes; supply `label`, `type`,
 #' # and `value` node attributes,
@@ -36,18 +37,17 @@
 #'   add_path(
 #'     n = 3,
 #'     label = c("d", "g", "r"),
-#'     type = c("a", "b", "c"),
-#'     value = c(10, 20, 30)) %>%
+#'     type = c("a", "b", "c")) %>%
 #'   select_last_nodes_created()
 #'
 #' # Display the graph's internal
 #' # node data frame
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label value
-#' #> 1  1    a     d    10
-#' #> 2  2    b     g    20
-#' #> 3  3    c     r    30
+#' #>   id type label
+#' #> 1  1    a     d
+#' #> 2  2    b     g
+#' #> 3  3    c     r
 #'
 #' # Create clones of all nodes
 #' # in the selection but assign
@@ -65,13 +65,13 @@
 #' # `1`, `2`, and `3`
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label value
-#' #> 1  1    a     d    10
-#' #> 2  2    b     g    20
-#' #> 3  3    c     r    30
-#' #> 4  4    a     a    10
-#' #> 5  5    b     b    20
-#' #> 6  6    c     v    30
+#' #>   id type label
+#' #> 1  1    a     d
+#' #> 2  2    b     g
+#' #> 3  3    c     r
+#' #> 4  4    a     a
+#' #> 5  5    b     b
+#' #> 6  6    c     v
 #'
 #' # Select the last nodes
 #' # created (`4`, `5`, and `6`)
@@ -99,6 +99,7 @@
 #' #> 3  3    4  7 <NA>
 #' #> 4  4    5  8 <NA>
 #' #> 5  5    6  9 <NA>
+#' }
 #' @importFrom dplyr filter select
 #' @export add_node_clones_ws
 
