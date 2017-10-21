@@ -23,8 +23,18 @@
 #' @param rel an optional string specifying the
 #' relationship between the
 #' connected nodes.
-#' @param ... optional edge attributes supplied as
-#' vectors.
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 4 nodes
@@ -77,10 +87,35 @@
 #'     to = "one",
 #'     rel = "L")
 #'
-#' # Use the `get_edges()` function to verify
-#' # that the edges were added
+#' # Use the `get_edges()` function
+#' # to verify that the edges
+#' # were added
 #' get_edges(graph)
 #' #> [1] "1->2" "3->2" "3->4" "4->1"
+#'
+#' # Add edge aesthetic and data
+#' # attributes during edge creation
+#' graph_2 <-
+#'   create_graph() %>%
+#'   add_n_nodes(n = 2) %>%
+#'   add_edge(
+#'     from = 1,
+#'     to = 2,
+#'     rel = "M",
+#'     edge_aes = edge_aes(
+#'       penwidth = 1.5,
+#'       color = "blue"),
+#'     edge_data = edge_data(
+#'       value = 4.3))
+#'
+#' # Use the `get_edges()` function
+#' # to verify that the attribute
+#' # values were bound to the
+#' # newly created edge
+#' graph_2 %>%
+#'   get_edge_df()
+#' #>   id from to rel penwidth color value
+#' #> 1  1    1  2   M      1.5  blue   4.3
 #' @importFrom dplyr bind_rows select filter
 #' @importFrom tibble as_tibble
 #' @importFrom rlang UQ
@@ -90,7 +125,8 @@ add_edge <- function(graph,
                      from,
                      to,
                      rel = NULL,
-                     ...) {
+                     edge_aes = NULL,
+                     edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -122,12 +158,46 @@ add_edge <- function(graph,
     rel <- as.character(NA)
   }
 
-  # Collect extra vectors of data as `extras`
-  extras <- list(...)
+  # Collect edge aesthetic attributes
+  if (!is.null(edge_aes)) {
 
-  # Collect extra vectors of data as `extras_tbl`
-  if (length(extras) > 0) {
-    extras_tbl <- tibble::as_tibble(extras)
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) == 1) {
+
+      edge_aes$index__ <- 1
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) == 1) {
+
+      edge_data$index__ <- 1
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
+        dplyr::select(-id)
+    }
   }
 
   # If `from` and `to` values provided as character
@@ -195,7 +265,7 @@ add_edge <- function(graph,
     # edge data frame
     graph$edges_df <- combined_edges
 
-    if (exists("extras_tbl")) {
+    if (exists("edge_aes_tbl")) {
 
       # If extra edge attributes available, add
       # those to the new edge
@@ -206,12 +276,37 @@ add_edge <- function(graph,
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
-      for (i in 1:ncol(extras_tbl)) {
+      for (i in 1:ncol(edge_aes_tbl)) {
         graph <-
           graph %>%
           set_edge_attrs_ws(
-            edge_attr = rlang::UQ(colnames(extras_tbl)[i]),
-            value = extras_tbl[1, i][[1]])
+            edge_attr = rlang::UQ(colnames(edge_aes_tbl)[i]),
+            value = edge_aes_tbl[1, i][[1]])
+      }
+
+      # Clear the graph's active selection
+      graph <-
+        graph %>%
+        clear_selection()
+    }
+
+    if (exists("edge_data_tbl")) {
+
+      # If extra edge attributes available, add
+      # those to the new edge
+      graph <-
+        graph %>%
+        select_edges_by_edge_id(
+          edges = graph$edges_df$id %>% max())
+
+      # Iteratively set edge attribute values for
+      # the new edge in the graph
+      for (i in 1:ncol(edge_data_tbl)) {
+        graph <-
+          graph %>%
+          set_edge_attrs_ws(
+            edge_attr = rlang::UQ(colnames(edge_data_tbl)[i]),
+            value = edge_data_tbl[1, i][[1]])
       }
 
       # Clear the graph's active selection

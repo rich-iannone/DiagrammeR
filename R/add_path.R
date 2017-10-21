@@ -28,8 +28,16 @@
 #' of the accepted edge aesthetic attributes (e.g.,
 #' \code{shape}, \code{style}, \code{penwidth},
 #' \code{color}).
-#' @param ... optional node attributes supplied as
-#' one or more named vectors.
+#' @param node_data an optional list of named vectors
+#' comprising node data attributes. The helper
+#' function \code{node_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created nodes.
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add
@@ -110,7 +118,8 @@ add_path <- function(graph,
                      rel = NULL,
                      node_aes = NULL,
                      edge_aes = NULL,
-                     ...) {
+                     node_data = NULL,
+                     edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -152,7 +161,7 @@ add_path <- function(graph,
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
-  # Collect aesthetic node attributes table
+  # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
 
     node_aes_tbl <- tibble::as_tibble(node_aes)
@@ -173,7 +182,7 @@ add_path <- function(graph,
     }
   }
 
-  # Collect aesthetic edge attributes table
+  # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
 
     edge_aes_tbl <- tibble::as_tibble(edge_aes)
@@ -194,25 +203,44 @@ add_path <- function(graph,
     }
   }
 
-  # Collect extra vectors of data as `extras`
-  extras <- list(...)
+  # Collect node data attributes
+  if (!is.null(node_data)) {
 
-  if (length(extras) > 0) {
+    node_data_tbl <- tibble::as_tibble(node_data)
 
-    extras_tbl <- tibble::as_tibble(extras)
+    if (nrow(node_data_tbl) < n) {
 
-    if (nrow(extras_tbl) < n) {
+      node_data$index__ <- 1:n
 
-      extras$index__ <- 1:n
-
-      extras_tbl <-
-        tibble::as_tibble(extras) %>%
+      node_data_tbl <-
+        tibble::as_tibble(node_data) %>%
         dplyr::select(-index__)
     }
 
-    if ("id" %in% colnames(extras_tbl)) {
-      extras_tbl <-
-        extras_tbl %>%
+    if ("id" %in% colnames(node_data_tbl)) {
+      node_data_tbl <-
+        node_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) < (n - 1)) {
+
+      edge_data$index__ <- 1:(n - 1)
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
         dplyr::select(-id)
     }
   }
@@ -232,12 +260,12 @@ add_path <- function(graph,
       dplyr::bind_cols(node_aes_tbl)
   }
 
-  # Add extra columns if available
-  if (exists("extras_tbl")) {
+  # Add node data if available
+  if (exists("node_data_tbl")) {
 
     path_nodes <-
       path_nodes %>%
-      dplyr::bind_cols(extras_tbl)
+      dplyr::bind_cols(node_data_tbl)
   }
 
   # Create an edge data frame for the path graph
@@ -253,6 +281,14 @@ add_path <- function(graph,
     path_edges <-
       path_edges %>%
       dplyr::bind_cols(edge_aes_tbl)
+  }
+
+  # Add edge data if available
+  if (exists("edge_data_tbl")) {
+
+    path_edges <-
+      path_edges %>%
+      dplyr::bind_cols(edge_data_tbl)
   }
 
   # Create the path graph

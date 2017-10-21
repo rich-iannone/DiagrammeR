@@ -15,8 +15,30 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node star.
-#' @param ... optional node attributes supplied as
-#' vectors.
+#' @param node_aes an optional list of named vectors
+#' comprising node aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted node aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{color},
+#' \code{fillcolor}).
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
+#' @param node_data an optional list of named vectors
+#' comprising node data attributes. The helper
+#' function \code{node_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created nodes.
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add 2 stars of
@@ -91,7 +113,10 @@ add_star <- function(graph,
                      type = NULL,
                      label = TRUE,
                      rel = NULL,
-                     ...) {
+                     node_aes = NULL,
+                     edge_aes = NULL,
+                     node_data = NULL,
+                     edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -133,25 +158,87 @@ add_star <- function(graph,
   # Get the sequence of nodes required
   nodes <- seq(1, n)
 
-  # Collect extra vectors of data as `extras`
-  extras <- list(...)
+  # Collect node aesthetic attributes
+  if (!is.null(node_aes)) {
 
-  if (length(extras) > 0) {
+    node_aes_tbl <- tibble::as_tibble(node_aes)
 
-    extras_tbl <- tibble::as_tibble(extras)
+    if (nrow(node_aes_tbl) < n) {
 
-    if (nrow(extras_tbl) < length(nodes)) {
+      node_aes$index__ <- 1:n
 
-      extras$index__ <- 1:length(nodes)
-
-      extras_tbl <-
-        tibble::as_tibble(extras) %>%
+      node_aes_tbl <-
+        tibble::as_tibble(node_aes) %>%
         dplyr::select(-index__)
     }
 
-    if ("id" %in% colnames(extras_tbl)) {
-      extras_tbl <-
-        extras_tbl %>%
+    if ("id" %in% colnames(node_aes_tbl)) {
+      node_aes_tbl <-
+        node_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect node data attributes
+  if (!is.null(node_data)) {
+
+    node_data_tbl <- tibble::as_tibble(node_data)
+
+    if (nrow(node_data_tbl) < n) {
+
+      node_data$index__ <- 1:n
+
+      node_data_tbl <-
+        tibble::as_tibble(node_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_data_tbl)) {
+      node_data_tbl <-
+        node_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+
+  # Collect edge aesthetic attributes
+  if (!is.null(edge_aes)) {
+
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) < (n - 1)) {
+
+      edge_aes$index__ <- 1:(n - 1)
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) < (n - 1)) {
+
+      edge_data$index__ <- 1:(n - 1)
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
         dplyr::select(-id)
     }
   }
@@ -163,12 +250,20 @@ add_star <- function(graph,
       type = type,
       label = label)
 
-  # Add extra columns if available
-  if (exists("extras_tbl")) {
+  # Add node aesthetics if available
+  if (exists("node_aes_tbl")) {
 
     star_nodes <-
       star_nodes %>%
-      dplyr::bind_cols(extras_tbl)
+      dplyr::bind_cols(node_aes_tbl)
+  }
+
+  # Add node data if available
+  if (exists("node_data_tbl")) {
+
+    star_nodes <-
+      star_nodes %>%
+      dplyr::bind_cols(node_data_tbl)
   }
 
   # Create an edge data frame for the star graph
@@ -178,16 +273,28 @@ add_star <- function(graph,
       to = nodes[2:length(nodes)],
       rel = rel)
 
+  # Add edge aesthetics if available
+  if (exists("edge_aes_tbl")) {
+
+    star_edges <-
+      star_edges %>%
+      dplyr::bind_cols(edge_aes_tbl)
+  }
+
+  # Add edge data if available
+  if (exists("edge_data_tbl")) {
+
+    star_edges <-
+      star_edges %>%
+      dplyr::bind_cols(edge_data_tbl)
+  }
+
   # Create the star graph
   star_graph <-
     create_graph(
       directed = graph_directed,
       nodes_df = star_nodes,
       edges_df = star_edges)
-
-  n_nodes = star_graph %>% count_nodes()
-
-  n_edges = star_graph %>% count_edges()
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
@@ -196,10 +303,10 @@ add_star <- function(graph,
     combined_graph <- combine_graphs(graph, star_graph)
 
     # Update the `last_node` counter
-    combined_graph$last_node <- nodes_created + n_nodes
+    combined_graph$last_node <- nodes_created + n
 
     # Update the `last_edge` counter
-    combined_graph$last_edge <- edges_created + n_edges
+    combined_graph$last_edge <- edges_created + n - 1
 
     # Update the `graph_log` df with an action
     graph_log <-
@@ -211,8 +318,8 @@ add_star <- function(graph,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(combined_graph$nodes_df),
         edges = nrow(combined_graph$edges_df),
-        d_n = n_nodes,
-        d_e = n_edges)
+        d_n = n,
+        d_e = n - 1)
 
     combined_graph$global_attrs <- global_attrs
     combined_graph$graph_log <- graph_log
@@ -243,8 +350,8 @@ add_star <- function(graph,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(star_graph$nodes_df),
         edges = nrow(star_graph$edges_df),
-        d_n = n_nodes,
-        d_e = n_edges)
+        d_n = n,
+        d_e = n - 1)
 
     star_graph$global_attrs <- global_attrs
     star_graph$graph_log <- graph_log

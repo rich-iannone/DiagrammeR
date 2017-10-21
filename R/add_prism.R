@@ -19,8 +19,30 @@
 #' @param rel an optional string for providing a
 #' relationship label to all new edges created in the
 #' node prism.
-#' @param ... optional node attributes supplied as
-#' vectors.
+#' @param node_aes an optional list of named vectors
+#' comprising node aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted node aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{color},
+#' \code{fillcolor}).
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
+#' @param node_data an optional list of named vectors
+#' comprising node data attributes. The helper
+#' function \code{node_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created nodes.
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and add 2 prisms
@@ -51,49 +73,67 @@
 #' #> 11 11 prism     b   3     2      1     0
 #' #> 12 12 prism     b   3     2      1     0
 #'
-#' # Attributes can be specified in extra
-#' # arguments and these are applied in order;
-#' # Usually these attributes are applied to
-#' # nodes (e.g., `type` is a node attribute)
-#' # but the `rel` attribute will apply to the
-#' # edges
+#' # Node and edge aesthetic and data
+#' # attributes can be specified in
+#' # the `node_aes`, `edge_aes`,
+#' # `node_data`, and `edge_data`
+#' # arguments
+#'
+#' set.seed(23)
+#'
 #' graph_w_attrs <-
 #'   create_graph() %>%
 #'   add_prism(
 #'     n = 3,
-#'     label = c("one", "two",
-#'               "three", "four",
-#'               "five", "six"),
-#'     type = c("a", "a",
-#'              "b", "b",
-#'              "c", "c"),
-#'     value = c(1.2, 8.4,
-#'               3.4, 5.2,
-#'               6.1, 2.6),
-#'     rel = "prism")
+#'     label = c(
+#'       "one", "two",
+#'       "three", "four",
+#'       "five", "six"),
+#'     type = c(
+#'       "a", "a",
+#'       "b", "b",
+#'       "c", "c"),
+#'     rel = "A",
+#'     node_aes = node_aes(
+#'       fillcolor = "steelblue"),
+#'     edge_aes = edge_aes(
+#'       color = "red",
+#'       penwidth = 1.2),
+#'     node_data = node_data(
+#'       value = c(
+#'         1.6, 2.8, 3.4,
+#'         3.2, 5.3, 6.2)),
+#'     edge_data = edge_data(
+#'       value =
+#'         rnorm(
+#'           n = 9,
+#'           mean = 5.0,
+#'           sd = 1.0)))
 #'
 #' # Get the graph's node data frame
-#' get_node_df(graph_w_attrs)
-#' #>   id type label value
-#' #> 1  1    a   one   1.2
-#' #> 2  2    a   two   8.4
-#' #> 3  3    b three   3.4
-#' #> 4  4    b  four   5.2
-#' #> 5  5    c  five   6.1
-#' #> 6  6    c   six   2.6
+#' graph_w_attrs %>%
+#'   get_node_df()
+#' #>   id type label fillcolor value
+#' #> 1  1    a   one steelblue   1.6
+#' #> 2  2    a   two steelblue   2.8
+#' #> 3  3    b three steelblue   3.4
+#' #> 4  4    b  four steelblue   3.2
+#' #> 5  5    c  five steelblue   5.3
+#' #> 6  6    c   six steelblue   6.2
 #'
 #' # Get the graph's edge data frame
-#' get_edge_df(graph_w_attrs)
-#' #>   id from to   rel
-#' #> 1  1    1  2 prism
-#' #> 2  2    2  3 prism
-#' #> 3  3    3  1 prism
-#' #> 4  4    4  5 prism
-#' #> 5  5    5  6 prism
-#' #> 6  6    6  4 prism
-#' #> 7  7    1  4 prism
-#' #> 8  8    2  5 prism
-#' #> 9  9    3  6 prism
+#' graph_w_attrs %>%
+#'   get_edge_df()
+#' #>   id from to rel penwidth color    value
+#' #> 1  1    1  2   A      1.2   red 5.996605
+#' #> 2  2    2  3   A      1.2   red 6.107490
+#' #> 3  3    3  1   A      1.2   red 4.721914
+#' #> 4  4    4  5   A      1.2   red 6.019205
+#' #> 5  5    5  6   A      1.2   red 5.045437
+#' #> 6  6    6  4   A      1.2   red 6.575780
+#' #> 7  7    1  4   A      1.2   red 5.218288
+#' #> 8  8    2  5   A      1.2   red 3.953465
+#' #> 9  9    3  6   A      1.2   red 4.711311
 #' @importFrom dplyr select bind_cols
 #' @importFrom tibble as_tibble
 #' @export add_prism
@@ -103,7 +143,10 @@ add_prism <- function(graph,
                       type = NULL,
                       label = TRUE,
                       rel = NULL,
-                      ...) {
+                      node_aes = NULL,
+                      edge_aes = NULL,
+                      node_data = NULL,
+                      edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -145,25 +188,86 @@ add_prism <- function(graph,
   # Get the sequence of nodes required
   nodes <- seq(1, 2 * n)
 
-  # Collect extra vectors of data as `extras`
-  extras <- list(...)
+  # Collect node aesthetic attributes
+  if (!is.null(node_aes)) {
 
-  if (length(extras) > 0) {
+    node_aes_tbl <- tibble::as_tibble(node_aes)
 
-    extras_tbl <- tibble::as_tibble(extras)
+    if (nrow(node_aes_tbl) < (2 * n) ) {
 
-    if (nrow(extras_tbl) < length(nodes)) {
+      node_aes$index__ <- 1:(2 * n)
 
-      extras$index__ <- 1:length(nodes)
-
-      extras_tbl <-
-        tibble::as_tibble(extras) %>%
+      node_aes_tbl <-
+        tibble::as_tibble(node_aes) %>%
         dplyr::select(-index__)
     }
 
-    if ("id" %in% colnames(extras_tbl)) {
-      extras_tbl <-
-        extras_tbl %>%
+    if ("id" %in% colnames(node_aes_tbl)) {
+      node_aes_tbl <-
+        node_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge aesthetic attributes
+  if (!is.null(edge_aes)) {
+
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) < (3 * n)) {
+
+      edge_aes$index__ <- 1:(3 * n)
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect node data attributes
+  if (!is.null(node_data)) {
+
+    node_data_tbl <- tibble::as_tibble(node_data)
+
+    if (nrow(node_data_tbl) < (2 * n)) {
+
+      node_data$index__ <- 1:(2 * n)
+
+      node_data_tbl <-
+        tibble::as_tibble(node_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_data_tbl)) {
+      node_data_tbl <-
+        node_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) < (3 * n)) {
+
+      edge_data$index__ <- 1:(3 * n)
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
         dplyr::select(-id)
     }
   }
@@ -175,12 +279,20 @@ add_prism <- function(graph,
       type = type,
       label = label)
 
-  # Add extra columns if available
-  if (exists("extras_tbl")) {
+  # Add node aesthetics if available
+  if (exists("node_aes_tbl")) {
 
     prism_nodes <-
       prism_nodes %>%
-      dplyr::bind_cols(extras_tbl)
+      dplyr::bind_cols(node_aes_tbl)
+  }
+
+  # Add node data if available
+  if (exists("node_data_tbl")) {
+
+    prism_nodes <-
+      prism_nodes %>%
+      dplyr::bind_cols(node_data_tbl)
   }
 
   # Create an edge data frame for the prism graph
@@ -199,6 +311,22 @@ add_prism <- function(graph,
   n_nodes = nrow(prism_nodes)
 
   n_edges = nrow(prism_edges)
+
+  # Add edge aesthetics if available
+  if (exists("edge_aes_tbl")) {
+
+    prism_edges <-
+      prism_edges %>%
+      dplyr::bind_cols(edge_aes_tbl)
+  }
+
+  # Add edge data if available
+  if (exists("edge_data_tbl")) {
+
+    prism_edges <-
+      prism_edges %>%
+      dplyr::bind_cols(edge_data_tbl)
+  }
 
   # Create the prism graph
   prism_graph <-

@@ -28,8 +28,30 @@
 #' connected graph by removing loops (edges from and
 #' to the same node). The default value is
 #' \code{FALSE}.
-#' @param ... optional node attributes supplied as
-#' vectors.
+#' @param node_aes an optional list of named vectors
+#' comprising node aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted node aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{color},
+#' \code{fillcolor}).
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
+#' @param node_data an optional list of named vectors
+#' comprising node data attributes. The helper
+#' function \code{node_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created nodes.
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph object
@@ -164,6 +186,8 @@
 #' #> 1  1    1  2 related_to   3.30
 #' #> 2  2    1  3 related_to   5.02
 #' #> 3  3    2  3 related_to   6.49
+#' @importFrom dplyr select bind_cols
+#' @importFrom tibble as_tibble
 #' @export add_full_graph
 
 add_full_graph <- function(graph,
@@ -173,7 +197,10 @@ add_full_graph <- function(graph,
                            rel = NULL,
                            edge_wt_matrix = NULL,
                            keep_loops = FALSE,
-                           ...) {
+                           node_aes = NULL,
+                           edge_aes = NULL,
+                           node_data = NULL,
+                           edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -220,29 +247,6 @@ add_full_graph <- function(graph,
       diag(1, nrow = nrow(adj_matrix), ncol = ncol(adj_matrix))
   }
 
-  # Collect extra vectors of data as `extras`
-  extras <- list(...)
-
-  if (length(extras) > 0) {
-
-    extras_tbl <- tibble::as_tibble(extras)
-
-    if (nrow(extras_tbl) < n) {
-
-      extras$index__ <- 1:n
-
-      extras_tbl <-
-        tibble::as_tibble(extras) %>%
-        dplyr::select(-index__)
-    }
-
-    if ("id" %in% colnames(extras_tbl)) {
-      extras_tbl <-
-        extras_tbl %>%
-        dplyr::select(-id)
-    }
-  }
-
   if (is_graph_directed(graph)) {
 
     # Create a new directed graph based on the
@@ -266,8 +270,9 @@ add_full_graph <- function(graph,
   if (is_graph_directed(graph) == FALSE) {
 
     new_graph <-
-      from_adj_matrix(adj_matrix,
-                      mode = "undirected")
+      from_adj_matrix(
+        adj_matrix,
+        mode = "undirected")
 
     # If a matrix of edge weights provided, apply those
     # from the bottom triangle to each of the edges in a
@@ -336,12 +341,120 @@ add_full_graph <- function(graph,
     new_graph$edges_df[, 4] <- rel
   }
 
-  # Add extra columns if available
-  if (exists("extras_tbl")) {
+  # Collect node aesthetic attributes
+  if (!is.null(node_aes)) {
 
-    new_graph <-
-      new_graph %>%
-      dplyr::bind_cols(extras_tbl)
+    node_aes_tbl <- tibble::as_tibble(node_aes)
+
+    if (nrow(node_aes_tbl) < nrow(new_graph$nodes_df)) {
+
+      node_aes$index__ <- 1:nrow(new_graph$nodes_df)
+
+      node_aes_tbl <-
+        tibble::as_tibble(node_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_aes_tbl)) {
+      node_aes_tbl <-
+        node_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect node data attributes
+  if (!is.null(node_data)) {
+
+    node_data_tbl <- tibble::as_tibble(node_data)
+
+    if (nrow(node_data_tbl) < nrow(new_graph$nodes_df)) {
+
+      node_data$index__ <- 1:nrow(new_graph$nodes_df)
+
+      node_data_tbl <-
+        tibble::as_tibble(node_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_data_tbl)) {
+      node_data_tbl <-
+        node_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge aesthetic attributes
+  if (!is.null(edge_aes)) {
+
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) < nrow(new_graph$edges_df)) {
+
+      edge_aes$index__ <- 1:nrow(new_graph$edges_df)
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) < nrow(new_graph$edges_df)) {
+
+      edge_data$index__ <- 1:nrow(new_graph$edges_df)
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Add node aesthetics if available
+  if (exists("node_aes_tbl")) {
+
+    new_graph$nodes_df <-
+      new_graph$nodes_df %>%
+      dplyr::bind_cols(node_aes_tbl)
+  }
+
+  # Add node data if available
+  if (exists("node_data_tbl")) {
+
+    new_graph$nodes_df <-
+      new_graph$nodes_df %>%
+      dplyr::bind_cols(node_data_tbl)
+  }
+
+  # Add edge aesthetics if available
+  if (exists("edge_aes_tbl")) {
+
+    new_graph$edges_df <-
+      new_graph$edges_df %>%
+      dplyr::bind_cols(edge_aes_tbl)
+  }
+
+  # Add edge data if available
+  if (exists("edge_data_tbl")) {
+
+    new_graph$edges_df <-
+      new_graph$edges_df %>%
+      dplyr::bind_cols(edge_data_tbl)
   }
 
   # If the input graph is not empty, combine graphs

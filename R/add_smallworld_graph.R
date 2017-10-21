@@ -21,6 +21,30 @@
 #' edges are allowed to be created.
 #' @param set_seed supplying a value sets a random seed
 #' of the \code{Mersenne-Twister} implementation.
+#' @param node_aes an optional list of named vectors
+#' comprising node aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted node aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{color},
+#' \code{fillcolor}).
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
+#' @param node_data an optional list of named vectors
+#' comprising node data attributes. The helper
+#' function \code{node_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created nodes.
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @examples
 #' # Create an undirected smallworld
 #' # graph with 100 nodes using
@@ -45,6 +69,8 @@
 #'   count_edges()
 #' #> [1] 50
 #' @importFrom igraph sample_smallworld
+#' @importFrom dplyr select bind_cols
+#' @importFrom tibble as_tibble
 #' @export add_smallworld_graph
 
 add_smallworld_graph <- function(graph,
@@ -54,7 +80,11 @@ add_smallworld_graph <- function(graph,
                                  p,
                                  loops = FALSE,
                                  multiple = FALSE,
-                                 set_seed = NULL) {
+                                 set_seed = NULL,
+                                 node_aes = NULL,
+                                 edge_aes = NULL,
+                                 node_data = NULL,
+                                 edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -101,6 +131,122 @@ add_smallworld_graph <- function(graph,
   n_nodes <- sample_smallworld_graph %>% count_nodes()
 
   n_edges <- sample_smallworld_graph %>% count_edges()
+
+  # Collect node aesthetic attributes
+  if (!is.null(node_aes)) {
+
+    node_aes_tbl <- tibble::as_tibble(node_aes)
+
+    if (nrow(node_aes_tbl) < nrow(sample_smallworld_graph$nodes_df)) {
+
+      node_aes$index__ <- 1:nrow(sample_smallworld_graph$nodes_df)
+
+      node_aes_tbl <-
+        tibble::as_tibble(node_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_aes_tbl)) {
+      node_aes_tbl <-
+        node_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect node data attributes
+  if (!is.null(node_data)) {
+
+    node_data_tbl <- tibble::as_tibble(node_data)
+
+    if (nrow(node_data_tbl) < nrow(sample_smallworld_graph$nodes_df)) {
+
+      node_data$index__ <- 1:nrow(sample_smallworld_graph$nodes_df)
+
+      node_data_tbl <-
+        tibble::as_tibble(node_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_data_tbl)) {
+      node_data_tbl <-
+        node_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge aesthetic attributes
+  if (!is.null(edge_aes)) {
+
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) < nrow(sample_smallworld_graph$edges_df)) {
+
+      edge_aes$index__ <- 1:nrow(sample_smallworld_graph$edges_df)
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) < nrow(sample_smallworld_graph$edges_df)) {
+
+      edge_data$index__ <- 1:nrow(sample_smallworld_graph$edges_df)
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Add node aesthetics if available
+  if (exists("node_aes_tbl")) {
+
+    sample_smallworld_graph$nodes_df <-
+      sample_smallworld_graph$nodes_df %>%
+      dplyr::bind_cols(node_aes_tbl)
+  }
+
+  # Add node data if available
+  if (exists("node_data_tbl")) {
+
+    sample_smallworld_graph$nodes_df <-
+      sample_smallworld_graph$nodes_df %>%
+      dplyr::bind_cols(node_data_tbl)
+  }
+
+  # Add edge aesthetics if available
+  if (exists("edge_aes_tbl")) {
+
+    sample_smallworld_graph$edges_df <-
+      sample_smallworld_graph$edges_df %>%
+      dplyr::bind_cols(edge_aes_tbl)
+  }
+
+  # Add edge data if available
+  if (exists("edge_data_tbl")) {
+
+    sample_smallworld_graph$edges_df <-
+      sample_smallworld_graph$edges_df %>%
+      dplyr::bind_cols(edge_data_tbl)
+  }
 
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function

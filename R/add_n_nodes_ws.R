@@ -38,6 +38,30 @@
 #' describes the nodes to be added.
 #' @param rel an optional string to apply a
 #' \code{rel} attribute to all newly created edges.
+#' @param node_aes an optional list of named vectors
+#' comprising node aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted node aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{color},
+#' \code{fillcolor}).
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
+#' @param node_data an optional list of named vectors
+#' comprising node data attributes. The helper
+#' function \code{node_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created nodes.
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph, add a node to it, select
@@ -87,7 +111,11 @@ add_n_nodes_ws <- function(graph,
                            direction = NULL,
                            type = NULL,
                            label = NULL,
-                           rel = NULL) {
+                           rel = NULL,
+                           node_aes = NULL,
+                           edge_aes = NULL,
+                           node_data = NULL,
+                           edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -221,6 +249,134 @@ add_n_nodes_ws <- function(graph,
   # Get the number of edges added to
   # the graph
   edges_added <- edges_graph_2 - edges_graph_1
+
+  # Collect node aesthetic attributes
+  if (!is.null(node_aes)) {
+
+    node_aes_tbl <- tibble::as_tibble(node_aes)
+
+    if (nrow(node_aes_tbl) < nodes_added) {
+
+      node_aes$index__ <- 1:nodes_added
+
+      node_aes_tbl <-
+        tibble::as_tibble(node_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_aes_tbl)) {
+      node_aes_tbl <-
+        node_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect node data attributes
+  if (!is.null(node_data)) {
+
+    node_data_tbl <- tibble::as_tibble(node_data)
+
+    if (nrow(node_data_tbl) < nodes_added) {
+
+      node_data$index__ <- 1:nodes_added
+
+      node_data_tbl <-
+        tibble::as_tibble(node_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_data_tbl)) {
+      node_data_tbl <-
+        node_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge aesthetic attributes
+  if (!is.null(edge_aes)) {
+
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) < edges_added) {
+
+      edge_aes$index__ <- 1:edges_added
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) < edges_added) {
+
+      edge_data$index__ <- 1:edges_added
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Add node aesthetics if available
+  if (exists("node_aes_tbl")) {
+
+    graph$nodes_df <-
+      bind_rows(
+        graph$nodes_df[1:(nrow(graph$nodes_df) - nodes_added), ],
+        bind_cols(
+          graph$nodes_df[(nrow(graph$nodes_df) - nodes_added + 1):nrow(graph$nodes_df), ],
+          node_aes_tbl))
+  }
+
+  # Add node data if available
+  if (exists("node_data_tbl")) {
+
+    graph$nodes_df <-
+      bind_rows(
+        graph$nodes_df[1:(nrow(graph$nodes_df) - nodes_added), ],
+        bind_cols(
+          graph$nodes_df[(nrow(graph$nodes_df) - nodes_added + 1):nrow(graph$nodes_df), ],
+          node_data_tbl))
+  }
+
+  # Add edge aesthetics if available
+  if (exists("edge_aes_tbl")) {
+
+    graph$edges_df <-
+      bind_rows(
+        graph$edges_df[1:(nrow(graph$edges_df) - nodes_added), ],
+        bind_cols(
+          graph$edges_df[(nrow(graph$edges_df) - nodes_added + 1):nrow(graph$edges_df), ],
+          edge_aes_tbl))
+  }
+
+  # Add edge data if available
+  if (exists("edge_data_tbl")) {
+
+    graph$edges_df <-
+      bind_rows(
+        graph$edges_df[1:(nrow(graph$edges_df) - nodes_added), ],
+        bind_cols(
+          graph$edges_df[(nrow(graph$edges_df) - nodes_added + 1):nrow(graph$edges_df), ],
+          edge_data_tbl))
+  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-

@@ -9,8 +9,18 @@
 #' provides group identifiers for the nodes to be added.
 #' @param label an optional character object that
 #' describes the nodes to be added.
-#' @param ... optional node attributes supplied as
-#' vectors.
+#' @param node_aes an optional list of named vectors
+#' comprising node aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted node aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{color},
+#' \code{fillcolor}).
+#' @param node_data an optional list of named vectors
+#' comprising node data attributes. The helper
+#' function \code{node_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created nodes.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and
@@ -33,7 +43,8 @@ add_n_nodes <- function(graph,
                         n,
                         type = NULL,
                         label = NULL,
-                        ...) {
+                        node_aes = NULL,
+                        node_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -54,25 +65,44 @@ add_n_nodes <- function(graph,
   # Create bindings for specific variables
   id <- index__ <- NULL
 
-  # Collect extra vectors of data as `extras`
-  extras <- list(...)
+  # Collect node aesthetic attributes
+  if (!is.null(node_aes)) {
 
-  if (length(extras) > 0) {
+    node_aes_tbl <- tibble::as_tibble(node_aes)
 
-    extras_tbl <- tibble::as_tibble(extras)
+    if (nrow(node_aes_tbl) < n) {
 
-    if (nrow(extras_tbl) < n) {
+      node_aes$index__ <- 1:n
 
-      extras$index__ <- 1:n
-
-      extras_tbl <-
-        tibble::as_tibble(extras) %>%
+      node_aes_tbl <-
+        tibble::as_tibble(node_aes) %>%
         dplyr::select(-index__)
     }
 
-    if ("id" %in% colnames(extras_tbl)) {
-      extras_tbl <-
-        extras_tbl %>%
+    if ("id" %in% colnames(node_aes_tbl)) {
+      node_aes_tbl <-
+        node_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect node data attributes
+  if (!is.null(node_data)) {
+
+    node_data_tbl <- tibble::as_tibble(node_data)
+
+    if (nrow(node_data_tbl) < n) {
+
+      node_data$index__ <- 1:n
+
+      node_data_tbl <-
+        tibble::as_tibble(node_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(node_data_tbl)) {
+      node_data_tbl <-
+        node_data_tbl %>%
         dplyr::select(-id)
     }
   }
@@ -84,12 +114,20 @@ add_n_nodes <- function(graph,
       type = type,
       label = label)
 
-  # Add extra columns if available
-  if (exists("extras_tbl")) {
+  # Add node aesthetics if available
+  if (exists("node_aes_tbl")) {
 
     new_nodes <-
       new_nodes %>%
-      dplyr::bind_cols(extras_tbl)
+      dplyr::bind_cols(node_aes_tbl)
+  }
+
+  # Add node data if available
+  if (exists("node_data_tbl")) {
+
+    new_nodes <-
+      new_nodes %>%
+      dplyr::bind_cols(node_data_tbl)
   }
 
   new_nodes[, 1] <- new_nodes[, 1] + graph$last_node

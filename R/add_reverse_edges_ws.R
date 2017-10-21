@@ -25,6 +25,18 @@
 #' \code{dgr_graph}.
 #' @param rel an optional string to apply a
 #' \code{rel} attribute to all newly created edges.
+#' @param edge_aes an optional list of named vectors
+#' comprising edge aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly recommended
+#' for use here as it contains arguments for each
+#' of the accepted edge aesthetic attributes (e.g.,
+#' \code{shape}, \code{style}, \code{penwidth},
+#' \code{color}).
+#' @param edge_data an optional list of named vectors
+#' comprising edge data attributes. The helper
+#' function \code{edge_data()} is strongly recommended
+#' for use here as it helps bind data specifically
+#' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph, add 2 nodes to it,
@@ -62,11 +74,14 @@
 #' #> 1  1    1  2   a
 #' #> 2  2    2  1   b
 #' #> 3  3    2  1   c
-#' @importFrom dplyr select
+#' @importFrom dplyr select bind_rows
+#' @importFrom tibble as_tibble
 #' @export add_reverse_edges_ws
 
 add_reverse_edges_ws <- function(graph,
-                                 rel = NULL) {
+                                 rel = NULL,
+                                 edge_aes = NULL,
+                                 edge_data = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -126,6 +141,70 @@ add_reverse_edges_ws <- function(graph,
   # Get the number of edges added to
   # the graph
   edges_added <- edges_graph_2 - edges_graph_1
+
+  # Collect edge aesthetic attributes
+  if (!is.null(edge_aes)) {
+
+    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+
+    if (nrow(edge_aes_tbl) < edges_added) {
+
+      edge_aes$index__ <- 1:edges_added
+
+      edge_aes_tbl <-
+        tibble::as_tibble(edge_aes) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_aes_tbl)) {
+      edge_aes_tbl <-
+        edge_aes_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Collect edge data attributes
+  if (!is.null(edge_data)) {
+
+    edge_data_tbl <- tibble::as_tibble(edge_data)
+
+    if (nrow(edge_data_tbl) < edges_added) {
+
+      edge_data$index__ <- 1:edges_added
+
+      edge_data_tbl <-
+        tibble::as_tibble(edge_data) %>%
+        dplyr::select(-index__)
+    }
+
+    if ("id" %in% colnames(edge_data_tbl)) {
+      edge_data_tbl <-
+        edge_data_tbl %>%
+        dplyr::select(-id)
+    }
+  }
+
+  # Add edge aesthetics if available
+  if (exists("edge_aes_tbl")) {
+
+    graph$edges_df <-
+      bind_rows(
+        graph$edges_df[1:(nrow(graph$edges_df) - edges_added), ],
+        bind_cols(
+          graph$edges_df[(nrow(graph$edges_df) - edges_added + 1):nrow(graph$edges_df), ],
+          edge_aes_tbl))
+  }
+
+  # Add edge data if available
+  if (exists("edge_data_tbl")) {
+
+    graph$edges_df <-
+      bind_rows(
+        graph$edges_df[1:(nrow(graph$edges_df) - edges_added), ],
+        bind_cols(
+          graph$edges_df[(nrow(graph$edges_df) - edges_added + 1):nrow(graph$edges_df), ],
+          edge_data_tbl))
+  }
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
