@@ -386,9 +386,7 @@ test_that("adding several nodes to a graph at once (with extra attrs) is possibl
   graph <-
     add_n_nodes(
       graph = graph,
-      n = 10,
-      value = 1:10,
-      color = "steelblue")
+      n = 10)
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(
@@ -409,18 +407,6 @@ test_that("adding several nodes to a graph at once (with extra attrs) is possibl
   expect_equal(
     get_node_df(graph)[, 3],
     rep(as.character(NA), 10))
-
-  # Expect monotonically-increasing values for
-  # the `value` node attribute
-  expect_equal(
-    get_node_df(graph)[, 4],
-    c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))
-
-  # Expect that the `color` node attr is set
-  # to `steelblue` for all nodes in the graph
-  expect_equal(
-    get_node_df(graph)[, 5],
-    rep("steelblue", 10))
 })
 
 test_that("adding several nodes from a selected node is possible", {
@@ -718,8 +704,7 @@ test_that("adding node clones is possible", {
     add_path(
       n = 3,
       label = c("d", "g", "r"),
-      type = c("a", "b", "c"),
-      value = c(10, 20, 30))
+      type = c("a", "b", "c"))
 
   # Create 3 clones of node `1`
   # and assign new node label
@@ -741,12 +726,6 @@ test_that("adding node clones is possible", {
   # as node `1`
   expect_equal(
     unique(ndf_1[c(1, 4:6), 2]), "a")
-
-  # Expect that the last three nodes
-  # will be have the same values for
-  # the `value` attribute as node `1`
-  expect_equal(
-    unique(ndf_1[c(1, 4:6), 4]), 10)
 
   # Expect that the new nodes will
   # have `label` values that were
@@ -774,12 +753,6 @@ test_that("adding node clones is possible", {
   # as node `1`
   expect_equal(
     unique(ndf_2[c(1, 4:6), 2]), "a")
-
-  # Expect that the last three nodes
-  # will be have the same values for
-  # the `value` attribute as node `1`
-  expect_equal(
-    unique(ndf_2[c(1, 4:6), 4]), 10)
 
   # Expect that the new nodes will
   # have NA `label` values

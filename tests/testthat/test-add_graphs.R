@@ -188,9 +188,6 @@ test_that("Adding a cycle is possible", {
       type = c("a", "a",
                "b", "b",
                "c", "c"),
-      value = c(1.2, 8.4,
-                3.4, 5.2,
-                6.1, 2.6),
       rel = c("cycle_a", "cycle_a",
               "cycle_b", "cycle_b",
               "cycle_c", "cycle_c"))
@@ -225,11 +222,6 @@ test_that("Adding a cycle is possible", {
     ndf$type,
     c("a", "a", "b",
       "b", "c", "c"))
-
-  # Expect specific node `value` values
-  expect_identical(
-    ndf$value,
-    c(1.2, 8.4, 3.4, 5.2, 6.1, 2.6))
 
   # Expect specific edge `rel` values
   expect_identical(
@@ -333,9 +325,6 @@ test_that("Adding a path is possible", {
       type = c("a", "a",
                "a", "b",
                "b", "b"),
-      value = c(1.2, 8.4,
-                3.4, 5.2,
-                6.1, 2.6),
       rel = c("path_a", "path_b",
               "path_c", "path_d",
               "path_e"))
@@ -370,11 +359,6 @@ test_that("Adding a path is possible", {
     ndf$type,
     c("a", "a", "a",
       "b", "b", "b"))
-
-  # Expect specific node `value` values
-  expect_identical(
-    ndf$value,
-    c(1.2, 8.4, 3.4, 5.2, 6.1, 2.6))
 
   # Expect specific edge `rel` values
   expect_identical(
@@ -474,9 +458,6 @@ test_that("Adding a prism is possible", {
       type = c("a", "a",
                "a", "b",
                "b", "b"),
-      value = c(1.2, 8.4,
-                3.4, 5.2,
-                6.1, 2.6),
       rel = c("prism_a", "prism_a",
               "prism_a", "prism_b",
               "prism_b", "prism_b",
@@ -513,11 +494,6 @@ test_that("Adding a prism is possible", {
     ndf$type,
     c("a", "a", "a",
       "b", "b", "b"))
-
-  # Expect specific node `value` values
-  expect_identical(
-    ndf$value,
-    c(1.2, 8.4, 3.4, 5.2, 6.1, 2.6))
 
   # Expect specific edge `rel` values
   expect_identical(
@@ -623,9 +599,6 @@ test_that("Adding a star is possible", {
       type = c("a", "a",
                "b", "b",
                "c", "c"),
-      value = c(1.2, 8.4,
-                3.4, 5.2,
-                6.1, 2.6),
       rel = c("star_a", "star_b",
               "star_c", "star_d",
               "star_e"))
@@ -660,11 +633,6 @@ test_that("Adding a star is possible", {
     ndf$type,
     c("a", "a", "b",
       "b", "c", "c"))
-
-  # Expect specific node `value` values
-  expect_identical(
-    ndf$value,
-    c(1.2, 8.4, 3.4, 5.2, 6.1, 2.6))
 
   # Expect specific edge `rel` values
   expect_identical(
