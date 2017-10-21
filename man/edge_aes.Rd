@@ -21,37 +21,57 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   samehead = NULL, sametail = NULL)
 }
 \arguments{
-\item{style}{style}
+\item{style}{the type of arrowhead to use.
+The \code{style} attribute can either any of
+these types: \code{normal}, \code{vee},
+\code{tee}, \code{dot}, \code{diamond},
+\code{box}, \code{curve}, \code{icurve},
+\code{inv}, \code{crow}, or \code{none}.}
 
-\item{penwidth}{penwidth}
+\item{penwidth}{the thickness of the stroke
+line for the edge itself.}
 
-\item{color}{color}
+\item{color}{the color of the edge. Can be
+an X11 color or a hexadecimal color code.}
 
-\item{arrowsize}{arrowsize}
+\item{arrowsize}{a scaling factor for
+arrowheads. The default value is \code{1.0}
+and the minimum is \code{0}.}
 
 \item{arrowhead}{arrowhead}
 
 \item{arrowtail}{arrowtail}
 
-\item{fontname}{fontname}
+\item{fontname}{the name of the
+system font that will be used for any edge
+text.}
 
-\item{fontsize}{fontsize}
+\item{fontsize}{the point size of
+the font used for any edge text.}
 
-\item{fontcolor}{fontcolor}
+\item{fontcolor}{the color used
+for any edge text. Can be an X11 color or a
+hexadecimal color code.}
 
 \item{len}{len}
 
 \item{minlen}{minlen}
 
-\item{tooltip}{tooltip}
+\item{tooltip}{text for an edge tooltip.}
 
-\item{URL}{URL}
+\item{URL}{a URL to associate with an edge.
+Upon rendering the plot, clicking edges
+with any associated URLs will open the
+URL in the default browser.}
 
 \item{layer}{layer}
 
-\item{label}{label}
+\item{label}{the label text associated
+with the edge.}
 
-\item{labelfontname}{labelfontname}
+\item{labelfontname}{the name of the
+system font that will be used for any
+edge label text.}
 
 \item{labelfontsize}{labelfontsize}
 
@@ -67,7 +87,11 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
 
 \item{labelhref}{labelhref}
 
-\item{labelURL}{labelURL}
+\item{labelURL}{a URL to associate with
+edge label text. Upon rendering the plot,
+clicking edge labels with any associated
+URLs will open the URL in the default
+browser.}
 
 \item{labeltarget}{labeltarget}
 

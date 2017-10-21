@@ -12,29 +12,37 @@ node_aes(shape = NULL, style = NULL, penwidth = NULL, color = NULL,
   fixedsize = NULL, labelloc = NULL, margin = NULL, orientation = NULL)
 }
 \arguments{
-\item{shape}{the shape to use for the node.}
+\item{shape}{the shape to use for the node.
+Some possible \code{shape} types include:
+\code{circle}, \code{rectangle},
+\code{triangle}, \code{plaintext},
+\code{square}, and \code{polygon}.}
 
-\item{style}{the node line style.}
+\item{style}{the node line style. The
+\code{style} types that can be used are
+\code{filled}, \code{invisible},
+\code{diagonals}, \code{rounded}, \code{dashed},
+\code{dotted}, \code{solid}, and \code{bold}.}
 
 \item{penwidth}{the thickness of the stroke
 line for the node shape.}
 
-\item{color}{color the color of the node's
+\item{color}{the color of the node's
 outline. Can be an X11 color or a hexadecimal
 color code.}
 
-\item{fillcolor}{fillcolor the color with which
+\item{fillcolor}{the color with which
 to fill the shape of the node. Can be an X11
 color or a hexadecimal color code.}
 
-\item{fontname}{fontname the name of the
+\item{fontname}{the name of the
 system font that will be used for any node
 text.}
 
-\item{fontsize}{fontsize the point size of
+\item{fontsize}{the point size of
 the font used for any node text.}
 
-\item{fontcolor}{fontcolor the color used
+\item{fontcolor}{the color used
 for any node text. Can be an X11 color or a
 hexadecimal color code.}
 
@@ -62,7 +70,7 @@ URL in the default browser.}
 \item{distortion}{the level of distortion
 for the node.}
 
-\item{sides}{sides when using the shape
+\item{sides}{when using the shape
 \code{polygon}, this value will provide
 the number of sides for that polygon.}
 
