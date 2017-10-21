@@ -3,22 +3,42 @@
 #' invoked to provide values for the namesake
 #' \code{edge_aes} argument, which is present
 #' in any function where edges are created.
-#' @param style style
-#' @param penwidth penwidth
-#' @param color color
-#' @param arrowsize arrowsize
+#' @param style the type of arrowhead to use.
+#' The \code{style} attribute can either any of
+#' these types: \code{normal}, \code{vee},
+#' \code{tee}, \code{dot}, \code{diamond},
+#' \code{box}, \code{curve}, \code{icurve},
+#' \code{inv}, \code{crow}, or \code{none}.
+#' @param penwidth the thickness of the stroke
+#' line for the edge itself.
+#' @param color the color of the edge. Can be
+#' an X11 color or a hexadecimal color code.
+#' @param arrowsize a scaling factor for
+#' arrowheads. The default value is \code{1.0}
+#' and the minimum is \code{0}.
 #' @param arrowhead arrowhead
 #' @param arrowtail arrowtail
-#' @param fontname fontname
-#' @param fontsize fontsize
-#' @param fontcolor fontcolor
+#' @param fontname the name of the
+#' system font that will be used for any edge
+#' text.
+#' @param fontsize the point size of
+#' the font used for any edge text.
+#' @param fontcolor the color used
+#' for any edge text. Can be an X11 color or a
+#' hexadecimal color code.
 #' @param len len
 #' @param minlen minlen
-#' @param tooltip tooltip
-#' @param URL URL
+#' @param tooltip text for an edge tooltip.
+#' @param URL a URL to associate with an edge.
+#' Upon rendering the plot, clicking edges
+#' with any associated URLs will open the
+#' URL in the default browser.
 #' @param layer layer
-#' @param label label
-#' @param labelfontname labelfontname
+#' @param label the label text associated
+#' with the edge.
+#' @param labelfontname the name of the
+#' system font that will be used for any
+#' edge label text.
 #' @param labelfontsize labelfontsize
 #' @param labelfontcolor labelfontcolor
 #' @param labelangle labelangle
@@ -26,7 +46,11 @@
 #' @param labelfloat labelfloat
 #' @param labeltooltip labeltooltip
 #' @param labelhref labelhref
-#' @param labelURL labelURL
+#' @param labelURL a URL to associate with
+#' edge label text. Upon rendering the plot,
+#' clicking edge labels with any associated
+#' URLs will open the URL in the default
+#' browser.
 #' @param labeltarget labeltarget
 #' @param edgetooltip edgetooltip
 #' @param edgehref edgehref

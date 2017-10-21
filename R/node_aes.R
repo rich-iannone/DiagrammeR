@@ -4,21 +4,29 @@
 #' \code{node_aes} argument, which is present
 #' in any function where nodes are created.
 #' @param shape the shape to use for the node.
-#' @param style the node line style.
+#' Some possible \code{shape} types include:
+#' \code{circle}, \code{rectangle},
+#' \code{triangle}, \code{plaintext},
+#' \code{square}, and \code{polygon}.
+#' @param style the node line style. The
+#' \code{style} types that can be used are
+#' \code{filled}, \code{invisible},
+#' \code{diagonals}, \code{rounded}, \code{dashed},
+#' \code{dotted}, \code{solid}, and \code{bold}.
 #' @param penwidth the thickness of the stroke
 #' line for the node shape.
-#' @param color color the color of the node's
+#' @param color the color of the node's
 #' outline. Can be an X11 color or a hexadecimal
 #' color code.
-#' @param fillcolor fillcolor the color with which
+#' @param fillcolor the color with which
 #' to fill the shape of the node. Can be an X11
 #' color or a hexadecimal color code.
-#' @param fontname fontname the name of the
+#' @param fontname the name of the
 #' system font that will be used for any node
 #' text.
-#' @param fontsize fontsize the point size of
+#' @param fontsize the point size of
 #' the font used for any node text.
-#' @param fontcolor fontcolor the color used
+#' @param fontcolor the color used
 #' for any node text. Can be an X11 color or a
 #' hexadecimal color code.
 #' @param height the height of the shape.
@@ -37,7 +45,7 @@
 #' URL in the default browser.
 #' @param distortion the level of distortion
 #' for the node.
-#' @param sides sides when using the shape
+#' @param sides when using the shape
 #' \code{polygon}, this value will provide
 #' the number of sides for that polygon.
 #' @param skew a \code{0-1} value that will
