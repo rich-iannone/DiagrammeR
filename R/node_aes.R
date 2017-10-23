@@ -17,24 +17,48 @@
 #' line (in pt units) for the node shape. The
 #' default value is \code{1.0}.
 #' @param color the color of the node's
-#' outline. Can be an X11 color or a hexadecimal
+#' outline. Can be any of the named colors
+#' that R knows about (obtained using the
+#' \code{colors()} function), or, a hexadecimal
 #' color code.
 #' @param fillcolor the color with which
-#' to fill the shape of the node. Can be an X11
-#' color or a hexadecimal color code.
+#' to fill the shape of the node. Can be any
+#' of the named colors that R knows about
+#' (obtained using the \code{colors()}
+#' function), or, a hexadecimal color code.
 #' @param fontname the name of the
 #' system font that will be used for any node
 #' text.
 #' @param fontsize the point size of
 #' the font used for any node text.
 #' @param fontcolor the color used
-#' for any node text. Can be an X11 color or a
+#' for any node text. Can be any of the named
+#' colors that R knows about (obtained using
+#' the \code{colors()} function), or, a
 #' hexadecimal color code.
 #' @param peripheries the repeated number
 #' of node shapes (of increasing size) to
 #' draw at the node perhipery.
-#' @param height the height of the shape.
-#' @param width the width of the shape.
+#' @param height the height of the node
+#' shape, in inches. The default value is
+#' \code{0.5} whereas the minimum value
+#' is \code{0.02}. This is understood as
+#' the initial, minimum height of the node.
+#' If \code{fixedsize} is set to \code{TRUE},
+#' this will be the final height of the node.
+#' Otherwise, if the node label requires
+#' more height to fit, the node's height
+#' will be increased to contain the label.
+#' @param width the width of the node
+#' shape, in inches. The default value is
+#' \code{0.5} whereas the minimum value
+#' is \code{0.02}. This is understood as
+#' the initial, minimum width of the node.
+#' If \code{fixedsize} is set to \code{TRUE},
+#' this will be the final width of the node.
+#' Otherwise, if the node label requires
+#' more width to fit, the node's width
+#' will be increased to contain the label.
 #' @param x the fixed position of the node in
 #' the x direction. Any integer-based or
 #' floating point value will be accepted.
@@ -100,7 +124,6 @@
 #' By default, the label is vertically
 #' centered.
 #' @param margin margin
-
 #' @examples
 #' # Create a new graph and add
 #' # a path with several node
