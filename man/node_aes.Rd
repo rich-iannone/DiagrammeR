@@ -6,10 +6,11 @@
 \usage{
 node_aes(shape = NULL, style = NULL, penwidth = NULL, color = NULL,
   fillcolor = NULL, fontname = NULL, fontsize = NULL, fontcolor = NULL,
-  height = NULL, width = NULL, x = NULL, y = NULL, group = NULL,
-  tooltip = NULL, URL = NULL, distortion = NULL, sides = NULL,
-  skew = NULL, peripheries = NULL, gradientangle = NULL,
-  fixedsize = NULL, labelloc = NULL, margin = NULL, orientation = NULL)
+  peripheries = NULL, height = NULL, width = NULL, x = NULL, y = NULL,
+  group = NULL, tooltip = NULL, URL = NULL, sides = NULL,
+  orientation = NULL, skew = NULL, distortion = NULL,
+  gradientangle = NULL, fixedsize = NULL, labelloc = NULL,
+  margin = NULL)
 }
 \arguments{
 \item{shape}{the shape to use for the node.
@@ -25,7 +26,8 @@ Some possible \code{shape} types include:
 \code{dotted}, \code{solid}, and \code{bold}.}
 
 \item{penwidth}{the thickness of the stroke
-line for the node shape.}
+line (in pt units) for the node shape. The
+default value is \code{1.0}.}
 
 \item{color}{the color of the node's
 outline. Can be an X11 color or a hexadecimal
@@ -45,6 +47,10 @@ the font used for any node text.}
 \item{fontcolor}{the color used
 for any node text. Can be an X11 color or a
 hexadecimal color code.}
+
+\item{peripheries}{the repeated number
+of node shapes (of increasing size) to
+draw at the node perhipery.}
 
 \item{height}{the height of the shape.}
 
@@ -67,12 +73,18 @@ Upon rendering the plot, clicking nodes
 with any associated URLs will open the
 URL in the default browser.}
 
-\item{distortion}{the level of distortion
-for the node.}
-
 \item{sides}{when using the shape
 \code{polygon}, this value will provide
 the number of sides for that polygon.}
+
+\item{orientation}{this is the angle,
+in degrees, that is used to rotate
+nodes that have a \code{shape} of
+\code{polygon}. Not that for any of
+the polygon shapes (set by the
+\code{sides} node attribute), a value
+for \code{orientation} that is \code{0}
+results in a flat base.}
 
 \item{skew}{a \code{0-1} value that will
 result in the node shape being skewed
@@ -80,20 +92,47 @@ to the right (from bottom to top). A
 value in the range \code{0} to \code{-1}
 will skew the shape to the left.}
 
-\item{peripheries}{the repeated number
-of node shapes (of increasing size) to
-draw at the node perhipery.}
+\item{distortion}{a distortion factor
+that is used only when a \code{shape} of
+\code{polygon} is used. A \code{0-1} value
+will increasingly result in the top part
+of the node polygon shape to be larger
+than the bottom. Moving from \code{0}
+toward \code{-1} will result in the
+opposite distortion effect.}
 
 \item{gradientangle}{the path angle for
 the node color fill gradient.}
 
-\item{fixedsize}{fixedsize}
+\item{fixedsize}{if set to \code{FALSE},
+the size of a node is determined by
+smallest width and height needed to
+contain its label, if any, with a
+margin specified by the \code{margin}
+node attribute. The width and height
+must also be at least as large as the
+sizes specified by the \code{width} and
+\code{height} node attributes, which
+specify the minimum values. If set to
+\code{TRUE}, the node size is entirely
+specified by the values of the
+\code{width} and \code{height} node
+attributes (i.e., the node is not
+expanded in size to contain the text
+label).}
 
-\item{labelloc}{labelloc}
+\item{labelloc}{sets the vertical
+placement of labels for nodes and
+clusters. This attribute is used only
+when the height of the node is
+larger than the height of its label.
+The \code{labelloc} node attribute can
+be set to either \code{t} (top),
+\code{c} (center), or \code{b} (bottom).
+By default, the label is vertically
+centered.}
 
 \item{margin}{margin}
-
-\item{orientation}{orientation}
 }
 \description{
 This helper function should be

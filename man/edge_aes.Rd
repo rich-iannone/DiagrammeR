@@ -12,13 +12,13 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   labeldistance = NULL, labelfloat = NULL, labeltooltip = NULL,
   labelhref = NULL, labelURL = NULL, labeltarget = NULL,
   edgetooltip = NULL, edgehref = NULL, edgeURL = NULL,
-  edgetarget = NULL, headtooltip = NULL, headhref = NULL,
+  edgetarget = NULL, dir = NULL, headtooltip = NULL, headhref = NULL,
   headURL = NULL, headtarget = NULL, headclip = NULL, headlabel = NULL,
   headport = NULL, tailtooltip = NULL, tailhref = NULL, tailURL = NULL,
   tailtarget = NULL, tailclip = NULL, taillabel = NULL, tailport = NULL,
-  dir = NULL, target = NULL, weight = NULL, constraint = NULL,
-  decorate = NULL, href = NULL, lhead = NULL, ltail = NULL,
-  samehead = NULL, sametail = NULL)
+  target = NULL, weight = NULL, constraint = NULL, decorate = NULL,
+  href = NULL, lhead = NULL, ltail = NULL, samehead = NULL,
+  sametail = NULL)
 }
 \arguments{
 \item{style}{the type of arrowhead to use.
@@ -70,18 +70,58 @@ URL in the default browser.}
 with the edge.}
 
 \item{labelfontname}{the name of the
-system font that will be used for any
-edge label text.}
+system font that will be used for the
+\code{headlabel} and the
+\code{taillabel} label text. If not
+set, the \code{fontname} value will
+instead be used.}
 
-\item{labelfontsize}{labelfontsize}
+\item{labelfontsize}{the point size of
+the font used for the \code{headlabel}
+and the \code{taillabel} label text.
+If not set, the \code{fontsize} value
+will instead be used.}
 
-\item{labelfontcolor}{labelfontcolor}
+\item{labelfontcolor}{the color used
+for the label text of the
+\code{headlabel} and the
+\code{taillabel} label text. If not
+set, the \code{fontcolor} value will
+instead be used. Can be an X11 color
+or a hexadecimal color code.}
 
-\item{labelangle}{labelangle}
+\item{labelangle}{when used along with
+\code{labeldistance} edge attribute,
+determines where the \code{headlabel}
+(or \code{taillabel}) are placed with
+respect to the edge's head (or tail)
+using polar coordinates. The origin for
+the coordinate system is the point
+where the edge touches the node. Now
+imagine a ray (of \code{0} degrees)
+moving from the origin back along the
+edge, parallel to the edge at the origin.
+The angle, in degrees, specifies the
+rotation from the \code{0} degree ray,
+with positive angles moving
+counterclockwise and negative angles
+moving clockwise.}
 
-\item{labeldistance}{labeldistance}
+\item{labeldistance}{a scaling factor
+that adjusts the distance of the
+\code{headlabel} (or, \code{taillabel})
+from the head (or tail) node. Consider
+that the distance is normally 10 points.
+Any value of \code{labeldistance} will
+effectively multiply that distance
+value. The default value is \code{1.0}
+and the minimum is \code{0}.}
 
-\item{labelfloat}{labelfloat}
+\item{labelfloat}{if set to \code{TRUE},
+this option allows edge labels to be less
+constrained in position. That is, edge
+labels may appear on top of other edges.
+The default here is \code{FALSE}.}
 
 \item{labeltooltip}{labeltooltip}
 
@@ -102,6 +142,26 @@ browser.}
 \item{edgeURL}{edgeURL}
 
 \item{edgetarget}{edgetarget}
+
+\item{dir}{an optional direction
+type. Normally, for directed
+graphs, this is \code{forward}
+and needn't be set. For undirected
+graphs, this would be \code{none}
+and again no explicit setting is
+required. However, one can also use
+the \code{back} or \code{both}
+options. The \code{back} option
+draws an arrowhead in the reverse
+direction of an edge. The
+\code{both} option draws two
+arrowheads. When using any of
+these options in such an explicit
+manner, the \code{head...} and
+\code{tail...} edge attributes
+allow control over aesthetic edge
+attributes in either side of the
+edge.}
 
 \item{headtooltip}{headtooltip}
 
@@ -130,8 +190,6 @@ browser.}
 \item{taillabel}{taillabel}
 
 \item{tailport}{tailport}
-
-\item{dir}{dir}
 
 \item{target}{target}
 
