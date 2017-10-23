@@ -14,7 +14,8 @@
 #' \code{diagonals}, \code{rounded}, \code{dashed},
 #' \code{dotted}, \code{solid}, and \code{bold}.
 #' @param penwidth the thickness of the stroke
-#' line for the node shape.
+#' line (in pt units) for the node shape. The
+#' default value is \code{1.0}.
 #' @param color the color of the node's
 #' outline. Can be an X11 color or a hexadecimal
 #' color code.
@@ -29,6 +30,9 @@
 #' @param fontcolor the color used
 #' for any node text. Can be an X11 color or a
 #' hexadecimal color code.
+#' @param peripheries the repeated number
+#' of node shapes (of increasing size) to
+#' draw at the node perhipery.
 #' @param height the height of the shape.
 #' @param width the width of the shape.
 #' @param x the fixed position of the node in
@@ -43,25 +47,60 @@
 #' Upon rendering the plot, clicking nodes
 #' with any associated URLs will open the
 #' URL in the default browser.
-#' @param distortion the level of distortion
-#' for the node.
 #' @param sides when using the shape
 #' \code{polygon}, this value will provide
 #' the number of sides for that polygon.
+#' @param orientation this is the angle,
+#' in degrees, that is used to rotate
+#' nodes that have a \code{shape} of
+#' \code{polygon}. Not that for any of
+#' the polygon shapes (set by the
+#' \code{sides} node attribute), a value
+#' for \code{orientation} that is \code{0}
+#' results in a flat base.
 #' @param skew a \code{0-1} value that will
 #' result in the node shape being skewed
 #' to the right (from bottom to top). A
 #' value in the range \code{0} to \code{-1}
 #' will skew the shape to the left.
-#' @param peripheries the repeated number
-#' of node shapes (of increasing size) to
-#' draw at the node perhipery.
+#' @param distortion a distortion factor
+#' that is used only when a \code{shape} of
+#' \code{polygon} is used. A \code{0-1} value
+#' will increasingly result in the top part
+#' of the node polygon shape to be larger
+#' than the bottom. Moving from \code{0}
+#' toward \code{-1} will result in the
+#' opposite distortion effect.
 #' @param gradientangle the path angle for
 #' the node color fill gradient.
-#' @param fixedsize fixedsize
-#' @param labelloc labelloc
+#' @param fixedsize if set to \code{FALSE},
+#' the size of a node is determined by
+#' smallest width and height needed to
+#' contain its label, if any, with a
+#' margin specified by the \code{margin}
+#' node attribute. The width and height
+#' must also be at least as large as the
+#' sizes specified by the \code{width} and
+#' \code{height} node attributes, which
+#' specify the minimum values. If set to
+#' \code{TRUE}, the node size is entirely
+#' specified by the values of the
+#' \code{width} and \code{height} node
+#' attributes (i.e., the node is not
+#' expanded in size to contain the text
+#' label).
+#' @param labelloc sets the vertical
+#' placement of labels for nodes and
+#' clusters. This attribute is used only
+#' when the height of the node is
+#' larger than the height of its label.
+#' The \code{labelloc} node attribute can
+#' be set to either \code{t} (top),
+#' \code{c} (center), or \code{b} (bottom).
+#' By default, the label is vertically
+#' centered.
 #' @param margin margin
-#' @param orientation orientation
+
 #' @examples
 #' # Create a new graph and add
 #' # a path with several node
@@ -97,6 +136,7 @@ node_aes <- function(shape = NULL,
                      fontname = NULL,
                      fontsize = NULL,
                      fontcolor = NULL,
+                     peripheries = NULL,
                      height = NULL,
                      width = NULL,
                      x = NULL,
@@ -104,15 +144,14 @@ node_aes <- function(shape = NULL,
                      group = NULL,
                      tooltip = NULL,
                      URL = NULL,
-                     distortion = NULL,
                      sides = NULL,
+                     orientation = NULL,
                      skew = NULL,
-                     peripheries = NULL,
+                     distortion = NULL,
                      gradientangle = NULL,
                      fixedsize = NULL,
                      labelloc = NULL,
-                     margin = NULL,
-                     orientation = NULL) {
+                     margin = NULL) {
 
   # Collect vectors of node aesthetic
   # attribute values into a list object
@@ -126,6 +165,7 @@ node_aes <- function(shape = NULL,
       fontname = fontname,
       fontsize = fontsize,
       fontcolor = fontcolor,
+      peripheries = peripheries,
       height = height,
       width = width,
       x = x,
@@ -133,15 +173,14 @@ node_aes <- function(shape = NULL,
       group = group,
       tooltip = tooltip,
       URL = URL,
-      distortion = distortion,
       sides = sides,
+      orientation = orientation,
       skew = skew,
-      peripheries = peripheries,
+      distortion = distortion,
       gradientangle = gradientangle,
       fixedsize = fixedsize,
       labelloc = labelloc,
-      margin = margin,
-      orientation = orientation)
+      margin = margin)
 
   non_null_attrs <-
     1:length(attr_values) %>%

@@ -37,13 +37,53 @@
 #' @param label the label text associated
 #' with the edge.
 #' @param labelfontname the name of the
-#' system font that will be used for any
-#' edge label text.
-#' @param labelfontsize labelfontsize
-#' @param labelfontcolor labelfontcolor
-#' @param labelangle labelangle
-#' @param labeldistance labeldistance
-#' @param labelfloat labelfloat
+#' system font that will be used for the
+#' \code{headlabel} and the
+#' \code{taillabel} label text. If not
+#' set, the \code{fontname} value will
+#' instead be used.
+#' @param labelfontsize the point size of
+#' the font used for the \code{headlabel}
+#' and the \code{taillabel} label text.
+#' If not set, the \code{fontsize} value
+#' will instead be used.
+#' @param labelfontcolor the color used
+#' for the label text of the
+#' \code{headlabel} and the
+#' \code{taillabel} label text. If not
+#' set, the \code{fontcolor} value will
+#' instead be used. Can be an X11 color
+#' or a hexadecimal color code.
+#' @param labelangle when used along with
+#' \code{labeldistance} edge attribute,
+#' determines where the \code{headlabel}
+#' (or \code{taillabel}) are placed with
+#' respect to the edge's head (or tail)
+#' using polar coordinates. The origin for
+#' the coordinate system is the point
+#' where the edge touches the node. Now
+#' imagine a ray (of \code{0} degrees)
+#' moving from the origin back along the
+#' edge, parallel to the edge at the origin.
+#' The angle, in degrees, specifies the
+#' rotation from the \code{0} degree ray,
+#' with positive angles moving
+#' counterclockwise and negative angles
+#' moving clockwise.
+#' @param labeldistance a scaling factor
+#' that adjusts the distance of the
+#' \code{headlabel} (or, \code{taillabel})
+#' from the head (or tail) node. Consider
+#' that the distance is normally 10 points.
+#' Any value of \code{labeldistance} will
+#' effectively multiply that distance
+#' value. The default value is \code{1.0}
+#' and the minimum is \code{0}.
+#' @param labelfloat if set to \code{TRUE},
+#' this option allows edge labels to be less
+#' constrained in position. That is, edge
+#' labels may appear on top of other edges.
+#' The default here is \code{FALSE}.
 #' @param labeltooltip labeltooltip
 #' @param labelhref labelhref
 #' @param labelURL a URL to associate with
@@ -56,6 +96,25 @@
 #' @param edgehref edgehref
 #' @param edgeURL edgeURL
 #' @param edgetarget edgetarget
+#' @param dir an optional direction
+#' type. Normally, for directed
+#' graphs, this is \code{forward}
+#' and needn't be set. For undirected
+#' graphs, this would be \code{none}
+#' and again no explicit setting is
+#' required. However, one can also use
+#' the \code{back} or \code{both}
+#' options. The \code{back} option
+#' draws an arrowhead in the reverse
+#' direction of an edge. The
+#' \code{both} option draws two
+#' arrowheads. When using any of
+#' these options in such an explicit
+#' manner, the \code{head...} and
+#' \code{tail...} edge attributes
+#' allow control over aesthetic edge
+#' attributes in either side of the
+#' edge.
 #' @param headtooltip headtooltip
 #' @param headhref headhref
 #' @param headURL headURL
@@ -70,7 +129,6 @@
 #' @param tailclip tailclip
 #' @param taillabel taillabel
 #' @param tailport tailport
-#' @param dir dir
 #' @param target target
 #' @param weight weight
 #' @param constraint constraint
@@ -134,6 +192,7 @@ edge_aes <- function(style = NULL,
                      edgehref = NULL,
                      edgeURL = NULL,
                      edgetarget = NULL,
+                     dir = NULL,
                      headtooltip = NULL,
                      headhref = NULL,
                      headURL = NULL,
@@ -148,7 +207,6 @@ edge_aes <- function(style = NULL,
                      tailclip = NULL,
                      taillabel = NULL,
                      tailport = NULL,
-                     dir = NULL,
                      target = NULL,
                      weight = NULL,
                      constraint = NULL,
