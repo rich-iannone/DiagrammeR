@@ -49,6 +49,20 @@ generate_dot <- function(graph) {
       node_attrs %>%
       dplyr::pull(string)
 
+    # Fill in NA attribute values with global preset values
+    for (i in 1:nrow(global_attrs %>% dplyr::filter(attr_type == "node"))) {
+
+      node_attr_to_set <- (global_attrs %>% dplyr::filter(attr_type == "node"))[i, 1]
+
+      if (node_attr_to_set %in% colnames(nodes_df)) {
+
+        col_num <- which(colnames(nodes_df) == node_attr_to_set)
+
+        nodes_df[which(is.na(nodes_df[, col_num])), col_num] <-
+          (global_attrs %>% dplyr::filter(attr_type == "node"))[i, 2]
+      }
+    }
+
   } else {
     node_attrs <- NA
   }
@@ -62,6 +76,20 @@ generate_dot <- function(graph) {
     edge_attrs <-
       edge_attrs %>%
       dplyr::pull(string)
+
+    # Fill in NA attribute values with global preset values
+    for (i in 1:nrow(global_attrs %>% dplyr::filter(attr_type == "edge"))) {
+
+      edge_attr_to_set <- (global_attrs %>% dplyr::filter(attr_type == "edge"))[i, 1]
+
+      if (edge_attr_to_set %in% colnames(edges_df)) {
+
+        col_num <- which(colnames(edges_df) == edge_attr_to_set)
+
+        edges_df[which(is.na(edges_df[, col_num])), col_num] <-
+          (global_attrs %>% dplyr::filter(attr_type == "edge"))[i, 2]
+      }
+    }
 
   } else {
     edge_attrs <- NA
