@@ -72,6 +72,8 @@ a_graph <-
     to = 2)
 ```
 
+<img src="inst/img/a_graph.png">
+
 We can take away an edge by using `delete_edge()`.
 
 ```r
@@ -82,6 +84,8 @@ b_graph <-
     to = 2)
 ```
 
+<img src="inst/img/b_graph.png">
+
 We can add a node to the graph while, at the same time, defining edges to or from existing nodes in the graph.
 
 ```r
@@ -91,6 +95,8 @@ c_graph <-
     from = 1,
     to = 2)
 ```
+
+<img src="inst/img/c_graph.png">
 
 Viewing the graph object in the console will provide some basic information about the graph and some pointers on where to get additional information.
 
@@ -114,22 +120,32 @@ DiagrammeR Graph // 3 nodes / 2 edges / density: 1
   GRAPH LOG / <3 actions> -> add_edge() -> delete_edge() -> add_node()
 ```
 
-Any time we add a node or edge to the graph, we can add node or edge attributes. These can be aesthetic properties (e.g., `color`, `shape`), grouping labels (e.g., `type` and `rel`), or data that is useful for calculations and for display purposes.
+Any time we add a node or edge to the graph, we can add node or edge aesthetic or data attributes. These can be styling properties (e.g., `color`, `shape`), grouping labels (e.g., `type` and `rel`), or data values that are useful for calculations and for display purposes. Any node or edge creation functions (depending on whether they create either edges, nodes, or both) have the arguments `node_aes`, `edge_aes`, `node_data`, and `edge_data`. With these arguments, we can call namesake helper functions called `node_aes()`, `edge_aes()`, `node_data()`, and `edge_data()`. This allows us to specifically target the created nodes or edges and bind attribute data using. An additional benefit in using the helper functions for the node/edge aesthetic attributes is that RStudio can provide the inline help on attribute names and definitions when typing `node_aes(` or `edge_aes(` and pressing **<TAB>**.
 
 ```r
 d_graph <-
   c_graph %>%
   add_node(
     type = "type_a",
-    color = "steelblue",
-    value = 2.5) %>%
+    node_aes = node_aes(
+      color = "steelblue",
+      fillcolor = "lightblue",
+      fontcolor = "gray35"),
+    node_data = node_data(
+      value = 2.5)) %>%
   add_edge(
     from = 1,
     to = 3,
     rel = "interacted_with",
-    color = "gray65",
-    value = 5.7)
+    edge_aes = edge_aes(
+      color = "red",
+      arrowhead = "vee",
+      tooltip = "Red Arrow"),
+    edge_data = edge_data(
+      value = 2.5))
 ```
+
+<img src="inst/img/d_graph.png">
     
 Creating attributes and setting values for them is often useful because we can do further work with the attributes (e.g., mutate values or migrate them during traversals). Furthermore, we can create aesthetic properties based on numerical or categorical data.
 
@@ -139,7 +155,8 @@ Don’t worry if attribute values weren’t set during the creation of the assoc
 e_graph <-
   d_graph %>%
   select_nodes(
-    conditions = value == 2.5) %>%
+    conditions = 
+      value == 2.5) %>%
   set_node_attrs_ws(
     node_attr = color,
     value = "steelblue") %>%
@@ -155,8 +172,11 @@ f_graph <-
   create_graph() %>%
   add_path(n = 3) %>%
   add_cycle(n = 4) %>%
-  add_balanced_tree(k = 2, h = 2)
+  add_balanced_tree(
+    k = 2, h = 2)
 ```
+
+<img src="inst/img/f_graph.png">
 
 You can add one or more randomly generated graphs to a graph object. Here, let's add a directed GNM graph with 10 nodes and 15 edges (the `set_seed` option makes the random graph reproducible). 
 
@@ -168,6 +188,8 @@ g_graph <-
     m = 15,
     set_seed = 23)
 ```
+
+<img src="inst/img/g_graph.png">
 
 The undirected version of this graph is can be made using:
 
@@ -181,13 +203,15 @@ h_graph <-
     set_seed = 23)
 ```
 
+<img src="inst/img/h_graph.png">
+
 We can view the graph using `render_graph()`. There are several layouts to choose from as well (e.g., `nicely`, `tree`, `kk`, `fr`, etc.).
 
 ```r
 h_graph %>% render_graph(layout = "nicely")
 ```
 
-<img src="inst/img/h_graph.png">
+<img src="inst/img/h_graph_2.png">
 
 ## Using Data from Tables to Generate a Graph
 
@@ -399,7 +423,9 @@ k_graph <-
   set_edge_attrs_ws(
     edge_attr = color,
     value = "red") %>%
-  clear_selection()
+  clear_selection() %>%
+  set_node_attr_to_display(
+    attr = value_3)
 
 k_graph %>% render_graph()
 ```
