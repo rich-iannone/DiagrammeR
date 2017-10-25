@@ -181,11 +181,9 @@ add_edges_from_table <- function(graph,
   # specified column in the CSV
   if (!is.null(rel_col)) {
 
-    colnames(csv)[which(colnames(csv) == label_col)] <- "rel"
-
     if (any(colnames(csv) == rel_col)) {
       colnames(csv)[which(colnames(csv) == rel_col)] <- "rel"
-      csv <- mutate(csv, rel = as.character(rel))
+      csv <- dplyr::mutate(csv, rel = as.character(rel))
     }
   }
 
