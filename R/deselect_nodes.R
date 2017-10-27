@@ -32,7 +32,7 @@
 #' graph <-
 #'   graph %>%
 #'   select_nodes(nodes = c(1, 3)) %>%
-#'   deselect_nodes(nodes = 8)
+#'   deselect_nodes(nodes = 1)
 #'
 #' # Verify that the node selection
 #' # has been made for nodes `1` and
