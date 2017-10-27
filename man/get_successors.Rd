@@ -27,23 +27,33 @@ set.seed(23)
 # Create a node data frame (ndf)
 ndf <- create_node_df(n = 26)
 
-# Create an edge data frame (edf)
+# Create an edge data
+# frame (edf)
 edf <-
   create_edge_df(
-    from = sample(1:26, replace = TRUE),
-    to = sample(1:26, replace = TRUE))
+    from = sample(
+      1:26, replace = TRUE),
+    to = sample(
+      1:26, replace = TRUE))
 
-# From the ndf and edf, create a graph object
+# From the ndf and edf,
+# create a graph object
 graph <-
   create_graph(
     nodes_df = ndf,
     edges_df = edf)
 
-# Get sucessors for node `4` in the graph
-get_successors(graph, node = 4)
+# Get sucessors for node
+# `4` in the graph
+graph \%>\%
+  get_successors(
+    node = 4)
 #> [1] 3 8
 
-# If there are no successors, NA is returned
-get_successors(graph, node = 1)
+# If there are no successors,
+# NA is returned
+graph \%>\%
+  get_successors(
+    node = 1)
 #> [1] NA
 }
