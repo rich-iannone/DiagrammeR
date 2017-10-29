@@ -4,7 +4,7 @@
 \alias{trav_out_until}
 \title{Traverse out node-by_node until stopping conditions are met}
 \usage{
-trav_out_until(graph, conditions, max_steps = 30, keep_caught_only = FALSE)
+trav_out_until(graph, conditions, max_steps = 30, exclude_unmatched = TRUE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -26,11 +26,11 @@ of \code{trav_out()} steps (i.e.,
 node-to-node traversals in the outward
 direction) to allow before stopping.}
 
-\item{keep_caught_only}{if \code{TRUE}
-then we should exclude any nodes not
+\item{exclude_unmatched}{if \code{TRUE}
+(the default value) then any nodes not
 satisfying the conditions provided in
-\code{conditions} from the final node
-selection.}
+\code{conditions} that are in the ending
+selection are excluded.}
 }
 \value{
 a graph object of class
@@ -104,7 +104,7 @@ graph <-
   trav_out_until(
     conditions =
       value \%in\% c(5, 6, 15),
-    keep_caught_only = TRUE)
+    exclude_unmatched = TRUE)
 
 # Get the graph's node selection
 graph \%>\%
