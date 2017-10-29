@@ -135,6 +135,9 @@ add_n_nodes_ws <- function(graph,
     stop("There is no selection of nodes, so, no new nodes can be added.")
   }
 
+  # Create bindings for specific variables
+  index__ <- id <- NULL
+
   # If the graph is directed and there is no value
   # given for the `direction` argument, stop function
   if (is_graph_directed(graph) &

@@ -94,6 +94,9 @@ add_balanced_tree <- function(graph,
     stop("The graph object is not valid.")
   }
 
+  # Create bindings for specific variables
+  index__ <- id <- NULL
+
   # Stop if k is too small
   if (k <= 1) {
     stop("The value for `k` must be at least 2.")

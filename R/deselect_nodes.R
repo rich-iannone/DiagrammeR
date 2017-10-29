@@ -59,6 +59,9 @@ deselect_nodes <- function(graph,
     return(graph)
   }
 
+  # Create binding for specific variable
+  node <- NULL
+
   # Extract the graph's node selection
   graph$node_selection <-
     graph$node_selection %>%

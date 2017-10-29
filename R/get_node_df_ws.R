@@ -49,6 +49,9 @@ get_node_df_ws <- function(graph) {
     stop("There is no selection of nodes available.")
   }
 
+  # Create binding for specific variable
+  id <- NULL
+
   # Extract the node data frame (ndf)
   # from the graph and get only those nodes
   # from the node selection

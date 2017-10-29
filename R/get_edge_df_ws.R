@@ -49,6 +49,9 @@ get_edge_df_ws <- function(graph) {
     stop("There is no selection of edges available.")
   }
 
+  # Create binding for specific variable
+  id <- NULL
+
   # Extract the edge data frame (edf)
   # from the graph and get only those edges
   # from the edges selection
