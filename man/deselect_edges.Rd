@@ -10,7 +10,7 @@ deselect_edges(graph, edges)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{nodes}{a vector of edge IDs that
+\item{edges}{a vector of edge IDs that
 should be deselected.}
 }
 \value{
