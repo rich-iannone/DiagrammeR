@@ -3,7 +3,7 @@
 #' class \code{dgr_graph}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param nodes a vector of edge IDs that
+#' @param edges a vector of edge IDs that
 #' should be deselected.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
