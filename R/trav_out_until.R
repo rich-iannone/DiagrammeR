@@ -23,11 +23,11 @@
 #' of \code{trav_out()} steps (i.e.,
 #' node-to-node traversals in the outward
 #' direction) to allow before stopping.
-#' @param keep_caught_only if \code{TRUE}
-#' then we should exclude any nodes not
+#' @param exclude_unmatched if \code{TRUE}
+#' (the default value) then any nodes not
 #' satisfying the conditions provided in
-#' \code{conditions} from the final node
-#' selection.
+#' \code{conditions} that are in the ending
+#' selection are excluded.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
@@ -88,7 +88,7 @@
 #'   trav_out_until(
 #'     conditions =
 #'       value %in% c(5, 6, 15),
-#'     keep_caught_only = TRUE)
+#'     exclude_unmatched = TRUE)
 #'
 #' # Get the graph's node selection
 #' graph %>%
@@ -100,7 +100,7 @@
 trav_out_until <- function(graph,
                            conditions,
                            max_steps = 30,
-                           keep_caught_only = FALSE) {
+                           exclude_unmatched = TRUE) {
 
   conditions <- rlang::enquo(conditions)
 
@@ -137,7 +137,7 @@ trav_out_until <- function(graph,
   all_nodes_conditions_met <-
     get_node_ids(x = graph, conditions = rlang::UQ(conditions))
 
-  if (keep_caught_only & all(is.na(all_nodes_conditions_met))) {
+  if (exclude_unmatched & all(is.na(all_nodes_conditions_met))) {
 
     # Clear the active selection
     graph <-
@@ -219,7 +219,7 @@ trav_out_until <- function(graph,
       graph$graph_log[-nrow(graph$graph_log), ]
   }
 
-  if (keep_caught_only & !all(is.na(get_selection(graph)))) {
+  if (exclude_unmatched & !all(is.na(get_selection(graph)))) {
 
     new_selection <- get_selection(graph)
 
