@@ -1,4 +1,4 @@
-#' Traverse out node-by_node until stopping conditions are met
+#' Traverse outward node-by_node until stopping conditions are met
 #' @description From a graph object of
 #' class \code{dgr_graph}, move along
 #' outward edges from one or more nodes
