@@ -2,7 +2,7 @@
 % Please edit documentation in R/trav_out_until.R
 \name{trav_out_until}
 \alias{trav_out_until}
-\title{Traverse out node-by_node until stopping conditions are met}
+\title{Traverse outward node-by_node until stopping conditions are met}
 \usage{
 trav_out_until(graph, conditions, max_steps = 30, exclude_unmatched = TRUE)
 }
