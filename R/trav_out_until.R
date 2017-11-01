@@ -88,14 +88,12 @@
 #'   trav_out_until(
 #'     conditions =
 #'       value %in% c(5, 6, 9),
-#'     exclude_unmatched = FALSE,
-#'     max_steps = 2,
-#'     add_to_selection = FALSE)
+#'     exclude_unmatched = TRUE)
 #'
 #' # Get the graph's node selection
 #' graph %>%
 #'   get_selection()
-#' #> [1] 5
+#' #> [1] 5 9
 #' @importFrom rlang enquo UQ
 #' @importFrom igraph all_simple_paths
 #' @importFrom purrr map
