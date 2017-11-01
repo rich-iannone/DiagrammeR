@@ -105,11 +105,10 @@ graph <-
   trav_out_until(
     conditions =
       value \%in\% c(5, 6, 9),
-    exclude_unmatched = TRUE,
-    add_to_selection = TRUE)
+    exclude_unmatched = TRUE)
 
 # Get the graph's node selection
 graph \%>\%
   get_selection()
-#> [1] 5
+#> [1] 5 9
 }
