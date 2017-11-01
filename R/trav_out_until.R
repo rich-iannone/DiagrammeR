@@ -135,7 +135,7 @@ trav_out_until <- function(graph,
   # Initialize the node stack and
   # the step count
   node_stack <- vector(mode = "integer")
-  step <- 1
+  step <- 0
 
   starting_nodes <-
     graph %>% get_selection()
