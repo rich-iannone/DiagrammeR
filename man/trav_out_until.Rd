@@ -4,7 +4,8 @@
 \alias{trav_out_until}
 \title{Traverse outward node-by_node until stopping conditions are met}
 \usage{
-trav_out_until(graph, conditions, max_steps = 30, exclude_unmatched = TRUE)
+trav_out_until(graph, conditions, max_steps = 30, exclude_unmatched = TRUE,
+  add_to_selection = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -103,8 +104,9 @@ graph <-
   graph \%>\%
   trav_out_until(
     conditions =
-      value \%in\% c(5, 6, 15),
-    exclude_unmatched = TRUE)
+      value \%in\% c(5, 6, 9),
+    exclude_unmatched = TRUE,
+    add_to_selection = TRUE)
 
 # Get the graph's node selection
 graph \%>\%
