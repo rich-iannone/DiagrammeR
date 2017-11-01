@@ -87,20 +87,25 @@
 #'   graph %>%
 #'   trav_out_until(
 #'     conditions =
-#'       value %in% c(5, 6, 15),
-#'     exclude_unmatched = TRUE)
+#'       value %in% c(5, 6, 9),
+#'     exclude_unmatched = FALSE,
+#'     max_steps = 2,
+#'     add_to_selection = FALSE)
 #'
 #' # Get the graph's node selection
 #' graph %>%
 #'   get_selection()
 #' #> [1] 5
 #' @importFrom rlang enquo UQ
+#' @importFrom igraph all_simple_paths
+#' @importFrom purrr map
 #' @export trav_out_until
 
 trav_out_until <- function(graph,
                            conditions,
                            max_steps = 30,
-                           exclude_unmatched = TRUE) {
+                           exclude_unmatched = TRUE,
+                           add_to_selection = FALSE) {
 
   conditions <- rlang::enquo(conditions)
 
@@ -131,6 +136,9 @@ trav_out_until <- function(graph,
   # the step count
   node_stack <- vector(mode = "integer")
   step <- 1
+
+  starting_nodes <-
+    graph %>% get_selection()
 
   # Determine which nodes satisfy the
   # conditions provided
@@ -210,32 +218,63 @@ trav_out_until <- function(graph,
 
   if (length(node_stack > 0)) {
 
-    graph <-
-      graph %>%
-      select_nodes_by_id(unique(node_stack))
+    if (add_to_selection) {
+
+      if (exclude_unmatched) {
+        node_stack <-
+          intersect(node_stack, all_nodes_conditions_met)
+      }
+
+      path_nodes <-
+        node_stack %>%
+        purrr::map(
+          .f = function(x) {
+            graph %>%
+              to_igraph() %>%
+              igraph::all_simple_paths(
+                from = x,
+                to = starting_nodes,
+                mode = "in") %>%
+              unlist() %>%
+              as.integer()}) %>%
+        unlist() %>%
+        unique()
+
+      graph <-
+        graph %>%
+        select_nodes_by_id(unique(path_nodes))
+
+    } else {
+
+      graph <-
+        graph %>%
+        select_nodes_by_id(unique(node_stack))
+    }
 
     # Remove action from graph log
     graph$graph_log <-
       graph$graph_log[-nrow(graph$graph_log), ]
-  }
 
-  if (exclude_unmatched & !all(is.na(get_selection(graph)))) {
+  } else if (length(node_stack) < 1) {
 
-    new_selection <- get_selection(graph)
+    if (exclude_unmatched & !all(is.na(get_selection(graph)))) {
 
-    graph <-
-      graph %>%
-      clear_selection() %>%
-      select_nodes_by_id(
-        intersect(new_selection, all_nodes_conditions_met))
+      new_selection <- get_selection(graph)
 
-    # Remove action from graph log
-    graph$graph_log <-
-      graph$graph_log[-nrow(graph$graph_log), ]
+      graph <-
+        graph %>%
+        clear_selection() %>%
+        select_nodes_by_id(
+          intersect(new_selection, all_nodes_conditions_met))
 
-    # Remove action from graph log
-    graph$graph_log <-
-      graph$graph_log[-nrow(graph$graph_log), ]
+      # Remove action from graph log
+      graph$graph_log <-
+        graph$graph_log[-nrow(graph$graph_log), ]
+
+      # Remove action from graph log
+      graph$graph_log <-
+        graph$graph_log[-nrow(graph$graph_log), ]
+    }
   }
 
   # Update the `graph_log` df with an action
