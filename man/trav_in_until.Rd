@@ -4,7 +4,8 @@
 \alias{trav_in_until}
 \title{Traverse inward node-by_node until stopping conditions are met}
 \usage{
-trav_in_until(graph, conditions, max_steps = 30, exclude_unmatched = TRUE)
+trav_in_until(graph, conditions, max_steps = 30, exclude_unmatched = TRUE,
+  add_to_selection = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -31,6 +32,14 @@ direction) to allow before stopping.}
 satisfying the conditions provided in
 \code{conditions} that are in the ending
 selection are excluded.}
+
+\item{add_to_selection}{if \code{TRUE}
+then every node traversed will be part
+of the final selection of nodes. If
+\code{FALSE} (the default value) then
+only the nodes finally traversed to
+will be part of the final node
+selection.}
 }
 \value{
 a graph object of class
