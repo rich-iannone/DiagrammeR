@@ -28,6 +28,13 @@
 #' satisfying the conditions provided in
 #' \code{conditions} that are in the ending
 #' selection are excluded.
+#' @param add_to_selection if \code{TRUE}
+#' then every node traversed will be part
+#' of the final selection of nodes. If
+#' \code{FALSE} (the default value) then
+#' only the nodes finally traversed to
+#' will be part of the final node
+#' selection.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
