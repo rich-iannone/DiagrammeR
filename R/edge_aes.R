@@ -3,12 +3,10 @@
 #' invoked to provide values for the namesake
 #' \code{edge_aes} argument, which is present
 #' in any function where edges are created.
-#' @param style the type of arrowhead to use.
-#' The \code{style} attribute can either any of
-#' these types: \code{normal}, \code{vee},
-#' \code{tee}, \code{dot}, \code{diamond},
-#' \code{box}, \code{curve}, \code{icurve},
-#' \code{inv}, \code{crow}, or \code{none}.
+#' @param style the edge line style. The
+#' \code{style} types that can be used are
+#' \code{solid}, \code{bold}, \code{dashed},
+#' \code{dotted}, and \code{invisible}.
 #' @param penwidth the thickness of the stroke
 #' line for the edge itself.
 #' @param color the color of the edge. Can be
@@ -16,8 +14,18 @@
 #' @param arrowsize a scaling factor for
 #' arrowheads. The default value is \code{1.0}
 #' and the minimum is \code{0}.
-#' @param arrowhead arrowhead
-#' @param arrowtail arrowtail
+#' @param arrowhead the type of arrowhead to use.
+#' The \code{style} attribute can either any of
+#' these types: \code{normal}, \code{vee},
+#' \code{tee}, \code{dot}, \code{diamond},
+#' \code{box}, \code{curve}, \code{icurve},
+#' \code{inv}, \code{crow}, or \code{none}.
+#' @param arrowtail the type of arrowtail to use.
+#' The \code{style} attribute can either any of
+#' these types: \code{normal}, \code{vee},
+#' \code{tee}, \code{dot}, \code{diamond},
+#' \code{box}, \code{curve}, \code{icurve},
+#' \code{inv}, \code{crow}, or \code{none}.
 #' @param fontname the name of the
 #' system font that will be used for any edge
 #' text.
