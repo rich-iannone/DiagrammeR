@@ -34,8 +34,9 @@
 #' @param fontcolor the color used
 #' for any edge text. Can be an X11 color or a
 #' hexadecimal color code.
-#' @param len len
-#' @param minlen minlen
+#' @param len the preferred edge length for
+#' an edge, in inches. Default value is
+#' \code{1.0}.
 #' @param tooltip text for an edge tooltip.
 #' @param URL a URL to associate with an edge.
 #' Upon rendering the plot, clicking edges
@@ -180,7 +181,6 @@ edge_aes <- function(style = NULL,
                      fontsize = NULL,
                      fontcolor = NULL,
                      len = NULL,
-                     minlen = NULL,
                      tooltip = NULL,
                      URL = NULL,
                      label = NULL,
@@ -237,7 +237,6 @@ edge_aes <- function(style = NULL,
       fontsize = fontsize,
       fontcolor = fontcolor,
       len = len,
-      minlen = minlen,
       tooltip = tooltip,
       URL = URL,
       label = label,
