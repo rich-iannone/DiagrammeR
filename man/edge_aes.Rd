@@ -21,12 +21,10 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   sametail = NULL)
 }
 \arguments{
-\item{style}{the type of arrowhead to use.
-The \code{style} attribute can either any of
-these types: \code{normal}, \code{vee},
-\code{tee}, \code{dot}, \code{diamond},
-\code{box}, \code{curve}, \code{icurve},
-\code{inv}, \code{crow}, or \code{none}.}
+\item{style}{the edge line style. The
+\code{style} types that can be used are
+\code{solid}, \code{bold}, \code{dashed},
+\code{dotted}, and \code{invisible}.}
 
 \item{penwidth}{the thickness of the stroke
 line for the edge itself.}
@@ -38,9 +36,19 @@ an X11 color or a hexadecimal color code.}
 arrowheads. The default value is \code{1.0}
 and the minimum is \code{0}.}
 
-\item{arrowhead}{arrowhead}
+\item{arrowhead}{the type of arrowhead to use.
+The \code{style} attribute can either any of
+these types: \code{normal}, \code{vee},
+\code{tee}, \code{dot}, \code{diamond},
+\code{box}, \code{curve}, \code{icurve},
+\code{inv}, \code{crow}, or \code{none}.}
 
-\item{arrowtail}{arrowtail}
+\item{arrowtail}{the type of arrowtail to use.
+The \code{style} attribute can either any of
+these types: \code{normal}, \code{vee},
+\code{tee}, \code{dot}, \code{diamond},
+\code{box}, \code{curve}, \code{icurve},
+\code{inv}, \code{crow}, or \code{none}.}
 
 \item{fontname}{the name of the
 system font that will be used for any edge
