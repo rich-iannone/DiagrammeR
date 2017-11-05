@@ -473,7 +473,7 @@ gv_edge_attributes <- function() {
   c("style", "penwidth", "color", "arrowsize",
     "arrowhead", "arrowtail",
     "fontname", "fontsize", "fontcolor", "len", "minlen",
-    "tooltip", "URL", "layer",
+    "tooltip", "URL",
     "label", "labelfontname", "labelfontsize", "labelfontcolor",
     "labelangle", "labeldistance", "labelfloat",
     "labeltooltip", "labelhref", "labelURL", "labeltarget",

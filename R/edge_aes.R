@@ -41,7 +41,6 @@
 #' Upon rendering the plot, clicking edges
 #' with any associated URLs will open the
 #' URL in the default browser.
-#' @param layer layer
 #' @param label the label text associated
 #' with the edge.
 #' @param labelfontname the name of the
@@ -184,7 +183,6 @@ edge_aes <- function(style = NULL,
                      minlen = NULL,
                      tooltip = NULL,
                      URL = NULL,
-                     layer = NULL,
                      label = NULL,
                      labelfontname = NULL,
                      labelfontsize = NULL,
@@ -242,7 +240,6 @@ edge_aes <- function(style = NULL,
       minlen = minlen,
       tooltip = tooltip,
       URL = URL,
-      layer = layer,
       label = label,
       labelfontname = labelfontname,
       labelfontsize = labelfontsize,
