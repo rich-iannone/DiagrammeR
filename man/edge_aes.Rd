@@ -6,15 +6,15 @@
 \usage{
 edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   arrowhead = NULL, arrowtail = NULL, fontname = NULL, fontsize = NULL,
-  fontcolor = NULL, len = NULL, minlen = NULL, tooltip = NULL,
-  URL = NULL, layer = NULL, label = NULL, labelfontname = NULL,
-  labelfontsize = NULL, labelfontcolor = NULL, labelangle = NULL,
-  labeldistance = NULL, labelfloat = NULL, labeltooltip = NULL,
-  labelhref = NULL, labelURL = NULL, labeltarget = NULL,
-  edgetooltip = NULL, edgehref = NULL, edgeURL = NULL,
-  edgetarget = NULL, dir = NULL, headtooltip = NULL, headhref = NULL,
-  headURL = NULL, headtarget = NULL, headclip = NULL, headlabel = NULL,
-  headport = NULL, tailtooltip = NULL, tailhref = NULL, tailURL = NULL,
+  fontcolor = NULL, len = NULL, tooltip = NULL, URL = NULL,
+  label = NULL, labelfontname = NULL, labelfontsize = NULL,
+  labelfontcolor = NULL, labelangle = NULL, labeldistance = NULL,
+  labelfloat = NULL, labeltooltip = NULL, labelhref = NULL,
+  labelURL = NULL, labeltarget = NULL, edgetooltip = NULL,
+  edgehref = NULL, edgeURL = NULL, edgetarget = NULL, dir = NULL,
+  headtooltip = NULL, headhref = NULL, headURL = NULL,
+  headtarget = NULL, headclip = NULL, headlabel = NULL, headport = NULL,
+  tailtooltip = NULL, tailhref = NULL, tailURL = NULL,
   tailtarget = NULL, tailclip = NULL, taillabel = NULL, tailport = NULL,
   target = NULL, weight = NULL, constraint = NULL, decorate = NULL,
   href = NULL, lhead = NULL, ltail = NULL, samehead = NULL,
@@ -61,9 +61,9 @@ the font used for any edge text.}
 for any edge text. Can be an X11 color or a
 hexadecimal color code.}
 
-\item{len}{len}
-
-\item{minlen}{minlen}
+\item{len}{the preferred edge length for
+an edge, in inches. Default value is
+\code{1.0}.}
 
 \item{tooltip}{text for an edge tooltip.}
 
@@ -71,8 +71,6 @@ hexadecimal color code.}
 Upon rendering the plot, clicking edges
 with any associated URLs will open the
 URL in the default browser.}
-
-\item{layer}{layer}
 
 \item{label}{the label text associated
 with the edge.}
