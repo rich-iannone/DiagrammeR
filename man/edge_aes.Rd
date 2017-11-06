@@ -12,8 +12,8 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   edgetooltip = NULL, edgeURL = NULL, dir = NULL, headtooltip = NULL,
   headURL = NULL, headclip = NULL, headlabel = NULL, headport = NULL,
   tailtooltip = NULL, tailURL = NULL, tailclip = NULL, taillabel = NULL,
-  tailport = NULL, weight = NULL, constraint = NULL, decorate = NULL,
-  lhead = NULL, ltail = NULL, samehead = NULL, sametail = NULL)
+  tailport = NULL, constraint = NULL, decorate = NULL, lhead = NULL,
+  ltail = NULL, samehead = NULL, sametail = NULL)
 }
 \arguments{
 \item{style}{the edge line style. The
@@ -156,8 +156,6 @@ edge.}
 \item{taillabel}{taillabel}
 
 \item{tailport}{tailport}
-
-\item{weight}{weight}
 
 \item{constraint}{constraint}
 
