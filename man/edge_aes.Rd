@@ -12,8 +12,7 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   edgetooltip = NULL, edgeURL = NULL, dir = NULL, headtooltip = NULL,
   headURL = NULL, headclip = NULL, headlabel = NULL, headport = NULL,
   tailtooltip = NULL, tailURL = NULL, tailclip = NULL, taillabel = NULL,
-  tailport = NULL, constraint = NULL, decorate = NULL, lhead = NULL,
-  ltail = NULL, samehead = NULL, sametail = NULL)
+  tailport = NULL, decorate = NULL)
 }
 \arguments{
 \item{style}{the edge line style. The
@@ -113,9 +112,26 @@ clicking edge labels with any associated
 URLs will open the URL in the default
 browser.}
 
-\item{edgetooltip}{edgetooltip}
+\item{edgetooltip}{this option provides
+a means to specify a tooltip with only
+the non-label parts of an edge. If this
+is defined, the value overrides any
+\code{tooltip} defined for the edge.
+This tooltip text is when hovering along
+the edge (even near the head or tail
+node) unless overridden by a
+\code{headtooltip} or \code{tailtooltip}
+value.}
 
-\item{edgeURL}{edgeURL}
+\item{edgeURL}{this option provides a
+means to specify a URL with only the
+non-label parts of an edge. If this
+is defined, the value overrides any
+\code{URL} defined for the edge. This
+URL is used along the edge (even near
+the head or tail node) unless
+overridden by a \code{headURL} or
+\code{tailURL} value.}
 
 \item{dir}{an optional direction
 type. Normally, for directed
@@ -157,17 +173,12 @@ edge.}
 
 \item{tailport}{tailport}
 
-\item{constraint}{constraint}
-
-\item{decorate}{decorate}
-
-\item{lhead}{lhead}
-
-\item{ltail}{ltail}
-
-\item{samehead}{samehead}
-
-\item{sametail}{sametail}
+\item{decorate}{if \code{TRUE}
+then attach any edge label to
+the edge line via a 2-segment
+polyline, underlining the label
+text and partially overlapping
+the edge line.}
 }
 \description{
 This helper function should be
