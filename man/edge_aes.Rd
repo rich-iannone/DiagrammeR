@@ -8,8 +8,7 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   arrowhead = NULL, arrowtail = NULL, fontname = NULL, fontsize = NULL,
   fontcolor = NULL, len = NULL, tooltip = NULL, URL = NULL,
   label = NULL, labelfontname = NULL, labelfontsize = NULL,
-  labelfontcolor = NULL, labelangle = NULL, labeldistance = NULL,
-  labelfloat = NULL, labeltooltip = NULL, labelhref = NULL,
+  labelfontcolor = NULL, labeltooltip = NULL, labelhref = NULL,
   labelURL = NULL, labeltarget = NULL, edgetooltip = NULL,
   edgehref = NULL, edgeURL = NULL, edgetarget = NULL, dir = NULL,
   headtooltip = NULL, headhref = NULL, headURL = NULL,
@@ -24,7 +23,8 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
 \item{style}{the edge line style. The
 \code{style} types that can be used are
 \code{solid}, \code{bold}, \code{dashed},
-\code{dotted}, and \code{invisible}.}
+\code{dotted}, \code{tapered}, and
+\code{invisible}.}
 
 \item{penwidth}{the thickness of the stroke
 line for the edge itself.}
@@ -95,39 +95,6 @@ for the label text of the
 set, the \code{fontcolor} value will
 instead be used. Can be an X11 color
 or a hexadecimal color code.}
-
-\item{labelangle}{when used along with
-\code{labeldistance} edge attribute,
-determines where the \code{headlabel}
-(or \code{taillabel}) are placed with
-respect to the edge's head (or tail)
-using polar coordinates. The origin for
-the coordinate system is the point
-where the edge touches the node. Now
-imagine a ray (of \code{0} degrees)
-moving from the origin back along the
-edge, parallel to the edge at the origin.
-The angle, in degrees, specifies the
-rotation from the \code{0} degree ray,
-with positive angles moving
-counterclockwise and negative angles
-moving clockwise.}
-
-\item{labeldistance}{a scaling factor
-that adjusts the distance of the
-\code{headlabel} (or, \code{taillabel})
-from the head (or tail) node. Consider
-that the distance is normally 10 points.
-Any value of \code{labeldistance} will
-effectively multiply that distance
-value. The default value is \code{1.0}
-and the minimum is \code{0}.}
-
-\item{labelfloat}{if set to \code{TRUE},
-this option allows edge labels to be less
-constrained in position. That is, edge
-labels may appear on top of other edges.
-The default here is \code{FALSE}.}
 
 \item{labeltooltip}{labeltooltip}
 
