@@ -38,13 +38,18 @@
 #' @param len the preferred edge length for
 #' an edge, in inches. Default value is
 #' \code{1.0}.
-#' @param tooltip text for an edge tooltip.
+#' @param tooltip text for a tooltip that
+#' appears when hovering over an edge. If text
+#' is not provided, then the default tooltip
+#' text will provide the edge definition (i.e.,
+#' \code{[id]->[id] or [id]--[id]}).
 #' @param URL a URL to associate with an edge.
 #' Upon rendering the plot, clicking edges
 #' with any associated URLs will open the
 #' URL in the default browser.
 #' @param label the label text associated
-#' with the edge.
+#' with the edge. This text will appear near
+#' the center of the edge.
 #' @param labelfontname the name of the
 #' system font that will be used for the
 #' \code{headlabel} and the
@@ -63,18 +68,22 @@
 #' set, the \code{fontcolor} value will
 #' instead be used. Can be an X11 color
 #' or a hexadecimal color code.
-#' @param labeltooltip labeltooltip
-#' @param labelhref labelhref
+#' @param labeltooltip text for a tooltip
+#' that will appear when hovering over the
+#' main label of an edge (if label text
+#' provided in the \code{label} edge
+#' attribute). If text is not provided and
+#' an edge label is visible, then the
+#' default tooltip text will provide the
+#' edge definition (i.e., \code{[id]->[id]
+#' or [id]--[id]}).
 #' @param labelURL a URL to associate with
 #' edge label text. Upon rendering the plot,
 #' clicking edge labels with any associated
 #' URLs will open the URL in the default
 #' browser.
-#' @param labeltarget labeltarget
 #' @param edgetooltip edgetooltip
-#' @param edgehref edgehref
 #' @param edgeURL edgeURL
-#' @param edgetarget edgetarget
 #' @param dir an optional direction
 #' type. Normally, for directed
 #' graphs, this is \code{forward}
@@ -95,24 +104,18 @@
 #' attributes in either side of the
 #' edge.
 #' @param headtooltip headtooltip
-#' @param headhref headhref
 #' @param headURL headURL
-#' @param headtarget headtarget
 #' @param headclip headclip
 #' @param headlabel headlabel
 #' @param headport headport
 #' @param tailtooltip tailtooltip
-#' @param tailhref tailhref
 #' @param tailURL tailURL
-#' @param tailtarget tailtarget
 #' @param tailclip tailclip
 #' @param taillabel taillabel
 #' @param tailport tailport
-#' @param target target
 #' @param weight weight
 #' @param constraint constraint
 #' @param decorate decorate
-#' @param href href
 #' @param lhead lhead
 #' @param ltail ltail
 #' @param samehead samehead
@@ -159,33 +162,23 @@ edge_aes <- function(style = NULL,
                      labelfontsize = NULL,
                      labelfontcolor = NULL,
                      labeltooltip = NULL,
-                     labelhref = NULL,
                      labelURL = NULL,
-                     labeltarget = NULL,
                      edgetooltip = NULL,
-                     edgehref = NULL,
                      edgeURL = NULL,
-                     edgetarget = NULL,
                      dir = NULL,
                      headtooltip = NULL,
-                     headhref = NULL,
                      headURL = NULL,
-                     headtarget = NULL,
                      headclip = NULL,
                      headlabel = NULL,
                      headport = NULL,
                      tailtooltip = NULL,
-                     tailhref = NULL,
                      tailURL = NULL,
-                     tailtarget = NULL,
                      tailclip = NULL,
                      taillabel = NULL,
                      tailport = NULL,
-                     target = NULL,
                      weight = NULL,
                      constraint = NULL,
                      decorate = NULL,
-                     href = NULL,
                      lhead = NULL,
                      ltail = NULL,
                      samehead = NULL,
@@ -212,33 +205,23 @@ edge_aes <- function(style = NULL,
       labelfontsize = labelfontsize,
       labelfontcolor = labelfontcolor,
       labeltooltip = labeltooltip,
-      labelhref = labelhref,
       labelURL = labelURL,
-      labeltarget = labeltarget,
       edgetooltip = edgetooltip,
-      edgehref = edgehref,
       edgeURL = edgeURL,
-      edgetarget = edgetarget,
       headtooltip = headtooltip,
-      headhref = headhref,
       headURL = headURL,
-      headtarget = headtarget,
       headclip = headclip,
       headlabel = headlabel,
       headport = headport,
       tailtooltip = tailtooltip,
-      tailhref = tailhref,
       tailURL = tailURL,
-      tailtarget = tailtarget,
       tailclip = tailclip,
       taillabel = taillabel,
       tailport = tailport,
       dir = dir,
-      target = target,
       weight = weight,
       constraint = constraint,
       decorate = decorate,
-      href = href,
       lhead = lhead,
       ltail = ltail,
       samehead = samehead,
