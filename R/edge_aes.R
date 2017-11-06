@@ -113,7 +113,6 @@
 #' @param tailclip tailclip
 #' @param taillabel taillabel
 #' @param tailport tailport
-#' @param weight weight
 #' @param constraint constraint
 #' @param decorate decorate
 #' @param lhead lhead
@@ -176,7 +175,6 @@ edge_aes <- function(style = NULL,
                      tailclip = NULL,
                      taillabel = NULL,
                      tailport = NULL,
-                     weight = NULL,
                      constraint = NULL,
                      decorate = NULL,
                      lhead = NULL,
@@ -219,7 +217,6 @@ edge_aes <- function(style = NULL,
       taillabel = taillabel,
       tailport = tailport,
       dir = dir,
-      weight = weight,
       constraint = constraint,
       decorate = decorate,
       lhead = lhead,
