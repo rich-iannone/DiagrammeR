@@ -8,16 +8,12 @@ edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
   arrowhead = NULL, arrowtail = NULL, fontname = NULL, fontsize = NULL,
   fontcolor = NULL, len = NULL, tooltip = NULL, URL = NULL,
   label = NULL, labelfontname = NULL, labelfontsize = NULL,
-  labelfontcolor = NULL, labeltooltip = NULL, labelhref = NULL,
-  labelURL = NULL, labeltarget = NULL, edgetooltip = NULL,
-  edgehref = NULL, edgeURL = NULL, edgetarget = NULL, dir = NULL,
-  headtooltip = NULL, headhref = NULL, headURL = NULL,
-  headtarget = NULL, headclip = NULL, headlabel = NULL, headport = NULL,
-  tailtooltip = NULL, tailhref = NULL, tailURL = NULL,
-  tailtarget = NULL, tailclip = NULL, taillabel = NULL, tailport = NULL,
-  target = NULL, weight = NULL, constraint = NULL, decorate = NULL,
-  href = NULL, lhead = NULL, ltail = NULL, samehead = NULL,
-  sametail = NULL)
+  labelfontcolor = NULL, labeltooltip = NULL, labelURL = NULL,
+  edgetooltip = NULL, edgeURL = NULL, dir = NULL, headtooltip = NULL,
+  headURL = NULL, headclip = NULL, headlabel = NULL, headport = NULL,
+  tailtooltip = NULL, tailURL = NULL, tailclip = NULL, taillabel = NULL,
+  tailport = NULL, weight = NULL, constraint = NULL, decorate = NULL,
+  lhead = NULL, ltail = NULL, samehead = NULL, sametail = NULL)
 }
 \arguments{
 \item{style}{the edge line style. The
@@ -65,7 +61,11 @@ hexadecimal color code.}
 an edge, in inches. Default value is
 \code{1.0}.}
 
-\item{tooltip}{text for an edge tooltip.}
+\item{tooltip}{text for a tooltip that
+appears when hovering over an edge. If text
+is not provided, then the default tooltip
+text will provide the edge definition (i.e.,
+\code{[id]->[id] or [id]--[id]}).}
 
 \item{URL}{a URL to associate with an edge.
 Upon rendering the plot, clicking edges
@@ -73,7 +73,8 @@ with any associated URLs will open the
 URL in the default browser.}
 
 \item{label}{the label text associated
-with the edge.}
+with the edge. This text will appear near
+the center of the edge.}
 
 \item{labelfontname}{the name of the
 system font that will be used for the
@@ -96,9 +97,15 @@ set, the \code{fontcolor} value will
 instead be used. Can be an X11 color
 or a hexadecimal color code.}
 
-\item{labeltooltip}{labeltooltip}
-
-\item{labelhref}{labelhref}
+\item{labeltooltip}{text for a tooltip
+that will appear when hovering over the
+main label of an edge (if label text
+provided in the \code{label} edge
+attribute). If text is not provided and
+an edge label is visible, then the
+default tooltip text will provide the
+edge definition (i.e., \code{[id]->[id]
+or [id]--[id]}).}
 
 \item{labelURL}{a URL to associate with
 edge label text. Upon rendering the plot,
@@ -106,15 +113,9 @@ clicking edge labels with any associated
 URLs will open the URL in the default
 browser.}
 
-\item{labeltarget}{labeltarget}
-
 \item{edgetooltip}{edgetooltip}
 
-\item{edgehref}{edgehref}
-
 \item{edgeURL}{edgeURL}
-
-\item{edgetarget}{edgetarget}
 
 \item{dir}{an optional direction
 type. Normally, for directed
@@ -138,11 +139,7 @@ edge.}
 
 \item{headtooltip}{headtooltip}
 
-\item{headhref}{headhref}
-
 \item{headURL}{headURL}
-
-\item{headtarget}{headtarget}
 
 \item{headclip}{headclip}
 
@@ -152,11 +149,7 @@ edge.}
 
 \item{tailtooltip}{tailtooltip}
 
-\item{tailhref}{tailhref}
-
 \item{tailURL}{tailURL}
-
-\item{tailtarget}{tailtarget}
 
 \item{tailclip}{tailclip}
 
@@ -164,15 +157,11 @@ edge.}
 
 \item{tailport}{tailport}
 
-\item{target}{target}
-
 \item{weight}{weight}
 
 \item{constraint}{constraint}
 
 \item{decorate}{decorate}
-
-\item{href}{href}
 
 \item{lhead}{lhead}
 
