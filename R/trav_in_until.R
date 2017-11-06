@@ -142,6 +142,9 @@ trav_in_until <- function(graph,
   node_stack <- vector(mode = "integer")
   step <- 0
 
+  starting_nodes <-
+    graph %>% get_selection()
+
   # Determine which nodes satisfy the
   # conditions provided
   all_nodes_conditions_met <-
