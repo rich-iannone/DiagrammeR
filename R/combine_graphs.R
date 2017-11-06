@@ -144,7 +144,9 @@ combine_graphs <- function(x,
 
   # Rename column names with `.y` suffixes
   colnames(y_edges_df) <-
-    gsub(".y", "", colnames(y_edges_df))
+    gsub(".y$", "", colnames(y_edges_df))
+
+  y_edges_df$id <- y_edges_df$id + edges_created
 
   # Copy new node IDs to `nodes` node attr
   y_nodes_df$id <- y_nodes_df$new_node_id
@@ -171,7 +173,6 @@ combine_graphs <- function(x,
   # from the first graph provided (`x`)
   x$nodes_df <- combined_nodes
   x$edges_df <- combined_edges
-  x$edges_df$id <- as.integer(1:nrow(x$edges_df))
   x$directed <-
     ifelse(
       is_graph_directed(x) == FALSE ||
