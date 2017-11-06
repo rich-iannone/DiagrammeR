@@ -82,8 +82,25 @@
 #' clicking edge labels with any associated
 #' URLs will open the URL in the default
 #' browser.
-#' @param edgetooltip edgetooltip
-#' @param edgeURL edgeURL
+#' @param edgetooltip this option provides
+#' a means to specify a tooltip with only
+#' the non-label parts of an edge. If this
+#' is defined, the value overrides any
+#' \code{tooltip} defined for the edge.
+#' This tooltip text is when hovering along
+#' the edge (even near the head or tail
+#' node) unless overridden by a
+#' \code{headtooltip} or \code{tailtooltip}
+#' value.
+#' @param edgeURL this option provides a
+#' means to specify a URL with only the
+#' non-label parts of an edge. If this
+#' is defined, the value overrides any
+#' \code{URL} defined for the edge. This
+#' URL is used along the edge (even near
+#' the head or tail node) unless
+#' overridden by a \code{headURL} or
+#' \code{tailURL} value.
 #' @param dir an optional direction
 #' type. Normally, for directed
 #' graphs, this is \code{forward}
@@ -113,12 +130,12 @@
 #' @param tailclip tailclip
 #' @param taillabel taillabel
 #' @param tailport tailport
-#' @param constraint constraint
-#' @param decorate decorate
-#' @param lhead lhead
-#' @param ltail ltail
-#' @param samehead samehead
-#' @param sametail sametail
+#' @param decorate if \code{TRUE}
+#' then attach any edge label to
+#' the edge line via a 2-segment
+#' polyline, underlining the label
+#' text and partially overlapping
+#' the edge line.
 #' @examples
 #' # Create a new graph and add
 #' # a path with several edge
@@ -175,12 +192,7 @@ edge_aes <- function(style = NULL,
                      tailclip = NULL,
                      taillabel = NULL,
                      tailport = NULL,
-                     constraint = NULL,
-                     decorate = NULL,
-                     lhead = NULL,
-                     ltail = NULL,
-                     samehead = NULL,
-                     sametail = NULL) {
+                     decorate = NULL) {
 
   # Collect vectors of node aesthetic
   # attribute values into a list object
@@ -217,12 +229,7 @@ edge_aes <- function(style = NULL,
       taillabel = taillabel,
       tailport = tailport,
       dir = dir,
-      constraint = constraint,
-      decorate = decorate,
-      lhead = lhead,
-      ltail = ltail,
-      samehead = samehead,
-      sametail = sametail)
+      decorate = decorate)
 
   non_null_attrs <-
     1:length(attr_values) %>%
