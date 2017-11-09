@@ -45,8 +45,8 @@
 #' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
-#' # Create a new graph and add 2 prisms
+#' # Create a new graph and
+#' # add 2 prisms
 #' graph <-
 #'   create_graph() %>%
 #'   add_prism(
@@ -135,7 +135,6 @@
 #' #> 7  7    1  4   A      1.2   red 5.218288
 #' #> 8  8    2  5   A      1.2   red 3.953465
 #' #> 9  9    3  6   A      1.2   red 4.711311
-#' }
 #' @importFrom dplyr select bind_cols
 #' @importFrom tibble as_tibble
 #' @export add_prism

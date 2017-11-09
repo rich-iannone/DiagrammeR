@@ -1,44 +1,59 @@
 #' Create a random growing graph with m edges added per step
-#' @description To an existing graph object, add
-#' a graph built by adding \code{m} new edges
-#' at each time step (where a node is added).
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param n the number of nodes comprising the
-#' generated graph.
-#' @param m the number of edges added per time
-#' step.
-#' @param citation a logical value (default is
-#' \code{FALSE}) that governs whether a citation
-#' graph is to be created. This is where new
-#' edges specifically originate from the newly
-#' added node in the most recent time step.
-#' @param set_seed supplying a value sets a random seed
-#' of the \code{Mersenne-Twister} implementation.
-#' @param node_aes an optional list of named vectors
-#' comprising node aesthetic attributes. The helper
-#' function \code{node_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted node aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{color},
+#' @description To an existing graph
+#' object, add a graph built by adding
+#' \code{m} new edges at each time
+#' step (where a node is added).
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param n the number of nodes
+#' comprising the generated graph.
+#' @param m the number of edges
+#' added per time step.
+#' @param citation a logical value
+#' (default is \code{FALSE}) that
+#' governs whether a citation graph
+#' is to be created. This is where
+#' new edges specifically originate
+#' from the newly added node in the
+#' most recent time step.
+#' @param set_seed supplying a
+#' value sets a random seed of the
+#' \code{Mersenne-Twister}
+#' implementation.
+#' @param node_aes an optional list
+#' of named vectors comprising node
+#' aesthetic attributes. The helper
+#' function \code{node_aes()} is
+#' strongly recommended for use here
+#' as it contains arguments for each
+#' of the accepted node aesthetic
+#' attributes (e.g., \code{shape},
+#' \code{style}, \code{color},
 #' \code{fillcolor}).
-#' @param edge_aes an optional list of named vectors
-#' comprising edge aesthetic attributes. The helper
-#' function \code{edge_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted edge aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{penwidth},
+#' @param edge_aes an optional list
+#' of named vectors comprising edge
+#' aesthetic attributes. The helper
+#' function \code{edge_aes()} is
+#' strongly recommended for use here
+#' as it contains arguments for each
+#' of the accepted edge aesthetic
+#' attributes (e.g., \code{shape},
+#' \code{style}, \code{penwidth},
 #' \code{color}).
-#' @param node_data an optional list of named vectors
-#' comprising node data attributes. The helper
-#' function \code{node_data()} is strongly recommended
-#' for use here as it helps bind data specifically
+#' @param node_data an optional list
+#' of named vectors comprising node
+#' data attributes. The helper
+#' function \code{node_data()} is
+#' strongly recommended for use here
+#' as it helps bind data specifically
 #' to the created nodes.
-#' @param edge_data an optional list of named vectors
-#' comprising edge data attributes. The helper
-#' function \code{edge_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created edges.
+#' @param edge_data an optional list
+#' of named vectors comprising edge
+#' data attributes. The helper function
+#' \code{edge_data()} is strongly
+#' recommended for use here as it helps
+#' bind data specifically to the
+#' created edges.
 #' @examples
 #' # Create a random, growing
 #' # citation graph with 100

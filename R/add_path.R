@@ -40,7 +40,6 @@
 #' to the created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create a new graph and add
 #' # 2 paths of varying lengths
 #' graph <-
@@ -66,49 +65,50 @@
 #' #> 8  8 path     8   2     1      1     0
 #' #> 9  9 path     9   1     1      0     0
 #'
-#' # Attributes can be specified
-#' # in extra arguments and these
-#' # are applied in order; Usually
-#' # these attributes are applied
-#' # to nodes (e.g., `type` is a
-#' # node attribute) but the `rel`
-#' # attribute will apply to the
-#' # edges
+#' # Node and edge aesthetic and data
+#' # attributes can be specified in
+#' # the `node_aes`, `edge_aes`,
+#' # `node_data`, and `edge_data`
+#' # arguments
+#'
+#' set.seed(23)
+#'
 #' graph_w_attrs <-
 #'   create_graph() %>%
 #'   add_path(
-#'     n = 6,
-#'     label = c("one", "two",
-#'               "three", "four",
-#'               "five", "six"),
-#'     type = c("a", "a",
-#'              "b", "b",
-#'              "c", "c"),
-#'     value = c(1.2, 8.4,
-#'               3.4, 5.2,
-#'               6.1, 2.6),
-#'     rel = "path")
+#'     n = 3,
+#'     label = c(
+#'       "one", "two", "three"),
+#'     type = c(
+#'       "a", "a", "b"),
+#'     rel = "A",
+#'     node_aes = node_aes(
+#'       fillcolor = "steelblue"),
+#'     edge_aes = edge_aes(
+#'       color = "red",
+#'       penwidth = 1.2),
+#'     node_data = node_data(
+#'       value = c(
+#'         1.6, 2.8, 3.4)),
+#'     edge_data = edge_data(
+#'       value =
+#'         rnorm(
+#'           n = 2,
+#'           mean = 5.0,
+#'           sd = 1.0)))
 #'
 #' # Get the graph's node data frame
 #' get_node_df(graph_w_attrs)
-#' #>   id type label value
-#' #> 1  1    a   one   1.2
-#' #> 2  2    a   two   8.4
-#' #> 3  3    b three   3.4
-#' #> 4  4    b  four   5.2
-#' #> 5  5    c  five   6.1
-#' #> 6  6    c   six   2.6
+#' #>   id type label fillcolor value
+#' #> 1  1    a   one steelblue   1.6
+#' #> 2  2    a   two steelblue   2.8
+#' #> 3  3    b three steelblue   3.4
 #'
 #' # Get the graph's edge data frame
 #' get_edge_df(graph_w_attrs)
-#' #>   id from to  rel
-#' #> 1  1    1  2 path
-#' #> 2  2    2  3 path
-#' #> 3  3    3  4 path
-#' #> 4  4    4  5 path
-#' #> 5  5    5  6 path
-#' #> 6  6    6  1 path
-#' }
+#' #>   id from to rel penwidth color    value
+#' #> 1  1    1  2   A      1.2   red 5.996605
+#' #> 2  2    2  3   A      1.2   red 6.107490
 #' @importFrom dplyr select bind_cols
 #' @importFrom tibble as_tibble
 #' @export add_path

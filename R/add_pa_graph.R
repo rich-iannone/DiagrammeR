@@ -1,67 +1,99 @@
 #' Add a preferential attachment graph
-#' @description To an existing graph object, add
-#' a graph built according to the Barabasi-Albert
-#' model, which uses preferential attachment in
-#' its stochastic algorithm.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param n the number of nodes comprising the
-#' preferential attachment graph.
-#' @param m the number of edges to add in each time
-#' step.
-#' @param power the power of the preferential
-#' attachment. The default value of \code{1} indicates
-#' a linear preferential attachment.
-#' @param out_dist a numeric vector that provides the
-#' distribution of the number of edges to add in each
+#' @description To an existing graph
+#' object, add a graph built
+#' according to the Barabasi-Albert
+#' model, which uses preferential
+#' attachment in its stochastic
+#' algorithm.
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param n the number of nodes
+#' comprising the preferential
+#' attachment graph.
+#' @param m the number of edges to
+#' add in each time step.
+#' @param power the power of the
+#' preferential attachment. The
+#' default value of \code{1}
+#' indicates a linear preferential
+#' attachment.
+#' @param out_dist a numeric vector
+#' that provides the distribution of
+#' the number of edges to add in each
 #' time step.
-#' @param use_total_degree a logical value (default is
-#' \code{TRUE}) that governs whether the total degree
-#' should be used for calculating the citation
-#' probability. If \code{FALSE}, the indegree is used.
-#' @param zero_appeal a measure of the attractiveness
-#' of the nodes with no adjacent edges.
-#' @param algo the algorithm to use to generate the
-#' graph. The available options are \code{psumtree},
-#' \code{psumtree-multiple}, and \code{bag}. With the
-#' \code{psumtree} algorithm, a partial prefix-sum
-#' tree is used to to create the graph. Any values for
-#' \code{power} and \code{zero_appeal} can be provided
-#' and this algorithm never generates multiple edges.
-#' The \code{psumtree-multiple} algorithm also uses a
-#' partial prefix-sum tree but the difference here is
-#' that multiple edges are allowed. The \code{bag}
-#' algorithm places the node IDs into a bag as many
-#' times as their in-degree (plus once more). The
-#' required number of cited nodes are drawn from the
-#' bag with replacement. Multiple edges may be
-#' produced using this method (it is not disallowed).
-#' @param set_seed supplying a value sets a random seed
-#' of the \code{Mersenne-Twister} implementation.
-#' @param node_aes an optional list of named vectors
-#' comprising node aesthetic attributes. The helper
-#' function \code{node_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted node aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{color},
+#' @param use_total_degree a logical
+#' value (default is \code{TRUE})
+#' that governs whether the total
+#' degree should be used for
+#' calculating the citation
+#' probability. If \code{FALSE}, the
+#' indegree is used.
+#' @param zero_appeal a measure of
+#' the attractiveness of the nodes
+#' with no adjacent edges.
+#' @param algo the algorithm to use
+#' to generate the graph. The
+#' available options are
+#' \code{psumtree},
+#' \code{psumtree-multiple}, and
+#' \code{bag}. With the \code{psumtree}
+#' algorithm, a partial prefix-sum
+#' tree is used to to create the
+#' graph. Any values for \code{power}
+#' and \code{zero_appeal} can be
+#' provided and this algorithm never
+#' generates multiple edges.
+#' The \code{psumtree-multiple}
+#' algorithm also uses a partial
+#' prefix-sum tree but the difference
+#' here is that multiple edges are
+#' allowed. The \code{bag} algorithm
+#' places the node IDs into a bag as
+#' many times as their in-degree
+#' (plus once more). The required
+#' number of cited nodes are drawn
+#' from the bag with replacement.
+#' Multiple edges may be produced
+#' using this method (it is not
+#' disallowed).
+#' @param set_seed supplying a value
+#' sets a random seed of the
+#' \code{Mersenne-Twister}
+#' implementation.
+#' @param node_aes an optional list
+#' of named vectors comprising node
+#' aesthetic attributes. The helper
+#' function \code{node_aes()} is
+#' strongly recommended for use here
+#' as it contains arguments for each
+#' of the accepted node aesthetic
+#' attributes (e.g., \code{shape},
+#' \code{style}, \code{color},
 #' \code{fillcolor}).
-#' @param edge_aes an optional list of named vectors
-#' comprising edge aesthetic attributes. The helper
-#' function \code{edge_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted edge aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{penwidth},
+#' @param edge_aes an optional list
+#' of named vectors comprising edge
+#' aesthetic attributes. The helper
+#' function \code{edge_aes()} is
+#' strongly recommended for use here
+#' as it contains arguments for each
+#' of the accepted edge aesthetic
+#' attributes (e.g., \code{shape},
+#' \code{style}, \code{penwidth},
 #' \code{color}).
-#' @param node_data an optional list of named vectors
-#' comprising node data attributes. The helper
-#' function \code{node_data()} is strongly recommended
-#' for use here as it helps bind data specifically
+#' @param node_data an optional list
+#' of named vectors comprising node
+#' data attributes. The helper
+#' function \code{node_data()} is
+#' strongly recommended for use here
+#' as it helps bind data specifically
 #' to the created nodes.
-#' @param edge_data an optional list of named vectors
-#' comprising edge data attributes. The helper
-#' function \code{edge_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created edges.
+#' @param edge_data an optional list
+#' of named vectors comprising edge
+#' data attributes. The helper function
+#' \code{edge_data()} is strongly
+#' recommended for use here as it helps
+#' bind data specifically to the
+#' created edges.
 #' @examples
 #' # Create an undirected PA
 #' # graph with 100 nodes, adding
