@@ -8,8 +8,8 @@ add_grid_2d(graph, x, y, type = NULL, label = TRUE, rel = NULL,
   node_aes = NULL, edge_aes = NULL, node_data = NULL, edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
 \item{x}{the number of nodes in
 the x direction.}
@@ -23,8 +23,8 @@ the nodes to be added.}
 
 \item{label}{either a vector object
 of length \code{x * y} that provides
-optional labels for the new nodes, or,
-a boolean value where setting to
+optional labels for the new nodes,
+or, a boolean value where setting to
 \code{TRUE} ascribes node IDs to the
 label and \code{FALSE} yields a blank
 label.}
@@ -33,42 +33,52 @@ label.}
 providing a relationship label to
 all new edges created in the grid.}
 
-\item{node_aes}{an optional list of named vectors
-comprising node aesthetic attributes. The helper
-function \code{node_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted node aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{color},
+\item{node_aes}{an optional list
+of named vectors comprising node
+aesthetic attributes. The helper
+function \code{node_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted node aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{color},
 \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function \code{edge_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{penwidth},
+\item{edge_aes}{an optional list
+of named vectors comprising edge
+aesthetic attributes. The helper
+function \code{edge_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted edge aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{penwidth},
 \code{color}).}
 
-\item{node_data}{an optional list of named vectors
-comprising node data attributes. The helper
-function \code{node_data()} is strongly recommended
-for use here as it helps bind data specifically
+\item{node_data}{an optional list
+of named vectors comprising node
+data attributes. The helper
+function \code{node_data()} is
+strongly recommended for use here
+as it helps bind data specifically
 to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors
-comprising edge data attributes. The helper
-function \code{edge_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.}
+\item{edge_data}{an optional list
+of named vectors comprising edge
+data attributes. The helper function
+\code{edge_data()} is strongly
+recommended for use here as it helps
+bind data specifically to the
+created edges.}
 }
 \value{
 a graph object of class
 \code{dgr_graph}.
 }
 \description{
-With a graph object of class
-\code{dgr_graph}, add a two-dimensional
-grid to the graph.
+With a graph object
+of class \code{dgr_graph}, add a
+two-dimensional grid to the graph.
 }
 \examples{
 \dontrun{

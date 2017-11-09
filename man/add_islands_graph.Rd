@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_islands_graph.R
 \name{add_islands_graph}
 \alias{add_islands_graph}
-\title{Create a random growing graph with m edges between islands}
+\title{Create a random islands graph with edges between the islands}
 \usage{
 add_islands_graph(graph, n_islands, island_size, p, edges_between,
   set_seed = NULL, node_aes = NULL, edge_aes = NULL, node_data = NULL,
@@ -12,53 +12,66 @@ add_islands_graph(graph, n_islands, island_size, p, edges_between,
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{n_islands}{the number of islands
-in the generated graph.}
+\item{n_islands}{the number of
+islands in the generated graph.}
 
-\item{island_size}{the size of the islands
-in the generated graph.}
+\item{island_size}{the size of
+the islands in the generated graph.}
 
-\item{p}{the probability of there being
-edges between the islands.}
+\item{p}{the probability of there
+being edges between the islands.}
 
-\item{edges_between}{The number of edges
-between islands.}
+\item{edges_between}{The number
+of edges between islands.}
 
-\item{set_seed}{supplying a value sets a random seed
-of the \code{Mersenne-Twister} implementation.}
+\item{set_seed}{supplying a value
+sets a random seed of the
+\code{Mersenne-Twister}
+implementation.}
 
-\item{node_aes}{an optional list of named vectors
-comprising node aesthetic attributes. The helper
-function \code{node_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted node aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{color},
+\item{node_aes}{an optional list
+of named vectors comprising node
+aesthetic attributes. The helper
+function \code{node_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted node aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{color},
 \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function \code{edge_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{penwidth},
+\item{edge_aes}{an optional list
+of named vectors comprising edge
+aesthetic attributes. The helper
+function \code{edge_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted edge aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{penwidth},
 \code{color}).}
 
-\item{node_data}{an optional list of named vectors
-comprising node data attributes. The helper
-function \code{node_data()} is strongly recommended
-for use here as it helps bind data specifically
+\item{node_data}{an optional list
+of named vectors comprising node
+data attributes. The helper
+function \code{node_data()} is
+strongly recommended for use here
+as it helps bind data specifically
 to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors
-comprising edge data attributes. The helper
-function \code{edge_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.}
+\item{edge_data}{an optional list
+of named vectors comprising edge
+data attributes. The helper function
+\code{edge_data()} is strongly
+recommended for use here as it helps
+bind data specifically to the
+created edges.}
 }
 \description{
-To an existing graph object, add
-several Erdos-Renyi random graphs (the islands)
-using a common set of parameters, connected
+To an existing graph
+object, add several Erdos-Renyi
+random graphs (the islands) using
+a common set of parameters, connected
 together by a fixed number of edges.
 }
 \examples{

@@ -8,56 +8,71 @@ add_growing_graph(graph, n, m = 1, citation = FALSE, set_seed = NULL,
   node_aes = NULL, edge_aes = NULL, node_data = NULL, edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
-\item{n}{the number of nodes comprising the
-generated graph.}
+\item{n}{the number of nodes
+comprising the generated graph.}
 
-\item{m}{the number of edges added per time
-step.}
+\item{m}{the number of edges
+added per time step.}
 
-\item{citation}{a logical value (default is
-\code{FALSE}) that governs whether a citation
-graph is to be created. This is where new
-edges specifically originate from the newly
-added node in the most recent time step.}
+\item{citation}{a logical value
+(default is \code{FALSE}) that
+governs whether a citation graph
+is to be created. This is where
+new edges specifically originate
+from the newly added node in the
+most recent time step.}
 
-\item{set_seed}{supplying a value sets a random seed
-of the \code{Mersenne-Twister} implementation.}
+\item{set_seed}{supplying a
+value sets a random seed of the
+\code{Mersenne-Twister}
+implementation.}
 
-\item{node_aes}{an optional list of named vectors
-comprising node aesthetic attributes. The helper
-function \code{node_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted node aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{color},
+\item{node_aes}{an optional list
+of named vectors comprising node
+aesthetic attributes. The helper
+function \code{node_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted node aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{color},
 \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function \code{edge_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{penwidth},
+\item{edge_aes}{an optional list
+of named vectors comprising edge
+aesthetic attributes. The helper
+function \code{edge_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted edge aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{penwidth},
 \code{color}).}
 
-\item{node_data}{an optional list of named vectors
-comprising node data attributes. The helper
-function \code{node_data()} is strongly recommended
-for use here as it helps bind data specifically
+\item{node_data}{an optional list
+of named vectors comprising node
+data attributes. The helper
+function \code{node_data()} is
+strongly recommended for use here
+as it helps bind data specifically
 to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors
-comprising edge data attributes. The helper
-function \code{edge_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.}
+\item{edge_data}{an optional list
+of named vectors comprising edge
+data attributes. The helper function
+\code{edge_data()} is strongly
+recommended for use here as it helps
+bind data specifically to the
+created edges.}
 }
 \description{
-To an existing graph object, add
-a graph built by adding \code{m} new edges
-at each time step (where a node is added).
+To an existing graph
+object, add a graph built by adding
+\code{m} new edges at each time
+step (where a node is added).
 }
 \examples{
 # Create a random, growing

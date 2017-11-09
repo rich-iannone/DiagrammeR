@@ -32,33 +32,43 @@ label.}
 providing a relationship label to all
 new edges created in the node tree.}
 
-\item{node_aes}{an optional list of named vectors
-comprising node aesthetic attributes. The helper
-function \code{node_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted node aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{color},
+\item{node_aes}{an optional list
+of named vectors comprising node
+aesthetic attributes. The helper
+function \code{node_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted node aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{color},
 \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function \code{edge_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{penwidth},
+\item{edge_aes}{an optional list
+of named vectors comprising edge
+aesthetic attributes. The helper
+function \code{edge_aes()} is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted edge aesthetic
+attributes (e.g., \code{shape},
+\code{style}, \code{penwidth},
 \code{color}).}
 
-\item{node_data}{an optional list of named vectors
-comprising node data attributes. The helper
-function \code{node_data()} is strongly recommended
-for use here as it helps bind data specifically
+\item{node_data}{an optional list
+of named vectors comprising node
+data attributes. The helper
+function \code{node_data()} is
+strongly recommended for use here
+as it helps bind data specifically
 to the created nodes.}
 
-\item{edge_data}{an optional list of named vectors
-comprising edge data attributes. The helper
-function \code{edge_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.}
+\item{edge_data}{an optional list
+of named vectors comprising edge
+data attributes. The helper function
+\code{edge_data()} is strongly
+recommended for use here as it helps
+bind data specifically to the
+created edges.}
 }
 \value{
 a graph object of class
@@ -96,4 +106,57 @@ node_info(graph) \%>\%
 #> 3  3 binary     3   3     1      2     0
 #> 4  4 binary     4   1     1      0     0
 #> 5  5 binary     5   1     1      0     0
+
+# Node and edge aesthetic and data
+# attributes can be specified in
+# the `node_aes`, `edge_aes`,
+# `node_data`, and `edge_data`
+# arguments
+
+set.seed(23)
+
+graph_w_attrs <-
+  create_graph() \%>\%
+  add_balanced_tree(
+    k = 2,
+    h = 2,
+    label = c(
+      "one", "two",
+      "three", "four",
+      "five", "six", "seven"),
+    type = c(
+      "a", "b", "b", "c",
+      "c", "c", "c"),
+    rel = "A",
+    node_aes = node_aes(
+      fillcolor = "steelblue"),
+    edge_aes = edge_aes(
+      color = "red",
+      penwidth = 1.2),
+    node_data = node_data(
+      value = c(
+        1.6, 2.8, 3.4, 8.3,
+        3.8, 5.2, 3.2)),
+    edge_data = edge_data(
+      value =
+        rnorm(
+          n = 6,
+          mean = 5.0,
+          sd = 1.0)))
+
+# Get the graph's node data frame
+get_node_df(graph_w_attrs) \%>\%
+  head(3)
+#>   id type label fillcolor value
+#> 1  1    a   one steelblue   1.6
+#> 2  2    b   two steelblue   2.8
+#> 3  3    b three steelblue   3.4
+
+# Get the graph's edge data frame
+get_edge_df(graph_w_attrs) \%>\%
+  head(3)
+#>   id from to rel penwidth color    value
+#> 1  1    1  2   A      1.2   red 5.996605
+#> 2  2    1  3   A      1.2   red 6.107490
+#> 3  3    2  4   A      1.2   red 4.721914
 }

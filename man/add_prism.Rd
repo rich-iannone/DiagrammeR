@@ -67,8 +67,8 @@ With a graph object of class
 \code{dgr_graph}, add a node prism to the graph.
 }
 \examples{
-\dontrun{
-# Create a new graph and add 2 prisms
+# Create a new graph and
+# add 2 prisms
 graph <-
   create_graph() \%>\%
   add_prism(
@@ -157,5 +157,4 @@ graph_w_attrs \%>\%
 #> 7  7    1  4   A      1.2   red 5.218288
 #> 8  8    2  5   A      1.2   red 3.953465
 #> 9  9    3  6   A      1.2   red 4.711311
-}
 }
