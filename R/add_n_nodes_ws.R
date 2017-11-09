@@ -192,11 +192,11 @@ add_n_nodes_ws <- function(graph,
       for (j in (max(graph$nodes_df$id) - n + 1):max(graph$nodes_df$id)) {
 
         graph <-
-        add_edge(
-          graph = graph,
-          from = j,
-          to = nodes_in_selection[i],
-          rel = rel)
+          add_edge(
+            graph = graph,
+            from = j,
+            to = nodes_in_selection[i],
+            rel = rel)
 
         graph$graph_log <-
           graph$graph_log[-nrow(graph$graph_log), ]
@@ -236,8 +236,9 @@ add_n_nodes_ws <- function(graph,
   }
 
   # Modify the graph object
-  graph$directed <- ifelse(is_graph_directed(graph),
-                           TRUE, FALSE)
+  graph$directed <-
+    ifelse(is_graph_directed(graph),
+           TRUE, FALSE)
 
   # Get the updated number of nodes in the graph
   nodes_graph_2 <- graph %>% count_nodes()
@@ -252,6 +253,24 @@ add_n_nodes_ws <- function(graph,
   # Get the number of edges added to
   # the graph
   edges_added <- edges_graph_2 - edges_graph_1
+
+  # Get the edge ID values for the
+  # last edges created
+  new_edge_id <-
+    graph %>%
+    get_edge_df() %>%
+    dplyr::select(id) %>%
+    tail(edges_added) %>%
+    dplyr::pull(id)
+
+  # Get the node ID values for the
+  # last nodes created
+  new_node_id <-
+    graph %>%
+    get_node_df() %>%
+    dplyr::select(id) %>%
+    tail(nodes_added) %>%
+    dplyr::pull(id)
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
@@ -340,45 +359,85 @@ add_n_nodes_ws <- function(graph,
   # Add node aesthetics if available
   if (exists("node_aes_tbl")) {
 
+    node_aes_tbl <-
+      node_aes_tbl %>%
+      dplyr::mutate(id = new_node_id) %>%
+      dplyr::select(id, everything())
+
+    columns_to_select <-
+      c("id", setdiff(colnames(graph$nodes_df), colnames(node_aes_tbl)))
+
     graph$nodes_df <-
-      bind_rows(
-        graph$nodes_df[1:(nrow(graph$nodes_df) - nodes_added), ],
-        bind_cols(
-          graph$nodes_df[(nrow(graph$nodes_df) - nodes_added + 1):nrow(graph$nodes_df), ],
-          node_aes_tbl))
+      dplyr::bind_rows(
+        graph$nodes_df %>%
+          dplyr::filter(!(id %in% new_node_id)),
+        graph$nodes_df %>%
+          dplyr::filter(id %in% new_node_id) %>%
+          dplyr::select(columns_to_select) %>%
+          dplyr::left_join(node_aes_tbl, by = "id"))
   }
 
   # Add node data if available
   if (exists("node_data_tbl")) {
 
+    node_data_tbl <-
+      node_data_tbl %>%
+      dplyr::mutate(id = new_node_id) %>%
+      dplyr::select(id, everything())
+
+    columns_to_select <-
+      c("id", setdiff(colnames(graph$nodes_df), colnames(node_data_tbl)))
+
     graph$nodes_df <-
-      bind_rows(
-        graph$nodes_df[1:(nrow(graph$nodes_df) - nodes_added), ],
-        bind_cols(
-          graph$nodes_df[(nrow(graph$nodes_df) - nodes_added + 1):nrow(graph$nodes_df), ],
-          node_data_tbl))
+      dplyr::bind_rows(
+        graph$nodes_df %>%
+          dplyr::filter(!(id %in% new_node_id)),
+        graph$nodes_df %>%
+          dplyr::filter(id %in% new_node_id) %>%
+          dplyr::select(columns_to_select) %>%
+          dplyr::left_join(node_data_tbl, by = "id"))
   }
 
   # Add edge aesthetics if available
   if (exists("edge_aes_tbl")) {
 
+    edge_aes_tbl <-
+      edge_aes_tbl %>%
+      dplyr::mutate(id = new_edge_id) %>%
+      dplyr::select(id, everything())
+
+    columns_to_select <-
+      c("id", setdiff(colnames(graph$edges_df), colnames(edge_aes_tbl)))
+
     graph$edges_df <-
-      bind_rows(
-        graph$edges_df[1:(nrow(graph$edges_df) - nodes_added), ],
-        bind_cols(
-          graph$edges_df[(nrow(graph$edges_df) - nodes_added + 1):nrow(graph$edges_df), ],
-          edge_aes_tbl))
+      dplyr::bind_rows(
+        graph$edges_df %>%
+          dplyr::filter(!(id %in% new_edge_id)),
+        graph$edges_df %>%
+          dplyr::filter(id %in% new_edge_id) %>%
+          dplyr::select(columns_to_select) %>%
+          dplyr::left_join(edge_aes_tbl, by = "id"))
   }
 
   # Add edge data if available
   if (exists("edge_data_tbl")) {
 
+    edge_data_tbl <-
+      edge_data_tbl %>%
+      dplyr::mutate(id = new_edge_id) %>%
+      dplyr::select(id, everything())
+
+    columns_to_select <-
+      c("id", setdiff(colnames(graph$edges_df), colnames(edge_data_tbl)))
+
     graph$edges_df <-
-      bind_rows(
-        graph$edges_df[1:(nrow(graph$edges_df) - nodes_added), ],
-        bind_cols(
-          graph$edges_df[(nrow(graph$edges_df) - nodes_added + 1):nrow(graph$edges_df), ],
-          edge_data_tbl))
+      dplyr::bind_rows(
+        graph$edges_df %>%
+          dplyr::filter(!(id %in% new_edge_id)),
+        graph$edges_df %>%
+          dplyr::filter(id %in% new_edge_id) %>%
+          dplyr::select(columns_to_select) %>%
+          dplyr::left_join(edge_data_tbl, by = "id"))
   }
 
   # Update the `graph_log` df with an action
