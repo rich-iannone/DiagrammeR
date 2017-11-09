@@ -153,7 +153,11 @@ allow control over aesthetic edge
 attributes in either side of the
 edge.}
 
-\item{headtooltip}{headtooltip}
+\item{headtooltip}{this option
+provides a means to specify a
+tooltip that can be displayed by
+hovering over the part of an edge
+that is adjacent to incoming node.}
 
 \item{headURL}{headURL}
 
