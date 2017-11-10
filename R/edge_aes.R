@@ -124,16 +124,58 @@
 #' provides a means to specify a
 #' tooltip that can be displayed by
 #' hovering over the part of an edge
-#' that is adjacent to incoming node.
-#' @param headURL headURL
+#' that is adjacent to incoming node
+#' (see the \code{tooltip} argument
+#' for further details).
+#' @param headURL this option
+#' provides a means to specify a
+#' URL that can be accessed by
+#' clicking the part of an edge
+#' that is adjacent to incoming node
+#' (see the \code{URL} argument
+#' for further details).
 #' @param headclip headclip
-#' @param headlabel headlabel
-#' @param headport headport
-#' @param tailtooltip tailtooltip
-#' @param tailURL tailURL
+#' @param headlabel this option
+#' provides a means to display a
+#' label near the part of an edge
+#' that is adjacent to incoming node
+#' (see the \code{label} argument
+#' for further details).
+#' @param headport allows one to
+#' specify which compass position
+#' on the incoming node the head
+#' of the edge will alight. Options
+#' are \code{n}, \code{ne}, \code{e},
+#' \code{se}, \code{s}, \code{sw},
+#' \code{w}, and \code{nw}.
+#' @param tailtooltip this option
+#' provides a means to specify a
+#' tooltip that can be displayed by
+#' hovering over the part of an edge
+#' that is adjacent to outgoing node
+#' (see the \code{tooltip} argument
+#' for further details).
+#' @param tailURL this option
+#' provides a means to specify a
+#' URL that can be accessed by
+#' clicking the part of an edge
+#' that is adjacent to outgoing
+#' node (see the \code{URL}
+#' argument for further details).
 #' @param tailclip tailclip
-#' @param taillabel taillabel
-#' @param tailport tailport
+#' @param taillabel this option
+#' provides a means to display a
+#' label near the part of an edge
+#' that is adjacent to outgoing
+#' node (see the \code{label}
+#' argument for further details).
+#' @param tailport allows one to
+#' specify which compass position
+#' on the outgoing node the tail of
+#' the edge will be emitted from.
+#' Options are \code{n}, \code{ne},
+#' \code{e}, \code{se}, \code{s},
+#' \code{sw}, \code{w}, and \code{nw}.
 #' @param decorate if \code{TRUE}
 #' then attach any edge label to
 #' the edge line via a 2-segment
