@@ -157,25 +157,67 @@ edge.}
 provides a means to specify a
 tooltip that can be displayed by
 hovering over the part of an edge
-that is adjacent to incoming node.}
+that is adjacent to incoming node
+(see the \code{tooltip} argument
+for further details).}
 
-\item{headURL}{headURL}
+\item{headURL}{this option
+provides a means to specify a
+URL that can be accessed by
+clicking the part of an edge
+that is adjacent to incoming node
+(see the \code{URL} argument
+for further details).}
 
 \item{headclip}{headclip}
 
-\item{headlabel}{headlabel}
+\item{headlabel}{this option
+provides a means to display a
+label near the part of an edge
+that is adjacent to incoming node
+(see the \code{label} argument
+for further details).}
 
-\item{headport}{headport}
+\item{headport}{allows one to
+specify which compass position
+on the incoming node the head
+of the edge will alight. Options
+are \code{n}, \code{ne}, \code{e},
+\code{se}, \code{s}, \code{sw},
+\code{w}, and \code{nw}.}
 
-\item{tailtooltip}{tailtooltip}
+\item{tailtooltip}{this option
+provides a means to specify a
+tooltip that can be displayed by
+hovering over the part of an edge
+that is adjacent to outgoing node
+(see the \code{tooltip} argument
+for further details).}
 
-\item{tailURL}{tailURL}
+\item{tailURL}{this option
+provides a means to specify a
+URL that can be accessed by
+clicking the part of an edge
+that is adjacent to outgoing
+node (see the \code{URL}
+argument for further details).}
 
 \item{tailclip}{tailclip}
 
-\item{taillabel}{taillabel}
+\item{taillabel}{this option
+provides a means to display a
+label near the part of an edge
+that is adjacent to outgoing
+node (see the \code{label}
+argument for further details).}
 
-\item{tailport}{tailport}
+\item{tailport}{allows one to
+specify which compass position
+on the outgoing node the tail of
+the edge will be emitted from.
+Options are \code{n}, \code{ne},
+\code{e}, \code{se}, \code{s},
+\code{sw}, \code{w}, and \code{nw}.}
 
 \item{decorate}{if \code{TRUE}
 then attach any edge label to
