@@ -460,7 +460,7 @@ gv_node_attributes <- function() {
   c("shape", "style", "penwidth", "color", "fillcolor",
     "fontname", "fontsize", "fontcolor",
     "height", "width", "group",
-    "tooltip", "URL",
+    "tooltip", "xlabel", "URL",
     "distortion", "sides", "skew", "peripheries",
     "gradientangle", "label", "fixedsize",
     "labelloc", "margin", "orientation", "pos")
@@ -474,18 +474,14 @@ gv_edge_attributes <- function() {
     "arrowhead", "arrowtail",
     "fontname", "fontsize", "fontcolor",
     "len", "tooltip", "URL",
-    "label", "labelfontname", "labelfontsize", "labelfontcolor",
-    "labelangle", "labeldistance", "labelfloat",
-    "labeltooltip", "labelhref", "labelURL", "labeltarget",
-    "edgetooltip", "edgehref", "edgeURL", "edgetarget",
-    "headtooltip", "headhref", "headURL", "headtarget",
+    "label", "labelfontname", "labelfontsize",
+    "labelfontcolor", "labeltooltip", "labelURL",
+    "edgetooltip", "edgeURL",
+    "headtooltip", "headURL",
     "headclip", "headlabel", "headport",
-    "tailtooltip", "tailhref", "tailURL", "tailtarget",
+    "tailtooltip", "tailURL",
     "tailclip",  "taillabel", "tailport",
-    "dir", "target", "id", "weight",
-    "constraint", "decorate",
-    "href", "lhead", "ltail",
-    "samehead", "sametail")
+    "dir", "decorate")
 }
 
 # Function that yields vector of node
