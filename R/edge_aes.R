@@ -101,25 +101,21 @@
 #' the head or tail node) unless
 #' overridden by a \code{headURL} or
 #' \code{tailURL} value.
-#' @param dir an optional direction
-#' type. Normally, for directed
-#' graphs, this is \code{forward}
-#' and needn't be set. For undirected
-#' graphs, this would be \code{none}
-#' and again no explicit setting is
-#' required. However, one can also use
-#' the \code{back} or \code{both}
-#' options. The \code{back} option
-#' draws an arrowhead in the reverse
-#' direction of an edge. The
-#' \code{both} option draws two
-#' arrowheads. When using any of
-#' these options in such an explicit
-#' manner, the \code{head...} and
-#' \code{tail...} edge attributes
-#' allow control over aesthetic edge
-#' attributes in either side of the
-#' edge.
+#' @param dir an optional direction type.
+#' Normally, for directed graphs, this is
+#' \code{forward} and needn't be set. For
+#' undirected graphs, this would be
+#' \code{none} and again no explicit setting
+#' is required. However, one can also use
+#' the \code{back} or \code{both} options.
+#' The \code{back} option draws an arrowhead
+#' in the reverse direction of an edge. The
+#' \code{both} option draws two arrowheads.
+#' When using any of these options in such
+#' an explicit manner, the \code{head...} and
+#' \code{tail...} edge attributes allow
+#' control over aesthetic edge attributes in
+#' either side of the edge.
 #' @param headtooltip this option
 #' provides a means to specify a
 #' tooltip that can be displayed by
@@ -134,7 +130,13 @@
 #' that is adjacent to incoming node
 #' (see the \code{URL} argument
 #' for further details).
-#' @param headclip headclip
+#' @param headclip if \code{TRUE}
+#' (the default behavior), then the
+#' head of the affected edge is
+#' clipped to the node boundary.
+#' Using \code{FALSE} places the
+#' head of the outgoing edge at the
+#' center of its node.
 #' @param headlabel this option
 #' provides a means to display a
 #' label near the part of an edge
@@ -162,7 +164,13 @@
 #' that is adjacent to outgoing
 #' node (see the \code{URL}
 #' argument for further details).
-#' @param tailclip tailclip
+#' @param tailclip if \code{TRUE}
+#' (the default behavior), then the
+#' tail of the affected edge is
+#' clipped to the node boundary.
+#' Using \code{FALSE} places the tail
+#' of the outgoing edge at the center
+#' of its node.
 #' @param taillabel this option
 #' provides a means to display a
 #' label near the part of an edge
