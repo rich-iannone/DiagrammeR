@@ -67,6 +67,13 @@
 #' floating point value will be accepted.
 #' @param group the node group.
 #' @param tooltip text for a node tooltip.
+#' @param xlabel External label for a node.
+#' The label will be placed outside of the
+#' node but near it. These labels are added
+#' after all nodes and edges have been placed.
+#' The labels will be placed so that they do
+#' not overlap any node or label. This means
+#' it may not be possible to place all of them.
 #' @param URL a URL to associate with a node.
 #' Upon rendering the plot, clicking nodes
 #' with any associated URLs will open the
@@ -123,7 +130,9 @@
 #' \code{c} (center), or \code{b} (bottom).
 #' By default, the label is vertically
 #' centered.
-#' @param margin margin
+#' @param margin sets the amount of space
+#' around the node's label. By default,
+#' the value is \code{0.11,0.055}.
 #' @examples
 #' # Create a new graph and add
 #' # a path with several node
@@ -166,6 +175,7 @@ node_aes <- function(shape = NULL,
                      y = NULL,
                      group = NULL,
                      tooltip = NULL,
+                     xlabel = NULL,
                      URL = NULL,
                      sides = NULL,
                      orientation = NULL,
@@ -195,6 +205,7 @@ node_aes <- function(shape = NULL,
       y = y,
       group = group,
       tooltip = tooltip,
+      xlabel = xlabel,
       URL = URL,
       sides = sides,
       orientation = orientation,
