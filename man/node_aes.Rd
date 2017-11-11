@@ -7,8 +7,8 @@
 node_aes(shape = NULL, style = NULL, penwidth = NULL, color = NULL,
   fillcolor = NULL, fontname = NULL, fontsize = NULL, fontcolor = NULL,
   peripheries = NULL, height = NULL, width = NULL, x = NULL, y = NULL,
-  group = NULL, tooltip = NULL, URL = NULL, sides = NULL,
-  orientation = NULL, skew = NULL, distortion = NULL,
+  group = NULL, tooltip = NULL, xlabel = NULL, URL = NULL,
+  sides = NULL, orientation = NULL, skew = NULL, distortion = NULL,
   gradientangle = NULL, fixedsize = NULL, labelloc = NULL,
   margin = NULL)
 }
@@ -92,6 +92,14 @@ floating point value will be accepted.}
 
 \item{tooltip}{text for a node tooltip.}
 
+\item{xlabel}{External label for a node.
+The label will be placed outside of the
+node but near it. These labels are added
+after all nodes and edges have been placed.
+The labels will be placed so that they do
+not overlap any node or label. This means
+it may not be possible to place all of them.}
+
 \item{URL}{a URL to associate with a node.
 Upon rendering the plot, clicking nodes
 with any associated URLs will open the
@@ -156,7 +164,9 @@ be set to either \code{t} (top),
 By default, the label is vertically
 centered.}
 
-\item{margin}{margin}
+\item{margin}{sets the amount of space
+around the node's label. By default,
+the value is \code{0.11,0.055}.}
 }
 \description{
 This helper function should be
