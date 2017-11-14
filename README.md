@@ -120,7 +120,9 @@ DiagrammeR Graph // 3 nodes / 2 edges / density: 1
   GRAPH LOG / <3 actions> -> add_edge() -> delete_edge() -> add_node()
 ```
 
-Any time we add a node or edge to the graph, we can add node or edge aesthetic or data attributes. These can be styling properties (e.g., `color`, `shape`), grouping labels (e.g., `type` and `rel`), or data values that are useful for calculations and for display purposes. Any node or edge creation functions (depending on whether they create either edges, nodes, or both) have the arguments `node_aes`, `edge_aes`, `node_data`, and `edge_data`. With these arguments, we can call namesake helper functions called `node_aes()`, `edge_aes()`, `node_data()`, and `edge_data()`. This allows us to specifically target the created nodes or edges and bind attribute data using. An additional benefit in using the helper functions for the node/edge aesthetic attributes is that RStudio can provide the inline help on attribute names and definitions when typing `node_aes(` or `edge_aes(` and pressing the **TAB** key.
+Any time we add a node or edge to the graph, we can add node or edge aesthetic or data attributes. These can be styling properties (e.g., `color`, `shape`), grouping labels (e.g., `type` and `rel`), or data values that are useful for calculations and for display purposes. Most node or edge creation functions (depending on whether they create either edges, nodes, or both) have the arguments `node_aes`, `edge_aes`, `node_data`, and `edge_data`. Using these, we can call the namesake helper functions (`node_aes()`, `edge_aes()`, `node_data()`, and `edge_data()`) to specifically target the created nodes or edges and bind attribute data. An additional benefit in using the helper functions (for the node/edge aesthetic attributes especially) is that RStudio can provide inline help on attribute names and definitions when typing `node_aes(` or `edge_aes(` and pressing the **TAB** key.
+
+Here is an example of adding a node while setting its `color`, `fillcolor`, and `fontcolor` node aesthetic attributes, and, adding an edge with `color`, `arrowhead`, and `tooltip` edge aesthetic attributes. In both the `add_node()` and the `add_edge()` calls, the new node and edge were set with a `value` node/edge data attribute.
 
 ```r
 d_graph <-
@@ -149,7 +151,7 @@ d_graph <-
     
 Creating attributes and setting values for them is often useful because we can do further work with the attributes (e.g., mutate values or migrate them during traversals). Furthermore, we can create aesthetic properties based on numerical or categorical data.
 
-Don’t worry if attribute values weren’t set during the creation of the associated nodes or edges. They are many functions available to select nodes or edges and work with their attributes (and often, this is the more efficient strategy as we can target nodes/edges based on their properties). Here is an example where we select a node based on its `value` attribute and modify its `color`:
+Don’t worry if attribute values weren’t set during the creation of the associated nodes or edges. There are many functions available for both selecting nodes or edges and also for making changes to node/edge attributes. Often, this is the more efficient strategy as we can target nodes/edges based on their properties. Here is an example where we select a node based on its `value` attribute and modify its `color` node aesthetic attribute:
 
 ```r
 e_graph <-
@@ -163,7 +165,7 @@ e_graph <-
   clear_selection()
 ```
 
-There are quite a few functions that allow you to select nodes (e.g., `select_nodes()`, `select_nodes_by_id()`, `select_last_nodes_created()`) and edges (e.g., `select_edges()`, `select_edges_by_edge_id()`, `select_last_edges_created()`). With these selections, we can apply changes using functions that end with `..._ws()` (with selection). As seen, node attributes could be set/replaced with `set_node_attrs_ws()` but we can also mutate attributes of selected nodes (`mutate_node_attrs_ws()`), delete selected nodes (`delete_nodes_ws()`), and even create a subgraph with that selection (`create_subgraph_ws()`). Selection of nodes or edges can be inverted (where unselected nodes or edges become the active selection) with `invert_selection()` and any selection can and should be eventually cleared with `clear_selection()`.
+There are quite a few functions that allow you to select nodes (e.g., `select_nodes()`, `select_nodes_by_id()`, `select_last_nodes_created()`) and edges (e.g., `select_edges()`, `select_edges_by_edge_id()`, `select_last_edges_created()`). With these selections, we can apply changes using functions that end with `..._ws()` (with selection). As seen, node attributes could be set/replaced with `set_node_attrs_ws()` but we can also mutate attributes of selected nodes (`mutate_node_attrs_ws()`), delete selected nodes (`delete_nodes_ws()`), and even create a subgraph with that selection (`create_subgraph_ws()`). Selections of nodes or edges can be inverted (where unselected nodes or edges become the active selection) with `invert_selection()`, certain nodes/edges can be removed from the active selection with the `deselect_nodes()`/`deselect_edges()`, and any selection can and should be eventually cleared with `clear_selection()`.
 
 We can create a graph object and add graph primitives such as paths, cycles, and trees to it. 
 
@@ -244,12 +246,26 @@ node_list_1     edge_list_1
                 19   10  1
 ```
 
-To get this into a graph, we have to ensure that both the nodes and its attributes (in this case, just a `label`) are added, and, that the edges are added. Furthermore, we must map the `from` and the `to` definitions to the node `id` (in other cases, we may need to map relationships between text labels to the same text attribute stored in the node data frame). We can use three functions to generate a graph containing this data: `create_graph()`, `add_nodes_from_table()`, and `add_edges_from_table()`. Let's show the process in a stepwise fashion (checking the graph's internal ndf and edf) so that we can understand what is actually happening.
+To fashion this into a graph, we need to ensure that both the nodes and their attributes (in this case, just a `label`) are added, and, that the edges are added. Furthermore, we must map the `from` and the `to` definitions to the node `id` (in other cases, we may need to map relationships between text labels to the same text attribute stored in the node data frame). We can use three functions to generate a graph containing this data:
+
+1. `create_graph()`
+2. `add_nodes_from_table()`
+3. `add_edges_from_table()`
+
+Let's show the process in a stepwise fashion (while occasionally viewing the graph's internal ndf and edf) so that we can understand what is actually happening.
 
 ```r
-# Create the graph object; it's empty
+# Create the graph object
 i_graph_1 <-
   create_graph()
+  
+# It will start off as empty
+i_graph_1 %>%
+  is_graph_empty()
+```
+
+```
+[1] TRUE
 ```
 
 ```r
@@ -260,7 +276,8 @@ i_graph_2 <-
     table = node_list_1,
     label_col = label)
 
-# View the node data frame
+# View the graph's internal
+# node data frame
 i_graph_2 %>%
   get_node_df()
 ```
@@ -279,7 +296,7 @@ i_graph_2 %>%
 10 10 <NA>     J          10
 ```
 
-The graph now has 10 nodes (no edges yet). Each node was assigned an auto-incrementing `id`. The incoming `id` was renamed `id_external` so as avoid duplicate column names and also to retain a column for mapping edge definitions. Now, let's add the edges. We need to specify that the `from_col` in the `edge_list_1` table is indeed `from` and that the `to_col` is `to`. The `from_to_map` argument expects a node attribute column that the `from` and `to` columns will map to. In this case it's `id_external`. Note that while `id` also matches perfectly in this mapping, there may be cases where `id` won't match with and `id_external` column (e.g., when there are existing nodes or when the node `id` values in the incoming table are provided in a different order, etc.).
+The graph now has 10 nodes (no edges yet). Each node was automatically assigned an auto-incrementing `id`. The incoming `id` was also automatically renamed `id_external` so as to avoid duplicate column names and also to retain a column for mapping edge definitions. Now, let's add the edges. We need to specify that the `from_col` in the `edge_list_1` table is indeed `from` and that the `to_col` is `to`. The `from_to_map` argument expects a node attribute column that the `from` and `to` columns will map to. In this case it's `id_external`. Note that while `id` also matches perfectly in this mapping, there may be cases where `id` won't match with and `id_external` column (e.g., when there are existing nodes or when the node `id` values in the incoming table are provided in a different order, etc.).
 
 ```r
 # Add the edges to the graph
