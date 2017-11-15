@@ -105,7 +105,7 @@ c_graph
 ```
 
 ```
-DiagrammeR Graph // 3 nodes / 2 edges / density: 1
+DiagrammeR Graph // 3 nodes / 2 edges
   -- directed / connected / DAG / simple
 
   NODES / type: <unused> / label: <unused>                 info: `get_node_df()`
@@ -343,7 +343,7 @@ i_graph_3
 ```
 
 ```
-DiagrammeR Graph // 10 nodes / 19 edges / density: 0.2222
+DiagrammeR Graph // 10 nodes / 19 edges
   -- directed / connected / simple
 
   NODES / type: <unused> / label: 10 vals - complete & unique           info: `get_node_df()`
@@ -398,7 +398,7 @@ j_graph
 ```
 
 ```
-DiagrammeR Graph // 10 nodes / 19 edges / density: 0.2222
+DiagrammeR Graph // 10 nodes / 19 edges
   -- directed / connected / property graph / simple
 
   NODES / type: 2 vals - complete / label: 10 vals - complete & unique       info: `get_node_df()`
