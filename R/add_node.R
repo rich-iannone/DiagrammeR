@@ -102,6 +102,13 @@ add_node <- function(graph,
   # Get the node ID for the node to be added
   node <- graph$last_node + 1
 
+  # Get the number of edges in the graph
+  edges_in_graph <- nrow(graph$edges_df)
+
+  # Get the number of edges ever created for
+  # this graph
+  edges_created <- graph$last_edge
+
   if (is.null(type)) {
     type <- as.character(NA)
   }
@@ -182,6 +189,8 @@ add_node <- function(graph,
 
     combined_nodes <-
       combine_ndfs(graph$nodes_df, new_node)
+
+    edges_in_graph_2 <- nrow(graph$edges_df)
 
     graph$nodes_df <- combined_nodes
     graph$last_node <- graph$last_node + 1
@@ -294,6 +303,9 @@ add_node <- function(graph,
           from = from,
           to = rep(node, length(from)))
 
+      new_edges$id <-
+        new_edges$id + edges_created
+
       # Add edge aesthetics if available
       if (exists("edge_aes_tbl")) {
 
@@ -310,16 +322,21 @@ add_node <- function(graph,
           dplyr::bind_cols(edge_data_tbl)
       }
 
-      # Combine the new edges with those in the graph
+      # Use `bind_rows()` to add the
+      # new edges
       combined_edges <-
-        combine_edfs(
+        dplyr::bind_rows(
           graph$edges_df,
           new_edges)
+
+      edges_in_graph_2 <- nrow(combined_edges)
+      edges_added <- edges_in_graph_2 - edges_in_graph
 
       # Create a revised graph
       graph$nodes_df <- combined_nodes
       graph$edges_df <- combined_edges
       graph$last_node <- graph$last_node + 1
+      graph$last_edge <- graph$last_edge + edges_added
 
       # Update the `graph_log` df with an action
       graph$graph_log <-
@@ -428,6 +445,9 @@ add_node <- function(graph,
         from = rep(node, length(to)),
         to = to)
 
+    new_edges$id <-
+      new_edges$id + edges_created
+
     # Add edge aesthetics if available
     if (exists("edge_aes_tbl")) {
 
@@ -444,15 +464,21 @@ add_node <- function(graph,
         dplyr::bind_cols(edge_data_tbl)
     }
 
+    # Use `bind_rows()` to add the
+    # new edges
     combined_edges <-
-      combine_edfs(
+      dplyr::bind_rows(
         graph$edges_df,
         new_edges)
+
+    edges_in_graph_2 <- nrow(combined_edges)
+    edges_added <- edges_in_graph_2 - edges_in_graph
 
     # Create a revised graph
     graph$nodes_df <- combined_nodes
     graph$edges_df <- combined_edges
     graph$last_node <- graph$last_node + 1
+    graph$last_edge <- graph$last_edge + edges_added
 
     # Update the `graph_log` df with an action
     graph$graph_log <-
@@ -533,6 +559,9 @@ add_node <- function(graph,
             from = from,
             to = rep(node, length(from))))
 
+      new_edges$id <-
+        new_edges$id + edges_created
+
       # Collect edge aesthetic attributes
       if (!is.null(edge_aes)) {
 
@@ -591,16 +620,21 @@ add_node <- function(graph,
           dplyr::bind_cols(edge_data_tbl)
       }
 
-      # Combine the new edges with those in the graph
+      # Use `bind_rows()` to add the
+      # new edges
       combined_edges <-
-        combine_edfs(
+        dplyr::bind_rows(
           graph$edges_df,
           new_edges)
+
+      edges_in_graph_2 <- nrow(combined_edges)
+      edges_added <- edges_in_graph_2 - edges_in_graph
 
       # Create a revised graph and return that graph
       graph$nodes_df <- combined_nodes
       graph$edges_df <- combined_edges
       graph$last_node <- graph$last_node + 1
+      graph$last_edge <- graph$last_edge + edges_added
 
       # Update the `graph_log` df with an action
       graph$graph_log <-
