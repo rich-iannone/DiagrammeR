@@ -287,15 +287,15 @@ print.dgr_graph <- function(x, ...) {
 
     # Generate a string describing the density of
     # the graph
-    density_str <-
-      paste0(
-        "density: ", graph_info(x)$dens)
+    # density_str <-
+    #   paste0(
+    #     "density: ", graph_info(x)$dens)
 
     header_str <-
       paste0(
         "DiagrammeR Graph // ", node_count_str,
-        " / ", edge_count_str,
-        " / ", density_str)
+        " / ", edge_count_str)#,
+        # " / ", density_str)
 
   } else if (edge_count == 0) {
 
