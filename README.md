@@ -165,6 +165,8 @@ e_graph <-
   clear_selection()
 ```
 
+<img src="inst/img/e_graph.png">
+
 There are quite a few functions that allow you to select nodes (e.g., `select_nodes()`, `select_nodes_by_id()`, `select_last_nodes_created()`) and edges (e.g., `select_edges()`, `select_edges_by_edge_id()`, `select_last_edges_created()`). With these selections, we can apply changes using functions that end with `..._ws()` (with selection). As seen, node attributes could be set/replaced with `set_node_attrs_ws()` but we can also mutate attributes of selected nodes (`mutate_node_attrs_ws()`), delete selected nodes (`delete_nodes_ws()`), and even create a subgraph with that selection (`create_subgraph_ws()`). Selections of nodes or edges can be inverted (where unselected nodes or edges become the active selection) with `invert_selection()`, certain nodes/edges can be removed from the active selection with the `deselect_nodes()`/`deselect_edges()`, and any selection can and should be eventually cleared with `clear_selection()`.
 
 We can create a graph object and add graph primitives such as paths, cycles, and trees to it. 
