@@ -160,8 +160,8 @@ e_graph <-
     conditions = 
       value == 2.5) %>%
   set_node_attrs_ws(
-    node_attr = color,
-    value = "steelblue") %>%
+    node_attr = fillcolor,
+    value = "orange") %>%
   clear_selection()
 ```
 
@@ -186,8 +186,8 @@ You can add one or more randomly generated graphs to a graph object. Here, let's
 g_graph <-
   create_graph() %>%
   add_gnm_graph(
-    n = 10,
-    m = 15,
+    n = 15,
+    m = 20,
     set_seed = 23)
 ```
 
@@ -200,8 +200,8 @@ h_graph <-
   create_graph(
     directed = FALSE) %>%
   add_gnm_graph(
-    n = 10,
-    m = 15,
+    n = 15,
+    m = 20,
     set_seed = 23)
 ```
 
@@ -210,7 +210,7 @@ h_graph <-
 We can view the graph using `render_graph()`. There are several layouts to choose from as well (e.g., `nicely`, `tree`, `kk`, `fr`, etc.).
 
 ```r
-h_graph %>% render_graph(layout = "nicely")
+h_graph %>% render_graph(layout = "fr")
 ```
 
 <img src="inst/img/h_graph_2.png">
