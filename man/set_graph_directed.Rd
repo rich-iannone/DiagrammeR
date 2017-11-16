@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_graph_directed.R
 \name{set_graph_directed}
 \alias{set_graph_directed}
-\title{Convert graph to a directed graph}
+\title{Convert an undirected graph to a directed graph}
 \usage{
 set_graph_directed(graph)
 }
