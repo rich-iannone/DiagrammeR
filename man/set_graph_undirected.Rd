@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_graph_undirected.R
 \name{set_graph_undirected}
 \alias{set_graph_undirected}
-\title{Convert graph to an undirected graph}
+\title{Convert a directed graph to an undirected graph}
 \usage{
 set_graph_undirected(graph)
 }
