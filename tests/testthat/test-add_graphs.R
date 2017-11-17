@@ -1065,3 +1065,327 @@ test_that("Adding a full graph is possible", {
   expect_equal(
     edge_count(graph), 61)
 })
+
+test_that("Adding a G(n, m) Erdos-Renyi graph is possible", {
+
+  # Create an undirected GNM
+  # graph with 100 nodes and
+  # 120 edges
+  gnm_graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_gnm_graph(
+      n = 100,
+      m = 120)
+
+  # Expect 100 nodes in the graph
+  expect_equal(
+    gnm_graph %>%
+      count_nodes(),
+    100)
+
+  # Expect 120 edges in the graph
+  expect_equal(
+    gnm_graph %>%
+      count_edges(),
+    120)
+
+  # Create 2 graphs made with the same
+  # `n`, `m`, and `set_seed` values
+  graph_1 <-
+    create_graph() %>%
+    add_gnm_graph(
+      n = 100,
+      m = 120,
+      set_seed = 23)
+
+  graph_2 <-
+    create_graph() %>%
+    add_gnm_graph(
+      n = 100,
+      m = 120,
+      set_seed = 23)
+
+  # Expect that these graphs will
+  # have the same node and edge definitions
+  expect_identical(
+    graph_1$nodes_df,
+    graph_2$nodes_df)
+
+  expect_identical(
+    graph_1$edges_df,
+    graph_2$edges_df)
+})
+
+test_that("Adding a G(n, p) Erdos-Renyi graph is possible", {
+
+  # Create an undirected GNM
+  # graph with 100 nodes and
+  # a probability of 0.05 for
+  # creating edges
+  gnp_graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_gnp_graph(
+      n = 100,
+      p = 0.05,
+      set_seed = 23)
+
+  # Expect 100 nodes in the graph
+  expect_equal(
+    gnp_graph %>%
+      count_nodes(),
+    100)
+
+  # Expect 233 edges in the graph
+  expect_equal(
+    gnp_graph %>%
+      count_edges(),
+    233)
+
+  # Create 2 graphs made with the same
+  # `n`, `p`, and `set_seed` values
+  graph_1 <-
+    create_graph() %>%
+    add_gnp_graph(
+      n = 100,
+      p = 0.06,
+      set_seed = 23)
+
+  graph_2 <-
+    create_graph() %>%
+    add_gnp_graph(
+      n = 100,
+      p = 0.06,
+      set_seed = 23)
+
+  # Expect that these graphs will
+  # have the same node and edge definitions
+  expect_identical(
+    graph_1$nodes_df,
+    graph_2$nodes_df)
+
+  expect_identical(
+    graph_1$edges_df,
+    graph_2$edges_df)
+})
+
+test_that("Adding a growing graph is possible", {
+
+  # Create a random, growing
+  # citation graph with 100
+  # nodes, adding an edge after
+  # each node addition
+  growing_graph <-
+    create_graph() %>%
+    add_growing_graph(
+      n = 100,
+      m = 1,
+      citation = TRUE,
+      set_seed = 23)
+
+  # Expect 100 nodes in the graph
+  expect_equal(
+    growing_graph %>%
+      count_nodes(),
+    100)
+
+  # Expect 99 edges in the graph
+  expect_equal(
+    growing_graph %>%
+      count_edges(),
+    99)
+
+  # Create 2 graphs made with the same
+  # `n`, `m`, and `set_seed` values
+  graph_1 <-
+    create_graph() %>%
+    add_growing_graph(
+      n = 100,
+      m = 1,
+      citation = TRUE,
+      set_seed = 23)
+
+  graph_2 <-
+    create_graph() %>%
+    add_growing_graph(
+      n = 100,
+      m = 1,
+      citation = TRUE,
+      set_seed = 23)
+
+  # Expect that these graphs will
+  # have the same node and edge definitions
+  expect_identical(
+    graph_1$nodes_df,
+    graph_2$nodes_df)
+
+  expect_identical(
+    graph_1$edges_df,
+    graph_2$edges_df)
+})
+
+test_that("Adding an islands graph is possible", {
+
+  # Create an undirected islands
+  # graph with standard parameters
+  islands_graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_islands_graph(
+      n_islands = 4,
+      island_size = 10,
+      p = 0.5,
+      edges_between = 1,
+      set_seed = 23)
+
+  # Expect 40 nodes in the graph
+  expect_equal(
+    islands_graph %>%
+      count_nodes(),
+    40)
+
+  # Expect 98 edges in the graph
+  expect_equal(
+    islands_graph %>%
+      count_edges(),
+    98)
+
+  # Create 2 graphs made with the same
+  # parameters and `set_seed` values
+  graph_1 <-
+    create_graph() %>%
+    add_islands_graph(
+      n_islands = 5,
+      island_size = 10,
+      p = 0.5,
+      edges_between = 1,
+      set_seed = 23)
+
+  graph_2 <-
+    create_graph() %>%
+    add_islands_graph(
+      n_islands = 5,
+      island_size = 10,
+      p = 0.5,
+      edges_between = 1,
+      set_seed = 23)
+
+  # Expect that these graphs will
+  # have the same node and edge definitions
+  expect_identical(
+    graph_1$nodes_df,
+    graph_2$nodes_df)
+
+  expect_identical(
+    graph_1$edges_df,
+    graph_2$edges_df)
+})
+
+test_that("Adding a preferential attachment graph is possible", {
+
+  # Create an undirected PA
+  # graph with 100 nodes, creating
+  # an edge for every node created
+  pa_graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_pa_graph(
+      n = 100,
+      m = 1)
+
+  # Expect 100 nodes in the graph
+  expect_equal(
+    pa_graph %>%
+      count_nodes(),
+    100)
+
+  # Expect 99 edges in the graph
+  expect_equal(
+    pa_graph %>%
+      count_edges(),
+    99)
+
+  # Create 2 graphs made with the same
+  # `n`, `m`, and `set_seed` values
+  graph_1 <-
+    create_graph() %>%
+    add_pa_graph(
+      n = 200,
+      m = 1,
+      set_seed = 23)
+
+  graph_2 <-
+    create_graph() %>%
+    add_pa_graph(
+      n = 200,
+      p = 1,
+      set_seed = 23)
+
+  # Expect that these graphs will
+  # have the same node and edge definitions
+  expect_identical(
+    graph_1$nodes_df,
+    graph_2$nodes_df)
+
+  expect_identical(
+    graph_1$edges_df,
+    graph_2$edges_df)
+})
+
+test_that("Adding a small world graph is possible", {
+
+  # Create an undirected small world
+  # graph with standard parameters
+  smallworld_graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_smallworld_graph(
+      dimension = 1,
+      size = 50,
+      neighborhood = 1,
+      p = 0.05,
+      set_seed = 23)
+
+  # Expect 50 nodes in the graph
+  expect_equal(
+    smallworld_graph %>%
+      count_nodes(),
+    50)
+
+  # Expect 50 edges in the graph
+  expect_equal(
+    smallworld_graph %>%
+      count_edges(),
+    50)
+
+  # Create 2 graphs made with the same
+  # parameters and `set_seed` values
+  graph_1 <-
+    create_graph() %>%
+    add_smallworld_graph(
+      dimension = 1,
+      size = 50,
+      neighborhood = 1,
+      p = 0.05,
+      set_seed = 23)
+
+  graph_2 <-
+    create_graph() %>%
+    add_smallworld_graph(
+      dimension = 1,
+      size = 50,
+      neighborhood = 1,
+      p = 0.05,
+      set_seed = 23)
+
+  # Expect that these graphs will
+  # have the same node and edge definitions
+  expect_identical(
+    graph_1$nodes_df,
+    graph_2$nodes_df)
+
+  expect_identical(
+    graph_1$edges_df,
+    graph_2$edges_df)
+})
