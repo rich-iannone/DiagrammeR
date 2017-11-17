@@ -169,6 +169,7 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(is_graph_directed(invalid_graph))
   expect_error(is_graph_empty(invalid_graph))
   expect_error(is_graph_simple(invalid_graph))
+  expect_error(is_graph_undirected(invalid_graph))
   expect_error(is_graph_weighted(invalid_graph))
   expect_error(is_node_present(invalid_graph))
   expect_error(is_property_graph(invalid_graph))
