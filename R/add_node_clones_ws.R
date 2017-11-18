@@ -145,27 +145,39 @@ add_node_clones_ws <- function(graph,
     get_node_df() %>%
     ncol()
 
+  # Get the node ID values for
+  # the nodes in the active selection
   selected_nodes <- get_selection(graph)
 
+  # Clear the graph's selection
   graph <-
     graph %>%
     clear_selection()
 
   # Get the number of nodes in the graph
-  nodes_graph_1 <- graph %>% count_nodes()
+  nodes_graph_1 <-
+    graph %>%
+    count_nodes()
 
   # Get the number of edges in the graph
-  edges_graph_1 <- graph %>% count_edges()
+  edges_graph_1 <-
+    graph %>%
+    count_edges()
+
+  node_id_value <- graph$last_node
 
   for (i in 1:length(selected_nodes)) {
 
-    # Extract all of the node attributes
-    # (`type` and additional node attrs)
-    node_attr_vals <-
-      graph %>%
-      get_node_df() %>%
-      dplyr::filter(id %in% selected_nodes[i]) %>%
-      dplyr::select(type, 4:n_col_ndf)
+    if (ncol(graph$nodes_df) >= 4) {
+
+      # Extract all of the node attributes
+      # (`type` and additional node attrs)
+      node_attr_vals <-
+        graph %>%
+        get_node_df() %>%
+        dplyr::filter(id %in% selected_nodes[i]) %>%
+        dplyr::select(type, 4:n_col_ndf)
+    }
 
     # Create a clone of the selected
     # node in the graph
@@ -188,13 +200,16 @@ add_node_clones_ws <- function(graph,
 
     # Iteratively set node attribute values for
     # the new nodes in the graph
-    for (j in 1:ncol(node_attr_vals)) {
-      for (k in 1:length(new_node_id)) {
 
-        graph$nodes_df[
-          which(graph$nodes_df[, 1] == new_node_id[k]),
-          which(colnames(graph$nodes_df) == colnames(node_attr_vals)[j])] <-
-          node_attr_vals[[j]]
+    if (exists("node_attr_vals")) {
+      for (j in 1:ncol(node_attr_vals)) {
+        for (k in 1:length(new_node_id)) {
+
+          graph$nodes_df[
+            which(graph$nodes_df[, 1] == new_node_id[k]),
+            which(colnames(graph$nodes_df) == colnames(node_attr_vals)[j])] <-
+            node_attr_vals[[j]]
+        }
       }
     }
 
@@ -215,6 +230,9 @@ add_node_clones_ws <- function(graph,
             to = new_node_id)
       }
     }
+
+    # Increment the node ID value
+    node_id_value <- node_id_value + 1
 
     # Clear the graph's active selection
     graph <-
@@ -240,6 +258,12 @@ add_node_clones_ws <- function(graph,
   # Get the number of edges added to
   # the graph
   edges_added <- edges_graph_2 - edges_graph_1
+
+  # Update the `last_node` value
+  graph$last_node <- max(graph$nodes_df$id)
+
+  # Update the `last_edge` value
+  graph$last_edge <- max(graph$edges_df$id)
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
