@@ -791,14 +791,13 @@ test_that("adding node clones with a selection is possible", {
     (graph_1 %>%
        get_node_df)[, 1], 1:6)
 
-  # Expect NA values for the
-  # `type` attributes for the
+  # Expect cloned values for the
+  # `type` attribute for the
   # last 3 nodes in the graph
-  expect_true(
-    all(
-      is.na(
-        graph_1 %>%
-          get_node_df())[4:6, 2]))
+  expect_equal(
+    (graph_1 %>%
+       get_node_df())[4:6, 2],
+    c("a", "b", "c"))
 
   # Expect NA values for the
   # `label` attributes for the
@@ -827,16 +826,15 @@ test_that("adding node clones with a selection is possible", {
     (graph_2 %>%
        get_node_df)[, 1], 1:6)
 
-  # Expect NA values for the
-  # `type` attributes for the
+  # Expect cloned values for the
+  # `type` attribute for the
   # last 3 nodes in the graph
-  expect_true(
-    all(
-      is.na(
-        graph_2 %>%
-          get_node_df())[4:6, 2]))
+  expect_equal(
+    (graph_2 %>%
+       get_node_df())[4:6, 2],
+    c("a", "b", "c"))
 
-  # Expect specifi values for the
+  # Expect specific values for the
   # `label` attributes for the
   # last 3 nodes in the graph
   expect_equal(
@@ -864,14 +862,13 @@ test_that("adding node clones with a selection is possible", {
     (graph_3 %>%
        get_node_df)[, 1], 1:6)
 
-  # Expect NA values for the
-  # `type` attributes for the
+  # Expect cloned values for the
+  # `type` attribute for the
   # last 3 nodes in the graph
-  expect_true(
-    all(
-      is.na(
-        graph_3 %>%
-          get_node_df())[4:6, 2]))
+  expect_equal(
+    (graph_3 %>%
+       get_node_df())[4:6, 2],
+    c("a", "b", "c"))
 
   # Expect NA values for the
   # `label` attributes for the
@@ -928,14 +925,13 @@ test_that("adding node clones with a selection is possible", {
     (graph_4 %>%
        get_node_df)[, 1], 1:6)
 
-  # Expect NA values for the
-  # `type` attributes for the
+  # Expect cloned values for the
+  # `type` attribute for the
   # last 3 nodes in the graph
-  expect_true(
-    all(
-      is.na(
-        graph_4 %>%
-          get_node_df())[4:6, 2]))
+  expect_equal(
+    (graph_4 %>%
+       get_node_df())[4:6, 2],
+    c("a", "b", "c"))
 
   # Expect NA values for the
   # `label` attributes for the
