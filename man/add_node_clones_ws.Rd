@@ -44,7 +44,6 @@ can be provided to bind new labels
 to the cloned nodes.
 }
 \examples{
-\dontrun{
 # Create a graph with a path of
 # nodes; supply `label`, `type`,
 # and `value` node attributes,
@@ -116,5 +115,4 @@ graph \%>\%
 #> 3  3    4  7 <NA>
 #> 4  4    5  8 <NA>
 #> 5  5    6  9 <NA>
-}
 }
