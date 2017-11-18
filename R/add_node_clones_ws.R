@@ -27,7 +27,6 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create a graph with a path of
 #' # nodes; supply `label`, `type`,
 #' # and `value` node attributes,
@@ -99,7 +98,6 @@
 #' #> 3  3    4  7 <NA>
 #' #> 4  4    5  8 <NA>
 #' #> 5  5    6  9 <NA>
-#' }
 #' @importFrom dplyr filter select
 #' @export add_node_clones_ws
 
@@ -168,16 +166,13 @@ add_node_clones_ws <- function(graph,
 
   for (i in 1:length(selected_nodes)) {
 
-    if (ncol(graph$nodes_df) >= 4) {
-
-      # Extract all of the node attributes
-      # (`type` and additional node attrs)
-      node_attr_vals <-
-        graph %>%
-        get_node_df() %>%
-        dplyr::filter(id %in% selected_nodes[i]) %>%
-        dplyr::select(type, 4:n_col_ndf)
-    }
+    # Extract all of the node attributes
+    # (`type` and additional node attrs)
+    node_attr_vals <-
+      graph %>%
+      get_node_df() %>%
+      dplyr::filter(id %in% selected_nodes[i]) %>%
+      dplyr::select(-id, -label)
 
     # Create a clone of the selected
     # node in the graph
@@ -200,16 +195,13 @@ add_node_clones_ws <- function(graph,
 
     # Iteratively set node attribute values for
     # the new nodes in the graph
+    for (j in 1:ncol(node_attr_vals)) {
+      for (k in 1:length(new_node_id)) {
 
-    if (exists("node_attr_vals")) {
-      for (j in 1:ncol(node_attr_vals)) {
-        for (k in 1:length(new_node_id)) {
-
-          graph$nodes_df[
-            which(graph$nodes_df[, 1] == new_node_id[k]),
-            which(colnames(graph$nodes_df) == colnames(node_attr_vals)[j])] <-
-            node_attr_vals[[j]]
-        }
+        graph$nodes_df[
+          which(graph$nodes_df[, 1] == new_node_id[k]),
+          which(colnames(graph$nodes_df) == colnames(node_attr_vals)[j])] <-
+          node_attr_vals[[j]]
       }
     }
 
