@@ -642,6 +642,312 @@ test_that("Adding a star is possible", {
       "star_e"))
 })
 
+test_that("Adding a 2D grid is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add a 2D grid
+  graph <-
+    add_grid_2d(
+      graph = graph,
+      x = 3,
+      y = 3,
+      type = "a",
+      rel = "z")
+
+  # Expect 9 nodes to have been created
+  expect_equal(
+    count_nodes(graph), 9)
+
+  # Expect 12 edges to have been created
+  expect_equal(
+    count_edges(graph), 12)
+
+  # Expect node ID values from 1 to 9
+  expect_identical(
+    get_node_ids(graph), 1:9)
+
+  # Expect label values from 1 to 9
+  expect_identical(
+    graph$nodes_df$label,
+    as.character(1:9))
+
+  # Expect type values to all be `a`
+  expect_equal(
+    unique(graph$nodes_df$type), "a")
+
+  # Expect rel values to all be `z`
+  expect_equal(
+    unique(graph$edges_df$rel), "z")
+
+  # Expect an error if x is <2
+  expect_error(
+    add_grid_2d(
+      graph = graph,
+      x = 1,
+      y = 3,
+      type = "a",
+      rel = "z"))
+
+  # Expect an error if y is <2
+  expect_error(
+    add_grid_2d(
+      graph = graph,
+      x = 3,
+      y = 1,
+      type = "a",
+      rel = "z"))
+
+  # Add another 2D grid to the graph
+  graph <-
+    add_grid_2d(
+      graph = graph,
+      x = 2,
+      y = 2,
+      type = "b",
+      rel = "y")
+
+  # Expect that 13 nodes are now in the graph
+  expect_equal(
+    count_nodes(graph), 13)
+
+  # Expect 16 edges are now in the graph
+  expect_equal(
+    count_edges(graph), 16)
+
+  # Expect label values from 1 to 13
+  expect_identical(
+    graph$nodes_df$label,
+    as.character(1:13))
+
+  # Expect type values to be either `a` or `b`
+  expect_identical(
+    unique(graph$nodes_df$type),
+    c("a", "b"))
+
+  # Expect rel values to be either `z` or `y`
+  expect_identical(
+    unique(graph$edges_df$rel),
+    c("z", "y"))
+
+  # Create a graph with a 2D grid that
+  # has different types of node and edge
+  # attributes included
+  graph_2 <-
+    create_graph() %>%
+    add_grid_2d(
+      x = 2,
+      y = 2,
+      label = c(
+        "one", "two",
+        "three", "four"),
+      type = c(
+        "a", "a",
+        "b", "b"),
+      rel = c(
+        "grid_a", "grid_a",
+        "grid_b", "grid_b"))
+
+  # Get the graph's node data frame
+  ndf <- get_node_df(graph_2)
+
+  # Get the graph's edge data frame
+  edf <- get_edge_df(graph_2)
+
+  # Expect that 4 nodes are now in the graph
+  expect_equal(
+    count_nodes(graph_2), 4)
+
+  # Expect 4 edges are now in the graph
+  expect_equal(
+    count_edges(graph_2), 4)
+
+  # Expect node ID values from 1 to 6
+  expect_identical(
+    ndf$id, 1:4)
+
+  # Expect specific node `label` values
+  expect_identical(
+    ndf$label,
+    c("one", "two", "three", "four"))
+
+  # Expect specific node `type` values
+  expect_identical(
+    ndf$type,
+    c("a", "a", "b", "b"))
+
+  # Expect specific edge `rel` values
+  expect_identical(
+    edf$rel,
+    c("grid_a", "grid_a", "grid_b", "grid_b"))
+})
+
+test_that("Adding a 3D grid is possible", {
+
+  # Create an empty graph
+  graph <- create_graph()
+
+  # Add a 3D grid
+  graph <-
+    add_grid_3d(
+      graph = graph,
+      x = 2,
+      y = 2,
+      z = 2,
+      type = "a",
+      rel = "z")
+
+  # Expect 8 nodes to have been created
+  expect_equal(
+    count_nodes(graph), 8)
+
+  # Expect 12 edges to have been created
+  expect_equal(
+    count_edges(graph), 12)
+
+  # Expect node ID values from 1 to 8
+  expect_identical(
+    get_node_ids(graph), 1:8)
+
+  # Expect label values from 1 to 8
+  expect_identical(
+    graph$nodes_df$label,
+    as.character(1:8))
+
+  # Expect type values to all be `a`
+  expect_equal(
+    unique(graph$nodes_df$type), "a")
+
+  # Expect rel values to all be `z`
+  expect_equal(
+    unique(graph$edges_df$rel), "z")
+
+  # Expect an error if x is <2
+  expect_error(
+    add_grid_3d(
+      graph = graph,
+      x = 1,
+      y = 3,
+      z = 3,
+      type = "a",
+      rel = "z"))
+
+  # Expect an error if y is <2
+  expect_error(
+    add_grid_3d(
+      graph = graph,
+      x = 3,
+      y = 1,
+      z = 3,
+      type = "a",
+      rel = "z"))
+
+  # Expect an error if z is <2
+  expect_error(
+    add_grid_3d(
+      graph = graph,
+      x = 3,
+      y = 3,
+      z = 1,
+      type = "a",
+      rel = "z"))
+
+  # Add another 3D grid to the graph
+  graph <-
+    add_grid_3d(
+      graph = graph,
+      x = 2,
+      y = 2,
+      z = 2,
+      type = "b",
+      rel = "y")
+
+  # Expect that 13 nodes are now in the graph
+  expect_equal(
+    count_nodes(graph), 16)
+
+  # Expect 24 edges are now in the graph
+  expect_equal(
+    count_edges(graph), 24)
+
+  # Expect label values from 1 to 16
+  expect_identical(
+    graph$nodes_df$label,
+    as.character(1:16))
+
+  # Expect type values to be either `a` or `b`
+  expect_identical(
+    unique(graph$nodes_df$type),
+    c("a", "b"))
+
+  # Expect rel values to be either `z` or `y`
+  expect_identical(
+    unique(graph$edges_df$rel),
+    c("z", "y"))
+
+  # Create a graph with a 2D grid that
+  # has different types of node and edge
+  # attributes included
+  graph_2 <-
+    create_graph() %>%
+    add_grid_3d(
+      x = 2,
+      y = 2,
+      z = 2,
+      label = c(
+        "one", "two",
+        "three", "four",
+        "five", "six",
+        "seven", "eight"),
+      type = c(
+        "a", "a", "a", "a",
+        "b", "b", "b", "b"),
+      rel = c(
+        "grid_a", "grid_a", "grid_a",
+        "grid_a", "grid_a", "grid_a",
+        "grid_b", "grid_b", "grid_b",
+        "grid_b", "grid_b", "grid_b"))
+
+  # Get the graph's node data frame
+  ndf <- get_node_df(graph_2)
+
+  # Get the graph's edge data frame
+  edf <- get_edge_df(graph_2)
+
+  # Expect that 8 nodes are now in the graph
+  expect_equal(
+    count_nodes(graph_2), 8)
+
+  # Expect 12 edges are now in the graph
+  expect_equal(
+    count_edges(graph_2), 12)
+
+  # Expect node ID values from 1 to 6
+  expect_identical(
+    ndf$id, 1:8)
+
+  # Expect specific node `label` values
+  expect_identical(
+    ndf$label,
+    c("one", "two", "three", "four",
+      "five", "six", "seven", "eight"))
+
+  # Expect specific node `type` values
+  expect_identical(
+    ndf$type,
+    c("a", "a", "a", "a",
+      "b", "b", "b", "b"))
+
+  # Expect specific edge `rel` values
+  expect_identical(
+    edf$rel,
+    c("grid_a", "grid_a", "grid_a",
+      "grid_a", "grid_a", "grid_a",
+      "grid_b", "grid_b", "grid_b",
+      "grid_b", "grid_b", "grid_b"))
+})
+
 test_that("Adding a full graph is possible", {
 
   # Create a graph and add a full graph
