@@ -761,6 +761,218 @@ test_that("adding node clones is possible", {
     rep(as.character(NA), 3))
 })
 
+test_that("adding node clones with a selection is possible", {
+
+  # Create a graph with a path of
+  # nodes; supply `label`, `type`,
+  # and `value` node attributes,
+  # and select the created nodes
+  graph <-
+    create_graph() %>%
+    add_path(
+      n = 3,
+      label = c("d", "g", "r"),
+      type = c("a", "b", "c")) %>%
+    select_last_nodes_created()
+
+  # Create clones of all nodes
+  # in the selection
+  graph_1 <-
+    graph %>%
+    add_node_clones_ws()
+
+  # Expect 6 nodes in the graph
+  expect_equal(
+    count_nodes(graph_1), 6)
+
+  # Expect nodes with ID values
+  # from 1 to 6
+  expect_equal(
+    (graph_1 %>%
+       get_node_df)[, 1], 1:6)
+
+  # Expect NA values for the
+  # `type` attributes for the
+  # last 3 nodes in the graph
+  expect_true(
+    all(
+      is.na(
+        graph_1 %>%
+          get_node_df())[4:6, 2]))
+
+  # Expect NA values for the
+  # `label` attributes for the
+  # last 3 nodes in the graph
+  expect_true(
+    all(
+      is.na(
+        graph_1 %>%
+          get_node_df())[4:6, 3]))
+
+  # Create clones of all nodes
+  # in the selection but assign
+  # new node label values
+  graph_2 <-
+    graph %>%
+    add_node_clones_ws(
+      label = c("a", "b", "v"))
+
+  # Expect 6 nodes in the graph
+  expect_equal(
+    count_nodes(graph_2), 6)
+
+  # Expect nodes with ID values
+  # from 1 to 6
+  expect_equal(
+    (graph_2 %>%
+       get_node_df)[, 1], 1:6)
+
+  # Expect NA values for the
+  # `type` attributes for the
+  # last 3 nodes in the graph
+  expect_true(
+    all(
+      is.na(
+        graph_2 %>%
+          get_node_df())[4:6, 2]))
+
+  # Expect specifi values for the
+  # `label` attributes for the
+  # last 3 nodes in the graph
+  expect_equal(
+    (graph_2 %>%
+       get_node_df())[4:6, 3],
+    c("a", "b", "v"))
+
+  # Create clones of all nodes
+  # in the selection and
+  # add edges from the orginal
+  # nodes to the cloned nodes
+  graph_3 <-
+    graph %>%
+    add_node_clones_ws(
+      add_edges = TRUE,
+      direction = "to")
+
+  # Expect 6 nodes in the graph
+  expect_equal(
+    count_nodes(graph_3), 6)
+
+  # Expect nodes with ID values
+  # from 1 to 6
+  expect_equal(
+    (graph_3 %>%
+       get_node_df)[, 1], 1:6)
+
+  # Expect NA values for the
+  # `type` attributes for the
+  # last 3 nodes in the graph
+  expect_true(
+    all(
+      is.na(
+        graph_3 %>%
+          get_node_df())[4:6, 2]))
+
+  # Expect NA values for the
+  # `label` attributes for the
+  # last 3 nodes in the graph
+  expect_true(
+    all(
+      is.na(
+        graph_3 %>%
+          get_node_df())[4:6, 3]))
+
+  # Expect 5 edges in the graph
+  expect_equal(
+    count_edges(graph_3), 5)
+
+  # Expect edges with ID values
+  # from 1 to 5
+  expect_equal(
+    (graph_3 %>%
+       get_edge_df)[, 1], 1:5)
+
+  # Expect that specific edges have
+  # been created
+  expect_equal(
+    (graph_3 %>%
+       get_edges)[3:5],
+    c("1->4", "2->5", "3->6"))
+
+  # Expect NA values for the
+  # `rel` attributes for the
+  # last 3 edges in the graph
+  expect_true(
+    all(
+      is.na(
+        (graph_3 %>%
+          get_edge_df())[3:5, 4])))
+
+  # Create clones of all nodes
+  # in the selection and
+  # add edges to the orginal
+  # nodes from the cloned nodes
+  graph_4 <-
+    graph %>%
+    add_node_clones_ws(
+      add_edges = TRUE,
+      direction = "from")
+
+  # Expect 6 nodes in the graph
+  expect_equal(
+    count_nodes(graph_4), 6)
+
+  # Expect nodes with ID values
+  # from 1 to 6
+  expect_equal(
+    (graph_4 %>%
+       get_node_df)[, 1], 1:6)
+
+  # Expect NA values for the
+  # `type` attributes for the
+  # last 3 nodes in the graph
+  expect_true(
+    all(
+      is.na(
+        graph_4 %>%
+          get_node_df())[4:6, 2]))
+
+  # Expect NA values for the
+  # `label` attributes for the
+  # last 3 nodes in the graph
+  expect_true(
+    all(
+      is.na(
+        graph_4 %>%
+          get_node_df())[4:6, 3]))
+
+  # Expect 5 edges in the graph
+  expect_equal(
+    count_edges(graph_4), 5)
+
+  # Expect edges with ID values
+  # from 1 to 5
+  expect_equal(
+    (graph_4 %>%
+       get_edge_df)[, 1], 1:5)
+
+  # Expect that specific edges have
+  # been created
+  expect_equal(
+    (graph_4 %>%
+       get_edges)[3:5],
+    c("4->1", "5->2", "6->3"))
+
+  # Expect NA values for the
+  # `rel` attributes for the
+  # last 3 edges in the graph
+  expect_true(
+    all(
+      is.na(
+        (graph_4 %>%
+           get_edge_df())[3:5, 4])))
+})
+
 test_that("adding edge clones is possible", {
 
   # Create a graph with a path of
