@@ -28,6 +28,24 @@ test_that("creating node data attribute values is possible", {
   expect_equal(
     node_data[[2]],
     c("one", "two", "four", "five"))
+
+  # Expect the function to return
+  # an error when supplying data
+  # attributes that are also node
+  # aesthetic attributes
+  expect_error(
+    node_data(
+      penwidth = c(1, 2, 4, 5)))
+
+  # Expect an error if using the
+  # attributes named `x` or `y`
+  expect_error(
+    node_data(
+      x = c(1, 2, 4, 5)))
+
+  expect_error(
+    node_data(
+      y = c(1, 2, 4, 5)))
 })
 
 test_that("creating edge data attribute values is possible", {
@@ -58,4 +76,12 @@ test_that("creating edge data attribute values is possible", {
   expect_equal(
     edge_data[[2]],
     c("one", "two", "four", "five"))
+
+  # Expect the function to return
+  # an error when supplying data
+  # attributes that are also edge
+  # aesthetic attributes
+  expect_error(
+    edge_data(
+      penwidth = c(1, 2, 4, 5)))
 })
