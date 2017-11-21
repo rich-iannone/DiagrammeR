@@ -272,6 +272,7 @@ edge_aes <- function(style = NULL,
       labelURL = labelURL,
       edgetooltip = edgetooltip,
       edgeURL = edgeURL,
+      dir = dir,
       headtooltip = headtooltip,
       headURL = headURL,
       headclip = headclip,
@@ -282,7 +283,6 @@ edge_aes <- function(style = NULL,
       tailclip = tailclip,
       taillabel = taillabel,
       tailport = tailport,
-      dir = dir,
       decorate = decorate)
 
   non_null_attrs <-
