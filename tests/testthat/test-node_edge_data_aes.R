@@ -218,50 +218,51 @@ test_that("creating edge aesthetic attribute values is possible", {
 
   # Expect specific names in the object
   expect_equal(
-    names(edge_aes),
-    c("style", "penwidth", "color", "arrowsize",
-      "arrowhead", "arrowtail", "fontname", "fontsize",
-      "fontcolor", "len", "tooltip", "URL",
-      "label", "labelfontname", "labelfontsize", "labelfontcolor",
-      "labeltooltip", "labelURL", "edgetooltip", "edgeURL",
-      "headtooltip", "headURL", "headclip", "headlabel",
-      "headport", "tailtooltip", "tailURL", "tailclip",
-      "taillabel", "tailport", "dir", "decorate"))
+    names(edge_aes) %>% sort(),
+    c(
+     "arrowhead", "arrowsize", "arrowtail", "color",
+     "decorate" , "dir", "edgetooltip", "edgeURL",
+     "fontcolor", "fontname", "fontsize", "headclip",
+     "headlabel", "headport", "headtooltip", "headURL",
+     "label", "labelfontcolor", "labelfontname", "labelfontsize",
+     "labeltooltip", "labelURL", "len", "penwidth",
+     "style", "tailclip", "taillabel", "tailport",
+     "tailtooltip", "tailURL", "tooltip", "URL"))
 
   # Expect specific values in each
   # of the list components
-  expect_equal(edge_aes[[1]], c("bold", "dashed"))
-  expect_equal(edge_aes[[2]], c(1.0, 1.5))
-  expect_equal(edge_aes[[3]], c("red", "#FFFFFF"))
-  expect_equal(edge_aes[[4]], c(0.5, 1.0))
-  expect_equal(edge_aes[[5]], c("vee", "tee"))
-  expect_equal(edge_aes[[6]], c("normal", "dot"))
-  expect_equal(edge_aes[[7]], c("Helvetica", "Helvetica"))
-  expect_equal(edge_aes[[8]], c(12, 10.5))
-  expect_equal(edge_aes[[9]], c("gray25", "#000000"))
-  expect_equal(edge_aes[[10]], c(1.0, 0.5))
-  expect_equal(edge_aes[[11]], c("tooltip_1", "tooltip_2"))
-  expect_equal(edge_aes[[12]], c("http://www.website.net", "http:://www.internet.org"))
-  expect_equal(edge_aes[[13]], c("label_1", "label_2"))
-  expect_equal(edge_aes[[14]], c("Helvetica", "Helvetica"))
-  expect_equal(edge_aes[[15]], c(12, 10.5))
-  expect_equal(edge_aes[[16]], c("gray25", "#000000"))
-  expect_equal(edge_aes[[17]], c("tooltip_1", "tooltip_2"))
-  expect_equal(edge_aes[[18]], c("http://www.website.net", "http:://www.internet.org"))
-  expect_equal(edge_aes[[19]], c("tooltip_1", "tooltip_2"))
-  expect_equal(edge_aes[[20]], c("http://www.website.net", "http:://www.internet.org"))
-  expect_equal(edge_aes[[21]], c("tooltip_1", "tooltip_2"))
-  expect_equal(edge_aes[[22]], c("http://www.website.net", "http:://www.internet.org"))
-  expect_equal(edge_aes[[23]], c(TRUE, FALSE))
-  expect_equal(edge_aes[[24]], c("label_1", "label_2"))
-  expect_equal(edge_aes[[25]], c("n", "ne"))
-  expect_equal(edge_aes[[26]], c("tooltip_1", "tooltip_2"))
-  expect_equal(edge_aes[[27]], c("http://www.website.net", "http:://www.internet.org"))
-  expect_equal(edge_aes[[28]], c(TRUE, FALSE))
-  expect_equal(edge_aes[[29]], c("label_1", "label_2"))
-  expect_equal(edge_aes[[30]], c("s", "nw"))
-  expect_equal(edge_aes[[31]], c("forward", "back"))
-  expect_equal(edge_aes[[32]], c(FALSE, TRUE))
+  expect_equal(edge_aes$style, c("bold", "dashed"))
+  expect_equal(edge_aes$penwidth, c(1.0, 1.5))
+  expect_equal(edge_aes$color, c("red", "#FFFFFF"))
+  expect_equal(edge_aes$arrowsize, c(0.5, 1.0))
+  expect_equal(edge_aes$arrowhead, c("vee", "tee"))
+  expect_equal(edge_aes$arrowtail, c("normal", "dot"))
+  expect_equal(edge_aes$fontname, c("Helvetica", "Helvetica"))
+  expect_equal(edge_aes$fontsize, c(12, 10.5))
+  expect_equal(edge_aes$fontcolor, c("gray25", "#000000"))
+  expect_equal(edge_aes$len, c(1.0, 0.5))
+  expect_equal(edge_aes$tooltip, c("tooltip_1", "tooltip_2"))
+  expect_equal(edge_aes$URL, c("http://www.website.net", "http:://www.internet.org"))
+  expect_equal(edge_aes$label, c("label_1", "label_2"))
+  expect_equal(edge_aes$labelfontname, c("Helvetica", "Helvetica"))
+  expect_equal(edge_aes$labelfontsize, c(12, 10.5))
+  expect_equal(edge_aes$labelfontcolor, c("gray25", "#000000"))
+  expect_equal(edge_aes$labeltooltip, c("tooltip_1", "tooltip_2"))
+  expect_equal(edge_aes$labelURL, c("http://www.website.net", "http:://www.internet.org"))
+  expect_equal(edge_aes$edgetooltip, c("tooltip_1", "tooltip_2"))
+  expect_equal(edge_aes$edgeURL, c("http://www.website.net", "http:://www.internet.org"))
+  expect_equal(edge_aes$headtooltip, c("tooltip_1", "tooltip_2"))
+  expect_equal(edge_aes$headURL, c("http://www.website.net", "http:://www.internet.org"))
+  expect_equal(edge_aes$headclip, c(TRUE, FALSE))
+  expect_equal(edge_aes$headlabel, c("label_1", "label_2"))
+  expect_equal(edge_aes$headport, c("n", "ne"))
+  expect_equal(edge_aes$tailtooltip, c("tooltip_1", "tooltip_2"))
+  expect_equal(edge_aes$tailURL, c("http://www.website.net", "http:://www.internet.org"))
+  expect_equal(edge_aes$tailclip, c(TRUE, FALSE))
+  expect_equal(edge_aes$taillabel, c("label_1", "label_2"))
+  expect_equal(edge_aes$tailport, c("s", "nw"))
+  expect_equal(edge_aes$dir, c("forward", "back"))
+  expect_equal(edge_aes$decorate, c(FALSE, TRUE))
 
   # Expect the function to return
   # an error when supplying any
