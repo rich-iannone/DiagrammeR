@@ -503,6 +503,63 @@ test_that("Mutating edge attributes is possible", {
     c(8, 8, 8, 8))
 })
 
+test_that("Mutating node attributes with a selection is possible", {
+
+  # Create a starting graph
+  graph <-
+    create_graph() %>%
+    add_node() %>%
+    add_node() %>%
+    set_node_attrs(
+      node_attr = value,
+      values = 1) %>%
+    set_node_attrs(
+      node_attr = shape,
+      values = "square") %>%
+    select_nodes_by_id(nodes = 1)
+
+  # Mutate the `value` node attribute
+  # for the selected node
+  graph <-
+    graph %>%
+    mutate_node_attrs_ws(
+      value = value * 2)
+
+  # Expect specific values in `value`
+  expect_equal(
+    graph$nodes_df$value,
+    c(2, 1))
+})
+
+test_that("Mutating edge attributes with a selection is possible", {
+
+  # Create a starting graph
+  graph <-
+    create_graph() %>%
+    add_n_nodes(n = 4) %>%
+    add_edges_w_string(
+      edges = "1->3 2->4 1->4 3->2") %>%
+    set_edge_attrs(
+      edge_attr = value,
+      values = 1) %>%
+    set_edge_attrs(
+      edge_attr = color,
+      values = "red") %>%
+    select_edges_by_edge_id(edges = 1)
+
+  # Mutate the `value` edge attribute
+  # for the selected edge
+  graph <-
+    graph %>%
+    mutate_edge_attrs_ws(
+      value = value * 2)
+
+  # Expect specific values in `value`
+  expect_equal(
+    graph$edges_df$value,
+    c(2, 1, 1, 1))
+})
+
 test_that("Recoding node attributes is possible", {
 
   # Create a starting graph
