@@ -14,22 +14,25 @@ is_graph_directed(graph)
 a logical value.
 }
 \description{
-Determines whether a graph is set to be
-directed or not and returns a logical value to that
-effect.
+Determines whether a graph
+is set to be directed or not and returns
+a logical value to that effect.
 }
 \examples{
-# Create an empty graph; by default, new graphs
-# made by `create_graph()` are directed`
+# Create an empty graph; by default,
+# new graphs made by `create_graph()`
+# are directed
 graph <-
   create_graph()
 
-# Determine whether the graph is directed
+# Determine whether the graph
+# is directed
 is_graph_directed(graph)
 #> [1] TRUE
 
-# Use the `set_graph_undirected()` function and
-# check again whether the graph is directed
+# Use the `set_graph_undirected()`
+# function and check again whether
+# the graph is directed
 graph \%>\%
   set_graph_undirected() \%>\%
   is_graph_directed()
