@@ -400,6 +400,35 @@ test_that("Getting the mean distance for a graph is possible", {
     get_mean_distance(graph_empty), as.numeric(NA))
 })
 
+test_that("Getting the reciprocity for a graph is possible", {
+
+  # Define a graph where 2 edge definitions
+  # have pairs of reciprocal edges
+  graph <-
+   create_graph() %>%
+   add_cycle(n = 3) %>%
+   add_node(
+     from = 1,
+       to = 1) %>%
+   add_node(
+     from = 1,
+       to = 1)
+
+  # Expect that the reciprocity
+  # will be the ratio of reciprocating
+  # edges (4) to the total number
+  # of graph edges (7)
+  expect_equal(
+    get_reciprocity(graph), 4/7)
+
+  # Expect that a graph with no
+  # edges will return NA
+  expect_true(
+    is.na(get_reciprocity(
+      create_graph() %>%
+        add_n_nodes(n = 5))))
+})
+
 test_that("Getting the minimum cut between nodes is possible", {
 
   # Set a seed
