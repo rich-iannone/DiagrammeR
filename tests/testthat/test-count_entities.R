@@ -171,3 +171,89 @@ test_that("counting the number of multiple edges between a specific node pair is
   expect_equal(
     global_multiple_edges_count, 3)
 })
+
+test_that("counting the number of strongly connected components is possible", {
+
+  # Create a graph with several
+  # graph islands
+  graph <-
+     create_graph() %>%
+     add_islands_graph(
+       n_islands = 4,
+       island_size = 10,
+       p = 1/5,
+       edges_between = 1,
+       set_seed = 23)
+
+  # Expect that the count of strongly
+  # connected components is 4
+  expect_equal(
+    graph %>% count_s_connected_cmpts(), 4)
+
+  # Expect that an empty graph will
+  # return NA
+  expect_true(
+    is.na(count_s_connected_cmpts(create_graph())))
+})
+
+test_that("counting the number of weakly connected components is possible", {
+
+  # Create a graph with 2 cycles
+  graph <-
+    create_graph() %>%
+    add_cycle(n = 5) %>%
+    add_cycle(n = 5)
+
+  # Expect that the count of weakly
+  # connected components is 2
+  expect_equal(
+    graph %>% count_w_connected_cmpts(), 2)
+
+  # Expect that an empty graph will
+  # return NA
+  expect_true(
+    is.na(count_w_connected_cmpts(create_graph())))
+})
+
+test_that("counting the number of loop edges is possible", {
+
+  # Create a full graph that
+  # includes loops
+  graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_full_graph(
+      n = 3,
+      keep_loops = TRUE)
+
+  # Expect that the number of
+  # loop edges is 3
+  expect_equal(
+    graph %>% count_loop_edges(), 3)
+
+  # Expect that an empty graph will
+  # return 0
+  expect_equal(
+    count_loop_edges(create_graph()), 0)
+})
+
+test_that("counting the unconnected graph nodes is possible", {
+
+  # Create a graph with a
+  # path of nodes and 3
+  # unconnected nodes
+  graph <-
+    create_graph() %>%
+    add_path(n = 3) %>%
+    add_n_nodes(n = 3)
+
+  # Expect that the count of
+  # unconnected nodes is 3
+  expect_equal(
+    graph %>% count_unconnected_nodes(), 3)
+
+  # Expect that an empty graph will
+  # return 0
+  expect_equal(
+    count_unconnected_nodes(create_graph()), 0)
+})
