@@ -154,6 +154,13 @@ test_that("Getting closeness is possible", {
   expect_is(
     closeness_vals_in[, 2],
     "numeric")
+
+  # Expect an error if value for `direction`
+  # is not any of `all`, `in`, or `out`
+  expect_error(
+    get_closeness(
+      graph = graph,
+      direction = "away"))
 })
 
 test_that("Getting coreness values is possible", {
@@ -245,6 +252,13 @@ test_that("Getting coreness values is possible", {
   expect_is(
     coreness_vals_out[, 2],
     "numeric")
+
+  # Expect an error if value for `direction`
+  # is not any of `all`, `in`, or `out`
+  expect_error(
+    get_coreness(
+      graph = graph,
+      direction = "away"))
 })
 
 test_that("Getting closeness vitality is possible", {
