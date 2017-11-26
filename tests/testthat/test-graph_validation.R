@@ -261,6 +261,7 @@ test_that("Using an empty graph with trigger an error", {
   expect_error(create_complement_graph(empty_graph))
   expect_error(delete_edge(empty_graph))
   expect_error(delete_edges_ws(empty_graph))
+  expect_error(delete_loop_edges_ws(empty_graph))
   expect_error(delete_node(empty_graph))
   expect_error(delete_nodes_ws(empty_graph))
   expect_error(do_bfs(empty_graph))
