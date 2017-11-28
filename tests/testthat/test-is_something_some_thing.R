@@ -1,5 +1,177 @@
 context("Is this thing what we think it is?")
 
+test_that("Detecting a directed or undirected graph is possible", {
+
+  # Create a directed graph
+  graph_directed <-
+    create_graph(
+      directed = TRUE) %>%
+    add_path(n = 4)
+
+  # Expect that the graph is directed
+  expect_true(
+    is_graph_directed(graph_directed))
+
+  # Expect that the graph is not undirected
+  expect_false(
+    is_graph_undirected(graph_directed))
+
+  # Create an undirected graph
+  graph_undirected <-
+    create_graph(
+      directed = FALSE) %>%
+    add_path(n = 4)
+
+  # Expect that the graph is undirected
+  expect_true(
+    is_graph_undirected(graph_undirected))
+
+  # Expect that the graph is not directed
+  expect_false(
+    is_graph_directed(graph_undirected))
+})
+
+test_that("Detecting the presence of a node is possible", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_path(
+      n = 4,
+      label = c(
+        "one", "two", "three", "four"))
+
+  # Expect that node `1` is present
+  expect_true(
+    is_node_present(
+      graph = graph,
+      node = 1))
+
+  # Expect that node `5` is not present
+  expect_false(
+    is_node_present(
+      graph = graph,
+      node = 5))
+
+  # Expect that node with label
+  # `one` is present
+  expect_true(
+    is_node_present(
+      graph = graph,
+      node = "one"))
+
+  # Expect that node with label
+  # `five` is not present
+  expect_false(
+    is_node_present(
+      graph = graph,
+      node = "five"))
+
+  # Expect an error if multiple
+  # values provided for `node`
+  expect_error(
+    is_node_present(
+      graph = graph,
+      node = c(1, 2)))
+})
+
+test_that("Detecting the presence of an edge is possible", {
+
+  # Create a graph
+  graph <-
+    create_graph() %>%
+    add_path(
+      n = 4,
+      label = c(
+        "one", "two", "three", "four"))
+
+  # Expect that edge with ID `3`
+  # is present
+  expect_true(
+    is_edge_present(
+      graph = graph,
+      edge = 3))
+
+  # Expect that the edge with the
+  # definition `1` -> `2` is present
+  expect_true(
+    is_edge_present(
+      graph = graph,
+      from = 1,
+      to = 2))
+
+  # Expect that edge with ID `5`
+  # is not present
+  expect_false(
+    is_edge_present(
+      graph = graph,
+      edge = 5))
+
+  # Expect that the edge with the
+  # definition `4` -> `5` is not present
+  expect_false(
+    is_edge_present(
+      graph = graph,
+      from = 4,
+      to = 5))
+
+  # Expect that the edge,
+  # defined by its labels as
+  # `two` -> `three`, exists in
+  # the graph
+  expect_true(
+    is_edge_present(
+      graph = graph,
+      from = "two",
+      to = "three"))
+
+  # Expect an error if values
+  # not fully provided for either
+  # `from` & `to` or for `edge`
+  expect_error(
+    is_edge_present(
+      graph = graph,
+      from = 1))
+
+  expect_error(
+    is_edge_present(
+      graph = graph,
+      to = 2))
+
+  expect_error(
+    is_edge_present(
+      graph = graph))
+
+  # Expect an error if multiple
+  # values provided for `edge`
+  expect_error(
+    is_edge_present(
+      graph = graph,
+      edge = c(1, 2)))
+
+  # Expect an error if a non-numeric
+  # value provided for `edge`
+  expect_error(
+    is_edge_present(
+      graph = graph,
+      edge = "one"))
+
+  # Expect an error if a multiple
+  # values provided for either
+  # `from` or `to`
+  expect_error(
+    is_edge_present(
+      graph = graph,
+      from = 1,
+      to = c(2, 3)))
+
+  expect_error(
+    is_edge_present(
+      graph = graph,
+      from = c(1, 2),
+      to = 3))
+})
+
 test_that("Detecting edge loops is possible", {
 
   # Create a graph that has multiple
