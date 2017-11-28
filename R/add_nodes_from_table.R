@@ -164,7 +164,7 @@ add_nodes_from_table <- function(graph,
   } else if (inherits(table, "data.frame")) {
 
     # Rename `table` object as `csv`
-    csv <- table
+    csv <- as.data.frame(table, stringsAsFactors = FALSE)
   }
 
   # Get number of rows in the CSV
