@@ -110,7 +110,7 @@ is_edge_present <- function(graph,
 
     # Verify that what is provided for `edge`
     # is a numeric value of length 1
-    if (!inherits(edge, "numeric") & length(edge) != 1) {
+    if (!inherits(edge, "numeric") | length(edge) != 1) {
       stop("For `edge`, a single, numeric value must be provided.")
     }
 
