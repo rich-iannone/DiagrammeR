@@ -111,3 +111,127 @@ test_that("Creating a complement graph is possible", {
       get_edge_df() %>%
       nrow(), 12)
 })
+
+test_that("Fully connecting selected nodes is possible", {
+
+  # Create a directed graph with a path
+  # of 3 nodes and two isolated nodes
+  graph_directed <-
+    create_graph() %>%
+    add_path(n = 3) %>%
+    add_n_nodes(n = 2)
+
+  # Select a node in the path
+  # of nodes (node `3`) and
+  # the two isolated nodes (`4`
+  # and `5`); then, and fully
+  # connect these nodes together
+  graph_directed <-
+    graph_directed %>%
+    select_nodes_by_id(
+      nodes = 3:5) %>%
+    fully_connect_nodes_ws()
+
+  # Expect 8 edges in the new graph
+  expect_equal(
+    graph_directed %>%
+      count_edges(), 8)
+
+  # Expect certain edges in the graph
+  expect_identical(
+    graph_directed %>%
+      get_edges(),
+    c("1->2", "2->3", "3->4", "3->5",
+      "4->5", "4->3", "5->3", "5->4"))
+
+  # Create an undirected graph with a path
+  # of 3 nodes and two isolated nodes
+  graph_undirected <-
+    create_graph(
+      directed = FALSE) %>%
+    add_path(n = 3) %>%
+    add_n_nodes(n = 2)
+
+  # Select a node in the path
+  # of nodes (node `3`) and
+  # the two isolated nodes (`4`
+  # and `5`); then, and fully
+  # connect these nodes together
+  graph_undirected <-
+    graph_undirected %>%
+    select_nodes_by_id(
+      nodes = 3:5) %>%
+    fully_connect_nodes_ws()
+
+  # Expect 8 edges in the new graph
+  expect_equal(
+    graph_undirected %>%
+      count_edges(), 5)
+
+  # Expect certain edges in the graph
+  expect_identical(
+    graph_undirected %>%
+      get_edges(),
+    c("1->2", "2->3", "3->4",
+      "3->5", "4->5"))
+
+  # Expect an error if there is no valid
+  # selection of node
+  expect_error(
+    create_graph() %>%
+      add_n_nodes(n = 2) %>%
+      fully_connect_nodes_ws())
+})
+
+test_that("Fully disconnecting selected nodes is possible", {
+
+  # Create a directed graph with a path
+  # of 3 nodes and two isolated nodes
+  graph_directed <-
+    create_graph() %>%
+    add_path(n = 3)
+
+  # Select all nodes and fully
+  # disconnect these nodes
+  graph_directed <-
+    graph_directed %>%
+    select_nodes() %>%
+    fully_disconnect_nodes_ws()
+
+  # Expect no edges in the new graph
+  expect_equal(
+    graph_directed %>%
+      count_edges(), 0)
+
+  # Expect all nodes to be retained
+  expect_equal(
+    graph_directed %>%
+      count_nodes(), 3)
+
+  # Create an undirected graph with
+  # a path of 3 nodes
+  graph_undirected <-
+    create_graph(
+      directed = FALSE) %>%
+    add_path(n = 3)
+
+  # Select all nodes and fully
+  # disconnect these nodes
+  graph_undirected <-
+    graph_undirected %>%
+    select_nodes() %>%
+    fully_disconnect_nodes_ws()
+
+  # Expect no edges in the new graph
+  expect_equal(
+    graph_undirected %>%
+      count_edges(), 0)
+
+  # Expect an error if there is no valid
+  # selection of node
+  expect_error(
+    create_graph() %>%
+      add_path(n = 2) %>%
+      fully_disconnect_nodes_ws())
+})
+
