@@ -235,3 +235,37 @@ test_that("Fully disconnecting selected nodes is possible", {
       fully_disconnect_nodes_ws())
 })
 
+test_that("Removing loop edges via a selection is possible", {
+
+  # Create an undirected, full graph
+  # of 5 nodes with loops retained
+  graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_full_graph(
+      n = 5,
+      keep_loops = TRUE)
+
+  # Select nodes `3` and `4`
+  # and remove the loop edges
+  # associated with those nodes
+  graph_loops_removed <-
+    graph %>%
+    select_nodes_by_id(
+      nodes = c(3, 4)) %>%
+    delete_loop_edges_ws()
+
+  # Expect that there are 3 loops
+  # remaining in the graph
+  expect_equal(
+    graph_loops_removed %>%
+      get_edge_df() %>%
+      filter(from == to) %>%
+      nrow(), 3)
+
+  # Expect an error if there is
+  # isn't a valid node selection
+  expect_error(
+    graph %>%
+    delete_loop_edges_ws())
+})
