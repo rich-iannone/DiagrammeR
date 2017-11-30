@@ -93,6 +93,24 @@ test_that("getting info about a graph's nodes is possible", {
   expect_true(
     nrow(info_nodes_no_edges) == 4)
 
+  # Expect that the `deg`, `indeg`, `outdeg`,
+  # and `loops` columns have show 0
+  expect_equal(
+    info_nodes_no_edges$deg %>%
+      unique, 0)
+
+  expect_equal(
+    info_nodes_no_edges$indeg %>%
+      unique, 0)
+
+  expect_equal(
+    info_nodes_no_edges$outdeg %>%
+      unique, 0)
+
+  expect_equal(
+    info_nodes_no_edges$loops %>%
+      unique, 0)
+
   # Create an empty graph
   graph <- create_graph()
 
@@ -148,8 +166,8 @@ test_that("getting info about a graph's edges is possible", {
   expect_true(
     nrow(info_edges) == 26)
 
-  # Expect that all columns will be classed
-  # as `character`
+  # Expect that columns will be classed
+  # as either as `integer` or `character`
   expect_is(
     info_edges$from, "integer")
 
