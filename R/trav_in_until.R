@@ -41,7 +41,7 @@
 #' # Create a path graph and add
 #' # values of 1 to 10 across the
 #' # nodes from beginning to end;
-#' # select the first path node
+#' # select the last path node
 #' graph <-
 #'   create_graph() %>%
 #'   add_path(
@@ -53,7 +53,7 @@
 #'
 #' # Traverse inward, node-by-node
 #' # until stopping at a node where
-#' # the `value` attribute is 8
+#' # the `value` attribute is 1
 #' graph <-
 #'   graph %>%
 #'   trav_in_until(
@@ -65,7 +65,7 @@
 #'   get_selection()
 #' #> [1] 1
 #'
-#' # Create two cycles in graph and
+#' # Create two cycles in a graph and
 #' # add values of 1 to 6 to the
 #' # first cycle, and values 7 to
 #' # 12 in the second; select nodes
