@@ -135,9 +135,7 @@ test_that("Reversing edges in a selection is possible", {
         k = 2, h = 2) %>%
       select_edges_by_node_id(
         nodes = 1:2) %>%
-      rev_edge_dir())
-
-
+      rev_edge_dir_ws())
 })
 
 test_that("Creating a complement graph is possible", {
