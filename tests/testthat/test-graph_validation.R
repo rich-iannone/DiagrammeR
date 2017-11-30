@@ -327,6 +327,7 @@ test_that("Using an graph with no edges with trigger an error", {
   expect_error(select_edges_by_node_id(graph_no_edges))
   expect_error(select_last_edges_created(graph_no_edges))
   expect_error(set_df_as_edge_attr(graph_no_edges))
+  expect_error(set_edge_attr_to_display(graph_no_edges))
   expect_error(set_edge_attrs_ws(graph_no_edges))
   expect_error(trav_both(graph_no_edges))
   expect_error(trav_both_edge(graph_no_edges))
