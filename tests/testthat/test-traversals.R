@@ -11,13 +11,13 @@ test_that("simple traversals are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4)
+      to = 4)
 
   # Starting at node `1`, traverse to node `4`, storing
   # the traversed location as a selection in the graph
@@ -183,13 +183,13 @@ test_that("selective traversals with `trav_out()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -338,13 +338,13 @@ test_that("selective traversals with `trav_in()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -498,13 +498,13 @@ test_that("selective traversals with `trav_out_edge()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -660,13 +660,13 @@ test_that("selective traversals with `trav_in_edge()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -823,13 +823,13 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -873,7 +873,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     trav_in_node(
       conditions = data_value == 5)
 
@@ -890,7 +890,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     trav_in_node(
       conditions = data_value < 10)
 
@@ -907,7 +907,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     trav_in_node(
       conditions = data_value > 1)
 
@@ -924,7 +924,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     trav_in_node(
       conditions = data_value != 1)
 
@@ -942,7 +942,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     trav_in_node(
       conditions = data_value != 5)
 
@@ -960,7 +960,7 @@ test_that("selective traversals with `trav_in_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     trav_in_node(
       conditions = shape == "square")
 
@@ -1000,13 +1000,13 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -1049,7 +1049,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     graph %>%
     select_edges(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     trav_out_node(
       conditions = data_value == 5)
 
@@ -1066,7 +1066,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     trav_out_node(
       conditions = data_value < 10)
 
@@ -1083,7 +1083,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     trav_out_node(
       conditions = data_value > 1)
 
@@ -1100,7 +1100,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     trav_out_node(
       conditions = data_value != 1)
 
@@ -1118,7 +1118,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     trav_out_node(
       conditions = data_value != 5)
 
@@ -1136,7 +1136,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     trav_out_node(
       conditions = shape == "triangle")
 
@@ -1154,7 +1154,7 @@ test_that("selective traversals with `trav_out_node()` are possible", {
     clear_selection() %>%
     select_edges(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     trav_out_node(
       conditions = shape == "circle")
 
@@ -1176,13 +1176,13 @@ test_that("selective traversals with `trav_both()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -1366,13 +1366,13 @@ test_that("selective traversals with `trav_both_edge()` are possible", {
     add_node() %>%
     add_edge(
       from = 1,
-        to = 2) %>%
+      to = 2) %>%
     add_edge(
       from = 2,
-        to = 3) %>%
+      to = 3) %>%
     add_edge(
       from = 3,
-        to = 4) %>%
+      to = 4) %>%
     select_nodes() %>%
     set_node_attrs_ws(
       node_attr = type,
@@ -1457,7 +1457,7 @@ test_that("traversing to reverse edges with an edge selection is possible", {
   edf <-
     create_edge_df(
       from = c(1, 4, 2, 3, 3),
-        to = c(4, 1, 3, 2, 1))
+      to = c(4, 1, 3, 2, 1))
 
   # Create a graph with the ndf and edf
   graph <-
@@ -1471,10 +1471,10 @@ test_that("traversing to reverse edges with an edge selection is possible", {
     graph %>%
     select_edges(
       from = 1,
-        to = 4) %>%
+      to = 4) %>%
     select_edges(
       from = 2,
-        to = 3)
+      to = 3)
 
   # Add to the selection the reverse edges
   graph_add_selection <-
@@ -1507,4 +1507,170 @@ test_that("traversing to reverse edges with an edge selection is possible", {
       clear_selection() %>%
       trav_reverse_edge(
         add_to_selection = TRUE))
+})
+
+test_that("selective traversals with `trav_out_until()` are possible", {
+
+  # Create a path graph and add
+  # values of 1 to 10 across the
+  # nodes from beginning to end;
+  # select the first path node
+  graph <-
+    create_graph() %>%
+    add_path(
+      n = 10,
+      node_data = node_data(
+        value = 1:10)) %>%
+    select_nodes_by_id(
+      nodes = 1)
+
+  # Traverse outward, node-by-node
+  # until stopping at a node where
+  # the `value` attribute is 8
+  graph <-
+    graph %>%
+    trav_out_until(
+      conditions =
+        value == 8)
+
+  # Expect that the graph's node
+  # selection is node `8` (which
+  # has a node attr `value` of 8)
+  expect_equal(
+    graph %>%
+      get_selection(), 8)
+
+  # Create two cycles in a new graph
+  # and add values of 1 to 6 to the
+  # first cycle, and values 7 to
+  # 12 in the second; select nodes
+  # `1` and `7`
+  graph <-
+    create_graph() %>%
+    add_cycle(
+      n = 6,
+      node_data = node_data(
+        value = 1:6)) %>%
+    add_cycle(
+      n = 6,
+      node_data = node_data(
+        value = 7:12)) %>%
+    select_nodes_by_id(
+      nodes = c(1, 7))
+
+  # Traverse outward, node-by-node
+  # from `1` and `7` until stopping
+  # at the first nodes where the
+  # `value` attribute is 5, 6, or 15;
+  # specify that we should only
+  # keep the finally traversed to
+  # nodes that satisfy the conditions
+  graph <-
+    graph %>%
+    trav_out_until(
+      conditions =
+        value %in% c(5, 6, 9),
+      exclude_unmatched = TRUE)
+
+  # Expect that the graph's node
+  # selection contains nodes
+  # `5` and `9`
+  expect_equal(
+    graph %>%
+      get_selection(), c(5, 9))
+
+  # Expect an error if there isn't
+  # an active node selection
+  expect_error(
+    create_graph() %>%
+      add_path(
+        n = 10,
+        node_data = node_data(
+          value = 1:10)) %>%
+      trav_out_until(
+        conditions =
+          value == 8))
+})
+
+test_that("selective traversals with `trav_in_until()` are possible", {
+
+  # Create a path graph and add
+  # values of 1 to 10 across the
+  # nodes from beginning to end;
+  # select the last path node
+  graph <-
+    create_graph() %>%
+    add_path(
+      n = 10,
+      node_data = node_data(
+        value = 1:10)) %>%
+    select_nodes_by_id(
+      nodes = 10)
+
+  # Traverse outward, node-by-node
+  # until stopping at a node where
+  # the `value` attribute is 1
+  graph <-
+    graph %>%
+    trav_in_until(
+      conditions =
+        value == 1)
+
+  # Expect that the graph's node
+  # selection is node `1` (which
+  # has a node attr `value` of 1)
+  expect_equal(
+    graph %>%
+      get_selection(), 1)
+
+  # Create two cycles in a graph and
+  # add values of 1 to 6 to the
+  # first cycle, and values 7 to
+  # 12 in the second; select nodes
+  # `6` and `12`
+  graph <-
+    create_graph() %>%
+    add_cycle(
+      n = 6,
+      node_data = node_data(
+        value = 1:6)) %>%
+    add_cycle(
+      n = 6,
+      node_data = node_data(
+        value = 7:12)) %>%
+    select_nodes_by_id(
+      nodes = c(6, 12))
+
+  # Traverse inward, node-by-node
+  # from `6` and `12` until stopping
+  # at the first nodes where the
+  # `value` attribute is 1, 2, or 10;
+  # specify that we should only
+  # keep the finally traversed to
+  # nodes that satisfy the conditions
+  graph <-
+    graph %>%
+    trav_in_until(
+      conditions =
+        value %in% c(1, 2, 10),
+      exclude_unmatched = TRUE)
+
+  # Expect that the graph's node
+  # selection contains nodes
+  # `2` and `10`
+  expect_equal(
+    graph %>%
+      get_selection(), c(2, 10))
+
+  # Expect an error if there isn't
+  # an active node selection
+  expect_error(
+    create_graph() %>%
+      add_path(
+        n = 10,
+        node_data = node_data(
+          value = 1:10)) %>%
+      trav_in_until(
+        conditions =
+          value == 1))
 })
