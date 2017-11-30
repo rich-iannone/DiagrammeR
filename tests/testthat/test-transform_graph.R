@@ -74,6 +74,58 @@ test_that("Reversing the graph edges is possible", {
       rev_edge_dir())
 })
 
+test_that("Reversing edges in a selection is possible", {
+
+  # Create a graph with a directed tree
+  graph <-
+    create_graph() %>%
+    add_balanced_tree(
+      k = 2, h = 2)
+
+  # Select all edges associated with
+  # nodes `1` and `2` (this selects
+  # 4 graph edges)
+  graph <-
+    select_edges_by_node_id(
+      graph = graph,
+      nodes = 1:2)
+
+  # Reverse the edge directions of
+  # the selected edges
+  graph_reversed_edges <-
+    graph %>%
+    rev_edge_dir_ws()
+
+  # Expect certain edge definitions
+  # in the transformed graph
+  expect_identical(
+    graph_reversed_edges %>%
+      get_edges(),
+    c("2->1", "3->1", "4->2",
+      "5->2", "3->6", "3->7"))
+
+  # Expect an error if there is no
+  # selection of edges
+  expect_error(
+    create_graph() %>%
+      add_balanced_tree(
+        k = 2, h = 2) %>%
+      rev_edge_dir_ws())
+
+  # Expect an error if the graph
+  # is undirected
+  expect_error(
+    create_graph(
+      directed = FALSE) %>%
+      add_balanced_tree(
+        k = 2, h = 2) %>%
+      select_edges_by_node_id(
+        nodes = 1:2) %>%
+      rev_edge_dir())
+
+
+})
+
 test_that("Creating a complement graph is possible", {
 
   # Create a simple graph with a single cycle
