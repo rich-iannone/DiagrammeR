@@ -19,18 +19,32 @@ test_that("Converting to igraph is possible", {
 
 test_that("Changing to undirected mode is possible", {
 
-  # Create a random graph
+  # Create a simple graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 23,
-      directed = TRUE)
+    create_graph() %>%
+    add_path(n = 5)
 
   undirected_graph <-
     set_graph_undirected(graph)
 
   # Expect the the graph is undirected
   expect_true(
+    graph$directed)
+})
+
+test_that("Changing to directed mode is possible", {
+
+  # Create a simple graph
+  graph <-
+    create_graph(
+      directed = FALSE) %>%
+    add_path(n = 5)
+
+  directed_graph <-
+    set_graph_directed(graph)
+
+  # Expect the the graph is undirected
+  expect_false(
     graph$directed)
 })
 
