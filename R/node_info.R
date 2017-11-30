@@ -77,12 +77,13 @@ node_info <- function(graph) {
   # For graphs with no edges, create a
   # `node_properties` data frame that doesn't
   # need to consider any edge information
-  if (is.null(graph$edges_df)) {
+  if (nrow(graph$edges_df) == 0) {
 
     node_properties <-
       as.data.frame(
-        mat.or.vec(nr = length(all_nodes),
-                   nc = 7),
+        mat.or.vec(
+          nr = length(all_nodes),
+          nc = 7),
         stringsAsFactors = FALSE)
 
     colnames(node_properties) <-
