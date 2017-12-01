@@ -1602,6 +1602,42 @@ test_that("Adding a growing graph is possible", {
   expect_identical(
     graph_1$edges_df,
     graph_2$edges_df)
+
+  # Create a directed graph, add
+  # a cycle of 100 nodes , and then
+  # add a growing graph with 100 nodes
+  growing_graph_added <-
+    create_graph() %>%
+    add_cycle(
+      n = 100,
+      type = "cycle") %>%
+    add_growing_graph(
+      n = 100,
+      m = 1) %>%
+    select_last_nodes_created() %>%
+    set_node_attrs_ws(
+      node_attr = type,
+      value = "growing") %>%
+    clear_selection()
+
+  # Expect that the first 100 nodes
+  # belong to the `cycle` type
+  expect_equal(
+    growing_graph_added$nodes_df$type[1:100] %>%
+      unique(),
+    "cycle")
+
+  # Expect that the 200 nodes have a
+  # node ID sequence from 1 to 200
+  expect_identical(
+    growing_graph_added$nodes_df$id,
+    1:200)
+
+  # Expect an error if the value for
+  # `n` is too small (< 1)
+  expect_error(
+    create_graph() %>%
+      add_growing_graph(n = 0, m = 1))
 })
 
 test_that("Adding an islands graph is possible", {
