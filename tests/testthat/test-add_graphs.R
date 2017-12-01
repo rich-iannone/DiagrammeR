@@ -1421,6 +1421,43 @@ test_that("Adding a G(n, m) Erdos-Renyi graph is possible", {
   expect_identical(
     graph_1$edges_df,
     graph_2$edges_df)
+
+  # Create a directed graph, add
+  # a cycle of 100 nodes , and then
+  # add a GNM graph with 100 nodes
+  # and 120 edges
+  gnm_graph_added <-
+    create_graph() %>%
+    add_cycle(
+      n = 100,
+      type = "cycle") %>%
+    add_gnm_graph(
+      n = 100,
+      m = 120) %>%
+    select_last_nodes_created() %>%
+    set_node_attrs_ws(
+      node_attr = type,
+      value = "GNM") %>%
+    clear_selection()
+
+  # Expect that the first 100 nodes
+  # belong to the `cycle` type
+  expect_equal(
+    gnm_graph_added$nodes_df$type[1:100] %>%
+      unique(),
+    "cycle")
+
+  # Expect that the 200 nodes have a
+  # node ID sequence from 1 to 200
+  expect_identical(
+    gnm_graph_added$nodes_df$id,
+    1:200)
+
+  # Expect an error if the value for
+  # `n` is too small (< 1)
+  expect_error(
+    create_graph() %>%
+    add_gnm_graph(n = 0, m = 5))
 })
 
 test_that("Adding a G(n, p) Erdos-Renyi graph is possible", {
@@ -1474,6 +1511,42 @@ test_that("Adding a G(n, p) Erdos-Renyi graph is possible", {
   expect_identical(
     graph_1$edges_df,
     graph_2$edges_df)
+
+  # Create a directed graph, add
+  # a cycle of 100 nodes , and then
+  # add a GNP graph with 100 nodes
+  gnp_graph_added <-
+    create_graph() %>%
+    add_cycle(
+      n = 100,
+      type = "cycle") %>%
+    add_gnp_graph(
+      n = 100,
+      p = 0.06) %>%
+    select_last_nodes_created() %>%
+    set_node_attrs_ws(
+      node_attr = type,
+      value = "GNP") %>%
+    clear_selection()
+
+  # Expect that the first 100 nodes
+  # belong to the `cycle` type
+  expect_equal(
+    gnp_graph_added$nodes_df$type[1:100] %>%
+      unique(),
+    "cycle")
+
+  # Expect that the 200 nodes have a
+  # node ID sequence from 1 to 200
+  expect_identical(
+    gnp_graph_added$nodes_df$id,
+    1:200)
+
+  # Expect an error if the value for
+  # `n` is too small (< 1)
+  expect_error(
+    create_graph() %>%
+      add_gnp_graph(n = 0, p = 0.05))
 })
 
 test_that("Adding a growing graph is possible", {
