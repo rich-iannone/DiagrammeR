@@ -1423,7 +1423,7 @@ test_that("Adding a G(n, m) Erdos-Renyi graph is possible", {
     graph_2$edges_df)
 
   # Create a directed graph, add
-  # a cycle of 100 nodes , and then
+  # a cycle of 100 nodes, and then
   # add a GNM graph with 100 nodes
   # and 120 edges
   gnm_graph_added <-
@@ -1513,7 +1513,7 @@ test_that("Adding a G(n, p) Erdos-Renyi graph is possible", {
     graph_2$edges_df)
 
   # Create a directed graph, add
-  # a cycle of 100 nodes , and then
+  # a cycle of 100 nodes, and then
   # add a GNP graph with 100 nodes
   gnp_graph_added <-
     create_graph() %>%
@@ -1604,7 +1604,7 @@ test_that("Adding a growing graph is possible", {
     graph_2$edges_df)
 
   # Create a directed graph, add
-  # a cycle of 100 nodes , and then
+  # a cycle of 100 nodes, and then
   # add a growing graph with 100 nodes
   growing_graph_added <-
     create_graph() %>%
@@ -1695,6 +1695,38 @@ test_that("Adding an islands graph is possible", {
   expect_identical(
     graph_1$edges_df,
     graph_2$edges_df)
+
+  # Create a directed graph, add
+  # a cycle of 100 nodes, and then
+  # add an islands graph with 100 nodes
+  islands_graph_added <-
+    create_graph() %>%
+    add_cycle(
+      n = 100,
+      type = "cycle") %>%
+    add_islands_graph(
+      n_islands = 10,
+      island_size = 10,
+      p = 0.5,
+      edges_between = 1) %>%
+    select_last_nodes_created() %>%
+    set_node_attrs_ws(
+      node_attr = type,
+      value = "islands") %>%
+    clear_selection()
+
+  # Expect that the first 100 nodes
+  # belong to the `cycle` type
+  expect_equal(
+    islands_graph_added$nodes_df$type[1:100] %>%
+      unique(),
+    "cycle")
+
+  # Expect that the 200 nodes have a
+  # node ID sequence from 1 to 200
+  expect_identical(
+    islands_graph_added$nodes_df$id,
+    1:200)
 })
 
 test_that("Adding a preferential attachment graph is possible", {
