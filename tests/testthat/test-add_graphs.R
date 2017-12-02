@@ -1877,4 +1877,36 @@ test_that("Adding a small world graph is possible", {
   expect_identical(
     graph_1$edges_df,
     graph_2$edges_df)
+
+  # Create a directed graph, add
+  # a cycle of 100 nodes, and then
+  # add a small world graph
+  smallworld_graph_added <-
+    create_graph() %>%
+    add_cycle(
+      n = 100,
+      type = "cycle") %>%
+    add_smallworld_graph(
+      dimension = 1,
+      size = 50,
+      neighborhood = 1,
+      p = 0.05) %>%
+    select_last_nodes_created() %>%
+    set_node_attrs_ws(
+      node_attr = type,
+      value = "smallworld") %>%
+    clear_selection()
+
+  # Expect that the first 100 nodes
+  # belong to the `cycle` type
+  expect_equal(
+    smallworld_graph_added$nodes_df$type[1:100] %>%
+      unique(),
+    "cycle")
+
+  # Expect that the 150 nodes have a
+  # node ID sequence from 1 to 150
+  expect_identical(
+    smallworld_graph_added$nodes_df$id,
+    1:150)
 })
