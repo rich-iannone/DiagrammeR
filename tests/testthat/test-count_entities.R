@@ -256,4 +256,11 @@ test_that("counting the unconnected graph nodes is possible", {
   # return 0
   expect_equal(
     count_unconnected_nodes(create_graph()), 0)
+
+  # Expect that a graph without unconnected
+  # nodes will return 0
+  expect_equal(
+    create_graph() %>%
+      add_path(n = 4) %>%
+      count_unconnected_nodes(), 0)
 })
