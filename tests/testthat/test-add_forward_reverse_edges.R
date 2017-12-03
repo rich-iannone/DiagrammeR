@@ -87,4 +87,18 @@ test_that("reverse edges can be added given a selection of edges", {
   expect_equivalent(
     graph$edges_df$rel,
     c("a", "b", "c"))
+
+  # Expect an error if the graph does not
+  # have an active selection of edges
+  expect_error(
+    create_graph() %>%
+      add_n_nodes(
+        n = 2,
+        type = "type_a",
+        label = c("a_1", "a_2")) %>%
+      add_edge(
+        from = 1,
+        to = 2,
+        rel = "a") %>%
+      add_reverse_edges_ws("b"))
 })
