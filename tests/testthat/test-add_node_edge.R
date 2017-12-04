@@ -103,13 +103,13 @@ test_that("adding a node to a graph is possible", {
 
   # Expect that the new node is available in the graph
   expect_true(
-    node_present(
+    is_node_present(
       graph = graph_from,
       node = 4))
 
   # Expect that the edge from `3` to `4` is in the graph
   expect_true(
-    edge_present(
+    is_edge_present(
       graph = graph_from,
       from = 3,
       to = 4))
@@ -135,13 +135,13 @@ test_that("adding a node to a graph is possible", {
 
   # Expect that the new node is available in the graph
   expect_true(
-    node_present(
+    is_node_present(
       graph = graph_to,
       node = 4))
 
   # Expect that the edge from `4` to `3` is in the graph
   expect_true(
-    edge_present(
+    is_edge_present(
       graph = graph_to,
       from = 4,
       to = 3))
@@ -169,20 +169,20 @@ test_that("adding a node to a graph is possible", {
 
   # Expect that the new node is available in the graph
   expect_true(
-    node_present(
+    is_node_present(
       graph = graph_to_from,
       node = 4))
 
   # Expect that the edge from `1` to `4` is in the graph
   expect_true(
-    edge_present(
+    is_edge_present(
       graph = graph_to_from,
       from = 1,
       to = 4))
 
   # Expect that the edge from `4` to `2` is in the graph
   expect_true(
-    edge_present(
+    is_edge_present(
       graph = graph_to_from,
       from = 4,
       to = 2))

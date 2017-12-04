@@ -88,15 +88,18 @@ test_that("nodes and edges can be deleted from a graph", {
   # Expect that edge between nodes `1` and `3` will
   # not be present
   expect_false(
-    edge_present(graph, 1, 3))
+    is_edge_present(
+      graph = graph,
+      from = 1,
+      to = 3))
 
   # Expect that the nodes involved in the edge
   # deletion are retained
   expect_true(
-    node_present(graph, node = 1))
+    is_node_present(graph, node = 1))
 
   expect_true(
-    node_present(graph, node = 3))
+    is_node_present(graph, node = 3))
 })
 
 test_that("errors can occur when deleting nodes or edges with certain input values", {
