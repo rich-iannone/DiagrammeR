@@ -458,8 +458,5 @@ test_that("Identifying the graph as a property graph is possible", {
   # Expect that an empty graph will
   # return FALSE
   expect_false(
-    is_graph_weighted(create_graph()))
+    is_property_graph(create_graph()))
 })
-
-
-
