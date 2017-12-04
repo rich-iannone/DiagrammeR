@@ -150,18 +150,6 @@ is_edge_present <- function(graph,
         return(FALSE)
       }
 
-      # Return FALSE if the label for
-      # `from` does not exist in the graph
-      if (!(from %in% graph$nodes_df$label)) {
-        return(FALSE)
-      }
-
-      # Return FALSE if the label for
-      # `to` does not exist in the graph
-      if (!(to %in% graph$nodes_df$label)) {
-        return(FALSE)
-      }
-
       # Use the `translate_to_node_id()` helper function to map
       # node `label` values to node `id` values
       from_to_node_id <-
