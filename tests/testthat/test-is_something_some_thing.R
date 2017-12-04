@@ -170,6 +170,93 @@ test_that("Detecting the presence of an edge is possible", {
       graph = graph,
       from = c(1, 2),
       to = 3))
+
+  # Expect an error if not providing
+  # an edge ID or an incomplete set
+  # of nodes that define an edge
+  expect_error(
+    is_edge_present(
+      graph = graph,
+      from = 2))
+
+  # Expect `FALSE` if defining
+  # an edge with character labels
+  # but both labels do not
+  # correspond to any node `label`
+  expect_false(
+    is_edge_present(
+      graph = graph,
+      from = "five",
+      to = "six"))
+
+  # Expect `FALSE` if defining
+  # an edge with character labels
+  # but the `from` label does not
+  # correspond to any node `label`
+  expect_false(
+    is_edge_present(
+      graph = graph,
+      from = "five",
+      to = "four"))
+
+  # Expect `FALSE` if defining
+  # an edge with character labels
+  # but the `to` label does not
+  # correspond to any node `label`
+  expect_false(
+    is_edge_present(
+      graph = graph,
+      from = "four",
+      to = "five"))
+
+  # Create an undirected graph
+  graph_undirected <-
+    create_graph(
+      directed = FALSE) %>%
+    add_path(
+      n = 4,
+      label = c(
+        "one", "two", "three", "four"))
+
+  # Expect that edge with ID `3`
+  # is present
+  expect_true(
+    is_edge_present(
+      graph = graph_undirected,
+      edge = 3))
+
+  # Expect that the edge with the
+  # definition `1` -> `2` is present
+  expect_true(
+    is_edge_present(
+      graph = graph_undirected,
+      from = 1,
+      to = 2))
+
+  # Expect that edge with ID `5`
+  # is not present
+  expect_false(
+    is_edge_present(
+      graph = graph_undirected,
+      edge = 5))
+
+  # Expect that the edge with the
+  # definition `4` -> `5` is not present
+  expect_false(
+    is_edge_present(
+      graph = graph_undirected,
+      from = 4,
+      to = 5))
+
+  # Expect that the edge,
+  # defined by its labels as
+  # `two` -> `three`, exists in
+  # the graph
+  expect_true(
+    is_edge_present(
+      graph = graph_undirected,
+      from = "two",
+      to = "three"))
 })
 
 test_that("Detecting edge loops is possible", {
