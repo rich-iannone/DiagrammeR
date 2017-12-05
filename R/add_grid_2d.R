@@ -189,9 +189,9 @@ add_grid_2d <- function(graph,
       directed = graph_directed) %>%
     from_igraph()
 
-  n_nodes <- grid %>% node_count()
+  n_nodes <- grid %>% count_nodes()
 
-  n_edges <- grid %>% edge_count()
+  n_edges <- grid %>% count_edges()
 
   # Create a node data frame for the grid graph
   grid_nodes <-
