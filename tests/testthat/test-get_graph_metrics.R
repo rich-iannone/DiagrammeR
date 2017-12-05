@@ -449,7 +449,7 @@ test_that("Getting the minimum cut between nodes is possible", {
       edge_attr = "capacity",
       value =
         rnorm(
-          n = edge_count(.),
+          n = count_edges(graph = .),
           mean = 5,
           sd = 1)) %>%
     clear_selection()

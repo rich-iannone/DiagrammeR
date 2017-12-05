@@ -68,7 +68,7 @@ test_that("rescaling edge attributes in a graph is possible", {
       set_seed = 23) %>%
     set_edge_attrs(
       edge_attr = weight,
-      values = rnorm(edge_count(.), 5))
+      values = rnorm(count_edges(.), 5))
 
   # Rescale the `weight` edge attribute, so that
   # its values are rescaled between 0 and 1

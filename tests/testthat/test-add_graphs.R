@@ -16,11 +16,11 @@ test_that("Adding a balanced tree is possible", {
 
   # Expect 40 nodes to have been created
   expect_equal(
-    node_count(graph), 40)
+    count_nodes(graph = graph), 40)
 
   # Expect 39 edges to have been created
   expect_equal(
-    edge_count(graph), 39)
+    count_edges(graph = graph), 39)
 
   # Expect node ID values from 1 to 40
   expect_identical(
@@ -68,11 +68,11 @@ test_that("Adding a balanced tree is possible", {
 
   # Expect that 47 nodes are now in the graph
   expect_equal(
-    node_count(graph), 47)
+    count_nodes(graph = graph), 47)
 
   # Expect 45 edges are now in the graph
   expect_equal(
-    edge_count(graph), 45)
+    count_edges(graph = graph), 45)
 
   # Expect node ID values from 1 to 47
   expect_identical(
@@ -109,11 +109,11 @@ test_that("Adding a cycle is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 3 edges to have been created
   expect_equal(
-    edge_count(graph), 3)
+    count_edges(graph = graph), 3)
 
   # Expect node ID values from 1 to 3
   expect_identical(
@@ -150,11 +150,11 @@ test_that("Adding a cycle is possible", {
 
   # Expect that 6 nodes are now in the graph
   expect_equal(
-    node_count(graph), 6)
+    count_nodes(graph = graph), 6)
 
   # Expect 6 edges are now in the graph
   expect_equal(
-    edge_count(graph), 6)
+    count_edges(graph = graph), 6)
 
   # Expect node ID values from 1 to 6
   expect_identical(
@@ -200,11 +200,11 @@ test_that("Adding a cycle is possible", {
 
   # Expect that 6 nodes are now in the graph
   expect_equal(
-    node_count(graph_2), 6)
+    count_nodes(graph = graph_2), 6)
 
   # Expect 6 edges are now in the graph
   expect_equal(
-    edge_count(graph_2), 6)
+    count_edges(graph = graph_2), 6)
 
   # Expect node ID values from 1 to 6
   expect_identical(
@@ -246,11 +246,11 @@ test_that("Adding a path is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 2 edges to have been created
   expect_equal(
-    edge_count(graph), 2)
+    count_edges(graph = graph), 2)
 
   # Expect node ID values from 1 to 3
   expect_identical(
@@ -287,11 +287,11 @@ test_that("Adding a path is possible", {
 
   # Expect that 6 nodes are now in the graph
   expect_equal(
-    node_count(graph), 6)
+    count_nodes(graph = graph), 6)
 
   # Expect 6 edges are now in the graph
   expect_equal(
-    edge_count(graph), 4)
+    count_edges(graph = graph), 4)
 
   # Expect node ID values from 1 to 6
   expect_identical(
@@ -337,11 +337,11 @@ test_that("Adding a path is possible", {
 
   # Expect that 6 nodes are now in the graph
   expect_equal(
-    node_count(graph_2), 6)
+    count_nodes(graph = graph_2), 6)
 
   # Expect 5 edges are now in the graph
   expect_equal(
-    edge_count(graph_2), 5)
+    count_edges(graph = graph_2), 5)
 
   # Expect node ID values from 1 to 6
   expect_identical(
@@ -383,11 +383,11 @@ test_that("Adding a prism is possible", {
 
   # Expect 6 nodes to have been created
   expect_equal(
-    node_count(graph), 6)
+    count_nodes(graph = graph), 6)
 
   # Expect 9 edges to have been created
   expect_equal(
-    edge_count(graph), 9)
+    count_edges(graph = graph), 9)
 
   # Expect node ID values from 1 to 6
   expect_identical(
@@ -424,11 +424,11 @@ test_that("Adding a prism is possible", {
 
   # Expect that 12 nodes are now in the graph
   expect_equal(
-    node_count(graph), 12)
+    count_nodes(graph = graph), 12)
 
   # Expect 18 edges are now in the graph
   expect_equal(
-    edge_count(graph), 18)
+    count_edges(graph = graph), 18)
 
   # Expect label values from 1 to 12
   expect_identical(
@@ -472,11 +472,11 @@ test_that("Adding a prism is possible", {
 
   # Expect that 6 nodes are now in the graph
   expect_equal(
-    node_count(graph_2), 6)
+    count_nodes(graph = graph_2), 6)
 
   # Expect 9 edges are now in the graph
   expect_equal(
-    edge_count(graph_2), 9)
+    count_edges(graph = graph_2), 9)
 
   # Expect node ID values from 1 to 6
   expect_identical(
@@ -520,11 +520,11 @@ test_that("Adding a star is possible", {
 
   # Expect 4 nodes to have been created
   expect_equal(
-    node_count(graph), 4)
+    count_nodes(graph = graph), 4)
 
   # Expect 3 edges to have been created
   expect_equal(
-    edge_count(graph), 3)
+    count_edges(graph = graph), 3)
 
   # Expect node ID values from 1 to 4
   expect_identical(
@@ -561,11 +561,11 @@ test_that("Adding a star is possible", {
 
   # Expect that 8 nodes are now in the graph
   expect_equal(
-    node_count(graph), 8)
+    count_nodes(graph = graph), 8)
 
   # Expect 6 edges are now in the graph
   expect_equal(
-    edge_count(graph), 6)
+    count_edges(graph = graph), 6)
 
   # Expect node ID values from 1 to 8
   expect_identical(
@@ -604,18 +604,18 @@ test_that("Adding a star is possible", {
               "star_e"))
 
   # Get the graph's node data frame
-  ndf <- get_node_df(graph_2)
+  ndf <- graph_2 %>% get_node_df()
 
   # Get the graph's edge data frame
-  edf <- get_edge_df(graph_2)
+  edf <- graph_2 %>% get_edge_df()
 
   # Expect that 6 nodes are now in the graph
   expect_equal(
-    node_count(graph_2), 6)
+    count_nodes(graph = graph_2), 6)
 
   # Expect 5 edges are now in the graph
   expect_equal(
-    edge_count(graph_2), 5)
+    count_edges(graph = graph_2), 5)
 
   # Expect node ID values from 1 to 6
   expect_identical(
@@ -658,15 +658,15 @@ test_that("Adding a 2D grid is possible", {
 
   # Expect 9 nodes to have been created
   expect_equal(
-    count_nodes(graph), 9)
+    count_nodes(graph = graph), 9)
 
   # Expect 12 edges to have been created
   expect_equal(
-    count_edges(graph), 12)
+    count_edges(graph = graph), 12)
 
   # Expect node ID values from 1 to 9
   expect_identical(
-    get_node_ids(graph), 1:9)
+    get_node_ids(x = graph), 1:9)
 
   # Expect label values from 1 to 9
   expect_identical(
@@ -960,11 +960,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 9 edges to have been created
   expect_equal(
-    edge_count(graph), 9)
+    count_edges(graph = graph), 9)
 
   # Expect that there are 3 loops in the graph
   expect_equal(
@@ -992,11 +992,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 6 edges to have been created
   expect_equal(
-    edge_count(graph), 6)
+    count_edges(graph = graph), 6)
 
   # Expect that there are no loops in the graph
   expect_equal(
@@ -1018,11 +1018,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 6 edges to have been created
   expect_equal(
-    edge_count(graph), 6)
+    count_edges(graph = graph), 6)
 
   # Expect that there are no loops in the graph
   expect_equal(
@@ -1084,11 +1084,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 6 edges to have been created
   expect_equal(
-    edge_count(graph), 6)
+    count_edges(graph = graph), 6)
 
   # Expect that there are no loops in the graph
   expect_equal(
@@ -1142,11 +1142,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 3 edges to have been created
   expect_equal(
-    edge_count(graph), 3)
+    count_edges(graph = graph), 3)
 
   # Expect that there are no loops in the graph
   expect_equal(
@@ -1198,11 +1198,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 9 edges to have been created
   expect_equal(
-    edge_count(graph), 9)
+    count_edges(graph = graph), 9)
 
   # Expect that there are 3 loops in the graph
   expect_equal(
@@ -1255,11 +1255,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 6 edges to have been created
   expect_equal(
-    edge_count(graph), 6)
+    count_edges(graph = graph), 6)
 
   # Expect that there are 3 loops in the graph
   expect_equal(
@@ -1312,11 +1312,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 3 nodes to have been created
   expect_equal(
-    node_count(graph), 3)
+    count_nodes(graph = graph), 3)
 
   # Expect 6 edges to have been created
   expect_equal(
-    edge_count(graph), 6)
+    count_edges(graph = graph), 6)
 
   # Expect that there are 3 loops in the graph
   expect_equal(
@@ -1365,11 +1365,11 @@ test_that("Adding a full graph is possible", {
 
   # Expect 13 nodes to have been created
   expect_equal(
-    node_count(graph), 13)
+    count_nodes(graph = graph), 13)
 
   # Expect 6 edges to have been created
   expect_equal(
-    edge_count(graph), 61)
+    count_edges(graph = graph), 61)
 })
 
 test_that("Adding a G(n, m) Erdos-Renyi graph is possible", {

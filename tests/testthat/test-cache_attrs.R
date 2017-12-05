@@ -1,6 +1,7 @@
 context("Caching attributes")
 
 test_that("Caching node attributes is possible", {
+
   # Set a seed
   set.seed(23)
 
@@ -9,8 +10,8 @@ test_that("Caching node attributes is possible", {
     create_graph() %>%
     add_n_nodes(n = 10) %>%
     set_node_attrs(
-      node_attr = "value",
-      values = rnorm(node_count(.), 5, 2)) %>%
+      node_attr = value,
+      values = rnorm(count_nodes(graph = .), 5, 2)) %>%
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
 
@@ -18,7 +19,7 @@ test_that("Caching node attributes is possible", {
   graph <-
     graph %>%
     cache_node_attrs(
-      node_attr = "value",
+      node_attr = value,
       name = "cached")
 
   # Expect a vector of length 10 in the graph's `$cache`
@@ -99,7 +100,7 @@ test_that("Caching edge attributes is possible", {
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10") %>%
     set_edge_attrs(
       edge_attr = "value",
-      values = rnorm(edge_count(.), 5, 2))
+      values = rnorm(count_edges(graph = .), 5, 2))
 
   # Cache all values from the edge attribute `value`
   # as a numeric vector
@@ -184,8 +185,8 @@ test_that("Caching node attrs (w/ selection) is possible", {
     create_graph() %>%
     add_n_nodes(n = 10) %>%
     set_node_attrs(
-      node_attr = "value",
-      values = rnorm(node_count(.), 5, 2)) %>%
+      node_attr = value,
+      values = rnorm(count_nodes(graph = .), 5, 2)) %>%
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
 
@@ -251,13 +252,13 @@ test_that("Caching node attrs (w/ selection) is possible", {
     create_graph() %>%
       add_n_nodes(n = 10) %>%
       set_node_attrs(
-        node_attr = "value",
-        values = rnorm(node_count(.), 5, 2)) %>%
+        node_attr = value,
+        values = rnorm(count_nodes(graph = .), 5, 2)) %>%
       add_edges_w_string(
         edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10") %>%
       select_nodes(conditions = "value < 5.0") %>%
       cache_node_attrs_ws(
-        node_attr = "value_2",
+        node_attr = value_2,
         name = "cached_3",
         mode =  "numeric"))
 })
@@ -275,7 +276,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10") %>%
     set_edge_attrs(
       edge_attr = "value",
-      values = rnorm(edge_count(.), 5, 2))
+      values = rnorm(count_edges(graph = .), 5, 2))
 
   # Expect an error if no edge selection is available
   expect_error(
@@ -394,8 +395,8 @@ test_that("Caching node attrs (w/ selection) is possible", {
     create_graph() %>%
     add_n_nodes(n = 10) %>%
     set_node_attrs(
-      node_attr = "value",
-      values = rnorm(node_count(.), 5, 2)) %>%
+      node_attr = value,
+      values = rnorm(count_nodes(graph = .), 5, 2)) %>%
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
 
@@ -411,7 +412,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   graph <-
     graph %>%
     cache_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       name = "cached",
       mode = "numeric")
 
@@ -436,7 +437,7 @@ test_that("Caching node attrs (w/ selection) is possible", {
   graph <-
     graph %>%
     cache_node_attrs_ws(
-      node_attr = "value",
+      node_attr = value,
       name = "cached_2",
       mode =  "character")
 
@@ -468,8 +469,8 @@ test_that("Caching edge attrs (w/ selection) is possible", {
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10") %>%
     set_edge_attrs(
-      edge_attr = "value",
-      values = rnorm(edge_count(.), 5, 2))
+      edge_attr = value,
+      values = rnorm(count_edges(graph = .), 5, 2))
 
   # Select all nodes where the edge attribute `value`
   # is less than 5
@@ -483,7 +484,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   graph <-
     graph %>%
     cache_edge_attrs_ws(
-      edge_attr = "value",
+      edge_attr = value,
       name = "cached",
       mode =  "numeric")
 
@@ -501,7 +502,7 @@ test_that("Caching edge attrs (w/ selection) is possible", {
   graph <-
     graph %>%
     cache_edge_attrs_ws(
-      edge_attr = "value",
+      edge_attr = value,
       name = "cached_2",
       mode =  "character")
 
@@ -551,8 +552,8 @@ test_that("Getting a cache is possible", {
     create_graph() %>%
     add_n_nodes(n = 10) %>%
     set_node_attrs(
-      node_attr = "value",
-      values = rnorm(node_count(.), 5, 2)) %>%
+      node_attr = value,
+      values = rnorm(count_nodes(graph = .), 5, 2)) %>%
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
 
@@ -561,7 +562,7 @@ test_that("Getting a cache is possible", {
   graph <-
     graph %>%
     cache_node_attrs(
-      node_attr = "value",
+      node_attr = value,
       name = "cached",
       mode =  "numeric")
 
@@ -589,8 +590,8 @@ test_that("Getting a cache is possible", {
     create_graph() %>%
     add_n_nodes(n = 10) %>%
     set_node_attrs(
-      node_attr = "value",
-      values = rnorm(node_count(.), 5, 2)) %>%
+      node_attr = value,
+      values = rnorm(count_nodes(graph = .), 5, 2)) %>%
     add_edges_w_string(
       edges = "1->2 1->3 2->4 2->5 3->6 3->7 4->8 4->9 5->10")
 

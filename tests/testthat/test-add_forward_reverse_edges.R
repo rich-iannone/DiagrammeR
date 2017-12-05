@@ -26,7 +26,7 @@ test_that("forward edges can be added given a selection of edges", {
 
   # Expect that there are 3 edges in the graph
   expect_equivalent(
-    edge_count(graph), 3)
+    count_edges(graph = graph), 3)
 
   # Expect edge `id` values of `1`, `2`, and `3`
   expect_equivalent(
@@ -71,7 +71,7 @@ test_that("reverse edges can be added given a selection of edges", {
 
   # Expect that there are 3 edges in the graph
   expect_equivalent(
-    edge_count(graph), 3)
+    count_edges(graph = graph), 3)
 
   # Expect edge `id` values of `1`, `2`, and `3`
   expect_equivalent(

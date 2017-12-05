@@ -65,7 +65,7 @@ test_that("adding a node to a graph is possible", {
 
   # Expect that there will be 3 nodes in the graph
   expect_equal(
-    node_count(graph_3), 3)
+    count_nodes(graph = graph_3), 3)
 
   # Expect that the "type" value will be present for
   # the node in the new graph
@@ -306,7 +306,7 @@ test_that("adding an edge to a graph is possible", {
 
   # Expect that 2 edges are available in the graph
   expect_equal(
-    edge_count(graph_2), 2)
+    count_edges(graph = graph_2), 2)
 
   # Expect that the edges in the graph are:
   # `3->4` and `4->1`
@@ -328,7 +328,7 @@ test_that("adding several nodes to a graph at once is possible", {
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(
-    node_count(graph), 10)
+    count_nodes(graph = graph), 10)
 
   # Expect monotonically-increasing node ID values
   # from 1 to 10
@@ -357,7 +357,7 @@ test_that("adding several nodes to a graph at once is possible", {
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(
-    node_count(graph), 10)
+    count_nodes(graph = graph), 10)
 
   # Expect monotonically-increasing node ID values
   # from `1` to `10`
@@ -390,7 +390,7 @@ test_that("adding several nodes to a graph at once (with extra attrs) is possibl
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(
-    node_count(graph), 10)
+    count_nodes(graph = graph), 10)
 
   # Expect monotonically-increasing node ID values
   # from 1 to 10
@@ -435,7 +435,7 @@ test_that("adding several nodes from a selected node is possible", {
 
   # Expect a total of 20 nodes in the graph
   expect_equal(
-    node_count(graph), 20)
+    count_nodes(graph = graph), 20)
 
   # Expect monotonically-increasing node ID
   # values from `1` to `20`
@@ -444,7 +444,7 @@ test_that("adding several nodes from a selected node is possible", {
 
   # Expect a total of 10 edges in the graph
   expect_equal(
-    edge_count(graph), 10)
+    count_edges(graph = graph), 10)
 
   # Expect that node IDs where edges are `from` belong
   # to the node with ID of `5`
@@ -524,7 +524,7 @@ test_that("adding several nodes to a selected node is possible", {
 
   # Expect a total of 20 nodes in the graph
   expect_equal(
-    node_count(graph), 20)
+    count_nodes(graph = graph), 20)
 
   # Expect monotonically-increasing node ID values
   # from `1` to `20`
@@ -534,7 +534,7 @@ test_that("adding several nodes to a selected node is possible", {
 
   # Expect a total of 10 edges in the graph
   expect_equal(
-    edge_count(graph), 10)
+    count_edges(graph = graph), 10)
 
   # Expect that node IDs where edges are `to` belong
   # to the node with ID of `5`
@@ -606,7 +606,7 @@ test_that("adding several edges with a string is possible", {
 
   # Expect a total of 10 nodes in the graph
   expect_equal(
-    node_count(graph), 10)
+    count_nodes(graph = graph), 10)
 
   # Expect monotonically-increasing node ID values
   # from 1 to 10
@@ -615,7 +615,7 @@ test_that("adding several edges with a string is possible", {
 
   # Expect a total of 9 edges in the graph
   expect_equal(
-    edge_count(graph), 9)
+    count_edges(graph = graph), 9)
 
   # Expect that the edge relationship has not been set
   # for any of the edges
@@ -664,7 +664,8 @@ test_that("adding several edges with a string is possible", {
       rel = "connected_to")
 
   # Expect a total of 9 edges in the graph
-  expect_equal(edge_count(graph), 9)
+  expect_equal(
+    count_edges(graph = graph), 9)
 
   # Create a graph with 4 nodes and 4 distinct labels
   graph <-
@@ -686,7 +687,7 @@ test_that("adding several edges with a string is possible", {
 
   # Expect a total of 4 edges in the graph
   expect_equal(
-    edge_count(graph_node_label), 4)
+    count_edges(graph = graph_node_label), 4)
 
   # Expect certain edges to be in the graph
   expect_equal(
@@ -881,7 +882,7 @@ test_that("adding node clones with a selection is possible", {
 
   # Expect 5 edges in the graph
   expect_equal(
-    count_edges(graph_3), 5)
+    count_edges(graph = graph_3), 5)
 
   # Expect edges with ID values
   # from 1 to 5
@@ -944,7 +945,7 @@ test_that("adding node clones with a selection is possible", {
 
   # Expect 5 edges in the graph
   expect_equal(
-    count_edges(graph_4), 5)
+    count_edges(graph = graph_4), 5)
 
   # Expect edges with ID values
   # from 1 to 5

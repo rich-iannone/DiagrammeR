@@ -194,7 +194,7 @@ test_that("adding nodes from a table to a graph is possible", {
   # Expect that the graph has the same number of nodes
   # as there are rows in the CSV
   expect_equal(
-    nrow(node_table), node_count(graph_1_df))
+    nrow(node_table), count_nodes(graph = graph_1_df))
 
   # Expect certain columns to exist in the graph's
   # node data frame
@@ -675,7 +675,7 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Expect that the graph has a certain number of edges
   expect_equal(
-    edge_count(graph_nodes_edges), 157)
+    count_edges(graph = graph_nodes_edges), 157)
 
   # Expect certain columns to exist in the graph's
   # edge data frame

@@ -28,7 +28,7 @@ test_that("the edge betweeness algorithm is functional", {
   # are nodes in the graph
   expect_equal(
     nrow(edge_betweeness),
-    node_count(graph))
+    count_nodes(graph = graph))
 
   # For this analysis expect 5 different groups
   expect_equal(
@@ -70,7 +70,7 @@ test_that("the fast-greedy algorithm is functional", {
   # Expect as many rows in the data frame as there
   # are nodes in the graph
   expect_equal(
-    nrow(fast_greedy), node_count(graph))
+    nrow(fast_greedy), count_nodes(graph = graph))
 
   # For this analysis expect two different groups
   # identified with labels `1` and `2`
@@ -113,7 +113,7 @@ test_that("the leading eigenvector algorithm is functional", {
   # Expect as many rows in the data frame as there
   # are nodes in the graph
   expect_equal(
-    nrow(l_eigenvec), node_count(graph))
+    nrow(l_eigenvec), count_nodes(graph = graph))
 
   # For this analysis expect two different groups
   # identified with labels `1` and `2`
@@ -156,7 +156,7 @@ test_that("the Louvain algorithm is functional", {
   # Expect as many rows in the data frame as there
   # are nodes in the graph
   expect_equal(
-    nrow(louvain), node_count(graph))
+    nrow(louvain), count_nodes(graph = graph))
 
   # For this analysis expect two different groups
   # identified with labels `1` and `2`
@@ -200,7 +200,7 @@ test_that("the walktrap algorithm is functional", {
   # Expect as many rows in the data frame as there
   # are nodes in the graph
   expect_equal(
-    nrow(walktrap), node_count(graph))
+    nrow(walktrap), count_nodes(graph = graph))
 
   # For this analysis expect two different groups
   # identified with labels `1` and `2`

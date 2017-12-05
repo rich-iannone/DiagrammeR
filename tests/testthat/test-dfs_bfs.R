@@ -23,7 +23,7 @@ test_that("the dfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_equal(
-    length(dfs_all), node_count(graph))
+    length(dfs_all), count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -43,7 +43,7 @@ test_that("the dfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_equal(
-    length(dfs_all_no_start), node_count(graph))
+    length(dfs_all_no_start), count_nodes(graph = graph))
 
   # Using `direction = "in"` to cause the dfs
   # routine to visit nodes along inward edges
@@ -60,7 +60,7 @@ test_that("the dfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_equal(
-    length(dfs_in), node_count(graph))
+    length(dfs_in), count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -82,7 +82,7 @@ test_that("the dfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_equal(
-    length(dfs_out), node_count(graph))
+    length(dfs_out), count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -125,7 +125,7 @@ test_that("the bfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_equal(
-    length(bfs_all), node_count(graph))
+    length(bfs_all), count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -146,7 +146,7 @@ test_that("the bfs algorithm is functional", {
   # same as the number of nodes in the graph
   expect_equal(
     length(bfs_all_no_start),
-    node_count(graph))
+    count_nodes(graph = graph))
 
   # Using `direction = "in"` to cause the bfs
   # routine to visit nodes along inward edges
@@ -163,7 +163,7 @@ test_that("the bfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_equal(
-    length(bfs_in), node_count(graph))
+    length(bfs_in), count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(
@@ -185,7 +185,7 @@ test_that("the bfs algorithm is functional", {
   # Expect the length of the vector to be the
   # same as the number of nodes in the graph
   expect_equal(
-    length(bfs_out), node_count(graph))
+    length(bfs_out), count_nodes(graph = graph))
 
   # Expect that certain values are returned
   expect_equal(

@@ -372,7 +372,8 @@ test_that("edge relationships can be set for edges in graph objects", {
 
   # Get an edge count and expect 3 edges
   expect_equal(
-    edge_count(graph_rel_empty), 3)
+    count_edges(
+      graph = graph_rel_empty), 3)
 
   # Get relationship values to be returned as NA
   # for all 3 edges

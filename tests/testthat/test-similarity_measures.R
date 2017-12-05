@@ -130,10 +130,10 @@ test_that("the dice similarity algorithm is functional", {
   # Expect the same number of matrix columns
   # and rows as there are nodes
   expect_equal(
-    ncol(dice_all_all), node_count(graph))
+    ncol(dice_all_all), count_nodes(graph = graph))
 
   expect_equal(
-    nrow(dice_all_all), node_count(graph))
+    nrow(dice_all_all), count_nodes(graph = graph))
 
   # Expect an error if one or more node IDs
   # provided are not in the graph
@@ -274,10 +274,10 @@ test_that("the Jaccard similarity algorithm is functional", {
   # Expect the same number of matrix columns
   # and rows as there are nodes
   expect_equal(
-    ncol(jaccard_all_all), node_count(graph))
+    ncol(jaccard_all_all), count_nodes(graph = graph))
 
   expect_equal(
-    nrow(jaccard_all_all), node_count(graph))
+    nrow(jaccard_all_all), count_nodes(graph = graph))
 
   # Expect an error if one or more node IDs
   # provided are not in the graph

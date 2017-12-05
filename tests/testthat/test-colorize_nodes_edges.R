@@ -179,7 +179,7 @@ test_that("Adding color based on edge attributes is possible", {
       set_seed = 1) %>%
     set_edge_attrs(
       edge_attr = weight,
-      values = rnorm(edge_count(.), 5, 2)) %>%
+      values = rnorm(count_edges(graph = .), 5, 2)) %>%
     set_edge_attrs(
       edge_attr = "rel",
       values = c("A", "A", "B", "B", "D",
@@ -266,7 +266,7 @@ test_that("Adding color based on edge attributes is possible", {
       set_seed = 1) %>%
     set_edge_attrs(
       edge_attr = weight,
-      values = rnorm(edge_count(.), 5, 2)) %>%
+      values = rnorm(count_edges(graph = .), 5, 2)) %>%
     set_edge_attrs(
       edge_attr = rel,
       values = c("A", "A", "B", "B", "D",
@@ -302,7 +302,7 @@ test_that("Adding color based on edge attributes is possible", {
       set_seed = 1) %>%
     set_edge_attrs(
       edge_attr = weight,
-      values = rnorm(edge_count(.), 5, 2)) %>%
+      values = rnorm(count_edges(graph = .), 5, 2)) %>%
     set_edge_attrs(
       edge_attr = rel,
       values = c("A", "A", "B", "B", "D",
