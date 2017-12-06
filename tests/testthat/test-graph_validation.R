@@ -184,7 +184,6 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(mutate_node_attrs(invalid_graph))
   expect_error(mutate_node_attrs_ws(invalid_graph))
   expect_error(node_info(invalid_graph))
-  expect_error(node_type(invalid_graph))
   expect_error(nudge_node_positions_ws(invalid_graph))
   expect_error(recode_edge_attrs(invalid_graph))
   expect_error(recode_node_attrs(invalid_graph))

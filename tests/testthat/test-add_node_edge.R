@@ -2,12 +2,10 @@ context("Adding nodes and/or edges to an existing graph object")
 
 test_that("adding a node to a graph is possible", {
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add two nodes to the graph
-  graph <- add_node(graph)
-  graph <- add_node(graph)
+  # Create a graph with two nodes
+  graph <-
+    create_graph() %>%
+    add_n_nodes(n = 2)
 
   # Expect that names in this graph object match a
   # prescribed set of names
@@ -70,16 +68,25 @@ test_that("adding a node to a graph is possible", {
   # Expect that the "type" value will be present for
   # the node in the new graph
   expect_equal(
-    node_type(graph_3, node = 3),
+    get_node_attrs(
+      graph = graph_3,
+      node_attr = type,
+      node = 3) %>% unname(),
     "fresh")
 
   # Expect that the other nodes in the graph will
   # still have unassigned `type` values
   expect_true(
-    is.na(node_type(graph_3, node = 1)))
+    is.na(get_node_attrs(
+      graph = graph_3,
+      node_attr = type,
+      node = 1) %>% unname()))
 
   expect_true(
-    is.na(node_type(graph_3, node = 2)))
+    is.na(get_node_attrs(
+      graph = graph_3,
+      node_attr = type,
+      node = 2) %>% unname()))
 
   # Create an empty graph
   graph_unlabeled <- create_graph()
@@ -121,7 +128,10 @@ test_that("adding a node to a graph is possible", {
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is NULL
   expect_true(
-    is.na(node_type(graph_from, node = 4)))
+    is.na(get_node_attrs(
+      graph = graph_from,
+      node_attr = type,
+      node = 4) %>% unname()))
 
   # Add a node to the graph that is joined to another
   graph_to <-
@@ -153,7 +163,10 @@ test_that("adding a node to a graph is possible", {
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is NULL
   expect_true(
-    is.na(node_type(graph_to, node = 4)))
+    is.na(get_node_attrs(
+      graph = graph_to,
+      node_attr = type,
+      node = 4) %>% unname()))
 
   # Add a node to the graph that is joined from
   # another and to another
@@ -190,16 +203,15 @@ test_that("adding a node to a graph is possible", {
   # Expect that for node `4`, the `type` is not set
   # since the default value for `type` is NULL
   expect_true(
-    is.na(
-      node_type(
-        graph = graph_to_from,
-        node = 4)))
+    is.na(get_node_attrs(
+      graph = graph_to_from,
+      node_attr = type,
+      node = 4) %>% unname()))
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add a node
-  graph <- add_node(graph)
+  # Create a graph with one node
+  graph <-
+    create_graph() %>%
+    add_node()
 
   # Add another node, connecting with only a value
   # provided as `from` but where the referenced node
@@ -212,12 +224,10 @@ test_that("adding a node to a graph is possible", {
 
 test_that("adding an edge to a graph is possible", {
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add two nodes
-  graph <- add_node(graph)
-  graph <- add_node(graph)
+  # Create a graph with two nodes
+  graph <-
+    create_graph() %>%
+    add_n_nodes(n = 2)
 
   # Add an edge
   graph <-
@@ -317,14 +327,10 @@ test_that("adding an edge to a graph is possible", {
 
 test_that("adding several nodes to a graph at once is possible", {
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add 10 nodes to the empty graph
+  # Create a graph with 10 nodes
   graph <-
-    add_n_nodes(
-      graph = graph,
-      n = 10)
+    create_graph() %>%
+    add_n_nodes(n = 10)
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(
@@ -379,14 +385,10 @@ test_that("adding several nodes to a graph at once is possible", {
 
 test_that("adding several nodes to a graph at once (with extra attrs) is possible", {
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add 10 nodes to the empty graph
+  # Create a graph with 10 nodes
   graph <-
-    add_n_nodes(
-      graph = graph,
-      n = 10)
+    create_graph() %>%
+    add_n_nodes(n = 10)
 
   # Expect that 10 nodes were added to the empty graph
   expect_equal(
@@ -411,14 +413,10 @@ test_that("adding several nodes to a graph at once (with extra attrs) is possibl
 
 test_that("adding several nodes from a selected node is possible", {
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add 10 nodes to the empty graph
+  # Create a graph with 10 nodes
   graph <-
-    add_n_nodes(
-      graph = graph,
-      n = 10)
+    create_graph() %>%
+    add_n_nodes(n = 10)
 
   # Select the node with ID of `5`
   graph <-
@@ -500,14 +498,10 @@ test_that("adding several nodes from a selected node is possible", {
 
 test_that("adding several nodes to a selected node is possible", {
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add 10 nodes to the empty graph
+  # Create a graph with 10 nodes
   graph <-
-    add_n_nodes(
-      graph = graph,
-      n = 10)
+    create_graph() %>%
+    add_n_nodes(n = 10)
 
   # Select the node with ID of `5`
   graph <-
@@ -589,14 +583,10 @@ test_that("adding several nodes to a selected node is possible", {
 
 test_that("adding several edges with a string is possible", {
 
-  # Create an empty graph
-  graph <- create_graph()
-
-  # Add 10 nodes to the empty graph
+  # Create a graph with 10 nodes
   graph <-
-    add_n_nodes(
-      graph = graph,
-      n = 10)
+    create_graph() %>%
+    add_n_nodes(n = 10)
 
   # Add edges via a string
   graph <-
