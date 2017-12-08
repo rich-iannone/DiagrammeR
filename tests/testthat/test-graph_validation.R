@@ -86,7 +86,6 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(drop_edge_attrs(invalid_graph))
   expect_error(drop_node_attrs(invalid_graph))
   expect_error(edge_info(invalid_graph))
-  expect_error(edge_rel(invalid_graph))
   expect_error(export_csv(invalid_graph))
   expect_error(export_graph(invalid_graph))
   expect_error(fully_connect_nodes_ws(invalid_graph))
