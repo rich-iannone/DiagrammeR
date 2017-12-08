@@ -67,8 +67,8 @@ test_that("actions can be deleted from a graph object", {
   # delete graph actions and none exist
   expect_error(
     graph %>%
-    delete_graph_actions(
-      actions = 1))
+      delete_graph_actions(
+        actions = 1))
 
   # Add three graph actions to the
   # graph
@@ -94,7 +94,7 @@ test_that("actions can be deleted from a graph object", {
     nrow(graph$graph_actions)
 
   # Delete two of the graph actions
-  graph <-
+  graph_delete_2 <-
     graph %>%
     delete_graph_actions(
       actions = c(2, 3))
@@ -102,23 +102,52 @@ test_that("actions can be deleted from a graph object", {
   # Expect that one graph action remains
   # Expect a single row in the data frame
   expect_equal(
-    nrow(graph$graph_actions),
+    nrow(graph_delete_2$graph_actions),
     number_of_graph_actions_before_deletion - 2)
 
   # Expect that the first graph action
   # remains in the graph
   # Expect the `action_index` to be 1
   expect_equal(
-    graph$graph_actions$action_index, 1)
+    graph_delete_2$graph_actions$action_index, 1)
 
   # Expect the `action_name` to be `get_btwns`
   expect_equal(
-    graph$graph_actions$action_name, "get_pagerank")
+    graph_delete_2$graph_actions$action_name, "get_pagerank")
 
   # Expect the action in the data frame to
   # be correctly generated
   expect_equal(
-    graph$graph_actions$expression,
+    graph_delete_2$graph_actions$expression,
+    "set_node_attr_w_fcn(graph = graph, node_attr_fcn = 'get_pagerank', column_name = 'pagerank')")
+
+  # Delete two of the graph actions by
+  # their `action_name` values
+  graph_delete_2_by_name <-
+    graph %>%
+    delete_graph_actions(
+      actions = c("pagerank_to_width", "pagerank_fillcolor"))
+
+  # Expect that one graph action remains
+  # Expect a single row in the data frame
+  expect_equal(
+    nrow(graph_delete_2_by_name$graph_actions),
+    number_of_graph_actions_before_deletion - 2)
+
+  # Expect that the first graph action
+  # remains in the graph
+  # Expect the `action_index` to be 1
+  expect_equal(
+    graph_delete_2_by_name$graph_actions$action_index, 1)
+
+  # Expect the `action_name` to be `get_btwns`
+  expect_equal(
+    graph_delete_2_by_name$graph_actions$action_name, "get_pagerank")
+
+  # Expect the action in the data frame to
+  # be correctly generated
+  expect_equal(
+    graph_delete_2_by_name$graph_actions$expression,
     "set_node_attr_w_fcn(graph = graph, node_attr_fcn = 'get_pagerank', column_name = 'pagerank')")
 })
 
