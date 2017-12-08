@@ -63,6 +63,13 @@ test_that("actions can be deleted from a graph object", {
   # Create an empty graph object
   graph <- create_graph()
 
+  # Expect an error when trying to
+  # delete graph actions and none exist
+  expect_error(
+    graph %>%
+    delete_graph_actions(
+      actions = 1))
+
   # Add three graph actions to the
   # graph
   graph <-
