@@ -2,10 +2,12 @@ context("Perform graph object transformations")
 
 test_that("Converting to igraph is possible", {
 
-  # Create a random graph
+  # Create a randomized graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Create an igraph object from a
@@ -50,12 +52,13 @@ test_that("Changing to directed mode is possible", {
 
 test_that("Reversing the graph edges is possible", {
 
-  # Create a random graph
+  # Create a randomized graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 23,
-      directed = TRUE)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      set_seed = 23)
 
   # Get a vector of `from` nodes
   from_nodes <- graph$edges_df$from
@@ -82,9 +85,13 @@ test_that("Reversing the graph edges is possible", {
   # Expect an error if reversing edge direction
   # in an undirected graph
   expect_error(
-    create_random_graph(
-      n = 5, m = 5,
-      directed = FALSE) %>%
+    graph <-
+      create_graph(
+        directed = FALSE) %>%
+      add_gnm_graph(
+        n = 10,
+        m = 22,
+        set_seed = 23) %>%
       rev_edge_dir())
 })
 

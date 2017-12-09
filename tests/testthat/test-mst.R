@@ -6,9 +6,11 @@ test_that("the MST algorithm is functional", {
   # similarity values for each pair of nodes
   # as a square matrix
   j_sim_matrix <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 1) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      set_seed = 23) %>%
     get_jaccard_similarity()
 
   # Create a weighted, undirected graph from the
