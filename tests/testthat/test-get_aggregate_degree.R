@@ -110,10 +110,14 @@ test_that("Getting aggregated indegree values is possible", {
 
 test_that("Getting aggregated outdegree values is possible", {
 
-  # Create a random graph
+  # Create a randomized graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      node_data = node_data(
+        value = 1:10),
       set_seed = 23)
 
   # Expect a certain value for the
@@ -150,7 +154,7 @@ test_that("Getting aggregated outdegree values is possible", {
     get_agg_degree_out(
       graph = graph,
       agg = "median"),
-    2.5)
+    2)
 
   # Expect a certain value for the sum
   # of outdegree values from all
@@ -170,7 +174,7 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "mean",
       conditions = value > 5.0),
-    1.571429,
+    1.6,
     tolerance = 0.002)
 
   # Expect a certain value for the
@@ -194,7 +198,7 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "max",
       conditions = value > 5.0),
-    4,
+    3,
     tolerance = 0.002)
 
   # Expect a certain value for the
@@ -206,7 +210,7 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "median",
       conditions = value > 5.0),
-    1,
+    2,
     tolerance = 0.002)
 
   # Expect a certain value for the sum
@@ -218,16 +222,20 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "sum",
       conditions = value > 5.0),
-    11,
+    8,
     tolerance = 0.002)
 })
 
 test_that("Getting aggregated total degree values is possible", {
 
-  # Create a random graph
+  # Create a randomized graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      node_data = node_data(
+        value = 1:10),
       set_seed = 23)
 
   # Expect a certain value for the
@@ -246,7 +254,7 @@ test_that("Getting aggregated total degree values is possible", {
     get_agg_degree_total(
       graph = graph,
       agg = "min"),
-    2)
+    1)
 
   # Expect a certain value for the
   # maximum total degree value from all
@@ -255,7 +263,7 @@ test_that("Getting aggregated total degree values is possible", {
     get_agg_degree_total(
       graph = graph,
       agg = "max"),
-    7)
+    9)
 
   # Expect a certain value for the
   # maximum total degree value from all
@@ -284,7 +292,7 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "mean",
       conditions = value > 5.0),
-    4,
+    3.4,
     tolerance = 0.002)
 
   # Expect a certain value for the
@@ -296,7 +304,7 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "min",
       conditions = value > 5.0),
-    2,
+    1,
     tolerance = 0.002)
 
   # Expect a certain value for the
@@ -332,6 +340,6 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "sum",
       conditions = value > 5.0),
-    28,
+    17,
     tolerance = 0.002)
 })
