@@ -2,11 +2,13 @@ context("Similarity measures for whole graphs")
 
 test_that("the dice similarity algorithm is functional", {
 
-  # Create a random, directed graph with 10 nodes and 15 edges
+  # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 1)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      set_seed = 23)
 
   # Get the Dice similarity values for
   # nodes `5`, `6`, and `7`; all directions
@@ -146,11 +148,13 @@ test_that("the dice similarity algorithm is functional", {
 
 test_that("the Jaccard similarity algorithm is functional", {
 
-  # Create a random, directed graph with 10 nodes and 15 edges
+  # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 1)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      set_seed = 23)
 
   # Get the Jaccard similarity values for
   # nodes `5`, `6`, and `7`; all directions

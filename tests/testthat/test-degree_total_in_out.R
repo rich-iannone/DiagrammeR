@@ -4,8 +4,10 @@ test_that("a degree data frame can be generated", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
       set_seed = 23)
 
   # Get the total degree values for all nodes
@@ -32,7 +34,7 @@ test_that("a degree data frame can be generated", {
   # Expect certain values in the 2nd column
   expect_equal(
     total_degree_df$total_degree,
-    c(4, 5, 4, 3, 5, 7, 4, 2, 5, 5))
+    c(1, 1, 5, 3, 3, 1, 0, 2, 1, 3))
 
   # Get the total degree values for all nodes
   # in the graph as normalized values
@@ -61,8 +63,8 @@ test_that("a degree data frame can be generated", {
   # Expect certain values in the 2nd column
   expect_equal(
     total_degree_df_norm$total_degree,
-    c(0.4444444, 0.5555556, 0.4444444, 0.3333333, 0.5555556,
-      0.7777778, 0.4444444, 0.2222222, 0.5555556, 0.5555556),
+    c(0.1111111, 0.1111111, 0.5555556, 0.3333333, 0.3333333,
+      0.1111111, 0.0000000, 0.2222222, 0.1111111, 0.3333333),
     tolerance = 0.002)
 
   # Get the in-degree values for all nodes
@@ -89,7 +91,7 @@ test_that("a degree data frame can be generated", {
   # Expect certain values in the 2nd column
   expect_equal(
     in_degree_df$indegree,
-    c(0, 0, 1, 0, 3, 4, 3, 2, 4, 5))
+    c(1, 0, 2, 1, 0, 1, 0, 2, 1, 2))
 
   # Get the total degree values for all nodes
   # in the graph as normalized values
@@ -118,9 +120,8 @@ test_that("a degree data frame can be generated", {
   # Expect certain values in the 2nd column
   expect_equal(
     in_degree_df_norm$indegree,
-    c(0.0000000, 0.0000000, 0.1111111, 0.0000000,
-      0.3333333, 0.4444444, 0.3333333, 0.2222222,
-      0.4444444, 0.5555556),
+    c(0.1111111, 0.0000000, 0.2222222, 0.1111111, 0.0000000,
+      0.1111111, 0.0000000, 0.2222222, 0.1111111, 0.2222222),
     tolerance = 0.002)
 
   # Get the out-degree values for all nodes
@@ -147,7 +148,7 @@ test_that("a degree data frame can be generated", {
   # Expect certain values in the 2nd column
   expect_equal(
     out_degree_df$outdegree,
-    c(4, 5, 3, 3, 2, 3, 1, 0, 1, 0))
+    c(0, 1, 3, 2, 3, 0, 0, 0, 0, 1))
 
   # Get the total degree values for all nodes
   # in the graph as normalized values
@@ -176,8 +177,7 @@ test_that("a degree data frame can be generated", {
   # Expect certain values in the 2nd column
   expect_equal(
     out_degree_df_norm$outdegree,
-    c(0.4444444, 0.5555556, 0.3333333, 0.3333333,
-      0.2222222, 0.3333333, 0.1111111, 0.0000000,
-      0.1111111, 0.0000000),
+    c(0.0000000, 0.1111111, 0.3333333, 0.2222222, 0.3333333,
+      0.0000000, 0.0000000, 0.0000000, 0.0000000, 0.1111111),
     tolerance = 0.002)
 })

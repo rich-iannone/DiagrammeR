@@ -263,22 +263,26 @@ test_that("setting edge attributes is possible", {
 
 test_that("Getting node attributes is possible", {
 
-  # Create a random graph with 4 nodes and 4 edges
-  random_graph <-
-    create_random_graph(
-      n = 4, m = 4,
+  # Create a randomized graph
+  graph <-
+    create_graph() %>%
+    add_gnm_graph(
+      n = 4,
+      m = 4,
+      node_data = node_data(
+        value = 1:4),
       set_seed = 23)
 
   # Get node attributes for all nodes with the
   # `value` attribute
   all_nodes <-
     get_node_attrs(
-      graph = random_graph,
+      graph = graph,
       node_attr = value)
 
-  # Expect a numeric vector
+  # Expect a vector of integer values
   expect_is(
-    all_nodes, "numeric")
+    all_nodes, "integer")
 
   # Expect the vector to have length 4
   expect_equal(
@@ -290,21 +294,21 @@ test_that("Getting node attributes is possible", {
 
   # Expect certain values to be in the vector
   expect_equal(
-    all_nodes[[1]], 6.0)
+    all_nodes[[1]], 1)
 
   expect_equal(
-    all_nodes[[2]], 2.5)
+    all_nodes[[2]], 2)
 
   expect_equal(
-    all_nodes[[3]], 3.5)
+    all_nodes[[3]], 3)
 
   expect_equal(
-    all_nodes[[4]], 7.5)
+    all_nodes[[4]], 4)
 
   # Get node attributes for nodes `1` and `3`
   nodes_1_3 <-
     get_node_attrs(
-      graph = random_graph,
+      graph = graph,
       node_attr = value,
       nodes = c(1, 3))
 
@@ -318,15 +322,15 @@ test_that("Getting node attributes is possible", {
 
   # Expect certain values to be in the vector
   expect_equal(
-    nodes_1_3[[1]], 6.0)
+    nodes_1_3[[1]], 1)
 
   expect_equal(
-    nodes_1_3[[2]], 3.5)
+    nodes_1_3[[2]], 3)
 
   # Expect an error if referencing `id`
   expect_error(
     get_node_attrs(
-      graph = random_graph,
+      graph = graph,
       node_attr = id))
 })
 
@@ -450,15 +454,18 @@ test_that("Getting edge attributes is possible", {
 
 test_that("Getting node attributes with a selection is possible", {
 
-  # Create a random graph with
-  # 4 nodes and 4 edges and select
-  # nodes `1` and `3`
+  # Create a random graph and
+  # select nodes `1` and `3`
   graph <-
-    create_random_graph(
-      n = 4, m = 4,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 4,
+      m = 4,
+      node_data = node_data(
+        value = 1:4),
       set_seed = 23) %>%
-    select_nodes_by_id(
-      nodes = c(1, 3))
+  select_nodes_by_id(
+    nodes = c(1, 3))
 
   # Get node attributes for all
   # selected nodes with the
@@ -468,9 +475,9 @@ test_that("Getting node attributes with a selection is possible", {
       graph = graph,
       node_attr = value)
 
-  # Expect a numeric vector
+  # Expect a vector of integer values
   expect_is(
-    nodes_1_3, "numeric")
+    nodes_1_3, "integer")
 
   # Expect the vector to have length 2
   expect_equal(
@@ -482,10 +489,10 @@ test_that("Getting node attributes with a selection is possible", {
 
   # Expect certain values to be in the vector
   expect_equal(
-    nodes_1_3[[1]], 6.0)
+    nodes_1_3[[1]], 1)
 
   expect_equal(
-    nodes_1_3[[2]], 3.5)
+    nodes_1_3[[2]], 3)
 
   # Expect an error if there is no
   # node selection

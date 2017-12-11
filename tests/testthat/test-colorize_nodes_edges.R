@@ -2,10 +2,15 @@ context("Colorizing based on node and edge attrs")
 
 test_that("Adding color based on node attributes is possible", {
 
-  # Create a random graph of 50 nodes and 85 edges
+  # Create a random graph of
+  # 50 nodes and 85 edges
   graph <-
-    create_random_graph(
-      n = 50, m = 85,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 50,
+      m = 85,
+      node_data = node_data(
+        value = 1:50),
       set_seed = 23)
 
   # Find group membership values for all nodes
@@ -77,14 +82,16 @@ test_that("Adding color based on node attributes is possible", {
     graph$nodes_df$color,
     "#[0-9A-F]{6}[0-9]{2}")
 
-  # Create a random graph of 10 nodes and 22
-  # edges; this function automatically provides
-  # a node attribute `value` which has values
-  # in the range of 0 to 10.
+  # Create a random graph of
+  # 10 nodes and 22 edges
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 1)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      node_data = node_data(
+        value = 1:10),
+      set_seed = 23)
 
   # Bucketize values in `value` using `cut_points`
   # and assign colors to each of the bucketed ranges
@@ -119,9 +126,13 @@ test_that("Adding color based on node attributes is possible", {
   # Bucketize values as before but use an alpha
   # value of `90`
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 1) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      node_data = node_data(
+        value = 1:10),
+      set_seed = 23) %>%
     colorize_node_attrs(
       node_attr_from = value,
       node_attr_to = fillcolor,
@@ -145,9 +156,13 @@ test_that("Adding color based on node attributes is possible", {
   # Bucketize values as before but use an alpha
   # value of `100`
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 1) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      node_data = node_data(
+        value = 1:10),
+      set_seed = 23) %>%
     colorize_node_attrs(
       node_attr_from = value,
       node_attr_to = fillcolor,
@@ -171,15 +186,18 @@ test_that("Adding color based on node attributes is possible", {
 
 test_that("Adding color based on edge attributes is possible", {
 
-  # Create a random graph of 10 nodes and 10 edges;
-  # add the `weight` and `rel` edge attrs
+  # Create a random graph of
+  # 10 nodes and 10 edges;
+  # add the `weight` and `rel`
+  # edge attrs
   graph <-
-    create_random_graph(
-      n = 10, m = 10,
-      set_seed = 1) %>%
-    set_edge_attrs(
-      edge_attr = weight,
-      values = rnorm(count_edges(graph = .), 5, 2)) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      edge_data = edge_data(
+        weight = rnorm(10, 5, 2)),
+      set_seed = 23) %>%
     set_edge_attrs(
       edge_attr = "rel",
       values = c("A", "A", "B", "B", "D",
@@ -246,10 +264,10 @@ test_that("Adding color based on edge attributes is possible", {
   expect_true(
     "labelfontcolor" %in% colnames(graph$edges_df))
 
-  # Expect that there are 3 colors in the
+  # Expect that there are 4 colors in the
   # `labelfontcolor` column
   expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 3)
+    length(unique(graph$edges_df$labelfontcolor)), 4)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -258,17 +276,20 @@ test_that("Adding color based on edge attributes is possible", {
     graph$edges_df$labelfontcolor,
     "#[0-9A-F]{6}")
 
-  # Create a random graph of 10 nodes and 10 edges;
-  # add the `weight` and `rel` edge attrs
+  # Create a random graph of
+  # 10 nodes and 10 edges;
+  # add the `weight` and `rel`
+  # edge attrs
   graph <-
-    create_random_graph(
-      n = 10, m = 10,
-      set_seed = 1) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      edge_data = edge_data(
+        weight = rnorm(10, 5, 2)),
+      set_seed = 23) %>%
     set_edge_attrs(
-      edge_attr = weight,
-      values = rnorm(count_edges(graph = .), 5, 2)) %>%
-    set_edge_attrs(
-      edge_attr = rel,
+      edge_attr = "rel",
       values = c("A", "A", "B", "B", "D",
                  "A", "B", "C", "D", "A"))
 
@@ -282,10 +303,10 @@ test_that("Adding color based on edge attributes is possible", {
       cut_points = c(0, 2, 4, 6, 8, 10),
       alpha = 90)
 
-  # Expect that there are 3 colors in the
+  # Expect that there are 4 colors in the
   # `labelfontcolor` column
   expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 3)
+    length(unique(graph$edges_df$labelfontcolor)), 4)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color
@@ -297,12 +318,13 @@ test_that("Adding color based on edge attributes is possible", {
   # Create a random graph of 10 nodes and 10 edges;
   # add the `weight` and `rel` edge attrs
   graph <-
-    create_random_graph(
-      n = 10, m = 10,
-      set_seed = 1) %>%
-    set_edge_attrs(
-      edge_attr = weight,
-      values = rnorm(count_edges(graph = .), 5, 2)) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      edge_data = edge_data(
+        weight = 1:10),
+      set_seed = 23) %>%
     set_edge_attrs(
       edge_attr = rel,
       values = c("A", "A", "B", "B", "D",
@@ -318,10 +340,10 @@ test_that("Adding color based on edge attributes is possible", {
       cut_points = c(0, 2, 4, 6, 8, 10),
       alpha = 100)
 
-  # Expect that there are 3 colors in the
+  # Expect that there are 6 colors in the
   # `labelfontcolor` column
   expect_equal(
-    length(unique(graph$edges_df$labelfontcolor)), 3)
+    length(unique(graph$edges_df$labelfontcolor)), 6)
 
   # Expect that each value in the `labelfontcolor`
   # column is a properly-formed hexadecimal color

@@ -422,11 +422,13 @@ test_that("getting an edf based on a selection of edges is possible", {
 
 test_that("getting connected nodes is possible", {
 
-  # Create a graph with many weakly
-  # connected components
+  # Create a randomized graph with
+  # many weakly connected components
   graph <-
-    create_random_graph(
-      n = 10, m = 10,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
       set_seed = 23)
 
   connect_node_1 <-
@@ -437,7 +439,7 @@ test_that("getting connected nodes is possible", {
   # Expect certain node IDs to be returned
   expect_equal(
     connect_node_1,
-    c(2, 3, 5, 6, 7, 9, 10))
+    c(2, 3, 4, 5, 6, 8, 9, 10))
 
   # Expect that the node ID provided won't be
   # returned in the set of node ID values
@@ -447,7 +449,7 @@ test_that("getting connected nodes is possible", {
   # Expect an NA value if there are no connected
   # nodes to the provided node
   expect_true(
-    is.na(get_all_connected_nodes(graph, 4)))
+    is.na(get_all_connected_nodes(graph, 7)))
 
   # Expect an error if providing a node ID that
   # doesn't exist in the graph

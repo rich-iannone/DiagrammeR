@@ -603,10 +603,14 @@ test_that("Getting a cache is possible", {
 
 test_that("Setting a cache is possible", {
 
-  # Create a random graph
+  # Create a randomized graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      node_data = node_data(
+        value = 1:10),
       set_seed = 23)
 
   # Get the closeness values (as a data frame) for
