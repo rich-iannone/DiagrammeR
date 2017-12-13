@@ -214,9 +214,11 @@ test_that("Renaming node attributes is possible", {
 
   # Create a random graph with extra node attrs
   graph <-
-    create_random_graph(
-      n = 5, m = 10,
-      set_seed = 3) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      set_seed = 23) %>%
     set_node_attrs(
       node_attr = shape,
       values = "circle")
@@ -294,9 +296,11 @@ test_that("Renaming edge attributes is possible", {
 
   # Create a random graph with extra edge attrs
   graph <-
-    create_random_graph(
-      n = 5, m = 10,
-      set_seed = 3) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 5,
+      m = 10,
+      set_seed = 23) %>%
     set_edge_attrs(
       edge_attr = penwidth,
       values = 5) %>%

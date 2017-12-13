@@ -5,8 +5,10 @@ test_that("Getting the graph object log is possible", {
   # Create a random graph and add
   # an edge as well
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23) %>%
     add_edge(
       from = 5,
@@ -29,6 +31,5 @@ test_that("Getting the graph object log is possible", {
 
   # Expect 2 rows in this graph log
   expect_equal(
-    nrow(graph_log), 2)
+    nrow(graph_log), 3)
 })
-

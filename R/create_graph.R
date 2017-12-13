@@ -322,6 +322,11 @@ create_graph <- function(nodes_df = NULL,
     # If only an ndf is provided, create a graph
     # just containing nodes
 
+    # Transform any `tbl_df` object to a `data.frame`
+    if (inherits(nodes_df, "tbl_df")) {
+      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+    }
+
     # Force the `type` and `label` columns
     # to be of the character class
     for (i in 2:3) {
@@ -362,6 +367,16 @@ create_graph <- function(nodes_df = NULL,
 
     # If an ndf and edf both provided, create a graph
     # initially populated with both nodes and edges
+
+    # Transform any `tbl_df` object to a `data.frame`
+    if (inherits(nodes_df, "tbl_df")) {
+      nodes_df <- nodes_df %>% as.data.frame(stringsAsFactors = FALSE)
+    }
+
+    # Transform any `tbl_df` object to a `data.frame`
+    if (inherits(edges_df, "tbl_df")) {
+      edges_df <- edges_df %>% as.data.frame(stringsAsFactors = FALSE)
+    }
 
     # Force the `type` and `label` columns
     # to be of the character class

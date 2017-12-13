@@ -4,8 +4,10 @@ test_that("Getting betweenness is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
       set_seed = 23)
 
   betweenness_vals <- get_betweenness(graph)
@@ -38,8 +40,10 @@ test_that("Getting bridging is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
       set_seed = 23)
 
   bridging_vals <- get_bridging(graph)
@@ -72,10 +76,11 @@ test_that("Getting closeness is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 23,
-      directed = TRUE)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      set_seed = 23)
 
   # Get closness values with `direction = all`
   closeness_vals_all <- get_closeness(graph)
@@ -167,10 +172,11 @@ test_that("Getting coreness values is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 23,
-      directed = TRUE)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      set_seed = 23)
 
   # Get coreness values in all directions
   coreness_vals_all <- get_coreness(graph)
@@ -265,10 +271,11 @@ test_that("Getting closeness vitality is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 23,
-      directed = TRUE)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
+      set_seed = 23)
 
   # Get closness vitality values
   closeness_vitality_vals <- get_closeness_vitality(graph)
@@ -300,8 +307,10 @@ test_that("Getting alpha centrality is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 15,
+      m = 15,
       set_seed = 23)
 
   alpha_central_vals <-
@@ -317,12 +326,12 @@ test_that("Getting alpha centrality is possible", {
 
   # Expect 10 rows in the df
   expect_equal(
-    nrow(alpha_central_vals), 10)
+    nrow(alpha_central_vals), 15)
 
   # Expect node ID values in the first column
   expect_identical(
     alpha_central_vals[,1],
-    as.integer(1:10))
+    as.integer(1:15))
 
   # Expect numerical values in the
   # second column
@@ -335,8 +344,10 @@ test_that("Getting leverage centrality is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 10,
       set_seed = 23)
 
   leverage_central_vals <-
@@ -368,18 +379,21 @@ test_that("Getting leverage centrality is possible", {
 
 test_that("Getting authority centrality is possible", {
 
-  set.seed(23)
-
   # Create a random graph
   graph_1 <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
+  # Create a random graph
   graph_2 <-
-    create_random_graph(
-      n = 10, m = 22,
-      set_seed = 1) %>%
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
+      set_seed = 23) %>%
     select_edges() %>%
     set_edge_attrs_ws(
       edge_attr = "weight",
@@ -462,13 +476,18 @@ test_that("Getting eigenvector centrality is possible", {
 
   # Create a random graph
   graph_1 <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
+  # Create a random graph
   graph_2 <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23) %>%
     select_edges() %>%
     set_edge_attrs_ws(
@@ -550,8 +569,10 @@ test_that("Getting constraint values is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Get constraint values for all
@@ -621,8 +642,10 @@ test_that("Getting radiality values is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Get constraint values for all
@@ -658,37 +681,37 @@ test_that("Getting radiality values is possible", {
     get_radiality(
       graph = graph,
       direction = "all")[, 2] %>% min(),
-    2.5)
+    2.1111)
 
   expect_lte(
     get_radiality(
       graph = graph,
       direction = "all")[, 2] %>% max(),
-    3.3)
+    3.1111)
 
   expect_gte(
     get_radiality(
       graph = graph,
       direction = "in")[, 2] %>% min(),
-    0.4)
+    3.4444)
 
   expect_lte(
     get_radiality(
       graph = graph,
       direction = "in")[, 2] %>% max(),
-    2.8)
+    4.6667)
 
   expect_gte(
     get_radiality(
       graph = graph,
       direction = "out")[, 2] %>% min(),
-    0.4)
+    0.6667)
 
   expect_lte(
     get_radiality(
       graph = graph,
       direction = "out")[, 2] %>% max(),
-    2.5)
+    5.2222)
 
   # Expect an error if using a `direction`
   # value that isn't valid
@@ -702,8 +725,10 @@ test_that("Getting PageRank values is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Get constraint values for all
@@ -738,8 +763,10 @@ test_that("Getting articulation points is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 30, m = 50,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Get articulation points for the graph
@@ -752,15 +779,17 @@ test_that("Getting articulation points is possible", {
 
   # Expect 4 values in the vector
   expect_equal(
-    length(articulation_points), 7)
+    length(articulation_points), 2)
 })
 
 test_that("Getting weakly connected components is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 30, m = 50,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Get connected components for the graph
@@ -777,7 +806,7 @@ test_that("Getting weakly connected components is possible", {
 
   # Expect 30 rows in the df
   expect_equal(
-    nrow(connected_components), 30)
+    nrow(connected_components), 10)
 
   # Expect numerical values in the
   # second column
@@ -790,10 +819,11 @@ test_that("Getting strongly connected components is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 5, m = 10,
-      set_seed = 23,
-      directed = TRUE)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 5,
+      m = 10,
+      set_seed = 23)
 
   # Get connected components for the graph
   s_connected_components <-
