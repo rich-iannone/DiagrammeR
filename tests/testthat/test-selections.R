@@ -735,10 +735,12 @@ test_that("getting/clearing a selection is possible", {
 
 test_that("selecting nodes by node degree is possible", {
 
-  # Create a graph
+  # Create a random graph
   graph <-
-    create_random_graph(
-      n = 35, m = 125,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 35,
+      m = 125,
       set_seed = 23)
 
   # Expect specific nodes when making a selection
@@ -748,7 +750,7 @@ test_that("selecting nodes by node degree is possible", {
     graph %>%
       select_nodes_by_degree("deg == 9") %>%
       get_selection(),
-    c(2, 9, 10, 14, 17, 19, 31, 33))
+    c(5, 10, 26, 31))
 
   # Expect specific nodes when making a selection
   # of nodes which have a total degree greater
@@ -757,5 +759,5 @@ test_that("selecting nodes by node degree is possible", {
     graph %>%
       select_nodes_by_degree("deg >= 9") %>%
       get_selection(),
-    c(2, 6, 9, 10, 14, 17, 19, 22, 25, 29, 31, 33))
+    c(1, 2, 4, 5, 10, 12, 18, 25, 26, 31))
 })

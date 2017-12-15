@@ -4,8 +4,10 @@ test_that("Getting a degree histogram is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Get the degree histogram for total degree
@@ -58,8 +60,10 @@ test_that("Getting degree distribution is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   # Get the degree distribution for total degree
@@ -112,8 +116,10 @@ test_that("Getting maximum eccentricity is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 22,
       set_seed = 23)
 
   max_eccen <- get_max_eccentricity(graph)
@@ -126,9 +132,9 @@ test_that("Getting maximum eccentricity is possible", {
   expect_equal(
     length(max_eccen), 1)
 
-  # Expect that `max_eccen` has the value 4
+  # Expect that `max_eccen` has the value 5
   expect_equal(
-    max_eccen, 3)
+    max_eccen, 5)
 
   # Expect NA if there aren't any nodes
   # in the graph
@@ -142,8 +148,10 @@ test_that("Getting minimum eccentricity is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 23,
       set_seed = 23)
 
   min_eccen <-
@@ -159,7 +167,7 @@ test_that("Getting minimum eccentricity is possible", {
   expect_equal(
     length(min_eccen), 1)
 
-  # Expect that `min_eccen` has the value 4
+  # Expect that `min_eccen` has the value 2
   expect_equal(
     min_eccen, 2)
 
@@ -195,8 +203,10 @@ test_that("Getting graph eccentricity is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 23,
       set_seed = 23)
 
   graph_eccen <- get_eccentricity(graph)
@@ -227,8 +237,10 @@ test_that("Getting graph periphery is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 23,
       set_seed = 23)
 
   graph_periphery <- get_periphery(graph)
@@ -237,23 +249,25 @@ test_that("Getting graph periphery is possible", {
   expect_is(
     graph_periphery, "integer")
 
-  # Expect that `graph_periphery` has length 1 in
+  # Expect that `graph_periphery` has length 3 in
   # this case
   expect_equal(
-    length(graph_periphery), 1)
+    length(graph_periphery), 3)
 
   # Expect certain values for the
   # `graph_periphery` object
   expect_equal(
-    graph_periphery, 2)
+    graph_periphery, c(3, 7, 10))
 })
 
 test_that("Getting graph info is possible", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 23,
       set_seed = 23)
 
   # Add a graph name
@@ -295,8 +309,10 @@ test_that("Checking whether the graph is connected is possible", {
 
   # Create a random graph
   graph_connected <-
-    create_random_graph(
-      n = 10, m = 22,
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 25,
       set_seed = 23)
 
   # Test that the graph is indeed connected
@@ -304,9 +320,11 @@ test_that("Checking whether the graph is connected is possible", {
     is_graph_connected(graph_connected))
 
   graph_not_connected <-
-    create_random_graph(
-      n = 10, m = 8,
-      set_seed = 1)
+    create_graph() %>%
+    add_gnm_graph(
+      n = 10,
+      m = 8,
+      set_seed = 23)
 
   # Test that the graph is indeed connected
   expect_false(

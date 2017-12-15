@@ -210,11 +210,11 @@ test_that("graph actions can be triggered to modify the graph", {
 
   # Create a random graph
   graph <-
-    create_random_graph(
-      n = 5, m = 10,
-      set_seed = 23) %>%
-    drop_node_attrs(
-      node_attr = "value")
+    create_graph() %>%
+    add_gnm_graph(
+      n = 5,
+      m = 10,
+      set_seed = 23)
 
   # Add three graph actions to:
   #  - add PageRank values
