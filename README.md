@@ -149,9 +149,9 @@ d_graph <-
 
 <img src="inst/img/d_graph.png">
     
-Creating attributes and setting values for them is often useful because we can do further work with the attributes (e.g., mutate values or migrate them during traversals). Furthermore, we can create aesthetic properties based on numerical or categorical data.
+Creating attributes and setting their values is often useful because we can further work with the attributes (e.g., *mutate* values or even use them during traversals). Furthermore, we can create aesthetic properties based on numerical or categorical data. This is important for when you want to display your graph diagram using the `render_graph()` function.
 
-Don’t worry if attribute values weren’t set during the creation of the associated nodes or edges. There are many functions available for both selecting nodes or edges and also for making changes to node/edge attributes. Often, this is the more efficient strategy as we can target nodes/edges based on their properties. Here is an example where we select a node based on its `value` attribute and modify its `color` node aesthetic attribute:
+Don’t worry if attribute values weren’t set right during the creation of the associated nodes or edges. They are ways to set attribute values for existing nodes and edges. Functions are available for targeting the specific nodes/edges (i.e., making a *selection*) and other functions are used to set attribute values for the selected nodes or edges. Often, this can be the more efficient strategy as we can target nodes/edges based on their properties (e.g., degree, relationships to neighbors, etc.). Here is an example where we select a node based on its `value` attribute and modify its `color` node aesthetic attribute:
 
 ```r
 e_graph <-
@@ -164,6 +164,8 @@ e_graph <-
     value = "orange") %>%
   clear_selection()
 ```
+
+To explain this a bit, we take the graph object `d_graph`, select only the nodes that have a node `value` attribute of exactly `2.5`. (We now have an active node selection.) With the selected nodes, we set their node attribute `fillcolor` with the value `orange`. Then we deactivate the selection with `clear_selection()`. Now, if we view the graph with `render_graph()` we get this:
 
 <img src="inst/img/e_graph.png">
 
