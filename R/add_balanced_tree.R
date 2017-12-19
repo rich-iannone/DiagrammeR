@@ -89,9 +89,6 @@
 #' # the `node_aes`, `edge_aes`,
 #' # `node_data`, and `edge_data`
 #' # arguments
-#'
-#' set.seed(23)
-#'
 #' graph_w_attrs <-
 #'   create_graph() %>%
 #'   add_balanced_tree(
@@ -107,21 +104,16 @@
 #'     rel = "A",
 #'     node_aes = node_aes(
 #'       fillcolor = "steelblue"),
-#'     edge_aes = edge_aes(
-#'       color = "red",
-#'       penwidth = 1.2),
 #'     node_data = node_data(
 #'       value = c(
 #'         1.6, 2.8, 3.4, 8.3,
 #'         3.8, 5.2, 3.2)),
-#'     edge_data = edge_data(
-#'       value =
-#'         rnorm(
-#'           n = 6,
-#'           mean = 5.0,
-#'           sd = 1.0)))
+#'     edge_aes = edge_aes(
+#'       color = "red",
+#'       penwidth = 1.2))
 #'
-#' # Get the graph's node data frame
+#' # Get the first three rows of
+#' # the graph's node data frame
 #' get_node_df(graph_w_attrs) %>%
 #'   head(3)
 #' #>   id type label fillcolor value
@@ -129,13 +121,14 @@
 #' #> 2  2    b   two steelblue   2.8
 #' #> 3  3    b three steelblue   3.4
 #'
-#' # Get the graph's edge data frame
+#' # Get the first three rows of
+#' # the graph's edge data frame
 #' get_edge_df(graph_w_attrs) %>%
 #'   head(3)
-#' #>   id from to rel penwidth color    value
-#' #> 1  1    1  2   A      1.2   red 5.996605
-#' #> 2  2    1  3   A      1.2   red 6.107490
-#' #> 3  3    2  4   A      1.2   red 4.721914
+#' #>   id from to rel penwidth color
+#' #> 1  1    1  2   A      1.2   red
+#' #> 2  2    1  3   A      1.2   red
+#' #> 3  3    2  4   A      1.2   red
 #' @export add_balanced_tree
 
 add_balanced_tree <- function(graph,
