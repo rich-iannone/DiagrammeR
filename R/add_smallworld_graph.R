@@ -1,50 +1,72 @@
 #' Add a Watts-Strogatz small-world graph
-#' @description To an existing graph object, add
-#' a graph built according to the Watts-Strogatz
-#' small-world model, which uses a lattice along
-#' with a rewiring probability to randomly modify
-#' edge definitions.
+#' @description To an existing graph
+#' object, add a graph built according
+#' to the Watts-Strogatz small-world
+#' model, which uses a lattice along
+#' with a rewiring probability to
+#' randomly modify edge definitions.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param dimension the dimension of the starting
-#' lattice.
-#' @param size the size of the lattice across each
-#' dimension.
-#' @param neighborhood the neighborhood where the
-#' lattice nodes are to be connected.
+#' @param dimension the dimension of
+#' the starting lattice.
+#' @param size the size of the lattice
+#' across each dimension.
+#' @param neighborhood the neighborhood
+#' where the lattice nodes are to be
+#' connected.
 #' @param p the rewiring probability.
-#' @param loops a logical value (default is
-#' \code{FALSE}) that governs whether loops are
+#' @param loops a logical value (default
+#' is \code{FALSE}) that governs whether
+#' loops are allowed to be created.
+#' @param multiple a logical value
+#' (default is \code{FALSE}) that
+#' governs whether multiple edges are
 #' allowed to be created.
-#' @param multiple a logical value (default is
-#' \code{FALSE}) that governs whether multiple
-#' edges are allowed to be created.
-#' @param node_aes an optional list of named vectors
-#' comprising node aesthetic attributes. The helper
-#' function \code{node_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted node aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{color},
-#' \code{fillcolor}).
-#' @param edge_aes an optional list of named vectors
-#' comprising edge aesthetic attributes. The helper
-#' function \code{edge_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted edge aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{penwidth},
-#' \code{color}).
-#' @param node_data an optional list of named vectors
-#' comprising node data attributes. The helper
-#' function \code{node_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created nodes.
-#' @param edge_data an optional list of named vectors
-#' comprising edge data attributes. The helper
-#' function \code{edge_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created edges.
-#' @param set_seed supplying a value sets a random seed
-#' of the \code{Mersenne-Twister} implementation.
+#' @param type an optional string that
+#' describes the entity type for all the
+#' nodes to be added.
+#' @param label a boolean value where
+#' setting to \code{TRUE} ascribes node
+#' IDs to the label and \code{FALSE}
+#' yields a blank label.
+#' @param rel an optional string for
+#' providing a relationship label to all
+#' edges to be added.
+#' @param node_aes an optional list of
+#' named vectors comprising node
+#' aesthetic attributes. The helper
+#' function \code{node_aes()} is strongly
+#' recommended for use here as it
+#' contains arguments for each of the
+#' accepted node aesthetic attributes
+#' (e.g., \code{shape}, \code{style},
+#' \code{color}, \code{fillcolor}).
+#' @param edge_aes an optional list of
+#' named vectors comprising edge
+#' aesthetic attributes. The helper
+#' function \code{edge_aes()} is strongly
+#' recommended for use here as it
+#' contains arguments for each of the
+#' accepted edge aesthetic attributes
+#' (e.g., \code{shape}, \code{style},
+#' \code{penwidth}, \code{color}).
+#' @param node_data an optional list
+#' of named vectors comprising node data
+#' attributes. The helper function
+#' \code{node_data()} is strongly
+#' recommended for use here as it helps
+#' bind data specifically to the created
+#' nodes.
+#' @param edge_data an optional list
+#' of named vectors comprising edge
+#' data attributes. The helper function
+#' \code{edge_data()} is strongly
+#' recommended for use here as it helps
+#' bind data specifically to the created
+#' edges.
+#' @param set_seed supplying a value
+#' sets a random seed of the
+#' \code{Mersenne-Twister} implementation.
 #' @examples
 #' # Create an undirected smallworld
 #' # graph with 100 nodes using
