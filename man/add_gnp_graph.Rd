@@ -4,8 +4,9 @@
 \alias{add_gnp_graph}
 \title{Add a G(n, p) Erdos-Renyi graph}
 \usage{
-add_gnp_graph(graph, n, p, loops = FALSE, set_seed = NULL,
-  node_aes = NULL, edge_aes = NULL, node_data = NULL, edge_data = NULL)
+add_gnp_graph(graph, n, p, loops = FALSE, type = NULL, label = TRUE,
+  rel = NULL, node_aes = NULL, edge_aes = NULL, node_data = NULL,
+  edge_data = NULL, set_seed = NULL)
 }
 \arguments{
 \item{graph}{a graph object of
@@ -23,10 +24,18 @@ arbitrary nodes.}
 governs whether loops are
 allowed to be created.}
 
-\item{set_seed}{supplying a
-value sets a random seed of the
-\code{Mersenne-Twister}
-implementation.}
+\item{type}{an optional string that
+describes the entity type for all the
+nodes to be added.}
+
+\item{label}{a boolean value where
+setting to \code{TRUE} ascribes node
+IDs to the label and \code{FALSE}
+yields a blank label.}
+
+\item{rel}{an optional string for
+providing a relationship label to all
+edges to be added.}
 
 \item{node_aes}{an optional list
 of named vectors comprising node
@@ -65,6 +74,11 @@ data attributes. The helper function
 recommended for use here as it helps
 bind data specifically to the
 created edges.}
+
+\item{set_seed}{supplying a
+value sets a random seed of the
+\code{Mersenne-Twister}
+implementation.}
 }
 \description{
 To an existing
