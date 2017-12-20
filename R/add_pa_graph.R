@@ -56,10 +56,6 @@
 #' Multiple edges may be produced
 #' using this method (it is not
 #' disallowed).
-#' @param set_seed supplying a value
-#' sets a random seed of the
-#' \code{Mersenne-Twister}
-#' implementation.
 #' @param node_aes an optional list
 #' of named vectors comprising node
 #' aesthetic attributes. The helper
@@ -94,6 +90,10 @@
 #' recommended for use here as it helps
 #' bind data specifically to the
 #' created edges.
+#' @param set_seed supplying a value
+#' sets a random seed of the
+#' \code{Mersenne-Twister}
+#' implementation.
 #' @examples
 #' # Create an undirected PA
 #' # graph with 100 nodes, adding
@@ -127,11 +127,11 @@ add_pa_graph <- function(graph,
                          use_total_degree = FALSE,
                          zero_appeal = 1,
                          algo = "psumtree",
-                         set_seed = NULL,
                          node_aes = NULL,
                          edge_aes = NULL,
                          node_data = NULL,
-                         edge_data = NULL) {
+                         edge_data = NULL,
+                         set_seed = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -201,6 +201,23 @@ add_pa_graph <- function(graph,
       algorithm = algo)
 
   sample_pa_graph <- from_igraph(sample_pa_igraph)
+
+  # Add in a static `type` value for all new nodes
+  if (!is.null(type)) {
+    sample_pa_graph$nodes_df$type <- as.character(type[1])
+  }
+
+  # Add in a static `rel` value for all new nodes
+  if (!is.null(rel)) {
+    sample_pa_graph$edges_df$rel <- as.character(rel[1])
+  }
+
+  # If `label` is requested, use the node ID to
+  # create a unique label for all new nodes
+  if (label == TRUE) {
+    sample_pa_graph$nodes_df$label <-
+      sample_pa_graph$nodes_df$id %>% as.character()
+  }
 
   n_nodes <- nrow(sample_pa_graph$nodes_df)
 

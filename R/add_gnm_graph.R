@@ -21,10 +21,6 @@
 #' (default is \code{FALSE}) that
 #' governs whether loops are
 #' allowed to be created.
-#' @param set_seed supplying a
-#' value sets a random seed of the
-#' \code{Mersenne-Twister}
-#' implementation.
 #' @param node_aes an optional list
 #' of named vectors comprising node
 #' aesthetic attributes. The helper
@@ -59,6 +55,10 @@
 #' recommended for use here as it helps
 #' bind data specifically to the
 #' created edges.
+#' @param set_seed supplying a
+#' value sets a random seed of the
+#' \code{Mersenne-Twister}
+#' implementation.
 #' @examples
 #' # Create an undirected GNM
 #' # graph with 100 nodes and
@@ -88,11 +88,11 @@ add_gnm_graph <- function(graph,
                           n,
                           m,
                           loops = FALSE,
-                          set_seed = NULL,
                           node_aes = NULL,
                           edge_aes = NULL,
                           node_data = NULL,
-                          edge_data = NULL) {
+                          edge_data = NULL,
+                          set_seed = NULL) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -145,6 +145,23 @@ add_gnm_graph <- function(graph,
       loops = loops)
 
   sample_gnm_graph <- from_igraph(sample_gnm_igraph)
+
+  # Add in a static `type` value for all new nodes
+  if (!is.null(type)) {
+    sample_gnm_graph$nodes_df$type <- as.character(type[1])
+  }
+
+  # Add in a static `rel` value for all new nodes
+  if (!is.null(rel)) {
+    sample_gnm_graph$edges_df$rel <- as.character(rel[1])
+  }
+
+  # If `label` is requested, use the node ID to
+  # create a unique label for all new nodes
+  if (label == TRUE) {
+    sample_gnm_graph$nodes_df$label <-
+      sample_gnm_graph$nodes_df$id %>% as.character()
+  }
 
   n_nodes <- nrow(sample_gnm_graph$nodes_df)
 
