@@ -14,6 +14,16 @@
 #' being edges between the islands.
 #' @param edges_between The number
 #' of edges between islands.
+#' @param type an optional string that
+#' describes the entity type for all the
+#' nodes to be added.
+#' @param label a boolean value where
+#' setting to \code{TRUE} ascribes node
+#' IDs to the label and \code{FALSE}
+#' yields a blank label.
+#' @param rel an optional string for
+#' providing a relationship label to all
+#' edges to be added.
 #' @param node_aes an optional list
 #' of named vectors comprising node
 #' aesthetic attributes. The helper
@@ -82,6 +92,9 @@ add_islands_graph <- function(graph,
                               island_size,
                               p,
                               edges_between,
+                              type = NULL,
+                              label = TRUE,
+                              rel = NULL,
                               node_aes = NULL,
                               edge_aes = NULL,
                               node_data = NULL,

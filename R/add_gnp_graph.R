@@ -16,6 +16,16 @@
 #' (default is \code{FALSE}) that
 #' governs whether loops are
 #' allowed to be created.
+#' @param type an optional string that
+#' describes the entity type for all the
+#' nodes to be added.
+#' @param label a boolean value where
+#' setting to \code{TRUE} ascribes node
+#' IDs to the label and \code{FALSE}
+#' yields a blank label.
+#' @param rel an optional string for
+#' providing a relationship label to all
+#' edges to be added.
 #' @param node_aes an optional list
 #' of named vectors comprising node
 #' aesthetic attributes. The helper
@@ -83,6 +93,9 @@ add_gnp_graph <- function(graph,
                           n,
                           p,
                           loops = FALSE,
+                          type = NULL,
+                          label = TRUE,
+                          rel = NULL,
                           node_aes = NULL,
                           edge_aes = NULL,
                           node_data = NULL,
