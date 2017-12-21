@@ -42,13 +42,17 @@ graph <-
 # as a numeric vector
 graph <-
   graph \%>\%
-  cache_node_attrs(
-    node_attr = value,
-    mode = "numeric")
+  set_cache(
+    name = "value",
+    to_cache = get_node_attrs(
+      graph = .,
+      node_attr = value))
 
 # Return the cached vector
 graph \%>\%
   get_cache()
-#> [1] 9.993210 10.214981  7.443827
-#> [4] 10.038411  8.090874
+#>        1         2         3
+#> 9.993210 10.214981  7.443827
+#>         4         5
+#> 10.038411  8.090874
 }
