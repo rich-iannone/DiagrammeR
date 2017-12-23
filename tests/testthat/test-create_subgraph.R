@@ -42,7 +42,7 @@ test_that("a subgraph can be created and such an object is correct", {
   expect_true(
     all(
       c("3->1", "7->3", "5->8") %in% get_edges(
-        x = subgraph_ns,
+        graph = subgraph_ns,
         return_type = "vector")))
 
   # Create a selection of edges, stored within the
@@ -62,7 +62,7 @@ test_that("a subgraph can be created and such an object is correct", {
   expect_true(
     all(
       c("7->3", "8->4", "6->5", "3->4") %in% get_edges(
-        x = subgraph_es,
+        graph = subgraph_es,
         return_type = "vector")))
 
   # Expect an error when attempting to create a subgraph with

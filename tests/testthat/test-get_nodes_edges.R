@@ -161,7 +161,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   # in a data frame object
   gotten_edges_df <-
     get_edges(
-      x = graph,
+      graph = graph,
       return_type = "df")
 
   # Expect a data frame object
@@ -187,7 +187,7 @@ test_that("getting node IDs associated within a graph's edges is possible", {
   # in a vector object
   gotten_edges_vector <-
     get_edges(
-      x = graph,
+      graph = graph,
       return_type = "vector")
 
   # Expect a vector object of class `character`
@@ -214,86 +214,6 @@ test_that("getting node IDs associated within a graph's edges is possible", {
         create_graph(nodes_df = create_node_df(1)))), 0)
 })
 
-test_that("getting edge information from an edge data frame is possible", {
-
-  # Create a simple edge data frame
-  edges <-
-    create_edge_df(
-      from = c(1, 1),
-      to = c(2, 3))
-
-  # Get edges from the edge data frame as a
-  # returned vector object
-  edges_vector_from_edf <-
-    get_edges(
-      x = edges,
-      return_type = "vector")
-
-  # Expect a vector object of class `character`
-  expect_is(
-    edges_vector_from_edf, "character")
-
-  # Expect that the vector object is of length 2
-  expect_true(
-    length(edges_vector_from_edf) == 2)
-
-  # Expect that the ' -> ' substring is in
-  # each vector component
-  expect_true(
-    all(grepl("->", edges_vector_from_edf)))
-
-  # Get edges from the edge data frame as a
-  # returned list object
-  edges_list_from_edf <-
-    get_edges(
-      x = edges,
-      return_type = "list")
-
-  # Expect that the list is of length 2
-  expect_true(
-    length(edges_list_from_edf) == 2)
-
-  # Expect integer vectors of length 26 in
-  # `gotten_edges_list`
-  expect_true(
-    length(edges_list_from_edf[[1]]) == 2)
-
-  expect_is(
-    edges_list_from_edf[[1]], "integer")
-
-  expect_true(
-    length(edges_list_from_edf[[2]]) == 2)
-
-  expect_is(
-    edges_list_from_edf[[2]], "integer")
-
-  # Get edges from the edge data frame as a
-  # returned data frame object
-  edges_df_from_edf <-
-    get_edges(
-      x = edges,
-      return_type = "df")
-
-  # Expect a data frame object
-  expect_is(
-    edges_df_from_edf, "data.frame")
-
-  # Expect that the data frame has 2 columns
-  expect_true(
-    ncol(edges_df_from_edf) == 2)
-
-  # Expect columns of class `integer` and that there
-  # are 26 rows in `gotten_edges_df`
-  expect_is(
-    edges_df_from_edf[, 1], "integer")
-
-  expect_is(
-    edges_df_from_edf[, 2], "integer")
-
-  expect_true(
-    nrow(edges_df_from_edf) == 2)
-})
-
 test_that("getting edge information from a graph with no edges is possible ", {
 
   # Create a node data frame with 2 nodes
@@ -306,7 +226,7 @@ test_that("getting edge information from a graph with no edges is possible ", {
   # Get edges from an edgeless graph returned as a vector
   edges_vector_from_graph_no_edges <-
     get_edges(
-      x = graph_no_edges,
+      graph = graph_no_edges,
       return_type = "vector")
 
   # Expect a vector object of class `logical`
@@ -320,7 +240,7 @@ test_that("getting edge information from a graph with no edges is possible ", {
   # Get edges from an edgeless graph returned as a list
   edges_list_from_graph_no_edges <-
     get_edges(
-      x = graph_no_edges,
+      graph = graph_no_edges,
       return_type = "list")
 
   # Expect that an NA is returned
@@ -330,7 +250,7 @@ test_that("getting edge information from a graph with no edges is possible ", {
   # Get edges from an edgeless graph returned as a data frame
   edges_df_from_graph_no_edges <-
     get_edges(
-      x = graph_no_edges,
+      graph = graph_no_edges,
       return_type = "df")
 
   # Expect that an NA is returned
