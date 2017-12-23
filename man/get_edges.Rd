@@ -4,39 +4,48 @@
 \alias{get_edges}
 \title{Get node IDs associated with edges}
 \usage{
-get_edges(x, conditions = NULL, return_type = "vector",
+get_edges(graph, conditions = NULL, return_type = "vector",
   return_values = "id")
 }
 \arguments{
-\item{x}{either a graph object of class
-\code{dgr_graph} or an edge data frame.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering
-conditions for the retrieval of edges.}
+\item{conditions}{an option to
+use filtering conditions for the
+retrieval of edges.}
 
-\item{return_type}{using \code{vector} (the
-default), a vector of character objects
-representing the edges is provided. With
-\code{list} a list object will be provided that
-contains vectors of outgoing and incoming node IDs
-associated with edges. With \code{df}, a data frame
-containing outgoing and incoming node IDs associated
-with edges.}
+\item{return_type}{using
+\code{vector} (the default), a
+vector of character objects
+representing the edges is provided.
+With \code{list} a list object will
+be provided that contains vectors
+of outgoing and incoming node IDs
+associated with edges. With
+\code{df}, a data frame containing
+outgoing and incoming node IDs
+associated with edges.}
 
-\item{return_values}{using \code{id} (the default)
-results in node ID values returned in the edge
-definitions. With \code{label}, the node labels will
-instead be used to define edges.}
+\item{return_values}{using
+\code{id} (the default) results in
+node ID values returned in the edge
+definitions. With \code{label}, the
+node labels will instead be used to
+define edges.}
 }
 \value{
-a list, data frame, or a vector object,
-depending on the value given to \code{return_type}.
+a list, data frame, or a
+vector object, depending on the
+value given to \code{return_type}.
 }
 \description{
-Obtain a vector, data frame, or list of
-node IDs from a graph object or an edge data frame.
-An optional filter by edge attribute can limit the
-set of edges returned.
+Obtain a vector,
+data frame, or list of node IDs
+associated with edges in a graph
+object. An optional filter by edge
+attribute can limit the set of
+edges returned.
 }
 \examples{
 # Create a node data frame (ndf)
@@ -64,59 +73,69 @@ graph <-
     edges_df = edf)
 
 # Get all edges within a graph, returned as a list
-get_edges(graph, return_type = "vector")
+graph \%>\%
+  get_edges(
+    return_type = "vector")
 #> [1] "1->4" "2->3" "3->1"
 
 # Get all edges within a graph, returned as a
 # data frame
-get_edges(graph, return_type = "df")
+graph \%>\%
+  get_edges(
+    return_type = "df")
 #>   from to
 #> 1    1  4
 #> 2    2  3
 #> 3    3  1
 
 # Get all edges returned as a list
-get_edges(graph, return_type = "list")
+graph \%>\%
+  get_edges(
+    return_type = "list")
 #> [[1]]
 #> [1] 1 2 3
 #>
 #> [[2]]
 #> [1] 4 3 1
 
-# Get a vector of edges using a numeric
-# comparison (i.e., all edges with a `value`
+# Get a vector of edges using
+# a numeric comparison (i.e.,
+# all edges with a `value`
 # attribute greater than 3)
-get_edges(
-  graph,
-  conditions = value > 3,
-  return_type = "vector")
+graph \%>\%
+  get_edges(
+    conditions = value > 3,
+    return_type = "vector")
 #> [1] "1->4" "3->1"
 
-# Get a vector of edges using a match
-get_edges(
-  graph,
-  conditions = color == "pink",
-  return_type = "vector")
+# Get a vector of edges using
+# a matching condition
+graph \%>\%
+  get_edges(
+    conditions = color == "pink",
+    return_type = "vector")
 #> [1] "1->4"
 
-# Use multiple conditions to return edges
-# with the desired attribute values
-get_edges(
-  graph,
-  conditions =
-    color == "blue" &
-    value > 3,
-  return_type = "vector")
+# Use multiple conditions to
+# return edges with the
+# desired attribute values
+graph \%>\%
+  get_edges(
+    conditions =
+      color == "blue" &
+      value > 3,
+    return_type = "vector")
 #> [1] "3->1"
 
-# Use `return_values = "label"` to return
-# the labels of the connected nodes
-get_edges(
-  graph,
-  conditions =
-    color == "blue" &
-    value > 3,
-  return_type = "vector",
-  return_values = "label")
+# Use `return_values = "label"`
+# to return the labels of the
+# connected nodes
+graph \%>\%
+  get_edges(
+    conditions =
+      color == "blue" &
+      value > 3,
+    return_type = "vector",
+    return_values = "label")
 #> [1] "three->one"
 }
