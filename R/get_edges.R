@@ -1,28 +1,35 @@
 #' Get node IDs associated with edges
 #' @description Obtain a vector,
 #' data frame, or list of node IDs
-#' associated with edges in a
-#' graph object. An optional filter
-#' by edge attribute can limit the
-#' set of edges returned.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param conditions an option to use filtering
-#' conditions for the retrieval of edges.
-#' @param return_type using \code{vector} (the
-#' default), a vector of character objects
-#' representing the edges is provided. With
-#' \code{list} a list object will be provided that
-#' contains vectors of outgoing and incoming node IDs
-#' associated with edges. With \code{df}, a data frame
-#' containing outgoing and incoming node IDs associated
-#' with edges.
-#' @param return_values using \code{id} (the default)
-#' results in node ID values returned in the edge
-#' definitions. With \code{label}, the node labels will
-#' instead be used to define edges.
-#' @return a list, data frame, or a vector object,
-#' depending on the value given to \code{return_type}.
+#' associated with edges in a graph
+#' object. An optional filter by edge
+#' attribute can limit the set of
+#' edges returned.
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param conditions an option to
+#' use filtering conditions for the
+#' retrieval of edges.
+#' @param return_type using
+#' \code{vector} (the default), a
+#' vector of character objects
+#' representing the edges is provided.
+#' With \code{list} a list object will
+#' be provided that contains vectors
+#' of outgoing and incoming node IDs
+#' associated with edges. With
+#' \code{df}, a data frame containing
+#' outgoing and incoming node IDs
+#' associated with edges.
+#' @param return_values using
+#' \code{id} (the default) results in
+#' node ID values returned in the edge
+#' definitions. With \code{label}, the
+#' node labels will instead be used to
+#' define edges.
+#' @return a list, data frame, or a
+#' vector object, depending on the
+#' value given to \code{return_type}.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -49,27 +56,34 @@
 #'     edges_df = edf)
 #'
 #' # Get all edges within a graph, returned as a list
-#' get_edges(graph, return_type = "vector")
+#' graph %>%
+#'   get_edges(
+#'     return_type = "vector")
 #' #> [1] "1->4" "2->3" "3->1"
 #'
 #' # Get all edges within a graph, returned as a
 #' # data frame
-#' get_edges(graph, return_type = "df")
+#' graph %>%
+#'   get_edges(
+#'     return_type = "df")
 #' #>   from to
 #' #> 1    1  4
 #' #> 2    2  3
 #' #> 3    3  1
 #'
 #' # Get all edges returned as a list
-#' get_edges(graph, return_type = "list")
+#' graph %>%
+#'   get_edges(
+#'     return_type = "list")
 #' #> [[1]]
 #' #> [1] 1 2 3
 #' #>
 #' #> [[2]]
 #' #> [1] 4 3 1
 #'
-#' # Get a vector of edges using a numeric
-#' # comparison (i.e., all edges with a `value`
+#' # Get a vector of edges using
+#' # a numeric comparison (i.e.,
+#' # all edges with a `value`
 #' # attribute greater than 3)
 #' graph %>%
 #'   get_edges(
@@ -96,8 +110,9 @@
 #'     return_type = "vector")
 #' #> [1] "3->1"
 #'
-#' # Use `return_values = "label"` to return
-#' # the labels of the connected nodes
+#' # Use `return_values = "label"`
+#' # to return the labels of the
+#' # connected nodes
 #' graph %>%
 #'   get_edges(
 #'     conditions =
