@@ -2,11 +2,9 @@ context("Adding nodes and/or edges from a table to a graph")
 
 test_that("adding nodes from a table to a graph is possible", {
 
-  library(tibble)
-
   # Create a data frame for graph nodes
   node_table <-
-    tibble::tribble(
+    dplyr::tribble(
       ~iso_4217_code, ~curr_number, ~exponent,
       "AED", 784,  2,
       "AFN", 971,  2,
@@ -273,7 +271,7 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Create a data frame for graph nodes
   node_table <-
-    tibble::tribble(
+    dplyr::tribble(
       ~iso_4217_code, ~curr_number, ~exponent,
       "AED", 784,  2,
       "AFN", 971,  2,
@@ -453,7 +451,7 @@ test_that("adding edges from a table to a graph is possible", {
 
   # Create a data frame for graph edges
   edge_table <-
-    tibble::tribble(
+    dplyr::tribble(
       ~from_currency, ~to_currency, ~cost_unit,
       "USD","ADF", 0.1672,
       "USD","ADP", 0.00659,
