@@ -4,68 +4,73 @@
 \alias{get_node_ids}
 \title{Get a vector of node ID values}
 \usage{
-get_node_ids(x, conditions = NULL)
+get_node_ids(graph, conditions = NULL)
 }
 \arguments{
-\item{x}{either a graph object of class
-\code{dgr_graph} or a node data frame.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering
-conditions for the retrieval of nodes.}
+\item{conditions}{an option to
+use filtering conditions for the
+retrieval of nodes.}
 }
 \value{
-a vector of node ID values.
+a vector of node ID
+values.
 }
 \description{
-Obtain a vector of node ID values from
-a graph object or a node data frame. An optional
-filter by node attribute can limit the set of node
-ID values returned.
+Obtain a vector of
+node ID values from a graph
+object. An optional filter by
+node attribute can limit the set
+of node ID values returned.
 }
 \examples{
-# Create a node data frame (ndf)
+# Create a node data
+# frame (ndf)
 ndf <-
   create_node_df(
     n = 4,
     type = "letter",
-    color = c("red", "green",
-              "blue", "blue"),
-    value = c(3.5, 2.6, 9.4, 2.7))
+    color = c(
+      "red", "green",
+      "blue", "blue"),
+    value = c(
+      3.5, 2.6, 9.4, 2.7))
 
-# Create a graph
-graph <- create_graph(nodes_df = ndf)
+# Create a graph using
+# the ndf
+graph <-
+  create_graph(
+    nodes_df = ndf)
 
 # Get a vector of all nodes in a graph
-get_node_ids(graph)
-#> [1] 1 2 3 4
-
-# Get a vector of node ID values from a
-# node data frame
-get_node_ids(ndf)
+graph \%>\%
+  get_node_ids()
 #> [1] 1 2 3 4
 
 # Get a vector of node ID values using a
 # numeric comparison (i.e., all nodes with
 # `value` attribute greater than 3)
-get_node_ids(
-  graph,
-  conditions = value > 3)
+graph \%>\%
+  get_node_ids(
+    conditions = value > 3)
 #> [1] 1 3
 
 # Get a vector of node ID values using
 # a match pattern (i.e., all nodes with
 # `color` attribute of `green`)
-get_node_ids(
-  graph,
-  conditions = color == "green")
+graph \%>\%
+  get_node_ids(
+    conditions = color == "green")
 #> [1] 2
 
 # Use multiple conditions to return nodes
 # with the desired attribute values
-get_node_ids(
-  graph,
-  conditions =
-    color == "blue" &
-    value > 5)
+graph \%>\%
+  get_node_ids(
+    conditions =
+      color == "blue" &
+      value > 5)
 #> [1] 3
 }
