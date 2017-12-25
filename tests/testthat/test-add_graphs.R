@@ -666,7 +666,7 @@ test_that("Adding a 2D grid is possible", {
 
   # Expect node ID values from 1 to 9
   expect_identical(
-    get_node_ids(x = graph), 1:9)
+    get_node_ids(graph = graph), 1:9)
 
   # Expect label values from 1 to 9
   expect_identical(

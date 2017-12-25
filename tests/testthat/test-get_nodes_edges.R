@@ -46,13 +46,6 @@ test_that("getting node IDs from various objects is possible", {
   expect_true(
     all(1:26 == gotten_nodes))
 
-  # Expect that the same node IDs will
-  # be returned from the graph object,
-  # the node data frame, and the edf
-  expect_equal(
-    get_node_ids(graph),
-    get_node_ids(nodes))
-
   # Expect that the number of nodes
   # obtained from the entire graph will
   # be greater than the nodes associated
@@ -65,13 +58,6 @@ test_that("getting node IDs from various objects is possible", {
 
   # Get the node df from the graph using `get_node_df()`
   node_df_from_graph <- get_node_df(graph)
-
-  # Expect that the nodes from the graph and from the
-  # extracted node df are the same
-  expect_true(
-    all(
-      get_node_ids(node_df_from_graph) ==
-        get_node_ids(graph)))
 
   # Expect that using `get_node_df()` on a graph with
   # no nodes will return an empty data frame
