@@ -106,6 +106,15 @@ test_that("Getting aggregated indegree values is possible", {
       agg = "sum",
       conditions = value > 5.0),
     9, tolerance = 0.002)
+
+  # Expect an error if supplying a
+  # value for agg not in "sum",
+  # "min", "max", "mean", or "median"
+  expect_error(
+    get_agg_degree_in(
+      graph = graph,
+      agg = "sam",
+      conditions = value > 5.0))
 })
 
 test_that("Getting aggregated outdegree values is possible", {
@@ -174,8 +183,7 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "mean",
       conditions = value > 5.0),
-    1.6,
-    tolerance = 0.002)
+    1.6, tolerance = 0.002)
 
   # Expect a certain value for the
   # minimum outdegree value from all
@@ -186,8 +194,7 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "min",
       conditions = value > 5.0),
-    0,
-    tolerance = 0.002)
+    0, tolerance = 0.002)
 
   # Expect a certain value for the
   # maximum outdegree value from all
@@ -198,8 +205,7 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "max",
       conditions = value > 5.0),
-    3,
-    tolerance = 0.002)
+    3, tolerance = 0.002)
 
   # Expect a certain value for the
   # maximum outdegree value from all
@@ -210,8 +216,7 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "median",
       conditions = value > 5.0),
-    2,
-    tolerance = 0.002)
+    2, tolerance = 0.002)
 
   # Expect a certain value for the sum
   # of outdegree values from all
@@ -222,8 +227,16 @@ test_that("Getting aggregated outdegree values is possible", {
       graph = graph,
       agg = "sum",
       conditions = value > 5.0),
-    8,
-    tolerance = 0.002)
+    8, tolerance = 0.002)
+
+  # Expect an error if supplying a
+  # value for agg not in "sum",
+  # "min", "max", "mean", or "median"
+  expect_error(
+    get_agg_degree_out(
+      graph = graph,
+      agg = "sam",
+      conditions = value > 5.0))
 })
 
 test_that("Getting aggregated total degree values is possible", {
@@ -292,8 +305,7 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "mean",
       conditions = value > 5.0),
-    3.4,
-    tolerance = 0.002)
+    3.4, tolerance = 0.002)
 
   # Expect a certain value for the
   # minimum total degree value from all
@@ -304,8 +316,7 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "min",
       conditions = value > 5.0),
-    1,
-    tolerance = 0.002)
+    1, tolerance = 0.002)
 
   # Expect a certain value for the
   # maximum total degree value from all
@@ -316,8 +327,7 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "max",
       conditions = value > 5.0),
-    5,
-    tolerance = 0.002)
+    5, tolerance = 0.002)
 
   # Expect a certain value for the
   # maximum total degree value from all
@@ -328,8 +338,7 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "median",
       conditions = value > 5.0),
-    4,
-    tolerance = 0.002)
+    4, tolerance = 0.002)
 
   # Expect a certain value for the sum
   # of total degree values from all
@@ -340,6 +349,14 @@ test_that("Getting aggregated total degree values is possible", {
       graph = graph,
       agg = "sum",
       conditions = value > 5.0),
-    17,
-    tolerance = 0.002)
+    17, tolerance = 0.002)
+
+  # Expect an error if supplying a
+  # value for agg not in "sum",
+  # "min", "max", "mean", or "median"
+  expect_error(
+    get_agg_degree_total(
+      graph = graph,
+      agg = "sam",
+      conditions = value > 5.0))
 })
