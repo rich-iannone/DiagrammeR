@@ -7,25 +7,31 @@
 get_agg_degree_in(graph, agg, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
-\item{agg}{the aggregation function to use for
-summarizing indegree values from graph nodes. The
-following aggregation functions can be used:
-\code{sum}, \code{min}, \code{max}, \code{mean}, or
+\item{agg}{the aggregation
+function to use for summarizing
+indegree values from graph nodes.
+The following aggregation functions
+can be used: \code{sum}, \code{min},
+\code{max}, \code{mean}, or
 \code{median}.}
 
-\item{conditions}{an option to use filtering
-conditions for the nodes to consider.}
+\item{conditions}{an option to use
+filtering conditions for the nodes
+to consider.}
 }
 \value{
-a vector with an aggregate indegree value.
+a vector with an aggregate
+indegree value.
 }
 \description{
-Get a single, aggregate value from the
-indegree values for all nodes in a graph, or, a subset
-of graph nodes.
+Get a single,
+aggregate value from the
+indegree values for all nodes
+in a graph, or, a subset of
+graph nodes.
 }
 \examples{
 # Create a random graph using the
@@ -43,28 +49,30 @@ graph <-
       mean = 5,
       sd = 1) \%>\% round(1))
 
-# Get the mean indegree value from all
-# nodes in the graph
-get_agg_degree_in(
-  graph = graph,
-  agg = "mean")
+# Get the mean indegree value
+# from all nodes in the graph
+graph \%>\%
+  get_agg_degree_in(
+    agg = "mean")
 #> [1] 1.75
 
-# Other aggregation functions can be used
-# (`min`, `max`, `median`, `sum`); let's
-# get the median in this example
-get_agg_degree_in(
-  graph = graph,
-  agg = "median")
+# Other aggregation functions
+# can be used (`min`, `max`,
+# `median`, `sum`); let's get
+# the median in this example
+graph \%>\%
+  get_agg_degree_in(
+    agg = "median")
 #> [1] 1.5
 
-# The aggregation of indegree can occur
-# for a subset of the graph nodes and this
-# is made possible by specifying `conditions`
-# for the nodes
-get_agg_degree_in(
-  graph = graph,
-  agg = "mean",
-  conditions = value > 5.0)
+# The aggregation of indegree
+# can occur for a subset of the
+# graph nodes and this is made
+# possible by specifying
+# `conditions` for the nodes
+graph \%>\%
+  get_agg_degree_in(
+    agg = "mean",
+    conditions = value > 5.0)
 #> [1] 1.5
 }

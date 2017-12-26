@@ -7,24 +7,29 @@
 get_agg_degree_out(graph, agg, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
-\item{agg}{the aggregation function to use for
-summarizing outdegree values from graph nodes. The
-following aggregation functions can be used:
-\code{sum}, \code{min}, \code{max}, \code{mean}, or
-\code{median}.}
+\item{agg}{the aggregation
+function to use for summarizing
+outdegree values from graph nodes.
+The following aggregation functions
+can be used: \code{sum}, \code{min},
+\code{max}, \code{mean}, or \code{median}.}
 
-\item{conditions}{an option to use filtering
-conditions for the nodes to consider.}
+\item{conditions}{an option to
+use filtering conditions for
+the nodes to consider.}
 }
 \value{
-a vector with an aggregate outdegree value.
+a vector with an aggregate
+outdegree value.
 }
 \description{
-Get a single, aggregate value from the
-outdegree values for all nodes in a graph, or, a subset
+Get a single,
+aggregate value from the
+outdegree values for all nodes
+in a graph, or, a subset
 of graph nodes.
 }
 \examples{
@@ -45,26 +50,26 @@ graph <-
 
 # Get the mean outdegree value from all
 # nodes in the graph
-get_agg_degree_out(
-  graph = graph,
-  agg = "mean")
+graph \%>\%
+  get_agg_degree_out(
+    agg = "mean")
 #> [1] 1.75
 
 # Other aggregation functions can be used
 # (`min`, `max`, `median`, `sum`); let's
 # get the median in this example
-get_agg_degree_out(
-  graph = graph,
-  agg = "median")
+graph \%>\%
+  get_agg_degree_out(
+    agg = "median")
 #> [1] 1
 
 # The aggregation of outdegree can occur
 # for a subset of the graph nodes and this
 # is made possible by specifying `conditions`
 # for the nodes
-get_agg_degree_out(
-  graph = graph,
-  agg = "mean",
-  conditions = value < 5.0)
+graph \%>\%
+  get_agg_degree_out(
+    agg = "mean",
+    conditions = value < 5.0)
 #> [1] 2.555556
 }
