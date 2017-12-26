@@ -22,12 +22,12 @@
 #'   add_edge(
 #'     from =
 #'       get_node_ids(
-#'         x = .,
+#'         graph = .,
 #'         conditions = type == "cycle_1") %>%
 #'         sample(size = 1),
 #'     to =
 #'       get_node_ids(
-#'         x = .,
+#'         graph = .,
 #'         conditions = type == "cycle_2") %>%
 #'         sample(size = 1))
 #'
