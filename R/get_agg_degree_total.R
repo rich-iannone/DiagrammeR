@@ -1,17 +1,21 @@
 #' Get an aggregate value from the total degree of nodes
-#' @description Get a single, aggregate value from the
-#' total degree values for all nodes in a graph, or, a subset
-#' of graph nodes.
+#' @description Get a single,
+#' aggregate value from the total
+#' degree values for all nodes in a
+#' graph, or, a subset of graph nodes.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param agg the aggregation function to use for
-#' summarizing total degree values from graph nodes. The
-#' following aggregation functions can be used:
-#' \code{sum}, \code{min}, \code{max}, \code{mean}, or
-#' \code{median}.
-#' @param conditions an option to use filtering
-#' conditions for the nodes to consider.
-#' @return a vector with an aggregate total degree value.
+#' @param agg the aggregation
+#' function to use for summarizing
+#' total degree values from graph nodes.
+#' The following aggregation functions
+#' can be used: \code{sum}, \code{min},
+#' \code{max}, \code{mean}, or \code{median}.
+#' @param conditions an option to
+#' use filtering conditions for
+#' the nodes to consider.
+#' @return a vector with an
+#' aggregate total degree value.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -28,29 +32,33 @@
 #'       mean = 5,
 #'       sd = 1) %>% round(1))
 #'
-#' # Get the mean total degree value from all
-#' # nodes in the graph
-#' get_agg_degree_total(
-#'   graph = graph,
-#'   agg = "mean")
+#' # Get the mean total degree
+#' # value from all nodes in
+#' # the graph
+#' graph %>%
+#'   get_agg_degree_total(
+#'     agg = "mean")
 #' #> [1] 3.5
 #'
-#' # Other aggregation functions can be used
-#' # (`min`, `max`, `median`, `sum`); let's
-#' # get the median in this example
-#' get_agg_degree_total(
-#'   graph = graph,
-#'   agg = "median")
+#' # Other aggregation functions
+#' # can be used (`min`, `max`,
+#' # `median`, `sum`); let's get
+#' # the median in this example
+#' graph %>%
+#'   get_agg_degree_total(
+#'     agg = "median")
 #' #> [1] 3
 #'
-#' # The aggregation of total degree can occur
-#' # for a subset of the graph nodes and this
-#' # is made possible by specifying `conditions`
+#' # The aggregation of total
+#' # degree can occur for a
+#' # subset of the graph nodes
+#' # and this is made possible
+#' # by specifying `conditions`
 #' # for the nodes
-#' get_agg_degree_total(
-#'   graph = graph,
-#'   agg = "mean",
-#'   conditions = value < 5.0)
+#' graph %>%
+#'   get_agg_degree_total(
+#'     agg = "mean",
+#'     conditions = value < 5.0)
 #' #> [1] 4.666667
 #' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula

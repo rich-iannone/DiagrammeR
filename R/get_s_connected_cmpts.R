@@ -23,12 +23,14 @@
 #'     from =
 #'       get_node_ids(
 #'         graph = .,
-#'         conditions = type == "cycle_1") %>%
+#'         conditions =
+#'           type == "cycle_1") %>%
 #'         sample(size = 1),
 #'     to =
 #'       get_node_ids(
 #'         graph = .,
-#'         conditions = type == "cycle_2") %>%
+#'         conditions =
+#'           type == "cycle_2") %>%
 #'         sample(size = 1))
 #'
 #' # Get the strongly connected
