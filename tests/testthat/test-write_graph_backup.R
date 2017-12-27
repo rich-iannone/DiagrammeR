@@ -1,43 +1,49 @@
 context("Write graph backups")
 
-test_that("Writing graph backups is possible", {
+test_that("Graph backups for `add_balanced_tree()` works", {
 
   #
   # Backup from `add_balanced_tree()`
   #
 
-  path_add_balanced_tree <- tempdir()
-  on.exit(unlink(path_add_balanced_tree))
-  setwd(path_add_balanced_tree)
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
 
   create_graph(write_backups = TRUE) %>%
     add_balanced_tree(
       k = 2, h = 2)
 
   expect_equal(
-    list.files(path = path_add_balanced_tree) %>% length(), 1)
+    list.files(path = path) %>% length(), 1)
+})
+
+test_that("Graph backups for `add_cycle()` works", {
 
   #
   # Backup from `add_cycle()`
   #
 
-  path_add_cycle <- tempdir()
-  on.exit(unlink(path_add_cycle))
-  setwd(path_add_cycle)
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
 
   create_graph(write_backups = TRUE) %>%
     add_cycle(n = 6)
 
   expect_equal(
-    list.files(path = path_add_cycle) %>% length(), 1)
+    list.files(path = path) %>% length(), 2)
+})
+
+test_that("Graph backups for `add_edge()` works", {
 
   #
   # Backup from `add_edge()`
   #
 
-  path_add_edge <- tempdir()
-  on.exit(unlink(path_add_edge))
-  setwd(path_add_edge)
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
 
   create_graph(write_backups = TRUE) %>%
     add_n_nodes(
@@ -47,15 +53,18 @@ test_that("Writing graph backups is possible", {
       to = 2)
 
   expect_equal(
-    list.files(path = path_add_edge) %>% length(), 1)
+    list.files(path = path) %>% length(), 3)
+})
+
+test_that("Graph backups for `add_edge_clone()` works", {
 
   #
   # Backup from `add_edge_clone()`
   #
 
-  path_add_edge_clone <- tempdir()
-  on.exit(unlink(path_add_edge_clone))
-  setwd(path_add_edge_clone)
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
 
   create_graph(write_backups = TRUE) %>%
     add_n_nodes(
@@ -69,5 +78,5 @@ test_that("Writing graph backups is possible", {
       to = 3)
 
   expect_equal(
-    list.files(path = path_add_edge_clone) %>% length(), 1)
+    list.files(path = path) %>% length(), 4)
 })
