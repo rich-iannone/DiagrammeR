@@ -1,41 +1,55 @@
-#' Add edges from an edge data frame to an existing
-#' graph object
-#' @description With a graph object of class
-#' \code{dgr_graph} add edges from an edge data frame
-#' to that graph.
-#' @param graph a graph object of class
+#' Add edges from an edge data frame
+#' to an existing graph object
+#' @description With a graph object
+#' of class \code{dgr_graph}, add
+#' edges from an edge data frame to
+#' that graph.
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param edge_df an edge data frame
+#' that is created using
+#' \code{create_edge_df}.
+#' @return a graph object of class
 #' \code{dgr_graph}.
-#' @param edge_df an edge data frame that is created
-#' using \code{create_edge_df}.
-#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
 #'   create_node_df(
 #'     n = 4,
 #'     type = "letter",
-#'     color = c("red", "green", "grey", "blue"),
-#'     value = c(3.5, 2.6, 9.4, 2.7))
+#'     color = c(
+#'       "red", "green",
+#'       "grey", "blue"),
+#'     value = c(
+#'       3.5, 2.6, 9.4, 2.7))
 #'
-#' # Create a graph with nodes and no edges
-#' graph <- create_graph(nodes_df = ndf)
+#' # Create a graph with nodes
+#' # and no edges
+#' graph <-
+#'   create_graph(
+#'     nodes_df = ndf)
 #'
 #' # Create an edge data frame (edf)
 #' edf <-
 #'   create_edge_df(
 #'     from = c(1, 2, 3),
-#'     to = c(4, 3, 1),
-#'     rel = "leading_to")
+#'       to = c(4, 3, 1),
+#'      rel = "leading_to")
 #'
-#' # Add the edge data frame to the graph object to
-#' # create a graph with both nodes and edges
+#' # Add the edge data frame to
+#' # the graph object to create
+#' # a graph with both nodes
+#' # and edges
 #' graph <-
 #'   graph %>%
-#'   add_edge_df(edf)
+#'   add_edge_df(
+#'     edge_df = edf)
 #'
 #' # Get the graph's edges to verify that the edge
 #' # data frame had been added
-#' get_edges(graph, return_type = "vector")
+#' graph %>%
+#'   get_edges(
+#'     return_type = "vector")
 #' #> [1] "1->4" "2->3" "3->1"
 #' @export add_edge_df
 
