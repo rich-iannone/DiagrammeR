@@ -354,6 +354,7 @@ add_cycle <- function(graph,
     }
 
     return(combined_graph)
+
   } else {
 
     # Update the `graph_log` df with an action
