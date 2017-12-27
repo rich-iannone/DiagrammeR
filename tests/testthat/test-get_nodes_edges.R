@@ -2,7 +2,7 @@ context("Getting node IDs from the entire graph or within edges")
 
 test_that("getting node IDs from various objects is possible", {
 
-  set.seed(26)
+  set.seed(23)
 
   # Create a node data frame
   nodes <-
@@ -20,7 +20,7 @@ test_that("getting node IDs from various objects is possible", {
       from = sample(1:26, replace = TRUE),
       to = sample(1:26, replace = TRUE),
       label = "edge",
-      relationship = "letter_to_letter")
+      rel = "letter_to_letter")
 
   # Create the graph object using
   # the node and edge data frames
