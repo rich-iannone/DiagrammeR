@@ -59,13 +59,6 @@ add_edge_df <- function(graph,
   # this graph
   edges_created <- graph$last_edge
 
-  # If not all the nodes specified in the edge data
-  # frame are in the graph, stop the function
-  # if (all(unique(c(edge_df$from, edge_df$to)) %in%
-  #         get_node_ids(graph)) == FALSE) {
-  #   stop("Not all nodes specified in the edge data frame are in the graph.")
-  # }
-
   # Get the number of edges in the graph
   edges_graph_1 <- graph %>% count_edges()
 
