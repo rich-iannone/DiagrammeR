@@ -171,7 +171,6 @@ test_that("creating node aesthetic attribute values is possible", {
       value_1 = c(1, 2, 4, 5)))
 })
 
-
 test_that("creating edge aesthetic attribute values is possible", {
 
   # Create an edge aesthetic list object
@@ -389,6 +388,27 @@ test_that("binding data and aesthetic attribute values is always possible", {
       node_aes = node_aes_, edge_aes = edge_aes_,
       node_data = node_data_, edge_data = edge_data_)
 
+  graph_w_attrs_15 <-
+    create_graph() %>%
+    add_node(
+      node_aes = node_aes_,
+      node_data = node_data_)
+
+  graph_w_attrs_16 <-
+    create_graph() %>%
+    add_n_nodes(
+      n = 2,
+      node_aes = node_aes_,
+      node_data = node_data_)
+
+  graph_w_attrs_17 <-
+    create_graph() %>%
+    add_n_nodes(n = 2) %>%
+    add_edge(
+      from = 1, to = 2,
+      edge_aes = edge_aes_,
+      edge_data = edge_data_)
+
   expect_true("fillcolor" %in% (graph_w_attrs_1$nodes_df %>% names()))
   expect_true("fillcolor" %in% (graph_w_attrs_2$nodes_df %>% names()))
   expect_true("fillcolor" %in% (graph_w_attrs_3$nodes_df %>% names()))
@@ -403,6 +423,8 @@ test_that("binding data and aesthetic attribute values is always possible", {
   expect_true("fillcolor" %in% (graph_w_attrs_12$nodes_df %>% names()))
   expect_true("fillcolor" %in% (graph_w_attrs_13$nodes_df %>% names()))
   expect_true("fillcolor" %in% (graph_w_attrs_14$nodes_df %>% names()))
+  expect_true("fillcolor" %in% (graph_w_attrs_15$nodes_df %>% names()))
+  expect_true("fillcolor" %in% (graph_w_attrs_16$nodes_df %>% names()))
 
   expect_true("node_value" %in% (graph_w_attrs_1$nodes_df %>% names()))
   expect_true("node_value" %in% (graph_w_attrs_2$nodes_df %>% names()))
@@ -418,6 +440,8 @@ test_that("binding data and aesthetic attribute values is always possible", {
   expect_true("node_value" %in% (graph_w_attrs_12$nodes_df %>% names()))
   expect_true("node_value" %in% (graph_w_attrs_13$nodes_df %>% names()))
   expect_true("node_value" %in% (graph_w_attrs_14$nodes_df %>% names()))
+  expect_true("node_value" %in% (graph_w_attrs_15$nodes_df %>% names()))
+  expect_true("node_value" %in% (graph_w_attrs_16$nodes_df %>% names()))
 
   expect_true("color" %in% (graph_w_attrs_1$edges_df %>% names()))
   expect_true("color" %in% (graph_w_attrs_2$edges_df %>% names()))
@@ -433,6 +457,7 @@ test_that("binding data and aesthetic attribute values is always possible", {
   expect_true("color" %in% (graph_w_attrs_12$edges_df %>% names()))
   expect_true("color" %in% (graph_w_attrs_13$edges_df %>% names()))
   expect_true("color" %in% (graph_w_attrs_14$edges_df %>% names()))
+  expect_true("color" %in% (graph_w_attrs_17$edges_df %>% names()))
 
   expect_true("edge_value" %in% (graph_w_attrs_1$edges_df %>% names()))
   expect_true("edge_value" %in% (graph_w_attrs_2$edges_df %>% names()))
@@ -448,5 +473,6 @@ test_that("binding data and aesthetic attribute values is always possible", {
   expect_true("edge_value" %in% (graph_w_attrs_12$edges_df %>% names()))
   expect_true("edge_value" %in% (graph_w_attrs_13$edges_df %>% names()))
   expect_true("edge_value" %in% (graph_w_attrs_14$edges_df %>% names()))
+  expect_true("edge_value" %in% (graph_w_attrs_17$edges_df %>% names()))
 
 })
