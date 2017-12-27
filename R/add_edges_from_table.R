@@ -54,11 +54,11 @@
 #' # graph's internal node data frame
 #' graph_1 <-
 #'   graph %>%
-#'   add_edges_from_table(
-#'     table = usd_exchange_rates,
-#'     from_col = from_currency,
-#'     to_col = to_currency,
-#'     from_to_map = iso_4217_code)
+#'     add_edges_from_table(
+#'       table = usd_exchange_rates,
+#'       from_col = from_currency,
+#'       to_col = to_currency,
+#'       from_to_map = iso_4217_code)
 #'
 #' # View part of the graph's
 #' # internal edge data frame
@@ -81,12 +81,12 @@
 #' # all edges created, use `set_rel`
 #' graph_2 <-
 #'   graph %>%
-#'   add_edges_from_table(
-#'     table = usd_exchange_rates,
-#'     from_col = from_currency,
-#'     to_col = to_currency,
-#'     from_to_map = iso_4217_code,
-#'     set_rel = "from_usd")
+#'     add_edges_from_table(
+#'       table = usd_exchange_rates,
+#'       from_col = from_currency,
+#'       to_col = to_currency,
+#'       from_to_map = iso_4217_code,
+#'       set_rel = "from_usd")
 #'
 #' # View part of the graph's internal
 #' # edge data frame (edf)
