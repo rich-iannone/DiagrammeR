@@ -1,17 +1,21 @@
 #' Add a clone of an existing edge to the graph
-#' @description Add a new edge to a graph object of
-#' class \code{dgr_graph} which is a clones of an edge
-#' already in the graph. All edge attributes are
+#' @description Add a new edge to
+#' a graph object of class
+#' \code{dgr_graph} which is a
+#' clone of an edge already in the
+#' graph. All edge attributes are
 #' preserved.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edge an edge ID corresponding to the graph edge
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param edge an edge ID
+#' corresponding to the graph edge
 #' to be cloned.
-#' @param from the outgoing node from which the edge
-#' is connected.
-#' @param to the incoming nodes to which each edge
-#' is connected.
-#' @return a graph object of class \code{dgr_graph}.
+#' @param from the outgoing node
+#' from which the edge is connected.
+#' @param to the incoming nodes to
+#' which each edge is connected.
+#' @return a graph object of
+#' class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with a path of
 #' # 2 nodes; supply a common `rel`
@@ -68,6 +72,7 @@
 #'       edge = get_last_edges_created(.),
 #'       from = get_last_nodes_created(.),
 #'       to = 1)
+#'
 #' # Display the graph's internal
 #' # edge data frame
 #' graph_3 %>%
