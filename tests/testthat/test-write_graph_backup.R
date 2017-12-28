@@ -103,7 +103,7 @@ test_that("Graph backups for `add_edge_clone()` works", {
       to = 3)
 
   expect_equal(
-    list.files(path = path) %>% length(), 4)
+    list.files(path = path) %>% length(), 5)
 })
 
 test_that("Graph backups for `add_edge_df()` works", {
@@ -139,7 +139,7 @@ test_that("Graph backups for `add_edge_df()` works", {
       edge_df = edf)
 
   expect_equal(
-    list.files(path = path) %>% length(), 5)
+    list.files(path = path) %>% length(), 6)
 })
 
 test_that("Graph backups for `add_edge_df()` works", {
@@ -162,7 +162,7 @@ test_that("Graph backups for `add_edge_df()` works", {
       from_to_map = iso_4217_code)
 
   expect_equal(
-    list.files(path = path) %>% length(), 6)
+    list.files(path = path) %>% length(), 7)
 })
 
 test_that("Graph backups for `add_edges_w_string()` works", {
@@ -181,7 +181,7 @@ test_that("Graph backups for `add_edges_w_string()` works", {
       edges = "1->2 1->3 2->4 2->3")
 
   expect_equal(
-    list.files(path = path) %>% length(), 7)
+    list.files(path = path) %>% length(), 8)
 })
 
 test_that("Graph backups for `add_forward_edges_ws()` works", {
@@ -205,7 +205,7 @@ test_that("Graph backups for `add_forward_edges_ws()` works", {
     add_forward_edges_ws(rel = "b")
 
   expect_equal(
-    list.files(path = path) %>% length(), 8)
+    list.files(path = path) %>% length(), 9)
 })
 
 test_that("Graph backups for `add_full_graph()` works", {
@@ -222,7 +222,7 @@ test_that("Graph backups for `add_full_graph()` works", {
     add_full_graph(n = 5)
 
   expect_equal(
-    list.files(path = path) %>% length(), 9)
+    list.files(path = path) %>% length(), 10)
 })
 
 test_that("Graph backups for `add_gnm_graph()` works", {
@@ -239,7 +239,7 @@ test_that("Graph backups for `add_gnm_graph()` works", {
     add_gnm_graph(n = 100, m = 120)
 
   expect_equal(
-    list.files(path = path) %>% length(), 9)
+    list.files(path = path) %>% length(), 11)
 })
 
 test_that("Graph backups for `add_gnp_graph()` works", {
@@ -256,13 +256,13 @@ test_that("Graph backups for `add_gnp_graph()` works", {
     add_gnp_graph(n = 100, p = 0.05)
 
   expect_equal(
-    list.files(path = path) %>% length(), 9)
+    list.files(path = path) %>% length(), 12)
 })
 
 test_that("Graph backups for `add_graph_action()` works", {
 
   #
-  # Backup from `add_gnp_graph()`
+  # Backup from `add_graph_action()`
   #
 
   path <- tempdir()
@@ -279,5 +279,5 @@ test_that("Graph backups for `add_graph_action()` works", {
       action_name = "get_btwns")
 
   expect_equal(
-    list.files(path = path) %>% length(), 100)
+    list.files(path = path) %>% length(), 13)
 })
