@@ -102,8 +102,7 @@
 #' #> 6  6  148  6 from_usd  0.006058
 #' @importFrom utils read.csv
 #' @importFrom stats setNames
-#' @importFrom tibble as_tibble
-#' @importFrom dplyr left_join select rename mutate bind_cols everything
+#' @importFrom dplyr left_join select rename mutate bind_cols everything as_tibble
 #' @importFrom rlang enquo UQ
 #' @export add_edges_from_table
 
@@ -190,13 +189,15 @@ add_edges_from_table <- function(graph,
   # Extract the ndf from the graph
   ndf <- graph$nodes_df
 
+  # Exclude the `from` and `to` columns
+  # from the `csv` table
   csv_data_excluding_from_to <-
     csv %>%
     dplyr::select(setdiff(colnames(csv), c(from_col, to_col)))
 
   # Get the `from` col
   col_from <-
-    tibble::as_tibble(csv) %>%
+    dplyr::as_tibble(csv) %>%
     dplyr::select(rlang::UQ(from_col)) %>%
     dplyr::left_join(
       ndf %>% select(id, rlang::UQ(from_to_map)),
@@ -207,7 +208,7 @@ add_edges_from_table <- function(graph,
 
   # Get the `to` col
   col_to <-
-    tibble::as_tibble(csv) %>%
+    dplyr::as_tibble(csv) %>%
     dplyr::select(rlang::UQ(to_col)) %>%
     dplyr::left_join(
       ndf %>% select(id, rlang::UQ(from_to_map)),
@@ -265,29 +266,29 @@ add_edges_from_table <- function(graph,
     col_selection <- get_col_selection(col_selection_stmt = drop_cols)
 
     if (col_selection[["selection_type"]] == "column_range") {
-      col_index_1 <- which(colnames(csv) == col_selection[["column_selection"]][1])
-      col_index_2 <- which(colnames(csv) == col_selection[["column_selection"]][2])
+      col_index_1 <- which(colnames(edf) == col_selection[["column_selection"]][1])
+      col_index_2 <- which(colnames(edf) == col_selection[["column_selection"]][2])
 
       col_indices <- col_index_1:col_index_2 %>% sort()
 
-      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
+      columns_retained <- base::setdiff(colnames(edf), colnames(edf)[col_indices])
 
     } else if (col_selection[["selection_type"]] == "column_index_range") {
 
       col_indices <- col_selection[["column_selection"]] %>% sort()
 
-      columns_retained <- base::setdiff(colnames(csv), colnames(csv)[col_indices])
+      columns_retained <- base::setdiff(colnames(edf), colnames(edf)[col_indices])
 
     } else if (col_selection[["selection_type"]] %in% c("single_column_name", "column_names")) {
 
-      columns_retained <- base::setdiff(colnames(csv), col_selection[["column_selection"]])
+      columns_retained <- base::setdiff(colnames(edf), col_selection[["column_selection"]])
 
     } else if (length(col_selection) == 0) {
 
-      columns_retained <- colnames(csv)
+      columns_retained <- colnames(edf)
     }
 
-    edf <- edf[, c("id", columns_retained)]
+    edf <- edf[, c(columns_retained)]
   }
 
   # Get the number of edges in the graph
