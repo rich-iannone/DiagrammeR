@@ -710,6 +710,58 @@ test_that("adding edges from a table to a graph is possible", {
         from_col = from_currency,
         to_col = to_currency,
         from_to_map = iso_4217))
+
+  # Augment the graph by first
+  # adding edges from a table
+  # with `add_edges_from_table()` and
+  # then dropping a column
+  graph_nodes_edges_drop <-
+    graph %>%
+    add_edges_from_table(
+      table = edge_table,
+      from_col = from_currency,
+      to_col = to_currency,
+      drop_cols = cost_unit,
+      from_to_map = iso_4217_code)
+
+  # Expect that the graph has a certain number of edges
+  expect_equal(
+    count_edges(graph = graph_nodes_edges_drop), 157)
+
+  # Expect certain columns to exist in the graph's
+  # edge data frame
+  expect_equal(
+    colnames(graph_nodes_edges_drop$edges_df),
+    c("id", "from", "to", "rel"))
+
+  # Augment the graph by first
+  # adding edges from a table
+  # with `add_edges_from_table()` and
+  # then setting a static `rel` value
+  graph_nodes_edges_set_rel <-
+    graph %>%
+    add_edges_from_table(
+      table = edge_table,
+      from_col = from_currency,
+      to_col = to_currency,
+      from_to_map = iso_4217_code,
+      set_rel = "change_to")
+
+  # Expect that the graph has a certain number of edges
+  expect_equal(
+    count_edges(graph = graph_nodes_edges_set_rel), 157)
+
+  # Expect certain columns to exist in the graph's
+  # edge data frame
+  expect_equal(
+    colnames(graph_nodes_edges_set_rel$edges_df),
+    c("id", "from", "to", "rel", "cost_unit"))
+
+  # Expect the same value (repeated down)
+  # for the `rel` edge attribute
+  expect_equal(
+    unique(graph_nodes_edges_set_rel$edges_df$rel),
+    "change_to")
 })
 
 test_that("adding nodes from several table columns to a graph is possible", {
