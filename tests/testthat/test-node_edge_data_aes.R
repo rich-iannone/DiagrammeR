@@ -408,8 +408,14 @@ test_that("binding data and aesthetic attribute values is always possible", {
     add_n_nodes_ws(
       n = 1,
       direction = "from",
-      node_aes = node_aes_,
-      node_data = node_data_,
+      node_aes = node_aes_, edge_aes = edge_aes_,
+      node_data = node_data_, edge_data = edge_data_)
+
+  graph_w_attrs_18 <-
+    create_graph() %>%
+    add_path(n = 2) %>%
+    select_edges() %>%
+    add_reverse_edges_ws(
       edge_aes = edge_aes_,
       edge_data = edge_data_)
 
@@ -464,6 +470,7 @@ test_that("binding data and aesthetic attribute values is always possible", {
   expect_true("color" %in% (graph_w_attrs_13$edges_df %>% names()))
   expect_true("color" %in% (graph_w_attrs_14$edges_df %>% names()))
   expect_true("color" %in% (graph_w_attrs_17$edges_df %>% names()))
+  expect_true("color" %in% (graph_w_attrs_18$edges_df %>% names()))
 
   expect_true("edge_value" %in% (graph_w_attrs_1$edges_df %>% names()))
   expect_true("edge_value" %in% (graph_w_attrs_2$edges_df %>% names()))
@@ -480,5 +487,6 @@ test_that("binding data and aesthetic attribute values is always possible", {
   expect_true("edge_value" %in% (graph_w_attrs_13$edges_df %>% names()))
   expect_true("edge_value" %in% (graph_w_attrs_14$edges_df %>% names()))
   expect_true("edge_value" %in% (graph_w_attrs_17$edges_df %>% names()))
+  expect_true("edge_value" %in% (graph_w_attrs_18$edges_df %>% names()))
 
 })
