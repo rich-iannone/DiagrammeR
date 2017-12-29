@@ -517,7 +517,7 @@ print.dgr_graph <- function(x, ...) {
   } else {
 
     graph_actions_count <-
-      nrow(x$global_attrs)
+      nrow(x$graph_actions)
 
     graph_actions_str <-
       paste0(
