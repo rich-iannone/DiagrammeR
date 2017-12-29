@@ -300,6 +300,62 @@ test_that("Graph backups for `add_n_node_clones()` works", {
     list.files(path = path) %>% length(), 14)
 })
 
+test_that("Graph backups for `add_global_graph_attrs()` works", {
+
+  #
+  # Backup from `add_global_graph_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_global_graph_attrs(
+      attr = "penwidth",
+      value = 12,
+      attr_type = "node")
+
+  expect_equal(
+    list.files(path = path) %>% length(), 15)
+})
+
+test_that("Graph backups for `delete_global_graph_attrs()` works", {
+
+  #
+  # Backup from `delete_global_graph_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    delete_global_graph_attrs(
+      attr = "outputorder",
+      attr_type = "graph")
+
+  expect_equal(
+    list.files(path = path) %>% length(), 16)
+})
+
+test_that("Graph backups for `clear_global_graph_attrs()` works", {
+
+  #
+  # Backup from `clear_global_graph_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    clear_global_graph_attrs()
+
+  expect_equal(
+    list.files(path = path) %>% length(), 17)
+})
+
 test_that("Graph backups for `add_graph_action()` works", {
 
   #
@@ -320,5 +376,60 @@ test_that("Graph backups for `add_graph_action()` works", {
       action_name = "get_btwns")
 
   expect_equal(
-    list.files(path = path) %>% length(), 15)
+    list.files(path = path) %>% length(), 18)
+})
+
+test_that("Graph backups for `delete_graph_actions()` works", {
+
+  #
+  # Backup from `delete_graph_actions()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_gnm_graph(
+      n = 10, m = 22) %>%
+    add_graph_action(
+      fcn = "set_node_attr_w_fcn",
+      node_attr_fcn = "get_betweenness",
+      column_name = "btwns",
+      action_name = "get_btwns") %>%
+    delete_graph_actions(
+      actions = "get_btwns")
+
+  expect_equal(
+    list.files(path = path) %>% length(), 19)
+})
+
+test_that("Graph backups for `reorder_graph_actions()` works", {
+
+  #
+  # Backup from `reorder_graph_actions()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_gnm_graph(
+      n = 10, m = 22) %>%
+    add_graph_action(
+      fcn = "rescale_node_attrs",
+      node_attr_from = "pagerank",
+      node_attr_to = "width",
+      action_name = "pgrnk_to_width") %>%
+    add_graph_action(
+      fcn = "set_node_attr_w_fcn",
+      node_attr_fcn = "get_pagerank",
+      column_name = "pagerank",
+      action_name = "get_pagerank") %>%
+    reorder_graph_actions(
+      indices = c(2, 1))
+
+  expect_equal(
+    list.files(path = path) %>% length(), 20)
 })
