@@ -259,6 +259,47 @@ test_that("Graph backups for `add_gnp_graph()` works", {
     list.files(path = path) %>% length(), 12)
 })
 
+test_that("Graph backups for `add_node_clones_ws()` works", {
+
+  #
+  # Backup from `add_node_clones_ws()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_gnm_graph(
+      n = 10, m = 22) %>%
+    select_nodes() %>%
+    add_node_clones_ws()
+
+  expect_equal(
+    list.files(path = path) %>% length(), 13)
+})
+
+test_that("Graph backups for `add_n_node_clones()` works", {
+
+  #
+  # Backup from `add_n_node_clones()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_gnm_graph(
+      n = 10, m = 22) %>%
+    add_n_node_clones(
+      n = 2,
+      node = 1)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 14)
+})
+
 test_that("Graph backups for `add_graph_action()` works", {
 
   #
@@ -279,5 +320,5 @@ test_that("Graph backups for `add_graph_action()` works", {
       action_name = "get_btwns")
 
   expect_equal(
-    list.files(path = path) %>% length(), 13)
+    list.files(path = path) %>% length(), 15)
 })
