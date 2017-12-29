@@ -8,14 +8,13 @@ With the **DiagrammeR** package you can create, modify, analyze, and visualize n
 
 <img src="inst/img/simple_graph.png">
 
-It's possible to make the above graph diagram using a combination of **DiagrammeR** functions strung together with the **magrittr** `%>%` pipe:
+The above example graph can be created using a combination of **DiagrammeR** functions, all strung together with the **magrittr** `%>%` pipe:
 
 ```r
 library(DiagrammeR)
 
 example_graph <-
-  create_graph(
-    directed = TRUE) %>%
+  create_graph() %>%
   add_pa_graph(
     n = 50,
     m = 1,
