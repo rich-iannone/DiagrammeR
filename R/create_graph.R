@@ -165,7 +165,9 @@ create_graph <- function(nodes_df = NULL,
   # If `attr_theme` is `default` then populate the
   # `global_attrs` data frame with global graph attrs
   if (inherits(attr_theme, "character")) {
+
     if (attr_theme == "default") {
+
       global_attrs <-
         data.frame(
           attr = as.character(
@@ -189,9 +191,12 @@ create_graph <- function(nodes_df = NULL,
               rep("edge", 5))),
           stringsAsFactors = FALSE)
     } else {
+
       stop("The value for `attr_theme` doesn't refer to any available theme.")
     }
+
   } else if (is.null(attr_theme)) {
+
     global_attrs <-
       data.frame(
         attr = as.character(NA),
@@ -273,18 +278,19 @@ create_graph <- function(nodes_df = NULL,
 
   # Initialize a graph object
   graph <-
-    list(graph_info = graph_info,
-         nodes_df = ndf,
-         edges_df = edf,
-         global_attrs = global_attrs,
-         directed = ifelse(directed, TRUE, FALSE),
-         last_node = 0,
-         last_edge = 0,
-         node_selection = nsdf,
-         edge_selection = esdf,
-         cache = cache,
-         graph_actions = graph_actions,
-         graph_log = graph_log)
+    list(
+      graph_info = graph_info,
+      nodes_df = ndf,
+      edges_df = edf,
+      global_attrs = global_attrs,
+      directed = ifelse(directed, TRUE, FALSE),
+      last_node = 0,
+      last_edge = 0,
+      node_selection = nsdf,
+      edge_selection = esdf,
+      cache = cache,
+      graph_actions = graph_actions,
+      graph_log = graph_log)
 
   attr(graph, "class") <- "dgr_graph"
 
@@ -304,18 +310,6 @@ create_graph <- function(nodes_df = NULL,
         edges = nrow(graph$edges_df),
         d_n = nrow(graph$nodes_df),
         d_e = nrow(graph$edges_df))
-
-    # Add the `graph_log` df to the graph object
-    graph$graph_log <- graph_log
-
-    # Write graph backup if the option is set
-    if (graph$graph_info$write_backups) {
-      save_graph_as_rds(graph = graph)
-    }
-
-    # If neither an ndf nor both ndf & edf provided,
-    # return the initialized graph with no nodes or edges
-    return(graph)
 
   } else if (!is.null(nodes_df) & is.null(edges_df)) {
 
@@ -353,16 +347,6 @@ create_graph <- function(nodes_df = NULL,
         d_n = nrow(graph$nodes_df),
         d_e = nrow(graph$edges_df))
 
-    # Add the `graph_log` df to the graph object
-    graph$graph_log <- graph_log
-
-    # Write graph backup if the option is set
-    if (graph$graph_info$write_backups) {
-      save_graph_as_rds(graph = graph)
-    }
-
-    return(graph)
-
   } else if (!is.null(nodes_df) & !is.null(edges_df)) {
 
     # If an ndf and edf both provided, create a graph
@@ -393,6 +377,7 @@ create_graph <- function(nodes_df = NULL,
 
     # Ensure that the edf has the correct classes
     if (inherits(edges_df, "data.frame")) {
+
       if (ncol(edges_df) > 2) {
 
         # Force the rel column to be of the character class
@@ -419,15 +404,17 @@ create_graph <- function(nodes_df = NULL,
         edges = nrow(graph$edges_df),
         d_n = nrow(graph$nodes_df),
         d_e = nrow(graph$edges_df))
-
-    # Add the `graph_log` df to the graph object
-    graph$graph_log <- graph_log
-
-    # Write graph backup if the option is set
-    if (graph$graph_info$write_backups) {
-      save_graph_as_rds(graph = graph)
-    }
-
-    return(graph)
   }
+
+  # Add the `graph_log` df to the graph object
+  graph$graph_log <- graph_log
+
+  # Write graph backup if the option is set
+  if (graph$graph_info$write_backups) {
+    save_graph_as_rds(graph = graph)
+  }
+
+  # If neither an ndf nor both ndf & edf provided,
+  # return the initialized graph with no nodes or edges
+  return(graph)
 }
