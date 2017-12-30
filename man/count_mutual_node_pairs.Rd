@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_mutual_node_pairs.R
 \name{count_mutual_node_pairs}
 \alias{count_mutual_node_pairs}
-\title{Get the number of mutally-connected node pairs}
+\title{Get the number of mutually-connected node pairs}
 \usage{
 count_mutual_node_pairs(graph)
 }
@@ -11,12 +11,14 @@ count_mutual_node_pairs(graph)
 \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the
-number of mutually-connected node pairs.
+a single numeric value
+representing the number of mutually-
+connected node pairs.
 }
 \description{
-Get the number of mutally-connected
-node pairs. This works for directed graphs.
+Get the number of
+mutually-connected node pairs.
+This works for directed graphs.
 }
 \examples{
 # Create a cycle graph
@@ -24,13 +26,14 @@ graph <-
   create_graph() \%>\%
   add_cycle(n = 5)
 
-# Get a count of mutally-connected
+# Get a count of mutually-connected
 # node pairs
-count_mutual_node_pairs(graph)
+graph \%>\%
+  count_mutual_node_pairs()
 #> [1] 0
 
 # Create a full graph and then
-# count the mutally-connected
+# count the mutually-connected
 # node pairs
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%

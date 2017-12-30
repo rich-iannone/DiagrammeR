@@ -11,13 +11,15 @@ invert_selection(graph)
 \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
-Modify the selection of nodes or edges
-within a graph object such that all nodes or edges
-previously unselected will now be selected and vice
-versa.
+Modify the selection
+of nodes or edges within a graph
+object such that all nodes or edges
+previously not selected will now be
+selected and vice versa.
 }
 \examples{
 # Create a node data frame (ndf)

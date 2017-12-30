@@ -14,7 +14,7 @@ get_multiedge_count(graph)
 a vector with a single, numerical value.
 }
 \description{
-Get a count of the number of mutiple
+Get a count of the number of multiple
 edges in the graph. Included in the count is the
 number of separate edges that share the same edge
 definition (i.e., same pair of nodes) across the
