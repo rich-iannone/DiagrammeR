@@ -60,7 +60,6 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' \dontrun{
 #' # Create a new graph and add
 #' # a 2 x 2 x 2 grid
 #' graph <-
@@ -71,7 +70,8 @@
 #'
 #' # Get node information
 #' # from this graph
-#' node_info(graph)
+#' graph %>%
+#'   node_info()
 #' #>   id type label deg indeg outdeg loops
 #' #> 1  1 grid     1   3     0      3     0
 #' #> 2  2 grid     2   3     1      2     0
@@ -94,22 +94,24 @@
 #'   create_graph() %>%
 #'   add_grid_3d(
 #'     x = 2, y = 2, z = 2,
-#'     label = c("one", "two",
-#'               "three", "four",
-#'               "five", "six",
-#'               "seven", "eight"),
-#'     type = c("a", "a",
-#'              "b", "b",
-#'              "c", "c",
-#'              "d", "d"),
-#'     value = c(1.2, 8.4,
-#'               3.4, 5.2,
-#'               6.1, 2.6,
-#'               6.3, 9.3),
-#'     rel = "grid")
+#'     label = c(
+#'       "one", "two", "three",
+#'       "four", "five", "six",
+#'       "seven", "eight"),
+#'     type = c(
+#'       "a", "a", "b",
+#'       "b", "c", "c",
+#'       "d", "d"),
+#'     rel = "grid",
+#'     node_data = node_data(
+#'       value = c(
+#'         1.2, 8.4, 3.4,
+#'         5.2, 6.1, 2.6,
+#'         6.3, 9.3)))
 #'
 #' # Get the graph's node data frame
-#' get_node_df(graph_w_attrs)
+#' graph_w_attrs %>%
+#'   get_node_df()
 #' #>   id type label value
 #' #> 1  1    a   one   1.2
 #' #> 2  2    a   two   8.4
@@ -121,7 +123,8 @@
 #' #> 8  8    d eight   9.3
 #'
 #' # Get the graph's edge data frame
-#' get_edge_df(graph_w_attrs)
+#' graph_w_attrs %>%
+#'   get_edge_df()
 #' #>    id from to  rel
 #' #> 1   1    1  2 grid
 #' #> 2   2    1  3 grid
@@ -135,7 +138,6 @@
 #' #> 10 10    5  7 grid
 #' #> 11 11    6  8 grid
 #' #> 12 12    7  8 grid
-#' }
 #' @importFrom igraph make_lattice
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr select bind_cols pull
