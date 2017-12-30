@@ -740,3 +740,236 @@ test_that("Graph backups for `mutate_edge_attrs_ws()` works", {
     expect_equal(
       list.files(path = path) %>% length(), 33)
 })
+
+test_that("Graph backups for `rename_node_attrs()` works", {
+
+  #
+  # Backup from `rename_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      node_data = node_data(
+        weight = c(
+          8.2, 3.7, 6.3, 9.2))) %>%
+    rename_node_attrs(
+      node_attr_from = weight,
+      node_attr_to = weight_2)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 32)
+})
+
+test_that("Graph backups for `rename_edge_attrs()` works", {
+
+  #
+  # Backup from `rename_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      edge_data = edge_data(
+        weight = c(
+          8.2, 3.7, 6.3))) %>%
+    rename_edge_attrs(
+      edge_attr_from = weight,
+      edge_attr_to = weight_2)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 33)
+})
+
+test_that("Graph backups for `recode_node_attrs()` works", {
+
+  #
+  # Backup from `recode_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_gnm_graph(
+      n = 5,
+      m = 10,
+      set_seed = 23) %>%
+    set_node_attrs(
+      node_attr = shape,
+      values =
+        c("circle", "hexagon",
+          "rectangle", "rectangle",
+          "circle")) %>%
+    recode_node_attrs(
+      node_attr_from = shape,
+      "circle -> square",
+      "rectangle -> triangle")
+
+  expect_equal(
+    list.files(path = path) %>% length(), 34)
+})
+
+test_that("Graph backups for `recode_edge_attrs()` works", {
+
+  #
+  # Backup from `recode_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 6,
+      edge_data = edge_data(
+        values = c(
+          "circle", "hexagon",
+          "rectangle", "rectangle",
+          "circle"))) %>%
+    recode_edge_attrs(
+      edge_attr_from = values,
+      "circle -> square",
+      "rectangle -> triangle")
+
+  expect_equal(
+    list.files(path = path) %>% length(), 35)
+})
+
+test_that("Graph backups for `rescale_node_attrs()` works", {
+
+  #
+  # Backup from `rescale_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      node_data = node_data(
+        weight = c(
+          8.2, 3.7, 6.3, 9.2))) %>%
+    rescale_node_attrs(
+      node_attr_from = weight,
+      to_lower_bound = 0,
+      to_upper_bound = 1)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 36)
+})
+
+test_that("Graph backups for `rescale_edge_attrs()` works", {
+
+  #
+  # Backup from `rescale_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 5,
+      edge_data = edge_data(
+        weight = c(
+          8.2, 3.7, 6.3, 9.2))) %>%
+    rescale_edge_attrs(
+      edge_attr_from = weight,
+      to_lower_bound = 0,
+      to_upper_bound = 1)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 37)
+})
+
+test_that("Graph backups for `rev_edge_dir()` works", {
+
+  #
+  # Backup from `rev_edge_dir()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(n = 2) %>%
+    rev_edge_dir()
+
+  expect_equal(
+    list.files(path = path) %>% length(), 38)
+})
+
+test_that("Graph backups for `rev_edge_dir_ws()` works", {
+
+  #
+  # Backup from `rev_edge_dir_ws()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(n = 3) %>%
+    select_edges_by_edge_id(edges = 1) %>%
+    rev_edge_dir_ws()
+
+  expect_equal(
+    list.files(path = path) %>% length(), 39)
+})
+
+test_that("Graph backups for `set_node_position()` works", {
+
+  #
+  # Backup from `set_node_position()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_node() %>%
+    set_node_position(
+      node = 1, x = 1, y = 1)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 40)
+})
+
+test_that("Graph backups for `nudge_node_positions_ws()` works", {
+
+  #
+  # Backup from `nudge_node_positions_ws()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_node() %>%
+    set_node_position(
+      node = 1, x = 1, y = 1) %>%
+    select_nodes() %>%
+    nudge_node_positions_ws(
+      dx = 2, dy = 0)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 41)
+})
