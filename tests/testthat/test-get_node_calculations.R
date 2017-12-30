@@ -396,19 +396,59 @@ test_that("Getting authority centrality is possible", {
       set_seed = 23) %>%
     select_edges() %>%
     set_edge_attrs_ws(
-      edge_attr = "weight",
+      edge_attr = weight,
       value = rnorm(n = 22, mean = 3, sd = 0.5)) %>%
     clear_selection()
 
+  # Create a random graph with non-numeric weights
+  graph_3 <-
+    create_graph() %>%
+    add_gnm_graph(
+      n = 5,
+      m = 6,
+      set_seed = 23) %>%
+    select_edges() %>%
+    set_edge_attrs_ws(
+      edge_attr = weight,
+      value = 1:6 %>% as.character()) %>%
+    clear_selection()
+
+  # Expect an error when the specified
+  # `weights_attr` does not exist in the graph
+  expect_error(
+    graph_2 %>%
+      get_authority_centrality(
+        weights_attr = "weight_2"))
+
+  # Expect an error when the specified
+  # `weights_attr` does not exist in the graph
+  expect_error(
+    graph_2 %>%
+      get_authority_centrality(
+        weights_attr = "weight_2"))
+
+  # Expect an error when the specified
+  # `weights_attr` is not numeric
+  expect_error(
+    graph_3 %>%
+      get_authority_centrality(
+        weights_attr = "weight"))
+
+  # Get values from a graph
+  # without weights
   auth_central_vals <-
     get_authority_centrality(
       graph = graph_1)
 
+  # Get values from a graph
+  # with weights
   auth_central_vals_weight_1 <-
     get_authority_centrality(
       graph = graph_2,
       weights_attr = "weight")
 
+  # Get values from a graph
+  # with weights (w/o specifying the column)
   auth_central_vals_weight_2 <-
     get_authority_centrality(graph = graph_2)
 
