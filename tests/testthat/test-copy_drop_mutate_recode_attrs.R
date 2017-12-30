@@ -132,11 +132,6 @@ test_that("Dropping node attributes is possible", {
       node_attr = value,
       values = 1)
 
-  # Expect an error if the length of `node_attr` > 1
-  expect_error(
-    graph %>%
-    drop_node_attrs(node_attr = c("value", "label")))
-
   # Expect an error if a column to drop does not exist
   expect_error(
     graph %>%
@@ -178,11 +173,6 @@ test_that("Dropping edge attributes is possible", {
     set_edge_attrs(
       edge_attr = value,
       values = 1)
-
-  # Expect an error if the length of `edge_attr` > 1
-  expect_error(
-    graph %>%
-    drop_edge_attrs(edge_attr =  c("value", "rel")))
 
   # Expect an error if a column to drop does not exist
   expect_error(
