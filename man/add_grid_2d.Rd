@@ -81,7 +81,6 @@ of class \code{dgr_graph}, add a
 two-dimensional grid to the graph.
 }
 \examples{
-\dontrun{
 # Create a new graph and add
 # a 3 x 3 grid
 graph <-
@@ -92,7 +91,8 @@ graph <-
 
 # Get node information
 # from this graph
-node_info(graph)
+graph \%>\%
+  node_info()
 #>   id type label deg indeg outdeg loops
 #> 1  1 grid     1   2     0      2     0
 #> 2  2 grid     2   3     1      2     0
@@ -122,13 +122,15 @@ graph_w_attrs <-
     type = c("a", "a",
              "b", "b",
              "c", "c"),
-    value = c(1.2, 8.4,
-              3.4, 5.2,
-              6.1, 2.6),
-    rel = "grid")
+    rel = "grid",
+    node_data = node_data(
+      value = c(
+        1.2, 8.4, 3.4,
+        5.2, 6.1, 2.6)))
 
 # Get the graph's node data frame
-get_node_df(graph_w_attrs)
+graph_w_attrs \%>\%
+  get_node_df()
 #>   id type label value
 #> 1  1    a   one   1.2
 #> 2  2    a   two   8.4
@@ -138,7 +140,8 @@ get_node_df(graph_w_attrs)
 #> 6  6    c   six   2.6
 
 # Get the graph's edge data frame
-get_edge_df(graph_w_attrs)
+graph_w_attrs \%>\%
+  get_edge_df()
 #>   id from to  rel
 #> 1  1    1  2 grid
 #> 2  2    1  4 grid
@@ -147,5 +150,4 @@ get_edge_df(graph_w_attrs)
 #> 5  5    3  6 grid
 #> 6  6    4  5 grid
 #> 7  7    5  6 grid
-}
 }
