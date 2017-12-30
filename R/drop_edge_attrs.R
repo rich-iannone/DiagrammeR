@@ -71,12 +71,6 @@ drop_edge_attrs <- function(graph,
     stop("The graph object is not valid.")
   }
 
-  # Stop function if length of `edge_attr` is
-  # greater than one
-  if (length(edge_attr) > 1) {
-    stop("You can only provide a single column.")
-  }
-
   # Stop function if `edge_attr` is any of
   # `from`, `to`, or `rel`
   if (any(c("from", "to", "rel") %in%
