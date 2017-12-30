@@ -594,7 +594,7 @@ test_that("Graph backups for `drop_edge_attrs()` works", {
       edge_aes = edge_aes(
         color = "blue")) %>%
     drop_edge_attrs(
-      node_attr = color)
+      edge_attr = color)
 
   expect_equal(
     list.files(path = path) %>% length(), 27)
