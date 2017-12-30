@@ -555,3 +555,94 @@ test_that("Graph backups for `colorize_edge_attrs()` works", {
   expect_equal(
     list.files(path = path) %>% length(), 25)
 })
+
+test_that("Graph backups for `drop_node_attrs()` works", {
+
+  #
+  # Backup from `drop_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      node_aes = node_aes(
+        color = "blue")) %>%
+    drop_node_attrs(
+      node_attr = color)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 26)
+})
+
+test_that("Graph backups for `drop_edge_attrs()` works", {
+
+  #
+  # Backup from `drop_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      edge_aes = edge_aes(
+        color = "blue")) %>%
+    drop_edge_attrs(
+      node_attr = color)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 27)
+})
+
+test_that("Graph backups for `join_node_attrs()` works", {
+
+  #
+  # Backup from `join_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  df <-
+    data.frame(
+          id = c(1, 2, 3, 4, 5),
+      values = c(5.5, 2.3, 6.3, 2.1, 8.7))
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(n = 5) %>%
+    join_node_attrs(df = df)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 28)
+})
+
+test_that("Graph backups for `join_edge_attrs()` works", {
+
+  #
+  # Backup from `join_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  df <-
+    data.frame(
+      from = c(1, 2, 3, 4),
+      to = c(2, 3, 4, 5),
+      values = c(5.5, 2.3, 6.3, 2.1))
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(n = 5) %>%
+    join_edge_attrs(df = df)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 29)
+})
