@@ -433,3 +433,125 @@ test_that("Graph backups for `reorder_graph_actions()` works", {
   expect_equal(
     list.files(path = path) %>% length(), 20)
 })
+
+test_that("Graph backups for `create_complement_graph()` works", {
+
+  #
+  # Backup from `create_complement_graph()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_cycle(n = 4) %>%
+    create_complement_graph()
+
+  expect_equal(
+    list.files(path = path) %>% length(), 21)
+})
+
+test_that("Graph backups for `copy_node_attrs()` works", {
+
+  #
+  # Backup from `copy_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      node_aes = node_aes(
+        color = "blue")) %>%
+    copy_node_attrs(
+      node_attr_from = color,
+      node_attr_to = color_2)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 22)
+})
+
+test_that("Graph backups for `copy_edge_attrs()` works", {
+
+  #
+  # Backup from `copy_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      edge_aes = edge_aes(
+        color = "blue")) %>%
+    copy_edge_attrs(
+      edge_attr_from = color,
+      edge_attr_to = color_2)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 23)
+})
+
+test_that("Graph backups for `colorize_node_attrs()` works", {
+
+  #
+  # Backup from `colorize_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  graph <-
+    create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 8,
+      node_data = node_data(
+        weight = c(
+          8.2, 3.7, 6.3, 9.2,
+          1.6, 2.5, 7.2, 5.4))) %>%
+    colorize_node_attrs(
+      node_attr_from = weight,
+      node_attr_to = fillcolor,
+      palette = "Greens",
+      cut_points = c(1, 3, 5, 7, 9),
+      alpha = 90)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 24)
+})
+
+test_that("Graph backups for `colorize_edge_attrs()` works", {
+
+  #
+  # Backup from `colorize_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  graph <-
+    create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 8,
+      edge_data = edge_data(
+        weight = c(
+          8.2, 3.7, 6.3, 9.2,
+          1.6, 2.5, 7.2))) %>%
+    colorize_edge_attrs(
+      edge_attr_from = weight,
+      edge_attr_to = color,
+      palette = "Greens",
+      cut_points = c(1, 3, 5, 7, 9),
+      alpha = 90)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 25)
+})
