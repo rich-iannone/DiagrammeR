@@ -646,3 +646,97 @@ test_that("Graph backups for `join_edge_attrs()` works", {
   expect_equal(
     list.files(path = path) %>% length(), 29)
 })
+
+test_that("Graph backups for `mutate_node_attrs()` works", {
+
+  #
+  # Backup from `mutate_node_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      node_data = node_data(
+        weight = c(
+          8.2, 3.7, 6.3, 9.2))) %>%
+    mutate_node_attrs(
+      half_weight = weight / 2)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 30)
+})
+
+test_that("Graph backups for `mutate_edge_attrs()` works", {
+
+  #
+  # Backup from `mutate_edge_attrs()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      edge_data = edge_data(
+        weight = c(
+          8.2, 3.7, 6.3))) %>%
+    mutate_edge_attrs(
+      half_weight = weight / 2)
+
+  expect_equal(
+      list.files(path = path) %>% length(), 31)
+})
+
+test_that("Graph backups for `mutate_node_attrs_ws()` works", {
+
+  #
+  # Backup from `mutate_node_attrs_ws()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      node_data = node_data(
+        weight = c(
+          8.2, 3.7, 6.3, 9.2))) %>%
+    select_nodes_by_id(nodes = c(1, 2)) %>%
+    mutate_node_attrs_ws(
+      half_weight = weight / 2)
+
+    expect_equal(
+      list.files(path = path) %>% length(), 32)
+})
+
+test_that("Graph backups for `mutate_edge_attrs_ws()` works", {
+
+  #
+  # Backup from `mutate_edge_attrs_ws()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_path(
+      n = 4,
+      edge_data = edge_data(
+        weight = c(
+          8.2, 3.7, 6.3))) %>%
+    select_edges_by_edge_id(edges = c(1, 2)) %>%
+    mutate_edge_attrs_ws(
+      half_weight = weight / 2)
+
+    expect_equal(
+      list.files(path = path) %>% length(), 33)
+})
