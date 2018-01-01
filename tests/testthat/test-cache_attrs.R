@@ -112,6 +112,19 @@ test_that("Getting a cache is possible", {
   expect_equivalent(
     cached, graph_cache$cache$closeness_vector)
 
+  # Get the last cached vector
+  cached_last <-
+    get_cache(
+      graph = graph_cache)
+
+  # Expect a vector of length 10
+  expect_equal(
+    length(cached_last), 10)
+
+  # Expect the vector to be `numeric`
+  expect_is(
+    cached_last, "numeric")
+
   # Create a new graph
   graph <-
     create_graph() %>%
