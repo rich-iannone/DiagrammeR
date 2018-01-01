@@ -295,7 +295,7 @@ print.dgr_graph <- function(x, ...) {
       paste0(
         "DiagrammeR Graph // ", node_count_str,
         " / ", edge_count_str)#,
-        # " / ", density_str)
+    # " / ", density_str)
 
   } else if (edge_count == 0) {
 
@@ -481,7 +481,6 @@ print.dgr_graph <- function(x, ...) {
         "  STORED DFs / <none>")
   }
 
-
   #
   # Create string for global attributes
   #
@@ -555,7 +554,7 @@ print.dgr_graph <- function(x, ...) {
         "> -> ",
         paste0(
           paste(
-          tail_actions_logged$function_used, collapse = "() -> "), "()"))
+            tail_actions_logged$function_used, collapse = "() -> "), "()"))
   }
 
   graph_history_detail_str <-
@@ -655,20 +654,24 @@ print.dgr_graph <- function(x, ...) {
         info_labels["get_attr_dfs"])
   }
 
-  if (console_width - global_attrs_detail_str_length - info_labels_global_graph_attrs >= 5 &
-      nrow(get_global_graph_attrs(x)) != 0) {
+  if (console_width -
+      global_attrs_detail_str_length -
+      info_labels_global_graph_attrs >= 5) {
 
-    global_attrs_detail_str <-
-      paste0(
-        global_attrs_detail_str,
-        paste(
-          rep(
-            x = " ",
-            times = (console_width -
-                       global_attrs_detail_str_length -
-                       info_labels_global_graph_attrs)),
-          collapse = ""),
-        info_labels["get_global_graph_attrs"])
+    if (inherits(get_global_graph_attrs(x), "data.frame")) {
+
+      global_attrs_detail_str <-
+        paste0(
+          global_attrs_detail_str,
+          paste(
+            rep(
+              x = " ",
+              times = (console_width -
+                         global_attrs_detail_str_length -
+                         info_labels_global_graph_attrs)),
+            collapse = ""),
+          info_labels["get_global_graph_attrs"])
+    }
   }
 
   # Generate the complete statement for printing
