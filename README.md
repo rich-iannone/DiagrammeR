@@ -8,7 +8,7 @@ With the **DiagrammeR** package you can create, modify, analyze, and visualize n
 
 <img src="inst/img/simple_graph.png">
 
-The above example graph can be created using a combination of **DiagrammeR** functions, all strung together with the **magrittr** `%>%` pipe:
+The above example graph can be created with a combination of **DiagrammeR** functions:
 
 ```r
 library(DiagrammeR)
@@ -53,9 +53,7 @@ example_graph %>%
   render_graph(layout = "nicely")
 ```
 
-**DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things.
-
-This functionality makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them.
+**DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things. This makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them.
 
 ## Graph Basics
 
