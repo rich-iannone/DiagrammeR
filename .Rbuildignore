@@ -7,3 +7,5 @@
 ^CONDUCT\.md$
 ^revdep$
 ^docs$
+^README\.Rmd$
+^README-.*\.png$
