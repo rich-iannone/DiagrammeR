@@ -1,25 +1,33 @@
 #' Add one or more edges using a text string
-#' @description With a graph object of class
-#' \code{dgr_graph}, add one or more edges to the graph
-#' using a text string.
-#' @param graph a graph object of class
+#' @description With a graph object
+#' of class \code{dgr_graph}, add one
+#' or more edges to the graph using a
+#' text string.
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param edges a single-length vector
+#' with a character string specifying
+#' the edges. For a directed graph, the
+#' string object should be formatted as
+#' a series of node ID values as
+#' \code{[node_ID_1]->[node_ID_2]}
+#' separated by a one or more space
+#' characters. For undirected graphs,
+#' \code{--} should replace \code{->}.
+#' Line breaks in the vector won't cause
+#' an error.
+#' @param rel an optional vector
+#' specifying the relationship between
+#' the connected nodes.
+#' @param use_labels an option to
+#' use node \code{label} values in the
+#' \code{edges} string to define node
+#' connections. Note that this is
+#' only possible if all nodes have
+#' distinct \code{label} values set
+#' and none exist as an empty string.
+#' @return a graph object of class
 #' \code{dgr_graph}.
-#' @param edges a single-length vector with a character
-#' string specifying the edges. For a directed graph,
-#' the string object should be formatted as a series of
-#' node ID values as \code{[node_ID_1]->[node_ID_2]}
-#' separated by a one or more space characters. For
-#' undirected graphs, \code{--} should replace
-#' \code{->}. Line breaks in the vector won't cause an
-#' error.
-#' @param rel an optional vector specifying the
-#' relationship between the connected nodes.
-#' @param use_labels an option to use node \code{label}
-#' values in the \code{edges} string to define node
-#' connections. Note that this is only possible if all
-#' nodes have distinct \code{label} values set and
-#' none exist as an empty string.
-#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 4 nodes
 #' graph <-
@@ -29,26 +37,30 @@
 #'   add_node(label = "three") %>%
 #'   add_node(label = "four")
 #'
-#' # Add edges between nodes using a
-#' # character string with node ID values
+#' # Add edges between nodes using
+#' # a character string with node
+#' # ID values
 #' graph_node_id <-
 #'   graph %>%
 #'   add_edges_w_string(
 #'     edges = "1->2 1->3 2->4 2->3")
 #'
-#' # Show the graph's internal edge data frame
-#' get_edge_df(graph_node_id)
+#' # Show the graph's internal
+#' # edge data frame
+#' graph_node_id %>%
+#'   get_edge_df()
 #' #>   id from to  rel
 #' #> 1  1    1  2 <NA>
 #' #> 2  2    1  3 <NA>
 #' #> 3  3    2  4 <NA>
 #' #> 4  4    2  3 <NA>
 #'
-#' # Add edges between nodes using a
-#' # character string with node label values
-#' # and setting `use_labels = TRUE`; note
-#' # that all nodes must have unique `label`
-#' # values to use this option
+#' # Add edges between nodes using
+#' # a character string with node
+#' # label values and setting
+#' # `use_labels = TRUE`; note that
+#' # all nodes must have unique
+#' # `label` values to use this
 #' graph_node_label <-
 #'   graph %>%
 #'   add_edges_w_string(
@@ -57,9 +69,11 @@
 #'        two->four two->three",
 #'     use_labels = TRUE)
 #'
-#' # Show the graph's internal edge data frame
-#' # (it's the same as before)
-#' get_edge_df(graph_node_label)
+#' # Show the graph's internal
+#' # edge data frame (it's the
+#' # same as before)
+#' graph_node_label %>%
+#'   get_edge_df()
 #' #>   id from to  rel
 #' #> 1  1    1  2 <NA>
 #' #> 2  2    1  3 <NA>
