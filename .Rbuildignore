@@ -9,3 +9,4 @@
 ^docs$
 ^README\.Rmd$
 ^README-.*\.png$
+^LICENSE\.md$
