@@ -139,6 +139,13 @@ add_edges_from_table <- function(graph,
   from_to_map <- rlang::enquo(from_to_map)
   from_to_map <- (rlang::UQ(from_to_map) %>% paste())[2]
 
+  rel_col <- rlang::enquo(rel_col)
+  rel_col <- (rlang::UQ(rel_col) %>% paste())[2]
+
+  if (rel_col == "NULL") {
+    rel_col <- NULL
+  }
+
   drop_cols <- rlang::enquo(drop_cols)
   drop_cols <- (rlang::UQ(drop_cols) %>% paste())[2]
 
