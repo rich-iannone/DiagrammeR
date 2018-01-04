@@ -43,8 +43,8 @@ test_that("Getting all neighbors of one or more nodes is possible", {
 
 test_that("Getting non-neighbors of a node is possible", {
 
-  # Create a random, directed graph with 18 nodes
-  # and 22 edges
+  # Create a random, directed graph
+  # with 18 nodes and 22 edges
   random_graph <-
     create_graph() %>%
     add_gnm_graph(
@@ -58,11 +58,19 @@ test_that("Getting non-neighbors of a node is possible", {
       graph = random_graph,
       node = 5)
 
-  # Expect certain nodes that are are non-neighbors
-  # of node `5`
+  # Expect certain nodes that
+  # are non-neighbors of node `5`
   expect_equal(
     non_nbrs_5,
     c(1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18))
+
+  # Expect that NA is returned when
+  # there are no non-neighbors
+  expect_true(
+    create_graph() %>%
+      add_path(n = 3) %>%
+      get_non_nbrs(node = 2) %>%
+      is.na())
 })
 
 test_that("Getting common neighbors of 2 or more nodes is possible", {
