@@ -156,6 +156,15 @@ test_that("the Jaccard similarity algorithm is functional", {
       m = 22,
       set_seed = 23)
 
+  # Expect an error when using a value
+  # for `direction` that is not one of
+  # three accepted values
+  expect_error(
+    get_jaccard_similarity(
+      graph = graph,
+      nodes = 5:7,
+      direction = "away"))
+
   # Get the Jaccard similarity values for
   # nodes `5`, `6`, and `7`; all directions
   jaccard_all <-
