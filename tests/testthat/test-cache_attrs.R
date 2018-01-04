@@ -65,6 +65,37 @@ test_that("Setting a cache is possible", {
   expect_equivalent(
     closeness_vec,
     graph_cache_from_vec$cache$closeness_vector)
+
+  # Set the values in the `closeness_df`
+  # column `closeness` in the graph's cache
+  # but don't provide a name for the
+  # cached object
+  graph_cache_no_name <-
+    graph %>%
+    set_cache(
+      to_cache = closeness_df,
+      col = "closeness")
+
+  # Expect that an unnamed cache
+  # object with no other caches
+  # available will have the name `1`
+  expect_equivalent(
+    closeness_df$closeness,
+    graph_cache_no_name$cache$`1`)
+
+  # Set again the values in the `closeness_df`
+  # column `closeness` in the graph's cache
+  # and don't provide a name for this
+  # second cached object
+  graph_cache_no_name_2 <-
+    graph_cache_no_name %>%
+    set_cache(
+      to_cache = closeness_df,
+      col = "closeness")
+
+  # Expect two vectors in [graph]$cache
+  expect_equal(
+    length(graph_cache_no_name_2$cache), 2)
 })
 
 test_that("Getting a cache is possible", {
