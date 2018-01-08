@@ -40,7 +40,9 @@ node_data <- function(...) {
 
   if (any(names(node_data_values) %in% c(gv_node_attributes(), "x", "y"))){
 
-    stop("Names for node data attributes shouldn't be any of those reserved for node aesthetic attributes.")
+    stop(
+      "Names for node data attributes shouldn't be any of those reserved for node aesthetic attributes.",
+      call. = FALSE)
   }
 
   node_data_values
