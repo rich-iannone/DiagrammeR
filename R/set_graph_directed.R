@@ -35,7 +35,10 @@ set_graph_directed <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Set the `directed` vector to TRUE

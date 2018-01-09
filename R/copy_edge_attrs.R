@@ -80,18 +80,27 @@ copy_edge_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop function if `edge_attr_from` and
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {
-    stop("You cannot make a copy with the same name.")
+
+    stop(
+      "You cannot make a copy with the same name.",
+      call. = FALSE)
   }
 
   # Stop function if `edge_attr_to` is `from` or `to`
   if (any(c("from", "to") %in% edge_attr_to)) {
-    stop("You cannot use those names.")
+
+    stop(
+      "You cannot use those names.",
+      call. = FALSE)
   }
 
   # Extract the graph's edf
@@ -103,7 +112,10 @@ copy_edge_attrs <- function(graph,
   # Stop function if `edge_attr_from` is not one
   # of the graph's column
   if (!any(column_names_graph %in% edge_attr_from)) {
-    stop("The edge attribute to copy is not in the ndf.")
+
+    stop(
+      "The edge attribute to copy is not in the ndf.",
+      call. = FALSE)
   }
 
   # Get the column number for the edge attr to copy

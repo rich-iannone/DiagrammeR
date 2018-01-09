@@ -70,12 +70,18 @@ do_dfs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes.")
+
+    stop(
+      "The graph contains no nodes.",
+      call. = FALSE)
   }
 
   # If no node provided, choose a random node
@@ -107,7 +113,10 @@ do_dfs <- function(graph,
         root = node,
         neimode = "in")
   } else if (!(direction %in% c("all", "out", "in"))) {
-    stop("The value for `direction` must be either `all`, `out`, or `in`.")
+
+    stop(
+      "The value for `direction` must be either `all`, `out`, or `in`.",
+      call. = FALSE)
   }
 
   # Get the nodes visited during the dfs

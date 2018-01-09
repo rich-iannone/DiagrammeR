@@ -80,18 +80,27 @@ copy_node_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop function if `node_attr_from` and
   # `node_attr_to` are identical
   if (node_attr_from == node_attr_to) {
-    stop("You cannot use make a copy with the same name.")
+
+    stop(
+      "You cannot use make a copy with the same name.",
+      call. = FALSE)
   }
 
   # Stop function if `node_attr_to` is `nodes` or `node`
   if (any(c("nodes", "node") %in% node_attr_to)) {
-    stop("You cannot use those names.")
+
+    stop(
+      "You cannot use those names.",
+      call. = FALSE)
   }
 
   # Extract the graph's ndf
@@ -103,7 +112,10 @@ copy_node_attrs <- function(graph,
   # Stop function if `node_attr_from` is not one
   # of the graph's column
   if (!any(column_names_graph %in% node_attr_from)) {
-    stop("The node attribute to copy is not in the ndf.")
+
+    stop(
+      "The node attribute to copy is not in the ndf.",
+      call. = FALSE)
   }
 
   # Get the column number for the node attr to copy

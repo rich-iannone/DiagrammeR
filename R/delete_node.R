@@ -38,12 +38,18 @@ delete_node <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node can be deleted.")
+
+    stop(
+      "The graph contains no nodes, so, no node can be deleted.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -55,12 +61,18 @@ delete_node <- function(graph,
 
   # Stop function if node not a single value
   if (node_is_single_value == FALSE) {
-    stop("Only a single node can be deleted using `delete_node()`.")
+
+    stop(
+      "Only a single node can be deleted using `delete_node()`.",
+      call. = FALSE)
   }
 
   # Stop function if node is not in the graph
   if (!(node %in% get_node_ids(graph))) {
-    stop("The specified node is not available in the graph.")
+
+    stop(
+      "The specified node is not available in the graph.",
+      call. = FALSE)
   }
 
   # Get the number of nodes in the graph

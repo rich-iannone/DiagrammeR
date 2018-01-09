@@ -63,7 +63,10 @@ get_authority_centrality <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Convert the graph to an igraph object
@@ -75,12 +78,16 @@ get_authority_centrality <- function(graph,
 
       # Stop function if the edge attribute does not exist
       if (!(weights_attr %in% colnames(graph$edges_df))) {
-        stop("The edge attribute to be used as weights does not exist in the graph.")
+        stop(
+          "The edge attribute to be used as weights does not exist in the graph.",
+          call. = FALSE)
       }
 
       # Stop function if the edge attribute is not numeric
       if (!is.numeric(graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)])) {
-        stop("The edge attribute to be used as weights is not numeric.")
+        stop(
+          "The edge attribute to be used as weights is not numeric.",
+          call. = FALSE)
       }
 
       weights_attr <- graph$edges_df[, which(colnames(graph$edges_df) == weights_attr)]

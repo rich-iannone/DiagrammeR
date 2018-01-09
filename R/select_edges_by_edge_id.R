@@ -65,12 +65,18 @@ select_edges_by_edge_id <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edges can be selected.")
+
+    stop(
+      "The graph contains no edges, so, no edges can be selected.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

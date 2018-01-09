@@ -50,8 +50,7 @@
 #' #>       attr value attr_type
 #' #> 1 penwidth     3      edge
 #' #> 2  overlap  true     graph
-#' @importFrom dplyr anti_join
-#' @importFrom tibble tibble
+#' @importFrom dplyr anti_join tibble
 #' @export delete_global_graph_attrs
 
 delete_global_graph_attrs <- function(graph,
@@ -63,13 +62,19 @@ delete_global_graph_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop function if `attr_type` is not a valid
   # attribute type
   if (!any(attr_type %in% c("graph", "node", "edge"))) {
-    stop("The `attr_type` should be either `graph`, `node`, or `edge`.")
+
+    stop(
+      "The `attr_type` should be either `graph`, `node`, or `edge`.",
+      call. = FALSE)
   }
 
   # Get the global graph attributes already set
@@ -79,7 +84,7 @@ delete_global_graph_attrs <- function(graph,
   # Create a table with a single row for the
   # attribute to remove
   global_attrs_to_remove <-
-    tibble::tibble(
+    dplyr::tibble(
       attr = as.character(attr),
       value = as.character(NA),
       attr_type = as.character(attr_type)) %>%

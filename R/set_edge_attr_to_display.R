@@ -106,12 +106,18 @@ set_edge_attr_to_display <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edge attributes can be set.")
+
+    stop(
+      "The graph contains no edges, so, no edge attributes can be set.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -120,7 +126,10 @@ set_edge_attr_to_display <- function(graph,
   # Get the graph's edge data frame as an object; stop
   # function if this doesn't exist
   if (is.null(graph$edges_df)) {
-    stop("This graph does not contain any edges.")
+
+    stop(
+      "This graph does not contain any edges.",
+      call. = FALSE)
   } else {
     edf <- graph$edges_df
   }
@@ -134,14 +143,20 @@ set_edge_attr_to_display <- function(graph,
   # Stop function if any of the edge ID values
   # provided in `edges` do not exist in the graph
   if (!any(edges %in% edf$id)) {
-    stop("One or more edge ID values in `edges` are not present in the graph.")
+
+    stop(
+      "One or more edge ID values in `edges` are not present in the graph.",
+      call. = FALSE)
   }
 
   # Stop function if the edge attribute supplied as
   # `attr` does not exist in the edf
   if (!is.null(attr)) {
     if (!(attr %in% colnames(edf))) {
-      stop("The edge attribute given in `attr` is not in the graph's edf.")
+
+      stop(
+        "The edge attribute given in `attr` is not in the graph's edf.",
+        call. = FALSE)
     }
   }
 

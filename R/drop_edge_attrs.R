@@ -68,14 +68,20 @@ drop_edge_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop function if `edge_attr` is any of
   # `from`, `to`, or `rel`
   if (any(c("from", "to", "rel") %in%
           edge_attr)) {
-    stop("You cannot drop this column.")
+
+    stop(
+      "You cannot drop this column.",
+      call. = FALSE)
   }
 
   # Extract the graph's edf
@@ -87,7 +93,10 @@ drop_edge_attrs <- function(graph,
   # Stop function if `edge_attr` is not one
   # of the graph's column
   if (!any(column_names_graph %in% edge_attr)) {
-    stop("The edge attribute to drop is not in the ndf.")
+
+    stop(
+      "The edge attribute to drop is not in the ndf.",
+      call. = FALSE)
   }
 
   # Get the column number for the edge attr to drop

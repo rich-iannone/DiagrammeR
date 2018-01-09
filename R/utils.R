@@ -167,11 +167,15 @@ is_attr_unique_and_non_na <- function(graph,
   } else if (which_graph_df == "edf") {
     df <- graph$edges_df
   } else {
-    stop("The `which_graph_df` argument must be either `ndf` or `edf`.")
+    stop(
+      "The `which_graph_df` argument must be either `ndf` or `edf`.",
+      call. = FALSE)
   }
 
   if (!(attr %in% colnames(df))) {
-    stop("The `attr` provided is not available.")
+    stop(
+      "The `attr` provided is not available.",
+      call. = FALSE)
   }
 
   # Are all values not NA?
@@ -203,12 +207,18 @@ translate_to_node_id <- function(graph, from, to) {
   # Check that node labels are unique
   if (length(unique(graph$nodes_df$label)) !=
       count_nodes(graph)) {
-    stop("You cannot use labels to define edges because they are not distinct.")
+
+    stop(
+      "You cannot use labels to define edges because they are not distinct.",
+      call. = FALSE)
   }
 
   # No node labels can be empty
   if (any(graph$nodes_df$label == "")) {
-    stop("You cannot use labels to define edges since there are empty strings for labels.")
+
+    stop(
+      "You cannot use labels to define edges since there are empty strings for labels.",
+      call. = FALSE)
   }
 
   # Create the `from_id` and `to_id` vectors
@@ -275,7 +285,10 @@ add_action_to_log <- function(graph_log,
 
   # Ensure that `time_modified` inherits from POSIXct
   if (inherits(time_modified, "POSIXct") == FALSE) {
-    stop("The `time_modified` value must inherit from POSIXct.")
+
+    stop(
+      "The `time_modified` value must inherit from POSIXct.",
+      call. = FALSE)
   }
 
   # Create a log line

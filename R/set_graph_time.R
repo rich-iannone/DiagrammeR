@@ -41,7 +41,10 @@ set_graph_time <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   if (is.null(time) & is.null(tz)) {
@@ -60,7 +63,10 @@ set_graph_time <- function(graph,
 
   if (!is.null(tz)) {
     if (!(tz %in% OlsonNames())) {
-      stop("The time zone provided must be available in `OlsonNames()`.")
+
+      stop(
+        "The time zone provided must be available in `OlsonNames()`.",
+        call. = FALSE)
     }
   }
 

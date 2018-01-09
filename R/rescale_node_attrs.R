@@ -131,12 +131,18 @@ rescale_node_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node attributes can be rescaled.")
+
+    stop(
+      "The graph contains no nodes, so, no node attributes can be rescaled.",
+      call. = FALSE)
   }
 
   # Extract the graph's ndf
@@ -148,7 +154,10 @@ rescale_node_attrs <- function(graph,
   # Stop function if `node_attr_from` is not one
   # of the graph's node attributes
   if (!any(column_names_graph %in% node_attr_from)) {
-    stop("The node attribute to rescale is not in the ndf.")
+
+    stop(
+      "The node attribute to rescale is not in the ndf.",
+      call. = FALSE)
   }
 
   # Get the column number for the node attr to rescale

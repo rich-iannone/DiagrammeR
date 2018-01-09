@@ -44,7 +44,10 @@ add_to_series <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Get the series type
@@ -53,7 +56,10 @@ add_to_series <- function(graph,
   # Stop function if graph series type is not valid
   if (!(series_type %in%
         c("sequential", "temporal"))) {
-    stop("The graph series type is neither of the `sequential` nor `temporal` types.")
+
+    stop(
+      "The graph series type is neither of the `sequential` nor `temporal` types.",
+      call. = FALSE)
   }
 
   # Add graph to series

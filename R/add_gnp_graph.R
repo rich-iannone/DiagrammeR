@@ -107,7 +107,10 @@ add_gnp_graph <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -120,7 +123,10 @@ add_gnp_graph <- function(graph,
 
   # Stop if n is too small
   if (n <= 0) {
-    stop("The value for `n` must be at least 1.")
+
+    stop(
+      "The value for `n` must be at least 1.".
+      call. = FALSE)
   }
 
   # Get the number of nodes ever created for

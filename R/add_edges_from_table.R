@@ -155,12 +155,18 @@ add_edges_from_table <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, edges cannot be added.")
+
+    stop(
+      "The graph contains no nodes, so, edges cannot be added.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -181,18 +187,27 @@ add_edges_from_table <- function(graph,
 
   # Verify that value for `from_col` is in the table
   if (!(from_col %in% colnames(csv))) {
-    stop("The value specified in `from_col` is not in the table.")
+
+    stop(
+      "The value specified in `from_col` is not in the table.",
+      call. = FALSE)
   }
 
   # Verify that value for `to_col` is in the table
   if (!(to_col %in% colnames(csv))) {
-    stop("The value specified in `to_col` is not in the table.")
+
+    stop(
+      "The value specified in `to_col` is not in the table.",
+      call. = FALSE)
   }
 
   # Verify that value for `from_to_map` is in the
   # graph's ndf
   if (!(from_to_map %in% colnames(get_node_df(graph)))) {
-    stop("The value specified in `from_to_map` is not in the graph.")
+
+    stop(
+      "The value specified in `from_to_map` is not in the graph.",
+      call. = FALSE)
   }
 
   # Optionally set the `rel` attribute from a

@@ -26,13 +26,17 @@
 #' graph %>%
 #'  count_unconnected_nodes()
 #' #> [1] 3
+#' @importFrom dplyr bind_rows select rename distinct setdiff pull
 #' @export count_unconnected_nodes
 
 count_unconnected_nodes <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # If graph is empty, return 0
@@ -60,7 +64,7 @@ count_unconnected_nodes <- function(graph) {
   nodes_in_ndf <-
     graph$nodes_df %>%
     dplyr::select(id) %>%
-    rename(node_id = id)
+    dplyr::rename(node_id = id)
 
   # Get nodes not in edge definitions
   nodes_not_in_edf <-

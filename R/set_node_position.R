@@ -119,12 +119,18 @@ set_node_position <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node attributes can be set.")
+
+    stop(
+      "The graph contains no nodes, so, no node attributes can be set.",
+      call. = FALSE)
   }
 
   # Get the graph's node data frame
@@ -134,7 +140,10 @@ set_node_position <- function(graph,
   # exist in the graph
   if (use_labels == FALSE) {
     if (!(node %in% graph$nodes_df[, 1])) {
-      stop("The node ID provided doesn't exist in the graph.")
+
+      stop(
+        "The node ID provided doesn't exist in the graph.",
+        call. = FALSE)
     }
   }
 
@@ -167,7 +176,10 @@ set_node_position <- function(graph,
     # Stop function if `label` doesn't contain
     # unique, non-NA values
     if (unique_labels_available == FALSE) {
-      stop("The `label` attribute in the graph's ndf must contain unique, non-NA values.")
+
+      stop(
+        "The `label` attribute in the graph's ndf must contain unique, non-NA values.",
+        call. = FALSE)
     }
 
     # Use `case_when` statements to selectively perform

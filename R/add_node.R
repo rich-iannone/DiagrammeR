@@ -93,7 +93,10 @@ add_node <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -223,7 +226,10 @@ add_node <- function(graph,
              TRUE, FALSE)
 
     if (from_nodes_available == FALSE) {
-      stop("The nodes from which edges should be applied to the new node are not available.")
+
+      stop(
+        "The nodes from which edges should be applied to the new node are not available.",
+        call. = FALSE)
     }
 
     if (from_nodes_available) {
@@ -368,7 +374,10 @@ add_node <- function(graph,
              TRUE, FALSE)
 
     if (to_nodes_available == FALSE) {
-      stop("The nodes to which edges should be applied from the new node are not available.")
+
+      stop(
+        "The nodes to which edges should be applied from the new node are not available.",
+        call. = FALSE)
     }
 
     new_node <-
@@ -513,11 +522,17 @@ add_node <- function(graph,
              TRUE, FALSE)
 
     if (from_nodes_available == FALSE) {
-      stop("The nodes from which edges should be applied to the new node are not available.")
+
+      stop(
+        "The nodes from which edges should be applied to the new node are not available.",
+        call. = FALSE)
     }
 
     if (to_nodes_available == FALSE) {
-      stop("The nodes to which edges should be applied from the new node are not available.")
+
+      stop(
+        "The nodes to which edges should be applied from the new node are not available.",
+        call. = FALSE)
     }
 
     if (from_nodes_available & to_nodes_available) {

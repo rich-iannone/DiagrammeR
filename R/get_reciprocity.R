@@ -54,7 +54,10 @@ get_reciprocity <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # If the graph contains no edges, it
@@ -68,5 +71,5 @@ get_reciprocity <- function(graph) {
   ig_graph <- to_igraph(graph)
 
   # Get the reciprocity value for the graph
-  reciprocity(ig_graph)
+  igraph::reciprocity(ig_graph)
 }

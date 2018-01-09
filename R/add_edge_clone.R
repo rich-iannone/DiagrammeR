@@ -93,23 +93,35 @@ add_edge_clone <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, no edges attributes can be set.")
+
+    stop(
+      "The graph contains no edges, no edges attributes can be set.",
+      call. = FALSE)
   }
 
   # Stop function if edge is not a single numerical value
   if (length(edge) > 1 | inherits(edge, "character") | inherits(edge, "logical")) {
-    stop("The value for `edge` must be a single, numeric value.")
+
+    stop(
+      "The value for `edge` must be a single, numeric value.",
+      call. = FALSE)
   }
 
   # Stop function the edge ID does not correspond
   # to an edge in the graph
   if (!(edge %in% graph$edges_df$id)) {
-    stop("The value provided in `edge` does not correspond to an edge in the graph.")
+
+    stop(
+      "The value provided in `edge` does not correspond to an edge in the graph.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

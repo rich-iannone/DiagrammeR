@@ -47,22 +47,34 @@ delete_edges_ws <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no edges can be deleted.")
+
+    stop(
+      "The graph contains no nodes, so, no edges can be deleted.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edges can be deleted.")
+
+    stop(
+      "The graph contains no edges, so, no edges can be deleted.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid edge selection
   if (graph_contains_edge_selection(graph) == FALSE) {
-    stop("There is no selection of edges available.")
+
+    stop(
+      "There is no selection of edges available.",
+      call. = FALSE)
   }
 
   # Get vectors of the nodes in edges to be deleted

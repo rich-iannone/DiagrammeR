@@ -34,7 +34,10 @@ save_graph <- function(x,
                        file) {
 
   if (!inherits(file, "character")) {
-    stop("Provide a character string for the file.")
+
+    stop(
+      "Provide a character string for the file.",
+      call. = FALSE)
   }
 
   if (inherits(x, "dgr_graph") |
@@ -47,6 +50,9 @@ save_graph <- function(x,
     saveRDS(x, file = file_name, compress = "xz")
 
   } else {
-    stop("The object provided is not a graph or graph series.")
+
+    stop(
+      "The object provided is not a graph or graph series.",
+      call. = FALSE)
   }
 }

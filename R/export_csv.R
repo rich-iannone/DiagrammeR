@@ -56,7 +56,10 @@ export_csv <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   nodes_df <- get_node_df(graph)
@@ -92,13 +95,15 @@ export_csv <- function(graph,
   }
 
   # Write the CSV files to the output directory
-  utils::write.csv(nodes_df,
-                   file = paste0(output_path,
-                                 "/", ndf_name),
-                   row.names = FALSE, quote = FALSE)
+  utils::write.csv(
+    nodes_df,
+    file = paste0(output_path,
+                  "/", ndf_name),
+    row.names = FALSE, quote = FALSE)
 
-  utils::write.csv(edges_df,
-                   file = paste0(output_path,
-                                 "/", edf_name),
-                   row.names = FALSE, quote = FALSE)
+  utils::write.csv(
+    edges_df,
+    file = paste0(output_path,
+                  "/", edf_name),
+    row.names = FALSE, quote = FALSE)
 }

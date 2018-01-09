@@ -71,7 +71,10 @@ export_graph <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # If no `file_name` or `file_type` provided, default to
@@ -103,7 +106,10 @@ export_graph <- function(graph,
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
-      stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
+
+      stop(
+        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
+        call. = FALSE)
     }
 
     if (!is.null(title)) {
@@ -146,7 +152,10 @@ export_graph <- function(graph,
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
-      stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
+
+      stop(
+        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
+        call. = FALSE)
     }
 
     if (!is.null(title)) {
@@ -189,7 +198,10 @@ export_graph <- function(graph,
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
-      stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
+
+      stop(
+        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
+        call. = FALSE)
     }
 
     if (!is.null(title)) {
@@ -232,7 +244,10 @@ export_graph <- function(graph,
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
-      stop("To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')")
+
+      stop(
+        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
+        call. = FALSE)
     }
 
     if (!is.null(title)) {

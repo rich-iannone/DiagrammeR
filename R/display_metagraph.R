@@ -87,12 +87,18 @@ display_metagraph <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph object is a property graph
   if (is_property_graph(graph) == FALSE) {
-    stop("The graph object is not a property graph.")
+
+    stop(
+      "The graph object is not a property graph.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

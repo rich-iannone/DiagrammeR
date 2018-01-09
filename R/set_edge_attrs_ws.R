@@ -48,6 +48,7 @@
 #' #> 4  4    4  5 <NA>  blue
 #' #> 5  5    5  6 <NA>  <NA>
 #' @importFrom rlang enquo UQ
+#' @importFrom dplyr mutate case_when
 #' @export set_edge_attrs_ws
 
 set_edge_attrs_ws <- function(graph,
@@ -62,17 +63,26 @@ set_edge_attrs_ws <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, no edges attributes can be set.")
+
+    stop(
+      "The graph contains no edges, no edges attributes can be set.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid edge selection
   if (graph_contains_edge_selection(graph) == FALSE) {
-    stop("There is no selection of edges available.")
+
+    stop(
+      "There is no selection of edges available.",
+      call. = FALSE)
   }
 
   # Get vectors of edge ID values for the

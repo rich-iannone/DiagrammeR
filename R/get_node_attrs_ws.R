@@ -45,12 +45,18 @@ get_node_attrs_ws <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has a valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes available.")
+
+    stop(
+      "There is no selection of nodes available.",
+      call. = FALSE)
   }
 
   node_attr <- rlang::enquo(node_attr)
@@ -59,7 +65,10 @@ get_node_attrs_ws <- function(graph,
   id <- NULL
 
   if ((rlang::UQ(node_attr) %>% paste())[2] %in% c("id", "nodes")) {
-    stop("This is not a node attribute.")
+
+    stop(
+      "This is not a node attribute.",
+      call. = FALSE)
   }
 
   # Extract the node data frame (ndf)

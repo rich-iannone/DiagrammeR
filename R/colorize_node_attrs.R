@@ -146,7 +146,10 @@ colorize_node_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Extract ndf from graph
@@ -177,7 +180,10 @@ colorize_node_attrs <- function(graph,
     if (!(palette %in%
           c(row.names(RColorBrewer::brewer.pal.info),
             "viridis"))) {
-      stop("The color palette is not an RColorBrewer or viridis palette.")
+
+      stop(
+        "The color palette is not an RColorBrewer or viridis palette.",
+        call. = FALSE)
     }
   }
 

@@ -192,7 +192,9 @@ create_graph <- function(nodes_df = NULL,
           stringsAsFactors = FALSE)
     } else {
 
-      stop("The value for `attr_theme` doesn't refer to any available theme.")
+      stop(
+        "The value for `attr_theme` doesn't refer to any available theme.",
+        call. = FALSE)
     }
 
   } else if (is.null(attr_theme)) {

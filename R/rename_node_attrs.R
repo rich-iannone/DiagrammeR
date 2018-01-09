@@ -74,18 +74,27 @@ rename_node_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node attributes can be renamed.")
+
+    stop(
+      "The graph contains no nodes, so, no node attributes can be renamed.",
+      call. = FALSE)
   }
 
   # Stop function if `node_attr_from` and
   # `node_attr_to` are identical
   if (node_attr_from == node_attr_to) {
-    stop("You cannot rename using the same name.")
+
+    stop(
+      "You cannot rename using the same name.",
+      call. = FALSE)
   }
 
   # Stop function if `node_attr_to` is `id` or any
@@ -93,14 +102,20 @@ rename_node_attrs <- function(graph,
   if (any(unique(c("id",
                    colnames(get_node_df(graph)))) %in%
           node_attr_to)) {
-    stop("You cannot use that name for `node_attr_to`.")
+
+    stop(
+      "You cannot use that name for `node_attr_to`.",
+      call. = FALSE)
   }
 
   # Stop function if `node_attr_from` is `id`, `label`
   # or `type`
   if (any(c("id", "label", "type") %in%
           node_attr_from)) {
-    stop("You cannot use that name for `node_attr_from`.")
+
+    stop(
+      "You cannot use that name for `node_attr_from`.",
+      call. = FALSE)
   }
 
   # Get the number of nodes ever created for
@@ -116,7 +131,10 @@ rename_node_attrs <- function(graph,
   # Stop function if `node_attr_from` is not one
   # of the graph's columns
   if (!any(column_names_graph %in% node_attr_from)) {
-    stop("The node attribute to rename is not in the ndf.")
+
+    stop(
+      "The node attribute to rename is not in the ndf.",
+      call. = FALSE)
   }
 
   # Set the column name for the renamed attr

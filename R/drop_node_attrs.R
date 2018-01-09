@@ -64,20 +64,29 @@ drop_node_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop function if length of `node_attr` is
   # greater than one
   if (length(node_attr) > 1) {
-    stop("You can only provide a single column.")
+
+    stop(
+      "You can only provide a single column.",
+      call. = FALSE)
   }
 
   # Stop function if `node_attr` is any of
   # `nodes`, `node`, `type`, or `label`
   if (any(c("nodes", "node", "type", "label") %in%
           node_attr)) {
-    stop("You cannot drop this column.")
+
+    stop(
+      "You cannot drop this column.",
+      call. = FALSE)
   }
 
   # Extract the graph's ndf
@@ -89,7 +98,10 @@ drop_node_attrs <- function(graph,
   # Stop function if `node_attr` is not one
   # of the graph's column
   if (!any(column_names_graph %in% node_attr)) {
-    stop("The node attribute to drop is not in the ndf.")
+
+    stop(
+      "The node attribute to drop is not in the ndf.",
+      call. = FALSE)
   }
 
   # Get the column number for the node attr to drop

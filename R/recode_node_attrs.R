@@ -117,12 +117,18 @@ recode_node_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no nodes can be recoded.")
+
+    stop(
+      "The graph contains no nodes, so, no nodes can be recoded.",
+      call. = FALSE)
   }
 
   # Get list object from named vectors
@@ -137,7 +143,10 @@ recode_node_attrs <- function(graph,
   # Stop function if `node_attr_from` is not one
   # of the graph's node attributes
   if (!any(column_names_graph %in% node_attr_from)) {
-    stop("The node attribute to recode is not in the ndf.")
+
+    stop(
+      "The node attribute to recode is not in the ndf.",
+      call. = FALSE)
   }
 
   # Get the column number for the node attr to recode
@@ -191,7 +200,10 @@ recode_node_attrs <- function(graph,
     # Stop function if `node_attr_to` is
     # `id` or `nodes`
     if (any(c("id", "nodes") %in% node_attr_to)) {
-      stop("You cannot use those names.")
+
+      stop(
+        "You cannot use those names.",
+        call. = FALSE)
     }
 
     if (any(column_names_graph %in% node_attr_to)) {

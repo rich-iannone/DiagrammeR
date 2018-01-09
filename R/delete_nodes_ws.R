@@ -50,17 +50,26 @@ delete_nodes_ws <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no nodes can be deleted.")
+
+    stop(
+      "The graph contains no nodes, so, no nodes can be deleted.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes available.")
+
+    stop(
+      "There is no selection of nodes available.",
+      call. = FALSE)
   }
 
   # Get the number of nodes in the graph
@@ -68,7 +77,6 @@ delete_nodes_ws <- function(graph) {
 
   # Get the number of edges in the graph
   edges_graph_1 <- graph %>% count_edges()
-
 
   # Get a vector of the nodes to be deleted
   nodes_to_delete <- graph$node_selection$node

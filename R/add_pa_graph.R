@@ -151,7 +151,10 @@ add_pa_graph <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -164,13 +167,19 @@ add_pa_graph <- function(graph,
 
   # Stop if n is too small
   if (n <= 0)  {
-    stop("The value for `n` must be at least 1.")
+
+    stop(
+      "The value for `n` must be at least 1.",
+      call. = FALSE)
   }
 
   # Stop if the value for `algo` is not a
   # valid value
   if (!(algo %in% c("psumtree", "psumtree-multiple", "bag"))) {
-    stop("The value given for `algo` must be either `psumtree`, `psumtree-multiple`, or `bag`.")
+
+    stop(
+      "The value given for `algo` must be either `psumtree`, `psumtree-multiple`, or `bag`.",
+      call. = FALSE)
   }
 
   # If `bag` chosen as the algorithm, force

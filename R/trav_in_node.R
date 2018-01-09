@@ -229,7 +229,8 @@
 #' #> 2  2 <NA>  <NA>     8
 #' #> 3  3 <NA>  <NA>    NA
 #' @importFrom stats as.formula
-#' @importFrom dplyr filter distinct left_join right_join semi_join select select_ rename group_by summarize_ everything
+#' @importFrom dplyr filter distinct left_join right_join semi_join
+#' @importFrom dplyr select select_ rename group_by summarize_ everything
 #' @importFrom rlang enquo UQ
 #' @export trav_in_node
 
@@ -266,22 +267,30 @@ trav_in_node <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop("The graph object is not valid.",
+         call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no traversal can occur.")
+
+    stop("The graph contains no nodes, so, no traversal can occur.",
+         call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no traversal can occur.")
+
+    stop("The graph contains no edges, so, no traversal can occur.",
+         call. = FALSE)
   }
 
   # Validation: Graph object has valid edge selection
   if (graph_contains_edge_selection(graph) == FALSE) {
-    stop("There is no selection of edges, so, no traversal can occur.")
+
+    stop("There is no selection of edges, so, no traversal can occur.",
+         call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -337,7 +346,10 @@ trav_in_node <- function(graph,
     if (!is.null(copy_attrs_as)) {
 
       if (copy_attrs_as %in% c("id", "from", "to")) {
-        stop("Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.")
+
+        stop(
+          "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.",
+          call. = FALSE)
       }
 
       colnames(nodes)[2] <- copy_attrs_from <- copy_attrs_as

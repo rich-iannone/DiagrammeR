@@ -119,22 +119,34 @@ trav_in_until <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no traversal can occur.")
+
+    stop(
+      "The graph contains no nodes, so, no traversal can occur.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no traversal can occur.")
+
+    stop(
+      "The graph contains no edges, so, no traversal can occur.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes, so, no traversal can occur.")
+
+    stop(
+      "There is no selection of nodes, so, no traversal can occur.",
+      call. = FALSE)
   }
 
   # Initialize the node stack and

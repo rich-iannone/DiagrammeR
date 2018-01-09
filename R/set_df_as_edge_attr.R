@@ -65,23 +65,35 @@ set_df_as_edge_attr <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, a df cannot be added.")
+
+    stop(
+      "The graph contains no edges, so, a df cannot be added.",
+      call. = FALSE)
   }
 
   # Value given for edge must only be a single value
   if (length(edge) > 1) {
-    stop("Only one edge can be specified.")
+
+    stop(
+      "Only one edge can be specified.",
+      call. = FALSE)
   }
 
   # Values given for edge must correspond to an edge ID
   # in the graph
   if (!(edge %in% graph$edges_df$id)) {
-    stop("The value given for `edge` does not correspond to an edge ID.")
+
+    stop(
+      "The value given for `edge` does not correspond to an edge ID.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

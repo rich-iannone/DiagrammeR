@@ -136,17 +136,26 @@ mutate_edge_attrs_ws <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edge attributes can undergo mutation.")
+
+    stop(
+      "The graph contains no edges, so, no edge attributes can undergo mutation.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid edge selection
   if (graph_contains_edge_selection(graph) == FALSE) {
-    stop("There is no selection of edges available.")
+
+    stop(
+      "There is no selection of edges available.",
+      call. = FALSE)
   }
 
   # Collect expressions
@@ -161,7 +170,10 @@ mutate_edge_attrs_ws <- function(graph,
   if ("id" %in% names(exprs) |
       "from" %in% names(exprs) |
       "to" %in% names(exprs)) {
-    stop("The variables `id`, `from`, or `to` cannot undergo mutation.")
+
+    stop(
+      "The variables `id`, `from`, or `to` cannot undergo mutation.",
+      call. = FALSE)
   }
 
   # Determine which edges are not

@@ -41,12 +41,18 @@ get_node_df_ws <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has a valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes available.")
+
+    stop(
+      "There is no selection of nodes available.",
+      call. = FALSE)
   }
 
   # Create binding for specific variable

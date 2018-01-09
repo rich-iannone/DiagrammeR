@@ -71,30 +71,45 @@ add_n_node_clones <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, an edge cannot be added.")
+
+    stop(
+      "The graph contains no nodes, so, an edge cannot be added.",
+      call. = FALSE)
   }
 
   # Stop function if node is not a single numerical value
   if (length(node) > 1 | !inherits(node, "numeric")) {
-    stop("The value for `node` must be a single, numeric value.")
+
+    stop(
+      "The value for `node` must be a single, numeric value.",
+      call. = FALSE)
   }
 
   # Stop function the node ID does not correspond
   # to a node in the graph
   if (!(node %in% graph$nodes_df$id)) {
-    stop("The value provided in `node` does not correspond to a node in the graph.")
+
+    stop(
+      "The value provided in `node` does not correspond to a node in the graph.",
+      call. = FALSE)
   }
 
   # Stop function if vector provided for label but it
   # is not of length `n`
   if (!is.null(label)) {
     if (length(label) != n) {
-      stop("The vector provided for `label` is not the same length as the value of `n`.")
+
+      stop(
+        "The vector provided for `label` is not the same length as the value of `n`.",
+        call. = FALSE)
     }
   }
 

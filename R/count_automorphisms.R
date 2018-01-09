@@ -30,7 +30,10 @@ count_automorphisms <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # If the graph is empty, then return NA
@@ -46,7 +49,7 @@ count_automorphisms <- function(graph) {
 
   # Get the number of automorphisms in
   # the graph
-  automorphisms(
+  igraph::automorphisms(
     graph = ig_graph,
     sh = "fm")["group_size"] %>%
     unlist() %>%

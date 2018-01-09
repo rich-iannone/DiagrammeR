@@ -101,24 +101,36 @@ select_edges <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no selections can be made.")
+
+    stop(
+      "The graph contains no nodes, so, no selections can be made.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no selections can be made.")
+
+    stop(
+      "The graph contains no edges, so, no selections can be made.",
+      call. = FALSE)
   }
 
   # Stop function if `edges` refers to edge ID
   # values that are not in the graph
   if (!is.null(edges)) {
     if (!any(edges %in% graph$edges_df$id)) {
-      stop("The values provided in `edges` do not all correspond to edge ID values in the graph.")
+
+      stop(
+        "The values provided in `edges` do not all correspond to edge ID values in the graph.",
+        call. = FALSE)
     }
   }
 
@@ -134,7 +146,7 @@ select_edges <- function(graph,
   if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
 
     edges_df <-
-      filter(
+      dplyr::filter(
         .data = edges_df,
         rlang::UQ(conditions))
   }
@@ -144,7 +156,10 @@ select_edges <- function(graph,
   # are present
   if (!is.null(from)) {
     if (any(!(from %in% edges_df$from))) {
-      stop("One of more of the nodes specified as `from` not part of an edge.")
+
+      stop(
+        "One of more of the nodes specified as `from` not part of an edge.",
+        call. = FALSE)
     }
 
     from_val <- from
@@ -159,7 +174,10 @@ select_edges <- function(graph,
   # are present
   if (!is.null(to)) {
     if (any(!(to %in% edges_df$to))) {
-      stop("One of more of the nodes specified as `to` are not part of an edge.")
+
+      stop(
+        "One of more of the nodes specified as `to` are not part of an edge.",
+        call. = FALSE)
     }
 
     to_val <- to

@@ -88,15 +88,24 @@ join_node_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   if (is.null(by_graph) & !is.null(by_df)) {
-    stop("Both column specifications must be provided.")
+
+    stop(
+      "Both column specifications must be provided.",
+      call. = FALSE)
   }
 
   if (!is.null(by_graph) & is.null(by_df)) {
-    stop("Both column specifications must be provided.")
+
+    stop(
+      "Both column specifications must be provided.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

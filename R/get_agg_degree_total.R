@@ -74,7 +74,10 @@ get_agg_degree_total <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Create binding for variable
@@ -89,7 +92,7 @@ get_agg_degree_total <- function(graph,
 
     # Apply filtering conditions to the ndf
     ndf <-
-      filter(
+      dplyr::filter(
         .data = ndf,
         rlang::UQ(conditions))
 
@@ -112,7 +115,10 @@ get_agg_degree_total <- function(graph,
   # Verify that the value provided for `agg`
   # is one of the accepted aggregation types
   if (!(agg %in% c("sum", "min", "max", "mean", "median"))) {
-    stop("The aggregation method must be either `min`, `max`, `mean`, `median`, or `sum`.")
+
+    stop(
+      "The aggregation method must be either `min`, `max`, `mean`, `median`, or `sum`.",
+      call. = FALSE)
   }
 
   # Get the aggregate value of total degree based

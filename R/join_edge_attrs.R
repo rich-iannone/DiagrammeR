@@ -70,15 +70,24 @@ join_edge_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   if (is.null(by_graph) & !is.null(by_df)) {
-    stop("Both column specifications must be provided.")
+
+    stop(
+      "Both column specifications must be provided.",
+      call. = FALSE)
   }
 
   if (!is.null(by_graph) & is.null(by_df)) {
-    stop("Both column specifications must be provided.")
+
+    stop(
+      "Both column specifications must be provided.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -100,15 +109,16 @@ join_edge_attrs <- function(graph,
 
     # Perform a left join on the `edges` data frame
     edges <-
-      merge(edges, df,
-            all.x = TRUE,
-            by.x = by_graph,
-            by.y = by_df)
+      merge(
+        edges, df,
+        all.x = TRUE,
+        by.x = by_graph,
+        by.y = by_df)
   }
 
   # Get new column names in the revised edf
   new_col_names <-
-    setdiff(colnames(edges), column_names)
+    base::setdiff(colnames(edges), column_names)
 
   # Sort the columns in `edges`
   edges <-

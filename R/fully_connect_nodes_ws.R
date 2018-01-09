@@ -80,17 +80,26 @@ fully_connect_nodes_ws <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, there are no nodes to connect.")
+
+    stop(
+      "The graph contains no nodes, so, there are no nodes to connect.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes, so, no nodes can be connected.")
+
+    stop(
+      "There is no selection of nodes, so, no nodes can be connected.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

@@ -42,12 +42,18 @@ get_edge_count_w_multiedge <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no selections can be made.")
+
+    stop(
+      "The graph contains no edges, so, no selections can be made.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

@@ -147,17 +147,26 @@ add_grid_2d <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop if `x` is too small
-  if (x < 2)  {
-    stop("The value for `x` must be at least 2.")
+  if (x < 2) {
+
+    stop(
+      "The value for `x` must be at least 2.",
+      call. = FALSE)
   }
 
   # Stop if `y` is too small
-  if (y < 2)  {
-    stop("The value for `y` must be at least 2.")
+  if (y < 2) {
+
+    stop(
+      "The value for `y` must be at least 2.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

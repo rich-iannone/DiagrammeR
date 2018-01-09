@@ -95,13 +95,19 @@ reorder_graph_actions <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Determine whether there any
   # available graph actions
   if (nrow(graph$graph_actions) == 0) {
-    stop("There are no graph actions to reorder.")
+
+    stop(
+      "There are no graph actions to reorder.",
+      call. = FALSE)
   }
 
   # Create binding for a specific variable
@@ -118,7 +124,10 @@ reorder_graph_actions <- function(graph,
   # do not refer to an `action_index`
   # that does not exist
   if (!any(indices %in% available_indices)) {
-    stop("One or more provided indices do not exist in the graph.")
+
+    stop(
+      "One or more provided indices do not exist in the graph.",
+      call. = FALSE)
   }
 
   remaining_indices <-

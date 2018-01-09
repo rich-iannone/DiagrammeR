@@ -90,19 +90,28 @@ select_nodes <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no selections can be made.")
+
+    stop(
+      "The graph contains no nodes, so, no selections can be made.",
+      call. = FALSE)
   }
 
   # Stop function if `nodes` refers to node ID
   # values that are not in the graph
   if (!is.null(nodes)) {
     if (!any(nodes %in% graph$nodes_df$id)) {
-      stop("The values provided in `nodes` do not all correspond to node ID values in the graph.")
+
+      stop(
+        "The values provided in `nodes` do not all correspond to node ID values in the graph.",
+        call. = FALSE)
     }
   }
 

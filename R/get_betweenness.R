@@ -52,14 +52,17 @@
 #' #> 8   8 <NA>  <NA>           1
 #' #> 9   9 <NA>  <NA>           0
 #' #> 10 10 <NA>  <NA>           0
-#' @importFrom igraph betweenness
+#' @importFrom igraph betweenness V
 #' @export get_betweenness
 
 get_betweenness <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Convert the graph to an igraph object
@@ -70,7 +73,7 @@ get_betweenness <- function(graph) {
   betweenness_scores <-
     igraph::betweenness(
       graph = ig_graph,
-      v = V(ig_graph),
+      v = igraph::V(ig_graph),
       directed = graph$directed)
 
   # Create df with betweenness scores

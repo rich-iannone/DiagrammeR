@@ -115,7 +115,10 @@ layout_nodes_w_string <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Get the graph's internal node data frame
@@ -146,7 +149,10 @@ layout_nodes_w_string <- function(graph,
 
   # Stop function if not all rows are of equal length
   if (mean(layout_row_length) != layout_row_length[1]) {
-    stop("Each row must have the same length.")
+
+    stop(
+      "Each row must have the same length.",
+      call. = FALSE)
   }
 
   layout_column_number <- layout_row_length <- layout_row_length[1]

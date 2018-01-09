@@ -122,17 +122,26 @@ add_n_nodes_ws <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes and existing nodes are required.")
+
+    stop(
+      "The graph contains no nodes and existing nodes are required.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes, so, no new nodes can be added.")
+
+    stop(
+      "There is no selection of nodes, so, no new nodes can be added.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -142,7 +151,10 @@ add_n_nodes_ws <- function(graph,
   # given for the `direction` argument, stop function
   if (is_graph_directed(graph) &
       is.null(direction)) {
-    stop("An edge direction must be provided.")
+
+    stop(
+      "An edge direction must be provided.",
+      call. = FALSE)
   }
 
   # If the graph is undirected, set the direction

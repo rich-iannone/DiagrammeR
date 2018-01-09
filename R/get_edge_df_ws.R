@@ -41,12 +41,18 @@ get_edge_df_ws <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has a valid edge selection
   if (graph_contains_edge_selection(graph) == FALSE) {
-    stop("There is no selection of edges available.")
+
+    stop(
+      "There is no selection of edges available.",
+      call. = FALSE)
   }
 
   # Create binding for specific variable

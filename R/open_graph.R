@@ -31,7 +31,10 @@
 open_graph <- function(file) {
 
   if (!inherits(file, "character")) {
-    stop("Provide a character string for the file.")
+
+    stop(
+      "Provide a character string for the file.",
+      call. = FALSE)
   }
 
   # Read the graph or graph series
@@ -43,6 +46,9 @@ open_graph <- function(file) {
     return(x)
 
   } else {
-    stop("The object opened is not a graph or graph series.")
+
+    stop(
+      "The object opened is not a graph or graph series.",
+      call. = FALSE)
   }
 }

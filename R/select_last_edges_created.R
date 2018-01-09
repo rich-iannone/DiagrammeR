@@ -53,12 +53,18 @@ select_last_edges_created <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edges can be selected.")
+
+    stop(
+      "The graph contains no edges, so, no edges can be selected.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -84,7 +90,11 @@ select_last_edges_created <- function(graph) {
     if (graph_transform_steps %>%
         tail(1) %>%
         dplyr::pull(step_deleted_edges) == 1) {
-      stop("The previous graph transformation function resulted in a removal of edges.")
+
+      stop(
+        "The previous graph transformation function resulted in a removal of edges.",
+        call. = FALSE)
+
     } else {
       if (nrow(graph_transform_steps) > 1) {
         number_of_edges_created <-

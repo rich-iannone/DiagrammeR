@@ -66,7 +66,10 @@ set_cache <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   if (inherits(to_cache, c("numeric", "integer", "character"))) {
@@ -88,13 +91,19 @@ set_cache <- function(graph,
   if (inherits(to_cache, "data.frame")) {
 
     if (is.null(col)) {
-      stop("You must provide a column name from the data frame.")
+
+      stop(
+        "You must provide a column name from the data frame.",
+        call. = FALSE)
     }
 
     if (!is.null(col)) {
 
       if (!(col %in% colnames(to_cache))) {
-        stop("The column name provided doesn't exist in the data frame.")
+
+        stop(
+          "The column name provided doesn't exist in the data frame.",
+          call. = FALSE)
       }
 
       # Extract the vector from the data frame and cache

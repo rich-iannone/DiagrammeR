@@ -137,12 +137,18 @@ get_attr_dfs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, a df cannot be added.")
+
+    stop(
+      "The graph contains no nodes, so, a df cannot be added.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

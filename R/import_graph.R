@@ -72,14 +72,20 @@ import_graph <- function(graph_file,
   if (!is.null(file_type)) {
     if (!(tolower(file_type) %in%
           c("gml", "sif", "edges", "mtx"))) {
-      stop("The file type as specified cannot be imported.")
+
+      stop(
+        "The file type as specified cannot be imported.",
+        call. = FALSE)
     }
   }
 
   # Stop function if file doesn't exist
   if (grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file) == FALSE) {
     if (file.exists(graph_file) == FALSE) {
-      stop("The file as specified doesn't exist.")
+
+      stop(
+        "The file as specified doesn't exist.",
+        call. = FALSE)
     }
   }
 
@@ -122,7 +128,10 @@ import_graph <- function(graph_file,
     } else if (file_extension == "mtx") {
       file_type <- "mtx"
     } else {
-      stop("The file type is not known so it can't be imported.")
+
+      stop(
+        "The file type is not known so it can't be imported.",
+        call. = FALSE)
     }
   }
 

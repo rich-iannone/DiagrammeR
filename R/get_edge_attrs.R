@@ -81,7 +81,10 @@ get_edge_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   edge_attr <- rlang::enquo(edge_attr)
@@ -90,12 +93,18 @@ get_edge_attrs <- function(graph,
   from_to <- NULL
 
   if ((rlang::UQ(edge_attr) %>% paste())[2] %in% c("id", "from", "to")) {
-    stop("This is not an edge attribute.")
+
+    stop(
+      "This is not an edge attribute.",
+      call. = FALSE)
   }
 
   if (!is.null(from) & !is.null(to)) {
     if (length(from) != length(to)) {
-      stop("The number of nodes in `from` and `to` must be the same.")
+
+      stop(
+        "The number of nodes in `from` and `to` must be the same.",
+        call. = FALSE)
     }
   }
 

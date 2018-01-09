@@ -133,16 +133,25 @@ add_edge <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, an edge cannot be added.")
+
+    stop(
+      "The graph contains no nodes, so, an edge cannot be added.",
+      call. = FALSE)
   }
 
   if (length(from) > 1 | length(to) > 1) {
-    stop("Only one edge can be specified.")
+
+    stop(
+      "Only one edge can be specified.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -208,7 +217,10 @@ add_edge <- function(graph,
     # Stop function if the label for
     # `from` does not exist in the graph
     if (!(from %in% graph$nodes_df$label)) {
-      stop("The value provided in `from` does not exist as a node `label` value.")
+
+      stop(
+        "The value provided in `from` does not exist as a node `label` value.",
+        call. = FALSE)
     }
 
     # Stop function if the label for
@@ -217,13 +229,19 @@ add_edge <- function(graph,
         dplyr::select(label) %>%
         dplyr::filter(label == from) %>%
         nrow() > 1) {
-      stop("The node `label` provided in `from` is not distinct in the graph.")
+
+      stop(
+        "The node `label` provided in `from` is not distinct in the graph.",
+        call. = FALSE)
     }
 
     # Stop function if the label for
     # `to` does not exist in the graph
     if (!(to %in% graph$nodes_df$label)) {
-      stop("The value provided in `to` does not exist as a node `label` value.")
+
+      stop(
+        "The value provided in `to` does not exist as a node `label` value.",
+        call. = FALSE)
     }
 
     # Stop function if the label for
@@ -232,7 +250,10 @@ add_edge <- function(graph,
         dplyr::select(label) %>%
         dplyr::filter(label == to) %>%
         nrow() > 1) {
-      stop("The node `label` provided in `to` is not distinct in the graph.")
+
+      stop(
+        "The node `label` provided in `to` is not distinct in the graph.",
+        call. = FALSE)
     }
 
     # Use the `translate_to_node_id()` helper function to map

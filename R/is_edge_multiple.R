@@ -49,24 +49,36 @@ is_edge_multiple <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edges can be selected.")
+
+    stop(
+      "The graph contains no edges, so, no edges can be selected.",
+      call. = FALSE)
   }
 
   # Stop function if more than one value
   # provided for `edge`
   if (length(edge) > 1) {
-    stop("Only a single should be provided for `edge`.")
+
+    stop(
+      "Only a single should be provided for `edge`.",
+      call. = FALSE)
   }
 
   # Stop function if the value provided
   # in `edge` is not numeric
   if (!is.numeric(edge)) {
-    stop("The value provided for `edge` should be numeric.")
+
+    stop(
+      "The value provided for `edge` should be numeric.",
+      call. = FALSE)
   }
 
   # Create binding for a specific variable
@@ -78,7 +90,10 @@ is_edge_multiple <- function(graph,
   # Stop function if the edge ID provided
   # is not a valid edge ID
   if (!(edge %in% edf$id)) {
-    stop("The provided edge ID is not present in the graph.")
+
+    stop(
+      "The provided edge ID is not present in the graph.",
+      call. = FALSE)
   }
 
   # Obtain the edge definition

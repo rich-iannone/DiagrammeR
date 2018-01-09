@@ -136,17 +136,26 @@ mutate_node_attrs_ws <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node attributes can undergo mutation.")
+
+    stop(
+      "The graph contains no nodes, so, no node attributes can undergo mutation.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes available.")
+
+    stop(
+      "There is no selection of nodes available.",
+      call. = FALSE)
   }
 
   # Collect expressions
@@ -159,7 +168,10 @@ mutate_node_attrs_ws <- function(graph,
   # expressions mutate columns that
   # should not be changed
   if ("id" %in% names(exprs)) {
-    stop("The variable `id` cannot undergo mutation.")
+
+    stop(
+      "The variable `id` cannot undergo mutation.",
+      call. = FALSE)
   }
 
   # Determine which nodes are not

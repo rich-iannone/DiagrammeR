@@ -60,12 +60,18 @@ combine_graphs <- function(x,
 
   # Validation: Graph object `x` is valid
   if (graph_object_valid(x) == FALSE) {
-    stop("The graph object `x` is not valid.")
+
+    stop(
+      "The graph object `x` is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph object `y` is valid
   if (graph_object_valid(y) == FALSE) {
-    stop("The graph object `y` is not valid.")
+
+    stop(
+      "The graph object `y` is not valid.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

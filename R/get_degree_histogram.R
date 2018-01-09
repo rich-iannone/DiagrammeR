@@ -41,12 +41,18 @@ get_degree_histogram <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, a degree histogram cannot be produced.")
+
+    stop(
+      "The graph contains no nodes, so, a degree histogram cannot be produced.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

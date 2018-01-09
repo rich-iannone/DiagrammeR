@@ -80,23 +80,35 @@ set_df_as_node_attr <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, a df cannot be added.")
+
+    stop(
+      "The graph contains no nodes, so, a df cannot be added.",
+      call. = FALSE)
   }
 
   # Value given for node must only be a single value
   if (length(node) > 1) {
-    stop("Only one node can be specified.")
+
+    stop(
+      "Only one node can be specified.",
+      call. = FALSE)
   }
 
   # Value given for node must correspond to a node ID
   # in the graph
   if (!(node %in% graph$nodes_df$id)) {
-    stop("The value given for `node` does not correspond to a node ID.")
+
+    stop(
+      "The value given for `node` does not correspond to a node ID.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

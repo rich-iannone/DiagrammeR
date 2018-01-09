@@ -83,7 +83,10 @@ is_edge_present <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   if (!is.null(edge)) {
@@ -103,7 +106,10 @@ is_edge_present <- function(graph,
   }
 
   if (use_edge == FALSE & use_from_to == FALSE) {
-    stop("Either provide an edge ID or a pair of nodes to test for edge presence.")
+
+    stop(
+      "Either provide an edge ID or a pair of nodes to test for edge presence.",
+      call. = FALSE)
   }
 
   if (use_edge) {
@@ -111,7 +117,10 @@ is_edge_present <- function(graph,
     # Verify that what is provided for `edge`
     # is a numeric value of length 1
     if (!inherits(edge, "numeric") | length(edge) != 1) {
-      stop("For `edge`, a single, numeric value must be provided.")
+
+      stop(
+        "For `edge`, a single, numeric value must be provided.",
+        call. = FALSE)
     }
 
     edge_is_in_graph <-
@@ -133,7 +142,10 @@ is_edge_present <- function(graph,
     # Stop function if either node is not a single value
     if (from_is_single_value == FALSE |
         to_is_single_value == FALSE) {
-      stop("Only single nodes for `from` and `to` should be specified.")
+
+      stop(
+        "Only single nodes for `from` and `to` should be specified.",
+        call. = FALSE)
     }
 
     if (inherits(from, "character") & inherits(to, "character")) {

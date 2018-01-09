@@ -63,7 +63,10 @@ get_all_connected_nodes <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -71,7 +74,10 @@ get_all_connected_nodes <- function(graph,
 
   # Verify that the node ID provided is in the graph
   if (!(node %in% get_node_ids(graph))) {
-    stop("The node ID provided is not in the graph.")
+
+    stop(
+      "The node ID provided is not in the graph.",
+      call. = FALSE)
   }
 
   # Get a data frame of the weakly-connected

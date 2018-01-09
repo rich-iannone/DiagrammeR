@@ -71,14 +71,20 @@ create_subgraph_ws <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid selection of
   # nodes or edges
   if (!(graph_contains_node_selection(graph) |
       graph_contains_edge_selection(graph))) {
-    stop("There is no selection of nodes or edges available.")
+
+    stop(
+      "There is no selection of nodes or edges available.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

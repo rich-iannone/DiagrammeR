@@ -39,12 +39,18 @@ select_nodes_by_id <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no selections can be made.")
+
+    stop(
+      "The graph contains no nodes, so, no selections can be made.",
+      call. = FALSE)
   }
 
   # Get a vector of node ID values from the graph
@@ -53,7 +59,10 @@ select_nodes_by_id <- function(graph,
   # Stop function if any nodes specified are not
   # in the graph
   if (any(!(nodes %in% nodes_in_graph))) {
-    stop("One of more of the nodes specified are not available in the graph.")
+
+    stop(
+      "One of more of the nodes specified are not available in the graph.",
+      call. = FALSE)
   }
 
   # Obtain vector with node ID selection of nodes

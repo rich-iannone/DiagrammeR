@@ -161,7 +161,10 @@ set_node_attr_w_fcn <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -171,7 +174,10 @@ set_node_attr_w_fcn <- function(graph,
     value_per_node_functions() %>% names()
 
   if (!any(value_per_node_fcn_names %in% node_attr_fcn)) {
-    stop("The function name must be one that produces values for every graph node.")
+
+    stop(
+      "The function name must be one that produces values for every graph node.",
+      call. = FALSE)
   }
 
   # Collect extra vectors of arguments and values as `extras`

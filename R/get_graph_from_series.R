@@ -43,12 +43,18 @@ get_graph_from_series <- function(graph_series,
 
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)) {
-    stop("There are no graphs in this graph series.")
+
+    stop(
+      "There are no graphs in this graph series.",
+      call. = FALSE)
   }
 
   # Stop function if `graph_no` out of range
   if (!(graph_no %in% 1:graph_count(graph_series))) {
-    stop("The index chosen doesn't correspond to that of a graph in the series.")
+
+    stop(
+      "The index chosen doesn't correspond to that of a graph in the series.",
+      call. = FALSE)
   }
 
   # Extract the specified graph from the series

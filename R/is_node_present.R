@@ -45,12 +45,18 @@ is_node_present <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop function if `node` not a single value
   if (length(node) != 1) {
-    stop("Only a single node can be queried using `is_node_present()`.")
+
+    stop(
+      "Only a single node can be queried using `is_node_present()`.",
+      call. = FALSE)
   }
 
   if (inherits(node, "character")) {

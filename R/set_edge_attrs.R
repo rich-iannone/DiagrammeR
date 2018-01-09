@@ -101,12 +101,18 @@ set_edge_attrs <- function(x,
   edge_attr <- (rlang::UQ(edge_attr) %>% paste())[2]
 
   if (edge_attr %in% c("id", "from", "to")) {
-    stop("You cannot alter edge ID values or attributes associated with node IDs.")
+
+    stop(
+      "You cannot alter edge ID values or attributes associated with node IDs.",
+      call. = FALSE)
   }
 
   if (!is.null(from) & !is.null(to)) {
     if (length(from) != length(to)) {
-      stop("The number of values specified in `from` and `to` must be the same.")
+
+      stop(
+        "The number of values specified in `from` and `to` must be the same.",
+        call. = FALSE)
     }
   }
 
@@ -124,7 +130,10 @@ set_edge_attrs <- function(x,
 
   if (length(values) != 1 &
       length(values) != nrow(edges_df)) {
-    stop("The length of values provided must either be 1 or that of the number of rows in the edf.")
+
+    stop(
+      "The length of values provided must either be 1 or that of the number of rows in the edf.",
+      call. = FALSE)
   }
 
   # Get the indices for the edge data frame

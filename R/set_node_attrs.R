@@ -103,7 +103,9 @@ set_node_attrs <- function(x,
 
   # Stop function if `node_attr` is `id`
   # if (node_attr == "id") {
-  #   stop("You cannot use the value `id` for `node_attr`.")
+  #   stop(
+  #     "You cannot use the value `id` for `node_attr`.",
+  #     call. = FALSE)
   # }
 
   if (inherits(x, "dgr_graph")) {
@@ -120,7 +122,10 @@ set_node_attrs <- function(x,
 
   if (length(values) != 1 &
       length(values) != nrow(nodes_df)) {
-    stop("The length of values provided must either be 1 or that of the number of rows in the ndf.")
+
+    stop(
+      "The length of values provided must either be 1 or that of the number of rows in the ndf.",
+      call. = FALSE)
   }
 
   if (length(values) == 1) {

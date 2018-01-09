@@ -147,7 +147,10 @@ add_balanced_tree <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -155,12 +158,18 @@ add_balanced_tree <- function(graph,
 
   # Stop if k is too small
   if (k <= 1) {
-    stop("The value for `k` must be at least 2.")
+
+    stop(
+      "The value for `k` must be at least 2.",
+      call. = FALSE)
   }
 
   # Stop if h is too small
   if (h <= 1) {
-    stop("The value for `h` must be at least 2.")
+
+    stop(
+      "The value for `h` must be at least 2.",
+      call. = FALSE)
   }
 
   # Determine the number of nodes in the balanced tree

@@ -111,19 +111,27 @@ add_node_clones_ws <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, an edge cannot be added.")
+
+    stop(
+      "The graph contains no nodes, so, an edge cannot be added.",
+      call. = FALSE)
   }
 
   # # Stop function if vector provided for label but it
   # # is not of length `n`
   # if (!is.null(label)) {
   #   if (length(label) != n) {
-  #     stop("The vector provided for `label` is not the same length as the value of `n`.")
+  #     stop(
+  #       "The vector provided for `label` is not the same length as the value of `n`."),
+  #       call. = FALSE
   #   }
   # }
 

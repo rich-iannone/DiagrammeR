@@ -97,7 +97,10 @@ add_nodes_from_df_cols <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Get the df column numbers from which nodes
@@ -107,7 +110,10 @@ add_nodes_from_df_cols <- function(graph,
     # Verify that the none of the values provided
     # are greater than the number of df columns
     if (max(columns) > ncol(df)) {
-      stop("One or more of the column numbers exceeds the number of columns in `df`.")
+
+      stop(
+        "One or more of the column numbers exceeds the number of columns in `df`.",
+        call. = FALSE)
     }
   }
 
@@ -118,7 +124,10 @@ add_nodes_from_df_cols <- function(graph,
     columns <- which(colnames(df) %in% columns)
 
     if (length(columns) < 1) {
-      stop("None of the columns specified are in the `df` object.")
+
+      stop(
+        "None of the columns specified are in the `df` object.",
+        call. = FALSE)
     }
   }
 

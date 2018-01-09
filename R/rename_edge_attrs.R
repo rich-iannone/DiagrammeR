@@ -74,18 +74,27 @@ rename_edge_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edge attributes can be renamed.")
+
+    stop(
+      "The graph contains no edges, so, no edge attributes can be renamed.",
+      call. = FALSE)
   }
 
   # Stop function if `edge_attr_from` and
   # `edge_attr_to` are identical
   if (edge_attr_from == edge_attr_to) {
-    stop("You cannot rename using the same name.")
+
+    stop(
+      "You cannot rename using the same name.",
+      call. = FALSE)
   }
 
   # Stop function if `edge_attr_to` is `from`, `to`,
@@ -93,14 +102,20 @@ rename_edge_attrs <- function(graph,
   # data frame
   if (any(colnames(get_edge_df(graph)) %in%
           edge_attr_to)) {
-    stop("You cannot use that name for `edge_attr_to`.")
+
+    stop(
+      "You cannot use that name for `edge_attr_to`.",
+      call. = FALSE)
   }
 
   # Stop function if `edge_attr_from` is `from`, `to`
   # or `rel`
   if (any(c("from", "to", "rel") %in%
           edge_attr_from)) {
-    stop("You cannot use that name for `edge_attr_from`.")
+
+    stop(
+      "You cannot use that name for `edge_attr_from`.",
+      call. = FALSE)
   }
 
   # Get the number of nodes ever created for
@@ -116,7 +131,10 @@ rename_edge_attrs <- function(graph,
   # Stop function if `edge_attr_from` is not one
   # of the graph's columns
   if (!any(column_names_graph %in% edge_attr_from)) {
-    stop("The edge attribute to rename is not in the edf.")
+
+    stop(
+      "The edge attribute to rename is not in the edf.",
+      call. = FALSE)
   }
 
   # Set the column name for the renamed attr

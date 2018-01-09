@@ -128,12 +128,18 @@ add_path <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Stop if n is too small
-  if (n <= 1)  {
-    stop("The value for `n` must be at least 2.")
+  if (n <= 1) {
+
+    stop(
+      "The value for `n` must be at least 2.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables

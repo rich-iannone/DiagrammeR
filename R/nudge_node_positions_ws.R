@@ -99,17 +99,26 @@ nudge_node_positions_ws <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no nodes can be moved.")
+
+    stop(
+      "The graph contains no nodes, so, no nodes can be moved.",
+      call. = FALSE)
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
-    stop("There is no selection of nodes available.")
+
+    stop(
+      "There is no selection of nodes available.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -118,7 +127,11 @@ nudge_node_positions_ws <- function(graph,
   # Get the graph's node data frame as an object; stop
   # function if this doesn't exist
   if (is.null(graph$nodes_df)) {
-    stop("This graph does not contain any nodes.")
+
+    stop(
+      "This graph does not contain any nodes.",
+      call. = FALSE)
+
   } else {
     ndf <- graph$nodes_df
   }
@@ -127,7 +140,10 @@ nudge_node_positions_ws <- function(graph,
   # stop the function
   if (!("x" %in% colnames(ndf)) |
       !("y" %in% colnames(ndf))) {
-    stop("There are no `x` and `y` attribute values to modify.")
+
+    stop(
+      "There are no `x` and `y` attribute values to modify.",
+      call. = FALSE)
   }
 
   # Get the current selection of nodes
@@ -144,7 +160,11 @@ nudge_node_positions_ws <- function(graph,
   # vector with those node ID values; otherwise,
   # stop function
   if (nrow(ndf_filtered) == 0) {
-    stop("There are no nodes can be moved to different `x` or `y` locations.")
+
+    stop(
+      "There are no nodes can be moved to different `x` or `y` locations.",
+      call. = FALSE)
+
   } else {
     nodes <- ndf_filtered$id
   }

@@ -99,12 +99,18 @@ recode_edge_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edges can be recoded.")
+
+    stop(
+      "The graph contains no edges, so, no edges can be recoded.",
+      call. = FALSE)
   }
 
   # Get list object from named vectors
@@ -119,7 +125,10 @@ recode_edge_attrs <- function(graph,
   # Stop function if `edge_attr_from` is not one
   # of the graph's edge attributes
   if (!any(column_names_graph %in% edge_attr_from)) {
-    stop("The edge attribute to recode is not in the edf.")
+
+    stop(
+      "The edge attribute to recode is not in the edf.",
+      call. = FALSE)
   }
 
   # Get the column number for the edge attr to recode
@@ -173,7 +182,10 @@ recode_edge_attrs <- function(graph,
     # Stop function if `edge_attr_to` is
     # `from` or `to`
     if (any(c("from", "to") %in% edge_attr_to)) {
-      stop("You cannot use those names.")
+
+      stop(
+        "You cannot use those names.",
+        call. = FALSE)
     }
 
     if (any(column_names_graph %in% edge_attr_to)) {

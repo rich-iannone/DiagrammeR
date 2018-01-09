@@ -140,12 +140,18 @@ rescale_edge_attrs <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
-    stop("The graph contains no edges, so, no edge attributes can be rescaled.")
+
+    stop(
+      "The graph contains no edges, so, no edge attributes can be rescaled.",
+      call. = FALSE)
   }
 
   # Extract the graph's edf
@@ -157,7 +163,10 @@ rescale_edge_attrs <- function(graph,
   # Stop function if `edge_attr_from` is not one
   # of the graph's edge attributes
   if (!any(column_names_graph %in% edge_attr_from)) {
-    stop("The edge attribute to rescale is not in the edf.")
+
+    stop(
+      "The edge attribute to rescale is not in the edf.",
+      call. = FALSE)
   }
 
   # Get the column number for the edge attr to rescale

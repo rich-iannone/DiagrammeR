@@ -106,12 +106,18 @@ set_node_attr_to_display <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
-    stop("The graph contains no nodes, so, no node attributes can be set.")
+
+    stop(
+      "The graph contains no nodes, so, no node attributes can be set.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -120,7 +126,11 @@ set_node_attr_to_display <- function(graph,
   # Get the graph's node data frame as an object; stop
   # function if this doesn't exist
   if (is.null(graph$nodes_df)) {
-    stop("This graph does not contain any nodes.")
+
+    stop(
+      "This graph does not contain any nodes.",
+      call. = FALSE)
+
   } else {
     ndf <- graph$nodes_df
   }
@@ -134,14 +144,20 @@ set_node_attr_to_display <- function(graph,
   # Stop function if any of the node ID values
   # provided in `nodes` do not exist in the graph
   if (!any(nodes %in% ndf$id)) {
-    stop("One or more node ID values in `nodes` are not present in the graph.")
+
+    stop(
+      "One or more node ID values in `nodes` are not present in the graph.",
+      call. = FALSE)
   }
 
   # Stop function if the node attribute supplied as
   # `attr` does not exist in the ndf
   if (!is.null(attr)) {
     if (!(attr %in% colnames(ndf))) {
-      stop("The node attribute given in `attr` is not in the graph's ndf.")
+
+      stop(
+        "The node attribute given in `attr` is not in the graph's ndf.",
+        call. = FALSE)
     }
   }
 

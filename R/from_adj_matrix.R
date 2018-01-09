@@ -50,12 +50,18 @@ from_adj_matrix <- function(x,
 
   # Stop function if x is not a matrix object
   if (!inherits(x, "matrix")) {
-    stop("The input for this function must be a matrix object.")
+
+    stop(
+      "The input for this function must be a matrix object.",
+      call. = FALSE)
   }
 
   # Stop function if the matrix is not a square matrix
   if (ncol(x) != nrow(x)) {
-    stop("The input matrix must be a square matrix.")
+
+    stop(
+      "The input matrix must be a square matrix.",
+      call. = FALSE)
   }
 
   # If FALSE provided for `weighted`, change value to

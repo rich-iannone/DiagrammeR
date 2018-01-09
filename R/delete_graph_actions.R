@@ -85,13 +85,19 @@ delete_graph_actions <- function(graph,
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
-    stop("The graph object is not valid.")
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
   }
 
   # Determine whether there any
   # available graph actions
   if (nrow(graph$graph_actions) == 0) {
-    stop("There are no graph actions to delete.")
+
+    stop(
+      "There are no graph actions to delete.",
+      call. = FALSE)
   }
 
   # Create bindings for specific variables
@@ -105,7 +111,10 @@ delete_graph_actions <- function(graph,
       dplyr::pull(action_name)
 
     if (!any(actions %in% graph_action_names)) {
-      stop("One or more provided `actions` do not exist in the graph.")
+
+      stop(
+        "One or more provided `actions` do not exist in the graph.",
+        call. = FALSE)
     }
 
     # Get a revised data frame with graph actions
@@ -124,7 +133,10 @@ delete_graph_actions <- function(graph,
       dplyr::pull(action_index)
 
     if (!any(actions %in% graph_action_indices)) {
-      stop("One or more provided `actions` do not exist in the graph.")
+
+      stop(
+        "One or more provided `actions` do not exist in the graph.",
+        call. = FALSE)
     }
 
     # Get a revised data frame with graph actions
