@@ -81,8 +81,7 @@ graph_contains_node_selection <- function(graph) {
 
 # Function to replace the `node_selection` df with
 # different node ID values
-#' @importFrom tibble tibble as_tibble
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr tibble as_tibble bind_rows
 replace_graph_node_selection <- function(graph,
                                          replacement) {
 
@@ -92,7 +91,7 @@ replace_graph_node_selection <- function(graph,
   # Remove objects in `graph$node_selection`
   node_selection <-
     node_selection %>%
-    tibble::as_tibble()
+    dplyr::as_tibble()
 
   node_selection <-
     node_selection[-seq(1, nrow(node_selection)), 1] %>%
@@ -101,14 +100,13 @@ replace_graph_node_selection <- function(graph,
   # Add replacement to `graph$node_selection`
   node_selection %>%
     dplyr::bind_rows(
-      tibble::tibble(
+      dplyr::tibble(
         node = as.integer(replacement)))
 }
 
 # Function to replace the `edge_selection` df with
 # different node ID values
-#' @importFrom tibble tibble as_tibble
-#' @importFrom dplyr bind_rows
+#' @importFrom dplyr tibble as_tibble bind_rows
 replace_graph_edge_selection <- function(graph,
                                          edge_id,
                                          from_node,
@@ -120,7 +118,7 @@ replace_graph_edge_selection <- function(graph,
   # Remove objects in `graph$edge_selection`
   edge_selection <-
     edge_selection %>%
-    tibble::as_tibble()
+    dplyr::as_tibble()
 
   edge_selection <-
     edge_selection[-seq(1, nrow(edge_selection)), 1] %>%
@@ -129,7 +127,7 @@ replace_graph_edge_selection <- function(graph,
   # Add replacement to `graph$edge_selection`
   edge_selection %>%
     dplyr::bind_rows(
-      tibble::tibble(
+      dplyr::tibble(
         edge = as.integer(edge_id),
         from = as.integer(from_node),
         to = as.integer(to_node)))

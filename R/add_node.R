@@ -74,8 +74,7 @@
 #' #> 1  1   <NA>  <NA>
 #' #> 2  2   <NA>  <NA>
 #' #> 3  3 person  <NA>
-#' @importFrom dplyr select bind_cols
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr select bind_cols as_tibble
 #' @export add_node
 
 add_node <- function(graph,
@@ -123,14 +122,14 @@ add_node <- function(graph,
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
 
-    node_aes_tbl <- tibble::as_tibble(node_aes)
+    node_aes_tbl <- dplyr::as_tibble(node_aes)
 
     if (nrow(node_aes_tbl) == 1) {
 
       node_aes$index__ <- 1
 
       node_aes_tbl <-
-        tibble::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -144,14 +143,14 @@ add_node <- function(graph,
   # Collect node data attributes
   if (!is.null(node_data)) {
 
-    node_data_tbl <- tibble::as_tibble(node_data)
+    node_data_tbl <- dplyr::as_tibble(node_data)
 
     if (nrow(node_data_tbl) == 1) {
 
       node_data$index__ <- 1
 
       node_data_tbl <-
-        tibble::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) %>%
         dplyr::select(-index__)
     }
 
@@ -265,14 +264,14 @@ add_node <- function(graph,
       # Collect edge aesthetic attributes
       if (!is.null(edge_aes)) {
 
-        edge_aes_tbl <- tibble::as_tibble(edge_aes)
+        edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
         if (nrow(edge_aes_tbl) < length(from)) {
 
           edge_aes$index__ <- 1:length(from)
 
           edge_aes_tbl <-
-            tibble::as_tibble(edge_aes) %>%
+            dplyr::as_tibble(edge_aes) %>%
             dplyr::select(-index__)
         }
 
@@ -286,14 +285,14 @@ add_node <- function(graph,
       # Collect edge data attributes
       if (!is.null(edge_data)) {
 
-        edge_data_tbl <- tibble::as_tibble(edge_data)
+        edge_data_tbl <- dplyr::as_tibble(edge_data)
 
         if (nrow(edge_data_tbl) < length(from)) {
 
           edge_data$index__ <- 1:length(from)
 
           edge_data_tbl <-
-            tibble::as_tibble(edge_data) %>%
+            dplyr::as_tibble(edge_data) %>%
             dplyr::select(-index__)
         }
 
@@ -410,14 +409,14 @@ add_node <- function(graph,
     # Collect edge aesthetic attributes
     if (!is.null(edge_aes)) {
 
-      edge_aes_tbl <- tibble::as_tibble(edge_aes)
+      edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
       if (nrow(edge_aes_tbl) < length(from)) {
 
         edge_aes$index__ <- 1:length(from)
 
         edge_aes_tbl <-
-          tibble::as_tibble(edge_aes) %>%
+          dplyr::as_tibble(edge_aes) %>%
           dplyr::select(-index__)
       }
 
@@ -431,14 +430,14 @@ add_node <- function(graph,
     # Collect edge data attributes
     if (!is.null(edge_data)) {
 
-      edge_data_tbl <- tibble::as_tibble(edge_data)
+      edge_data_tbl <- dplyr::as_tibble(edge_data)
 
       if (nrow(edge_data_tbl) < length(from)) {
 
         edge_data$index__ <- 1:length(from)
 
         edge_data_tbl <-
-          tibble::as_tibble(edge_data) %>%
+          dplyr::as_tibble(edge_data) %>%
           dplyr::select(-index__)
       }
 
@@ -580,14 +579,14 @@ add_node <- function(graph,
       # Collect edge aesthetic attributes
       if (!is.null(edge_aes)) {
 
-        edge_aes_tbl <- tibble::as_tibble(edge_aes)
+        edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
         if (nrow(edge_aes_tbl) < (length(from) + length(to))) {
 
           edge_aes$index__ <- 1:(length(from) + length(to))
 
           edge_aes_tbl <-
-            tibble::as_tibble(edge_aes) %>%
+            dplyr::as_tibble(edge_aes) %>%
             dplyr::select(-index__)
         }
 
@@ -601,14 +600,14 @@ add_node <- function(graph,
       # Collect edge data attributes
       if (!is.null(edge_data)) {
 
-        edge_data_tbl <- tibble::as_tibble(edge_data)
+        edge_data_tbl <- dplyr::as_tibble(edge_data)
 
         if (nrow(edge_data_tbl) < (length(from) + length(to))) {
 
           edge_data$index__ <- 1:(length(from) + length(to))
 
           edge_data_tbl <-
-            tibble::as_tibble(edge_data) %>%
+            dplyr::as_tibble(edge_data) %>%
             dplyr::select(-index__)
         }
 

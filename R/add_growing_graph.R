@@ -87,8 +87,7 @@
 #'   count_edges()
 #' #> [1] 99
 #' @importFrom igraph sample_growing
-#' @importFrom dplyr select bind_cols
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr select bind_cols as_tibble
 #' @export add_growing_graph
 
 add_growing_graph <- function(graph,
@@ -186,14 +185,14 @@ add_growing_graph <- function(graph,
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
 
-    node_aes_tbl <- tibble::as_tibble(node_aes)
+    node_aes_tbl <- dplyr::as_tibble(node_aes)
 
     if (nrow(node_aes_tbl) < nrow(sample_growing_graph$nodes_df)) {
 
       node_aes$index__ <- 1:nrow(sample_growing_graph$nodes_df)
 
       node_aes_tbl <-
-        tibble::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -207,14 +206,14 @@ add_growing_graph <- function(graph,
   # Collect node data attributes
   if (!is.null(node_data)) {
 
-    node_data_tbl <- tibble::as_tibble(node_data)
+    node_data_tbl <- dplyr::as_tibble(node_data)
 
     if (nrow(node_data_tbl) < nrow(sample_growing_graph$nodes_df)) {
 
       node_data$index__ <- 1:nrow(sample_growing_graph$nodes_df)
 
       node_data_tbl <-
-        tibble::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) %>%
         dplyr::select(-index__)
     }
 
@@ -228,14 +227,14 @@ add_growing_graph <- function(graph,
   # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
 
-    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+    edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
     if (nrow(edge_aes_tbl) < nrow(sample_growing_graph$edges_df)) {
 
       edge_aes$index__ <- 1:nrow(sample_growing_graph$edges_df)
 
       edge_aes_tbl <-
-        tibble::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -249,14 +248,14 @@ add_growing_graph <- function(graph,
   # Collect edge data attributes
   if (!is.null(edge_data)) {
 
-    edge_data_tbl <- tibble::as_tibble(edge_data)
+    edge_data_tbl <- dplyr::as_tibble(edge_data)
 
     if (nrow(edge_data_tbl) < nrow(sample_growing_graph$edges_df)) {
 
       edge_data$index__ <- 1:nrow(sample_growing_graph$edges_df)
 
       edge_data_tbl <-
-        tibble::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) %>%
         dplyr::select(-index__)
     }
 

@@ -229,9 +229,8 @@
 #' #> 1  1 <NA>  <NA>    10
 #' #> 2  2 <NA>  <NA>     5
 #' #> 3  3 <NA>  <NA>     5
-#' @importFrom dplyr filter inner_join right_join rename distinct
+#' @importFrom dplyr filter inner_join right_join rename distinct as_tibble
 #' @importFrom dplyr select select_ group_by ungroup summarize_ everything
-#' @importFrom tibble as_tibble
 #' @importFrom rlang enquo UQ
 #' @export trav_in
 
@@ -322,7 +321,7 @@ trav_in <- function(graph,
     dplyr::distinct()
 
   valid_nodes <-
-    tibble::as_tibble(valid_nodes) %>%
+    dplyr::as_tibble(valid_nodes) %>%
     dplyr::rename(id = from) %>%
     dplyr::inner_join(ndf, by = "id")
 
