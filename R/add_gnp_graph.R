@@ -125,7 +125,7 @@ add_gnp_graph <- function(graph,
   if (n <= 0) {
 
     stop(
-      "The value for `n` must be at least 1.".
+      "The value for `n` must be at least 1.",
       call. = FALSE)
   }
 
