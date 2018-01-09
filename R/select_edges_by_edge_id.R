@@ -106,7 +106,7 @@ select_edges_by_edge_id <- function(graph,
       intersect(edges_prev_selection, edges_selected)
   } else if (set_op == "difference") {
     edges_combined <-
-      setdiff(edges_prev_selection, edges_selected)
+      base::setdiff(edges_prev_selection, edges_selected)
   }
 
   # Filter `edges_df` to provide the correct esdf

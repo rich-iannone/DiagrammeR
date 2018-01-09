@@ -154,7 +154,7 @@ select_nodes <- function(graph,
   } else if (set_op == "intersect") {
     nodes_combined <- intersect(nodes_prev_selection, nodes_selected)
   } else if (set_op == "difference") {
-    nodes_combined <- setdiff(nodes_prev_selection, nodes_selected)
+    nodes_combined <- base::setdiff(nodes_prev_selection, nodes_selected)
   }
 
   # Add the node ID values to the active selection

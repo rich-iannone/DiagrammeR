@@ -377,7 +377,7 @@ add_n_nodes_ws <- function(graph,
       dplyr::select(id, everything())
 
     columns_to_select <-
-      c("id", setdiff(colnames(graph$nodes_df), colnames(node_aes_tbl)))
+      c("id", base::setdiff(colnames(graph$nodes_df), colnames(node_aes_tbl)))
 
     graph$nodes_df <-
       dplyr::bind_rows(
@@ -398,7 +398,7 @@ add_n_nodes_ws <- function(graph,
       dplyr::select(id, everything())
 
     columns_to_select <-
-      c("id", setdiff(colnames(graph$nodes_df), colnames(node_data_tbl)))
+      c("id", base::setdiff(colnames(graph$nodes_df), colnames(node_data_tbl)))
 
     graph$nodes_df <-
       dplyr::bind_rows(
@@ -419,7 +419,7 @@ add_n_nodes_ws <- function(graph,
       dplyr::select(id, everything())
 
     columns_to_select <-
-      c("id", setdiff(colnames(graph$edges_df), colnames(edge_aes_tbl)))
+      c("id", base::setdiff(colnames(graph$edges_df), colnames(edge_aes_tbl)))
 
     graph$edges_df <-
       dplyr::bind_rows(
@@ -440,7 +440,7 @@ add_n_nodes_ws <- function(graph,
       dplyr::select(id, everything())
 
     columns_to_select <-
-      c("id", setdiff(colnames(graph$edges_df), colnames(edge_data_tbl)))
+      c("id", base::setdiff(colnames(graph$edges_df), colnames(edge_data_tbl)))
 
     graph$edges_df <-
       dplyr::bind_rows(

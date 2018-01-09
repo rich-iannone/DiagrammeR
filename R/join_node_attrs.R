@@ -152,7 +152,7 @@ join_node_attrs <- function(graph,
 
   # Get new column names in the revised ndf
   new_col_names <-
-    setdiff(colnames(nodes), column_names_graph)
+    base::setdiff(colnames(nodes), column_names_graph)
 
   # Get the column numbers for the new columns
   col_numbers <-

@@ -744,7 +744,7 @@ remove_linked_dfs <- function(graph) {
       dplyr::select(df_id__) %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
-      setdiff(ndf_df_ids)
+      base::setdiff(ndf_df_ids)
 
     # If any stored data frames are associated
     # with edges that no longer exist, remove them
@@ -768,7 +768,7 @@ remove_linked_dfs <- function(graph) {
       dplyr::select(df_id__) %>%
       dplyr::distinct() %>%
       dplyr::pull(df_id__) %>%
-      setdiff(edf_df_ids)
+      base::setdiff(edf_df_ids)
 
 
     # If any stored data frames are associated

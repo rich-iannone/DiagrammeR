@@ -79,7 +79,7 @@ select_nodes_by_id <- function(graph,
       intersect(nodes_prev_selection, nodes)
   } else if (set_op == "difference") {
     nodes_combined <-
-      setdiff(nodes_prev_selection, nodes)
+      base::setdiff(nodes_prev_selection, nodes)
   }
 
   # Add the node ID values to the active selection

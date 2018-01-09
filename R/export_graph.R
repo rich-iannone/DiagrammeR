@@ -315,7 +315,7 @@ export_graph <- function(graph,
 
     # Get node attribute names
     node_attr_names <-
-      setdiff(igraph::vertex_attr_names(g), "label")
+      base::setdiff(igraph::vertex_attr_names(g), "label")
 
     # Get node attributes
     node_attr <-
@@ -328,7 +328,7 @@ export_graph <- function(graph,
 
     # Combine all edge attributes into a matrix
     edge_attr_names <-
-      setdiff(igraph::edge_attr_names(g), "weight")
+      base::setdiff(igraph::edge_attr_names(g), "weight")
 
     # Get edge attributes
     edge_attr <-

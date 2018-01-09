@@ -90,7 +90,7 @@ from_igraph <- function(igraph,
 
   # Determine if there are any extra node attrs
   extra_node_attrs <-
-    setdiff(node_attrs, c("name", "type", "label"))
+    base::setdiff(node_attrs, c("name", "type", "label"))
 
   # If there are extra node attrs, add to the ndf
   if (length(extra_node_attrs) > 0) {
@@ -135,7 +135,7 @@ from_igraph <- function(igraph,
   }
 
   # Determine if there are any extra edge attrs
-  extra_edge_attrs <- setdiff(edge_attrs, "rel")
+  extra_edge_attrs <- base::setdiff(edge_attrs, "rel")
 
   # If there are extra edge attrs, add to the edf
   if (length(extra_edge_attrs) > 0) {

@@ -153,7 +153,7 @@ select_nodes_by_degree <- function(graph,
       intersect(nodes_prev_selection, nodes_selected)
   } else if (set_op == "difference") {
     nodes_combined <-
-      setdiff(nodes_prev_selection, nodes_selected)
+      base::setdiff(nodes_prev_selection, nodes_selected)
   }
 
   # Add the node ID values to the active selection

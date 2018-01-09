@@ -174,7 +174,7 @@ recode_node_attrs <- function(graph,
 
     indices <- which(vector_to_recode %in% pairing[1])
 
-    vector_to_recode[setdiff(indices, indices_stack)] <- pairing[2]
+    vector_to_recode[base::setdiff(indices, indices_stack)] <- pairing[2]
 
     indices_stack <- c(indices_stack, indices)
   }

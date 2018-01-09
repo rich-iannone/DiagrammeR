@@ -167,7 +167,7 @@ add_nodes_from_df_cols <- function(graph,
   # duplicate labels from being added to the graph
   if (keep_duplicates == FALSE) {
     existing_labels <- graph$nodes_df$label
-    nodes <- setdiff(nodes, existing_labels)
+    nodes <- base::setdiff(nodes, existing_labels)
   }
 
   # Get the number of nodes

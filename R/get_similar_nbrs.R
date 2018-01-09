@@ -222,7 +222,7 @@ get_similar_nbrs <- function(graph,
   # Get the final set of nodes that satisfy similarity
   # and adjacency conditions
   matching_nodes <-
-    setdiff(nodes[length(nodes)][[1]], node)
+    base::setdiff(nodes[length(nodes)][[1]], node)
 
   # If there are no matching nodes return `NA`
   if (length(matching_nodes) == 0) {
