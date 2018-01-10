@@ -74,8 +74,7 @@
 #' #> 1  1    1  2   a
 #' #> 2  2    2  1   b
 #' #> 3  3    2  1   c
-#' @importFrom dplyr select bind_rows
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr select bind_rows as_tibble
 #' @export add_reverse_edges_ws
 
 add_reverse_edges_ws <- function(graph,
@@ -154,14 +153,14 @@ add_reverse_edges_ws <- function(graph,
   # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
 
-    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+    edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
     if (nrow(edge_aes_tbl) < edges_added) {
 
       edge_aes$index__ <- 1:edges_added
 
       edge_aes_tbl <-
-        tibble::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -175,14 +174,14 @@ add_reverse_edges_ws <- function(graph,
   # Collect edge data attributes
   if (!is.null(edge_data)) {
 
-    edge_data_tbl <- tibble::as_tibble(edge_data)
+    edge_data_tbl <- dplyr::as_tibble(edge_data)
 
     if (nrow(edge_data_tbl) < edges_added) {
 
       edge_data$index__ <- 1:edges_added
 
       edge_data_tbl <-
-        tibble::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) %>%
         dplyr::select(-index__)
     }
 

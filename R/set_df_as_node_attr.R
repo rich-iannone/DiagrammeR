@@ -66,8 +66,7 @@
 #'     graph = graph,
 #'     node = 2,
 #'     df = df_2)
-#' @importFrom dplyr filter everything mutate select bind_rows
-#' @importFrom tibble tibble as_tibble
+#' @importFrom dplyr filter everything mutate select bind_rows as_tibble
 #' @importFrom purrr flatten_chr
 #' @export set_df_as_node_attr
 
@@ -136,7 +135,7 @@ set_df_as_node_attr <- function(graph,
       node_edge__ = "node",
       id__ = node) %>%
     dplyr::select(df_id__, node_edge__, id__, everything()) %>%
-    tibble::as_tibble()
+    dplyr::as_tibble()
 
   # If there is an existing data frame attributed
   # to the node, remove it

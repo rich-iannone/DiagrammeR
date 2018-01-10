@@ -35,7 +35,7 @@
 #' #> #   time_modified <dttm>,
 #' #> #   duration <dbl>, nodes <int>,
 #' #> #   edges <int>
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr as_tibble
 #' @export get_graph_log
 
 get_graph_log <- function(graph) {
@@ -49,5 +49,5 @@ get_graph_log <- function(graph) {
   }
 
   graph$graph_log %>%
-    tibble::as_tibble()
+    dplyr::as_tibble()
 }

@@ -109,8 +109,7 @@
 #' #>   id from to rel penwidth color    value
 #' #> 1  1    1  2   A      1.2   red 5.996605
 #' #> 2  2    2  3   A      1.2   red 6.107490
-#' @importFrom dplyr select bind_cols
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr select bind_cols as_tibble
 #' @export add_path
 
 add_path <- function(graph,
@@ -172,14 +171,14 @@ add_path <- function(graph,
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
 
-    node_aes_tbl <- tibble::as_tibble(node_aes)
+    node_aes_tbl <- dplyr::as_tibble(node_aes)
 
     if (nrow(node_aes_tbl) < n) {
 
       node_aes$index__ <- 1:n
 
       node_aes_tbl <-
-        tibble::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -193,14 +192,14 @@ add_path <- function(graph,
   # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
 
-    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+    edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
     if (nrow(edge_aes_tbl) < (n - 1)) {
 
       edge_aes$index__ <- 1:(n - 1)
 
       edge_aes_tbl <-
-        tibble::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -214,14 +213,14 @@ add_path <- function(graph,
   # Collect node data attributes
   if (!is.null(node_data)) {
 
-    node_data_tbl <- tibble::as_tibble(node_data)
+    node_data_tbl <- dplyr::as_tibble(node_data)
 
     if (nrow(node_data_tbl) < n) {
 
       node_data$index__ <- 1:n
 
       node_data_tbl <-
-        tibble::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) %>%
         dplyr::select(-index__)
     }
 
@@ -235,14 +234,14 @@ add_path <- function(graph,
   # Collect edge data attributes
   if (!is.null(edge_data)) {
 
-    edge_data_tbl <- tibble::as_tibble(edge_data)
+    edge_data_tbl <- dplyr::as_tibble(edge_data)
 
     if (nrow(edge_data_tbl) < (n - 1)) {
 
       edge_data$index__ <- 1:(n - 1)
 
       edge_data_tbl <-
-        tibble::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) %>%
         dplyr::select(-index__)
     }
 

@@ -79,10 +79,9 @@
 #' #> 5  5 <NA>     a
 #' #> 6  6 <NA>     v
 #' #> 7  7 <NA>     h
-#' @importFrom dplyr bind_rows distinct select select_if
+#' @importFrom dplyr bind_rows distinct select select_if as_tibble
 #' @importFrom stringr str_split
 #' @importFrom tidyr drop_na
-#' @importFrom tibble as_tibble
 #' @importFrom purrr flatten_chr
 #' @export add_nodes_from_df_cols
 
@@ -137,7 +136,7 @@ add_nodes_from_df_cols <- function(graph,
   # Isolate the relevant columns in the data frame;
   # Exclude any columns that are not character class
   df <-
-    tibble::as_tibble(df) %>%
+    dplyr::as_tibble(df) %>%
     dplyr::select(columns) %>%
     dplyr::select_if(is.character)
 
@@ -154,7 +153,7 @@ add_nodes_from_df_cols <- function(graph,
           trimws() %>%
           stringr::str_split(" ") %>%
           purrr::flatten_chr() %>%
-          tibble::as_tibble() %>%
+          dplyr::as_tibble() %>%
           tidyr::drop_na() %>%
           dplyr::distinct() %>%
           purrr::flatten_chr())

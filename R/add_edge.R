@@ -116,8 +116,7 @@
 #'   get_edge_df()
 #' #>   id from to rel penwidth color value
 #' #> 1  1    1  2   M      1.5  blue   4.3
-#' @importFrom dplyr bind_rows select filter
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr bind_rows select filter as_tibble
 #' @importFrom rlang UQ
 #' @export add_edge
 
@@ -170,14 +169,14 @@ add_edge <- function(graph,
   # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
 
-    edge_aes_tbl <- tibble::as_tibble(edge_aes)
+    edge_aes_tbl <- dplyr::as_tibble(edge_aes)
 
     if (nrow(edge_aes_tbl) == 1) {
 
       edge_aes$index__ <- 1
 
       edge_aes_tbl <-
-        tibble::as_tibble(edge_aes) %>%
+        dplyr::as_tibble(edge_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -191,14 +190,14 @@ add_edge <- function(graph,
   # Collect edge data attributes
   if (!is.null(edge_data)) {
 
-    edge_data_tbl <- tibble::as_tibble(edge_data)
+    edge_data_tbl <- dplyr::as_tibble(edge_data)
 
     if (nrow(edge_data_tbl) == 1) {
 
       edge_data$index__ <- 1
 
       edge_data_tbl <-
-        tibble::as_tibble(edge_data) %>%
+        dplyr::as_tibble(edge_data) %>%
         dplyr::select(-index__)
     }
 

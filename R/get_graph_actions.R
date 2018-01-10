@@ -43,7 +43,7 @@
 #' #> 1            1   get_btwns
 #' #> # ... with 1 more variables:
 #' #> #   expression <chr>
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr as_tibble
 #' @export get_graph_actions
 
 get_graph_actions <- function(graph) {
@@ -57,5 +57,5 @@ get_graph_actions <- function(graph) {
   }
 
   graph$graph_actions %>%
-    tibble::as_tibble()
+    dplyr::as_tibble()
 }
