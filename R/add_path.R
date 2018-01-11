@@ -308,77 +308,45 @@ add_path <- function(graph,
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
   if (!is_graph_empty(graph)) {
-
-    combined_graph <- combine_graphs(graph, path_graph)
-
-    # Update the `last_node` counter
-    combined_graph$last_node <- nodes_created + nrow(path_nodes)
-
-    # Update the `last_edge` counter
-    combined_graph$last_edge <- edges_created + nrow(path_edges)
-
-    # Update the `graph_log` df with an action
-    graph_log <-
-      add_action_to_log(
-        graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
-        function_used = "add_path",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df),
-        d_n = n,
-        d_e = n - 1)
-
-    combined_graph$global_attrs <- global_attrs
-    combined_graph$graph_log <- graph_log
-    combined_graph$graph_info <- graph_info
-
-    # Perform graph actions, if any are available
-    if (nrow(combined_graph$graph_actions) > 0) {
-      combined_graph <-
-        combined_graph %>%
-        trigger_graph_actions()
-    }
-
-    # Write graph backup if the option is set
-    if (combined_graph$graph_info$write_backups) {
-      save_graph_as_rds(graph = combined_graph)
-    }
-
-    return(combined_graph)
-
+    graph <- combine_graphs(graph, path_graph)
   } else {
-
-    # Update the `graph_log` df with an action
-    graph_log <-
-      add_action_to_log(
-        graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
-        function_used = "add_path",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(path_graph$nodes_df),
-        edges = nrow(path_graph$edges_df),
-        d_n = n,
-        d_e = n - 1)
-
-    path_graph$global_attrs <- global_attrs
-    path_graph$graph_log <- graph_log
-    path_graph$graph_info <- graph_info
-
-    # Perform graph actions, if any are available
-    if (nrow(path_graph$graph_actions) > 0) {
-      path_graph <-
-        path_graph %>%
-        trigger_graph_actions()
-    }
-
-    # Write graph backup if the option is set
-    if (path_graph$graph_info$write_backups) {
-      save_graph_as_rds(graph = path_graph)
-    }
-
-    return(path_graph)
+    graph <- path_graph
   }
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created + nrow(path_nodes)
+
+  # Update the `last_edge` counter
+  graph$last_edge <- edges_created + nrow(path_edges)
+
+  # Update the `graph_log` df with an action
+  graph_log <-
+    add_action_to_log(
+      graph_log = graph_log,
+      version_id = nrow(graph_log) + 1,
+      function_used = "add_path",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df),
+      d_n = n,
+      d_e = n - 1)
+
+  graph$global_attrs <- global_attrs
+  graph$graph_log <- graph_log
+  graph$graph_info <- graph_info
+
+  # Perform graph actions, if any are available
+  if (nrow(graph$graph_actions) > 0) {
+    graph <-
+      graph %>%
+      trigger_graph_actions()
+  }
+
+  # Write graph backup if the option is set
+  if (graph$graph_info$write_backups) {
+    save_graph_as_rds(graph = graph)
+  }
+
+  graph
 }

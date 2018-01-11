@@ -230,7 +230,6 @@ add_star <- function(graph,
     }
   }
 
-
   # Collect edge aesthetic attributes
   if (!is.null(edge_aes)) {
 
@@ -329,76 +328,45 @@ add_star <- function(graph,
   # If the input graph is not empty, combine graphs
   # using the `combine_graphs()` function
   if (!is_graph_empty(graph)) {
-
-    combined_graph <- combine_graphs(graph, star_graph)
-
-    # Update the `last_node` counter
-    combined_graph$last_node <- nodes_created + n
-
-    # Update the `last_edge` counter
-    combined_graph$last_edge <- edges_created + n - 1
-
-    # Update the `graph_log` df with an action
-    graph_log <-
-      add_action_to_log(
-        graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
-        function_used = "add_star",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(combined_graph$nodes_df),
-        edges = nrow(combined_graph$edges_df),
-        d_n = n,
-        d_e = n - 1)
-
-    combined_graph$global_attrs <- global_attrs
-    combined_graph$graph_log <- graph_log
-    combined_graph$graph_info <- graph_info
-
-    # Perform graph actions, if any are available
-    if (nrow(combined_graph$graph_actions) > 0) {
-      combined_graph <-
-        combined_graph %>%
-        trigger_graph_actions()
-    }
-
-    # Write graph backup if the option is set
-    if (combined_graph$graph_info$write_backups) {
-      save_graph_as_rds(graph = combined_graph)
-    }
-
-    return(combined_graph)
+    graph <- combine_graphs(graph, star_graph)
   } else {
-
-    # Update the `graph_log` df with an action
-    graph_log <-
-      add_action_to_log(
-        graph_log = graph_log,
-        version_id = nrow(graph_log) + 1,
-        function_used = "add_star",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(star_graph$nodes_df),
-        edges = nrow(star_graph$edges_df),
-        d_n = n,
-        d_e = n - 1)
-
-    star_graph$global_attrs <- global_attrs
-    star_graph$graph_log <- graph_log
-    star_graph$graph_info <- graph_info
-
-    # Perform graph actions, if any are available
-    if (nrow(star_graph$graph_actions) > 0) {
-      star_graph <-
-        star_graph %>%
-        trigger_graph_actions()
-    }
-
-    # Write graph backup if the option is set
-    if (star_graph$graph_info$write_backups) {
-      save_graph_as_rds(graph = star_graph)
-    }
-
-    return(star_graph)
+    graph <- star_graph
   }
+
+  # Update the `last_node` counter
+  graph$last_node <- nodes_created + n
+
+  # Update the `last_edge` counter
+  graph$last_edge <- edges_created + n - 1
+
+  # Update the `graph_log` df with an action
+  graph_log <-
+    add_action_to_log(
+      graph_log = graph_log,
+      version_id = nrow(graph_log) + 1,
+      function_used = "add_star",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(graph$nodes_df),
+      edges = nrow(graph$edges_df),
+      d_n = n,
+      d_e = n - 1)
+
+  graph$global_attrs <- global_attrs
+  graph$graph_log <- graph_log
+  graph$graph_info <- graph_info
+
+  # Perform graph actions, if any are available
+  if (nrow(graph$graph_actions) > 0) {
+    graph <-
+      graph %>%
+      trigger_graph_actions()
+  }
+
+  # Write graph backup if the option is set
+  if (graph$graph_info$write_backups) {
+    save_graph_as_rds(graph = graph)
+  }
+
+  graph
 }
