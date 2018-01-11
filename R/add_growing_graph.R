@@ -307,10 +307,10 @@ add_growing_graph <- function(graph,
   }
 
   # Update the `last_node` counter
-  graph$last_node <- nodes_created + nrow(n_nodes)
+  graph$last_node <- nodes_created + n_nodes
 
   # Update the `last_edge` counter
-  graph$last_edge <- edges_created + nrow(n_edges)
+  graph$last_edge <- edges_created + n_edges
 
   # Update the `graph_log` df with an action
   graph_log <-
