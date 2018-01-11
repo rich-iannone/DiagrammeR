@@ -35,7 +35,7 @@ test_that("getting or selecting the last edges created is possible", {
   # edge attribute (since that attribute
   # belongs to the balanced tree structure,
   # which was created last
-  expect_identical(
+  expect_equal(
     get_edge_df(graph_e)[which(get_edge_df(graph_e)$rel == "b"), 1],
     get_selection(graph_e))
 
