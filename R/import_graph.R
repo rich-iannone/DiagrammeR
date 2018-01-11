@@ -46,12 +46,12 @@
 #'   count_edges()
 #' #> [1] 78
 #' }
-#' @importFrom dplyr right_join select rename mutate everything bind_rows arrange distinct
+#' @importFrom dplyr right_join select rename mutate everything bind_rows
+#' @importFrom dplyr arrange distinct tibble as_tibble
 #' @importFrom downloader download
 #' @importFrom purrr flatten_int
 #' @importFrom stringr str_extract str_detect str_split str_count
-#' str_replace_all str_extract_all
-#' @importFrom tibble tibble as_tibble
+#' @importFrom stringr str_replace_all str_extract_all
 #' @importFrom readr read_delim
 #' @importFrom utils unzip
 #' @export import_graph
@@ -181,14 +181,14 @@ import_graph <- function(graph_file,
     # Create a node data frame
     nodes <-
       dplyr::bind_rows(
-        tibble::tibble(
+        dplyr::tibble(
           id = edges %>%
-            tibble::as_tibble() %>%
+            dplyr::as_tibble() %>%
             dplyr::select(from) %>%
             purrr::flatten_int()),
-        tibble::tibble(
+        dplyr::tibble(
           id = edges %>%
-            tibble::as_tibble() %>%
+            dplyr::as_tibble() %>%
             dplyr::select(to) %>%
             purrr::flatten_int())) %>%
       dplyr::distinct() %>%
@@ -229,7 +229,7 @@ import_graph <- function(graph_file,
 
     # Create a node data frame
     nodes <-
-      tibble::tibble(
+      dplyr::tibble(
         id = as.integer(unique(
           unlist(
             strsplit(
@@ -339,7 +339,7 @@ import_graph <- function(graph_file,
 
     # Create all nodes for graph
     all_nodes <-
-      tibble::tibble(
+      dplyr::tibble(
         id = node_id,
         type = as.character(NA),
         label = as.character(NA)) %>%
@@ -418,7 +418,7 @@ import_graph <- function(graph_file,
 
     # Create an edge data frame
     edf <-
-      tibble::tibble(
+      dplyr::tibble(
         from_label = from,
         to_label = to,
         rel = rel) %>%

@@ -126,7 +126,7 @@
 #' #> 1        edge  1 leading_to    1  4 five 5
 #' #> 2        edge  1 leading_to    1  4  six 6
 #' @importFrom dplyr filter select bind_rows filter starts_with everything left_join
-#' @importFrom tibble as_tibble tibble
+#' @importFrom dplyr as_tibble tibble
 #' @importFrom purrr flatten_chr
 #' @export get_attr_dfs
 
@@ -163,7 +163,7 @@ get_attr_dfs <- function(graph,
       graph$nodes_df %>%
       dplyr::filter(id %in% node_id) %>%
       dplyr::select(id, type, label, dplyr::starts_with("df_id")) %>%
-      tibble::as_tibble() %>%
+      dplyr::as_tibble() %>%
       dplyr::select(df_id) %>%
       purrr::flatten_chr()
 
@@ -183,7 +183,7 @@ get_attr_dfs <- function(graph,
                 dplyr::select(-id__) %>%
                 dplyr::select(node_edge__, id, type, label, everything())
             } else {
-              tibble::tibble()
+              dplyr::tibble()
             }})
     }
   }
@@ -196,7 +196,7 @@ get_attr_dfs <- function(graph,
       graph$edges_df %>%
       dplyr::filter(id %in% edge_id) %>%
       dplyr::select(id, from, to, rel, dplyr::starts_with("df_id")) %>%
-      tibble::as_tibble() %>%
+      dplyr::as_tibble() %>%
       dplyr::select(df_id) %>%
       purrr::flatten_chr()
 
@@ -216,7 +216,7 @@ get_attr_dfs <- function(graph,
                 dplyr::select(-id__) %>%
                 dplyr::select(node_edge__, id, from, to, rel, everything())
             } else {
-              tibble::tibble()
+              dplyr::tibble()
             }})
     }
   }

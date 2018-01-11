@@ -67,8 +67,7 @@
 #' # Get the current selection of edges
 #' get_selection(graph)
 #' #> [1] 2 4
-#' @importFrom dplyr filter_ bind_rows select rename arrange
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr filter_ bind_rows select rename arrange as_tibble
 #' @export trav_reverse_edge
 
 trav_reverse_edge <- function(graph,
@@ -115,7 +114,7 @@ trav_reverse_edge <- function(graph,
   reverse_edges <-
     edf %>%
     {
-      reverse_edges <- tibble::as_tibble()
+      reverse_edges <- dplyr::as_tibble()
       for (i in 1:length(edges_to)) {
         reverse_edges <-
           edf %>%
@@ -136,7 +135,7 @@ trav_reverse_edge <- function(graph,
     edges <-
       edf %>%
       {
-        edges <- tibble::as_tibble()
+        edges <- dplyr::as_tibble()
         for (i in 1:length(edges_to)) {
           edges <-
             edf %>%

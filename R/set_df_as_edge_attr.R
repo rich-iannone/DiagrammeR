@@ -51,8 +51,7 @@
 #'     graph = graph,
 #'     edge = 1,
 #'     df = df)
-#' @importFrom dplyr filter everything mutate select bind_rows
-#' @importFrom tibble tibble as_tibble
+#' @importFrom dplyr filter everything mutate select bind_rows as_tibble
 #' @importFrom purrr flatten_chr
 #' @export set_df_as_edge_attr
 
@@ -121,7 +120,7 @@ set_df_as_edge_attr <- function(graph,
       node_edge__ = "edge",
       id__ = edge) %>%
     dplyr::select(df_id__, node_edge__, id__, everything()) %>%
-    tibble::as_tibble()
+    dplyr::as_tibble()
 
   # If there is an existing data frame attributed
   # to the edge, remove it
