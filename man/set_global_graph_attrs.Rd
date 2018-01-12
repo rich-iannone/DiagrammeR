@@ -10,29 +10,33 @@ set_global_graph_attrs(graph, attr, value, attr_type)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{attr}{the name of the attribute to
-set for the \code{type} of global attribute
-specified.}
+\item{attr}{the name of the
+attribute to set for the \code{type}
+of global attribute specified.}
 
-\item{value}{the value to be set for the chosen
-attribute specified in the \code{attr_for_type}
-argument.}
+\item{value}{the value to be set
+for the chosen attribute specified
+in the \code{attr_for_type} argument.}
 
-\item{attr_type}{the specific type of global graph
-attribute to set. The type is specified with
-\code{graph}, \code{node}, or \code{edge}.}
+\item{attr_type}{the specific type
+of global graph attribute to set.
+The type is specified with \code{graph},
+\code{node}, or \code{edge}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a graph object of
+class \code{dgr_graph}.
 }
 \description{
-Set global attributes of a specific
-type (either \code{graph_attrs}, \code{node_attrs},
-or \code{edge_attrs} for a graph object of class
-\code{dgr_graph}).
+Set global attributes
+of a specific type (either
+\code{graph_attrs}, \code{node_attrs},
+or \code{edge_attrs} for a graph
+object of class \code{dgr_graph}).
 }
 \examples{
-# Create a new graph and set some global attributes
+# Create a new graph and set
+# some global attributes
 graph <-
   create_graph() \%>\%
   set_global_graph_attrs(
@@ -40,7 +44,8 @@ graph <-
     value = "true",
     attr_type = "graph")
 
-# Verify that the global attributes have been set
+# Verify that the global attributes
+# have been set
 get_global_graph_attrs(graph)
 #>      attr value attr_type
 #> 1 overlap  true     graph
