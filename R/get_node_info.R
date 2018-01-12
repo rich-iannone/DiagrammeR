@@ -1,11 +1,13 @@
 #' Get detailed information on nodes
-#' @description Obtain a data frame with detailed
-#' information on nodes and their interrelationships
-#' within a graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a data frame containing information specific
-#' to each node within the graph.
+#' @description Obtain a data frame
+#' with detailed information on nodes
+#' and their interrelationships
+#' within the graph.
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @return a data frame containing
+#' information specific to each node
+#' within the graph.
 #' @examples
 #' # Set a seed
 #' set.seed(23)
@@ -47,9 +49,9 @@
 #' #> 6   6    a     6   1     0      1     0
 #' #>.. ...  ...   ... ...   ...    ...   ...
 #' @importFrom dplyr mutate arrange
-#' @export node_info
+#' @export get_node_info
 
-node_info <- function(graph) {
+get_node_info <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -105,10 +107,7 @@ node_info <- function(graph) {
     node_properties <-
       arrange(node_properties, id)
 
-    return(node_properties)
-  }
-
-  if (!is.null(graph$edges_df)) {
+  } else if (!is.null(graph$edges_df)) {
 
     # Get vector of the top-level nodes
     top_nodes <-
@@ -233,7 +232,7 @@ node_info <- function(graph) {
     node_properties <-
       dplyr::arrange(
         node_properties, id)
-
-    return(node_properties)
   }
+
+  node_properties
 }
