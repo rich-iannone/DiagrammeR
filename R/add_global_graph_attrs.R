@@ -56,8 +56,7 @@
 #' #>       attr value attr_type
 #' #> 1  overlap  true     graph
 #' #> 2 penwidth    15      node
-#' @importFrom dplyr full_join transmute coalesce select
-#' @importFrom tibble tibble
+#' @importFrom dplyr full_join transmute coalesce select tibble
 #' @export add_global_graph_attrs
 
 add_global_graph_attrs <- function(graph,
@@ -90,7 +89,7 @@ add_global_graph_attrs <- function(graph,
 
   # Create a table for the attributes
   global_attrs_to_add <-
-    tibble::tibble(
+    dplyr::tibble(
       attr = as.character(attr),
       value = as.character(value),
       attr_type = as.character(attr_type)) %>%

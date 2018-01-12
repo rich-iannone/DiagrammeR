@@ -136,7 +136,7 @@ replace_graph_edge_selection <- function(graph,
 create_empty_nsdf <- function() {
 
   # Create empty `nsdf`
-  tibble::tibble(
+  dplyr::tibble(
     node = as.integer(NA))[-1, ] %>%
     as.data.frame(stringsAsFactors = FALSE)
 }
@@ -144,7 +144,7 @@ create_empty_nsdf <- function() {
 create_empty_esdf <- function() {
 
   # Create empty `esdf`
-  tibble::tibble(
+  dplyr::tibble(
     edge = as.integer(NA),
     from = as.integer(NA),
     to = as.integer(NA))[-1, ] %>%

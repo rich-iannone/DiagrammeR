@@ -1,22 +1,26 @@
 #' Set global graph attributes
-#' @description Set global attributes of a specific
-#' type (either \code{graph_attrs}, \code{node_attrs},
-#' or \code{edge_attrs} for a graph object of class
-#' \code{dgr_graph}).
+#' @description Set global attributes
+#' of a specific type (either
+#' \code{graph_attrs}, \code{node_attrs},
+#' or \code{edge_attrs} for a graph
+#' object of class \code{dgr_graph}).
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param attr the name of the attribute to
-#' set for the \code{type} of global attribute
-#' specified.
-#' @param value the value to be set for the chosen
-#' attribute specified in the \code{attr_for_type}
-#' argument.
-#' @param attr_type the specific type of global graph
-#' attribute to set. The type is specified with
-#' \code{graph}, \code{node}, or \code{edge}.
-#' @return a graph object of class \code{dgr_graph}.
+#' @param attr the name of the
+#' attribute to set for the \code{type}
+#' of global attribute specified.
+#' @param value the value to be set
+#' for the chosen attribute specified
+#' in the \code{attr_for_type} argument.
+#' @param attr_type the specific type
+#' of global graph attribute to set.
+#' The type is specified with \code{graph},
+#' \code{node}, or \code{edge}.
+#' @return a graph object of
+#' class \code{dgr_graph}.
 #' @examples
-#' # Create a new graph and set some global attributes
+#' # Create a new graph and set
+#' # some global attributes
 #' graph <-
 #'   create_graph() %>%
 #'   set_global_graph_attrs(
@@ -24,11 +28,12 @@
 #'     value = "true",
 #'     attr_type = "graph")
 #'
-#' # Verify that the global attributes have been set
+#' # Verify that the global attributes
+#' # have been set
 #' get_global_graph_attrs(graph)
 #' #>      attr value attr_type
 #' #> 1 overlap  true     graph
-#' @importFrom tibble tibble
+#' @importFrom dplyr tibble
 #' @export set_global_graph_attrs
 
 set_global_graph_attrs <- function(graph,
@@ -68,7 +73,7 @@ set_global_graph_attrs <- function(graph,
 
   # Create a table for the attributes
   global_attrs <-
-    tibble::tibble(
+    dplyr::tibble(
       attr = as.character(attr),
       value = as.character(value),
       attr_type = as.character(attr_type)) %>%

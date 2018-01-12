@@ -98,8 +98,7 @@
 #' #> 6  6    c     f 8 0
 #' #> 7  7    c     g 8 2
 #' @importFrom stringr str_split
-#' @importFrom tibble tibble
-#' @importFrom dplyr bind_rows bind_cols filter_ arrange_ left_join
+#' @importFrom dplyr bind_rows bind_cols filter_ arrange_ left_join tibble
 #' @export layout_nodes_w_string
 
 layout_nodes_w_string <- function(graph,
@@ -163,14 +162,14 @@ layout_nodes_w_string <- function(graph,
   x_pts <- seq(0, width, width/(layout_column_number - 1)) + ll[1]
   y_pts <- rev(seq(0, height, height/(layout_row_number - 1))) + ll[2]
 
-  # Create tibble called `ndf_parts`
-  ndf_parts <- tibble::tibble()
+  # Create a tibble called `ndf_parts`
+  ndf_parts <- dplyr::tibble()
 
   for (k in 1:node_group_count) {
 
     # Create table with position and node ID
     position_table <-
-      tibble::tibble(
+      dplyr::tibble(
         x = as.numeric(NA),
         y = as.numeric(NA))
 
@@ -191,7 +190,7 @@ layout_nodes_w_string <- function(graph,
         if (unlist(stringr::str_split(layout[i], ""))[j] == k) {
 
           item_table <-
-            tibble::tibble(
+            dplyr::tibble(
               x = x_pts[j],
               y = y_pts[i])
 

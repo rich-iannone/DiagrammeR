@@ -111,8 +111,7 @@
 #' #> 2  2 type_1     2    circle    2.6
 #' #> 3  3 type_5     3 rectangle    9.4
 #' #> 4  4 type_2     4 rectangle    2.7
-#' @importFrom dplyr bind_rows
-#' @importFrom tibble tibble
+#' @importFrom dplyr bind_rows tibble
 #' @export create_graph
 
 create_graph <- function(nodes_df = NULL,
@@ -232,7 +231,7 @@ create_graph <- function(nodes_df = NULL,
 
   # Create an empty node selection data frame (`nsdf`)
   nsdf <-
-    tibble::tibble(
+    dplyr::tibble(
       node = as.integer(NA))[-1, ] %>%
     as.data.frame(stringsAsFactors = FALSE)
 
@@ -240,7 +239,7 @@ create_graph <- function(nodes_df = NULL,
 
   # Create an empty edge selection data frame (`esdf`)
   esdf <-
-    tibble::tibble(
+    dplyr::tibble(
       edge = as.integer(NA),
       from = as.integer(NA),
       to = as.integer(NA))[-1, ] %>%

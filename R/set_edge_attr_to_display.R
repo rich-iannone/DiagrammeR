@@ -84,8 +84,8 @@
 #' #> 2  2    3  1 <NA>   value   8.2
 #' #> 3  3    3  2 <NA>      id   4.2
 #' #> 4  4    4  3 <NA>      to   2.4
-#' @importFrom dplyr mutate left_join coalesce bind_cols select everything case_when
-#' @importFrom tibble tibble
+#' @importFrom dplyr mutate left_join coalesce bind_cols select
+#' @importFrom dplyr everything case_when tibble
 #' @importFrom rlang enquo UQ
 #' @export set_edge_attr_to_display
 
@@ -172,13 +172,13 @@ set_edge_attr_to_display <- function(graph,
   # requested edge attribute to display
   if (!is.null(attr)) {
     attr_to_display <-
-      tibble::tibble(
+      dplyr::tibble(
         id = as.integer(edges),
         display = as.character(attr))
 
   } else if (is.null(attr)) {
     attr_to_display <-
-      tibble::tibble(
+      dplyr::tibble(
         id = as.integer(edges),
         display = as.character("is_na"))
   }

@@ -35,8 +35,7 @@
 #' graph %>%
 #'   get_node_ids()
 #' #> [1] 1 2 3 4 5
-#' @importFrom dplyr select bind_cols bind_rows
-#' @importFrom tibble as_tibble
+#' @importFrom dplyr select bind_cols bind_rows as_tibble
 #' @export add_n_nodes
 
 add_n_nodes <- function(graph,
@@ -71,14 +70,14 @@ add_n_nodes <- function(graph,
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {
 
-    node_aes_tbl <- tibble::as_tibble(node_aes)
+    node_aes_tbl <- dplyr::as_tibble(node_aes)
 
     if (nrow(node_aes_tbl) < n) {
 
       node_aes$index__ <- 1:n
 
       node_aes_tbl <-
-        tibble::as_tibble(node_aes) %>%
+        dplyr::as_tibble(node_aes) %>%
         dplyr::select(-index__)
     }
 
@@ -92,14 +91,14 @@ add_n_nodes <- function(graph,
   # Collect node data attributes
   if (!is.null(node_data)) {
 
-    node_data_tbl <- tibble::as_tibble(node_data)
+    node_data_tbl <- dplyr::as_tibble(node_data)
 
     if (nrow(node_data_tbl) < n) {
 
       node_data$index__ <- 1:n
 
       node_data_tbl <-
-        tibble::as_tibble(node_data) %>%
+        dplyr::as_tibble(node_data) %>%
         dplyr::select(-index__)
     }
 
