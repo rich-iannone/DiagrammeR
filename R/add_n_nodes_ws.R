@@ -105,7 +105,7 @@
 #' get_edges(graph)
 #' #> "2->1" "3->1" "4->1" "5->1" "6->1"
 #' @importFrom dplyr select pull mutate everything as_tibble
-#' @importFrom filter left_join bind_rows
+#' @importFrom dplyr filter left_join bind_rows
 #' @export add_n_nodes_ws
 
 add_n_nodes_ws <- function(graph,
