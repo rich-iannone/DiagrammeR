@@ -121,7 +121,7 @@ select_nodes_by_degree <- function(graph,
 
   # Get a data frame with node ID and degree types
   node_degree <-
-    node_info(graph) %>%
+    get_node_info(graph) %>%
     dplyr::select(id, deg, indeg, outdeg)
 
   for (i in 1:length(expressions)) {
