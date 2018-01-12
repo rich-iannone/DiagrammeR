@@ -32,7 +32,7 @@ test_that("the MST algorithm is functional", {
 
   # Expect no loops in `min_spanning_tree_graph`
   expect_true(
-    all(node_info(min_spanning_tree_graph)$loops == 0))
+    all(get_node_info(min_spanning_tree_graph)$loops == 0))
 
   # Expect that all nodes are connected
   expect_true(
