@@ -52,7 +52,8 @@ graph <-
     edges_df = edf)
 
 # Get information on the graph's nodes
-node_info(graph)
+graph \%>\%
+  get_node_info()
 #>    id type label deg indeg outdeg loops
 #> 1   1    a     1   0     0      0     0
 #> 2   2    a     2   0     0      0     0

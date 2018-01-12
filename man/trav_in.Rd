@@ -154,7 +154,7 @@ graph \%>\%
 graph \%>\%
   {
   node_degrees <-
-    node_info(.) \%>\%
+    get_node_info(.) \%>\%
     dplyr::select(id, deg)
   join_node_attrs(., node_degrees)
   } \%>\%

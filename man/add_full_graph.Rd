@@ -119,7 +119,8 @@ graph <-
 
 # Get node information
 # from this graph
-node_info(graph)
+graph \%>\%
+  get_node_info()
 #>   id type label deg indeg outdeg loops
 #> 1  1 <NA>     1   6     3      3     1
 #> 2  2 <NA>     2   6     3      3     1
@@ -130,7 +131,7 @@ node_info(graph)
 # the loops
 create_graph() \%>\%
   add_full_graph(n = 3) \%>\%
-  node_info()
+  get_node_info()
 #>   id type label deg indeg outdeg loops
 #> 1  1 <NA>     1   4     2      2     0
 #> 2  2 <NA>     2   4     2      2     0

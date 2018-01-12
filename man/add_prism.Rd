@@ -81,7 +81,7 @@ graph <-
     label = "b")
 
 # Get node information from this graph
-node_info(graph)
+get_node_info(graph)
 #>    id  type label deg indeg outdeg loops
 #> 1   1 prism     a   3     1      2     0
 #> 2   2 prism     a   3     1      2     0

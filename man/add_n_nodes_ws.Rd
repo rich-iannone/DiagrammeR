@@ -101,7 +101,8 @@ graph <-
     direction = "from")
 
 # Get the graph's nodes
-get_node_ids(graph)
+graph \%>\%
+  get_node_ids()
 #> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
@@ -122,10 +123,12 @@ graph <-
     direction = "to")
 
 # Get the graph's nodes
-get_node_ids(graph)
+graph \%>\%
+  get_node_ids()
 #> [1] 1 2 3 4 5 6
 
 # Get the graph's edges
-get_edges(graph)
+graph \%>\%
+  get_edges()
 #> "2->1" "3->1" "4->1" "5->1" "6->1"
 }

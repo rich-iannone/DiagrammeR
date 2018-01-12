@@ -92,7 +92,8 @@ graph <-
     type = "five_star")
 
 # Get node information from this graph
-node_info(graph)
+graph \%>\%
+  get_node_info()
 #>   id      type label deg indeg outdeg loops
 #> 1  1 four_star     1   3     0      3     0
 #> 2  2 four_star     2   1     1      0     0
@@ -138,7 +139,8 @@ graph_w_attrs <-
           sd = 1.0)))
 
 # Get the graph's node data frame
-get_node_df(graph_w_attrs)
+graph_w_attrs \%>\%
+  get_node_df()
 #>   id type label fillcolor value
 #> 1  1    a   one steelblue   1.6
 #> 2  2    a   two steelblue   2.8
@@ -146,7 +148,8 @@ get_node_df(graph_w_attrs)
 #> 4  4    b  four steelblue   8.3
 
 # Get the graph's edge data frame
-get_edge_df(graph_w_attrs)
+graph_w_attrs \%>\%
+  get_edge_df()
 #>   id from to rel penwidth color    value
 #> 1  1    1  2   A      1.2   red 5.996605
 #> 2  2    1  3   A      1.2   red 6.107490
