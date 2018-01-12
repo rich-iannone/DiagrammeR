@@ -47,7 +47,8 @@
 #' graph <- create_graph(nodes_df = ndf)
 #'
 #' # Get information on the graph's nodes
-#' node_info(graph)
+#' graph %>%
+#'   get_node_info()
 #' #>   id type label deg indeg outdeg loops
 #' #> 1  1 <NA>  <NA>   0     0      0     0
 #' #> 2  2 <NA>  <NA>   0     0      0     0
@@ -71,7 +72,8 @@
 #'
 #' # Get information on the graph's internal node
 #' # data frame (ndf)
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' #>   id   type label     shape values
 #' #> 1  1 type_1     1    circle    3.5
 #' #> 2  2 type_1     2    circle    2.6
@@ -97,7 +99,8 @@
 #'
 #' # Get information on the graph's internal edge
 #' # data frame (edf)
-#' get_edge_df(graph)
+#' graph %>%
+#'   get_edge_df()
 #' #>   id from to        rel values
 #' #> 1  1    1  4 leading_to    7.3
 #' #> 2  2    2  3 leading_to    2.6
@@ -105,7 +108,8 @@
 #'
 #' # Get information on the graph's internal node
 #' # data frame (ndf)
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' #>   id   type label     shape values
 #' #> 1  1 type_1     1    circle    3.5
 #' #> 2  2 type_1     2    circle    2.6

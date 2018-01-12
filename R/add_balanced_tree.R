@@ -75,7 +75,8 @@
 #'
 #' # Get some node information
 #' # from this graph
-#' node_info(graph) %>%
+#' graph %>%
+#'   get_node_info() %>%
 #'   head(5)
 #' #>   id   type label deg indeg outdeg loops
 #' #> 1  1 binary     1   2     0      2     0
@@ -114,7 +115,8 @@
 #'
 #' # Get the first three rows of
 #' # the graph's node data frame
-#' get_node_df(graph_w_attrs) %>%
+#' graph_w_attrs %>%
+#'   get_node_df() %>%
 #'   head(3)
 #' #>   id type label fillcolor value
 #' #> 1  1    a   one steelblue   1.6
@@ -123,7 +125,8 @@
 #'
 #' # Get the first three rows of
 #' # the graph's edge data frame
-#' get_edge_df(graph_w_attrs) %>%
+#' graph_w_attrs %>%
+#'   get_edge_df() %>%
 #'   head(3)
 #' #>   id from to rel penwidth color
 #' #> 1  1    1  2   A      1.2   red

@@ -69,7 +69,7 @@
 #' # Get node information
 #' # from this graph
 #' graph %>%
-#'   node_info()
+#'   get_node_info()
 #' #>   id type label deg indeg outdeg loops
 #' #> 1  1 grid     1   2     0      2     0
 #' #> 2  2 grid     2   3     1      2     0

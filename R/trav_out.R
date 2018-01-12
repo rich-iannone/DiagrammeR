@@ -82,7 +82,8 @@
 #'   join_node_attrs(df = df_nodes)
 #'
 #' # Show the graph's internal node data frame
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' #>   id type label values
 #' #> 1  1    a   asd   8.58
 #' #> 2  2    a  iekd   7.22
@@ -91,7 +92,8 @@
 #' #> 5  5    b   ohd   7.48
 #'
 #' # Show the graph's internal edge data frame
-#' get_edge_df(graph)
+#' graph %>%
+#'   get_edge_df()
 #' #>   id from to  rel values
 #' #> 1  1    1  2 <NA>   6.00
 #' #> 2  2    1  3    A   6.11
@@ -135,7 +137,7 @@
 #' graph %>%
 #'   {
 #'   node_degrees <-
-#'     node_info(.) %>%
+#'     get_node_info(.) %>%
 #'     dplyr::select(id, deg)
 #'   join_node_attrs(
 #'     graph = .,

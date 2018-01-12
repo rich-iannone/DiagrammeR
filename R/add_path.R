@@ -53,7 +53,8 @@
 #'
 #' # Get node information
 #' # from this graph
-#' node_info(graph)
+#' graph %>%
+#'   get_node_info()
 #' #>   id type label deg indeg outdeg loops
 #' #> 1  1 path     1   1     0      1     0
 #' #> 2  2 path     2   2     1      1     0
