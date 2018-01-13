@@ -58,40 +58,28 @@ test_that("adding graphs to a series is also possible", {
   # Create an empty graph series
   series <- create_series(series_type = "sequential")
 
-  # Create three different graphs
+  # Create a set of graphs for a graph series
   graph_1 <-
     create_graph() %>%
-    add_node(type = 1) %>%
-    add_node(type = 2) %>%
-    add_node(type = 3) %>%
-    add_edge(
-      from = 1,
-      to = 3) %>%
-    add_edge(
-      from = 1,
-      to = 2) %>%
-    add_edge(
-      from = 2,
-      to = 3)
+    add_path(n = 4)
 
   graph_2 <-
-    graph_1 %>%
-    add_node(type = 4) %>%
-    add_edge(
-      from = 4,
-      to = 3)
+    create_graph() %>%
+    add_cycle(n = 5)
 
   graph_3 <-
-    graph_2 %>%
-    add_node(type = 5) %>%
-    add_edge(
-      from = 5,
-      to = 2)
+    create_graph() %>%
+    add_star(n = 6)
 
   # Add graphs to the graph series
-  series <- graph_1 %>% add_to_series(series)
-  series <- graph_2 %>% add_to_series(series)
-  series <- graph_3 %>% add_to_series(series)
+  series <-
+    series %>%
+    add_graph_to_graph_series(
+      graph = graph_1) %>%
+    add_graph_to_graph_series(
+      graph = graph_2) %>%
+    add_graph_to_graph_series(
+      graph = graph_3)
 
   # Expect an object of class `dgr_graph_1D`
   expect_is(
@@ -178,18 +166,18 @@ test_that("adding graphs to a series is also possible", {
   # Expect an error when adding something other
   # than a graph object to a graph series
   expect_error(
-    add_to_series(
-      graph = series_w_graph,
-      graph_series = series_w_graph))
+    add_graph_to_graph_series(
+      graph_series = series_w_graph,
+      graph = series_w_graph))
 
   # Expect an error if graph series type is not valid
   graph_series_invalid_type <-
     create_series(series_type = "circular")
 
   expect_error(
-    add_to_series(
-      graph = graph_1,
-      graph_series = graph_series_invalid_type))
+    add_graph_to_graph_series(
+      graph_series = graph_series_invalid_type,
+      graph = graph_1))
 })
 
 test_that("removing graphs from a series is possible", {
@@ -197,40 +185,28 @@ test_that("removing graphs from a series is possible", {
   # Create an empty graph series
   series <- create_series(series_type = "sequential")
 
-  # Create three different graphs
+  # Create a set of graphs for a graph series
   graph_1 <-
     create_graph() %>%
-    add_node(type = 1) %>%
-    add_node(type = 2) %>%
-    add_node(type = 3) %>%
-    add_edge(
-      from = 1,
-      to = 3) %>%
-    add_edge(
-      from = 1,
-      to = 2) %>%
-    add_edge(
-      from = 2,
-      to = 3)
+    add_path(n = 4)
 
   graph_2 <-
-    graph_1 %>%
-    add_node(type = 4) %>%
-    add_edge(
-      from = 4,
-      to = 3)
+    create_graph() %>%
+    add_cycle(n = 5)
 
   graph_3 <-
-    graph_2 %>%
-    add_node(type = 5) %>%
-    add_edge(
-      from = 5,
-      to = 2)
+    create_graph() %>%
+    add_star(n = 6)
 
   # Add graphs to the graph series
-  series <- graph_1 %>% add_to_series(series)
-  series <- graph_2 %>% add_to_series(series)
-  series <- graph_3 %>% add_to_series(series)
+  series <-
+    series %>%
+    add_graph_to_graph_series(
+      graph = graph_1) %>%
+    add_graph_to_graph_series(
+      graph = graph_2) %>%
+    add_graph_to_graph_series(
+      graph = graph_3)
 
   # Expect that the series has a graph count of 3
   expect_equal(
@@ -282,25 +258,14 @@ test_that("removing graphs from a series is possible", {
 
 test_that("subsetting graphs from a temporal series is possible", {
 
-  # Create three graphs with the time attributes set
+  # Create a set of graphs for a graph series
   graph_time_1 <-
     create_graph(
       graph_name = "graph_with_time_1") %>%
     set_graph_time(
       time = "2015-03-25 03:00",
       tz = "GMT") %>%
-    add_node(type = 1) %>%
-    add_node(type = 2) %>%
-    add_node(type = 3) %>%
-    add_edge(
-      from = 1,
-      to = 3) %>%
-    add_edge(
-      from = 1,
-      to = 2) %>%
-    add_edge(
-      from = 2,
-      to = 3)
+    add_path(n = 4)
 
   graph_time_2 <-
     create_graph(
@@ -308,18 +273,7 @@ test_that("subsetting graphs from a temporal series is possible", {
     set_graph_time(
       time = "2015-03-26 03:00",
       tz = "GMT") %>%
-    add_node(type = 4) %>%
-    add_node(type = 5) %>%
-    add_node(type = 6) %>%
-    add_edge(
-      from = 4,
-      to = 6) %>%
-    add_edge(
-      from = 4,
-      to = 5) %>%
-    add_edge(
-      from = 5,
-      to = 6)
+    add_cycle(n = 5)
 
   graph_time_3 <-
     create_graph(
@@ -327,18 +281,7 @@ test_that("subsetting graphs from a temporal series is possible", {
     set_graph_time(
       time = "2015-03-27 15:00",
       tz = "GMT") %>%
-    add_node(type = 7) %>%
-    add_node(type = 8) %>%
-    add_node(type = 9) %>%
-    add_edge(
-      from = 7,
-      to = 9) %>%
-    add_edge(
-      from = 7,
-      to = 8) %>%
-    add_edge(
-      from = 8,
-      to = 9)
+    add_star(n = 6)
 
   # Create an empty graph series
   series_temporal <-
@@ -346,19 +289,17 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Add graphs to the graph series
   series_temporal <-
-    graph_time_1 %>%
-    add_to_series(series_temporal)
-
-  series_temporal <-
-    graph_time_2 %>%
-    add_to_series(series_temporal)
-
-  series_temporal <-
-    graph_time_3 %>%
-    add_to_series(series_temporal)
+    series_temporal %>%
+    add_graph_to_graph_series(
+      graph = graph_time_1) %>%
+    add_graph_to_graph_series(
+      graph = graph_time_2) %>%
+    add_graph_to_graph_series(
+      graph = graph_time_3)
 
   # Expect a graph count of 3
-  expect_equal(graph_count(series_temporal), 3)
+  expect_equal(
+    graph_count(series_temporal), 3)
 
   # Subset graph series by sequence
   series_sequence_subset <-
@@ -393,43 +334,29 @@ test_that("subsetting graphs from a temporal series is possible", {
 
 test_that("Getting a graph from a series is possible", {
 
-  # Create three graphs
+  # Create a set of graphs for a graph series
   graph_1 <-
     create_graph() %>%
-    add_node(type = 1) %>%
-    add_node(type = 2) %>%
-    add_node(type = 3) %>%
-    add_edge(
-      from = 1,
-      to = 3) %>%
-    add_edge(
-      from = 1,
-      to = 2) %>%
-    add_edge(
-      from = 2,
-      to = 3)
+    add_path(n = 4)
 
   graph_2 <-
-    graph_1 %>%
-    add_node(type = 4) %>%
-    add_edge(
-      from = 4,
-      to = 3)
+    create_graph() %>%
+    add_cycle(n = 5)
 
   graph_3 <-
-    graph_2 %>%
-    add_node(type = 5) %>%
-    add_edge(
-      from = 5,
-      to = 2)
+    create_graph() %>%
+    add_star(n = 6)
 
   # Create an empty graph series and add
   # the graphs
   series <-
     create_series() %>%
-    add_to_series(graph_1, .) %>%
-    add_to_series(graph_2, .) %>%
-    add_to_series(graph_3, .)
+    add_graph_to_graph_series(
+      graph = graph_1) %>%
+    add_graph_to_graph_series(
+      graph = graph_2) %>%
+    add_graph_to_graph_series(
+      graph = graph_3)
 
   # Get the second graph in the series
   extracted_graph <-

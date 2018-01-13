@@ -77,9 +77,14 @@ test_that("graph series information can be obtained", {
   series <- create_series(series_type = "sequential")
 
   # Add graphs to the graph series
-  series <- graph_1 %>% add_to_series(series)
-  series <- graph_2 %>% add_to_series(series)
-  series <- graph_3 %>% add_to_series(series)
+  series <-
+    series %>%
+    add_graph_to_graph_series(
+      graph = graph_1) %>%
+    add_graph_to_graph_series(
+      graph = graph_2) %>%
+    add_graph_to_graph_series(
+      graph = graph_3)
 
   # Get information on the graphs in the series
   info_on_series <- series_info(series)
@@ -142,9 +147,9 @@ test_that("graph series information can be obtained", {
       tz = "GMT")
 
   graph_series_temporal_type <-
-    add_to_series(
-      graph = graph,
-      graph_series = graph_series_temporal_type)
+    graph_series_temporal_type %>%
+    add_graph_to_graph_series(
+      graph = graph)
 
   info_on_series_temporal <-
     series_info(graph_series_temporal_type)

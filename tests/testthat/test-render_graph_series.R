@@ -45,32 +45,15 @@ test_that("rendering a graph from a series is also possible", {
   # Create a set of graphs for a graph series
   graph_1 <-
     create_graph() %>%
-    add_node(type = 1) %>%
-    add_node(type = 2) %>%
-    add_node(type = 3) %>%
-    add_edge(
-      from = 1,
-      to = 3) %>%
-    add_edge(
-      from = 1,
-      to = 2) %>%
-    add_edge(
-      from = 2,
-      to = 3)
+    add_path(n = 4)
 
   graph_2 <-
-    graph_1 %>%
-    add_node(type = 4) %>%
-    add_edge(
-      from = 4,
-      to = 3)
+    create_graph() %>%
+    add_cycle(n = 5)
 
   graph_3 <-
-    graph_2 %>%
-    add_node(type = 5) %>%
-    add_edge(
-      from = 5,
-      to = 2)
+    create_graph() %>%
+    add_star(n = 6)
 
   # Create an empty graph series
   series <-
@@ -78,16 +61,13 @@ test_that("rendering a graph from a series is also possible", {
 
   # Add graphs to the graph series
   series <-
-    graph_1 %>%
-    add_to_series(graph_series = series)
-
-  series <-
-    graph_2 %>%
-    add_to_series(graph_series = series)
-
-  series <-
-    graph_3 %>%
-    add_to_series(graph_series = series)
+    series %>%
+    add_graph_to_graph_series(
+      graph = graph_1) %>%
+    add_graph_to_graph_series(
+      graph = graph_2) %>%
+    add_graph_to_graph_series(
+      graph = graph_3)
 
   # View the second graph from the graph series in
   # the RStudio Viewer
