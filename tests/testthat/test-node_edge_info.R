@@ -152,7 +152,7 @@ test_that("getting info about a graph's edges is possible", {
       edges_df = edges)
 
   # Get information on the graph's edges
-  info_edges <- edge_info(graph)
+  info_edges <- get_edge_info(graph)
 
   # Expect a data frame object
   expect_is(
@@ -186,7 +186,7 @@ test_that("getting info about a graph's edges is possible", {
     add_node()
 
   # Get information on a graph that has no edges
-  info_graph_no_edges <- edge_info(graph)
+  info_graph_no_edges <- get_edge_info(graph)
 
   # Expect an NA value
   expect_true(
