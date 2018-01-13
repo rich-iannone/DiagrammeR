@@ -1,25 +1,32 @@
 #' Subset a graph series object
-#' @description Subsetting a graph series by the
-#' graphs' index positions in the graph series or
-#' through selection via graphs' date-time attributes.
-#' @param graph_series a graph series object of type
-#' \code{dgr_graph_1D}.
-#' @param by either \code{number}, which allows for
-#' subsetting of the graph series by graph indices, or
-#' \code{time} which for graph series objects of type
-#' \code{temporal} allows for a subsetting of graphs by
+#' @description Subsetting a graph
+#' series by the graphs' index positions
+#' in the graph series or through
+#' selection via graphs' date-time
+#' attributes.
+#' @param graph_series a graph series
+#' object of type \code{dgr_graph_1D}.
+#' @param by either \code{number},
+#' which allows for subsetting of the
+#' graph series by graph indices, or
+#' \code{time} which for graph series
+#' objects of type \code{temporal}
+#' allows for a subsetting of graphs by
 #' a date-time or time range.
-#' @param values where the subsetting of the graph
-#' series by to occur via graph indices (where
-#' \code{by = number}), provide a vector of those
-#' indices; when subsetting by time (where
-#' \code{by = time}), a range of times can be provided
-#' as a vector.
-#' @param tz the time zone (\code{tz}) corresponding to
-#' dates or date-time string provided in \code{values}
+#' @param values where the subsetting
+#' of the graph series by to occur
+#' via graph indices (where
+#' \code{by = number}), provide a
+#' vector of those indices; when
+#' subsetting by time (where
+#' \code{by = time}), a range of times
+#' can be provided as a vector.
+#' @param tz the time zone (\code{tz})
+#' corresponding to dates or date-time
+#' string provided in \code{values}
 #' (if \code{by = "date"}).
-#' @return a graph series object of type
-#' \code{dgr_graph_1D}.
+#' @return a graph series object of
+#' type \code{dgr_graph_1D}.
 #' @examples
 #' # Create three graphs
 #' graph_time_1 <-
@@ -46,16 +53,14 @@
 #' # Create an empty graph series and add
 #' # the graphs
 #' series_temporal <-
-#'   create_series(series_type = "temporal") %>%
-#'   add_to_series(
-#'     graph = graph_time_1,
-#'     graph_series = .) %>%
-#'   add_to_series(
-#'     graph = graph_time_2,
-#'     graph_series = .) %>%
-#'   add_to_series(
-#'     graph = graph_time_3,
-#'     graph_series = .)
+#'   create_series(
+#'     series_type = "temporal") %>%
+#'   add_graph_to_graph_series(
+#'     graph = graph_time_1) %>%
+#'   add_graph_to_graph_series(
+#'     graph = graph_time_2) %>%
+#'   add_graph_to_graph_series(
+#'     graph = graph_time_3)
 #'
 #' # Subset graph series by sequence
 #' series_sequence_subset <-
@@ -64,9 +69,10 @@
 #'     by = "number",
 #'     values = 2)
 #'
-#' # Get a count of graphs in the series
-#' graph_count(series_sequence_subset)
-#' #> [1] 1
+#' # Get a count of graphs in
+#' # the series
+#' series_sequence_subset %>%
+#'   graph_count()
 #'
 #' # Subset graph series by date-time
 #' series_time_subset <-
@@ -77,9 +83,10 @@
 #'                "2015-03-26 12:00"),
 #'     tz = "GMT")
 #'
-#' # Get a count of graphs in the series
-#' graph_count(series_time_subset)
-#' #> [1] 2
+#' # Get a count of graphs in
+#' # the series
+#' series_time_subset %>%
+#'   graph_count()
 #' @export subset_series
 
 subset_series <- function(graph_series,

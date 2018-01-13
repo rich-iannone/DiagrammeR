@@ -22,8 +22,8 @@
 #'   create_graph() %>%
 #'   add_star(n = 6)
 #'
-#' # Create an empty graph series and add
-#' # the graphs
+#' # Create an empty graph series
+#' # and add the graphs
 #' series <-
 #'   create_series() %>%
 #'   add_graph_to_graph_series(
