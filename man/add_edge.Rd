@@ -63,7 +63,8 @@ graph <-
   add_node(label = "three") \%>\%
   add_node(label = "four")
 
-# Add an edge between those nodes and attach a
+# Add an edge between those
+# nodes and attach a
 # relationship to the edge
 graph <-
  add_edge(
@@ -72,13 +73,16 @@ graph <-
    to = 2,
    rel = "A")
 
-# Use the `edge_info()` function to verify that
+# Use the `get_edge_info()`
+# function to verify that
 # the edge has been created
-edge_info(graph)
+graph \%>\%
+  get_edge_info()
 #>   id from to rel
 #> 1  1    1  2   A
 
-# Add another node and edge to the graph
+# Add another node and
+# edge to the graph
 graph <-
   graph \%>\%
   add_edge(
@@ -86,14 +90,18 @@ graph <-
     to = 2,
     rel = "A")
 
-# Verify that the edge has been created by
-# getting a count of graph edges
-count_edges(graph)
+# Verify that the edge
+# has been created by
+# counting graph edges
+graph \%>\%
+  count_edges()
 #> [1] 2
 
-# Add edges by specifying node `label`
-# values; note that all nodes must have
-# unique `label` values to use this option
+# Add edges by specifying
+# node `label` values; note
+# that all nodes must have
+# unique `label` values to
+# use this option
 graph <-
   graph \%>\%
   add_edge(
@@ -105,10 +113,10 @@ graph <-
     to = "one",
     rel = "L")
 
-# Use the `get_edges()` function
-# to verify that the edges
-# were added
-get_edges(graph)
+# Use `get_edges()` to verify
+# that the edges were added
+graph \%>\%
+  get_edges()
 #> [1] "1->2" "3->2" "3->4" "4->1"
 
 # Add edge aesthetic and data
