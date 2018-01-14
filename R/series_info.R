@@ -32,7 +32,7 @@
 #'
 #' # Get information on the graphs in the series
 #' series %>%
-#'   series_info(series)
+#'   series_info()
 #' @export series_info
 
 series_info <- function(graph_series) {
