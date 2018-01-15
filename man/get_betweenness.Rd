@@ -31,17 +31,6 @@ graph <-
 # Get the betweenness scores
 # for nodes in the graph
 get_betweenness(graph)
-#>    id betweenness
-#> 1   1           0
-#> 2   2           7
-#> 3   3           0
-#> 4   4           0
-#> 5   5           5
-#> 6   6           0
-#> 7   7           0
-#> 8   8           1
-#> 9   9           0
-#> 10 10           0
 
 # Add the betweenness
 # values to the graph
@@ -54,15 +43,4 @@ graph <-
 # Display the graph's node
 # data frame
 get_node_df(graph)
-#>    id type label betweenness
-#> 1   1 <NA>  <NA>           0
-#> 2   2 <NA>  <NA>           7
-#> 3   3 <NA>  <NA>           0
-#> 4   4 <NA>  <NA>           0
-#> 5   5 <NA>  <NA>           5
-#> 6   6 <NA>  <NA>           0
-#> 7   7 <NA>  <NA>           0
-#> 8   8 <NA>  <NA>           1
-#> 9   9 <NA>  <NA>           0
-#> 10 10 <NA>  <NA>           0
 }

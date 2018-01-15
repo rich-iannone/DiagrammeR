@@ -48,12 +48,10 @@ graph <-
 graph \%>\%
   get_successors(
     node = 4)
-#> [1] 3 8
 
 # If there are no successors,
 # NA is returned
 graph \%>\%
   get_successors(
     node = 1)
-#> [1] NA
 }

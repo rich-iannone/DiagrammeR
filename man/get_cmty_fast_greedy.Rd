@@ -34,14 +34,6 @@ graph <-
 # nodes in the graph through the greedy
 # optimization of modularity algorithm
 get_cmty_fast_greedy(graph)
-#>   id f_g_group
-#> 1  1         1
-#> 2  2         2
-#> 3  3         1
-#> 4  4         2
-#> 5  5         2
-#> 6  6         1
-#> 7  7         1
 
 # Add the group membership values to the
 # graph as a node attribute
@@ -52,12 +44,4 @@ graph <-
 
 # Display the graph's node data frame
 get_node_df(graph)
-#>   id type label f_g_group
-#> 1  1 <NA>     1         1
-#> 2  2 <NA>     2         2
-#> 3  3 <NA>     3         1
-#> 4  4 <NA>     4         2
-#> 5  5 <NA>     5         2
-#> 6  6 <NA>     6         1
-#> 7  7 <NA>     7         1
 }

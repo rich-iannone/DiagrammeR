@@ -51,8 +51,4 @@ graph <-
 get_jaccard_similarity(
   graph = graph,
   nodes = 5:7)
-#>       5     6     7
-#> 5 1.000 0.286 0.400
-#> 6 0.286 1.000 0.333
-#> 7 0.400 0.333 1.000
 }

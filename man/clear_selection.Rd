@@ -47,12 +47,10 @@ graph <-
 
 # Verify that a node selection has been made
 get_selection(graph)
-#> [1] 1 3
 
 # Clear the selection with `clear_selection()`
 graph <- clear_selection(graph)
 
 # Verify that the node selection has been cleared
 get_selection(graph)
-#> [1] NA
 }

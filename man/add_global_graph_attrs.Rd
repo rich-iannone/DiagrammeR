@@ -41,9 +41,8 @@ graph <-
     attr_type = "graph")
 
 # Verify that the global attributes have been set
-get_global_graph_attrs(graph)
-#>      attr value attr_type
-#> 1 overlap  true     graph
+graph \%>\%
+  get_global_graph_attrs()
 
 # Add to this set with by using the
 # `add_global_graph_attrs()` function and then
@@ -55,10 +54,8 @@ graph <-
     value = 12,
     attr_type = "node")
 
-get_global_graph_attrs(graph)
-#>       attr value attr_type
-#> 1  overlap  true     graph
-#> 2 penwidth    12      node
+graph \%>\%
+  get_global_graph_attrs()
 
 # When adding an attribute where `attr`
 # and `attr_type` exists, the value provided
@@ -69,7 +66,4 @@ graph \%>\%
     value = 15,
     attr_type = "node") \%>\%
   get_global_graph_attrs()
-#>       attr value attr_type
-#> 1  overlap  true     graph
-#> 2 penwidth    15      node
 }

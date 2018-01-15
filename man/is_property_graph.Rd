@@ -32,7 +32,6 @@ simple_property_graph <-
 # but to confirm this, use the
 # `is_property_graph()` function
 is_property_graph(simple_property_graph)
-#> [1] TRUE
 
 # If a `type` attribute is
 # removed, then this graph will
@@ -43,12 +42,10 @@ simple_property_graph %>%
     values = NA,
     nodes = 1) %>%
   is_property_graph()
-#> [1] FALSE
 
 # An empty graph will return FALSE
 create_graph() %>%
   is_property_graph()
-#> [1] FALSE
 }
 \description{
 Provides a logical value on whether

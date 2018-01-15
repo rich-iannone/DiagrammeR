@@ -81,20 +81,8 @@ graph <-
     label = "b")
 
 # Get node information from this graph
-get_node_info(graph)
-#>    id  type label deg indeg outdeg loops
-#> 1   1 prism     a   3     1      2     0
-#> 2   2 prism     a   3     1      2     0
-#> 3   3 prism     a   3     1      2     0
-#> 4   4 prism     a   3     2      1     0
-#> 5   5 prism     a   3     2      1     0
-#> 6   6 prism     a   3     2      1     0
-#> 7   7 prism     b   3     1      2     0
-#> 8   8 prism     b   3     1      2     0
-#> 9   9 prism     b   3     1      2     0
-#> 10 10 prism     b   3     2      1     0
-#> 11 11 prism     b   3     2      1     0
-#> 12 12 prism     b   3     2      1     0
+graph \%>\%
+  get_node_info()
 
 # Node and edge aesthetic and data
 # attributes can be specified in
@@ -136,25 +124,8 @@ graph_w_attrs <-
 # Get the graph's node data frame
 graph_w_attrs \%>\%
   get_node_df()
-#>   id type label fillcolor value
-#> 1  1    a   one steelblue   1.6
-#> 2  2    a   two steelblue   2.8
-#> 3  3    b three steelblue   3.4
-#> 4  4    b  four steelblue   3.2
-#> 5  5    c  five steelblue   5.3
-#> 6  6    c   six steelblue   6.2
 
 # Get the graph's edge data frame
 graph_w_attrs \%>\%
   get_edge_df()
-#>   id from to rel penwidth color    value
-#> 1  1    1  2   A      1.2   red 5.996605
-#> 2  2    2  3   A      1.2   red 6.107490
-#> 3  3    3  1   A      1.2   red 4.721914
-#> 4  4    4  5   A      1.2   red 6.019205
-#> 5  5    5  6   A      1.2   red 5.045437
-#> 6  6    6  4   A      1.2   red 6.575780
-#> 7  7    1  4   A      1.2   red 5.218288
-#> 8  8    2  5   A      1.2   red 3.953465
-#> 9  9    3  6   A      1.2   red 4.711311
 }

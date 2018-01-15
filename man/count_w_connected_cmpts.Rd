@@ -29,5 +29,4 @@ graph <-
 # components in the graph
 graph \%>\%
   count_w_connected_cmpts()
-#> [1] 2
 }

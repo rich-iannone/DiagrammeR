@@ -50,8 +50,7 @@ graph <-
   create_graph() \%>\%
   add_n_nodes(n = 5)
 
-# Get the graph's nodes
+# Get the graph's node IDs
 graph \%>\%
   get_node_ids()
-#> [1] 1 2 3 4 5
 }

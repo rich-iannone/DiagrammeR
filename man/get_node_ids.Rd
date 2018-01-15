@@ -47,7 +47,6 @@ graph <-
 # Get a vector of all nodes in a graph
 graph \%>\%
   get_node_ids()
-#> [1] 1 2 3 4
 
 # Get a vector of node ID values using a
 # numeric comparison (i.e., all nodes with
@@ -55,7 +54,6 @@ graph \%>\%
 graph \%>\%
   get_node_ids(
     conditions = value > 3)
-#> [1] 1 3
 
 # Get a vector of node ID values using
 # a match pattern (i.e., all nodes with
@@ -63,7 +61,6 @@ graph \%>\%
 graph \%>\%
   get_node_ids(
     conditions = color == "green")
-#> [1] 2
 
 # Use multiple conditions to return nodes
 # with the desired attribute values
@@ -72,5 +69,4 @@ graph \%>\%
     conditions =
       color == "blue" &
       value > 5)
-#> [1] 3
 }

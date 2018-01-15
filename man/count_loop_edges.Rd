@@ -33,5 +33,4 @@ graph <-
 # in the graph
 graph \%>\%
   count_loop_edges()
-#> [1] 3
 }

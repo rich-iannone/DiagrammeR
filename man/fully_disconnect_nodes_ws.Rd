@@ -36,7 +36,4 @@ graph <-
 
 # Get the graph's edge data frame
 get_edge_df(graph)
-#>   id from to  rel
-#> 1  1    1  2 <NA>
-#> 2  5    5  6 <NA>
 }

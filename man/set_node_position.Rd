@@ -67,12 +67,8 @@ graph <-
 # verify that the `x` and `y` node
 # attributes are available and set to
 # the values provided
-get_node_df(graph)
-#>   id type label x y
-#> 1  1 <NA>   one 1 1
-#> 2  2 <NA>   two 2 2
-#> 3  3 <NA> three 3 3
-#> 4  4 <NA>  four 4 4
+graph \%>\%
+  get_node_df()
 
 # The same function can modify the data
 # in the `x` and `y` attributes
@@ -92,12 +88,8 @@ graph <-
     x = 4, y = 1)
 
 # View the graph's node data frame
-get_node_df(graph)
-#>   id type label x y
-#> 1  1 <NA>   one 1 4
-#> 2  2 <NA>   two 3 3
-#> 3  3 <NA> three 3 2
-#> 4  4 <NA>  four 4 1
+graph \%>\%
+  get_node_df()
 
 # Position changes can also be made by
 # supplying a node `label` value (and setting
@@ -116,10 +108,6 @@ graph <-
     use_labels = TRUE)
 
 # View the graph's node data frame
-get_node_df(graph)
-#>   id type label x y
-#> 1  1 <NA>   one 1 1
-#> 2  2 <NA>   two 2 2
-#> 3  3 <NA> three 3 2
-#> 4  4 <NA>  four 4 1
+graph \%>\%
+  get_node_df()
 }

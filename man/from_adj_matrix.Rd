@@ -53,5 +53,6 @@ adj_matrix <-
   matrix(nc = 10)
 
 # Create a graph from the adjacency matrix
-graph <- from_adj_matrix(adj_matrix)
+graph <-
+  from_adj_matrix(adj_matrix)
 }

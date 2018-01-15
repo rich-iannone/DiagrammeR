@@ -31,5 +31,4 @@ graph <-
 
 # Get the graph's name
 get_graph_name(graph)
-#> [1] "the_name"
 }

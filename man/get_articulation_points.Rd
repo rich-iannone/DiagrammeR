@@ -36,7 +36,6 @@ graph <-
 # removed, the graph would
 # become disconnected)
 get_articulation_points(graph)
-#> [1] 2 4
 
 # For the articulation points,
 # change the node shape to

@@ -28,7 +28,6 @@ graph <-
 # Determine whether the graph
 # is directed
 is_graph_directed(graph)
-#> [1] TRUE
 
 # Use the `set_graph_undirected()`
 # function and check again whether
@@ -36,5 +35,4 @@ is_graph_directed(graph)
 graph \%>\%
   set_graph_undirected() \%>\%
   is_graph_directed()
-#> [1] FALSE
 }

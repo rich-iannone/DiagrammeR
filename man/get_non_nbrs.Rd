@@ -30,5 +30,4 @@ graph <-
 # Find all non-neighbors of node `2`
 graph \%>\%
   get_non_nbrs(node = 2)
-#> [1] 4 5
 }

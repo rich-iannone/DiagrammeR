@@ -45,13 +45,8 @@ graph <-
 # Get the graph's internal ndf
 # to show which node attributes
 # are available
-get_node_df(graph)
-#>   id type label  shape value
-#> 1  1 <NA>  <NA> circle   5.2
-#> 2  2 <NA>  <NA> circle   5.3
-#> 3  3 <NA>  <NA> circle   4.4
-#> 4  4 <NA>  <NA> circle   5.8
-#> 5  5 <NA>  <NA> circle   5.9
+graph \%>\%
+  get_node_df()
 
 # Rename the `value` node
 # attribute as `weight`
@@ -64,11 +59,6 @@ graph <-
 # Get the graph's internal
 # ndf to show that the node
 # attribute had been renamed
-get_node_df(graph)
-#>   id type label  shape weight
-#> 1  1 <NA>  <NA> circle    5.2
-#> 2  2 <NA>  <NA> circle    5.3
-#> 3  3 <NA>  <NA> circle    4.4
-#> 4  4 <NA>  <NA> circle    5.8
-#> 5  5 <NA>  <NA> circle    5.9
+graph \%>\%
+  get_node_df()
 }

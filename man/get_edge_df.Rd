@@ -47,10 +47,4 @@ graph <-
 
 # Get the graph's internal edge data frame (edf)
 get_edge_df(graph)
-#>   id from to rel color
-#> 1  1    1  2   b  blue
-#> 2  2    1  3   a green
-#> 3  3    1  4   a green
-#> 4  4    1  5   a green
-#> 5  5    1  6   b  blue
 }

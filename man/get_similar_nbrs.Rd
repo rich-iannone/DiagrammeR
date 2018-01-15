@@ -70,7 +70,6 @@ graph \%>\%
   get_similar_nbrs(
     node = 10,
     node_attr = value)
-#> [1] 2 14
 
 # We can also set a tolerance
 # for ascribing similarly by using
@@ -88,7 +87,6 @@ graph \%>\%
     node = 10,
     node_attr = value,
     tol_abs = c(1, 1))
-#> [1]  1  2  9 14
 
 # That resulted in a fairly large
 # set of 4 neigboring nodes; for
@@ -102,5 +100,4 @@ graph \%>\%
     node_attr = value,
     tol_abs = c(10, 10)) \%>\%
     length()
-#> [1] 17
 }

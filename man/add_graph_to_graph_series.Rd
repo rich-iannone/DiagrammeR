@@ -51,5 +51,4 @@ series <-
 # in the graph series
 series \%>\%
   graph_count()
-#> [1] 3
 }

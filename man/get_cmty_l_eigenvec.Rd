@@ -38,17 +38,6 @@ graph <-
 # eigenvector of the modularity
 # matrix of the graph
 get_cmty_l_eigenvec(graph)
-#>    id l_eigenvec_group
-#> 1   1                1
-#> 2   2                3
-#> 3   3                3
-#> 4   4                1
-#> 5   5                3
-#> 6   6                3
-#> 7   7                1
-#> 8   8                1
-#> 9   9                1
-#> 10 10                2
 
 # Add the group membership
 # values to the graph as a node
@@ -60,15 +49,4 @@ graph <-
 
 # Display the graph's node data frame
 get_node_df(graph)
-#>    id type label l_eigenvec_group
-#> 1   1 <NA>  <NA>                1
-#> 2   2 <NA>  <NA>                3
-#> 3   3 <NA>  <NA>                3
-#> 4   4 <NA>  <NA>                1
-#> 5   5 <NA>  <NA>                3
-#> 6   6 <NA>  <NA>                3
-#> 7   7 <NA>  <NA>                1
-#> 8   8 <NA>  <NA>                1
-#> 9   9 <NA>  <NA>                1
-#> 10 10 <NA>  <NA>                2
 }

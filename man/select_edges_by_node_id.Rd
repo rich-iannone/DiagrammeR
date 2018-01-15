@@ -45,7 +45,6 @@ graph <-
 # Get the selection of edges
 graph \%>\%
   get_selection()
-#> [1] 1 2
 
 # Perform another selection of edges, with nodes
 # `1`, `2`, and `4`
@@ -58,16 +57,14 @@ graph <-
 # Get the selection of edges
 graph \%>\%
   get_selection()
-#> [1] 1 2 3 4
 
 # Get a fraction of the edges selected over all
 # the edges in the graph
 graph \%>\%
-{
-  l <- get_selection(.) \%>\%
-    length(.)
-  e <- count_edges(.)
-  l/e
-}
-#> [1] 1
+  {
+    l <- get_selection(.) \%>\%
+      length(.)
+    e <- count_edges(.)
+    l/e
+  }
 }

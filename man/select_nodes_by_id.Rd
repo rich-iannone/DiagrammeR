@@ -32,15 +32,17 @@ selection.
 }
 \examples{
 # Create a node data frame (ndf)
-ndf <- create_node_df(n = 10)
+ndf <-
+  create_node_df(n = 10)
 
 # Create a graph
-graph <- create_graph(nodes_df = ndf)
+graph <-
+  create_graph(
+    nodes_df = ndf)
 
 # Select nodes `1` to `5` and show that
 # selection of nodes with `get_selection()`
 graph \%>\%
   select_nodes_by_id(nodes = 1:5) \%>\%
   get_selection()
-#> [1] 1 2 3 4 5
 }

@@ -58,10 +58,4 @@ graph <-
 # `get_graph_actions()` function
 graph \%>\%
   get_graph_actions()
-#> # A tibble: 1 x 3
-#>   action_index action_name
-#>          <dbl>       <chr>
-#> 1            1   get_btwns
-#> # ... with 1 more variables:
-#> #   expression <chr>
 }

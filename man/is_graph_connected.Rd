@@ -27,7 +27,6 @@ create_graph() \%>\%
     m = 10,
     set_seed = 23) \%>\%
   is_graph_connected()
-#> [1] FALSE
 
 # Create another random graph;
 # this graph is connected
@@ -37,5 +36,4 @@ create_graph() \%>\%
     m = 15,
     set_seed = 23) \%>\%
   is_graph_connected()
-#> [1] TRUE
 }

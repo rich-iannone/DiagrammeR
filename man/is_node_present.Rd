@@ -37,19 +37,16 @@ graph <-
 is_node_present(
   graph = graph,
   node = 1)
-#> [1] TRUE
 
 # Determine if there is a node
 # with ID `5` in the graph
 is_node_present(
   graph = graph,
   node = 5)
-#> [1] FALSE
 
 # Determine if there is a node
 # with label `two` in the graph
 is_node_present(
   graph = graph,
   node = "two")
-#> [1] TRUE
 }

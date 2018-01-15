@@ -63,14 +63,6 @@ graph <-
 # `get_graph_actions()`
 graph \%>\%
   get_graph_actions()
-#> # A tibble: 3 x 3
-#>   action_index     action_name
-#>          <dbl>           <chr>
-#> 1            1  pgrnk_to_width
-#> 2            2    get_pagerank
-#> 3            3 pgrnk_fillcolor
-#> # ... with 1 more variables:
-#> #   expression <chr>
 
 # We note that the order isn't
 # correct and that the `get_pagerank`
@@ -90,12 +82,4 @@ graph <-
 # we have the desired order of actions
 graph \%>\%
   get_graph_actions()
-#> # A tibble: 3 x 3
-#>   action_index     action_name
-#>          <int>           <chr>
-#> 1            1    get_pagerank
-#> 2            2  pgrnk_to_width
-#> 3            3 pgrnk_fillcolor
-#> # ... with 1 more variables:
-#> #   expression <chr>
 }

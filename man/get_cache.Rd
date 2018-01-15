@@ -51,8 +51,4 @@ graph <-
 # Return the cached vector
 graph \%>\%
   get_cache()
-#>        1         2         3
-#> 9.993210 10.214981  7.443827
-#>         4         5
-#> 10.038411  8.090874
 }

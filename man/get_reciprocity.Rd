@@ -42,7 +42,6 @@ graph <-
 # and 7 is the total number of edges
 # in the graph)
 get_reciprocity(graph)
-#> [1] 0.5714286
 
 # For an undirected graph, all edges
 # are reciprocal, so the ratio will
@@ -50,7 +49,6 @@ get_reciprocity(graph)
 graph \%>\%
   set_graph_undirected() \%>\%
   get_reciprocity()
-#> [1] 1
 
 # For a graph with no edges, the graph
 # reciprocity cannot be determined (and
@@ -59,5 +57,4 @@ graph \%>\%
 create_graph() \%>\%
   add_n_nodes(n = 5) \%>\%
   get_reciprocity()
-#> [1] NA
 }

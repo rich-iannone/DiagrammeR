@@ -48,6 +48,4 @@ graph <-
 graph \%>\%
   get_node_attrs_ws(
     node_attr = value)
-#>   1   3
-#> 2.5 4.2
 }

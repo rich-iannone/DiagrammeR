@@ -79,14 +79,6 @@ graph <-
 # function
 graph \%>\%
   get_graph_actions()
-#> # A tibble: 3 x 3
-#>   action_index     action_name
-#>          <dbl>           <chr>
-#> 1            1    get_pagerank
-#> 2            2  pgrnk_to_width
-#> 3            3 pgrnk_fillcolor
-#> # ... with 1 more variables:
-#> #   expression <chr>
 
 # Manually trigger to invocation of
 # the graph actions using the
@@ -101,10 +93,4 @@ graph <-
 # `fillcolor` columns are present
 graph \%>\%
   get_node_df()
-#>   id type label pagerank width fillcolor
-#> 1  1 <NA>  <NA>   0.2877 0.935   #ABDDA4
-#> 2  2 <NA>  <NA>   0.0940 0.000   #D7191C
-#> 3  3 <NA>  <NA>   0.3012 1.000   #2B83BA
-#> 4  4 <NA>  <NA>   0.1965 0.495   #FFFFBF
-#> 5  5 <NA>  <NA>   0.1206 0.128   #FDAE61
 }

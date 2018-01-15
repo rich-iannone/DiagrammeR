@@ -50,5 +50,4 @@ graph <-
 
 # Get a count of edges in the graph
 count_edges(graph)
-#> [1] 1
 }

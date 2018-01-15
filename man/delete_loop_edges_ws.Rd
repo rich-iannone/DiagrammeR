@@ -41,5 +41,4 @@ graph <-
 # edges remaining in the graph
 graph \%>\%
   count_loop_edges()
-#> [1] 3
 }

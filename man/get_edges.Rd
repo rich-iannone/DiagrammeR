@@ -76,27 +76,17 @@ graph <-
 graph \%>\%
   get_edges(
     return_type = "vector")
-#> [1] "1->4" "2->3" "3->1"
 
 # Get all edges within a graph, returned as a
 # data frame
 graph \%>\%
   get_edges(
     return_type = "df")
-#>   from to
-#> 1    1  4
-#> 2    2  3
-#> 3    3  1
 
 # Get all edges returned as a list
 graph \%>\%
   get_edges(
     return_type = "list")
-#> [[1]]
-#> [1] 1 2 3
-#>
-#> [[2]]
-#> [1] 4 3 1
 
 # Get a vector of edges using
 # a numeric comparison (i.e.,
@@ -106,7 +96,6 @@ graph \%>\%
   get_edges(
     conditions = value > 3,
     return_type = "vector")
-#> [1] "1->4" "3->1"
 
 # Get a vector of edges using
 # a matching condition
@@ -114,7 +103,6 @@ graph \%>\%
   get_edges(
     conditions = color == "pink",
     return_type = "vector")
-#> [1] "1->4"
 
 # Use multiple conditions to
 # return edges with the
@@ -125,7 +113,6 @@ graph \%>\%
       color == "blue" &
       value > 3,
     return_type = "vector")
-#> [1] "3->1"
 
 # Use `return_values = "label"`
 # to return the labels of the
@@ -137,5 +124,4 @@ graph \%>\%
       value > 3,
     return_type = "vector",
     return_values = "label")
-#> [1] "three->one"
 }

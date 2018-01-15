@@ -49,12 +49,10 @@ graph \%>\%
     node = 4,
     distance = 1) \%>\%
   get_selection()
-#> [1] 3 4 5 6
 
 # Select edges associated with node `4` and return
 # the selection of edges
 graph \%>\%
   select_edges_by_node_id(nodes = 4) \%>\%
   get_selection()
-#> [1] 3 4 5
 }

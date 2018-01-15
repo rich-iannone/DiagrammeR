@@ -29,12 +29,10 @@ graph <-
 
 # Determine the graph's girth
 get_girth(graph)
-#> [1] 5
 
 # Create a full graph and then
 # get the girth for that
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   get_girth()
-#> [1] 3
 }

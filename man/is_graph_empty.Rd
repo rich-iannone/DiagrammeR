@@ -23,7 +23,6 @@ graph <- create_graph()
 
 # Determine whether the graph is empty
 is_graph_empty(graph)
-#> [1] TRUE
 
 # Create a non-empty graph
 graph <-
@@ -32,5 +31,4 @@ graph <-
 
 # Determine whether this graph is empty
 is_graph_empty(graph)
-#> [1] FALSE
 }

@@ -74,6 +74,4 @@ graph <-
 graph \%>\%
   get_edge_attrs_ws(
     edge_attr = value)
-#> 1->2 2->3
-#>  1.6  2.9
 }

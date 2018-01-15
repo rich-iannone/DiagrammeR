@@ -52,7 +52,6 @@ graph <-
 # Get the selection of nodes
 graph \%>\%
   get_selection()
-#> [1] 1 2 3
 
 # Perform another selection of nodes, this time
 # with a neighborhood spanning 2 nodes from node `1`
@@ -66,5 +65,4 @@ graph <-
 # Get the selection of nodes
 graph \%>\%
   get_selection()
-#> [1] 1 2 3 4 5 6 7
 }

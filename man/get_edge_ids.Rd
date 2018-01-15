@@ -48,7 +48,6 @@ graph <-
 
 # Get a vector of all edges in a graph
 get_edge_ids(graph)
-#> [1] 1 2 3
 
 # Get a vector of edge ID values using a
 # numeric comparison (i.e., all edges with
@@ -56,7 +55,6 @@ get_edge_ids(graph)
 get_edge_ids(
   graph,
   conditions = value > 3)
-#> [1] 1 3
 
 # Get a vector of edge ID values using
 # a match pattern (i.e., all edges with
@@ -64,7 +62,6 @@ get_edge_ids(
 get_edge_ids(
   graph,
   conditions = color == "pink")
-#> [1] 1
 
 # Use multiple conditions to return edges
 # with the desired attribute values
@@ -73,5 +70,4 @@ get_edge_ids(
   conditions =
     color == "blue" &
     value > 5)
-#> [1] 3
 }

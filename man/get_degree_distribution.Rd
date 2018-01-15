@@ -39,12 +39,6 @@ graph <-
 # Get the total degree
 # distribution for the graph
 graph \%>\%
-  get_degree_distribution(mode = "total")
-#>   degree total_degree_dist
-#> 1      0               0.1
-#> 2      1               0.0
-#> 3      2               0.2
-#> 4      3               0.4
-#> 5      4               0.1
-#> 6      5               0.2
+  get_degree_distribution(
+    mode = "total")
 }

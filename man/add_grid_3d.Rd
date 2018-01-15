@@ -96,15 +96,6 @@ graph <-
 # from this graph
 graph \%>\%
   get_node_info()
-#>   id type label deg indeg outdeg loops
-#> 1  1 grid     1   3     0      3     0
-#> 2  2 grid     2   3     1      2     0
-#> 3  3 grid     3   3     1      2     0
-#> 4  4 grid     4   3     2      1     0
-#> 5  5 grid     5   3     1      2     0
-#> 6  6 grid     6   3     2      1     0
-#> 7  7 grid     7   3     2      1     0
-#> 8  8 grid     8   3     3      0     0
 
 # Attributes can be specified
 # in extra arguments and these
@@ -136,30 +127,8 @@ graph_w_attrs <-
 # Get the graph's node data frame
 graph_w_attrs \%>\%
   get_node_df()
-#>   id type label value
-#> 1  1    a   one   1.2
-#> 2  2    a   two   8.4
-#> 3  3    b three   3.4
-#> 4  4    b  four   5.2
-#> 5  5    c  five   6.1
-#> 6  6    c   six   2.6
-#> 7  7    d seven   6.3
-#> 8  8    d eight   9.3
 
 # Get the graph's edge data frame
 graph_w_attrs \%>\%
   get_edge_df()
-#>    id from to  rel
-#> 1   1    1  2 grid
-#> 2   2    1  3 grid
-#> 3   3    1  5 grid
-#> 4   4    2  4 grid
-#> 5   5    2  6 grid
-#> 6   6    3  4 grid
-#> 7   7    3  7 grid
-#> 8   8    4  8 grid
-#> 9   9    5  6 grid
-#> 10 10    5  7 grid
-#> 11 11    6  8 grid
-#> 12 12    7  8 grid
 }

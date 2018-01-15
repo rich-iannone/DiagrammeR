@@ -45,8 +45,6 @@ graph <-
 graph \%>\%
   get_node_attrs(
     node_attr = value)
-#>   1   2   3   4
-#> 2.5 8.2 4.2 2.4
 
 # To only return node attribute
 # values for specified nodes,
@@ -55,6 +53,4 @@ graph \%>\%
   get_node_attrs(
     node_attr = value,
     nodes = c(1, 3))
-#>   1   3
-#> 2.5 4.2
 }

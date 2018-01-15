@@ -32,17 +32,6 @@ graph <-
 # Get the bridging scores for nodes
 # in the graph
 get_bridging(graph)
-#>    id    bridging
-#> 1   1 0.018148148
-#> 2   2 0.034953704
-#> 3   3 0.008024691
-#> 4   4 0.020814815
-#> 5   5 0.018209877
-#> 6   6 0.044444444
-#> 7   7 0.046296296
-#> 8   8 0.019537037
-#> 9   9 0.044444444
-#> 10 10 0.007870370
 
 # Add the bridging scores to
 # the graph as a node attribute
@@ -53,15 +42,4 @@ graph <-
 
 # Display the graph's node data frame
 get_node_df(graph)
-#>    id type label    bridging
-#> 1   1 <NA>  <NA> 0.018148148
-#> 2   2 <NA>  <NA> 0.034953704
-#> 3   3 <NA>  <NA> 0.008024691
-#> 4   4 <NA>  <NA> 0.020814815
-#> 5   5 <NA>  <NA> 0.018209877
-#> 6   6 <NA>  <NA> 0.044444444
-#> 7   7 <NA>  <NA> 0.046296296
-#> 8   8 <NA>  <NA> 0.019537037
-#> 9   9 <NA>  <NA> 0.044444444
-#> 10 10 <NA>  <NA> 0.007870370
 }

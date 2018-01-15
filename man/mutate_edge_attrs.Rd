@@ -40,11 +40,8 @@ graph <-
 # Get the graph's internal edf
 # to show which edge attributes
 # are available
-get_edge_df(graph)
-#>   id from to  rel width
-#> 1  1    1  2 <NA>   3.4
-#> 2  2    2  3 <NA>   2.3
-#> 3  3    3  4 <NA>   7.2
+graph \%>\%
+  get_edge_df()
 
 # Mutate the `width` edge
 # attribute, dividing each
@@ -58,11 +55,8 @@ graph <-
 # edf to show that the edge
 # attribute `width` had its
 # values changed
-get_edge_df(graph)
-#>   id from to  rel width
-#> 1  1    1  2 <NA>  1.70
-#> 2  2    2  3 <NA>  1.15
-#> 3  3    3  4 <NA>  3.60
+graph \%>\%
+  get_edge_df()
 
 # Create a new edge attribute,
 # called `length`, that is the
@@ -78,11 +72,8 @@ graph <-
 # Get the graph's internal edf
 # to show that the edge attribute
 # values had been mutated
-get_edge_df(graph)
-#>   id from to  rel width length
-#> 1  1    1  2 <NA>  1.70   2.53
-#> 2  2    2  3 <NA>  1.15   2.14
-#> 3  3    3  4 <NA>  3.60   3.28
+graph \%>\%
+  get_edge_df()
 
 # Create a new edge attribute
 # called `area`, which is the
@@ -97,9 +88,6 @@ graph <-
 # to show that the edge attribute
 # values had been multiplied
 # together (with new attr `area`)
-get_edge_df(graph)
-#>   id from to  rel width length   area
-#> 1  1    1  2 <NA>  1.70   2.53  4.301
-#> 2  2    2  3 <NA>  1.15   2.14  2.461
-#> 3  3    3  4 <NA>  3.60   3.28 11.808
+graph \%>\%
+  get_edge_df()
 }

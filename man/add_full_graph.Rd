@@ -121,10 +121,6 @@ graph <-
 # from this graph
 graph \%>\%
   get_node_info()
-#>   id type label deg indeg outdeg loops
-#> 1  1 <NA>     1   6     3      3     1
-#> 2  2 <NA>     2   6     3      3     1
-#> 3  3 <NA>     3   6     3      3     1
 
 # Using `keep_loops = FALSE`
 # (the default) will remove
@@ -132,10 +128,6 @@ graph \%>\%
 create_graph() \%>\%
   add_full_graph(n = 3) \%>\%
   get_node_info()
-#>   id type label deg indeg outdeg loops
-#> 1  1 <NA>     1   4     2      2     0
-#> 2  2 <NA>     2   4     2      2     0
-#> 3  3 <NA>     3   4     2      2     0
 
 # Values can be set for
 # the node `label`, node
@@ -152,22 +144,11 @@ graph <-
 # data frame (ndf)
 graph \%>\%
   get_node_df()
-#>   id      type label
-#> 1  1 connected   1st
-#> 2  2 connected   2nd
-#> 3  3 connected   3rd
 
 # Show the graph's edge
 # data frame (edf)
 graph \%>\%
   get_edge_df()
-#>   id from to          rel
-#> 1  1    1  2 connected_to
-#> 2  2    1  3 connected_to
-#> 3  3    2  1 connected_to
-#> 4  4    2  3 connected_to
-#> 5  5    3  1 connected_to
-#> 6  6    3  2 connected_to
 
 # Create a fully-connected and
 # directed graph with 3 nodes,
@@ -202,22 +183,11 @@ graph <-
 # data frame (ndf)
 graph \%>\%
   get_node_df()
-#>   id     type label
-#> 1  1 weighted     a
-#> 2  2 weighted     b
-#> 3  3 weighted     c
 
 # Show the graph's edge
 # data frame (edf)
 graph \%>\%
   get_edge_df()
-#>   id from to        rel weight
-#> 1  1    1  2 related_to   3.30
-#> 2  2    1  3 related_to   5.02
-#> 3  3    2  1 related_to   4.13
-#> 4  4    2  3 related_to   6.49
-#> 5  5    3  1 related_to   6.03
-#> 6  6    3  2 related_to   5.55
 
 # An undirected graph can
 # also use a matrix with
@@ -233,8 +203,4 @@ create_graph(directed = FALSE) \%>\%
     edge_wt_matrix = edge_wt_matrix,
     keep_loops = FALSE) \%>\%
   get_edge_df()
-#>   id from to        rel weight
-#> 1  1    1  2 related_to   3.30
-#> 2  2    1  3 related_to   5.02
-#> 3  3    2  3 related_to   6.49
 }

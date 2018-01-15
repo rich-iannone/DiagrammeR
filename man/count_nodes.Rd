@@ -30,5 +30,4 @@ graph <-
 # in the graph
 graph \%>\%
   count_nodes()
-#> [1] 6
 }

@@ -31,5 +31,4 @@ graph <-
 # in the graph
 graph \%>\%
   count_edges()
-#> [1] 2
 }

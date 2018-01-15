@@ -53,5 +53,4 @@ graph <-
 
 # Get a count of nodes in the graph
 count_nodes(graph)
-#> [1] 2
 }

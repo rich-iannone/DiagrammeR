@@ -60,10 +60,6 @@ graph <-
 # node data frame
 graph \%>\%
   get_node_df()
-#>   id type label
-#> 1  1    a     d
-#> 2  2    b     g
-#> 3  3    c     r
 
 # Create clones of all nodes
 # in the selection but assign
@@ -81,13 +77,6 @@ graph <-
 # `1`, `2`, and `3`
 graph \%>\%
   get_node_df()
-#>   id type label
-#> 1  1    a     d
-#> 2  2    b     g
-#> 3  3    c     r
-#> 4  4    a     a
-#> 5  5    b     b
-#> 6  6    c     v
 
 # Select the last nodes
 # created (`4`, `5`, and `6`)
@@ -109,10 +98,4 @@ graph <-
 # nodes and their clones
 graph \%>\%
   get_edge_df()
-#>   id from to  rel
-#> 1  1    1  2 <NA>
-#> 2  2    2  3 <NA>
-#> 3  3    4  7 <NA>
-#> 4  4    5  8 <NA>
-#> 5  5    6  9 <NA>
 }

@@ -34,12 +34,4 @@ is_graph_connected(graph)
 # Get the graph's weakly-connected
 # components
 get_w_connected_cmpts(graph)
-#>   id wc_component
-#> 1  1            1
-#> 2  2            1
-#> 3  3            1
-#> 4  4            1
-#> 5  5            2
-#> 6  6            2
-#> 7  7            2
 }

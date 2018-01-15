@@ -38,17 +38,6 @@ graph <-
 # graph through the Walktrap
 # community finding algorithm
 get_cmty_walktrap(graph)
-#>    id walktrap_group
-#> 1   1              3
-#> 2   2              2
-#> 3   3              2
-#> 4   4              1
-#> 5   5              2
-#> 6   6              2
-#> 7   7              3
-#> 8   8              1
-#> 9   9              1
-#> 10 10              4
 
 # Add the group membership
 # values to the graph as a
@@ -60,15 +49,4 @@ graph <-
 
 # Display the graph's node data frame
 get_node_df(graph)
-#>    id type label walktrap_group
-#> 1   1 <NA>  <NA>              3
-#> 2   2 <NA>  <NA>              2
-#> 3   3 <NA>  <NA>              2
-#> 4   4 <NA>  <NA>              1
-#> 5   5 <NA>  <NA>              2
-#> 6   6 <NA>  <NA>              2
-#> 7   7 <NA>  <NA>              3
-#> 8   8 <NA>  <NA>              1
-#> 9   9 <NA>  <NA>              1
-#> 10 10 <NA>  <NA>              4
 }

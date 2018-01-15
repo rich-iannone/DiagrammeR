@@ -259,7 +259,4 @@ graph <-
 # been inserted
 graph \%>\%
   get_edge_df()
-#>   id from to  rel style color
-#> 1  1    1  2 <NA>   dot   red
-#> 2  2    2  3 <NA>   dot  blue
 }

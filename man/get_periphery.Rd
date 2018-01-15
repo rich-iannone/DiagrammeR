@@ -28,5 +28,4 @@ create_graph() \%>\%
     m = 35,
     set_seed = 23) \%>\%
   get_periphery()
-#> [1] 6  9 25 28
 }

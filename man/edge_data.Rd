@@ -36,8 +36,5 @@ graph <-
 # been inserted
 graph \%>\%
   get_edge_df()
-#>   id from to  rel hour index
-#> 1  1    1  2 <NA>    5     1
-#> 2  2    2  3 <NA>    5     2
 }
 }

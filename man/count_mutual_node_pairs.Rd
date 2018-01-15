@@ -30,7 +30,6 @@ graph <-
 # node pairs
 graph \%>\%
   count_mutual_node_pairs()
-#> [1] 0
 
 # Create a full graph and then
 # count the mutually-connected
@@ -38,5 +37,4 @@ graph \%>\%
 create_graph() \%>\%
   add_full_graph(n = 10) \%>\%
   count_mutual_node_pairs()
-#> [1] 45
 }

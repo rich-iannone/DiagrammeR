@@ -59,8 +59,8 @@ graph <-
 
 # Verify that the node selection has been made
 # using the `get_selection()` function
-get_selection(graph)
-#> [1] 1 3
+graph \%>\%
+  get_selection()
 
 # Select nodes based on the node `type`
 # being `z`
@@ -73,8 +73,8 @@ graph <-
 # Verify that an node selection has been made, and
 # recall that the `3` and `4` nodes are of the
 # `z` type
-get_selection(graph)
-#> [1] 3 4
+graph \%>\%
+  get_selection()
 
 # Select edges based on the node value attribute
 # being greater than 3.0 (first clearing the current
@@ -88,6 +88,6 @@ graph <-
 # Verify that the correct node selection has been
 # made; in this case, nodes `1` and `3` have values
 # for `value` greater than 3.0
-get_selection(graph)
-#> [1] 1 3
+graph \%>\%
+  get_selection()
 }

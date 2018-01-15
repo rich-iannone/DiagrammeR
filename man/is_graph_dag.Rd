@@ -31,7 +31,6 @@ graph_tree <-
 # Determine whether this graph
 # is a DAG
 is_graph_dag(graph_tree)
-#> [1] TRUE
 
 # Create a directed graph containing
 # a single cycle
@@ -42,7 +41,6 @@ graph_cycle <-
 # Determine whether this graph
 # is a DAG
 is_graph_dag(graph_cycle)
-#> [1] FALSE
 
 # Create an undirected graph
 # containing a balanced tree
@@ -55,5 +53,4 @@ graph_tree_undirected <-
 # Determine whether this graph
 # is a DAG
 is_graph_dag(graph_tree_undirected)
-#> [1] FALSE
 }

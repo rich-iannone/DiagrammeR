@@ -37,22 +37,14 @@ graph <-
 # edge data frame
 graph \%>\%
   get_edge_df()
-#>   id from to  rel
-#> 1  1    1  2 <NA>
-#> 2  2    2  3 <NA>
-#> 3  3    3  4 <NA>
-#> 4  4    4  3 <NA>
-#> 5  5    2  1 <NA>
 
 # Determine if edge `1` has
 # a mutual edge
 graph \%>\%
   is_edge_mutual(edge = 1)
-#> [1] TRUE
 
 # Determine if edge `2` has
 # a mutual edge
 graph \%>\%
   is_edge_mutual(edge = 2)
-#> [1] FALSE
 }

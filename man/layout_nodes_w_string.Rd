@@ -109,12 +109,4 @@ graph <-
 # to confirm that `x` and `y` values
 # were added to each of the nodes
 get_node_df(graph)
-#>   id type label x y
-#> 1  1    a     a 0 8
-#> 2  2    a     b 0 6
-#> 3  3    b     c 5 4
-#> 4  4    b     d 4 4
-#> 5  5    b     e 3 4
-#> 6  6    c     f 8 0
-#> 7  7    c     g 8 2
 }

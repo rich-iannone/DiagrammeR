@@ -73,8 +73,6 @@ graph <-
 graph \%>\%
   get_edge_attrs(
     edge_attr = value)
-#> 1->2 2->3 1->4 4->3
-#>  1.6  2.9  4.3  8.4
 
 # To only return edge attribute
 # values for specified edges, use
@@ -84,6 +82,4 @@ graph \%>\%
     edge_attr = value,
     from = c(1, 2),
       to = c(2, 3))
-#> 1->2 2->3
-#>  1.6  2.9
 }

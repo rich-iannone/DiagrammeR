@@ -18,7 +18,8 @@ Using a directed graph as input,
 reverse the direction of all edges in that graph.
 }
 \examples{
-# Create a graph with a directed tree
+# Create a graph with a
+# directed tree
 graph <-
   create_graph() \%>\%
   add_balanced_tree(
@@ -27,18 +28,16 @@ graph <-
 # Inspect the graph's edges
 graph \%>\%
   get_edges()
-#> [1] "1->2" "1->3" "2->4" "2->5"
-#> [5] "3->6" "3->7"
 
-# Reverse the edge directions such that edges
-# are directed toward the root of the tree
+# Reverse the edge directions
+# such that edges are directed
+# toward the root of the tree
 graph <-
   graph \%>\%
   rev_edge_dir()
 
-# Inspect the graph's edges after their reversal
+# Inspect the graph's edges
+# after their reversal
 graph \%>\%
   get_edges()
-#> [1] "2->1" "3->1" "4->2" "5->2"
-#> [5] "6->3" "7->3"
 }

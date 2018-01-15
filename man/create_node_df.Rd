@@ -52,11 +52,6 @@ node_df <-
 
 # Display the node data frame
 node_df
-#>   id type label
-#> 1  1    a     1
-#> 2  2    a     2
-#> 3  3    b     3
-#> 4  4    b     4
 
 # Create an ndf with distinct labels and
 # additional node attributes (where their classes
@@ -74,9 +69,4 @@ node_df <-
 
 # Display the node data frame
 node_df
-#>   id type label  style color     shape value
-#> 1  1    a  2384 filled  aqua    circle   3.5
-#> 2  2    a  3942 filled  aqua    circle   2.6
-#> 3  3    a  8362 filled  aqua rectangle   9.4
-#> 4  4    a  2194 filled  aqua rectangle   2.7
 }

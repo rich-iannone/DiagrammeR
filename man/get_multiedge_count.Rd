@@ -45,5 +45,4 @@ graph <-
 # edges (those edges that share an
 # edge definition) in the graph
 get_multiedge_count(graph)
-#> [1] 3
 }

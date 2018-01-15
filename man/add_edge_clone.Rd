@@ -53,8 +53,6 @@ graph <-
 # edge data frame
 graph \%>\%
   get_edge_df()
-#>   id from to rel     color
-#> 1  1    1  2   a steelblue
 
 # Create a new node (will have
 # node ID of `3`) and then
@@ -74,9 +72,6 @@ graph_2 <-
 # edge data frame
 graph_2 \%>\%
   get_edge_df()
-#>   id from to rel     color
-#> 1  1    1  2   a steelblue
-#> 2  2    3  1   a steelblue
 
 # The same change can be performed
 # with some helper functions in the
@@ -93,7 +88,4 @@ graph_3 <-
 # edge data frame
 graph_3 \%>\%
   get_edge_df()
-#>   id from to rel     color
-#> 1  1    1  2   a steelblue
-#> 2  2    3  1   a steelblue
 }

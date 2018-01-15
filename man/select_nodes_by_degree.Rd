@@ -51,7 +51,6 @@ graph \%>\%
   select_nodes_by_degree(
     expressions = "deg == 9") \%>\%
   get_selection()
-#> [1]  5 10 26 31
 
 # Report which nodes have a total degree greater
 # than or equal to 9
@@ -59,7 +58,6 @@ graph \%>\%
   select_nodes_by_degree(
     expressions = "deg >= 9") \%>\%
   get_selection()
-#> [1]  1  2  4  5 10 12 18 25 26 31
 
 # Combine two calls of `select_nodes_by_degree()`
 # to get those nodes with total degree less than
@@ -72,7 +70,6 @@ graph \%>\%
   select_nodes_by_degree(
     expressions = "deg > 10") \%>\%
   get_selection()
-#> [1] 1 2
 
 # Combine two calls of `select_nodes_by_degree()`
 # to get those nodes with total degree greater than
@@ -86,9 +83,6 @@ graph \%>\%
     expressions = "deg <= 10",
     set_op = "intersect") \%>\%
   get_selection()
-#>  [1]  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
-#> [16] 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
-#> [31] 33 34 35
 
 # Select all nodes with an in-degree greater than 5,
 # then, apply a node attribute to those selected nodes
@@ -104,5 +98,4 @@ graph_2 <-
 # Get the selection of nodes
 graph_2 \%>\%
   get_selection()
-#> [1]  1  4 13 25 35
 }

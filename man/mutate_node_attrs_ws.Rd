@@ -43,11 +43,8 @@ graph <-
 # Get the graph's internal ndf
 # to show which node attributes
 # are available
-get_node_df(graph)
-#>   id type label width
-#> 1  1 <NA>     1   1.4
-#> 2  2 <NA>     2   0.3
-#> 3  3 <NA>     3   1.1
+graph \%>\%
+  get_node_df()
 
 # Mutate the `width` node
 # attribute for the nodes
@@ -64,11 +61,8 @@ graph <-
 # ndf to show that the node
 # attribute `width` was
 # mutated only for node `1`
-get_node_df(graph)
-#>   id type label width
-#> 1  1 <NA>     1  0.7
-#> 2  2 <NA>     2  0.3
-#> 3  3 <NA>     3  1.1
+graph \%>\%
+  get_node_df()
 
 # Create a new node attribute,
 # called `length`, that is the
@@ -89,11 +83,8 @@ graph <-
 # for nodes `2` and `3` (since
 # node `1` is excluded, an NA
 # value is applied)
-get_node_df(graph)
-#>   id type label width length
-#> 1  1 <NA>     1   0.7     NA
-#> 2  2 <NA>     2   0.3    0.8
-#> 3  3 <NA>     3   1.1    2.1
+graph \%>\%
+  get_node_df()
 
 # Create a new node attribute
 # called `area`, which is the
@@ -109,11 +100,8 @@ graph <-
 # values had been multiplied
 # together (with new attr `area`)
 # for nodes `2` and `3`
-get_node_df(graph)
-#>   id type label width length area
-#> 1  1 <NA>     1   0.7     NA   NA
-#> 2  2 <NA>     2   0.3    0.8 0.24
-#> 3  3 <NA>     3   1.1    2.1 2.31
+graph \%>\%
+  get_node_df()
 
 # We can invert the selection
 # and mutate node `1` several
@@ -133,9 +121,6 @@ graph <-
 # non-NA values for its node
 # attributes without changing
 # those of the other nodes
-get_node_df(graph)
-#>   id type label width length  area
-#> 1  1 <NA>     1   0.7   4.64 3.248
-#> 2  2 <NA>     2   0.3   0.80 0.240
-#> 3  3 <NA>     3   1.1   2.10 2.310
+graph \%>\%
+  get_node_df()
 }

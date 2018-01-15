@@ -54,7 +54,6 @@ graph <-
 # Get the graph's edges
 graph \%>\%
   get_edge_ids()
-#> [1] 1
 
 # Select the edge and create 2 additional edges
 # with the same definition (`1->2`) but with
@@ -67,9 +66,6 @@ graph <-
   clear_selection()
 
 # Get the graph's edge data frame
-get_edge_df(graph)
-#>   id from to rel
-#> 1  1    1  2   a
-#> 2  2    1  2   b
-#> 3  3    1  2   c
+graph \%>\%
+  get_edge_df()
 }

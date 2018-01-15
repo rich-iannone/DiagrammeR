@@ -53,7 +53,6 @@ graph <-
 graph \%>\%
   get_agg_degree_total(
     agg = "mean")
-#> [1] 3.5
 
 # Other aggregation functions
 # can be used (`min`, `max`,
@@ -62,7 +61,6 @@ graph \%>\%
 graph \%>\%
   get_agg_degree_total(
     agg = "median")
-#> [1] 3
 
 # The aggregation of total
 # degree can occur for a
@@ -74,5 +72,4 @@ graph \%>\%
   get_agg_degree_total(
     agg = "mean",
     conditions = value < 5.0)
-#> [1] 4.666667
 }

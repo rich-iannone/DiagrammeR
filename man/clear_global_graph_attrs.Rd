@@ -19,7 +19,8 @@ attributes for a graph object of class
 \code{dgr_graph}).
 }
 \examples{
-# Create a new graph and set some global attributes
+# Create a new graph and set
+# some global attributes
 graph <-
   create_graph() \%>\%
   set_global_graph_attrs(
@@ -27,11 +28,15 @@ graph <-
     value = "true",
     attr_type = "graph")
 
-# Clear all global attributes that have been set
-graph <- clear_global_graph_attrs(graph)
+# Clear all global attributes
+# that have been set
+graph <-
+  graph \%>\%
+    clear_global_graph_attrs()
 
-# Look at the present global graph attributes;
-# since there are none, NA is returned
-get_global_graph_attrs(graph)
-#> [1] NA
+# Look at the present global
+# graph attributes; since there
+# are none, NA is returned
+graph \%>\%
+  get_global_graph_attrs()
 }

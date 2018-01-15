@@ -76,12 +76,8 @@ graph <-
 # `display` edge attribute will show, for
 # each row, which edge attribute value to
 # display when the graph is rendered
-get_edge_df(graph)
-#>  id from to  rel display value
-#>1  1    2  1 <NA>   value   2.5
-#>2  2    3  1 <NA>   value   8.2
-#>3  3    3  2 <NA>   value   4.2
-#>4  4    4  3 <NA>    <NA>   2.4
+graph \%>\%
+  get_edge_df()
 
 # This function can be called multiple
 # times on a graph; after the first time
@@ -96,9 +92,4 @@ graph \%>\%
     edges = c(1, 3),
     attr = id) \%>\%
   get_edge_df()
-#>   id from to  rel display value
-#> 1  1    2  1 <NA>      id   2.5
-#> 2  2    3  1 <NA>   value   8.2
-#> 3  3    3  2 <NA>      id   4.2
-#> 4  4    4  3 <NA>      to   2.4
 }

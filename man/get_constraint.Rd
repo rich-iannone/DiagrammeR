@@ -38,26 +38,12 @@ graph <-
 # Get the constaint scores for all
 # nodes in the graph
 get_constraint(graph)
-#>    id constraint
-#> 1   1  0.4686420
-#> 2   2  0.4447222
-#> 3   3  0.7506250
-#> 4   4  0.4009333
-#> 5   5  0.4367361
-#> 6   6  0.3798222
-#> 7   7  0.4686420
-#> 8   8  0.8044444
-#> 9   9  0.6277778
-#> 10 10  0.0000000
 
 # Get the constaint scores
 # for nodes `5` and `7`
 get_constraint(
   graph = graph,
   nodes = c(5, 7))
-#>   id constraint
-#> 1  5  0.4367361
-#> 2  7  0.4686420
 
 # Add the constraint scores
 # to the graph as a node
@@ -69,15 +55,4 @@ graph <-
 
 # Display the graph's node data frame
 get_node_df(graph)
-#>    id type label constraint
-#> 1   1 <NA>  <NA>  0.4686420
-#> 2   2 <NA>  <NA>  0.4447222
-#> 3   3 <NA>  <NA>  0.7506250
-#> 4   4 <NA>  <NA>  0.4009333
-#> 5   5 <NA>  <NA>  0.4367361
-#> 6   6 <NA>  <NA>  0.3798222
-#> 7   7 <NA>  <NA>  0.4686420
-#> 8   8 <NA>  <NA>  0.8044444
-#> 9   9 <NA>  <NA>  0.6277778
-#> 10 10 <NA>  <NA>  0.0000000
 }

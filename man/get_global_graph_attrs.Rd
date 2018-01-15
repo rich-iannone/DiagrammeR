@@ -30,6 +30,4 @@ graph <-
 # View the graph's set of global attributes
 # as a data frame
 get_global_graph_attrs(graph)
-#>      attr value attr_type
-#> 1 overlap  true     graph
 }

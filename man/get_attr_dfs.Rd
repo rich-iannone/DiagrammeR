@@ -97,13 +97,6 @@ graph <-
 get_attr_dfs(
   graph,
   node_id = c(1, 4))
-#> # A tibble: 4 x 6
-#>   node_edge__    id  type label     a     b
-#>         <chr> <int> <chr> <chr> <chr> <dbl>
-#> 1        node     1 basic     1   one     1
-#> 2        node     1 basic     1   two     2
-#> 3        node     4 basic     4 three     3
-#> 4        node     4 basic     4  four     4
 
 # You can also get data frames that are
 # associated with edges by using the
@@ -111,11 +104,6 @@ get_attr_dfs(
 get_attr_dfs(
   graph,
   edge_id = 1)
-#> # A tibble: 2 x 7
-#>   node_edge__    id        rel  from    to     c     d
-#>         <chr> <int>      <chr> <int> <int> <chr> <dbl>
-#> 1        edge     1 leading_to     1     4  five     5
-#> 2        edge     1 leading_to     1     4   six     6
 
 # It's also possible to collect data frames
 # associated with both nodes and edges
@@ -123,15 +111,6 @@ get_attr_dfs(
   graph,
   node_id = 4,
   edge_id = 1)
-#> # A tibble: 4 x 11
-#>   node_edge__    id  type label        rel  from    to
-#>         <chr> <int> <chr> <chr>      <chr> <int> <int>
-#> 1        node     4 basic     4       <NA>    NA    NA
-#> 2        node     4 basic     4       <NA>    NA    NA
-#> 3        edge     1  <NA>  <NA> leading_to     1     4
-#> 4        edge     1  <NA>  <NA> leading_to     1     4
-#> # ... with 4 more variables: a <chr>, b <dbl>, c <chr>,
-#> #   d <dbl>
 
 # If a data frame is desired instead,
 # set `return_format = "single_df"`
@@ -139,7 +118,4 @@ get_attr_dfs(
   graph,
   edge_id = 1,
   return_format = "single_df")
-#>   node_edge__ id        rel from to    c d
-#> 1        edge  1 leading_to    1  4 five 5
-#> 2        edge  1 leading_to    1  4  six 6
 }

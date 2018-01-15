@@ -38,5 +38,4 @@ graph <-
 # graph is directed
 graph \%>\%
   is_graph_directed()
-#> [1] TRUE
 }

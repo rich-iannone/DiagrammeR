@@ -101,12 +101,6 @@ graph <-
 graph \%>\%
   get_node_info() \%>\%
   head(5)
-#>   id   type label deg indeg outdeg loops
-#> 1  1 binary     1   2     0      2     0
-#> 2  2 binary     2   3     1      2     0
-#> 3  3 binary     3   3     1      2     0
-#> 4  4 binary     4   1     1      0     0
-#> 5  5 binary     5   1     1      0     0
 
 # Node and edge aesthetic and data
 # attributes can be specified in
@@ -141,18 +135,10 @@ graph_w_attrs <-
 graph_w_attrs \%>\%
   get_node_df() \%>\%
   head(3)
-#>   id type label fillcolor value
-#> 1  1    a   one steelblue   1.6
-#> 2  2    b   two steelblue   2.8
-#> 3  3    b three steelblue   3.4
 
 # Get the first three rows of
 # the graph's edge data frame
 graph_w_attrs \%>\%
   get_edge_df() \%>\%
   head(3)
-#>   id from to rel penwidth color
-#> 1  1    1  2   A      1.2   red
-#> 2  2    1  3   A      1.2   red
-#> 3  3    2  4   A      1.2   red
 }

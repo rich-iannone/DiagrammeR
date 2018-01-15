@@ -27,5 +27,4 @@ graph <-
 
 # Check if the graph is simple
 is_graph_simple(graph)
-#> [1] TRUE
 }

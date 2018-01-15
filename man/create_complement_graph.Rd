@@ -34,11 +34,6 @@ graph <-
 # Get the graph's edge data frame
 graph \%>\%
   get_edge_df()
-#>   id from to  rel
-#> 1  1    1  2 <NA>
-#> 2  2    2  3 <NA>
-#> 3  3    3  4 <NA>
-#> 4  4    4  1 <NA>
 
 # Create the complement of the graph
 graph_c <- create_complement_graph(graph)
@@ -47,13 +42,4 @@ graph_c <- create_complement_graph(graph)
 # complement graph
 graph_c \%>\%
   get_edge_df()
-#>   id from to  rel
-#> 1  1    1  4 <NA>
-#> 2  2    1  3 <NA>
-#> 3  3    2  4 <NA>
-#> 4  4    2  1 <NA>
-#> 5  5    3  2 <NA>
-#> 6  6    3  1 <NA>
-#> 7  7    4  3 <NA>
-#> 8  8    4  2 <NA>
 }

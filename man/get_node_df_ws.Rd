@@ -44,7 +44,4 @@ graph <-
 # to the node selection
 graph \%>\%
   get_node_df_ws()
-#>   id type label value
-#> 1  1 <NA>  <NA>   2.5
-#> 2  3 <NA>  <NA>   4.2
 }

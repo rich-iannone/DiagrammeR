@@ -62,13 +62,6 @@ graph_1 \%>\%
   get_node_df() \%>\%
   .[, 1:5] \%>\%
   head()
-#>   id type label iso_4217_code curr_number
-#> 1  1 <NA>  <NA>           AED         784
-#> 2  2 <NA>  <NA>           AFN         971
-#> 3  3 <NA>  <NA>           ALL           8
-#> 4  4 <NA>  <NA>           AMD          51
-#> 5  5 <NA>  <NA>           ANG         532
-#> 6  6 <NA>  <NA>           AOA         973
 
 # If you would like to assign
 # any of the table's columns as
@@ -89,13 +82,6 @@ graph_2 \%>\%
   get_node_df() \%>\%
   .[, 1:5] \%>\%
   head()
-#>   id     type label curr_number exponent
-#> 1  1 currency   AED         784        2
-#> 2  2 currency   AFN         971        2
-#> 3  3 currency   ALL           8        2
-#> 4  4 currency   AMD          51        2
-#> 5  5 currency   ANG         532        2
-#> 6  6 currency   AOA         973        2
 
 # Suppose we would like to not
 # include certain columns from the
@@ -119,5 +105,4 @@ graph_3 <-
 graph_3 \%>\%
   get_node_df() \%>\%
   colnames()
-#> [1] "id"  type"  "label"  "curr_number"
 }

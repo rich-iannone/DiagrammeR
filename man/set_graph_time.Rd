@@ -22,7 +22,6 @@ Set the time and timezone for a graph
 object of class \code{dgr_graph}.
 }
 \examples{
-\dontrun{
 # Create an empty graph
 graph <- create_graph()
 
@@ -36,7 +35,9 @@ graph_1 <-
 # Provide the new graph with a timestamp that is
 # the current time; the time zone is inferred from
 # the user's locale
-graph_2 <- set_graph_time(graph)
+graph_2 <-
+  graph \%>\%
+  set_graph_time()
 
 # The time zone can be updated when a timestamp
 # is present
@@ -44,5 +45,4 @@ graph_2 <-
   graph_2 \%>\%
   set_graph_time(
     tz = "America/Los_Angeles")
-}
 }

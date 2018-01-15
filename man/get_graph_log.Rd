@@ -37,15 +37,4 @@ graph <-
 # record of all graph transformations
 graph \%>\%
   get_graph_log()
-#> # A tibble: 4 x 6
-#>   version_id function_used
-#>        <int>         <chr>
-#> 1          1  create_graph
-#> 2          2 add_gnm_graph
-#> 3          3   delete_node
-#> 4          4   delete_node
-#> # ... with 4 more variables:
-#> #   time_modified <dttm>,
-#> #   duration <dbl>, nodes <int>,
-#> #   edges <int>
 }

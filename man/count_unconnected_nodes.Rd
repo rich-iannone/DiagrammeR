@@ -31,12 +31,10 @@ graph <-
 # in the graph
 graph \%>\%
   count_nodes()
-#> [1] 6
 
 # Get a count of all
 # unconnected nodes in the
 # graph
 graph \%>\%
- count_unconnected_nodes()
-#> [1] 3
+  count_unconnected_nodes()
 }
