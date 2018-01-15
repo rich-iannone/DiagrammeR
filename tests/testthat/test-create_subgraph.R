@@ -31,7 +31,8 @@ test_that("a subgraph can be created and such an object is correct", {
     select_nodes(conditions = value > 3)
 
   # Create a subgraph based on the selection
-  subgraph_ns <- create_subgraph_ws(graph_ns)
+  subgraph_ns <-
+    transform_to_subgraph_ws(graph_ns)
 
   # Expect that only those nodes with a value >3 are in the subgraph
   expect_true(
@@ -52,7 +53,8 @@ test_that("a subgraph can be created and such an object is correct", {
     select_edges(conditions = value > 4)
 
   # Create a subgraph based on the selection
-  subgraph_es <- create_subgraph_ws(graph_es)
+  subgraph_es <-
+    transform_to_subgraph_ws(graph_es)
 
   # Expect that only those edges with a value >4 are in the subgraph
   expect_true(
@@ -70,5 +72,5 @@ test_that("a subgraph can be created and such an object is correct", {
   graph <- clear_selection(graph)
 
   expect_error(
-    create_subgraph_ws(graph))
+    transform_to_subgraph_ws(graph))
 })

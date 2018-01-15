@@ -47,18 +47,22 @@
 #'     conditions = value > 3)
 #'
 #' # Create a subgraph based on the selection
-#' subgraph <- create_subgraph_ws(graph)
+#' subgraph <-
+#'   graph %>%
+#'   transform_to_subgraph_ws()
 #'
 #' # Display the graph's node data frame
-#' get_node_df(subgraph)
+#' subgraph %>%
+#'   get_node_df()
 #'
 #' # Display the graph's edge data frame
-#' get_edge_df(subgraph)
+#' subgraph %>%
+#'   get_edge_df()
 #' @importFrom dplyr filter semi_join
 #' @importFrom stringr str_split
-#' @export create_subgraph_ws
+#' @export transform_to_subgraph_ws
 
-create_subgraph_ws <- function(graph) {
+transform_to_subgraph_ws <- function(graph) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
