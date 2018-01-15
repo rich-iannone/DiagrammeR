@@ -28,16 +28,16 @@
 #' # of the graph
 #' graph_c <-
 #'   graph %>%
-#'     create_complement_graph()
+#'     transform_to_complement_graph()
 #'
 #' # Get the edge data frame
 #' # for the complement graph
 #' graph_c %>%
 #'   get_edge_df()
-#' @export create_complement_graph
+#' @export transform_to_complement_graph
 
-create_complement_graph <- function(graph,
-                                    loops = FALSE) {
+transform_to_complement_graph <- function(graph,
+                                          loops = FALSE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()

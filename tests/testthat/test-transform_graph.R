@@ -153,7 +153,8 @@ test_that("Creating a complement graph is possible", {
     add_cycle(n = 4)
 
   # Create the complement of the graph
-  graph_c <- create_complement_graph(graph)
+  graph_c <-
+    transform_to_complement_graph(graph)
 
   # Expect 8 edges in the complement graph
   expect_equal(
@@ -172,7 +173,7 @@ test_that("Creating a complement graph is possible", {
   # Create the complement of the original graph
   # with loops created
   graph_cl <-
-    create_complement_graph(
+    transform_to_complement_graph(
       graph = graph,
       loops = TRUE)
 

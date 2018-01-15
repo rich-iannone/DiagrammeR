@@ -434,10 +434,10 @@ test_that("Graph backups for `reorder_graph_actions()` works", {
     list.files(path = path) %>% length(), 20)
 })
 
-test_that("Graph backups for `create_complement_graph()` works", {
+test_that("Graph backups for `transform_to_complement_graph()` works", {
 
   #
-  # Backup from `create_complement_graph()`
+  # Backup from `transform_to_complement_graph()`
   #
 
   path <- tempdir()
@@ -446,7 +446,7 @@ test_that("Graph backups for `create_complement_graph()` works", {
 
   create_graph(write_backups = TRUE) %>%
     add_cycle(n = 4) %>%
-    create_complement_graph()
+    transform_to_complement_graph()
 
   expect_equal(
     list.files(path = path) %>% length(), 21)
