@@ -37,7 +37,7 @@
 #' # the lowest similarity values possible
 #' min_spanning_tree_graph <-
 #'   graph %>%
-#'   get_min_spanning_tree() %>%
+#'   transform_to_min_spanning_tree() %>%
 #'   copy_edge_attrs(
 #'     edge_attr_from = weight,
 #'     edge_attr_to = label) %>%
@@ -53,9 +53,9 @@
 #'     to_upper_bound = 4.0,
 #'       edge_attr_to = penwidth)
 #' @importFrom igraph mst
-#' @export get_min_spanning_tree
+#' @export transform_to_min_spanning_tree
 
-get_min_spanning_tree <- function(graph) {
+transform_to_min_spanning_tree <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

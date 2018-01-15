@@ -28,7 +28,7 @@ test_that("the MST algorithm is functional", {
   # the lowest similarity values possible
   min_spanning_tree_graph <-
     graph %>%
-    get_min_spanning_tree()
+    transform_to_min_spanning_tree()
 
   # Expect no loops in `min_spanning_tree_graph`
   expect_true(
