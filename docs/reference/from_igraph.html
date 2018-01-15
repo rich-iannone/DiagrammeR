@@ -122,27 +122,27 @@ to use this functionality.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a DiagrammeR graph object</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a DiagrammeR graph object</span>
 <span class='no'>dgr_graph_orig</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>36</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>,
-    <span class='kw'>directed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>36</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># Convert the DiagrammeR graph to an</span>
-<span class='co'># igraph object</span>
-<span class='no'>ig_graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='to_igraph.html'>to_igraph</a></span>(<span class='no'>dgr_graph_orig</span>)
+<span class='co'># Convert the DiagrammeR</span>
+<span class='co'># graph to an igraph object</span>
+<span class='no'>ig_graph</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='to_igraph.html'>to_igraph</a></span>(<span class='no'>dgr_graph_orig</span>)
 
-<span class='co'># Convert the igraph graph back to a</span>
-<span class='co'># DiagrammeR graph</span>
-<span class='no'>dgr_graph_new</span> <span class='kw'>&lt;-</span> <span class='fu'>from_igraph</span>(<span class='no'>ig_graph</span>)
+<span class='co'># Convert the igraph graph</span>
+<span class='co'># back to a DiagrammeR graph</span>
+<span class='no'>dgr_graph_new</span> <span class='kw'>&lt;-</span>
+  <span class='fu'>from_igraph</span>(<span class='no'>ig_graph</span>)
 
 <span class='co'># Get some graph information</span>
-<span class='fu'><a href='graph_info.html'>graph_info</a></span>(<span class='no'>dgr_graph_new</span>)[, <span class='fl'>1</span>:<span class='fl'>6</span>]
-<span class='co'>#&gt;             name  n  e   dens mn_deg mx_deg</span>
-<span class='co'>#&gt; 1 graph_eUrgZI3e 36 50 0.0571      1      6</span>
-<span class='co'># }</span></pre>
+<span class='fu'><a href='graph_info.html'>graph_info</a></span>(<span class='no'>dgr_graph_new</span>)[, <span class='fl'>1</span>:<span class='fl'>6</span>]</div><div class='output co'>#&gt;             name  n  e   dens mn_deg mx_deg
+#&gt; 1 graph_hWHYG7a9 36 50 0.0571      1      7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -159,7 +159,7 @@ to use this functionality.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

@@ -113,8 +113,7 @@ contain edge IDs and associated attributes.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create an edge data frame (edf)</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an edge data frame (edf)</span>
 <span class='no'>edf_1</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_edge_df.html'>create_edge_df</a></span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>),
@@ -137,17 +136,15 @@ contain edge IDs and associated attributes.</p></td>
   <span class='fu'>combine_edfs</span>(<span class='no'>edf_1</span>, <span class='no'>edf_2</span>)
 
 <span class='co'># View the combined edge data frame</span>
-<span class='no'>all_edges</span>
-<span class='co'>#&gt;   id from to      rel color data arrowhead</span>
-<span class='co'>#&gt; 1  1    1  2 requires green  2.7      &lt;NA&gt;</span>
-<span class='co'>#&gt; 2  2    1  4 requires green  8.9      &lt;NA&gt;</span>
-<span class='co'>#&gt; 3  3    2  4 requires green  2.6      &lt;NA&gt;</span>
-<span class='co'>#&gt; 4  4    3  1 requires green  0.6      &lt;NA&gt;</span>
-<span class='co'>#&gt; 5  5    5  7 receives   red   NA       dot</span>
-<span class='co'>#&gt; 6  6    7  8 receives   red   NA       dot</span>
-<span class='co'>#&gt; 7  7    8  6 receives   red   NA       dot</span>
-<span class='co'>#&gt; 8  8    8  5 receives   red   NA       dot</span>
-<span class='co'># }</span></pre>
+<span class='no'>all_edges</span></div><div class='output co'>#&gt;   id from to      rel color data arrowhead
+#&gt; 1  1    1  2 requires green  2.7      &lt;NA&gt;
+#&gt; 2  2    1  4 requires green  8.9      &lt;NA&gt;
+#&gt; 3  3    2  4 requires green  2.6      &lt;NA&gt;
+#&gt; 4  4    3  1 requires green  0.6      &lt;NA&gt;
+#&gt; 5  5    5  7 receives   red   NA       dot
+#&gt; 6  6    7  8 receives   red   NA       dot
+#&gt; 7  7    8  6 receives   red   NA       dot
+#&gt; 8  8    8  5 receives   red   NA       dot</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -164,7 +161,7 @@ contain edge IDs and associated attributes.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

@@ -91,7 +91,7 @@
 eccentricity values.</p>
     
 
-    <pre class="usage"><span class='fu'>get_eccentricity</span>(<span class='no'>graph</span>)</pre>
+    <pre class="usage"><span class='fu'>get_eccentricity</span>(<span class='no'>graph</span>, <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"out"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -101,38 +101,52 @@ eccentricity values.</p>
       <td><p>a graph object of class
 <code>dgr_graph</code>.</p></td>
     </tr>
+    <tr>
+      <th>mode</th>
+      <td><p>the mode with which the shortest
+paths to or from the given vertices should
+be calculated for directed graphs. If
+<code>out</code> (the default) then the shortest
+paths from the node, if <code>in</code> then only
+shortest paths to each node are considered.
+If <code>all</code> is used, then the corresponding
+undirected graph will be used and edge
+directions will be ignored. For undirected
+graphs, this argument is ignored.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data frame containing eccentricity values
-by node ID value.</p>
+    <p>a data frame containing eccentricity
+values by node ID value.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>(
+    <span class='kw'>directed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>15</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># Get the eccentricity values for all</span>
-<span class='co'># nodes in the graph</span>
+<span class='co'># Get the eccentricity values for</span>
+<span class='co'># all nodes in the graph</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_eccentricity</span>()
-<span class='co'>#&gt;    id eccentricity</span>
-<span class='co'>#&gt; 1   1            4</span>
-<span class='co'>#&gt; 2   2            4</span>
-<span class='co'>#&gt; 3   3            3</span>
-<span class='co'>#&gt; 4   4            4</span>
-<span class='co'>#&gt; 5   5            3</span>
-<span class='co'>#&gt; 6   6            2</span>
-<span class='co'>#&gt; 7   7            2</span>
-<span class='co'>#&gt; 8   8            0</span>
-<span class='co'>#&gt; 9   9            1</span>
-<span class='co'>#&gt; 10 10            0</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>get_eccentricity</span>()</div><div class='output co'>#&gt;    id eccentricity
+#&gt; 1   1            2
+#&gt; 2   2            3
+#&gt; 3   3            3
+#&gt; 4   4            2
+#&gt; 5   5            3
+#&gt; 6   6            2
+#&gt; 7   7            3
+#&gt; 8   8            3
+#&gt; 9   9            2
+#&gt; 10 10            0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -149,7 +163,7 @@ by node ID value.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

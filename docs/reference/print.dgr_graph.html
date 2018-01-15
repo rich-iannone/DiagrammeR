@@ -107,10 +107,13 @@ of the graph.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+<span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>15</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
 <span class='co'># Get a summary of the graph</span>
@@ -130,7 +133,7 @@ of the graph.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

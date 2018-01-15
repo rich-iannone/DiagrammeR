@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Convert graph to an undirected graph — set_graph_undirected • DiagrammeR</title>
+<title>Convert a directed graph to an undirected graph — set_graph_undirected • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,12 +83,13 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Convert graph to an undirected graph</h1>
+    <h1>Convert a directed graph to an undirected graph</h1>
     </div>
 
     
-    <p>Take a graph which is directed and
-convert it to an undirected graph.</p>
+    <p>Take a graph which is
+directed and convert it to an undirected
+graph.</p>
     
 
     <pre class="usage"><span class='fu'>set_graph_undirected</span>(<span class='no'>graph</span>)</pre>
@@ -105,27 +106,28 @@ convert it to an undirected graph.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with a directed tree</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with a</span>
+<span class='co'># directed tree</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='co'># Convert this graph from directed to undirected</span>
+<span class='co'># Convert this graph from</span>
+<span class='co'># directed to undirected</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_graph_undirected</span>()
 
-<span class='co'># Perform a check on whether graph is directed</span>
+<span class='co'># Perform a check on whether</span>
+<span class='co'># graph is directed</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='is_graph_directed.html'>is_graph_directed</a></span>()
-<span class='co'>#&gt; [1] FALSE</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='is_graph_directed.html'>is_graph_directed</a></span>()</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -142,7 +144,7 @@ convert it to an undirected graph.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

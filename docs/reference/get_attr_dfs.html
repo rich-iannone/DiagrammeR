@@ -132,8 +132,7 @@ data).</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a node data frame (ndf)</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a node data frame (ndf)</span>
 <span class='no'>ndf</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
@@ -194,53 +193,43 @@ data).</p></td>
 <span class='co'># bound as node attributes</span>
 <span class='fu'>get_attr_dfs</span>(
   <span class='no'>graph</span>,
-  <span class='kw'>node_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>4</span>))
-<span class='co'>#&gt; # A tibble: 4 x 6</span>
-<span class='co'>#&gt;   node_edge__    id  type label     a     b</span>
-<span class='co'>#&gt;         &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;</span>
-<span class='co'>#&gt; 1        node     1 basic     1   one     1</span>
-<span class='co'>#&gt; 2        node     1 basic     1   two     2</span>
-<span class='co'>#&gt; 3        node     4 basic     4 three     3</span>
-<span class='co'>#&gt; 4        node     4 basic     4  four     4</span>
-
+  <span class='kw'>node_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>4</span>))</div><div class='output co'>#&gt; # A tibble: 4 x 6
+#&gt;   node_edge__    id  type label     a     b
+#&gt;         &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
+#&gt; 1        node     1 basic     1   one     1
+#&gt; 2        node     1 basic     1   two     2
+#&gt; 3        node     4 basic     4 three     3
+#&gt; 4        node     4 basic     4  four     4</div><div class='input'>
 <span class='co'># You can also get data frames that are</span>
 <span class='co'># associated with edges by using the</span>
 <span class='co'># same function</span>
 <span class='fu'>get_attr_dfs</span>(
   <span class='no'>graph</span>,
-  <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='co'>#&gt; # A tibble: 2 x 7</span>
-<span class='co'>#&gt;   node_edge__    id        rel  from    to     c     d</span>
-<span class='co'>#&gt;         &lt;chr&gt; &lt;int&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;</span>
-<span class='co'>#&gt; 1        edge     1 leading_to     1     4  five     5</span>
-<span class='co'>#&gt; 2        edge     1 leading_to     1     4   six     6</span>
-
+  <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 7
+#&gt;   node_edge__    id        rel  from    to     c     d
+#&gt;         &lt;chr&gt; &lt;int&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+#&gt; 1        edge     1 leading_to     1     4  five     5
+#&gt; 2        edge     1 leading_to     1     4   six     6</div><div class='input'>
 <span class='co'># It's also possible to collect data frames</span>
 <span class='co'># associated with both nodes and edges</span>
 <span class='fu'>get_attr_dfs</span>(
   <span class='no'>graph</span>,
   <span class='kw'>node_id</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='co'>#&gt; # A tibble: 4 x 11</span>
-<span class='co'>#&gt;   node_edge__    id  type label        rel  from    to</span>
-<span class='co'>#&gt;         &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class='co'>#&gt; 1        node     4 basic     4       &lt;NA&gt;    NA    NA</span>
-<span class='co'>#&gt; 2        node     4 basic     4       &lt;NA&gt;    NA    NA</span>
-<span class='co'>#&gt; 3        edge     1  &lt;NA&gt;  &lt;NA&gt; leading_to     1     4</span>
-<span class='co'>#&gt; 4        edge     1  &lt;NA&gt;  &lt;NA&gt; leading_to     1     4</span>
-<span class='co'>#&gt; # ... with 4 more variables: a &lt;chr&gt;, b &lt;dbl&gt;, c &lt;chr&gt;,</span>
-<span class='co'>#&gt; #   d &lt;dbl&gt;</span>
-
+  <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 11
+#&gt;   node_edge__    id  type label        rel  from    to     a     b     c     d
+#&gt;         &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+#&gt; 1        node     4 basic     4       &lt;NA&gt;    NA    NA three     3  &lt;NA&gt;    NA
+#&gt; 2        node     4 basic     4       &lt;NA&gt;    NA    NA  four     4  &lt;NA&gt;    NA
+#&gt; 3        edge     1  &lt;NA&gt;  &lt;NA&gt; leading_to     1     4  &lt;NA&gt;    NA  five     5
+#&gt; 4        edge     1  &lt;NA&gt;  &lt;NA&gt; leading_to     1     4  &lt;NA&gt;    NA   six     6</div><div class='input'>
 <span class='co'># If a data frame is desired instead,</span>
 <span class='co'># set `return_format = "single_df"`</span>
 <span class='fu'>get_attr_dfs</span>(
   <span class='no'>graph</span>,
   <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>return_format</span> <span class='kw'>=</span> <span class='st'>"single_df"</span>)
-<span class='co'>#&gt;   node_edge__ id        rel from to    c d</span>
-<span class='co'>#&gt; 1        edge  1 leading_to    1  4 five 5</span>
-<span class='co'>#&gt; 2        edge  1 leading_to    1  4  six 6</span>
-<span class='co'># }</span></pre>
+  <span class='kw'>return_format</span> <span class='kw'>=</span> <span class='st'>"single_df"</span>)</div><div class='output co'>#&gt;   node_edge__ id        rel from to    c d
+#&gt; 1        edge  1 leading_to    1  4 five 5
+#&gt; 2        edge  1 leading_to    1  4  six 6</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -257,7 +246,7 @@ data).</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

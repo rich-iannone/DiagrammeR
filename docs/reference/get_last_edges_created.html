@@ -111,8 +111,7 @@ the edges.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph and add a cycle and then</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph and add a cycle and then</span>
 <span class='co'># a tree in 2 separate function calls</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
@@ -126,9 +125,7 @@ the edges.</p>
 <span class='co'># Get the last edges created (all edges</span>
 <span class='co'># from the tree)</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_last_edges_created</span>()
-<span class='co'>#&gt; [1] 4 5 6 7 8 9</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>get_last_edges_created</span>()</div><div class='output co'>#&gt; [1] 4 5 6 7 8 9</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -145,7 +142,7 @@ the edges.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

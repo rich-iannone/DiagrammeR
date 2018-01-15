@@ -91,7 +91,8 @@
 <code>dgr_graph</code>, add a node prism to the graph.</p>
     
 
-    <pre class="usage"><span class='fu'>add_prism</span>(<span class='no'>graph</span>, <span class='no'>n</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>add_prism</span>(<span class='no'>graph</span>, <span class='no'>n</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>node_aes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_aes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -130,9 +131,40 @@ relationship label to all new edges created in the
 node prism.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>optional node attributes supplied as
-vectors.</p></td>
+      <th>node_aes</th>
+      <td><p>an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function <code><a href='node_aes.html'>node_aes()</a></code> is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+<code>shape</code>, <code>style</code>, <code>color</code>,
+<code>fillcolor</code>).</p></td>
+    </tr>
+    <tr>
+      <th>edge_aes</th>
+      <td><p>an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function <code><a href='edge_aes.html'>edge_aes()</a></code> is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+<code>shape</code>, <code>style</code>, <code>penwidth</code>,
+<code>color</code>).</p></td>
+    </tr>
+    <tr>
+      <th>node_data</th>
+      <td><p>an optional list of named vectors
+comprising node data attributes. The helper
+function <code><a href='node_data.html'>node_data()</a></code> is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.</p></td>
+    </tr>
+    <tr>
+      <th>edge_data</th>
+      <td><p>an optional list of named vectors
+comprising edge data attributes. The helper
+function <code><a href='edge_data.html'>edge_data()</a></code> is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.</p></td>
     </tr>
     </table>
     
@@ -142,8 +174,8 @@ vectors.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a new graph and add 2 prisms</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a new graph and</span>
+<span class='co'># add 2 prisms</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>add_prism</span>(
@@ -156,65 +188,78 @@ vectors.</p></td>
     <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"b"</span>)
 
 <span class='co'># Get node information from this graph</span>
-<span class='fu'><a href='node_info.html'>node_info</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;    id  type label deg indeg outdeg loops</span>
-<span class='co'>#&gt; 1   1 prism     a   3     1      2     0</span>
-<span class='co'>#&gt; 2   2 prism     a   3     1      2     0</span>
-<span class='co'>#&gt; 3   3 prism     a   3     1      2     0</span>
-<span class='co'>#&gt; 4   4 prism     a   3     2      1     0</span>
-<span class='co'>#&gt; 5   5 prism     a   3     2      1     0</span>
-<span class='co'>#&gt; 6   6 prism     a   3     2      1     0</span>
-<span class='co'>#&gt; 7   7 prism     b   3     1      2     0</span>
-<span class='co'>#&gt; 8   8 prism     b   3     1      2     0</span>
-<span class='co'>#&gt; 9   9 prism     b   3     1      2     0</span>
-<span class='co'>#&gt; 10 10 prism     b   3     2      1     0</span>
-<span class='co'>#&gt; 11 11 prism     b   3     2      1     0</span>
-<span class='co'>#&gt; 12 12 prism     b   3     2      1     0</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_info.html'>get_node_info</a></span>()</div><div class='output co'>#&gt;    id  type label deg indeg outdeg loops
+#&gt; 1   1 prism     a   3     1      2     0
+#&gt; 2   2 prism     a   3     1      2     0
+#&gt; 3   3 prism     a   3     1      2     0
+#&gt; 4   4 prism     a   3     2      1     0
+#&gt; 5   5 prism     a   3     2      1     0
+#&gt; 6   6 prism     a   3     2      1     0
+#&gt; 7   7 prism     b   3     1      2     0
+#&gt; 8   8 prism     b   3     1      2     0
+#&gt; 9   9 prism     b   3     1      2     0
+#&gt; 10 10 prism     b   3     2      1     0
+#&gt; 11 11 prism     b   3     2      1     0
+#&gt; 12 12 prism     b   3     2      1     0</div><div class='input'>
+<span class='co'># Node and edge aesthetic and data</span>
+<span class='co'># attributes can be specified in</span>
+<span class='co'># the `node_aes`, `edge_aes`,</span>
+<span class='co'># `node_data`, and `edge_data`</span>
+<span class='co'># arguments</span>
 
-<span class='co'># Attributes can be specified in extra</span>
-<span class='co'># arguments and these are applied in order;</span>
-<span class='co'># Usually these attributes are applied to</span>
-<span class='co'># nodes (e.g., `type` is a node attribute)</span>
-<span class='co'># but the `rel` attribute will apply to the</span>
-<span class='co'># edges</span>
+<span class='fu'>set.seed</span>(<span class='fl'>23</span>)
+
 <span class='no'>graph_w_attrs</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>add_prism</span>(
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"one"</span>, <span class='st'>"two"</span>,
-              <span class='st'>"three"</span>, <span class='st'>"four"</span>,
-              <span class='st'>"five"</span>, <span class='st'>"six"</span>),
-    <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"a"</span>,
-             <span class='st'>"b"</span>, <span class='st'>"b"</span>,
-             <span class='st'>"c"</span>, <span class='st'>"c"</span>),
-    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1.2</span>, <span class='fl'>8.4</span>,
-              <span class='fl'>3.4</span>, <span class='fl'>5.2</span>,
-              <span class='fl'>6.1</span>, <span class='fl'>2.6</span>),
-    <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"prism"</span>)
+    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='st'>"one"</span>, <span class='st'>"two"</span>,
+      <span class='st'>"three"</span>, <span class='st'>"four"</span>,
+      <span class='st'>"five"</span>, <span class='st'>"six"</span>),
+    <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='st'>"a"</span>, <span class='st'>"a"</span>,
+      <span class='st'>"b"</span>, <span class='st'>"b"</span>,
+      <span class='st'>"c"</span>, <span class='st'>"c"</span>),
+    <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"A"</span>,
+    <span class='kw'>node_aes</span> <span class='kw'>=</span> <span class='fu'><a href='node_aes.html'>node_aes</a></span>(
+      <span class='kw'>fillcolor</span> <span class='kw'>=</span> <span class='st'>"steelblue"</span>),
+    <span class='kw'>edge_aes</span> <span class='kw'>=</span> <span class='fu'><a href='edge_aes.html'>edge_aes</a></span>(
+      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+      <span class='kw'>penwidth</span> <span class='kw'>=</span> <span class='fl'>1.2</span>),
+    <span class='kw'>node_data</span> <span class='kw'>=</span> <span class='fu'><a href='node_data.html'>node_data</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+        <span class='fl'>1.6</span>, <span class='fl'>2.8</span>, <span class='fl'>3.4</span>,
+        <span class='fl'>3.2</span>, <span class='fl'>5.3</span>, <span class='fl'>6.2</span>)),
+    <span class='kw'>edge_data</span> <span class='kw'>=</span> <span class='fu'><a href='edge_data.html'>edge_data</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span>
+        <span class='fu'>rnorm</span>(
+          <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>9</span>,
+          <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>5.0</span>,
+          <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1.0</span>)))
 
 <span class='co'># Get the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph_w_attrs</span>)
-<span class='co'>#&gt;   id type label value</span>
-<span class='co'>#&gt; 1  1    a   one   1.2</span>
-<span class='co'>#&gt; 2  2    a   two   8.4</span>
-<span class='co'>#&gt; 3  3    b three   3.4</span>
-<span class='co'>#&gt; 4  4    b  four   5.2</span>
-<span class='co'>#&gt; 5  5    c  five   6.1</span>
-<span class='co'>#&gt; 6  6    c   six   2.6</span>
-
+<span class='no'>graph_w_attrs</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label fillcolor value
+#&gt; 1  1    a   one steelblue   1.6
+#&gt; 2  2    a   two steelblue   2.8
+#&gt; 3  3    b three steelblue   3.4
+#&gt; 4  4    b  four steelblue   3.2
+#&gt; 5  5    c  five steelblue   5.3
+#&gt; 6  6    c   six steelblue   6.2</div><div class='input'>
 <span class='co'># Get the graph's edge data frame</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph_w_attrs</span>)
-<span class='co'>#&gt;   id from to   rel</span>
-<span class='co'>#&gt; 1  1    1  2 prism</span>
-<span class='co'>#&gt; 2  2    2  3 prism</span>
-<span class='co'>#&gt; 3  3    3  1 prism</span>
-<span class='co'>#&gt; 4  4    4  5 prism</span>
-<span class='co'>#&gt; 5  5    5  6 prism</span>
-<span class='co'>#&gt; 6  6    6  4 prism</span>
-<span class='co'>#&gt; 7  7    1  4 prism</span>
-<span class='co'>#&gt; 8  8    2  5 prism</span>
-<span class='co'>#&gt; 9  9    3  6 prism</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph_w_attrs</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel penwidth color    value
+#&gt; 1  1    1  2   A      1.2   red 5.996605
+#&gt; 2  2    2  3   A      1.2   red 6.107490
+#&gt; 3  3    3  1   A      1.2   red 4.721914
+#&gt; 4  4    4  5   A      1.2   red 6.019205
+#&gt; 5  5    5  6   A      1.2   red 5.045437
+#&gt; 6  6    6  4   A      1.2   red 6.575780
+#&gt; 7  7    1  4   A      1.2   red 5.218288
+#&gt; 8  8    2  5   A      1.2   red 3.953465
+#&gt; 9  9    3  6   A      1.2   red 4.711311</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -231,7 +276,7 @@ vectors.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

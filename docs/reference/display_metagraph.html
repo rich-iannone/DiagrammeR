@@ -119,31 +119,33 @@ the function yields an error.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a randomized property graph with 1000</span>
-<span class='co'># nodes and 1350 edges</span>
+<span class='co'># Create a randomized property</span>
+<span class='co'># graph with 1000 nodes and 1350 edges</span>
 <span class='no'>property_graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>1350</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>1350</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a></span>(
     <span class='kw'>expressions</span> <span class='kw'>=</span> <span class='st'>"deg &gt;= 3"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs_ws.html'>set_node_attrs_ws</a></span>(
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"type"</span>,
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>type</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"a"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a></span>(
     <span class='kw'>expressions</span> <span class='kw'>=</span> <span class='st'>"deg &lt; 3"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs_ws.html'>set_node_attrs_ws</a></span>(
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"type"</span>,
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>type</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"b"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a></span>(
     <span class='kw'>expressions</span> <span class='kw'>=</span> <span class='st'>"deg == 0"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs_ws.html'>set_node_attrs_ws</a></span>(
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"type"</span>,
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>type</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"c"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attr_to_display.html'>set_node_attr_to_display</a></span>(
-    <span class='kw'>attr</span> <span class='kw'>=</span> <span class='st'>"type"</span>) <span class='kw'>%&gt;%</span>
+    <span class='kw'>attr</span> <span class='kw'>=</span> <span class='no'>type</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a></span>(
     <span class='kw'>nodes</span> <span class='kw'>=</span>
       <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
@@ -151,16 +153,16 @@ the function yields an error.</p></td>
         <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>0.15</span> * <span class='fu'>length</span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
           <span class='fu'>floor</span>())) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_edge_attrs_ws.html'>set_edge_attrs_ws</a></span>(
-    <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='st'>"rel"</span>,
+    <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>rel</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"r_1"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='invert_selection.html'>invert_selection</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_edge_attrs_ws.html'>set_edge_attrs_ws</a></span>(
-    <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='st'>"rel"</span>,
+    <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>rel</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"r_2"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='copy_edge_attrs.html'>copy_edge_attrs</a></span>(
-    <span class='kw'>edge_attr_from</span> <span class='kw'>=</span> <span class='st'>"rel"</span>,
-    <span class='kw'>edge_attr_to</span> <span class='kw'>=</span> <span class='st'>"label"</span>) <span class='kw'>%&gt;%</span>
+    <span class='kw'>edge_attr_from</span> <span class='kw'>=</span> <span class='no'>rel</span>,
+    <span class='kw'>edge_attr_to</span> <span class='kw'>=</span> <span class='no'>label</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_global_graph_attrs.html'>add_global_graph_attrs</a></span>(
     <span class='kw'>attr</span> <span class='kw'>=</span> <span class='st'>"fontname"</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"Helvetica"</span>,
@@ -174,7 +176,8 @@ the function yields an error.</p></td>
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>10</span>,
     <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='st'>"edge"</span>)
 
-<span class='co'># Display this graph's metagraph, or, underlying</span>
+<span class='co'># Display this graph's</span>
+<span class='co'># metagraph, or, the underlying</span>
 <span class='co'># graph model for a property graph</span>
 <span class='fu'>display_metagraph</span>(<span class='no'>property_graph</span>)
 <span class='co'># }</span></pre>
@@ -192,7 +195,7 @@ the function yields an error.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

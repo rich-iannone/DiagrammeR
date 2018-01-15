@@ -117,8 +117,7 @@ using <code>create_node_df</code>.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create an empty graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_graph.html'>create_graph</a></span>()
 
 <span class='co'># Create a node data frame (ndf)</span>
@@ -126,47 +125,62 @@ using <code>create_node_df</code>.</p></td>
   <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
     <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"basic"</span>,
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"red"</span>, <span class='st'>"green"</span>, <span class='st'>"grey"</span>, <span class='st'>"blue"</span>),
-    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3.5</span>, <span class='fl'>2.6</span>, <span class='fl'>9.4</span>, <span class='fl'>2.7</span>))
+    <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='st'>"red"</span>, <span class='st'>"green"</span>,
+      <span class='st'>"grey"</span>, <span class='st'>"blue"</span>),
+    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='fl'>3.5</span>, <span class='fl'>2.6</span>,
+      <span class='fl'>9.4</span>, <span class='fl'>2.7</span>))
 
-<span class='co'># Add the node data frame to the graph object to</span>
-<span class='co'># create a graph with nodes</span>
+<span class='co'># Add the node data frame to</span>
+<span class='co'># the graph object to create</span>
+<span class='co'># a graph with nodes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>add_node_df</span>(<span class='no'>graph</span>, <span class='kw'>node_df</span> <span class='kw'>=</span> <span class='no'>ndf</span>)
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>add_node_df</span>(
+    <span class='kw'>node_df</span> <span class='kw'>=</span> <span class='no'>ndf</span>)
 
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id  type label color value</span>
-<span class='co'>#&gt; 1  1 basic  &lt;NA&gt;   red   3.5</span>
-<span class='co'>#&gt; 2  2 basic  &lt;NA&gt; green   2.6</span>
-<span class='co'>#&gt; 3  3 basic  &lt;NA&gt;  grey   9.4</span>
-<span class='co'>#&gt; 4  4 basic  &lt;NA&gt;  blue   2.7</span>
-
+<span class='co'># Inspect the graph's ndf</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id  type label color value
+#&gt; 1  1 basic  &lt;NA&gt;   red   3.5
+#&gt; 2  2 basic  &lt;NA&gt; green   2.6
+#&gt; 3  3 basic  &lt;NA&gt;  grey   9.4
+#&gt; 4  4 basic  &lt;NA&gt;  blue   2.7</div><div class='input'>
 <span class='co'># Create another node data frame</span>
 <span class='no'>ndf_2</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
     <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"basic"</span>,
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"white"</span>, <span class='st'>"brown"</span>, <span class='st'>"aqua"</span>, <span class='st'>"pink"</span>),
-    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1.6</span>, <span class='fl'>6.4</span>, <span class='fl'>0.8</span>, <span class='fl'>4.2</span>))
+    <span class='kw'>color</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='st'>"white"</span>, <span class='st'>"brown"</span>,
+      <span class='st'>"aqua"</span>, <span class='st'>"pink"</span>),
+    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='fl'>1.6</span>, <span class='fl'>6.4</span>,
+      <span class='fl'>0.8</span>, <span class='fl'>4.2</span>))
 
-<span class='co'># Add the second node data frame to the graph object</span>
-<span class='co'># to add more nodes with attributes to the graph</span>
+<span class='co'># Add the second node data</span>
+<span class='co'># frame to the graph object</span>
+<span class='co'># to add more nodes with</span>
+<span class='co'># attributes to the graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>add_node_df</span>(<span class='no'>graph</span>, <span class='kw'>node_df</span> <span class='kw'>=</span> <span class='no'>ndf_2</span>)
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>add_node_df</span>(
+    <span class='kw'>node_df</span> <span class='kw'>=</span> <span class='no'>ndf_2</span>)
 
-<span class='co'># View the graph's internal node data frame using</span>
-<span class='co'># the `get_node_df()` function</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id  type label color value</span>
-<span class='co'>#&gt; 1  1 basic  &lt;NA&gt;   red   3.5</span>
-<span class='co'>#&gt; 2  2 basic  &lt;NA&gt; green   2.6</span>
-<span class='co'>#&gt; 3  3 basic  &lt;NA&gt;  grey   9.4</span>
-<span class='co'>#&gt; 4  4 basic  &lt;NA&gt;  blue   2.7</span>
-<span class='co'>#&gt; 5  5 basic  &lt;NA&gt; white   1.6</span>
-<span class='co'>#&gt; 6  6 basic  &lt;NA&gt; brown   6.4</span>
-<span class='co'>#&gt; 7  7 basic  &lt;NA&gt;  aqua   0.8</span>
-<span class='co'>#&gt; 8  8 basic  &lt;NA&gt;  pink   4.2</span>
-<span class='co'># }</span></pre>
+<span class='co'># View the graph's internal</span>
+<span class='co'># node data frame using the</span>
+<span class='co'># `get_node_df()` function</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id  type label color value
+#&gt; 1  1 basic  &lt;NA&gt;   red   3.5
+#&gt; 2  2 basic  &lt;NA&gt; green   2.6
+#&gt; 3  3 basic  &lt;NA&gt;  grey   9.4
+#&gt; 4  4 basic  &lt;NA&gt;  blue   2.7
+#&gt; 5  5 basic  &lt;NA&gt; white   1.6
+#&gt; 6  6 basic  &lt;NA&gt; brown   6.4
+#&gt; 7  7 basic  &lt;NA&gt;  aqua   0.8
+#&gt; 8  8 basic  &lt;NA&gt;  pink   4.2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -183,7 +197,7 @@ using <code>create_node_df</code>.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

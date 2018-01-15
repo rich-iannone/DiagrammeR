@@ -122,28 +122,28 @@ each of the nodes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>15</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># Get the alpha centrality scores for nodes</span>
-<span class='co'># in the graph</span>
-<span class='fu'>get_pagerank</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;    id   pagerank</span>
-<span class='co'>#&gt; 1   1 0.04608804</span>
-<span class='co'>#&gt; 2   2 0.04608804</span>
-<span class='co'>#&gt; 3   3 0.05392301</span>
-<span class='co'>#&gt; 4   4 0.04608804</span>
-<span class='co'>#&gt; 5   5 0.07677500</span>
-<span class='co'>#&gt; 6   6 0.11684759</span>
-<span class='co'>#&gt; 7   7 0.07899491</span>
-<span class='co'>#&gt; 8   8 0.08898857</span>
-<span class='co'>#&gt; 9   9 0.16945368</span>
-<span class='co'>#&gt; 10 10 0.27675311</span>
-
+<span class='co'># Get the PageRank scores</span>
+<span class='co'># for all nodes in the graph</span>
+<span class='fu'>get_pagerank</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id pagerank
+#&gt; 1   1   0.1302
+#&gt; 2   2   0.1037
+#&gt; 3   3   0.0450
+#&gt; 4   4   0.0450
+#&gt; 5   5   0.1501
+#&gt; 6   6   0.0578
+#&gt; 7   7   0.0871
+#&gt; 8   8   0.1780
+#&gt; 9   9   0.0744
+#&gt; 10 10   0.1287</div><div class='input'>
 <span class='co'># Colorize nodes according to their</span>
 <span class='co'># PageRank scores</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -153,8 +153,7 @@ each of the nodes.</p>
   <span class='fu'><a href='colorize_node_attrs.html'>colorize_node_attrs</a></span>(
     <span class='kw'>node_attr_from</span> <span class='kw'>=</span> <span class='no'>pagerank</span>,
     <span class='kw'>node_attr_to</span> <span class='kw'>=</span> <span class='no'>fillcolor</span>,
-    <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"RdYlGn"</span>)
-<span class='co'># }</span></pre>
+    <span class='kw'>palette</span> <span class='kw'>=</span> <span class='st'>"RdYlGn"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -171,7 +170,7 @@ each of the nodes.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

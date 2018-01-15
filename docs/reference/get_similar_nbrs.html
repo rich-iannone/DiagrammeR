@@ -144,54 +144,60 @@ neighboring node similarity to the starting node.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Getting similar neighbors can be done through</span>
-<span class='co'># numerical comparisons; start with creating a</span>
-<span class='co'># random, directed graph with 18 nodes and 22 edges</span>
+    <pre class="examples"><div class='input'><span class='co'># Getting similar neighbors can</span>
+<span class='co'># be done through numerical comparisons;</span>
+<span class='co'># start by creating a random, directed</span>
+<span class='co'># graph with 18 nodes and 22 edges</span>
+<span class='co'># using the `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>18</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
-    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>18</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>25</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(
+      <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>(<span class='no'>.</span>),
+      <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+      <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span> <span class='fu'>round</span>(<span class='fl'>0</span>))
 
-<span class='co'># The `create_random_graph()` function randomly</span>
-<span class='co'># assigns numerical values to all nodes (as the</span>
-<span class='co'># `value` attribute) from 0 to 10 and to 1 decimal</span>
-<span class='co'># place. By starting with node (`8`), we can test</span>
-<span class='co'># whether any nodes adjacent and beyond are</span>
+<span class='co'># Starting with node `10`, we</span>
+<span class='co'># can test whether any nodes</span>
+<span class='co'># adjacent and beyond are</span>
 <span class='co'># numerically equivalent in `value`</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>get_similar_nbrs</span>(
-    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"value"</span>)
-<span class='co'>#&gt; [1] 7 10</span>
-
-<span class='co'># We can also set a tolerance for ascribing</span>
-<span class='co'># similarly by using either the `tol_abs` or</span>
-<span class='co'># `tol_pct` arguments (the first applies absolute</span>
-<span class='co'># lower and upper bounds from the value in the</span>
-<span class='co'># starting node and the latter uses a percentage</span>
-<span class='co'># difference to do the same); try setting `tol_abs`</span>
-<span class='co'># with a fairly large range to determine if several</span>
-<span class='co'># nodes can be selected</span>
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>)</div><div class='output co'>#&gt; [1]  2 14</div><div class='input'>
+<span class='co'># We can also set a tolerance</span>
+<span class='co'># for ascribing similarly by using</span>
+<span class='co'># either the `tol_abs` or `tol_pct`</span>
+<span class='co'># arguments (the first applies absolute</span>
+<span class='co'># lower and upper bounds from the</span>
+<span class='co'># value in the starting node and the</span>
+<span class='co'># latter uses a percentage difference</span>
+<span class='co'># to do the same); try setting `tol_abs`</span>
+<span class='co'># with a fairly large range to</span>
+<span class='co'># determine if several nodes can be</span>
+<span class='co'># selected</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>get_similar_nbrs</span>(
-    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-    <span class='kw'>tol_abs</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>3</span>, <span class='fl'>3</span>))
-<span class='co'>#&gt; [1]  7  9 10 11 12</span>
-
-<span class='co'># That resulted in a fairly large set of 5</span>
-<span class='co'># neigboring nodes; For sake of example, setting the</span>
-<span class='co'># range to be very large will effectively return all</span>
-<span class='co'># nodes in the graph except for the starting node</span>
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
+    <span class='kw'>tol_abs</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>1</span>))</div><div class='output co'>#&gt; [1]  1  2  9 14</div><div class='input'>
+<span class='co'># That resulted in a fairly large</span>
+<span class='co'># set of 4 neigboring nodes; for</span>
+<span class='co'># sake of example, setting the range</span>
+<span class='co'># to be very large will effectively</span>
+<span class='co'># return all nodes in the graph</span>
+<span class='co'># except for the starting node</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>get_similar_nbrs</span>(
-    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
     <span class='kw'>tol_abs</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>10</span>)) <span class='kw'>%&gt;%</span>
-    <span class='fu'>length</span>()
-<span class='co'>#&gt; [1] 13</span>
-<span class='co'># }</span></pre>
+    <span class='fu'>length</span>()</div><div class='output co'>#&gt; [1] 17</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -208,7 +214,7 @@ neighboring node similarity to the starting node.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

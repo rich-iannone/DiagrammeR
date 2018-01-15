@@ -115,8 +115,7 @@ added to the cache will be returned.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Set a seed</span>
+    <pre class="examples"><div class='input'><span class='co'># Set a seed</span>
 <span class='fu'>set.seed</span>(<span class='fl'>23</span>)
 
 <span class='co'># Create a graph with 5 nodes and 5 edges</span>
@@ -124,8 +123,11 @@ added to the cache will be returned.</p></td>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fu'><a href='node_count.html'>node_count</a></span>(<span class='no'>.</span>), <span class='fl'>8</span>, <span class='fl'>2</span>)) <span class='kw'>%&gt;%</span>
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(
+      <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>(<span class='no'>.</span>),
+      <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+      <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>2</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_edges_w_string.html'>add_edges_w_string</a></span>(
     <span class='kw'>edges</span> <span class='kw'>=</span> <span class='st'>"1-&gt;2 1-&gt;3 2-&gt;4 2-&gt;5 3-&gt;2"</span>)
 
@@ -133,16 +135,16 @@ added to the cache will be returned.</p></td>
 <span class='co'># as a numeric vector</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='cache_node_attrs.html'>cache_node_attrs</a></span>(
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
-    <span class='kw'>mode</span> <span class='kw'>=</span> <span class='st'>"numeric"</span>)
+  <span class='fu'><a href='set_cache.html'>set_cache</a></span>(
+    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"value"</span>,
+    <span class='kw'>to_cache</span> <span class='kw'>=</span> <span class='fu'><a href='get_node_attrs.html'>get_node_attrs</a></span>(
+      <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>.</span>,
+      <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>))
 
 <span class='co'># Return the cached vector</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_cache</span>()
-<span class='co'>#&gt; [1] 9.993210 10.214981  7.443827</span>
-<span class='co'>#&gt; [4] 10.038411  8.090874</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>get_cache</span>()</div><div class='output co'>#&gt;         1         2         3         4         5 
+#&gt;  9.993210 10.214981  7.443827 10.038411  8.090874 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -159,7 +161,7 @@ added to the cache will be returned.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

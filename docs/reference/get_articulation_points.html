@@ -109,33 +109,34 @@ identified as articulation points.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph and make every node</span>
-<span class='co'># shape a `square`</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>12</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"shape"</span>,
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>shape</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"square"</span>)
 
-<span class='co'># Get the articulation points in the graph (i.e.,</span>
-<span class='co'># those nodes that if any were to be removed, the</span>
-<span class='co'># graph would become disconnected)</span>
-<span class='fu'>get_articulation_points</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1]  9 10 12 19 22 26 30</span>
-
-<span class='co'># For the articulation points, change the node</span>
-<span class='co'># shape to a `circle`</span>
+<span class='co'># Get the articulation points</span>
+<span class='co'># in the graph (i.e., those</span>
+<span class='co'># nodes that if any were to be</span>
+<span class='co'># removed, the graph would</span>
+<span class='co'># become disconnected)</span>
+<span class='fu'>get_articulation_points</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 2 4</div><div class='input'>
+<span class='co'># For the articulation points,</span>
+<span class='co'># change the node shape to</span>
+<span class='co'># a `circle`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'>get_articulation_points</span>(<span class='no'>.</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs_ws.html'>set_node_attrs_ws</a></span>(
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='st'>"shape"</span>,
-    <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"circle"</span>)
-<span class='co'># }</span></pre>
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>shape</span>,
+    <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"circle"</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -152,7 +153,7 @@ identified as articulation points.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

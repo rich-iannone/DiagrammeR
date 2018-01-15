@@ -164,8 +164,7 @@ coordinates of the <code>layout</code></p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with unique labels and</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with unique labels and</span>
 <span class='co'># several node `type` groupings</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
@@ -212,16 +211,14 @@ coordinates of the <code>layout</code></p></td>
 <span class='co'># Show the graph's node data frame</span>
 <span class='co'># to confirm that `x` and `y` values</span>
 <span class='co'># were added to each of the nodes</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label x y</span>
-<span class='co'>#&gt; 1  1    a     a 0 8</span>
-<span class='co'>#&gt; 2  2    a     b 0 6</span>
-<span class='co'>#&gt; 3  3    b     c 5 4</span>
-<span class='co'>#&gt; 4  4    b     d 4 4</span>
-<span class='co'>#&gt; 5  5    b     e 3 4</span>
-<span class='co'>#&gt; 6  6    c     f 8 0</span>
-<span class='co'>#&gt; 7  7    c     g 8 2</span>
-<span class='co'># }</span></pre>
+<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label x y
+#&gt; 1  1    a     a 0 8
+#&gt; 2  2    a     b 0 6
+#&gt; 3  3    b     c 5 4
+#&gt; 4  4    b     d 4 4
+#&gt; 5  5    b     e 3 4
+#&gt; 6  6    c     f 8 0
+#&gt; 7  7    c     g 8 2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -238,7 +235,7 @@ coordinates of the <code>layout</code></p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

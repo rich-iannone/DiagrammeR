@@ -109,41 +109,23 @@ connected graph.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># This graph, created using</span>
-<span class='co'># `create_random_graph()` is almost fully</span>
-<span class='co'># connected but there is an isolated node</span>
-<span class='co'># with no edges</span>
-<span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>40</span>,
-    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
-
-<span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>is_graph_connected</span>()
-<span class='co'>#&gt; [1] FALSE</span>
-
-<span class='co'># The following graph is fully connected</span>
-<span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
-
-<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>is_graph_connected</span>()
-<span class='co'>#&gt; [1] TRUE</span>
-
-<span class='co'># Modify `graph_2` so that there are two</span>
-<span class='co'># clusters of nodes (i.e., making the graph</span>
-<span class='co'># not connected); this is easily done by</span>
-<span class='co'># removing one of the nodes that is an</span>
-<span class='co'># articulation point</span>
-<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='delete_node.html'>delete_node</a></span>(
-    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fu'><a href='get_articulation_points.html'>get_articulation_points</a></span>(<span class='no'>.</span>)[<span class='fl'>1</span>]) <span class='kw'>%&gt;%</span>
-  <span class='fu'>is_graph_connected</span>()
-<span class='co'>#&gt; [1] FALSE</span>
-<span class='co'># }</span></pre>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function; this</span>
+<span class='co'># graph is not connected</span>
+<span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_graph_connected</span>()</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='co'># Create another random graph;</span>
+<span class='co'># this graph is connected</span>
+<span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_graph_connected</span>()</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -160,7 +142,7 @@ connected graph.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

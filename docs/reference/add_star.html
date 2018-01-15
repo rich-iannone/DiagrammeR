@@ -87,11 +87,13 @@
     </div>
 
     
-    <p>With a graph object of class
-<code>dgr_graph</code>, add a node star to the graph.</p>
+    <p>With a graph object of
+class <code>dgr_graph</code>, add a node
+star to the graph.</p>
     
 
-    <pre class="usage"><span class='fu'>add_star</span>(<span class='no'>graph</span>, <span class='no'>n</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>add_star</span>(<span class='no'>graph</span>, <span class='no'>n</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>node_aes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_aes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -103,44 +105,90 @@
     </tr>
     <tr>
       <th>n</th>
-      <td><p>the number of nodes comprising the star.
-The first node will be the center of the star.</p></td>
+      <td><p>the number of nodes
+comprising the star. The first node
+will be the center of the star.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional string that describes the
-entity type for the nodes to be added.</p></td>
+      <td><p>an optional string
+that describes the entity type for
+the nodes to be added.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>either a vector object of length
-<code>n</code> that provides optional labels for the new
-nodes, or, a boolean value where setting to
-<code>TRUE</code> ascribes node IDs to the label and
-<code>FALSE</code> yields a blank label.</p></td>
+      <td><p>either a vector object
+of length <code>n</code> that provides
+optional labels for the new nodes,
+or, a boolean value where setting to
+<code>TRUE</code> ascribes node IDs to the
+label and <code>FALSE</code> yields a
+blank label.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional string for providing a
-relationship label to all new edges created in the
-node star.</p></td>
+      <td><p>an optional string for
+providing a relationship label to
+all new edges created in the node
+star.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>optional node attributes supplied as
-vectors.</p></td>
+      <th>node_aes</th>
+      <td><p>an optional list
+of named vectors comprising node
+aesthetic attributes. The helper
+function <code><a href='node_aes.html'>node_aes()</a></code> is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted node aesthetic
+attributes (e.g., <code>shape</code>,
+<code>style</code>, <code>color</code>,
+<code>fillcolor</code>).</p></td>
+    </tr>
+    <tr>
+      <th>edge_aes</th>
+      <td><p>an optional list
+of named vectors comprising edge
+aesthetic attributes. The helper
+function <code><a href='edge_aes.html'>edge_aes()</a></code> is
+strongly recommended for use here
+as it contains arguments for each
+of the accepted edge aesthetic
+attributes (e.g., <code>shape</code>,
+<code>style</code>, <code>penwidth</code>,
+<code>color</code>).</p></td>
+    </tr>
+    <tr>
+      <th>node_data</th>
+      <td><p>an optional list
+of named vectors comprising node
+data attributes. The helper
+function <code><a href='node_data.html'>node_data()</a></code> is
+strongly recommended for use here
+as it helps bind data specifically
+to the created nodes.</p></td>
+    </tr>
+    <tr>
+      <th>edge_data</th>
+      <td><p>an optional list
+of named vectors comprising edge
+data attributes. The helper function
+<code><a href='edge_data.html'>edge_data()</a></code> is strongly
+recommended for use here as it helps
+bind data specifically to the
+created edges.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a new graph and add 2 stars of</span>
-<span class='co'># varying numbers of nodes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a new graph and add 2</span>
+<span class='co'># stars of varying numbers of nodes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>add_star</span>(
@@ -151,58 +199,63 @@ vectors.</p></td>
     <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"five_star"</span>)
 
 <span class='co'># Get node information from this graph</span>
-<span class='fu'><a href='node_info.html'>node_info</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id      type label deg indeg outdeg loops</span>
-<span class='co'>#&gt; 1  1 four_star     1   3     0      3     0</span>
-<span class='co'>#&gt; 2  2 four_star     2   1     1      0     0</span>
-<span class='co'>#&gt; 3  3 four_star     3   1     1      0     0</span>
-<span class='co'>#&gt; 4  4 four_star     4   1     1      0     0</span>
-<span class='co'>#&gt; 5  5 five_star     1   4     0      4     0</span>
-<span class='co'>#&gt; 6  6 five_star     2   1     1      0     0</span>
-<span class='co'>#&gt; 7  7 five_star     3   1     1      0     0</span>
-<span class='co'>#&gt; 8  8 five_star     4   1     1      0     0</span>
-<span class='co'>#&gt; 9  9 five_star     5   1     1      0     0</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_info.html'>get_node_info</a></span>()</div><div class='output co'>#&gt;   id      type label deg indeg outdeg loops
+#&gt; 1  1 four_star     1   3     0      3     0
+#&gt; 2  2 four_star     2   1     1      0     0
+#&gt; 3  3 four_star     3   1     1      0     0
+#&gt; 4  4 four_star     4   1     1      0     0
+#&gt; 5  5 five_star     5   4     0      4     0
+#&gt; 6  6 five_star     6   1     1      0     0
+#&gt; 7  7 five_star     7   1     1      0     0
+#&gt; 8  8 five_star     8   1     1      0     0
+#&gt; 9  9 five_star     9   1     1      0     0</div><div class='input'>
+<span class='co'># Node and edge aesthetic and data</span>
+<span class='co'># attributes can be specified in</span>
+<span class='co'># the `node_aes`, `edge_aes`,</span>
+<span class='co'># `node_data`, and `edge_data`</span>
+<span class='co'># arguments</span>
 
-<span class='co'># Attributes can be specified in extra</span>
-<span class='co'># arguments and these are applied in order;</span>
-<span class='co'># Usually these attributes are applied to</span>
-<span class='co'># nodes (e.g., `type` is a node attribute)</span>
-<span class='co'># but the `rel` attribute will apply to the</span>
-<span class='co'># edges</span>
+<span class='fu'>set.seed</span>(<span class='fl'>23</span>)
+
 <span class='no'>graph_w_attrs</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>add_star</span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>6</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"one"</span>, <span class='st'>"two"</span>,
-              <span class='st'>"three"</span>, <span class='st'>"four"</span>,
-              <span class='st'>"five"</span>, <span class='st'>"six"</span>),
-    <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"a"</span>,
-             <span class='st'>"b"</span>, <span class='st'>"b"</span>,
-             <span class='st'>"c"</span>, <span class='st'>"c"</span>),
-    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1.2</span>, <span class='fl'>8.4</span>,
-              <span class='fl'>3.4</span>, <span class='fl'>5.2</span>,
-              <span class='fl'>6.1</span>, <span class='fl'>2.6</span>),
-    <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"star"</span>)
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='st'>"one"</span>, <span class='st'>"two"</span>,
+      <span class='st'>"three"</span>, <span class='st'>"four"</span>),
+    <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='st'>"a"</span>, <span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"b"</span>),
+    <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"A"</span>,
+    <span class='kw'>node_aes</span> <span class='kw'>=</span> <span class='fu'><a href='node_aes.html'>node_aes</a></span>(
+      <span class='kw'>fillcolor</span> <span class='kw'>=</span> <span class='st'>"steelblue"</span>),
+    <span class='kw'>edge_aes</span> <span class='kw'>=</span> <span class='fu'><a href='edge_aes.html'>edge_aes</a></span>(
+      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"red"</span>,
+      <span class='kw'>penwidth</span> <span class='kw'>=</span> <span class='fl'>1.2</span>),
+    <span class='kw'>node_data</span> <span class='kw'>=</span> <span class='fu'><a href='node_data.html'>node_data</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+        <span class='fl'>1.6</span>, <span class='fl'>2.8</span>, <span class='fl'>3.4</span>, <span class='fl'>8.3</span>)),
+    <span class='kw'>edge_data</span> <span class='kw'>=</span> <span class='fu'><a href='edge_data.html'>edge_data</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span>
+        <span class='fu'>rnorm</span>(
+          <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+          <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>5.0</span>,
+          <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1.0</span>)))
 
 <span class='co'># Get the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph_w_attrs</span>)
-<span class='co'>#&gt;   id type label value</span>
-<span class='co'>#&gt; 1  1    a   one   1.2</span>
-<span class='co'>#&gt; 2  2    a   two   8.4</span>
-<span class='co'>#&gt; 3  3    b three   3.4</span>
-<span class='co'>#&gt; 4  4    b  four   5.2</span>
-<span class='co'>#&gt; 5  5    c  five   6.1</span>
-<span class='co'>#&gt; 6  6    c   six   2.6</span>
-
+<span class='no'>graph_w_attrs</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label fillcolor value
+#&gt; 1  1    a   one steelblue   1.6
+#&gt; 2  2    a   two steelblue   2.8
+#&gt; 3  3    b three steelblue   3.4
+#&gt; 4  4    b  four steelblue   8.3</div><div class='input'>
 <span class='co'># Get the graph's edge data frame</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph_w_attrs</span>)
-<span class='co'>#&gt;   id from to  rel</span>
-<span class='co'>#&gt; 1  1    1  2 star</span>
-<span class='co'>#&gt; 2  2    1  3 star</span>
-<span class='co'>#&gt; 3  3    1  4 star</span>
-<span class='co'>#&gt; 4  4    1  5 star</span>
-<span class='co'>#&gt; 5  5    1  6 star</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph_w_attrs</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel penwidth color    value
+#&gt; 1  1    1  2   A      1.2   red 5.996605
+#&gt; 2  2    1  3   A      1.2   red 6.107490
+#&gt; 3  3    1  4   A      1.2   red 4.721914</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -219,7 +272,7 @@ vectors.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

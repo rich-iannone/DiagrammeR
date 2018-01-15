@@ -87,9 +87,10 @@
     </div>
 
     
-    <p>With a graph object of class
-<code>dgr_graph</code>, add one or more edges to the graph
-using a text string.</p>
+    <p>With a graph object
+of class <code>dgr_graph</code>, add one
+or more edges to the graph using a
+text string.</p>
     
 
     <pre class="usage"><span class='fu'>add_edges_w_string</span>(<span class='no'>graph</span>, <span class='no'>edges</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
@@ -99,43 +100,49 @@ using a text string.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of
+class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edges</th>
-      <td><p>a single-length vector with a character
-string specifying the edges. For a directed graph,
-the string object should be formatted as a series of
-node ID values as <code>[node_ID_1]-&gt;[node_ID_2]</code>
-separated by a one or more space characters. For
-undirected graphs, <code>--</code> should replace
-<code>-&gt;</code>. Line breaks in the vector won't cause an
-error.</p></td>
+      <td><p>a single-length vector
+with a character string specifying
+the edges. For a directed graph, the
+string object should be formatted as
+a series of node ID values as
+<code>[node_ID_1]-&gt;[node_ID_2]</code>
+separated by a one or more space
+characters. For undirected graphs,
+<code>--</code> should replace <code>-&gt;</code>.
+Line breaks in the vector won't cause
+an error.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional vector specifying the
-relationship between the connected nodes.</p></td>
+      <td><p>an optional vector
+specifying the relationship between
+the connected nodes.</p></td>
     </tr>
     <tr>
       <th>use_labels</th>
-      <td><p>an option to use node <code>label</code>
-values in the <code>edges</code> string to define node
-connections. Note that this is only possible if all
-nodes have distinct <code>label</code> values set and
-none exist as an empty string.</p></td>
+      <td><p>an option to
+use node <code>label</code> values in the
+<code>edges</code> string to define node
+connections. Note that this is
+only possible if all nodes have
+distinct <code>label</code> values set
+and none exist as an empty string.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with 4 nodes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with 4 nodes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"one"</span>) <span class='kw'>%&gt;%</span>
@@ -143,26 +150,28 @@ none exist as an empty string.</p></td>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"three"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"four"</span>)
 
-<span class='co'># Add edges between nodes using a</span>
-<span class='co'># character string with node ID values</span>
+<span class='co'># Add edges between nodes using</span>
+<span class='co'># a character string with node</span>
+<span class='co'># ID values</span>
 <span class='no'>graph_node_id</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_edges_w_string</span>(
     <span class='kw'>edges</span> <span class='kw'>=</span> <span class='st'>"1-&gt;2 1-&gt;3 2-&gt;4 2-&gt;3"</span>)
 
-<span class='co'># Show the graph's internal edge data frame</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph_node_id</span>)
-<span class='co'>#&gt;   id from to  rel</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;</span>
-<span class='co'>#&gt; 2  2    1  3 &lt;NA&gt;</span>
-<span class='co'>#&gt; 3  3    2  4 &lt;NA&gt;</span>
-<span class='co'>#&gt; 4  4    2  3 &lt;NA&gt;</span>
-
-<span class='co'># Add edges between nodes using a</span>
-<span class='co'># character string with node label values</span>
-<span class='co'># and setting `use_labels = TRUE`; note</span>
-<span class='co'># that all nodes must have unique `label`</span>
-<span class='co'># values to use this option</span>
+<span class='co'># Show the graph's internal</span>
+<span class='co'># edge data frame</span>
+<span class='no'>graph_node_id</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
+#&gt; 1  1    1  2 &lt;NA&gt;
+#&gt; 2  2    1  3 &lt;NA&gt;
+#&gt; 3  3    2  4 &lt;NA&gt;
+#&gt; 4  4    2  3 &lt;NA&gt;</div><div class='input'>
+<span class='co'># Add edges between nodes using</span>
+<span class='co'># a character string with node</span>
+<span class='co'># label values and setting</span>
+<span class='co'># `use_labels = TRUE`; note that</span>
+<span class='co'># all nodes must have unique</span>
+<span class='co'># `label` values to use this</span>
 <span class='no'>graph_node_label</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_edges_w_string</span>(
@@ -171,15 +180,15 @@ none exist as an empty string.</p></td>
        two-&gt;four two-&gt;three"</span>,
     <span class='kw'>use_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='co'># Show the graph's internal edge data frame</span>
-<span class='co'># (it's the same as before)</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph_node_label</span>)
-<span class='co'>#&gt;   id from to  rel</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;</span>
-<span class='co'>#&gt; 2  2    1  3 &lt;NA&gt;</span>
-<span class='co'>#&gt; 3  3    2  4 &lt;NA&gt;</span>
-<span class='co'>#&gt; 4  4    2  3 &lt;NA&gt;</span>
-<span class='co'># }</span></pre>
+<span class='co'># Show the graph's internal</span>
+<span class='co'># edge data frame (it's the</span>
+<span class='co'># same as before)</span>
+<span class='no'>graph_node_label</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
+#&gt; 1  1    1  2 &lt;NA&gt;
+#&gt; 2  2    1  3 &lt;NA&gt;
+#&gt; 3  3    2  4 &lt;NA&gt;
+#&gt; 4  4    2  3 &lt;NA&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -196,7 +205,7 @@ none exist as an empty string.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

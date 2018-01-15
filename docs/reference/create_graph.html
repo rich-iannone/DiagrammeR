@@ -151,8 +151,7 @@ to use this functionality.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># With `create_graph()` we can simply create an</span>
+    <pre class="examples"><div class='input'><span class='co'># With `create_graph()` we can simply create an</span>
 <span class='co'># empty graph (and add in nodes and edges later,</span>
 <span class='co'># with other functions)</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>create_graph</span>()
@@ -168,13 +167,12 @@ to use this functionality.</p></td>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>create_graph</span>(<span class='kw'>nodes_df</span> <span class='kw'>=</span> <span class='no'>ndf</span>)
 
 <span class='co'># Get information on the graph's nodes</span>
-<span class='fu'><a href='node_info.html'>node_info</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label deg indeg outdeg loops</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_info.html'>get_node_info</a></span>()</div><div class='output co'>#&gt;   id type label deg indeg outdeg loops
+#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0
+#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0
+#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0
+#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;   0     0      0     0</div><div class='input'>
 <span class='co'># You can create a similar graph with just nodes but</span>
 <span class='co'># also provide a range of attributes for the nodes</span>
 <span class='co'># (e.g., types, labels, arbitrary 'values')</span>
@@ -192,13 +190,12 @@ to use this functionality.</p></td>
 
 <span class='co'># Get information on the graph's internal node</span>
 <span class='co'># data frame (ndf)</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id   type label     shape values</span>
-<span class='co'>#&gt; 1  1 type_1     1    circle    3.5</span>
-<span class='co'>#&gt; 2  2 type_1     2    circle    2.6</span>
-<span class='co'>#&gt; 3  3 type_5     3 rectangle    9.4</span>
-<span class='co'>#&gt; 4  4 type_2     4 rectangle    2.7</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id   type label     shape values
+#&gt; 1  1 type_1     1    circle    3.5
+#&gt; 2  2 type_1     2    circle    2.6
+#&gt; 3  3 type_5     3 rectangle    9.4
+#&gt; 4  4 type_2     4 rectangle    2.7</div><div class='input'>
 <span class='co'># A graph can also be created by specifying both</span>
 <span class='co'># the nodes and edges; create an edge data frame</span>
 <span class='co'># (edf) using the `create_edge_df()` function:</span>
@@ -218,21 +215,19 @@ to use this functionality.</p></td>
 
 <span class='co'># Get information on the graph's internal edge</span>
 <span class='co'># data frame (edf)</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to        rel values</span>
-<span class='co'>#&gt; 1  1    1  4 leading_to    7.3</span>
-<span class='co'>#&gt; 2  2    2  3 leading_to    2.6</span>
-<span class='co'>#&gt; 3  3    3  1 leading_to    8.3</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to        rel values
+#&gt; 1  1    1  4 leading_to    7.3
+#&gt; 2  2    2  3 leading_to    2.6
+#&gt; 3  3    3  1 leading_to    8.3</div><div class='input'>
 <span class='co'># Get information on the graph's internal node</span>
 <span class='co'># data frame (ndf)</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id   type label     shape values</span>
-<span class='co'>#&gt; 1  1 type_1     1    circle    3.5</span>
-<span class='co'>#&gt; 2  2 type_1     2    circle    2.6</span>
-<span class='co'>#&gt; 3  3 type_5     3 rectangle    9.4</span>
-<span class='co'>#&gt; 4  4 type_2     4 rectangle    2.7</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id   type label     shape values
+#&gt; 1  1 type_1     1    circle    3.5
+#&gt; 2  2 type_1     2    circle    2.6
+#&gt; 3  3 type_5     3 rectangle    9.4
+#&gt; 4  4 type_2     4 rectangle    2.7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -249,7 +244,7 @@ to use this functionality.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

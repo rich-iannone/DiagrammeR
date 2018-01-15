@@ -122,11 +122,13 @@ and the remaining actions will follow.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>4</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
 <span class='co'># Add three graph actions to the</span>
@@ -153,16 +155,13 @@ and the remaining actions will follow.</p></td>
 <span class='co'># object by using the function called</span>
 <span class='co'># `get_graph_actions()`</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()
-<span class='co'>#&gt; # A tibble: 3 x 3</span>
-<span class='co'>#&gt;   action_index     action_name</span>
-<span class='co'>#&gt;          &lt;dbl&gt;           &lt;chr&gt;</span>
-<span class='co'>#&gt; 1            1  pgrnk_to_width</span>
-<span class='co'>#&gt; 2            2    get_pagerank</span>
-<span class='co'>#&gt; 3            3 pgrnk_fillcolor</span>
-<span class='co'>#&gt; # ... with 1 more variables:</span>
-<span class='co'>#&gt; #   expression &lt;chr&gt;</span>
-
+  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
+#&gt;   action_index     action_name
+#&gt;          &lt;dbl&gt;           &lt;chr&gt;
+#&gt; 1            1  pgrnk_to_width
+#&gt; 2            2    get_pagerank
+#&gt; 3            3 pgrnk_fillcolor
+#&gt; # ... with 1 more variables: expression &lt;chr&gt;</div><div class='input'>
 <span class='co'># We note that the order isn't</span>
 <span class='co'># correct and that the `get_pagerank`</span>
 <span class='co'># action should be the 1st action</span>
@@ -180,16 +179,13 @@ and the remaining actions will follow.</p></td>
 <span class='co'># object once again to verify that</span>
 <span class='co'># we have the desired order of actions</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()
-<span class='co'>#&gt; # A tibble: 3 x 3</span>
-<span class='co'>#&gt;   action_index     action_name</span>
-<span class='co'>#&gt;          &lt;int&gt;           &lt;chr&gt;</span>
-<span class='co'>#&gt; 1            1    get_pagerank</span>
-<span class='co'>#&gt; 2            2  pgrnk_to_width</span>
-<span class='co'>#&gt; 3            3 pgrnk_fillcolor</span>
-<span class='co'>#&gt; # ... with 1 more variables:</span>
-<span class='co'>#&gt; #   expression &lt;chr&gt;</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
+#&gt;   action_index     action_name
+#&gt;          &lt;int&gt;           &lt;chr&gt;
+#&gt; 1            1    get_pagerank
+#&gt; 2            2  pgrnk_to_width
+#&gt; 3            3 pgrnk_fillcolor
+#&gt; # ... with 1 more variables: expression &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,7 +202,7 @@ and the remaining actions will follow.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

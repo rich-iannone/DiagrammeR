@@ -88,11 +88,18 @@
 
     
     <p>With a graph object of class
-<code>dgr_graph</code>, add a new node of a specified type
-to extant nodes within the graph.</p>
+<code>dgr_graph</code>, add a new node to the graph.
+One can optionally provide node attributes
+for the created node. There is also the
+option to create edges to and from existing
+nodes in the graph. Because new edges can
+also be created through this function, there
+is the possibility to set edge attributes
+for any new graph edges.</p>
     
 
-    <pre class="usage"><span class='fu'>add_node</span>(<span class='no'>graph</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>add_node</span>(<span class='no'>graph</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>node_aes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_aes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>node_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -123,9 +130,40 @@ from which edges will be directed to the new node.</p></td>
 which edges will be directed from the new node.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>one or more optional, single value vectors
-for supplying node attributes to the new node.</p></td>
+      <th>node_aes</th>
+      <td><p>an optional list of named vectors
+comprising node aesthetic attributes. The helper
+function <code><a href='node_aes.html'>node_aes()</a></code> is strongly recommended
+for use here as it contains arguments for each
+of the accepted node aesthetic attributes (e.g.,
+<code>shape</code>, <code>style</code>, <code>color</code>,
+<code>fillcolor</code>).</p></td>
+    </tr>
+    <tr>
+      <th>edge_aes</th>
+      <td><p>an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function <code><a href='edge_aes.html'>edge_aes()</a></code> is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+<code>shape</code>, <code>style</code>, <code>penwidth</code>,
+<code>color</code>).</p></td>
+    </tr>
+    <tr>
+      <th>node_data</th>
+      <td><p>an optional list of named vectors
+comprising node data attributes. The helper
+function <code><a href='node_data.html'>node_data()</a></code> is strongly recommended
+for use here as it helps bind data specifically
+to the created nodes.</p></td>
+    </tr>
+    <tr>
+      <th>edge_data</th>
+      <td><p>an optional list of named vectors
+comprising edge data attributes. The helper
+function <code><a href='edge_data.html'>edge_data()</a></code> is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.</p></td>
     </tr>
     </table>
     
@@ -135,8 +173,7 @@ for supplying node attributes to the new node.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create an empty graph and add 2 nodes by using</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph and add 2 nodes by using</span>
 <span class='co'># the `add_node()` function twice</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
@@ -145,15 +182,15 @@ for supplying node attributes to the new node.</p></td>
 
 <span class='co'># Get a count of all nodes</span>
 <span class='co'># in the graph</span>
-<span class='fu'><a href='node_count.html'>node_count</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] 2</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># The nodes added were given</span>
-<span class='co'># ID values `1` and `2`</span>
-<span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] 1 2</span>
-
-<span class='co'># Add a node with a `type` value defined</span>
+<span class='co'># ID values `1` and `2`; obtain</span>
+<span class='co'># the graph's node IDs</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>()</div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
+<span class='co'># Add a node with a `type`</span>
+<span class='co'># value defined</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'>add_node</span>(
     <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
@@ -161,12 +198,11 @@ for supplying node attributes to the new node.</p></td>
 
 <span class='co'># View the graph's internal</span>
 <span class='co'># node data frame (ndf)</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id   type label</span>
-<span class='co'>#&gt; 1  1   &lt;NA&gt;  &lt;NA&gt;</span>
-<span class='co'>#&gt; 2  2   &lt;NA&gt;  &lt;NA&gt;</span>
-<span class='co'>#&gt; 3  3 person  &lt;NA&gt;</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id   type label
+#&gt; 1  1   &lt;NA&gt;  &lt;NA&gt;
+#&gt; 2  2   &lt;NA&gt;  &lt;NA&gt;
+#&gt; 3  3 person  &lt;NA&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -183,7 +219,7 @@ for supplying node attributes to the new node.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

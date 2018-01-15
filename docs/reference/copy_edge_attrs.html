@@ -123,50 +123,51 @@ placed.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-  <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>8</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_edge_attrs.html'>set_edge_attrs</a></span>(
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"green"</span>)
 
-<span class='co'># Get the graph's internal edf to show which</span>
-<span class='co'># edge attributes are available</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel color</span>
-<span class='co'>#&gt; 1  1    2  3 &lt;NA&gt; green</span>
-<span class='co'>#&gt; 2  2    3  5 &lt;NA&gt; green</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt; green</span>
-<span class='co'>#&gt; 4  4    2  4 &lt;NA&gt; green</span>
-<span class='co'>#&gt; 5  5    2  5 &lt;NA&gt; green</span>
-<span class='co'>#&gt; 6  6    4  5 &lt;NA&gt; green</span>
-<span class='co'>#&gt; 7  7    1  4 &lt;NA&gt; green</span>
-<span class='co'>#&gt; 8  8    1  3 &lt;NA&gt; green</span>
-
-<span class='co'># Make a copy the `color` edge attribute as</span>
-<span class='co'># the `color_2` edge attribute</span>
+<span class='co'># Get the graph's internal</span>
+<span class='co'># edf to show which edge</span>
+<span class='co'># attributes are available</span>
+<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to  rel color
+#&gt; 1  1    1  3 &lt;NA&gt; green
+#&gt; 2  2    2  1 &lt;NA&gt; green
+#&gt; 3  3    2  5 &lt;NA&gt; green
+#&gt; 4  4    2  3 &lt;NA&gt; green
+#&gt; 5  5    3  2 &lt;NA&gt; green
+#&gt; 6  6    3  5 &lt;NA&gt; green
+#&gt; 7  7    3  4 &lt;NA&gt; green
+#&gt; 8  8    5  3 &lt;NA&gt; green</div><div class='input'>
+<span class='co'># Make a copy the `color`</span>
+<span class='co'># edge attribute as the</span>
+<span class='co'># `color_2` edge attribute</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>copy_edge_attrs</span>(
     <span class='kw'>edge_attr_from</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>edge_attr_to</span> <span class='kw'>=</span> <span class='no'>color_2</span>)
 
-<span class='co'># Get the graph's internal edf to show that the</span>
-<span class='co'># edge attribute had been copied</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel color color_2</span>
-<span class='co'>#&gt; 1  1    2  3 &lt;NA&gt; green   green</span>
-<span class='co'>#&gt; 2  2    3  5 &lt;NA&gt; green   green</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt; green   green</span>
-<span class='co'>#&gt; 4  4    2  4 &lt;NA&gt; green   green</span>
-<span class='co'>#&gt; 5  5    2  5 &lt;NA&gt; green   green</span>
-<span class='co'>#&gt; 6  6    4  5 &lt;NA&gt; green   green</span>
-<span class='co'>#&gt; 7  7    1  4 &lt;NA&gt; green   green</span>
-<span class='co'>#&gt; 8  8    1  3 &lt;NA&gt; green   green</span>
-<span class='co'># }</span></pre>
+<span class='co'># Get the graph's internal</span>
+<span class='co'># edf to show that the edge</span>
+<span class='co'># attribute had been copied</span>
+<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to  rel color color_2
+#&gt; 1  1    1  3 &lt;NA&gt; green   green
+#&gt; 2  2    2  1 &lt;NA&gt; green   green
+#&gt; 3  3    2  5 &lt;NA&gt; green   green
+#&gt; 4  4    2  3 &lt;NA&gt; green   green
+#&gt; 5  5    3  2 &lt;NA&gt; green   green
+#&gt; 6  6    3  5 &lt;NA&gt; green   green
+#&gt; 7  7    3  4 &lt;NA&gt; green   green
+#&gt; 8  8    5  3 &lt;NA&gt; green   green</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -183,7 +184,7 @@ placed.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

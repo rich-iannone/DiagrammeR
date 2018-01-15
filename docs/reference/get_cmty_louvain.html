@@ -112,30 +112,32 @@ assignments for each of the nodes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>(
+    <span class='kw'>directed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>15</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># Get the group membership values for</span>
-<span class='co'># all nodes in the graph through the</span>
-<span class='co'># multi-level optimization of modularity</span>
+<span class='co'># Get the group membership values</span>
+<span class='co'># for all nodes in the graph</span>
+<span class='co'># through the multi-level</span>
+<span class='co'># optimization of modularity</span>
 <span class='co'># algorithm</span>
-<span class='fu'>get_cmty_louvain</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;    id louvain_group</span>
-<span class='co'>#&gt; 1   1             2</span>
-<span class='co'>#&gt; 2   2             1</span>
-<span class='co'>#&gt; 3   3             1</span>
-<span class='co'>#&gt; 4   4             2</span>
-<span class='co'>#&gt; 5   5             2</span>
-<span class='co'>#&gt; 6   6             2</span>
-<span class='co'>#&gt; 7   7             1</span>
-<span class='co'>#&gt; 8   8             2</span>
-<span class='co'>#&gt; 9   9             1</span>
-<span class='co'>#&gt; 10 10             2</span>
-
+<span class='fu'>get_cmty_louvain</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id louvain_group
+#&gt; 1   1             2
+#&gt; 2   2             1
+#&gt; 3   3             1
+#&gt; 4   4             3
+#&gt; 5   5             1
+#&gt; 6   6             1
+#&gt; 7   7             2
+#&gt; 8   8             3
+#&gt; 9   9             3
+#&gt; 10 10             4</div><div class='input'>
 <span class='co'># Add the group membership values to the</span>
 <span class='co'># graph as a node attribute</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -144,19 +146,17 @@ assignments for each of the nodes.</p>
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_cmty_louvain</span>(<span class='no'>.</span>))
 
 <span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;    id type label value louvain_group</span>
-<span class='co'>#&gt; 1   1 &lt;NA&gt;     1   6.0             2</span>
-<span class='co'>#&gt; 2   2 &lt;NA&gt;     2   2.5             1</span>
-<span class='co'>#&gt; 3   3 &lt;NA&gt;     3   3.5             1</span>
-<span class='co'>#&gt; 4   4 &lt;NA&gt;     4   7.5             2</span>
-<span class='co'>#&gt; 5   5 &lt;NA&gt;     5   8.5             2</span>
-<span class='co'>#&gt; 6   6 &lt;NA&gt;     6   4.5             2</span>
-<span class='co'>#&gt; 7   7 &lt;NA&gt;     7  10.0             1</span>
-<span class='co'>#&gt; 8   8 &lt;NA&gt;     8  10.0             2</span>
-<span class='co'>#&gt; 9   9 &lt;NA&gt;     9   8.5             1</span>
-<span class='co'>#&gt; 10 10 &lt;NA&gt;    10  10.0             2</span>
-<span class='co'># }</span></pre>
+<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label louvain_group
+#&gt; 1   1 &lt;NA&gt;     1             2
+#&gt; 2   2 &lt;NA&gt;     2             1
+#&gt; 3   3 &lt;NA&gt;     3             1
+#&gt; 4   4 &lt;NA&gt;     4             3
+#&gt; 5   5 &lt;NA&gt;     5             1
+#&gt; 6   6 &lt;NA&gt;     6             1
+#&gt; 7   7 &lt;NA&gt;     7             2
+#&gt; 8   8 &lt;NA&gt;     8             3
+#&gt; 9   9 &lt;NA&gt;     9             3
+#&gt; 10 10 &lt;NA&gt;    10             4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -173,7 +173,7 @@ assignments for each of the nodes.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

@@ -118,49 +118,47 @@ each of the nodes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>12</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
 <span class='co'># Get closeness values for all nodes</span>
 <span class='co'># in the graph</span>
-<span class='fu'>get_closeness</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;    id  closeness</span>
-<span class='co'>#&gt; 1   1 0.07142857</span>
-<span class='co'>#&gt; 2   2 0.07142857</span>
-<span class='co'>#&gt; 3   3 0.07142857</span>
-<span class='co'>#&gt; 4   4 0.06250000</span>
-<span class='co'>#&gt; 5   5 0.07692308</span>
-<span class='co'>#&gt; 6   6 0.09090909</span>
-<span class='co'>#&gt; 7   7 0.06666667</span>
-<span class='co'>#&gt; 8   8 0.05882353</span>
-<span class='co'>#&gt; 9   9 0.07692308</span>
-<span class='co'>#&gt; 10 10 0.07692308</span>
-
-<span class='co'># Add the closeness values to the graph</span>
-<span class='co'># as a node attribute</span>
+<span class='fu'>get_closeness</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id  closeness
+#&gt; 1   1 0.05263158
+#&gt; 2   2 0.06250000
+#&gt; 3   3 0.05555556
+#&gt; 4   4 0.06666667
+#&gt; 5   5 0.06666667
+#&gt; 6   6 0.04166667
+#&gt; 7   7 0.04347826
+#&gt; 8   8 0.05555556
+#&gt; 9   9 0.04166667
+#&gt; 10 10 0.04545455</div><div class='input'>
+<span class='co'># Add the closeness values to</span>
+<span class='co'># the graph as a node attribute</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_closeness</span>(<span class='no'>.</span>))
 
 <span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;    id type label value  closeness</span>
-<span class='co'>#&gt; 1   1 &lt;NA&gt;     1   6.0 0.07142857</span>
-<span class='co'>#&gt; 2   2 &lt;NA&gt;     2   2.5 0.07142857</span>
-<span class='co'>#&gt; 3   3 &lt;NA&gt;     3   3.5 0.07142857</span>
-<span class='co'>#&gt; 4   4 &lt;NA&gt;     4   7.5 0.06250000</span>
-<span class='co'>#&gt; 5   5 &lt;NA&gt;     5   8.5 0.07692308</span>
-<span class='co'>#&gt; 6   6 &lt;NA&gt;     6   4.5 0.09090909</span>
-<span class='co'>#&gt; 7   7 &lt;NA&gt;     7  10.0 0.06666667</span>
-<span class='co'>#&gt; 8   8 &lt;NA&gt;     8  10.0 0.05882353</span>
-<span class='co'>#&gt; 9   9 &lt;NA&gt;     9   8.5 0.07692308</span>
-<span class='co'>#&gt; 10 10 &lt;NA&gt;    10  10.0 0.07692308</span>
-<span class='co'># }</span></pre>
+<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label  closeness
+#&gt; 1   1 &lt;NA&gt;     1 0.05263158
+#&gt; 2   2 &lt;NA&gt;     2 0.06250000
+#&gt; 3   3 &lt;NA&gt;     3 0.05555556
+#&gt; 4   4 &lt;NA&gt;     4 0.06666667
+#&gt; 5   5 &lt;NA&gt;     5 0.06666667
+#&gt; 6   6 &lt;NA&gt;     6 0.04166667
+#&gt; 7   7 &lt;NA&gt;     7 0.04347826
+#&gt; 8   8 &lt;NA&gt;     8 0.05555556
+#&gt; 9   9 &lt;NA&gt;     9 0.04166667
+#&gt; 10 10 &lt;NA&gt;    10 0.04545455</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -177,7 +175,7 @@ each of the nodes.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

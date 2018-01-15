@@ -109,8 +109,7 @@ object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create an empty graph and set the graph's time;</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph and set the graph's time;</span>
 <span class='co'># if nothing is supplied for the `tz` argument,</span>
 <span class='co'># `GMT` is used as the time zone</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -121,9 +120,7 @@ object of class <code>dgr_graph</code>.</p>
 <span class='co'># Get the graph's time as a POSIXct</span>
 <span class='co'># object using `get_graph_time()`</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_graph_time</span>()
-<span class='co'>#&gt; [1] "2015-10-25 15:23:00 GMT"</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>get_graph_time</span>()</div><div class='output co'>#&gt; [1] "2015-10-25 15:23:00 PDT"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -140,7 +137,7 @@ object of class <code>dgr_graph</code>.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

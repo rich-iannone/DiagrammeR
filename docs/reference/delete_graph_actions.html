@@ -89,9 +89,9 @@ within a graph object</h1>
     </div>
 
     
-    <p>Delete one or more graph actions
-stored within a graph object of class
-<code>dgr_graph</code>).</p>
+    <p>Delete one or more graph
+actions stored within a graph object
+of class <code>dgr_graph</code>).</p>
     
 
     <pre class="usage"><span class='fu'>delete_graph_actions</span>(<span class='no'>graph</span>, <span class='no'>actions</span>)</pre>
@@ -116,15 +116,18 @@ a character vector corresponding to
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>8</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
 <span class='co'># Add three graph actions to the</span>
@@ -151,16 +154,13 @@ a character vector corresponding to
 <span class='co'># object by using the `get_graph_actions()`</span>
 <span class='co'># function</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()
-<span class='co'>#&gt; # A tibble: 3 x 3</span>
-<span class='co'>#&gt;   action_index        action_name</span>
-<span class='co'>#&gt;          &lt;dbl&gt;              &lt;chr&gt;</span>
-<span class='co'>#&gt; 1            1       get_pagerank</span>
-<span class='co'>#&gt; 2            2  pagerank_to_width</span>
-<span class='co'>#&gt; 3            3 pagerank_fillcolor</span>
-<span class='co'>#&gt; # ... with 1 more variables:</span>
-<span class='co'>#&gt; #   expression &lt;chr&gt;</span>
-
+  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
+#&gt;   action_index        action_name
+#&gt;          &lt;dbl&gt;              &lt;chr&gt;
+#&gt; 1            1       get_pagerank
+#&gt; 2            2  pagerank_to_width
+#&gt; 3            3 pagerank_fillcolor
+#&gt; # ... with 1 more variables: expression &lt;chr&gt;</div><div class='input'>
 <span class='co'># Delete the second and third graph</span>
 <span class='co'># actions using `delete_graph_actions()`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -172,14 +172,11 @@ a character vector corresponding to
 <span class='co'># actions were deleted by again using</span>
 <span class='co'># the `get_graph_actions()` function</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()
-<span class='co'>#&gt; # A tibble: 1 x 3</span>
-<span class='co'>#&gt;   action_index  action_name</span>
-<span class='co'>#&gt;          &lt;int&gt;        &lt;chr&gt;</span>
-<span class='co'>#&gt; 1            1 get_pagerank</span>
-<span class='co'>#&gt; # ... with 1 more variables:</span>
-<span class='co'>#&gt; #   expression &lt;chr&gt;</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
+#&gt;   action_index  action_name
+#&gt;          &lt;int&gt;        &lt;chr&gt;
+#&gt; 1            1 get_pagerank
+#&gt; # ... with 1 more variables: expression &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -196,7 +193,7 @@ a character vector corresponding to
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

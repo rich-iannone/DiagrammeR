@@ -122,8 +122,7 @@ use in subsequent expressions.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with 3 edges</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with 3 edges</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
@@ -134,12 +133,11 @@ use in subsequent expressions.</p></td>
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show which edge attributes</span>
 <span class='co'># are available</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel width</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;   3.4</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;   2.3</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;   7.2</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width
+#&gt; 1  1    1  2 &lt;NA&gt;   3.4
+#&gt; 2  2    2  3 &lt;NA&gt;   2.3
+#&gt; 3  3    3  4 &lt;NA&gt;   7.2</div><div class='input'>
 <span class='co'># Mutate the `width` edge</span>
 <span class='co'># attribute, dividing each</span>
 <span class='co'># value by 2</span>
@@ -152,12 +150,11 @@ use in subsequent expressions.</p></td>
 <span class='co'># edf to show that the edge</span>
 <span class='co'># attribute `width` had its</span>
 <span class='co'># values changed</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel width</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;  1.70</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;  1.15</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;  3.60</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width
+#&gt; 1  1    1  2 &lt;NA&gt;  1.70
+#&gt; 2  2    2  3 &lt;NA&gt;  1.15
+#&gt; 3  3    3  4 &lt;NA&gt;  3.60</div><div class='input'>
 <span class='co'># Create a new edge attribute,</span>
 <span class='co'># called `length`, that is the</span>
 <span class='co'># log of values in `width` plus</span>
@@ -172,12 +169,11 @@ use in subsequent expressions.</p></td>
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show that the edge attribute</span>
 <span class='co'># values had been mutated</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel width length</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;  1.70   2.53</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;  1.15   2.14</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;  3.60   3.28</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width length
+#&gt; 1  1    1  2 &lt;NA&gt;  1.70   2.53
+#&gt; 2  2    2  3 &lt;NA&gt;  1.15   2.14
+#&gt; 3  3    3  4 &lt;NA&gt;  3.60   3.28</div><div class='input'>
 <span class='co'># Create a new edge attribute</span>
 <span class='co'># called `area`, which is the</span>
 <span class='co'># product of the `width` and</span>
@@ -191,12 +187,11 @@ use in subsequent expressions.</p></td>
 <span class='co'># to show that the edge attribute</span>
 <span class='co'># values had been multiplied</span>
 <span class='co'># together (with new attr `area`)</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel width length   area</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;  1.70   2.53  4.301</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;  1.15   2.14  2.461</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;  3.60   3.28 11.808</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width length   area
+#&gt; 1  1    1  2 &lt;NA&gt;  1.70   2.53  4.301
+#&gt; 2  2    2  3 &lt;NA&gt;  1.15   2.14  2.461
+#&gt; 3  3    3  4 &lt;NA&gt;  3.60   3.28 11.808</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -213,7 +208,7 @@ use in subsequent expressions.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

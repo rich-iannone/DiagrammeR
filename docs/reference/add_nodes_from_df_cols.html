@@ -142,12 +142,12 @@ graph's nodes. By default, this is set to
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create an empty graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_graph.html'>create_graph</a></span>()
 
-<span class='co'># Create a data frame from which several</span>
-<span class='co'># columns have values designated as graph nodes</span>
+<span class='co'># Create a data frame from</span>
+<span class='co'># which several columns have</span>
+<span class='co'># values designated as graph nodes</span>
 <span class='no'>df</span> <span class='kw'>&lt;-</span>
   <span class='fu'>data.frame</span>(
     <span class='kw'>col_1</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"f"</span>, <span class='st'>"p"</span>, <span class='st'>"q"</span>),
@@ -156,25 +156,25 @@ graph's nodes. By default, this is set to
     <span class='kw'>col_4</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"v"</span>, <span class='st'>"h"</span>),
     <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='co'># Add nodes from columns `col_1` and `col_2`</span>
-<span class='co'># from the data frame to the graph object</span>
+<span class='co'># Add nodes from columns `col_1`</span>
+<span class='co'># and `col_2` from the data frame</span>
+<span class='co'># to the graph object</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_nodes_from_df_cols</span>(
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>df</span>,
     <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"col_1"</span>, <span class='st'>"col_2"</span>))
 
-<span class='co'># Show the graph's node data frame; duplicate</span>
-<span class='co'># labels are prevented with `keep_duplicates =</span>
+<span class='co'># Show the graph's node data</span>
+<span class='co'># frame; duplicate labels are</span>
+<span class='co'># prevented with `keep_duplicates =</span>
 <span class='co'># FALSE`)</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()
-<span class='co'>#&gt;   id type label</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     f</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     p</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     q</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     x</span>
-
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
+#&gt; 1  1 &lt;NA&gt;     f
+#&gt; 2  2 &lt;NA&gt;     p
+#&gt; 3  3 &lt;NA&gt;     q
+#&gt; 4  4 &lt;NA&gt;     x</div><div class='input'>
 <span class='co'># Add new nodes from columns 3 and 4;</span>
 <span class='co'># We can specify the columns by their</span>
 <span class='co'># numbers as well</span>
@@ -184,20 +184,19 @@ graph's nodes. By default, this is set to
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>df</span>,
     <span class='kw'>columns</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>4</span>)
 
-<span class='co'># Show the graph's node data frame; note</span>
-<span class='co'># that a nodes didn't get made with columns</span>
-<span class='co'># that are not character class columns</span>
+<span class='co'># Show the graph's node data</span>
+<span class='co'># frame; note that nodes didn't</span>
+<span class='co'># get made with columns that</span>
+<span class='co'># are not character class columns</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()
-<span class='co'>#&gt;   id type label</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     f</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     p</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     q</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     x</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     a</span>
-<span class='co'>#&gt; 6  6 &lt;NA&gt;     v</span>
-<span class='co'>#&gt; 7  7 &lt;NA&gt;     h</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
+#&gt; 1  1 &lt;NA&gt;     f
+#&gt; 2  2 &lt;NA&gt;     p
+#&gt; 3  3 &lt;NA&gt;     q
+#&gt; 4  4 &lt;NA&gt;     x
+#&gt; 5  5 &lt;NA&gt;     a
+#&gt; 6  6 &lt;NA&gt;     v
+#&gt; 7  7 &lt;NA&gt;     h</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -214,7 +213,7 @@ graph's nodes. By default, this is set to
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

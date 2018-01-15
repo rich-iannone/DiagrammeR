@@ -115,8 +115,7 @@ edges.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Define a graph where 2 edge definitions</span>
+    <pre class="examples"><div class='input'><span class='co'># Define a graph where 2 edge definitions</span>
 <span class='co'># have pairs of reciprocal edges</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
@@ -133,26 +132,20 @@ edges.</p>
 <span class='co'># 4 is the number reciprocating edges</span>
 <span class='co'># and 7 is the total number of edges</span>
 <span class='co'># in the graph)</span>
-<span class='fu'>get_reciprocity</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] 0.5714286</span>
-
+<span class='fu'>get_reciprocity</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 0.5714286</div><div class='input'>
 <span class='co'># For an undirected graph, all edges</span>
 <span class='co'># are reciprocal, so the ratio will</span>
 <span class='co'># always be 1</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_graph_undirected.html'>set_graph_undirected</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_reciprocity</span>()
-<span class='co'>#&gt; [1] 1</span>
-
+  <span class='fu'>get_reciprocity</span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># For a graph with no edges, the graph</span>
 <span class='co'># reciprocity cannot be determined (and</span>
 <span class='co'># the same NA result is obtained from an</span>
 <span class='co'># empty graph)</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_reciprocity</span>()
-<span class='co'>#&gt; [1] NA</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>get_reciprocity</span>()</div><div class='output co'>#&gt; [1] NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -169,7 +162,7 @@ edges.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

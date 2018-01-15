@@ -110,8 +110,8 @@ attributes for a graph object of class
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a new graph and set some global attributes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a new graph and set</span>
+<span class='co'># some global attributes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_global_graph_attrs.html'>set_global_graph_attrs</a></span>(
@@ -119,14 +119,17 @@ attributes for a graph object of class
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"true"</span>,
     <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='st'>"graph"</span>)
 
-<span class='co'># Clear all global attributes that have been set</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>clear_global_graph_attrs</span>(<span class='no'>graph</span>)
+<span class='co'># Clear all global attributes</span>
+<span class='co'># that have been set</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+    <span class='fu'>clear_global_graph_attrs</span>()
 
-<span class='co'># Look at the present global graph attributes;</span>
-<span class='co'># since there are none, NA is returned</span>
-<span class='fu'><a href='get_global_graph_attrs.html'>get_global_graph_attrs</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] NA</span>
-<span class='co'># }</span></pre>
+<span class='co'># Look at the present global</span>
+<span class='co'># graph attributes; since there</span>
+<span class='co'># are none, NA is returned</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_global_graph_attrs.html'>get_global_graph_attrs</a></span>()</div><div class='output co'>#&gt; [1] NA</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -143,7 +146,7 @@ attributes for a graph object of class
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

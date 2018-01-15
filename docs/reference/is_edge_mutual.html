@@ -114,8 +114,7 @@ same node pair.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph that has mutual</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph that has mutual</span>
 <span class='co'># edges across some node pairs</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
@@ -130,26 +129,20 @@ same node pair.</p>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># edge data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()
-<span class='co'>#&gt;   id from to  rel</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;</span>
-<span class='co'>#&gt; 4  4    4  3 &lt;NA&gt;</span>
-<span class='co'>#&gt; 5  5    2  1 &lt;NA&gt;</span>
-
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
+#&gt; 1  1    1  2 &lt;NA&gt;
+#&gt; 2  2    2  3 &lt;NA&gt;
+#&gt; 3  3    3  4 &lt;NA&gt;
+#&gt; 4  4    4  3 &lt;NA&gt;
+#&gt; 5  5    2  1 &lt;NA&gt;</div><div class='input'>
 <span class='co'># Determine if edge `1` has</span>
 <span class='co'># a mutual edge</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>is_edge_mutual</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='co'>#&gt; [1] TRUE</span>
-
+  <span class='fu'>is_edge_mutual</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Determine if edge `2` has</span>
 <span class='co'># a mutual edge</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>is_edge_mutual</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='co'>#&gt; [1] FALSE</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>is_edge_mutual</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -166,7 +159,7 @@ same node pair.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

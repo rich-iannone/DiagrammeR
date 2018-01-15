@@ -151,51 +151,55 @@ set, the minimum value from the set will be used.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>7</span>,
-    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>,
-    <span class='kw'>directed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>7</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_edge_attrs.html'>set_edge_attrs</a></span>(
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>weight</span>,
-    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fu'><a href='edge_count.html'>edge_count</a></span>(<span class='no'>.</span>), <span class='fl'>5</span>))
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(
+      <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>(<span class='no'>.</span>),
+      <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+      <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>))
 
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show which edge attributes</span>
 <span class='co'># are available</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel   weight</span>
-<span class='co'>#&gt; 1  1    2  3 &lt;NA&gt; 5.218288</span>
-<span class='co'>#&gt; 2  2    3  5 &lt;NA&gt; 3.953465</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt; 4.711311</span>
-<span class='co'>#&gt; 4  4    2  4 &lt;NA&gt; 5.481550</span>
-<span class='co'>#&gt; 5  5    2  5 &lt;NA&gt; 3.783624</span>
-<span class='co'>#&gt; 6  6    4  5 &lt;NA&gt; 5.308137</span>
-<span class='co'>#&gt; 7  7    1  4 &lt;NA&gt; 4.479822</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel   weight
+#&gt; 1  1    2  8 &lt;NA&gt; 5.045437
+#&gt; 2  2    4  2 &lt;NA&gt; 6.575780
+#&gt; 3  3    4  6 &lt;NA&gt; 5.218288
+#&gt; 4  4    4  9 &lt;NA&gt; 3.953465
+#&gt; 5  5    6  5 &lt;NA&gt; 4.711311
+#&gt; 6  6    6 10 &lt;NA&gt; 5.481550
+#&gt; 7  7   10  9 &lt;NA&gt; 3.783624</div><div class='input'>
 <span class='co'># Rescale the `weight` edge</span>
 <span class='co'># attribute, so that its values</span>
 <span class='co'># are rescaled between 0 and 1</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>rescale_edge_attrs</span>(
-    <span class='kw'>edge_attr_from</span> <span class='kw'>=</span> <span class='no'>weight</span>)
+    <span class='kw'>edge_attr_from</span> <span class='kw'>=</span> <span class='no'>weight</span>,
+    <span class='kw'>to_lower_bound</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+    <span class='kw'>to_upper_bound</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show that the edge attribute</span>
 <span class='co'># values had been rescaled</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel weight</span>
-<span class='co'>#&gt; 1  1    2  3 &lt;NA&gt;  0.845</span>
-<span class='co'>#&gt; 2  2    3  5 &lt;NA&gt;  0.100</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;  0.546</span>
-<span class='co'>#&gt; 4  4    2  4 &lt;NA&gt;  1.000</span>
-<span class='co'>#&gt; 5  5    2  5 &lt;NA&gt;  0.000</span>
-<span class='co'>#&gt; 6  6    4  5 &lt;NA&gt;  0.898</span>
-<span class='co'>#&gt; 7  7    1  4 &lt;NA&gt;  0.410</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel weight
+#&gt; 1  1    2  8 &lt;NA&gt;  0.452
+#&gt; 2  2    4  2 &lt;NA&gt;  1.000
+#&gt; 3  3    4  6 &lt;NA&gt;  0.514
+#&gt; 4  4    4  9 &lt;NA&gt;  0.061
+#&gt; 5  5    6  5 &lt;NA&gt;  0.332
+#&gt; 6  6    6 10 &lt;NA&gt;  0.608
+#&gt; 7  7   10  9 &lt;NA&gt;  0.000</div><div class='input'>
 <span class='co'># Scale the values in the `weight`</span>
 <span class='co'># edge attribute to different</span>
 <span class='co'># shades of gray for the `color`</span>
@@ -221,16 +225,15 @@ set, the minimum value from the set will be used.</p></td>
 <span class='co'># in `color` and scaled numerical</span>
 <span class='co'># values are in the `penwidth`</span>
 <span class='co'># edge attribute</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel weight   color penwidth</span>
-<span class='co'>#&gt; 1  1    2  3 &lt;NA&gt;  0.845 #484848    2.612</span>
-<span class='co'>#&gt; 2  2    3  5 &lt;NA&gt;  0.100 #BBBBBB    0.750</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;  0.546 #747474    1.865</span>
-<span class='co'>#&gt; 4  4    2  4 &lt;NA&gt;  1.000 #333333    3.000</span>
-<span class='co'>#&gt; 5  5    2  5 &lt;NA&gt;  0.000 #CCCCCC    0.500</span>
-<span class='co'>#&gt; 6  6    4  5 &lt;NA&gt;  0.898 #414141    2.745</span>
-<span class='co'>#&gt; 7  7    1  4 &lt;NA&gt;  0.410 #898989    1.525</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel weight   color penwidth
+#&gt; 1  1    2  8 &lt;NA&gt;  0.452 #838383    1.630
+#&gt; 2  2    4  2 &lt;NA&gt;  1.000 #333333    3.000
+#&gt; 3  3    4  6 &lt;NA&gt;  0.514 #797979    1.785
+#&gt; 4  4    4  9 &lt;NA&gt;  0.061 #C2C2C2    0.652
+#&gt; 5  5    6  5 &lt;NA&gt;  0.332 #959595    1.330
+#&gt; 6  6    6 10 &lt;NA&gt;  0.608 #6B6B6B    2.020
+#&gt; 7  7   10  9 &lt;NA&gt;  0.000 #CCCCCC    0.500</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -247,7 +250,7 @@ set, the minimum value from the set will be used.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

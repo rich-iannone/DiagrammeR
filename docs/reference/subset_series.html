@@ -87,9 +87,11 @@
     </div>
 
     
-    <p>Subsetting a graph series by the
-graphs' index positions in the graph series or
-through selection via graphs' date-time attributes.</p>
+    <p>Subsetting a graph
+series by the graphs' index positions
+in the graph series or through
+selection via graphs' date-time
+attributes.</p>
     
 
     <pre class="usage"><span class='fu'>subset_series</span>(<span class='no'>graph_series</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"number"</span>, <span class='no'>values</span>, <span class='kw'>tz</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -99,43 +101,47 @@ through selection via graphs' date-time attributes.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph_series</th>
-      <td><p>a graph series object of type
-<code>dgr_graph_1D</code>.</p></td>
+      <td><p>a graph series
+object of type <code>dgr_graph_1D</code>.</p></td>
     </tr>
     <tr>
       <th>by</th>
-      <td><p>either <code>number</code>, which allows for
-subsetting of the graph series by graph indices, or
-<code>time</code> which for graph series objects of type
-<code>temporal</code> allows for a subsetting of graphs by
+      <td><p>either <code>number</code>,
+which allows for subsetting of the
+graph series by graph indices, or
+<code>time</code> which for graph series
+objects of type <code>temporal</code>
+allows for a subsetting of graphs by
 a date-time or time range.</p></td>
     </tr>
     <tr>
       <th>values</th>
-      <td><p>where the subsetting of the graph
-series by to occur via graph indices (where
-<code>by = number</code>), provide a vector of those
-indices; when subsetting by time (where
-<code>by = time</code>), a range of times can be provided
-as a vector.</p></td>
+      <td><p>where the subsetting
+of the graph series by to occur
+via graph indices (where
+<code>by = number</code>), provide a
+vector of those indices; when
+subsetting by time (where
+<code>by = time</code>), a range of times
+can be provided as a vector.</p></td>
     </tr>
     <tr>
       <th>tz</th>
-      <td><p>the time zone (<code>tz</code>) corresponding to
-dates or date-time string provided in <code>values</code>
+      <td><p>the time zone (<code>tz</code>)
+corresponding to dates or date-time
+string provided in <code>values</code>
 (if <code>by = "date"</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph series object of type
-<code>dgr_graph_1D</code>.</p>
+    <p>a graph series object of
+type <code>dgr_graph_1D</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create three graphs</span>
+    <pre class="examples"><div class='input'><span class='co'># Create three graphs</span>
 <span class='no'>graph_time_1</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>(
     <span class='kw'>graph_name</span> <span class='kw'>=</span> <span class='st'>"graph_with_time_1"</span>) <span class='kw'>%&gt;%</span>
@@ -160,16 +166,14 @@ dates or date-time string provided in <code>values</code>
 <span class='co'># Create an empty graph series and add</span>
 <span class='co'># the graphs</span>
 <span class='no'>series_temporal</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_series.html'>create_series</a></span>(<span class='kw'>series_type</span> <span class='kw'>=</span> <span class='st'>"temporal"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_to_series.html'>add_to_series</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_time_1</span>,
-    <span class='kw'>graph_series</span> <span class='kw'>=</span> <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_to_series.html'>add_to_series</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_time_2</span>,
-    <span class='kw'>graph_series</span> <span class='kw'>=</span> <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_to_series.html'>add_to_series</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_time_3</span>,
-    <span class='kw'>graph_series</span> <span class='kw'>=</span> <span class='no'>.</span>)
+  <span class='fu'><a href='create_series.html'>create_series</a></span>(
+    <span class='kw'>series_type</span> <span class='kw'>=</span> <span class='st'>"temporal"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_time_1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_time_2</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_time_3</span>)
 
 <span class='co'># Subset graph series by sequence</span>
 <span class='no'>series_sequence_subset</span> <span class='kw'>&lt;-</span>
@@ -178,10 +182,10 @@ dates or date-time string provided in <code>values</code>
     <span class='kw'>by</span> <span class='kw'>=</span> <span class='st'>"number"</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='co'># Get a count of graphs in the series</span>
-<span class='fu'><a href='graph_count.html'>graph_count</a></span>(<span class='no'>series_sequence_subset</span>)
-<span class='co'>#&gt; [1] 1</span>
-
+<span class='co'># Get a count of graphs in</span>
+<span class='co'># the series</span>
+<span class='no'>series_sequence_subset</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='graph_count.html'>graph_count</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Subset graph series by date-time</span>
 <span class='no'>series_time_subset</span> <span class='kw'>&lt;-</span>
   <span class='fu'>subset_series</span>(
@@ -191,10 +195,10 @@ dates or date-time string provided in <code>values</code>
                <span class='st'>"2015-03-26 12:00"</span>),
     <span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"GMT"</span>)
 
-<span class='co'># Get a count of graphs in the series</span>
-<span class='fu'><a href='graph_count.html'>graph_count</a></span>(<span class='no'>series_time_subset</span>)
-<span class='co'>#&gt; [1] 2</span>
-<span class='co'># }</span></pre>
+<span class='co'># Get a count of graphs in</span>
+<span class='co'># the series</span>
+<span class='no'>series_time_subset</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='graph_count.html'>graph_count</a></span>()</div><div class='output co'>#&gt; [1] 2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -211,7 +215,7 @@ dates or date-time string provided in <code>values</code>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

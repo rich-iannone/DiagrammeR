@@ -85,7 +85,7 @@
     <div class="page-header">
       <h1>
         Reference
-        <small>version&nbsp;0.9.2</small>
+        <small>version&nbsp;0.9.3</small>
       </h1>
     </div>
 
@@ -127,8 +127,8 @@
           <td>
             <p><code><a href="add_edge_df.html">add_edge_df</a></code> </p>
           </td>
-          <td><p>Add edges from an edge data frame to an existing
-graph object</p></td>
+          <td><p>Add edges from an edge data frame
+to an existing graph object</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -140,7 +140,8 @@ graph object</p></td>
           <td>
             <p><code><a href="add_edges_from_table.html">add_edges_from_table</a></code> </p>
           </td>
-          <td><p>Add edges and attributes to graph from a table</p></td>
+          <td><p>Add edges and attributes to graph
+from a table</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -169,6 +170,12 @@ selection of edges</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="add_gnm_graph.html">add_gnm_graph</a></code> </p>
+          </td>
+          <td><p>Add a G(n, m) Erdos-Renyi graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="add_gnp_graph.html">add_gnp_graph</a></code> </p>
           </td>
           <td><p>Add a G(n, p) Erdos-Renyi graph</p></td>
@@ -181,6 +188,12 @@ selection of edges</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="add_graph_to_graph_series.html">add_graph_to_graph_series</a></code> </p>
+          </td>
+          <td><p>Add graph object to a graph series object</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="add_grid_2d.html">add_grid_2d</a></code> </p>
           </td>
           <td><p>Add a 2D grid of nodes to the graph</p></td>
@@ -190,6 +203,18 @@ selection of edges</p></td>
             <p><code><a href="add_grid_3d.html">add_grid_3d</a></code> </p>
           </td>
           <td><p>Add a 3D grid of nodes to the graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="add_growing_graph.html">add_growing_graph</a></code> </p>
+          </td>
+          <td><p>Create a random growing graph with m edges added per step</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="add_islands_graph.html">add_islands_graph</a></code> </p>
+          </td>
+          <td><p>Create a random islands graph with edges between the islands</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -215,6 +240,12 @@ one or more selected nodes</p></td>
             <p><code><a href="add_n_nodes.html">add_n_nodes</a></code> </p>
           </td>
           <td><p>Add one or several unconnected nodes to the graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="add_node_clones_ws.html">add_node_clones_ws</a></code> </p>
+          </td>
+          <td><p>Add clones of a selection of nodes</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -268,55 +299,15 @@ selection of edges</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="add_smallworld_graph.html">add_smallworld_graph</a></code> </p>
+          </td>
+          <td><p>Add a Watts-Strogatz small-world graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="add_star.html">add_star</a></code> </p>
           </td>
           <td><p>Add a star of nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_to_series.html">add_to_series</a></code> </p>
-          </td>
-          <td><p>Add graph object to a graph series object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cache_edge_attrs_ws.html">cache_edge_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Cache edge attributes (based on a selection of
-edges) in the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cache_edge_attrs.html">cache_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Cache edge attributes in the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cache_edge_count_ws.html">cache_edge_count_ws</a></code> </p>
-          </td>
-          <td><p>Cache a count of edges (available in a
-selection) in the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cache_node_attrs_ws.html">cache_node_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Cache node attributes (based on a selection of
-nodes) in the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cache_node_attrs.html">cache_node_attrs</a></code> </p>
-          </td>
-          <td><p>Cache node attributes in the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cache_node_count_ws.html">cache_node_count_ws</a></code> </p>
-          </td>
-          <td><p>Cache a count of nodes (available in a selection)
-in the graph</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -387,15 +378,51 @@ edge data frame</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="count_edges.html">count_edges</a></code> </p>
+          </td>
+          <td><p>Get count of all edges in the graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="count_loop_edges.html">count_loop_edges</a></code> </p>
+          </td>
+          <td><p>Get count of all loop edges in the graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="count_mutual_node_pairs.html">count_mutual_node_pairs</a></code> </p>
           </td>
-          <td><p>Get the number of mutally-connected node pairs</p></td>
+          <td><p>Get the number of mutually-connected node pairs</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="count_nodes.html">count_nodes</a></code> </p>
+          </td>
+          <td><p>Get count of all nodes in the graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="count_s_connected_cmpts.html">count_s_connected_cmpts</a></code> </p>
+          </td>
+          <td><p>Get the number of strongly-connected components</p></td>
         </tr><tr>
           <!--  -->
           <td>
             <p><code><a href="count_unconnected_node_pairs.html">count_unconnected_node_pairs</a></code> </p>
           </td>
           <td><p>Get the number of unconnected node pairs</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="count_unconnected_nodes.html">count_unconnected_nodes</a></code> </p>
+          </td>
+          <td><p>Get count of all unconnected nodes in the graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="count_w_connected_cmpts.html">count_w_connected_cmpts</a></code> </p>
+          </td>
+          <td><p>Get the number of weakly-connected components</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -423,12 +450,6 @@ edge data frame</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="create_random_graph.html">create_random_graph</a></code> </p>
-          </td>
-          <td><p>Create a randomized graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="create_series.html">create_series</a></code> </p>
           </td>
           <td><p>Create a graph series object</p></td>
@@ -438,6 +459,12 @@ edge data frame</p></td>
             <p><code><a href="create_subgraph_ws.html">create_subgraph_ws</a></code> </p>
           </td>
           <td><p>Create a subgraph using node/edge selection</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="currencies.html">currencies</a></code> </p>
+          </td>
+          <td><p>ISO-4217 currency data.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -467,6 +494,12 @@ within a graph object</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="delete_loop_edges_ws.html">delete_loop_edges_ws</a></code> </p>
+          </td>
+          <td><p>Delete all loop edges associated with a selection of nodes</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="delete_node.html">delete_node</a></code> </p>
           </td>
           <td><p>Delete a node from an existing graph object</p></td>
@@ -476,6 +509,18 @@ within a graph object</p></td>
             <p><code><a href="delete_nodes_ws.html">delete_nodes_ws</a></code> </p>
           </td>
           <td><p>Delete all selected nodes in a node selection</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="deselect_edges.html">deselect_edges</a></code> </p>
+          </td>
+          <td><p>Deselect any selected edges in a graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="deselect_nodes.html">deselect_nodes</a></code> </p>
+          </td>
+          <td><p>Deselect any selected nodes in a graph</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -521,29 +566,27 @@ within a graph object</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="edge_count.html">edge_count</a></code> </p>
+            <p><code><a href="edge_aes.html">edge_aes</a></code> </p>
           </td>
-          <td><p>Get count of all edges or edges with distinct
-relationship types</p></td>
+          <td><p>Insert edge aesthetic attributes during edge creation</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="edge_info.html">edge_info</a></code> </p>
+            <p><code><a href="edge_data.html">edge_data</a></code> </p>
           </td>
-          <td><p>Get detailed information on edges</p></td>
+          <td><p>Insert edge data attributes during edge creation</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="edge_present.html">edge_present</a></code> </p>
+            <p><code><a href="edge_list_1.html">edge_list_1</a></code> </p>
           </td>
-          <td><p>Determine whether a specified edge is present</p></td>
+          <td><p>Edge list - Version 1.</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="edge_rel.html">edge_rel</a></code> </p>
+            <p><code><a href="edge_list_2.html">edge_list_2</a></code> </p>
           </td>
-          <td><p>Create, read, update, delete, or report status of an
-edge relationship</p></td>
+          <td><p>Edge list - Version 2.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -568,6 +611,18 @@ edge relationship</p></td>
             <p><code><a href="from_igraph.html">from_igraph</a></code> </p>
           </td>
           <td><p>Convert an igraph graph to a DiagrammeR one</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fully_connect_nodes_ws.html">fully_connect_nodes_ws</a></code> </p>
+          </td>
+          <td><p>Fully connect all nodes in a selection of nodes</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="fully_disconnect_nodes_ws.html">fully_disconnect_nodes_ws</a></code> </p>
+          </td>
+          <td><p>Fully disconnect all nodes in a selection of nodes</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -769,6 +824,12 @@ edge relationship</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="get_edge_df_ws.html">get_edge_df_ws</a></code> </p>
+          </td>
+          <td><p>Get the graph's edf filtered by a selection of edges</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="get_edge_df.html">get_edge_df</a></code> </p>
           </td>
           <td><p>Get an edge data frame from a graph</p></td>
@@ -778,6 +839,12 @@ edge relationship</p></td>
             <p><code><a href="get_edge_ids.html">get_edge_ids</a></code> </p>
           </td>
           <td><p>Get a vector of edge ID values</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="get_edge_info.html">get_edge_info</a></code> </p>
+          </td>
+          <td><p>Get detailed information on edges</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -913,6 +980,12 @@ edge relationship</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="get_node_df_ws.html">get_node_df_ws</a></code> </p>
+          </td>
+          <td><p>Get the graph's ndf filtered by a selection of nodes</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="get_node_df.html">get_node_df</a></code> </p>
           </td>
           <td><p>Get a node data frame from a graph</p></td>
@@ -922,6 +995,12 @@ edge relationship</p></td>
             <p><code><a href="get_node_ids.html">get_node_ids</a></code> </p>
           </td>
           <td><p>Get a vector of node ID values</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="get_node_info.html">get_node_info</a></code> </p>
+          </td>
+          <td><p>Get detailed information on nodes</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -1025,12 +1104,6 @@ node</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="image_icon.html">image_icon</a></code> </p>
-          </td>
-          <td><p>Icons and their download locations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="import_graph.html">import_graph</a></code> </p>
           </td>
           <td><p>Import a graph from various graph formats</p></td>
@@ -1058,6 +1131,12 @@ node</p></td>
             <p><code><a href="is_edge_mutual.html">is_edge_mutual</a></code> </p>
           </td>
           <td><p>Is the edge mutual with another edge?</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="is_edge_present.html">is_edge_present</a></code> </p>
+          </td>
+          <td><p>Determine whether a specified edge is present</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -1091,9 +1170,21 @@ node</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="is_graph_undirected.html">is_graph_undirected</a></code> </p>
+          </td>
+          <td><p>Is the graph an undirected graph?</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="is_graph_weighted.html">is_graph_weighted</a></code> </p>
           </td>
           <td><p>Is the graph a weighted graph?</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="is_node_present.html">is_node_present</a></code> </p>
+          </td>
+          <td><p>Determine whether a specified node is present</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -1127,9 +1218,21 @@ node</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="mutate_edge_attrs_ws.html">mutate_edge_attrs_ws</a></code> </p>
+          </td>
+          <td><p>Mutate edge attribute values for a selection of edges</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="mutate_edge_attrs.html">mutate_edge_attrs</a></code> </p>
           </td>
           <td><p>Mutate a set of edge attribute values</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws</a></code> </p>
+          </td>
+          <td><p>Mutate node attribute values for a selection of nodes</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -1139,28 +1242,27 @@ node</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="node_count.html">node_count</a></code> </p>
+            <p><code><a href="node_aes.html">node_aes</a></code> </p>
           </td>
-          <td><p>Get count of all nodes or certain types of nodes</p></td>
+          <td><p>Insert node aesthetic attributes during node creation</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="node_info.html">node_info</a></code> </p>
+            <p><code><a href="node_data.html">node_data</a></code> </p>
           </td>
-          <td><p>Get detailed information on nodes</p></td>
+          <td><p>Insert node data attributes during node creation</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="node_present.html">node_present</a></code> </p>
+            <p><code><a href="node_list_1.html">node_list_1</a></code> </p>
           </td>
-          <td><p>Determine whether a specified node is present</p></td>
+          <td><p>Node list - Version 1.</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="node_type.html">node_type</a></code> </p>
+            <p><code><a href="node_list_2.html">node_list_2</a></code> </p>
           </td>
-          <td><p>Create, read, update, delete, or report status of a
-node type definition</p></td>
+          <td><p>Node list - Version 2.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -1358,6 +1460,12 @@ specified node</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="set_edge_attr_to_display.html">set_edge_attr_to_display</a></code> </p>
+          </td>
+          <td><p>Set the edge attribute values to be rendered</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="set_edge_attrs_ws.html">set_edge_attrs_ws</a></code> </p>
           </td>
           <td><p>Set edge attributes with an edge selection</p></td>
@@ -1376,6 +1484,12 @@ specified node</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="set_graph_directed.html">set_graph_directed</a></code> </p>
+          </td>
+          <td><p>Convert an undirected graph to a directed graph</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="set_graph_name.html">set_graph_name</a></code> </p>
           </td>
           <td><p>Set graph name</p></td>
@@ -1390,7 +1504,7 @@ specified node</p></td>
           <td>
             <p><code><a href="set_graph_undirected.html">set_graph_undirected</a></code> </p>
           </td>
-          <td><p>Convert graph to an undirected graph</p></td>
+          <td><p>Convert a directed graph to an undirected graph</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -1464,6 +1578,12 @@ adjacent, inward nodes</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="trav_in_until.html">trav_in_until</a></code> </p>
+          </td>
+          <td><p>Traverse inward node-by_node until stopping conditions are met</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="trav_in.html">trav_in</a></code> </p>
           </td>
           <td><p>Traverse from one or more selected nodes onto
@@ -1485,6 +1605,12 @@ adjacent, outward nodes</p></td>
         </tr><tr>
           <!--  -->
           <td>
+            <p><code><a href="trav_out_until.html">trav_out_until</a></code> </p>
+          </td>
+          <td><p>Traverse outward node-by_node until stopping conditions are met</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
             <p><code><a href="trav_out.html">trav_out</a></code> </p>
           </td>
           <td><p>Traverse from one or more selected nodes onto
@@ -1501,6 +1627,12 @@ adjacent, outward nodes</p></td>
             <p><code><a href="trigger_graph_actions.html">trigger_graph_actions</a></code> </p>
           </td>
           <td><p>Trigger the execution of a series of graph actions</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="usd_exchange_rates.html">usd_exchange_rates</a></code> </p>
+          </td>
+          <td><p>US Dollar exchange rates.</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -1529,7 +1661,7 @@ adjacent, outward nodes</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

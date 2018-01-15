@@ -138,11 +138,13 @@ attribute and its values.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>10</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>shape</span>,
@@ -151,18 +153,19 @@ attribute and its values.</p></td>
         <span class='st'>"rectangle"</span>, <span class='st'>"rectangle"</span>,
         <span class='st'>"circle"</span>))
 
-<span class='co'># Get the graph's internal ndf to show which</span>
-<span class='co'># node attributes are available</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label value     shape</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1   6.0    circle</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2   2.5   hexagon</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3   3.5 rectangle</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4   7.5 rectangle</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     5   8.5    circle</span>
-
-<span class='co'># Recode the `shape` node attribute, so that</span>
-<span class='co'># `circle` is recoded to `square` and that</span>
+<span class='co'># Get the graph's internal ndf</span>
+<span class='co'># to show which node</span>
+<span class='co'># attributes are available</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label     shape
+#&gt; 1  1 &lt;NA&gt;     1    circle
+#&gt; 2  2 &lt;NA&gt;     2   hexagon
+#&gt; 3  3 &lt;NA&gt;     3 rectangle
+#&gt; 4  4 &lt;NA&gt;     4 rectangle
+#&gt; 5  5 &lt;NA&gt;     5    circle</div><div class='input'>
+<span class='co'># Recode the `shape` node</span>
+<span class='co'># attribute, so that `circle`</span>
+<span class='co'># is recoded to `square` and that</span>
 <span class='co'># `rectangle` becomes `triangle`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
@@ -171,20 +174,22 @@ attribute and its values.</p></td>
     <span class='st'>"circle -&gt; square"</span>,
     <span class='st'>"rectangle -&gt; triangle"</span>)
 
-<span class='co'># Get the graph's internal ndf to show that the</span>
-<span class='co'># node attribute values had been recoded</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label value    shape</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1   6.0   square</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2   2.5  hexagon</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3   3.5 triangle</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4   7.5 triangle</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     5   8.5   square</span>
-
-<span class='co'># Create a new node attribute, called `color`,</span>
-<span class='co'># that is based on a recoding of `shape`; here,</span>
-<span class='co'># map the square shape to a `red` color and map</span>
-<span class='co'># all other shapes to a `green` color</span>
+<span class='co'># Get the graph's internal</span>
+<span class='co'># ndf to show that the node</span>
+<span class='co'># attribute values had been recoded</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label    shape
+#&gt; 1  1 &lt;NA&gt;     1   square
+#&gt; 2  2 &lt;NA&gt;     2  hexagon
+#&gt; 3  3 &lt;NA&gt;     3 triangle
+#&gt; 4  4 &lt;NA&gt;     4 triangle
+#&gt; 5  5 &lt;NA&gt;     5   square</div><div class='input'>
+<span class='co'># Create a new node attribute,</span>
+<span class='co'># called `color`, that is based</span>
+<span class='co'># on a recoding of `shape`; here,</span>
+<span class='co'># map the square shape to a `red`</span>
+<span class='co'># color and map all other shapes</span>
+<span class='co'># to a `green` color</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>recode_node_attrs</span>(
@@ -193,35 +198,15 @@ attribute and its values.</p></td>
     <span class='kw'>otherwise</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
     <span class='kw'>node_attr_to</span> <span class='kw'>=</span> <span class='no'>color</span>)
 
-<span class='co'># Get the graph's internal ndf to see the change</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label value    shape color</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1   6.0   square   red</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2   2.5  hexagon green</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3   3.5 triangle green</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4   7.5 triangle green</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     5   8.5   square   red</span>
-
-<span class='co'># Numeric values can be recoded as well;</span>
-<span class='co'># here, perform several recodings for</span>
-<span class='co'># values of the `value` node attribute</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>recode_node_attrs</span>(
-    <span class='kw'>node_attr_from</span> <span class='kw'>=</span> <span class='no'>value</span>,
-    <span class='st'>"6.0 -&gt; 9.5"</span>,
-    <span class='st'>"3.5 -&gt; 10.5"</span>,
-    <span class='kw'>otherwise</span> <span class='kw'>=</span> <span class='fl'>5.0</span>)
-
-<span class='co'># Look at the graph's internal ndf</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label value    shape color</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1   9.5   square   red</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2   5.0  hexagon green</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3  10.5 triangle green</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4   5.0 triangle green</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     5   5.0   square   red</span>
-<span class='co'># }</span></pre>
+<span class='co'># Get the graph's internal ndf</span>
+<span class='co'># to see the change</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label    shape color
+#&gt; 1  1 &lt;NA&gt;     1   square   red
+#&gt; 2  2 &lt;NA&gt;     2  hexagon green
+#&gt; 3  3 &lt;NA&gt;     3 triangle green
+#&gt; 4  4 &lt;NA&gt;     4 triangle green
+#&gt; 5  5 &lt;NA&gt;     5   square   red</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -238,7 +223,7 @@ attribute and its values.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

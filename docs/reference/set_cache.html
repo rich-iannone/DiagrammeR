@@ -123,15 +123,18 @@ frame must provided here.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># Get the closeness values for all nodes from `1`</span>
-<span class='co'># to `10` and store in the graph's cache</span>
+<span class='co'># Get the closeness values for</span>
+<span class='co'># all nodes from `1` to `10` and</span>
+<span class='co'># store in the graph's cache</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_cache</span>(
@@ -142,11 +145,8 @@ frame must provided here.</p></td>
 <span class='co'># Get the graph's cache</span>
 <span class='fu'><a href='get_cache.html'>get_cache</a></span>(
   <span class='no'>graph</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"closeness_vector"</span>)
-<span class='co'>#&gt; [1] 0.07142857 0.07142857 0.07142857 0.06250000</span>
-<span class='co'>#&gt; [5] 0.07692308 0.09090909 0.06666667 0.05882353</span>
-<span class='co'>#&gt; [9] 0.07692308 0.07692308</span>
-
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"closeness_vector"</span>)</div><div class='output co'>#&gt;  [1] 0.07692308 0.08333333 0.07692308 0.06666667 0.05555556 0.06250000
+#&gt;  [7] 0.06666667 0.05000000 0.06666667 0.04761905</div><div class='input'>
 <span class='co'># Get the difference of betweenness and closeness</span>
 <span class='co'># values for nodes in the graph and store in the</span>
 <span class='co'># graph's cache</span>
@@ -160,11 +160,8 @@ frame must provided here.</p></td>
 <span class='co'># Get the graph's cache</span>
 <span class='fu'><a href='get_cache.html'>get_cache</a></span>(
   <span class='no'>graph</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"difference"</span>)
-<span class='co'>#&gt; [1] 5.83333333  4.83333333  1.71428571 -0.06250000</span>
-<span class='co'>#&gt; [5] 5.66117216 20.43290043  3.26666667 -0.05882353</span>
-<span class='co'>#&gt; [9] 3.66117216  3.99450549</span>
-<span class='co'># }</span></pre>
+  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"difference"</span>)</div><div class='output co'>#&gt;  [1]  9.25641026 28.91666667 19.08974359  2.60000000  0.44444444 17.93750000
+#&gt;  [7] 11.93333333 -0.05000000 10.26666667 -0.04761905</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -181,7 +178,7 @@ frame must provided here.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

@@ -141,8 +141,7 @@ and none exist as an empty string.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with 2 nodes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with 2 nodes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>)
@@ -162,9 +161,7 @@ and none exist as an empty string.</p></td>
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Get the count of edges in the graph</span>
-<span class='fu'><a href='edge_count.html'>edge_count</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] 0</span>
-
+<span class='fu'><a href='count_edges.html'>count_edges</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'># Create an undirected graph with</span>
 <span class='co'># 2 nodes and an edge</span>
 <span class='no'>graph_undirected</span> <span class='kw'>&lt;-</span>
@@ -181,24 +178,18 @@ and none exist as an empty string.</p></td>
   <span class='fu'>delete_edge</span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>2</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='edge_count.html'>edge_count</a></span>()
-<span class='co'>#&gt; [1] 0</span>
-
+  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='no'>graph_undirected</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>delete_edge</span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='edge_count.html'>edge_count</a></span>()
-<span class='co'>#&gt; [1] 0</span>
-
+  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'># The undirected graph has a single</span>
 <span class='co'># edge with ID `1`; it can be</span>
 <span class='co'># deleted by specifying `id`</span>
 <span class='no'>graph_undirected</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>delete_edge</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='edge_count.html'>edge_count</a></span>()
-<span class='co'>#&gt; [1] 0</span>
-
+  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'># Create a directed graph with 2</span>
 <span class='co'># labeled nodes and an edge</span>
 <span class='no'>graph_labeled_nodes</span> <span class='kw'>&lt;-</span>
@@ -218,9 +209,7 @@ and none exist as an empty string.</p></td>
   <span class='fu'>delete_edge</span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"one"</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"two"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='edge_count.html'>edge_count</a></span>()
-<span class='co'>#&gt; [1] 0</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -237,7 +226,7 @@ and none exist as an empty string.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

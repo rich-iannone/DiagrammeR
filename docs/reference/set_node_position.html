@@ -137,8 +137,7 @@ value.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a simple graph with 4 nodes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a simple graph with 4 nodes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"one"</span>) <span class='kw'>%&gt;%</span>
@@ -167,13 +166,12 @@ value.</p></td>
 <span class='co'># verify that the `x` and `y` node</span>
 <span class='co'># attributes are available and set to</span>
 <span class='co'># the values provided</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label x y</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;   one 1 1</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;   two 2 2</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt; three 3 3</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;  four 4 4</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label x y
+#&gt; 1  1 &lt;NA&gt;   one 1 1
+#&gt; 2  2 &lt;NA&gt;   two 2 2
+#&gt; 3  3 &lt;NA&gt; three 3 3
+#&gt; 4  4 &lt;NA&gt;  four 4 4</div><div class='input'>
 <span class='co'># The same function can modify the data</span>
 <span class='co'># in the `x` and `y` attributes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -192,13 +190,12 @@ value.</p></td>
     <span class='kw'>x</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 
 <span class='co'># View the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label x y</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;   one 1 4</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;   two 3 3</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt; three 3 2</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;  four 4 1</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label x y
+#&gt; 1  1 &lt;NA&gt;   one 1 4
+#&gt; 2  2 &lt;NA&gt;   two 3 3
+#&gt; 3  3 &lt;NA&gt; three 3 2
+#&gt; 4  4 &lt;NA&gt;  four 4 1</div><div class='input'>
 <span class='co'># Position changes can also be made by</span>
 <span class='co'># supplying a node `label` value (and setting</span>
 <span class='co'># `use_labels` to TRUE). For this to work,</span>
@@ -216,13 +213,12 @@ value.</p></td>
     <span class='kw'>use_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='co'># View the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label x y</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;   one 1 1</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;   two 2 2</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt; three 3 2</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;  four 4 1</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label x y
+#&gt; 1  1 &lt;NA&gt;   one 1 1
+#&gt; 2  2 &lt;NA&gt;   two 2 2
+#&gt; 3  3 &lt;NA&gt; three 3 2
+#&gt; 4  4 &lt;NA&gt;  four 4 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -239,7 +235,7 @@ value.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

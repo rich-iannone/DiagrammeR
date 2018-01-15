@@ -87,8 +87,9 @@
     </div>
 
     
-    <p>Remove a single graph object from an
-set of graph objects contained within a graph series
+    <p>Remove a single graph
+object from an set of graph objects
+contained within a graph series
 object.</p>
     
 
@@ -99,13 +100,15 @@ object.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph_series</th>
-      <td><p>a graph series object from which
-the graph object will be removed.</p></td>
+      <td><p>a graph series
+object from which the graph object
+will be removed.</p></td>
     </tr>
     <tr>
       <th>index</th>
-      <td><p>the index of the graph object to be
-removed from the graph series object.</p></td>
+      <td><p>the index of the graph
+object to be removed from the graph
+series object.</p></td>
     </tr>
     </table>
     
@@ -116,50 +119,47 @@ removed from the graph series object.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create three graphs</span>
+    <pre class="examples"><div class='input'><span class='co'># Create three graphs</span>
 <span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_edges_w_string.html'>add_edges_w_string</a></span>(
-    <span class='kw'>edges</span> <span class='kw'>=</span> <span class='st'>"1-&gt;3 1-&gt;2 2-&gt;3"</span>)
+  <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
 <span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
-  <span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_node.html'>add_node</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_edge.html'>add_edge</a></span>(
-    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>)
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='no'>graph_3</span> <span class='kw'>&lt;-</span>
-  <span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_node.html'>add_node</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_edge.html'>add_edge</a></span>(
-    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_star.html'>add_star</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 
-<span class='co'># Create an empty graph series and add</span>
-<span class='co'># the graphs</span>
+<span class='co'># Create an empty graph series</span>
+<span class='co'># and add the graphs</span>
 <span class='no'>series</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_series.html'>create_series</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_to_series.html'>add_to_series</a></span>(<span class='no'>graph_1</span>, <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_to_series.html'>add_to_series</a></span>(<span class='no'>graph_2</span>, <span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_to_series.html'>add_to_series</a></span>(<span class='no'>graph_3</span>, <span class='no'>.</span>)
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_2</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_3</span>)
 
-<span class='co'># Remove the second graph (with the name `remove`)</span>
+<span class='co'># Remove the second graph</span>
 <span class='co'># from the graph series</span>
 <span class='no'>series</span> <span class='kw'>&lt;-</span>
   <span class='fu'>remove_from_series</span>(
     <span class='kw'>graph_series</span> <span class='kw'>=</span> <span class='no'>series</span>,
     <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='co'># Use `series_info()` function to ensure that</span>
-<span class='co'># the graph with the name `remove` was removed</span>
-<span class='fu'><a href='series_info.html'>series_info</a></span>(<span class='no'>series</span>)
-<span class='co'>#&gt;   graph name date_time   tz nodes edges directed</span>
-<span class='co'>#&gt; 1     1 &lt;NA&gt;      &lt;NA&gt; &lt;NA&gt;     3     3     TRUE</span>
-<span class='co'>#&gt; 2     2 &lt;NA&gt;      &lt;NA&gt; &lt;NA&gt;     5     5     TRUE</span>
-<span class='co'># }</span></pre>
+<span class='co'># Use `series_info()` function</span>
+<span class='co'># to ensure that a graph</span>
+<span class='co'># was removed</span>
+<span class='no'>series</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='series_info.html'>series_info</a></span>()</div><div class='output co'>#&gt;   graph           name           date_time                  tz nodes edges
+#&gt; 1     1 graph_mkRJxXyq 2018-01-14 21:23:56 America/Los_Angeles     4     3
+#&gt; 2     2 graph_ySz3BP7j 2018-01-14 21:23:56 America/Los_Angeles     6     5
+#&gt;   directed
+#&gt; 1     TRUE
+#&gt; 2     TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -176,7 +176,7 @@ removed from the graph series object.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

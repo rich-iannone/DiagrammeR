@@ -121,13 +121,21 @@ in the table as <code>type</code> attribute values.</p></td>
     <tr>
       <th>set_type</th>
       <td><p>an optional string to apply a
-<code>type</code> attribute to all nodes created from the
-table records.</p></td>
+<code>type</code> attribute to all nodes created from data
+in the external table.</p></td>
     </tr>
     <tr>
       <th>drop_cols</th>
-      <td><p>an optional character vector for
-dropping columns from the incoming data.</p></td>
+      <td><p>an optional column selection
+statement for dropping columns from the external
+table before inclusion as attributes in the graph's
+internal node data frame. Several columns can be
+dropped by name using the syntax
+<code>col_1 &amp; col_2 &amp; ...</code>. Columns can also be
+dropped using a numeric column range with <code>:</code>
+(e.g., <code>5:8</code>), or, by using the <code>:</code>
+between column names to specify the range (e.g.,
+<code>col_5_name:col_8_name</code>).</p></td>
     </tr>
     </table>
     
@@ -137,82 +145,77 @@ dropping columns from the incoming data.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>dplyr</span>)
-
-<span class='co'># Specify a path to a CSV file</span>
-<span class='no'>path_to_csv</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>system.file</span>(
-    <span class='st'>"extdata"</span>, <span class='st'>"currencies.csv"</span>,
-    <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DiagrammeR"</span>)
-
-<span class='co'># To add nodes from a CSV file, call the</span>
-<span class='co'># `add_nodes_from_table()` function; new node ID</span>
-<span class='co'># values will be created as a monotonically-</span>
-<span class='co'># increasing values from 1</span>
+    <pre class="examples"><div class='input'><span class='co'># To add nodes from the dataset called</span>
+<span class='co'># `currencies` (available as a dataset</span>
+<span class='co'># in the package), call the</span>
+<span class='co'># `add_nodes_from_table()` function</span>
+<span class='co'># after creating an empty graph; new</span>
+<span class='co'># node ID values will be created as</span>
+<span class='co'># monotonically-increasing values</span>
 <span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>add_nodes_from_table</span>(
-    <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>path_to_csv</span>)
+    <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>currencies</span>)
 
-<span class='co'># View part of the graph's internal node data</span>
-<span class='co'># frame (ndf) using `get_node_df()`</span>
+<span class='co'># View part of the graph's internal</span>
+<span class='co'># node data frame (ndf)</span>
 <span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>() <span class='kw'>%&gt;%</span>
   <span class='no'>.</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'>head</span>()
-<span class='co'>#&gt;   id type label iso_4217_code curr_number</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;           AED         784</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;           AFN         971</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;           ALL           8</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;           AMD          51</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;  &lt;NA&gt;           ANG         532</span>
-<span class='co'>#&gt; 6  6 &lt;NA&gt;  &lt;NA&gt;           AOA         973</span>
-
-<span class='co'># If you would like to assign any of the table's</span>
-<span class='co'># columns as `type` or `label` attributes, this can</span>
-<span class='co'># be done with the `type_col` and `label_col`</span>
-<span class='co'># arguments; to set a static `type` attribute for</span>
-<span class='co'># all of the table records, use `set_type`</span>
+  <span class='fu'>head</span>()</div><div class='output co'>#&gt;   id type label iso_4217_code curr_number
+#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;           AED         784
+#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;           AFN         971
+#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;           ALL           8
+#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;           AMD          51
+#&gt; 5  5 &lt;NA&gt;  &lt;NA&gt;           ANG         532
+#&gt; 6  6 &lt;NA&gt;  &lt;NA&gt;           AOA         973</div><div class='input'>
+<span class='co'># If you would like to assign</span>
+<span class='co'># any of the table's columns as</span>
+<span class='co'># `type` or `label` attributes,</span>
+<span class='co'># this can be done with the `type_col`</span>
+<span class='co'># and `label_col` arguments; to set</span>
+<span class='co'># a static `type` attribute for all</span>
+<span class='co'># of the table records, use `set_type`</span>
 <span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>add_nodes_from_table</span>(
-    <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>path_to_csv</span>,
+    <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>currencies</span>,
     <span class='kw'>label_col</span> <span class='kw'>=</span> <span class='no'>iso_4217_code</span>,
-    <span class='kw'>set_type</span> <span class='kw'>=</span> <span class='st'>"currency"</span>)
+    <span class='kw'>set_type</span> <span class='kw'>=</span> <span class='no'>currency</span>)
 
 <span class='co'># View part of the graph's internal ndf</span>
 <span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>() <span class='kw'>%&gt;%</span>
   <span class='no'>.</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>] <span class='kw'>%&gt;%</span>
-  <span class='fu'>head</span>()
-<span class='co'>#&gt;   id     type label iso_4217_code curr_number</span>
-<span class='co'>#&gt; 1  1 currency   AED           AED         784</span>
-<span class='co'>#&gt; 2  2 currency   AFN           AFN         971</span>
-<span class='co'>#&gt; 3  3 currency   ALL           ALL           8</span>
-<span class='co'>#&gt; 4  4 currency   AMD           AMD          51</span>
-<span class='co'>#&gt; 5  5 currency   ANG           ANG         532</span>
-<span class='co'>#&gt; 6  6 currency   AOA           AOA         973</span>
-
-<span class='co'># Suppose you would like to not include certain</span>
-<span class='co'># columns from the table in the resulting graph; you</span>
-<span class='co'># can use the `drop_cols` argument to choose which</span>
-<span class='co'># columns to not include as attributes in the graph</span>
+  <span class='fu'>head</span>()</div><div class='output co'>#&gt;   id     type label curr_number exponent
+#&gt; 1  1 currency   AED         784        2
+#&gt; 2  2 currency   AFN         971        2
+#&gt; 3  3 currency   ALL           8        2
+#&gt; 4  4 currency   AMD          51        2
+#&gt; 5  5 currency   ANG         532        2
+#&gt; 6  6 currency   AOA         973        2</div><div class='input'>
+<span class='co'># Suppose we would like to not</span>
+<span class='co'># include certain columns from the</span>
+<span class='co'># external table in the resulting</span>
+<span class='co'># graph; we can use the `drop_cols`</span>
+<span class='co'># argument to choose which columns</span>
+<span class='co'># to not include as attributes</span>
 <span class='no'>graph_3</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>add_nodes_from_table</span>(
-    <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>path_to_csv</span>,
+    <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>currencies</span>,
     <span class='kw'>label_col</span> <span class='kw'>=</span> <span class='no'>iso_4217_code</span>,
-    <span class='kw'>set_type</span> <span class='kw'>=</span> <span class='st'>"currency"</span>,
-    <span class='kw'>drop_cols</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"exponent"</span>, <span class='st'>"currency_name"</span>))
+    <span class='kw'>set_type</span> <span class='kw'>=</span> <span class='no'>currency</span>,
+    <span class='kw'>drop_cols</span> <span class='kw'>=</span> <span class='no'>exponent</span> <span class='kw'>&amp;</span> <span class='no'>currency_name</span>)
 
-<span class='co'># Show the node attribute names for the graph</span>
+<span class='co'># Show the node attribute names</span>
+<span class='co'># for the graph; note that the</span>
+<span class='co'># `exponent` and `currency_name`</span>
+<span class='co'># columns are not attributes in the</span>
+<span class='co'># graph's internal node data frame</span>
 <span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>colnames</span>()
-<span class='co'>#&gt; [1] "id"  type"  "label"  "iso_4217_code"</span>
-<span class='co'>#&gt; [5] "curr_number"</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>colnames</span>()</div><div class='output co'>#&gt; [1] "id"          "type"        "label"       "curr_number"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -229,7 +232,7 @@ dropping columns from the incoming data.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

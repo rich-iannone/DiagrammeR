@@ -123,8 +123,7 @@ any of the traversal functions (<code>trav_...</code>).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a node data frame (ndf)</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a node data frame (ndf)</span>
 <span class='no'>ndf</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>6</span>,
@@ -155,17 +154,13 @@ any of the traversal functions (<code>trav_...</code>).</p>
 <span class='no'>subgraph</span> <span class='kw'>&lt;-</span> <span class='fu'>create_subgraph_ws</span>(<span class='no'>graph</span>)
 
 <span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>subgraph</span>)
-<span class='co'>#&gt;   id type label value</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   3.5</span>
-<span class='co'>#&gt; 2  3 &lt;NA&gt;  &lt;NA&gt;   9.4</span>
-<span class='co'>#&gt; 3  5 &lt;NA&gt;  &lt;NA&gt;   5.2</span>
-
+<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>subgraph</span>)</div><div class='output co'>#&gt;   id type label value
+#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   3.5
+#&gt; 2  3 &lt;NA&gt;  &lt;NA&gt;   9.4
+#&gt; 3  5 &lt;NA&gt;  &lt;NA&gt;   5.2</div><div class='input'>
 <span class='co'># Display the graph's edge data frame</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>subgraph</span>)
-<span class='co'>#&gt;   id from to  rel</span>
-<span class='co'>#&gt; 1  4    5  3 &lt;NA&gt;</span>
-<span class='co'># }</span></pre>
+<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>subgraph</span>)</div><div class='output co'>#&gt;   id from to  rel
+#&gt; 1  4    5  3 &lt;NA&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -182,7 +177,7 @@ any of the traversal functions (<code>trav_...</code>).</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

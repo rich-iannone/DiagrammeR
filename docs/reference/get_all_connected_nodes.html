@@ -89,7 +89,7 @@
     
     <p>With a single node serving as
 the starting point get all nodes connected (i.e.,
-reachable with a traversible path) to that node.</p>
+reachable with a traversable path) to that node.</p>
     
 
     <pre class="usage"><span class='fu'>get_all_connected_nodes</span>(<span class='no'>graph</span>, <span class='no'>node</span>)</pre>
@@ -115,48 +115,49 @@ node ID value.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># This graph, created using `create_random_graph()`</span>
-<span class='co'># is almost fully connected but there is an</span>
-<span class='co'># isolated node (`8`) with no edges</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function; it</span>
+<span class='co'># has an unconnected node (`6`)</span>
 <span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>40</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>32</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># There won't be any connected nodes to `8`</span>
-<span class='co'># so when specifying this node with</span>
-<span class='co'># `get_all_connected_nodes()` we get NA back</span>
+<span class='co'># There won't be any connected</span>
+<span class='co'># nodes to `6` so when specifying</span>
+<span class='co'># this node with `get_all_connected_nodes()`</span>
+<span class='co'># we get NA back</span>
 <span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_all_connected_nodes</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>8</span>)
-<span class='co'>#&gt; [1] NA</span>
-
-<span class='co'># Any other node in `graph_1` will provide a vector</span>
-<span class='co'># of all the nodes other than `8`</span>
+  <span class='fu'>get_all_connected_nodes</span>(
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>6</span>)</div><div class='output co'>#&gt; [1] NA</div><div class='input'>
+<span class='co'># Any other node in `graph_1` will</span>
+<span class='co'># provide a vector of all the nodes</span>
+<span class='co'># other than `6`</span>
 <span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_all_connected_nodes</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='co'>#&gt;  [1]  2  3  4  5  6  7  9 10 11 12 13 14 15 16 17</span>
-<span class='co'>#&gt; [16] 18 19 20 21 22 23 24 25 26 27 28 29 30</span>
-
-<span class='co'># The following graph has two clusters of nodes</span>
-<span class='co'># (i.e., the graph has two connected components)</span>
+  <span class='fu'>get_all_connected_nodes</span>(
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;  [1]  2  3  4  5  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div><div class='input'>
+<span class='co'># The following graph has two</span>
+<span class='co'># clusters of nodes (i.e., the</span>
+<span class='co'># graph has two connected components)</span>
 <span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>6</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
-<span class='co'># In `graph_2`, node `1` is in the larger of the two</span>
+<span class='co'># In `graph_2`, node `1` is in</span>
+<span class='co'># the larger of the two</span>
 <span class='co'># connected components</span>
 <span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_all_connected_nodes</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='co'>#&gt; [1] 2 3 4 5 6</span>
-
-<span class='co'># Also in `graph_2`, node `8` is in the smaller of</span>
-<span class='co'># the two connected components</span>
+  <span class='fu'>get_all_connected_nodes</span>(
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; [1] 2 3 4 5 6</div><div class='input'>
+<span class='co'># Also in `graph_2`, node `8`</span>
+<span class='co'># is in the smaller of the two</span>
+<span class='co'># connected components</span>
 <span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_all_connected_nodes</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>8</span>)
-<span class='co'>#&gt; [1]  7  9 10</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>get_all_connected_nodes</span>(
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>8</span>)</div><div class='output co'>#&gt; [1]  7  9 10</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -173,7 +174,7 @@ node ID value.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

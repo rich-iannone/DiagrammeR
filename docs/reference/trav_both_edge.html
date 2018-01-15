@@ -98,7 +98,7 @@ traversed to.</p>
     
 
     <pre class="usage"><span class='fu'>trav_both_edge</span>(<span class='no'>graph</span>, <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>copy_attrs_from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>agg</span> <span class='kw'>=</span> <span class='st'>"sum"</span>)</pre>
+  <span class='kw'>copy_attrs_as</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>agg</span> <span class='kw'>=</span> <span class='st'>"sum"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -122,6 +122,17 @@ the values will be merged to the traversed edges;
 otherwise, a new edge attribute will be created.</p></td>
     </tr>
     <tr>
+      <th>copy_attrs_as</th>
+      <td><p>if a node attribute name
+is provided in <code>copy_attrs_from</code>, this option
+will allow the copied attribute values to be
+written under a different edge attribute name.
+If the attribute name provided in
+<code>copy_attrs_as</code> does not exist in the graph's
+edf, the new edge attribute will be created
+with the chosen name.</p></td>
+    </tr>
+    <tr>
       <th>agg</th>
       <td><p>if a node attribute is provided
 to <code>copy_attrs_from</code>, then an aggregation
@@ -136,12 +147,12 @@ the following aggregation functions can be used:
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Set a seed</span>
+    <pre class="examples"><div class='input'><span class='co'># Set a seed</span>
 <span class='fu'>set.seed</span>(<span class='fl'>23</span>)
 
 <span class='co'># Create a simple graph</span>
@@ -175,23 +186,20 @@ the following aggregation functions can be used:
   <span class='fu'><a href='join_edge_attrs.html'>join_edge_attrs</a></span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>df</span>)
 
 <span class='co'># Show the graph's internal edge data frame</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel values</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;   6.00</span>
-<span class='co'>#&gt; 2  2    1  3    A   6.11</span>
-<span class='co'>#&gt; 3  3    2  4    B   4.72</span>
-<span class='co'>#&gt; 4  4    2  5    C   6.02</span>
-<span class='co'>#&gt; 5  5    3  5    D   5.05</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel values
+#&gt; 1  1    1  2 &lt;NA&gt;   6.00
+#&gt; 2  2    1  3    A   6.11
+#&gt; 3  3    2  4    B   4.72
+#&gt; 4  4    2  5    C   6.02
+#&gt; 5  5    3  5    D   5.05</div><div class='input'>
 <span class='co'># Perform a simple traversal from nodes to</span>
 <span class='co'># adjacent edges with no conditions on the</span>
 <span class='co'># nodes traversed to</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_both_edge</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 2 5</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2 5</div><div class='input'>
 <span class='co'># Traverse from node `2` to any adjacent</span>
 <span class='co'># edges, filtering to those edges that have</span>
 <span class='co'># NA values for the `rel` edge attribute</span>
@@ -199,9 +207,7 @@ the following aggregation functions can be used:
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_both_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='fu'>is.na</span>(<span class='no'>rel</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 1</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Traverse from node `2` to any adjacent</span>
 <span class='co'># edges, filtering to those edges that have</span>
 <span class='co'># numeric values greater than `6.5` for</span>
@@ -210,9 +216,7 @@ the following aggregation functions can be used:
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_both_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>6.5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 2</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Traverse from node `5` to any adjacent</span>
 <span class='co'># edges, filtering to those edges that</span>
 <span class='co'># have values equal to `C` for the `rel`</span>
@@ -221,9 +225,7 @@ the following aggregation functions can be used:
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_both_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>rel</span> <span class='kw'>==</span> <span class='st'>"C"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 4</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 4</div><div class='input'>
 <span class='co'># Traverse from node `2` to any adjacent</span>
 <span class='co'># edges, filtering to those edges that</span>
 <span class='co'># have values in the set `B` and `C` for</span>
@@ -232,9 +234,7 @@ the following aggregation functions can be used:
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_both_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>rel</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"B"</span>, <span class='st'>"C"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 3 4</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 3 4</div><div class='input'>
 <span class='co'># Traverse from node `2` to any adjacent</span>
 <span class='co'># edges, and use multiple conditions for the</span>
 <span class='co'># traversal</span>
@@ -244,9 +244,7 @@ the following aggregation functions can be used:
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='no'>rel</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"B"</span>, <span class='st'>"C"</span>) <span class='kw'>&amp;</span>
       <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>4.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 3 4</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 3 4</div><div class='input'>
 <span class='co'># Traverse from node `2` to any adjacent</span>
 <span class='co'># edges, and use multiple conditions with</span>
 <span class='co'># a single-length vector</span>
@@ -256,9 +254,7 @@ the following aggregation functions can be used:
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='no'>rel</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"B"</span>, <span class='st'>"C"</span>) <span class='kw'>|</span>
       <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>4.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 1 3 4</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 3 4</div><div class='input'>
 <span class='co'># Traverse from node `2` to any adjacent</span>
 <span class='co'># edges, and use a regular expression as</span>
 <span class='co'># a filtering condition</span>
@@ -266,9 +262,7 @@ the following aggregation functions can be used:
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_both_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='fu'>grepl</span>(<span class='st'>"B|C"</span>, <span class='no'>rel</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 3 4</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 3 4</div><div class='input'>
 <span class='co'># Create another simple graph to demonstrate</span>
 <span class='co'># copying of node attribute values to traversed</span>
 <span class='co'># edges</span>
@@ -282,21 +276,17 @@ the following aggregation functions can be used:
 
 <span class='co'># Show the graph's internal edge data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()
-<span class='co'>#&gt;   id from to  rel</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;</span>
-
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
+#&gt; 1  1    1  2 &lt;NA&gt;
+#&gt; 2  2    2  3 &lt;NA&gt;
+#&gt; 3  3    3  4 &lt;NA&gt;</div><div class='input'>
 <span class='co'># Show the graph's internal node data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()
-<span class='co'>#&gt;   id type label value</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1    NA</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2     5</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3     5</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4    NA</span>
-
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
+#&gt; 1  1 &lt;NA&gt;     1    NA
+#&gt; 2  2 &lt;NA&gt;     2     5
+#&gt; 3  3 &lt;NA&gt;     3     5
+#&gt; 4  4 &lt;NA&gt;     4    NA</div><div class='input'>
 <span class='co'># Perform a traversal from the nodes to</span>
 <span class='co'># the adjacent edges while also applying</span>
 <span class='co'># the node attribute `value` to the edges (in</span>
@@ -312,12 +302,10 @@ the following aggregation functions can be used:
 <span class='co'># Show the graph's internal edge data frame</span>
 <span class='co'># after this change</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()
-<span class='co'>#&gt;   id from to  rel value</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;     5</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;    10</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;     5</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel value
+#&gt; 1  1    1  2 &lt;NA&gt;     5
+#&gt; 2  2    2  3 &lt;NA&gt;    10
+#&gt; 3  3    3  4 &lt;NA&gt;     5</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -334,7 +322,7 @@ the following aggregation functions can be used:
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

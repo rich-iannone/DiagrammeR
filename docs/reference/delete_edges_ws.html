@@ -119,16 +119,16 @@ or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_edges_w_string.html'>add_edges_w_string</a></span>(
     <span class='kw'>edges</span> <span class='kw'>=</span> <span class='st'>"1-&gt;3 1-&gt;2 2-&gt;3"</span>)
 
-<span class='co'># Select edges attached to node with ID `3`</span>
-<span class='co'># (these are `1`-&gt;`3` and `2`-&gt;`3`)</span>
+<span class='co'># Select edges attached to</span>
+<span class='co'># node with ID `3` (these are</span>
+<span class='co'># `1`-&gt;`3` and `2`-&gt;`3`)</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>3</span>)
@@ -139,9 +139,7 @@ or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
   <span class='fu'>delete_edges_ws</span>()
 
 <span class='co'># Get a count of edges in the graph</span>
-<span class='fu'><a href='edge_count.html'>edge_count</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] 1</span>
-<span class='co'># }</span></pre>
+<span class='fu'><a href='count_edges.html'>count_edges</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -158,7 +156,7 @@ or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

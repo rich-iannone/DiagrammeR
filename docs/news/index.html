@@ -88,6 +88,16 @@
     </div>
 
     <div class="contents">
+    <div id="diagrammer-0-9-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#diagrammer-0-9-2" class="anchor"></a>DiagrammeR 0.9.2</h1>
+<ul>
+<li><p>Added functions to generate 2D and 3D grid graphs (<code><a href="../reference/add_grid_2d.html">add_grid_2d()</a></code> and <code><a href="../reference/add_grid_3d.html">add_grid_3d()</a></code>)</p></li>
+<li><p>Added <code>_ws</code> (with selection) variants of the <code>mutate_[node/edge]_attrs()</code> functions for mutating node or edge attributes for only those nodes/edges in an active selection</p></li>
+<li><p>Incorporated an <code>edges</code> argument into the <code><a href="../reference/select_edges.html">select_edges()</a></code> function in order to filter the selection of edges to a set of edge ID values</p></li>
+<li><p>Reduced the dependency on R to version &gt;= 3.2.0</p></li>
+</ul>
+</div>
     <div id="diagrammer-0-9-1" class="section level1">
 <h1 class="hasAnchor">
 <a href="#diagrammer-0-9-1" class="anchor"></a>DiagrammeR 0.9.1</h1>
@@ -141,7 +151,7 @@
 <li><p>Added option to display different text labels on nodes via the <code>display</code> node attribute; this is easily set with the <code><a href="../reference/set_node_attr_to_display.html">set_node_attr_to_display()</a></code> function</p></li>
 <li><p>Rewrote many graph functions (e.g. traversals) so that they are faster for very large graphs</p></li>
 <li><p>A log of all graph functions that directly modify the graph is now part of the graph object (<code>graph$graph_log</code>)</p></li>
-<li><p>Added functionality to automatically generate graph backups at every graph modification; this is in the form of RDS files deposited in a subdirectory (name is based on the graph ID) of the working directory; the option (<code>write_backups</code>, set to <code>FALSE</code> by default) is available in all functions that initialize a graph object (<code><a href="../reference/create_graph.html">create_graph()</a></code>, <code><a href="../reference/create_random_graph.html">create_random_graph()</a></code>, <code><a href="../reference/from_igraph.html">from_igraph()</a></code>, <code><a href="../reference/from_adj_matrix.html">from_adj_matrix()</a></code>)</p></li>
+<li><p>Added functionality to automatically generate graph backups at every graph modification; this is in the form of RDS files deposited in a subdirectory (name is based on the graph ID) of the working directory; the option (<code>write_backups</code>, set to <code>FALSE</code> by default) is available in all functions that initialize a graph object (<code><a href="../reference/create_graph.html">create_graph()</a></code>, <code>create_random_graph()</code>, <code><a href="../reference/from_igraph.html">from_igraph()</a></code>, <code><a href="../reference/from_adj_matrix.html">from_adj_matrix()</a></code>)</p></li>
 </ul>
 </div>
     <div id="diagrammer-0-8" class="section level1">
@@ -150,7 +160,7 @@
 <ul>
 <li><p>Revised many graph functions so they work better together</p></li>
 <li><p>Added many <strong>testthat</strong> tests to maintain the quality of the graph functions</p></li>
-<li><p>Added functions <code><a href="../reference/create_random_graph.html">create_random_graph()</a></code>, <code><a href="../reference/import_graph.html">import_graph()</a></code>, <code><a href="../reference/combine_graphs.html">combine_graphs()</a></code>, <code>country_graph()</code> and <code>select_graph_from_series()</code></p></li>
+<li><p>Added functions <code>create_random_graph()</code>, <code><a href="../reference/import_graph.html">import_graph()</a></code>, <code><a href="../reference/combine_graphs.html">combine_graphs()</a></code>, <code>country_graph()</code> and <code>select_graph_from_series()</code></p></li>
 <li><p>Added support for <strong>visNetwork</strong> graphs as a rendering option with <code><a href="../reference/render_graph.html">render_graph()</a></code></p></li>
 </ul>
 </div>
@@ -160,14 +170,14 @@
 <ul>
 <li><p>Renamed functions <code>graphviz_graph()</code> and <code>graphviz_render()</code> to <code><a href="../reference/create_graph.html">create_graph()</a></code> and <code><a href="../reference/render_graph.html">render_graph()</a></code>, respectively</p></li>
 <li><p>Removed function <code>graphviz_export()</code> (exporting now handled with <code><a href="../reference/render_graph.html">render_graph()</a></code>)</p></li>
-<li><p>Added several new functions to inspect, analyze, and modify graphs: <code>display_graph_object()</code>, <code><a href="../reference/node_info.html">node_info()</a></code>, <code><a href="../reference/edge_info.html">edge_info()</a></code>, <code><a href="../reference/node_present.html">node_present()</a></code>, <code><a href="../reference/edge_present.html">edge_present()</a></code>, <code>get_nodes()</code>, <code><a href="../reference/get_edges.html">get_edges()</a></code>, <code><a href="../reference/get_predecessors.html">get_predecessors()</a></code>, <code><a href="../reference/get_successors.html">get_successors()</a></code>, <code><a href="../reference/node_count.html">node_count()</a></code>, <code><a href="../reference/edge_count.html">edge_count()</a></code>, <code><a href="../reference/is_graph_empty.html">is_graph_empty()</a></code>, <code><a href="../reference/is_graph_directed.html">is_graph_directed()</a></code>, <code><a href="../reference/add_node.html">add_node()</a></code>, <code>add_edges()</code>, <code><a href="../reference/delete_node.html">delete_node()</a></code>, <code><a href="../reference/delete_edge.html">delete_edge()</a></code>, <code><a href="../reference/node_type.html">node_type()</a></code>, <code>edge_relationship()</code>, <code><a href="../reference/create_series.html">create_series()</a></code>, <code><a href="../reference/add_to_series.html">add_to_series()</a></code>, <code><a href="../reference/remove_from_series.html">remove_from_series()</a></code>, <code><a href="../reference/graph_count.html">graph_count()</a></code>, <code><a href="../reference/subset_series.html">subset_series()</a></code>, <code>trigger_script()</code>, <code><a href="../reference/render_graph_from_series.html">render_graph_from_series()</a></code>, and <code><a href="../reference/series_info.html">series_info()</a></code></p></li>
+<li><p>Added several new functions to inspect, analyze, and modify graphs: <code>display_graph_object()</code>, <code>node_info()</code>, <code>edge_info()</code>, <code>node_present()</code>, <code>edge_present()</code>, <code>get_nodes()</code>, <code><a href="../reference/get_edges.html">get_edges()</a></code>, <code><a href="../reference/get_predecessors.html">get_predecessors()</a></code>, <code><a href="../reference/get_successors.html">get_successors()</a></code>, <code>node_count()</code>, <code>edge_count()</code>, <code><a href="../reference/is_graph_empty.html">is_graph_empty()</a></code>, <code><a href="../reference/is_graph_directed.html">is_graph_directed()</a></code>, <code><a href="../reference/add_node.html">add_node()</a></code>, <code>add_edges()</code>, <code><a href="../reference/delete_node.html">delete_node()</a></code>, <code><a href="../reference/delete_edge.html">delete_edge()</a></code>, <code>node_type()</code>, <code>edge_relationship()</code>, <code><a href="../reference/create_series.html">create_series()</a></code>, <code>add_to_series()</code>, <code><a href="../reference/remove_from_series.html">remove_from_series()</a></code>, <code><a href="../reference/graph_count.html">graph_count()</a></code>, <code><a href="../reference/subset_series.html">subset_series()</a></code>, <code>trigger_script()</code>, <code><a href="../reference/render_graph_from_series.html">render_graph_from_series()</a></code>, and <code><a href="../reference/series_info.html">series_info()</a></code></p></li>
 </ul>
 </div>
     <div id="diagrammer-0-6" class="section level1">
 <h1 class="hasAnchor">
 <a href="#diagrammer-0-6" class="anchor"></a>DiagrammeR 0.6</h1>
 <ul>
-<li><p>Added several functions to work with graphs: <code>create_nodes()</code>, <code>create_edges()</code>, <code>combine_nodes()</code>, <code>combine_edges()</code>, <code>scale_nodes()</code>, <code>scale_edges()</code>, <code>get_nodes()</code>, <code><a href="../reference/node_info.html">node_info()</a></code>, <code>graphviz_graph()</code>, <code>graphviz_render()</code>, and <code>graphviz_export()</code></p></li>
+<li><p>Added several functions to work with graphs: <code>create_nodes()</code>, <code>create_edges()</code>, <code>combine_nodes()</code>, <code>combine_edges()</code>, <code>scale_nodes()</code>, <code>scale_edges()</code>, <code>get_nodes()</code>, <code>node_info()</code>, <code>graphviz_graph()</code>, <code>graphviz_render()</code>, and <code>graphviz_export()</code></p></li>
 <li><p>Removed the <code>graphviz_nodes_edges_df()</code> and <code>graphviz_single_df()</code> functions</p></li>
 </ul>
 </div>
@@ -219,6 +229,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#diagrammer-0-9-2">0.9.2</a></li>
         <li><a href="#diagrammer-0-9-1">0.9.1</a></li>
         <li><a href="#diagrammer-0-9-0">0.9.0</a></li>
         <li><a href="#diagrammer-0-8">0.8</a></li>
@@ -237,7 +248,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

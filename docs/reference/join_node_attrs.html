@@ -134,8 +134,7 @@ ndf and in <code>df</code> with identical names.
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Set a seed</span>
+    <pre class="examples"><div class='input'><span class='co'># Set a seed</span>
 <span class='fu'>set.seed</span>(<span class='fl'>23</span>)
 
 <span class='co'># Create a simple graph</span>
@@ -163,14 +162,12 @@ ndf and in <code>df</code> with identical names.
 
 <span class='co'># Get the graph's internal ndf to show that the</span>
 <span class='co'># join has been made</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label values</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;   6.02</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;  &lt;NA&gt;   5.05</span>
-
+<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label values
+#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00
+#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11
+#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72
+#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;   6.02
+#&gt; 5  5 &lt;NA&gt;  &lt;NA&gt;   5.05</div><div class='input'>
 <span class='co'># Get betweenness values for each node and</span>
 <span class='co'># add them as a node attribute (Note the</span>
 <span class='co'># common column name `id` in the different</span>
@@ -182,14 +179,12 @@ ndf and in <code>df</code> with identical names.
 
 <span class='co'># Get the graph's internal ndf to show that</span>
 <span class='co'># this join has been made</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label values betweenness</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00           2</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11           7</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72           1</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;   6.02           0</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;  &lt;NA&gt;   5.05           2</span>
-<span class='co'># }</span></pre>
+<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label values betweenness
+#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00         0.0
+#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11         1.5
+#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72         0.5
+#&gt; 4  4 &lt;NA&gt;  &lt;NA&gt;   6.02         0.0
+#&gt; 5  5 &lt;NA&gt;  &lt;NA&gt;   5.05         0.0</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,7 +201,7 @@ ndf and in <code>df</code> with identical names.
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

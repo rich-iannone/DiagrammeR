@@ -90,7 +90,15 @@
     <p>Combine several vectors for edges
 and their attributes into a data frame, which can be
 combined with other similarly-generated data frames,
-or, added to a graph object.</p>
+or, added to a graph object. An edge data frame,
+or edf, has at least the following columns:</p>
+<p>- <code>id</code> (of type <code>integer</code>)</p>
+<p>- <code>from</code> (of type <code>integer</code>)</p>
+<p>- <code>to</code> (of type <code>integer</code>)</p>
+<p>- <code>rel</code> (of type <code>character</code>)</p>
+<p>An arbitrary number of additional columns containing
+aesthetic or data attributes can be part of the edf,
+so long as they follow the aforementioned columns.</p>
     
 
     <pre class="usage"><span class='fu'>create_edge_df</span>(<span class='no'>from</span>, <span class='no'>to</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
@@ -128,8 +136,7 @@ attributes.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a simple edge data frame (edf) and</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a simple edge data frame (edf) and</span>
 <span class='co'># view the results</span>
 <span class='no'>edf</span> <span class='kw'>&lt;-</span>
   <span class='fu'>create_edge_df</span>(
@@ -138,12 +145,10 @@ attributes.</p></td>
     <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"a"</span>)
 
 <span class='co'># Display the edge data frame</span>
-<span class='no'>edf</span>
-<span class='co'>#&gt;   id from to rel</span>
-<span class='co'>#&gt; 1  1    1  4   a</span>
-<span class='co'>#&gt; 2  2    2  3   a</span>
-<span class='co'>#&gt; 3  3    3  1   a</span>
-
+<span class='no'>edf</span></div><div class='output co'>#&gt;   id from to rel
+#&gt; 1  1    1  4   a
+#&gt; 2  2    2  3   a
+#&gt; 3  3    3  1   a</div><div class='input'>
 <span class='co'># Create an edf with additional edge</span>
 <span class='co'># attributes (where their classes will</span>
 <span class='co'># be inferred from the input vectors)</span>
@@ -157,12 +162,10 @@ attributes.</p></td>
     <span class='kw'>width</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>2</span>))
 
 <span class='co'># Display the edge data frame</span>
-<span class='no'>edf</span>
-<span class='co'>#&gt;   id from to rel length color width</span>
-<span class='co'>#&gt; 1  1    1  4   a     50 green     1</span>
-<span class='co'>#&gt; 2  2    2  3   a    100 green     5</span>
-<span class='co'>#&gt; 3  3    3  1   a    250 green     2</span>
-<span class='co'># }</span></pre>
+<span class='no'>edf</span></div><div class='output co'>#&gt;   id from to rel length color width
+#&gt; 1  1    1  4   a     50 green     1
+#&gt; 2  2    2  3   a    100 green     5
+#&gt; 3  3    3  1   a    250 green     2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,7 +182,7 @@ attributes.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

@@ -136,35 +136,40 @@ the height of the resulting graphic in pixels.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Render a graph that's a balanced tree</span>
+<span class='co'># Render a graph that's a</span>
+<span class='co'># balanced tree</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>render_graph</span>()
 
-<span class='co'># Use the `tree` layout for better node</span>
-<span class='co'># placement in this hierarchical graph</span>
+<span class='co'># Use the `tree` layout for</span>
+<span class='co'># better node placement in this</span>
+<span class='co'># hierarchical graph</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>render_graph</span>(<span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"tree"</span>)
 
-<span class='co'># Plot the same tree graph but don't</span>
-<span class='co'># show the node ID values</span>
+<span class='co'># Plot the same tree graph but</span>
+<span class='co'># don't show the node ID values</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attr_to_display.html'>set_node_attr_to_display</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>render_graph</span>(<span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"tree"</span>)
 
-<span class='co'># Create a circle graph with</span>
-<span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>55</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>75</span>,
-  <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
-<span class='fu'>render_graph</span>(<span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"circle"</span>)
+<span class='co'># Create a circle graph</span>
+<span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>55</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>75</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>render_graph</span>(
+    <span class='kw'>layout</span> <span class='kw'>=</span> <span class='st'>"circle"</span>)
 
-<span class='co'># Render the graph using the `visNetwork`</span>
-<span class='co'># output option</span>
+<span class='co'># Render the graph using the</span>
+<span class='co'># `visNetwork` output option</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
@@ -185,7 +190,7 @@ the height of the resulting graphic in pixels.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

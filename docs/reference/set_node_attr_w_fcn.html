@@ -143,12 +143,20 @@ suffix.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
-    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>22</span>,
+    <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(
+      <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>(<span class='no'>.</span>),
+      <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+      <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span> <span class='fu'>round</span>(<span class='fl'>1</span>))
 
 <span class='co'># Get the betweenness values for</span>
 <span class='co'># each of the graph's nodes as a</span>
@@ -161,19 +169,17 @@ suffix.</p></td>
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
 <span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()
-<span class='co'>#&gt;    id type label value betweenness__A</span>
-<span class='co'>#&gt; 1   1 &lt;NA&gt;     1   6.0       5.904762</span>
-<span class='co'>#&gt; 2   2 &lt;NA&gt;     2   2.5       4.904762</span>
-<span class='co'>#&gt; 3   3 &lt;NA&gt;     3   3.5       1.785714</span>
-<span class='co'>#&gt; 4   4 &lt;NA&gt;     4   7.5       0.000000</span>
-<span class='co'>#&gt; 5   5 &lt;NA&gt;     5   8.5       5.738095</span>
-<span class='co'>#&gt; 6   6 &lt;NA&gt;     6   4.5      20.523810</span>
-<span class='co'>#&gt; 7   7 &lt;NA&gt;     7  10.0       3.333333</span>
-<span class='co'>#&gt; 8   8 &lt;NA&gt;     8  10.0       0.000000</span>
-<span class='co'>#&gt; 9   9 &lt;NA&gt;     9   8.5       3.738095</span>
-<span class='co'>#&gt; 10 10 &lt;NA&gt;    10  10.0       4.071429</span>
-
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value betweenness__A
+#&gt; 1   1 &lt;NA&gt;     1   4.4       9.333333
+#&gt; 2   2 &lt;NA&gt;     2   4.6      29.000000
+#&gt; 3   3 &lt;NA&gt;     3   5.9      19.166667
+#&gt; 4   4 &lt;NA&gt;     4   6.5       2.666667
+#&gt; 5   5 &lt;NA&gt;     5   4.1       0.500000
+#&gt; 6   6 &lt;NA&gt;     6   3.6      18.000000
+#&gt; 7   7 &lt;NA&gt;     7   5.4      12.000000
+#&gt; 8   8 &lt;NA&gt;     8   5.8       0.000000
+#&gt; 9   9 &lt;NA&gt;     9   4.7      10.333333
+#&gt; 10 10 &lt;NA&gt;    10   5.7       0.000000</div><div class='input'>
 <span class='co'># If a specified function takes argument</span>
 <span class='co'># values, these can be supplied as well</span>
 <span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
@@ -186,19 +192,17 @@ suffix.</p></td>
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
 <span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()
-<span class='co'>#&gt;    id type label value alpha_centrality__A</span>
-<span class='co'>#&gt; 1   1 &lt;NA&gt;     1   6.0                   2</span>
-<span class='co'>#&gt; 2   2 &lt;NA&gt;     2   2.5                   2</span>
-<span class='co'>#&gt; 3   3 &lt;NA&gt;     3   3.5                   6</span>
-<span class='co'>#&gt; 4   4 &lt;NA&gt;     4   7.5                   2</span>
-<span class='co'>#&gt; 5   5 &lt;NA&gt;     5   8.5                  14</span>
-<span class='co'>#&gt; 6   6 &lt;NA&gt;     6   4.5                  50</span>
-<span class='co'>#&gt; 7   7 &lt;NA&gt;     7  10.0                  22</span>
-<span class='co'>#&gt; 8   8 &lt;NA&gt;     8  10.0                 106</span>
-<span class='co'>#&gt; 9   9 &lt;NA&gt;     9   8.5                 162</span>
-<span class='co'>#&gt; 10 10 &lt;NA&gt;    10  10.0                 462</span>
-
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value alpha_centrality__A
+#&gt; 1   1 &lt;NA&gt;     1   4.4           0.0621118
+#&gt; 2   2 &lt;NA&gt;     2   4.6          -0.5341615
+#&gt; 3   3 &lt;NA&gt;     3   5.9          -0.8157350
+#&gt; 4   4 &lt;NA&gt;     4   6.5          -0.6997930
+#&gt; 5   5 &lt;NA&gt;     5   4.1           1.0641822
+#&gt; 6   6 &lt;NA&gt;     6   3.6          -0.8737060
+#&gt; 7   7 &lt;NA&gt;     7   5.4          -0.6832298
+#&gt; 8   8 &lt;NA&gt;     8   5.8           0.9316770
+#&gt; 9   9 &lt;NA&gt;     9   4.7          -0.4679089
+#&gt; 10 10 &lt;NA&gt;    10   5.7           0.3685300</div><div class='input'>
 <span class='co'># The new column name can be provided</span>
 <span class='no'>graph_3</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
@@ -209,19 +213,17 @@ suffix.</p></td>
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
 <span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()
-<span class='co'>#&gt;    id type label value   pagerank</span>
-<span class='co'>#&gt; 1   1 &lt;NA&gt;     1   6.0 0.04608804</span>
-<span class='co'>#&gt; 2   2 &lt;NA&gt;     2   2.5 0.04608804</span>
-<span class='co'>#&gt; 3   3 &lt;NA&gt;     3   3.5 0.05392301</span>
-<span class='co'>#&gt; 4   4 &lt;NA&gt;     4   7.5 0.04608804</span>
-<span class='co'>#&gt; 5   5 &lt;NA&gt;     5   8.5 0.07677500</span>
-<span class='co'>#&gt; 6   6 &lt;NA&gt;     6   4.5 0.11684759</span>
-<span class='co'>#&gt; 7   7 &lt;NA&gt;     7  10.0 0.07899491</span>
-<span class='co'>#&gt; 8   8 &lt;NA&gt;     8  10.0 0.08898857</span>
-<span class='co'>#&gt; 9   9 &lt;NA&gt;     9   8.5 0.16945368</span>
-<span class='co'>#&gt; 10 10 &lt;NA&gt;    10  10.0 0.27675311</span>
-
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value pagerank
+#&gt; 1   1 &lt;NA&gt;     1   4.4   0.1416
+#&gt; 2   2 &lt;NA&gt;     2   4.6   0.1401
+#&gt; 3   3 &lt;NA&gt;     3   5.9   0.1262
+#&gt; 4   4 &lt;NA&gt;     4   6.5   0.0637
+#&gt; 5   5 &lt;NA&gt;     5   4.1   0.0478
+#&gt; 6   6 &lt;NA&gt;     6   3.6   0.1976
+#&gt; 7   7 &lt;NA&gt;     7   5.4   0.1318
+#&gt; 8   8 &lt;NA&gt;     8   5.8   0.0422
+#&gt; 9   9 &lt;NA&gt;     9   4.7   0.0693
+#&gt; 10 10 &lt;NA&gt;    10   5.7   0.0398</div><div class='input'>
 <span class='co'># If `graph_3` is modified by</span>
 <span class='co'># adding a new node then the column</span>
 <span class='co'># `pagerank` will have stale data; we</span>
@@ -232,9 +234,7 @@ suffix.</p></td>
   <span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>11</span>,
-    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>5.5</span>) <span class='kw'>%&gt;%</span>
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>set_node_attr_w_fcn</span>(
     <span class='kw'>node_attr_fcn</span> <span class='kw'>=</span> <span class='st'>"get_pagerank"</span>,
     <span class='kw'>column_name</span> <span class='kw'>=</span> <span class='st'>"pagerank"</span>)
@@ -242,20 +242,18 @@ suffix.</p></td>
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
 <span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()
-<span class='co'>#&gt;    id type label value   pagerank</span>
-<span class='co'>#&gt; 1   1 &lt;NA&gt;     1   6.0 0.03943470</span>
-<span class='co'>#&gt; 2   2 &lt;NA&gt;     2   2.5 0.03943470</span>
-<span class='co'>#&gt; 3   3 &lt;NA&gt;     3   3.5 0.08535641</span>
-<span class='co'>#&gt; 4   4 &lt;NA&gt;     4   7.5 0.03943470</span>
-<span class='co'>#&gt; 5   5 &lt;NA&gt;     5   8.5 0.06401567</span>
-<span class='co'>#&gt; 6   6 &lt;NA&gt;     6   4.5 0.10870274</span>
-<span class='co'>#&gt; 7   7 &lt;NA&gt;     7  10.0 0.07702682</span>
-<span class='co'>#&gt; 8   8 &lt;NA&gt;     8  10.0 0.07693771</span>
-<span class='co'>#&gt; 9   9 &lt;NA&gt;     9   8.5 0.16659482</span>
-<span class='co'>#&gt; 10 10 &lt;NA&gt;    10  10.0 0.25692313</span>
-<span class='co'>#&gt; 11 11 &lt;NA&gt;    11   5.5 0.04613860</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value pagerank
+#&gt; 1   1 &lt;NA&gt;     1   4.4   0.1349
+#&gt; 2   2 &lt;NA&gt;     2   4.6   0.1352
+#&gt; 3   3 &lt;NA&gt;     3   5.9   0.1585
+#&gt; 4   4 &lt;NA&gt;     4   6.5   0.0670
+#&gt; 5   5 &lt;NA&gt;     5   4.1   0.0461
+#&gt; 6   6 &lt;NA&gt;     6   3.6   0.1300
+#&gt; 7   7 &lt;NA&gt;     7   5.4   0.1014
+#&gt; 8   8 &lt;NA&gt;     8   5.8   0.0400
+#&gt; 9   9 &lt;NA&gt;     9   4.7   0.0685
+#&gt; 10 10 &lt;NA&gt;    10   5.7   0.0440
+#&gt; 11 11 &lt;NA&gt;  &lt;NA&gt;    NA   0.0744</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -272,7 +270,7 @@ suffix.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

@@ -6,7 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add edges and attributes to graph from a table — add_edges_from_table • DiagrammeR</title>
+<title>Add edges and attributes to graph
+from a table — add_edges_from_table • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,16 +84,18 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add edges and attributes to graph from a table</h1>
+    <h1>Add edges and attributes to graph
+from a table</h1>
     </div>
 
     
-    <p>Add edges and their attributes to an
-existing graph object from data in a CSV file or a
+    <p>Add edges and their
+attributes to an existing graph
+object from data in a CSV file or a
 data frame.</p>
     
 
-    <pre class="usage"><span class='fu'>add_edges_from_table</span>(<span class='no'>graph</span>, <span class='no'>table</span>, <span class='no'>from_col</span>, <span class='no'>to_col</span>, <span class='no'>ndf_mapping</span>,
+    <pre class="usage"><span class='fu'>add_edges_from_table</span>(<span class='no'>graph</span>, <span class='no'>table</span>, <span class='no'>from_col</span>, <span class='no'>to_col</span>, <span class='no'>from_to_map</span>,
   <span class='kw'>rel_col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>set_rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>drop_cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
@@ -105,116 +108,134 @@ data frame.</p>
     </tr>
     <tr>
       <th>table</th>
-      <td><p>either a path to a CSV file, or, a data
-frame object.</p></td>
+      <td><p>either a path to a
+CSV file, or, a data frame object.</p></td>
     </tr>
     <tr>
       <th>from_col</th>
-      <td><p>the name of the table column from
-which edges originate.</p></td>
+      <td><p>the name of the
+table column from which edges
+originate.</p></td>
     </tr>
     <tr>
       <th>to_col</th>
-      <td><p>the name of the table column to
-which edges terminate.</p></td>
+      <td><p>the name of the table
+column to which edges terminate.</p></td>
     </tr>
     <tr>
-      <th>ndf_mapping</th>
-      <td><p>a single character value for
-the mapping of the <code>from</code> and <code>to</code> columns
-in the external table (supplied as <code>from_col</code>
-and <code>to_col</code>, respectively) to a column in the
+      <th>from_to_map</th>
+      <td><p>a single
+character value for the mapping of
+the <code>from</code> and <code>to</code> columns
+in the external table (supplied as
+<code>from_col</code> and <code>to_col</code>,
+respectively) to a column in the
 graph's internal node data frame (ndf).</p></td>
     </tr>
     <tr>
       <th>rel_col</th>
-      <td><p>an option to apply a column of data
-in the table as <code>rel</code> attribute values.</p></td>
+      <td><p>an option to apply
+a column of data in the table as
+<code>rel</code> attribute values.</p></td>
     </tr>
     <tr>
       <th>set_rel</th>
-      <td><p>an optional string to apply a
-<code>rel</code> attribute to all edges created from the
-table records.</p></td>
+      <td><p>an optional string
+to apply a <code>rel</code> attribute to
+all edges created from the table
+records.</p></td>
     </tr>
     <tr>
       <th>drop_cols</th>
-      <td><p>an optional character vector for
-dropping columns from the incoming data.</p></td>
+      <td><p>an optional
+column selection statement for
+dropping columns from the external
+table before inclusion as attributes
+in the graph's internal edge data
+frame. Several columns can be
+dropped by name using the syntax
+<code>col_1 &amp; col_2 &amp; ...</code>. Columns
+can also be dropped using a numeric
+column range with <code>:</code>
+(e.g., <code>5:8</code>), or, by using
+the <code>:</code> between column names
+to specify the range (e.g.,
+<code>col_5_name:col_8_name</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create an empty graph and then add</span>
-<span class='co'># nodes to it from a CSV file; in this case</span>
-<span class='co'># we are using the `currencies` CSV file</span>
-<span class='co'># that's available in the package</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph and then</span>
+<span class='co'># add nodes to it from the</span>
+<span class='co'># `currencies` dataset available</span>
+<span class='co'># in the package</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_nodes_from_table.html'>add_nodes_from_table</a></span>(
-    <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='st'>"currencies.csv"</span>,
-                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DiagrammeR"</span>))
+    <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>currencies</span>)
 
-<span class='co'># Now we want to add edges to the graph</span>
-<span class='co'># using a similar CSV file that contains</span>
-<span class='co'># exchange rates between several currencies;</span>
-<span class='co'># the common attribute is the ISO-4217</span>
-<span class='co'># currency code</span>
+<span class='co'># Now we want to add edges to the</span>
+<span class='co'># graph using an included dataset,</span>
+<span class='co'># `usd_exchange_rates`, which has</span>
+<span class='co'># exchange rates between USD and</span>
+<span class='co'># many other currencies; the key</span>
+<span class='co'># here is that the data in the</span>
+<span class='co'># `from` and `to` columns in the</span>
+<span class='co'># external table maps to graph</span>
+<span class='co'># node data available in the</span>
+<span class='co'># `iso_4217_code` column of the</span>
+<span class='co'># graph's internal node data frame</span>
 <span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>add_edges_from_table</span>(
-    <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='st'>"usd_exchange_rates.csv"</span>,
-                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DiagrammeR"</span>),
-    <span class='kw'>from_col</span> <span class='kw'>=</span> <span class='no'>from_currency</span>,
-    <span class='kw'>to_col</span> <span class='kw'>=</span> <span class='no'>to_currency</span>,
-    <span class='kw'>ndf_mapping</span> <span class='kw'>=</span> <span class='no'>iso_4217_code</span>)
+    <span class='fu'>add_edges_from_table</span>(
+      <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>usd_exchange_rates</span>,
+      <span class='kw'>from_col</span> <span class='kw'>=</span> <span class='no'>from_currency</span>,
+      <span class='kw'>to_col</span> <span class='kw'>=</span> <span class='no'>to_currency</span>,
+      <span class='kw'>from_to_map</span> <span class='kw'>=</span> <span class='no'>iso_4217_code</span>)
 
-<span class='co'># View part of the graph's internal edge data</span>
-<span class='co'># frame (edf) using `get_edge_df()`</span>
+<span class='co'># View part of the graph's</span>
+<span class='co'># internal edge data frame</span>
 <span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>head</span>()
-<span class='co'>#&gt;   id from to  rel cost_unit</span>
-<span class='co'>#&gt; 1  1  148  1 &lt;NA&gt;  0.272300</span>
-<span class='co'>#&gt; 2  2  148  2 &lt;NA&gt;  0.015210</span>
-<span class='co'>#&gt; 3  3  148  3 &lt;NA&gt;  0.008055</span>
-<span class='co'>#&gt; 4  4  148  4 &lt;NA&gt;  0.002107</span>
-<span class='co'>#&gt; 5  5  148  5 &lt;NA&gt;  0.565000</span>
-<span class='co'>#&gt; 6  6  148  6 &lt;NA&gt;  0.006058</span>
-
-<span class='co'># If you would like to assign any of the table's</span>
-<span class='co'># columns as `rel` attribute, this can done with</span>
-<span class='co'># the `rel_col` argument; to set a static `rel`</span>
-<span class='co'># attribute for all edges, use `set_rel`</span>
+  <span class='fu'>head</span>()</div><div class='output co'>#&gt;   id from to  rel cost_unit
+#&gt; 1  1  148  1 &lt;NA&gt;  0.272300
+#&gt; 2  2  148  2 &lt;NA&gt;  0.015210
+#&gt; 3  3  148  3 &lt;NA&gt;  0.008055
+#&gt; 4  4  148  4 &lt;NA&gt;  0.002107
+#&gt; 5  5  148  5 &lt;NA&gt;  0.565000
+#&gt; 6  6  148  6 &lt;NA&gt;  0.006058</div><div class='input'>
+<span class='co'># If you would like to assign</span>
+<span class='co'># any of the table's columns as the</span>
+<span class='co'># `rel` attribute, this can done</span>
+<span class='co'># with the `rel_col` argument; to</span>
+<span class='co'># set a static `rel` attribute for</span>
+<span class='co'># all edges created, use `set_rel`</span>
 <span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>add_edges_from_table</span>(
-    <span class='fu'>system.file</span>(<span class='st'>"extdata"</span>, <span class='st'>"usd_exchange_rates.csv"</span>,
-                <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"DiagrammeR"</span>),
-    <span class='kw'>from_col</span> <span class='kw'>=</span> <span class='no'>from_currency</span>,
-    <span class='kw'>to_col</span> <span class='kw'>=</span> <span class='no'>to_currency</span>,
-    <span class='kw'>ndf_mapping</span> <span class='kw'>=</span> <span class='no'>iso_4217_code</span>,
-    <span class='kw'>set_rel</span> <span class='kw'>=</span> <span class='st'>"from_usd"</span>)
+    <span class='fu'>add_edges_from_table</span>(
+      <span class='kw'>table</span> <span class='kw'>=</span> <span class='no'>usd_exchange_rates</span>,
+      <span class='kw'>from_col</span> <span class='kw'>=</span> <span class='no'>from_currency</span>,
+      <span class='kw'>to_col</span> <span class='kw'>=</span> <span class='no'>to_currency</span>,
+      <span class='kw'>from_to_map</span> <span class='kw'>=</span> <span class='no'>iso_4217_code</span>,
+      <span class='kw'>set_rel</span> <span class='kw'>=</span> <span class='st'>"from_usd"</span>)
 
-<span class='co'># View part of the graph's internal edge data</span>
-<span class='co'># frame (edf) using `get_edge_df()`</span>
+<span class='co'># View part of the graph's internal</span>
+<span class='co'># edge data frame (edf)</span>
 <span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>head</span>()
-<span class='co'>#&gt;   id from to      rel cost_unit</span>
-<span class='co'>#&gt; 1  1  148  1 from_usd  0.272300</span>
-<span class='co'>#&gt; 2  2  148  2 from_usd  0.015210</span>
-<span class='co'>#&gt; 3  3  148  3 from_usd  0.008055</span>
-<span class='co'>#&gt; 4  4  148  4 from_usd  0.002107</span>
-<span class='co'>#&gt; 5  5  148  5 from_usd  0.565000</span>
-<span class='co'>#&gt; 6  6  148  6 from_usd  0.006058</span>
-<span class='co'># }</span></pre>
+  <span class='fu'>head</span>()</div><div class='output co'>#&gt;   id from to      rel cost_unit
+#&gt; 1  1  148  1 from_usd  0.272300
+#&gt; 2  2  148  2 from_usd  0.015210
+#&gt; 3  3  148  3 from_usd  0.008055
+#&gt; 4  4  148  4 from_usd  0.002107
+#&gt; 5  5  148  5 from_usd  0.565000
+#&gt; 6  6  148  6 from_usd  0.006058</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -231,7 +252,7 @@ dropping columns from the incoming data.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

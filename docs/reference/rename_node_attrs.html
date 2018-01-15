@@ -119,27 +119,34 @@ attribute column identified in <code>node_attr_from</code>.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>8</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>shape</span>,
-    <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"circle"</span>)
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"circle"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(
+      <span class='kw'>n</span> <span class='kw'>=</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>(<span class='no'>.</span>),
+      <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+      <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span> <span class='fu'>round</span>(<span class='fl'>1</span>))
 
 <span class='co'># Get the graph's internal ndf</span>
 <span class='co'># to show which node attributes</span>
 <span class='co'># are available</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label value  shape</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1   6.0 circle</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2   2.5 circle</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3   3.5 circle</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4   7.5 circle</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     5   8.5 circle</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape value
+#&gt; 1  1 &lt;NA&gt;     1 circle   5.2
+#&gt; 2  2 &lt;NA&gt;     2 circle   5.3
+#&gt; 3  3 &lt;NA&gt;     3 circle   4.4
+#&gt; 4  4 &lt;NA&gt;     4 circle   5.8
+#&gt; 5  5 &lt;NA&gt;     5 circle   5.9</div><div class='input'>
 <span class='co'># Rename the `value` node</span>
 <span class='co'># attribute as `weight`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -151,14 +158,13 @@ attribute column identified in <code>node_attr_from</code>.</p></td>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># ndf to show that the node</span>
 <span class='co'># attribute had been renamed</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id type label weight  shape</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1    6.0 circle</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2    2.5 circle</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3    3.5 circle</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4    7.5 circle</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     5    8.5 circle</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape weight
+#&gt; 1  1 &lt;NA&gt;     1 circle    5.2
+#&gt; 2  2 &lt;NA&gt;     2 circle    5.3
+#&gt; 3  3 &lt;NA&gt;     3 circle    4.4
+#&gt; 4  4 &lt;NA&gt;     4 circle    5.8
+#&gt; 5  5 &lt;NA&gt;     5 circle    5.9</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -175,7 +181,7 @@ attribute column identified in <code>node_attr_from</code>.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

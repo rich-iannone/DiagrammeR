@@ -110,17 +110,14 @@ not contain any loops nor any multiple edges.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with 2 cycles</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with 2 cycles</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>)
 
 <span class='co'># Check if the graph is simple</span>
-<span class='fu'>is_graph_simple</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] TRUE</span>
-<span class='co'># }</span></pre>
+<span class='fu'>is_graph_simple</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -137,7 +134,7 @@ not contain any loops nor any multiple edges.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

@@ -108,8 +108,9 @@ an assigned <code>rel</code> value).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a logical value.
-# Create a graph with 2 nodes (with `type`
-# values) and a single edge (with a `rel`)
+# Create a graph with 2 nodes
+# (with `type` values) and a
+# single edge (with a `rel`)
 simple_property_graph &lt;-
   create_graph() <!-- %&gt;% -->
   add_node(
@@ -122,26 +123,22 @@ simple_property_graph &lt;-
     from = "first",
     to = "second",
     rel = "rel_1")</p>
-<p># This is a property graph but confirm
-# that this is TRUE by using the
+<p># This is indeed a property graph
+# but to confirm this, use the
 # `is_property_graph()` function
-is_property_graph(simple_property_graph)
-#&gt; [1] TRUE</p>
-<p># If a `type` attribute is removed, then
-# this graph will no longer be a property
-# graph
+is_property_graph(simple_property_graph)</p>
+<p># If a `type` attribute is
+# removed, then this graph will
+# no longer be a property graph
 simple_property_graph <!-- %&gt;% -->
-  node_type(
-    node = get_node_ids(
-      .,
-      "label == 'first'"),
-    "delete") <!-- %&gt;% -->
-is_property_graph()
-#&gt; [1] FALSE</p>
+  set_node_attrs(
+    node_attr = type,
+    values = NA,
+    nodes = 1) <!-- %&gt;% -->
+  is_property_graph()</p>
 <p># An empty graph will return FALSE
 create_graph() <!-- %&gt;% -->
-  is_property_graph()
-#&gt; [1] FALSE</p>
+  is_property_graph()</p>
     
 
   </div>
@@ -158,7 +155,7 @@ create_graph() <!-- %&gt;% -->
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

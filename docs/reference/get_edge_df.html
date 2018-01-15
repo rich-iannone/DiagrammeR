@@ -109,8 +109,7 @@ with all current edge attributes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph using several piped functions</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph using several piped functions</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(
@@ -138,14 +137,12 @@ with all current edge attributes.</p>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>()
 
 <span class='co'># Get the graph's internal edge data frame (edf)</span>
-<span class='fu'>get_edge_df</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to rel color</span>
-<span class='co'>#&gt; 1  1    1  2   b  blue</span>
-<span class='co'>#&gt; 2  2    1  3   a green</span>
-<span class='co'>#&gt; 3  3    1  4   a green</span>
-<span class='co'>#&gt; 4  4    1  5   a green</span>
-<span class='co'>#&gt; 5  5    1  6   b  blue</span>
-<span class='co'># }</span></pre>
+<span class='fu'>get_edge_df</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to rel color
+#&gt; 1  1    1  2   b  blue
+#&gt; 2  2    1  3   a green
+#&gt; 3  3    1  4   a green
+#&gt; 4  4    1  5   a green
+#&gt; 5  5    1  6   b  blue</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -162,7 +159,7 @@ with all current edge attributes.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

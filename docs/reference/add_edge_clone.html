@@ -87,9 +87,11 @@
     </div>
 
     
-    <p>Add a new edge to a graph object of
-class <code>dgr_graph</code> which is a clones of an edge
-already in the graph. All edge attributes are
+    <p>Add a new edge to
+a graph object of class
+<code>dgr_graph</code> which is a
+clone of an edge already in the
+graph. All edge attributes are
 preserved.</p>
     
 
@@ -100,34 +102,35 @@ preserved.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of
+class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge</th>
-      <td><p>an edge ID corresponding to the graph edge
+      <td><p>an edge ID
+corresponding to the graph edge
 to be cloned.</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>the outgoing node from which the edge
-is connected.</p></td>
+      <td><p>the outgoing node
+from which the edge is connected.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>the incoming nodes to which each edge
-is connected.</p></td>
+      <td><p>the incoming nodes to
+which each edge is connected.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of
+class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with a path of</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with a path of</span>
 <span class='co'># 2 nodes; supply a common `rel`</span>
 <span class='co'># edge attribute for all edges</span>
 <span class='co'># in this path and then add a</span>
@@ -146,10 +149,8 @@ is connected.</p></td>
 <span class='co'># Display the graph's internal</span>
 <span class='co'># edge data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()
-<span class='co'>#&gt;   id from to rel     color</span>
-<span class='co'>#&gt; 1  1    1  2   a steelblue</span>
-
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel     color
+#&gt; 1  1    1  2   a steelblue</div><div class='input'>
 <span class='co'># Create a new node (will have</span>
 <span class='co'># node ID of `3`) and then</span>
 <span class='co'># create an edge between it and</span>
@@ -167,11 +168,9 @@ is connected.</p></td>
 <span class='co'># Display the graph's internal</span>
 <span class='co'># edge data frame</span>
 <span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()
-<span class='co'>#&gt;   id from to rel     color</span>
-<span class='co'>#&gt; 1  1    1  2   a steelblue</span>
-<span class='co'>#&gt; 2  2    3  1   a steelblue</span>
-
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel     color
+#&gt; 1  1    1  2   a steelblue
+#&gt; 2  2    3  1   a steelblue</div><div class='input'>
 <span class='co'># The same change can be performed</span>
 <span class='co'># with some helper functions in the</span>
 <span class='co'># `add_edge_clone()` function call</span>
@@ -182,14 +181,13 @@ is connected.</p></td>
       <span class='kw'>edge</span> <span class='kw'>=</span> <span class='fu'><a href='get_last_edges_created.html'>get_last_edges_created</a></span>(<span class='no'>.</span>),
       <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'><a href='get_last_nodes_created.html'>get_last_nodes_created</a></span>(<span class='no'>.</span>),
       <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+
 <span class='co'># Display the graph's internal</span>
 <span class='co'># edge data frame</span>
 <span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()
-<span class='co'>#&gt;   id from to rel     color</span>
-<span class='co'>#&gt; 1  1    1  2   a steelblue</span>
-<span class='co'>#&gt; 2  2    3  1   a steelblue</span>
-<span class='co'># }</span></pre>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel     color
+#&gt; 1  1    1  2   a steelblue
+#&gt; 2  2    3  1   a steelblue</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,7 +204,7 @@ is connected.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

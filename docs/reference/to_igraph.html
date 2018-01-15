@@ -109,32 +109,30 @@ an igraph graph object.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a DiagrammeR graph object</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>36</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>36</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>50</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># Confirm that `graph` is a DiagrammeR graph</span>
-<span class='co'># by getting the object's class</span>
-<span class='fu'>class</span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] "dgr_graph"</span>
-
-<span class='co'># Convert the DiagrammeR graph to an igraph object</span>
+<span class='co'># Confirm that `graph` is a</span>
+<span class='co'># DiagrammeR graph by getting</span>
+<span class='co'># the object's class</span>
+<span class='fu'>class</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] "dgr_graph"</div><div class='input'>
+<span class='co'># Convert the DiagrammeR graph</span>
+<span class='co'># to an igraph object</span>
 <span class='no'>ig_graph</span> <span class='kw'>&lt;-</span> <span class='fu'>to_igraph</span>(<span class='no'>graph</span>)
 
-<span class='co'># Get the class of the converted graph, just</span>
-<span class='co'># to be certain</span>
-<span class='fu'>class</span>(<span class='no'>ig_graph</span>)
-<span class='co'>#&gt; [1] "igraph"</span>
-
-<span class='co'># Get a summary of the igraph graph object</span>
-<span class='fu'>summary</span>(<span class='no'>ig_graph</span>)
-<span class='co'>#&gt; IGRAPH DN-B 36 50 --</span>
-<span class='co'>#&gt; + attr: name (v/c), type (v/c), label</span>
-<span class='co'>#&gt; | (v/c), value (v/c), rel (e/c)</span>
-<span class='co'># }</span></pre>
+<span class='co'># Get the class of the converted</span>
+<span class='co'># graph, just to be certain</span>
+<span class='fu'>class</span>(<span class='no'>ig_graph</span>)</div><div class='output co'>#&gt; [1] "igraph"</div><div class='input'>
+<span class='co'># Get a summary of the igraph</span>
+<span class='co'># graph object</span>
+<span class='fu'>summary</span>(<span class='no'>ig_graph</span>)</div><div class='output co'>#&gt; IGRAPH 8f7d268 DN-B 36 50 -- 
+#&gt; + attr: name (v/c), type (v/c), label (v/c), rel (e/c)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -151,7 +149,7 @@ an igraph graph object.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

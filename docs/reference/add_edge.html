@@ -92,7 +92,7 @@
 graph.</p>
     
 
-    <pre class="usage"><span class='fu'>add_edge</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>to</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>add_edge</span>(<span class='no'>graph</span>, <span class='no'>from</span>, <span class='no'>to</span>, <span class='kw'>rel</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_aes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -131,9 +131,22 @@ relationship between the
 connected nodes.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>optional edge attributes supplied as
-vectors.</p></td>
+      <th>edge_aes</th>
+      <td><p>an optional list of named vectors
+comprising edge aesthetic attributes. The helper
+function <code><a href='edge_aes.html'>edge_aes()</a></code> is strongly recommended
+for use here as it contains arguments for each
+of the accepted edge aesthetic attributes (e.g.,
+<code>shape</code>, <code>style</code>, <code>penwidth</code>,
+<code>color</code>).</p></td>
+    </tr>
+    <tr>
+      <th>edge_data</th>
+      <td><p>an optional list of named vectors
+comprising edge data attributes. The helper
+function <code><a href='edge_data.html'>edge_data()</a></code> is strongly recommended
+for use here as it helps bind data specifically
+to the created edges.</p></td>
     </tr>
     </table>
     
@@ -143,8 +156,7 @@ vectors.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with 4 nodes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with 4 nodes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"one"</span>) <span class='kw'>%&gt;%</span>
@@ -152,7 +164,8 @@ vectors.</p></td>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"three"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_node.html'>add_node</a></span>(<span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>"four"</span>)
 
-<span class='co'># Add an edge between those nodes and attach a</span>
+<span class='co'># Add an edge between those</span>
+<span class='co'># nodes and attach a</span>
 <span class='co'># relationship to the edge</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
  <span class='fu'>add_edge</span>(
@@ -161,13 +174,14 @@ vectors.</p></td>
    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>,
    <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"A"</span>)
 
-<span class='co'># Use the `edge_info()` function to verify that</span>
+<span class='co'># Use the `get_edge_info()`</span>
+<span class='co'># function to verify that</span>
 <span class='co'># the edge has been created</span>
-<span class='fu'><a href='edge_info.html'>edge_info</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to rel</span>
-<span class='co'>#&gt; 1  1    1  2   A</span>
-
-<span class='co'># Add another node and edge to the graph</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_info.html'>get_edge_info</a></span>()</div><div class='output co'>#&gt;   id from to rel
+#&gt; 1  1    1  2   A</div><div class='input'>
+<span class='co'># Add another node and</span>
+<span class='co'># edge to the graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_edge</span>(
@@ -175,14 +189,16 @@ vectors.</p></td>
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>,
     <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"A"</span>)
 
-<span class='co'># Verify that the edge has been created by</span>
-<span class='co'># getting a count of graph edges</span>
-<span class='fu'><a href='edge_count.html'>edge_count</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] 2</span>
-
-<span class='co'># Add edges by specifying node `label`</span>
-<span class='co'># values; note that all nodes must have</span>
-<span class='co'># unique `label` values to use this option</span>
+<span class='co'># Verify that the edge</span>
+<span class='co'># has been created by</span>
+<span class='co'># counting graph edges</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+<span class='co'># Add edges by specifying</span>
+<span class='co'># node `label` values; note</span>
+<span class='co'># that all nodes must have</span>
+<span class='co'># unique `label` values to</span>
+<span class='co'># use this option</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_edge</span>(
@@ -194,11 +210,32 @@ vectors.</p></td>
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"one"</span>,
     <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"L"</span>)
 
-<span class='co'># Use the `get_edges()` function to verify</span>
+<span class='co'># Use `get_edges()` to verify</span>
 <span class='co'># that the edges were added</span>
-<span class='fu'><a href='get_edges.html'>get_edges</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt; [1] "1-&gt;2" "3-&gt;2" "3-&gt;4" "4-&gt;1"</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "1-&gt;2" "3-&gt;2" "3-&gt;4" "4-&gt;1"</div><div class='input'>
+<span class='co'># Add edge aesthetic and data</span>
+<span class='co'># attributes during edge creation</span>
+<span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>add_edge</span>(
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+    <span class='kw'>rel</span> <span class='kw'>=</span> <span class='st'>"M"</span>,
+    <span class='kw'>edge_aes</span> <span class='kw'>=</span> <span class='fu'><a href='edge_aes.html'>edge_aes</a></span>(
+      <span class='kw'>penwidth</span> <span class='kw'>=</span> <span class='fl'>1.5</span>,
+      <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"blue"</span>),
+    <span class='kw'>edge_data</span> <span class='kw'>=</span> <span class='fu'><a href='edge_data.html'>edge_data</a></span>(
+      <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>4.3</span>))
+
+<span class='co'># Use the `get_edges()` function</span>
+<span class='co'># to verify that the attribute</span>
+<span class='co'># values were bound to the</span>
+<span class='co'># newly created edge</span>
+<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel penwidth color value
+#&gt; 1  1    1  2   M      1.5  blue   4.3</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -215,7 +252,7 @@ vectors.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

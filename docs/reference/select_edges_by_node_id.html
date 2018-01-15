@@ -125,8 +125,7 @@ selection, if it exists.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a graph with 5 nodes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with 5 nodes</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
@@ -140,9 +139,7 @@ selection, if it exists.</p></td>
 
 <span class='co'># Get the selection of edges</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 1 2</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
 <span class='co'># Perform another selection of edges, with nodes</span>
 <span class='co'># `1`, `2`, and `4`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -153,20 +150,16 @@ selection, if it exists.</p></td>
 
 <span class='co'># Get the selection of edges</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()
-<span class='co'>#&gt; [1] 1 2 3 4</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2 3 4</div><div class='input'>
 <span class='co'># Get a fraction of the edges selected over all</span>
 <span class='co'># the edges in the graph</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-{
-  <span class='no'>l</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-    <span class='fu'>length</span>(<span class='no'>.</span>)
-  <span class='no'>e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='edge_count.html'>edge_count</a></span>(<span class='no'>.</span>)
-  <span class='no'>l</span>/<span class='no'>e</span>
-}
-<span class='co'>#&gt; [1] 1</span>
-<span class='co'># }</span></pre>
+  {
+    <span class='no'>l</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
+      <span class='fu'>length</span>(<span class='no'>.</span>)
+    <span class='no'>e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>(<span class='no'>.</span>)
+    <span class='no'>l</span>/<span class='no'>e</span>
+  }</div><div class='output co'>#&gt; [1] 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -183,7 +176,7 @@ selection, if it exists.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

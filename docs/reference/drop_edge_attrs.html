@@ -87,8 +87,9 @@
     </div>
 
     
-    <p>Within a graph's internal edge data
-frame (edf), remove an existing edge attribute.</p>
+    <p>Within a graph's internal
+edge data frame (edf), remove an existing
+edge attribute.</p>
     
 
     <pre class="usage"><span class='fu'>drop_edge_attrs</span>(<span class='no'>graph</span>, <span class='no'>edge_attr</span>)</pre>
@@ -103,8 +104,8 @@ frame (edf), remove an existing edge attribute.</p>
     </tr>
     <tr>
       <th>edge_attr</th>
-      <td><p>the name of the edge attribute
-column to drop.</p></td>
+      <td><p>the name of the edge
+attribute column to drop.</p></td>
     </tr>
     </table>
     
@@ -115,11 +116,13 @@ column to drop.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a random graph</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a random graph using the</span>
+<span class='co'># `add_gnm_graph()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_random_graph.html'>create_random_graph</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>6</span>,
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_gnm_graph.html'>add_gnm_graph</a></span>(
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>6</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_edge_attrs.html'>set_edge_attrs</a></span>(
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
@@ -127,34 +130,48 @@ column to drop.</p></td>
   <span class='fu'><a href='mutate_edge_attrs.html'>mutate_edge_attrs</a></span>(
     <span class='kw'>penwidth</span> <span class='kw'>=</span> <span class='no'>value</span> * <span class='fl'>2</span>)
 
-<span class='co'># Get the graph's internal edf to show which</span>
-<span class='co'># edge attributes are available</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel value penwidth</span>
-<span class='co'>#&gt; 1  1    2  3 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 2  2    3  5 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 4  4    2  4 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 5  5    2  5 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 6  6    4  5 &lt;NA&gt;     3        6</span>
+<span class='co'># Get the graph's internal</span>
+<span class='co'># edf to show which edge</span>
+<span class='co'># attributes are available</span>
+<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to  rel value penwidth
+#&gt; 1  1    1  4 &lt;NA&gt;     3        6
+#&gt; 2  2    2  3 &lt;NA&gt;     3        6
+#&gt; 3  3    2  4 &lt;NA&gt;     3        6
+#&gt; 4  4    3  1 &lt;NA&gt;     3        6
+#&gt; 5  5    4  1 &lt;NA&gt;     3        6
+#&gt; 6  6    5  4 &lt;NA&gt;     3        6</div><div class='input'><span class='co'>#&gt;   id from to  rel value penwidth</span>
+<span class='co'>#&gt; 1  1    1  4 &lt;NA&gt;     3        6</span>
+<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;     3        6</span>
+<span class='co'>#&gt; 3  3    2  4 &lt;NA&gt;     3        6</span>
+<span class='co'>#&gt; 4  4    3  1 &lt;NA&gt;     3        6</span>
+<span class='co'>#&gt; 5  5    4  1 &lt;NA&gt;     3        6</span>
+<span class='co'>#&gt; 6  6    5  4 &lt;NA&gt;     3        6</span>
 
-<span class='co'># Drop the `value` edge attribute</span>
+<span class='co'># Drop the `value` edge</span>
+<span class='co'># attribute</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>drop_edge_attrs</span>(
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>value</span>)
 
-<span class='co'># Get the graph's internal edf to show that</span>
-<span class='co'># the edge attribute `value` had been removed</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)
-<span class='co'>#&gt;   id from to  rel penwidth</span>
-<span class='co'>#&gt; 1  1    2  3 &lt;NA&gt;        6</span>
-<span class='co'>#&gt; 2  2    3  5 &lt;NA&gt;        6</span>
-<span class='co'>#&gt; 3  3    3  4 &lt;NA&gt;        6</span>
-<span class='co'>#&gt; 4  4    2  4 &lt;NA&gt;        6</span>
-<span class='co'>#&gt; 5  5    2  5 &lt;NA&gt;        6</span>
-<span class='co'>#&gt; 6  6    4  5 &lt;NA&gt;        6</span>
-<span class='co'># }</span></pre>
+<span class='co'># Get the graph's internal</span>
+<span class='co'># edf to show that the edge</span>
+<span class='co'># attribute `value` had been</span>
+<span class='co'># removed</span>
+<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to  rel penwidth
+#&gt; 1  1    1  4 &lt;NA&gt;        6
+#&gt; 2  2    2  3 &lt;NA&gt;        6
+#&gt; 3  3    2  4 &lt;NA&gt;        6
+#&gt; 4  4    3  1 &lt;NA&gt;        6
+#&gt; 5  5    4  1 &lt;NA&gt;        6
+#&gt; 6  6    5  4 &lt;NA&gt;        6</div><div class='input'>#>   id from to  rel penwidth
+#> 1  1    1  4 <NA>        6
+#> 2  2    2  3 <NA>        6
+#> 3  3    2  4 <NA>        6
+#> 4  4    3  1 <NA>        6
+#> 5  5    4  1 <NA>        6
+#> 6  6    5  4 <NA>        6
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -171,7 +188,7 @@ column to drop.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

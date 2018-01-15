@@ -15,7 +15,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-vignette">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -58,31 +58,43 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9">
     
+
+    
+    
+<div class="contents">
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 <p><img src="inst/img/DiagrammeR.png"></p>
-<p><a href="https://travis-ci.org/rich-iannone/DiagrammeR"><img src="https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master" alt="Travis-CI Build Status"></a> <img src="http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen"><a href="https://codecov.io/github/rich-iannone/DiagrammeR?branch=master"><img src="https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master" alt="codecov.io"></a></p>
-<p>With the <strong>DiagrammeR</strong> package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into <strong>RMarkdown</strong> documents, integrated with <strong>Shiny</strong> web apps, converted to other graph formats, or exported as <strong>PNG</strong>, <strong>PDF</strong>, or <strong>SVG</strong> files.</p>
+<p><a href="https://travis-ci.org/rich-iannone/DiagrammeR"><img src="https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master" alt="Travis-CI Build Status"></a> <a href="https://codecov.io/github/rich-iannone/DiagrammeR?branch=master"><img src="https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=DiagrammeR"><img src="http://www.r-pkg.org/badges/version/DiagrammeR" alt="CRAN status"></a> <img src="http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen"></p>
+<p>With the <strong>DiagrammeR</strong> package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into <strong>RMarkdown</strong> documents, integrated with <strong>Shiny</strong> web apps, converted to other graph formats, or exported as image files.</p>
 <p><img src="inst/img/simple_graph.png"></p>
-<p>It’s possible to make the above graph diagram using a combination of <strong>DiagrammeR</strong> functions strung together with the <strong>magrittr</strong> <code>%&gt;%</code> pipe:</p>
+<p>The above example graph can be created with a combination of <strong>DiagrammeR</strong> functions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DiagrammeR)
 
-<span class="kw"><a href="reference/create_random_graph.html">create_random_graph</a></span>(
-  <span class="dt">n =</span> <span class="dv">140</span>, <span class="dt">m =</span> <span class="dv">100</span>,
-  <span class="dt">directed =</span> <span class="ot">FALSE</span>,
-  <span class="dt">set_seed =</span> <span class="dv">23</span>) <span class="op">%&gt;%</span>
+example_graph &lt;-
+<span class="st">  </span><span class="kw"><a href="reference/create_graph.html">create_graph</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_pa_graph.html">add_pa_graph</a></span>(
+    <span class="dt">n =</span> <span class="dv">50</span>,
+    <span class="dt">m =</span> <span class="dv">1</span>,
+    <span class="dt">set_seed =</span> <span class="dv">23</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_gnp_graph.html">add_gnp_graph</a></span>(
+    <span class="dt">n =</span> <span class="dv">50</span>,
+    <span class="dt">p =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>,
+    <span class="dt">set_seed =</span> <span class="dv">23</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/join_node_attrs.html">join_node_attrs</a></span>(
-    <span class="dt">df =</span> <span class="kw"><a href="reference/get_s_connected_cmpts.html">get_s_connected_cmpts</a></span>(.)) <span class="op">%&gt;%</span>
+    <span class="dt">df =</span> <span class="kw"><a href="reference/get_betweenness.html">get_betweenness</a></span>(.)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/join_node_attrs.html">join_node_attrs</a></span>(
     <span class="dt">df =</span> <span class="kw"><a href="reference/get_degree_total.html">get_degree_total</a></span>(.)) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/colorize_node_attrs.html">colorize_node_attrs</a></span>(
-    <span class="dt">node_attr_from =</span> sc_component,
-    <span class="dt">node_attr_to =</span> fillcolor,
-    <span class="dt">alpha =</span> <span class="dv">80</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/rescale_node_attrs.html">rescale_node_attrs</a></span>(
     <span class="dt">node_attr_from =</span> total_degree,
-    <span class="dt">to_lower_bound =</span> <span class="fl">0.2</span>,
-    <span class="dt">to_upper_bound =</span> <span class="fl">1.5</span>,
+    <span class="dt">node_attr_to =</span> fillcolor,
+    <span class="dt">palette =</span> <span class="st">"Greens"</span>,
+    <span class="dt">alpha =</span> <span class="dv">90</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/rescale_node_attrs.html">rescale_node_attrs</a></span>(
+    <span class="dt">node_attr_from =</span> betweenness,
+    <span class="dt">to_lower_bound =</span> <span class="fl">0.5</span>,
+    <span class="dt">to_upper_bound =</span> <span class="fl">1.0</span>,
       <span class="dt">node_attr_to =</span> height) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/select_nodes_by_id.html">select_nodes_by_id</a></span>(
     <span class="dt">nodes =</span> <span class="kw"><a href="reference/get_articulation_points.html">get_articulation_points</a></span>(.)) <span class="op">%&gt;%</span>
@@ -94,15 +106,307 @@
     <span class="dt">value =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/clear_selection.html">clear_selection</a></span>() <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/set_node_attr_to_display.html">set_node_attr_to_display</a></span>(
-    <span class="dt">attr =</span> <span class="ot">NULL</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/render_graph.html">render_graph</a></span>()</code></pre></div>
-<p><strong>DiagrammeR</strong>’s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things.</p>
-<p>This functionality makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them and specify styling attributes to differentiate nodes and edges by size, color, shape, opacity, length, and more.</p>
+    <span class="dt">attr =</span> <span class="ot">NULL</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">example_graph <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/render_graph.html">render_graph</a></span>(<span class="dt">layout =</span> <span class="st">"nicely"</span>)</code></pre></div>
+<p><strong>DiagrammeR</strong>’s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things. This makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them.</p>
+<div id="graph-basics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#graph-basics" class="anchor"></a>Graph Basics</h2>
+<p>Let’s create a graph object with <code><a href="reference/create_graph.html">create_graph()</a></code> and add some nodes and edges to it. Each node gets a new integer ID upon creation. Each edge also gets an ID starting from 1. The pipes between functions make the whole process readable and understandable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a_graph &lt;-
+<span class="st">  </span><span class="kw"><a href="reference/create_graph.html">create_graph</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_node.html">add_node</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_node.html">add_node</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_edge.html">add_edge</a></span>(
+    <span class="dt">from =</span> <span class="dv">1</span>,
+    <span class="dt">to =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="inst/img/a_graph.png"></p>
+<p>We can take away an edge by using <code><a href="reference/delete_edge.html">delete_edge()</a></code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b_graph &lt;-
+<span class="st">  </span>a_graph <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/delete_edge.html">delete_edge</a></span>(
+    <span class="dt">from =</span> <span class="dv">1</span>,
+    <span class="dt">to =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="inst/img/b_graph.png"></p>
+<p>We can add a node to the graph while, at the same time, defining edges to or from existing nodes in the graph.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_graph &lt;-
+<span class="st">  </span>b_graph <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_node.html">add_node</a></span>(
+    <span class="dt">from =</span> <span class="dv">1</span>,
+    <span class="dt">to =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="inst/img/c_graph.png"></p>
+<p>Viewing the graph object in the console will provide some basic information about the graph and some pointers on where to get additional information.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">c_graph
+<span class="co">#&gt; DiagrammeR Graph // 3 nodes / 2 edges</span>
+<span class="co">#&gt;   -- directed / connected / DAG / simple</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   NODES / type: &lt;unused&gt; / label: &lt;unused&gt;            info: `get_node_df()`</span>
+<span class="co">#&gt;     -- no additional node attributes</span>
+<span class="co">#&gt;   EDGES / rel: &lt;unused&gt;                               info: `get_edge_df()`</span>
+<span class="co">#&gt;     -- no additional edge attributes</span>
+<span class="co">#&gt;   SELECTION / &lt;none&gt;</span>
+<span class="co">#&gt;   CACHE / &lt;none&gt;</span>
+<span class="co">#&gt;   STORED DFs / &lt;none&gt;</span>
+<span class="co">#&gt;   GLOBAL ATTRS / 17 are set                info: `get_global_graph_attrs()`</span>
+<span class="co">#&gt;   GRAPH ACTIONS / &lt;none&gt;</span>
+<span class="co">#&gt;   GRAPH LOG / &lt;3 actions&gt; -&gt; add_edge() -&gt; delete_edge() -&gt; add_node()</span></code></pre></div>
+<p>Any time we add a node or edge to the graph, we can add node or edge aesthetic or data attributes. These can be styling properties (e.g., <code>color</code>, <code>shape</code>), grouping labels (e.g., <code>type</code> and <code>rel</code>), or data values that are useful for calculations and for display purposes. Most node or edge creation functions (depending on whether they create either edges, nodes, or both) have the arguments <code>node_aes</code>, <code>edge_aes</code>, <code>node_data</code>, and <code>edge_data</code>. Using these, we can call the namesake helper functions (<code><a href="reference/node_aes.html">node_aes()</a></code>, <code><a href="reference/edge_aes.html">edge_aes()</a></code>, <code><a href="reference/node_data.html">node_data()</a></code>, and <code><a href="reference/edge_data.html">edge_data()</a></code>) to specifically target the created nodes or edges and bind attribute data. An additional benefit in using the helper functions (for the node/edge aesthetic attributes especially) is that RStudio can provide inline help on attribute names and definitions when typing <code>node_aes(</code> or <code>edge_aes(</code> and pressing the <strong>TAB</strong> key.</p>
+<p>Here is an example of adding a node while setting its <code>color</code>, <code>fillcolor</code>, and <code>fontcolor</code> node aesthetic attributes, and, adding an edge with <code>color</code>, <code>arrowhead</code>, and <code>tooltip</code> edge aesthetic attributes. In both the <code><a href="reference/add_node.html">add_node()</a></code> and the <code><a href="reference/add_edge.html">add_edge()</a></code> calls, the new node and edge were set with a <code>value</code> node/edge data attribute.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d_graph &lt;-
+<span class="st">  </span>c_graph <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_node.html">add_node</a></span>(
+    <span class="dt">type =</span> <span class="st">"type_a"</span>,
+    <span class="dt">node_aes =</span> <span class="kw"><a href="reference/node_aes.html">node_aes</a></span>(
+      <span class="dt">color =</span> <span class="st">"steelblue"</span>,
+      <span class="dt">fillcolor =</span> <span class="st">"lightblue"</span>,
+      <span class="dt">fontcolor =</span> <span class="st">"gray35"</span>),
+    <span class="dt">node_data =</span> <span class="kw"><a href="reference/node_data.html">node_data</a></span>(
+      <span class="dt">value =</span> <span class="fl">2.5</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_edge.html">add_edge</a></span>(
+    <span class="dt">from =</span> <span class="dv">1</span>,
+    <span class="dt">to =</span> <span class="dv">3</span>,
+    <span class="dt">rel =</span> <span class="st">"interacted_with"</span>,
+    <span class="dt">edge_aes =</span> <span class="kw"><a href="reference/edge_aes.html">edge_aes</a></span>(
+      <span class="dt">color =</span> <span class="st">"red"</span>,
+      <span class="dt">arrowhead =</span> <span class="st">"vee"</span>,
+      <span class="dt">tooltip =</span> <span class="st">"Red Arrow"</span>),
+    <span class="dt">edge_data =</span> <span class="kw"><a href="reference/edge_data.html">edge_data</a></span>(
+      <span class="dt">value =</span> <span class="fl">2.5</span>))</code></pre></div>
+<p><img src="inst/img/d_graph.png"></p>
+<p>Creating attributes and setting their values is often useful because we can further work with the attributes (e.g., <em>mutate</em> values or even use them during traversals). Furthermore, we can create aesthetic properties based on numerical or categorical data. This is important for when you want to display your graph diagram using the <code><a href="reference/render_graph.html">render_graph()</a></code> function.</p>
+<p>Don’t worry if attribute values weren’t set right during the creation of the associated nodes or edges. They are ways to set attribute values for existing nodes and edges. Functions are available for targeting the specific nodes/edges (i.e., making a <em>selection</em>) and other functions are used to set attribute values for the selected nodes or edges. Often, this can be the more efficient strategy as we can target nodes/edges based on their properties (e.g., degree, relationships to neighbors, etc.). Here is an example where we select a node based on its <code>value</code> attribute and modify its <code>color</code> node aesthetic attribute:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e_graph &lt;-
+<span class="st">  </span>d_graph <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/select_nodes.html">select_nodes</a></span>(
+    <span class="dt">conditions =</span> 
+      value <span class="op">==</span><span class="st"> </span><span class="fl">2.5</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/set_node_attrs_ws.html">set_node_attrs_ws</a></span>(
+    <span class="dt">node_attr =</span> fillcolor,
+    <span class="dt">value =</span> <span class="st">"orange"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/clear_selection.html">clear_selection</a></span>()</code></pre></div>
+<p>To explain this a bit, we take the graph object <code>d_graph</code>, select only the nodes that have a node <code>value</code> attribute of exactly <code>2.5</code>. (We now have an active node selection.) With the selected nodes, we set their node attribute <code>fillcolor</code> with the value <code>orange</code>. Then we deactivate the selection with <code><a href="reference/clear_selection.html">clear_selection()</a></code>. Now, if we view the graph with <code><a href="reference/render_graph.html">render_graph()</a></code> we get this:</p>
+<p><img src="inst/img/e_graph.png"></p>
+<p>There are quite a few functions that allow you to select nodes (e.g., <code><a href="reference/select_nodes.html">select_nodes()</a></code>, <code><a href="reference/select_nodes_by_id.html">select_nodes_by_id()</a></code>, <code><a href="reference/select_last_nodes_created.html">select_last_nodes_created()</a></code>) and edges (e.g., <code><a href="reference/select_edges.html">select_edges()</a></code>, <code><a href="reference/select_edges_by_edge_id.html">select_edges_by_edge_id()</a></code>, <code><a href="reference/select_last_edges_created.html">select_last_edges_created()</a></code>). With these selections, we can apply changes using functions that end with <code>..._ws()</code> (with selection). As seen, node attributes could be set/replaced with <code><a href="reference/set_node_attrs_ws.html">set_node_attrs_ws()</a></code> but we can also mutate attributes of selected nodes (<code><a href="reference/mutate_node_attrs_ws.html">mutate_node_attrs_ws()</a></code>), delete selected nodes (<code><a href="reference/delete_nodes_ws.html">delete_nodes_ws()</a></code>), and even create a subgraph with that selection (<code><a href="reference/create_subgraph_ws.html">create_subgraph_ws()</a></code>). Selections of nodes or edges can be inverted (where non-selected nodes or edges become the active selection) with <code><a href="reference/invert_selection.html">invert_selection()</a></code>, certain nodes/edges can be removed from the active selection with the <code><a href="reference/deselect_nodes.html">deselect_nodes()</a></code>/<code><a href="reference/deselect_edges.html">deselect_edges()</a></code>, and any selection can and should be eventually cleared with <code><a href="reference/clear_selection.html">clear_selection()</a></code>.</p>
+<p>We can create a graph object and add graph primitives such as paths, cycles, and trees to it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f_graph &lt;-
+<span class="st">  </span><span class="kw"><a href="reference/create_graph.html">create_graph</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_path.html">add_path</a></span>(<span class="dt">n =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_cycle.html">add_cycle</a></span>(<span class="dt">n =</span> <span class="dv">4</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_balanced_tree.html">add_balanced_tree</a></span>(
+    <span class="dt">k =</span> <span class="dv">2</span>, <span class="dt">h =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="inst/img/f_graph.png"></p>
+<p>You can add one or more randomly generated graphs to a graph object. Here, let’s add a directed GNM graph with 10 nodes and 15 edges (the <code>set_seed</code> option makes the random graph reproducible).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">g_graph &lt;-
+<span class="st">  </span><span class="kw"><a href="reference/create_graph.html">create_graph</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_gnm_graph.html">add_gnm_graph</a></span>(
+    <span class="dt">n =</span> <span class="dv">15</span>,
+    <span class="dt">m =</span> <span class="dv">20</span>,
+    <span class="dt">set_seed =</span> <span class="dv">23</span>)</code></pre></div>
+<p><img src="inst/img/g_graph.png"></p>
+<p>The undirected version of this graph is can be made using:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h_graph &lt;-
+<span class="st">  </span><span class="kw"><a href="reference/create_graph.html">create_graph</a></span>(
+    <span class="dt">directed =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_gnm_graph.html">add_gnm_graph</a></span>(
+    <span class="dt">n =</span> <span class="dv">15</span>,
+    <span class="dt">m =</span> <span class="dv">20</span>,
+    <span class="dt">set_seed =</span> <span class="dv">23</span>)</code></pre></div>
+<p><img src="inst/img/h_graph.png"></p>
+<p>We can view the graph using <code><a href="reference/render_graph.html">render_graph()</a></code>. There are several layouts to choose from as well (e.g., <code>nicely</code>, <code>tree</code>, <code>kk</code>, <code>fr</code>, etc.).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">h_graph <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/render_graph.html">render_graph</a></span>(<span class="dt">layout =</span> <span class="st">"fr"</span>)</code></pre></div>
+<p><img src="inst/img/h_graph_2.png"></p>
+</div>
+<div id="using-data-from-tables-to-generate-a-graph" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-data-from-tables-to-generate-a-graph" class="anchor"></a>Using Data from Tables to Generate a Graph</h2>
+<p>The <strong>DiagrammeR</strong> package contains a few simple datasets that help illustrate how to create a graph with table data. The <code>node_list_1</code> and <code>edge_list_1</code> datasets are super simple node and edge data frames that can be assembled into a graph. Let’s print them side by side to see what we’re working with.</p>
+<pre><code>node_list_1     edge_list_1</code></pre>
+<pre><code>   id label        from to 
+1   1     A     1     1  2 
+2   2     B     2     1  3 
+3   3     C     3     1  4 
+4   4     D     4     1  9 
+5   5     E     5     2  8 
+6   6     F     6     2  7 
+7   7     G     7     2  1 
+8   8     H     8     2 10 
+9   9     I     9     3  1 
+10 10     J     10    3  6 
+                11    3  8
+                12    4  1
+                13    5  7
+                14    6  2
+                15    6  9
+                16    8  1
+                17    9  3
+                18    9 10
+                19   10  1</code></pre>
+<p>To fashion this into a graph, we need to ensure that both the nodes and their attributes (in this case, just a <code>label</code>) are added, and, that the edges are added. Furthermore, we must map the <code>from</code> and the <code>to</code> definitions to the node <code>id</code> (in other cases, we may need to map relationships between text labels to the same text attribute stored in the node data frame). We can use three functions to generate a graph containing this data:</p>
+<ol style="list-style-type: decimal">
+<li><code><a href="reference/create_graph.html">create_graph()</a></code></li>
+<li><code><a href="reference/add_nodes_from_table.html">add_nodes_from_table()</a></code></li>
+<li><code><a href="reference/add_edges_from_table.html">add_edges_from_table()</a></code></li>
+</ol>
+<p>Let’s show the process in a stepwise fashion (while occasionally viewing the graph’s internal ndf and edf) so that we can understand what is actually happening. First, create the graph object with <code><a href="reference/create_graph.html">create_graph()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create the graph object</span>
+i_graph_<span class="dv">1</span> &lt;-
+<span class="st">  </span><span class="kw"><a href="reference/create_graph.html">create_graph</a></span>()
+  
+<span class="co"># It will start off as empty</span>
+i_graph_<span class="dv">1</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/is_graph_empty.html">is_graph_empty</a></span>()
+<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<p>Add nodes from a table with <code><a href="reference/add_nodes_from_table.html">add_nodes_from_table()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add the nodes to the graph</span>
+i_graph_<span class="dv">2</span> &lt;-
+<span class="st">  </span>i_graph_<span class="dv">1</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_nodes_from_table.html">add_nodes_from_table</a></span>(
+    <span class="dt">table =</span> node_list_<span class="dv">1</span>,
+    <span class="dt">label_col =</span> label)</code></pre></div>
+<p>Inspect the graph’s internal node data frame (ndf) with <code><a href="reference/get_node_df.html">get_node_df()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># View the graph's internal</span>
+<span class="co"># node data frame</span>
+i_graph_<span class="dv">2</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/get_node_df.html">get_node_df</a></span>()
+<span class="co">#&gt;    id type label id_external</span>
+<span class="co">#&gt; 1   1 &lt;NA&gt;     A           1</span>
+<span class="co">#&gt; 2   2 &lt;NA&gt;     B           2</span>
+<span class="co">#&gt; 3   3 &lt;NA&gt;     C           3</span>
+<span class="co">#&gt; 4   4 &lt;NA&gt;     D           4</span>
+<span class="co">#&gt; 5   5 &lt;NA&gt;     E           5</span>
+<span class="co">#&gt; 6   6 &lt;NA&gt;     F           6</span>
+<span class="co">#&gt; 7   7 &lt;NA&gt;     G           7</span>
+<span class="co">#&gt; 8   8 &lt;NA&gt;     H           8</span>
+<span class="co">#&gt; 9   9 &lt;NA&gt;     I           9</span>
+<span class="co">#&gt; 10 10 &lt;NA&gt;     J          10</span></code></pre></div>
+<p>The graph now has 10 nodes (no edges yet). Each node was automatically assigned an auto-incrementing <code>id</code>. The incoming <code>id</code> was also automatically renamed <code>id_external</code> so as to avoid duplicate column names and also to retain a column for mapping edge definitions. Now, let’s add the edges. We need to specify that the <code>from_col</code> in the <code>edge_list_1</code> table is indeed <code>from</code> and that the <code>to_col</code> is <code>to</code>. The <code>from_to_map</code> argument expects a node attribute column that the <code>from</code> and <code>to</code> columns will map to. In this case it’s <code>id_external</code>. Note that while <code>id</code> also matches perfectly in this mapping, there may be cases where <code>id</code> won’t match with and <code>id_external</code> column (e.g., when there are existing nodes or when the node <code>id</code> values in the incoming table are provided in a different order, etc.).</p>
+<p>Now, connect the graph nodes with edges from another dataset using <code><a href="reference/add_edges_from_table.html">add_edges_from_table()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Add the edges to the graph</span>
+i_graph_<span class="dv">3</span> &lt;-
+<span class="st">  </span>i_graph_<span class="dv">2</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_edges_from_table.html">add_edges_from_table</a></span>(
+    <span class="dt">table =</span> edge_list_<span class="dv">1</span>,
+    <span class="dt">from_col =</span> from,
+    <span class="dt">to_col =</span> to,
+    <span class="dt">from_to_map =</span> id_external)</code></pre></div>
+<p>Inspect the graph’s internal edge data frame (edf) with <code><a href="reference/get_edge_df.html">get_edge_df()</a></code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># View the edge data frame</span>
+i_graph_<span class="dv">3</span> <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/get_edge_df.html">get_edge_df</a></span>()
+<span class="co">#&gt;    id from to  rel</span>
+<span class="co">#&gt; 1   1    1  2 &lt;NA&gt;</span>
+<span class="co">#&gt; 2   2    1  3 &lt;NA&gt;</span>
+<span class="co">#&gt; 3   3    1  4 &lt;NA&gt;</span>
+<span class="co">#&gt; 4   4    1  9 &lt;NA&gt;</span>
+<span class="co">#&gt; 5   5    2  8 &lt;NA&gt;</span>
+<span class="co">#&gt; 6   6    2  7 &lt;NA&gt;</span>
+<span class="co">#&gt; 7   7    2  1 &lt;NA&gt;</span>
+<span class="co">#&gt; 8   8    2 10 &lt;NA&gt;</span>
+<span class="co">#&gt; 9   9    3  1 &lt;NA&gt;</span>
+<span class="co">#&gt; 10 10    3  6 &lt;NA&gt;</span>
+<span class="co">#&gt; 11 11    3  8 &lt;NA&gt;</span>
+<span class="co">#&gt; 12 12    4  1 &lt;NA&gt;</span>
+<span class="co">#&gt; 13 13    5  7 &lt;NA&gt;</span>
+<span class="co">#&gt; 14 14    6  2 &lt;NA&gt;</span>
+<span class="co">#&gt; 15 15    6  9 &lt;NA&gt;</span>
+<span class="co">#&gt; 16 16    8  1 &lt;NA&gt;</span>
+<span class="co">#&gt; 17 17    9  3 &lt;NA&gt;</span>
+<span class="co">#&gt; 18 18    9 10 &lt;NA&gt;</span>
+<span class="co">#&gt; 19 19   10  1 &lt;NA&gt;</span></code></pre></div>
+<p>By supplying the name of the graph object in the console, we can get a succinct summary of the graph’s properties. Here, we see that the graph has 10 nodes and 19 edges:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i_graph_<span class="dv">3</span>
+<span class="co">#&gt; DiagrammeR Graph // 10 nodes / 19 edges</span>
+<span class="co">#&gt;   -- directed / connected / simple</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   NODES / type: &lt;unused&gt; / label: 10 vals - complete &amp; unique</span>
+<span class="co">#&gt;     -- 1 additional node attribute (id_external)</span>
+<span class="co">#&gt;   EDGES / rel: &lt;unused&gt;                               info: `get_edge_df()`</span>
+<span class="co">#&gt;     -- no additional edge attributes</span>
+<span class="co">#&gt;   SELECTION / &lt;none&gt;</span>
+<span class="co">#&gt;   CACHE / &lt;none&gt;</span>
+<span class="co">#&gt;   STORED DFs / &lt;none&gt;</span>
+<span class="co">#&gt;   GLOBAL ATTRS / 17 are set                info: `get_global_graph_attrs()`</span>
+<span class="co">#&gt;   GRAPH ACTIONS / &lt;none&gt;</span>
+<span class="co">#&gt;   GRAPH LOG / create_graph() -&gt; add_nodes_from_table() -&gt; add_edges_from_table()</span></code></pre></div>
+<p>There are two other similar datasets included in the package (<code>node_list_2</code> and <code>edge_list_2</code>). These contain extended attribute data. Let’s have a quick look at their column names:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">node_list_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">colnames</span>()
+<span class="co">#&gt; [1] "id"      "label"   "type"    "value_1" "value_2"</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edge_list_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">colnames</span>()
+<span class="co">#&gt; [1] "from"    "to"      "rel"     "value_1" "value_2"</span></code></pre></div>
+<p>Because we have unique labels in the <code>label</code> column, and categorical labels in the <code>type</code> and <code>rel</code> columns, we can create a property graph from this data. Like before, we can incorporate the two tables as a graph with <code><a href="reference/add_nodes_from_table.html">add_nodes_from_table()</a></code> and <code><a href="reference/add_edges_from_table.html">add_edges_from_table()</a></code>. This time, we’ll remove the auto-generated <code>id_external</code> node attribute with the <code><a href="reference/drop_node_attrs.html">drop_node_attrs()</a></code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">j_graph &lt;-<span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="reference/create_graph.html">create_graph</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw"><a href="reference/add_nodes_from_table.html">add_nodes_from_table</a></span>(
+    <span class="dt">table =</span> node_list_<span class="dv">2</span>,
+    <span class="dt">label_col =</span> label,
+    <span class="dt">type_col =</span> type) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/add_edges_from_table.html">add_edges_from_table</a></span>(
+    <span class="dt">table =</span> edge_list_<span class="dv">2</span>,
+    <span class="dt">from_col =</span> from,
+    <span class="dt">to_col =</span> to,
+    <span class="dt">from_to_map =</span> id_external,
+    <span class="dt">rel_col =</span> rel) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/drop_node_attrs.html">drop_node_attrs</a></span>(
+    <span class="dt">node_attr =</span> id_external)</code></pre></div>
+<p>Let’s again view the graph summary in the console. Note that the additional node attributes (<code>value_1</code> and <code>value_2</code>) are present for both the nodes and the edges:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">j_graph
+<span class="co">#&gt; DiagrammeR Graph // 10 nodes / 19 edges</span>
+<span class="co">#&gt;   -- directed / connected / property graph / simple</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   NODES / type: 2 vals - complete / label: 10 vals - complete &amp; unique</span>
+<span class="co">#&gt;     -- 2 additional node attributes (value_1, value_2)</span>
+<span class="co">#&gt;   EDGES / rel: 3 vals - complete                      info: `get_edge_df()`</span>
+<span class="co">#&gt;     -- 2 additional edge attributes (value_1, value_2)</span>
+<span class="co">#&gt;   SELECTION / &lt;none&gt;</span>
+<span class="co">#&gt;   CACHE / &lt;none&gt;</span>
+<span class="co">#&gt;   STORED DFs / &lt;none&gt;</span>
+<span class="co">#&gt;   GLOBAL ATTRS / 17 are set                info: `get_global_graph_attrs()`</span>
+<span class="co">#&gt;   GRAPH ACTIONS / &lt;none&gt;</span>
+<span class="co">#&gt;   GRAPH LOG / &lt;1 action&gt; -&gt; add_nodes_from_table() -&gt; add_edges_from_table() -&gt; drop_node_attrs()</span></code></pre></div>
+<p>Now, because we have node/edge metadata (categorical labels and numerical data in <code>value_1</code> &amp; <code>value_2</code> for both nodes and edges), we can do some interesting things with the graph. First, let’s do some mutation with <code><a href="reference/mutate_node_attrs.html">mutate_node_attrs()</a></code> and <code><a href="reference/mutate_edge_attrs.html">mutate_edge_attrs()</a></code> and get the sums of <code>value_1</code> and <code>value_2</code> as <code>value_3</code> (for both the nodes and the edges). Then, let’s color the nodes and edges <code>forestgreen</code> if <code>value_3</code> is greater than <code>10</code> (<code>red</code> otherwise). Finally, let’s display the values of <code>value_3</code> for the nodes when rendering the graph diagram. Here we go!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">k_graph &lt;-
+<span class="st">  </span>j_graph <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/mutate_node_attrs.html">mutate_node_attrs</a></span>(
+    <span class="dt">value_3 =</span> value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/mutate_edge_attrs.html">mutate_edge_attrs</a></span>(
+    <span class="dt">value_3 =</span> value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/select_nodes.html">select_nodes</a></span>(
+    <span class="dt">conditions =</span> value_<span class="dv">3</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/set_node_attrs_ws.html">set_node_attrs_ws</a></span>(
+    <span class="dt">node_attr =</span> fillcolor,
+    <span class="dt">value =</span> <span class="st">"forestgreen"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/invert_selection.html">invert_selection</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/set_node_attrs_ws.html">set_node_attrs_ws</a></span>(
+    <span class="dt">node_attr =</span> fillcolor,
+    <span class="dt">value =</span> <span class="st">"red"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/select_edges.html">select_edges</a></span>(
+    <span class="dt">conditions =</span> value_<span class="dv">3</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/set_edge_attrs_ws.html">set_edge_attrs_ws</a></span>(
+    <span class="dt">edge_attr =</span> color,
+    <span class="dt">value =</span> <span class="st">"forestgreen"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/invert_selection.html">invert_selection</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/set_edge_attrs_ws.html">set_edge_attrs_ws</a></span>(
+    <span class="dt">edge_attr =</span> color,
+    <span class="dt">value =</span> <span class="st">"red"</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/clear_selection.html">clear_selection</a></span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="reference/set_node_attr_to_display.html">set_node_attr_to_display</a></span>(
+    <span class="dt">attr =</span> value_<span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">k_graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="reference/render_graph.html">render_graph</a></span>()</code></pre></div>
+<p><img src="inst/img/k_graph.png"></p>
+</div>
+<div id="functions-in-the-package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#functions-in-the-package" class="anchor"></a>Functions in the Package</h2>
+<p>There are a lot of functions for working with graphs. Lots. Below is a listing of all the functions available in the package. If you need help with any given function, try <code>help([function_name])</code>. Each function is well documented, with explanations for each argument and copious usage examples.</p>
+<p><img src="inst/img/functions.png"></p>
+</div>
 <div id="a-network-graph-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#a-network-graph-example" class="anchor"></a>A Network Graph Example</h2>
 <p>Let’s create a property graph that pertains to contributors to three software projects. This graph has nodes representing people and projects. The attributes <code>name</code>, <code>age</code>, <code>join_date</code>, <code>email</code>, <code>follower_count</code>, <code>following_count</code>, and <code>starred_count</code> are specific to the <code>person</code> nodes while the <code>project</code>, <code>start_date</code>, <code>stars</code>, and <code>language</code> attributes apply to the <code>project</code> nodes. The edges represent the relationships between the people and the project.</p>
-<p>The example graph file <code>repository.dgr</code> is available in the <code>extdata/example_graphs_dgr/</code> directory in the <strong>DiagrammeR</strong> package (currently, only for the <strong>Github</strong> version). We can load it into memory by using the <code><a href="reference/open_graph.html">open_graph()</a></code> function, with <code>system.file()</code> to provide the location of the file within the package.</p>
+<p>The example graph file <code>repository.dgr</code> is available in the <code>extdata/example_graphs_dgr/</code> directory in the <strong>DiagrammeR</strong> package (currently, only for the <strong>Github</strong> version). We can load it into memory by using the <code><a href="reference/open_graph.html">open_graph()</a></code> function, where <code>system.file()</code> helps to provide the location of the file within the package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(DiagrammeR)
 
 <span class="co"># Load in a the small repository graph</span>
@@ -111,7 +415,7 @@ graph &lt;-
     <span class="kw">system.file</span>(
       <span class="st">"extdata/example_graphs_dgr/repository.dgr"</span>,
       <span class="dt">package =</span> <span class="st">"DiagrammeR"</span>))</code></pre></div>
-<p>We can always view the property graph with the <code><a href="reference/render_graph.html">render_graph()</a></code> function.</p>
+<p>We can always view this property graph with the <code><a href="reference/render_graph.html">render_graph()</a></code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/render_graph.html">render_graph</a></span>(graph, <span class="dt">layout =</span> <span class="st">"kk"</span>)</code></pre></div>
 <p><img src="inst/img/graph_example_1.png"></p>
 <p>Now that the graph is set up, you can create queries with <strong>magrittr</strong> pipelines to get specific answers from the graph.</p>
@@ -184,9 +488,8 @@ graph &lt;-
 <span class="st">  </span><span class="kw"><a href="reference/set_edge_attrs_ws.html">set_edge_attrs_ws</a></span>(
     <span class="dt">edge_attr =</span> commits,
     <span class="dt">value =</span> <span class="dv">15</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw"><a href="reference/clear_selection.html">clear_selection</a></span>()
-
-<span class="kw"><a href="reference/render_graph.html">render_graph</a></span>(graph, <span class="dt">layout =</span> <span class="st">"kk"</span>)</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="reference/clear_selection.html">clear_selection</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/render_graph.html">render_graph</a></span>(graph, <span class="dt">layout =</span> <span class="st">"kk"</span>)</code></pre></div>
 <p><img src="inst/img/graph_example_2.png"></p>
 <p>Get all email addresses for contributors (but not maintainers) of the <strong>randomizer</strong> and <strong>supercalc88</strong> projects. With <code><a href="reference/trav_in_edge.html">trav_in_edge()</a></code> we just want the <code>contributer</code> edges/commits. Once on those edges, hop back unconditionally to the people from which the edges originate with <code><a href="reference/trav_out_node.html">trav_out_node()</a></code>. Get the <code>email</code> values from those selected individuals as a sorted character vector.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph <span class="op">%&gt;%</span><span class="st"> </span>
@@ -204,7 +507,7 @@ graph &lt;-
 <span class="co">#&gt; [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     </span>
 <span class="co">#&gt; [3] "kim_3251323@ohhh.ai"      "lhe99@mailing-fun.com"   </span>
 <span class="co">#&gt; [5] "roger_that@whalemail.net" "the_simone@a-q-w-o.net"  </span>
-<span class="co">#&gt; [7] "the_will@graphymail.com" </span></code></pre></div>
+<span class="co">#&gt; [7] "the_will@graphymail.com"</span></code></pre></div>
 <p>Which people have committed to more than one project? This is a matter of node degree. We know that people have edges outward and projects and edges inward. Thus, anybody having an outdegree (number of edges outward) greater than <code>1</code> has committed to more than one project. Globally, select nodes with that condition using <code><a href="reference/select_nodes_by_degree.html">select_nodes_by_degree("outdeg &gt; 1")</a></code>. Once getting the <code>name</code> attribute values from that node selection, we can provide a sorted character vector of names.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw"><a href="reference/select_nodes_by_degree.html">select_nodes_by_degree</a></span>(
@@ -219,7 +522,7 @@ graph &lt;-
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p><strong>DiagrammeR</strong> is used in an <strong>R</strong> environment. If you don’t have an <strong>R</strong> installation, it can be obtained from the <a href="https://cran.r-project.org/"><strong>Comprehensive R Archive Network (CRAN)</strong></a>.</p>
-<p>You can install the development (v0.9.2) version of <strong>DiagrammeR</strong> from <strong>GitHub</strong> using the <strong>devtools</strong> package.</p>
+<p>You can install the development version of <strong>DiagrammeR</strong> from <strong>GitHub</strong> using the <strong>devtools</strong> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"rich-iannone/DiagrammeR"</span>)</code></pre></div>
 <p>Or, get it from <strong>CRAN</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"DiagrammeR"</span>)</code></pre></div>
@@ -235,11 +538,12 @@ graph &lt;-
 <a href="#license" class="anchor"></a>License</h2>
 <p>MIT © Richard Iannone</p>
 </div>
-
+</div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
-    <h2>Links</h2>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2 class="hasAnchor">
+<a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cran.r-project.org/package=DiagrammeR">https://​cran.r-project.org/​package=DiagrammeR</a>
 </li>
@@ -252,23 +556,15 @@ graph &lt;-
 <p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Knut Sveidqvist <br><small class="roles"> Author, copyright holder </small> <br><small>(mermaid.js library in htmlwidgets/lib, http://github.com/knsv/mermaid/)</small>
-</li>
-<li>Mike Bostock <br><small class="roles"> Author, copyright holder </small> <br><small>(d3.js library in htmlwidgets/lib, http://d3js.org)</small>
-</li>
-<li>Chris Pettitt <br><small class="roles"> Author, copyright holder </small> <br><small>(dagre-d3.js library in htmlwidgets/lib, http://github.com/cpettitt/dagre-d3)</small>
-</li>
-<li>Mike Daines <br><small class="roles"> Author, copyright holder </small> <br><small>(viz.js library in htmlwidgets/lib, http://github.com/mdaines/viz.js/)</small>
-</li>
-<li>Richard Iannone <br><small class="roles"> Author, maintainer </small> <br><small>(R interface)</small>
-</li>
+<li>Rich Iannone <br><small class="roles"> Author, maintainer </small> </li>
 </ul>
 </div>
+
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">

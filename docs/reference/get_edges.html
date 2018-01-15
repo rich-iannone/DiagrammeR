@@ -87,57 +87,65 @@
     </div>
 
     
-    <p>Obtain a vector, data frame, or list of
-node IDs from a graph object or an edge data frame.
-An optional filter by edge attribute can limit the
-set of edges returned.</p>
+    <p>Obtain a vector,
+data frame, or list of node IDs
+associated with edges in a graph
+object. An optional filter by edge
+attribute can limit the set of
+edges returned.</p>
     
 
-    <pre class="usage"><span class='fu'>get_edges</span>(<span class='no'>x</span>, <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>,
+    <pre class="usage"><span class='fu'>get_edges</span>(<span class='no'>graph</span>, <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>,
   <span class='kw'>return_values</span> <span class='kw'>=</span> <span class='st'>"id"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>either a graph object of class
-<code>dgr_graph</code> or an edge data frame.</p></td>
+      <th>graph</th>
+      <td><p>a graph object of
+class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>conditions</th>
-      <td><p>an option to use filtering
-conditions for the retrieval of edges.</p></td>
+      <td><p>an option to
+use filtering conditions for the
+retrieval of edges.</p></td>
     </tr>
     <tr>
       <th>return_type</th>
-      <td><p>using <code>vector</code> (the
-default), a vector of character objects
-representing the edges is provided. With
-<code>list</code> a list object will be provided that
-contains vectors of outgoing and incoming node IDs
-associated with edges. With <code>df</code>, a data frame
-containing outgoing and incoming node IDs associated
-with edges.</p></td>
+      <td><p>using
+<code>vector</code> (the default), a
+vector of character objects
+representing the edges is provided.
+With <code>list</code> a list object will
+be provided that contains vectors
+of outgoing and incoming node IDs
+associated with edges. With
+<code>df</code>, a data frame containing
+outgoing and incoming node IDs
+associated with edges.</p></td>
     </tr>
     <tr>
       <th>return_values</th>
-      <td><p>using <code>id</code> (the default)
-results in node ID values returned in the edge
-definitions. With <code>label</code>, the node labels will
-instead be used to define edges.</p></td>
+      <td><p>using
+<code>id</code> (the default) results in
+node ID values returned in the edge
+definitions. With <code>label</code>, the
+node labels will instead be used to
+define edges.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list, data frame, or a vector object,
-depending on the value given to <code>return_type</code>.</p>
+    <p>a list, data frame, or a
+vector object, depending on the
+value given to <code>return_type</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Create a node data frame (ndf)</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a node data frame (ndf)</span>
 <span class='no'>ndf</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
@@ -162,62 +170,59 @@ depending on the value given to <code>return_type</code>.</p>
     <span class='kw'>edges_df</span> <span class='kw'>=</span> <span class='no'>edf</span>)
 
 <span class='co'># Get all edges within a graph, returned as a list</span>
-<span class='fu'>get_edges</span>(<span class='no'>graph</span>, <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)
-<span class='co'>#&gt; [1] "1-&gt;4" "2-&gt;3" "3-&gt;1"</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edges</span>(
+    <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)</div><div class='output co'>#&gt; [1] "1-&gt;4" "2-&gt;3" "3-&gt;1"</div><div class='input'>
 <span class='co'># Get all edges within a graph, returned as a</span>
 <span class='co'># data frame</span>
-<span class='fu'>get_edges</span>(<span class='no'>graph</span>, <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"df"</span>)
-<span class='co'>#&gt;   from to</span>
-<span class='co'>#&gt; 1    1  4</span>
-<span class='co'>#&gt; 2    2  3</span>
-<span class='co'>#&gt; 3    3  1</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edges</span>(
+    <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"df"</span>)</div><div class='output co'>#&gt;   from to
+#&gt; 1    1  4
+#&gt; 2    2  3
+#&gt; 3    3  1</div><div class='input'>
 <span class='co'># Get all edges returned as a list</span>
-<span class='fu'>get_edges</span>(<span class='no'>graph</span>, <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"list"</span>)
-<span class='co'>#&gt; [[1]]</span>
-<span class='co'>#&gt; [1] 1 2 3</span>
-<span class='co'>#&gt;</span>
-<span class='co'>#&gt; [[2]]</span>
-<span class='co'>#&gt; [1] 4 3 1</span>
-
-<span class='co'># Get a vector of edges using a numeric</span>
-<span class='co'># comparison (i.e., all edges with a `value`</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edges</span>(
+    <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"list"</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt; [1] 1 2 3
+#&gt; 
+#&gt; [[2]]
+#&gt; [1] 4 3 1
+#&gt; </div><div class='input'>
+<span class='co'># Get a vector of edges using</span>
+<span class='co'># a numeric comparison (i.e.,</span>
+<span class='co'># all edges with a `value`</span>
 <span class='co'># attribute greater than 3)</span>
-<span class='fu'>get_edges</span>(
-  <span class='no'>graph</span>,
-  <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>,
-  <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)
-<span class='co'>#&gt; [1] "1-&gt;4" "3-&gt;1"</span>
-
-<span class='co'># Get a vector of edges using a match</span>
-<span class='fu'>get_edges</span>(
-  <span class='no'>graph</span>,
-  <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>color</span> <span class='kw'>==</span> <span class='st'>"pink"</span>,
-  <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)
-<span class='co'>#&gt; [1] "1-&gt;4"</span>
-
-<span class='co'># Use multiple conditions to return edges</span>
-<span class='co'># with the desired attribute values</span>
-<span class='fu'>get_edges</span>(
-  <span class='no'>graph</span>,
-  <span class='kw'>conditions</span> <span class='kw'>=</span>
-    <span class='no'>color</span> <span class='kw'>==</span> <span class='st'>"blue"</span> <span class='kw'>&amp;</span>
-    <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>,
-  <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)
-<span class='co'>#&gt; [1] "3-&gt;1"</span>
-
-<span class='co'># Use `return_values = "label"` to return</span>
-<span class='co'># the labels of the connected nodes</span>
-<span class='fu'>get_edges</span>(
-  <span class='no'>graph</span>,
-  <span class='kw'>conditions</span> <span class='kw'>=</span>
-    <span class='no'>color</span> <span class='kw'>==</span> <span class='st'>"blue"</span> <span class='kw'>&amp;</span>
-    <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>,
-  <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>,
-  <span class='kw'>return_values</span> <span class='kw'>=</span> <span class='st'>"label"</span>)
-<span class='co'>#&gt; [1] "three-&gt;one"</span>
-<span class='co'># }</span></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edges</span>(
+    <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>,
+    <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)</div><div class='output co'>#&gt; [1] "1-&gt;4" "3-&gt;1"</div><div class='input'>
+<span class='co'># Get a vector of edges using</span>
+<span class='co'># a matching condition</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edges</span>(
+    <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>color</span> <span class='kw'>==</span> <span class='st'>"pink"</span>,
+    <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)</div><div class='output co'>#&gt; [1] "1-&gt;4"</div><div class='input'>
+<span class='co'># Use multiple conditions to</span>
+<span class='co'># return edges with the</span>
+<span class='co'># desired attribute values</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edges</span>(
+    <span class='kw'>conditions</span> <span class='kw'>=</span>
+      <span class='no'>color</span> <span class='kw'>==</span> <span class='st'>"blue"</span> <span class='kw'>&amp;</span>
+      <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>,
+    <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>)</div><div class='output co'>#&gt; [1] "3-&gt;1"</div><div class='input'>
+<span class='co'># Use `return_values = "label"`</span>
+<span class='co'># to return the labels of the</span>
+<span class='co'># connected nodes</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edges</span>(
+    <span class='kw'>conditions</span> <span class='kw'>=</span>
+      <span class='no'>color</span> <span class='kw'>==</span> <span class='st'>"blue"</span> <span class='kw'>&amp;</span>
+      <span class='no'>value</span> <span class='kw'>&gt;</span> <span class='fl'>3</span>,
+    <span class='kw'>return_type</span> <span class='kw'>=</span> <span class='st'>"vector"</span>,
+    <span class='kw'>return_values</span> <span class='kw'>=</span> <span class='st'>"label"</span>)</div><div class='output co'>#&gt; [1] "three-&gt;one"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -234,7 +239,7 @@ depending on the value given to <code>return_type</code>.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Knut Sveidqvist, Mike Bostock, Chris Pettitt, Mike Daines, Richard Iannone.</p>
+  <p>Developed by Rich Iannone.</p>
 </div>
 
 <div class="pkgdown">
