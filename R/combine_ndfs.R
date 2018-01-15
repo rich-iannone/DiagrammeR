@@ -30,13 +30,6 @@
 #'
 #' # Inspect the combined node data frame
 #' node_df_combined
-#' #>   id type label value
-#' #> 1  1    a     D   8.4
-#' #> 2  2    a     Z   3.4
-#' #> 3  3    b     E   2.9
-#' #> 4  4    b     G   7.0
-#' #> 5  5    b     U   0.4
-#' #> 6  6    c     A   3.4
 #' @export combine_ndfs
 
 combine_ndfs <- function(...) {

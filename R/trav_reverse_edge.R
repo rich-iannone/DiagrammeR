@@ -54,8 +54,8 @@
 #'       to = 3)
 #'
 #' # Get the inital edge selection
-#' get_selection(graph)
-#' #> [1] 1 3
+#' graph %>%
+#'   get_selection()
 #'
 #' # Traverse to the reverse edges
 #' # (edges `2`: `4`->`1` and
@@ -65,8 +65,8 @@
 #'   trav_reverse_edge()
 #'
 #' # Get the current selection of edges
-#' get_selection(graph)
-#' #> [1] 2 4
+#' graph %>%
+#'   get_selection()
 #' @importFrom dplyr filter_ bind_rows select rename arrange as_tibble
 #' @export trav_reverse_edge
 

@@ -37,7 +37,6 @@
 #' # in the graph series
 #' series %>%
 #'   graph_count()
-#' #> [1] 3
 #' @export add_graph_to_graph_series
 
 add_graph_to_graph_series <- function(graph_series,

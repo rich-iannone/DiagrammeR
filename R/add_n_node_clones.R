@@ -30,10 +30,6 @@
 #' # node data frame
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label
-#' #> 1  1    a     d
-#' #> 2  2    b     g
-#' #> 3  3    c     r
 #'
 #' # Create 3 clones of node `1`
 #' # but assign new node label
@@ -51,13 +47,6 @@
 #' # `5`, and `6` are clones of `1`
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label
-#' #> 1  1    a     d
-#' #> 2  2    b     g
-#' #> 3  3    c     r
-#' #> 4  4    a     x
-#' #> 5  5    a     y
-#' #> 6  6    a     z
 #' @importFrom dplyr filter select
 #' @export add_n_node_clones
 

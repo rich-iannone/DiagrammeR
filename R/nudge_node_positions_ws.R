@@ -61,12 +61,8 @@
 #'     dx = 5, dy = 0)
 #'
 #' # View the graph's node data frame
-#' get_node_df(graph)
-#' #>   id type label x y
-#' #> 1  1    a   one 6 1
-#' #> 2  2    a   two 7 2
-#' #> 3  3    b three 8 3
-#' #> 4  4    b  four 9 4
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Now select nodes that have `type == "b"`
 #' # and move them in the `y` direction 2 units
@@ -81,12 +77,8 @@
 #'     dx = 0, dy = 2)
 #'
 #' # View the graph's node data frame
-#' get_node_df(graph)
-#' #>   id type label x y
-#' #> 1  1    a   one 6 1
-#' #> 2  2    a   two 7 2
-#' #> 3  3    b three 8 5
-#' #> 4  4    b  four 9 6
+#' graph %>%
+#'   get_node_df()
 #' @importFrom dplyr filter case_when coalesce
 #' @export nudge_node_positions_ws
 

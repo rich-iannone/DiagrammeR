@@ -47,14 +47,6 @@
 #' # function
 #' graph %>%
 #'   get_graph_actions()
-#' #> # A tibble: 3 x 3
-#' #>   action_index        action_name
-#' #>          <dbl>              <chr>
-#' #> 1            1       get_pagerank
-#' #> 2            2  pagerank_to_width
-#' #> 3            3 pagerank_fillcolor
-#' #> # ... with 1 more variables:
-#' #> #   expression <chr>
 #'
 #' # Delete the second and third graph
 #' # actions using `delete_graph_actions()`
@@ -68,12 +60,6 @@
 #' # the `get_graph_actions()` function
 #' graph %>%
 #'   get_graph_actions()
-#' #> # A tibble: 1 x 3
-#' #>   action_index  action_name
-#' #>          <int>        <chr>
-#' #> 1            1 get_pagerank
-#' #> # ... with 1 more variables:
-#' #> #   expression <chr>
 #' @importFrom dplyr pull filter mutate row_number
 #' @export delete_graph_actions
 

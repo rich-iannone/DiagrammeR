@@ -33,12 +33,8 @@
 #'
 #' # Display the graph's internal node
 #' # data frame to verify the change
-#' get_node_df(graph)
-#' #>   id type label color
-#' #> 1  1    a   a_1  <NA>
-#' #> 2  2    a   a_2  <NA>
-#' #> 3  3    b   b_1   red
-#' #> 4  4    b   b_2   red
+#' graph %>%
+#'   get_node_df()
 #' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
 #' @export select_last_nodes_created

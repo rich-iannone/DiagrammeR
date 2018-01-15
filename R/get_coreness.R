@@ -24,17 +24,6 @@
 #' # Get coreness values for
 #' # all nodes in the graph
 #' get_coreness(graph)
-#' #>    id coreness
-#' #> 1   1        3
-#' #> 2   2        3
-#' #> 3   3        2
-#' #> 4   4        3
-#' #> 5   5        3
-#' #> 6   6        3
-#' #> 7   7        3
-#' #> 8   8        2
-#' #> 9   9        2
-#' #> 10 10        0
 #'
 #' # Add the coreness values
 #' # to the graph as a node
@@ -46,17 +35,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label coreness
-#' #> 1   1 <NA>  <NA>        3
-#' #> 2   2 <NA>  <NA>        3
-#' #> 3   3 <NA>  <NA>        2
-#' #> 4   4 <NA>  <NA>        3
-#' #> 5   5 <NA>  <NA>        3
-#' #> 6   6 <NA>  <NA>        3
-#' #> 7   7 <NA>  <NA>        3
-#' #> 8   8 <NA>  <NA>        2
-#' #> 9   9 <NA>  <NA>        2
-#' #> 10 10 <NA>  <NA>        0
 #' @importFrom igraph coreness
 #' @export get_coreness
 

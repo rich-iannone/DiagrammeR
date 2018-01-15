@@ -153,10 +153,6 @@
 #' # been inserted
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label  shape x  y
-#' #> 1  1 path     1 circle 1  4
-#' #> 2  2 path     2 circle 3 -1
-#' #> 3  3 path     3 circle 2  3
 #' @importFrom purrr map_chr
 #' @export node_aes
 

@@ -49,7 +49,6 @@
 #'
 #' # Get the count of edges in the graph
 #' count_edges(graph)
-#' #> [1] 0
 #'
 #' # Create an undirected graph with
 #' # 2 nodes and an edge
@@ -68,14 +67,12 @@
 #'     from = 2,
 #'     to = 1) %>%
 #'   count_edges()
-#' #> [1] 0
 #'
 #' graph_undirected %>%
 #'   delete_edge(
 #'     from = 1,
 #'     to = 2) %>%
 #'   count_edges()
-#' #> [1] 0
 #'
 #' # The undirected graph has a single
 #' # edge with ID `1`; it can be
@@ -83,7 +80,6 @@
 #' graph_undirected %>%
 #'   delete_edge(id = 1) %>%
 #'   count_edges()
-#' #> [1] 0
 #'
 #' # Create a directed graph with 2
 #' # labeled nodes and an edge
@@ -105,7 +101,6 @@
 #'     from = "one",
 #'     to = "two") %>%
 #'   count_edges()
-#' #> [1] 0
 #' @importFrom dplyr filter select
 #' @export delete_edge
 

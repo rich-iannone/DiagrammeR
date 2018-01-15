@@ -44,12 +44,8 @@
 #'     nodes = c(1, 3))
 #'
 #' # View the graph's node data frame
-#' get_node_df(graph)
-#' #>   id  type label value color
-#' #> 1  1 basic     1   3.5 green
-#' #> 2  2 basic     2   2.6  <NA>
-#' #> 3  3 basic     3   9.4 green
-#' #> 4  4 basic     4   2.7  <NA>
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Set attribute `color = "green"` for
 #' # nodes `1` and `3` using the node data frame
@@ -62,11 +58,6 @@
 #'
 #' # Display the `nodes` ndf
 #' nodes
-#' #>   id  type label value color
-#' #> 1  1 basic     1   3.5 green
-#' #> 2  2 basic     2   2.6  <NA>
-#' #> 3  3 basic     3   9.4 green
-#' #> 4  4 basic     4   2.7  <NA>
 #'
 #' # Set attribute `color = "blue"` for
 #' # all nodes in the node data frame
@@ -78,11 +69,6 @@
 #'
 #' # Display the `nodes` ndf
 #' nodes
-#' #>   id  type label value color
-#' #> 1  1 basic     1   3.5  blue
-#' #> 2  2 basic     2   2.6  blue
-#' #> 3  3 basic     3   9.4  blue
-#' #> 4  4 basic     4   2.7  blue
 #' @importFrom dplyr mutate
 #' @importFrom rlang enquo UQ
 #' @export set_node_attrs

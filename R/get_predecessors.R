@@ -34,14 +34,12 @@
 #' graph %>%
 #'   get_predecessors(
 #'     node = 23)
-#' #> [1] 6
 #'
 #' # If there are no predecessors,
 #' # `NA` is returned
 #' graph %>%
 #'   get_predecessors(
 #'     node = 26)
-#' #> [1] NA
 #' @export get_predecessors
 
 get_predecessors <- function(graph,

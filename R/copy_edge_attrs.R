@@ -29,15 +29,6 @@
 #' # edf to show which edge
 #' # attributes are available
 #' get_edge_df(graph)
-#' #>   id from to  rel color
-#' #> 1  1    1  3 <NA> green
-#' #> 2  2    2  1 <NA> green
-#' #> 3  3    2  5 <NA> green
-#' #> 4  4    2  3 <NA> green
-#' #> 5  5    3  2 <NA> green
-#' #> 6  6    3  5 <NA> green
-#' #> 7  7    3  4 <NA> green
-#' #> 8  8    5  3 <NA> green
 #'
 #' # Make a copy the `color`
 #' # edge attribute as the
@@ -52,15 +43,6 @@
 #' # edf to show that the edge
 #' # attribute had been copied
 #' get_edge_df(graph)
-#' #>   id from to  rel color color_2
-#' #> 1  1    1  3 <NA> green   green
-#' #> 2  2    2  1 <NA> green   green
-#' #> 3  3    2  5 <NA> green   green
-#' #> 4  4    2  3 <NA> green   green
-#' #> 5  5    3  2 <NA> green   green
-#' #> 6  6    3  5 <NA> green   green
-#' #> 7  7    3  4 <NA> green   green
-#' #> 8  8    5  3 <NA> green   green
 #' @importFrom dplyr bind_cols
 #' @importFrom rlang enquo UQ
 #' @export copy_edge_attrs

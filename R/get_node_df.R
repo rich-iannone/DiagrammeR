@@ -34,13 +34,6 @@
 #' # Get the graph's internal node
 #' # data frame (ndf)
 #' get_node_df(graph)
-#' #>   id type label value  color
-#' #> 1  1    a  <NA>  25.3 grey80
-#' #> 2  2    b  <NA>    NA grey70
-#' #> 3  3    b  <NA>    NA grey70
-#' #> 4  4    b  <NA>    NA grey70
-#' #> 5  5    b  <NA>    NA grey80
-#' #> 6  6    b  <NA>    NA grey80
 #' @export get_node_df
 
 get_node_df <- function(graph) {

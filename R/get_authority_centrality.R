@@ -22,17 +22,6 @@
 #' # Get the authority centrality scores
 #' # for all nodes in the graph
 #' get_authority_centrality(graph)
-#' #>    id authority_centrality
-#' #> 1   1            0.6950912
-#' #> 2   2            0.6176471
-#' #> 3   3            0.0000000
-#' #> 4   4            0.0000000
-#' #> 5   5            0.3674279
-#' #> 6   6            0.3157923
-#' #> 7   7            0.4982552
-#' #> 8   8            1.0000000
-#' #> 9   9            0.1824629
-#' #> 10 10            0.6176471
 #'
 #' # Add the authority centrality
 #' # scores to the graph as a node
@@ -44,17 +33,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label authority_centrality
-#' #> 1   1 <NA>  <NA>            0.6950912
-#' #> 2   2 <NA>  <NA>            0.6176471
-#' #> 3   3 <NA>  <NA>            0.0000000
-#' #> 4   4 <NA>  <NA>            0.0000000
-#' #> 5   5 <NA>  <NA>            0.3674279
-#' #> 6   6 <NA>  <NA>            0.3157923
-#' #> 7   7 <NA>  <NA>            0.4982552
-#' #> 8   8 <NA>  <NA>            1.0000000
-#' #> 9   9 <NA>  <NA>            0.1824629
-#' #> 10 10 <NA>  <NA>            0.6176471
 #' @importFrom igraph authority_score
 #' @export get_authority_centrality
 

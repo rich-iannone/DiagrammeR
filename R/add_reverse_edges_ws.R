@@ -55,7 +55,6 @@
 #' # Get the graph's edges
 #' graph %>%
 #'   get_edge_ids()
-#' #> [1] 1
 #'
 #' # Select the edge and create 2 additional edges
 #' # with the opposite definition of `1->2`, which
@@ -69,11 +68,8 @@
 #'   clear_selection()
 #'
 #' # Get the graph's edge data frame
-#' get_edge_df(graph)
-#' #>   id from to rel
-#' #> 1  1    1  2   a
-#' #> 2  2    2  1   b
-#' #> 3  3    2  1   c
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom dplyr select bind_rows as_tibble
 #' @export add_reverse_edges_ws
 

@@ -39,12 +39,10 @@
 #' # Get a count of the graph's nodes
 #' gml_graph %>%
 #'   count_nodes()
-#' #> [1] 34
 #'
 #' # Get a count of the graph's edges
 #' gml_graph %>%
 #'   count_edges()
-#' #> [1] 78
 #' }
 #' @importFrom dplyr right_join select rename mutate everything bind_rows
 #' @importFrom dplyr arrange distinct tibble as_tibble

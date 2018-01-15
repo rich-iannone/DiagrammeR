@@ -25,7 +25,6 @@
 #'   graph = graph,
 #'   from = 1,
 #'   to = 2)
-#' #> [1] 1
 #'
 #' # Create a cycle graph with
 #' # randomized values given to all
@@ -51,7 +50,6 @@
 #'   graph = graph_capacity,
 #'   from = 1,
 #'   to = 2)
-#' #> [1] 4.479822
 #'
 #' # Create a full graph and then
 #' # get the minimum cut requirement
@@ -61,7 +59,6 @@
 #'   get_min_cut_between(
 #'     from = 2,
 #'     to = 8)
-#' #> [1] 9
 #' @importFrom igraph min_cut
 #' @export get_min_cut_between
 

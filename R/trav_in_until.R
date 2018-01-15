@@ -63,7 +63,6 @@
 #' # Get the graph's node selection
 #' graph %>%
 #'   get_selection()
-#' #> [1] 1
 #'
 #' # Create two cycles in a graph and
 #' # add values of 1 to 6 to the
@@ -100,7 +99,6 @@
 #' # Get the graph's node selection
 #' graph %>%
 #'   get_selection()
-#' #> [1] 2 10
 #' @importFrom rlang enquo UQ
 #' @importFrom igraph all_simple_paths
 #' @importFrom purrr map

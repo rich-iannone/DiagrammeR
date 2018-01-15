@@ -14,14 +14,12 @@
 #' # Get a count of unconnected node
 #' # pairs in the graph
 #' count_unconnected_node_pairs(graph)
-#' #> [1] 5
 #'
 #' # Create a full graph and then
 #' # count all unconnected node pairs
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   count_unconnected_node_pairs()
-#' #> [1] 0
 #' @importFrom igraph dyad_census
 #' @export count_unconnected_node_pairs
 

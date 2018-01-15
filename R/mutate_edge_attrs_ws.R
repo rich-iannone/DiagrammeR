@@ -29,11 +29,8 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' get_edge_df(graph)
-#' #>   id from to  rel width
-#' #> 1  1    1  2 <NA>   3.4
-#' #> 2  2    2  3 <NA>   2.3
-#' #> 3  3    3  4 <NA>   7.2
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Mutate the `width` edge
 #' # attribute for the edges
@@ -50,11 +47,8 @@
 #' # edf to show that the edge
 #' # attribute `width` had its
 #' # values changed
-#' get_edge_df(graph)
-#' #>   id from to  rel width
-#' #> 1  1    1  2 <NA>   1.7
-#' #> 2  2    2  3 <NA>   2.3
-#' #> 3  3    3  4 <NA>   7.2
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Create a new edge attribute,
 #' # called `length`, that is the
@@ -75,11 +69,8 @@
 #' # for edges `2` and `3` (since
 #' # edge `1` is excluded, an NA
 #' # value is applied)
-#' get_edge_df(graph)
-#' #>   id from to  rel width length
-#' #> 1  1    1  2 <NA>   1.7     NA
-#' #> 2  2    2  3 <NA>   2.3   2.83
-#' #> 3  3    3  4 <NA>   7.2   3.97
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Create a new edge attribute
 #' # called `area`, which is the
@@ -95,11 +86,8 @@
 #' # values had been multiplied
 #' # together (with new attr `area`)
 #' # for nodes `2` and `3`
-#' get_edge_df(graph)
-#' #>   id from to  rel width length   area
-#' #> 1  1    1  2 <NA>   1.7     NA     NA
-#' #> 2  2    2  3 <NA>   2.3   2.83  6.509
-#' #> 3  3    3  4 <NA>   7.2   3.97 28.584
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # We can invert the selection
 #' # and mutate edge `1` several
@@ -119,11 +107,8 @@
 #' # non-NA values for its edge
 #' # attributes without changing
 #' # those of the other edges
-#' get_edge_df(graph)
-#' #>   id from to  rel width length   area
-#' #> 1  1    1  2 <NA>   1.7   5.53  9.401
-#' #> 2  2    2  3 <NA>   2.3   2.83  6.509
-#' #> 3  3    3  4 <NA>   7.2   3.97 28.584
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom dplyr mutate_
 #' @importFrom rlang exprs
 #' @export mutate_edge_attrs_ws

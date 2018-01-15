@@ -26,11 +26,8 @@
 #' # Get the graph's internal ndf
 #' # to show which node attributes
 #' # are available
-#' get_node_df(graph)
-#' #>   id type label width
-#' #> 1  1 <NA>     1   1.4
-#' #> 2  2 <NA>     2   0.3
-#' #> 3  3 <NA>     3   1.1
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Mutate the `width` node
 #' # attribute, dividing each
@@ -44,11 +41,8 @@
 #' # ndf to show that the node
 #' # attribute `width` had its
 #' # values changed
-#' get_node_df(graph)
-#' #>   id type label width
-#' #> 1  1 <NA>     1  0.70
-#' #> 2  2 <NA>     2  0.15
-#' #> 3  3 <NA>     3  0.55
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Create a new node attribute,
 #' # called `length`, that is the
@@ -64,11 +58,8 @@
 #' # Get the graph's internal ndf
 #' # to show that the node attribute
 #' # values had been mutated
-#' get_node_df(graph)
-#' #>   id type label width length
-#' #> 1  1 <NA>     1  0.70   1.64
-#' #> 2  2 <NA>     2  0.15   0.10
-#' #> 3  3 <NA>     3  0.55   1.40
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Create a new node attribute
 #' # called `area`, which is the
@@ -83,11 +74,8 @@
 #' # to show that the node attribute
 #' # values had been multiplied
 #' # together (with new attr `area`)
-#' get_node_df(graph)
-#' #>   id type label width length  area
-#' #> 1  1 <NA>     1  0.70   1.64 1.148
-#' #> 2  2 <NA>     2  0.15   0.10 0.015
-#' #> 3  3 <NA>     3  0.55   1.40 0.770
+#' graph %>%
+#'   get_node_df()
 #' @importFrom dplyr mutate_
 #' @importFrom rlang exprs
 #' @export mutate_node_attrs

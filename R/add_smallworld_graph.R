@@ -84,12 +84,10 @@
 #' # Get a count of nodes
 #' smallworld_graph %>%
 #'   count_nodes()
-#' #> [1] 50
 #'
 #' # Get a count of edges
 #' smallworld_graph %>%
 #'   count_edges()
-#' #> [1] 50
 #' @importFrom igraph sample_smallworld
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export add_smallworld_graph

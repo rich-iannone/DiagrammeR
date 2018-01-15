@@ -83,12 +83,10 @@
 #' # Get a count of nodes
 #' gnm_graph %>%
 #'   count_nodes()
-#' #> [1] 100
 #'
 #' # Get a count of edges
 #' gnm_graph %>%
 #'   count_edges()
-#' #> [1] 120
 #' @importFrom igraph sample_gnm
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export add_gnm_graph

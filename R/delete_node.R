@@ -20,13 +20,11 @@
 #' # Verify that the node with ID `3`
 #' # is no longer in the graph
 #' get_node_ids(graph)
-#' #> [1] 1 2 4 5
 #'
 #' # Also note that edges are removed
 #' # since there were edges between the
 #' # removed node to and from other nodes
 #' get_edges(graph)
-#' #> [1] "1->2" "4->5"
 #' @importFrom dplyr filter
 #' @export delete_node
 

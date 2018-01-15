@@ -20,7 +20,6 @@
 #' # in the graph
 #' graph %>%
 #'   count_loop_edges()
-#' #> [1] 3
 #' @importFrom dplyr filter
 #' @export count_loop_edges
 

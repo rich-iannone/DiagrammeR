@@ -31,17 +31,8 @@
 #'
 #' # Display the graph's internal edge
 #' # data frame to verify the change
-#' get_edge_df(graph)
-#' #>   id from to rel color
-#' #> 1  1    1  2   a  <NA>
-#' #> 2  2    2  3   a  <NA>
-#' #> 3  3    3  1   a  <NA>
-#' #> 4  4    4  5   b   red
-#' #> 5  5    4  6   b   red
-#' #> 6  6    5  7   b   red
-#' #> 7  7    5  8   b   red
-#' #> 8  8    6  9   b   red
-#' #> 9  9    6 10   b   red
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
 #' @export select_last_edges_created

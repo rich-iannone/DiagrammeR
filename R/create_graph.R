@@ -49,11 +49,6 @@
 #' # Get information on the graph's nodes
 #' graph %>%
 #'   get_node_info()
-#' #>   id type label deg indeg outdeg loops
-#' #> 1  1 <NA>  <NA>   0     0      0     0
-#' #> 2  2 <NA>  <NA>   0     0      0     0
-#' #> 3  3 <NA>  <NA>   0     0      0     0
-#' #> 4  4 <NA>  <NA>   0     0      0     0
 #'
 #' # You can create a similar graph with just nodes but
 #' # also provide a range of attributes for the nodes
@@ -74,11 +69,6 @@
 #' # data frame (ndf)
 #' graph %>%
 #'   get_node_df()
-#' #>   id   type label     shape values
-#' #> 1  1 type_1     1    circle    3.5
-#' #> 2  2 type_1     2    circle    2.6
-#' #> 3  3 type_5     3 rectangle    9.4
-#' #> 4  4 type_2     4 rectangle    2.7
 #'
 #' # A graph can also be created by specifying both
 #' # the nodes and edges; create an edge data frame
@@ -101,20 +91,11 @@
 #' # data frame (edf)
 #' graph %>%
 #'   get_edge_df()
-#' #>   id from to        rel values
-#' #> 1  1    1  4 leading_to    7.3
-#' #> 2  2    2  3 leading_to    2.6
-#' #> 3  3    3  1 leading_to    8.3
 #'
 #' # Get information on the graph's internal node
 #' # data frame (ndf)
 #' graph %>%
 #'   get_node_df()
-#' #>   id   type label     shape values
-#' #> 1  1 type_1     1    circle    3.5
-#' #> 2  2 type_1     2    circle    2.6
-#' #> 3  3 type_5     3 rectangle    9.4
-#' #> 4  4 type_2     4 rectangle    2.7
 #' @importFrom dplyr bind_rows tibble
 #' @export create_graph
 

@@ -49,11 +49,6 @@
 #' # edge data frame
 #' graph_node_id %>%
 #'   get_edge_df()
-#' #>   id from to  rel
-#' #> 1  1    1  2 <NA>
-#' #> 2  2    1  3 <NA>
-#' #> 3  3    2  4 <NA>
-#' #> 4  4    2  3 <NA>
 #'
 #' # Add edges between nodes using
 #' # a character string with node
@@ -74,11 +69,6 @@
 #' # same as before)
 #' graph_node_label %>%
 #'   get_edge_df()
-#' #>   id from to  rel
-#' #> 1  1    1  2 <NA>
-#' #> 2  2    1  3 <NA>
-#' #> 3  3    2  4 <NA>
-#' #> 4  4    2  3 <NA>
 #' @export add_edges_w_string
 
 add_edges_w_string <- function(graph,

@@ -31,9 +31,6 @@
 #' # to the edge selection
 #' graph %>%
 #'   get_edge_df_ws()
-#' #>   id from to  rel value
-#' #> 1  1    2  1 <NA>   2.5
-#' #> 2  3    3  2 <NA>   4.2
 #' @importFrom dplyr filter
 #' @export get_edge_df_ws
 

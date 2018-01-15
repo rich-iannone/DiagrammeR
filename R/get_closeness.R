@@ -23,17 +23,6 @@
 #' # Get closeness values for all nodes
 #' # in the graph
 #' get_closeness(graph)
-#' #>    id  closeness
-#' #> 1   1 0.05263158
-#' #> 2   2 0.06250000
-#' #> 3   3 0.05555556
-#' #> 4   4 0.06666667
-#' #> 5   5 0.06666667
-#' #> 6   6 0.04166667
-#' #> 7   7 0.04347826
-#' #> 8   8 0.05555556
-#' #> 9   9 0.04166667
-#' #> 10 10 0.04545455
 #'
 #' # Add the closeness values to
 #' # the graph as a node attribute
@@ -44,17 +33,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label  closeness
-#' #> 1   1 <NA>  <NA> 0.05263158
-#' #> 2   2 <NA>  <NA> 0.06250000
-#' #> 3   3 <NA>  <NA> 0.05555556
-#' #> 4   4 <NA>  <NA> 0.06666667
-#' #> 5   5 <NA>  <NA> 0.06666667
-#' #> 6   6 <NA>  <NA> 0.04166667
-#' #> 7   7 <NA>  <NA> 0.04347826
-#' #> 8   8 <NA>  <NA> 0.05555556
-#' #> 9   9 <NA>  <NA> 0.04166667
-#' #> 10 10 <NA>  <NA> 0.04545455
 #' @importFrom igraph closeness
 #' @export get_closeness
 

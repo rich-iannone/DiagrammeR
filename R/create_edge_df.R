@@ -38,10 +38,6 @@
 #'
 #' # Display the edge data frame
 #' edf
-#' #>   id from to rel
-#' #> 1  1    1  4   a
-#' #> 2  2    2  3   a
-#' #> 3  3    3  1   a
 #'
 #' # Create an edf with additional edge
 #' # attributes (where their classes will
@@ -57,10 +53,6 @@
 #'
 #' # Display the edge data frame
 #' edf
-#' #>   id from to rel length color width
-#' #> 1  1    1  4   a     50 green     1
-#' #> 2  2    2  3   a    100 green     5
-#' #> 3  3    3  1   a    250 green     2
 #' @export create_edge_df
 
 create_edge_df <- function(from,

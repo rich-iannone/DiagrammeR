@@ -53,15 +53,17 @@
 #'
 #' # Get a count of all nodes
 #' # in the graph
-#' count_nodes(graph)
-#' #> [1] 2
+#' graph %>%
+#'   count_nodes()
 #'
 #' # The nodes added were given
-#' # ID values `1` and `2`
-#' get_node_ids(graph)
-#' #> [1] 1 2
+#' # ID values `1` and `2`; obtain
+#' # the graph's node IDs
+#' graph %>%
+#'   get_node_ids()
 #'
-#' # Add a node with a `type` value defined
+#' # Add a node with a `type`
+#' # value defined
 #' graph <-
 #'   add_node(
 #'     graph = graph,
@@ -69,11 +71,8 @@
 #'
 #' # View the graph's internal
 #' # node data frame (ndf)
-#' get_node_df(graph)
-#' #>   id   type label
-#' #> 1  1   <NA>  <NA>
-#' #> 2  2   <NA>  <NA>
-#' #> 3  3 person  <NA>
+#' graph %>%
+#'   get_node_df()
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export add_node
 

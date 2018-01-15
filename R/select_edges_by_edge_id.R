@@ -28,7 +28,6 @@
 #' # Get the selection of edges
 #' graph %>%
 #'   get_selection()
-#' #> [1] 1 2
 #'
 #' # Perform another selection of edges,
 #' # with edge IDs `1`, `2`, and `4`
@@ -41,18 +40,16 @@
 #' # Get the selection of edges
 #' graph %>%
 #'   get_selection()
-#' #> [1] 1 2 4
 #'
 #' # Get the fraction of edges selected
 #' # over all the edges in the graph
 #' graph %>%
-#' {
-#'   l <- get_selection(.) %>%
-#'     length(.)
-#'   e <- count_edges(.)
-#'   l/e
-#' }
-#' #> [1] 0.75
+#'   {
+#'     l <- get_selection(.) %>%
+#'       length(.)
+#'     e <- count_edges(.)
+#'     l/e
+#'   }
 #' @importFrom dplyr filter select rename
 #' @export select_edges_by_edge_id
 

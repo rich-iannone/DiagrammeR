@@ -24,17 +24,6 @@
 #' # optimization of modularity
 #' # algorithm
 #' get_cmty_louvain(graph)
-#' #>    id louvain_group
-#' #> 1   1             2
-#' #> 2   2             1
-#' #> 3   3             1
-#' #> 4   4             3
-#' #> 5   5             1
-#' #> 6   6             1
-#' #> 7   7             2
-#' #> 8   8             3
-#' #> 9   9             3
-#' #> 10 10             4
 #'
 #' # Add the group membership values to the
 #' # graph as a node attribute
@@ -45,17 +34,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label louvain_group
-#' #> 1   1 <NA>  <NA>             2
-#' #> 2   2 <NA>  <NA>             1
-#' #> 3   3 <NA>  <NA>             1
-#' #> 4   4 <NA>  <NA>             3
-#' #> 5   5 <NA>  <NA>             1
-#' #> 6   6 <NA>  <NA>             1
-#' #> 7   7 <NA>  <NA>             2
-#' #> 8   8 <NA>  <NA>             3
-#' #> 9   9 <NA>  <NA>             3
-#' #> 10 10 <NA>  <NA>             4
 #' @importFrom igraph cluster_louvain membership
 #' @export get_cmty_louvain
 

@@ -18,7 +18,6 @@
 #' # in the graph
 #' graph %>%
 #'   count_edges()
-#' #> [1] 2
 #' @export count_edges
 
 count_edges <- function(graph) {

@@ -15,13 +15,11 @@
 #' # Find all neighbor nodes for node `2`
 #' graph %>%
 #'   get_nbrs(nodes = 2)
-#' #> [1] 1 3
 #'
 #' # Find all neighbor nodes for nodes `1`
 #' # and `5`
 #' graph %>%
 #'   get_nbrs(nodes = c(1, 5))
-#' #> [1] 2 4
 #'
 #' # Color node `3` with purple, get its
 #' # neighbors and color those nodes green

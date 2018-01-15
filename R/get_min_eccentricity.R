@@ -21,7 +21,6 @@
 #' # Determine the graph's minimum
 #' # eccentricity
 #' get_min_eccentricity(graph)
-#' #> [1] 2
 #'
 #' # Create a full graph and then
 #' # get the minimum eccentricity
@@ -29,7 +28,6 @@
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   get_min_eccentricity()
-#' #> [1] 1
 #' @importFrom igraph radius
 #' @export get_min_eccentricity
 

@@ -22,7 +22,6 @@
 #' # from the tree)
 #' graph %>%
 #'   get_last_edges_created()
-#' #> [1] 4 5 6 7 8 9
 #' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
 #' @export get_last_edges_created

@@ -67,13 +67,6 @@
 #' # from this graph
 #' graph %>%
 #'   get_node_info()
-#' #>   id type label deg indeg outdeg loops
-#' #> 1  1 <NA>     1   2     1      1     0
-#' #> 2  2 <NA>     2   2     1      1     0
-#' #> 3  3 <NA>     3   2     1      1     0
-#' #> 4  4 <NA>     4   2     1      1     0
-#' #> 5  5 <NA>     5   2     1      1     0
-#' #> 6  6 <NA>     6   2     1      1     0
 #'
 #' # Node and edge aesthetic and data
 #' # attributes can be specified in
@@ -110,18 +103,10 @@
 #' # Get the graph's node data frame
 #' graph_w_attrs %>%
 #'   get_node_df()
-#' #>   id type label fillcolor value
-#' #> 1  1    a   one steelblue   1.6
-#' #> 2  2    a   two steelblue   2.8
-#' #> 3  3    b three steelblue   3.4
 #'
 #' # Get the graph's edge data frame
 #' graph_w_attrs %>%
 #'   get_edge_df()
-#' #>   id from to rel penwidth color    value
-#' #> 1  1    1  2   A      1.2   red 5.996605
-#' #> 2  2    2  3   A      1.2   red 6.107490
-#' #> 3  3    3  1   A      1.2   red 4.721914
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export add_cycle
 

@@ -18,17 +18,6 @@
 #' # Get closeness vitality values for
 #' # all nodes in the graph
 #' get_closeness_vitality(graph)
-#' #>    id closeness_vitality
-#' #> 1   1                 32
-#' #> 2   2                118
-#' #> 3   3                 36
-#' #> 4   4                 60
-#' #> 5   5                  0
-#' #> 6   6                 48
-#' #> 7   7                 46
-#' #> 8   8                 30
-#' #> 9   9                 48
-#' #> 10 10                 44
 #'
 #' # Add the closeness vitality values
 #' # to the graph as a node attribute
@@ -39,17 +28,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label closeness_vitality
-#' #> 1   1 <NA>  <NA>                 32
-#' #> 2   2 <NA>  <NA>                118
-#' #> 3   3 <NA>  <NA>                 36
-#' #> 4   4 <NA>  <NA>                 60
-#' #> 5   5 <NA>  <NA>                  0
-#' #> 6   6 <NA>  <NA>                 48
-#' #> 7   7 <NA>  <NA>                 46
-#' #> 8   8 <NA>  <NA>                 30
-#' #> 9   9 <NA>  <NA>                 48
-#' #> 10 10 <NA>  <NA>                 44
 #' @importFrom igraph distances delete_vertices
 #' @importFrom purrr map
 #' @export get_closeness_vitality

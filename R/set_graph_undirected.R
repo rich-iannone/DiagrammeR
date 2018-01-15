@@ -24,7 +24,6 @@
 #' # graph is directed
 #' graph %>%
 #'   is_graph_directed()
-#' #> [1] FALSE
 #' @export set_graph_undirected
 
 set_graph_undirected <- function(graph) {

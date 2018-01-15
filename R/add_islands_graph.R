@@ -76,12 +76,10 @@
 #' # Get a count of nodes
 #' islands_graph %>%
 #'   count_nodes()
-#' #> [1] 40
 #'
 #' # Get a count of edges
 #' islands_graph %>%
 #'   count_edges()
-#' #> [1] 98
 #' @importFrom igraph sample_islands
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export add_islands_graph

@@ -17,46 +17,51 @@
 #'   create_node_df(
 #'     n = 4,
 #'     type = "basic",
-#'     color = c("red", "green", "grey", "blue"),
-#'     value = c(3.5, 2.6, 9.4, 2.7))
+#'     color = c(
+#'       "red", "green",
+#'       "grey", "blue"),
+#'     value = c(
+#'       3.5, 2.6,
+#'       9.4, 2.7))
 #'
-#' # Add the node data frame to the graph object to
-#' # create a graph with nodes
+#' # Add the node data frame to
+#' # the graph object to create
+#' # a graph with nodes
 #' graph <-
-#'   add_node_df(graph, node_df = ndf)
+#'   graph %>%
+#'   add_node_df(
+#'     node_df = ndf)
 #'
-#' get_node_df(graph)
-#' #>   id  type label color value
-#' #> 1  1 basic  <NA>   red   3.5
-#' #> 2  2 basic  <NA> green   2.6
-#' #> 3  3 basic  <NA>  grey   9.4
-#' #> 4  4 basic  <NA>  blue   2.7
+#' # Inspect the graph's ndf
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Create another node data frame
 #' ndf_2 <-
 #'   create_node_df(
 #'     n = 4,
 #'     type = "basic",
-#'     color = c("white", "brown", "aqua", "pink"),
-#'     value = c(1.6, 6.4, 0.8, 4.2))
+#'     color = c(
+#'       "white", "brown",
+#'       "aqua", "pink"),
+#'     value = c(
+#'       1.6, 6.4,
+#'       0.8, 4.2))
 #'
-#' # Add the second node data frame to the graph object
-#' # to add more nodes with attributes to the graph
+#' # Add the second node data
+#' # frame to the graph object
+#' # to add more nodes with
+#' # attributes to the graph
 #' graph <-
-#'   add_node_df(graph, node_df = ndf_2)
+#'   graph %>%
+#'   add_node_df(
+#'     node_df = ndf_2)
 #'
-#' # View the graph's internal node data frame using
-#' # the `get_node_df()` function
-#' get_node_df(graph)
-#' #>   id  type label color value
-#' #> 1  1 basic  <NA>   red   3.5
-#' #> 2  2 basic  <NA> green   2.6
-#' #> 3  3 basic  <NA>  grey   9.4
-#' #> 4  4 basic  <NA>  blue   2.7
-#' #> 5  5 basic  <NA> white   1.6
-#' #> 6  6 basic  <NA> brown   6.4
-#' #> 7  7 basic  <NA>  aqua   0.8
-#' #> 8  8 basic  <NA>  pink   4.2
+#' # View the graph's internal
+#' # node data frame using the
+#' # `get_node_df()` function
+#' graph %>%
+#'   get_node_df()
 #' @importFrom dplyr bind_rows
 #' @export add_node_df
 

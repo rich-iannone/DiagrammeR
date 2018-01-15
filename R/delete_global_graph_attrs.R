@@ -31,10 +31,6 @@
 #'
 #' # View the graph's global attributes
 #' get_global_graph_attrs(graph)
-#' #>       attr value attr_type
-#' #> 1  overlap  true     graph
-#' #> 2 penwidth     3      node
-#' #> 3 penwidth     3      edge
 #'
 #' # Delete the `penwidth` attribute for the graph's
 #' # nodes using `delete_global_graph_attrs()`
@@ -47,9 +43,6 @@
 #' # View the remaining set of global
 #' # attributes for the graph
 #' get_global_graph_attrs(graph)
-#' #>       attr value attr_type
-#' #> 1 penwidth     3      edge
-#' #> 2  overlap  true     graph
 #' @importFrom dplyr anti_join tibble
 #' @export delete_global_graph_attrs
 

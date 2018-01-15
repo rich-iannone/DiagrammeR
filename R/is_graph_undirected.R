@@ -19,7 +19,6 @@
 #' # Determine whether the
 #' # graph is undirected
 #' is_graph_undirected(graph)
-#' #> [1] TRUE
 #'
 #' # Use the `set_graph_directed()`
 #' # function and check again
@@ -28,7 +27,6 @@
 #' graph %>%
 #'   set_graph_directed() %>%
 #'   is_graph_undirected()
-#' #> [1] FALSE
 #' @export is_graph_undirected
 
 is_graph_undirected <- function(graph) {

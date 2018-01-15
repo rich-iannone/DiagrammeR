@@ -24,17 +24,6 @@
 #' # Get the PageRank scores
 #' # for all nodes in the graph
 #' get_pagerank(graph)
-#' #>    id pagerank
-#' #> 1   1   0.1302
-#' #> 2   2   0.1037
-#' #> 3   3   0.0450
-#' #> 4   4   0.0450
-#' #> 5   5   0.1501
-#' #> 6   6   0.0578
-#' #> 7   7   0.0871
-#' #> 8   8   0.1780
-#' #> 9   9   0.0744
-#' #> 10 10   0.1287
 #'
 #' # Colorize nodes according to their
 #' # PageRank scores

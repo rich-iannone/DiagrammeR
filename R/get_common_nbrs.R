@@ -16,14 +16,14 @@
 #' # for nodes `1` and `2` (there are no
 #' # common neighbors amongst them)
 #' graph %>%
-#'   get_common_nbrs(nodes = c(1, 2))
-#' #> [1] NA
+#'   get_common_nbrs(
+#'     nodes = c(1, 2))
 #'
 #' # Find all common neighbor nodes for
 #' # nodes `1` and `3`
 #' graph %>%
-#'   get_common_nbrs(nodes = c(1, 3))
-#' #> [1] 2
+#'   get_common_nbrs(
+#'     nodes = c(1, 3))
 #' @export get_common_nbrs
 
 get_common_nbrs <- function(graph,

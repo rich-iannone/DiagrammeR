@@ -45,13 +45,8 @@
 #' # Get the graph's internal ndf
 #' # to show which node attributes
 #' # are available
-#' get_node_df(graph)
-#' #>   id type label value
-#' #> 1  1 <NA>  <NA>   5.3
-#' #> 2  2 <NA>  <NA>   4.4
-#' #> 3  3 <NA>  <NA>   5.8
-#' #> 4  4 <NA>  <NA>   5.9
-#' #> 5  5 <NA>  <NA>   6.2
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Rescale the `value` node
 #' # attribute, so that its values
@@ -66,13 +61,8 @@
 #' # Get the graph's internal ndf
 #' # to show that the node attribute
 #' # values had been rescaled
-#' get_node_df(graph)
-#' #>   id type label value
-#' #> 1  1 <NA>  <NA> 0.500
-#' #> 2  2 <NA>  <NA> 0.000
-#' #> 3  3 <NA>  <NA> 0.778
-#' #> 4  4 <NA>  <NA> 0.833
-#' #> 5  5 <NA>  <NA> 1.000
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Scale the values in the `value`
 #' # node attribute to different
@@ -96,13 +86,8 @@
 #' # grayscale colors are now available
 #' # in the `fillcolor` and `fontcolor`
 #' # node attributes
-#' get_node_df(graph)
-#' #>   id type label value fillcolor fontcolor
-#' #> 1  1 <NA>  <NA> 0.500   #7B7B7B   #767676
-#' #> 2  2 <NA>  <NA> 0.000   #CCCCCC   #0D0D0D
-#' #> 3  3 <NA>  <NA> 0.778   #525252   #B9B9B9
-#' #> 4  4 <NA>  <NA> 0.833   #4A4A4A   #C7C7C7
-#' #> 5  5 <NA>  <NA> 1.000   #333333   #F2F2F2
+#' graph %>%
+#'   get_node_df()
 #' @importFrom scales rescale cscale seq_gradient_pal
 #' @importFrom grDevices colors
 #' @importFrom rlang enquo UQ

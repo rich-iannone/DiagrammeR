@@ -27,17 +27,6 @@
 #' # Get leverage centrality values
 #' # for all nodes in the graph
 #' get_leverage_centrality(graph)
-#' #>    id leverage_centrality
-#' #> 1   1             -0.1964
-#' #> 2   2             -0.1964
-#' #> 3   3             -0.3810
-#' #> 4   4              0.0556
-#' #> 5   5             -0.0556
-#' #> 6   6              0.0556
-#' #> 7   7             -0.1964
-#' #> 8   8             -0.3810
-#' #> 9   9             -0.1964
-#' #> 10 10             -1.0000
 #'
 #' # Add the leverage centrality
 #' # values to the graph as a
@@ -49,17 +38,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label leverage_centrality
-#' #> 1   1 <NA>  <NA>             -0.1964
-#' #> 2   2 <NA>  <NA>             -0.1964
-#' #> 3   3 <NA>  <NA>             -0.3810
-#' #> 4   4 <NA>  <NA>              0.0556
-#' #> 5   5 <NA>  <NA>             -0.0556
-#' #> 6   6 <NA>  <NA>              0.0556
-#' #> 7   7 <NA>  <NA>             -0.1964
-#' #> 8   8 <NA>  <NA>             -0.3810
-#' #> 9   9 <NA>  <NA>             -0.1964
-#' #> 10 10 <NA>  <NA>             -1.0000
 #' @importFrom igraph degree neighbors
 #' @importFrom purrr map
 #' @export get_leverage_centrality

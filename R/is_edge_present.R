@@ -36,7 +36,6 @@
 #' is_edge_present(
 #'   graph = graph,
 #'   edge = 3)
-#' #> [1] TRUE
 #'
 #' # Determine if there are any edges
 #' # with the definition `1` -> `2`
@@ -44,7 +43,6 @@
 #'   graph = graph,
 #'   from = 1,
 #'   to = 2)
-#' #> [1] TRUE
 #'
 #' # Determine if there are any edges
 #' # with the definition `4` -> `5`
@@ -52,7 +50,6 @@
 #'   graph = graph,
 #'   from = 4,
 #'   to = 5)
-#' #> [1] FALSE
 #'
 #' # Determine whether an edge,
 #' # defined by its labels as
@@ -62,7 +59,6 @@
 #'   graph = graph,
 #'   from = "two",
 #'   to = "three")
-#' #> [1] TRUE
 #'
 #' # Set the graph as undirected
 #' # and determine whether an
@@ -73,7 +69,6 @@
 #'   is_edge_present(
 #'     from = "three",
 #'     to = "two")
-#' #> [1] TRUE
 #' @export is_edge_present
 
 is_edge_present <- function(graph,

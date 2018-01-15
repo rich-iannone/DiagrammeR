@@ -108,25 +108,10 @@
 #' # Get the graph's node data frame
 #' graph_w_attrs %>%
 #'   get_node_df()
-#' #>   id type label value
-#' #> 1  1    a   one   1.2
-#' #> 2  2    a   two   8.4
-#' #> 3  3    b three   3.4
-#' #> 4  4    b  four   5.2
-#' #> 5  5    c  five   6.1
-#' #> 6  6    c   six   2.6
 #'
 #' # Get the graph's edge data frame
 #' graph_w_attrs %>%
 #'   get_edge_df()
-#' #>   id from to  rel
-#' #> 1  1    1  2 grid
-#' #> 2  2    1  4 grid
-#' #> 3  3    2  3 grid
-#' #> 4  4    2  5 grid
-#' #> 5  5    3  6 grid
-#' #> 6  6    4  5 grid
-#' #> 7  7    5  6 grid
 #' @importFrom igraph make_lattice
 #' @importFrom dplyr as_tibble select bind_cols pull
 #' @export add_grid_2d

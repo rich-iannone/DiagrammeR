@@ -34,10 +34,6 @@
 #' get_dice_similarity(
 #'   graph = graph,
 #'   nodes = 5:7)
-#' #>       5     6     7
-#' #> 5 1.000 0.444 0.571
-#' #> 6 0.444 1.000 0.500
-#' #> 7 0.571 0.500 1.000
 #' @importFrom igraph similarity V
 #' @export get_dice_similarity
 

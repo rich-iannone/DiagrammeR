@@ -39,7 +39,6 @@
 #' # `3` and that node `1` has been
 #' # deselected (leaving only `3`)
 #' get_selection(graph)
-#' #> [1] 3
 #' @importFrom dplyr filter
 #' @export deselect_nodes
 

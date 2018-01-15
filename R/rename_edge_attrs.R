@@ -24,16 +24,8 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' get_edge_df(graph)
-#' #>   id from to  rel color
-#' #> 1  1    1  3 <NA> green
-#' #> 2  2    2  1 <NA> green
-#' #> 3  3    2  5 <NA> green
-#' #> 4  4    2  3 <NA> green
-#' #> 5  5    3  2 <NA> green
-#' #> 6  6    3  5 <NA> green
-#' #> 7  7    3  4 <NA> green
-#' #> 8  8    5  3 <NA> green
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Rename the `color` node
 #' # attribute as `weight`
@@ -46,16 +38,8 @@
 #' # Get the graph's internal
 #' # edf to show that the edge
 #' # attribute had been renamed
-#' get_edge_df(graph)
-#' #>   id from to  rel labelfontcolor
-#' #> 1  1    1  3 <NA>          green
-#' #> 2  2    2  1 <NA>          green
-#' #> 3  3    2  5 <NA>          green
-#' #> 4  4    2  3 <NA>          green
-#' #> 5  5    3  2 <NA>          green
-#' #> 6  6    3  5 <NA>          green
-#' #> 7  7    3  4 <NA>          green
-#' #> 8  8    5  3 <NA>          green
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom rlang enquo UQ
 #' @export rename_edge_attrs
 

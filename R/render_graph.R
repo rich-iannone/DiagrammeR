@@ -19,37 +19,40 @@
 #' the height of the resulting graphic in pixels.
 #' @examples
 #' \dontrun{
-#' # Render a graph that's a balanced tree
+#' # Render a graph that's a
+#' # balanced tree
 #' create_graph() %>%
 #'   add_balanced_tree(
 #'     k = 2, h = 3) %>%
 #'   render_graph()
 #'
-#' # Use the `tree` layout for better node
-#' # placement in this hierarchical graph
+#' # Use the `tree` layout for
+#' # better node placement in this
+#' # hierarchical graph
 #' create_graph() %>%
 #'   add_balanced_tree(
 #'     k = 2, h = 3) %>%
 #'   render_graph(layout = "tree")
 #'
-#' # Plot the same tree graph but don't
-#' # show the node ID values
+#' # Plot the same tree graph but
+#' # don't show the node ID values
 #' create_graph() %>%
 #'   add_balanced_tree(
 #'     k = 2, h = 3) %>%
 #'   set_node_attr_to_display() %>%
 #'   render_graph(layout = "tree")
 #'
-#' # Create a circle graph with
+#' # Create a circle graph
 #' create_graph() %>%
 #'   add_gnm_graph(
 #'     n = 55,
 #'     m = 75,
 #'     set_seed = 23) %>%
-#' render_graph(layout = "circle")
+#'   render_graph(
+#'     layout = "circle")
 #'
-#' # Render the graph using the `visNetwork`
-#' # output option
+#' # Render the graph using the
+#' # `visNetwork` output option
 #' create_graph() %>%
 #'   add_balanced_tree(
 #'     k = 2, h = 3) %>%

@@ -30,9 +30,8 @@
 #'
 #' # Verify that the global attributes
 #' # have been set
-#' get_global_graph_attrs(graph)
-#' #>      attr value attr_type
-#' #> 1 overlap  true     graph
+#' graph %>%
+#'   get_global_graph_attrs()
 #' @importFrom dplyr tibble
 #' @export set_global_graph_attrs
 

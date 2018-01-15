@@ -60,8 +60,6 @@
 #' # the edge has been created
 #' graph %>%
 #'   get_edge_info()
-#' #>   id from to rel
-#' #> 1  1    1  2   A
 #'
 #' # Add another node and
 #' # edge to the graph
@@ -77,7 +75,6 @@
 #' # counting graph edges
 #' graph %>%
 #'   count_edges()
-#' #> [1] 2
 #'
 #' # Add edges by specifying
 #' # node `label` values; note
@@ -99,7 +96,6 @@
 #' # that the edges were added
 #' graph %>%
 #'   get_edges()
-#' #> [1] "1->2" "3->2" "3->4" "4->1"
 #'
 #' # Add edge aesthetic and data
 #' # attributes during edge creation
@@ -122,8 +118,6 @@
 #' # newly created edge
 #' graph_2 %>%
 #'   get_edge_df()
-#' #>   id from to rel penwidth color value
-#' #> 1  1    1  2   M      1.5  blue   4.3
 #' @importFrom dplyr bind_rows select filter as_tibble
 #' @importFrom rlang UQ
 #' @export add_edge

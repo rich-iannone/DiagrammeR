@@ -30,17 +30,6 @@
 #' # all nodes in the graph
 #' graph %>%
 #'   get_eccentricity()
-#' #>    id eccentricity
-#' #> 1   1            2
-#' #> 2   2            3
-#' #> 3   3            3
-#' #> 4   4            2
-#' #> 5   5            3
-#' #> 6   6            2
-#' #> 7   7            3
-#' #> 8   8            3
-#' #> 9   9            2
-#' #> 10 10            0
 #' @importFrom igraph eccentricity
 #' @export get_eccentricity
 

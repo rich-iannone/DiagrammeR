@@ -27,12 +27,11 @@
 #'
 #' # Convert the igraph graph
 #' # back to a DiagrammeR graph
-#' dgr_graph_new <- from_igraph(ig_graph)
+#' dgr_graph_new <-
+#'   from_igraph(ig_graph)
 #'
 #' # Get some graph information
 #' graph_info(dgr_graph_new)[, 1:6]
-#' #>             name  n  e   dens mn_deg mx_deg
-#' #> 1 graph_hWHYG7a9 36 50 0.0571      1      7
 #' @importFrom igraph V E vertex_attr_names edge_attr_names vertex_attr edge_attr is_directed ends
 #' @importFrom dplyr arrange
 #' @export from_igraph

@@ -52,8 +52,8 @@
 #'
 #' # Verify that an edge selection has been made
 #' # using the `get_selection()` function
-#' get_selection(graph)
-#' #> [1] 1
+#' graph %>%
+#'   get_selection()
 #'
 #' # Select edges based on the relationship label
 #' # being `z`
@@ -66,8 +66,8 @@
 #' # Verify that an edge selection has been made, and
 #' # recall that the `2`->`3` edge uniquely has the
 #' # `z` relationship label
-#' get_selection(graph)
-#' #> [1] 2
+#' graph %>%
+#'   get_selection()
 #'
 #' # Select edges based on the edge value attribute
 #' # being greater than 3.0 (first clearing the current
@@ -81,8 +81,8 @@
 #' # Verify that the correct edge selection has been
 #' # made; in this case, edges `1`->`4` and
 #' # `3`->`1` have values for `value` > 3.0
-#' get_selection(graph)
-#' #> [1] 1 3
+#' graph %>%
+#'   get_selection()
 #' @importFrom dplyr filter select rename
 #' @importFrom rlang enquo UQ
 #' @export select_edges

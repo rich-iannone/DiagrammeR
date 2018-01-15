@@ -82,22 +82,12 @@
 #'   join_node_attrs(df = df_nodes)
 #'
 #' # Show the graph's internal node data frame
-#' get_node_df(graph)
-#' #>   id type label values
-#' #> 1  1    a   asd   8.58
-#' #> 2  2    a  iekd   7.22
-#' #> 3  3    b   idj   5.95
-#' #> 4  4    b   edl   6.71
-#' #> 5  5    b   ohd   7.48
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Show the graph's internal edge data frame
-#' get_edge_df(graph)
-#' #>   id from to  rel values
-#' #> 1  1    1  2 <NA>   6.00
-#' #> 2  2    1  3    A   6.11
-#' #> 3  3    2  4    B   4.72
-#' #> 4  4    2  5    C   6.02
-#' #> 5  5    3  5    D   5.05
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Perform a simple traversal from node `3`
 #' # to adjacent nodes with no conditions on
@@ -106,7 +96,6 @@
 #'   select_nodes_by_id(nodes = 3) %>%
 #'   trav_both() %>%
 #'   get_selection()
-#' #> [1] 1 5
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, filtering to those nodes that have
@@ -117,7 +106,6 @@
 #'   trav_both(
 #'     conditions = values < 8.0) %>%
 #'   get_selection()
-#' #> [1] 4 5
 #'
 #' # Traverse from node `5` to any adjacent
 #' # nodes, filtering to those nodes that
@@ -127,7 +115,6 @@
 #'   trav_both(
 #'     conditions = type == "b") %>%
 #'   get_selection()
-#' #> [1] 3
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use multiple conditions for the
@@ -139,7 +126,6 @@
 #'       type == "a" &
 #'       values > 8.0) %>%
 #'   get_selection()
-#' #> [1] 1
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use multiple conditions with
@@ -150,7 +136,6 @@
 #'     conditions =
 #'       type == "a" | values > 8.0) %>%
 #'   get_selection()
-#' #> [1] 1
 #'
 #' # Traverse from node `2` to any adjacent
 #' # nodes, and use a regular expression as
@@ -160,7 +145,6 @@
 #'   trav_both(
 #'     conditions = grepl("..d", label)) %>%
 #'   get_selection()
-#' #> [1] 1 5
 #'
 #' # Create another simple graph to demonstrate
 #' # copying of node attribute values to traversed
@@ -176,21 +160,10 @@
 #' # Show the graph's internal node data frame
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label value
-#' #> 1  1 <NA>     1    NA
-#' #> 2  2 <NA>     2     5
-#' #> 3  3 <NA>     3    NA
-#' #> 4  4 <NA>     4     5
-#' #> 5  5 <NA>     5    NA
 #'
 #' # Show the graph's internal edge data frame
 #' graph %>%
 #'   get_edge_df()
-#' #>   id from to  rel
-#' #> 1  1    1  2 <NA>
-#' #> 2  2    2  3 <NA>
-#' #> 3  3    3  4 <NA>
-#' #> 4  4    4  5 <NA>
 #'
 #' # Perform a traversal from the inner nodes
 #' # (`2` and `4`) to their adjacent nodes (`1`,
@@ -209,12 +182,6 @@
 #' # after this change
 #' graph %>%
 #'   get_node_df()
-#' #>   id type label value
-#' #> 1  1 <NA>     1     5
-#' #> 2  2 <NA>     2     5
-#' #> 3  3 <NA>     3    10
-#' #> 4  4 <NA>     4     5
-#' #> 5  5 <NA>     5     5
 #' @importFrom dplyr filter_ inner_join right_join rename group_by as_tibble
 #' @importFrom dplyr distinct select select_ union_all summarize_ everything
 #' @importFrom rlang enquo UQ

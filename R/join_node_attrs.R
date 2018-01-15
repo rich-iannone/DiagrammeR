@@ -50,12 +50,6 @@
 #' # Get the graph's internal ndf to show that the
 #' # join has been made
 #' get_node_df(graph)
-#' #>   id type label values
-#' #> 1  1 <NA>  <NA>   6.00
-#' #> 2  2 <NA>  <NA>   6.11
-#' #> 3  3 <NA>  <NA>   4.72
-#' #> 4  4 <NA>  <NA>   6.02
-#' #> 5  5 <NA>  <NA>   5.05
 #'
 #' # Get betweenness values for each node and
 #' # add them as a node attribute (Note the
@@ -69,12 +63,6 @@
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
 #' get_node_df(graph)
-#' #>   id type label values betweenness
-#' #> 1  1 <NA>  <NA>   6.00           2
-#' #> 2  2 <NA>  <NA>   6.11           7
-#' #> 3  3 <NA>  <NA>   4.72           1
-#' #> 4  4 <NA>  <NA>   6.02           0
-#' #> 5  5 <NA>  <NA>   5.05           2
 #' @importFrom dplyr select everything
 #' @export join_node_attrs
 

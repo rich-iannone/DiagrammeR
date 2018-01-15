@@ -22,17 +22,6 @@
 #' # non-negative eigenvector of the modularity matrix
 #' # of the graph
 #' get_cmty_edge_btwns(graph)
-#' #>    id edge_btwns_group
-#' #> 1   1                1
-#' #> 2   2                2
-#' #> 3   3                2
-#' #> 4   4                3
-#' #> 5   5                2
-#' #> 6   6                2
-#' #> 7   7                1
-#' #> 8   8                3
-#' #> 9   9                3
-#' #> 10 10                4
 #'
 #' # Add the group membership
 #' # values to the graph
@@ -44,17 +33,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label edge_btwns_group
-#' #> 1   1 <NA>  <NA>                1
-#' #> 2   2 <NA>  <NA>                2
-#' #> 3   3 <NA>  <NA>                2
-#' #> 4   4 <NA>  <NA>                3
-#' #> 5   5 <NA>  <NA>                2
-#' #> 6   6 <NA>  <NA>                2
-#' #> 7   7 <NA>  <NA>                1
-#' #> 8   8 <NA>  <NA>                3
-#' #> 9   9 <NA>  <NA>                3
-#' #> 10 10 <NA>  <NA>                4
 #' @importFrom igraph cluster_edge_betweenness membership
 #' @export get_cmty_edge_btwns
 

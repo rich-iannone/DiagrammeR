@@ -15,14 +15,12 @@
 #'
 #' # Get a count of automorphisms
 #' count_automorphisms(graph)
-#' #> [1] 10
 #'
 #' # Create a full graph and then
 #' # count the automorphisms
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   count_automorphisms()
-#' #> [1] 3628800
 #' @importFrom igraph automorphisms
 #' @export count_automorphisms
 

@@ -38,7 +38,6 @@
 #' graph %>%
 #'   get_agg_degree_out(
 #'     agg = "mean")
-#' #> [1] 1.75
 #'
 #' # Other aggregation functions can be used
 #' # (`min`, `max`, `median`, `sum`); let's
@@ -46,7 +45,6 @@
 #' graph %>%
 #'   get_agg_degree_out(
 #'     agg = "median")
-#' #> [1] 1
 #'
 #' # The aggregation of outdegree can occur
 #' # for a subset of the graph nodes and this
@@ -56,7 +54,6 @@
 #'   get_agg_degree_out(
 #'     agg = "mean",
 #'     conditions = value < 5.0)
-#' #> [1] 2.555556
 #' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl

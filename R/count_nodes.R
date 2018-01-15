@@ -17,7 +17,6 @@
 #' # in the graph
 #' graph %>%
 #'   count_nodes()
-#' #> [1] 6
 #' @export count_nodes
 
 count_nodes <- function(graph) {

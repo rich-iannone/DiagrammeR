@@ -21,7 +21,6 @@
 #' # components in the graph
 #' graph %>%
 #'   count_s_connected_cmpts()
-#' #> [1] 4
 #' @importFrom igraph components
 #' @export count_s_connected_cmpts
 

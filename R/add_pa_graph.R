@@ -118,12 +118,10 @@
 #' # Get a count of nodes
 #' pa_graph %>%
 #'   count_nodes()
-#' #> [1] 100
 #'
 #' # Get a count of edges
 #' pa_graph %>%
 #'   count_edges()
-#' #> [1] 99
 #' @importFrom igraph sample_pa
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export add_pa_graph

@@ -24,17 +24,6 @@
 #' # Get the eigen centrality scores
 #' # for nodes in the graph
 #' get_eigen_centrality(graph)
-#' #>    id eigen_centrality
-#' #> 1   1           0.6640
-#' #> 2   2           0.6767
-#' #> 3   3           0.4988
-#' #> 4   4           0.9541
-#' #> 5   5           0.7908
-#' #> 6   6           1.0000
-#' #> 7   7           0.6391
-#' #> 8   8           0.4524
-#' #> 9   9           0.6702
-#' #> 10 10           0.0000
 #' @importFrom igraph eigen_centrality
 #' @export get_eigen_centrality
 

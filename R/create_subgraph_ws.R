@@ -51,15 +51,9 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(subgraph)
-#' #>   id type label value
-#' #> 1  1 <NA>  <NA>   3.5
-#' #> 2  3 <NA>  <NA>   9.4
-#' #> 3  5 <NA>  <NA>   5.2
 #'
 #' # Display the graph's edge data frame
 #' get_edge_df(subgraph)
-#' #>   id from to  rel
-#' #> 1  4    5  3 <NA>
 #' @importFrom dplyr filter semi_join
 #' @importFrom stringr str_split
 #' @export create_subgraph_ws

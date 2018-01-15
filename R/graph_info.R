@@ -18,8 +18,6 @@
 #'
 #' # Display a data frame with graph information
 #' graph_info(karate_club)
-#' #>     name  n  e  dens mn_deg mx_deg avg_deg time   tz
-#' #> 1 karate 34 78 0.139      1     17       5 <NA> <NA>
 #' }
 #' @export graph_info
 

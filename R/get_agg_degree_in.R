@@ -39,7 +39,6 @@
 #' graph %>%
 #'   get_agg_degree_in(
 #'     agg = "mean")
-#' #> [1] 1.75
 #'
 #' # Other aggregation functions
 #' # can be used (`min`, `max`,
@@ -48,7 +47,6 @@
 #' graph %>%
 #'   get_agg_degree_in(
 #'     agg = "median")
-#' #> [1] 1.5
 #'
 #' # The aggregation of indegree
 #' # can occur for a subset of the
@@ -59,7 +57,6 @@
 #'   get_agg_degree_in(
 #'     agg = "mean",
 #'     conditions = value > 5.0)
-#' #> [1] 1.5
 #' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl

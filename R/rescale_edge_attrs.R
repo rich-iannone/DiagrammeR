@@ -45,15 +45,8 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' get_edge_df(graph)
-#' #>   id from to  rel   weight
-#' #> 1  1    2  8 <NA> 5.045437
-#' #> 2  2    4  2 <NA> 6.575780
-#' #> 3  3    4  6 <NA> 5.218288
-#' #> 4  4    4  9 <NA> 3.953465
-#' #> 5  5    6  5 <NA> 4.711311
-#' #> 6  6    6 10 <NA> 5.481550
-#' #> 7  7   10  9 <NA> 3.783624
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Rescale the `weight` edge
 #' # attribute, so that its values
@@ -68,15 +61,8 @@
 #' # Get the graph's internal edf
 #' # to show that the edge attribute
 #' # values had been rescaled
-#' get_edge_df(graph)
-#' #>   id from to  rel weight
-#' #> 1  1    2  8 <NA>  0.452
-#' #> 2  2    4  2 <NA>  1.000
-#' #> 3  3    4  6 <NA>  0.514
-#' #> 4  4    4  9 <NA>  0.061
-#' #> 5  5    6  5 <NA>  0.332
-#' #> 6  6    6 10 <NA>  0.608
-#' #> 7  7   10  9 <NA>  0.000
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Scale the values in the `weight`
 #' # edge attribute to different
@@ -103,15 +89,8 @@
 #' # in `color` and scaled numerical
 #' # values are in the `penwidth`
 #' # edge attribute
-#' get_edge_df(graph)
-#' #>   id from to  rel weight   color penwidth
-#' #> 1  1    2  8 <NA>  0.452 #838383    1.630
-#' #> 2  2    4  2 <NA>  1.000 #333333    3.000
-#' #> 3  3    4  6 <NA>  0.514 #797979    1.785
-#' #> 4  4    4  9 <NA>  0.061 #C2C2C2    0.652
-#' #> 5  5    6  5 <NA>  0.332 #959595    1.330
-#' #> 6  6    6 10 <NA>  0.608 #6B6B6B    2.020
-#' #> 7  7   10  9 <NA>  0.000 #CCCCCC    0.500
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom rlang enquo UQ
 #' @importFrom scales rescale cscale seq_gradient_pal
 #' @importFrom grDevices colors

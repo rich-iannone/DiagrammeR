@@ -15,7 +15,6 @@
 #'     m = 35,
 #'     set_seed = 23) %>%
 #'   get_periphery()
-#' #> [1] 6  9 25 28
 #' @importFrom dplyr filter pull
 #' @export get_periphery
 

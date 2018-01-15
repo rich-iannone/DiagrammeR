@@ -23,17 +23,6 @@
 #'
 #' # Get the radiality scores for nodes in the graph
 #' get_radiality(graph)
-#' #>    id radiality
-#' #> 1   1    2.3333
-#' #> 2   2    3.0000
-#' #> 3   3    2.6667
-#' #> 4   4    2.8889
-#' #> 5   5    2.5556
-#' #> 6   6    2.4444
-#' #> 7   7    2.6667
-#' #> 8   8    2.7778
-#' #> 9   9    2.1111
-#' #> 10 10    2.3333
 #'
 #' # Add the radiality values
 #' # to the graph as a node
@@ -45,17 +34,6 @@
 #'
 #' # Display the graph's node data frame
 #' get_node_df(graph)
-#' #>    id type label radiality
-#' #> 1   1 <NA>  <NA>    2.3333
-#' #> 2   2 <NA>  <NA>    3.0000
-#' #> 3   3 <NA>  <NA>    2.6667
-#' #> 4   4 <NA>  <NA>    2.8889
-#' #> 5   5 <NA>  <NA>    2.5556
-#' #> 6   6 <NA>  <NA>    2.4444
-#' #> 7   7 <NA>  <NA>    2.6667
-#' #> 8   8 <NA>  <NA>    2.7778
-#' #> 9   9 <NA>  <NA>    2.1111
-#' #> 10 10 <NA>  <NA>    2.3333
 #' @importFrom igraph distances diameter
 #' @export get_radiality
 

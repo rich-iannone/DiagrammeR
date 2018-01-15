@@ -16,7 +16,6 @@
 #' # Find all non-neighbors of node `2`
 #' graph %>%
 #'   get_non_nbrs(node = 2)
-#' #> [1] 4 5
 #' @export get_non_nbrs
 
 get_non_nbrs <- function(graph,

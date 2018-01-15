@@ -33,9 +33,6 @@
 #' get_cache(
 #'   graph,
 #'   name = "closeness_vector")
-#' #> [1] 0.07692308 0.08333333 0.07692308 0.06666667
-#' #> [5] 0.05555556 0.06250000 0.06666667 0.05000000
-#' #> [9] 0.06666667 0.04761905
 #'
 #' # Get the difference of betweenness and closeness
 #' # values for nodes in the graph and store in the
@@ -51,9 +48,6 @@
 #' get_cache(
 #'   graph,
 #'   name = "difference")
-#' #> [1]  9.25641026 28.91666667 19.08974359  2.60000000
-#' #> [5]  0.44444444 17.93750000 11.93333333 -0.05000000
-#' #> [9] 10.26666667 -0.04761905
 #' @export set_cache
 
 set_cache <- function(graph,

@@ -51,12 +51,6 @@
 #' # Get the graph's internal edf to show that the
 #' # join has been made
 #' get_edge_df(graph)
-#' #>   id from to  rel   values
-#' #> 1  1    1  2 <NA> 5.996605
-#' #> 2  2    1  3 <NA> 6.107490
-#' #> 3  3    2  4 <NA> 4.721914
-#' #> 4  4    2  5 <NA> 6.019205
-#' #> 5  5    3  5 <NA> 5.045437
 #' @importFrom dplyr select everything
 #' @export join_edge_attrs
 

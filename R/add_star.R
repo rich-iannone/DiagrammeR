@@ -72,16 +72,6 @@
 #' # Get node information from this graph
 #' graph %>%
 #'   get_node_info()
-#' #>   id      type label deg indeg outdeg loops
-#' #> 1  1 four_star     1   3     0      3     0
-#' #> 2  2 four_star     2   1     1      0     0
-#' #> 3  3 four_star     3   1     1      0     0
-#' #> 4  4 four_star     4   1     1      0     0
-#' #> 5  5 five_star     1   4     0      4     0
-#' #> 6  6 five_star     2   1     1      0     0
-#' #> 7  7 five_star     3   1     1      0     0
-#' #> 8  8 five_star     4   1     1      0     0
-#' #> 9  9 five_star     5   1     1      0     0
 #'
 #' # Node and edge aesthetic and data
 #' # attributes can be specified in
@@ -119,19 +109,10 @@
 #' # Get the graph's node data frame
 #' graph_w_attrs %>%
 #'   get_node_df()
-#' #>   id type label fillcolor value
-#' #> 1  1    a   one steelblue   1.6
-#' #> 2  2    a   two steelblue   2.8
-#' #> 3  3    b three steelblue   3.4
-#' #> 4  4    b  four steelblue   8.3
 #'
 #' # Get the graph's edge data frame
 #' graph_w_attrs %>%
 #'   get_edge_df()
-#' #>   id from to rel penwidth color    value
-#' #> 1  1    1  2   A      1.2   red 5.996605
-#' #> 2  2    1  3   A      1.2   red 6.107490
-#' #> 3  3    1  4   A      1.2   red 4.721914
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export add_star
 

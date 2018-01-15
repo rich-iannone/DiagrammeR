@@ -37,14 +37,8 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' get_edge_df(graph)
-#' #>   id from to rel
-#' #> 1  1    1  3   a
-#' #> 2  2    2  4   b
-#' #> 3  3    2  3   a
-#' #> 4  4    3  1   c
-#' #> 5  5    3  4   b
-#' #> 6  6    4  3   d
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Recode the `rel` node
 #' # attribute, creating a new edge
@@ -66,14 +60,8 @@
 #' # attribute values had been
 #' # recoded and copied into a
 #' # new node attribute
-#' get_edge_df(graph)
-#' #>   id from to rel penwidth
-#' #> 1  1    1  3   a      1.0
-#' #> 2  2    2  4   b      1.5
-#' #> 3  3    2  3   a      1.0
-#' #> 4  4    3  1   c      0.5
-#' #> 5  5    3  4   b      1.5
-#' #> 6  6    4  3   d      0.5
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom stringr str_split
 #' @importFrom rlang enquo UQ
 #' @export recode_edge_attrs

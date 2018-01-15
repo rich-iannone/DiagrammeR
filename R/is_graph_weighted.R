@@ -22,7 +22,6 @@
 #' # Determine whether the graph
 #' # is a weighted graph
 #' is_graph_weighted(graph)
-#' #> [1] TRUE
 #'
 #' # Create graph where the edges do
 #' # not have a `weight` attribute
@@ -33,7 +32,6 @@
 #' # Determine whether this graph
 #' # is weighted
 #' is_graph_weighted(graph)
-#' #> [1] FALSE
 #' @export is_graph_weighted
 
 is_graph_weighted <- function(graph) {

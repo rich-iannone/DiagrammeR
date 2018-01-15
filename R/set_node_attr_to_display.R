@@ -59,12 +59,8 @@
 #' # `display` node attribute will show for
 #' # each row, which node attribute value to
 #' # display when the graph is rendered
-#' get_node_df(graph)
-#' #>   id type label display value
-#' #> 1  1 <NA>  <NA>   value   2.5
-#' #> 2  2 <NA>  <NA>   value   8.2
-#' #> 3  3 <NA>  <NA>   value   4.2
-#' #> 4  4 <NA>  <NA>    <NA>   2.4
+#' graph %>%
+#'   get_node_df()
 #'
 #' # This function can be called multiple
 #' # times on a graph; after the first time
@@ -79,11 +75,6 @@
 #'     nodes = c(1, 3),
 #'     attr = id) %>%
 #'   get_node_df()
-#' #>   id type label display value
-#' #> 1  1 <NA>  <NA>      id   2.5
-#' #> 2  2 <NA>  <NA>   value   8.2
-#' #> 3  3 <NA>  <NA>      id   4.2
-#' #> 4  4 <NA>  <NA>   label   2.4
 #' @importFrom dplyr mutate left_join coalesce bind_cols select
 #' @importFrom dplyr everything case_when tibble
 #' @importFrom rlang enquo UQ

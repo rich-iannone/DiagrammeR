@@ -44,14 +44,8 @@
 #' # Show the internal node data frame to verify
 #' # that the node attribute has been set for
 #' # specific node
-#' get_node_df(graph)
-#' #>   id type label color
-#' #> 1  1 <NA>     1  <NA>
-#' #> 2  2 <NA>     2  blue
-#' #> 3  3 <NA>     3  blue
-#' #> 4  4 <NA>     4  blue
-#' #> 5  5 <NA>     5  blue
-#' #> 6  6 <NA>     6  <NA>
+#' graph %>%
+#'   get_node_df()
 #' @importFrom rlang enquo UQ
 #' @export set_node_attrs_ws
 

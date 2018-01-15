@@ -23,24 +23,16 @@
 #' # edge data frame
 #' graph %>%
 #'   get_edge_df()
-#' #>   id from to  rel
-#' #> 1  1    1  2 <NA>
-#' #> 2  2    2  3 <NA>
-#' #> 3  3    3  4 <NA>
-#' #> 4  4    1  2 <NA>
-#' #> 5  5    3  4 <NA>
 #'
 #' # Determine if edge `1` is
 #' # a multiple edge
 #' graph %>%
 #'   is_edge_multiple(edge = 1)
-#' #> [1] TRUE
 #'
 #' # Determine if edge `2` is
 #' # a multiple edge
 #' graph %>%
 #'   is_edge_multiple(edge = 2)
-#' #> [1] FALSE
 #' @importFrom dplyr filter pull
 #' @export is_edge_multiple
 
