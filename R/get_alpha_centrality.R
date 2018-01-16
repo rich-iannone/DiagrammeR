@@ -33,7 +33,8 @@
 #'
 #' # Get the alpha centrality scores for nodes
 #' # in the graph
-#' get_alpha_centrality(graph)
+#' graph %>%
+#'   get_alpha_centrality()
 #'
 #' # Add the alpha centrality
 #' # scores to the graph as a node
@@ -44,7 +45,8 @@
 #'     df = get_alpha_centrality(.))
 #'
 #' # Display the graph's node data frame
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @importFrom igraph alpha_centrality
 #' @export get_alpha_centrality
 

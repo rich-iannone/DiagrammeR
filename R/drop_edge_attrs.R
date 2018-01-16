@@ -26,14 +26,8 @@
 #' # Get the graph's internal
 #' # edf to show which edge
 #' # attributes are available
-#' get_edge_df(graph)
-#' #>   id from to  rel value penwidth
-#' #> 1  1    1  4 <NA>     3        6
-#' #> 2  2    2  3 <NA>     3        6
-#' #> 3  3    2  4 <NA>     3        6
-#' #> 4  4    3  1 <NA>     3        6
-#' #> 5  5    4  1 <NA>     3        6
-#' #> 6  6    5  4 <NA>     3        6
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Drop the `value` edge
 #' # attribute
@@ -46,14 +40,8 @@
 #' # edf to show that the edge
 #' # attribute `value` had been
 #' # removed
-#' get_edge_df(graph)
-#' #>   id from to  rel penwidth
-#' #> 1  1    1  4 <NA>        6
-#' #> 2  2    2  3 <NA>        6
-#' #> 3  3    2  4 <NA>        6
-#' #> 4  4    3  1 <NA>        6
-#' #> 5  5    4  1 <NA>        6
-#' #> 6  6    5  4 <NA>        6
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom rlang enquo UQ
 #' @export drop_edge_attrs
 

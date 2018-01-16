@@ -31,14 +31,16 @@
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
-#' # Create a graph with 8 nodes and 7 edges
+#' # Create a graph with 8
+#' # nodes and 7 edges
 #' graph <-
 #'   create_graph() %>%
 #'   add_path(n = 8) %>%
 #'   set_node_attrs(
 #'     node_attr = weight,
-#'     values = c(8.2, 3.7, 6.3, 9.2,
-#'                1.6, 2.5, 7.2, 5.4))
+#'     values = c(
+#'       8.2, 3.7, 6.3, 9.2,
+#'       1.6, 2.5, 7.2, 5.4))
 #'
 #' # Find group membership values for all nodes
 #' # in the graph through the Walktrap community
@@ -47,7 +49,8 @@
 #' # with the `join_node_attrs()` function
 #' graph <-
 #'   graph %>%
-#'   join_node_attrs(df = get_cmty_walktrap(.))
+#'   join_node_attrs(
+#'     df = get_cmty_walktrap(.))
 #'
 #' # Inspect the number of distinct communities
 #' get_node_attrs(
@@ -55,7 +58,6 @@
 #'   node_attr = walktrap_group) %>%
 #'   unique() %>%
 #'   sort()
-#' #> [1] 1 2 3
 #'
 #' # Visually distinguish the nodes in the different
 #' # communities by applying colors using the
@@ -77,16 +79,8 @@
 #'     alpha = 80)
 #'
 #' # Show the graph's internal node data frame
-#' get_node_df(graph)
-#' #>   id type label weight walktrap_group fillcolor     color
-#' #> 1  1 <NA>     1    8.2              1 #E5F5E090 #44015480
-#' #> 2  2 <NA>     2    3.7              1 #E5F5E090 #44015480
-#' #> 3  3 <NA>     3    6.3              1 #E5F5E090 #44015480
-#' #> 4  4 <NA>     4    9.2              3 #31A35490 #FDE72580
-#' #> 5  5 <NA>     5    1.6              3 #31A35490 #FDE72580
-#' #> 6  6 <NA>     6    2.5              2 #A1D99B90 #21908C80
-#' #> 7  7 <NA>     7    7.2              2 #A1D99B90 #21908C80
-#' #> 8  8 <NA>     8    5.4              2 #A1D99B90 #21908C80
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Create a graph with 8 nodes and 7 edges
 #' graph <-
@@ -94,8 +88,9 @@
 #'   add_path(n = 8) %>%
 #'   set_node_attrs(
 #'     node_attr = weight,
-#'     values = c(8.2, 3.7, 6.3, 9.2,
-#'                1.6, 2.5, 7.2, 5.4))
+#'     values = c(
+#'       8.2, 3.7, 6.3, 9.2,
+#'       1.6, 2.5, 7.2, 5.4))
 #'
 #' # We can bucketize values in `weight` using
 #' # `cut_points` and assign colors to each of the
@@ -111,16 +106,8 @@
 #' # Now there will be a `fillcolor` node attribute
 #' # with distinct colors (the `#D9D9D9` color is
 #' # the default `gray85` color)
-#' get_node_df(graph)
-#' #>   id type label weight fillcolor
-#' #> 1  1 <NA>     1    8.2   #2B83BA
-#' #> 2  2 <NA>     2    3.7   #FDAE61
-#' #> 3  3 <NA>     3    6.3   #ABDDA4
-#' #> 4  4 <NA>     4    9.2   #D9D9D9
-#' #> 5  5 <NA>     5    1.6   #D7191C
-#' #> 6  6 <NA>     6    2.5   #D7191C
-#' #> 7  7 <NA>     7    7.2   #2B83BA
-#' #> 8  8 <NA>     8    5.4   #ABDDA4
+#' graph %>%
+#'   get_node_df()
 #' @import RColorBrewer
 #' @importFrom viridis viridis
 #' @importFrom rlang enquo UQ

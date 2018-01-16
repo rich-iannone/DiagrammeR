@@ -22,7 +22,8 @@
 #'   fully_disconnect_nodes_ws()
 #'
 #' # Get the graph's edge data frame
-#' get_edge_df(graph)
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom dplyr filter
 #' @export fully_disconnect_nodes_ws
 

@@ -18,7 +18,8 @@
 #'
 #' # Get the bridging scores for nodes
 #' # in the graph
-#' get_bridging(graph)
+#' graph %>%
+#'   get_bridging()
 #'
 #' # Add the bridging scores to
 #' # the graph as a node attribute
@@ -28,7 +29,8 @@
 #'     df = get_bridging(.))
 #'
 #' # Display the graph's node data frame
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @importFrom influenceR bridging
 #' @export get_bridging
 

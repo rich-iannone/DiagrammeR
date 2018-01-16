@@ -22,7 +22,8 @@
 #' # nodes that if any were to be
 #' # removed, the graph would
 #' # become disconnected)
-#' get_articulation_points(graph)
+#' graph %>%
+#'   get_articulation_points()
 #'
 #' # For the articulation points,
 #' # change the node shape to
