@@ -53,7 +53,7 @@
 #' # Create an empty graph series and add
 #' # the graphs
 #' series_temporal <-
-#'   create_series(
+#'   create_graph_series(
 #'     series_type = "temporal") %>%
 #'   add_graph_to_graph_series(
 #'     graph = graph_time_1) %>%

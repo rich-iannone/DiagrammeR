@@ -57,7 +57,7 @@ test_that("rendering a graph from a series is also possible", {
 
   # Create an empty graph series
   series <-
-    create_series(series_type = "sequential")
+    create_graph_series(series_type = "sequential")
 
   # Add graphs to the graph series
   series <-
@@ -110,7 +110,7 @@ test_that("rendering a graph from a series is also possible", {
 
   # Create an empty graph series
   empty_series <-
-    create_series(series_type = "sequential")
+    create_graph_series(series_type = "sequential")
 
   # Expect an error if there are no graphs
   # in the series

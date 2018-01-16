@@ -3,7 +3,7 @@ context("Getting information on a graph series")
 test_that("graph series information can be obtained", {
 
   # Create an empty graph series
-  empty_series <- create_series()
+  empty_series <- create_graph_series()
 
   empty_series_info <-
     series_info(graph_series = empty_series)
@@ -74,7 +74,7 @@ test_that("graph series information can be obtained", {
       to = 2)
 
   # Create an empty graph series
-  series <- create_series(series_type = "sequential")
+  series <- create_graph_series(series_type = "sequential")
 
   # Add graphs to the graph series
   series <-
@@ -137,7 +137,7 @@ test_that("graph series information can be obtained", {
   # Create a temporal graph series and add
   # a graph with name and time information
   graph_series_temporal_type <-
-    create_series(series_type = "temporal")
+    create_graph_series(series_type = "temporal")
 
   graph <-
     create_graph(

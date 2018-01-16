@@ -28,7 +28,7 @@
 #' # Create an empty graph series
 #' # and add the graphs
 #' series <-
-#'   create_series() %>%
+#'   create_graph_series() %>%
 #'   add_graph_to_graph_series(
 #'     graph = graph_1) %>%
 #'   add_graph_to_graph_series(

@@ -3,7 +3,8 @@ context("Creating and manipulating graph series objects")
 test_that("creating an empty series is possible", {
 
   # Create an empty graph series of the `sequential` type
-  series <- create_series(series_type = "sequential")
+  series <-
+    create_graph_series(series_type = "sequential")
 
   # Expect an object of class `dgr_graph_1D`
   expect_is(
@@ -28,7 +29,8 @@ test_that("creating an empty series is possible", {
     graph_count(series), 0)
 
   # Create an empty graph series of the `temporal` type
-  series_temporal <- create_series(series_type = "temporal")
+  series_temporal <-
+    create_graph_series(series_type = "temporal")
 
   # Expect that this series is empty
   expect_equal(
@@ -56,7 +58,8 @@ test_that("creating an empty series is possible", {
 test_that("adding graphs to a series is also possible", {
 
   # Create an empty graph series
-  series <- create_series(series_type = "sequential")
+  series <-
+    create_graph_series(series_type = "sequential")
 
   # Create a set of graphs for a graph series
   graph_1 <-
@@ -131,7 +134,7 @@ test_that("adding graphs to a series is also possible", {
 
   # Create a series with a graph
   series_w_graph <-
-    create_series(
+    create_graph_series(
       graph = graph_1,
       series_type = "sequential")
 
@@ -172,7 +175,7 @@ test_that("adding graphs to a series is also possible", {
 
   # Expect an error if graph series type is not valid
   graph_series_invalid_type <-
-    create_series(series_type = "circular")
+    create_graph_series(series_type = "circular")
 
   expect_error(
     add_graph_to_graph_series(
@@ -183,7 +186,9 @@ test_that("adding graphs to a series is also possible", {
 test_that("removing graphs from a series is possible", {
 
   # Create an empty graph series
-  series <- create_series(series_type = "sequential")
+  series <-
+    create_graph_series(
+      series_type = "sequential")
 
   # Create a set of graphs for a graph series
   graph_1 <-
@@ -285,7 +290,8 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Create an empty graph series
   series_temporal <-
-    create_series(series_type = "temporal")
+    create_graph_series(
+      series_type = "temporal")
 
   # Add graphs to the graph series
   series_temporal <-
@@ -350,7 +356,7 @@ test_that("Getting a graph from a series is possible", {
   # Create an empty graph series and add
   # the graphs
   series <-
-    create_series() %>%
+    create_graph_series() %>%
     add_graph_to_graph_series(
       graph = graph_1) %>%
     add_graph_to_graph_series(
@@ -372,7 +378,7 @@ test_that("Getting a graph from a series is possible", {
   # Expect an error if extracting a graph from
   # an empty graph series
   expect_error(
-    create_series() %>%
+    create_graph_series() %>%
       get_graph_from_series(1))
 
   # Expect an error if the index for the graph to

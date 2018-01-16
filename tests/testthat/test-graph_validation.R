@@ -62,7 +62,7 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(count_unconnected_node_pairs(invalid_graph))
   expect_error(count_unconnected_nodes(invalid_graph))
   expect_error(count_w_connected_cmpts(invalid_graph))
-  expect_error(create_series(invalid_graph))
+  expect_error(create_graph_series(invalid_graph))
   expect_error(delete_edge(invalid_graph))
   expect_error(delete_edges_ws(invalid_graph))
   expect_error(delete_global_graph_attrs(invalid_graph))
