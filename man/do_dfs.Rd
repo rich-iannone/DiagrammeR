@@ -39,41 +39,48 @@ until terminating at leaf node (bfs traverses
 branches one level at a time).
 }
 \examples{
-# Create a graph containing two balanced trees
+# Create a graph containing
+# two balanced trees
 graph <-
   create_graph() \%>\%
-  add_balanced_tree(k = 2, h = 2) \%>\%
-  add_balanced_tree(k = 3, h = 2)
+  add_balanced_tree(
+    k = 2, h = 2) \%>\%
+  add_balanced_tree(
+  k = 3, h = 2)
 
-# Perform a depth-first search of the graph,
-# beginning at the root node `1` (the default
-# `direction = "all"` doesn't take edge
+# Perform a depth-first
+# search of the graph,
+# beginning at the root
+# node `1` (the default
+# `direction = "all"`
+# doesn't take edge
 # direction into account)
 graph \%>\%
   do_dfs(node = 1)
-#> [1]  1  2  4  5  3  6  7  8  9 12 13 14 10
-#> [14] 15 16 17 11 18 19 20
 
-# If not specifying a starting node, the function
-# will begin the search from a random node
+# If not specifying a
+# starting node, the function
+# will begin the search
+# from a random node
 graph \%>\%
   do_dfs()
-#> [1]  14  9  8 10 15 16 17 11 18 19 20 12 13
-#> [14]  1  2  4  5  3  6  7
 
-# It's also possible to perform dfs while
-# taking into account edge direction; using
-# `direction = "in"` causes the dfs routine to
+# It's also possible to
+# perform dfs while taking
+# into account edge direction;
+# using `direction = "in"`
+# causes the dfs routine to
 # visit nodes along inward edges
 graph \%>\%
-  do_dfs(node = 1, direction = "in")
-#> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13
-#> [14] 14 15 16 17 18 19 20
+  do_dfs(
+    node = 1,
+    direction = "in")
 
-# Using `direction = "out"` results in the dfs
-# moving along solely outward edges
+# Using `direction = "out"`
+# results in the dfs moving
+# along solely outward edges
 graph \%>\%
-  do_dfs(node = 1, direction = "out")
-#> [1]  1  2  4  5  3  6  7  8  9 12 13 14 10
-#> [14] 15 16 17 11 18 19 20
+  do_dfs(
+    node = 1,
+    direction = "out")
 }
