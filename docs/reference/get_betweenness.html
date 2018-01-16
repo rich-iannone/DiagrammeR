@@ -121,7 +121,8 @@ each of the nodes.</p>
 
 <span class='co'># Get the betweenness scores</span>
 <span class='co'># for nodes in the graph</span>
-<span class='fu'>get_betweenness</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id betweenness
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_betweenness</span>()</div><div class='output co'>#&gt;    id betweenness
 #&gt; 1   1           0
 #&gt; 2   2           7
 #&gt; 3   3           0
@@ -142,7 +143,8 @@ each of the nodes.</p>
 
 <span class='co'># Display the graph's node</span>
 <span class='co'># data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label betweenness
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label betweenness
 #&gt; 1   1 &lt;NA&gt;     1           0
 #&gt; 2   2 &lt;NA&gt;     2           7
 #&gt; 3   3 &lt;NA&gt;     3           0

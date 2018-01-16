@@ -145,13 +145,15 @@ graph supplied as <code>x</code>.</p></td>
 
 <span class='co'># Get the number of nodes in</span>
 <span class='co'># the combined graph</span>
-<span class='fu'><a href='count_nodes.html'>count_nodes</a></span>(<span class='no'>combined_graph</span>)</div><div class='output co'>#&gt; [1] 14</div><div class='input'>
+<span class='no'>combined_graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 14</div><div class='input'>
 <span class='co'># The `combine_graphs()`</span>
 <span class='co'># function will renumber</span>
 <span class='co'># node ID values in graph `y`</span>
 <span class='co'># during the union; this ensures</span>
 <span class='co'># that node ID values are unique</span>
-<span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>(<span class='no'>combined_graph</span>)</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14</div></pre>
+<span class='no'>combined_graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>()</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

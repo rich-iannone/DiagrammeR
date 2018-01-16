@@ -129,7 +129,8 @@ each of the nodes.</p>
 
 <span class='co'># Get closeness values for all nodes</span>
 <span class='co'># in the graph</span>
-<span class='fu'>get_closeness</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id  closeness
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_closeness</span>()</div><div class='output co'>#&gt;    id  closeness
 #&gt; 1   1 0.05263158
 #&gt; 2   2 0.06250000
 #&gt; 3   3 0.05555556
@@ -148,7 +149,8 @@ each of the nodes.</p>
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_closeness</span>(<span class='no'>.</span>))
 
 <span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label  closeness
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label  closeness
 #&gt; 1   1 &lt;NA&gt;     1 0.05263158
 #&gt; 2   2 &lt;NA&gt;     2 0.06250000
 #&gt; 3   3 &lt;NA&gt;     3 0.05555556

@@ -133,20 +133,14 @@ attribute column to drop.</p></td>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># edf to show which edge</span>
 <span class='co'># attributes are available</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to  rel value penwidth
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel value penwidth
 #&gt; 1  1    1  4 &lt;NA&gt;     3        6
 #&gt; 2  2    2  3 &lt;NA&gt;     3        6
 #&gt; 3  3    2  4 &lt;NA&gt;     3        6
 #&gt; 4  4    3  1 &lt;NA&gt;     3        6
 #&gt; 5  5    4  1 &lt;NA&gt;     3        6
-#&gt; 6  6    5  4 &lt;NA&gt;     3        6</div><div class='input'><span class='co'>#&gt;   id from to  rel value penwidth</span>
-<span class='co'>#&gt; 1  1    1  4 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 2  2    2  3 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 3  3    2  4 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 4  4    3  1 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 5  5    4  1 &lt;NA&gt;     3        6</span>
-<span class='co'>#&gt; 6  6    5  4 &lt;NA&gt;     3        6</span>
-
+#&gt; 6  6    5  4 &lt;NA&gt;     3        6</div><div class='input'>
 <span class='co'># Drop the `value` edge</span>
 <span class='co'># attribute</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -158,20 +152,14 @@ attribute column to drop.</p></td>
 <span class='co'># edf to show that the edge</span>
 <span class='co'># attribute `value` had been</span>
 <span class='co'># removed</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to  rel penwidth
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel penwidth
 #&gt; 1  1    1  4 &lt;NA&gt;        6
 #&gt; 2  2    2  3 &lt;NA&gt;        6
 #&gt; 3  3    2  4 &lt;NA&gt;        6
 #&gt; 4  4    3  1 &lt;NA&gt;        6
 #&gt; 5  5    4  1 &lt;NA&gt;        6
-#&gt; 6  6    5  4 &lt;NA&gt;        6</div><div class='input'>#>   id from to  rel penwidth
-#> 1  1    1  4 <NA>        6
-#> 2  2    2  3 <NA>        6
-#> 3  3    2  4 <NA>        6
-#> 4  4    3  1 <NA>        6
-#> 5  5    4  1 <NA>        6
-#> 6  6    5  4 <NA>        6
-</div></pre>
+#&gt; 6  6    5  4 &lt;NA&gt;        6</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

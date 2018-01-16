@@ -126,7 +126,8 @@ identified as articulation points.</p>
 <span class='co'># nodes that if any were to be</span>
 <span class='co'># removed, the graph would</span>
 <span class='co'># become disconnected)</span>
-<span class='fu'>get_articulation_points</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 2 4</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_articulation_points</span>()</div><div class='output co'>#&gt; [1] 2 4</div><div class='input'>
 <span class='co'># For the articulation points,</span>
 <span class='co'># change the node shape to</span>
 <span class='co'># a `circle`</span>

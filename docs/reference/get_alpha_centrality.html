@@ -150,7 +150,8 @@ for each of the nodes.</p>
 
 <span class='co'># Get the alpha centrality scores for nodes</span>
 <span class='co'># in the graph</span>
-<span class='fu'>get_alpha_centrality</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id alpha_centrality
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_alpha_centrality</span>()</div><div class='output co'>#&gt;    id alpha_centrality
 #&gt; 1   1                9
 #&gt; 2   2                6
 #&gt; 3   3                2
@@ -170,7 +171,8 @@ for each of the nodes.</p>
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_alpha_centrality</span>(<span class='no'>.</span>))
 
 <span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label alpha_centrality
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label alpha_centrality
 #&gt; 1   1 &lt;NA&gt;     1                9
 #&gt; 2   2 &lt;NA&gt;     2                6
 #&gt; 3   3 &lt;NA&gt;     3                2

@@ -158,14 +158,16 @@ vector.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a graph with 8 nodes and 7 edges</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph with 8</span>
+<span class='co'># nodes and 7 edges</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>8</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>weight</span>,
-    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>8.2</span>, <span class='fl'>3.7</span>, <span class='fl'>6.3</span>, <span class='fl'>9.2</span>,
-               <span class='fl'>1.6</span>, <span class='fl'>2.5</span>, <span class='fl'>7.2</span>, <span class='fl'>5.4</span>))
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='fl'>8.2</span>, <span class='fl'>3.7</span>, <span class='fl'>6.3</span>, <span class='fl'>9.2</span>,
+      <span class='fl'>1.6</span>, <span class='fl'>2.5</span>, <span class='fl'>7.2</span>, <span class='fl'>5.4</span>))
 
 <span class='co'># Find group membership values for all nodes</span>
 <span class='co'># in the graph through the Walktrap community</span>
@@ -174,15 +176,15 @@ vector.</p></td>
 <span class='co'># with the `join_node_attrs()` function</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'><a href='get_cmty_walktrap.html'>get_cmty_walktrap</a></span>(<span class='no'>.</span>))
+  <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(
+    <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'><a href='get_cmty_walktrap.html'>get_cmty_walktrap</a></span>(<span class='no'>.</span>))
 
 <span class='co'># Inspect the number of distinct communities</span>
 <span class='fu'><a href='get_node_attrs.html'>get_node_attrs</a></span>(
   <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
   <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>walktrap_group</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>unique</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'>sort</span>()</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'><span class='co'>#&gt; [1] 1 2 3</span>
-
+  <span class='fu'>sort</span>()</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
 <span class='co'># Visually distinguish the nodes in the different</span>
 <span class='co'># communities by applying colors using the</span>
 <span class='co'># `colorize_node_attrs()` function; specifically,</span>
@@ -203,7 +205,8 @@ vector.</p></td>
     <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>80</span>)
 
 <span class='co'># Show the graph's internal node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label weight walktrap_group fillcolor     color
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label weight walktrap_group fillcolor     color
 #&gt; 1  1 &lt;NA&gt;     1    8.2              1 #E5F5E090 #44015480
 #&gt; 2  2 &lt;NA&gt;     2    3.7              1 #E5F5E090 #44015480
 #&gt; 3  3 &lt;NA&gt;     3    6.3              1 #E5F5E090 #44015480
@@ -211,24 +214,16 @@ vector.</p></td>
 #&gt; 5  5 &lt;NA&gt;     5    1.6              3 #31A35490 #FDE72580
 #&gt; 6  6 &lt;NA&gt;     6    2.5              2 #A1D99B90 #21908C80
 #&gt; 7  7 &lt;NA&gt;     7    7.2              2 #A1D99B90 #21908C80
-#&gt; 8  8 &lt;NA&gt;     8    5.4              2 #A1D99B90 #21908C80</div><div class='input'><span class='co'>#&gt;   id type label weight walktrap_group fillcolor     color</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;     1    8.2              1 #E5F5E090 #44015480</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;     2    3.7              1 #E5F5E090 #44015480</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;     3    6.3              1 #E5F5E090 #44015480</span>
-<span class='co'>#&gt; 4  4 &lt;NA&gt;     4    9.2              3 #31A35490 #FDE72580</span>
-<span class='co'>#&gt; 5  5 &lt;NA&gt;     5    1.6              3 #31A35490 #FDE72580</span>
-<span class='co'>#&gt; 6  6 &lt;NA&gt;     6    2.5              2 #A1D99B90 #21908C80</span>
-<span class='co'>#&gt; 7  7 &lt;NA&gt;     7    7.2              2 #A1D99B90 #21908C80</span>
-<span class='co'>#&gt; 8  8 &lt;NA&gt;     8    5.4              2 #A1D99B90 #21908C80</span>
-
+#&gt; 8  8 &lt;NA&gt;     8    5.4              2 #A1D99B90 #21908C80</div><div class='input'>
 <span class='co'># Create a graph with 8 nodes and 7 edges</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>8</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs.html'>set_node_attrs</a></span>(
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>weight</span>,
-    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>8.2</span>, <span class='fl'>3.7</span>, <span class='fl'>6.3</span>, <span class='fl'>9.2</span>,
-               <span class='fl'>1.6</span>, <span class='fl'>2.5</span>, <span class='fl'>7.2</span>, <span class='fl'>5.4</span>))
+    <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'>c</span>(
+      <span class='fl'>8.2</span>, <span class='fl'>3.7</span>, <span class='fl'>6.3</span>, <span class='fl'>9.2</span>,
+      <span class='fl'>1.6</span>, <span class='fl'>2.5</span>, <span class='fl'>7.2</span>, <span class='fl'>5.4</span>))
 
 <span class='co'># We can bucketize values in `weight` using</span>
 <span class='co'># `cut_points` and assign colors to each of the</span>
@@ -244,7 +239,8 @@ vector.</p></td>
 <span class='co'># Now there will be a `fillcolor` node attribute</span>
 <span class='co'># with distinct colors (the `#D9D9D9` color is</span>
 <span class='co'># the default `gray85` color)</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label weight fillcolor
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label weight fillcolor
 #&gt; 1  1 &lt;NA&gt;     1    8.2   #2B83BA
 #&gt; 2  2 &lt;NA&gt;     2    3.7   #FDAE61
 #&gt; 3  3 &lt;NA&gt;     3    6.3   #ABDDA4
@@ -252,16 +248,7 @@ vector.</p></td>
 #&gt; 5  5 &lt;NA&gt;     5    1.6   #D7191C
 #&gt; 6  6 &lt;NA&gt;     6    2.5   #D7191C
 #&gt; 7  7 &lt;NA&gt;     7    7.2   #2B83BA
-#&gt; 8  8 &lt;NA&gt;     8    5.4   #ABDDA4</div><div class='input'>#>   id type label weight fillcolor
-#> 1  1 <NA>     1    8.2   #2B83BA
-#> 2  2 <NA>     2    3.7   #FDAE61
-#> 3  3 <NA>     3    6.3   #ABDDA4
-#> 4  4 <NA>     4    9.2   #D9D9D9
-#> 5  5 <NA>     5    1.6   #D7191C
-#> 6  6 <NA>     6    2.5   #D7191C
-#> 7  7 <NA>     7    7.2   #2B83BA
-#> 8  8 <NA>     8    5.4   #ABDDA4
-</div></pre>
+#&gt; 8  8 &lt;NA&gt;     8    5.4   #ABDDA4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

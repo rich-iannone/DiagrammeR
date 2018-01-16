@@ -122,7 +122,8 @@ each of the nodes.</p>
 
 <span class='co'># Get the bridging scores for nodes</span>
 <span class='co'># in the graph</span>
-<span class='fu'>get_bridging</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id    bridging
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_bridging</span>()</div><div class='output co'>#&gt;    id    bridging
 #&gt; 1   1 0.018148148
 #&gt; 2   2 0.034953704
 #&gt; 3   3 0.008024691
@@ -141,7 +142,8 @@ each of the nodes.</p>
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_bridging</span>(<span class='no'>.</span>))
 
 <span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label    bridging
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label    bridging
 #&gt; 1   1 &lt;NA&gt;     1 0.018148148
 #&gt; 2   2 &lt;NA&gt;     2 0.034953704
 #&gt; 3   3 &lt;NA&gt;     3 0.008024691

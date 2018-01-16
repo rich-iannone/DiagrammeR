@@ -118,7 +118,8 @@ minimum number of edges to remove.</p>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='co'># Determine the graph's adhesion</span>
-<span class='fu'>get_adhesion</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_adhesion</span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Create a full graph and then</span>
 <span class='co'># get the adhesion for that</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>

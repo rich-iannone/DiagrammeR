@@ -134,40 +134,47 @@ visited.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a graph containing two balanced trees</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph containing</span>
+<span class='co'># two balanced trees</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(<span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+  <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
+    <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
+    <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='co'># Perform a breadth-first search of the graph,</span>
-<span class='co'># beginning at the root node `1` (the default</span>
-<span class='co'># `direction = "all"` doesn't take edge</span>
-<span class='co'># direction into account)</span>
+<span class='co'># Perform a breadth-first</span>
+<span class='co'># search of the graph,</span>
+<span class='co'># beginning at the root node</span>
+<span class='co'># `1` (the default</span>
+<span class='co'># `direction = "all"` doesn't</span>
+<span class='co'># take edge direction into</span>
+<span class='co'># account)</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>do_bfs</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div><div class='input'><span class='co'>#&gt; [1]  1  2  3  4  5  6  7  8  9 10 11 12 13</span>
-<span class='co'>#&gt; [14] 14 15 16 17 18 19 20</span>
-
-<span class='co'># If not specifying a starting node, the function</span>
-<span class='co'># will begin the search from a random node</span>
+  <span class='fu'>do_bfs</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div><div class='input'>
+<span class='co'># If not specifying a</span>
+<span class='co'># starting node, the function</span>
+<span class='co'># will begin the search from</span>
+<span class='co'># a random node</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>do_bfs</span>()</div><div class='output co'>#&gt;  [1] 11  8 18 19 20  9 10 12 13 14 15 16 17  1  2  3  4  5  6  7</div><div class='input'><span class='co'>#&gt; [1]  6  3  1  7  2  4  5  8  9 10 11 12 13</span>
-<span class='co'>#&gt; [14] 14 15 16 17 18 19 20</span>
-
-<span class='co'># It's also possible to perform bfs while</span>
-<span class='co'># taking into account edge direction; using</span>
-<span class='co'># `direction = "in"` causes the bfs routine to</span>
+  <span class='fu'>do_bfs</span>()</div><div class='output co'>#&gt;  [1] 11  8 18 19 20  9 10 12 13 14 15 16 17  1  2  3  4  5  6  7</div><div class='input'>
+<span class='co'># It's also possible to</span>
+<span class='co'># perform bfs while taking</span>
+<span class='co'># into account edge direction;</span>
+<span class='co'># using `direction = "in"`</span>
+<span class='co'># causes the bfs routine to</span>
 <span class='co'># visit nodes along inward edges</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>do_bfs</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"in"</span>)</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div><div class='input'><span class='co'>#&gt; [1]  1  2  3  4  5  6  7  8  9 10 11 12 13</span>
-<span class='co'>#&gt; [14] 14 15 16 17 18 19 20</span>
-
-<span class='co'># Using `direction = "out"` results in the bfs</span>
-<span class='co'># moving along solely outward edges</span>
+  <span class='fu'>do_bfs</span>(
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"in"</span>)</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div><div class='input'>
+<span class='co'># Using `direction = "out"`</span>
+<span class='co'># results in the bfs moving</span>
+<span class='co'># along solely outward edges</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>do_bfs</span>(<span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"out"</span>)</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div><div class='input'>#> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13
-#> [14] 14 15 16 17 18 19 20
-</div></pre>
+  <span class='fu'>do_bfs</span>(
+    <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"out"</span>)</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
