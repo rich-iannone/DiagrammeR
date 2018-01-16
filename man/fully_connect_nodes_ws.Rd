@@ -41,7 +41,8 @@ graph <-
   fully_connect_nodes_ws()
 
 # Get the graph's edge data frame
-get_edge_df(graph)
+graph \%>\%
+  get_edge_df()
 
 # Create an undirected, empty
 # graph; add a path of 3 nodes
@@ -67,5 +68,6 @@ graph <-
 # frame; in the undirected
 # case, reverse edges aren't
 # added
-get_edge_df(graph)
+graph \%>\%
+  get_edge_df()
 }

@@ -35,7 +35,8 @@ graph <-
 
 # Get the authority centrality scores
 # for all nodes in the graph
-get_authority_centrality(graph)
+graph \%>\%
+  get_authority_centrality()
 
 # Add the authority centrality
 # scores to the graph as a node
@@ -46,5 +47,6 @@ graph <-
     df = get_authority_centrality(.))
 
 # Display the graph's node data frame
-get_node_df(graph)
+graph \%>\%
+  get_node_df()
 }

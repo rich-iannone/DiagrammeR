@@ -52,12 +52,14 @@ combined_graph <-
 
 # Get the number of nodes in
 # the combined graph
-count_nodes(combined_graph)
+combined_graph \%>\%
+  count_nodes()
 
 # The `combine_graphs()`
 # function will renumber
 # node ID values in graph `y`
 # during the union; this ensures
 # that node ID values are unique
-get_node_ids(combined_graph)
+combined_graph \%>\%
+  get_node_ids()
 }

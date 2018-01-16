@@ -27,7 +27,8 @@ graph <-
   add_cycle(n = 5)
 
 # Determine the graph's adhesion
-get_adhesion(graph)
+graph \%>\%
+  get_adhesion()
 
 # Create a full graph and then
 # get the adhesion for that

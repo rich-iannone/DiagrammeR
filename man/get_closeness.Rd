@@ -36,7 +36,8 @@ graph <-
 
 # Get closeness values for all nodes
 # in the graph
-get_closeness(graph)
+graph \%>\%
+  get_closeness()
 
 # Add the closeness values to
 # the graph as a node attribute
@@ -46,5 +47,6 @@ graph <-
     df = get_closeness(.))
 
 # Display the graph's node data frame
-get_node_df(graph)
+graph \%>\%
+  get_node_df()
 }

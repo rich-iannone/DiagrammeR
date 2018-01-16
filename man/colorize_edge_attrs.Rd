@@ -81,5 +81,6 @@ graph <-
 # edge attribute with distinct
 # colors (from the RColorBrewer
 # Red-Yellow-Green palette)
-get_edge_df(graph)
+graph \%>\%
+  get_edge_df()
 }
