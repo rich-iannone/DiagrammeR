@@ -2,13 +2,13 @@
 % Please edit documentation in R/set_node_attrs.R
 \name{set_node_attrs}
 \alias{set_node_attrs}
-\title{Set node attributes}
+\title{Set node attribute values}
 \usage{
-set_node_attrs(x, node_attr, values, nodes = NULL)
+set_node_attrs(graph, node_attr, values, nodes = NULL)
 }
 \arguments{
-\item{x}{either a graph object of class
-\code{dgr_graph} or a node data frame.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{node_attr}{the name of the attribute to set.}
 
@@ -19,14 +19,13 @@ attribute for the chosen nodes.}
 filtering the list of nodes present in the graph.}
 }
 \value{
-either a graph object of class
-\code{dgr_graph} or a node data frame, depending on
-what type of object was supplied to \code{x}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
 From a graph object of class
-\code{dgr_graph} or a node data frame, set node
-attribute properties for one or more nodes.
+\code{dgr_graph}, set node attribute
+values for one or more nodes.
 }
 \examples{
 # Create a node data frame (ndf)
@@ -53,8 +52,8 @@ graph <-
 # Set attribute `color = "green"` for
 # nodes `1` and `3` using the graph object
 graph <-
+  graph \%>\%
   set_node_attrs(
-    x = graph,
     node_attr = color,
     values = "green",
     nodes = c(1, 3))
@@ -63,26 +62,15 @@ graph <-
 graph \%>\%
   get_node_df()
 
-# Set attribute `color = "green"` for
-# nodes `1` and `3` using the node data frame
-nodes <-
-  set_node_attrs(
-    x = ndf,
-    node_attr = color,
-    values = "green",
-    nodes = c(1, 3))
-
-# Display the `nodes` ndf
-nodes
-
 # Set attribute `color = "blue"` for
-# all nodes in the node data frame
-nodes <-
+# all nodes in the graph
+graph <-
+  graph \%>\%
   set_node_attrs(
-    x = ndf,
     node_attr = color,
     values = "blue")
 
-# Display the `nodes` ndf
-nodes
+# Display the graph's ndf
+graph \%>\%
+  get_node_df()
 }

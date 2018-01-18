@@ -29,7 +29,9 @@ karate_club <-
   import_graph() \%>\%
   set_graph_name("karate")
 
-# Display a data frame with graph information
-graph_info(karate_club)
+# Display a data frame with
+# graph information
+karate_club \%>\%
+  graph_info()
 }
 }

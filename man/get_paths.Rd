@@ -51,17 +51,25 @@ graph <-
   add_edge(from = 4, to = 8)
 
 # Get a list of all paths outward from node `1`
-get_paths(graph, from = 1)
+graph \%>\%
+  get_paths(from = 1)
 
 # Get a list of all paths leading to node `6`
-get_paths(graph, to = 6)
+graph \%>\%
+  get_paths(to = 6)
 
 # Get a list of all paths from `1` to `5`
-get_paths(graph, from = 1, to = 5)
+graph \%>\%
+  get_paths(
+   from = 1,
+   to = 5)
 
 # Get a list of all paths from `1` up to a distance
 # of 2 node traversals
-get_paths(graph, from = 1, distance = 2)
+graph \%>\%
+  get_paths(
+    from = 1,
+    distance = 2)
 
 # Get a list of the shortest paths from `1` to `5`
 get_paths(

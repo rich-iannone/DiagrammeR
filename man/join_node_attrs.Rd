@@ -65,7 +65,8 @@ graph <-
 
 # Get the graph's internal ndf to show that the
 # join has been made
-get_node_df(graph)
+graph \%>\%
+  get_node_df()
 
 # Get betweenness values for each node and
 # add them as a node attribute (Note the
@@ -78,5 +79,6 @@ graph <-
 
 # Get the graph's internal ndf to show that
 # this join has been made
-get_node_df(graph)
+graph \%>\%
+  get_node_df()
 }

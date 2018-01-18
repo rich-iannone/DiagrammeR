@@ -26,5 +26,6 @@ graph <-
   add_cycle(n = 3)
 
 # Check if the graph is simple
-is_graph_simple(graph)
+graph \%>\%
+  is_graph_simple()
 }

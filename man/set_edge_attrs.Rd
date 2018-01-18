@@ -2,13 +2,13 @@
 % Please edit documentation in R/set_edge_attrs.R
 \name{set_edge_attrs}
 \alias{set_edge_attrs}
-\title{Set edge attributes}
+\title{Set edge attribute values}
 \usage{
-set_edge_attrs(x, edge_attr, values, from = NULL, to = NULL)
+set_edge_attrs(graph, edge_attr, values, from = NULL, to = NULL)
 }
 \arguments{
-\item{x}{either a graph object of class
-\code{dgr_graph} or an edge data frame.}
+\item{graph}{a graph object of class
+\code{dgr_graph}.}
 
 \item{edge_attr}{the name of the attribute to set.}
 
@@ -24,14 +24,13 @@ the edge is incoming for filtering list of nodes
 with incoming edges in the graph.}
 }
 \value{
-either a graph object of class
-\code{dgr_graph} or an edge data frame, depending on
-what type of object was supplied to \code{x}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
 From a graph object of class
-\code{dgr_graph} or an edge data frame, set edge
-attribute properties for one or more edges
+\code{dgr_graph}, set edge attribute
+values for one or more edges.
 }
 \examples{
 # Create a simple graph

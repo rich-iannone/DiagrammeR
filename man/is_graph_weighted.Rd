@@ -44,5 +44,6 @@ graph <-
 
 # Determine whether this graph
 # is weighted
-is_graph_weighted(graph)
+graph \%>\%
+  is_graph_weighted()
 }

@@ -108,5 +108,6 @@ graph <-
 # Show the graph's node data frame
 # to confirm that `x` and `y` values
 # were added to each of the nodes
-get_node_df(graph)
+graph \%>\%
+  get_node_df()
 }

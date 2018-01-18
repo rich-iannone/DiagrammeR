@@ -77,8 +77,8 @@ df_2 <-
 # Bind the data frame as a node attribute
 # of node `2`
 graph <-
+  graph \%>\%
   set_df_as_node_attr(
-    graph = graph,
     node = 2,
     df = df_2)
 }

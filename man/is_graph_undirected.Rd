@@ -31,7 +31,8 @@ graph <-
 
 # Determine whether the
 # graph is undirected
-is_graph_undirected(graph)
+graph \%>\%
+  is_graph_undirected()
 
 # Use the `set_graph_directed()`
 # function and check again
