@@ -14,7 +14,8 @@
 #'   add_cycle(n = 5)
 #'
 #' # Determine the mean distance
-#' get_mean_distance(graph)
+#' graph %>%
+#'   get_mean_distance()
 #'
 #' # Create a full graph and then
 #' # get the mean distance value

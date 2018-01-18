@@ -23,7 +23,8 @@
 #'
 #' # Get the PageRank scores
 #' # for all nodes in the graph
-#' get_pagerank(graph)
+#' graph %>%
+#'   get_pagerank()
 #'
 #' # Colorize nodes according to their
 #' # PageRank scores

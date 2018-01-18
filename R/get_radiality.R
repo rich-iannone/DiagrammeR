@@ -22,7 +22,8 @@
 #'     set_seed = 23)
 #'
 #' # Get the radiality scores for nodes in the graph
-#' get_radiality(graph)
+#' graph %>%
+#'   get_radiality()
 #'
 #' # Add the radiality values
 #' # to the graph as a node
@@ -33,7 +34,8 @@
 #'     df = get_radiality(.))
 #'
 #' # Display the graph's node data frame
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @importFrom igraph distances diameter
 #' @export get_radiality
 

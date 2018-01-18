@@ -1,17 +1,16 @@
-#' Set node attributes
+#' Set node attribute values
 #' @description From a graph object of class
-#' \code{dgr_graph} or a node data frame, set node
-#' attribute properties for one or more nodes.
-#' @param x either a graph object of class
-#' \code{dgr_graph} or a node data frame.
+#' \code{dgr_graph}, set node attribute
+#' values for one or more nodes.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param node_attr the name of the attribute to set.
 #' @param values the values to be set for the chosen
 #' attribute for the chosen nodes.
 #' @param nodes an optional vector of node IDs for
 #' filtering the list of nodes present in the graph.
-#' @return either a graph object of class
-#' \code{dgr_graph} or a node data frame, depending on
-#' what type of object was supplied to \code{x}.
+#' @return a graph object of class
+#' \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -37,8 +36,8 @@
 #' # Set attribute `color = "green"` for
 #' # nodes `1` and `3` using the graph object
 #' graph <-
+#'   graph %>%
 #'   set_node_attrs(
-#'     x = graph,
 #'     node_attr = color,
 #'     values = "green",
 #'     nodes = c(1, 3))
@@ -47,33 +46,22 @@
 #' graph %>%
 #'   get_node_df()
 #'
-#' # Set attribute `color = "green"` for
-#' # nodes `1` and `3` using the node data frame
-#' nodes <-
-#'   set_node_attrs(
-#'     x = ndf,
-#'     node_attr = color,
-#'     values = "green",
-#'     nodes = c(1, 3))
-#'
-#' # Display the `nodes` ndf
-#' nodes
-#'
 #' # Set attribute `color = "blue"` for
-#' # all nodes in the node data frame
-#' nodes <-
+#' # all nodes in the graph
+#' graph <-
+#'   graph %>%
 #'   set_node_attrs(
-#'     x = ndf,
 #'     node_attr = color,
 #'     values = "blue")
 #'
-#' # Display the `nodes` ndf
-#' nodes
+#' # Display the graph's ndf
+#' graph %>%
+#'   get_node_df()
 #' @importFrom dplyr mutate
 #' @importFrom rlang enquo UQ
 #' @export set_node_attrs
 
-set_node_attrs <- function(x,
+set_node_attrs <- function(graph,
                            node_attr,
                            values,
                            nodes = NULL) {
@@ -94,20 +82,11 @@ set_node_attrs <- function(x,
   #     call. = FALSE)
   # }
 
-  if (inherits(x, "dgr_graph")) {
-    object_type <- "dgr_graph"
-    nodes_df <- x$nodes_df
-  }
-
-  if (inherits(x, "data.frame")) {
-    if ("id" %in% colnames(x)) {
-      object_type <- "node_df"
-      nodes_df <- x
-    }
-  }
+  # Extract the graph's ndf
+  ndf <- graph$nodes_df
 
   if (length(values) != 1 &
-      length(values) != nrow(nodes_df)) {
+      length(values) != nrow(ndf)) {
 
     stop(
       "The length of values provided must either be 1 or that of the number of rows in the ndf.",
@@ -115,38 +94,38 @@ set_node_attrs <- function(x,
   }
 
   if (length(values) == 1) {
-    if (node_attr %in% colnames(nodes_df)) {
+    if (node_attr %in% colnames(ndf)) {
       if (is.null(nodes)) {
-        nodes_df[, which(colnames(nodes_df) %in%
+        ndf[, which(colnames(ndf) %in%
                            node_attr)] <- values
       } else {
-        nodes_df[which(nodes_df[, 1] %in% nodes),
-                 which(colnames(nodes_df) %in%
+        ndf[which(ndf[, 1] %in% nodes),
+                 which(colnames(ndf) %in%
                          node_attr)] <- values
       }
     }
 
-    if (!(node_attr %in% colnames(nodes_df))) {
+    if (!(node_attr %in% colnames(ndf))) {
 
       if (is.null(nodes)) {
         # Add a new column and map the node attribute
-        # value to every row in `nodes_df`
-        nodes_df <-
+        # value to every row in `ndf`
+        ndf <-
           dplyr::mutate(
-            nodes_df,
+            ndf,
             new_attr__ = ifelse(id > 0, values, NA))
 
-        colnames(nodes_df)[ncol(nodes_df)] <- node_attr
+        colnames(ndf)[ncol(ndf)] <- node_attr
 
       } else {
         # Add a new column and map the node attribute
         # value to the correct rows
-        nodes_df <-
+        ndf <-
           dplyr::mutate(
-            nodes_df,
+            ndf,
             new_attr__ = ifelse(id %in% nodes, values, NA))
 
-        colnames(nodes_df)[ncol(nodes_df)] <- node_attr
+        colnames(ndf)[ncol(ndf)] <- node_attr
       }
     }
   }
@@ -154,54 +133,47 @@ set_node_attrs <- function(x,
   # If the length of values supplied is the same
   # as the number of rows, insert those values
   # to a new or existing node attribute column
-  if (length(values) == nrow(nodes_df)) {
+  if (length(values) == nrow(ndf)) {
 
-    if (node_attr %in% colnames(nodes_df)) {
-      nodes_df[, which(colnames(nodes_df) %in%
+    if (node_attr %in% colnames(ndf)) {
+      ndf[, which(colnames(ndf) %in%
                          node_attr)] <- values
     }
 
-    if (!(node_attr %in% colnames(nodes_df))) {
-      nodes_df <-
-        cbind(nodes_df,
-              rep(as.character(NA), nrow(nodes_df)))
+    if (!(node_attr %in% colnames(ndf))) {
+      ndf <-
+        cbind(ndf,
+              rep(as.character(NA), nrow(ndf)))
 
-      nodes_df[, ncol(nodes_df)] <-
-        nodes_df[, ncol(nodes_df)]
+      ndf[, ncol(ndf)] <-
+        ndf[, ncol(ndf)]
 
-      colnames(nodes_df)[ncol(nodes_df)] <-
+      colnames(ndf)[ncol(ndf)] <-
         node_attr
 
-      nodes_df[, ncol(nodes_df)] <- values
+      ndf[, ncol(ndf)] <- values
     }
   }
-
-  if (object_type == "dgr_graph") {
 
     # Replace the graph's ndf with the
     # revised version
-    x$nodes_df <- nodes_df
+    graph$nodes_df <- ndf
 
     # Update the `graph_log` df with an action
-    x$graph_log <-
+    graph$graph_log <-
       add_action_to_log(
-        graph_log = x$graph_log,
-        version_id = nrow(x$graph_log) + 1,
+        graph_log = graph$graph_log,
+        version_id = nrow(graph$graph_log) + 1,
         function_used = "set_node_attrs",
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
-        nodes = nrow(x$nodes_df),
-        edges = nrow(x$edges_df))
+        nodes = nrow(graph$nodes_df),
+        edges = nrow(graph$edges_df))
 
     # Write graph backup if the option is set
-    if (x$graph_info$write_backups) {
-      save_graph_as_rds(graph = x)
+    if (graph$graph_info$write_backups) {
+      save_graph_as_rds(graph = graph)
     }
 
-    return(x)
-  }
-
-  if (object_type == "node_df") {
-    return(nodes_df)
-  }
+  graph
 }

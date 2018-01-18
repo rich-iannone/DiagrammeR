@@ -47,8 +47,8 @@
 #' # Bind the data frame as an edge attribute
 #' # to the edge with ID `1`
 #' graph <-
+#'   graph %>%
 #'   set_df_as_edge_attr(
-#'     graph = graph,
 #'     edge = 1,
 #'     df = df)
 #' @importFrom dplyr filter everything mutate select bind_rows as_tibble

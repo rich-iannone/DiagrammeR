@@ -14,7 +14,8 @@
 #'     k = 2, h = 2)
 #'
 #' # Inspect the graph's edges
-#' get_edges(graph)
+#' graph %>%
+#'   get_edges()
 #'
 #' # Select all edges associated
 #' # with nodes `1` and `2`

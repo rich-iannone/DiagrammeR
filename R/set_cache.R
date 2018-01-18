@@ -30,9 +30,9 @@
 #'     col = "closeness")
 #'
 #' # Get the graph's cache
-#' get_cache(
-#'   graph,
-#'   name = "closeness_vector")
+#' graph %>%
+#'   get_cache(
+#'     name = "closeness_vector")
 #'
 #' # Get the difference of betweenness and closeness
 #' # values for nodes in the graph and store in the
@@ -45,9 +45,9 @@
 #'                get_closeness(.)$closeness)
 #'
 #' # Get the graph's cache
-#' get_cache(
-#'   graph,
-#'   name = "difference")
+#' graph %>%
+#'   get_cache(
+#'     name = "difference")
 #' @export set_cache
 
 set_cache <- function(graph,

@@ -50,7 +50,8 @@
 #'
 #' # Get the graph's internal edf to show that the
 #' # join has been made
-#' get_edge_df(graph)
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom dplyr select everything
 #' @export join_edge_attrs
 

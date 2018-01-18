@@ -1,9 +1,9 @@
-#' Set edge attributes
+#' Set edge attribute values
 #' @description From a graph object of class
-#' \code{dgr_graph} or an edge data frame, set edge
-#' attribute properties for one or more edges
-#' @param x either a graph object of class
-#' \code{dgr_graph} or an edge data frame.
+#' \code{dgr_graph}, set edge attribute
+#' values for one or more edges.
+#' @param graph a graph object of class
+#' \code{dgr_graph}.
 #' @param edge_attr the name of the attribute to set.
 #' @param values the values to be set for the chosen
 #' attribute for the chosen edges.
@@ -13,9 +13,8 @@
 #' @param to an optional vector of node IDs from which
 #' the edge is incoming for filtering list of nodes
 #' with incoming edges in the graph.
-#' @return either a graph object of class
-#' \code{dgr_graph} or an edge data frame, depending on
-#' what type of object was supplied to \code{x}.
+#' @return a graph object of class
+#' \code{dgr_graph}.
 #' @examples
 #' # Create a simple graph
 #' ndf <-
@@ -88,7 +87,7 @@
 #' @importFrom rlang enquo UQ
 #' @export set_edge_attrs
 
-set_edge_attrs <- function(x,
+set_edge_attrs <- function(graph,
                            edge_attr,
                            values,
                            from = NULL,
@@ -116,17 +115,8 @@ set_edge_attrs <- function(x,
     }
   }
 
-  if (inherits(x, "dgr_graph")) {
-    object_type <- "dgr_graph"
-    edges_df <- x$edges_df
-  }
-
-  if (inherits(x, "data.frame")) {
-    if (all(c("from", "to") %in% colnames(x))) {
-      object_type <- "edge_df"
-      edges_df <- x
-    }
-  }
+  # Extract the graph's edf
+  edges_df <- x$edges_df
 
   if (length(values) != 1 &
       length(values) != nrow(edges_df)) {
@@ -197,32 +187,24 @@ set_edge_attrs <- function(x,
     }
   }
 
-  if (object_type == "dgr_graph") {
+  # Update the graph object
+  x$edges_df = edges_df
 
-    # Update the graph object
-    x$edges_df = edges_df
+  # Update the `graph_log` df with an action
+  x$graph_log <-
+    add_action_to_log(
+      graph_log = x$graph_log,
+      version_id = nrow(x$graph_log) + 1,
+      function_used = "set_edge_attrs",
+      time_modified = time_function_start,
+      duration = graph_function_duration(time_function_start),
+      nodes = nrow(x$nodes_df),
+      edges = nrow(x$edges_df))
 
-    # Update the `graph_log` df with an action
-    x$graph_log <-
-      add_action_to_log(
-        graph_log = x$graph_log,
-        version_id = nrow(x$graph_log) + 1,
-        function_used = "set_edge_attrs",
-        time_modified = time_function_start,
-        duration = graph_function_duration(time_function_start),
-        nodes = nrow(x$nodes_df),
-        edges = nrow(x$edges_df))
-
-    # Write graph backup if the option is set
-    if (x$graph_info$write_backups) {
-      save_graph_as_rds(graph = x)
-    }
-
-    return(x)
+  # Write graph backup if the option is set
+  if (x$graph_info$write_backups) {
+    save_graph_as_rds(graph = x)
   }
 
-  if (object_type == "edge_df") {
-
-    return(edges_df)
-  }
+  graph
 }

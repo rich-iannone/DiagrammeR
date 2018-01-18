@@ -15,12 +15,13 @@
 #'   add_cycle(n = 3)
 #'
 #' # Check if the graph is connected
-#' is_graph_connected(graph)
-#' #> [1] FALSE
+#' graph %>%
+#'   is_graph_connected()
 #'
 #' # Get the graph's weakly-connected
 #' # components
-#' get_w_connected_cmpts(graph)
+#' graph %>%
+#'   get_w_connected_cmpts()
 #' @importFrom igraph components
 #' @export get_w_connected_cmpts
 

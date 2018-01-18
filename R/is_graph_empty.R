@@ -9,7 +9,8 @@
 #' graph <- create_graph()
 #'
 #' # Determine whether the graph is empty
-#' is_graph_empty(graph)
+#' graph %>%
+#'   is_graph_empty()
 #'
 #' # Create a non-empty graph
 #' graph <-
@@ -17,7 +18,8 @@
 #'   add_n_nodes(n = 3)
 #'
 #' # Determine whether this graph is empty
-#' is_graph_empty(graph)
+#' graph %>%
+#'   is_graph_empty()
 #' @export is_graph_empty
 
 is_graph_empty <- function(graph) {

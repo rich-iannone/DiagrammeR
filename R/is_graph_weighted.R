@@ -31,7 +31,8 @@
 #'
 #' # Determine whether this graph
 #' # is weighted
-#' is_graph_weighted(graph)
+#' graph %>%
+#'   is_graph_weighted()
 #' @export is_graph_weighted
 
 is_graph_weighted <- function(graph) {

@@ -88,7 +88,8 @@
 #' # Show the graph's node data frame
 #' # to confirm that `x` and `y` values
 #' # were added to each of the nodes
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @importFrom stringr str_split
 #' @importFrom dplyr bind_rows bind_cols filter_ arrange_ left_join tibble
 #' @export layout_nodes_w_string

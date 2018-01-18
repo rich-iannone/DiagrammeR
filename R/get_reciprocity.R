@@ -28,7 +28,8 @@
 #' # 4 is the number reciprocating edges
 #' # and 7 is the total number of edges
 #' # in the graph)
-#' get_reciprocity(graph)
+#' graph %>%
+#'   get_reciprocity()
 #'
 #' # For an undirected graph, all edges
 #' # are reciprocal, so the ratio will

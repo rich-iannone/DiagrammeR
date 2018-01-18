@@ -36,7 +36,8 @@
 #' # Get the strongly connected
 #' # components as a data frame of
 #' # nodes and their groupings
-#' get_s_connected_cmpts(graph)
+#' graph %>%
+#'   get_s_connected_cmpts()
 #' @importFrom igraph components
 #' @export get_s_connected_cmpts
 
