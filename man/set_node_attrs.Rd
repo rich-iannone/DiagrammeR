@@ -7,25 +7,29 @@
 set_node_attrs(graph, node_attr, values, nodes = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
-\item{node_attr}{the name of the attribute to set.}
+\item{node_attr}{the name of the
+attribute to set.}
 
-\item{values}{the values to be set for the chosen
-attribute for the chosen nodes.}
+\item{values}{the values to be
+set for the chosen attribute for
+the chosen nodes.}
 
-\item{nodes}{an optional vector of node IDs for
-filtering the list of nodes present in the graph.}
+\item{nodes}{an optional vector
+of node IDs for filtering the list
+of nodes present in the graph.}
 }
 \value{
 a graph object of class
 \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, set node attribute
-values for one or more nodes.
+From a graph object of
+class \code{dgr_graph}, set node
+attribute values for one or more
+nodes.
 }
 \examples{
 # Create a node data frame (ndf)

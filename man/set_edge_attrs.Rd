@@ -7,30 +7,37 @@
 set_edge_attrs(graph, edge_attr, values, from = NULL, to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 
-\item{edge_attr}{the name of the attribute to set.}
+\item{edge_attr}{the name of the
+attribute to set.}
 
-\item{values}{the values to be set for the chosen
-attribute for the chosen edges.}
+\item{values}{the values to be
+set for the chosen attribute for
+the chosen edges.}
 
-\item{from}{an optional vector of node IDs from
-which the edge is outgoing for filtering list of
-nodes with outgoing edges in the graph.}
+\item{from}{an optional vector of
+node IDs from which the edge is
+outgoing for filtering list of
+nodes with outgoing edges in the
+graph.}
 
-\item{to}{an optional vector of node IDs from which
-the edge is incoming for filtering list of nodes
-with incoming edges in the graph.}
+\item{to}{an optional vector of
+node IDs from which the edge is
+incoming for filtering list of
+nodes with incoming edges in the
+graph.}
 }
 \value{
 a graph object of class
 \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, set edge attribute
-values for one or more edges.
+From a graph object of
+class \code{dgr_graph}, set edge
+attribute values for one or more
+edges.
 }
 \examples{
 # Create a simple graph
@@ -54,21 +61,10 @@ graph <-
 
 # Set attribute `color = "green"`
 # for edges `1`->`4` and `3`->`1`
-# using the graph object
+# in the graph
 graph <-
+  graph \%>\%
   set_edge_attrs(
-    x = graph,
-    edge_attr = color,
-    values = "green",
-    from = c(1, 3),
-    to = c(4, 1))
-
-# Set attribute `color = "green"`
-# for edges `1`->`4` and `3`->`1`
-# using the edge data frame
-edges <-
-  set_edge_attrs(
-    x = edf,
     edge_attr = color,
     values = "green",
     from = c(1, 3),
@@ -77,8 +73,8 @@ edges <-
 # Set attribute `color = "blue"`
 # for all edges in the graph
 graph <-
+  graph \%>\%
   set_edge_attrs(
-    x = graph,
     edge_attr = color,
     values = "blue")
 
@@ -86,8 +82,8 @@ graph <-
 # for all edges in graph outbound
 # from node with ID value `1`
 graph <-
+  graph \%>\%
   set_edge_attrs(
-    x = graph,
     edge_attr = color,
     values = "pink",
     from = 1)
@@ -96,8 +92,8 @@ graph <-
 # for all edges in graph inbound
 # to node with ID `1`
 graph <-
+  graph \%>\%
   set_edge_attrs(
-    x = graph,
     edge_attr = color,
     values = "black",
     to = 1)
