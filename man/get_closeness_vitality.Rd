@@ -7,16 +7,18 @@
 get_closeness_vitality(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of
+class \code{dgr_graph}.}
 }
 \value{
-a data frame with closeness vitality
-values for each of the nodes.
+a data frame with closeness
+vitality values for each of the
+nodes.
 }
 \description{
-Get the closeness vitality values
-for all nodes in the graph.
+Get the closeness
+vitality values for all nodes in
+the graph.
 }
 \examples{
 # Create a random graph using the
@@ -28,17 +30,21 @@ graph <-
     m = 12,
     set_seed = 23)
 
-# Get closeness vitality values for
-# all nodes in the graph
-get_closeness_vitality(graph)
+# Get closeness vitality values
+# for all nodes in the graph
+graph \%>\%
+  get_closeness_vitality()
 
-# Add the closeness vitality values
-# to the graph as a node attribute
+# Add the closeness vitality
+# values to the graph as a
+# node attribute
 graph <-
   graph \%>\%
   join_node_attrs(
     df = get_closeness_vitality(.))
 
-# Display the graph's node data frame
-get_node_df(graph)
+# Display the graph's
+# node data frame
+graph \%>\%
+  get_node_df()
 }

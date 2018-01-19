@@ -30,11 +30,14 @@ graph <-
     m = 15,
     set_seed = 23)
 
-# Get the group membership values for all nodes
-# in the graph through calculation of the leading
-# non-negative eigenvector of the modularity matrix
-# of the graph
-get_cmty_edge_btwns(graph)
+# Get the group membership
+# values for all nodes in the
+# graph through calculation of
+# the leading non-negative
+# eigenvector of the modularity
+# matrix of the graph
+graph \%>\%
+  get_cmty_edge_btwns()
 
 # Add the group membership
 # values to the graph
@@ -44,6 +47,8 @@ graph <-
   join_node_attrs(
      df = get_cmty_edge_btwns(.))
 
-# Display the graph's node data frame
-get_node_df(graph)
+# Display the graph's
+# node data frame
+graph \%>\%
+  get_node_df()
 }

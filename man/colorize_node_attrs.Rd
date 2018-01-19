@@ -75,9 +75,9 @@ graph <-
     df = get_cmty_walktrap(.))
 
 # Inspect the number of distinct communities
-get_node_attrs(
-  graph = graph,
-  node_attr = walktrap_group) \%>\%
+graph \%>\%
+  get_node_attrs(
+    node_attr = walktrap_group) \%>\%
   unique() \%>\%
   sort()
 

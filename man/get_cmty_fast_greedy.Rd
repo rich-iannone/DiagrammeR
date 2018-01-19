@@ -30,18 +30,24 @@ graph <-
     k = 2,
     h = 2)
 
-# Get the group membership values for all
-# nodes in the graph through the greedy
-# optimization of modularity algorithm
-get_cmty_fast_greedy(graph)
+# Get the group membership
+# values for all nodes in
+# the graph through the greedy
+# optimization of modularity
+# algorithm
+graph \%>\%
+  get_cmty_fast_greedy()
 
-# Add the group membership values to the
-# graph as a node attribute
+# Add the group membership
+# values to the graph as a
+# node attribute
 graph <-
   graph \%>\%
   join_node_attrs(
     df = get_cmty_fast_greedy(.))
 
-# Display the graph's node data frame
-get_node_df(graph)
+# Display the graph's
+# node data frame
+graph \%>\%
+  get_node_df()
 }

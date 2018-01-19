@@ -44,8 +44,8 @@ graph <-
 # Select nodes with ID
 # values `1` and `3`
 graph <-
+  graph \%>\%
   select_nodes(
-    graph = graph,
     nodes = c(1, 3))
 
 # Verify that a node

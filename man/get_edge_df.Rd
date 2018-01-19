@@ -18,7 +18,7 @@ From a graph, obtain an edge data frame
 with all current edge attributes.
 }
 \examples{
-# Create a graph using several piped functions
+# Create a graph
 graph <-
   create_graph() \%>\%
   add_n_nodes(
@@ -29,7 +29,8 @@ graph <-
     n = 5,
     direction = "from",
     type = "b") \%>\%
-  select_edges_by_node_id(nodes = 3:5) \%>\%
+  select_edges_by_node_id(
+    nodes = 3:5) \%>\%
   set_edge_attrs_ws(
     edge_attr = color,
     value = "green") \%>\%
@@ -45,6 +46,8 @@ graph <-
     value = "b") \%>\%
   clear_selection()
 
-# Get the graph's internal edge data frame (edf)
-get_edge_df(graph)
+# Get the graph's internal
+# edge data frame (edf)
+graph \%>\%
+  get_edge_df()
 }

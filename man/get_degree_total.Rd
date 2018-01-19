@@ -36,9 +36,10 @@ graph <-
     m = 15,
     set_seed = 23)
 
-# Get the total degree values for
-# all nodes in the graph
-get_degree_total(graph)
+# Get the total degree values
+# for all nodes in the graph
+graph \%>\%
+  get_degree_total()
 
 # Add the total degree values
 # to the graph as a node
@@ -48,6 +49,8 @@ graph <-
   join_node_attrs(
     df = get_degree_total(.))
 
-# Display the graph's node data frame
-get_node_df(graph)
+# Display the graph's
+# node data frame
+graph \%>\%
+  get_node_df()
 }

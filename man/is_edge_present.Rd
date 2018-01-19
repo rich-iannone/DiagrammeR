@@ -49,32 +49,31 @@ graph <-
 
 # Find out if edge ID `3`
 # is present in the graph
-is_edge_present(
-  graph = graph,
-  edge = 3)
+graph \%>\%
+  is_edge_present(edge = 3)
 
 # Determine if there are any edges
 # with the definition `1` -> `2`
-is_edge_present(
-  graph = graph,
-  from = 1,
-  to = 2)
+graph \%>\%
+  is_edge_present(
+    from = 1,
+    to = 2)
 
 # Determine if there are any edges
 # with the definition `4` -> `5`
-is_edge_present(
-  graph = graph,
-  from = 4,
-  to = 5)
+graph \%>\%
+  is_edge_present(
+    from = 4,
+    to = 5)
 
 # Determine whether an edge,
 # defined by its labels as
 # `two` -> `three`, exists in
 # the graph
-is_edge_present(
-  graph = graph,
-  from = "two",
-  to = "three")
+graph \%>\%
+  is_edge_present(
+    from = "two",
+    to = "three")
 
 # Set the graph as undirected
 # and determine whether an

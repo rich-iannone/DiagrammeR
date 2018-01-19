@@ -37,13 +37,14 @@ graph <-
 
 # Get the constaint scores for all
 # nodes in the graph
-get_constraint(graph)
+graph \%>\%
+  get_constraint()
 
 # Get the constaint scores
 # for nodes `5` and `7`
-get_constraint(
-  graph = graph,
-  nodes = c(5, 7))
+graph \%>\%
+  get_constraint(
+    nodes = c(5, 7))
 
 # Add the constraint scores
 # to the graph as a node
@@ -54,5 +55,6 @@ graph <-
     df = get_constraint(.))
 
 # Display the graph's node data frame
-get_node_df(graph)
+graph \%>\%
+  get_node_df()
 }

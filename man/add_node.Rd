@@ -87,9 +87,8 @@ graph \%>\%
 # Add a node with a `type`
 # value defined
 graph <-
-  add_node(
-    graph = graph,
-    type = "person")
+  graph \%>\%
+  add_node(type = "person")
 
 # View the graph's internal
 # node data frame (ndf)

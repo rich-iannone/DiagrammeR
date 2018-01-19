@@ -33,8 +33,8 @@ graph \%>\%
 # Select all edges associated
 # with nodes `1` and `2`
 graph <-
+  graph \%>\%
   select_edges_by_node_id(
-    graph = graph,
     nodes = 1:2)
 
 # Reverse the edge directions

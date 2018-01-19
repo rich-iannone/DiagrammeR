@@ -36,15 +36,19 @@ graph <-
 # through the multi-level
 # optimization of modularity
 # algorithm
-get_cmty_louvain(graph)
+graph \%>\%
+  get_cmty_louvain()
 
-# Add the group membership values to the
-# graph as a node attribute
+# Add the group membership
+# values to the graph as a
+# node attribute
 graph <-
   graph \%>\%
   join_node_attrs(
     df = get_cmty_louvain(.))
 
-# Display the graph's node data frame
-get_node_df(graph)
+# Display the graph's
+# node data frame
+graph \%>\%
+  get_node_df()
 }

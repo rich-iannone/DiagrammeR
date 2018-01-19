@@ -37,7 +37,8 @@ graph <-
 
 # Get the indegree values for
 # all nodes in the graph
-get_degree_in(graph)
+graph \%>\%
+  get_degree_in()
 
 # Add the indegree values
 # to the graph as a node
@@ -47,6 +48,8 @@ graph <-
   join_node_attrs(
     df = get_degree_in(.))
 
-# Display the graph's node data frame
-get_node_df(graph)
+# Display the graph's
+# node data frame
+graph \%>\%
+  get_node_df()
 }

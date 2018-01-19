@@ -37,7 +37,8 @@ graph <-
 # the leading non-negative
 # eigenvector of the modularity
 # matrix of the graph
-get_cmty_l_eigenvec(graph)
+graph \%>\%
+  get_cmty_l_eigenvec()
 
 # Add the group membership
 # values to the graph as a node
@@ -48,5 +49,6 @@ graph <-
     df = get_cmty_l_eigenvec(.))
 
 # Display the graph's node data frame
-get_node_df(graph)
+graph \%>\%
+  get_node_df()
 }

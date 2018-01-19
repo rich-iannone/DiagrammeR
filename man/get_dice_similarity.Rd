@@ -47,7 +47,7 @@ graph <-
 # Get the Dice similarity
 # values for nodes `5`, `6`,
 # and `7`
-get_dice_similarity(
-  graph = graph,
-  nodes = 5:7)
+graph \%>\%
+  get_dice_similarity(
+    nodes = 5:7)
 }
