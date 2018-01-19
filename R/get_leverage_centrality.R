@@ -26,7 +26,8 @@
 #'
 #' # Get leverage centrality values
 #' # for all nodes in the graph
-#' get_leverage_centrality(graph)
+#' graph %>%
+#'   get_leverage_centrality()
 #'
 #' # Add the leverage centrality
 #' # values to the graph as a
@@ -37,7 +38,8 @@
 #'     df = get_leverage_centrality(.))
 #'
 #' # Display the graph's node data frame
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @importFrom igraph degree neighbors
 #' @importFrom purrr map
 #' @export get_leverage_centrality

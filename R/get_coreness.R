@@ -23,7 +23,8 @@
 #'
 #' # Get coreness values for
 #' # all nodes in the graph
-#' get_coreness(graph)
+#' graph %>%
+#'   get_coreness()
 #'
 #' # Add the coreness values
 #' # to the graph as a node
@@ -34,7 +35,8 @@
 #'     df = get_coreness(.))
 #'
 #' # Display the graph's node data frame
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @importFrom igraph coreness
 #' @export get_coreness
 

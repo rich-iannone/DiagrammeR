@@ -34,7 +34,8 @@
 #' # Get the graph's internal
 #' # ndf to show which node
 #' # attributes are available
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #'
 #' # Make a copy the `value`
 #' # node attribute as the
@@ -48,7 +49,8 @@
 #' # Get the graph's internal
 #' # ndf to show that the node
 #' # attribute had been copied
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @importFrom dplyr bind_cols
 #' @importFrom rlang enquo UQ
 #' @export copy_node_attrs

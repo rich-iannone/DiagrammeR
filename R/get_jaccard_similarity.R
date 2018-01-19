@@ -31,9 +31,9 @@
 #' # Get the Jaccard similarity
 #' # values for nodes `5`, `6`,
 #' # and `7`
-#' get_jaccard_similarity(
-#'   graph = graph,
-#'   nodes = 5:7)
+#' graph %>%
+#'   get_jaccard_similarity(
+#'     nodes = 5:7)
 #' @importFrom igraph similarity V
 #' @export get_jaccard_similarity
 

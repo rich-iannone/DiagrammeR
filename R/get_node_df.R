@@ -1,11 +1,12 @@
 #' Get a node data frame from a graph
-#' @description From a graph, obtain a node data frame
-#' with all current node attributes.
+#' @description From a graph, obtain a
+#' node data frame with all current
+#' node attributes.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a node data frame.
 #' @examples
-#' # Create a graph using several piped functions
+#' # Create a graph
 #' graph <-
 #'   create_graph() %>%
 #'   add_n_nodes(
@@ -16,12 +17,14 @@
 #'     n = 5,
 #'     direction = "from",
 #'     type = "b") %>%
-#'   select_nodes_by_id(nodes = 1) %>%
+#'   select_nodes_by_id(
+#'     nodes = 1) %>%
 #'   set_node_attrs_ws(
 #'     node_attr = value,
 #'     value = 25.3) %>%
 #'   clear_selection() %>%
-#'   select_nodes_by_id(nodes = 2:4) %>%
+#'   select_nodes_by_id(
+#'     nodes = 2:4) %>%
 #'   set_node_attrs_ws(
 #'     node_attr = color,
 #'     value = "grey70") %>%
@@ -33,7 +36,8 @@
 #'
 #' # Get the graph's internal node
 #' # data frame (ndf)
-#' get_node_df(graph)
+#' graph %>%
+#'   get_node_df()
 #' @export get_node_df
 
 get_node_df <- function(graph) {

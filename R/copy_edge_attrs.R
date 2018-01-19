@@ -28,7 +28,8 @@
 #' # Get the graph's internal
 #' # edf to show which edge
 #' # attributes are available
-#' get_edge_df(graph)
+#' graph %>%
+#'   get_edge_df()
 #'
 #' # Make a copy the `color`
 #' # edge attribute as the
@@ -42,7 +43,8 @@
 #' # Get the graph's internal
 #' # edf to show that the edge
 #' # attribute had been copied
-#' get_edge_df(graph)
+#' graph %>%
+#'   get_edge_df()
 #' @importFrom dplyr bind_cols
 #' @importFrom rlang enquo UQ
 #' @export copy_edge_attrs

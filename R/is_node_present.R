@@ -15,26 +15,24 @@
 #'   add_path(
 #'     n = 4,
 #'     type = "path",
-#'     label = c("one", "two",
-#'               "three", "four"))
+#'     label = c(
+#'       "one", "two",
+#'       "three", "four"))
 #'
 #' # Determine if there is a node
 #' # with ID `1` in the graph
-#' is_node_present(
-#'   graph = graph,
-#'   node = 1)
+#' graph %>%
+#'   is_node_present(node = 1)
 #'
 #' # Determine if there is a node
 #' # with ID `5` in the graph
-#' is_node_present(
-#'   graph = graph,
-#'   node = 5)
+#' graph %>%
+#'   is_node_present(node = 5)
 #'
 #' # Determine if there is a node
 #' # with label `two` in the graph
-#' is_node_present(
-#'   graph = graph,
-#'   node = "two")
+#' graph %>%
+#'   is_node_present(node = "two")
 #' @export is_node_present
 
 is_node_present <- function(graph,

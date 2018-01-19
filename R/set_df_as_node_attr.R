@@ -46,8 +46,8 @@
 #' # Bind the data frame as a node attribute
 #' # of node `1`
 #' graph <-
+#'   graph %>%
 #'   set_df_as_node_attr(
-#'     graph = graph,
 #'     node = 1,
 #'     df = df)
 #'

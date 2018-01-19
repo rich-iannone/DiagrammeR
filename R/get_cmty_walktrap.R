@@ -1,13 +1,15 @@
 #' Get community membership using the Walktrap method
-#' @description With the Walktrap community finding
-#' algorithm, obtain the group membership values for
+#' @description With the Walktrap
+#' community finding algorithm, obtain
+#' the group membership values for
 #' each of the nodes in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param steps the number of steps to take for each
-#' of the random walks.
-#' @return a data frame with group membership
-#' assignments for each of the nodes.
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param steps the number of steps
+#' to take for each of the random walks.
+#' @return a data frame with group
+#' membership assignments for each of
+#' the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -23,7 +25,8 @@
 #' # values for all nodes in the
 #' # graph through the Walktrap
 #' # community finding algorithm
-#' get_cmty_walktrap(graph)
+#' graph %>%
+#'   get_cmty_walktrap()
 #'
 #' # Add the group membership
 #' # values to the graph as a
@@ -33,8 +36,10 @@
 #'   join_node_attrs(
 #'     df = get_cmty_walktrap(.))
 #'
-#' # Display the graph's node data frame
-#' get_node_df(graph)
+#' # Display the graph's
+#' # node data frame
+#' graph %>%
+#'   get_node_df()
 #' @importFrom igraph cluster_walktrap membership
 #' @export get_cmty_walktrap
 
