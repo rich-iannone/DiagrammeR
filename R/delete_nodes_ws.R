@@ -39,7 +39,8 @@
 #'   delete_nodes_ws()
 #'
 #' # Get a count of nodes in the graph
-#' count_nodes(graph)
+#' graph %>%
+#'   count_nodes()
 #' @export delete_nodes_ws
 
 delete_nodes_ws <- function(graph) {
