@@ -49,5 +49,6 @@ graph <-
   delete_edges_ws()
 
 # Get a count of edges in the graph
-count_edges(graph)
+graph \%>\%
+  count_edges()
 }
