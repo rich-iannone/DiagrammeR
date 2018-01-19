@@ -160,7 +160,7 @@ set_df_as_node_attr <- function(graph,
   # `set_node_attrs()` function
   graph <-
     set_node_attrs(
-      x = graph,
+      graph = graph,
       node_attr = "df_id",
       values = df_id,
       nodes = node)

@@ -209,7 +209,7 @@ rescale_node_attrs <- function(graph,
   # in selection
   graph <-
     set_node_attrs(
-      x = graph,
+      graph = graph,
       node_attr = rlang::UQ(node_attr_to_2),
       values = nodes_attr_vector_rescaled)
 

@@ -146,7 +146,7 @@ set_df_as_edge_attr <- function(graph,
   # `set_edge_attrs()` function
   graph <-
     set_edge_attrs(
-      x = graph,
+      graph = graph,
       edge_attr = "df_id",
       values = df_id,
       from = graph$edges_df[which(graph$edges_df[, 1] == edge), 2],

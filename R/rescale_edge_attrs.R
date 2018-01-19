@@ -212,7 +212,7 @@ rescale_edge_attrs <- function(graph,
   # in selection
   graph <-
     set_edge_attrs(
-      x = graph,
+      graph = graph,
       edge_attr = rlang::UQ(edge_attr_to_2),
       values = edges_attr_vector_rescaled)
 
