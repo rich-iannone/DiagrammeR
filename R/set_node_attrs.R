@@ -1,14 +1,18 @@
 #' Set node attribute values
-#' @description From a graph object of class
-#' \code{dgr_graph}, set node attribute
-#' values for one or more nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param node_attr the name of the attribute to set.
-#' @param values the values to be set for the chosen
-#' attribute for the chosen nodes.
-#' @param nodes an optional vector of node IDs for
-#' filtering the list of nodes present in the graph.
+#' @description From a graph object of
+#' class \code{dgr_graph}, set node
+#' attribute values for one or more
+#' nodes.
+#' @param graph a graph object of
+#' class \code{dgr_graph}.
+#' @param node_attr the name of the
+#' attribute to set.
+#' @param values the values to be
+#' set for the chosen attribute for
+#' the chosen nodes.
+#' @param nodes an optional vector
+#' of node IDs for filtering the list
+#' of nodes present in the graph.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
