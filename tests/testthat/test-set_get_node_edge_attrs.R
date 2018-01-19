@@ -10,7 +10,7 @@ test_that("setting node attributes is possible", {
   # Set attribute for node `1`
   graph_set_a <-
     set_node_attrs(
-      x = graph,
+      graph = graph,
       nodes = 1,
       node_attr = value,
       values = 5)
@@ -23,7 +23,7 @@ test_that("setting node attributes is possible", {
   # Set attribute for node `1` with a different value
   graph_set_a <-
     set_node_attrs(
-      x = graph,
+      graph = graph,
       nodes = 1,
       node_attr = value,
       values = 8)
@@ -54,7 +54,7 @@ test_that("setting node attributes is possible", {
   # Set attribute for all nodes
   graph_set_all <-
     set_node_attrs(
-      x = graph,
+      graph = graph,
       node_attr = value,
       values = 5)
 
@@ -76,50 +76,10 @@ test_that("setting node attributes is possible", {
     graph_node_selection$nodes_df[
       which(graph_node_selection$nodes_df[, 1] == 1), 4], 5)
 
-  # Get the node data frame from the graph as a separate object
-  graph_node_df <- graph$nodes_df
-
-  # Set attribute for named node `1` in the ndf
-  graph_node_df_set_a <-
-    set_node_attrs(
-      x = graph_node_df,
-      nodes = 1,
-      node_attr = value,
-      values = 5)
-
-  # Expect that node `1` has node attr set for `value`
-  expect_equal(
-    graph_node_df_set_a[
-      which(graph_node_df_set_a[, 1] == 1), 4], 5)
-
-  # Set attribute for named node `1` with a different value
-  graph_node_df_set_a_node_attr_df <-
-    set_node_attrs(
-      x = graph_node_df_set_a,
-      nodes = 1,
-      node_attr = value,
-      values = 8)
-
-  # Expect that node `1` in the ndf has node attr set for `value`
-  expect_equal(
-    graph_node_df_set_a_node_attr_df[
-      which(graph_node_df_set_a_node_attr_df[, 1] == 1), 4], 8)
-
-  # Set attribute for all nodes in the ndf
-  graph_node_df_set_all <-
-    set_node_attrs(
-      x = graph_node_df,
-      node_attr = value,
-      values = 5)
-
-  # Expect that all nodes in the ndf will have the attribute set
-  expect_true(
-    all(graph_node_df_set_all$value == 5))
-
   # Expect an error if the length of `value` is greater than 1
   expect_error(
     set_node_attrs(
-      x = graph,
+      graph = graph,
       nodes = 1,
       node_attr = value,
       values = c(1, 2)))
@@ -135,7 +95,7 @@ test_that("setting edge attributes is possible", {
   # Set edge attribute for edge `1`->`2`
   graph_set_a_1 <-
     set_edge_attrs(
-      x = graph,
+      graph = graph,
       from = 1,
       to = 2,
       edge_attr = value,
@@ -150,7 +110,7 @@ test_that("setting edge attributes is possible", {
   # Set attribute for named edge `1`->`2` with a different value
   graph_set_a_1 <-
     set_edge_attrs(
-      x = graph_set_a_1,
+      graph = graph_set_a_1,
       from = 1,
       to = 2,
       edge_attr = value,
@@ -185,7 +145,7 @@ test_that("setting edge attributes is possible", {
   # Set attribute for all edges
   graph_set_all <-
     set_edge_attrs(
-      x = graph,
+      graph = graph,
       edge_attr = value,
       values = 5)
 

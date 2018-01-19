@@ -12,7 +12,8 @@ test_that("Converting to igraph is possible", {
 
   # Create an igraph object from a
   # DiagrammeR graph object
-  igraph_graph <- to_igraph(graph)
+  igraph_graph <-
+    to_igraph(graph)
 
   # Expect that the new object is an igraph object
   expect_is(
