@@ -43,11 +43,11 @@
 #'     graph_series = series,
 #'     index = 2)
 #'
-#' # Use `series_info()` function
-#' # to ensure that a graph
+#' # With `get_graph_series_info()`,
+#' # we can ensure that a graph
 #' # was removed
 #' series %>%
-#'   series_info()
+#'   get_graph_series_info()
 #' @export remove_from_series
 
 remove_from_series <- function(graph_series,
