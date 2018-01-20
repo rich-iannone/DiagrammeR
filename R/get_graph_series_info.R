@@ -32,10 +32,10 @@
 #'
 #' # Get information on the graphs in the series
 #' series %>%
-#'   series_info()
-#' @export series_info
+#'   get_graph_series_info()
+#' @export get_graph_series_info
 
-series_info <- function(graph_series) {
+get_graph_series_info <- function(graph_series) {
 
   graphs_in_series <-
     graph_count(graph_series)
