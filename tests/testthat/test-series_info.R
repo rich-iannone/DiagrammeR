@@ -6,7 +6,8 @@ test_that("graph series information can be obtained", {
   empty_series <- create_graph_series()
 
   empty_series_info <-
-    series_info(graph_series = empty_series)
+    empty_series %>%
+    get_graph_series_info()
 
   # Expect that `empty_series_info` is a
   # data frame object
@@ -87,7 +88,9 @@ test_that("graph series information can be obtained", {
       graph = graph_3)
 
   # Get information on the graphs in the series
-  info_on_series <- series_info(series)
+  info_on_series <-
+    series %>%
+    get_graph_series_info()
 
   # Expect that `info_on_series` is a data frame object
   expect_is(
@@ -152,7 +155,8 @@ test_that("graph series information can be obtained", {
       graph = graph)
 
   info_on_series_temporal <-
-    series_info(graph_series_temporal_type)
+    graph_series_temporal_type %>%
+    get_graph_series_info()
 
   # Expect that `info_on_series_temporal` is
   # a data frame object
