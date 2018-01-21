@@ -64,7 +64,7 @@
 #'
 #' # Subset graph series by sequence
 #' series_sequence_subset <-
-#'   subset_series(
+#'   filter_graph_series(
 #'     graph_series = series_temporal,
 #'     by = "number",
 #'     values = 2)
@@ -76,7 +76,7 @@
 #'
 #' # Subset graph series by date-time
 #' series_time_subset <-
-#'   subset_series(
+#'   filter_graph_series(
 #'     graph_series = series_temporal,
 #'     by = "time",
 #'     values = c("2015-03-25 12:00",
@@ -87,12 +87,12 @@
 #' # the series
 #' series_time_subset %>%
 #'   graph_count()
-#' @export subset_series
+#' @export filter_graph_series
 
-subset_series <- function(graph_series,
-                          by = "number",
-                          values,
-                          tz = NULL) {
+filter_graph_series <- function(graph_series,
+                                by = "number",
+                                values,
+                                tz = NULL) {
 
   if (graph_count(graph_series = graph_series) == 0) {
 
@@ -207,7 +207,7 @@ subset_series <- function(graph_series,
 
         graph_series <-
           remove_from_series(graph_series = graph_series,
-                                   index = i)
+                             index = i)
       }
 
       return(graph_series)
