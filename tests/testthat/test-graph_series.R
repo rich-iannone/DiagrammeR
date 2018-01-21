@@ -309,7 +309,7 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Subset graph series by sequence
   series_sequence_subset <-
-    subset_series(
+    filter_graph_series(
       graph_series = series_temporal,
       by = "number",
       values = 2)
@@ -326,7 +326,7 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Subset graph series by date-time
   series_time_subset <-
-    subset_series(
+    filter_graph_series(
       graph_series = series_temporal,
       by = "time",
       values = c("2015-03-25 12:00",
