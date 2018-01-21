@@ -131,10 +131,10 @@ the source and sink nodes.</p>
 
 <span class='co'># Determine the minimum cut</span>
 <span class='co'># between nodes `1` and `4`</span>
-<span class='fu'>get_min_cut_between</span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_min_cut_between</span>(
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Create a cycle graph with</span>
 <span class='co'># randomized values given to all</span>
 <span class='co'># edges as the `capacity` attribute</span>
@@ -155,10 +155,10 @@ the source and sink nodes.</p>
 <span class='co'># between nodes `1` and `4` for</span>
 <span class='co'># this graph, where `capacity`is</span>
 <span class='co'># set as an edge attribute</span>
-<span class='fu'>get_min_cut_between</span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_capacity</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 4.479822</div><div class='input'>
+<span class='no'>graph_capacity</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_min_cut_between</span>(
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 4.479822</div><div class='input'>
 <span class='co'># Create a full graph and then</span>
 <span class='co'># get the minimum cut requirement</span>
 <span class='co'># between nodes `2` and `8`</span>

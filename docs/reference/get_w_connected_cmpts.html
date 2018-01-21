@@ -119,11 +119,12 @@ in different weakly connected components.</p>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>)
 
 <span class='co'># Check if the graph is connected</span>
-<span class='fu'><a href='is_graph_connected.html'>is_graph_connected</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='co'>#&gt; [1] FALSE</span>
-
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='is_graph_connected.html'>is_graph_connected</a></span>()</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='co'># Get the graph's weakly-connected</span>
 <span class='co'># components</span>
-<span class='fu'>get_w_connected_cmpts</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id wc_component
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_w_connected_cmpts</span>()</div><div class='output co'>#&gt;   id wc_component
 #&gt; 1  1            1
 #&gt; 2  2            1
 #&gt; 3  3            1

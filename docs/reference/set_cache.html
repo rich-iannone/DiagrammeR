@@ -143,9 +143,9 @@ frame must provided here.</p></td>
     <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"closeness"</span>)
 
 <span class='co'># Get the graph's cache</span>
-<span class='fu'><a href='get_cache.html'>get_cache</a></span>(
-  <span class='no'>graph</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"closeness_vector"</span>)</div><div class='output co'>#&gt;  [1] 0.07692308 0.08333333 0.07692308 0.06666667 0.05555556 0.06250000
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_cache.html'>get_cache</a></span>(
+    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"closeness_vector"</span>)</div><div class='output co'>#&gt;  [1] 0.07692308 0.08333333 0.07692308 0.06666667 0.05555556 0.06250000
 #&gt;  [7] 0.06666667 0.05000000 0.06666667 0.04761905</div><div class='input'>
 <span class='co'># Get the difference of betweenness and closeness</span>
 <span class='co'># values for nodes in the graph and store in the</span>
@@ -158,9 +158,9 @@ frame must provided here.</p></td>
                <span class='fu'><a href='get_closeness.html'>get_closeness</a></span>(<span class='no'>.</span>)$<span class='no'>closeness</span>)
 
 <span class='co'># Get the graph's cache</span>
-<span class='fu'><a href='get_cache.html'>get_cache</a></span>(
-  <span class='no'>graph</span>,
-  <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"difference"</span>)</div><div class='output co'>#&gt;  [1]  9.25641026 28.91666667 19.08974359  2.60000000  0.44444444 17.93750000
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_cache.html'>get_cache</a></span>(
+    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"difference"</span>)</div><div class='output co'>#&gt;  [1]  9.25641026 28.91666667 19.08974359  2.60000000  0.44444444 17.93750000
 #&gt;  [7] 11.93333333 -0.05000000 10.26666667 -0.04761905</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

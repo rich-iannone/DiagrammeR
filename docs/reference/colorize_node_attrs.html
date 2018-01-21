@@ -180,9 +180,9 @@ vector.</p></td>
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'><a href='get_cmty_walktrap.html'>get_cmty_walktrap</a></span>(<span class='no'>.</span>))
 
 <span class='co'># Inspect the number of distinct communities</span>
-<span class='fu'><a href='get_node_attrs.html'>get_node_attrs</a></span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-  <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>walktrap_group</span>) <span class='kw'>%&gt;%</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_attrs.html'>get_node_attrs</a></span>(
+    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>walktrap_group</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>unique</span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>sort</span>()</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
 <span class='co'># Visually distinguish the nodes in the different</span>

@@ -203,39 +203,28 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>df_nodes</span>)
 
 <span class='co'># Show the graph's internal node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label values
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label values
 #&gt; 1  1    a   asd   8.58
 #&gt; 2  2    a  iekd   7.22
 #&gt; 3  3    b   idj   5.95
 #&gt; 4  4    b   edl   6.71
-#&gt; 5  5    b   ohd   7.48</div><div class='input'><span class='co'>#&gt;   id type label values</span>
-<span class='co'>#&gt; 1  1    a   asd   8.58</span>
-<span class='co'>#&gt; 2  2    a  iekd   7.22</span>
-<span class='co'>#&gt; 3  3    b   idj   5.95</span>
-<span class='co'>#&gt; 4  4    b   edl   6.71</span>
-<span class='co'>#&gt; 5  5    b   ohd   7.48</span>
-
+#&gt; 5  5    b   ohd   7.48</div><div class='input'>
 <span class='co'># Show the graph's internal edge data frame</span>
-<span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to  rel values
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel values
 #&gt; 1  1    1  2 &lt;NA&gt;   6.00
 #&gt; 2  2    1  3    A   6.11
 #&gt; 3  3    2  4    B   4.72
 #&gt; 4  4    2  5    C   6.02
-#&gt; 5  5    3  5    D   5.05</div><div class='input'><span class='co'>#&gt;   id from to  rel values</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;   6.00</span>
-<span class='co'>#&gt; 2  2    1  3    A   6.11</span>
-<span class='co'>#&gt; 3  3    2  4    B   4.72</span>
-<span class='co'>#&gt; 4  4    2  5    C   6.02</span>
-<span class='co'>#&gt; 5  5    3  5    D   5.05</span>
-
+#&gt; 5  5    3  5    D   5.05</div><div class='input'>
 <span class='co'># Perform a simple traversal from node `4` to</span>
 <span class='co'># inward adjacent edges with no conditions</span>
 <span class='co'># on the nodes traversed to</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='co'>#&gt; [1] 2</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Traverse from node `5` to inbound-facing</span>
 <span class='co'># nodes, filtering to those nodes that have</span>
 <span class='co'># numeric values greater than `5.0` for</span>
@@ -244,8 +233,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>5.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='co'>#&gt; [1] 2</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Traverse from node `5` to any inbound</span>
 <span class='co'># nodes, filtering to those nodes that</span>
 <span class='co'># have a `type` attribute of `b`</span>
@@ -253,8 +241,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>type</span> <span class='kw'>==</span> <span class='st'>"b"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='co'>#&gt; [1] 3</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 3</div><div class='input'>
 <span class='co'># Traverse from node `5` to any inbound</span>
 <span class='co'># nodes, filtering to those nodes that</span>
 <span class='co'># have a degree of `2`</span>
@@ -268,8 +255,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>deg</span> <span class='kw'>==</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 3</div><div class='input'><span class='co'>#&gt; [1] 3</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 3</div><div class='input'>
 <span class='co'># Traverse from node `5` to any inbound</span>
 <span class='co'># nodes, and use multiple conditions for the</span>
 <span class='co'># traversal</span>
@@ -279,8 +265,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='no'>type</span> <span class='kw'>==</span> <span class='st'>"a"</span> <span class='kw'>&amp;</span>
       <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>6.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='co'>#&gt; [1] 2</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Traverse from node `5` to any inbound</span>
 <span class='co'># nodes, and use multiple conditions with</span>
 <span class='co'># a single-length vector</span>
@@ -289,8 +274,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'>trav_in</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='no'>type</span> <span class='kw'>==</span> <span class='st'>"b"</span> <span class='kw'>|</span> <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>6.0</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2 3</div><div class='input'><span class='co'>#&gt; [1] 2 3</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2 3</div><div class='input'>
 <span class='co'># Traverse from node `5` to any inbound</span>
 <span class='co'># nodes, and use a regular expression as</span>
 <span class='co'># a filtering condition</span>
@@ -298,8 +282,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='fu'>grepl</span>(<span class='st'>"^i.*"</span>, <span class='no'>label</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'><span class='co'>#&gt; [1] 2</span>
-
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Create another simple graph to demonstrate</span>
 <span class='co'># copying of node attribute values to traversed</span>
 <span class='co'># nodes</span>
@@ -321,19 +304,12 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
 #&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;    NA
 #&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;     5
-#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;     5</div><div class='input'><span class='co'>#&gt;   id type label value</span>
-<span class='co'>#&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;    NA</span>
-<span class='co'>#&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;     5</span>
-<span class='co'>#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;     5</span>
-
+#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;     5</div><div class='input'>
 <span class='co'># Show the graph's internal edge data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
 #&gt; 1  1    1  2 &lt;NA&gt;
-#&gt; 2  2    1  3 &lt;NA&gt;</div><div class='input'><span class='co'>#&gt;   id from to  rel</span>
-<span class='co'>#&gt; 1  1    1  2 &lt;NA&gt;</span>
-<span class='co'>#&gt; 2  2    1  3 &lt;NA&gt;</span>
-
+#&gt; 2  2    1  3 &lt;NA&gt;</div><div class='input'>
 <span class='co'># Perform a traversal from the outer nodes</span>
 <span class='co'># (`2` and `3`) to the central node (`1`) while</span>
 <span class='co'># also applying the node attribute `value` to</span>
@@ -352,11 +328,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
 #&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;    10
 #&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;     5
-#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;     5</div><div class='input'>#>   id type label value
-#> 1  1 <NA>  <NA>    10
-#> 2  2 <NA>  <NA>     5
-#> 3  3 <NA>  <NA>     5
-</div></pre>
+#&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;     5</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

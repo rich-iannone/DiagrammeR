@@ -129,7 +129,8 @@ scores for each of the nodes.</p>
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
 <span class='co'># Get the radiality scores for nodes in the graph</span>
-<span class='fu'>get_radiality</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id radiality
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_radiality</span>()</div><div class='output co'>#&gt;    id radiality
 #&gt; 1   1    2.3333
 #&gt; 2   2    3.0000
 #&gt; 3   3    2.6667
@@ -149,7 +150,8 @@ scores for each of the nodes.</p>
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_radiality</span>(<span class='no'>.</span>))
 
 <span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label radiality
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label radiality
 #&gt; 1   1 &lt;NA&gt;     1    2.3333
 #&gt; 2   2 &lt;NA&gt;     2    3.0000
 #&gt; 3   3 &lt;NA&gt;     3    2.6667

@@ -132,19 +132,26 @@ selected and vice versa.</p>
     <span class='kw'>nodes_df</span> <span class='kw'>=</span> <span class='no'>ndf</span>,
     <span class='kw'>edges_df</span> <span class='kw'>=</span> <span class='no'>edf</span>)
 
-<span class='co'># Select nodes with ID values `1` and `3`</span>
+<span class='co'># Select nodes with ID</span>
+<span class='co'># values `1` and `3`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
 
-<span class='co'># Verify that a node selection has been made</span>
-<span class='fu'><a href='get_selection.html'>get_selection</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
+<span class='co'># Verify that a node</span>
+<span class='co'># selection has been made</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
 <span class='co'># Invert the selection</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'>invert_selection</span>(<span class='no'>graph</span>)
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>invert_selection</span>()
 
-<span class='co'># Verify that the node selection has been changed</span>
-<span class='fu'><a href='get_selection.html'>get_selection</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 2 4</div></pre>
+<span class='co'># Verify that the node</span>
+<span class='co'># selection has been changed</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2 4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

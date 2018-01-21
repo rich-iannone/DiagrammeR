@@ -162,7 +162,8 @@ ndf and in <code>df</code> with identical names.
 
 <span class='co'># Get the graph's internal ndf to show that the</span>
 <span class='co'># join has been made</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label values
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label values
 #&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00
 #&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11
 #&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72
@@ -179,7 +180,8 @@ ndf and in <code>df</code> with identical names.
 
 <span class='co'># Get the graph's internal ndf to show that</span>
 <span class='co'># this join has been made</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label values betweenness
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label values betweenness
 #&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00         0.0
 #&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11         1.5
 #&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72         0.5

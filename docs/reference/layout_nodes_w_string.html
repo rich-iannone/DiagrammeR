@@ -211,7 +211,8 @@ coordinates of the <code>layout</code></p></td>
 <span class='co'># Show the graph's node data frame</span>
 <span class='co'># to confirm that `x` and `y` values</span>
 <span class='co'># were added to each of the nodes</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label x y
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label x y
 #&gt; 1  1    a     a 0 8
 #&gt; 2  2    a     b 0 6
 #&gt; 3  3    b     c 5 4

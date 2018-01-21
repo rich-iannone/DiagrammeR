@@ -132,7 +132,8 @@ edges.</p>
 <span class='co'># 4 is the number reciprocating edges</span>
 <span class='co'># and 7 is the total number of edges</span>
 <span class='co'># in the graph)</span>
-<span class='fu'>get_reciprocity</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 0.5714286</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_reciprocity</span>()</div><div class='output co'>#&gt; [1] 0.5714286</div><div class='input'>
 <span class='co'># For an undirected graph, all edges</span>
 <span class='co'># are reciprocal, so the ratio will</span>
 <span class='co'># always be 1</span>

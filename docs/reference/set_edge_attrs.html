@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set edge attributes — set_edge_attrs • DiagrammeR</title>
+<title>Set edge attribute values — set_edge_attrs • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,53 +83,59 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set edge attributes</h1>
+    <h1>Set edge attribute values</h1>
     </div>
 
     
-    <p>From a graph object of class
-<code>dgr_graph</code> or an edge data frame, set edge
-attribute properties for one or more edges</p>
+    <p>From a graph object of
+class <code>dgr_graph</code>, set edge
+attribute values for one or more
+edges.</p>
     
 
-    <pre class="usage"><span class='fu'>set_edge_attrs</span>(<span class='no'>x</span>, <span class='no'>edge_attr</span>, <span class='no'>values</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>set_edge_attrs</span>(<span class='no'>graph</span>, <span class='no'>edge_attr</span>, <span class='no'>values</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>either a graph object of class
-<code>dgr_graph</code> or an edge data frame.</p></td>
+      <th>graph</th>
+      <td><p>a graph object of
+class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge_attr</th>
-      <td><p>the name of the attribute to set.</p></td>
+      <td><p>the name of the
+attribute to set.</p></td>
     </tr>
     <tr>
       <th>values</th>
-      <td><p>the values to be set for the chosen
-attribute for the chosen edges.</p></td>
+      <td><p>the values to be
+set for the chosen attribute for
+the chosen edges.</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>an optional vector of node IDs from
-which the edge is outgoing for filtering list of
-nodes with outgoing edges in the graph.</p></td>
+      <td><p>an optional vector of
+node IDs from which the edge is
+outgoing for filtering list of
+nodes with outgoing edges in the
+graph.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>an optional vector of node IDs from which
-the edge is incoming for filtering list of nodes
-with incoming edges in the graph.</p></td>
+      <td><p>an optional vector of
+node IDs from which the edge is
+incoming for filtering list of
+nodes with incoming edges in the
+graph.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>either a graph object of class
-<code>dgr_graph</code> or an edge data frame, depending on
-what type of object was supplied to <code>x</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -154,21 +160,10 @@ what type of object was supplied to <code>x</code>.</p>
 
 <span class='co'># Set attribute `color = "green"`</span>
 <span class='co'># for edges `1`-&gt;`4` and `3`-&gt;`1`</span>
-<span class='co'># using the graph object</span>
+<span class='co'># in the graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_edge_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-    <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
-    <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
-    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>3</span>),
-    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>4</span>, <span class='fl'>1</span>))
-
-<span class='co'># Set attribute `color = "green"`</span>
-<span class='co'># for edges `1`-&gt;`4` and `3`-&gt;`1`</span>
-<span class='co'># using the edge data frame</span>
-<span class='no'>edges</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>set_edge_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>edf</span>,
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>3</span>),
@@ -177,8 +172,8 @@ what type of object was supplied to <code>x</code>.</p>
 <span class='co'># Set attribute `color = "blue"`</span>
 <span class='co'># for all edges in the graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_edge_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)
 
@@ -186,8 +181,8 @@ what type of object was supplied to <code>x</code>.</p>
 <span class='co'># for all edges in graph outbound</span>
 <span class='co'># from node with ID value `1`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_edge_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"pink"</span>,
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>)
@@ -196,8 +191,8 @@ what type of object was supplied to <code>x</code>.</p>
 <span class='co'># for all edges in graph inbound</span>
 <span class='co'># to node with ID `1`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_edge_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div></pre>

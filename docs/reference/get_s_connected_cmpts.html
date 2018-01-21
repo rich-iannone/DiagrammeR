@@ -140,7 +140,8 @@ in different strongly connected components.</p>
 <span class='co'># Get the strongly connected</span>
 <span class='co'># components as a data frame of</span>
 <span class='co'># nodes and their groupings</span>
-<span class='fu'>get_s_connected_cmpts</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id sc_component
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_s_connected_cmpts</span>()</div><div class='output co'>#&gt;   id sc_component
 #&gt; 1  1            1
 #&gt; 2  2            1
 #&gt; 3  3            1

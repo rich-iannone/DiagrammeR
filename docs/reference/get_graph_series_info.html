@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the mean distance — get_mean_distance • DiagrammeR</title>
+<title>Get information on a graph series — get_graph_series_info • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,48 +83,67 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the mean distance</h1>
+    <h1>Get information on a graph series</h1>
     </div>
 
     
-    <p>Get the mean distance of a graph,
-which is the average path length in the graph. This
-operates through calculation of the shortest paths
-between all pairs of nodes..</p>
+    <p>Obtain a data frame with information
+on the graphs within a graph series.</p>
     
 
-    <pre class="usage"><span class='fu'>get_mean_distance</span>(<span class='no'>graph</span>)</pre>
+    <pre class="usage"><span class='fu'>get_graph_series_info</span>(<span class='no'>graph_series</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <th>graph_series</th>
+      <td><p>a graph series object of type
+<code>dgr_graph_1D</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a single numeric value representing the
-mean distance of the graph.</p>
+    <p>a data frame containing information on the
+graphs within the supplied graph series.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a cycle graph</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+    <pre class="examples"><div class='input'><span class='co'># Create three graphs</span>
+<span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+
+<span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
-<span class='co'># Determine the mean distance</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_mean_distance</span>()</div><div class='output co'>#&gt; [1] 2.5</div><div class='input'>
-<span class='co'># Create a full graph and then</span>
-<span class='co'># get the mean distance value</span>
-<span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_full_graph.html'>add_full_graph</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_mean_distance</span>()</div><div class='output co'>#&gt; [1] 1</div></pre>
+<span class='no'>graph_3</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_star.html'>add_star</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>6</span>)
+
+<span class='co'># Create an empty graph series</span>
+<span class='co'># and add the graphs</span>
+<span class='no'>series</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph_series.html'>create_graph_series</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_2</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_3</span>)
+
+<span class='co'># Get information on the graphs in the series</span>
+<span class='no'>series</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_graph_series_info</span>()</div><div class='output co'>#&gt;   graph           name           date_time                  tz nodes edges
+#&gt; 1     1 graph_SVUyR63K 2018-01-19 19:16:11 America/Los_Angeles     4     3
+#&gt; 2     2 graph_SueySz3B 2018-01-19 19:16:11 America/Los_Angeles     5     5
+#&gt; 3     3 graph_HYG7a9jw 2018-01-19 19:16:11 America/Los_Angeles     6     5
+#&gt;   directed
+#&gt; 1     TRUE
+#&gt; 2     TRUE
+#&gt; 3     TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

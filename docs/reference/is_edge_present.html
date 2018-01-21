@@ -146,29 +146,28 @@ with that in <code>from</code>.</p></td>
 
 <span class='co'># Find out if edge ID `3`</span>
 <span class='co'># is present in the graph</span>
-<span class='fu'>is_edge_present</span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-  <span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_edge_present</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Determine if there are any edges</span>
 <span class='co'># with the definition `1` -&gt; `2`</span>
-<span class='fu'>is_edge_present</span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_edge_present</span>(
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Determine if there are any edges</span>
 <span class='co'># with the definition `4` -&gt; `5`</span>
-<span class='fu'>is_edge_present</span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_edge_present</span>(
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
 <span class='co'># Determine whether an edge,</span>
 <span class='co'># defined by its labels as</span>
 <span class='co'># `two` -&gt; `three`, exists in</span>
 <span class='co'># the graph</span>
-<span class='fu'>is_edge_present</span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"two"</span>,
-  <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"three"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_edge_present</span>(
+    <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"two"</span>,
+    <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"three"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Set the graph as undirected</span>
 <span class='co'># and determine whether an</span>
 <span class='co'># edge between nodes with labels</span>

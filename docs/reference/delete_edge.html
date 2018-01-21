@@ -148,20 +148,21 @@ and none exist as an empty string.</p></td>
 
 <span class='co'># Add an edge</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_edge.html'>add_edge</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Delete the edge</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>delete_edge</span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Get the count of edges in the graph</span>
-<span class='fu'><a href='count_edges.html'>count_edges</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'># Create an undirected graph with</span>
 <span class='co'># 2 nodes and an edge</span>
 <span class='no'>graph_undirected</span> <span class='kw'>&lt;-</span>
@@ -178,11 +179,6 @@ and none exist as an empty string.</p></td>
   <span class='fu'>delete_edge</span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>2</span>,
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
-<span class='no'>graph_undirected</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>delete_edge</span>(
-    <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-    <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'># The undirected graph has a single</span>
 <span class='co'># edge with ID `1`; it can be</span>

@@ -192,9 +192,8 @@ to the created edges.</p></td>
 <span class='co'># Add a node with a `type`</span>
 <span class='co'># value defined</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>add_node</span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-    <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"person"</span>)
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>add_node</span>(<span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"person"</span>)
 
 <span class='co'># View the graph's internal</span>
 <span class='co'># node data frame (ndf)</span>

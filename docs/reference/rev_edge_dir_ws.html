@@ -118,12 +118,13 @@ selected edges in input graph.</p>
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Inspect the graph's edges</span>
-<span class='fu'><a href='get_edges.html'>get_edges</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] "1-&gt;2" "1-&gt;3" "2-&gt;4" "2-&gt;5" "3-&gt;6" "3-&gt;7"</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "1-&gt;2" "1-&gt;3" "2-&gt;4" "2-&gt;5" "3-&gt;6" "3-&gt;7"</div><div class='input'>
 <span class='co'># Select all edges associated</span>
 <span class='co'># with nodes `1` and `2`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>)
 
 <span class='co'># Reverse the edge directions</span>

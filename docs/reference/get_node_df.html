@@ -87,8 +87,9 @@
     </div>
 
     
-    <p>From a graph, obtain a node data frame
-with all current node attributes.</p>
+    <p>From a graph, obtain a
+node data frame with all current
+node attributes.</p>
     
 
     <pre class="usage"><span class='fu'>get_node_df</span>(<span class='no'>graph</span>)</pre>
@@ -109,7 +110,7 @@ with all current node attributes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a graph using several piped functions</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(
@@ -120,12 +121,14 @@ with all current node attributes.</p>
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
     <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"from"</span>,
     <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"b"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(
+    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs_ws.html'>set_node_attrs_ws</a></span>(
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>25.3</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(
+    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_node_attrs_ws.html'>set_node_attrs_ws</a></span>(
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"grey70"</span>) <span class='kw'>%&gt;%</span>
@@ -137,7 +140,8 @@ with all current node attributes.</p>
 
 <span class='co'># Get the graph's internal node</span>
 <span class='co'># data frame (ndf)</span>
-<span class='fu'>get_node_df</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id type label value  color
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_node_df</span>()</div><div class='output co'>#&gt;   id type label value  color
 #&gt; 1  1    a  &lt;NA&gt;  25.3 grey80
 #&gt; 2  2    b  &lt;NA&gt;    NA grey70
 #&gt; 3  3    b  &lt;NA&gt;    NA grey70

@@ -144,9 +144,9 @@ for each pair of nodes considered.</p>
 <span class='co'># Get the Dice similarity</span>
 <span class='co'># values for nodes `5`, `6`,</span>
 <span class='co'># and `7`</span>
-<span class='fu'>get_dice_similarity</span>(
-  <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
-  <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>7</span>)</div><div class='output co'>#&gt;       5     6     7
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_dice_similarity</span>(
+    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>7</span>)</div><div class='output co'>#&gt;       5     6     7
 #&gt; 5 1.000 0.444 0.571
 #&gt; 6 0.444 1.000 0.500
 #&gt; 7 0.571 0.500 1.000</div></pre>

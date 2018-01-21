@@ -132,8 +132,8 @@ within a graph object.</p>
 
 <span class='co'># Select nodes with IDs `1` and `3`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
 
 <span class='co'># Verify that a node selection has been made</span>

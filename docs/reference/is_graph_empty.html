@@ -113,14 +113,16 @@ graph is empty (i.e., contains no nodes).</p>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_graph.html'>create_graph</a></span>()
 
 <span class='co'># Determine whether the graph is empty</span>
-<span class='fu'>is_graph_empty</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_graph_empty</span>()</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Create a non-empty graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>3</span>)
 
 <span class='co'># Determine whether this graph is empty</span>
-<span class='fu'>is_graph_empty</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] FALSE</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>is_graph_empty</span>()</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

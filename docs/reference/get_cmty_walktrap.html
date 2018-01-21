@@ -87,8 +87,9 @@
     </div>
 
     
-    <p>With the Walktrap community finding
-algorithm, obtain the group membership values for
+    <p>With the Walktrap
+community finding algorithm, obtain
+the group membership values for
 each of the nodes in the graph.</p>
     
 
@@ -99,20 +100,21 @@ each of the nodes in the graph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of
+class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>steps</th>
-      <td><p>the number of steps to take for each
-of the random walks.</p></td>
+      <td><p>the number of steps
+to take for each of the random walks.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data frame with group membership
-assignments for each of the nodes.</p>
+    <p>a data frame with group
+membership assignments for each of
+the nodes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -130,7 +132,8 @@ assignments for each of the nodes.</p>
 <span class='co'># values for all nodes in the</span>
 <span class='co'># graph through the Walktrap</span>
 <span class='co'># community finding algorithm</span>
-<span class='fu'>get_cmty_walktrap</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id walktrap_group
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_cmty_walktrap</span>()</div><div class='output co'>#&gt;    id walktrap_group
 #&gt; 1   1              3
 #&gt; 2   2              2
 #&gt; 3   3              2
@@ -149,8 +152,10 @@ assignments for each of the nodes.</p>
   <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_cmty_walktrap</span>(<span class='no'>.</span>))
 
-<span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label walktrap_group
+<span class='co'># Display the graph's</span>
+<span class='co'># node data frame</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label walktrap_group
 #&gt; 1   1 &lt;NA&gt;     1              3
 #&gt; 2   2 &lt;NA&gt;     2              2
 #&gt; 3   3 &lt;NA&gt;     3              2

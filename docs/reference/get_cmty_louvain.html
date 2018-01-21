@@ -127,7 +127,8 @@ assignments for each of the nodes.</p>
 <span class='co'># through the multi-level</span>
 <span class='co'># optimization of modularity</span>
 <span class='co'># algorithm</span>
-<span class='fu'>get_cmty_louvain</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id louvain_group
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_cmty_louvain</span>()</div><div class='output co'>#&gt;    id louvain_group
 #&gt; 1   1             2
 #&gt; 2   2             1
 #&gt; 3   3             1
@@ -138,15 +139,18 @@ assignments for each of the nodes.</p>
 #&gt; 8   8             3
 #&gt; 9   9             3
 #&gt; 10 10             4</div><div class='input'>
-<span class='co'># Add the group membership values to the</span>
-<span class='co'># graph as a node attribute</span>
+<span class='co'># Add the group membership</span>
+<span class='co'># values to the graph as a</span>
+<span class='co'># node attribute</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_cmty_louvain</span>(<span class='no'>.</span>))
 
-<span class='co'># Display the graph's node data frame</span>
-<span class='fu'><a href='get_node_df.html'>get_node_df</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;    id type label louvain_group
+<span class='co'># Display the graph's</span>
+<span class='co'># node data frame</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label louvain_group
 #&gt; 1   1 &lt;NA&gt;     1             2
 #&gt; 2   2 &lt;NA&gt;     2             1
 #&gt; 3   3 &lt;NA&gt;     3             1

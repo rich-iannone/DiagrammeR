@@ -109,7 +109,7 @@ with all current edge attributes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a graph using several piped functions</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(
@@ -120,7 +120,8 @@ with all current edge attributes.</p>
     <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
     <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"from"</span>,
     <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"b"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a></span>(
+    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>3</span>:<span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='set_edge_attrs_ws.html'>set_edge_attrs_ws</a></span>(
     <span class='kw'>edge_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"green"</span>) <span class='kw'>%&gt;%</span>
@@ -136,8 +137,10 @@ with all current edge attributes.</p>
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"b"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>()
 
-<span class='co'># Get the graph's internal edge data frame (edf)</span>
-<span class='fu'>get_edge_df</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;   id from to rel color
+<span class='co'># Get the graph's internal</span>
+<span class='co'># edge data frame (edf)</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edge_df</span>()</div><div class='output co'>#&gt;   id from to rel color
 #&gt; 1  1    1  2   b  blue
 #&gt; 2  2    1  3   a green
 #&gt; 3  3    1  4   a green

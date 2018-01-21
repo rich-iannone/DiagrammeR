@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set node attributes — set_node_attrs • DiagrammeR</title>
+<title>Set node attribute values — set_node_attrs • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,46 +83,49 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set node attributes</h1>
+    <h1>Set node attribute values</h1>
     </div>
 
     
-    <p>From a graph object of class
-<code>dgr_graph</code> or a node data frame, set node
-attribute properties for one or more nodes.</p>
+    <p>From a graph object of
+class <code>dgr_graph</code>, set node
+attribute values for one or more
+nodes.</p>
     
 
-    <pre class="usage"><span class='fu'>set_node_attrs</span>(<span class='no'>x</span>, <span class='no'>node_attr</span>, <span class='no'>values</span>, <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>set_node_attrs</span>(<span class='no'>graph</span>, <span class='no'>node_attr</span>, <span class='no'>values</span>, <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>either a graph object of class
-<code>dgr_graph</code> or a node data frame.</p></td>
+      <th>graph</th>
+      <td><p>a graph object of
+class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr</th>
-      <td><p>the name of the attribute to set.</p></td>
+      <td><p>the name of the
+attribute to set.</p></td>
     </tr>
     <tr>
       <th>values</th>
-      <td><p>the values to be set for the chosen
-attribute for the chosen nodes.</p></td>
+      <td><p>the values to be
+set for the chosen attribute for
+the chosen nodes.</p></td>
     </tr>
     <tr>
       <th>nodes</th>
-      <td><p>an optional vector of node IDs for
-filtering the list of nodes present in the graph.</p></td>
+      <td><p>an optional vector
+of node IDs for filtering the list
+of nodes present in the graph.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>either a graph object of class
-<code>dgr_graph</code> or a node data frame, depending on
-what type of object was supplied to <code>x</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -150,8 +153,8 @@ what type of object was supplied to <code>x</code>.</p>
 <span class='co'># Set attribute `color = "green"` for</span>
 <span class='co'># nodes `1` and `3` using the graph object</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_node_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>graph</span>,
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
@@ -163,31 +166,17 @@ what type of object was supplied to <code>x</code>.</p>
 #&gt; 2  2 basic     2   2.6  &lt;NA&gt;
 #&gt; 3  3 basic     3   9.4 green
 #&gt; 4  4 basic     4   2.7  &lt;NA&gt;</div><div class='input'>
-<span class='co'># Set attribute `color = "green"` for</span>
-<span class='co'># nodes `1` and `3` using the node data frame</span>
-<span class='no'>nodes</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>set_node_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>ndf</span>,
-    <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
-    <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"green"</span>,
-    <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>3</span>))
-
-<span class='co'># Display the `nodes` ndf</span>
-<span class='no'>nodes</span></div><div class='output co'>#&gt;   id  type label value color
-#&gt; 1  1 basic     1   3.5 green
-#&gt; 2  2 basic     2   2.6  &lt;NA&gt;
-#&gt; 3  3 basic     3   9.4 green
-#&gt; 4  4 basic     4   2.7  &lt;NA&gt;</div><div class='input'>
 <span class='co'># Set attribute `color = "blue"` for</span>
-<span class='co'># all nodes in the node data frame</span>
-<span class='no'>nodes</span> <span class='kw'>&lt;-</span>
+<span class='co'># all nodes in the graph</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_node_attrs</span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>ndf</span>,
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>values</span> <span class='kw'>=</span> <span class='st'>"blue"</span>)
 
-<span class='co'># Display the `nodes` ndf</span>
-<span class='no'>nodes</span></div><div class='output co'>#&gt;   id  type label value color
+<span class='co'># Display the graph's ndf</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id  type label value color
 #&gt; 1  1 basic     1   3.5  blue
 #&gt; 2  2 basic     2   2.6  blue
 #&gt; 3  3 basic     3   9.4  blue
