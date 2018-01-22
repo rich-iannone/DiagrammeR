@@ -26,7 +26,7 @@ test_that("creating an empty series is possible", {
 
   # Expect that the series is empty
   expect_equal(
-    graph_count(series), 0)
+    count_graphs_in_graph_series(series), 0)
 
   # Create an empty graph series of the `temporal` type
   series_temporal <-
@@ -34,7 +34,7 @@ test_that("creating an empty series is possible", {
 
   # Expect that this series is empty
   expect_equal(
-    graph_count(series_temporal), 0)
+    count_graphs_in_graph_series(series_temporal), 0)
 
   # Expect that several series components are `NULL`
   expect_null(
@@ -105,7 +105,7 @@ test_that("adding graphs to a series is also possible", {
 
   # Expect that the series has a graph count of 3
   expect_equal(
-    graph_count(series), 3L)
+    count_graphs_in_graph_series(series), 3L)
 
   expect_equal(
     length(series$graphs), 3L)
@@ -152,7 +152,7 @@ test_that("adding graphs to a series is also possible", {
 
   # Expect that the series has a graph count of 1
   expect_equal(
-    graph_count(series_w_graph), 1)
+    count_graphs_in_graph_series(series_w_graph), 1)
 
   # Expect that several series components are `NULL`
   expect_null(
@@ -215,7 +215,7 @@ test_that("removing graphs from a series is possible", {
 
   # Expect that the series has a graph count of 3
   expect_equal(
-    graph_count(series), 3)
+    count_graphs_in_graph_series(series), 3)
 
   expect_equal(
     length(series$graphs), 3)
@@ -225,7 +225,7 @@ test_that("removing graphs from a series is possible", {
 
   # Expect that the graph count is now 2
   expect_equal(
-    graph_count(series_2), 2)
+    count_graphs_in_graph_series(series_2), 2)
 
   # Remove the first graph from the series
   series_removed_1 <-
@@ -305,7 +305,7 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Expect a graph count of 3
   expect_equal(
-    graph_count(series_temporal), 3)
+    count_graphs_in_graph_series(series_temporal), 3)
 
   # Subset graph series by sequence
   series_sequence_subset <-
@@ -316,7 +316,7 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Expect a single graph in the series
   expect_equal(
-    graph_count(series_sequence_subset), 1)
+    count_graphs_in_graph_series(series_sequence_subset), 1)
 
   # Expect that this subset graph is the same
   # as `graph_time_2`
@@ -335,7 +335,7 @@ test_that("subsetting graphs from a temporal series is possible", {
 
   # Expect 2 graphs in the series
   expect_equal(
-    graph_count(series_time_subset), 2)
+    count_graphs_in_graph_series(series_time_subset), 2)
 })
 
 test_that("Getting a graph from a series is possible", {
