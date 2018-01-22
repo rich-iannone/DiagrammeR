@@ -72,7 +72,7 @@
 #' # Get a count of graphs in
 #' # the series
 #' series_sequence_subset %>%
-#'   graph_count()
+#'   count_graphs_in_graph_series()
 #'
 #' # Subset graph series by date-time
 #' series_time_subset <-
@@ -86,7 +86,7 @@
 #' # Get a count of graphs in
 #' # the series
 #' series_time_subset %>%
-#'   graph_count()
+#'   count_graphs_in_graph_series()
 #' @export filter_graph_series
 
 filter_graph_series <- function(graph_series,
@@ -94,7 +94,8 @@ filter_graph_series <- function(graph_series,
                                 values,
                                 tz = NULL) {
 
-  if (graph_count(graph_series = graph_series) == 0) {
+  if (count_graphs_in_graph_series(
+    graph_series = graph_series) == 0) {
 
     return(graph_series)
   }
@@ -108,7 +109,7 @@ filter_graph_series <- function(graph_series,
     }
 
     indices_in_graph_series <-
-      1:graph_count(graph_series = graph_series)
+      1:count_graphs_in_graph_series(graph_series = graph_series)
 
     indices_in_subset_value <- values
 
@@ -122,8 +123,9 @@ filter_graph_series <- function(graph_series,
     for (i in graphs_to_remove) {
 
       graph_series <-
-        remove_from_series(graph_series = graph_series,
-                           index = i)
+        remove_from_series(
+          graph_series = graph_series,
+          index = i)
     }
 
     return(graph_series)
@@ -164,7 +166,7 @@ filter_graph_series <- function(graph_series,
     # Create subset based on range
     if (length(values) == 2) {
 
-      for (i in 1:graph_count(graph_series = graph_series)) {
+      for (i in 1:count_graphs_in_graph_series(graph_series = graph_series)) {
 
         if (i == 1) {
           dates_times_in_series <- vector(mode = "numeric", length = 0)
@@ -206,8 +208,9 @@ filter_graph_series <- function(graph_series,
       for (i in graphs_to_remove) {
 
         graph_series <-
-          remove_from_series(graph_series = graph_series,
-                             index = i)
+          remove_from_series(
+            graph_series = graph_series,
+            index = i)
       }
 
       return(graph_series)

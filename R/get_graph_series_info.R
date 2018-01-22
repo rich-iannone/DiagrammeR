@@ -38,7 +38,7 @@
 get_graph_series_info <- function(graph_series) {
 
   graphs_in_series <-
-    graph_count(graph_series)
+    count_graphs_in_graph_series(graph_series)
 
   series_info_df <-
     data.frame(

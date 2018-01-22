@@ -64,7 +64,7 @@ render_graph_from_series <- function(graph_series,
   }
 
   # Stop function if `graph_no` is out of range
-  if (!(graph_no %in% 1:graph_count(graph_series))) {
+  if (!(graph_no %in% 1:count_graphs_in_graph_series(graph_series))) {
 
     stop(
       "The index chosen doesn't correspond to that of a graph in the series.",

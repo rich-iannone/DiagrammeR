@@ -36,7 +36,7 @@
 #' # Count the number of graphs
 #' # in the graph series
 #' series %>%
-#'   graph_count()
+#'   count_graphs_in_graph_series()
 #' @export add_graph_to_graph_series
 
 add_graph_to_graph_series <- function(graph_series,
