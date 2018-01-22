@@ -56,5 +56,5 @@ series <-
 # Count the number of graphs
 # in the graph series
 series \%>\%
-  graph_count()
+  count_graphs_in_graph_series()
 }

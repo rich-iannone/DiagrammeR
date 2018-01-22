@@ -88,7 +88,7 @@ series_sequence_subset <-
 # Get a count of graphs in
 # the series
 series_sequence_subset \%>\%
-  graph_count()
+  count_graphs_in_graph_series()
 
 # Subset graph series by date-time
 series_time_subset <-
@@ -102,5 +102,5 @@ series_time_subset <-
 # Get a count of graphs in
 # the series
 series_time_subset \%>\%
-  graph_count()
+  count_graphs_in_graph_series()
 }
