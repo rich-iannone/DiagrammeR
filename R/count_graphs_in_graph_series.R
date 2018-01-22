@@ -33,10 +33,10 @@
 #' # Count the number of graphs
 #' # in the graph series
 #' series %>%
-#'   graph_count()
-#' @export graph_count
+#'   count_graphs_in_graph_series()
+#' @export count_graphs_in_graph_series
 
-graph_count <- function(graph_series) {
+count_graphs_in_graph_series <- function(graph_series) {
 
   if (class(graph_series) == "dgr_graph_1D") {
     if (is.null(graph_series$graphs)) {
