@@ -39,8 +39,8 @@
 #' # Remove the second graph
 #' # from the graph series
 #' series <-
-#'   remove_from_series(
-#'     graph_series = series,
+#'   series %>%
+#'   remove_graph_from_graph_series(
 #'     index = 2)
 #'
 #' # With `get_graph_series_info()`,
@@ -48,10 +48,10 @@
 #' # was removed
 #' series %>%
 #'   get_graph_series_info()
-#' @export remove_from_series
+#' @export remove_graph_from_graph_series
 
-remove_from_series <- function(graph_series,
-                               index = "last") {
+remove_graph_from_graph_series <- function(graph_series,
+                                           index = "last") {
 
   if (index == "last") {
     graph_series$graphs[[length(graph_series$graphs)]] <- NULL
