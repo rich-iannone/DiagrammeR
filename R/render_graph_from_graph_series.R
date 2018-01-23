@@ -43,17 +43,17 @@
 #'
 #' # View the second graph in
 #' # the series in the Viewer
-#' render_graph_from_series(
+#' render_graph_from_graph_series(
 #'   graph_series = series,
 #'   graph_no = 2)
 #' }
-#' @export render_graph_from_series
+#' @export render_graph_from_graph_series
 
-render_graph_from_series <- function(graph_series,
-                                     graph_no,
-                                     output = "graph",
-                                     width = NULL,
-                                     height = NULL) {
+render_graph_from_graph_series <- function(graph_series,
+                                           graph_no,
+                                           output = "graph",
+                                           width = NULL,
+                                           height = NULL) {
 
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)) {
