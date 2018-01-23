@@ -72,39 +72,39 @@ test_that("rendering a graph from a series is also possible", {
   # View the second graph from the graph series in
   # the RStudio Viewer
   series_graph_2 <-
-    render_graph_from_series(
+    render_graph_from_graph_series(
       graph_series = series,
       graph_no = 2)
 
   # Expect error when rendering graph 4 from the
   # series (which doesn't exist)
   expect_error(
-    render_graph_from_series(
+    render_graph_from_graph_series(
       graph_series = series,
       graph_no = 4))
 
   # Expect that each of the graphs is different
   expect_true(
-    render_graph_from_series(
+    render_graph_from_graph_series(
       graph_series = series,
       graph_no = 1)$x$diagram !=
-      render_graph_from_series(
+      render_graph_from_graph_series(
         graph_series = series,
         graph_no = 2)$x$diagram)
 
   expect_true(
-    render_graph_from_series(
+    render_graph_from_graph_series(
       graph_series = series,
       graph_no = 2)$x$diagram !=
-      render_graph_from_series(
+      render_graph_from_graph_series(
         graph_series = series,
         graph_no = 3)$x$diagram)
 
   expect_true(
-    render_graph_from_series(
+    render_graph_from_graph_series(
       graph_series = series,
       graph_no = 1)$x$diagram !=
-      render_graph_from_series(
+      render_graph_from_graph_series(
         graph_series = series,
         graph_no = 3)$x$diagram)
 
@@ -115,6 +115,6 @@ test_that("rendering a graph from a series is also possible", {
   # Expect an error if there are no graphs
   # in the series
   expect_error(
-    render_graph_from_series(
+    render_graph_from_graph_series(
       graph_series = empty_series))
 })

@@ -221,7 +221,8 @@ test_that("removing graphs from a series is possible", {
     length(series$graphs), 3)
 
   # Remove the last graph from the series
-  series_2 <- remove_from_series(graph_series = series)
+  series_2 <-
+    remove_graph_from_graph_series(graph_series = series)
 
   # Expect that the graph count is now 2
   expect_equal(
@@ -229,7 +230,7 @@ test_that("removing graphs from a series is possible", {
 
   # Remove the first graph from the series
   series_removed_1 <-
-    remove_from_series(
+    remove_graph_from_graph_series(
       graph_series = series,
       index = 1)
 
@@ -246,7 +247,7 @@ test_that("removing graphs from a series is possible", {
   # Remove the first graph from the series using
   # the `first` character vector
   series_removed_2 <-
-    remove_from_series(
+    remove_graph_from_graph_series(
       graph_series = series,
       index = "first")
 
@@ -366,7 +367,7 @@ test_that("Getting a graph from a series is possible", {
 
   # Get the second graph in the series
   extracted_graph <-
-    get_graph_from_series(
+    get_graph_from_graph_series(
       graph_series = series,
       graph_no = 2)
 
@@ -379,10 +380,13 @@ test_that("Getting a graph from a series is possible", {
   # an empty graph series
   expect_error(
     create_graph_series() %>%
-      get_graph_from_series(1))
+      get_graph_from_graph_series(
+        graph_no = 1))
 
   # Expect an error if the index for the graph to
   # be extracted is out of range
   expect_error(
-    series %>% get_graph_from_series(graph_no = 4))
+    series %>%
+      get_graph_from_graph_series(
+        graph_no = 4))
 })
