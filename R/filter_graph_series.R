@@ -123,7 +123,7 @@ filter_graph_series <- function(graph_series,
     for (i in graphs_to_remove) {
 
       graph_series <-
-        remove_from_series(
+        remove_graph_from_graph_series(
           graph_series = graph_series,
           index = i)
     }
@@ -208,7 +208,7 @@ filter_graph_series <- function(graph_series,
       for (i in graphs_to_remove) {
 
         graph_series <-
-          remove_from_series(
+          remove_graph_from_graph_series(
             graph_series = graph_series,
             index = i)
       }
