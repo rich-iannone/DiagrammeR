@@ -32,13 +32,13 @@
 #'
 #' # Get the second graph in the series
 #' extracted_graph <-
-#'   get_graph_from_series(
-#'     graph_series = series,
+#'   series %>%
+#'   get_graph_from_graph_series(
 #'     graph_no = 2)
-#' @export get_graph_from_series
+#' @export get_graph_from_graph_series
 
-get_graph_from_series <- function(graph_series,
-                                  graph_no) {
+get_graph_from_graph_series <- function(graph_series,
+                                        graph_no) {
 
   # Stop function if no graphs are available
   if (is.null(graph_series$graphs)) {
