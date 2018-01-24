@@ -1,11 +1,13 @@
 #' Get the current selection available in a graph
 #' object
-#' @description Get the current selection of nodes or
-#' edges from a graph object of class \code{dgr_graph}.
+#' @description Get the current
+#' selection of node IDs or edge IDs
+#' from a graph object of class
+#' \code{dgr_graph}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @return a vector with the current selection of nodes
-#' or edges.
+#' @return a vector with the current
+#' selection of nodes or edges.
 #' @examples
 #' # Create a simple graph
 #' graph <-
