@@ -12,12 +12,14 @@ get_selection(graph)
 \code{dgr_graph}.}
 }
 \value{
-a vector with the current selection of nodes
-or edges.
+a vector with the current
+selection of nodes or edges.
 }
 \description{
-Get the current selection of nodes or
-edges from a graph object of class \code{dgr_graph}.
+Get the current
+selection of node IDs or edge IDs
+from a graph object of class
+\code{dgr_graph}.
 }
 \examples{
 # Create a simple graph
