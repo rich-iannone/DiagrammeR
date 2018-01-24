@@ -23,6 +23,7 @@
 #' graph %>%
 #'   get_w_connected_cmpts()
 #' @importFrom igraph components
+#' @importFrom dplyr select
 #' @export get_w_connected_cmpts
 
 get_w_connected_cmpts <- function(graph) {
@@ -35,12 +36,27 @@ get_w_connected_cmpts <- function(graph) {
       call. = FALSE)
   }
 
-  # Convert the graph to an igraph object
-  ig_graph <- to_igraph(graph)
+  # Create bindings for specific variables
+  id <- from <- to <- type <- label <- rel <- NULL
 
-  # Get the component list
+  # Create a graph where only mandatory
+  # node and edge attributes are retained;
+  # transform to an igraph object
+  ig_graph <-
+    create_graph(
+      nodes_df = graph %>%
+        get_node_df() %>%
+        dplyr::select(id, type, label),
+      edges_df = graph %>%
+        get_edge_df() %>%
+        dplyr::select(id, from, to, rel),
+      directed = is_graph_directed(graph)) %>%
+    to_igraph()
+
+  # Get the component list from the graph
   components <-
-    igraph::components(ig_graph, "weak")
+    ig_graph %>%
+    igraph::components(mode = "weak")
 
   # Create the output data frame
   data.frame(
