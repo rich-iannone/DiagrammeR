@@ -19,11 +19,11 @@
 #' # Display a data frame with
 #' # graph information
 #' karate_club %>%
-#'   graph_info()
+#'   get_graph_info()
 #' }
-#' @export graph_info
+#' @export get_graph_info
 
-graph_info <- function(graph) {
+get_graph_info <- function(graph) {
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
