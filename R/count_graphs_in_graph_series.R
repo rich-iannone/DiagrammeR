@@ -1,10 +1,11 @@
 #' Count graphs in a graph series object
-#' @description Counts the total number of graphs in a
-#' graph series object.
-#' @param graph_series a graph series object of type
-#' \code{dgr_graph_1D}
-#' @return a numeric vector representing a count of
-#' graphs in a graph series object.
+#' @description Counts the total number
+#' of graphs in a graph series object.
+#' @param graph_series a graph series
+#' object of type \code{dgr_graph_1D}
+#' @return a numeric vector representing
+#' a count of graphs in a graph series
+#' object.
 #' @examples
 #' # Create three graphs
 #' graph_1 <-

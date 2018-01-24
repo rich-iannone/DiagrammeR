@@ -16,7 +16,7 @@
 #' multiple data frames), and (2) \code{single_df}
 #' (a single data frame which all of the data frame
 #' data).
-#' @return either a tibble, a data frame, or a list.
+#' @return either a tibble or a data frame.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -101,8 +101,8 @@
 #'   graph,
 #'   edge_id = 1,
 #'   return_format = "single_df")
-#' @importFrom dplyr filter select bind_rows filter starts_with everything left_join
-#' @importFrom dplyr as_tibble tibble
+#' @importFrom dplyr filter select bind_rows filter starts_with
+#' @importFrom dplyr everything left_join as_tibble tibble
 #' @importFrom purrr flatten_chr
 #' @export get_attr_dfs
 
