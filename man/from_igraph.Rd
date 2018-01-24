@@ -48,6 +48,6 @@ dgr_graph_new <-
   from_igraph()
 
 # Get some graph information
-dgr_graph_new \%>\%
-  get_graph_info()[, 1:6]
+(dgr_graph_new \%>\%
+  get_graph_info())[, 1:6]
 }
