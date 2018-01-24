@@ -152,7 +152,7 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(get_similar_nbrs(invalid_graph))
   expect_error(get_successors(invalid_graph))
   expect_error(get_w_connected_cmpts(invalid_graph))
-  expect_error(graph_info(invalid_graph))
+  expect_error(get_graph_info(invalid_graph))
   expect_error(invert_selection(invalid_graph))
   expect_error(is_edge_loop(invalid_graph))
   expect_error(is_edge_multiple(invalid_graph))

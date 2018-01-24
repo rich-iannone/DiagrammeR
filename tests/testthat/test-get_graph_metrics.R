@@ -282,9 +282,11 @@ test_that("Getting graph info is possible", {
       graph = graph,
       time = "2015-10-25 15:23:00")
 
-  # Use the `graph_info()` function to create a
+  # Use the `get_graph_info()` function to create a
   # data frame with graph metrics
-  graph_i <- graph_info(graph)
+  graph_i <-
+    graph %>%
+    get_graph_info()
 
   # Expect that `graph_i` is a data frame
   expect_is(
