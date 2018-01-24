@@ -33,8 +33,8 @@
 #'   from_igraph()
 #'
 #' # Get some graph information
-#' dgr_graph_new %>%
-#'   get_graph_info()[, 1:6]
+#' (dgr_graph_new %>%
+#'   get_graph_info())[, 1:6]
 #' @importFrom igraph V E vertex_attr_names edge_attr_names vertex_attr edge_attr is_directed ends
 #' @importFrom dplyr arrange
 #' @export from_igraph
