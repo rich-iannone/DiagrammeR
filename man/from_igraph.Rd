@@ -38,13 +38,16 @@ dgr_graph_orig <-
 # Convert the DiagrammeR
 # graph to an igraph object
 ig_graph <-
-  to_igraph(dgr_graph_orig)
+  dgr_graph_orig \%>\%
+  to_igraph()
 
 # Convert the igraph graph
 # back to a DiagrammeR graph
 dgr_graph_new <-
-  from_igraph(ig_graph)
+  ig_graph \%>\%
+  from_igraph()
 
 # Get some graph information
-graph_info(dgr_graph_new)[, 1:6]
+dgr_graph_new \%>\%
+  get_graph_info()[, 1:6]
 }
