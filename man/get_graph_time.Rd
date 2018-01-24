@@ -11,15 +11,18 @@ get_graph_time(graph)
 \code{dgr_graph}.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a single-length
+\code{POSIXct} vector with the
+assigned graph time.
 }
 \description{
 Set the time and timezone for a graph
 object of class \code{dgr_graph}.
 }
 \examples{
-# Create an empty graph and set the graph's time;
-# if nothing is supplied for the `tz` argument,
+# Create an empty graph and
+# set the graph's time; if nothing
+# is supplied for the `tz` argument,
 # `GMT` is used as the time zone
 graph <-
   create_graph() \%>\%

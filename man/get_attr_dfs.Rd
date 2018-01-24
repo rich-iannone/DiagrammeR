@@ -26,7 +26,7 @@ multiple data frames), and (2) \code{single_df}
 data).}
 }
 \value{
-either a tibble, a data frame, or a list.
+either a tibble or a data frame.
 }
 \description{
 From a graph object of class

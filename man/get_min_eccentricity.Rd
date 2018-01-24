@@ -34,7 +34,8 @@ graph <-
 
 # Determine the graph's minimum
 # eccentricity
-get_min_eccentricity(graph)
+graph \%>\%
+  get_min_eccentricity()
 
 # Create a full graph and then
 # get the minimum eccentricity

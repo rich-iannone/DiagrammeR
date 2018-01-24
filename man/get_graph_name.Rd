@@ -11,13 +11,14 @@ get_graph_name(graph)
 \code{dgr_graph}.}
 }
 \value{
-a single-length character vector with the
-assigned graph name. If a graph name has not been
-set, NA is returned.
+a single-length character
+vector with the assigned graph name.
+If a graph name has not been set, NA
+is returned.
 }
 \description{
-Get the name of a graph object of class
-\code{dgr_graph}.
+Get the name of a graph
+object of class \code{dgr_graph}.
 }
 \examples{
 # Create an empty graph
@@ -30,5 +31,6 @@ graph <-
     name = "the_name")
 
 # Get the graph's name
-get_graph_name(graph)
+graph \%>\%
+  get_graph_name()
 }
