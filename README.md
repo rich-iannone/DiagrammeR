@@ -448,7 +448,7 @@ k_graph %>% render_graph()
 Functions in the Package
 ------------------------
 
-There are a lot of functions for working with graphs. Lots. Below is a listing of all the functions available in the package. If you need help with any given function, try `help([function_name])`. Each function is well documented, with explanations for each argument and copious usage examples.
+There are a lot of functions for working with graphs. If you need help with any given function, try `help([function_name])`. Each function is well documented, with explanations for each argument and many usage examples.
 
 <img src="inst/img/functions.png">
 
