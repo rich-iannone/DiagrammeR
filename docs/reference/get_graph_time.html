@@ -105,12 +105,15 @@ object of class <code>dgr_graph</code>.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a single-length
+<code>POSIXct</code> vector with the
+assigned graph time.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create an empty graph and set the graph's time;</span>
-<span class='co'># if nothing is supplied for the `tz` argument,</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph and</span>
+<span class='co'># set the graph's time; if nothing</span>
+<span class='co'># is supplied for the `tz` argument,</span>
 <span class='co'># `GMT` is used as the time zone</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>

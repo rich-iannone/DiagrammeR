@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the minimum graph eccentricity — get_min_eccentricity • DiagrammeR</title>
+<title>Render a graph available in a series — render_graph_from_graph_series • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,66 +83,90 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the minimum graph eccentricity</h1>
+    <h1>Render a graph available in a series</h1>
     </div>
 
     
-    <p>Get the radius of a graph, which is
-the smallest eccentricity in the graph. The graph
-eccentricity of a node is its shortest path from
-the farthest other node in the graph.</p>
+    <p>Using a graph series object of type
+<code>dgr_graph_1D</code>, either render graph in the
+Viewer or output in various formats.</p>
     
 
-    <pre class="usage"><span class='fu'>get_min_eccentricity</span>(<span class='no'>graph</span>, <span class='kw'>direction</span> <span class='kw'>=</span> <span class='st'>"all"</span>)</pre>
+    <pre class="usage"><span class='fu'>render_graph_from_graph_series</span>(<span class='no'>graph_series</span>, <span class='no'>graph_no</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"graph"</span>,
+  <span class='kw'>width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>height</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <th>graph_series</th>
+      <td><p>a graph series object of type
+<code>dgr_graph_1D</code>.</p></td>
     </tr>
     <tr>
-      <th>direction</th>
-      <td><p>using <code>all</code> (the default), the
-search will ignore edge direction while traversing
-through the graph. With <code>out</code>, measurements of
-paths will be from a node whereas with <code>in</code>,
-measurements of paths will be to a node.</p></td>
+      <th>graph_no</th>
+      <td><p>the index of the graph in the graph
+series.</p></td>
+    </tr>
+    <tr>
+      <th>output</th>
+      <td><p>a string specifying the output type;
+<code>graph</code> (the default) renders the graph using
+the <code>grViz</code> function, <code>DOT</code> outputs DOT
+code for the graph, and <code>SVG</code> provides SVG code
+for the rendered graph.</p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>an optional parameter for specifying
+the width of the resulting graphic in pixels.</p></td>
+    </tr>
+    <tr>
+      <th>height</th>
+      <td><p>an optional parameter for specifying
+the height of the resulting graphic in pixels.</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a single numeric value representing the
-minimum eccentricity of the graph.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a cycle graph</span>
-<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># Create three graphs</span>
+<span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+
+<span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
-<span class='co'># Determine the graph's minimum</span>
-<span class='co'># eccentricity</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_min_eccentricity</span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
-<span class='co'># Create a full graph and then</span>
-<span class='co'># get the minimum eccentricity</span>
-<span class='co'># value for that</span>
-<span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_full_graph.html'>add_full_graph</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_min_eccentricity</span>()</div><div class='output co'>#&gt; [1] 1</div></pre>
+<span class='no'>graph_3</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_star.html'>add_star</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>6</span>)
+
+<span class='co'># Create an empty graph series</span>
+<span class='co'># and add the graphs</span>
+<span class='no'>series</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph_series.html'>create_graph_series</a></span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_1</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_2</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
+    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_3</span>)
+
+<span class='co'># View the second graph in</span>
+<span class='co'># the series in the Viewer</span>
+<span class='fu'>render_graph_from_graph_series</span>(
+  <span class='kw'>graph_series</span> <span class='kw'>=</span> <span class='no'>series</span>,
+  <span class='kw'>graph_no</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 

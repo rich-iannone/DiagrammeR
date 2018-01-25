@@ -133,15 +133,18 @@ to use this functionality.</p></td>
 <span class='co'># Convert the DiagrammeR</span>
 <span class='co'># graph to an igraph object</span>
 <span class='no'>ig_graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='to_igraph.html'>to_igraph</a></span>(<span class='no'>dgr_graph_orig</span>)
+  <span class='no'>dgr_graph_orig</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='to_igraph.html'>to_igraph</a></span>()
 
 <span class='co'># Convert the igraph graph</span>
 <span class='co'># back to a DiagrammeR graph</span>
 <span class='no'>dgr_graph_new</span> <span class='kw'>&lt;-</span>
-  <span class='fu'>from_igraph</span>(<span class='no'>ig_graph</span>)
+  <span class='no'>ig_graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>from_igraph</span>()
 
 <span class='co'># Get some graph information</span>
-<span class='fu'><a href='graph_info.html'>graph_info</a></span>(<span class='no'>dgr_graph_new</span>)[, <span class='fl'>1</span>:<span class='fl'>6</span>]</div><div class='output co'>#&gt;             name  n  e   dens mn_deg mx_deg
+(<span class='no'>dgr_graph_new</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_graph_info.html'>get_graph_info</a></span>())[, <span class='fl'>1</span>:<span class='fl'>6</span>]</div><div class='output co'>#&gt;             name  n  e   dens mn_deg mx_deg
 #&gt; 1 graph_hWHYG7a9 36 50 0.0571      1      7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
