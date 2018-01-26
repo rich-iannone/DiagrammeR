@@ -34,15 +34,17 @@
 #'   get_cache(
 #'     name = "closeness_vector")
 #'
-#' # Get the difference of betweenness and closeness
-#' # values for nodes in the graph and store in the
-#' # graph's cache
+#' # Get the difference of betweenness
+#' # and closeness values for nodes in
+#' # the graph and store the vector in
+#' # the graph's cache
 #' graph <-
 #'   graph %>%
 #'   set_cache(
 #'     name = "difference",
-#'     to_cache = get_betweenness(.)$betweenness -
-#'                get_closeness(.)$closeness)
+#'     to_cache =
+#'       get_betweenness(.)$betweenness -
+#'         get_closeness(.)$closeness)
 #'
 #' # Get the graph's cache
 #' graph %>%
