@@ -52,7 +52,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom dplyr bind_cols
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo get_expr
 #' @export copy_node_attrs
 
 copy_node_attrs <- function(graph,
@@ -62,11 +62,13 @@ copy_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  node_attr_from <- rlang::enquo(node_attr_from)
-  node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
+  # Get the requested `node_attr_from`
+  node_attr_from <-
+    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
 
-  node_attr_to <- rlang::enquo(node_attr_to)
-  node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
+  # Get the requested `node_attr_to`
+  node_attr_to <-
+    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

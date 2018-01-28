@@ -40,7 +40,7 @@
 #' # removed
 #' graph %>%
 #'   get_node_df()
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo get_expr
 #' @export drop_node_attrs
 
 drop_node_attrs <- function(graph,
@@ -49,8 +49,9 @@ drop_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  node_attr <- rlang::enquo(node_attr)
-  node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
+  # Get the requested `node_attr`
+  node_attr <-
+    rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

@@ -88,6 +88,15 @@ get_edge_attrs_ws <- function(graph,
   # Create binding for a specific variable
   id <- NULL
 
+  if (rlang::enquo(edge_attr) %>%
+      rlang::get_expr() %>%
+      as.character() %in% c("id", "from", "to")) {
+
+    stop(
+      "This is not an edge attribute.",
+      call. = FALSE)
+  }
+
   # Extract the edge data frame (edf)
   # from the graph
   edf <- graph$edges_df

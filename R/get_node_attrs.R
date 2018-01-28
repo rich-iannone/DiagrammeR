@@ -59,7 +59,9 @@ get_node_attrs <- function(graph,
   # Create binding for a specific variable
   id <- NULL
 
-  if ((rlang::UQ(node_attr) %>% paste())[2] %in% c("id", "nodes")) {
+  if (rlang::enquo(node_attr) %>%
+      rlang::get_expr() %>%
+      as.character() %in% c("id", "nodes")) {
 
     stop(
       "This is not a node attribute.",

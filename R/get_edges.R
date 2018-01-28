@@ -108,7 +108,7 @@
 #'     return_type = "vector",
 #'     return_values = "label")
 #' @importFrom dplyr filter select_ left_join rename
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export get_edges
 
 get_edges <- function(graph,
@@ -137,7 +137,9 @@ get_edges <- function(graph,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     edges_df <-
       filter(

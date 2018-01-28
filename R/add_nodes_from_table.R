@@ -101,32 +101,39 @@ add_nodes_from_table <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  label_col <- rlang::enquo(label_col)
-  label_col <- (rlang::UQ(label_col) %>% paste())[2]
+  # Get the requested `label_col`
+  label_col <-
+    rlang::enquo(label_col) %>% rlang::get_expr() %>% as.character()
 
-  type_col <- rlang::enquo(type_col)
-  type_col <- (rlang::UQ(type_col) %>% paste())[2]
+  # Get the requested `type_col`
+  type_col <-
+    rlang::enquo(type_col) %>% rlang::get_expr() %>% as.character()
 
-  set_type <- rlang::enquo(set_type)
-  set_type <- (rlang::UQ(set_type) %>% paste())[2]
+  # Get the requested `set_type`
+  set_type <-
+    rlang::enquo(set_type) %>% rlang::get_expr() %>% as.character()
 
-  drop_cols <- rlang::enquo(drop_cols)
-  drop_cols <- (rlang::UQ(drop_cols) %>% paste())[2]
+  # Get the requested `drop_cols`
+  drop_cols <-
+    rlang::enquo(drop_cols) %>% rlang::get_expr() %>% as.character()
 
-  if (label_col == "NULL") {
+  if (length(label_col) == 0) {
     label_col <- NULL
   }
 
-  if (type_col == "NULL") {
+  if (length(type_col) == 0) {
     type_col <- NULL
   }
 
-  if (set_type == "NULL") {
+  if (length(set_type) == 0) {
     set_type <- NULL
   }
 
-  if (drop_cols == "NULL") {
+  if (length(drop_cols) == 0) {
     drop_cols <- NULL
+  } else {
+    drop_cols <- drop_cols[drop_cols != "&"]
+    drop_cols <- paste(drop_cols, collapse = " & ")
   }
 
   # Validation: Graph object is valid

@@ -88,8 +88,9 @@ set_edge_attr_to_display <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  attr <- rlang::enquo(attr)
-  attr <- (rlang::UQ(attr) %>% paste())[2]
+  # Get the requested `attr`
+  attr <-
+    rlang::enquo(attr) %>% rlang::get_expr() %>% as.character()
 
   if (attr == "NULL") {
     attr <- NULL

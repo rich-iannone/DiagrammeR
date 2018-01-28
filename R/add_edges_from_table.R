@@ -116,26 +116,31 @@ add_edges_from_table <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  from_col <- rlang::enquo(from_col)
-  from_col <- (rlang::UQ(from_col) %>% paste())[2]
+  # Get the requested `from_col`
+  from_col <-
+    rlang::enquo(from_col) %>% rlang::get_expr() %>% as.character()
 
-  to_col <- rlang::enquo(to_col)
-  to_col <- (rlang::UQ(to_col) %>% paste())[2]
+  # Get the requested `to_col`
+  to_col <-
+    rlang::enquo(to_col) %>% rlang::get_expr() %>% as.character()
 
-  from_to_map <- rlang::enquo(from_to_map)
-  from_to_map <- (rlang::UQ(from_to_map) %>% paste())[2]
+  # Get the requested `from_to_map`
+  from_to_map <-
+    rlang::enquo(from_to_map) %>% rlang::get_expr() %>% as.character()
 
-  rel_col <- rlang::enquo(rel_col)
-  rel_col <- (rlang::UQ(rel_col) %>% paste())[2]
+  # Get the requested `rel_col`
+  rel_col <-
+    rlang::enquo(rel_col) %>% rlang::get_expr() %>% as.character()
 
-  if (rel_col == "NULL") {
+  # Get the requested `drop_cols`
+  drop_cols <-
+    rlang::enquo(drop_cols) %>% rlang::get_expr() %>% as.character()
+
+  if (length(rel_col) == 0) {
     rel_col <- NULL
   }
 
-  drop_cols <- rlang::enquo(drop_cols)
-  drop_cols <- (rlang::UQ(drop_cols) %>% paste())[2]
-
-  if (drop_cols == "NULL") {
+  if (length(drop_cols) == 0) {
     drop_cols <- NULL
   }
 

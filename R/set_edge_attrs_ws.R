@@ -53,8 +53,9 @@ set_edge_attrs_ws <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  edge_attr <- rlang::enquo(edge_attr)
-  edge_attr <- (rlang::UQ(edge_attr) %>% paste())[2]
+  # Get the requested `edge_attr`
+  edge_attr <-
+    rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

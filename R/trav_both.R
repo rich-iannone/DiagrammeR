@@ -184,7 +184,7 @@
 #'   get_node_df()
 #' @importFrom dplyr filter_ inner_join right_join rename group_by as_tibble
 #' @importFrom dplyr distinct select select_ union_all summarize_ everything
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export trav_both
 
 trav_both <- function(graph,
@@ -196,17 +196,19 @@ trav_both <- function(graph,
 
   conditions <- rlang::enquo(conditions)
 
-  copy_attrs_from <- rlang::enquo(copy_attrs_from)
-  copy_attrs_from <- (rlang::UQ(copy_attrs_from) %>% paste())[2]
+  # Get the requested `copy_attrs_from`
+  copy_attrs_from <-
+    rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
 
-  if (copy_attrs_from == "NULL") {
+  # Get the requested `copy_attrs_as`
+  copy_attrs_as <-
+    rlang::enquo(copy_attrs_as) %>% rlang::get_expr() %>% as.character()
+
+  if (length(copy_attrs_from) == 0) {
     copy_attrs_from <- NULL
   }
 
-  copy_attrs_as <- rlang::enquo(copy_attrs_as)
-  copy_attrs_as <- (rlang::UQ(copy_attrs_as) %>% paste())[2]
-
-  if (copy_attrs_as == "NULL") {
+  if (length(copy_attrs_as) == 0) {
     copy_attrs_as <- NULL
   }
 
@@ -287,7 +289,9 @@ trav_both <- function(graph,
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_nodes`
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     valid_nodes <-
       dplyr::filter(

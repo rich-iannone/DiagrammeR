@@ -60,7 +60,7 @@
 #' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export get_agg_degree_total
 
 get_agg_degree_total <- function(graph,
@@ -82,7 +82,9 @@ get_agg_degree_total <- function(graph,
 
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     # Extract the node data frame from the graph
     ndf <- get_node_df(graph)

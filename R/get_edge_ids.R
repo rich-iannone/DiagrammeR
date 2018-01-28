@@ -57,7 +57,7 @@
 #'     color == "blue" &
 #'     value > 5)
 #' @importFrom dplyr filter pull
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export get_edge_ids
 
 get_edge_ids <- function(graph,
@@ -79,7 +79,9 @@ get_edge_ids <- function(graph,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     edges_df <-
       filter(

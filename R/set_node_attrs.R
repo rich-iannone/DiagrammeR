@@ -62,7 +62,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom dplyr mutate
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo get_expr
 #' @export set_node_attrs
 
 set_node_attrs <- function(graph,
@@ -73,11 +73,12 @@ set_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  node_attr <- rlang::enquo(node_attr)
-  node_attr <- (rlang::UQ(node_attr) %>% paste())[2]
-
   # Create bindings for specific variables
   id <- NULL
+
+  # Get the requested `node_attr`
+  node_attr <-
+    rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()
 
   # Stop function if `node_attr` is `id`
   # if (node_attr == "id") {

@@ -104,13 +104,15 @@ rescale_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  node_attr_from <- rlang::enquo(node_attr_from)
-  node_attr_from <- (rlang::UQ(node_attr_from) %>% paste())[2]
+  # Get the requested `node_attr_from`
+  node_attr_from <-
+    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
 
-  node_attr_to <- rlang::enquo(node_attr_to)
-  node_attr_to <- (rlang::UQ(node_attr_to) %>% paste())[2]
+  # Get the requested `node_attr_to`
+  node_attr_to <-
+    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
 
-  if (node_attr_to == "NULL") {
+  if (length(node_attr_to) == 0) {
     node_attr_to <- NULL
   }
 

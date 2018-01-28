@@ -75,7 +75,7 @@
 #' graph %>%
 #'   get_selection()
 #' @importFrom dplyr filter pull
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export select_nodes
 
 select_nodes <- function(graph,
@@ -124,7 +124,9 @@ select_nodes <- function(graph,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `nodes_df`
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     nodes_df <-
       filter(

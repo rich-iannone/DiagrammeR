@@ -82,7 +82,9 @@ get_agg_degree_in <- function(graph,
 
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     # Extract the node data frame from the graph
     ndf <- get_node_df(graph)

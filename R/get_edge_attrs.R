@@ -88,7 +88,9 @@ get_edge_attrs <- function(graph,
   # Create binding for a specific variable
   from_to <- NULL
 
-  if ((rlang::UQ(edge_attr) %>% paste())[2] %in% c("id", "from", "to")) {
+  if (rlang::enquo(edge_attr) %>%
+      rlang::get_expr() %>%
+      as.character() %in% c("id", "from", "to")) {
 
     stop(
       "This is not an edge attribute.",

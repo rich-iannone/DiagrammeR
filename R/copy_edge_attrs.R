@@ -46,7 +46,7 @@
 #' graph %>%
 #'   get_edge_df()
 #' @importFrom dplyr bind_cols
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo get_expr
 #' @export copy_edge_attrs
 
 copy_edge_attrs <- function(graph,
@@ -56,11 +56,14 @@ copy_edge_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  edge_attr_from <- rlang::enquo(edge_attr_from)
-  edge_attr_from <- (rlang::UQ(edge_attr_from) %>% paste())[2]
+  # Get the requested `edge_attr_from`
+  edge_attr_from <-
+    rlang::enquo(edge_attr_from) %>% rlang::get_expr() %>% as.character()
 
-  edge_attr_to <- rlang::enquo(edge_attr_to)
-  edge_attr_to <- (rlang::UQ(edge_attr_to) %>% paste())[2]
+  # Get the requested `edge_attr_to`
+  edge_attr_to <-
+    rlang::enquo(edge_attr_to) %>% rlang::get_expr() %>% as.character()
+
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {

@@ -183,7 +183,7 @@
 #' graph %>%
 #'   get_edge_df()
 #' @importFrom dplyr filter select select_ full_join rename everything
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export trav_in_edge
 
 trav_in_edge <- function(graph,
@@ -193,17 +193,19 @@ trav_in_edge <- function(graph,
 
   conditions <- rlang::enquo(conditions)
 
-  copy_attrs_from <- rlang::enquo(copy_attrs_from)
-  copy_attrs_from <- (rlang::UQ(copy_attrs_from) %>% paste())[2]
+  # Get the requested `copy_attrs_from`
+  copy_attrs_from <-
+    rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
 
-  if (copy_attrs_from == "NULL") {
+  # Get the requested `copy_attrs_as`
+  copy_attrs_as <-
+    rlang::enquo(copy_attrs_as) %>% rlang::get_expr() %>% as.character()
+
+  if (length(copy_attrs_from) == 0) {
     copy_attrs_from <- NULL
   }
 
-  copy_attrs_as <- rlang::enquo(copy_attrs_as)
-  copy_attrs_as <- (rlang::UQ(copy_attrs_as) %>% paste())[2]
-
-  if (copy_attrs_as == "NULL") {
+  if (length(copy_attrs_as) == 0) {
     copy_attrs_as <- NULL
   }
 
@@ -279,7 +281,9 @@ trav_in_edge <- function(graph,
   # If traversal conditions are provided then
   # pass in those conditions and filter the
   # data frame of `valid_edges`
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     valid_edges <-
       filter(

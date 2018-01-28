@@ -143,7 +143,9 @@ select_edges <- function(graph,
   # If conditions are provided then
   # pass in those conditions and filter the
   # data frame of `edges_df`
-  if (!((rlang::UQ(conditions) %>% paste())[2] == "NULL")) {
+  if (!is.null(
+    rlang::enquo(conditions) %>%
+    rlang::get_expr())) {
 
     edges_df <-
       dplyr::filter(
