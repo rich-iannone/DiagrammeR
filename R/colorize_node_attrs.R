@@ -125,15 +125,6 @@ colorize_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `node_attr_from`
-  node_attr_from <-
-    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
-
-  # Get the requested `node_attr_to`
-  node_attr_to <-
-    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
-
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -141,6 +132,14 @@ colorize_node_attrs <- function(graph,
       "The graph object is not valid.",
       call. = FALSE)
   }
+
+  # Get the requested `node_attr_from`
+  node_attr_from <-
+    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
+
+  # Get the requested `node_attr_to`
+  node_attr_to <-
+    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
 
   # Extract ndf from graph
   nodes_df <- graph$nodes_df

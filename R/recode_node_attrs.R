@@ -90,18 +90,6 @@ recode_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `node_attr_from`
-  node_attr_from <-
-    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
-
-  # Get the requested `node_attr_to`
-  node_attr_to <-
-    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
-
-  if (length(node_attr_to) == 0) {
-    node_attr_to <- NULL
-  }
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -116,6 +104,18 @@ recode_node_attrs <- function(graph,
     stop(
       "The graph contains no nodes, so, no nodes can be recoded.",
       call. = FALSE)
+  }
+
+  # Get the requested `node_attr_from`
+  node_attr_from <-
+    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
+
+  # Get the requested `node_attr_to`
+  node_attr_to <-
+    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
+
+  if (length(node_attr_to) == 0) {
+    node_attr_to <- NULL
   }
 
   # Get list object from named vectors

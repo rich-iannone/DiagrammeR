@@ -56,10 +56,6 @@ set_node_attrs_ws <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `node_attr`
-  node_attr <-
-    rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -83,6 +79,10 @@ set_node_attrs_ws <- function(graph,
       "There is no selection of nodes available.",
       call. = FALSE)
   }
+
+  # Get the requested `node_attr`
+  node_attr <-
+    rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()
 
   # Get vector of node ID values
   nodes <- graph$node_selection$node

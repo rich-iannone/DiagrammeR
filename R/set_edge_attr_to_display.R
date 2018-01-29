@@ -88,14 +88,6 @@ set_edge_attr_to_display <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `attr`
-  attr <-
-    rlang::enquo(attr) %>% rlang::get_expr() %>% as.character()
-
-  if (attr == "NULL") {
-    attr <- NULL
-  }
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -110,6 +102,14 @@ set_edge_attr_to_display <- function(graph,
     stop(
       "The graph contains no edges, so, no edge attributes can be set.",
       call. = FALSE)
+  }
+
+  # Get the requested `attr`
+  attr <-
+    rlang::enquo(attr) %>% rlang::get_expr() %>% as.character()
+
+  if (attr == "NULL") {
+    attr <- NULL
   }
 
   # Create bindings for specific variables

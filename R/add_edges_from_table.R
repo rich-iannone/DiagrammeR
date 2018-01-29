@@ -116,6 +116,22 @@ add_edges_from_table <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
+  }
+
+  # Validation: Graph contains nodes
+  if (graph_contains_nodes(graph) == FALSE) {
+
+    stop(
+      "The graph contains no nodes, so, edges cannot be added.",
+      call. = FALSE)
+  }
+
   # Get the requested `from_col`
   from_col <-
     rlang::enquo(from_col) %>% rlang::get_expr() %>% as.character()
@@ -142,22 +158,6 @@ add_edges_from_table <- function(graph,
 
   if (length(drop_cols) == 0) {
     drop_cols <- NULL
-  }
-
-  # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
-  }
-
-  # Validation: Graph contains nodes
-  if (graph_contains_nodes(graph) == FALSE) {
-
-    stop(
-      "The graph contains no nodes, so, edges cannot be added.",
-      call. = FALSE)
   }
 
   # Create bindings for specific variables

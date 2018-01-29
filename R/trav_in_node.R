@@ -214,30 +214,6 @@ trav_in_node <- function(graph,
                          copy_attrs_as = NULL,
                          agg = "sum") {
 
-  conditions <- rlang::enquo(conditions)
-
-  # Get the requested `copy_attrs_from`
-  copy_attrs_from <-
-    rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
-
-  # Get the requested `copy_attrs_as`
-  copy_attrs_as <-
-    rlang::enquo(copy_attrs_as) %>% rlang::get_expr() %>% as.character()
-
-  if (length(copy_attrs_from) == 0) {
-    copy_attrs_from <- NULL
-  }
-
-  if (length(copy_attrs_as) == 0) {
-    copy_attrs_as <- NULL
-  }
-
-  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
-    if (copy_attrs_as == copy_attrs_from) {
-      copy_attrs_as <- NULL
-    }
-  }
-
   # Get the time of function start
   time_function_start <- Sys.time()
 
@@ -267,6 +243,30 @@ trav_in_node <- function(graph,
 
     stop("There is no selection of edges, so, no traversal can occur.",
          call. = FALSE)
+  }
+
+  conditions <- rlang::enquo(conditions)
+
+  # Get the requested `copy_attrs_from`
+  copy_attrs_from <-
+    rlang::enquo(copy_attrs_from) %>% rlang::get_expr() %>% as.character()
+
+  # Get the requested `copy_attrs_as`
+  copy_attrs_as <-
+    rlang::enquo(copy_attrs_as) %>% rlang::get_expr() %>% as.character()
+
+  if (length(copy_attrs_from) == 0) {
+    copy_attrs_from <- NULL
+  }
+
+  if (length(copy_attrs_as) == 0) {
+    copy_attrs_as <- NULL
+  }
+
+  if (!is.null(copy_attrs_as) & !is.null(copy_attrs_from)) {
+    if (copy_attrs_as == copy_attrs_from) {
+      copy_attrs_as <- NULL
+    }
   }
 
   # Create bindings for specific variables

@@ -53,10 +53,6 @@ set_edge_attrs_ws <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `edge_attr`
-  edge_attr <-
-    rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -80,6 +76,10 @@ set_edge_attrs_ws <- function(graph,
       "There is no selection of edges available.",
       call. = FALSE)
   }
+
+  # Get the requested `edge_attr`
+  edge_attr <-
+    rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
 
   # Get vectors of edge ID values for the
   # edge selection

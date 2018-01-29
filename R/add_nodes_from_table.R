@@ -101,6 +101,14 @@ add_nodes_from_table <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Validation: Graph object is valid
+  if (graph_object_valid(graph) == FALSE) {
+
+    stop(
+      "The graph object is not valid.",
+      call. = FALSE)
+  }
+
   # Get the requested `label_col`
   label_col <-
     rlang::enquo(label_col) %>% rlang::get_expr() %>% as.character()
@@ -134,14 +142,6 @@ add_nodes_from_table <- function(graph,
   } else {
     drop_cols <- drop_cols[drop_cols != "&"]
     drop_cols <- paste(drop_cols, collapse = " & ")
-  }
-
-  # Validation: Graph object is valid
-  if (graph_object_valid(graph) == FALSE) {
-
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
   }
 
   # Create bindings for specific variables

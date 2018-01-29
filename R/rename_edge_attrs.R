@@ -50,14 +50,6 @@ rename_edge_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `edge_attr_from`
-  edge_attr_from <-
-    rlang::enquo(edge_attr_from) %>% rlang::get_expr() %>% as.character()
-
-  # Get the requested `edge_attr_to`
-  edge_attr_to <-
-    rlang::enquo(edge_attr_to) %>% rlang::get_expr() %>% as.character()
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -73,6 +65,14 @@ rename_edge_attrs <- function(graph,
       "The graph contains no edges, so, no edge attributes can be renamed.",
       call. = FALSE)
   }
+
+  # Get the requested `edge_attr_from`
+  edge_attr_from <-
+    rlang::enquo(edge_attr_from) %>% rlang::get_expr() %>% as.character()
+
+  # Get the requested `edge_attr_to`
+  edge_attr_to <-
+    rlang::enquo(edge_attr_to) %>% rlang::get_expr() %>% as.character()
 
   # Stop function if `edge_attr_from` and
   # `edge_attr_to` are identical

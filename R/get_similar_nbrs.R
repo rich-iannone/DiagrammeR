@@ -92,10 +92,6 @@ get_similar_nbrs <- function(graph,
                              tol_abs = NULL,
                              tol_pct = NULL) {
 
-  # Get the requested `node_attr`
-  node_attr <-
-    rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -103,6 +99,10 @@ get_similar_nbrs <- function(graph,
       "The graph object is not valid.",
       call. = FALSE)
   }
+
+    # Get the requested `node_attr`
+  node_attr <-
+    rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()
 
   # Get value to match on
   match <-

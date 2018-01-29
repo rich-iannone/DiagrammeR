@@ -56,14 +56,6 @@ rename_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `node_attr_from`
-  node_attr_from <-
-    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
-
-  # Get the requested `node_attr_to`
-  node_attr_to <-
-    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -79,6 +71,14 @@ rename_node_attrs <- function(graph,
       "The graph contains no nodes, so, no node attributes can be renamed.",
       call. = FALSE)
   }
+
+  # Get the requested `node_attr_from`
+  node_attr_from <-
+    rlang::enquo(node_attr_from) %>% rlang::get_expr() %>% as.character()
+
+  # Get the requested `node_attr_to`
+  node_attr_to <-
+    rlang::enquo(node_attr_to) %>% rlang::get_expr() %>% as.character()
 
   # Stop function if `node_attr_from` and
   # `node_attr_to` are identical
