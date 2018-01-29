@@ -207,6 +207,7 @@ trav_out_edge <- function(graph,
       call. = FALSE)
   }
 
+  # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 
   # Get the requested `copy_attrs_from`

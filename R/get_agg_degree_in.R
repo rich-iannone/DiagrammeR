@@ -60,14 +60,12 @@
 #' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export get_agg_degree_in
 
 get_agg_degree_in <- function(graph,
                               agg,
                               conditions = NULL) {
-
-  conditions <- rlang::enquo(conditions)
 
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
@@ -76,6 +74,9 @@ get_agg_degree_in <- function(graph,
       "The graph object is not valid.",
       call. = FALSE)
   }
+
+  # Capture provided conditions
+  conditions <- rlang::enquo(conditions)
 
   # Create binding for variable
   id <- NULL

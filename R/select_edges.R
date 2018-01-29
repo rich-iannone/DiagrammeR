@@ -84,7 +84,7 @@
 #' graph %>%
 #'   get_selection()
 #' @importFrom dplyr filter select rename
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export select_edges
 
 select_edges <- function(graph,
@@ -93,8 +93,6 @@ select_edges <- function(graph,
                          from = NULL,
                          to = NULL,
                          edges = NULL) {
-
-  conditions <- rlang::enquo(conditions)
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -133,6 +131,9 @@ select_edges <- function(graph,
         call. = FALSE)
     }
   }
+
+  # Capture provided conditions
+  conditions <- rlang::enquo(conditions)
 
   # Create bindings for specific variables
   id <- NULL

@@ -67,8 +67,6 @@ get_agg_degree_total <- function(graph,
                                  agg,
                                  conditions = NULL) {
 
-  conditions <- rlang::enquo(conditions)
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -76,6 +74,9 @@ get_agg_degree_total <- function(graph,
       "The graph object is not valid.",
       call. = FALSE)
   }
+
+  # Capture provided conditions
+  conditions <- rlang::enquo(conditions)
 
   # Create binding for variable
   id <- NULL

@@ -35,7 +35,7 @@
 #'   get_node_attrs_ws(
 #'     node_attr = value)
 #' @importFrom dplyr filter pull
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export get_node_attrs_ws
 
 get_node_attrs_ws <- function(graph,

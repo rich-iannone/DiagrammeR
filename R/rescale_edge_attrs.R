@@ -91,7 +91,7 @@
 #' # edge attribute
 #' graph %>%
 #'   get_edge_df()
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @importFrom scales rescale cscale seq_gradient_pal
 #' @importFrom grDevices colors
 #' @export rescale_edge_attrs

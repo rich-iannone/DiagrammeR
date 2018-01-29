@@ -63,6 +63,7 @@
 get_edge_ids <- function(graph,
                          conditions = NULL) {
 
+  # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 
   # Create binding for a specific variable

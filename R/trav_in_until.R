@@ -110,8 +110,6 @@ trav_in_until <- function(graph,
                           exclude_unmatched = TRUE,
                           add_to_selection = FALSE) {
 
-  conditions <- rlang::enquo(conditions)
-
   # Get the time of function start
   time_function_start <- Sys.time()
 
@@ -146,6 +144,9 @@ trav_in_until <- function(graph,
       "There is no selection of nodes, so, no traversal can occur.",
       call. = FALSE)
   }
+
+  # Capture provided conditions
+  conditions <- rlang::enquo(conditions)
 
   # Initialize the node stack and
   # the step count

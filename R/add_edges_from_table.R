@@ -101,7 +101,7 @@
 #' @importFrom utils read.csv
 #' @importFrom stats setNames
 #' @importFrom dplyr left_join select rename mutate bind_cols everything as_tibble
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export add_edges_from_table
 
 add_edges_from_table <- function(graph,

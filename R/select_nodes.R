@@ -83,8 +83,6 @@ select_nodes <- function(graph,
                          set_op = "union",
                          nodes = NULL) {
 
-  conditions <- rlang::enquo(conditions)
-
   # Get the time of function start
   time_function_start <- Sys.time()
 
@@ -115,7 +113,10 @@ select_nodes <- function(graph,
     }
   }
 
-  # Create binding for a specific variable
+  # Capture provided conditions
+  conditions <- rlang::enquo(conditions)
+
+    # Create binding for a specific variable
   id <- NULL
 
   # Extract the graph's internal ndf

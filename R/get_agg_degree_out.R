@@ -64,6 +64,7 @@ get_agg_degree_out <- function(graph,
                                agg,
                                conditions = NULL) {
 
+  # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 
   # Validation: Graph object is valid

@@ -77,7 +77,7 @@
 #'   get_edge_df()
 #' @importFrom dplyr mutate left_join coalesce bind_cols select
 #' @importFrom dplyr everything case_when tibble
-#' @importFrom rlang enquo UQ
+#' @importFrom rlang enquo UQ get_expr
 #' @export set_edge_attr_to_display
 
 set_edge_attr_to_display <- function(graph,

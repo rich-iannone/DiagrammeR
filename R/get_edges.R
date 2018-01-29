@@ -116,6 +116,7 @@ get_edges <- function(graph,
                       return_type = "vector",
                       return_values = "id") {
 
+  # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 
   # Create bindings for specific variables

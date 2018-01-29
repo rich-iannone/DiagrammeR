@@ -65,6 +65,7 @@ get_node_ids <- function(graph,
   # Create binding for a specific variable
   id <- NULL
 
+  # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 
   if (is_graph_empty(graph)) {
