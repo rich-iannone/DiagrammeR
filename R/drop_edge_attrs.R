@@ -51,10 +51,6 @@ drop_edge_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
-  # Get the requested `edge_attr`
-  edge_attr <-
-    rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
-
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
@@ -62,6 +58,10 @@ drop_edge_attrs <- function(graph,
       "The graph object is not valid.",
       call. = FALSE)
   }
+
+  # Get the requested `edge_attr`
+  edge_attr <-
+    rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
 
   # Stop function if `edge_attr` is any of
   # `from`, `to`, or `rel`
