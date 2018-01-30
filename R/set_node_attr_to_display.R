@@ -108,7 +108,9 @@ set_node_attr_to_display <- function(graph,
   attr <-
     rlang::enquo(attr) %>% rlang::get_expr() %>% as.character()
 
-  if (attr == "NULL") {
+  # If nothing provided for `attr`, set
+  # it as NULL
+  if (length(attr) == 0) {
     attr <- NULL
   }
 
