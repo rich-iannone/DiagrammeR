@@ -1,0 +1,267 @@
+reference:
+  - title: External NDF/EDF
+    desc: >
+      These functions create external node data frames (ndfs) and
+      external edge data frames (edfs). These specialized data frames
+      can be used to create graphs.
+    contents:
+      - create_node_df
+      - create_edge_df
+      - combine_ndfs
+      - combine_edfs
+  - title: Graph Creation, Rendering, and I/O
+    contents:
+      - create_graph
+      - import_graph
+      - from_adj_matrix
+      - from_igraph
+      - to_igraph
+      - open_graph
+      - save_graph
+      - export_graph
+      - export_csv
+      - render_graph
+      - display_metagraph
+  - title: Node and Edge Selection
+    contents:
+      - select_nodes
+      - select_nodes_by_id
+      - select_nodes_by_degree
+      - select_nodes_in_neighborhood
+      - select_last_nodes_created
+      - select_edges
+      - select_edges_by_node_id
+      - select_edges_by_edge_id
+      - select_last_edges_created
+      - get_selection
+      - deselect_nodes
+      - deselect_edges
+      - invert_selection
+      - clear_selection
+  - title: Graph Modification
+    contents:
+      - add_node
+      - add_n_nodes
+      - add_n_nodes_ws
+      - add_node_df
+      - add_n_node_clones
+      - add_node_clones_ws
+      - add_nodes_from_table
+      - add_nodes_from_df_cols
+      - add_edge
+      - add_edge_df
+      - add_edges_w_string
+      - add_edge_clone
+      - add_forward_edges_ws
+      - add_reverse_edges_ws
+      - fully_connect_nodes_ws
+      - add_edges_from_table
+      - add_path
+      - add_cycle
+      - add_balanced_tree
+      - add_star
+      - add_prism
+      - add_full_graph
+      - add_grid_2d
+      - add_grid_3d
+      - add_gnm_graph
+      - add_gnp_graph
+      - add_pa_graph
+      - add_growing_graph
+      - add_smallworld_graph
+      - add_islands_graph
+      - delete_node
+      - delete_nodes_ws
+      - delete_edge
+      - delete_edges_ws
+      - delete_loop_edges_ws
+      - fully_disconnect_nodes_ws
+      - rev_edge_dir
+      - rev_edge_dir_ws
+      - set_node_attrs
+      - set_node_attrs_ws
+      - join_node_attrs
+      - rescale_node_attrs
+      - copy_node_attrs
+      - rename_node_attrs
+      - drop_node_attrs
+      - mutate_node_attrs
+      - mutate_node_attrs_ws
+      - colorize_node_attrs
+      - recode_node_attrs
+      - set_df_as_node_attr
+      - set_node_position
+      - layout_nodes_w_string
+      - nudge_node_positions_ws
+      - set_node_attr_w_fcn
+      - set_edge_attrs
+      - set_edge_attrs_ws
+      - join_edge_attrs
+      - rescale_edge_attrs
+      - copy_edge_attrs
+      - rename_edge_attrs
+      - drop_edge_attrs
+      - mutate_edge_attrs
+      - mutate_edge_attrs_ws
+      - colorize_edge_attrs
+      - recode_edge_attrs
+      - set_df_as_edge_attr
+      - node_data
+      - node_aes
+      - edge_data
+      - edge_aes
+  - title: Graph Transformation
+    contents:
+      - combine_graphs
+      - transform_to_subgraph_ws
+      - transform_to_complement_graph
+      - transform_to_min_spanning_tree
+      - set_graph_undirected
+      - set_graph_directed
+  - title: Graph Inspection
+    contents:
+      - get_node_df
+      - get_node_df_ws
+      - get_node_info
+      - get_last_nodes_created
+      - get_node_attrs
+      - get_node_attrs_ws
+      - get_degree_distribution
+      - get_degree_histogram
+      - get_edge_df
+      - get_edge_df_ws
+      - get_edge_info
+      - get_last_edges_created
+      - get_edge_attrs
+      - get_edge_attrs_ws
+      - get_node_ids
+      - get_nbrs
+      - get_common_nbrs
+      - get_non_nbrs
+      - get_similar_nbrs
+      - get_predecessors
+      - get_successors
+      - get_all_connected_nodes
+      - get_articulation_points
+      - get_periphery
+      - get_edge_ids
+      - get_edges
+      - get_paths
+      - do_dfs
+      - do_bfs
+      - get_attr_dfs
+      - count_nodes
+      - count_edges
+      - count_loop_edges
+      - count_mutual_node_pairs
+      - count_asymmetric_node_pairs
+      - count_automorphisms
+      - count_unconnected_nodes
+      - count_unconnected_node_pairs
+      - count_w_connected_cmpts
+      - count_s_connected_cmpts
+      - get_multiedge_count
+      - get_edge_count_w_multiedge
+      - get_agg_degree_in
+      - get_agg_degree_out
+      - get_agg_degree_total
+      - get_mean_distance
+      - get_min_eccentricity
+      - get_max_eccentricity
+      - get_reciprocity
+      - get_girth
+      - get_adhesion
+      - get_min_cut_between
+      - get_degree_in
+      - get_degree_out
+      - get_degree_total
+      - get_betweenness
+      - get_closeness
+      - get_pagerank
+      - get_alpha_centrality
+      - get_eigen_centrality
+      - get_authority_centrality
+      - get_leverage_centrality
+      - get_radiality
+      - get_eccentricity
+      - get_coreness
+      - get_constraint
+      - get_closeness_vitality
+      - get_bridging
+      - get_dice_similarity
+      - get_jaccard_similarity
+      - get_w_connected_cmpts
+      - get_s_connected_cmpts
+      - get_cmty_edge_btwns
+      - get_cmty_walktrap
+      - get_cmty_louvain
+      - get_cmty_l_eigenvec
+      - get_cmty_fast_greedy
+      - is_node_present
+      - is_edge_present
+      - is_edge_loop
+      - is_edge_multiple
+      - is_edge_mutual
+      - is_graph_empty
+      - is_graph_directed
+      - is_graph_undirected
+      - is_graph_simple
+      - is_graph_weighted
+      - is_graph_connected
+      - is_graph_dag
+      - is_property_graph
+  - title: Value Caching
+    contents:
+      - set_cache
+      - get_cache
+  - title: Graph Traversals
+    contents:
+      - trav_out
+      - trav_in
+      - trav_both
+      - trav_out_edge
+      - trav_in_edge
+      - trav_both_edge
+      - trav_out_node
+      - trav_in_node
+      - trav_out_until
+      - trav_in_until
+      - trav_reverse_edge
+  - title: Graph Series
+    contents:
+      - create_graph_series
+      - add_graph_to_graph_series
+      - remove_graph_from_graph_series
+      - filter_graph_series
+      - count_graphs_in_graph_series
+      - get_graph_from_graph_series
+      - get_graph_series_info
+      - render_graph_from_graph_series
+  - title: Graph Metadata
+    contents:
+      - set_global_graph_attrs
+      - add_global_graph_attrs
+      - clear_global_graph_attrs
+      - delete_global_graph_attrs
+      - set_graph_name
+      - set_graph_time
+      - set_node_attr_to_display
+      - set_edge_attr_to_display
+      - get_global_graph_attrs
+      - get_graph_name
+      - get_graph_time
+      - get_graph_log
+  - title: Graph Actions
+    contents:
+      - add_graph_action
+      - delete_graph_actions
+      - get_graph_actions
+      - reorder_graph_actions
+      - trigger_graph_actions
+  - title: Graphviz
+    contents:
+      - grViz
+      - generate_dot
+  - title: mermaid
+    contents:
+      - mermaid
