@@ -10,3 +10,4 @@
 ^README\.Rmd$
 ^README-.*\.png$
 ^LICENSE\.md$
+^_pkgdown\.yml$
