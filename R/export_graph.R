@@ -56,10 +56,12 @@
 #'   export_graph(
 #'     file_name = "mypng",
 #'     file_type = "PNG")
-#' }
+#' @importFrom DiagrammeRsvg export_svg
 #' @importFrom rgexf write.gexf
+#' @importFrom rsvg rsvg_png rsvg_pdf rsvg_svg rsvg_ps
 #' @importFrom utils installed.packages
-#' @importFrom igraph V E ecount ends vertex_attr_names edge_attr_names graph_attr_names vertex_attr edge_attr graph_attr
+#' @importFrom igraph V E ecount ends vertex_attr_names edge_attr_names
+#' @importFrom igraph graph_attr_names vertex_attr edge_attr graph_attr
 #' @export export_graph
 
 export_graph <- function(graph,
