@@ -147,15 +147,17 @@ frame must provided here.</p></td>
   <span class='fu'><a href='get_cache.html'>get_cache</a></span>(
     <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"closeness_vector"</span>)</div><div class='output co'>#&gt;  [1] 0.07692308 0.08333333 0.07692308 0.06666667 0.05555556 0.06250000
 #&gt;  [7] 0.06666667 0.05000000 0.06666667 0.04761905</div><div class='input'>
-<span class='co'># Get the difference of betweenness and closeness</span>
-<span class='co'># values for nodes in the graph and store in the</span>
-<span class='co'># graph's cache</span>
+<span class='co'># Get the difference of betweenness</span>
+<span class='co'># and closeness values for nodes in</span>
+<span class='co'># the graph and store the vector in</span>
+<span class='co'># the graph's cache</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>set_cache</span>(
     <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"difference"</span>,
-    <span class='kw'>to_cache</span> <span class='kw'>=</span> <span class='fu'><a href='get_betweenness.html'>get_betweenness</a></span>(<span class='no'>.</span>)$<span class='no'>betweenness</span> -
-               <span class='fu'><a href='get_closeness.html'>get_closeness</a></span>(<span class='no'>.</span>)$<span class='no'>closeness</span>)
+    <span class='kw'>to_cache</span> <span class='kw'>=</span>
+      <span class='fu'><a href='get_betweenness.html'>get_betweenness</a></span>(<span class='no'>.</span>)$<span class='no'>betweenness</span> -
+        <span class='fu'><a href='get_closeness.html'>get_closeness</a></span>(<span class='no'>.</span>)$<span class='no'>closeness</span>)
 
 <span class='co'># Get the graph's cache</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
