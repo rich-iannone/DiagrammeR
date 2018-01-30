@@ -47,7 +47,6 @@
 #'   export_graph(
 #'     file_name = "mypng.png",
 #'     file_type = "PNG")
-#' @importFrom DiagrammeRsvg export_svg
 #' @importFrom rgexf write.gexf
 #' @importFrom rsvg rsvg_png rsvg_pdf rsvg_svg rsvg_ps
 #' @importFrom utils installed.packages
