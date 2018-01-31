@@ -1,0 +1,39 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+<img src="man/figures/DiagrammeR.png">
+
+With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into **RMarkdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as image files.
+
+**DiagrammeR**'s graph functions allow you to create graph objects, modify those graphs, get information from the graphs, create a series of graphs, and do many other useful things. This makes it possible to generate a network graph with data available in tabular datasets. Two specialized data frames contain node data and attributes (node data frames) and edges with associated edge attributes (edge data frames). Because the attributes are always kept alongside the node and edge definitions (within the graph object itself), we can easily work with them.
+
+## Installation
+
+**DiagrammeR** is used in an **R** environment. If you don't have an **R** installation, it can be obtained from the [**Comprehensive R Archive Network (CRAN)**](https://cran.r-project.org/).
+
+You can install the development version of **DiagrammeR** from **GitHub** using the **devtools** package.
+
+```{r eval=FALSE}
+devtools::install_github("rich-iannone/DiagrammeR")
+```
+
+Or, get it from **CRAN**.
+
+```{r eval=FALSE}
+install.packages("DiagrammeR")
+```
+
+## License
+
+MIT &copy; Richard Iannone
