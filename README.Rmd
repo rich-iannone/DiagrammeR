@@ -12,16 +12,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-<img src="inst/img/DiagrammeR.png">
+<img src="man/figures/DiagrammeR.png">
 
-[![Travis-CI Build Status](https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master)](https://travis-ci.org/rich-iannone/DiagrammeR)
-[![codecov.io](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master)
+[![Build Status](https://travis-ci.org/rich-iannone/DiagrammeR.svg?branch=master)](https://travis-ci.org/rich-iannone/DiagrammeR)
+[![Coverage Status](https://codecov.io/github/rich-iannone/DiagrammeR/coverage.svg?branch=master)](https://codecov.io/github/rich-iannone/DiagrammeR?branch=master)
 [![CRAN status](http://www.r-pkg.org/badges/version/DiagrammeR)](https://cran.r-project.org/package=DiagrammeR)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/DiagrammeR?color=brightgreen)
 
 With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into **RMarkdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as image files.
 
-<img src="inst/img/simple_graph.png">
+<img src="man/figures/simple_graph.png">
 
 The above example graph can be created with a combination of **DiagrammeR** functions:
 
@@ -87,7 +87,7 @@ a_graph <-
     to = 2)
 ```
 
-<img src="inst/img/a_graph.png">
+<img src="man/figures/a_graph.png">
 
 We can take away an edge by using `delete_edge()`.
 
@@ -99,7 +99,7 @@ b_graph <-
     to = 2)
 ```
 
-<img src="inst/img/b_graph.png">
+<img src="man/figures/b_graph.png">
 
 We can add a node to the graph while, at the same time, defining edges to or from existing nodes in the graph.
 
@@ -111,7 +111,7 @@ c_graph <-
     to = 2)
 ```
 
-<img src="inst/img/c_graph.png">
+<img src="man/figures/c_graph.png">
 
 Viewing the graph object in the console will provide some basic information about the graph and some pointers on where to get additional information.
 
@@ -146,7 +146,7 @@ d_graph <-
       value = 2.5))
 ```
 
-<img src="inst/img/d_graph.png">
+<img src="man/figures/d_graph.png">
     
 Creating attributes and setting their values is often useful because we can further work with the attributes (e.g., *mutate* values or even use them during traversals). Furthermore, we can create aesthetic properties based on numerical or categorical data. This is important for when you want to display your graph diagram using the `render_graph()` function.
 
@@ -166,7 +166,7 @@ e_graph <-
 
 To explain this a bit, we take the graph object `d_graph`, select only the nodes that have a node `value` attribute of exactly `2.5`. (We now have an active node selection.) With the selected nodes, we set their node attribute `fillcolor` with the value `orange`. Then we deactivate the selection with `clear_selection()`. Now, if we view the graph with `render_graph()` we get this:
 
-<img src="inst/img/e_graph.png">
+<img src="man/figures/e_graph.png">
 
 There are quite a few functions that allow you to select nodes (e.g., `select_nodes()`, `select_nodes_by_id()`, `select_last_nodes_created()`) and edges (e.g., `select_edges()`, `select_edges_by_edge_id()`, `select_last_edges_created()`). With these selections, we can apply changes using functions that end with `..._ws()` (with selection). As seen, node attributes could be set/replaced with `set_node_attrs_ws()` but we can also mutate attributes of selected nodes (`mutate_node_attrs_ws()`), delete selected nodes (`delete_nodes_ws()`), and even create a subgraph with that selection (`create_subgraph_ws()`). Selections of nodes or edges can be inverted (where non-selected nodes or edges become the active selection) with `invert_selection()`, certain nodes/edges can be removed from the active selection with the `deselect_nodes()`/`deselect_edges()`, and any selection can and should be eventually cleared with `clear_selection()`.
 
@@ -181,7 +181,7 @@ f_graph <-
     k = 2, h = 2)
 ```
 
-<img src="inst/img/f_graph.png">
+<img src="man/figures/f_graph.png">
 
 You can add one or more randomly generated graphs to a graph object. Here, let's add a directed GNM graph with 10 nodes and 15 edges (the `set_seed` option makes the random graph reproducible). 
 
@@ -194,7 +194,7 @@ g_graph <-
     set_seed = 23)
 ```
 
-<img src="inst/img/g_graph.png">
+<img src="man/figures/g_graph.png">
 
 The undirected version of this graph is can be made using:
 
@@ -208,7 +208,7 @@ h_graph <-
     set_seed = 23)
 ```
 
-<img src="inst/img/h_graph.png">
+<img src="man/figures/h_graph.png">
 
 We can view the graph using `render_graph()`. There are several layouts to choose from as well (e.g., `nicely`, `tree`, `kk`, `fr`, etc.).
 
@@ -217,7 +217,7 @@ h_graph %>%
   render_graph(layout = "fr")
 ```
 
-<img src="inst/img/h_graph_2.png">
+<img src="man/figures/h_graph_2.png">
 
 ## Using Data from Tables to Generate a Graph
 
@@ -388,13 +388,13 @@ k_graph <-
 k_graph %>% render_graph()
 ```
 
-<img src="inst/img/k_graph.png">
+<img src="man/figures/k_graph.png">
 
 ## Functions in the Package
 
 There are a lot of functions for working with graphs. If you need help with any given function, try `help([function_name])`. Each function is well documented, with explanations for each argument and many usage examples.
 
-<img src="inst/img/functions.png">
+<img src="man/figures/functions.png">
 
 ## A Network Graph Example
 
@@ -419,7 +419,7 @@ We can always view this property graph with the `render_graph()` function:
 render_graph(graph, layout = "kk")
 ```
 
-<img src="inst/img/graph_example_1.png">
+<img src="man/figures/graph_example_1.png">
 
 Now that the graph is set up, you can create queries with **magrittr** pipelines to get specific answers from the graph.
 
@@ -522,7 +522,7 @@ graph <-
 render_graph(graph, layout = "kk")
 ```
 
-<img src="inst/img/graph_example_2.png">
+<img src="man/figures/graph_example_2.png">
 
 Get all email addresses for contributors (but not maintainers) of the **randomizer** and **supercalc88** projects. With `trav_in_edge()` we just want the `contributer` edges/commits. Once on those edges, hop back unconditionally to the people from which the edges originate with `trav_out_node()`. Get the `email` values from those selected individuals as a sorted character vector. 
 
