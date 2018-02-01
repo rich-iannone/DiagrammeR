@@ -42,7 +42,7 @@
 #' # removed
 #' graph %>%
 #'   get_edge_df()
-#' @importFrom rlang enquo UQ get_expr
+#' @importFrom rlang enquo get_expr
 #' @export drop_edge_attrs
 
 drop_edge_attrs <- function(graph,

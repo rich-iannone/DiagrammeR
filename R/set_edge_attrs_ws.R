@@ -42,7 +42,7 @@
 #' # for specific edges
 #' graph %>%
 #'   get_edge_df()
-#' @importFrom rlang enquo UQ get_expr
+#' @importFrom rlang enquo get_expr
 #' @importFrom dplyr mutate case_when
 #' @export set_edge_attrs_ws
 

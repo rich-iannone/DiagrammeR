@@ -77,7 +77,7 @@
 #'   get_node_df()
 #' @importFrom dplyr mutate left_join coalesce bind_cols select
 #' @importFrom dplyr everything case_when tibble
-#' @importFrom rlang enquo UQ get_expr
+#' @importFrom rlang enquo get_expr
 #' @export set_node_attr_to_display
 
 set_node_attr_to_display <- function(graph,

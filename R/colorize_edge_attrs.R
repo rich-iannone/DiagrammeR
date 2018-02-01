@@ -63,7 +63,7 @@
 #'   get_edge_df()
 #' @import RColorBrewer
 #' @importFrom viridis viridis
-#' @importFrom rlang enquo get_expr
+#' @importFrom rlang enquo UQ get_expr
 #' @export colorize_edge_attrs
 
 colorize_edge_attrs <- function(graph,

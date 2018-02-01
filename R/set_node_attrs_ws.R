@@ -46,7 +46,7 @@
 #' # specific node
 #' graph %>%
 #'   get_node_df()
-#' @importFrom rlang enquo get_expr
+#' @importFrom rlang enquo UQ get_expr
 #' @export set_node_attrs_ws
 
 set_node_attrs_ws <- function(graph,
