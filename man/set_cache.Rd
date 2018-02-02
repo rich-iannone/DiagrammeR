@@ -4,26 +4,33 @@
 \alias{set_cache}
 \title{Cache a vector in the graph}
 \usage{
-set_cache(graph, name = NULL, to_cache, col = NULL)
+set_cache(graph, to_cache, name = NULL, col = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{name}{an optional name for the cached vector.}
+\item{to_cache}{any vector or data
+frame. If a data frame is supplied
+then a single column for the vector
+to pull must be provided in the
+\code{col} argument.}
 
-\item{to_cache}{any vector or data frame.}
+\item{name}{an optional name for the
+cached vector.}
 
-\item{col}{if a data frame is provided in
-\code{to_cache} then a column name from that data
-frame must provided here.}
+\item{col}{if a data frame is provided
+in \code{to_cache} then a column name
+from that data frame must provided here.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
-Place any in the cache of a graph
-object of class \code{dgr_graph}.
+Place any vector in the
+cache of a graph object of class
+\code{dgr_graph}.
 }
 \examples{
 # Create a random graph using the

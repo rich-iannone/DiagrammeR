@@ -10,16 +10,17 @@ get_cache(graph, name = NULL)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{name}{the name of the object to extract from
-the cache. If none supplied, the most recent object
-added to the cache will be returned.}
+\item{name}{the name of the object to
+extract from the cache. If none supplied,
+the most recent object added to the cache
+will be returned.}
 }
 \value{
 a vector.
 }
 \description{
-Get the vector cached in a graph object
-of class \code{dgr_graph}.
+Get the vector cached in a
+graph object of class \code{dgr_graph}.
 }
 \examples{
 # Set a seed
