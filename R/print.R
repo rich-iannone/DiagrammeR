@@ -689,7 +689,7 @@ print.dgr_graph <- function(x, ...) {
       stored_dfs_detail_str, "\n",
       global_attrs_detail_str, "\n",
       graph_actions_detail_str, "\n",
-      graph_history_detail_str)
+      graph_history_detail_str, "\n")
 
   cat(complete_stmt)
 }
