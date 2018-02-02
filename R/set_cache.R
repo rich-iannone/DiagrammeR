@@ -53,8 +53,8 @@
 #' @export set_cache
 
 set_cache <- function(graph,
-                      name = NULL,
                       to_cache,
+                      name = NULL,
                       col = NULL) {
 
   # Get the time of function start
@@ -134,6 +134,5 @@ set_cache <- function(graph,
     save_graph_as_rds(graph = graph)
   }
 
-  # Store the vector in the graph's cache
   graph
 }
