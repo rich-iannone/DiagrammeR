@@ -1,11 +1,12 @@
 #' Get a cached vector from a graph object
-#' @description Get the vector cached in a graph object
-#' of class \code{dgr_graph}.
+#' @description Get the vector cached in a
+#' graph object of class \code{dgr_graph}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param name the name of the object to extract from
-#' the cache. If none supplied, the most recent object
-#' added to the cache will be returned.
+#' @param name the name of the object to
+#' extract from the cache. If none supplied,
+#' the most recent object added to the cache
+#' will be returned.
 #' @return a vector.
 #' @examples
 #' # Set a seed
