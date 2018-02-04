@@ -35,7 +35,7 @@ print.dgr_graph <- function(x, ...) {
       "get_selection" = " info: `get_selection()`",
       "get_cache" = " info: `get_cache()",
       "get_attr_dfs" = " info: `get_attr_dfs()`",
-      "get_global_graph_attrs" = " info: `get_global_graph_attrs()`")
+      "get_global_graph_attr_info" = " info: `get_global_graph_attr_info()`")
 
   # Get a count of all nodes in the graph
   node_count <- x %>% count_nodes()
@@ -574,7 +574,7 @@ print.dgr_graph <- function(x, ...) {
   info_labels_selection_length <- nchar(info_labels["get_selection"])[[1]]
   info_labels_cache_length <- nchar(info_labels["get_cache"])[[1]]
   info_labels_attr_dfs_length <- nchar(info_labels["get_attr_dfs"])[[1]]
-  info_labels_global_graph_attrs <- nchar(info_labels["get_global_graph_attrs"])[[1]]
+  info_labels_global_graph_attrs <- nchar(info_labels["get_global_graph_attr_info"])[[1]]
 
   if (console_width - node_detail_str_1_length - info_labels_node_df_length >= 5) {
 
@@ -658,7 +658,7 @@ print.dgr_graph <- function(x, ...) {
       global_attrs_detail_str_length -
       info_labels_global_graph_attrs >= 5) {
 
-    if (inherits(get_global_graph_attrs(x), "data.frame")) {
+    if (inherits(get_global_graph_attr_info(x), "data.frame")) {
 
       global_attrs_detail_str <-
         paste0(
@@ -670,7 +670,7 @@ print.dgr_graph <- function(x, ...) {
                          global_attrs_detail_str_length -
                          info_labels_global_graph_attrs)),
             collapse = ""),
-          info_labels["get_global_graph_attrs"])
+          info_labels["get_global_graph_attr_info"])
     }
   }
 
