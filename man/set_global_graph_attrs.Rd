@@ -47,5 +47,5 @@ graph <-
 # Verify that the global attributes
 # have been set
 graph \%>\%
-  get_global_graph_attrs()
+  get_global_graph_attr_info()
 }

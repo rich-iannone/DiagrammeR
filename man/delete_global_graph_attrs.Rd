@@ -5,7 +5,7 @@
 \title{Delete one of the global graph attributes stored
 within a graph object}
 \usage{
-delete_global_graph_attrs(graph, attr, attr_type)
+delete_global_graph_attrs(graph, attr = NULL, attr_type = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class
@@ -28,7 +28,8 @@ stored within a graph object of class
 \code{dgr_graph}).
 }
 \examples{
-# Create a new graph and add some global attributes
+# Create a new graph and add
+# some extra global graph attrs
 graph <-
   create_graph() \%>\%
   add_global_graph_attrs(
@@ -44,11 +45,14 @@ graph <-
     value = 3,
     attr_type = "edge")
 
-# View the graph's global attributes
-get_global_graph_attrs(graph)
+# Inspect the graph's global
+# attributes
+graph \%>\%
+  get_global_graph_attr_info()
 
-# Delete the `penwidth` attribute for the graph's
-# nodes using `delete_global_graph_attrs()`
+# Delete the `penwidth` attribute
+# for the graph's nodes using the
+# `delete_global_graph_attrs()` fcn
 graph <-
   graph \%>\%
   delete_global_graph_attrs(
@@ -57,5 +61,6 @@ graph <-
 
 # View the remaining set of global
 # attributes for the graph
-get_global_graph_attrs(graph)
+graph \%>\%
+  get_global_graph_attr_info()
 }
