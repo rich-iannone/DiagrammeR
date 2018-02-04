@@ -26,7 +26,7 @@
 #'
 #' # Verify that the global attributes have been set
 #' graph %>%
-#'   get_global_graph_attrs()
+#'   get_global_graph_attr_info()
 #'
 #' # Add to this set with by using the
 #' # `add_global_graph_attrs()` function and then
@@ -39,7 +39,7 @@
 #'     attr_type = "node")
 #'
 #' graph %>%
-#'   get_global_graph_attrs()
+#'   get_global_graph_attr_info()
 #'
 #' # When adding an attribute where `attr`
 #' # and `attr_type` exists, the value provided
@@ -49,7 +49,7 @@
 #'     attr = "penwidth",
 #'     value = 15,
 #'     attr_type = "node") %>%
-#'   get_global_graph_attrs()
+#'   get_global_graph_attr_info()
 #' @importFrom dplyr full_join transmute coalesce select tibble
 #' @export add_global_graph_attrs
 
