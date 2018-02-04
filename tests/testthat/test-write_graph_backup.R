@@ -339,23 +339,6 @@ test_that("Graph backups for `delete_global_graph_attrs()` works", {
     list.files(path = path) %>% length(), 16)
 })
 
-test_that("Graph backups for `clear_global_graph_attrs()` works", {
-
-  #
-  # Backup from `clear_global_graph_attrs()`
-  #
-
-  path <- tempdir()
-  on.exit(unlink(path))
-  setwd(path)
-
-  create_graph(write_backups = TRUE) %>%
-    clear_global_graph_attrs()
-
-  expect_equal(
-    list.files(path = path) %>% length(), 17)
-})
-
 test_that("Graph backups for `add_graph_action()` works", {
 
   #
@@ -376,7 +359,7 @@ test_that("Graph backups for `add_graph_action()` works", {
       action_name = "get_btwns")
 
   expect_equal(
-    list.files(path = path) %>% length(), 18)
+    list.files(path = path) %>% length(), 17)
 })
 
 test_that("Graph backups for `delete_graph_actions()` works", {
@@ -401,7 +384,7 @@ test_that("Graph backups for `delete_graph_actions()` works", {
       actions = "get_btwns")
 
   expect_equal(
-    list.files(path = path) %>% length(), 19)
+    list.files(path = path) %>% length(), 18)
 })
 
 test_that("Graph backups for `reorder_graph_actions()` works", {
@@ -431,7 +414,7 @@ test_that("Graph backups for `reorder_graph_actions()` works", {
       indices = c(2, 1))
 
   expect_equal(
-    list.files(path = path) %>% length(), 20)
+    list.files(path = path) %>% length(), 19)
 })
 
 test_that("Graph backups for `transform_to_complement_graph()` works", {
@@ -449,7 +432,7 @@ test_that("Graph backups for `transform_to_complement_graph()` works", {
     transform_to_complement_graph()
 
   expect_equal(
-    list.files(path = path) %>% length(), 21)
+    list.files(path = path) %>% length(), 20)
 })
 
 test_that("Graph backups for `copy_node_attrs()` works", {
@@ -472,7 +455,7 @@ test_that("Graph backups for `copy_node_attrs()` works", {
       node_attr_to = color_2)
 
   expect_equal(
-    list.files(path = path) %>% length(), 22)
+    list.files(path = path) %>% length(), 21)
 })
 
 test_that("Graph backups for `copy_edge_attrs()` works", {
@@ -495,7 +478,7 @@ test_that("Graph backups for `copy_edge_attrs()` works", {
       edge_attr_to = color_2)
 
   expect_equal(
-    list.files(path = path) %>% length(), 23)
+    list.files(path = path) %>% length(), 22)
 })
 
 test_that("Graph backups for `colorize_node_attrs()` works", {
@@ -524,7 +507,7 @@ test_that("Graph backups for `colorize_node_attrs()` works", {
       alpha = 90)
 
   expect_equal(
-    list.files(path = path) %>% length(), 24)
+    list.files(path = path) %>% length(), 23)
 })
 
 test_that("Graph backups for `colorize_edge_attrs()` works", {
@@ -553,7 +536,7 @@ test_that("Graph backups for `colorize_edge_attrs()` works", {
       alpha = 90)
 
   expect_equal(
-    list.files(path = path) %>% length(), 25)
+    list.files(path = path) %>% length(), 24)
 })
 
 test_that("Graph backups for `drop_node_attrs()` works", {
@@ -575,7 +558,7 @@ test_that("Graph backups for `drop_node_attrs()` works", {
       node_attr = color)
 
   expect_equal(
-    list.files(path = path) %>% length(), 26)
+    list.files(path = path) %>% length(), 25)
 })
 
 test_that("Graph backups for `drop_edge_attrs()` works", {
@@ -597,7 +580,7 @@ test_that("Graph backups for `drop_edge_attrs()` works", {
       edge_attr = color)
 
   expect_equal(
-    list.files(path = path) %>% length(), 27)
+    list.files(path = path) %>% length(), 26)
 })
 
 test_that("Graph backups for `join_node_attrs()` works", {
@@ -620,7 +603,7 @@ test_that("Graph backups for `join_node_attrs()` works", {
     join_node_attrs(df = df)
 
   expect_equal(
-    list.files(path = path) %>% length(), 28)
+    list.files(path = path) %>% length(), 27)
 })
 
 test_that("Graph backups for `join_edge_attrs()` works", {
@@ -644,7 +627,7 @@ test_that("Graph backups for `join_edge_attrs()` works", {
     join_edge_attrs(df = df)
 
   expect_equal(
-    list.files(path = path) %>% length(), 29)
+    list.files(path = path) %>% length(), 28)
 })
 
 test_that("Graph backups for `mutate_node_attrs()` works", {
@@ -667,7 +650,7 @@ test_that("Graph backups for `mutate_node_attrs()` works", {
       half_weight = weight / 2)
 
   expect_equal(
-    list.files(path = path) %>% length(), 30)
+    list.files(path = path) %>% length(), 29)
 })
 
 test_that("Graph backups for `mutate_edge_attrs()` works", {
@@ -690,7 +673,7 @@ test_that("Graph backups for `mutate_edge_attrs()` works", {
       half_weight = weight / 2)
 
   expect_equal(
-      list.files(path = path) %>% length(), 31)
+      list.files(path = path) %>% length(), 30)
 })
 
 test_that("Graph backups for `mutate_node_attrs_ws()` works", {
@@ -714,7 +697,7 @@ test_that("Graph backups for `mutate_node_attrs_ws()` works", {
       half_weight = weight / 2)
 
     expect_equal(
-      list.files(path = path) %>% length(), 32)
+      list.files(path = path) %>% length(), 31)
 })
 
 test_that("Graph backups for `mutate_edge_attrs_ws()` works", {
@@ -738,7 +721,7 @@ test_that("Graph backups for `mutate_edge_attrs_ws()` works", {
       half_weight = weight / 2)
 
     expect_equal(
-      list.files(path = path) %>% length(), 33)
+      list.files(path = path) %>% length(), 32)
 })
 
 test_that("Graph backups for `rename_node_attrs()` works", {
@@ -762,7 +745,7 @@ test_that("Graph backups for `rename_node_attrs()` works", {
       node_attr_to = weight_2)
 
   expect_equal(
-    list.files(path = path) %>% length(), 34)
+    list.files(path = path) %>% length(), 33)
 })
 
 test_that("Graph backups for `rename_edge_attrs()` works", {
@@ -786,7 +769,7 @@ test_that("Graph backups for `rename_edge_attrs()` works", {
       edge_attr_to = weight_2)
 
   expect_equal(
-    list.files(path = path) %>% length(), 35)
+    list.files(path = path) %>% length(), 34)
 })
 
 test_that("Graph backups for `recode_node_attrs()` works", {
@@ -816,7 +799,7 @@ test_that("Graph backups for `recode_node_attrs()` works", {
       "rectangle -> triangle")
 
   expect_equal(
-    list.files(path = path) %>% length(), 36)
+    list.files(path = path) %>% length(), 35)
 })
 
 test_that("Graph backups for `recode_edge_attrs()` works", {
@@ -843,7 +826,7 @@ test_that("Graph backups for `recode_edge_attrs()` works", {
       "rectangle -> triangle")
 
   expect_equal(
-    list.files(path = path) %>% length(), 37)
+    list.files(path = path) %>% length(), 36)
 })
 
 test_that("Graph backups for `rescale_node_attrs()` works", {
@@ -868,7 +851,7 @@ test_that("Graph backups for `rescale_node_attrs()` works", {
       to_upper_bound = 1)
 
   expect_equal(
-    list.files(path = path) %>% length(), 38)
+    list.files(path = path) %>% length(), 37)
 })
 
 test_that("Graph backups for `rescale_edge_attrs()` works", {
@@ -893,7 +876,7 @@ test_that("Graph backups for `rescale_edge_attrs()` works", {
       to_upper_bound = 1)
 
   expect_equal(
-    list.files(path = path) %>% length(), 39)
+    list.files(path = path) %>% length(), 38)
 })
 
 test_that("Graph backups for `rev_edge_dir()` works", {
@@ -911,7 +894,7 @@ test_that("Graph backups for `rev_edge_dir()` works", {
     rev_edge_dir()
 
   expect_equal(
-    list.files(path = path) %>% length(), 40)
+    list.files(path = path) %>% length(), 39)
 })
 
 test_that("Graph backups for `rev_edge_dir_ws()` works", {
@@ -930,7 +913,7 @@ test_that("Graph backups for `rev_edge_dir_ws()` works", {
     rev_edge_dir_ws()
 
   expect_equal(
-    list.files(path = path) %>% length(), 41)
+    list.files(path = path) %>% length(), 40)
 })
 
 test_that("Graph backups for `set_node_position()` works", {
@@ -947,6 +930,28 @@ test_that("Graph backups for `set_node_position()` works", {
     add_node() %>%
     set_node_position(
       node = 1, x = 1, y = 1)
+
+  expect_equal(
+    list.files(path = path) %>% length(), 41)
+})
+
+test_that("Graph backups for `nudge_node_positions_ws()` works", {
+
+  #
+  # Backup from `nudge_node_positions_ws()`
+  #
+
+  path <- tempdir()
+  on.exit(unlink(path))
+  setwd(path)
+
+  create_graph(write_backups = TRUE) %>%
+    add_node() %>%
+    set_node_position(
+      node = 1, x = 1, y = 1) %>%
+    select_nodes() %>%
+    nudge_node_positions_ws(
+      dx = 2, dy = 0)
 
   expect_equal(
     list.files(path = path) %>% length(), 42)
@@ -972,26 +977,4 @@ test_that("Graph backups for `nudge_node_positions_ws()` works", {
 
   expect_equal(
     list.files(path = path) %>% length(), 43)
-})
-
-test_that("Graph backups for `nudge_node_positions_ws()` works", {
-
-  #
-  # Backup from `nudge_node_positions_ws()`
-  #
-
-  path <- tempdir()
-  on.exit(unlink(path))
-  setwd(path)
-
-  create_graph(write_backups = TRUE) %>%
-    add_node() %>%
-    set_node_position(
-      node = 1, x = 1, y = 1) %>%
-    select_nodes() %>%
-    nudge_node_positions_ws(
-      dx = 2, dy = 0)
-
-  expect_equal(
-    list.files(path = path) %>% length(), 44)
 })

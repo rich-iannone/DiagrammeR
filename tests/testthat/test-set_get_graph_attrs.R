@@ -215,8 +215,10 @@ test_that("Getting global graph attrs is possible", {
 
   # Expect an NA value if getting global graph
   # attributes where there are none set
-  expect_true(
-    is.na(get_global_graph_attrs(graph)))
+  expect_equal(
+    graph %>%
+      get_global_graph_attr_info() %>%
+      nrow(), 0)
 
   # Set 3 global graph attrs
   graph <-
@@ -226,16 +228,18 @@ test_that("Getting global graph attrs is possible", {
       value = c("true", "red", "5"),
       attr_type = c("graph", "node", "edge"))
 
-  # Get a data frame with the attributes
+  # Get a table with the attributes
   # using `get_global_graph_attrs()`
   global_graph_attrs <-
-    get_global_graph_attrs(graph)
+    graph %>%
+    get_global_graph_attr_info()
 
-  # Expect that the data frame returned
-  # by the function is equivalent to the
-  # data frame stored in the graph object
+  # Expect that the returned table is
+  # equivalent to the table stored in
+  # the graph object
   expect_equal(
-    graph$global_attrs, global_graph_attrs)
+    graph$global_attrs %>% as_tibble(),
+    global_graph_attrs)
 })
 
 test_that("Adding global graph attrs is possible", {
@@ -340,21 +344,4 @@ test_that("Deleting global graph attrs is possible", {
       delete_global_graph_attrs(
         attr = "layout",
         attr_type = "nodes"))
-})
-
-test_that("Clearing global graph attrs is possible", {
-
-  # Create an empty graph with the default global
-  # graph attributes
-  graph <- create_graph()
-
-  # Remove all global graph attributes
-  graph_clear_all_attrs <-
-    graph %>%
-    clear_global_graph_attrs()
-
-  # Expect an empty data frame for
-  # global graph attribute
-  expect_equal(
-    nrow(graph_clear_all_attrs$global_attrs), 0)
 })
