@@ -20,14 +20,8 @@ global attributes for a graph
 object of class \code{dgr_graph}.
 }
 \examples{
-# Create a new graph and set
-# some global attributes
-graph <-
-  create_graph() \%>\%
-  set_global_graph_attrs(
-    attr = "overlap",
-    value = "true",
-    attr_type = "graph")
+# Create a new, empty graph
+graph <- create_graph()
 
 # View the graph's set of
 # global attributes

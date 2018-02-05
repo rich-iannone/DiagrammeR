@@ -32,21 +32,24 @@ or \code{edge_attrs} for a graph object of class
 \code{dgr_graph}).
 }
 \examples{
-# Create a new graph and set some global attributes
+# Create a new graph with no
+# global graph attributes and
+# add a global graph attribute
 graph <-
-  create_graph() \%>\%
-  set_global_graph_attrs(
+  create_graph(
+    attr_theme = NULL) \%>\%
+  add_global_graph_attrs(
     attr = "overlap",
     value = "true",
     attr_type = "graph")
 
-# Verify that the global attributes have been set
+# Verify that the attribute
+# addition has been made
 graph \%>\%
   get_global_graph_attr_info()
 
-# Add to this set with by using the
-# `add_global_graph_attrs()` function and then
-# view the collection of attributes
+# Add another attribute with
+# `add_global_graph_attrs()`
 graph <-
   graph \%>\%
   add_global_graph_attrs(
@@ -54,12 +57,15 @@ graph <-
     value = 12,
     attr_type = "node")
 
+# Verify that the attribute
+# addition has been made
 graph \%>\%
   get_global_graph_attr_info()
 
-# When adding an attribute where `attr`
-# and `attr_type` exists, the value provided
-# will serve as an update
+# When adding an attribute where
+# `attr` and `attr_type` already
+# exists, the value provided will
+# serve as an update
 graph \%>\%
   add_global_graph_attrs(
     attr = "penwidth",
