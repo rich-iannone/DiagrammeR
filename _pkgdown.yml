@@ -239,15 +239,13 @@ reference:
       - render_graph_from_graph_series
   - title: Graph Metadata
     contents:
-      - set_global_graph_attrs
       - add_global_graph_attrs
-      - clear_global_graph_attrs
       - delete_global_graph_attrs
+      - get_global_graph_attr_info
       - set_graph_name
       - set_graph_time
       - set_node_attr_to_display
       - set_edge_attr_to_display
-      - get_global_graph_attrs
       - get_graph_name
       - get_graph_time
       - get_graph_log
