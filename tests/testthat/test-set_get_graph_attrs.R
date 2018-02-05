@@ -126,92 +126,11 @@ test_that("Getting the graph time is possible", {
     get_graph_time(graph), "POSIXct")
 })
 
-test_that("Setting global graph attrs is possible", {
-
-  # Create an empty graph with no global graph
-  # parameters
-  graph <- create_graph(attr_theme = FALSE)
-
-  # Set 3 global graph attrs
-  graph <-
-    graph %>%
-    set_global_graph_attrs(
-      attr = c("overlap", "color", "penwidth"),
-      value = c("true", "red", "5"),
-      attr_type = c("graph", "node", "edge"))
-
-  # Expect 3 rows and three columns in the
-  # `global_attrs` data frame
-  expect_equal(
-    nrow(graph$global_attrs), 3)
-
-  expect_equal(
-    ncol(graph$global_attrs), 3)
-
-  # Expect certain column names to be present
-  # in the `global_attrs` data frame
-  expect_equal(
-    colnames(graph$global_attrs),
-    c("attr", "value", "attr_type"))
-
-  # Expect certain values to be present
-  # in the `attr` column
-  expect_equal(
-    graph$global_attrs$attr,
-    c("overlap", "color", "penwidth"))
-
-  # Expect certain values to be present
-  # in the `value` column
-  expect_equal(
-    graph$global_attrs$value,
-    c("true", "red", "5"))
-
-  # Expect certain values to be present
-  # in the `attr_type` column
-  expect_equal(
-    graph$global_attrs$attr_type,
-    c("graph", "node", "edge"))
-
-  # Create another empty graph with no
-  # global graph parameters
-  graph <- create_graph(attr_theme = FALSE)
-
-  # Set a single global graph attr
-  graph <-
-    graph %>%
-    set_global_graph_attrs(
-      attr = "overlap",
-      value = TRUE,
-      attr_type = "graph")
-
-  # Expect 1 row and three columns in the
-  # `global_attrs` data frame
-  expect_equal(
-    nrow(graph$global_attrs), 1)
-
-  expect_equal(
-    ncol(graph$global_attrs), 3)
-
-  # Expect that the `TRUE` logical value
-  # was coerced to character `true`
-  expect_equal(
-    graph$global_attrs$value, "true")
-
-  # Expect an error if setting global graph
-  # attributes with unequal vector lengths
-  expect_error(
-    graph %>%
-      set_global_graph_attrs(
-        attr = c("overlap", "color"),
-        value = c("true", "red", "5"),
-        attr_type = c("graph", "node", "edge")))
-})
-
 test_that("Getting global graph attrs is possible", {
 
   # Create an empty graph with no global graph
   # parameters
-  graph <- create_graph(attr_theme = FALSE)
+  graph <- create_graph(attr_theme = NULL)
 
   # Expect an NA value if getting global graph
   # attributes where there are none set
@@ -220,10 +139,10 @@ test_that("Getting global graph attrs is possible", {
       get_global_graph_attr_info() %>%
       nrow(), 0)
 
-  # Set 3 global graph attrs
+  # Add 3 global graph attrs
   graph <-
     graph %>%
-    set_global_graph_attrs(
+    add_global_graph_attrs(
       attr = c("overlap", "color", "penwidth"),
       value = c("true", "red", "5"),
       attr_type = c("graph", "node", "edge"))

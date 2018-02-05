@@ -200,7 +200,6 @@ test_that("Using an invalid graph with trigger an error", {
   expect_error(set_edge_attr_to_display(invalid_graph))
   expect_error(set_edge_attrs(invalid_graph))
   expect_error(set_edge_attrs_ws(invalid_graph))
-  expect_error(set_global_graph_attrs(invalid_graph))
   expect_error(set_graph_directed(invalid_graph))
   expect_error(set_graph_name(invalid_graph))
   expect_error(set_graph_time(invalid_graph))
