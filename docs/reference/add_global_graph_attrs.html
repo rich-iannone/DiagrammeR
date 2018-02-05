@@ -129,21 +129,26 @@ attribute to set. The type is specified with
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a new graph and set some global attributes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a new graph with no</span>
+<span class='co'># global graph attributes and</span>
+<span class='co'># add a global graph attribute</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='set_global_graph_attrs.html'>set_global_graph_attrs</a></span>(
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>(
+    <span class='kw'>attr_theme</span> <span class='kw'>=</span> <span class='kw'>NULL</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'>add_global_graph_attrs</span>(
     <span class='kw'>attr</span> <span class='kw'>=</span> <span class='st'>"overlap"</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"true"</span>,
     <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='st'>"graph"</span>)
 
-<span class='co'># Verify that the global attributes have been set</span>
+<span class='co'># Verify that the attribute</span>
+<span class='co'># addition has been made</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_global_graph_attrs.html'>get_global_graph_attrs</a></span>()</div><div class='output co'>#&gt;      attr value attr_type
+  <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
+#&gt;      attr value attr_type
+#&gt;     &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;
 #&gt; 1 overlap  true     graph</div><div class='input'>
-<span class='co'># Add to this set with by using the</span>
-<span class='co'># `add_global_graph_attrs()` function and then</span>
-<span class='co'># view the collection of attributes</span>
+<span class='co'># Add another attribute with</span>
+<span class='co'># `add_global_graph_attrs()`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_global_graph_attrs</span>(
@@ -151,19 +156,26 @@ attribute to set. The type is specified with
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>12</span>,
     <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='st'>"node"</span>)
 
+<span class='co'># Verify that the attribute</span>
+<span class='co'># addition has been made</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_global_graph_attrs.html'>get_global_graph_attrs</a></span>()</div><div class='output co'>#&gt;       attr value attr_type
+  <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 2 x 3
+#&gt;       attr value attr_type
+#&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;
 #&gt; 1  overlap  true     graph
 #&gt; 2 penwidth    12      node</div><div class='input'>
-<span class='co'># When adding an attribute where `attr`</span>
-<span class='co'># and `attr_type` exists, the value provided</span>
-<span class='co'># will serve as an update</span>
+<span class='co'># When adding an attribute where</span>
+<span class='co'># `attr` and `attr_type` already</span>
+<span class='co'># exists, the value provided will</span>
+<span class='co'># serve as an update</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>add_global_graph_attrs</span>(
     <span class='kw'>attr</span> <span class='kw'>=</span> <span class='st'>"penwidth"</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>15</span>,
     <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='st'>"node"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_global_graph_attrs.html'>get_global_graph_attrs</a></span>()</div><div class='output co'>#&gt;       attr value attr_type
+  <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 2 x 3
+#&gt;       attr value attr_type
+#&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;
 #&gt; 1  overlap  true     graph
 #&gt; 2 penwidth    15      node</div></pre>
   </div>

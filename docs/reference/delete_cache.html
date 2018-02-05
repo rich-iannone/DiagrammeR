@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove a graph from a graph series — remove_graph_from_graph_series • DiagrammeR</title>
+<title>Delete vectors cached in a graph object — delete_cache • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,83 +83,66 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove a graph from a graph series</h1>
+    <h1>Delete vectors cached in a graph object</h1>
     </div>
 
     
-    <p>Remove a single graph
-object from an set of graph objects
-contained within a graph series
-object.</p>
+    <p>Delete vectors cached in a
+graph object of class <code>dgr_graph</code>.</p>
     
 
-    <pre class="usage"><span class='fu'>remove_graph_from_graph_series</span>(<span class='no'>graph_series</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"last"</span>)</pre>
+    <pre class="usage"><span class='fu'>delete_cache</span>(<span class='no'>graph</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>graph_series</th>
-      <td><p>a graph series
-object from which the graph object
-will be removed.</p></td>
+      <th>graph</th>
+      <td><p>a graph object of class
+<code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
-      <th>index</th>
-      <td><p>the index of the graph
-object to be removed from the graph
-series object.</p></td>
+      <th>name</th>
+      <td><p>one or more name of vector
+objects to delete from the cache. If none
+supplied, all cached vectors available in
+the graph will be deleted.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph series object of type
-<code>dgr_graph_1D</code>.</p>
+    <p>a vector.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create three graphs</span>
-<span class='no'>graph_1</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_path.html'>add_path</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='fu'><a href='create_graph.html'>create_graph</a></span>()
 
-<span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='co'># Cache 3 different vectors inside</span>
+<span class='co'># the graph object</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='set_cache.html'>set_cache</a></span>(
+    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"a"</span>,
+    <span class='kw'>to_cache</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='set_cache.html'>set_cache</a></span>(
+    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"b"</span>,
+    <span class='kw'>to_cache</span> <span class='kw'>=</span> <span class='fl'>5</span>:<span class='fl'>9</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='set_cache.html'>set_cache</a></span>(
+    <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
+    <span class='kw'>to_cache</span> <span class='kw'>=</span> <span class='fl'>10</span>:<span class='fl'>14</span>)
 
-<span class='no'>graph_3</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_star.html'>add_star</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>6</span>)
+<span class='co'># Delete cache `b`</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>delete_cache</span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"b"</span>)
 
-<span class='co'># Create an empty graph series</span>
-<span class='co'># and add the graphs</span>
-<span class='no'>series</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_graph_series.html'>create_graph_series</a></span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_1</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='add_graph_to_graph_series.html'>add_graph_to_graph_series</a></span>(
-    <span class='kw'>graph</span> <span class='kw'>=</span> <span class='no'>graph_3</span>)
-
-<span class='co'># Remove the second graph</span>
-<span class='co'># from the graph series</span>
-<span class='no'>series</span> <span class='kw'>&lt;-</span>
-  <span class='no'>series</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>remove_graph_from_graph_series</span>(
-    <span class='kw'>index</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-
-<span class='co'># With `get_graph_series_info()`,</span>
-<span class='co'># we can ensure that a graph</span>
-<span class='co'># was removed</span>
-<span class='no'>series</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_series_info.html'>get_graph_series_info</a></span>()</div><div class='output co'>#&gt;   graph           name           date_time                  tz nodes edges
-#&gt; 1     1 graph_mkRJxXyq 2018-02-04 17:53:54 America/Los_Angeles     4     3
-#&gt; 2     2 graph_ySz3BP7j 2018-02-04 17:53:54 America/Los_Angeles     6     5
-#&gt;   directed
-#&gt; 1     TRUE
-#&gt; 2     TRUE</div></pre>
+<span class='co'># Delete remaining cached vectors</span>
+<span class='no'>graph</span> <span class='kw'>&lt;-</span>
+  <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>delete_cache</span>()</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

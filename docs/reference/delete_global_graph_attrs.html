@@ -94,7 +94,7 @@ stored within a graph object of class
 <code>dgr_graph</code>).</p>
     
 
-    <pre class="usage"><span class='fu'>delete_global_graph_attrs</span>(<span class='no'>graph</span>, <span class='no'>attr</span>, <span class='no'>attr_type</span>)</pre>
+    <pre class="usage"><span class='fu'>delete_global_graph_attrs</span>(<span class='no'>graph</span>, <span class='kw'>attr</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -124,7 +124,8 @@ attribute to delete. The type is specified with
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a new graph and add some global attributes</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a new graph and add</span>
+<span class='co'># some extra global graph attrs</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_global_graph_attrs.html'>add_global_graph_attrs</a></span>(
@@ -140,17 +141,21 @@ attribute to delete. The type is specified with
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>3</span>,
     <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='st'>"edge"</span>)
 
-<span class='co'># View the graph's global attributes</span>
-<span class='fu'><a href='get_global_graph_attrs.html'>get_global_graph_attrs</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;           attr      value attr_type
-#&gt; 1       layout      neato     graph
-#&gt; 2  outputorder edgesfirst     graph
-#&gt; 3     fontname  Helvetica      node
-#&gt; 4     fontsize         10      node
-#&gt; 5        shape     circle      node
-#&gt; 6    fixedsize       true      node
-#&gt; 7        width        0.5      node
-#&gt; 8        style     filled      node
-#&gt; 9    fillcolor  aliceblue      node
+<span class='co'># Inspect the graph's global</span>
+<span class='co'># attributes</span>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 20 x 3
+#&gt;           attr      value attr_type
+#&gt;          &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;
+#&gt;  1      layout      neato     graph
+#&gt;  2 outputorder edgesfirst     graph
+#&gt;  3    fontname  Helvetica      node
+#&gt;  4    fontsize         10      node
+#&gt;  5       shape     circle      node
+#&gt;  6   fixedsize       true      node
+#&gt;  7       width        0.5      node
+#&gt;  8       style     filled      node
+#&gt;  9   fillcolor  aliceblue      node
 #&gt; 10       color     gray70      node
 #&gt; 11   fontcolor     gray50      node
 #&gt; 12     bgcolor      white     graph
@@ -162,8 +167,9 @@ attribute to delete. The type is specified with
 #&gt; 18     overlap       true     graph
 #&gt; 19    penwidth          3      node
 #&gt; 20    penwidth          3      edge</div><div class='input'>
-<span class='co'># Delete the `penwidth` attribute for the graph's</span>
-<span class='co'># nodes using `delete_global_graph_attrs()`</span>
+<span class='co'># Delete the `penwidth` attribute</span>
+<span class='co'># for the graph's nodes using the</span>
+<span class='co'># `delete_global_graph_attrs()` fcn</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>delete_global_graph_attrs</span>(
@@ -172,16 +178,19 @@ attribute to delete. The type is specified with
 
 <span class='co'># View the remaining set of global</span>
 <span class='co'># attributes for the graph</span>
-<span class='fu'><a href='get_global_graph_attrs.html'>get_global_graph_attrs</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt;           attr      value attr_type
-#&gt; 1       layout      neato     graph
-#&gt; 2  outputorder edgesfirst     graph
-#&gt; 3     fontname  Helvetica      node
-#&gt; 4     fontsize         10      node
-#&gt; 5        shape     circle      node
-#&gt; 6    fixedsize       true      node
-#&gt; 7        width        0.5      node
-#&gt; 8        style     filled      node
-#&gt; 9    fillcolor  aliceblue      node
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 19 x 3
+#&gt;           attr      value attr_type
+#&gt;          &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;
+#&gt;  1      layout      neato     graph
+#&gt;  2 outputorder edgesfirst     graph
+#&gt;  3    fontname  Helvetica      node
+#&gt;  4    fontsize         10      node
+#&gt;  5       shape     circle      node
+#&gt;  6   fixedsize       true      node
+#&gt;  7       width        0.5      node
+#&gt;  8       style     filled      node
+#&gt;  9   fillcolor  aliceblue      node
 #&gt; 10       color     gray70      node
 #&gt; 11   fontcolor     gray50      node
 #&gt; 12     bgcolor      white     graph

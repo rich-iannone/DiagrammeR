@@ -87,11 +87,12 @@
     </div>
 
     
-    <p>Place any in the cache of a graph
-object of class <code>dgr_graph</code>.</p>
+    <p>Place any vector in the
+cache of a graph object of class
+<code>dgr_graph</code>.</p>
     
 
-    <pre class="usage"><span class='fu'>set_cache</span>(<span class='no'>graph</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>to_cache</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>set_cache</span>(<span class='no'>graph</span>, <span class='no'>to_cache</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -102,24 +103,30 @@ object of class <code>dgr_graph</code>.</p>
 <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>an optional name for the cached vector.</p></td>
+      <th>to_cache</th>
+      <td><p>any vector or data
+frame. If a data frame is supplied
+then a single column for the vector
+to pull must be provided in the
+<code>col</code> argument.</p></td>
     </tr>
     <tr>
-      <th>to_cache</th>
-      <td><p>any vector or data frame.</p></td>
+      <th>name</th>
+      <td><p>an optional name for the
+cached vector.</p></td>
     </tr>
     <tr>
       <th>col</th>
-      <td><p>if a data frame is provided in
-<code>to_cache</code> then a column name from that data
-frame must provided here.</p></td>
+      <td><p>if a data frame is provided
+in <code>to_cache</code> then a column name
+from that data frame must provided here.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
