@@ -2,7 +2,7 @@ reference:
   - title: External NDF/EDF
     desc: >
       These functions create external node data frames (ndfs) and
-      external edge data frames (edfs). These specialized data frames
+      external edge data frames (edfs). These specialized tables
       can be used to create graphs.
     contents:
       - create_node_df
@@ -10,6 +10,9 @@ reference:
       - combine_ndfs
       - combine_edfs
   - title: Graph Creation, Rendering, and I/O
+    desc: >
+      Graphs can be created, read in, written out, and displayed
+      with these functions.
     contents:
       - create_graph
       - import_graph
@@ -23,6 +26,11 @@ reference:
       - render_graph
       - display_metagraph
   - title: Node and Edge Selection
+    desc: >
+      Graph nodes or edges can be selected with these functions. This
+      is useful because some of the Graph Modification functions (ending
+      with `_ws`) and all of the Graph Traversal functions can make use
+      of the stored selections.
     contents:
       - select_nodes
       - select_nodes_by_id
@@ -39,6 +47,11 @@ reference:
       - invert_selection
       - clear_selection
   - title: Graph Modification
+    desc: >
+      These functions make changes to the graph. We can change many
+      aspects of the graph: the graph representation itself (e.g.,
+      adding or removing nodes and edges), or, the attributes of
+      the nodes and edges (in terms of associated data and aesthetics).
     contents:
       - add_node
       - add_n_nodes
@@ -111,6 +124,11 @@ reference:
       - edge_data
       - edge_aes
   - title: Graph Transformation
+    desc: >
+      Wholesale changes to a graph can be made with any of these
+      functions. Combine two graphs, transform them to different
+      representations, even change whether the graph is directed
+      or undirected.
     contents:
       - combine_graphs
       - transform_to_subgraph_ws
@@ -119,6 +137,12 @@ reference:
       - set_graph_undirected
       - set_graph_directed
   - title: Graph Inspection
+    desc: >
+      Sometimes, you'll need to gather information about the
+      working graph. This collection of functions allows for
+      extraction of graph components (e.g., ndfs and edfs),
+      attribute information, counts, node and edge properties,
+      and more.
     contents:
       - get_node_df
       - get_node_df_ws
@@ -211,10 +235,24 @@ reference:
       - is_graph_dag
       - is_property_graph
   - title: Value Caching
+    desc: >
+      Think of caching as a way to temporarily store a vector
+      of values within the graph. Why do this? Well, one could
+      extract node or edge data as vector, cache that in the
+      graph, and then later use it as input in another function,
+      all in the same functional pipeline.
     contents:
       - set_cache
       - get_cache
-  - title: Graph Traversals
+      - delete_cache
+  - title: Graph Traversal
+    desc: >
+      Traversing the graph is useful if you have a defined
+      graph model and you'd like to explore the connections
+      and relationships between nodes and edges. Traversals
+      effectively modify a selection of nodes or edges. With
+      the modified selection, we can extract related
+      attributes and work with them.
     contents:
       - trav_out
       - trav_in
@@ -228,6 +266,10 @@ reference:
       - trav_in_until
       - trav_reverse_edge
   - title: Graph Series
+    desc: >
+      A series of graphs can be occasionally useful. It's a
+      convenient container for a set of closely related graphs
+      (for example, a network that changes with time).
     contents:
       - create_graph_series
       - add_graph_to_graph_series
