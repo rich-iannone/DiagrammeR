@@ -101,7 +101,7 @@
         <tr>
           <th colspan="2">
             <h2 id="section-external-ndf-edf" class="hasAnchor"><a href="#section-external-ndf-edf" class="anchor"></a>External NDF/EDF</h2>
-            <p class="section-desc"><p>These functions create external node data frames (ndfs) and external edge data frames (edfs). These specialized data frames can be used to create graphs.</p></p>
+            <p class="section-desc"><p>These functions create external node data frames (ndfs) and external edge data frames (edfs). These specialized tables can be used to create graphs.</p></p>
           </th>
         </tr>
         <tr>
@@ -134,7 +134,7 @@ edge data frame</p></td>
         <tr>
           <th colspan="2">
             <h2 id="section-graph-creation-rendering-and-i-o" class="hasAnchor"><a href="#section-graph-creation-rendering-and-i-o" class="anchor"></a>Graph Creation, Rendering, and I/O</h2>
-            <p class="section-desc"></p>
+            <p class="section-desc"><p>Graphs can be created, read in, written out, and displayed with these functions.</p></p>
           </th>
         </tr>
         <tr>
@@ -208,7 +208,7 @@ edge data frame</p></td>
         <tr>
           <th colspan="2">
             <h2 id="section-node-and-edge-selection" class="hasAnchor"><a href="#section-node-and-edge-selection" class="anchor"></a>Node and Edge Selection</h2>
-            <p class="section-desc"></p>
+            <p class="section-desc"><p>Graph nodes or edges can be selected with these functions. This is useful because some of the Graph Modification functions (ending with <code>_ws</code>) and all of the Graph Traversal functions can make use of the stored selections.</p></p>
           </th>
         </tr>
         <tr>
@@ -303,7 +303,7 @@ object</p></td>
         <tr>
           <th colspan="2">
             <h2 id="section-graph-modification" class="hasAnchor"><a href="#section-graph-modification" class="anchor"></a>Graph Modification</h2>
-            <p class="section-desc"></p>
+            <p class="section-desc"><p>These functions make changes to the graph. We can change many aspects of the graph: the graph representation itself (e.g., adding or removing nodes and edges), or, the attributes of the nodes and edges (in terms of associated data and aesthetics).</p></p>
           </th>
         </tr>
         <tr>
@@ -737,7 +737,7 @@ from a table</p></td>
         <tr>
           <th colspan="2">
             <h2 id="section-graph-transformation" class="hasAnchor"><a href="#section-graph-transformation" class="anchor"></a>Graph Transformation</h2>
-            <p class="section-desc"></p>
+            <p class="section-desc"><p>Wholesale changes to a graph can be made with any of these functions. Combine two graphs, transform them to different representations, even change whether the graph is directed or undirected.</p></p>
           </th>
         </tr>
         <tr>
@@ -781,7 +781,7 @@ from a table</p></td>
         <tr>
           <th colspan="2">
             <h2 id="section-graph-inspection" class="hasAnchor"><a href="#section-graph-inspection" class="anchor"></a>Graph Inspection</h2>
-            <p class="section-desc"></p>
+            <p class="section-desc"><p>Sometimes, you’ll need to gather information about the working graph. This collection of functions allows for extraction of graph components (e.g., ndfs and edfs), attribute information, counts, node and edge properties, and more.</p></p>
           </th>
         </tr>
         <tr>
@@ -1332,7 +1332,7 @@ node</p></td>
         <tr>
           <th colspan="2">
             <h2 id="section-value-caching" class="hasAnchor"><a href="#section-value-caching" class="anchor"></a>Value Caching</h2>
-            <p class="section-desc"></p>
+            <p class="section-desc"><p>Think of caching as a way to temporarily store a vector of values within the graph. Why do this? Well, one could extract node or edge data as vector, cache that in the graph, and then later use it as input in another function, all in the same functional pipeline.</p></p>
           </th>
         </tr>
         <tr>
@@ -1347,12 +1347,18 @@ node</p></td>
             <p><code><a href="get_cache.html">get_cache</a></code> </p>
           </td>
           <td><p>Get a cached vector from a graph object</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="delete_cache.html">delete_cache</a></code> </p>
+          </td>
+          <td><p>Delete vectors cached in a graph object</p></td>
         </tr>
       </tbody><tbody>
         <tr>
           <th colspan="2">
-            <h2 id="section-graph-traversals" class="hasAnchor"><a href="#section-graph-traversals" class="anchor"></a>Graph Traversals</h2>
-            <p class="section-desc"></p>
+            <h2 id="section-graph-traversal" class="hasAnchor"><a href="#section-graph-traversal" class="anchor"></a>Graph Traversal</h2>
+            <p class="section-desc"><p>Traversing the graph is useful if you have a defined graph model and you’d like to explore the connections and relationships between nodes and edges. Traversals effectively modify a selection of nodes or edges. With the modified selection, we can extract related attributes and work with them.</p></p>
           </th>
         </tr>
         <tr>
@@ -1434,7 +1440,7 @@ adjacent, inward nodes</p></td>
         <tr>
           <th colspan="2">
             <h2 id="section-graph-series" class="hasAnchor"><a href="#section-graph-series" class="anchor"></a>Graph Series</h2>
-            <p class="section-desc"></p>
+            <p class="section-desc"><p>A series of graphs can be occasionally useful. It’s a convenient container for a set of closely related graphs (for example, a network that changes with time).</p></p>
           </th>
         </tr>
         <tr>
@@ -1643,7 +1649,7 @@ within a graph object</p></td>
       <li><a href="#section-graph-transformation">Graph Transformation</a></li>
       <li><a href="#section-graph-inspection">Graph Inspection</a></li>
       <li><a href="#section-value-caching">Value Caching</a></li>
-      <li><a href="#section-graph-traversals">Graph Traversals</a></li>
+      <li><a href="#section-graph-traversal">Graph Traversal</a></li>
       <li><a href="#section-graph-series">Graph Series</a></li>
       <li><a href="#section-graph-metadata">Graph Metadata</a></li>
       <li><a href="#section-graph-actions">Graph Actions</a></li>
