@@ -29,7 +29,7 @@ reference:
     desc: >
       Graph nodes or edges can be selected with these functions. This
       is useful because some of the Graph Modification functions (ending
-      with `_ws`) and all of the Graph Traversal functions can make use
+      with "_ws") and all of the Graph Traversal functions can make use
       of the stored selections.
     contents:
       - select_nodes
@@ -280,6 +280,12 @@ reference:
       - get_graph_series_info
       - render_graph_from_graph_series
   - title: Graph Metadata
+    desc: >
+      Graph metadata consist of the attributes that don't
+      necessarily belong to the individual nodes or edges,
+      but, may affect their appearance when the graph is
+      rendered. These metadata can also apply directly to
+      the graph object itself.
     contents:
       - add_global_graph_attrs
       - delete_global_graph_attrs
