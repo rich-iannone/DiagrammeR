@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -128,13 +128,12 @@ the graph.</p>
 <span class='co'># record of all graph transformations</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>get_graph_log</span>()</div><div class='output co'>#&gt; # A tibble: 4 x 8
-#&gt;   version_id function_used       time_modified    duration nodes edges   d_n
-#&gt;        &lt;int&gt;         &lt;chr&gt;              &lt;dttm&gt;       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
-#&gt; 1          1  create_graph 2018-02-05 18:28:05 0.004559040     0     0     0
-#&gt; 2          2 add_gnm_graph 2018-02-05 18:28:05 0.009772062    10    15    10
-#&gt; 3          3   delete_node 2018-02-05 18:28:05 0.003451109     9    11    -1
-#&gt; 4          4   delete_node 2018-02-05 18:28:05 0.003237009     8     8    -1
-#&gt; # ... with 1 more variables: d_e &lt;int&gt;</div></pre>
+#&gt;   version_id function_used time_modified       duration nodes edges   d_n   d_e
+#&gt;        &lt;int&gt; &lt;chr&gt;         &lt;dttm&gt;                 &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+#&gt; 1          1 create_graph  2018-02-06 22:43:09  0.0165      0     0     0     0
+#&gt; 2          2 add_gnm_graph 2018-02-06 22:43:09  0.0287     10    15    10    15
+#&gt; 3          3 delete_node   2018-02-06 22:43:09  0.0109      9    11   - 1   - 4
+#&gt; 4          4 delete_node   2018-02-06 22:43:09  0.00864     8     8   - 1   - 3</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -155,7 +154,7 @@ the graph.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

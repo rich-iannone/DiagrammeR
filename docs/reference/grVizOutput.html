@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -117,12 +117,12 @@ coerced to a string and have <code>px</code> appended.</p></td>
 <span class='fu'>library</span>(<span class='no'>shiny</span>)
 <span class='fu'>library</span>(<span class='no'>shinyAce</span>)
 
-<span class='no'>ui</span> <span class='kw'>=</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyUI'>shinyUI</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidPage</a></span>(<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/fluidPage'>fluidRow</a></span>(
-  <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(
+<span class='no'>ui</span> <span class='kw'>=</span> <span class='fu'>shinyUI</span>(<span class='fu'>fluidPage</span>(<span class='fu'>fluidRow</span>(
+  <span class='fu'>column</span>(
     <span class='kw'>width</span><span class='kw'>=</span><span class='fl'>4</span>
     , <span class='fu'>aceEditor</span>(<span class='st'>"ace"</span>, <span class='kw'>selectionId</span> <span class='kw'>=</span> <span class='st'>"selection"</span>, <span class='kw'>value</span><span class='kw'>=</span><span class='st'>"digraph {A;}"</span>)
   ),
-  <span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/column'>column</a></span>(
+  <span class='fu'>column</span>(
     <span class='kw'>width</span> <span class='kw'>=</span> <span class='fl'>6</span>
     , <span class='fu'>grVizOutput</span>(<span class='st'>'diagram'</span> )
   )
@@ -137,7 +137,7 @@ coerced to a string and have <code>px</code> appended.</p></td>
 
 }
 
-<span class='fu'><a href='http://www.rdocumentation.org/packages/shiny/topics/shinyApp'>shinyApp</a></span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
+<span class='fu'>shinyApp</span>(<span class='kw'>ui</span> <span class='kw'>=</span> <span class='no'>ui</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>server</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -157,7 +157,7 @@ coerced to a string and have <code>px</code> appended.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

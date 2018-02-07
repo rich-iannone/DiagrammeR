@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -156,12 +156,11 @@ and the remaining actions will follow.</p></td>
 <span class='co'># `get_graph_actions()`</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
-#&gt;   action_index     action_name
-#&gt;          &lt;dbl&gt;           &lt;chr&gt;
-#&gt; 1            1  pgrnk_to_width
-#&gt; 2            2    get_pagerank
-#&gt; 3            3 pgrnk_fillcolor
-#&gt; # ... with 1 more variables: expression &lt;chr&gt;</div><div class='input'>
+#&gt;   action_index action_name     expression                                      
+#&gt;          &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;                                           
+#&gt; 1         1.00 pgrnk_to_width  rescale_node_attrs(graph = graph, node_attr_fro…
+#&gt; 2         2.00 get_pagerank    set_node_attr_w_fcn(graph = graph, node_attr_fc…
+#&gt; 3         3.00 pgrnk_fillcolor colorize_node_attrs(graph = graph, node_attr_fr…</div><div class='input'>
 <span class='co'># We note that the order isn't</span>
 <span class='co'># correct and that the `get_pagerank`</span>
 <span class='co'># action should be the 1st action</span>
@@ -180,12 +179,11 @@ and the remaining actions will follow.</p></td>
 <span class='co'># we have the desired order of actions</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
-#&gt;   action_index     action_name
-#&gt;          &lt;int&gt;           &lt;chr&gt;
-#&gt; 1            1    get_pagerank
-#&gt; 2            2  pgrnk_to_width
-#&gt; 3            3 pgrnk_fillcolor
-#&gt; # ... with 1 more variables: expression &lt;chr&gt;</div></pre>
+#&gt;   action_index action_name     expression                                      
+#&gt;          &lt;int&gt; &lt;chr&gt;           &lt;chr&gt;                                           
+#&gt; 1            1 get_pagerank    set_node_attr_w_fcn(graph = graph, node_attr_fc…
+#&gt; 2            2 pgrnk_to_width  rescale_node_attrs(graph = graph, node_attr_fro…
+#&gt; 3            3 pgrnk_fillcolor colorize_node_attrs(graph = graph, node_attr_fr…</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,7 +204,7 @@ and the remaining actions will follow.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

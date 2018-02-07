@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -144,9 +144,9 @@ attribute to set. The type is specified with
 <span class='co'># addition has been made</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
-#&gt;      attr value attr_type
-#&gt;     &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;
-#&gt; 1 overlap  true     graph</div><div class='input'>
+#&gt;   attr    value attr_type
+#&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    
+#&gt; 1 overlap true  graph    </div><div class='input'>
 <span class='co'># Add another attribute with</span>
 <span class='co'># `add_global_graph_attrs()`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -160,10 +160,10 @@ attribute to set. The type is specified with
 <span class='co'># addition has been made</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;       attr value attr_type
-#&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;
-#&gt; 1  overlap  true     graph
-#&gt; 2 penwidth    12      node</div><div class='input'>
+#&gt;   attr     value attr_type
+#&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;    
+#&gt; 1 overlap  true  graph    
+#&gt; 2 penwidth 12    node     </div><div class='input'>
 <span class='co'># When adding an attribute where</span>
 <span class='co'># `attr` and `attr_type` already</span>
 <span class='co'># exists, the value provided will</span>
@@ -174,10 +174,10 @@ attribute to set. The type is specified with
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>15</span>,
     <span class='kw'>attr_type</span> <span class='kw'>=</span> <span class='st'>"node"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_global_graph_attr_info.html'>get_global_graph_attr_info</a></span>()</div><div class='output co'>#&gt; # A tibble: 2 x 3
-#&gt;       attr value attr_type
-#&gt;      &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;
-#&gt; 1  overlap  true     graph
-#&gt; 2 penwidth    15      node</div></pre>
+#&gt;   attr     value attr_type
+#&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;    
+#&gt; 1 overlap  true  graph    
+#&gt; 2 penwidth 15    node     </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -198,7 +198,7 @@ attribute to set. The type is specified with
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

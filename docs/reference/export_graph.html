@@ -52,7 +52,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -156,13 +156,13 @@ formats <code>png</code>, <code>pdf</code>, <code>svg</code>, and
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>export_graph</span>(
     <span class='kw'>file_name</span> <span class='kw'>=</span> <span class='st'>"graph.pdf"</span>,
-    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Simple Graph"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: file("") only supports open = "w+" and open = "w+b": using the former</span></div><div class='output co'>#&gt; <span class='error'>Error in context_eval(join(src), private$context): ReferenceError: Viz is not defined</span></div><div class='input'>
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Simple Graph"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')</span></div><div class='input'>
 <span class='co'># Create a PNG file for</span>
 <span class='co'># the graph (`mypng.png`)</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>export_graph</span>(
     <span class='kw'>file_name</span> <span class='kw'>=</span> <span class='st'>"mypng.png"</span>,
-    <span class='kw'>file_type</span> <span class='kw'>=</span> <span class='st'>"PNG"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: file("") only supports open = "w+" and open = "w+b": using the former</span></div><div class='output co'>#&gt; <span class='error'>Error in context_eval(join(src), private$context): ReferenceError: Viz is not defined</span></div></pre>
+    <span class='kw'>file_type</span> <span class='kw'>=</span> <span class='st'>"PNG"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -181,7 +181,7 @@ formats <code>png</code>, <code>pdf</code>, <code>svg</code>, and
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
