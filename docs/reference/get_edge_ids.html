@@ -140,7 +140,8 @@ conditions for the retrieval of edges.</p></td>
     <span class='kw'>edges_df</span> <span class='kw'>=</span> <span class='no'>edf</span>)
 
 <span class='co'># Get a vector of all edges in a graph</span>
-<span class='fu'>get_edge_ids</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>get_edge_ids</span>()</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
 <span class='co'># Get a vector of edge ID values using a</span>
 <span class='co'># numeric comparison (i.e., all edges with</span>
 <span class='co'># `value` attribute greater than 3)</span>

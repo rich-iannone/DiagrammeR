@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the number of automorphisms in the graph — count_automorphisms • DiagrammeR</title>
+<title>Get the number of automorphisms — count_automorphisms • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,14 +83,16 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the number of automorphisms in the graph</h1>
+    <h1>Get the number of automorphisms</h1>
     </div>
 
     
-    <p>Get the number of automorphisms the
-graph contains. An automorphism of a graph is a
-form of symmetry in which the graph is mapped onto
-itself while preserving edge-node connectivity.</p>
+    <p>Get the number of
+automorphisms the graph contains.
+An automorphism of a graph is a
+form of symmetry in which the graph
+is mapped onto itself while
+preserving edge-node connectivity.</p>
     
 
     <pre class="usage"><span class='fu'>count_automorphisms</span>(<span class='no'>graph</span>)</pre>
@@ -107,8 +109,9 @@ itself while preserving edge-node connectivity.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a single numeric value representing the
-number of automorphisms the graph contains.</p>
+    <p>a single numeric value
+representing the number of
+automorphisms the graph contains.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -118,7 +121,8 @@ number of automorphisms the graph contains.</p>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='co'># Get a count of automorphisms</span>
-<span class='fu'>count_automorphisms</span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 10</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>count_automorphisms</span>()</div><div class='output co'>#&gt; [1] 10</div><div class='input'>
 <span class='co'># Create a full graph and then</span>
 <span class='co'># count the automorphisms</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>

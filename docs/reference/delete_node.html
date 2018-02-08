@@ -126,11 +126,13 @@ from the graph.</p></td>
 
 <span class='co'># Verify that the node with ID `3`</span>
 <span class='co'># is no longer in the graph</span>
-<span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] 1 2 4 5</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>()</div><div class='output co'>#&gt; [1] 1 2 4 5</div><div class='input'>
 <span class='co'># Also note that edges are removed</span>
 <span class='co'># since there were edges between the</span>
 <span class='co'># removed node to and from other nodes</span>
-<span class='fu'><a href='get_edges.html'>get_edges</a></span>(<span class='no'>graph</span>)</div><div class='output co'>#&gt; [1] "1-&gt;2" "4-&gt;5"</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "1-&gt;2" "4-&gt;5"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

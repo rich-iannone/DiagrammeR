@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the alpha centrality for nodes in the graph — get_alpha_centrality • DiagrammeR</title>
+<title>Get the alpha centrality for all nodes — get_alpha_centrality • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,12 +83,12 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the alpha centrality for nodes in the graph</h1>
+    <h1>Get the alpha centrality for all nodes</h1>
     </div>
 
     
-    <p>Get the alpha centrality values for
-all nodes in the graph.</p>
+    <p>Get the alpha centrality
+values for all nodes in the graph.</p>
     
 
     <pre class="usage"><span class='fu'>get_alpha_centrality</span>(<span class='no'>graph</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>exo</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>weights_attr</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -104,38 +104,43 @@ all nodes in the graph.</p>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p>the parameter that specifies the
-relative importance of endogenous versus exogenous
-factors in the determination of centrality.</p></td>
+      <td><p>the parameter that
+specifies the relative importance of
+endogenous versus exogenous factors in
+the determination of centrality.</p></td>
     </tr>
     <tr>
       <th>exo</th>
-      <td><p>the exogenous factors, in most cases
-this is either a constant (which applies the same
-factor to every node), or a vector giving the factor
-for every node.</p></td>
+      <td><p>the exogenous factors, in
+most cases this is either a constant
+(which applies the same factor to
+every node), or a vector giving the
+factor for every node.</p></td>
     </tr>
     <tr>
       <th>weights_attr</th>
-      <td><p>an optional name of the edge
-attribute to use in the adjacency matrix. If
-<code>NULL</code> then, if it exists, the <code>weight</code>
-edge attribute of the graph will be used. Failing
-that, the standard adjacency matrix will be used
-in calculations.</p></td>
+      <td><p>an optional name
+of the edge attribute to use in the
+adjacency matrix. If <code>NULL</code> then,
+if it exists, the <code>weight</code> edge
+attribute of the graph will be used.
+Failing that, the standard adjacency
+matrix will be used in calculations.</p></td>
     </tr>
     <tr>
       <th>tol</th>
-      <td><p>the tolerance for near-singularities
-during matrix inversion. Default value is set to
+      <td><p>the tolerance for
+near-singularities during matrix
+inversion. Default value is set to
 <code>1e-7</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data frame with alpha centrality scores
-for each of the nodes.</p>
+    <p>a data frame with alpha
+centrality scores for each of the
+nodes.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -148,8 +153,8 @@ for each of the nodes.</p>
     <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>12</span>,
     <span class='kw'>set_seed</span> <span class='kw'>=</span> <span class='fl'>23</span>)
 
-<span class='co'># Get the alpha centrality scores for nodes</span>
-<span class='co'># in the graph</span>
+<span class='co'># Get the alpha centrality scores</span>
+<span class='co'># for all nodes</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>get_alpha_centrality</span>()</div><div class='output co'>#&gt;    id alpha_centrality
 #&gt; 1   1                9
@@ -170,7 +175,8 @@ for each of the nodes.</p>
   <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(
     <span class='kw'>df</span> <span class='kw'>=</span> <span class='fu'>get_alpha_centrality</span>(<span class='no'>.</span>))
 
-<span class='co'># Display the graph's node data frame</span>
+<span class='co'># Display the graph's node</span>
+<span class='co'># data frame</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label alpha_centrality
 #&gt; 1   1 &lt;NA&gt;     1                9
