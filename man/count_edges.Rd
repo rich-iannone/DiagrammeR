@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_edges.R
 \name{count_edges}
 \alias{count_edges}
-\title{Get count of all edges in the graph}
+\title{Get a count of all edges}
 \usage{
 count_edges(graph)
 }
@@ -11,12 +11,13 @@ count_edges(graph)
 \code{dgr_graph}.}
 }
 \value{
-a numeric vector of single length.
+a single-length numeric
+vector.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, get a count of edges in
-the graph.
+From a graph object of
+class \code{dgr_graph}, get a count
+of edges in the graph.
 }
 \examples{
 # Create a graph with a

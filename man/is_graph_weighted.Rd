@@ -34,7 +34,8 @@ graph <-
 
 # Determine whether the graph
 # is a weighted graph
-is_graph_weighted(graph)
+graph \%>\%
+  is_graph_weighted()
 
 # Create graph where the edges do
 # not have a `weight` attribute

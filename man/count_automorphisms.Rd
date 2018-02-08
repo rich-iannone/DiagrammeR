@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_automorphisms.R
 \name{count_automorphisms}
 \alias{count_automorphisms}
-\title{Get the number of automorphisms in the graph}
+\title{Get the number of automorphisms}
 \usage{
 count_automorphisms(graph)
 }
@@ -11,14 +11,17 @@ count_automorphisms(graph)
 \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the
-number of automorphisms the graph contains.
+a single numeric value
+representing the number of
+automorphisms the graph contains.
 }
 \description{
-Get the number of automorphisms the
-graph contains. An automorphism of a graph is a
-form of symmetry in which the graph is mapped onto
-itself while preserving edge-node connectivity.
+Get the number of
+automorphisms the graph contains.
+An automorphism of a graph is a
+form of symmetry in which the graph
+is mapped onto itself while
+preserving edge-node connectivity.
 }
 \examples{
 # Create a cycle graph
@@ -27,7 +30,8 @@ graph <-
   add_cycle(n = 5)
 
 # Get a count of automorphisms
-count_automorphisms(graph)
+graph \%>\%
+  count_automorphisms()
 
 # Create a full graph and then
 # count the automorphisms

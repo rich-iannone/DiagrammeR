@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_nodes.R
 \name{count_nodes}
 \alias{count_nodes}
-\title{Get count of all nodes in the graph}
+\title{Get a count of all nodes}
 \usage{
 count_nodes(graph)
 }

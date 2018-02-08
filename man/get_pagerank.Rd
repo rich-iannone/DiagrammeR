@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_pagerank.R
 \name{get_pagerank}
 \alias{get_pagerank}
-\title{Get the PageRank values for nodes in the graph}
+\title{Get the PageRank values for all nodes}
 \usage{
 get_pagerank(graph, directed = TRUE, damping = 0.85)
 }
@@ -10,21 +10,21 @@ get_pagerank(graph, directed = TRUE, damping = 0.85)
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{directed}{if \code{TRUE} (the default)
-then directed paths will be considered for
-directed graphs. This is ignored for undirected
-graphs.}
+\item{directed}{if \code{TRUE} (the
+default) then directed paths will
+be considered for directed graphs.
+This is ignored for undirected graphs.}
 
-\item{damping}{the damping factor. The default
-value is set to \code{0.85}.}
+\item{damping}{the damping factor.
+The default value is set to \code{0.85}.}
 }
 \value{
-a data frame with PageRank values for
-each of the nodes.
+a data frame with PageRank
+values for each of the nodes.
 }
 \description{
-Get the PageRank values for
-all nodes in the graph.
+Get the PageRank
+values for all nodes in the graph.
 }
 \examples{
 # Create a random graph using the

@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_loop_edges.R
 \name{count_loop_edges}
 \alias{count_loop_edges}
-\title{Get count of all loop edges in the graph}
+\title{Get count of all loop edges}
 \usage{
 count_loop_edges(graph)
 }

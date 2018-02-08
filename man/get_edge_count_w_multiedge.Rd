@@ -46,5 +46,6 @@ graph <-
 # there are multiple edges (i.e.,
 # distinct edges with separate edge
 # ID values)
-get_edge_count_w_multiedge(graph)
+graph \%>\%
+  get_edge_count_w_multiedge()
 }

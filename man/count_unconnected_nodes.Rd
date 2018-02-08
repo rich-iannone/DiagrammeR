@@ -2,7 +2,7 @@
 % Please edit documentation in R/count_unconnected_nodes.R
 \name{count_unconnected_nodes}
 \alias{count_unconnected_nodes}
-\title{Get count of all unconnected nodes in the graph}
+\title{Get count of all unconnected nodes}
 \usage{
 count_unconnected_nodes(graph)
 }

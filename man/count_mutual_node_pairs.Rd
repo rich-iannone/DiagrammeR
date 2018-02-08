@@ -2,7 +2,8 @@
 % Please edit documentation in R/count_mutual_node_pairs.R
 \name{count_mutual_node_pairs}
 \alias{count_mutual_node_pairs}
-\title{Get the number of mutually-connected node pairs}
+\title{Get the number of mutually-connected
+node pairs}
 \usage{
 count_mutual_node_pairs(graph)
 }
