@@ -1,26 +1,31 @@
-#' Get the alpha centrality for nodes in the graph
-#' @description Get the alpha centrality values for
-#' all nodes in the graph.
+#' Get the alpha centrality for all nodes
+#' @description Get the alpha centrality
+#' values for all nodes in the graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param alpha the parameter that specifies the
-#' relative importance of endogenous versus exogenous
-#' factors in the determination of centrality.
-#' @param exo the exogenous factors, in most cases
-#' this is either a constant (which applies the same
-#' factor to every node), or a vector giving the factor
-#' for every node.
-#' @param weights_attr an optional name of the edge
-#' attribute to use in the adjacency matrix. If
-#' \code{NULL} then, if it exists, the \code{weight}
-#' edge attribute of the graph will be used. Failing
-#' that, the standard adjacency matrix will be used
-#' in calculations.
-#' @param tol the tolerance for near-singularities
-#' during matrix inversion. Default value is set to
+#' @param alpha the parameter that
+#' specifies the relative importance of
+#' endogenous versus exogenous factors in
+#' the determination of centrality.
+#' @param exo the exogenous factors, in
+#' most cases this is either a constant
+#' (which applies the same factor to
+#' every node), or a vector giving the
+#' factor for every node.
+#' @param weights_attr an optional name
+#' of the edge attribute to use in the
+#' adjacency matrix. If \code{NULL} then,
+#' if it exists, the \code{weight} edge
+#' attribute of the graph will be used.
+#' Failing that, the standard adjacency
+#' matrix will be used in calculations.
+#' @param tol the tolerance for
+#' near-singularities during matrix
+#' inversion. Default value is set to
 #' \code{1e-7}.
-#' @return a data frame with alpha centrality scores
-#' for each of the nodes.
+#' @return a data frame with alpha
+#' centrality scores for each of the
+#' nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -31,8 +36,8 @@
 #'     m = 12,
 #'     set_seed = 23)
 #'
-#' # Get the alpha centrality scores for nodes
-#' # in the graph
+#' # Get the alpha centrality scores
+#' # for all nodes
 #' graph %>%
 #'   get_alpha_centrality()
 #'
@@ -44,7 +49,8 @@
 #'   join_node_attrs(
 #'     df = get_alpha_centrality(.))
 #'
-#' # Display the graph's node data frame
+#' # Display the graph's node
+#' # data frame
 #' graph %>%
 #'   get_node_df()
 #' @importFrom igraph alpha_centrality

@@ -1,4 +1,4 @@
-#' Get count of all nodes in the graph
+#' Get a count of all nodes
 #' @description From a graph object of class
 #' \code{dgr_graph}, get a count of nodes in the graph.
 #' @param graph a graph object of class

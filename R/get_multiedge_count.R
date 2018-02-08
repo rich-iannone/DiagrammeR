@@ -1,11 +1,14 @@
-#' Get the count of multiple edges in the graph
-#' @description Get a count of the number of multiple
-#' edges in the graph. Included in the count is the
-#' number of separate edges that share the same edge
-#' definition (i.e., same pair of nodes) across the
-#' entire graph. So, for example, if there are 2
-#' edge definitions in the graph that involve 6
-#' separate edge IDs, the count will be \code{4}.
+#' Get the count of multiple edges
+#' @description Get a count of the
+#' number of multiple edges in the
+#' graph. Included in the count is the
+#' number of separate edges that
+#' share the same edge definition
+#' (i.e., same pair of nodes) across
+#' the entire graph. So, for example,
+#' if there are 2 edge definitions in
+#' the graph that involve 6 separate
+#' edge IDs, the count will be \code{4}.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @return a vector with a single, numerical value.
@@ -31,7 +34,8 @@
 #' # Get the total number of multiple
 #' # edges (those edges that share an
 #' # edge definition) in the graph
-#' get_multiedge_count(graph)
+#' graph %>%
+#'   get_multiedge_count()
 #' @importFrom dplyr distinct select
 #' @export get_multiedge_count
 

@@ -1,4 +1,4 @@
-#' Get count of all loop edges in the graph
+#' Get count of all loop edges
 #' @description From a graph object of class
 #' \code{dgr_graph}, get a count of all
 #' loop edges in the graph.

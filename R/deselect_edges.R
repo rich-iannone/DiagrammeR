@@ -39,7 +39,8 @@
 #' # has been made for edges `1` and
 #' # `3` and that edge `1` has been
 #' # deselected (leaving only `3`)
-#' get_selection(graph)
+#' graph %>%
+#'   get_selection()
 #' @importFrom dplyr filter
 #' @export deselect_edges
 

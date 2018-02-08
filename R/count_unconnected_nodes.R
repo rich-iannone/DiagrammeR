@@ -1,4 +1,4 @@
-#' Get count of all unconnected nodes in the graph
+#' Get count of all unconnected nodes
 #' @description From a graph object of class
 #' \code{dgr_graph}, get a count of nodes in the
 #' graph that are not connected to any other node.

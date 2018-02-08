@@ -15,7 +15,8 @@
 #'
 #' # Get a count of asymmetrically-
 #' # connected node pairs
-#' count_asymmetric_node_pairs(graph)
+#' graph %>%
+#'   count_asymmetric_node_pairs()
 #'
 #' # Create a full graph and then
 #' # count the asymmetrically-

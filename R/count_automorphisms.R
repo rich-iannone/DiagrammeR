@@ -1,12 +1,15 @@
-#' Get the number of automorphisms in the graph
-#' @description Get the number of automorphisms the
-#' graph contains. An automorphism of a graph is a
-#' form of symmetry in which the graph is mapped onto
-#' itself while preserving edge-node connectivity.
+#' Get the number of automorphisms
+#' @description Get the number of
+#' automorphisms the graph contains.
+#' An automorphism of a graph is a
+#' form of symmetry in which the graph
+#' is mapped onto itself while
+#' preserving edge-node connectivity.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @return a single numeric value representing the
-#' number of automorphisms the graph contains.
+#' @return a single numeric value
+#' representing the number of
+#' automorphisms the graph contains.
 #' @examples
 #' # Create a cycle graph
 #' graph <-
@@ -14,7 +17,8 @@
 #'   add_cycle(n = 5)
 #'
 #' # Get a count of automorphisms
-#' count_automorphisms(graph)
+#' graph %>%
+#'   count_automorphisms()
 #'
 #' # Create a full graph and then
 #' # count the automorphisms

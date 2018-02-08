@@ -15,7 +15,8 @@
 #'
 #' # Determine the graph's maximum
 #' # eccentricity
-#' get_max_eccentricity(graph)
+#' graph %>%
+#'   get_max_eccentricity()
 #'
 #' # Create a full graph and then
 #' # get the maximum eccentricity

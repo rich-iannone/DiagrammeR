@@ -3,8 +3,8 @@
 #' node pairs. This works for directed graphs.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @return a single numeric value representing the
-#' number of unconnected node pairs.
+#' @return a single numeric value representing
+#' the number of unconnected node pairs.
 #' @examples
 #' # Create a cycle graph
 #' graph <-
@@ -13,7 +13,8 @@
 #'
 #' # Get a count of unconnected node
 #' # pairs in the graph
-#' count_unconnected_node_pairs(graph)
+#' graph %>%
+#'   count_unconnected_node_pairs()
 #'
 #' # Create a full graph and then
 #' # count all unconnected node pairs

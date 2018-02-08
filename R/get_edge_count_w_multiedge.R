@@ -33,7 +33,8 @@
 #' # there are multiple edges (i.e.,
 #' # distinct edges with separate edge
 #' # ID values)
-#' get_edge_count_w_multiedge(graph)
+#' graph %>%
+#'   get_edge_count_w_multiedge()
 #' @importFrom dplyr select mutate group_by summarize ungroup filter n
 #' @export get_edge_count_w_multiedge
 

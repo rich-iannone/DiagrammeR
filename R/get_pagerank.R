@@ -1,16 +1,16 @@
-#' Get the PageRank values for nodes in the graph
-#' @description Get the PageRank values for
-#' all nodes in the graph.
+#' Get the PageRank values for all nodes
+#' @description Get the PageRank
+#' values for all nodes in the graph.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param directed if \code{TRUE} (the default)
-#' then directed paths will be considered for
-#' directed graphs. This is ignored for undirected
-#' graphs.
-#' @param damping the damping factor. The default
-#' value is set to \code{0.85}.
-#' @return a data frame with PageRank values for
-#' each of the nodes.
+#' @param directed if \code{TRUE} (the
+#' default) then directed paths will
+#' be considered for directed graphs.
+#' This is ignored for undirected graphs.
+#' @param damping the damping factor.
+#' The default value is set to \code{0.85}.
+#' @return a data frame with PageRank
+#' values for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
