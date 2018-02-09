@@ -26,29 +26,17 @@ edges from an edge data frame to
 that graph.
 }
 \examples{
-# Create a node data frame (ndf)
-ndf <-
-  create_node_df(
-    n = 4,
-    type = "letter",
-    color = c(
-      "red", "green",
-      "grey", "blue"),
-    value = c(
-      3.5, 2.6, 9.4, 2.7))
-
-# Create a graph with nodes
+# Create a graph with 4 nodes
 # and no edges
 graph <-
-  create_graph(
-    nodes_df = ndf)
+  create_graph() \%>\%
+  add_n_nodes(n = 4)
 
 # Create an edge data frame (edf)
 edf <-
   create_edge_df(
     from = c(1, 2, 3),
-      to = c(4, 3, 1),
-     rel = "leading_to")
+      to = c(4, 3, 1))
 
 # Add the edge data frame to
 # the graph object to create
@@ -59,8 +47,9 @@ graph <-
   add_edge_df(
     edge_df = edf)
 
-# Get the graph's edges to verify that the edge
-# data frame had been added
+# Get the graph's edges to
+# verify that the edf had
+# been added
 graph \%>\%
   get_edges(
     return_type = "vector")

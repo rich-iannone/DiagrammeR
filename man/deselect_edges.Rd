@@ -21,28 +21,25 @@ Deselect edges in a graph object of
 class \code{dgr_graph}.
 }
 \examples{
-# Create a node data frame (ndf)
-ndf <-
-  create_node_df(
-    n = 4,
-    type = c("a", "a", "z", "z"),
-    label = TRUE,
-    value = c(3.5, 2.6, 9.4, 2.7))
-
-# Create an edge data frame (edf)
-edf <-
-  create_edge_df(
-    from = c(1, 2, 3),
-    to = c(4, 3, 1),
-    rel = c("a", "z", "a"))
-
-# Create a graph with the ndf and edf
+# Create a graph with
+# a single path
 graph <-
-  create_graph(
-    nodes_df = ndf,
-    edges_df = edf)
+  create_graph() \%>\%
+  add_path(n = 5)
 
-# Explicitly select nodes `1` and `3`
+# Select edges with IDs `1`
+# and `3`
+graph <-
+  graph \%>\%
+  select_edges_by_edge_id(
+    edges = c(1, 3))
+
+# Verify that an edge selection
+# has been made
+graph \%>\%
+  get_selection()
+
+# Deselect edge `1`
 graph <-
   graph \%>\%
   select_edges_by_edge_id(

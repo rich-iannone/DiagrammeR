@@ -28,15 +28,7 @@ graph <- create_graph()
 
 # Create a node data frame (ndf)
 ndf <-
-  create_node_df(
-    n = 4,
-    type = "basic",
-    color = c(
-      "red", "green",
-      "grey", "blue"),
-    value = c(
-      3.5, 2.6,
-      9.4, 2.7))
+  create_node_df(n = 2)
 
 # Add the node data frame to
 # the graph object to create
@@ -50,17 +42,9 @@ graph <-
 graph \%>\%
   get_node_df()
 
-# Create another node data frame
+# Create another ndf
 ndf_2 <-
-  create_node_df(
-    n = 4,
-    type = "basic",
-    color = c(
-      "white", "brown",
-      "aqua", "pink"),
-    value = c(
-      1.6, 6.4,
-      0.8, 4.2))
+  create_node_df(n = 3)
 
 # Add the second node data
 # frame to the graph object

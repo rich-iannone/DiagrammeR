@@ -2,8 +2,8 @@
 % Please edit documentation in R/get_selection.R
 \name{get_selection}
 \alias{get_selection}
-\title{Get the current selection available in a graph
-object}
+\title{Get the current selection available in
+a graph object}
 \usage{
 get_selection(graph)
 }
