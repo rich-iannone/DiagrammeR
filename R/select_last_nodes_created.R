@@ -119,9 +119,10 @@ select_last_nodes_created <- function(graph) {
 
     # Apply the selection of nodes to the graph
     graph <-
-      select_nodes(
-        graph = graph,
-        nodes = node_id_values)
+      suppressMessages(
+        select_nodes(
+          graph = graph,
+          nodes = node_id_values))
 
     # Update the `graph_log` df with an action
     graph$graph_log <-
