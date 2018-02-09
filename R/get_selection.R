@@ -1,5 +1,5 @@
-#' Get the current selection available in a graph
-#' object
+#' Get the current selection available in
+#' a graph object
 #' @description Get the current
 #' selection of node IDs or edge IDs
 #' from a graph object of class
@@ -56,18 +56,36 @@ get_selection <- function(graph) {
 
   # If there is no selection available, return NA
   if (is.na(selection_type)) {
+
+    emit_message(
+      fcn_name = "get_selection",
+      message_body = "there is no active selection of nodes or edges")
+
     return(NA)
   }
 
   # For a selection of nodes, return a vector of node
   # ID values
   if (selection_type == "node") {
+
+    # Issue a message to the user
+    emit_message(
+      fcn_name = "get_selection",
+      message_body = glue::glue(
+        "there is an active selection of {nrow(graph$node_selection)} nodes"))
+
     return(as.integer(sort(graph$node_selection$node)))
   }
 
   # For a selection of edges, return a vector of edge
   # ID values
   if (selection_type == "edge") {
+
+    emit_message(
+      fcn_name = "get_selection",
+      message_body = glue::glue(
+        "there is an active selection of {nrow(graph$edge_selection)} edges"))
+
     return(as.integer(sort(graph$edge_selection$edge)))
   }
 }
