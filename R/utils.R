@@ -57,22 +57,24 @@ graph_contains_edges <- function(graph) {
   }
 }
 
-# Function to check whether a graph contains a valid edge selection
-graph_contains_edge_selection <- function(graph) {
+# Function to check whether a graph
+# contains a valid node selection
+graph_contains_node_selection <- function(graph) {
 
-  # Check if graph contains an edge selection
-  if (nrow(graph$edge_selection) > 0) {
+  # Check if graph contains a node selection
+  if (nrow(graph$node_selection) > 0) {
     return(TRUE)
   } else {
     return(FALSE)
   }
 }
 
-# Function to check whether a graph contains a valid node selection
-graph_contains_node_selection <- function(graph) {
+# Function to check whether a graph
+# contains a valid edge selection
+graph_contains_edge_selection <- function(graph) {
 
-  # Check if graph contains a node selection
-  if (nrow(graph$node_selection) > 0) {
+  # Check if graph contains an edge selection
+  if (nrow(graph$edge_selection) > 0) {
     return(TRUE)
   } else {
     return(FALSE)
