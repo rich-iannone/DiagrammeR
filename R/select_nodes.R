@@ -116,11 +116,38 @@ select_nodes <- function(graph,
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 
-    # Create binding for a specific variable
+  # Create binding for a specific variable
   id <- NULL
 
   # Extract the graph's internal ndf
   nodes_df <- graph$nodes_df
+
+  # Determine if there is an existing
+  # selection of nodes
+  existing_node_selection <-
+    ifelse(
+      graph_contains_node_selection(graph = graph), TRUE, FALSE)
+
+  # Determine if there is an existing
+  # selection of edges
+  existing_edge_selection <-
+    ifelse(
+      graph_contains_edge_selection(graph = graph), TRUE, FALSE)
+
+  # Get the existing node/edge count
+  if (existing_node_selection | existing_edge_selection) {
+
+    existing_selection_type <-
+      ifelse(existing_node_selection, "node", "edge")
+
+    existing_count <-
+      suppressMessages(
+        get_selection(graph)) %>% length()
+  } else {
+
+    existing_type <- as.character(NA)
+    existing_count <- 0
+  }
 
   # If conditions are provided then
   # pass in those conditions and filter the
@@ -167,6 +194,9 @@ select_nodes <- function(graph,
       graph = graph,
       replacement = nodes_combined)
 
+  # Get the count of nodes in the selection
+  new_count <- nrow(graph$node_selection)
+
   # Replace `graph$edge_selection` with an empty df
   graph$edge_selection <- create_empty_esdf()
 
@@ -185,6 +215,37 @@ select_nodes <- function(graph,
   if (graph$graph_info$write_backups) {
     save_graph_as_rds(graph = graph)
   }
+
+  # Construct message body
+  if (existing_node_selection == FALSE &
+      existing_edge_selection == FALSE) {
+    msg_body <-
+      glue::glue(
+        "created a new selection of {new_count} nodes")
+
+  } else if (existing_node_selection |
+             existing_edge_selection) {
+
+    if (existing_node_selection) {
+      msg_body <-
+        glue::glue(
+          "modified an existing selection of {existing_count} nodes:
+          -- {new_count} nodes are now in the active selection
+          -- used the `{set_op}` set operation")
+    }
+
+    if (existing_edge_selection) {
+      msg_body <-
+        glue::glue(
+          "created a new selection of {new_count} nodes:
+          -- this replaces {existing_count} edges in prior selection")
+    }
+  }
+
+  # Issue a message to the user
+  emit_message(
+    fcn_name = "select_nodes",
+    message_body = msg_body)
 
   graph
 }
