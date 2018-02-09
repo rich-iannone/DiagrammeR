@@ -452,6 +452,32 @@ contrasting_text_color <- function(background_color) {
 }
 
 ###
+# Functions that help build info messages
+###
+
+# Function that constructs a consistent
+# message string and passes it to `message()`
+#' @importFrom glue glue
+emit_message <- function(fcn_name,
+                         message_body) {
+
+  glue::glue("`{fcn_name}()` INFO: {message_body}") %>%
+    as.character() %>%
+    message()
+}
+
+# Function that constructs a consistent
+# warning string and passes it to `warning()`
+#' @importFrom glue glue
+emit_warning <- function(fcn_name,
+                         message_body) {
+
+  glue::glue("`{fcn_name}()` WARN: {message_body}") %>%
+    as.character() %>%
+    warning()
+}
+
+###
 # Functions that produce useful vectors
 ###
 
