@@ -87,7 +87,7 @@ rev_edge_dir_ws <- function(graph) {
   edges <- get_edge_df(graph)
 
   # Get edge ID values in edge selection
-  edge_ids <- get_selection(graph)
+  edge_ids <- suppressMessages(get_selection(graph))
 
   # Selectively modify the edge direction and create
   # a new edf

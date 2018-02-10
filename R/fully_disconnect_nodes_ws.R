@@ -72,8 +72,8 @@ fully_disconnect_nodes_ws <- function(graph) {
   edf_replacement <-
     edf %>%
     dplyr::filter(
-      !(from %in% get_selection(graph) |
-          to %in% get_selection(graph)))
+      !(from %in% suppressMessages(get_selection(graph)) |
+          to %in% suppressMessages(get_selection(graph))))
 
   # Update the graph's edf
   graph$edges_df <- edf_replacement

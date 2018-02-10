@@ -100,7 +100,7 @@ fully_connect_nodes_ws <- function(graph) {
 
   # Get the combination of edges
   edge_candidates <-
-    utils::combn(get_selection(graph = graph), 2) %>%
+    utils::combn(suppressMessages(get_selection(graph = graph)), 2) %>%
     t() %>%
     as.data.frame() %>%
     dplyr::rename(from = V1, to = V2)

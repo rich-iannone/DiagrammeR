@@ -164,7 +164,9 @@ mutate_edge_attrs_ws <- function(graph,
   # Determine which edges are not
   # in the active selection
   unselected_edges <-
-    base::setdiff(get_edge_ids(graph), get_selection(graph))
+    base::setdiff(
+      get_edge_ids(graph),
+      suppressMessages(get_selection(graph)))
 
   for (i in 1:length(exprs)) {
 

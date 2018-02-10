@@ -73,7 +73,7 @@ delete_loop_edges_ws <- function(graph) {
   # Filter edf such that any loop edges
   # associated with the selected nodes
   # are removed
-  selected_nodes <- get_selection(graph)
+  selected_nodes <- suppressMessages(get_selection(graph))
 
   edges_to_remove <-
     selected_nodes %>%

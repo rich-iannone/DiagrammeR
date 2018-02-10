@@ -359,7 +359,8 @@ print.dgr_graph <- function(x, ...) {
   # Create string for active selections
   #
 
-  if (all(is.na(get_selection(x))) & length(get_selection(x)) == 1) {
+  if (all(is.na(suppressMessages(get_selection(x)))) &
+      length(suppressMessages(get_selection(x))) == 1) {
 
     selection_str <- "<none>"
 
@@ -606,8 +607,10 @@ print.dgr_graph <- function(x, ...) {
         info_labels["get_edge_df"])
   }
 
-  if (console_width - selection_detail_str_length - info_labels_selection_length >= 5 &
-      !is.na(get_selection(x))[1]) {
+  if (console_width -
+      selection_detail_str_length -
+      info_labels_selection_length >= 5 &
+      !is.na(suppressMessages(get_selection(x)))[1]) {
 
     selection_detail_str <-
       paste0(
@@ -622,7 +625,9 @@ print.dgr_graph <- function(x, ...) {
         info_labels["get_selection"])
   }
 
-  if (console_width - cache_detail_str_length - info_labels_cache_length >= 5 &
+  if (console_width -
+      cache_detail_str_length -
+      info_labels_cache_length >= 5 &
       !is.na(get_cache(x))[1]) {
 
     cache_detail_str <-

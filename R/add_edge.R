@@ -309,7 +309,8 @@ add_edge <- function(graph,
       # Clear the graph's active selection
       graph <-
         graph %>%
-        clear_selection()
+        suppressMessages(
+          clear_selection())
     }
 
     if (exists("edge_data_tbl")) {
@@ -334,7 +335,8 @@ add_edge <- function(graph,
       # Clear the graph's active selection
       graph <-
         graph %>%
-        clear_selection()
+        suppressMessages(
+          clear_selection())
     }
 
     # Modify the `last_edge` vector

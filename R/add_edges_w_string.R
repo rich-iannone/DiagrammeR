@@ -186,7 +186,8 @@ add_edges_w_string <- function(graph,
   # Clear the graph's active selection
   graph <-
     graph %>%
-    clear_selection()
+    suppressMessages(
+      clear_selection())
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-

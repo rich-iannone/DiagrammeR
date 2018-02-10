@@ -162,7 +162,9 @@ mutate_node_attrs_ws <- function(graph,
   # Determine which nodes are not
   # in the active selection
   unselected_nodes <-
-    base::setdiff(get_node_ids(graph), get_selection(graph))
+    base::setdiff(
+      get_node_ids(graph),
+      suppressMessages(get_selection(graph)))
 
   for (i in 1:length(exprs)) {
 
