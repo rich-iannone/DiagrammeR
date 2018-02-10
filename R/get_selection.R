@@ -45,17 +45,13 @@ get_selection <- function(graph) {
       call. = FALSE)
   }
 
-  # Determine which type of selection is available
-  if (nrow(graph$node_selection) > 0) {
-    selection_type <- "node"
-  } else if (nrow(graph$edge_selection) > 0) {
-    selection_type <- "edge"
-  } else {
-    selection_type <- NA
-  }
+  # Obtain the input graph's node and edge
+  # selection properties
+  n_e_select_properties_in <-
+    node_edge_selection_properties(graph = graph)
 
   # If there is no selection available, return NA
-  if (is.na(selection_type)) {
+  if (is.na(n_e_select_properties_in[["selection_type"]])) {
 
     emit_message(
       fcn_name = "get_selection",
@@ -66,25 +62,27 @@ get_selection <- function(graph) {
 
   # For a selection of nodes, return a vector of node
   # ID values
-  if (selection_type == "node") {
+  if (n_e_select_properties_in[["selection_type"]] == "node") {
 
     # Issue a message to the user
     emit_message(
       fcn_name = "get_selection",
       message_body = glue::glue(
-        "there is an active selection of {nrow(graph$node_selection)} nodes"))
+        "there is an active selection of \\
+        {n_e_select_properties_in[['selection_count_str']]}"))
 
     return(as.integer(sort(graph$node_selection$node)))
   }
 
   # For a selection of edges, return a vector of edge
   # ID values
-  if (selection_type == "edge") {
+  if (n_e_select_properties_in[["selection_type"]] == "edge") {
 
     emit_message(
       fcn_name = "get_selection",
       message_body = glue::glue(
-        "there is an active selection of {nrow(graph$edge_selection)} edges"))
+        "there is an active selection of\\
+        {n_e_select_properties_in[['selection_count_str']]}"))
 
     return(as.integer(sort(graph$edge_selection$edge)))
   }

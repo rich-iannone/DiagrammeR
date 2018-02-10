@@ -122,32 +122,10 @@ select_nodes <- function(graph,
   # Extract the graph's internal ndf
   nodes_df <- graph$nodes_df
 
-  # Determine if there is an existing
-  # selection of nodes
-  existing_node_selection <-
-    ifelse(
-      graph_contains_node_selection(graph = graph), TRUE, FALSE)
-
-  # Determine if there is an existing
-  # selection of edges
-  existing_edge_selection <-
-    ifelse(
-      graph_contains_edge_selection(graph = graph), TRUE, FALSE)
-
-  # Get the existing node/edge count
-  if (existing_node_selection | existing_edge_selection) {
-
-    existing_selection_type <-
-      ifelse(existing_node_selection, "node", "edge")
-
-    existing_count <-
-      suppressMessages(
-        get_selection(graph)) %>% length()
-  } else {
-
-    existing_type <- as.character(NA)
-    existing_count <- 0
-  }
+  # Obtain the input graph's node and edge
+  # selection properties
+  n_e_select_properties_in <-
+    node_edge_selection_properties(graph = graph)
 
   # If conditions are provided then
   # pass in those conditions and filter the
@@ -194,11 +172,13 @@ select_nodes <- function(graph,
       graph = graph,
       replacement = nodes_combined)
 
-  # Get the count of nodes in the selection
-  new_count <- nrow(graph$node_selection)
-
   # Replace `graph$edge_selection` with an empty df
   graph$edge_selection <- create_empty_esdf()
+
+  # Obtain the output graph's node and edge
+  # selection properties
+  n_e_select_properties_out <-
+    node_edge_selection_properties(graph = graph)
 
   # Update the `graph_log` df with an action
   graph$graph_log <-
@@ -217,28 +197,35 @@ select_nodes <- function(graph,
   }
 
   # Construct message body
-  if (existing_node_selection == FALSE &
-      existing_edge_selection == FALSE) {
+  if (!n_e_select_properties_in[["node_selection_available"]] &
+      !n_e_select_properties_in[["edge_selection_available"]]) {
+
     msg_body <-
       glue::glue(
-        "created a new selection of {new_count} nodes")
+        "created a new selection of \\
+         {n_e_select_properties_out[['selection_count_str']]}")
 
-  } else if (existing_node_selection |
-             existing_edge_selection) {
+  } else if (n_e_select_properties_in[["node_selection_available"]] |
+             n_e_select_properties_in[["edge_selection_available"]]) {
 
-    if (existing_node_selection) {
+    if (n_e_select_properties_in[["node_selection_available"]]) {
       msg_body <-
         glue::glue(
-          "modified an existing selection of {existing_count} nodes:
-          -- {new_count} nodes are now in the active selection
+          "modified an existing selection of\\
+           {n_e_select_properties_in[['selection_count_str']]}:
+          -- {n_e_select_properties_out[['selection_count_str']]}\\
+           are now in the active selection
           -- used the `{set_op}` set operation")
     }
 
-    if (existing_edge_selection) {
+    if (n_e_select_properties_in[["edge_selection_available"]]) {
       msg_body <-
         glue::glue(
-          "created a new selection of {new_count} nodes:
-          -- this replaces {existing_count} edges in prior selection")
+          "created a new selection of\\
+           {n_e_select_properties_out[['selection_count_str']]}:
+          -- this replaces\\
+           {n_e_select_properties_in[['selection_count_str']]}\\
+           in the prior selection")
     }
   }
 

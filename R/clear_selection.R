@@ -49,6 +49,11 @@ clear_selection <- function(graph) {
       call. = FALSE)
   }
 
+  # Obtain the input graph's node and edge
+  # selection properties
+  n_e_select_properties_in <-
+    node_edge_selection_properties(graph = graph)
+
   # Clear the selection of nodes and edges in the graph
   graph$node_selection <- create_empty_nsdf()
   graph$edge_selection <- create_empty_esdf()
@@ -67,6 +72,21 @@ clear_selection <- function(graph) {
   # Write graph backup if the option is set
   if (graph$graph_info$write_backups) {
     save_graph_as_rds(graph = graph)
+  }
+
+  # Issue a message to the user
+  if (n_e_select_properties_in[["selection_count"]] > 0) {
+
+    emit_message(
+      fcn_name = "clear_selection",
+      message_body = glue::glue(
+        "cleared an existing selection of \\
+       {n_e_select_properties_in[['selection_count_str']]}"
+      ))
+  } else {
+    emit_message(
+      fcn_name = "clear_selection",
+      message_body = "no existing selection to clear; graph unchanged")
   }
 
   graph
