@@ -81,6 +81,55 @@ graph_contains_edge_selection <- function(graph) {
   }
 }
 
+# Function to return of list of
+# node/edge selection properties
+node_edge_selection_properties <- function(graph) {
+
+  # Determine if there is an existing
+  # selection of nodes
+  node_selection_available <-
+    ifelse(
+      graph_contains_node_selection(graph = graph), TRUE, FALSE)
+
+  # Determine if there is an existing
+  # selection of edges
+  edge_selection_available <-
+    ifelse(
+      graph_contains_edge_selection(graph = graph), TRUE, FALSE)
+
+  # Get the existing node/edge count
+  if (node_selection_available | edge_selection_available) {
+
+    selection_type <-
+      ifelse(node_selection_available, "node", "edge")
+
+    if (selection_type == "node") {
+      selection_count <- nrow(graph$node_selection)
+      selection_count_str <-
+        paste0(selection_count, " node", ifelse(selection_count > 1, "s", ""))
+
+    } else {
+
+      selection_count <- nrow(graph$edge_selection)
+      selection_count_str <-
+        paste0(selection_count, " edge", ifelse(selection_count > 1, "s", ""))
+    }
+
+  } else {
+
+    selection_type <- as.character(NA)
+    selection_count <- 0
+    selection_count_str <- "no nodes or edges"
+  }
+
+  list(
+    node_selection_available = node_selection_available,
+    edge_selection_available = edge_selection_available,
+    selection_type = selection_type,
+    selection_count = selection_count,
+    selection_count_str = selection_count_str)
+}
+
 # Function to replace the `node_selection` df with
 # different node ID values
 #' @importFrom dplyr tibble as_tibble bind_rows
@@ -382,12 +431,12 @@ get_col_selection <- function(col_selection_stmt) {
         from = (stringr::str_split(
           string = col_selection_stmt,
           pattern = ":") %>%
-                  unlist())[1] %>%
+            unlist())[1] %>%
           as.numeric(),
         to = (stringr::str_split(
           string = col_selection_stmt,
           pattern = ":") %>%
-                unlist())[2] %>%
+            unlist())[2] %>%
           as.numeric())
 
   } else if (any(
@@ -404,11 +453,11 @@ get_col_selection <- function(col_selection_stmt) {
         (stringr::str_split(
           string = col_selection_stmt,
           pattern = ":") %>%
-            unlist())[1],
+           unlist())[1],
         (stringr::str_split(
           string = col_selection_stmt,
           pattern = ":") %>%
-            unlist())[2])
+           unlist())[2])
   } else {
     return(list())
   }
