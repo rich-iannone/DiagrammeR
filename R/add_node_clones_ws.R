@@ -140,9 +140,9 @@ add_node_clones_ws <- function(graph,
 
   # Clear the graph's selection
   graph <-
-    graph %>%
     suppressMessages(
-      clear_selection())
+      graph %>%
+        clear_selection())
 
   # Get the number of nodes in the graph
   nodes_graph_1 <-
@@ -220,9 +220,9 @@ add_node_clones_ws <- function(graph,
 
     # Clear the graph's active selection
     graph <-
-      graph %>%
       suppressMessages(
-        clear_selection())
+        graph %>%
+          clear_selection())
   }
 
   # Remove extra items from the `graph_log`

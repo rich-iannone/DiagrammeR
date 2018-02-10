@@ -141,9 +141,10 @@ add_n_node_clones <- function(graph,
   # Obtain the node ID values for
   # the new nodes
   new_node_ids <-
-    graph %>%
-    select_last_nodes_created() %>%
-    suppressMessages(get_selection())
+    suppressMessages(
+      graph %>%
+        select_last_nodes_created() %>%
+        get_selection())
 
   # Create a node selection for the
   # new nodes in the graph
@@ -170,9 +171,9 @@ add_n_node_clones <- function(graph,
 
   # Clear the graph's active selection
   graph <-
-    graph %>%
     suppressMessages(
-      clear_selection())
+      graph %>%
+        clear_selection())
 
   # Remove extra items from the `graph_log`
   graph$graph_log <-

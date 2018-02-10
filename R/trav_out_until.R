@@ -154,7 +154,9 @@ trav_out_until <- function(graph,
   step <- 0
 
   starting_nodes <-
-    graph %>% suppressMessages(get_selection())
+    suppressMessages(
+      graph %>%
+        get_selection())
 
   # Determine which nodes satisfy the
   # conditions provided
@@ -167,7 +169,9 @@ trav_out_until <- function(graph,
 
     # Clear the active selection
     graph <-
-      graph %>% clear_selection()
+      suppressMessages(
+        graph %>%
+          clear_selection())
 
     # Remove action from graph log
     graph$graph_log <-
@@ -210,13 +214,13 @@ trav_out_until <- function(graph,
 
     # If any nodes are `all_nodes_conditions_met` nodes
     # deselect that node and save the node in a stack
-    if (any(graph %>% suppressMessages(get_selection()) %in%
+    if (any(suppressMessages(graph %>% get_selection()) %in%
             all_nodes_conditions_met)) {
 
       node_stack <-
         c(node_stack,
           intersect(
-            graph %>% suppressMessages(get_selection()),
+            suppressMessages(graph %>% get_selection()),
             all_nodes_conditions_met))
 
       # Remove the node from the active selection
@@ -282,10 +286,11 @@ trav_out_until <- function(graph,
       new_selection <- suppressMessages(get_selection(graph))
 
       graph <-
-        graph %>%
-        suppressMessages(clear_selection()) %>%
-        select_nodes_by_id(
-          intersect(new_selection, all_nodes_conditions_met))
+        suppressMessages(
+          graph %>%
+            clear_selection() %>%
+            select_nodes_by_id(
+              intersect(new_selection, all_nodes_conditions_met)))
 
       # Remove action from graph log
       graph$graph_log <-
