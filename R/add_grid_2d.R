@@ -70,16 +70,6 @@
 #' # from this graph
 #' graph %>%
 #'   get_node_info()
-#' #>   id type label deg indeg outdeg loops
-#' #> 1  1 grid     1   2     0      2     0
-#' #> 2  2 grid     2   3     1      2     0
-#' #> 3  3 grid     3   2     1      1     0
-#' #> 4  4 grid     4   3     1      2     0
-#' #> 5  5 grid     5   4     2      2     0
-#' #> 6  6 grid     6   3     2      1     0
-#' #> 7  7 grid     7   2     1      1     0
-#' #> 8  8 grid     8   3     2      1     0
-#' #> 9  9 grid     9   2     2      0     0
 #'
 #' # Attributes can be specified
 #' # in extra arguments and these
