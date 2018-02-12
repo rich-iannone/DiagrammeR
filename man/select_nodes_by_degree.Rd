@@ -2,8 +2,8 @@
 % Please edit documentation in R/select_nodes_by_degree.R
 \name{select_nodes_by_degree}
 \alias{select_nodes_by_degree}
-\title{Select nodes in the graph based on their degree
-values}
+\title{Select nodes in the graph based on
+their degree values}
 \usage{
 select_nodes_by_degree(graph, expressions, set_op = "union")
 }
@@ -11,59 +11,70 @@ select_nodes_by_degree(graph, expressions, set_op = "union")
 \item{graph}{a graph object of class
 \code{dgr_graph}.}
 
-\item{expressions}{one or more expressions for
-filtering of nodes by degree values. Use a
-combination of a degree type (\code{deg} for
-total degree, \code{indeg} for in-degree, and
-\code{outdeg} for out-degree) with a comparison
-operator and values for comparison (e.g., use
-\code{"deg >= 2"} to select nodes with a degree
-greater than or equal to 2).}
+\item{expressions}{one or more
+expressions for filtering nodes by
+degree values. Use a combination of
+degree type (\code{deg} for total
+degree, \code{indeg} for in-degree,
+and \code{outdeg} for out-degree)
+with a comparison operator and
+values for comparison (e.g., use
+\code{"deg >= 2"} to select nodes
+with a degree greater than or equal
+to 2).}
 
-\item{set_op}{the set operation to perform upon
-consecutive selections of graph nodes. This can
-either be as a \code{union} (the default), as an
-intersection of selections with \code{intersect},
-or, as a \code{difference} on the previous
+\item{set_op}{the set operation to
+perform upon consecutive selections
+of graph nodes. This can either be
+as a \code{union} (the default), as
+an intersection of selections with
+\code{intersect}, or, as a
+\code{difference} on the previous
 selection, if it exists.}
 }
 \value{
-a graph object of class \code{dgr_graph}.
+a graph object of class
+\code{dgr_graph}.
 }
 \description{
-Using a graph object of class
-\code{dgr_graph}, create a selection of nodes
-that have certain degree values.
+Using a graph object of
+class \code{dgr_graph}, create a
+selection of nodes that have certain
+degree values.
 }
 \examples{
-# Create a random graph using the
-# `add_gnm_graph()` function
+# Create a random graph using
+# the `add_gnm_graph()` function
 graph <-
   create_graph() \%>\%
   add_gnm_graph(
-    n = 35,
-    m = 125,
+    n = 35, m = 125,
     set_seed = 23)
 
-# Report which nodes have a total degree (in-degree
-# + out-degree) of exactly 9
+# Report which nodes have a
+# total degree (in-degree +
+# out-degree) of exactly 9
 graph \%>\%
   select_nodes_by_degree(
     expressions = "deg == 9") \%>\%
   get_selection()
 
-# Report which nodes have a total degree greater
-# than or equal to 9
+# Report which nodes have a
+# total degree greater than or
+# equal to 9
 graph \%>\%
   select_nodes_by_degree(
     expressions = "deg >= 9") \%>\%
   get_selection()
 
-# Combine two calls of `select_nodes_by_degree()`
-# to get those nodes with total degree less than
-# 3 and total degree greater than 10 (by default,
-# those `select...()` functions `union` the sets
-# of nodes selected)
+# Combine two calls of
+# `select_nodes_by_degree()` to
+# get those nodes with total
+# degree less than 3 and total
+# degree greater than 10 (by
+# default, those `select...()`
+# functions will `union` the
+# sets of nodes selected)
 graph \%>\%
   select_nodes_by_degree(
     expressions = "deg < 3") \%>\%
@@ -71,10 +82,13 @@ graph \%>\%
     expressions = "deg > 10") \%>\%
   get_selection()
 
-# Combine two calls of `select_nodes_by_degree()`
-# to get those nodes with total degree greater than
-# or equal to 3 and less than or equal to 10 (the
-# key here is to `intersect` the sets of nodes
+# Combine two calls of
+# `select_nodes_by_degree()` to
+# get those nodes with total
+# degree greater than or equal
+# to 3 and less than or equal
+# to 10 (the key here is to
+# `intersect` the sets of nodes
 # selected in the second call)
 graph \%>\%
   select_nodes_by_degree(
@@ -84,15 +98,17 @@ graph \%>\%
     set_op = "intersect") \%>\%
   get_selection()
 
-# Select all nodes with an in-degree greater than 5,
-# then, apply a node attribute to those selected nodes
-# (coloring the selected nodes red)
+# Select all nodes with an
+# in-degree greater than 5, then,
+# apply a node attribute to those
+# selected nodes (coloring the
+# selected nodes red)
 graph_2 <-
   graph \%>\%
   select_nodes_by_degree(
     expressions = "indeg > 5") \%>\%
   set_node_attrs_ws(
-    node_attr = "color",
+    node_attr = color,
     value = "red")
 
 # Get the selection of nodes
