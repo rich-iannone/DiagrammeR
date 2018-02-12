@@ -236,7 +236,7 @@ select_nodes_by_degree <- function(graph,
 
   # Issue a message to the user
   emit_message(
-    fcn_name = "select_nodes_in_neighborhood",
+    fcn_name = "select_nodes_by_degree",
     message_body = msg_body)
 
   graph
