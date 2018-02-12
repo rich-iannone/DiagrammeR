@@ -1,32 +1,40 @@
-#' Select nodes based on a walk distance from a
-#' specified node
-#' @description Select those nodes in the neighborhood
-#' of nodes connected a specified distance from an
-#' initial node.
+#' Select nodes based on a walk
+#' distance from a specified node
+#' @description Select those nodes in
+#' the neighborhood of nodes connected
+#' a specified distance from an initial
+#' node.
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
-#' @param node the node from which the traversal
-#' will originate.
-#' @param distance the maximum number of steps from
-#' the \code{node} for inclusion in the selection.
-#' @param set_op the set operation to perform upon
-#' consecutive selections of graph nodes. This can
-#' either be as a \code{union} (the default), as an
-#' intersection of selections with \code{intersect},
-#' or, as a \code{difference} on the previous
+#' @param node the node from which the
+#' traversal will originate.
+#' @param distance the maximum number
+#' of steps from the \code{node} for
+#' inclusion in the selection.
+#' @param set_op the set operation to
+#' perform upon consecutive selections
+#' of graph nodes. This can either be
+#' as a \code{union} (the default), as
+#' an intersection of selections with
+#' \code{intersect}, or, as a
+#' \code{difference} on the previous
 #' selection, if it exists.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class
+#' \code{dgr_graph}.
 #' @examples
-#' # Create a graph containing a balanced tree
+#' # Create a graph containing
+#' # a balanced tree
 #' graph <-
 #'   create_graph() %>%
 #'   add_balanced_tree(
 #'     k = 2, h = 2)
 #'
-#' # Create a graph selection by selecting nodes
-#' # in the neighborhood of node `1`, where the
-#' # neighborhood is limited by nodes that are 1
-#' # connection away from node `1`
+#' # Create a graph selection by
+#' # selecting nodes in the
+#' # neighborhood of node `1`, where
+#' # the neighborhood is limited by
+#' # nodes that are 1 connection
+#' # away from node `1`
 #' graph <-
 #'   graph %>%
 #'   select_nodes_in_neighborhood(
@@ -37,8 +45,10 @@
 #' graph %>%
 #'   get_selection()
 #'
-#' # Perform another selection of nodes, this time
-#' # with a neighborhood spanning 2 nodes from node `1`
+#' # Perform another selection
+#' # of nodes, this time with a
+#' # neighborhood spanning 2 nodes
+#' # from node `1`
 #' graph <-
 #'   graph %>%
 #'   clear_selection() %>%
