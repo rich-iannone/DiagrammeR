@@ -521,9 +521,57 @@ emit_message <- function(fcn_name,
 emit_warning <- function(fcn_name,
                          message_body) {
 
-  glue::glue("`{fcn_name}()` WARN: {message_body}") %>%
+  glue::glue("`{fcn_name}()` WARNING: {message_body}") %>%
     as.character() %>%
     warning()
+}
+
+# Function that constructs a consistent
+# message string and passes it to `stop()`
+#' @importFrom glue glue
+emit_error <- function(fcn_name,
+                       reasons) {
+
+  header_text <-
+      ifelse(length(reasons) > 1, "REASONS:\n", "REASON:\n")
+
+  if (length(reasons <= 5)) {
+
+    message_body <-
+      paste(paste0("* ", reasons), collapse = "\n")
+
+  } else {
+
+    excess_errors <- length(reasons) - 5
+
+    message_body <-
+      paste(paste0("* ", reasons[1:5]), collapse = "\n")
+
+    error_pl_str <-
+      ifelse(excess_errors == 1, "error", "errors")
+
+    excess_errors_str <-
+      glue::glue(
+        "* ... and {excess_errors} more {error_pl_str}") %>%
+      as.character()
+  }
+
+  glue::glue("`{fcn_name}()` {header_text}{message_body}") %>%
+    as.character() %>%
+    stop(call. = FALSE)
+}
+
+# Function that gets the calling function
+# as a formatted character string
+#' @importFrom stringr str_replace_all
+get_calling_fcn <- function() {
+
+  calling_fcn <- deparse(sys.call(-1))
+
+  stringr::str_replace_all(
+    calling_fcn,
+    pattern = "([a-z0-9_]*)(.*)",
+    replacement = "\\1")
 }
 
 ###
