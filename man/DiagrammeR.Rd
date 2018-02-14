@@ -117,7 +117,7 @@ library(DiagrammeR)
 
 DiagrammeR("
 sequenceDiagram;
-   customer->>ticket seller: ask ticket;
+   customer->>ticket seller: ask for ticket;
    ticket seller->>database: seats;
    alt tickets available
      database->>ticket seller: ok;
