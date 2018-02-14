@@ -75,12 +75,15 @@ is_edge_present <- function(graph,
                             from = NULL,
                             to = NULL) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   if (!is.null(edge)) {
@@ -101,9 +104,9 @@ is_edge_present <- function(graph,
 
   if (use_edge == FALSE & use_from_to == FALSE) {
 
-    stop(
-      "Either provide an edge ID or a pair of nodes to test for edge presence.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Either provide an edge ID or a pair of nodes to test for edge presence")
   }
 
   if (use_edge) {
@@ -112,9 +115,9 @@ is_edge_present <- function(graph,
     # is a numeric value of length 1
     if (!inherits(edge, "numeric") | length(edge) != 1) {
 
-      stop(
-        "For `edge`, a single, numeric value must be provided.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "For `edge`, a single, numeric value must be provided")
     }
 
     edge_is_in_graph <-
@@ -137,9 +140,9 @@ is_edge_present <- function(graph,
     if (from_is_single_value == FALSE |
         to_is_single_value == FALSE) {
 
-      stop(
-        "Only single nodes for `from` and `to` should be specified.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "Only single nodes for `from` and `to` should be specified")
     }
 
     if (inherits(from, "character") & inherits(to, "character")) {

@@ -42,12 +42,15 @@ get_dice_similarity <- function(graph,
                                 direction = "all",
                                 round_to = 3) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Convert the graph to an igraph object
@@ -63,9 +66,9 @@ get_dice_similarity <- function(graph,
     # the graph
     if (!all(nodes %in% get_node_ids(graph))) {
 
-      stop(
-        "One or more nodes provided not in graph.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "One or more nodes provided not in graph")
     }
 
     # Get an igraph representation of node ID values

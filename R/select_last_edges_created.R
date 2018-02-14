@@ -42,20 +42,23 @@ select_last_edges_created <- function(graph) {
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, so, no edges can be selected.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "The graph contains no edges")
   }
 
   # Create bindings for specific variables
@@ -82,9 +85,9 @@ select_last_edges_created <- function(graph) {
         tail(1) %>%
         dplyr::pull(step_deleted_edges) == 1) {
 
-      stop(
-        "The previous graph transformation function resulted in a removal of edges.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The previous graph transformation function resulted in a removal of edges")
 
     } else {
       if (nrow(graph_transform_steps) > 1) {
@@ -126,7 +129,7 @@ select_last_edges_created <- function(graph) {
       graph$graph_log[-nrow(graph$graph_log),] %>%
       add_action_to_log(
         version_id = nrow(graph$graph_log) + 1,
-        function_used = "select_last_edges_created",
+        function_used = fcn_name,
         time_modified = time_function_start,
         duration = graph_function_duration(time_function_start),
         nodes = nrow(graph$nodes_df),

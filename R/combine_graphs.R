@@ -57,20 +57,23 @@ combine_graphs <- function(x,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object `x` is valid
   if (graph_object_valid(x) == FALSE) {
 
-    stop(
-      "The graph object `x` is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object supplied to `x` is not valid")
   }
 
   # Validation: Graph object `y` is valid
   if (graph_object_valid(y) == FALSE) {
 
-    stop(
-      "The graph object `y` is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object supplied to `y` is not valid")
   }
 
   # Create bindings for specific variables
@@ -205,7 +208,7 @@ combine_graphs <- function(x,
     add_action_to_log(
       graph_log = x$graph_log,
       version_id = nrow(x$graph_log) + 1,
-      function_used = "combine_graphs",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(x$nodes_df),

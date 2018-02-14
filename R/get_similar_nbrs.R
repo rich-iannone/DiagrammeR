@@ -92,12 +92,15 @@ get_similar_nbrs <- function(graph,
                              tol_abs = NULL,
                              tol_pct = NULL) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
     # Get the requested `node_attr`

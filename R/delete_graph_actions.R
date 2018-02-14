@@ -69,21 +69,24 @@ delete_graph_actions <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Determine whether there any
   # available graph actions
   if (nrow(graph$graph_actions) == 0) {
 
-    stop(
-      "There are no graph actions to delete.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "There are no graph actions to delete")
   }
 
   # Create bindings for specific variables
@@ -98,9 +101,9 @@ delete_graph_actions <- function(graph,
 
     if (!any(actions %in% graph_action_names)) {
 
-      stop(
-        "One or more provided `actions` do not exist in the graph.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "One or more provided `actions` do not exist in the graph")
     }
 
     # Get a revised data frame with graph actions
@@ -120,9 +123,9 @@ delete_graph_actions <- function(graph,
 
     if (!any(actions %in% graph_action_indices)) {
 
-      stop(
-        "One or more provided `actions` do not exist in the graph.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "One or more provided `actions` do not exist in the graph")
     }
 
     # Get a revised data frame with graph actions
@@ -142,7 +145,7 @@ delete_graph_actions <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "delete_graph_actions",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

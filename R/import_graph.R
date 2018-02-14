@@ -62,6 +62,9 @@ import_graph <- function(graph_file,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Assign NULL to several objects
   id <- to_label <- from_label <-  NULL
 
@@ -71,9 +74,9 @@ import_graph <- function(graph_file,
     if (!(tolower(file_type) %in%
           c("gml", "sif", "edges", "mtx"))) {
 
-      stop(
-        "The file type as specified cannot be imported.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The file type as specified cannot be imported")
     }
   }
 
@@ -81,9 +84,9 @@ import_graph <- function(graph_file,
   if (grepl("(^http:|^https:|^ftp:|^ftp:)", graph_file) == FALSE) {
     if (file.exists(graph_file) == FALSE) {
 
-      stop(
-        "The file as specified doesn't exist.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The file as specified doesn't exist")
     }
   }
 
@@ -127,9 +130,9 @@ import_graph <- function(graph_file,
       file_type <- "mtx"
     } else {
 
-      stop(
-        "The file type is not known so it can't be imported.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The file type is not known so it can't be imported")
     }
   }
 

@@ -39,38 +39,41 @@
 is_edge_mutual <- function(graph,
                            edge) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, so, no edges can be selected.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph contains no edges")
   }
 
   # Stop function if more than one value
   # provided for `edge`
   if (length(edge) > 1) {
 
-    stop(
-      "Only a single should be provided for `edge`.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Only a single edge ID should be provided for `edge`")
   }
 
   # Stop function if the value provided
   # in `edge` is not numeric
   if (!is.numeric(edge)) {
 
-    stop(
-      "The value provided for `edge` should be numeric.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value provided for `edge` should be numeric")
   }
 
   # Create binding for a specific variable
@@ -83,9 +86,9 @@ is_edge_mutual <- function(graph,
   # is not a valid edge ID
   if (!(edge %in% edf$id)) {
 
-    stop(
-      "The provided edge ID is not present in the graph.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The provided edge ID is not present in the graph")
   }
 
   # Obtain the edge definition

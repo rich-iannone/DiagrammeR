@@ -49,12 +49,15 @@
 get_constraint <- function(graph,
                            nodes = NULL) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Convert the graph to an igraph object
@@ -78,9 +81,9 @@ get_constraint <- function(graph,
     if (!all(as.character(nodes) %in%
              get_node_ids(graph))) {
 
-      stop(
-        "One or more nodes provided not in graph.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "One or more nodes provided not in graph")
     }
 
     constraint_scores_df <-

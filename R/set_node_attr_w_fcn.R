@@ -114,12 +114,15 @@ set_node_attr_w_fcn <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Create bindings for specific variables
@@ -130,9 +133,9 @@ set_node_attr_w_fcn <- function(graph,
 
   if (!any(value_per_node_fcn_names %in% node_attr_fcn)) {
 
-    stop(
-      "The function name must be one that produces values for every graph node.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The function name must be one that produces values for every graph node")
   }
 
   # Collect extra vectors of arguments and values as `extras`
@@ -232,7 +235,7 @@ set_node_attr_w_fcn <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "set_node_attr_w_fcn",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

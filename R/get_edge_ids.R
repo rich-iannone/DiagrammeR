@@ -64,6 +64,9 @@
 get_edge_ids <- function(graph,
                          conditions = NULL) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 

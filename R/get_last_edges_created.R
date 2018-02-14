@@ -28,20 +28,23 @@
 
 get_last_edges_created <- function(graph) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, so, no edges can be selected.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph contains no edges")
   }
 
   # Create bindings for specific variables
@@ -68,9 +71,9 @@ get_last_edges_created <- function(graph) {
         tail(1) %>%
         dplyr::pull(step_deleted_edges) == 1) {
 
-      stop(
-        "The previous graph transformation function resulted in a removal of edges.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The previous graph transformation function resulted in a removal of edges")
 
     } else {
       if (nrow(graph_transform_steps) > 1) {

@@ -38,20 +38,23 @@
 is_node_present <- function(graph,
                             node) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Stop function if `node` not a single value
   if (length(node) != 1) {
 
-    stop(
-      "Only a single node can be queried using `is_node_present()`.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Only a single node can be queried using `is_node_present()`")
   }
 
   if (inherits(node, "character")) {

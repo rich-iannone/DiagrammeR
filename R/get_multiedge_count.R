@@ -41,20 +41,23 @@
 
 get_multiedge_count <- function(graph) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, so, no selections can be made.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph contains no edges")
   }
 
   # Create bindings for specific variables

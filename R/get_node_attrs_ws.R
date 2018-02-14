@@ -41,20 +41,23 @@
 get_node_attrs_ws <- function(graph,
                               node_attr) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph object has a valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
 
-    stop(
-      "There is no selection of nodes available.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "There is no selection of nodes available.")
   }
 
   node_attr <- rlang::enquo(node_attr)
@@ -66,9 +69,9 @@ get_node_attrs_ws <- function(graph,
       rlang::get_expr() %>%
       as.character() %in% c("id", "nodes")) {
 
-    stop(
-      "This is not a node attribute.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "This is not a node attribute")
   }
 
   # Extract the node data frame (ndf)

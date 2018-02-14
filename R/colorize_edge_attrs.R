@@ -78,12 +78,15 @@ colorize_edge_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Get the requested `edge_attr_from`
@@ -124,9 +127,9 @@ colorize_edge_attrs <- function(graph,
           c(row.names(RColorBrewer::brewer.pal.info),
             "viridis"))) {
 
-      stop(
-        "The color palette is not an RColorBrewer or viridis palette.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The color palette is not an `RColorBrewer` or `viridis` palette")
     }
   }
 
@@ -238,7 +241,7 @@ colorize_edge_attrs <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "colorize_edge_attrs",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

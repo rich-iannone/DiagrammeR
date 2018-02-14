@@ -49,12 +49,15 @@ drop_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Get the requested `node_attr`
@@ -65,9 +68,9 @@ drop_node_attrs <- function(graph,
   # greater than one
   if (length(node_attr) > 1) {
 
-    stop(
-      "You can only provide a single column.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "You can only provide a single column")
   }
 
   # Stop function if `node_attr` is any of
@@ -75,9 +78,9 @@ drop_node_attrs <- function(graph,
   if (any(c("nodes", "node", "type", "label") %in%
           node_attr)) {
 
-    stop(
-      "You cannot drop this column.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "You cannot drop this column")
   }
 
   # Extract the graph's ndf
@@ -90,9 +93,9 @@ drop_node_attrs <- function(graph,
   # of the graph's column
   if (!any(column_names_graph %in% node_attr)) {
 
-    stop(
-      "The node attribute to drop is not in the ndf.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The node attribute to drop is not in the ndf")
   }
 
   # Get the column number for the node attr to drop
@@ -110,7 +113,7 @@ drop_node_attrs <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "drop_node_attrs",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

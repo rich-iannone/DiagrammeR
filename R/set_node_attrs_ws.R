@@ -56,28 +56,31 @@ set_node_attrs_ws <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
 
-    stop(
-      "The graph contains no nodes, so, no node attributes can be set.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "The graph contains no nodes")
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
 
-    stop(
-      "There is no selection of nodes available.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "There is no selection of nodes available.")
   }
 
   # Get the requested `node_attr`
@@ -103,7 +106,7 @@ set_node_attrs_ws <- function(graph,
     graph$graph_log[-nrow(graph$graph_log),] %>%
     add_action_to_log(
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "set_node_attrs_ws",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

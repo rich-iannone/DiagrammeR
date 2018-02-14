@@ -85,12 +85,15 @@ add_nodes_from_df_cols <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Get the df column numbers from which nodes
@@ -101,9 +104,9 @@ add_nodes_from_df_cols <- function(graph,
     # are greater than the number of df columns
     if (max(columns) > ncol(df)) {
 
-      stop(
-        "One or more of the column numbers exceeds the number of columns in `df`.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "One or more of the column numbers exceeds the number of columns in `df`")
     }
   }
 
@@ -115,9 +118,9 @@ add_nodes_from_df_cols <- function(graph,
 
     if (length(columns) < 1) {
 
-      stop(
-        "None of the columns specified are in the `df` object.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "None of the columns specified are in the `df` object")
     }
   }
 
@@ -204,7 +207,7 @@ add_nodes_from_df_cols <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "add_nodes_from_df_cols",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

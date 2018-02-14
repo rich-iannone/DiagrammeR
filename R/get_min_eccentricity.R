@@ -35,12 +35,15 @@
 get_min_eccentricity <- function(graph,
                                  direction = "all") {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Ensure that values provided for the
@@ -48,9 +51,9 @@ get_min_eccentricity <- function(graph,
   # valid options
   if (!(direction %in% c("all", "in", "out"))) {
 
-    stop(
-      "Valid options for `direction` are `all`, `in`, or `out`.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Valid options for `direction` are `all`, `in`, or `out`.")
   }
 
   # If the graph is empty, then return NA

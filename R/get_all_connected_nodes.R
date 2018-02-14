@@ -60,12 +60,15 @@
 get_all_connected_nodes <- function(graph,
                                     node) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Create bindings for specific variables
@@ -74,9 +77,9 @@ get_all_connected_nodes <- function(graph,
   # Verify that the node ID provided is in the graph
   if (!(node %in% get_node_ids(graph))) {
 
-    stop(
-      "The node ID provided is not in the graph.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The node ID provided is not in the graph")
   }
 
   # Get a data frame of the weakly-connected

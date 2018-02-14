@@ -88,20 +88,23 @@ set_node_attr_to_display <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
 
-    stop(
-      "The graph contains no nodes, so, no node attributes can be set.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "The graph contains no nodes")
   }
 
   # Get the requested `attr`
@@ -117,17 +120,8 @@ set_node_attr_to_display <- function(graph,
   # Create bindings for specific variables
   id <- type <- label <- display <- type <- NULL
 
-  # Get the graph's node data frame as an object; stop
-  # function if this doesn't exist
-  if (is.null(graph$nodes_df)) {
-
-    stop(
-      "This graph does not contain any nodes.",
-      call. = FALSE)
-
-  } else {
-    ndf <- graph$nodes_df
-  }
+  # Get the graph's node data frame as an object
+  ndf <- graph$nodes_df
 
   # If `nodes` is NULL, assume that all nodes to
   # be assigned a `display` value
@@ -139,9 +133,9 @@ set_node_attr_to_display <- function(graph,
   # provided in `nodes` do not exist in the graph
   if (!any(nodes %in% ndf$id)) {
 
-    stop(
-      "One or more node ID values in `nodes` are not present in the graph.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "One or more node ID values in `nodes` are not present in the graph")
   }
 
   # Stop function if the node attribute supplied as
@@ -149,9 +143,9 @@ set_node_attr_to_display <- function(graph,
   if (!is.null(attr)) {
     if (!(attr %in% colnames(ndf))) {
 
-      stop(
-        "The node attribute given in `attr` is not in the graph's ndf.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The node attribute given in `attr` is not in the graph's ndf")
     }
   }
 
@@ -227,7 +221,7 @@ set_node_attr_to_display <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "set_node_attr_to_display",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

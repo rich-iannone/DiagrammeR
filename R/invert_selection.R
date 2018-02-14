@@ -57,12 +57,15 @@ invert_selection <- function(graph) {
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph object has valid selection of
@@ -70,9 +73,9 @@ invert_selection <- function(graph) {
   if (!(graph_contains_node_selection(graph) |
         graph_contains_edge_selection(graph))) {
 
-    stop(
-      "There is no selection of nodes or edges available.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "There is no selection of nodes or edges available")
   }
 
   # Create bindings for specific variables
@@ -131,7 +134,7 @@ invert_selection <- function(graph) {
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "invert_selection",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

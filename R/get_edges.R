@@ -116,6 +116,9 @@ get_edges <- function(graph,
                       return_type = "vector",
                       return_values = "id") {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 

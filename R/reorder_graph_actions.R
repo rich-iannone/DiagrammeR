@@ -77,21 +77,24 @@ reorder_graph_actions <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Determine whether there any
   # available graph actions
   if (nrow(graph$graph_actions) == 0) {
 
-    stop(
-      "There are no graph actions to reorder.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "There are no graph actions to reorder")
   }
 
   # Create binding for a specific variable
@@ -109,9 +112,9 @@ reorder_graph_actions <- function(graph,
   # that does not exist
   if (!any(indices %in% available_indices)) {
 
-    stop(
-      "One or more provided indices do not exist in the graph.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "One or more provided indices do not exist in the graph")
   }
 
   remaining_indices <-
@@ -141,7 +144,7 @@ reorder_graph_actions <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "reorder_graph_actions",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

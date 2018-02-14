@@ -83,37 +83,40 @@ add_edge_clone <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, no edges attributes can be set.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph contains no edges")
   }
 
   # Stop function if edge is not a single numerical value
   if (length(edge) > 1 | inherits(edge, "character") | inherits(edge, "logical")) {
 
-    stop(
-      "The value for `edge` must be a single, numeric value.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value for `edge` must be a single, numeric value")
   }
 
   # Stop function the edge ID does not correspond
   # to an edge in the graph
   if (!(edge %in% graph$edges_df$id)) {
 
-    stop(
-      "The value provided in `edge` does not correspond to an edge in the graph.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value provided in `edge` does not correspond to an edge in the graph")
   }
 
   # Create bindings for specific variables
@@ -179,7 +182,7 @@ add_edge_clone <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "add_edge_clone",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

@@ -86,20 +86,23 @@ mutate_edge_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, so, no edge attributes can undergo mutation.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph contains no edges")
   }
 
   # Collect expressions
@@ -115,9 +118,9 @@ mutate_edge_attrs <- function(graph,
       "from" %in% names(exprs) |
       "to" %in% names(exprs)) {
 
-    stop(
-      "The variables `id`, `from`, or `to` cannot undergo mutation.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The variables `id`, `from`, or `to` cannot undergo mutation")
   }
 
   for (i in 1:length(exprs)) {
@@ -136,7 +139,7 @@ mutate_edge_attrs <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "mutate_edge_attrs",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

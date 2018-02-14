@@ -67,12 +67,15 @@ get_agg_degree_in <- function(graph,
                               agg,
                               conditions = NULL) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Capture provided conditions
@@ -115,9 +118,11 @@ get_agg_degree_in <- function(graph,
   # is one of the accepted aggregation types
   if (!(agg %in% c("sum", "min", "max", "mean", "median"))) {
 
-    stop(
-      "The aggregation method must be either `min`, `max`, `mean`, `median`, or `sum`.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = c(
+        "The specified aggregation method is not valid",
+        "allowed choices are: `min`, `max`, `mean`, `median`, or `sum`"))
   }
 
   # Get the aggregate value of total degree based

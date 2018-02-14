@@ -135,12 +135,15 @@ add_balanced_tree <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Create bindings for specific variables
@@ -149,17 +152,17 @@ add_balanced_tree <- function(graph,
   # Stop if k is too small
   if (k <= 1) {
 
-    stop(
-      "The value for `k` must be at least 2.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value for `k` must be at least 2")
   }
 
   # Stop if h is too small
   if (h <= 1) {
 
-    stop(
-      "The value for `h` must be at least 2.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value for `h` must be at least 2")
   }
 
   # Determine the number of nodes in the balanced tree
@@ -353,7 +356,7 @@ add_balanced_tree <- function(graph,
     add_action_to_log(
       graph_log = graph_log,
       version_id = nrow(graph_log) + 1,
-      function_used = "add_balanced_tree",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

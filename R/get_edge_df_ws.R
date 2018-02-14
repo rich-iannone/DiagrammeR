@@ -36,20 +36,23 @@
 
 get_edge_df_ws <- function(graph) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph object has a valid edge selection
   if (graph_contains_edge_selection(graph) == FALSE) {
 
-    stop(
-      "There is no selection of edges available.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "There is no selection of edges available.")
   }
 
   # Create binding for specific variable

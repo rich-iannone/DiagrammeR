@@ -85,20 +85,23 @@
 
 display_metagraph <- function(graph) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph object is a property graph
   if (is_property_graph(graph) == FALSE) {
 
-    stop(
-      "The graph object is not a property graph.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not a property graph")
   }
 
   # Create bindings for specific variables

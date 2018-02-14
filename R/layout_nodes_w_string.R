@@ -105,12 +105,15 @@ layout_nodes_w_string <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Get the graph's internal node data frame
@@ -142,9 +145,9 @@ layout_nodes_w_string <- function(graph,
   # Stop function if not all rows are of equal length
   if (mean(layout_row_length) != layout_row_length[1]) {
 
-    stop(
-      "Each row must have the same length.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Each row must have the same length")
   }
 
   layout_column_number <- layout_row_length <- layout_row_length[1]
@@ -243,7 +246,7 @@ layout_nodes_w_string <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "layout_nodes_w_string",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

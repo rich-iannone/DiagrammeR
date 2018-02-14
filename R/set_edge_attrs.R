@@ -93,23 +93,26 @@ set_edge_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Get the requested `edge_attr`
   edge_attr <-
     rlang::enquo(edge_attr) %>% rlang::get_expr() %>% as.character()
 
   if (edge_attr %in% c("id", "from", "to")) {
 
-    stop(
-      "You cannot alter edge ID values or attributes associated with node IDs.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "You cannot alter edge ID values or attributes associated with node IDs")
   }
 
   if (!is.null(from) & !is.null(to)) {
     if (length(from) != length(to)) {
 
-      stop(
-        "The number of values specified in `from` and `to` must be the same.",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = "The number of values specified in `from` and `to` must be the same")
     }
   }
 
@@ -119,9 +122,9 @@ set_edge_attrs <- function(graph,
   if (length(values) != 1 &
       length(values) != nrow(edf)) {
 
-    stop(
-      "The length of values provided must either be 1 or that of the number of rows in the edf.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The length of values provided must either be 1 or that of the number of rows in the edf")
   }
 
   # Get the indices for the edge data frame
@@ -193,7 +196,7 @@ set_edge_attrs <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "set_edge_attrs",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

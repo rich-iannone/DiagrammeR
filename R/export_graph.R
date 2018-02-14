@@ -60,12 +60,15 @@ export_graph <- function(graph,
                          width = NULL,
                          height = NULL) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # If no `file_name` or `file_type` provided, default to
@@ -98,9 +101,12 @@ export_graph <- function(graph,
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
 
-      stop(
-        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce a PNG file",
+          "please install the `DiagrammeRsvg` package and retry",
+          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
     }
 
     if (!is.null(title)) {
@@ -144,9 +150,12 @@ export_graph <- function(graph,
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
 
-      stop(
-        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce a PDF file",
+          "please install the `DiagrammeRsvg` package and retry",
+          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
     }
 
     if (!is.null(title)) {
@@ -190,9 +199,12 @@ export_graph <- function(graph,
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
 
-      stop(
-        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce an SVG file",
+          "please install the `DiagrammeRsvg` package and retry",
+          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
     }
 
     if (!is.null(title)) {
@@ -236,9 +248,12 @@ export_graph <- function(graph,
     if (!("DiagrammeRsvg" %in%
           rownames(utils::installed.packages()))) {
 
-      stop(
-        "To use this function to produce an image file, please install the `DiagrammeRsvg` package using `devtools::install_github('rich-iannone/DiagrammeRsvg')",
-        call. = FALSE)
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce a PS file",
+          "please install the `DiagrammeRsvg` package and retry",
+          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
     }
 
     if (!is.null(title)) {

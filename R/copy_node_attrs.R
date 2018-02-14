@@ -62,12 +62,15 @@ copy_node_attrs <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Get the requested `node_attr_from`
@@ -82,17 +85,17 @@ copy_node_attrs <- function(graph,
   # `node_attr_to` are identical
   if (node_attr_from == node_attr_to) {
 
-    stop(
-      "You cannot use make a copy with the same name.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "You cannot use make a copy with the same name")
   }
 
   # Stop function if `node_attr_to` is `nodes` or `node`
   if (any(c("nodes", "node") %in% node_attr_to)) {
 
-    stop(
-      "You cannot use those names.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "You cannot use `nodes` or `node` as names")
   }
 
   # Extract the graph's ndf
@@ -133,7 +136,7 @@ copy_node_attrs <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "copy_node_attrs",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

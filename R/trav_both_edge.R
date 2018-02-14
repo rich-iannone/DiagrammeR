@@ -200,36 +200,42 @@ trav_both_edge <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
 
-    stop(
-      "The graph contains no nodes, so, no traversal can occur.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "The graph contains no nodes")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, so, no traversal can occur.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "The graph contains no edges")
   }
 
   # Validation: Graph object has valid node selection
   if (graph_contains_node_selection(graph) == FALSE) {
 
-    stop(
-      "There is no selection of nodes, so, no traversal can occur.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = c(
+        "There is no selection of nodes available.",
+        "any traversal requires an active selection",
+        "this type of traversal requires a selection of nodes"))
   }
 
   # Capture provided conditions
@@ -332,9 +338,9 @@ trav_both_edge <- function(graph,
 
         if (copy_attrs_as %in% c("id", "from", "to")) {
 
-          stop(
-            "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.",
-            call. = FALSE)
+          emit_error(
+            fcn_name = fcn_name,
+            reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes")
         }
 
         colnames(from_join)[2] <-
@@ -368,9 +374,9 @@ trav_both_edge <- function(graph,
 
         if (copy_attrs_as %in% c("id", "from", "to")) {
 
-          stop(
-            "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes.",
-            call. = FALSE)
+          emit_error(
+            fcn_name = fcn_name,
+            reasons = "Copied attributes should not overwrite either of the `id`, `from`, or `to` edge attributes")
         }
 
         colnames(from_join)[2] <- copy_attrs_as
@@ -539,7 +545,7 @@ trav_both_edge <- function(graph,
     add_action_to_log(
       graph_log = graph$graph_log,
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "trav_both_edge",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

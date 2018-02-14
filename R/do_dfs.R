@@ -75,20 +75,23 @@ do_dfs <- function(graph,
                    node = NULL,
                    direction = "all") {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
 
-    stop(
-      "The graph contains no nodes.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph contains no nodes")
   }
 
   # If no node provided, choose a random node
@@ -102,28 +105,34 @@ do_dfs <- function(graph,
   # Perform the depth-first search algorithm in
   # the direction requested
   if (direction == "all") {
+
     dfs_result <-
       igraph::dfs(
         graph = ig_graph,
         root = node,
         neimode = "all")
+
   } else if (direction == "out") {
+
     dfs_result <-
       igraph::dfs(
         graph = ig_graph,
         root = node,
         neimode = "out")
+
   } else if (direction == "in") {
+
     dfs_result <-
       igraph::dfs(
         graph = ig_graph,
         root = node,
         neimode = "in")
+
   } else if (!(direction %in% c("all", "out", "in"))) {
 
-    stop(
-      "The value for `direction` must be either `all`, `out`, or `in`.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value for `direction` must be either `all`, `out`, or `in`")
   }
 
   # Get the nodes visited during the dfs

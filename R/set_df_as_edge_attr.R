@@ -62,37 +62,40 @@ set_df_as_edge_attr <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains edges
   if (graph_contains_edges(graph) == FALSE) {
 
-    stop(
-      "The graph contains no edges, so, a df cannot be added.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "The graph contains no edges")
   }
 
   # Value given for edge must only be a single value
   if (length(edge) > 1) {
 
-    stop(
-      "Only one edge can be specified.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Only one edge can be specified")
   }
 
   # Values given for edge must correspond to an edge ID
   # in the graph
   if (!(edge %in% graph$edges_df$id)) {
 
-    stop(
-      "The value given for `edge` does not correspond to an edge ID.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value given for `edge` does not correspond to an edge ID")
   }
 
   # Create bindings for specific variables
@@ -157,7 +160,7 @@ set_df_as_edge_attr <- function(graph,
     graph$graph_log[-nrow(graph$graph_log),] %>%
     add_action_to_log(
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "set_df_as_edge_attr",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

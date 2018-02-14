@@ -43,6 +43,9 @@ from_igraph <- function(igraph,
                         graph_name = NULL,
                         write_backups = FALSE) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Create bindings for specific variables
   id <- NULL
 

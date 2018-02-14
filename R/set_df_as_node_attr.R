@@ -77,37 +77,40 @@ set_df_as_node_attr <- function(graph,
   # Get the time of function start
   time_function_start <- Sys.time()
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Validation: Graph object is valid
   if (graph_object_valid(graph) == FALSE) {
 
-    stop(
-      "The graph object is not valid.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The graph object is not valid")
   }
 
   # Validation: Graph contains nodes
   if (graph_contains_nodes(graph) == FALSE) {
 
-    stop(
-      "The graph contains no nodes, so, a df cannot be added.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      message_body = "The graph contains no nodes")
   }
 
   # Value given for node must only be a single value
   if (length(node) > 1) {
 
-    stop(
-      "Only one node can be specified.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Only one node can be specified")
   }
 
   # Value given for node must correspond to a node ID
   # in the graph
   if (!(node %in% graph$nodes_df$id)) {
 
-    stop(
-      "The value given for `node` does not correspond to a node ID.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "The value given for `node` does not correspond to a node ID")
   }
 
   # Create bindings for specific variables
@@ -170,7 +173,7 @@ set_df_as_node_attr <- function(graph,
     graph$graph_log[-nrow(graph$graph_log),] %>%
     add_action_to_log(
       version_id = nrow(graph$graph_log) + 1,
-      function_used = "set_df_as_node_attr",
+      function_used = fcn_name,
       time_modified = time_function_start,
       duration = graph_function_duration(time_function_start),
       nodes = nrow(graph$nodes_df),

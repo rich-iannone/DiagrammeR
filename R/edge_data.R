@@ -36,9 +36,9 @@ edge_data <- function(...) {
 
   if (any(names(edge_data_values) %in% gv_edge_attributes())){
 
-    stop(
-      "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes.",
-      call. = FALSE)
+    emit_error(
+      fcn_name = fcn_name,
+      reasons = "Names for edge data attributes shouldn't be any of those reserved for edge aesthetic attributes")
   }
 
   edge_data_values
