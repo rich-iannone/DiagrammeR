@@ -444,8 +444,12 @@ k_graph <-
   set_node_attr_to_display(
     attr = value_3)
 #> `select_nodes()` INFO: created a new selection of 5 nodes
+#> `invert_selection()` INFO: inverted an existing selection of 5 nodes:
+#> * 5 nodes are now in the active selection
 #> `select_edges()` INFO: created a new selection of 14 edges:
 #> * this replaces 5 nodes in the prior selection
+#> `invert_selection()` INFO: inverted an existing selection of 14 edges:
+#> * 5 edges are now in the active selection
 #> `clear_selection()` INFO: cleared an existing selection of 5 edges
 ```
 
@@ -622,7 +626,7 @@ graph %>%
     node_attr = email) %>%
   sort() %>%
   unname()
-#> `select_nodes()` INFO: created a new selection of 2 nodes
+#> `select_nodes()` INFO: created a new selection of 2 nodes`()` INFO: created a new selection of 2 nodes
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
 #> [3] "kim_3251323@ohhh.ai"      "lhe99@mailing-fun.com"   
 #> [5] "roger_that@whalemail.net" "the_simone@a-q-w-o.net"  
