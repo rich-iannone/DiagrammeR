@@ -81,6 +81,11 @@ invert_selection <- function(graph) {
   # Create bindings for specific variables
   id <- from <- to <- NULL
 
+  # Obtain the input graph's node and edge
+  # selection properties
+  n_e_select_properties_in <-
+    node_edge_selection_properties(graph = graph)
+
   # Invert the nodes in the selection
   if (nrow(graph$node_selection) > 0) {
 
@@ -129,6 +134,11 @@ invert_selection <- function(graph) {
     graph$node_selection <- create_empty_nsdf()
   }
 
+  # Obtain the output graph's node and edge
+  # selection properties
+  n_e_select_properties_out <-
+    node_edge_selection_properties(graph = graph)
+
   # Update the `graph_log` df with an action
   graph$graph_log <-
     add_action_to_log(
@@ -144,6 +154,19 @@ invert_selection <- function(graph) {
   if (graph$graph_info$write_backups) {
     save_graph_as_rds(graph = graph)
   }
+
+  # Construct message body
+  msg_body <-
+    glue::glue(
+      "inverted an existing selection of \\
+       {n_e_select_properties_in[['selection_count_str']]}:
+       * {n_e_select_properties_out[['selection_count_str']]} \\
+       are now in the active selection")
+
+  # Issue a message to the user
+  emit_message(
+    fcn_name = fcn_name,
+    message_body = msg_body)
 
   graph
 }
