@@ -280,9 +280,9 @@ select_edges <- function(graph,
     if (n_e_select_properties_in[["edge_selection_available"]]) {
       msg_body <-
         glue::glue(
-          "modified an existing selection of\\
+          "modified an existing selection of \\
            {n_e_select_properties_in[['selection_count_str']]}:
-           * {n_e_select_properties_out[['selection_count_str']]}\\
+           * {n_e_select_properties_out[['selection_count_str']]} \\
            are now in the active selection
            * used the `{set_op}` set operation")
     }
@@ -290,10 +290,10 @@ select_edges <- function(graph,
     if (n_e_select_properties_in[["node_selection_available"]]) {
       msg_body <-
         glue::glue(
-          "created a new selection of\\
+          "created a new selection of \\
            {n_e_select_properties_out[['selection_count_str']]}:
-           * this replaces\\
-           {n_e_select_properties_in[['selection_count_str']]}\\
+           * this replaces \\
+           {n_e_select_properties_in[['selection_count_str']]} \\
            in the prior selection")
     }
   }
