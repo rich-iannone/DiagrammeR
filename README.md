@@ -6,6 +6,8 @@
 
 With the **DiagrammeR** package you can create, modify, analyze, and visualize network graph diagrams. The output can be incorporated into **RMarkdown** documents, integrated with **Shiny** web apps, converted to other graph formats, or exported as image files.
 
+This package is made possible by the [**htmlwidgets**](http://www.htmlwidgets.org) R package, which provides an easy-to-use framework for bringing together R and JavaScript.
+
 <img src="man/figures/simple_graph.png">
 
 The above example graph can be created with a combination of **DiagrammeR** functions:
@@ -48,6 +50,8 @@ example_graph <-
   clear_selection() %>%
   set_node_attr_to_display(
     attr = NULL)
+#> `select_nodes_by_id()` INFO: created a new selection of 34 nodes
+#> `clear_selection()` INFO: cleared an existing selection of 34 nodes
 ```
 
 ``` r
@@ -112,7 +116,7 @@ c_graph
 #>   SELECTION / <none>
 #>   CACHE / <none>
 #>   STORED DFs / <none>
-#>   GLOBAL ATTRS / 17 are set                info: `get_global_graph_attrs()`
+#>   GLOBAL ATTRS / 17 are set            info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
 #>   GRAPH LOG / <3 actions> -> add_edge() -> delete_edge() -> add_node()
 ```
@@ -160,6 +164,8 @@ e_graph <-
     node_attr = fillcolor,
     value = "orange") %>%
   clear_selection()
+#> `select_nodes()` INFO: created a new selection of 1 node
+#> `clear_selection()` INFO: cleared an existing selection of 1 node
 ```
 
 To explain this a bit, we take the graph object `d_graph`, select only the nodes that have a node `value` attribute of exactly `2.5`. (We now have an active node selection.) With the selected nodes, we set their node attribute `fillcolor` with the value `orange`. Then we deactivate the selection with `clear_selection()`. Now, if we view the graph with `render_graph()` we get this:
@@ -352,9 +358,9 @@ i_graph_3
 #>   SELECTION / <none>
 #>   CACHE / <none>
 #>   STORED DFs / <none>
-#>   GLOBAL ATTRS / 17 are set                info: `get_global_graph_attrs()`
+#>   GLOBAL ATTRS / 17 are set            info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
-#>   GRAPH LOG / create_graph() -> add_nodes_from_table() -> add_edges_from_table()
+#>   GRAPH LOG / <1 action> -> add_nodes_from_table() -> add_edges_from_table() -> ()
 ```
 
 There are two other similar datasets included in the package (`node_list_2` and `edge_list_2`). These contain extended attribute data. Let's have a quick look at their column names:
@@ -402,9 +408,9 @@ j_graph
 #>   SELECTION / <none>
 #>   CACHE / <none>
 #>   STORED DFs / <none>
-#>   GLOBAL ATTRS / 17 are set                info: `get_global_graph_attrs()`
+#>   GLOBAL ATTRS / 17 are set            info: `get_global_graph_attr_info()`
 #>   GRAPH ACTIONS / <none>
-#>   GRAPH LOG / <1 action> -> add_nodes_from_table() -> add_edges_from_table() -> drop_node_attrs()
+#>   GRAPH LOG / <3 actions> -> add_edges_from_table() -> () -> drop_node_attrs()
 ```
 
 Now, because we have node/edge metadata (categorical labels and numerical data in `value_1` & `value_2` for both nodes and edges), we can do some interesting things with the graph. First, let's do some mutation with `mutate_node_attrs()` and `mutate_edge_attrs()` and get the sums of `value_1` and `value_2` as `value_3` (for both the nodes and the edges). Then, let's color the nodes and edges `forestgreen` if `value_3` is greater than `10` (`red` otherwise). Finally, let's display the values of `value_3` for the nodes when rendering the graph diagram. Here we go!
@@ -437,6 +443,10 @@ k_graph <-
   clear_selection() %>%
   set_node_attr_to_display(
     attr = value_3)
+#> `select_nodes()` INFO: created a new selection of 5 nodes
+#> `select_edges()` INFO: created a new selection of 14 edges:
+#> * this replaces 5 nodes in the prior selection
+#> `clear_selection()` INFO: cleared an existing selection of 5 edges
 ```
 
 ``` r
@@ -480,7 +490,7 @@ render_graph(graph, layout = "kk")
 
 Now that the graph is set up, you can create queries with **magrittr** pipelines to get specific answers from the graph.
 
-Get the average age of all the contributors. Select all nodes of type `person` (not `project`). Each node of that type has non-`NA` `age` attribute, so, get that attribute as a vector with `get_node_attrs_ws()` and then calculate the mean with **R**'s `mean()` function.
+Get the average age of all the contributors. Select all nodes of type `person` (not `project`). Each node of that type has non-`NA` `age` attribute, so, get that attribute as a vector with `get_node_attrs_ws()` and then calculate the mean with R's `mean()` function.
 
 ``` r
 graph %>% 
@@ -489,6 +499,7 @@ graph %>%
   get_node_attrs_ws(
     node_attr = age) %>%
   mean()
+#> `select_nodes()` INFO: created a new selection of 10 nodes
 #> [1] 33.6
 ```
 
@@ -500,6 +511,7 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
+#> `select_edges()` INFO: created a new selection of 13 edges
 #> [1] 5182
 ```
 
@@ -513,6 +525,7 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
+#> `select_nodes()` INFO: created a new selection of 1 node
 #> [1] 227
 ```
 
@@ -527,12 +540,13 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
+#> `select_nodes()` INFO: created a new selection of 1 node
 #> [1] 236
 ```
 
 How do we do something more complex, like, get the names of people in graph above age 32? First, select all `person` nodes with `select_nodes(conditions = type == "person")`. Then, follow up with another `select_nodes()` call specifying `age > 32`. Importantly, have `set_op = "intersect"` (giving us the intersection of both selections).
 
-Now that we have the starting selection of nodes we want, we need to get all values of these nodes' `name` attribute as a character vector. We do this with the `get_node_attrs_ws()` function. After getting that vector, sort the names alphabetically with the **R** function `sort()`. Because we get a named vector, we can use `unname()` to not show us the names of each vector component.
+Now that we have the starting selection of nodes we want, we need to get all values of these nodes' `name` attribute as a character vector. We do this with the `get_node_attrs_ws()` function. After getting that vector, sort the names alphabetically with the R function `sort()`. Because we get a named vector, we can use `unname()` to not show us the names of each vector component.
 
 ``` r
 graph %>% 
@@ -545,6 +559,10 @@ graph %>%
     node_attr = name) %>%
   sort() %>%
   unname()
+#> `select_nodes()` INFO: created a new selection of 10 nodes
+#> `select_nodes()` INFO: modified an existing selection of 10 nodes:
+#> * 5 nodes are now in the active selection
+#> * used the `intersect` set operation
 #> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
 ```
 
@@ -558,6 +576,7 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
+#> `select_nodes()` INFO: created a new selection of 1 node
 #> [1] 1676
 ```
 
@@ -579,6 +598,7 @@ graph <-
     edge_attr = commits,
     value = 15) %>%
   clear_selection()
+#> `clear_selection()` INFO: cleared an existing selection of 1 edge
 ```
 
 ``` r
@@ -602,6 +622,7 @@ graph %>%
     node_attr = email) %>%
   sort() %>%
   unname()
+#> `select_nodes()` INFO: created a new selection of 2 nodes
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
 #> [3] "kim_3251323@ohhh.ai"      "lhe99@mailing-fun.com"   
 #> [5] "roger_that@whalemail.net" "the_simone@a-q-w-o.net"  
@@ -618,13 +639,14 @@ graph %>%
     node_attr = name) %>%
   sort() %>%
   unname()
+#> `select_nodes_by_degree()` INFO: created a new selection of 3 nodes
 #> [1] "Josh"   "Kim"    "Louisa"
 ```
 
 Installation
 ------------
 
-**DiagrammeR** is used in an **R** environment. If you don't have an **R** installation, it can be obtained from the [**Comprehensive R Archive Network (CRAN)**](https://cran.r-project.org/).
+**DiagrammeR** is used in an R environment. If you don't have an R installation, it can be obtained from the [**Comprehensive R Archive Network (CRAN)**](https://cran.r-project.org/).
 
 You can install the development version of **DiagrammeR** from **GitHub** using the **devtools** package.
 
