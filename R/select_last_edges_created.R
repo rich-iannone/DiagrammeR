@@ -120,9 +120,11 @@ select_last_edges_created <- function(graph) {
 
     # Apply the selection of edges to the graph
     graph <-
-      select_edges_by_edge_id(
-        graph = graph,
-        edges = edge_id_values)
+      suppressMessages(
+        select_edges_by_edge_id(
+          graph = graph,
+          edges = edge_id_values)
+      )
 
     # Update the `graph_log` df with an action
     graph$graph_log <-

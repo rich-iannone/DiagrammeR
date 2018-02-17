@@ -295,9 +295,11 @@ add_edge <- function(graph,
       # If extra edge attributes available, add
       # those to the new edge
       graph <-
-        graph %>%
-        select_edges_by_edge_id(
-          edges = graph$edges_df$id %>% max())
+        suppressMessages(
+          graph %>%
+            select_edges_by_edge_id(
+              edges = graph$edges_df$id %>% max())
+        )
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
@@ -321,9 +323,11 @@ add_edge <- function(graph,
       # If extra edge attributes available, add
       # those to the new edge
       graph <-
-        graph %>%
-        select_edges_by_edge_id(
-          edges = graph$edges_df$id %>% max())
+        suppressMessages(
+          graph %>%
+            select_edges_by_edge_id(
+              edges = graph$edges_df$id %>% max())
+        )
 
       # Iteratively set edge attribute values for
       # the new edge in the graph
