@@ -234,7 +234,7 @@ select_nodes <- function(graph,
 
   # Issue a message to the user
   emit_message(
-    fcn_name = "select_nodes",
+    fcn_name = fcn_name,
     message_body = msg_body)
 
   graph

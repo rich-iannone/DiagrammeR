@@ -185,7 +185,7 @@ select_edges_by_edge_id <- function(graph,
 
   # Issue a message to the user
   emit_message(
-    fcn_name = "select_edges_by_edge_id",
+    fcn_name = fcn_name,
     message_body = msg_body)
 
   graph

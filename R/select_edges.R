@@ -300,7 +300,7 @@ select_edges <- function(graph,
 
   # Issue a message to the user
   emit_message(
-    fcn_name = "select_edges",
+    fcn_name = fcn_name,
     message_body = msg_body)
 
   graph

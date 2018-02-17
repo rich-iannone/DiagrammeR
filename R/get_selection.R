@@ -57,7 +57,7 @@ get_selection <- function(graph) {
   if (is.na(n_e_select_properties_in[["selection_type"]])) {
 
     emit_message(
-      fcn_name = "get_selection",
+      fcn_name = fcn_name,
       message_body = "there is no active selection of nodes or edges")
 
     return(NA)
@@ -69,7 +69,7 @@ get_selection <- function(graph) {
 
     # Issue a message to the user
     emit_message(
-      fcn_name = "get_selection",
+      fcn_name = fcn_name,
       message_body = glue::glue(
         "there is an active selection of \\
         {n_e_select_properties_in[['selection_count_str']]}"))
@@ -82,7 +82,7 @@ get_selection <- function(graph) {
   if (n_e_select_properties_in[["selection_type"]] == "edge") {
 
     emit_message(
-      fcn_name = "get_selection",
+      fcn_name = fcn_name,
       message_body = glue::glue(
         "there is an active selection of\\
         {n_e_select_properties_in[['selection_count_str']]}"))

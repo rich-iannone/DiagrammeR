@@ -242,7 +242,7 @@ select_nodes_in_neighborhood <- function(graph,
 
   # Issue a message to the user
   emit_message(
-    fcn_name = "select_nodes_in_neighborhood",
+    fcn_name = fcn_name,
     message_body = msg_body)
 
   graph

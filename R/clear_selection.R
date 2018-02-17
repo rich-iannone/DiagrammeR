@@ -81,14 +81,15 @@ clear_selection <- function(graph) {
   if (n_e_select_properties_in[["selection_count"]] > 0) {
 
     emit_message(
-      fcn_name = "clear_selection",
+      fcn_name = fcn_name,
       message_body = glue::glue(
         "cleared an existing selection of \\
-       {n_e_select_properties_in[['selection_count_str']]}"
-      ))
+       {n_e_select_properties_in[['selection_count_str']]}"))
+
   } else {
+
     emit_message(
-      fcn_name = "clear_selection",
+      fcn_name = fcn_name,
       message_body = "no existing selection to clear; graph unchanged")
   }
 
