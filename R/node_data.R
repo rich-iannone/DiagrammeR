@@ -28,6 +28,9 @@
 
 node_data <- function(...) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Collect vectors of node data
   # attribute values into a list object
   node_data_values <- list(...)

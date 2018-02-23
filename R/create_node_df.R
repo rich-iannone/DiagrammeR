@@ -61,6 +61,9 @@ create_node_df <- function(n,
                            label = NULL,
                            ...) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   if (!(inherits(n, "numeric") | inherits(n, "integer"))) {
 
     emit_error(

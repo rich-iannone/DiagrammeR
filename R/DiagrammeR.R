@@ -122,6 +122,9 @@
 #' @export
 DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # DiagrammeR will serve as a wrapper function for mermaid and grVis
   if (grepl(x = type, pattern = "[m,M](erm).*")) {
 

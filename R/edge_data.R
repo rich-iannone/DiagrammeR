@@ -30,6 +30,9 @@
 
 edge_data <- function(...) {
 
+  # Get the name of the function
+  fcn_name <- get_calling_fcn()
+
   # Collect vectors of edge data
   # attribute values into a list object
   edge_data_values <- list(...)
