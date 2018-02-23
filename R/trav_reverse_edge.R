@@ -92,7 +92,7 @@ trav_reverse_edge <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # Validation: Graph object has valid edge selection
@@ -100,7 +100,7 @@ trav_reverse_edge <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no selection of edges")
+      reasons = "The graph contains no selection of edges")
   }
 
   # Create bindings for specific variables

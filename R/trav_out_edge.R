@@ -191,7 +191,7 @@ trav_out_edge <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no nodes")
+      reasons = "The graph contains no nodes")
   }
 
   # Validation: Graph contains edges
@@ -199,7 +199,7 @@ trav_out_edge <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # Validation: Graph object has valid node selection
@@ -207,7 +207,7 @@ trav_out_edge <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = c(
+      reasons = c(
         "There is no selection of nodes available.",
         "any traversal requires an active selection",
         "this type of traversal requires a selection of nodes"))

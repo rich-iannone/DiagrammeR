@@ -50,7 +50,7 @@ rev_edge_dir <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # If graph is undirected, stop function

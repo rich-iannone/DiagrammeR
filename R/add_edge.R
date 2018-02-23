@@ -148,14 +148,14 @@ add_edge <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no nodes, so, an edge cannot be added")
+      reasons = "The graph contains no nodes, so, an edge cannot be added")
   }
 
   if (length(from) > 1 | length(to) > 1) {
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "Only one edge can be specified in `from` or `to`")
+      reasons = "Only one edge can be specified in `from` or `to`")
   }
 
   # Create bindings for specific variables
@@ -224,7 +224,7 @@ add_edge <- function(graph,
 
       emit_error(
         fcn_name = fcn_name,
-        message_body = "The value provided in `from` does not exist as a node `label` value")
+        reasons = "The value provided in `from` does not exist as a node `label` value")
     }
 
     # Stop function if the label for
@@ -236,7 +236,7 @@ add_edge <- function(graph,
 
       emit_error(
         fcn_name = fcn_name,
-        message_body = "The node `label` provided in `from` is not distinct in the graph")
+        reasons = "The node `label` provided in `from` is not distinct in the graph")
     }
 
     # Stop function if the label for
@@ -245,7 +245,7 @@ add_edge <- function(graph,
 
       emit_error(
         fcn_name = fcn_name,
-        message_body = "The value provided in `to` does not exist as a node `label` value")
+        reasons = "The value provided in `to` does not exist as a node `label` value")
     }
 
     # Stop function if the label for
@@ -257,7 +257,7 @@ add_edge <- function(graph,
 
       emit_error(
         fcn_name = fcn_name,
-        message_body = "The node `label` provided in `to` is not distinct in the graph")
+        reasons = "The node `label` provided in `to` is not distinct in the graph")
     }
 
     # Use the `translate_to_node_id()` helper function to map

@@ -123,7 +123,7 @@ rescale_edge_attrs <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # Get the requested `edge_attr_from`

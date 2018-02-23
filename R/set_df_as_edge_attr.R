@@ -78,7 +78,7 @@ set_df_as_edge_attr <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # Value given for edge must only be a single value

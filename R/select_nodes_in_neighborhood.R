@@ -85,7 +85,7 @@ select_nodes_in_neighborhood <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no nodes")
+      reasons = "The graph contains no nodes")
   }
 
   # Obtain the input graph's node and edge

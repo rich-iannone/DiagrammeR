@@ -85,7 +85,7 @@ transform_to_subgraph_ws <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "There is no selection of node or edges available.")
+      reasons = "There is no selection of node or edges available.")
   }
 
   # Create bindings for specific variables

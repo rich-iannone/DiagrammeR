@@ -104,7 +104,7 @@ set_edge_attr_to_display <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # Get the requested `attr`

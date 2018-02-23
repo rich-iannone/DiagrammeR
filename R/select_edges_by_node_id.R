@@ -78,7 +78,7 @@ select_edges_by_node_id <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no nodes")
+      reasons = "The graph contains no nodes")
   }
 
   # Validation: Graph contains edges
@@ -86,7 +86,7 @@ select_edges_by_node_id <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # Create bindings for specific variables

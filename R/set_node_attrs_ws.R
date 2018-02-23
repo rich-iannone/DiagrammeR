@@ -72,7 +72,7 @@ set_node_attrs_ws <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no nodes")
+      reasons = "The graph contains no nodes")
   }
 
   # Validation: Graph object has valid node selection
@@ -80,7 +80,7 @@ set_node_attrs_ws <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "There is no selection of nodes available.")
+      reasons = "There is no selection of nodes available.")
   }
 
   # Get the requested `node_attr`

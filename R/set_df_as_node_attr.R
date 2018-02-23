@@ -93,7 +93,7 @@ set_df_as_node_attr <- function(graph,
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no nodes")
+      reasons = "The graph contains no nodes")
   }
 
   # Value given for node must only be a single value

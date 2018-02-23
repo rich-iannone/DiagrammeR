@@ -58,7 +58,7 @@ select_last_edges_created <- function(graph) {
 
     emit_error(
       fcn_name = fcn_name,
-      message_body = "The graph contains no edges")
+      reasons = "The graph contains no edges")
   }
 
   # Create bindings for specific variables
