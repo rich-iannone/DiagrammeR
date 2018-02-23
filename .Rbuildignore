@@ -11,3 +11,5 @@
 ^README-.*\.png$
 ^LICENSE\.md$
 ^_pkgdown\.yml$
+^/man/figures$
+^README\.md$
