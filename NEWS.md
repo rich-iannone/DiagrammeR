@@ -1,3 +1,21 @@
+# DiagrammeR 1.0.0 (UNRELEASED)
+
+* Added the helper functions `node_aes()`, `node_data()`, `edge_aes()`, and `edge_data()` to facilitate the binding of node and edge aesthetic and data attribute values; several functions now have namesake arguments that accept these functions' output.
+
+* Information about the graph is now displayed in the console when the graph object is called
+
+* Error messages are now more helpful and try to provide pointers for the more common errors
+
+# DiagrammeR 0.9.2
+
+* Added functions to generate 2D and 3D grid graphs (`add_grid_2d()` and `add_grid_3d()`)
+
+* Added `_ws` (with selection) variants of the `mutate_[node/edge]_attrs()` functions for mutating node or edge attributes for only those nodes/edges in an active selection
+
+* Incorporated an `edges` argument into the `select_edges()` function in order to filter the selection of edges to a set of edge ID values
+
+* Reduced the dependency on R to version >= 3.2.0
+
 # DiagrammeR 0.9.2
 
 * Added functions to generate 2D and 3D grid graphs (`add_grid_2d()` and `add_grid_3d()`)
