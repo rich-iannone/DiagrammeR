@@ -1,7 +1,7 @@
 Package: DiagrammeR
 Title: Graph/Network Visualization
 Version: 1.0.0
-Authors@R: person("Rich", "Iannone", email = "riannone@me.com", role = c("aut", "cre"))
+Authors@R: person("Richard", "Iannone", email = "riannone@me.com", role = c("aut", "cre"))
 Maintainer: Richard Iannone <riannone@me.com>
 Description: 
     Build graph/network structures using functions for stepwise addition and
