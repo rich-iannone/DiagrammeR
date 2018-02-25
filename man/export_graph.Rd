@@ -38,6 +38,7 @@ SVG, and PostScript, and graph file formats such
 as GEXF.
 }
 \examples{
+\dontrun{
 # Create a simple graph
 graph <-
   create_graph() \%>\%
@@ -64,4 +65,5 @@ graph \%>\%
   export_graph(
     file_name = "mypng.png",
     file_type = "PNG")
+}
 }
