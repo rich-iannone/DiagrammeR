@@ -21,6 +21,7 @@
 #' formats \code{png}, \code{pdf}, \code{svg}, and
 #' \code{ps}.
 #' @examples
+#' \dontrun{
 #' # Create a simple graph
 #' graph <-
 #'   create_graph() %>%
@@ -47,6 +48,7 @@
 #'   export_graph(
 #'     file_name = "mypng.png",
 #'     file_type = "PNG")
+#' }
 #' @importFrom rgexf write.gexf
 #' @importFrom utils installed.packages
 #' @importFrom igraph V E ecount ends vertex_attr_names edge_attr_names
