@@ -124,9 +124,9 @@ edf <-
     rel = "leading_to",
     values = c(7.3, 2.6, 8.3))
 
-# 2. create the graph object with
-#    `create_graph()` and pass in
-#    the ndf and edf objects
+# Create the graph object with
+# `create_graph()` and pass in the
+# ndf and edf objects
 graph <-
   create_graph(
     nodes_df = ndf,
