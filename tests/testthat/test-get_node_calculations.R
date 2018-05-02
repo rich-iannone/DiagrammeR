@@ -79,11 +79,14 @@ test_that("Getting closeness is possible", {
     create_graph() %>%
     add_gnm_graph(
       n = 10,
-      m = 10,
+      m = 20,
       set_seed = 23)
 
   # Get closness values with `direction = all`
-  closeness_vals_all <- get_closeness(graph)
+  closeness_vals_all <-
+    get_closeness(
+      graph = graph,
+      direction = "all")
 
   # Expect a data frame as output
   expect_is(
@@ -101,71 +104,6 @@ test_that("Getting closeness is possible", {
   expect_identical(
     closeness_vals_all[,1],
     as.integer(1:10))
-
-  # Get closness values with `direction = out`
-  closeness_vals_out <-
-    get_closeness(
-      graph,
-      direction = "out")
-
-  # Expect a data frame as output
-  expect_is(
-    closeness_vals_out, "data.frame")
-
-  # Expect 2 columns in the df
-  expect_equal(
-    ncol(closeness_vals_out), 2)
-
-  # Expect 10 rows in the df
-  expect_equal(
-    nrow(closeness_vals_out), 10)
-
-  # Expect node ID values in the first column
-  expect_identical(
-    closeness_vals_out[, 1],
-    as.integer(1:10))
-
-  # Expect numerical values in the
-  # second column
-  expect_is(
-    closeness_vals_out[, 2],
-    "numeric")
-
-  # Get closness values with `direction = in`
-  closeness_vals_in <-
-    get_closeness(
-      graph,
-      direction = "in")
-
-  # Expect a data frame as output
-  expect_is(
-    closeness_vals_in, "data.frame")
-
-  # Expect 2 columns in the df
-  expect_equal(
-    ncol(closeness_vals_in), 2)
-
-  # Expect 10 rows in the df
-  expect_equal(
-    nrow(closeness_vals_in), 10)
-
-  # Expect node ID values in the first column
-  expect_identical(
-    closeness_vals_in[, 1],
-    as.integer(1:10))
-
-  # Expect numerical values in the
-  # second column
-  expect_is(
-    closeness_vals_in[, 2],
-    "numeric")
-
-  # Expect an error if value for `direction`
-  # is not any of `all`, `in`, or `out`
-  expect_error(
-    get_closeness(
-      graph = graph,
-      direction = "away"))
 })
 
 test_that("Getting coreness values is possible", {
