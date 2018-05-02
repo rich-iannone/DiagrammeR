@@ -126,6 +126,14 @@ combine_graphs <- function(x,
     dplyr::rename(from_new = new_node_id) %>%
     dplyr::select(-type, -label)
 
+  # Rename `id` if it has a `.x` suffix
+  if ("id.x" %in% colnames(y_edges_df)) {
+
+    y_edges_df <-
+      y_edges_df %>%
+      dplyr::rename(id = id.x)
+  }
+
   y_edges_df <-
     dplyr::inner_join(
       y_edges_df,
@@ -133,6 +141,14 @@ combine_graphs <- function(x,
       by = c("to" = "id")) %>%
     dplyr::rename(to_new = new_node_id) %>%
     dplyr::select(-type, -label)
+
+  # Rename `id` if it has a `.x` suffix
+  if ("id.x" %in% colnames(y_edges_df)) {
+
+    y_edges_df <-
+      y_edges_df %>%
+      dplyr::rename(id = id.x)
+  }
 
   # Copy new node IDs to `from` and `to` edge attrs
   y_edges_df$from <- y_edges_df$from_new
