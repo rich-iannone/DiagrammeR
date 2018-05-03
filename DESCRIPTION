@@ -35,14 +35,16 @@ Imports:
     tidyr (>= 0.8.0),
     viridis (>= 0.5.0),
     visNetwork (>= 2.0.3)
-Suggests:
+Suggests: 
     covr,
     DiagrammeRsvg,
     rsvg,
     knitr,
-    testthat
+    testthat,
+    rmarkdown
 URL: https://github.com/rich-iannone/DiagrammeR
 BugReports: https://github.com/rich-iannone/DiagrammeR/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr
