@@ -108,7 +108,19 @@ export_graph <- function(graph,
         reasons = c(
           "Cannot currently use this function to produce a PNG file",
           "please install the `DiagrammeRsvg` package and retry",
-          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
+          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
+    }
+
+    # Stop function if `rsvg` package is not available
+    if (!("rsvg" %in%
+          rownames(utils::installed.packages()))) {
+
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce a PNG file",
+          "please install the `rsvg` package and retry",
+          "pkg installed using `install.packages('rsvg')`"))
     }
 
     if (!is.null(title)) {
@@ -160,8 +172,19 @@ export_graph <- function(graph,
           "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
     }
 
-    if (!is.null(title)) {
+    # Stop function if `rsvg` package is not available
+    if (!("rsvg" %in%
+          rownames(utils::installed.packages()))) {
 
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce a PDF file",
+          "please install the `rsvg` package and retry",
+          "pkg installed using `install.packages('rsvg')`"))
+    }
+
+    if (!is.null(title)) {
       graph <-
         add_global_graph_attrs(
           graph, "label", title, "graph")
@@ -206,7 +229,19 @@ export_graph <- function(graph,
         reasons = c(
           "Cannot currently use this function to produce an SVG file",
           "please install the `DiagrammeRsvg` package and retry",
-          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
+          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
+    }
+
+    # Stop function if `rsvg` package is not available
+    if (!("rsvg" %in%
+          rownames(utils::installed.packages()))) {
+
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce an SVG file",
+          "please install the `rsvg` package and retry",
+          "pkg installed using `install.packages('rsvg')`"))
     }
 
     if (!is.null(title)) {
@@ -255,7 +290,19 @@ export_graph <- function(graph,
         reasons = c(
           "Cannot currently use this function to produce a PS file",
           "please install the `DiagrammeRsvg` package and retry",
-          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
+          "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
+    }
+
+    # Stop function if `rsvg` package is not available
+    if (!("rsvg" %in%
+          rownames(utils::installed.packages()))) {
+
+      emit_error(
+        fcn_name = fcn_name,
+        reasons = c(
+          "Cannot currently use this function to produce a PS file",
+          "please install the `rsvg` package and retry",
+          "pkg installed using `install.packages('rsvg')`"))
     }
 
     if (!is.null(title)) {
@@ -350,8 +397,9 @@ export_graph <- function(graph,
     graph_attr <-
       sapply(
         igraph::graph_attr_names(g),
-        function(attr) { sub("&", "&",
-                             igraph::graph_attr(g, attr))})
+        function(attr) {
+          sub("&", "&",
+              igraph::graph_attr(g, attr))})
 
     # Set the file connection
     file_conn <- file(file_name)
@@ -363,9 +411,10 @@ export_graph <- function(graph,
         edgesWeight = igraph::E(g)$weight,
         edgesAtt = edge_attr,
         nodesAtt = node_attr,
-        meta = c(list(creator = "none",
-                      description = "gexf file",
-                      keywords = "gexf"), graph_attr))
+        meta = c(
+          list(creator = "none",
+               description = "gexf file",
+               keywords = "gexf"), graph_attr))
 
     # Produce a GEXF file in the working directory
     writeLines(as.character(output$graph), file_conn)
