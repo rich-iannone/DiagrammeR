@@ -53,6 +53,7 @@
 #' @importFrom utils installed.packages
 #' @importFrom igraph V E ecount ends vertex_attr_names edge_attr_names
 #' @importFrom igraph graph_attr_names vertex_attr edge_attr graph_attr
+#' @importFrom rsvg rsvg_png rsvg_pdf rsvg_svg rsvg_ps
 #' @export export_graph
 
 export_graph <- function(graph,
@@ -111,18 +112,6 @@ export_graph <- function(graph,
           "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
     }
 
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PNG file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
-    }
-
     if (!is.null(title)) {
 
       graph <-
@@ -152,7 +141,7 @@ export_graph <- function(graph,
     # Produce a PNG file in the working directory
     rsvg::rsvg_png(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+        export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
@@ -170,18 +159,6 @@ export_graph <- function(graph,
           "Cannot currently use this function to produce a PDF file",
           "please install the `DiagrammeRsvg` package and retry",
           "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')"))
-    }
-
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PDF file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
     }
 
     if (!is.null(title)) {
@@ -212,7 +189,7 @@ export_graph <- function(graph,
     # Produce a PDF file in the working directory
     rsvg::rsvg_pdf(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+        export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
@@ -230,18 +207,6 @@ export_graph <- function(graph,
           "Cannot currently use this function to produce an SVG file",
           "please install the `DiagrammeRsvg` package and retry",
           "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
-    }
-
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce an SVG file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
     }
 
     if (!is.null(title)) {
@@ -273,7 +238,7 @@ export_graph <- function(graph,
     # Produce an SVG file in the working directory
     rsvg::rsvg_svg(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+        export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
@@ -291,18 +256,6 @@ export_graph <- function(graph,
           "Cannot currently use this function to produce a PS file",
           "please install the `DiagrammeRsvg` package and retry",
           "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`"))
-    }
-
-    # Stop function if `rsvg` package is not available
-    if (!("rsvg" %in%
-          rownames(utils::installed.packages()))) {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = c(
-          "Cannot currently use this function to produce a PS file",
-          "please install the `rsvg` package and retry",
-          "pkg installed using `install.packages('rsvg')`"))
     }
 
     if (!is.null(title)) {
@@ -334,7 +287,7 @@ export_graph <- function(graph,
     # Produce a PS file in the working directory
     rsvg::rsvg_ps(
       charToRaw(
-        DiagrammeRsvg::export_svg(grViz(dot_code))),
+        export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
