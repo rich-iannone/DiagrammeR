@@ -77,7 +77,7 @@ combine_graphs <- function(x,
   }
 
   # Create bindings for specific variables
-  new_node_id <- type <- label <- NULL
+  new_node_id <- type <- label <- id.x <- NULL
 
   # Get the number of nodes ever created for
   # graph `x`
