@@ -10,6 +10,7 @@ sudo: required
 
 apt_packages:
   - libv8-dev
+  - librsvg2-dev
 
 r_packages:
   - rstudioapi
