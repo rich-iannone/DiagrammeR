@@ -97,7 +97,8 @@ export_graph <- function(graph,
     }
   }
 
-  if (file_type == "PNG" | file_type == "png") {
+  if (file_type == "PNG" | file_type == "png" &&
+      requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
@@ -152,13 +153,14 @@ export_graph <- function(graph,
     # Produce a PNG file in the working directory
     rsvg_png(
       charToRaw(
-        export_svg(grViz(dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
   }
 
-  if (file_type == "PDF" | file_type == "pdf") {
+  if (file_type == "PDF" | file_type == "pdf" &&
+      requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
@@ -212,13 +214,14 @@ export_graph <- function(graph,
     # Produce a PDF file in the working directory
     rsvg_pdf(
       charToRaw(
-        export_svg(grViz(dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
   }
 
-  if (file_type == "SVG" | file_type == "svg") {
+  if ((file_type == "SVG" | file_type == "svg") &&
+      requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
@@ -273,13 +276,14 @@ export_graph <- function(graph,
     # Produce an SVG file in the working directory
     rsvg_svg(
       charToRaw(
-        export_svg(grViz(dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
   }
 
-  if (file_type == "PS" | file_type == "ps") {
+  if (file_type == "PS" | file_type == "ps" &&
+      requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
 
     # Stop function if `DiagrammeRsvg` package is not available
     if (!("DiagrammeRsvg" %in%
@@ -334,7 +338,7 @@ export_graph <- function(graph,
     # Produce a PS file in the working directory
     rsvg_ps(
       charToRaw(
-        export_svg(grViz(dot_code))),
+        DiagrammeRsvg::export_svg(grViz(dot_code))),
       file = file_name,
       width = width,
       height = height)
