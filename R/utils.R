@@ -594,7 +594,7 @@ gv_graph_attributes <- function() {
 gv_node_attributes <- function() {
 
   c("shape", "style", "penwidth", "color", "fillcolor",
-    "fontname", "fontsize", "fontcolor",
+    "fontname", "fontsize", "fontcolor", "image",
     "height", "width", "group",
     "tooltip", "xlabel", "URL",
     "distortion", "sides", "skew", "peripheries",
