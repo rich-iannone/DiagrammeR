@@ -23,6 +23,7 @@
 #' R Markdown documents, and within Shiny output
 #' bindings.
 #' @importFrom rstudioapi isAvailable
+#' @importFrom htmlwidgets sizingPolicy
 #' @export
 grViz <- function(diagram = "",
                   engine = "dot",
@@ -34,11 +35,15 @@ grViz <- function(diagram = "",
   # Check for a connection or file
   if (inherits(diagram, "connection") ||
       file.exists(diagram)) {
+
     diagram <-
       readLines(diagram, encoding = "UTF-8", warn = FALSE)
+
     diagram <- paste0(diagram, collapse = "\n")
+
   } else {
-    # Check for vector with length > 1 and concatenate
+
+    # Concatenate any vector with length > 1
     if (length(diagram) > 1) {
       diagram <- paste0(diagram, collapse = "\n")
     }
@@ -49,32 +54,31 @@ grViz <- function(diagram = "",
   }
 
   # Single quotes within a diagram spec are problematic
-  # so try to replace with \"
+  # so try to replace with `\"`
   diagram <- gsub(x = diagram, "'", "\"")
 
-  # Forward options using x
-  x <- list(
-    diagram = diagram,
-    config = list(
-      engine = engine,
-      options = options
-    )
-  )
+  # Forward options using `x`
+  x <-
+    list(
+      diagram = diagram,
+      config = list(
+        engine = engine,
+        options = options))
 
-  # Only use the viewer for newer versions of RStudio,
+  # Only use the Viewer for newer versions of RStudio,
   # but allow other, non-RStudio viewers
-  viewer.suppress <- rstudioapi::isAvailable() &&
+  viewer.suppress <-
+    rstudioapi::isAvailable() &&
     !rstudioapi::isAvailable("0.99.120")
 
-  # Create widget
+  # Create the widget
   htmlwidgets::createWidget(
     name = "grViz",
     x = x,
     width = width,
     height = height,
     package = "DiagrammeR",
-    htmlwidgets::sizingPolicy(viewer.suppress = viewer.suppress)
-  )
+    htmlwidgets::sizingPolicy(viewer.suppress = viewer.suppress))
 }
 
 #' Widget output function for use in Shiny
@@ -115,7 +119,7 @@ grVizOutput <- function(outputId,
                         width = '100%',
                         height = '400px') {
 
-  shinyWidgetOutput(outputId,
+  shinyWidgetOutput(outputId = outputId,
                     'grViz',
                     width,
                     height,
