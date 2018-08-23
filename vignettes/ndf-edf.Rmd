@@ -1,0 +1,567 @@
+---
+title: "Node and Edge Data Frames"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Node and Edge Data Frames}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
+library(DiagrammeR)
+```
+
+### Graph Creation
+
+Creating a graph object is undoubtedly important. I dare say it is one of the fundamental aspects of the DiagrammeR world. With the graph object produced, so many other things are possible. For instance, you can inspect certain aspects of the graph, modify the graph in many ways that suit your workflow, view the graph (or part of the graph!) in the RStudio Viewer, or perform graph traversals and thus create complex graph queries using magrittr or pipeR pipelines. The possibilities are really very exciting and it all begins with creating those graph objects.
+
+## Creating a Graph Object
+
+The `create_graph()` function creates a graph object. The function also allows for intialization of the graph name, setting of the `node_df` and of the `edge_df`, and the graph theme.
+
+Some of the key options of the `create_graph()` function are:
+
+- nodes_df — optional data frame with the graph's nodes (or vertices) and attributes for each
+- edges_df — optional data frame with edges between nodes/vertices and attributes for each
+- directed — a required logical value stating whether the graph should be considered a directed graph (`TRUE`, the default) or an undirected graph (`FALSE`)
+- graph_name — optional character vector with a name for the graph
+
+For the `nodes_df` and `edges_df` arguments, one can supply a node data frame and an edge data frame, respectively. The `dgr_graph` object can be initialized without any nodes or edges (by not supplying an NDF or an EDF in the function call), and this is a favorable option when supplying nodes and edges using other functions that modify an existing graph. Here is an example whereby an empty graph (initialized as a directed graph) is created. Note that the graph's internal `nodes_df` and `edges_df` data frames are both empty, signifying an empty graph.
+
+```{r}
+# Create the graph object
+graph <- create_graph()
+```
+
+```{r}
+# Get the class of the object
+class(graph)
+```
+
+```{r}
+# It's an empty graph, so the NDF has no rows
+get_node_df(graph)
+```
+
+```{r}
+# The EDF doesn't have any rows either
+get_edge_df(graph)
+```
+
+```{r}
+# By default, the graph is considered directed
+is_graph_directed(graph)
+```
+
+It's possible to include an NDF and not an EDF when calling `create_graph()`. What you would get is an edgeless graph (a graph with nodes but no edges between those nodes. The edges can always be defined later (with functions such as `add_edge()`, `add_edge_df()`, `add_edges_from_table()`, etc., and these functions are covered in a subsequent section).
+
+```{r}
+# Create a node data frame
+ndf <-
+  create_node_df(
+    n = 4,
+    label = 1:4,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
+
+# Inspect the NDF
+ndf
+```
+
+```{r}
+# Create the graph and include the
+# `nodes` NDF
+graph <- create_graph(nodes_df = ndf)
+
+# Examine the NDF within the graph object
+get_node_df(graph)
+```
+
+```{r}
+# Check if it's the same NDF (both externally
+# and internally)
+all(ndf == graph %>% get_node_df())
+```
+
+Quite often, there will be cases where node or edge attributes should be applied to all nodes or edges in the graph. To achieve this, there's no need to create columns in NDFs or EDFs for those attributes (where you would repeat attribute values through all rows of those columns). Default graph attributes can be provided for the graph with the graph_attrs, node_attrs, and edge_attrs arguments. To supply these attributes, use vectors of graph, node, or edge attributes.
+
+If you want the graph to be a directed graph, then the value for the directed argument should be set as TRUE (which is the default value). Choose FALSE for an undirected graph.
+
+This next example will include both nodes and edges contained within a graph object. In this case, values for the type and rel attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.
+
+```{r}
+###
+# Create a graph with both nodes and edges
+# defined, and, add some default attributes
+# for nodes and edges
+###
+
+# Create a node data frame
+nodes <-
+  create_nodes(
+    nodes = c("a", "b", "c", "d"),
+    label = FALSE,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
+
+edges <-
+  create_edges(
+    from = c("a", "b", "c"),
+    to = c("d", "c", "a"),
+    rel = "leading_to")
+
+graph <-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = c("color = blue",
+                   "arrowsize = 2"))
+```
+
+```{r}
+
+```
+
+# Examine the NDF within the
+# graph object
+get_node_df(graph)
+#>   nodes  type label  style color     shape data
+#> 1     a lower       filled  aqua    circle  3.5
+#> 2     b lower       filled  aqua    circle  2.6
+#> 3     c lower       filled  aqua rectangle  9.4
+#> 4     d lower       filled  aqua rectangle  2.7
+
+get_edge_df(graph)
+#>   from to        rel
+#> 1    a  d leading_to
+#> 2    b  c leading_to
+#> 3    c  a leading_to
+
+Viewing a Graph Object
+With the render_graph() function, it's possible to view the graph object in the RStudio Viewer, or, output the DOT code for the current state of the graph.
+
+
+
+
+If you'd like to return the Graphviz DOT code (to, perhaps, share it or use it directly with the Graphviz command-line utility), just use output = "DOT" in the render_graph() function. Here's a simple example:
+
+###
+# Create a simple graph
+# and display it
+###
+
+library(DiagrammeR)
+
+# Create a simple NDF
+nodes <-
+  create_nodes(
+    nodes = 1:4,
+    type = "number")
+
+# Create a simple EDF
+edges <-
+  create_edges(
+    from = c(1, 1, 3, 1),
+    to = c(2, 3, 4, 4),
+    rel = "related")
+
+# Create the graph object,
+# incorporating the NDF and
+# the EDF, and, providing
+# some global attributes
+graph <-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "layout = neato",
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = "color = gray20")
+
+# View the graph
+render_graph(graph)
+With packages such as magrittr or pipeR, one can conveniently pipe output from create_graph() to render_graph(). The magrittr package provides a forward pipe with the %>% operator. With pipeR, use %>>% instead.
+
+###
+# Use magrittr's %>% to create a graph and
+# then view it without storing that graph object
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a simple NDF
+nodes <-
+  create_nodes(
+    nodes = 1:4,
+    type = "number")
+
+# Create a simple EDF
+edges <-
+  create_edges(
+    from = c(1, 1, 3, 1),
+    to = c(2, 3, 4, 4),
+    rel = "related")
+
+# Create the graph object,
+# incorporating the NDF and
+# the EDF, and, providing some
+# global attributes
+graph <-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "layout = neato",
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = "color = gray20")
+
+# Use the %>% operator between
+# `create_graph()` and `render_graph()`
+create_graph(
+  nodes_df = nodes,
+  edges_df = edges,
+  graph_attrs = "layout = neato",
+  node_attrs = "fontname = Helvetica",
+  edge_attrs = "color = gray20") %>%
+  render_graph
+If you'd like to return the Graphviz DOT code (to, perhaps, share it or use it directly with the Graphviz command-line utility), just use output = "DOT" in the render_graph() function. Here's a simple example:
+
+###
+# Use magrittr's %>% to create a graph and
+# then output the DOT code for the graph
+###
+
+library(DiagrammeR)
+library(magrittr)
+
+# Create a simple NDF
+nodes <-
+  create_nodes(
+    nodes = 1:4,
+    type = "number")
+
+# Create a simple EDF
+edges <-
+  create_edges(
+    from = c(1, 1, 3, 1),
+    to = c(2, 3, 4, 4),
+    rel = "related")
+
+# Create the graph object,
+# incorporating the NDF and
+# the EDF, and, providing
+# some global attributes
+graph <-
+  create_graph(
+    nodes_df = nodes,
+    edges_df = edges,
+    graph_attrs = "layout = neato",
+    node_attrs = "fontname = Helvetica",
+    edge_attrs = "color = gray20")
+
+# Use the %>% operator between
+# `create_graph()` and `render_graph()`
+# (using the output = "DOT" option)
+create_graph(
+  nodes_df = nodes,
+  edges_df = edges,
+  graph_attrs = "layout = neato",
+  node_attrs = "fontname = Helvetica",
+  edge_attrs = "color = gray20") %>%
+  render_graph(output = "DOT")
+#> [1] "digraph {\n\ngraph [layout = neato]\n\nnode [fontname = Helvetica]\n\nedge [color = gray20]\n\n  '1' [label = '1'] \n  '2' [label = '2'] \n  '3' [label = '3'] \n  '4' [label = '4'] \n  '1'->'2' \n  '1'->'3' \n  '3'->'4' \n  '1'->'4' \n}"
+
+# Use the R `cat()` function to
+# direct the DOT code to a `.gv` file
+# (DiagrammeR can open this file
+# directly for viewing and editing)
+create_graph(
+  nodes_df = nodes,
+  edges_df = edges,
+  graph_attrs = "layout = neato",
+  node_attrs = "fontname = Helvetica",
+  edge_attrs = "color = gray20") %>%
+  render_graph(output = "DOT") %>%
+  cat(file = "~/dot.gv")
+Creating a 'Random' Graph
+Creating a random graph is actually quite useful. Seeing these graphs with specified numbers of nodes and edges will allow you to quickly get a sense of how connected graphs can be at different sizes.
+
+
+
+
+The create_random_graph() function is provided with several options for creating random graphs. The best way to understand the use of the function is through several examples. In all these examples, the function will be wrapped in render_graph() (with output = "visNetwork") to quickly inspect the graph upon creation. (Alternatively, the magrittr package's %>% operator can pipe output from create_random_graph() directly to render_graph().)
+
+We can create a not-so-random graph with 2 nodes and 1 edge (by default, the graphs produced are undirected graphs). The argument n is the number of nodes, and m is the number of edges.
+
+###
+# Create a very simple random graph
+###
+
+library(DiagrammeR)
+
+# Create a simple, random graph
+# and render with the `visNetwork`
+# output option
+render_graph(
+  create_random_graph(n = 2, m = 1),
+  output = "visNetwork")
+It's better with more nodes and edges though. Try this again with 15 nodes and 30 edges:
+
+###
+# Create a random graph with 15 nodes, 30 edges
+###
+
+library(DiagrammeR)
+
+# Create a random graph with
+# 15 nodes and twice as many edges
+# and then render the graph with
+# the `visNetwork` output option
+render_graph(
+  create_random_graph(n = 15, m = 30),
+  output = "visNetwork")
+Notice that a maximum of one edge is created between a pair of nodes (i.e., no multiple edges created). What if you specify a number of edges (m) that exceeds the number in a fully-connected graph of size n? You get an error, however, it's an informative error (providing the maximum number of edges m for the given n) but it's an error nonetheless.
+
+###
+# Create a random, fully-connected graph of 15 nodes
+###
+
+library(DiagrammeR)
+
+# Attempt to generate a random
+# graph with 15 nodes and 200 edges
+# (more than the number of edges in
+# a fully-connected graph with
+# single edges between nodes)
+render_graph(
+  create_random_graph(n = 15, m = 200),
+  output = "visNetwork")
+
+# --------------------------------------------------------
+# Error in create_random_graph(n = 15, m = 200) :
+#   The number of edges exceeds the maximum possible (105)
+# --------------------------------------------------------
+
+# Use `n = 15` and `m = 105` to
+# yield a fully-connected graph
+# with 15 nodes
+render_graph(
+  create_random_graph(n = 15, m = 105),
+  output = "visNetwork")
+Going the opposite way, you don't need to have edges. Simply specify m = 0 for any number of nodes n:
+
+###
+# Create a random graph with
+# many nodes but with no edges
+###
+
+library(DiagrammeR)
+
+# Create a random graph with
+# 512 nodes but no edges
+render_graph(
+  create_random_graph(n = 512, m = 0),
+  output = "visNetwork")
+Setting a seed is a great way to create something random yet reproduce that random something (there are many reasons to do this; creating examples is one use). This can be done with the create_random_graph() function by specifying a seed number with the argument set_seed. Here's an example:
+
+###
+# Create a reproducible, random graph
+###
+
+library(DiagrammeR)
+
+# Create a random graph with
+# a seed set so that the same graph
+# will be generated every time
+render_graph(
+  create_random_graph(n = 5, m = 4,
+                      set_seed = 30),
+  output = "visNetwork")
+Upon repeat runs, the connections in the graph will be the same each and every time (3 is a free node, 1 is connected to 2 and 5, etc.).
+
+By default, the random graphs generated are undirected graphs. To produce directed graphs, simply include directed = TRUE in the create_random_graph() statement.
+
+###
+# Create a random, directed graph
+###
+
+library(DiagrammeR)
+
+# Create a random graph but with
+# directed edges by setting
+# `directed = TRUE`
+render_graph(
+  create_random_graph(
+    n = 15, m = 22, directed = TRUE),
+  output = "visNetwork")
+Combining Graphs
+With the combine_graphs() function, one can combine two graphs in order to make a new graph, merging nodes and edges in the process. The use of an optional edge data frame (EDF) allows for new edges to be formed across the combined graphs.
+
+
+
+
+While you would provide two graphs (for arguments x and y), the order here is important. The graph provided as x is considered the graph object to which another graph will be joined. This graph should be considered the host graph as the resulting graph will retain only the attributes of this graph. The graph provided as y is thus the graph object that is to be joined with the graph suppled as x.
+
+###
+# Create two graphs and combine them into one
+###
+
+library(DiagrammeR)
+
+# Create the first graph
+nodes_1 <-
+  create_nodes(nodes = 1:10)
+
+edges_1 <-
+  create_edges(
+    from = 1:9,
+    to = 2:10)
+
+graph_1 <-
+  create_graph(
+    nodes_df = nodes_1,
+    edges_df = edges_1,
+    graph_attrs = "rankdir = LR")
+
+# Create the second graph (note that node ID values
+# are different from those of the first graph)
+nodes_2 <-
+  create_nodes(nodes = 11:20)
+
+edges_2 <-
+  create_edges(
+    from = 11:19,
+    to = 12:20)
+
+graph_2 <-
+  create_graph(
+    nodes_df = nodes_2,
+    edges_df = edges_2,
+    graph_attrs = "rankdir = TD")
+
+# Combine the two graphs, the
+# global graph attribute
+# `graph_attrs = "rankdir = LR"`
+# will be retained since it is
+# part of the graph supplied as `x`
+combined_graph <-
+  combine_graphs(x = graph_1, y = graph_2)
+
+# Display the combined graph
+render_graph(combined_graph)
+Joining two graphs by simply supplying them as x and y will not by itself create connections between the two graphs. To conveniently create connections between the joined graphs, one can supply an EDF to the edges_df argument. Otherwise, connections could always to be made in subsequent function calls using add_edge(), add_edge_df(), or add_edges_from_table().
+
+###
+# Create two graphs and combine them
+# with new edges created
+###
+
+library(DiagrammeR)
+
+# Create the first graph
+nodes_1 <-
+  create_nodes(nodes = 1:10)
+
+edges_1 <-
+  create_edges(
+    from = 1:9,
+    to = 2:10)
+
+graph_1 <-
+  create_graph(
+    nodes_df = nodes_1,
+    edges_df = edges_1,
+    graph_attrs = "rankdir = LR")
+
+# Create the second graph
+nodes_2 <-
+  create_nodes(nodes = 11:20)
+
+edges_2 <-
+  create_edges(
+    from = 11:19,
+    to = 12:20)
+
+graph_2 <-
+  create_graph(
+    nodes_df = nodes_2,
+    edges_df = edges_2)
+
+# Create an auxiliary EDF for
+# creating edges across the two
+# graphs supplied as `x` and `y`
+# to `combine_graphs()`
+extra_edges <-
+  create_edges(
+    from = c(5, 19, 1),
+    to = c(12, 3, 11))
+
+# Combine the two graphs, adding
+# the `extra_edges` EDF to the
+# `edges_df` argument
+combined_graph <-
+  combine_graphs(
+    x = graph_1,
+    y = graph_2,
+    edges_df = extra_edges)
+
+# Display the combined graph
+render_graph(combined_graph)
+There are likely quite a few uses for the combine_graphs() function, such as combining subgraphs (with the create_subgraph_from_selection() function), combining graphs made from data collected at different times, etc.
+
+Importing a Graph from a File
+The import_graph() function is all about loading in graphs from files. There are numerous graph file formats and while DiagrammeR does not support too many of them at this point, those formats that are supported are amongst the most well used. (Support for other file formats is forthcoming.) Thus far, import_graph() will import GraphML (.graphml), GML (.gml), and SIF (.sif) graph files. As with the create_graph() function, import_graph() allows for provision of a name and a date-time for the newly imported graph.
+
+
+
+
+For the graph_file argument, a path to a graph file (one that can be opened) is expected. For file_type, you can explicitly specify the type of file to be imported. The options are: graphml (GraphML), gml (GML), and sif (SIF). If not supplied, the function will infer the type by the file extension of the file pointed toward. The graph_name, graph_time, and graph_tz can be optionally supplied. These behave in exactly the same way as in the create_graph() function.
+
+For testing purposes, example files of each type are included in the DiagrammeR package. The GraphML file power_grid.graphml contains an undirected graph of a power station network across several northwestern U.S. states. It contains 4941 nodes and 6594 edges. Do you like karate? If so, you'll be happy to know that the GML example (karate.gml) is representative of friendships amongst members of a karate club, circa early 1970s. It is a relatively small graph with 34 nodes and 78 edges. The human interactome SIF file Human_Interactome.sif is a fairly large graph with 8347 nodes and 61,263 edges.
+
+###
+# Import graphs from various types of graph file formats
+###
+
+library(DiagrammeR)
+
+# Open a graph from a GraphML file
+graphml_graph <-
+  import_graph(
+    graph_file =
+      system.file("examples/power_grid.graphml",
+                  package = "DiagrammeR"),
+    graph_name = "power_grid")
+
+# Open a graph from a GML file
+gml_graph <-
+  import_graph(
+    graph_file =
+      system.file("examples/karate.gml",
+                  package = "DiagrammeR"),
+    graph_name = "karate")
+
+# Open a graph from a SIF file
+sif_graph <-
+  import_graph(
+    graph_file =
+      system.file("examples/Human_Interactome.sif",
+                  package = "DiagrammeR"),
+    graph_name = "Human_Interactome")
+Once you've imported a graph, you're free to use it as any graph you might make yourself with create_graph().
+
