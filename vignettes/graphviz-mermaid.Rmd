@@ -1,10 +1,8 @@
 ---
 title: "Graphviz and mermaid in DiagrammeR"
-author: "Richard Iannone"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Graphviz and mermaid in DiagrammeR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -21,7 +19,7 @@ library(DiagrammeR)
 ```
 
 
-## Graphviz
+### Graphviz
 
 **Graphviz** support is an integral part of the DiagrammeR package. **Graphviz** consists of a graph description language called the **DOT** language and it also comprises various tools that can process the **DOT** language. **DOT** is highly customizable and it allows you to control line colors, arrow shapes, node shapes, and many other layout features.
 
@@ -55,7 +53,7 @@ Comments may be placed within the statement list. These can be marked using a `/
 
 Here is an example where nodes (in this case styled as boxes and circles) can be easily defined along with their connections:
 
-```{r}
+```{r fig.width=7.3, fig.align='center'}
 grViz("
 digraph boxes_and_circles {
 
