@@ -1,0 +1,199 @@
+---
+title: "Node and Edge Data Frames"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Node and Edge Data Frames}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
+library(DiagrammeR)
+```
+
+### Node and Edge Data Frames
+
+These functions are used to create and manipulate specialized data frames: node data frames (NDFs) and edge data frames (EDFs). The functions are useful because one can selectively add field data to these data frames and combine them as necessary before addition to a graph object.
+
+### Creating an NDF
+
+With the `create_node_df()` function, one can create a node data frame (NDF) with nodes and their attributes. This object is really just an R data.frame object. In most cases, it's recommended to use `create_node_df()` instead of `data.frame()` (or, `as.data.frame()`) to create an NDF. Using `create_node_df()` allows for validation of the input data (so that the integrity of the graph is not comprimised) and the function provides some additional functionality that the base R functions for data frame creation do not have:
+
+- single values are repeated for n number of nodes supplied
+- selective setting of attributes (e.g., giving attr values for 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)
+- supplying overlong vectors for attributes will result in trimming down to the number of nodes
+- setting `label = FALSE` will conveniently result in a non-labeled node
+
+The function only has one argument that requires values to be supplied: the nodes argument. Just supplying a set of unique ID values for nodes will create an NDF with nodes that have no additional attributes.
+
+When incorporated into a graph, an NDF is parsed and column names that match keywords for node attributes indicate to **DiagrammeR** that the values in such columns should provide attribute values on a per-node basis. Columns with names that don't match reserved attribute names are disregarded and, because of this, you can include columns with useful data for analysis. When creating a node data frame, one column named `nodes` will be created (and it will be the first column in the NDF). That's where unique values for the node ID should reside. As for other attribute columns, the `type` and `label` columns will also be created. However, these do not necessarily need to be populated with values and thus they can be left blank, if desired. Other attributes are voluntarily added as named vectors for the R triple-dot (`...`) argument. Here are all of the node attribute names and the types of values to supply:
+
+- `color` — provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
+- `distortion` — the node distortion for any `shape = polygon`
+- `fillcolor` — provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
+- `fixedsize` — `true` or `false`
+- `fontcolor` — provide an X11 or hexadecimal color (append 2 digits to hex for alpha)
+- `fontname` — the name of the font
+- `fontsize` — the size of the font for the node label
+- `height` — the height of the node
+- `penwidth` — the thickness of the stroke for the shape
+- `peripheries` — the number of peripheries (essentially, additional shape outlines)
+- `shape` — the node shape (e.g., `ellipse`, `polygon`, `circle`, etc.)
+- `sides` — if `shape = polygon`, the number of sides can be provided here
+- `style` — usually given the value filled if you'd like to fill a node with a color
+- `tooltip` — provide text here for an unstyled browser tooltip
+- `width` — the width of the node
+- `x` — the x position of the node (requires graph attr `layout = neato` to use)
+- `y` — the y position of the node (requires graph attr `layout = neato` to use)
+
+In the following examples, node data frames are created. There are a few worthwhile things to notice here. The nodes can be supplied as a character vector (as in `c("a", "b", "c", "d")`), or, as a range of integers (`1:4`). It may be a matter of preference, but the numbering system seems to be the better choice (and other functions available in the package will take advantage of a graph with ID values that are available as monotonically increasing integer values). Secondly, a single logical value can be supplied to the `label` argument, where `TRUE` copies the node ID to the label attribute, and `FALSE` yields a blank, unset value for all nodes in the NDF. Finally, the provision of single values in a call that creates more than a single node will result in all nodes having that attribute (e.g., `color = "aqua"` sets all nodes in the NDF with the 'aqua' color).
+
+```{r}
+# Create a node data frame
+nodes_1 <-
+  create_node_df(
+    n = 4, 
+    type = "lower",
+    label = c("a", "b", "c", "d"),
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
+
+# Inspect the `nodes_1` NDF
+nodes_1
+```
+
+
+```{r}
+# Create another node data frame
+nodes_2 <-
+  create_node_df(
+    n = 4,
+    type = "upper",
+    label = TRUE,
+    style = "filled",
+    color = "red",
+    shape = "triangle",
+    data = c(0.5, 3.9, 3.7, 8.2))
+
+# Inspect the `nodes_2` NDF
+nodes_2
+```
+
+### Creating an EDF
+
+Using the `create_edge_df()` function, an edge data frame (EDF) (comprising edges and their attributes) is created. As with the `create_node_df()` function, the resulting object is an R `data.frame` object. While the usual means for creating data frames could be used to create an EDF, the `create_edge_df()` function provides some conveniences and validation of the final object (e.g., checking for uniqueness of the supplied node ID values). Also, there is a special attribute for a edge called a `rel`, which is short for relationship. This is an optional attribute, so, it can be left blank. However, it's advantageous to have these types of group labels set for all edges, especially if the resulting graph is to be fashioned as a property graph. (The node `type` values must also be set for each node to model your graph as a property graph.)
+
+Edges define the connections between nodes in a graph. So, in a sense, an edge data frame is a complementary component to the node data frame within a graph. Therefore, the EDF contains node ID information in two columns named `from` and `to`. So, when making an edge data frame, there are two equal-length vectors that need to be supplied to the `create_edge_df()` function: one for the outgoing node edge (`from`), and, another for the incoming node edge (`to`). Each of the two columns will contain node ID values. As for the node data frame, attributes can be provided for each of the edges. The following edge attributes can be used:
+
+- `arrowhead` — the arrow style at the head end (e.g, normal, dot)
+- `arrowsize` — the scaling factor for the arrowhead and arrowtail
+- `arrowtail` — the arrow style at the tail end (e.g, normal, dot)
+- `color` — the stroke color; an X11 color or a hex code (add 2 digits for alpha)
+- `dir` — the direction; either forward, back, both, or none
+- `fontcolor` — choose an X11 color or provide a hex code (append 2 digits for alpha)
+- `fontname` — the name of the font
+- `fontsize` — the size of the font for the node label
+- `headport` — a cardinal direction for where the arrowhead meets the node
+- `label` — label text for the line between nodes
+- `minlen` — minimum rank distance between head and tail
+- `penwidth` — the thickness of the stroke for the arrow
+- `tailport` — a cardinal direction for where the tail is emitted from the node
+- `tooltip` — provide text here for an edge tooltip
+
+Here are a few examples of how edge data frames can be created:
+
+```{r}
+# Create an edge data frame
+edges_1 <-
+  create_edge_df(
+    from = c(1, 1, 2, 3),
+      to = c(2, 4, 4, 1),
+    rel = "requires",
+    color = "green",
+    data = c(2.7, 8.9, 2.6, 0.6))
+
+edges_1
+```
+
+```{r}
+# Create another edge data frame
+edges_2 <-
+  create_edge_df(
+    from = c(5, 7, 8, 8),
+    to = c(8, 8, 6, 5),
+    rel = "receives",
+    arrowhead = "dot",
+    color = "red")
+
+edges_2
+```
+
+### Combining NDFs
+
+Several node data frames (NDFs) can be combined into one using the `combine_ndfs()` function. You can combine two NDFs in a single call of `combine_ndfs()`, or, combine even more in a single pass.
+
+There may be occasion to combine several NDFs into a single node data frame. The `combine_ndfs()` function works much like the base R `rbind()` function except that it accepts NDFs with columns differing in number, names, and ordering. Obtaining several node data frames may result from collecting data from various sources, at different times (where the collected data is different), or, simply from multiple calls of `create_node_df()` for practical or readability purposes, to name a few examples. Speaking of examples:
+
+```{r}
+# Create an NDF
+nodes_1 <-
+  create_node_df(
+    n = 4,
+    label = 1:4,
+    type = "lower",
+    data = c(8.2, 5.2, 1.2, 14.9))
+
+# Create another NDF
+nodes_2 <-
+  create_node_df(
+    n = 4,
+    label = 5:8,
+    type = "upper",
+    data = c(0.3, 6.3, 10.7, 1.2))
+
+# Combine the NDFs
+all_nodes <- combine_ndfs(nodes_1, nodes_2)
+
+all_nodes
+```
+
+### Combining EDFs
+
+There may be cases where one might take data from one or more data frames and create multiple edge data frames. One can combine multiple edge data frames (EDFs) with the `combine_edfs()` function. Any number of EDFs can be safely combined with one call of this function.
+
+Again, it is advantageous to use this combining function for the purpose of coalescing EDFs. Once a single, combined EDF is generated, it is much easier to incorporate that data into a **DiagrammeR** graph object.
+
+```{r}
+# Create an edge data frame
+edges_1 <-
+  create_edge_df(
+    from = c(1, 1, 2, 3),
+      to = c(2, 4, 4, 1),
+    rel = "requires",
+    color = "green",
+    data = c(2.7, 8.9, 2.6, 0.6))
+
+# Create another edge data frame
+edges_2 <-
+  create_edge_df(
+    from = c(5, 7, 8, 8),
+    to = c(8, 8, 6, 5),
+    rel = "receives",
+    arrowhead = "dot",
+    color = "red")
+
+# Combine edge data frames with 'combine_edfs'
+all_edges <- combine_edfs(edges_1, edges_2)
+
+all_edges
+```

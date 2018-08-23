@@ -1,0 +1,171 @@
+---
+title: "Creating Simple Graphs from NDFs/EDFs"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Creating Simple Graphs from NDFs/EDFs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
+library(DiagrammeR)
+```
+
+### Creating Simple Graphs from NDFs/EDFs
+
+Creating a graph object is undoubtedly important. I dare say it is one of the fundamental aspects of the **DiagrammeR** world. With the graph object produced, so many other things are possible. For instance, you can inspect certain aspects of the graph, modify the graph in many ways that suit your workflow, view the graph (or part of the graph!) in the RStudio Viewer, or perform graph traversals and thus create complex graph queries. The possibilities are really very exciting and it all begins with creating those graph objects.
+
+## Creating a Graph Object
+
+The `create_graph()` function creates a graph object. The function also allows for intialization of the graph name, setting of the `node_df` and of the `edge_df`, and the graph theme.
+
+Some of the key options of the `create_graph()` function are:
+
+- `nodes_df` — optional data frame with the graph's nodes (or vertices) and attributes for each
+- `edges_df` — optional data frame with edges between nodes/vertices and attributes for each
+- `directed` — a required logical value stating whether the graph should be considered a directed graph (`TRUE`, the default) or an undirected graph (`FALSE`)
+- `graph_name` — optional character vector with a name for the graph
+
+For the `nodes_df` and `edges_df` arguments, one can supply a node data frame and an edge data frame, respectively. The `dgr_graph` object can be initialized without any nodes or edges (by not supplying an NDF or an EDF in the function call), and this is a favorable option when supplying nodes and edges using other functions that modify an existing graph. Here is an example whereby an empty graph (initialized as a directed graph) is created. Note that the graph's internal `nodes_df` and `edges_df` data frames are both empty here, signifying an empty graph.
+
+```{r}
+# Create the graph object
+graph <- create_graph()
+```
+
+```{r}
+# Get the class of the object
+class(graph)
+```
+
+```{r}
+# It's an empty graph, so the NDF has no rows
+get_node_df(graph)
+```
+
+```{r}
+# The EDF doesn't have any rows either
+get_edge_df(graph)
+```
+
+```{r}
+# By default, the graph is considered directed
+is_graph_directed(graph)
+```
+
+It's possible to include an NDF and not an EDF when calling `create_graph()`. What you would get is an edgeless graph (a graph with nodes but no edges between those nodes. The edges can always be defined later (with functions such as `add_edge()`, `add_edge_df()`, `add_edges_from_table()`, etc., and these functions are covered in a subsequent section).
+
+```{r}
+# Create a node data frame
+ndf <-
+  create_node_df(
+    n = 4,
+    label = 1:4,
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
+
+# Inspect the NDF
+ndf
+```
+
+```{r}
+# Create the graph and include the
+# `nodes` NDF
+graph <- create_graph(nodes_df = ndf)
+
+# Examine the NDF within the graph object
+get_node_df(graph)
+```
+
+```{r}
+# Check if it's the same NDF (both externally
+# and internally)
+all(ndf == graph %>% get_node_df())
+```
+
+Quite often, there will be cases where node or edge attributes should be applied to all nodes or edges in the graph. To achieve this, there's no need to create columns in NDFs or EDFs for those attributes (where you would repeat attribute values through all rows of those columns). Default graph attributes can be provided for the graph with the graph_attrs, node_attrs, and edge_attrs arguments. To supply these attributes, use vectors of graph, node, or edge attributes.
+
+If you want the graph to be a directed graph, then the value for the directed argument should be set as TRUE (which is the default value). Choose FALSE for an undirected graph.
+
+This next example will include both nodes and edges contained within a graph object. In this case, values for the type and rel attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.
+
+```{r}
+###
+# Create a graph with both nodes and edges
+# defined, and, add some default attributes
+# for nodes and edges
+###
+
+# Create a node data frame
+ndf <-
+  create_node_df(
+    n = 4,
+    label = c("a", "b", "c", "d"),
+    type = "lower",
+    style = "filled",
+    color = "aqua",
+    shape = c("circle", "circle",
+              "rectangle", "rectangle"),
+    data = c(3.5, 2.6, 9.4, 2.7))
+
+edf <-
+  create_edge_df(
+    from = c(1, 2, 3),
+    to = c(4, 3, 1),
+    rel = "leading_to")
+
+graph <-
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf) %>%
+  set_node_attrs(
+    node_attr = "fontname",
+    values = "Helvetica") %>%
+  set_edge_attrs(
+    edge_attr = "color",
+    values = "blue") %>%
+  set_edge_attrs(
+    edge_attr = "arrowsize",
+    values = 2)
+```
+
+```{r}
+# Examine the NDF within the graph object
+get_node_df(graph)
+```
+
+```{r}
+# Have a look at the graph's EDF
+get_edge_df(graph)
+```
+
+### Viewing a Graph Object
+
+With the `render_graph()` function, it's possible to view the graph object, or, output the DOT code for the current state of the graph.
+
+Let's have a look at the graph created in the last example:
+
+```{r fig.width=7.3}
+graph %>% render_graph()
+```
+
+If you'd like to return the Graphviz DOT code (to, perhaps, share it or use it directly with the Graphviz command-line utility), we can use the `generate_dot()` function. Here's a simple example:
+
+```{r}
+# Take the graph object and generate a character
+# vector with Graphviz DOT code (using cat() for
+# a better appearance)
+graph %>% generate_dot() %>% cat()
+```
+
