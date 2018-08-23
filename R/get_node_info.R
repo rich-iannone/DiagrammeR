@@ -108,7 +108,7 @@ get_node_info <- function(graph) {
       c(top_nodes, between_nodes, bottom_nodes)
 
     # Create data frame of node properties
-    for (i in 1:length(ordered_nodes)) {
+    for (i in seq(ordered_nodes)) {
       if (i == 1) {
         node_properties <-
           as.data.frame(
