@@ -7,30 +7,20 @@
 add_edge_clone(graph, edge, from, to)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge}{an edge ID
-corresponding to the graph edge
-to be cloned.}
+\item{edge}{an edge ID corresponding to the graph edge to be cloned.}
 
-\item{from}{the outgoing node
-from which the edge is connected.}
+\item{from}{the outgoing node from which the edge is connected.}
 
-\item{to}{the incoming nodes to
-which each edge is connected.}
+\item{to}{the incoming nodes to which each edge is connected.}
 }
 \value{
-a graph object of
-class \code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Add a new edge to
-a graph object of class
-\code{dgr_graph} which is a
-clone of an edge already in the
-graph. All edge attributes are
-preserved.
+Add a new edge to a graph object of class \code{dgr_graph} which is a clone
+of an edge already in the graph. All edge attributes are preserved.
 }
 \examples{
 # Create a graph with a path of

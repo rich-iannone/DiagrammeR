@@ -8,52 +8,40 @@ add_edge(graph, from, to, rel = NULL, edge_aes = NULL,
   edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{from}{the outgoing node from which the edge
-is connected. There is the option to use a node
-\code{label} value here (and this must
-correspondingly also be done for the \code{to}
-argument) for defining node connections. Note that
-this is only possible if all nodes have distinct
-\code{label} values set and none exist as an empty
-string.}
+\item{from}{the outgoing node from which the edge is connected. There is the
+option to use a node \code{label} value here (and this must correspondingly
+also be done for the \code{to} argument) for defining node connections.
+Note that this is only possible if all nodes have distinct \code{label}
+values set and none exist as an empty string.}
 
-\item{to}{the incoming nodes to which each edge
-is connected. There is the option to use a node
-\code{label} value here (and this must
-correspondingly also be done for the \code{from}
-argument) for defining node connections. Note that
-this is only possible if all nodes have distinct
-\code{label} values set and none exist as an empty
-string.}
+\item{to}{the incoming nodes to which each edge is connected. There is the
+option to use a node \code{label} value here (and this must correspondingly
+also be done for the \code{from} argument) for defining node connections.
+Note that this is only possible if all nodes have distinct \code{label}
+values set and none exist as an empty string.}
 
-\item{rel}{an optional string specifying the
-relationship between the
+\item{rel}{an optional string specifying the relationship between the
 connected nodes.}
 
-\item{edge_aes}{an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function \code{edge_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{penwidth},
-\code{color}).}
+\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link{edge_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+edge aesthetic attributes (e.g., \code{shape}, \code{style},
+\code{penwidth}, \code{color}).}
 
-\item{edge_data}{an optional list of named vectors
-comprising edge data attributes. The helper
-function \code{edge_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.}
+\item{edge_data}{an optional list of named vectors comprising edge data
+attributes. The helper function \code{\link{edge_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
+edges.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class
-\code{dgr_graph}, add an edge to nodes within the
-graph.
+With a graph object of class \code{dgr_graph}, add an edge to nodes within
+  the graph.
 }
 \examples{
 # Create a graph with 4 nodes

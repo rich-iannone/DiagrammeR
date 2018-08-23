@@ -2,28 +2,22 @@
 % Please edit documentation in R/add_edge_df.R
 \name{add_edge_df}
 \alias{add_edge_df}
-\title{Add edges from an edge data frame
-to an existing graph object}
+\title{Add edges from an edge data frame to an existing graph object}
 \usage{
 add_edge_df(graph, edge_df)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_df}{an edge data frame
-that is created using
-\code{create_edge_df}.}
+\item{edge_df}{an edge data frame that is created using
+\code{\link{create_edge_df}()}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object
-of class \code{dgr_graph}, add
-edges from an edge data frame to
-that graph.
+With a graph object of class \code{dgr_graph}, add edges from an edge data
+  frame to that graph.
 }
 \examples{
 # Create a graph with 4 nodes
