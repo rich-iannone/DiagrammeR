@@ -1,59 +1,18 @@
 #' Add a balanced tree to the graph
-#' @description With a graph object of class
-#' \code{dgr_graph}, add a balanced tree
-#' to the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param k the branching factor for
-#' the tree.
+#'
+#' With a graph object of class \code{dgr_graph}, add a balanced tree to the
+#' graph.
+#' @inheritParams node_edge_aes_data
+#' @inheritParams render_graph
+#' @param k the branching factor for the tree.
 #' @param h the height of the tree.
-#' @param type an optional string that
-#' describes the entity type for the
-#' nodes to be added.
-#' @param label either a vector object
-#' of length \code{n} that provides
-#' optional labels for the new nodes, or,
-#' a boolean value where setting to
-#' \code{TRUE} ascribes node IDs to the
-#' label and \code{FALSE} yields a blank
-#' label.
-#' @param rel an optional string for
-#' providing a relationship label to all
-#' new edges created in the node tree.
-#' @param node_aes an optional list
-#' of named vectors comprising node
-#' aesthetic attributes. The helper
-#' function \code{node_aes()} is
-#' strongly recommended for use here
-#' as it contains arguments for each
-#' of the accepted node aesthetic
-#' attributes (e.g., \code{shape},
-#' \code{style}, \code{color},
-#' \code{fillcolor}).
-#' @param edge_aes an optional list
-#' of named vectors comprising edge
-#' aesthetic attributes. The helper
-#' function \code{edge_aes()} is
-#' strongly recommended for use here
-#' as it contains arguments for each
-#' of the accepted edge aesthetic
-#' attributes (e.g., \code{shape},
-#' \code{style}, \code{penwidth},
-#' \code{color}).
-#' @param node_data an optional list
-#' of named vectors comprising node
-#' data attributes. The helper
-#' function \code{node_data()} is
-#' strongly recommended for use here
-#' as it helps bind data specifically
-#' to the created nodes.
-#' @param edge_data an optional list
-#' of named vectors comprising edge
-#' data attributes. The helper function
-#' \code{edge_data()} is strongly
-#' recommended for use here as it helps
-#' bind data specifically to the
-#' created edges.
+#' @param type an optional string that describes the entity type for the
+#'   nodes to be added.
+#' @param label either a vector object of length \code{n} that provides optional
+#'   labels for the new nodes, or, a boolean value where setting to \code{TRUE}
+#'   ascribes node IDs to the label and \code{FALSE} yields a blank label.
+#' @param rel an optional string for providing a relationship label to all new
+#'   edges created in the node tree.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
@@ -119,8 +78,7 @@
 #'   get_edge_df() %>%
 #'   head(3)
 #' @importFrom dplyr select as_tibble
-#' @export add_balanced_tree
-
+#' @export
 add_balanced_tree <- function(graph,
                               k,
                               h,

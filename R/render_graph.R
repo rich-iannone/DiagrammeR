@@ -1,8 +1,7 @@
 #' Render the graph in various formats
-#' @description Using a \code{dgr_graph} object,
-#' render the graph in the RStudio Viewer.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
+#' @param graph a graph object of class \code{dgr_graph}.
 #' @param layout a string specifying a layout type to
 #' use for node placement in this rendering. Possible
 #' layouts include: \code{nicely}, \code{circle},

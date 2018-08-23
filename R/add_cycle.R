@@ -2,6 +2,7 @@
 #' @description With a graph object
 #' of class \code{dgr_graph}, add a
 #' node cycle to the graph.
+#' @inheritParams node_edge_aes_data
 #' @param graph a graph object of class
 #' \code{dgr_graph}.
 #' @param n the number of nodes
