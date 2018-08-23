@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • DiagrammeR</title>
+<title>Changelog • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Changelog" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -60,8 +73,26 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +104,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,17 +112,38 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="contents">
+    <div id="diagrammer-1-0-0" class="section level1">
+<h1 class="page-header">
+<a href="#diagrammer-1-0-0" class="anchor"></a>DiagrammeR 1.0.0<small> 2018-03-01 </small>
+</h1>
+<ul>
+<li><p>Added the helper functions <code><a href="../reference/node_aes.html">node_aes()</a></code>, <code><a href="../reference/node_data.html">node_data()</a></code>, <code><a href="../reference/edge_aes.html">edge_aes()</a></code>, and <code><a href="../reference/edge_data.html">edge_data()</a></code> to facilitate the binding of node and edge aesthetic and data attribute values; several functions now have namesake arguments that accept these functions’ output.</p></li>
+<li><p>Information about the graph is now displayed in the console when the graph object is called</p></li>
+<li><p>Error messages are now more helpful and try to provide pointers for the more common errors</p></li>
+</ul>
+</div>
     <div id="diagrammer-0-9-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-9-2" class="anchor"></a>DiagrammeR 0.9.2</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-9-2" class="anchor"></a>DiagrammeR 0.9.2<small> 2017-09-06 </small>
+</h1>
+<ul>
+<li><p>Added functions to generate 2D and 3D grid graphs (<code><a href="../reference/add_grid_2d.html">add_grid_2d()</a></code> and <code><a href="../reference/add_grid_3d.html">add_grid_3d()</a></code>)</p></li>
+<li><p>Added <code>_ws</code> (with selection) variants of the <code>mutate_[node/edge]_attrs()</code> functions for mutating node or edge attributes for only those nodes/edges in an active selection</p></li>
+<li><p>Incorporated an <code>edges</code> argument into the <code><a href="../reference/select_edges.html">select_edges()</a></code> function in order to filter the selection of edges to a set of edge ID values</p></li>
+<li><p>Reduced the dependency on R to version &gt;= 3.2.0</p></li>
+</ul>
+</div>
+    <div id="diagrammer-0-9-2-1" class="section level1">
+<h1 class="page-header">
+<a href="#diagrammer-0-9-2-1" class="anchor"></a>DiagrammeR 0.9.2<small> 2017-09-06 </small>
+</h1>
 <ul>
 <li><p>Added functions to generate 2D and 3D grid graphs (<code><a href="../reference/add_grid_2d.html">add_grid_2d()</a></code> and <code><a href="../reference/add_grid_3d.html">add_grid_3d()</a></code>)</p></li>
 <li><p>Added <code>_ws</code> (with selection) variants of the <code>mutate_[node/edge]_attrs()</code> functions for mutating node or edge attributes for only those nodes/edges in an active selection</p></li>
@@ -99,8 +152,9 @@
 </ul>
 </div>
     <div id="diagrammer-0-9-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-9-1" class="anchor"></a>DiagrammeR 0.9.1</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-9-1" class="anchor"></a>DiagrammeR 0.9.1<small> 2017-08-21 </small>
+</h1>
 <ul>
 <li><p>Simplified many functions internally</p></li>
 <li><p>Added a default print method for graph objects</p></li>
@@ -117,8 +171,9 @@
 </ul>
 </div>
     <div id="diagrammer-0-9-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-9-0" class="anchor"></a>DiagrammeR 0.9.0</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-9-0" class="anchor"></a>DiagrammeR 0.9.0<small> 2017-01-03 </small>
+</h1>
 <ul>
 <li><p>Modified basic structure of node and edge data frames such that ID values are automatically set as integer values</p></li>
 <li><p>Just as nodes do, edges now have edge ID values (they can be obtained using <code><a href="../reference/get_edge_ids.html">get_edge_ids()</a></code> and they can be used directly in the <code><a href="../reference/select_edges_by_edge_id.html">select_edges_by_edge_id()</a></code> function)</p></li>
@@ -155,8 +210,9 @@
 </ul>
 </div>
     <div id="diagrammer-0-8" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-8" class="anchor"></a>DiagrammeR 0.8</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-8" class="anchor"></a>DiagrammeR 0.8<small> 2015-10-08 </small>
+</h1>
 <ul>
 <li><p>Revised many graph functions so they work better together</p></li>
 <li><p>Added many <strong>testthat</strong> tests to maintain the quality of the graph functions</p></li>
@@ -165,8 +221,9 @@
 </ul>
 </div>
     <div id="diagrammer-0-7" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-7" class="anchor"></a>DiagrammeR 0.7</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-7" class="anchor"></a>DiagrammeR 0.7<small> 2015-06-11 </small>
+</h1>
 <ul>
 <li><p>Renamed functions <code>graphviz_graph()</code> and <code>graphviz_render()</code> to <code><a href="../reference/create_graph.html">create_graph()</a></code> and <code><a href="../reference/render_graph.html">render_graph()</a></code>, respectively</p></li>
 <li><p>Removed function <code>graphviz_export()</code> (exporting now handled with <code><a href="../reference/render_graph.html">render_graph()</a></code>)</p></li>
@@ -174,62 +231,69 @@
 </ul>
 </div>
     <div id="diagrammer-0-6" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-6" class="anchor"></a>DiagrammeR 0.6</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-6" class="anchor"></a>DiagrammeR 0.6<small> 2015-04-30 </small>
+</h1>
 <ul>
 <li><p>Added several functions to work with graphs: <code>create_nodes()</code>, <code>create_edges()</code>, <code>combine_nodes()</code>, <code>combine_edges()</code>, <code>scale_nodes()</code>, <code>scale_edges()</code>, <code>get_nodes()</code>, <code>node_info()</code>, <code>graphviz_graph()</code>, <code>graphviz_render()</code>, and <code>graphviz_export()</code></p></li>
 <li><p>Removed the <code>graphviz_nodes_edges_df()</code> and <code>graphviz_single_df()</code> functions</p></li>
 </ul>
 </div>
     <div id="diagrammer-0-5" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-5" class="anchor"></a>DiagrammeR 0.5</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-5" class="anchor"></a>DiagrammeR 0.5<small> 2015-03-19 </small>
+</h1>
 <ul>
 <li><p>Added support for subgraphs and Gantt charts in <strong>mermaid</strong> diagrams</p></li>
 <li><p>Added function <code>graphviz_nodes_edges_df()</code> for generating <strong>Graphviz</strong> <strong>DOT</strong> code that defines nodes and edges (and their attributes) from data in two data frames: one for nodes, the other for the edge operations</p></li>
 <li><p>Added function <code>graphviz_single_df()</code> for generating <strong>Graphviz</strong> <strong>DOT</strong> code from a single data frame</p></li>
-<li><p>Incorporated the new substitution operators <code>@_{...}</code> or <code>@^{...}</code> in <code>grViz</code> statements for subscripting and superscripting, respectively</p></li>
+<li><p>Incorporated the new substitution operators <code><a href='http://github.com/_'>@_</a>{...}</code> or <code>@^{...}</code> in <code>grViz</code> statements for subscripting and superscripting, respectively</p></li>
 </ul>
 </div>
     <div id="diagrammer-0-4" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-4" class="anchor"></a>DiagrammeR 0.4</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-4" class="anchor"></a>DiagrammeR 0.4<small> 2015-01-30 </small>
+</h1>
 <ul>
 <li><p>Added support for substitution in <strong>Graphviz</strong> graph specifications</p></li>
 <li><p>Added support for <strong>Graphviz</strong> diagrams in the <strong>Shiny</strong> app</p></li>
 </ul>
 </div>
     <div id="diagrammer-0-3" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-3" class="anchor"></a>DiagrammeR 0.3</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-3" class="anchor"></a>DiagrammeR 0.3<small> Unreleased </small>
+</h1>
 <ul>
 <li>Added support for the <strong>Graphviz</strong> <strong>neato</strong>, <strong>twopi</strong>, and <strong>circo</strong> engines</li>
 </ul>
 </div>
     <div id="diagrammer-0-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-2" class="anchor"></a>DiagrammeR 0.2</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-2" class="anchor"></a>DiagrammeR 0.2<small> Unreleased </small>
+</h1>
 <ul>
 <li>Added the <strong>viz.js</strong> library to enable <strong>Graphviz</strong> support</li>
 </ul>
 </div>
     <div id="diagrammer-0-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#diagrammer-0-1" class="anchor"></a>DiagrammeR 0.1</h1>
+<h1 class="page-header">
+<a href="#diagrammer-0-1" class="anchor"></a>DiagrammeR 0.1<small> 2015-01-09 </small>
+</h1>
 <ul>
 <li><p>Initial release</p></li>
 <li><p>Incorporated into the <strong>htmlwidgets</strong> framework</p></li>
 <li><p>Added basic <strong>shiny</strong> app</p></li>
 </ul>
 </div>
-    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#diagrammer-1-0-0">1.0.0</a></li>
         <li><a href="#diagrammer-0-9-2">0.9.2</a></li>
+        <li><a href="#diagrammer-0-9-2-1">0.9.2</a></li>
         <li><a href="#diagrammer-0-9-1">0.9.1</a></li>
         <li><a href="#diagrammer-0-9-0">0.9.0</a></li>
         <li><a href="#diagrammer-0-8">0.8</a></li>
@@ -248,7 +312,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -258,5 +322,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

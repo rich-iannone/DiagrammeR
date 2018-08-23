@@ -18,13 +18,27 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Combine multiple node data frames — combine_ndfs" />
+
+<meta property="og:description" content="Combine several node
+data frames into a single node
+data frame." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +61,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -60,8 +78,26 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +109,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,26 +117,32 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Combine multiple node data frames</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/combine_ndfs.R'><code>R/combine_ndfs.R</code></a></small>
+    <div class="hidden name"><code>combine_ndfs.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
-    <p>Combine several node data frames
-into a single node data frame.</p>
+    <p>Combine several node
+data frames into a single node
+data frame.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>combine_ndfs</span>(<span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>two or more node data frames, which
-contain node IDs and associated attributes.</p></td>
+      <td><p>two or more node data
+frames, which contain node IDs and
+associated attributes.</p></td>
     </tr>
     </table>
     
@@ -112,10 +155,10 @@ contain node IDs and associated attributes.</p></td>
     <pre class="examples"><div class='input'><span class='co'># Create two node data frames</span>
 <span class='no'>node_df_1</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(
-    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-    <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"b"</span>),
-    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"D"</span>, <span class='st'>"Z"</span>, <span class='st'>"E"</span>, <span class='st'>"G"</span>),
-    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>8.4</span>, <span class='fl'>3.4</span>, <span class='fl'>2.9</span>, <span class='fl'>7.0</span>))
+    <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+    <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"a"</span>, <span class='st'>"b"</span>),
+    <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"D"</span>, <span class='st'>"Z"</span>),
+    <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>8.4</span>, <span class='fl'>3.4</span>))
 
 <span class='no'>node_df_2</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(
@@ -124,21 +167,19 @@ contain node IDs and associated attributes.</p></td>
     <span class='kw'>label</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"U"</span>, <span class='st'>"A"</span>),
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.4</span>, <span class='fl'>3.4</span>))
 
-<span class='co'># Combined the node data frames using the</span>
+<span class='co'># Combine the ndfs using the</span>
 <span class='co'># `combine_ndfs()` function</span>
 <span class='no'>node_df_combined</span> <span class='kw'>&lt;-</span>
   <span class='fu'>combine_ndfs</span>(
     <span class='no'>node_df_1</span>,
     <span class='no'>node_df_2</span>)
 
-<span class='co'># Inspect the combined node data frame</span>
+<span class='co'># Inspect the combined ndf</span>
 <span class='no'>node_df_combined</span></div><div class='output co'>#&gt;   id type label value
 #&gt; 1  1    a     D   8.4
-#&gt; 2  2    a     Z   3.4
-#&gt; 3  3    b     E   2.9
-#&gt; 4  4    b     G   7.0
-#&gt; 5  5    b     U   0.4
-#&gt; 6  6    c     A   3.4</div></pre>
+#&gt; 2  2    b     Z   3.4
+#&gt; 3  3    b     U   0.4
+#&gt; 4  4    c     A   3.4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -155,7 +196,7 @@ contain node IDs and associated attributes.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -165,5 +206,8 @@ contain node IDs and associated attributes.</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

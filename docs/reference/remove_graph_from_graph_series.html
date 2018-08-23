@@ -18,13 +18,28 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Remove a graph from a graph series — remove_graph_from_graph_series" />
+
+<meta property="og:description" content="Remove a single graph
+object from an set of graph objects
+contained within a graph series
+object." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +62,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -60,8 +79,26 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +110,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,22 +118,26 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Remove a graph from a graph series</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/remove_graph_from_graph_series.R'><code>R/remove_graph_from_graph_series.R</code></a></small>
+    <div class="hidden name"><code>remove_graph_from_graph_series.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Remove a single graph
 object from an set of graph objects
 contained within a graph series
 object.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>remove_graph_from_graph_series</span>(<span class='no'>graph_series</span>, <span class='kw'>index</span> <span class='kw'>=</span> <span class='st'>"last"</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -155,8 +197,8 @@ series object.</p></td>
 <span class='co'># was removed</span>
 <span class='no'>series</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_graph_series_info.html'>get_graph_series_info</a></span>()</div><div class='output co'>#&gt;   graph           name           date_time                tz nodes edges
-#&gt; 1     1 graph_mkRJxXyq 2018-02-08 13:03:57 America/Vancouver     4     3
-#&gt; 2     2 graph_ySz3BP7j 2018-02-08 13:03:57 America/Vancouver     6     5
+#&gt; 1     1 graph_mkRJxXyq 2018-08-22 22:33:18 America/Vancouver     4     3
+#&gt; 2     2 graph_ySz3BP7j 2018-08-22 22:33:18 America/Vancouver     6     5
 #&gt;   directed
 #&gt; 1     TRUE
 #&gt; 2     TRUE</div></pre>
@@ -176,7 +218,7 @@ series object.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -186,5 +228,8 @@ series object.</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

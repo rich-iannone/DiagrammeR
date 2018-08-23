@@ -18,13 +18,28 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Get data frames bound to node attributes — get_attr_dfs" />
+
+<meta property="og:description" content="From a graph object of class
+dgr_graph, get one or more data frames
+already bound as node and/or edge attribute
+values given graph node and/or edges." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +62,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -60,8 +79,26 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +110,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,23 +118,27 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get data frames bound to node attributes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/get_attr_dfs.R'><code>R/get_attr_dfs.R</code></a></small>
+    <div class="hidden name"><code>get_attr_dfs.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>From a graph object of class
 <code>dgr_graph</code>, get one or more data frames
 already bound as node and/or edge attribute
 values given graph node and/or edges.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>get_attr_dfs</span>(<span class='no'>graph</span>, <span class='kw'>node_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>return_format</span> <span class='kw'>=</span> <span class='st'>"single_tbl"</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -196,10 +238,10 @@ data).</p></td>
   <span class='kw'>node_id</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>4</span>))</div><div class='output co'>#&gt; # A tibble: 4 x 6
 #&gt;   node_edge__    id type  label a         b
 #&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt;
-#&gt; 1 node            1 basic 1     one    1.00
-#&gt; 2 node            1 basic 1     two    2.00
-#&gt; 3 node            4 basic 4     three  3.00
-#&gt; 4 node            4 basic 4     four   4.00</div><div class='input'>
+#&gt; 1 node            1 basic 1     one       1
+#&gt; 2 node            1 basic 1     two       2
+#&gt; 3 node            4 basic 4     three     3
+#&gt; 4 node            4 basic 4     four      4</div><div class='input'>
 <span class='co'># You can also get data frames that are</span>
 <span class='co'># associated with edges by using the</span>
 <span class='co'># same function</span>
@@ -208,8 +250,8 @@ data).</p></td>
   <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 7
 #&gt;   node_edge__    id rel         from    to c         d
 #&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
-#&gt; 1 edge            1 leading_to     1     4 five   5.00
-#&gt; 2 edge            1 leading_to     1     4 six    6.00</div><div class='input'>
+#&gt; 1 edge            1 leading_to     1     4 five      5
+#&gt; 2 edge            1 leading_to     1     4 six       6</div><div class='input'>
 <span class='co'># It's also possible to collect data frames</span>
 <span class='co'># associated with both nodes and edges</span>
 <span class='fu'>get_attr_dfs</span>(
@@ -218,10 +260,10 @@ data).</p></td>
   <span class='kw'>edge_id</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 11
 #&gt;   node_edge__    id type  label rel         from    to a         b c         d
 #&gt;   &lt;chr&gt;       &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
-#&gt; 1 node            4 basic 4     &lt;NA&gt;          NA    NA three  3.00 &lt;NA&gt;  NA   
-#&gt; 2 node            4 basic 4     &lt;NA&gt;          NA    NA four   4.00 &lt;NA&gt;  NA   
-#&gt; 3 edge            1 &lt;NA&gt;  &lt;NA&gt;  leading_to     1     4 &lt;NA&gt;  NA    five   5.00
-#&gt; 4 edge            1 &lt;NA&gt;  &lt;NA&gt;  leading_to     1     4 &lt;NA&gt;  NA    six    6.00</div><div class='input'>
+#&gt; 1 node            4 basic 4     &lt;NA&gt;          NA    NA three     3 &lt;NA&gt;     NA
+#&gt; 2 node            4 basic 4     &lt;NA&gt;          NA    NA four      4 &lt;NA&gt;     NA
+#&gt; 3 edge            1 &lt;NA&gt;  &lt;NA&gt;  leading_to     1     4 &lt;NA&gt;     NA five      5
+#&gt; 4 edge            1 &lt;NA&gt;  &lt;NA&gt;  leading_to     1     4 &lt;NA&gt;     NA six       6</div><div class='input'>
 <span class='co'># If a data frame is desired instead,</span>
 <span class='co'># set `return_format = "single_df"`</span>
 <span class='fu'>get_attr_dfs</span>(
@@ -246,7 +288,7 @@ data).</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -256,5 +298,8 @@ data).</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

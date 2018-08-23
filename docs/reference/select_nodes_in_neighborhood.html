@@ -6,8 +6,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Select nodes based on a walk distance from a
-specified node — select_nodes_in_neighborhood • DiagrammeR</title>
+<title>Select nodes based on a walk
+distance from a specified node — select_nodes_in_neighborhood • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -19,13 +19,29 @@ specified node — select_nodes_in_neighborhood • DiagrammeR</title>
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Select nodes based on a walk
+distance from a specified node — select_nodes_in_neighborhood" />
+
+<meta property="og:description" content="Select those nodes in
+the neighborhood of nodes connected
+a specified distance from an initial
+node." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +64,12 @@ specified node — select_nodes_in_neighborhood • DiagrammeR</title>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,8 +81,26 @@ specified node — select_nodes_in_neighborhood • DiagrammeR</title>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -74,6 +112,7 @@ specified node — select_nodes_in_neighborhood • DiagrammeR</title>
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -81,22 +120,27 @@ specified node — select_nodes_in_neighborhood • DiagrammeR</title>
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Select nodes based on a walk distance from a
-specified node</h1>
+    <h1>Select nodes based on a walk
+distance from a specified node</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/select_nodes_in_neighborhood.R'><code>R/select_nodes_in_neighborhood.R</code></a></small>
+    <div class="hidden name"><code>select_nodes_in_neighborhood.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
-    <p>Select those nodes in the neighborhood
-of nodes connected a specified distance from an
-initial node.</p>
+    <p>Select those nodes in
+the neighborhood of nodes connected
+a specified distance from an initial
+node.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>select_nodes_in_neighborhood</span>(<span class='no'>graph</span>, <span class='no'>node</span>, <span class='no'>distance</span>, <span class='kw'>set_op</span> <span class='kw'>=</span> <span class='st'>"union"</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -106,62 +150,69 @@ initial node.</p>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>the node from which the traversal
-will originate.</p></td>
+      <td><p>the node from which the
+traversal will originate.</p></td>
     </tr>
     <tr>
       <th>distance</th>
-      <td><p>the maximum number of steps from
-the <code>node</code> for inclusion in the selection.</p></td>
+      <td><p>the maximum number
+of steps from the <code>node</code> for
+inclusion in the selection.</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to perform upon
-consecutive selections of graph nodes. This can
-either be as a <code>union</code> (the default), as an
-intersection of selections with <code>intersect</code>,
-or, as a <code>difference</code> on the previous
+      <td><p>the set operation to
+perform upon consecutive selections
+of graph nodes. This can either be
+as a <code>union</code> (the default), as
+an intersection of selections with
+<code>intersect</code>, or, as a
+<code>difference</code> on the previous
 selection, if it exists.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class <code>dgr_graph</code>.</p>
+    <p>a graph object of class
+<code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create a graph containing a balanced tree</span>
+    <pre class="examples"><div class='input'><span class='co'># Create a graph containing</span>
+<span class='co'># a balanced tree</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_balanced_tree.html'>add_balanced_tree</a></span>(
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='co'># Create a graph selection by selecting nodes</span>
-<span class='co'># in the neighborhood of node `1`, where the</span>
-<span class='co'># neighborhood is limited by nodes that are 1</span>
-<span class='co'># connection away from node `1`</span>
+<span class='co'># Create a graph selection by</span>
+<span class='co'># selecting nodes in the</span>
+<span class='co'># neighborhood of node `1`, where</span>
+<span class='co'># the neighborhood is limited by</span>
+<span class='co'># nodes that are 1 connection</span>
+<span class='co'># away from node `1`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'>select_nodes_in_neighborhood</span>(
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-
+    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_in_neighborhood()` INFO: created a new selection of 3 nodes</span></div><div class='input'>
 <span class='co'># Get the selection of nodes</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
-<span class='co'># Perform another selection of nodes, this time</span>
-<span class='co'># with a neighborhood spanning 2 nodes from node `1`</span>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 3 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
+<span class='co'># Perform another selection</span>
+<span class='co'># of nodes, this time with a</span>
+<span class='co'># neighborhood spanning 2 nodes</span>
+<span class='co'># from node `1`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='clear_selection.html'>clear_selection</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>select_nodes_in_neighborhood</span>(
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-
+    <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 3 nodes</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_in_neighborhood()` INFO: created a new selection of 7 nodes</span></div><div class='input'>
 <span class='co'># Get the selection of nodes</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 2 3 4 5 6 7</div></pre>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 7 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3 4 5 6 7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -178,7 +229,7 @@ selection, if it exists.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -188,5 +239,8 @@ selection, if it exists.</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

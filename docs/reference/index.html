@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Function reference" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -60,8 +73,26 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +104,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,1564 +112,1560 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.9.3</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-external-ndf-edf" class="hasAnchor"><a href="#section-external-ndf-edf" class="anchor"></a>External NDF/EDF</h2>
-            <p class="section-desc"><p>These functions create external node data frames (ndfs) and external edge data frames (edfs). These specialized tables can be used to create graphs.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="create_node_df.html">create_node_df</a></code> </p>
-          </td>
-          <td><p>Create a node data frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="create_edge_df.html">create_edge_df</a></code> </p>
-          </td>
-          <td><p>Create an edge data frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="combine_ndfs.html">combine_ndfs</a></code> </p>
-          </td>
-          <td><p>Combine multiple node data frames</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="combine_edfs.html">combine_edfs</a></code> </p>
-          </td>
-          <td><p>Combine multiple edge data frames into a single
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-external-ndf-edf" class="hasAnchor"><a href="#section-external-ndf-edf" class="anchor"></a>External NDF/EDF</h2>
+          <p class="section-desc"><p>These functions create external node data frames (ndfs) and external edge data frames (edfs). These specialized tables can be used to create graphs.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="create_node_df.html">create_node_df()</a></code> </p>
+        </td>
+        <td><p>Create a node data frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="create_edge_df.html">create_edge_df()</a></code> </p>
+        </td>
+        <td><p>Create an edge data frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="combine_ndfs.html">combine_ndfs()</a></code> </p>
+        </td>
+        <td><p>Combine multiple node data frames</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="combine_edfs.html">combine_edfs()</a></code> </p>
+        </td>
+        <td><p>Combine multiple edge data frames into a single
 edge data frame</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-creation-rendering-and-i-o" class="hasAnchor"><a href="#section-graph-creation-rendering-and-i-o" class="anchor"></a>Graph Creation, Rendering, and I/O</h2>
-            <p class="section-desc"><p>Graphs can be created, read in, written out, and displayed with these functions.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="create_graph.html">create_graph</a></code> </p>
-          </td>
-          <td><p>Create a graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="import_graph.html">import_graph</a></code> </p>
-          </td>
-          <td><p>Import a graph from various graph formats</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="from_adj_matrix.html">from_adj_matrix</a></code> </p>
-          </td>
-          <td><p>Create a graph using an adjacency matrix</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="from_igraph.html">from_igraph</a></code> </p>
-          </td>
-          <td><p>Convert an igraph graph to a DiagrammeR one</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="to_igraph.html">to_igraph</a></code> </p>
-          </td>
-          <td><p>Convert a DiagrammeR graph to an igraph one</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="open_graph.html">open_graph</a></code> </p>
-          </td>
-          <td><p>Read a graph or graph series from disk</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="save_graph.html">save_graph</a></code> </p>
-          </td>
-          <td><p>Save a graph or graph series to disk</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="export_graph.html">export_graph</a></code> </p>
-          </td>
-          <td><p>Export a graph to various file formats</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="export_csv.html">export_csv</a></code> </p>
-          </td>
-          <td><p>Export a graph to CSV files</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="render_graph.html">render_graph</a></code> </p>
-          </td>
-          <td><p>Render the graph in various formats</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="display_metagraph.html">display_metagraph</a></code> </p>
-          </td>
-          <td><p>Display a property graph's underlying model</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-node-and-edge-selection" class="hasAnchor"><a href="#section-node-and-edge-selection" class="anchor"></a>Node and Edge Selection</h2>
-            <p class="section-desc"><p>Graph nodes or edges can be selected with these functions. This is useful because some of the Graph Modification functions (ending with “_ws“) and all of the Graph Traversal functions can make use of the stored selections.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_nodes.html">select_nodes</a></code> </p>
-          </td>
-          <td><p>Select nodes in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_nodes_by_id.html">select_nodes_by_id</a></code> </p>
-          </td>
-          <td><p>Select nodes in a graph by ID values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_nodes_by_degree.html">select_nodes_by_degree</a></code> </p>
-          </td>
-          <td><p>Select nodes in the graph based on their degree
-values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_nodes_in_neighborhood.html">select_nodes_in_neighborhood</a></code> </p>
-          </td>
-          <td><p>Select nodes based on a walk distance from a
-specified node</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_last_nodes_created.html">select_last_nodes_created</a></code> </p>
-          </td>
-          <td><p>Select the last set of nodes created in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_edges.html">select_edges</a></code> </p>
-          </td>
-          <td><p>Select edges in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_edges_by_node_id.html">select_edges_by_node_id</a></code> </p>
-          </td>
-          <td><p>Select edges in a graph using node ID values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_edges_by_edge_id.html">select_edges_by_edge_id</a></code> </p>
-          </td>
-          <td><p>Select edges in a graph using edge ID values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="select_last_edges_created.html">select_last_edges_created</a></code> </p>
-          </td>
-          <td><p>Select the last set of edges created in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_selection.html">get_selection</a></code> </p>
-          </td>
-          <td><p>Get the current selection available in a graph
-object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="deselect_nodes.html">deselect_nodes</a></code> </p>
-          </td>
-          <td><p>Deselect any selected nodes in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="deselect_edges.html">deselect_edges</a></code> </p>
-          </td>
-          <td><p>Deselect any selected edges in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="invert_selection.html">invert_selection</a></code> </p>
-          </td>
-          <td><p>Invert selection of nodes or edges in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="clear_selection.html">clear_selection</a></code> </p>
-          </td>
-          <td><p>Clear a selection of nodes or edges in a graph</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-modification" class="hasAnchor"><a href="#section-graph-modification" class="anchor"></a>Graph Modification</h2>
-            <p class="section-desc"><p>These functions make changes to the graph. We can change many aspects of the graph: the graph representation itself (e.g., adding or removing nodes and edges), or, the attributes of the nodes and edges (in terms of associated data and aesthetics).</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_node.html">add_node</a></code> </p>
-          </td>
-          <td><p>Add a node to an existing graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_n_nodes.html">add_n_nodes</a></code> </p>
-          </td>
-          <td><p>Add one or several unconnected nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_n_nodes_ws.html">add_n_nodes_ws</a></code> </p>
-          </td>
-          <td><p>Add a multiple of new nodes with edges to or from
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-creation-rendering-and-i-o" class="hasAnchor"><a href="#section-graph-creation-rendering-and-i-o" class="anchor"></a>Graph Creation, Rendering, and I/O</h2>
+          <p class="section-desc"><p>Graphs can be created, read in, written out, and displayed with these functions.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="create_graph.html">create_graph()</a></code> </p>
+        </td>
+        <td><p>Create a graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="import_graph.html">import_graph()</a></code> </p>
+        </td>
+        <td><p>Import a graph from various graph formats</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="from_adj_matrix.html">from_adj_matrix()</a></code> </p>
+        </td>
+        <td><p>Create a graph using an adjacency matrix</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="from_igraph.html">from_igraph()</a></code> </p>
+        </td>
+        <td><p>Convert an igraph graph to a DiagrammeR one</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="to_igraph.html">to_igraph()</a></code> </p>
+        </td>
+        <td><p>Convert a DiagrammeR graph to an igraph one</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="open_graph.html">open_graph()</a></code> </p>
+        </td>
+        <td><p>Read a graph or graph series from disk</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="save_graph.html">save_graph()</a></code> </p>
+        </td>
+        <td><p>Save a graph or graph series to disk</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="export_graph.html">export_graph()</a></code> </p>
+        </td>
+        <td><p>Export a graph to various file formats</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="export_csv.html">export_csv()</a></code> </p>
+        </td>
+        <td><p>Export a graph to CSV files</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="render_graph.html">render_graph()</a></code> </p>
+        </td>
+        <td><p>Render the graph in various formats</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="display_metagraph.html">display_metagraph()</a></code> </p>
+        </td>
+        <td><p>Display a property graph's underlying model</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-node-and-edge-selection" class="hasAnchor"><a href="#section-node-and-edge-selection" class="anchor"></a>Node and Edge Selection</h2>
+          <p class="section-desc"><p>Graph nodes or edges can be selected with these functions. This is useful because some of the Graph Modification functions (ending with "_ws") and all of the Graph Traversal functions can make use of the stored selections.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="select_nodes.html">select_nodes()</a></code> </p>
+        </td>
+        <td><p>Select nodes in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_nodes_by_id.html">select_nodes_by_id()</a></code> </p>
+        </td>
+        <td><p>Select nodes in a graph by ID values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_nodes_by_degree.html">select_nodes_by_degree()</a></code> </p>
+        </td>
+        <td><p>Select nodes in the graph based on
+their degree values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_nodes_in_neighborhood.html">select_nodes_in_neighborhood()</a></code> </p>
+        </td>
+        <td><p>Select nodes based on a walk
+distance from a specified node</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_last_nodes_created.html">select_last_nodes_created()</a></code> </p>
+        </td>
+        <td><p>Select the last set of nodes created in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_edges.html">select_edges()</a></code> </p>
+        </td>
+        <td><p>Select edges in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_edges_by_node_id.html">select_edges_by_node_id()</a></code> </p>
+        </td>
+        <td><p>Select edges in a graph using node ID values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_edges_by_edge_id.html">select_edges_by_edge_id()</a></code> </p>
+        </td>
+        <td><p>Select edges in a graph using edge ID values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_last_edges_created.html">select_last_edges_created()</a></code> </p>
+        </td>
+        <td><p>Select the last set of edges created in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_selection.html">get_selection()</a></code> </p>
+        </td>
+        <td><p>Get the current selection available in
+a graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="deselect_nodes.html">deselect_nodes()</a></code> </p>
+        </td>
+        <td><p>Deselect any selected nodes in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="deselect_edges.html">deselect_edges()</a></code> </p>
+        </td>
+        <td><p>Deselect any selected edges in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="invert_selection.html">invert_selection()</a></code> </p>
+        </td>
+        <td><p>Invert selection of nodes or edges in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="clear_selection.html">clear_selection()</a></code> </p>
+        </td>
+        <td><p>Clear an active selection of nodes or edges</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-modification" class="hasAnchor"><a href="#section-graph-modification" class="anchor"></a>Graph Modification</h2>
+          <p class="section-desc"><p>These functions make changes to the graph. We can change many aspects of the graph: the graph representation itself (e.g., adding or removing nodes and edges), or, the attributes of the nodes and edges (in terms of associated data and aesthetics).</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="add_node.html">add_node()</a></code> </p>
+        </td>
+        <td><p>Add a node to an existing graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_n_nodes.html">add_n_nodes()</a></code> </p>
+        </td>
+        <td><p>Add one or several unconnected nodes to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_n_nodes_ws.html">add_n_nodes_ws()</a></code> </p>
+        </td>
+        <td><p>Add a multiple of new nodes with edges to or from
 one or more selected nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_node_df.html">add_node_df</a></code> </p>
-          </td>
-          <td><p>Add nodes from a node data frame to an existing
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_node_df.html">add_node_df()</a></code> </p>
+        </td>
+        <td><p>Add nodes from a node data frame to an existing
 graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_n_node_clones.html">add_n_node_clones</a></code> </p>
-          </td>
-          <td><p>Add one or several clones of an existing node to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_node_clones_ws.html">add_node_clones_ws</a></code> </p>
-          </td>
-          <td><p>Add clones of a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_nodes_from_table.html">add_nodes_from_table</a></code> </p>
-          </td>
-          <td><p>Add nodes and attributes to graph from a table</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols</a></code> </p>
-          </td>
-          <td><p>Add nodes from distinct values in data frame columns</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_edge.html">add_edge</a></code> </p>
-          </td>
-          <td><p>Add an edge between nodes in a graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_edge_df.html">add_edge_df</a></code> </p>
-          </td>
-          <td><p>Add edges from an edge data frame
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_n_node_clones.html">add_n_node_clones()</a></code> </p>
+        </td>
+        <td><p>Add one or several clones of an existing node to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_node_clones_ws.html">add_node_clones_ws()</a></code> </p>
+        </td>
+        <td><p>Add clones of a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_nodes_from_table.html">add_nodes_from_table()</a></code> </p>
+        </td>
+        <td><p>Add nodes and attributes to graph from a table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_nodes_from_df_cols.html">add_nodes_from_df_cols()</a></code> </p>
+        </td>
+        <td><p>Add nodes from distinct values in data frame columns</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_edge.html">add_edge()</a></code> </p>
+        </td>
+        <td><p>Add an edge between nodes in a graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_edge_df.html">add_edge_df()</a></code> </p>
+        </td>
+        <td><p>Add edges from an edge data frame
 to an existing graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_edges_w_string.html">add_edges_w_string</a></code> </p>
-          </td>
-          <td><p>Add one or more edges using a text string</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_edge_clone.html">add_edge_clone</a></code> </p>
-          </td>
-          <td><p>Add a clone of an existing edge to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_forward_edges_ws.html">add_forward_edges_ws</a></code> </p>
-          </td>
-          <td><p>Add new edges with identical definitions as with a
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_edges_w_string.html">add_edges_w_string()</a></code> </p>
+        </td>
+        <td><p>Add one or more edges using a text string</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_edge_clone.html">add_edge_clone()</a></code> </p>
+        </td>
+        <td><p>Add a clone of an existing edge to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_forward_edges_ws.html">add_forward_edges_ws()</a></code> </p>
+        </td>
+        <td><p>Add new edges with identical definitions as with a
 selection of edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_reverse_edges_ws.html">add_reverse_edges_ws</a></code> </p>
-          </td>
-          <td><p>Add new edges in the opposite directions of a
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_reverse_edges_ws.html">add_reverse_edges_ws()</a></code> </p>
+        </td>
+        <td><p>Add new edges in the opposite directions of a
 selection of edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fully_connect_nodes_ws.html">fully_connect_nodes_ws</a></code> </p>
-          </td>
-          <td><p>Fully connect all nodes in a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_edges_from_table.html">add_edges_from_table</a></code> </p>
-          </td>
-          <td><p>Add edges and attributes to graph
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fully_connect_nodes_ws.html">fully_connect_nodes_ws()</a></code> </p>
+        </td>
+        <td><p>Fully connect all nodes in a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_edges_from_table.html">add_edges_from_table()</a></code> </p>
+        </td>
+        <td><p>Add edges and attributes to graph
 from a table</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_path.html">add_path</a></code> </p>
-          </td>
-          <td><p>Add a path of nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_cycle.html">add_cycle</a></code> </p>
-          </td>
-          <td><p>Add a cycle of nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_balanced_tree.html">add_balanced_tree</a></code> </p>
-          </td>
-          <td><p>Add a balanced tree to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_star.html">add_star</a></code> </p>
-          </td>
-          <td><p>Add a star of nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_prism.html">add_prism</a></code> </p>
-          </td>
-          <td><p>Add a prism of nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_full_graph.html">add_full_graph</a></code> </p>
-          </td>
-          <td><p>Add a fully connected graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_grid_2d.html">add_grid_2d</a></code> </p>
-          </td>
-          <td><p>Add a 2D grid of nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_grid_3d.html">add_grid_3d</a></code> </p>
-          </td>
-          <td><p>Add a 3D grid of nodes to the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_gnm_graph.html">add_gnm_graph</a></code> </p>
-          </td>
-          <td><p>Add a G(n, m) Erdos-Renyi graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_gnp_graph.html">add_gnp_graph</a></code> </p>
-          </td>
-          <td><p>Add a G(n, p) Erdos-Renyi graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_pa_graph.html">add_pa_graph</a></code> </p>
-          </td>
-          <td><p>Add a preferential attachment graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_growing_graph.html">add_growing_graph</a></code> </p>
-          </td>
-          <td><p>Create a random growing graph with m edges added per step</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_smallworld_graph.html">add_smallworld_graph</a></code> </p>
-          </td>
-          <td><p>Add a Watts-Strogatz small-world graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_islands_graph.html">add_islands_graph</a></code> </p>
-          </td>
-          <td><p>Create a random islands graph with edges between the islands</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_node.html">delete_node</a></code> </p>
-          </td>
-          <td><p>Delete a node from an existing graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_nodes_ws.html">delete_nodes_ws</a></code> </p>
-          </td>
-          <td><p>Delete all selected nodes in a node selection</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_edge.html">delete_edge</a></code> </p>
-          </td>
-          <td><p>Delete an edge from an existing graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_edges_ws.html">delete_edges_ws</a></code> </p>
-          </td>
-          <td><p>Delete all selected edges in an edge selection</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_loop_edges_ws.html">delete_loop_edges_ws</a></code> </p>
-          </td>
-          <td><p>Delete all loop edges associated with a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fully_disconnect_nodes_ws.html">fully_disconnect_nodes_ws</a></code> </p>
-          </td>
-          <td><p>Fully disconnect all nodes in a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rev_edge_dir.html">rev_edge_dir</a></code> </p>
-          </td>
-          <td><p>Reverse the direction of all edges in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rev_edge_dir_ws.html">rev_edge_dir_ws</a></code> </p>
-          </td>
-          <td><p>Reverse the direction of selected edges in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_node_attrs.html">set_node_attrs</a></code> </p>
-          </td>
-          <td><p>Set node attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_node_attrs_ws.html">set_node_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Set node attributes with a node selection</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="join_node_attrs.html">join_node_attrs</a></code> </p>
-          </td>
-          <td><p>Join new node attribute values using a data frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rescale_node_attrs.html">rescale_node_attrs</a></code> </p>
-          </td>
-          <td><p>Rescale numeric node attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="copy_node_attrs.html">copy_node_attrs</a></code> </p>
-          </td>
-          <td><p>Copy a node attribute column and set the name</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rename_node_attrs.html">rename_node_attrs</a></code> </p>
-          </td>
-          <td><p>Rename a node attribute</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="drop_node_attrs.html">drop_node_attrs</a></code> </p>
-          </td>
-          <td><p>Drop a node attribute column</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="mutate_node_attrs.html">mutate_node_attrs</a></code> </p>
-          </td>
-          <td><p>Mutate a set of node attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Mutate node attribute values for a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="colorize_node_attrs.html">colorize_node_attrs</a></code> </p>
-          </td>
-          <td><p>Apply colors based on node attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="recode_node_attrs.html">recode_node_attrs</a></code> </p>
-          </td>
-          <td><p>Recode a set of node attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_df_as_node_attr.html">set_df_as_node_attr</a></code> </p>
-          </td>
-          <td><p>Set a data frame as a node attribute</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_node_position.html">set_node_position</a></code> </p>
-          </td>
-          <td><p>Apply a layout position to a single node</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="layout_nodes_w_string.html">layout_nodes_w_string</a></code> </p>
-          </td>
-          <td><p>Layout nodes using a text-based schematic</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="nudge_node_positions_ws.html">nudge_node_positions_ws</a></code> </p>
-          </td>
-          <td><p>Move layout positions of a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn</a></code> </p>
-          </td>
-          <td><p>Set node attribute values with a graph function</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_edge_attrs.html">set_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Set edge attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_edge_attrs_ws.html">set_edge_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Set edge attributes with an edge selection</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="join_edge_attrs.html">join_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Join new edge attribute values using a data frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rescale_edge_attrs.html">rescale_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Rescale numeric edge attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="copy_edge_attrs.html">copy_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Copy an edge attribute column and set the name</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rename_edge_attrs.html">rename_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Rename an edge attribute</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="drop_edge_attrs.html">drop_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Drop an edge attribute column</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="mutate_edge_attrs.html">mutate_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Mutate a set of edge attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="mutate_edge_attrs_ws.html">mutate_edge_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Mutate edge attribute values for a selection of edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="colorize_edge_attrs.html">colorize_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Apply colors based on edge attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="recode_edge_attrs.html">recode_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Recode a set of edge attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_df_as_edge_attr.html">set_df_as_edge_attr</a></code> </p>
-          </td>
-          <td><p>Set a data frame as an edge attribute</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="node_data.html">node_data</a></code> </p>
-          </td>
-          <td><p>Insert node data attributes during node creation</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="node_aes.html">node_aes</a></code> </p>
-          </td>
-          <td><p>Insert node aesthetic attributes during node creation</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="edge_data.html">edge_data</a></code> </p>
-          </td>
-          <td><p>Insert edge data attributes during edge creation</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="edge_aes.html">edge_aes</a></code> </p>
-          </td>
-          <td><p>Insert edge aesthetic attributes during edge creation</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-transformation" class="hasAnchor"><a href="#section-graph-transformation" class="anchor"></a>Graph Transformation</h2>
-            <p class="section-desc"><p>Wholesale changes to a graph can be made with any of these functions. Combine two graphs, transform them to different representations, even change whether the graph is directed or undirected.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="combine_graphs.html">combine_graphs</a></code> </p>
-          </td>
-          <td><p>Combine two graphs into a single graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="transform_to_subgraph_ws.html">transform_to_subgraph_ws</a></code> </p>
-          </td>
-          <td><p>Create a subgraph using node/edge selection</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="transform_to_complement_graph.html">transform_to_complement_graph</a></code> </p>
-          </td>
-          <td><p>Create a complement of a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="transform_to_min_spanning_tree.html">transform_to_min_spanning_tree</a></code> </p>
-          </td>
-          <td><p>Get a minimum spanning tree subgraph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_graph_undirected.html">set_graph_undirected</a></code> </p>
-          </td>
-          <td><p>Convert a directed graph to an undirected graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_graph_directed.html">set_graph_directed</a></code> </p>
-          </td>
-          <td><p>Convert an undirected graph to a directed graph</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-inspection" class="hasAnchor"><a href="#section-graph-inspection" class="anchor"></a>Graph Inspection</h2>
-            <p class="section-desc"><p>Sometimes, you’ll need to gather information about the working graph. This collection of functions allows for extraction of graph components (e.g., ndfs and edfs), attribute information, counts, node and edge properties, and more.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_node_df.html">get_node_df</a></code> </p>
-          </td>
-          <td><p>Get a node data frame from a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_node_df_ws.html">get_node_df_ws</a></code> </p>
-          </td>
-          <td><p>Get the graph's ndf filtered by a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_node_info.html">get_node_info</a></code> </p>
-          </td>
-          <td><p>Get detailed information on nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_last_nodes_created.html">get_last_nodes_created</a></code> </p>
-          </td>
-          <td><p>Get the last set of nodes created in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_node_attrs.html">get_node_attrs</a></code> </p>
-          </td>
-          <td><p>Get node attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_node_attrs_ws.html">get_node_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Get node attribute values from a selection of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_degree_distribution.html">get_degree_distribution</a></code> </p>
-          </td>
-          <td><p>Get total degree distribution data for a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_degree_histogram.html">get_degree_histogram</a></code> </p>
-          </td>
-          <td><p>Get histogram data for a graph's degree frequency</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edge_df.html">get_edge_df</a></code> </p>
-          </td>
-          <td><p>Get an edge data frame from a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edge_df_ws.html">get_edge_df_ws</a></code> </p>
-          </td>
-          <td><p>Get the graph's edf filtered by a selection of edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edge_info.html">get_edge_info</a></code> </p>
-          </td>
-          <td><p>Get detailed information on edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_last_edges_created.html">get_last_edges_created</a></code> </p>
-          </td>
-          <td><p>Get the last set of edges created in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edge_attrs.html">get_edge_attrs</a></code> </p>
-          </td>
-          <td><p>Get edge attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edge_attrs_ws.html">get_edge_attrs_ws</a></code> </p>
-          </td>
-          <td><p>Get edge attribute values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_node_ids.html">get_node_ids</a></code> </p>
-          </td>
-          <td><p>Get a vector of node ID values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_nbrs.html">get_nbrs</a></code> </p>
-          </td>
-          <td><p>Get all neighbors of one or more nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_common_nbrs.html">get_common_nbrs</a></code> </p>
-          </td>
-          <td><p>Get all common neighbors between two or more nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_non_nbrs.html">get_non_nbrs</a></code> </p>
-          </td>
-          <td><p>Get non-neighbors of a node in a graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_similar_nbrs.html">get_similar_nbrs</a></code> </p>
-          </td>
-          <td><p>Get neighboring nodes based on node attribute
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_path.html">add_path()</a></code> </p>
+        </td>
+        <td><p>Add a path of nodes to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_cycle.html">add_cycle()</a></code> </p>
+        </td>
+        <td><p>Add a cycle of nodes to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_balanced_tree.html">add_balanced_tree()</a></code> </p>
+        </td>
+        <td><p>Add a balanced tree to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_star.html">add_star()</a></code> </p>
+        </td>
+        <td><p>Add a star of nodes to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_prism.html">add_prism()</a></code> </p>
+        </td>
+        <td><p>Add a prism of nodes to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_full_graph.html">add_full_graph()</a></code> </p>
+        </td>
+        <td><p>Add a fully connected graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_grid_2d.html">add_grid_2d()</a></code> </p>
+        </td>
+        <td><p>Add a 2D grid of nodes to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_grid_3d.html">add_grid_3d()</a></code> </p>
+        </td>
+        <td><p>Add a 3D grid of nodes to the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_gnm_graph.html">add_gnm_graph()</a></code> </p>
+        </td>
+        <td><p>Add a G(n, m) Erdos-Renyi graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_gnp_graph.html">add_gnp_graph()</a></code> </p>
+        </td>
+        <td><p>Add a G(n, p) Erdos-Renyi graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_pa_graph.html">add_pa_graph()</a></code> </p>
+        </td>
+        <td><p>Add a preferential attachment graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_growing_graph.html">add_growing_graph()</a></code> </p>
+        </td>
+        <td><p>Create a random growing graph with m edges added per step</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_smallworld_graph.html">add_smallworld_graph()</a></code> </p>
+        </td>
+        <td><p>Add a Watts-Strogatz small-world graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_islands_graph.html">add_islands_graph()</a></code> </p>
+        </td>
+        <td><p>Create a random islands graph with edges between the islands</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_node.html">delete_node()</a></code> </p>
+        </td>
+        <td><p>Delete a node from an existing graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_nodes_ws.html">delete_nodes_ws()</a></code> </p>
+        </td>
+        <td><p>Delete all selected nodes in a node selection</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_edge.html">delete_edge()</a></code> </p>
+        </td>
+        <td><p>Delete an edge from an existing graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_edges_ws.html">delete_edges_ws()</a></code> </p>
+        </td>
+        <td><p>Delete all selected edges in an edge selection</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_loop_edges_ws.html">delete_loop_edges_ws()</a></code> </p>
+        </td>
+        <td><p>Delete all loop edges associated with a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="fully_disconnect_nodes_ws.html">fully_disconnect_nodes_ws()</a></code> </p>
+        </td>
+        <td><p>Fully disconnect all nodes in a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rev_edge_dir.html">rev_edge_dir()</a></code> </p>
+        </td>
+        <td><p>Reverse the direction of all edges in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rev_edge_dir_ws.html">rev_edge_dir_ws()</a></code> </p>
+        </td>
+        <td><p>Reverse the direction of selected edges in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_node_attrs.html">set_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Set node attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_node_attrs_ws.html">set_node_attrs_ws()</a></code> </p>
+        </td>
+        <td><p>Set node attributes with a node selection</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="join_node_attrs.html">join_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Join new node attribute values using a data frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rescale_node_attrs.html">rescale_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Rescale numeric node attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="copy_node_attrs.html">copy_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Copy a node attribute column and set the name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rename_node_attrs.html">rename_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Rename a node attribute</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="drop_node_attrs.html">drop_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Drop a node attribute column</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mutate_node_attrs.html">mutate_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Mutate a set of node attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mutate_node_attrs_ws.html">mutate_node_attrs_ws()</a></code> </p>
+        </td>
+        <td><p>Mutate node attribute values for a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="colorize_node_attrs.html">colorize_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Apply colors based on node attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="recode_node_attrs.html">recode_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Recode a set of node attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_df_as_node_attr.html">set_df_as_node_attr()</a></code> </p>
+        </td>
+        <td><p>Set a data frame as a node attribute</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_node_position.html">set_node_position()</a></code> </p>
+        </td>
+        <td><p>Apply a layout position to a single node</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="layout_nodes_w_string.html">layout_nodes_w_string()</a></code> </p>
+        </td>
+        <td><p>Layout nodes using a text-based schematic</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nudge_node_positions_ws.html">nudge_node_positions_ws()</a></code> </p>
+        </td>
+        <td><p>Move layout positions of a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_node_attr_w_fcn.html">set_node_attr_w_fcn()</a></code> </p>
+        </td>
+        <td><p>Set node attribute values with a graph function</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_edge_attrs.html">set_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Set edge attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_edge_attrs_ws.html">set_edge_attrs_ws()</a></code> </p>
+        </td>
+        <td><p>Set edge attributes with an edge selection</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="join_edge_attrs.html">join_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Join new edge attribute values using a data frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rescale_edge_attrs.html">rescale_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Rescale numeric edge attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="copy_edge_attrs.html">copy_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Copy an edge attribute column and set the name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rename_edge_attrs.html">rename_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Rename an edge attribute</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="drop_edge_attrs.html">drop_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Drop an edge attribute column</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mutate_edge_attrs.html">mutate_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Mutate a set of edge attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="mutate_edge_attrs_ws.html">mutate_edge_attrs_ws()</a></code> </p>
+        </td>
+        <td><p>Mutate edge attribute values for a selection of edges</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="colorize_edge_attrs.html">colorize_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Apply colors based on edge attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="recode_edge_attrs.html">recode_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Recode a set of edge attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_df_as_edge_attr.html">set_df_as_edge_attr()</a></code> </p>
+        </td>
+        <td><p>Set a data frame as an edge attribute</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="node_data.html">node_data()</a></code> </p>
+        </td>
+        <td><p>Insert node data attributes during node creation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="node_aes.html">node_aes()</a></code> </p>
+        </td>
+        <td><p>Insert node aesthetic attributes during node creation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="edge_data.html">edge_data()</a></code> </p>
+        </td>
+        <td><p>Insert edge data attributes during edge creation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="edge_aes.html">edge_aes()</a></code> </p>
+        </td>
+        <td><p>Insert edge aesthetic attributes during edge creation</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-transformation" class="hasAnchor"><a href="#section-graph-transformation" class="anchor"></a>Graph Transformation</h2>
+          <p class="section-desc"><p>Wholesale changes to a graph can be made with any of these functions. Combine two graphs, transform them to different representations, even change whether the graph is directed or undirected.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="combine_graphs.html">combine_graphs()</a></code> </p>
+        </td>
+        <td><p>Combine two graphs into a single graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="transform_to_subgraph_ws.html">transform_to_subgraph_ws()</a></code> </p>
+        </td>
+        <td><p>Create a subgraph using node/edge selection</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="transform_to_complement_graph.html">transform_to_complement_graph()</a></code> </p>
+        </td>
+        <td><p>Create a complement of a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="transform_to_min_spanning_tree.html">transform_to_min_spanning_tree()</a></code> </p>
+        </td>
+        <td><p>Get a minimum spanning tree subgraph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_graph_undirected.html">set_graph_undirected()</a></code> </p>
+        </td>
+        <td><p>Convert a directed graph to an undirected graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_graph_directed.html">set_graph_directed()</a></code> </p>
+        </td>
+        <td><p>Convert an undirected graph to a directed graph</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-inspection" class="hasAnchor"><a href="#section-graph-inspection" class="anchor"></a>Graph Inspection</h2>
+          <p class="section-desc"><p>Sometimes, you’ll need to gather information about the working graph. This collection of functions allows for extraction of graph components (e.g., ndfs and edfs), attribute information, counts, node and edge properties, and more.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="get_node_df.html">get_node_df()</a></code> </p>
+        </td>
+        <td><p>Get a node data frame from a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_node_df_ws.html">get_node_df_ws()</a></code> </p>
+        </td>
+        <td><p>Get the graph's ndf filtered by a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_node_info.html">get_node_info()</a></code> </p>
+        </td>
+        <td><p>Get detailed information on nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_last_nodes_created.html">get_last_nodes_created()</a></code> </p>
+        </td>
+        <td><p>Get the last set of nodes created in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_node_attrs.html">get_node_attrs()</a></code> </p>
+        </td>
+        <td><p>Get node attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_node_attrs_ws.html">get_node_attrs_ws()</a></code> </p>
+        </td>
+        <td><p>Get node attribute values from a selection of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_degree_distribution.html">get_degree_distribution()</a></code> </p>
+        </td>
+        <td><p>Get total degree distribution data for a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_degree_histogram.html">get_degree_histogram()</a></code> </p>
+        </td>
+        <td><p>Get histogram data for a graph's degree frequency</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edge_df.html">get_edge_df()</a></code> </p>
+        </td>
+        <td><p>Get an edge data frame from a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edge_df_ws.html">get_edge_df_ws()</a></code> </p>
+        </td>
+        <td><p>Get the graph's edf filtered by a selection of edges</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edge_info.html">get_edge_info()</a></code> </p>
+        </td>
+        <td><p>Get detailed information on edges</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_last_edges_created.html">get_last_edges_created()</a></code> </p>
+        </td>
+        <td><p>Get the last set of edges created in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edge_attrs.html">get_edge_attrs()</a></code> </p>
+        </td>
+        <td><p>Get edge attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edge_attrs_ws.html">get_edge_attrs_ws()</a></code> </p>
+        </td>
+        <td><p>Get edge attribute values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_node_ids.html">get_node_ids()</a></code> </p>
+        </td>
+        <td><p>Get a vector of node ID values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_nbrs.html">get_nbrs()</a></code> </p>
+        </td>
+        <td><p>Get all neighbors of one or more nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_common_nbrs.html">get_common_nbrs()</a></code> </p>
+        </td>
+        <td><p>Get all common neighbors between two or more nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_non_nbrs.html">get_non_nbrs()</a></code> </p>
+        </td>
+        <td><p>Get non-neighbors of a node in a graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_similar_nbrs.html">get_similar_nbrs()</a></code> </p>
+        </td>
+        <td><p>Get neighboring nodes based on node attribute
 similarity</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_predecessors.html">get_predecessors</a></code> </p>
-          </td>
-          <td><p>Get node IDs for predecessor nodes to the specified
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_predecessors.html">get_predecessors()</a></code> </p>
+        </td>
+        <td><p>Get node IDs for predecessor nodes to the specified
 node</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_successors.html">get_successors</a></code> </p>
-          </td>
-          <td><p>Get node IDs for successor nodes to the specified
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_successors.html">get_successors()</a></code> </p>
+        </td>
+        <td><p>Get node IDs for successor nodes to the specified
 node</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_all_connected_nodes.html">get_all_connected_nodes</a></code> </p>
-          </td>
-          <td><p>Get all nodes connected to a specified node</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_articulation_points.html">get_articulation_points</a></code> </p>
-          </td>
-          <td><p>Get articulation points</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_periphery.html">get_periphery</a></code> </p>
-          </td>
-          <td><p>Get nodes that form the graph periphery</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edge_ids.html">get_edge_ids</a></code> </p>
-          </td>
-          <td><p>Get a vector of edge ID values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edges.html">get_edges</a></code> </p>
-          </td>
-          <td><p>Get node IDs associated with edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_paths.html">get_paths</a></code> </p>
-          </td>
-          <td><p>Get paths from a specified node in a directed graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="do_dfs.html">do_dfs</a></code> </p>
-          </td>
-          <td><p>Use the depth-first search (dfs) algorithm</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="do_bfs.html">do_bfs</a></code> </p>
-          </td>
-          <td><p>Use the breadth-first search (bfs) algorithm</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_attr_dfs.html">get_attr_dfs</a></code> </p>
-          </td>
-          <td><p>Get data frames bound to node attributes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_nodes.html">count_nodes</a></code> </p>
-          </td>
-          <td><p>Get a count of all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_edges.html">count_edges</a></code> </p>
-          </td>
-          <td><p>Get a count of all edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_loop_edges.html">count_loop_edges</a></code> </p>
-          </td>
-          <td><p>Get count of all loop edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_mutual_node_pairs.html">count_mutual_node_pairs</a></code> </p>
-          </td>
-          <td><p>Get the number of mutually-connected
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_all_connected_nodes.html">get_all_connected_nodes()</a></code> </p>
+        </td>
+        <td><p>Get all nodes connected to a specified node</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_articulation_points.html">get_articulation_points()</a></code> </p>
+        </td>
+        <td><p>Get articulation points</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_periphery.html">get_periphery()</a></code> </p>
+        </td>
+        <td><p>Get nodes that form the graph periphery</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edge_ids.html">get_edge_ids()</a></code> </p>
+        </td>
+        <td><p>Get a vector of edge ID values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edges.html">get_edges()</a></code> </p>
+        </td>
+        <td><p>Get node IDs associated with edges</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_paths.html">get_paths()</a></code> </p>
+        </td>
+        <td><p>Get paths from a specified node in a directed graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="do_dfs.html">do_dfs()</a></code> </p>
+        </td>
+        <td><p>Use the depth-first search (dfs) algorithm</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="do_bfs.html">do_bfs()</a></code> </p>
+        </td>
+        <td><p>Use the breadth-first search (bfs) algorithm</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_attr_dfs.html">get_attr_dfs()</a></code> </p>
+        </td>
+        <td><p>Get data frames bound to node attributes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_nodes.html">count_nodes()</a></code> </p>
+        </td>
+        <td><p>Get a count of all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_edges.html">count_edges()</a></code> </p>
+        </td>
+        <td><p>Get a count of all edges</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_loop_edges.html">count_loop_edges()</a></code> </p>
+        </td>
+        <td><p>Get count of all loop edges</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_mutual_node_pairs.html">count_mutual_node_pairs()</a></code> </p>
+        </td>
+        <td><p>Get the number of mutually-connected
 node pairs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_asymmetric_node_pairs.html">count_asymmetric_node_pairs</a></code> </p>
-          </td>
-          <td><p>Get the number of asymmetrically-connected node pairs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_automorphisms.html">count_automorphisms</a></code> </p>
-          </td>
-          <td><p>Get the number of automorphisms</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_unconnected_nodes.html">count_unconnected_nodes</a></code> </p>
-          </td>
-          <td><p>Get count of all unconnected nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_unconnected_node_pairs.html">count_unconnected_node_pairs</a></code> </p>
-          </td>
-          <td><p>Get the number of unconnected node pairs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_w_connected_cmpts.html">count_w_connected_cmpts</a></code> </p>
-          </td>
-          <td><p>Get the number of weakly-connected components</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_s_connected_cmpts.html">count_s_connected_cmpts</a></code> </p>
-          </td>
-          <td><p>Get the number of strongly-connected components</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_multiedge_count.html">get_multiedge_count</a></code> </p>
-          </td>
-          <td><p>Get the count of multiple edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_edge_count_w_multiedge.html">get_edge_count_w_multiedge</a></code> </p>
-          </td>
-          <td><p>Get count of edge definitions where multiple edges occur</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_agg_degree_in.html">get_agg_degree_in</a></code> </p>
-          </td>
-          <td><p>Get an aggregate value from the indegree of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_agg_degree_out.html">get_agg_degree_out</a></code> </p>
-          </td>
-          <td><p>Get an aggregate value from the outdegree of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_agg_degree_total.html">get_agg_degree_total</a></code> </p>
-          </td>
-          <td><p>Get an aggregate value from the total degree of nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_mean_distance.html">get_mean_distance</a></code> </p>
-          </td>
-          <td><p>Get the mean distance</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_min_eccentricity.html">get_min_eccentricity</a></code> </p>
-          </td>
-          <td><p>Get the minimum graph eccentricity</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_max_eccentricity.html">get_max_eccentricity</a></code> </p>
-          </td>
-          <td><p>Get the maximum graph eccentricity</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_reciprocity.html">get_reciprocity</a></code> </p>
-          </td>
-          <td><p>Get the graph reciprocity</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_girth.html">get_girth</a></code> </p>
-          </td>
-          <td><p>Get graph girth</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_adhesion.html">get_adhesion</a></code> </p>
-          </td>
-          <td><p>Get graph adhesion</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_min_cut_between.html">get_min_cut_between</a></code> </p>
-          </td>
-          <td><p>Get the minimum cut between source and sink nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_degree_in.html">get_degree_in</a></code> </p>
-          </td>
-          <td><p>Get indegree values for all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_degree_out.html">get_degree_out</a></code> </p>
-          </td>
-          <td><p>Get outdegree values for all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_degree_total.html">get_degree_total</a></code> </p>
-          </td>
-          <td><p>Get total degree values for all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_betweenness.html">get_betweenness</a></code> </p>
-          </td>
-          <td><p>Get betweenness centrality scores</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_closeness.html">get_closeness</a></code> </p>
-          </td>
-          <td><p>Get closeness centrality values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_pagerank.html">get_pagerank</a></code> </p>
-          </td>
-          <td><p>Get the PageRank values for all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_alpha_centrality.html">get_alpha_centrality</a></code> </p>
-          </td>
-          <td><p>Get the alpha centrality for all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_eigen_centrality.html">get_eigen_centrality</a></code> </p>
-          </td>
-          <td><p>Get the eigen centrality for all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_authority_centrality.html">get_authority_centrality</a></code> </p>
-          </td>
-          <td><p>Get the authority scores for all nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_leverage_centrality.html">get_leverage_centrality</a></code> </p>
-          </td>
-          <td><p>Get leverage centrality</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_radiality.html">get_radiality</a></code> </p>
-          </td>
-          <td><p>Get radiality centrality scores</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_eccentricity.html">get_eccentricity</a></code> </p>
-          </td>
-          <td><p>Get node eccentricities</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_coreness.html">get_coreness</a></code> </p>
-          </td>
-          <td><p>Get coreness values for graph nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_constraint.html">get_constraint</a></code> </p>
-          </td>
-          <td><p>Get constraint scores for one or more graph nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_closeness_vitality.html">get_closeness_vitality</a></code> </p>
-          </td>
-          <td><p>Get closeness vitality</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_bridging.html">get_bridging</a></code> </p>
-          </td>
-          <td><p>Get bridging scores</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_dice_similarity.html">get_dice_similarity</a></code> </p>
-          </td>
-          <td><p>Get Dice similarity coefficient scores</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_jaccard_similarity.html">get_jaccard_similarity</a></code> </p>
-          </td>
-          <td><p>Get Jaccard similarity coefficient scores</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_w_connected_cmpts.html">get_w_connected_cmpts</a></code> </p>
-          </td>
-          <td><p>Get all nodes associated with connected components</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_s_connected_cmpts.html">get_s_connected_cmpts</a></code> </p>
-          </td>
-          <td><p>Get nodes within strongly connected components</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_cmty_edge_btwns.html">get_cmty_edge_btwns</a></code> </p>
-          </td>
-          <td><p>Get community membership by edge betweenness</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_cmty_walktrap.html">get_cmty_walktrap</a></code> </p>
-          </td>
-          <td><p>Get community membership using the Walktrap method</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_cmty_louvain.html">get_cmty_louvain</a></code> </p>
-          </td>
-          <td><p>Get community membership by Louvain optimization</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_cmty_l_eigenvec.html">get_cmty_l_eigenvec</a></code> </p>
-          </td>
-          <td><p>Get community membership by leading eigenvector</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_cmty_fast_greedy.html">get_cmty_fast_greedy</a></code> </p>
-          </td>
-          <td><p>Get community membership by modularity optimization</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_node_present.html">is_node_present</a></code> </p>
-          </td>
-          <td><p>Determine whether a specified node is present</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_edge_present.html">is_edge_present</a></code> </p>
-          </td>
-          <td><p>Determine whether a specified edge is present</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_edge_loop.html">is_edge_loop</a></code> </p>
-          </td>
-          <td><p>Is the edge a loop edge?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_edge_multiple.html">is_edge_multiple</a></code> </p>
-          </td>
-          <td><p>Is the edge a multiple edge?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_edge_mutual.html">is_edge_mutual</a></code> </p>
-          </td>
-          <td><p>Is the edge mutual with another edge?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_graph_empty.html">is_graph_empty</a></code> </p>
-          </td>
-          <td><p>Is the graph empty?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_graph_directed.html">is_graph_directed</a></code> </p>
-          </td>
-          <td><p>Is the graph a directed graph?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_graph_undirected.html">is_graph_undirected</a></code> </p>
-          </td>
-          <td><p>Is the graph an undirected graph?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_graph_simple.html">is_graph_simple</a></code> </p>
-          </td>
-          <td><p>Is the graph a simple graph?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_graph_weighted.html">is_graph_weighted</a></code> </p>
-          </td>
-          <td><p>Is the graph a weighted graph?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_graph_connected.html">is_graph_connected</a></code> </p>
-          </td>
-          <td><p>Is the graph a connected graph?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_graph_dag.html">is_graph_dag</a></code> </p>
-          </td>
-          <td><p>Is the graph a directed acyclic graph?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="is_property_graph.html">is_property_graph</a></code> </p>
-          </td>
-          <td><p>Is the graph a property graph?</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-value-caching" class="hasAnchor"><a href="#section-value-caching" class="anchor"></a>Value Caching</h2>
-            <p class="section-desc"><p>Think of caching as a way to temporarily store a vector of values within the graph. Why do this? Well, one could extract node or edge data as vector, cache that in the graph, and then later use it as input in another function, all in the same functional pipeline.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_cache.html">set_cache</a></code> </p>
-          </td>
-          <td><p>Cache a vector in the graph</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_cache.html">get_cache</a></code> </p>
-          </td>
-          <td><p>Get a cached vector from a graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_cache.html">delete_cache</a></code> </p>
-          </td>
-          <td><p>Delete vectors cached in a graph object</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-traversal" class="hasAnchor"><a href="#section-graph-traversal" class="anchor"></a>Graph Traversal</h2>
-            <p class="section-desc"><p>Traversing the graph is useful if you have a defined graph model and you’d like to explore the connections and relationships between nodes and edges. Traversals effectively modify a selection of nodes or edges. With the modified selection, we can extract related attributes and work with them.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_out.html">trav_out</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected nodes onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_asymmetric_node_pairs.html">count_asymmetric_node_pairs()</a></code> </p>
+        </td>
+        <td><p>Get the number of asymmetrically-connected node pairs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_automorphisms.html">count_automorphisms()</a></code> </p>
+        </td>
+        <td><p>Get the number of automorphisms</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_unconnected_nodes.html">count_unconnected_nodes()</a></code> </p>
+        </td>
+        <td><p>Get count of all unconnected nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_unconnected_node_pairs.html">count_unconnected_node_pairs()</a></code> </p>
+        </td>
+        <td><p>Get the number of unconnected node pairs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_w_connected_cmpts.html">count_w_connected_cmpts()</a></code> </p>
+        </td>
+        <td><p>Get the number of weakly-connected components</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_s_connected_cmpts.html">count_s_connected_cmpts()</a></code> </p>
+        </td>
+        <td><p>Get the number of strongly-connected components</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_multiedge_count.html">get_multiedge_count()</a></code> </p>
+        </td>
+        <td><p>Get the count of multiple edges</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_edge_count_w_multiedge.html">get_edge_count_w_multiedge()</a></code> </p>
+        </td>
+        <td><p>Get count of edge definitions where multiple edges occur</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_agg_degree_in.html">get_agg_degree_in()</a></code> </p>
+        </td>
+        <td><p>Get an aggregate value from the indegree of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_agg_degree_out.html">get_agg_degree_out()</a></code> </p>
+        </td>
+        <td><p>Get an aggregate value from the outdegree of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_agg_degree_total.html">get_agg_degree_total()</a></code> </p>
+        </td>
+        <td><p>Get an aggregate value from the total degree of nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_mean_distance.html">get_mean_distance()</a></code> </p>
+        </td>
+        <td><p>Get the mean distance</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_min_eccentricity.html">get_min_eccentricity()</a></code> </p>
+        </td>
+        <td><p>Get the minimum graph eccentricity</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_max_eccentricity.html">get_max_eccentricity()</a></code> </p>
+        </td>
+        <td><p>Get the maximum graph eccentricity</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_reciprocity.html">get_reciprocity()</a></code> </p>
+        </td>
+        <td><p>Get the graph reciprocity</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_girth.html">get_girth()</a></code> </p>
+        </td>
+        <td><p>Get graph girth</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_adhesion.html">get_adhesion()</a></code> </p>
+        </td>
+        <td><p>Get graph adhesion</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_min_cut_between.html">get_min_cut_between()</a></code> </p>
+        </td>
+        <td><p>Get the minimum cut between source and sink nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_degree_in.html">get_degree_in()</a></code> </p>
+        </td>
+        <td><p>Get indegree values for all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_degree_out.html">get_degree_out()</a></code> </p>
+        </td>
+        <td><p>Get outdegree values for all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_degree_total.html">get_degree_total()</a></code> </p>
+        </td>
+        <td><p>Get total degree values for all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_betweenness.html">get_betweenness()</a></code> </p>
+        </td>
+        <td><p>Get betweenness centrality scores</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_closeness.html">get_closeness()</a></code> </p>
+        </td>
+        <td><p>Get closeness centrality values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_pagerank.html">get_pagerank()</a></code> </p>
+        </td>
+        <td><p>Get the PageRank values for all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_alpha_centrality.html">get_alpha_centrality()</a></code> </p>
+        </td>
+        <td><p>Get the alpha centrality for all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_eigen_centrality.html">get_eigen_centrality()</a></code> </p>
+        </td>
+        <td><p>Get the eigen centrality for all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_authority_centrality.html">get_authority_centrality()</a></code> </p>
+        </td>
+        <td><p>Get the authority scores for all nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_leverage_centrality.html">get_leverage_centrality()</a></code> </p>
+        </td>
+        <td><p>Get leverage centrality</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_radiality.html">get_radiality()</a></code> </p>
+        </td>
+        <td><p>Get radiality centrality scores</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_eccentricity.html">get_eccentricity()</a></code> </p>
+        </td>
+        <td><p>Get node eccentricities</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_coreness.html">get_coreness()</a></code> </p>
+        </td>
+        <td><p>Get coreness values for graph nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_constraint.html">get_constraint()</a></code> </p>
+        </td>
+        <td><p>Get constraint scores for one or more graph nodes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_closeness_vitality.html">get_closeness_vitality()</a></code> </p>
+        </td>
+        <td><p>Get closeness vitality</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_bridging.html">get_bridging()</a></code> </p>
+        </td>
+        <td><p>Get bridging scores</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_dice_similarity.html">get_dice_similarity()</a></code> </p>
+        </td>
+        <td><p>Get Dice similarity coefficient scores</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_jaccard_similarity.html">get_jaccard_similarity()</a></code> </p>
+        </td>
+        <td><p>Get Jaccard similarity coefficient scores</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_w_connected_cmpts.html">get_w_connected_cmpts()</a></code> </p>
+        </td>
+        <td><p>Get all nodes associated with connected components</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_s_connected_cmpts.html">get_s_connected_cmpts()</a></code> </p>
+        </td>
+        <td><p>Get nodes within strongly connected components</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_cmty_edge_btwns.html">get_cmty_edge_btwns()</a></code> </p>
+        </td>
+        <td><p>Get community membership by edge betweenness</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_cmty_walktrap.html">get_cmty_walktrap()</a></code> </p>
+        </td>
+        <td><p>Get community membership using the Walktrap method</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_cmty_louvain.html">get_cmty_louvain()</a></code> </p>
+        </td>
+        <td><p>Get community membership by Louvain optimization</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_cmty_l_eigenvec.html">get_cmty_l_eigenvec()</a></code> </p>
+        </td>
+        <td><p>Get community membership by leading eigenvector</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_cmty_fast_greedy.html">get_cmty_fast_greedy()</a></code> </p>
+        </td>
+        <td><p>Get community membership by modularity optimization</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_node_present.html">is_node_present()</a></code> </p>
+        </td>
+        <td><p>Determine whether a specified node is present</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_edge_present.html">is_edge_present()</a></code> </p>
+        </td>
+        <td><p>Determine whether a specified edge is present</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_edge_loop.html">is_edge_loop()</a></code> </p>
+        </td>
+        <td><p>Is the edge a loop edge?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_edge_multiple.html">is_edge_multiple()</a></code> </p>
+        </td>
+        <td><p>Is the edge a multiple edge?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_edge_mutual.html">is_edge_mutual()</a></code> </p>
+        </td>
+        <td><p>Is the edge mutual with another edge?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_graph_empty.html">is_graph_empty()</a></code> </p>
+        </td>
+        <td><p>Is the graph empty?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_graph_directed.html">is_graph_directed()</a></code> </p>
+        </td>
+        <td><p>Is the graph a directed graph?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_graph_undirected.html">is_graph_undirected()</a></code> </p>
+        </td>
+        <td><p>Is the graph an undirected graph?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_graph_simple.html">is_graph_simple()</a></code> </p>
+        </td>
+        <td><p>Is the graph a simple graph?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_graph_weighted.html">is_graph_weighted()</a></code> </p>
+        </td>
+        <td><p>Is the graph a weighted graph?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_graph_connected.html">is_graph_connected()</a></code> </p>
+        </td>
+        <td><p>Is the graph a connected graph?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_graph_dag.html">is_graph_dag()</a></code> </p>
+        </td>
+        <td><p>Is the graph a directed acyclic graph?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="is_property_graph.html">is_property_graph()</a></code> </p>
+        </td>
+        <td><p>Is the graph a property graph?</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-value-caching" class="hasAnchor"><a href="#section-value-caching" class="anchor"></a>Value Caching</h2>
+          <p class="section-desc"><p>Think of caching as a way to temporarily store a vector of values within the graph. Why do this? Well, one could extract node or edge data as vector, cache that in the graph, and then later use it as input in another function, all in the same functional pipeline.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="set_cache.html">set_cache()</a></code> </p>
+        </td>
+        <td><p>Cache a vector in the graph</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_cache.html">get_cache()</a></code> </p>
+        </td>
+        <td><p>Get a cached vector from a graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_cache.html">delete_cache()</a></code> </p>
+        </td>
+        <td><p>Delete vectors cached in a graph object</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-traversal" class="hasAnchor"><a href="#section-graph-traversal" class="anchor"></a>Graph Traversal</h2>
+          <p class="section-desc"><p>Traversing the graph is useful if you have a defined graph model and you’d like to explore the connections and relationships between nodes and edges. Traversals effectively modify a selection of nodes or edges. With the modified selection, we can extract related attributes and work with them.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="trav_out.html">trav_out()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected nodes onto
 adjacent, outward nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_in.html">trav_in</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected nodes onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_in.html">trav_in()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected nodes onto
 adjacent, inward nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_both.html">trav_both</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected nodes onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_both.html">trav_both()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected nodes onto
 neighboring nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_out_edge.html">trav_out_edge</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected nodes onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_out_edge.html">trav_out_edge()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected nodes onto
 adjacent, outward edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_in_edge.html">trav_in_edge</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected nodes onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_in_edge.html">trav_in_edge()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected nodes onto
 adjacent, inward edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_both_edge.html">trav_both_edge</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected nodes onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_both_edge.html">trav_both_edge()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected nodes onto
 adjacent edges</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_out_node.html">trav_out_node</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected edges onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_out_node.html">trav_out_node()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected edges onto
 adjacent, outward nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_in_node.html">trav_in_node</a></code> </p>
-          </td>
-          <td><p>Traverse from one or more selected edges onto
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_in_node.html">trav_in_node()</a></code> </p>
+        </td>
+        <td><p>Traverse from one or more selected edges onto
 adjacent, inward nodes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_out_until.html">trav_out_until</a></code> </p>
-          </td>
-          <td><p>Traverse outward node-by_node until stopping conditions are met</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_in_until.html">trav_in_until</a></code> </p>
-          </td>
-          <td><p>Traverse inward node-by_node until stopping conditions are met</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trav_reverse_edge.html">trav_reverse_edge</a></code> </p>
-          </td>
-          <td><p>Traverse to any reverse edges</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-series" class="hasAnchor"><a href="#section-graph-series" class="anchor"></a>Graph Series</h2>
-            <p class="section-desc"><p>A series of graphs can be occasionally useful. It’s a convenient container for a set of closely related graphs (for example, a network that changes with time).</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="create_graph_series.html">create_graph_series</a></code> </p>
-          </td>
-          <td><p>Create a graph series object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_graph_to_graph_series.html">add_graph_to_graph_series</a></code> </p>
-          </td>
-          <td><p>Add graph object to a graph series object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="remove_graph_from_graph_series.html">remove_graph_from_graph_series</a></code> </p>
-          </td>
-          <td><p>Remove a graph from a graph series</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="filter_graph_series.html">filter_graph_series</a></code> </p>
-          </td>
-          <td><p>Subset a graph series object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="count_graphs_in_graph_series.html">count_graphs_in_graph_series</a></code> </p>
-          </td>
-          <td><p>Count graphs in a graph series object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_graph_from_graph_series.html">get_graph_from_graph_series</a></code> </p>
-          </td>
-          <td><p>Get a graph available in a series</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_graph_series_info.html">get_graph_series_info</a></code> </p>
-          </td>
-          <td><p>Get information on a graph series</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="render_graph_from_graph_series.html">render_graph_from_graph_series</a></code> </p>
-          </td>
-          <td><p>Render a graph available in a series</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-metadata" class="hasAnchor"><a href="#section-graph-metadata" class="anchor"></a>Graph Metadata</h2>
-            <p class="section-desc"><p>Graph metadata consist of the attributes that don’t necessarily belong to the individual nodes or edges, but, may affect their appearance when the graph is rendered. These metadata can also apply directly to the graph object itself.</p></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_global_graph_attrs.html">add_global_graph_attrs</a></code> </p>
-          </td>
-          <td><p>Add one or more global graph attributes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_global_graph_attrs.html">delete_global_graph_attrs</a></code> </p>
-          </td>
-          <td><p>Delete one of the global graph attributes stored
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_out_until.html">trav_out_until()</a></code> </p>
+        </td>
+        <td><p>Traverse outward node-by_node until stopping conditions are met</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_in_until.html">trav_in_until()</a></code> </p>
+        </td>
+        <td><p>Traverse inward node-by_node until stopping conditions are met</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trav_reverse_edge.html">trav_reverse_edge()</a></code> </p>
+        </td>
+        <td><p>Traverse to any reverse edges</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-series" class="hasAnchor"><a href="#section-graph-series" class="anchor"></a>Graph Series</h2>
+          <p class="section-desc"><p>A series of graphs can be occasionally useful. It’s a convenient container for a set of closely related graphs (for example, a network that changes with time).</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="create_graph_series.html">create_graph_series()</a></code> </p>
+        </td>
+        <td><p>Create a graph series object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="add_graph_to_graph_series.html">add_graph_to_graph_series()</a></code> </p>
+        </td>
+        <td><p>Add graph object to a graph series object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="remove_graph_from_graph_series.html">remove_graph_from_graph_series()</a></code> </p>
+        </td>
+        <td><p>Remove a graph from a graph series</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="filter_graph_series.html">filter_graph_series()</a></code> </p>
+        </td>
+        <td><p>Subset a graph series object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="count_graphs_in_graph_series.html">count_graphs_in_graph_series()</a></code> </p>
+        </td>
+        <td><p>Count graphs in a graph series object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_graph_from_graph_series.html">get_graph_from_graph_series()</a></code> </p>
+        </td>
+        <td><p>Get a graph available in a series</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_graph_series_info.html">get_graph_series_info()</a></code> </p>
+        </td>
+        <td><p>Get information on a graph series</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="render_graph_from_graph_series.html">render_graph_from_graph_series()</a></code> </p>
+        </td>
+        <td><p>Render a graph available in a series</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-metadata" class="hasAnchor"><a href="#section-graph-metadata" class="anchor"></a>Graph Metadata</h2>
+          <p class="section-desc"><p>Graph metadata consist of the attributes that don’t necessarily belong to the individual nodes or edges, but, may affect their appearance when the graph is rendered. These metadata can also apply directly to the graph object itself.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="add_global_graph_attrs.html">add_global_graph_attrs()</a></code> </p>
+        </td>
+        <td><p>Add one or more global graph attributes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_global_graph_attrs.html">delete_global_graph_attrs()</a></code> </p>
+        </td>
+        <td><p>Delete one of the global graph attributes stored
 within a graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_global_graph_attr_info.html">get_global_graph_attr_info</a></code> </p>
-          </td>
-          <td><p>Get global graph attributes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_graph_name.html">set_graph_name</a></code> </p>
-          </td>
-          <td><p>Set graph name</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_graph_time.html">set_graph_time</a></code> </p>
-          </td>
-          <td><p>Set graph date-time and timezone</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_node_attr_to_display.html">set_node_attr_to_display</a></code> </p>
-          </td>
-          <td><p>Set the node attribute values to be rendered</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_edge_attr_to_display.html">set_edge_attr_to_display</a></code> </p>
-          </td>
-          <td><p>Set the edge attribute values to be rendered</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_graph_name.html">get_graph_name</a></code> </p>
-          </td>
-          <td><p>Get graph name</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_graph_time.html">get_graph_time</a></code> </p>
-          </td>
-          <td><p>Get the graph date-time or timezone</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_graph_log.html">get_graph_log</a></code> </p>
-          </td>
-          <td><p>Get the graph log information</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graph-actions" class="hasAnchor"><a href="#section-graph-actions" class="anchor"></a>Graph Actions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="add_graph_action.html">add_graph_action</a></code> </p>
-          </td>
-          <td><p>Add a graph action for execution at every transform</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="delete_graph_actions.html">delete_graph_actions</a></code> </p>
-          </td>
-          <td><p>Delete one or more graph actions stored
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_global_graph_attr_info.html">get_global_graph_attr_info()</a></code> </p>
+        </td>
+        <td><p>Get global graph attributes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_graph_name.html">set_graph_name()</a></code> </p>
+        </td>
+        <td><p>Set graph name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_graph_time.html">set_graph_time()</a></code> </p>
+        </td>
+        <td><p>Set graph date-time and timezone</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_node_attr_to_display.html">set_node_attr_to_display()</a></code> </p>
+        </td>
+        <td><p>Set the node attribute values to be rendered</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_edge_attr_to_display.html">set_edge_attr_to_display()</a></code> </p>
+        </td>
+        <td><p>Set the edge attribute values to be rendered</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_graph_name.html">get_graph_name()</a></code> </p>
+        </td>
+        <td><p>Get graph name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_graph_time.html">get_graph_time()</a></code> </p>
+        </td>
+        <td><p>Get the graph date-time or timezone</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_graph_log.html">get_graph_log()</a></code> </p>
+        </td>
+        <td><p>Get the graph log information</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graph-actions" class="hasAnchor"><a href="#section-graph-actions" class="anchor"></a>Graph Actions</h2>
+          <p class="section-desc"><p>Take action! Think of graph actions as little subroutines that execute at every meaningful change of the graph.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="add_graph_action.html">add_graph_action()</a></code> </p>
+        </td>
+        <td><p>Add a graph action for execution at every transform</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="delete_graph_actions.html">delete_graph_actions()</a></code> </p>
+        </td>
+        <td><p>Delete one or more graph actions stored
 within a graph object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_graph_actions.html">get_graph_actions</a></code> </p>
-          </td>
-          <td><p>Get information on any available graph actions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="reorder_graph_actions.html">reorder_graph_actions</a></code> </p>
-          </td>
-          <td><p>Trigger the execution of a series of graph actions</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="trigger_graph_actions.html">trigger_graph_actions</a></code> </p>
-          </td>
-          <td><p>Trigger the execution of a series of graph actions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-graphviz" class="hasAnchor"><a href="#section-graphviz" class="anchor"></a>Graphviz</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="grViz.html">grViz</a></code> </p>
-          </td>
-          <td><p>R + viz.js</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="generate_dot.html">generate_dot</a></code> </p>
-          </td>
-          <td><p>Generate DOT code using a graph object</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-mermaid" class="hasAnchor"><a href="#section-mermaid" class="anchor"></a>mermaid</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="mermaid.html">mermaid</a></code> </p>
-          </td>
-          <td><p>R + mermaid.js</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_graph_actions.html">get_graph_actions()</a></code> </p>
+        </td>
+        <td><p>Get information on any available graph actions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reorder_graph_actions.html">reorder_graph_actions()</a></code> </p>
+        </td>
+        <td><p>Trigger the execution of a series of graph actions</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="trigger_graph_actions.html">trigger_graph_actions()</a></code> </p>
+        </td>
+        <td><p>Trigger the execution of a series of graph actions</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-graphviz" class="hasAnchor"><a href="#section-graphviz" class="anchor"></a>Graphviz</h2>
+          <p class="section-desc"><p>Graphviz is a cornerstone technology for rendering graphs in DiagrammeR. These functions generate Graphviz code and render graphs with that code.</p></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="generate_dot.html">generate_dot()</a></code> </p>
+        </td>
+        <td><p>Generate DOT code using a graph object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="grViz.html">grViz()</a></code> </p>
+        </td>
+        <td><p>R + viz.js</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-mermaid" class="hasAnchor"><a href="#section-mermaid" class="anchor"></a>mermaid</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="mermaid.html">mermaid()</a></code> </p>
+        </td>
+        <td><p>R + mermaid.js</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -1662,7 +1690,7 @@ within a graph object</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -1672,5 +1700,8 @@ within a graph object</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

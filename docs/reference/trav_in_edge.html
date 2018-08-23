@@ -19,13 +19,31 @@ adjacent, inward edges — trav_in_edge • DiagrammeR</title>
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Traverse from one or more selected nodes onto
+adjacent, inward edges — trav_in_edge" />
+
+<meta property="og:description" content="From a graph object of class
+dgr_graph move to incoming edges from a
+selection of one or more selected nodes, thereby
+creating a selection of edges. An optional filter
+by edge attribute can limit the set of edges
+traversed to." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +66,12 @@ adjacent, inward edges — trav_in_edge • DiagrammeR</title>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,8 +83,26 @@ adjacent, inward edges — trav_in_edge • DiagrammeR</title>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -74,6 +114,7 @@ adjacent, inward edges — trav_in_edge • DiagrammeR</title>
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -81,13 +122,16 @@ adjacent, inward edges — trav_in_edge • DiagrammeR</title>
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Traverse from one or more selected nodes onto
 adjacent, inward edges</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/trav_in_edge.R'><code>R/trav_in_edge.R</code></a></small>
+    <div class="hidden name"><code>trav_in_edge.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>From a graph object of class
 <code>dgr_graph</code> move to incoming edges from a
@@ -96,11 +140,12 @@ creating a selection of edges. An optional filter
 by edge attribute can limit the set of edges
 traversed to.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>trav_in_edge</span>(<span class='no'>graph</span>, <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>copy_attrs_from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>copy_attrs_as</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -189,7 +234,7 @@ with the chosen name.</p></td>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>() <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Traverse from node `2` to any</span>
 <span class='co'># inbound edges, filtering to</span>
 <span class='co'># those edges that have NA values</span>
@@ -198,7 +243,7 @@ with the chosen name.</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='fu'>is.na</span>(<span class='no'>rel</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Traverse from node `2` to any</span>
 <span class='co'># inbound edges, filtering to those</span>
 <span class='co'># edges that do not have NA values</span>
@@ -210,7 +255,7 @@ with the chosen name.</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> !<span class='fu'>is.na</span>(<span class='no'>rel</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 1 node</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Traverse from node `5` to any</span>
 <span class='co'># inbound edges, filtering to those</span>
 <span class='co'># edges that have numeric values</span>
@@ -220,7 +265,7 @@ with the chosen name.</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>5.5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 4</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 4</div><div class='input'>
 <span class='co'># Traverse from node `5` to any</span>
 <span class='co'># inbound edges, filtering to those</span>
 <span class='co'># edges that have values equal to</span>
@@ -229,7 +274,7 @@ with the chosen name.</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>rel</span> <span class='kw'>==</span> <span class='st'>"D"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 5</div><div class='input'>
 <span class='co'># Traverse from node `5` to any</span>
 <span class='co'># inbound edges, filtering to those</span>
 <span class='co'># edges that have values in the set</span>
@@ -239,7 +284,7 @@ with the chosen name.</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='no'>rel</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"C"</span>, <span class='st'>"D"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 4 5</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 4 5</div><div class='input'>
 <span class='co'># Traverse from node `5` to any</span>
 <span class='co'># inbound edges, and use multiple</span>
 <span class='co'># conditions for the traversal</span>
@@ -249,7 +294,7 @@ with the chosen name.</p></td>
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='no'>rel</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"C"</span>, <span class='st'>"D"</span>) <span class='kw'>&amp;</span>
       <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>5.5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 4</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 4</div><div class='input'>
 <span class='co'># Traverse from node `5` to any</span>
 <span class='co'># inbound edges, and use multiple</span>
 <span class='co'># conditions with a single-length</span>
@@ -260,7 +305,7 @@ with the chosen name.</p></td>
     <span class='kw'>conditions</span> <span class='kw'>=</span>
       <span class='no'>rel</span> <span class='kw'>%in%</span> <span class='fu'>c</span>(<span class='st'>"D"</span>, <span class='st'>"E"</span>) <span class='kw'>|</span>
       <span class='no'>values</span> <span class='kw'>&gt;</span> <span class='fl'>5.5</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 4 5</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 4 5</div><div class='input'>
 <span class='co'># Traverse from node `5` to any</span>
 <span class='co'># inbound edges, and use a regular</span>
 <span class='co'># expression as a filtering condition</span>
@@ -268,7 +313,7 @@ with the chosen name.</p></td>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>(
     <span class='kw'>conditions</span> <span class='kw'>=</span> <span class='fu'>grepl</span>(<span class='st'>"C|D"</span>, <span class='no'>rel</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 4 5</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 1 node</span></div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 4 5</div><div class='input'>
 <span class='co'># Show the graph's internal ndf</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
@@ -294,8 +339,7 @@ with the chosen name.</p></td>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes.html'>select_nodes</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'>trav_in_edge</span>(
-    <span class='kw'>copy_attrs_from</span> <span class='kw'>=</span> <span class='no'>label</span>)
-
+    <span class='kw'>copy_attrs_from</span> <span class='kw'>=</span> <span class='no'>label</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes()` INFO: created a new selection of 5 nodes</span></div><div class='input'>
 <span class='co'># Show the graph's internal edge</span>
 <span class='co'># data frame after this change</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
@@ -321,7 +365,7 @@ with the chosen name.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -331,5 +375,8 @@ with the chosen name.</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

@@ -18,13 +18,36 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Traverse to any reverse edges — trav_reverse_edge" />
+
+<meta property="og:description" content="From an active selection
+of edges in a graph object of class
+dgr_graph, traverse to any
+available reverse edges between the
+nodes common to the selected edges.
+For instance, if an active selection
+has the edge 1-&amp;gt;2 but there is
+also an (not selected) edge 2-&amp;gt;1,
+then this function can either switch
+to the selection of 2-&amp;gt;1, or,
+incorporate both those edges into the
+active selection of edges." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +70,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">DiagrammeR</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">DiagrammeR</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -60,8 +87,26 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/graphviz-mermaid.html">Graphviz and mermaid in DiagrammeR</a>
+    </li>
+    <li>
+      <a href="../articles/node-edge-data-frames.html">Node and Edge Data Frames</a>
+    </li>
+    <li>
+      <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
+    </li>
+  </ul>
+</li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +118,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,12 +126,15 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Traverse to any reverse edges</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/trav_reverse_edge.R'><code>R/trav_reverse_edge.R</code></a></small>
+    <div class="hidden name"><code>trav_reverse_edge.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>From an active selection
 of edges in a graph object of class
@@ -100,10 +149,11 @@ to the selection of <code>2-&gt;1</code>, or,
 incorporate both those edges into the
 active selection of edges.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>trav_reverse_edge</span>(<span class='no'>graph</span>, <span class='kw'>add_to_selection</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -158,11 +208,12 @@ the default case).</p></td>
       <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>4</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_edges.html'>select_edges</a></span>(
     <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-      <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-
+      <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 1 edge</span></div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: modified an existing selection of 1 edge:</span>
+#&gt; <span class='message'>* 2 edges are now in the active selection</span>
+#&gt; <span class='message'>* used the `union` set operation</span></div><div class='input'>
 <span class='co'># Get the inital edge selection</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
 <span class='co'># Traverse to the reverse edges</span>
 <span class='co'># (edges `2`: `4`-&gt;`1` and</span>
 <span class='co'># `4`:`3`-&gt;`2`)</span>
@@ -172,7 +223,7 @@ the default case).</p></td>
 
 <span class='co'># Get the current selection of edges</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; [1] 2 4</div></pre>
+  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 2 4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -189,7 +240,7 @@ the default case).</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rich Iannone.</p>
+  <p>Developed by Richard Iannone.</p>
 </div>
 
 <div class="pkgdown">
@@ -199,5 +250,8 @@ the default case).</p></td>
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
