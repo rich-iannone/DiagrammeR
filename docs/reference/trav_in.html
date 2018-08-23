@@ -295,7 +295,7 @@ to nodes (<code>FALSE</code>, the default case).</p></td>
   {
   <span class='no'>node_degrees</span> <span class='kw'>&lt;-</span>
     <span class='fu'><a href='get_node_info.html'>get_node_info</a></span>(<span class='no'>.</span>) <span class='kw'>%&gt;%</span>
-    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>id</span>, <span class='no'>deg</span>)
+    <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/dplyr/topics/select'>select</a></span>(<span class='no'>id</span>, <span class='no'>deg</span>)
   <span class='fu'><a href='join_node_attrs.html'>join_node_attrs</a></span>(<span class='no'>.</span>, <span class='no'>node_degrees</span>)
   } <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_nodes_by_id.html'>select_nodes_by_id</a></span>(<span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>5</span>) <span class='kw'>%&gt;%</span>

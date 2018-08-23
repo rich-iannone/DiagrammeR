@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add new edges with identical definitions as with a
-selection of edges — add_forward_edges_ws • DiagrammeR</title>
+<title>Add new edges with identical definitions as with a selection of edges — add_forward_edges_ws • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,28 +30,14 @@ selection of edges — add_forward_edges_ws • DiagrammeR</title>
 
 
 
-<meta property="og:title" content="Add new edges with identical definitions as with a
-selection of edges — add_forward_edges_ws" />
+<meta property="og:title" content="Add new edges with identical definitions as with a selection of edges — add_forward_edges_ws" />
 
-<meta property="og:description" content="Add edges in the same direction
-of one or more edges available as an edge selection
-in a graph object of class dgr_graph. New
-graph edges have the same edge definitions as those
-in the selection except with new edge ID values.
-There is also the option to assign a common
-rel grouping to the newly created edges.
-Upon addition of the edges, the edge selection will
-be retained for further selection or traversal
-operations.
-Selections of edges can be performed using
-the following select_... functions:
-select_edges(),
-select_last_edge(), or
-select_edges_by_node_id().
-Selections of edges can also be performed using
-the following traversal functions:
-trav_out_edge(), trav_in_edge(),
-or trav_both_edge()." />
+<meta property="og:description" content="Add edges in the same direction of one or more edges available as an edge
+  selection in a graph object of class dgr_graph. New graph edges have
+  the same edge definitions as those in the selection except with new edge ID
+  values. There is also the option to assign a common rel grouping to
+  the newly created edges. Upon addition of the edges, the edge selection
+  will be retained for further selection or traversal operations." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -138,33 +123,19 @@ or trav_both_edge()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add new edges with identical definitions as with a
-selection of edges</h1>
+    <h1>Add new edges with identical definitions as with a selection of edges</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/add_forward_edges_ws.R'><code>R/add_forward_edges_ws.R</code></a></small>
     <div class="hidden name"><code>add_forward_edges_ws.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add edges in the same direction
-of one or more edges available as an edge selection
-in a graph object of class <code>dgr_graph</code>. New
-graph edges have the same edge definitions as those
-in the selection except with new edge ID values.
-There is also the option to assign a common
-<code>rel</code> grouping to the newly created edges.
-Upon addition of the edges, the edge selection will
-be retained for further selection or traversal
-operations.</p>
-<p>Selections of edges can be performed using
-the following <code>select_...</code> functions:
-<code><a href='select_edges.html'>select_edges()</a></code>,
-<code>select_last_edge()</code>, or
-<code><a href='select_edges_by_node_id.html'>select_edges_by_node_id()</a></code>.
-Selections of edges can also be performed using
-the following traversal functions:
-<code><a href='trav_out_edge.html'>trav_out_edge()</a></code>, <code><a href='trav_in_edge.html'>trav_in_edge()</a></code>,
-or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
+    <p>Add edges in the same direction of one or more edges available as an edge
+  selection in a graph object of class <code>dgr_graph</code>. New graph edges have
+  the same edge definitions as those in the selection except with new edge ID
+  values. There is also the option to assign a common <code>rel</code> grouping to
+  the newly created edges. Upon addition of the edges, the edge selection
+  will be retained for further selection or traversal operations.</p>
     
     </div>
 
@@ -175,13 +146,12 @@ or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional string to apply a
-<code>rel</code> attribute to all newly created edges.</p></td>
+      <td><p>an optional string to apply a <code>rel</code> attribute to all newly
+created edges.</p></td>
     </tr>
     </table>
     
@@ -189,10 +159,21 @@ or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
 
     <p>a graph object of class <code>dgr_graph</code>.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Selections of edges can be performed using the following <code>select_...</code>
+  functions:
+  <code><a href='select_edges.html'>select_edges</a>()</code>, <code>select_last_edge()</code>, or
+  <code><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a>()</code>.
+Selections of edges can also be performed using the following traversal
+  functions:
+  <code><a href='trav_out_edge.html'>trav_out_edge</a>()</code>, <code><a href='trav_in_edge.html'>trav_in_edge</a>()</code>, or
+  <code><a href='trav_both_edge.html'>trav_both_edge</a>()</code>.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Create an empty graph, add 2 nodes to it,</span>
-<span class='co'># and create the edge `1-&gt;2`</span>
+    <pre class="examples"><div class='input'><span class='co'># Create an empty graph, add 2 nodes</span>
+<span class='co'># to it, and create the edge `1-&gt;2`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='add_n_nodes.html'>add_n_nodes</a></span>(
@@ -205,8 +186,9 @@ or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
 <span class='co'># Get the graph's edges</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='get_edge_ids.html'>get_edge_ids</a></span>()</div><div class='output co'>#&gt; [1] 1</div><div class='input'>
-<span class='co'># Select the edge and create 2 additional edges</span>
-<span class='co'># with the same definition (`1-&gt;2`) but with</span>
+<span class='co'># Select the edge and create 2</span>
+<span class='co'># additional edges with the same</span>
+<span class='co'># definition (`1-&gt;2`) but with</span>
 <span class='co'># different `rel` values (`b` and `c`)</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
   <span class='no'>graph</span> <span class='kw'>%&gt;%</span>
@@ -227,6 +209,8 @@ or <code><a href='trav_both_edge.html'>trav_both_edge()</a></code>.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

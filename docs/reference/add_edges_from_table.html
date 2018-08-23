@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add edges and attributes to graph
-from a table — add_edges_from_table • DiagrammeR</title>
+<title>Add edges and attributes to graph from a table — add_edges_from_table • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,13 +30,10 @@ from a table — add_edges_from_table • DiagrammeR</title>
 
 
 
-<meta property="og:title" content="Add edges and attributes to graph
-from a table — add_edges_from_table" />
+<meta property="og:title" content="Add edges and attributes to graph from a table — add_edges_from_table" />
 
-<meta property="og:description" content="Add edges and their
-attributes to an existing graph
-object from data in a CSV file or a
-data frame." />
+<meta property="og:description" content="Add edges and their attributes to an existing graph object from data in a
+CSV file or a data frame." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,18 +119,15 @@ data frame." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add edges and attributes to graph
-from a table</h1>
+    <h1>Add edges and attributes to graph from a table</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/add_edges_from_table.R'><code>R/add_edges_from_table.R</code></a></small>
     <div class="hidden name"><code>add_edges_from_table.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add edges and their
-attributes to an existing graph
-object from data in a CSV file or a
-data frame.</p>
+    <p>Add edges and their attributes to an existing graph object from data in a
+CSV file or a data frame.</p>
     
     </div>
 
@@ -146,71 +139,52 @@ data frame.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>table</th>
-      <td><p>either a path to a
-CSV file, or, a data frame object.</p></td>
+      <td><p>either a path to a CSV file, or, a data frame object.</p></td>
     </tr>
     <tr>
       <th>from_col</th>
-      <td><p>the name of the
-table column from which edges
-originate.</p></td>
+      <td><p>the name of the table column from which edges originate.</p></td>
     </tr>
     <tr>
       <th>to_col</th>
-      <td><p>the name of the table
-column to which edges terminate.</p></td>
+      <td><p>the name of the table column to which edges terminate.</p></td>
     </tr>
     <tr>
       <th>from_to_map</th>
-      <td><p>a single
-character value for the mapping of
-the <code>from</code> and <code>to</code> columns
-in the external table (supplied as
-<code>from_col</code> and <code>to_col</code>,
-respectively) to a column in the
+      <td><p>a single character value for the mapping of the
+<code>from</code> and <code>to</code> columns in the external table (supplied as
+<code>from_col</code> and <code>to_col</code>, respectively) to a column in the
 graph's internal node data frame (ndf).</p></td>
     </tr>
     <tr>
       <th>rel_col</th>
-      <td><p>an option to apply
-a column of data in the table as
-<code>rel</code> attribute values.</p></td>
+      <td><p>an option to apply a column of data in the table as <code>rel</code>
+attribute values.</p></td>
     </tr>
     <tr>
       <th>set_rel</th>
-      <td><p>an optional string
-to apply a <code>rel</code> attribute to
-all edges created from the table
-records.</p></td>
+      <td><p>an optional string to apply a <code>rel</code> attribute to all
+edges created from the table records.</p></td>
     </tr>
     <tr>
       <th>drop_cols</th>
-      <td><p>an optional
-column selection statement for
-dropping columns from the external
-table before inclusion as attributes
-in the graph's internal edge data
-frame. Several columns can be
-dropped by name using the syntax
-<code>col_1 &amp; col_2 &amp; ...</code>. Columns
-can also be dropped using a numeric
-column range with <code>:</code>
-(e.g., <code>5:8</code>), or, by using
-the <code>:</code> between column names
-to specify the range (e.g.,
+      <td><p>an optional column selection statement for dropping columns
+from the external table before inclusion as attributes in the graph's
+internal edge data frame. Several columns can be dropped by name using the
+syntax <code>col_1 &amp; col_2 &amp; ...</code>. Columns can also be dropped using a
+numeric column range with <code>:</code> (e.g., <code>5:8</code>), or, by using the
+<code>:</code> between column names to specify the range (e.g.,
 <code>col_5_name:col_8_name</code>).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
