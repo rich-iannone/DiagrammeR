@@ -9,76 +9,51 @@ add_balanced_tree(graph, k, h, type = NULL, label = TRUE, rel = NULL,
   edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{k}{the branching factor for
-the tree.}
+\item{k}{the branching factor for the tree.}
 
 \item{h}{the height of the tree.}
 
-\item{type}{an optional string that
-describes the entity type for the
+\item{type}{an optional string that describes the entity type for the
 nodes to be added.}
 
-\item{label}{either a vector object
-of length \code{n} that provides
-optional labels for the new nodes, or,
-a boolean value where setting to
-\code{TRUE} ascribes node IDs to the
-label and \code{FALSE} yields a blank
-label.}
+\item{label}{either a vector object of length \code{n} that provides optional
+labels for the new nodes, or, a boolean value where setting to \code{TRUE}
+ascribes node IDs to the label and \code{FALSE} yields a blank label.}
 
-\item{rel}{an optional string for
-providing a relationship label to all
-new edges created in the node tree.}
+\item{rel}{an optional string for providing a relationship label to all new
+edges created in the node tree.}
 
-\item{node_aes}{an optional list
-of named vectors comprising node
-aesthetic attributes. The helper
-function \code{node_aes()} is
-strongly recommended for use here
-as it contains arguments for each
-of the accepted node aesthetic
-attributes (e.g., \code{shape},
-\code{style}, \code{color},
+\item{node_aes}{an optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link{node_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
 \code{fillcolor}).}
 
-\item{edge_aes}{an optional list
-of named vectors comprising edge
-aesthetic attributes. The helper
-function \code{edge_aes()} is
-strongly recommended for use here
-as it contains arguments for each
-of the accepted edge aesthetic
-attributes (e.g., \code{shape},
-\code{style}, \code{penwidth},
-\code{color}).}
+\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link{edge_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+edge aesthetic attributes (e.g., \code{shape}, \code{style},
+\code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list
-of named vectors comprising node
-data attributes. The helper
-function \code{node_data()} is
-strongly recommended for use here
-as it helps bind data specifically
-to the created nodes.}
+\item{node_data}{an optional list of named vectors comprising node data
+attributes. The helper function \code{\link{node_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
+nodes.}
 
-\item{edge_data}{an optional list
-of named vectors comprising edge
-data attributes. The helper function
-\code{edge_data()} is strongly
-recommended for use here as it helps
-bind data specifically to the
-created edges.}
+\item{edge_data}{an optional list of named vectors comprising edge data
+attributes. The helper function \code{\link{edge_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
+edges.}
 }
 \value{
 a graph object of class
 \code{dgr_graph}.
 }
 \description{
-With a graph object of class
-\code{dgr_graph}, add a balanced tree
-to the graph.
+With a graph object of class \code{dgr_graph}, add a balanced tree to the
+graph.
 }
 \examples{
 # Create a new graph and

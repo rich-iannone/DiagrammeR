@@ -8,8 +8,7 @@ render_graph(graph, layout = NULL, output = NULL, title = NULL,
   width = NULL, height = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{layout}{a string specifying a layout type to
 use for node placement in this rendering. Possible
@@ -31,8 +30,7 @@ the width of the resulting graphic in pixels.}
 the height of the resulting graphic in pixels.}
 }
 \description{
-Using a \code{dgr_graph} object,
-render the graph in the RStudio Viewer.
+Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
 }
 \examples{
 \dontrun{
