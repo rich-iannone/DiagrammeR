@@ -1,16 +1,11 @@
-#' Add edges from an edge data frame
-#' to an existing graph object
-#' @description With a graph object
-#' of class \code{dgr_graph}, add
-#' edges from an edge data frame to
-#' that graph.
-#' @param graph a graph object of
-#' class \code{dgr_graph}.
-#' @param edge_df an edge data frame
-#' that is created using
-#' \code{create_edge_df}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#' Add edges from an edge data frame to an existing graph object
+#'
+#' With a graph object of class \code{dgr_graph}, add edges from an edge data
+#'   frame to that graph.
+#' @inheritParams render_graph
+#' @param edge_df an edge data frame that is created using
+#'   \code{\link{create_edge_df}()}.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 4 nodes
 #' # and no edges
@@ -39,8 +34,7 @@
 #' graph %>%
 #'   get_edges(
 #'     return_type = "vector")
-#' @export add_edge_df
-
+#' @export
 add_edge_df <- function(graph,
                         edge_df) {
 
