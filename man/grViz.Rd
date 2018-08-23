@@ -4,8 +4,8 @@
 \alias{grViz}
 \title{R + viz.js}
 \usage{
-grViz(diagram = "", engine = "dot", allow_subst = TRUE, options = NULL,
-  width = NULL, height = NULL)
+grViz(diagram = "", engine = "dot", allow_subst = TRUE,
+  options = NULL, width = NULL, height = NULL)
 }
 \arguments{
 \item{diagram}{spec for a diagram as either text,

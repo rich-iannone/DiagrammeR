@@ -4,9 +4,9 @@
 \alias{colorize_edge_attrs}
 \title{Apply colors based on edge attribute values}
 \usage{
-colorize_edge_attrs(graph, edge_attr_from, edge_attr_to, cut_points = NULL,
-  palette = "Spectral", alpha = NULL, reverse_palette = FALSE,
-  default_color = "#D9D9D9")
+colorize_edge_attrs(graph, edge_attr_from, edge_attr_to,
+  cut_points = NULL, palette = "Spectral", alpha = NULL,
+  reverse_palette = FALSE, default_color = "#D9D9D9")
 }
 \arguments{
 \item{graph}{a graph object of class

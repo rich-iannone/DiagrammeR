@@ -5,12 +5,12 @@
 \title{Insert node aesthetic attributes during node creation}
 \usage{
 node_aes(shape = NULL, style = NULL, penwidth = NULL, color = NULL,
-  fillcolor = NULL, fontname = NULL, fontsize = NULL, fontcolor = NULL,
-  peripheries = NULL, height = NULL, width = NULL, x = NULL, y = NULL,
-  group = NULL, tooltip = NULL, xlabel = NULL, URL = NULL,
-  sides = NULL, orientation = NULL, skew = NULL, distortion = NULL,
-  gradientangle = NULL, fixedsize = NULL, labelloc = NULL,
-  margin = NULL)
+  fillcolor = NULL, fontname = NULL, fontsize = NULL,
+  fontcolor = NULL, peripheries = NULL, height = NULL,
+  width = NULL, x = NULL, y = NULL, group = NULL, tooltip = NULL,
+  xlabel = NULL, URL = NULL, sides = NULL, orientation = NULL,
+  skew = NULL, distortion = NULL, gradientangle = NULL,
+  fixedsize = NULL, labelloc = NULL, margin = NULL)
 }
 \arguments{
 \item{shape}{the shape to use for the node.

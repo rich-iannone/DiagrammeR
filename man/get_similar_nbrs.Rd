@@ -5,7 +5,8 @@
 \title{Get neighboring nodes based on node attribute
 similarity}
 \usage{
-get_similar_nbrs(graph, node, node_attr, tol_abs = NULL, tol_pct = NULL)
+get_similar_nbrs(graph, node, node_attr, tol_abs = NULL,
+  tol_pct = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class

@@ -5,7 +5,8 @@
 \title{Add new edges in the opposite directions of a
 selection of edges}
 \usage{
-add_reverse_edges_ws(graph, rel = NULL, edge_aes = NULL, edge_data = NULL)
+add_reverse_edges_ws(graph, rel = NULL, edge_aes = NULL,
+  edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class

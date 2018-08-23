@@ -4,9 +4,9 @@
 \alias{colorize_node_attrs}
 \title{Apply colors based on node attribute values}
 \usage{
-colorize_node_attrs(graph, node_attr_from, node_attr_to, cut_points = NULL,
-  palette = "Spectral", alpha = NULL, reverse_palette = FALSE,
-  default_color = "#D9D9D9")
+colorize_node_attrs(graph, node_attr_from, node_attr_to,
+  cut_points = NULL, palette = "Spectral", alpha = NULL,
+  reverse_palette = FALSE, default_color = "#D9D9D9")
 }
 \arguments{
 \item{graph}{a graph object of class

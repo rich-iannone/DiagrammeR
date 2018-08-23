@@ -4,8 +4,8 @@
 \alias{import_graph}
 \title{Import a graph from various graph formats}
 \usage{
-import_graph(graph_file, file_type = NULL, edges_extra_attr_names = NULL,
-  edges_extra_attr_coltypes = NULL)
+import_graph(graph_file, file_type = NULL,
+  edges_extra_attr_names = NULL, edges_extra_attr_coltypes = NULL)
 }
 \arguments{
 \item{graph_file}{a connection to a graph file.

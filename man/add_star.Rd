@@ -5,7 +5,8 @@
 \title{Add a star of nodes to the graph}
 \usage{
 add_star(graph, n, type = NULL, label = TRUE, rel = NULL,
-  node_aes = NULL, edge_aes = NULL, node_data = NULL, edge_data = NULL)
+  node_aes = NULL, edge_aes = NULL, node_data = NULL,
+  edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class

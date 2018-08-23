@@ -5,7 +5,8 @@
 \title{Add a node to an existing graph object}
 \usage{
 add_node(graph, type = NULL, label = NULL, from = NULL, to = NULL,
-  node_aes = NULL, edge_aes = NULL, node_data = NULL, edge_data = NULL)
+  node_aes = NULL, edge_aes = NULL, node_data = NULL,
+  edge_data = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class

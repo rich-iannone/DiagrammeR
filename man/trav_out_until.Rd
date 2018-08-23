@@ -4,8 +4,8 @@
 \alias{trav_out_until}
 \title{Traverse outward node-by_node until stopping conditions are met}
 \usage{
-trav_out_until(graph, conditions, max_steps = 30, exclude_unmatched = TRUE,
-  add_to_selection = FALSE)
+trav_out_until(graph, conditions, max_steps = 30,
+  exclude_unmatched = TRUE, add_to_selection = FALSE)
 }
 \arguments{
 \item{graph}{a graph object of class

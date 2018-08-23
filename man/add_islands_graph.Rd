@@ -6,7 +6,8 @@
 \usage{
 add_islands_graph(graph, n_islands, island_size, p, edges_between,
   type = NULL, label = TRUE, rel = NULL, node_aes = NULL,
-  edge_aes = NULL, node_data = NULL, edge_data = NULL, set_seed = NULL)
+  edge_aes = NULL, node_data = NULL, edge_data = NULL,
+  set_seed = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class

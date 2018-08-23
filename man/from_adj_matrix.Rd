@@ -4,8 +4,8 @@
 \alias{from_adj_matrix}
 \title{Create a graph using an adjacency matrix}
 \usage{
-from_adj_matrix(x, mode = "undirected", weighted = FALSE, use_diag = TRUE,
-  graph_name = NULL, write_backups = FALSE)
+from_adj_matrix(x, mode = "undirected", weighted = FALSE,
+  use_diag = TRUE, graph_name = NULL, write_backups = FALSE)
 }
 \arguments{
 \item{x}{a square \code{matrix} object serving as

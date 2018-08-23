@@ -4,14 +4,15 @@
 \alias{edge_aes}
 \title{Insert edge aesthetic attributes during edge creation}
 \usage{
-edge_aes(style = NULL, penwidth = NULL, color = NULL, arrowsize = NULL,
-  arrowhead = NULL, arrowtail = NULL, fontname = NULL, fontsize = NULL,
-  fontcolor = NULL, len = NULL, tooltip = NULL, URL = NULL,
-  label = NULL, labelfontname = NULL, labelfontsize = NULL,
-  labelfontcolor = NULL, labeltooltip = NULL, labelURL = NULL,
-  edgetooltip = NULL, edgeURL = NULL, dir = NULL, headtooltip = NULL,
-  headURL = NULL, headclip = NULL, headlabel = NULL, headport = NULL,
-  tailtooltip = NULL, tailURL = NULL, tailclip = NULL, taillabel = NULL,
+edge_aes(style = NULL, penwidth = NULL, color = NULL,
+  arrowsize = NULL, arrowhead = NULL, arrowtail = NULL,
+  fontname = NULL, fontsize = NULL, fontcolor = NULL, len = NULL,
+  tooltip = NULL, URL = NULL, label = NULL, labelfontname = NULL,
+  labelfontsize = NULL, labelfontcolor = NULL, labeltooltip = NULL,
+  labelURL = NULL, edgetooltip = NULL, edgeURL = NULL, dir = NULL,
+  headtooltip = NULL, headURL = NULL, headclip = NULL,
+  headlabel = NULL, headport = NULL, tailtooltip = NULL,
+  tailURL = NULL, tailclip = NULL, taillabel = NULL,
   tailport = NULL, decorate = NULL)
 }
 \arguments{

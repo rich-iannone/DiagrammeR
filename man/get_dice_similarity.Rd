@@ -4,7 +4,8 @@
 \alias{get_dice_similarity}
 \title{Get Dice similarity coefficient scores}
 \usage{
-get_dice_similarity(graph, nodes = NULL, direction = "all", round_to = 3)
+get_dice_similarity(graph, nodes = NULL, direction = "all",
+  round_to = 3)
 }
 \arguments{
 \item{graph}{a graph object of class
