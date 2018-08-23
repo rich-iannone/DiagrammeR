@@ -298,6 +298,10 @@ reference:
       - get_graph_time
       - get_graph_log
   - title: Graph Actions
+    desc: >
+      Take action! Think of graph actions as little
+      subroutines that execute at every meaningful
+      change of the graph.
     contents:
       - add_graph_action
       - delete_graph_actions
@@ -305,9 +309,14 @@ reference:
       - reorder_graph_actions
       - trigger_graph_actions
   - title: Graphviz
+    desc: >
+      Graphviz is a cornerstone technology for
+      rendering graphs in DiagrammeR. These
+      functions generate Graphviz code and
+      render graphs with that code.
     contents:
-      - grViz
       - generate_dot
+      - grViz
   - title: mermaid
     contents:
       - mermaid
