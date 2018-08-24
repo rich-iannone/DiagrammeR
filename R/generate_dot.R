@@ -452,6 +452,27 @@ generate_dot <- function(graph) {
                    }))
       }
 
+      else if ('cluster' %in% colnames(nodes_df)) {
+	clustered_node_block <- character(0)
+	clusters <- split(node_block, nodes_df$cluster)
+	for (i in seq_along(clusters)) {
+	  if (names(clusters)[[i]] == "") {
+	    # nodes not in clusters
+	    cluster_block <- clusters[[i]]
+	  } else {
+	    cluster_block <- paste0("subgraph cluster", i, "{\nlabel='",
+	                            names(clusters)[[i]], "'\n",
+	       			    paste0(clusters[[i]], collapse="\n"), "}\n")
+	  }
+	  clustered_node_block <- c(clustered_node_block, cluster_block)
+	}
+
+	node_block <- clustered_node_block
+
+	# cleanup variables
+	rm(clustered_node_block, clusters, cluster_block)
+      }
+
       # Construct the `node_block` character object
       node_block <- paste(node_block, collapse = "\n")
 
@@ -463,45 +484,6 @@ generate_dot <- function(graph) {
       # Remove the `attribute` object if it exists
       if (exists("attribute")) {
         rm(attribute)
-      }
-
-      if ('cluster' %in% colnames(nodes_df)) {
-
-        # Get column number for column with node
-        # attribute `cluster`
-        cluster_colnum <-
-          which(colnames(nodes_df) %in% "cluster")
-
-        # Get list of clusters defined for the nodes
-        cluster_ids <-
-          unique(nodes_df$cluster)[
-            which(
-              unique(nodes_df$cluster) != "")]
-
-        for (i in seq_along(cluster_ids)) {
-
-          regex <-
-            paste0("'",
-                   paste(nodes_df[which(nodes_df[, cluster_colnum] == i ), 1],
-                         collapse = "'.*?\n |'"), "'.*?\n")
-
-          node_block <-
-            stringr::str_replace_all(node_block, regex, "")
-
-          replacement <-
-            stringr::str_replace(
-              paste0("  cluster_", i, " [label = 'xN\n",
-                     cluster_ids[i],
-                     "'; shape = 'circle';",
-                     " fixedsize = 'true';",
-                     " fontsize = '8pt';",
-                     " peripheries = '2']  \n"), "x",
-              length(
-                nodes_df[which(nodes_df[, cluster_colnum] == i ), 1]))
-
-          node_block <-
-            stringr::str_replace(node_block, "^", replacement)
-        }
       }
     }
 
