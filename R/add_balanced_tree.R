@@ -1,7 +1,7 @@
 #' Add a balanced tree to the graph
 #'
 #' With a graph object of class \code{dgr_graph}, add a balanced tree to the
-#' graph.
+#'   graph.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param k the branching factor for the tree.

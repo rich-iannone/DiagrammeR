@@ -1,19 +1,15 @@
 #' Add one or more global graph attributes
-#' @description Add global attributes of a specific
-#' type (either \code{graph_attrs}, \code{node_attrs},
-#' or \code{edge_attrs} for a graph object of class
-#' \code{dgr_graph}).
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param attr the name of the attribute to
-#' set for the \code{type} of global attribute
-#' specified.
-#' @param value the value to be set for the chosen
-#' attribute specified in the \code{attr_for_type}
-#' argument.
-#' @param attr_type the specific type of global graph
-#' attribute to set. The type is specified with
-#' \code{graph}, \code{node}, or \code{edge}.
+#'
+#' Add global attributes of a specific type (either \code{graph_attrs},
+#'   \code{node_attrs}, or \code{edge_attrs} for a graph object of class
+#'   \code{dgr_graph}).
+#' @param graph a graph object of class \code{dgr_graph}.
+#' @param attr the name of the attribute to set for the \code{type} of global
+#'   attribute specified.
+#' @param value the value to be set for the chosen attribute specified in the
+#'   \code{attr_for_type} argument.
+#' @param attr_type the specific type of global graph attribute to set. The type
+#'   is specified with \code{graph}, \code{node}, or \code{edge}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph with no
@@ -57,8 +53,7 @@
 #'     attr_type = "node") %>%
 #'   get_global_graph_attr_info()
 #' @importFrom dplyr full_join transmute coalesce select tibble
-#' @export add_global_graph_attrs
-
+#' @export
 add_global_graph_attrs <- function(graph,
                                    attr,
                                    value,

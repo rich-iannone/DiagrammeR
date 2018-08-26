@@ -1,74 +1,24 @@
 #' Add a G(n, m) Erdos-Renyi graph
-#' @description To an existing
-#' graph object, add a graph built
-#' according to the Erdos-Renyi
-#' G(n, m) model. This uses the
-#' same constant probability when
-#' creating the fixed number of
-#' edges. Thus for \code{n} nodes
-#' there will be \code{m} edges and,
-#' if the \code{loops} argument is
-#' set as \code{TRUE}, then random
-#' loop edges will be part of
-#' \code{m}.
-#' @param graph a graph object of
-#' class \code{dgr_graph}.
-#' @param n the number of nodes
-#' comprising the generated graph.
-#' @param m the number of edges
-#' in the generated graph.
-#' @param loops a logical value
-#' (default is \code{FALSE}) that
-#' governs whether loops are
-#' allowed to be created.
-#' @param type an optional string that
-#' describes the entity type for all the
-#' nodes to be added.
-#' @param label a boolean value where
-#' setting to \code{TRUE} ascribes node
-#' IDs to the label and \code{FALSE}
-#' yields a blank label.
-#' @param rel an optional string for
-#' providing a relationship label to all
-#' edges to be added.
-#' @param node_aes an optional list
-#' of named vectors comprising node
-#' aesthetic attributes. The helper
-#' function \code{node_aes()} is
-#' strongly recommended for use here
-#' as it contains arguments for each
-#' of the accepted node aesthetic
-#' attributes (e.g., \code{shape},
-#' \code{style}, \code{color},
-#' \code{fillcolor}).
-#' @param edge_aes an optional list
-#' of named vectors comprising edge
-#' aesthetic attributes. The helper
-#' function \code{edge_aes()} is
-#' strongly recommended for use here
-#' as it contains arguments for each
-#' of the accepted edge aesthetic
-#' attributes (e.g., \code{shape},
-#' \code{style}, \code{penwidth},
-#' \code{color}).
-#' @param node_data an optional list
-#' of named vectors comprising node
-#' data attributes. The helper
-#' function \code{node_data()} is
-#' strongly recommended for use here
-#' as it helps bind data specifically
-#' to the created nodes.
-#' @param edge_data an optional list
-#' of named vectors comprising edge
-#' data attributes. The helper function
-#' \code{edge_data()} is strongly
-#' recommended for use here as it helps
-#' bind data specifically to the
-#' created edges.
-#' @param set_seed supplying a
-#' value sets a random seed of the
-#' \code{Mersenne-Twister}
-#' implementation.
+#'
+#' To an existing graph object, add a graph built according to the Erdos-Renyi
+#'   G(n, m) model. This uses the same constant probability when creating the
+#'   fixed number of edges. Thus for \code{n} nodes there will be \code{m} edges
+#'   and, if the \code{loops} argument is set as \code{TRUE}, then random loop
+#'   edges will be part of \code{m}.
+#' @inheritParams node_edge_aes_data
+#' @inheritParams render_graph
+#' @param n the number of nodes comprising the generated graph.
+#' @param m the number of edges in the generated graph.
+#' @param loops a logical value (default is \code{FALSE}) that governs whether
+#'   loops are allowed to be created.
+#' @param type an optional string that describes the entity type for all the
+#'   nodes to be added.
+#' @param label a boolean value where setting to \code{TRUE} ascribes node IDs
+#'   to the label and \code{FALSE} yields a blank label.
+#' @param rel an optional string for providing a relationship label to all edges
+#'   to be added.
+#' @param set_seed supplying a value sets a random seed of the
+#'   \code{Mersenne-Twister} implementation.
 #' @examples
 #' # Create an undirected GNM
 #' # graph with 100 nodes and
@@ -89,8 +39,7 @@
 #'   count_edges()
 #' @importFrom igraph sample_gnm
 #' @importFrom dplyr select bind_cols as_tibble
-#' @export add_gnm_graph
-
+#' @export
 add_gnm_graph <- function(graph,
                           n,
                           m,
