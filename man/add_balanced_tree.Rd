@@ -53,7 +53,7 @@ a graph object of class
 }
 \description{
 With a graph object of class \code{dgr_graph}, add a balanced tree to the
-graph.
+  graph.
 }
 \examples{
 # Create a new graph and

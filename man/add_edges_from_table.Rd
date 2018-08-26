@@ -40,7 +40,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add edges and their attributes to an existing graph object from data in a
-CSV file or a data frame.
+  CSV file or a data frame.
 }
 \examples{
 # Create an empty graph and then
