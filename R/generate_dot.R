@@ -622,38 +622,6 @@ generate_dot <- function(graph) {
       if (exists("edge_block")) {
         edge_block <- paste(edge_block, collapse = "\n")
       }
-
-      if ("cluster" %in% colnames(nodes_df)) {
-
-        # Get column number for column with node
-        # attribute `cluster`
-        cluster_colnum <-
-          which(colnames(nodes_df) %in% "cluster")
-
-        # Get list of clusters defined for the nodes
-        cluster_ids <-
-          which(
-            unique(nodes_df$cluster) != "")
-
-        for (i in seq_along(cluster_ids)) {
-
-          regex <-
-            stringr::str_replace(
-              "'x'", "x",
-              paste(nodes_df[which(nodes_df[, cluster_colnum] == i ), 1],
-                    collapse = "'|'"))
-
-          edge_block <-
-            stringr::str_replace_all(edge_block, regex, paste0("'cluster_", i, "'"))
-
-          regex <-
-            paste0("('cluster_", i, "'->'cluster_", i, "' \n |",
-                   "'cluster_", i, "'->'cluster_", i, "')")
-
-          edge_block <-
-            stringr::str_replace_all(edge_block, regex, "")
-        }
-      }
     }
 
     # Create the graph code from the chosen attributes,
