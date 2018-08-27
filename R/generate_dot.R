@@ -106,9 +106,9 @@ generate_dot <- function(graph) {
     if (ncol(nodes_df) >= 4) {
       for (i in 4:ncol(nodes_df)) {
         nodes_df[, i] <-
-          ifelse(is.na(nodes_df[, i]), "", nodes_df[, i])
-        nodes_df[, i] <-
           as.character(nodes_df[, i])
+        nodes_df[, i] <-
+          ifelse(is.na(nodes_df[, i]), "", nodes_df[, i])
       }
     }
   }
