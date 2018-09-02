@@ -52,6 +52,9 @@ edges.}
 \item{set_seed}{supplying a value sets a random seed of the
 \code{Mersenne-Twister} implementation.}
 }
+\value{
+a graph object of class \code{dgr_graph}.
+}
 \description{
 To an existing graph object, add a graph built according to the Erdos-Renyi
   G(n, m) model. This uses the same constant probability when creating the

@@ -7,24 +7,18 @@
 combine_graphs(x, y)
 }
 \arguments{
-\item{x}{a \code{DiagrammeR} graph
-object to which another graph will be
-unioned. This graph should be considered
-the graph from which global graph
-attributes will be inherited in the
-resulting graph.}
+\item{x}{a \code{DiagrammeR} graph object to which another graph will be
+unioned. This graph should be considered the graph from which global graph
+attributes will be inherited in the resulting graph.}
 
-\item{y}{a \code{DiagrammeR} graph
-object that is to be unioned with the
+\item{y}{a \code{DiagrammeR} graph object that is to be unioned with the
 graph supplied as \code{x}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Combine two graphs in order
-to make a new graph.
+Combine two graphs in order to make a new graph.
 }
 \examples{
 # Create a graph with a cycle

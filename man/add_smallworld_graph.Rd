@@ -10,90 +10,61 @@ add_smallworld_graph(graph, dimension, size, neighborhood, p,
   edge_data = NULL, set_seed = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{dimension}{the dimension of
-the starting lattice.}
+\item{dimension}{the dimension of the starting lattice.}
 
-\item{size}{the size of the lattice
-across each dimension.}
+\item{size}{the size of the lattice across each dimension.}
 
-\item{neighborhood}{the neighborhood
-where the lattice nodes are to be
+\item{neighborhood}{the neighborhood where the lattice nodes are to be
 connected.}
 
 \item{p}{the rewiring probability.}
 
-\item{loops}{a logical value (default
-is \code{FALSE}) that governs whether
+\item{loops}{a logical value (default is \code{FALSE}) that governs whether
 loops are allowed to be created.}
 
-\item{multiple}{a logical value
-(default is \code{FALSE}) that
-governs whether multiple edges are
-allowed to be created.}
+\item{multiple}{a logical value (default is \code{FALSE}) that governs
+whether multiple edges are allowed to be created.}
 
-\item{type}{an optional string that
-describes the entity type for all the
+\item{type}{an optional string that describes the entity type for all the
 nodes to be added.}
 
-\item{label}{a boolean value where
-setting to \code{TRUE} ascribes node
-IDs to the label and \code{FALSE}
-yields a blank label.}
+\item{label}{a logical value where setting to \code{TRUE} ascribes node IDs
+to the label and \code{FALSE} yields a blank label.}
 
-\item{rel}{an optional string for
-providing a relationship label to all
-edges to be added.}
+\item{rel}{an optional string for providing a relationship label to all edges
+to be added.}
 
-\item{node_aes}{an optional list of
-named vectors comprising node
-aesthetic attributes. The helper
-function \code{node_aes()} is strongly
-recommended for use here as it
-contains arguments for each of the
-accepted node aesthetic attributes
-(e.g., \code{shape}, \code{style},
-\code{color}, \code{fillcolor}).}
+\item{node_aes}{an optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link{node_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
+\code{fillcolor}).}
 
-\item{edge_aes}{an optional list of
-named vectors comprising edge
-aesthetic attributes. The helper
-function \code{edge_aes()} is strongly
-recommended for use here as it
-contains arguments for each of the
-accepted edge aesthetic attributes
-(e.g., \code{shape}, \code{style},
+\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link{edge_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+edge aesthetic attributes (e.g., \code{shape}, \code{style},
 \code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list
-of named vectors comprising node data
-attributes. The helper function
-\code{node_data()} is strongly
-recommended for use here as it helps
-bind data specifically to the created
+\item{node_data}{an optional list of named vectors comprising node data
+attributes. The helper function \code{\link{node_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
 nodes.}
 
-\item{edge_data}{an optional list
-of named vectors comprising edge
-data attributes. The helper function
-\code{edge_data()} is strongly
-recommended for use here as it helps
-bind data specifically to the created
+\item{edge_data}{an optional list of named vectors comprising edge data
+attributes. The helper function \code{\link{edge_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
 edges.}
 
-\item{set_seed}{supplying a value
-sets a random seed of the
+\item{set_seed}{supplying a value sets a random seed of the
 \code{Mersenne-Twister} implementation.}
 }
 \description{
-To an existing graph
-object, add a graph built according
-to the Watts-Strogatz small-world
-model, which uses a lattice along
-with a rewiring probability to
-randomly modify edge definitions.
+To an existing graph object, add a graph built according to the
+  Watts-Strogatz small-world model, which uses a lattice along with a
+  rewiring probability to randomly modify edge definitions.
 }
 \examples{
 # Create an undirected smallworld

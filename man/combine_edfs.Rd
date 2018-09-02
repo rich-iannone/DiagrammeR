@@ -2,23 +2,20 @@
 % Please edit documentation in R/combine_edfs.R
 \name{combine_edfs}
 \alias{combine_edfs}
-\title{Combine multiple edge data frames into a single
-edge data frame}
+\title{Combine multiple edge data frames into a single edge data frame}
 \usage{
 combine_edfs(...)
 }
 \arguments{
-\item{...}{two or more edge data frames, which
-contain edge IDs and associated attributes.}
+\item{...}{two or more edge data frames, which contain edge IDs and
+associated attributes.}
 }
 \value{
 a combined edge data frame.
 }
 \description{
-Combine several edge data frames in
-the style of \code{rbind}, except, it works
-regardless of the number and ordering of the
-columns.
+Combine several edge data frames in the style of \code{rbind}, except, it
+  works regardless of the number and ordering of the columns.
 }
 \examples{
 # Create an edge data frame (edf)

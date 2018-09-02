@@ -9,62 +9,50 @@ add_node(graph, type = NULL, label = NULL, from = NULL, to = NULL,
   edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{type}{an optional character object that
-acts as a group identifier for the node to be added.}
+\item{type}{an optional character object that acts as a group identifier for
+the node to be added.}
 
-\item{label}{an optional character object that
-describes the node.}
+\item{label}{an optional character object that describes the node.}
 
-\item{from}{an optional vector containing node IDs
-from which edges will be directed to the new node.}
+\item{from}{an optional vector containing node IDs from which edges will be
+directed to the new node.}
 
-\item{to}{an optional vector containing node IDs to
-which edges will be directed from the new node.}
+\item{to}{an optional vector containing node IDs to which edges will be
+directed from the new node.}
 
-\item{node_aes}{an optional list of named vectors
-comprising node aesthetic attributes. The helper
-function \code{node_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted node aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{color},
+\item{node_aes}{an optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link{node_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
 \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function \code{edge_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{penwidth},
-\code{color}).}
+\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link{edge_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+edge aesthetic attributes (e.g., \code{shape}, \code{style},
+\code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list of named vectors
-comprising node data attributes. The helper
-function \code{node_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created nodes.}
+\item{node_data}{an optional list of named vectors comprising node data
+attributes. The helper function \code{\link{node_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
+nodes.}
 
-\item{edge_data}{an optional list of named vectors
-comprising edge data attributes. The helper
-function \code{edge_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.}
+\item{edge_data}{an optional list of named vectors comprising edge data
+attributes. The helper function \code{\link{edge_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
+edges.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class
-\code{dgr_graph}, add a new node to the graph.
-One can optionally provide node attributes
-for the created node. There is also the
-option to create edges to and from existing
-nodes in the graph. Because new edges can
-also be created through this function, there
-is the possibility to set edge attributes
-for any new graph edges.
+With a graph object of class \code{dgr_graph}, add a new node to the graph.
+  One can optionally provide node attributes for the created node. There is
+  also the option to create edges to and from existing nodes in the graph.
+  Because new edges can also be created through this function, there is the
+  possibility to set edge attributes for any new graph edges.
 }
 \examples{
 # Create an empty graph and add 2 nodes by using

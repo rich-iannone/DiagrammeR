@@ -8,60 +8,37 @@ create_graph(nodes_df = NULL, edges_df = NULL, directed = TRUE,
   graph_name = NULL, attr_theme = "default", write_backups = FALSE)
 }
 \arguments{
-\item{nodes_df}{an optional data frame
-containing, at minimum, a column
-(called \code{id}) which contains
-node IDs for the graph. Additional
-columns (node attributes) can be
-included with values for the named
-node attribute.}
+\item{nodes_df}{an optional data frame containing, at minimum, a column
+(called \code{id}) which contains node IDs for the graph. Additional
+columns (node attributes) can be included with values for the named node
+attribute.}
 
-\item{edges_df}{an optional data
-frame containing, at minimum, two
-columns (called \code{from} and
-\code{to}) where node IDs are
-provided. Additional columns (edge
-attributes) can be included with
-values for the named edge attribute.}
+\item{edges_df}{an optional data frame containing, at minimum, two columns
+(called \code{from} and \code{to}) where node IDs are provided. Additional
+columns (edge attributes) can be included with values for the named edge
+attribute.}
 
-\item{directed}{with \code{TRUE}
-(the default) or \code{FALSE}, either
-directed or undirected edge
-operations will be generated,
-respectively.}
+\item{directed}{with \code{TRUE} (the default) or \code{FALSE}, either
+directed or undirected edge operations will be generated, respectively.}
 
-\item{graph_name}{an optional
-string for labeling the graph object.}
+\item{graph_name}{an optional string for labeling the graph object.}
 
-\item{attr_theme}{the theme (i.e.,
-collection of \code{graph},
-\code{node}, and \code{edge} global
-graph attributes) to use for this
-graph. The default theme is called
-\code{default}. If this is set to
-\code{NULL} then no global graph
-attributes will be applied to the
-graph upon creation.}
+\item{attr_theme}{the theme (i.e., collection of \code{graph}, \code{node},
+and \code{edge} global graph attributes) to use for this graph. The default
+theme is called \code{default}. If this is set to \code{NULL} then no
+global graph attributes will be applied to the graph upon creation.}
 
-\item{write_backups}{an option to
-write incremental backups of changing
-graph states to disk. If \code{TRUE},
-a subdirectory within the working
-directory will be created and used
-to store \code{RDS} files. The
-default value is \code{FALSE} so
-one has to opt in to use this
-functionality.}
+\item{write_backups}{an option to write incremental backups of changing
+graph states to disk. If \code{TRUE}, a subdirectory within the working
+directory will be created and used to store \code{RDS} files. The default
+value is \code{FALSE} so one has to opt in to use this functionality.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Generates a graph object
-with the option to use node data frames
-(ndfs) and/or edge data frames (edfs)
-to populate the initial graph.
+Generates a graph object with the option to use node data frames (ndfs)
+  and/or edge data frames (edfs) to populate the initial graph.
 }
 \examples{
 # With `create_graph()` we can

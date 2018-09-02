@@ -2,24 +2,20 @@
 % Please edit documentation in R/count_mutual_node_pairs.R
 \name{count_mutual_node_pairs}
 \alias{count_mutual_node_pairs}
-\title{Get the number of mutually-connected
-node pairs}
+\title{Get the number of mutually-connected node pairs}
 \usage{
 count_mutual_node_pairs(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value
-representing the number of mutually-
-connected node pairs.
+a single numeric value representing the number of mutually-connected
+  node pairs.
 }
 \description{
-Get the number of
-mutually-connected node pairs.
-This works for directed graphs.
+Get the number of mutually-connected node pairs. This works for directed
+  graphs.
 }
 \examples{
 # Create a cycle graph

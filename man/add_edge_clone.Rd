@@ -20,7 +20,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add a new edge to a graph object of class \code{dgr_graph} which is a clone
-of an edge already in the graph. All edge attributes are preserved.
+  of an edge already in the graph. All edge attributes are preserved.
 }
 \examples{
 # Create a graph with a path of

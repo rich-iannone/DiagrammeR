@@ -2,25 +2,22 @@
 % Please edit documentation in R/add_node_df.R
 \name{add_node_df}
 \alias{add_node_df}
-\title{Add nodes from a node data frame to an existing
-graph object}
+\title{Add nodes from a node data frame to an existing graph object}
 \usage{
 add_node_df(graph, node_df)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node_df}{a node data frame that is created
-using \code{create_node_df}.}
+\item{node_df}{a node data frame that is created using
+\code{\link{create_node_df}()}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With a graph object of class
-\code{dgr_graph} add nodes from a node data frame to
-that graph.
+With a graph object of class \code{dgr_graph} add nodes from a node data
+  frame to that graph.
 }
 \examples{
 # Create an empty graph

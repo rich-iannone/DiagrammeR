@@ -2,86 +2,75 @@
 % Please edit documentation in R/add_n_nodes_ws.R
 \name{add_n_nodes_ws}
 \alias{add_n_nodes_ws}
-\title{Add a multiple of new nodes with edges to or from
-one or more selected nodes}
+\title{Add a multiple of new nodes with edges to or from one or more selected nodes}
 \usage{
 add_n_nodes_ws(graph, n, direction = NULL, type = NULL, label = NULL,
   rel = NULL, node_aes = NULL, edge_aes = NULL, node_data = NULL,
   edge_data = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{n}{the number of new nodes to attach as
-successor nodes to the nodes in the selection.}
+\item{n}{the number of new nodes to attach as successor nodes to the nodes in
+the selection.}
 
-\item{direction}{using \code{from} will create new
-edges from existing nodes to the new nodes. The
-\code{to} option will create new edges directed
+\item{direction}{using \code{from} will create new edges from existing nodes
+to the new nodes. The \code{to} option will create new edges directed
 toward the existing nodes.}
 
-\item{type}{an optional character vector that
-provides group identifiers for the nodes to be added.}
+\item{type}{an optional character vector that provides group identifiers for
+the nodes to be added.}
 
-\item{label}{an optional character object that
-describes the nodes to be added.}
+\item{label}{an optional character object that describes the nodes to be
+added.}
 
-\item{rel}{an optional string to apply a
-\code{rel} attribute to all newly created edges.}
+\item{rel}{an optional string to apply a \code{rel} attribute to all newly
+created edges.}
 
-\item{node_aes}{an optional list of named vectors
-comprising node aesthetic attributes. The helper
-function \code{node_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted node aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{color},
+\item{node_aes}{an optional list of named vectors comprising node aesthetic
+attributes. The helper function \code{\link{node_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
 \code{fillcolor}).}
 
-\item{edge_aes}{an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function \code{edge_aes()} is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-\code{shape}, \code{style}, \code{penwidth},
-\code{color}).}
+\item{edge_aes}{an optional list of named vectors comprising edge aesthetic
+attributes. The helper function \code{\link{edge_aes}()} is strongly
+recommended for use here as it contains arguments for each of the accepted
+edge aesthetic attributes (e.g., \code{shape}, \code{style},
+\code{penwidth}, \code{color}).}
 
-\item{node_data}{an optional list of named vectors
-comprising node data attributes. The helper
-function \code{node_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created nodes.}
+\item{node_data}{an optional list of named vectors comprising node data
+attributes. The helper function \code{\link{node_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
+nodes.}
 
-\item{edge_data}{an optional list of named vectors
-comprising edge data attributes. The helper
-function \code{edge_data()} is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.}
+\item{edge_data}{an optional list of named vectors comprising edge data
+attributes. The helper function \code{\link{edge_data}()} is strongly
+recommended for use here as it helps bind data specifically to the created
+edges.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Add n new nodes to or from one or more
-nodes available as a selection in a graph object of
-class \code{dgr_graph}. New graph edges will all
-move either from the nodes in the selection toward
-the newly created nodes (with the option
-\code{direction = "from"}), or to the selected nodes
-already in the graph (using \code{direction = "to"}).
-Optionally, set node \code{type} and edge \code{rel}
-values for all the new nodes and edges created,
-respectively.
-
-Selections of nodes can be performed using
-the following \code{select_...} functions:
+Add \code{n} new nodes to or from one or more nodes available as a selection
+  in a graph object of class \code{dgr_graph}. New graph edges will all move
+  either from the nodes in the selection toward the newly created nodes (with
+  the option \code{direction = "from"}), or to the selected nodes already in
+  the graph (using \code{direction = "to"}). Optionally, set node \code{type}
+  and edge \code{rel} values for all the new nodes and edges created,
+  respectively.
+}
+\details{
+Selections of nodes can be performed using the following \code{select_...}
+  functions:
 \code{select_nodes()},
 \code{select_last_nodes_created()},
 \code{select_nodes_by_degree()},
 \code{select_nodes_by_id()}, or
 \code{select_nodes_in_neighborhood()}.
-Selections of nodes can also be performed using
-the following traversal functions:
+Selections of nodes can also be performed using the following traversal
+  functions:
 (\code{trav_...}):
 \code{trav_out()}, \code{trav_in()},
 \code{trav_both()}, \code{trav_in_node()},

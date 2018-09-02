@@ -9,48 +9,39 @@ colorize_edge_attrs(graph, edge_attr_from, edge_attr_to,
   reverse_palette = FALSE, default_color = "#D9D9D9")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr_from}{the name of the edge attribute
-column from which color values will be based.}
+\item{edge_attr_from}{the name of the edge attribute column from which
+color values will be based.}
 
-\item{edge_attr_to}{the name of the new edge
-attribute to which the color values will be applied.}
+\item{edge_attr_to}{the name of the new edge attribute to which the color
+values will be applied.}
 
-\item{cut_points}{an optional vector of numerical
-breaks for bucketizing continuous numerical values
-available in a edge attribute column.}
+\item{cut_points}{an optional vector of numerical breaks for bucketizing
+continuous numerical values available in a edge attribute column.}
 
-\item{palette}{can either be: (1) a palette name from
-the RColorBrewer package (e.g., \code{Greens},
-\code{OrRd}, \code{RdYlGn}), (2) \code{viridis}, which
-indicates use of the \code{viridis} color scale from
-the package of the same name, or (3) a vector of
-hexadecimal color names.}
+\item{palette}{can either be: (1) a palette name from the RColorBrewer
+package (e.g., \code{Greens}, \code{OrRd}, \code{RdYlGn}), (2)
+\code{viridis}, which indicates use of the \code{viridis} color scale from
+the package of the same name, or (3) a vector of hexadecimal color names.}
 
-\item{alpha}{an optional alpha transparency value to
-apply to the generated colors. Should be in
-the range of \code{0} (completely transparent) to
+\item{alpha}{an optional alpha transparency value to apply to the generated
+colors. Should be in the range of \code{0} (completely transparent) to
 \code{100} (completely opaque).}
 
-\item{reverse_palette}{an option to reverse the order
-of colors in the chosen palette. The default is
-\code{FALSE}.}
+\item{reverse_palette}{an option to reverse the order of colors in the chosen
+palette. The default is \code{FALSE}.}
 
-\item{default_color}{a hexadecimal color value to
-use for instances when the values do not fall into
-the bucket ranges specified in the \code{cut_points}
-vector.}
+\item{default_color}{a hexadecimal color value to use for instances when the
+values do not fall into the bucket ranges specified in the
+\code{cut_points} vector.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal edge data
-frame (edf), use a categorical edge attribute to
-generate a new edge attribute with color values.
+Within a graph's internal edge data frame (edf), use a categorical edge
+  attribute to generate a new edge attribute with color values.
 }
 \examples{
 # Create a graph with 5

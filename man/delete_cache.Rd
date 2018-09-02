@@ -7,20 +7,16 @@
 delete_cache(graph, name = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{name}{one or more name of vector
-objects to delete from the cache. If none
-supplied, all cached vectors available in
-the graph will be deleted.}
+\item{name}{one or more name of vector objects to delete from the cache. If
+none supplied, all cached vectors available in the graph will be deleted.}
 }
 \value{
 a vector.
 }
 \description{
-Delete vectors cached in a
-graph object of class \code{dgr_graph}.
+Delete vectors cached in a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create an empty graph

@@ -7,16 +7,13 @@
 clear_selection(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Clear the selection of
-nodes or edges within a graph object.
+Clear the selection of nodes or edges within a graph object.
 }
 \examples{
 # Create a graph with

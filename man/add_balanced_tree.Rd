@@ -48,8 +48,7 @@ recommended for use here as it helps bind data specifically to the created
 edges.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
 With a graph object of class \code{dgr_graph}, add a balanced tree to the

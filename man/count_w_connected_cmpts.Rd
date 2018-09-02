@@ -7,16 +7,14 @@
 count_w_connected_cmpts(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single integer value representing the
-number of weakly-connected graph components.
+a single integer value representing the number of weakly-connected
+  graph components.
 }
 \description{
-Get the number of weakly-connected
-components in the graph.
+Get the number of weakly-connected components in the graph.
 }
 \examples{
 # Create a cycle graph

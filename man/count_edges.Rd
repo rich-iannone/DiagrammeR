@@ -7,17 +7,14 @@
 count_edges(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single-length numeric
-vector.
+a single-length numeric vector.
 }
 \description{
-From a graph object of
-class \code{dgr_graph}, get a count
-of edges in the graph.
+From a graph object of class \code{dgr_graph}, get a count of edges in the
+  graph.
 }
 \examples{
 # Create a graph with a

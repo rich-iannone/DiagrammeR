@@ -7,36 +7,33 @@
 create_node_df(n, type = NULL, label = NULL, ...)
 }
 \arguments{
-\item{n}{the total number of nodes to include in the
-node data frame.}
+\item{n}{the total number of nodes to include in the node data frame.}
 
-\item{type}{an optional \code{type} for each
-node.}
+\item{type}{an optional \code{type} for each node.}
 
 \item{label}{an optional \code{label} for each node.}
 
-\item{...}{one or more vectors for associated node
-attributes.}
+\item{...}{one or more vectors for associated node attributes.}
 }
 \value{
 a node data frame (ndf).
 }
 \description{
-Combine several vectors for nodes
-and their attributes into a data frame, which can be
-combined with other similarly-generated data frames,
-or, added to a graph object. A node data frame,
-or ndf, has at least the following columns:
-
+Combine several vectors for nodes and their attributes into a data frame,
+  which can be combined with other similarly-generated data frames, or, added
+  to a graph object. A node data frame, or ndf, has at least the following
+  columns:
+}
+\details{
 - \code{id} (of type \code{integer})
 
 - \code{type} (of type \code{character})
 
 - \code{label} (of type \code{character})
 
-An arbitrary number of additional columns containing
-aesthetic or data attributes can be part of the ndf,
-so long as they follow the aforementioned columns.
+An arbitrary number of additional columns containing aesthetic or data
+  attributes can be part of the ndf, so long as they follow the
+  aforementioned columns.
 }
 \examples{
 # Create a node data frame (ndf) where the labels

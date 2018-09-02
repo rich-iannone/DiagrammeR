@@ -7,16 +7,14 @@
 count_unconnected_node_pairs(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing
-the number of unconnected node pairs.
+a single numeric value representing the number of unconnected node
+  pairs.
 }
 \description{
-Get the number of unconnected
-node pairs. This works for directed graphs.
+Get the number of unconnected node pairs. This works for directed graphs.
 }
 \examples{
 # Create a cycle graph

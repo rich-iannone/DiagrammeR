@@ -7,25 +7,21 @@
 copy_node_attrs(graph, node_attr_from, node_attr_to)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node_attr_from}{the name of the node attribute
-column from which values will be copied.}
+\item{node_attr_from}{the name of the node attribute column from which values
+will be copied.}
 
-\item{node_attr_to}{the name of the new node
-attribute column to which the copied values will be
-placed.}
+\item{node_attr_to}{the name of the new node attribute column to which the
+copied values will be placed.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal node data
-frame (ndf), copy the contents an existing node
-attribute and create a distinct node attribute
-within the ndf with a different attribute name.
+Within a graph's internal node data frame (ndf), copy the contents an
+  existing node attribute and create a distinct node attribute within the ndf
+  with a different attribute name.
 }
 \examples{
 # Create a random graph using the

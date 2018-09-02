@@ -8,40 +8,27 @@ add_node_clones_ws(graph, add_edges = FALSE, direction = NULL,
   label = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{add_edges}{an option for whether to
-add edges from the selected nodes to each
-of their clones, or, in the opposite
-direction.}
+\item{add_edges}{an option for whether to add edges from the selected nodes
+to each of their clones, or, in the opposite direction.}
 
-\item{direction}{using \code{from} will
-create new edges from existing nodes to
-the new, cloned nodes. The \code{to} option
-will create new edges directed toward the
-existing nodes.}
+\item{direction}{using \code{from} will create new edges from existing nodes
+to the new, cloned nodes. The \code{to} option will create new edges
+directed toward the existing nodes.}
 
-\item{label}{an optional vector of node
-label values. The vector length should
-correspond to the number of nodes in the
-active selection of nodes.}
+\item{label}{an optional vector of node label values. The vector length
+should correspond to the number of nodes in the active selection of nodes.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Add new nodes to a
-graph object of class \code{dgr_graph}
-which are clones of nodes in an active
-selection of nodes. All node attributes
-are preserved except for the node
-\code{label} attribute (to maintain the
-uniqueness of non-\code{NA} node label
-values). A vector of node \code{label}
-can be provided to bind new labels
-to the cloned nodes.
+Add new nodes to a graph object of class \code{dgr_graph} which are clones of
+  nodes in an active selection of nodes. All node attributes are preserved
+  except for the node \code{label} attribute (to maintain the uniqueness of
+  non-\code{NA} node label values). A vector of node \code{label} can be
+  provided to bind new labels to the cloned nodes.
 }
 \examples{
 # Create a graph with a path of
