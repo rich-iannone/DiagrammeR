@@ -1,14 +1,10 @@
 #' Get a vector of node ID values
-#' @description Obtain a vector of
-#' node ID values from a graph
-#' object. An optional filter by
-#' node attribute can limit the set
-#' of node ID values returned.
-#' @param graph a graph object of
-#' class \code{dgr_graph}.
-#' @param conditions an option to
-#' use filtering conditions for the
-#' retrieval of nodes.
+#'
+#' Obtain a vector of node ID values from a graph object. An optional filter by
+#'   node attribute can limit the set of node ID values returned.
+#' @inheritParams render_graph
+#' @param conditions an option to use filtering conditions for the retrieval of
+#'   nodes.
 #' @return a vector of node ID
 #' values.
 #' @examples
@@ -57,8 +53,7 @@
 #'       value > 5)
 #' @importFrom dplyr filter pull
 #' @importFrom rlang enquo UQ get_expr
-#' @export get_node_ids
-
+#' @export
 get_node_ids <- function(graph,
                          conditions = NULL) {
 

@@ -1,11 +1,10 @@
 #' Get information on any available graph actions
-#' @description Get a tibble of the available graph
-#' actions, which contains information on function
-#' invocations to be called on the graph at every
-#' transformation step, or, when manually invoked
-#' with the \code{trigger_graph_actions()} function.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Get a tibble of the available graph actions, which contains information on
+#'   function invocations to be called on the graph at every transformation
+#'   step, or, when manually invoked with the
+#'   \code{\link{trigger_graph_actions}()} function.
+#' @inheritParams render_graph
 #' @return a \code{df_tbl} object.
 #' @examples
 #' # Create a random graph using the
@@ -38,8 +37,7 @@
 #' graph %>%
 #'   get_graph_actions()
 #' @importFrom dplyr as_tibble
-#' @export get_graph_actions
-
+#' @export
 get_graph_actions <- function(graph) {
 
   # Get the name of the function

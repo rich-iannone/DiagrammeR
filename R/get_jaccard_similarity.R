@@ -1,22 +1,19 @@
 #' Get Jaccard similarity coefficient scores
-#' @description Get the Jaccard similarity coefficient
-#' scores for one or more nodes in a graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param nodes an optional vector of node IDs to
-#' consider for Jaccard similarity scores. If not
-#' supplied, then similarity scores will be provided
-#' for every pair of nodes in the graph.
-#' @param direction using \code{all} (the default), the
-#' function will ignore edge direction when
-#' determining scores for neighboring nodes. With
-#' \code{out} and \code{in}, edge direction for
-#' neighboring nodes will be considered.
-#' @param round_to the maximum number of decimal places
-#' to retain for the Jaccard similarity coefficient
-#' scores. The default value is \code{3}.
-#' @return a matrix with Jaccard similarity values
-#' for each pair of nodes considered.
+#'
+#' Get the Jaccard similarity coefficient scores for one or more nodes in a
+#' graph.
+#' @inheritParams render_graph
+#' @param nodes an optional vector of node IDs to consider for Jaccard
+#'   similarity scores. If not supplied, then similarity scores will be provided
+#'   for every pair of nodes in the graph.
+#' @param direction using \code{all} (the default), the function will ignore
+#'   edge direction when determining scores for neighboring nodes. With
+#'   \code{out} and \code{in}, edge direction for neighboring nodes will be
+#'   considered.
+#' @param round_to the maximum number of decimal places to retain for the
+#'   Jaccard similarity coefficient scores. The default value is \code{3}.
+#' @return a matrix with Jaccard similarity values for each pair of nodes
+#'   considered.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -35,8 +32,7 @@
 #'   get_jaccard_similarity(
 #'     nodes = 5:7)
 #' @importFrom igraph similarity V
-#' @export get_jaccard_similarity
-
+#' @export
 get_jaccard_similarity <- function(graph,
                                    nodes = NULL,
                                    direction = "all",

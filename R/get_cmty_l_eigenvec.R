@@ -1,12 +1,10 @@
 #' Get community membership by leading eigenvector
-#' @description Through the calculation of the leading
-#' non-negative eigenvector of the modularity matrix
-#' of the graph, obtain the group membership values for
-#' each of the nodes in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a data frame with group membership
-#' assignments for each of the nodes.
+#'
+#' Through the calculation of the leading non-negative eigenvector of the
+#'   modularity matrix of the graph, obtain the group membership values for each
+#'   of the nodes in the graph.
+#' @inheritParams render_graph
+#' @return a data frame with group membership assignments for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -39,8 +37,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom igraph cluster_leading_eigen membership
-#' @export get_cmty_l_eigenvec
-
+#' @export
 get_cmty_l_eigenvec <- function(graph) {
 
   # Get the name of the function

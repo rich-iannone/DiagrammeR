@@ -1,18 +1,12 @@
 #' Get the eigen centrality for all nodes
-#' @description Get the eigen centrality
-#' values for all nodes in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param weights_attr an optional name
-#' of the edge attribute to use in the
-#' adjacency matrix. If
-#' \code{NULL} then, if it exists, the
-#' \code{weight} edge attribute of the
-#' graph will be used. If \code{NA} then
-#' no edge weights will be used.
-#' @return a data frame with eigen
-#' centrality scores for each of the
-#' nodes.
+#'
+#' Get the eigen centrality values for all nodes in the graph.
+#' @inheritParams render_graph
+#' @param weights_attr an optional name of the edge attribute to use in the
+#'   adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge
+#'   attribute of the graph will be used. If \code{NA} then no edge weights will
+#'   be used.
+#' @return a data frame with eigen centrality scores for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -28,8 +22,7 @@
 #' graph %>%
 #'   get_eigen_centrality()
 #' @importFrom igraph eigen_centrality
-#' @export get_eigen_centrality
-
+#' @export
 get_eigen_centrality <- function(graph,
                                  weights_attr = NULL) {
 

@@ -1,10 +1,9 @@
 #' Fully disconnect all nodes in a selection of nodes
-#' @description With a selection of nodes in a
-#' graph, remove any edges to or from those nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' With a selection of nodes in a graph, remove any edges to or from those
+#'   nodes.
+#' @inheritParams render_graph
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and
 #' # add a path of 6 nodes
@@ -25,8 +24,7 @@
 #' graph %>%
 #'   get_edge_df()
 #' @importFrom dplyr filter
-#' @export fully_disconnect_nodes_ws
-
+#' @export
 fully_disconnect_nodes_ws <- function(graph) {
 
   # Get the time of function start

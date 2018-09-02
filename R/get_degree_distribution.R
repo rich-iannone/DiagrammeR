@@ -1,15 +1,11 @@
 #' Get total degree distribution data for a graph
-#' @description Get degree distribution data for
-#' a graph. Graph degree is represented as a
-#' frequency of total degree values over all nodes
-#' in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param mode using \code{total} (the default),
-#' degree considered for each node will be the total
-#' degree. With \code{in} and \code{out} the degree
-#' used will be the in-degree and out-degree,
-#' respectively.
+#'
+#' Get degree distribution data for a graph. Graph degree is represented as a
+#'   frequency of total degree values over all nodes in the graph.
+#' @inheritParams render_graph
+#' @param mode using \code{total} (the default), degree considered for each node
+#'   will be the total degree. With \code{in} and \code{out} the degree used
+#'   will be the in-degree and out-degree, respectively.
 #' @return a data frame with degree frequencies.
 #' @examples
 #' # Create a random graph using the
@@ -28,8 +24,7 @@
 #'   get_degree_distribution(
 #'     mode = "total")
 #' @importFrom igraph degree_distribution
-#' @export get_degree_distribution
-
+#' @export
 get_degree_distribution <- function(graph,
                                     mode = "total") {
 

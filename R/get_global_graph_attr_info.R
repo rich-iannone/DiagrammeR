@@ -1,11 +1,9 @@
 #' Get global graph attributes
-#' @description Get the available
-#' global attributes for a graph
-#' object of class \code{dgr_graph}.
-#' @param graph a graph object of
-#' class \code{dgr_graph}.
-#' @return a data frame containing
-#' global attributes for the graph.
+#'
+#' Get the available global attributes for a graph object of class
+#'   \code{dgr_graph}.
+#' @inheritParams render_graph
+#' @return a data frame containing global attributes for the graph.
 #' @examples
 #' # Create a new, empty graph
 #' graph <- create_graph()
@@ -15,8 +13,7 @@
 #' graph %>%
 #'   get_global_graph_attr_info()
 #' @importFrom dplyr tibble as_tibble
-#' @export get_global_graph_attr_info
-
+#' @export
 get_global_graph_attr_info <- function(graph) {
 
   # Get the name of the function

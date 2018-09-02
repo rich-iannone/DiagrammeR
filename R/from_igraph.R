@@ -1,15 +1,12 @@
 #' Convert an igraph graph to a DiagrammeR one
-#' @description Convert an igraph graph to a DiagrammeR
-#' graph object.
+#'
+#' Convert an igraph graph to a DiagrammeR graph object.
 #' @param igraph an igraph graph object.
-#' @param graph_name an optional string for labeling
-#' the graph object.
-#' @param write_backups an option to write incremental
-#' backups of changing graph states to disk. If
-#' \code{TRUE}, a subdirectory of the working directory
-#' will be used to store \code{RDS} files. The
-#' default value is \code{FALSE} so one has to opt in
-#' to use this functionality.
+#' @param graph_name an optional string for labeling the graph object.
+#' @param write_backups an option to write incremental backups of changing graph
+#'   states to disk. If \code{TRUE}, a subdirectory of the working directory
+#'   will be used to store \code{RDS} files. The default value is \code{FALSE}
+#'   so one has to opt in to use this functionality.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a DiagrammeR graph object
@@ -35,10 +32,10 @@
 #' # Get some graph information
 #' (dgr_graph_new %>%
 #'   get_graph_info())[, 1:6]
-#' @importFrom igraph V E vertex_attr_names edge_attr_names vertex_attr edge_attr is_directed ends
+#' @importFrom igraph V E vertex_attr_names edge_attr_names vertex_attr
+#' @importFrom igraph edge_attr is_directed ends
 #' @importFrom dplyr arrange
-#' @export from_igraph
-
+#' @export
 from_igraph <- function(igraph,
                         graph_name = NULL,
                         write_backups = FALSE) {

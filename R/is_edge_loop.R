@@ -1,8 +1,7 @@
 #' Is the edge a loop edge?
-#' @description Determines whether an edge
-#' definition is a loop edge.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Determines whether an edge definition is a loop edge.
+#' @inheritParams render_graph
 #' @param edge a numeric edge ID value.
 #' @return a logical value.
 #' @examples
@@ -20,21 +19,17 @@
 #'
 #' # Get the graph's internal
 #' # edge data frame
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Determine if edge `4` is
 #' # a loop edge
-#' graph %>%
-#'   is_edge_loop(edge = 4)
+#' graph %>% is_edge_loop(edge = 4)
 #'
 #' # Determine if edge `2` is
 #' # a loop edge
-#' graph %>%
-#'   is_edge_loop(edge = 2)
+#' graph %>% is_edge_loop(edge = 2)
 #' @importFrom dplyr filter pull
-#' @export is_edge_loop
-
+#' @export
 is_edge_loop <- function(graph,
                          edge) {
 

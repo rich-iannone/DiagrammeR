@@ -1,10 +1,8 @@
 #' Deselect any selected nodes in a graph
-#' @description Deselect nodes in a graph object of
-#' class \code{dgr_graph}.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param nodes a vector of node IDs that
-#' should be deselected.
+#'
+#' Deselect nodes in a graph object of class \code{dgr_graph}.
+#' @inheritParams render_graph
+#' @param nodes a vector of node IDs that should be deselected.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -41,8 +39,7 @@
 #' graph %>%
 #'   get_selection()
 #' @importFrom dplyr filter
-#' @export deselect_nodes
-
+#' @export
 deselect_nodes <- function(graph,
                            nodes) {
 

@@ -1,25 +1,19 @@
 #' Export a graph to various file formats
-#' @description Export a graph to a variety of file
-#' formats, including image formats such as PNG, PDF,
-#' SVG, and PostScript, and graph file formats such
-#' as GEXF.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param file_name the name of the exported file
-#' (including it's extension).
-#' @param file_type the type of file to be exported.
-#' Options for graph files are: \code{png}, \code{pdf},
-#' \code{svg}, and \code{ps}. Options for graph file
-#' formats are: \code{gexf}.
+#'
+#' Export a graph to a variety of file formats, including image formats such as
+#' PNG, PDF, SVG, and PostScript, and graph file formats such as GEXF.
+#' @inheritParams render_graph
+#' @param file_name the name of the exported file (including it's extension).
+#' @param file_type the type of file to be exported. Options for graph files
+#'   are: \code{png}, \code{pdf}, \code{svg}, and \code{ps}. Options for graph
+#'   file formats are: \code{gexf}.
 #' @param title an optional title for the output graph.
-#' @param width output width in pixels or \code{NULL}
-#' for default. Only useful for export to image file
-#' formats \code{png}, \code{pdf}, \code{svg}, and
-#' \code{ps}.
-#' @param height output height in pixels or \code{NULL}
-#' for default. Only useful for export to image file
-#' formats \code{png}, \code{pdf}, \code{svg}, and
-#' \code{ps}.
+#' @param width output width in pixels or \code{NULL} for default. Only useful
+#'   for export to image file formats \code{png}, \code{pdf}, \code{svg}, and
+#'   \code{ps}.
+#' @param height output height in pixels or \code{NULL} for default. Only useful
+#'   for export to image file formats \code{png}, \code{pdf}, \code{svg}, and
+#'   \code{ps}.
 #' @examples
 #' \dontrun{
 #' # Create a simple graph
@@ -53,8 +47,7 @@
 #' @importFrom utils installed.packages
 #' @importFrom igraph V E ecount ends vertex_attr_names edge_attr_names
 #' @importFrom igraph graph_attr_names vertex_attr edge_attr graph_attr
-#' @export export_graph
-
+#' @export
 export_graph <- function(graph,
                          file_name = NULL,
                          file_type = NULL,

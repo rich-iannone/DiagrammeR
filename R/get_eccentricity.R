@@ -1,20 +1,14 @@
 #' Get node eccentricities
-#' @description Get a data frame with node
-#' eccentricity values.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param mode the mode with which the shortest
-#' paths to or from the given vertices should
-#' be calculated for directed graphs. If
-#' \code{out} (the default) then the shortest
-#' paths from the node, if \code{in} then only
-#' shortest paths to each node are considered.
-#' If \code{all} is used, then the corresponding
-#' undirected graph will be used and edge
-#' directions will be ignored. For undirected
-#' graphs, this argument is ignored.
-#' @return a data frame containing eccentricity
-#' values by node ID value.
+#'
+#' Get a data frame with node eccentricity values.
+#' @inheritParams render_graph
+#' @param mode the mode with which the shortest paths to or from the given
+#'   vertices should be calculated for directed graphs. If \code{out} (the
+#'   default) then the shortest paths from the node, if \code{in} then only
+#'   shortest paths to each node are considered. If \code{all} is used, then the
+#'   corresponding undirected graph will be used and edge directions will be
+#'   ignored. For undirected graphs, this argument is ignored.
+#' @return a data frame containing eccentricity values by node ID value.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -31,8 +25,7 @@
 #' graph %>%
 #'   get_eccentricity()
 #' @importFrom igraph eccentricity
-#' @export get_eccentricity
-
+#' @export
 get_eccentricity <- function(graph,
                              mode = "out") {
 

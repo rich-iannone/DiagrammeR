@@ -1,24 +1,18 @@
 #' Export a graph to CSV files
-#' @description Export a graph to CSV files.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param ndf_name the name to provide to the CSV file
-#' containing node information. By default this CSV
-#' will be called \code{nodes.csv}.
-#' @param edf_name the name to provide to the CSV file
-#' containing edge information. By default this CSV
-#' will be called \code{edges.csv}.
-#' @param output_path the path to which the CSV files
-#' will be placed. By default, this is the current
-#' working directory.
-#' @param colnames_type provides options to modify
-#' CSV column names to allow for easier import into
-#' other graph systems. The \code{neo4j} option
-#' modifies column names to allow for direct import
-#' of CSVs into Neo4J with the \code{LOAD CSV} clause.
-#' The \code{graphframes} option modifies column names
-#' to match those required by the Spark GraphFrames
-#' package.
+#'
+#' Export a graph to CSV files for nodes and edges.
+#' @inheritParams render_graph
+#' @param ndf_name the name to provide to the CSV file containing node
+#'   information. By default this CSV will be called \code{nodes.csv}.
+#' @param edf_name the name to provide to the CSV file containing edge
+#'   information. By default this CSV will be called \code{edges.csv}.
+#' @param output_path the path to which the CSV files will be placed. By
+#'   default, this is the current working directory.
+#' @param colnames_type provides options to modify CSV column names to allow for
+#'   easier import into other graph systems. The \code{neo4j} option modifies
+#'   column names to allow for direct import of CSVs into Neo4J with the
+#'   \code{LOAD CSV} clause. The \code{graphframes} option modifies column names
+#'   to match those required by the Spark GraphFrames package.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -46,14 +40,12 @@
 #' graph %>%
 #'   export_csv()
 #' @importFrom utils write.csv
-#' @export export_csv
-
+#' @export
 export_csv <- function(graph,
                        ndf_name = "nodes.csv",
                        edf_name = "edges.csv",
                        output_path = getwd(),
                        colnames_type = NULL) {
-
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()

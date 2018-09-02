@@ -1,10 +1,8 @@
 #' Deselect any selected edges in a graph
-#' @description Deselect edges in a graph object of
-#' class \code{dgr_graph}.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edges a vector of edge IDs that
-#' should be deselected.
+#'
+#' Deselect edges in a graph object of class \code{dgr_graph}.
+#' @inheritParams render_graph
+#' @param edges a vector of edge IDs that should be deselected.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with
@@ -39,8 +37,7 @@
 #' graph %>%
 #'   get_selection()
 #' @importFrom dplyr filter
-#' @export deselect_edges
-
+#' @export
 deselect_edges <- function(graph,
                            edges) {
 

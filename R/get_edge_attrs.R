@@ -1,19 +1,15 @@
 #' Get edge attribute values
-#' @description From a graph object of class
-#' \code{dgr_graph}, get edge attribute values for one
-#' or more edges.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edge_attr the name of the attribute for which
-#' to get values.
-#' @param from an optional vector of node IDs from
-#' which the edge is outgoing for filtering the list
-#' of edges.
-#' @param to an optional vector of node IDs from which
-#' the edge is incoming for filtering the list of
-#' edges.
-#' @return a named vector of edge attribute values for
-#' the attribute given by \code{edge_attr} by edge.
+#'
+#' From a graph object of class \code{dgr_graph}, get edge attribute values for
+#'   one or more edges.
+#' @inheritParams render_graph
+#' @param edge_attr the name of the attribute for which to get values.
+#' @param from an optional vector of node IDs from which the edge is outgoing
+#'   for filtering the list of edges.
+#' @param to an optional vector of node IDs from which the edge is incoming for
+#'   filtering the list of edges.
+#' @return a named vector of edge attribute values for the attribute given by
+#'   \code{edge_attr} by edge.
 #' @examples
 #' # Create a simple graph where
 #' # edges have an edge attribute
@@ -68,8 +64,7 @@
 #'       to = c(2, 3))
 #' @importFrom dplyr mutate filter pull
 #' @importFrom rlang enquo UQ get_expr
-#' @export get_edge_attrs
-
+#' @export
 get_edge_attrs <- function(graph,
                            edge_attr,
                            from = NULL,

@@ -1,16 +1,13 @@
 #' Get radiality centrality scores
-#' @description Get the radiality centrality
-#' for all nodes in a graph. These scores describe
-#' the ease to which nodes can reach other nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param direction using \code{all} (the default), the
-#' search will ignore edge direction while traversing
-#' through the graph. With \code{out}, measurements of
-#' paths will be from a node whereas with \code{in},
-#' measurements of paths will be to a node.
-#' @return a data frame with radiality centrality
-#' scores for each of the nodes.
+#'
+#' Get the radiality centrality for all nodes in a graph. These scores describe
+#'   the ease to which nodes can reach other nodes.
+#' @inheritParams render_graph
+#' @param direction using \code{all} (the default), the search will ignore edge
+#'   direction while traversing through the graph. With \code{out}, measurements
+#'   of paths will be from a node whereas with \code{in}, measurements of paths
+#'   will be to a node.
+#' @return a data frame with radiality centrality scores for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -37,8 +34,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom igraph distances diameter
-#' @export get_radiality
-
+#' @export
 get_radiality <- function(graph,
                           direction = "all") {
 

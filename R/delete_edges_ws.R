@@ -1,19 +1,16 @@
 #' Delete all selected edges in an edge selection
-#' @description In a graph object of class
-#' \code{dgr_graph}, delete all edges present in a
-#' selection.
 #'
-#' Selections of edges can be performed using
-#' the following \code{select_...} functions:
-#' \code{select_edges()},
-#' \code{select_last_edge()}, or
-#' \code{select_edges_by_node_id()}.
-#' Selections of edges can also be performed using
-#' the following traversal functions:
-#' \code{trav_out_edge()}, \code{trav_in_edge()},
-#' or \code{trav_both_edge()}.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#' In a graph object of class \code{dgr_graph}, delete all edges present in a
+#'   selection.
+#'
+#' Selections of edges can be performed using the following \code{select_...}
+#'   functions: \code{select_edges()}, \code{select_last_edge()}, or
+#'   \code{select_edges_by_node_id()}.
+#'
+#' Selections of edges can also be performed using the following traversal
+#'   functions: \code{trav_out_edge()}, \code{trav_in_edge()}, or
+#'   \code{trav_both_edge()}.
+#' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph
@@ -38,8 +35,7 @@
 #' # Get a count of edges in the graph
 #' graph %>%
 #'   count_edges()
-#' @export delete_edges_ws
-
+#' @export
 delete_edges_ws <- function(graph) {
 
   # Get the time of function start

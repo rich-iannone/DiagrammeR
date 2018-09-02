@@ -1,10 +1,9 @@
 #' Get information on a graph series
-#' @description Obtain a data frame with information
-#' on the graphs within a graph series.
-#' @param graph_series a graph series object of type
-#' \code{dgr_graph_1D}.
-#' @return a data frame containing information on the
-#' graphs within the supplied graph series.
+#'
+#' Obtain a data frame with information on the graphs within a graph series.
+#' @param graph_series a graph series object of type \code{dgr_graph_1D}.
+#' @return a data frame containing information on the graphs within the supplied
+#'   graph series.
 #' @examples
 #' # Create three graphs
 #' graph_1 <-
@@ -33,8 +32,7 @@
 #' # Get information on the graphs in the series
 #' series %>%
 #'   get_graph_series_info()
-#' @export get_graph_series_info
-
+#' @export
 get_graph_series_info <- function(graph_series) {
 
   graphs_in_series <-

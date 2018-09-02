@@ -1,21 +1,17 @@
 #' Get data frames bound to node attributes
-#' @description From a graph object of class
-#' \code{dgr_graph}, get one or more data frames
-#' already bound as node and/or edge attribute
-#' values given graph node and/or edges.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param node_id a vector of node ID values in
-#' which data frames are bound as node attrs.
-#' @param edge_id a vector of edge ID values in
-#' which data frames are bound as edge attrs.
-#' @param return_format the format in which to
-#' return the results of several data frames. These
-#' can either be: (1) \code{single_tbl} (a tibble
-#' object resulting from a `bind_rows` operation of
-#' multiple data frames), and (2) \code{single_df}
-#' (a single data frame which all of the data frame
-#' data).
+#'
+#' From a graph object of class \code{dgr_graph}, get one or more data frames
+#'   already bound as node and/or edge attribute values given graph node and/or
+#'   edges.
+#' @inheritParams render_graph
+#' @param node_id a vector of node ID values in which data frames are bound as
+#'   node attrs.
+#' @param edge_id a vector of edge ID values in which data frames are bound as
+#'   edge attrs.
+#' @param return_format the format in which to return the results of several
+#'   data frames. These can either be: (1) \code{single_tbl} (a tibble object
+#'   resulting from a `bind_rows` operation of multiple data frames), and (2)
+#'   \code{single_df} (a single data frame which all of the data frame data).
 #' @return either a tibble or a data frame.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -104,8 +100,7 @@
 #' @importFrom dplyr filter select bind_rows filter starts_with
 #' @importFrom dplyr everything left_join as_tibble tibble
 #' @importFrom purrr flatten_chr
-#' @export get_attr_dfs
-
+#' @export
 get_attr_dfs <- function(graph,
                          node_id = NULL,
                          edge_id = NULL,

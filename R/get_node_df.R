@@ -1,9 +1,7 @@
 #' Get a node data frame from a graph
-#' @description From a graph, obtain a
-#' node data frame with all current
-#' node attributes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' From a graph, obtain a node data frame with all current node attributes.
+#' @inheritParams render_graph
 #' @return a node data frame.
 #' @examples
 #' # Create a graph
@@ -38,8 +36,7 @@
 #' # data frame (ndf)
 #' graph %>%
 #'   get_node_df()
-#' @export get_node_df
-
+#' @export
 get_node_df <- function(graph) {
 
   # Get the name of the function

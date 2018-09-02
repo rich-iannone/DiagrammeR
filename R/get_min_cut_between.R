@@ -1,15 +1,13 @@
 #' Get the minimum cut between source and sink nodes
-#' @description Get the minimum cut between source
-#' and sink nodes. This is the minimum total capacity
-#' of edges needed for removal in order to eliminate
-#' all paths from the source and sink nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Get the minimum cut between source and sink nodes. This is the minimum total
+#'   capacity of edges needed for removal in order to eliminate all paths from
+#'   the source and sink nodes.
+#' @inheritParams render_graph
 #' @param from the node ID for the source node.
 #' @param to the node ID for the sink or target node.
-#' @return a single numeric value representing the
-#' minimum total edge capacity removed to disconnect
-#' the source and sink nodes.
+#' @return a single numeric value representing the minimum total edge capacity
+#'   removed to disconnect the source and sink nodes.
 #' @examples
 #' # Set a seed
 #' set.seed(23)
@@ -60,8 +58,7 @@
 #'     from = 2,
 #'     to = 8)
 #' @importFrom igraph min_cut
-#' @export get_min_cut_between
-
+#' @export
 get_min_cut_between <- function(graph,
                                 from,
                                 to) {

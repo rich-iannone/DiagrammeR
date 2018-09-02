@@ -1,10 +1,9 @@
 #' Get the graph's ndf filtered by a selection of nodes
-#' @description From a graph object of class
-#' \code{dgr_graph}, get the graph's internal
-#' node data frame that is filtered by the node
-#' ID values currently active as a selection.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' From a graph object of class \code{dgr_graph}, get the graph's internal node
+#'   data frame that is filtered by the node ID values currently active as a
+#'   selection.
+#' @inheritParams render_graph
 #' @return a node data frame.
 #' @examples
 #' # Create a random graph using the
@@ -32,8 +31,7 @@
 #' graph %>%
 #'   get_node_df_ws()
 #' @importFrom dplyr filter
-#' @export get_node_df_ws
-
+#' @export
 get_node_df_ws <- function(graph) {
 
   # Get the name of the function

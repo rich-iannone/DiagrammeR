@@ -1,15 +1,12 @@
 #' Get constraint scores for one or more graph nodes
-#' @description Get the constraint scores (based on
-#' Burt's Constraint Index) for one or more nodes in a
-#' graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param nodes an optional vector of node IDs to
-#' consider for constraint scores. If not supplied,
-#' then constraint scores for all nodes in the graph
-#' will be calculated.
-#' @return a data frame with constraint scores for one
-#' or more graph nodes.
+#'
+#' Get the constraint scores (based on Burt's Constraint Index) for one or more
+#'   nodes in a graph.
+#' @inheritParams render_graph
+#' @param nodes an optional vector of node IDs to consider for constraint
+#'   scores. If not supplied, then constraint scores for all nodes in the graph
+#'   will be calculated.
+#' @return a data frame with constraint scores for one or more graph nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -44,8 +41,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom influenceR constraint
-#' @export get_constraint
-
+#' @export
 get_constraint <- function(graph,
                            nodes = NULL) {
 

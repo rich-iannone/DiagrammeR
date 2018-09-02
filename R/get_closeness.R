@@ -1,15 +1,12 @@
 #' Get closeness centrality values
-#' @description Get the closeness centrality values
-#' for all nodes in a graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param direction using \code{all} (the default), the
-#' search will ignore edge direction while traversing
-#' through the graph. With \code{out}, measurements of
-#' paths will be from a node whereas with \code{in},
-#' measurements of paths will be to a node.
-#' @return a data frame with closeness values for
-#' each of the nodes.
+#'
+#' Get the closeness centrality values for all nodes in a graph.
+#' @inheritParams render_graph
+#' @param direction using \code{all} (the default), the search will ignore edge
+#'   direction while traversing through the graph. With \code{out}, measurements
+#'   of paths will be from a node whereas with \code{in}, measurements of paths
+#'   will be to a node.
+#' @return a data frame with closeness values for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -36,8 +33,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom igraph closeness
-#' @export get_closeness
-
+#' @export
 get_closeness <- function(graph,
                           direction = "all") {
 

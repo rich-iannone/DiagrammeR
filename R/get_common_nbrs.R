@@ -1,10 +1,8 @@
 #' Get all common neighbors between two or more nodes
-#' @description With two or more nodes, get the set of
-#' common neighboring nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param nodes a vector of node ID values of length
-#' at least 2.
+#'
+#' With two or more nodes, get the set of common neighboring nodes.
+#' @inheritParams render_graph
+#' @param nodes a vector of node ID values of length at least 2.
 #' @return a vector of node ID values.
 #' @examples
 #' # Create a directed graph with 5 nodes
@@ -24,8 +22,7 @@
 #' graph %>%
 #'   get_common_nbrs(
 #'     nodes = c(1, 3))
-#' @export get_common_nbrs
-
+#' @export
 get_common_nbrs <- function(graph,
                             nodes) {
 

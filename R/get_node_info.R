@@ -1,10 +1,10 @@
 #' Get detailed information on nodes
 #'
 #' Obtain a data frame with detailed information on nodes and their
-#' interrelationships within the graph.
+#'   interrelationships within the graph.
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @return a data frame containing information specific to each node within the
-#' graph.
+#'   graph.
 #' @examples
 #' # Create a simple graph
 #' graph <-

@@ -1,10 +1,8 @@
 #' Get a graph available in a series
-#' @description Using a graph series object of type
-#' \code{dgr_graph_1D}, get a graph object.
-#' @param graph_series a graph series object of type
-#' \code{dgr_graph_1D}.
-#' @param graph_no the index of the graph in the graph
-#' series.
+#'
+#' Using a graph series object of type \code{dgr_graph_1D}, get a graph object.
+#' @param graph_series a graph series object of type \code{dgr_graph_1D}.
+#' @param graph_no the index of the graph in the graph series.
 #' @examples
 #' # Create three graphs
 #' graph_1 <-
@@ -35,8 +33,7 @@
 #'   series %>%
 #'   get_graph_from_graph_series(
 #'     graph_no = 2)
-#' @export get_graph_from_graph_series
-
+#' @export
 get_graph_from_graph_series <- function(graph_series,
                                         graph_no) {
 

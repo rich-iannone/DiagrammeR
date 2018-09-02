@@ -1,16 +1,11 @@
 #' Get the authority scores for all nodes
-#' @description Get the Kleinberg
-#' authority centrality scores for all
-#' nodes in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param weights_attr an optional name
-#' of the edge attribute to use in the
-#' adjacency matrix. If \code{NULL} then,
-#' if it exists, the \code{weight} edge
+#'
+#' Get the Kleinberg authority centrality scores for all nodes in the graph.
+#' @inheritParams render_graph
+#' @param weights_attr an optional name of the edge attribute to use in the
+#' adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge
 #' attribute of the graph will be used.
-#' @return a data frame with authority
-#' scores for each of the nodes.
+#' @return a data frame with authority scores for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -38,8 +33,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom igraph authority_score
-#' @export get_authority_centrality
-
+#' @export
 get_authority_centrality <- function(graph,
                                      weights_attr = NULL) {
 

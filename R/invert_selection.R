@@ -1,13 +1,9 @@
 #' Invert selection of nodes or edges in a graph
-#' @description Modify the selection
-#' of nodes or edges within a graph
-#' object such that all nodes or edges
-#' previously not selected will now be
-#' selected and vice versa.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Modify the selection of nodes or edges within a graph object such that all
+#'   nodes or edges previously not selected will now be selected and vice versa.
+#' @inheritParams render_graph
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -50,8 +46,7 @@
 #' graph %>%
 #'   get_selection()
 #' @importFrom dplyr filter select
-#' @export invert_selection
-
+#' @export
 invert_selection <- function(graph) {
 
   # Get the time of function start

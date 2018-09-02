@@ -1,12 +1,10 @@
 #' Get a vector of edge ID values
-#' @description Obtain a vector of edge ID values
-#' from a graph object. An optional filter by
-#' edge attribute can limit the set of edge ID
-#' values returned.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param conditions an option to use filtering
-#' conditions for the retrieval of edges.
+#'
+#' Obtain a vector of edge ID values from a graph object. An optional filter by
+#'   edge attribute can limit the set of edge ID values returned.
+#' @inheritParams render_graph
+#' @param conditions an option to use filtering conditions for the retrieval of
+#'   edges.
 #' @return a vector of edge ID values.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -59,8 +57,7 @@
 #'     value > 5)
 #' @importFrom dplyr filter pull
 #' @importFrom rlang enquo UQ get_expr
-#' @export get_edge_ids
-
+#' @export
 get_edge_ids <- function(graph,
                          conditions = NULL) {
 

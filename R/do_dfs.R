@@ -1,28 +1,19 @@
 #' Use the depth-first search (dfs) algorithm
-#' @description With a chosen or random node
-#' serving as the starting point, perform a
-#' depth-first search of the whole graph and return
-#' the node ID values visited. The dfs algorithm
-#' differs from breadth-first search (bfs) in that
-#' dfs will follow tree branches as far as possible
-#' until terminating at leaf node (bfs traverses
-#' branches one level at a time).
-#' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
-#' @param node an optional node ID value to specify
-#' a single starting point for the dfs. If not
-#' provided, a random node from the graph will be
-#' chosen.
-#' @param direction using \code{all} (the default),
-#' the bfs will ignore edge direction while
-#' traversing through the graph. With \code{out} and
-#' \code{in}, traversals between adjacent nodes will
-#' respect the edge direction.
-#' @return a vector containing node ID values for
-#' nodes visited during the depth-first search. The
-#' order of the node IDs corresponds to the order
-#' visited.
+#'
+#' With a chosen or random node serving as the starting point, perform a
+#'   depth-first search of the whole graph and return the node ID values
+#'   visited. The dfs algorithm differs from breadth-first search (bfs) in that
+#'   dfs will follow tree branches as far as possible until terminating at leaf
+#'   node (bfs traverses branches one level at a time).
+#' @inheritParams render_graph
+#' @param node an optional node ID value to specify a single starting point for
+#'   the dfs. If not provided, a random node from the graph will be chosen.
+#' @param direction using \code{all} (the default), the bfs will ignore edge
+#'   direction while traversing through the graph. With \code{out} and
+#'   \code{in}, traversals between adjacent nodes will respect the edge direction.
+#' @return a vector containing node ID values for nodes visited during the
+#'   depth-first search. The order of the node IDs corresponds to the order
+#'   visited.
 #' @examples
 #' # Create a graph containing
 #' # two balanced trees
@@ -69,8 +60,7 @@
 #'     node = 1,
 #'     direction = "out")
 #' @importFrom igraph dfs
-#' @export do_dfs
-
+#' @export
 do_dfs <- function(graph,
                    node = NULL,
                    direction = "all") {

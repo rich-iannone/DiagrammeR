@@ -1,15 +1,13 @@
 #' Get the graph reciprocity
-#' @description Get the reciprocity of a directed graph.
-#' The reciprocity of a graph is the fraction of
-#' reciprocal edges (e.g., `1` -> `2` and `2` -> `1`)
-#' over all edges available in the graph. Note that for
-#' an undirected graph, all edges are reciprocal. This
-#' function does not consider loop edges (e.g., `1` -> `1`).
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a single, numerical value that is the
-#' ratio value of reciprocal edges over all graph
-#' edges.
+#'
+#' Get the reciprocity of a directed graph. The reciprocity of a graph is the
+#'   fraction of reciprocal edges (e.g., `1` -> `2` and `2` -> `1`) over all
+#'   edges available in the graph. Note that for an undirected graph, all edges
+#'   are reciprocal. This function does not consider loop edges (e.g., `1` ->
+#'   `1`).
+#' @inheritParams render_graph
+#' @return a single, numerical value that is the ratio value of reciprocal edges
+#'   over all graph edges.
 #' @examples
 #' # Define a graph where 2 edge definitions
 #' # have pairs of reciprocal edges
@@ -46,8 +44,7 @@
 #'   add_n_nodes(n = 5) %>%
 #'   get_reciprocity()
 #' @importFrom igraph reciprocity
-#' @export get_reciprocity
-
+#' @export
 get_reciprocity <- function(graph) {
 
   # Get the name of the function

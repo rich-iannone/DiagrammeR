@@ -1,8 +1,7 @@
 #' Get articulation points
-#' @description Get the nodes in the graph that are
-#' identified as articulation points.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Get the nodes in the graph that are identified as articulation points.
+#' @inheritParams render_graph
 #' @return a vector of node IDs.
 #' @examples
 #' # Create a random graph using the
@@ -36,8 +35,7 @@
 #'     node_attr = shape,
 #'     value = "circle")
 #' @importFrom igraph articulation_points as_ids
-#' @export get_articulation_points
-
+#' @export
 get_articulation_points <- function(graph) {
 
   # Get the name of the function

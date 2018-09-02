@@ -1,12 +1,11 @@
 #' Get the maximum graph eccentricity
-#' @description Get the diameter of a graph, which is
-#' the largest eccentricity in the graph. The graph
-#' eccentricity of a node is its shortest path from
-#' the farthest other node in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a single numeric value representing the
-#' maximum eccentricity of the graph.
+#'
+#' Get the diameter of a graph, which is the largest eccentricity in the graph.
+#'   The graph eccentricity of a node is its shortest path from the farthest
+#'   other node in the graph.
+#' @inheritParams render_graph
+#' @return a single numeric value representing the maximum eccentricity of the
+#'   graph.
 #' @examples
 #' # Create a cycle graph
 #' graph <-
@@ -25,8 +24,7 @@
 #'   add_full_graph(n = 10) %>%
 #'   get_max_eccentricity()
 #' @importFrom igraph diameter
-#' @export get_max_eccentricity
-
+#' @export
 get_max_eccentricity <- function(graph) {
 
   # Get the name of the function

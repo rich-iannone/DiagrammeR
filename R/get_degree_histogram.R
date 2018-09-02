@@ -1,14 +1,11 @@
 #' Get histogram data for a graph's degree frequency
-#' @description Get histogram data for a graph's
-#' degree frequency. The bin width is set to 1 and
-#' zero-value degrees are omitted from the output.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param mode using \code{total} (the default),
-#' degree considered for each node will be the total
-#' degree. With \code{in} and \code{out} the degree
-#' used will be the in-degree and out-degree,
-#' respectively.
+#'
+#' Get histogram data for a graph's degree frequency. The bin width is set to 1
+#'   and zero-value degrees are omitted from the output.
+#' @inheritParams render_graph
+#' @param mode using \code{total} (the default), degree considered for each node
+#'   will be the total degree. With \code{in} and \code{out} the degree used
+#'   will be the in-degree and out-degree, respectively.
 #' @return a data frame with degree counts.
 #' @examples
 #' # Create a random graph using the
@@ -27,8 +24,7 @@
 #'   get_degree_histogram(
 #'     mode = "total")
 #' @importFrom dplyr mutate select
-#' @export get_degree_histogram
-
+#' @export
 get_degree_histogram <- function(graph,
                                  mode = "total") {
 

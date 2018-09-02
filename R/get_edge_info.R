@@ -1,13 +1,10 @@
 #' Get detailed information on edges
-#' @description Obtain a data frame
-#' with detailed information on edges
-#' and their interrelationships
-#' within the graph.
-#' @param graph a graph object of
-#' class \code{dgr_graph}.
-#' @return a data frame containing
-#' information specific to each edge
-#' within the graph.
+#'
+#' Obtain a data frame with detailed information on edges and their
+#'   interrelationships within the graph.
+#' @inheritParams render_graph
+#' @return a data frame containing information specific to each edge within the
+#'   graph.
 #' @examples
 #' # Create a simple graph
 #' graph <-
@@ -21,8 +18,7 @@
 #' graph %>%
 #'   get_edge_info()
 #' @importFrom dplyr select
-#' @export get_edge_info
-
+#' @export
 get_edge_info <- function(graph) {
 
   # Get the name of the function

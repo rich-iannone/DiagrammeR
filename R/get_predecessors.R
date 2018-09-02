@@ -1,9 +1,8 @@
-#' Get node IDs for predecessor nodes to the specified
-#' node
-#' @description Provides a vector of node IDs for all
-#' nodes that have a connection to the given node.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#' Get node IDs for predecessor nodes to the specified node
+#'
+#' Provides a vector of node IDs for all nodes that have a connection to the
+#'   given node.
+#' @inheritParams render_graph
 #' @param node a node ID for the selected node.
 #' @return a vector of node ID values.
 #' @examples
@@ -40,8 +39,7 @@
 #' graph %>%
 #'   get_predecessors(
 #'     node = 26)
-#' @export get_predecessors
-
+#' @export
 get_predecessors <- function(graph,
                              node) {
 

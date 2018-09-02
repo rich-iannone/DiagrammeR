@@ -1,8 +1,7 @@
 #' Get all neighbors of one or more nodes
-#' @description With one or more nodes, get the set of
-#' all neighboring nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' With one or more nodes, get the set of all neighboring nodes.
+#' @inheritParams render_graph
 #' @param nodes a vector of node ID values.
 #' @return a vector of node ID values.
 #' @examples
@@ -37,8 +36,7 @@
 #'   set_node_attrs_ws(
 #'     node_attr = color,
 #'     value = "green")
-#' @export get_nbrs
-
+#' @export
 get_nbrs <- function(graph,
                      nodes) {
 

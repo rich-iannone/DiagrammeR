@@ -1,10 +1,8 @@
 #' Get the graph log information
-#' @description Get a tibble of the graph log, which
-#' contains information on the functions called on
-#' the graph that resulted in some transformation of
-#' the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Get a tibble of the graph log, which contains information on the functions
+#' called on the graph that resulted in some transformation of the graph.
+#' @inheritParams render_graph
 #' @return a \code{df_tbl} object.
 #' @examples
 #' # Create a random graph using the
@@ -25,8 +23,7 @@
 #' graph %>%
 #'   get_graph_log()
 #' @importFrom dplyr as_tibble
-#' @export get_graph_log
-
+#' @export
 get_graph_log <- function(graph) {
 
   # Get the name of the function

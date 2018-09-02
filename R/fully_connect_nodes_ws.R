@@ -1,12 +1,9 @@
 #' Fully connect all nodes in a selection of nodes
-#' @description With a selection of nodes in a
-#' graph, add any remaining edges required to
-#' fully connect this group of edges to each
-#' other.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' With a selection of nodes in a graph, add any remaining edges required to
+#'   fully connect this group of edges to each other.
+#' @inheritParams render_graph
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph and
 #' # then add a path of 3 nodes
@@ -58,8 +55,7 @@
 #' graph %>%
 #'   get_edge_df()
 #' @importFrom dplyr rename setdiff bind_rows select
-#' @export fully_connect_nodes_ws
-
+#' @export
 fully_connect_nodes_ws <- function(graph) {
 
   # Get the time of function start

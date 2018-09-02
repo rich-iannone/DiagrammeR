@@ -1,13 +1,11 @@
 #' Get node attribute values from a selection of nodes
-#' @description From a graph object of class
-#' \code{dgr_graph}, get node attribute values from nodes
-#' currently active as a selection.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param node_attr the name of the attribute for which
-#' to get values.
-#' @return a named vector of node attribute values for
-#' the attribute given by \code{node_attr} by node ID.
+#'
+#' From a graph object of class \code{dgr_graph}, get node attribute values from
+#'   nodes currently active as a selection.
+#' @inheritParams render_graph
+#' @param node_attr the name of the attribute for which to get values.
+#' @return a named vector of node attribute values for the attribute given by
+#'   \code{node_attr} by node ID.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -36,8 +34,7 @@
 #'     node_attr = value)
 #' @importFrom dplyr filter pull
 #' @importFrom rlang enquo UQ get_expr
-#' @export get_node_attrs_ws
-
+#' @export
 get_node_attrs_ws <- function(graph,
                               node_attr) {
 

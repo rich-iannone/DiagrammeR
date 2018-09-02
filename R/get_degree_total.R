@@ -1,16 +1,12 @@
 #' Get total degree values for all nodes
-#' @description Get the total degree values for all
-#' nodes in a graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param normalized set as \code{FALSE} (the default),
-#' the total degree will be provided for each of
-#' the nodes (as a count of edges to and from each
-#' node). When set as \code{TRUE}, then the result for
-#' each node will be divided by the total number of nodes
-#' in the graph minus 1.
-#' @return a data frame with total degree values for
-#' each of the nodes.
+#'
+#' Get the total degree values for all nodes in a graph.
+#' @inheritParams render_graph
+#' @param normalized set as \code{FALSE} (the default), the total degree will be
+#'   provided for each of the nodes (as a count of edges to and from each node).
+#'   When set as \code{TRUE}, then the result for each node will be divided by
+#'   the total number of nodes in the graph minus 1.
+#' @return a data frame with total degree values for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -40,8 +36,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom igraph degree
-#' @export get_degree_total
-
+#' @export
 get_degree_total <- function(graph,
                              normalized = FALSE) {
 

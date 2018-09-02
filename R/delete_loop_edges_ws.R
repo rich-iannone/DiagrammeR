@@ -1,10 +1,8 @@
 #' Delete all loop edges associated with a selection of nodes
-#' @description With a selection of nodes in a
-#' graph, remove any associated loop edges.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' With a selection of nodes in a graph, remove any associated loop edges.
+#' @inheritParams render_graph
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an undirected, full graph
 #' # of 5 nodes with loops retained
@@ -30,8 +28,7 @@
 #'   count_loop_edges()
 #' @importFrom dplyr setdiff filter
 #' @importFrom purrr map_df
-#' @export delete_loop_edges_ws
-
+#' @export
 delete_loop_edges_ws <- function(graph) {
 
   # Get the time of function start

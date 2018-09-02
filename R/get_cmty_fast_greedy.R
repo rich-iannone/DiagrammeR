@@ -1,13 +1,10 @@
 #' Get community membership by modularity optimization
-#' @description Through the use of greedy
-#' optimization of a modularity score, obtain
-#' the group membership values for each of the
-#' nodes in the graph. Note that this method
-#' only works on graphs without multiple edges.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a data frame with group membership
-#' assignments for each of the nodes.
+#'
+#' Through the use of greedy optimization of a modularity score, obtain the
+#'   group membership values for each of the nodes in the graph. Note that this
+#'   method only works on graphs without multiple edges.
+#' @inheritParams render_graph
+#' @return a data frame with group membership assignments for each of the nodes.
 #' @examples
 #' # Create a graph with a
 #' # balanced tree
@@ -38,8 +35,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom igraph cluster_fast_greedy membership
-#' @export get_cmty_fast_greedy
-
+#' @export
 get_cmty_fast_greedy <- function(graph) {
 
   # Get the name of the function
