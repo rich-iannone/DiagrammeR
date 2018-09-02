@@ -1,17 +1,14 @@
 #' Copy a node attribute column and set the name
-#' @description Within a graph's internal node data
-#' frame (ndf), copy the contents an existing node
-#' attribute and create a distinct node attribute
-#' within the ndf with a different attribute name.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param node_attr_from the name of the node attribute
-#' column from which values will be copied.
-#' @param node_attr_to the name of the new node
-#' attribute column to which the copied values will be
-#' placed.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Within a graph's internal node data frame (ndf), copy the contents an
+#'   existing node attribute and create a distinct node attribute within the ndf
+#'   with a different attribute name.
+#' @inheritParams render_graph
+#' @param node_attr_from the name of the node attribute column from which values
+#'   will be copied.
+#' @param node_attr_to the name of the new node attribute column to which the
+#'   copied values will be placed.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -53,8 +50,7 @@
 #'   get_node_df()
 #' @importFrom dplyr bind_cols
 #' @importFrom rlang enquo get_expr
-#' @export copy_node_attrs
-
+#' @export
 copy_node_attrs <- function(graph,
                             node_attr_from,
                             node_attr_to) {

@@ -1,67 +1,39 @@
-#' Add a multiple of new nodes with edges to or from
-#' one or more selected nodes
-#' @description Add n new nodes to or from one or more
-#' nodes available as a selection in a graph object of
-#' class \code{dgr_graph}. New graph edges will all
-#' move either from the nodes in the selection toward
-#' the newly created nodes (with the option
-#' \code{direction = "from"}), or to the selected nodes
-#' already in the graph (using \code{direction = "to"}).
-#' Optionally, set node \code{type} and edge \code{rel}
-#' values for all the new nodes and edges created,
-#' respectively.
+#' Add a multiple of new nodes with edges to or from one or more selected nodes
 #'
-#' Selections of nodes can be performed using
-#' the following \code{select_...} functions:
+#' Add \code{n} new nodes to or from one or more nodes available as a selection
+#'   in a graph object of class \code{dgr_graph}. New graph edges will all move
+#'   either from the nodes in the selection toward the newly created nodes (with
+#'   the option \code{direction = "from"}), or to the selected nodes already in
+#'   the graph (using \code{direction = "to"}). Optionally, set node \code{type}
+#'   and edge \code{rel} values for all the new nodes and edges created,
+#'   respectively.
+#'
+#' Selections of nodes can be performed using the following \code{select_...}
+#'   functions:
 #' \code{select_nodes()},
 #' \code{select_last_nodes_created()},
 #' \code{select_nodes_by_degree()},
 #' \code{select_nodes_by_id()}, or
 #' \code{select_nodes_in_neighborhood()}.
-#' Selections of nodes can also be performed using
-#' the following traversal functions:
+#' Selections of nodes can also be performed using the following traversal
+#'   functions:
 #' (\code{trav_...}):
 #' \code{trav_out()}, \code{trav_in()},
 #' \code{trav_both()}, \code{trav_in_node()},
 #' \code{trav_out_node()}.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param n the number of new nodes to attach as
-#' successor nodes to the nodes in the selection.
-#' @param direction using \code{from} will create new
-#' edges from existing nodes to the new nodes. The
-#' \code{to} option will create new edges directed
-#' toward the existing nodes.
-#' @param type an optional character vector that
-#' provides group identifiers for the nodes to be added.
-#' @param label an optional character object that
-#' describes the nodes to be added.
-#' @param rel an optional string to apply a
-#' \code{rel} attribute to all newly created edges.
-#' @param node_aes an optional list of named vectors
-#' comprising node aesthetic attributes. The helper
-#' function \code{node_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted node aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{color},
-#' \code{fillcolor}).
-#' @param edge_aes an optional list of named vectors
-#' comprising edge aesthetic attributes. The helper
-#' function \code{edge_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted edge aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{penwidth},
-#' \code{color}).
-#' @param node_data an optional list of named vectors
-#' comprising node data attributes. The helper
-#' function \code{node_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created nodes.
-#' @param edge_data an optional list of named vectors
-#' comprising edge data attributes. The helper
-#' function \code{edge_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created edges.
+#' @inheritParams node_edge_aes_data
+#' @inheritParams render_graph
+#' @param n the number of new nodes to attach as successor nodes to the nodes in
+#'   the selection.
+#' @param direction using \code{from} will create new edges from existing nodes
+#'   to the new nodes. The \code{to} option will create new edges directed
+#'   toward the existing nodes.
+#' @param type an optional character vector that provides group identifiers for
+#'   the nodes to be added.
+#' @param label an optional character object that describes the nodes to be
+#'   added.
+#' @param rel an optional string to apply a \code{rel} attribute to all newly
+#'   created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph, add a node to it, select
@@ -109,8 +81,7 @@
 #' #> "2->1" "3->1" "4->1" "5->1" "6->1"
 #' @importFrom dplyr select pull mutate everything as_tibble
 #' @importFrom dplyr filter left_join bind_rows
-#' @export add_n_nodes_ws
-
+#' @export
 add_n_nodes_ws <- function(graph,
                            n,
                            direction = NULL,

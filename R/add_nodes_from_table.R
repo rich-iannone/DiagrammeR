@@ -1,28 +1,22 @@
 #' Add nodes and attributes to graph from a table
-#' @description Add nodes and their attributes to an
-#' existing graph object from data in a CSV file or a
-#' data frame.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param table either a path to a CSV file, or, a data
-#' frame object.
-#' @param label_col an option to apply a column of data
-#' in the table as \code{label} attribute values.
-#' @param type_col an option to apply a column of data
-#' in the table as \code{type} attribute values.
-#' @param set_type an optional string to apply a
-#' \code{type} attribute to all nodes created from data
-#' in the external table.
-#' @param drop_cols an optional column selection
-#' statement for dropping columns from the external
-#' table before inclusion as attributes in the graph's
-#' internal node data frame. Several columns can be
-#' dropped by name using the syntax
-#' \code{col_1 & col_2 & ...}. Columns can also be
-#' dropped using a numeric column range with \code{:}
-#' (e.g., \code{5:8}), or, by using the \code{:}
-#' between column names to specify the range (e.g.,
-#' \code{col_5_name:col_8_name}).
+#'
+#' Add nodes and their attributes to an existing graph object from data in a
+#'   CSV file or a data frame.
+#' @inheritParams render_graph
+#' @param table either a path to a CSV file, or, a data frame object.
+#' @param label_col an option to apply a column of data in the table as
+#'   \code{label} attribute values.
+#' @param type_col an option to apply a column of data in the table as
+#'   \code{type} attribute values.
+#' @param set_type an optional string to apply a \code{type} attribute to all
+#'   nodes created from data in the external table.
+#' @param drop_cols an optional column selection statement for dropping columns
+#'   from the external table before inclusion as attributes in the graph's
+#'   internal node data frame. Several columns can be dropped by name using the
+#'   syntax \code{col_1 & col_2 & ...}. Columns can also be dropped using a
+#'   numeric column range with \code{:} (e.g., \code{5:8}), or, by using the
+#'   \code{:} between column names to specify the range (e.g.,
+#'   \code{col_5_name:col_8_name}).
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # To add nodes from the dataset called
@@ -89,8 +83,7 @@
 #' @importFrom utils read.csv
 #' @importFrom dplyr bind_cols mutate select
 #' @importFrom rlang enquo get_expr
-#' @export add_nodes_from_table
-
+#' @export
 add_nodes_from_table <- function(graph,
                                  table,
                                  label_col = NULL,

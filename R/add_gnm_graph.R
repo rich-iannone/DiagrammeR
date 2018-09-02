@@ -19,6 +19,7 @@
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
 #'   \code{Mersenne-Twister} implementation.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an undirected GNM
 #' # graph with 100 nodes and

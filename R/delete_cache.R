@@ -1,12 +1,9 @@
 #' Delete vectors cached in a graph object
-#' @description Delete vectors cached in a
-#' graph object of class \code{dgr_graph}.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param name one or more name of vector
-#' objects to delete from the cache. If none
-#' supplied, all cached vectors available in
-#' the graph will be deleted.
+#'
+#' Delete vectors cached in a graph object of class \code{dgr_graph}.
+#' @inheritParams render_graph
+#' @param name one or more name of vector objects to delete from the cache. If
+#'   none supplied, all cached vectors available in the graph will be deleted.
 #' @return a vector.
 #' @examples
 #' # Create an empty graph
@@ -36,8 +33,8 @@
 #' graph <-
 #'   graph %>%
 #'   delete_cache()
-#' @export delete_cache
-
+#' @importFrom glue glue
+#' @export
 delete_cache <- function(graph,
                          name = NULL) {
 

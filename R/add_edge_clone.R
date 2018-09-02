@@ -1,7 +1,7 @@
 #' Add a clone of an existing edge to the graph
 #'
 #' Add a new edge to a graph object of class \code{dgr_graph} which is a clone
-#' of an edge already in the graph. All edge attributes are preserved.
+#'   of an edge already in the graph. All edge attributes are preserved.
 #' @inheritParams render_graph
 #' @param edge an edge ID corresponding to the graph edge to be cloned.
 #' @param from the outgoing node from which the edge is connected.

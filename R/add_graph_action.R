@@ -1,14 +1,12 @@
 #' Add a graph action for execution at every transform
-#' @description Add a graph function along with its
-#' arguments to be run at every graph transformation
-#' step.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Add a graph function along with its arguments to be run at every graph
+#'   transformation step.
+#' @inheritParams render_graph
 #' @param fcn the name of the function to use.
-#' @param ... arguments and values to pass to
-#' the named function in \code{fcn}, if necessary.
-#' @param action_name an optional name for labeling
-#' the action.
+#' @param ... arguments and values to pass to the named function in \code{fcn},
+#'   if necessary.
+#' @param action_name an optional name for labeling the action.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
@@ -43,8 +41,7 @@
 #' graph %>%
 #'   get_graph_actions()
 #' @importFrom dplyr bind_rows
-#' @export add_graph_action
-
+#' @export
 add_graph_action <- function(graph,
                              fcn,
                              ...,

@@ -1,67 +1,22 @@
 #' Create a random islands graph with edges between the islands
-#' @description To an existing graph
-#' object, add several Erdos-Renyi
-#' random graphs (the islands) using
-#' a common set of parameters, connected
-#' together by a fixed number of edges.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param n_islands the number of
-#' islands in the generated graph.
-#' @param island_size the size of
-#' the islands in the generated graph.
-#' @param p the probability of there
-#' being edges between the islands.
-#' @param edges_between The number
-#' of edges between islands.
-#' @param type an optional string that
-#' describes the entity type for all the
-#' nodes to be added.
-#' @param label a boolean value where
-#' setting to \code{TRUE} ascribes node
-#' IDs to the label and \code{FALSE}
-#' yields a blank label.
-#' @param rel an optional string for
-#' providing a relationship label to all
-#' edges to be added.
-#' @param node_aes an optional list
-#' of named vectors comprising node
-#' aesthetic attributes. The helper
-#' function \code{node_aes()} is
-#' strongly recommended for use here
-#' as it contains arguments for each
-#' of the accepted node aesthetic
-#' attributes (e.g., \code{shape},
-#' \code{style}, \code{color},
-#' \code{fillcolor}).
-#' @param edge_aes an optional list
-#' of named vectors comprising edge
-#' aesthetic attributes. The helper
-#' function \code{edge_aes()} is
-#' strongly recommended for use here
-#' as it contains arguments for each
-#' of the accepted edge aesthetic
-#' attributes (e.g., \code{shape},
-#' \code{style}, \code{penwidth},
-#' \code{color}).
-#' @param node_data an optional list
-#' of named vectors comprising node
-#' data attributes. The helper
-#' function \code{node_data()} is
-#' strongly recommended for use here
-#' as it helps bind data specifically
-#' to the created nodes.
-#' @param edge_data an optional list
-#' of named vectors comprising edge
-#' data attributes. The helper function
-#' \code{edge_data()} is strongly
-#' recommended for use here as it helps
-#' bind data specifically to the
-#' created edges.
-#' @param set_seed supplying a value
-#' sets a random seed of the
-#' \code{Mersenne-Twister}
-#' implementation.
+#'
+#' To an existing graph object, add several Erdos-Renyi random graphs (the
+#' islands) using a common set of parameters, connected together by a fixed
+#' number of edges.
+#' @inheritParams node_edge_aes_data
+#' @inheritParams render_graph
+#' @param n_islands the number of islands in the generated graph.
+#' @param island_size the size of the islands in the generated graph.
+#' @param p the probability of there being edges between the islands.
+#' @param edges_between The number of edges between islands.
+#' @param type an optional string that describes the entity type for all the
+#'   nodes to be added.
+#' @param label a logical value where setting to \code{TRUE} ascribes node IDs
+#'   to the label and \code{FALSE} yields a blank label.
+#' @param rel an optional string for providing a relationship label to all edges
+#'   to be added.
+#' @param set_seed supplying a value sets a random seed of the
+#'   \code{Mersenne-Twister} implementation.
 #' @examples
 #' # Create a graph of islands
 #' islands_graph <-
@@ -82,8 +37,7 @@
 #'   count_edges()
 #' @importFrom igraph sample_islands
 #' @importFrom dplyr select bind_cols as_tibble
-#' @export add_islands_graph
-
+#' @export
 add_islands_graph <- function(graph,
                               n_islands,
                               island_size,

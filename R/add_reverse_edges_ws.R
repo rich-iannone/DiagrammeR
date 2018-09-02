@@ -1,42 +1,25 @@
-#' Add new edges in the opposite directions of a
-#' selection of edges
-#' @description Add edges in the opposite direction
-#' of one or more edges available as an edge selection
-#' in a graph object of class \code{dgr_graph}. New
-#' graph edges have the opposite edge definitions as
-#' those in the selection. For example, a graph with
-#' the edge \code{1->2} in its active selection will
-#' gain a new \code{2->1} edge. There is also the
-#' option to assign a common \code{rel} grouping to the
-#' newly created edges. Upon addition of the edges, the
-#' edge selection will be retained for further
-#' selection or traversal operations.
+#' Add new edges in the opposite directions of a selection of edges
 #'
-#' Selections of edges can be performed using
-#' the following \code{select_...} functions:
-#' \code{select_edges()},
-#' \code{select_last_edge()}, or
+#' Add edges in the opposite direction of one or more edges available as an edge
+#'   selection in a graph object of class \code{dgr_graph}. New graph edges have
+#'   the opposite edge definitions as those in the selection. For example, a
+#'   graph with the edge \code{1->2} in its active selection will gain a new
+#'   \code{2->1} edge. There is also the option to assign a common \code{rel}
+#'   grouping to the newly created edges. Upon addition of the edges, the edge
+#'   selection will be retained for further selection or traversal operations.
+#'
+#' Selections of edges can be performed using the following \code{select_...}
+#'   functions:
+#' \code{select_edges()}, \code{select_last_edge()}, or
 #' \code{select_edges_by_node_id()}.
-#' Selections of edges can also be performed using
-#' the following traversal functions:
-#' \code{trav_out_edge()}, \code{trav_in_edge()},
-#' or \code{trav_both_edge()}.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param rel an optional string to apply a
-#' \code{rel} attribute to all newly created edges.
-#' @param edge_aes an optional list of named vectors
-#' comprising edge aesthetic attributes. The helper
-#' function \code{edge_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted edge aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{penwidth},
-#' \code{color}).
-#' @param edge_data an optional list of named vectors
-#' comprising edge data attributes. The helper
-#' function \code{edge_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created edges.
+#'
+#' Selections of edges can also be performed using the following traversal
+#'   functions: \code{trav_out_edge()}, \code{trav_in_edge()}, or
+#'   \code{trav_both_edge()}.
+#' @inheritParams node_edge_aes_data
+#' @inheritParams render_graph
+#' @param rel an optional string to apply a \code{rel} attribute to all newly
+#'   created edges.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an empty graph, add 2 nodes to it,
@@ -71,8 +54,7 @@
 #' graph %>%
 #'   get_edge_df()
 #' @importFrom dplyr select bind_rows as_tibble
-#' @export add_reverse_edges_ws
-
+#' @export
 add_reverse_edges_ws <- function(graph,
                                  rel = NULL,
                                  edge_aes = NULL,

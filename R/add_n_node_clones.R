@@ -1,19 +1,15 @@
 #' Add one or several clones of an existing node to the graph
-#' @description Add n new nodes to a graph object of
-#' class \code{dgr_graph} which are clones of a node already
-#' in the graph. All node attributes are preserved except for
-#' the node \code{label} attribute (to maintain the
-#' uniqueness of non-\code{NA} node label values). A vector
-#' of node \code{label} can be provided to bind new labels
-#' to the cloned nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Add \code{n} new nodes to a graph object of class \code{dgr_graph} which are
+#'   clones of a node already in the graph. All node attributes are preserved
+#'   except for the node \code{label} attribute (to maintain the uniqueness of
+#'   non-\code{NA} node label values). A vector of node \code{label} can be
+#'   provided to bind new labels to the cloned nodes.
+#' @inheritParams render_graph
 #' @param n the number of node clones to add to the graph.
-#' @param node a node ID corresponding to the graph node
-#' to be cloned.
-#' @param label an optional vector of node label values.
-#' The vector length should correspond to the value set
-#' for \code{n}.
+#' @param node a node ID corresponding to the graph node to be cloned.
+#' @param label an optional vector of node label values. The vector length
+#'   should correspond to the value set for \code{n}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with a path of
@@ -48,8 +44,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom dplyr filter select
-#' @export add_n_node_clones
-
+#' @export
 add_n_node_clones <- function(graph,
                               n,
                               node,

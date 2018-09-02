@@ -13,8 +13,7 @@
 #'   ascribes node IDs to the label and \code{FALSE} yields a blank label.
 #' @param rel an optional string for providing a relationship label to all new
 #'   edges created in the node tree.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and
 #' # add 2 different types of

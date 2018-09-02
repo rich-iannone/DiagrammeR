@@ -1,33 +1,26 @@
 #' Apply colors based on node attribute values
-#' @description Within a graph's internal node data
-#' frame (ndf), use a categorical node attribute to
-#' generate a new node attribute with color values.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param node_attr_from the name of the node attribute
-#' column from which color values will be based.
-#' @param node_attr_to the name of the new node
-#' attribute to which the color values will be applied.
-#' @param cut_points an optional vector of numerical
-#' breaks for bucketizing continuous numerical values
-#' available in a node attribute column.
-#' @param palette can either be: (1) a palette name from
-#' the RColorBrewer package (e.g., \code{Greens},
-#' \code{OrRd}, \code{RdYlGn}), (2) \code{viridis}, which
-#' indicates use of the \code{viridis} color scale from
-#' the package of the same name, or (3) a vector of
-#' hexadecimal color names.
-#' @param alpha an optional alpha transparency value to
-#' apply to the generated colors. Should be in
-#' the range of \code{0} (completely transparent) to
-#' \code{100} (completely opaque).
-#' @param reverse_palette an option to reverse the order
-#' of colors in the chosen palette. The default is
-#' \code{FALSE}.
-#' @param default_color a hexadecimal color value to
-#' use for instances when the values do not fall into
-#' the bucket ranges specified in the \code{cut_points}
-#' vector.
+#'
+#' Within a graph's internal node data frame (ndf), use a categorical node
+#'   attribute to generate a new node attribute with color values.
+#' @inheritParams render_graph
+#' @param node_attr_from the name of the node attribute column from which color
+#'   values will be based.
+#' @param node_attr_to the name of the new node attribute to which the color
+#'   values will be applied.
+#' @param cut_points an optional vector of numerical breaks for bucketizing
+#'   continuous numerical values available in a edge attribute column.
+#' @param palette can either be: (1) a palette name from the RColorBrewer
+#'   package (e.g., \code{Greens}, \code{OrRd}, \code{RdYlGn}), (2)
+#'   \code{viridis}, which indicates use of the \code{viridis} color scale from
+#'   the package of the same name, or (3) a vector of hexadecimal color names.
+#' @param alpha an optional alpha transparency value to apply to the generated
+#'   colors. Should be in the range of \code{0} (completely transparent) to
+#'   \code{100} (completely opaque).
+#' @param reverse_palette an option to reverse the order of colors in the chosen
+#'   palette. The default is \code{FALSE}.
+#' @param default_color a hexadecimal color value to use for instances when the
+#'   values do not fall into the bucket ranges specified in the
+#'   \code{cut_points} vector.
 #' @return a graph object of class
 #' \code{dgr_graph}.
 #' @examples
@@ -111,8 +104,7 @@
 #' @import RColorBrewer
 #' @importFrom viridis viridis
 #' @importFrom rlang enquo UQ get_expr
-#' @export colorize_node_attrs
-
+#' @export
 colorize_node_attrs <- function(graph,
                                 node_attr_from,
                                 node_attr_to,

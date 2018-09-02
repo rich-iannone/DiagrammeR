@@ -1,9 +1,9 @@
 #' Create an edge data frame
-#' @description Combine several vectors for edges
-#' and their attributes into a data frame, which can be
-#' combined with other similarly-generated data frames,
-#' or, added to a graph object. An edge data frame,
-#' or edf, has at least the following columns:
+#'
+#' Combine several vectors for edges and their attributes into a data frame,
+#'   which can be combined with other similarly-generated data frames, or, added
+#'   to a graph object. An edge data frame, or edf, has at least the following
+#'   columns:
 #'
 #' - \code{id} (of type \code{integer})
 #'
@@ -13,19 +13,15 @@
 #'
 #' - \code{rel} (of type \code{character})
 #'
-#' An arbitrary number of additional columns containing
-#' aesthetic or data attributes can be part of the edf,
-#' so long as they follow the aforementioned columns.
-#' @param from a vector of node ID values from which
-#' edges are outbound. The vector length must equal
-#' that of the \code{to} vector.
-#' @param to a vector of node ID values to which edges
-#' are incoming. The vector length must equal that of
-#' the \code{from} vector.
-#' @param rel an optional \code{rel} label for each
-#' edge.
-#' @param ... one or more vectors for associated edge
-#' attributes.
+#' An arbitrary number of additional columns containing aesthetic or data
+#'   attributes can be part of the edf, so long as they follow the
+#'   aforementioned columns.
+#' @param from a vector of node ID values from which edges are outbound. The
+#'   vector length must equal that of the \code{to} vector.
+#' @param to a vector of node ID values to which edges are incoming. The vector
+#'   length must equal that of the \code{from} vector.
+#' @param rel an optional \code{rel} label for each edge.
+#' @param ... one or more vectors for associated edge attributes.
 #' @return an edge data frame (edf).
 #' @examples
 #' # Create a simple edge data frame (edf) and
@@ -53,8 +49,7 @@
 #'
 #' # Display the edge data frame
 #' edf
-#' @export create_edge_df
-
+#' @export
 create_edge_df <- function(from,
                            to,
                            rel = NULL,

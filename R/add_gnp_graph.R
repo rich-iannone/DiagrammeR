@@ -1,7 +1,7 @@
 #' Add a G(n, p) Erdos-Renyi graph
 #'
 #' To an existing graph object, add a graph built according to the Erdos-Renyi
-#' G(n, p) model, which uses a constant probability when creating edges.
+#'   G(n, p) model, which uses a constant probability when creating edges.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param n the number of nodes comprising the generated graph.
@@ -16,6 +16,7 @@
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
 #'   \code{Mersenne-Twister} implementation.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using

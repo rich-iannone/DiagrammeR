@@ -1,11 +1,9 @@
 #' Get a count of all edges
-#' @description From a graph object of
-#' class \code{dgr_graph}, get a count
-#' of edges in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a single-length numeric
-#' vector.
+#'
+#' From a graph object of class \code{dgr_graph}, get a count of edges in the
+#'   graph.
+#' @inheritParams render_graph
+#' @return a single-length numeric vector.
 #' @examples
 #' # Create a graph with a
 #' # path of nodes and 3
@@ -19,8 +17,7 @@
 #' # in the graph
 #' graph %>%
 #'   count_edges()
-#' @export count_edges
-
+#' @export
 count_edges <- function(graph) {
 
   # Get the name of the function

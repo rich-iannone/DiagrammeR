@@ -1,10 +1,9 @@
 #' Get the number of strongly-connected components
-#' @description Get the number of strongly-connected
-#' components in the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a single integer value representing the
-#' number of strongly-connected graph components.
+#'
+#' Get the number of strongly-connected components in the graph.
+#' @inheritParams render_graph
+#' @return a single integer value representing the number of strongly-connected
+#'   graph components.
 #' @examples
 #' # Create a graph and add
 #' # several graph islands
@@ -22,8 +21,7 @@
 #' graph %>%
 #'   count_s_connected_cmpts()
 #' @importFrom igraph components
-#' @export count_s_connected_cmpts
-
+#' @export
 count_s_connected_cmpts <- function(graph) {
 
   # Get the name of the function

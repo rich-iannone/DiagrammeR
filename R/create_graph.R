@@ -1,49 +1,27 @@
 #' Create a graph object
-#' @description Generates a graph object
-#' with the option to use node data frames
-#' (ndfs) and/or edge data frames (edfs)
-#' to populate the initial graph.
-#' @param nodes_df an optional data frame
-#' containing, at minimum, a column
-#' (called \code{id}) which contains
-#' node IDs for the graph. Additional
-#' columns (node attributes) can be
-#' included with values for the named
-#' node attribute.
-#' @param edges_df an optional data
-#' frame containing, at minimum, two
-#' columns (called \code{from} and
-#' \code{to}) where node IDs are
-#' provided. Additional columns (edge
-#' attributes) can be included with
-#' values for the named edge attribute.
-#' @param directed with \code{TRUE}
-#' (the default) or \code{FALSE}, either
-#' directed or undirected edge
-#' operations will be generated,
-#' respectively.
-#' @param graph_name an optional
-#' string for labeling the graph object.
-#' @param attr_theme the theme (i.e.,
-#' collection of \code{graph},
-#' \code{node}, and \code{edge} global
-#' graph attributes) to use for this
-#' graph. The default theme is called
-#' \code{default}. If this is set to
-#' \code{NULL} then no global graph
-#' attributes will be applied to the
-#' graph upon creation.
-#' @param write_backups an option to
-#' write incremental backups of changing
-#' graph states to disk. If \code{TRUE},
-#' a subdirectory within the working
-#' directory will be created and used
-#' to store \code{RDS} files. The
-#' default value is \code{FALSE} so
-#' one has to opt in to use this
-#' functionality.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Generates a graph object with the option to use node data frames (ndfs)
+#'   and/or edge data frames (edfs) to populate the initial graph.
+#' @param nodes_df an optional data frame containing, at minimum, a column
+#'   (called \code{id}) which contains node IDs for the graph. Additional
+#'   columns (node attributes) can be included with values for the named node
+#'   attribute.
+#' @param edges_df an optional data frame containing, at minimum, two columns
+#'   (called \code{from} and \code{to}) where node IDs are provided. Additional
+#'   columns (edge attributes) can be included with values for the named edge
+#'   attribute.
+#' @param directed with \code{TRUE} (the default) or \code{FALSE}, either
+#'   directed or undirected edge operations will be generated, respectively.
+#' @param graph_name an optional string for labeling the graph object.
+#' @param attr_theme the theme (i.e., collection of \code{graph}, \code{node},
+#'   and \code{edge} global graph attributes) to use for this graph. The default
+#'   theme is called \code{default}. If this is set to \code{NULL} then no
+#'   global graph attributes will be applied to the graph upon creation.
+#' @param write_backups an option to write incremental backups of changing
+#'   graph states to disk. If \code{TRUE}, a subdirectory within the working
+#'   directory will be created and used to store \code{RDS} files. The default
+#'   value is \code{FALSE} so one has to opt in to use this functionality.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # With `create_graph()` we can
 #' # simply create an empty graph (and
@@ -123,8 +101,7 @@
 #' graph %>%
 #'   get_node_df()
 #' @importFrom dplyr bind_rows tibble
-#' @export create_graph
-
+#' @export
 create_graph <- function(nodes_df = NULL,
                          edges_df = NULL,
                          directed = TRUE,

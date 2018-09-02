@@ -1,35 +1,27 @@
 #' Apply colors based on edge attribute values
-#' @description Within a graph's internal edge data
-#' frame (edf), use a categorical edge attribute to
-#' generate a new edge attribute with color values.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edge_attr_from the name of the edge attribute
-#' column from which color values will be based.
-#' @param edge_attr_to the name of the new edge
-#' attribute to which the color values will be applied.
-#' @param cut_points an optional vector of numerical
-#' breaks for bucketizing continuous numerical values
-#' available in a edge attribute column.
-#' @param palette can either be: (1) a palette name from
-#' the RColorBrewer package (e.g., \code{Greens},
-#' \code{OrRd}, \code{RdYlGn}), (2) \code{viridis}, which
-#' indicates use of the \code{viridis} color scale from
-#' the package of the same name, or (3) a vector of
-#' hexadecimal color names.
-#' @param alpha an optional alpha transparency value to
-#' apply to the generated colors. Should be in
-#' the range of \code{0} (completely transparent) to
-#' \code{100} (completely opaque).
-#' @param reverse_palette an option to reverse the order
-#' of colors in the chosen palette. The default is
-#' \code{FALSE}.
-#' @param default_color a hexadecimal color value to
-#' use for instances when the values do not fall into
-#' the bucket ranges specified in the \code{cut_points}
-#' vector.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Within a graph's internal edge data frame (edf), use a categorical edge
+#'   attribute to generate a new edge attribute with color values.
+#' @inheritParams render_graph
+#' @param edge_attr_from the name of the edge attribute column from which
+#'   color values will be based.
+#' @param edge_attr_to the name of the new edge attribute to which the color
+#'   values will be applied.
+#' @param cut_points an optional vector of numerical breaks for bucketizing
+#'   continuous numerical values available in a edge attribute column.
+#' @param palette can either be: (1) a palette name from the RColorBrewer
+#'   package (e.g., \code{Greens}, \code{OrRd}, \code{RdYlGn}), (2)
+#'   \code{viridis}, which indicates use of the \code{viridis} color scale from
+#'   the package of the same name, or (3) a vector of hexadecimal color names.
+#' @param alpha an optional alpha transparency value to apply to the generated
+#'   colors. Should be in the range of \code{0} (completely transparent) to
+#'   \code{100} (completely opaque).
+#' @param reverse_palette an option to reverse the order of colors in the chosen
+#'   palette. The default is \code{FALSE}.
+#' @param default_color a hexadecimal color value to use for instances when the
+#'   values do not fall into the bucket ranges specified in the
+#'   \code{cut_points} vector.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 5
 #' # nodes and 4 edges
@@ -64,8 +56,7 @@
 #' @import RColorBrewer
 #' @importFrom viridis viridis
 #' @importFrom rlang enquo UQ get_expr
-#' @export colorize_edge_attrs
-
+#' @export
 colorize_edge_attrs <- function(graph,
                                 edge_attr_from,
                                 edge_attr_to,

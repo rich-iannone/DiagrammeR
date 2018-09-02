@@ -1,48 +1,19 @@
 #' Add a prism of nodes to the graph
-#' @description With a graph object of class
-#' \code{dgr_graph}, add a node prism to the graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param n the number of nodes describing the shape
-#' of the prism. For example, the triagonal prism has
-#' \code{n} equal to 3 and it is composed of 6 nodes
-#' and 9 edges. For any n-gonal prism, the graph will
-#' be generated with 2\code{n} nodes and 3\code{n}
-#' edges.
-#' @param type an optional string that describes the
-#' entity type for the nodes to be added.
-#' @param label either a vector object of length
-#' \code{n} that provides optional labels for the new
-#' nodes, or, a boolean value where setting to
-#' \code{TRUE} ascribes node IDs to the label and
-#' \code{FALSE} yields a blank label.
-#' @param rel an optional string for providing a
-#' relationship label to all new edges created in the
-#' node prism.
-#' @param node_aes an optional list of named vectors
-#' comprising node aesthetic attributes. The helper
-#' function \code{node_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted node aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{color},
-#' \code{fillcolor}).
-#' @param edge_aes an optional list of named vectors
-#' comprising edge aesthetic attributes. The helper
-#' function \code{edge_aes()} is strongly recommended
-#' for use here as it contains arguments for each
-#' of the accepted edge aesthetic attributes (e.g.,
-#' \code{shape}, \code{style}, \code{penwidth},
-#' \code{color}).
-#' @param node_data an optional list of named vectors
-#' comprising node data attributes. The helper
-#' function \code{node_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created nodes.
-#' @param edge_data an optional list of named vectors
-#' comprising edge data attributes. The helper
-#' function \code{edge_data()} is strongly recommended
-#' for use here as it helps bind data specifically
-#' to the created edges.
+#'
+#' With a graph object of class \code{dgr_graph}, add a node prism to the graph.
+#' @inheritParams node_edge_aes_data
+#' @inheritParams render_graph
+#' @param n the number of nodes describing the shape of the prism. For example,
+#'   the triagonal prism has \code{n} equal to 3 and it is composed of 6 nodes
+#'   and 9 edges. For any n-gonal prism, the graph will be generated with
+#'   2\code{n} nodes and 3\code{n} edges.
+#' @param type an optional string that describes the entity type for the nodes
+#'   to be added.
+#' @param label either a vector object of length \code{n} that provides optional
+#'   labels for the new nodes, or, a logical value where setting to \code{TRUE}
+#'   ascribes node IDs to the label and \code{FALSE} yields a blank label.
+#' @param rel an optional string for providing a relationship label to all new
+#'   edges created in the node prism.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a new graph and
@@ -107,8 +78,7 @@
 #' graph_w_attrs %>%
 #'   get_edge_df()
 #' @importFrom dplyr select bind_cols as_tibble
-#' @export add_prism
-
+#' @export
 add_prism <- function(graph,
                       n,
                       type = NULL,
