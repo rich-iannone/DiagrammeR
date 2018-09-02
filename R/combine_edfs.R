@@ -32,9 +32,8 @@
 #'
 #' # View the combined edge data frame
 #' all_edges
-#' @importFrom dplyr bind_rows
-#' @export combine_edfs
-
+#' @importFrom dplyr bind_rows mutate
+#' @export
 combine_edfs <- function(...) {
 
   data_frames <- list(...)
@@ -59,7 +58,7 @@ combine_edfs <- function(...) {
 
   edf_new <-
     edf_new %>%
-    mutate(id = as.integer(1:nrow(edf_new)))
+    dplyr::mutate(id = as.integer(1:nrow(edf_new)))
 
   edf_new
 }
