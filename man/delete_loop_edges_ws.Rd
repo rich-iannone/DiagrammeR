@@ -7,16 +7,13 @@
 delete_loop_edges_ws(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-With a selection of nodes in a
-graph, remove any associated loop edges.
+With a selection of nodes in a graph, remove any associated loop edges.
 }
 \examples{
 # Create an undirected, full graph

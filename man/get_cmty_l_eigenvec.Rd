@@ -7,18 +7,15 @@
 get_cmty_l_eigenvec(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with group membership
-assignments for each of the nodes.
+a data frame with group membership assignments for each of the nodes.
 }
 \description{
-Through the calculation of the leading
-non-negative eigenvector of the modularity matrix
-of the graph, obtain the group membership values for
-each of the nodes in the graph.
+Through the calculation of the leading non-negative eigenvector of the
+  modularity matrix of the graph, obtain the group membership values for each
+  of the nodes in the graph.
 }
 \examples{
 # Create a random graph using the

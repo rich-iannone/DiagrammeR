@@ -7,19 +7,15 @@
 get_edge_info(graph)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame containing
-information specific to each edge
-within the graph.
+a data frame containing information specific to each edge within the
+  graph.
 }
 \description{
-Obtain a data frame
-with detailed information on edges
-and their interrelationships
-within the graph.
+Obtain a data frame with detailed information on edges and their
+  interrelationships within the graph.
 }
 \examples{
 # Create a simple graph

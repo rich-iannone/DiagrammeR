@@ -7,31 +7,21 @@
 get_agg_degree_in(graph, agg, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{agg}{the aggregation
-function to use for summarizing
-indegree values from graph nodes.
-The following aggregation functions
-can be used: \code{sum}, \code{min},
-\code{max}, \code{mean}, or
-\code{median}.}
+\item{agg}{the aggregation function to use for summarizing indegree values
+from graph nodes. The following aggregation functions can be used:
+\code{sum}, \code{min}, \code{max}, \code{mean}, or \code{median}.}
 
-\item{conditions}{an option to use
-filtering conditions for the nodes
-to consider.}
+\item{conditions}{an option to use filtering conditions for the nodes to
+consider.}
 }
 \value{
-a vector with an aggregate
-indegree value.
+a vector with an aggregate indegree value.
 }
 \description{
-Get a single,
-aggregate value from the
-indegree values for all nodes
-in a graph, or, a subset of
-graph nodes.
+Get a single, aggregate value from the indegree values for all nodes in a
+  graph, or, a subset of graph nodes.
 }
 \examples{
 # Create a random graph using the

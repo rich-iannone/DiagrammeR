@@ -7,18 +7,15 @@
 deselect_edges(graph, edges)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edges}{a vector of edge IDs that
-should be deselected.}
+\item{edges}{a vector of edge IDs that should be deselected.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Deselect edges in a graph object of
-class \code{dgr_graph}.
+Deselect edges in a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create a graph with

@@ -2,25 +2,22 @@
 % Please edit documentation in R/get_edge_attrs_ws.R
 \name{get_edge_attrs_ws}
 \alias{get_edge_attrs_ws}
-\title{Get edge attribute values}
+\title{Get edge attribute values from a selection of edges}
 \usage{
 get_edge_attrs_ws(graph, edge_attr)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr}{the name of the attribute for which
-to get values.}
+\item{edge_attr}{the name of the attribute for which to get values.}
 }
 \value{
-a named vector of edge attribute values for
-the attribute given by \code{edge_attr} by edge.
+a named vector of edge attribute values for the attribute given by
+  \code{edge_attr} by edge.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, get edge attribute values for one
-or more edges.
+From a graph object of class \code{dgr_graph}, get edge attribute values for
+one or more edges.
 }
 \examples{
 # Create a simple graph where

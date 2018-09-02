@@ -7,17 +7,15 @@
 get_node_df_ws(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a node data frame.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, get the graph's internal
-node data frame that is filtered by the node
-ID values currently active as a selection.
+From a graph object of class \code{dgr_graph}, get the graph's internal node
+  data frame that is filtered by the node ID values currently active as a
+  selection.
 }
 \examples{
 # Create a random graph using the

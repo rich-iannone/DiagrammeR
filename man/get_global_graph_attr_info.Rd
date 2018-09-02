@@ -7,17 +7,14 @@
 get_global_graph_attr_info(graph)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame containing
-global attributes for the graph.
+a data frame containing global attributes for the graph.
 }
 \description{
-Get the available
-global attributes for a graph
-object of class \code{dgr_graph}.
+Get the available global attributes for a graph object of class
+  \code{dgr_graph}.
 }
 \examples{
 # Create a new, empty graph

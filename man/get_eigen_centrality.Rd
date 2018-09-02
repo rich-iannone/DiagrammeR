@@ -7,25 +7,18 @@
 get_eigen_centrality(graph, weights_attr = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{weights_attr}{an optional name
-of the edge attribute to use in the
-adjacency matrix. If
-\code{NULL} then, if it exists, the
-\code{weight} edge attribute of the
-graph will be used. If \code{NA} then
-no edge weights will be used.}
+\item{weights_attr}{an optional name of the edge attribute to use in the
+adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge
+attribute of the graph will be used. If \code{NA} then no edge weights will
+be used.}
 }
 \value{
-a data frame with eigen
-centrality scores for each of the
-nodes.
+a data frame with eigen centrality scores for each of the nodes.
 }
 \description{
-Get the eigen centrality
-values for all nodes in the graph.
+Get the eigen centrality values for all nodes in the graph.
 }
 \examples{
 # Create a random graph using the

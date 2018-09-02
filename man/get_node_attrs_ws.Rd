@@ -7,20 +7,17 @@
 get_node_attrs_ws(graph, node_attr)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node_attr}{the name of the attribute for which
-to get values.}
+\item{node_attr}{the name of the attribute for which to get values.}
 }
 \value{
-a named vector of node attribute values for
-the attribute given by \code{node_attr} by node ID.
+a named vector of node attribute values for the attribute given by
+  \code{node_attr} by node ID.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, get node attribute values from nodes
-currently active as a selection.
+From a graph object of class \code{dgr_graph}, get node attribute values from
+  nodes currently active as a selection.
 }
 \examples{
 # Create a random graph using the

@@ -7,18 +7,15 @@
 get_common_nbrs(graph, nodes)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{nodes}{a vector of node ID values of length
-at least 2.}
+\item{nodes}{a vector of node ID values of length at least 2.}
 }
 \value{
 a vector of node ID values.
 }
 \description{
-With two or more nodes, get the set of
-common neighboring nodes.
+With two or more nodes, get the set of common neighboring nodes.
 }
 \examples{
 # Create a directed graph with 5 nodes

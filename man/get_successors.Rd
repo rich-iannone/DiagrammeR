@@ -2,14 +2,12 @@
 % Please edit documentation in R/get_successors.R
 \name{get_successors}
 \alias{get_successors}
-\title{Get node IDs for successor nodes to the specified
-node}
+\title{Get node IDs for successor nodes to the specified node}
 \usage{
 get_successors(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{node}{a node ID for the selected node.}
 }
@@ -17,8 +15,8 @@ get_successors(graph, node)
 a vector of node ID values.
 }
 \description{
-Provides a vector of node IDs for all
-nodes that have a connection from the given node.
+Provides a vector of node IDs for all nodes that have a connection from the
+  given node.
 }
 \examples{
 # Set a seed

@@ -11,11 +11,11 @@ get_node_info(graph)
 }
 \value{
 a data frame containing information specific to each node within the
-graph.
+  graph.
 }
 \description{
 Obtain a data frame with detailed information on nodes and their
-interrelationships within the graph.
+  interrelationships within the graph.
 }
 \examples{
 # Create a simple graph

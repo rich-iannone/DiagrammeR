@@ -7,14 +7,12 @@
 edge_data(...)
 }
 \arguments{
-\item{...}{edge data attributes provided
-as one or more named vectors.}
+\item{...}{edge data attributes provided as one or more named vectors.}
 }
 \description{
-This helper function should be
-invoked to provide values for the namesake
-\code{edge_data} argument, which is present
-in any function where edges are created.
+This helper function should be invoked to provide values for the namesake
+\code{edge_data} argument, which is present in any function where edges are
+created.
 }
 \examples{
 \dontrun{

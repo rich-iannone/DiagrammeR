@@ -7,16 +7,13 @@
 get_graph_info(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame containing metrics pertaining
-to the graph
+a data frame containing metrics pertaining to the graph
 }
 \description{
-Get a data frame with metrics for a
-graph.
+Get a data frame with metrics for a graph.
 }
 \examples{
 \dontrun{

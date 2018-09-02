@@ -8,31 +8,27 @@ get_jaccard_similarity(graph, nodes = NULL, direction = "all",
   round_to = 3)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{nodes}{an optional vector of node IDs to
-consider for Jaccard similarity scores. If not
-supplied, then similarity scores will be provided
+\item{nodes}{an optional vector of node IDs to consider for Jaccard
+similarity scores. If not supplied, then similarity scores will be provided
 for every pair of nodes in the graph.}
 
-\item{direction}{using \code{all} (the default), the
-function will ignore edge direction when
-determining scores for neighboring nodes. With
-\code{out} and \code{in}, edge direction for
-neighboring nodes will be considered.}
+\item{direction}{using \code{all} (the default), the function will ignore
+edge direction when determining scores for neighboring nodes. With
+\code{out} and \code{in}, edge direction for neighboring nodes will be
+considered.}
 
-\item{round_to}{the maximum number of decimal places
-to retain for the Jaccard similarity coefficient
-scores. The default value is \code{3}.}
+\item{round_to}{the maximum number of decimal places to retain for the
+Jaccard similarity coefficient scores. The default value is \code{3}.}
 }
 \value{
-a matrix with Jaccard similarity values
-for each pair of nodes considered.
+a matrix with Jaccard similarity values for each pair of nodes
+  considered.
 }
 \description{
-Get the Jaccard similarity coefficient
-scores for one or more nodes in a graph.
+Get the Jaccard similarity coefficient scores for one or more nodes in a
+graph.
 }
 \examples{
 # Create a random graph using the

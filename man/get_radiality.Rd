@@ -7,23 +7,19 @@
 get_radiality(graph, direction = "all")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{direction}{using \code{all} (the default), the
-search will ignore edge direction while traversing
-through the graph. With \code{out}, measurements of
-paths will be from a node whereas with \code{in},
-measurements of paths will be to a node.}
+\item{direction}{using \code{all} (the default), the search will ignore edge
+direction while traversing through the graph. With \code{out}, measurements
+of paths will be from a node whereas with \code{in}, measurements of paths
+will be to a node.}
 }
 \value{
-a data frame with radiality centrality
-scores for each of the nodes.
+a data frame with radiality centrality scores for each of the nodes.
 }
 \description{
-Get the radiality centrality
-for all nodes in a graph. These scores describe
-the ease to which nodes can reach other nodes.
+Get the radiality centrality for all nodes in a graph. These scores describe
+  the ease to which nodes can reach other nodes.
 }
 \examples{
 # Create a random graph using the

@@ -7,19 +7,15 @@
 get_cmty_fast_greedy(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with group membership
-assignments for each of the nodes.
+a data frame with group membership assignments for each of the nodes.
 }
 \description{
-Through the use of greedy
-optimization of a modularity score, obtain
-the group membership values for each of the
-nodes in the graph. Note that this method
-only works on graphs without multiple edges.
+Through the use of greedy optimization of a modularity score, obtain the
+  group membership values for each of the nodes in the graph. Note that this
+  method only works on graphs without multiple edges.
 }
 \examples{
 # Create a graph with a

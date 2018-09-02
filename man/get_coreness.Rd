@@ -7,22 +7,18 @@
 get_coreness(graph, direction = "all")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{direction}{using \code{all} (the default), the
-search will ignore edge direction while traversing
-through the graph. With \code{out}, measurements of
-paths will be from a node whereas with \code{in},
-measurements of paths will be to a node.}
+\item{direction}{using \code{all} (the default), the search will ignore edge
+direction while traversing through the graph. With \code{out}, measurements
+of paths will be from a node whereas with \code{in}, measurements of paths
+will be to a node.}
 }
 \value{
-a data frame with coreness values for
-each of the nodes.
+a data frame with coreness values for each of the nodes.
 }
 \description{
-Get the coreness values for all nodes
-in a graph.
+Get the coreness values for all nodes in a graph.
 }
 \examples{
 # Create a random graph using the

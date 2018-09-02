@@ -7,18 +7,13 @@
 get_closeness_vitality(graph)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with closeness
-vitality values for each of the
-nodes.
+a data frame with closeness vitality values for each of the nodes.
 }
 \description{
-Get the closeness
-vitality values for all nodes in
-the graph.
+Get the closeness vitality values for all nodes in the graph.
 }
 \examples{
 # Create a random graph using the

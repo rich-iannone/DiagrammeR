@@ -7,23 +7,17 @@
 get_multiedge_count(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a vector with a single, numerical value.
 }
 \description{
-Get a count of the
-number of multiple edges in the
-graph. Included in the count is the
-number of separate edges that
-share the same edge definition
-(i.e., same pair of nodes) across
-the entire graph. So, for example,
-if there are 2 edge definitions in
-the graph that involve 6 separate
-edge IDs, the count will be \code{4}.
+Get a count of the number of multiple edges in the graph. Included in the
+  count is the number of separate edges that share the same edge definition
+  (i.e., same pair of nodes) across the entire graph. So, for example, if
+  there are 2 edge definitions in the graph that involve 6 separate edge IDs,
+  the count will be \code{4}.
 }
 \examples{
 # Create a node data frame (ndf)

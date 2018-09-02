@@ -7,30 +7,24 @@
 delete_nodes_ws(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-In a graph object of class
-\code{dgr_graph}, delete all nodes present in a
-selection.
+In a graph object of class \code{dgr_graph}, delete all nodes present in a
+  selection.
+}
+\details{
+Selections of nodes can be performed using the following \code{select_...}
+  functions: \code{select_nodes()}, \code{select_last_nodes_created()},
+  \code{select_nodes_by_degree()}, \code{select_nodes_by_id()}, or
+  \code{select_nodes_in_neighborhood()}.
 
-Selections of nodes can be performed using
-the following \code{select_...} functions:
-\code{select_nodes()},
-\code{select_last_nodes_created()},
-\code{select_nodes_by_degree()},
-\code{select_nodes_by_id()}, or
-\code{select_nodes_in_neighborhood()}.
-Selections of nodes can also be performed using
-the following traversal functions:
-(\code{trav_...}):
-\code{trav_out()}, \code{trav_in()},
-\code{trav_both()}, \code{trav_in_node()},
-\code{trav_out_node()}.
+Selections of nodes can also be performed using the following traversal
+  functions (\code{trav_...}): \code{trav_out()}, \code{trav_in()},
+  \code{trav_both()}, \code{trav_in_node()}, \code{trav_out_node()}.
 }
 \examples{
 # Create a graph with 3 nodes

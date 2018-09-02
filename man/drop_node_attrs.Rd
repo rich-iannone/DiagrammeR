@@ -7,19 +7,15 @@
 drop_node_attrs(graph, node_attr)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node_attr}{the name of the node attribute
-column to drop.}
+\item{node_attr}{the name of the node attribute column to drop.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal ndf, remove
-an existing node attribute.
+Within a graph's internal ndf, remove an existing node attribute.
 }
 \examples{
 graph <-

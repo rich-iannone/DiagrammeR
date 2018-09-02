@@ -7,20 +7,16 @@
 drop_edge_attrs(graph, edge_attr)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr}{the name of the edge
-attribute column to drop.}
+\item{edge_attr}{the name of the edge attribute column to drop.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal
-edge data frame (edf), remove an existing
-edge attribute.
+Within a graph's internal edge data frame (edf), remove an existing edge
+  attribute.
 }
 \examples{
 # Create a random graph using the

@@ -7,16 +7,14 @@
 get_periphery(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a vector of node IDs.
 }
 \description{
-Get those nodes that are part of the
-graph periphery (i.e., have the maximum eccentricity
-in the graph).
+Get those nodes that are part of the graph periphery (i.e., have the maximum
+  eccentricity in the graph).
 }
 \examples{
 # Create a random graph using the

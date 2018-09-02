@@ -7,16 +7,13 @@
 get_betweenness(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with betweenness scores for
-each of the nodes.
+a data frame with betweenness scores for each of the nodes.
 }
 \description{
-Get the betweenness centrality scores
-for all nodes in a graph.
+Get the betweenness centrality scores for all nodes in a graph.
 }
 \examples{
 # Create a random graph using the

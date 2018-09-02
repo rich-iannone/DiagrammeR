@@ -7,22 +7,18 @@
 get_degree_in(graph, normalized = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{normalized}{set as \code{FALSE} (the default),
-the indegree will be provided for each of
-the nodes (as a count of edges to each node). When set
-as \code{TRUE}, then the result for each node will be
-divided by the total number of nodes in the graph minus 1.}
+\item{normalized}{set as \code{FALSE} (the default), the indegree will be
+provided for each of the nodes (as a count of edges to each node). When set
+as \code{TRUE}, then the result for each node will be divided by the total
+number of nodes in the graph minus 1.}
 }
 \value{
-a data frame with indegree values for
-each of the nodes.
+a data frame with indegree values for each of the nodes.
 }
 \description{
-Get the indegree values for all
-nodes in a graph.
+Get the indegree values for all nodes in a graph.
 }
 \examples{
 # Create a random graph using the

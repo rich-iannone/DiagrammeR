@@ -7,18 +7,15 @@
 get_mean_distance(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the
-mean distance of the graph.
+a single numeric value representing the mean distance of the graph.
 }
 \description{
-Get the mean distance of a graph,
-which is the average path length in the graph. This
-operates through calculation of the shortest paths
-between all pairs of nodes..
+Get the mean distance of a graph, which is the average path length in the
+  graph. This operates through calculation of the shortest paths between all
+  pairs of nodes.
 }
 \examples{
 # Create a cycle graph

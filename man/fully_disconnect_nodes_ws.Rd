@@ -7,16 +7,14 @@
 fully_disconnect_nodes_ws(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-With a selection of nodes in a
-graph, remove any edges to or from those nodes.
+With a selection of nodes in a graph, remove any edges to or from those
+  nodes.
 }
 \examples{
 # Create an empty graph and

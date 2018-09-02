@@ -7,18 +7,14 @@
 fully_connect_nodes_ws(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-With a selection of nodes in a
-graph, add any remaining edges required to
-fully connect this group of edges to each
-other.
+With a selection of nodes in a graph, add any remaining edges required to
+  fully connect this group of edges to each other.
 }
 \examples{
 # Create an empty graph and

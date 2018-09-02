@@ -7,22 +7,18 @@
 get_degree_histogram(graph, mode = "total")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{mode}{using \code{total} (the default),
-degree considered for each node will be the total
-degree. With \code{in} and \code{out} the degree
-used will be the in-degree and out-degree,
-respectively.}
+\item{mode}{using \code{total} (the default), degree considered for each node
+will be the total degree. With \code{in} and \code{out} the degree used
+will be the in-degree and out-degree, respectively.}
 }
 \value{
 a data frame with degree counts.
 }
 \description{
-Get histogram data for a graph's
-degree frequency. The bin width is set to 1 and
-zero-value degrees are omitted from the output.
+Get histogram data for a graph's degree frequency. The bin width is set to 1
+  and zero-value degrees are omitted from the output.
 }
 \examples{
 # Create a random graph using the

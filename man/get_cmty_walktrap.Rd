@@ -7,22 +7,16 @@
 get_cmty_walktrap(graph, steps = 4)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{steps}{the number of steps
-to take for each of the random walks.}
+\item{steps}{the number of steps to take for each of the random walks.}
 }
 \value{
-a data frame with group
-membership assignments for each of
-the nodes.
+a data frame with group membership assignments for each of the nodes.
 }
 \description{
-With the Walktrap
-community finding algorithm, obtain
-the group membership values for
-each of the nodes in the graph.
+With the Walktrap community finding algorithm, obtain the group membership
+  values for each of the nodes in the graph.
 }
 \examples{
 # Create a random graph using the

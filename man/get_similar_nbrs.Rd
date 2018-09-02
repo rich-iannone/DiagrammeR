@@ -2,47 +2,38 @@
 % Please edit documentation in R/get_similar_nbrs.R
 \name{get_similar_nbrs}
 \alias{get_similar_nbrs}
-\title{Get neighboring nodes based on node attribute
-similarity}
+\title{Get neighboring nodes based on node attribute similarity}
 \usage{
 get_similar_nbrs(graph, node, node_attr, tol_abs = NULL,
   tol_pct = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node}{a single-length vector containing a
-node ID value.}
+\item{node}{a single-length vector containing a node ID value.}
 
-\item{node_attr}{the name of the node attribute
-to use to compare with adjacent nodes.}
+\item{node_attr}{the name of the node attribute to use to compare with
+adjacent nodes.}
 
-\item{tol_abs}{if the values contained in the node
-attribute \code{node_attr} are numeric, one can
-optionally supply a numeric vector of length 2 that
-provides a lower and upper numeric bound as criteria
-for neighboring node similarity to the starting
-node.}
+\item{tol_abs}{if the values contained in the node attribute \code{node_attr}
+are numeric, one can optionally supply a numeric vector of length 2 that
+provides a lower and upper numeric bound as criteria for neighboring node
+similarity to the starting node.}
 
-\item{tol_pct}{if the values contained in the node
-attribute \code{node_attr} are numeric, one can
-optionally supply a numeric vector of length 2 that
-specifies lower and upper bounds as negative and
-positive percentage changes to the value of the
-starting node. These bounds serve as criteria for
-neighboring node similarity to the starting node.}
+\item{tol_pct}{if the values contained in the node attribute \code{node_attr}
+are numeric, one can optionally supply a numeric vector of length 2 that
+specifies lower and upper bounds as negative and positive percentage
+changes to the value of the starting node. These bounds serve as criteria
+for neighboring node similarity to the starting node.}
 }
 \value{
 a vector of node ID values.
 }
 \description{
-With a graph a single node serving as
-the starting point, get those nodes in a potential
-neighborhood of nodes (adjacent to the starting
-node) that have a common or similar (within
-threshold values) node attribute to the starting
-node.
+With a graph a single node serving as the starting point, get those nodes in
+  a potential neighborhood of nodes (adjacent to the starting node) that have
+  a common or similar (within threshold values) node attribute to the
+  starting node.
 }
 \examples{
 # Getting similar neighbors can

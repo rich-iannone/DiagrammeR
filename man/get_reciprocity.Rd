@@ -7,21 +7,18 @@
 get_reciprocity(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single, numerical value that is the
-ratio value of reciprocal edges over all graph
-edges.
+a single, numerical value that is the ratio value of reciprocal edges
+  over all graph edges.
 }
 \description{
-Get the reciprocity of a directed graph.
-The reciprocity of a graph is the fraction of
-reciprocal edges (e.g., `1` -> `2` and `2` -> `1`)
-over all edges available in the graph. Note that for
-an undirected graph, all edges are reciprocal. This
-function does not consider loop edges (e.g., `1` -> `1`).
+Get the reciprocity of a directed graph. The reciprocity of a graph is the
+  fraction of reciprocal edges (e.g., `1` -> `2` and `2` -> `1`) over all
+  edges available in the graph. Note that for an undirected graph, all edges
+  are reciprocal. This function does not consider loop edges (e.g., `1` ->
+  `1`).
 }
 \examples{
 # Define a graph where 2 edge definitions

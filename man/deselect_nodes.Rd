@@ -7,18 +7,15 @@
 deselect_nodes(graph, nodes)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{nodes}{a vector of node IDs that
-should be deselected.}
+\item{nodes}{a vector of node IDs that should be deselected.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Deselect nodes in a graph object of
-class \code{dgr_graph}.
+Deselect nodes in a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create a node data frame (ndf)

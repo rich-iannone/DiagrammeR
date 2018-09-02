@@ -7,8 +7,7 @@
 is_edge_multiple(graph, edge)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{edge}{a numeric edge ID value.}
 }
@@ -16,9 +15,8 @@ is_edge_multiple(graph, edge)
 a logical value.
 }
 \description{
-Determines whether an edge
-definition has multiple edge IDs associated
-with the same node pair.
+Determines whether an edge definition has multiple edge IDs associated with
+  the same node pair.
 }
 \examples{
 # Create a graph that has multiple
@@ -35,8 +33,7 @@ graph <-
 
 # Get the graph's internal
 # edge data frame
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Determine if edge `1` is
 # a multiple edge

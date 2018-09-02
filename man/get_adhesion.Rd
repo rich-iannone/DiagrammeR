@@ -7,18 +7,16 @@
 get_adhesion(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single numeric value representing the
-minimum number of edges to remove.
+a single numeric value representing the minimum number of edges to
+  remove.
 }
 \description{
-Get the adhesion of a graph, which is
-the minimum number of edges needed to remove to obtain
-a graph which is not strongly connected. This is the
-same as the edge connectivity of the graph.
+Get the adhesion of a graph, which is the minimum number of edges needed to
+  remove to obtain a graph which is not strongly connected. This is the same
+  as the edge connectivity of the graph.
 }
 \examples{
 # Create a cycle graph

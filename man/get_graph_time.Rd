@@ -7,17 +7,13 @@
 get_graph_time(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a single-length
-\code{POSIXct} vector with the
-assigned graph time.
+a single-length \code{POSIXct} vector with the assigned graph time.
 }
 \description{
-Set the time and timezone for a graph
-object of class \code{dgr_graph}.
+Get the time and timezone for a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create an empty graph and

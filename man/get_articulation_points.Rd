@@ -7,15 +7,13 @@
 get_articulation_points(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a vector of node IDs.
 }
 \description{
-Get the nodes in the graph that are
-identified as articulation points.
+Get the nodes in the graph that are identified as articulation points.
 }
 \examples{
 # Create a random graph using the

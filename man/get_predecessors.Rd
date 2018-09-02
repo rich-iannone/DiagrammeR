@@ -2,14 +2,12 @@
 % Please edit documentation in R/get_predecessors.R
 \name{get_predecessors}
 \alias{get_predecessors}
-\title{Get node IDs for predecessor nodes to the specified
-node}
+\title{Get node IDs for predecessor nodes to the specified node}
 \usage{
 get_predecessors(graph, node)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{node}{a node ID for the selected node.}
 }
@@ -17,8 +15,8 @@ get_predecessors(graph, node)
 a vector of node ID values.
 }
 \description{
-Provides a vector of node IDs for all
-nodes that have a connection to the given node.
+Provides a vector of node IDs for all nodes that have a connection to the
+  given node.
 }
 \examples{
 # Set a seed

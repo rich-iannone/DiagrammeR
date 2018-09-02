@@ -7,23 +7,20 @@
 get_min_cut_between(graph, from, to)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{from}{the node ID for the source node.}
 
 \item{to}{the node ID for the sink or target node.}
 }
 \value{
-a single numeric value representing the
-minimum total edge capacity removed to disconnect
-the source and sink nodes.
+a single numeric value representing the minimum total edge capacity
+  removed to disconnect the source and sink nodes.
 }
 \description{
-Get the minimum cut between source
-and sink nodes. This is the minimum total capacity
-of edges needed for removal in order to eliminate
-all paths from the source and sink nodes.
+Get the minimum cut between source and sink nodes. This is the minimum total
+  capacity of edges needed for removal in order to eliminate all paths from
+  the source and sink nodes.
 }
 \examples{
 # Set a seed

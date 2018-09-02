@@ -7,8 +7,7 @@
 get_nbrs(graph, nodes)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{nodes}{a vector of node ID values.}
 }
@@ -16,8 +15,7 @@ get_nbrs(graph, nodes)
 a vector of node ID values.
 }
 \description{
-With one or more nodes, get the set of
-all neighboring nodes.
+With one or more nodes, get the set of all neighboring nodes.
 }
 \examples{
 # Create a simple, directed graph with 5

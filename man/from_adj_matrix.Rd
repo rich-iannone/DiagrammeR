@@ -8,41 +8,31 @@ from_adj_matrix(x, mode = "undirected", weighted = FALSE,
   use_diag = TRUE, graph_name = NULL, write_backups = FALSE)
 }
 \arguments{
-\item{x}{a square \code{matrix} object serving as
-the adjacency matrix.}
+\item{x}{a square \code{matrix} object serving as the adjacency matrix.}
 
-\item{mode}{the method in which to interpret the
-input adjacency matrix. Options include:
-\code{undirected}, \code{directed}, \code{upper},
-\code{lower}, \code{max}, \code{min}, and
-\code{plus}.}
+\item{mode}{the method in which to interpret the input adjacency matrix.
+Options include: \code{undirected}, \code{directed}, \code{upper},
+\code{lower}, \code{max}, \code{min}, and \code{plus}.}
 
-\item{weighted}{whether to create a weighted graph
-from the adjacency matrix.}
+\item{weighted}{whether to create a weighted graph from the adjacency matrix.}
 
-\item{use_diag}{whether to use the diagonal of the
-adjacency matrix in calculations. If \code{TRUE}
-then the diagonal values will be included as is. If
-\code{FALSE} then the diagonal values will be
-replaced with zero values before inclusion in any
-calculations.}
+\item{use_diag}{whether to use the diagonal of the adjacency matrix in
+calculations. If \code{TRUE} then the diagonal values will be included as
+is. If \code{FALSE} then the diagonal values will be replaced with zero
+values before inclusion in any calculations.}
 
-\item{graph_name}{an optional string for labeling
-the graph object.}
+\item{graph_name}{an optional string for labeling the graph object.}
 
-\item{write_backups}{an option to write incremental
-backups of changing graph states to disk. If
-\code{TRUE}, a subdirectory of the working directory
-will be used to store \code{RDS} files. The
-default value is \code{FALSE} so one has to opt in
-to use this functionality.}
+\item{write_backups}{an option to write incremental backups of changing graph
+states to disk. If \code{TRUE}, a subdirectory of the working directory
+will be used to store \code{RDS} files. The default value is \code{FALSE}
+so one has to opt in to use this functionality.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Using an adjacency matrix object,
-generate a graph of class \code{dgr_graph}.
+Using an adjacency matrix object, generate a graph of class \code{dgr_graph}.
 }
 \examples{
 # Create an adjacency matrix

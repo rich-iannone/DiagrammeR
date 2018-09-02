@@ -7,23 +7,18 @@
 get_node_ids(graph, conditions = NULL)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to
-use filtering conditions for the
-retrieval of nodes.}
+\item{conditions}{an option to use filtering conditions for the retrieval of
+nodes.}
 }
 \value{
 a vector of node ID
 values.
 }
 \description{
-Obtain a vector of
-node ID values from a graph
-object. An optional filter by
-node attribute can limit the set
-of node ID values returned.
+Obtain a vector of node ID values from a graph object. An optional filter by
+  node attribute can limit the set of node ID values returned.
 }
 \examples{
 # Create a node data

@@ -7,18 +7,14 @@
 get_cmty_louvain(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a data frame with group membership
-assignments for each of the nodes.
+a data frame with group membership assignments for each of the nodes.
 }
 \description{
-Through the use of multi-level
-optimization of a modularity score, obtain the
-group membership values for each of the nodes in
-the graph.
+Through the use of multi-level optimization of a modularity score, obtain the
+  group membership values for each of the nodes in the graph.
 }
 \examples{
 # Create a random graph using the

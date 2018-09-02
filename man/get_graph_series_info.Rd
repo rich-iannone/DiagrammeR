@@ -7,16 +7,14 @@
 get_graph_series_info(graph_series)
 }
 \arguments{
-\item{graph_series}{a graph series object of type
-\code{dgr_graph_1D}.}
+\item{graph_series}{a graph series object of type \code{dgr_graph_1D}.}
 }
 \value{
-a data frame containing information on the
-graphs within the supplied graph series.
+a data frame containing information on the graphs within the supplied
+  graph series.
 }
 \description{
-Obtain a data frame with information
-on the graphs within a graph series.
+Obtain a data frame with information on the graphs within a graph series.
 }
 \examples{
 # Create three graphs
