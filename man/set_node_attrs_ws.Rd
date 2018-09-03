@@ -7,36 +7,29 @@
 set_node_attrs_ws(graph, node_attr, value)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{node_attr}{the name of the attribute to set.}
 
-\item{value}{the value to be set for the chosen
-attribute for the nodes in the current selection.}
+\item{value}{the value to be set for the chosen attribute for the nodes in
+the current selection.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph} or a node data frame, set node
-attribute properties for nodes present in a node
-selection.
+From a graph object of class \code{dgr_graph} or a node data frame, set node
+  attribute properties for nodes present in a node selection.
+}
+\details{
+Selections of nodes can be performed using the following \code{select_...}
+  functions: \code{select_nodes()}, \code{select_last_nodes_created()},
+  \code{select_nodes_by_degree()}, \code{select_nodes_by_id()}, or
+  \code{select_nodes_in_neighborhood()}.
 
-Selections of nodes can be performed using
-the following \code{select_...} functions:
-\code{select_nodes()},
-\code{select_last_nodes_created()},
-\code{select_nodes_by_degree()},
-\code{select_nodes_by_id()}, or
-\code{select_nodes_in_neighborhood()}.
-Selections of nodes can also be performed using
-the following traversal functions:
-(\code{trav_...}):
-\code{trav_out()}, \code{trav_in()},
-\code{trav_both()}, \code{trav_in_node()},
-\code{trav_out_node()}.
+Selections of nodes can also be performed using the following traversal
+  functions (\code{trav_...}): \code{trav_out()}, \code{trav_in()},
+  \code{trav_both()}, \code{trav_in_node()}, \code{trav_out_node()}.
 }
 \examples{
 # Create a simple graph
@@ -59,6 +52,5 @@ graph <-
 # Show the internal node data frame to verify
 # that the node attribute has been set for
 # specific node
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

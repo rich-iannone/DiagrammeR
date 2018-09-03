@@ -8,35 +8,29 @@ recode_edge_attrs(graph, edge_attr_from, ..., otherwise = NULL,
   edge_attr_to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr_from}{the name of the edge attribute
-column from which values will be recoded.}
+\item{edge_attr_from}{the name of the edge attribute column from which values
+will be recoded.}
 
-\item{...}{single-length character vectors with
-the recoding instructions. The first component should
-have the value to replace and the second should have
-the replacement value (in the form
+\item{...}{single-length character vectors with the recoding instructions.
+The first component should have the value to replace and the second should
+have the replacement value (in the form
 \code{"[to_replace] -> [replacement]", ...}).}
 
-\item{otherwise}{an optional single value for
-recoding any unmatched values.}
+\item{otherwise}{an optional single value for recoding any unmatched values.}
 
-\item{edge_attr_to}{an optional name of a new edge
-attribute to which the recoded values will be
-applied. This will retain the original edge
+\item{edge_attr_to}{an optional name of a new edge attribute to which the
+recoded values will be applied. This will retain the original edge
 attribute and its values.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal edge data
-frame (edf), recode character or numeric edge
-attribute values. Optionally, one can specify a
-replacement value for any unmatched mappings.
+Within a graph's internal edge data frame (edf), recode character or numeric
+  edge attribute values. Optionally, one can specify a replacement value for
+  any unmatched mappings.
 }
 \examples{
 # Create a random graph using the
@@ -55,8 +49,7 @@ graph <-
 # Get the graph's internal edf
 # to show which edge attributes
 # are available
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Recode the `rel` node
 # attribute, creating a new edge
@@ -78,6 +71,5 @@ graph <-
 # attribute values had been
 # recoded and copied into a
 # new node attribute
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

@@ -7,15 +7,13 @@
 to_igraph(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 an igraph object.
 }
 \description{
-Convert a DiagrammeR graph to
-an igraph graph object.
+Convert a DiagrammeR graph to an igraph graph object.
 }
 \examples{
 # Create a random graph using the

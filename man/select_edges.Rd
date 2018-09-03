@@ -8,36 +8,30 @@ select_edges(graph, conditions = NULL, set_op = "union", from = NULL,
   to = NULL, edges = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering
-conditions for the retrieval of edges.}
+\item{conditions}{an option to use filtering conditions for the retrieval of
+edges.}
 
-\item{set_op}{the set operation to perform upon
-consecutive selections of graph nodes. This can
-either be as a \code{union} (the default), as an
-intersection of selections with \code{intersect},
-or, as a \code{difference} on the previous
-selection, if it exists.}
+\item{set_op}{the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a \code{union} (the default), as an
+intersection of selections with \code{intersect}, or, as a
+\code{difference} on the previous selection, if it exists.}
 
-\item{from}{an optional vector of node IDs from
-which the edge is outgoing for filtering the list of
-edges present in the graph.}
+\item{from}{an optional vector of node IDs from which the edge is outgoing
+for filtering the list of edges present in the graph.}
 
-\item{to}{an optional vector of node IDs to which
-the edge is incoming for filtering the list of
-edges present in the graph.}
-
-\item{edges}{an optional vector of edge IDs for
+\item{to}{an optional vector of node IDs to which the edge is incoming for
 filtering the list of edges present in the graph.}
+
+\item{edges}{an optional vector of edge IDs for filtering the list of edges
+present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Select edges from a graph object of
-class \code{dgr_graph}.
+Select edges from a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create a node data frame (ndf)
@@ -71,8 +65,7 @@ graph <-
 
 # Verify that an edge selection has been made
 # using the `get_selection()` function
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Select edges based on the relationship label
 # being `z`
@@ -85,8 +78,7 @@ graph <-
 # Verify that an edge selection has been made, and
 # recall that the `2`->`3` edge uniquely has the
 # `z` relationship label
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Select edges based on the edge value attribute
 # being greater than 3.0 (first clearing the current
@@ -100,6 +92,5 @@ graph <-
 # Verify that the correct edge selection has been
 # made; in this case, edges `1`->`4` and
 # `3`->`1` have values for `value` > 3.0
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 }

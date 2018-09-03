@@ -7,37 +7,25 @@
 set_edge_attrs(graph, edge_attr, values, from = NULL, to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr}{the name of the
-attribute to set.}
+\item{edge_attr}{the name of the attribute to set.}
 
-\item{values}{the values to be
-set for the chosen attribute for
-the chosen edges.}
+\item{values}{the values to be set for the chosen attribute for the chosen
+edges.}
 
-\item{from}{an optional vector of
-node IDs from which the edge is
-outgoing for filtering list of
-nodes with outgoing edges in the
-graph.}
+\item{from}{an optional vector of node IDs from which the edge is outgoing
+for filtering list of nodes with outgoing edges in the graph.}
 
-\item{to}{an optional vector of
-node IDs from which the edge is
-incoming for filtering list of
-nodes with incoming edges in the
-graph.}
+\item{to}{an optional vector of node IDs from which the edge is incoming for
+filtering list of nodes with incoming edges in the graph.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of
-class \code{dgr_graph}, set edge
-attribute values for one or more
-edges.
+From a graph object of class \code{dgr_graph}, set edge attribute values for
+  one or more edges.
 }
 \examples{
 # Create a simple graph

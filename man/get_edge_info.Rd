@@ -27,6 +27,5 @@ graph <-
 
 # Get information on the
 # graph's edges
-graph \%>\%
-  get_edge_info()
+graph \%>\% get_edge_info()
 }

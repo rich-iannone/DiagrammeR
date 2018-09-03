@@ -55,8 +55,7 @@ graph <-
     to = 2)
 
 # Get the count of edges in the graph
-graph \%>\%
-  count_edges()
+graph \%>\% count_edges()
 
 # Create an undirected graph with
 # 2 nodes and an edge

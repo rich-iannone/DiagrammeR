@@ -7,8 +7,7 @@
 set_graph_name(graph, name)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{name}{the name to set for the graph.}
 }
@@ -16,8 +15,7 @@ set_graph_name(graph, name)
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Set a name for a graph object of class
-\code{dgr_graph}.
+Set a name for a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create an empty graph

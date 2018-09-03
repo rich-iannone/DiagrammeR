@@ -7,27 +7,23 @@
 select_edges_by_node_id(graph, nodes, set_op = "union")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{nodes}{a vector of node IDs for the selection
-of edges present in the graph.}
+\item{nodes}{a vector of node IDs for the selection of edges present in the
+graph.}
 
-\item{set_op}{the set operation to perform upon
-consecutive selections of graph edges This can
-either be as a \code{union} (the default), as an
-intersection of selections with \code{intersect},
-or, as a \code{difference} on the previous
-selection, if it exists.}
+\item{set_op}{the set operation to perform upon consecutive selections of
+graph edges This can either be as a \code{union} (the default), as an
+intersection of selections with \code{intersect}, or, as a
+\code{difference} on the previous selection, if it exists.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Select edges in a graph object of class
-\code{dgr_graph} using node ID values. All edges
-associated with the provided nodes will be included
-in the selection.
+Select edges in a graph object of class \code{dgr_graph} using node ID
+  values. All edges associated with the provided nodes will be included in
+  the selection.
 }
 \examples{
 # Create a graph with 5 nodes
@@ -43,8 +39,7 @@ graph <-
     nodes = 1:2)
 
 # Get the selection of edges
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Perform another selection of edges, with nodes
 # `1`, `2`, and `4`
@@ -55,8 +50,7 @@ graph <-
     nodes = c(1, 2, 4))
 
 # Get the selection of edges
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Get a fraction of the edges selected over all
 # the edges in the graph

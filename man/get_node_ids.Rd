@@ -40,8 +40,7 @@ graph <-
     nodes_df = ndf)
 
 # Get a vector of all nodes in a graph
-graph \%>\%
-  get_node_ids()
+graph \%>\% get_node_ids()
 
 # Get a vector of node ID values using a
 # numeric comparison (i.e., all nodes with

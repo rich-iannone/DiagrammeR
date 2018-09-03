@@ -7,27 +7,20 @@
 mutate_node_attrs_ws(graph, ...)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{...}{expressions used for the mutation
-of node attributes. LHS of each expression is
-either an existing or new node attribute name.
-The RHS can consist of any valid R code that
-uses node attributes as variables. Expressions
-are evaluated in the order provided, so, node
-attributes created or modified are ready to
-use in subsequent expressions.}
+\item{...}{expressions used for the mutation of node attributes. LHS of each
+expression is either an existing or new node attribute name. The RHS can
+consist of any valid R code that uses node attributes as variables.
+Expressions are evaluated in the order provided, so, node attributes
+created or modified are ready to use in subsequent expressions.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal node
-data frame (ndf), mutate node attribute
-values only for nodes in a selection by
-using one or more expressions.
+Within a graph's internal node data frame (ndf), mutate node attribute values
+  only for nodes in a selection by using one or more expressions.
 }
 \examples{
 # Create a graph with 3 nodes
@@ -43,8 +36,7 @@ graph <-
 # Get the graph's internal ndf
 # to show which node attributes
 # are available
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Mutate the `width` node
 # attribute for the nodes
@@ -61,8 +53,7 @@ graph <-
 # ndf to show that the node
 # attribute `width` was
 # mutated only for node `1`
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Create a new node attribute,
 # called `length`, that is the
@@ -83,8 +74,7 @@ graph <-
 # for nodes `2` and `3` (since
 # node `1` is excluded, an NA
 # value is applied)
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Create a new node attribute
 # called `area`, which is the
@@ -100,8 +90,7 @@ graph <-
 # values had been multiplied
 # together (with new attr `area`)
 # for nodes `2` and `3`
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # We can invert the selection
 # and mutate node `1` several
@@ -121,6 +110,5 @@ graph <-
 # non-NA values for its node
 # attributes without changing
 # those of the other nodes
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

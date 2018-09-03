@@ -7,16 +7,14 @@
 save_graph(x, file)
 }
 \arguments{
-\item{x}{a graph object of class \code{dgr_graph}
-or a graph series object of type \code{dgr_graph_1D}.}
+\item{x}{a graph object of class \code{dgr_graph} or a graph series object of
+type \code{dgr_graph_1D}.}
 
-\item{file}{a file name for the graph or
-graph series. Provide a character string and the
-\code{.dgr} extension will be applied to it.}
+\item{file}{a file name for the graph or graph series. Provide a character
+string and the \code{.dgr} extension will be applied to it.}
 }
 \description{
-Save a graph or a graph series object
-to disk.
+Save a graph or a graph series object to disk.
 }
 \examples{
 # Create an undirected GNP

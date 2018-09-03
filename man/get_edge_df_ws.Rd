@@ -42,6 +42,5 @@ graph <-
 # Get the edge data frame that's
 # limited to the rows that correspond
 # to the edge selection
-graph \%>\%
-  get_edge_df_ws()
+graph \%>\% get_edge_df_ws()
 }

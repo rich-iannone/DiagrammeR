@@ -52,6 +52,5 @@ graph <-
 
 # Create separate `nodes.csv` and `edges.csv`
 # files in the working directory
-graph \%>\%
-  export_csv()
+graph \%>\% export_csv()
 }

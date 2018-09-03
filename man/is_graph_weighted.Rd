@@ -7,18 +7,15 @@
 is_graph_weighted(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a logical value.
 }
 \description{
-Provides a logical value on whether
-the graph is weighted. A graph is considered to
-be weighted when it contains edges that all
-have a edge \code{weight} attribute with
-numerical values assigned for all edges.
+Provides a logical value on whether the graph is weighted. A graph is
+  considered to be weighted when it contains edges that all have a edge
+  \code{weight} attribute with numerical values assigned for all edges.
 }
 \examples{
 # Create a graph where the edges have
@@ -34,8 +31,7 @@ graph <-
 
 # Determine whether the graph
 # is a weighted graph
-graph \%>\%
-  is_graph_weighted()
+graph \%>\% is_graph_weighted()
 
 # Create graph where the edges do
 # not have a `weight` attribute
@@ -45,6 +41,5 @@ graph <-
 
 # Determine whether this graph
 # is weighted
-graph \%>\%
-  is_graph_weighted()
+graph \%>\% is_graph_weighted()
 }

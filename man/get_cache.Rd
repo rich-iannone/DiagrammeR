@@ -46,6 +46,5 @@ graph <-
       node_attr = value))
 
 # Return the cached vector
-graph \%>\%
-  get_cache()
+graph \%>\% get_cache()
 }

@@ -7,8 +7,7 @@
 set_graph_time(graph, time = NULL, tz = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{time}{the date-time to set for the graph.}
 
@@ -18,8 +17,7 @@ set_graph_time(graph, time = NULL, tz = NULL)
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Set the time and timezone for a graph
-object of class \code{dgr_graph}.
+Set the time and timezone for a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create an empty graph

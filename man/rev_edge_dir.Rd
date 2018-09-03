@@ -7,8 +7,7 @@
 rev_edge_dir(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
@@ -26,8 +25,7 @@ graph <-
     k = 2, h = 2)
 
 # Inspect the graph's edges
-graph \%>\%
-  get_edges()
+graph \%>\% get_edges()
 
 # Reverse the edge directions
 # such that edges are directed
@@ -38,6 +36,5 @@ graph <-
 
 # Inspect the graph's edges
 # after their reversal
-graph \%>\%
-  get_edges()
+graph \%>\% get_edges()
 }

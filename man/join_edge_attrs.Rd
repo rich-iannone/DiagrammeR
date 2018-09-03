@@ -7,33 +7,27 @@
 join_edge_attrs(graph, df, by_graph = NULL, by_df = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{df}{the data frame to use for joining.}
 
-\item{by_graph}{optional specification of the column
-in the graph's internal edge data frame for the left
-join. If both \code{by_graph} and \code{by_df} are
-not provided, then a natural join will occur if
-there are columns in the graph's edf and in
-\code{df} with identical names.}
+\item{by_graph}{optional specification of the column in the graph's internal
+edge data frame for the left join. If both \code{by_graph} and \code{by_df}
+are not provided, then a natural join will occur if there are columns in
+the graph's edf and in \code{df} with identical names.}
 
-\item{by_df}{optional specification of the column in
-\code{df} for the left join. If both \code{by_graph}
-and \code{by_df} are not provided, then a natural
-join will occur if there are columns in the graph's
-edf and in \code{df} with identical names.}
+\item{by_df}{optional specification of the column in \code{df} for the left
+join. If both \code{by_graph} and \code{by_df} are not provided, then a
+natural join will occur if there are columns in the graph's edf and in
+\code{df} with identical names.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Join new edge attribute values in a
-left join using a data frame. The use of a left join
-in this function allows for no possibility that
-edges in the graph might be removed after the join.
+Join new edge attribute values in a left join using a data frame. The use of
+  a left join in this function allows for no possibility that edges in the
+  graph might be removed after the join.
 }
 \examples{
 # Set a seed
@@ -66,6 +60,5 @@ graph <-
 
 # Get the graph's internal edf to show that the
 # join has been made
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

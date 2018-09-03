@@ -81,10 +81,8 @@ smallworld_graph <-
     set_seed = 23)
 
 # Get a count of nodes
-smallworld_graph \%>\%
-  count_nodes()
+smallworld_graph \%>\% count_nodes()
 
 # Get a count of edges
-smallworld_graph \%>\%
-  count_edges()
+smallworld_graph \%>\% count_edges()
 }

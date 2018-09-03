@@ -9,43 +9,34 @@ rescale_edge_attrs(graph, edge_attr_from, to_lower_bound = 0,
   from_upper_bound = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr_from}{the edge attribute containing
-numeric data that is to be rescaled to new numeric
-or color values.}
+\item{edge_attr_from}{the edge attribute containing numeric data that is to
+be rescaled to new numeric or color values.}
 
-\item{to_lower_bound}{the lower bound value for the
-set of rescaled values. This can be a numeric value
-or an X11 color name.}
+\item{to_lower_bound}{the lower bound value for the set of rescaled values.
+This can be a numeric value or an X11 color name.}
 
-\item{to_upper_bound}{the upper bound value for the
-set of rescaled values. This can be a numeric value
-or an X11 color name.}
+\item{to_upper_bound}{the upper bound value for the set of rescaled values.
+This can be a numeric value or an X11 color name.}
 
-\item{edge_attr_to}{an optional name of a new edge
-attribute to which the recoded values will be
-applied. This will retain the original edge
+\item{edge_attr_to}{an optional name of a new edge attribute to which the
+recoded values will be applied. This will retain the original edge
 attribute and its values.}
 
-\item{from_lower_bound}{an optional, manually set
-lower bound value for the rescaled values. If not
-set, the minimum value from the set will be used.}
+\item{from_lower_bound}{an optional, manually set lower bound value for the
+rescaled values. If not set, the minimum value from the set will be used.}
 
-\item{from_upper_bound}{an optional, manually set
-upper bound value for the rescaled values. If not
-set, the minimum value from the set will be used.}
+\item{from_upper_bound}{an optional, manually set upper bound value for the
+rescaled values. If not set, the minimum value from the set will be used.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, take a set of numeric values for
-an edge attribute, rescale to a new numeric or color
-range, then write to the same edge attribute or to
-a new edge attribute column.
+From a graph object of class \code{dgr_graph}, take a set of numeric values
+  for an edge attribute, rescale to a new numeric or color range, then write
+  to the same edge attribute or to a new edge attribute column.
 }
 \examples{
 # Create a random graph using the
@@ -66,8 +57,7 @@ graph <-
 # Get the graph's internal edf
 # to show which edge attributes
 # are available
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Rescale the `weight` edge
 # attribute, so that its values
@@ -82,8 +72,7 @@ graph <-
 # Get the graph's internal edf
 # to show that the edge attribute
 # values had been rescaled
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Scale the values in the `weight`
 # edge attribute to different
@@ -110,6 +99,5 @@ graph <-
 # in `color` and scaled numerical
 # values are in the `penwidth`
 # edge attribute
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

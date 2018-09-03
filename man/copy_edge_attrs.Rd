@@ -39,8 +39,7 @@ graph <-
 # Get the graph's internal
 # edf to show which edge
 # attributes are available
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Make a copy the `color`
 # edge attribute as the
@@ -54,6 +53,5 @@ graph <-
 # Get the graph's internal
 # edf to show that the edge
 # attribute had been copied
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

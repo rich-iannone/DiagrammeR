@@ -45,8 +45,7 @@ graph <-
 # Get the graph's internal
 # ndf to show which node
 # attributes are available
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Make a copy the `value`
 # node attribute as the
@@ -60,6 +59,5 @@ graph <-
 # Get the graph's internal
 # ndf to show that the node
 # attribute had been copied
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

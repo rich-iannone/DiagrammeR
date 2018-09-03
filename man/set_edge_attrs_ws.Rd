@@ -7,31 +7,28 @@
 set_edge_attrs_ws(graph, edge_attr, value)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{edge_attr}{the name of the attribute to set.}
 
-\item{value}{the value to be set for the chosen
-attribute for the edges in the current selection.}
+\item{value}{the value to be set for the chosen attribute for the edges in
+the current selection.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph} or an edge data frame, set edge
-attribute properties for one or more edges.
+From a graph object of class \code{dgr_graph} or an edge data frame, set edge
+  attribute properties for one or more edges.
+}
+\details{
+Selections of edges can be performed using the following \code{select_...}
+  functions: \code{select_edges()}, \code{select_last_edge()}, or
+  \code{select_edges_by_node_id()}.
 
-Selections of edges can be performed using
-the following \code{select_...} functions:
-\code{select_edges()},
-\code{select_last_edge()}, or
-\code{select_edges_by_node_id()}.
 Selections of edges can also be performed using
-the following traversal functions:
-\code{trav_out_edge()}, \code{trav_in_edge()},
-or \code{trav_both_edge()}.
+  the following traversal functions: \code{trav_out_edge()},
+  \code{trav_in_edge()}, or \code{trav_both_edge()}.
 }
 \examples{
 # Create a simple graph
@@ -55,6 +52,5 @@ graph <-
 # frame to verify that the
 # edge attribute has been set
 # for specific edges
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

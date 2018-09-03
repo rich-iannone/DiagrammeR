@@ -7,26 +7,22 @@
 set_df_as_node_attr(graph, node, df)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node}{the node ID to which the data frame
-will be bound as an attribute.}
+\item{node}{the node ID to which the data frame will be bound as an
+attribute.}
 
-\item{df}{the data frame to be bound to the
-node as an attribute.}
+\item{df}{the data frame to be bound to the node as an attribute.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph}, bind a data frame as a node
-attribute property for one given graph node. The
-data frames are stored in list columns within
-a \code{df_tbl} object. A \code{df_id} value is
-generated and serves as a pointer to the table
-row that contains the ingested data frame.
+From a graph object of class \code{dgr_graph}, bind a data frame as a node
+  attribute property for one given graph node. The data frames are stored in
+  list columns within a \code{df_tbl} object. A \code{df_id} value is
+  generated and serves as a pointer to the table row that contains the
+  ingested data frame.
 }
 \examples{
 # Create a node data frame (ndf)

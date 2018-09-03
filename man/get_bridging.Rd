@@ -28,8 +28,7 @@ graph <-
 
 # Get the bridging scores for nodes
 # in the graph
-graph \%>\%
-  get_bridging()
+graph \%>\% get_bridging()
 
 # Add the bridging scores to
 # the graph as a node attribute
@@ -39,6 +38,5 @@ graph <-
     df = get_bridging(.))
 
 # Display the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

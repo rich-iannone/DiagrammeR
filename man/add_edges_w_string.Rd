@@ -49,8 +49,7 @@ graph_node_id <-
 
 # Show the graph's internal
 # edge data frame
-graph_node_id \%>\%
-  get_edge_df()
+graph_node_id \%>\% get_edge_df()
 
 # Add edges between nodes using
 # a character string with node
@@ -69,6 +68,5 @@ graph_node_label <-
 # Show the graph's internal
 # edge data frame (it's the
 # same as before)
-graph_node_label \%>\%
-  get_edge_df()
+graph_node_label \%>\% get_edge_df()
 }

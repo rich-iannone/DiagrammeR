@@ -35,6 +35,5 @@ graph <-
 
 # Get the eccentricity values for
 # all nodes in the graph
-graph \%>\%
-  get_eccentricity()
+graph \%>\% get_eccentricity()
 }

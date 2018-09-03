@@ -8,57 +8,44 @@ layout_nodes_w_string(graph, layout, nodes, sort = NULL, width = 8,
   height = 8, ll = c(0, 0))
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{layout}{a layout character string that
-provides a schematic for the layout. This
-consists of a rectangular collection of
-\code{-} characters (for no node placement),
-and numbers from \code{1} to \code{9}
-(representing different groupings of nodes,
-further described in the \code{nodes} argument).}
+\item{layout}{a layout character string that provides a schematic for the
+layout. This consists of a rectangular collection of \code{-} characters
+(for no node placement), and numbers from \code{1} to \code{9}
+(representing different groupings of nodes, further described in the
+\code{nodes} argument).}
 
 \item{nodes}{a named vector of the form:
-\code{c("1" = "[node_attr]:[value]", ...)}. The
-LHS corresponds to the numbers used in the
-\code{layout} schematic. The RHS provides a
-shorthand for the node attribute and a value
-for grouping together nodes (separated by a
-colon). For instance, with \code{"type:a"} in the
-RHS (and \code{"1"} in the LHS) we would target
-all nodes with a \code{type} attribute equal
-to \code{a} for positioning in the graph as
-described by the \code{1}s in the \code{layout}.}
+\code{c("1" = "[node_attr]:[value]", ...)}. The LHS corresponds to the
+numbers used in the \code{layout} schematic. The RHS provides a shorthand
+for the node attribute and a value for grouping together nodes (separated
+by a colon). For instance, with \code{"type:a"} in the RHS (and \code{"1"}
+in the LHS) we would target all nodes with a \code{type} attribute equal to
+\code{a} for positioning in the graph as described by the \code{1}s in the
+\code{layout}.}
 
-\item{sort}{an optional sorting method to apply
-to the collection of nodes before assigning
-positional information. Like \code{nodes}, this
-is a named vector of the form:
-\code{c("1" = "[node_attr]:asc|desc", ...)}.
-The \code{node_attr} in this case should be
-different than that used in \code{nodes}. Ideally,
-this node attribute should have unique values.
-Choose either \code{asc} or \code{desc} right of
-the colon for ascending or descending sorts.}
+\item{sort}{an optional sorting method to apply to the collection of nodes
+before assigning positional information. Like \code{nodes}, this is a named
+vector of the form: \code{c("1" = "[node_attr]:asc|desc", ...)}. The
+\code{node_attr} in this case should be different than that used in
+\code{nodes}. Ideally, this node attribute should have unique values.
+Choose either \code{asc} or \code{desc} right of the colon for ascending or
+descending sorts.}
 
-\item{width}{the width of the \code{layout}
-diagram.}
+\item{width}{the width of the \code{layout} diagram.}
 
-\item{height}{the height of the \code{layout}
-diagram.}
+\item{height}{the height of the \code{layout} diagram.}
 
-\item{ll}{a vector describing the the lower-left
-coordinates of the \code{layout}}
+\item{ll}{a vector describing the the lower-left coordinates of the
+\code{layout}}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Layout one or several groups of
-nodes using a text-based schematic. The option
-is available to apply sorting to each of the
-groups.
+Layout one or several groups of nodes using a text-based schematic. The
+  option is available to apply sorting to each of the groups.
 }
 \examples{
 # Create a graph with unique labels and
@@ -108,6 +95,5 @@ graph <-
 # Show the graph's node data frame
 # to confirm that `x` and `y` values
 # were added to each of the nodes
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

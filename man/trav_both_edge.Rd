@@ -2,54 +2,41 @@
 % Please edit documentation in R/trav_both_edge.R
 \name{trav_both_edge}
 \alias{trav_both_edge}
-\title{Traverse from one or more selected nodes onto
-adjacent edges}
+\title{Traverse from one or more selected nodes onto adjacent edges}
 \usage{
 trav_both_edge(graph, conditions = NULL, copy_attrs_from = NULL,
   copy_attrs_as = NULL, agg = "sum")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering
-conditions for the traversal.}
+\item{conditions}{an option to use filtering conditions for the traversal.}
 
-\item{copy_attrs_from}{providing a node attribute
-name will copy those node attribute values to the
-traversed edges. If the edge attribute already exists,
-the values will be merged to the traversed edges;
-otherwise, a new edge attribute will be created.}
+\item{copy_attrs_from}{providing a node attribute name will copy those node
+attribute values to the traversed edges. If the edge attribute already
+exists, the values will be merged to the traversed edges; otherwise, a new
+edge attribute will be created.}
 
-\item{copy_attrs_as}{if a node attribute name
-is provided in \code{copy_attrs_from}, this option
-will allow the copied attribute values to be
-written under a different edge attribute name.
-If the attribute name provided in
-\code{copy_attrs_as} does not exist in the graph's
-edf, the new edge attribute will be created
-with the chosen name.}
+\item{copy_attrs_as}{if a node attribute name is provided in
+\code{copy_attrs_from}, this option will allow the copied attribute values
+to be written under a different edge attribute name. If the attribute name
+provided in \code{copy_attrs_as} does not exist in the graph's edf, the new
+edge attribute will be created with the chosen name.}
 
-\item{agg}{if a node attribute is provided
-to \code{copy_attrs_from}, then an aggregation
-function is required since there may be cases where
-multiple node attribute values will be passed onto
-the traversed edge(s). To pass only a single value,
-the following aggregation functions can be used:
-\code{sum}, \code{min}, \code{max}, \code{mean}, or
-\code{median}.}
+\item{agg}{if a node attribute is provided to \code{copy_attrs_from}, then an
+aggregation function is required since there may be cases where multiple
+node attribute values will be passed onto the traversed edge(s). To pass
+only a single value, the following aggregation functions can be used:
+\code{sum}, \code{min}, \code{max}, \code{mean}, or \code{median}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph} move to adjacent edges from a
-selection of one or more selected nodes, thereby
-creating a selection of edges. An optional filter
-by edge attribute can limit the set of edges
-traversed to.
+From a graph object of class \code{dgr_graph} move to adjacent edges from a
+  selection of one or more selected nodes, thereby creating a selection of
+  edges. An optional filter by edge attribute can limit the set of edges
+  traversed to.
 }
 \examples{
 # Set a seed
@@ -86,8 +73,7 @@ graph <-
   join_edge_attrs(df = df)
 
 # Show the graph's internal edge data frame
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Perform a simple traversal from nodes to
 # adjacent edges with no conditions on the
@@ -179,12 +165,10 @@ graph <-
     value = 5)
 
 # Show the graph's internal edge data frame
-graph \%>\%
-  get_edge_df()
+graph \%>\%get_edge_df()
 
 # Show the graph's internal node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Perform a traversal from the nodes to
 # the adjacent edges while also applying
@@ -200,6 +184,5 @@ graph <-
 
 # Show the graph's internal edge data frame
 # after this change
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

@@ -44,8 +44,7 @@ graph <-
     edges_df = edf)
 
 # Get a vector of all edges in a graph
-graph \%>\%
-  get_edge_ids()
+graph \%>\% get_edge_ids()
 
 # Get a vector of edge ID values using a
 # numeric comparison (i.e., all edges with

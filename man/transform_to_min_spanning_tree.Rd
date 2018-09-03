@@ -7,15 +7,14 @@
 transform_to_min_spanning_tree(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Get a minimum spanning tree subgraph
-for a connected graph of class \code{dgr_graph}.
+Get a minimum spanning tree subgraph for a connected graph of class
+  \code{dgr_graph}.
 }
 \examples{
 # Create a random graph using the

@@ -46,6 +46,5 @@ graph <-
     df = get_leverage_centrality(.))
 
 # Display the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

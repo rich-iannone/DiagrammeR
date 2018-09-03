@@ -7,31 +7,25 @@
 nudge_node_positions_ws(graph, dx, dy)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{dx}{a single numeric value specifying the
-amount that selected nodes (with non-\code{NA}
-values for the \code{x} and \code{y} attributes)
-will be moved in the x direction. A positive
-value will move nodes right, negative left.}
+\item{dx}{a single numeric value specifying the amount that selected nodes
+(with non-\code{NA} values for the \code{x} and \code{y} attributes) will
+be moved in the x direction. A positive value will move nodes right,
+negative left.}
 
-\item{dy}{a single numeric value specifying the
-amount that selected nodes (with non-\code{NA}
-values for the \code{x} and \code{y} attributes)
-will be moved in the y direction. A positive
-value will move nodes up, negative down.}
+\item{dy}{a single numeric value specifying the amount that selected nodes
+(with non-\code{NA} values for the \code{x} and \code{y} attributes) will
+be moved in the y direction. A positive value will move nodes up, negative down.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-With an active selection of nodes,
-move the position in either the \code{x} or
-\code{y} directions, or both. Nodes in the
-selection that do not have position information
-(i.e., \code{NA} values for the \code{x} or
-\code{y} node attributes) will be ignored.
+With an active selection of nodes, move the position in either the \code{x}
+  or \code{y} directions, or both. Nodes in the selection that do not have
+  position information (i.e., \code{NA} values for the \code{x} or \code{y}
+  node attributes) will be ignored.
 }
 \examples{
 # Create a simple graph with 4 nodes
@@ -76,8 +70,7 @@ graph <-
     dx = 5, dy = 0)
 
 # View the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Now select nodes that have `type == "b"`
 # and move them in the `y` direction 2 units
@@ -92,6 +85,5 @@ graph <-
     dx = 0, dy = 2)
 
 # View the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

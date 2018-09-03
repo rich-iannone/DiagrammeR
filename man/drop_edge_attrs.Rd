@@ -36,8 +36,7 @@ graph <-
 # Get the graph's internal
 # edf to show which edge
 # attributes are available
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Drop the `value` edge
 # attribute
@@ -50,6 +49,5 @@ graph <-
 # edf to show that the edge
 # attribute `value` had been
 # removed
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

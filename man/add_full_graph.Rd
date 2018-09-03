@@ -79,8 +79,7 @@ graph <-
 
 # Get node information
 # from this graph
-graph \%>\%
-  get_node_info()
+graph \%>\% get_node_info()
 
 # Using `keep_loops = FALSE`
 # (the default) will remove
@@ -102,13 +101,11 @@ graph <-
 
 # Show the graph's node
 # data frame (ndf)
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Show the graph's edge
 # data frame (edf)
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Create a fully-connected and
 # directed graph with 3 nodes,
@@ -141,13 +138,11 @@ graph <-
 
 # Show the graph's node
 # data frame (ndf)
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Show the graph's edge
 # data frame (edf)
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # An undirected graph can
 # also use a matrix with

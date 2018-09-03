@@ -46,6 +46,5 @@ graph <-
     df = get_cmty_l_eigenvec(.))
 
 # Display the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

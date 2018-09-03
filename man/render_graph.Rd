@@ -10,24 +10,23 @@ render_graph(graph, layout = NULL, output = NULL, title = NULL,
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{layout}{a string specifying a layout type to
-use for node placement in this rendering. Possible
-layouts include: \code{nicely}, \code{circle},
+\item{layout}{a string specifying a layout type to use for node placement in
+this rendering. Possible layouts include: \code{nicely}, \code{circle},
 \code{tree}, \code{kk}, and \code{fr}.}
 
-\item{output}{a string specifying the output type;
-\code{graph} (the default) renders the graph using
-the \code{grViz} function and \code{visNetwork}
-renders the graph using the \code{visnetwork} function.}
+\item{output}{a string specifying the output type; \code{graph} (the default)
+renders the graph using the \code{\link{grViz}()} function and
+\code{visNetwork} renders the graph using the \code{\link{visnetwork}()}
+function.}
 
-\item{title}{an optional title for a graph when
-using \code{output = "graph"}.}
+\item{title}{an optional title for a graph when using
+\code{output = "graph"}.}
 
-\item{width}{an optional parameter for specifying
-the width of the resulting graphic in pixels.}
+\item{width}{an optional parameter for specifying the width of the resulting
+graphic in pixels.}
 
-\item{height}{an optional parameter for specifying
-the height of the resulting graphic in pixels.}
+\item{height}{an optional parameter for specifying the height of the
+resulting graphic in pixels.}
 }
 \description{
 Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.

@@ -2,54 +2,41 @@
 % Please edit documentation in R/trav_out_node.R
 \name{trav_out_node}
 \alias{trav_out_node}
-\title{Traverse from one or more selected edges onto
-adjacent, outward nodes}
+\title{Traverse from one or more selected edges onto adjacent, outward nodes}
 \usage{
 trav_out_node(graph, conditions = NULL, copy_attrs_from = NULL,
   copy_attrs_as = NULL, agg = "sum")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering
-conditions for the traversal.}
+\item{conditions}{an option to use filtering conditions for the traversal.}
 
-\item{copy_attrs_from}{providing an edge attribute
-name will copy those edge attribute values to the
-traversed nodes. If the edge attribute already exists,
-the values will be merged to the traversed nodes;
-otherwise, a new node attribute will be created.}
+\item{copy_attrs_from}{providing an edge attribute name will copy those edge
+attribute values to the traversed nodes. If the edge attribute already
+ exists, the values will be merged to the traversed nodes; otherwise, a new
+ node attribute will be created.}
 
-\item{copy_attrs_as}{if an edge attribute name
-is provided in \code{copy_attrs_from}, this option
-will allow the copied attribute values to be
-written under a different node attribute name.
-If the attribute name provided in
-\code{copy_attrs_as} does not exist in the graph's
-ndf, the new node attribute will be created
-with the chosen name.}
+\item{copy_attrs_as}{if an edge attribute name is provided in
+\code{copy_attrs_from}, this option will allow the copied attribute values
+to be written under a different node attribute name. If the attribute name
+provided in \code{copy_attrs_as} does not exist in the graph's ndf, the new
+node attribute will be created with the chosen name.}
 
-\item{agg}{if an edge attribute is provided
-to \code{copy_attrs_from}, then an aggregation
-function is required since there may be cases where
-multiple edge attribute values will be passed onto
-the traversed node(s). To pass only a single value,
-the following aggregation functions can be used:
-\code{sum}, \code{min}, \code{max}, \code{mean}, or
-\code{median}.}
+\item{agg}{if an edge attribute is provided to \code{copy_attrs_from}, then
+an aggregation function is required since there may be cases where multiple
+edge attribute values will be passed onto the traversed node(s). To pass
+only a single value, the following aggregation functions can be used:
+\code{sum}, \code{min}, \code{max}, \code{mean}, or \code{median}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph} with an active selection of
-edges move opposite to the edge direction to
-connected nodes, replacing the current edge selection
-with those nodes traversed to. An optional filter by
-node attribute can limit the set of nodes traversed
-to.
+From a graph object of class \code{dgr_graph} with an active selection of
+  edges move opposite to the edge direction to connected nodes, replacing the
+  current edge selection with those nodes traversed to. An optional filter by
+  node attribute can limit the set of nodes traversed to.
 }
 \examples{
 # Set a seed
@@ -95,12 +82,10 @@ graph <-
   join_node_attrs(df = df_nodes)
 
 # Show the graph's internal node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Show the graph's internal edge data frame
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Perform a simple traversal from the
 # edge `1`->`3` to the attached node
@@ -197,12 +182,10 @@ graph <-
   select_edges()
 
 # Show the graph's internal edge data frame
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Show the graph's internal node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Perform a traversal from the edges to
 # the central node (`1`) while also applying
@@ -217,6 +200,5 @@ graph <-
 
 # Show the graph's internal node data frame
 # after this change
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

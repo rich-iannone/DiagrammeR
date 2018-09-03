@@ -7,16 +7,14 @@
 is_graph_simple(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a logical value.
 }
 \description{
-Determine whether the graph is
-a simple graph. A simple graph is one that does
-not contain any loops nor any multiple edges.
+Determine whether the graph is a simple graph. A simple graph is one that
+  does not contain any loops nor any multiple edges.
 }
 \examples{
 # Create a graph with 2 cycles
@@ -26,6 +24,5 @@ graph <-
   add_cycle(n = 3)
 
 # Check if the graph is simple
-graph \%>\%
-  is_graph_simple()
+graph \%>\% is_graph_simple()
 }

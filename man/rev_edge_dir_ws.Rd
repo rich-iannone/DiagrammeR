@@ -2,21 +2,19 @@
 % Please edit documentation in R/rev_edge_dir_ws.R
 \name{rev_edge_dir_ws}
 \alias{rev_edge_dir_ws}
-\title{Reverse the direction of selected edges in a graph}
+\title{Reverse the direction of selected edges in a graph using an edge selection}
 \usage{
 rev_edge_dir_ws(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Using a directed graph with a selection
-of edges as input, reverse the direction of those
-selected edges in input graph.
+Using a directed graph with a selection of edges as input, reverse the
+  direction of those selected edges in input graph.
 }
 \examples{
 # Create a graph with a
@@ -27,8 +25,7 @@ graph <-
     k = 2, h = 2)
 
 # Inspect the graph's edges
-graph \%>\%
-  get_edges()
+graph \%>\% get_edges()
 
 # Select all edges associated
 # with nodes `1` and `2`
@@ -46,6 +43,5 @@ graph <-
 
 # Inspect the graph's edges
 # after their reversal
-graph \%>\%
-  get_edges()
+graph \%>\% get_edges()
 }

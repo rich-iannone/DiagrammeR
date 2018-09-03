@@ -7,17 +7,13 @@
 set_graph_undirected(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Take a graph which is
-directed and convert it to an undirected
-graph.
+Take a graph which is directed and convert it to an undirected graph.
 }
 \examples{
 # Create a graph with a
@@ -35,6 +31,5 @@ graph <-
 
 # Perform a check on whether
 # graph is directed
-graph \%>\%
-  is_graph_directed()
+graph \%>\% is_graph_directed()
 }

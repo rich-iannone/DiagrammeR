@@ -36,6 +36,5 @@ graph <-
 
 # Count the number of loop
 # edges remaining in the graph
-graph \%>\%
-  count_loop_edges()
+graph \%>\% count_loop_edges()
 }

@@ -7,29 +7,22 @@
 set_node_attrs(graph, node_attr, values, nodes = NULL)
 }
 \arguments{
-\item{graph}{a graph object of
-class \code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node_attr}{the name of the
-attribute to set.}
+\item{node_attr}{the name of the attribute to set.}
 
-\item{values}{the values to be
-set for the chosen attribute for
-the chosen nodes.}
+\item{values}{the values to be set for the chosen attribute for the chosen
+nodes.}
 
-\item{nodes}{an optional vector
-of node IDs for filtering the list
-of nodes present in the graph.}
+\item{nodes}{an optional vector of node IDs for filtering the list of nodes
+present in the graph.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of
-class \code{dgr_graph}, set node
-attribute values for one or more
-nodes.
+From a graph object of class \code{dgr_graph}, set node attribute values for
+  one or more nodes.
 }
 \examples{
 # Create a node data frame (ndf)
@@ -63,8 +56,7 @@ graph <-
     nodes = c(1, 3))
 
 # View the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Set attribute `color = "blue"` for
 # all nodes in the graph
@@ -75,6 +67,5 @@ graph <-
     values = "blue")
 
 # Display the graph's ndf
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

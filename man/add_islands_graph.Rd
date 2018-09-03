@@ -56,8 +56,8 @@ edges.}
 }
 \description{
 To an existing graph object, add several Erdos-Renyi random graphs (the
-islands) using a common set of parameters, connected together by a fixed
-number of edges.
+  islands) using a common set of parameters, connected together by a fixed
+  number of edges.
 }
 \examples{
 # Create a graph of islands
@@ -71,10 +71,8 @@ islands_graph <-
     set_seed = 23)
 
 # Get a count of nodes
-islands_graph \%>\%
-  count_nodes()
+islands_graph \%>\% count_nodes()
 
 # Get a count of edges
-islands_graph \%>\%
-  count_edges()
+islands_graph \%>\% count_edges()
 }

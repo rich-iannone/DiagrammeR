@@ -7,14 +7,12 @@
 node_data(...)
 }
 \arguments{
-\item{...}{node data attributes provided
-as one or more named vectors.}
+\item{...}{node data attributes provided as one or more named vectors.}
 }
 \description{
-This helper function should be
-invoked to provide values for the namesake
-\code{node_data} argument, which is present
-in any function where nodes are created.
+This helper function should be invoked to provide values for the namesake
+  \code{node_data} argument, which is present in any function where nodes are
+  created.
 }
 \examples{
 # Create a new graph and add
@@ -33,6 +31,5 @@ graph <-
 # node data frame; the node
 # data attributes have been
 # inserted
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

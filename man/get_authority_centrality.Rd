@@ -43,6 +43,5 @@ graph <-
     df = get_authority_centrality(.))
 
 # Display the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

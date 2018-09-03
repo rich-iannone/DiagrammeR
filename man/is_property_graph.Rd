@@ -7,8 +7,7 @@
 is_property_graph(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a logical value.
@@ -48,8 +47,7 @@ create_graph() %>%
   is_property_graph()
 }
 \description{
-Provides a logical value on whether
-the graph is property graph (i.e., all nodes have
-an assigned \code{type} value and all edges have
-an assigned \code{rel} value).
+Provides a logical value on whether the graph is property graph (i.e., all
+  nodes have an assigned \code{type} value and all edges have an assigned
+  \code{rel} value).
 }

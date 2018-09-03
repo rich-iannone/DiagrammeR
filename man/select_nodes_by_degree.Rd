@@ -2,45 +2,30 @@
 % Please edit documentation in R/select_nodes_by_degree.R
 \name{select_nodes_by_degree}
 \alias{select_nodes_by_degree}
-\title{Select nodes in the graph based on
-their degree values}
+\title{Select nodes in the graph based on their degree values}
 \usage{
 select_nodes_by_degree(graph, expressions, set_op = "union")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{expressions}{one or more
-expressions for filtering nodes by
-degree values. Use a combination of
-degree type (\code{deg} for total
-degree, \code{indeg} for in-degree,
-and \code{outdeg} for out-degree)
-with a comparison operator and
-values for comparison (e.g., use
-\code{"deg >= 2"} to select nodes
-with a degree greater than or equal
-to 2).}
+\item{expressions}{one or more expressions for filtering nodes by degree
+values. Use a combination of degree type (\code{deg} for total degree,
+\code{indeg} for in-degree, and \code{outdeg} for out-degree) with a
+comparison operator and values for comparison (e.g., use \code{"deg >= 2"}
+to select nodes with a degree greater than or equal to 2).}
 
-\item{set_op}{the set operation to
-perform upon consecutive selections
-of graph nodes. This can either be
-as a \code{union} (the default), as
-an intersection of selections with
-\code{intersect}, or, as a
-\code{difference} on the previous
-selection, if it exists.}
+\item{set_op}{the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a \code{union} (the default), as an
+intersection of selections with \code{intersect}, or, as a
+\code{difference} on the previous selection, if it exists.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Using a graph object of
-class \code{dgr_graph}, create a
-selection of nodes that have certain
-degree values.
+Using a graph object of class \code{dgr_graph}, create a selection of nodes
+  that have certain degree values.
 }
 \examples{
 # Create a random graph using
@@ -112,6 +97,5 @@ graph_2 <-
     value = "red")
 
 # Get the selection of nodes
-graph_2 \%>\%
-  get_selection()
+graph_2 \%>\% get_selection()
 }

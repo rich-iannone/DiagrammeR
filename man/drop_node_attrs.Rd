@@ -34,8 +34,7 @@ graph <-
 # Get the graph's internal
 # ndf to show which node
 # attributes are available
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Drop the `value` node
 # attribute
@@ -48,6 +47,5 @@ graph <-
 # ndf to show that the node
 # attribute `value` had been
 # removed
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

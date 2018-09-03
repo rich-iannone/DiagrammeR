@@ -53,8 +53,7 @@ graph <-
 # View the graph actions for the graph
 # object by using the `get_graph_actions()`
 # function
-graph \%>\%
-  get_graph_actions()
+graph \%>\% get_graph_actions()
 
 # Delete the second and third graph
 # actions using `delete_graph_actions()`
@@ -66,6 +65,5 @@ graph <-
 # Verify that these last two graph
 # actions were deleted by again using
 # the `get_graph_actions()` function
-graph \%>\%
-  get_graph_actions()
+graph \%>\% get_graph_actions()
 }

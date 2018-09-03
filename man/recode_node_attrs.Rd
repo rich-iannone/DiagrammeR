@@ -8,35 +8,29 @@ recode_node_attrs(graph, node_attr_from, ..., otherwise = NULL,
   node_attr_to = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node_attr_from}{the name of the node attribute
-column from which values will be recoded.}
+\item{node_attr_from}{the name of the node attribute column from which values
+will be recoded.}
 
-\item{...}{single-length character vectors with
-the recoding instructions. The first component should
-have the value to replace and the second should have
-the replacement value (in the form
+\item{...}{single-length character vectors with the recoding instructions.
+The first component should have the value to replace and the second should
+have the replacement value (in the form
 \code{"[to_replace] -> [replacement]", ...}).}
 
-\item{otherwise}{an optional single value for
-recoding any unmatched values.}
+\item{otherwise}{an optional single value for recoding any unmatched values.}
 
-\item{node_attr_to}{an optional name of a new node
-attribute to which the recoded values will be
-applied. This will retain the original node
+\item{node_attr_to}{an optional name of a new node attribute to which the
+recoded values will be applied. This will retain the original node
 attribute and its values.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal node data
-frame (ndf), recode character or numeric node
-attribute values. Optionally, one can specify a
-replacement value for any unmatched mappings.
+Within a graph's internal node data frame (ndf), recode character or numeric
+  node attribute values. Optionally, one can specify a replacement value for
+  any unmatched mappings.
 }
 \examples{
 # Create a random graph using the
@@ -57,8 +51,7 @@ graph <-
 # Get the graph's internal ndf
 # to show which node
 # attributes are available
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Recode the `shape` node
 # attribute, so that `circle`
@@ -74,8 +67,7 @@ graph <-
 # Get the graph's internal
 # ndf to show that the node
 # attribute values had been recoded
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Create a new node attribute,
 # called `color`, that is based
@@ -93,6 +85,5 @@ graph <-
 
 # Get the graph's internal ndf
 # to see the change
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

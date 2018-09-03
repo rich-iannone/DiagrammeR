@@ -49,6 +49,5 @@ graph <-
 # has been made for nodes `1` and
 # `3` and that node `1` has been
 # deselected (leaving only `3`)
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 }

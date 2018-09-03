@@ -8,45 +8,34 @@ set_edge_attr_to_display(graph, attr = NULL, edges = NULL,
   default = "label")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{attr}{the name of the attribute from
-which label text for the edge will be obtained.
-If set to \code{NULL}, then \code{NA} values
-will be assigned to the \code{display} column
-for the chosen edges.}
+\item{attr}{the name of the attribute from which label text for the edge will
+be obtained. If set to \code{NULL}, then \code{NA} values will be assigned
+to the \code{display} column for the chosen edges.}
 
-\item{edges}{a length vector containing one or
-several edge ID values (as integers) for which
-edge attributes are set for display in the
-rendered graph. If \code{NULL}, all edges from
-the graph are assigned the \code{display} value
-given as \code{attr}.}
+\item{edges}{a length vector containing one or several edge ID values (as
+integers) for which edge attributes are set for display in the rendered
+graph. If \code{NULL}, all edges from the graph are assigned the
+\code{display} value given as \code{attr}.}
 
-\item{default}{the name of an attribute to
-set for all other graph edges not included
-in \code{edges}. This value only gets used if
-the \code{display} edge attribute is not in
-the graph's internal edge data frame.}
+\item{default}{the name of an attribute to set for all other graph edges not
+included in \code{edges}. This value only gets used if the \code{display}
+edge attribute is not in the graph's internal edge data frame.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Set a edge attribute type to display
-as edge text when calling the \code{render_graph()}
-function. This allows for display of different types
-of edge attribute values on a per-edge basis.
-Without setting the \code{display} attribute,
-rendering a graph will default to not printing any
-text on edges. Setting the \code{display} edge
-attribute with this function for the first time
-(i.e., the \code{display} column doesn't exist in
-the graph's internal edge data frame) will insert
-the \code{attr} value for all edges specified in
-\code{edges} and a default value (\code{default})
-for all remaining edges.
+Set a edge attribute type to display as edge text when calling the
+  \code{\link{render_graph}()} function. This allows for display of different
+  types of edge attribute values on a per-edge basis. Without setting the
+  \code{display} attribute, rendering a graph will default to not printing
+  any text on edges. Setting the \code{display} edge attribute with this
+  function for the first time (i.e., the \code{display} column doesn't exist
+  in the graph's internal edge data frame) will insert the \code{attr} value
+  for all edges specified in \code{edges} and a default value
+  (\code{default}) for all remaining edges.
 }
 \examples{
 # Create a random graph using the
@@ -76,8 +65,7 @@ graph <-
 # `display` edge attribute will show, for
 # each row, which edge attribute value to
 # display when the graph is rendered
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # This function can be called multiple
 # times on a graph; after the first time

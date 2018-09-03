@@ -2,44 +2,35 @@
 % Please edit documentation in R/trav_in_edge.R
 \name{trav_in_edge}
 \alias{trav_in_edge}
-\title{Traverse from one or more selected nodes onto
-adjacent, inward edges}
+\title{Traverse from one or more selected nodes onto adjacent, inward edges}
 \usage{
 trav_in_edge(graph, conditions = NULL, copy_attrs_from = NULL,
   copy_attrs_as = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering
-conditions for the traversal.}
+\item{conditions}{an option to use filtering conditions for the traversal.}
 
-\item{copy_attrs_from}{providing a node attribute
-name will copy those node attribute values to the
-traversed edges. If the edge attribute already exists,
-the values will be merged to the traversed edges;
-otherwise, a new edge attribute will be created.}
+\item{copy_attrs_from}{providing a node attribute name will copy those node
+attribute values to the traversed edges. If the edge attribute already
+exists, the values will be merged to the traversed edges; otherwise, a new
+edge attribute will be created.}
 
-\item{copy_attrs_as}{if a node attribute name
-is provided in \code{copy_attrs_from}, this option
-will allow the copied attribute values to be
-written under a different edge attribute name.
-If the attribute name provided in
-\code{copy_attrs_as} does not exist in the graph's
-edf, the new edge attribute will be created
-with the chosen name.}
+\item{copy_attrs_as}{if a node attribute name is provided in
+\code{copy_attrs_from}, this option will allow the copied attribute values
+to be written under a different edge attribute name. If the attribute name
+provided in \code{copy_attrs_as} does not exist in the graph's edf, the new
+edge attribute will be created with the chosen name.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of class
-\code{dgr_graph} move to incoming edges from a
-selection of one or more selected nodes, thereby
-creating a selection of edges. An optional filter
-by edge attribute can limit the set of edges
-traversed to.
+From a graph object of class \code{dgr_graph} move to incoming edges from a
+  selection of one or more selected nodes, thereby creating a selection of
+  edges. An optional filter by edge attribute can limit the set of edges
+  traversed to.
 }
 \examples{
 # Set a seed
@@ -77,8 +68,7 @@ graph <-
   join_edge_attrs(df = df)
 
 # Show the graph's internal edge data frame
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Perform a simple traversal from
 # nodes to inbound edges with no
@@ -177,12 +167,10 @@ graph \%>\%
   get_selection()
 
 # Show the graph's internal ndf
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Show the graph's internal edf
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Perform a traversal from all
 # nodes to their incoming edges and,
@@ -197,6 +185,5 @@ graph <-
 
 # Show the graph's internal edge
 # data frame after this change
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

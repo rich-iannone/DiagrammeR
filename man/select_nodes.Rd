@@ -8,28 +8,24 @@ select_nodes(graph, conditions = NULL, set_op = "union",
   nodes = NULL)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use filtering
-conditions for the retrieval of nodes.}
+\item{conditions}{an option to use filtering conditions for the retrieval of
+nodes.}
 
-\item{set_op}{the set operation to perform upon
-consecutive selections of graph nodes. This can
-either be as a \code{union} (the default), as an
-intersection of selections with \code{intersect},
-or, as a \code{difference} on the previous
-selection, if it exists.}
+\item{set_op}{the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a \code{union} (the default), as an
+intersection of selections with \code{intersect}, or, as a
+\code{difference} on the previous selection, if it exists.}
 
-\item{nodes}{an optional vector of node IDs for
-filtering the list of nodes present in the graph.}
+\item{nodes}{an optional vector of node IDs for filtering the list of nodes
+present in the graph.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Select nodes from a graph object of
-class \code{dgr_graph}.
+Select nodes from a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Create a node data frame (ndf)
@@ -60,8 +56,7 @@ graph <-
 
 # Verify that the node selection has been made
 # using the `get_selection()` function
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Select nodes based on the node `type`
 # being `z`
@@ -74,8 +69,7 @@ graph <-
 # Verify that an node selection has been made, and
 # recall that the `3` and `4` nodes are of the
 # `z` type
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Select edges based on the node value attribute
 # being greater than 3.0 (first clearing the current
@@ -89,6 +83,5 @@ graph <-
 # Verify that the correct node selection has been
 # made; in this case, nodes `1` and `3` have values
 # for `value` greater than 3.0
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 }

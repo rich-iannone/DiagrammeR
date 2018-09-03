@@ -7,13 +7,11 @@
 open_graph(file)
 }
 \arguments{
-\item{file}{the filename for the graph or graph
-series. Optionally, this may contain a path to the
-file.}
+\item{file}{the filename for the graph or graph series. Optionally, this may
+contain a path to the file.}
 }
 \description{
-Load a graph or a graph series object
-from disk.
+Load a graph or a graph series object from disk.
 }
 \examples{
 # Create an undirected GNP

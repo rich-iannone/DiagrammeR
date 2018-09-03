@@ -7,26 +7,20 @@
 mutate_edge_attrs(graph, ...)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{...}{expressions used for the mutation
-of edge attributes. LHS of each expression is
-either an existing or new edge attribute name.
-The RHS can consist of any valid R code that
-uses edge attributes as variables. Expressions
-are evaluated in the order provided, so, edge
-attributes created or modified are ready to
-use in subsequent expressions.}
+\item{...}{expressions used for the mutation of edge attributes. LHS of each
+expression is either an existing or new edge attribute name. The RHS can
+consist of any valid R code that uses edge attributes as variables.
+Expressions are evaluated in the order provided, so, edge attributes
+created or modified are ready to use in subsequent expressions.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal edge
-data frame (edf), mutate numeric edge
-attribute values using one or more expressions.
+Within a graph's internal edge data frame (edf), mutate numeric edge
+  attribute values using one or more expressions.
 }
 \examples{
 # Create a graph with 3 edges
@@ -40,8 +34,7 @@ graph <-
 # Get the graph's internal edf
 # to show which edge attributes
 # are available
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Mutate the `width` edge
 # attribute, dividing each
@@ -55,8 +48,7 @@ graph <-
 # edf to show that the edge
 # attribute `width` had its
 # values changed
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Create a new edge attribute,
 # called `length`, that is the
@@ -72,8 +64,7 @@ graph <-
 # Get the graph's internal edf
 # to show that the edge attribute
 # values had been mutated
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Create a new edge attribute
 # called `area`, which is the
@@ -88,6 +79,5 @@ graph <-
 # to show that the edge attribute
 # values had been multiplied
 # together (with new attr `area`)
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

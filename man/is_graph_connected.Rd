@@ -7,15 +7,13 @@
 is_graph_connected(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a logical value.
 }
 \description{
-Determines whether a graph is a
-connected graph.
+Determines whether a graph is a connected graph.
 }
 \examples{
 # Create a random graph using the

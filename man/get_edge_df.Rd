@@ -48,6 +48,5 @@ graph <-
 
 # Get the graph's internal
 # edge data frame (edf)
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

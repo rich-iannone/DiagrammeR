@@ -71,10 +71,8 @@ gnp_graph <-
     p = 0.05)
 
 # Get a count of nodes
-gnp_graph \%>\%
-  count_nodes()
+gnp_graph \%>\% count_nodes()
 
 # Get a count of edges
-gnp_graph \%>\%
-  count_edges()
+gnp_graph \%>\% count_edges()
 }

@@ -2,31 +2,25 @@
 % Please edit documentation in R/reorder_graph_actions.R
 \name{reorder_graph_actions}
 \alias{reorder_graph_actions}
-\title{Trigger the execution of a series of graph actions}
+\title{Reorder the stored series of graph actions}
 \usage{
 reorder_graph_actions(graph, indices)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{indices}{a numeric vector that provides
-the new ordering of graph actions. This vector
-can be the same length as the number of graph
-actions, or, of shorter length. In the latter
-case, the ordering places the given items first
-and the remaining actions will follow.}
+\item{indices}{a numeric vector that provides the new ordering of graph
+actions. This vector can be the same length as the number of graph actions,
+or, of shorter length. In the latter case, the ordering places the given
+items first and the remaining actions will follow.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Execute the graph actions stored in
-the graph through the use of the
-\code{add_graph_action()} function. These actions
-will be invoked in order and any errors
-encountered will trigger a warning message and
-result in no change to the input graph.
+Reorder the graph actions stored in the graph through the use of the
+  \code{link{add_graph_action}()} function. These actions are be invoked in a
+  specified order via the \code{\link{trigger_graph_actions}()} function.
 }
 \examples{
 # Create a random graph using the
@@ -61,8 +55,7 @@ graph <-
 # View the graph actions for the graph
 # object by using the function called
 # `get_graph_actions()`
-graph \%>\%
-  get_graph_actions()
+graph \%>\% get_graph_actions()
 
 # We note that the order isn't
 # correct and that the `get_pagerank`
@@ -80,6 +73,5 @@ graph <-
 # View the graph actions for the graph
 # object once again to verify that
 # we have the desired order of actions
-graph \%>\%
-  get_graph_actions()
+graph \%>\% get_graph_actions()
 }

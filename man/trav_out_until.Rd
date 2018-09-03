@@ -8,52 +8,34 @@ trav_out_until(graph, conditions, max_steps = 30,
   exclude_unmatched = TRUE, add_to_selection = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{conditions}{an option to use a
-stopping condition for the traversal.
-If the condition is met during the
-traversal (i.e., the node(s) traversed
-to match the condition), then those
-traversals will terminate at those
-nodes. Otherwise, traversals with
-continue and terminate when the number
-of steps provided in \code{max_steps}
-is reached.}
+\item{conditions}{an option to use a stopping condition for the traversal. If
+the condition is met during the traversal (i.e., the node(s) traversed to
+match the condition), then those traversals will terminate at those nodes.
+Otherwise, traversals with continue and terminate when the number of steps
+provided in \code{max_steps} is reached.}
 
-\item{max_steps}{the maximum number
-of \code{trav_out()} steps (i.e.,
-node-to-node traversals in the outward
-direction) to allow before stopping.}
+\item{max_steps}{the maximum number of \code{trav_out()} steps (i.e.,
+node-to-node traversals in the outward direction) to allow before stopping.}
 
-\item{exclude_unmatched}{if \code{TRUE}
-(the default value) then any nodes not
-satisfying the conditions provided in
-\code{conditions} that are in the ending
-selection are excluded.}
+\item{exclude_unmatched}{if \code{TRUE} (the default value) then any nodes
+not satisfying the conditions provided in \code{conditions} that are in the
+ending selection are excluded.}
 
-\item{add_to_selection}{if \code{TRUE}
-then every node traversed will be part
-of the final selection of nodes. If
-\code{FALSE} (the default value) then
-only the nodes finally traversed to
-will be part of the final node
+\item{add_to_selection}{if \code{TRUE} then every node traversed will be part
+of the final selection of nodes. If \code{FALSE} (the default value) then
+only the nodes finally traversed to will be part of the final node
 selection.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-From a graph object of
-class \code{dgr_graph}, move along
-outward edges from one or more nodes
-present in a selection to other
-connected nodes, replacing the current
-nodes in the selection with those nodes
-traversed to until reaching nodes that
-satisfy one or more conditions.
+From a graph object of class \code{dgr_graph}, move along outward edges from
+  one or more nodes present in a selection to other connected nodes,
+  replacing the current nodes in the selection with those nodes traversed to
+  until reaching nodes that satisfy one or more conditions.
 }
 \examples{
 # Create a path graph and add
@@ -79,8 +61,7 @@ graph <-
       value == 8)
 
 # Get the graph's node selection
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Create two cycles in graph and
 # add values of 1 to 6 to the
@@ -115,6 +96,5 @@ graph <-
     exclude_unmatched = TRUE)
 
 # Get the graph's node selection
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 }

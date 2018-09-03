@@ -7,35 +7,29 @@
 set_node_position(graph, node, x, y, use_labels = FALSE)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node}{a single-length vector containing
-either a node ID value (integer) or a node label
-(character) for which position information should
+\item{node}{a single-length vector containing either a node ID value
+(integer) or a node label (character) for which position information should
 be applied.}
 
 \item{x}{the x coordinate to set for the node.}
 
 \item{y}{the y coordinate to set for the node.}
 
-\item{use_labels}{an option to use a node
-\code{label} value in \code{node}. Note that this
-is only possible if all nodes have distinct
-\code{label} values set and none exist as an NA
-value.}
+\item{use_labels}{an option to use a node \code{label} value in \code{node}.
+Note that this is only possible if all nodes have distinct \code{label}
+values set and none exist as an NA value.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Apply position information for a
-single node. This is done by setting the \code{x}
-and \code{y} attrs for a node \code{id} or node
-\code{label} supplied in \code{node}. When
-rendering the graph, nodes with attribute values
-set for \code{x} and \code{y} will be fixed to
-those positions on the graph canvas.
+Apply position information for a single node. This is done by setting the
+  \code{x} and \code{y} attrs for a node \code{id} or node \code{label}
+  supplied in \code{node}. When rendering the graph, nodes with attribute
+  values set for \code{x} and \code{y} will be fixed to those positions on
+  the graph canvas.
 }
 \examples{
 # Create a simple graph with 4 nodes
@@ -67,8 +61,7 @@ graph <-
 # verify that the `x` and `y` node
 # attributes are available and set to
 # the values provided
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # The same function can modify the data
 # in the `x` and `y` attributes
@@ -88,8 +81,7 @@ graph <-
     x = 4, y = 1)
 
 # View the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Position changes can also be made by
 # supplying a node `label` value (and setting
@@ -108,6 +100,5 @@ graph <-
     use_labels = TRUE)
 
 # View the graph's node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

@@ -41,8 +41,7 @@ graph <-
 
 # Display the graph's internal
 # edge data frame
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Create a new node (will have
 # node ID of `3`) and then
@@ -60,8 +59,7 @@ graph_2 <-
 
 # Display the graph's internal
 # edge data frame
-graph_2 \%>\%
-  get_edge_df()
+graph_2 \%>\% get_edge_df()
 
 # The same change can be performed
 # with some helper functions in the
@@ -76,6 +74,5 @@ graph_3 <-
 
 # Display the graph's internal
 # edge data frame
-graph_3 \%>\%
-  get_edge_df()
+graph_3 \%>\% get_edge_df()
 }

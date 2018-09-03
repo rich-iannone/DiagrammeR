@@ -7,23 +7,18 @@
 remove_graph_from_graph_series(graph_series, index = "last")
 }
 \arguments{
-\item{graph_series}{a graph series
-object from which the graph object
-will be removed.}
+\item{graph_series}{a graph series object from which the graph object will be
+removed.}
 
-\item{index}{the index of the graph
-object to be removed from the graph
+\item{index}{the index of the graph object to be removed from the graph
 series object.}
 }
 \value{
-a graph series object of type
-\code{dgr_graph_1D}.
+a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
-Remove a single graph
-object from an set of graph objects
-contained within a graph series
-object.
+Remove a single graph object from an set of graph objects contained within a
+  graph series object.
 }
 \examples{
 # Create three graphs

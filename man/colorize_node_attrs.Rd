@@ -93,8 +93,7 @@ graph <-
     alpha = 80)
 
 # Show the graph's internal node data frame
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 
 # Create a graph with 8 nodes and 7 edges
 graph <-
@@ -120,6 +119,5 @@ graph <-
 # Now there will be a `fillcolor` node attribute
 # with distinct colors (the `#D9D9D9` color is
 # the default `gray85` color)
-graph \%>\%
-  get_node_df()
+graph \%>\% get_node_df()
 }

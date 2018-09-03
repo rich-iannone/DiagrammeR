@@ -2,40 +2,29 @@
 % Please edit documentation in R/select_nodes_in_neighborhood.R
 \name{select_nodes_in_neighborhood}
 \alias{select_nodes_in_neighborhood}
-\title{Select nodes based on a walk
-distance from a specified node}
+\title{Select nodes based on a walk distance from a specified node}
 \usage{
 select_nodes_in_neighborhood(graph, node, distance, set_op = "union")
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{node}{the node from which the
-traversal will originate.}
+\item{node}{the node from which the traversal will originate.}
 
-\item{distance}{the maximum number
-of steps from the \code{node} for
+\item{distance}{the maximum number of steps from the \code{node} for
 inclusion in the selection.}
 
-\item{set_op}{the set operation to
-perform upon consecutive selections
-of graph nodes. This can either be
-as a \code{union} (the default), as
-an intersection of selections with
-\code{intersect}, or, as a
-\code{difference} on the previous
-selection, if it exists.}
+\item{set_op}{the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a \code{union} (the default), as an
+intersection of selections with \code{intersect}, or, as a
+\code{difference} on the previous selection, if it exists.}
 }
 \value{
-a graph object of class
-\code{dgr_graph}.
+a graph object of class \code{dgr_graph}.
 }
 \description{
-Select those nodes in
-the neighborhood of nodes connected
-a specified distance from an initial
-node.
+Select those nodes in the neighborhood of nodes connected a specified
+  distance from an initial node.
 }
 \examples{
 # Create a graph containing
@@ -58,8 +47,7 @@ graph <-
     distance = 1)
 
 # Get the selection of nodes
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 
 # Perform another selection
 # of nodes, this time with a
@@ -73,6 +61,5 @@ graph <-
     distance = 2)
 
 # Get the selection of nodes
-graph \%>\%
-  get_selection()
+graph \%>\% get_selection()
 }

@@ -7,12 +7,10 @@
 \method{print}{dgr_graph}(x, ...)
 }
 \arguments{
-\item{x}{a graph object of class
-\code{dgr_graph}.}
+\item{x}{a graph object of class \code{dgr_graph}.}
 }
 \description{
-This function will provide a summary
-of the graph.
+This function will provide a summary of the graph.
 }
 \examples{
 \dontrun{

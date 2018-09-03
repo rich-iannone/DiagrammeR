@@ -7,28 +7,24 @@
 is_graph_directed(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 a logical value.
 }
 \description{
-Determines whether a graph
-is set to be directed or not and returns
-a logical value to that effect.
+Determines whether a graph is set to be directed or not and returns a logical
+  value to that effect.
 }
 \examples{
 # Create an empty graph; by default,
 # new graphs made by `create_graph()`
 # are directed
-graph <-
-  create_graph()
+graph <- create_graph()
 
 # Determine whether the graph
 # is directed
-graph \%>\%
-  is_graph_directed()
+graph \%>\% is_graph_directed()
 
 # Use the `set_graph_undirected()`
 # function and check again whether

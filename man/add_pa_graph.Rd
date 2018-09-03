@@ -93,10 +93,8 @@ pa_graph <-
     m = 1)
 
 # Get a count of nodes
-pa_graph \%>\%
-  count_nodes()
+pa_graph \%>\% count_nodes()
 
 # Get a count of edges
-pa_graph \%>\%
-  count_edges()
+pa_graph \%>\% count_edges()
 }
