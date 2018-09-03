@@ -1,8 +1,8 @@
 #' Create a random islands graph with edges between the islands
 #'
 #' To an existing graph object, add several Erdos-Renyi random graphs (the
-#' islands) using a common set of parameters, connected together by a fixed
-#' number of edges.
+#'   islands) using a common set of parameters, connected together by a fixed
+#'   number of edges.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param n_islands the number of islands in the generated graph.
@@ -29,12 +29,10 @@
 #'     set_seed = 23)
 #'
 #' # Get a count of nodes
-#' islands_graph %>%
-#'   count_nodes()
+#' islands_graph %>% count_nodes()
 #'
 #' # Get a count of edges
-#' islands_graph %>%
-#'   count_edges()
+#' islands_graph %>% count_edges()
 #' @importFrom igraph sample_islands
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export

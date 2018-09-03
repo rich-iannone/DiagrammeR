@@ -11,6 +11,7 @@
 #'   functions:
 #'   \code{\link{select_edges}()}, \code{\link{select_last_edge}()}, or
 #'   \code{\link{select_edges_by_node_id}()}.
+#'
 #' Selections of edges can also be performed using the following traversal
 #'   functions:
 #'   \code{\link{trav_out_edge}()}, \code{\link{trav_in_edge}()}, or
@@ -32,8 +33,7 @@
 #'     from = 1, to = 2, rel = "a")
 #'
 #' # Get the graph's edges
-#' graph %>%
-#'   get_edge_ids()
+#' graph %>% get_edge_ids()
 #'
 #' # Select the edge and create 2
 #' # additional edges with the same
@@ -47,8 +47,7 @@
 #'   clear_selection()
 #'
 #' # Get the graph's edge data frame
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @importFrom dplyr select
 #' @export
 add_forward_edges_ws <- function(graph,

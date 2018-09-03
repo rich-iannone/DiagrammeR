@@ -24,8 +24,7 @@
 #'
 #' # Display the graph's internal
 #' # node data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Create 3 clones of node `1`
 #' # but assign new node label
@@ -41,8 +40,7 @@
 #' # Display the graph's internal
 #' # node data frame: nodes `4`,
 #' # `5`, and `6` are clones of `1`
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr filter select
 #' @export
 add_n_node_clones <- function(graph,

@@ -26,8 +26,7 @@
 #'     type = "five_star")
 #'
 #' # Get node information from this graph
-#' graph %>%
-#'   get_node_info()
+#' graph %>% get_node_info()
 #'
 #' # Node and edge aesthetic and data
 #' # attributes can be specified in
@@ -63,12 +62,10 @@
 #'           sd = 1.0)))
 #'
 #' # Get the graph's node data frame
-#' graph_w_attrs %>%
-#'   get_node_df()
+#' graph_w_attrs %>% get_node_df()
 #'
 #' # Get the graph's edge data frame
-#' graph_w_attrs %>%
-#'   get_edge_df()
+#' graph_w_attrs %>% get_edge_df()
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export
 add_star <- function(graph,

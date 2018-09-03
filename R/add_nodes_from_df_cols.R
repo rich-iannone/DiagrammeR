@@ -46,8 +46,7 @@
 #' # frame; duplicate labels are
 #' # prevented with `keep_duplicates =
 #' # FALSE`)
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Add new nodes from columns 3 and 4;
 #' # We can specify the columns by their
@@ -62,8 +61,7 @@
 #' # frame; note that nodes didn't
 #' # get made with columns that
 #' # are not character class columns
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr bind_rows distinct select select_if as_tibble
 #' @importFrom stringr str_split
 #' @importFrom tidyr drop_na

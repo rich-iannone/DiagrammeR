@@ -1,9 +1,8 @@
 #' Is the graph a simple graph?
-#' @description Determine whether the graph is
-#' a simple graph. A simple graph is one that does
-#' not contain any loops nor any multiple edges.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Determine whether the graph is a simple graph. A simple graph is one that
+#'   does not contain any loops nor any multiple edges.
+#' @inheritParams render_graph
 #' @return a logical value.
 #' @examples
 #' # Create a graph with 2 cycles
@@ -13,11 +12,9 @@
 #'   add_cycle(n = 3)
 #'
 #' # Check if the graph is simple
-#' graph %>%
-#'   is_graph_simple()
+#' graph %>% is_graph_simple()
 #' @importFrom igraph is_simple
-#' @export is_graph_simple
-
+#' @export
 is_graph_simple <- function(graph) {
 
   # Get the name of the function

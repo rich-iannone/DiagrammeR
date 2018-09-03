@@ -13,8 +13,7 @@
 #'   add_cycle(n = 5)
 #'
 #' # Determine the graph's girth
-#' graph %>%
-#'   get_girth()
+#' graph %>% get_girth()
 #'
 #' # Create a full graph and then
 #' # get the girth for that

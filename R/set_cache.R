@@ -1,21 +1,14 @@
 #' Cache a vector in the graph
-#' @description Place any vector in the
-#' cache of a graph object of class
-#' \code{dgr_graph}.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param to_cache any vector or data
-#' frame. If a data frame is supplied
-#' then a single column for the vector
-#' to pull must be provided in the
-#' \code{col} argument.
-#' @param name an optional name for the
-#' cached vector.
-#' @param col if a data frame is provided
-#' in \code{to_cache} then a column name
-#' from that data frame must provided here.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Place any vector in the cache of a graph object of class \code{dgr_graph}.
+#' @inheritParams render_graph
+#' @param to_cache any vector or data frame. If a data frame is supplied then a
+#'   single column for the vector to pull must be provided in the \code{col}
+#'   argument.
+#' @param name an optional name for the cached vector.
+#' @param col if a data frame is provided in \code{to_cache} then a column name
+#'   from that data frame must provided here.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -57,8 +50,7 @@
 #' graph %>%
 #'   get_cache(
 #'     name = "difference")
-#' @export set_cache
-
+#' @export
 set_cache <- function(graph,
                       to_cache,
                       name = NULL,

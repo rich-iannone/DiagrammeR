@@ -35,8 +35,7 @@
 #'
 #' # Get the graph's internal
 #' # edge data frame (edf)
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @export get_edge_df
 
 get_edge_df <- function(graph) {

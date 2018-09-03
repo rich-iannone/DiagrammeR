@@ -22,8 +22,7 @@
 #'
 #' # Get the eccentricity values for
 #' # all nodes in the graph
-#' graph %>%
-#'   get_eccentricity()
+#' graph %>% get_eccentricity()
 #' @importFrom igraph eccentricity
 #' @export
 get_eccentricity <- function(graph,

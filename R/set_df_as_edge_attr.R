@@ -1,18 +1,14 @@
 #' Set a data frame as an edge attribute
-#' @description From a graph object of class
-#' \code{dgr_graph}, bind a data frame as an edge
-#' attribute property for one given graph edge. The
-#' data frames are stored in list columns within
-#' a \code{df_tbl} object, itself residing within
-#' the graph object. A \code{df_id} value is
-#' generated and serves as a pointer to the table
-#' row that contains the ingested data frame.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edge the edge ID to which the data frame
-#' will be bound as an attribute.
-#' @param df the data frame to be bound to the
-#' edge as an attribute.
+#'
+#' From a graph object of class \code{dgr_graph}, bind a data frame as an edge
+#'   attribute property for one given graph edge. The data frames are stored in
+#'   list columns within a \code{df_tbl} object, itself residing within the
+#'   graph object. A \code{df_id} value is generated and serves as a pointer to
+#'   the table row that contains the ingested data frame.
+#' @inheritParams render_graph
+#' @param edge the edge ID to which the data frame will be bound as an
+#'   attribute.
+#' @param df the data frame to be bound to the edge as an attribute.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -53,8 +49,7 @@
 #'     df = df)
 #' @importFrom dplyr filter everything mutate select bind_rows as_tibble
 #' @importFrom purrr flatten_chr
-#' @export set_df_as_edge_attr
-
+#' @export
 set_df_as_edge_attr <- function(graph,
                                 edge,
                                 df) {

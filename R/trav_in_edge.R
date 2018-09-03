@@ -1,28 +1,20 @@
-#' Traverse from one or more selected nodes onto
-#' adjacent, inward edges
-#' @description From a graph object of class
-#' \code{dgr_graph} move to incoming edges from a
-#' selection of one or more selected nodes, thereby
-#' creating a selection of edges. An optional filter
-#' by edge attribute can limit the set of edges
-#' traversed to.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param conditions an option to use filtering
-#' conditions for the traversal.
-#' @param copy_attrs_from providing a node attribute
-#' name will copy those node attribute values to the
-#' traversed edges. If the edge attribute already exists,
-#' the values will be merged to the traversed edges;
-#' otherwise, a new edge attribute will be created.
-#' @param copy_attrs_as if a node attribute name
-#' is provided in \code{copy_attrs_from}, this option
-#' will allow the copied attribute values to be
-#' written under a different edge attribute name.
-#' If the attribute name provided in
-#' \code{copy_attrs_as} does not exist in the graph's
-#' edf, the new edge attribute will be created
-#' with the chosen name.
+#' Traverse from one or more selected nodes onto adjacent, inward edges
+#'
+#' From a graph object of class \code{dgr_graph} move to incoming edges from a
+#'   selection of one or more selected nodes, thereby creating a selection of
+#'   edges. An optional filter by edge attribute can limit the set of edges
+#'   traversed to.
+#' @inheritParams render_graph
+#' @param conditions an option to use filtering conditions for the traversal.
+#' @param copy_attrs_from providing a node attribute name will copy those node
+#'   attribute values to the traversed edges. If the edge attribute already
+#'   exists, the values will be merged to the traversed edges; otherwise, a new
+#'   edge attribute will be created.
+#' @param copy_attrs_as if a node attribute name is provided in
+#'   \code{copy_attrs_from}, this option will allow the copied attribute values
+#'   to be written under a different edge attribute name. If the attribute name
+#'   provided in \code{copy_attrs_as} does not exist in the graph's edf, the new
+#'   edge attribute will be created with the chosen name.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -60,8 +52,7 @@
 #'   join_edge_attrs(df = df)
 #'
 #' # Show the graph's internal edge data frame
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Perform a simple traversal from
 #' # nodes to inbound edges with no
@@ -160,12 +151,10 @@
 #'   get_selection()
 #'
 #' # Show the graph's internal ndf
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Show the graph's internal edf
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Perform a traversal from all
 #' # nodes to their incoming edges and,
@@ -180,12 +169,10 @@
 #'
 #' # Show the graph's internal edge
 #' # data frame after this change
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @importFrom dplyr filter select select_ full_join rename everything
 #' @importFrom rlang enquo UQ get_expr
-#' @export trav_in_edge
-
+#' @export
 trav_in_edge <- function(graph,
                          conditions = NULL,
                          copy_attrs_from = NULL,

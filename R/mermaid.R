@@ -1,26 +1,20 @@
 #' R + mermaid.js
-#' @description Make diagrams in R using
-#' \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
-#' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
-#' @param diagram diagram in mermaid markdown-like
-#' language or file (as a connection or file name)
-#' containing a diagram specification. If no diagram
-#' is provided \code{diagram = ""} then the function
-#' will assume that a diagram will be provided by
-#' \code{\link[htmltools]{tags}} and
-#' \code{DiagrammeR} is just being used for dependency
-#' injection.
-#' @param ... other arguments and parameters you would
-#' like to send to Javascript.
-#' @param width the width of the resulting graphic in
-#' pixels.
-#' @param height the height of the resulting graphic in
-#' pixels.
-#' @return An object of class \code{htmlwidget} that
-#' will intelligently print itself into HTML in a
-#' variety of contexts including the R console, within
-#' R Markdown documents, and within Shiny output
-#' bindings.
+#'
+#' Make diagrams in R using
+#'   \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
+#'   provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+#' @param diagram diagram in mermaid markdown-like language or file (as a
+#'   connection or file name) containing a diagram specification. If no diagram
+#'   is provided \code{diagram = ""} then the function will assume that a
+#'   diagram will be provided by \code{\link[htmltools]{tags}} and
+#'   \code{DiagrammeR} is just being used for dependency injection.
+#' @param ... other arguments and parameters you would like to send to
+#'   JavaScript.
+#' @param width the width of the resulting graphic in pixels.
+#' @param height the height of the resulting graphic in pixels.
+#' @return An object of class \code{htmlwidget} that will intelligently print
+#'   itself into HTML in a variety of contexts including the R console, within
+#'   R Markdown documents, and within Shiny output bindings.
 #' @examples
 #' \dontrun{
 #' # Create a simple graph running left to right (note
@@ -121,8 +115,7 @@
 #' ")
 #' }
 #' @import htmlwidgets
-#' @export mermaid
-
+#' @export
 mermaid <- function(diagram = "",
                     ...,
                     width = NULL,
@@ -156,9 +149,9 @@ mermaid <- function(diagram = "",
 
   # Create widget
   htmlwidgets::createWidget(
-    name = 'DiagrammeR',
-    x,
+    name = "DiagrammeR",
+    x = x,
     width = width,
     height = height,
-    package = 'DiagrammeR')
+    package = "DiagrammeR")
 }

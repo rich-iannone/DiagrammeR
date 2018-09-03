@@ -21,8 +21,7 @@
 #' # Get the graph's internal
 #' # ndf to show which node
 #' # attributes are available
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Drop the `value` node
 #' # attribute
@@ -35,8 +34,7 @@
 #' # ndf to show that the node
 #' # attribute `value` had been
 #' # removed
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom rlang enquo get_expr
 #' @export
 drop_node_attrs <- function(graph,

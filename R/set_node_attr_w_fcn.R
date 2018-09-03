@@ -1,34 +1,28 @@
 #' Set node attribute values with a graph function
-#' @description From a graph object of class
-#' \code{dgr_graph} or a node data frame, set node
-#' attribute properties for all nodes in the graph
-#' using one of several whole-graph functions.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param node_attr_fcn the name of the function to
-#' use for creating a column of node attribute values.
-#' Valid functions are: \code{get_alpha_centrality},
-#' \code{get_authority_centrality},
-#' \code{get_betweenness}, \code{get_bridging},
-#' \code{get_closeness}, \code{get_cmty_edge_btwns},
-#' \code{get_cmty_fast_greedy}, \code{get_cmty_l_eigenvec},
-#' \code{get_cmty_louvain}, \code{get_cmty_walktrap},
-#' \code{get_constraint}, \code{get_degree_distribution},
-#' \code{get_degree_histogram}, \code{get_degree_in},
-#' \code{get_degree_out}, \code{get_degree_total},
-#' \code{get_eccentricity}, \code{get_eigen_centrality},
-#' \code{get_pagerank}, \code{get_s_connected_cmpts},
-#' and \code{get_w_connected_cmpts}.
-#' @param ... arguments and values to pass to
-#' the named function in \code{node_attr_fcn}, if
-#' necessary.
-#' @param column_name an option to supply a column
-#' name for the new node attribute column. If
-#' \code{NULL} then the column name supplied by the
-#' function will used along with a \code{__A}
-#' suffix.
-#' @return either a graph object of class
-#' \code{dgr_graph}.
+#'
+#' From a graph object of class \code{dgr_graph} or a node data frame, set node
+#'   attribute properties for all nodes in the graph using one of several whole-graph functions.
+#' @inheritParams render_graph
+#' @param node_attr_fcn the name of the function to use for creating a column of
+#'   node attribute values. Valid functions are:
+#'   \code{\link{get_alpha_centrality}()},
+#'   \code{\link{get_authority_centrality}()},
+#'   \code{\link{get_betweenness}()}, \code{\link{get_bridging}()},
+#'   \code{\link{get_closeness}()}, \code{\link{get_cmty_edge_btwns}()},
+#'   \code{\link{get_cmty_fast_greedy}()}, \code{\link{get_cmty_l_eigenvec}()},
+#'   \code{\link{get_cmty_louvain}()}, \code{\link{get_cmty_walktrap}()},
+#'   \code{\link{get_constraint}()}, \code{\link{get_degree_distribution}()},
+#'   \code{\link{get_degree_histogram}()}, \code{\link{get_degree_in}()},
+#'   \code{\link{get_degree_out}()}, \code{\link{get_degree_total}()},
+#'   \code{\link{get_eccentricity}()}, \code{\link{get_eigen_centrality}()},
+#'   \code{\link{get_pagerank}()}, \code{\link{get_s_connected_cmpts}()},
+#'   and \code{\link{get_w_connected_cmpts}()}.
+#' @param ... arguments and values to pass to the named function in
+#'   \code{node_attr_fcn}, if necessary.
+#' @param column_name an option to supply a column name for the new node
+#'   attribute column. If \code{NULL} then the column name supplied by the
+#'   function will used along with a \code{__A} suffix.
+#' @return either a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -55,8 +49,7 @@
 #'
 #' # Inspect the graph's internal
 #' # node data frame
-#' graph_1 %>%
-#'   get_node_df()
+#' graph_1 %>% get_node_df()
 #'
 #' # If a specified function takes argument
 #' # values, these can be supplied as well
@@ -69,8 +62,7 @@
 #'
 #' # Inspect the graph's internal
 #' # node data frame
-#' graph_2 %>%
-#'   get_node_df()
+#' graph_2 %>% get_node_df()
 #'
 #' # The new column name can be provided
 #' graph_3 <-
@@ -81,8 +73,7 @@
 #'
 #' # Inspect the graph's internal
 #' # node data frame
-#' graph_3 %>%
-#'   get_node_df()
+#' graph_3 %>% get_node_df()
 #'
 #' # If `graph_3` is modified by
 #' # adding a new node then the column
@@ -101,11 +92,9 @@
 #'
 #' # Inspect the graph's internal
 #' # node data frame
-#' graph_3 %>%
-#'   get_node_df()
+#' graph_3 %>% get_node_df()
 #' @importFrom dplyr inner_join mutate
-#' @export set_node_attr_w_fcn
-
+#' @export
 set_node_attr_w_fcn <- function(graph,
                                 node_attr_fcn,
                                 ...,

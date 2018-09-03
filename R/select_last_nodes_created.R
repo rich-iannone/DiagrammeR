@@ -1,10 +1,9 @@
 #' Select the last set of nodes created in a graph
-#' @description Select the last nodes that were created
-#' in a graph object of class \code{dgr_graph}. This
-#' function should ideally be used just after creating
-#' the nodes to be selected.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Select the last nodes that were created in a graph object of class
+#'   \code{dgr_graph}. This function should ideally be used just after creating
+#'   the nodes to be selected.
+#' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph and add 4 nodes
@@ -33,12 +32,10 @@
 #'
 #' # Display the graph's internal node
 #' # data frame to verify the change
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
-#' @export select_last_nodes_created
-
+#' @export
 select_last_nodes_created <- function(graph) {
 
   # Get the time of function start

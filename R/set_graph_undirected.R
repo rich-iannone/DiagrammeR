@@ -1,11 +1,8 @@
 #' Convert a directed graph to an undirected graph
-#' @description Take a graph which is
-#' directed and convert it to an undirected
-#' graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Take a graph which is directed and convert it to an undirected graph.
+#' @inheritParams render_graph
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with a
 #' # directed tree
@@ -22,10 +19,8 @@
 #'
 #' # Perform a check on whether
 #' # graph is directed
-#' graph %>%
-#'   is_graph_directed()
-#' @export set_graph_undirected
-
+#' graph %>% is_graph_directed()
+#' @export
 set_graph_undirected <- function(graph) {
 
   # Get the time of function start

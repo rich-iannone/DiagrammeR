@@ -9,18 +9,13 @@
 #'   respectively.
 #'
 #' Selections of nodes can be performed using the following \code{select_...}
-#'   functions:
-#' \code{select_nodes()},
-#' \code{select_last_nodes_created()},
-#' \code{select_nodes_by_degree()},
-#' \code{select_nodes_by_id()}, or
-#' \code{select_nodes_in_neighborhood()}.
+#'   functions: \code{select_nodes()}, \code{select_last_nodes_created()},
+#'   \code{select_nodes_by_degree()}, \code{select_nodes_by_id()}, or
+#'   \code{select_nodes_in_neighborhood()}.
+#'
 #' Selections of nodes can also be performed using the following traversal
-#'   functions:
-#' (\code{trav_...}):
-#' \code{trav_out()}, \code{trav_in()},
-#' \code{trav_both()}, \code{trav_in_node()},
-#' \code{trav_out_node()}.
+#'   functions (\code{trav_...}): \code{trav_out()}, \code{trav_in()},
+#'   \code{trav_both()}, \code{trav_in_node()}, or \code{trav_out_node()}.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param n the number of new nodes to attach as successor nodes to the nodes in
@@ -49,14 +44,10 @@
 #'     direction = "from")
 #'
 #' # Get the graph's nodes
-#' graph %>%
-#'   get_node_ids()
-#' #> [1] 1 2 3 4 5 6
+#' graph %>% get_node_ids()
 #'
 #' # Get the graph's edges
-#' graph %>%
-#'   get_edges()
-#' #> "1->2" "1->3" "1->4" "1->5" "1->6"
+#' graph %>% get_edges()
 #'
 #' # Create an empty graph, add a node to it, select
 #' # that node, and then add 5 more nodes to the graph
@@ -71,14 +62,10 @@
 #'     direction = "to")
 #'
 #' # Get the graph's nodes
-#' graph %>%
-#'   get_node_ids()
-#' #> [1] 1 2 3 4 5 6
+#' graph %>% get_node_ids()
 #'
 #' # Get the graph's edges
-#' graph %>%
-#'   get_edges()
-#' #> "2->1" "3->1" "4->1" "5->1" "6->1"
+#' graph %>% get_edges()
 #' @importFrom dplyr select pull mutate everything as_tibble
 #' @importFrom dplyr filter left_join bind_rows
 #' @export

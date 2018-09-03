@@ -53,12 +53,10 @@
 #'         6.3, 9.3)))
 #'
 #' # Get the graph's node data frame
-#' graph_w_attrs %>%
-#'   get_node_df()
+#' graph_w_attrs %>% get_node_df()
 #'
 #' # Get the graph's edge data frame
-#' graph_w_attrs %>%
-#'   get_edge_df()
+#' graph_w_attrs %>% get_edge_df()
 #' @importFrom igraph make_lattice
 #' @importFrom dplyr as_tibble select bind_cols pull
 #' @export

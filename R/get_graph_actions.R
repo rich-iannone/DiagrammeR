@@ -34,8 +34,7 @@
 #' # To ensure that the action is
 #' # available in the graph, use the
 #' # `get_graph_actions()` function
-#' graph %>%
-#'   get_graph_actions()
+#' graph %>% get_graph_actions()
 #' @importFrom dplyr as_tibble
 #' @export
 get_graph_actions <- function(graph) {

@@ -32,12 +32,10 @@
 #'     set_seed = 23)
 #'
 #' # Get a count of nodes
-#' growing_graph %>%
-#'   count_nodes()
+#' growing_graph %>% count_nodes()
 #'
 #' # Get a count of edges
-#' growing_graph %>%
-#'   count_edges()
+#' growing_graph %>% count_edges()
 #' @importFrom igraph sample_growing
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export

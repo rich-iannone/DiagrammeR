@@ -20,8 +20,7 @@
 #'
 #' # Get the constaint scores for all
 #' # nodes in the graph
-#' graph %>%
-#'   get_constraint()
+#' graph %>% get_constraint()
 #'
 #' # Get the constaint scores
 #' # for nodes `5` and `7`
@@ -38,8 +37,7 @@
 #'     df = get_constraint(.))
 #'
 #' # Display the graph's node data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom influenceR constraint
 #' @export
 get_constraint <- function(graph,

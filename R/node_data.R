@@ -1,10 +1,9 @@
 #' Insert node data attributes during node creation
-#' @description This helper function should be
-#' invoked to provide values for the namesake
-#' \code{node_data} argument, which is present
-#' in any function where nodes are created.
-#' @param ... node data attributes provided
-#' as one or more named vectors.
+#'
+#' This helper function should be invoked to provide values for the namesake
+#'   \code{node_data} argument, which is present in any function where nodes are
+#'   created.
+#' @param ... node data attributes provided as one or more named vectors.
 #' @examples
 #' # Create a new graph and add
 #' # a path with several node
@@ -22,10 +21,8 @@
 #' # node data frame; the node
 #' # data attributes have been
 #' # inserted
-#' graph %>%
-#'   get_node_df()
-#' @export node_data
-
+#' graph %>% get_node_df()
+#' @export
 node_data <- function(...) {
 
   # Get the name of the function

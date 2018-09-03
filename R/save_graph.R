@@ -1,11 +1,10 @@
 #' Save a graph or graph series to disk
-#' @description Save a graph or a graph series object
-#' to disk.
-#' @param x a graph object of class \code{dgr_graph}
-#' or a graph series object of type \code{dgr_graph_1D}.
-#' @param file a file name for the graph or
-#' graph series. Provide a character string and the
-#' \code{.dgr} extension will be applied to it.
+#'
+#' Save a graph or a graph series object to disk.
+#' @param x a graph object of class \code{dgr_graph} or a graph series object of
+#'   type \code{dgr_graph_1D}.
+#' @param file a file name for the graph or graph series. Provide a character
+#'   string and the \code{.dgr} extension will be applied to it.
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using
@@ -28,8 +27,7 @@
 #' gnp_graph_2 <-
 #'   open_graph(
 #'     file = "gnp_graph.dgr")
-#' @export save_graph
-
+#' @export
 save_graph <- function(x,
                        file) {
 

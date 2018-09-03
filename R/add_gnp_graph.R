@@ -29,12 +29,10 @@
 #'     p = 0.05)
 #'
 #' # Get a count of nodes
-#' gnp_graph %>%
-#'   count_nodes()
+#' gnp_graph %>% count_nodes()
 #'
 #' # Get a count of edges
-#' gnp_graph %>%
-#'   count_edges()
+#' gnp_graph %>% count_edges()
 #' @importFrom igraph sample_gnp
 #' @importFrom dplyr select bind_cols as_tibble
 #' @export

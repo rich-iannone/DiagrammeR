@@ -1,24 +1,18 @@
 #' Join new node attribute values using a data frame
-#' @description Join new node attribute values in a
-#' left join using a data frame. The use of a left join
-#' in this function allows for no possibility that
-#' nodes in the graph might be removed after the join.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Join new node attribute values in a left join using a data frame. The use of
+#'   a left join in this function allows for no possibility that nodes in the
+#'   graph might be removed after the join.
+#' @inheritParams render_graph
 #' @param df the data frame to use for joining.
-#' @param by_graph optional specification of the column
-#' in the graph's internal node data frame for the left
-#' join. If both \code{by_graph} and \code{by_df} are
-#' not provided, then a natural join will occur if
-#' there are columns in the graph's ndf and in
-#' \code{df} with identical names.
-#' @param by_df optional specification of the column in
-#' \code{df} for the left join. If both \code{by_graph}
-#' and \code{by_df} are not provided, then a natural
-#' join will occur if there are columns in the graph's
-#' ndf and in \code{df} with identical names.
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#' @param by_graph optional specification of the column in the graph's internal
+#'   node data frame for the left join. If both \code{by_graph} and \code{by_df}
+#'   are not provided, then a natural join will occur if there are columns in
+#'   the graph's ndf and in \code{df} with identical names.
+#' @param by_df optional specification of the column in \code{df} for the left
+#'   join. If both \code{by_graph} and \code{by_df} are not provided, then a
+#'   natural join will occur if there are columns in the graph's ndf and in
+#'   \code{df} with identical names.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -49,8 +43,7 @@
 #'
 #' # Get the graph's internal ndf to show that the
 #' # join has been made
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Get betweenness values for each node and
 #' # add them as a node attribute (Note the
@@ -63,11 +56,9 @@
 #'
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr select everything
-#' @export join_node_attrs
-
+#' @export
 join_node_attrs <- function(graph,
                             df,
                             by_graph = NULL,

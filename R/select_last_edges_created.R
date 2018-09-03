@@ -1,10 +1,9 @@
 #' Select the last set of edges created in a graph
-#' @description Select the last edges that were created
-#' in a graph object of class \code{dgr_graph}. This
-#' function should ideally be used just after creating
+#'
+#' Select the last edges that were created in a graph object of class
+#' \code{dgr_graph}. This function should ideally be used just after creating
 #' the edges to be selected.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph and add a cycle and then
@@ -31,12 +30,10 @@
 #'
 #' # Display the graph's internal edge
 #' # data frame to verify the change
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @importFrom dplyr mutate filter select pull if_else
 #' @importFrom utils tail
-#' @export select_last_edges_created
-
+#' @export
 select_last_edges_created <- function(graph) {
 
   # Get the time of function start

@@ -15,8 +15,7 @@
 #'
 #' # Get a count of all nodes
 #' # in the graph
-#' graph %>%
-#'   count_nodes()
+#' graph %>% count_nodes()
 #'
 #' # Get a count of all
 #' # unconnected nodes in the

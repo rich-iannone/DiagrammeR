@@ -1,16 +1,14 @@
 #' Select edges in a graph using edge ID values
-#' @description Select edges in a graph object of class
-#' \code{dgr_graph} using edge ID values.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edges a vector of edge IDs for the selection
-#' of edges present in the graph.
-#' @param set_op the set operation to perform upon
-#' consecutive selections of graph edges This can
-#' either be as a \code{union} (the default), as an
-#' intersection of selections with \code{intersect},
-#' or, as a \code{difference} on the previous
-#' selection, if it exists.
+#'
+#' Select edges in a graph object of class \code{dgr_graph} using edge ID
+#'   values.
+#' @inheritParams render_graph
+#' @param edges a vector of edge IDs for the selection of edges present in the
+#'   graph.
+#' @param set_op the set operation to perform upon consecutive selections of
+#'   graph edges This can either be as a \code{union} (the default), as an
+#'   intersection of selections with \code{intersect}, or, as a
+#'   \code{difference} on the previous selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 5 nodes
@@ -26,8 +24,7 @@
 #'     edges = 1:2)
 #'
 #' # Get the selection of edges
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #'
 #' # Perform another selection of edges,
 #' # with edge IDs `1`, `2`, and `4`
@@ -38,8 +35,7 @@
 #'     edges = c(1, 2, 4))
 #'
 #' # Get the selection of edges
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #'
 #' # Get the fraction of edges selected
 #' # over all the edges in the graph
@@ -51,8 +47,7 @@
 #'     l/e
 #'   }
 #' @importFrom dplyr filter select rename
-#' @export select_edges_by_edge_id
-
+#' @export
 select_edges_by_edge_id <- function(graph,
                                     edges,
                                     set_op = "union") {

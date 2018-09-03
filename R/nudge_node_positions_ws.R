@@ -1,22 +1,17 @@
 #' Move layout positions of a selection of nodes
-#' @description With an active selection of nodes,
-#' move the position in either the \code{x} or
-#' \code{y} directions, or both. Nodes in the
-#' selection that do not have position information
-#' (i.e., \code{NA} values for the \code{x} or
-#' \code{y} node attributes) will be ignored.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param dx a single numeric value specifying the
-#' amount that selected nodes (with non-\code{NA}
-#' values for the \code{x} and \code{y} attributes)
-#' will be moved in the x direction. A positive
-#' value will move nodes right, negative left.
-#' @param dy a single numeric value specifying the
-#' amount that selected nodes (with non-\code{NA}
-#' values for the \code{x} and \code{y} attributes)
-#' will be moved in the y direction. A positive
-#' value will move nodes up, negative down.
+#'
+#' With an active selection of nodes, move the position in either the \code{x}
+#'   or \code{y} directions, or both. Nodes in the selection that do not have
+#'   position information (i.e., \code{NA} values for the \code{x} or \code{y}
+#'   node attributes) will be ignored.
+#' @inheritParams render_graph
+#' @param dx a single numeric value specifying the amount that selected nodes
+#'   (with non-\code{NA} values for the \code{x} and \code{y} attributes) will
+#'   be moved in the x direction. A positive value will move nodes right,
+#'   negative left.
+#' @param dy a single numeric value specifying the amount that selected nodes
+#'   (with non-\code{NA} values for the \code{x} and \code{y} attributes) will
+#'   be moved in the y direction. A positive value will move nodes up, negative down.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a simple graph with 4 nodes
@@ -61,8 +56,7 @@
 #'     dx = 5, dy = 0)
 #'
 #' # View the graph's node data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Now select nodes that have `type == "b"`
 #' # and move them in the `y` direction 2 units
@@ -77,11 +71,9 @@
 #'     dx = 0, dy = 2)
 #'
 #' # View the graph's node data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr filter case_when coalesce
-#' @export nudge_node_positions_ws
-
+#' @export
 nudge_node_positions_ws <- function(graph,
                                     dx,
                                     dy) {

@@ -15,8 +15,7 @@
 #'
 #' # Get the betweenness scores
 #' # for nodes in the graph
-#' graph %>%
-#'   get_betweenness()
+#' graph %>% get_betweenness()
 #'
 #' # Add the betweenness
 #' # values to the graph
@@ -28,8 +27,7 @@
 #'
 #' # Display the graph's node
 #' # data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom igraph betweenness V
 #' @export
 get_betweenness <- function(graph) {

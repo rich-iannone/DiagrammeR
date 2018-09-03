@@ -1,20 +1,14 @@
 #' Mutate node attribute values for a selection of nodes
-#' @description Within a graph's internal node
-#' data frame (ndf), mutate node attribute
-#' values only for nodes in a selection by
-#' using one or more expressions.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param ... expressions used for the mutation
-#' of node attributes. LHS of each expression is
-#' either an existing or new node attribute name.
-#' The RHS can consist of any valid R code that
-#' uses node attributes as variables. Expressions
-#' are evaluated in the order provided, so, node
-#' attributes created or modified are ready to
-#' use in subsequent expressions.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Within a graph's internal node data frame (ndf), mutate node attribute values
+#'   only for nodes in a selection by using one or more expressions.
+#' @inheritParams render_graph
+#' @param ... expressions used for the mutation of node attributes. LHS of each
+#'   expression is either an existing or new node attribute name. The RHS can
+#'   consist of any valid R code that uses node attributes as variables.
+#'   Expressions are evaluated in the order provided, so, node attributes
+#'   created or modified are ready to use in subsequent expressions.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 3 nodes
 #' # and then select node `1`
@@ -29,8 +23,7 @@
 #' # Get the graph's internal ndf
 #' # to show which node attributes
 #' # are available
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Mutate the `width` node
 #' # attribute for the nodes
@@ -47,8 +40,7 @@
 #' # ndf to show that the node
 #' # attribute `width` was
 #' # mutated only for node `1`
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Create a new node attribute,
 #' # called `length`, that is the
@@ -69,8 +61,7 @@
 #' # for nodes `2` and `3` (since
 #' # node `1` is excluded, an NA
 #' # value is applied)
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Create a new node attribute
 #' # called `area`, which is the
@@ -86,8 +77,7 @@
 #' # values had been multiplied
 #' # together (with new attr `area`)
 #' # for nodes `2` and `3`
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # We can invert the selection
 #' # and mutate node `1` several
@@ -107,12 +97,10 @@
 #' # non-NA values for its node
 #' # attributes without changing
 #' # those of the other nodes
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr mutate_
 #' @importFrom rlang exprs
-#' @export mutate_node_attrs_ws
-
+#' @export
 mutate_node_attrs_ws <- function(graph,
                                  ...) {
 

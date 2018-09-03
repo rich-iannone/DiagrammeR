@@ -1,7 +1,7 @@
 #' Render graph with visNetwork
-#' @description Render a graph object with the visNetwork R package.
-#' @param graph a \code{dgr_graph} object, created using the
-#' \code{create_graph} function.
+#'
+#' Render a graph object with the visNetwork R package.
+#' @inheritParams render_graph
 #' @examples
 #' \dontrun{
 #' # Create a node data frame (ndf)
@@ -33,8 +33,7 @@
 #' visnetwork(graph)
 #' }
 #' @importFrom visNetwork visNetwork visInteraction visEdges visPhysics visNodes visLayout
-#' @export visnetwork
-
+#' @export
 visnetwork <- function(graph) {
 
   # Extract node and edge data frames from the graph object

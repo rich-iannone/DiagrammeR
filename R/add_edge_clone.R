@@ -26,8 +26,7 @@
 #'
 #' # Display the graph's internal
 #' # edge data frame
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Create a new node (will have
 #' # node ID of `3`) and then
@@ -45,8 +44,7 @@
 #'
 #' # Display the graph's internal
 #' # edge data frame
-#' graph_2 %>%
-#'   get_edge_df()
+#' graph_2 %>% get_edge_df()
 #'
 #' # The same change can be performed
 #' # with some helper functions in the
@@ -61,8 +59,7 @@
 #'
 #' # Display the graph's internal
 #' # edge data frame
-#' graph_3 %>%
-#'   get_edge_df()
+#' graph_3 %>% get_edge_df()
 #' @importFrom dplyr filter select
 #' @export
 add_edge_clone <- function(graph,

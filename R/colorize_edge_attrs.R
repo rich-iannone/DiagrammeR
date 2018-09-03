@@ -51,8 +51,7 @@
 #' # edge attribute with distinct
 #' # colors (from the RColorBrewer
 #' # Red-Yellow-Green palette)
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @import RColorBrewer
 #' @importFrom viridis viridis
 #' @importFrom rlang enquo UQ get_expr

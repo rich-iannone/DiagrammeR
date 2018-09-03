@@ -54,8 +54,7 @@
 #' # Verify that the edge
 #' # has been created by
 #' # counting graph edges
-#' graph %>%
-#'   count_edges()
+#' graph %>% count_edges()
 #'
 #' # Add edges by specifying
 #' # node `label` values; note
@@ -75,8 +74,7 @@
 #'
 #' # Use `get_edges()` to verify
 #' # that the edges were added
-#' graph %>%
-#'   get_edges()
+#' graph %>% get_edges()
 #'
 #' # Add edge aesthetic and data
 #' # attributes during edge creation
@@ -97,8 +95,7 @@
 #' # to verify that the attribute
 #' # values were bound to the
 #' # newly created edge
-#' graph_2 %>%
-#'   get_edge_df()
+#' graph_2 %>% get_edge_df()
 #' @importFrom dplyr bind_rows select filter as_tibble
 #' @importFrom rlang UQ
 #' @export

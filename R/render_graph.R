@@ -2,20 +2,19 @@
 #'
 #' Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
 #' @param graph a graph object of class \code{dgr_graph}.
-#' @param layout a string specifying a layout type to
-#' use for node placement in this rendering. Possible
-#' layouts include: \code{nicely}, \code{circle},
-#' \code{tree}, \code{kk}, and \code{fr}.
-#' @param output a string specifying the output type;
-#' \code{graph} (the default) renders the graph using
-#' the \code{grViz} function and \code{visNetwork}
-#' renders the graph using the \code{visnetwork} function.
-#' @param title an optional title for a graph when
-#' using \code{output = "graph"}.
-#' @param width an optional parameter for specifying
-#' the width of the resulting graphic in pixels.
-#' @param height an optional parameter for specifying
-#' the height of the resulting graphic in pixels.
+#' @param layout a string specifying a layout type to use for node placement in
+#'   this rendering. Possible layouts include: \code{nicely}, \code{circle},
+#'   \code{tree}, \code{kk}, and \code{fr}.
+#' @param output a string specifying the output type; \code{graph} (the default)
+#'   renders the graph using the \code{\link{grViz}()} function and
+#'   \code{visNetwork} renders the graph using the \code{\link{visnetwork}()}
+#'   function.
+#' @param title an optional title for a graph when using
+#'   \code{output = "graph"}.
+#' @param width an optional parameter for specifying the width of the resulting
+#'   graphic in pixels.
+#' @param height an optional parameter for specifying the height of the
+#'   resulting graphic in pixels.
 #' @examples
 #' \dontrun{
 #' # Render a graph that's a
@@ -63,8 +62,7 @@
 #' @importFrom igraph layout_in_circle layout_with_sugiyama
 #' @importFrom igraph layout_with_kk layout_with_fr layout_nicely
 #' @importFrom purrr flatten_chr
-#' @export render_graph
-
+#' @export
 render_graph <- function(graph,
                          layout = NULL,
                          output = NULL,

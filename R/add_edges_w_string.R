@@ -34,8 +34,7 @@
 #'
 #' # Show the graph's internal
 #' # edge data frame
-#' graph_node_id %>%
-#'   get_edge_df()
+#' graph_node_id %>% get_edge_df()
 #'
 #' # Add edges between nodes using
 #' # a character string with node
@@ -54,8 +53,7 @@
 #' # Show the graph's internal
 #' # edge data frame (it's the
 #' # same as before)
-#' graph_node_label %>%
-#'   get_edge_df()
+#' graph_node_label %>% get_edge_df()
 #' @export
 add_edges_w_string <- function(graph,
                                edges,

@@ -1,8 +1,8 @@
 #' Reverse the direction of all edges in a graph
-#' @description Using a directed graph as input,
+#'
+#' Using a directed graph as input,
 #' reverse the direction of all edges in that graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with a
@@ -13,8 +13,7 @@
 #'     k = 2, h = 2)
 #'
 #' # Inspect the graph's edges
-#' graph %>%
-#'   get_edges()
+#' graph %>% get_edges()
 #'
 #' # Reverse the edge directions
 #' # such that edges are directed
@@ -25,10 +24,8 @@
 #'
 #' # Inspect the graph's edges
 #' # after their reversal
-#' graph %>%
-#'   get_edges()
-#' @export rev_edge_dir
-
+#' graph %>% get_edges()
+#' @export
 rev_edge_dir <- function(graph) {
 
   # Get the time of function start

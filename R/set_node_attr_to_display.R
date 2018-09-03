@@ -1,35 +1,25 @@
 #' Set the node attribute values to be rendered
-#' @description Set a node attribute type to display
-#' as node text when calling the \code{render_graph()}
-#' function. This allows for display of different types
-#' of node attribute values on a per-node basis.
-#' Without setting the \code{display} attribute,
-#' rendering a graph will default to printing text
-#' from the \code{label} attribute on nodes. Setting
-#' the \code{display} node attribute with this function
-#' for the first time (i.e., the \code{display} column
-#' doesn't exist in the graph's internal node data frame)
-#' will insert the \code{attr} value for all nodes
-#' specified in \code{nodes} and a default value
-#' (\code{default}) for all remaining nodes.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param attr the name of the attribute from
-#' which label text for the node will be obtained.
-#' If set to \code{NULL}, then \code{NA} values
-#' will be assigned to the \code{display} column
-#' for the chosen nodes.
-#' @param nodes a length vector containing one or
-#' several node ID values (as integers) for which
-#' node attributes are set for display in the
-#' rendered graph. If \code{NULL}, all nodes from
-#' the graph are assigned the \code{display} value
-#' given as \code{attr}.
-#' @param default the name of an attribute to
-#' set for all other graph nodes not included
-#' in \code{nodes}. This value only gets used if
-#' the \code{display} node attribute is not in
-#' the graph's internal node data frame.
+#'
+#' Set a node attribute type to display as node text when calling the
+#'   \code{\link{render_graph}()} function. This allows for display of different
+#'   types of node attribute values on a per-node basis. Without setting the
+#'   \code{display} attribute, rendering a graph will default to printing text
+#'   from the \code{label} attribute on nodes. Setting the \code{display} node
+#'   attribute with this function for the first time (i.e., the \code{display}
+#'   column doesn't exist in the graph's internal node data frame) will insert
+#'   the \code{attr} value for all nodes specified in \code{nodes} and a default
+#'   value (\code{default}) for all remaining nodes.
+#' @inheritParams render_graph
+#' @param attr the name of the attribute from which label text for the node will
+#'   be obtained. If set to \code{NULL}, then \code{NA} values will be assigned
+#'   to the \code{display} column for the chosen nodes.
+#' @param nodes a length vector containing one or several node ID values (as
+#'   integers) for which node attributes are set for display in the rendered
+#'   graph. If \code{NULL}, all nodes from the graph are assigned the
+#'   \code{display} value given as \code{attr}.
+#' @param default the name of an attribute to set for all other graph nodes not
+#'   included in \code{nodes}. This value only gets used if the \code{display}
+#'   node attribute is not in the graph's internal node data frame.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
@@ -59,8 +49,7 @@
 #' # `display` node attribute will show for
 #' # each row, which node attribute value to
 #' # display when the graph is rendered
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # This function can be called multiple
 #' # times on a graph; after the first time
@@ -78,8 +67,7 @@
 #' @importFrom dplyr mutate left_join coalesce bind_cols select
 #' @importFrom dplyr everything case_when tibble
 #' @importFrom rlang enquo get_expr
-#' @export set_node_attr_to_display
-
+#' @export
 set_node_attr_to_display <- function(graph,
                                      attr = NULL,
                                      nodes = NULL,

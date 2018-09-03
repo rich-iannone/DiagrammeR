@@ -19,8 +19,7 @@
 #'
 #' # Verify that a node selection
 #' # has been made
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #'
 #' # Clear the selection with
 #' # `clear_selection()`
@@ -30,8 +29,7 @@
 #'
 #' # Verify that the node
 #' # selection has been cleared
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #' @export
 clear_selection <- function(graph) {
 

@@ -1,16 +1,15 @@
 #' Is the graph empty?
-#' @description Provides a logical value on whether the
-#' graph is empty (i.e., contains no nodes).
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Provides a logical value on whether the graph is empty (i.e., contains no
+#'   nodes).
+#' @inheritParams render_graph
 #' @return a logical value.
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()
 #'
 #' # Determine whether the graph is empty
-#' graph %>%
-#'   is_graph_empty()
+#' graph %>% is_graph_empty()
 #'
 #' # Create a non-empty graph
 #' graph <-
@@ -18,10 +17,8 @@
 #'   add_n_nodes(n = 3)
 #'
 #' # Determine whether this graph is empty
-#' graph %>%
-#'   is_graph_empty()
-#' @export is_graph_empty
-
+#' graph %>% is_graph_empty()
+#' @export
 is_graph_empty <- function(graph) {
 
   # Get the name of the function

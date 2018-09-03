@@ -1,24 +1,17 @@
 #' Determine whether a specified edge is present
-#' @description From a graph object of class
-#' \code{dgr_graph}, determine whether an edge
-#' (defined by a pair of node IDs or node label
-#' values) is present.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edge an edge ID value to test for
-#' presence in the graph. If a single, numeric
-#' value is provided then values for \code{from}
-#' or \code{to} needn't be supplied.
-#' @param from a node ID from which the edge
-#' is outgoing, or, the label associated with
-#' the node. For an undirected graph, the
-#' value in \code{from} can be interchangeable
-#' with that in \code{to}.
-#' @param to a node ID to which the edge is
-#' incoming, or, the label associated with
-#' the node. For an undirected graph, the
-#' value in \code{to} can be interchangeable
-#' with that in \code{from}.
+#'
+#' From a graph object of class \code{dgr_graph}, determine whether an edge
+#'   (defined by a pair of node IDs or node label values) is present.
+#' @inheritParams render_graph
+#' @param edge an edge ID value to test for presence in the graph. If a single,
+#'   numeric value is provided then values for \code{from} or \code{to} needn't
+#'   be supplied.
+#' @param from a node ID from which the edge is outgoing, or, the label
+#'   associated with the node. For an undirected graph, the value in \code{from}
+#'   can be interchangeable with that in \code{to}.
+#' @param to a node ID to which the edge is incoming, or, the label associated
+#'   with the node. For an undirected graph, the value in \code{to} can be
+#'   interchangeable with that in \code{from}.
 #' @return a logical value.
 #' @examples
 #' # Create a simple graph with
@@ -68,8 +61,7 @@
 #'   is_edge_present(
 #'     from = "three",
 #'     to = "two")
-#' @export is_edge_present
-
+#' @export
 is_edge_present <- function(graph,
                             edge = NULL,
                             from = NULL,

@@ -20,8 +20,7 @@
 #'
 #' # Verify that an edge selection
 #' # has been made
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #'
 #' # Deselect edge `1`
 #' graph <-
@@ -34,8 +33,7 @@
 #' # has been made for edges `1` and
 #' # `3` and that edge `1` has been
 #' # deselected (leaving only `3`)
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #' @importFrom dplyr filter
 #' @export
 deselect_edges <- function(graph,

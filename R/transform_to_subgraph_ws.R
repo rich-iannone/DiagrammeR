@@ -1,22 +1,20 @@
 #' Create a subgraph using node/edge selection
-#' @description Create a subgraph based on a
-#' selection of nodes or edges stored in the graph
-#' object. Selections of nodes can be performed using
-#' the following \code{select_...} functions:
-#' \code{select_nodes()},
-#' \code{select_last_nodes_created()},
-#' \code{select_nodes_by_degree()},
-#' \code{select_nodes_by_id()}, or
-#' \code{select_nodes_in_neighborhood()}.
-#' Alternatively, selections of edges can be made
-#' with these functions: \code{select_edges()},
-#' \code{select_last_edge()}, or
-#' \code{select_edges_by_node_id()}. Selections of
-#' nodes or edges can also be performed using
-#' any of the traversal functions (\code{trav_...}).
-#' @param graph a graph object of class
-#' \code{dgr_graph} that is created using
-#' \code{create_graph}.
+#'
+#' Create a subgraph based on a selection of nodes or edges stored in the graph
+#'   object.
+#'
+#' Selections of nodes can be performed using the following \code{select_...}
+#'   functions: \code{select_nodes()}, \code{select_last_nodes_created()},
+#'   \code{select_nodes_by_degree()}, \code{select_nodes_by_id()}, or
+#'   \code{select_nodes_in_neighborhood()}.
+#'
+#' Alternatively, selections of edges can be made with these functions:
+#'   \code{select_edges()}, \code{select_last_edge()}, or
+#'   \code{select_edges_by_node_id()}.
+#'
+#' Selections of nodes or edges can also be performed using any of the traversal
+#'   functions (\code{trav_...}).
+#' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
@@ -52,16 +50,13 @@
 #'   transform_to_subgraph_ws()
 #'
 #' # Display the graph's node data frame
-#' subgraph %>%
-#'   get_node_df()
+#' subgraph %>% get_node_df()
 #'
 #' # Display the graph's edge data frame
-#' subgraph %>%
-#'   get_edge_df()
+#' subgraph %>% get_edge_df()
 #' @importFrom dplyr filter semi_join
 #' @importFrom stringr str_split
-#' @export transform_to_subgraph_ws
-
+#' @export
 transform_to_subgraph_ws <- function(graph) {
 
   # Get the time of function start

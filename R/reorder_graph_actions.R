@@ -1,18 +1,13 @@
-#' Trigger the execution of a series of graph actions
-#' @description Execute the graph actions stored in
-#' the graph through the use of the
-#' \code{add_graph_action()} function. These actions
-#' will be invoked in order and any errors
-#' encountered will trigger a warning message and
-#' result in no change to the input graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param indices a numeric vector that provides
-#' the new ordering of graph actions. This vector
-#' can be the same length as the number of graph
-#' actions, or, of shorter length. In the latter
-#' case, the ordering places the given items first
-#' and the remaining actions will follow.
+#' Reorder the stored series of graph actions
+#'
+#' Reorder the graph actions stored in the graph through the use of the
+#'   \code{link{add_graph_action}()} function. These actions are be invoked in a
+#'   specified order via the \code{\link{trigger_graph_actions}()} function.
+#' @inheritParams render_graph
+#' @param indices a numeric vector that provides the new ordering of graph
+#'   actions. This vector can be the same length as the number of graph actions,
+#'   or, of shorter length. In the latter case, the ordering places the given
+#'   items first and the remaining actions will follow.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
@@ -47,8 +42,7 @@
 #' # View the graph actions for the graph
 #' # object by using the function called
 #' # `get_graph_actions()`
-#' graph %>%
-#'   get_graph_actions()
+#' graph %>% get_graph_actions()
 #'
 #' # We note that the order isn't
 #' # correct and that the `get_pagerank`
@@ -66,11 +60,9 @@
 #' # View the graph actions for the graph
 #' # object once again to verify that
 #' # we have the desired order of actions
-#' graph %>%
-#'   get_graph_actions()
+#' graph %>% get_graph_actions()
 #' @importFrom dplyr mutate row_number pull
-#' @export reorder_graph_actions
-
+#' @export
 reorder_graph_actions <- function(graph,
                                   indices) {
 

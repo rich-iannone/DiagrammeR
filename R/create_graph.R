@@ -93,13 +93,11 @@
 #'
 #' # Get information on the graph's
 #' # internal edge data frame (edf)
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Get information on the graph's
 #' # internal node data frame (ndf)
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr bind_rows tibble
 #' @export
 create_graph <- function(nodes_df = NULL,

@@ -1,8 +1,7 @@
 #' Is the graph a connected graph?
-#' @description Determines whether a graph is a
-#' connected graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Determines whether a graph is a connected graph.
+#' @inheritParams render_graph
 #' @return a logical value.
 #' @examples
 #' # Create a random graph using the
@@ -23,8 +22,7 @@
 #'     m = 15,
 #'     set_seed = 23) %>%
 #'   is_graph_connected()
-#' @export is_graph_connected
-
+#' @export
 is_graph_connected <- function(graph) {
 
   # Get the name of the function

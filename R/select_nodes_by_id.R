@@ -1,24 +1,19 @@
-#' Select nodes in a graph by ID values
-#' @description Select nodes in a graph object of class
-#' \code{dgr_graph} by their node ID values. If nodes
-#' have IDs that are monotonically increasing integer
-#' values, then numeric ranges can be used for the
-#' selection.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param nodes a vector of node IDs for the selection
-#' of nodes present in the graph.
-#' @param set_op the set operation to perform upon
-#' consecutive selections of graph nodes. This can
-#' either be as a \code{union} (the default), as an
-#' intersection of selections with \code{intersect},
-#' or, as a \code{difference} on the previous
-#' selection, if it exists.
+#' Select nodes in a graph by their ID values
+#'
+#' Select nodes in a graph object of class \code{dgr_graph} by their node ID
+#'   values. If nodes have IDs that are monotonically increasing integer
+#'   values, then numeric ranges can be used for the selection.
+#' @inheritParams render_graph
+#' @param nodes a vector of node IDs for the selection of nodes present in the
+#'   graph.
+#' @param set_op the set operation to perform upon consecutive selections of
+#'   graph nodes. This can either be as a \code{union} (the default), as an
+#'   intersection of selections with \code{intersect}, or, as a
+#'   \code{difference} on the previous selection, if it exists.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
-#' ndf <-
-#'   create_node_df(n = 10)
+#' ndf <- create_node_df(n = 10)
 #'
 #' # Create a graph
 #' graph <-
@@ -30,8 +25,7 @@
 #' graph %>%
 #'   select_nodes_by_id(nodes = 1:5) %>%
 #'   get_selection()
-#' @export select_nodes_by_id
-
+#' @export
 select_nodes_by_id <- function(graph,
                                nodes,
                                set_op = "union") {

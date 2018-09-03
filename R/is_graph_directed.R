@@ -1,21 +1,18 @@
 #' Is the graph a directed graph?
-#' @description Determines whether a graph
-#' is set to be directed or not and returns
-#' a logical value to that effect.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Determines whether a graph is set to be directed or not and returns a logical
+#'   value to that effect.
+#' @inheritParams render_graph
 #' @return a logical value.
 #' @examples
 #' # Create an empty graph; by default,
 #' # new graphs made by `create_graph()`
 #' # are directed
-#' graph <-
-#'   create_graph()
+#' graph <- create_graph()
 #'
 #' # Determine whether the graph
 #' # is directed
-#' graph %>%
-#'   is_graph_directed()
+#' graph %>% is_graph_directed()
 #'
 #' # Use the `set_graph_undirected()`
 #' # function and check again whether
@@ -23,8 +20,7 @@
 #' graph %>%
 #'   set_graph_undirected() %>%
 #'   is_graph_directed()
-#' @export is_graph_directed
-
+#' @export
 is_graph_directed <- function(graph) {
 
   # Get the name of the function

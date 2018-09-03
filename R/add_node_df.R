@@ -23,8 +23,7 @@
 #'     node_df = ndf)
 #'
 #' # Inspect the graph's ndf
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Create another ndf
 #' ndf_2 <-
@@ -42,8 +41,7 @@
 #' # View the graph's internal
 #' # node data frame using the
 #' # `get_node_df()` function
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr bind_rows
 #' @export
 add_node_df <- function(graph,

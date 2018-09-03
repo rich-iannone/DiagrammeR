@@ -33,8 +33,7 @@
 #'   delete_edges_ws()
 #'
 #' # Get a count of edges in the graph
-#' graph %>%
-#'   count_edges()
+#' graph %>% count_edges()
 #' @export
 delete_edges_ws <- function(graph) {
 

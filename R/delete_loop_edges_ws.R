@@ -24,8 +24,7 @@
 #'
 #' # Count the number of loop
 #' # edges remaining in the graph
-#' graph %>%
-#'   count_loop_edges()
+#' graph %>% count_loop_edges()
 #' @importFrom dplyr setdiff filter
 #' @importFrom purrr map_df
 #' @export

@@ -1,42 +1,28 @@
-#' Traverse from one or more selected nodes onto
-#' neighboring nodes
-#' @description From a graph object of class
-#' \code{dgr_graph} move from one or more nodes
-#' present in a selection to other nodes that are
-#' connected by edges, replacing the current nodes in
-#' the selection with those nodes traversed to. An
-#' optional filter by node attribute can limit the set
-#' of nodes traversed to.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param conditions an option to use filtering
-#' conditions for the traversal.
-#' @param copy_attrs_from providing a node attribute
-#' name will copy those node attribute values to the
-#' traversed nodes. Any values extant on the nodes
-#' traversed to will be replaced.
-#' @param copy_attrs_as if a node attribute name
-#' is provided in \code{copy_attrs_from}, this option
-#' will allow the copied attribute values to be
-#' written under a different attribute name. If the
-#' attribute name provided in \code{copy_attrs_as}
-#' does not exist in the graph's ndf, the new
-#' node attribute will be created with the chosen
-#' name.
-#' @param agg if a node attribute is provided
-#' to \code{copy_attrs_from}, then an aggregation
-#' function is required since there may be cases where
-#' multiple edge attribute values will be passed onto
-#' the traversed node(s). To pass only a single value,
-#' the following aggregation functions can be used:
-#' \code{sum}, \code{min}, \code{max}, \code{mean}, or
-#' \code{median}.
-#' @param add_to_selection an option to
-#' either add the traversed to nodes
-#' to the active selection of nodes
-#' (\code{TRUE}) or switch the active
-#' selection entirely to those traversed
-#' to nodes (\code{FALSE}, the default case).
+#' Traverse from one or more selected nodes onto neighboring nodes
+#'
+#' From a graph object of class \code{dgr_graph} move from one or more nodes
+#'   present in a selection to other nodes that are connected by edges,
+#'   replacing the current nodes in the selection with those nodes traversed to.
+#'   An optional filter by node attribute can limit the set of nodes traversed
+#'   to.
+#' @inheritParams render_graph
+#' @param conditions an option to use filtering conditions for the traversal.
+#' @param copy_attrs_from providing a node attribute name will copy those node
+#'   attribute values to the traversed nodes. Any values extant on the nodes
+#'   traversed to will be replaced.
+#' @param copy_attrs_as if a node attribute name is provided in
+#'   \code{copy_attrs_from}, this option will allow the copied attribute values
+#'   to be written under a different attribute name. If the attribute name
+#'   provided in \code{copy_attrs_as} does not exist in the graph's ndf, the new
+#'   node attribute will be created with the chosen name.
+#' @param agg if a node attribute is provided to \code{copy_attrs_from}, then an
+#'   aggregation function is required since there may be cases where multiple
+#'   edge attribute values will be passed onto the traversed node(s). To pass
+#'   only a single value, the following aggregation functions can be used:
+#'   \code{sum}, \code{min}, \code{max}, \code{mean}, or \code{median}.
+#' @param add_to_selection an option to either add the traversed to nodes to the
+#'   active selection of nodes (\code{TRUE}) or switch the active selection
+#'   entirely to those traversed to nodes (\code{FALSE}, the default case).
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Set a seed
@@ -82,12 +68,10 @@
 #'   join_node_attrs(df = df_nodes)
 #'
 #' # Show the graph's internal node data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Show the graph's internal edge data frame
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Perform a simple traversal from node `3`
 #' # to adjacent nodes with no conditions on
@@ -158,12 +142,10 @@
 #'     value = 5)
 #'
 #' # Show the graph's internal node data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Show the graph's internal edge data frame
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Perform a traversal from the inner nodes
 #' # (`2` and `4`) to their adjacent nodes (`1`,
@@ -180,13 +162,11 @@
 #'
 #' # Show the graph's internal node data frame
 #' # after this change
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #' @importFrom dplyr filter_ inner_join right_join rename group_by as_tibble
 #' @importFrom dplyr distinct select select_ union_all summarize_ everything
 #' @importFrom rlang enquo UQ get_expr
-#' @export trav_both
-
+#' @export
 trav_both <- function(graph,
                       conditions = NULL,
                       copy_attrs_from = NULL,

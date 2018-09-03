@@ -1,9 +1,8 @@
-#' Reverse the direction of selected edges in a graph
-#' @description Using a directed graph with a selection
-#' of edges as input, reverse the direction of those
-#' selected edges in input graph.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
+#' Reverse the direction of selected edges in a graph using an edge selection
+#'
+#' Using a directed graph with a selection of edges as input, reverse the
+#'   direction of those selected edges in input graph.
+#' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with a
@@ -14,8 +13,7 @@
 #'     k = 2, h = 2)
 #'
 #' # Inspect the graph's edges
-#' graph %>%
-#'   get_edges()
+#' graph %>% get_edges()
 #'
 #' # Select all edges associated
 #' # with nodes `1` and `2`
@@ -33,11 +31,9 @@
 #'
 #' # Inspect the graph's edges
 #' # after their reversal
-#' graph %>%
-#'   get_edges()
+#' graph %>% get_edges()
 #' @importFrom dplyr filter rename select everything bind_rows
-#' @export rev_edge_dir_ws
-
+#' @export
 rev_edge_dir_ws <- function(graph) {
 
   # Get the time of function start

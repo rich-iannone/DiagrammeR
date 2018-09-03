@@ -1,25 +1,20 @@
 #' Recode a set of edge attribute values
-#' @description Within a graph's internal edge data
-#' frame (edf), recode character or numeric edge
-#' attribute values. Optionally, one can specify a
-#' replacement value for any unmatched mappings.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edge_attr_from the name of the edge attribute
-#' column from which values will be recoded.
-#' @param ... single-length character vectors with
-#' the recoding instructions. The first component should
-#' have the value to replace and the second should have
-#' the replacement value (in the form
-#' \code{"[to_replace] -> [replacement]", ...}).
-#' @param otherwise an optional single value for
-#' recoding any unmatched values.
-#' @param edge_attr_to an optional name of a new edge
-#' attribute to which the recoded values will be
-#' applied. This will retain the original edge
-#' attribute and its values.
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' Within a graph's internal edge data frame (edf), recode character or numeric
+#'   edge attribute values. Optionally, one can specify a replacement value for
+#'   any unmatched mappings.
+#' @inheritParams render_graph
+#' @param edge_attr_from the name of the edge attribute column from which values
+#'   will be recoded.
+#' @param ... single-length character vectors with the recoding instructions.
+#'   The first component should have the value to replace and the second should
+#'   have the replacement value (in the form
+#'   \code{"[to_replace] -> [replacement]", ...}).
+#' @param otherwise an optional single value for recoding any unmatched values.
+#' @param edge_attr_to an optional name of a new edge attribute to which the
+#'   recoded values will be applied. This will retain the original edge
+#'   attribute and its values.
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -37,8 +32,7 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Recode the `rel` node
 #' # attribute, creating a new edge
@@ -60,12 +54,10 @@
 #' # attribute values had been
 #' # recoded and copied into a
 #' # new node attribute
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @importFrom stringr str_split
 #' @importFrom rlang enquo get_expr
-#' @export recode_edge_attrs
-
+#' @export
 recode_edge_attrs <- function(graph,
                               edge_attr_from,
                               ...,

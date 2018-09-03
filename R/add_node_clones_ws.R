@@ -29,8 +29,7 @@
 #'
 #' # Display the graph's internal
 #' # node data frame
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Create clones of all nodes
 #' # in the selection but assign
@@ -46,8 +45,7 @@
 #' # node data frame: nodes `4`,
 #' # `5`, and `6` are clones of
 #' # `1`, `2`, and `3`
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Select the last nodes
 #' # created (`4`, `5`, and `6`)
@@ -67,8 +65,7 @@
 #' # edge data frame; there are
 #' # edges between the selected
 #' # nodes and their clones
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @importFrom dplyr filter select
 #' @export
 add_node_clones_ws <- function(graph,

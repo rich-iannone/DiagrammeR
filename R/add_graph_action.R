@@ -38,8 +38,7 @@
 #' # To ensure that the action is
 #' # available in the graph, use the
 #' # `get_graph_actions()` function
-#' graph %>%
-#'   get_graph_actions()
+#' graph %>% get_graph_actions()
 #' @importFrom dplyr bind_rows
 #' @export
 add_graph_action <- function(graph,

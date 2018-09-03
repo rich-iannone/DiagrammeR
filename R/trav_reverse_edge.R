@@ -1,26 +1,16 @@
 #' Traverse to any reverse edges
-#' @description From an active selection
-#' of edges in a graph object of class
-#' \code{dgr_graph}, traverse to any
-#' available reverse edges between the
-#' nodes common to the selected edges.
-#' For instance, if an active selection
-#' has the edge \code{1->2} but there is
-#' also an (not selected) edge \code{2->1},
-#' then this function can either switch
-#' to the selection of \code{2->1}, or,
-#' incorporate both those edges into the
-#' active selection of edges.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param add_to_selection an option to
-#' either add the reverse edges to the
-#' active selection of edges (\code{TRUE})
-#' or switch the active selection entirely
-#' to those reverse edges (\code{FALSE},
-#' the default case).
-#' @return a graph object of class
-#' \code{dgr_graph}.
+#'
+#' From an active selection of edges in a graph object of class
+#'   \code{dgr_graph}, traverse to any available reverse edges between the nodes
+#'   common to the selected edges. For instance, if an active selection has the
+#'   edge \code{1->2} but there is also an (not selected) edge \code{2->1}, then
+#'   this function can either switch to the selection of \code{2->1}, or,
+#'   incorporate both those edges into the active selection of edges.
+#' @inheritParams render_graph
+#' @param add_to_selection an option to either add the reverse edges to the
+#'   active selection of edges (\code{TRUE}) or switch the active selection
+#'   entirely to those reverse edges (\code{FALSE}, the default case).
+#' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -54,8 +44,7 @@
 #'       to = 3)
 #'
 #' # Get the inital edge selection
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #'
 #' # Traverse to the reverse edges
 #' # (edges `2`: `4`->`1` and
@@ -65,11 +54,9 @@
 #'   trav_reverse_edge()
 #'
 #' # Get the current selection of edges
-#' graph %>%
-#'   get_selection()
+#' graph %>% get_selection()
 #' @importFrom dplyr filter_ bind_rows select rename arrange as_tibble
-#' @export trav_reverse_edge
-
+#' @export
 trav_reverse_edge <- function(graph,
                               add_to_selection = FALSE) {
 

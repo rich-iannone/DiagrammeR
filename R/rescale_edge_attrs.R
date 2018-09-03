@@ -1,30 +1,22 @@
 #' Rescale numeric edge attribute values
-#' @description From a graph object of class
-#' \code{dgr_graph}, take a set of numeric values for
-#' an edge attribute, rescale to a new numeric or color
-#' range, then write to the same edge attribute or to
-#' a new edge attribute column.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param edge_attr_from the edge attribute containing
-#' numeric data that is to be rescaled to new numeric
-#' or color values.
-#' @param to_lower_bound the lower bound value for the
-#' set of rescaled values. This can be a numeric value
-#' or an X11 color name.
-#' @param to_upper_bound the upper bound value for the
-#' set of rescaled values. This can be a numeric value
-#' or an X11 color name.
-#' @param edge_attr_to an optional name of a new edge
-#' attribute to which the recoded values will be
-#' applied. This will retain the original edge
-#' attribute and its values.
-#' @param from_lower_bound an optional, manually set
-#' lower bound value for the rescaled values. If not
-#' set, the minimum value from the set will be used.
-#' @param from_upper_bound an optional, manually set
-#' upper bound value for the rescaled values. If not
-#' set, the minimum value from the set will be used.
+#'
+#' From a graph object of class \code{dgr_graph}, take a set of numeric values
+#'   for an edge attribute, rescale to a new numeric or color range, then write
+#'   to the same edge attribute or to a new edge attribute column.
+#' @inheritParams render_graph
+#' @param edge_attr_from the edge attribute containing numeric data that is to
+#'   be rescaled to new numeric or color values.
+#' @param to_lower_bound the lower bound value for the set of rescaled values.
+#'   This can be a numeric value or an X11 color name.
+#' @param to_upper_bound the upper bound value for the set of rescaled values.
+#'   This can be a numeric value or an X11 color name.
+#' @param edge_attr_to an optional name of a new edge attribute to which the
+#'   recoded values will be applied. This will retain the original edge
+#'   attribute and its values.
+#' @param from_lower_bound an optional, manually set lower bound value for the
+#'   rescaled values. If not set, the minimum value from the set will be used.
+#' @param from_upper_bound an optional, manually set upper bound value for the
+#'   rescaled values. If not set, the minimum value from the set will be used.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
@@ -45,8 +37,7 @@
 #' # Get the graph's internal edf
 #' # to show which edge attributes
 #' # are available
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Rescale the `weight` edge
 #' # attribute, so that its values
@@ -61,8 +52,7 @@
 #' # Get the graph's internal edf
 #' # to show that the edge attribute
 #' # values had been rescaled
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Scale the values in the `weight`
 #' # edge attribute to different
@@ -89,13 +79,11 @@
 #' # in `color` and scaled numerical
 #' # values are in the `penwidth`
 #' # edge attribute
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' @importFrom rlang enquo UQ get_expr
 #' @importFrom scales rescale cscale seq_gradient_pal
 #' @importFrom grDevices colors
-#' @export rescale_edge_attrs
-
+#' @export
 rescale_edge_attrs <- function(graph,
                                edge_attr_from,
                                to_lower_bound = 0,
