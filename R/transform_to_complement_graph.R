@@ -18,7 +18,7 @@
 #'
 #' # Get the graph's edge
 #' # data frame
-#' graph %>% et_edge_df()
+#' graph %>% get_edge_df()
 #'
 #' # Create the complement
 #' # of the graph
