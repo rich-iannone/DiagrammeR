@@ -37,87 +37,90 @@
 visnetwork <- function(graph) {
 
   # Extract node and edge data frames from the graph object
-  if (!is.null(graph$nodes_df)) {
-
-    nodes <- graph$nodes_df
-  }
-
-  if (!is.null(graph$edges_df)) {
-
-    edges <- graph$edges_df
-  }
+  nodes <- graph %>% get_node_df()
+  edges <- graph %>% get_edge_df()
 
   # Render an empty graph if no nodes or edges exist
-  if (is.null(graph$nodes_df) & is.null(graph$edges_df)) {
+  if (graph %>% is_graph_empty()) {
 
-    nodes <- create_node_df(nodes = 1)
-    nodes <- nodes[,-1]
+    nodes <- create_node_df(n = 1)
+    nodes <- nodes[-1, ]
 
     edges <- create_edge_df(from = 1, to = 1)
-    edges <- edges[,-1]
+    edges <- edges[-1, ]
   }
 
   # Remove the 'pos' column, if it exists
   if ("pos" %in% colnames(nodes)) {
-    nodes <- nodes[,-(which(colnames(nodes) %in% "pos"))]
+    nodes <- nodes[, -(which(colnames(nodes) %in% "pos"))]
   }
 
-  # Modify names of columns in 'nodes' for compatibility with
+  # Modify names of columns in `nodes` for compatibility with
   # visNetwork data frames for nodes
   colnames(nodes)[which(colnames(nodes) == "nodes")] <- "id"
   colnames(nodes)[which(colnames(nodes) == "type")] <- "group"
   colnames(nodes)[which(colnames(nodes) == "tooltip")] <- "title"
   colnames(nodes)[which(colnames(nodes) == "fillcolor")] <- "color"
 
-  if (!is.null(graph$edges_df)) {
+  # Modify names of columns in 'edges' for compatibility with
+  # visNetwork data frames for edges
+  colnames(edges)[which(colnames(edges) == "rel")] <- "label"
+  colnames(edges)[which(colnames(edges) == "tooltip")] <- "title"
+  colnames(edges)[which(colnames(edges) == "penwidth")] <- "width"
 
-    # Modify names of columns in 'edges' for compatibility with
-    # visNetwork data frames for edges
-    colnames(edges)[which(colnames(edges) == "rel")] <- "label"
-    colnames(edges)[which(colnames(edges) == "tooltip")] <- "title"
-    colnames(edges)[which(colnames(edges) == "penwidth")] <- "width"
-
-    # Obtain 'fontcolor' values if the column exists in 'edges'
-    if ("fontcolor" %in% colnames(edges)) {
-      fontcolor <- edges[,-(which(colnames(edges) %in% "fontcolor"))]
-    }
+  # Obtain `fontcolor` values if the column exists in `edges`
+  if ("fontcolor" %in% colnames(edges)) {
+    fontcolor <- edges[, -(which(colnames(edges) %in% "fontcolor"))]
   }
 
   # Create the visNetwork object
   if (all(c("x", "y") %in% colnames(nodes)) == FALSE) {
 
-    if (is.null(graph$edges_df)) {
+    if (nrow(graph$edges_df) == 0) {
 
       vn_obj <- visNetwork(nodes = nodes)
     }
 
-    if (!is.null(graph$edges_df)) {
+    if (nrow(graph$edges_df) > 0) {
 
       vn_obj <- visNetwork(nodes = nodes, edges = edges)
 
       if (is_graph_directed(graph)) {
-        vn_obj <- visEdges(graph = vn_obj,
-                           arrows = list(to = list(enabled = TRUE,
-                                                   scaleFactor = 1)))
+
+        vn_obj <-
+          visEdges(
+            graph = vn_obj,
+            arrows = list(
+              to = list(
+                enabled = TRUE,
+                scaleFactor = 1)))
       }
 
-      if (is_graph_directed(graph) == FALSE) {
-        vn_obj <- visEdges(graph = vn_obj,
-                           arrows = list(to = list(enabled = FALSE,
-                                                   scaleFactor = 1)))
+      if (is_graph_undirected(graph)) {
+
+        vn_obj <-
+          visEdges(
+            graph = vn_obj,
+            arrows = list(
+              to = list(
+                enabled = FALSE,
+                scaleFactor = 1)))
       }
     }
 
-    vn_obj <- visPhysics(graph = vn_obj,
-                         solver = "barnesHut")
+    vn_obj <-
+      visPhysics(
+        graph = vn_obj,
+        solver = "barnesHut",
+        stabilization = list(
+          enabled = TRUE,
+          onlyDynamicEdges = FALSE,
+          fit = TRUE))
 
-    vn_obj <- visPhysics(graph = vn_obj,
-                         stabilization = list(enabled = TRUE,
-                                              onlyDynamicEdges = FALSE,
-                                              fit = TRUE))
-
-    vn_obj <- visLayout(graph = vn_obj,
-                        improvedLayout = TRUE)
+    vn_obj <-
+      visLayout(
+        graph = vn_obj,
+        improvedLayout = TRUE)
   }
 
   if (all(c("x", "y") %in% colnames(nodes))) {
@@ -129,24 +132,32 @@ visnetwork <- function(graph) {
 
       vn_obj <- visNetwork(nodes = nodes)
 
-      vn_obj <- visNodes(graph = vn_obj,
-                         physics = FALSE,
-                         fixed = FALSE)
+      vn_obj <-
+        visNodes(
+          graph = vn_obj,
+          physics = FALSE,
+          fixed = FALSE)
 
-      vn_obj <- visPhysics(graph = vn_obj,
-                           stabilization = list(enabled = FALSE,
-                                                onlyDynamicEdges = FALSE,
-                                                fit = TRUE))
+      vn_obj <-
+        visPhysics(
+          graph = vn_obj,
+          stabilization = list(
+            enabled = FALSE,
+            onlyDynamicEdges = FALSE,
+            fit = TRUE))
 
-      vn_obj <- visInteraction(graph = vn_obj,
-                               dragNodes = FALSE)
-
+      vn_obj <-
+        visInteraction(
+          graph = vn_obj,
+          dragNodes = FALSE)
     }
 
-    if (!is.null(graph$edges_df)) {
+    if (nrow(graph$edges_df) > 0) {
 
       if ("arrow" %in% colnames(edges)) {
+
         if (all(edges[which(colnames(edges) %in% "arrow")] == FALSE)) {
+
           arrows_for_edges <- FALSE
         } else {
           arrows_for_edges <- FALSE
@@ -155,36 +166,47 @@ visnetwork <- function(graph) {
         arrows_for_edges <- FALSE
       }
 
-      vn_obj <- visNetwork(nodes = nodes, edges = edges)
-
-      vn_obj <- visNodes(graph = vn_obj,
-                         physics = FALSE,
-                         fixed = FALSE)
+      vn_obj <-
+        visNetwork(
+          nodes = nodes,
+          edges = edges)
 
       vn_obj <-
-        visEdges(graph = vn_obj,
-                 arrows = list(to =
-                                 list(enabled =
-                                        ifelse(arrows_for_edges,
-                                               TRUE, FALSE),
-                                      scaleFactor = 1)),
-                 smooth = FALSE,
-                 font = list(color = "#343434",
-                             size = 14,
-                             face = "arial",
-                             background = NULL,
-                             strokeWidth = 2,
-                             strokeColor = "#ffffff",
-                             align = "middle"))
+        visNodes(
+          graph = vn_obj,
+          physics = FALSE,
+          fixed = FALSE)
 
       vn_obj <-
-        visPhysics(graph = vn_obj,
-                   stabilization = list(enabled = FALSE,
-                                        onlyDynamicEdges = FALSE,
-                                        fit = TRUE))
+        visEdges(
+          graph = vn_obj,
+          arrows = list(
+            to =
+              list(
+                enabled = ifelse(arrows_for_edges, TRUE, FALSE),
+                scaleFactor = 1)),
+          smooth = FALSE,
+          font = list(
+            color = "#343434",
+            size = 14,
+            face = "arial",
+            background = NULL,
+            strokeWidth = 2,
+            strokeColor = "#ffffff",
+            align = "middle"))
 
-      vn_obj <- visInteraction(graph = vn_obj,
-                               dragNodes = FALSE)
+      vn_obj <-
+        visPhysics(
+          graph = vn_obj,
+          stabilization = list(
+            enabled = TRUE,
+            onlyDynamicEdges = FALSE,
+            fit = TRUE))
+
+      vn_obj <-
+        visInteraction(
+          graph = vn_obj,
+          dragNodes = FALSE)
     }
   }
 
