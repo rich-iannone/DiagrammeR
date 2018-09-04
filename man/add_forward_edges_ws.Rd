@@ -26,7 +26,7 @@ Add edges in the same direction of one or more edges available as an edge
 \details{
 Selections of edges can be performed using the following \code{select_...}
   functions:
-  \code{\link{select_edges}()}, \code{\link{select_last_edge}()}, or
+  \code{\link{select_edges}()}, \code{\link{select_last_edges_created}()}, or
   \code{\link{select_edges_by_node_id}()}.
 
 Selections of edges can also be performed using the following traversal
