@@ -17,7 +17,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 With a graph object of class \code{dgr_graph}, add edges from an edge data
-  frame to that graph.
+frame to that graph.
 }
 \examples{
 # Create a graph with 4 nodes

@@ -17,22 +17,29 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add edges in the same direction of one or more edges available as an edge
-  selection in a graph object of class \code{dgr_graph}. New graph edges have
-  the same edge definitions as those in the selection except with new edge ID
-  values. There is also the option to assign a common \code{rel} grouping to
-  the newly created edges. Upon addition of the edges, the edge selection
-  will be retained for further selection or traversal operations.
+selection in a graph object of class \code{dgr_graph}. New graph edges have
+the same edge definitions as those in the selection except with new edge ID
+values. There is also the option to assign a common \code{rel} grouping to
+the newly created edges. Upon addition of the edges, the edge selection will
+be retained for further selection or traversal operations.
 }
 \details{
-Selections of edges can be performed using the following \code{select_...}
-  functions:
-  \code{\link{select_edges}()}, \code{\link{select_last_edges_created}()}, or
-  \code{\link{select_edges_by_node_id}()}.
+This function makes use of an active selection of edges (and the function
+ending with \code{_ws} hints at this).
+
+Selections of edges can be performed using the following selection
+(\code{select_*()}) functions:
+\code{\link{select_edges}()},
+\code{\link{select_last_edges_created}()},
+\code{\link{select_edges_by_edge_id}()}, or
+\code{\link{select_edges_by_node_id}()}.
 
 Selections of edges can also be performed using the following traversal
-  functions:
-  \code{\link{trav_out_edge}()}, \code{\link{trav_in_edge}()}, or
-  \code{\link{trav_both_edge}()}.
+(\code{trav_*()}) functions:
+\code{\link{trav_out_edge}()},
+\code{\link{trav_in_edge}()},
+\code{\link{trav_both_edge}()}, or
+\code{\link{trav_reverse_edge}()}.
 }
 \examples{
 # Create an empty graph, add 2 nodes

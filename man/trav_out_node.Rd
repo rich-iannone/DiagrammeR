@@ -34,9 +34,28 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph} with an active selection of
-  edges move opposite to the edge direction to connected nodes, replacing the
-  current edge selection with those nodes traversed to. An optional filter by
-  node attribute can limit the set of nodes traversed to.
+edges move opposite to the edge direction to connected nodes, replacing the
+current edge selection with those nodes traversed to. An optional filter by
+node attribute can limit the set of nodes traversed to.
+}
+\details{
+This traversal function makes use of an active selection of edges. After the
+traversal, depending on the traversal conditions, there will either be a
+selection of nodes or no selection at all.
+
+Selections of edges can be performed using the following selection
+(\code{select_*()}) functions:
+\code{\link{select_edges}()},
+\code{\link{select_last_edges_created}()},
+\code{\link{select_edges_by_edge_id}()}, or
+\code{\link{select_edges_by_node_id}()}.
+
+Selections of edges can also be performed using the following traversal
+(\code{trav_*()}) functions:
+\code{\link{trav_out_edge}()},
+\code{\link{trav_in_edge}()},
+\code{\link{trav_both_edge}()}, or
+\code{\link{trav_reverse_edge}()}.
 }
 \examples{
 # Set a seed

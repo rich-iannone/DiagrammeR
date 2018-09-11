@@ -23,9 +23,31 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 With an active selection of nodes, move the position in either the \code{x}
-  or \code{y} directions, or both. Nodes in the selection that do not have
-  position information (i.e., \code{NA} values for the \code{x} or \code{y}
-  node attributes) will be ignored.
+or \code{y} directions, or both. Nodes in the selection that do not have
+position information (i.e., \code{NA} values for the \code{x} or \code{y}
+node attributes) will be ignored.
+}
+\details{
+This function makes use of an active selection of nodes (and the
+function ending with \code{_ws} hints at this).
+
+Selections of nodes can be performed using the following node selection
+(\code{select_*()}) functions:
+\code{\link{select_nodes}()},
+\code{\link{select_last_nodes_created}()},
+\code{\link{select_nodes_by_degree}()},
+\code{\link{select_nodes_by_id}()}, or
+\code{\link{select_nodes_in_neighborhood}()}.
+
+Selections of nodes can also be performed using the following traversal
+(\code{trav_*()}) functions:
+\code{\link{trav_out}()},
+\code{\link{trav_in}()},
+\code{\link{trav_both}()},
+\code{\link{trav_out_node}()},
+\code{\link{trav_in_node}()},
+\code{\link{trav_out_until}()}, or
+\code{\link{trav_in_until}()}.
 }
 \examples{
 # Create a simple graph with 4 nodes

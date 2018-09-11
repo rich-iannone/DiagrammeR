@@ -17,7 +17,7 @@ a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
 Add a graph object to an extant graph series object for storage of multiple
-  graphs across a sequential or temporal one-dimensional array.
+graphs across a sequential or temporal one-dimensional array.
 }
 \examples{
 # Create three graphs

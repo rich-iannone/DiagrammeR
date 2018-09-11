@@ -54,22 +54,34 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add \code{n} new nodes to or from one or more nodes available as a selection
-  in a graph object of class \code{dgr_graph}. New graph edges will all move
-  either from the nodes in the selection toward the newly created nodes (with
-  the option \code{direction = "from"}), or to the selected nodes already in
-  the graph (using \code{direction = "to"}). Optionally, set node \code{type}
-  and edge \code{rel} values for all the new nodes and edges created,
-  respectively.
+in a graph object of class \code{dgr_graph}. New graph edges will all move
+either from the nodes in the selection toward the newly created nodes (with
+the option \code{direction = "from"}), or to the selected nodes already in
+the graph (using \code{direction = "to"}). Optionally, set node \code{type}
+and edge \code{rel} values for all the new nodes and edges created,
+respectively.
 }
 \details{
-Selections of nodes can be performed using the following \code{select_...}
-  functions: \code{select_nodes()}, \code{select_last_nodes_created()},
-  \code{select_nodes_by_degree()}, \code{select_nodes_by_id()}, or
-  \code{select_nodes_in_neighborhood()}.
+This function makes use of an active selection of nodes (and the
+function ending with \code{_ws} hints at this).
+
+Selections of nodes can be performed using the following node selection
+(\code{select_*()}) functions:
+\code{\link{select_nodes}()},
+\code{\link{select_last_nodes_created}()},
+\code{\link{select_nodes_by_degree}()},
+\code{\link{select_nodes_by_id}()}, or
+\code{\link{select_nodes_in_neighborhood}()}.
 
 Selections of nodes can also be performed using the following traversal
-  functions (\code{trav_...}): \code{trav_out()}, \code{trav_in()},
-  \code{trav_both()}, \code{trav_in_node()}, or \code{trav_out_node()}.
+(\code{trav_*()}) functions:
+\code{\link{trav_out}()},
+\code{\link{trav_in}()},
+\code{\link{trav_both}()},
+\code{\link{trav_out_node}()},
+\code{\link{trav_in_node}()},
+\code{\link{trav_out_until}()}, or
+\code{\link{trav_in_until}()}.
 }
 \examples{
 # Create an empty graph, add a node to it, select

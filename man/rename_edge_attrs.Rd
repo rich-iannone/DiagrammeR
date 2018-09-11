@@ -7,21 +7,19 @@
 rename_edge_attrs(graph, edge_attr_from, edge_attr_to)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 
-\item{edge_attr_from}{the name of the edge attribute
-that will be renamed.}
+\item{edge_attr_from}{the name of the edge attribute that will be renamed.}
 
-\item{edge_attr_to}{the new name of the edge
-attribute column identified in \code{edge_attr_from}.}
+\item{edge_attr_to}{the new name of the edge attribute column identified in
+\code{edge_attr_from}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Within a graph's internal edge data
-frame (edf), rename an existing edge attribute.
+Within a graph's internal edge data frame (edf), rename an existing edge
+attribute.
 }
 \examples{
 # Create a random graph using the
@@ -39,8 +37,7 @@ graph <-
 # Get the graph's internal edf
 # to show which edge attributes
 # are available
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 
 # Rename the `color` node
 # attribute as `weight`
@@ -53,6 +50,5 @@ graph <-
 # Get the graph's internal
 # edf to show that the edge
 # attribute had been renamed
-graph \%>\%
-  get_edge_df()
+graph \%>\% get_edge_df()
 }

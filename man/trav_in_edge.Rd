@@ -28,9 +28,32 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph} move to incoming edges from a
-  selection of one or more selected nodes, thereby creating a selection of
-  edges. An optional filter by edge attribute can limit the set of edges
-  traversed to.
+selection of one or more selected nodes, thereby creating a selection of
+edges. An optional filter by edge attribute can limit the set of edges
+traversed to.
+}
+\details{
+This traversal function makes use of an active selection of nodes. After the
+traversal, depending on the traversal conditions, there will either be a
+selection of edges or no selection at all.
+
+Selections of nodes can be performed using the following node selection
+(\code{select_*()}) functions:
+\code{\link{select_nodes}()},
+\code{\link{select_last_nodes_created}()},
+\code{\link{select_nodes_by_degree}()},
+\code{\link{select_nodes_by_id}()}, or
+\code{\link{select_nodes_in_neighborhood}()}.
+
+Selections of nodes can also be performed using the following traversal
+(\code{trav_*()}) functions:
+\code{\link{trav_out}()},
+\code{\link{trav_in}()},
+\code{\link{trav_both}()},
+\code{\link{trav_out_node}()},
+\code{\link{trav_in_node}()},
+\code{\link{trav_out_until}()}, or
+\code{\link{trav_in_until}()}.
 }
 \examples{
 # Set a seed

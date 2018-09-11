@@ -14,8 +14,30 @@ a node data frame.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get the graph's internal node
-  data frame that is filtered by the node ID values currently active as a
-  selection.
+data frame that is filtered by the node ID values currently active as a
+selection.
+}
+\details{
+This function makes use of an active selection of nodes (and the
+function ending with \code{_ws} hints at this).
+
+Selections of nodes can be performed using the following node selection
+(\code{select_*()}) functions:
+\code{\link{select_nodes}()},
+\code{\link{select_last_nodes_created}()},
+\code{\link{select_nodes_by_degree}()},
+\code{\link{select_nodes_by_id}()}, or
+\code{\link{select_nodes_in_neighborhood}()}.
+
+Selections of nodes can also be performed using the following traversal
+(\code{trav_*()}) functions:
+\code{\link{trav_out}()},
+\code{\link{trav_in}()},
+\code{\link{trav_both}()},
+\code{\link{trav_out_node}()},
+\code{\link{trav_in_node}()},
+\code{\link{trav_out_until}()}, or
+\code{\link{trav_in_until}()}.
 }
 \examples{
 # Create a random graph using the
@@ -40,6 +62,5 @@ graph <-
 # Get the node data frame that's
 # limited to the rows that correspond
 # to the node selection
-graph \%>\%
-  get_node_df_ws()
+graph \%>\% get_node_df_ws()
 }

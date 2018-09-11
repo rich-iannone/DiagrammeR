@@ -7,15 +7,13 @@
 get_edge_df(graph)
 }
 \arguments{
-\item{graph}{a graph object of class
-\code{dgr_graph}.}
+\item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
 an edge data frame.
 }
 \description{
-From a graph, obtain an edge data frame
-with all current edge attributes.
+From a graph, obtain an edge data frame with all current edge attributes.
 }
 \examples{
 # Create a graph

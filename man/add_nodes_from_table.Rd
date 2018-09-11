@@ -33,8 +33,8 @@ numeric column range with \code{:} (e.g., \code{5:8}), or, by using the
 a graph object of class \code{dgr_graph}.
 }
 \description{
-Add nodes and their attributes to an existing graph object from data in a
-  CSV file or a data frame.
+Add nodes and their attributes to an existing graph object from data in a CSV
+file or a data frame.
 }
 \examples{
 # To add nodes from the dataset called

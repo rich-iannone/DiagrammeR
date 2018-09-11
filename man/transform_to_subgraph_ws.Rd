@@ -2,7 +2,7 @@
 % Please edit documentation in R/transform_to_subgraph_ws.R
 \name{transform_to_subgraph_ws}
 \alias{transform_to_subgraph_ws}
-\title{Create a subgraph using node/edge selection}
+\title{Create a subgraph using a node or edge selection}
 \usage{
 transform_to_subgraph_ws(graph)
 }
@@ -17,17 +17,37 @@ Create a subgraph based on a selection of nodes or edges stored in the graph
   object.
 }
 \details{
-Selections of nodes can be performed using the following \code{select_...}
-  functions: \code{select_nodes()}, \code{select_last_nodes_created()},
-  \code{select_nodes_by_degree()}, \code{select_nodes_by_id()}, or
-  \code{select_nodes_in_neighborhood()}.
+This function makes use of an active selection of nodes or edges (and the
+function ending with \code{_ws} hints at this).
 
-Alternatively, selections of edges can be made with these functions:
-  \code{select_edges()}, \code{select_last_edge()}, or
-  \code{select_edges_by_node_id()}.
+Selections of nodes can be performed using the following node selection
+(\code{select_*()}) functions:
+\code{\link{select_nodes}()},
+\code{\link{select_last_nodes_created}()},
+\code{\link{select_nodes_by_degree}()},
+\code{\link{select_nodes_by_id}()}, or
+\code{\link{select_nodes_in_neighborhood}()}.
 
-Selections of nodes or edges can also be performed using any of the traversal
-  functions (\code{trav_...}).
+Selections of edges can be performed using the following edge selection
+(\code{select_*()}) functions:
+\code{\link{select_edges}()},
+\code{\link{select_last_edges_created}()},
+\code{\link{select_edges_by_edge_id}()}, or
+\code{\link{select_edges_by_node_id}()}.
+
+Selections of nodes or edges can also be performed using the following
+traversal (\code{trav_*()}) functions:
+\code{\link{trav_out}()},
+\code{\link{trav_in}()},
+\code{\link{trav_both}()},
+\code{\link{trav_out_node}()},
+\code{\link{trav_in_node}()},
+\code{\link{trav_out_until}()},
+\code{\link{trav_in_until}()},
+\code{\link{trav_out_edge}()},
+\code{\link{trav_in_edge}()},
+\code{\link{trav_both_edge}()}, or
+\code{\link{trav_reverse_edge}()}.
 }
 \examples{
 # Create a node data frame (ndf)
