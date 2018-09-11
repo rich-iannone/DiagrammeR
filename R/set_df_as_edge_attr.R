@@ -47,8 +47,8 @@
 #'   set_df_as_edge_attr(
 #'     edge = 1,
 #'     df = df)
-#' @import rlang
 #' @importFrom dplyr filter everything mutate select bind_rows as_tibble
+#' @importFrom purrr flatten_chr
 #' @export
 set_df_as_edge_attr <- function(graph,
                                 edge,
@@ -132,7 +132,7 @@ set_df_as_edge_attr <- function(graph,
          dplyr::filter(node_edge__ == "edge") %>%
          dplyr::filter(id__ == edge) %>%
          dplyr::select(df_id__) %>%
-         flatten_chr())[1]
+         purrr::flatten_chr())[1]
 
     graph$df_storage[[df_object_old]] <- NULL
   }

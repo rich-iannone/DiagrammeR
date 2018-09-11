@@ -39,10 +39,10 @@
 #' gml_graph %>%
 #'   count_edges()
 #' }
-#' @import rlang
 #' @importFrom dplyr right_join select rename mutate everything bind_rows
 #' @importFrom dplyr arrange distinct tibble as_tibble
 #' @importFrom downloader download
+#' @importFrom purrr flatten_int
 #' @importFrom stringr str_extract str_detect str_split str_count
 #' @importFrom stringr str_replace_all str_extract_all
 #' @importFrom readr read_delim
@@ -180,12 +180,12 @@ import_graph <- function(graph_file,
           id = edges %>%
             dplyr::as_tibble() %>%
             dplyr::select(from) %>%
-            flatten_int()),
+            purrr::flatten_int()),
         dplyr::tibble(
           id = edges %>%
             dplyr::as_tibble() %>%
             dplyr::select(to) %>%
-            flatten_int())) %>%
+            purrr::flatten_int())) %>%
       dplyr::distinct() %>%
       dplyr::arrange(id) %>%
       dplyr::mutate(type = as.character(NA)) %>%

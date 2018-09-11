@@ -97,9 +97,9 @@
 #'   graph,
 #'   edge_id = 1,
 #'   return_format = "single_df")
-#' @import rlang
 #' @importFrom dplyr filter select bind_rows filter starts_with
 #' @importFrom dplyr everything left_join as_tibble tibble
+#' @importFrom purrr flatten_chr
 #' @export
 get_attr_dfs <- function(graph,
                          node_id = NULL,
@@ -139,7 +139,7 @@ get_attr_dfs <- function(graph,
       dplyr::select(id, type, label, dplyr::starts_with("df_id")) %>%
       dplyr::as_tibble() %>%
       dplyr::select(df_id) %>%
-      flatten_chr()
+      purrr::flatten_chr()
 
     if (any(df_ids_nodes %in% (graph$df_storage %>% names()))) {
 
@@ -172,7 +172,7 @@ get_attr_dfs <- function(graph,
       dplyr::select(id, from, to, rel, dplyr::starts_with("df_id")) %>%
       dplyr::as_tibble() %>%
       dplyr::select(df_id) %>%
-      flatten_chr()
+      purrr::flatten_chr()
 
     if (any(df_ids_edges %in% (graph$df_storage %>% names()))) {
 
