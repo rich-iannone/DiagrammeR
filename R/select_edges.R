@@ -76,7 +76,7 @@
 #' # `3`->`1` have values for `value` > 3.0
 #' graph %>% get_selection()
 #' @importFrom dplyr filter select rename
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 select_edges <- function(graph,
                          conditions = NULL,

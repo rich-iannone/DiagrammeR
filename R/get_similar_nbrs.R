@@ -75,7 +75,7 @@
 #'     node_attr = value,
 #'     tol_abs = c(10, 10)) %>%
 #'     length()
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 get_similar_nbrs <- function(graph,
                              node,

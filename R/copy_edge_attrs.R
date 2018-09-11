@@ -41,7 +41,7 @@
 #' # attribute had been copied
 #' graph %>% get_edge_df()
 #' @importFrom dplyr bind_cols
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 copy_edge_attrs <- function(graph,
                             edge_attr_from,

@@ -47,7 +47,7 @@
 #' # attribute had been copied
 #' graph %>% get_node_df()
 #' @importFrom dplyr bind_cols
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 copy_node_attrs <- function(graph,
                             node_attr_from,

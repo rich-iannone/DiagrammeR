@@ -94,7 +94,7 @@
 #'     return_type = "vector",
 #'     return_values = "label")
 #' @importFrom dplyr filter select_ left_join rename
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 get_edges <- function(graph,
                       conditions = NULL,

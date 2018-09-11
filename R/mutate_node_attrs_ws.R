@@ -120,7 +120,7 @@
 #' # those of the other nodes
 #' graph %>% get_node_df()
 #' @importFrom dplyr mutate_
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 mutate_node_attrs_ws <- function(graph,
                                  ...) {

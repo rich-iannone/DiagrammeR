@@ -47,7 +47,7 @@
 #' # edge attribute has been set
 #' # for specific edges
 #' graph %>% get_edge_df()
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @importFrom dplyr mutate case_when
 #' @export
 set_edge_attrs_ws <- function(graph,

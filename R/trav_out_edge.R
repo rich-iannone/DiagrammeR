@@ -175,7 +175,7 @@
 #' # data frame after this change
 #' graph %>% get_edge_df()
 #' @importFrom dplyr filter select select_ right_join rename everything
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 trav_out_edge <- function(graph,
                           conditions = NULL,

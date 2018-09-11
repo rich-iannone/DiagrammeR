@@ -116,7 +116,7 @@
 #' # those of the other edges
 #' graph %>% get_edge_df()
 #' @importFrom dplyr mutate_
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 mutate_edge_attrs_ws <- function(graph,
                                  ...) {

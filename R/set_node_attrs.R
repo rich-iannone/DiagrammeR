@@ -54,7 +54,7 @@
 #' # Display the graph's ndf
 #' graph %>% get_node_df()
 #' @importFrom dplyr mutate
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 set_node_attrs <- function(graph,
                            node_attr,

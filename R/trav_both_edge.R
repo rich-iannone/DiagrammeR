@@ -193,7 +193,7 @@
 #' @importFrom stats median
 #' @importFrom dplyr filter select select_ left_join right_join rename bind_rows group_by summarize_
 #' @importFrom tibble as_tibble
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 trav_both_edge <- function(graph,
                            conditions = NULL,

@@ -43,7 +43,7 @@
 #' # ndf to show that the node
 #' # attribute had been renamed
 #' graph %>% get_node_df()
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 rename_node_attrs <- function(graph,
                               node_attr_from,

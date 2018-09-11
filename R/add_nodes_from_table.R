@@ -82,7 +82,7 @@
 #'   colnames()
 #' @importFrom utils read.csv
 #' @importFrom dplyr bind_cols mutate select
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 add_nodes_from_table <- function(graph,
                                  table,

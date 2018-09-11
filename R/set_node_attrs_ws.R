@@ -50,7 +50,7 @@
 #' # that the node attribute has been set for
 #' # specific node
 #' graph %>% get_node_df()
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 set_node_attrs_ws <- function(graph,
                               node_attr,

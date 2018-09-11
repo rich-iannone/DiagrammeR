@@ -70,7 +70,7 @@
 #' # to see the change
 #' graph %>% get_node_df()
 #' @importFrom stringr str_split
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 recode_node_attrs <- function(graph,
                               node_attr_from,

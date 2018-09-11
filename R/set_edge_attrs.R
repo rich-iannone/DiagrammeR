@@ -70,7 +70,7 @@
 #'     values = "black",
 #'     to = 1)
 #' @importFrom dplyr mutate
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 set_edge_attrs <- function(graph,
                            edge_attr,

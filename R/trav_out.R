@@ -209,7 +209,7 @@
 #' @importFrom stats as.formula
 #' @importFrom dplyr filter inner_join right_join rename distinct as_tibble
 #' @importFrom dplyr select select_ group_by ungroup summarize_ everything
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 trav_out <- function(graph,
                      conditions = NULL,

@@ -53,7 +53,7 @@
 #' @importFrom dplyr group_by summarize_ select filter ungroup pull
 #' @importFrom stats as.formula
 #' @importFrom purrr flatten_dbl
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 get_agg_degree_total <- function(graph,
                                  agg,

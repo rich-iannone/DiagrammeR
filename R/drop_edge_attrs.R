@@ -37,7 +37,7 @@
 #' # attribute `value` had been
 #' # removed
 #' graph %>% get_edge_df()
-#' @import rlang
+#' @importFrom rlang enquo get_expr UQ
 #' @export
 drop_edge_attrs <- function(graph,
                             edge_attr) {
