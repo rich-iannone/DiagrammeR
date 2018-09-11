@@ -97,7 +97,7 @@
 #' # newly created edge
 #' graph_2 %>% get_edge_df()
 #' @importFrom dplyr bind_rows select filter as_tibble
-#' @importFrom rlang UQ
+#' @import rlang
 #' @export
 add_edge <- function(graph,
                      from,

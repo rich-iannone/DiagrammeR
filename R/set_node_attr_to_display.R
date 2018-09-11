@@ -66,7 +66,7 @@
 #'   get_node_df()
 #' @importFrom dplyr mutate left_join coalesce bind_cols select
 #' @importFrom dplyr everything case_when tibble
-#' @importFrom rlang enquo get_expr
+#' @import rlang
 #' @export
 set_node_attr_to_display <- function(graph,
                                      attr = NULL,

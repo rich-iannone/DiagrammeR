@@ -80,7 +80,7 @@
 #' # values are in the `penwidth`
 #' # edge attribute
 #' graph %>% get_edge_df()
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @importFrom scales rescale cscale seq_gradient_pal
 #' @importFrom grDevices colors
 #' @export

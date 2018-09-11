@@ -46,7 +46,7 @@
 #'   get_global_graph_attr_info()
 #' @importFrom dplyr anti_join tibble filter
 #' @importFrom glue glue
-#' @importFrom rlang enquo UQ
+#' @import rlang
 #' @export
 delete_global_graph_attrs <- function(graph,
                                       attr = NULL,

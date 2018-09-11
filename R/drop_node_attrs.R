@@ -35,7 +35,7 @@
 #' # attribute `value` had been
 #' # removed
 #' graph %>% get_node_df()
-#' @importFrom rlang enquo get_expr
+#' @import rlang
 #' @export
 drop_node_attrs <- function(graph,
                             node_attr) {

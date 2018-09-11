@@ -55,7 +55,7 @@
 #'     color == "blue" &
 #'     value > 5)
 #' @importFrom dplyr filter pull
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 get_edge_ids <- function(graph,
                          conditions = NULL) {

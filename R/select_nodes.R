@@ -69,7 +69,7 @@
 #' # for `value` greater than 3.0
 #' graph %>% get_selection()
 #' @importFrom dplyr filter pull
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 select_nodes <- function(graph,
                          conditions = NULL,

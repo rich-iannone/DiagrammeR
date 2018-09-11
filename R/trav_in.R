@@ -205,7 +205,7 @@
 #' graph %>% get_node_df()
 #' @importFrom dplyr filter inner_join right_join rename distinct as_tibble
 #' @importFrom dplyr select select_ group_by ungroup summarize_ everything
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 trav_in <- function(graph,
                     conditions = NULL,

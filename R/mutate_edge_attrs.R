@@ -68,7 +68,7 @@
 #' # together (with new attr `area`)
 #' graph %>% get_edge_df()
 #' @importFrom dplyr mutate_
-#' @importFrom rlang exprs
+#' @import rlang
 #' @export
 mutate_edge_attrs <- function(graph,
                               ...) {

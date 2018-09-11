@@ -76,7 +76,7 @@
 #'   get_edge_attrs_ws(
 #'     edge_attr = value)
 #' @importFrom dplyr filter pull
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 get_edge_attrs_ws <- function(graph,
                               edge_attr) {

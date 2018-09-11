@@ -79,7 +79,7 @@
 #' graph %>% get_node_df()
 #' @importFrom scales rescale cscale seq_gradient_pal
 #' @importFrom grDevices colors
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 rescale_node_attrs <- function(graph,
                                node_attr_from,

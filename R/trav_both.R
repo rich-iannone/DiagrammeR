@@ -186,7 +186,7 @@
 #' graph %>% get_node_df()
 #' @importFrom dplyr filter_ inner_join right_join rename group_by as_tibble
 #' @importFrom dplyr distinct select select_ union_all summarize_ everything
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 trav_both <- function(graph,
                       conditions = NULL,

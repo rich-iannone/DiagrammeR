@@ -206,7 +206,7 @@
 #' @importFrom dplyr filter distinct left_join right_join
 #' @importFrom dplyr semi_join select select_ rename group_by
 #' @importFrom dplyr summarize_ everything
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 trav_out_node <- function(graph,
                           conditions = NULL,

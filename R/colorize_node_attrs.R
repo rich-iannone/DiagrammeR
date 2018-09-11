@@ -101,7 +101,7 @@
 #' graph %>% get_node_df()
 #' @import RColorBrewer
 #' @importFrom viridis viridis
-#' @importFrom rlang enquo UQ get_expr
+#' @import rlang
 #' @export
 colorize_node_attrs <- function(graph,
                                 node_attr_from,

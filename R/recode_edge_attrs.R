@@ -56,7 +56,7 @@
 #' # new node attribute
 #' graph %>% get_edge_df()
 #' @importFrom stringr str_split
-#' @importFrom rlang enquo get_expr
+#' @import rlang
 #' @export
 recode_edge_attrs <- function(graph,
                               edge_attr_from,

@@ -102,7 +102,7 @@
 #'
 #' # Get the graph's node selection
 #' graph %>% get_selection()
-#' @importFrom rlang enquo UQ
+#' @import rlang
 #' @importFrom igraph all_simple_paths
 #' @importFrom purrr map
 #' @export
