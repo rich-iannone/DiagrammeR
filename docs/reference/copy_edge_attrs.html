@@ -32,10 +32,9 @@
 
 <meta property="og:title" content="Copy an edge attribute column and set the name — copy_edge_attrs" />
 
-<meta property="og:description" content="Within a graph's internal edge data
-frame (edf), copy the contents an existing edge
-attribute and create a distinct edge attribute
-within the edf with a different attribute name." />
+<meta property="og:description" content="Within a graph's internal edge data frame (edf), copy the contents an
+  existing edge attribute and create a distinct edge attribute within the edf
+  with a different attribute name." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +127,9 @@ within the edf with a different attribute name." />
 
     <div class="ref-description">
     
-    <p>Within a graph's internal edge data
-frame (edf), copy the contents an existing edge
-attribute and create a distinct edge attribute
-within the edf with a different attribute name.</p>
+    <p>Within a graph's internal edge data frame (edf), copy the contents an
+  existing edge attribute and create a distinct edge attribute within the edf
+  with a different attribute name.</p>
     
     </div>
 
@@ -142,26 +140,23 @@ within the edf with a different attribute name.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge_attr_from</th>
-      <td><p>the name of the edge attribute
-column from which values will be copied.</p></td>
+      <td><p>the name of the edge attribute column from which values
+will be copied.</p></td>
     </tr>
     <tr>
       <th>edge_attr_to</th>
-      <td><p>the name of the new edge
-attribute column to which the copied values will be
-placed.</p></td>
+      <td><p>the name of the new edge attribute column to which the
+copied values will be placed.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -180,8 +175,7 @@ placed.</p></td>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># edf to show which edge</span>
 <span class='co'># attributes are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel color
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel color
 #&gt; 1  1    1  3 &lt;NA&gt; green
 #&gt; 2  2    2  1 &lt;NA&gt; green
 #&gt; 3  3    2  5 &lt;NA&gt; green
@@ -202,8 +196,7 @@ placed.</p></td>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># edf to show that the edge</span>
 <span class='co'># attribute had been copied</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel color color_2
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel color color_2
 #&gt; 1  1    1  3 &lt;NA&gt; green   green
 #&gt; 2  2    2  1 &lt;NA&gt; green   green
 #&gt; 3  3    2  5 &lt;NA&gt; green   green

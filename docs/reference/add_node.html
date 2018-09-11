@@ -32,15 +32,11 @@
 
 <meta property="og:title" content="Add a node to an existing graph object — add_node" />
 
-<meta property="og:description" content="With a graph object of class
-dgr_graph, add a new node to the graph.
-One can optionally provide node attributes
-for the created node. There is also the
-option to create edges to and from existing
-nodes in the graph. Because new edges can
-also be created through this function, there
-is the possibility to set edge attributes
-for any new graph edges." />
+<meta property="og:description" content="With a graph object of class dgr_graph, add a new node to the graph.
+  One can optionally provide node attributes for the created node. There is
+  also the option to create edges to and from existing nodes in the graph.
+  Because new edges can also be created through this function, there is the
+  possibility to set edge attributes for any new graph edges." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -133,15 +129,11 @@ for any new graph edges." />
 
     <div class="ref-description">
     
-    <p>With a graph object of class
-<code>dgr_graph</code>, add a new node to the graph.
-One can optionally provide node attributes
-for the created node. There is also the
-option to create edges to and from existing
-nodes in the graph. Because new edges can
-also be created through this function, there
-is the possibility to set edge attributes
-for any new graph edges.</p>
+    <p>With a graph object of class <code>dgr_graph</code>, add a new node to the graph.
+  One can optionally provide node attributes for the created node. There is
+  also the option to create edges to and from existing nodes in the graph.
+  Because new edges can also be created through this function, there is the
+  possibility to set edge attributes for any new graph edges.</p>
     
     </div>
 
@@ -154,64 +146,56 @@ for any new graph edges.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional character object that
-acts as a group identifier for the node to be added.</p></td>
+      <td><p>an optional character object that acts as a group identifier for
+the node to be added.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>an optional character object that
-describes the node.</p></td>
+      <td><p>an optional character object that describes the node.</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>an optional vector containing node IDs
-from which edges will be directed to the new node.</p></td>
+      <td><p>an optional vector containing node IDs from which edges will be
+directed to the new node.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>an optional vector containing node IDs to
-which edges will be directed from the new node.</p></td>
+      <td><p>an optional vector containing node IDs to which edges will be
+directed from the new node.</p></td>
     </tr>
     <tr>
       <th>node_aes</th>
-      <td><p>an optional list of named vectors
-comprising node aesthetic attributes. The helper
-function <code><a href='node_aes.html'>node_aes()</a></code> is strongly recommended
-for use here as it contains arguments for each
-of the accepted node aesthetic attributes (e.g.,
-<code>shape</code>, <code>style</code>, <code>color</code>,
+      <td><p>an optional list of named vectors comprising node aesthetic
+attributes. The helper function <code><a href='node_aes.html'>node_aes</a>()</code> is strongly
+recommended for use here as it contains arguments for each of the accepted
+node aesthetic attributes (e.g., <code>shape</code>, <code>style</code>, <code>color</code>,
 <code>fillcolor</code>).</p></td>
     </tr>
     <tr>
       <th>edge_aes</th>
-      <td><p>an optional list of named vectors
-comprising edge aesthetic attributes. The helper
-function <code><a href='edge_aes.html'>edge_aes()</a></code> is strongly recommended
-for use here as it contains arguments for each
-of the accepted edge aesthetic attributes (e.g.,
-<code>shape</code>, <code>style</code>, <code>penwidth</code>,
-<code>color</code>).</p></td>
+      <td><p>an optional list of named vectors comprising edge aesthetic
+attributes. The helper function <code><a href='edge_aes.html'>edge_aes</a>()</code> is strongly
+recommended for use here as it contains arguments for each of the accepted
+edge aesthetic attributes (e.g., <code>shape</code>, <code>style</code>,
+<code>penwidth</code>, <code>color</code>).</p></td>
     </tr>
     <tr>
       <th>node_data</th>
-      <td><p>an optional list of named vectors
-comprising node data attributes. The helper
-function <code><a href='node_data.html'>node_data()</a></code> is strongly recommended
-for use here as it helps bind data specifically
-to the created nodes.</p></td>
+      <td><p>an optional list of named vectors comprising node data
+attributes. The helper function <code><a href='node_data.html'>node_data</a>()</code> is strongly
+recommended for use here as it helps bind data specifically to the created
+nodes.</p></td>
     </tr>
     <tr>
       <th>edge_data</th>
-      <td><p>an optional list of named vectors
-comprising edge data attributes. The helper
-function <code><a href='edge_data.html'>edge_data()</a></code> is strongly recommended
-for use here as it helps bind data specifically
-to the created edges.</p></td>
+      <td><p>an optional list of named vectors comprising edge data
+attributes. The helper function <code><a href='edge_data.html'>edge_data</a>()</code> is strongly
+recommended for use here as it helps bind data specifically to the created
+edges.</p></td>
     </tr>
     </table>
     
@@ -230,13 +214,11 @@ to the created edges.</p></td>
 
 <span class='co'># Get a count of all nodes</span>
 <span class='co'># in the graph</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># The nodes added were given</span>
 <span class='co'># ID values `1` and `2`; obtain</span>
 <span class='co'># the graph's node IDs</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>()</div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>()</div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
 <span class='co'># Add a node with a `type`</span>
 <span class='co'># value defined</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -245,8 +227,7 @@ to the created edges.</p></td>
 
 <span class='co'># View the graph's internal</span>
 <span class='co'># node data frame (ndf)</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id   type label
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id   type label
 #&gt; 1  1   &lt;NA&gt;  &lt;NA&gt;
 #&gt; 2  2   &lt;NA&gt;  &lt;NA&gt;
 #&gt; 3  3 person  &lt;NA&gt;</div></pre>

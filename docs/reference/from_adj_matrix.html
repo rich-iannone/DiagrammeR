@@ -32,8 +32,7 @@
 
 <meta property="og:title" content="Create a graph using an adjacency matrix — from_adj_matrix" />
 
-<meta property="og:description" content="Using an adjacency matrix object,
-generate a graph of class dgr_graph." />
+<meta property="og:description" content="Using an adjacency matrix object, generate a graph of class dgr_graph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,8 +125,7 @@ generate a graph of class dgr_graph." />
 
     <div class="ref-description">
     
-    <p>Using an adjacency matrix object,
-generate a graph of class <code>dgr_graph</code>.</p>
+    <p>Using an adjacency matrix object, generate a graph of class <code>dgr_graph</code>.</p>
     
     </div>
 
@@ -139,44 +137,35 @@ generate a graph of class <code>dgr_graph</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a square <code>matrix</code> object serving as
-the adjacency matrix.</p></td>
+      <td><p>a square <code>matrix</code> object serving as the adjacency matrix.</p></td>
     </tr>
     <tr>
       <th>mode</th>
-      <td><p>the method in which to interpret the
-input adjacency matrix. Options include:
-<code>undirected</code>, <code>directed</code>, <code>upper</code>,
-<code>lower</code>, <code>max</code>, <code>min</code>, and
-<code>plus</code>.</p></td>
+      <td><p>the method in which to interpret the input adjacency matrix.
+Options include: <code>undirected</code>, <code>directed</code>, <code>upper</code>,
+<code>lower</code>, <code>max</code>, <code>min</code>, and <code>plus</code>.</p></td>
     </tr>
     <tr>
       <th>weighted</th>
-      <td><p>whether to create a weighted graph
-from the adjacency matrix.</p></td>
+      <td><p>whether to create a weighted graph from the adjacency matrix.</p></td>
     </tr>
     <tr>
       <th>use_diag</th>
-      <td><p>whether to use the diagonal of the
-adjacency matrix in calculations. If <code>TRUE</code>
-then the diagonal values will be included as is. If
-<code>FALSE</code> then the diagonal values will be
-replaced with zero values before inclusion in any
-calculations.</p></td>
+      <td><p>whether to use the diagonal of the adjacency matrix in
+calculations. If <code>TRUE</code> then the diagonal values will be included as
+is. If <code>FALSE</code> then the diagonal values will be replaced with zero
+values before inclusion in any calculations.</p></td>
     </tr>
     <tr>
       <th>graph_name</th>
-      <td><p>an optional string for labeling
-the graph object.</p></td>
+      <td><p>an optional string for labeling the graph object.</p></td>
     </tr>
     <tr>
       <th>write_backups</th>
-      <td><p>an option to write incremental
-backups of changing graph states to disk. If
-<code>TRUE</code>, a subdirectory of the working directory
-will be used to store <code>RDS</code> files. The
-default value is <code>FALSE</code> so one has to opt in
-to use this functionality.</p></td>
+      <td><p>an option to write incremental backups of changing graph
+states to disk. If <code>TRUE</code>, a subdirectory of the working directory
+will be used to store <code>RDS</code> files. The default value is <code>FALSE</code>
+so one has to opt in to use this functionality.</p></td>
     </tr>
     </table>
     

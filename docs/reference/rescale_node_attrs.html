@@ -32,11 +32,9 @@
 
 <meta property="og:title" content="Rescale numeric node attribute values — rescale_node_attrs" />
 
-<meta property="og:description" content="From a graph object of class
-dgr_graph, take a set of numeric values for a
-node attribute, rescale to a new numeric or color
-range, then write to the same node attribute or to
-a new node attribute column." />
+<meta property="og:description" content="From a graph object of class dgr_graph, take a set of numeric values
+  for a node attribute, rescale to a new numeric or color range, then write
+  to the same node attribute or to a new node attribute column." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,11 +127,9 @@ a new node attribute column." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class
-<code>dgr_graph</code>, take a set of numeric values for a
-node attribute, rescale to a new numeric or color
-range, then write to the same node attribute or to
-a new node attribute column.</p>
+    <p>From a graph object of class <code>dgr_graph</code>, take a set of numeric values
+  for a node attribute, rescale to a new numeric or color range, then write
+  to the same node attribute or to a new node attribute column.</p>
     
     </div>
 
@@ -146,45 +142,38 @@ a new node attribute column.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr_from</th>
-      <td><p>the node attribute containing
-numeric data that is to be rescaled to new numeric
-or color values.</p></td>
+      <td><p>the node attribute containing numeric data that is to
+be rescaled to new numeric or color values.</p></td>
     </tr>
     <tr>
       <th>to_lower_bound</th>
-      <td><p>the lower bound value for the
-set of rescaled values. This can be a numeric value
-or an X11 color name.</p></td>
+      <td><p>the lower bound value for the set of rescaled values.
+This can be a numeric value or an X11 color name.</p></td>
     </tr>
     <tr>
       <th>to_upper_bound</th>
-      <td><p>the upper bound value for the
-set of rescaled values. This can be a numeric value
-or an X11 color name.</p></td>
+      <td><p>the upper bound value for the set of rescaled values.
+This can be a numeric value or an X11 color name.</p></td>
     </tr>
     <tr>
       <th>node_attr_to</th>
-      <td><p>an optional name of a new node
-attribute to which the recoded values will be
-applied. This will retain the original node
+      <td><p>an optional name of a new node attribute to which the
+recoded values will be applied. This will retain the original node
 attribute and its values.</p></td>
     </tr>
     <tr>
       <th>from_lower_bound</th>
-      <td><p>an optional, manually set
-lower bound value for the rescaled values. If not
-set, the minimum value from the set will be used.</p></td>
+      <td><p>an optional, manually set lower bound value for the
+rescaled values. If not set, the minimum value from the set will be used.</p></td>
     </tr>
     <tr>
       <th>from_upper_bound</th>
-      <td><p>an optional, manually set
-upper bound value for the rescaled values. If not
-set, the minimum value from the set will be used.</p></td>
+      <td><p>an optional, manually set upper bound value for the
+rescaled values. If not set, the minimum value from the set will be used.</p></td>
     </tr>
     </table>
     
@@ -212,8 +201,7 @@ set, the minimum value from the set will be used.</p></td>
 <span class='co'># Get the graph's internal ndf</span>
 <span class='co'># to show which node attributes</span>
 <span class='co'># are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
 #&gt; 1  1 &lt;NA&gt;     1   5.3
 #&gt; 2  2 &lt;NA&gt;     2   4.4
 #&gt; 3  3 &lt;NA&gt;     3   5.8
@@ -232,8 +220,7 @@ set, the minimum value from the set will be used.</p></td>
 <span class='co'># Get the graph's internal ndf</span>
 <span class='co'># to show that the node attribute</span>
 <span class='co'># values had been rescaled</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
 #&gt; 1  1 &lt;NA&gt;     1 0.500
 #&gt; 2  2 &lt;NA&gt;     2 0.000
 #&gt; 3  3 &lt;NA&gt;     3 0.778
@@ -261,8 +248,7 @@ set, the minimum value from the set will be used.</p></td>
 <span class='co'># grayscale colors are now available</span>
 <span class='co'># in the `fillcolor` and `fontcolor`</span>
 <span class='co'># node attributes</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value fillcolor fontcolor
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value fillcolor fontcolor
 #&gt; 1  1 &lt;NA&gt;     1 0.500   #7B7B7B   #767676
 #&gt; 2  2 &lt;NA&gt;     2 0.000   #CCCCCC   #0D0D0D
 #&gt; 3  3 &lt;NA&gt;     3 0.778   #525252   #B9B9B9

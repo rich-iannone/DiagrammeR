@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Select nodes in the graph based on
-their degree values — select_nodes_by_degree • DiagrammeR</title>
+<title>Select nodes in the graph based on their degree values — select_nodes_by_degree • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,13 +30,10 @@ their degree values — select_nodes_by_degree • DiagrammeR</title>
 
 
 
-<meta property="og:title" content="Select nodes in the graph based on
-their degree values — select_nodes_by_degree" />
+<meta property="og:title" content="Select nodes in the graph based on their degree values — select_nodes_by_degree" />
 
-<meta property="og:description" content="Using a graph object of
-class dgr_graph, create a
-selection of nodes that have certain
-degree values." />
+<meta property="og:description" content="Using a graph object of class dgr_graph, create a selection of nodes
+  that have certain degree values." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,18 +119,15 @@ degree values." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Select nodes in the graph based on
-their degree values</h1>
+    <h1>Select nodes in the graph based on their degree values</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/select_nodes_by_degree.R'><code>R/select_nodes_by_degree.R</code></a></small>
     <div class="hidden name"><code>select_nodes_by_degree.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Using a graph object of
-class <code>dgr_graph</code>, create a
-selection of nodes that have certain
-degree values.</p>
+    <p>Using a graph object of class <code>dgr_graph</code>, create a selection of nodes
+  that have certain degree values.</p>
     
     </div>
 
@@ -145,40 +138,28 @@ degree values.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>expressions</th>
-      <td><p>one or more
-expressions for filtering nodes by
-degree values. Use a combination of
-degree type (<code>deg</code> for total
-degree, <code>indeg</code> for in-degree,
-and <code>outdeg</code> for out-degree)
-with a comparison operator and
-values for comparison (e.g., use
-<code>"deg &gt;= 2"</code> to select nodes
-with a degree greater than or equal
-to 2).</p></td>
+      <td><p>one or more expressions for filtering nodes by degree
+values. Use a combination of degree type (<code>deg</code> for total degree,
+<code>indeg</code> for in-degree, and <code>outdeg</code> for out-degree) with a
+comparison operator and values for comparison (e.g., use <code>"deg &gt;= 2"</code>
+to select nodes with a degree greater than or equal to 2).</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to
-perform upon consecutive selections
-of graph nodes. This can either be
-as a <code>union</code> (the default), as
-an intersection of selections with
-<code>intersect</code>, or, as a
-<code>difference</code> on the previous
-selection, if it exists.</p></td>
+      <td><p>the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a <code>union</code> (the default), as an
+intersection of selections with <code>intersect</code>, or, as a
+<code>difference</code> on the previous selection, if it exists.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -248,8 +229,7 @@ selection, if it exists.</p></td>
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>color</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_degree()` INFO: created a new selection of 5 nodes</span></div><div class='input'>
 <span class='co'># Get the selection of nodes</span>
-<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 5 nodes</span></div><div class='output co'>#&gt; [1]  1  4 13 25 35</div></pre>
+<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 5 nodes</span></div><div class='output co'>#&gt; [1]  1  4 13 25 35</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

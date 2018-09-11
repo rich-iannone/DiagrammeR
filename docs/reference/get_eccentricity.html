@@ -32,8 +32,7 @@
 
 <meta property="og:title" content="Get node eccentricities — get_eccentricity" />
 
-<meta property="og:description" content="Get a data frame with node
-eccentricity values." />
+<meta property="og:description" content="Get a data frame with node eccentricity values." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,8 +125,7 @@ eccentricity values." />
 
     <div class="ref-description">
     
-    <p>Get a data frame with node
-eccentricity values.</p>
+    <p>Get a data frame with node eccentricity values.</p>
     
     </div>
 
@@ -138,28 +136,22 @@ eccentricity values.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>mode</th>
-      <td><p>the mode with which the shortest
-paths to or from the given vertices should
-be calculated for directed graphs. If
-<code>out</code> (the default) then the shortest
-paths from the node, if <code>in</code> then only
-shortest paths to each node are considered.
-If <code>all</code> is used, then the corresponding
-undirected graph will be used and edge
-directions will be ignored. For undirected
-graphs, this argument is ignored.</p></td>
+      <td><p>the mode with which the shortest paths to or from the given
+vertices should be calculated for directed graphs. If <code>out</code> (the
+default) then the shortest paths from the node, if <code>in</code> then only
+shortest paths to each node are considered. If <code>all</code> is used, then the
+corresponding undirected graph will be used and edge directions will be
+ignored. For undirected graphs, this argument is ignored.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data frame containing eccentricity
-values by node ID value.</p>
+    <p>a data frame containing eccentricity values by node ID value.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -175,8 +167,7 @@ values by node ID value.</p>
 
 <span class='co'># Get the eccentricity values for</span>
 <span class='co'># all nodes in the graph</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_eccentricity</span>()</div><div class='output co'>#&gt;    id eccentricity
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'>get_eccentricity</span>()</div><div class='output co'>#&gt;    id eccentricity
 #&gt; 1   1            2
 #&gt; 2   2            3
 #&gt; 3   3            3

@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Select nodes based on a walk
-distance from a specified node — select_nodes_in_neighborhood • DiagrammeR</title>
+<title>Select nodes based on a walk distance from a specified node — select_nodes_in_neighborhood • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,13 +30,10 @@ distance from a specified node — select_nodes_in_neighborhood • DiagrammeR</
 
 
 
-<meta property="og:title" content="Select nodes based on a walk
-distance from a specified node — select_nodes_in_neighborhood" />
+<meta property="og:title" content="Select nodes based on a walk distance from a specified node — select_nodes_in_neighborhood" />
 
-<meta property="og:description" content="Select those nodes in
-the neighborhood of nodes connected
-a specified distance from an initial
-node." />
+<meta property="og:description" content="Select those nodes in the neighborhood of nodes connected a specified
+  distance from an initial node." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,18 +119,15 @@ node." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Select nodes based on a walk
-distance from a specified node</h1>
+    <h1>Select nodes based on a walk distance from a specified node</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/select_nodes_in_neighborhood.R'><code>R/select_nodes_in_neighborhood.R</code></a></small>
     <div class="hidden name"><code>select_nodes_in_neighborhood.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Select those nodes in
-the neighborhood of nodes connected
-a specified distance from an initial
-node.</p>
+    <p>Select those nodes in the neighborhood of nodes connected a specified
+  distance from an initial node.</p>
     
     </div>
 
@@ -145,37 +138,29 @@ node.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>the node from which the
-traversal will originate.</p></td>
+      <td><p>the node from which the traversal will originate.</p></td>
     </tr>
     <tr>
       <th>distance</th>
-      <td><p>the maximum number
-of steps from the <code>node</code> for
+      <td><p>the maximum number of steps from the <code>node</code> for
 inclusion in the selection.</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to
-perform upon consecutive selections
-of graph nodes. This can either be
-as a <code>union</code> (the default), as
-an intersection of selections with
-<code>intersect</code>, or, as a
-<code>difference</code> on the previous
-selection, if it exists.</p></td>
+      <td><p>the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a <code>union</code> (the default), as an
+intersection of selections with <code>intersect</code>, or, as a
+<code>difference</code> on the previous selection, if it exists.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -198,8 +183,7 @@ selection, if it exists.</p></td>
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_in_neighborhood()` INFO: created a new selection of 3 nodes</span></div><div class='input'>
 <span class='co'># Get the selection of nodes</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 3 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 3 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3</div><div class='input'>
 <span class='co'># Perform another selection</span>
 <span class='co'># of nodes, this time with a</span>
 <span class='co'># neighborhood spanning 2 nodes</span>
@@ -211,8 +195,7 @@ selection, if it exists.</p></td>
     <span class='kw'>node</span> <span class='kw'>=</span> <span class='fl'>1</span>,
     <span class='kw'>distance</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 3 nodes</span></div><div class='output co'>#&gt; <span class='message'>`select_nodes_in_neighborhood()` INFO: created a new selection of 7 nodes</span></div><div class='input'>
 <span class='co'># Get the selection of nodes</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 7 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3 4 5 6 7</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of 7 nodes</span></div><div class='output co'>#&gt; [1] 1 2 3 4 5 6 7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

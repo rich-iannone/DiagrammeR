@@ -32,8 +32,7 @@
 
 <meta property="og:title" content="Is the edge a loop edge? — is_edge_loop" />
 
-<meta property="og:description" content="Determines whether an edge
-definition is a loop edge." />
+<meta property="og:description" content="Determines whether an edge definition is a loop edge." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,8 +125,7 @@ definition is a loop edge." />
 
     <div class="ref-description">
     
-    <p>Determines whether an edge
-definition is a loop edge.</p>
+    <p>Determines whether an edge definition is a loop edge.</p>
     
     </div>
 
@@ -138,8 +136,7 @@ definition is a loop edge.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge</th>
@@ -167,8 +164,7 @@ definition is a loop edge.</p>
 
 <span class='co'># Get the graph's internal</span>
 <span class='co'># edge data frame</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
 #&gt; 1  1    1  2 &lt;NA&gt;
 #&gt; 2  2    2  3 &lt;NA&gt;
 #&gt; 3  3    3  4 &lt;NA&gt;
@@ -176,12 +172,10 @@ definition is a loop edge.</p>
 #&gt; 5  5    3  3 &lt;NA&gt;</div><div class='input'>
 <span class='co'># Determine if edge `4` is</span>
 <span class='co'># a loop edge</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>is_edge_loop</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'>is_edge_loop</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'># Determine if edge `2` is</span>
 <span class='co'># a loop edge</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>is_edge_loop</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] FALSE</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'>is_edge_loop</span>(<span class='kw'>edge</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

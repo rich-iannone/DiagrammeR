@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get neighboring nodes based on node attribute
-similarity — get_similar_nbrs • DiagrammeR</title>
+<title>Get neighboring nodes based on node attribute similarity — get_similar_nbrs • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,15 +30,12 @@ similarity — get_similar_nbrs • DiagrammeR</title>
 
 
 
-<meta property="og:title" content="Get neighboring nodes based on node attribute
-similarity — get_similar_nbrs" />
+<meta property="og:title" content="Get neighboring nodes based on node attribute similarity — get_similar_nbrs" />
 
-<meta property="og:description" content="With a graph a single node serving as
-the starting point, get those nodes in a potential
-neighborhood of nodes (adjacent to the starting
-node) that have a common or similar (within
-threshold values) node attribute to the starting
-node." />
+<meta property="og:description" content="With a graph a single node serving as the starting point, get those nodes in
+  a potential neighborhood of nodes (adjacent to the starting node) that have
+  a common or similar (within threshold values) node attribute to the
+  starting node." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -125,20 +121,17 @@ node." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get neighboring nodes based on node attribute
-similarity</h1>
+    <h1>Get neighboring nodes based on node attribute similarity</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/get_similar_nbrs.R'><code>R/get_similar_nbrs.R</code></a></small>
     <div class="hidden name"><code>get_similar_nbrs.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>With a graph a single node serving as
-the starting point, get those nodes in a potential
-neighborhood of nodes (adjacent to the starting
-node) that have a common or similar (within
-threshold values) node attribute to the starting
-node.</p>
+    <p>With a graph a single node serving as the starting point, get those nodes in
+  a potential neighborhood of nodes (adjacent to the starting node) that have
+  a common or similar (within threshold values) node attribute to the
+  starting node.</p>
     
     </div>
 
@@ -150,37 +143,31 @@ node.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>a single-length vector containing a
-node ID value.</p></td>
+      <td><p>a single-length vector containing a node ID value.</p></td>
     </tr>
     <tr>
       <th>node_attr</th>
-      <td><p>the name of the node attribute
-to use to compare with adjacent nodes.</p></td>
+      <td><p>the name of the node attribute to use to compare with
+adjacent nodes.</p></td>
     </tr>
     <tr>
       <th>tol_abs</th>
-      <td><p>if the values contained in the node
-attribute <code>node_attr</code> are numeric, one can
-optionally supply a numeric vector of length 2 that
-provides a lower and upper numeric bound as criteria
-for neighboring node similarity to the starting
-node.</p></td>
+      <td><p>if the values contained in the node attribute <code>node_attr</code>
+are numeric, one can optionally supply a numeric vector of length 2 that
+provides a lower and upper numeric bound as criteria for neighboring node
+similarity to the starting node.</p></td>
     </tr>
     <tr>
       <th>tol_pct</th>
-      <td><p>if the values contained in the node
-attribute <code>node_attr</code> are numeric, one can
-optionally supply a numeric vector of length 2 that
-specifies lower and upper bounds as negative and
-positive percentage changes to the value of the
-starting node. These bounds serve as criteria for
-neighboring node similarity to the starting node.</p></td>
+      <td><p>if the values contained in the node attribute <code>node_attr</code>
+are numeric, one can optionally supply a numeric vector of length 2 that
+specifies lower and upper bounds as negative and positive percentage
+changes to the value of the starting node. These bounds serve as criteria
+for neighboring node similarity to the starting node.</p></td>
     </tr>
     </table>
     

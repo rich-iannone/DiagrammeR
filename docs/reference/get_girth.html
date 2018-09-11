@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get graph girth — get_girth • DiagrammeR</title>
+<title>Get the graph girth — get_girth • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,13 +30,11 @@
 
 
 
-<meta property="og:title" content="Get graph girth — get_girth" />
+<meta property="og:title" content="Get the graph girth — get_girth" />
 
-<meta property="og:description" content="Get the girth of a graph, which is
-the length of the shortest circle in the graph.
-Loop edges and multiple edges are not considered.
-If the graph contains no cycles then zero is
-returned." />
+<meta property="og:description" content="Get the girth of a graph, which is the length of the shortest circle in the
+  graph. Loop edges and multiple edges are not considered. If the graph
+  contains no cycles then zero is returned." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,18 +120,16 @@ returned." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get graph girth</h1>
+    <h1>Get the graph girth</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/get_girth.R'><code>R/get_girth.R</code></a></small>
     <div class="hidden name"><code>get_girth.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get the girth of a graph, which is
-the length of the shortest circle in the graph.
-Loop edges and multiple edges are not considered.
-If the graph contains no cycles then zero is
-returned.</p>
+    <p>Get the girth of a graph, which is the length of the shortest circle in the
+  graph. Loop edges and multiple edges are not considered. If the graph
+  contains no cycles then zero is returned.</p>
     
     </div>
 
@@ -144,15 +140,14 @@ returned.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a single numeric value representing the
-length of the shortest circle in the graph.</p>
+    <p>a single numeric value representing the length of the shortest circle
+  in the graph.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -162,8 +157,7 @@ length of the shortest circle in the graph.</p>
   <span class='fu'><a href='add_cycle.html'>add_cycle</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 
 <span class='co'># Determine the graph's girth</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_girth</span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'>get_girth</span>()</div><div class='output co'>#&gt; [1] 5</div><div class='input'>
 <span class='co'># Create a full graph and then</span>
 <span class='co'># get the girth for that</span>
 <span class='fu'><a href='create_graph.html'>create_graph</a></span>() <span class='kw'>%&gt;%</span>

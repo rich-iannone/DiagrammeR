@@ -32,10 +32,8 @@
 
 <meta property="og:title" content="Create a graph object — create_graph" />
 
-<meta property="og:description" content="Generates a graph object
-with the option to use node data frames
-(ndfs) and/or edge data frames (edfs)
-to populate the initial graph." />
+<meta property="og:description" content="Generates a graph object with the option to use node data frames (ndfs)
+  and/or edge data frames (edfs) to populate the initial graph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +126,8 @@ to populate the initial graph." />
 
     <div class="ref-description">
     
-    <p>Generates a graph object
-with the option to use node data frames
-(ndfs) and/or edge data frames (edfs)
-to populate the initial graph.</p>
+    <p>Generates a graph object with the option to use node data frames (ndfs)
+  and/or edge data frames (edfs) to populate the initial graph.</p>
     
     </div>
 
@@ -143,67 +139,46 @@ to populate the initial graph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>nodes_df</th>
-      <td><p>an optional data frame
-containing, at minimum, a column
-(called <code>id</code>) which contains
-node IDs for the graph. Additional
-columns (node attributes) can be
-included with values for the named
-node attribute.</p></td>
+      <td><p>an optional data frame containing, at minimum, a column
+(called <code>id</code>) which contains node IDs for the graph. Additional
+columns (node attributes) can be included with values for the named node
+attribute.</p></td>
     </tr>
     <tr>
       <th>edges_df</th>
-      <td><p>an optional data
-frame containing, at minimum, two
-columns (called <code>from</code> and
-<code>to</code>) where node IDs are
-provided. Additional columns (edge
-attributes) can be included with
-values for the named edge attribute.</p></td>
+      <td><p>an optional data frame containing, at minimum, two columns
+(called <code>from</code> and <code>to</code>) where node IDs are provided. Additional
+columns (edge attributes) can be included with values for the named edge
+attribute.</p></td>
     </tr>
     <tr>
       <th>directed</th>
-      <td><p>with <code>TRUE</code>
-(the default) or <code>FALSE</code>, either
-directed or undirected edge
-operations will be generated,
-respectively.</p></td>
+      <td><p>with <code>TRUE</code> (the default) or <code>FALSE</code>, either
+directed or undirected edge operations will be generated, respectively.</p></td>
     </tr>
     <tr>
       <th>graph_name</th>
-      <td><p>an optional
-string for labeling the graph object.</p></td>
+      <td><p>an optional string for labeling the graph object.</p></td>
     </tr>
     <tr>
       <th>attr_theme</th>
-      <td><p>the theme (i.e.,
-collection of <code>graph</code>,
-<code>node</code>, and <code>edge</code> global
-graph attributes) to use for this
-graph. The default theme is called
-<code>default</code>. If this is set to
-<code>NULL</code> then no global graph
-attributes will be applied to the
-graph upon creation.</p></td>
+      <td><p>the theme (i.e., collection of <code>graph</code>, <code>node</code>,
+and <code>edge</code> global graph attributes) to use for this graph. The default
+theme is called <code>default</code>. If this is set to <code>NULL</code> then no
+global graph attributes will be applied to the graph upon creation.</p></td>
     </tr>
     <tr>
       <th>write_backups</th>
-      <td><p>an option to
-write incremental backups of changing
-graph states to disk. If <code>TRUE</code>,
-a subdirectory within the working
-directory will be created and used
-to store <code>RDS</code> files. The
-default value is <code>FALSE</code> so
-one has to opt in to use this
-functionality.</p></td>
+      <td><p>an option to write incremental backups of changing
+graph states to disk. If <code>TRUE</code>, a subdirectory within the working
+directory will be created and used to store <code>RDS</code> files. The default
+value is <code>FALSE</code> so one has to opt in to use this functionality.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -283,15 +258,13 @@ functionality.</p></td>
 
 <span class='co'># Get information on the graph's</span>
 <span class='co'># internal edge data frame (edf)</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to        rel values
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to        rel values
 #&gt; 1  1    1  4 leading_to    7.3
 #&gt; 2  2    2  3 leading_to    2.6
 #&gt; 3  3    3  1 leading_to    8.3</div><div class='input'>
 <span class='co'># Get information on the graph's</span>
 <span class='co'># internal node data frame (ndf)</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id   type label     shape values
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id   type label     shape values
 #&gt; 1  1 type_1     1    circle    3.5
 #&gt; 2  2 type_1     2    circle    2.6
 #&gt; 3  3 type_5     3 rectangle    9.4

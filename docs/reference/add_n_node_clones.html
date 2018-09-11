@@ -32,13 +32,11 @@
 
 <meta property="og:title" content="Add one or several clones of an existing node to the graph — add_n_node_clones" />
 
-<meta property="og:description" content="Add n new nodes to a graph object of
-class dgr_graph which are clones of a node already
-in the graph. All node attributes are preserved except for
-the node label attribute (to maintain the
-uniqueness of non-NA node label values). A vector
-of node label can be provided to bind new labels
-to the cloned nodes." />
+<meta property="og:description" content="Add n new nodes to a graph object of class dgr_graph which are
+  clones of a node already in the graph. All node attributes are preserved
+  except for the node label attribute (to maintain the uniqueness of
+  non-NA node label values). A vector of node label can be
+  provided to bind new labels to the cloned nodes." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -131,13 +129,11 @@ to the cloned nodes." />
 
     <div class="ref-description">
     
-    <p>Add n new nodes to a graph object of
-class <code>dgr_graph</code> which are clones of a node already
-in the graph. All node attributes are preserved except for
-the node <code>label</code> attribute (to maintain the
-uniqueness of non-<code>NA</code> node label values). A vector
-of node <code>label</code> can be provided to bind new labels
-to the cloned nodes.</p>
+    <p>Add <code>n</code> new nodes to a graph object of class <code>dgr_graph</code> which are
+  clones of a node already in the graph. All node attributes are preserved
+  except for the node <code>label</code> attribute (to maintain the uniqueness of
+  non-<code>NA</code> node label values). A vector of node <code>label</code> can be
+  provided to bind new labels to the cloned nodes.</p>
     
     </div>
 
@@ -148,8 +144,7 @@ to the cloned nodes.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>n</th>
@@ -157,14 +152,12 @@ to the cloned nodes.</p>
     </tr>
     <tr>
       <th>node</th>
-      <td><p>a node ID corresponding to the graph node
-to be cloned.</p></td>
+      <td><p>a node ID corresponding to the graph node to be cloned.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>an optional vector of node label values.
-The vector length should correspond to the value set
-for <code>n</code>.</p></td>
+      <td><p>an optional vector of node label values. The vector length
+should correspond to the value set for <code>n</code>.</p></td>
     </tr>
     </table>
     
@@ -186,8 +179,7 @@ for <code>n</code>.</p></td>
 
 <span class='co'># Display the graph's internal</span>
 <span class='co'># node data frame</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
 #&gt; 1  1    a     d
 #&gt; 2  2    b     g
 #&gt; 3  3    c     r</div><div class='input'>
@@ -204,8 +196,7 @@ for <code>n</code>.</p></td>
 <span class='co'># Display the graph's internal</span>
 <span class='co'># node data frame: nodes `4`,</span>
 <span class='co'># `5`, and `6` are clones of `1`</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
 #&gt; 1  1    a     d
 #&gt; 2  2    b     g
 #&gt; 3  3    c     r

@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="Apply colors based on node attribute values — colorize_node_attrs" />
 
-<meta property="og:description" content="Within a graph's internal node data
-frame (ndf), use a categorical node attribute to
-generate a new node attribute with color values." />
+<meta property="og:description" content="Within a graph's internal node data frame (ndf), use a categorical node
+  attribute to generate a new node attribute with color values." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,9 +126,8 @@ generate a new node attribute with color values." />
 
     <div class="ref-description">
     
-    <p>Within a graph's internal node data
-frame (ndf), use a categorical node attribute to
-generate a new node attribute with color values.</p>
+    <p>Within a graph's internal node data frame (ndf), use a categorical node
+  attribute to generate a new node attribute with color values.</p>
     
     </div>
 
@@ -142,53 +140,46 @@ generate a new node attribute with color values.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr_from</th>
-      <td><p>the name of the node attribute
-column from which color values will be based.</p></td>
+      <td><p>the name of the node attribute column from which color
+values will be based.</p></td>
     </tr>
     <tr>
       <th>node_attr_to</th>
-      <td><p>the name of the new node
-attribute to which the color values will be applied.</p></td>
+      <td><p>the name of the new node attribute to which the color
+values will be applied.</p></td>
     </tr>
     <tr>
       <th>cut_points</th>
-      <td><p>an optional vector of numerical
-breaks for bucketizing continuous numerical values
-available in a node attribute column.</p></td>
+      <td><p>an optional vector of numerical breaks for bucketizing
+continuous numerical values available in a edge attribute column.</p></td>
     </tr>
     <tr>
       <th>palette</th>
-      <td><p>can either be: (1) a palette name from
-the RColorBrewer package (e.g., <code>Greens</code>,
-<code>OrRd</code>, <code>RdYlGn</code>), (2) <code>viridis</code>, which
-indicates use of the <code>viridis</code> color scale from
-the package of the same name, or (3) a vector of
-hexadecimal color names.</p></td>
+      <td><p>can either be: (1) a palette name from the RColorBrewer
+package (e.g., <code>Greens</code>, <code>OrRd</code>, <code>RdYlGn</code>), (2)
+<code>viridis</code>, which indicates use of the <code>viridis</code> color scale from
+the package of the same name, or (3) a vector of hexadecimal color names.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p>an optional alpha transparency value to
-apply to the generated colors. Should be in
-the range of <code>0</code> (completely transparent) to
+      <td><p>an optional alpha transparency value to apply to the generated
+colors. Should be in the range of <code>0</code> (completely transparent) to
 <code>100</code> (completely opaque).</p></td>
     </tr>
     <tr>
       <th>reverse_palette</th>
-      <td><p>an option to reverse the order
-of colors in the chosen palette. The default is
-<code>FALSE</code>.</p></td>
+      <td><p>an option to reverse the order of colors in the chosen
+palette. The default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>default_color</th>
-      <td><p>a hexadecimal color value to
-use for instances when the values do not fall into
-the bucket ranges specified in the <code>cut_points</code>
-vector.</p></td>
+      <td><p>a hexadecimal color value to use for instances when the
+values do not fall into the bucket ranges specified in the
+<code>cut_points</code> vector.</p></td>
     </tr>
     </table>
     
@@ -246,8 +237,7 @@ vector.</p></td>
     <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>80</span>)
 
 <span class='co'># Show the graph's internal node data frame</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label weight walktrap_group fillcolor     color
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label weight walktrap_group fillcolor     color
 #&gt; 1  1 &lt;NA&gt;     1    8.2              1 #E5F5E090 #44015480
 #&gt; 2  2 &lt;NA&gt;     2    3.7              1 #E5F5E090 #44015480
 #&gt; 3  3 &lt;NA&gt;     3    6.3              1 #E5F5E090 #44015480
@@ -280,8 +270,7 @@ vector.</p></td>
 <span class='co'># Now there will be a `fillcolor` node attribute</span>
 <span class='co'># with distinct colors (the `#D9D9D9` color is</span>
 <span class='co'># the default `gray85` color)</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label weight fillcolor
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label weight fillcolor
 #&gt; 1  1 &lt;NA&gt;     1    8.2   #2B83BA
 #&gt; 2  2 &lt;NA&gt;     2    3.7   #FDAE61
 #&gt; 3  3 &lt;NA&gt;     3    6.3   #ABDDA4

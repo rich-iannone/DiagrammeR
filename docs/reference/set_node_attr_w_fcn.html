@@ -32,10 +32,8 @@
 
 <meta property="og:title" content="Set node attribute values with a graph function — set_node_attr_w_fcn" />
 
-<meta property="og:description" content="From a graph object of class
-dgr_graph or a node data frame, set node
-attribute properties for all nodes in the graph
-using one of several whole-graph functions." />
+<meta property="og:description" content="From a graph object of class dgr_graph or a node data frame, set node
+  attribute properties for all nodes in the graph using one of several whole-graph functions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +126,8 @@ using one of several whole-graph functions." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class
-<code>dgr_graph</code> or a node data frame, set node
-attribute properties for all nodes in the graph
-using one of several whole-graph functions.</p>
+    <p>From a graph object of class <code>dgr_graph</code> or a node data frame, set node
+  attribute properties for all nodes in the graph using one of several whole-graph functions.</p>
     
     </div>
 
@@ -142,46 +138,41 @@ using one of several whole-graph functions.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr_fcn</th>
-      <td><p>the name of the function to
-use for creating a column of node attribute values.
-Valid functions are: <code>get_alpha_centrality</code>,
-<code>get_authority_centrality</code>,
-<code>get_betweenness</code>, <code>get_bridging</code>,
-<code>get_closeness</code>, <code>get_cmty_edge_btwns</code>,
-<code>get_cmty_fast_greedy</code>, <code>get_cmty_l_eigenvec</code>,
-<code>get_cmty_louvain</code>, <code>get_cmty_walktrap</code>,
-<code>get_constraint</code>, <code>get_degree_distribution</code>,
-<code>get_degree_histogram</code>, <code>get_degree_in</code>,
-<code>get_degree_out</code>, <code>get_degree_total</code>,
-<code>get_eccentricity</code>, <code>get_eigen_centrality</code>,
-<code>get_pagerank</code>, <code>get_s_connected_cmpts</code>,
-and <code>get_w_connected_cmpts</code>.</p></td>
+      <td><p>the name of the function to use for creating a column of
+node attribute values. Valid functions are:
+<code><a href='get_alpha_centrality.html'>get_alpha_centrality</a>()</code>,
+<code><a href='get_authority_centrality.html'>get_authority_centrality</a>()</code>,
+<code><a href='get_betweenness.html'>get_betweenness</a>()</code>, <code><a href='get_bridging.html'>get_bridging</a>()</code>,
+<code><a href='get_closeness.html'>get_closeness</a>()</code>, <code><a href='get_cmty_edge_btwns.html'>get_cmty_edge_btwns</a>()</code>,
+<code><a href='get_cmty_fast_greedy.html'>get_cmty_fast_greedy</a>()</code>, <code><a href='get_cmty_l_eigenvec.html'>get_cmty_l_eigenvec</a>()</code>,
+<code><a href='get_cmty_louvain.html'>get_cmty_louvain</a>()</code>, <code><a href='get_cmty_walktrap.html'>get_cmty_walktrap</a>()</code>,
+<code><a href='get_constraint.html'>get_constraint</a>()</code>, <code><a href='get_degree_distribution.html'>get_degree_distribution</a>()</code>,
+<code><a href='get_degree_histogram.html'>get_degree_histogram</a>()</code>, <code><a href='get_degree_in.html'>get_degree_in</a>()</code>,
+<code><a href='get_degree_out.html'>get_degree_out</a>()</code>, <code><a href='get_degree_total.html'>get_degree_total</a>()</code>,
+<code><a href='get_eccentricity.html'>get_eccentricity</a>()</code>, <code><a href='get_eigen_centrality.html'>get_eigen_centrality</a>()</code>,
+<code><a href='get_pagerank.html'>get_pagerank</a>()</code>, <code><a href='get_s_connected_cmpts.html'>get_s_connected_cmpts</a>()</code>,
+and <code><a href='get_w_connected_cmpts.html'>get_w_connected_cmpts</a>()</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments and values to pass to
-the named function in <code>node_attr_fcn</code>, if
-necessary.</p></td>
+      <td><p>arguments and values to pass to the named function in
+<code>node_attr_fcn</code>, if necessary.</p></td>
     </tr>
     <tr>
       <th>column_name</th>
-      <td><p>an option to supply a column
-name for the new node attribute column. If
-<code>NULL</code> then the column name supplied by the
-function will used along with a <code>__A</code>
-suffix.</p></td>
+      <td><p>an option to supply a column name for the new node
+attribute column. If <code>NULL</code> then the column name supplied by the
+function will used along with a <code>__A</code> suffix.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>either a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>either a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -210,8 +201,7 @@ suffix.</p></td>
 
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
-<span class='no'>graph_1</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value betweenness__A
+<span class='no'>graph_1</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value betweenness__A
 #&gt; 1   1 &lt;NA&gt;     1   4.4       9.333333
 #&gt; 2   2 &lt;NA&gt;     2   4.6      29.000000
 #&gt; 3   3 &lt;NA&gt;     3   5.9      19.166667
@@ -233,8 +223,7 @@ suffix.</p></td>
 
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
-<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value alpha_centrality__A
+<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value alpha_centrality__A
 #&gt; 1   1 &lt;NA&gt;     1   4.4           0.0621118
 #&gt; 2   2 &lt;NA&gt;     2   4.6          -0.5341615
 #&gt; 3   3 &lt;NA&gt;     3   5.9          -0.8157350
@@ -254,8 +243,7 @@ suffix.</p></td>
 
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
-<span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value pagerank
+<span class='no'>graph_3</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value pagerank
 #&gt; 1   1 &lt;NA&gt;     1   4.4   0.1416
 #&gt; 2   2 &lt;NA&gt;     2   4.6   0.1401
 #&gt; 3   3 &lt;NA&gt;     3   5.9   0.1262
@@ -283,8 +271,7 @@ suffix.</p></td>
 
 <span class='co'># Inspect the graph's internal</span>
 <span class='co'># node data frame</span>
-<span class='no'>graph_3</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value pagerank
+<span class='no'>graph_3</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;    id type label value pagerank
 #&gt; 1   1 &lt;NA&gt;     1   4.4   0.1349
 #&gt; 2   2 &lt;NA&gt;     2   4.6   0.1352
 #&gt; 3   3 &lt;NA&gt;     3   5.9   0.1585

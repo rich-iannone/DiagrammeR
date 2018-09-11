@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="Mutate a set of edge attribute values — mutate_edge_attrs" />
 
-<meta property="og:description" content="Within a graph's internal edge
-data frame (edf), mutate numeric edge
-attribute values using one or more expressions." />
+<meta property="og:description" content="Within a graph's internal edge data frame (edf), mutate numeric edge
+  attribute values using one or more expressions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,9 +126,8 @@ attribute values using one or more expressions." />
 
     <div class="ref-description">
     
-    <p>Within a graph's internal edge
-data frame (edf), mutate numeric edge
-attribute values using one or more expressions.</p>
+    <p>Within a graph's internal edge data frame (edf), mutate numeric edge
+  attribute values using one or more expressions.</p>
     
     </div>
 
@@ -140,26 +138,21 @@ attribute values using one or more expressions.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>expressions used for the mutation
-of edge attributes. LHS of each expression is
-either an existing or new edge attribute name.
-The RHS can consist of any valid R code that
-uses edge attributes as variables. Expressions
-are evaluated in the order provided, so, edge
-attributes created or modified are ready to
-use in subsequent expressions.</p></td>
+      <td><p>expressions used for the mutation of edge attributes. LHS of each
+expression is either an existing or new edge attribute name. The RHS can
+consist of any valid R code that uses edge attributes as variables.
+Expressions are evaluated in the order provided, so, edge attributes
+created or modified are ready to use in subsequent expressions.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -174,8 +167,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show which edge attributes</span>
 <span class='co'># are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width
 #&gt; 1  1    1  2 &lt;NA&gt;   3.4
 #&gt; 2  2    2  3 &lt;NA&gt;   2.3
 #&gt; 3  3    3  4 &lt;NA&gt;   7.2</div><div class='input'>
@@ -191,8 +183,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># edf to show that the edge</span>
 <span class='co'># attribute `width` had its</span>
 <span class='co'># values changed</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width
 #&gt; 1  1    1  2 &lt;NA&gt;  1.70
 #&gt; 2  2    2  3 &lt;NA&gt;  1.15
 #&gt; 3  3    3  4 &lt;NA&gt;  3.60</div><div class='input'>
@@ -210,8 +201,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show that the edge attribute</span>
 <span class='co'># values had been mutated</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width length
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width length
 #&gt; 1  1    1  2 &lt;NA&gt;  1.70   2.53
 #&gt; 2  2    2  3 &lt;NA&gt;  1.15   2.14
 #&gt; 3  3    3  4 &lt;NA&gt;  3.60   3.28</div><div class='input'>
@@ -228,8 +218,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># to show that the edge attribute</span>
 <span class='co'># values had been multiplied</span>
 <span class='co'># together (with new attr `area`)</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width length   area
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel width length   area
 #&gt; 1  1    1  2 &lt;NA&gt;  1.70   2.53  4.301
 #&gt; 2  2    2  3 &lt;NA&gt;  1.15   2.14  2.461
 #&gt; 3  3    3  4 &lt;NA&gt;  3.60   3.28 11.808</div></pre>

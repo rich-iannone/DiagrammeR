@@ -32,11 +32,9 @@
 
 <meta property="og:title" content="Rescale numeric edge attribute values — rescale_edge_attrs" />
 
-<meta property="og:description" content="From a graph object of class
-dgr_graph, take a set of numeric values for
-an edge attribute, rescale to a new numeric or color
-range, then write to the same edge attribute or to
-a new edge attribute column." />
+<meta property="og:description" content="From a graph object of class dgr_graph, take a set of numeric values
+  for an edge attribute, rescale to a new numeric or color range, then write
+  to the same edge attribute or to a new edge attribute column." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,11 +127,9 @@ a new edge attribute column." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class
-<code>dgr_graph</code>, take a set of numeric values for
-an edge attribute, rescale to a new numeric or color
-range, then write to the same edge attribute or to
-a new edge attribute column.</p>
+    <p>From a graph object of class <code>dgr_graph</code>, take a set of numeric values
+  for an edge attribute, rescale to a new numeric or color range, then write
+  to the same edge attribute or to a new edge attribute column.</p>
     
     </div>
 
@@ -146,45 +142,38 @@ a new edge attribute column.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge_attr_from</th>
-      <td><p>the edge attribute containing
-numeric data that is to be rescaled to new numeric
-or color values.</p></td>
+      <td><p>the edge attribute containing numeric data that is to
+be rescaled to new numeric or color values.</p></td>
     </tr>
     <tr>
       <th>to_lower_bound</th>
-      <td><p>the lower bound value for the
-set of rescaled values. This can be a numeric value
-or an X11 color name.</p></td>
+      <td><p>the lower bound value for the set of rescaled values.
+This can be a numeric value or an X11 color name.</p></td>
     </tr>
     <tr>
       <th>to_upper_bound</th>
-      <td><p>the upper bound value for the
-set of rescaled values. This can be a numeric value
-or an X11 color name.</p></td>
+      <td><p>the upper bound value for the set of rescaled values.
+This can be a numeric value or an X11 color name.</p></td>
     </tr>
     <tr>
       <th>edge_attr_to</th>
-      <td><p>an optional name of a new edge
-attribute to which the recoded values will be
-applied. This will retain the original edge
+      <td><p>an optional name of a new edge attribute to which the
+recoded values will be applied. This will retain the original edge
 attribute and its values.</p></td>
     </tr>
     <tr>
       <th>from_lower_bound</th>
-      <td><p>an optional, manually set
-lower bound value for the rescaled values. If not
-set, the minimum value from the set will be used.</p></td>
+      <td><p>an optional, manually set lower bound value for the
+rescaled values. If not set, the minimum value from the set will be used.</p></td>
     </tr>
     <tr>
       <th>from_upper_bound</th>
-      <td><p>an optional, manually set
-upper bound value for the rescaled values. If not
-set, the minimum value from the set will be used.</p></td>
+      <td><p>an optional, manually set upper bound value for the
+rescaled values. If not set, the minimum value from the set will be used.</p></td>
     </tr>
     </table>
     
@@ -212,8 +201,7 @@ set, the minimum value from the set will be used.</p></td>
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show which edge attributes</span>
 <span class='co'># are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel   weight
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel   weight
 #&gt; 1  1    2  8 &lt;NA&gt; 5.045437
 #&gt; 2  2    4  2 &lt;NA&gt; 6.575780
 #&gt; 3  3    4  6 &lt;NA&gt; 5.218288
@@ -234,8 +222,7 @@ set, the minimum value from the set will be used.</p></td>
 <span class='co'># Get the graph's internal edf</span>
 <span class='co'># to show that the edge attribute</span>
 <span class='co'># values had been rescaled</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel weight
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel weight
 #&gt; 1  1    2  8 &lt;NA&gt;  0.452
 #&gt; 2  2    4  2 &lt;NA&gt;  1.000
 #&gt; 3  3    4  6 &lt;NA&gt;  0.514
@@ -268,8 +255,7 @@ set, the minimum value from the set will be used.</p></td>
 <span class='co'># in `color` and scaled numerical</span>
 <span class='co'># values are in the `penwidth`</span>
 <span class='co'># edge attribute</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel weight   color penwidth
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel weight   color penwidth
 #&gt; 1  1    2  8 &lt;NA&gt;  0.452 #838383    1.630
 #&gt; 2  2    4  2 &lt;NA&gt;  1.000 #333333    3.000
 #&gt; 3  3    4  6 &lt;NA&gt;  0.514 #797979    1.785

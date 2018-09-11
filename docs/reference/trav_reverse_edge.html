@@ -32,18 +32,12 @@
 
 <meta property="og:title" content="Traverse to any reverse edges — trav_reverse_edge" />
 
-<meta property="og:description" content="From an active selection
-of edges in a graph object of class
-dgr_graph, traverse to any
-available reverse edges between the
-nodes common to the selected edges.
-For instance, if an active selection
-has the edge 1-&amp;gt;2 but there is
-also an (not selected) edge 2-&amp;gt;1,
-then this function can either switch
-to the selection of 2-&amp;gt;1, or,
-incorporate both those edges into the
-active selection of edges." />
+<meta property="og:description" content="From an active selection of edges in a graph object of class
+dgr_graph, traverse to any available reverse edges between the nodes
+common to the selected edges. For instance, if an active selection has the
+edge 1-&amp;gt;2 but there is also an (not selected) edge 2-&amp;gt;1, then
+this function can either switch to the selection of 2-&amp;gt;1, or,
+incorporate both those edges into the active selection of edges." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,18 +130,12 @@ active selection of edges." />
 
     <div class="ref-description">
     
-    <p>From an active selection
-of edges in a graph object of class
-<code>dgr_graph</code>, traverse to any
-available reverse edges between the
-nodes common to the selected edges.
-For instance, if an active selection
-has the edge <code>1-&gt;2</code> but there is
-also an (not selected) edge <code>2-&gt;1</code>,
-then this function can either switch
-to the selection of <code>2-&gt;1</code>, or,
-incorporate both those edges into the
-active selection of edges.</p>
+    <p>From an active selection of edges in a graph object of class
+<code>dgr_graph</code>, traverse to any available reverse edges between the nodes
+common to the selected edges. For instance, if an active selection has the
+edge <code>1-&gt;2</code> but there is also an (not selected) edge <code>2-&gt;1</code>, then
+this function can either switch to the selection of <code>2-&gt;1</code>, or,
+incorporate both those edges into the active selection of edges.</p>
     
     </div>
 
@@ -158,24 +146,37 @@ active selection of edges.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>add_to_selection</th>
-      <td><p>an option to
-either add the reverse edges to the
-active selection of edges (<code>TRUE</code>)
-or switch the active selection entirely
-to those reverse edges (<code>FALSE</code>,
-the default case).</p></td>
+      <td><p>an option to either add the reverse edges to the
+active selection of edges (<code>TRUE</code>) or switch the active selection
+entirely to those reverse edges (<code>FALSE</code>, the default case).</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This traversal function makes use of an active selection of edges. After the
+traversal, depending on the traversal conditions, there will either be a
+selection of edges or no selection at all.</p>
+<p>Selections of edges can be performed using the following selection
+(<code>select_*()</code>) functions:
+<code><a href='select_edges.html'>select_edges</a>()</code>,
+<code><a href='select_last_edges_created.html'>select_last_edges_created</a>()</code>,
+<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id</a>()</code>, or
+<code><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a>()</code>.</p>
+<p>Selections of edges can also be performed using the following traversal
+(<code>trav_*()</code>) functions:
+<code><a href='trav_out_edge.html'>trav_out_edge</a>()</code>,
+<code><a href='trav_in_edge.html'>trav_in_edge</a>()</code>,
+<code><a href='trav_both_edge.html'>trav_both_edge</a>()</code>, or
+<code>trav_reverse_edge()</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -212,8 +213,7 @@ the default case).</p></td>
 #&gt; <span class='message'>* 2 edges are now in the active selection</span>
 #&gt; <span class='message'>* used the `union` set operation</span></div><div class='input'>
 <span class='co'># Get the inital edge selection</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 3</div><div class='input'>
 <span class='co'># Traverse to the reverse edges</span>
 <span class='co'># (edges `2`: `4`-&gt;`1` and</span>
 <span class='co'># `4`:`3`-&gt;`2`)</span>
@@ -222,8 +222,7 @@ the default case).</p></td>
   <span class='fu'>trav_reverse_edge</span>()
 
 <span class='co'># Get the current selection of edges</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 2 4</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 2 4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -231,6 +230,8 @@ the default case).</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

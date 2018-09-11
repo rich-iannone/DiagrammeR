@@ -32,10 +32,9 @@
 
 <meta property="og:title" content="Insert node aesthetic attributes during node creation — node_aes" />
 
-<meta property="og:description" content="This helper function should be
-invoked to provide values for the namesake
-node_aes argument, which is present
-in any function where nodes are created." />
+<meta property="og:description" content="This helper function should be invoked to provide values for the namesake
+  node_aes argument, which is present in any function where nodes are
+  created." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +127,9 @@ in any function where nodes are created." />
 
     <div class="ref-description">
     
-    <p>This helper function should be
-invoked to provide values for the namesake
-<code>node_aes</code> argument, which is present
-in any function where nodes are created.</p>
+    <p>This helper function should be invoked to provide values for the namesake
+  <code>node_aes</code> argument, which is present in any function where nodes are
+  created.</p>
     
     </div>
 
@@ -148,104 +146,80 @@ in any function where nodes are created.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>shape</th>
-      <td><p>the shape to use for the node.
-Some possible <code>shape</code> types include:
-<code>circle</code>, <code>rectangle</code>,
-<code>triangle</code>, <code>plaintext</code>,
-<code>square</code>, and <code>polygon</code>.</p></td>
+      <td><p>the shape to use for the node. Some possible <code>shape</code> types
+include: <code>circle</code>, <code>rectangle</code>, <code>triangle</code>,
+<code>plaintext</code>, <code>square</code>, and <code>polygon</code>.</p></td>
     </tr>
     <tr>
       <th>style</th>
-      <td><p>the node line style. The
-<code>style</code> types that can be used are
-<code>filled</code>, <code>invisible</code>,
-<code>diagonals</code>, <code>rounded</code>, <code>dashed</code>,
-<code>dotted</code>, <code>solid</code>, and <code>bold</code>.</p></td>
+      <td><p>the node line style. The <code>style</code> types that can be used
+are: <code>filled</code>, <code>invisible</code>, <code>diagonals</code>, <code>rounded</code>,
+<code>dashed</code>, <code>dotted</code>, <code>solid</code>, and <code>bold</code>.</p></td>
     </tr>
     <tr>
       <th>penwidth</th>
-      <td><p>the thickness of the stroke
-line (in pt units) for the node shape. The
-default value is <code>1.0</code>.</p></td>
+      <td><p>the thickness of the stroke line (in pt units) for the node
+shape. The default value is <code>1.0</code>.</p></td>
     </tr>
     <tr>
       <th>color</th>
-      <td><p>the color of the node's
-outline. Can be any of the named colors
-that R knows about (obtained using the
-<code>colors()</code> function), or, a hexadecimal
-color code.</p></td>
+      <td><p>the color of the node's outline. Can be any of the named colors
+that R knows about (obtained using the <code>colors()</code> function), or, a
+hexadecimal color code.</p></td>
     </tr>
     <tr>
       <th>fillcolor</th>
-      <td><p>the color with which
-to fill the shape of the node. Can be any
-of the named colors that R knows about
-(obtained using the <code>colors()</code>
-function), or, a hexadecimal color code.</p></td>
+      <td><p>the color with which to fill the shape of the node. Can be
+any of the named colors that R knows about (obtained using the
+<code>colors()</code> function), or, a hexadecimal color code.</p></td>
     </tr>
     <tr>
       <th>fontname</th>
-      <td><p>the name of the
-system font that will be used for any node
+      <td><p>the name of the system font that will be used for any node
 text.</p></td>
     </tr>
     <tr>
       <th>fontsize</th>
-      <td><p>the point size of
-the font used for any node text.</p></td>
+      <td><p>the point size of the font used for any node text.</p></td>
     </tr>
     <tr>
       <th>fontcolor</th>
-      <td><p>the color used
-for any node text. Can be any of the named
-colors that R knows about (obtained using
-the <code>colors()</code> function), or, a
-hexadecimal color code.</p></td>
+      <td><p>the color used for any node text. Can be any of the named
+colors that R knows about (obtained using the <code>colors()</code> function),
+or, a hexadecimal color code.</p></td>
     </tr>
     <tr>
       <th>peripheries</th>
-      <td><p>the repeated number
-of node shapes (of increasing size) to
-draw at the node perhipery.</p></td>
+      <td><p>the repeated number of node shapes (of increasing size) to
+draw at the node periphery.</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>the height of the node
-shape, in inches. The default value is
-<code>0.5</code> whereas the minimum value
-is <code>0.02</code>. This is understood as
-the initial, minimum height of the node.
-If <code>fixedsize</code> is set to <code>TRUE</code>,
-this will be the final height of the node.
-Otherwise, if the node label requires
-more height to fit, the node's height
-will be increased to contain the label.</p></td>
+      <td><p>the height of the node shape, in inches. The default value is
+<code>0.5</code> whereas the minimum value is <code>0.02</code>. This is understood as
+the initial, minimum height of the node. If <code>fixedsize</code> is set to
+<code>TRUE</code>, this will be the final height of the node. Otherwise, if the
+node label requires more height to fit, the node's height will be increased
+to contain the label.</p></td>
     </tr>
     <tr>
       <th>width</th>
-      <td><p>the width of the node
-shape, in inches. The default value is
-<code>0.5</code> whereas the minimum value
-is <code>0.02</code>. This is understood as
-the initial, minimum width of the node.
-If <code>fixedsize</code> is set to <code>TRUE</code>,
-this will be the final width of the node.
-Otherwise, if the node label requires
-more width to fit, the node's width
-will be increased to contain the label.</p></td>
+      <td><p>the width of the node shape, in inches. The default value is
+<code>0.5</code> whereas the minimum value is <code>0.02</code>. This is understood as
+the initial, minimum width of the node. If <code>fixedsize</code> is set to
+<code>TRUE</code>, this will be the final width of the node. Otherwise, if the
+node label requires more width to fit, the node's width will be increased
+to contain the label.</p></td>
     </tr>
     <tr>
       <th>x</th>
-      <td><p>the fixed position of the node in
-the x direction. Any integer-based or
-floating point value will be accepted.</p></td>
+      <td><p>the fixed position of the node in the x direction. Any integer-based
+or floating point value will be accepted.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>the fixed position of the node in
-the y direction. Any integer-based or
-floating point value will be accepted.</p></td>
+      <td><p>the fixed position of the node in the y direction. Any integer-based
+or floating point value will be accepted.</p></td>
     </tr>
     <tr>
       <th>group</th>
@@ -257,98 +231,68 @@ floating point value will be accepted.</p></td>
     </tr>
     <tr>
       <th>xlabel</th>
-      <td><p>External label for a node.
-The label will be placed outside of the
-node but near it. These labels are added
-after all nodes and edges have been placed.
-The labels will be placed so that they do
-not overlap any node or label. This means
-it may not be possible to place all of them.</p></td>
+      <td><p>External label for a node. The label will be placed outside of
+the node but near it. These labels are added after all nodes and edges have
+been placed. The labels will be placed so that they do not overlap any node
+or label. This means it may not be possible to place all of them.</p></td>
     </tr>
     <tr>
       <th>URL</th>
-      <td><p>a URL to associate with a node.
-Upon rendering the plot, clicking nodes
-with any associated URLs will open the
-URL in the default browser.</p></td>
+      <td><p>a URL to associate with a node. Upon rendering the plot, clicking
+nodes with any associated URLs will open the URL in the default browser.</p></td>
     </tr>
     <tr>
       <th>sides</th>
-      <td><p>when using the shape
-<code>polygon</code>, this value will provide
+      <td><p>when using the shape <code>polygon</code>, this value will provide
 the number of sides for that polygon.</p></td>
     </tr>
     <tr>
       <th>orientation</th>
-      <td><p>this is the angle,
-in degrees, that is used to rotate
-nodes that have a <code>shape</code> of
-<code>polygon</code>. Not that for any of
-the polygon shapes (set by the
-<code>sides</code> node attribute), a value
-for <code>orientation</code> that is <code>0</code>
-results in a flat base.</p></td>
+      <td><p>this is the angle, in degrees, that is used to rotate
+nodes that have a <code>shape</code> of <code>polygon</code>. Not that for any of the
+polygon shapes (set by the <code>sides</code> node attribute), a value for
+<code>orientation</code> that is <code>0</code> results in a flat base.</p></td>
     </tr>
     <tr>
       <th>skew</th>
-      <td><p>a <code>0-1</code> value that will
-result in the node shape being skewed
-to the right (from bottom to top). A
-value in the range <code>0</code> to <code>-1</code>
-will skew the shape to the left.</p></td>
+      <td><p>a <code>0-1</code> value that will result in the node shape being
+skewed to the right (from bottom to top). A value in the range <code>0</code> to
+<code>-1</code> will skew the shape to the left.</p></td>
     </tr>
     <tr>
       <th>distortion</th>
-      <td><p>a distortion factor
-that is used only when a <code>shape</code> of
-<code>polygon</code> is used. A <code>0-1</code> value
-will increasingly result in the top part
-of the node polygon shape to be larger
-than the bottom. Moving from <code>0</code>
-toward <code>-1</code> will result in the
-opposite distortion effect.</p></td>
+      <td><p>a distortion factor that is used only when a <code>shape</code>
+of <code>polygon</code> is used. A <code>0-1</code> value will increasingly result in
+the top part of the node polygon shape to be larger than the bottom. Moving
+from <code>0</code> toward <code>-1</code> will result in the opposite distortion
+effect.</p></td>
     </tr>
     <tr>
       <th>gradientangle</th>
-      <td><p>the path angle for
-the node color fill gradient.</p></td>
+      <td><p>the path angle for the node color fill gradient.</p></td>
     </tr>
     <tr>
       <th>fixedsize</th>
-      <td><p>if set to <code>FALSE</code>,
-the size of a node is determined by
-smallest width and height needed to
-contain its label, if any, with a
-margin specified by the <code>margin</code>
-node attribute. The width and height
-must also be at least as large as the
-sizes specified by the <code>width</code> and
-<code>height</code> node attributes, which
-specify the minimum values. If set to
-<code>TRUE</code>, the node size is entirely
-specified by the values of the
-<code>width</code> and <code>height</code> node
-attributes (i.e., the node is not
-expanded in size to contain the text
-label).</p></td>
+      <td><p>if set to <code>FALSE</code>, the size of a node is determined by
+smallest width and height needed to contain its label, if any, with a
+margin specified by the <code>margin</code> node attribute. The width and height
+must also be at least as large as the sizes specified by the <code>width</code>
+and <code>height</code> node attributes, which specify the minimum values. If set
+to <code>TRUE</code>, the node size is entirely specified by the values of the
+<code>width</code> and <code>height</code> node attributes (i.e., the node is not
+expanded in size to contain the text label).</p></td>
     </tr>
     <tr>
       <th>labelloc</th>
-      <td><p>sets the vertical
-placement of labels for nodes and
-clusters. This attribute is used only
-when the height of the node is
-larger than the height of its label.
-The <code>labelloc</code> node attribute can
-be set to either <code>t</code> (top),
-<code>c</code> (center), or <code>b</code> (bottom).
-By default, the label is vertically
-centered.</p></td>
+      <td><p>sets the vertical placement of labels for nodes and clusters.
+This attribute is used only when the height of the node is larger than the
+height of its label. The <code>labelloc</code> node attribute can be set to
+either <code>t</code> (top), <code>c</code> (center), or <code>b</code> (bottom). By default,
+the label is vertically centered.</p></td>
     </tr>
     <tr>
       <th>margin</th>
-      <td><p>sets the amount of space
-around the node's label. By default,
+      <td><p>sets the amount of space around the node's label. By default,
 the value is <code>0.11,0.055</code>.</p></td>
     </tr>
     </table>
@@ -372,8 +316,7 @@ the value is <code>0.11,0.055</code>.</p></td>
 <span class='co'># node data frame; the node</span>
 <span class='co'># aesthetic attributes have</span>
 <span class='co'># been inserted</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape x  y
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape x  y
 #&gt; 1  1 path     1 circle 1  4
 #&gt; 2  2 path     2 circle 3 -1
 #&gt; 3  3 path     3 circle 2  3</div></pre>

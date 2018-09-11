@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get edge attribute values — get_edge_attrs_ws • DiagrammeR</title>
+<title>Get edge attribute values from a selection of edges — get_edge_attrs_ws • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,10 @@
 
 
 
-<meta property="og:title" content="Get edge attribute values — get_edge_attrs_ws" />
+<meta property="og:title" content="Get edge attribute values from a selection of edges — get_edge_attrs_ws" />
 
-<meta property="og:description" content="From a graph object of class
-dgr_graph, get edge attribute values for one
-or more edges." />
+<meta property="og:description" content="From a graph object of class dgr_graph, get edge attribute values for
+one or more edges." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,16 +119,15 @@ or more edges." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get edge attribute values</h1>
+    <h1>Get edge attribute values from a selection of edges</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/get_edge_attrs_ws.R'><code>R/get_edge_attrs_ws.R</code></a></small>
     <div class="hidden name"><code>get_edge_attrs_ws.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>From a graph object of class
-<code>dgr_graph</code>, get edge attribute values for one
-or more edges.</p>
+    <p>From a graph object of class <code>dgr_graph</code>, get edge attribute values for
+one or more edges.</p>
     
     </div>
 
@@ -140,20 +138,35 @@ or more edges.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge_attr</th>
-      <td><p>the name of the attribute for which
-to get values.</p></td>
+      <td><p>the name of the attribute for which to get values.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a named vector of edge attribute values for
-the attribute given by <code>edge_attr</code> by edge.</p>
+    <p>a named vector of edge attribute values for the attribute given by
+  <code>edge_attr</code> by edge.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function makes use of an active selection of edges (and the function
+ending with <code>_ws</code> hints at this).</p>
+<p>Selections of edges can be performed using the following selection
+(<code>select_*()</code>) functions:
+<code><a href='select_edges.html'>select_edges</a>()</code>,
+<code><a href='select_last_edges_created.html'>select_last_edges_created</a>()</code>,
+<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id</a>()</code>, or
+<code><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a>()</code>.</p>
+<p>Selections of edges can also be performed using the following traversal
+(<code>trav_*()</code>) functions:
+<code><a href='trav_out_edge.html'>trav_out_edge</a>()</code>,
+<code><a href='trav_in_edge.html'>trav_in_edge</a>()</code>,
+<code><a href='trav_both_edge.html'>trav_both_edge</a>()</code>, or
+<code><a href='trav_reverse_edge.html'>trav_reverse_edge</a>()</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -215,6 +228,8 @@ the attribute given by <code>edge_attr</code> by edge.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

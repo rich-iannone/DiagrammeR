@@ -32,10 +32,9 @@
 
 <meta property="og:title" content="Join new node attribute values using a data frame — join_node_attrs" />
 
-<meta property="og:description" content="Join new node attribute values in a
-left join using a data frame. The use of a left join
-in this function allows for no possibility that
-nodes in the graph might be removed after the join." />
+<meta property="og:description" content="Join new node attribute values in a left join using a data frame. The use of
+  a left join in this function allows for no possibility that nodes in the
+  graph might be removed after the join." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +127,9 @@ nodes in the graph might be removed after the join." />
 
     <div class="ref-description">
     
-    <p>Join new node attribute values in a
-left join using a data frame. The use of a left join
-in this function allows for no possibility that
-nodes in the graph might be removed after the join.</p>
+    <p>Join new node attribute values in a left join using a data frame. The use of
+  a left join in this function allows for no possibility that nodes in the
+  graph might be removed after the join.</p>
     
     </div>
 
@@ -142,8 +140,7 @@ nodes in the graph might be removed after the join.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>df</th>
@@ -151,22 +148,17 @@ nodes in the graph might be removed after the join.</p>
     </tr>
     <tr>
       <th>by_graph</th>
-      <td><p>optional specification of the column
-in the graph's internal node data frame for the left
-join. If both <code>by_graph</code> and <code>by_df</code> are
-not provided, then a natural join will occur if
-there are columns in the graph's ndf and in
-<code>df</code> with identical names.</p></td>
+      <td><p>optional specification of the column in the graph's internal
+node data frame for the left join. If both <code>by_graph</code> and <code>by_df</code>
+are not provided, then a natural join will occur if there are columns in
+the graph's ndf and in <code>df</code> with identical names.</p></td>
     </tr>
     <tr>
       <th>by_df</th>
-      <td><p>optional specification of the column in
-<code>df</code> for the left join. If both <code>by_graph</code>
-and <code>by_df</code> are not provided, then a natural
-join will occur if there are columns in the graph's
-ndf and in <code>df</code> with identical names.
-<code>dgr_graph</code> that is created using
-<code>create_graph</code>.</p></td>
+      <td><p>optional specification of the column in <code>df</code> for the left
+join. If both <code>by_graph</code> and <code>by_df</code> are not provided, then a
+natural join will occur if there are columns in the graph's ndf and in
+<code>df</code> with identical names.</p></td>
     </tr>
     </table>
     
@@ -204,8 +196,7 @@ ndf and in <code>df</code> with identical names.
 
 <span class='co'># Get the graph's internal ndf to show that the</span>
 <span class='co'># join has been made</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label values
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label values
 #&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00
 #&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11
 #&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72
@@ -222,8 +213,7 @@ ndf and in <code>df</code> with identical names.
 
 <span class='co'># Get the graph's internal ndf to show that</span>
 <span class='co'># this join has been made</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label values betweenness
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label values betweenness
 #&gt; 1  1 &lt;NA&gt;  &lt;NA&gt;   6.00         0.0
 #&gt; 2  2 &lt;NA&gt;  &lt;NA&gt;   6.11         1.5
 #&gt; 3  3 &lt;NA&gt;  &lt;NA&gt;   4.72         0.5

@@ -32,10 +32,8 @@
 
 <meta property="og:title" content="Layout nodes using a text-based schematic — layout_nodes_w_string" />
 
-<meta property="og:description" content="Layout one or several groups of
-nodes using a text-based schematic. The option
-is available to apply sorting to each of the
-groups." />
+<meta property="og:description" content="Layout one or several groups of nodes using a text-based schematic. The
+  option is available to apply sorting to each of the groups." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +126,8 @@ groups." />
 
     <div class="ref-description">
     
-    <p>Layout one or several groups of
-nodes using a text-based schematic. The option
-is available to apply sorting to each of the
-groups.</p>
+    <p>Layout one or several groups of nodes using a text-based schematic. The
+  option is available to apply sorting to each of the groups.</p>
     
     </div>
 
@@ -143,60 +139,49 @@ groups.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>layout</th>
-      <td><p>a layout character string that
-provides a schematic for the layout. This
-consists of a rectangular collection of
-<code>-</code> characters (for no node placement),
-and numbers from <code>1</code> to <code>9</code>
-(representing different groupings of nodes,
-further described in the <code>nodes</code> argument).</p></td>
+      <td><p>a layout character string that provides a schematic for the
+layout. This consists of a rectangular collection of <code>-</code> characters
+(for no node placement), and numbers from <code>1</code> to <code>9</code>
+(representing different groupings of nodes, further described in the
+<code>nodes</code> argument).</p></td>
     </tr>
     <tr>
       <th>nodes</th>
       <td><p>a named vector of the form:
-<code>c("1" = "[node_attr]:[value]", ...)</code>. The
-LHS corresponds to the numbers used in the
-<code>layout</code> schematic. The RHS provides a
-shorthand for the node attribute and a value
-for grouping together nodes (separated by a
-colon). For instance, with <code>"type:a"</code> in the
-RHS (and <code>"1"</code> in the LHS) we would target
-all nodes with a <code>type</code> attribute equal
-to <code>a</code> for positioning in the graph as
-described by the <code>1</code>s in the <code>layout</code>.</p></td>
+<code>c("1" = "[node_attr]:[value]", ...)</code>. The LHS corresponds to the
+numbers used in the <code>layout</code> schematic. The RHS provides a shorthand
+for the node attribute and a value for grouping together nodes (separated
+by a colon). For instance, with <code>"type:a"</code> in the RHS (and <code>"1"</code>
+in the LHS) we would target all nodes with a <code>type</code> attribute equal to
+<code>a</code> for positioning in the graph as described by the <code>1</code>s in the
+<code>layout</code>.</p></td>
     </tr>
     <tr>
       <th>sort</th>
-      <td><p>an optional sorting method to apply
-to the collection of nodes before assigning
-positional information. Like <code>nodes</code>, this
-is a named vector of the form:
-<code>c("1" = "[node_attr]:asc|desc", ...)</code>.
-The <code>node_attr</code> in this case should be
-different than that used in <code>nodes</code>. Ideally,
-this node attribute should have unique values.
-Choose either <code>asc</code> or <code>desc</code> right of
-the colon for ascending or descending sorts.</p></td>
+      <td><p>an optional sorting method to apply to the collection of nodes
+before assigning positional information. Like <code>nodes</code>, this is a named
+vector of the form: <code>c("1" = "[node_attr]:asc|desc", ...)</code>. The
+<code>node_attr</code> in this case should be different than that used in
+<code>nodes</code>. Ideally, this node attribute should have unique values.
+Choose either <code>asc</code> or <code>desc</code> right of the colon for ascending or
+descending sorts.</p></td>
     </tr>
     <tr>
       <th>width</th>
-      <td><p>the width of the <code>layout</code>
-diagram.</p></td>
+      <td><p>the width of the <code>layout</code> diagram.</p></td>
     </tr>
     <tr>
       <th>height</th>
-      <td><p>the height of the <code>layout</code>
-diagram.</p></td>
+      <td><p>the height of the <code>layout</code> diagram.</p></td>
     </tr>
     <tr>
       <th>ll</th>
-      <td><p>a vector describing the the lower-left
-coordinates of the <code>layout</code></p></td>
+      <td><p>a vector describing the the lower-left coordinates of the
+<code>layout</code></p></td>
     </tr>
     </table>
     
@@ -253,8 +238,7 @@ coordinates of the <code>layout</code></p></td>
 <span class='co'># Show the graph's node data frame</span>
 <span class='co'># to confirm that `x` and `y` values</span>
 <span class='co'># were added to each of the nodes</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label x y
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label x y
 #&gt; 1  1    a     a 0 8
 #&gt; 2  2    a     b 0 6
 #&gt; 3  3    b     c 5 4

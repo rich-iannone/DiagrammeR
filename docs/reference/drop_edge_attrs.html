@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="Drop an edge attribute column — drop_edge_attrs" />
 
-<meta property="og:description" content="Within a graph's internal
-edge data frame (edf), remove an existing
-edge attribute." />
+<meta property="og:description" content="Within a graph's internal edge data frame (edf), remove an existing edge
+  attribute." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,9 +126,8 @@ edge attribute." />
 
     <div class="ref-description">
     
-    <p>Within a graph's internal
-edge data frame (edf), remove an existing
-edge attribute.</p>
+    <p>Within a graph's internal edge data frame (edf), remove an existing edge
+  attribute.</p>
     
     </div>
 
@@ -140,20 +138,17 @@ edge attribute.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>edge_attr</th>
-      <td><p>the name of the edge
-attribute column to drop.</p></td>
+      <td><p>the name of the edge attribute column to drop.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -174,8 +169,7 @@ attribute column to drop.</p></td>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># edf to show which edge</span>
 <span class='co'># attributes are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel value penwidth
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel value penwidth
 #&gt; 1  1    1  4 &lt;NA&gt;     3        6
 #&gt; 2  2    2  3 &lt;NA&gt;     3        6
 #&gt; 3  3    2  4 &lt;NA&gt;     3        6
@@ -193,8 +187,7 @@ attribute column to drop.</p></td>
 <span class='co'># edf to show that the edge</span>
 <span class='co'># attribute `value` had been</span>
 <span class='co'># removed</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel penwidth
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel penwidth
 #&gt; 1  1    1  4 &lt;NA&gt;        6
 #&gt; 2  2    2  3 &lt;NA&gt;        6
 #&gt; 3  3    2  4 &lt;NA&gt;        6

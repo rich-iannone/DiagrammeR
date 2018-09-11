@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Traverse from one or more selected nodes onto
-adjacent edges — trav_both_edge • DiagrammeR</title>
+<title>Traverse from one or more selected nodes onto adjacent edges — trav_both_edge • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,14 +30,11 @@ adjacent edges — trav_both_edge • DiagrammeR</title>
 
 
 
-<meta property="og:title" content="Traverse from one or more selected nodes onto
-adjacent edges — trav_both_edge" />
+<meta property="og:title" content="Traverse from one or more selected nodes onto adjacent edges — trav_both_edge" />
 
-<meta property="og:description" content="From a graph object of class
-dgr_graph move to adjacent edges from a
-selection of one or more selected nodes, thereby
-creating a selection of edges. An optional filter
-by edge attribute can limit the set of edges
+<meta property="og:description" content="From a graph object of class dgr_graph move to adjacent edges from a
+selection of one or more selected nodes, thereby creating a selection of
+edges. An optional filter by edge attribute can limit the set of edges
 traversed to." />
 <meta name="twitter:card" content="summary" />
 
@@ -125,19 +121,16 @@ traversed to." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Traverse from one or more selected nodes onto
-adjacent edges</h1>
+    <h1>Traverse from one or more selected nodes onto adjacent edges</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/trav_both_edge.R'><code>R/trav_both_edge.R</code></a></small>
     <div class="hidden name"><code>trav_both_edge.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>From a graph object of class
-<code>dgr_graph</code> move to adjacent edges from a
-selection of one or more selected nodes, thereby
-creating a selection of edges. An optional filter
-by edge attribute can limit the set of edges
+    <p>From a graph object of class <code>dgr_graph</code> move to adjacent edges from a
+selection of one or more selected nodes, thereby creating a selection of
+edges. An optional filter by edge attribute can limit the set of edges
 traversed to.</p>
     
     </div>
@@ -150,50 +143,62 @@ traversed to.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>conditions</th>
-      <td><p>an option to use filtering
-conditions for the traversal.</p></td>
+      <td><p>an option to use filtering conditions for the traversal.</p></td>
     </tr>
     <tr>
       <th>copy_attrs_from</th>
-      <td><p>providing a node attribute
-name will copy those node attribute values to the
-traversed edges. If the edge attribute already exists,
-the values will be merged to the traversed edges;
-otherwise, a new edge attribute will be created.</p></td>
+      <td><p>providing a node attribute name will copy those node
+attribute values to the traversed edges. If the edge attribute already
+exists, the values will be merged to the traversed edges; otherwise, a new
+edge attribute will be created.</p></td>
     </tr>
     <tr>
       <th>copy_attrs_as</th>
-      <td><p>if a node attribute name
-is provided in <code>copy_attrs_from</code>, this option
-will allow the copied attribute values to be
-written under a different edge attribute name.
-If the attribute name provided in
-<code>copy_attrs_as</code> does not exist in the graph's
-edf, the new edge attribute will be created
-with the chosen name.</p></td>
+      <td><p>if a node attribute name is provided in
+<code>copy_attrs_from</code>, this option will allow the copied attribute values
+to be written under a different edge attribute name. If the attribute name
+provided in <code>copy_attrs_as</code> does not exist in the graph's edf, the new
+edge attribute will be created with the chosen name.</p></td>
     </tr>
     <tr>
       <th>agg</th>
-      <td><p>if a node attribute is provided
-to <code>copy_attrs_from</code>, then an aggregation
-function is required since there may be cases where
-multiple node attribute values will be passed onto
-the traversed edge(s). To pass only a single value,
-the following aggregation functions can be used:
-<code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>, or
-<code>median</code>.</p></td>
+      <td><p>if a node attribute is provided to <code>copy_attrs_from</code>, then an
+aggregation function is required since there may be cases where multiple
+node attribute values will be passed onto the traversed edge(s). To pass
+only a single value, the following aggregation functions can be used:
+<code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>, or <code>median</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This traversal function makes use of an active selection of nodes. After the
+traversal, depending on the traversal conditions, there will either be a
+selection of edges or no selection at all.</p>
+<p>Selections of nodes can be performed using the following node selection
+(<code>select_*()</code>) functions:
+<code><a href='select_nodes.html'>select_nodes</a>()</code>,
+<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
+<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+<p>Selections of nodes can also be performed using the following traversal
+(<code>trav_*()</code>) functions:
+<code><a href='trav_out.html'>trav_out</a>()</code>,
+<code><a href='trav_in.html'>trav_in</a>()</code>,
+<code><a href='trav_both.html'>trav_both</a>()</code>,
+<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
+<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
+<code><a href='trav_out_until.html'>trav_out_until</a>()</code>, or
+<code><a href='trav_in_until.html'>trav_in_until</a>()</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -231,8 +236,7 @@ the following aggregation functions can be used:
   <span class='fu'><a href='join_edge_attrs.html'>join_edge_attrs</a></span>(<span class='kw'>df</span> <span class='kw'>=</span> <span class='no'>df</span>)
 
 <span class='co'># Show the graph's internal edge data frame</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel values
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel values
 #&gt; 1  1    1  2 &lt;NA&gt;   6.00
 #&gt; 2  2    1  3    A   6.11
 #&gt; 3  3    2  4    B   4.72
@@ -319,14 +323,12 @@ the following aggregation functions can be used:
     <span class='kw'>node_attr</span> <span class='kw'>=</span> <span class='no'>value</span>,
     <span class='kw'>value</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; <span class='message'>`select_nodes_by_id()` INFO: created a new selection of 2 nodes</span></div><div class='input'>
 <span class='co'># Show the graph's internal edge data frame</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span><span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel
 #&gt; 1  1    1  2 &lt;NA&gt;
 #&gt; 2  2    2  3 &lt;NA&gt;
 #&gt; 3  3    3  4 &lt;NA&gt;</div><div class='input'>
 <span class='co'># Show the graph's internal node data frame</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label value
 #&gt; 1  1 &lt;NA&gt;     1    NA
 #&gt; 2  2 &lt;NA&gt;     2     5
 #&gt; 3  3 &lt;NA&gt;     3     5
@@ -345,8 +347,7 @@ the following aggregation functions can be used:
 
 <span class='co'># Show the graph's internal edge data frame</span>
 <span class='co'># after this change</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel value
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to  rel value
 #&gt; 1  1    1  2 &lt;NA&gt;     5
 #&gt; 2  2    2  3 &lt;NA&gt;    10
 #&gt; 3  3    3  4 &lt;NA&gt;     5</div></pre>
@@ -357,6 +358,8 @@ the following aggregation functions can be used:
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

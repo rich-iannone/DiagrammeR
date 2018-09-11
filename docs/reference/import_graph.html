@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Import a graph from various graph formats — import_graph" />
 
-<meta property="og:description" content="Import a variety of graphs from
-different graph formats and create a graph object." />
+<meta property="og:description" content="Import a variety of graphs from different graph formats and create a graph
+  object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,8 +126,8 @@ different graph formats and create a graph object." />
 
     <div class="ref-description">
     
-    <p>Import a variety of graphs from
-different graph formats and create a graph object.</p>
+    <p>Import a variety of graphs from different graph formats and create a graph
+  object.</p>
     
     </div>
 
@@ -139,40 +139,34 @@ different graph formats and create a graph object.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph_file</th>
-      <td><p>a connection to a graph file.
-When provided as a path to a file, it will read the
-file from disk. Files starting with <code>http://</code>,
-<code>https://</code>, <code>ftp://</code>, or <code>ftps://</code>
-will be automatically downloaded.</p></td>
+      <td><p>a connection to a graph file. When provided as a path to a
+file, it will read the file from disk. Files starting with <code>http://</code>,
+<code>https://</code>, <code>ftp://</code>, or <code>ftps://</code> will be automatically
+downloaded.</p></td>
     </tr>
     <tr>
       <th>file_type</th>
-      <td><p>the type of file to be imported.
-Options are: <code>gml</code> (GML), <code>sif</code> (SIF),
-<code>edges</code> (a .edges file), and <code>mtx</code>
-(MatrixMarket format). If not supplied, the type
-of graph file will be inferred by its file extension.</p></td>
+      <td><p>the type of file to be imported. Options are: <code>gml</code>
+(GML), <code>sif</code> (SIF), <code>edges</code> (a .edges file), and <code>mtx</code>
+(MatrixMarket format). If not supplied, the type of graph file will be
+inferred by its file extension.</p></td>
     </tr>
     <tr>
       <th>edges_extra_attr_names</th>
-      <td><p>for <code>edges</code> files,
-a vector of attribute names beyond the <code>from</code>
-and <code>to</code> data columns can be provided in the
-order they appear in the input data file.</p></td>
+      <td><p>for <code>edges</code> files, a vector of attribute
+names beyond the <code>from</code> and <code>to</code> data columns can be provided in
+the order they appear in the input data file.</p></td>
     </tr>
     <tr>
       <th>edges_extra_attr_coltypes</th>
-      <td><p>for <code>edges</code>
-files, this is a string of column types for any
-attribute columns provided for
-<code>edges_extra_attr_names</code>. This string
-representation is where each character represents
-each of the extra columns of data and the mappings
-are: <code>c</code> -&gt; character, <code>i</code> -&gt; integer,
-<code>n</code> -&gt; number, <code>d</code> -&gt; double,
-<code>l</code> -&gt; logical, <code>D</code> -&gt; date, <code>T</code> -&gt;
-date time, <code>t</code> -&gt; time, <code>?</code> -&gt; guess,
-or <code>_/-</code>, which skips the column.</p></td>
+      <td><p>for <code>edges</code> files, this is a string of
+column types for any attribute columns provided for
+<code>edges_extra_attr_names</code>. This string representation is where each
+character represents each of the extra columns of data and the mappings
+are: <code>c</code> -&gt; character, <code>i</code> -&gt; integer, <code>n</code> -&gt; number,
+<code>d</code> -&gt; double, <code>l</code> -&gt; logical, <code>D</code> -&gt; date, <code>T</code> -&gt;
+date time, <code>t</code> -&gt; time, <code>?</code> -&gt; guess, or <code>_/-</code>, which skips
+the column.</p></td>
     </tr>
     </table>
     

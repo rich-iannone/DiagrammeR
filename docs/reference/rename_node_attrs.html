@@ -32,8 +32,8 @@
 
 <meta property="og:title" content="Rename a node attribute — rename_node_attrs" />
 
-<meta property="og:description" content="Within a graph's internal node data
-frame (ndf), rename an existing node attribute." />
+<meta property="og:description" content="Within a graph's internal node data frame (ndf), rename an existing node
+attribute." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,8 +126,8 @@ frame (ndf), rename an existing node attribute." />
 
     <div class="ref-description">
     
-    <p>Within a graph's internal node data
-frame (ndf), rename an existing node attribute.</p>
+    <p>Within a graph's internal node data frame (ndf), rename an existing node
+attribute.</p>
     
     </div>
 
@@ -138,18 +138,16 @@ frame (ndf), rename an existing node attribute.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr_from</th>
-      <td><p>the name of the node attribute
-that will be renamed.</p></td>
+      <td><p>the name of the node attribute that will be renamed.</p></td>
     </tr>
     <tr>
       <th>node_attr_to</th>
-      <td><p>the new name of the node
-attribute column identified in <code>node_attr_from</code>.</p></td>
+      <td><p>the new name of the node attribute column identified in
+<code>node_attr_from</code>.</p></td>
     </tr>
     </table>
     
@@ -180,8 +178,7 @@ attribute column identified in <code>node_attr_from</code>.</p></td>
 <span class='co'># Get the graph's internal ndf</span>
 <span class='co'># to show which node attributes</span>
 <span class='co'># are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape value
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape value
 #&gt; 1  1 &lt;NA&gt;     1 circle   5.2
 #&gt; 2  2 &lt;NA&gt;     2 circle   5.3
 #&gt; 3  3 &lt;NA&gt;     3 circle   4.4
@@ -198,8 +195,7 @@ attribute column identified in <code>node_attr_from</code>.</p></td>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># ndf to show that the node</span>
 <span class='co'># attribute had been renamed</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape weight
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label  shape weight
 #&gt; 1  1 &lt;NA&gt;     1 circle    5.2
 #&gt; 2  2 &lt;NA&gt;     2 circle    5.3
 #&gt; 3  3 &lt;NA&gt;     3 circle    4.4

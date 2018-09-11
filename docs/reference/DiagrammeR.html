@@ -32,8 +32,7 @@
 
 <meta property="og:title" content="R + mermaid.js — DiagrammeR" />
 
-<meta property="og:description" content="Make diagrams in R using
-viz.js or
+<meta property="og:description" content="Make diagrams in R using viz.js or
 mermaid.js with infrastructure
 provided by htmlwidgets." />
 <meta name="twitter:card" content="summary" />
@@ -128,8 +127,7 @@ provided by htmlwidgets." />
 
     <div class="ref-description">
     
-    <p>Make diagrams in R using
-<a href='https://github.com/mdaines/viz.js'>viz.js</a> or
+    <p>Make diagrams in R using <a href='https://github.com/mdaines/viz.js'>viz.js</a> or
 <a href='https://github.com/knsv/mermaid'>mermaid.js</a> with infrastructure
 provided by <a href='http://www.htmlwidgets.org/'>htmlwidgets</a>.</p>
     
@@ -142,18 +140,18 @@ provided by <a href='http://www.htmlwidgets.org/'>htmlwidgets</a>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>diagram</th>
-      <td><p>diagram in <code>graphviz</code> or <code>mermaid</code> format or a
+      <td><p>the diagram in <code>graphviz</code> or <code>mermaid</code> format, or, a
 file (as a connection or file name) containing a diagram specification. The
 recommended filename extensions are <code>.gv</code> and <code>.mmd</code> for the
-Graphviz and the mermaid diagram specifications, respectively. If no diagram
-is provided (<code>diagram = ""</code>) then the function will assume that
-a diagram will be provided by <code><a href='http://www.rdocumentation.org/packages/htmltools/topics/builder'>tags</a></code> and
+Graphviz and the mermaid diagram specifications, respectively. If no
+diagram is provided (<code>diagram = ""</code>) then the function will assume
+that a diagram will be provided by <code><a href='http://www.rdocumentation.org/packages/htmltools/topics/builder'>tags</a></code> and
 <code>DiagrammeR</code> is just being used for dependency injection.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>string - either <code>mermaid</code> (default) or <code>grViz</code>
-indicating the type of diagram spec and the desired parser/renderer</p></td>
+      <td><p>a string, either <code>mermaid</code> (default) or <code>grViz</code>
+indicating the type of diagram spec and the desired parser/renderer.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -163,10 +161,9 @@ indicating the type of diagram spec and the desired parser/renderer</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>htmlwidget</code> that will
-intelligently print itself into HTML in a variety of contexts
-including the R console, within R Markdown documents,
-and within Shiny output bindings.</p>
+    <p>An object of class <code>htmlwidget</code> that will intelligently print
+  itself into HTML in a variety of contexts including the R console, within
+  R Markdown documents, and within Shiny output bindings.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

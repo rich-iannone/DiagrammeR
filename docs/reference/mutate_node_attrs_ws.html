@@ -32,10 +32,8 @@
 
 <meta property="og:title" content="Mutate node attribute values for a selection of nodes — mutate_node_attrs_ws" />
 
-<meta property="og:description" content="Within a graph's internal node
-data frame (ndf), mutate node attribute
-values only for nodes in a selection by
-using one or more expressions." />
+<meta property="og:description" content="Within a graph's internal node data frame (ndf), mutate node attribute values
+only for nodes in a selection by using one or more expressions." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +126,8 @@ using one or more expressions." />
 
     <div class="ref-description">
     
-    <p>Within a graph's internal node
-data frame (ndf), mutate node attribute
-values only for nodes in a selection by
-using one or more expressions.</p>
+    <p>Within a graph's internal node data frame (ndf), mutate node attribute values
+only for nodes in a selection by using one or more expressions.</p>
     
     </div>
 
@@ -142,26 +138,42 @@ using one or more expressions.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>expressions used for the mutation
-of node attributes. LHS of each expression is
-either an existing or new node attribute name.
-The RHS can consist of any valid R code that
-uses node attributes as variables. Expressions
-are evaluated in the order provided, so, node
-attributes created or modified are ready to
-use in subsequent expressions.</p></td>
+      <td><p>expressions used for the mutation of node attributes. LHS of each
+expression is either an existing or new node attribute name. The RHS can
+consist of any valid R code that uses node attributes as variables.
+Expressions are evaluated in the order provided, so, node attributes
+created or modified are ready to use in subsequent expressions.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function makes use of an active selection of nodes (and the
+function ending with <code>_ws</code> hints at this).</p>
+<p>Selections of nodes can be performed using the following node selection
+(<code>select_*()</code>) functions:
+<code><a href='select_nodes.html'>select_nodes</a>()</code>,
+<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
+<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+<p>Selections of nodes can also be performed using the following traversal
+(<code>trav_*()</code>) functions:
+<code><a href='trav_out.html'>trav_out</a>()</code>,
+<code><a href='trav_in.html'>trav_in</a>()</code>,
+<code><a href='trav_both.html'>trav_both</a>()</code>,
+<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
+<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
+<code><a href='trav_out_until.html'>trav_out_until</a>()</code>, or
+<code><a href='trav_in_until.html'>trav_in_until</a>()</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -177,8 +189,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># Get the graph's internal ndf</span>
 <span class='co'># to show which node attributes</span>
 <span class='co'># are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width
 #&gt; 1  1 &lt;NA&gt;     1   1.4
 #&gt; 2  2 &lt;NA&gt;     2   0.3
 #&gt; 3  3 &lt;NA&gt;     3   1.1</div><div class='input'>
@@ -197,8 +208,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># ndf to show that the node</span>
 <span class='co'># attribute `width` was</span>
 <span class='co'># mutated only for node `1`</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width
 #&gt; 1  1 &lt;NA&gt;     1   0.7
 #&gt; 2  2 &lt;NA&gt;     2   0.3
 #&gt; 3  3 &lt;NA&gt;     3   1.1</div><div class='input'>
@@ -220,8 +230,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># for nodes `2` and `3` (since</span>
 <span class='co'># node `1` is excluded, an NA</span>
 <span class='co'># value is applied)</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width length
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width length
 #&gt; 1  1 &lt;NA&gt;     1   0.7     NA
 #&gt; 2  2 &lt;NA&gt;     2   0.3    0.8
 #&gt; 3  3 &lt;NA&gt;     3   1.1    2.1</div><div class='input'>
@@ -239,8 +248,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># values had been multiplied</span>
 <span class='co'># together (with new attr `area`)</span>
 <span class='co'># for nodes `2` and `3`</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width length area
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width length area
 #&gt; 1  1 &lt;NA&gt;     1   0.7     NA   NA
 #&gt; 2  2 &lt;NA&gt;     2   0.3    0.8 0.24
 #&gt; 3  3 &lt;NA&gt;     3   1.1    2.1 2.31</div><div class='input'>
@@ -262,8 +270,7 @@ use in subsequent expressions.</p></td>
 <span class='co'># non-NA values for its node</span>
 <span class='co'># attributes without changing</span>
 <span class='co'># those of the other nodes</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width length  area
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label width length  area
 #&gt; 1  1 &lt;NA&gt;     1   0.7   4.64 3.248
 #&gt; 2  2 &lt;NA&gt;     2   0.3   0.80 0.240
 #&gt; 3  3 &lt;NA&gt;     3   1.1   2.10 2.310</div></pre>
@@ -274,6 +281,8 @@ use in subsequent expressions.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

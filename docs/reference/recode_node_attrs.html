@@ -32,10 +32,9 @@
 
 <meta property="og:title" content="Recode a set of node attribute values — recode_node_attrs" />
 
-<meta property="og:description" content="Within a graph's internal node data
-frame (ndf), recode character or numeric node
-attribute values. Optionally, one can specify a
-replacement value for any unmatched mappings." />
+<meta property="og:description" content="Within a graph's internal node data frame (ndf), recode character or numeric
+  node attribute values. Optionally, one can specify a replacement value for
+  any unmatched mappings." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +127,9 @@ replacement value for any unmatched mappings." />
 
     <div class="ref-description">
     
-    <p>Within a graph's internal node data
-frame (ndf), recode character or numeric node
-attribute values. Optionally, one can specify a
-replacement value for any unmatched mappings.</p>
+    <p>Within a graph's internal node data frame (ndf), recode character or numeric
+  node attribute values. Optionally, one can specify a replacement value for
+  any unmatched mappings.</p>
     
     </div>
 
@@ -143,40 +141,35 @@ replacement value for any unmatched mappings.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr_from</th>
-      <td><p>the name of the node attribute
-column from which values will be recoded.</p></td>
+      <td><p>the name of the node attribute column from which values
+will be recoded.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>single-length character vectors with
-the recoding instructions. The first component should
-have the value to replace and the second should have
-the replacement value (in the form
+      <td><p>single-length character vectors with the recoding instructions.
+The first component should have the value to replace and the second should
+have the replacement value (in the form
 <code>"[to_replace] -&gt; [replacement]", ...</code>).</p></td>
     </tr>
     <tr>
       <th>otherwise</th>
-      <td><p>an optional single value for
-recoding any unmatched values.</p></td>
+      <td><p>an optional single value for recoding any unmatched values.</p></td>
     </tr>
     <tr>
       <th>node_attr_to</th>
-      <td><p>an optional name of a new node
-attribute to which the recoded values will be
-applied. This will retain the original node
+      <td><p>an optional name of a new node attribute to which the
+recoded values will be applied. This will retain the original node
 attribute and its values.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -198,8 +191,7 @@ attribute and its values.</p></td>
 <span class='co'># Get the graph's internal ndf</span>
 <span class='co'># to show which node</span>
 <span class='co'># attributes are available</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label     shape
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label     shape
 #&gt; 1  1 &lt;NA&gt;     1    circle
 #&gt; 2  2 &lt;NA&gt;     2   hexagon
 #&gt; 3  3 &lt;NA&gt;     3 rectangle
@@ -219,8 +211,7 @@ attribute and its values.</p></td>
 <span class='co'># Get the graph's internal</span>
 <span class='co'># ndf to show that the node</span>
 <span class='co'># attribute values had been recoded</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label    shape
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label    shape
 #&gt; 1  1 &lt;NA&gt;     1   square
 #&gt; 2  2 &lt;NA&gt;     2  hexagon
 #&gt; 3  3 &lt;NA&gt;     3 triangle
@@ -242,8 +233,7 @@ attribute and its values.</p></td>
 
 <span class='co'># Get the graph's internal ndf</span>
 <span class='co'># to see the change</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label    shape color
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label    shape color
 #&gt; 1  1 &lt;NA&gt;     1   square   red
 #&gt; 2  2 &lt;NA&gt;     2  hexagon green
 #&gt; 3  3 &lt;NA&gt;     3 triangle green

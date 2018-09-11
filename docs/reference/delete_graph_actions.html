@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Delete one or more graph actions stored
-within a graph object — delete_graph_actions • DiagrammeR</title>
+<title>Delete one or more graph actions stored within a graph object — delete_graph_actions • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -31,12 +30,10 @@ within a graph object — delete_graph_actions • DiagrammeR</title>
 
 
 
-<meta property="og:title" content="Delete one or more graph actions stored
-within a graph object — delete_graph_actions" />
+<meta property="og:title" content="Delete one or more graph actions stored within a graph object — delete_graph_actions" />
 
-<meta property="og:description" content="Delete one or more graph
-actions stored within a graph object
-of class dgr_graph)." />
+<meta property="og:description" content="Delete one or more graph actions stored within a graph object of class
+  dgr_graph)." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,17 +119,15 @@ of class dgr_graph)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Delete one or more graph actions stored
-within a graph object</h1>
+    <h1>Delete one or more graph actions stored within a graph object</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/delete_graph_actions.R'><code>R/delete_graph_actions.R</code></a></small>
     <div class="hidden name"><code>delete_graph_actions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Delete one or more graph
-actions stored within a graph object
-of class <code>dgr_graph</code>).</p>
+    <p>Delete one or more graph actions stored within a graph object of class
+  <code>dgr_graph</code>).</p>
     
     </div>
 
@@ -143,23 +138,19 @@ of class <code>dgr_graph</code>).</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>actions</th>
-      <td><p>either a vector of integer
-numbers indicating which actions to delete
-(based on <code>action_index</code> values), or,
-a character vector corresponding to
-<code>action_name</code> values.</p></td>
+      <td><p>either a vector of integer numbers indicating which actions to
+delete (based on <code>action_index</code> values), or, a character vector
+corresponding to <code>action_name</code> values.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -195,8 +186,7 @@ a character vector corresponding to
 <span class='co'># View the graph actions for the graph</span>
 <span class='co'># object by using the `get_graph_actions()`</span>
 <span class='co'># function</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
 #&gt;   action_index action_name     expression                                      
 #&gt;          &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;                                           
 #&gt; 1            1 get_pagerank    set_node_attr_w_fcn(graph = graph, node_attr_fc…
@@ -212,8 +202,7 @@ a character vector corresponding to
 <span class='co'># Verify that these last two graph</span>
 <span class='co'># actions were deleted by again using</span>
 <span class='co'># the `get_graph_actions()` function</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
 #&gt;   action_index action_name  expression                                         
 #&gt;          &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;                                              
 #&gt; 1            1 get_pagerank set_node_attr_w_fcn(graph = graph, node_attr_fcn =…</div></pre>

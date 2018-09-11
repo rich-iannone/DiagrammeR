@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Select nodes in a graph by ID values — select_nodes_by_id • DiagrammeR</title>
+<title>Select nodes in a graph by their ID values — select_nodes_by_id • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,13 +30,11 @@
 
 
 
-<meta property="og:title" content="Select nodes in a graph by ID values — select_nodes_by_id" />
+<meta property="og:title" content="Select nodes in a graph by their ID values — select_nodes_by_id" />
 
-<meta property="og:description" content="Select nodes in a graph object of class
-dgr_graph by their node ID values. If nodes
-have IDs that are monotonically increasing integer
-values, then numeric ranges can be used for the
-selection." />
+<meta property="og:description" content="Select nodes in a graph object of class dgr_graph by their node ID
+  values. If nodes have IDs that are monotonically increasing integer
+  values, then numeric ranges can be used for the selection." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,18 +120,16 @@ selection." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Select nodes in a graph by ID values</h1>
+    <h1>Select nodes in a graph by their ID values</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/select_nodes_by_id.R'><code>R/select_nodes_by_id.R</code></a></small>
     <div class="hidden name"><code>select_nodes_by_id.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Select nodes in a graph object of class
-<code>dgr_graph</code> by their node ID values. If nodes
-have IDs that are monotonically increasing integer
-values, then numeric ranges can be used for the
-selection.</p>
+    <p>Select nodes in a graph object of class <code>dgr_graph</code> by their node ID
+  values. If nodes have IDs that are monotonically increasing integer
+  values, then numeric ranges can be used for the selection.</p>
     
     </div>
 
@@ -144,22 +140,19 @@ selection.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>nodes</th>
-      <td><p>a vector of node IDs for the selection
-of nodes present in the graph.</p></td>
+      <td><p>a vector of node IDs for the selection of nodes present in the
+graph.</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to perform upon
-consecutive selections of graph nodes. This can
-either be as a <code>union</code> (the default), as an
-intersection of selections with <code>intersect</code>,
-or, as a <code>difference</code> on the previous
-selection, if it exists.</p></td>
+      <td><p>the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a <code>union</code> (the default), as an
+intersection of selections with <code>intersect</code>, or, as a
+<code>difference</code> on the previous selection, if it exists.</p></td>
     </tr>
     </table>
     
@@ -170,8 +163,7 @@ selection, if it exists.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Create a node data frame (ndf)</span>
-<span class='no'>ndf</span> <span class='kw'>&lt;-</span>
-  <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='no'>ndf</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_node_df.html'>create_node_df</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 
 <span class='co'># Create a graph</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>

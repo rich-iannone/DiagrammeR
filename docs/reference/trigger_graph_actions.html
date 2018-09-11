@@ -32,16 +32,12 @@
 
 <meta property="og:title" content="Trigger the execution of a series of graph actions — trigger_graph_actions" />
 
-<meta property="og:description" content="Execute the graph actions stored in
-the graph through the use of the
-add_graph_action() function. These actions
-will be invoked in order and any errors
-encountered will trigger a warning message and
-result in no change to the input graph. Normally,
-graph actions are automatically triggered at
-every transformation step but this function allows
-for the manual triggering of graph actions after
-setting them, for example." />
+<meta property="og:description" content="Execute the graph actions stored in the graph through the use of the
+  add_graph_action() function. These actions will be invoked in
+  order and any errors encountered will trigger a warning message and result
+  in no change to the input graph. Normally, graph actions are automatically
+  triggered at every transformation step but this function allows for the
+  manual triggering of graph actions after setting them, for example." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -134,16 +130,12 @@ setting them, for example." />
 
     <div class="ref-description">
     
-    <p>Execute the graph actions stored in
-the graph through the use of the
-<code><a href='add_graph_action.html'>add_graph_action()</a></code> function. These actions
-will be invoked in order and any errors
-encountered will trigger a warning message and
-result in no change to the input graph. Normally,
-graph actions are automatically triggered at
-every transformation step but this function allows
-for the manual triggering of graph actions after
-setting them, for example.</p>
+    <p>Execute the graph actions stored in the graph through the use of the
+  <code><a href='add_graph_action.html'>add_graph_action</a>()</code> function. These actions will be invoked in
+  order and any errors encountered will trigger a warning message and result
+  in no change to the input graph. Normally, graph actions are automatically
+  triggered at every transformation step but this function allows for the
+  manual triggering of graph actions after setting them, for example.</p>
     
     </div>
 
@@ -154,8 +146,7 @@ setting them, for example.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
@@ -216,8 +207,7 @@ setting them, for example.</p>
 <span class='co'># View the graph actions for the graph</span>
 <span class='co'># object by using the `get_graph_actions()`</span>
 <span class='co'># function</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
 #&gt;   action_index action_name    expression                                       
 #&gt;          &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;                                            
 #&gt; 1            1 get_pagerank   set_node_attr_w_fcn(graph = graph, node_attr_fcn…
@@ -234,8 +224,7 @@ setting them, for example.</p>
 <span class='co'># data frame (ndf) to verify that</span>
 <span class='co'># the `pagerank`, `width`, and</span>
 <span class='co'># `fillcolor` columns are present</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label pagerank width fillcolor
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label pagerank width fillcolor
 #&gt; 1  1 &lt;NA&gt;     1   0.2877 0.935   #ABDDA4
 #&gt; 2  2 &lt;NA&gt;     2   0.0940 0.000   #D7191C
 #&gt; 3  3 &lt;NA&gt;     3   0.3012 1.000   #2B83BA

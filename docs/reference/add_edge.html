@@ -221,8 +221,7 @@ edges.</p></td>
 <span class='co'># Verify that the edge</span>
 <span class='co'># has been created by</span>
 <span class='co'># counting graph edges</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Add edges by specifying</span>
 <span class='co'># node `label` values; note</span>
 <span class='co'># that all nodes must have</span>
@@ -241,8 +240,7 @@ edges.</p></td>
 
 <span class='co'># Use `get_edges()` to verify</span>
 <span class='co'># that the edges were added</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "1-&gt;2" "3-&gt;2" "3-&gt;4" "4-&gt;1"</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "1-&gt;2" "3-&gt;2" "3-&gt;4" "4-&gt;1"</div><div class='input'>
 <span class='co'># Add edge aesthetic and data</span>
 <span class='co'># attributes during edge creation</span>
 <span class='no'>graph_2</span> <span class='kw'>&lt;-</span>
@@ -262,8 +260,7 @@ edges.</p></td>
 <span class='co'># to verify that the attribute</span>
 <span class='co'># values were bound to the</span>
 <span class='co'># newly created edge</span>
-<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel penwidth color value
+<span class='no'>graph_2</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edge_df.html'>get_edge_df</a></span>()</div><div class='output co'>#&gt;   id from to rel penwidth color value
 #&gt; 1  1    1  2   M      1.5  blue   4.3</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

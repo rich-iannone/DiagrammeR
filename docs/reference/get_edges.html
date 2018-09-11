@@ -32,12 +32,9 @@
 
 <meta property="og:title" content="Get node IDs associated with edges — get_edges" />
 
-<meta property="og:description" content="Obtain a vector,
-data frame, or list of node IDs
-associated with edges in a graph
-object. An optional filter by edge
-attribute can limit the set of
-edges returned." />
+<meta property="og:description" content="Obtain a vector, data frame, or list of node IDs associated with edges in a
+  graph object. An optional filter by edge attribute can limit the set of
+  edges returned." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,12 +127,9 @@ edges returned." />
 
     <div class="ref-description">
     
-    <p>Obtain a vector,
-data frame, or list of node IDs
-associated with edges in a graph
-object. An optional filter by edge
-attribute can limit the set of
-edges returned.</p>
+    <p>Obtain a vector, data frame, or list of node IDs associated with edges in a
+  graph object. An optional filter by edge attribute can limit the set of
+  edges returned.</p>
     
     </div>
 
@@ -147,45 +141,33 @@ edges returned.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of
-class <code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>conditions</th>
-      <td><p>an option to
-use filtering conditions for the
-retrieval of edges.</p></td>
+      <td><p>an option to use filtering conditions for the retrieval of
+edges.</p></td>
     </tr>
     <tr>
       <th>return_type</th>
-      <td><p>using
-<code>vector</code> (the default), a
-vector of character objects
-representing the edges is provided.
-With <code>list</code> a list object will
-be provided that contains vectors
-of outgoing and incoming node IDs
-associated with edges. With
-<code>df</code>, a data frame containing
-outgoing and incoming node IDs
-associated with edges.</p></td>
+      <td><p>using <code>vector</code> (the default), a vector of character
+objects representing the edges is provided. With <code>list</code> a list object
+will be provided that contains vectors of outgoing and incoming node IDs
+associated with edges. With <code>df</code>, a data frame containing outgoing and
+incoming node IDs associated with edges.</p></td>
     </tr>
     <tr>
       <th>return_values</th>
-      <td><p>using
-<code>id</code> (the default) results in
-node ID values returned in the edge
-definitions. With <code>label</code>, the
-node labels will instead be used to
-define edges.</p></td>
+      <td><p>using <code>id</code> (the default) results in node ID values
+returned in the edge definitions. With <code>label</code>, the node labels will
+instead be used to define edges.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a list, data frame, or a
-vector object, depending on the
-value given to <code>return_type</code>.</p>
+    <p>a list, data frame, or a vector object, depending on the value given
+  to <code>return_type</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

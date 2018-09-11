@@ -32,12 +32,9 @@
 
 <meta property="og:title" content="Add a preferential attachment graph — add_pa_graph" />
 
-<meta property="og:description" content="To an existing graph
-object, add a graph built
-according to the Barabasi-Albert
-model, which uses preferential
-attachment in its stochastic
-algorithm." />
+<meta property="og:description" content="To an existing graph object, add a graph built according to the
+  Barabasi-Albert model, which uses preferential attachment in its stochastic
+  algorithm." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,12 +127,9 @@ algorithm." />
 
     <div class="ref-description">
     
-    <p>To an existing graph
-object, add a graph built
-according to the Barabasi-Albert
-model, which uses preferential
-attachment in its stochastic
-algorithm.</p>
+    <p>To an existing graph object, add a graph built according to the
+  Barabasi-Albert model, which uses preferential attachment in its stochastic
+  algorithm.</p>
     
     </div>
 
@@ -150,150 +144,100 @@ algorithm.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of
-class <code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>the number of nodes
-comprising the preferential
-attachment graph.</p></td>
+      <td><p>the number of nodes comprising the preferential attachment graph.</p></td>
     </tr>
     <tr>
       <th>m</th>
-      <td><p>the number of edges to
-add in each time step.</p></td>
+      <td><p>the number of edges to add in each time step.</p></td>
     </tr>
     <tr>
       <th>power</th>
-      <td><p>the power of the
-preferential attachment. The
-default value of <code>1</code>
-indicates a linear preferential
-attachment.</p></td>
+      <td><p>the power of the preferential attachment. The default value of
+<code>1</code> indicates a linear preferential attachment.</p></td>
     </tr>
     <tr>
       <th>out_dist</th>
-      <td><p>a numeric vector
-that provides the distribution of
-the number of edges to add in each
-time step.</p></td>
+      <td><p>a numeric vector that provides the distribution of the number
+of edges to add in each time step.</p></td>
     </tr>
     <tr>
       <th>use_total_degree</th>
-      <td><p>a logical
-value (default is <code>TRUE</code>)
-that governs whether the total
-degree should be used for
-calculating the citation
-probability. If <code>FALSE</code>, the
-indegree is used.</p></td>
+      <td><p>a logical value (default is <code>TRUE</code>) that governs
+whether the total degree should be used for calculating the citation
+probability. If <code>FALSE</code>, the indegree is used.</p></td>
     </tr>
     <tr>
       <th>zero_appeal</th>
-      <td><p>a measure of
-the attractiveness of the nodes
-with no adjacent edges.</p></td>
+      <td><p>a measure of the attractiveness of the nodes with no
+adjacent edges.</p></td>
     </tr>
     <tr>
       <th>algo</th>
-      <td><p>the algorithm to use
-to generate the graph. The
-available options are
-<code>psumtree</code>,
-<code>psumtree-multiple</code>, and
-<code>bag</code>. With the <code>psumtree</code>
-algorithm, a partial prefix-sum
-tree is used to to create the
-graph. Any values for <code>power</code>
-and <code>zero_appeal</code> can be
-provided and this algorithm never
-generates multiple edges.
-The <code>psumtree-multiple</code>
-algorithm also uses a partial
-prefix-sum tree but the difference
-here is that multiple edges are
-allowed. The <code>bag</code> algorithm
-places the node IDs into a bag as
-many times as their in-degree
-(plus once more). The required
-number of cited nodes are drawn
-from the bag with replacement.
-Multiple edges may be produced
-using this method (it is not
-disallowed).</p></td>
+      <td><p>the algorithm to use to generate the graph. The available options
+are <code>psumtree</code>, <code>psumtree-multiple</code>, and <code>bag</code>. With the
+<code>psumtree</code> algorithm, a partial prefix-sum tree is used to to create
+the graph. Any values for <code>power</code> and <code>zero_appeal</code> can be
+provided and this algorithm never generates multiple edges. The
+<code>psumtree-multiple</code> algorithm also uses a partial prefix-sum tree but
+the difference here is that multiple edges are allowed. The <code>bag</code>
+algorithm places the node IDs into a bag as many times as their in-degree
+(plus once more). The required number of cited nodes are drawn from the bag
+with replacement. Multiple edges may be produced using this method (it is
+not disallowed).</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional string that
-describes the entity type for all the
+      <td><p>an optional string that describes the entity type for all the
 nodes to be added.</p></td>
     </tr>
     <tr>
       <th>label</th>
-      <td><p>a boolean value where
-setting to <code>TRUE</code> ascribes node
-IDs to the label and <code>FALSE</code>
-yields a blank label.</p></td>
+      <td><p>a logical value where setting to <code>TRUE</code> ascribes node IDs
+to the label and <code>FALSE</code> yields a blank label.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional string for
-providing a relationship label to all
-edges to be added.</p></td>
+      <td><p>an optional string for providing a relationship label to all edges
+to be added.</p></td>
     </tr>
     <tr>
       <th>node_aes</th>
-      <td><p>an optional list
-of named vectors comprising node
-aesthetic attributes. The helper
-function <code><a href='node_aes.html'>node_aes()</a></code> is
-strongly recommended for use here
-as it contains arguments for each
-of the accepted node aesthetic
-attributes (e.g., <code>shape</code>,
-<code>style</code>, <code>color</code>,
+      <td><p>an optional list of named vectors comprising node aesthetic
+attributes. The helper function <code><a href='node_aes.html'>node_aes</a>()</code> is strongly
+recommended for use here as it contains arguments for each of the accepted
+node aesthetic attributes (e.g., <code>shape</code>, <code>style</code>, <code>color</code>,
 <code>fillcolor</code>).</p></td>
     </tr>
     <tr>
       <th>edge_aes</th>
-      <td><p>an optional list
-of named vectors comprising edge
-aesthetic attributes. The helper
-function <code><a href='edge_aes.html'>edge_aes()</a></code> is
-strongly recommended for use here
-as it contains arguments for each
-of the accepted edge aesthetic
-attributes (e.g., <code>shape</code>,
-<code>style</code>, <code>penwidth</code>,
-<code>color</code>).</p></td>
+      <td><p>an optional list of named vectors comprising edge aesthetic
+attributes. The helper function <code><a href='edge_aes.html'>edge_aes</a>()</code> is strongly
+recommended for use here as it contains arguments for each of the accepted
+edge aesthetic attributes (e.g., <code>shape</code>, <code>style</code>,
+<code>penwidth</code>, <code>color</code>).</p></td>
     </tr>
     <tr>
       <th>node_data</th>
-      <td><p>an optional list
-of named vectors comprising node
-data attributes. The helper
-function <code><a href='node_data.html'>node_data()</a></code> is
-strongly recommended for use here
-as it helps bind data specifically
-to the created nodes.</p></td>
+      <td><p>an optional list of named vectors comprising node data
+attributes. The helper function <code><a href='node_data.html'>node_data</a>()</code> is strongly
+recommended for use here as it helps bind data specifically to the created
+nodes.</p></td>
     </tr>
     <tr>
       <th>edge_data</th>
-      <td><p>an optional list
-of named vectors comprising edge
-data attributes. The helper function
-<code><a href='edge_data.html'>edge_data()</a></code> is strongly
-recommended for use here as it helps
-bind data specifically to the
-created edges.</p></td>
+      <td><p>an optional list of named vectors comprising edge data
+attributes. The helper function <code><a href='edge_data.html'>edge_data</a>()</code> is strongly
+recommended for use here as it helps bind data specifically to the created
+edges.</p></td>
     </tr>
     <tr>
       <th>set_seed</th>
-      <td><p>supplying a value
-sets a random seed of the
-<code>Mersenne-Twister</code>
-implementation.</p></td>
+      <td><p>supplying a value sets a random seed of the
+<code>Mersenne-Twister</code> implementation.</p></td>
     </tr>
     </table>
     
@@ -310,11 +254,9 @@ implementation.</p></td>
     <span class='kw'>m</span> <span class='kw'>=</span> <span class='fl'>1</span>)
 
 <span class='co'># Get a count of nodes</span>
-<span class='no'>pa_graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 100</div><div class='input'>
+<span class='no'>pa_graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 100</div><div class='input'>
 <span class='co'># Get a count of edges</span>
-<span class='no'>pa_graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 99</div></pre>
+<span class='no'>pa_graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 99</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

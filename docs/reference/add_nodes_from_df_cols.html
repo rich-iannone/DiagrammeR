@@ -32,12 +32,10 @@
 
 <meta property="og:title" content="Add nodes from distinct values in data frame columns — add_nodes_from_df_cols" />
 
-<meta property="og:description" content="Add new nodes to a graph object of
-class dgr_graph using distinct values from
-one or more columns in a data frame. The values will
-serve as node labels and the number of nodes added
-depends on the number of distinct values found in
-the specified columns." />
+<meta property="og:description" content="Add new nodes to a graph object of class dgr_graph using distinct
+  values from one or more columns in a data frame. The values will serve as
+  node labels and the number of nodes added depends on the number of distinct
+  values found in the specified columns." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,12 +128,10 @@ the specified columns." />
 
     <div class="ref-description">
     
-    <p>Add new nodes to a graph object of
-class <code>dgr_graph</code> using distinct values from
-one or more columns in a data frame. The values will
-serve as node labels and the number of nodes added
-depends on the number of distinct values found in
-the specified columns.</p>
+    <p>Add new nodes to a graph object of class <code>dgr_graph</code> using distinct
+  values from one or more columns in a data frame. The values will serve as
+  node labels and the number of nodes added depends on the number of distinct
+  values found in the specified columns.</p>
     
     </div>
 
@@ -147,35 +143,30 @@ the specified columns.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>df</th>
-      <td><p>a data frame from which values will be
-taken as new nodes for the graph.</p></td>
+      <td><p>a data frame from which values will be taken as new nodes for the
+graph.</p></td>
     </tr>
     <tr>
       <th>columns</th>
-      <td><p>a character vector of column names
-or a numeric vector of column numbers for the
-data frame supplied in <code>df</code>. The distinct
-values in these columns will serve as labels for
-the nodes added to the graph.</p></td>
+      <td><p>a character vector of column names or a numeric vector of
+column numbers for the data frame supplied in <code>df</code>. The distinct
+values in these columns will serve as labels for the nodes added to the
+graph.</p></td>
     </tr>
     <tr>
       <th>type</th>
-      <td><p>an optional, single-length character
-vector that provides a group identifier for the
-nodes to be added to the graph.</p></td>
+      <td><p>an optional, single-length character vector that provides a group
+identifier for the nodes to be added to the graph.</p></td>
     </tr>
     <tr>
       <th>keep_duplicates</th>
-      <td><p>an option to exclude
-incoming nodes where the any labels (i.e.,
-values found in columns of the specified
-<code>df</code>) match label values available in the
-graph's nodes. By default, this is set to
+      <td><p>an option to exclude incoming nodes where the labels
+(i.e., values found in columns of the specified <code>df</code>) match label
+values available in the graph's nodes. By default, this is set to
 <code>FALSE</code>.</p></td>
     </tr>
     </table>
@@ -213,8 +204,7 @@ graph's nodes. By default, this is set to
 <span class='co'># frame; duplicate labels are</span>
 <span class='co'># prevented with `keep_duplicates =</span>
 <span class='co'># FALSE`)</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
 #&gt; 1  1 &lt;NA&gt;     f
 #&gt; 2  2 &lt;NA&gt;     p
 #&gt; 3  3 &lt;NA&gt;     q
@@ -232,8 +222,7 @@ graph's nodes. By default, this is set to
 <span class='co'># frame; note that nodes didn't</span>
 <span class='co'># get made with columns that</span>
 <span class='co'># are not character class columns</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label
 #&gt; 1  1 &lt;NA&gt;     f
 #&gt; 2  2 &lt;NA&gt;     p
 #&gt; 3  3 &lt;NA&gt;     q

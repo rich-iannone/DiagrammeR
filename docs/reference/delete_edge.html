@@ -32,12 +32,10 @@
 
 <meta property="og:title" content="Delete an edge from an existing graph object — delete_edge" />
 
-<meta property="og:description" content="From a graph object of class
-dgr_graph, delete an existing edge by
-specifying either: (1) a pair of node IDs
-corresponding to the edge (keeping into
-consideration the direction of the edge in
-a directed graph), or (2) an edge ID." />
+<meta property="og:description" content="From a graph object of class dgr_graph, delete an existing edge by
+  specifying either: (1) a pair of node IDs corresponding to the edge
+  (keeping into consideration the direction of the edge in a directed graph),
+  or (2) an edge ID." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -130,12 +128,10 @@ a directed graph), or (2) an edge ID." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class
-<code>dgr_graph</code>, delete an existing edge by
-specifying either: (1) a pair of node IDs
-corresponding to the edge (keeping into
-consideration the direction of the edge in
-a directed graph), or (2) an edge ID.</p>
+    <p>From a graph object of class <code>dgr_graph</code>, delete an existing edge by
+  specifying either: (1) a pair of node IDs corresponding to the edge
+  (keeping into consideration the direction of the edge in a directed graph),
+  or (2) an edge ID.</p>
     
     </div>
 
@@ -146,32 +142,25 @@ a directed graph), or (2) an edge ID.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>a node ID from which the edge to be
-removed is outgoing. If an edge ID is provided to
-<code>id</code>, then this argument is ignored. There
-is the option to use a node <code>label</code>
-value here (and this must correspondingly also be
-done for the <code>to</code> argument) for defining
-node connections. Note that this is only possible
-if all nodes have distinct <code>label</code> values set
-and none exist as an empty string.</p></td>
+      <td><p>a node ID from which the edge to be removed is outgoing. If an
+edge ID is provided to <code>id</code>, then this argument is ignored. There is
+the option to use a node <code>label</code> value here (and this must
+correspondingly also be done for the <code>to</code> argument) for defining node
+connections. Note that this is only possible if all nodes have distinct
+<code>label</code> values set and none exist as an empty string.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>a node ID to which the edge to be removed
-is incoming. If an edge ID is provided to
-<code>id</code>, then this argument is ignored. There
-is the option to use a node <code>label</code>
-value here (and this must correspondingly also be
-for the <code>from</code> argument) for defining
-node connections. Note that this is only possible
-if all nodes have distinct <code>label</code> values set
-and none exist as an empty string.</p></td>
+      <td><p>a node ID to which the edge to be removed is incoming. If an edge
+ID is provided to <code>id</code>, then this argument is ignored. There is the
+option to use a node <code>label</code> value here (and this must correspondingly
+also be for the <code>from</code> argument) for defining node connections. Note
+that this is only possible if all nodes have distinct <code>label</code> values
+set and none exist as an empty string.</p></td>
     </tr>
     <tr>
       <th>id</th>
@@ -205,8 +194,7 @@ and none exist as an empty string.</p></td>
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Get the count of edges in the graph</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_edges.html'>count_edges</a></span>()</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
 <span class='co'># Create an undirected graph with</span>
 <span class='co'># 2 nodes and an edge</span>
 <span class='no'>graph_undirected</span> <span class='kw'>&lt;-</span>

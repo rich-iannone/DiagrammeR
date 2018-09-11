@@ -32,11 +32,10 @@
 
 <meta property="og:title" content="Get information on any available graph actions — get_graph_actions" />
 
-<meta property="og:description" content="Get a tibble of the available graph
-actions, which contains information on function
-invocations to be called on the graph at every
-transformation step, or, when manually invoked
-with the trigger_graph_actions() function." />
+<meta property="og:description" content="Get a tibble of the available graph actions, which contains information on
+  function invocations to be called on the graph at every transformation
+  step, or, when manually invoked with the
+  trigger_graph_actions() function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -129,11 +128,10 @@ with the trigger_graph_actions() function." />
 
     <div class="ref-description">
     
-    <p>Get a tibble of the available graph
-actions, which contains information on function
-invocations to be called on the graph at every
-transformation step, or, when manually invoked
-with the <code><a href='trigger_graph_actions.html'>trigger_graph_actions()</a></code> function.</p>
+    <p>Get a tibble of the available graph actions, which contains information on
+  function invocations to be called on the graph at every transformation
+  step, or, when manually invoked with the
+  <code><a href='trigger_graph_actions.html'>trigger_graph_actions</a>()</code> function.</p>
     
     </div>
 
@@ -144,8 +142,7 @@ with the <code><a href='trigger_graph_actions.html'>trigger_graph_actions()</a><
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
@@ -182,8 +179,7 @@ with the <code><a href='trigger_graph_actions.html'>trigger_graph_actions()</a><
 <span class='co'># To ensure that the action is</span>
 <span class='co'># available in the graph, use the</span>
 <span class='co'># `get_graph_actions()` function</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>get_graph_actions</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'>get_graph_actions</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
 #&gt;   action_index action_name expression                                          
 #&gt;          &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;                                               
 #&gt; 1            1 get_btwns   set_node_attr_w_fcn(graph = graph, node_attr_fcn = …</div></pre>

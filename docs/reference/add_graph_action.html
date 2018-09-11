@@ -32,9 +32,8 @@
 
 <meta property="og:title" content="Add a graph action for execution at every transform — add_graph_action" />
 
-<meta property="og:description" content="Add a graph function along with its
-arguments to be run at every graph transformation
-step." />
+<meta property="og:description" content="Add a graph function along with its arguments to be run at every graph
+  transformation step." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,9 +126,8 @@ step." />
 
     <div class="ref-description">
     
-    <p>Add a graph function along with its
-arguments to be run at every graph transformation
-step.</p>
+    <p>Add a graph function along with its arguments to be run at every graph
+  transformation step.</p>
     
     </div>
 
@@ -140,8 +138,7 @@ step.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>fcn</th>
@@ -149,13 +146,12 @@ step.</p>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>arguments and values to pass to
-the named function in <code>fcn</code>, if necessary.</p></td>
+      <td><p>arguments and values to pass to the named function in <code>fcn</code>,
+if necessary.</p></td>
     </tr>
     <tr>
       <th>action_name</th>
-      <td><p>an optional name for labeling
-the action.</p></td>
+      <td><p>an optional name for labeling the action.</p></td>
     </tr>
     </table>
     
@@ -194,8 +190,7 @@ the action.</p></td>
 <span class='co'># To ensure that the action is</span>
 <span class='co'># available in the graph, use the</span>
 <span class='co'># `get_graph_actions()` function</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 1 x 3
 #&gt;   action_index action_name expression                                          
 #&gt;          &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;                                               
 #&gt; 1            1 get_btwns   set_node_attr_w_fcn(graph = graph, node_attr_fcn = …</div></pre>

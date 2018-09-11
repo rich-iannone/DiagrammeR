@@ -32,8 +32,7 @@
 
 <meta property="og:title" content="Combine two graphs into a single graph — combine_graphs" />
 
-<meta property="og:description" content="Combine two graphs in order
-to make a new graph." />
+<meta property="og:description" content="Combine two graphs in order to make a new graph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,8 +125,7 @@ to make a new graph." />
 
     <div class="ref-description">
     
-    <p>Combine two graphs in order
-to make a new graph.</p>
+    <p>Combine two graphs in order to make a new graph.</p>
     
     </div>
 
@@ -138,25 +136,20 @@ to make a new graph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a <code>DiagrammeR</code> graph
-object to which another graph will be
-unioned. This graph should be considered
-the graph from which global graph
-attributes will be inherited in the
-resulting graph.</p></td>
+      <td><p>a <code>DiagrammeR</code> graph object to which another graph will be
+unioned. This graph should be considered the graph from which global graph
+attributes will be inherited in the resulting graph.</p></td>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>a <code>DiagrammeR</code> graph
-object that is to be unioned with the
+      <td><p>a <code>DiagrammeR</code> graph object that is to be unioned with the
 graph supplied as <code>x</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a graph object of class
-<code>dgr_graph</code>.</p>
+    <p>a graph object of class <code>dgr_graph</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -185,15 +178,13 @@ graph supplied as <code>x</code>.</p></td>
 
 <span class='co'># Get the number of nodes in</span>
 <span class='co'># the combined graph</span>
-<span class='no'>combined_graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 14</div><div class='input'>
+<span class='no'>combined_graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='count_nodes.html'>count_nodes</a></span>()</div><div class='output co'>#&gt; [1] 14</div><div class='input'>
 <span class='co'># The `combine_graphs()`</span>
 <span class='co'># function will renumber</span>
 <span class='co'># node ID values in graph `y`</span>
 <span class='co'># during the union; this ensures</span>
 <span class='co'># that node ID values are unique</span>
-<span class='no'>combined_graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>()</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14</div></pre>
+<span class='no'>combined_graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_ids.html'>get_node_ids</a></span>()</div><div class='output co'>#&gt;  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

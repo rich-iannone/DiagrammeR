@@ -32,19 +32,15 @@
 
 <meta property="og:title" content="Set the node attribute values to be rendered — set_node_attr_to_display" />
 
-<meta property="og:description" content="Set a node attribute type to display
-as node text when calling the render_graph()
-function. This allows for display of different types
-of node attribute values on a per-node basis.
-Without setting the display attribute,
-rendering a graph will default to printing text
-from the label attribute on nodes. Setting
-the display node attribute with this function
-for the first time (i.e., the display column
-doesn't exist in the graph's internal node data frame)
-will insert the attr value for all nodes
-specified in nodes and a default value
-(default) for all remaining nodes." />
+<meta property="og:description" content="Set a node attribute type to display as node text when calling the
+  render_graph() function. This allows for display of different
+  types of node attribute values on a per-node basis. Without setting the
+  display attribute, rendering a graph will default to printing text
+  from the label attribute on nodes. Setting the display node
+  attribute with this function for the first time (i.e., the display
+  column doesn't exist in the graph's internal node data frame) will insert
+  the attr value for all nodes specified in nodes and a default
+  value (default) for all remaining nodes." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,19 +133,15 @@ specified in nodes and a default value
 
     <div class="ref-description">
     
-    <p>Set a node attribute type to display
-as node text when calling the <code><a href='render_graph.html'>render_graph()</a></code>
-function. This allows for display of different types
-of node attribute values on a per-node basis.
-Without setting the <code>display</code> attribute,
-rendering a graph will default to printing text
-from the <code>label</code> attribute on nodes. Setting
-the <code>display</code> node attribute with this function
-for the first time (i.e., the <code>display</code> column
-doesn't exist in the graph's internal node data frame)
-will insert the <code>attr</code> value for all nodes
-specified in <code>nodes</code> and a default value
-(<code>default</code>) for all remaining nodes.</p>
+    <p>Set a node attribute type to display as node text when calling the
+  <code><a href='render_graph.html'>render_graph</a>()</code> function. This allows for display of different
+  types of node attribute values on a per-node basis. Without setting the
+  <code>display</code> attribute, rendering a graph will default to printing text
+  from the <code>label</code> attribute on nodes. Setting the <code>display</code> node
+  attribute with this function for the first time (i.e., the <code>display</code>
+  column doesn't exist in the graph's internal node data frame) will insert
+  the <code>attr</code> value for all nodes specified in <code>nodes</code> and a default
+  value (<code>default</code>) for all remaining nodes.</p>
     
     </div>
 
@@ -161,33 +153,26 @@ specified in <code>nodes</code> and a default value
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>attr</th>
-      <td><p>the name of the attribute from
-which label text for the node will be obtained.
-If set to <code>NULL</code>, then <code>NA</code> values
-will be assigned to the <code>display</code> column
-for the chosen nodes.</p></td>
+      <td><p>the name of the attribute from which label text for the node will
+be obtained. If set to <code>NULL</code>, then <code>NA</code> values will be assigned
+to the <code>display</code> column for the chosen nodes.</p></td>
     </tr>
     <tr>
       <th>nodes</th>
-      <td><p>a length vector containing one or
-several node ID values (as integers) for which
-node attributes are set for display in the
-rendered graph. If <code>NULL</code>, all nodes from
-the graph are assigned the <code>display</code> value
-given as <code>attr</code>.</p></td>
+      <td><p>a length vector containing one or several node ID values (as
+integers) for which node attributes are set for display in the rendered
+graph. If <code>NULL</code>, all nodes from the graph are assigned the
+<code>display</code> value given as <code>attr</code>.</p></td>
     </tr>
     <tr>
       <th>default</th>
-      <td><p>the name of an attribute to
-set for all other graph nodes not included
-in <code>nodes</code>. This value only gets used if
-the <code>display</code> node attribute is not in
-the graph's internal node data frame.</p></td>
+      <td><p>the name of an attribute to set for all other graph nodes not
+included in <code>nodes</code>. This value only gets used if the <code>display</code>
+node attribute is not in the graph's internal node data frame.</p></td>
     </tr>
     </table>
     
@@ -224,8 +209,7 @@ the graph's internal node data frame.</p></td>
 <span class='co'># `display` node attribute will show for</span>
 <span class='co'># each row, which node attribute value to</span>
 <span class='co'># display when the graph is rendered</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label display value
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label display value
 #&gt; 1  1 &lt;NA&gt;     1   value   2.5
 #&gt; 2  2 &lt;NA&gt;     2   value   8.2
 #&gt; 3  3 &lt;NA&gt;     3   value   4.2

@@ -32,10 +32,9 @@
 
 <meta property="og:title" content="Select edges in a graph using node ID values — select_edges_by_node_id" />
 
-<meta property="og:description" content="Select edges in a graph object of class
-dgr_graph using node ID values. All edges
-associated with the provided nodes will be included
-in the selection." />
+<meta property="og:description" content="Select edges in a graph object of class dgr_graph using node ID
+  values. All edges associated with the provided nodes will be included in
+  the selection." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,10 +127,9 @@ in the selection." />
 
     <div class="ref-description">
     
-    <p>Select edges in a graph object of class
-<code>dgr_graph</code> using node ID values. All edges
-associated with the provided nodes will be included
-in the selection.</p>
+    <p>Select edges in a graph object of class <code>dgr_graph</code> using node ID
+  values. All edges associated with the provided nodes will be included in
+  the selection.</p>
     
     </div>
 
@@ -142,22 +140,19 @@ in the selection.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>nodes</th>
-      <td><p>a vector of node IDs for the selection
-of edges present in the graph.</p></td>
+      <td><p>a vector of node IDs for the selection of edges present in the
+graph.</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to perform upon
-consecutive selections of graph edges This can
-either be as a <code>union</code> (the default), as an
-intersection of selections with <code>intersect</code>,
-or, as a <code>difference</code> on the previous
-selection, if it exists.</p></td>
+      <td><p>the set operation to perform upon consecutive selections of
+graph edges This can either be as a <code>union</code> (the default), as an
+intersection of selections with <code>intersect</code>, or, as a
+<code>difference</code> on the previous selection, if it exists.</p></td>
     </tr>
     </table>
     
@@ -179,8 +174,7 @@ selection, if it exists.</p></td>
   <span class='fu'>select_edges_by_node_id</span>(
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='message'>`select_edges_by_node_id()` INFO: created a new selection of 2 edges</span></div><div class='input'>
 <span class='co'># Get the selection of edges</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 2</div><div class='input'>
 <span class='co'># Perform another selection of edges, with nodes</span>
 <span class='co'># `1`, `2`, and `4`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -189,8 +183,7 @@ selection, if it exists.</p></td>
   <span class='fu'>select_edges_by_node_id</span>(
     <span class='kw'>nodes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span>))</div><div class='output co'>#&gt; <span class='message'>`clear_selection()` INFO: cleared an existing selection of 2 edges</span></div><div class='output co'>#&gt; <span class='message'>`select_edges_by_node_id()` INFO: created a new selection of 4 edges</span></div><div class='input'>
 <span class='co'># Get the selection of edges</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of4 edges</span></div><div class='output co'>#&gt; [1] 1 2 3 4</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of4 edges</span></div><div class='output co'>#&gt; [1] 1 2 3 4</div><div class='input'>
 <span class='co'># Get a fraction of the edges selected over all</span>
 <span class='co'># the edges in the graph</span>
 <span class='no'>graph</span> <span class='kw'>%&gt;%</span>

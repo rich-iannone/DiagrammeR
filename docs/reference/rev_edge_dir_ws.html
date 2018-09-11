@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reverse the direction of selected edges in a graph — rev_edge_dir_ws • DiagrammeR</title>
+<title>Reverse the direction of selected edges in a graph using an edge selection — rev_edge_dir_ws • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,11 +30,10 @@
 
 
 
-<meta property="og:title" content="Reverse the direction of selected edges in a graph — rev_edge_dir_ws" />
+<meta property="og:title" content="Reverse the direction of selected edges in a graph using an edge selection — rev_edge_dir_ws" />
 
-<meta property="og:description" content="Using a directed graph with a selection
-of edges as input, reverse the direction of those
-selected edges in input graph." />
+<meta property="og:description" content="Using a directed graph with a selection of edges as input, reverse the
+direction of those selected edges in input graph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,16 +119,15 @@ selected edges in input graph." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Reverse the direction of selected edges in a graph</h1>
+    <h1>Reverse the direction of selected edges in a graph using an edge selection</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/rev_edge_dir_ws.R'><code>R/rev_edge_dir_ws.R</code></a></small>
     <div class="hidden name"><code>rev_edge_dir_ws.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Using a directed graph with a selection
-of edges as input, reverse the direction of those
-selected edges in input graph.</p>
+    <p>Using a directed graph with a selection of edges as input, reverse the
+direction of those selected edges in input graph.</p>
     
     </div>
 
@@ -140,14 +138,30 @@ selected edges in input graph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a graph object of class <code>dgr_graph</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function makes use of an active selection of edges (and the function
+ending with <code>_ws</code> hints at this).</p>
+<p>Selections of edges can be performed using the following selection
+(<code>select_*()</code>) functions:
+<code><a href='select_edges.html'>select_edges</a>()</code>,
+<code><a href='select_last_edges_created.html'>select_last_edges_created</a>()</code>,
+<code><a href='select_edges_by_edge_id.html'>select_edges_by_edge_id</a>()</code>, or
+<code><a href='select_edges_by_node_id.html'>select_edges_by_node_id</a>()</code>.</p>
+<p>Selections of edges can also be performed using the following traversal
+(<code>trav_*()</code>) functions:
+<code><a href='trav_out_edge.html'>trav_out_edge</a>()</code>,
+<code><a href='trav_in_edge.html'>trav_in_edge</a>()</code>,
+<code><a href='trav_both_edge.html'>trav_both_edge</a>()</code>, or
+<code><a href='trav_reverse_edge.html'>trav_reverse_edge</a>()</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -159,8 +173,7 @@ selected edges in input graph.</p>
     <span class='kw'>k</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>h</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='co'># Inspect the graph's edges</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "1-&gt;2" "1-&gt;3" "2-&gt;4" "2-&gt;5" "3-&gt;6" "3-&gt;7"</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "1-&gt;2" "1-&gt;3" "2-&gt;4" "2-&gt;5" "3-&gt;6" "3-&gt;7"</div><div class='input'>
 <span class='co'># Select all edges associated</span>
 <span class='co'># with nodes `1` and `2`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -176,8 +189,7 @@ selected edges in input graph.</p>
 
 <span class='co'># Inspect the graph's edges</span>
 <span class='co'># after their reversal</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "2-&gt;1" "3-&gt;1" "4-&gt;2" "5-&gt;2" "3-&gt;6" "3-&gt;7"</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_edges.html'>get_edges</a></span>()</div><div class='output co'>#&gt; [1] "2-&gt;1" "3-&gt;1" "4-&gt;2" "5-&gt;2" "3-&gt;6" "3-&gt;7"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -185,6 +197,8 @@ selected edges in input graph.</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

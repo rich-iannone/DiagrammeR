@@ -32,23 +32,8 @@
 
 <meta property="og:title" content="Set node attributes with a node selection — set_node_attrs_ws" />
 
-<meta property="og:description" content="From a graph object of class
-dgr_graph or a node data frame, set node
-attribute properties for nodes present in a node
-selection.
-Selections of nodes can be performed using
-the following select_... functions:
-select_nodes(),
-select_last_nodes_created(),
-select_nodes_by_degree(),
-select_nodes_by_id(), or
-select_nodes_in_neighborhood().
-Selections of nodes can also be performed using
-the following traversal functions:
-(trav_...):
-trav_out(), trav_in(),
-trav_both(), trav_in_node(),
-trav_out_node()." />
+<meta property="og:description" content="From a graph object of class dgr_graph or a node data frame, set node
+  attribute properties for nodes present in a node selection." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -141,23 +126,8 @@ trav_out_node()." />
 
     <div class="ref-description">
     
-    <p>From a graph object of class
-<code>dgr_graph</code> or a node data frame, set node
-attribute properties for nodes present in a node
-selection.</p>
-<p>Selections of nodes can be performed using
-the following <code>select_...</code> functions:
-<code><a href='select_nodes.html'>select_nodes()</a></code>,
-<code><a href='select_last_nodes_created.html'>select_last_nodes_created()</a></code>,
-<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree()</a></code>,
-<code><a href='select_nodes_by_id.html'>select_nodes_by_id()</a></code>, or
-<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood()</a></code>.
-Selections of nodes can also be performed using
-the following traversal functions:
-(<code>trav_...</code>):
-<code><a href='trav_out.html'>trav_out()</a></code>, <code><a href='trav_in.html'>trav_in()</a></code>,
-<code><a href='trav_both.html'>trav_both()</a></code>, <code><a href='trav_in_node.html'>trav_in_node()</a></code>,
-<code><a href='trav_out_node.html'>trav_out_node()</a></code>.</p>
+    <p>From a graph object of class <code>dgr_graph</code> or a node data frame, set node
+  attribute properties for nodes present in a node selection.</p>
     
     </div>
 
@@ -168,8 +138,7 @@ the following traversal functions:
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>node_attr</th>
@@ -177,14 +146,35 @@ the following traversal functions:
     </tr>
     <tr>
       <th>value</th>
-      <td><p>the value to be set for the chosen
-attribute for the nodes in the current selection.</p></td>
+      <td><p>the value to be set for the chosen attribute for the nodes in
+the current selection.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a graph object of class <code>dgr_graph</code>.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function makes use of an active selection of nodes (and the
+function ending with <code>_ws</code> hints at this).</p>
+<p>Selections of nodes can be performed using the following node selection
+(<code>select_*()</code>) functions:
+<code><a href='select_nodes.html'>select_nodes</a>()</code>,
+<code><a href='select_last_nodes_created.html'>select_last_nodes_created</a>()</code>,
+<code><a href='select_nodes_by_degree.html'>select_nodes_by_degree</a>()</code>,
+<code><a href='select_nodes_by_id.html'>select_nodes_by_id</a>()</code>, or
+<code><a href='select_nodes_in_neighborhood.html'>select_nodes_in_neighborhood</a>()</code>.</p>
+<p>Selections of nodes can also be performed using the following traversal
+(<code>trav_*()</code>) functions:
+<code><a href='trav_out.html'>trav_out</a>()</code>,
+<code><a href='trav_in.html'>trav_in</a>()</code>,
+<code><a href='trav_both.html'>trav_both</a>()</code>,
+<code><a href='trav_out_node.html'>trav_out_node</a>()</code>,
+<code><a href='trav_in_node.html'>trav_in_node</a>()</code>,
+<code><a href='trav_out_until.html'>trav_out_until</a>()</code>, or
+<code><a href='trav_in_until.html'>trav_in_until</a>()</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -207,8 +197,7 @@ attribute for the nodes in the current selection.</p></td>
 <span class='co'># Show the internal node data frame to verify</span>
 <span class='co'># that the node attribute has been set for</span>
 <span class='co'># specific node</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label color
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_node_df.html'>get_node_df</a></span>()</div><div class='output co'>#&gt;   id type label color
 #&gt; 1  1 &lt;NA&gt;     1  &lt;NA&gt;
 #&gt; 2  2 &lt;NA&gt;     2  blue
 #&gt; 3  3 &lt;NA&gt;     3  blue
@@ -222,6 +211,8 @@ attribute for the nodes in the current selection.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

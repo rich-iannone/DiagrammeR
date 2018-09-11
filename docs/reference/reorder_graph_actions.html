@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Trigger the execution of a series of graph actions — reorder_graph_actions • DiagrammeR</title>
+<title>Reorder the stored series of graph actions — reorder_graph_actions • DiagrammeR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,14 +30,11 @@
 
 
 
-<meta property="og:title" content="Trigger the execution of a series of graph actions — reorder_graph_actions" />
+<meta property="og:title" content="Reorder the stored series of graph actions — reorder_graph_actions" />
 
-<meta property="og:description" content="Execute the graph actions stored in
-the graph through the use of the
-add_graph_action() function. These actions
-will be invoked in order and any errors
-encountered will trigger a warning message and
-result in no change to the input graph." />
+<meta property="og:description" content="Reorder the graph actions stored in the graph through the use of the
+  link{add_graph_action}() function. These actions are be invoked in a
+  specified order via the trigger_graph_actions() function." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,19 +120,16 @@ result in no change to the input graph." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Trigger the execution of a series of graph actions</h1>
+    <h1>Reorder the stored series of graph actions</h1>
     <small class="dont-index">Source: <a href='https://github.com/rich-iannone/DiagrammeR/blob/master/R/reorder_graph_actions.R'><code>R/reorder_graph_actions.R</code></a></small>
     <div class="hidden name"><code>reorder_graph_actions.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Execute the graph actions stored in
-the graph through the use of the
-<code><a href='add_graph_action.html'>add_graph_action()</a></code> function. These actions
-will be invoked in order and any errors
-encountered will trigger a warning message and
-result in no change to the input graph.</p>
+    <p>Reorder the graph actions stored in the graph through the use of the
+  <code>link{add_graph_action}()</code> function. These actions are be invoked in a
+  specified order via the <code><a href='trigger_graph_actions.html'>trigger_graph_actions</a>()</code> function.</p>
     
     </div>
 
@@ -146,17 +140,14 @@ result in no change to the input graph.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>indices</th>
-      <td><p>a numeric vector that provides
-the new ordering of graph actions. This vector
-can be the same length as the number of graph
-actions, or, of shorter length. In the latter
-case, the ordering places the given items first
-and the remaining actions will follow.</p></td>
+      <td><p>a numeric vector that provides the new ordering of graph
+actions. This vector can be the same length as the number of graph actions,
+or, of shorter length. In the latter case, the ordering places the given
+items first and the remaining actions will follow.</p></td>
     </tr>
     </table>
     
@@ -198,8 +189,7 @@ and the remaining actions will follow.</p></td>
 <span class='co'># View the graph actions for the graph</span>
 <span class='co'># object by using the function called</span>
 <span class='co'># `get_graph_actions()`</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
 #&gt;   action_index action_name    expression                                       
 #&gt;          &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;                                            
 #&gt; 1            1 pgrnk_to_width rescale_node_attrs(graph = graph, node_attr_from…
@@ -221,8 +211,7 @@ and the remaining actions will follow.</p></td>
 <span class='co'># View the graph actions for the graph</span>
 <span class='co'># object once again to verify that</span>
 <span class='co'># we have the desired order of actions</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_graph_actions.html'>get_graph_actions</a></span>()</div><div class='output co'>#&gt; # A tibble: 3 x 3
 #&gt;   action_index action_name    expression                                       
 #&gt;          &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;                                            
 #&gt; 1            1 get_pagerank   set_node_attr_w_fcn(graph = graph, node_attr_fcn…

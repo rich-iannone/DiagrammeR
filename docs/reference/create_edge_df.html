@@ -32,18 +32,10 @@
 
 <meta property="og:title" content="Create an edge data frame — create_edge_df" />
 
-<meta property="og:description" content="Combine several vectors for edges
-and their attributes into a data frame, which can be
-combined with other similarly-generated data frames,
-or, added to a graph object. An edge data frame,
-or edf, has at least the following columns:
-- id (of type integer)
-- from (of type integer)
-- to (of type integer)
-- rel (of type character)
-An arbitrary number of additional columns containing
-aesthetic or data attributes can be part of the edf,
-so long as they follow the aforementioned columns." />
+<meta property="og:description" content="Combine several vectors for edges and their attributes into a data frame,
+  which can be combined with other similarly-generated data frames, or, added
+  to a graph object. An edge data frame, or edf, has at least the following
+  columns:" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,18 +128,10 @@ so long as they follow the aforementioned columns." />
 
     <div class="ref-description">
     
-    <p>Combine several vectors for edges
-and their attributes into a data frame, which can be
-combined with other similarly-generated data frames,
-or, added to a graph object. An edge data frame,
-or edf, has at least the following columns:</p>
-<p>- <code>id</code> (of type <code>integer</code>)</p>
-<p>- <code>from</code> (of type <code>integer</code>)</p>
-<p>- <code>to</code> (of type <code>integer</code>)</p>
-<p>- <code>rel</code> (of type <code>character</code>)</p>
-<p>An arbitrary number of additional columns containing
-aesthetic or data attributes can be part of the edf,
-so long as they follow the aforementioned columns.</p>
+    <p>Combine several vectors for edges and their attributes into a data frame,
+  which can be combined with other similarly-generated data frames, or, added
+  to a graph object. An edge data frame, or edf, has at least the following
+  columns:</p>
     
     </div>
 
@@ -158,31 +142,37 @@ so long as they follow the aforementioned columns.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>from</th>
-      <td><p>a vector of node ID values from which
-edges are outbound. The vector length must equal
-that of the <code>to</code> vector.</p></td>
+      <td><p>a vector of node ID values from which edges are outbound. The
+vector length must equal that of the <code>to</code> vector.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>a vector of node ID values to which edges
-are incoming. The vector length must equal that of
-the <code>from</code> vector.</p></td>
+      <td><p>a vector of node ID values to which edges are incoming. The vector
+length must equal that of the <code>from</code> vector.</p></td>
     </tr>
     <tr>
       <th>rel</th>
-      <td><p>an optional <code>rel</code> label for each
-edge.</p></td>
+      <td><p>an optional <code>rel</code> label for each edge.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>one or more vectors for associated edge
-attributes.</p></td>
+      <td><p>one or more vectors for associated edge attributes.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>an edge data frame (edf).</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>- <code>id</code> (of type <code>integer</code>)</p>
+<p>- <code>from</code> (of type <code>integer</code>)</p>
+<p>- <code>to</code> (of type <code>integer</code>)</p>
+<p>- <code>rel</code> (of type <code>character</code>)</p>
+<p>An arbitrary number of additional columns containing aesthetic or data
+  attributes can be part of the edf, so long as they follow the
+  aforementioned columns.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -223,6 +213,8 @@ attributes.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -32,8 +32,7 @@
 
 <meta property="og:title" content="Select edges in a graph — select_edges" />
 
-<meta property="og:description" content="Select edges from a graph object of
-class dgr_graph." />
+<meta property="og:description" content="Select edges from a graph object of class dgr_graph." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -126,8 +125,7 @@ class dgr_graph." />
 
     <div class="ref-description">
     
-    <p>Select edges from a graph object of
-class <code>dgr_graph</code>.</p>
+    <p>Select edges from a graph object of class <code>dgr_graph</code>.</p>
     
     </div>
 
@@ -139,39 +137,34 @@ class <code>dgr_graph</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>graph</th>
-      <td><p>a graph object of class
-<code>dgr_graph</code>.</p></td>
+      <td><p>a graph object of class <code>dgr_graph</code>.</p></td>
     </tr>
     <tr>
       <th>conditions</th>
-      <td><p>an option to use filtering
-conditions for the retrieval of edges.</p></td>
+      <td><p>an option to use filtering conditions for the retrieval of
+edges.</p></td>
     </tr>
     <tr>
       <th>set_op</th>
-      <td><p>the set operation to perform upon
-consecutive selections of graph nodes. This can
-either be as a <code>union</code> (the default), as an
-intersection of selections with <code>intersect</code>,
-or, as a <code>difference</code> on the previous
-selection, if it exists.</p></td>
+      <td><p>the set operation to perform upon consecutive selections of
+graph nodes. This can either be as a <code>union</code> (the default), as an
+intersection of selections with <code>intersect</code>, or, as a
+<code>difference</code> on the previous selection, if it exists.</p></td>
     </tr>
     <tr>
       <th>from</th>
-      <td><p>an optional vector of node IDs from
-which the edge is outgoing for filtering the list of
-edges present in the graph.</p></td>
+      <td><p>an optional vector of node IDs from which the edge is outgoing
+for filtering the list of edges present in the graph.</p></td>
     </tr>
     <tr>
       <th>to</th>
-      <td><p>an optional vector of node IDs to which
-the edge is incoming for filtering the list of
-edges present in the graph.</p></td>
+      <td><p>an optional vector of node IDs to which the edge is incoming for
+filtering the list of edges present in the graph.</p></td>
     </tr>
     <tr>
       <th>edges</th>
-      <td><p>an optional vector of edge IDs for
-filtering the list of edges present in the graph.</p></td>
+      <td><p>an optional vector of edge IDs for filtering the list of edges
+present in the graph.</p></td>
     </tr>
     </table>
     
@@ -211,8 +204,7 @@ filtering the list of edges present in the graph.</p></td>
     <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='output co'>#&gt; <span class='message'>`select_edges()` INFO: created a new selection of 1 edge</span></div><div class='input'>
 <span class='co'># Verify that an edge selection has been made</span>
 <span class='co'># using the `get_selection()` function</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 1</div><div class='input'>
 <span class='co'># Select edges based on the relationship label</span>
 <span class='co'># being `z`</span>
 <span class='no'>graph</span> <span class='kw'>&lt;-</span>
@@ -223,8 +215,7 @@ filtering the list of edges present in the graph.</p></td>
 <span class='co'># Verify that an edge selection has been made, and</span>
 <span class='co'># recall that the `2`-&gt;`3` edge uniquely has the</span>
 <span class='co'># `z` relationship label</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of1 edge</span></div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'># Select edges based on the edge value attribute</span>
 <span class='co'># being greater than 3.0 (first clearing the current</span>
 <span class='co'># selection of edges)</span>
@@ -236,8 +227,7 @@ filtering the list of edges present in the graph.</p></td>
 <span class='co'># Verify that the correct edge selection has been</span>
 <span class='co'># made; in this case, edges `1`-&gt;`4` and</span>
 <span class='co'># `3`-&gt;`1` have values for `value` &gt; 3.0</span>
-<span class='no'>graph</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 3</div></pre>
+<span class='no'>graph</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='get_selection.html'>get_selection</a></span>()</div><div class='output co'>#&gt; <span class='message'>`get_selection()` INFO: there is an active selection of2 edges</span></div><div class='output co'>#&gt; [1] 1 3</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
