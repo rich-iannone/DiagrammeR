@@ -1,10 +1,31 @@
 #' Traverse from one or more selected nodes onto neighboring nodes
 #'
 #' From a graph object of class \code{dgr_graph} move from one or more nodes
-#'   present in a selection to other nodes that are connected by edges,
-#'   replacing the current nodes in the selection with those nodes traversed to.
-#'   An optional filter by node attribute can limit the set of nodes traversed
-#'   to.
+#' present in a selection to other nodes that are connected by edges, replacing
+#' the current nodes in the selection with those nodes traversed to. An optional
+#' filter by node attribute can limit the set of nodes traversed to.
+#'
+#' This traversal function makes use of an active selection of nodes. After the
+#' traversal, depending on the traversal conditions, there will either be a
+#' selection of nodes or no selection at all.
+#'
+#' Selections of nodes can be performed using the following node selection
+#' (\code{select_*()}) functions:
+#' \code{\link{select_nodes}()},
+#' \code{\link{select_last_nodes_created}()},
+#' \code{\link{select_nodes_by_degree}()},
+#' \code{\link{select_nodes_by_id}()}, or
+#' \code{\link{select_nodes_in_neighborhood}()}.
+#'
+#' Selections of nodes can also be performed using the following traversal
+#' (\code{trav_*()}) functions:
+#' \code{\link{trav_out}()},
+#' \code{\link{trav_in}()},
+#' \code{\link{trav_both}()},
+#' \code{\link{trav_out_node}()},
+#' \code{\link{trav_in_node}()},
+#' \code{\link{trav_out_until}()}, or
+#' \code{\link{trav_in_until}()}.
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the traversal.
 #' @param copy_attrs_from providing a node attribute name will copy those node

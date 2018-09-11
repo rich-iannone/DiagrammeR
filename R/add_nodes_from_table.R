@@ -1,7 +1,7 @@
 #' Add nodes and attributes to graph from a table
 #'
-#' Add nodes and their attributes to an existing graph object from data in a
-#'   CSV file or a data frame.
+#' Add nodes and their attributes to an existing graph object from data in a CSV
+#' file or a data frame.
 #' @inheritParams render_graph
 #' @param table either a path to a CSV file, or, a data frame object.
 #' @param label_col an option to apply a column of data in the table as

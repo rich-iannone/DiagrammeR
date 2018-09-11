@@ -1,7 +1,7 @@
 #' Add edges from an edge data frame to an existing graph object
 #'
 #' With a graph object of class \code{dgr_graph}, add edges from an edge data
-#'   frame to that graph.
+#' frame to that graph.
 #' @inheritParams render_graph
 #' @param edge_df an edge data frame that is created using
 #'   \code{\link{create_edge_df}()}.

@@ -1,10 +1,31 @@
 #' Add clones of a selection of nodes
 #'
 #' Add new nodes to a graph object of class \code{dgr_graph} which are clones of
-#'   nodes in an active selection of nodes. All node attributes are preserved
-#'   except for the node \code{label} attribute (to maintain the uniqueness of
-#'   non-\code{NA} node label values). A vector of node \code{label} can be
-#'   provided to bind new labels to the cloned nodes.
+#' nodes in an active selection of nodes. All node attributes are preserved
+#' except for the node \code{label} attribute (to maintain the uniqueness of
+#' non-\code{NA} node label values). A vector of node \code{label} can be
+#' provided to bind new labels to the cloned nodes.
+#'
+#' This function makes use of an active selection of nodes (and the
+#' function ending with \code{_ws} hints at this).
+#'
+#' Selections of nodes can be performed using the following node selection
+#' (\code{select_*()}) functions:
+#' \code{\link{select_nodes}()},
+#' \code{\link{select_last_nodes_created}()},
+#' \code{\link{select_nodes_by_degree}()},
+#' \code{\link{select_nodes_by_id}()}, or
+#' \code{\link{select_nodes_in_neighborhood}()}.
+#'
+#' Selections of nodes can also be performed using the following traversal
+#' (\code{trav_*()}) functions:
+#' \code{\link{trav_out}()},
+#' \code{\link{trav_in}()},
+#' \code{\link{trav_both}()},
+#' \code{\link{trav_out_node}()},
+#' \code{\link{trav_in_node}()},
+#' \code{\link{trav_out_until}()}, or
+#' \code{\link{trav_in_until}()}.
 #' @inheritParams render_graph
 #' @param add_edges an option for whether to add edges from the selected nodes
 #'   to each of their clones, or, in the opposite direction.

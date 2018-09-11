@@ -1,17 +1,29 @@
-#' Delete all selected nodes in a node selection
+#' Delete all nodes in a node selection
 #'
 #' In a graph object of class \code{dgr_graph}, delete all nodes present in a
-#'   selection.
+#' selection of nodes.
 #'
-#' Selections of nodes can be performed using the following \code{select_...}
-#'   functions: \code{select_nodes()}, \code{select_last_nodes_created()},
-#'   \code{select_nodes_by_degree()}, \code{select_nodes_by_id()}, or
-#'   \code{select_nodes_in_neighborhood()}.
+#' This function makes use of an active selection of nodes (and the
+#' function ending with \code{_ws} hints at this).
+#'
+#' Selections of nodes can be performed using the following node selection
+#' (\code{select_*()}) functions:
+#' \code{\link{select_nodes}()},
+#' \code{\link{select_last_nodes_created}()},
+#' \code{\link{select_nodes_by_degree}()},
+#' \code{\link{select_nodes_by_id}()}, or
+#' \code{\link{select_nodes_in_neighborhood}()}.
 #'
 #' Selections of nodes can also be performed using the following traversal
-#'   functions (\code{trav_...}): \code{trav_out()}, \code{trav_in()},
-#'   \code{trav_both()}, \code{trav_in_node()}, \code{trav_out_node()}.
-#' @param graph a graph object of class \code{dgr_graph}.
+#' (\code{trav_*()}) functions:
+#' \code{\link{trav_out}()},
+#' \code{\link{trav_in}()},
+#' \code{\link{trav_both}()},
+#' \code{\link{trav_out_node}()},
+#' \code{\link{trav_in_node}()},
+#' \code{\link{trav_out_until}()}, or
+#' \code{\link{trav_in_until}()}.
+#' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a graph with 3 nodes

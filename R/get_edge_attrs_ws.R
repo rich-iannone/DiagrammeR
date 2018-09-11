@@ -2,6 +2,23 @@
 #'
 #' From a graph object of class \code{dgr_graph}, get edge attribute values for
 #' one or more edges.
+#'
+#' This function makes use of an active selection of edges (and the function
+#' ending with \code{_ws} hints at this).
+#'
+#' Selections of edges can be performed using the following selection
+#' (\code{select_*()}) functions:
+#' \code{\link{select_edges}()},
+#' \code{\link{select_last_edges_created}()},
+#' \code{\link{select_edges_by_edge_id}()}, or
+#' \code{\link{select_edges_by_node_id}()}.
+#'
+#' Selections of edges can also be performed using the following traversal
+#' (\code{trav_*()}) functions:
+#' \code{\link{trav_out_edge}()},
+#' \code{\link{trav_in_edge}()},
+#' \code{\link{trav_both_edge}()}, or
+#' \code{\link{trav_reverse_edge}()}.
 #' @inheritParams render_graph
 #' @param edge_attr the name of the attribute for which to get values.
 #' @return a named vector of edge attribute values for the attribute given by

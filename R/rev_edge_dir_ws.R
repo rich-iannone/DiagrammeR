@@ -1,7 +1,24 @@
 #' Reverse the direction of selected edges in a graph using an edge selection
 #'
 #' Using a directed graph with a selection of edges as input, reverse the
-#'   direction of those selected edges in input graph.
+#' direction of those selected edges in input graph.
+#'
+#' This function makes use of an active selection of edges (and the function
+#' ending with \code{_ws} hints at this).
+#'
+#' Selections of edges can be performed using the following selection
+#' (\code{select_*()}) functions:
+#' \code{\link{select_edges}()},
+#' \code{\link{select_last_edges_created}()},
+#' \code{\link{select_edges_by_edge_id}()}, or
+#' \code{\link{select_edges_by_node_id}()}.
+#'
+#' Selections of edges can also be performed using the following traversal
+#' (\code{trav_*()}) functions:
+#' \code{\link{trav_out_edge}()},
+#' \code{\link{trav_in_edge}()},
+#' \code{\link{trav_both_edge}()}, or
+#' \code{\link{trav_reverse_edge}()}.
 #' @inheritParams render_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples

@@ -1,8 +1,8 @@
 #' Add one or more global graph attributes
 #'
 #' Add global attributes of a specific type (either \code{graph_attrs},
-#'   \code{node_attrs}, or \code{edge_attrs} for a graph object of class
-#'   \code{dgr_graph}).
+#' \code{node_attrs}, or \code{edge_attrs} for a graph object of class
+#' \code{dgr_graph}).
 #' @param graph a graph object of class \code{dgr_graph}.
 #' @param attr the name of the attribute to set for the \code{type} of global
 #'   attribute specified.

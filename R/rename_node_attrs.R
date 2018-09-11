@@ -1,12 +1,11 @@
 #' Rename a node attribute
-#' @description Within a graph's internal node data
-#' frame (ndf), rename an existing node attribute.
-#' @param graph a graph object of class
-#' \code{dgr_graph}.
-#' @param node_attr_from the name of the node attribute
-#' that will be renamed.
-#' @param node_attr_to the new name of the node
-#' attribute column identified in \code{node_attr_from}.
+#'
+#' Within a graph's internal node data frame (ndf), rename an existing node
+#' attribute.
+#' @inheritParams render_graph
+#' @param node_attr_from the name of the node attribute that will be renamed.
+#' @param node_attr_to the new name of the node attribute column identified in
+#'   \code{node_attr_from}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a random graph using the
@@ -30,8 +29,7 @@
 #' # Get the graph's internal ndf
 #' # to show which node attributes
 #' # are available
-#' graph %>%
-#'   get_node_df()
+#' graph %>% get_node_df()
 #'
 #' # Rename the `value` node
 #' # attribute as `weight`
@@ -44,11 +42,9 @@
 #' # Get the graph's internal
 #' # ndf to show that the node
 #' # attribute had been renamed
-#' graph %>%
-#'   get_node_df()
-#' @importFrom rlang enquo get_expr
-#' @export rename_node_attrs
-
+#' graph %>% get_node_df()
+#' @import rlang
+#' @export
 rename_node_attrs <- function(graph,
                               node_attr_from,
                               node_attr_to) {

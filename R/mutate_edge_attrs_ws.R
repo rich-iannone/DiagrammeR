@@ -1,7 +1,24 @@
 #' Mutate edge attribute values for a selection of edges
 #'
 #' Within a graph's internal edge data frame (edf), mutate edge attribute values
-#'   only for edges in a selection by using one or more expressions.
+#' only for edges in a selection by using one or more expressions.
+#'
+#' This function makes use of an active selection of edges (and the function
+#' ending with \code{_ws} hints at this).
+#'
+#' Selections of edges can be performed using the following selection
+#' (\code{select_*()}) functions:
+#' \code{\link{select_edges}()},
+#' \code{\link{select_last_edges_created}()},
+#' \code{\link{select_edges_by_edge_id}()}, or
+#' \code{\link{select_edges_by_node_id}()}.
+#'
+#' Selections of edges can also be performed using the following traversal
+#' (\code{trav_*()}) functions:
+#' \code{\link{trav_out_edge}()},
+#' \code{\link{trav_in_edge}()},
+#' \code{\link{trav_both_edge}()}, or
+#' \code{\link{trav_reverse_edge}()}.
 #' @inheritParams render_graph
 #' @param ... expressions used for the mutation of edge attributes. LHS of each
 #'   expression is either an existing or new edge attribute name. The RHS can
@@ -99,7 +116,7 @@
 #' # those of the other edges
 #' graph %>% get_edge_df()
 #' @importFrom dplyr mutate_
-#' @importFrom rlang exprs
+#' @import rlang
 #' @export
 mutate_edge_attrs_ws <- function(graph,
                                  ...) {

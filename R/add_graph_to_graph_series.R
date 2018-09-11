@@ -1,7 +1,7 @@
 #' Add graph object to a graph series object
 #'
 #' Add a graph object to an extant graph series object for storage of multiple
-#'   graphs across a sequential or temporal one-dimensional array.
+#' graphs across a sequential or temporal one-dimensional array.
 #' @param graph_series a graph series object to which the graph object will be
 #'   added.
 #' @param graph a graph object to add to the graph series object.

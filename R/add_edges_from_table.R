@@ -1,7 +1,7 @@
 #' Add edges and attributes to graph from a table
 #'
-#' Add edges and their attributes to an existing graph object from data in a
-#'   CSV file or a data frame.
+#' Add edges and their attributes to an existing graph object from data in a CSV
+#' file or a data frame.
 #' @inheritParams render_graph
 #' @param table either a path to a CSV file, or, a data frame object.
 #' @param from_col the name of the table column from which edges originate.
