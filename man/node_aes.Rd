@@ -42,7 +42,7 @@ colors that R knows about (obtained using the \code{colors()} function),
 or, a hexadecimal color code.}
 
 \item{peripheries}{the repeated number of node shapes (of increasing size) to
-draw at the node perhipery.}
+draw at the node periphery.}
 
 \item{height}{the height of the node shape, in inches. The default value is
 \code{0.5} whereas the minimum value is \code{0.02}. This is understood as

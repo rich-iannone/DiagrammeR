@@ -12,7 +12,7 @@ add_prism(graph, n, type = NULL, label = TRUE, rel = NULL,
 \item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{n}{the number of nodes describing the shape of the prism. For example,
-the triagonal prism has \code{n} equal to 3 and it is composed of 6 nodes
+the triangular prism has \code{n} equal to 3 and it is composed of 6 nodes
 and 9 edges. For any n-gonal prism, the graph will be generated with
 2\code{n} nodes and 3\code{n} edges.}
 
