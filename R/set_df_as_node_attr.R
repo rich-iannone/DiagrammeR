@@ -64,7 +64,7 @@
 #'     node = 2,
 #'     df = df_2)
 #' @importFrom dplyr filter everything mutate select bind_rows as_tibble
-#' @importFrom purrr flatten_chr
+#' @import rlang
 #' @export
 set_df_as_node_attr <- function(graph,
                                 node,
@@ -147,7 +147,7 @@ set_df_as_node_attr <- function(graph,
          dplyr::filter(node_edge__ == "node") %>%
          dplyr::filter(id__ == node) %>%
          dplyr::select(df_id__) %>%
-         purrr::flatten_chr())[1]
+         flatten_chr())[1]
 
     graph$df_storage[[`df_object_old`]] <- NULL
   }

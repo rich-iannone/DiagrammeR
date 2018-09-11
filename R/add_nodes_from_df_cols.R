@@ -65,7 +65,7 @@
 #' @importFrom dplyr bind_rows distinct select select_if as_tibble
 #' @importFrom stringr str_split
 #' @importFrom tidyr drop_na
-#' @importFrom purrr flatten_chr
+#' @import rlang
 #' @export
 add_nodes_from_df_cols <- function(graph,
                                    df,
@@ -134,14 +134,14 @@ add_nodes_from_df_cols <- function(graph,
     nodes <-
       c(nodes,
         df[, i] %>%
-          purrr::flatten_chr() %>%
+          flatten_chr() %>%
           trimws() %>%
           stringr::str_split(" ") %>%
-          purrr::flatten_chr() %>%
+          flatten_chr() %>%
           dplyr::as_tibble() %>%
           tidyr::drop_na() %>%
           dplyr::distinct() %>%
-          purrr::flatten_chr())
+          flatten_chr())
   }
 
   # Get the unique set of nodes

@@ -57,11 +57,11 @@
 #'   render_graph(
 #'     output = "visNetwork")
 #' }
+#' @import rlang
 #' @importFrom dplyr select rename mutate filter coalesce left_join
 #' @importFrom dplyr pull bind_cols as_tibble
 #' @importFrom igraph layout_in_circle layout_with_sugiyama
 #' @importFrom igraph layout_with_kk layout_with_fr layout_nicely
-#' @importFrom purrr flatten_chr
 #' @export
 render_graph <- function(graph,
                          layout = NULL,
@@ -123,7 +123,7 @@ render_graph <- function(graph,
             graph$global_attrs %>%
             dplyr::filter(attr == "fillcolor" & attr_type == "node") %>%
             dplyr::select(value) %>%
-            purrr::flatten_chr()
+            flatten_chr()
         } else {
           graph$nodes_df$fillcolor <- "white"
         }
