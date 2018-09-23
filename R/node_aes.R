@@ -17,6 +17,7 @@
 #' @param fillcolor the color with which to fill the shape of the node. Can be
 #'   any of the named colors that R knows about (obtained using the
 #'   \code{colors()} function), or, a hexadecimal color code.
+#' @param image a reference to an image location.
 #' @param fontname the name of the system font that will be used for any node
 #'   text.
 #' @param fontsize the point size of the font used for any node text.
@@ -105,6 +106,7 @@ node_aes <- function(shape = NULL,
                      penwidth = NULL,
                      color = NULL,
                      fillcolor = NULL,
+                     image = NULL,
                      fontname = NULL,
                      fontsize = NULL,
                      fontcolor = NULL,
@@ -135,6 +137,7 @@ node_aes <- function(shape = NULL,
       penwidth = penwidth,
       color = color,
       fillcolor = fillcolor,
+      image = image,
       fontname = fontname,
       fontsize = fontsize,
       fontcolor = fontcolor,
