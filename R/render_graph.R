@@ -62,6 +62,7 @@
 #' @importFrom igraph layout_in_circle layout_with_sugiyama
 #' @importFrom igraph layout_with_kk layout_with_fr layout_nicely
 #' @importFrom purrr flatten_chr
+#' @importFrom tidyr fill
 #' @export
 render_graph <- function(graph,
                          layout = NULL,
