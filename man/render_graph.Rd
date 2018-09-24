@@ -4,8 +4,8 @@
 \alias{render_graph}
 \title{Render the graph in various formats}
 \usage{
-render_graph(graph, layout = NULL, output = NULL, title = NULL,
-  width = NULL, height = NULL)
+render_graph(graph, layout = NULL, output = NULL, as_svg = TRUE,
+  title = NULL, width = NULL, height = NULL)
 }
 \arguments{
 \item{graph}{a graph object of class \code{dgr_graph}.}
@@ -18,6 +18,8 @@ this rendering. Possible layouts include: \code{nicely}, \code{circle},
 renders the graph using the \code{\link{grViz}()} function and
 \code{visNetwork} renders the graph using the \code{\link{visnetwork}()}
 function.}
+
+\item{as_svg}{an option to render the graph as an SVG document.}
 
 \item{title}{an optional title for a graph when using
 \code{output = "graph"}.}
