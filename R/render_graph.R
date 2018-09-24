@@ -9,6 +9,7 @@
 #'   renders the graph using the \code{\link{grViz}()} function and
 #'   \code{visNetwork} renders the graph using the \code{\link{visnetwork}()}
 #'   function.
+#' @param as_svg an option to render the graph as an SVG document.
 #' @param title an optional title for a graph when using
 #'   \code{output = "graph"}.
 #' @param width an optional parameter for specifying the width of the resulting
