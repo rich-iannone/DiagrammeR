@@ -59,15 +59,18 @@
 #'     output = "visNetwork")
 #' }
 #' @importFrom dplyr select rename mutate filter coalesce left_join
-#' @importFrom dplyr pull bind_cols as_tibble
+#' @importFrom dplyr pull bind_cols as_tibble as_data_frame
 #' @importFrom igraph layout_in_circle layout_with_sugiyama
 #' @importFrom igraph layout_with_kk layout_with_fr layout_nicely
 #' @importFrom purrr flatten_chr
 #' @importFrom tidyr fill
+#' @importFrom htmltools browsable HTML
+#' @importFrom glue glue
 #' @export
 render_graph <- function(graph,
                          layout = NULL,
                          output = NULL,
+                         as_svg = TRUE,
                          title = NULL,
                          width = NULL,
                          height = NULL) {
@@ -248,7 +251,21 @@ render_graph <- function(graph,
     }
 
 
-    if ("image" %in% colnames(graph %>% get_node_df())) {
+    if (("image" %in% colnames(graph %>% get_node_df()) || as_svg) &
+        requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
+
+      # Stop function if `DiagrammeRsvg` package is not available
+      if (!("DiagrammeRsvg" %in%
+            rownames(utils::installed.packages()))) {
+
+        emit_error(
+          fcn_name = fcn_name,
+          reasons = c(
+            "Cannot currently render the graph to an SVG",
+            "please install the `DiagrammeRsvg` package and retry",
+            "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`",
+            "otherwise, set `as_svg = FALSE`"))
+      }
 
       # Get a vector of SVG lines
       svg_vec <-
@@ -286,7 +303,7 @@ render_graph <- function(graph,
 
       svg_shape_nos <-
         svg_tbl %>% filter(node_id %in% node_id_images) %>% filter(type == "node_block") %>%
-        pull(index)
+        dplyr::pull(index)
 
       svg_shape_nos <- svg_shape_nos + 3
       svg_text_nos <- svg_shape_nos + 1
