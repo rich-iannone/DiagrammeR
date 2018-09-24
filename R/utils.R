@@ -949,7 +949,10 @@ remove_linked_dfs <- function(graph) {
 #' @importFrom tidyr fill
 get_svg_tbl <- function(svg_vec) {
 
-  svg_tbl <- dplyr::tibble()
+  svg_tbl <-
+    dplyr::tibble(
+      index = integer(0), type = character(0), node_id = integer(0),
+      from = integer(0), to = integer(0))
 
   for (i in seq(svg_vec)) {
 
