@@ -4,7 +4,7 @@
 \alias{render_graph}
 \title{Render the graph in various formats}
 \usage{
-render_graph(graph, layout = NULL, output = NULL, as_svg = TRUE,
+render_graph(graph, layout = NULL, output = NULL, as_svg = FALSE,
   title = NULL, width = NULL, height = NULL)
 }
 \arguments{
