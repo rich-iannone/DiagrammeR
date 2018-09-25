@@ -251,7 +251,9 @@ render_graph <- function(graph,
     }
 
 
-    if (("image" %in% colnames(graph %>% get_node_df()) || as_svg) &
+    if (("image" %in% colnames(graph %>% get_node_df()) ||
+         "fa_icon" %in% colnames(graph %>% get_node_df()) ||
+         as_svg) &
         requireNamespace("DiagrammeRsvg", quietly = TRUE)) {
 
       # Stop function if `DiagrammeRsvg` package is not available
@@ -263,7 +265,7 @@ render_graph <- function(graph,
           reasons = c(
             "Cannot currently render the graph to an SVG",
             "please install the `DiagrammeRsvg` package and retry",
-            "pkg installed using `devtools::install_github('rich-iannone/DiagrammeRsvg')`",
+            "pkg installed using `install.packages('DiagrammeRsvg')`",
             "otherwise, set `as_svg = FALSE`"))
       }
 
@@ -276,7 +278,7 @@ render_graph <- function(graph,
           grViz(diagram = dot_code)), "\n") %>%
         unlist()
 
-      # Get a tibble with of SVG data
+      # Get a tibble of SVG data
       svg_tbl <- get_svg_tbl(svg_vec)
 
       svg_lines <-
@@ -310,7 +312,9 @@ render_graph <- function(graph,
         filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_images})\" "))
 
         svg_shape_nos <-
-          svg_tbl %>% filter(node_id %in% node_id_images) %>% filter(type == "node_block") %>%
+          svg_tbl %>%
+          dplyr::filter(node_id %in% node_id_images) %>%
+          dplyr::filter(type == "node_block") %>%
           dplyr::pull(index)
 
         svg_shape_nos <- svg_shape_nos + 3
@@ -318,6 +322,80 @@ render_graph <- function(graph,
 
         # Modify shape lines
         for (i in seq(node_id_images)) {
+
+          svg_vec[svg_shape_nos[i]] <-
+            sub(" ", paste0(filter_shape_refs[i]), svg_vec[svg_shape_nos[i]])
+
+          svg_vec[svg_text_nos[i]] <- ""
+        }
+
+        # Add in <filter> lines
+        svg_vec[svg_line_no + 1] <-
+          paste0(svg_vec[svg_line_no + 1], "\n\n", filter_lines, "\n")
+      }
+
+      if ("fa_icon" %in% colnames(graph %>% get_node_df())) {
+
+        # Stop function if `DiagrammeRsvg` package is not available
+        if (!("fontawesome" %in%
+              rownames(utils::installed.packages()))) {
+
+          emit_error(
+            fcn_name = fcn_name,
+            reasons = c(
+              "Cannot currently render FontAwesome icons",
+              "please install the `fontawesome` package and retry",
+              "pkg installed using `devtools::install_github('rstudio/fontawesome')`"))
+        }
+
+        node_id_fa <-
+          graph %>%
+          get_node_df() %>%
+          dplyr::select(id, fa_icon) %>%
+          dplyr::filter(fa_icon != "") %>%
+          dplyr::filter(!is.na(fa_icon)) %>%
+          dplyr::mutate(fa_uri = NA_character_)
+
+        node_id_svg <-
+          node_id_fa %>%
+          dplyr::pull(id)
+
+        for (i in seq(nrow(node_id_fa))) {
+
+          random_name <- paste(sample(letters[1:10], 10), collapse = "")
+          tmp_svg_file <- paste0(random_name, ".svg")
+
+          fa_icon <- node_id_fa[i, ]$fa_icon
+          id <- node_id_fa[i, ]$id
+
+          writeLines(fontawesome::fa(fa_icon), tmp_svg_file)
+
+          svg_uri <- get_image_uri(tmp_svg_file)
+
+          file.remove(tmp_svg_file)
+
+          node_id_fa[i, "fa_uri"] <-
+            as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{svg_uri}\"/></filter>"))
+        }
+
+        filter_lines <-
+          node_id_fa %>%
+          dplyr::pull(fa_uri) %>%
+          paste(collapse = "\n")
+
+        filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_svg})\" "))
+
+        svg_shape_nos <-
+          svg_tbl %>%
+          dplyr::filter(node_id %in% node_id_svg) %>%
+          dplyr::filter(type == "node_block") %>%
+          dplyr::pull(index)
+
+        svg_shape_nos <- svg_shape_nos + 3
+        svg_text_nos <- svg_shape_nos + 1
+
+        # Modify shape lines
+        for (i in seq(node_id_svg)) {
 
           svg_vec[svg_shape_nos[i]] <-
             sub(" ", paste0(filter_shape_refs[i]), svg_vec[svg_shape_nos[i]])
