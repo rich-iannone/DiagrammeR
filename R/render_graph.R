@@ -267,32 +267,17 @@ render_graph <- function(graph,
             "otherwise, set `as_svg = FALSE`"))
       }
 
+      # Generate DOT code
+      dot_code <- generate_dot(graph)
+
       # Get a vector of SVG lines
       svg_vec <-
         strsplit(DiagrammeRsvg::export_svg(
-          grViz(diagram = graph %>% generate_dot())), "\n") %>%
+          grViz(diagram = dot_code)), "\n") %>%
         unlist()
 
       # Get a tibble with of SVG data
       svg_tbl <- get_svg_tbl(svg_vec)
-
-      node_id_images <-
-        graph %>%
-        get_node_df() %>%
-        dplyr::select(id, image) %>%
-        dplyr::filter(image != "") %>%
-        dplyr::pull(id)
-
-      filter_lines <-
-        graph %>%
-        get_node_df() %>%
-        dplyr::select(id, image) %>%
-        dplyr::filter(image != "") %>%
-        dplyr::mutate(filter_lines = as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{image}\"/></filter>"))) %>%
-        dplyr::pull(filter_lines) %>%
-        paste(collapse = "\n")
-
-      filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_images})\" "))
 
       svg_lines <-
         "<svg display=\"block\" margin=\"0 auto\" position=\"absolute\" width=\"100%\" height=\"100%\""
@@ -301,28 +286,49 @@ render_graph <- function(graph,
         dplyr::filter(type == "svg") %>%
         dplyr::pull(index)
 
-      svg_shape_nos <-
-        svg_tbl %>% filter(node_id %in% node_id_images) %>% filter(type == "node_block") %>%
-        dplyr::pull(index)
-
-      svg_shape_nos <- svg_shape_nos + 3
-      svg_text_nos <- svg_shape_nos + 1
-
       # Modify <svg> attrs
       svg_vec[svg_line_no] <- svg_lines
 
-      # Modify shape lines
-      for (i in seq(node_id_images)) {
+      if ("image" %in% colnames(graph %>% get_node_df())) {
 
-        svg_vec[svg_shape_nos[i]] <-
-          sub(" ", paste0(filter_shape_refs[i]), svg_vec[svg_shape_nos[i]])
+        node_id_images <-
+          graph %>%
+          get_node_df() %>%
+          dplyr::select(id, image) %>%
+          dplyr::filter(image != "") %>%
+          dplyr::pull(id)
 
-        svg_vec[svg_text_nos[i]] <- ""
+        filter_lines <-
+          graph %>%
+          get_node_df() %>%
+          dplyr::select(id, image) %>%
+          dplyr::filter(image != "") %>%
+          dplyr::mutate(filter_lines = as.character(glue::glue("<filter id=\"{id}\" x=\"0%\" y=\"0%\" width=\"100%\" height=\"100%\"><feImage xlink:href=\"{image}\"/></filter>"))) %>%
+          dplyr::pull(filter_lines) %>%
+          paste(collapse = "\n")
+
+        filter_shape_refs <- as.character(glue::glue(" filter=\"url(#{node_id_images})\" "))
+
+        svg_shape_nos <-
+          svg_tbl %>% filter(node_id %in% node_id_images) %>% filter(type == "node_block") %>%
+          dplyr::pull(index)
+
+        svg_shape_nos <- svg_shape_nos + 3
+        svg_text_nos <- svg_shape_nos + 1
+
+        # Modify shape lines
+        for (i in seq(node_id_images)) {
+
+          svg_vec[svg_shape_nos[i]] <-
+            sub(" ", paste0(filter_shape_refs[i]), svg_vec[svg_shape_nos[i]])
+
+          svg_vec[svg_text_nos[i]] <- ""
+        }
+
+        # Add in <filter> lines
+        svg_vec[svg_line_no + 1] <-
+          paste0(svg_vec[svg_line_no + 1], "\n\n", filter_lines, "\n")
       }
-
-      # Add in <filter> lines
-      svg_vec[svg_line_no + 1] <-
-        paste0(svg_vec[svg_line_no + 1], "\n\n", filter_lines, "\n")
 
       svg_vec_1 <- paste(svg_vec, collapse = "\n")
 
