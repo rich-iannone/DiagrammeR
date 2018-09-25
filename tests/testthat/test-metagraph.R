@@ -48,11 +48,9 @@ test_that("the display of the metagraph works", {
       edge_attr_to = label)
 
   # Get the metagraph object
-  metagraph_object <-
-    display_metagraph(property_graph)
+  metagraph_object <- display_metagraph(property_graph)
 
-  # Expect that the object has a
-  # class of `grViz/htmlwidget`
+  # Expect that the object has the classes of `grViz` and `htmlwidget`
   expect_is(
     metagraph_object, c("grViz", "htmlwidget"))
 })
