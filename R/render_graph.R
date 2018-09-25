@@ -70,7 +70,7 @@
 render_graph <- function(graph,
                          layout = NULL,
                          output = NULL,
-                         as_svg = TRUE,
+                         as_svg = FALSE,
                          title = NULL,
                          width = NULL,
                          height = NULL) {
