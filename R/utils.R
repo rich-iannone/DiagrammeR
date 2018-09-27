@@ -967,19 +967,19 @@ get_svg_tbl <- function(svg_vec) {
     } else if (grepl("<!-- Title:", line)) {
       rec <- dplyr::tibble(index = i, type = "title_block")
     } else if (grepl("^<svg", line)) {
-      rec <- dplyr::tibble(index = i, type = "svg") %>% bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "svg") %>% dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl(" viewBox", line)) {
       rec <- dplyr::tibble(index = i, type = "viewbox_info")
     } else if (grepl("^<g ", line)) {
-      rec <- dplyr::tibble(index = i, type = "g") %>% bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "g") %>% dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("^<title>", line)) {
-      rec <- dplyr::tibble(index = i, type = "title") %>% bind_cols(get_inner_html(line))
+      rec <- dplyr::tibble(index = i, type = "title") %>% dplyr::bind_cols(get_inner_html(line))
     } else if (grepl("^<polygon", line)) {
-      rec <- dplyr::tibble(index = i, type = "polygon") %>% bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "polygon") %>% dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("^<path", line)) {
-      rec <- dplyr::tibble(index = i, type = "path") %>% bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "path") %>% dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("^<ellipse", line)) {
-      rec <- dplyr::tibble(index = i, type = "ellipse") %>% bind_cols(get_attr_tbl(line))
+      rec <- dplyr::tibble(index = i, type = "ellipse") %>% dplyr::bind_cols(get_attr_tbl(line))
     } else if (grepl("<!-- [0-9]*? -->", line)) {
       node_id <- gsub("(<!-- | -->)", "", line) %>% as.integer()
       rec <- dplyr::tibble(index = i, type = "node_block", node_id = node_id)
@@ -993,8 +993,8 @@ get_svg_tbl <- function(svg_vec) {
       rec <- dplyr::tibble(index = i, type = "edge_block", from = from_node_id, to = to_node_id)
     } else if (grepl("^<text ", line)) {
       rec <- dplyr::tibble(index = i, type = "text") %>%
-        bind_cols(get_attr_tbl(line)) %>%
-        bind_cols(get_inner_html(line))
+        dplyr::bind_cols(get_attr_tbl(line)) %>%
+        dplyr::bind_cols(get_inner_html(line))
     } else if (grepl("</g>", line)) {
       rec <- dplyr::tibble(index = i, type = "g_close")
     } else if (grepl("</svg>", line)) {
