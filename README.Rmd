@@ -145,7 +145,7 @@ d_graph <-
       arrowhead = "vee",
       tooltip = "Red Arrow"),
     edge_data = edge_data(
-      value = 2.5))
+      value = 5.2))
 ```
 
 <img src="man/figures/d_graph.png">
