@@ -133,7 +133,7 @@ select_nodes <- function(graph,
     nodes_df <-
       filter(
         .data = nodes_df,
-        rlang::UQ(conditions))
+        UQ(conditions))
   }
 
   # Get the nodes as a vector
