@@ -81,7 +81,7 @@ get_node_ids <- function(graph,
     nodes_df <-
       filter(
         .data = nodes_df,
-        rlang::UQ(conditions))
+        UQ(conditions))
   }
 
   # If no nodes remain then return NA

@@ -310,7 +310,7 @@ trav_in_node <- function(graph,
     valid_nodes <-
       dplyr::filter(
         .data = valid_nodes,
-        rlang::UQ(conditions))
+        UQ(conditions))
   }
 
   # If no rows returned, then there are no

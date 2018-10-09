@@ -89,7 +89,7 @@ get_agg_degree_total <- function(graph,
     ndf <-
       dplyr::filter(
         .data = ndf,
-        rlang::UQ(conditions))
+        UQ(conditions))
 
     # Get a vector of node ID values
     node_ids <-

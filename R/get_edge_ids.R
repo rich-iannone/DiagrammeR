@@ -87,7 +87,7 @@ get_edge_ids <- function(graph,
     edges_df <-
       filter(
         .data = edges_df,
-        rlang::UQ(conditions))
+        UQ(conditions))
   }
 
   # If no edges remain then return NA
