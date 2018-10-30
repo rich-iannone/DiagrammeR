@@ -18,6 +18,7 @@
 #'   any of the named colors that R knows about (obtained using the
 #'   \code{colors()} function), or, a hexadecimal color code.
 #' @param image a reference to an image location.
+#' @param fa_icon the name of a FontAwesome icon.
 #' @param fontname the name of the system font that will be used for any node
 #'   text.
 #' @param fontsize the point size of the font used for any node text.
