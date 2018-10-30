@@ -99,6 +99,22 @@
 #' # aesthetic attributes have
 #' # been inserted
 #' graph %>% get_node_df()
+#'
+#' # Create a new graph which is
+#' # fully connected and has FontAwesome
+#' # icons as nodes
+#' graph <-
+#'   create_graph() %>%
+#'   add_full_graph(
+#'     n = 4,
+#'     node_data = node_data(value = 1:4),
+#'     node_aes = node_aes(
+#'       x = c(2, 1, 3, 2),
+#'       y = c(3, 2, 2, 1),
+#'       fa_icon = c(
+#'       "arrow-left", "arrow-right",
+#'       "arrow-up", "arrow-down")),
+#'     edge_aes = edge_aes(color = "blue"))
 #' @importFrom purrr map_chr
 #' @export
 node_aes <- function(shape = NULL,
@@ -107,6 +123,7 @@ node_aes <- function(shape = NULL,
                      color = NULL,
                      fillcolor = NULL,
                      image = NULL,
+                     fa_icon = NULL,
                      fontname = NULL,
                      fontsize = NULL,
                      fontcolor = NULL,
@@ -138,6 +155,7 @@ node_aes <- function(shape = NULL,
       color = color,
       fillcolor = fillcolor,
       image = image,
+      fa_icon = fa_icon,
       fontname = fontname,
       fontsize = fontsize,
       fontcolor = fontcolor,
