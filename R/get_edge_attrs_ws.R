@@ -130,7 +130,7 @@ get_edge_attrs_ws <- function(graph,
   # Extract the edge attribute values
   edge_attr_vals <-
     edf %>%
-    dplyr::pull(rlang::UQ(edge_attr))
+    dplyr::pull(UQ(edge_attr))
 
   # Extract the edge names
   edge_names <-

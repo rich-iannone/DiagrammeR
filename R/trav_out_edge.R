@@ -286,7 +286,7 @@ trav_out_edge <- function(graph,
     valid_edges <-
       dplyr::filter(
         .data = valid_edges,
-        rlang::UQ(conditions))
+        UQ(conditions))
   }
 
   # If no rows returned, then there are no

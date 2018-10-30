@@ -206,7 +206,7 @@ rescale_edge_attrs <- function(graph,
   graph <-
     set_edge_attrs(
       graph = graph,
-      edge_attr = rlang::UQ(edge_attr_to_2),
+      edge_attr = UQ(edge_attr_to_2),
       values = edges_attr_vector_rescaled)
 
   # Remove last action from the `graph_log`

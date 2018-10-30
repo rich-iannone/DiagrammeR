@@ -108,7 +108,7 @@ get_node_attrs_ws <- function(graph,
   # Extract the node attribute values
   node_attr_vals <-
     ndf %>%
-    dplyr::pull(rlang::UQ(node_attr))
+    dplyr::pull(UQ(node_attr))
 
   # Add names to each of the values
   names(node_attr_vals) <- nodes

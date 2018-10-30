@@ -328,7 +328,7 @@ trav_out <- function(graph,
     valid_nodes <-
       dplyr::filter(
         .data = valid_nodes,
-        rlang::UQ(conditions))
+        UQ(conditions))
   }
 
   # If the option is taken to copy node attribute
