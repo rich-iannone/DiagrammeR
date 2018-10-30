@@ -5,12 +5,13 @@
 \title{Insert node aesthetic attributes during node creation}
 \usage{
 node_aes(shape = NULL, style = NULL, penwidth = NULL, color = NULL,
-  fillcolor = NULL, image = NULL, fontname = NULL, fontsize = NULL,
-  fontcolor = NULL, peripheries = NULL, height = NULL,
-  width = NULL, x = NULL, y = NULL, group = NULL, tooltip = NULL,
-  xlabel = NULL, URL = NULL, sides = NULL, orientation = NULL,
-  skew = NULL, distortion = NULL, gradientangle = NULL,
-  fixedsize = NULL, labelloc = NULL, margin = NULL)
+  fillcolor = NULL, image = NULL, fa_icon = NULL, fontname = NULL,
+  fontsize = NULL, fontcolor = NULL, peripheries = NULL,
+  height = NULL, width = NULL, x = NULL, y = NULL, group = NULL,
+  tooltip = NULL, xlabel = NULL, URL = NULL, sides = NULL,
+  orientation = NULL, skew = NULL, distortion = NULL,
+  gradientangle = NULL, fixedsize = NULL, labelloc = NULL,
+  margin = NULL)
 }
 \arguments{
 \item{shape}{the shape to use for the node. Some possible \code{shape} types
@@ -33,6 +34,8 @@ any of the named colors that R knows about (obtained using the
 \code{colors()} function), or, a hexadecimal color code.}
 
 \item{image}{a reference to an image location.}
+
+\item{fa_icon}{the name of a FontAwesome icon.}
 
 \item{fontname}{the name of the system font that will be used for any node
 text.}
@@ -140,4 +143,20 @@ graph <-
 # aesthetic attributes have
 # been inserted
 graph \%>\% get_node_df()
+
+# Create a new graph which is
+# fully connected and has FontAwesome
+# icons as nodes
+graph <-
+  create_graph() \%>\%
+  add_full_graph(
+    n = 4,
+    node_data = node_data(value = 1:4),
+    node_aes = node_aes(
+      x = c(2, 1, 3, 2),
+      y = c(3, 2, 2, 1),
+      fa_icon = c(
+      "arrow-left", "arrow-right",
+      "arrow-up", "arrow-down")),
+    edge_aes = edge_aes(color = "blue"))
 }
