@@ -138,7 +138,7 @@ add_nodes_from_df_cols <- function(graph,
           trimws() %>%
           stringr::str_split(" ") %>%
           purrr::flatten_chr() %>%
-          dplyr::as_tibble(.name_repair = "unique") %>%
+          dplyr::as_tibble() %>%
           tidyr::drop_na() %>%
           dplyr::distinct() %>%
           purrr::flatten_chr())

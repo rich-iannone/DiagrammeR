@@ -167,7 +167,8 @@ render_graph <- function(graph,
         "fillcolor" %in% colnames(graph$nodes_df)) {
 
       graph$nodes_df$fontcolor <-
-        tibble::tibble(value = graph$nodes_df$fillcolor) %>%
+        graph$nodes_df$fillcolor %>%
+        dplyr::as_data_frame() %>%
         dplyr::mutate(value_x = contrasting_text_color(background_color = value)) %>%
         dplyr::pull(value_x)
     }
