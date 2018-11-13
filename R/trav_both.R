@@ -282,7 +282,7 @@ trav_both <- function(graph,
     as.integer()
 
   valid_nodes <-
-    dplyr::as_tibble(valid_nodes) %>%
+    dplyr::tibble(value = valid_nodes) %>%
     dplyr::rename(id = value) %>%
     dplyr::inner_join(ndf, by = "id") %>%
     dplyr::distinct()
