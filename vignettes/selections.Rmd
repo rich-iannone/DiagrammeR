@@ -281,10 +281,13 @@ For both functions, `graph` is the only argument. If we provide a graph object t
 To begin, we'll use the same graph as before but we'll clear any active selection using the `clear_selection()` function. To ensure that there is no active selection of nodes or edges, we can use the `get_selection()` function. A value of `NA` means that there is neither a selection of nodes nor edges.
 
 ```{r}
+# Clear the graph's selection
 graph <-
   graph %>%
   clear_selection()
 
+# Check whether there is still
+# a selection present
 graph %>% get_selection()
 ```
 
@@ -352,17 +355,18 @@ graph_2 <-
 graph_2 %>% render_graph()
 ```
 
-Let's have a look at the graph's internal node data frame.
+The graph shows two nodes connected together. Nothing more, nothing less. The more interesting views of the data are of the node and edge data frames, which now have several attributes set. Let's have a look at the graph's internal node data frame...
 
 ```{r}
 # Inspect the new graph's NDF
 graph_2 %>% get_node_df()
 ```
 
-Let's have a look at the graph's internal edge data frame.
+...and let's inspect the graph's internal edge data frame.
 
 ```{r}
 # Inspect the new graph's EDF
 graph_2 %>% get_edge_df()
 ```
 
+As can be seen, immediately invoking `select_last_nodes_created()` or `select_last_edges_created()` after addition of new nodes or edges can be useful for working with the newly made nodes/edges. Many functions ending with `_ws()` operate specifically on selections of nodes or edges.
