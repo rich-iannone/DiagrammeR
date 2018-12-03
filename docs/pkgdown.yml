@@ -1,8 +1,9 @@
-pandoc: 2.2.1
-pkgdown: 1.1.0
+pandoc: '2.4'
+pkgdown: 1.2.0
 pkgdown_sha: ~
 articles:
   graphviz-mermaid: graphviz-mermaid.html
   node-edge-data-frames: node-edge-data-frames.html
+  selections: selections.html
   simple-graphs-ndfs-edfs: simple-graphs-ndfs-edfs.html
 
