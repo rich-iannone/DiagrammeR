@@ -18,11 +18,9 @@ knitr::opts_chunk$set(
 library(DiagrammeR)
 ```
 
-### Creating Simple Graphs from NDFs/EDFs
-
 Creating a graph object is undoubtedly important. I dare say it is one of the fundamental aspects of the **DiagrammeR** world. With the graph object produced, so many other things are possible. For instance, you can inspect certain aspects of the graph, modify the graph in many ways that suit your workflow, view the graph (or part of the graph!) in the RStudio Viewer, or perform graph traversals and thus create complex graph queries. The possibilities are really very exciting and it all begins with creating those graph objects.
 
-## Creating a Graph Object
+# Creating a Graph Object
 
 The `create_graph()` function creates a graph object. The function also allows for intialization of the graph name, setting of the `node_df` and of the `edge_df`, and the graph theme.
 
@@ -68,12 +66,13 @@ ndf <-
   create_node_df(
     n = 4,
     label = 1:4,
-    type = "lower",
+    type  = "lower",
     style = "filled",
     color = "aqua",
     shape = c("circle", "circle",
               "rectangle", "rectangle"),
-    data = c(3.5, 2.6, 9.4, 2.7))
+    data = c(3.5, 2.6, 9.4, 2.7)
+  )
 
 # Inspect the NDF
 ndf
@@ -96,7 +95,7 @@ all(ndf == graph %>% get_node_df())
 
 Quite often, there will be cases where node or edge attributes should be applied to all nodes or edges in the graph. To achieve this, there's no need to create columns in NDFs or EDFs for those attributes (where you would repeat attribute values through all rows of those columns). Default graph attributes can be provided for the graph with the graph_attrs, node_attrs, and edge_attrs arguments. To supply these attributes, use vectors of graph, node, or edge attributes.
 
-If you want the graph to be a directed graph, then the value for the directed argument should be set as TRUE (which is the default value). Choose FALSE for an undirected graph.
+If you want the graph to be a directed graph, then the value for the directed argument should be set as `TRUE` (which is the default value). Choose `FALSE` for an undirected graph.
 
 This next example will include both nodes and edges contained within a graph object. In this case, values for the type and rel attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.
 
@@ -112,32 +111,38 @@ ndf <-
   create_node_df(
     n = 4,
     label = c("a", "b", "c", "d"),
-    type = "lower",
+    type  = "lower",
     style = "filled",
     color = "aqua",
     shape = c("circle", "circle",
               "rectangle", "rectangle"),
-    data = c(3.5, 2.6, 9.4, 2.7))
+    data = c(3.5, 2.6, 9.4, 2.7)
+  )
 
 edf <-
   create_edge_df(
     from = c(1, 2, 3),
-    to = c(4, 3, 1),
-    rel = "leading_to")
+    to   = c(4, 3, 1),
+    rel  = "leading_to"
+  )
 
 graph <-
   create_graph(
     nodes_df = ndf,
-    edges_df = edf) %>%
+    edges_df = edf
+  ) %>%
   set_node_attrs(
     node_attr = "fontname",
-    values = "Helvetica") %>%
+    values = "Helvetica"
+  ) %>%
   set_edge_attrs(
     edge_attr = "color",
-    values = "blue") %>%
+    values = "blue"
+  ) %>%
   set_edge_attrs(
     edge_attr = "arrowsize",
-    values = 2)
+    values = 2
+  )
 ```
 
 ```{r}
@@ -150,7 +155,7 @@ get_node_df(graph)
 get_edge_df(graph)
 ```
 
-### Viewing a Graph Object
+# Viewing a Graph Object
 
 With the `render_graph()` function, it's possible to view the graph object, or, output the DOT code for the current state of the graph.
 
@@ -166,6 +171,8 @@ If you'd like to return the Graphviz DOT code (to, perhaps, share it or use it d
 # Take the graph object and generate a character
 # vector with Graphviz DOT code (using cat() for
 # a better appearance)
-graph %>% generate_dot() %>% cat()
+graph %>% 
+  generate_dot() %>%
+  cat()
 ```
 
