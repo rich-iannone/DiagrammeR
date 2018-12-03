@@ -1,3 +1,11 @@
+articles:
+- title: Getting Started
+  contents:
+  - Node and Edge Data Frames
+  - Creating Simple Graphs from NDFs/EDFs
+- title: Graphviz & Mermaid
+  contents:
+  - Graphviz and mermaid in DiagrammeR
 reference:
   - title: External NDF/EDF
     desc: >
