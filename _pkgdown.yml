@@ -1,16 +1,17 @@
 articles:
-- title: Getting Started
-  contents:
-  - Node and Edge Data Frames
-  - Creating Simple Graphs from NDFs/EDFs
-- title: Graphviz & Mermaid
-  contents:
-  - Graphviz and mermaid in DiagrammeR
+  - title: Getting Started
+    contents:
+    - node-edge-data-frames
+    - simple-graphs-ndfs-edfs
+  - title: Graphviz & Mermaid
+    contents:
+    - graphviz-mermaid
+
 reference:
   - title: External NDF/EDF
     desc: >
-      These functions create external node data frames (ndfs) and
-      external edge data frames (edfs). These specialized tables
+      These functions create external node data frames (NDFs) and
+      external edge data frames (EDFs). These specialized tables
       can be used to create graphs.
     contents:
       - create_node_df
