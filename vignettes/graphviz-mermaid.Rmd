@@ -165,7 +165,7 @@ grViz("
 
 The notation `@@` within the **GraphViz** **DOT** graph specification will indicate where the substitution is to take place. Corresponding R expressions (below the formal graph specification, styled as footnotes) will provide values to be substituted. The `grViz()` function will autodetect whether the working **Graphviz** **DOT** graph specification contains `@@`s between the curly braces of the `[graph|digraph] {...}` **DOT** construction.
 
-If you specify a subsitution with `@@`, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an R vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the `@@` notation is immediately followed by a number and that number should correspond to the number of the footnoted R expression.
+If you specify a substitution with `@@`, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an R vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the `@@` notation is immediately followed by a number and that number should correspond to the number of the footnoted R expression.
 
 The substitution construction is:
 
@@ -223,7 +223,7 @@ digraph alpha {
 
 The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from R's `LETTERS` constant into a **Graphviz** graph specification.
 
-You can mix subtitutions of single-values objects and those specifying indices of R vector objects. As an example:
+You can mix substitutions of single-values objects and those specifying indices of R vector objects. As an example:
 
 ```{r fig.width=7.3}
 grViz("
@@ -254,6 +254,6 @@ a -> {b c d e f g h i j}
 As can be seen from the output:
 
   (1) the node with ID `a` is given the label "top" (after substituting `@@1` with expression after the `[1]:` footnote R expression)
-  (2) the nodes with ID values from `b` to `j` are respectively provided values from indices `1` to `9` (using the hypenated form of `@@`) of the evaluated expression `10:20` (in the `[2]:` footnote expression)
+  (2) the nodes with ID values from `b` to `j` are respectively provided values from indices `1` to `9` (using the hyphenated form of `@@`) of the evaluated expression `10:20` (in the `[2]:` footnote expression)
 
 Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So, as long as a vector object results from evaluation, substitution can be performed.

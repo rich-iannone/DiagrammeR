@@ -24,7 +24,7 @@ These functions are used to create and manipulate specialized data frames: node 
 
 ### Creating an NDF
 
-With the `create_node_df()` function, one can create a node data frame (NDF) with nodes and their attributes. This object is really just an R data.frame object. In most cases, it's recommended to use `create_node_df()` instead of `data.frame()` (or, `as.data.frame()`) to create an NDF. Using `create_node_df()` allows for validation of the input data (so that the integrity of the graph is not comprimised) and the function provides some additional functionality that the base R functions for data frame creation do not have:
+With the `create_node_df()` function, one can create a node data frame (NDF) with nodes and their attributes. This object is really just an R data.frame object. In most cases, it's recommended to use `create_node_df()` instead of `data.frame()` (or, `as.data.frame()`) to create an NDF. Using `create_node_df()` allows for validation of the input data (so that the integrity of the graph is not compromised) and the function provides some additional functionality that the base R functions for data frame creation do not have:
 
 - single values are repeated for n number of nodes supplied
 - selective setting of attributes (e.g., giving attr values for 3 of 10 nodes, allowing non-set nodes to use defaults or globally set attr values)

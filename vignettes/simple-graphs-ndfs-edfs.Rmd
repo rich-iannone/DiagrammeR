@@ -22,7 +22,7 @@ Creating a graph object is undoubtedly important. I dare say it is one of the fu
 
 # Creating a Graph Object
 
-The `create_graph()` function creates a graph object. The function also allows for intialization of the graph name, setting of the `node_df` and of the `edge_df`, and the graph theme.
+The `create_graph()` function creates a graph object. The function also allows for initialization of the graph name, setting of the `node_df` and of the `edge_df`, and the graph theme.
 
 Some of the key options of the `create_graph()` function are:
 
@@ -97,7 +97,7 @@ Quite often, there will be cases where node or edge attributes should be applied
 
 If you want the graph to be a directed graph, then the value for the directed argument should be set as `TRUE` (which is the default value). Choose `FALSE` for an undirected graph.
 
-This next example will include both nodes and edges contained within a graph object. In this case, values for the type and rel attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.
+This next example will include both nodes and edges contained within a graph object. In this case, values for the type and rel attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modeling work.
 
 ```{r}
 ###
