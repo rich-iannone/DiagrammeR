@@ -2,12 +2,11 @@
 /* Sequence Diagram variables */
 /* Gantt chart variables */
 .mermaid .label {
-  color: #333333;
+  color: #333;
   font-weight: 400;
 }
-
 .mermaid .node rect,
-.node circle,
+.mermaid .node circle,
 .mermaid .node ellipse,
 .mermaid .node polygon {
   fill: #ECECFF;
@@ -17,11 +16,9 @@
 .mermaid .edgePath .path {
   stroke: #333333;
 }
-
-.mermaid g .edgeLabel {
-  background-color: white;
+.mermaid .edgeLabel {
+  background-color: #e8e8e8;
 }
-
 .mermaid .cluster rect {
   fill: #ffffde !important;
   rx: 4 !important;
@@ -29,7 +26,7 @@
   stroke-width: 1px !important;
 }
 .mermaid .cluster text {
-  fill: #333333;
+  fill: #333;
 }
 .mermaid .actor {
   stroke: #CCCCFF;
@@ -45,22 +42,23 @@
 .mermaid .messageLine0 {
   stroke-width: 1.5;
   stroke-dasharray: "2 2";
-  stroke: #333333;
+  marker-end: "url(#arrowhead)";
+  stroke: #333;
 }
 .mermaid .messageLine1 {
   stroke-width: 1.5;
   stroke-dasharray: "2 2";
-  stroke: #333333;
+  stroke: #333;
 }
 .mermaid #arrowhead {
-  fill: #333333;
+  fill: #333;
 }
 .mermaid #crosshead path {
-  fill: #333333 !important;
-  stroke: #333333 !important;
+  fill: #333 !important;
+  stroke: #333 !important;
 }
-.mermaid .messageText {
-  fill: #333333;
+.messageText {
+  fill: #333;
   stroke: none;
 }
 .mermaid .labelBox {
@@ -78,6 +76,7 @@
 .mermaid .loopLine {
   stroke-width: 2;
   stroke-dasharray: "2 2";
+  marker-end: "url(#arrowhead)";
   stroke: #CCCCFF;
 }
 .mermaid .note {
@@ -107,16 +106,16 @@
   opacity: 0.2;
 }
 .mermaid .sectionTitle0 {
-  fill: #333333;
+  fill: #333;
 }
 .mermaid .sectionTitle1 {
-  fill: #333333;
+  fill: #333;
 }
 .mermaid .sectionTitle2 {
-  fill: #333333;
+  fill: #333;
 }
 .mermaid .sectionTitle3 {
-  fill: #333333;
+  fill: #333;
 }
 .mermaid .sectionTitle {
   text-anchor: start;
@@ -256,7 +255,7 @@
 
 
 */
-.node text {
+.mermaid .node text {
   font-family: 'trebuchet ms', verdana, arial;
   font-size: 14px;
 }
