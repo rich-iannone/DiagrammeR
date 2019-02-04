@@ -64,6 +64,9 @@
     <li>
       <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
     </li>
+    <li>
+      <a href="../articles/traversals.html">Traversals</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -104,7 +107,7 @@
 <div id="creating-a-graph-object" class="section level1">
 <h1 class="hasAnchor">
 <a href="#creating-a-graph-object" class="anchor"></a>Creating a Graph Object</h1>
-<p>The <code><a href="../reference/create_graph.html">create_graph()</a></code> function creates a graph object. The function also allows for intialization of the graph name, setting of the <code>node_df</code> and of the <code>edge_df</code>, and the graph theme.</p>
+<p>The <code><a href="../reference/create_graph.html">create_graph()</a></code> function creates a graph object. The function also allows for initialization of the graph name, setting of the <code>node_df</code> and of the <code>edge_df</code>, and the graph theme.</p>
 <p>Some of the key options of the <code><a href="../reference/create_graph.html">create_graph()</a></code> function are:</p>
 <ul>
 <li>
@@ -171,7 +174,7 @@
 <a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
 <p>Quite often, there will be cases where node or edge attributes should be applied to all nodes or edges in the graph. To achieve this, there’s no need to create columns in NDFs or EDFs for those attributes (where you would repeat attribute values through all rows of those columns). Default graph attributes can be provided for the graph with the graph_attrs, node_attrs, and edge_attrs arguments. To supply these attributes, use vectors of graph, node, or edge attributes.</p>
 <p>If you want the graph to be a directed graph, then the value for the directed argument should be set as <code>TRUE</code> (which is the default value). Choose <code>FALSE</code> for an undirected graph.</p>
-<p>This next example will include both nodes and edges contained within a graph object. In this case, values for the type and rel attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modelling work.</p>
+<p>This next example will include both nodes and edges contained within a graph object. In this case, values for the type and rel attributes for nodes and edges, respectively, were provided. Adding values for those attributes is optional but will be important for any data modeling work.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co">###</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="co"># Create a graph with both nodes and edges</span></a>
 <a class="sourceLine" id="cb9-3" title="3"><span class="co"># defined, and, add some default attributes</span></a>
@@ -235,8 +238,8 @@
 <p>With the <code><a href="../reference/render_graph.html">render_graph()</a></code> function, it’s possible to view the graph object, or, output the DOT code for the current state of the graph.</p>
 <p>Let’s have a look at the graph created in the last example:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/render_graph.html">render_graph</a></span>()</a></code></pre></div>
-<div id="htmlwidget-a86f217707d337cf220d" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a86f217707d337cf220d">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"a\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"b\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"c\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"d\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [color = \"blue\", arrowsize = \"2\"] \n\"2\"->\"3\" [color = \"blue\", arrowsize = \"2\"] \n\"3\"->\"1\" [color = \"blue\", arrowsize = \"2\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If you’d like to return the Graphviz DOT code (to, perhaps, share it or use it directly with the Graphviz command-line utility), we can use the <code><a href="../reference/generate_dot.html">generate_dot()</a></code> function. Here’s a simple example:</p>
+<div id="htmlwidget-746514b6a8c89fd7517b" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-746514b6a8c89fd7517b">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"a\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"b\", style = \"filled\", color = \"aqua\", shape = \"circle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"c\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"d\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fontname = \"Helvetica\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"4\" [color = \"blue\", arrowsize = \"2\"] \n\"2\"->\"3\" [color = \"blue\", arrowsize = \"2\"] \n\"3\"->\"1\" [color = \"blue\", arrowsize = \"2\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>If you’d like to return the Graphviz DOT code (to, perhaps, share it or use it directly with the Graphviz command-line utility), we can use the <code><a href="../reference/generate_dot.html">generate_dot()</a></code> function. Here’s a simple example:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Take the graph object and generate a character</span></a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="co"># vector with Graphviz DOT code (using cat() for</span></a>
 <a class="sourceLine" id="cb13-3" title="3"><span class="co"># a better appearance)</span></a>
@@ -295,7 +298,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
 </div>

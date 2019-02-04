@@ -1,9 +1,10 @@
 pandoc: '2.4'
-pkgdown: 1.2.0
-pkgdown_sha: ~
+pkgdown: 1.3.0.9000
+pkgdown_sha: fa9b7502e80401db4b410086b0a8f6ab444f0c66
 articles:
   graphviz-mermaid: graphviz-mermaid.html
   node-edge-data-frames: node-edge-data-frames.html
   selections: selections.html
   simple-graphs-ndfs-edfs: simple-graphs-ndfs-edfs.html
+  traversals: traversals.html
 

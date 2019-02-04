@@ -64,6 +64,9 @@
     <li>
       <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
     </li>
+    <li>
+      <a href="../articles/traversals.html">Traversals</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -149,8 +152,8 @@
 <a class="sourceLine" id="cb2-20" title="20"><span class="st">  E-&gt;6 4-&gt;6 5-&gt;7 6-&gt;7 3-&gt;8</span></a>
 <a class="sourceLine" id="cb2-21" title="21"><span class="st">}</span></a>
 <a class="sourceLine" id="cb2-22" title="22"><span class="st">"</span>)</a></code></pre></div>
-<div id="htmlwidget-e3406b4c8dd6d3d381c3" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e3406b4c8dd6d3d381c3">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n\n  # several \"node\" statements\n  node [shape = box,\n        fontname = Helvetica]\n  A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n  1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  A->1 B->2 B->3 B->4 C->A\n  1->D E->A 2->4 1->5 1->F\n  E->6 4->6 5->7 6->7 3->8\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d65e56ae5175d06f1d08" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d65e56ae5175d06f1d08">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n\n  # several \"node\" statements\n  node [shape = box,\n        fontname = Helvetica]\n  A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n  1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  A->1 B->2 B->3 B->4 C->A\n  1->D E->A 2->4 1->5 1->F\n  E->6 4->6 5->7 6->7 3->8\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="subgraphs-and-clusters" class="section level3">
 <h3 class="hasAnchor">
@@ -217,7 +220,7 @@ A -&gt; C</code></pre>
 <a class="sourceLine" id="cb8-2" title="2"><span class="st">[...graph spec with substitutions using @@ notation and footnote R expressions...]</span></a>
 <a class="sourceLine" id="cb8-3" title="3"><span class="st">"</span>)</a></code></pre></div>
 <p>The notation <code>@@</code> within the <strong>GraphViz</strong> <strong>DOT</strong> graph specification will indicate where the substitution is to take place. Corresponding R expressions (below the formal graph specification, styled as footnotes) will provide values to be substituted. The <code><a href="../reference/grViz.html">grViz()</a></code> function will autodetect whether the working <strong>Graphviz</strong> <strong>DOT</strong> graph specification contains <code>@@</code>s between the curly braces of the <code>[graph|digraph] {...}</code> <strong>DOT</strong> construction.</p>
-<p>If you specify a subsitution with <code>@@</code>, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an R vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the <code>@@</code> notation is immediately followed by a number and that number should correspond to the number of the footnoted R expression.</p>
+<p>If you specify a substitution with <code>@@</code>, you must ensure there is a valid expression for that substitution. The expressions are placed as footnotes and their evaluations must result in an R vector object (i.e., not a data frame, list, or matrix). Because there is the possibility to have multiple substitutions, numbering is required. Thus, the <code>@@</code> notation is immediately followed by a number and that number should correspond to the number of the footnoted R expression.</p>
 <p>The substitution construction is:</p>
 <pre><code>"@@" + [footnote number]</code></pre>
 <p>Importantly, the footnote expressions should reside below the closing curly brace of the graph or digraph expression. It should always take the form of:</p>
@@ -250,7 +253,7 @@ A -&gt; C</code></pre>
 <h3 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h3>
 <p>The best way to demonstrate how substitution works is through a set of examples. Here is an example of substituting alphabet letters from R’s <code>LETTERS</code> constant into a <strong>Graphviz</strong> graph specification.</p>
-<p>You can mix subtitutions of single-values objects and those specifying indices of R vector objects. As an example:</p>
+<p>You can mix substitutions of single-values objects and those specifying indices of R vector objects. As an example:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../reference/grViz.html">grViz</a></span>(<span class="st">"</span></a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="st">digraph a_nice_graph {</span></a>
 <a class="sourceLine" id="cb15-3" title="3"></a>
@@ -274,11 +277,11 @@ A -&gt; C</code></pre>
 <a class="sourceLine" id="cb15-21" title="21"><span class="st">[1]: 'top'</span></a>
 <a class="sourceLine" id="cb15-22" title="22"><span class="st">[2]: 10:20</span></a>
 <a class="sourceLine" id="cb15-23" title="23"><span class="st">"</span>)</a></code></pre></div>
-<div id="htmlwidget-9c0d66ab72d2ad09d7cf" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9c0d66ab72d2ad09d7cf">{"x":{"diagram":"\ndigraph a_nice_graph {\n\n# node definitions with substituted label text\nnode [fontname = Helvetica]\na [label = \"top\"]\nb [label = \"10\"]\nc [label = \"11\"]\nd [label = \"12\"]\ne [label = \"13\"]\nf [label = \"14\"]\ng [label = \"15\"]\nh [label = \"16\"]\ni [label = \"17\"]\nj [label = \"18\"]\n\n# edge definitions with the node IDs\na -> {b c d e f g h i j}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>As can be seen from the output:</p>
+<div id="htmlwidget-9cdbc084c18bae9ee95f" style="width:700.8px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9cdbc084c18bae9ee95f">{"x":{"diagram":"\ndigraph a_nice_graph {\n\n# node definitions with substituted label text\nnode [fontname = Helvetica]\na [label = \"top\"]\nb [label = \"10\"]\nc [label = \"11\"]\nd [label = \"12\"]\ne [label = \"13\"]\nf [label = \"14\"]\ng [label = \"15\"]\nh [label = \"16\"]\ni [label = \"17\"]\nj [label = \"18\"]\n\n# edge definitions with the node IDs\na -> {b c d e f g h i j}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>As can be seen from the output:</p>
 <ol style="list-style-type: decimal">
 <li>the node with ID <code>a</code> is given the label “top” (after substituting <code>@@1</code> with expression after the <code>[1]:</code> footnote R expression)</li>
-<li>the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices <code>1</code> to <code>9</code> (using the hypenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression)</li>
+<li>the nodes with ID values from <code>b</code> to <code>j</code> are respectively provided values from indices <code>1</code> to <code>9</code> (using the hyphenated form of <code>@@</code>) of the evaluated expression <code>10:20</code> (in the <code>[2]:</code> footnote expression)</li>
 </ol>
 <p>Footnote expressions are meant to be flexible. They can span multiple lines, and they can also take in objects that are available in the global workspace. So, as long as a vector object results from evaluation, substitution can be performed.</p>
 </div>
@@ -304,7 +307,7 @@ A -&gt; C</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
 </div>

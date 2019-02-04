@@ -64,6 +64,9 @@
     <li>
       <a href="../articles/simple-graphs-ndfs-edfs.html">Creating Simple Graphs from NDFs/EDFs</a>
     </li>
+    <li>
+      <a href="../articles/traversals.html">Traversals</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -105,7 +108,7 @@
 <h1 class="hasAnchor">
 <a href="#creating-a-node-selection" class="anchor"></a>Creating a Node Selection</h1>
 <p>Selecting nodes in a graph is accomplished by targeting a specific node attribute (e.g., <code>type</code>, <code>label</code>, styling attributes such as <code>width</code>, if available, or arbitrary data values available for nodes).</p>
-<p>As with all of the <code>select_*()</code> functions, the graph argument is the first in the function signature. This is beneficial for forward-piping the graph in a pipeline and propogating a series of tranformations on the graph. There may be situations where several types of selections be applied to the graphs nodes or edges (say, selecting all nodes of a graph in the first step and then subtracting nodes of a specific type from that group) and this is where the pipeline paradigm becomes incredibly useful, and, as an added bonus, easy to read and to reason about.</p>
+<p>As with all of the <code>select_*()</code> functions, the graph argument is the first in the function signature. This is beneficial for forward-piping the graph in a pipeline and propagating a series of tranformations on the graph. There may be situations where several types of selections be applied to the graphs nodes or edges (say, selecting all nodes of a graph in the first step and then subtracting nodes of a specific type from that group) and this is where the pipeline paradigm becomes incredibly useful, and, as an added bonus, easy to read and to reason about.</p>
 <p>The main handle on selectivity for the <code><a href="../reference/select_nodes.html">select_nodes()</a></code> function is through the node attributes of the graph’s internal NDF, which contains columns for all possible node attributes in the graph. By providing an expression in <code>conditions</code>, nodes will be placed in the active selection where they are <code>TRUE</code>. Here are two common types of expressions that work well for the <code>conditions</code> argument:</p>
 <ol style="list-style-type: decimal">
 <li>a logical expression with a comparison operator (<code>&gt;</code>, <code>&lt;</code>, <code>==</code>, or <code>!=</code>)</li>
@@ -389,14 +392,17 @@
 <p>You can select the last node or edge from the graph’s internal node data frame (NDF) or internal edge data frame (EDF), respectively. Usually, this will be the last node or edge created since new nodes or edges are added to the bottom of the data frame and there is no shuffling of these positions. Immediately after creating a single node or edge, calling either the <code>select_last_node()</code> or the <code>select_last_edge()</code> functions will result in a selection of the last node or edge created.</p>
 <p>For both functions, <code>graph</code> is the only argument. If we provide a graph object to <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code> we will get an active selection of nodes (the last nodes that were added to the graph object). Likewise, the <code><a href="../reference/select_last_edges_created.html">select_last_edges_created()</a></code> will create an active selection of edges, whichever edges were last defined in a function call.</p>
 <p>To begin, we’ll use the same graph as before but we’ll clear any active selection using the <code><a href="../reference/clear_selection.html">clear_selection()</a></code> function. To ensure that there is no active selection of nodes or edges, we can use the <code><a href="../reference/get_selection.html">get_selection()</a></code> function. A value of <code>NA</code> means that there is neither a selection of nodes nor edges.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">graph &lt;-</a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span>graph <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/clear_selection.html">clear_selection</a></span>()</a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="co">#&gt; `clear_selection()` INFO: cleared an existing selection of 2 edges</span></a>
-<a class="sourceLine" id="cb12-5" title="5"></a>
-<a class="sourceLine" id="cb12-6" title="6">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_selection.html">get_selection</a></span>()</a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="co">#&gt; `get_selection()` INFO: there is no active selection of nodes or edges</span></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Clear the graph's selection</span></a>
+<a class="sourceLine" id="cb12-2" title="2">graph &lt;-</a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span>graph <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw"><a href="../reference/clear_selection.html">clear_selection</a></span>()</a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="co">#&gt; `clear_selection()` INFO: cleared an existing selection of 2 edges</span></a>
+<a class="sourceLine" id="cb12-6" title="6"></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="co"># Check whether there is still</span></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="co"># a selection present</span></a>
+<a class="sourceLine" id="cb12-9" title="9">graph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_selection.html">get_selection</a></span>()</a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="co">#&gt; `get_selection()` INFO: there is no active selection of nodes or edges</span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
 <p>If we use <code>select_last_nodes_created</code> on this graph, we find that the active selection of nodes contains all the nodes in the graph, as they were all produced in the <code><a href="../reference/create_graph.html">create_graph()</a></code> function (and no nodes were added in subsequent operations).</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Select the last node in the graph's NDF and confirm</span></a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="co"># that the selection was made</span></a>
@@ -419,7 +425,7 @@
 <a class="sourceLine" id="cb14-8" title="8"><span class="co">#&gt; 2  2    2  3 &lt;NA&gt;  2.8</span></a>
 <a class="sourceLine" id="cb14-9" title="9"><span class="co">#&gt; 3  3    3  4 &lt;NA&gt;  6.3</span></a>
 <a class="sourceLine" id="cb14-10" title="10"><span class="co">#&gt; 4  4    4  1 &lt;NA&gt;  4.5</span></a></code></pre></div>
-<p>Where these functions become useful is during the building up of a graph in multiple steps. In this example, we start with an empty graph (using <code><a href="../reference/create_graph.html">create_graph()</a></code> by itself), then add a single node with <code><a href="../reference/add_node.html">add_node()</a></code>, and then select that very node with <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code>. This selection-in-a-pipeline approach makes it easy to set node attributes because we can use the <code><a href="../reference/set_node_attrs_ws.html">set_node_attrs_ws()</a></code> function. In this example, we’re adding a new <code>timestamp</code> attribute and assigning a value (the system time). Because the selection is persistent, we can set more attributes in further calls to <code><a href="../reference/set_node_attrs_ws.html">set_node_attrs_ws()</a></code>. When we are done with this node selection, we call the <code><a href="../reference/clear_selection.html">clear_selection()</a></code> function and return to a clean slate of no active selection present (it removes any node or edge selection from the graph object). The example proceeds to create another new node and adding attributes, and then a new edge and edge attributes; all facilitated with the <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code> and <code><a href="../reference/select_last_edges_created.html">select_last_edges_created()</a></code> functions.</p>
+<p>Where these functions become useful is during the building up of a graph in multiple steps. In this next example, we will start with an empty graph (using <code><a href="../reference/create_graph.html">create_graph()</a></code> by itself) then add a single node with <code><a href="../reference/add_node.html">add_node()</a></code>, and then select that very node with <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code>. This selection-in-a-pipeline approach makes it easy to set node attributes because we can use the <code><a href="../reference/set_node_attrs_ws.html">set_node_attrs_ws()</a></code> function. In this example, we’re adding a new <code>timestamp</code> attribute and assigning a value (the system time). Because the selection is persistent, we can set more attributes in further calls to <code><a href="../reference/set_node_attrs_ws.html">set_node_attrs_ws()</a></code>. When we are done with this node selection, we call the <code><a href="../reference/clear_selection.html">clear_selection()</a></code> function and return to a clean slate of no active selection present (it removes any node or edge selection from the graph object). The example proceeds to create another new node and adding attributes, and then a new edge and edge attributes (with <code><a href="../reference/set_edge_attrs_ws.html">set_edge_attrs_ws()</a></code>). This is all facilitated with the <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code> and <code><a href="../reference/select_last_edges_created.html">select_last_edges_created()</a></code> functions.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Create a graph, node-by-node and</span></a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="co"># edge-by-edge and add attributes</span></a>
 <a class="sourceLine" id="cb15-3" title="3">graph_<span class="dv">2</span> &lt;-</a>
@@ -461,18 +467,19 @@
 <a class="sourceLine" id="cb15-39" title="39"></a>
 <a class="sourceLine" id="cb15-40" title="40"><span class="co"># View the new graph</span></a>
 <a class="sourceLine" id="cb15-41" title="41">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/render_graph.html">render_graph</a></span>()</a></code></pre></div>
-<div id="htmlwidget-e555e1e0e54b6941a090" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e555e1e0e54b6941a090">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>Let’s have a look at the graph’s internal node data frame.</p>
+<div id="htmlwidget-cc34cc1ce4dad13a6df6" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cc34cc1ce4dad13a6df6">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n      fontsize = \"10\",\n      shape = \"circle\",\n      fixedsize = \"true\",\n      width = \"0.5\",\n      style = \"filled\",\n      fillcolor = \"aliceblue\",\n      color = \"gray70\",\n      fontcolor = \"gray50\"]\n\nedge [fontname = \"Helvetica\",\n     fontsize = \"8\",\n     len = \"1.5\",\n     color = \"gray80\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"1\"->\"2\" \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script><p>The graph shows two nodes connected together. Nothing more, nothing less. The more interesting views of the data are of the node and edge data frames, which now have several attributes set. Let’s have a look at the graph’s internal node data frame…</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Inspect the new graph's NDF</span></a>
 <a class="sourceLine" id="cb16-2" title="2">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_node_df.html">get_node_df</a></span>()</a>
 <a class="sourceLine" id="cb16-3" title="3"><span class="co">#&gt;   id type label           timestamp</span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="co">#&gt; 1  1    A  &lt;NA&gt; 2018-12-03 00:56:15</span></a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="co">#&gt; 2  2    B  &lt;NA&gt; 2018-12-03 00:56:15</span></a></code></pre></div>
-<p>Let’s have a look at the graph’s internal edge data frame.</p>
+<a class="sourceLine" id="cb16-4" title="4"><span class="co">#&gt; 1  1    A  &lt;NA&gt; 2019-02-04 17:08:23</span></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="co">#&gt; 2  2    B  &lt;NA&gt; 2019-02-04 17:08:23</span></a></code></pre></div>
+<p>…and let’s inspect the graph’s internal edge data frame.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Inspect the new graph's EDF</span></a>
 <a class="sourceLine" id="cb17-2" title="2">graph_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/get_edge_df.html">get_edge_df</a></span>()</a>
 <a class="sourceLine" id="cb17-3" title="3"><span class="co">#&gt;   id from to rel           timestamp</span></a>
-<a class="sourceLine" id="cb17-4" title="4"><span class="co">#&gt; 1  1    1  2  AB 2018-12-03 00:56:15</span></a></code></pre></div>
+<a class="sourceLine" id="cb17-4" title="4"><span class="co">#&gt; 1  1    1  2  AB 2019-02-04 17:08:24</span></a></code></pre></div>
+<p>As can be seen, immediately invoking <code><a href="../reference/select_last_nodes_created.html">select_last_nodes_created()</a></code> or <code><a href="../reference/select_last_edges_created.html">select_last_edges_created()</a></code> after addition of new nodes or edges can be useful for working with the newly made nodes/edges. Many functions ending with <code>_ws()</code> operate specifically on selections of nodes or edges.</p>
 </div>
   </div>
 
@@ -496,7 +503,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
 </div>
