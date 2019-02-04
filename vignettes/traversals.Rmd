@@ -1,0 +1,440 @@
+---
+title: "Traversals"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Traversals}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r load_packages, message=FALSE, warning=FALSE, include=FALSE}
+library(DiagrammeR)
+```
+
+Imagine diving into a graph and moving across the graph's nodes, jumping onto an edge, perhaps bypassing those edges and simply alighting to different nodes with specific attributes. Traversals are quite important as part of a graph query. You can develop sophisticated pipelines that allow for selective movement across the graph (based on conditions you specify per traversal) and the gleaning of information from nodes and edges. Importantly, traversals begin with selections of nodes or edges and the act of traversing modifies the selection of nodes or edges. One may select a single node, for instance, perform one or more traversals away from that initial node, and perhaps create a selection of several different nodes (or even edges). There are many important use cases, so, an in-depth primer of **DiagrammeR**'s traversal functions is provided alongside numerous practical examples.
+
+# Traversals Across Nodes
+
+To traverse across connected nodes without regard to the properties of the edges between the nodes, three functions are available: `trav_out()`, `trav_in()`, and `trav_both()`. These types of traversals always require an initial selection of one or more nodes, and, after traversing, a selection of one or more nodes is returned.
+
+Directionality of the traversal is the key differentiator between these three functions. The `trav_out()` function allows for traversals to connected nodes that are outbound nodes in relation to the origin nodes (in a directed graph). With the `trav_in()` function, the movement is reversed: traversals towards connected nodes are to inbound nodes. For example, take the edge described by `1->2` and the origin node is the node with ID `1`; the `trav_out()` function would change the node selection from node `1` to node `2` because these nodes are adjacent to each other and the edge leads from the origin node to an outbound node. If node `1` has outbound edges to other nodes (e.g., `1->{2,3,4}`) then all of those nodes connected to outbound edges of the origin node will be part of the new selection. Take another example with a central node as the selected node, and that node has both outbound and inbound edges to adjacent nodes: `{2,3,4}->1->{5,6,7}`. Should the function `trav_in()` be used, then nodes `2`, `3`, and `4` will become the selected nodes; using `trav_out()` will result in nodes `5`, `6`, and `7` becoming the selected nodes. Here are several examples of traversals across nodes.
+
+```{r}
+###
+# Perform two types of traversals from
+# a single node using `trav_out()` and
+# `trav_in()`
+###
+
+# Create a simple graph with two nodes, an edge
+# between them (`1` -> `2`); starting from node
+# `1` (as a selection), traverse to node `2`
+# and then obtain the current selection
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 1, to = 2) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  get_selection()
+
+# If no traversal can occur, the selection is not
+# altered. To demonstrate, use a similar pipeline
+# but reverse the edge direction
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  get_selection()
+
+# A traversal can occur if `trav_in()` is used
+# instead of `trav_out()`
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_in() %>%
+  get_selection()
+
+# Multiple traversals can be made in a single
+# magrittr pipeline
+create_graph() %>%
+  add_n_nodes(n = 5) %>%
+  add_edge(from = 1, to = 2) %>%
+  add_edge(from = 2, to = 3) %>%
+  add_edge(from = 3, to = 4) %>%
+  add_edge(from = 4, to = 5) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  trav_out() %>%
+  trav_out() %>%
+  trav_out() %>%
+  get_selection()
+
+# A selection of multiple nodes can occur as
+# a result of a traversal
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "from"
+  ) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "to"
+  ) %>%
+  trav_out() %>%
+  get_selection()
+
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "from"
+  ) %>%
+  add_n_nodes_ws(
+    n = 10,
+    direction = "to"
+  ) %>%
+  trav_in() %>%
+  get_selection()
+```
+
+The `trav_both()` function results in traversals to adjacent nodes regardless of the edge directions between those nodes. So, in a sense, the direction of movement to adjacent nodes is both in and out, or, both. For the example of `{2,3,4}->1->{5,6,7}`, where node `1` is the only node in the selection, all of nodes `2` through to node `6` will be part of the new selection after calling `trav_both()`.
+
+```{r}
+###
+# Perform traversals from a single
+# node using `trav_both()`
+###
+
+# Create the graph described in the paragraph
+# above ({`2...4`} -> `1` -> {`5...7`}),
+# start from node `1` (as a selection),
+# traverse to all other adjacent nodes and
+# then obtain the current selection
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 3,
+    direction = "to"
+  ) %>%
+  add_n_nodes_ws(
+    n = 3,
+    direction = "from"
+  ) %>%
+  trav_both() %>%
+  get_selection()
+```
+
+So far, these functions are described as modifying selections of nodes based solely on node adjacency and the direction of the edges between the adjacent nodes. Indeed without supplying values to the function, traversals occur without regard to the attributes of the nodes traversed to. However, the arguments `node_attr` and `match` are available for filtering the traversals to those that satisfy logical statements on numeric attributes or matches on character attributes. For a property graph, where values are available for all nodes' `type` attribute and all edges' `rel` attribute, a traversal with `trav_out()` could, for example, be performed for all outbound, adjacent nodes that have a specific `type` label. This is done by setting `node_attr = type` and providing the value of that type for the `match` argument.
+
+```{r}
+###
+# Perform traversals with conditions
+# based on node `type` values
+###
+
+# Create a common graph with nodes having
+# various `type` values; set to render
+# always using `visNetwork` when calling
+# `render_graph()`
+graph <-
+  create_graph() %>%
+  add_node(type = "type_a") %>%
+  add_n_nodes(
+    n = 4,
+    type = "type_b"
+  ) %>%
+  add_edge(from = 1, to = 2) %>%
+  add_edge(from = 1, to = 3) %>%
+  add_edge(from = 4, to = 1) %>%
+  add_edge(from = 5, to = 1) %>%
+  add_n_nodes(
+    n = 4,
+    type = "type_c"
+  ) %>%
+  add_edge(from = 1, to = 6) %>%
+  add_edge(from = 1, to = 7) %>%
+  add_edge(from = 8, to = 1) %>%
+  add_edge(from = 9, to = 1)
+
+# View the created graph
+graph %>% render_graph()
+```
+
+```{r}
+graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out() %>%
+  get_selection()
+
+graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out(conditions = type == "type_b") %>%
+  get_selection()
+
+graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out(conditions = type == "type_c") %>%
+  get_selection()
+
+# Once the nodes have been selected via
+# a traversal, a useful thing to do would
+# be to attach new nodes to that selection
+updated_graph <-
+  graph %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out(conditions = type == "type_c") %>%
+  add_n_nodes_ws(
+    n = 1,
+    direction = "from",
+    type = "type_d"
+  )
+
+# View the updated graph
+updated_graph %>% render_graph()
+```
+
+We are not limited to starting a traversal from a single node ID value. We can, for example, begin from a selection of nodes based on a regular expression and traverse to a matching `type` string value (or to other node attributes that have `character` values). The following example uses a random graph of food entities with arbitrary edges between them.
+
+```{r}
+###
+# Perform traversals with conditions
+# based on node `label` regex matches
+###
+
+# Create a graph with fruit, vegetables,
+# and nuts
+ndf <-
+  create_node_df(
+    n = 9,
+    type = c(
+      "fruit", "fruit", "fruit",
+      "veg", "veg", "veg",
+      "nut", "nut", "nut"),
+    label = c(
+      "pineapple", "apple",
+      "apricot", "cucumber",
+      "celery", "endive",
+      "hazelnut", "almond",
+      "chestnut")
+  )
+
+edf <-
+  create_edge_df(
+    from = c(
+      9, 3, 6, 2, 6,
+      2, 8, 2, 5, 5),
+    to = c(
+      1, 1, 4, 3, 7,
+      8, 1, 5, 3, 6)
+  )
+
+graph <-
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf
+  )
+
+# View the graph
+graph %>% render_graph()
+```
+
+
+```{r}
+# View the internal NDF for sake of
+# reference
+graph %>% get_node_df()
+```
+
+```{r}
+# Select all nodes with a label beginning
+# with `a` and traverse outward to all nodes
+graph %>%
+  select_nodes(
+    conditions = grepl("^a", label)
+  ) %>%
+  trav_out() %>%
+  get_selection()
+
+# This traversal results in a rather large
+# selection of nodes: `3` (`apricot`), `8`
+# (`almond`), `5` (`celery`), and `1`
+# (`pineapple`)
+
+# Now, select all nodes with a label beginning
+# with `c` (in this case, the `cucumber` and
+# `chestnut` and then traverse outward to any
+# node of the `fruit` type
+graph %>%
+  select_nodes(
+    conditions = grepl("^c", label)
+  ) %>%
+  trav_out(
+    conditions = type == "fruit"
+  ) %>%
+  get_selection()
+
+# The traversal has resulted in a selection of
+# nodes `3` (`apricot`) and `1` (`pineapple`)
+```
+
+
+Traversing from node to node with `trav_out()`, `trav_in()`, or `trav_both()` can result in a very specific targeting of nodes. As seen, once the traversal has occurred, the new selection can be used to obtain data from those nodes, or, modify the graph (by adding new nodes to the selection). Especially when used within a pipeline, the selection of nodes, the traversals, and the resulting actions are quite readable.
+
+
+# Traversals from Nodes to Edges
+
+Moving across nodes using traversal functions is quite a powerful thing to do. However, especially with information-rich graphs, some useful data can exist in the graph's edges. For this reason, we can traverse from nodes onto adjacent edges. As with the node-to-node traversal functions, the direction of the edge is important and a key distinction between the functions `trav_out_edge()` and `trav_in_edge()`. These types of traversals always begin at nodes (and thus require an initial selection of one or more nodes) and typically end with a selection of one or more edges. If no traversal can be made, then the initial selection of nodes is retained.
+
+Starting with the `trav_out_edge()` function, suppose there is a selection of a single node `1` in the very simple graph of `1->2`. Calling the `trav_out_edge()` function in its simplest form (without values supplied except for the graph itself) will result in an edge selection and that edge will be the `1->2` edge. Thus, the traversal is from one or more nodes onto adjacent, outward edges. On the same graph, with the same selection, calling the `trav_in_edge()` function will not result in a traversal (the initial node selection of node `1` will be retained, as though nothing happened). This is because the `trav_in_edge()` function performs the converse traversal, where the traversal is from one or more nodes onto adjacent, inward edges. Put another way, `trav_in_edge()` will change the selection to edges that point toward the initially-selected node(s), if any.
+
+As with the node-to-node traversal functions, these traversals are much more powerful when used with matching conditions as they increase selectivity. That only certain edges may be traversed to (and selected) is important, especially in those cases where the traversal continues onto nodes (but more on that in the next section). Examples will aid in the understanding of these functions.
+
+```{r}
+###
+# Perform two types of traversals from
+# a single node using `trav_out_edge()`
+# and `trav_in_edge()`
+###
+
+# Create a simple graph with two nodes, an
+# edge between them (`1` -> `2`); starting
+# from node `1` (as a selection), traverse
+# to the edge and then obtain the current
+# selection
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 1, to = 2) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out_edge() %>%
+  get_selection()
+
+# If no traversal can occur the selection is
+# not altered. To demonstrate, use a similar
+# pipeline but reverse the edge direction
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_out_edge() %>%
+  get_selection()
+
+# A traversal can occur if `trav_in_edge()`
+# is used instead of `trav_out_edge()`
+create_graph() %>%
+  add_node() %>%
+  add_node() %>%
+  add_edge(from = 2, to = 1) %>%
+  select_nodes_by_id(nodes = 1) %>%
+  trav_in_edge() %>%
+  get_selection()
+
+# A selection of multiple edges can occur
+# as a result of a traversal
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 10, 
+    direction = "from"
+  ) %>%
+  add_n_nodes_ws(
+    n = 10, 
+    direction = "to"
+  ) %>%
+  trav_out_edge() %>%
+  get_selection()
+
+create_graph() %>%
+  add_node() %>%
+  select_nodes_by_id(nodes = 1) %>%
+  add_n_nodes_ws(
+    n = 10, 
+    direction = "from"
+  ) %>%
+  add_n_nodes_ws(
+    n = 10, 
+    direction = "to"
+  ) %>%
+  trav_in_edge() %>%
+  get_selection()
+```
+
+To introduce conditions on the traversal, we can again use the `conditions` argument. As with the node-to-node traversal functions, these optional values induce filtering of the node-to-edge traversals. If a graph is fashioned as a property graph that has values set for node `type` and edge `rel` attributes, traversals with `trav_out_edge()` and `trav_in_edge()` be restricted to selection of edges that have a specific `rel` label.
+
+```{r}
+###
+# Perform node-to-edge traversals
+# from multiple nodes and with the
+# use of matching conditions
+###
+
+# First, set a seed so the example
+# is reproducible
+set.seed(20)
+
+# Create a graph with fruit,
+# vegetables, nuts, and... people!
+ndf <-
+  create_node_df(
+    n = 14,
+    type = c(
+      "person", "person",
+      "person", "person",
+      "person", "fruit",
+      "fruit", "fruit",
+      "veg", "veg", "veg",
+      "nut", "nut", "nut"),
+    label = c(
+      "Annie", "Donna",
+      "Justine", "Ed",
+      "Graham", "pineapple",
+      "apple", "apricot",
+      "cucumber", "celery",
+      "endive", "hazelnut",
+      "almond", "chestnut")
+  )
+
+edf <-
+  create_edge_df(
+    from = sort(
+      as.vector(replicate(5, 1:5))),
+    to = as.vector(
+      replicate(5, sample(6:14, 5))),
+    rel = as.vector(
+      replicate(
+        5, sample(
+          c("likes", "dislikes",
+            "allergic_to"), 5,
+          TRUE,
+          c(0.5, 0.25, 0.25))))
+  )
+
+graph <-
+  create_graph(
+    nodes_df = ndf,
+    edges_df = edf
+  )
+
+graph %>% render_graph()
+```
+
+
+
