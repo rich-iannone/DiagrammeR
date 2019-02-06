@@ -154,36 +154,19 @@ create_graph <- function(nodes_df = NULL,
   # `global_attrs` data frame with global graph attrs
   if (inherits(attr_theme, "character")) {
 
-    if (attr_theme == "default") {
-
-      global_attrs <-
-        data.frame(
-          attr = as.character(
-            c("layout", "outputorder", "fontname", "fontsize",
-              "shape", "fixedsize", "width", "style",
-              "fillcolor", "color", "fontcolor",
-              "bgcolor",
-              "fontname", "fontsize", "len", "color", "arrowsize")
-          ),
-          value = as.character(
-            c("neato", "edgesfirst", "Helvetica", "10",
-              "circle", "true", "0.5", "filled",
-              "aliceblue", "gray70", "gray50",
-              "white",
-              "Helvetica", "8", "1.5", "gray80", "0.5")
-          ),
-          attr_type = as.character(
-            c(rep("graph", 2),
-              rep("node", 9),
-              "graph",
-              rep("edge", 5))),
-          stringsAsFactors = FALSE)
-    } else {
-
-      emit_error(
-        fcn_name = fcn_name,
-        reasons = "The value for `attr_theme` doesn't refer to any available theme")
-    }
+    global_attrs <-
+      switch(
+        attr_theme,
+        default = attr_theme_default(),
+        lr = attr_theme_lr(),
+        tb = attr_theme_tb(),
+        rl = attr_theme_rl(),
+        bt = attr_theme_bt(),
+        fdp = attr_theme_fdp(),
+        emit_error(
+          fcn_name = fcn_name,
+          reasons = "The value for `attr_theme` doesn't refer to any available theme")
+      )
 
   } else if (is.null(attr_theme)) {
 
