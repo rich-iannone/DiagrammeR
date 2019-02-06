@@ -25,8 +25,12 @@ directed or undirected edge operations will be generated, respectively.}
 
 \item{attr_theme}{the theme (i.e., collection of \code{graph}, \code{node},
 and \code{edge} global graph attributes) to use for this graph. The default
-theme is called \code{default}. If this is set to \code{NULL} then no
-global graph attributes will be applied to the graph upon creation.}
+theme is called \code{default}; there are hierarchical layout themes called
+\code{lr}, \code{tb}, \code{rl}, and \code{bt} (these operate from
+left-to-right, top-to-bottom, right-to-left, and bottom-to-top); and, for
+larger graphs, the \code{fdp} theme provides a force directed layout. If
+this is set to \code{NULL} then no global graph attributes will be applied
+to the graph upon creation.}
 
 \item{write_backups}{an option to write incremental backups of changing
 graph states to disk. If \code{TRUE}, a subdirectory within the working
