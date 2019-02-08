@@ -120,3 +120,18 @@ attr_theme_fdp <- function() {
   ) %>%
     asdf()
 }
+
+#' The kk attribute theme
+#' @noRd
+#' @importFrom dplyr bind_rows tribble
+attr_theme_kk <- function() {
+
+  dplyr::bind_rows(
+    dplyr::tribble(
+      ~attr,                  ~value,                  ~attr_type,
+      "layout",               "neato",                 "graph",
+      "mode",                 "KK",                    "graph"
+    ) %>%
+      asdf(),
+    attr_theme_default()[-1, ])
+}
