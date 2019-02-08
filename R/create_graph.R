@@ -167,6 +167,7 @@ create_graph <- function(nodes_df = NULL,
         rl = attr_theme_rl(),
         bt = attr_theme_bt(),
         fdp = attr_theme_fdp(),
+        kk = attr_theme_kk(),
         emit_error(
           fcn_name = fcn_name,
           reasons = "The value for `attr_theme` doesn't refer to any available theme")
