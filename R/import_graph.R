@@ -21,6 +21,7 @@
 #'   \code{d} -> double, \code{l} -> logical, \code{D} -> date, \code{T} ->
 #'   date time, \code{t} -> time, \code{?} -> guess, or \code{_/-}, which skips
 #'   the column.
+#' @inheritParams create_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' \dontrun{
@@ -51,7 +52,11 @@
 import_graph <- function(graph_file,
                          file_type = NULL,
                          edges_extra_attr_names = NULL,
-                         edges_extra_attr_coltypes = NULL) {
+                         edges_extra_attr_coltypes = NULL,
+                         graph_name = NULL,
+                         attr_theme = "default",
+                         write_backups = FALSE,
+                         display_msgs = FALSE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -196,7 +201,11 @@ import_graph <- function(graph_file,
     the_graph <-
       create_graph(
         nodes_df = nodes,
-        edges_df = edges)
+        edges_df = edges,
+        graph_name = graph_name,
+        write_backups = write_backups,
+        display_msgs = display_msgs
+      )
 
     # Return the graph
     return(the_graph)
@@ -242,7 +251,11 @@ import_graph <- function(graph_file,
     the_graph <-
       create_graph(
         nodes_df = nodes,
-        edges_df = edges)
+        edges_df = edges,
+        graph_name = graph_name,
+        write_backups = write_backups,
+        display_msgs = display_msgs
+      )
 
     # Return the graph
     return(the_graph)
@@ -360,7 +373,11 @@ import_graph <- function(graph_file,
         nodes_df = all_nodes,
         edges_df = all_edges,
         directed = ifelse(graph_directed == "1",
-                          TRUE, FALSE))
+                          TRUE, FALSE),
+        graph_name = graph_name,
+        write_backups = write_backups,
+        display_msgs = display_msgs
+      )
 
     # Return the graph
     return(the_graph)
@@ -429,7 +446,11 @@ import_graph <- function(graph_file,
     the_graph <-
       create_graph(
         nodes_df = ndf,
-        edges_df = edf)
+        edges_df = edf,
+        graph_name = graph_name,
+        write_backups = write_backups,
+        display_msgs = display_msgs
+      )
 
     # Return the graph
     return(the_graph)

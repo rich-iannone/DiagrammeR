@@ -1,12 +1,8 @@
 #' Convert an igraph graph to a DiagrammeR one
 #'
 #' Convert an igraph graph to a DiagrammeR graph object.
-#' @param igraph an igraph graph object.
-#' @param graph_name an optional string for labeling the graph object.
-#' @param write_backups an option to write incremental backups of changing graph
-#'   states to disk. If \code{TRUE}, a subdirectory of the working directory
-#'   will be used to store \code{RDS} files. The default value is \code{FALSE}
-#'   so one has to opt in to use this functionality.
+#' @param igraph an \pkg{igraph} graph object.
+#' @inheritParams create_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create a DiagrammeR graph object
@@ -38,7 +34,8 @@
 #' @export
 from_igraph <- function(igraph,
                         graph_name = NULL,
-                        write_backups = FALSE) {
+                        write_backups = FALSE,
+                        display_msgs = FALSE) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()
@@ -165,7 +162,8 @@ from_igraph <- function(igraph,
       edges_df = edges_df,
       directed = igraph::is_directed(igraph),
       graph_name = graph_name,
-      write_backups = write_backups)
+      write_backups = write_backups,
+      display_msgs = display_msgs)
 
   graph
 }

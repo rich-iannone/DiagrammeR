@@ -10,11 +10,7 @@
 #'   calculations. If \code{TRUE} then the diagonal values will be included as
 #'   is. If \code{FALSE} then the diagonal values will be replaced with zero
 #'   values before inclusion in any calculations.
-#' @param graph_name an optional string for labeling the graph object.
-#' @param write_backups an option to write incremental backups of changing graph
-#'   states to disk. If \code{TRUE}, a subdirectory of the working directory
-#'   will be used to store \code{RDS} files. The default value is \code{FALSE}
-#'   so one has to opt in to use this functionality.
+#' @inheritParams create_graph
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # Create an adjacency matrix
@@ -34,7 +30,8 @@ from_adj_matrix <- function(x,
                             weighted = FALSE,
                             use_diag = TRUE,
                             graph_name = NULL,
-                            write_backups = FALSE) {
+                            write_backups = FALSE,
+                            display_msgs = FALSE) {
 
   # Get the time of function start
   time_function_start <- Sys.time()
@@ -90,7 +87,9 @@ from_adj_matrix <- function(x,
     from_igraph(
       igraph,
       graph_name = graph_name,
-      write_backups = write_backups)
+      write_backups = write_backups,
+      display_msgs = display_msgs
+    )
 
   # Add edge ID values to `graph`
   if (nrow(graph$edges_df) > 0) {
