@@ -150,18 +150,23 @@ invert_selection <- function(graph) {
     save_graph_as_rds(graph = graph)
   }
 
-  # Construct message body
-  msg_body <-
-    glue::glue(
-      "inverted an existing selection of \\
+  # Emit a message about the modification of a selection
+  # if that option is set
+  if (graph$graph_info$display_msgs) {
+
+    # Construct message body
+    msg_body <-
+      glue::glue(
+        "inverted an existing selection of \\
        {n_e_select_properties_in[['selection_count_str']]}:
        * {n_e_select_properties_out[['selection_count_str']]} \\
        are now in the active selection")
 
-  # Issue a message to the user
-  emit_message(
-    fcn_name = fcn_name,
-    message_body = msg_body)
+    # Issue a message to the user
+    emit_message(
+      fcn_name = fcn_name,
+      message_body = msg_body)
+  }
 
   graph
 }

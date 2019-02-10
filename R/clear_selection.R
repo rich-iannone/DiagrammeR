@@ -72,20 +72,25 @@ clear_selection <- function(graph) {
     save_graph_as_rds(graph = graph)
   }
 
-  # Issue a message to the user
-  if (n_e_select_properties_in[["selection_count"]] > 0) {
+  # Emit a message about the modification of a selection
+  # if that option is set
+  if (graph$graph_info$display_msgs) {
 
-    emit_message(
-      fcn_name = fcn_name,
-      message_body = glue::glue(
-        "cleared an existing selection of \\
+    # Issue a message to the user
+    if (n_e_select_properties_in[["selection_count"]] > 0) {
+
+      emit_message(
+        fcn_name = fcn_name,
+        message_body = glue::glue(
+          "cleared an existing selection of \\
        {n_e_select_properties_in[['selection_count_str']]}"))
 
-  } else {
+    } else {
 
-    emit_message(
-      fcn_name = fcn_name,
-      message_body = "no existing selection to clear; graph unchanged")
+      emit_message(
+        fcn_name = fcn_name,
+        message_body = "no existing selection to clear; graph unchanged")
+    }
   }
 
   graph
