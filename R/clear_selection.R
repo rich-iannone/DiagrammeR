@@ -74,7 +74,8 @@ clear_selection <- function(graph) {
 
   # Emit a message about the modification of a selection
   # if that option is set
-  if (graph$graph_info$display_msgs) {
+  if (!is.null(graph$graph_info$display_msgs) &&
+      graph$graph_info$display_msgs) {
 
     # Issue a message to the user
     if (n_e_select_properties_in[["selection_count"]] > 0) {

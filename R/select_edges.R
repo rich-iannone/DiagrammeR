@@ -258,50 +258,46 @@ select_edges <- function(graph,
 
   # Emit a message about the modification of a selection
   # if that option is set
-  if (graph$graph_info$display_msgs) {
+  if (!is.null(graph$graph_info$display_msgs) &&
+      graph$graph_info$display_msgs) {
 
-    # Emit a message about the modification of a selection
-    # if that option is set
-    if (graph$graph_info$display_msgs) {
+    # Construct message body
+    if (!n_e_select_properties_in[["node_selection_available"]] &
+        !n_e_select_properties_in[["edge_selection_available"]]) {
 
-      # Construct message body
-      if (!n_e_select_properties_in[["node_selection_available"]] &
-          !n_e_select_properties_in[["edge_selection_available"]]) {
-
-        msg_body <-
-          glue::glue(
-            "created a new selection of \\
+      msg_body <-
+        glue::glue(
+          "created a new selection of \\
         {n_e_select_properties_out[['selection_count_str']]}")
 
-      } else if (n_e_select_properties_in[["node_selection_available"]] |
-                 n_e_select_properties_in[["edge_selection_available"]]) {
+    } else if (n_e_select_properties_in[["node_selection_available"]] |
+               n_e_select_properties_in[["edge_selection_available"]]) {
 
-        if (n_e_select_properties_in[["edge_selection_available"]]) {
-          msg_body <-
-            glue::glue(
-              "modified an existing selection of \\
+      if (n_e_select_properties_in[["edge_selection_available"]]) {
+        msg_body <-
+          glue::glue(
+            "modified an existing selection of \\
            {n_e_select_properties_in[['selection_count_str']]}:
            * {n_e_select_properties_out[['selection_count_str']]} \\
            are now in the active selection
            * used the `{set_op}` set operation")
-        }
+      }
 
-        if (n_e_select_properties_in[["node_selection_available"]]) {
-          msg_body <-
-            glue::glue(
-              "created a new selection of \\
+      if (n_e_select_properties_in[["node_selection_available"]]) {
+        msg_body <-
+          glue::glue(
+            "created a new selection of \\
            {n_e_select_properties_out[['selection_count_str']]}:
            * this replaces \\
            {n_e_select_properties_in[['selection_count_str']]} \\
            in the prior selection")
-        }
       }
-
-      # Issue a message to the user
-      emit_message(
-        fcn_name = fcn_name,
-        message_body = msg_body)
     }
+
+    # Issue a message to the user
+    emit_message(
+      fcn_name = fcn_name,
+      message_body = msg_body)
   }
 
   graph

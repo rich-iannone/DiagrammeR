@@ -152,7 +152,8 @@ invert_selection <- function(graph) {
 
   # Emit a message about the modification of a selection
   # if that option is set
-  if (graph$graph_info$display_msgs) {
+  if (!is.null(graph$graph_info$display_msgs) &&
+      graph$graph_info$display_msgs) {
 
     # Construct message body
     msg_body <-
