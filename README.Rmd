@@ -67,7 +67,6 @@ example_graph <-
     attr = NULL)
 ```
 
-
 ```{r eval=FALSE}
 example_graph %>%
   render_graph(layout = "nicely")

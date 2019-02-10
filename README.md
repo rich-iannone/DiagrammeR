@@ -63,8 +63,6 @@ example_graph <-
   clear_selection() %>%
   set_node_attr_to_display(
     attr = NULL)
-#> `select_nodes_by_id()` INFO: created a new selection of 34 nodes
-#> `clear_selection()` INFO: cleared an existing selection of 34 nodes
 ```
 
 ``` r
@@ -218,8 +216,6 @@ e_graph <-
     node_attr = fillcolor,
     value = "orange") %>%
   clear_selection()
-#> `select_nodes()` INFO: created a new selection of 1 node
-#> `clear_selection()` INFO: cleared an existing selection of 1 node
 ```
 
 To explain this a bit, we take the graph object `d_graph`, select only
@@ -564,14 +560,6 @@ k_graph <-
   clear_selection() %>%
   set_node_attr_to_display(
     attr = value_3)
-#> `select_nodes()` INFO: created a new selection of 5 nodes
-#> `invert_selection()` INFO: inverted an existing selection of 5 nodes:
-#> * 5 nodes are now in the active selection
-#> `select_edges()` INFO: created a new selection of 14 edges:
-#> * this replaces 5 nodes in the prior selection
-#> `invert_selection()` INFO: inverted an existing selection of 14 edges:
-#> * 5 edges are now in the active selection
-#> `clear_selection()` INFO: cleared an existing selection of 5 edges
 ```
 
 ``` r
@@ -640,7 +628,6 @@ graph %>%
   get_node_attrs_ws(
     node_attr = age) %>%
   mean()
-#> `select_nodes()` INFO: created a new selection of 10 nodes
 #> [1] 33.6
 ```
 
@@ -656,7 +643,6 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
-#> `select_edges()` INFO: created a new selection of 13 edges
 #> [1] 5182
 ```
 
@@ -679,7 +665,6 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
-#> `select_nodes()` INFO: created a new selection of 1 node
 #> [1] 227
 ```
 
@@ -700,7 +685,6 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
-#> `select_nodes()` INFO: created a new selection of 1 node
 #> [1] 236
 ```
 
@@ -728,10 +712,6 @@ graph %>%
     node_attr = name) %>%
   sort() %>%
   unname()
-#> `select_nodes()` INFO: created a new selection of 10 nodes
-#> `select_nodes()` INFO: modified an existing selection of 10 nodes:
-#> * 5 nodes are now in the active selection
-#> * used the `intersect` set operation
 #> [1] "Jack"   "Jon"    "Kim"    "Roger"  "Sheryl"
 ```
 
@@ -751,7 +731,6 @@ graph %>%
   get_edge_attrs_ws(
     edge_attr = commits) %>%
   sum()
-#> `select_nodes()` INFO: created a new selection of 1 node
 #> [1] 1676
 ```
 
@@ -784,7 +763,6 @@ graph <-
     edge_attr = commits,
     value = 15) %>%
   clear_selection()
-#> `clear_selection()` INFO: cleared an existing selection of 1 edge
 ```
 
 ``` r
@@ -813,7 +791,6 @@ graph %>%
     node_attr = email) %>%
   sort() %>%
   unname()
-#> `select_nodes()` INFO: created a new selection of 2 nodes`()` INFO: created a new selection of 2 nodes
 #> [1] "j_2000@ultramail.io"      "josh_ch@megamail.kn"     
 #> [3] "kim_3251323@ohhh.ai"      "lhe99@mailing-fun.com"   
 #> [5] "roger_that@whalemail.net" "the_simone@a-q-w-o.net"  
@@ -837,7 +814,6 @@ graph %>%
     node_attr = name) %>%
   sort() %>%
   unname()
-#> `select_nodes_by_degree()` INFO: created a new selection of 3 nodes
 #> [1] "Josh"   "Kim"    "Louisa"
 ```
 
