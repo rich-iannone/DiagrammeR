@@ -25,6 +25,8 @@
 #'   graph states to disk. If \code{TRUE}, a subdirectory within the working
 #'   directory will be created and used to store \code{RDS} files. The default
 #'   value is \code{FALSE} so one has to opt in to use this functionality.
+#' @param display_msgs an option to display messages primarily concerned with
+#'   changes in graph selections. By default, this is \code{FALSE}.
 #' @return a graph object of class \code{dgr_graph}.
 #' @examples
 #' # With `create_graph()` we can
@@ -109,7 +111,8 @@ create_graph <- function(nodes_df = NULL,
                          directed = TRUE,
                          graph_name = NULL,
                          attr_theme = "default",
-                         write_backups = FALSE) {
+                         write_backups = FALSE,
+                         display_msgs = FALSE) {
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()
@@ -136,7 +139,8 @@ create_graph <- function(nodes_df = NULL,
       graph_name = as.character(paste0("graph_", graph_id)),
       graph_time = graph_time,
       graph_tz = graph_tz,
-      write_backups = as.logical(write_backups),
+      write_backups = write_backups,
+      display_msgs = display_msgs,
       stringsAsFactors = FALSE)
 
   # Insert a user-defined `graph_name` if supplied
