@@ -5,7 +5,8 @@
 \title{Create a graph object}
 \usage{
 create_graph(nodes_df = NULL, edges_df = NULL, directed = TRUE,
-  graph_name = NULL, attr_theme = "default", write_backups = FALSE)
+  graph_name = NULL, attr_theme = "default", write_backups = FALSE,
+  display_msgs = FALSE)
 }
 \arguments{
 \item{nodes_df}{an optional data frame containing, at minimum, a column
@@ -36,6 +37,9 @@ to the graph upon creation.}
 graph states to disk. If \code{TRUE}, a subdirectory within the working
 directory will be created and used to store \code{RDS} files. The default
 value is \code{FALSE} so one has to opt in to use this functionality.}
+
+\item{display_msgs}{an option to display messages primarily concerned with
+changes in graph selections. By default, this is \code{FALSE}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

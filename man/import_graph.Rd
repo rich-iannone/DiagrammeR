@@ -5,7 +5,9 @@
 \title{Import a graph from various graph formats}
 \usage{
 import_graph(graph_file, file_type = NULL,
-  edges_extra_attr_names = NULL, edges_extra_attr_coltypes = NULL)
+  edges_extra_attr_names = NULL, edges_extra_attr_coltypes = NULL,
+  graph_name = NULL, attr_theme = "default", write_backups = FALSE,
+  display_msgs = FALSE)
 }
 \arguments{
 \item{graph_file}{a connection to a graph file. When provided as a path to a
@@ -30,6 +32,25 @@ are: \code{c} -> character, \code{i} -> integer, \code{n} -> number,
 \code{d} -> double, \code{l} -> logical, \code{D} -> date, \code{T} ->
 date time, \code{t} -> time, \code{?} -> guess, or \code{_/-}, which skips
 the column.}
+
+\item{graph_name}{an optional string for labeling the graph object.}
+
+\item{attr_theme}{the theme (i.e., collection of \code{graph}, \code{node},
+and \code{edge} global graph attributes) to use for this graph. The default
+theme is called \code{default}; there are hierarchical layout themes called
+\code{lr}, \code{tb}, \code{rl}, and \code{bt} (these operate from
+left-to-right, top-to-bottom, right-to-left, and bottom-to-top); and, for
+larger graphs, the \code{fdp} theme provides a force directed layout. If
+this is set to \code{NULL} then no global graph attributes will be applied
+to the graph upon creation.}
+
+\item{write_backups}{an option to write incremental backups of changing
+graph states to disk. If \code{TRUE}, a subdirectory within the working
+directory will be created and used to store \code{RDS} files. The default
+value is \code{FALSE} so one has to opt in to use this functionality.}
+
+\item{display_msgs}{an option to display messages primarily concerned with
+changes in graph selections. By default, this is \code{FALSE}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
