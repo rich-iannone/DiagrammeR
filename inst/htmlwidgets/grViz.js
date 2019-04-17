@@ -35,7 +35,7 @@ HTMLWidgets.widget({
 
       try {
 
-        el.innerHTML = Viz(x.diagram, {format: "svg", engine: x.config.engine, ...x.config.options});
+        el.innerHTML = Viz(x.diagram, format="svg", engine=x.config.engine, options=x.config.options);
 
         makeResponsive(el);
 
