@@ -20,6 +20,7 @@ Provides a vector of node IDs for all nodes that have a connection to the
 }
 \examples{
 # Set a seed
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 # Create a node data frame (ndf)

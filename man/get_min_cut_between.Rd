@@ -24,6 +24,7 @@ Get the minimum cut between source and sink nodes. This is the minimum total
 }
 \examples{
 # Set a seed
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 # Create a cycle graph

@@ -77,6 +77,7 @@ graph \%>\% get_node_info()
 # `node_data`, and `edge_data`
 # arguments
 
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 graph_w_attrs <-

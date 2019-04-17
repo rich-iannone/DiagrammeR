@@ -20,6 +20,7 @@ Get the vector cached in a graph object of class \code{dgr_graph}.
 }
 \examples{
 # Set a seed
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 # Create a graph with 5 nodes and 5 edges

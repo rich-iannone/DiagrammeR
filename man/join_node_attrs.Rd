@@ -31,6 +31,7 @@ Join new node attribute values in a left join using a data frame. The use of
 }
 \examples{
 # Set a seed
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 # Create a simple graph

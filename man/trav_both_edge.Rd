@@ -63,6 +63,7 @@ Selections of nodes can also be performed using the following traversal
 }
 \examples{
 # Set a seed
+suppressWarnings(RNGversion("3.5.0"))
 set.seed(23)
 
 # Create a simple graph
