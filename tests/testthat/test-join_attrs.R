@@ -11,6 +11,7 @@ test_that("joining a data frame to an ndf is possible", {
 
   # Create a data frame with node ID values and a
   # set of numeric values
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(25)
 
   # Create a data frame from which `values` will
@@ -75,6 +76,7 @@ test_that("joining a data frame to an edf is possible", {
 
   # Create a data frame with node ID values and a
   # set of numeric values
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(25)
 
   # Create a data frame from which `values` will

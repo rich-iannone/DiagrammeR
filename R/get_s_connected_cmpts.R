@@ -6,6 +6,7 @@
 #' @return a data frame with nodes and their membership in different strongly
 #'   connected components.
 #' @examples
+#' suppressWarnings(RNGversion("3.5.0"))
 #' set.seed(23)
 #'
 #' # Create a graph with a random

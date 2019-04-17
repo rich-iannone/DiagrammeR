@@ -2,6 +2,7 @@ context("Getting info about nodes and edges")
 
 test_that("getting info about a graph's nodes is possible", {
 
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(26)
 
   # Create a node data frame
@@ -124,6 +125,7 @@ test_that("getting info about a graph's nodes is possible", {
 
 test_that("getting info about a graph's edges is possible", {
 
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(26)
 
   # Create a node data frame

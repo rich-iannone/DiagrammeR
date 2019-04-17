@@ -7,6 +7,7 @@
 #' @return a vector.
 #' @examples
 #' # Set a seed
+#' suppressWarnings(RNGversion("3.5.0"))
 #' set.seed(23)
 #'
 #' # Create a graph with 5 nodes and 5 edges

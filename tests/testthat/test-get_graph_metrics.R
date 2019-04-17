@@ -452,6 +452,7 @@ test_that("Getting the reciprocity for a graph is possible", {
 test_that("Getting the minimum cut between nodes is possible", {
 
   # Set a seed
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23)
 
   # Create a cycle graph

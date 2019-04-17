@@ -2,6 +2,7 @@ context("Getting info about a node's predecessors and successors")
 
 test_that("getting a node's predecessors/successors is possible", {
 
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(26)
 
   # Create a node data frame

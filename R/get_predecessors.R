@@ -7,6 +7,7 @@
 #' @return a vector of node ID values.
 #' @examples
 #' # Set a seed
+#' suppressWarnings(RNGversion("3.5.0"))
 #' set.seed(23)
 #'
 #' # Create a node data frame (ndf)

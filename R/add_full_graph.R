@@ -72,6 +72,7 @@
 #' # edge weights; first, create the
 #' # matrix (with row names to be
 #' # used as node labels)
+#' suppressWarnings(RNGversion("3.5.0"))
 #' set.seed(23)
 #'
 #' edge_wt_matrix <-

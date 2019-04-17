@@ -450,6 +450,7 @@ test_that("Getting authority centrality is possible", {
 
 test_that("Getting eigenvector centrality is possible", {
 
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23)
 
   # Create a random graph

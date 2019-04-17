@@ -2,6 +2,7 @@ context("Getting node IDs from the entire graph or within edges")
 
 test_that("getting node IDs from various objects is possible", {
 
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23)
 
   # Create a node data frame
@@ -106,6 +107,7 @@ test_that("getting node IDs from various objects is possible", {
 test_that("getting node IDs associated within a graph's edges is possible", {
 
   # Set a seed to make results reproducible
+  suppressWarnings(RNGversion("3.5.0"))
   set.seed(23)
 
   # Create a node data frame

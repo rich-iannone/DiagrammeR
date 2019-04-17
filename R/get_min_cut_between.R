@@ -10,6 +10,7 @@
 #'   removed to disconnect the source and sink nodes.
 #' @examples
 #' # Set a seed
+#' suppressWarnings(RNGversion("3.5.0"))
 #' set.seed(23)
 #'
 #' # Create a cycle graph
