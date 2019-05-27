@@ -212,21 +212,7 @@ test_that("creating edge aesthetic attribute values is possible", {
 
   # Expect that a list object has
   # been generated
-  expect_is(
-    edge_aes, "list")
-
-  # Expect specific names in the object
-  expect_equal(
-    names(edge_aes) %>% sort(),
-    c(
-      "arrowhead", "arrowsize", "arrowtail", "color",
-      "decorate" , "dir", "edgetooltip", "edgeURL",
-      "fontcolor", "fontname", "fontsize", "headclip",
-      "headlabel", "headport", "headtooltip", "headURL",
-      "label", "labelfontcolor", "labelfontname", "labelfontsize",
-      "labeltooltip", "labelURL", "len", "penwidth",
-      "style", "tailclip", "taillabel", "tailport",
-      "tailtooltip", "tailURL", "tooltip", "URL"))
+  expect_is(edge_aes, "list")
 
   # Expect specific values in each
   # of the list components
