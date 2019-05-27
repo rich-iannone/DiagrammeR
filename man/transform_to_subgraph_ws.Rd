@@ -61,8 +61,8 @@ ndf <-
 # Create an edge data frame (edf)
 edf <-
   create_edge_df(
-    from = c(1, 2, 4, 5, 2, 6),
-      to = c(2, 4, 1, 3, 5, 5))
+    from = c(1, 2, 4, 5, 2, 6, 2),
+      to = c(2, 4, 1, 3, 5, 5, 4))
 
 # Create a graph
 graph <-
@@ -87,4 +87,22 @@ subgraph \%>\% get_node_df()
 
 # Display the graph's edge data frame
 subgraph \%>\% get_edge_df()
+
+# Create a selection of edges, this selects
+# edges `1`, `2`
+graph <- graph \%>\%
+  clear_selection() \%>\%
+  select_edges(
+  edges = c(1,2))
+
+# Create a subgraph based on the selection
+  subgraph <-
+  graph \%>\%
+  transform_to_subgraph_ws()
+
+# Display the graph's node data frame
+  subgraph \%>\% get_node_df()
+
+# Display the graph's edge data frame
+  subgraph \%>\% get_edge_df()
 }
