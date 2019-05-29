@@ -362,8 +362,6 @@ render_graph <- function(graph,
             writeLines(fontawesome::fa(fa_icon), tmp_svg_file)
 
             svg_uri <- get_image_uri(tmp_svg_file)
-            svg_uri <- get_image_uri(tmp_svg_file)
-            svg_uri <- get_image_uri(tmp_svg_file)
 
             file.remove(tmp_svg_file)
 
