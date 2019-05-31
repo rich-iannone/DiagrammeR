@@ -104,7 +104,7 @@ add_balanced_tree <- function(graph,
   }
 
   # Create bindings for specific variables
-  index__ <- id <- NULL
+  #index__ <- id <- NULL
 
   # Stop if k is too small
   if (k <= 1) {

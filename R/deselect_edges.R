@@ -59,7 +59,7 @@ deselect_edges <- function(graph,
   }
 
   # Create binding for specific variable
-  edge <- NULL
+  # edge <- NULL
 
   # Extract the graph's edge selection
   graph$edge_selection <-

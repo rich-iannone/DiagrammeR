@@ -74,7 +74,7 @@ get_agg_degree_total <- function(graph,
   conditions <- rlang::enquo(conditions)
 
   # Create binding for variable
-  id <- NULL
+  # id <- NULL
 
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
@@ -89,7 +89,7 @@ get_agg_degree_total <- function(graph,
     ndf <-
       dplyr::filter(
         .data = ndf,
-        UQ(conditions))
+        rlang::UQ(conditions))
 
     # Get a vector of node ID values
     node_ids <-

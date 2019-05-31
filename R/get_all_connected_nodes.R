@@ -69,7 +69,7 @@ get_all_connected_nodes <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- NULL
+  # id <- NULL
 
   # Verify that the node ID provided is in the graph
   if (!(node %in% get_node_ids(graph))) {

@@ -43,7 +43,7 @@ count_unconnected_nodes <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- node_id <- NULL
+  # id <- from <- to <- node_id <- NULL
 
   # Get tbl with all nodes that are part
   # of edges

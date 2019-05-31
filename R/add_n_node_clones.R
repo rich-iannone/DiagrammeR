@@ -99,7 +99,7 @@ add_n_node_clones <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- type <- version_id <- NULL
+  # id <- type <- version_id <- NULL
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)

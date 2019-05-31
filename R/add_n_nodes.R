@@ -53,7 +53,7 @@ add_n_nodes <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- index__ <- NULL
+  # id <- index__ <- NULL
 
   # Collect node aesthetic attributes
   if (!is.null(node_aes)) {

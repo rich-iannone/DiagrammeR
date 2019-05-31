@@ -82,7 +82,7 @@ delete_loop_edges_ws <- function(graph) {
   }
 
   # Create bindings for specific variables
-  from <- to <- NULL
+  # from <- to <- NULL
 
   # Get the graph's edf
   edf <- graph$edges_df

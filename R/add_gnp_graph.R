@@ -64,7 +64,7 @@ add_gnp_graph <- function(graph,
   }
 
   # Create bindings for specific variables
-  index__ <- id <- NULL
+  # index__ <- id <- NULL
 
   # If a seed value is supplied, set a seed
   if (!is.null(set_seed)) {

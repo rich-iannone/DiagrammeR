@@ -142,7 +142,7 @@ add_edges_from_table <- function(graph,
   }
 
   # Create bindings for specific variables
-  rel <- id <- from <- to <- label_col <- NULL
+  # rel <- id <- from <- to <- label_col <- NULL
 
   # Determine whether the table is a file connection
   # to a CSV file or a data frame

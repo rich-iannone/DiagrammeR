@@ -35,7 +35,7 @@ count_loop_edges <- function(graph) {
   }
 
   # Create bindings for specific variables
-  from <- to <- NULL
+  # from <- to <- NULL
 
   # If graph is empty, return 0
   if (is_graph_empty(graph)) {

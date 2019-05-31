@@ -74,7 +74,7 @@ add_global_graph_attrs <- function(graph,
   }
 
   # Create bindings for specific variables
-  value.x <- value.y <- NULL
+  # value.x <- value.y <- NULL
 
   # Coerce any logical value for `value` to a
   # lowercase character value

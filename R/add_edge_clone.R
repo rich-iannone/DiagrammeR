@@ -107,7 +107,7 @@ add_edge_clone <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- version_id <- NULL
+  #id <- version_id <- NULL
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)

@@ -82,7 +82,7 @@ delete_graph_actions <- function(graph,
   }
 
   # Create bindings for specific variables
-  action_name <- action_index <- NULL
+  # action_name <- action_index <- NULL
 
   if (inherits(actions, "character")) {
 

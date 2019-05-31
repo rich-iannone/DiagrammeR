@@ -21,7 +21,7 @@ generate_dot <- function(graph) {
   }
 
   # Create bindings for specific variables
-  attr_type <- attr <- value <- string <- NULL
+  # attr_type <- attr <- value <- string <- NULL
 
   # Extract objects from the graph objecct
   nodes_df <- graph$nodes_df

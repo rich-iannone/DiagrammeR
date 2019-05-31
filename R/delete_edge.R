@@ -125,7 +125,7 @@ delete_edge <- function(graph,
   }
 
   # Create bindings for specific variables
-  label <- NULL
+  # label <- NULL
 
   # If a value is supplied for `id`, determine which
   # node ID values the edge ID references

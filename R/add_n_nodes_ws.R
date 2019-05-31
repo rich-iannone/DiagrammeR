@@ -123,7 +123,7 @@ add_n_nodes_ws <- function(graph,
   }
 
   # Create bindings for specific variables
-  index__ <- id <- NULL
+  # index__ <- id <- NULL
 
   # If the graph is directed and there is no value
   # given for the `direction` argument, stop function

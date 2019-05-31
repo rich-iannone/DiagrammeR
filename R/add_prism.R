@@ -110,7 +110,7 @@ add_prism <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- index__ <- NULL
+  # id <- index__ <- NULL
 
   # Get the number of nodes ever created for
   # this graph

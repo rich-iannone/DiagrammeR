@@ -111,7 +111,7 @@ add_grid_3d <- function(graph,
   }
 
   # Create bindings for specific variables
-  index__ <- id <- from <- to <- NULL
+  # index__ <- id <- from <- to <- NULL
 
   # Get the number of nodes ever created for
   # this graph

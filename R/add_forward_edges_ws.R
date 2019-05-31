@@ -91,7 +91,7 @@ add_forward_edges_ws <- function(graph,
   }
 
   # Create bindings for specific variables
-  from <- to <- NULL
+  # from <- to <- NULL
 
   # If no value(s) provided for `rel`, set to NA
   if (is.null(rel)) {

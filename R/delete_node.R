@@ -51,7 +51,7 @@ delete_node <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- NULL
+  # id <- from <- to <- NULL
 
   # Verify that `node` is given as a single value
   node_is_single_value <-

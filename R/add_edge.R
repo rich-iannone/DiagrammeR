@@ -136,7 +136,7 @@ add_edge <- function(graph,
   }
 
   # Create bindings for specific variables
-  version_id <- label <- index__ <- id <-  NULL
+  #version_id <- label <- index__ <- id <-  NULL
 
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)

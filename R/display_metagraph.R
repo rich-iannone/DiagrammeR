@@ -99,8 +99,8 @@ display_metagraph <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- type <- rel <- label <-
-    from_type <- to_type <- NULL
+  # id <- from <- to <- type <- rel <- label <-
+  #   from_type <- to_type <- NULL
 
   # Get a distinct list of node `type` values
   unique_node_list <-
