@@ -93,7 +93,7 @@ trigger_graph_actions <- function(graph) {
   }
 
   # Create bindings for specific variables
-  action_index <- action_name <- NULL
+  # action_index <- action_name <- NULL
 
   if (nrow(graph$graph_actions) == 0) {
 

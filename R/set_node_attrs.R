@@ -68,7 +68,7 @@ set_node_attrs <- function(graph,
   fcn_name <- get_calling_fcn()
 
   # Create bindings for specific variables
-  id <- NULL
+  # id <- NULL
 
   # Get the requested `node_attr`
   node_attr <-

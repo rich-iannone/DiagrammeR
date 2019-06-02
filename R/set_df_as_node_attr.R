@@ -110,7 +110,7 @@ set_df_as_node_attr <- function(graph,
   }
 
   # Create bindings for specific variables
-  df_id__ <- node_edge__ <- id__ <- NULL
+  # df_id__ <- node_edge__ <- id__ <- NULL
 
   # Generate an empty `df_storage` list if not present
   # TODO: put this in `create_graph()`

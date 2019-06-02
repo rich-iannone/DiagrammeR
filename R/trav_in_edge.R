@@ -268,7 +268,7 @@ trav_in_edge <- function(graph,
   }
 
   # Create bindings for specific variables
-  from <- to <- id <- id.y <- rel <- NULL
+  # from <- to <- id <- id.y <- rel <- NULL
 
   # Get the selection of nodes as the starting
   # nodes for the traversal
