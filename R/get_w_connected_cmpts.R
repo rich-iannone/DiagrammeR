@@ -38,7 +38,7 @@ get_w_connected_cmpts <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- type <- label <- rel <- NULL
+  # id <- from <- to <- type <- label <- rel <- NULL
 
   # Create a graph where only mandatory
   # node and edge attributes are retained;

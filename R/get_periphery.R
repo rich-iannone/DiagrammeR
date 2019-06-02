@@ -30,7 +30,7 @@ get_periphery <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- NULL
+  # id <- NULL
 
   # Get the eccentricity for each of the graph's nodes
   eccentricity <- get_eccentricity(graph)

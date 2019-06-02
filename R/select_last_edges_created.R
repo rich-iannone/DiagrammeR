@@ -59,9 +59,9 @@ select_last_edges_created <- function(graph) {
   }
 
   # Create bindings for specific variables
-  function_used <- edges <- step_created_edges <- NULL
-  step_deleted_edges <- step_init_with_edges <- version_id <- NULL
-  time_modified <- duration <- id <- NULL
+  # function_used <- edges <- step_created_edges <- NULL
+  # step_deleted_edges <- step_init_with_edges <- version_id <- NULL
+  # time_modified <- duration <- id <- NULL
 
   graph_transform_steps <-
     graph$graph_log %>%

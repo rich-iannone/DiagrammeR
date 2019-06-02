@@ -103,7 +103,7 @@ get_edge_attrs_ws <- function(graph,
   edge_attr <- rlang::enquo(edge_attr)
 
   # Create binding for a specific variable
-  id <- NULL
+  # id <- NULL
 
   if (rlang::enquo(edge_attr) %>%
       rlang::get_expr() %>%

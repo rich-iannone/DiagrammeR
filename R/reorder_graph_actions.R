@@ -90,7 +90,7 @@ reorder_graph_actions <- function(graph,
   }
 
   # Create binding for a specific variable
-  action_index <- NULL
+  # action_index <- NULL
 
   # Get the `action_index` values
   # available in `graph$graph_actions`

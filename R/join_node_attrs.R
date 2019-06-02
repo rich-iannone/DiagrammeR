@@ -94,7 +94,7 @@ join_node_attrs <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- type <- label <- NULL
+  # id <- type <- label <- NULL
 
   # Get the number of nodes ever created for
   # this graph

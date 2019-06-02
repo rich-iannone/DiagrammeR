@@ -87,8 +87,8 @@ render_graph <- function(graph,
   }
 
   # Create bindings for specific variables
-  V1 <- V2 <- x <- y <- attr_type <- value_x <- NULL
-  value <- hex <- fillcolor <- new_fillcolor <- NULL
+  # V1 <- V2 <- x <- y <- attr_type <- value_x <- NULL
+  # value <- hex <- fillcolor <- new_fillcolor <- NULL
 
   if (is.null(output)) {
     output <- "graph"

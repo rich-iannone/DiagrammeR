@@ -74,7 +74,7 @@ invert_selection <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- NULL
+  # id <- from <- to <- NULL
 
   # Obtain the input graph's node and edge
   # selection properties

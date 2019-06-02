@@ -60,7 +60,7 @@ get_node_ids <- function(graph,
   fcn_name <- get_calling_fcn()
 
   # Create binding for a specific variable
-  id <- NULL
+  # id <- NULL
 
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)

@@ -130,7 +130,7 @@ select_edges <- function(graph,
   conditions <- rlang::enquo(conditions)
 
   # Create bindings for specific variables
-  id <- NULL
+  # id <- NULL
 
   # Extract the graph's internal edf
   edges_df <- graph$edges_df

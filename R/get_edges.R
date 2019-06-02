@@ -108,7 +108,7 @@ get_edges <- function(graph,
   conditions <- rlang::enquo(conditions)
 
   # Create bindings for specific variables
-  label <- NULL
+  # label <- NULL
 
   # Extract edge data frame from the graph
   edges_df <- graph$edges_df

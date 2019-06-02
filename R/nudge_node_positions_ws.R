@@ -130,7 +130,7 @@ nudge_node_positions_ws <- function(graph,
   }
 
   # Create bindings for specific variables
-  nodes <- x <- y <- id <- NULL
+  # nodes <- x <- y <- id <- NULL
 
   # Get the graph's node data frame as an object
   ndf <- graph$nodes_df

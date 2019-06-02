@@ -65,7 +65,7 @@ import_graph <- function(graph_file,
   fcn_name <- get_calling_fcn()
 
   # Assign NULL to several objects
-  id <- to_label <- from_label <-  NULL
+  # id <- to_label <- from_label <-  NULL
 
   # Stop function if `file_type` specified is not part
   # of the group that can be imported

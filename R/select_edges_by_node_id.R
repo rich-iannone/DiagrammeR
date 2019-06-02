@@ -84,7 +84,7 @@ select_edges_by_node_id <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- NULL
+  # id <- from <- to <- NULL
 
   # Extract the graph's internal edf
   edges_df <- graph$edges_df

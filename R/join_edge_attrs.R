@@ -83,7 +83,7 @@ join_edge_attrs <- function(graph,
   }
 
   # Create bindings for specific variables
-  id <- from <- to <- rel <- NULL
+  # id <- from <- to <- rel <- NULL
 
   # Extract the graph's edf
   edges <- get_edge_df(graph)

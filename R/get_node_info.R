@@ -31,7 +31,7 @@ get_node_info <- function(graph) {
   }
 
   # Create bindings for specific variables
-  id <- NULL
+  # id <- NULL
 
   # If graph is empty, return NULL
   if (is_graph_empty(graph)) {

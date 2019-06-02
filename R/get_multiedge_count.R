@@ -55,7 +55,7 @@ get_multiedge_count <- function(graph) {
   }
 
   # Create bindings for specific variables
-  from <- to <- NULL
+  # from <- to <- NULL
 
   # Check for the number of multiple edges
   # regardless of which definitions these

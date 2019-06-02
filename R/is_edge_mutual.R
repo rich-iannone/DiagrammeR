@@ -74,7 +74,7 @@ is_edge_mutual <- function(graph,
   }
 
   # Create binding for a specific variable
-  id <- NULL
+  # id <- NULL
 
   # Obtain the graph's edf
   edf <- graph$edges_df

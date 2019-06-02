@@ -113,7 +113,7 @@ select_nodes <- function(graph,
   conditions <- rlang::enquo(conditions)
 
   # Create binding for a specific variable
-  id <- NULL
+  # id <- NULL
 
   # Extract the graph's internal ndf
   nodes_df <- graph$nodes_df

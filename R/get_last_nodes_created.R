@@ -49,9 +49,9 @@ get_last_nodes_created <- function(graph) {
   }
 
   # Create bindings for specific variables
-  function_used <- nodes <- step_created_nodes <- NULL
-  step_deleted_nodes <- step_init_with_nodes <- version_id <- NULL
-  time_modified <- duration <- id <- NULL
+  # function_used <- nodes <- step_created_nodes <- NULL
+  # step_deleted_nodes <- step_init_with_nodes <- version_id <- NULL
+  # time_modified <- duration <- id <- NULL
 
   graph_transform_steps <-
     graph$graph_log %>%

@@ -70,7 +70,7 @@ get_edge_df_ws <- function(graph) {
   }
 
   # Create binding for specific variable
-  id <- NULL
+  # id <- NULL
 
   # Extract the edge data frame (edf)
   # from the graph and get only those edges

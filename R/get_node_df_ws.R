@@ -74,7 +74,7 @@ get_node_df_ws <- function(graph) {
   }
 
   # Create binding for specific variable
-  id <- NULL
+  # id <- NULL
 
   # Extract the node data frame (ndf)
   # from the graph and get only those nodes
