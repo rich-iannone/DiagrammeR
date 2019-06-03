@@ -121,9 +121,6 @@ transform_to_subgraph_ws <- function(graph) {
       reasons = "There is no selection of node or edges available.")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- NULL
-
   # Get the number of nodes in the graph
   nodes_graph_1 <- graph %>% count_nodes()
 

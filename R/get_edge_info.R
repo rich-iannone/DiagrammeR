@@ -31,9 +31,6 @@ get_edge_info <- function(graph) {
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- rel <- NULL
-
   # For graphs with no edges, return NA
   if (nrow(graph$edges_df) == 0) {
     return(NA)

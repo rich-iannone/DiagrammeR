@@ -91,9 +91,6 @@ rev_edge_dir_ws <- function(graph) {
       reasons = "The input graph must be a directed graph")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- . <- NULL
-
   # Get the graph nodes in the `from` and `to` columns
   # of the edf
   from <- get_edges(graph, return_type = "df")[, 1]

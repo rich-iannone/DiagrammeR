@@ -86,10 +86,6 @@ render_graph <- function(graph,
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # V1 <- V2 <- x <- y <- attr_type <- value_x <- NULL
-  # value <- hex <- fillcolor <- new_fillcolor <- NULL
-
   if (is.null(output)) {
     output <- "graph"
   }

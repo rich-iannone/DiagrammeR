@@ -124,9 +124,6 @@ delete_edge <- function(graph,
       reasons = "The graph contains no edges")
   }
 
-  # Create bindings for specific variables
-  # label <- NULL
-
   # If a value is supplied for `id`, determine which
   # node ID values the edge ID references
   if (!is.null(id)) {

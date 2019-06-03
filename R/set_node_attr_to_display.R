@@ -105,9 +105,6 @@ set_node_attr_to_display <- function(graph,
     attr <- NULL
   }
 
-  # Create bindings for specific variables
-  # id <- type <- label <- display <- type <- NULL
-
   # Get the graph's node data frame as an object
   ndf <- graph$nodes_df
 

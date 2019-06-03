@@ -73,9 +73,6 @@ invert_selection <- function(graph) {
       reasons = "There is no selection of nodes or edges available")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- NULL
-
   # Obtain the input graph's node and edge
   # selection properties
   n_e_select_properties_in <-

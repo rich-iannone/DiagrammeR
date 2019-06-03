@@ -135,9 +135,6 @@ add_edge <- function(graph,
       reasons = "Only one edge can be specified in `from` or `to`")
   }
 
-  # Create bindings for specific variables
-  #version_id <- label <- index__ <- id <-  NULL
-
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-

@@ -140,9 +140,6 @@ add_nodes_from_table <- function(graph,
     drop_cols <- paste(drop_cols, collapse = " & ")
   }
 
-  # Create bindings for specific variables
-  type <- id_external <- NULL
-
   # Get the number of nodes ever created for
   # this graph
   nodes_created <- graph$last_node

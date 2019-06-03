@@ -262,9 +262,6 @@ trav_both <- function(graph,
     }
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- type <- label <- value <- NULL
-
   # Get the selection of nodes as the starting
   # nodes for the traversal
   starting_nodes <- graph$node_selection$node

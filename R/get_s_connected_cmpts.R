@@ -54,9 +54,6 @@ get_s_connected_cmpts <- function(graph) {
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- type <- label <- rel <- NULL
-
   # Create a graph where only mandatory
   # node and edge attributes are retained;
   # transform to an igraph object

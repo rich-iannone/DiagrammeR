@@ -73,9 +73,6 @@ is_edge_mutual <- function(graph,
       reasons = "The value provided for `edge` should be numeric")
   }
 
-  # Create binding for a specific variable
-  # id <- NULL
-
   # Obtain the graph's edf
   edf <- graph$edges_df
 

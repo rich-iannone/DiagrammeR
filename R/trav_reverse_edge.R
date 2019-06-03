@@ -108,9 +108,6 @@ trav_reverse_edge <- function(graph,
       reasons = "The graph contains no selection of edges")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- edge <- NULL
-
   # Extract the selection of edges
   edges_from <- graph$edge_selection$from
   edges_to <- graph$edge_selection$to

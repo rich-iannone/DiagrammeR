@@ -96,9 +96,6 @@ add_reverse_edges_ws <- function(graph,
       reasons = "The graph contains no selection of edges")
   }
 
-  # Create bindings for specific variables
-  # from <- to <- index__ <- id <- NULL
-
   # Get the number of edges in the graph
   edges_graph_1 <- graph %>% count_edges()
 

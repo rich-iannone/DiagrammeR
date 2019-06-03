@@ -73,9 +73,6 @@ add_global_graph_attrs <- function(graph,
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # value.x <- value.y <- NULL
-
   # Coerce any logical value for `value` to a
   # lowercase character value
   if (length(value) == 1) {

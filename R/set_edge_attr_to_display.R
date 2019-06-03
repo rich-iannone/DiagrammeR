@@ -103,9 +103,6 @@ set_edge_attr_to_display <- function(graph,
     attr <- NULL
   }
 
-  # Create bindings for specific variables
-  id <- from <- to <- rel <- display <- NULL
-
   # Get the graph's edge data frame as an object
   edf <- graph$edges_df
 

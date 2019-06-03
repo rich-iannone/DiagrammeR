@@ -80,9 +80,6 @@ get_node_attrs_ws <- function(graph,
 
   node_attr <- rlang::enquo(node_attr)
 
-  # Create binding for a specific variable
-  # id <- NULL
-
   if (rlang::enquo(node_attr) %>%
       rlang::get_expr() %>%
       as.character() %in% c("id", "nodes")) {

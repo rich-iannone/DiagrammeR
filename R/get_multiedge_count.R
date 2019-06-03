@@ -54,9 +54,6 @@ get_multiedge_count <- function(graph) {
       reasons = "The graph contains no edges")
   }
 
-  # Create bindings for specific variables
-  # from <- to <- NULL
-
   # Check for the number of multiple edges
   # regardless of which definitions these
   # edges have

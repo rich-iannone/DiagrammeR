@@ -50,9 +50,6 @@ delete_node <- function(graph,
       reasons = "The graph contains no nodes, so, a node cannot be deleted")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- NULL
-
   # Verify that `node` is given as a single value
   node_is_single_value <-
     ifelse(length(node) == 1, TRUE, FALSE)

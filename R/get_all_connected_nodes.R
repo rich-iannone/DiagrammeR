@@ -68,9 +68,6 @@ get_all_connected_nodes <- function(graph,
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # id <- NULL
-
   # Verify that the node ID provided is in the graph
   if (!(node %in% get_node_ids(graph))) {
 

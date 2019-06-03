@@ -34,9 +34,6 @@ count_loop_edges <- function(graph) {
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # from <- to <- NULL
-
   # If graph is empty, return 0
   if (is_graph_empty(graph)) {
     return(0)

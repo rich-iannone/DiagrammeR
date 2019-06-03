@@ -90,9 +90,6 @@ add_forward_edges_ws <- function(graph,
       reasons = "The graph contains no selection of edges")
   }
 
-  # Create bindings for specific variables
-  # from <- to <- NULL
-
   # If no value(s) provided for `rel`, set to NA
   if (is.null(rel)) {
     rel <- as.character(NA)

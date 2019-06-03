@@ -47,11 +47,6 @@ get_degree_histogram <- function(graph,
       reasons = "The graph contains no nodes")
   }
 
-  # Create bindings for specific variables
-  # total_degree_dist <- total_degree_hist <-
-  #   indegree_dist <- indegree_hist <-
-  #   outdegree_dist <- outdegree_hist <- NULL
-
   # Convert the graph to an igraph object
   ig_graph <- to_igraph(graph)
 

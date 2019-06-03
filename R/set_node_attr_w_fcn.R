@@ -114,9 +114,6 @@ set_node_attr_w_fcn <- function(graph,
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # id <- NULL
-
   value_per_node_fcn_names <-
     value_per_node_functions() %>% names()
 

@@ -82,9 +82,6 @@ join_edge_attrs <- function(graph,
       reasons = "Both column specifications must be provided")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- rel <- NULL
-
   # Extract the graph's edf
   edges <- get_edge_df(graph)
 

@@ -98,10 +98,6 @@ display_metagraph <- function(graph) {
       reasons = "The graph object is not a property graph")
   }
 
-  # Create bindings for specific variables
-  # id <- from <- to <- type <- rel <- label <-
-  #   from_type <- to_type <- NULL
-
   # Get a distinct list of node `type` values
   unique_node_list <-
     graph$nodes_df %>%

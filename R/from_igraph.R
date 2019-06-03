@@ -40,9 +40,6 @@ from_igraph <- function(igraph,
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 
-  # Create bindings for specific variables
-  # id <- NULL
-
   # Get vectors of all node and edge attributes
   node_attrs <- igraph::vertex_attr_names(igraph)
   edge_attrs <- igraph::edge_attr_names(igraph)

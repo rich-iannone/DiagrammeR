@@ -68,9 +68,6 @@ combine_graphs <- function(x,
       reasons = "The graph object supplied to `y` is not valid")
   }
 
-  # Create bindings for specific variables
-  # new_node_id <- type <- label <- id.x <- NULL
-
   # Get the number of nodes ever created for
   # graph `x`
   nodes_created <- x$last_node

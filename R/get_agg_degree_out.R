@@ -69,9 +69,6 @@ get_agg_degree_out <- function(graph,
   # Capture provided conditions
   conditions <- rlang::enquo(conditions)
 
-  # Create binding for variable
-  # id <- NULL
-
   # If filtering conditions are provided then
   # pass in those conditions and filter the ndf
   if (!is.null(

@@ -82,9 +82,6 @@ add_edges_w_string <- function(graph,
       reasons = "The graph contains no nodes, so, edges cannot be added")
   }
 
-  # Create binding for a variable
-  # version_id <- NULL
-
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-
