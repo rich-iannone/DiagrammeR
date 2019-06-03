@@ -26,7 +26,7 @@ a logical value.
 }
 \description{
 From a graph object of class \code{dgr_graph}, determine whether an edge
-  (defined by a pair of node IDs or node label values) is present.
+(defined by a pair of node IDs or node label values) is present.
 }
 \examples{
 # Create a simple graph with

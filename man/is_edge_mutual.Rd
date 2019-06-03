@@ -16,7 +16,7 @@ a logical value.
 }
 \description{
 Determines whether an edge definition has a mutual analogue with the same
-  node pair.
+node pair.
 }
 \examples{
 # Create a graph that has mutual

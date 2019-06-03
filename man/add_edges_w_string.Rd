@@ -28,7 +28,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 With a graph object of class \code{dgr_graph}, add one or more edges to the
-  graph using a text string.
+graph using a text string.
 }
 \examples{
 # Create a graph with 4 nodes

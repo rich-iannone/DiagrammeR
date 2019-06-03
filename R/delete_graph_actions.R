@@ -1,12 +1,12 @@
 #' Delete one or more graph actions stored within a graph object
 #'
 #' Delete one or more graph actions stored within a graph object of class
-#'   \code{dgr_graph}).
+#'   `dgr_graph`).
 #' @inheritParams render_graph
 #' @param actions either a vector of integer numbers indicating which actions to
-#'   delete (based on \code{action_index} values), or, a character vector
-#'   corresponding to \code{action_name} values.
-#' @return a graph object of class \code{dgr_graph}.
+#'   delete (based on `action_index` values), or, a character vector
+#'   corresponding to `action_name` values.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

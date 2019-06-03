@@ -11,7 +11,7 @@ count_s_connected_cmpts(graph)
 }
 \value{
 a single integer value representing the number of strongly-connected
-  graph components.
+graph components.
 }
 \description{
 Get the number of strongly-connected components in the graph.

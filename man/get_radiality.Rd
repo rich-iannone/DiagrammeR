@@ -19,7 +19,7 @@ a data frame with radiality centrality scores for each of the nodes.
 }
 \description{
 Get the radiality centrality for all nodes in a graph. These scores describe
-  the ease to which nodes can reach other nodes.
+the ease to which nodes can reach other nodes.
 }
 \examples{
 # Create a random graph using the

@@ -1,9 +1,9 @@
 #' Get a minimum spanning tree subgraph
 #'
 #' Get a minimum spanning tree subgraph for a connected graph of class
-#'   \code{dgr_graph}.
+#'   `dgr_graph`.
 #' @inheritParams render_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

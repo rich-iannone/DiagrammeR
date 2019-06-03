@@ -1,17 +1,17 @@
 #' Create a graph using an adjacency matrix
 #'
-#' Using an adjacency matrix object, generate a graph of class \code{dgr_graph}.
-#' @param x a square \code{matrix} object serving as the adjacency matrix.
+#' Using an adjacency matrix object, generate a graph of class `dgr_graph`.
+#' @param x a square `matrix` object serving as the adjacency matrix.
 #' @param mode the method in which to interpret the input adjacency matrix.
-#'   Options include: \code{undirected}, \code{directed}, \code{upper},
-#'   \code{lower}, \code{max}, \code{min}, and \code{plus}.
+#'   Options include: `undirected`, `directed`, `upper`,
+#'   `lower`, `max`, `min`, and `plus`.
 #' @param weighted whether to create a weighted graph from the adjacency matrix.
 #' @param use_diag whether to use the diagonal of the adjacency matrix in
-#'   calculations. If \code{TRUE} then the diagonal values will be included as
-#'   is. If \code{FALSE} then the diagonal values will be replaced with zero
+#'   calculations. If `TRUE` then the diagonal values will be included as
+#'   is. If `FALSE` then the diagonal values will be replaced with zero
 #'   values before inclusion in any calculations.
 #' @inheritParams create_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an adjacency matrix
 #' adj_matrix <-

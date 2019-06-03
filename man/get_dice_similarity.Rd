@@ -24,7 +24,7 @@ similarity coefficient scores. The default value is \code{3}.}
 }
 \value{
 a matrix with Dice similarity values for each pair of nodes
-  considered.
+considered.
 }
 \description{
 Get the Dice similarity coefficient scores for one or more nodes in a graph.

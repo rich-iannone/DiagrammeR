@@ -12,7 +12,7 @@ file (as a connection or file name) containing a diagram specification. The
 recommended filename extensions are \code{.gv} and \code{.mmd} for the
 Graphviz and the mermaid diagram specifications, respectively. If no
 diagram is provided (\code{diagram = ""}) then the function will assume
-that a diagram will be provided by \code{\link[htmltools]{tags}} and
+that a diagram will be provided by \code{\link[htmltools:tags]{htmltools::tags()}} and
 \code{DiagrammeR} is just being used for dependency injection.}
 
 \item{type}{a string, either \code{mermaid} (default) or \code{grViz}
@@ -22,8 +22,8 @@ indicating the type of diagram spec and the desired parser/renderer.}
 }
 \value{
 An object of class \code{htmlwidget} that will intelligently print
-  itself into HTML in a variety of contexts including the R console, within
-  R Markdown documents, and within Shiny output bindings.
+itself into HTML in a variety of contexts including the R console, within
+R Markdown documents, and within Shiny output bindings.
 }
 \description{
 Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js} or

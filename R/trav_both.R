@@ -1,6 +1,6 @@
 #' Traverse from one or more selected nodes onto neighboring nodes
 #'
-#' From a graph object of class \code{dgr_graph} move from one or more nodes
+#' From a graph object of class `dgr_graph` move from one or more nodes
 #' present in a selection to other nodes that are connected by edges, replacing
 #' the current nodes in the selection with those nodes traversed to. An optional
 #' filter by node attribute can limit the set of nodes traversed to.
@@ -10,41 +10,41 @@
 #' selection of nodes or no selection at all.
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_nodes}()},
-#' \code{\link{select_last_nodes_created}()},
-#' \code{\link{select_nodes_by_degree}()},
-#' \code{\link{select_nodes_by_id}()}, or
-#' \code{\link{select_nodes_in_neighborhood}()}.
+#' (`select_*()`) functions:
+#' [select_nodes()],
+#' [select_last_nodes_created()],
+#' [select_nodes_by_degree()],
+#' [select_nodes_by_id()], or
+#' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out}()},
-#' \code{\link{trav_in}()},
-#' \code{\link{trav_both}()},
-#' \code{\link{trav_out_node}()},
-#' \code{\link{trav_in_node}()},
-#' \code{\link{trav_out_until}()}, or
-#' \code{\link{trav_in_until}()}.
+#' (`trav_*()`) functions:
+#' [trav_out()],
+#' [trav_in()],
+#' [trav_both()],
+#' [trav_out_node()],
+#' [trav_in_node()],
+#' [trav_out_until()], or
+#' [trav_in_until()].
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the traversal.
 #' @param copy_attrs_from providing a node attribute name will copy those node
 #'   attribute values to the traversed nodes. Any values extant on the nodes
 #'   traversed to will be replaced.
 #' @param copy_attrs_as if a node attribute name is provided in
-#'   \code{copy_attrs_from}, this option will allow the copied attribute values
+#'   `copy_attrs_from`, this option will allow the copied attribute values
 #'   to be written under a different attribute name. If the attribute name
-#'   provided in \code{copy_attrs_as} does not exist in the graph's ndf, the new
+#'   provided in `copy_attrs_as` does not exist in the graph's ndf, the new
 #'   node attribute will be created with the chosen name.
-#' @param agg if a node attribute is provided to \code{copy_attrs_from}, then an
+#' @param agg if a node attribute is provided to `copy_attrs_from`, then an
 #'   aggregation function is required since there may be cases where multiple
 #'   edge attribute values will be passed onto the traversed node(s). To pass
 #'   only a single value, the following aggregation functions can be used:
-#'   \code{sum}, \code{min}, \code{max}, \code{mean}, or \code{median}.
+#'   `sum`, `min`, `max`, `mean`, or `median`.
 #' @param add_to_selection an option to either add the traversed to nodes to the
-#'   active selection of nodes (\code{TRUE}) or switch the active selection
-#'   entirely to those traversed to nodes (\code{FALSE}, the default case).
-#' @return a graph object of class \code{dgr_graph}.
+#'   active selection of nodes (`TRUE`) or switch the active selection
+#'   entirely to those traversed to nodes (`FALSE`, the default case).
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

@@ -1,24 +1,24 @@
 #' Delete an edge from an existing graph object
 #'
-#' From a graph object of class \code{dgr_graph}, delete an existing edge by
+#' From a graph object of class `dgr_graph`, delete an existing edge by
 #'   specifying either: (1) a pair of node IDs corresponding to the edge
 #'   (keeping into consideration the direction of the edge in a directed graph),
 #'   or (2) an edge ID.
 #' @inheritParams render_graph
 #' @param from a node ID from which the edge to be removed is outgoing. If an
-#'   edge ID is provided to \code{id}, then this argument is ignored. There is
-#'   the option to use a node \code{label} value here (and this must
-#'   correspondingly also be done for the \code{to} argument) for defining node
+#'   edge ID is provided to `id`, then this argument is ignored. There is
+#'   the option to use a node `label` value here (and this must
+#'   correspondingly also be done for the `to` argument) for defining node
 #'   connections. Note that this is only possible if all nodes have distinct
-#'   \code{label} values set and none exist as an empty string.
+#'   `label` values set and none exist as an empty string.
 #' @param to a node ID to which the edge to be removed is incoming. If an edge
-#'   ID is provided to \code{id}, then this argument is ignored. There is the
-#'   option to use a node \code{label} value here (and this must correspondingly
-#'   also be for the \code{from} argument) for defining node connections. Note
-#'   that this is only possible if all nodes have distinct \code{label} values
+#'   ID is provided to `id`, then this argument is ignored. There is the
+#'   option to use a node `label` value here (and this must correspondingly
+#'   also be for the `from` argument) for defining node connections. Note
+#'   that this is only possible if all nodes have distinct `label` values
 #'   set and none exist as an empty string.
 #' @param id an edge ID of the edge to be removed.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 2 nodes
 #' graph <-

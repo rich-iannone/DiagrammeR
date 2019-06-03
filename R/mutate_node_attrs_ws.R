@@ -4,32 +4,32 @@
 #' only for nodes in a selection by using one or more expressions.
 #'
 #' This function makes use of an active selection of nodes (and the
-#' function ending with \code{_ws} hints at this).
+#' function ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_nodes}()},
-#' \code{\link{select_last_nodes_created}()},
-#' \code{\link{select_nodes_by_degree}()},
-#' \code{\link{select_nodes_by_id}()}, or
-#' \code{\link{select_nodes_in_neighborhood}()}.
+#' (`select_*()`) functions:
+#' [select_nodes()],
+#' [select_last_nodes_created()],
+#' [select_nodes_by_degree()],
+#' [select_nodes_by_id()], or
+#' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out}()},
-#' \code{\link{trav_in}()},
-#' \code{\link{trav_both}()},
-#' \code{\link{trav_out_node}()},
-#' \code{\link{trav_in_node}()},
-#' \code{\link{trav_out_until}()}, or
-#' \code{\link{trav_in_until}()}.
+#' (`trav_*()`) functions:
+#' [trav_out()],
+#' [trav_in()],
+#' [trav_both()],
+#' [trav_out_node()],
+#' [trav_in_node()],
+#' [trav_out_until()], or
+#' [trav_in_until()].
 #' @inheritParams render_graph
 #' @param ... expressions used for the mutation of node attributes. LHS of each
 #'   expression is either an existing or new node attribute name. The RHS can
 #'   consist of any valid R code that uses node attributes as variables.
 #'   Expressions are evaluated in the order provided, so, node attributes
 #'   created or modified are ready to use in subsequent expressions.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 3 nodes
 #' # and then select node `1`

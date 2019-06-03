@@ -5,7 +5,7 @@
 #' @param graph_series a graph series object to which the graph object will be
 #'   added.
 #' @param graph a graph object to add to the graph series object.
-#' @return a graph series object of type \code{dgr_graph_1D}.
+#' @return a graph series object of type `dgr_graph_1D`.
 #' @examples
 #' # Create three graphs
 #' graph_1 <-

@@ -1,14 +1,14 @@
 #' Cache a vector in the graph
 #'
-#' Place any vector in the cache of a graph object of class \code{dgr_graph}.
+#' Place any vector in the cache of a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
 #' @param to_cache any vector or data frame. If a data frame is supplied then a
-#'   single column for the vector to pull must be provided in the \code{col}
+#'   single column for the vector to pull must be provided in the `col`
 #'   argument.
 #' @param name an optional name for the cached vector.
-#' @param col if a data frame is provided in \code{to_cache} then a column name
+#' @param col if a data frame is provided in `to_cache` then a column name
 #'   from that data frame must provided here.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

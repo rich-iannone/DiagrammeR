@@ -6,14 +6,14 @@
 #' @inheritParams render_graph
 #' @param df the data frame to use for joining.
 #' @param by_graph optional specification of the column in the graph's internal
-#'   edge data frame for the left join. If both \code{by_graph} and \code{by_df}
+#'   edge data frame for the left join. If both `by_graph` and `by_df`
 #'   are not provided, then a natural join will occur if there are columns in
-#'   the graph's edf and in \code{df} with identical names.
-#' @param by_df optional specification of the column in \code{df} for the left
-#'   join. If both \code{by_graph} and \code{by_df} are not provided, then a
+#'   the graph's edf and in `df` with identical names.
+#' @param by_df optional specification of the column in `df` for the left
+#'   join. If both `by_graph` and `by_df` are not provided, then a
 #'   natural join will occur if there are columns in the graph's edf and in
-#'   \code{df} with identical names.
-#' @return a graph object of class \code{dgr_graph}.
+#'   `df` with identical names.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

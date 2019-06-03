@@ -25,7 +25,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Using a graph object of class \code{dgr_graph}, create a selection of nodes
-  that have certain degree values.
+that have certain degree values.
 }
 \examples{
 # Create a random graph using

@@ -1,7 +1,7 @@
 #' Get a graph available in a series
 #'
-#' Using a graph series object of type \code{dgr_graph_1D}, get a graph object.
-#' @param graph_series a graph series object of type \code{dgr_graph_1D}.
+#' Using a graph series object of type `dgr_graph_1D`, get a graph object.
+#' @param graph_series a graph series object of type `dgr_graph_1D`.
 #' @param graph_no the index of the graph in the graph series.
 #' @examples
 #' # Create three graphs

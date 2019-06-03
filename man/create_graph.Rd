@@ -46,7 +46,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Generates a graph object with the option to use node data frames (ndfs)
-  and/or edge data frames (edfs) to populate the initial graph.
+and/or edge data frames (edfs) to populate the initial graph.
 }
 \examples{
 # With `create_graph()` we can

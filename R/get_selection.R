@@ -1,7 +1,7 @@
 #' Get the current selection available in a graph object
 #'
 #' Get the current selection of node IDs or edge IDs from a graph object of
-#'   class \code{dgr_graph}.
+#'   class `dgr_graph`.
 #' @inheritParams render_graph
 #' @return a vector with the current selection of node or edge ID values.
 #' @examples

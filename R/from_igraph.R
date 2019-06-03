@@ -3,7 +3,7 @@
 #' Convert an igraph graph to a DiagrammeR graph object.
 #' @param igraph an \pkg{igraph} graph object.
 #' @inheritParams create_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a DiagrammeR graph object
 #' dgr_graph_orig <-

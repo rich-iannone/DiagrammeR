@@ -11,12 +11,12 @@
 #' @param edges_between The number of edges between islands.
 #' @param type an optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a logical value where setting to \code{TRUE} ascribes node IDs
-#'   to the label and \code{FALSE} yields a blank label.
+#' @param label a logical value where setting to `TRUE` ascribes node IDs
+#'   to the label and `FALSE` yields a blank label.
 #' @param rel an optional string for providing a relationship label to all edges
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
-#'   \code{Mersenne-Twister} implementation.
+#'   `Mersenne-Twister` implementation.
 #' @examples
 #' # Create a graph of islands
 #' islands_graph <-

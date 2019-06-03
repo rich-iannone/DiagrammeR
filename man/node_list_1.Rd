@@ -6,8 +6,8 @@
 \title{Node list - Version 1.}
 \format{A data frame with 10 rows and 2 variables:
 \describe{
-  \item{id}{a unique, monotonically increasing integer ID value}
-  \item{label}{a unique label associated with each ID value}
+\item{id}{a unique, monotonically increasing integer ID value}
+\item{label}{a unique label associated with each ID value}
 }}
 \usage{
 node_list_1

@@ -1,7 +1,7 @@
 #' Transform a tibble to a data frame
 #'
-#' Simply uses \code{as.data.frame()} with an input tibble and ensures that
-#' \code{stringsAsFactors} is \code{FALSE}.
+#' Simply uses `as.data.frame()` with an input tibble and ensures that
+#' `stringsAsFactors` is `FALSE`.
 #' @param tbl A tibble.
 #' @noRd
 asdf <- function(tbl) {

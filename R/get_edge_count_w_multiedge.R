@@ -4,7 +4,7 @@
 #' are multiple edges (i.e., more than 1 edge of that definition, having
 #' distinct edge ID values). So, for example, if there are 2 edge definitions in
 #' the graph that involve 6 separate edge IDs (3 such edge IDs for each of the
-#' pairs of nodes), the count will be \code{2}.
+#' pairs of nodes), the count will be `2`.
 #' @inheritParams render_graph
 #' @return a vector with a single, numerical value.
 #' @examples

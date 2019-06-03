@@ -14,13 +14,13 @@ add_reverse_edges_ws(graph, rel = NULL, edge_aes = NULL,
 created edges.}
 
 \item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link{edge_aes}()} is strongly
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 edge aesthetic attributes (e.g., \code{shape}, \code{style},
 \code{penwidth}, \code{color}).}
 
 \item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link{edge_data}()} is strongly
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 edges.}
 }
@@ -42,17 +42,17 @@ ending with \code{_ws} hints at this).
 
 Selections of edges can be performed using the following selection
 (\code{select_*()}) functions:
-\code{\link{select_edges}()},
-\code{\link{select_last_edges_created}()},
-\code{\link{select_edges_by_edge_id}()}, or
-\code{\link{select_edges_by_node_id}()}.
+\code{\link[=select_edges]{select_edges()}},
+\code{\link[=select_last_edges_created]{select_last_edges_created()}},
+\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or
+\code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
 
 Selections of edges can also be performed using the following traversal
 (\code{trav_*()}) functions:
-\code{\link{trav_out_edge}()},
-\code{\link{trav_in_edge}()},
-\code{\link{trav_both_edge}()}, or
-\code{\link{trav_reverse_edge}()}.
+\code{\link[=trav_out_edge]{trav_out_edge()}},
+\code{\link[=trav_in_edge]{trav_in_edge()}},
+\code{\link[=trav_both_edge]{trav_both_edge()}}, or
+\code{\link[=trav_reverse_edge]{trav_reverse_edge()}}.
 }
 \examples{
 # Create an empty graph, add 2 nodes to it,

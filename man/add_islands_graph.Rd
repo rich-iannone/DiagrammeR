@@ -30,24 +30,24 @@ to the label and \code{FALSE} yields a blank label.}
 to be added.}
 
 \item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link{node_aes}()} is strongly
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
 \code{fillcolor}).}
 
 \item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link{edge_aes}()} is strongly
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 edge aesthetic attributes (e.g., \code{shape}, \code{style},
 \code{penwidth}, \code{color}).}
 
 \item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link{node_data}()} is strongly
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 nodes.}
 
 \item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link{edge_data}()} is strongly
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 edges.}
 
@@ -56,8 +56,8 @@ edges.}
 }
 \description{
 To an existing graph object, add several Erdos-Renyi random graphs (the
-  islands) using a common set of parameters, connected together by a fixed
-  number of edges.
+islands) using a common set of parameters, connected together by a fixed
+number of edges.
 }
 \examples{
 # Create a graph of islands

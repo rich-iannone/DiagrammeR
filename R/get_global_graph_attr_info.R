@@ -1,7 +1,7 @@
 #' Get global graph attributes
 #'
 #' Get the available global attributes for a graph object of class
-#'   \code{dgr_graph}.
+#'   `dgr_graph`.
 #' @inheritParams render_graph
 #' @return a data frame containing global attributes for the graph.
 #' @examples

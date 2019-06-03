@@ -19,11 +19,11 @@ filtering the list of edges.}
 }
 \value{
 a named vector of edge attribute values for the attribute given by
-  \code{edge_attr} by edge.
+\code{edge_attr} by edge.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get edge attribute values for
-  one or more edges.
+one or more edges.
 }
 \examples{
 # Create a simple graph where

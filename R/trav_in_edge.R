@@ -1,6 +1,6 @@
 #' Traverse from one or more selected nodes onto adjacent, inward edges
 #'
-#' From a graph object of class \code{dgr_graph} move to incoming edges from a
+#' From a graph object of class `dgr_graph` move to incoming edges from a
 #' selection of one or more selected nodes, thereby creating a selection of
 #' edges. An optional filter by edge attribute can limit the set of edges
 #' traversed to.
@@ -10,22 +10,22 @@
 #' selection of edges or no selection at all.
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_nodes}()},
-#' \code{\link{select_last_nodes_created}()},
-#' \code{\link{select_nodes_by_degree}()},
-#' \code{\link{select_nodes_by_id}()}, or
-#' \code{\link{select_nodes_in_neighborhood}()}.
+#' (`select_*()`) functions:
+#' [select_nodes()],
+#' [select_last_nodes_created()],
+#' [select_nodes_by_degree()],
+#' [select_nodes_by_id()], or
+#' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out}()},
-#' \code{\link{trav_in}()},
-#' \code{\link{trav_both}()},
-#' \code{\link{trav_out_node}()},
-#' \code{\link{trav_in_node}()},
-#' \code{\link{trav_out_until}()}, or
-#' \code{\link{trav_in_until}()}.
+#' (`trav_*()`) functions:
+#' [trav_out()],
+#' [trav_in()],
+#' [trav_both()],
+#' [trav_out_node()],
+#' [trav_in_node()],
+#' [trav_out_until()], or
+#' [trav_in_until()].
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the traversal.
 #' @param copy_attrs_from providing a node attribute name will copy those node
@@ -33,11 +33,11 @@
 #'   exists, the values will be merged to the traversed edges; otherwise, a new
 #'   edge attribute will be created.
 #' @param copy_attrs_as if a node attribute name is provided in
-#'   \code{copy_attrs_from}, this option will allow the copied attribute values
+#'   `copy_attrs_from`, this option will allow the copied attribute values
 #'   to be written under a different edge attribute name. If the attribute name
-#'   provided in \code{copy_attrs_as} does not exist in the graph's edf, the new
+#'   provided in `copy_attrs_as` does not exist in the graph's edf, the new
 #'   edge attribute will be created with the chosen name.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))

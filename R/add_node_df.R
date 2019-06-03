@@ -1,11 +1,11 @@
 #' Add nodes from a node data frame to an existing graph object
 #'
-#' With a graph object of class \code{dgr_graph} add nodes from a node data
+#' With a graph object of class `dgr_graph` add nodes from a node data
 #'   frame to that graph.
 #' @inheritParams render_graph
 #' @param node_df a node data frame that is created using
-#' \code{\link{create_node_df}()}.
-#' @return a graph object of class \code{dgr_graph}.
+#' [create_node_df()].
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

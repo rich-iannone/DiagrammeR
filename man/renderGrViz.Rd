@@ -18,5 +18,5 @@ you want to save an expression in a variable.}
 Widget render function for use in Shiny
 }
 \seealso{
-\code{\link{grVizOutput}} for an example in Shiny
+\code{\link[=grVizOutput]{grVizOutput()}} for an example in Shiny
 }

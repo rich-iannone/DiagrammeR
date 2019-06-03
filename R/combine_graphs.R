@@ -1,12 +1,12 @@
 #' Combine two graphs into a single graph
 #'
 #' Combine two graphs in order to make a new graph.
-#' @param x a \code{DiagrammeR} graph object to which another graph will be
+#' @param x a `DiagrammeR` graph object to which another graph will be
 #'   unioned. This graph should be considered the graph from which global graph
 #'   attributes will be inherited in the resulting graph.
-#' @param y a \code{DiagrammeR} graph object that is to be unioned with the
-#'   graph supplied as \code{x}.
-#' @return a graph object of class \code{dgr_graph}.
+#' @param y a `DiagrammeR` graph object that is to be unioned with the
+#'   graph supplied as `x`.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with a cycle
 #' # containing 6 nodes

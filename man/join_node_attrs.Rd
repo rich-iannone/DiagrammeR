@@ -26,8 +26,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Join new node attribute values in a left join using a data frame. The use of
-  a left join in this function allows for no possibility that nodes in the
-  graph might be removed after the join.
+a left join in this function allows for no possibility that nodes in the
+graph might be removed after the join.
 }
 \examples{
 # Set a seed

@@ -7,7 +7,7 @@
 #' @inheritParams render_graph
 #' @param loops an option for whether loops should be generated in the
 #'   complement graph.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @importFrom igraph complementer
 #' @examples
 #' # Create a simple graph

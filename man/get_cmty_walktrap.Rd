@@ -16,7 +16,7 @@ a data frame with group membership assignments for each of the nodes.
 }
 \description{
 With the Walktrap community finding algorithm, obtain the group membership
-  values for each of the nodes in the graph.
+values for each of the nodes in the graph.
 }
 \examples{
 # Create a random graph using the

@@ -14,7 +14,7 @@ a data frame containing global attributes for the graph.
 }
 \description{
 Get the available global attributes for a graph object of class
-  \code{dgr_graph}.
+\code{dgr_graph}.
 }
 \examples{
 # Create a new, empty graph

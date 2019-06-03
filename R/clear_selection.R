@@ -2,7 +2,7 @@
 #'
 #' Clear the selection of nodes or edges within a graph object.
 #' @inheritParams render_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with
 #' # a single path

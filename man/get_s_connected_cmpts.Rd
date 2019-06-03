@@ -11,11 +11,11 @@ get_s_connected_cmpts(graph)
 }
 \value{
 a data frame with nodes and their membership in different strongly
-  connected components.
+connected components.
 }
 \description{
 Determine which nodes in a graph belong to different strongly connected
-  components.
+components.
 }
 \examples{
 suppressWarnings(RNGversion("3.5.0"))

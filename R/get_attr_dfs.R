@@ -1,6 +1,6 @@
 #' Get data frames bound to node attributes
 #'
-#' From a graph object of class \code{dgr_graph}, get one or more data frames
+#' From a graph object of class `dgr_graph`, get one or more data frames
 #'   already bound as node and/or edge attribute values given graph node and/or
 #'   edges.
 #' @inheritParams render_graph
@@ -9,9 +9,9 @@
 #' @param edge_id a vector of edge ID values in which data frames are bound as
 #'   edge attrs.
 #' @param return_format the format in which to return the results of several
-#'   data frames. These can either be: (1) \code{single_tbl} (a tibble object
+#'   data frames. These can either be: (1) `single_tbl` (a tibble object
 #'   resulting from a `bind_rows` operation of multiple data frames), and (2)
-#'   \code{single_df} (a single data frame which all of the data frame data).
+#'   `single_df` (a single data frame which all of the data frame data).
 #' @return either a tibble or a data frame.
 #' @examples
 #' # Create a node data frame (ndf)

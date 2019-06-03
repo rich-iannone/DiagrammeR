@@ -15,7 +15,7 @@ a combined edge data frame.
 }
 \description{
 Combine several edge data frames in the style of \code{rbind}, except, it
-  works regardless of the number and ordering of the columns.
+works regardless of the number and ordering of the columns.
 }
 \examples{
 # Create an edge data frame (edf)

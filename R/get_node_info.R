@@ -2,7 +2,7 @@
 #'
 #' Obtain a data frame with detailed information on nodes and their
 #'   interrelationships within the graph.
-#' @param graph a graph object of class \code{dgr_graph}.
+#' @param graph a graph object of class `dgr_graph`.
 #' @return a data frame containing information specific to each node within the
 #'   graph.
 #' @examples

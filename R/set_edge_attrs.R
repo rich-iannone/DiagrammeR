@@ -1,6 +1,6 @@
 #' Set edge attribute values
 #'
-#' From a graph object of class \code{dgr_graph}, set edge attribute values for
+#' From a graph object of class `dgr_graph`, set edge attribute values for
 #'   one or more edges.
 #' @inheritParams render_graph
 #' @param edge_attr the name of the attribute to set.
@@ -10,7 +10,7 @@
 #'   for filtering list of nodes with outgoing edges in the graph.
 #' @param to an optional vector of node IDs from which the edge is incoming for
 #'   filtering list of nodes with incoming edges in the graph.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a simple graph
 #' ndf <-

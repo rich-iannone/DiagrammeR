@@ -20,7 +20,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal edge data frame (edf), mutate numeric edge
-  attribute values using one or more expressions.
+attribute values using one or more expressions.
 }
 \examples{
 # Create a graph with 3 edges

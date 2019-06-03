@@ -19,15 +19,15 @@ direction.}
 }
 \value{
 a vector containing node ID values for nodes visited during the
-  breadth-first search. The order of the node IDs corresponds to the order
-  visited.
+breadth-first search. The order of the node IDs corresponds to the order
+visited.
 }
 \description{
 With a chosen or random node serving as the starting point, perform a
-  breadth-first search of the whole graph and return the node ID values
-  visited. The bfs algorithm differs from depth-first search (dfs) in that
-  bfs will follow tree branches branches one level at a time until
-  terminating at leaf node (dfs traverses branches as far as possible).
+breadth-first search of the whole graph and return the node ID values
+visited. The bfs algorithm differs from depth-first search (dfs) in that
+bfs will follow tree branches branches one level at a time until
+terminating at leaf node (dfs traverses branches as far as possible).
 }
 \examples{
 # Create a graph containing

@@ -18,7 +18,7 @@ a data frame with degree frequencies.
 }
 \description{
 Get degree distribution data for a graph. Graph degree is represented as a
-  frequency of total degree values over all nodes in the graph.
+frequency of total degree values over all nodes in the graph.
 }
 \examples{
 # Create a random graph using the

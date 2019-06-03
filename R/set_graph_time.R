@@ -1,10 +1,10 @@
 #' Set graph date-time and timezone
 #'
-#' Set the time and timezone for a graph object of class \code{dgr_graph}.
+#' Set the time and timezone for a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
 #' @param time the date-time to set for the graph.
 #' @param tz the timezone to set for the graph.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

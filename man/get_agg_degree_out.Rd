@@ -21,7 +21,7 @@ a vector with an aggregate outdegree value.
 }
 \description{
 Get a single, aggregate value from the outdegree values for all nodes in a
-  graph, or, a subset of graph nodes.
+graph, or, a subset of graph nodes.
 }
 \examples{
 # Create a random graph using the

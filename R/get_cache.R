@@ -1,6 +1,6 @@
 #' Get a cached vector from a graph object
 #'
-#' Get the vector cached in a graph object of class \code{dgr_graph}.
+#' Get the vector cached in a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
 #' @param name the name of the object to extract from the cache. If none
 #'   supplied, the most recent object added to the cache will be returned.

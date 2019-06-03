@@ -5,7 +5,7 @@
 #' @inheritParams render_graph
 #' @param agg the aggregation function to use for summarizing indegree values
 #'   from graph nodes. The following aggregation functions can be used:
-#'   \code{sum}, \code{min}, \code{max}, \code{mean}, or \code{median}.
+#'   `sum`, `min`, `max`, `mean`, or `median`.
 #' @param conditions an option to use filtering conditions for the nodes to
 #'   consider.
 #' @return a vector with an aggregate indegree value.

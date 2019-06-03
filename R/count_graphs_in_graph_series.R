@@ -1,7 +1,7 @@
 #' Count graphs in a graph series object
 #'
 #' Counts the total number of graphs in a graph series object.
-#' @param graph_series a graph series object of type \code{dgr_graph_1D}
+#' @param graph_series a graph series object of type `dgr_graph_1D`
 #' @return a numeric vector representing a count of graphs in a graph series
 #'   object.
 #' @examples

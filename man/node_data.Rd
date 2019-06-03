@@ -11,8 +11,8 @@ node_data(...)
 }
 \description{
 This helper function should be invoked to provide values for the namesake
-  \code{node_data} argument, which is present in any function where nodes are
-  created.
+\code{node_data} argument, which is present in any function where nodes are
+created.
 }
 \examples{
 # Create a new graph and add

@@ -1,32 +1,32 @@
 #' Add new edges with identical definitions as with a selection of edges
 #'
 #' Add edges in the same direction of one or more edges available as an edge
-#' selection in a graph object of class \code{dgr_graph}. New graph edges have
+#' selection in a graph object of class `dgr_graph`. New graph edges have
 #' the same edge definitions as those in the selection except with new edge ID
-#' values. There is also the option to assign a common \code{rel} grouping to
+#' values. There is also the option to assign a common `rel` grouping to
 #' the newly created edges. Upon addition of the edges, the edge selection will
 #' be retained for further selection or traversal operations.
 #'
 #' This function makes use of an active selection of edges (and the function
-#' ending with \code{_ws} hints at this).
+#' ending with `_ws` hints at this).
 #'
 #' Selections of edges can be performed using the following selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_edges}()},
-#' \code{\link{select_last_edges_created}()},
-#' \code{\link{select_edges_by_edge_id}()}, or
-#' \code{\link{select_edges_by_node_id}()}.
+#' (`select_*()`) functions:
+#' [select_edges()],
+#' [select_last_edges_created()],
+#' [select_edges_by_edge_id()], or
+#' [select_edges_by_node_id()].
 #'
 #' Selections of edges can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out_edge}()},
-#' \code{\link{trav_in_edge}()},
-#' \code{\link{trav_both_edge}()}, or
-#' \code{\link{trav_reverse_edge}()}.
+#' (`trav_*()`) functions:
+#' [trav_out_edge()],
+#' [trav_in_edge()],
+#' [trav_both_edge()], or
+#' [trav_reverse_edge()].
 #' @inheritParams render_graph
-#' @param rel an optional string to apply a \code{rel} attribute to all newly
+#' @param rel an optional string to apply a `rel` attribute to all newly
 #'   created edges.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph, add 2 nodes
 #' # to it, and create the edge `1->2`

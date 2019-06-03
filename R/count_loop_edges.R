@@ -1,6 +1,6 @@
 #' Get count of all loop edges
 #'
-#' From a graph object of class \code{dgr_graph}, get a count of all loop edges
+#' From a graph object of class `dgr_graph`, get a count of all loop edges
 #'   in the graph.
 #' @inheritParams render_graph
 #' @return a numeric vector of single length.

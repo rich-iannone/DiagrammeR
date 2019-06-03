@@ -1,6 +1,6 @@
 #' The magrittr pipe
 #'
-#' DiagrammeR uses the pipe function, \code{\%>\%} to turn function composition
+#' DiagrammeR uses the pipe function, `\%>\%` to turn function composition
 #'   into a series of imperative statements.
 #' @importFrom magrittr %>%
 #' @name %>%

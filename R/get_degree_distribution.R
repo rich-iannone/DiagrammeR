@@ -3,8 +3,8 @@
 #' Get degree distribution data for a graph. Graph degree is represented as a
 #'   frequency of total degree values over all nodes in the graph.
 #' @inheritParams render_graph
-#' @param mode using \code{total} (the default), degree considered for each node
-#'   will be the total degree. With \code{in} and \code{out} the degree used
+#' @param mode using `total` (the default), degree considered for each node
+#'   will be the total degree. With `in` and `out` the degree used
 #'   will be the in-degree and out-degree, respectively.
 #' @return a data frame with degree frequencies.
 #' @examples

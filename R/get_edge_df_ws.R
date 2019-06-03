@@ -1,25 +1,25 @@
 #' Get the graph's edf filtered by a selection of edges
 #'
-#' From a graph object of class \code{dgr_graph}, get the graph's internal edge
+#' From a graph object of class `dgr_graph`, get the graph's internal edge
 #' data frame that is filtered by the edge ID values currently active as a
 #' selection.
 #'
 #' This function makes use of an active selection of edges (and the function
-#' ending with \code{_ws} hints at this).
+#' ending with `_ws` hints at this).
 #'
 #' Selections of edges can be performed using the following selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_edges}()},
-#' \code{\link{select_last_edges_created}()},
-#' \code{\link{select_edges_by_edge_id}()}, or
-#' \code{\link{select_edges_by_node_id}()}.
+#' (`select_*()`) functions:
+#' [select_edges()],
+#' [select_last_edges_created()],
+#' [select_edges_by_edge_id()], or
+#' [select_edges_by_node_id()].
 #'
 #' Selections of edges can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out_edge}()},
-#' \code{\link{trav_in_edge}()},
-#' \code{\link{trav_both_edge}()}, or
-#' \code{\link{trav_reverse_edge}()}.
+#' (`trav_*()`) functions:
+#' [trav_out_edge()],
+#' [trav_in_edge()],
+#' [trav_both_edge()], or
+#' [trav_reverse_edge()].
 #' @inheritParams render_graph
 #' @return an edge data frame.
 #' @examples

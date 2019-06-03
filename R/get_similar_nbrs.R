@@ -8,11 +8,11 @@
 #' @param node a single-length vector containing a node ID value.
 #' @param node_attr the name of the node attribute to use to compare with
 #'   adjacent nodes.
-#' @param tol_abs if the values contained in the node attribute \code{node_attr}
+#' @param tol_abs if the values contained in the node attribute `node_attr`
 #'   are numeric, one can optionally supply a numeric vector of length 2 that
 #'   provides a lower and upper numeric bound as criteria for neighboring node
 #'   similarity to the starting node.
-#' @param tol_pct if the values contained in the node attribute \code{node_attr}
+#' @param tol_pct if the values contained in the node attribute `node_attr`
 #'   are numeric, one can optionally supply a numeric vector of length 2 that
 #'   specifies lower and upper bounds as negative and positive percentage
 #'   changes to the value of the starting node. These bounds serve as criteria

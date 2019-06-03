@@ -4,38 +4,38 @@
 #'   object.
 #'
 #' This function makes use of an active selection of nodes or edges (and the
-#' function ending with \code{_ws} hints at this).
+#' function ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_nodes}()},
-#' \code{\link{select_last_nodes_created}()},
-#' \code{\link{select_nodes_by_degree}()},
-#' \code{\link{select_nodes_by_id}()}, or
-#' \code{\link{select_nodes_in_neighborhood}()}.
+#' (`select_*()`) functions:
+#' [select_nodes()],
+#' [select_last_nodes_created()],
+#' [select_nodes_by_degree()],
+#' [select_nodes_by_id()], or
+#' [select_nodes_in_neighborhood()].
 #'
 #' Selections of edges can be performed using the following edge selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_edges}()},
-#' \code{\link{select_last_edges_created}()},
-#' \code{\link{select_edges_by_edge_id}()}, or
-#' \code{\link{select_edges_by_node_id}()}.
+#' (`select_*()`) functions:
+#' [select_edges()],
+#' [select_last_edges_created()],
+#' [select_edges_by_edge_id()], or
+#' [select_edges_by_node_id()].
 #'
 #' Selections of nodes or edges can also be performed using the following
-#' traversal (\code{trav_*()}) functions:
-#' \code{\link{trav_out}()},
-#' \code{\link{trav_in}()},
-#' \code{\link{trav_both}()},
-#' \code{\link{trav_out_node}()},
-#' \code{\link{trav_in_node}()},
-#' \code{\link{trav_out_until}()},
-#' \code{\link{trav_in_until}()},
-#' \code{\link{trav_out_edge}()},
-#' \code{\link{trav_in_edge}()},
-#' \code{\link{trav_both_edge}()}, or
-#' \code{\link{trav_reverse_edge}()}.
+#' traversal (`trav_*()`) functions:
+#' [trav_out()],
+#' [trav_in()],
+#' [trav_both()],
+#' [trav_out_node()],
+#' [trav_in_node()],
+#' [trav_out_until()],
+#' [trav_in_until()],
+#' [trav_out_edge()],
+#' [trav_in_edge()],
+#' [trav_both_edge()], or
+#' [trav_reverse_edge()].
 #' @inheritParams render_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

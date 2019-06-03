@@ -1,9 +1,9 @@
 #' Apply a layout position to a single node
 #'
 #' Apply position information for a single node. This is done by setting the
-#'   \code{x} and \code{y} attrs for a node \code{id} or node \code{label}
-#'   supplied in \code{node}. When rendering the graph, nodes with attribute
-#'   values set for \code{x} and \code{y} will be fixed to those positions on
+#'   `x` and `y` attrs for a node `id` or node `label`
+#'   supplied in `node`. When rendering the graph, nodes with attribute
+#'   values set for `x` and `y` will be fixed to those positions on
 #'   the graph canvas.
 #' @inheritParams render_graph
 #' @param node a single-length vector containing either a node ID value
@@ -11,10 +11,10 @@
 #'   be applied.
 #' @param x the x coordinate to set for the node.
 #' @param y the y coordinate to set for the node.
-#' @param use_labels an option to use a node \code{label} value in \code{node}.
-#'   Note that this is only possible if all nodes have distinct \code{label}
+#' @param use_labels an option to use a node `label` value in `node`.
+#'   Note that this is only possible if all nodes have distinct `label`
 #'   values set and none exist as an NA value.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a simple graph with 4 nodes
 #' graph <-

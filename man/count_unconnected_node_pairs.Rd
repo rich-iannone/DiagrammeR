@@ -11,7 +11,7 @@ count_unconnected_node_pairs(graph)
 }
 \value{
 a single numeric value representing the number of unconnected node
-  pairs.
+pairs.
 }
 \description{
 Get the number of unconnected node pairs. This works for directed graphs.

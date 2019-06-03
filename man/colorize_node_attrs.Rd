@@ -42,7 +42,7 @@ a graph object of class
 }
 \description{
 Within a graph's internal node data frame (ndf), use a categorical node
-  attribute to generate a new node attribute with color values.
+attribute to generate a new node attribute with color values.
 }
 \examples{
 # Create a graph with 8

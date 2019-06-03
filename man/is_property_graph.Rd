@@ -10,44 +10,35 @@ is_property_graph(graph)
 \item{graph}{a graph object of class \code{dgr_graph}.}
 }
 \value{
-a logical value.
-# Create a graph with 2 nodes
-# (with `type` values) and a
-# single edge (with a `rel`)
+a logical value.Create a graph with 2 nodes(with type values) and asingle edge (with a rel)
+
 simple_property_graph <-
-  create_graph() %>%
-  add_node(
-    type = "a",
-    label = "first") %>%
-  add_node(
-    type = "b",
-    label = "second") %>%
-  add_edge(
-    from = "first",
-    to = "second",
-    rel = "rel_1")
-
-# This is indeed a property graph
-# but to confirm this, use the
-# `is_property_graph()` function
-is_property_graph(simple_property_graph)
-
-# If a `type` attribute is
-# removed, then this graph will
-# no longer be a property graph
-simple_property_graph %>%
-  set_node_attrs(
-    node_attr = type,
-    values = NA,
-    nodes = 1) %>%
-  is_property_graph()
-
-# An empty graph will return FALSE
 create_graph() %>%
-  is_property_graph()
+add_node(
+type = "a",
+label = "first") %>%
+add_node(
+type = "b",
+label = "second") %>%
+add_edge(
+from = "first",
+to = "second",
+rel = "rel_1")This is indeed a property graphbut to confirm this, use theis_property_graph() function
+
+is_property_graph(simple_property_graph)If a type attribute isremoved, then this graph willno longer be a property graph
+
+simple_property_graph %>%
+set_node_attrs(
+node_attr = type,
+values = NA,
+nodes = 1) %>%
+is_property_graph()An empty graph will return FALSE
+
+create_graph() %>%
+is_property_graph()
 }
 \description{
 Provides a logical value on whether the graph is property graph (i.e., all
-  nodes have an assigned \code{type} value and all edges have an assigned
-  \code{rel} value).
+nodes have an assigned \code{type} value and all edges have an assigned
+\code{rel} value).
 }

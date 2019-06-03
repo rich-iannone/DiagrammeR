@@ -22,7 +22,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Select edges in a graph object of class \code{dgr_graph} using edge ID
-  values.
+values.
 }
 \examples{
 # Create a graph with 5 nodes

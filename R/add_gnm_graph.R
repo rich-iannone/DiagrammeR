@@ -2,24 +2,24 @@
 #'
 #' To an existing graph object, add a graph built according to the Erdos-Renyi
 #'   G(n, m) model. This uses the same constant probability when creating the
-#'   fixed number of edges. Thus for \code{n} nodes there will be \code{m} edges
-#'   and, if the \code{loops} argument is set as \code{TRUE}, then random loop
-#'   edges will be part of \code{m}.
+#'   fixed number of edges. Thus for `n` nodes there will be `m` edges
+#'   and, if the `loops` argument is set as `TRUE`, then random loop
+#'   edges will be part of `m`.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param n the number of nodes comprising the generated graph.
 #' @param m the number of edges in the generated graph.
-#' @param loops a logical value (default is \code{FALSE}) that governs whether
+#' @param loops a logical value (default is `FALSE`) that governs whether
 #'   loops are allowed to be created.
 #' @param type an optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a boolean value where setting to \code{TRUE} ascribes node IDs
-#'   to the label and \code{FALSE} yields a blank label.
+#' @param label a boolean value where setting to `TRUE` ascribes node IDs
+#'   to the label and `FALSE` yields a blank label.
 #' @param rel an optional string for providing a relationship label to all edges
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
-#'   \code{Mersenne-Twister} implementation.
-#' @return a graph object of class \code{dgr_graph}.
+#'   `Mersenne-Twister` implementation.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an undirected GNM
 #' # graph with 100 nodes and

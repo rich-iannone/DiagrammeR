@@ -11,12 +11,12 @@ get_girth(graph)
 }
 \value{
 a single numeric value representing the length of the shortest circle
-  in the graph.
+in the graph.
 }
 \description{
 Get the girth of a graph, which is the length of the shortest circle in the
-  graph. Loop edges and multiple edges are not considered. If the graph
-  contains no cycles then zero is returned.
+graph. Loop edges and multiple edges are not considered. If the graph
+contains no cycles then zero is returned.
 }
 \examples{
 # Create a cycle graph

@@ -3,9 +3,9 @@
 #' Get the radiality centrality for all nodes in a graph. These scores describe
 #'   the ease to which nodes can reach other nodes.
 #' @inheritParams render_graph
-#' @param direction using \code{all} (the default), the search will ignore edge
-#'   direction while traversing through the graph. With \code{out}, measurements
-#'   of paths will be from a node whereas with \code{in}, measurements of paths
+#' @param direction using `all` (the default), the search will ignore edge
+#'   direction while traversing through the graph. With `out`, measurements
+#'   of paths will be from a node whereas with `in`, measurements of paths
 #'   will be to a node.
 #' @return a data frame with radiality centrality scores for each of the nodes.
 #' @examples

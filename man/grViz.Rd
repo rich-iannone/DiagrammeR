@@ -29,8 +29,8 @@ resulting graphic in pixels.}
 }
 \value{
 An object of class \code{htmlwidget} that will intelligently print
-  itself into HTML in a variety of contexts including the R console, within
-  R Markdown documents, and within Shiny output bindings.
+itself into HTML in a variety of contexts including the R console, within
+R Markdown documents, and within Shiny output bindings.
 }
 \description{
 Make diagrams in R using \href{https://github.com/mdaines/viz.js}{viz.js}

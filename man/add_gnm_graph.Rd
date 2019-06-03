@@ -28,24 +28,24 @@ to the label and \code{FALSE} yields a blank label.}
 to be added.}
 
 \item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link{node_aes}()} is strongly
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
 \code{fillcolor}).}
 
 \item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link{edge_aes}()} is strongly
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 edge aesthetic attributes (e.g., \code{shape}, \code{style},
 \code{penwidth}, \code{color}).}
 
 \item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link{node_data}()} is strongly
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 nodes.}
 
 \item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link{edge_data}()} is strongly
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 edges.}
 
@@ -57,10 +57,10 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 To an existing graph object, add a graph built according to the Erdos-Renyi
-  G(n, m) model. This uses the same constant probability when creating the
-  fixed number of edges. Thus for \code{n} nodes there will be \code{m} edges
-  and, if the \code{loops} argument is set as \code{TRUE}, then random loop
-  edges will be part of \code{m}.
+G(n, m) model. This uses the same constant probability when creating the
+fixed number of edges. Thus for \code{n} nodes there will be \code{m} edges
+and, if the \code{loops} argument is set as \code{TRUE}, then random loop
+edges will be part of \code{m}.
 }
 \examples{
 # Create an undirected GNM

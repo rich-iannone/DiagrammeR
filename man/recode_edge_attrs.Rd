@@ -29,8 +29,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal edge data frame (edf), recode character or numeric
-  edge attribute values. Optionally, one can specify a replacement value for
-  any unmatched mappings.
+edge attribute values. Optionally, one can specify a replacement value for
+any unmatched mappings.
 }
 \examples{
 # Create a random graph using the

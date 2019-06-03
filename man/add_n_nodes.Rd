@@ -19,13 +19,13 @@ the nodes to be added.}
 added.}
 
 \item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link{node_aes}()} is strongly
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
 \code{fillcolor}).}
 
 \item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link{node_data}()} is strongly
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 nodes.}
 }
@@ -34,7 +34,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add \code{n} new nodes to a graph object of class \code{dgr_graph}.
-  Optionally, set node \code{type} values for the new nodes.
+Optionally, set node \code{type} values for the new nodes.
 }
 \examples{
 # Create an empty graph and

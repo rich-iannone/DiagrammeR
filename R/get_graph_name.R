@@ -1,6 +1,6 @@
 #' Get graph name
 #'
-#' Get the name of a graph object of class \code{dgr_graph}.
+#' Get the name of a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
 #' @return a single-length character vector with the assigned graph name. If a
 #'   graph name has not been set, NA is returned.

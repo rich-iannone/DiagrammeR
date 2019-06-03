@@ -4,7 +4,7 @@
 #'   count is the number of separate edges that share the same edge definition
 #'   (i.e., same pair of nodes) across the entire graph. So, for example, if
 #'   there are 2 edge definitions in the graph that involve 6 separate edge IDs,
-#'   the count will be \code{4}.
+#'   the count will be `4`.
 #' @inheritParams render_graph
 #' @return a vector with a single, numerical value.
 #' @examples

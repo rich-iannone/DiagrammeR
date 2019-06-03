@@ -2,7 +2,7 @@
 #'
 #' Take a graph which is undirected and convert it to a directed graph.
 #' @inheritParams render_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with a
 #' # undirected tree

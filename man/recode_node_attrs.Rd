@@ -29,8 +29,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal node data frame (ndf), recode character or numeric
-  node attribute values. Optionally, one can specify a replacement value for
-  any unmatched mappings.
+node attribute values. Optionally, one can specify a replacement value for
+any unmatched mappings.
 }
 \examples{
 # Create a random graph using the

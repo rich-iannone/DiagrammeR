@@ -9,7 +9,7 @@
 #'   \item{exponent}{the base 10 exponent of the minor currency unit in relation to the major currency unit (it can be assumed also to be number of decimal places that is commonly considered for the currency)}
 #'   \item{currency_name}{the English name of the currency}
 #' }
-#' @source \url{https://en.wikipedia.org/wiki/ISO_4217}
+#' @source <https://en.wikipedia.org/wiki/ISO_4217>
 "currencies"
 
 #' US Dollar exchange rates.

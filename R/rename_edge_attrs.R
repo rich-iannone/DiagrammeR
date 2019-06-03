@@ -5,8 +5,8 @@
 #' @inheritParams render_graph
 #' @param edge_attr_from the name of the edge attribute that will be renamed.
 #' @param edge_attr_to the new name of the edge attribute column identified in
-#'   \code{edge_attr_from}.
-#' @return a graph object of class \code{dgr_graph}.
+#'   `edge_attr_from`.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

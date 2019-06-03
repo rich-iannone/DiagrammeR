@@ -16,7 +16,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal edge data frame (edf), remove an existing edge
-  attribute.
+attribute.
 }
 \examples{
 # Create a random graph using the

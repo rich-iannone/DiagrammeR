@@ -1,6 +1,6 @@
 #' Add nodes from distinct values in data frame columns
 #'
-#' Add new nodes to a graph object of class \code{dgr_graph} using distinct
+#' Add new nodes to a graph object of class `dgr_graph` using distinct
 #'   values from one or more columns in a data frame. The values will serve as
 #'   node labels and the number of nodes added depends on the number of distinct
 #'   values found in the specified columns.
@@ -8,16 +8,16 @@
 #' @param df a data frame from which values will be taken as new nodes for the
 #'   graph.
 #' @param columns a character vector of column names or a numeric vector of
-#'   column numbers for the data frame supplied in \code{df}. The distinct
+#'   column numbers for the data frame supplied in `df`. The distinct
 #'   values in these columns will serve as labels for the nodes added to the
 #'   graph.
 #' @param type an optional, single-length character vector that provides a group
 #'   identifier for the nodes to be added to the graph.
 #' @param keep_duplicates an option to exclude incoming nodes where the labels
-#'   (i.e., values found in columns of the specified \code{df}) match label
+#'   (i.e., values found in columns of the specified `df`) match label
 #'   values available in the graph's nodes. By default, this is set to
-#'   \code{FALSE}.
-#' @return a graph object of class \code{dgr_graph}.
+#'   `FALSE`.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()

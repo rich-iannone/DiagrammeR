@@ -1,14 +1,14 @@
 #' Display a property graph's underlying model
 #'
-#' With a graph object of class \code{dgr_graph} that is also a property graph
-#'   (i.e., all nodes have an assigned \code{type} value and all edges have an
-#'   assigned \code{rel} value), display its metagraph in the RStudio Viewer.
+#' With a graph object of class `dgr_graph` that is also a property graph
+#'   (i.e., all nodes have an assigned `type` value and all edges have an
+#'   assigned `rel` value), display its metagraph in the RStudio Viewer.
 #'   This representation provides all combinations of edges of different
-#'   \code{rel} values to all nodes with distinct \code{type} values, including
-#'   any edges to nodes of the same \code{type} (shown as loops). The
+#'   `rel` values to all nodes with distinct `type` values, including
+#'   any edges to nodes of the same `type` (shown as loops). The
 #'   precondition of the graph being a property graph can be verified by using
-#'   the \code{\link{is_property_graph}()} function.
-#' @param graph a graph object of class \code{dgr_graph}. This graph must
+#'   the [is_property_graph()] function.
+#' @param graph a graph object of class `dgr_graph`. This graph must
 #'   fulfill the condition of being a property graph, otherwise the function
 #'   yields an error.
 #' @examples

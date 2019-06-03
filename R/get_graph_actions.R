@@ -3,9 +3,9 @@
 #' Get a tibble of the available graph actions, which contains information on
 #'   function invocations to be called on the graph at every transformation
 #'   step, or, when manually invoked with the
-#'   \code{\link{trigger_graph_actions}()} function.
+#'   [trigger_graph_actions()] function.
 #' @inheritParams render_graph
-#' @return a \code{df_tbl} object.
+#' @return a `df_tbl` object.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

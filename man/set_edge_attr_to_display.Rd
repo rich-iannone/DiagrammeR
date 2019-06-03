@@ -28,14 +28,14 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Set a edge attribute type to display as edge text when calling the
-  \code{\link{render_graph}()} function. This allows for display of different
-  types of edge attribute values on a per-edge basis. Without setting the
-  \code{display} attribute, rendering a graph will default to not printing
-  any text on edges. Setting the \code{display} edge attribute with this
-  function for the first time (i.e., the \code{display} column doesn't exist
-  in the graph's internal edge data frame) will insert the \code{attr} value
-  for all edges specified in \code{edges} and a default value
-  (\code{default}) for all remaining edges.
+\code{\link[=render_graph]{render_graph()}} function. This allows for display of different
+types of edge attribute values on a per-edge basis. Without setting the
+\code{display} attribute, rendering a graph will default to not printing
+any text on edges. Setting the \code{display} edge attribute with this
+function for the first time (i.e., the \code{display} column doesn't exist
+in the graph's internal edge data frame) will insert the \code{attr} value
+for all edges specified in \code{edges} and a default value
+(\code{default}) for all remaining edges.
 }
 \examples{
 # Create a random graph using the

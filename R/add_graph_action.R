@@ -4,10 +4,10 @@
 #'   transformation step.
 #' @inheritParams render_graph
 #' @param fcn the name of the function to use.
-#' @param ... arguments and values to pass to the named function in \code{fcn},
+#' @param ... arguments and values to pass to the named function in `fcn`,
 #'   if necessary.
 #' @param action_name an optional name for labeling the action.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -6,16 +6,16 @@
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the retrieval of
 #'   edges.
-#' @param return_type using \code{vector} (the default), a vector of character
-#'   objects representing the edges is provided. With \code{list} a list object
+#' @param return_type using `vector` (the default), a vector of character
+#'   objects representing the edges is provided. With `list` a list object
 #'   will be provided that contains vectors of outgoing and incoming node IDs
-#'   associated with edges. With \code{df}, a data frame containing outgoing and
+#'   associated with edges. With `df`, a data frame containing outgoing and
 #'   incoming node IDs associated with edges.
-#' @param return_values using \code{id} (the default) results in node ID values
-#'   returned in the edge definitions. With \code{label}, the node labels will
+#' @param return_values using `id` (the default) results in node ID values
+#'   returned in the edge definitions. With `label`, the node labels will
 #'   instead be used to define edges.
 #' @return a list, data frame, or a vector object, depending on the value given
-#'   to \code{return_type}.
+#'   to `return_type`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

@@ -26,10 +26,10 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Apply position information for a single node. This is done by setting the
-  \code{x} and \code{y} attrs for a node \code{id} or node \code{label}
-  supplied in \code{node}. When rendering the graph, nodes with attribute
-  values set for \code{x} and \code{y} will be fixed to those positions on
-  the graph canvas.
+\code{x} and \code{y} attrs for a node \code{id} or node \code{label}
+supplied in \code{node}. When rendering the graph, nodes with attribute
+values set for \code{x} and \code{y} will be fixed to those positions on
+the graph canvas.
 }
 \examples{
 # Create a simple graph with 4 nodes

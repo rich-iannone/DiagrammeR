@@ -25,7 +25,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, set edge attribute values for
-  one or more edges.
+one or more edges.
 }
 \examples{
 # Create a simple graph

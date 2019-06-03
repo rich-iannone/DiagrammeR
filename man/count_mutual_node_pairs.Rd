@@ -11,11 +11,11 @@ count_mutual_node_pairs(graph)
 }
 \value{
 a single numeric value representing the number of mutually-connected
-  node pairs.
+node pairs.
 }
 \description{
 Get the number of mutually-connected node pairs. This works for directed
-  graphs.
+graphs.
 }
 \examples{
 # Create a cycle graph

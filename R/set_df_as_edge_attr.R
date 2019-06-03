@@ -1,15 +1,15 @@
 #' Set a data frame as an edge attribute
 #'
-#' From a graph object of class \code{dgr_graph}, bind a data frame as an edge
+#' From a graph object of class `dgr_graph`, bind a data frame as an edge
 #'   attribute property for one given graph edge. The data frames are stored in
-#'   list columns within a \code{df_tbl} object, itself residing within the
-#'   graph object. A \code{df_id} value is generated and serves as a pointer to
+#'   list columns within a `df_tbl` object, itself residing within the
+#'   graph object. A `df_id` value is generated and serves as a pointer to
 #'   the table row that contains the ingested data frame.
 #' @inheritParams render_graph
 #' @param edge the edge ID to which the data frame will be bound as an
 #'   attribute.
 #' @param df the data frame to be bound to the edge as an attribute.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

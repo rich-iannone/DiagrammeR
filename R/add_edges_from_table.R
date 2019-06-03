@@ -7,21 +7,21 @@
 #' @param from_col the name of the table column from which edges originate.
 #' @param to_col the name of the table column to which edges terminate.
 #' @param from_to_map a single character value for the mapping of the
-#'   \code{from} and \code{to} columns in the external table (supplied as
-#'   \code{from_col} and \code{to_col}, respectively) to a column in the
+#'   `from` and `to` columns in the external table (supplied as
+#'   `from_col` and `to_col`, respectively) to a column in the
 #'   graph's internal node data frame (ndf).
-#' @param rel_col an option to apply a column of data in the table as \code{rel}
+#' @param rel_col an option to apply a column of data in the table as `rel`
 #'   attribute values.
-#' @param set_rel an optional string to apply a \code{rel} attribute to all
+#' @param set_rel an optional string to apply a `rel` attribute to all
 #'   edges created from the table records.
 #' @param drop_cols an optional column selection statement for dropping columns
 #'   from the external table before inclusion as attributes in the graph's
 #'   internal edge data frame. Several columns can be dropped by name using the
-#'   syntax \code{col_1 & col_2 & ...}. Columns can also be dropped using a
-#'   numeric column range with \code{:} (e.g., \code{5:8}), or, by using the
-#'   \code{:} between column names to specify the range (e.g.,
-#'   \code{col_5_name:col_8_name}).
-#' @return a graph object of class \code{dgr_graph}.
+#'   syntax `col_1 & col_2 & ...`. Columns can also be dropped using a
+#'   numeric column range with `:` (e.g., `5:8`), or, by using the
+#'   `:` between column names to specify the range (e.g.,
+#'   `col_5_name:col_8_name`).
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph and then
 #' # add nodes to it from the

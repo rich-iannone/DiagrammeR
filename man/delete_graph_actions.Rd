@@ -18,7 +18,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Delete one or more graph actions stored within a graph object of class
-  \code{dgr_graph}).
+\code{dgr_graph}).
 }
 \examples{
 # Create a random graph using the

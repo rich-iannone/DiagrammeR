@@ -10,7 +10,7 @@ mermaid(diagram = "", ..., width = NULL, height = NULL)
 \item{diagram}{diagram in mermaid markdown-like language or file (as a
 connection or file name) containing a diagram specification. If no diagram
 is provided \code{diagram = ""} then the function will assume that a
-diagram will be provided by \code{\link[htmltools]{tags}} and
+diagram will be provided by \code{\link[htmltools:tags]{htmltools::tags()}} and
 \code{DiagrammeR} is just being used for dependency injection.}
 
 \item{...}{other arguments and parameters you would like to send to
@@ -22,13 +22,13 @@ JavaScript.}
 }
 \value{
 An object of class \code{htmlwidget} that will intelligently print
-  itself into HTML in a variety of contexts including the R console, within
-  R Markdown documents, and within Shiny output bindings.
+itself into HTML in a variety of contexts including the R console, within
+R Markdown documents, and within Shiny output bindings.
 }
 \description{
 Make diagrams in R using
-  \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
-  provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+\href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
+provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 }
 \examples{
 \dontrun{
@@ -95,9 +95,9 @@ DiagrammeR(
    )
  )
 
-# Also with \\code{DiagrammeR()}, you can use tags
-# from \\code{htmltools} (just make sure to use
-# \\code{class = "mermaid"})
+# Also with `DiagrammeR()`, you can use tags
+# from `htmltools` (just make sure to use
+# `class = "mermaid"`)
 library(htmltools)
 diagramSpec = "
 graph LR;

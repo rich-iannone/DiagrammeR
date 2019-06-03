@@ -1,6 +1,6 @@
 #' Set node attribute values
 #'
-#' From a graph object of class \code{dgr_graph}, set node attribute values for
+#' From a graph object of class `dgr_graph`, set node attribute values for
 #'   one or more nodes.
 #' @inheritParams render_graph
 #' @param node_attr the name of the attribute to set.
@@ -8,7 +8,7 @@
 #'   nodes.
 #' @param nodes an optional vector of node IDs for filtering the list of nodes
 #'   present in the graph.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

@@ -1,8 +1,8 @@
 #' Is the graph a property graph?
 #'
 #' Provides a logical value on whether the graph is property graph (i.e., all
-#'   nodes have an assigned \code{type} value and all edges have an assigned
-#'   \code{rel} value).
+#'   nodes have an assigned `type` value and all edges have an assigned
+#'   `rel` value).
 #' @inheritParams render_graph
 #' @return a logical value.
 #' # Create a graph with 2 nodes

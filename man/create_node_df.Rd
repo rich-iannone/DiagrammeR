@@ -20,20 +20,20 @@ a node data frame (ndf).
 }
 \description{
 Combine several vectors for nodes and their attributes into a data frame,
-  which can be combined with other similarly-generated data frames, or, added
-  to a graph object. A node data frame, or ndf, has at least the following
-  columns:
+which can be combined with other similarly-generated data frames, or, added
+to a graph object. A node data frame, or ndf, has at least the following
+columns:
 }
 \details{
-- \code{id} (of type \code{integer})
-
-- \code{type} (of type \code{character})
-
-- \code{label} (of type \code{character})
+\itemize{
+\item \code{id} (of type \code{integer})
+\item \code{type} (of type \code{character})
+\item \code{label} (of type \code{character})
+}
 
 An arbitrary number of additional columns containing aesthetic or data
-  attributes can be part of the ndf, so long as they follow the
-  aforementioned columns.
+attributes can be part of the ndf, so long as they follow the
+aforementioned columns.
 }
 \examples{
 # Create a node data frame (ndf) where the labels

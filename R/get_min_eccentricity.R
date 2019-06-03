@@ -4,9 +4,9 @@
 #'   The graph eccentricity of a node is its shortest path from the farthest
 #'   other node in the graph.
 #' @inheritParams render_graph
-#' @param direction using \code{all} (the default), the search will ignore edge
-#'   direction while traversing through the graph. With \code{out}, measurements
-#'   of paths will be from a node whereas with \code{in}, measurements of paths
+#' @param direction using `all` (the default), the search will ignore edge
+#'   direction while traversing through the graph. With `out`, measurements
+#'   of paths will be from a node whereas with `in`, measurements of paths
 #'   will be to a node.
 #' @return a single numeric value representing the minimum eccentricity of the
 #'   graph.

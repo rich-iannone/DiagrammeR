@@ -1,29 +1,29 @@
 #' Get the graph's ndf filtered by a selection of nodes
 #'
-#' From a graph object of class \code{dgr_graph}, get the graph's internal node
+#' From a graph object of class `dgr_graph`, get the graph's internal node
 #' data frame that is filtered by the node ID values currently active as a
 #' selection.
 #'
 #' This function makes use of an active selection of nodes (and the
-#' function ending with \code{_ws} hints at this).
+#' function ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_nodes}()},
-#' \code{\link{select_last_nodes_created}()},
-#' \code{\link{select_nodes_by_degree}()},
-#' \code{\link{select_nodes_by_id}()}, or
-#' \code{\link{select_nodes_in_neighborhood}()}.
+#' (`select_*()`) functions:
+#' [select_nodes()],
+#' [select_last_nodes_created()],
+#' [select_nodes_by_degree()],
+#' [select_nodes_by_id()], or
+#' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out}()},
-#' \code{\link{trav_in}()},
-#' \code{\link{trav_both}()},
-#' \code{\link{trav_out_node}()},
-#' \code{\link{trav_in_node}()},
-#' \code{\link{trav_out_until}()}, or
-#' \code{\link{trav_in_until}()}.
+#' (`trav_*()`) functions:
+#' [trav_out()],
+#' [trav_in()],
+#' [trav_both()],
+#' [trav_out_node()],
+#' [trav_in_node()],
+#' [trav_out_until()], or
+#' [trav_in_until()].
 #' @inheritParams render_graph
 #' @return a node data frame.
 #' @examples

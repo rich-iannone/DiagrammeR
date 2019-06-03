@@ -1,13 +1,13 @@
 #' Delete one of the global graph attributes stored within a graph object
 #'
 #' Delete one of the global attributes stored within a graph object of class
-#'   \code{dgr_graph}).
+#'   `dgr_graph`).
 #' @inheritParams render_graph
-#' @param attr the name of the attribute to delete for the \code{type} of global
+#' @param attr the name of the attribute to delete for the `type` of global
 #'   attribute specified.
 #' @param attr_type the specific type of global graph attribute to delete. The
-#'   type is specified with \code{graph}, \code{node}, or \code{edge}.
-#' @return a graph object of class \code{dgr_graph}.
+#'   type is specified with `graph`, `node`, or `edge`.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph and add
 #' # some extra global graph attrs

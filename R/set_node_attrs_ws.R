@@ -1,33 +1,33 @@
 #' Set node attributes with a node selection
 #'
-#' From a graph object of class \code{dgr_graph} or a node data frame, set node
+#' From a graph object of class `dgr_graph` or a node data frame, set node
 #'   attribute properties for nodes present in a node selection.
 #'
 #' This function makes use of an active selection of nodes (and the
-#' function ending with \code{_ws} hints at this).
+#' function ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_nodes}()},
-#' \code{\link{select_last_nodes_created}()},
-#' \code{\link{select_nodes_by_degree}()},
-#' \code{\link{select_nodes_by_id}()}, or
-#' \code{\link{select_nodes_in_neighborhood}()}.
+#' (`select_*()`) functions:
+#' [select_nodes()],
+#' [select_last_nodes_created()],
+#' [select_nodes_by_degree()],
+#' [select_nodes_by_id()], or
+#' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out}()},
-#' \code{\link{trav_in}()},
-#' \code{\link{trav_both}()},
-#' \code{\link{trav_out_node}()},
-#' \code{\link{trav_in_node}()},
-#' \code{\link{trav_out_until}()}, or
-#' \code{\link{trav_in_until}()}.
+#' (`trav_*()`) functions:
+#' [trav_out()],
+#' [trav_in()],
+#' [trav_both()],
+#' [trav_out_node()],
+#' [trav_in_node()],
+#' [trav_out_until()], or
+#' [trav_in_until()].
 #' @inheritParams render_graph
 #' @param node_attr the name of the attribute to set.
 #' @param value the value to be set for the chosen attribute for the nodes in
 #'   the current selection.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a simple graph
 #' graph <-

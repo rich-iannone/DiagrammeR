@@ -1,20 +1,20 @@
 #' Add one or more edges using a text string
 #'
-#' With a graph object of class \code{dgr_graph}, add one or more edges to the
+#' With a graph object of class `dgr_graph`, add one or more edges to the
 #'   graph using a text string.
 #' @inheritParams render_graph
 #' @param edges a single-length vector with a character string specifying the
 #'   edges. For a directed graph, the string object should be formatted as a
-#'   series of node ID values as \code{[node_ID_1]->[node_ID_2]} separated by a
-#'   one or more space characters. For undirected graphs, \code{--} should
-#'   replace \code{->}. Line breaks in the vector won't cause an error.
+#'   series of node ID values as `[node_ID_1]->[node_ID_2]` separated by a
+#'   one or more space characters. For undirected graphs, `--` should
+#'   replace `->`. Line breaks in the vector won't cause an error.
 #' @param rel an optional vector specifying the relationship between the
 #'   connected nodes.
-#' @param use_labels an option to use node \code{label} values in the
-#'   \code{edges} string to define node connections. Note that this is only
-#'   possible if all nodes have distinct \code{label} values set and none exist
+#' @param use_labels an option to use node `label` values in the
+#'   `edges` string to define node connections. Note that this is only
+#'   possible if all nodes have distinct `label` values set and none exist
 #'   as an empty string.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 4 nodes
 #' graph <-

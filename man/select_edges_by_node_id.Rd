@@ -22,8 +22,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Select edges in a graph object of class \code{dgr_graph} using node ID
-  values. All edges associated with the provided nodes will be included in
-  the selection.
+values. All edges associated with the provided nodes will be included in
+the selection.
 }
 \examples{
 # Create a graph with 5 nodes

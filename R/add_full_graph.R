@@ -1,6 +1,6 @@
 #' Add a fully connected graph
 #'
-#' With a graph object of class \code{dgr_graph}, add a fully connected graph
+#' With a graph object of class `dgr_graph`, add a fully connected graph
 #'   either with or without loops. If the graph object set as directed, the
 #'   added graph will have edges to and from each pair of nodes. In the
 #'   undirected case, a single edge will link each pair of nodes.
@@ -9,19 +9,19 @@
 #' @param n the number of nodes comprising the fully connected graph.
 #' @param type an optional string that describes the entity type for the nodes
 #'   to be added.
-#' @param label either a vector object of length \code{n} that provides optional
-#'   labels for the new nodes, or, a boolean value where setting to \code{TRUE}
-#'   ascribes node IDs to the label and \code{FALSE} or \code{NULL} yields a
+#' @param label either a vector object of length `n` that provides optional
+#'   labels for the new nodes, or, a boolean value where setting to `TRUE`
+#'   ascribes node IDs to the label and `FALSE` or `NULL` yields a
 #'   blank label.
 #' @param rel an optional string for providing a relationship label to all new
 #'   edges created in the connected graph.
-#' @param edge_wt_matrix an optional matrix of \code{n} by \code{n} dimensions
+#' @param edge_wt_matrix an optional matrix of `n` by `n` dimensions
 #'   containing values to apply as edge weights. If the matrix has row names or
-#'   column names and \code{label = TRUE}, those row or column names will be
+#'   column names and `label = TRUE`, those row or column names will be
 #'   used as node label values.
 #' @param keep_loops an option to simplify the fully connected graph by removing
-#'   loops (edges from and to the same node). The default value is \code{FALSE}.
-#' @return a graph object of class \code{dgr_graph}.
+#'   loops (edges from and to the same node). The default value is `FALSE`.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph object
 #' # and add a directed and fully

@@ -1,16 +1,16 @@
 #' Select nodes in a graph
 #'
-#' Select nodes from a graph object of class \code{dgr_graph}.
+#' Select nodes from a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the retrieval of
 #'   nodes.
 #' @param set_op the set operation to perform upon consecutive selections of
-#'   graph nodes. This can either be as a \code{union} (the default), as an
-#'   intersection of selections with \code{intersect}, or, as a
-#'   \code{difference} on the previous selection, if it exists.
+#'   graph nodes. This can either be as a `union` (the default), as an
+#'   intersection of selections with `intersect`, or, as a
+#'   `difference` on the previous selection, if it exists.
 #' @param nodes an optional vector of node IDs for filtering the list of nodes
 #'   present in the graph.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

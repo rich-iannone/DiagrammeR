@@ -1,9 +1,9 @@
 #' Deselect any selected nodes in a graph
 #'
-#' Deselect nodes in a graph object of class \code{dgr_graph}.
+#' Deselect nodes in a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
 #' @param nodes a vector of node IDs that should be deselected.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-

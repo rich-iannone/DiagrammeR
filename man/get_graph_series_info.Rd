@@ -11,7 +11,7 @@ get_graph_series_info(graph_series)
 }
 \value{
 a data frame containing information on the graphs within the supplied
-  graph series.
+graph series.
 }
 \description{
 Obtain a data frame with information on the graphs within a graph series.

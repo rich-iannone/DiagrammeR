@@ -14,7 +14,7 @@ a data frame with group membership assignments for each of the nodes.
 }
 \description{
 Through the use of multi-level optimization of a modularity score, obtain the
-  group membership values for each of the nodes in the graph.
+group membership values for each of the nodes in the graph.
 }
 \examples{
 # Create a random graph using the

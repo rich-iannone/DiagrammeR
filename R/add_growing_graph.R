@@ -1,23 +1,23 @@
 #' Create a random growing graph with m edges added per step
 #'
-#' To an existing graph object, add a graph built by adding \code{m} new edges
+#' To an existing graph object, add a graph built by adding `m` new edges
 #'   at each time step (where a node is added).
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param n the number of nodes comprising the generated graph.
 #' @param m the number of edges added per time step.
-#' @param citation a logical value (default is \code{FALSE}) that governs
+#' @param citation a logical value (default is `FALSE`) that governs
 #'   whether a citation graph is to be created. This is where new edges
 #'   specifically originate from the newly added node in the most recent time
 #'   step.
 #' @param type an optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a logical value where setting to \code{TRUE} ascribes node IDs
-#'   to the label and \code{FALSE} yields a blank label.
+#' @param label a logical value where setting to `TRUE` ascribes node IDs
+#'   to the label and `FALSE` yields a blank label.
 #' @param rel an optional string for providing a relationship label to all edges
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
-#'   \code{Mersenne-Twister} implementation.
+#'   `Mersenne-Twister` implementation.
 #' @examples
 #' # Create a random, growing
 #' # citation graph with 100

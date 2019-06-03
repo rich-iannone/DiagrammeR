@@ -16,7 +16,7 @@ a vector of node ID values.
 }
 \description{
 With a single node serving as the starting point get all nodes connected
-  (i.e., reachable with a traversable path) to that node.
+(i.e., reachable with a traversable path) to that node.
 }
 \examples{
 # Create a random graph using the

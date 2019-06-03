@@ -35,8 +35,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, take a set of numeric values
-  for an edge attribute, rescale to a new numeric or color range, then write
-  to the same edge attribute or to a new edge attribute column.
+for an edge attribute, rescale to a new numeric or color range, then write
+to the same edge attribute or to a new edge attribute column.
 }
 \examples{
 # Create a random graph using the

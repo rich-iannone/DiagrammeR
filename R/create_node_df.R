@@ -5,18 +5,18 @@
 #'   to a graph object. A node data frame, or ndf, has at least the following
 #'   columns:
 #'
-#' - \code{id} (of type \code{integer})
+#' - `id` (of type `integer`)
 #'
-#' - \code{type} (of type \code{character})
+#' - `type` (of type `character`)
 #'
-#' - \code{label} (of type \code{character})
+#' - `label` (of type `character`)
 #'
 #' An arbitrary number of additional columns containing aesthetic or data
 #'   attributes can be part of the ndf, so long as they follow the
 #'   aforementioned columns.
 #' @param n the total number of nodes to include in the node data frame.
-#' @param type an optional \code{type} for each node.
-#' @param label an optional \code{label} for each node.
+#' @param type an optional `type` for each node.
+#' @param label an optional `label` for each node.
 #' @param ... one or more vectors for associated node attributes.
 #' @return a node data frame (ndf).
 #' @examples

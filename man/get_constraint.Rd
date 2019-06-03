@@ -18,7 +18,7 @@ a data frame with constraint scores for one or more graph nodes.
 }
 \description{
 Get the constraint scores (based on Burt's Constraint Index) for one or more
-  nodes in a graph.
+nodes in a graph.
 }
 \examples{
 # Create a random graph using the

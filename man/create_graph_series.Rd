@@ -21,7 +21,7 @@ a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
 Create a graph series object for the storage of multiple graphs across a
-  sequential or temporal one-dimensional array.
+sequential or temporal one-dimensional array.
 }
 \examples{
 # Create three graphs

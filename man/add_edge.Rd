@@ -26,13 +26,13 @@ values set and none exist as an empty string.}
 connected nodes.}
 
 \item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link{edge_aes}()} is strongly
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 edge aesthetic attributes (e.g., \code{shape}, \code{style},
 \code{penwidth}, \code{color}).}
 
 \item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link{edge_data}()} is strongly
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 edges.}
 }
@@ -41,7 +41,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 With a graph object of class \code{dgr_graph}, add an edge to nodes within
-  the graph.
+the graph.
 }
 \examples{
 # Create a graph with 4 nodes

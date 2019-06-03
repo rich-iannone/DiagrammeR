@@ -31,9 +31,9 @@ a vector of node ID values.
 }
 \description{
 With a graph a single node serving as the starting point, get those nodes in
-  a potential neighborhood of nodes (adjacent to the starting node) that have
-  a common or similar (within threshold values) node attribute to the
-  starting node.
+a potential neighborhood of nodes (adjacent to the starting node) that have
+a common or similar (within threshold values) node attribute to the
+starting node.
 }
 \examples{
 # Getting similar neighbors can

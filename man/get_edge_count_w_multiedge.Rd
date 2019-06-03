@@ -13,7 +13,7 @@ get_edge_count_w_multiedge(graph)
 a vector with a single, numerical value.
 }
 \description{
-Get a count of the number of edge definitions (e.g, `1` -> `2`) where there
+Get a count of the number of edge definitions (e.g, \code{1} -> \code{2}) where there
 are multiple edges (i.e., more than 1 edge of that definition, having
 distinct edge ID values). So, for example, if there are 2 edge definitions in
 the graph that involve 6 separate edge IDs (3 such edge IDs for each of the

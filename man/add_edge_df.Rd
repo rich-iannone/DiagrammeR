@@ -10,7 +10,7 @@ add_edge_df(graph, edge_df)
 \item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{edge_df}{an edge data frame that is created using
-\code{\link{create_edge_df}()}.}
+\code{\link[=create_edge_df]{create_edge_df()}}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.

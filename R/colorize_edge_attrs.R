@@ -10,18 +10,18 @@
 #' @param cut_points an optional vector of numerical breaks for bucketizing
 #'   continuous numerical values available in a edge attribute column.
 #' @param palette can either be: (1) a palette name from the RColorBrewer
-#'   package (e.g., \code{Greens}, \code{OrRd}, \code{RdYlGn}), (2)
-#'   \code{viridis}, which indicates use of the \code{viridis} color scale from
+#'   package (e.g., `Greens`, `OrRd`, `RdYlGn`), (2)
+#'   `viridis`, which indicates use of the `viridis` color scale from
 #'   the package of the same name, or (3) a vector of hexadecimal color names.
 #' @param alpha an optional alpha transparency value to apply to the generated
-#'   colors. Should be in the range of \code{0} (completely transparent) to
-#'   \code{100} (completely opaque).
+#'   colors. Should be in the range of `0` (completely transparent) to
+#'   `100` (completely opaque).
 #' @param reverse_palette an option to reverse the order of colors in the chosen
-#'   palette. The default is \code{FALSE}.
+#'   palette. The default is `FALSE`.
 #' @param default_color a hexadecimal color value to use for instances when the
 #'   values do not fall into the bucket ranges specified in the
-#'   \code{cut_points} vector.
-#' @return a graph object of class \code{dgr_graph}.
+#'   `cut_points` vector.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 5
 #' # nodes and 4 edges

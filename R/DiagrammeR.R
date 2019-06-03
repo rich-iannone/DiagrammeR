@@ -4,17 +4,17 @@
 #' \href{https://github.com/knsv/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
-#' @param diagram the diagram in \code{graphviz} or \code{mermaid} format, or, a
+#' @param diagram the diagram in `graphviz` or `mermaid` format, or, a
 #'   file (as a connection or file name) containing a diagram specification. The
-#'   recommended filename extensions are \code{.gv} and \code{.mmd} for the
+#'   recommended filename extensions are `.gv` and `.mmd` for the
 #'   Graphviz and the mermaid diagram specifications, respectively. If no
-#'   diagram is provided (\code{diagram = ""}) then the function will assume
-#'   that a diagram will be provided by \code{\link[htmltools]{tags}} and
-#'   \code{DiagrammeR} is just being used for dependency injection.
-#' @param type a string, either \code{mermaid} (default) or \code{grViz}
+#'   diagram is provided (`diagram = ""`) then the function will assume
+#'   that a diagram will be provided by [htmltools::tags()] and
+#'   `DiagrammeR` is just being used for dependency injection.
+#' @param type a string, either `mermaid` (default) or `grViz`
 #'   indicating the type of diagram spec and the desired parser/renderer.
-#' @param ... any other parameters to pass to \code{grViz} or \code{mermaid}
-#' @return An object of class \code{htmlwidget} that will intelligently print
+#' @param ... any other parameters to pass to `grViz` or `mermaid`
+#' @return An object of class `htmlwidget` that will intelligently print
 #'   itself into HTML in a variety of contexts including the R console, within
 #'   R Markdown documents, and within Shiny output bindings.
 #' @examples
@@ -142,9 +142,9 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 #' Widget output function for use in Shiny
 #' @param outputId output variable to read from
 #' @param width a valid CSS unit for the width or a number, which will be
-#'   coerced to a string and have \code{px} appended.
+#'   coerced to a string and have `px` appended.
 #' @param height a valid CSS unit for the height or a number, which will be
-#'   coerced to a string and have \code{px} appended.
+#'   coerced to a string and have `px` appended.
 #' @export
 DiagrammeROutput <- function(outputId,
                              width = '100%',

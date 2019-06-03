@@ -14,7 +14,7 @@ a vector with the current selection of node or edge ID values.
 }
 \description{
 Get the current selection of node IDs or edge IDs from a graph object of
-  class \code{dgr_graph}.
+class \code{dgr_graph}.
 }
 \examples{
 # Create a simple graph

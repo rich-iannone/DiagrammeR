@@ -3,8 +3,8 @@
 #' Get histogram data for a graph's degree frequency. The bin width is set to 1
 #'   and zero-value degrees are omitted from the output.
 #' @inheritParams render_graph
-#' @param mode using \code{total} (the default), degree considered for each node
-#'   will be the total degree. With \code{in} and \code{out} the degree used
+#' @param mode using `total` (the default), degree considered for each node
+#'   will be the total degree. With `in` and `out` the degree used
 #'   will be the in-degree and out-degree, respectively.
 #' @return a data frame with degree counts.
 #' @examples

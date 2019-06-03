@@ -10,14 +10,14 @@ add_node_df(graph, node_df)
 \item{graph}{a graph object of class \code{dgr_graph}.}
 
 \item{node_df}{a node data frame that is created using
-\code{\link{create_node_df}()}.}
+\code{\link[=create_node_df]{create_node_df()}}.}
 }
 \value{
 a graph object of class \code{dgr_graph}.
 }
 \description{
 With a graph object of class \code{dgr_graph} add nodes from a node data
-  frame to that graph.
+frame to that graph.
 }
 \examples{
 # Create an empty graph

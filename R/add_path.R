@@ -1,17 +1,17 @@
 #' Add a path of nodes to the graph
 #'
-#' With a graph object of class \code{dgr_graph}, add a node path to the graph.
+#' With a graph object of class `dgr_graph`, add a node path to the graph.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param n the number of nodes comprising the path.
 #' @param type an optional string that describes the entity type for the nodes
 #'   to be added.
-#' @param label either a vector object of length \code{n} that provides optional
-#'   labels for the new nodes, or, a logical value where setting to \code{TRUE}
-#'   ascribes node IDs to the label and \code{FALSE} yields a blank label.
+#' @param label either a vector object of length `n` that provides optional
+#'   labels for the new nodes, or, a logical value where setting to `TRUE`
+#'   ascribes node IDs to the label and `FALSE` yields a blank label.
 #' @param rel an optional string for providing a relationship label to all new
 #'   edges created in the node path.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph and add
 #' # 2 paths of varying lengths

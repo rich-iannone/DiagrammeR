@@ -1,8 +1,8 @@
 #' Get the graph date-time or timezone
 #'
-#' Get the time and timezone for a graph object of class \code{dgr_graph}.
+#' Get the time and timezone for a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
-#' @return a single-length \code{POSIXct} vector with the assigned graph time.
+#' @return a single-length `POSIXct` vector with the assigned graph time.
 #' @examples
 #' # Create an empty graph and
 #' # set the graph's time; if nothing

@@ -28,14 +28,14 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Set a node attribute type to display as node text when calling the
-  \code{\link{render_graph}()} function. This allows for display of different
-  types of node attribute values on a per-node basis. Without setting the
-  \code{display} attribute, rendering a graph will default to printing text
-  from the \code{label} attribute on nodes. Setting the \code{display} node
-  attribute with this function for the first time (i.e., the \code{display}
-  column doesn't exist in the graph's internal node data frame) will insert
-  the \code{attr} value for all nodes specified in \code{nodes} and a default
-  value (\code{default}) for all remaining nodes.
+\code{\link[=render_graph]{render_graph()}} function. This allows for display of different
+types of node attribute values on a per-node basis. Without setting the
+\code{display} attribute, rendering a graph will default to printing text
+from the \code{label} attribute on nodes. Setting the \code{display} node
+attribute with this function for the first time (i.e., the \code{display}
+column doesn't exist in the graph's internal node data frame) will insert
+the \code{attr} value for all nodes specified in \code{nodes} and a default
+value (\code{default}) for all remaining nodes.
 }
 \examples{
 # Create a random graph using the

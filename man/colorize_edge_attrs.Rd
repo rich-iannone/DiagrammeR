@@ -41,7 +41,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal edge data frame (edf), use a categorical edge
-  attribute to generate a new edge attribute with color values.
+attribute to generate a new edge attribute with color values.
 }
 \examples{
 # Create a graph with 5

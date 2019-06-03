@@ -18,15 +18,15 @@ direction while traversing through the graph. With \code{out} and
 }
 \value{
 a vector containing node ID values for nodes visited during the
-  depth-first search. The order of the node IDs corresponds to the order
-  visited.
+depth-first search. The order of the node IDs corresponds to the order
+visited.
 }
 \description{
 With a chosen or random node serving as the starting point, perform a
-  depth-first search of the whole graph and return the node ID values
-  visited. The dfs algorithm differs from breadth-first search (bfs) in that
-  dfs will follow tree branches as far as possible until terminating at leaf
-  node (bfs traverses branches one level at a time).
+depth-first search of the whole graph and return the node ID values
+visited. The dfs algorithm differs from breadth-first search (bfs) in that
+dfs will follow tree branches as far as possible until terminating at leaf
+node (bfs traverses branches one level at a time).
 }
 \examples{
 # Create a graph containing

@@ -25,11 +25,11 @@ paths to return when filtering by distance.}
 }
 \value{
 a list of paths, sorted by ascending traversal length, comprising
-  vectors of node IDs in sequence of traversal through the graph.
+vectors of node IDs in sequence of traversal through the graph.
 }
 \description{
 Obtain a list of all possible paths from a given node within a directed
-  graph.
+graph.
 }
 \examples{
 # Create a simple graph

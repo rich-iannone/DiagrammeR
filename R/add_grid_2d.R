@@ -1,6 +1,6 @@
 #' Add a 2D grid of nodes to the graph
 #'
-#' With a graph object of class \code{dgr_graph}, add a two-dimensional grid to
+#' With a graph object of class `dgr_graph`, add a two-dimensional grid to
 #'   the graph.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
@@ -8,13 +8,13 @@
 #' @param y the number of nodes in the y direction.
 #' @param type an optional string that describes the entity type for the nodes
 #'   to be added.
-#' @param label either a vector object of length \code{x * y} that provides
+#' @param label either a vector object of length `x * y` that provides
 #'   optional labels for the new nodes, or, a logical value where setting to
-#'   \code{TRUE} ascribes node IDs to the label and \code{FALSE} yields a blank
+#'   `TRUE` ascribes node IDs to the label and `FALSE` yields a blank
 #'   label.
 #' @param rel an optional string for providing a relationship label to all new
 #'   edges created in the grid.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph and add
 #' # a 3 x 3 grid

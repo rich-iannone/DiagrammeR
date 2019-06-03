@@ -2,13 +2,13 @@
 #'
 #' Reorder the graph actions stored in the graph through the use of the
 #'   \code{link{add_graph_action}()} function. These actions are be invoked in a
-#'   specified order via the \code{\link{trigger_graph_actions}()} function.
+#'   specified order via the [trigger_graph_actions()] function.
 #' @inheritParams render_graph
 #' @param indices a numeric vector that provides the new ordering of graph
 #'   actions. This vector can be the same length as the number of graph actions,
 #'   or, of shorter length. In the latter case, the ordering places the given
 #'   items first and the remaining actions will follow.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

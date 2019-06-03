@@ -1,10 +1,10 @@
 #' Select the last set of edges created in a graph
 #'
 #' Select the last edges that were created in a graph object of class
-#' \code{dgr_graph}. This function should ideally be used just after creating
+#' `dgr_graph`. This function should ideally be used just after creating
 #' the edges to be selected.
 #' @inheritParams render_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph and add a cycle and then
 #' # a tree in 2 separate function calls

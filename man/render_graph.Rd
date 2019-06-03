@@ -15,8 +15,8 @@ this rendering. Possible layouts include: \code{nicely}, \code{circle},
 \code{tree}, \code{kk}, and \code{fr}.}
 
 \item{output}{a string specifying the output type; \code{graph} (the default)
-renders the graph using the \code{\link{grViz}()} function and
-\code{visNetwork} renders the graph using the \code{\link{visnetwork}()}
+renders the graph using the \code{\link[=grViz]{grViz()}} function and
+\code{visNetwork} renders the graph using the \code{\link[=visnetwork]{visnetwork()}}
 function.}
 
 \item{as_svg}{an option to render the graph as an SVG document.}

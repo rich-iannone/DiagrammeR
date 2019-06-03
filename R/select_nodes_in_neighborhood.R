@@ -4,13 +4,13 @@
 #'   distance from an initial node.
 #' @inheritParams render_graph
 #' @param node the node from which the traversal will originate.
-#' @param distance the maximum number of steps from the \code{node} for
+#' @param distance the maximum number of steps from the `node` for
 #'   inclusion in the selection.
 #' @param set_op the set operation to perform upon consecutive selections of
-#'   graph nodes. This can either be as a \code{union} (the default), as an
-#'   intersection of selections with \code{intersect}, or, as a
-#'   \code{difference} on the previous selection, if it exists.
-#' @return a graph object of class \code{dgr_graph}.
+#'   graph nodes. This can either be as a `union` (the default), as an
+#'   intersection of selections with `intersect`, or, as a
+#'   `difference` on the previous selection, if it exists.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph containing
 #' # a balanced tree

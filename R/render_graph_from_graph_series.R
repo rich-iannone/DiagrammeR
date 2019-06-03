@@ -1,12 +1,12 @@
 #' Render a graph available in a series
 #'
-#' Using a graph series object of type \code{dgr_graph_1D}, either render graph
+#' Using a graph series object of type `dgr_graph_1D`, either render graph
 #'   in the Viewer or output in various formats.
-#' @param graph_series a graph series object of type \code{dgr_graph_1D}.
+#' @param graph_series a graph series object of type `dgr_graph_1D`.
 #' @param graph_no the index of the graph in the graph series.
-#' @param output a string specifying the output type; \code{graph} (the default)
-#'   renders the graph using the \code{\link{grViz}()} function and
-#'   \code{visNetwork} renders the graph using the \code{\link{visnetwork}()}
+#' @param output a string specifying the output type; `graph` (the default)
+#'   renders the graph using the [grViz()] function and
+#'   `visNetwork` renders the graph using the [visnetwork()]
 #'   function.
 #' @param width an optional parameter for specifying the width of the resulting
 #'   graphic in pixels.

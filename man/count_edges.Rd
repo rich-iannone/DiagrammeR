@@ -14,7 +14,7 @@ a single-length numeric vector.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get a count of edges in the
-  graph.
+graph.
 }
 \examples{
 # Create a graph with a

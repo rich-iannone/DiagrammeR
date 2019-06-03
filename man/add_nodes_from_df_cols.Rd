@@ -31,9 +31,9 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add new nodes to a graph object of class \code{dgr_graph} using distinct
-  values from one or more columns in a data frame. The values will serve as
-  node labels and the number of nodes added depends on the number of distinct
-  values found in the specified columns.
+values from one or more columns in a data frame. The values will serve as
+node labels and the number of nodes added depends on the number of distinct
+values found in the specified columns.
 }
 \examples{
 # Create an empty graph

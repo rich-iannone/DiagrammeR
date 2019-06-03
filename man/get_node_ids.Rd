@@ -18,7 +18,7 @@ values.
 }
 \description{
 Obtain a vector of node ID values from a graph object. An optional filter by
-  node attribute can limit the set of node ID values returned.
+node attribute can limit the set of node ID values returned.
 }
 \examples{
 # Create a node data

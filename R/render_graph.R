@@ -1,17 +1,17 @@
 #' Render the graph in various formats
 #'
-#' Using a \code{dgr_graph} object, render the graph in the RStudio Viewer.
-#' @param graph a graph object of class \code{dgr_graph}.
+#' Using a `dgr_graph` object, render the graph in the RStudio Viewer.
+#' @param graph a graph object of class `dgr_graph`.
 #' @param layout a string specifying a layout type to use for node placement in
-#'   this rendering. Possible layouts include: \code{nicely}, \code{circle},
-#'   \code{tree}, \code{kk}, and \code{fr}.
-#' @param output a string specifying the output type; \code{graph} (the default)
-#'   renders the graph using the \code{\link{grViz}()} function and
-#'   \code{visNetwork} renders the graph using the \code{\link{visnetwork}()}
+#'   this rendering. Possible layouts include: `nicely`, `circle`,
+#'   `tree`, `kk`, and `fr`.
+#' @param output a string specifying the output type; `graph` (the default)
+#'   renders the graph using the [grViz()] function and
+#'   `visNetwork` renders the graph using the [visnetwork()]
 #'   function.
 #' @param as_svg an option to render the graph as an SVG document.
 #' @param title an optional title for a graph when using
-#'   \code{output = "graph"}.
+#'   `output = "graph"`.
 #' @param width an optional parameter for specifying the width of the resulting
 #'   graphic in pixels.
 #' @param height an optional parameter for specifying the height of the

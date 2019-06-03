@@ -24,7 +24,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Select those nodes in the neighborhood of nodes connected a specified
-  distance from an initial node.
+distance from an initial node.
 }
 \examples{
 # Create a graph containing

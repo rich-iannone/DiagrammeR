@@ -3,8 +3,8 @@
 #' Get the eigen centrality values for all nodes in the graph.
 #' @inheritParams render_graph
 #' @param weights_attr an optional name of the edge attribute to use in the
-#'   adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge
-#'   attribute of the graph will be used. If \code{NA} then no edge weights will
+#'   adjacency matrix. If `NULL` then, if it exists, the `weight` edge
+#'   attribute of the graph will be used. If `NA` then no edge weights will
 #'   be used.
 #' @return a data frame with eigen centrality scores for each of the nodes.
 #' @examples

@@ -1,18 +1,18 @@
 #' Select nodes in the graph based on their degree values
 #'
-#' Using a graph object of class \code{dgr_graph}, create a selection of nodes
+#' Using a graph object of class `dgr_graph`, create a selection of nodes
 #'   that have certain degree values.
 #' @inheritParams render_graph
 #' @param expressions one or more expressions for filtering nodes by degree
-#'   values. Use a combination of degree type (\code{deg} for total degree,
-#'   \code{indeg} for in-degree, and \code{outdeg} for out-degree) with a
-#'   comparison operator and values for comparison (e.g., use \code{"deg >= 2"}
+#'   values. Use a combination of degree type (`deg` for total degree,
+#'   `indeg` for in-degree, and `outdeg` for out-degree) with a
+#'   comparison operator and values for comparison (e.g., use `"deg >= 2"`
 #'   to select nodes with a degree greater than or equal to 2).
 #' @param set_op the set operation to perform upon consecutive selections of
-#'   graph nodes. This can either be as a \code{union} (the default), as an
-#'   intersection of selections with \code{intersect}, or, as a
-#'   \code{difference} on the previous selection, if it exists.
-#' @return a graph object of class \code{dgr_graph}.
+#'   graph nodes. This can either be as a `union` (the default), as an
+#'   intersection of selections with `intersect`, or, as a
+#'   `difference` on the previous selection, if it exists.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using
 #' # the `add_gnm_graph()` function

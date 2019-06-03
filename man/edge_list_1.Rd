@@ -6,8 +6,8 @@
 \title{Edge list - Version 1.}
 \format{A data frame with 19 rows and 2 variables:
 \describe{
-  \item{from}{integer values that state the node ID values where an edge starts}
-  \item{to}{integer values that state the node ID values where an edge terminates}
+\item{from}{integer values that state the node ID values where an edge starts}
+\item{to}{integer values that state the node ID values where an edge terminates}
 }}
 \usage{
 edge_list_1

@@ -30,9 +30,9 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, delete an existing edge by
-  specifying either: (1) a pair of node IDs corresponding to the edge
-  (keeping into consideration the direction of the edge in a directed graph),
-  or (2) an edge ID.
+specifying either: (1) a pair of node IDs corresponding to the edge
+(keeping into consideration the direction of the edge in a directed graph),
+or (2) an edge ID.
 }
 \examples{
 # Create a graph with 2 nodes

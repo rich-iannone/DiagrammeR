@@ -22,7 +22,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, set node attribute values for
-  one or more nodes.
+one or more nodes.
 }
 \examples{
 # Create a node data frame (ndf)

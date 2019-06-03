@@ -2,9 +2,9 @@
 #'
 #' Get the PageRank values for all nodes in the graph.
 #' @inheritParams render_graph
-#' @param directed if \code{TRUE} (the default) then directed paths will be
+#' @param directed if `TRUE` (the default) then directed paths will be
 #'   considered for directed graphs. This is ignored for undirected graphs.
-#' @param damping the damping factor. The default value is set to \code{0.85}.
+#' @param damping the damping factor. The default value is set to `0.85`.
 #' @return a data frame with PageRank values for each of the nodes.
 #' @examples
 #' # Create a random graph using the

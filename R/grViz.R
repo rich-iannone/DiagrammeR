@@ -5,8 +5,8 @@
 #' \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #' @param diagram spec for a diagram as either text, filename string, or file
 #'   connection.
-#' @param engine string for the Graphviz layout engine; can be \code{dot}
-#'   (default), \code{neato}, \code{circo}, or \code{twopi}. For more
+#' @param engine string for the Graphviz layout engine; can be `dot`
+#'   (default), `neato`, `circo`, or `twopi`. For more
 #'   information see
 #'   \href{viz.js Usage}{https://github.com/mdaines/viz.js#usage}.
 #' @param allow_subst a boolean that enables/disables substitution
@@ -16,7 +16,7 @@
 #'   graphic in pixels.
 #' @param height an optional parameter for specifying the height of the
 #'   resulting graphic in pixels.
-#' @return An object of class \code{htmlwidget} that will intelligently print
+#' @return An object of class `htmlwidget` that will intelligently print
 #'   itself into HTML in a variety of contexts including the R console, within
 #'   R Markdown documents, and within Shiny output bindings.
 #' @importFrom rstudioapi isAvailable
@@ -81,9 +81,9 @@ grViz <- function(diagram = "",
 #' Widget output function for use in Shiny
 #' @param outputId output variable to read from
 #' @param width a valid CSS unit for the width or a number, which will be
-#'   coerced to a string and have \code{px} appended.
+#'   coerced to a string and have `px` appended.
 #' @param height a valid CSS unit for the height or a number, which will be
-#'   coerced to a string and have \code{px} appended.
+#'   coerced to a string and have `px` appended.
 #' @examples
 #' \dontrun{
 #' library(shiny)
@@ -129,7 +129,7 @@ grVizOutput <- function(outputId,
 #' @param env the environment in which to evaluate expr.
 #' @param quoted is expr a quoted expression (with quote())? This is useful if
 #'   you want to save an expression in a variable.
-#' @seealso \code{\link{grVizOutput}} for an example in Shiny
+#' @seealso [grVizOutput()] for an example in Shiny
 #' @export
 renderGrViz <- function(expr,
                         env = parent.frame(),
@@ -145,11 +145,11 @@ renderGrViz <- function(expr,
 }
 
 #' Add MathJax-formatted equation text
-#' @param gv a \code{grViz} htmlwidget.
-#' @param include_mathjax \code{logical} to add mathjax JS. Change to
-#'   \code{FALSE} if using with \code{RMarkdown} since MathJax will likely
+#' @param gv a `grViz` htmlwidget.
+#' @param include_mathjax `logical` to add mathjax JS. Change to
+#'   `FALSE` if using with `RMarkdown` since MathJax will likely
 #'   already be added.
-#' @return a \code{grViz} htmlwidget
+#' @return a `grViz` htmlwidget
 #' @importFrom htmltools browsable tags tagList htmlDependency
 #' @export
 add_mathjax <- function(gv = NULL,

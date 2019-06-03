@@ -1,6 +1,6 @@
 #' Razor-like template for diagram specification
 #'
-#' Use Razor-like syntax to define a template for use in a \code{grViz} diagram.
+#' Use Razor-like syntax to define a template for use in a `grViz` diagram.
 #' @param spec string spec to be parsed and evaluated.
 #' @examples
 #' \dontrun{

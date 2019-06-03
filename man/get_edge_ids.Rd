@@ -17,7 +17,7 @@ a vector of edge ID values.
 }
 \description{
 Obtain a vector of edge ID values from a graph object. An optional filter by
-  edge attribute can limit the set of edge ID values returned.
+edge attribute can limit the set of edge ID values returned.
 }
 \examples{
 # Create a node data frame (ndf)

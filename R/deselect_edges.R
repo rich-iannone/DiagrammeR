@@ -1,9 +1,9 @@
 #' Deselect any selected edges in a graph
 #'
-#' Deselect edges in a graph object of class \code{dgr_graph}.
+#' Deselect edges in a graph object of class `dgr_graph`.
 #' @inheritParams render_graph
 #' @param edges a vector of edge IDs that should be deselected.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with
 #' # a single path

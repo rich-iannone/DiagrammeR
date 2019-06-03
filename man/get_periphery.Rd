@@ -14,7 +14,7 @@ a vector of node IDs.
 }
 \description{
 Get those nodes that are part of the graph periphery (i.e., have the maximum
-  eccentricity in the graph).
+eccentricity in the graph).
 }
 \examples{
 # Create a random graph using the

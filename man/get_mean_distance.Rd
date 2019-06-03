@@ -14,8 +14,8 @@ a single numeric value representing the mean distance of the graph.
 }
 \description{
 Get the mean distance of a graph, which is the average path length in the
-  graph. This operates through calculation of the shortest paths between all
-  pairs of nodes.
+graph. This operates through calculation of the shortest paths between all
+pairs of nodes.
 }
 \examples{
 # Create a cycle graph

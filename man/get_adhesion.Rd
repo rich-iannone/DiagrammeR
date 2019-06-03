@@ -11,12 +11,12 @@ get_adhesion(graph)
 }
 \value{
 a single numeric value representing the minimum number of edges to
-  remove.
+remove.
 }
 \description{
 Get the adhesion of a graph, which is the minimum number of edges needed to
-  remove to obtain a graph which is not strongly connected. This is the same
-  as the edge connectivity of the graph.
+remove to obtain a graph which is not strongly connected. This is the same
+as the edge connectivity of the graph.
 }
 \examples{
 # Create a cycle graph

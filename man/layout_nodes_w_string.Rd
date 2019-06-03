@@ -45,7 +45,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Layout one or several groups of nodes using a text-based schematic. The
-  option is available to apply sorting to each of the groups.
+option is available to apply sorting to each of the groups.
 }
 \examples{
 # Create a graph with unique labels and

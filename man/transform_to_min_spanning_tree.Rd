@@ -14,7 +14,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Get a minimum spanning tree subgraph for a connected graph of class
-  \code{dgr_graph}.
+\code{dgr_graph}.
 }
 \examples{
 # Create a random graph using the

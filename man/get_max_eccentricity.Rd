@@ -11,12 +11,12 @@ get_max_eccentricity(graph)
 }
 \value{
 a single numeric value representing the maximum eccentricity of the
-  graph.
+graph.
 }
 \description{
 Get the diameter of a graph, which is the largest eccentricity in the graph.
-  The graph eccentricity of a node is its shortest path from the farthest
-  other node in the graph.
+The graph eccentricity of a node is its shortest path from the farthest
+other node in the graph.
 }
 \examples{
 # Create a cycle graph

@@ -11,7 +11,7 @@ count_w_connected_cmpts(graph)
 }
 \value{
 a single integer value representing the number of weakly-connected
-  graph components.
+graph components.
 }
 \description{
 Get the number of weakly-connected components in the graph.

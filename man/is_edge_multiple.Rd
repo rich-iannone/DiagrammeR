@@ -16,7 +16,7 @@ a logical value.
 }
 \description{
 Determines whether an edge definition has multiple edge IDs associated with
-  the same node pair.
+the same node pair.
 }
 \examples{
 # Create a graph that has multiple

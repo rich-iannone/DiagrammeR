@@ -21,7 +21,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add a graph function along with its arguments to be run at every graph
-  transformation step.
+transformation step.
 }
 \examples{
 # Create a random graph using the

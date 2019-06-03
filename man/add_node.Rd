@@ -23,24 +23,24 @@ directed to the new node.}
 directed from the new node.}
 
 \item{node_aes}{an optional list of named vectors comprising node aesthetic
-attributes. The helper function \code{\link{node_aes}()} is strongly
+attributes. The helper function \code{\link[=node_aes]{node_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 node aesthetic attributes (e.g., \code{shape}, \code{style}, \code{color},
 \code{fillcolor}).}
 
 \item{edge_aes}{an optional list of named vectors comprising edge aesthetic
-attributes. The helper function \code{\link{edge_aes}()} is strongly
+attributes. The helper function \code{\link[=edge_aes]{edge_aes()}} is strongly
 recommended for use here as it contains arguments for each of the accepted
 edge aesthetic attributes (e.g., \code{shape}, \code{style},
 \code{penwidth}, \code{color}).}
 
 \item{node_data}{an optional list of named vectors comprising node data
-attributes. The helper function \code{\link{node_data}()} is strongly
+attributes. The helper function \code{\link[=node_data]{node_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 nodes.}
 
 \item{edge_data}{an optional list of named vectors comprising edge data
-attributes. The helper function \code{\link{edge_data}()} is strongly
+attributes. The helper function \code{\link[=edge_data]{edge_data()}} is strongly
 recommended for use here as it helps bind data specifically to the created
 edges.}
 }
@@ -49,10 +49,10 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 With a graph object of class \code{dgr_graph}, add a new node to the graph.
-  One can optionally provide node attributes for the created node. There is
-  also the option to create edges to and from existing nodes in the graph.
-  Because new edges can also be created through this function, there is the
-  possibility to set edge attributes for any new graph edges.
+One can optionally provide node attributes for the created node. There is
+also the option to create edges to and from existing nodes in the graph.
+Because new edges can also be created through this function, there is the
+possibility to set edge attributes for any new graph edges.
 }
 \examples{
 # Create an empty graph and add 2 nodes by using

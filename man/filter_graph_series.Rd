@@ -27,7 +27,7 @@ a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
 Subsetting a graph series by the graphs' index positions in the graph series
-  or through selection via graphs' date-time attributes.
+or through selection via graphs' date-time attributes.
 }
 \examples{
 # Create three graphs

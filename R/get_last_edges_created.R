@@ -1,7 +1,7 @@
 #' Get the last set of edges created in a graph
 #'
 #' Get the last edges that were created in a graph object of class
-#'   \code{dgr_graph}. This function should ideally be used just after creating
+#'   `dgr_graph`. This function should ideally be used just after creating
 #'   the edges.
 #' @inheritParams render_graph
 #' @return a vector of edge ID values.

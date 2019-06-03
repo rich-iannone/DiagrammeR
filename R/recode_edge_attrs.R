@@ -9,12 +9,12 @@
 #' @param ... single-length character vectors with the recoding instructions.
 #'   The first component should have the value to replace and the second should
 #'   have the replacement value (in the form
-#'   \code{"[to_replace] -> [replacement]", ...}).
+#'   `"[to_replace] -> [replacement]", ...`).
 #' @param otherwise an optional single value for recoding any unmatched values.
 #' @param edge_attr_to an optional name of a new edge attribute to which the
 #'   recoded values will be applied. This will retain the original edge
 #'   attribute and its values.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

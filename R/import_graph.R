@@ -3,26 +3,26 @@
 #' Import a variety of graphs from different graph formats and create a graph
 #'   object.
 #' @param graph_file a connection to a graph file. When provided as a path to a
-#'   file, it will read the file from disk. Files starting with \code{http://},
-#'   \code{https://}, \code{ftp://}, or \code{ftps://} will be automatically
+#'   file, it will read the file from disk. Files starting with `http://`,
+#'   `https://`, `ftp://`, or `ftps://` will be automatically
 #'   downloaded.
-#' @param file_type the type of file to be imported. Options are: \code{gml}
-#'   (GML), \code{sif} (SIF), \code{edges} (a .edges file), and \code{mtx}
+#' @param file_type the type of file to be imported. Options are: `gml`
+#'   (GML), `sif` (SIF), `edges` (a .edges file), and `mtx`
 #'   (MatrixMarket format). If not supplied, the type of graph file will be
 #'   inferred by its file extension.
-#' @param edges_extra_attr_names for \code{edges} files, a vector of attribute
-#'   names beyond the \code{from} and \code{to} data columns can be provided in
+#' @param edges_extra_attr_names for `edges` files, a vector of attribute
+#'   names beyond the `from` and `to` data columns can be provided in
 #'   the order they appear in the input data file.
-#' @param edges_extra_attr_coltypes for \code{edges} files, this is a string of
+#' @param edges_extra_attr_coltypes for `edges` files, this is a string of
 #'   column types for any attribute columns provided for
-#'   \code{edges_extra_attr_names}. This string representation is where each
+#'   `edges_extra_attr_names`. This string representation is where each
 #'   character represents each of the extra columns of data and the mappings
-#'   are: \code{c} -> character, \code{i} -> integer, \code{n} -> number,
-#'   \code{d} -> double, \code{l} -> logical, \code{D} -> date, \code{T} ->
-#'   date time, \code{t} -> time, \code{?} -> guess, or \code{_/-}, which skips
+#'   are: `c` -> character, `i` -> integer, `n` -> number,
+#'   `d` -> double, `l` -> logical, `D` -> date, `T` ->
+#'   date time, `t` -> time, `?` -> guess, or `_/-`, which skips
 #'   the column.
 #' @inheritParams create_graph
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' \dontrun{
 #' # Import a GML graph file

@@ -16,7 +16,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, delete an existing node by
-  specifying its node ID.
+specifying its node ID.
 }
 \examples{
 # Create a graph with 5 nodes and

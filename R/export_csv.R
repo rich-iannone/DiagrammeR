@@ -3,15 +3,15 @@
 #' Export a graph to CSV files for nodes and edges.
 #' @inheritParams render_graph
 #' @param ndf_name the name to provide to the CSV file containing node
-#'   information. By default this CSV will be called \code{nodes.csv}.
+#'   information. By default this CSV will be called `nodes.csv`.
 #' @param edf_name the name to provide to the CSV file containing edge
-#'   information. By default this CSV will be called \code{edges.csv}.
+#'   information. By default this CSV will be called `edges.csv`.
 #' @param output_path the path to which the CSV files will be placed. By
 #'   default, this is the current working directory.
 #' @param colnames_type provides options to modify CSV column names to allow for
-#'   easier import into other graph systems. The \code{neo4j} option modifies
+#'   easier import into other graph systems. The `neo4j` option modifies
 #'   column names to allow for direct import of CSVs into Neo4J with the
-#'   \code{LOAD CSV} clause. The \code{graphframes} option modifies column names
+#'   `LOAD CSV` clause. The `graphframes` option modifies column names
 #'   to match those required by the Spark GraphFrames package.
 #' @examples
 #' # Create a node data frame (ndf)

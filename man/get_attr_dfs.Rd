@@ -18,7 +18,7 @@ edge attrs.}
 
 \item{return_format}{the format in which to return the results of several
 data frames. These can either be: (1) \code{single_tbl} (a tibble object
-resulting from a `bind_rows` operation of multiple data frames), and (2)
+resulting from a \code{bind_rows} operation of multiple data frames), and (2)
 \code{single_df} (a single data frame which all of the data frame data).}
 }
 \value{
@@ -26,8 +26,8 @@ either a tibble or a data frame.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get one or more data frames
-  already bound as node and/or edge attribute values given graph node and/or
-  edges.
+already bound as node and/or edge attribute values given graph node and/or
+edges.
 }
 \examples{
 # Create a node data frame (ndf)

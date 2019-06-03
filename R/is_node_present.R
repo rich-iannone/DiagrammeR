@@ -1,6 +1,6 @@
 #' Determine whether a specified node is present
 #'
-#' From a graph object of class \code{dgr_graph}, determine whether a specified
+#' From a graph object of class `dgr_graph`, determine whether a specified
 #'   node is present.
 #' @inheritParams render_graph
 #' @param node either a node ID value or a node label to test for presence in

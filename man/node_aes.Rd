@@ -121,8 +121,8 @@ the value is \code{0.11,0.055}.}
 }
 \description{
 This helper function should be invoked to provide values for the namesake
-  \code{node_aes} argument, which is present in any function where nodes are
-  created.
+\code{node_aes} argument, which is present in any function where nodes are
+created.
 }
 \examples{
 # Create a new graph and add

@@ -14,5 +14,5 @@ a character vector of length 1 containing Graphviz DOT code.
 }
 \description{
 Generates Graphviz DOT code as an R character object using DiagrammeR graph
-  object.
+object.
 }

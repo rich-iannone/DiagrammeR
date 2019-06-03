@@ -19,10 +19,10 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 From a graph object of class \code{dgr_graph}, bind a data frame as a node
-  attribute property for one given graph node. The data frames are stored in
-  list columns within a \code{df_tbl} object. A \code{df_id} value is
-  generated and serves as a pointer to the table row that contains the
-  ingested data frame.
+attribute property for one given graph node. The data frames are stored in
+list columns within a \code{df_tbl} object. A \code{df_id} value is
+generated and serves as a pointer to the table row that contains the
+ingested data frame.
 }
 \examples{
 # Create a node data frame (ndf)

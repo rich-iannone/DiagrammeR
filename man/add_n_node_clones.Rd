@@ -21,10 +21,10 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Add \code{n} new nodes to a graph object of class \code{dgr_graph} which are
-  clones of a node already in the graph. All node attributes are preserved
-  except for the node \code{label} attribute (to maintain the uniqueness of
-  non-\code{NA} node label values). A vector of node \code{label} can be
-  provided to bind new labels to the cloned nodes.
+clones of a node already in the graph. All node attributes are preserved
+except for the node \code{label} attribute (to maintain the uniqueness of
+non-\code{NA} node label values). A vector of node \code{label} can be
+provided to bind new labels to the cloned nodes.
 }
 \examples{
 # Create a graph with a path of

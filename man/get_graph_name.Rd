@@ -11,7 +11,7 @@ get_graph_name(graph)
 }
 \value{
 a single-length character vector with the assigned graph name. If a
-  graph name has not been set, NA is returned.
+graph name has not been set, NA is returned.
 }
 \description{
 Get the name of a graph object of class \code{dgr_graph}.

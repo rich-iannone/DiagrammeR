@@ -150,8 +150,8 @@ overlapping the edge line.}
 }
 \description{
 This helper function should be invoked to provide values for the namesake
-  \code{edge_aes} argument, which is present in any function where edges are
-  created.
+\code{edge_aes} argument, which is present in any function where edges are
+created.
 }
 \examples{
 # Create a new graph and add

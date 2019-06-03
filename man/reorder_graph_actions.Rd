@@ -19,8 +19,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Reorder the graph actions stored in the graph through the use of the
-  \code{link{add_graph_action}()} function. These actions are be invoked in a
-  specified order via the \code{\link{trigger_graph_actions}()} function.
+\code{link{add_graph_action}()} function. These actions are be invoked in a
+specified order via the \code{\link[=trigger_graph_actions]{trigger_graph_actions()}} function.
 }
 \examples{
 # Create a random graph using the

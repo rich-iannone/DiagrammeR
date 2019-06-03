@@ -14,8 +14,8 @@ a logical value.
 }
 \description{
 Provides a logical value on whether the graph is weighted. A graph is
-  considered to be weighted when it contains edges that all have a edge
-  \code{weight} attribute with numerical values assigned for all edges.
+considered to be weighted when it contains edges that all have a edge
+\code{weight} attribute with numerical values assigned for all edges.
 }
 \examples{
 # Create a graph where the edges have

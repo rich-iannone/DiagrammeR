@@ -8,33 +8,33 @@
 #' @param n the number of nodes comprising the preferential attachment graph.
 #' @param m the number of edges to add in each time step.
 #' @param power the power of the preferential attachment. The default value of
-#'   \code{1} indicates a linear preferential attachment.
+#'   `1` indicates a linear preferential attachment.
 #' @param out_dist a numeric vector that provides the distribution of the number
 #'   of edges to add in each time step.
-#' @param use_total_degree a logical value (default is \code{TRUE}) that governs
+#' @param use_total_degree a logical value (default is `TRUE`) that governs
 #'   whether the total degree should be used for calculating the citation
-#'   probability. If \code{FALSE}, the indegree is used.
+#'   probability. If `FALSE`, the indegree is used.
 #' @param zero_appeal a measure of the attractiveness of the nodes with no
 #'   adjacent edges.
 #' @param algo the algorithm to use to generate the graph. The available options
-#'   are \code{psumtree}, \code{psumtree-multiple}, and \code{bag}. With the
-#'   \code{psumtree} algorithm, a partial prefix-sum tree is used to to create
-#'   the graph. Any values for \code{power} and \code{zero_appeal} can be
+#'   are `psumtree`, `psumtree-multiple`, and `bag`. With the
+#'   `psumtree` algorithm, a partial prefix-sum tree is used to to create
+#'   the graph. Any values for `power` and `zero_appeal` can be
 #'   provided and this algorithm never generates multiple edges. The
-#'   \code{psumtree-multiple} algorithm also uses a partial prefix-sum tree but
-#'   the difference here is that multiple edges are allowed. The \code{bag}
+#'   `psumtree-multiple` algorithm also uses a partial prefix-sum tree but
+#'   the difference here is that multiple edges are allowed. The `bag`
 #'   algorithm places the node IDs into a bag as many times as their in-degree
 #'   (plus once more). The required number of cited nodes are drawn from the bag
 #'   with replacement. Multiple edges may be produced using this method (it is
 #'   not disallowed).
 #' @param type an optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a logical value where setting to \code{TRUE} ascribes node IDs
-#'   to the label and \code{FALSE} yields a blank label.
+#' @param label a logical value where setting to `TRUE` ascribes node IDs
+#'   to the label and `FALSE` yields a blank label.
 #' @param rel an optional string for providing a relationship label to all edges
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
-#'   \code{Mersenne-Twister} implementation.
+#'   `Mersenne-Twister` implementation.
 #' @examples
 #' # Create an undirected PA
 #' # graph with 100 nodes, adding

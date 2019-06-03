@@ -24,7 +24,7 @@ Jaccard similarity coefficient scores. The default value is \code{3}.}
 }
 \value{
 a matrix with Jaccard similarity values for each pair of nodes
-  considered.
+considered.
 }
 \description{
 Get the Jaccard similarity coefficient scores for one or more nodes in a

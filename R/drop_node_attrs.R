@@ -3,7 +3,7 @@
 #' Within a graph's internal ndf, remove an existing node attribute.
 #' @inheritParams render_graph
 #' @param node_attr the name of the node attribute column to drop.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' graph <-
 #'   create_graph() %>%

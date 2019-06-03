@@ -11,7 +11,7 @@ count_graphs_in_graph_series(graph_series)
 }
 \value{
 a numeric vector representing a count of graphs in a graph series
-  object.
+object.
 }
 \description{
 Counts the total number of graphs in a graph series object.

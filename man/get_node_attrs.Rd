@@ -16,11 +16,11 @@ present in the graph or node data frame.}
 }
 \value{
 a named vector of node attribute values for the attribute given by
-  \code{node_attr} by node ID.
+\code{node_attr} by node ID.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get node attribute values for
-  one or more nodes.
+one or more nodes.
 }
 \examples{
 # Create a random graph using the

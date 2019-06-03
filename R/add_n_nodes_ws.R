@@ -1,47 +1,47 @@
 #' Add a multiple of new nodes with edges to or from one or more selected nodes
 #'
-#' Add \code{n} new nodes to or from one or more nodes available as a selection
-#' in a graph object of class \code{dgr_graph}. New graph edges will all move
+#' Add `n` new nodes to or from one or more nodes available as a selection
+#' in a graph object of class `dgr_graph`. New graph edges will all move
 #' either from the nodes in the selection toward the newly created nodes (with
-#' the option \code{direction = "from"}), or to the selected nodes already in
-#' the graph (using \code{direction = "to"}). Optionally, set node \code{type}
-#' and edge \code{rel} values for all the new nodes and edges created,
+#' the option `direction = "from"`), or to the selected nodes already in
+#' the graph (using `direction = "to"`). Optionally, set node `type`
+#' and edge `rel` values for all the new nodes and edges created,
 #' respectively.
 #'
 #' This function makes use of an active selection of nodes (and the
-#' function ending with \code{_ws} hints at this).
+#' function ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (\code{select_*()}) functions:
-#' \code{\link{select_nodes}()},
-#' \code{\link{select_last_nodes_created}()},
-#' \code{\link{select_nodes_by_degree}()},
-#' \code{\link{select_nodes_by_id}()}, or
-#' \code{\link{select_nodes_in_neighborhood}()}.
+#' (`select_*()`) functions:
+#' [select_nodes()],
+#' [select_last_nodes_created()],
+#' [select_nodes_by_degree()],
+#' [select_nodes_by_id()], or
+#' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (\code{trav_*()}) functions:
-#' \code{\link{trav_out}()},
-#' \code{\link{trav_in}()},
-#' \code{\link{trav_both}()},
-#' \code{\link{trav_out_node}()},
-#' \code{\link{trav_in_node}()},
-#' \code{\link{trav_out_until}()}, or
-#' \code{\link{trav_in_until}()}.
+#' (`trav_*()`) functions:
+#' [trav_out()],
+#' [trav_in()],
+#' [trav_both()],
+#' [trav_out_node()],
+#' [trav_in_node()],
+#' [trav_out_until()], or
+#' [trav_in_until()].
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param n the number of new nodes to attach as successor nodes to the nodes in
 #'   the selection.
-#' @param direction using \code{from} will create new edges from existing nodes
-#'   to the new nodes. The \code{to} option will create new edges directed
+#' @param direction using `from` will create new edges from existing nodes
+#'   to the new nodes. The `to` option will create new edges directed
 #'   toward the existing nodes.
 #' @param type an optional character vector that provides group identifiers for
 #'   the nodes to be added.
 #' @param label an optional character object that describes the nodes to be
 #'   added.
-#' @param rel an optional string to apply a \code{rel} attribute to all newly
+#' @param rel an optional string to apply a `rel` attribute to all newly
 #'   created edges.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph, add a node to it, select
 #' # that node, and then add 5 more nodes to the graph

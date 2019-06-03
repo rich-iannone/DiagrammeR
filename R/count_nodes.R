@@ -1,6 +1,6 @@
 #' Get a count of all nodes
 #'
-#' From a graph object of class \code{dgr_graph}, get a count of nodes in the
+#' From a graph object of class `dgr_graph`, get a count of nodes in the
 #'   graph.
 #' @inheritParams render_graph
 #' @return a numeric vector of single length.

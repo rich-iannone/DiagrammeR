@@ -17,7 +17,7 @@ a logical value.
 }
 \description{
 From a graph object of class \code{dgr_graph}, determine whether a specified
-  node is present.
+node is present.
 }
 \examples{
 # Create a simple graph with

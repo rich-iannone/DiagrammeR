@@ -14,7 +14,7 @@ a data frame with group membership assignments for each of the nodes.
 }
 \description{
 Using edge betweenness, obtain the group membership values for each of the
-  nodes in the graph.
+nodes in the graph.
 }
 \examples{
 # Create a random graph using the

@@ -14,7 +14,7 @@ a numeric vector of single length.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get a count of all loop edges
-  in the graph.
+in the graph.
 }
 \examples{
 # Create an undirected, full graph

@@ -1,7 +1,7 @@
 #' Print the graph to the terminal
 #'
 #' This function will provide a summary of the graph.
-#' @param x a graph object of class \code{dgr_graph}.
+#' @param x a graph object of class `dgr_graph`.
 #' @examples
 #' \dontrun{
 #' # Create a random graph using the

@@ -28,17 +28,17 @@ ending with \code{_ws} hints at this).
 
 Selections of edges can be performed using the following selection
 (\code{select_*()}) functions:
-\code{\link{select_edges}()},
-\code{\link{select_last_edges_created}()},
-\code{\link{select_edges_by_edge_id}()}, or
-\code{\link{select_edges_by_node_id}()}.
+\code{\link[=select_edges]{select_edges()}},
+\code{\link[=select_last_edges_created]{select_last_edges_created()}},
+\code{\link[=select_edges_by_edge_id]{select_edges_by_edge_id()}}, or
+\code{\link[=select_edges_by_node_id]{select_edges_by_node_id()}}.
 
 Selections of edges can also be performed using the following traversal
 (\code{trav_*()}) functions:
-\code{\link{trav_out_edge}()},
-\code{\link{trav_in_edge}()},
-\code{\link{trav_both_edge}()}, or
-\code{\link{trav_reverse_edge}()}.
+\code{\link[=trav_out_edge]{trav_out_edge()}},
+\code{\link[=trav_in_edge]{trav_in_edge()}},
+\code{\link[=trav_both_edge]{trav_both_edge()}}, or
+\code{\link[=trav_reverse_edge]{trav_reverse_edge()}}.
 }
 \examples{
 # Create a graph with 3 edges

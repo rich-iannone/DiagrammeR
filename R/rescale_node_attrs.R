@@ -1,6 +1,6 @@
 #' Rescale numeric node attribute values
 #'
-#' From a graph object of class \code{dgr_graph}, take a set of numeric values
+#' From a graph object of class `dgr_graph`, take a set of numeric values
 #'   for a node attribute, rescale to a new numeric or color range, then write
 #'   to the same node attribute or to a new node attribute column.
 #' @inheritParams render_graph
@@ -17,7 +17,7 @@
 #'   rescaled values. If not set, the minimum value from the set will be used.
 #' @param from_upper_bound an optional, manually set upper bound value for the
 #'   rescaled values. If not set, the minimum value from the set will be used.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

@@ -2,9 +2,9 @@
 #'
 #' Get the total degree values for all nodes in a graph.
 #' @inheritParams render_graph
-#' @param normalized set as \code{FALSE} (the default), the total degree will be
+#' @param normalized set as `FALSE` (the default), the total degree will be
 #'   provided for each of the nodes (as a count of edges to and from each node).
-#'   When set as \code{TRUE}, then the result for each node will be divided by
+#'   When set as `TRUE`, then the result for each node will be divided by
 #'   the total number of nodes in the graph minus 1.
 #' @return a data frame with total degree values for each of the nodes.
 #' @examples

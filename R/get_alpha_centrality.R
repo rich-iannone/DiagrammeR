@@ -8,11 +8,11 @@
 #'   (which applies the same factor to every node), or a vector giving the
 #'   factor for every node.
 #' @param weights_attr an optional name of the edge attribute to use in the
-#'   adjacency matrix. If \code{NULL} then, if it exists, the \code{weight} edge
+#'   adjacency matrix. If `NULL` then, if it exists, the `weight` edge
 #'   attribute of the graph will be used. Failing that, the standard adjacency
 #'   matrix will be used in calculations.
 #' @param tol the tolerance for near-singularities during matrix inversion.
-#' The default value is set to \code{1e-7}.
+#' The default value is set to `1e-7`.
 #' @return a data frame with alpha centrality scores for each of the nodes.
 #' @examples
 #' # Create a random graph using the

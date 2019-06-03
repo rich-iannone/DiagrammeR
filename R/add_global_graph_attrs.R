@@ -1,16 +1,16 @@
 #' Add one or more global graph attributes
 #'
-#' Add global attributes of a specific type (either \code{graph_attrs},
-#' \code{node_attrs}, or \code{edge_attrs} for a graph object of class
-#' \code{dgr_graph}).
-#' @param graph a graph object of class \code{dgr_graph}.
-#' @param attr the name of the attribute to set for the \code{type} of global
+#' Add global attributes of a specific type (either `graph_attrs`,
+#' `node_attrs`, or `edge_attrs` for a graph object of class
+#' `dgr_graph`).
+#' @param graph a graph object of class `dgr_graph`.
+#' @param attr the name of the attribute to set for the `type` of global
 #'   attribute specified.
 #' @param value the value to be set for the chosen attribute specified in the
-#'   \code{attr_for_type} argument.
+#'   `attr_for_type` argument.
 #' @param attr_type the specific type of global graph attribute to set. The type
-#'   is specified with \code{graph}, \code{node}, or \code{edge}.
-#' @return a graph object of class \code{dgr_graph}.
+#'   is specified with `graph`, `node`, or `edge`.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph with no
 #' # global graph attributes and

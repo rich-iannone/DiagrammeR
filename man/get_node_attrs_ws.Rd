@@ -13,7 +13,7 @@ get_node_attrs_ws(graph, node_attr)
 }
 \value{
 a named vector of node attribute values for the attribute given by
-  \code{node_attr} by node ID.
+\code{node_attr} by node ID.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get node attribute values from
@@ -25,21 +25,21 @@ function ending with \code{_ws} hints at this).
 
 Selections of nodes can be performed using the following node selection
 (\code{select_*()}) functions:
-\code{\link{select_nodes}()},
-\code{\link{select_last_nodes_created}()},
-\code{\link{select_nodes_by_degree}()},
-\code{\link{select_nodes_by_id}()}, or
-\code{\link{select_nodes_in_neighborhood}()}.
+\code{\link[=select_nodes]{select_nodes()}},
+\code{\link[=select_last_nodes_created]{select_last_nodes_created()}},
+\code{\link[=select_nodes_by_degree]{select_nodes_by_degree()}},
+\code{\link[=select_nodes_by_id]{select_nodes_by_id()}}, or
+\code{\link[=select_nodes_in_neighborhood]{select_nodes_in_neighborhood()}}.
 
 Selections of nodes can also be performed using the following traversal
 (\code{trav_*()}) functions:
-\code{\link{trav_out}()},
-\code{\link{trav_in}()},
-\code{\link{trav_both}()},
-\code{\link{trav_out_node}()},
-\code{\link{trav_in_node}()},
-\code{\link{trav_out_until}()}, or
-\code{\link{trav_in_until}()}.
+\code{\link[=trav_out]{trav_out()}},
+\code{\link[=trav_in]{trav_in()}},
+\code{\link[=trav_both]{trav_both()}},
+\code{\link[=trav_out_node]{trav_out_node()}},
+\code{\link[=trav_in_node]{trav_in_node()}},
+\code{\link[=trav_out_until]{trav_out_until()}}, or
+\code{\link[=trav_in_until]{trav_in_until()}}.
 }
 \examples{
 # Create a random graph using the

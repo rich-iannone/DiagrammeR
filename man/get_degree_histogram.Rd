@@ -18,7 +18,7 @@ a data frame with degree counts.
 }
 \description{
 Get histogram data for a graph's degree frequency. The bin width is set to 1
-  and zero-value degrees are omitted from the output.
+and zero-value degrees are omitted from the output.
 }
 \examples{
 # Create a random graph using the

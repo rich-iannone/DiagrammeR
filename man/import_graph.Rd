@@ -57,7 +57,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Import a variety of graphs from different graph formats and create a graph
-  object.
+object.
 }
 \examples{
 \dontrun{

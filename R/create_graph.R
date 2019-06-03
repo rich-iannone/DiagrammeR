@@ -3,31 +3,31 @@
 #' Generates a graph object with the option to use node data frames (ndfs)
 #'   and/or edge data frames (edfs) to populate the initial graph.
 #' @param nodes_df an optional data frame containing, at minimum, a column
-#'   (called \code{id}) which contains node IDs for the graph. Additional
+#'   (called `id`) which contains node IDs for the graph. Additional
 #'   columns (node attributes) can be included with values for the named node
 #'   attribute.
 #' @param edges_df an optional data frame containing, at minimum, two columns
-#'   (called \code{from} and \code{to}) where node IDs are provided. Additional
+#'   (called `from` and `to`) where node IDs are provided. Additional
 #'   columns (edge attributes) can be included with values for the named edge
 #'   attribute.
-#' @param directed with \code{TRUE} (the default) or \code{FALSE}, either
+#' @param directed with `TRUE` (the default) or `FALSE`, either
 #'   directed or undirected edge operations will be generated, respectively.
 #' @param graph_name an optional string for labeling the graph object.
-#' @param attr_theme the theme (i.e., collection of \code{graph}, \code{node},
-#'   and \code{edge} global graph attributes) to use for this graph. The default
-#'   theme is called \code{default}; there are hierarchical layout themes called
-#'   \code{lr}, \code{tb}, \code{rl}, and \code{bt} (these operate from
+#' @param attr_theme the theme (i.e., collection of `graph`, `node`,
+#'   and `edge` global graph attributes) to use for this graph. The default
+#'   theme is called `default`; there are hierarchical layout themes called
+#'   `lr`, `tb`, `rl`, and `bt` (these operate from
 #'   left-to-right, top-to-bottom, right-to-left, and bottom-to-top); and, for
-#'   larger graphs, the \code{fdp} theme provides a force directed layout. If
-#'   this is set to \code{NULL} then no global graph attributes will be applied
+#'   larger graphs, the `fdp` theme provides a force directed layout. If
+#'   this is set to `NULL` then no global graph attributes will be applied
 #'   to the graph upon creation.
 #' @param write_backups an option to write incremental backups of changing
-#'   graph states to disk. If \code{TRUE}, a subdirectory within the working
-#'   directory will be created and used to store \code{RDS} files. The default
-#'   value is \code{FALSE} so one has to opt in to use this functionality.
+#'   graph states to disk. If `TRUE`, a subdirectory within the working
+#'   directory will be created and used to store `RDS` files. The default
+#'   value is `FALSE` so one has to opt in to use this functionality.
 #' @param display_msgs an option to display messages primarily concerned with
-#'   changes in graph selections. By default, this is \code{FALSE}.
-#' @return a graph object of class \code{dgr_graph}.
+#'   changes in graph selections. By default, this is `FALSE`.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # With `create_graph()` we can
 #' # simply create an empty graph (and

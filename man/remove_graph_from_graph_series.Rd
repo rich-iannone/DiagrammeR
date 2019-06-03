@@ -18,7 +18,7 @@ a graph series object of type \code{dgr_graph_1D}.
 }
 \description{
 Remove a single graph object from an set of graph objects contained within a
-  graph series object.
+graph series object.
 }
 \examples{
 # Create three graphs

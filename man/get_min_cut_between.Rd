@@ -15,12 +15,12 @@ get_min_cut_between(graph, from, to)
 }
 \value{
 a single numeric value representing the minimum total edge capacity
-  removed to disconnect the source and sink nodes.
+removed to disconnect the source and sink nodes.
 }
 \description{
 Get the minimum cut between source and sink nodes. This is the minimum total
-  capacity of edges needed for removal in order to eliminate all paths from
-  the source and sink nodes.
+capacity of edges needed for removal in order to eliminate all paths from
+the source and sink nodes.
 }
 \examples{
 # Set a seed

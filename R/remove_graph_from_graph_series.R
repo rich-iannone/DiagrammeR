@@ -6,7 +6,7 @@
 #'   removed.
 #' @param index the index of the graph object to be removed from the graph
 #'   series object.
-#' @return a graph series object of type \code{dgr_graph_1D}.
+#' @return a graph series object of type `dgr_graph_1D`.
 #' @examples
 #' # Create three graphs
 #' graph_1 <-

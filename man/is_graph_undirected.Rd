@@ -14,7 +14,7 @@ a logical value.
 }
 \description{
 Determines whether a graph is set as undirected or not and returns a logical
-  value to that effect.
+value to that effect.
 }
 \examples{
 # Create an empty graph; by

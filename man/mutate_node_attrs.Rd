@@ -20,7 +20,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Within a graph's internal node data frame (ndf), mutate numeric node
-  attribute values using one or more expressions.
+attribute values using one or more expressions.
 }
 \examples{
 # Create a graph with 3 nodes

@@ -16,12 +16,12 @@ will be to a node.}
 }
 \value{
 a single numeric value representing the minimum eccentricity of the
-  graph.
+graph.
 }
 \description{
 Get the radius of a graph, which is the smallest eccentricity in the graph.
-  The graph eccentricity of a node is its shortest path from the farthest
-  other node in the graph.
+The graph eccentricity of a node is its shortest path from the farthest
+other node in the graph.
 }
 \examples{
 # Create a cycle graph

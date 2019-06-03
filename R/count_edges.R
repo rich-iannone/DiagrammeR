@@ -1,6 +1,6 @@
 #' Get a count of all edges
 #'
-#' From a graph object of class \code{dgr_graph}, get a count of edges in the
+#' From a graph object of class `dgr_graph`, get a count of edges in the
 #'   graph.
 #' @inheritParams render_graph
 #' @return a single-length numeric vector.

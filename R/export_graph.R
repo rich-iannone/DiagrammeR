@@ -5,15 +5,15 @@
 #' @inheritParams render_graph
 #' @param file_name the name of the exported file (including it's extension).
 #' @param file_type the type of file to be exported. Options for graph files
-#'   are: \code{png}, \code{pdf}, \code{svg}, and \code{ps}. Options for graph
-#'   file formats are: \code{gexf}.
+#'   are: `png`, `pdf`, `svg`, and `ps`. Options for graph
+#'   file formats are: `gexf`.
 #' @param title an optional title for the output graph.
-#' @param width output width in pixels or \code{NULL} for default. Only useful
-#'   for export to image file formats \code{png}, \code{pdf}, \code{svg}, and
-#'   \code{ps}.
-#' @param height output height in pixels or \code{NULL} for default. Only useful
-#'   for export to image file formats \code{png}, \code{pdf}, \code{svg}, and
-#'   \code{ps}.
+#' @param width output width in pixels or `NULL` for default. Only useful
+#'   for export to image file formats `png`, `pdf`, `svg`, and
+#'   `ps`.
+#' @param height output height in pixels or `NULL` for default. Only useful
+#'   for export to image file formats `png`, `pdf`, `svg`, and
+#'   `ps`.
 #' @examples
 #' \dontrun{
 #' # Create a simple graph

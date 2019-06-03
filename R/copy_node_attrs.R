@@ -8,7 +8,7 @@
 #'   will be copied.
 #' @param node_attr_to the name of the new node attribute column to which the
 #'   copied values will be placed.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function

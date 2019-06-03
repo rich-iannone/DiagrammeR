@@ -22,8 +22,8 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Select nodes in a graph object of class \code{dgr_graph} by their node ID
-  values. If nodes have IDs that are monotonically increasing integer
-  values, then numeric ranges can be used for the selection.
+values. If nodes have IDs that are monotonically increasing integer
+values, then numeric ranges can be used for the selection.
 }
 \examples{
 # Create a node data frame (ndf)

@@ -1,7 +1,7 @@
 #' Insert edge data attributes during edge creation
 #'
 #' This helper function should be invoked to provide values for the namesake
-#' \code{edge_data} argument, which is present in any function where edges are
+#' `edge_data` argument, which is present in any function where edges are
 #' created.
 #' @param ... edge data attributes provided as one or more named vectors.
 #' @examples

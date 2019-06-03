@@ -25,12 +25,12 @@ instead be used to define edges.}
 }
 \value{
 a list, data frame, or a vector object, depending on the value given
-  to \code{return_type}.
+to \code{return_type}.
 }
 \description{
 Obtain a vector, data frame, or list of node IDs associated with edges in a
-  graph object. An optional filter by edge attribute can limit the set of
-  edges returned.
+graph object. An optional filter by edge attribute can limit the set of
+edges returned.
 }
 \examples{
 # Create a node data frame (ndf)

@@ -6,17 +6,17 @@
 #' @inheritParams render_graph
 #' @param n the number of nodes comprising the generated graph.
 #' @param p the probability of creating an edge between two arbitrary nodes.
-#' @param loops a logical value (default is \code{FALSE}) that governs whether
+#' @param loops a logical value (default is `FALSE`) that governs whether
 #'   loops are allowed to be created.
 #' @param type an optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a boolean value where setting to \code{TRUE} ascribes node
-#'   IDs to the label and \code{FALSE} yields a blank label.
+#' @param label a boolean value where setting to `TRUE` ascribes node
+#'   IDs to the label and `FALSE` yields a blank label.
 #' @param rel an optional string for providing a relationship label to all edges
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
-#'   \code{Mersenne-Twister} implementation.
-#' @return a graph object of class \code{dgr_graph}.
+#'   `Mersenne-Twister` implementation.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using

@@ -1,6 +1,6 @@
 #' Add a node to an existing graph object
 #'
-#' With a graph object of class \code{dgr_graph}, add a new node to the graph.
+#' With a graph object of class `dgr_graph`, add a new node to the graph.
 #'   One can optionally provide node attributes for the created node. There is
 #'   also the option to create edges to and from existing nodes in the graph.
 #'   Because new edges can also be created through this function, there is the
@@ -14,7 +14,7 @@
 #'   directed to the new node.
 #' @param to an optional vector containing node IDs to which edges will be
 #'   directed from the new node.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph and add 2 nodes by using
 #' # the `add_node()` function twice

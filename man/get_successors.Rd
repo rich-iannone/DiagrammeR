@@ -16,7 +16,7 @@ a vector of node ID values.
 }
 \description{
 Provides a vector of node IDs for all nodes that have a connection from the
-  given node.
+given node.
 }
 \examples{
 # Set a seed

@@ -1,22 +1,22 @@
 #' Add an edge between nodes in a graph object
 #'
-#' With a graph object of class \code{dgr_graph}, add an edge to nodes within
+#' With a graph object of class `dgr_graph`, add an edge to nodes within
 #'   the graph.
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @param from the outgoing node from which the edge is connected. There is the
-#'   option to use a node \code{label} value here (and this must correspondingly
-#'   also be done for the \code{to} argument) for defining node connections.
-#'   Note that this is only possible if all nodes have distinct \code{label}
+#'   option to use a node `label` value here (and this must correspondingly
+#'   also be done for the `to` argument) for defining node connections.
+#'   Note that this is only possible if all nodes have distinct `label`
 #'   values set and none exist as an empty string.
 #' @param to the incoming nodes to which each edge is connected. There is the
-#'   option to use a node \code{label} value here (and this must correspondingly
-#'   also be done for the \code{from} argument) for defining node connections.
-#'   Note that this is only possible if all nodes have distinct \code{label}
+#'   option to use a node `label` value here (and this must correspondingly
+#'   also be done for the `from` argument) for defining node connections.
+#'   Note that this is only possible if all nodes have distinct `label`
 #'   values set and none exist as an empty string.
 #' @param rel an optional string specifying the relationship between the
 #'   connected nodes.
-#' @return a graph object of class \code{dgr_graph}.
+#' @return a graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 4 nodes
 #' graph <-

@@ -14,7 +14,7 @@ a numeric vector of single length.
 }
 \description{
 From a graph object of class \code{dgr_graph}, get a count of nodes in the
-  graph.
+graph.
 }
 \examples{
 # Create a graph with a

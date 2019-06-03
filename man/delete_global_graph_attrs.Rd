@@ -20,7 +20,7 @@ a graph object of class \code{dgr_graph}.
 }
 \description{
 Delete one of the global attributes stored within a graph object of class
-  \code{dgr_graph}).
+\code{dgr_graph}).
 }
 \examples{
 # Create a new graph and add

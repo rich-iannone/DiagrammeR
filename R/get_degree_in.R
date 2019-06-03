@@ -2,9 +2,9 @@
 #'
 #' Get the indegree values for all nodes in a graph.
 #' @inheritParams render_graph
-#' @param normalized set as \code{FALSE} (the default), the indegree will be
+#' @param normalized set as `FALSE` (the default), the indegree will be
 #'   provided for each of the nodes (as a count of edges to each node). When set
-#'   as \code{TRUE}, then the result for each node will be divided by the total
+#'   as `TRUE`, then the result for each node will be divided by the total
 #'   number of nodes in the graph minus 1.
 #' @return a data frame with indegree values for each of the nodes.
 #' @examples

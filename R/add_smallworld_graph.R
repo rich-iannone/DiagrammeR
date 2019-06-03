@@ -10,18 +10,18 @@
 #' @param neighborhood the neighborhood where the lattice nodes are to be
 #'   connected.
 #' @param p the rewiring probability.
-#' @param loops a logical value (default is \code{FALSE}) that governs whether
+#' @param loops a logical value (default is `FALSE`) that governs whether
 #'   loops are allowed to be created.
-#' @param multiple a logical value (default is \code{FALSE}) that governs
+#' @param multiple a logical value (default is `FALSE`) that governs
 #'   whether multiple edges are allowed to be created.
 #' @param type an optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a logical value where setting to \code{TRUE} ascribes node IDs
-#'   to the label and \code{FALSE} yields a blank label.
+#' @param label a logical value where setting to `TRUE` ascribes node IDs
+#'   to the label and `FALSE` yields a blank label.
 #' @param rel an optional string for providing a relationship label to all edges
 #'   to be added.
 #' @param set_seed supplying a value sets a random seed of the
-#'   \code{Mersenne-Twister} implementation.
+#'   `Mersenne-Twister` implementation.
 #' @examples
 #' # Create an undirected smallworld
 #' # graph with 100 nodes using
