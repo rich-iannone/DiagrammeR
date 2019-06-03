@@ -67,9 +67,6 @@ set_node_attrs <- function(graph,
   # Get the name of the function
   fcn_name <- get_calling_fcn()
 
-  # Create bindings for specific variables
-  # id <- NULL
-
   # Get the requested `node_attr`
   node_attr <-
     rlang::enquo(node_attr) %>% rlang::get_expr() %>% as.character()

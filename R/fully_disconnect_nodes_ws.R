@@ -77,9 +77,6 @@ fully_disconnect_nodes_ws <- function(graph) {
       reasons = "There is no selection of nodes available.")
   }
 
-  # Create bindings for specific variables
-  # from <- to <- NULL
-
   # Get the graph's edf
   edf <- graph$edges_df
 

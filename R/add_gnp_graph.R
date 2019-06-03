@@ -63,9 +63,6 @@ add_gnp_graph <- function(graph,
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # index__ <- id <- NULL
-
   # If a seed value is supplied, set a seed
   if (!is.null(set_seed)) {
     set.seed(set_seed, kind = "Mersenne-Twister")

@@ -106,9 +106,6 @@ add_edge_clone <- function(graph,
       reasons = "The value provided in `edge` does not correspond to an edge in the graph")
   }
 
-  # Create bindings for specific variables
-  #id <- version_id <- NULL
-
   # Get the value for the latest `version_id` for
   # graph (in the `graph_log`)
   current_graph_log_version_id <-

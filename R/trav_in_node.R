@@ -281,9 +281,6 @@ trav_in_node <- function(graph,
     }
   }
 
-  # Create bindings for specific variables
-  # id <- type <- label <- to <- to.y <- NULL
-
   # Get the selection of edges
   starting_edges <- graph$edge_selection
 

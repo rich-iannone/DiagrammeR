@@ -67,9 +67,6 @@ add_node <- function(graph,
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # index__ <- id <- NULL
-
   # Get the node ID for the node to be added
   node <- graph$last_node + 1
 

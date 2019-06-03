@@ -811,9 +811,6 @@ value_per_node_functions <- function() {
 #' @importFrom dplyr select filter pull
 get_df_ids <- function(graph_df) {
 
-  # Create binding for a specific variable
-  df_id <- NULL
-
   if (nrow(graph_df) > 0) {
 
     if ("df_id" %in% colnames(graph_df)) {
@@ -837,9 +834,6 @@ get_df_ids <- function(graph_df) {
 # the associated nodes or edges no longer exist
 #' @importFrom dplyr bind_rows filter select distinct pull
 remove_linked_dfs <- function(graph) {
-
-  # Create bindings for specific variables
-  node_edge__ <- df_id__ <- df_id <- NULL
 
   if (is.null(graph$df_storage)) {
     return(graph)

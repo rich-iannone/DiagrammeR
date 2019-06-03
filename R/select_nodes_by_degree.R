@@ -117,9 +117,6 @@ select_nodes_by_degree <- function(graph,
   n_e_select_properties_in <-
     node_edge_selection_properties(graph = graph)
 
-  # Create bindings for specific variables
-  # id <- deg <- indeg <- outdeg <- NULL
-
   # Get a data frame with node ID and degree types
   node_degree <-
     get_node_info(graph) %>%

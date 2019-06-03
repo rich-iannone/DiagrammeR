@@ -45,11 +45,6 @@ get_last_edges_created <- function(graph) {
       reasons = "The graph contains no edges")
   }
 
-  # Create bindings for specific variables
-  # function_used <- edges <- step_created_edges <- NULL
-  # step_deleted_edges <- step_init_with_edges <- version_id <- NULL
-  # time_modified <- duration <- id <- NULL
-
   graph_transform_steps <-
     graph$graph_log %>%
     dplyr::mutate(step_created_edges = dplyr::if_else(

@@ -30,9 +30,6 @@ get_node_info <- function(graph) {
       reasons = "The graph object is not valid")
   }
 
-  # Create bindings for specific variables
-  # id <- NULL
-
   # If graph is empty, return NULL
   if (is_graph_empty(graph)) {
     return(NULL)
