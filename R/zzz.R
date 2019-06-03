@@ -27,6 +27,7 @@ globalVariables(
     "function_used",
     "hex",
     "id",
+    "id_external",
     "id.x",
     "id.y",
     "id__",
