@@ -1,10 +1,11 @@
 #' Is the edge mutual with another edge?
 #'
 #' Determines whether an edge definition has a mutual analogue with the same
-#'   node pair.
+#' node pair.
+#'
 #' @inheritParams render_graph
-#' @param edge a numeric edge ID value.
-#' @return a logical value.
+#' @param edge A numeric edge ID value.
+#' @return A logical value.
 #' @examples
 #' # Create a graph that has mutual
 #' # edges across some node pairs
@@ -31,7 +32,7 @@
 #' # a mutual edge
 #' graph %>%
 #'   is_edge_mutual(edge = 2)
-#' @importFrom dplyr filter pull
+#'
 #' @export
 is_edge_mutual <- function(graph,
                            edge) {

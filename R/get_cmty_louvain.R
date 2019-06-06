@@ -34,7 +34,7 @@
 #' # Display the graph's
 #' # node data frame
 #' graph %>% get_node_df()
-#' @importFrom igraph cluster_louvain membership
+#'
 #' @export
 get_cmty_louvain <- function(graph) {
 

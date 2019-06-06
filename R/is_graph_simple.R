@@ -1,9 +1,10 @@
 #' Is the graph a simple graph?
 #'
 #' Determine whether the graph is a simple graph. A simple graph is one that
-#'   does not contain any loops nor any multiple edges.
+#' does not contain any loops nor any multiple edges.
+#'
 #' @inheritParams render_graph
-#' @return a logical value.
+#' @return A logical value.
 #' @examples
 #' # Create a graph with 2 cycles
 #' graph <-
@@ -13,7 +14,7 @@
 #'
 #' # Check if the graph is simple
 #' graph %>% is_graph_simple()
-#' @importFrom igraph is_simple
+#'
 #' @export
 is_graph_simple <- function(graph) {
 

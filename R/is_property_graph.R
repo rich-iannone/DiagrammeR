@@ -1,10 +1,11 @@
 #' Is the graph a property graph?
 #'
 #' Provides a logical value on whether the graph is property graph (i.e., all
-#'   nodes have an assigned `type` value and all edges have an assigned
-#'   `rel` value).
+#' nodes have an assigned `type` value and all edges have an assigned `rel`
+#' value).
+#'
 #' @inheritParams render_graph
-#' @return a logical value.
+#' @return A logical value.
 #' # Create a graph with 2 nodes
 #' # (with `type` values) and a
 #' # single edge (with a `rel`)
@@ -39,6 +40,7 @@
 #' # An empty graph will return FALSE
 #' create_graph() %>%
 #'   is_property_graph()
+#'
 #' @export
 is_property_graph <- function(graph) {
 

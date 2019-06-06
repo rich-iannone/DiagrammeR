@@ -1,10 +1,11 @@
 #' Get node IDs for predecessor nodes to the specified node
 #'
 #' Provides a vector of node IDs for all nodes that have a connection to the
-#'   given node.
+#' given node.
+#'
 #' @inheritParams render_graph
-#' @param node a node ID for the selected node.
-#' @return a vector of node ID values.
+#' @param node A node ID for the selected node.
+#' @return A vector of node ID values.
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))
@@ -40,6 +41,7 @@
 #' graph %>%
 #'   get_predecessors(
 #'     node = 26)
+#'
 #' @export
 get_predecessors <- function(graph,
                              node) {

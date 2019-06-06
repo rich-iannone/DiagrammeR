@@ -1,22 +1,23 @@
 #' Add a G(n, p) Erdos-Renyi graph
 #'
 #' To an existing graph object, add a graph built according to the Erdos-Renyi
-#'   G(n, p) model, which uses a constant probability when creating edges.
+#' G(n, p) model, which uses a constant probability when creating edges.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param n the number of nodes comprising the generated graph.
-#' @param p the probability of creating an edge between two arbitrary nodes.
-#' @param loops a logical value (default is `FALSE`) that governs whether
-#'   loops are allowed to be created.
-#' @param type an optional string that describes the entity type for all the
+#' @param n The number of nodes comprising the generated graph.
+#' @param p The probability of creating an edge between two arbitrary nodes.
+#' @param loops A logical value (default is `FALSE`) that governs whether loops
+#'   are allowed to be created.
+#' @param type An optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a boolean value where setting to `TRUE` ascribes node
-#'   IDs to the label and `FALSE` yields a blank label.
-#' @param rel an optional string for providing a relationship label to all edges
+#' @param label A boolean value where setting to `TRUE` ascribes node IDs to the
+#'   label and `FALSE` yields a blank label.
+#' @param rel An optional string for providing a relationship label to all edges
 #'   to be added.
-#' @param set_seed supplying a value sets a random seed of the
+#' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an undirected GNP
 #' # graph with 100 nodes using
@@ -33,8 +34,7 @@
 #'
 #' # Get a count of edges
 #' gnp_graph %>% count_edges()
-#' @importFrom igraph sample_gnp
-#' @importFrom dplyr select bind_cols as_tibble
+#'
 #' @export
 add_gnp_graph <- function(graph,
                           n,

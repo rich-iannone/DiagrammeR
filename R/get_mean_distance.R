@@ -1,10 +1,11 @@
 #' Get the mean distance
 #'
 #' Get the mean distance of a graph, which is the average path length in the
-#'   graph. This operates through calculation of the shortest paths between all
-#'   pairs of nodes.
+#' graph. This operates through calculation of the shortest paths between all
+#' pairs of nodes.
+#'
 #' @inheritParams render_graph
-#' @return a single numeric value representing the mean distance of the graph.
+#' @return A single numeric value representing the mean distance of the graph.
 #' @examples
 #' # Create a cycle graph
 #' graph <-
@@ -20,7 +21,7 @@
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   get_mean_distance()
-#' @importFrom igraph mean_distance
+#'
 #' @export
 get_mean_distance <- function(graph) {
 

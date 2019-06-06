@@ -1,31 +1,23 @@
 #' Get the graph's ndf filtered by a selection of nodes
 #'
-#' From a graph object of class `dgr_graph`, get the graph's internal node
-#' data frame that is filtered by the node ID values currently active as a
-#' selection.
+#' From a graph object of class `dgr_graph`, get the graph's internal node data
+#' frame that is filtered by the node ID values currently active as a selection.
 #'
-#' This function makes use of an active selection of nodes (and the
-#' function ending with `_ws` hints at this).
+#' This function makes use of an active selection of nodes (and the function
+#' ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams render_graph
-#' @return a node data frame.
+#' @return A node data frame.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -50,7 +42,7 @@
 #' # limited to the rows that correspond
 #' # to the node selection
 #' graph %>% get_node_df_ws()
-#' @importFrom dplyr filter
+#'
 #' @export
 get_node_df_ws <- function(graph) {
 

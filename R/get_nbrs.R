@@ -1,9 +1,10 @@
 #' Get all neighbors of one or more nodes
 #'
 #' With one or more nodes, get the set of all neighboring nodes.
+#'
 #' @inheritParams render_graph
-#' @param nodes a vector of node ID values.
-#' @return a vector of node ID values.
+#' @param nodes A vector of node ID values.
+#' @return A vector of node ID values.
 #' @examples
 #' # Create a simple, directed graph with 5
 #' # nodes and 4 edges
@@ -12,13 +13,11 @@
 #'   add_path(n = 5)
 #'
 #' # Find all neighbor nodes for node `2`
-#' graph %>%
-#'   get_nbrs(nodes = 2)
+#' graph %>% get_nbrs(nodes = 2)
 #'
 #' # Find all neighbor nodes for nodes `1`
 #' # and `5`
-#' graph %>%
-#'   get_nbrs(nodes = c(1, 5))
+#' graph %>% get_nbrs(nodes = c(1, 5))
 #'
 #' # Color node `3` with purple, get its
 #' # neighbors and color those nodes green
@@ -36,6 +35,7 @@
 #'   set_node_attrs_ws(
 #'     node_attr = color,
 #'     value = "green")
+#'
 #' @export
 get_nbrs <- function(graph,
                      nodes) {

@@ -1,9 +1,10 @@
 #' Get nodes within strongly connected components
 #'
 #' Determine which nodes in a graph belong to different strongly connected
-#'   components.
+#' components.
+#'
 #' @inheritParams render_graph
-#' @return a data frame with nodes and their membership in different strongly
+#' @return A data frame with nodes and their membership in different strongly
 #'   connected components.
 #' @examples
 #' suppressWarnings(RNGversion("3.5.0"))
@@ -38,8 +39,7 @@
 #' # components as a data frame of
 #' # nodes and their groupings
 #' graph %>% get_s_connected_cmpts()
-#' @importFrom igraph components
-#' @importFrom dplyr select
+#'
 #' @export
 get_s_connected_cmpts <- function(graph) {
 

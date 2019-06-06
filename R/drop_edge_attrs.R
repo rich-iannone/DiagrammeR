@@ -1,10 +1,11 @@
 #' Drop an edge attribute column
 #'
 #' Within a graph's internal edge data frame (edf), remove an existing edge
-#'   attribute.
+#' attribute.
+#'
 #' @inheritParams render_graph
-#' @param edge_attr the name of the edge attribute column to drop.
-#' @return a graph object of class `dgr_graph`.
+#' @param edge_attr The name of the edge attribute column to drop.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -37,7 +38,8 @@
 #' # attribute `value` had been
 #' # removed
 #' graph %>% get_edge_df()
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 drop_edge_attrs <- function(graph,
                             edge_attr) {

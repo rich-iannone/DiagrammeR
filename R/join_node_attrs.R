@@ -1,19 +1,20 @@
 #' Join new node attribute values using a data frame
 #'
 #' Join new node attribute values in a left join using a data frame. The use of
-#'   a left join in this function allows for no possibility that nodes in the
-#'   graph might be removed after the join.
+#' a left join in this function allows for no possibility that nodes in the
+#' graph might be removed after the join.
+#'
 #' @inheritParams render_graph
-#' @param df the data frame to use for joining.
-#' @param by_graph optional specification of the column in the graph's internal
-#'   node data frame for the left join. If both `by_graph` and `by_df`
-#'   are not provided, then a natural join will occur if there are columns in
-#'   the graph's ndf and in `df` with identical names.
-#' @param by_df optional specification of the column in `df` for the left
-#'   join. If both `by_graph` and `by_df` are not provided, then a
-#'   natural join will occur if there are columns in the graph's ndf and in
-#'   `df` with identical names.
-#' @return a graph object of class `dgr_graph`.
+#' @param df The data frame to use for joining.
+#' @param by_graph Optional specification of the column in the graph's internal
+#'   node data frame for the left join. If both `by_graph` and `by_df` are not
+#'   provided, then a natural join will occur if there are columns in the
+#'   graph's ndf and in `df` with identical names.
+#' @param by_df Optional specification of the column in `df` for the left join.
+#'   If both `by_graph` and `by_df` are not provided, then a natural join will
+#'   occur if there are columns in the graph's ndf and in `df` with identical
+#'   names.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Set a seed
 #' suppressWarnings(RNGversion("3.5.0"))
@@ -58,7 +59,7 @@
 #' # Get the graph's internal ndf to show that
 #' # this join has been made
 #' graph %>% get_node_df()
-#' @importFrom dplyr select everything
+#'
 #' @export
 join_node_attrs <- function(graph,
                             df,

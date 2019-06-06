@@ -1,13 +1,14 @@
 #' Delete one of the global graph attributes stored within a graph object
 #'
 #' Delete one of the global attributes stored within a graph object of class
-#'   `dgr_graph`).
+#' `dgr_graph`).
+#'
 #' @inheritParams render_graph
-#' @param attr the name of the attribute to delete for the `type` of global
+#' @param attr The name of the attribute to delete for the `type` of global
 #'   attribute specified.
-#' @param attr_type the specific type of global graph attribute to delete. The
+#' @param attr_type The specific type of global graph attribute to delete. The
 #'   type is specified with `graph`, `node`, or `edge`.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph and add
 #' # some extra global graph attrs
@@ -44,9 +45,9 @@
 #' # attributes for the graph
 #' graph %>%
 #'   get_global_graph_attr_info()
-#' @importFrom dplyr anti_join tibble filter
-#' @importFrom glue glue
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import glue
+#' @import rlang
 #' @export
 delete_global_graph_attrs <- function(graph,
                                       attr = NULL,

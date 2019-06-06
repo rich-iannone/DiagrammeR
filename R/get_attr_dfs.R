@@ -97,9 +97,7 @@
 #'   graph,
 #'   edge_id = 1,
 #'   return_format = "single_df")
-#' @importFrom dplyr filter select bind_rows filter starts_with
-#' @importFrom dplyr everything left_join as_tibble tibble
-#' @importFrom purrr flatten_chr
+#'
 #' @export
 get_attr_dfs <- function(graph,
                          node_id = NULL,

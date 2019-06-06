@@ -1,8 +1,9 @@
 #' Get the number of strongly-connected components
 #'
 #' Get the number of strongly-connected components in the graph.
+#'
 #' @inheritParams render_graph
-#' @return a single integer value representing the number of strongly-connected
+#' @return A single integer value representing the number of strongly-connected
 #'   graph components.
 #' @examples
 #' # Create a graph and add
@@ -18,9 +19,8 @@
 #'
 #' # Get a count of strongly-connected
 #' # components in the graph
-#' graph %>%
-#'   count_s_connected_cmpts()
-#' @importFrom igraph components
+#' graph %>% count_s_connected_cmpts()
+#'
 #' @export
 count_s_connected_cmpts <- function(graph) {
 

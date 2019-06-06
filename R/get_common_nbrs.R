@@ -22,6 +22,7 @@
 #' graph %>%
 #'   get_common_nbrs(
 #'     nodes = c(1, 3))
+#'
 #' @export
 get_common_nbrs <- function(graph,
                             nodes) {

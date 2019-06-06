@@ -3,33 +3,26 @@
 #' Within a graph's internal node data frame (ndf), mutate node attribute values
 #' only for nodes in a selection by using one or more expressions.
 #'
-#' This function makes use of an active selection of nodes (and the
-#' function ending with `_ws` hints at this).
+#' This function makes use of an active selection of nodes (and the function
+#' ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams render_graph
-#' @param ... expressions used for the mutation of node attributes. LHS of each
+#' @param ... Expressions used for the mutation of node attributes. LHS of each
 #'   expression is either an existing or new node attribute name. The RHS can
 #'   consist of any valid R code that uses node attributes as variables.
 #'   Expressions are evaluated in the order provided, so, node attributes
 #'   created or modified are ready to use in subsequent expressions.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 3 nodes
 #' # and then select node `1`
@@ -119,8 +112,8 @@
 #' # attributes without changing
 #' # those of the other nodes
 #' graph %>% get_node_df()
-#' @importFrom dplyr mutate_
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 mutate_node_attrs_ws <- function(graph,
                                  ...) {

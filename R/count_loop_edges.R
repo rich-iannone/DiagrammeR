@@ -1,9 +1,10 @@
 #' Get count of all loop edges
 #'
-#' From a graph object of class `dgr_graph`, get a count of all loop edges
-#'   in the graph.
+#' From a graph object of class `dgr_graph`, get a count of all loop edges in
+#' the graph.
+#'
 #' @inheritParams render_graph
-#' @return a numeric vector of single length.
+#' @return A numeric vector of single length.
 #' @examples
 #' # Create an undirected, full graph
 #' # with 3 nodes and all possible
@@ -17,9 +18,8 @@
 #'
 #' # Get a count of all loop edges
 #' # in the graph
-#' graph %>%
-#'   count_loop_edges()
-#' @importFrom dplyr filter
+#' graph %>% count_loop_edges()
+#'
 #' @export
 count_loop_edges <- function(graph) {
 

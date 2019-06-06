@@ -52,7 +52,7 @@
 #' graph_2 %>%
 #'   get_all_connected_nodes(
 #'     node = 8)
-#' @importFrom dplyr filter
+#'
 #' @export
 get_all_connected_nodes <- function(graph,
                                     node) {

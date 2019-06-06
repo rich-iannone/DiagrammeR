@@ -1,14 +1,15 @@
 #' Get an aggregate value from the outdegree of nodes
 #'
 #' Get a single, aggregate value from the outdegree values for all nodes in a
-#'   graph, or, a subset of graph nodes.
+#' graph, or, a subset of graph nodes.
+#'
 #' @inheritParams render_graph
-#' @param agg the aggregation function to use for summarizing outdegree values
-#'   from graph nodes. The following aggregation functions can be used:
-#'   `sum`, `min`, `max`, `mean`, or `median`.
-#' @param conditions an option to use filtering conditions for the nodes to
+#' @param agg The aggregation function to use for summarizing outdegree values
+#'   from graph nodes. The following aggregation functions can be used: `sum`,
+#'   `min`, `max`, `mean`, or `median`.
+#' @param conditions An option to use filtering conditions for the nodes to
 #'   consider.
-#' @return a vector with an aggregate outdegree value.
+#' @return A vector with an aggregate outdegree value.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -46,10 +47,8 @@
 #'   get_agg_degree_out(
 #'     agg = "mean",
 #'     conditions = value < 5.0)
-#' @importFrom dplyr group_by summarize_ select filter ungroup pull
-#' @importFrom stats as.formula
-#' @importFrom purrr flatten_dbl
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 get_agg_degree_out <- function(graph,
                                agg,

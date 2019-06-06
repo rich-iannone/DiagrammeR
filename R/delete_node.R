@@ -1,10 +1,11 @@
 #' Delete a node from an existing graph object
 #'
 #' From a graph object of class `dgr_graph`, delete an existing node by
-#'   specifying its node ID.
+#' specifying its node ID.
+#'
 #' @inheritParams render_graph
-#' @param node a node ID for the node to be deleted from the graph.
-#' @return a graph object of class `dgr_graph`.
+#' @param node A node ID for the node to be deleted from the graph.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 5 nodes and
 #' # edges between each in a path
@@ -23,7 +24,7 @@
 #' # since there were edges between the
 #' # removed node to and from other nodes
 #' graph %>% get_edges()
-#' @importFrom dplyr filter
+#'
 #' @export
 delete_node <- function(graph,
                         node) {

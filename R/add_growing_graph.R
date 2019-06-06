@@ -1,22 +1,22 @@
 #' Create a random growing graph with m edges added per step
 #'
-#' To an existing graph object, add a graph built by adding `m` new edges
-#'   at each time step (where a node is added).
+#' To an existing graph object, add a graph built by adding `m` new edges at
+#' each time step (where a node is added).
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param n the number of nodes comprising the generated graph.
-#' @param m the number of edges added per time step.
-#' @param citation a logical value (default is `FALSE`) that governs
-#'   whether a citation graph is to be created. This is where new edges
-#'   specifically originate from the newly added node in the most recent time
-#'   step.
-#' @param type an optional string that describes the entity type for all the
+#' @param n The number of nodes comprising the generated graph.
+#' @param m The number of edges added per time step.
+#' @param citation A logical value (default is `FALSE`) that governs whether a
+#'   citation graph is to be created. This is where new edges specifically
+#'   originate from the newly added node in the most recent time step.
+#' @param type An optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a logical value where setting to `TRUE` ascribes node IDs
-#'   to the label and `FALSE` yields a blank label.
-#' @param rel an optional string for providing a relationship label to all edges
+#' @param label A logical value where setting to `TRUE` ascribes node IDs to the
+#'   label and `FALSE` yields a blank label.
+#' @param rel An optional string for providing a relationship label to all edges
 #'   to be added.
-#' @param set_seed supplying a value sets a random seed of the
+#' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
 #' @examples
 #' # Create a random, growing
@@ -36,8 +36,7 @@
 #'
 #' # Get a count of edges
 #' growing_graph %>% count_edges()
-#' @importFrom igraph sample_growing
-#' @importFrom dplyr select bind_cols as_tibble
+#'
 #' @export
 add_growing_graph <- function(graph,
                               n,

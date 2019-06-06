@@ -2,8 +2,9 @@
 #'
 #' Get a tibble of the graph log, which contains information on the functions
 #' called on the graph that resulted in some transformation of the graph.
+#'
 #' @inheritParams render_graph
-#' @return a `df_tbl` object.
+#' @return A `df_tbl` object.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function and
@@ -20,9 +21,8 @@
 #'
 #' # Get the graph log, which is a
 #' # record of all graph transformations
-#' graph %>%
-#'   get_graph_log()
-#' @importFrom dplyr as_tibble
+#' graph %>% get_graph_log()
+#'
 #' @export
 get_graph_log <- function(graph) {
 

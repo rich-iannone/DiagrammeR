@@ -2,6 +2,7 @@
 #'
 #' Obtain a vector of edge ID values from a graph object. An optional filter by
 #'   edge attribute can limit the set of edge ID values returned.
+#'
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the retrieval of
 #'   edges.
@@ -54,8 +55,8 @@
 #'   conditions =
 #'     color == "blue" &
 #'     value > 5)
-#' @importFrom dplyr filter pull
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 get_edge_ids <- function(graph,
                          conditions = NULL) {

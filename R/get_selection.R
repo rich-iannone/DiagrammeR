@@ -1,9 +1,10 @@
 #' Get the current selection available in a graph object
 #'
 #' Get the current selection of node IDs or edge IDs from a graph object of
-#'   class `dgr_graph`.
+#' class `dgr_graph`.
+#'
 #' @inheritParams render_graph
-#' @return a vector with the current selection of node or edge ID values.
+#' @return A vector with the current selection of node or edge ID values.
 #' @examples
 #' # Create a simple graph
 #' graph <-
@@ -29,6 +30,7 @@
 #'   select_edges_by_node_id(
 #'     nodes = 4) %>%
 #'   get_selection()
+#'
 #' @export
 get_selection <- function(graph) {
 

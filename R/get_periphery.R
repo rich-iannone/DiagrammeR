@@ -1,9 +1,10 @@
 #' Get nodes that form the graph periphery
 #'
 #' Get those nodes that are part of the graph periphery (i.e., have the maximum
-#'   eccentricity in the graph).
+#' eccentricity in the graph).
+#'
 #' @inheritParams render_graph
-#' @return a vector of node IDs.
+#' @return A vector of node IDs.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function and
@@ -14,7 +15,7 @@
 #'     m = 35,
 #'     set_seed = 23) %>%
 #'   get_periphery()
-#' @importFrom dplyr filter pull
+#'
 #' @export
 get_periphery <- function(graph) {
 

@@ -1,9 +1,10 @@
 #' Is the edge a loop edge?
 #'
 #' Determines whether an edge definition is a loop edge.
+#'
 #' @inheritParams render_graph
-#' @param edge a numeric edge ID value.
-#' @return a logical value.
+#' @param edge A numeric edge ID value.
+#' @return A logical value.
 #' @examples
 #' # Create a graph that has multiple
 #' # loop edges
@@ -28,7 +29,7 @@
 #' # Determine if edge `2` is
 #' # a loop edge
 #' graph %>% is_edge_loop(edge = 2)
-#' @importFrom dplyr filter pull
+#'
 #' @export
 is_edge_loop <- function(graph,
                          edge) {

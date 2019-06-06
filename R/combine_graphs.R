@@ -1,12 +1,13 @@
 #' Combine two graphs into a single graph
 #'
 #' Combine two graphs in order to make a new graph.
-#' @param x a `DiagrammeR` graph object to which another graph will be
-#'   unioned. This graph should be considered the graph from which global graph
+#'
+#' @param x A `DiagrammeR` graph object to which another graph will be unioned.
+#'   This graph should be considered the graph from which global graph
 #'   attributes will be inherited in the resulting graph.
-#' @param y a `DiagrammeR` graph object that is to be unioned with the
-#'   graph supplied as `x`.
-#' @return a graph object of class `dgr_graph`.
+#' @param y A `DiagrammeR` graph object that is to be unioned with the graph
+#'   supplied as `x`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with a cycle
 #' # containing 6 nodes
@@ -41,7 +42,7 @@
 #' # during the union; this ensures
 #' # that node ID values are unique
 #' combined_graph %>% get_node_ids()
-#' @importFrom dplyr inner_join rename select bind_rows ends_with
+#'
 #' @export
 combine_graphs <- function(x,
                            y) {

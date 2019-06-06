@@ -1,24 +1,19 @@
 #' Get edge attribute values from a selection of edges
 #'
-#' From a graph object of class `dgr_graph`, get edge attribute values for
-#' one or more edges.
+#' From a graph object of class `dgr_graph`, get edge attribute values for one
+#' or more edges.
 #'
 #' This function makes use of an active selection of edges (and the function
 #' ending with `_ws` hints at this).
 #'
 #' Selections of edges can be performed using the following selection
-#' (`select_*()`) functions:
-#' [select_edges()],
-#' [select_last_edges_created()],
-#' [select_edges_by_edge_id()], or
-#' [select_edges_by_node_id()].
+#' (`select_*()`) functions: [select_edges()], [select_last_edges_created()],
+#' [select_edges_by_edge_id()], or [select_edges_by_node_id()].
 #'
 #' Selections of edges can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out_edge()],
-#' [trav_in_edge()],
-#' [trav_both_edge()], or
-#' [trav_reverse_edge()].
+#' (`trav_*()`) functions: [trav_out_edge()], [trav_in_edge()],
+#' [trav_both_edge()], or [trav_reverse_edge()].
+#'
 #' @inheritParams render_graph
 #' @param edge_attr the name of the attribute for which to get values.
 #' @return a named vector of edge attribute values for the attribute given by
@@ -75,8 +70,8 @@
 #' graph %>%
 #'   get_edge_attrs_ws(
 #'     edge_attr = value)
-#' @importFrom dplyr filter pull
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 get_edge_attrs_ws <- function(graph,
                               edge_attr) {

@@ -28,8 +28,7 @@
 #' # Display the graph's
 #' # node data frame
 #' graph %>% get_node_df()
-#' @importFrom igraph distances delete_vertices
-#' @importFrom purrr map
+#'
 #' @export
 get_closeness_vitality <- function(graph) {
 

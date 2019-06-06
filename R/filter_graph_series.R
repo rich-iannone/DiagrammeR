@@ -1,19 +1,19 @@
 #' Subset a graph series object
 #'
 #' Subsetting a graph series by the graphs' index positions in the graph series
-#'   or through selection via graphs' date-time attributes.
-#' @param graph_series a graph series object of type `dgr_graph_1D`.
-#' @param by either `number`, which allows for subsetting of the graph
-#'   series by graph indices, or `time` which for graph series objects of
-#'   type `temporal` allows for a subsetting of graphs by a date-time or
-#'   time range.
-#' @param values where the subsetting of the graph series by to occur via graph
+#' or through selection via graphs' date-time attributes.
+#'
+#' @param graph_series A graph series object of type `dgr_graph_1D`.
+#' @param by Either `number`, which allows for subsetting of the graph series by
+#'   graph indices, or `time` which for graph series objects of type `temporal`
+#'   allows for a subsetting of graphs by a date-time or time range.
+#' @param values Where the subsetting of the graph series by to occur via graph
 #'   indices (where `by = number`), provide a vector of those indices; when
-#'   subsetting by time (where `by = time`), a range of times can be
-#'   provided as a vector.
-#' @param tz the time zone (`tz`) corresponding to dates or date-time
-#'   string provided in `values` (if `by = "date"`).
-#' @return a graph series object of type `dgr_graph_1D`.
+#'   subsetting by time (where `by = time`), a range of times can be provided as
+#'   a vector.
+#' @param tz The time zone (`tz`) corresponding to dates or date-time string
+#'   provided in `values` (if `by = "date"`).
+#' @return A graph series object of type `dgr_graph_1D`.
 #' @examples
 #' # Create three graphs
 #' graph_time_1 <-
@@ -74,6 +74,7 @@
 #' # the series
 #' series_time_subset %>%
 #'   count_graphs_in_graph_series()
+#'
 #' @export
 filter_graph_series <- function(graph_series,
                                 by = "number",

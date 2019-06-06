@@ -1,11 +1,12 @@
 #' Determine whether a specified node is present
 #'
-#' From a graph object of class `dgr_graph`, determine whether a specified
-#'   node is present.
+#' From a graph object of class `dgr_graph`, determine whether a specified node
+#' is present.
+#'
 #' @inheritParams render_graph
-#' @param node either a node ID value or a node label to test for presence in
+#' @param node Either a node ID value or a node label to test for presence in
 #'   the graph.
-#' @return a logical value.
+#' @return A logical value.
 #' @examples
 #' # Create a simple graph with
 #' # a path of four nodes

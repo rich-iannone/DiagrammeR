@@ -32,7 +32,7 @@
 #'
 #' # Display the graph's node data frame
 #' graph %>% get_node_df()
-#' @importFrom igraph coreness
+#'
 #' @export
 get_coreness <- function(graph,
                          direction = "all") {

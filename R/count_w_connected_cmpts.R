@@ -1,8 +1,9 @@
 #' Get the number of weakly-connected components
 #'
 #' Get the number of weakly-connected components in the graph.
+#'
 #' @inheritParams render_graph
-#' @return a single integer value representing the number of weakly-connected
+#' @return A single integer value representing the number of weakly-connected
 #'   graph components.
 #' @examples
 #' # Create a cycle graph
@@ -13,9 +14,8 @@
 #'
 #' # Get a count of weakly-connected
 #' # components in the graph
-#' graph %>%
-#'   count_w_connected_cmpts()
-#' @importFrom igraph components
+#' graph %>% count_w_connected_cmpts()
+#'
 #' @export
 count_w_connected_cmpts <- function(graph) {
 

@@ -1,9 +1,10 @@
 #' Deselect any selected edges in a graph
 #'
 #' Deselect edges in a graph object of class `dgr_graph`.
+#'
 #' @inheritParams render_graph
-#' @param edges a vector of edge IDs that should be deselected.
-#' @return a graph object of class `dgr_graph`.
+#' @param edges A vector of edge IDs that should be deselected.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with
 #' # a single path
@@ -34,7 +35,7 @@
 #' # `3` and that edge `1` has been
 #' # deselected (leaving only `3`)
 #' graph %>% get_selection()
-#' @importFrom dplyr filter
+#'
 #' @export
 deselect_edges <- function(graph,
                            edges) {

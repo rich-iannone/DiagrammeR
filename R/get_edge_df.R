@@ -1,6 +1,7 @@
 #' Get an edge data frame from a graph
 #'
 #' From a graph, obtain an edge data frame with all current edge attributes.
+#'
 #' @inheritParams render_graph
 #' @return an edge data frame.
 #' @examples
@@ -35,6 +36,7 @@
 #' # Get the graph's internal
 #' # edge data frame (edf)
 #' graph %>% get_edge_df()
+#'
 #' @export
 get_edge_df <- function(graph) {
 

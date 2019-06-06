@@ -1,9 +1,11 @@
 #' Drop a node attribute column
 #'
-#' Within a graph's internal ndf, remove an existing node attribute.
+#' Within a graph's internal node data frame (ndf), remove an existing node
+#' attribute.
+#'
 #' @inheritParams render_graph
-#' @param node_attr the name of the node attribute column to drop.
-#' @return a graph object of class `dgr_graph`.
+#' @param node_attr The name of the node attribute column to drop.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' graph <-
 #'   create_graph() %>%
@@ -35,7 +37,8 @@
 #' # attribute `value` had been
 #' # removed
 #' graph %>% get_node_df()
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 drop_node_attrs <- function(graph,
                             node_attr) {

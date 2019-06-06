@@ -31,7 +31,7 @@
 #'
 #' # Display the graph's node data frame
 #' graph %>% get_node_df()
-#' @importFrom igraph authority_score
+#'
 #' @export
 get_authority_centrality <- function(graph,
                                      weights_attr = NULL) {

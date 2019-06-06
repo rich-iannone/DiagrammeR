@@ -2,18 +2,17 @@
 #'
 #' Export a graph to a variety of file formats, including image formats such as
 #' PNG, PDF, SVG, and PostScript, and graph file formats such as GEXF.
+#'
 #' @inheritParams render_graph
-#' @param file_name the name of the exported file (including it's extension).
-#' @param file_type the type of file to be exported. Options for graph files
-#'   are: `png`, `pdf`, `svg`, and `ps`. Options for graph
-#'   file formats are: `gexf`.
-#' @param title an optional title for the output graph.
-#' @param width output width in pixels or `NULL` for default. Only useful
-#'   for export to image file formats `png`, `pdf`, `svg`, and
-#'   `ps`.
-#' @param height output height in pixels or `NULL` for default. Only useful
-#'   for export to image file formats `png`, `pdf`, `svg`, and
-#'   `ps`.
+#' @param file_name The name of the exported file (including it's extension).
+#' @param file_type The type of file to be exported. Options for graph files
+#'   are: `png`, `pdf`, `svg`, and `ps`. Options for graph file formats are:
+#'   `gexf`.
+#' @param title An optional title for the output graph.
+#' @param width Output width in pixels or `NULL` for default. Only useful for
+#'   export to image file formats `png`, `pdf`, `svg`, and `ps`.
+#' @param height Output height in pixels or `NULL` for default. Only useful for
+#'   export to image file formats `png`, `pdf`, `svg`, and `ps`.
 #' @examples
 #' \dontrun{
 #' # Create a simple graph
@@ -43,10 +42,7 @@
 #'     file_name = "mypng.png",
 #'     file_type = "PNG")
 #' }
-#' @importFrom rgexf write.gexf
-#' @importFrom utils installed.packages
-#' @importFrom igraph V E ecount ends vertex_attr_names edge_attr_names
-#' @importFrom igraph graph_attr_names vertex_attr edge_attr graph_attr
+#'
 #' @export
 export_graph <- function(graph,
                          file_name = NULL,

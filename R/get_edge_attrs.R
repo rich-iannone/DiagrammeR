@@ -62,8 +62,8 @@
 #'     edge_attr = value,
 #'     from = c(1, 2),
 #'       to = c(2, 3))
-#' @importFrom dplyr mutate filter pull
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 get_edge_attrs <- function(graph,
                            edge_attr,

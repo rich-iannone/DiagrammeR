@@ -1,10 +1,11 @@
 #' Is the edge a multiple edge?
 #'
 #' Determines whether an edge definition has multiple edge IDs associated with
-#'   the same node pair.
+#' the same node pair.
+#'
 #' @inheritParams render_graph
-#' @param edge a numeric edge ID value.
-#' @return a logical value.
+#' @param edge A numeric edge ID value.
+#' @return A logical value.
 #' @examples
 #' # Create a graph that has multiple
 #' # edges across some node pairs
@@ -31,7 +32,7 @@
 #' # a multiple edge
 #' graph %>%
 #'   is_edge_multiple(edge = 2)
-#' @importFrom dplyr filter pull
+#'
 #' @export
 is_edge_multiple <- function(graph,
                              edge) {

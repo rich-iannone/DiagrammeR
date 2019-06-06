@@ -1,8 +1,9 @@
 #' Get metrics for a graph
 #'
 #' Get a data frame with metrics for a graph.
+#'
 #' @inheritParams render_graph
-#' @return a data frame containing metrics pertaining to the graph
+#' @return A data frame containing metrics pertaining to the graph
 #' @examples
 #' \dontrun{
 #' # Import a GML graph file available
@@ -19,6 +20,7 @@
 #' karate_club %>%
 #'   get_graph_info()
 #' }
+#'
 #' @export
 get_graph_info <- function(graph) {
 

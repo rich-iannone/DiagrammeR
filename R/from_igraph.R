@@ -1,9 +1,10 @@
 #' Convert an igraph graph to a DiagrammeR one
 #'
 #' Convert an igraph graph to a DiagrammeR graph object.
-#' @param igraph an \pkg{igraph} graph object.
+#'
+#' @param igraph An \pkg{igraph} graph object.
 #' @inheritParams create_graph
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a DiagrammeR graph object
 #' dgr_graph_orig <-
@@ -28,9 +29,7 @@
 #' # Get some graph information
 #' (dgr_graph_new %>%
 #'   get_graph_info())[, 1:6]
-#' @importFrom igraph V E vertex_attr_names edge_attr_names vertex_attr
-#' @importFrom igraph edge_attr is_directed ends
-#' @importFrom dplyr arrange
+#'
 #' @export
 from_igraph <- function(igraph,
                         graph_name = NULL,

@@ -34,7 +34,7 @@
 #'   set_node_attrs_ws(
 #'     node_attr = shape,
 #'     value = "circle")
-#' @importFrom igraph articulation_points as_ids
+#'
 #' @export
 get_articulation_points <- function(graph) {
 

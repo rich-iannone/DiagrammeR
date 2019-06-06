@@ -1,11 +1,12 @@
 #' Get the PageRank values for all nodes
 #'
 #' Get the PageRank values for all nodes in the graph.
+#'
 #' @inheritParams render_graph
-#' @param directed if `TRUE` (the default) then directed paths will be
+#' @param directed If `TRUE` (the default) then directed paths will be
 #'   considered for directed graphs. This is ignored for undirected graphs.
-#' @param damping the damping factor. The default value is set to `0.85`.
-#' @return a data frame with PageRank values for each of the nodes.
+#' @param damping The damping factor. The default value is set to `0.85`.
+#' @return A data frame with PageRank values for each of the nodes.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -31,7 +32,7 @@
 #'     node_attr_from = pagerank,
 #'     node_attr_to = fillcolor,
 #'     palette = "RdYlGn")
-#' @importFrom igraph page_rank
+#'
 #' @export
 get_pagerank <- function(graph,
                          directed = TRUE,

@@ -1,10 +1,11 @@
 #' Is the graph a weighted graph?
 #'
 #' Provides a logical value on whether the graph is weighted. A graph is
-#'   considered to be weighted when it contains edges that all have a edge
-#'   `weight` attribute with numerical values assigned for all edges.
+#' considered to be weighted when it contains edges that all have a edge
+#' `weight` attribute with numerical values assigned for all edges.
+#'
 #' @inheritParams render_graph
-#' @return a logical value.
+#' @return A logical value.
 #' @examples
 #' # Create a graph where the edges have
 #' # a `weight` attribute
@@ -30,6 +31,7 @@
 #' # Determine whether this graph
 #' # is weighted
 #' graph %>% is_graph_weighted()
+#'
 #' @export
 is_graph_weighted <- function(graph) {
 

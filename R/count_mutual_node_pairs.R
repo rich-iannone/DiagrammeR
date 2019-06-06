@@ -1,9 +1,10 @@
 #' Get the number of mutually-connected node pairs
 #'
 #' Get the number of mutually-connected node pairs. This works for directed
-#'   graphs.
+#' graphs.
+#'
 #' @inheritParams render_graph
-#' @return a single numeric value representing the number of mutually-connected
+#' @return A single numeric value representing the number of mutually-connected
 #'   node pairs.
 #' @examples
 #' # Create a cycle graph
@@ -13,8 +14,7 @@
 #'
 #' # Get a count of mutually-connected
 #' # node pairs
-#' graph %>%
-#'   count_mutual_node_pairs()
+#' graph %>% count_mutual_node_pairs()
 #'
 #' # Create a full graph and then
 #' # count the mutually-connected
@@ -22,7 +22,7 @@
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   count_mutual_node_pairs()
-#' @importFrom igraph dyad_census
+#'
 #' @export
 count_mutual_node_pairs <- function(graph) {
 

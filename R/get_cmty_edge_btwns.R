@@ -35,7 +35,7 @@
 #' # Display the graph's
 #' # node data frame
 #' graph %>% get_node_df()
-#' @importFrom igraph cluster_edge_betweenness membership
+#'
 #' @export
 get_cmty_edge_btwns <- function(graph) {
 

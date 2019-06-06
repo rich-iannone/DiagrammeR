@@ -1,16 +1,16 @@
 #' Add a 3D grid of nodes to the graph
 #'
-#' With a graph object of class `dgr_graph`, add a three-dimensional grid
-#'   to the graph.
+#' With a graph object of class `dgr_graph`, add a three-dimensional grid to the
+#' graph.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
 #' @inheritParams add_grid_2d
-#' @param z the number of nodes in the z direction.
-#' @param label either a vector object of length `x * y * z` that provides
+#' @param z The number of nodes in the z direction.
+#' @param label Either a vector object of length `x * y * z` that provides
 #'   optional labels for the new nodes, or, a logical value where setting to
-#'   `TRUE` ascribes node IDs to the label and `FALSE` yields a blank
-#'   label.
-#' @return a graph object of class `dgr_graph`.
+#'   `TRUE` ascribes node IDs to the label and `FALSE` yields a blank label.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph and add
 #' # a 2 x 2 x 2 grid
@@ -57,8 +57,7 @@
 #'
 #' # Get the graph's edge data frame
 #' graph_w_attrs %>% get_edge_df()
-#' @importFrom igraph make_lattice
-#' @importFrom dplyr as_tibble select bind_cols pull
+#'
 #' @export
 add_grid_3d <- function(graph,
                         x,

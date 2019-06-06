@@ -23,7 +23,7 @@
 #' graph %>%
 #'   get_degree_distribution(
 #'     mode = "total")
-#' @importFrom igraph degree_distribution
+#'
 #' @export
 get_degree_distribution <- function(graph,
                                     mode = "total") {

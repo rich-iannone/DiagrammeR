@@ -3,7 +3,8 @@
 #' This helper function should be invoked to provide values for the namesake
 #' `edge_data` argument, which is present in any function where edges are
 #' created.
-#' @param ... edge data attributes provided as one or more named vectors.
+#'
+#' @param ... Edge data attributes provided as one or more named vectors.
 #' @examples
 #' \dontrun{
 #' # Create a new graph and add
@@ -22,9 +23,9 @@
 #' # edge data frame; the edge
 #' # data attributes have
 #' # been inserted
-#' graph %>%
-#'   get_edge_df()
+#' graph %>% get_edge_df()
 #' }
+#'
 #' @export
 edge_data <- function(...) {
 

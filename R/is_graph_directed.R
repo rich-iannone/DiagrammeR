@@ -1,9 +1,10 @@
 #' Is the graph a directed graph?
 #'
 #' Determines whether a graph is set to be directed or not and returns a logical
-#'   value to that effect.
+#' value to that effect.
+#'
 #' @inheritParams render_graph
-#' @return a logical value.
+#' @return A logical value.
 #' @examples
 #' # Create an empty graph; by default,
 #' # new graphs made by `create_graph()`
@@ -20,6 +21,7 @@
 #' graph %>%
 #'   set_graph_undirected() %>%
 #'   is_graph_directed()
+#'
 #' @export
 is_graph_directed <- function(graph) {
 

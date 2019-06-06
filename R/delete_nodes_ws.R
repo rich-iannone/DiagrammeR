@@ -3,28 +3,21 @@
 #' In a graph object of class `dgr_graph`, delete all nodes present in a
 #' selection of nodes.
 #'
-#' This function makes use of an active selection of nodes (and the
-#' function ending with `_ws` hints at this).
+#' This function makes use of an active selection of nodes (and the function
+#' ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams render_graph
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 3 nodes
 #' graph <-
@@ -46,6 +39,7 @@
 #'
 #' # Get a count of nodes in the graph
 #' graph %>% count_nodes()
+#'
 #' @export
 delete_nodes_ws <- function(graph) {
 

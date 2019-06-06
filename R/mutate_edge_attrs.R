@@ -1,14 +1,15 @@
 #' Mutate a set of edge attribute values
 #'
 #' Within a graph's internal edge data frame (edf), mutate numeric edge
-#'   attribute values using one or more expressions.
+#' attribute values using one or more expressions.
+#'
 #' @inheritParams render_graph
-#' @param ... expressions used for the mutation of edge attributes. LHS of each
+#' @param ... Expressions used for the mutation of edge attributes. LHS of each
 #'   expression is either an existing or new edge attribute name. The RHS can
 #'   consist of any valid R code that uses edge attributes as variables.
 #'   Expressions are evaluated in the order provided, so, edge attributes
 #'   created or modified are ready to use in subsequent expressions.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 3 edges
 #' graph <-
@@ -67,8 +68,8 @@
 #' # values had been multiplied
 #' # together (with new attr `area`)
 #' graph %>% get_edge_df()
-#' @importFrom dplyr mutate_
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 mutate_edge_attrs <- function(graph,
                               ...) {

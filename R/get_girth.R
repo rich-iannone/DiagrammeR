@@ -1,10 +1,11 @@
 #' Get the graph girth
 #'
 #' Get the girth of a graph, which is the length of the shortest circle in the
-#'   graph. Loop edges and multiple edges are not considered. If the graph
-#'   contains no cycles then zero is returned.
+#' graph. Loop edges and multiple edges are not considered. If the graph
+#' contains no cycles then zero is returned.
+#'
 #' @inheritParams render_graph
-#' @return a single numeric value representing the length of the shortest circle
+#' @return A single numeric value representing the length of the shortest circle
 #'   in the graph.
 #' @examples
 #' # Create a cycle graph
@@ -20,7 +21,7 @@
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   get_girth()
-#' @importFrom igraph girth
+#'
 #' @export
 get_girth <- function(graph) {
 

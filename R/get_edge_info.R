@@ -1,7 +1,8 @@
 #' Get detailed information on edges
 #'
 #' Obtain a data frame with detailed information on edges and their
-#'   interrelationships within the graph.
+#' interrelationships within the graph.
+#'
 #' @inheritParams render_graph
 #' @return a data frame containing information specific to each edge within the
 #'   graph.
@@ -16,7 +17,7 @@
 #' # Get information on the
 #' # graph's edges
 #' graph %>% get_edge_info()
-#' @importFrom dplyr select
+#'
 #' @export
 get_edge_info <- function(graph) {
 

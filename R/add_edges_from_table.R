@@ -2,26 +2,25 @@
 #'
 #' Add edges and their attributes to an existing graph object from data in a CSV
 #' file or a data frame.
+#'
 #' @inheritParams render_graph
-#' @param table either a path to a CSV file, or, a data frame object.
-#' @param from_col the name of the table column from which edges originate.
-#' @param to_col the name of the table column to which edges terminate.
-#' @param from_to_map a single character value for the mapping of the
-#'   `from` and `to` columns in the external table (supplied as
-#'   `from_col` and `to_col`, respectively) to a column in the
-#'   graph's internal node data frame (ndf).
-#' @param rel_col an option to apply a column of data in the table as `rel`
+#' @param table Either a path to a CSV file, or, a data frame object.
+#' @param from_col The name of the table column from which edges originate.
+#' @param to_col The name of the table column to which edges terminate.
+#' @param from_to_map A single character value for the mapping of the `from` and
+#'   `to` columns in the external table (supplied as `from_col` and `to_col`,
+#'   respectively) to a column in the graph's internal node data frame (ndf).
+#' @param rel_col An option to apply a column of data in the table as `rel`
 #'   attribute values.
-#' @param set_rel an optional string to apply a `rel` attribute to all
-#'   edges created from the table records.
-#' @param drop_cols an optional column selection statement for dropping columns
+#' @param set_rel an optional string to apply a `rel` attribute to all edges
+#'   created from the table records.
+#' @param drop_cols An optional column selection statement for dropping columns
 #'   from the external table before inclusion as attributes in the graph's
 #'   internal edge data frame. Several columns can be dropped by name using the
-#'   syntax `col_1 & col_2 & ...`. Columns can also be dropped using a
-#'   numeric column range with `:` (e.g., `5:8`), or, by using the
-#'   `:` between column names to specify the range (e.g.,
-#'   `col_5_name:col_8_name`).
-#' @return a graph object of class `dgr_graph`.
+#'   syntax `col_1 & col_2 & ...`. Columns can also be dropped using a numeric
+#'   column range with `:` (e.g., `5:8`), or, by using the `:` between column
+#'   names to specify the range (e.g., `col_5_name:col_8_name`).
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph and then
 #' # add nodes to it from the
@@ -77,10 +76,7 @@
 #' graph_2 %>%
 #'   get_edge_df() %>%
 #'   head()
-#' @importFrom utils read.csv
-#' @importFrom stats setNames
-#' @importFrom dplyr left_join select rename mutate bind_cols everything as_tibble
-#' @importFrom rlang enquo get_expr UQ
+#' @import rlang
 #' @export
 add_edges_from_table <- function(graph,
                                  table,

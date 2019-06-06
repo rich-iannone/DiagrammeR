@@ -1,8 +1,9 @@
 #' Get the number of unconnected node pairs
 #'
 #' Get the number of unconnected node pairs. This works for directed graphs.
+#'
 #' @inheritParams render_graph
-#' @return a single numeric value representing the number of unconnected node
+#' @return A single numeric value representing the number of unconnected node
 #'   pairs.
 #' @examples
 #' # Create a cycle graph
@@ -20,7 +21,7 @@
 #' create_graph() %>%
 #'   add_full_graph(n = 10) %>%
 #'   count_unconnected_node_pairs()
-#' @importFrom igraph dyad_census
+#'
 #' @export
 count_unconnected_node_pairs <- function(graph) {
 

@@ -1,20 +1,21 @@
 #' Add a node to an existing graph object
 #'
-#' With a graph object of class `dgr_graph`, add a new node to the graph.
-#'   One can optionally provide node attributes for the created node. There is
-#'   also the option to create edges to and from existing nodes in the graph.
-#'   Because new edges can also be created through this function, there is the
-#'   possibility to set edge attributes for any new graph edges.
+#' With a graph object of class `dgr_graph`, add a new node to the graph. One
+#' can optionally provide node attributes for the created node. There is also
+#' the option to create edges to and from existing nodes in the graph. Because
+#' new edges can also be created through this function, there is the possibility
+#' to set edge attributes for any new graph edges.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param type an optional character object that acts as a group identifier for
+#' @param type An optional character object that acts as a group identifier for
 #'   the node to be added.
-#' @param label an optional character object that describes the node.
-#' @param from an optional vector containing node IDs from which edges will be
+#' @param label An optional character object that describes the node.
+#' @param from An optional vector containing node IDs from which edges will be
 #'   directed to the new node.
-#' @param to an optional vector containing node IDs to which edges will be
+#' @param to An optional vector containing node IDs to which edges will be
 #'   directed from the new node.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph and add 2 nodes by using
 #' # the `add_node()` function twice
@@ -41,7 +42,7 @@
 #' # View the graph's internal
 #' # node data frame (ndf)
 #' graph %>% get_node_df()
-#' @importFrom dplyr select bind_cols as_tibble
+#'
 #' @export
 add_node <- function(graph,
                      type = NULL,

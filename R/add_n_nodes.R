@@ -1,15 +1,16 @@
 #' Add one or several unconnected nodes to the graph
 #'
-#' Add `n` new nodes to a graph object of class `dgr_graph`.
-#'   Optionally, set node `type` values for the new nodes.
+#' Add `n` new nodes to a graph object of class `dgr_graph`. Optionally, set
+#' node `type` values for the new nodes.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param n the number of new nodes to add to the graph.
-#' @param type an optional character vector that provides group identifiers for
+#' @param n The number of new nodes to add to the graph.
+#' @param type An optional character vector that provides group identifiers for
 #'   the nodes to be added.
-#' @param label an optional character object that describes the nodes to be
+#' @param label An optional character object that describes the nodes to be
 #'   added.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph and
 #' # add 5 nodes; these nodes
@@ -21,7 +22,7 @@
 #'
 #' # Get the graph's node IDs
 #' graph %>% get_node_ids()
-#' @importFrom dplyr select bind_cols bind_rows as_tibble
+#'
 #' @export
 add_n_nodes <- function(graph,
                         n,

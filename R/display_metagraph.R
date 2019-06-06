@@ -1,16 +1,16 @@
 #' Display a property graph's underlying model
 #'
-#' With a graph object of class `dgr_graph` that is also a property graph
-#'   (i.e., all nodes have an assigned `type` value and all edges have an
-#'   assigned `rel` value), display its metagraph in the RStudio Viewer.
-#'   This representation provides all combinations of edges of different
-#'   `rel` values to all nodes with distinct `type` values, including
-#'   any edges to nodes of the same `type` (shown as loops). The
-#'   precondition of the graph being a property graph can be verified by using
-#'   the [is_property_graph()] function.
-#' @param graph a graph object of class `dgr_graph`. This graph must
-#'   fulfill the condition of being a property graph, otherwise the function
-#'   yields an error.
+#' With a graph object of class `dgr_graph` that is also a property graph (i.e.,
+#' all nodes have an assigned `type` value and all edges have an assigned `rel`
+#' value), display its metagraph in the RStudio Viewer. This representation
+#' provides all combinations of edges of different `rel` values to all nodes
+#' with distinct `type` values, including any edges to nodes of the same `type`
+#' (shown as loops). The precondition of the graph being a property graph can be
+#' verified by using the [is_property_graph()] function.
+#'
+#' @param graph A graph object of class `dgr_graph`. This graph must fulfill the
+#'   condition of being a property graph, otherwise the function yields an
+#'   error.
 #' @examples
 #' \dontrun{
 #' # Create a randomized property
@@ -75,7 +75,7 @@
 #' # graph model for a property graph
 #' display_metagraph(property_graph)
 #' }
-#' @importFrom dplyr select distinct inner_join rename mutate
+#'
 #' @export
 display_metagraph <- function(graph) {
 

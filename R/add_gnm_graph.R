@@ -1,25 +1,26 @@
 #' Add a G(n, m) Erdos-Renyi graph
 #'
 #' To an existing graph object, add a graph built according to the Erdos-Renyi
-#'   G(n, m) model. This uses the same constant probability when creating the
-#'   fixed number of edges. Thus for `n` nodes there will be `m` edges
-#'   and, if the `loops` argument is set as `TRUE`, then random loop
-#'   edges will be part of `m`.
+#' G(n, m) model. This uses the same constant probability when creating the
+#' fixed number of edges. Thus for `n` nodes there will be `m` edges and, if the
+#' `loops` argument is set as `TRUE`, then random loop edges will be part of
+#' `m`.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param n the number of nodes comprising the generated graph.
-#' @param m the number of edges in the generated graph.
-#' @param loops a logical value (default is `FALSE`) that governs whether
-#'   loops are allowed to be created.
-#' @param type an optional string that describes the entity type for all the
+#' @param n The number of nodes comprising the generated graph.
+#' @param m The number of edges in the generated graph.
+#' @param loops A logical value (default is `FALSE`) that governs whether loops
+#'   are allowed to be created.
+#' @param type An optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a boolean value where setting to `TRUE` ascribes node IDs
-#'   to the label and `FALSE` yields a blank label.
-#' @param rel an optional string for providing a relationship label to all edges
+#' @param label A boolean value where setting to `TRUE` ascribes node IDs to the
+#'   label and `FALSE` yields a blank label.
+#' @param rel An optional string for providing a relationship label to all edges
 #'   to be added.
-#' @param set_seed supplying a value sets a random seed of the
+#' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an undirected GNM
 #' # graph with 100 nodes and
@@ -36,8 +37,7 @@
 #'
 #' # Get a count of edges
 #' gnm_graph %>% count_edges()
-#' @importFrom igraph sample_gnm
-#' @importFrom dplyr select bind_cols as_tibble
+#'
 #' @export
 add_gnm_graph <- function(graph,
                           n,

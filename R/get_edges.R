@@ -1,14 +1,15 @@
 #' Get node IDs associated with edges
 #'
 #' Obtain a vector, data frame, or list of node IDs associated with edges in a
-#'   graph object. An optional filter by edge attribute can limit the set of
-#'   edges returned.
+#' graph object. An optional filter by edge attribute can limit the set of edges
+#' returned.
+#'
 #' @inheritParams render_graph
 #' @param conditions an option to use filtering conditions for the retrieval of
 #'   edges.
 #' @param return_type using `vector` (the default), a vector of character
-#'   objects representing the edges is provided. With `list` a list object
-#'   will be provided that contains vectors of outgoing and incoming node IDs
+#'   objects representing the edges is provided. With `list` a list object will
+#'   be provided that contains vectors of outgoing and incoming node IDs
 #'   associated with edges. With `df`, a data frame containing outgoing and
 #'   incoming node IDs associated with edges.
 #' @param return_values using `id` (the default) results in node ID values
@@ -93,8 +94,8 @@
 #'       value > 3,
 #'     return_type = "vector",
 #'     return_values = "label")
-#' @importFrom dplyr filter select_ left_join rename
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 get_edges <- function(graph,
                       conditions = NULL,

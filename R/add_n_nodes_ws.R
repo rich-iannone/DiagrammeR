@@ -1,47 +1,39 @@
 #' Add a multiple of new nodes with edges to or from one or more selected nodes
 #'
-#' Add `n` new nodes to or from one or more nodes available as a selection
-#' in a graph object of class `dgr_graph`. New graph edges will all move
-#' either from the nodes in the selection toward the newly created nodes (with
-#' the option `direction = "from"`), or to the selected nodes already in
-#' the graph (using `direction = "to"`). Optionally, set node `type`
-#' and edge `rel` values for all the new nodes and edges created,
-#' respectively.
+#' Add `n` new nodes to or from one or more nodes available as a selection in a
+#' graph object of class `dgr_graph`. New graph edges will all move either from
+#' the nodes in the selection toward the newly created nodes (with the option
+#' `direction = "from"`), or to the selected nodes already in the graph (using
+#' `direction = "to"`). Optionally, set node `type` and edge `rel` values for
+#' all the new nodes and edges created, respectively.
 #'
-#' This function makes use of an active selection of nodes (and the
-#' function ending with `_ws` hints at this).
+#' This function makes use of an active selection of nodes (and the function
+#' ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param n the number of new nodes to attach as successor nodes to the nodes in
+#' @param n The number of new nodes to attach as successor nodes to the nodes in
 #'   the selection.
-#' @param direction using `from` will create new edges from existing nodes
-#'   to the new nodes. The `to` option will create new edges directed
-#'   toward the existing nodes.
-#' @param type an optional character vector that provides group identifiers for
+#' @param direction Using `from` will create new edges from existing nodes to
+#'   the new nodes. The `to` option will create new edges directed toward the
+#'   existing nodes.
+#' @param type An optional character vector that provides group identifiers for
 #'   the nodes to be added.
-#' @param label an optional character object that describes the nodes to be
+#' @param label An optional character object that describes the nodes to be
 #'   added.
-#' @param rel an optional string to apply a `rel` attribute to all newly
-#'   created edges.
-#' @return a graph object of class `dgr_graph`.
+#' @param rel An optional string to apply a `rel` attribute to all newly created
+#'   edges.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph, add a node to it, select
 #' # that node, and then add 5 more nodes to the graph
@@ -78,8 +70,7 @@
 #'
 #' # Get the graph's edges
 #' graph %>% get_edges()
-#' @importFrom dplyr select pull mutate everything as_tibble
-#' @importFrom dplyr filter left_join bind_rows
+#'
 #' @export
 add_n_nodes_ws <- function(graph,
                            n,

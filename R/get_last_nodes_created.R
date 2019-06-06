@@ -1,10 +1,11 @@
 #' Get the last set of nodes created in a graph
 #'
-#' Get the last nodes that were created in a graph object of class
-#'   `dgr_graph`. Provides a vector of node ID values. This function should
-#'   ideally be used just after creating the nodes.
+#' Get the last nodes that were created in a graph object of class `dgr_graph`.
+#' Provides a vector of node ID values. This function should ideally be used
+#' just after creating the nodes.
+#'
 #' @inheritParams render_graph
-#' @return a vector of node ID values.
+#' @return A vector of node ID values.
 #' @examples
 #' # Create a graph and add 4 nodes
 #' # in 2 separate function calls
@@ -21,11 +22,8 @@
 #'
 #' # Get the last nodes created (2 nodes
 #' # from the last function call)
-#' graph %>%
-#'   get_last_nodes_created()
-#' #> [1] 3 4
-#' @importFrom dplyr mutate filter select pull if_else
-#' @importFrom utils tail
+#' graph %>% get_last_nodes_created()
+#'
 #' @export
 get_last_nodes_created <- function(graph) {
 

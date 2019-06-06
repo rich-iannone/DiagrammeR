@@ -1,11 +1,11 @@
 #' Add edges from an edge data frame to an existing graph object
 #'
-#' With a graph object of class `dgr_graph`, add edges from an edge data
-#' frame to that graph.
+#' With a graph object of class `dgr_graph`, add edges from an edge data frame
+#' to that graph.
+#'
 #' @inheritParams render_graph
-#' @param edge_df an edge data frame that is created using
-#'   [create_edge_df()].
-#' @return a graph object of class `dgr_graph`.
+#' @param edge_df An edge data frame that is created using [create_edge_df()].
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 4 nodes
 #' # and no edges

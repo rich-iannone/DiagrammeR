@@ -1,9 +1,10 @@
 #' Is the graph empty?
 #'
 #' Provides a logical value on whether the graph is empty (i.e., contains no
-#'   nodes).
+#' nodes).
+#'
 #' @inheritParams render_graph
-#' @return a logical value.
+#' @return A logical value.
 #' @examples
 #' # Create an empty graph
 #' graph <- create_graph()
@@ -18,6 +19,7 @@
 #'
 #' # Determine whether this graph is empty
 #' graph %>% is_graph_empty()
+#'
 #' @export
 is_graph_empty <- function(graph) {
 

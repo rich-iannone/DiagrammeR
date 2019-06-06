@@ -23,7 +23,7 @@
 #' graph %>%
 #'   get_degree_histogram(
 #'     mode = "total")
-#' @importFrom dplyr mutate select
+#'
 #' @export
 get_degree_histogram <- function(graph,
                                  mode = "total") {

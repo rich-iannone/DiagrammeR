@@ -1,14 +1,15 @@
 #' Mutate a set of node attribute values
 #'
 #' Within a graph's internal node data frame (ndf), mutate numeric node
-#'   attribute values using one or more expressions.
+#' attribute values using one or more expressions.
+#'
 #' @inheritParams render_graph
-#' @param ... expressions used for the mutation of node attributes. LHS of each
+#' @param ... Expressions used for the mutation of node attributes. LHS of each
 #'   expression is either an existing or new node attribute name. The RHS can
 #'   consist of any valid R code that uses node attributes as variables.
 #'   Expressions are evaluated in the order provided, so, node attributes
 #'   created or modified are ready to use in subsequent expressions.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 3 nodes
 #' graph <-
@@ -67,8 +68,8 @@
 #' # values had been multiplied
 #' # together (with new attr `area`)
 #' graph %>% get_node_df()
-#' @importFrom dplyr mutate_
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 mutate_node_attrs <- function(graph,
                               ...) {

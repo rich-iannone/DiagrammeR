@@ -1,9 +1,10 @@
 #' Combine multiple node data frames
 #'
 #' Combine several node data frames into a single node data frame.
-#' @param ... two or more node data frames, which contain node IDs and
+#'
+#' @param ... Two or more node data frames, which contain node IDs and
 #'   associated attributes.
-#' @return a combined node data frame.
+#' @return A combined node data frame.
 #' @examples
 #' # Create two node data frames
 #' node_df_1 <-
@@ -29,7 +30,7 @@
 #'
 #' # Inspect the combined ndf
 #' node_df_combined
-#' @importFrom dplyr bind_rows
+#'
 #' @export
 combine_ndfs <- function(...) {
 

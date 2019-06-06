@@ -5,6 +5,7 @@
 #' distinct edge ID values). So, for example, if there are 2 edge definitions in
 #' the graph that involve 6 separate edge IDs (3 such edge IDs for each of the
 #' pairs of nodes), the count will be `2`.
+#'
 #' @inheritParams render_graph
 #' @return a vector with a single, numerical value.
 #' @examples
@@ -32,7 +33,7 @@
 #' # distinct edges with separate edge
 #' # ID values)
 #' graph %>% get_edge_count_w_multiedge()
-#' @importFrom dplyr select mutate group_by summarize ungroup filter n
+#'
 #' @export
 get_edge_count_w_multiedge <- function(graph) {
 

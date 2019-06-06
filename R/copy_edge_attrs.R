@@ -1,14 +1,15 @@
 #' Copy an edge attribute column and set the name
 #'
 #' Within a graph's internal edge data frame (edf), copy the contents an
-#'   existing edge attribute and create a distinct edge attribute within the edf
-#'   with a different attribute name.
+#' existing edge attribute and create a distinct edge attribute within the edf
+#' with a different attribute name.
+#'
 #' @inheritParams render_graph
-#' @param edge_attr_from the name of the edge attribute column from which values
+#' @param edge_attr_from The name of the edge attribute column from which values
 #'   will be copied.
-#' @param edge_attr_to the name of the new edge attribute column to which the
+#' @param edge_attr_to The name of the new edge attribute column to which the
 #'   copied values will be placed.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -40,8 +41,8 @@
 #' # edf to show that the edge
 #' # attribute had been copied
 #' graph %>% get_edge_df()
-#' @importFrom dplyr bind_cols
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 copy_edge_attrs <- function(graph,
                             edge_attr_from,

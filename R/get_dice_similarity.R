@@ -30,7 +30,7 @@
 #' graph %>%
 #'   get_dice_similarity(
 #'     nodes = 5:7)
-#' @importFrom igraph similarity V
+#'
 #' @export
 get_dice_similarity <- function(graph,
                                 nodes = NULL,

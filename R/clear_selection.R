@@ -1,8 +1,9 @@
 #' Clear an active selection of nodes or edges
 #'
 #' Clear the selection of nodes or edges within a graph object.
+#'
 #' @inheritParams render_graph
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with
 #' # a single path
@@ -30,6 +31,7 @@
 #' # Verify that the node
 #' # selection has been cleared
 #' graph %>% get_selection()
+#'
 #' @export
 clear_selection <- function(graph) {
 

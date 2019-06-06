@@ -1,9 +1,10 @@
 #' Get detailed information on nodes
 #'
 #' Obtain a data frame with detailed information on nodes and their
-#'   interrelationships within the graph.
-#' @param graph a graph object of class `dgr_graph`.
-#' @return a data frame containing information specific to each node within the
+#' interrelationships within the graph.
+#'
+#' @param graph A graph object of class `dgr_graph`.
+#' @return A data frame containing information specific to each node within the
 #'   graph.
 #' @examples
 #' # Create a simple graph
@@ -15,7 +16,7 @@
 #'
 #' # Get information on the graph's nodes
 #' graph %>% get_node_info()
-#' @importFrom dplyr mutate arrange
+#'
 #' @export
 get_node_info <- function(graph) {
 

@@ -1,34 +1,29 @@
 #' Add new edges in the opposite directions of a selection of edges
 #'
 #' Add edges in the opposite direction of one or more edges available as an edge
-#' selection in a graph object of class `dgr_graph`. New graph edges have
-#' the opposite edge definitions as those in the selection. For example, a graph
-#' with the edge `1->2` in its active selection will gain a new `2->1`
-#' edge. There is also the option to assign a common `rel` grouping to the
-#' newly created edges. Upon addition of the edges, the edge selection will be
+#' selection in a graph object of class `dgr_graph`. New graph edges have the
+#' opposite edge definitions as those in the selection. For example, a graph
+#' with the edge `1->2` in its active selection will gain a new `2->1` edge.
+#' There is also the option to assign a common `rel` grouping to the newly
+#' created edges. Upon addition of the edges, the edge selection will be
 #' retained for further selection or traversal operations.
 #'
 #' This function makes use of an active selection of edges (and the function
 #' ending with `_ws` hints at this).
 #'
 #' Selections of edges can be performed using the following selection
-#' (`select_*()`) functions:
-#' [select_edges()],
-#' [select_last_edges_created()],
-#' [select_edges_by_edge_id()], or
-#' [select_edges_by_node_id()].
+#' (`select_*()`) functions: [select_edges()], [select_last_edges_created()],
+#' [select_edges_by_edge_id()], or [select_edges_by_node_id()].
 #'
 #' Selections of edges can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out_edge()],
-#' [trav_in_edge()],
-#' [trav_both_edge()], or
-#' [trav_reverse_edge()].
+#' (`trav_*()`) functions: [trav_out_edge()], [trav_in_edge()],
+#' [trav_both_edge()], or [trav_reverse_edge()].
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param rel an optional string to apply a `rel` attribute to all newly
-#'   created edges.
-#' @return a graph object of class `dgr_graph`.
+#' @param rel An optional string to apply a `rel` attribute to all newly created
+#'   edges.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an empty graph, add 2 nodes to it,
 #' # and create the edge `1->2`
@@ -59,7 +54,7 @@
 #'
 #' # Get the graph's edge data frame
 #' graph %>% get_edge_df()
-#' @importFrom dplyr select bind_rows as_tibble
+#'
 #' @export
 add_reverse_edges_ws <- function(graph,
                                  rel = NULL,

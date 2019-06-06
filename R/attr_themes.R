@@ -9,8 +9,8 @@ asdf <- function(tbl) {
 }
 
 #' The default attribute theme
+#'
 #' @noRd
-#' @importFrom dplyr tribble
 attr_theme_default <- function() {
 
   dplyr::tribble(
@@ -37,8 +37,8 @@ attr_theme_default <- function() {
 }
 
 #' The lr attribute theme
+#'
 #' @noRd
-#' @importFrom dplyr bind_rows tribble
 attr_theme_lr <- function() {
 
   dplyr::bind_rows(
@@ -52,8 +52,8 @@ attr_theme_lr <- function() {
 }
 
 #' The tb attribute theme
+#'
 #' @noRd
-#' @importFrom dplyr bind_rows tribble
 attr_theme_tb <- function() {
 
   dplyr::bind_rows(
@@ -67,8 +67,8 @@ attr_theme_tb <- function() {
 }
 
 #' The rl attribute theme
+#'
 #' @noRd
-#' @importFrom dplyr bind_rows tribble
 attr_theme_rl <- function() {
 
   dplyr::bind_rows(
@@ -82,8 +82,8 @@ attr_theme_rl <- function() {
 }
 
 #' The bt attribute theme
+#'
 #' @noRd
-#' @importFrom dplyr bind_rows tribble
 attr_theme_bt <- function() {
 
   dplyr::bind_rows(
@@ -97,8 +97,8 @@ attr_theme_bt <- function() {
 }
 
 #' The fdp attribute theme
+#'
 #' @noRd
-#' @importFrom dplyr tribble
 attr_theme_fdp <- function() {
 
   dplyr::tribble(
@@ -125,8 +125,8 @@ attr_theme_fdp <- function() {
 }
 
 #' The kk attribute theme
+#'
 #' @noRd
-#' @importFrom dplyr bind_rows tribble
 attr_theme_kk <- function() {
 
   dplyr::bind_rows(

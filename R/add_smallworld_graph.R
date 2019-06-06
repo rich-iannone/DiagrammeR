@@ -1,27 +1,29 @@
 #' Add a Watts-Strogatz small-world graph
 #'
 #' To an existing graph object, add a graph built according to the
-#'   Watts-Strogatz small-world model, which uses a lattice along with a
-#'   rewiring probability to randomly modify edge definitions.
+#' Watts-Strogatz small-world model, which uses a lattice along with a rewiring
+#' probability to randomly modify edge definitions.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param dimension the dimension of the starting lattice.
-#' @param size the size of the lattice across each dimension.
-#' @param neighborhood the neighborhood where the lattice nodes are to be
+#' @param dimension The dimension of the starting lattice.
+#' @param size The size of the lattice across each dimension.
+#' @param neighborhood The neighborhood where the lattice nodes are to be
 #'   connected.
-#' @param p the rewiring probability.
-#' @param loops a logical value (default is `FALSE`) that governs whether
-#'   loops are allowed to be created.
-#' @param multiple a logical value (default is `FALSE`) that governs
-#'   whether multiple edges are allowed to be created.
-#' @param type an optional string that describes the entity type for all the
+#' @param p The rewiring probability.
+#' @param loops A logical value (default is `FALSE`) that governs whether loops
+#'   are allowed to be created.
+#' @param multiple A logical value (default is `FALSE`) that governs whether
+#'   multiple edges are allowed to be created.
+#' @param type An optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a logical value where setting to `TRUE` ascribes node IDs
-#'   to the label and `FALSE` yields a blank label.
-#' @param rel an optional string for providing a relationship label to all edges
+#' @param label A logical value where setting to `TRUE` ascribes node IDs to the
+#'   label and `FALSE` yields a blank label.
+#' @param rel An optional string for providing a relationship label to all edges
 #'   to be added.
-#' @param set_seed supplying a value sets a random seed of the
+#' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create an undirected smallworld
 #' # graph with 100 nodes using
@@ -41,8 +43,7 @@
 #'
 #' # Get a count of edges
 #' smallworld_graph %>% count_edges()
-#' @importFrom igraph sample_smallworld
-#' @importFrom dplyr select bind_cols as_tibble
+#'
 #' @export
 add_smallworld_graph <- function(graph,
                                  dimension,

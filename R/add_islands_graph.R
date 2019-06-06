@@ -1,21 +1,22 @@
 #' Create a random islands graph with edges between the islands
 #'
 #' To an existing graph object, add several Erdos-Renyi random graphs (the
-#'   islands) using a common set of parameters, connected together by a fixed
-#'   number of edges.
+#' islands) using a common set of parameters, connected together by a fixed
+#' number of edges.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param n_islands the number of islands in the generated graph.
-#' @param island_size the size of the islands in the generated graph.
-#' @param p the probability of there being edges between the islands.
+#' @param n_islands The number of islands in the generated graph.
+#' @param island_size The size of the islands in the generated graph.
+#' @param p The probability of there being edges between the islands.
 #' @param edges_between The number of edges between islands.
-#' @param type an optional string that describes the entity type for all the
+#' @param type An optional string that describes the entity type for all the
 #'   nodes to be added.
-#' @param label a logical value where setting to `TRUE` ascribes node IDs
-#'   to the label and `FALSE` yields a blank label.
-#' @param rel an optional string for providing a relationship label to all edges
+#' @param label A logical value where setting to `TRUE` ascribes node IDs to the
+#'   label and `FALSE` yields a blank label.
+#' @param rel An optional string for providing a relationship label to all edges
 #'   to be added.
-#' @param set_seed supplying a value sets a random seed of the
+#' @param set_seed Supplying a value sets a random seed of the
 #'   `Mersenne-Twister` implementation.
 #' @examples
 #' # Create a graph of islands
@@ -33,8 +34,7 @@
 #'
 #' # Get a count of edges
 #' islands_graph %>% count_edges()
-#' @importFrom igraph sample_islands
-#' @importFrom dplyr select bind_cols as_tibble
+#'
 #' @export
 add_islands_graph <- function(graph,
                               n_islands,

@@ -3,29 +3,22 @@
 #' From a graph object of class `dgr_graph`, get node attribute values from
 #' nodes currently active as a selection.
 #'
-#' This function makes use of an active selection of nodes (and the
-#' function ending with `_ws` hints at this).
+#' This function makes use of an active selection of nodes (and the function
+#' ending with `_ws` hints at this).
 #'
 #' Selections of nodes can be performed using the following node selection
-#' (`select_*()`) functions:
-#' [select_nodes()],
-#' [select_last_nodes_created()],
-#' [select_nodes_by_degree()],
-#' [select_nodes_by_id()], or
+#' (`select_*()`) functions: [select_nodes()], [select_last_nodes_created()],
+#' [select_nodes_by_degree()], [select_nodes_by_id()], or
 #' [select_nodes_in_neighborhood()].
 #'
 #' Selections of nodes can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out()],
-#' [trav_in()],
-#' [trav_both()],
-#' [trav_out_node()],
-#' [trav_in_node()],
-#' [trav_out_until()], or
+#' (`trav_*()`) functions: [trav_out()], [trav_in()], [trav_both()],
+#' [trav_out_node()], [trav_in_node()], [trav_out_until()], or
 #' [trav_in_until()].
+#'
 #' @inheritParams render_graph
-#' @param node_attr the name of the attribute for which to get values.
-#' @return a named vector of node attribute values for the attribute given by
+#' @param node_attr The name of the attribute for which to get values.
+#' @return A named vector of node attribute values for the attribute given by
 #'   `node_attr` by node ID.
 #' @examples
 #' # Create a random graph using the
@@ -53,8 +46,8 @@
 #' graph %>%
 #'   get_node_attrs_ws(
 #'     node_attr = value)
-#' @importFrom dplyr filter pull
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 get_node_attrs_ws <- function(graph,
                               node_attr) {

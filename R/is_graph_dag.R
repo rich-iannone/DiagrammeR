@@ -1,10 +1,11 @@
 #' Is the graph a directed acyclic graph?
 #'
 #' Provides a logical value on whether the graph is a directed acyclic graph
-#'   (DAG). The conditions for a graph that is a DAG are that it should be a
-#'   directed graph and it should not contain any cycles.
+#' (DAG). The conditions for a graph that is a DAG are that it should be a
+#' directed graph and it should not contain any cycles.
+#'
 #' @inheritParams render_graph
-#' @return a logical value.
+#' @return A logical value.
 #' @examples
 #' # Create a directed graph containing
 #' # only a balanced tree
@@ -41,7 +42,7 @@
 #' # is a DAG
 #' graph_tree_undirected %>%
 #'   is_graph_dag()
-#' @importFrom igraph is_dag
+#'
 #' @export
 is_graph_dag <- function(graph) {
 

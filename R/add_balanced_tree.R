@@ -1,19 +1,19 @@
 #' Add a balanced tree to the graph
 #'
-#' With a graph object of class `dgr_graph`, add a balanced tree to the
-#'   graph.
+#' With a graph object of class `dgr_graph`, add a balanced tree to the graph.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param k the branching factor for the tree.
-#' @param h the height of the tree.
-#' @param type an optional string that describes the entity type for the
-#'   nodes to be added.
-#' @param label either a vector object of length `n` that provides optional
+#' @param k The branching factor for the tree.
+#' @param h The height of the tree.
+#' @param type An optional string that describes the entity type for the nodes
+#'   to be added.
+#' @param label Either a vector object of length `n` that provides optional
 #'   labels for the new nodes, or, a boolean value where setting to `TRUE`
 #'   ascribes node IDs to the label and `FALSE` yields a blank label.
-#' @param rel an optional string for providing a relationship label to all new
+#' @param rel An optional string for providing a relationship label to all new
 #'   edges created in the node tree.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph and
 #' # add 2 different types of
@@ -76,7 +76,6 @@
 #' graph_w_attrs %>%
 #'   get_edge_df() %>%
 #'   head(3)
-#' @importFrom dplyr select as_tibble
 #' @export
 add_balanced_tree <- function(graph,
                               k,

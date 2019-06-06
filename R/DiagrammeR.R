@@ -4,19 +4,19 @@
 #' \href{https://github.com/knsv/mermaid}{mermaid.js} with infrastructure
 #' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
 #'
-#' @param diagram the diagram in `graphviz` or `mermaid` format, or, a
-#'   file (as a connection or file name) containing a diagram specification. The
-#'   recommended filename extensions are `.gv` and `.mmd` for the
-#'   Graphviz and the mermaid diagram specifications, respectively. If no
-#'   diagram is provided (`diagram = ""`) then the function will assume
-#'   that a diagram will be provided by [htmltools::tags()] and
-#'   `DiagrammeR` is just being used for dependency injection.
-#' @param type a string, either `mermaid` (default) or `grViz`
-#'   indicating the type of diagram spec and the desired parser/renderer.
-#' @param ... any other parameters to pass to `grViz` or `mermaid`
-#' @return An object of class `htmlwidget` that will intelligently print
-#'   itself into HTML in a variety of contexts including the R console, within
-#'   R Markdown documents, and within Shiny output bindings.
+#' @param diagram The diagram in `graphviz` or `mermaid` format, or, a file (as
+#'   a connection or file name) containing a diagram specification. The
+#'   recommended filename extensions are `.gv` and `.mmd` for the Graphviz and
+#'   the mermaid diagram specifications, respectively. If no diagram is provided
+#'   (`diagram = ""`) then the function will assume that a diagram will be
+#'   provided by [htmltools::tags()] and `DiagrammeR` is just being used for
+#'   dependency injection.
+#' @param type A string, either `mermaid` (default) or `grViz` indicating the
+#'   type of diagram spec and the desired parser/renderer.
+#' @param ... Any other parameters to pass to `grViz` or `mermaid`
+#' @return An object of class `htmlwidget` that will intelligently print itself
+#'   into HTML in a variety of contexts including the R console, within R
+#'   Markdown documents, and within Shiny output bindings.
 #' @examples
 #' \dontrun{
 #' # note the whitespace is not important
@@ -116,6 +116,7 @@
 #'    end
 #' ")
 #' }
+#'
 #' @import htmlwidgets
 #' @export
 DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
@@ -140,10 +141,11 @@ DiagrammeR <- function(diagram = "", type = "mermaid", ...) {
 }
 
 #' Widget output function for use in Shiny
-#' @param outputId output variable to read from
-#' @param width a valid CSS unit for the width or a number, which will be
+#'
+#' @param outputId Output variable to read from
+#' @param width A valid CSS unit for the width or a number, which will be
 #'   coerced to a string and have `px` appended.
-#' @param height a valid CSS unit for the height or a number, which will be
+#' @param height A valid CSS unit for the height or a number, which will be
 #'   coerced to a string and have `px` appended.
 #' @export
 DiagrammeROutput <- function(outputId,
@@ -159,10 +161,11 @@ DiagrammeROutput <- function(outputId,
 }
 
 #' Widget render function for use in Shiny
-#' @param expr an expression that generates a DiagrammeR graph
-#' @param env the environment in which to evaluate expr.
-#' @param quoted is expr a quoted expression (with quote())? This is useful
-#'   if you want to save an expression in a variable.
+#'
+#' @param expr An expression that generates a DiagrammeR graph
+#' @param env The environment in which to evaluate expr.
+#' @param quoted Is expr a quoted expression (with quote())? This is useful if
+#'   you want to save an expression in a variable.
 #' @export
 renderDiagrammeR <- function(expr,
                              env = parent.frame(),

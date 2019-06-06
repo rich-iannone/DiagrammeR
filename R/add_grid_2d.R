@@ -1,20 +1,20 @@
 #' Add a 2D grid of nodes to the graph
 #'
-#' With a graph object of class `dgr_graph`, add a two-dimensional grid to
-#'   the graph.
+#' With a graph object of class `dgr_graph`, add a two-dimensional grid to the
+#' graph.
+#'
 #' @inheritParams node_edge_aes_data
 #' @inheritParams render_graph
-#' @param x the number of nodes in the x direction.
-#' @param y the number of nodes in the y direction.
-#' @param type an optional string that describes the entity type for the nodes
+#' @param x The number of nodes in the x direction.
+#' @param y The number of nodes in the y direction.
+#' @param type An optional string that describes the entity type for the nodes
 #'   to be added.
-#' @param label either a vector object of length `x * y` that provides
-#'   optional labels for the new nodes, or, a logical value where setting to
-#'   `TRUE` ascribes node IDs to the label and `FALSE` yields a blank
-#'   label.
-#' @param rel an optional string for providing a relationship label to all new
+#' @param label Either a vector object of length `x * y` that provides optional
+#'   labels for the new nodes, or, a logical value where setting to `TRUE`
+#'   ascribes node IDs to the label and `FALSE` yields a blank label.
+#' @param rel An optional string for providing a relationship label to all new
 #'   edges created in the grid.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a new graph and add
 #' # a 3 x 3 grid
@@ -58,8 +58,7 @@
 #'
 #' # Get the graph's edge data frame
 #' graph_w_attrs %>% get_edge_df()
-#' @importFrom igraph make_lattice
-#' @importFrom dplyr as_tibble select bind_cols pull
+#'
 #' @export
 add_grid_2d <- function(graph,
                         x,

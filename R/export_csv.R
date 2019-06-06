@@ -1,18 +1,19 @@
 #' Export a graph to CSV files
 #'
 #' Export a graph to CSV files for nodes and edges.
+#'
 #' @inheritParams render_graph
-#' @param ndf_name the name to provide to the CSV file containing node
+#' @param ndf_name The name to provide to the CSV file containing node
 #'   information. By default this CSV will be called `nodes.csv`.
-#' @param edf_name the name to provide to the CSV file containing edge
+#' @param edf_name The name to provide to the CSV file containing edge
 #'   information. By default this CSV will be called `edges.csv`.
-#' @param output_path the path to which the CSV files will be placed. By
+#' @param output_path The path to which the CSV files will be placed. By
 #'   default, this is the current working directory.
-#' @param colnames_type provides options to modify CSV column names to allow for
-#'   easier import into other graph systems. The `neo4j` option modifies
-#'   column names to allow for direct import of CSVs into Neo4J with the
-#'   `LOAD CSV` clause. The `graphframes` option modifies column names
-#'   to match those required by the Spark GraphFrames package.
+#' @param colnames_type Provides options to modify CSV column names to allow for
+#'   easier import into other graph systems. The `neo4j` option modifies column
+#'   names to allow for direct import of CSVs into Neo4J with the `LOAD CSV`
+#'   clause. The `graphframes` option modifies column names to match those
+#'   required by the Spark GraphFrames package.
 #' @examples
 #' # Create a node data frame (ndf)
 #' ndf <-
@@ -38,7 +39,7 @@
 #' # Create separate `nodes.csv` and `edges.csv`
 #' # files in the working directory
 #' graph %>% export_csv()
-#' @importFrom utils write.csv
+#'
 #' @export
 export_csv <- function(graph,
                        ndf_name = "nodes.csv",

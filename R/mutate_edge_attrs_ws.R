@@ -7,25 +7,20 @@
 #' ending with `_ws` hints at this).
 #'
 #' Selections of edges can be performed using the following selection
-#' (`select_*()`) functions:
-#' [select_edges()],
-#' [select_last_edges_created()],
-#' [select_edges_by_edge_id()], or
-#' [select_edges_by_node_id()].
+#' (`select_*()`) functions: [select_edges()], [select_last_edges_created()],
+#' [select_edges_by_edge_id()], or [select_edges_by_node_id()].
 #'
 #' Selections of edges can also be performed using the following traversal
-#' (`trav_*()`) functions:
-#' [trav_out_edge()],
-#' [trav_in_edge()],
-#' [trav_both_edge()], or
-#' [trav_reverse_edge()].
+#' (`trav_*()`) functions: [trav_out_edge()], [trav_in_edge()],
+#' [trav_both_edge()], or [trav_reverse_edge()].
+#'
 #' @inheritParams render_graph
-#' @param ... expressions used for the mutation of edge attributes. LHS of each
+#' @param ... Expressions used for the mutation of edge attributes. LHS of each
 #'   expression is either an existing or new edge attribute name. The RHS can
 #'   consist of any valid R code that uses edge attributes as variables.
 #'   Expressions are evaluated in the order provided, so, edge attributes
 #'   created or modified are ready to use in subsequent expressions.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with 3 edges
 #' # and then select edge `1`
@@ -115,8 +110,8 @@
 #' # attributes without changing
 #' # those of the other edges
 #' graph %>% get_edge_df()
-#' @importFrom dplyr mutate_
-#' @importFrom rlang enquo get_expr UQ
+#'
+#' @import rlang
 #' @export
 mutate_edge_attrs_ws <- function(graph,
                                  ...) {

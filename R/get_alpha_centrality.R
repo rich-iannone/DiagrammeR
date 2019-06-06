@@ -40,7 +40,7 @@
 #' # Display the graph's node
 #' # data frame
 #' graph %>% get_node_df()
-#' @importFrom igraph alpha_centrality
+#'
 #' @export
 get_alpha_centrality <- function(graph,
                                  alpha = 1,

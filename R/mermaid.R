@@ -1,20 +1,21 @@
 #' R + mermaid.js
 #'
 #' Make diagrams in R using
-#'   \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
-#'   provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
-#' @param diagram diagram in mermaid markdown-like language or file (as a
+#' \href{https://github.com/knsv/mermaid/wiki}{mermaid.js} with infrastructure
+#' provided by \href{http://www.htmlwidgets.org/}{htmlwidgets}.
+#'
+#' @param diagram Diagram in mermaid markdown-like language or file (as a
 #'   connection or file name) containing a diagram specification. If no diagram
-#'   is provided `diagram = ""` then the function will assume that a
-#'   diagram will be provided by [htmltools::tags()] and
-#'   `DiagrammeR` is just being used for dependency injection.
-#' @param ... other arguments and parameters you would like to send to
+#'   is provided `diagram = ""` then the function will assume that a diagram
+#'   will be provided by [htmltools::tags()] and `DiagrammeR` is just being used
+#'   for dependency injection.
+#' @param ... Other arguments and parameters you would like to send to
 #'   JavaScript.
-#' @param width the width of the resulting graphic in pixels.
-#' @param height the height of the resulting graphic in pixels.
-#' @return An object of class `htmlwidget` that will intelligently print
-#'   itself into HTML in a variety of contexts including the R console, within
-#'   R Markdown documents, and within Shiny output bindings.
+#' @param width The width of the resulting graphic in pixels.
+#' @param height The height of the resulting graphic in pixels.
+#' @return An object of class `htmlwidget` that will intelligently print itself
+#'   into HTML in a variety of contexts including the R console, within R
+#'   Markdown documents, and within Shiny output bindings.
 #' @examples
 #' \dontrun{
 #' # Create a simple graph running left to right (note
@@ -114,6 +115,7 @@
 #'    end
 #' ")
 #' }
+#'
 #' @import htmlwidgets
 #' @export
 mermaid <- function(diagram = "",

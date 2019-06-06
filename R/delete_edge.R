@@ -87,7 +87,7 @@
 #'     from = "one",
 #'     to = "two") %>%
 #'   count_edges()
-#' @importFrom dplyr filter select
+#'
 #' @export
 delete_edge <- function(graph,
                         from = NULL,

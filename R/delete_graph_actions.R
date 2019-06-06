@@ -1,12 +1,13 @@
 #' Delete one or more graph actions stored within a graph object
 #'
 #' Delete one or more graph actions stored within a graph object of class
-#'   `dgr_graph`).
+#' `dgr_graph`).
+#'
 #' @inheritParams render_graph
-#' @param actions either a vector of integer numbers indicating which actions to
+#' @param actions Either a vector of integer numbers indicating which actions to
 #'   delete (based on `action_index` values), or, a character vector
 #'   corresponding to `action_name` values.
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a random graph using the
 #' # `add_gnm_graph()` function
@@ -53,7 +54,7 @@
 #' # actions were deleted by again using
 #' # the `get_graph_actions()` function
 #' graph %>% get_graph_actions()
-#' @importFrom dplyr pull filter mutate row_number
+#'
 #' @export
 delete_graph_actions <- function(graph,
                                  actions) {

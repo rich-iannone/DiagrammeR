@@ -1,28 +1,27 @@
 #' Import a graph from various graph formats
 #'
 #' Import a variety of graphs from different graph formats and create a graph
-#'   object.
-#' @param graph_file a connection to a graph file. When provided as a path to a
+#' object.
+#'
+#' @param graph_file A connection to a graph file. When provided as a path to a
 #'   file, it will read the file from disk. Files starting with `http://`,
-#'   `https://`, `ftp://`, or `ftps://` will be automatically
-#'   downloaded.
-#' @param file_type the type of file to be imported. Options are: `gml`
-#'   (GML), `sif` (SIF), `edges` (a .edges file), and `mtx`
-#'   (MatrixMarket format). If not supplied, the type of graph file will be
-#'   inferred by its file extension.
-#' @param edges_extra_attr_names for `edges` files, a vector of attribute
-#'   names beyond the `from` and `to` data columns can be provided in
-#'   the order they appear in the input data file.
-#' @param edges_extra_attr_coltypes for `edges` files, this is a string of
+#'   `https://`, `ftp://`, or `ftps://` will be automatically downloaded.
+#' @param file_type The type of file to be imported. Options are: `gml` (GML),
+#'   `sif` (SIF), `edges` (a .edges file), and `mtx` (MatrixMarket format). If
+#'   not supplied, the type of graph file will be inferred by its file
+#'   extension.
+#' @param edges_extra_attr_names For `edges` files, a vector of attribute names
+#'   beyond the `from` and `to` data columns can be provided in the order they
+#'   appear in the input data file.
+#' @param edges_extra_attr_coltypes For `edges` files, this is a string of
 #'   column types for any attribute columns provided for
 #'   `edges_extra_attr_names`. This string representation is where each
 #'   character represents each of the extra columns of data and the mappings
-#'   are: `c` -> character, `i` -> integer, `n` -> number,
-#'   `d` -> double, `l` -> logical, `D` -> date, `T` ->
-#'   date time, `t` -> time, `?` -> guess, or `_/-`, which skips
-#'   the column.
+#'   are: `c` -> character, `i` -> integer, `n` -> number, `d` -> double, `l` ->
+#'   logical, `D` -> date, `T` -> date time, `t` -> time, `?` -> guess, or
+#'   `_/-`, which skips the column.
 #' @inheritParams create_graph
-#' @return a graph object of class `dgr_graph`.
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' \dontrun{
 #' # Import a GML graph file
@@ -40,14 +39,7 @@
 #' gml_graph %>%
 #'   count_edges()
 #' }
-#' @importFrom dplyr right_join select rename mutate everything bind_rows
-#' @importFrom dplyr arrange distinct tibble as_tibble
-#' @importFrom downloader download
-#' @importFrom purrr flatten_int
-#' @importFrom stringr str_extract str_detect str_split str_count
-#' @importFrom stringr str_replace_all str_extract_all
-#' @importFrom readr read_delim
-#' @importFrom utils unzip
+#'
 #' @export
 import_graph <- function(graph_file,
                          file_type = NULL,
@@ -63,9 +55,6 @@ import_graph <- function(graph_file,
 
   # Get the name of the function
   fcn_name <- get_calling_fcn()
-
-  # Assign NULL to several objects
-  # id <- to_label <- from_label <-  NULL
 
   # Stop function if `file_type` specified is not part
   # of the group that can be imported

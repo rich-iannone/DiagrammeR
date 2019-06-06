@@ -1,11 +1,11 @@
 #' Generate DOT code using a graph object
 #'
 #' Generates Graphviz DOT code as an R character object using DiagrammeR graph
-#'   object.
+#' object.
+#'
 #' @inheritParams render_graph
-#' @return a character vector of length 1 containing Graphviz DOT code.
-#' @importFrom dplyr filter mutate pull
-#' @importFrom stringr str_replace str_replace_all
+#' @return A character vector of length 1 containing Graphviz DOT code.
+#'
 #' @export
 generate_dot <- function(graph) {
 

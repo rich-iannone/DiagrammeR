@@ -1,33 +1,30 @@
 #' Layout nodes using a text-based schematic
 #'
 #' Layout one or several groups of nodes using a text-based schematic. The
-#'   option is available to apply sorting to each of the groups.
+#' option is available to apply sorting to each of the groups.
+#'
 #' @inheritParams render_graph
-#' @param layout a layout character string that provides a schematic for the
-#'   layout. This consists of a rectangular collection of `-` characters
-#'   (for no node placement), and numbers from `1` to `9`
-#'   (representing different groupings of nodes, further described in the
-#'   `nodes` argument).
-#' @param nodes a named vector of the form:
-#'   `c("1" = "[node_attr]:[value]", ...)`. The LHS corresponds to the
-#'   numbers used in the `layout` schematic. The RHS provides a shorthand
-#'   for the node attribute and a value for grouping together nodes (separated
-#'   by a colon). For instance, with `"type:a"` in the RHS (and `"1"`
-#'   in the LHS) we would target all nodes with a `type` attribute equal to
-#'   `a` for positioning in the graph as described by the `1`s in the
-#'   `layout`.
-#' @param sort an optional sorting method to apply to the collection of nodes
+#' @param layout A layout character string that provides a schematic for the
+#'   layout. This consists of a rectangular collection of `-` characters (for no
+#'   node placement), and numbers from `1` to `9` (representing different
+#'   groupings of nodes, further described in the `nodes` argument).
+#' @param nodes A named vector of the form: `c("1" = "[node_attr]:[value]",
+#'   ...)`. The LHS corresponds to the numbers used in the `layout` schematic.
+#'   The RHS provides a shorthand for the node attribute and a value for
+#'   grouping together nodes (separated by a colon). For instance, with
+#'   `"type:a"` in the RHS (and `"1"` in the LHS) we would target all nodes with
+#'   a `type` attribute equal to `a` for positioning in the graph as described
+#'   by the `1`s in the `layout`.
+#' @param sort An optional sorting method to apply to the collection of nodes
 #'   before assigning positional information. Like `nodes`, this is a named
-#'   vector of the form: `c("1" = "[node_attr]:asc|desc", ...)`. The
-#'   `node_attr` in this case should be different than that used in
-#'   `nodes`. Ideally, this node attribute should have unique values.
-#'   Choose either `asc` or `desc` right of the colon for ascending or
-#'   descending sorts.
-#' @param width the width of the `layout` diagram.
-#' @param height the height of the `layout` diagram.
-#' @param ll a vector describing the the lower-left coordinates of the
-#'   `layout`
-#' @return a graph object of class `dgr_graph`.
+#'   vector of the form: `c("1" = "[node_attr]:asc|desc", ...)`. The `node_attr`
+#'   in this case should be different than that used in `nodes`. Ideally, this
+#'   node attribute should have unique values. Choose either `asc` or `desc`
+#'   right of the colon for ascending or descending sorts.
+#' @param width The width of the `layout` diagram.
+#' @param height The height of the `layout` diagram.
+#' @param ll A vector describing the the lower-left coordinates of the `layout`
+#' @return A graph object of class `dgr_graph`.
 #' @examples
 #' # Create a graph with unique labels and
 #' # several node `type` groupings
@@ -77,8 +74,7 @@
 #' # to confirm that `x` and `y` values
 #' # were added to each of the nodes
 #' graph %>% get_node_df()
-#' @importFrom stringr str_split
-#' @importFrom dplyr bind_rows bind_cols filter_ arrange_ left_join tibble
+#'
 #' @export
 layout_nodes_w_string <- function(graph,
                                   layout,

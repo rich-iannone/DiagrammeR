@@ -1,8 +1,9 @@
 #' Get the graph date-time or timezone
 #'
 #' Get the time and timezone for a graph object of class `dgr_graph`.
+#'
 #' @inheritParams render_graph
-#' @return a single-length `POSIXct` vector with the assigned graph time.
+#' @return A single-length `POSIXct` vector with the assigned graph time.
 #' @examples
 #' # Create an empty graph and
 #' # set the graph's time; if nothing
@@ -15,8 +16,7 @@
 #'
 #' # Get the graph's time as a POSIXct
 #' # object using `get_graph_time()`
-#' graph %>%
-#'   get_graph_time()
+#' graph %>% get_graph_time()
 #' @export
 get_graph_time <- function(graph) {
 
